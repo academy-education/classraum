@@ -1,0 +1,278 @@
+[
+  {
+    "id": "MAPA7-01",
+    "source_id": "b12c632a-24d6-4864-ae7a-46342ea6ac8e",
+    "set_id": null,
+    "map_area": "Informational Text",
+    "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+    "grade_target": 7,
+    "target_band": "RIT 200-209",
+    "stratum": "comprehension",
+    "passage": "Microloans are small loans for people whom banks turn away. People once hoped these loans would lift families out of poverty by helping them start businesses. Careful studies have cooled that hope. Most borrowers did not earn more, and their businesses rarely grew past a very small size. But the studies agree on a quieter benefit. The loans helped families with the timing of their spending. Families could get through lean months and pay for big, one-time costs they could not have managed otherwise. Microloans, the evidence suggests, do not create new wealth. Instead, they help families spread the money they already have across time.",
+    "prompt": "Which finding, if true, would best support the passage's idea of how microloans help?",
+    "choices": [
+      "Families with microloans started far more new businesses than similar families without loans.",
+      "After repaying, borrowers trusted banks more and more often opened savings accounts.",
+      "Areas with many lenders had less poverty ten years later than areas with few.",
+      "Borrowers earned no more than others but could better pay big, one-time costs."
+    ],
+    "correct_answer": "Borrowers earned no more than others but could better pay big, one-time costs.",
+    "key_logic": "The passage says borrowers \"did not earn more\" but could \"pay for big, one-time costs,\" and the key finding matches both halves: no income gain, better handling of large irregular costs.",
+    "distractor_map": [
+      {
+        "adapted": "Families with microloans started far more new businesses than similar families without loans.",
+        "source": "Households that received microloans started markedly more new businesses than otherwise similar households that received no loans.",
+        "role": "supports the business-engine view the passage sets aside"
+      },
+      {
+        "adapted": "After repaying, borrowers trusted banks more and more often opened savings accounts.",
+        "source": "Microloan borrowers reported greater trust in formal financial institutions after repayment, and were likelier than non-borrowers to open a savings account.",
+        "role": "plausible benefit unrelated to the timing of spending"
+      },
+      {
+        "adapted": "Areas with many lenders had less poverty ten years later than areas with few.",
+        "source": "Regions served by many microfinance institutions had lower overall poverty rates a decade later than otherwise similar regions where such lenders stayed scarce.",
+        "role": "area-level wealth creation, not household smoothing over time"
+      }
+    ],
+    "dropped_distractor": null,
+    "changes": [
+      "passage cut from 118 to about 105 words",
+      "'randomized trials'/'rigorous evaluations' simplified to 'careful studies'",
+      "'smoothing consumption across lean and flush periods' turned into 'get through lean months'",
+      "'lumpy purchases' reworded as 'big, one-time costs' in passage and key",
+      "stem reworded from 'most strengthen the passage's characterization of microcredit's benefit' to 'best support the passage's idea of how microloans help'",
+      "all four findings simplified; none dropped (source had four)"
+    ]
+  },
+  {
+    "id": "MAPA7-02",
+    "source_id": "4448abd0-0b38-436c-9e59-4ada5da4f22a",
+    "set_id": null,
+    "map_area": "Informational Text",
+    "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+    "grade_target": 8,
+    "target_band": "RIT 210-219",
+    "stratum": "comprehension",
+    "passage": "Many people see farming as an obvious upgrade. Farming made more food, so foragers gladly took it up. Ancient bones tell a different story. Early farmers were shorter than the foragers who came before them. They also had more tooth decay and more signs of poor nutrition. Farming did produce more calories per acre. But those calories came from a few starchy crops, and they cost longer hours of work. Crowded villages also spread disease. So why farm at all? Perhaps once populations had grown, foraging could no longer feed everyone. Farming may have been less a prize than a trap: good for the group's numbers, but bad for each person's health.",
+    "prompt": "Which finding, if true, would most weaken the author's view of the shift to farming?",
+    "choices": [
+      "Some forager groups next to farming villages refused to farm for many centuries.",
+      "The first farming villages were bigger and more crowded than earlier forager camps.",
+      "Skeletons show the first farmers were taller and better fed than nearby foragers.",
+      "Early crops gave many times more calories per acre than wild foods did."
+    ],
+    "correct_answer": "Skeletons show the first farmers were taller and better fed than nearby foragers.",
+    "key_logic": "The author's evidence that farming hurt individuals is that early farmers \"were shorter\" and had \"more signs of poor nutrition\"; skeletons showing farmers taller and better fed would reverse that evidence.",
+    "distractor_map": [
+      {
+        "adapted": "Some forager groups next to farming villages refused to farm for many centuries.",
+        "source": "Some forager groups living beside farming villages declined to take up agriculture for many centuries.",
+        "role": "bears on how fast farming spread, not on farmers' health"
+      },
+      {
+        "adapted": "The first farming villages were bigger and more crowded than earlier forager camps.",
+        "source": "The earliest farming settlements were far larger and more densely settled than the forager camps that preceded them on the same land.",
+        "role": "fits the argument, since crowding is a named cost"
+      },
+      {
+        "adapted": "Early crops gave many times more calories per acre than wild foods did.",
+        "source": "Early crops delivered several times more calories per acre than the wild foods gathered from the same land.",
+        "role": "tempting trap: the passage already concedes more calories per acre"
+      }
+    ],
+    "dropped_distractor": null,
+    "changes": [
+      "passage cut from 144 to about 115 words",
+      "'nutritional stress' simplified to 'signs of poor nutrition'; key's 'fewer stress markers' rendered as 'better fed'",
+      "'denser settlement that bred infection' turned into 'Crowded villages also spread disease'",
+      "stem reworded from 'characterization of the shift to agriculture' to 'view of the shift to farming'",
+      "all four findings simplified; none dropped (source had four)"
+    ]
+  },
+  {
+    "id": "MAPA7-03",
+    "source_id": "8a08e057-0d5f-4a05-a340-b3d68a06239c",
+    "set_id": null,
+    "map_area": "Informational Text",
+    "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+    "grade_target": 7,
+    "target_band": "RIT 200-209",
+    "stratum": "comprehension",
+    "passage": "Many people say that children who speak two languages are better at focusing. They are also said to switch between tasks more easily. The idea is that juggling two languages trains the brain. Early studies seemed to agree. But one scientist doubts it. She points out that many of those studies were small. She also notes that a study was more likely to be published when it found an advantage. She thinks this publishing pattern made the advantage look bigger than it really is. If she is right, she says, the research should show a telltale pattern.",
+    "prompt": "Which finding, if true, would most strongly support the scientist's idea?",
+    "choices": [
+      "Large, planned studies find little advantage; most positive results come from small studies.",
+      "Bilingual adults do better on some focus tasks, mostly the ones that need fast switching.",
+      "Children who start a second language earlier show bigger advantages than later starters.",
+      "Children who speak one language can improve their focus with weeks of special training."
+    ],
+    "correct_answer": "Large, planned studies find little advantage; most positive results come from small studies.",
+    "key_logic": "The scientist blames a filter that published \"small\" studies that \"found an advantage,\" so an advantage that shows up only in small studies and disappears in large planned ones is the pattern she predicts.",
+    "distractor_map": [
+      {
+        "adapted": "Bilingual adults do better on some focus tasks, mostly the ones that need fast switching.",
+        "source": "Bilingual adults outperform monolingual adults on some attention tasks but not on others, with the gap appearing mainly on tasks that demand rapid switching.",
+        "role": "a patterned real effect, not a publishing artifact"
+      },
+      {
+        "adapted": "Children who start a second language earlier show bigger advantages than later starters.",
+        "source": "Children who begin a second language earlier show larger executive-function advantages than those who begin later, a dose-response pattern across ages.",
+        "role": "dose-response pattern pointing to a genuine difference, against her"
+      },
+      {
+        "adapted": "Children who speak one language can improve their focus with weeks of special training.",
+        "source": "Monolingual children can improve their executive function through several weeks of targeted attention training.",
+        "role": "about training one-language children, a different question"
+      }
+    ],
+    "dropped_distractor": null,
+    "changes": [
+      "passage cut from 83 to about 95 words (sentences split for grade 7)",
+      "'executive-function advantage' simplified to 'better at focusing ... switch between tasks more easily'",
+      "'publication filter' explained as 'more likely to be published when it found an advantage'",
+      "'pre-registered' rendered as 'planned'",
+      "'dose-response pattern across ages' shortened to 'earlier ... than later starters'",
+      "stem: 'skeptic's hypothesis' to 'scientist's idea'",
+      "none dropped (source had four)"
+    ]
+  },
+  {
+    "id": "MAPA7-04",
+    "source_id": "bee6a5cc-9765-41c3-88d1-fbf641338eda",
+    "set_id": null,
+    "map_area": "Informational Text",
+    "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+    "grade_target": 8,
+    "target_band": "RIT 210-219",
+    "stratum": "comprehension",
+    "passage": "Wolves were brought back to Yellowstone National Park. The park then became a famous example of a chain reaction in nature. With wolves back, elk stayed away from open stream banks where they could be ambushed. With less elk grazing, willow and aspen trees grew back along the streams. Newer fieldwork suggests the story is not so simple. Willows have recovered unevenly. They came back strongly where beaver dams raise the water and keep the banks wet. They did poorly where the banks stayed dry, even where wolves were clearly present and elk were clearly cautious. Wolves may be needed for the recovery, but they are not enough on their own.",
+    "prompt": "Which finding, if true, would most support the newer claim that the wolves' return was not enough by itself to bring the trees back?",
+    "choices": [
+      "Elk numbers dropped sharply in the years right after wolves were brought back.",
+      "Beaver colonies grew across much of the park after wolves were brought back.",
+      "Wolves caught elk most often in open valleys, where herds had few escape routes.",
+      "Willows failed where water was low, despite many wolves living there for years."
+    ],
+    "correct_answer": "Willows failed where water was low, despite many wolves living there for years.",
+    "key_logic": "The newer work says willows \"did poorly where the banks stayed dry, even where wolves were clearly present,\" so willows failing at low water despite years of heavy wolf presence shows wolves alone are not enough.",
+    "distractor_map": [
+      {
+        "adapted": "Elk numbers dropped sharply in the years right after wolves were brought back.",
+        "source": "Elk populations fell sharply in the years immediately after wolves were reintroduced.",
+        "role": "tempting: supports the classic chain reaction, not the qualification"
+      },
+      {
+        "adapted": "Beaver colonies grew across much of the park after wolves were brought back.",
+        "source": "Beaver colonies increased across much of the park following the reintroduction of wolves.",
+        "role": "fits either story, so distinguishes neither"
+      },
+      {
+        "adapted": "Wolves caught elk most often in open valleys, where herds had few escape routes.",
+        "source": "Wolves hunted elk most successfully in the open bottoms of river valleys, where the browsing herds had few routes of escape.",
+        "role": "hunting behavior, silent on whether wolves suffice"
+      }
+    ],
+    "dropped_distractor": null,
+    "changes": [
+      "passage cut from 126 to about 112 words",
+      "'trophic cascade' simplified to 'chain reaction in nature'",
+      "'raise the water table' simplified to 'raise the water'; 'where those conditions are lacking' made concrete as 'where the banks stayed dry'",
+      "'necessary ... not a sufficient one' rendered as 'may be needed ... not enough on their own'",
+      "'heavy and sustained wolf presence' rendered as 'many wolves lived there for years'",
+      "none dropped (source had four)"
+    ]
+  },
+  {
+    "id": "MAPA7-05",
+    "source_id": "32ff11a5-ccc6-45f6-8626-c9ff5e26e806",
+    "set_id": null,
+    "map_area": "Informational Text",
+    "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+    "grade_target": 7,
+    "target_band": "RIT 200-209",
+    "stratum": "comprehension",
+    "passage": "Many people believe that time together makes rival groups less prejudiced. Decades of studies show that contact often does reduce bias. But the idea is not that simple. Early researchers said contact helps only under certain conditions. The groups must meet as equals. They must work toward shared goals, with support from leaders. Without these, contact can make hostility worse. Later studies also found that some of the benefit fades once people leave the planned setting. So the evidence supports a narrower claim. Carefully planned contact reduces prejudice. Simply being around another group will not do the job by itself.",
+    "prompt": "Which finding, if true, would most weaken the passage's main claim?",
+    "choices": [
+      "Groups meeting as equals, with shared goals and their leaders' support, became far less biased.",
+      "Drops in prejudice from contact faded soon after people left the planned setting.",
+      "People who just lived near another group, with no goals or support, grew lastingly less biased.",
+      "Contact between unequal, competing groups made the two groups more hostile to each other."
+    ],
+    "correct_answer": "People who just lived near another group, with no goals or support, grew lastingly less biased.",
+    "key_logic": "The main claim is that \"simply being around another group will not do the job by itself,\" so lasting prejudice reduction from merely living nearby, without the conditions, directly contradicts it.",
+    "distractor_map": [
+      {
+        "adapted": "Groups meeting as equals, with shared goals and their leaders' support, became far less biased.",
+        "source": "Evidence that a program meeting the classic conditions—equal status, shared goals, institutional support—sharply reduced participants' bias",
+        "role": "supports the passage: planned contact works"
+      },
+      {
+        "adapted": "Drops in prejudice from contact faded soon after people left the planned setting.",
+        "source": "A finding that reductions in prejudice from contact tend to fade once participants leave the structured setting",
+        "role": "matches the passage's own fading-effect qualification"
+      },
+      {
+        "adapted": "Contact between unequal, competing groups made the two groups more hostile to each other.",
+        "source": "A study showing that contact under unequal, competitive conditions increased hostility between groups",
+        "role": "supports the passage: contact without the conditions backfires"
+      }
+    ],
+    "dropped_distractor": null,
+    "changes": [
+      "passage cut from 147 to about 105 words",
+      "'as anyone who has watched rival factions share cramped quarters can attest' cut",
+      "sentence about effects spreading to members never encountered cut (supported no option)",
+      "'institutional support' simplified to 'support from leaders'",
+      "options turned from noun phrases ('A study showing...') into plain sentences",
+      "none dropped (source had four)"
+    ]
+  },
+  {
+    "id": "MAPA7-06",
+    "source_id": "572ba180-e1c0-43ec-992b-bc1469b4dfd5",
+    "set_id": null,
+    "map_area": "Informational Text",
+    "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+    "grade_target": 8,
+    "target_band": "RIT 210-219",
+    "stratum": "comprehension",
+    "passage": "In the famous \"marshmallow test,\" young children could eat one treat now or wait for two treats later. Those who waited did better later in life. Many took this as proof that self-control is a fixed trait. Some researchers now question that lesson. Waiting only makes sense if a promise can be trusted. A child who has learned that adults often break promises is being sensible by taking the sure treat. When experimenters first showed they were reliable, children waited much longer. When they proved unreliable, even \"patient\" children grabbed the treat at once. The test may measure not willpower but whether a child expects promises to be kept. That depends on how stable the child's home has been.",
+    "prompt": "Which finding, if true, would most support the researchers' new view of the test?",
+    "choices": [
+      "Longer waiters were more responsible years later, even counting how stable their homes were.",
+      "Older children waited longer than younger ones, and the gap grew with each year.",
+      "Children from homes often short on food waited less, despite equal self-control test scores.",
+      "Children waited just as long after seeing a promise broken as after seeing one kept."
+    ],
+    "correct_answer": "Children from homes often short on food waited less, despite equal self-control test scores.",
+    "key_logic": "The new view says waiting reflects \"whether a child expects promises to be kept\" and that this \"depends on how stable the child's home has been\"; children from unstable homes waiting less while scoring equally on self-control isolates home stability from willpower.",
+    "distractor_map": [
+      {
+        "adapted": "Longer waiters were more responsible years later, even counting how stable their homes were.",
+        "source": "Children who waited longer for the treat scored higher on personality measures of conscientiousness years later, and the association held even after researchers adjusted for how stable the child's household had been.",
+        "role": "supports the fixed-trait reading the passage questions"
+      },
+      {
+        "adapted": "Older children waited longer than younger ones, and the gap grew with each year.",
+        "source": "Older children, on average, waited longer for the delayed reward than younger children did, and the difference widened with each additional year of age.",
+        "role": "maturation; does not separate trait from expectation"
+      },
+      {
+        "adapted": "Children waited just as long after seeing a promise broken as after seeing one kept.",
+        "source": "Children who had just watched the experimenter break a promise waited as long for the second treat as children who had watched her keep one, whatever the stability of the household they came from.",
+        "role": "says promise reliability makes no difference, which weakens the view"
+      }
+    ],
+    "dropped_distractor": null,
+    "changes": [
+      "passage cut from 137 to about 120 words",
+      "'evidence-based expectation about whether the world keeps its promises' simplified to 'whether a child expects promises to be kept'",
+      "'unpredictable access to food' rendered as 'homes often short on food'",
+      "'conscientiousness' simplified to 'being responsible'",
+      "stem: 'reconsideration described in the text' to 'researchers' new view of the test'",
+      "none dropped (source had four)"
+    ]
+  }
+]
