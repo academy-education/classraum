@@ -189,6 +189,17 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-07** — **SSAT WV6 CO-FOUNDER READ PREPARED, NOT SENT: run `ssat-wv6-cofounder-2026-10-07`, all 12 staged `ssat-reading-wv6` items for `support@classraum.com` (reviewer `6ca6edaf…`).**
+  - **Deal:** keys 3/3/2/2/2, giving a 25.0% control, against a 20% five-choice line.
+  - **Order:** P01-5 (`32521213`, the flagged attitude item) is first. New `draw-review-run.mjs DRAW_FIRST` inserts its row alone, before the rest. Checked: the panel's next-item query returns it.
+  - **Checked after the draw:** 12 rows, all `reviewer_kind='human'`, `item_sha` stamped, 0 previously seen, all `verified=false`.
+  - **Prereg** `ssat-reading-wv6.SITTING.PREREG.md` (`4686fabe`), committed before the draw:
+    - per item, only-defensible → release;
+    - flagged or rejected → archive, no repair;
+    - blind score reported, not a gate (n=12);
+    - WV7+ release waits on this read confirming the method: at most 2 of 12 flagged/rejected, and none of the 8 main-idea/detail/inference/purpose items. That operationalisation is mine; the owner can override it.
+  - Forwardable note: `SSAT-WV6-SITTING.md`.
+
 - **2026-10-07** — **SSAT UPPER READING BATCH WV6 PASSES EVERY DECIDING STAGE. 12 ITEMS INSERTED STAGED (`verified=false`) AS COHORT `ssat-reading-wv6`; DRAWABLE UNCHANGED AT 138. A HUMAN READ IS REQUIRED BEFORE RELEASE.**
   - **Commits:** prereg `35b5bd43`, freeze `5e4433e7`, draw `596d77f0`.
   - **What changed from WV5 (owner-approved):** WV5 failed C at 9/12, on two attitude items and one vocabulary item. WV6 fixed both kinds by construction.
