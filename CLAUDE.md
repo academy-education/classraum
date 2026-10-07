@@ -412,6 +412,35 @@ exemplars or students self-reporting real TOEFL bands.
 Until then, do not fold rubric marks into the section band — it would
 push every Speaking and Writing score down by that same margin.
 
+### The answer ladder measures CONSISTENCY, not calibration
+
+`npx tsx scripts/grader-ladder.ts` (`--dry` validates with no model calls)
+grades our own degradation ladders
+(`src/lib/study/__fixtures__/grader-ladder.ts`: one strong answer per bank
+prompt, then one rubric dimension changed per step, per THAT task's guide)
+through `openAiStages()`, N=3. It reports ordering (Spearman/Kendall plus the
+inversions), repeat spread, band hits against a data-derived constant
+control, and per-dimension sensitivity. The intended bands are OUR reading
+of the descriptors, so its offset is relative to our ladder, never to ETS.
+**Do not tune prompts, rubrics or score mapping against it.** A tuned
+ladder stops measuring anything, exactly as the two ETS samples would.
+
+First run (2026-10-07, `scripts/GRADER-LADDER-2026-10-07.md`): it orders
+answers well (rho 0.88; Speaking transcript 0.97). Five things it got
+wrong against our own descriptors:
+
+- the zero gate scores fluent off-topic answers and band-1 borrowed
+  answers 0, including one that mirrors our own band-2 email anchor, so
+  Writing never gives a 1
+- three timed-conditions typos cost a band
+- Email social conventions are close to ignored
+- "frequent errors" lands at 3, not 2
+- `rubric_grade` fails its schema on bottom-of-scale emails, which a
+  student sees as a 502
+
+11 of 46 answers move between repeats at temperature 0. Read the findings
+as hypotheses for a human to check, not as fixes to make.
+
 ### Corollary: "idempotent" that is a read followed by a write is not
 
 A live TOEFL Writing run on 2026-07-29 produced FOUR submission rows for
