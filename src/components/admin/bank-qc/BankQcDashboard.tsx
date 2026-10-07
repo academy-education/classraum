@@ -30,6 +30,7 @@ import { FAMILY_STAGES, type ItemFamily } from '@/lib/study/bank-qc'
 import { useEffect, useState } from 'react'
 import { useQcT } from './i18n'
 import { QC_TABS, tabFromSearch, type QcTab } from './tabs'
+import { HardeningPanel } from './HardeningPanel'
 
 const CARD = 'bg-white rounded-2xl ring-1 ring-gray-100/80 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_4px_12px_-4px_rgba(0,0,0,0.06)]'
 
@@ -524,6 +525,9 @@ export function BankQcDashboard() {
       <div hidden={tab !== 'review'}>
       <ItemSweepPanel />
       </div>
+      {/* Mounted only on its tab: it is super_admin-only, and fetching it
+          behind a hidden tab would put a 403 in every admin's console. */}
+      {tab === 'hardening' && <HardeningPanel />}
       <div hidden={tab !== 'overview'}>
       <RegisterPanel />
       </div>

@@ -3621,6 +3621,105 @@ export type Database = {
           },
         ]
       }
+      study_item_hardening_candidates: {
+        Row: {
+          computed_at: string
+          domain: string
+          family: string
+          hard_votes: number
+          item_id: string
+          item_sha: string
+          priority: number
+          section: string
+          signals: string[]
+          subskill: string | null
+          total_votes: number
+          votes: Json
+        }
+        Insert: {
+          computed_at?: string
+          domain: string
+          family: string
+          hard_votes: number
+          item_id: string
+          item_sha: string
+          priority: number
+          section: string
+          signals?: string[]
+          subskill?: string | null
+          total_votes: number
+          votes?: Json
+        }
+        Update: {
+          computed_at?: string
+          domain?: string
+          family?: string
+          hard_votes?: number
+          item_id?: string
+          item_sha?: string
+          priority?: number
+          section?: string
+          signals?: string[]
+          subskill?: string | null
+          total_votes?: number
+          votes?: Json
+        }
+        Relationships: []
+      }
+      study_item_hardening_edits: {
+        Row: {
+          changed_fields: string[]
+          created_at: string
+          editor_id: string
+          gate_result: Json | null
+          gate_run_id: string | null
+          gate_sha: string | null
+          id: string
+          note: string | null
+          original_difficulty: string
+          original_id: string
+          original_sha: string
+          staged_id: string
+          status: string
+          swapped_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          changed_fields?: string[]
+          created_at?: string
+          editor_id: string
+          gate_result?: Json | null
+          gate_run_id?: string | null
+          gate_sha?: string | null
+          id?: string
+          note?: string | null
+          original_difficulty: string
+          original_id: string
+          original_sha: string
+          staged_id: string
+          status?: string
+          swapped_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          changed_fields?: string[]
+          created_at?: string
+          editor_id?: string
+          gate_result?: Json | null
+          gate_run_id?: string | null
+          gate_sha?: string | null
+          id?: string
+          note?: string | null
+          original_difficulty?: string
+          original_id?: string
+          original_sha?: string
+          staged_id?: string
+          status?: string
+          swapped_at?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       study_item_sweep_verdicts: {
         Row: {
           created_at: string
@@ -6239,6 +6338,21 @@ export type Database = {
       increment_study_purchased_credits: {
         Args: { p_delta: number; p_student_id: string }
         Returns: undefined
+      }
+      study_item_hardening_stage: {
+        Args: {
+          p_changed: string[]
+          p_editor: string
+          p_expected_sha: string
+          p_item: Json
+          p_note: string | null
+          p_original: string
+        }
+        Returns: string
+      }
+      study_item_hardening_swap: {
+        Args: { p_edit: string }
+        Returns: string
       }
       is_parent_of_student: {
         Args: { parent_user_id: string; student_user_id: string }

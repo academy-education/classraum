@@ -1780,12 +1780,14 @@
       "tabs": {
         "overview": "Overview",
         "review": "Human review",
+        "hardening": "Hardening",
         "runs": "Measurements",
         "reference": "Reference"
       },
       "tabHints": {
         "overview": "What is broken, what is unread, what is left to do",
         "review": "Blind sittings and the read-every-question sweep",
+        "hardening": "Lift near-hard items with one human edit; the gate decides",
         "runs": "Attack runs, batches, cohorts and history",
         "reference": "Baselines and how questions are made"
       },
@@ -1949,7 +1951,36 @@
       },
       "coverageBlurb": "Items banked, how many each test draws, and how many distinct tests that supports before questions repeat. A section can only run as many tests as its scarcest task allows, so the capping task is listed first in each group.",
       "baselineBlurb": "Official ETS and College Board items run through the identical attack. Real exams leak too — but how much depends entirely on the format, from +13 for a short two-speaker exchange to +68.8 for a lecture set, where world knowledge alone often decides the answer. Each task is judged against the baseline for its own format, never against 25% and never against an average across formats.",
-      "howMadeBlurb": "Every task runs the same eight stages, but which gates apply depends on what is being hidden. Four of the eleven TOEFL task types have no answer key at all, so two of the gates are undefined for them — those show as dashed."
+      "howMadeBlurb": "Every task runs the same eight stages, but which gates apply depends on what is being hidden. Four of the eleven TOEFL task types have no answer key at all, so two of the gates are undefined for them — those show as dashed.",
+      "hardening": {
+        "title": "Hardening: lift near-hard items with one human twist",
+        "description": "Items the graders rated just below hard (a hard vote, or a note saying it nearly is). Change a stem condition or one distractor and save. Saving does NOT change what students see: it stages a new version, and the original stays live until the gate (per-family checks plus a three-sample with-source grade) passes your exact text.",
+        "counts": "{open} open of {candidates} candidates · {queued} queued · {inGate} in the gate · {swapped} swapped in · {failed} failed",
+        "staleVotes": "{n} hidden because the item changed after it was graded",
+        "loading": "Loading the next candidate…",
+        "empty": "No open candidates. Run scripts/study-bank/hardening-candidates.ts --write to refresh the list.",
+        "forbidden": "Hardening edits are limited to super admins.",
+        "previous": "Previous candidate",
+        "next": "Next candidate",
+        "hintTitle": "What usually makes this kind of item hard",
+        "votesTitle": "Grader votes: {hard} of {total} called it hard",
+        "lastFailed": "An earlier edit of this item failed the gate: {reasons}",
+        "alreadyQueued": "You already have an edit of this item waiting for the gate. Saving again replaces it.",
+        "hasGraphic": "This item has a figure. The figure is kept as it is; edit only text that still matches it.",
+        "passage": "Passage",
+        "passageShared": "shared with other questions, so it is locked",
+        "stem": "Question stem",
+        "options": "Options (select the key)",
+        "markKey": "Mark option {letter} as the key",
+        "keyNote": "Keep the same number of options. If you rewrite the key, check the explanation still matches it.",
+        "explanation": "Explanation (what students read after answering)",
+        "note": "Note for the gate (optional)",
+        "notePlaceholder": "What you changed and why it should now be hard",
+        "save": "Save and send to the gate",
+        "reset": "Reset to the live text",
+        "notLive": "Not live until the gate passes it.",
+        "savedQueued": "Staged and queued for the gate (changed: {fields}). Students still see the original."
+      }
     }
   },
   "classrooms": {
