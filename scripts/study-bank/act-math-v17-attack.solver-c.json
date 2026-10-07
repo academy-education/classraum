@@ -1,0 +1,22 @@
+{
+ "V-001": {"pick": "B", "basis": "mechanism", "note": "45/135/1080 form an octagon family (exterior, interior, sum); 135 is the hub value"},
+ "V-002": {"pick": "B", "basis": "guess", "note": "no signal; central value"},
+ "V-003": {"pick": "C", "basis": "mechanism", "note": "9.6 = 0.8 x 12.0; round 12.0 looks like the base"},
+ "V-004": {"pick": "B", "basis": "guess", "note": "gaps 4,6,8; weak central pick"},
+ "V-005": {"pick": "A", "basis": "guess", "note": "no clear signal"},
+ "V-006": {"pick": "D", "basis": "guess", "note": "no signal; central value"},
+ "V-007": {"pick": "A", "basis": "guess", "note": "full sign permutation set, no signal"},
+ "V-008": {"pick": "D", "basis": "mechanism", "note": "54 is double 27 and half 108; hub of halving/doubling errors"},
+ "V-009": {"pick": "C", "basis": "guess", "note": "weak; fraction values look computed"},
+ "V-010": {"pick": "C", "basis": "mechanism", "note": "19.10 = 60/pi; 4.77 = 19.10/4, 76.39 = 4 x 19.10; central hub"},
+ "V-011": {"pick": "C", "basis": "guess", "note": "only non-integer stands out"},
+ "V-012": {"pick": "B", "basis": "mechanism", "note": "168 = 2 x 84, 112 = 4/3 x 84; 84 is the base"},
+ "V-013": {"pick": "A", "basis": "guess", "note": "5.7 = 2 x 2.8 and 7.6 = 4/3 x 5.7; weak hub"},
+ "V-014": {"pick": "C", "basis": "guess", "note": "no clear relation"},
+ "V-015": {"pick": "D", "basis": "guess", "note": "34 and 51 share factor 17; weak"},
+ "V-016": {"pick": "A", "basis": "guess", "note": "no signal"},
+ "V-017": {"pick": "C", "basis": "guess", "note": "no signal; central value"},
+ "V-018": {"pick": "A", "basis": "guess", "note": "144 = 2 x 72, 84/132 = +-12 offsets; weak"},
+ "V-019": {"pick": "C", "basis": "mechanism", "note": "0.29 vs 0.28 rounding pair; 3.43 ~ 1/0.29; rounded value likely key"},
+ "V-020": {"pick": "C", "basis": "mechanism", "note": "(1,2) is midpoint of (-8,11) and (10,-7); likely find other endpoint, key (10,-7)"}
+}

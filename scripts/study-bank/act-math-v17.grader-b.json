@@ -1,0 +1,154 @@
+{
+  "_render_sha256_prefix": "ee1ceb1d3f5a9800",
+  "AM17G-01": {
+    "pick": "-13",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "Translation vector is (+7,+3), so C's x must be 7 LESS than -6, i.e. below -6 (sign/direction)", "kills": ["1", "7"], "note": "Requires reading the vector direction, which is essentially the whole item; listed for completeness, not counted as free"}
+    ],
+    "survivors": 4,
+    "free_elimination": null,
+    "distractor_quality": "plausible",
+    "weak_distractors": ["7"],
+    "difficulty": "easy",
+    "duplicate_note": "Related to live coordinate-transformation stems (90-degree rotation of P(-4,6)); different mechanism (inverse translation)."
+  },
+  "AM17G-02": {
+    "pick": "14",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "AP:PB = 3:1 puts P past the midpoint (x=10) toward B, so 10 < x < 18", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": null,
+    "distractor_quality": "plausible",
+    "weak_distractors": ["11"],
+    "difficulty": "easy",
+    "duplicate_note": "Extends the live midpoint stem (M(4,-1) midpoint of PQ) to a 3:1 partition; same family, distinct mechanism. 13.5 = (3/4)(18) is the forgot-the-start error."
+  },
+  "AM17G-03": {
+    "pick": "84",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "Largest interior angle of a triangle is at least 60 and below 180", "kills": []},
+      {"bound": "Each exterior angle < 180", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": null,
+    "distractor_quality": "strong",
+    "weak_distractors": [],
+    "difficulty": "medium",
+    "duplicate_note": "Exterior angles also appear in live stem 'regular polygon has 20 diagonals ... exterior angle', but mechanism differs. 144 = largest exterior; 72 = applying the ratio to interior angles."
+  },
+  "AM17G-04": {
+    "pick": "17.9",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "Triangle inequality in triangle (long base 22, leg 10, diagonal): 12 < d < 32", "kills": []},
+      {"bound": "Diagonal > leg (opposite the larger, obtuse-side angle at the short base)", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": "Ptolemy for an isosceles trapezoid (d^2 = 10*22 + 10^2 = 320) gives the key with no height computation; recall trick, rare on ACT.",
+    "distractor_quality": "strong",
+    "weak_distractors": [],
+    "difficulty": "medium",
+    "duplicate_note": "Live has trapezoid stems (median of trapezoid; trapezoid with height marked); this one needs the overhang/height first, distinct enough. 14.4 = sqrt(12^2+8^2) (used 12 not 16); 17.1 = sqrt(16^2+6^2) (used overhang as height)."
+  },
+  "AM17G-05": {
+    "pick": "7.6",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "Shortest distance <= distance to any point on the line, e.g. (4,0): sqrt(61) = 7.81", "kills": []},
+      {"bound": "Shortest distance <= |OP| + dist(origin, line) = 5.39 + 2.4 = 7.79", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": null,
+    "distractor_quality": "plausible",
+    "weak_distractors": ["1.5"],
+    "difficulty": "medium",
+    "duplicate_note": "Live has line stems (perpendicular slope to 3x - 4y = 8; parallel line through (5,4)) but none uses the point-to-line distance; not a duplicate. 2.8 = sign error on the constant (|-14|/5). Note the key sits just under the free upper bound 7.81, so it is not killable by it."
+  },
+  "AM17G-06": {
+    "pick": "25",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "Base diagonal (12*sqrt2) is longer than a side 12, so angle < arctan(8/12) = 33.7", "kills": []},
+      {"bound": "Base diagonal < 24, so angle > arctan(8/24) = 18.4", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": null,
+    "distractor_quality": "plausible",
+    "weak_distractors": ["29"],
+    "difficulty": "medium",
+    "duplicate_note": "Related to live cube space-diagonal stem (length); this asks the angle with the base, different mechanism. Options 23/25/28/29 are tightly clustered; computed value 25.24 is safely inside rounding."
+  },
+  "AM17G-07": {
+    "pick": "241",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "Double cone lies inside cylinder of radius 4.8 and length 10 (724)", "kills": []},
+      {"bound": "Radius of revolution (altitude to hypotenuse) < shorter leg 6, so V < (1/3)pi*36*10 = 377", "kills": []},
+      {"bound": "Rotating about the hypotenuse gives less volume than rotating about either leg (ratio = leg/hypotenuse < 1)", "kills": ["338", "302"], "note": "Needs the leg-rotation volume 302 computed and the known inequality; not counted as free"}
+    ],
+    "survivors": 4,
+    "free_elimination": null,
+    "distractor_quality": "plausible",
+    "weak_distractors": ["123"],
+    "difficulty": "hard",
+    "duplicate_note": null
+  },
+  "AM17G-08": {
+    "pick": "9.6",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "A segment inside a triangle is shorter than its longest side (13)", "kills": ["14.2"]},
+      {"bound": "Median < average of the two adjacent sides: (13+10)/2 = 11.5", "kills": ["12.0", "14.2"]},
+      {"bound": "Triangle BMC with BC=10, MC=6.5 and acute base angle C: BM < sqrt(10^2+6.5^2) = 11.9", "kills": ["12.0", "14.2"]}
+    ],
+    "survivors": 2,
+    "free_elimination": "12.0 is the median/altitude from A (the obvious one in an isosceles triangle) and is above the free median bound; 14.2 exceeds every side of the triangle. Only 11.3 vs 9.6 needs work.",
+    "distractor_quality": "weak",
+    "weak_distractors": ["14.2"],
+    "difficulty": "medium",
+    "duplicate_note": null
+  },
+  "AM17G-09": {
+    "pick": "1642",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "Frustum volume between cylinders of radius 6 (905) and 10 (2513)", "kills": []},
+      {"bound": "Cross-section area is convex (quadratic) in height, so volume > mid-section area * h = pi*8^2*8 = 1608 (mean-radius cylinder)", "kills": ["1608", "1374"]},
+      {"bound": "Same convexity: volume < average of end areas * h = pi*(36+100)/2*8 = 1709", "kills": ["1709"]}
+    ],
+    "survivors": 1,
+    "free_elimination": "Both limiting-case distractors are the two naive approximations (mean-radius cylinder 1608, average-end-area 1709), and the exact volume is the Simpson combination (2/3)(1608)+(1/3)(1709) = 1642, so it must lie strictly between them. A student who suspects the two shortcuts bracket the answer picks the only option between them without the similar-cone subtraction; 1374 falls below the lower one.",
+    "distractor_quality": "weak",
+    "weak_distractors": ["1374"],
+    "difficulty": "hard",
+    "duplicate_note": null
+  },
+  "AM17G-10": {
+    "pick": "13.3",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "Monotonicity: a person exactly half the lamp height (7.5 ft) would cast a shadow equal to the 20 ft distance; the person is shorter, so shadow < 20", "kills": ["30.0"]},
+      {"bound": "Shadow > 0", "kills": []}
+    ],
+    "survivors": 3,
+    "free_elimination": null,
+    "distractor_quality": "plausible",
+    "weak_distractors": ["30.0"],
+    "difficulty": "medium",
+    "duplicate_note": "Same similar-triangles shadow family as live stem 'person 6 feet tall casts a shadow 9 feet long ... flagpole', but the point-source lamp (shadow added to the 20 ft base) is a distinct, harder mechanism. 8.0 = 6*20/15 (proportion without the shadow in the base)."
+  }
+}

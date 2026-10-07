@@ -1154,6 +1154,37 @@ recorded only in a commit message is a finding nobody reads.
 
   Evidence: `ACT-MATH-V16-PREREGISTERED.md`, `act-math-v16{-a,-b,-c,}.batch.json`, `act-math-v16.kept.batch.json`, `act-math-v16.qc.json`, `act-math-v16.drops.json`, `act-math-v16-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v16.grader-{a,b}.json`, `act-math-v16-grade.{grade,gradekey}.json`, `act-math-v16-attack-draw.mjs`, `act-math-v16-dupscan.mjs`; ledger `act-math-v16-kept-2026-10-07`.
 
+- **2026-10-07** — **ACT MATH 14 → 15 FORMS: `act-math-v17` INSERTED 6 OF 10 GEOMETRY. act/math 664 → 670; Geometry 119 → 125.** Binding domain is now Number and Quantity (75 / 5 per form). Bars pre-registered before any item existed: `ACT-MATH-V17-PREREGISTERED.md`.
+
+  **Scope.** `next-form` after v16: *"Geometry +1"*. Form 16 needs N&Q +5, IES +9, Algebra +7, Functions +7, S&P +3, Geometry +9 = 40, so it was out of a ≤ 12-item batch; this one was Geometry-only, 10 authored for 1 needed (v16 Geometry kept 7 of 10). After insert, **form 16 needs 34: N&Q +5, IES +9, Algebra +7, Functions +7, S&P +3, Geometry +3.** One Claude author; format from `act-test.ts` (`choiceCount: 4`).
+
+  **Pre-flight (my re-run, not the author's word):** sandbox 10/10, distractors 30/30, hub no structure, key-at-extreme 5/10 = 50.0% (bar 40.0%), magnitude consistent with live (n = 606), 0 unique composites, stem echo 0/40, 0 stem duplicates vs 1,336 live act rows. `check-plurality-key` exits 2 NOT MEASURED (0 of 10 component-comparable; all-numeric, same on v16) — not a pass. The author's own pre-search of live maths killed four drafts as duplicates and two on bounds before delivery.
+
+  **Duplicate scan** (`act-math-v16-dupscan.mjs`, unchanged) against all 2,678 live maths rows, paged: 1 flag, AM17G-03 (exterior-angle ratio) vs `ssat-math-s6` (interior-angle ratio) at Jaccard 0.61 — read by hand, different mechanism (exterior sum 360 then supplement); 12 near, none same mechanism.
+
+  **Options-only attack:** 10 candidates + 10 live Geometry controls (1:1, v16/v17 excluded), keys flat within each arm (30.0% best-fixed each), three Claude samples.
+
+      CANDIDATE     10/30 = 33.3%   line 30.0%   margin +3.3
+      LIVE CONTROL   9/30 = 30.0%   line 30.0%   margin +0.0
+      candidate minus control  +3.3  (hold bar +10)
+      unanimous-correct        candidate 3/10 = 30.0%  vs  control 2/10 = 20.0%  (+10, hold bar +15)
+      pairwise agreement 90.0% vs 27.2% if independent: one solver sampled three times
+
+  n = 10 per arm: one item is 3.3 points; stated in the pre-registration.
+
+  **With-source: two Claude graders, 20 of 20 picks equal the key, 0 second-defensible, 0 stem issues.** The grade render had the author's declared `bounds` field stripped as well (make-grade-render keeps unrecognised fields; v16 had none) so graders found bounds unanchored. Four dropped, all four through a **limiting-case or bound-adjacent distractor**:
+  - `AM17G-07` (double cone, triangle rotated about its hypotenuse): unanimous blind + grader A names the free elimination — rotation about the hypotenuse sweeps less than about either leg, and **302 is the rotate-about-the-8-leg value, ON that bound**; 338 beyond it.
+  - `AM17G-09` (bucket frustum): unanimous blind + both graders: **1608 (mean-radius cylinder) and 1709 (mean end area × h) are the two limiting approximations and must bracket the true volume** — the key is the only option between them. Grader B survivors 1.
+  - `AM17G-08` (median of an isosceles triangle): survivors 2 by both, confirmed: 14.2 exceeds the longest side; 12.0 is the *other* median (the altitude) and sits above BM < √(10² + 6.5²) = 11.9.
+  - `AM17G-10` (lamppost shadow): two weak — **30.0 is dead on the half-height case** (a 7.5-ft person casts exactly the 20-ft gap, so shadow < 20; both graders) and 5.7 weak (grader A).
+  The author's report listed limiting cases as "checked one by one" and had removed several in drafting; the four that remained were the ones whose limiting value is a *different configuration* (another axis, another median, another averaging rule, another height) rather than a parameter at an endpoint. **§8c's "limiting thing" includes the neighbouring configuration, not only the endpoint value**, and a self-check that searches for endpoints does not see it.
+
+  **Kept 6 (AM17G-01 … 06):** difficulty from graders, who agreed on all 6: easy 2 / medium 4 (author 3 / 3 on the same six; AM17G-03 came up from easy to medium). Kept-set gates: sandbox 6/6, 18/18; key-extremity and magnitude **NOT MEASURED at n = 6** (gate needs ≥ 10; pre-registered as not applying), raw key-at-extreme 4/6; 0 composites, 0 echoes, 0 duplicates. `verify-act-draw`: act/math draws 45 of 45. `form-capacity`: ACT Math **15 forms** by domain.
+
+  **Residuals recorded, not acted on:** `AM17G-01` — grader A counts 2 survivors because reading the translation's direction kills 1 and 7; grader B and I judge that direction-reading IS the item (undoing a translation), so it is not counted. `AM17G-04` — both graders name Ptolemy (d² = 10·22 + 10²) as a recall route, rare on ACT, not unanimous blind, 3–4 survivors. If either surfaces in a human sitting, that is the reason.
+
+  Evidence: `ACT-MATH-V17-PREREGISTERED.md`, `act-math-v17.batch.json`, `act-math-v17.kept.batch.json`, `act-math-v17.qc.json`, `act-math-v17.drops.json`, `act-math-v17-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v17.grader-{a,b}.json`, `act-math-v17-grade.{grade,gradekey}.json`, `act-math-v17-attack-draw.mjs`; ledger `act-math-v17-kept-2026-10-07`.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

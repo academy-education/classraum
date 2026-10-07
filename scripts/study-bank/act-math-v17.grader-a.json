@@ -1,0 +1,149 @@
+{
+  "AM17G-01": {
+    "pick": "-13",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "direction of translation: A->A' increases x (+7), so the preimage C has x < C' x = -6", "kills": ["1", "7"]}
+    ],
+    "survivors": 2,
+    "free_elimination": "Reading the sign of the x-shift from A->A' kills both options greater than -6 (1 = shift applied the wrong way, 7 = the x-shift itself). Between -13 and -9 the student must use the correct component (-9 = subtracted the y-shift 3).",
+    "distractor_quality": "plausible",
+    "weak_distractors": ["7"],
+    "difficulty": "easy",
+    "duplicate_note": "Same family as the live rotation item (P(-4,6) rotated 90 degrees) only loosely; no duplicate mechanism."
+  },
+  "AM17G-02": {
+    "pick": "14",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "AP:PB = 3:1 puts P past the midpoint toward B, so 10 < x < 18", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": null,
+    "distractor_quality": "plausible",
+    "weak_distractors": ["11"],
+    "difficulty": "easy",
+    "duplicate_note": "Related to live midpoint item (M(4,-1) midpoint of PQ) but a section-ratio, not a midpoint; not a duplicate."
+  },
+  "AM17G-03": {
+    "pick": "84",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "largest interior angle of a triangle is >= 60 and < 180", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": "Weak shortcut: largest interior angle sits at the vertex with the smallest exterior; noticing the exterior ratios are close (4:5:6) suggests all exteriors exceed 90, so the triangle is acute and 132/144 die, but establishing that still takes the 360/15 computation, so not counted as free.",
+    "distractor_quality": "plausible",
+    "weak_distractors": ["132"],
+    "difficulty": "medium",
+    "duplicate_note": "Live has a regular-polygon exterior-angle item (20 diagonals); different mechanism."
+  },
+  "AM17G-04": {
+    "pick": "17.9",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "triangle inequality in (diagonal, leg 10, long base 22): 12 < d < 32", "kills": []},
+      {"bound": "triangle inequality in (diagonal, leg 10, short base 10): d < 20", "kills": []},
+      {"bound": "diagonal is the hypotenuse over horizontal run 6+10 = 16 (needs the overhang 6, minimal work): d > 16", "kills": ["14.4"]}
+    ],
+    "survivors": 3,
+    "free_elimination": "Recall: in an isosceles trapezoid (cyclic), Ptolemy gives d^2 = leg^2 + (base1)(base2) = 100 + 220 = 320, yielding the key with no height computation.",
+    "distractor_quality": "plausible",
+    "weak_distractors": ["16.5"],
+    "difficulty": "medium",
+    "duplicate_note": "Pythagorean-distance mechanism shared with AM17G-06 and AM17G-08 in this batch; live has a trapezoid-with-height figure item (similar setup)."
+  },
+  "AM17G-05": {
+    "pick": "7.6",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "perpendicular distance <= distance to any point on the line, e.g. to (4,0): sqrt(61) = 7.81", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": null,
+    "distractor_quality": "plausible",
+    "weak_distractors": ["1.5"],
+    "difficulty": "medium",
+    "duplicate_note": null
+  },
+  "AM17G-06": {
+    "pick": "25",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "angle with base < angle of a face diagonal with the base, arctan(8/12) = 33.7", "kills": []},
+      {"bound": "angle > 0", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": null,
+    "distractor_quality": "strong",
+    "weak_distractors": ["29"],
+    "difficulty": "medium",
+    "duplicate_note": "Space-diagonal mechanism echoes the live cube corner-to-corner diagonal item; this one adds the angle step. Shares Pythagorean step with AM17G-04/08."
+  },
+  "AM17G-07": {
+    "pick": "241",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "solid fits inside cylinder of radius 4.8 (altitude) and length 10: V < 724", "kills": []}
+    ],
+    "survivors": 4,
+    "free_elimination": "Pappus / centroid recall: V = 2*pi*(distance of centroid to axis)*24; the hypotenuse is the axis nearest the centroid, so the volume is smaller than rotation about leg 8 (96pi = 302). That kills 302 (exactly on the bound; it is the rotate-about-the-8-leg value) and 338. Also V = (1/3)pi*h_alt^2*10 is a one-line recall once the double-cone is seen.",
+    "distractor_quality": "plausible",
+    "weak_distractors": ["123"],
+    "difficulty": "hard",
+    "duplicate_note": "Cone-volume formula shared with AM17G-09 in this batch; live has several cone items (paper cup, similar cones) but none a solid of revolution."
+  },
+  "AM17G-08": {
+    "pick": "9.6",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "triangle inequality in BAM (13, 6.5) and BCM (10, 6.5): 6.5 < BM < 16.5", "kills": []},
+      {"bound": "base angle C of an isosceles triangle is acute, so in triangle BCM, BM^2 < BC^2 + CM^2 = 142.25, BM < 11.93", "kills": ["12.0", "14.2"]},
+      {"bound": "median < average of the two adjacent sides (13+10)/2 = 11.5 (known inequality)", "kills": ["12.0", "14.2"]}
+    ],
+    "survivors": 2,
+    "free_elimination": "12.0 is the median/altitude from A (a recognisable wrong-median distractor); the acute-base-angle bound kills it and 14.2 with almost no work, leaving 11.3 vs 9.6.",
+    "distractor_quality": "plausible",
+    "weak_distractors": ["14.2"],
+    "difficulty": "medium",
+    "duplicate_note": "Pythagorean-distance mechanism shared with AM17G-04 and AM17G-06."
+  },
+  "AM17G-09": {
+    "pick": "1642",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "contained between cylinders of radius 6 and 10, height 8: 905 < V < 2513", "kills": []},
+      {"bound": "radius linear in depth, area convex: V exceeds the mean-radius cylinder pi*8^2*8 = 1608 and is below the mean-end-area prism pi*68*8 = 1709 (not free for a typical student)", "kills": ["1608", "1709", "1374"]}
+    ],
+    "survivors": 4,
+    "free_elimination": "Partial: the two averaging distractors (1608 mean radius, 1709 mean area) bracket the key, so a student who notices one is an underestimate and the other an overestimate can pick the middle value; 1374 is the only option below both. Counted as recall, not as a free bound.",
+    "distractor_quality": "plausible",
+    "weak_distractors": ["1374"],
+    "difficulty": "hard",
+    "duplicate_note": "Cone-volume formula shared with AM17G-07 in this batch; live has cone-cup water-level items (similar-cone scaling), not a frustum."
+  },
+  "AM17G-10": {
+    "pick": "13.3",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "limiting case: if the person were half the lamp height (7.5) the shadow would equal the 20-ft gap; 6 < 7.5 so shadow < 20", "kills": ["30.0"]},
+      {"bound": "limiting case: if the person were one third the lamp height (5) the shadow would be 10; 6 > 5 so shadow > 10 (slightly less obvious)", "kills": ["5.7", "8.0"]}
+    ],
+    "survivors": 1,
+    "free_elimination": "Both limiting-case comparisons (half-height gives shadow = gap; third-height gives shadow = gap/2) bracket the shadow in (10, 20) and leave only 13.3 without solving the proportion. Even counting only the half-height bound, 30.0 is dead.",
+    "distractor_quality": "weak",
+    "weak_distractors": ["30.0", "5.7"],
+    "difficulty": "medium",
+    "duplicate_note": "Similar-triangles shadow theme overlaps the live person/flagpole shadow item, though this is the point-source (lamppost) variant."
+  }
+}

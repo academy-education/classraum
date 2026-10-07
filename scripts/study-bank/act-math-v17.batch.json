@@ -1,0 +1,260 @@
+[
+ {
+  "id": "AM17G-01",
+  "domain": "Geometry",
+  "difficulty": "easy",
+  "topic_tag": "transformations",
+  "subskill": "recovering a preimage from its image under a translation",
+  "prompt": "In the standard (x,y) coordinate plane, a translation maps point A(−2, 0) to point A′(5, 3). The same translation maps point C to point C′(−6, 10). What is the x-coordinate of point C ?",
+  "choices": [
+   "1",
+   "-13",
+   "7",
+   "-9"
+  ],
+  "correct_answer": "-13",
+  "explanation": "The translation moves every point 5 − (−2) = 7 units right and 3 − 0 = 3 units up. C′ is the image of C, so C is found by undoing the translation: 7 units left and 3 units down from C′(−6, 10), which gives C(−13, 7). The x-coordinate is −13. The option \"1\" applies the translation to C′ instead of undoing it: −6 + 7. The option \"-9\" undoes the wrong shift, subtracting the vertical change 3 from the x-coordinate: −6 − 3. The option \"7\" is the y-coordinate of C, 10 − 3, not its x-coordinate.",
+  "solve": "const A=[-2,0],Ap=[5,3],Cp=[-6,10]; const dx=Ap[0]-A[0]; return String(Cp[0]-dx);",
+  "distractor_solve": {
+   "1": "const A=[-2,0],Ap=[5,3],Cp=[-6,10]; const dx=Ap[0]-A[0]; return String(Cp[0]+dx);",
+   "-9": "const A=[-2,0],Ap=[5,3],Cp=[-6,10]; const dy=Ap[1]-A[1]; return String(Cp[0]-dy);",
+   "7": "const A=[-2,0],Ap=[5,3],Cp=[-6,10]; const dy=Ap[1]-A[1]; return String(Cp[1]-dy);"
+  },
+  "bounds": [
+   "Number.isInteger(v)"
+  ]
+ },
+ {
+  "id": "AM17G-02",
+  "domain": "Geometry",
+  "difficulty": "easy",
+  "topic_tag": "coordinate geometry",
+  "subskill": "coordinates of the point that divides a segment in a given ratio",
+  "prompt": "In the standard (x,y) coordinate plane, point A is at (2, −3) and point B is at (18, 9). Point P lies on segment AB so that AP : PB = 3 : 1. What is the x-coordinate of P ?",
+  "choices": [
+   "12",
+   "13.5",
+   "14",
+   "11"
+  ],
+  "correct_answer": "14",
+  "explanation": "AP : PB = 3 : 1 means P is 3/(3 + 1) = 3/4 of the way from A to B. The x-coordinate changes by 18 − 2 = 16 from A to B, so P's x-coordinate is 2 + (3/4)(16) = 2 + 12 = 14. The option \"12\" is the horizontal change from A to P, (3/4)(16), without adding A's x-coordinate back on. The option \"13.5\" takes 3/4 of B's x-coordinate, (3/4)(18), which measures from the origin rather than from A. The option \"11\" uses the change in y, 9 − (−3) = 12, in place of the change in x: 2 + (3/4)(12).",
+  "solve": "const ax=2,bx=18; return String(ax+0.75*(bx-ax));",
+  "distractor_solve": {
+   "12": "const ax=2,bx=18; return String(0.75*(bx-ax));",
+   "13.5": "const bx=18; return String(0.75*bx);",
+   "11": "const ax=2,ay=-3,by=9; return String(ax+0.75*(by-ay));"
+  },
+  "bounds": [
+   "v > 10",
+   "v < 18"
+  ]
+ },
+ {
+  "id": "AM17G-03",
+  "domain": "Geometry",
+  "difficulty": "easy",
+  "topic_tag": "angle relationships",
+  "subskill": "interior angles of a triangle from the ratio of its exterior angles",
+  "prompt": "The measures of the three exterior angles of a triangle, one at each vertex, are in the ratio 4 : 5 : 6. What is the measure, in degrees, of the largest interior angle of the triangle?",
+  "choices": [
+   "144",
+   "72",
+   "84",
+   "132"
+  ],
+  "correct_answer": "84",
+  "explanation": "One exterior angle at each vertex of any triangle adds to 360°, so the exterior angles are (4/15)(360) = 96°, (5/15)(360) = 120°, and (6/15)(360) = 144°. Each interior angle is supplementary to its exterior angle, giving 84°, 60°, and 36°. The largest interior angle sits beside the SMALLEST exterior angle: 180 − 96 = 84°. The option \"144\" is the largest exterior angle, reported without converting it to an interior angle. The option \"72\" applies the 4 : 5 : 6 ratio to the interior angles instead: (6/15)(180). The option \"132\" takes the exterior angles to total 180°, so the smallest is (4/15)(180) = 48° and its interior angle is 180 − 48.",
+  "solve": "const s=4+5+6; return String(180-360*4/s);",
+  "distractor_solve": {
+   "144": "const s=4+5+6; return String(360*6/s);",
+   "72": "const s=4+5+6; return String(180*6/s);",
+   "132": "const s=4+5+6; return String(180-180*4/s);"
+  },
+  "bounds": [
+   "v >= 60",
+   "v < 180"
+  ]
+ },
+ {
+  "id": "AM17G-04",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "quadrilaterals",
+  "subskill": "diagonal of an isosceles trapezoid from its parallel sides and legs",
+  "prompt": "An isosceles trapezoid has parallel sides of length 10 centimeters and 22 centimeters, and each of its two nonparallel sides is 10 centimeters long. To the nearest tenth of a centimeter, what is the length of a diagonal of the trapezoid?",
+  "choices": [
+   "16.5",
+   "17.9",
+   "14.4",
+   "17.1"
+  ],
+  "correct_answer": "17.9",
+  "explanation": "Drop perpendiculars from the ends of the 10-cm side to the 22-cm side. They cut off two equal pieces of length (22 − 10)/2 = 6, so each leg is the hypotenuse of a right triangle with legs 6 and h: h = √(10² − 6²) = 8. A diagonal runs from one end of the long side to the far end of the short side, covering a horizontal distance of 6 + 10 = 16 while rising 8, so its length is √(16² + 8²) = √320 ≈ 17.9 cm. The option \"17.1\" swaps the two legs of the corner triangle, using 6 as the height: √(16² + 6²). The option \"16.5\" finds the height by subtracting lengths instead of squares, 10 − 6 = 4: √(16² + 4²). The option \"14.4\" takes the horizontal distance as the difference of the parallel sides, 22 − 10 = 12, instead of 16: √(12² + 8²).",
+  "solve": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const a=10,b=22,l=10; const o=(b-a)/2; const h=Math.sqrt(l*l-o*o); return r1(Math.hypot(o+a,h));",
+  "distractor_solve": {
+   "17.1": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const a=10,b=22,l=10; const o=(b-a)/2; return r1(Math.hypot(o+a,o));",
+   "16.5": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const a=10,b=22,l=10; const o=(b-a)/2; return r1(Math.hypot(o+a,l-o));",
+   "14.4": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const a=10,b=22,l=10; const o=(b-a)/2; const h=Math.sqrt(l*l-o*o); return r1(Math.hypot(b-a,h));"
+  },
+  "bounds": [
+   "v > 12",
+   "v < 20"
+  ]
+ },
+ {
+  "id": "AM17G-05",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "coordinate geometry",
+  "subskill": "perpendicular distance from a point to a line",
+  "prompt": "In the standard (x,y) coordinate plane, what is the shortest distance from the point (−2, −5) to the line 3x + 4y = 12, to the nearest tenth of a unit?",
+  "choices": [
+   "2.8",
+   "5.7",
+   "1.5",
+   "7.6"
+  ],
+  "correct_answer": "7.6",
+  "explanation": "The shortest distance is measured along the perpendicular. Using the point-to-line distance, |3(−2) + 4(−5) − 12| / √(3² + 4²) = |−38| / 5 = 7.6. (Equivalently: directly above the point, the line is at y = (12 + 6)/4 = 4.5, a vertical gap of 4.5 − (−5) = 9.5; the line has slope −3/4, so the perpendicular distance is 9.5 · (4/5) = 7.6.) The option \"2.8\" moves the 12 to the wrong side and computes |3(−2) + 4(−5) + 12| / 5 = 14/5. The option \"1.5\" divides 38 by 3² + 4² = 25 and forgets the square root. The option \"5.7\" converts the 9.5 vertical gap with 3/5 instead of 4/5.",
+  "solve": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const a=3,b=4,c=12,x=-2,y=-5; return r1(Math.abs(a*x+b*y-c)/Math.hypot(a,b));",
+  "distractor_solve": {
+   "2.8": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const a=3,b=4,c=12,x=-2,y=-5; return r1(Math.abs(a*x+b*y+c)/Math.hypot(a,b));",
+   "1.5": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const a=3,b=4,c=12,x=-2,y=-5; return r1(Math.abs(a*x+b*y-c)/(a*a+b*b));",
+   "5.7": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const a=3,b=4,c=12,x=-2,y=-5; const gap=(c-a*x)/b-y; return r1(gap*a/Math.hypot(a,b));"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 7.81"
+  ]
+ },
+ {
+  "id": "AM17G-06",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "solids and trigonometry",
+  "subskill": "angle between a box's interior diagonal and its base",
+  "prompt": "A closed box shaped like a rectangular prism has a square base 12 inches on each side and a height of 8 inches. A thin straight rod runs inside the box from one bottom corner to the top corner farthest from it. To the nearest degree, what is the measure of the angle between the rod and the base of the box?",
+  "choices": [
+   "28",
+   "25",
+   "29",
+   "23"
+  ],
+  "correct_answer": "25",
+  "explanation": "The rod's shadow on the base is the base diagonal, 12√2 ≈ 16.97 inches, and the rod rises 8 inches above it, so the rod, the base diagonal, and a vertical edge form a right triangle. The angle with the base satisfies tan θ = 8/(12√2), so θ ≈ 25.2°, which rounds to 25°. The option \"28\" uses the sine with the base diagonal as the hypotenuse, sin θ = 8/16.97, but the base diagonal is a leg. The option \"23\" puts the rod itself, √(12² + 12² + 8²) ≈ 18.76, in the adjacent position: tan θ = 8/18.76. The option \"29\" uses the diagonal of a 12-by-8 side face, √(12² + 8²) ≈ 14.42, as the horizontal leg instead of the base diagonal.",
+  "solve": "const s=12,h=8; const d=Math.hypot(s,s); return String(Math.round(Math.atan(h/d)*180/Math.PI));",
+  "distractor_solve": {
+   "28": "const s=12,h=8; const d=Math.hypot(s,s); return String(Math.round(Math.asin(h/d)*180/Math.PI));",
+   "23": "const s=12,h=8; const D=Math.sqrt(s*s+s*s+h*h); return String(Math.round(Math.atan(h/D)*180/Math.PI));",
+   "29": "const s=12,h=8; const f=Math.hypot(s,h); return String(Math.round(Math.atan(h/f)*180/Math.PI));"
+  },
+  "bounds": [
+   "v > 18.43",
+   "v < 33.69"
+  ]
+ },
+ {
+  "id": "AM17G-07",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "solids of revolution",
+  "subskill": "volume swept out by rotating a right triangle about its hypotenuse",
+  "prompt": "A right triangle has legs of length 6 centimeters and 8 centimeters. The triangle is rotated 360° about its hypotenuse. To the nearest cubic centimeter, what is the volume of the solid that is swept out? (The volume of a cone with base radius r and height h is (1/3)πr²h.)",
+  "choices": [
+   "302",
+   "123",
+   "338",
+   "241"
+  ],
+  "correct_answer": "241",
+  "explanation": "The hypotenuse is √(6² + 8²) = 10. Rotating about it sweeps out two cones joined at a common circular base. That base's radius is the distance from the right-angle vertex to the hypotenuse, the altitude to the hypotenuse: from area = (1/2)(6)(8) = (1/2)(10)r, r = 4.8. The two cone heights are the two pieces of the hypotenuse and add to 10, so the volume is (1/3)π(4.8²)(10) ≈ 241.3, or 241 cubic centimeters. The option \"302\" rotates the triangle about its 8-centimeter leg instead, a single cone with r = 6 and h = 8. The option \"123\" finds the altitude as 6 · 8 divided by the SUM of the legs, 48/14 ≈ 3.43, instead of by the hypotenuse. The option \"338\" uses r = 4.8 correctly but takes the two cones' heights to be the legs, 6 and 8, for a total height of 14 instead of 10.",
+  "solve": "const r0=x=>String(Math.round(x));const a=6,b=8; const c=Math.hypot(a,b), r=a*b/c; return r0(Math.PI*r*r*c/3);",
+  "distractor_solve": {
+   "302": "const r0=x=>String(Math.round(x));const a=6,b=8; return r0(Math.PI*a*a*b/3);",
+   "123": "const r0=x=>String(Math.round(x));const a=6,b=8; const c=Math.hypot(a,b), r=a*b/(a+b); return r0(Math.PI*r*r*c/3);",
+   "338": "const r0=x=>String(Math.round(x));const a=6,b=8; const c=Math.hypot(a,b), r=a*b/c; return r0(Math.PI*r*r*(a+b)/3);"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 377"
+  ]
+ },
+ {
+  "id": "AM17G-08",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "triangles",
+  "subskill": "length of a median of an isosceles triangle",
+  "prompt": "In triangle ABC, AB = AC = 13 inches and BC = 10 inches. To the nearest tenth of an inch, what is the length of the median from B, the segment from B to the midpoint of side AC ?",
+  "choices": [
+   "11.3",
+   "12.0",
+   "9.6",
+   "14.2"
+  ],
+  "correct_answer": "9.6",
+  "explanation": "Place B at (−5, 0) and C at (5, 0). Since AB = AC, A lies on the y-axis at height √(13² − 5²) = 12, so A = (0, 12). The midpoint of AC is ((0 + 5)/2, (12 + 0)/2) = (2.5, 6), and the median from B has length √((2.5 + 5)² + 6²) = √92.25 ≈ 9.6 inches. (The median-length formula gives the same: m² = (2·10² + 2·13² − 13²)/4 = 92.25.) The option \"11.3\" assumes the median is perpendicular to AC, making AB the hypotenuse of a right triangle with leg 6.5: √(13² − 6.5²). The option \"14.2\" averages only the x-coordinates of A and C, using (2.5, 12) as the midpoint: √(7.5² + 12²). The option \"12.0\" is the length of the median from A, which in this isosceles triangle is the altitude to BC, not the median from B.",
+  "solve": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const L=13,base=10; const b=base/2, h=Math.sqrt(L*L-b*b); const M=[b/2,h/2]; return r1(Math.hypot(M[0]+b,M[1]));",
+  "distractor_solve": {
+   "11.3": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const L=13; return r1(Math.sqrt(L*L-(L/2)*(L/2)));",
+   "14.2": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const L=13,base=10; const b=base/2, h=Math.sqrt(L*L-b*b); return r1(Math.hypot(b/2+b,h));",
+   "12.0": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const L=13,base=10; const b=base/2; return r1(Math.sqrt(L*L-b*b));"
+  },
+  "bounds": [
+   "v > 6.5",
+   "v < 16.5"
+  ]
+ },
+ {
+  "id": "AM17G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "volume of solids",
+  "subskill": "volume of a frustum found by extending it to a full cone",
+  "prompt": "A bucket is shaped like a right circular cone with its tip cut off by a plane parallel to its base. The bottom of the bucket is a circle of radius 6 inches, the open top is a circle of radius 10 inches, and the bucket is 8 inches deep. To the nearest cubic inch, what is the volume of the bucket? (The volume of a cone with base radius r and height h is (1/3)πr²h.)",
+  "choices": [
+   "1608",
+   "1374",
+   "1642",
+   "1709"
+  ],
+  "correct_answer": "1642",
+  "explanation": "Extend the bucket's sides down to the cone's tip. If the cut-off tip has height x, similar triangles give 6/x = 10/(x + 8), so 10x = 6x + 48 and x = 12; the full cone is 20 inches tall. The bucket is the full cone minus the tip: (1/3)π(10²)(20) − (1/3)π(6²)(12) = (1/3)π(2000 − 432) = (1568/3)π ≈ 1642.0 cubic inches. The option \"1374\" assumes the removed tip is as tall as the bucket, 8 inches, so the full cone is 16 inches tall: (1/3)π(100 · 16 − 36 · 8). The option \"1709\" treats the bucket like a prism whose cross-section is the average of the two circular areas: π(100 + 36)/2 · 8. The option \"1608\" treats it as a cylinder with the average radius, 8: π(8²)(8).",
+  "solve": "const r0=x=>String(Math.round(x));const r=6,R=10,h=8; const x=r*h/(R-r); return r0(Math.PI*(R*R*(x+h)-r*r*x)/3);",
+  "distractor_solve": {
+   "1374": "const r0=x=>String(Math.round(x));const r=6,R=10,h=8; const x=h; return r0(Math.PI*(R*R*(x+h)-r*r*x)/3);",
+   "1709": "const r0=x=>String(Math.round(x));const r=6,R=10,h=8; return r0(Math.PI*(R*R+r*r)/2*h);",
+   "1608": "const r0=x=>String(Math.round(x));const r=6,R=10,h=8; const m=(r+R)/2; return r0(Math.PI*m*m*h);"
+  },
+  "bounds": [
+   "v > 904.8",
+   "v < 2513.3"
+  ]
+ },
+ {
+  "id": "AM17G-10",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "similar triangles",
+  "subskill": "length of a shadow cast by a point light source",
+  "prompt": "A person 6 feet tall stands on level ground 20 feet from the base of a vertical lamppost. The lamp at the top of the post is 15 feet above the ground and casts the person's shadow straight away from the post. To the nearest tenth of a foot, how long is the person's shadow?",
+  "choices": [
+   "8.0",
+   "30.0",
+   "5.7",
+   "13.3"
+  ],
+  "correct_answer": "13.3",
+  "explanation": "The lamp, the tip of the shadow, and the base of the post form a large right triangle; the person, the tip of the shadow, and the person's feet form a smaller one similar to it. With shadow length s, the large triangle's base is s + 20, so 6/15 = s/(s + 20). Then 15s = 6s + 120, and s = 120/9 ≈ 13.3 feet. (Equivalently, the lamp is 15 − 6 = 9 feet above the person's head, so 9/20 = 6/s.) The option \"8.0\" uses 20 alone as the base of the large triangle: 6/15 = s/20. The option \"30.0\" inverts the second set-up, writing 9/6 = s/20. The option \"5.7\" treats the shadow as falling toward the post, inside the 20 feet: 6/15 = s/(20 − s).",
+  "solve": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const p=6,L=15,d=20; return r1(p*d/(L-p));",
+  "distractor_solve": {
+   "8.0": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const p=6,L=15,d=20; return r1(p*d/L);",
+   "30.0": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const p=6,L=15,d=20; return r1((L-p)/p*d);",
+   "5.7": "const r1=x=>(Math.round(x*10)/10).toFixed(1);const p=6,L=15,d=20; return r1(p*d/(L+p));"
+  },
+  "bounds": [
+   "v > 0"
+  ]
+ }
+]

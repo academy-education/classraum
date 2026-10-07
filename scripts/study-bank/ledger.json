@@ -5685,6 +5685,40 @@
           "verdict": "Key-extremity 50.0% (chance 50.0%); magnitude ranks largest/smallest/interior consistent with live; tightest-pair 61.3% on 31 scorable of 54, not distinguishable from 50% (z 1.26); recycled-distractor unique-option key 1/9 vs 25%; stem echo 0/51; sign pairs none; plurality fires once, not on the key. Residual recorded: AM16A-05 options 6/9/12/15 are an arithmetic ladder with the key interior and the difference-of-cubes identity is the skill (kept, 4 survivors both graders); AM16A-08 key is the largest option on a least question (3 survivors both graders)."
         }
       }
+    },
+    {
+      "id": "act-math-v17-kept-2026-10-07",
+      "createdAt": "2026-10-07",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v17",
+      "contentSha": "ed9c9ed278076878420881317da977194e90d26752c1a07b2a769b2abd0d4352",
+      "status": "shipped",
+      "note": "6 of 10 authored survive. Geometry-only batch commissioned against next-form 'Geometry +1' for ACT Math form 15, bars pre-registered in ACT-MATH-V17-PREREGISTERED.md before authoring. One Claude author. Form 16 needs 40 items across all six domains and was out of scope. BANK_BAND=mixed declared at commission. No repairs.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ed9c9ed278076878420881317da977194e90d26752c1a07b2a769b2abd0d4352",
+          "verdict": "10 authored, all exactly 4 choices (act-test.ts math choiceCount 4). Authored set: sandbox 10/10, distractors 30/30; numeric and symbolic hub no structure; key at an extreme 5/10 = 50.0% (bar 40.0%); check-key-magnitude consistent with live (n=606; z 0.67/-0.24/-0.35); 0/10 unique-composite keys; stem-echo 0/40; sign pairs none; key-singleton none; check-plurality-key NOT MEASURED (0 of 10 component-comparable, all-numeric, as on v16); stem-duplicates 0 vs 1,336 live act rows; 0 internal duplicate option sets. Kept 6: sandbox 6/6, 18/18; key-extremity and key-magnitude NOT MEASURED at n=6 (gate needs >=10; pre-registered as not applying), raw key-at-extreme 4/6. Duplicate scan (act-math-v16-dupscan.mjs, unchanged) against all 2,678 live maths rows in every family, paged: 1 flag (AM17G-03 exterior-angle ratio vs ssat-math-s6 interior-angle ratio, Jaccard 0.61) read by hand, not a mechanism duplicate (exterior sum 360 then supplement); 12 near, none same mechanism."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "ed9c9ed278076878420881317da977194e90d26752c1a07b2a769b2abd0d4352",
+          "verdict": "Two independent Claude graders on make-grade-render with the author's declared bounds also stripped (render sha ee1ceb1d3f5a9800, quoted by both). 20 of 20 picks equal the key; 0 second-defensible; 0 stem issues. Dropped: AM17G-08 (survivors 2 by both, confirmed: 14.2 exceeds the longest side, 12.0 is the other median and lies above the acute-base-angle bound 11.9), AM17G-10 (two weak: 30.0 dead on the half-height monotonicity bound, both graders; 5.7 weak, grader A). Difficulty banked from graders (agreed on all 6): easy 2 / medium 4."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "ed9c9ed278076878420881317da977194e90d26752c1a07b2a769b2abd0d4352",
+          "verdict": "Options-only attack, three Claude samples (pairwise agreement 90.0% vs 27.2% if independent - one solver sampled three times), 10 candidates interleaved 1:1 with 10 live act/math Geometry items, keys dealt flat within each arm (30.0% best-fixed-letter each). CANDIDATE 10/30 = 33.3% (margin +3.3), LIVE CONTROL 9/30 = 30.0% (+0.0); candidate minus control +3.3 (pre-registered hold bar +10). Unanimous-correct candidate 3/10 = 30.0% vs control 2/10 = 20.0% (+10, bar +15). Unanimous candidates dropped with with-source corroboration: AM17G-07 (rotation about the hypotenuse < about a leg; 302 is the about-a-leg limiting case ON that bound), AM17G-09 (1608 mean-radius and 1709 mean-end-area limiting cases bracket the key). AM17G-06 unanimous, no grader-named elimination, kept."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "ed9c9ed278076878420881317da977194e90d26752c1a07b2a769b2abd0d4352",
+          "verdict": "Residuals recorded, not acted on: AM17G-01 grader A counts 2 survivors on the translation-direction bound (kills 1 and 7); grader B and I judge reading the direction IS the item's work (undoing the translation), so not counted. AM17G-04 both graders name Ptolemy (d^2 = 10*22 + 10^2) as a recall route, rare on ACT; not unanimous blind; grader A survivors 3."
+        }
+      }
     }
   ],
   "auditedCohorts": [
