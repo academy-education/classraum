@@ -24,7 +24,9 @@
 import { readFileSync, existsSync } from 'node:fs'
 import { checkItem } from './map-pilot-checks.mjs'
 
-const D = 'scripts/study-bank/map-adapt/'
+const argv = process.argv.slice(2), argOf = f => { const i = argv.indexOf(f); return i >= 0 ? argv[i + 1] : null }
+const D = argOf('--dir') ?? 'scripts/study-bank/map-adapt/'   // pilot 6: --dir scripts/study-bank/map-adapt6/ --n 12
+const NSRC = Number(argOf('--n') ?? 24)
 const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
 const rd = p => { if (!existsSync(p)) die(`missing ${p}`); return JSON.parse(readFileSync(p, 'utf8')) }
 const fold = s => String(s ?? '').toLowerCase().replace(/[^a-z ]/g, '').replace(/\s+/g, ' ').trim()
@@ -106,11 +108,11 @@ const args = process.argv.slice(2)
 if (import.meta.url !== `file://${process.argv[1]}`) { /* imported */ }
 else if (args[0] === '--selftest') selftest()
 else {
-  const file = args.find(a => !a.startsWith('--')) ?? D + 'batch.json'
+  const file = args.find((a, i) => !a.startsWith('--') && !['--dir', '--n'].includes(args[i - 1])) ?? D + 'batch.json'
   const items = rd(file), sources = rd(D + 'sources.json')
   if (!Array.isArray(items)) die('batch is not an array')
-  if (sources.length !== 24) die(`sources.json holds ${sources.length}, prereg fixes 24`)
-  console.log(`denominator: ${items.length} adapted items against 24 fixed sources`)
+  if (sources.length !== NSRC) die(`sources.json holds ${sources.length}, prereg fixes ${NSRC}`)
+  console.log(`denominator: ${items.length} adapted items against ${NSRC} fixed sources`)
   const byId = Object.fromEntries(sources.map(s => [s.adapt_id, s]))
   const sets = {}; for (const it of items) if (it.set_id) (sets[it.set_id] ??= new Set()).add(it.passage)
   let bad = 0
