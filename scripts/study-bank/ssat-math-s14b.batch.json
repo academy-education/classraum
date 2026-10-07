@@ -1,0 +1,702 @@
+[
+ {
+  "id": "S14B-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "evaluating a defined operation at a negative argument",
+  "difficulty": "easy",
+  "prompt": "For all numbers a and b, the operation ◇ is defined by a ◇ b = 3a - b^2. What is the value of 4 ◇ (-5)?",
+  "choices": [
+   "37",
+   "-13",
+   "22",
+   "-31",
+   "17"
+  ],
+  "correct_answer": "-13",
+  "explanation": "Substitute a = 4 and b = -5: 3(4) - (-5)^2 = 12 - 25 = -13. \"37\" comes from treating -b^2 as +25, i.e. squaring the negative and then flipping the sign of the whole term, 12 + 25. \"-31\" comes from swapping the roles of the two numbers, 3(-5) - 4^2 = -15 - 16. \"22\" comes from reading b^2 as 2b, so 12 - (-10). \"17\" comes from forgetting to square b at all, 12 - (-5).",
+  "solve": "const a=4,b=-5; return 3*a-b**2;",
+  "distractor_solve": {
+   "17": "const a=4,b=-5; return 3*a-b;",
+   "22": "const a=4,b=-5; return 3*a-2*b;",
+   "37": "const a=4,b=-5; return 3*a+b**2;",
+   "-31": "const a=-5,b=4; return 3*a-b**2;"
+  }
+ },
+ {
+  "id": "S14B-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving for an unknown inside a nested defined operation",
+  "difficulty": "hard",
+  "prompt": "For all numbers a and b, the operation ⊕ is defined by a ⊕ b = ab + a + b. If (2 ⊕ x) ⊕ 1 = 29, what is the value of x?",
+  "choices": [
+   "9",
+   "6",
+   "4",
+   "14.5",
+   "26/3"
+  ],
+  "correct_answer": "4",
+  "explanation": "First 2 ⊕ x = 2x + 2 + x = 3x + 2. Then (3x + 2) ⊕ 1 = (3x + 2)(1) + (3x + 2) + 1 = 6x + 5. Setting 6x + 5 = 29 gives x = 4. \"9\" comes from stopping after the inner operation and solving 3x + 2 = 29. \"6\" comes from dropping the \"+ b\" term in the inner step, so 2 ⊕ x = 2x + 2 and then 2(2x + 2) + 1 = 4x + 5 = 29. \"26/3\" comes from dropping the \"+ a\" term in the outer step, so (3x + 2) ⊕ 1 = (3x + 2) + 1 = 29. \"14.5\" comes from treating ⊕ as ordinary multiplication, 2x · 1 = 29.",
+  "solve": "for(let x=-50;x<=50;x+=0.5){const op=(a,b)=>a*b+a+b; if(op(op(2,x),1)===29) return x;} return null;",
+  "distractor_solve": {
+   "6": "return (29-5)/4;",
+   "9": "return (29-2)/3;",
+   "26/3": "return (29-3)/3;",
+   "14.5": "return 29/2;"
+  }
+ },
+ {
+  "id": "S14B-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding a coefficient from one function value, then evaluating elsewhere",
+  "difficulty": "medium",
+  "prompt": "The function g is defined by g(x) = x^2 + kx, where k is a constant. If g(3) = 6, what is the value of g(-4)?",
+  "choices": [
+   "-8",
+   "12",
+   "20",
+   "-1",
+   "-4"
+  ],
+  "correct_answer": "20",
+  "explanation": "From g(3) = 9 + 3k = 6, k = -1. Then g(-4) = (-4)^2 + (-1)(-4) = 16 + 4 = 20. \"12\" comes from losing the sign of k (k = 1), so 16 - 4. \"-8\" comes from assuming g is proportional to x, scaling 6 by -4/3. \"-4\" comes from moving the 9 to the wrong side, 3k = 6 + 9, so k = 5 and 16 - 20. \"-1\" is the value of k, reported instead of g(-4).",
+  "solve": "const k=(6-9)/3; const g=x=>x*x+k*x; return g(-4);",
+  "distractor_solve": {
+   "12": "const k=1; return 16+k*(-4);",
+   "-8": "return 6*(-4)/3;",
+   "-4": "const k=(6+9)/3; return 16+k*(-4);",
+   "-1": "return (6-9)/3;"
+  }
+ },
+ {
+  "id": "S14B-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rewriting a power of 8 through a given power of 2",
+  "difficulty": "medium",
+  "prompt": "If 2^a = 3, what is the value of 8^a?",
+  "choices": [
+   "24",
+   "512",
+   "9",
+   "27",
+   "11"
+  ],
+  "correct_answer": "27",
+  "explanation": "Since 8 = 2^3, 8^a = (2^a)^3 = 3^3 = 27. \"24\" comes from multiplying 8 by 3 instead of raising. \"11\" comes from adding 8 and 3. \"9\" comes from squaring 2^a instead of cubing it. \"512\" comes from reading 2^a = 3 as a = 3 and computing 8^3.",
+  "solve": "const t=3; return t**3;",
+  "distractor_solve": {
+   "9": "return 3**2;",
+   "11": "return 8+3;",
+   "24": "return 8*3;",
+   "512": "return 8**3;"
+  }
+ },
+ {
+  "id": "S14B-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a line through a given point that halves the area of a rectangle",
+  "difficulty": "hard",
+  "prompt": "A rectangle in the coordinate plane has vertices (-1, -2), (7, -2), (7, 4) and (-1, 4). A line through the origin divides the rectangle into two regions of equal area. What is the slope of the line?",
+  "choices": [
+   "3/4",
+   "1/3",
+   "3",
+   "4/7",
+   "1/4"
+  ],
+  "correct_answer": "1/3",
+  "explanation": "A rectangle is symmetric about its centre, so a line halves its area only if it passes through the centre, here ((-1 + 7)/2, (-2 + 4)/2) = (3, 1). The line through (0, 0) and (3, 1) has slope 1/3. \"3\" inverts the slope, run over rise. \"3/4\" is the slope of the rectangle's diagonal from (-1, -2) to (7, 4), 6/8, taken as the halving line. \"1/4\" comes from averaging 7 and 1 instead of 7 and -1 for the x-coordinate of the centre, giving (4, 1). \"4/7\" draws the line from the origin to the far corner (7, 4), as though a line through a corner always halved the rectangle.",
+  "solve": "const cx=(-1+7)/2, cy=(-2+4)/2; return cy/cx;",
+  "distractor_solve": {
+   "3": "const cx=(-1+7)/2, cy=(-2+4)/2; return cx/cy;",
+   "3/4": "return (4-(-2))/(7-(-1));",
+   "1/4": "const cx=(7+1)/2, cy=(-2+4)/2; return cy/cx;",
+   "4/7": "return 4/7;"
+  }
+ },
+ {
+  "id": "S14B-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "simplifying a quotient of powers with negative exponents",
+  "difficulty": "medium",
+  "prompt": "For nonzero x and y, which of the following is equivalent to (x^3 y^(-2))^2 / (x^(-1) y)?",
+  "choices": [
+   "x^5/y^3",
+   "x^7/y^5",
+   "x^6/y",
+   "x^7/y^3",
+   "x^5/y^5"
+  ],
+  "correct_answer": "x^7/y^5",
+  "explanation": "Squaring gives x^6 y^(-4). Dividing by x^(-1) y subtracts exponents: x^(6 - (-1)) y^(-4 - 1) = x^7 y^(-5) = x^7/y^5. \"x^7/y^3\" comes from applying the square to x^3 only and leaving y^(-2), then dividing. \"x^5/y^5\" comes from subtracting -1 as if it were +1 in the x-exponent, 6 - 1. \"x^5/y^3\" comes from multiplying by x^(-1) y instead of dividing. \"x^6/y\" comes from adding exponents when raising to a power, (x^3)^2 = x^5 and (y^(-2))^2 = y^0, and then dividing.",
+  "solve": "const xe=3*2-(-1), ye=-2*2-1; return `x^${xe}/y^${-ye}`;",
+  "distractor_solve": {
+   "x^7/y^3": "const xe=3*2-(-1), ye=-2-1; return `x^${xe}/y^${-ye}`;",
+   "x^5/y^5": "const xe=3*2-1, ye=-2*2-1; return `x^${xe}/y^${-ye}`;",
+   "x^5/y^3": "const xe=3*2+(-1), ye=-2*2+1; return `x^${xe}/y^${-ye}`;",
+   "x^6/y": "const xe=(3+2)-(-1), ye=(-2+2)-1; return `x^${xe}/y`;"
+  }
+ },
+ {
+  "id": "S14B-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving an equation that relates a function at a shifted input to a multiple of the function",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = 2x - 3. For what value of a is f(a + 2) equal to 3 times f(a)?",
+  "choices": [
+   "2",
+   "-2",
+   "2.5",
+   "0.5",
+   "1"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "f(a + 2) = 2(a + 2) - 3 = 2a + 1 and 3f(a) = 6a - 9. Setting 2a + 1 = 6a - 9 gives 4a = 10, so a = 2.5. \"2\" comes from taking f(a + 2) to be f(a) + 2 = 2a - 1, so 2a - 1 = 6a - 9. \"1\" comes from reading 3 times f(a) as f(3a) = 6a - 3. \"0.5\" comes from both shortcuts at once, 2a - 1 = 6a - 3. \"-2\" comes from a sign slip when collecting terms, 2a + 1 = 6a - 9 rewritten as 4a = -8.",
+  "solve": "const f=x=>2*x-3; for(let a=-20;a<=20;a+=0.5){ if(f(a+2)===3*f(a)) return a;} return null;",
+  "distractor_solve": {
+   "1": "return (3+1)/(6-2);",
+   "2": "return (9-1)/(6-2);",
+   "0.5": "return (3-1)/(6-2);",
+   "-2": "return -8/4;"
+  }
+ },
+ {
+  "id": "S14B-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "working backward through a function applied twice",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (x + 5)/3. If f(f(k)) = 3, what is the value of k?",
+  "choices": [
+   "17",
+   "12",
+   "47",
+   "7",
+   "22"
+  ],
+  "correct_answer": "7",
+  "explanation": "f(f(k)) = 3 means f(k) is the input that f sends to 3: (f(k) + 5)/3 = 3, so f(k) = 4. Then (k + 5)/3 = 4 gives k = 7. \"12\" comes from forgetting to subtract 5 at the second step, k = 3 × 4. \"22\" comes from treating f(f(x)) as (x + 5)/9, so k = 27 - 5. \"17\" comes from treating f(f(x)) as (x + 10)/9, adding 5 twice before dividing by 9, so k = 27 - 10. \"47\" comes from undoing with +5 instead of -5 at both steps: 3 × 3 + 5 = 14, then 3 × 14 + 5.",
+  "solve": "const inv=y=>3*y-5; return inv(inv(3));",
+  "distractor_solve": {
+   "12": "const fk=3*3-5; return 3*fk;",
+   "17": "return 9*3-10;",
+   "22": "return 9*3-5;",
+   "47": "const fk=3*3+5; return 3*fk+5;"
+  }
+ },
+ {
+  "id": "S14B-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "radii of concentric circles from the ring area and the difference of radii",
+  "difficulty": "hard",
+  "prompt": "Two circles have the same center. The region inside the larger circle and outside the smaller circle has an area of 24π, and the radius of the larger circle is 2 more than the radius of the smaller circle. What is the circumference of the larger circle?",
+  "choices": [
+   "26π",
+   "14π",
+   "49π",
+   "20π",
+   "28π"
+  ],
+  "correct_answer": "14π",
+  "explanation": "With radii R and r, πR^2 - πr^2 = 24π, so (R - r)(R + r) = 24. Since R - r = 2, R + r = 12, so R = 7 and r = 5. The circumference is 2π(7) = 14π. \"20π\" comes from taking R = (R + r) - (R - r) = 10 instead of averaging. \"26π\" comes from skipping the factor R - r, setting R + r = 24 and R - r = 2, so R = 13. \"28π\" comes from putting the diameter 14 into 2πr. \"49π\" is the area of the larger circle, not its circumference.",
+  "solve": "const s=24/2, R=(s+2)/2; return `${2*R}π`;",
+  "distractor_solve": {
+   "20π": "const R=24/2-2; return `${2*R}π`;",
+   "26π": "const R=(24+2)/2; return `${2*R}π`;",
+   "28π": "const R=(24/2+2)/2; return `${2*(2*R)}π`;",
+   "49π": "const R=(24/2+2)/2; return `${R*R}π`;"
+  }
+ },
+ {
+  "id": "S14B-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a 30-60-90 triangle from its longer leg",
+  "difficulty": "medium",
+  "prompt": "In a right triangle, one of the acute angles measures 30 degrees and the longer leg is 6 cm long. What is the area of the triangle, in square centimetres?",
+  "choices": [
+   "9",
+   "2√3",
+   "6√3",
+   "6",
+   "9√3/2"
+  ],
+  "correct_answer": "6√3",
+  "explanation": "In a 30-60-90 triangle the legs are in the ratio 1 : √3, so the shorter leg is 6/√3 = 2√3, and the area is (1/2)(6)(2√3) = 6√3. \"9\" comes from taking the shorter leg to be half the longer leg, 3, so (1/2)(6)(3). \"6\" comes from dividing 6 by 3 instead of by √3, a shorter leg of 2. \"9√3/2\" comes from treating 6 as the hypotenuse, so the legs are 3 and 3√3. \"2√3\" is the shorter leg, reported instead of the area.",
+  "solve": "const shortCoef=6/3; /* 6/sqrt3 = 2sqrt3 */ const areaCoef=0.5*6*shortCoef; return `${areaCoef}√3`;",
+  "distractor_solve": {
+   "6": "return 0.5*6*(6/3);",
+   "9": "return 0.5*6*(6/2);",
+   "9√3/2": "const s=6/2; const coef=s*s; return `${coef}√3/2`;",
+   "2√3": "return `${6/3}√3`;"
+  }
+ },
+ {
+  "id": "S14B-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an unknown coordinate that keeps three points on one line",
+  "difficulty": "medium",
+  "prompt": "The points (1, 3), (4, 9) and (k, 17) lie on the same line. What is the value of k?",
+  "choices": [
+   "12",
+   "8.5",
+   "29",
+   "11",
+   "8"
+  ],
+  "correct_answer": "8",
+  "explanation": "The slope through the first two points is (9 - 3)/(4 - 1) = 2. From (1, 3) to (k, 17) the rise is 14, so the run is 7 and k = 1 + 7 = 8. \"8.5\" comes from writing the line as y = 2x, through the origin, so 2k = 17. \"12\" comes from using a slope of 1 from (4, 9), adding the rise 8 to the x-coordinate 4. \"29\" inverts the slope to 1/2, so the run is 14 × 2 = 28 and k = 1 + 28. \"11\" mixes the two given points, taking the rise 14 from (1, 3) but starting the run at x = 4: 4 + 14/2.",
+  "solve": "const m=(9-3)/(4-1); return 1+(17-3)/m;",
+  "distractor_solve": {
+   "11": "const m=(9-3)/(4-1); return 4+(17-3)/m;",
+   "12": "return 4+(17-9)/1;",
+   "29": "const m=(4-1)/(9-3); return 1+(17-3)/m;",
+   "8.5": "return 17/2;"
+  }
+ },
+ {
+  "id": "S14B-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a far term of a pattern whose differences grow steadily",
+  "difficulty": "hard",
+  "prompt": "The first four terms of a sequence are 2, 6, 12 and 20. The differences between consecutive terms are 4, 6 and 8, and each later difference is 2 more than the one before it. What is the 10th term of the sequence?",
+  "choices": [
+   "100",
+   "120",
+   "90",
+   "110",
+   "108"
+  ],
+  "correct_answer": "110",
+  "explanation": "The 10th term is the first term plus the nine differences 4, 6, 8, ..., 20, which add to 108, so it is 2 + 108 = 110 (each term is n(n + 1)). \"90\" stops one difference early, at 18, which gives the 9th term. \"108\" adds the nine differences correctly but leaves out the first term 2. \"100\" guesses the rule n^2 from the shape of the growth. \"120\" assumes that doubling the position quadruples the term, so the 10th term is 4 times the 5th term, 4 × 30.",
+  "solve": "let t=2,d=4; for(let n=2;n<=10;n++){t+=d; d+=2;} return t;",
+  "distractor_solve": {
+   "90": "let t=2,d=4; for(let n=2;n<=9;n++){t+=d; d+=2;} return t;",
+   "100": "return 10*10;",
+   "108": "let s=0,d=4; for(let n=2;n<=10;n++){s+=d; d+=2;} return s;",
+   "120": "let t=2,d=4; for(let n=2;n<=5;n++){t+=d; d+=2;} return 4*t;"
+  }
+ },
+ {
+  "id": "S14B-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of many terms of a recursive sequence that repeats",
+  "difficulty": "hard",
+  "prompt": "A sequence begins with a1 = 4 and a2 = 7. Each term after the second is found by subtracting the term two places before it from the term just before it, so a3 = a2 - a1. What is the sum of the first 100 terms of the sequence?",
+  "choices": [
+   "0",
+   "-11",
+   "-4",
+   "10",
+   "3"
+  ],
+  "correct_answer": "10",
+  "explanation": "The terms run 4, 7, 3, -4, -7, -3, 4, 7, ... and repeat every 6 terms, and each block of 6 sums to 0. Since 100 = 6 × 16 + 4, the sum is the sum of the first 4 terms: 4 + 7 + 3 - 4 = 10. \"0\" assumes 100 is a whole number of blocks. \"-11\" takes the 4 leftover terms from the end of a block instead of the start, 3 - 4 - 7 - 3. \"3\" uses a leftover of 5 terms, 4 + 7 + 3 - 4 - 7. \"-4\" is the 100th term itself (a100 = a4), not the sum.",
+  "solve": "const a=[4,7]; while(a.length<100) a.push(a[a.length-1]-a[a.length-2]); return a.reduce((s,v)=>s+v,0);",
+  "distractor_solve": {
+   "0": "const a=[4,7]; while(a.length<6) a.push(a[a.length-1]-a[a.length-2]); return 16*a.reduce((s,v)=>s+v,0)+0;",
+   "3": "const a=[4,7]; while(a.length<5) a.push(a[a.length-1]-a[a.length-2]); return a.reduce((s,v)=>s+v,0);",
+   "-11": "const a=[4,7]; while(a.length<6) a.push(a[a.length-1]-a[a.length-2]); return a.slice(2).reduce((s,v)=>s+v,0);",
+   "-4": "const a=[4,7]; while(a.length<100) a.push(a[a.length-1]-a[a.length-2]); return a[99];"
+  }
+ },
+ {
+  "id": "S14B-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a triangle from two sides and a 30-degree angle between them",
+  "difficulty": "hard",
+  "prompt": "Two sides of a triangle measure 10 cm and 12 cm, and the angle between these two sides measures 30 degrees. What is the area of the triangle, in square centimetres?",
+  "choices": [
+   "36",
+   "50",
+   "20",
+   "30",
+   "25"
+  ],
+  "correct_answer": "30",
+  "explanation": "Take the 12 cm side as the base. The 10 cm side makes a 30-degree angle with it, so the height from its far end is the side opposite 30 degrees in a 30-60-90 triangle with hypotenuse 10, which is 5. The area is (1/2)(12)(5) = 30. \"25\" finds the height 5 from the 10 cm side but then uses that same 10 cm side as the base, (1/2)(10)(5). \"36\" makes the matching mistake from the other side, taking the height as half of 12 and the base as 12, (1/2)(12)(6). \"20\" treats 30 degrees as one third of a right angle and takes the height as one third of 12, (1/2)(10)(4). \"50\" uses the base 10 and height 5 and forgets the 1/2.",
+  "solve": "const h=10/2; return 0.5*12*h;",
+  "distractor_solve": {
+   "20": "const h=12/3; return 0.5*10*h;",
+   "25": "const h=10/2; return 0.5*10*h;",
+   "36": "const h=12/2; return 0.5*12*h;",
+   "50": "const h=10/2; return 10*h;"
+  }
+ },
+ {
+  "id": "S14B-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an original dimension recovered from the area gained when both sides are lengthened",
+  "difficulty": "hard",
+  "prompt": "A rectangle is 4 cm longer than it is wide. When its length and its width are each increased by 3 cm, its area increases by 57 square centimetres. What was the original width of the rectangle, in centimetres?",
+  "choices": [
+   "19",
+   "7.5",
+   "6",
+   "10",
+   "9.5"
+  ],
+  "correct_answer": "6",
+  "explanation": "With width w, the new area minus the old is (w + 3)(w + 7) - w(w + 4) = 6w + 21. Setting 6w + 21 = 57 gives w = 6. \"7.5\" adds only the two side strips, 3w + 3(w + 4) = 57, and leaves out the 3-by-3 corner. \"9.5\" drops the constant 21 and solves 6w = 57. \"19\" lengthens only the length, w(w + 7) - w(w + 4) = 3w = 57. \"10\" is the original length, w + 4, reported instead of the width.",
+  "solve": "for(let w=0.5;w<100;w+=0.5){ if((w+3)*(w+7)-w*(w+4)===57) return w;} return null;",
+  "distractor_solve": {
+   "10": "return (57-21)/6+4;",
+   "19": "return 57/3;",
+   "7.5": "return (57-12)/6;",
+   "9.5": "return 57/6;"
+  }
+ },
+ {
+  "id": "S14B-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest solution of an equation with two absolute values",
+  "difficulty": "hard",
+  "prompt": "What is the greatest value of x for which |x - 3| + |x + 5| = 12?",
+  "choices": [
+   "2",
+   "-7",
+   "7",
+   "5",
+   "-1"
+  ],
+  "correct_answer": "5",
+  "explanation": "For x at least 3, both expressions inside the bars are nonnegative, so (x - 3) + (x + 5) = 2x + 2 = 12 and x = 5. For x at most -5 the equation becomes -2x - 2 = 12, giving x = -7, and between -5 and 3 the sum is always 8. So the greatest solution is 5. \"-7\" is the other solution, the least one. \"7\" comes from a sign slip moving the constant, 2x + 2 = 12 rewritten as 2x = 14. \"2\" combines -3 and +5 as +8, so 2x + 8 = 12. \"-1\" is the midpoint of 3 and -5, where the sum is smallest, not a solution.",
+  "solve": "let best=null; for(let x=-50;x<=50;x+=0.5){ if(Math.abs(x-3)+Math.abs(x+5)===12) best=x;} return best;",
+  "distractor_solve": {
+   "2": "return (12-8)/2;",
+   "7": "return (12+2)/2;",
+   "-7": "for(let x=-50;x<=50;x+=0.5){ if(Math.abs(x-3)+Math.abs(x+5)===12) return x;} return null;",
+   "-1": "return (3+(-5))/2;"
+  }
+ },
+ {
+  "id": "S14B-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an x-intercept after fixing a slope from a known intersection",
+  "difficulty": "medium",
+  "prompt": "The lines y = 2x + 1 and y = kx - 5, where k is a constant, intersect at the point whose x-coordinate is 3. At what x-coordinate does the line y = kx - 5 cross the x-axis?",
+  "choices": [
+   "7",
+   "4",
+   "15/2",
+   "5/4",
+   "7/4"
+  ],
+  "correct_answer": "5/4",
+  "explanation": "At x = 3 the first line gives y = 7, so 7 = 3k - 5 and k = 4. The second line is y = 4x - 5, which crosses the x-axis where 4x - 5 = 0, at x = 5/4. \"7/4\" solves 4x = 7, using the intersection height 7 in place of the 5. \"15/2\" comes from subtracting instead of adding when solving for k, k = (7 - 5)/3 = 2/3, so x = 5 ÷ (2/3). \"4\" is the slope k, reported instead of the intercept. \"7\" is the y-coordinate of the intersection point.",
+  "solve": "const y=2*3+1; const k=(y+5)/3; return 5/k;",
+  "distractor_solve": {
+   "4": "const y=2*3+1; return (y+5)/3;",
+   "7": "return 2*3+1;",
+   "7/4": "const y=2*3+1; const k=(y+5)/3; return y/k;",
+   "15/2": "const y=2*3+1; const k=(y-5)/3; return 5/k;"
+  }
+ },
+ {
+  "id": "S14B-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an unknown coordinate on a line parallel to a line in standard form",
+  "difficulty": "medium",
+  "prompt": "The line through the points (1, k) and (4, 7) is parallel to the line 2x - 3y = 6. What is the value of k?",
+  "choices": [
+   "13",
+   "11/3",
+   "9",
+   "5",
+   "2.5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Rewriting 2x - 3y = 6 as y = (2/3)x - 2 shows a slope of 2/3. Over a run of 4 - 1 = 3 the rise must be 2, so 7 - k = 2 and k = 5. \"9\" uses a slope of -2/3, a sign slip when rearranging, so 7 - k = -2. \"2.5\" inverts the slope to 3/2, so 7 - k = 4.5. \"13\" takes the slope as 6 ÷ (-3) = -2, dividing the constant term instead of the x-coefficient by the y-coefficient, so 7 - k = -6. \"11/3\" uses the right slope but takes the run as 4 + 1 = 5, so 7 - k = 10/3.",
+  "solve": "const m=2/3; return 7-m*(4-1);",
+  "distractor_solve": {
+   "9": "const m=-2/3; return 7-m*(4-1);",
+   "13": "const m=6/(-3); return 7-m*(4-1);",
+   "2.5": "const m=3/2; return 7-m*(4-1);",
+   "11/3": "const m=2/3; return 7-m*(4+1);"
+  }
+ },
+ {
+  "id": "S14B-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "writing an expression for a fixed fee plus an hourly charge",
+  "difficulty": "easy",
+  "prompt": "Renting a bicycle costs $8 plus $3 for each hour of use. Which expression gives the cost, in dollars, of renting a bicycle for h hours and 30 minutes?",
+  "choices": [
+   "3h + 8.5",
+   "3.5h + 8",
+   "3h + 9.5",
+   "8h + 3.5",
+   "3h + 11"
+  ],
+  "correct_answer": "3h + 9.5",
+  "explanation": "The time is h + 0.5 hours, so the cost is 8 + 3(h + 0.5) = 3h + 1.5 + 8 = 3h + 9.5. \"3h + 8.5\" adds the half hour itself, 0.5, instead of its cost 3 × 0.5. \"3h + 11\" charges a full extra hour, 8 + 3. \"3.5h + 8\" adds the half hour to the hourly rate. \"8h + 3.5\" swaps the fixed fee and the hourly rate.",
+  "solve": "const c=8+3*0.5; return `3h + ${c}`;",
+  "distractor_solve": {
+   "3h + 8.5": "return `3h + ${8+0.5}`;",
+   "3h + 11": "return `3h + ${8+3}`;",
+   "3.5h + 8": "return `${3+0.5}h + 8`;",
+   "8h + 3.5": "return `8h + ${3+0.5}`;"
+  }
+ },
+ {
+  "id": "S14B-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "the change in y between two points on a line from the change in x",
+  "difficulty": "medium",
+  "prompt": "The points (a, b) and (a + 2, b + k) both lie on the line y = 3x - 7. What is the value of k?",
+  "choices": [
+   "-8",
+   "2/3",
+   "-1",
+   "6",
+   "3"
+  ],
+  "correct_answer": "6",
+  "explanation": "Subtracting b = 3a - 7 from b + k = 3(a + 2) - 7 gives k = 6: along a line of slope 3, a run of 2 gives a rise of 3 × 2. \"3\" is the slope, reported as though the run were 1. \"2/3\" divides the run by the slope instead of multiplying. \"-8\" mishandles the constants in the subtraction, taking -7 - (-7) as -14, so 6 - 14. \"-1\" substitutes the run 2 into the line, 3(2) - 7.",
+  "solve": "const y=x=>3*x-7; const a=11; return y(a+2)-y(a);",
+  "distractor_solve": {
+   "3": "return 3;",
+   "2/3": "return 2/3;",
+   "-8": "return 3*2+(-7-7);",
+   "-1": "return 3*2-7;"
+  }
+ },
+ {
+  "id": "S14B-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "expanding and subtracting two squared binomials",
+  "difficulty": "medium",
+  "prompt": "Which of the following is equivalent to (2x - 3)^2 - (2x + 3)^2 ?",
+  "choices": [
+   "0",
+   "-12x",
+   "-18x",
+   "-24x",
+   "-18"
+  ],
+  "correct_answer": "-24x",
+  "explanation": "Expanding, (4x^2 - 12x + 9) - (4x^2 + 12x + 9) = -24x. \"-12x\" forgets to double the middle term, writing (2x - 3)^2 as 4x^2 - 6x + 9. \"-18\" squares each binomial as though (a - b)^2 = a^2 - b^2, so (4x^2 - 9) - (4x^2 + 9). \"0\" squares term by term as though (a ± b)^2 = a^2 + b^2, so both brackets become 4x^2 + 9. \"-18x\" doubles the middle term in one bracket but not the other, (4x^2 - 12x + 9) - (4x^2 + 6x + 9).",
+  "solve": "const mid=-2*2*3-(2*2*3); const c=9-9; return c===0?`${mid}x`:null;",
+  "distractor_solve": {
+   "0": "return (4+9)-(4+9);",
+   "-12x": "const mid=-2*3-(2*3); return `${mid}x`;",
+   "-18": "return (-9)-(9);",
+   "-18x": "const mid=-2*2*3-(2*3); return `${mid}x`;"
+  }
+ },
+ {
+  "id": "S14B-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a square from the coordinates of two opposite vertices",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, A(1, 2) and C(7, 6) are opposite vertices of square ABCD. What is the area of the square?",
+  "choices": [
+   "52",
+   "24",
+   "36",
+   "26",
+   "20"
+  ],
+  "correct_answer": "26",
+  "explanation": "AC is a diagonal, and AC^2 = (7 - 1)^2 + (6 - 2)^2 = 36 + 16 = 52. A square's area is half the square of its diagonal, so the area is 52/2 = 26. \"52\" takes the squared diagonal as the area. \"24\" uses the 6-by-4 rectangle that has AC as its diagonal. \"20\" is the perimeter of that 6-by-4 rectangle. \"36\" takes the horizontal distance 6 as the side of the square.",
+  "solve": "const d2=(7-1)**2+(6-2)**2; return d2/2;",
+  "distractor_solve": {
+   "20": "return 2*((7-1)+(6-2));",
+   "24": "return (7-1)*(6-2);",
+   "36": "return (7-1)**2;",
+   "52": "return (7-1)**2+(6-2)**2;"
+  }
+ },
+ {
+  "id": "S14B-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an angle from a relation between its supplement and its complement",
+  "difficulty": "medium",
+  "prompt": "The supplement of an angle is 40 degrees more than 3 times the complement of the angle. What is the measure of the angle, in degrees?",
+  "choices": [
+   "45",
+   "32.5",
+   "77.5",
+   "65",
+   "50"
+  ],
+  "correct_answer": "65",
+  "explanation": "With the angle x, 180 - x = 3(90 - x) + 40 = 310 - 3x, so 2x = 130 and x = 65. \"45\" leaves out the 40, solving 180 - x = 3(90 - x). \"77.5\" sets the angle itself, rather than its supplement, equal to 3(90 - x) + 40, so 4x = 310. \"32.5\" makes a sign slip collecting the x-terms, writing 4x = 130. \"50\" adds 40 to 3 × 90 as 280, so 180 - x = 280 - 3x and 2x = 100.",
+  "solve": "for(let x=0.5;x<90;x+=0.5){ if(180-x===3*(90-x)+40) return x;} return null;",
+  "distractor_solve": {
+   "45": "return (270-180)/2;",
+   "50": "return (280-180)/2;",
+   "77.5": "return 310/4;",
+   "32.5": "return 130/4;"
+  }
+ },
+ {
+  "id": "S14B-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "first term of an arithmetic sequence from a ratio of two terms and a later term",
+  "difficulty": "hard",
+  "prompt": "In an arithmetic sequence, the 5th term is 3 times the 2nd term, and the 9th term is 34. What is the first term of the sequence?",
+  "choices": [
+   "6",
+   "34/19",
+   "4",
+   "2",
+   "6.8"
+  ],
+  "correct_answer": "2",
+  "explanation": "With first term a and common difference d, a + 4d = 3(a + d) gives d = 2a. Then the 9th term is a + 8d = 17a = 34, so a = 2. \"34/19\" writes the 9th term as a + 9d, so 19a = 34. \"6.8\" inverts the relation to a = 2d, so 10d = 34, d = 3.4 and a = 6.8. \"4\" is the common difference d, not the first term. \"6\" is the 2nd term, a + d.",
+  "solve": "for(let a=-20;a<=20;a+=0.25){ const d=2*a; if(a+8*d===34 && a+4*d===3*(a+d)) return a;} return null;",
+  "distractor_solve": {
+   "4": "const a=34/17; return 2*a;",
+   "6": "const a=34/17; return a+2*a;",
+   "34/19": "return 34/19;",
+   "6.8": "const d=34/10; return 2*d;"
+  }
+ },
+ {
+  "id": "S14B-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of an axis-parallel rectangle from two opposite corners",
+  "difficulty": "easy",
+  "prompt": "A rectangle has its sides parallel to the axes, and two of its opposite vertices are (-2, 1) and (4, 5). What is the area of the rectangle?",
+  "choices": [
+   "12",
+   "24",
+   "8",
+   "20",
+   "10"
+  ],
+  "correct_answer": "24",
+  "explanation": "The width is 4 - (-2) = 6 and the height is 5 - 1 = 4, so the area is 6 × 4 = 24. \"8\" takes the width as 4 - 2 = 2 by ignoring the negative sign. \"20\" is the perimeter, 2(6 + 4). \"10\" adds the width and the height. \"12\" is the area of the triangle cut off by the diagonal, half the rectangle.",
+  "solve": "return (4-(-2))*(5-1);",
+  "distractor_solve": {
+   "8": "return (4-2)*(5-1);",
+   "10": "return (4+2)+(5-1);",
+   "12": "return (4+2)*(5-1)/2;",
+   "20": "return 2*((4+2)+(5-1));"
+  }
+ },
+ {
+  "id": "S14B-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "difference of a linear function at opposite inputs",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = 5 - 2x. What is the value of f(-3) - f(3)?",
+  "choices": [
+   "22",
+   "0",
+   "12",
+   "10",
+   "17"
+  ],
+  "correct_answer": "12",
+  "explanation": "f(-3) = 5 + 6 = 11 and f(3) = 5 - 6 = -1, so f(-3) - f(3) = 11 - (-1) = 12. \"10\" subtracts -1 as though it were +1, 11 - 1. \"0\" evaluates f(-3) as 5 - 6 = -1, missing that -2 times -3 is positive. \"17\" computes f(-3 - 3) = f(-6) instead of a difference of two values. \"22\" assumes f(3) is the negative of f(-3), so 11 + 11.",
+  "solve": "const f=x=>5-2*x; return f(-3)-f(3);",
+  "distractor_solve": {
+   "0": "return (5-6)-(5-6);",
+   "10": "const f=x=>5-2*x; return f(-3)+f(3);",
+   "17": "const f=x=>5-2*x; return f(-6);",
+   "22": "const f=x=>5-2*x; return 2*f(-3);"
+  }
+ },
+ {
+  "id": "S14B-27",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "common difference of an arithmetic sequence from one term and the sum of the first ten",
+  "difficulty": "hard",
+  "prompt": "In an arithmetic sequence, the 3rd term is 11 and the sum of the first 10 terms is 185. What is the common difference of the sequence?",
+  "choices": [
+   "15/7",
+   "3.75",
+   "3",
+   "15/14",
+   "5"
+  ],
+  "correct_answer": "3",
+  "explanation": "With first term a and difference d, a = 11 - 2d and the sum of the first 10 terms is 10a + 45d = 110 - 20d + 45d = 110 + 25d = 185, so d = 3. \"3.75\" treats the average term 18.5 as the 5th term, 11 + 2d = 18.5, though the average of the first ten terms sits halfway between the 5th and 6th. \"5\" writes the first term as 11 - 3d, an index slip, so 110 + 15d = 185. \"15/7\" uses 55d instead of 45d for the sum of the steps, 110 + 35d = 185. \"15/14\" takes the sum to be 10 copies of the 10th term, so the 10th term is 18.5 and 11 + 7d = 18.5.",
+  "solve": "for(let d=-20;d<=20;d+=0.25){ const a=11-2*d; let s=0; for(let n=0;n<10;n++) s+=a+n*d; if(s===185) return d;} return null;",
+  "distractor_solve": {
+   "5": "return (185-110)/15;",
+   "3.75": "return (185/10-11)/2;",
+   "15/7": "return (185-110)/35;",
+   "15/14": "return (185/10-11)/7;"
+  }
+ },
+ {
+  "id": "S14B-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an inner segment from two overlapping segments and the whole",
+  "difficulty": "medium",
+  "prompt": "Points A, B, C and D lie on a line in that order. AC = 12, BD = 15 and AD = 20. What is the length of BC?",
+  "choices": [
+   "9",
+   "8",
+   "7",
+   "3",
+   "5"
+  ],
+  "correct_answer": "7",
+  "explanation": "AC and BD together cover AD once and BC twice, so AC + BD = AD + BC, and BC = 12 + 15 - 20 = 7. \"9\" takes AB to be BD - AC = 3 and then subtracts it from AC, 12 - 3. \"8\" is AD - AC, which is CD. \"5\" is AD - BD, which is AB. \"3\" is BD - AC, the difference of the two given segments.",
+  "solve": "return 12+15-20;",
+  "distractor_solve": {
+   "3": "return 15-12;",
+   "5": "return 20-15;",
+   "8": "return 20-12;",
+   "9": "return 12-(15-12);"
+  }
+ }
+]

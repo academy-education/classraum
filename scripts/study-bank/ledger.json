@@ -5609,6 +5609,48 @@
           "verdict": "Named by all three graders: in the boundary items the semicolon (and colon, dash) is never the key - keys are no mark (A-06, B-07), comma (A-07, B-06), period (B-05); the brief's rule 5 (a strong mark WRONG while the key is comma/no mark) produced this. Graders e, f: the ;/. twins in A-07 and B-06 let a reader strike both (confirmed by elimination sample b). All three: A-04 and B-04 are one template (nonfinite options always lose there - e, f). All three in variants: in agreement items the key is the verb that does NOT agree with the noun nearest the blank, or \"singular behind a long plural modifier\" (A-03, A-04, B-04). Graders d, f: tense-only items are decided by matching a printed past date (A-02, B-02, B-03)."
         }
       }
+    },
+    {
+      "id": "ssat-math-s14-2026-10-07",
+      "createdAt": "2026-10-07",
+      "targetTest": "ssat",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "ssat-math-s14",
+      "contentSha": "f6b6e538ca14397f75830a816d999f8126244071fc42f56fe8bf959595892eeb",
+      "status": "shipped",
+      "spec": {
+        "n": 56,
+        "authors": 2,
+        "batchFile": "scripts/study-bank/ssat-math-s14.batch.json",
+        "prereg": "scripts/study-bank/ssat-math-s14.prereg.md",
+        "method": "two Claude authors on disjoint ground (A: number/fraction-percent/ratio-rate/number theory/counting-probability/statistics, B: algebra/defined operations/geometry/coordinate/sequences), five-choice, solve + distractor_solve, frozen before attack; options-only attack with 30-item interleaved live SSAT control; two with-source graders on the key-withheld render"
+      },
+      "note": "Commissioned to buy SSAT math form 6: one 50-item block, 256 live = 5 clean, form 6 needs 300 (+44). 56 authored for margin. 46 of 56 inserted under the pre-registered bars; the 10 drops are all with-source free eliminations killing >= 2 distractors: S14A-08, S14A-14, S14A-15, S14A-17, S14A-25, S14A-28, S14B-18, S14B-19, S14B-20, S14B-21 (reasons in ssat-math-s14.qc-reasons.json). Inserted at BANK_BAND=mixed; difficulty = graders' consensus, or the easier label where they split (5 of 56 splits).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f6b6e538ca14397f75830a816d999f8126244071fc42f56fe8bf959595892eeb",
+          "verdict": "math-bank-helper verify on the frozen 56: sandbox 56/56, distractors 224/224, symbolic hub 5 structured +5.7, numeric hub 10 structured -3.3 (control derived 20.0%), key extremity PASS 23/52 = 44.2% (bar 32.0%; kept 46: 20/44 = 45.5%). run-middle: 15 single-run items, key in none; option-pair-constant: key in 0 of 4 single pairs; key-is-sum: key is the lone sum/product node 0 times; plurality: fires on 0 of 8 scorable; check-sign-pair four-option only (NOT MEASURED on five-choice). stem-duplicates 0 of 56 against 944 live SSAT rows; own word-3-shingle scan vs 256 live SSAT math max stem Jaccard 0.25, 0 pairs >= 0.35 (break-tested: planted live copy flagged at 1.00). On the kept 46 the symbolic hub line reads +11.7 over 3 structured items (0.95 credit vs 0.60 expected) - a rate over three items, recorded, not acted on."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 168,
+          "mean": 28.0,
+          "control": 42.2,
+          "margin": -14.2,
+          "verdict": "make-oo-render --control 30, stems withheld, keys dealt 12/11/11/11/11 (candidate) and 6/6/6/6/6 (control), three Claude samples x 86 interleaved items. Candidate 47/168 = 28.0% (own best-fixed-letter line 21.4%), live control 38/90 = 42.2% (line 20.0%): CANDIDATE minus LIVE CONTROL -14.2 (pre-registered pass <= +5.0; control far below the 80% void ceiling). Unanimous-correct rate 11/56 = 19.6% vs control 12/30 = 40.0%. Pairwise agreement 83.3% vs 21.1% independent - one solver sampled three times. 0 picks labelled confident."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Two Claude graders on ssat-math-s14.grade.json (render sha f9bf81ed59c6887a, quoted by both at start and end). 56/56 keys agreed by both, 0 non-exclusive, 0 out of band, 0 live duplicates. 12 items flagged with >= 2 free kills; 10 confirmed by hand and dropped, 2 not confirmed and kept: S14A-05 ('exactly three factors -> perfect square' is the method itself), S14A-26 (only 32000, the simple-loss ceiling, is free; the 12800 x 1.2^3 floor needs the reverse-percent insight the item tests). Batch-hold bar was > 16 of 56 dropped; 10 dropped."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Candidate unanimous items S14A-03, S14A-11, S14A-18, S14B-09, S14B-22, S14B-23, S14B-26, S14B-28 kept: with-source names no >= 2 free elimination on any (pre-registered: unanimity alone never drops). S14A-08, S14A-17, S14B-18 were unanimous AND carry a confirmed with-source free elimination, and are dropped. Grader A noted S14B-06 (exponent grid, key at the modal intersection; plurality checker does not score it) and S14B-16 (7 and -7 beside key 5, sec 13a) as blind-shape notes - neither unanimous blind, both kept."
+        }
+      }
     }
   ],
   "auditedCohorts": [

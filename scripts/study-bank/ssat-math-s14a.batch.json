@@ -1,0 +1,702 @@
+[
+ {
+  "id": "S14A-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "divisibility by a composite number through its coprime factors 4 and 9",
+  "difficulty": "easy",
+  "prompt": "Which of the following numbers is divisible by 36?",
+  "choices": [
+   "4332",
+   "8236",
+   "3276",
+   "5427",
+   "4518"
+  ],
+  "correct_answer": "3276",
+  "explanation": "A number is divisible by 36 exactly when it is divisible by both 4 and 9. 3276 ends in 76, which is divisible by 4, and its digit sum 3 + 2 + 7 + 6 = 18 is divisible by 9, so 3276 = 36 x 91. The option \"4332\" passes the test for 4 and has digit sum 12, which is divisible by 3 but not 9; it comes from testing 36 as 3 x 12 instead of 4 x 9. The option \"4518\" has digit sum 18 and is even, but 18 is not divisible by 4; it comes from testing evenness in place of divisibility by 4. The option \"8236\" ends in 36, so it passes the test for 4, but its digit sum is 19; it comes from checking only the last two digits. The option \"5427\" has digit sum 18 but is odd; it comes from checking only the digit sum.",
+  "solve": "const c=[4332,8236,3276,5427,4518];return c.find(n=>n%4===0&&n%9===0);",
+  "distractor_solve": {
+   "4332": "const c=[4332,8236,3276,5427,4518];return c.find(n=>n%3===0&&n%12===0&&n%36!==0);",
+   "4518": "const c=[4332,8236,3276,5427,4518];return c.find(n=>n%2===0&&n%9===0&&n%36!==0);",
+   "8236": "const ds=n=>String(n).split('').reduce((a,d)=>a+ +d,0);const c=[4332,8236,3276,5427,4518];return c.find(n=>n%4===0&&ds(n)%3!==0);",
+   "5427": "const ds=n=>String(n).split('').reduce((a,d)=>a+ +d,0);const c=[4332,8236,3276,5427,4518];return c.find(n=>ds(n)%9===0&&n%2===1);"
+  }
+ },
+ {
+  "id": "S14A-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "inverse proportion between teeth and turns of meshing gears",
+  "difficulty": "easy",
+  "prompt": "Two gears mesh so that they turn together. Gear A has 36 teeth and gear B has 24 teeth. While gear A makes 60 complete turns, how many complete turns does gear B make?",
+  "choices": [
+   "135",
+   "90",
+   "180",
+   "96",
+   "150"
+  ],
+  "correct_answer": "90",
+  "explanation": "Meshing gears pass the same number of teeth past the point of contact. Gear A passes 60 x 36 = 2160 teeth, so gear B makes 2160 / 24 = 90 turns. The option \"135\" multiplies 60 by the square of the ratio, (36/24)^2, as if turns scaled like an area. The option \"180\" divides by the difference in teeth, 60 x 36 / (36 - 24). The option \"96\" adds gear A's 36 teeth to its 60 turns. The option \"150\" uses the total number of teeth, 60 x (36 + 24) / 24.",
+  "solve": "return 60*36/24;",
+  "distractor_solve": {
+   "135": "return 60*(36/24)**2;",
+   "180": "return 60*36/(36-24);",
+   "96": "return 60+36;",
+   "150": "return 60*(36+24)/24;"
+  }
+ },
+ {
+  "id": "S14A-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a percent of a period of time converted to minutes",
+  "difficulty": "easy",
+  "prompt": "How many minutes are in 2.5% of one week?",
+  "choices": [
+   "420",
+   "252",
+   "2520",
+   "260",
+   "403.2"
+  ],
+  "correct_answer": "252",
+  "explanation": "One week has 7 x 24 x 60 = 10,080 minutes, and 2.5% of 10,080 is 0.025 x 10,080 = 252. The option \"420\" finds 2.5% of the 168 hours, 4.2 hours, and then multiplies by 100 instead of 60. The option \"260\" also finds 4.2 hours but reads it as 4 hours 20 minutes. The option \"2520\" uses 0.25 for 2.5%. The option \"403.2\" treats 2.5% as 1/25 of the week.",
+  "solve": "return 0.025*7*24*60;",
+  "distractor_solve": {
+   "420": "const h=0.025*7*24;return h*100;",
+   "260": "const h=0.025*7*24;const w=Math.floor(h);return w*60+Math.round((h-w)*100);",
+   "2520": "return 0.25*7*24*60;",
+   "403.2": "return 7*24*60/25;"
+  }
+ },
+ {
+  "id": "S14A-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "choosing a group in which order does not matter",
+  "difficulty": "easy",
+  "prompt": "A pizza shop offers 7 different toppings. How many different pizzas can be made that have exactly 3 different toppings? (The order in which the toppings are chosen does not matter.)",
+  "choices": [
+   "210",
+   "35",
+   "18",
+   "105",
+   "21"
+  ],
+  "correct_answer": "35",
+  "explanation": "Choosing 3 toppings in order gives 7 x 6 x 5 = 210 ordered choices, and each set of 3 toppings is counted 3 x 2 x 1 = 6 times, so there are 210 / 6 = 35 pizzas. The option \"210\" counts the ordered choices. The option \"105\" divides 210 by 2 instead of 6. The option \"18\" adds 7 + 6 + 5 instead of multiplying. The option \"21\" multiplies the 7 toppings by the 3 places to fill.",
+  "solve": "return 7*6*5/(3*2*1);",
+  "distractor_solve": {
+   "210": "return 7*6*5;",
+   "105": "return 7*6*5/2;",
+   "18": "return 7+6+5;",
+   "21": "return 7*3;"
+  }
+ },
+ {
+  "id": "S14A-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "numbers with exactly three factors are squares of primes",
+  "difficulty": "medium",
+  "prompt": "How many positive integers less than 50 have exactly three positive factors?",
+  "choices": [
+   "7",
+   "13",
+   "4",
+   "15",
+   "6"
+  ],
+  "correct_answer": "4",
+  "explanation": "A number has exactly three factors only when it is the square of a prime p, with factors 1, p and p^2. The squares of primes below 50 are 4, 9, 25 and 49, so there are 4. The option \"7\" counts every perfect square from 1 to 49, since squares are the numbers with an odd number of factors. The option \"6\" counts the perfect squares from 4 to 49, leaving out only 1. The option \"15\" counts the primes below 50, which have exactly two factors. The option \"13\" counts the products of two different primes (6, 10, 14, ...), thinking 1, p and q are their three factors.",
+  "solve": "let c=0;for(let n=1;n<50;n++){let f=0;for(let d=1;d<=n;d++)if(n%d===0)f++;if(f===3)c++;}return c;",
+  "distractor_solve": {
+   "7": "let c=0;for(let k=1;k*k<50;k++)c++;return c;",
+   "6": "let c=0;for(let k=2;k*k<50;k++)c++;return c;",
+   "15": "let c=0;for(let n=2;n<50;n++){let f=0;for(let d=1;d<=n;d++)if(n%d===0)f++;if(f===2)c++;}return c;",
+   "13": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let c=0;for(let n=2;n<50;n++){for(let p=2;p*p<n;p++){if(n%p===0&&ip(p)&&ip(n/p)&&p!==n/p){c++;break;}}}return c;"
+  }
+ },
+ {
+  "id": "S14A-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "divisors that leave a stated remainder must exceed it",
+  "difficulty": "hard",
+  "prompt": "When 100 is divided by the positive integer k, the remainder is 4. How many different values of k are possible?",
+  "choices": [
+   "12",
+   "5",
+   "7",
+   "8",
+   "6"
+  ],
+  "correct_answer": "8",
+  "explanation": "k must divide 100 - 4 = 96, and a remainder of 4 requires k to be greater than 4. The divisors of 96 are 1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48 and 96, and those greater than 4 are 6, 8, 12, 16, 24, 32, 48 and 96: 8 values. The option \"12\" counts every divisor of 96, forgetting that a remainder must be smaller than the divisor. The option \"7\" leaves out k = 96, missing that 100 = 1 x 96 + 4 counts. The option \"5\" adds the remainder instead of subtracting it and counts the divisors of 104 greater than 4. The option \"6\" forgets to subtract the remainder and counts the divisors of 100 greater than 4.",
+  "solve": "let c=0;for(let k=1;k<=100;k++)if(100%k===4)c++;return c;",
+  "distractor_solve": {
+   "12": "let c=0;for(let k=1;k<=96;k++)if(96%k===0)c++;return c;",
+   "7": "let c=0;for(let k=5;k<96;k++)if(96%k===0)c++;return c;",
+   "5": "let c=0;for(let k=5;k<=104;k++)if(104%k===0)c++;return c;",
+   "6": "let c=0;for(let k=5;k<=100;k++)if(100%k===0)c++;return c;"
+  }
+ },
+ {
+  "id": "S14A-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting digits used by place-value blocks",
+  "difficulty": "medium",
+  "prompt": "The pages of a book are numbered in order from 1 to 150. How many digits are printed in all to number the pages?",
+  "choices": [
+   "339",
+   "342",
+   "333",
+   "341",
+   "340"
+  ],
+  "correct_answer": "342",
+  "explanation": "Pages 1 to 9 use 9 x 1 = 9 digits, pages 10 to 99 are 90 pages using 90 x 2 = 180 digits, and pages 100 to 150 are 51 pages using 51 x 3 = 153 digits, for 9 + 180 + 153 = 342. The option \"339\" counts pages 100 to 150 as 150 - 100 = 50 pages. The option \"340\" counts pages 10 to 99 as 99 - 10 = 89 pages. The option \"341\" counts page 100 as a two-digit page, giving 91 two-digit pages and 50 three-digit pages. The option \"333\" leaves out the one-digit pages 1 to 9.",
+  "solve": "let s=0;for(let p=1;p<=150;p++)s+=String(p).length;return s;",
+  "distractor_solve": {
+   "339": "return 9*1+90*2+(150-100)*3;",
+   "340": "return 9*1+(99-10)*2+51*3;",
+   "341": "return 9*1+91*2+50*3;",
+   "333": "return 90*2+51*3;"
+  }
+ },
+ {
+  "id": "S14A-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest product of two primes with a fixed sum",
+  "difficulty": "hard",
+  "prompt": "Two prime numbers have a sum of 52. What is the greatest possible value of their product?",
+  "choices": [
+   "100",
+   "675",
+   "235",
+   "667",
+   "451"
+  ],
+  "correct_answer": "667",
+  "explanation": "The pairs of primes with sum 52 are 5 + 47, 11 + 41 and 23 + 29. The product is greatest when the two numbers are closest together, so it is 23 x 29 = 667. The option \"675\" is 25 x 27, the closest pair of odd numbers with sum 52, taken without checking that 25 and 27 are not prime. The option \"451\" is 11 x 41, from listing prime pairs upward from 5 and stopping before reaching 23 + 29. The option \"235\" is 5 x 47, the first prime pair found. The option \"100\" pairs the prime 2 with 50 without checking that 50 is not prime.",
+  "solve": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let b=0;for(let p=2;p<=26;p++)if(ip(p)&&ip(52-p))b=Math.max(b,p*(52-p));return b;",
+  "distractor_solve": {
+   "675": "let b=0;for(let x=1;x<26;x+=2)b=Math.max(b,x*(52-x));return b;",
+   "451": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};const pairs=[];for(let p=3;p<26;p++)if(ip(p)&&ip(52-p))pairs.push([p,52-p]);return pairs[1][0]*pairs[1][1];",
+   "235": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};const pairs=[];for(let p=3;p<26;p++)if(ip(p)&&ip(52-p))pairs.push([p,52-p]);return pairs[0][0]*pairs[0][1];",
+   "100": "return 2*(52-2);"
+  }
+ },
+ {
+  "id": "S14A-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "remainder of a large power from the repeating cycle of remainders",
+  "difficulty": "hard",
+  "prompt": "What is the remainder when 3^41 is divided by 7?",
+  "choices": [
+   "3",
+   "5",
+   "1",
+   "4",
+   "2"
+  ],
+  "correct_answer": "5",
+  "explanation": "The remainders of 3^1, 3^2, 3^3, ... on division by 7 are 3, 2, 6, 4, 5, 1, and then the cycle of six repeats. Since 41 = 6 x 6 + 5, 3^41 has the fifth remainder in the cycle, 5. The option \"3\" is the units digit of 3^41, used as if it were the remainder on division by 7. The option \"1\" takes the term one place too far along the cycle, the remainder of 3^42. The option \"4\" takes the term one place too early, the remainder of 3^40. The option \"2\" writes 3^41 = (3^3)^13 x 3^2 with 3^3 = 27 one less than 28, but drops the sign of (-1)^13 and reports the remainder of 9.",
+  "solve": "let r=1;for(let i=0;i<41;i++)r=r*3%7;return r;",
+  "distractor_solve": {
+   "3": "let u=1;for(let i=0;i<41;i++)u=u*3%10;return u;",
+   "1": "let r=1;for(let i=0;i<42;i++)r=r*3%7;return r;",
+   "4": "let r=1;for(let i=0;i<40;i++)r=r*3%7;return r;",
+   "2": "return Math.abs((-1)**13)*9%7;"
+  }
+ },
+ {
+  "id": "S14A-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "share of one group within a category built from two percent rates",
+  "difficulty": "hard",
+  "prompt": "At a school, 40 percent of the students are in the band. Of the band students, 25 percent are also in the choir. Of the students who are not in the band, 30 percent are in the choir. What fraction of the choir members are in the band?",
+  "choices": [
+   "7/25",
+   "5/14",
+   "1/10",
+   "4/11",
+   "1/3"
+  ],
+  "correct_answer": "5/14",
+  "explanation": "Out of every 100 students, 40 are in the band and 25% of them, 10, are in the choir; 60 are not in the band and 30% of them, 18, are in the choir. The choir has 10 + 18 = 28 members, of whom 10 are in the band, so the fraction is 10/28 = 5/14. The option \"7/25\" is 28/100, the fraction of the whole school that is in the choir. The option \"1/10\" is 10/100, the fraction of the whole school in both band and choir. The option \"4/11\" divides the 10% by the simple average of the two choir rates, 27.5%, ignoring that the groups are different sizes. The option \"1/3\" divides the 10% by the 30% rate as if 30% of the school were in the choir.",
+  "solve": "const b=0.4*0.25,nb=0.6*0.3;return b/(b+nb);",
+  "distractor_solve": {
+   "7/25": "return 0.4*0.25+0.6*0.3;",
+   "1/10": "return 0.4*0.25;",
+   "4/11": "return (0.4*0.25)/((0.25+0.3)/2);",
+   "1/3": "return (0.4*0.25)/0.3;"
+  }
+ },
+ {
+  "id": "S14A-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "extreme value of a list fixed by its mean, median and mode",
+  "difficulty": "hard",
+  "prompt": "A list of six positive integers has a mean of 6 and a median of 5. The number 4 appears in the list more often than any other number. What is the greatest possible value of the largest number in the list?",
+  "choices": [
+   "15",
+   "12",
+   "19",
+   "10",
+   "14"
+  ],
+  "correct_answer": "14",
+  "explanation": "The six numbers total 6 x 6 = 36. With the list in order, the 3rd and 4th numbers average 5. They cannot both be 5 (then 4 could appear at most twice and would only tie 5), so they are 4 and 6, and 4 appears at least twice. To make the largest number big, make the others small: 1, 4, 4, 6, and then the 5th number must be at least 7, because a second 6 would tie with 4. So 1 + 4 + 4 + 6 + 7 = 22 and the largest is 36 - 22 = 14. (Using three 4s gives 4, 4, 4, 6, 6, which leaves only 12.) The option \"15\" allows a second 6, 1, 4, 4, 6, 6, overlooking that 6 would then appear as often as 4. The option \"19\" ignores the condition on 4 and uses 1, 1, 5, 5, 5. The option \"12\" uses three 4s, 4, 4, 4, 6, 6, without trying a smaller first number. The option \"10\" treats the median as the third number, 5, and uses 4, 4, 5, 6, 7.",
+  "solve": "let best=0;const rec=(a,start,rem)=>{if(a.length===6){if(rem!==0)return;if((a[2]+a[3])/2!==5)return;const cnt={};a.forEach(x=>cnt[x]=(cnt[x]||0)+1);const c4=cnt[4]||0;for(const k in cnt)if(+k!==4&&cnt[k]>=c4)return;best=Math.max(best,a[5]);return;}for(let v=start;v<=rem;v++)rec([...a,v],v,rem-v);};rec([],1,36);return best;",
+  "distractor_solve": {
+   "15": "let best=0;const rec=(a,start,rem)=>{if(a.length===6){if(rem!==0)return;if((a[2]+a[3])/2!==5)return;const cnt={};a.forEach(x=>cnt[x]=(cnt[x]||0)+1);const c4=cnt[4]||0;if(c4<2)return;for(const k in cnt)if(+k!==4&&cnt[k]>c4)return;best=Math.max(best,a[5]);return;}for(let v=start;v<=rem;v++)rec([...a,v],v,rem-v);};rec([],1,36);return best;",
+   "19": "let best=0;const rec=(a,start,rem)=>{if(a.length===6){if(rem!==0)return;if((a[2]+a[3])/2!==5)return;best=Math.max(best,a[5]);return;}for(let v=start;v<=rem;v++)rec([...a,v],v,rem-v);};rec([],1,36);return best;",
+   "12": "return 6*6-(4+4+4+6+6);",
+   "10": "return 6*6-(4+4+5+6+7);"
+  }
+ },
+ {
+  "id": "S14A-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting committees that meet an at-least-one condition",
+  "difficulty": "medium",
+  "prompt": "A club has 5 boys and 4 girls. A committee of 2 members is to be chosen from the club. How many different committees include at least one girl?",
+  "choices": [
+   "24",
+   "16",
+   "31",
+   "26",
+   "20"
+  ],
+  "correct_answer": "26",
+  "explanation": "There are 9 x 8 / 2 = 36 possible committees, and 5 x 4 / 2 = 10 of them are two boys, so 36 - 10 = 26 include at least one girl. (Directly: 5 x 4 = 20 with one girl and one boy, plus 4 x 3 / 2 = 6 with two girls.) The option \"20\" counts only the committees with exactly one girl. The option \"24\" adds 4 for the two-girl committees, one per girl, instead of 6. The option \"16\" picks a girl and then any of the other 8 members and halves the 32 ordered picks, although only the two-girl committees were counted twice. The option \"31\" subtracts the 5 boys from 36 instead of the 10 two-boy committees.",
+  "solve": "return 9*8/2-5*4/2;",
+  "distractor_solve": {
+   "20": "return 5*4;",
+   "24": "return 5*4+4;",
+   "16": "return 4*8/2;",
+   "31": "return 9*8/2-5;"
+  }
+ },
+ {
+  "id": "S14A-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting three-digit numbers with a given digit sum",
+  "difficulty": "hard",
+  "prompt": "How many three-digit positive integers have digits whose sum is 5?",
+  "choices": [
+   "14",
+   "5",
+   "15",
+   "11",
+   "6"
+  ],
+  "correct_answer": "15",
+  "explanation": "List the digit sets that add to 5 and count the orders that do not start with 0. {5, 0, 0}: only 500, 1 number. {4, 1, 0}: 410, 401, 140, 104, 4 numbers. {3, 2, 0}: 320, 302, 230, 203, 4 numbers. {3, 1, 1}: 311, 131, 113, 3 numbers. {2, 2, 1}: 221, 212, 122, 3 numbers. The total is 1 + 4 + 4 + 3 + 3 = 15. The option \"14\" leaves out 500. The option \"5\" counts each digit set once instead of counting its orders. The option \"6\" counts only the numbers with no zero digit. The option \"11\" keeps a zero only at the end of a number (500, 410, 140, 320, 230) and so misses 401, 104, 302 and 203.",
+  "solve": "let c=0;for(let n=100;n<1000;n++){const s=String(n).split('').reduce((a,d)=>a+ +d,0);if(s===5)c++;}return c;",
+  "distractor_solve": {
+   "14": "let c=0;for(let n=100;n<1000;n++){const t=String(n);const s=t.split('').reduce((a,d)=>a+ +d,0);if(s===5&&t.split('0').length-1<2)c++;}return c;",
+   "5": "const sets=new Set();for(let n=100;n<1000;n++){const t=String(n);const s=t.split('').reduce((a,d)=>a+ +d,0);if(s===5)sets.add(t.split('').sort().join(''));}return sets.size;",
+   "6": "let c=0;for(let n=100;n<1000;n++){const t=String(n);const s=t.split('').reduce((a,d)=>a+ +d,0);if(s===5&&!t.includes('0'))c++;}return c;",
+   "11": "let c=0;for(let n=100;n<1000;n++){const t=String(n);const s=t.split('').reduce((a,d)=>a+ +d,0);if(s===5&&/^[1-9]+0*$/.test(t))c++;}return c;"
+  }
+ },
+ {
+  "id": "S14A-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "working backward through a fraction of a remainder",
+  "difficulty": "medium",
+  "prompt": "Lena spent 1/3 of her money on a jacket. She then spent 1/4 of the money she had left on lunch, and after that she had $36. How many dollars did Lena have at first?",
+  "choices": [
+   "57",
+   "72",
+   "48",
+   "60",
+   "54"
+  ],
+  "correct_answer": "72",
+  "explanation": "After lunch she kept 3/4 of what was left after the jacket, so before lunch she had 36 / (3/4) = 48. After the jacket she kept 2/3 of her money, so at first she had 48 / (2/3) = 72. Check: 1/3 of 72 is 24, leaving 48; 1/4 of 48 is 12, leaving 36. The option \"48\" undoes the lunch but forgets the jacket. The option \"54\" undoes the jacket, 36 / (2/3), but forgets the lunch. The option \"57\" adds 1/3 and 1/4 of $36 back onto $36. The option \"60\" undoes each step by increasing by the same fraction, 36 x (1 + 1/4) x (1 + 1/3).",
+  "solve": "return 36/(3/4)/(2/3);",
+  "distractor_solve": {
+   "48": "return 36/(3/4);",
+   "54": "return 36/(2/3);",
+   "57": "return 36+36/3+36/4;",
+   "60": "return 36*(1+1/4)*(1+1/3);"
+  }
+ },
+ {
+  "id": "S14A-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that a first success comes on a stated draw without replacement",
+  "difficulty": "hard",
+  "prompt": "A bag holds 4 red, 3 blue and 2 green marbles. Marbles are drawn one at a time at random and are not put back. What is the probability that the first green marble drawn is the third marble drawn?",
+  "choices": [
+   "2/7",
+   "7/12",
+   "1/6",
+   "3/14",
+   "2/9"
+  ],
+  "correct_answer": "1/6",
+  "explanation": "The first two marbles must not be green and the third must be green: (7/9) x (6/8) x (2/7) = 84/504 = 1/6. The option \"2/7\" is only the chance that the third draw is green once two non-green marbles are gone. The option \"7/12\" is (7/9) x (6/8), the chance that the first two are not green, without the third draw. The option \"3/14\" leaves out the first draw and multiplies (6/8) x (2/7). The option \"2/9\" is the chance of green on a single draw from the full bag.",
+  "solve": "return (7/9)*(6/8)*(2/7);",
+  "distractor_solve": {
+   "2/7": "return 2/(9-2);",
+   "7/12": "return (7/9)*(6/8);",
+   "3/14": "return (6/8)*(2/7);",
+   "2/9": "return 2/9;"
+  }
+ },
+ {
+  "id": "S14A-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability with arrangements of repeated letters, treating a cluster as one block",
+  "difficulty": "hard",
+  "prompt": "The six letters of the word BANANA are arranged in a random order, with every different arrangement equally likely. What is the probability that the three A's are next to one another?",
+  "choices": [
+   "1/15",
+   "1/5",
+   "1/60",
+   "1/10",
+   "1/30"
+  ],
+  "correct_answer": "1/5",
+  "explanation": "BANANA has 6! / (3! x 2!) = 60 different arrangements (three A's and two N's repeat). Treating AAA as a single block leaves 4 items, AAA, B, N, N, with 4! / 2! = 12 arrangements. The probability is 12/60 = 1/5. The option \"1/60\" uses the correct 12 but divides by 6! = 720, ignoring the repeated letters in the total. The option \"1/30\" ignores the repeats in both counts, 4!/6! = 24/720. The option \"1/10\" divides the block count by 2! a second time, 6/60. The option \"1/15\" counts only the 4 positions of the block, 4/60, without arranging B, N, N around it.",
+  "solve": "const f=n=>n<=1?1:n*f(n-1);const total=f(6)/(f(3)*f(2));const good=f(4)/f(2);return good/total;",
+  "distractor_solve": {
+   "1/60": "const f=n=>n<=1?1:n*f(n-1);return (f(4)/f(2))/f(6);",
+   "1/30": "const f=n=>n<=1?1:n*f(n-1);return f(4)/f(6);",
+   "1/10": "const f=n=>n<=1?1:n*f(n-1);return (f(4)/(f(2)*f(2)))/(f(6)/(f(3)*f(2)));",
+   "1/15": "const f=n=>n<=1?1:n*f(n-1);return 4/(f(6)/(f(3)*f(2)));"
+  }
+ },
+ {
+  "id": "S14A-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability restricted to a known subset",
+  "difficulty": "medium",
+  "prompt": "A whole number from 1 to 30 is chosen at random. If the number chosen is known to be odd, what is the probability that it is a prime number?",
+  "choices": [
+   "1/2",
+   "3/5",
+   "3/10",
+   "2/3",
+   "1/3"
+  ],
+  "correct_answer": "3/5",
+  "explanation": "There are 15 odd numbers from 1 to 30, and the odd primes among them are 3, 5, 7, 11, 13, 17, 19, 23 and 29, which is 9. The probability is 9/15 = 3/5. The option \"2/3\" counts 1 as a prime, 10/15. The option \"3/10\" divides the 9 odd primes by all 30 numbers instead of the 15 odd ones. The option \"1/3\" counts all 10 primes up to 30, including 2, out of 30. The option \"1/2\" is the probability that the number is odd, 15/30.",
+  "solve": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let o=0,p=0;for(let n=1;n<=30;n++)if(n%2===1){o++;if(ip(n))p++;}return p/o;",
+  "distractor_solve": {
+   "2/3": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let o=0,p=0;for(let n=1;n<=30;n++)if(n%2===1){o++;if(ip(n)||n===1)p++;}return p/o;",
+   "3/10": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let p=0;for(let n=1;n<=30;n++)if(n%2===1&&ip(n))p++;return p/30;",
+   "1/3": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let p=0;for(let n=1;n<=30;n++)if(ip(n))p++;return p/30;",
+   "1/2": "let o=0;for(let n=1;n<=30;n++)if(n%2===1)o++;return o/30;"
+  }
+ },
+ {
+  "id": "S14A-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number of digits found by pairing 2s and 5s into powers of ten",
+  "difficulty": "medium",
+  "prompt": "How many digits does the number 2^10 x 5^6 have when it is written out in full?",
+  "choices": [
+   "7",
+   "16",
+   "5",
+   "8",
+   "6"
+  ],
+  "correct_answer": "8",
+  "explanation": "Pair six 2s with the six 5s: 2^10 x 5^6 = 2^4 x (2 x 5)^6 = 16 x 10^6 = 16,000,000, which has 8 digits. The option \"7\" writes 16 x 10^6 but counts 16 as one digit, 1 + 6. The option \"6\" counts only the zeros. The option \"16\" adds the exponents, 10 + 6. The option \"5\" counts the digits of 5^6 = 15,625 alone.",
+  "solve": "return String(2**10*5**6).length;",
+  "distractor_solve": {
+   "7": "return 1+6;",
+   "6": "return String(2**10*5**6).split('').filter(d=>d==='0').length;",
+   "16": "return 10+6;",
+   "5": "return String(5**6).length;"
+  }
+ },
+ {
+  "id": "S14A-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "comparing a frequency table with its own weighted mean",
+  "difficulty": "medium",
+  "prompt": "On a quiz, 5 students scored 6, 4 students scored 7, 6 students scored 8, 3 students scored 9, and 2 students scored 10. What percent of these students scored above the mean score?",
+  "choices": [
+   "75",
+   "11",
+   "55",
+   "25",
+   "60"
+  ],
+  "correct_answer": "55",
+  "explanation": "There are 5 + 4 + 6 + 3 + 2 = 20 students with a total of 30 + 28 + 48 + 27 + 20 = 153 points, so the mean is 153 / 20 = 7.65. The students above 7.65 scored 8, 9 or 10: 6 + 3 + 2 = 11 students, which is 11/20 = 55%. The option \"25\" uses the average of the five score values, 8, as the mean and counts the 5 students above 8. The option \"75\" counts the 15 students who scored 7 or more, as if the mean were 7. The option \"60\" counts 3 of the 5 score values above the mean instead of counting students. The option \"11\" reports the number of students rather than the percent.",
+  "solve": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);const m=t.reduce((a,r)=>a+r[0]*r[1],0)/n;return 100*t.filter(r=>r[0]>m).reduce((a,r)=>a+r[1],0)/n;",
+  "distractor_solve": {
+   "25": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);const m=t.reduce((a,r)=>a+r[0],0)/t.length;return 100*t.filter(r=>r[0]>m).reduce((a,r)=>a+r[1],0)/n;",
+   "75": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);return 100*t.filter(r=>r[0]>=7).reduce((a,r)=>a+r[1],0)/n;",
+   "60": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);const m=t.reduce((a,r)=>a+r[0]*r[1],0)/n;return 100*t.filter(r=>r[0]>m).length/t.length;",
+   "11": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);const m=t.reduce((a,r)=>a+r[0]*r[1],0)/n;return t.filter(r=>r[0]>m).reduce((a,r)=>a+r[1],0);"
+  }
+ },
+ {
+  "id": "S14A-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "inverse proportion between speed and time with hours and minutes",
+  "difficulty": "medium",
+  "prompt": "Driving at a steady 60 kilometres per hour, Ana makes a trip in 3 hours 20 minutes. How long would the same trip take at a steady 80 kilometres per hour?",
+  "choices": [
+   "2 hours 24 minutes",
+   "2 hours 50 minutes",
+   "2 hours 30 minutes",
+   "2 hours 15 minutes",
+   "2 hours 40 minutes"
+  ],
+  "correct_answer": "2 hours 30 minutes",
+  "explanation": "3 hours 20 minutes is 3 1/3 hours, so the trip is 60 x 3 1/3 = 200 kilometres. At 80 kilometres per hour it takes 200 / 80 = 2.5 hours, which is 2 hours 30 minutes. The option \"2 hours 24 minutes\" writes 3 hours 20 minutes as 3.2 hours, getting 3.2 x 60 / 80 = 2.4 hours. The option \"2 hours 40 minutes\" makes the same 3.2-hour error and then also reads 2.4 hours as 2 hours 40 minutes. The option \"2 hours 50 minutes\" finds 2.5 hours correctly but reads it as 2 hours 50 minutes. The option \"2 hours 15 minutes\" drops the 20 minutes and scales only 3 hours, 3 x 60 / 80 = 2.25 hours.",
+  "solve": "const h=60*(3+20/60)/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*60)+' minutes';",
+  "distractor_solve": {
+   "2 hours 24 minutes": "const h=3.2*60/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*60)+' minutes';",
+   "2 hours 40 minutes": "const h=3.2*60/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*100)+' minutes';",
+   "2 hours 50 minutes": "const h=60*(3+20/60)/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*100)+' minutes';",
+   "2 hours 15 minutes": "const h=3*60/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*60)+' minutes';"
+  }
+ },
+ {
+  "id": "S14A-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting even numbers with distinct digits when zero is available",
+  "difficulty": "hard",
+  "prompt": "How many four-digit even numbers can be written using only the digits 0, 1, 2, 3, 4 and 5 if no digit is used more than once in a number?",
+  "choices": [
+   "180",
+   "96",
+   "156",
+   "144",
+   "150"
+  ],
+  "correct_answer": "156",
+  "explanation": "Split by the last digit. If it is 0, the first three places are filled from the other five digits: 5 x 4 x 3 = 60. If it is 2 or 4, the first digit can be neither 0 nor the last digit, so it has 4 choices, then 4 and 3 for the middle places: 4 x 4 x 3 = 48 each, 96 in all. The total is 60 + 96 = 156. The option \"180\" ignores the rule that a four-digit number cannot start with 0: 3 x 5 x 4 x 3. The option \"96\" forgets the numbers that end in 0. The option \"144\" applies the no-leading-zero rule even when 0 is already the last digit, giving 4 x 4 x 3 = 48 for each of the three endings. The option \"150\" takes half of all 300 four-digit numbers with distinct digits from this set, as if half were even.",
+  "solve": "let c=0;for(let n=1000;n<10000;n++){const t=String(n);if(!/^[0-5]+$/.test(t))continue;if(new Set(t).size!==4)continue;if(n%2===0)c++;}return c;",
+  "distractor_solve": {
+   "180": "return 3*5*4*3;",
+   "96": "return 2*4*4*3;",
+   "144": "return 3*(4*4*3);",
+   "150": "let c=0;for(let n=1000;n<10000;n++){const t=String(n);if(/^[0-5]+$/.test(t)&&new Set(t).size===4)c++;}return c/2;"
+  }
+ },
+ {
+  "id": "S14A-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a product of fractions that cancels after factoring each factor",
+  "difficulty": "hard",
+  "prompt": "What is the value of the product (1 - 1/4)(1 - 1/9)(1 - 1/16) ... (1 - 1/100), in which each factor has the form 1 - 1/(n^2) and n takes every whole-number value from 2 to 10?",
+  "choices": [
+   "1/10",
+   "11/20",
+   "101/200",
+   "5/9",
+   "1/2"
+  ],
+  "correct_answer": "11/20",
+  "explanation": "Each factor is 1 - 1/(n^2) = ((n - 1)/n) x ((n + 1)/n). The fractions (n - 1)/n for n = 2 to 10 multiply to 1/2 x 2/3 x ... x 9/10 = 1/10, and the fractions (n + 1)/n multiply to 3/2 x 4/3 x ... x 11/10 = 11/2. The product is (1/10) x (11/2) = 11/20. The option \"101/200\" reads the last factor's 100 as the last value of n and runs n up to 100. The option \"5/9\" stops one factor early, at n = 9. The option \"1/10\" multiplies only the (n - 1)/n fractions and drops the (n + 1)/n ones. The option \"1/2\" keeps the first fraction, 1/2, and assumes everything else cancels to 1.",
+  "solve": "let p=1;for(let n=2;n<=10;n++)p*=1-1/(n*n);return p;",
+  "distractor_solve": {
+   "101/200": "let p=1;for(let n=2;n<=100;n++)p*=1-1/(n*n);return p;",
+   "5/9": "let p=1;for(let n=2;n<=9;n++)p*=1-1/(n*n);return p;",
+   "1/10": "let p=1;for(let n=2;n<=10;n++)p*=(n-1)/n;return p;",
+   "1/2": "return (2-1)/2;"
+  }
+ },
+ {
+  "id": "S14A-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a cost from a rate chained through two unit conversions",
+  "difficulty": "hard",
+  "prompt": "A heater uses 1,500 watts of power. It runs for 40 minutes each day for 30 days. Electricity costs 12 cents per kilowatt-hour, where 1 kilowatt-hour is the energy used by 1,000 watts running for 1 hour. What is the total cost of running the heater for the 30 days, in dollars?",
+  "choices": [
+   "2.16",
+   "0.12",
+   "5.40",
+   "3.60",
+   "1.60"
+  ],
+  "correct_answer": "3.60",
+  "explanation": "1,500 watts is 1.5 kilowatts, and 40 minutes is 2/3 of an hour, so each day uses 1.5 x 2/3 = 1 kilowatt-hour. Over 30 days that is 30 kilowatt-hours, costing 30 x $0.12 = $3.60. The option \"2.16\" writes 40 minutes as 0.4 hour. The option \"5.40\" rounds 40 minutes up to a full hour. The option \"1.60\" converts the watts upside down, using 1,000/1,500 = 2/3 kilowatt instead of 1,500/1,000 = 1.5 kilowatts. The option \"0.12\" is the cost of a single day.",
+  "solve": "return 1500/1000*(40/60)*30*0.12;",
+  "distractor_solve": {
+   "2.16": "return 1500/1000*0.4*30*0.12;",
+   "5.40": "return 1500/1000*1*30*0.12;",
+   "0.12": "return 1500/1000*(40/60)*0.12;",
+   "1.60": "return (1000/1500)*(40/60)*30*0.12;"
+  }
+ },
+ {
+  "id": "S14A-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "how a mean responds when every value is scaled and then shifted",
+  "difficulty": "medium",
+  "prompt": "The mean of ten numbers is 13. Each of the ten numbers is increased by 20 percent, and then 4 is subtracted from each result. What is the mean of the ten new numbers?",
+  "choices": [
+   "15.2",
+   "9",
+   "11.6",
+   "15.6",
+   "10.8"
+  ],
+  "correct_answer": "11.6",
+  "explanation": "Increasing every number by 20% multiplies the mean by 1.2, and subtracting 4 from every number lowers the mean by 4: 13 x 1.2 - 4 = 15.6 - 4 = 11.6. The option \"15.6\" forgets to subtract the 4. The option \"9\" subtracts the 4 but forgets the 20% increase. The option \"10.8\" does the steps in the wrong order, (13 - 4) x 1.2. The option \"15.2\" subtracts 4 once from the new total of 156 instead of from each of the ten numbers.",
+  "solve": "return 13*1.2-4;",
+  "distractor_solve": {
+   "15.6": "return 13*1.2;",
+   "9": "return 13-4;",
+   "10.8": "return (13-4)*1.2;",
+   "15.2": "return (13*10*1.2-4)/10;"
+  }
+ },
+ {
+  "id": "S14A-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least number with a given product of digits",
+  "difficulty": "medium",
+  "prompt": "What is the least positive integer whose digits have a product of 120?",
+  "choices": [
+   "456",
+   "358",
+   "22235",
+   "345",
+   "385"
+  ],
+  "correct_answer": "358",
+  "explanation": "No digit can be 0, and 120 is too large to be the product of two digits (at most 9 x 9 = 81), so the number has at least three digits. A first digit of 1 or 2 would leave a product of 120 or 60 for two digits, which is impossible, so the smallest first digit is 3, leaving 40 = 5 x 8. Writing the digits in increasing order gives 358. The option \"456\" uses 4 x 5 x 6 = 120 but is larger. The option \"22235\" breaks 120 into its prime factors 2, 2, 2, 3 and 5 and uses each one as a digit, which makes a five-digit number. The option \"385\" finds 3, 8 and 5 but does not put the digits in increasing order. The option \"345\" starts from 120 = 2 x 3 x 4 x 5 and drops the 2, so its digits multiply to only 60.",
+  "solve": "for(let n=1;n<100000;n++){if(String(n).split('').reduce((a,d)=>a*+d,1)===120)return n;}",
+  "distractor_solve": {
+   "456": "for(let n=100;n<1000;n++){const d=String(n).split('').map(Number);if(d[1]===d[0]+1&&d[2]===d[1]+1&&d[0]*d[1]*d[2]===120)return n;}",
+   "385": "const d=[3,40/5,5];return Number(d.join(''));",
+   "345": "const f=[2,3,4,5];return Number(f.slice(1).join(''));",
+   "22235": "let n=120;const f=[];for(let p=2;n>1;)if(n%p===0){f.push(p);n/=p;}else p++;return Number(f.sort((a,b)=>a-b).join(''));"
+  }
+ },
+ {
+  "id": "S14A-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "undoing a repeated percent decrease",
+  "difficulty": "medium",
+  "prompt": "A machine loses 20 percent of its value each year, with each year's loss figured on its value at the start of that year. After 3 years the machine is worth $12,800. What was it worth when it was new, in dollars?",
+  "choices": [
+   "20480",
+   "32000",
+   "25000",
+   "22118.4",
+   "20000"
+  ],
+  "correct_answer": "25000",
+  "explanation": "Each year the value is multiplied by 0.8, so after 3 years it is 0.8^3 = 0.512 of the original. The original value is 12,800 / 0.512 = 25,000. Check: 25,000 to 20,000 to 16,000 to 12,800. The option \"20000\" undoes only two years, 12,800 / 0.8^2. The option \"32000\" treats the three losses as a single loss of 3 x 20% = 60% of the original value, 12,800 / 0.4, although each later loss is taken on a smaller value. The option \"22118.4\" increases 12,800 by 20% three times, although a 20% rise does not undo a 20% fall. The option \"20480\" adds 3 x 20% = 60% of 12,800.",
+  "solve": "return 12800/0.8**3;",
+  "distractor_solve": {
+   "20000": "return 12800/0.8**2;",
+   "22118.4": "return 12800*1.2**3;",
+   "20480": "return 12800*(1+3*0.2);",
+   "32000": "return 12800/(1-3*0.2);"
+  }
+ },
+ {
+  "id": "S14A-27",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "meetings of two runners moving in opposite directions around a loop",
+  "difficulty": "hard",
+  "prompt": "Two runners start at the same moment from the same point on a circular track 400 metres long and run in opposite directions, one at 5 metres per second and the other at 3 metres per second. How many times do they pass each other during the first 9 minutes, not counting the start?",
+  "choices": [
+   "6",
+   "1",
+   "10",
+   "5",
+   "2"
+  ],
+  "correct_answer": "10",
+  "explanation": "Running in opposite directions, together they cover 5 + 3 = 8 metres each second, so they meet each time their combined distance grows by 400 metres, every 400 / 8 = 50 seconds. In 9 minutes = 540 seconds that happens at 50, 100, ..., 500 seconds, 10 times (the next would be at 550 seconds). The option \"2\" uses the difference of the speeds, 540 x 2 / 400, as if they ran in the same direction. The option \"6\" counts the faster runner's complete laps, 540 x 5 / 400 = 6.75. The option \"5\" uses the average speed, 540 x 4 / 400 = 5.4. The option \"1\" counts only the times both runners are back at the starting point together, every 400 seconds.",
+  "solve": "return Math.floor(9*60*(5+3)/400);",
+  "distractor_solve": {
+   "2": "return Math.floor(9*60*(5-3)/400);",
+   "6": "return Math.floor(9*60*5/400);",
+   "5": "return Math.floor(9*60*((5+3)/2)/400);",
+   "1": "const lapA=400/5,lapB=400/3;let t=1;while(Math.abs(t/lapA-Math.round(t/lapA))>1e-9||Math.abs(t/lapB-Math.round(t/lapB))>1e-9)t++;return Math.floor(9*60/t);"
+  }
+ },
+ {
+  "id": "S14A-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of an exact number of successes in repeated fair trials",
+  "difficulty": "medium",
+  "prompt": "A fair coin is tossed 5 times. What is the probability of getting exactly 3 heads?",
+  "choices": [
+   "1/8",
+   "5/16",
+   "3/5",
+   "1/32",
+   "5/32"
+  ],
+  "correct_answer": "5/16",
+  "explanation": "There are 2^5 = 32 equally likely sequences. The number with exactly 3 heads is the number of ways to choose which 3 of the 5 tosses are heads, 5 x 4 x 3 / (3 x 2 x 1) = 10. The probability is 10/32 = 5/16. The option \"1/32\" counts only one sequence, such as HHHTT. The option \"5/32\" counts 5 sequences, as if choosing a single toss. The option \"1/8\" multiplies (1/2)^3 for the three heads and ignores the tails and the orders. The option \"3/5\" uses the fraction of tosses that are heads.",
+  "solve": "return (5*4*3/(3*2*1))/2**5;",
+  "distractor_solve": {
+   "1/32": "return 1/2**5;",
+   "5/32": "return 5/2**5;",
+   "1/8": "return (1/2)**3;",
+   "3/5": "return 3/5;"
+  }
+ }
+]

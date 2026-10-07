@@ -1,0 +1,1402 @@
+[
+ {
+  "id": "S14A-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "divisibility by a composite number through its coprime factors 4 and 9",
+  "difficulty": "easy",
+  "prompt": "Which of the following numbers is divisible by 36?",
+  "choices": [
+   "4332",
+   "8236",
+   "3276",
+   "5427",
+   "4518"
+  ],
+  "correct_answer": "3276",
+  "explanation": "A number is divisible by 36 exactly when it is divisible by both 4 and 9. 3276 ends in 76, which is divisible by 4, and its digit sum 3 + 2 + 7 + 6 = 18 is divisible by 9, so 3276 = 36 x 91. The option \"4332\" passes the test for 4 and has digit sum 12, which is divisible by 3 but not 9; it comes from testing 36 as 3 x 12 instead of 4 x 9. The option \"4518\" has digit sum 18 and is even, but 18 is not divisible by 4; it comes from testing evenness in place of divisibility by 4. The option \"8236\" ends in 36, so it passes the test for 4, but its digit sum is 19; it comes from checking only the last two digits. The option \"5427\" has digit sum 18 but is odd; it comes from checking only the digit sum.",
+  "solve": "const c=[4332,8236,3276,5427,4518];return c.find(n=>n%4===0&&n%9===0);",
+  "distractor_solve": {
+   "4332": "const c=[4332,8236,3276,5427,4518];return c.find(n=>n%3===0&&n%12===0&&n%36!==0);",
+   "4518": "const c=[4332,8236,3276,5427,4518];return c.find(n=>n%2===0&&n%9===0&&n%36!==0);",
+   "8236": "const ds=n=>String(n).split('').reduce((a,d)=>a+ +d,0);const c=[4332,8236,3276,5427,4518];return c.find(n=>n%4===0&&ds(n)%3!==0);",
+   "5427": "const ds=n=>String(n).split('').reduce((a,d)=>a+ +d,0);const c=[4332,8236,3276,5427,4518];return c.find(n=>ds(n)%9===0&&n%2===1);"
+  }
+ },
+ {
+  "id": "S14A-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "inverse proportion between teeth and turns of meshing gears",
+  "difficulty": "easy",
+  "prompt": "Two gears mesh so that they turn together. Gear A has 36 teeth and gear B has 24 teeth. While gear A makes 60 complete turns, how many complete turns does gear B make?",
+  "choices": [
+   "135",
+   "90",
+   "180",
+   "96",
+   "150"
+  ],
+  "correct_answer": "90",
+  "explanation": "Meshing gears pass the same number of teeth past the point of contact. Gear A passes 60 x 36 = 2160 teeth, so gear B makes 2160 / 24 = 90 turns. The option \"135\" multiplies 60 by the square of the ratio, (36/24)^2, as if turns scaled like an area. The option \"180\" divides by the difference in teeth, 60 x 36 / (36 - 24). The option \"96\" adds gear A's 36 teeth to its 60 turns. The option \"150\" uses the total number of teeth, 60 x (36 + 24) / 24.",
+  "solve": "return 60*36/24;",
+  "distractor_solve": {
+   "135": "return 60*(36/24)**2;",
+   "180": "return 60*36/(36-24);",
+   "96": "return 60+36;",
+   "150": "return 60*(36+24)/24;"
+  }
+ },
+ {
+  "id": "S14A-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a percent of a period of time converted to minutes",
+  "difficulty": "easy",
+  "prompt": "How many minutes are in 2.5% of one week?",
+  "choices": [
+   "420",
+   "252",
+   "2520",
+   "260",
+   "403.2"
+  ],
+  "correct_answer": "252",
+  "explanation": "One week has 7 x 24 x 60 = 10,080 minutes, and 2.5% of 10,080 is 0.025 x 10,080 = 252. The option \"420\" finds 2.5% of the 168 hours, 4.2 hours, and then multiplies by 100 instead of 60. The option \"260\" also finds 4.2 hours but reads it as 4 hours 20 minutes. The option \"2520\" uses 0.25 for 2.5%. The option \"403.2\" treats 2.5% as 1/25 of the week.",
+  "solve": "return 0.025*7*24*60;",
+  "distractor_solve": {
+   "420": "const h=0.025*7*24;return h*100;",
+   "260": "const h=0.025*7*24;const w=Math.floor(h);return w*60+Math.round((h-w)*100);",
+   "2520": "return 0.25*7*24*60;",
+   "403.2": "return 7*24*60/25;"
+  }
+ },
+ {
+  "id": "S14A-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "choosing a group in which order does not matter",
+  "difficulty": "easy",
+  "prompt": "A pizza shop offers 7 different toppings. How many different pizzas can be made that have exactly 3 different toppings? (The order in which the toppings are chosen does not matter.)",
+  "choices": [
+   "210",
+   "35",
+   "18",
+   "105",
+   "21"
+  ],
+  "correct_answer": "35",
+  "explanation": "Choosing 3 toppings in order gives 7 x 6 x 5 = 210 ordered choices, and each set of 3 toppings is counted 3 x 2 x 1 = 6 times, so there are 210 / 6 = 35 pizzas. The option \"210\" counts the ordered choices. The option \"105\" divides 210 by 2 instead of 6. The option \"18\" adds 7 + 6 + 5 instead of multiplying. The option \"21\" multiplies the 7 toppings by the 3 places to fill.",
+  "solve": "return 7*6*5/(3*2*1);",
+  "distractor_solve": {
+   "210": "return 7*6*5;",
+   "105": "return 7*6*5/2;",
+   "18": "return 7+6+5;",
+   "21": "return 7*3;"
+  }
+ },
+ {
+  "id": "S14A-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "numbers with exactly three factors are squares of primes",
+  "difficulty": "medium",
+  "prompt": "How many positive integers less than 50 have exactly three positive factors?",
+  "choices": [
+   "7",
+   "13",
+   "4",
+   "15",
+   "6"
+  ],
+  "correct_answer": "4",
+  "explanation": "A number has exactly three factors only when it is the square of a prime p, with factors 1, p and p^2. The squares of primes below 50 are 4, 9, 25 and 49, so there are 4. The option \"7\" counts every perfect square from 1 to 49, since squares are the numbers with an odd number of factors. The option \"6\" counts the perfect squares from 4 to 49, leaving out only 1. The option \"15\" counts the primes below 50, which have exactly two factors. The option \"13\" counts the products of two different primes (6, 10, 14, ...), thinking 1, p and q are their three factors.",
+  "solve": "let c=0;for(let n=1;n<50;n++){let f=0;for(let d=1;d<=n;d++)if(n%d===0)f++;if(f===3)c++;}return c;",
+  "distractor_solve": {
+   "7": "let c=0;for(let k=1;k*k<50;k++)c++;return c;",
+   "6": "let c=0;for(let k=2;k*k<50;k++)c++;return c;",
+   "15": "let c=0;for(let n=2;n<50;n++){let f=0;for(let d=1;d<=n;d++)if(n%d===0)f++;if(f===2)c++;}return c;",
+   "13": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let c=0;for(let n=2;n<50;n++){for(let p=2;p*p<n;p++){if(n%p===0&&ip(p)&&ip(n/p)&&p!==n/p){c++;break;}}}return c;"
+  }
+ },
+ {
+  "id": "S14A-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "divisors that leave a stated remainder must exceed it",
+  "difficulty": "hard",
+  "prompt": "When 100 is divided by the positive integer k, the remainder is 4. How many different values of k are possible?",
+  "choices": [
+   "12",
+   "5",
+   "7",
+   "8",
+   "6"
+  ],
+  "correct_answer": "8",
+  "explanation": "k must divide 100 - 4 = 96, and a remainder of 4 requires k to be greater than 4. The divisors of 96 are 1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48 and 96, and those greater than 4 are 6, 8, 12, 16, 24, 32, 48 and 96: 8 values. The option \"12\" counts every divisor of 96, forgetting that a remainder must be smaller than the divisor. The option \"7\" leaves out k = 96, missing that 100 = 1 x 96 + 4 counts. The option \"5\" adds the remainder instead of subtracting it and counts the divisors of 104 greater than 4. The option \"6\" forgets to subtract the remainder and counts the divisors of 100 greater than 4.",
+  "solve": "let c=0;for(let k=1;k<=100;k++)if(100%k===4)c++;return c;",
+  "distractor_solve": {
+   "12": "let c=0;for(let k=1;k<=96;k++)if(96%k===0)c++;return c;",
+   "7": "let c=0;for(let k=5;k<96;k++)if(96%k===0)c++;return c;",
+   "5": "let c=0;for(let k=5;k<=104;k++)if(104%k===0)c++;return c;",
+   "6": "let c=0;for(let k=5;k<=100;k++)if(100%k===0)c++;return c;"
+  }
+ },
+ {
+  "id": "S14A-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting digits used by place-value blocks",
+  "difficulty": "medium",
+  "prompt": "The pages of a book are numbered in order from 1 to 150. How many digits are printed in all to number the pages?",
+  "choices": [
+   "339",
+   "342",
+   "333",
+   "341",
+   "340"
+  ],
+  "correct_answer": "342",
+  "explanation": "Pages 1 to 9 use 9 x 1 = 9 digits, pages 10 to 99 are 90 pages using 90 x 2 = 180 digits, and pages 100 to 150 are 51 pages using 51 x 3 = 153 digits, for 9 + 180 + 153 = 342. The option \"339\" counts pages 100 to 150 as 150 - 100 = 50 pages. The option \"340\" counts pages 10 to 99 as 99 - 10 = 89 pages. The option \"341\" counts page 100 as a two-digit page, giving 91 two-digit pages and 50 three-digit pages. The option \"333\" leaves out the one-digit pages 1 to 9.",
+  "solve": "let s=0;for(let p=1;p<=150;p++)s+=String(p).length;return s;",
+  "distractor_solve": {
+   "339": "return 9*1+90*2+(150-100)*3;",
+   "340": "return 9*1+(99-10)*2+51*3;",
+   "341": "return 9*1+91*2+50*3;",
+   "333": "return 90*2+51*3;"
+  }
+ },
+ {
+  "id": "S14A-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest product of two primes with a fixed sum",
+  "difficulty": "hard",
+  "prompt": "Two prime numbers have a sum of 52. What is the greatest possible value of their product?",
+  "choices": [
+   "100",
+   "675",
+   "235",
+   "667",
+   "451"
+  ],
+  "correct_answer": "667",
+  "explanation": "The pairs of primes with sum 52 are 5 + 47, 11 + 41 and 23 + 29. The product is greatest when the two numbers are closest together, so it is 23 x 29 = 667. The option \"675\" is 25 x 27, the closest pair of odd numbers with sum 52, taken without checking that 25 and 27 are not prime. The option \"451\" is 11 x 41, from listing prime pairs upward from 5 and stopping before reaching 23 + 29. The option \"235\" is 5 x 47, the first prime pair found. The option \"100\" pairs the prime 2 with 50 without checking that 50 is not prime.",
+  "solve": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let b=0;for(let p=2;p<=26;p++)if(ip(p)&&ip(52-p))b=Math.max(b,p*(52-p));return b;",
+  "distractor_solve": {
+   "675": "let b=0;for(let x=1;x<26;x+=2)b=Math.max(b,x*(52-x));return b;",
+   "451": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};const pairs=[];for(let p=3;p<26;p++)if(ip(p)&&ip(52-p))pairs.push([p,52-p]);return pairs[1][0]*pairs[1][1];",
+   "235": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};const pairs=[];for(let p=3;p<26;p++)if(ip(p)&&ip(52-p))pairs.push([p,52-p]);return pairs[0][0]*pairs[0][1];",
+   "100": "return 2*(52-2);"
+  }
+ },
+ {
+  "id": "S14A-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "remainder of a large power from the repeating cycle of remainders",
+  "difficulty": "hard",
+  "prompt": "What is the remainder when 3^41 is divided by 7?",
+  "choices": [
+   "3",
+   "5",
+   "1",
+   "4",
+   "2"
+  ],
+  "correct_answer": "5",
+  "explanation": "The remainders of 3^1, 3^2, 3^3, ... on division by 7 are 3, 2, 6, 4, 5, 1, and then the cycle of six repeats. Since 41 = 6 x 6 + 5, 3^41 has the fifth remainder in the cycle, 5. The option \"3\" is the units digit of 3^41, used as if it were the remainder on division by 7. The option \"1\" takes the term one place too far along the cycle, the remainder of 3^42. The option \"4\" takes the term one place too early, the remainder of 3^40. The option \"2\" writes 3^41 = (3^3)^13 x 3^2 with 3^3 = 27 one less than 28, but drops the sign of (-1)^13 and reports the remainder of 9.",
+  "solve": "let r=1;for(let i=0;i<41;i++)r=r*3%7;return r;",
+  "distractor_solve": {
+   "3": "let u=1;for(let i=0;i<41;i++)u=u*3%10;return u;",
+   "1": "let r=1;for(let i=0;i<42;i++)r=r*3%7;return r;",
+   "4": "let r=1;for(let i=0;i<40;i++)r=r*3%7;return r;",
+   "2": "return Math.abs((-1)**13)*9%7;"
+  }
+ },
+ {
+  "id": "S14A-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "share of one group within a category built from two percent rates",
+  "difficulty": "hard",
+  "prompt": "At a school, 40 percent of the students are in the band. Of the band students, 25 percent are also in the choir. Of the students who are not in the band, 30 percent are in the choir. What fraction of the choir members are in the band?",
+  "choices": [
+   "7/25",
+   "5/14",
+   "1/10",
+   "4/11",
+   "1/3"
+  ],
+  "correct_answer": "5/14",
+  "explanation": "Out of every 100 students, 40 are in the band and 25% of them, 10, are in the choir; 60 are not in the band and 30% of them, 18, are in the choir. The choir has 10 + 18 = 28 members, of whom 10 are in the band, so the fraction is 10/28 = 5/14. The option \"7/25\" is 28/100, the fraction of the whole school that is in the choir. The option \"1/10\" is 10/100, the fraction of the whole school in both band and choir. The option \"4/11\" divides the 10% by the simple average of the two choir rates, 27.5%, ignoring that the groups are different sizes. The option \"1/3\" divides the 10% by the 30% rate as if 30% of the school were in the choir.",
+  "solve": "const b=0.4*0.25,nb=0.6*0.3;return b/(b+nb);",
+  "distractor_solve": {
+   "7/25": "return 0.4*0.25+0.6*0.3;",
+   "1/10": "return 0.4*0.25;",
+   "4/11": "return (0.4*0.25)/((0.25+0.3)/2);",
+   "1/3": "return (0.4*0.25)/0.3;"
+  }
+ },
+ {
+  "id": "S14A-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "extreme value of a list fixed by its mean, median and mode",
+  "difficulty": "hard",
+  "prompt": "A list of six positive integers has a mean of 6 and a median of 5. The number 4 appears in the list more often than any other number. What is the greatest possible value of the largest number in the list?",
+  "choices": [
+   "15",
+   "12",
+   "19",
+   "10",
+   "14"
+  ],
+  "correct_answer": "14",
+  "explanation": "The six numbers total 6 x 6 = 36. With the list in order, the 3rd and 4th numbers average 5. They cannot both be 5 (then 4 could appear at most twice and would only tie 5), so they are 4 and 6, and 4 appears at least twice. To make the largest number big, make the others small: 1, 4, 4, 6, and then the 5th number must be at least 7, because a second 6 would tie with 4. So 1 + 4 + 4 + 6 + 7 = 22 and the largest is 36 - 22 = 14. (Using three 4s gives 4, 4, 4, 6, 6, which leaves only 12.) The option \"15\" allows a second 6, 1, 4, 4, 6, 6, overlooking that 6 would then appear as often as 4. The option \"19\" ignores the condition on 4 and uses 1, 1, 5, 5, 5. The option \"12\" uses three 4s, 4, 4, 4, 6, 6, without trying a smaller first number. The option \"10\" treats the median as the third number, 5, and uses 4, 4, 5, 6, 7.",
+  "solve": "let best=0;const rec=(a,start,rem)=>{if(a.length===6){if(rem!==0)return;if((a[2]+a[3])/2!==5)return;const cnt={};a.forEach(x=>cnt[x]=(cnt[x]||0)+1);const c4=cnt[4]||0;for(const k in cnt)if(+k!==4&&cnt[k]>=c4)return;best=Math.max(best,a[5]);return;}for(let v=start;v<=rem;v++)rec([...a,v],v,rem-v);};rec([],1,36);return best;",
+  "distractor_solve": {
+   "15": "let best=0;const rec=(a,start,rem)=>{if(a.length===6){if(rem!==0)return;if((a[2]+a[3])/2!==5)return;const cnt={};a.forEach(x=>cnt[x]=(cnt[x]||0)+1);const c4=cnt[4]||0;if(c4<2)return;for(const k in cnt)if(+k!==4&&cnt[k]>c4)return;best=Math.max(best,a[5]);return;}for(let v=start;v<=rem;v++)rec([...a,v],v,rem-v);};rec([],1,36);return best;",
+   "19": "let best=0;const rec=(a,start,rem)=>{if(a.length===6){if(rem!==0)return;if((a[2]+a[3])/2!==5)return;best=Math.max(best,a[5]);return;}for(let v=start;v<=rem;v++)rec([...a,v],v,rem-v);};rec([],1,36);return best;",
+   "12": "return 6*6-(4+4+4+6+6);",
+   "10": "return 6*6-(4+4+5+6+7);"
+  }
+ },
+ {
+  "id": "S14A-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting committees that meet an at-least-one condition",
+  "difficulty": "medium",
+  "prompt": "A club has 5 boys and 4 girls. A committee of 2 members is to be chosen from the club. How many different committees include at least one girl?",
+  "choices": [
+   "24",
+   "16",
+   "31",
+   "26",
+   "20"
+  ],
+  "correct_answer": "26",
+  "explanation": "There are 9 x 8 / 2 = 36 possible committees, and 5 x 4 / 2 = 10 of them are two boys, so 36 - 10 = 26 include at least one girl. (Directly: 5 x 4 = 20 with one girl and one boy, plus 4 x 3 / 2 = 6 with two girls.) The option \"20\" counts only the committees with exactly one girl. The option \"24\" adds 4 for the two-girl committees, one per girl, instead of 6. The option \"16\" picks a girl and then any of the other 8 members and halves the 32 ordered picks, although only the two-girl committees were counted twice. The option \"31\" subtracts the 5 boys from 36 instead of the 10 two-boy committees.",
+  "solve": "return 9*8/2-5*4/2;",
+  "distractor_solve": {
+   "20": "return 5*4;",
+   "24": "return 5*4+4;",
+   "16": "return 4*8/2;",
+   "31": "return 9*8/2-5;"
+  }
+ },
+ {
+  "id": "S14A-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting three-digit numbers with a given digit sum",
+  "difficulty": "hard",
+  "prompt": "How many three-digit positive integers have digits whose sum is 5?",
+  "choices": [
+   "14",
+   "5",
+   "15",
+   "11",
+   "6"
+  ],
+  "correct_answer": "15",
+  "explanation": "List the digit sets that add to 5 and count the orders that do not start with 0. {5, 0, 0}: only 500, 1 number. {4, 1, 0}: 410, 401, 140, 104, 4 numbers. {3, 2, 0}: 320, 302, 230, 203, 4 numbers. {3, 1, 1}: 311, 131, 113, 3 numbers. {2, 2, 1}: 221, 212, 122, 3 numbers. The total is 1 + 4 + 4 + 3 + 3 = 15. The option \"14\" leaves out 500. The option \"5\" counts each digit set once instead of counting its orders. The option \"6\" counts only the numbers with no zero digit. The option \"11\" keeps a zero only at the end of a number (500, 410, 140, 320, 230) and so misses 401, 104, 302 and 203.",
+  "solve": "let c=0;for(let n=100;n<1000;n++){const s=String(n).split('').reduce((a,d)=>a+ +d,0);if(s===5)c++;}return c;",
+  "distractor_solve": {
+   "14": "let c=0;for(let n=100;n<1000;n++){const t=String(n);const s=t.split('').reduce((a,d)=>a+ +d,0);if(s===5&&t.split('0').length-1<2)c++;}return c;",
+   "5": "const sets=new Set();for(let n=100;n<1000;n++){const t=String(n);const s=t.split('').reduce((a,d)=>a+ +d,0);if(s===5)sets.add(t.split('').sort().join(''));}return sets.size;",
+   "6": "let c=0;for(let n=100;n<1000;n++){const t=String(n);const s=t.split('').reduce((a,d)=>a+ +d,0);if(s===5&&!t.includes('0'))c++;}return c;",
+   "11": "let c=0;for(let n=100;n<1000;n++){const t=String(n);const s=t.split('').reduce((a,d)=>a+ +d,0);if(s===5&&/^[1-9]+0*$/.test(t))c++;}return c;"
+  }
+ },
+ {
+  "id": "S14A-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "working backward through a fraction of a remainder",
+  "difficulty": "medium",
+  "prompt": "Lena spent 1/3 of her money on a jacket. She then spent 1/4 of the money she had left on lunch, and after that she had $36. How many dollars did Lena have at first?",
+  "choices": [
+   "57",
+   "72",
+   "48",
+   "60",
+   "54"
+  ],
+  "correct_answer": "72",
+  "explanation": "After lunch she kept 3/4 of what was left after the jacket, so before lunch she had 36 / (3/4) = 48. After the jacket she kept 2/3 of her money, so at first she had 48 / (2/3) = 72. Check: 1/3 of 72 is 24, leaving 48; 1/4 of 48 is 12, leaving 36. The option \"48\" undoes the lunch but forgets the jacket. The option \"54\" undoes the jacket, 36 / (2/3), but forgets the lunch. The option \"57\" adds 1/3 and 1/4 of $36 back onto $36. The option \"60\" undoes each step by increasing by the same fraction, 36 x (1 + 1/4) x (1 + 1/3).",
+  "solve": "return 36/(3/4)/(2/3);",
+  "distractor_solve": {
+   "48": "return 36/(3/4);",
+   "54": "return 36/(2/3);",
+   "57": "return 36+36/3+36/4;",
+   "60": "return 36*(1+1/4)*(1+1/3);"
+  }
+ },
+ {
+  "id": "S14A-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that a first success comes on a stated draw without replacement",
+  "difficulty": "hard",
+  "prompt": "A bag holds 4 red, 3 blue and 2 green marbles. Marbles are drawn one at a time at random and are not put back. What is the probability that the first green marble drawn is the third marble drawn?",
+  "choices": [
+   "2/7",
+   "7/12",
+   "1/6",
+   "3/14",
+   "2/9"
+  ],
+  "correct_answer": "1/6",
+  "explanation": "The first two marbles must not be green and the third must be green: (7/9) x (6/8) x (2/7) = 84/504 = 1/6. The option \"2/7\" is only the chance that the third draw is green once two non-green marbles are gone. The option \"7/12\" is (7/9) x (6/8), the chance that the first two are not green, without the third draw. The option \"3/14\" leaves out the first draw and multiplies (6/8) x (2/7). The option \"2/9\" is the chance of green on a single draw from the full bag.",
+  "solve": "return (7/9)*(6/8)*(2/7);",
+  "distractor_solve": {
+   "2/7": "return 2/(9-2);",
+   "7/12": "return (7/9)*(6/8);",
+   "3/14": "return (6/8)*(2/7);",
+   "2/9": "return 2/9;"
+  }
+ },
+ {
+  "id": "S14A-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability with arrangements of repeated letters, treating a cluster as one block",
+  "difficulty": "hard",
+  "prompt": "The six letters of the word BANANA are arranged in a random order, with every different arrangement equally likely. What is the probability that the three A's are next to one another?",
+  "choices": [
+   "1/15",
+   "1/5",
+   "1/60",
+   "1/10",
+   "1/30"
+  ],
+  "correct_answer": "1/5",
+  "explanation": "BANANA has 6! / (3! x 2!) = 60 different arrangements (three A's and two N's repeat). Treating AAA as a single block leaves 4 items, AAA, B, N, N, with 4! / 2! = 12 arrangements. The probability is 12/60 = 1/5. The option \"1/60\" uses the correct 12 but divides by 6! = 720, ignoring the repeated letters in the total. The option \"1/30\" ignores the repeats in both counts, 4!/6! = 24/720. The option \"1/10\" divides the block count by 2! a second time, 6/60. The option \"1/15\" counts only the 4 positions of the block, 4/60, without arranging B, N, N around it.",
+  "solve": "const f=n=>n<=1?1:n*f(n-1);const total=f(6)/(f(3)*f(2));const good=f(4)/f(2);return good/total;",
+  "distractor_solve": {
+   "1/60": "const f=n=>n<=1?1:n*f(n-1);return (f(4)/f(2))/f(6);",
+   "1/30": "const f=n=>n<=1?1:n*f(n-1);return f(4)/f(6);",
+   "1/10": "const f=n=>n<=1?1:n*f(n-1);return (f(4)/(f(2)*f(2)))/(f(6)/(f(3)*f(2)));",
+   "1/15": "const f=n=>n<=1?1:n*f(n-1);return 4/(f(6)/(f(3)*f(2)));"
+  }
+ },
+ {
+  "id": "S14A-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability restricted to a known subset",
+  "difficulty": "medium",
+  "prompt": "A whole number from 1 to 30 is chosen at random. If the number chosen is known to be odd, what is the probability that it is a prime number?",
+  "choices": [
+   "1/2",
+   "3/5",
+   "3/10",
+   "2/3",
+   "1/3"
+  ],
+  "correct_answer": "3/5",
+  "explanation": "There are 15 odd numbers from 1 to 30, and the odd primes among them are 3, 5, 7, 11, 13, 17, 19, 23 and 29, which is 9. The probability is 9/15 = 3/5. The option \"2/3\" counts 1 as a prime, 10/15. The option \"3/10\" divides the 9 odd primes by all 30 numbers instead of the 15 odd ones. The option \"1/3\" counts all 10 primes up to 30, including 2, out of 30. The option \"1/2\" is the probability that the number is odd, 15/30.",
+  "solve": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let o=0,p=0;for(let n=1;n<=30;n++)if(n%2===1){o++;if(ip(n))p++;}return p/o;",
+  "distractor_solve": {
+   "2/3": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let o=0,p=0;for(let n=1;n<=30;n++)if(n%2===1){o++;if(ip(n)||n===1)p++;}return p/o;",
+   "3/10": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let p=0;for(let n=1;n<=30;n++)if(n%2===1&&ip(n))p++;return p/30;",
+   "1/3": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let p=0;for(let n=1;n<=30;n++)if(ip(n))p++;return p/30;",
+   "1/2": "let o=0;for(let n=1;n<=30;n++)if(n%2===1)o++;return o/30;"
+  }
+ },
+ {
+  "id": "S14A-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number of digits found by pairing 2s and 5s into powers of ten",
+  "difficulty": "medium",
+  "prompt": "How many digits does the number 2^10 x 5^6 have when it is written out in full?",
+  "choices": [
+   "7",
+   "16",
+   "5",
+   "8",
+   "6"
+  ],
+  "correct_answer": "8",
+  "explanation": "Pair six 2s with the six 5s: 2^10 x 5^6 = 2^4 x (2 x 5)^6 = 16 x 10^6 = 16,000,000, which has 8 digits. The option \"7\" writes 16 x 10^6 but counts 16 as one digit, 1 + 6. The option \"6\" counts only the zeros. The option \"16\" adds the exponents, 10 + 6. The option \"5\" counts the digits of 5^6 = 15,625 alone.",
+  "solve": "return String(2**10*5**6).length;",
+  "distractor_solve": {
+   "7": "return 1+6;",
+   "6": "return String(2**10*5**6).split('').filter(d=>d==='0').length;",
+   "16": "return 10+6;",
+   "5": "return String(5**6).length;"
+  }
+ },
+ {
+  "id": "S14A-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "comparing a frequency table with its own weighted mean",
+  "difficulty": "medium",
+  "prompt": "On a quiz, 5 students scored 6, 4 students scored 7, 6 students scored 8, 3 students scored 9, and 2 students scored 10. What percent of these students scored above the mean score?",
+  "choices": [
+   "75",
+   "11",
+   "55",
+   "25",
+   "60"
+  ],
+  "correct_answer": "55",
+  "explanation": "There are 5 + 4 + 6 + 3 + 2 = 20 students with a total of 30 + 28 + 48 + 27 + 20 = 153 points, so the mean is 153 / 20 = 7.65. The students above 7.65 scored 8, 9 or 10: 6 + 3 + 2 = 11 students, which is 11/20 = 55%. The option \"25\" uses the average of the five score values, 8, as the mean and counts the 5 students above 8. The option \"75\" counts the 15 students who scored 7 or more, as if the mean were 7. The option \"60\" counts 3 of the 5 score values above the mean instead of counting students. The option \"11\" reports the number of students rather than the percent.",
+  "solve": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);const m=t.reduce((a,r)=>a+r[0]*r[1],0)/n;return 100*t.filter(r=>r[0]>m).reduce((a,r)=>a+r[1],0)/n;",
+  "distractor_solve": {
+   "25": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);const m=t.reduce((a,r)=>a+r[0],0)/t.length;return 100*t.filter(r=>r[0]>m).reduce((a,r)=>a+r[1],0)/n;",
+   "75": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);return 100*t.filter(r=>r[0]>=7).reduce((a,r)=>a+r[1],0)/n;",
+   "60": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);const m=t.reduce((a,r)=>a+r[0]*r[1],0)/n;return 100*t.filter(r=>r[0]>m).length/t.length;",
+   "11": "const t=[[6,5],[7,4],[8,6],[9,3],[10,2]];const n=t.reduce((a,r)=>a+r[1],0);const m=t.reduce((a,r)=>a+r[0]*r[1],0)/n;return t.filter(r=>r[0]>m).reduce((a,r)=>a+r[1],0);"
+  }
+ },
+ {
+  "id": "S14A-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "inverse proportion between speed and time with hours and minutes",
+  "difficulty": "medium",
+  "prompt": "Driving at a steady 60 kilometres per hour, Ana makes a trip in 3 hours 20 minutes. How long would the same trip take at a steady 80 kilometres per hour?",
+  "choices": [
+   "2 hours 24 minutes",
+   "2 hours 50 minutes",
+   "2 hours 30 minutes",
+   "2 hours 15 minutes",
+   "2 hours 40 minutes"
+  ],
+  "correct_answer": "2 hours 30 minutes",
+  "explanation": "3 hours 20 minutes is 3 1/3 hours, so the trip is 60 x 3 1/3 = 200 kilometres. At 80 kilometres per hour it takes 200 / 80 = 2.5 hours, which is 2 hours 30 minutes. The option \"2 hours 24 minutes\" writes 3 hours 20 minutes as 3.2 hours, getting 3.2 x 60 / 80 = 2.4 hours. The option \"2 hours 40 minutes\" makes the same 3.2-hour error and then also reads 2.4 hours as 2 hours 40 minutes. The option \"2 hours 50 minutes\" finds 2.5 hours correctly but reads it as 2 hours 50 minutes. The option \"2 hours 15 minutes\" drops the 20 minutes and scales only 3 hours, 3 x 60 / 80 = 2.25 hours.",
+  "solve": "const h=60*(3+20/60)/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*60)+' minutes';",
+  "distractor_solve": {
+   "2 hours 24 minutes": "const h=3.2*60/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*60)+' minutes';",
+   "2 hours 40 minutes": "const h=3.2*60/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*100)+' minutes';",
+   "2 hours 50 minutes": "const h=60*(3+20/60)/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*100)+' minutes';",
+   "2 hours 15 minutes": "const h=3*60/80;const H=Math.floor(h);return H+' hours '+Math.round((h-H)*60)+' minutes';"
+  }
+ },
+ {
+  "id": "S14A-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting even numbers with distinct digits when zero is available",
+  "difficulty": "hard",
+  "prompt": "How many four-digit even numbers can be written using only the digits 0, 1, 2, 3, 4 and 5 if no digit is used more than once in a number?",
+  "choices": [
+   "180",
+   "96",
+   "156",
+   "144",
+   "150"
+  ],
+  "correct_answer": "156",
+  "explanation": "Split by the last digit. If it is 0, the first three places are filled from the other five digits: 5 x 4 x 3 = 60. If it is 2 or 4, the first digit can be neither 0 nor the last digit, so it has 4 choices, then 4 and 3 for the middle places: 4 x 4 x 3 = 48 each, 96 in all. The total is 60 + 96 = 156. The option \"180\" ignores the rule that a four-digit number cannot start with 0: 3 x 5 x 4 x 3. The option \"96\" forgets the numbers that end in 0. The option \"144\" applies the no-leading-zero rule even when 0 is already the last digit, giving 4 x 4 x 3 = 48 for each of the three endings. The option \"150\" takes half of all 300 four-digit numbers with distinct digits from this set, as if half were even.",
+  "solve": "let c=0;for(let n=1000;n<10000;n++){const t=String(n);if(!/^[0-5]+$/.test(t))continue;if(new Set(t).size!==4)continue;if(n%2===0)c++;}return c;",
+  "distractor_solve": {
+   "180": "return 3*5*4*3;",
+   "96": "return 2*4*4*3;",
+   "144": "return 3*(4*4*3);",
+   "150": "let c=0;for(let n=1000;n<10000;n++){const t=String(n);if(/^[0-5]+$/.test(t)&&new Set(t).size===4)c++;}return c/2;"
+  }
+ },
+ {
+  "id": "S14A-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a product of fractions that cancels after factoring each factor",
+  "difficulty": "hard",
+  "prompt": "What is the value of the product (1 - 1/4)(1 - 1/9)(1 - 1/16) ... (1 - 1/100), in which each factor has the form 1 - 1/(n^2) and n takes every whole-number value from 2 to 10?",
+  "choices": [
+   "1/10",
+   "11/20",
+   "101/200",
+   "5/9",
+   "1/2"
+  ],
+  "correct_answer": "11/20",
+  "explanation": "Each factor is 1 - 1/(n^2) = ((n - 1)/n) x ((n + 1)/n). The fractions (n - 1)/n for n = 2 to 10 multiply to 1/2 x 2/3 x ... x 9/10 = 1/10, and the fractions (n + 1)/n multiply to 3/2 x 4/3 x ... x 11/10 = 11/2. The product is (1/10) x (11/2) = 11/20. The option \"101/200\" reads the last factor's 100 as the last value of n and runs n up to 100. The option \"5/9\" stops one factor early, at n = 9. The option \"1/10\" multiplies only the (n - 1)/n fractions and drops the (n + 1)/n ones. The option \"1/2\" keeps the first fraction, 1/2, and assumes everything else cancels to 1.",
+  "solve": "let p=1;for(let n=2;n<=10;n++)p*=1-1/(n*n);return p;",
+  "distractor_solve": {
+   "101/200": "let p=1;for(let n=2;n<=100;n++)p*=1-1/(n*n);return p;",
+   "5/9": "let p=1;for(let n=2;n<=9;n++)p*=1-1/(n*n);return p;",
+   "1/10": "let p=1;for(let n=2;n<=10;n++)p*=(n-1)/n;return p;",
+   "1/2": "return (2-1)/2;"
+  }
+ },
+ {
+  "id": "S14A-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a cost from a rate chained through two unit conversions",
+  "difficulty": "hard",
+  "prompt": "A heater uses 1,500 watts of power. It runs for 40 minutes each day for 30 days. Electricity costs 12 cents per kilowatt-hour, where 1 kilowatt-hour is the energy used by 1,000 watts running for 1 hour. What is the total cost of running the heater for the 30 days, in dollars?",
+  "choices": [
+   "2.16",
+   "0.12",
+   "5.40",
+   "3.60",
+   "1.60"
+  ],
+  "correct_answer": "3.60",
+  "explanation": "1,500 watts is 1.5 kilowatts, and 40 minutes is 2/3 of an hour, so each day uses 1.5 x 2/3 = 1 kilowatt-hour. Over 30 days that is 30 kilowatt-hours, costing 30 x $0.12 = $3.60. The option \"2.16\" writes 40 minutes as 0.4 hour. The option \"5.40\" rounds 40 minutes up to a full hour. The option \"1.60\" converts the watts upside down, using 1,000/1,500 = 2/3 kilowatt instead of 1,500/1,000 = 1.5 kilowatts. The option \"0.12\" is the cost of a single day.",
+  "solve": "return 1500/1000*(40/60)*30*0.12;",
+  "distractor_solve": {
+   "2.16": "return 1500/1000*0.4*30*0.12;",
+   "5.40": "return 1500/1000*1*30*0.12;",
+   "0.12": "return 1500/1000*(40/60)*0.12;",
+   "1.60": "return (1000/1500)*(40/60)*30*0.12;"
+  }
+ },
+ {
+  "id": "S14A-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "how a mean responds when every value is scaled and then shifted",
+  "difficulty": "medium",
+  "prompt": "The mean of ten numbers is 13. Each of the ten numbers is increased by 20 percent, and then 4 is subtracted from each result. What is the mean of the ten new numbers?",
+  "choices": [
+   "15.2",
+   "9",
+   "11.6",
+   "15.6",
+   "10.8"
+  ],
+  "correct_answer": "11.6",
+  "explanation": "Increasing every number by 20% multiplies the mean by 1.2, and subtracting 4 from every number lowers the mean by 4: 13 x 1.2 - 4 = 15.6 - 4 = 11.6. The option \"15.6\" forgets to subtract the 4. The option \"9\" subtracts the 4 but forgets the 20% increase. The option \"10.8\" does the steps in the wrong order, (13 - 4) x 1.2. The option \"15.2\" subtracts 4 once from the new total of 156 instead of from each of the ten numbers.",
+  "solve": "return 13*1.2-4;",
+  "distractor_solve": {
+   "15.6": "return 13*1.2;",
+   "9": "return 13-4;",
+   "10.8": "return (13-4)*1.2;",
+   "15.2": "return (13*10*1.2-4)/10;"
+  }
+ },
+ {
+  "id": "S14A-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least number with a given product of digits",
+  "difficulty": "medium",
+  "prompt": "What is the least positive integer whose digits have a product of 120?",
+  "choices": [
+   "456",
+   "358",
+   "22235",
+   "345",
+   "385"
+  ],
+  "correct_answer": "358",
+  "explanation": "No digit can be 0, and 120 is too large to be the product of two digits (at most 9 x 9 = 81), so the number has at least three digits. A first digit of 1 or 2 would leave a product of 120 or 60 for two digits, which is impossible, so the smallest first digit is 3, leaving 40 = 5 x 8. Writing the digits in increasing order gives 358. The option \"456\" uses 4 x 5 x 6 = 120 but is larger. The option \"22235\" breaks 120 into its prime factors 2, 2, 2, 3 and 5 and uses each one as a digit, which makes a five-digit number. The option \"385\" finds 3, 8 and 5 but does not put the digits in increasing order. The option \"345\" starts from 120 = 2 x 3 x 4 x 5 and drops the 2, so its digits multiply to only 60.",
+  "solve": "for(let n=1;n<100000;n++){if(String(n).split('').reduce((a,d)=>a*+d,1)===120)return n;}",
+  "distractor_solve": {
+   "456": "for(let n=100;n<1000;n++){const d=String(n).split('').map(Number);if(d[1]===d[0]+1&&d[2]===d[1]+1&&d[0]*d[1]*d[2]===120)return n;}",
+   "385": "const d=[3,40/5,5];return Number(d.join(''));",
+   "345": "const f=[2,3,4,5];return Number(f.slice(1).join(''));",
+   "22235": "let n=120;const f=[];for(let p=2;n>1;)if(n%p===0){f.push(p);n/=p;}else p++;return Number(f.sort((a,b)=>a-b).join(''));"
+  }
+ },
+ {
+  "id": "S14A-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "undoing a repeated percent decrease",
+  "difficulty": "medium",
+  "prompt": "A machine loses 20 percent of its value each year, with each year's loss figured on its value at the start of that year. After 3 years the machine is worth $12,800. What was it worth when it was new, in dollars?",
+  "choices": [
+   "20480",
+   "32000",
+   "25000",
+   "22118.4",
+   "20000"
+  ],
+  "correct_answer": "25000",
+  "explanation": "Each year the value is multiplied by 0.8, so after 3 years it is 0.8^3 = 0.512 of the original. The original value is 12,800 / 0.512 = 25,000. Check: 25,000 to 20,000 to 16,000 to 12,800. The option \"20000\" undoes only two years, 12,800 / 0.8^2. The option \"32000\" treats the three losses as a single loss of 3 x 20% = 60% of the original value, 12,800 / 0.4, although each later loss is taken on a smaller value. The option \"22118.4\" increases 12,800 by 20% three times, although a 20% rise does not undo a 20% fall. The option \"20480\" adds 3 x 20% = 60% of 12,800.",
+  "solve": "return 12800/0.8**3;",
+  "distractor_solve": {
+   "20000": "return 12800/0.8**2;",
+   "22118.4": "return 12800*1.2**3;",
+   "20480": "return 12800*(1+3*0.2);",
+   "32000": "return 12800/(1-3*0.2);"
+  }
+ },
+ {
+  "id": "S14A-27",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "meetings of two runners moving in opposite directions around a loop",
+  "difficulty": "hard",
+  "prompt": "Two runners start at the same moment from the same point on a circular track 400 metres long and run in opposite directions, one at 5 metres per second and the other at 3 metres per second. How many times do they pass each other during the first 9 minutes, not counting the start?",
+  "choices": [
+   "6",
+   "1",
+   "10",
+   "5",
+   "2"
+  ],
+  "correct_answer": "10",
+  "explanation": "Running in opposite directions, together they cover 5 + 3 = 8 metres each second, so they meet each time their combined distance grows by 400 metres, every 400 / 8 = 50 seconds. In 9 minutes = 540 seconds that happens at 50, 100, ..., 500 seconds, 10 times (the next would be at 550 seconds). The option \"2\" uses the difference of the speeds, 540 x 2 / 400, as if they ran in the same direction. The option \"6\" counts the faster runner's complete laps, 540 x 5 / 400 = 6.75. The option \"5\" uses the average speed, 540 x 4 / 400 = 5.4. The option \"1\" counts only the times both runners are back at the starting point together, every 400 seconds.",
+  "solve": "return Math.floor(9*60*(5+3)/400);",
+  "distractor_solve": {
+   "2": "return Math.floor(9*60*(5-3)/400);",
+   "6": "return Math.floor(9*60*5/400);",
+   "5": "return Math.floor(9*60*((5+3)/2)/400);",
+   "1": "const lapA=400/5,lapB=400/3;let t=1;while(Math.abs(t/lapA-Math.round(t/lapA))>1e-9||Math.abs(t/lapB-Math.round(t/lapB))>1e-9)t++;return Math.floor(9*60/t);"
+  }
+ },
+ {
+  "id": "S14A-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of an exact number of successes in repeated fair trials",
+  "difficulty": "medium",
+  "prompt": "A fair coin is tossed 5 times. What is the probability of getting exactly 3 heads?",
+  "choices": [
+   "1/8",
+   "5/16",
+   "3/5",
+   "1/32",
+   "5/32"
+  ],
+  "correct_answer": "5/16",
+  "explanation": "There are 2^5 = 32 equally likely sequences. The number with exactly 3 heads is the number of ways to choose which 3 of the 5 tosses are heads, 5 x 4 x 3 / (3 x 2 x 1) = 10. The probability is 10/32 = 5/16. The option \"1/32\" counts only one sequence, such as HHHTT. The option \"5/32\" counts 5 sequences, as if choosing a single toss. The option \"1/8\" multiplies (1/2)^3 for the three heads and ignores the tails and the orders. The option \"3/5\" uses the fraction of tosses that are heads.",
+  "solve": "return (5*4*3/(3*2*1))/2**5;",
+  "distractor_solve": {
+   "1/32": "return 1/2**5;",
+   "5/32": "return 5/2**5;",
+   "1/8": "return (1/2)**3;",
+   "3/5": "return 3/5;"
+  }
+ },
+ {
+  "id": "S14B-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "evaluating a defined operation at a negative argument",
+  "difficulty": "easy",
+  "prompt": "For all numbers a and b, the operation ◇ is defined by a ◇ b = 3a - b^2. What is the value of 4 ◇ (-5)?",
+  "choices": [
+   "37",
+   "-13",
+   "22",
+   "-31",
+   "17"
+  ],
+  "correct_answer": "-13",
+  "explanation": "Substitute a = 4 and b = -5: 3(4) - (-5)^2 = 12 - 25 = -13. \"37\" comes from treating -b^2 as +25, i.e. squaring the negative and then flipping the sign of the whole term, 12 + 25. \"-31\" comes from swapping the roles of the two numbers, 3(-5) - 4^2 = -15 - 16. \"22\" comes from reading b^2 as 2b, so 12 - (-10). \"17\" comes from forgetting to square b at all, 12 - (-5).",
+  "solve": "const a=4,b=-5; return 3*a-b**2;",
+  "distractor_solve": {
+   "17": "const a=4,b=-5; return 3*a-b;",
+   "22": "const a=4,b=-5; return 3*a-2*b;",
+   "37": "const a=4,b=-5; return 3*a+b**2;",
+   "-31": "const a=-5,b=4; return 3*a-b**2;"
+  }
+ },
+ {
+  "id": "S14B-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving for an unknown inside a nested defined operation",
+  "difficulty": "hard",
+  "prompt": "For all numbers a and b, the operation ⊕ is defined by a ⊕ b = ab + a + b. If (2 ⊕ x) ⊕ 1 = 29, what is the value of x?",
+  "choices": [
+   "9",
+   "6",
+   "4",
+   "14.5",
+   "26/3"
+  ],
+  "correct_answer": "4",
+  "explanation": "First 2 ⊕ x = 2x + 2 + x = 3x + 2. Then (3x + 2) ⊕ 1 = (3x + 2)(1) + (3x + 2) + 1 = 6x + 5. Setting 6x + 5 = 29 gives x = 4. \"9\" comes from stopping after the inner operation and solving 3x + 2 = 29. \"6\" comes from dropping the \"+ b\" term in the inner step, so 2 ⊕ x = 2x + 2 and then 2(2x + 2) + 1 = 4x + 5 = 29. \"26/3\" comes from dropping the \"+ a\" term in the outer step, so (3x + 2) ⊕ 1 = (3x + 2) + 1 = 29. \"14.5\" comes from treating ⊕ as ordinary multiplication, 2x · 1 = 29.",
+  "solve": "for(let x=-50;x<=50;x+=0.5){const op=(a,b)=>a*b+a+b; if(op(op(2,x),1)===29) return x;} return null;",
+  "distractor_solve": {
+   "6": "return (29-5)/4;",
+   "9": "return (29-2)/3;",
+   "26/3": "return (29-3)/3;",
+   "14.5": "return 29/2;"
+  }
+ },
+ {
+  "id": "S14B-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding a coefficient from one function value, then evaluating elsewhere",
+  "difficulty": "medium",
+  "prompt": "The function g is defined by g(x) = x^2 + kx, where k is a constant. If g(3) = 6, what is the value of g(-4)?",
+  "choices": [
+   "-8",
+   "12",
+   "20",
+   "-1",
+   "-4"
+  ],
+  "correct_answer": "20",
+  "explanation": "From g(3) = 9 + 3k = 6, k = -1. Then g(-4) = (-4)^2 + (-1)(-4) = 16 + 4 = 20. \"12\" comes from losing the sign of k (k = 1), so 16 - 4. \"-8\" comes from assuming g is proportional to x, scaling 6 by -4/3. \"-4\" comes from moving the 9 to the wrong side, 3k = 6 + 9, so k = 5 and 16 - 20. \"-1\" is the value of k, reported instead of g(-4).",
+  "solve": "const k=(6-9)/3; const g=x=>x*x+k*x; return g(-4);",
+  "distractor_solve": {
+   "12": "const k=1; return 16+k*(-4);",
+   "-8": "return 6*(-4)/3;",
+   "-4": "const k=(6+9)/3; return 16+k*(-4);",
+   "-1": "return (6-9)/3;"
+  }
+ },
+ {
+  "id": "S14B-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rewriting a power of 8 through a given power of 2",
+  "difficulty": "medium",
+  "prompt": "If 2^a = 3, what is the value of 8^a?",
+  "choices": [
+   "24",
+   "512",
+   "9",
+   "27",
+   "11"
+  ],
+  "correct_answer": "27",
+  "explanation": "Since 8 = 2^3, 8^a = (2^a)^3 = 3^3 = 27. \"24\" comes from multiplying 8 by 3 instead of raising. \"11\" comes from adding 8 and 3. \"9\" comes from squaring 2^a instead of cubing it. \"512\" comes from reading 2^a = 3 as a = 3 and computing 8^3.",
+  "solve": "const t=3; return t**3;",
+  "distractor_solve": {
+   "9": "return 3**2;",
+   "11": "return 8+3;",
+   "24": "return 8*3;",
+   "512": "return 8**3;"
+  }
+ },
+ {
+  "id": "S14B-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a line through a given point that halves the area of a rectangle",
+  "difficulty": "hard",
+  "prompt": "A rectangle in the coordinate plane has vertices (-1, -2), (7, -2), (7, 4) and (-1, 4). A line through the origin divides the rectangle into two regions of equal area. What is the slope of the line?",
+  "choices": [
+   "3/4",
+   "1/3",
+   "3",
+   "4/7",
+   "1/4"
+  ],
+  "correct_answer": "1/3",
+  "explanation": "A rectangle is symmetric about its centre, so a line halves its area only if it passes through the centre, here ((-1 + 7)/2, (-2 + 4)/2) = (3, 1). The line through (0, 0) and (3, 1) has slope 1/3. \"3\" inverts the slope, run over rise. \"3/4\" is the slope of the rectangle's diagonal from (-1, -2) to (7, 4), 6/8, taken as the halving line. \"1/4\" comes from averaging 7 and 1 instead of 7 and -1 for the x-coordinate of the centre, giving (4, 1). \"4/7\" draws the line from the origin to the far corner (7, 4), as though a line through a corner always halved the rectangle.",
+  "solve": "const cx=(-1+7)/2, cy=(-2+4)/2; return cy/cx;",
+  "distractor_solve": {
+   "3": "const cx=(-1+7)/2, cy=(-2+4)/2; return cx/cy;",
+   "3/4": "return (4-(-2))/(7-(-1));",
+   "1/4": "const cx=(7+1)/2, cy=(-2+4)/2; return cy/cx;",
+   "4/7": "return 4/7;"
+  }
+ },
+ {
+  "id": "S14B-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "simplifying a quotient of powers with negative exponents",
+  "difficulty": "medium",
+  "prompt": "For nonzero x and y, which of the following is equivalent to (x^3 y^(-2))^2 / (x^(-1) y)?",
+  "choices": [
+   "x^5/y^3",
+   "x^7/y^5",
+   "x^6/y",
+   "x^7/y^3",
+   "x^5/y^5"
+  ],
+  "correct_answer": "x^7/y^5",
+  "explanation": "Squaring gives x^6 y^(-4). Dividing by x^(-1) y subtracts exponents: x^(6 - (-1)) y^(-4 - 1) = x^7 y^(-5) = x^7/y^5. \"x^7/y^3\" comes from applying the square to x^3 only and leaving y^(-2), then dividing. \"x^5/y^5\" comes from subtracting -1 as if it were +1 in the x-exponent, 6 - 1. \"x^5/y^3\" comes from multiplying by x^(-1) y instead of dividing. \"x^6/y\" comes from adding exponents when raising to a power, (x^3)^2 = x^5 and (y^(-2))^2 = y^0, and then dividing.",
+  "solve": "const xe=3*2-(-1), ye=-2*2-1; return `x^${xe}/y^${-ye}`;",
+  "distractor_solve": {
+   "x^7/y^3": "const xe=3*2-(-1), ye=-2-1; return `x^${xe}/y^${-ye}`;",
+   "x^5/y^5": "const xe=3*2-1, ye=-2*2-1; return `x^${xe}/y^${-ye}`;",
+   "x^5/y^3": "const xe=3*2+(-1), ye=-2*2+1; return `x^${xe}/y^${-ye}`;",
+   "x^6/y": "const xe=(3+2)-(-1), ye=(-2+2)-1; return `x^${xe}/y`;"
+  }
+ },
+ {
+  "id": "S14B-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving an equation that relates a function at a shifted input to a multiple of the function",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = 2x - 3. For what value of a is f(a + 2) equal to 3 times f(a)?",
+  "choices": [
+   "2",
+   "-2",
+   "2.5",
+   "0.5",
+   "1"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "f(a + 2) = 2(a + 2) - 3 = 2a + 1 and 3f(a) = 6a - 9. Setting 2a + 1 = 6a - 9 gives 4a = 10, so a = 2.5. \"2\" comes from taking f(a + 2) to be f(a) + 2 = 2a - 1, so 2a - 1 = 6a - 9. \"1\" comes from reading 3 times f(a) as f(3a) = 6a - 3. \"0.5\" comes from both shortcuts at once, 2a - 1 = 6a - 3. \"-2\" comes from a sign slip when collecting terms, 2a + 1 = 6a - 9 rewritten as 4a = -8.",
+  "solve": "const f=x=>2*x-3; for(let a=-20;a<=20;a+=0.5){ if(f(a+2)===3*f(a)) return a;} return null;",
+  "distractor_solve": {
+   "1": "return (3+1)/(6-2);",
+   "2": "return (9-1)/(6-2);",
+   "0.5": "return (3-1)/(6-2);",
+   "-2": "return -8/4;"
+  }
+ },
+ {
+  "id": "S14B-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "working backward through a function applied twice",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (x + 5)/3. If f(f(k)) = 3, what is the value of k?",
+  "choices": [
+   "17",
+   "12",
+   "47",
+   "7",
+   "22"
+  ],
+  "correct_answer": "7",
+  "explanation": "f(f(k)) = 3 means f(k) is the input that f sends to 3: (f(k) + 5)/3 = 3, so f(k) = 4. Then (k + 5)/3 = 4 gives k = 7. \"12\" comes from forgetting to subtract 5 at the second step, k = 3 × 4. \"22\" comes from treating f(f(x)) as (x + 5)/9, so k = 27 - 5. \"17\" comes from treating f(f(x)) as (x + 10)/9, adding 5 twice before dividing by 9, so k = 27 - 10. \"47\" comes from undoing with +5 instead of -5 at both steps: 3 × 3 + 5 = 14, then 3 × 14 + 5.",
+  "solve": "const inv=y=>3*y-5; return inv(inv(3));",
+  "distractor_solve": {
+   "12": "const fk=3*3-5; return 3*fk;",
+   "17": "return 9*3-10;",
+   "22": "return 9*3-5;",
+   "47": "const fk=3*3+5; return 3*fk+5;"
+  }
+ },
+ {
+  "id": "S14B-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "radii of concentric circles from the ring area and the difference of radii",
+  "difficulty": "hard",
+  "prompt": "Two circles have the same center. The region inside the larger circle and outside the smaller circle has an area of 24π, and the radius of the larger circle is 2 more than the radius of the smaller circle. What is the circumference of the larger circle?",
+  "choices": [
+   "26π",
+   "14π",
+   "49π",
+   "20π",
+   "28π"
+  ],
+  "correct_answer": "14π",
+  "explanation": "With radii R and r, πR^2 - πr^2 = 24π, so (R - r)(R + r) = 24. Since R - r = 2, R + r = 12, so R = 7 and r = 5. The circumference is 2π(7) = 14π. \"20π\" comes from taking R = (R + r) - (R - r) = 10 instead of averaging. \"26π\" comes from skipping the factor R - r, setting R + r = 24 and R - r = 2, so R = 13. \"28π\" comes from putting the diameter 14 into 2πr. \"49π\" is the area of the larger circle, not its circumference.",
+  "solve": "const s=24/2, R=(s+2)/2; return `${2*R}π`;",
+  "distractor_solve": {
+   "20π": "const R=24/2-2; return `${2*R}π`;",
+   "26π": "const R=(24+2)/2; return `${2*R}π`;",
+   "28π": "const R=(24/2+2)/2; return `${2*(2*R)}π`;",
+   "49π": "const R=(24/2+2)/2; return `${R*R}π`;"
+  }
+ },
+ {
+  "id": "S14B-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a 30-60-90 triangle from its longer leg",
+  "difficulty": "medium",
+  "prompt": "In a right triangle, one of the acute angles measures 30 degrees and the longer leg is 6 cm long. What is the area of the triangle, in square centimetres?",
+  "choices": [
+   "9",
+   "2√3",
+   "6√3",
+   "6",
+   "9√3/2"
+  ],
+  "correct_answer": "6√3",
+  "explanation": "In a 30-60-90 triangle the legs are in the ratio 1 : √3, so the shorter leg is 6/√3 = 2√3, and the area is (1/2)(6)(2√3) = 6√3. \"9\" comes from taking the shorter leg to be half the longer leg, 3, so (1/2)(6)(3). \"6\" comes from dividing 6 by 3 instead of by √3, a shorter leg of 2. \"9√3/2\" comes from treating 6 as the hypotenuse, so the legs are 3 and 3√3. \"2√3\" is the shorter leg, reported instead of the area.",
+  "solve": "const shortCoef=6/3; /* 6/sqrt3 = 2sqrt3 */ const areaCoef=0.5*6*shortCoef; return `${areaCoef}√3`;",
+  "distractor_solve": {
+   "6": "return 0.5*6*(6/3);",
+   "9": "return 0.5*6*(6/2);",
+   "9√3/2": "const s=6/2; const coef=s*s; return `${coef}√3/2`;",
+   "2√3": "return `${6/3}√3`;"
+  }
+ },
+ {
+  "id": "S14B-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an unknown coordinate that keeps three points on one line",
+  "difficulty": "medium",
+  "prompt": "The points (1, 3), (4, 9) and (k, 17) lie on the same line. What is the value of k?",
+  "choices": [
+   "12",
+   "8.5",
+   "29",
+   "11",
+   "8"
+  ],
+  "correct_answer": "8",
+  "explanation": "The slope through the first two points is (9 - 3)/(4 - 1) = 2. From (1, 3) to (k, 17) the rise is 14, so the run is 7 and k = 1 + 7 = 8. \"8.5\" comes from writing the line as y = 2x, through the origin, so 2k = 17. \"12\" comes from using a slope of 1 from (4, 9), adding the rise 8 to the x-coordinate 4. \"29\" inverts the slope to 1/2, so the run is 14 × 2 = 28 and k = 1 + 28. \"11\" mixes the two given points, taking the rise 14 from (1, 3) but starting the run at x = 4: 4 + 14/2.",
+  "solve": "const m=(9-3)/(4-1); return 1+(17-3)/m;",
+  "distractor_solve": {
+   "11": "const m=(9-3)/(4-1); return 4+(17-3)/m;",
+   "12": "return 4+(17-9)/1;",
+   "29": "const m=(4-1)/(9-3); return 1+(17-3)/m;",
+   "8.5": "return 17/2;"
+  }
+ },
+ {
+  "id": "S14B-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a far term of a pattern whose differences grow steadily",
+  "difficulty": "hard",
+  "prompt": "The first four terms of a sequence are 2, 6, 12 and 20. The differences between consecutive terms are 4, 6 and 8, and each later difference is 2 more than the one before it. What is the 10th term of the sequence?",
+  "choices": [
+   "100",
+   "120",
+   "90",
+   "110",
+   "108"
+  ],
+  "correct_answer": "110",
+  "explanation": "The 10th term is the first term plus the nine differences 4, 6, 8, ..., 20, which add to 108, so it is 2 + 108 = 110 (each term is n(n + 1)). \"90\" stops one difference early, at 18, which gives the 9th term. \"108\" adds the nine differences correctly but leaves out the first term 2. \"100\" guesses the rule n^2 from the shape of the growth. \"120\" assumes that doubling the position quadruples the term, so the 10th term is 4 times the 5th term, 4 × 30.",
+  "solve": "let t=2,d=4; for(let n=2;n<=10;n++){t+=d; d+=2;} return t;",
+  "distractor_solve": {
+   "90": "let t=2,d=4; for(let n=2;n<=9;n++){t+=d; d+=2;} return t;",
+   "100": "return 10*10;",
+   "108": "let s=0,d=4; for(let n=2;n<=10;n++){s+=d; d+=2;} return s;",
+   "120": "let t=2,d=4; for(let n=2;n<=5;n++){t+=d; d+=2;} return 4*t;"
+  }
+ },
+ {
+  "id": "S14B-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of many terms of a recursive sequence that repeats",
+  "difficulty": "hard",
+  "prompt": "A sequence begins with a1 = 4 and a2 = 7. Each term after the second is found by subtracting the term two places before it from the term just before it, so a3 = a2 - a1. What is the sum of the first 100 terms of the sequence?",
+  "choices": [
+   "0",
+   "-11",
+   "-4",
+   "10",
+   "3"
+  ],
+  "correct_answer": "10",
+  "explanation": "The terms run 4, 7, 3, -4, -7, -3, 4, 7, ... and repeat every 6 terms, and each block of 6 sums to 0. Since 100 = 6 × 16 + 4, the sum is the sum of the first 4 terms: 4 + 7 + 3 - 4 = 10. \"0\" assumes 100 is a whole number of blocks. \"-11\" takes the 4 leftover terms from the end of a block instead of the start, 3 - 4 - 7 - 3. \"3\" uses a leftover of 5 terms, 4 + 7 + 3 - 4 - 7. \"-4\" is the 100th term itself (a100 = a4), not the sum.",
+  "solve": "const a=[4,7]; while(a.length<100) a.push(a[a.length-1]-a[a.length-2]); return a.reduce((s,v)=>s+v,0);",
+  "distractor_solve": {
+   "0": "const a=[4,7]; while(a.length<6) a.push(a[a.length-1]-a[a.length-2]); return 16*a.reduce((s,v)=>s+v,0)+0;",
+   "3": "const a=[4,7]; while(a.length<5) a.push(a[a.length-1]-a[a.length-2]); return a.reduce((s,v)=>s+v,0);",
+   "-11": "const a=[4,7]; while(a.length<6) a.push(a[a.length-1]-a[a.length-2]); return a.slice(2).reduce((s,v)=>s+v,0);",
+   "-4": "const a=[4,7]; while(a.length<100) a.push(a[a.length-1]-a[a.length-2]); return a[99];"
+  }
+ },
+ {
+  "id": "S14B-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a triangle from two sides and a 30-degree angle between them",
+  "difficulty": "hard",
+  "prompt": "Two sides of a triangle measure 10 cm and 12 cm, and the angle between these two sides measures 30 degrees. What is the area of the triangle, in square centimetres?",
+  "choices": [
+   "36",
+   "50",
+   "20",
+   "30",
+   "25"
+  ],
+  "correct_answer": "30",
+  "explanation": "Take the 12 cm side as the base. The 10 cm side makes a 30-degree angle with it, so the height from its far end is the side opposite 30 degrees in a 30-60-90 triangle with hypotenuse 10, which is 5. The area is (1/2)(12)(5) = 30. \"25\" finds the height 5 from the 10 cm side but then uses that same 10 cm side as the base, (1/2)(10)(5). \"36\" makes the matching mistake from the other side, taking the height as half of 12 and the base as 12, (1/2)(12)(6). \"20\" treats 30 degrees as one third of a right angle and takes the height as one third of 12, (1/2)(10)(4). \"50\" uses the base 10 and height 5 and forgets the 1/2.",
+  "solve": "const h=10/2; return 0.5*12*h;",
+  "distractor_solve": {
+   "20": "const h=12/3; return 0.5*10*h;",
+   "25": "const h=10/2; return 0.5*10*h;",
+   "36": "const h=12/2; return 0.5*12*h;",
+   "50": "const h=10/2; return 10*h;"
+  }
+ },
+ {
+  "id": "S14B-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an original dimension recovered from the area gained when both sides are lengthened",
+  "difficulty": "hard",
+  "prompt": "A rectangle is 4 cm longer than it is wide. When its length and its width are each increased by 3 cm, its area increases by 57 square centimetres. What was the original width of the rectangle, in centimetres?",
+  "choices": [
+   "19",
+   "7.5",
+   "6",
+   "10",
+   "9.5"
+  ],
+  "correct_answer": "6",
+  "explanation": "With width w, the new area minus the old is (w + 3)(w + 7) - w(w + 4) = 6w + 21. Setting 6w + 21 = 57 gives w = 6. \"7.5\" adds only the two side strips, 3w + 3(w + 4) = 57, and leaves out the 3-by-3 corner. \"9.5\" drops the constant 21 and solves 6w = 57. \"19\" lengthens only the length, w(w + 7) - w(w + 4) = 3w = 57. \"10\" is the original length, w + 4, reported instead of the width.",
+  "solve": "for(let w=0.5;w<100;w+=0.5){ if((w+3)*(w+7)-w*(w+4)===57) return w;} return null;",
+  "distractor_solve": {
+   "10": "return (57-21)/6+4;",
+   "19": "return 57/3;",
+   "7.5": "return (57-12)/6;",
+   "9.5": "return 57/6;"
+  }
+ },
+ {
+  "id": "S14B-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest solution of an equation with two absolute values",
+  "difficulty": "hard",
+  "prompt": "What is the greatest value of x for which |x - 3| + |x + 5| = 12?",
+  "choices": [
+   "2",
+   "-7",
+   "7",
+   "5",
+   "-1"
+  ],
+  "correct_answer": "5",
+  "explanation": "For x at least 3, both expressions inside the bars are nonnegative, so (x - 3) + (x + 5) = 2x + 2 = 12 and x = 5. For x at most -5 the equation becomes -2x - 2 = 12, giving x = -7, and between -5 and 3 the sum is always 8. So the greatest solution is 5. \"-7\" is the other solution, the least one. \"7\" comes from a sign slip moving the constant, 2x + 2 = 12 rewritten as 2x = 14. \"2\" combines -3 and +5 as +8, so 2x + 8 = 12. \"-1\" is the midpoint of 3 and -5, where the sum is smallest, not a solution.",
+  "solve": "let best=null; for(let x=-50;x<=50;x+=0.5){ if(Math.abs(x-3)+Math.abs(x+5)===12) best=x;} return best;",
+  "distractor_solve": {
+   "2": "return (12-8)/2;",
+   "7": "return (12+2)/2;",
+   "-7": "for(let x=-50;x<=50;x+=0.5){ if(Math.abs(x-3)+Math.abs(x+5)===12) return x;} return null;",
+   "-1": "return (3+(-5))/2;"
+  }
+ },
+ {
+  "id": "S14B-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an x-intercept after fixing a slope from a known intersection",
+  "difficulty": "medium",
+  "prompt": "The lines y = 2x + 1 and y = kx - 5, where k is a constant, intersect at the point whose x-coordinate is 3. At what x-coordinate does the line y = kx - 5 cross the x-axis?",
+  "choices": [
+   "7",
+   "4",
+   "15/2",
+   "5/4",
+   "7/4"
+  ],
+  "correct_answer": "5/4",
+  "explanation": "At x = 3 the first line gives y = 7, so 7 = 3k - 5 and k = 4. The second line is y = 4x - 5, which crosses the x-axis where 4x - 5 = 0, at x = 5/4. \"7/4\" solves 4x = 7, using the intersection height 7 in place of the 5. \"15/2\" comes from subtracting instead of adding when solving for k, k = (7 - 5)/3 = 2/3, so x = 5 ÷ (2/3). \"4\" is the slope k, reported instead of the intercept. \"7\" is the y-coordinate of the intersection point.",
+  "solve": "const y=2*3+1; const k=(y+5)/3; return 5/k;",
+  "distractor_solve": {
+   "4": "const y=2*3+1; return (y+5)/3;",
+   "7": "return 2*3+1;",
+   "7/4": "const y=2*3+1; const k=(y+5)/3; return y/k;",
+   "15/2": "const y=2*3+1; const k=(y-5)/3; return 5/k;"
+  }
+ },
+ {
+  "id": "S14B-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an unknown coordinate on a line parallel to a line in standard form",
+  "difficulty": "medium",
+  "prompt": "The line through the points (1, k) and (4, 7) is parallel to the line 2x - 3y = 6. What is the value of k?",
+  "choices": [
+   "13",
+   "11/3",
+   "9",
+   "5",
+   "2.5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Rewriting 2x - 3y = 6 as y = (2/3)x - 2 shows a slope of 2/3. Over a run of 4 - 1 = 3 the rise must be 2, so 7 - k = 2 and k = 5. \"9\" uses a slope of -2/3, a sign slip when rearranging, so 7 - k = -2. \"2.5\" inverts the slope to 3/2, so 7 - k = 4.5. \"13\" takes the slope as 6 ÷ (-3) = -2, dividing the constant term instead of the x-coefficient by the y-coefficient, so 7 - k = -6. \"11/3\" uses the right slope but takes the run as 4 + 1 = 5, so 7 - k = 10/3.",
+  "solve": "const m=2/3; return 7-m*(4-1);",
+  "distractor_solve": {
+   "9": "const m=-2/3; return 7-m*(4-1);",
+   "13": "const m=6/(-3); return 7-m*(4-1);",
+   "2.5": "const m=3/2; return 7-m*(4-1);",
+   "11/3": "const m=2/3; return 7-m*(4+1);"
+  }
+ },
+ {
+  "id": "S14B-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "writing an expression for a fixed fee plus an hourly charge",
+  "difficulty": "easy",
+  "prompt": "Renting a bicycle costs $8 plus $3 for each hour of use. Which expression gives the cost, in dollars, of renting a bicycle for h hours and 30 minutes?",
+  "choices": [
+   "3h + 8.5",
+   "3.5h + 8",
+   "3h + 9.5",
+   "8h + 3.5",
+   "3h + 11"
+  ],
+  "correct_answer": "3h + 9.5",
+  "explanation": "The time is h + 0.5 hours, so the cost is 8 + 3(h + 0.5) = 3h + 1.5 + 8 = 3h + 9.5. \"3h + 8.5\" adds the half hour itself, 0.5, instead of its cost 3 × 0.5. \"3h + 11\" charges a full extra hour, 8 + 3. \"3.5h + 8\" adds the half hour to the hourly rate. \"8h + 3.5\" swaps the fixed fee and the hourly rate.",
+  "solve": "const c=8+3*0.5; return `3h + ${c}`;",
+  "distractor_solve": {
+   "3h + 8.5": "return `3h + ${8+0.5}`;",
+   "3h + 11": "return `3h + ${8+3}`;",
+   "3.5h + 8": "return `${3+0.5}h + 8`;",
+   "8h + 3.5": "return `8h + ${3+0.5}`;"
+  }
+ },
+ {
+  "id": "S14B-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "the change in y between two points on a line from the change in x",
+  "difficulty": "medium",
+  "prompt": "The points (a, b) and (a + 2, b + k) both lie on the line y = 3x - 7. What is the value of k?",
+  "choices": [
+   "-8",
+   "2/3",
+   "-1",
+   "6",
+   "3"
+  ],
+  "correct_answer": "6",
+  "explanation": "Subtracting b = 3a - 7 from b + k = 3(a + 2) - 7 gives k = 6: along a line of slope 3, a run of 2 gives a rise of 3 × 2. \"3\" is the slope, reported as though the run were 1. \"2/3\" divides the run by the slope instead of multiplying. \"-8\" mishandles the constants in the subtraction, taking -7 - (-7) as -14, so 6 - 14. \"-1\" substitutes the run 2 into the line, 3(2) - 7.",
+  "solve": "const y=x=>3*x-7; const a=11; return y(a+2)-y(a);",
+  "distractor_solve": {
+   "3": "return 3;",
+   "2/3": "return 2/3;",
+   "-8": "return 3*2+(-7-7);",
+   "-1": "return 3*2-7;"
+  }
+ },
+ {
+  "id": "S14B-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "expanding and subtracting two squared binomials",
+  "difficulty": "medium",
+  "prompt": "Which of the following is equivalent to (2x - 3)^2 - (2x + 3)^2 ?",
+  "choices": [
+   "0",
+   "-12x",
+   "-18x",
+   "-24x",
+   "-18"
+  ],
+  "correct_answer": "-24x",
+  "explanation": "Expanding, (4x^2 - 12x + 9) - (4x^2 + 12x + 9) = -24x. \"-12x\" forgets to double the middle term, writing (2x - 3)^2 as 4x^2 - 6x + 9. \"-18\" squares each binomial as though (a - b)^2 = a^2 - b^2, so (4x^2 - 9) - (4x^2 + 9). \"0\" squares term by term as though (a ± b)^2 = a^2 + b^2, so both brackets become 4x^2 + 9. \"-18x\" doubles the middle term in one bracket but not the other, (4x^2 - 12x + 9) - (4x^2 + 6x + 9).",
+  "solve": "const mid=-2*2*3-(2*2*3); const c=9-9; return c===0?`${mid}x`:null;",
+  "distractor_solve": {
+   "0": "return (4+9)-(4+9);",
+   "-12x": "const mid=-2*3-(2*3); return `${mid}x`;",
+   "-18": "return (-9)-(9);",
+   "-18x": "const mid=-2*2*3-(2*3); return `${mid}x`;"
+  }
+ },
+ {
+  "id": "S14B-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a square from the coordinates of two opposite vertices",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, A(1, 2) and C(7, 6) are opposite vertices of square ABCD. What is the area of the square?",
+  "choices": [
+   "52",
+   "24",
+   "36",
+   "26",
+   "20"
+  ],
+  "correct_answer": "26",
+  "explanation": "AC is a diagonal, and AC^2 = (7 - 1)^2 + (6 - 2)^2 = 36 + 16 = 52. A square's area is half the square of its diagonal, so the area is 52/2 = 26. \"52\" takes the squared diagonal as the area. \"24\" uses the 6-by-4 rectangle that has AC as its diagonal. \"20\" is the perimeter of that 6-by-4 rectangle. \"36\" takes the horizontal distance 6 as the side of the square.",
+  "solve": "const d2=(7-1)**2+(6-2)**2; return d2/2;",
+  "distractor_solve": {
+   "20": "return 2*((7-1)+(6-2));",
+   "24": "return (7-1)*(6-2);",
+   "36": "return (7-1)**2;",
+   "52": "return (7-1)**2+(6-2)**2;"
+  }
+ },
+ {
+  "id": "S14B-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an angle from a relation between its supplement and its complement",
+  "difficulty": "medium",
+  "prompt": "The supplement of an angle is 40 degrees more than 3 times the complement of the angle. What is the measure of the angle, in degrees?",
+  "choices": [
+   "45",
+   "32.5",
+   "77.5",
+   "65",
+   "50"
+  ],
+  "correct_answer": "65",
+  "explanation": "With the angle x, 180 - x = 3(90 - x) + 40 = 310 - 3x, so 2x = 130 and x = 65. \"45\" leaves out the 40, solving 180 - x = 3(90 - x). \"77.5\" sets the angle itself, rather than its supplement, equal to 3(90 - x) + 40, so 4x = 310. \"32.5\" makes a sign slip collecting the x-terms, writing 4x = 130. \"50\" adds 40 to 3 × 90 as 280, so 180 - x = 280 - 3x and 2x = 100.",
+  "solve": "for(let x=0.5;x<90;x+=0.5){ if(180-x===3*(90-x)+40) return x;} return null;",
+  "distractor_solve": {
+   "45": "return (270-180)/2;",
+   "50": "return (280-180)/2;",
+   "77.5": "return 310/4;",
+   "32.5": "return 130/4;"
+  }
+ },
+ {
+  "id": "S14B-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "first term of an arithmetic sequence from a ratio of two terms and a later term",
+  "difficulty": "hard",
+  "prompt": "In an arithmetic sequence, the 5th term is 3 times the 2nd term, and the 9th term is 34. What is the first term of the sequence?",
+  "choices": [
+   "6",
+   "34/19",
+   "4",
+   "2",
+   "6.8"
+  ],
+  "correct_answer": "2",
+  "explanation": "With first term a and common difference d, a + 4d = 3(a + d) gives d = 2a. Then the 9th term is a + 8d = 17a = 34, so a = 2. \"34/19\" writes the 9th term as a + 9d, so 19a = 34. \"6.8\" inverts the relation to a = 2d, so 10d = 34, d = 3.4 and a = 6.8. \"4\" is the common difference d, not the first term. \"6\" is the 2nd term, a + d.",
+  "solve": "for(let a=-20;a<=20;a+=0.25){ const d=2*a; if(a+8*d===34 && a+4*d===3*(a+d)) return a;} return null;",
+  "distractor_solve": {
+   "4": "const a=34/17; return 2*a;",
+   "6": "const a=34/17; return a+2*a;",
+   "34/19": "return 34/19;",
+   "6.8": "const d=34/10; return 2*d;"
+  }
+ },
+ {
+  "id": "S14B-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of an axis-parallel rectangle from two opposite corners",
+  "difficulty": "easy",
+  "prompt": "A rectangle has its sides parallel to the axes, and two of its opposite vertices are (-2, 1) and (4, 5). What is the area of the rectangle?",
+  "choices": [
+   "12",
+   "24",
+   "8",
+   "20",
+   "10"
+  ],
+  "correct_answer": "24",
+  "explanation": "The width is 4 - (-2) = 6 and the height is 5 - 1 = 4, so the area is 6 × 4 = 24. \"8\" takes the width as 4 - 2 = 2 by ignoring the negative sign. \"20\" is the perimeter, 2(6 + 4). \"10\" adds the width and the height. \"12\" is the area of the triangle cut off by the diagonal, half the rectangle.",
+  "solve": "return (4-(-2))*(5-1);",
+  "distractor_solve": {
+   "8": "return (4-2)*(5-1);",
+   "10": "return (4+2)+(5-1);",
+   "12": "return (4+2)*(5-1)/2;",
+   "20": "return 2*((4+2)+(5-1));"
+  }
+ },
+ {
+  "id": "S14B-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "difference of a linear function at opposite inputs",
+  "difficulty": "easy",
+  "prompt": "The function f is defined by f(x) = 5 - 2x. What is the value of f(-3) - f(3)?",
+  "choices": [
+   "22",
+   "0",
+   "12",
+   "10",
+   "17"
+  ],
+  "correct_answer": "12",
+  "explanation": "f(-3) = 5 + 6 = 11 and f(3) = 5 - 6 = -1, so f(-3) - f(3) = 11 - (-1) = 12. \"10\" subtracts -1 as though it were +1, 11 - 1. \"0\" evaluates f(-3) as 5 - 6 = -1, missing that -2 times -3 is positive. \"17\" computes f(-3 - 3) = f(-6) instead of a difference of two values. \"22\" assumes f(3) is the negative of f(-3), so 11 + 11.",
+  "solve": "const f=x=>5-2*x; return f(-3)-f(3);",
+  "distractor_solve": {
+   "0": "return (5-6)-(5-6);",
+   "10": "const f=x=>5-2*x; return f(-3)+f(3);",
+   "17": "const f=x=>5-2*x; return f(-6);",
+   "22": "const f=x=>5-2*x; return 2*f(-3);"
+  }
+ },
+ {
+  "id": "S14B-27",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "common difference of an arithmetic sequence from one term and the sum of the first ten",
+  "difficulty": "hard",
+  "prompt": "In an arithmetic sequence, the 3rd term is 11 and the sum of the first 10 terms is 185. What is the common difference of the sequence?",
+  "choices": [
+   "15/7",
+   "3.75",
+   "3",
+   "15/14",
+   "5"
+  ],
+  "correct_answer": "3",
+  "explanation": "With first term a and difference d, a = 11 - 2d and the sum of the first 10 terms is 10a + 45d = 110 - 20d + 45d = 110 + 25d = 185, so d = 3. \"3.75\" treats the average term 18.5 as the 5th term, 11 + 2d = 18.5, though the average of the first ten terms sits halfway between the 5th and 6th. \"5\" writes the first term as 11 - 3d, an index slip, so 110 + 15d = 185. \"15/7\" uses 55d instead of 45d for the sum of the steps, 110 + 35d = 185. \"15/14\" takes the sum to be 10 copies of the 10th term, so the 10th term is 18.5 and 11 + 7d = 18.5.",
+  "solve": "for(let d=-20;d<=20;d+=0.25){ const a=11-2*d; let s=0; for(let n=0;n<10;n++) s+=a+n*d; if(s===185) return d;} return null;",
+  "distractor_solve": {
+   "5": "return (185-110)/15;",
+   "3.75": "return (185/10-11)/2;",
+   "15/7": "return (185-110)/35;",
+   "15/14": "return (185/10-11)/7;"
+  }
+ },
+ {
+  "id": "S14B-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an inner segment from two overlapping segments and the whole",
+  "difficulty": "medium",
+  "prompt": "Points A, B, C and D lie on a line in that order. AC = 12, BD = 15 and AD = 20. What is the length of BC?",
+  "choices": [
+   "9",
+   "8",
+   "7",
+   "3",
+   "5"
+  ],
+  "correct_answer": "7",
+  "explanation": "AC and BD together cover AD once and BC twice, so AC + BD = AD + BC, and BC = 12 + 15 - 20 = 7. \"9\" takes AB to be BD - AC = 3 and then subtracts it from AC, 12 - 3. \"8\" is AD - AC, which is CD. \"5\" is AD - BD, which is AB. \"3\" is BD - AC, the difference of the two given segments.",
+  "solve": "return 12+15-20;",
+  "distractor_solve": {
+   "3": "return 15-12;",
+   "5": "return 20-15;",
+   "8": "return 20-12;",
+   "9": "return 12-(15-12);"
+  }
+ }
+]

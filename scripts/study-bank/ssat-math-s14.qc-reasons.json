@@ -1,0 +1,12 @@
+{
+ "S14A-08": "free elimination, 2 kills (both graders A): two primes summing to 52 cannot include 2 (50 not prime), so the product is odd -> kills 100; 675 = 3^3 x 5^2 is not a product of two primes -> kills 675. Key then the largest survivor on a 'greatest' ask. Unanimous blind too.",
+ "S14A-14": "free elimination, 2 kills (grader B): after the jacket she had 2x/3 > 36, so x > 54 -> kills 48 and 54 (54 is the ignore-lunch limiting case ON the bound, §13b).",
+ "S14A-15": "free elimination, 3 kills (grader B): P(first green is the k-th draw) decreases in k and P(first draw green) = 2/9 is read off the stem -> kills 2/9, 2/7, 7/12.",
+ "S14A-17": "free elimination, 2 kills (grader B): conditioning on the 15 odd numbers forces a denominator dividing 15 -> kills 1/2 and 3/10. Unanimous blind too.",
+ "S14A-25": "free elimination, 2 kills (both graders): 385 is a rearrangement of 358 and larger, so cannot be least; 22235 has five digits against a valid three-digit option.",
+ "S14A-28": "free elimination, 2 kills (grader B): five fair tosses force k/32 -> kills 3/5; 1/32 is one sequence and exactly-3-heads has several.",
+ "S14B-18": "free elimination, 2 kills (grader B, confirmed by hand): 2x - 3y = 6 rises (raising x must raise y to hold 2x - 3y fixed) and x goes 1 -> 4, so k < 7 -> kills 13 and 9 without computing the slope.",
+ "S14B-19": "free elimination, 2 kills (both graders): the stem prints $3 per hour, so the h-coefficient is 3 -> kills 8h + 3.5 and 3.5h + 8; the half-hour decision is never needed.",
+ "S14B-20": "free elimination, 2 kills (grader B): the printed slope 3 is positive and x increases, so k > 0 -> kills -8 and -1.",
+ "S14B-21": "free elimination, 4 kills (grader B): one plug-back at x = 1 gives -24 and matches only -24x; skips the difference-of-squares method (same class as IM13B-14)."
+}
