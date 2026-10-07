@@ -1,0 +1,666 @@
+[
+  {
+    "id": "MAPA-01",
+    "source_id": "911cedb4-37df-4442-ad15-0064be0f807d",
+    "set_id": "P1",
+    "map_area": "Literary Text",
+    "map_strand": "Analyze Theme and Literary Elements; Summarize",
+    "grade_target": 6,
+    "target_band": "RIT 190-199",
+    "stratum": "comprehension",
+    "passage": "The gate at my aunt Odile's plant nursery sticks every August. She has never bothered to oil it. I arrived at seven, before the sprinklers came on, and pushed it open with my shoulder. A gravel path ran from the gate to the greenhouse door.\n\nI had come for a single reason. Her only employee had quit on Friday, and I was there to cover his shifts. She could not afford to pay me, and I did not expect her to. School was closed until September, so I had no homework waiting for me. I also loved the old place far too much to ever want it sold.\n\nThat morning she had me letter a card for the wall above the cash register. She dictated the words, and I copied them carefully. The card read NOTHING GREEN LEAVES HERE TO DIE.\n\nAt nine, a woman came in carrying a fig tree in a black pot. The tree was brown all the way down to the stem. She had no receipt. She complained for a long time. My aunt carried the fig into the greenhouse to nurse it and told the woman to return in the fall. She offered no money from the register and no replacement tree. The woman went home with empty hands. \"Nothing alive gets thrown out of this shop,\" my aunt said. We had not even grown that fig ourselves, and that made no difference to her. Receipt or no receipt, story or no story, she would have done exactly the same thing.\n\nI locked the gate at six that evening. At breakfast, I had told my mother exactly how my aunt would treat a customer like that. I had been unkind about her, and I had been wrong. Now I could understand why she had done each thing, and she had been right about every bit of it. The person I felt bad about now was me. On the bus home I did not smile once, and my face went hot whenever I remembered breakfast.",
+    "prompt": "The passage mostly tells about one day at the nursery from the point of view of",
+    "choices": [
+      "a teenager filling in for a worker who has just quit",
+      "a teenager earning money she still owes for school",
+      "a teenager hoping to talk her aunt into selling the shop",
+      "a teenager gathering ideas for a paper she must write"
+    ],
+    "correct_answer": "a teenager filling in for a worker who has just quit",
+    "key_logic": "The narrator says 'Her only employee had quit on Friday, and I was there to cover his shifts.'",
+    "distractor_map": [
+      {
+        "adapted": "a teenager earning money she still owes for school",
+        "source": "a teenager earning the money she still owes for school fees",
+        "role": "money motive; ruled out by 'She could not afford to pay me'"
+      },
+      {
+        "adapted": "a teenager hoping to talk her aunt into selling the shop",
+        "source": "a teenager hoping to talk her aunt into selling the place",
+        "role": "selling motive; ruled out by 'I loved the old place far too much to ever want it sold'"
+      },
+      {
+        "adapted": "a teenager gathering ideas for a paper she must write",
+        "source": "a teenager gathering material for an assignment she has to write",
+        "role": "school-assignment motive; ruled out by 'School was closed until September, so I had no homework waiting for me'"
+      }
+    ],
+    "dropped_distractor": "a teenager working off the cost of something she broke",
+    "changes": [
+      "passage rewritten at grade 6: source 338 words in 4 paragraphs, adapted 339 words in 5 paragraphs; one shared passage for MAPA-01..04",
+      "aunt named 'Odile' in paragraph 1 (the source names her only later)",
+      "'I had lettered it myself that morning, word for word as she dictated' turned into 'She dictated the words, and I copied them carefully'; card paragraph cut to plain narration; the clauses 'the card was two hours old', 'she has never written one out', 'she was not joking', 'did not go against it' removed (they ruled out options not used here)",
+      "'There was no wage in it' turned into narration 'She could not afford to pay me, and I did not expect her to'",
+      "'School had nothing to do with the day' turned into narration 'School was closed until September, so I had no homework waiting for me'",
+      "'neither of us mentioned selling' turned into narration 'I loved the old place far too much to ever want it sold'",
+      "'no pane of mine to pay for' removed (it only refuted the dropped 'something she broke' option)",
+      "'a receipt has never decided anything here, and neither has a story from a stranger' turned into 'Receipt or no receipt, story or no story, she would have done exactly the same thing'",
+      "'I am not teaching anybody a lesson' removed (it only refuted the dropped 'customer who learns will come back' option)",
+      "'It was not admiration I felt' removed (it only refuted the dropped 'admiration' option)",
+      "'there was nothing in the day to laugh at' turned into narration 'On the bus home I did not smile once'",
+      "'the person I was ashamed of was myself' turned into 'The person I felt bad about now was me ... my face went hot whenever I remembered breakfast' so the key word 'shame' is not echoed only by the key",
+      "'I understood every step of what she had done' turned into 'Now I could understand why she had done each thing'",
+      "'autumn' changed to 'the fall'; 'register' kept as 'cash register'",
+      "'I had come only to cover the shifts of the man who quit on her Friday' reworded to 'I had come for a single reason. Her only employee had quit on Friday, and I was there to cover his shifts'",
+      "'She talked for a long while' changed to 'She complained for a long time'; 'no second tree, no soil and no advice' cut to 'no replacement tree'",
+      "'I latched the gate at six' changed to 'I locked the gate at six that evening'; 'unkind and wrong about her' split into 'I had been unkind about her, and I had been wrong'",
+      "target word 'ran' kept in the same sentence and sense ('A gravel path ran from the gate to the greenhouse door'), moved to the end of paragraph 1; no other form of 'run' appears in the passage",
+      "dropped option 'a teenager working off the cost of something she broke' (its refutation 'no pane of mine to pay for' was the most unnatural sentence)",
+      "stem reworded from 'is mainly an account of a day at the nursery as it is experienced by' to 'mostly tells about one day at the nursery from the point of view of'",
+      "'school fees' simplified to 'money she still owes for school'; 'material for an assignment' to 'ideas for a paper'"
+    ]
+  },
+  {
+    "id": "MAPA-02",
+    "source_id": "48240770-b1b0-4d3e-8536-06739a11544a",
+    "set_id": "P1",
+    "map_area": "Literary Text",
+    "map_strand": "Analyze Theme and Literary Elements; Summarize",
+    "grade_target": 6,
+    "target_band": "RIT 190-199",
+    "stratum": "comprehension",
+    "passage": "The gate at my aunt Odile's plant nursery sticks every August. She has never bothered to oil it. I arrived at seven, before the sprinklers came on, and pushed it open with my shoulder. A gravel path ran from the gate to the greenhouse door.\n\nI had come for a single reason. Her only employee had quit on Friday, and I was there to cover his shifts. She could not afford to pay me, and I did not expect her to. School was closed until September, so I had no homework waiting for me. I also loved the old place far too much to ever want it sold.\n\nThat morning she had me letter a card for the wall above the cash register. She dictated the words, and I copied them carefully. The card read NOTHING GREEN LEAVES HERE TO DIE.\n\nAt nine, a woman came in carrying a fig tree in a black pot. The tree was brown all the way down to the stem. She had no receipt. She complained for a long time. My aunt carried the fig into the greenhouse to nurse it and told the woman to return in the fall. She offered no money from the register and no replacement tree. The woman went home with empty hands. \"Nothing alive gets thrown out of this shop,\" my aunt said. We had not even grown that fig ourselves, and that made no difference to her. Receipt or no receipt, story or no story, she would have done exactly the same thing.\n\nI locked the gate at six that evening. At breakfast, I had told my mother exactly how my aunt would treat a customer like that. I had been unkind about her, and I had been wrong. Now I could understand why she had done each thing, and she had been right about every bit of it. The person I felt bad about now was me. On the bus home I did not smile once, and my face went hot whenever I remembered breakfast.",
+    "prompt": "The way the aunt handles the woman's complaint shows that she cares most about",
+    "choices": [
+      "keeping anything that is still alive from being thrown out",
+      "making good on any plant the shop has grown",
+      "trusting a customer's word as much as a receipt",
+      "not paying out money for a claim with no proof"
+    ],
+    "correct_answer": "keeping anything that is still alive from being thrown out",
+    "key_logic": "The aunt says 'Nothing alive gets thrown out of this shop,' and the card reads 'NOTHING GREEN LEAVES HERE TO DIE.'",
+    "distractor_map": [
+      {
+        "adapted": "making good on any plant the shop has grown",
+        "source": "a wish to make good on any plant the shop has grown",
+        "role": "rival reason (shop's own stock); ruled out by 'We had not even grown that fig ourselves, and that made no difference to her'"
+      },
+      {
+        "adapted": "trusting a customer's word as much as a receipt",
+        "source": "a belief that a customer's word settles what a receipt would",
+        "role": "rival reason (customer's story decides); ruled out by 'story or no story, she would have done exactly the same thing' and by her offering no money or replacement tree"
+      },
+      {
+        "adapted": "not paying out money for a claim with no proof",
+        "source": "a refusal to let the shop pay for an unproven claim",
+        "role": "rival reason (lack of proof decides); ruled out by 'Receipt or no receipt ... she would have done exactly the same thing'"
+      }
+    ],
+    "dropped_distractor": "a hope that a customer who learns will come back later",
+    "changes": [
+      "passage rewritten at grade 6: source 338 words in 4 paragraphs, adapted 339 words in 5 paragraphs; one shared passage for MAPA-01..04",
+      "aunt named 'Odile' in paragraph 1 (the source names her only later)",
+      "'I had lettered it myself that morning, word for word as she dictated' turned into 'She dictated the words, and I copied them carefully'; card paragraph cut to plain narration; the clauses 'the card was two hours old', 'she has never written one out', 'she was not joking', 'did not go against it' removed (they ruled out options not used here)",
+      "'There was no wage in it' turned into narration 'She could not afford to pay me, and I did not expect her to'",
+      "'School had nothing to do with the day' turned into narration 'School was closed until September, so I had no homework waiting for me'",
+      "'neither of us mentioned selling' turned into narration 'I loved the old place far too much to ever want it sold'",
+      "'no pane of mine to pay for' removed (it only refuted the dropped 'something she broke' option)",
+      "'a receipt has never decided anything here, and neither has a story from a stranger' turned into 'Receipt or no receipt, story or no story, she would have done exactly the same thing'",
+      "'I am not teaching anybody a lesson' removed (it only refuted the dropped 'customer who learns will come back' option)",
+      "'It was not admiration I felt' removed (it only refuted the dropped 'admiration' option)",
+      "'there was nothing in the day to laugh at' turned into narration 'On the bus home I did not smile once'",
+      "'the person I was ashamed of was myself' turned into 'The person I felt bad about now was me ... my face went hot whenever I remembered breakfast' so the key word 'shame' is not echoed only by the key",
+      "'I understood every step of what she had done' turned into 'Now I could understand why she had done each thing'",
+      "'autumn' changed to 'the fall'; 'register' kept as 'cash register'",
+      "'I had come only to cover the shifts of the man who quit on her Friday' reworded to 'I had come for a single reason. Her only employee had quit on Friday, and I was there to cover his shifts'",
+      "'She talked for a long while' changed to 'She complained for a long time'; 'no second tree, no soil and no advice' cut to 'no replacement tree'",
+      "'I latched the gate at six' changed to 'I locked the gate at six that evening'; 'unkind and wrong about her' split into 'I had been unkind about her, and I had been wrong'",
+      "target word 'ran' kept in the same sentence and sense ('A gravel path ran from the gate to the greenhouse door'), moved to the end of paragraph 1; no other form of 'run' appears in the passage",
+      "dropped option 'a hope that a customer who learns will come back later' (its refutation 'I am not teaching anybody a lesson' was the most unnatural sentence, and the aunt's 'come back in the fall' made the option risky)",
+      "stem reworded from 'suggests that she is guided mainly by' to 'shows that she cares most about'",
+      "options reworded from 'a wish/belief/conviction/refusal' nouns to parallel -ing phrases"
+    ]
+  },
+  {
+    "id": "MAPA-03",
+    "source_id": "22a23962-29a9-496f-8396-7b7d41dc5c50",
+    "set_id": "P1",
+    "map_area": "Literary Text",
+    "map_strand": "Analyze Point of View, Features, and Structure",
+    "grade_target": 6,
+    "target_band": "RIT 190-199",
+    "stratum": "comprehension",
+    "passage": "The gate at my aunt Odile's plant nursery sticks every August. She has never bothered to oil it. I arrived at seven, before the sprinklers came on, and pushed it open with my shoulder. A gravel path ran from the gate to the greenhouse door.\n\nI had come for a single reason. Her only employee had quit on Friday, and I was there to cover his shifts. She could not afford to pay me, and I did not expect her to. School was closed until September, so I had no homework waiting for me. I also loved the old place far too much to ever want it sold.\n\nThat morning she had me letter a card for the wall above the cash register. She dictated the words, and I copied them carefully. The card read NOTHING GREEN LEAVES HERE TO DIE.\n\nAt nine, a woman came in carrying a fig tree in a black pot. The tree was brown all the way down to the stem. She had no receipt. She complained for a long time. My aunt carried the fig into the greenhouse to nurse it and told the woman to return in the fall. She offered no money from the register and no replacement tree. The woman went home with empty hands. \"Nothing alive gets thrown out of this shop,\" my aunt said. We had not even grown that fig ourselves, and that made no difference to her. Receipt or no receipt, story or no story, she would have done exactly the same thing.\n\nI locked the gate at six that evening. At breakfast, I had told my mother exactly how my aunt would treat a customer like that. I had been unkind about her, and I had been wrong. Now I could understand why she had done each thing, and she had been right about every bit of it. The person I felt bad about now was me. On the bus home I did not smile once, and my face went hot whenever I remembered breakfast.",
+    "prompt": "Which choice best describes how the narrator feels at the end of the passage?",
+    "choices": [
+      "shame about how she had judged her aunt",
+      "disapproval of her aunt that does not go away",
+      "amusement at a day that turned out funny",
+      "confusion about why her aunt acted as she did"
+    ],
+    "correct_answer": "shame about how she had judged her aunt",
+    "key_logic": "The narrator had been 'unkind about her' and 'wrong' at breakfast, and now 'The person I felt bad about now was me ... my face went hot whenever I remembered breakfast.'",
+    "distractor_map": [
+      {
+        "adapted": "disapproval of her aunt that does not go away",
+        "source": "disapproval that does not lift",
+        "role": "wrong target of judgment; ruled out by 'she had been right about every bit of it'"
+      },
+      {
+        "adapted": "amusement at a day that turned out funny",
+        "source": "amusement she had not expected",
+        "role": "wrong feeling (lightness); ruled out by 'On the bus home I did not smile once'"
+      },
+      {
+        "adapted": "confusion about why her aunt acted as she did",
+        "source": "puzzlement she does not resolve",
+        "role": "wrong feeling (not understanding); ruled out by 'Now I could understand why she had done each thing'"
+      }
+    ],
+    "dropped_distractor": "admiration that was there already",
+    "changes": [
+      "passage rewritten at grade 6: source 338 words in 4 paragraphs, adapted 339 words in 5 paragraphs; one shared passage for MAPA-01..04",
+      "aunt named 'Odile' in paragraph 1 (the source names her only later)",
+      "'I had lettered it myself that morning, word for word as she dictated' turned into 'She dictated the words, and I copied them carefully'; card paragraph cut to plain narration; the clauses 'the card was two hours old', 'she has never written one out', 'she was not joking', 'did not go against it' removed (they ruled out options not used here)",
+      "'There was no wage in it' turned into narration 'She could not afford to pay me, and I did not expect her to'",
+      "'School had nothing to do with the day' turned into narration 'School was closed until September, so I had no homework waiting for me'",
+      "'neither of us mentioned selling' turned into narration 'I loved the old place far too much to ever want it sold'",
+      "'no pane of mine to pay for' removed (it only refuted the dropped 'something she broke' option)",
+      "'a receipt has never decided anything here, and neither has a story from a stranger' turned into 'Receipt or no receipt, story or no story, she would have done exactly the same thing'",
+      "'I am not teaching anybody a lesson' removed (it only refuted the dropped 'customer who learns will come back' option)",
+      "'It was not admiration I felt' removed (it only refuted the dropped 'admiration' option)",
+      "'there was nothing in the day to laugh at' turned into narration 'On the bus home I did not smile once'",
+      "'the person I was ashamed of was myself' turned into 'The person I felt bad about now was me ... my face went hot whenever I remembered breakfast' so the key word 'shame' is not echoed only by the key",
+      "'I understood every step of what she had done' turned into 'Now I could understand why she had done each thing'",
+      "'autumn' changed to 'the fall'; 'register' kept as 'cash register'",
+      "'I had come only to cover the shifts of the man who quit on her Friday' reworded to 'I had come for a single reason. Her only employee had quit on Friday, and I was there to cover his shifts'",
+      "'She talked for a long while' changed to 'She complained for a long time'; 'no second tree, no soil and no advice' cut to 'no replacement tree'",
+      "'I latched the gate at six' changed to 'I locked the gate at six that evening'; 'unkind and wrong about her' split into 'I had been unkind about her, and I had been wrong'",
+      "target word 'ran' kept in the same sentence and sense ('A gravel path ran from the gate to the greenhouse door'), moved to the end of paragraph 1; no other form of 'run' appears in the passage",
+      "dropped option 'admiration that was there already' (its refutation 'It was not admiration I felt' was the most unnatural sentence)",
+      "stem reworded from 'is best described as' to 'Which choice best describes how the narrator feels'",
+      "'shame at her earlier judgment' simplified to 'shame about how she had judged her aunt'; 'puzzlement' to 'confusion'"
+    ]
+  },
+  {
+    "id": "MAPA-04",
+    "source_id": "22f51ea9-9119-4f29-80fe-a3a1435c0e14",
+    "set_id": "P1",
+    "map_area": "Vocabulary",
+    "map_strand": "Vocabulary",
+    "grade_target": 6,
+    "target_band": "RIT 190-199",
+    "stratum": "vocab",
+    "passage": "The gate at my aunt Odile's plant nursery sticks every August. She has never bothered to oil it. I arrived at seven, before the sprinklers came on, and pushed it open with my shoulder. A gravel path ran from the gate to the greenhouse door.\n\nI had come for a single reason. Her only employee had quit on Friday, and I was there to cover his shifts. She could not afford to pay me, and I did not expect her to. School was closed until September, so I had no homework waiting for me. I also loved the old place far too much to ever want it sold.\n\nThat morning she had me letter a card for the wall above the cash register. She dictated the words, and I copied them carefully. The card read NOTHING GREEN LEAVES HERE TO DIE.\n\nAt nine, a woman came in carrying a fig tree in a black pot. The tree was brown all the way down to the stem. She had no receipt. She complained for a long time. My aunt carried the fig into the greenhouse to nurse it and told the woman to return in the fall. She offered no money from the register and no replacement tree. The woman went home with empty hands. \"Nothing alive gets thrown out of this shop,\" my aunt said. We had not even grown that fig ourselves, and that made no difference to her. Receipt or no receipt, story or no story, she would have done exactly the same thing.\n\nI locked the gate at six that evening. At breakfast, I had told my mother exactly how my aunt would treat a customer like that. I had been unkind about her, and I had been wrong. Now I could understand why she had done each thing, and she had been right about every bit of it. The person I felt bad about now was me. On the bus home I did not smile once, and my face went hot whenever I remembered breakfast.",
+    "prompt": "What does the word \"ran\" mean in paragraph 1?",
+    "choices": [
+      "stretched in a line",
+      "printed in a newspaper",
+      "spread over a surface",
+      "managed as an owner"
+    ],
+    "correct_answer": "stretched in a line",
+    "key_logic": "In paragraph 1, 'A gravel path ran from the gate to the greenhouse door' means the path stretched in a line from one point to the other.",
+    "distractor_map": [
+      {
+        "adapted": "printed in a newspaper",
+        "source": "to place in a newspaper",
+        "role": "another sense of 'ran' (ran an ad)"
+      },
+      {
+        "adapted": "spread over a surface",
+        "source": "to spread across a surface",
+        "role": "another sense of 'ran' (the paint ran)"
+      },
+      {
+        "adapted": "managed as an owner",
+        "source": "to manage as an owner",
+        "role": "another sense of 'ran' (she ran the shop); the passage never uses 'run' for the aunt"
+      }
+    ],
+    "dropped_distractor": "to fall to a low level",
+    "changes": [
+      "passage rewritten at grade 6: source 338 words in 4 paragraphs, adapted 339 words in 5 paragraphs; one shared passage for MAPA-01..04",
+      "aunt named 'Odile' in paragraph 1 (the source names her only later)",
+      "'I had lettered it myself that morning, word for word as she dictated' turned into 'She dictated the words, and I copied them carefully'; card paragraph cut to plain narration; the clauses 'the card was two hours old', 'she has never written one out', 'she was not joking', 'did not go against it' removed (they ruled out options not used here)",
+      "'There was no wage in it' turned into narration 'She could not afford to pay me, and I did not expect her to'",
+      "'School had nothing to do with the day' turned into narration 'School was closed until September, so I had no homework waiting for me'",
+      "'neither of us mentioned selling' turned into narration 'I loved the old place far too much to ever want it sold'",
+      "'no pane of mine to pay for' removed (it only refuted the dropped 'something she broke' option)",
+      "'a receipt has never decided anything here, and neither has a story from a stranger' turned into 'Receipt or no receipt, story or no story, she would have done exactly the same thing'",
+      "'I am not teaching anybody a lesson' removed (it only refuted the dropped 'customer who learns will come back' option)",
+      "'It was not admiration I felt' removed (it only refuted the dropped 'admiration' option)",
+      "'there was nothing in the day to laugh at' turned into narration 'On the bus home I did not smile once'",
+      "'the person I was ashamed of was myself' turned into 'The person I felt bad about now was me ... my face went hot whenever I remembered breakfast' so the key word 'shame' is not echoed only by the key",
+      "'I understood every step of what she had done' turned into 'Now I could understand why she had done each thing'",
+      "'autumn' changed to 'the fall'; 'register' kept as 'cash register'",
+      "'I had come only to cover the shifts of the man who quit on her Friday' reworded to 'I had come for a single reason. Her only employee had quit on Friday, and I was there to cover his shifts'",
+      "'She talked for a long while' changed to 'She complained for a long time'; 'no second tree, no soil and no advice' cut to 'no replacement tree'",
+      "'I latched the gate at six' changed to 'I locked the gate at six that evening'; 'unkind and wrong about her' split into 'I had been unkind about her, and I had been wrong'",
+      "target word 'ran' kept in the same sentence and sense ('A gravel path ran from the gate to the greenhouse door'), moved to the end of paragraph 1; no other form of 'run' appears in the passage",
+      "dropped option 'to fall to a low level' (no option's refutation needed passage text; dropped the sense least tied to the passage's setting)",
+      "stem reworded from 'In the passage, the word \"ran\" most nearly means' to 'What does the word \"ran\" mean in paragraph 1?'",
+      "options changed from 'to + verb' form to past-tense phrases matching 'ran'"
+    ]
+  },
+  {
+    "id": "MAPA-05",
+    "source_id": "5cf8a937-57bf-44be-b1b2-c9af8c3a0013",
+    "set_id": "P2",
+    "map_area": "Literary Text",
+    "map_strand": "Analyze Theme and Literary Elements; Summarize",
+    "grade_target": 7,
+    "target_band": "RIT 200-209",
+    "stratum": "comprehension",
+    "passage": "Kellerman's boatyard closes for good on the first of September. I spent the last week of August there with my uncle Teodor. His boat, the Marisol, sat on blocks in the shed, out of the water for the first time in forty years. My grandfather built her, and Teodor ran her to the island and back for half his life.\n\nBy Monday, every family on the lake had a suggestion for her. By Friday, she had a new owner. The sailing club had asked in June to use her for teaching beginners. \"A gift pays no debt,\" he told them, and no beginner ever stepped aboard. Petrus rowed over to offer his small boat and motor in a trade. Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate. Back in June, he had pushed a knife into her planks near the keel. The blade would not sink in even a quarter inch, and there was no rot anywhere. In the end, the marina at Two Harbours sent a check, and he signed it over to the bank.\n\nThe bank had held a loan on the yard since the bad winter. By now, the debt was larger than a whole season of repairs could earn. Every other plan that week hit the same wall: pay in September, or the doors would never open again. \"The yard will outlast any boat in it,\" he said. \"I will not close these doors to keep one hull in the family.\"\n\nThe sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers. I had argued against the sale all week. When a neighbor told me my uncle had done the brave thing, I walked away without a word. I was furious with him all evening. I kept bringing it up at dinner long after he had stopped answering, and my jaw stayed tight the whole night. Even then, I knew it was not fair to blame him. That check was the yard's only chance.",
+    "prompt": "Which choice best tells what the passage is mostly about?",
+    "choices": [
+      "a boat sold because its owner would not let debt close the yard",
+      "a boat given away because its owner wanted beginners to learn in it",
+      "a boat traded because its owner wanted one he could sail alone",
+      "a boat taken apart because its owner no longer trusted its hull"
+    ],
+    "correct_answer": "a boat sold because its owner would not let debt close the yard",
+    "key_logic": "The marina's check went to the bank because the debt would close the yard, and Teodor says 'I will not close these doors to keep one hull in the family.'",
+    "distractor_map": [
+      {
+        "adapted": "a boat given away because its owner wanted beginners to learn in it",
+        "source": "a launch given away because her owner wanted beginners learning in her",
+        "role": "rival use (gift to sailing club); ruled out by '\"A gift pays no debt,\" he told them, and no beginner ever stepped aboard'"
+      },
+      {
+        "adapted": "a boat traded because its owner wanted one he could sail alone",
+        "source": "a launch traded away because her owner wanted a boat he could sail alone",
+        "role": "rival use (trade); ruled out by 'Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate'"
+      },
+      {
+        "adapted": "a boat taken apart because its owner no longer trusted its hull",
+        "source": "a launch taken apart because her owner would not pass on a boat he distrusted",
+        "role": "rival use (unsafe boat); ruled out by 'The blade would not sink in even a quarter inch, and there was no rot anywhere'"
+      }
+    ],
+    "dropped_distractor": "a launch licensed again because her owner would not drop the island crossing",
+    "changes": [
+      "passage rewritten at grade 7: source 341 words in 3 paragraphs, adapted 349 words in 4 paragraphs (the source's long first paragraph split in two); one shared passage for MAPA-05..08",
+      "'launch' changed to 'boat'; 'cheque' changed to 'check'; 'garboard plank' changed to 'her planks near the keel'; 'slip her single-handed' changed to 'handle the Marisol by himself'; 'mortgage' changed to 'a loan on the yard'",
+      "'The islanders would take the county's new boat; the crossing, he said, was no longer his' removed (it only refuted the dropped 'licensed again ... island crossing' option in MAPA-05 and 'island that would lose its crossing' in MAPA-06)",
+      "'He never asked the registry to put her name back on the list' removed (same reason)",
+      "'There would be no crossing to dread in January' removed (it only refuted the dropped 'unease about the winter' option in MAPA-07)",
+      "'it went in no quarter inch, and no rot showed' turned into narration 'The blade would not sink in even a quarter inch, and there was no rot anywhere'",
+      "'I was not relieved, I was not proud of him, and nothing in it struck me as funny' turned into narration: 'When a neighbor told me my uncle had done the brave thing, I walked away without a word' (not pride), 'I kept bringing it up at dinner long after he had stopped answering' (argument not over, so not relief), 'my jaw stayed tight the whole night' (not amusement)",
+      "added 'I had argued against the sale all week' so the pride option's premise ('a choice she had opposed') stays true while its feeling stays false, as in the source",
+      "'the anger was unfair' reworded to 'it was not fair to blame him'",
+      "'The sale drew half the lake' changed to 'drew half the people on the lake'; 'drew' kept as the only form of 'draw' in the passage, now in paragraph 4",
+      "'every house on the lake had a use to propose for her' changed to 'every family on the lake had a suggestion for her'; 'the sum owed had grown past what a season of repairs could earn' changed to 'the debt was larger than a whole season of repairs could earn'",
+      "dropped option 'a launch licensed again because her owner would not drop the island crossing' (its refutations, the county boat and the registry sentence, were the most unnatural; dropped the same role in MAPA-06 so both could be cut)",
+      "stem reworded from 'The passage is primarily concerned with' to 'Which choice best tells what the passage is mostly about?'",
+      "'launch ... her owner' changed to 'boat ... its owner' in all options"
+    ]
+  },
+  {
+    "id": "MAPA-06",
+    "source_id": "e1f92e93-4ffe-48cd-99cc-11f8606f20ba",
+    "set_id": "P2",
+    "map_area": "Literary Text",
+    "map_strand": "Analyze Theme and Literary Elements; Summarize",
+    "grade_target": 7,
+    "target_band": "RIT 200-209",
+    "stratum": "comprehension",
+    "passage": "Kellerman's boatyard closes for good on the first of September. I spent the last week of August there with my uncle Teodor. His boat, the Marisol, sat on blocks in the shed, out of the water for the first time in forty years. My grandfather built her, and Teodor ran her to the island and back for half his life.\n\nBy Monday, every family on the lake had a suggestion for her. By Friday, she had a new owner. The sailing club had asked in June to use her for teaching beginners. \"A gift pays no debt,\" he told them, and no beginner ever stepped aboard. Petrus rowed over to offer his small boat and motor in a trade. Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate. Back in June, he had pushed a knife into her planks near the keel. The blade would not sink in even a quarter inch, and there was no rot anywhere. In the end, the marina at Two Harbours sent a check, and he signed it over to the bank.\n\nThe bank had held a loan on the yard since the bad winter. By now, the debt was larger than a whole season of repairs could earn. Every other plan that week hit the same wall: pay in September, or the doors would never open again. \"The yard will outlast any boat in it,\" he said. \"I will not close these doors to keep one hull in the family.\"\n\nThe sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers. I had argued against the sale all week. When a neighbor told me my uncle had done the brave thing, I walked away without a word. I was furious with him all evening. I kept bringing it up at dinner long after he had stopped answering, and my jaw stayed tight the whole night. Even then, I knew it was not fair to blame him. That check was the yard's only chance.",
+    "prompt": "Based on the passage, what mattered most to Teodor?",
+    "choices": [
+      "a debt that would have closed the yard",
+      "a hull he could no longer trust",
+      "a boat one person could handle alone",
+      "children who had not yet learned to sail"
+    ],
+    "correct_answer": "a debt that would have closed the yard",
+    "key_logic": "Every plan 'hit the same wall: pay in September, or the doors would never open again,' and Teodor says 'The yard will outlast any boat in it.'",
+    "distractor_map": [
+      {
+        "adapted": "a hull he could no longer trust",
+        "source": "a hull he could no longer vouch for",
+        "role": "rival concern (unsafe boat); ruled out by the knife test: 'there was no rot anywhere'"
+      },
+      {
+        "adapted": "a boat one person could handle alone",
+        "source": "a boat one man could handle on his own",
+        "role": "rival concern (trade for an easier boat); ruled out by 'Teodor could still handle the Marisol by himself'"
+      },
+      {
+        "adapted": "children who had not yet learned to sail",
+        "source": "children who had not yet learned to sail",
+        "role": "rival concern (the sailing club); ruled out by '\"A gift pays no debt,\" ... no beginner ever stepped aboard'"
+      }
+    ],
+    "dropped_distractor": "an island that would lose its crossing",
+    "changes": [
+      "passage rewritten at grade 7: source 341 words in 3 paragraphs, adapted 349 words in 4 paragraphs (the source's long first paragraph split in two); one shared passage for MAPA-05..08",
+      "'launch' changed to 'boat'; 'cheque' changed to 'check'; 'garboard plank' changed to 'her planks near the keel'; 'slip her single-handed' changed to 'handle the Marisol by himself'; 'mortgage' changed to 'a loan on the yard'",
+      "'The islanders would take the county's new boat; the crossing, he said, was no longer his' removed (it only refuted the dropped 'licensed again ... island crossing' option in MAPA-05 and 'island that would lose its crossing' in MAPA-06)",
+      "'He never asked the registry to put her name back on the list' removed (same reason)",
+      "'There would be no crossing to dread in January' removed (it only refuted the dropped 'unease about the winter' option in MAPA-07)",
+      "'it went in no quarter inch, and no rot showed' turned into narration 'The blade would not sink in even a quarter inch, and there was no rot anywhere'",
+      "'I was not relieved, I was not proud of him, and nothing in it struck me as funny' turned into narration: 'When a neighbor told me my uncle had done the brave thing, I walked away without a word' (not pride), 'I kept bringing it up at dinner long after he had stopped answering' (argument not over, so not relief), 'my jaw stayed tight the whole night' (not amusement)",
+      "added 'I had argued against the sale all week' so the pride option's premise ('a choice she had opposed') stays true while its feeling stays false, as in the source",
+      "'the anger was unfair' reworded to 'it was not fair to blame him'",
+      "'The sale drew half the lake' changed to 'drew half the people on the lake'; 'drew' kept as the only form of 'draw' in the passage, now in paragraph 4",
+      "'every house on the lake had a use to propose for her' changed to 'every family on the lake had a suggestion for her'; 'the sum owed had grown past what a season of repairs could earn' changed to 'the debt was larger than a whole season of repairs could earn'",
+      "dropped option 'an island that would lose its crossing' (same role dropped in MAPA-05 so its refutation could be cut)",
+      "stem reworded from 'It can most reasonably be inferred that Teodor's first concern was' to 'Based on the passage, what mattered most to Teodor?'",
+      "'vouch for' simplified to 'trust'"
+    ]
+  },
+  {
+    "id": "MAPA-07",
+    "source_id": "9e1c6ea4-93fc-4b4a-85c5-6d2fd88d94fc",
+    "set_id": "P2",
+    "map_area": "Literary Text",
+    "map_strand": "Analyze Point of View, Features, and Structure",
+    "grade_target": 7,
+    "target_band": "RIT 200-209",
+    "stratum": "comprehension",
+    "passage": "Kellerman's boatyard closes for good on the first of September. I spent the last week of August there with my uncle Teodor. His boat, the Marisol, sat on blocks in the shed, out of the water for the first time in forty years. My grandfather built her, and Teodor ran her to the island and back for half his life.\n\nBy Monday, every family on the lake had a suggestion for her. By Friday, she had a new owner. The sailing club had asked in June to use her for teaching beginners. \"A gift pays no debt,\" he told them, and no beginner ever stepped aboard. Petrus rowed over to offer his small boat and motor in a trade. Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate. Back in June, he had pushed a knife into her planks near the keel. The blade would not sink in even a quarter inch, and there was no rot anywhere. In the end, the marina at Two Harbours sent a check, and he signed it over to the bank.\n\nThe bank had held a loan on the yard since the bad winter. By now, the debt was larger than a whole season of repairs could earn. Every other plan that week hit the same wall: pay in September, or the doors would never open again. \"The yard will outlast any boat in it,\" he said. \"I will not close these doors to keep one hull in the family.\"\n\nThe sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers. I had argued against the sale all week. When a neighbor told me my uncle had done the brave thing, I walked away without a word. I was furious with him all evening. I kept bringing it up at dinner long after he had stopped answering, and my jaw stayed tight the whole night. Even then, I knew it was not fair to blame him. That check was the yard's only chance.",
+    "prompt": "Which choice best describes how the narrator feels at the end of the passage?",
+    "choices": [
+      "anger she knows is not fair to him",
+      "pride in a choice she had argued against",
+      "amusement at how careful her uncle had been",
+      "relief that a long argument is finally over"
+    ],
+    "correct_answer": "anger she knows is not fair to him",
+    "key_logic": "The narrator says 'I was furious with him all evening' and 'Even then, I knew it was not fair to blame him. That check was the yard's only chance.'",
+    "distractor_map": [
+      {
+        "adapted": "pride in a choice she had argued against",
+        "source": "pride in a choice she had opposed",
+        "role": "wrong feeling toward the uncle's choice; ruled out by 'When a neighbor told me my uncle had done the brave thing, I walked away without a word'"
+      },
+      {
+        "adapted": "amusement at how careful her uncle had been",
+        "source": "amusement at her uncle's new caution",
+        "role": "wrong feeling (lightness); ruled out by 'my jaw stayed tight the whole night'"
+      },
+      {
+        "adapted": "relief that a long argument is finally over",
+        "source": "relief that a long argument is over",
+        "role": "wrong feeling (ending); ruled out by 'I kept bringing it up at dinner long after he had stopped answering'"
+      }
+    ],
+    "dropped_distractor": "unease about the winter to come",
+    "changes": [
+      "passage rewritten at grade 7: source 341 words in 3 paragraphs, adapted 349 words in 4 paragraphs (the source's long first paragraph split in two); one shared passage for MAPA-05..08",
+      "'launch' changed to 'boat'; 'cheque' changed to 'check'; 'garboard plank' changed to 'her planks near the keel'; 'slip her single-handed' changed to 'handle the Marisol by himself'; 'mortgage' changed to 'a loan on the yard'",
+      "'The islanders would take the county's new boat; the crossing, he said, was no longer his' removed (it only refuted the dropped 'licensed again ... island crossing' option in MAPA-05 and 'island that would lose its crossing' in MAPA-06)",
+      "'He never asked the registry to put her name back on the list' removed (same reason)",
+      "'There would be no crossing to dread in January' removed (it only refuted the dropped 'unease about the winter' option in MAPA-07)",
+      "'it went in no quarter inch, and no rot showed' turned into narration 'The blade would not sink in even a quarter inch, and there was no rot anywhere'",
+      "'I was not relieved, I was not proud of him, and nothing in it struck me as funny' turned into narration: 'When a neighbor told me my uncle had done the brave thing, I walked away without a word' (not pride), 'I kept bringing it up at dinner long after he had stopped answering' (argument not over, so not relief), 'my jaw stayed tight the whole night' (not amusement)",
+      "added 'I had argued against the sale all week' so the pride option's premise ('a choice she had opposed') stays true while its feeling stays false, as in the source",
+      "'the anger was unfair' reworded to 'it was not fair to blame him'",
+      "'The sale drew half the lake' changed to 'drew half the people on the lake'; 'drew' kept as the only form of 'draw' in the passage, now in paragraph 4",
+      "'every house on the lake had a use to propose for her' changed to 'every family on the lake had a suggestion for her'; 'the sum owed had grown past what a season of repairs could earn' changed to 'the debt was larger than a whole season of repairs could earn'",
+      "dropped option 'unease about the winter to come' (dropped together with the island-crossing material, so 'no crossing to dread in January' could be cut)",
+      "stem reworded from 'At the end of the passage, the narrator's feeling is best described as' to 'Which choice best describes how the narrator feels at the end of the passage?'",
+      "'anger she recognizes as unfair' simplified to 'anger she knows is not fair to him'; 'new caution' to 'how careful her uncle had been'"
+    ]
+  },
+  {
+    "id": "MAPA-08",
+    "source_id": "7cfb9796-ebd0-41e9-9ff4-6f1e413a528b",
+    "set_id": "P2",
+    "map_area": "Vocabulary",
+    "map_strand": "Vocabulary",
+    "grade_target": 7,
+    "target_band": "RIT 200-209",
+    "stratum": "vocab",
+    "passage": "Kellerman's boatyard closes for good on the first of September. I spent the last week of August there with my uncle Teodor. His boat, the Marisol, sat on blocks in the shed, out of the water for the first time in forty years. My grandfather built her, and Teodor ran her to the island and back for half his life.\n\nBy Monday, every family on the lake had a suggestion for her. By Friday, she had a new owner. The sailing club had asked in June to use her for teaching beginners. \"A gift pays no debt,\" he told them, and no beginner ever stepped aboard. Petrus rowed over to offer his small boat and motor in a trade. Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate. Back in June, he had pushed a knife into her planks near the keel. The blade would not sink in even a quarter inch, and there was no rot anywhere. In the end, the marina at Two Harbours sent a check, and he signed it over to the bank.\n\nThe bank had held a loan on the yard since the bad winter. By now, the debt was larger than a whole season of repairs could earn. Every other plan that week hit the same wall: pay in September, or the doors would never open again. \"The yard will outlast any boat in it,\" he said. \"I will not close these doors to keep one hull in the family.\"\n\nThe sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers. I had argued against the sale all week. When a neighbor told me my uncle had done the brave thing, I walked away without a word. I was furious with him all evening. I kept bringing it up at dinner long after he had stopped answering, and my jaw stayed tight the whole night. Even then, I knew it was not fair to blame him. That check was the yard's only chance.",
+    "prompt": "What does the word \"drew\" mean in paragraph 4?",
+    "choices": [
+      "attracted in large numbers",
+      "got from a source",
+      "needed as a depth of water",
+      "sketched on paper"
+    ],
+    "correct_answer": "attracted in large numbers",
+    "key_logic": "'The sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers' shows that the sale attracted a large crowd.",
+    "distractor_map": [
+      {
+        "adapted": "got from a source",
+        "source": "obtained from a source",
+        "role": "another sense of 'drew' (drew money from the bank); bank setting makes it tempting"
+      },
+      {
+        "adapted": "needed as a depth of water",
+        "source": "required as depth",
+        "role": "another sense of 'drew' (a boat draws three feet); boat setting makes it tempting"
+      },
+      {
+        "adapted": "sketched on paper",
+        "source": "sketched on paper",
+        "role": "another sense of 'drew' (drew a picture)"
+      }
+    ],
+    "dropped_distractor": "removed by pulling",
+    "changes": [
+      "passage rewritten at grade 7: source 341 words in 3 paragraphs, adapted 349 words in 4 paragraphs (the source's long first paragraph split in two); one shared passage for MAPA-05..08",
+      "'launch' changed to 'boat'; 'cheque' changed to 'check'; 'garboard plank' changed to 'her planks near the keel'; 'slip her single-handed' changed to 'handle the Marisol by himself'; 'mortgage' changed to 'a loan on the yard'",
+      "'The islanders would take the county's new boat; the crossing, he said, was no longer his' removed (it only refuted the dropped 'licensed again ... island crossing' option in MAPA-05 and 'island that would lose its crossing' in MAPA-06)",
+      "'He never asked the registry to put her name back on the list' removed (same reason)",
+      "'There would be no crossing to dread in January' removed (it only refuted the dropped 'unease about the winter' option in MAPA-07)",
+      "'it went in no quarter inch, and no rot showed' turned into narration 'The blade would not sink in even a quarter inch, and there was no rot anywhere'",
+      "'I was not relieved, I was not proud of him, and nothing in it struck me as funny' turned into narration: 'When a neighbor told me my uncle had done the brave thing, I walked away without a word' (not pride), 'I kept bringing it up at dinner long after he had stopped answering' (argument not over, so not relief), 'my jaw stayed tight the whole night' (not amusement)",
+      "added 'I had argued against the sale all week' so the pride option's premise ('a choice she had opposed') stays true while its feeling stays false, as in the source",
+      "'the anger was unfair' reworded to 'it was not fair to blame him'",
+      "'The sale drew half the lake' changed to 'drew half the people on the lake'; 'drew' kept as the only form of 'draw' in the passage, now in paragraph 4",
+      "'every house on the lake had a use to propose for her' changed to 'every family on the lake had a suggestion for her'; 'the sum owed had grown past what a season of repairs could earn' changed to 'the debt was larger than a whole season of repairs could earn'",
+      "dropped option 'removed by pulling' (no refutation in the passage; dropped the sense with the least pull from the passage's boat and bank setting)",
+      "stem reworded from 'As it is used in the passage, \"drew\" most nearly means' to 'What does the word \"drew\" mean in paragraph 4?'",
+      "'obtained' simplified to 'got'; 'required as depth' to 'needed as a depth of water'; 'attracted in numbers' to 'attracted in large numbers'"
+    ]
+  },
+  {
+    "id": "MAPA-09",
+    "source_id": "a1870fb0-9d47-4f71-b113-4279b8cbe0d2",
+    "set_id": "P3",
+    "map_area": "Informational Text",
+    "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+    "grade_target": 8,
+    "target_band": "RIT 210-219",
+    "stratum": "comprehension",
+    "passage": "Marta Sandoval spent thirty years compiling a dictionary. It was the first dictionary of the dialect spoken in a high mountain province. She worked at a kitchen table between teaching jobs. What happened to her finished pages is still argued about in the valleys she recorded.\n\nNo book of her own was ever bound, and she never paid a printer a single coin. The university library asked twice for her manuscript. She still had not answered when her word cards left for the capital, and nothing ever reached the library. A newspaper offered to print one letter of the alphabet each month, and she refused to let the work come out in pieces. Then a dictionary maker in the capital borrowed her cards for a summer. Today, eleven thousand of her entries stand in his national dictionary under his name.\n\nFor nineteen years, one market day a week, she stood among the stalls asking sellers what they called things. She was sure that people speak most truly while they are haggling over goods. Every week, she started by asking for the old word for a measure of oil. She never opened church records or old wills. She held that a word does not matter just because someone once wrote it down. The village teachers offered to have their students write to her, but she said no. By the time a child's letter reached the post office, she explained, a teacher had already corrected it. She saw no need for helpers in other villages to mail her words, either. One market drew people from twelve villages, so letters would have been a waste of time.\n\nHis three volumes never mention her name, not even in the thank-yous. Her words survived, but someone else took the credit, and nobody has yet called it what it was.",
+    "prompt": "Which choice best tells what the passage is mostly about?",
+    "choices": [
+      "a dictionary its author lost to a rival who never gave her credit",
+      "a dictionary its author printed herself in a small paid edition",
+      "a dictionary its author never printed but left to a library",
+      "a dictionary its author let a newspaper print a month at a time"
+    ],
+    "correct_answer": "a dictionary its author lost to a rival who never gave her credit",
+    "key_logic": "'Eleven thousand of her entries stand in his national dictionary under his name,' and 'His three volumes never mention her name, not even in the thank-yous.'",
+    "distractor_map": [
+      {
+        "adapted": "a dictionary its author printed herself in a small paid edition",
+        "source": "a dictionary its compiler printed herself in a small paid edition",
+        "role": "rival fate (self-published); ruled out by 'No book of her own was ever bound, and she never paid a printer a single coin'"
+      },
+      {
+        "adapted": "a dictionary its author never printed but left to a library",
+        "source": "a dictionary its compiler never printed, left to a library instead",
+        "role": "rival fate (library); ruled out by 'nothing ever reached the library'"
+      },
+      {
+        "adapted": "a dictionary its author let a newspaper print a month at a time",
+        "source": "a dictionary its compiler published in a newspaper, a month apiece",
+        "role": "rival fate (newspaper); ruled out by 'she refused to let the work come out in pieces'"
+      }
+    ],
+    "dropped_distractor": "a dictionary its compiler saw printed abroad before it appeared at home",
+    "changes": [
+      "passage cut from 336 to 305 words; split from 3 into 4 paragraphs (the source's paragraph 1 became paragraphs 1 and 2, so the market paragraph is now paragraph 3); one shared passage for MAPA-09..12",
+      "'A publisher across the border wanted a translation, but nothing of hers appeared abroad in any language' removed (it only refuted the dropped 'printed abroad' option in MAPA-09)",
+      "'She began each market day with the same question' reworded to 'Every week, she started by asking for'; 'set down whatever the first stall told her' and 'A word went onto a card the first time a seller said it, without waiting for a second mouth' removed (they only refuted the dropped 'twice-heard' options in MAPA-10 and MAPA-11)",
+      "'Parish books and wills she never opened' turned into narration 'She never opened church records or old wills'",
+      "'a child's page reaches the post already corrected' expanded to 'By the time a child's letter reached the post office, she explained, a teacher had already corrected it'",
+      "'She kept no correspondents in other villages ... postbags were waste' turned into 'She saw no need for helpers in other villages to mail her words, either. One market drew people from twelve villages, so letters would have been a waste of time'",
+      "'It is no comedy, and hardly a waste ... her stubbornness is not the point, and impatience would be misplaced. The feeling the story leaves is indignation...' cut to 'Her words survived, but someone else took the credit, and nobody has yet called it what it was' (no tone item uses this passage here)",
+      "'measure of oil' sentence kept with the target word unchanged; 'slips' changed to 'word cards'; 'compiler in the capital' changed to 'dictionary maker in the capital'; 'not even among the thanks' changed to 'not even in the thank-yous'",
+      "dropped option 'a dictionary its compiler saw printed abroad before it appeared at home' (its refutation, the publisher-across-the-border sentence, was the most unnatural and could then be cut)",
+      "stem reworded from 'The passage is primarily concerned with' to 'Which choice best tells what the passage is mostly about?'",
+      "'compiler' changed to 'author' in all options; 'credited her nowhere' to 'never gave her credit'"
+    ]
+  },
+  {
+    "id": "MAPA-10",
+    "source_id": "8c43dbc8-1d14-47bb-bc6d-214b5a88a8cc",
+    "set_id": "P3",
+    "map_area": "Informational Text",
+    "map_strand": "Analyze Point of View, Purpose, Features, and Structure",
+    "grade_target": 8,
+    "target_band": "RIT 210-219",
+    "stratum": "comprehension",
+    "passage": "Marta Sandoval spent thirty years compiling a dictionary. It was the first dictionary of the dialect spoken in a high mountain province. She worked at a kitchen table between teaching jobs. What happened to her finished pages is still argued about in the valleys she recorded.\n\nNo book of her own was ever bound, and she never paid a printer a single coin. The university library asked twice for her manuscript. She still had not answered when her word cards left for the capital, and nothing ever reached the library. A newspaper offered to print one letter of the alphabet each month, and she refused to let the work come out in pieces. Then a dictionary maker in the capital borrowed her cards for a summer. Today, eleven thousand of her entries stand in his national dictionary under his name.\n\nFor nineteen years, one market day a week, she stood among the stalls asking sellers what they called things. She was sure that people speak most truly while they are haggling over goods. Every week, she started by asking for the old word for a measure of oil. She never opened church records or old wills. She held that a word does not matter just because someone once wrote it down. The village teachers offered to have their students write to her, but she said no. By the time a child's letter reached the post office, she explained, a teacher had already corrected it. She saw no need for helpers in other villages to mail her words, either. One market drew people from twelve villages, so letters would have been a waste of time.\n\nHis three volumes never mention her name, not even in the thank-yous. Her words survived, but someone else took the credit, and nobody has yet called it what it was.",
+    "prompt": "Why does the author include paragraph 3?",
+    "choices": [
+      "to explain why she questioned sellers on market days",
+      "to explain why she worked only from written records",
+      "to explain why she collected letters from schoolchildren",
+      "to explain why she relied on helpers in other villages"
+    ],
+    "correct_answer": "to explain why she questioned sellers on market days",
+    "key_logic": "Paragraph 3 opens 'she stood among the stalls asking sellers what they called things' and gives her reason: 'She was sure that people speak most truly while they are haggling over goods.'",
+    "distractor_map": [
+      {
+        "adapted": "to explain why she worked only from written records",
+        "source": "explain why she worked from written records alone",
+        "role": "rival method (written sources); ruled out by 'She never opened church records or old wills'"
+      },
+      {
+        "adapted": "to explain why she collected letters from schoolchildren",
+        "source": "explain why she gathered letters written by schoolchildren",
+        "role": "rival method (children's letters); ruled out by 'The village teachers offered ... but she said no'"
+      },
+      {
+        "adapted": "to explain why she relied on helpers in other villages",
+        "source": "explain why she wrote to village correspondents instead",
+        "role": "rival method (helpers by mail); ruled out by 'She saw no need for helpers in other villages to mail her words'"
+      }
+    ],
+    "dropped_distractor": "explain why she recorded only twice-heard spoken words",
+    "changes": [
+      "passage cut from 336 to 305 words; split from 3 into 4 paragraphs (the source's paragraph 1 became paragraphs 1 and 2, so the market paragraph is now paragraph 3); one shared passage for MAPA-09..12",
+      "'A publisher across the border wanted a translation, but nothing of hers appeared abroad in any language' removed (it only refuted the dropped 'printed abroad' option in MAPA-09)",
+      "'She began each market day with the same question' reworded to 'Every week, she started by asking for'; 'set down whatever the first stall told her' and 'A word went onto a card the first time a seller said it, without waiting for a second mouth' removed (they only refuted the dropped 'twice-heard' options in MAPA-10 and MAPA-11)",
+      "'Parish books and wills she never opened' turned into narration 'She never opened church records or old wills'",
+      "'a child's page reaches the post already corrected' expanded to 'By the time a child's letter reached the post office, she explained, a teacher had already corrected it'",
+      "'She kept no correspondents in other villages ... postbags were waste' turned into 'She saw no need for helpers in other villages to mail her words, either. One market drew people from twelve villages, so letters would have been a waste of time'",
+      "'It is no comedy, and hardly a waste ... her stubbornness is not the point, and impatience would be misplaced. The feeling the story leaves is indignation...' cut to 'Her words survived, but someone else took the credit, and nobody has yet called it what it was' (no tone item uses this passage here)",
+      "'measure of oil' sentence kept with the target word unchanged; 'slips' changed to 'word cards'; 'compiler in the capital' changed to 'dictionary maker in the capital'; 'not even among the thanks' changed to 'not even in the thank-yous'",
+      "dropped option 'explain why she recorded only twice-heard spoken words' (its refutation 'without waiting for a second mouth' was the most unnatural sentence; same role dropped in MAPA-11 so it could be cut)",
+      "stem reworded from 'The second paragraph chiefly serves to' to 'Why does the author include paragraph 3?' (the source's second paragraph is paragraph 3 here because the source's first paragraph was split)",
+      "'correspondents' simplified to 'helpers in other villages'"
+    ]
+  },
+  {
+    "id": "MAPA-11",
+    "source_id": "232a5a3b-a2bb-4ab6-adb7-070a8c38e508",
+    "set_id": "P3",
+    "map_area": "Informational Text",
+    "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+    "grade_target": 8,
+    "target_band": "RIT 210-219",
+    "stratum": "comprehension",
+    "passage": "Marta Sandoval spent thirty years compiling a dictionary. It was the first dictionary of the dialect spoken in a high mountain province. She worked at a kitchen table between teaching jobs. What happened to her finished pages is still argued about in the valleys she recorded.\n\nNo book of her own was ever bound, and she never paid a printer a single coin. The university library asked twice for her manuscript. She still had not answered when her word cards left for the capital, and nothing ever reached the library. A newspaper offered to print one letter of the alphabet each month, and she refused to let the work come out in pieces. Then a dictionary maker in the capital borrowed her cards for a summer. Today, eleven thousand of her entries stand in his national dictionary under his name.\n\nFor nineteen years, one market day a week, she stood among the stalls asking sellers what they called things. She was sure that people speak most truly while they are haggling over goods. Every week, she started by asking for the old word for a measure of oil. She never opened church records or old wills. She held that a word does not matter just because someone once wrote it down. The village teachers offered to have their students write to her, but she said no. By the time a child's letter reached the post office, she explained, a teacher had already corrected it. She saw no need for helpers in other villages to mail her words, either. One market drew people from twelve villages, so letters would have been a waste of time.\n\nHis three volumes never mention her name, not even in the thank-yous. Her words survived, but someone else took the credit, and nobody has yet called it what it was.",
+    "prompt": "Based on the passage, what did Sandoval believe?",
+    "choices": [
+      "people speak most truly while bargaining over goods",
+      "a region must be recorded in many places at once",
+      "a word counts only if someone has written it down",
+      "children write the dialect before school corrects them"
+    ],
+    "correct_answer": "people speak most truly while bargaining over goods",
+    "key_logic": "The passage says 'She was sure that people speak most truly while they are haggling over goods.'",
+    "distractor_map": [
+      {
+        "adapted": "a region must be recorded in many places at once",
+        "source": "a province must be recorded in many places at once",
+        "role": "rival belief (many places); ruled out by 'One market drew people from twelve villages, so letters would have been a waste of time'"
+      },
+      {
+        "adapted": "a word counts only if someone has written it down",
+        "source": "a word counts only where someone once wrote it",
+        "role": "rival belief (written proof); ruled out by 'she held that a word does not matter just because someone once wrote it down'"
+      },
+      {
+        "adapted": "children write the dialect before school corrects them",
+        "source": "children write the dialect before school corrects them",
+        "role": "rival belief (children's letters are uncorrected); ruled out by 'By the time a child's letter reached the post office ... a teacher had already corrected it'"
+      }
+    ],
+    "dropped_distractor": "a word needs two separate mouths before it counts",
+    "changes": [
+      "passage cut from 336 to 305 words; split from 3 into 4 paragraphs (the source's paragraph 1 became paragraphs 1 and 2, so the market paragraph is now paragraph 3); one shared passage for MAPA-09..12",
+      "'A publisher across the border wanted a translation, but nothing of hers appeared abroad in any language' removed (it only refuted the dropped 'printed abroad' option in MAPA-09)",
+      "'She began each market day with the same question' reworded to 'Every week, she started by asking for'; 'set down whatever the first stall told her' and 'A word went onto a card the first time a seller said it, without waiting for a second mouth' removed (they only refuted the dropped 'twice-heard' options in MAPA-10 and MAPA-11)",
+      "'Parish books and wills she never opened' turned into narration 'She never opened church records or old wills'",
+      "'a child's page reaches the post already corrected' expanded to 'By the time a child's letter reached the post office, she explained, a teacher had already corrected it'",
+      "'She kept no correspondents in other villages ... postbags were waste' turned into 'She saw no need for helpers in other villages to mail her words, either. One market drew people from twelve villages, so letters would have been a waste of time'",
+      "'It is no comedy, and hardly a waste ... her stubbornness is not the point, and impatience would be misplaced. The feeling the story leaves is indignation...' cut to 'Her words survived, but someone else took the credit, and nobody has yet called it what it was' (no tone item uses this passage here)",
+      "'measure of oil' sentence kept with the target word unchanged; 'slips' changed to 'word cards'; 'compiler in the capital' changed to 'dictionary maker in the capital'; 'not even among the thanks' changed to 'not even in the thank-yous'",
+      "dropped option 'a word needs two separate mouths before it counts' (same role dropped in MAPA-10 so the 'second mouth' sentence could be cut)",
+      "stem reworded from 'It can most reasonably be inferred that Sandoval believed' to 'Based on the passage, what did Sandoval believe?'",
+      "'province' changed to 'region' in the first distractor; 'where someone once wrote it' to 'if someone has written it down'"
+    ]
+  },
+  {
+    "id": "MAPA-12",
+    "source_id": "722470a4-e2ea-4885-b055-8523060a1207",
+    "set_id": "P3",
+    "map_area": "Vocabulary",
+    "map_strand": "Vocabulary",
+    "grade_target": 8,
+    "target_band": "RIT 210-219",
+    "stratum": "vocab",
+    "passage": "Marta Sandoval spent thirty years compiling a dictionary. It was the first dictionary of the dialect spoken in a high mountain province. She worked at a kitchen table between teaching jobs. What happened to her finished pages is still argued about in the valleys she recorded.\n\nNo book of her own was ever bound, and she never paid a printer a single coin. The university library asked twice for her manuscript. She still had not answered when her word cards left for the capital, and nothing ever reached the library. A newspaper offered to print one letter of the alphabet each month, and she refused to let the work come out in pieces. Then a dictionary maker in the capital borrowed her cards for a summer. Today, eleven thousand of her entries stand in his national dictionary under his name.\n\nFor nineteen years, one market day a week, she stood among the stalls asking sellers what they called things. She was sure that people speak most truly while they are haggling over goods. Every week, she started by asking for the old word for a measure of oil. She never opened church records or old wills. She held that a word does not matter just because someone once wrote it down. The village teachers offered to have their students write to her, but she said no. By the time a child's letter reached the post office, she explained, a teacher had already corrected it. She saw no need for helpers in other villages to mail her words, either. One market drew people from twelve villages, so letters would have been a waste of time.\n\nHis three volumes never mention her name, not even in the thank-yous. Her words survived, but someone else took the credit, and nobody has yet called it what it was.",
+    "prompt": "What does the word \"measure\" mean in paragraph 3?",
+    "choices": [
+      "a set amount of something",
+      "a fair judgment of someone",
+      "a law voted on by lawmakers",
+      "a step taken toward a goal"
+    ],
+    "correct_answer": "a set amount of something",
+    "key_logic": "In 'the old word for a measure of oil,' a measure is a set amount of oil, the kind a seller pours out.",
+    "distractor_map": [
+      {
+        "adapted": "a fair judgment of someone",
+        "source": "an accurate judgment of someone",
+        "role": "another sense of 'measure' (took his measure)"
+      },
+      {
+        "adapted": "a law voted on by lawmakers",
+        "source": "a law passed by lawmakers",
+        "role": "another sense of 'measure' (a ballot measure)"
+      },
+      {
+        "adapted": "a step taken toward a goal",
+        "source": "a step taken toward something",
+        "role": "another sense of 'measure' (took measures)"
+      }
+    ],
+    "dropped_distractor": "an outward sign of something",
+    "changes": [
+      "passage cut from 336 to 305 words; split from 3 into 4 paragraphs (the source's paragraph 1 became paragraphs 1 and 2, so the market paragraph is now paragraph 3); one shared passage for MAPA-09..12",
+      "'A publisher across the border wanted a translation, but nothing of hers appeared abroad in any language' removed (it only refuted the dropped 'printed abroad' option in MAPA-09)",
+      "'She began each market day with the same question' reworded to 'Every week, she started by asking for'; 'set down whatever the first stall told her' and 'A word went onto a card the first time a seller said it, without waiting for a second mouth' removed (they only refuted the dropped 'twice-heard' options in MAPA-10 and MAPA-11)",
+      "'Parish books and wills she never opened' turned into narration 'She never opened church records or old wills'",
+      "'a child's page reaches the post already corrected' expanded to 'By the time a child's letter reached the post office, she explained, a teacher had already corrected it'",
+      "'She kept no correspondents in other villages ... postbags were waste' turned into 'She saw no need for helpers in other villages to mail her words, either. One market drew people from twelve villages, so letters would have been a waste of time'",
+      "'It is no comedy, and hardly a waste ... her stubbornness is not the point, and impatience would be misplaced. The feeling the story leaves is indignation...' cut to 'Her words survived, but someone else took the credit, and nobody has yet called it what it was' (no tone item uses this passage here)",
+      "'measure of oil' sentence kept with the target word unchanged; 'slips' changed to 'word cards'; 'compiler in the capital' changed to 'dictionary maker in the capital'; 'not even among the thanks' changed to 'not even in the thank-yous'",
+      "dropped option 'an outward sign of something' (no refutation in the passage; dropped the most abstract sense)",
+      "stem reworded from 'As it is used in the passage, \"measure\" most nearly means' to 'What does the word \"measure\" mean in paragraph 3?'",
+      "'a fixed quantity' simplified to 'a set amount'; 'accurate' to 'fair'; 'passed' to 'voted on'"
+    ]
+  }
+]

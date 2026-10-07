@@ -1,0 +1,362 @@
+[
+ {
+  "id": "MAPA-05",
+  "source_id": "5cf8a937-57bf-44be-b1b2-c9af8c3a0013",
+  "set_id": "P2",
+  "map_area": "Literary Text",
+  "map_strand": "Analyze Theme and Literary Elements; Summarize",
+  "grade_target": 7,
+  "target_band": "RIT 200-209",
+  "stratum": "comprehension",
+  "passage": "Kellerman's boatyard closes for good on the first of September, and I spent the last week of August there with my uncle Teodor. His boat, the Marisol, sat on blocks in the shed. My grandfather built her, and Teodor ran her to the island and back for half his life.\n\nBy Monday, every family on the lake had an idea for what to do with her. By Friday, she had a new owner. The sailing club had asked in June to use her for teaching beginners. \"A gift pays no debt,\" he told them, and no beginner ever stepped aboard. Petrus rowed over to offer his small boat and motor in a trade. Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate. Back in June, he had pushed a knife into her planks near the keel. The blade would not sink in even a quarter inch, and there was no rot anywhere. In the end, the marina at Two Harbours sent a check, and he signed it over to the bank.\n\nThe bank had held a loan on the yard since the bad winter, and the amount owed had grown larger than a whole season of repairs could earn. Every other plan that week hit the same wall: pay in September, or the doors would never open again. \"The yard will outlast any boat in it,\" he said. \"I will not close these doors to keep one hull in the family.\"\n\nThe sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers. I had argued against the sale all week. When a neighbor told me my uncle had done the brave thing, I walked away without a word. I was furious with him all evening. I kept bringing it up at dinner long after he had stopped answering, and my jaw stayed tight the whole night. Even then, I knew it was not fair to blame him. That check was the yard's only chance.",
+  "prompt": "Which choice best tells what the passage is mostly about?",
+  "choices": [
+   "a boat sold because its owner would not let a debt close the yard",
+   "a boat given away because its owner wanted beginners to learn in it",
+   "a boat traded because its owner wanted one he could sail alone",
+   "a boat taken apart because its owner no longer trusted its hull"
+  ],
+  "correct_answer": "a boat sold because its owner would not let a debt close the yard",
+  "key_logic": "The marina's check went to the bank because the debt would close the yard, and Teodor says 'I will not close these doors to keep one hull in the family.'",
+  "distractor_map": [
+   {
+    "adapted": "a boat given away because its owner wanted beginners to learn in it",
+    "source": "a launch given away because her owner wanted beginners learning in her",
+    "role": "rival use (gift to sailing club); ruled out by '\"A gift pays no debt,\" he told them, and no beginner ever stepped aboard'"
+   },
+   {
+    "adapted": "a boat traded because its owner wanted one he could sail alone",
+    "source": "a launch traded away because her owner wanted a boat he could sail alone",
+    "role": "rival use (trade); ruled out by 'Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate'"
+   },
+   {
+    "adapted": "a boat taken apart because its owner no longer trusted its hull",
+    "source": "a launch taken apart because her owner would not pass on a boat he distrusted",
+    "role": "rival use (unsafe boat); ruled out by 'The blade would not sink in even a quarter inch, and there was no rot anywhere'"
+   }
+  ],
+  "dropped_distractor": "a launch licensed again because her owner would not drop the island crossing",
+  "changes": [
+   "passage cut from 380 to 355 words, 4 paragraphs; one shared passage for MAPA-05..08",
+   "'launch' changed to 'boat'; 'cheque' changed to 'check'; 'garboard plank' changed to 'her planks near the keel'; 'slip her single-handed' changed to 'handle the Marisol by himself'; 'mortgage' changed to 'a loan on the yard'",
+   "'The islanders would take the county's new boat; the crossing, he said, was no longer his' removed (it only refuted the dropped 'licensed again ... island crossing' option in MAPA-05 and 'island that would lose its crossing' in MAPA-06)",
+   "'He never asked the registry to put her name back on the list' removed (same reason)",
+   "'There would be no crossing to dread in January' removed (it only refuted the dropped 'unease about the winter' option in MAPA-07)",
+   "'it went in no quarter inch, and no rot showed' turned into narration 'The blade would not sink in even a quarter inch, and there was no rot anywhere'",
+   "'I was not relieved, I was not proud of him, and nothing in it struck me as funny' turned into narration: 'When a neighbor told me my uncle had done the brave thing, I walked away without a word' (not pride), 'I kept bringing it up at dinner long after he had stopped answering' (argument not over, so not relief), 'my jaw stayed tight the whole night' (not amusement)",
+   "added 'I had argued against the sale all week' so the pride option's premise ('a choice she had opposed') stays true while its feeling stays false, as in the source",
+   "'the anger was unfair' reworded to 'it was not fair to blame him'",
+   "'The sale drew half the lake' changed to 'drew half the people on the lake'",
+   "dropped option 'a launch licensed again because her owner would not drop the island crossing' (its refutations, the county boat and the registry sentence, were the most unnatural; dropped the same role in MAPA-06 so both could be cut)",
+   "stem reworded from 'The passage is primarily concerned with' to 'Which choice best tells what the passage is mostly about?'",
+   "'launch ... her owner' changed to 'boat ... its owner' in all options",
+   "REPAIR: passage cut from 355 to 344 words by removing ', out of the water for the first time in forty years' from paragraph 1 (scene-setting that no item's key or kept distractor depends on); identical passage on MAPA-05..08, items otherwise unchanged"
+  ]
+ },
+ {
+  "id": "MAPA-06",
+  "source_id": "e1f92e93-4ffe-48cd-99cc-11f8606f20ba",
+  "set_id": "P2",
+  "map_area": "Literary Text",
+  "map_strand": "Analyze Theme and Literary Elements; Summarize",
+  "grade_target": 7,
+  "target_band": "RIT 200-209",
+  "stratum": "comprehension",
+  "passage": "Kellerman's boatyard closes for good on the first of September, and I spent the last week of August there with my uncle Teodor. His boat, the Marisol, sat on blocks in the shed. My grandfather built her, and Teodor ran her to the island and back for half his life.\n\nBy Monday, every family on the lake had an idea for what to do with her. By Friday, she had a new owner. The sailing club had asked in June to use her for teaching beginners. \"A gift pays no debt,\" he told them, and no beginner ever stepped aboard. Petrus rowed over to offer his small boat and motor in a trade. Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate. Back in June, he had pushed a knife into her planks near the keel. The blade would not sink in even a quarter inch, and there was no rot anywhere. In the end, the marina at Two Harbours sent a check, and he signed it over to the bank.\n\nThe bank had held a loan on the yard since the bad winter, and the amount owed had grown larger than a whole season of repairs could earn. Every other plan that week hit the same wall: pay in September, or the doors would never open again. \"The yard will outlast any boat in it,\" he said. \"I will not close these doors to keep one hull in the family.\"\n\nThe sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers. I had argued against the sale all week. When a neighbor told me my uncle had done the brave thing, I walked away without a word. I was furious with him all evening. I kept bringing it up at dinner long after he had stopped answering, and my jaw stayed tight the whole night. Even then, I knew it was not fair to blame him. That check was the yard's only chance.",
+  "prompt": "Based on the passage, what mattered most to Teodor?",
+  "choices": [
+   "a debt that would have closed the yard",
+   "a hull he could no longer trust",
+   "a boat one person could handle alone",
+   "children who had not yet learned to sail"
+  ],
+  "correct_answer": "a debt that would have closed the yard",
+  "key_logic": "Every plan 'hit the same wall: pay in September, or the doors would never open again,' and Teodor says 'The yard will outlast any boat in it.'",
+  "distractor_map": [
+   {
+    "adapted": "a hull he could no longer trust",
+    "source": "a hull he could no longer vouch for",
+    "role": "rival concern (unsafe boat); ruled out by the knife test: 'there was no rot anywhere'"
+   },
+   {
+    "adapted": "a boat one person could handle alone",
+    "source": "a boat one man could handle on his own",
+    "role": "rival concern (trade for an easier boat); ruled out by 'Teodor could still handle the Marisol by himself'"
+   },
+   {
+    "adapted": "children who had not yet learned to sail",
+    "source": "children who had not yet learned to sail",
+    "role": "rival concern (the sailing club); ruled out by '\"A gift pays no debt,\" ... no beginner ever stepped aboard'"
+   }
+  ],
+  "dropped_distractor": "an island that would lose its crossing",
+  "changes": [
+   "passage cut from 380 to 355 words, 4 paragraphs; one shared passage for MAPA-05..08",
+   "'launch' changed to 'boat'; 'cheque' changed to 'check'; 'garboard plank' changed to 'her planks near the keel'; 'slip her single-handed' changed to 'handle the Marisol by himself'; 'mortgage' changed to 'a loan on the yard'",
+   "'The islanders would take the county's new boat; the crossing, he said, was no longer his' removed (it only refuted the dropped 'licensed again ... island crossing' option in MAPA-05 and 'island that would lose its crossing' in MAPA-06)",
+   "'He never asked the registry to put her name back on the list' removed (same reason)",
+   "'There would be no crossing to dread in January' removed (it only refuted the dropped 'unease about the winter' option in MAPA-07)",
+   "'it went in no quarter inch, and no rot showed' turned into narration 'The blade would not sink in even a quarter inch, and there was no rot anywhere'",
+   "'I was not relieved, I was not proud of him, and nothing in it struck me as funny' turned into narration: 'When a neighbor told me my uncle had done the brave thing, I walked away without a word' (not pride), 'I kept bringing it up at dinner long after he had stopped answering' (argument not over, so not relief), 'my jaw stayed tight the whole night' (not amusement)",
+   "added 'I had argued against the sale all week' so the pride option's premise ('a choice she had opposed') stays true while its feeling stays false, as in the source",
+   "'the anger was unfair' reworded to 'it was not fair to blame him'",
+   "'The sale drew half the lake' changed to 'drew half the people on the lake'",
+   "dropped option 'an island that would lose its crossing' (same role dropped in MAPA-05 so its refutation could be cut)",
+   "stem reworded from 'It can most reasonably be inferred that Teodor's first concern was' to 'Based on the passage, what mattered most to Teodor?'",
+   "'vouch for' simplified to 'trust'",
+   "REPAIR: passage cut from 355 to 344 words by removing ', out of the water for the first time in forty years' from paragraph 1 (scene-setting that no item's key or kept distractor depends on); identical passage on MAPA-05..08, items otherwise unchanged"
+  ]
+ },
+ {
+  "id": "MAPA-07",
+  "source_id": "9e1c6ea4-93fc-4b4a-85c5-6d2fd88d94fc",
+  "set_id": "P2",
+  "map_area": "Literary Text",
+  "map_strand": "Analyze Point of View, Features, and Structure",
+  "grade_target": 7,
+  "target_band": "RIT 200-209",
+  "stratum": "comprehension",
+  "passage": "Kellerman's boatyard closes for good on the first of September, and I spent the last week of August there with my uncle Teodor. His boat, the Marisol, sat on blocks in the shed. My grandfather built her, and Teodor ran her to the island and back for half his life.\n\nBy Monday, every family on the lake had an idea for what to do with her. By Friday, she had a new owner. The sailing club had asked in June to use her for teaching beginners. \"A gift pays no debt,\" he told them, and no beginner ever stepped aboard. Petrus rowed over to offer his small boat and motor in a trade. Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate. Back in June, he had pushed a knife into her planks near the keel. The blade would not sink in even a quarter inch, and there was no rot anywhere. In the end, the marina at Two Harbours sent a check, and he signed it over to the bank.\n\nThe bank had held a loan on the yard since the bad winter, and the amount owed had grown larger than a whole season of repairs could earn. Every other plan that week hit the same wall: pay in September, or the doors would never open again. \"The yard will outlast any boat in it,\" he said. \"I will not close these doors to keep one hull in the family.\"\n\nThe sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers. I had argued against the sale all week. When a neighbor told me my uncle had done the brave thing, I walked away without a word. I was furious with him all evening. I kept bringing it up at dinner long after he had stopped answering, and my jaw stayed tight the whole night. Even then, I knew it was not fair to blame him. That check was the yard's only chance.",
+  "prompt": "Which choice best describes how the narrator feels at the end of the passage?",
+  "choices": [
+   "anger that she knows is not fair",
+   "pride in a choice she had argued against",
+   "amusement at how careful her uncle had been",
+   "relief that a long argument is finally over"
+  ],
+  "correct_answer": "anger that she knows is not fair",
+  "key_logic": "The narrator says 'I was furious with him all evening' and 'Even then, I knew it was not fair to blame him. That check was the yard's only chance.'",
+  "distractor_map": [
+   {
+    "adapted": "pride in a choice she had argued against",
+    "source": "pride in a choice she had opposed",
+    "role": "wrong feeling toward the uncle's choice; ruled out by 'When a neighbor told me my uncle had done the brave thing, I walked away without a word'"
+   },
+   {
+    "adapted": "amusement at how careful her uncle had been",
+    "source": "amusement at her uncle's new caution",
+    "role": "wrong feeling (lightness); ruled out by 'my jaw stayed tight the whole night'"
+   },
+   {
+    "adapted": "relief that a long argument is finally over",
+    "source": "relief that a long argument is over",
+    "role": "wrong feeling (ending); ruled out by 'I kept bringing it up at dinner long after he had stopped answering'"
+   }
+  ],
+  "dropped_distractor": "unease about the winter to come",
+  "changes": [
+   "passage cut from 380 to 355 words, 4 paragraphs; one shared passage for MAPA-05..08",
+   "'launch' changed to 'boat'; 'cheque' changed to 'check'; 'garboard plank' changed to 'her planks near the keel'; 'slip her single-handed' changed to 'handle the Marisol by himself'; 'mortgage' changed to 'a loan on the yard'",
+   "'The islanders would take the county's new boat; the crossing, he said, was no longer his' removed (it only refuted the dropped 'licensed again ... island crossing' option in MAPA-05 and 'island that would lose its crossing' in MAPA-06)",
+   "'He never asked the registry to put her name back on the list' removed (same reason)",
+   "'There would be no crossing to dread in January' removed (it only refuted the dropped 'unease about the winter' option in MAPA-07)",
+   "'it went in no quarter inch, and no rot showed' turned into narration 'The blade would not sink in even a quarter inch, and there was no rot anywhere'",
+   "'I was not relieved, I was not proud of him, and nothing in it struck me as funny' turned into narration: 'When a neighbor told me my uncle had done the brave thing, I walked away without a word' (not pride), 'I kept bringing it up at dinner long after he had stopped answering' (argument not over, so not relief), 'my jaw stayed tight the whole night' (not amusement)",
+   "added 'I had argued against the sale all week' so the pride option's premise ('a choice she had opposed') stays true while its feeling stays false, as in the source",
+   "'the anger was unfair' reworded to 'it was not fair to blame him'",
+   "'The sale drew half the lake' changed to 'drew half the people on the lake'",
+   "dropped option 'unease about the winter to come' (dropped together with the island-crossing material, so 'no crossing to dread in January' could be cut)",
+   "stem reworded from 'At the end of the passage, the narrator's feeling is best described as' to 'Which choice best describes how the narrator feels at the end of the passage?'",
+   "'anger she recognizes as unfair' simplified to 'anger that she knows is not fair'; 'new caution' to 'how careful her uncle had been'",
+   "REPAIR: passage cut from 355 to 344 words by removing ', out of the water for the first time in forty years' from paragraph 1 (scene-setting that no item's key or kept distractor depends on); identical passage on MAPA-05..08, items otherwise unchanged"
+  ]
+ },
+ {
+  "id": "MAPA-08",
+  "source_id": "7cfb9796-ebd0-41e9-9ff4-6f1e413a528b",
+  "set_id": "P2",
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "grade_target": 7,
+  "target_band": "RIT 200-209",
+  "stratum": "vocab",
+  "passage": "Kellerman's boatyard closes for good on the first of September, and I spent the last week of August there with my uncle Teodor. His boat, the Marisol, sat on blocks in the shed. My grandfather built her, and Teodor ran her to the island and back for half his life.\n\nBy Monday, every family on the lake had an idea for what to do with her. By Friday, she had a new owner. The sailing club had asked in June to use her for teaching beginners. \"A gift pays no debt,\" he told them, and no beginner ever stepped aboard. Petrus rowed over to offer his small boat and motor in a trade. Teodor could still handle the Marisol by himself, and he said a trade brings no money through the gate. Back in June, he had pushed a knife into her planks near the keel. The blade would not sink in even a quarter inch, and there was no rot anywhere. In the end, the marina at Two Harbours sent a check, and he signed it over to the bank.\n\nThe bank had held a loan on the yard since the bad winter, and the amount owed had grown larger than a whole season of repairs could earn. Every other plan that week hit the same wall: pay in September, or the doors would never open again. \"The yard will outlast any boat in it,\" he said. \"I will not close these doors to keep one hull in the family.\"\n\nThe sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers. I had argued against the sale all week. When a neighbor told me my uncle had done the brave thing, I walked away without a word. I was furious with him all evening. I kept bringing it up at dinner long after he had stopped answering, and my jaw stayed tight the whole night. Even then, I knew it was not fair to blame him. That check was the yard's only chance.",
+  "prompt": "What does the word drew mean in paragraph 4?",
+  "choices": [
+   "attracted in large numbers",
+   "got from a source",
+   "needed as a depth of water",
+   "sketched on paper"
+  ],
+  "correct_answer": "attracted in large numbers",
+  "key_logic": "'The sale drew half the people on the lake to the shed on Friday, and I carried out chairs for strangers' shows that the sale attracted a large crowd.",
+  "distractor_map": [
+   {
+    "adapted": "got from a source",
+    "source": "obtained from a source",
+    "role": "another sense of 'drew' (drew money from the bank); bank setting makes it tempting"
+   },
+   {
+    "adapted": "needed as a depth of water",
+    "source": "required as depth",
+    "role": "another sense of 'drew' (a boat draws three feet); boat setting makes it tempting"
+   },
+   {
+    "adapted": "sketched on paper",
+    "source": "sketched on paper",
+    "role": "another sense of 'drew' (drew a picture)"
+   }
+  ],
+  "dropped_distractor": "removed by pulling",
+  "changes": [
+   "passage cut from 380 to 355 words, 4 paragraphs; one shared passage for MAPA-05..08",
+   "'launch' changed to 'boat'; 'cheque' changed to 'check'; 'garboard plank' changed to 'her planks near the keel'; 'slip her single-handed' changed to 'handle the Marisol by himself'; 'mortgage' changed to 'a loan on the yard'",
+   "'The islanders would take the county's new boat; the crossing, he said, was no longer his' removed (it only refuted the dropped 'licensed again ... island crossing' option in MAPA-05 and 'island that would lose its crossing' in MAPA-06)",
+   "'He never asked the registry to put her name back on the list' removed (same reason)",
+   "'There would be no crossing to dread in January' removed (it only refuted the dropped 'unease about the winter' option in MAPA-07)",
+   "'it went in no quarter inch, and no rot showed' turned into narration 'The blade would not sink in even a quarter inch, and there was no rot anywhere'",
+   "'I was not relieved, I was not proud of him, and nothing in it struck me as funny' turned into narration: 'When a neighbor told me my uncle had done the brave thing, I walked away without a word' (not pride), 'I kept bringing it up at dinner long after he had stopped answering' (argument not over, so not relief), 'my jaw stayed tight the whole night' (not amusement)",
+   "added 'I had argued against the sale all week' so the pride option's premise ('a choice she had opposed') stays true while its feeling stays false, as in the source",
+   "'the anger was unfair' reworded to 'it was not fair to blame him'",
+   "'The sale drew half the lake' changed to 'drew half the people on the lake'",
+   "dropped option 'removed by pulling' (no refutation in the passage; dropped the sense with the least pull from the passage's boat and bank setting)",
+   "stem reworded from 'As it is used in the passage, \"drew\" most nearly means' to 'What does the word drew mean in paragraph 4?'",
+   "'obtained' simplified to 'got'; 'required as depth' to 'needed as a depth of water'; 'attracted in numbers' to 'attracted in large numbers'",
+   "REPAIR: passage cut from 355 to 344 words by removing ', out of the water for the first time in forty years' from paragraph 1 (scene-setting that no item's key or kept distractor depends on); identical passage on MAPA-05..08, items otherwise unchanged"
+  ]
+ },
+ {
+  "id": "MAPA-16",
+  "source_id": "15a999f3-fe4b-4d5d-b180-d1230f4d9519",
+  "set_id": null,
+  "map_area": "Vocabulary",
+  "map_strand": "Vocabulary",
+  "grade_target": 7,
+  "target_band": "RIT 200-209",
+  "stratum": "vocab",
+  "passage": "In the 1700s, Parliament set the tolls on each English canal in a law. The law set a top price and a bottom price. A company could not charge more than the published list. Nor could it charge one trader less than another for the same load. Some historians say the bottom price was the traders' idea, so no rival could get a better deal. But the canal companies asked for the bottom price. The traders' petitions never mention it. They asked for lower top prices, and complained about every change to the law. A toll stayed where the law put it until Parliament changed it, and Parliament had raised it every time. What the traders feared was ______ tolls.",
+  "prompt": "Which word best completes the sentence?",
+  "choices": [
+   "rising",
+   "unequal",
+   "hidden",
+   "uncontrolled"
+  ],
+  "correct_answer": "rising",
+  "key_logic": "The traders \"asked for lower top prices\" and complained about every change to the law because \"Parliament had raised it every time,\" so they feared rising tolls.",
+  "distractor_map": [
+   {
+    "adapted": "unequal",
+    "source": "unequal",
+    "role": "the historians' reading (traders wanted the bottom price); ruled out because the requests for it came from the companies and the traders never mention it"
+   },
+   {
+    "adapted": "hidden",
+    "source": "hidden",
+    "role": "secret prices; ruled out by 'Parliament set the tolls on each English canal in a law' and 'the published list'"
+   },
+   {
+    "adapted": "uncontrolled",
+    "source": "discretionary",
+    "role": "tolls a company sets as it pleases; ruled out by 'A toll stayed where the law put it until Parliament changed it'"
+   }
+  ],
+  "dropped_distractor": null,
+  "changes": [
+   "passage cut from 146 to 134 words",
+   "'ceiling and a floor' / 'maxima' reworded as 'top price and a bottom price' / 'top prices'",
+   "'shareholders wanted an end to rate-cutting between rival canals' cut (the companies' motive is not needed to rule out any option)",
+   "distractor 'discretionary' replaced by 'uncontrolled' (same role: tolls a company could set at will)",
+   "stem reworded to 'Which word best completes the sentence?'",
+   "key word rising kept",
+   "REPAIR: passage cut from 133 to 119 words: first sentence reworded 'Parliament set the tolls on each English canal in a law'; 'now' cut from 'Some historians now say'; 'It also could not charge' to 'Nor could it charge'; 'and they complained' to 'and complained'; 'The old petitions show otherwise. The requests for a bottom price came from the canal companies. The traders never mention it. Instead, they' merged into 'But the canal companies asked for the bottom price. The traders' petitions never mention it. They'; distractor_map quote for 'hidden' updated; key and options unchanged"
+  ]
+ },
+ {
+  "id": "MAPA-23",
+  "source_id": "2c67f590-8c5e-48a9-b078-57218f4e790e",
+  "set_id": null,
+  "map_area": "Informational Text",
+  "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+  "grade_target": 8,
+  "target_band": "RIT 210-219",
+  "stratum": "comprehension",
+  "passage": "Countries rich in oil or minerals often grow more slowly than countries without them. This pattern, called the \"resource curse,\" is often taken to show that natural wealth harms an economy by itself. Some economists disagree. In their view, sudden resource wealth does not damage a country's institutions, such as its courts and government, if they were already sound. Instead, the wealth tends to arrive in countries whose institutions were already weak. It just makes that weakness easier to see and better funded. Where accountable institutions existed before a discovery, these economists found, growth did not drop afterward. On this view, the curse is not caused by the resource. It is an older problem that the resource exposes.",
+  "prompt": "Which finding, if true, would most strengthen the argument in the passage?",
+  "choices": [
+   "In several countries, growth fell sharply in the years right after a big mineral find.",
+   "A country with weak institutions before it found oil still grew slowly even after the oil ran out.",
+   "Countries with strong institutions tend to make and sell more kinds of goods than countries that rely on one export.",
+   "Sudden resource wealth has been shown to weaken institutions in countries that were well run before a find."
+  ],
+  "correct_answer": "A country with weak institutions before it found oil still grew slowly even after the oil ran out.",
+  "key_logic": "The economists argue the curse \"is not caused by the resource\" but is \"an older problem\"; slow growth that continues after the oil is gone shows the weakness does not depend on the resource.",
+  "distractor_map": [
+   {
+    "adapted": "In several countries, growth fell sharply in the years right after a big mineral find.",
+    "source": "In several countries, growth rates fell sharply in the years immediately following a major mineral discovery.",
+    "role": "restates the raw pattern and fits the 'resource harms by itself' view the passage rejects"
+   },
+   {
+    "adapted": "Countries with strong institutions tend to make and sell more kinds of goods than countries that rely on one export.",
+    "source": "Countries with strong institutions tend to have more diversified economies than countries dependent on a single export such as oil or minerals.",
+    "role": "true but irrelevant to the cause of slow growth"
+   },
+   {
+    "adapted": "Sudden resource wealth has been shown to weaken institutions in countries that were well run before a find.",
+    "source": "Resource windfalls have been shown to weaken the institutions of countries that were well governed before a discovery.",
+    "role": "contradicts the claim that the wealth does not damage sound institutions, so it would weaken the argument"
+   }
+  ],
+  "dropped_distractor": null,
+  "changes": [
+   "passage cut from 132 to 120 words",
+   "'economically corrosive in itself' simplified to 'harms an economy by itself'",
+   "'resource windfalls do not degrade otherwise sound institutions' simplified, with a short gloss of institutions ('such as its courts and government')",
+   "closing sentence 'What looks like wealth causing dysfunction is dysfunction determining how wealth is used' cut (repeats the previous sentence)",
+   "stem 'the argument advanced in the text' reworded as 'the argument in the passage'",
+   "options: 'more diversified economies' reworded as 'make and sell more kinds of goods'; 'windfalls' as 'sudden resource wealth'; 'well governed' as 'well run'; 'depleted and the windfall had ended' as 'ran out'",
+   "same claim and same four findings kept, simplified",
+   "REPAIR: passage cut from 121 to 118 words: 'if they were sound to begin with' to 'if they were already sound'; 'honest, accountable institutions' to 'accountable institutions' (source says 'accountable'); claim, key and four findings unchanged"
+  ]
+ },
+ {
+  "id": "MAPA-24",
+  "source_id": "a349f42f-f1e3-4b5a-b679-6ebfed79c786",
+  "set_id": null,
+  "map_area": "Informational Text",
+  "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+  "grade_target": 8,
+  "target_band": "RIT 210-219",
+  "stratum": "comprehension",
+  "passage": "Many warblers sing long, complicated songs. The usual explanation is that these songs are honest signals. Only strong, healthy males can afford the energy it takes to sing them, so females who choose fancy singers get better mates. Kowalski's field data challenge this idea. Over nine seasons, the chicks of males with the most complex songs were no more likely to survive than the chicks of plain singers. Females paired with fancy singers did not raise more young, either. Kowalski argues that complex song lasts not because it helps choosy females, but because nothing punishes males for producing it. Once the trait appeared, nothing worked against it.",
+  "prompt": "Which finding, if true, would most strongly support Kowalski's explanation?",
+  "choices": [
+   "Females went to a speaker that played complex songs faster than to one that played simple songs, every time.",
+   "Males with complex songs were caught by predators or worn out no more often than males with simple songs.",
+   "In a closely related kind of warbler, songs have grown simpler and simpler over the last one hundred years.",
+   "Males raised alone ended up with much simpler songs than males that heard adult birds sing."
+  ],
+  "correct_answer": "Males with complex songs were caught by predators or worn out no more often than males with simple songs.",
+  "key_logic": "Kowalski says complex song lasts \"because nothing punishes males for producing it\"; complex singers being caught or worn out no more often than simple singers is direct evidence that there is no penalty.",
+  "distractor_map": [
+   {
+    "adapted": "Females went to a speaker that played complex songs faster than to one that played simple songs, every time.",
+    "source": "Females consistently approached recordings of complex songs more quickly than recordings of simple songs.",
+    "role": "supports the honest-signal, female-choice view Kowalski argues against"
+   },
+   {
+    "adapted": "In a closely related kind of warbler, songs have grown simpler and simpler over the last one hundred years.",
+    "source": "In a closely related warbler species, average song complexity has declined steadily over the past century.",
+    "role": "concerns a different species and a decline, not why complexity lasts here"
+   },
+   {
+    "adapted": "Males raised alone ended up with much simpler songs than males that heard adult birds sing.",
+    "source": "Males raised in isolation developed markedly simpler songs than males exposed to adult tutors.",
+    "role": "about how song is learned, unrelated to why complex song is kept"
+   }
+  ],
+  "dropped_distractor": null,
+  "changes": [
+   "passage cut from 150 to 108 words",
+   "'afford the metabolic expense of singing' simplified to 'afford the energy it takes to sing them'",
+   "'gained no measurable increase in reproductive success' simplified to 'did not raise more young'",
+   "'is not being maintained by the benefits it confers on choosy females but by the simple absence of any penalty' simplified",
+   "closing sentence about 'a supposed triumph of adaptive design ... evolutionary accident' cut (not needed to decide any option)",
+   "stem 'for the persistence of song complexity' cut; 'Kowalski's explanation' kept",
+   "options: 'consistently approached recordings' reworded as 'went to a speaker that played ... every time'; 'elaborate repertoires' reworded as 'complex songs'; 'suffered no higher rates of predation or exhaustion' as 'caught by predators or worn out no more often'; 'in isolation' as 'alone'; 'exposed to adult tutors' as 'heard adult birds sing'",
+   "same claim and same four findings kept, simplified",
+   "REPAIR: option 'Males raised alone developed much simpler songs than young males that heard adult birds singing.' reworded to 'Males raised alone ended up with much simpler songs than males that heard adult birds sing.' to lower its reading grade (same finding and role: how song is learned); distractor_map updated; key and other options unchanged"
+  ]
+ }
+]
