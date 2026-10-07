@@ -1361,6 +1361,24 @@ recorded only in a commit message is a finding nobody reads.
 
   Evidence: `ACT-MATH-V20-PREREGISTERED.md`, `act-math-v20{-a,-b,-c,-d,}.batch.json`, `act-math-v20.kept.batch.json`, `act-math-v20.qc.json`, `act-math-v20.drops.json`, `act-math-v20-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v20.grader-{a,b}.json`, `act-math-v20-grade.{grade,gradekey}.json`, `act-math-v20-attack-draw.mjs`; ledger `act-math-v20-kept-2026-10-08`.
 
+- **2026-10-08** — **STANDING MECHANISM-KEYWORD DUPLICATE CHECK: `math-mechanism-dup.mjs`, next to the Jaccard scan, in `/bank-act-math` and the RUNBOOK as a pre-insert step.** Built because v20's three mechanism duplicates (above) were invisible to `act-math-v16-dupscan.mjs` and found only by a hand keyword search.
+
+  **What it does.** Per candidate: mechanism tags from a fixed maths lexicon (~95 phrase families over prompt + subskill + explanation), structural signatures from the prompt (three function values given; two or more lines; two movers; two movers with a staggered start; a transformed f), rare shared equations (df <= 2 in the live bank — `i = √(−1)` is a convention, not a setup), shared numbers, and author-declared `mechanism: [..]` phrases. IDF-weighted over all live maths rows (paged, table count asserted, refuses on mismatch). **FLAG** = score >= 16 with shared structure (a signature, >= 2 rare shared equations, or >= 2 co-occurring declared terms), or >= 24 on topic tags alone; top 5 per candidate printed for a hand read. Exit 1 = flags to read.
+
+  **Break-test.** The weights and tiers were **set on v20**, so v20 is the fit, not the evidence:
+
+      v20 (own cohort excluded)  AM20A-05 ~ e8f17f52  20.8  rank 1 of 2,729  FLAG
+                                 AM20G-03 ~ da512959  32.8  rank 1           FLAG
+                                 AM20I-03 ~ 7c27e30c  48.9  rank 1           FLAG
+                                 other 42 items: 41 quiet; AM20F-01 flags (the recorded 991f721f inner-argument twin; dropped on bounds)
+      HELD OUT positive          AM18F-05 ~ sat 9b4c06b0 (hand-dropped in v18)  17.8  rank 4  FLAG
+      HELD OUT clean             v16 kept 45, v17 kept 6, v19 kept 9, v18 other 45:  0 FLAG of 105
+      Jaccard scan               none of the three v20 pairs
+
+  Each mechanism was reverted separately: without signatures AM20A-05 falls to 7.2 (quiet); without signatures and equations AM20G-03 falls to 9.8 (quiet); AM20I-03 survives on tags alone (25.4). **Three fixes came from attacking it, not reading the green:** the equation extractor first took English as maths (`thefunctionfisdefinedbyf(x)=log` matched two unrelated items); `y = f(x)` as a "transformed f" fired on every graph item; "plane" counted as a mover in every coordinate-plane stem. **Where it is weakest:** the `near` tier is a long reading list (32 lines on v16), the lexicon is hand-written so a mechanism it has no word for is invisible to it (AM20F-01 vs 991f721f only reaches near, 14.5), and a quiet result does not clear anything — the hand read still decides.
+
+  Evidence: `math-mechanism-dup.mjs` (header records the break-test), `.claude/skills/bank-act-math/SKILL.md` § Duplicate checks, `RUNBOOK.md` step 3b.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

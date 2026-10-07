@@ -195,6 +195,18 @@ math; it is only a soft cross-check + difficulty rating.)
    independent confirmation. If the blind solver disagrees on a
    sandbox-passing item, inspect it by hand before inserting.
 
+3b. **Duplicate checks, both, before insert** (standing since 2026-10-08):
+   ```
+   node scripts/study-bank/act-math-v16-dupscan.mjs <N> scratchpad/math-batch.json   # stem similarity
+   node scripts/study-bank/math-mechanism-dup.mjs <N> scratchpad/math-batch.json     # mechanism keywords
+   ```
+   Both page ALL live maths rows across families and refuse on a count
+   mismatch. The similarity scan misses a mechanism in new words
+   (act-math-v20: three such duplicates, all found only by keyword search);
+   the mechanism check ranks co-occurring mechanism terms, structural
+   signatures and shared numeric setups. Every FLAG is read by hand; a
+   same-mechanism live row is a drop. See `/bank-act-math` for flags.
+
 4. **Insert** (`insert` re-runs the sandbox as a hard gate, then requires
    grader difficulty ∈ {hard, medium}):
    ```

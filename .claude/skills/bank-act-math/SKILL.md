@@ -44,6 +44,36 @@ npx tsx scripts/study-bank/verify-act-draw.ts
 The bank-wide dedup constraint will refuse an item identical to one in
 another family (it did once); that is correct, not a bug.
 
+### Duplicate checks — BOTH, before insert (standing step since 2026-10-08)
+
+```bash
+# 1. stem similarity (Jaccard over words + identical option sets)
+node scripts/study-bank/act-math-v16-dupscan.mjs <N> <batch.json>
+# 2. mechanism keywords (same mechanism in different words)
+node scripts/study-bank/math-mechanism-dup.mjs <N> <batch.json>
+```
+
+Both read ALL live maths rows in every family, paged, and refuse (exit 2) if
+the count does not match. The Jaccard scan cannot see a reworded mechanism:
+v20 shipped three to the graders that it missed — fit-a-quadratic-through-
+three-values (AM20A-05 ~ act e8f17f52), the same two lines with a different
+third side (AM20G-03 ~ isee da512959), head-start-then-closing-speed
+(AM20I-03 ~ sat 7c27e30c). `math-mechanism-dup.mjs` tags each item with
+mechanism terms (lexicon over prompt + subskill + explanation), structural
+signatures (three function values given, two or more lines, two movers with
+a staggered start, a transformed f), rare shared equations, shared numbers,
+and any author-declared `mechanism: [..]` keywords, IDF-weighted over the
+live bank, and prints the top 5 per candidate. **FLAG** = score >= 16 with
+shared structure, or >= 24 on topic tags alone; **every FLAG is read by
+hand** (same mechanism -> drop, rule 5); `near` lines are a reading list.
+Exit 1 means flags exist, not that the batch fails. Ask authors to declare
+`mechanism` (3-5 short phrases a reader would grep for) and strip it before
+the grade render with the other author fields. Run a live cohort as a
+control with `--exclude-cohort <cohort>`; `--pair CAND:liveIdPrefix` prints
+one pair's score and rank; `MMD_ABLATE=sig|lit|lex|num|decl` switches a
+channel off for break-tests. The thresholds were set on v20 — a pair it
+scores quiet is NOT cleared; the hand read still decides.
+
 ## 3. Record
 
 `REGISTER.md` §5 (A21).
