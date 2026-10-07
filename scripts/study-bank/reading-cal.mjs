@@ -263,6 +263,27 @@ function cmdNat(fam) {
   writeFileSync(join(dir, 'nat-score.json'), JSON.stringify({ n: all.length, median: med, ratings: Object.fromEntries(ids.map(n => [nk[n], js.map(j => j[n].rating)])) }, null, 1) + '\n')
 }
 
+// ---------- Stage B relative bars (READING-BATCH-WV5 prereg) ----------
+const lchoose = (n, k) => { let s = 0; for (let i = 1; i <= k; i++) s += Math.log(n - k + i) - Math.log(i); return s }
+export const pmf = (n, p, k) => p <= 0 ? (k === 0 ? 1 : 0) : p >= 1 ? (k === n ? 1 : 0) : Math.exp(lchoose(n, k) + k * Math.log(p) + (n - k) * Math.log(1 - p))
+export const cdfLe = (n, p, m) => { let s = 0; for (let k = 0; k <= m; k++) s += pmf(n, p, k); return Math.min(1, s) }
+/**
+ * The relative bar for one measure. Live k/nl is smoothed to p = (k+1)/(nl+2) (Laplace: a 33/33 control
+ * is not a certainty). 'good' measures (higher is better): the bar is the LARGEST count g such that a
+ * candidate whose true rate equals p reaches >= g with probability >= power. 'bad' measures: the SMALLEST
+ * m such that P(<= m) >= power. Tolerance = live point rate minus bar rate (or bar minus live for bad).
+ * DECIDABLE only if the bar can fail inside the candidate's attainable range (g >= 1; m <= nc - 1).
+ */
+export function relBar(k, nl, nc, dir, power = 0.8) {
+  const p = (k + 1) / (nl + 2), live = 100 * k / nl
+  if (dir === 'good') {
+    let g = 0; for (let t = nc; t >= 0; t--) if (1 - cdfLe(nc, p, t - 1) >= power) { g = t; break }
+    return { dir, live, p, bar: g, barRate: 100 * g / nc, tol: live - 100 * g / nc, decidable: g >= 1, passProbAtLive: 1 - cdfLe(nc, p, g - 1) }
+  }
+  let m = nc; for (let t = 0; t <= nc; t++) if (cdfLe(nc, p, t) >= power) { m = t; break }
+  return { dir, live, p, bar: m, barRate: 100 * m / nc, tol: 100 * m / nc - live, decidable: m <= nc - 1, passProbAtLive: cdfLe(nc, p, m) }
+}
+
 function selftest() {
   let fail = 0
   const expect = (c, m) => { console.log(`${c ? 'ok  ' : 'FAIL'} ${m}`); if (!c) fail++ }
@@ -287,6 +308,11 @@ function selftest() {
   let threw = false; try { scoreSsat({ W1: { fKey: 'B' } }, [{ W1: g('B') }, {}]) } catch { threw = true }
   expect(threw, 'scoreSsat refuses when a grader is missing an item')
   expect(strandOf('vocabulary in context').startsWith('Vocabulary') && strandOf('attitude/tone').startsWith('Analyze Point') && strandOf('detail').startsWith('Analyze Central'), 'strand table')
+  expect(Math.abs(cdfLe(12, 0.5, 6) - 0.6128) < 1e-3, `binomial cdf(12, .5, 6) = .613 (got ${cdfLe(12, 0.5, 6).toFixed(4)})`)
+  const c = relBar(33, 33, 12, 'good'); expect(c.bar === 11 && c.decidable, `C at 33/33 live -> >= 11/12, decidable (got ${c.bar})`)
+  const f = relBar(32, 33, 12, 'bad'); expect(f.bar === 12 && !f.decidable, `F at 32/33 live easy -> <= 12/12, NOT decidable (got ${f.bar})`)
+  const z = relBar(1, 33, 12, 'good'); expect(z.bar === 0 && !z.decidable, 'pilot-pass at 1/33 live -> bar 0, NOT decidable')
+  const h = relBar(6, 12, 12, 'bad'); expect(h.decidable && h.bar >= 6 && h.bar <= 8, `a mid-range live rate gives a decidable bar near it (got <= ${h.bar}/12)`)
   console.log(fail ? `SELFTEST FAILED (${fail})` : 'selftest passed'); process.exit(fail ? 1 : 0)
 }
 
@@ -296,6 +322,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   else if (cmd === 'render') cmdRender()
   else if (cmd === 'score') { if (!['ssat', 'isee'].includes(arg)) die('score ssat|isee'); cmdScore(arg) }
   else if (cmd === 'nat') { if (!['ssat', 'isee'].includes(arg)) die('nat ssat|isee'); cmdNat(arg) }
+  else if (cmd === 'relbars') {
+    const sc = rd(join(O, 'ssat', 'score.json')), get = n => sc.find(x => x.name.startsWith(n)) ?? die(`ssat/score.json has no ${n}`)
+    const nc = Number(arg ?? 12), rows = [['C exclusivity', 'good', nc], ['F easy', 'bad', nc], ['Q distractor', 'good', nc * 8], ['dead-by-both', 'bad', nc], ['pilot-pass', 'good', nc]]
+    console.log(`relative bars for a ${nc}-item SSAT candidate, from ssat/score.json (live control); power 0.8\n`)
+    for (const [n, d, c] of rows) { const x = get(n), b = relBar(x.k, x.n, c, d); console.log(`  ${n.padEnd(14)} live ${x.k}/${x.n} = ${b.live.toFixed(1)}% -> candidate ${d === 'good' ? '>=' : '<='} ${b.bar}/${c} (${b.barRate.toFixed(1)}%), tolerance ${b.tol.toFixed(1)} pts, P(pass | candidate = live) ${b.passProbAtLive.toFixed(2)} -> ${b.decidable ? 'DECIDING' : 'NOT DECIDABLE (cannot fail inside the attainable range): reported only'}`) }
+  }
   else if (cmd === '--selftest') selftest()
   else die('usage: draw | render | score ssat|isee | nat ssat|isee | --selftest')
 }

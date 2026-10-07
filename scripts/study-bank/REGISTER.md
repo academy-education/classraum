@@ -189,6 +189,15 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-07** — **READING BAR CALIBRATION, STAGE A: THE LIVE BANK FAILS THE ABSOLUTE BARS THE PILOTS FAILED, MATERIALLY, EXCEPT EXCLUSIVITY. A1 REPLACES THE A0 ABSENT-OPTION RULE (0 correct keys flagged, 11/11 bad options caught).** Pre-registered `5d705576`; draw and renders frozen `4b5a169c` before any grader ran. The same with-source prompts were used (SSAT pilot 4 C+F and MAP pilot 7 prompt 4, each with the misread pilot's single `option_quality` field).
+  - **SSAT live** (33 items / 7 groups, seeded and cohort-stratified): C 33/33 PASS. Easy **32/33 = 97.0%** (bar <= 50%). Q plausible **6.1%** of 264 labels (bar >= 75%). Dead-by-both **15/33** (bar <= 16.7%). Pilot-pass **1/33**. All four fails are material (Wilson). Naturalness median 3; s4 passages rated 1-2.
+  - **ISEE live on the MAP grader** (31 items / 6 groups, grade 8, RIT 210-219): C 30/31 PASS. S1-b **1/31**. Easier **61/62**, and S1-d offsets -3.1 / -2.8, so it is graded at RIT 170-189, not above grade 8 as the prereg predicted. G 1/31 PASS. Q **9.7%**. Naturalness median 1.5.
+  - **So the absolute easy, pilot-pass and plausibility bars were unattainable for items we ship.** SSAT pilots 3-4 (9/12 and 7/12 easy) and MAP pilot 7 (S1-b 6/12, easier 10/24) scored better than live on exactly the bars they failed. Exclusivity was attainable: live passes it materially, so pilot 4's 9/12 was a real deficit.
+  - "Known-good" is guessability-cleared only (human options-only 15.0%). The graders name the reason live reads as easy: every wrong option is named and denied in its own sentence, and many s2/v1 distractors are absent outright.
+  - **A1** (`absent-check.mjs`): A0 as a prefilter, then two key-blind presence judges with verbatim quotes. Known-good keys flagged: A0 33, **A1 0** (122 judged keys; no judge called any of them absent). Bad cases: **11/11** that reach it fired (7 plants, plus museum/herons/beetles from pilot 3). One inherited A0 false negative, pilot 3's "food", as predicted.
+  - Also found: A1 flags **44 live SSAT and 59 live ISEE distractors** as absent. Live fails the NAEP no-filler rule, so requiring A1 of new items is stricter than live.
+  - Evidence: `READING-BAR-CALIBRATION-2026-10-07{.prereg,}.md`, `reading-cal/`, `reading-cal.mjs`, `absent-check.mjs` (both `--selftest`). Stage B (relative bars) is pre-registered separately. → **B10**
+
 - **2026-10-07** — **MAP PILOT 8 + SSAT READING PILOT 5: DISTRACTORS DERIVED FROM SIMULATED STUDENT MISREADINGS (owner's new construction; pre-registered `40e4bbe9` before any passage, stem or panel; Amendment 1 `a95e3384`, the owner's NAEP distractor guide, committed before any stem or distractor; no bar changed): BOTH FAIL AT STAGE P (PANEL YIELD), THE FIRST DECIDING STAGE. NOTHING FROZEN, GRADED OR INSERTED.**
   - **Method.** Real public-domain passages: Montgomery 1911 (M6, grade 6), Fabre/Hasbrouck 1917 (M8, grade 8), Hudson 1918 (U1), Burroughs 1905 (U2). All are Gutenberg texts, V-checked verbatim with sha256, 2/2 per family.
     - Open-ended stems from a fresh writer that saw no answers.

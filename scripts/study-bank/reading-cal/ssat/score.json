@@ -1,0 +1,65 @@
+[
+ {
+  "name": "C exclusivity",
+  "k": 33,
+  "n": 33,
+  "rate": 100,
+  "lo": 89.57265699643881,
+  "hi": 100,
+  "verdict": "PASS",
+  "material": true,
+  "bar": ">= 10/12 (83.3%)"
+ },
+ {
+  "name": "F easy (grader-median)",
+  "k": 32,
+  "n": 33,
+  "rate": 96.96969696969697,
+  "lo": 84.68093832683194,
+  "hi": 99.46307279103482,
+  "verdict": "FAIL",
+  "material": true,
+  "bar": "<= 6/12 (50.0%)"
+ },
+ {
+  "name": "Q distractor >= plausible",
+  "k": 16,
+  "n": 264,
+  "rate": 6.0606060606060606,
+  "lo": 3.7645675983681097,
+  "hi": 9.61707289362417,
+  "verdict": "FAIL",
+  "material": true,
+  "bar": ">= 75%"
+ },
+ {
+  "name": "dead-by-both (MAP G bar)",
+  "k": 15,
+  "n": 33,
+  "rate": 45.45454545454545,
+  "lo": 29.842689125891496,
+  "hi": 62.014342056250435,
+  "verdict": "FAIL",
+  "material": true,
+  "bar": "<= 2/12 (16.7%)"
+ },
+ {
+  "name": "pilot-pass excl+!easy+!dead (S1-b)",
+  "k": 1,
+  "n": 33,
+  "rate": 3.0303030303030303,
+  "lo": 0.5369272089651724,
+  "hi": 15.319061673168067,
+  "verdict": "FAIL",
+  "material": true,
+  "bar": ">= 10/12 (83.3%)"
+ },
+ {
+  "name": "harder (grader-median hard)",
+  "k": 0,
+  "n": 33,
+  "rate": 0,
+  "lo": 0,
+  "hi": 10.427343003561191
+ }
+]
