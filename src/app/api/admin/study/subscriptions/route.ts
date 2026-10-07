@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { dbAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth } from '@/lib/admin-auth';
+import { fetchTestAccountIds, testFlagsFor } from '@/lib/study/test-accounts';
 
 /**
  * Admin browsable list of ALL study subscriptions.
@@ -10,9 +11,10 @@ import { requireAdminAuth } from '@/lib/admin-auth';
  *     name-or-email search / test-user flag, paginated, with per-status
  *     counts for the filter.
  *
- *   test=test → only students flagged is_test_user; test=real → only
- *   unflagged students; anything else (or absent) → everyone. The flag lives
- *   in study_user_prefs, so both branches resolve the flagged id set first.
+ *   test=test → only test accounts; test=real → only real ones; anything
+ *   else (or absent) → everyone. A test account is users.is_internal OR
+ *   study_user_prefs.is_test_user (lib/study/test-accounts, owner decision
+ *   2026-10-07), so both branches resolve the flagged id set first.
  *
  * Admin-only.
  */
@@ -47,26 +49,16 @@ export async function GET(req: NextRequest) {
   const test = sp.get('test'); // 'test' | 'real' | anything else = all
   const page = Math.max(1, parseInt(sp.get('page') ?? '1', 10) || 1);
 
-  // Test-user filter → the flagged student-id set. Paged past the PostgREST
-  // 1000-row cap so a large flagged cohort is never silently truncated.
+  // Test-account filter → the flagged id set (both flags), paged past the
+  // PostgREST 1000-row cap so a large flagged cohort is never truncated.
   let testIds: string[] | null = null;
   if (test === 'test' || test === 'real') {
-    const ids: string[] = [];
-    for (let from = 0; ; from += 1000) {
-      const { data, error: tErr } = await dbAdmin
-        .from('study_user_prefs')
-        .select('student_id')
-        .eq('is_test_user', true)
-        .order('student_id')
-        .range(from, from + 999);
-      if (tErr) {
-        console.error('[admin/study/subscriptions] test ids', tErr);
-        return NextResponse.json({ error: 'list failed' }, { status: 500 });
-      }
-      ids.push(...(data ?? []).map((r) => r.student_id as string));
-      if ((data ?? []).length < 1000) break;
+    try {
+      testIds = [...(await fetchTestAccountIds(dbAdmin))];
+    } catch (tErr) {
+      console.error('[admin/study/subscriptions] test ids', tErr);
+      return NextResponse.json({ error: 'list failed' }, { status: 500 });
     }
-    testIds = ids;
     if (test === 'test' && testIds.length === 0) {
       return NextResponse.json({ subscriptions: [], total: 0, page, pageSize: PAGE_SIZE, counts: {} });
     }
@@ -125,14 +117,17 @@ export async function GET(req: NextRequest) {
   // Attach student name/email + test-user flag for the page.
   const ids = Array.from(new Set(pageRows.map((r) => r.student_id)));
   const nameMap = new Map<string, { name: string | null; email: string | null }>();
-  const testMap = new Map<string, boolean>();
+  let testMap: Awaited<ReturnType<typeof testFlagsFor>> = new Map();
   if (ids.length > 0) {
-    const [{ data: users }, { data: prefs }] = await Promise.all([
+    const [{ data: users }, flags] = await Promise.all([
       dbAdmin.from('users').select('id, name, email').in('id', ids),
-      dbAdmin.from('study_user_prefs').select('student_id, is_test_user').in('student_id', ids),
+      testFlagsFor(dbAdmin, ids).catch((e) => {
+        console.error('[admin/study/subscriptions] test flags', e);
+        return new Map() as Awaited<ReturnType<typeof testFlagsFor>>;
+      }),
     ]);
     for (const u of users ?? []) nameMap.set(u.id, { name: u.name, email: u.email });
-    for (const p of prefs ?? []) testMap.set(p.student_id, p.is_test_user);
+    testMap = flags;
   }
 
   // Per-status counts for the filter (whole table, ignoring the status
@@ -147,7 +142,7 @@ export async function GET(req: NextRequest) {
     studentId: r.student_id,
     studentName: nameMap.get(r.student_id)?.name ?? null,
     studentEmail: nameMap.get(r.student_id)?.email ?? null,
-    isTestUser: testMap.get(r.student_id) ?? false,
+    isTestUser: testMap.get(r.student_id)?.isTestAccount ?? false,
     status: r.status,
     plan: r.plan,
     priceWon: typeof r.price_cents === 'number' ? Math.round(r.price_cents / 100) : null,

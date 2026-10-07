@@ -18,6 +18,11 @@
  *
  * Emails are read (service role) only to take the DOMAIN and to match the
  * suppression list; no address is printed.
+ *
+ * First exposure reads study_item_exposures.first_seen_at /
+ * first_seen_session_id (migration 126). Before 126 is applied those columns
+ * do not exist and the script REFUSES, unless you pass --pre-126, which uses
+ * seen_at / session_id (the LATEST serve) and says so in the report header.
  */
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
@@ -55,6 +60,16 @@ async function main() {
   const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
   const minN = Number(arg('--min-n') ?? DEFAULT_MIN_N)
   const modes = (arg('--modes') ?? 'full_test').split(',').map(s => s.trim()).filter(Boolean)
+  const pre126 = process.argv.includes('--pre-126')
+  {
+    const { error } = await db.from('study_item_exposures').select('first_seen_at,first_seen_session_id').limit(1)
+    if (error && !pre126) {
+      console.error(`REFUSING: study_item_exposures.first_seen_at is not readable (${error.message}).`)
+      console.error('Apply migration 126, or pass --pre-126 to measure first exposure from seen_at (the latest serve).')
+      process.exit(2)
+    }
+    if (!error && pre126) { console.error('REFUSING: --pre-126 given but migration 126 is applied; drop the flag.'); process.exit(2) }
+  }
   if (!Number.isFinite(minN) || minN < 2) { console.error('REFUSING: --min-n must be a number >= 2'); process.exit(2) }
 
   const [users, prefs, managers, teachers, students, academies, suppress, sessions, attempts, exposures, bank, payments] = await Promise.all([
@@ -67,7 +82,8 @@ async function main() {
     pageAll<{ email: string }>(db, 'email_suppressions', 'email', 'email'),
     pageAll<{ id: string; student_id: string; status: string | null; mode: string | null; completed_at: string | null; ended_reason: string | null; config: Record<string, unknown> | null }>(db, 'study_sessions', 'id,student_id,status,mode,completed_at,ended_reason,config'),
     pageAll<{ id: string; session_id: string; item_id: string | null; is_correct: boolean | null; created_at: string }>(db, 'study_attempts', 'id,session_id,item_id,is_correct,created_at'),
-    pageAll<{ id: string; student_id: string; item_id: string; session_id: string | null; seen_at: string }>(db, 'study_item_exposures', 'id,student_id,item_id,session_id,seen_at'),
+    pageAll<{ id: string; student_id: string; item_id: string; first_session_id: string | null; first_seen_at: string }>(db, 'study_item_exposures',
+      pre126 ? 'id,student_id,item_id,first_session_id:session_id,first_seen_at:seen_at' : 'id,student_id,item_id,first_session_id:first_seen_session_id,first_seen_at'),
     pageAll<{ id: string; family: string; section: string; domain: string; difficulty: string; archived: boolean; verified: boolean }>(db, 'study_item_bank', 'id,family,section,domain,difficulty,archived,verified'),
     pageAll<{ payment_id: string; student_id: string; refunded_at: string | null; receipt_held_reason: string | null }>(db, 'study_payments', 'payment_id,student_id,refunded_at,receipt_held_reason', 'payment_id'),
   ])
@@ -95,7 +111,7 @@ async function main() {
     endedReason: s.ended_reason, camp: !!(s.config && typeof s.config === 'object' && s.config.campAssignmentId),
   }))
   const attRows: AttemptRow[] = attempts.map(a => ({ id: a.id, sessionId: a.session_id, itemId: a.item_id, isCorrect: a.is_correct, createdAt: a.created_at }))
-  const expRows: ExposureRow[] = exposures.map(e => ({ studentId: e.student_id, itemId: e.item_id, sessionId: e.session_id, seenAt: e.seen_at }))
+  const expRows: ExposureRow[] = exposures.map(e => ({ studentId: e.student_id, itemId: e.item_id, firstSessionId: e.first_session_id, firstSeenAt: e.first_seen_at }))
 
   const { kept, dropped, total } = selectRealAttempts(attRows, sessRows, expRows, excluded, { modes })
   const bankBy = new Map(bank.map(b => [b.id, b]))
@@ -120,6 +136,7 @@ async function main() {
   p(`# Real-student difficulty — ${new Date().toISOString().slice(0, 10)}`)
   p('')
   p(`Modes counted: ${modes.join(', ')} · minimum n per item: ${minN} · source rows read in full (counts asserted)`)
+  if (pre126) p('PRE-126: first exposure measured from seen_at/session_id (the LATEST serve) — migration 126 is not applied.')
   p('')
   p('## Students')
   const studentsWithAttempts = new Set(sessRows.filter(s => attRows.some(a => a.sessionId === s.id)).map(s => s.studentId))

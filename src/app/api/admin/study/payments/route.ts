@@ -8,6 +8,7 @@ import { creditPresetWon, remainingWon, validateRefundAmount } from '@/lib/study
 import { attributePaymentCredits } from '@/lib/study/refund-credit-preset';
 import { accessRevocationFor, revocableCredits, validateRevocationRequest } from '@/lib/study/refund-revocation';
 import { isPassPlan, resolvePass, STUDY_PASSES } from '@/lib/study/plans';
+import { testFlagsFor } from '@/lib/study/test-accounts';
 
 /**
  * Admin view of study-system income (the PortOne side) + refunds.
@@ -163,14 +164,20 @@ async function attachStudents(rows: PayRow[]) {
   const ids = Array.from(new Set(rows.map((r) => r.student_id)));
   const map = new Map<string, { name: string | null; email: string | null; isTestUser?: boolean }>();
   if (ids.length > 0) {
-    const [{ data: users }, { data: prefs }] = await Promise.all([
+    // Test badge = users.is_internal OR study_user_prefs.is_test_user
+    // (lib/study/test-accounts). A failed flag read shows no badge rather
+    // than failing the whole payments list.
+    const [{ data: users }, flags] = await Promise.all([
       dbAdmin.from('users').select('id, name, email').in('id', ids),
-      dbAdmin.from('study_user_prefs').select('student_id, is_test_user').in('student_id', ids),
+      testFlagsFor(dbAdmin, ids).catch((e) => {
+        console.error('[admin/study/payments] test flags', e);
+        return new Map() as Awaited<ReturnType<typeof testFlagsFor>>;
+      }),
     ]);
     for (const u of users ?? []) map.set(u.id, { name: u.name, email: u.email });
-    for (const p of prefs ?? []) {
-      const entry = map.get(p.student_id);
-      if (entry) entry.isTestUser = p.is_test_user;
+    for (const [id, f] of flags) {
+      const entry = map.get(id);
+      if (entry) entry.isTestUser = f.isTestAccount;
     }
   }
   const [refundMap, presetMap] = await Promise.all([

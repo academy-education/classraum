@@ -3581,6 +3581,8 @@ export type Database = {
       }
       study_item_exposures: {
         Row: {
+          first_seen_at: string
+          first_seen_session_id: string | null
           id: string
           item_id: string
           seen_at: string
@@ -3589,6 +3591,8 @@ export type Database = {
           student_id: string
         }
         Insert: {
+          first_seen_at?: string
+          first_seen_session_id?: string | null
           id?: string
           item_id: string
           seen_at?: string
@@ -3597,6 +3601,8 @@ export type Database = {
           student_id: string
         }
         Update: {
+          first_seen_at?: string
+          first_seen_session_id?: string | null
           id?: string
           item_id?: string
           seen_at?: string
@@ -5845,6 +5851,14 @@ export type Database = {
           },
         ]
       }
+      study_test_accounts: {
+        Row: {
+          is_internal: boolean | null
+          is_study_test_user: boolean | null
+          user_id: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       admin_academy_subscription_status_counts: {
@@ -5911,7 +5925,7 @@ export type Database = {
         }[]
       }
       admin_study_event_counts: {
-        Args: { p_end: string; p_start: string }
+        Args: { p_end: string; p_include_test?: boolean; p_start: string }
         Returns: {
           cnt: number
           event: string
@@ -5939,7 +5953,7 @@ export type Database = {
         }[]
       }
       admin_study_session_stats: {
-        Args: { p_end: string; p_start: string }
+        Args: { p_end: string; p_include_test?: boolean; p_start: string }
         Returns: {
           avg_duration_minutes: number
           completed_count: number

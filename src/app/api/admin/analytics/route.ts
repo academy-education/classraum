@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from '@/lib/database.types';
 import { listAllAuthUsers } from '../_lib/admin-auth';
+import { includeTestRequested } from '../_lib/test-academies';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -74,6 +75,7 @@ export async function GET(request: NextRequest) {
 
     // Get time range from query params
     const searchParams = request.nextUrl.searchParams;
+    const includeTest = includeTestRequested(request);
     const timeRange = searchParams.get('range') || '30d';
 
     // Calculate date ranges
@@ -144,8 +146,12 @@ export async function GET(request: NextRequest) {
       supabase.rpc('admin_invoice_revenue_by_cycle', { p_start: iso(startDate), p_end: iso(now) }),
       supabase.rpc('admin_subscription_metrics'),
       supabase.rpc('admin_academy_subscription_status_counts'),
-      supabase.rpc('admin_study_session_stats', { p_start: iso(startDate), p_end: iso(now) }),
-      supabase.rpc('admin_study_event_counts', { p_start: iso(startDate), p_end: iso(now) }),
+      // Study numbers exclude test accounts (users.is_internal OR
+      // study_user_prefs.is_test_user) since migration 125; ?includeTest=1
+      // reveals them. Before 125 is applied the RPCs take two arguments and
+      // reject the third, so it is only sent when asked for.
+      supabase.rpc('admin_study_session_stats', { p_start: iso(startDate), p_end: iso(now), ...(includeTest ? { p_include_test: true } : {}) }),
+      supabase.rpc('admin_study_event_counts', { p_start: iso(startDate), p_end: iso(now), ...(includeTest ? { p_include_test: true } : {}) }),
       supabase.from('academies').select('*', { count: 'exact', head: true }),
       supabase.from('academies').select('*', { count: 'exact', head: true }).gte('created_at', iso(startDate)),
       // Every academy that has ever been given a trial window. This is a real

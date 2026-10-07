@@ -15,7 +15,10 @@ export interface DirectoryUser {
   email: string | null
   role: string
   nickname: string | null
+  /** Test account: users.is_internal OR study_user_prefs.is_test_user (lib/study/test-accounts). */
   isTestUser: boolean
+  /** users.is_internal alone, so the console can tell which flag is set. */
+  isInternal?: boolean
   /** ISO timestamp of last study activity (or best available proxy). */
   lastActiveAt: string | null
 }

@@ -3,6 +3,7 @@ import {
   selectRealAttempts, itemStats, contradictions, formatStat, studentExclusions, pearson,
   type AttemptRow, type SessionRow, type ExposureRow, type StudentFacts,
 } from '@/lib/study/real-attempts'
+import { isTestAccount } from '@/lib/study/test-accounts'
 
 const facts = (over: Partial<StudentFacts> = {}): StudentFacts => ({
   id: 'u', role: 'student', isInternal: false, isStudyTestUser: false, isStaff: false,
@@ -18,11 +19,21 @@ describe('studentExclusions', () => {
     ['admin_role', { role: 'admin' }],
     ['staff', { isStaff: true }],
     ['test_academy', { inTestAcademy: true }],
-    ['team_domain', { emailDomain: 'classraum.com' }],
-    ['team_domain', { emailDomain: 'Demo.Classraum.com' }],
+    ['demo_domain', { emailDomain: 'demo.classraum.com' }],
+    ['demo_domain', { emailDomain: 'Demo.Classraum.com' }],
     ['email_suppressed', { emailSuppressed: true }],
   ])('%s excludes', (reason, over) => expect(studentExclusions(facts(over as Partial<StudentFacts>))).toContain(reason))
-  it('a lookalike domain is not the team domain', () => expect(studentExclusions(facts({ emailDomain: 'notclassraum.com' }))).toEqual([]))
+  it('a lookalike domain is not the demo domain', () => expect(studentExclusions(facts({ emailDomain: 'notclassraum.com' }))).toEqual([]))
+  // Owner decision 2026-10-07: a flag decides, never the team's own address.
+  it('@classraum.com alone does NOT exclude', () => expect(studentExclusions(facts({ emailDomain: 'classraum.com' }))).toEqual([]))
+  it('the two test flags are one decision: either alone excludes, and agrees with isTestAccount', () => {
+    for (const [isInternal, isStudyTestUser] of [[false, false], [true, false], [false, true], [true, true]]) {
+      const ex = studentExclusions(facts({ isInternal, isStudyTestUser }))
+      const flagged = ex.includes('is_internal') || ex.includes('study_test_user')
+      expect(flagged).toBe(isTestAccount({ isInternal, isStudyTestUser }))
+      expect(flagged).toBe(isInternal || isStudyTestUser)
+    }
+  })
 })
 
 const S = (id: string, over: Partial<SessionRow> = {}): SessionRow => ({
@@ -54,7 +65,7 @@ describe('selectRealAttempts', () => {
     A('a11', 's-camp', 'i8', false, '2026-10-01T09:08:00Z'),
   ]
   const exposures: ExposureRow[] = [
-    { studentId: 'st1', itemId: 'i7', sessionId: 's1', seenAt: '2026-10-01T08:59:00Z' },
+    { studentId: 'st1', itemId: 'i7', firstSessionId: 's1', firstSeenAt: '2026-10-01T08:59:00Z' },
   ]
   const r = selectRealAttempts(attempts, sessions, exposures, new Set(['internal']))
 
@@ -77,9 +88,23 @@ describe('selectRealAttempts', () => {
   })
   it('an exposure with no session that predates the attempt means not first', () => {
     const r2 = selectRealAttempts([A('x', 's1', 'iz', true, '2026-10-01T09:00:00Z')], sessions,
-      [{ studentId: 'st1', itemId: 'iz', sessionId: null, seenAt: '2026-09-01T00:00:00Z' }], new Set())
+      [{ studentId: 'st1', itemId: 'iz', firstSessionId: null, firstSeenAt: '2026-09-01T00:00:00Z' }], new Set())
     expect(r2.kept).toHaveLength(0)
     expect(r2.dropped.not_first_exposure).toBe(1)
+  })
+  // Migration 126: an item served in s1, left unanswered, then RE-served in
+  // s2. The exposure row's seen_at/session_id now say s2; first_seen says s1.
+  // Reading first_seen, the s2 answer is not a first exposure.
+  it('a re-served item is judged by its FIRST sighting, not the latest serve', () => {
+    const att = [A('re', 's2', 'ir', true, '2026-10-02T09:05:00Z')]
+    const first = selectRealAttempts(att, sessions,
+      [{ studentId: 'st1', itemId: 'ir', firstSessionId: 's1', firstSeenAt: '2026-10-01T08:58:00Z' }], new Set())
+    expect(first.kept).toHaveLength(0)
+    expect(first.dropped.not_first_exposure).toBe(1)
+    // the pre-126 reading (latest serve = s2) would have kept it — the bug
+    const latest = selectRealAttempts(att, sessions,
+      [{ studentId: 'st1', itemId: 'ir', firstSessionId: 's2', firstSeenAt: '2026-10-02T09:00:00Z' }], new Set())
+    expect(latest.kept.map(k => k.attemptId)).toEqual(['re'])
   })
 })
 

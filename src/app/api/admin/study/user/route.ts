@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { dbAdmin } from '@/lib/supabase-admin';
 import { requireAdminAuth, logAdminActivity } from '@/lib/admin-auth';
+import { isTestAccount } from '@/lib/study/test-accounts';
 
 /**
  * GET /api/admin/study/user
@@ -12,8 +13,16 @@ import { requireAdminAuth, logAdminActivity } from '@/lib/admin-auth';
  *   ?id=<uuid>  → full study profile for one student (support lookup)
  *
  * PATCH /api/admin/study/user   { studentId, isTestUser }
- *   → mark/unmark a student as a TEST USER (study_user_prefs.is_test_user).
- *     Display-only flag for now — not wired into analytics exclusion.
+ *   → mark/unmark a student as a TEST ACCOUNT.
+ *
+ * "Test account" = users.is_internal OR study_user_prefs.is_test_user (owner
+ * decision 2026-10-07; lib/study/test-accounts). Every read below reports
+ * that union as `isTestUser`, plus `isInternal` so the console can tell the
+ * two apart. Marking sets is_test_user. UNMARKING clears BOTH flags — with
+ * the union, clearing only is_test_user would leave an is_internal account
+ * still a test account and the toggle would silently do nothing. Real-
+ * student statistics (real-attempts.ts, study_item_calibration, admin
+ * analytics) exclude every test account.
  *
  * Admin-only (super_admin or admin). Every detail lookup is written to
  * admin_activity_logs — study data is minors' academic + billing info, so
@@ -57,7 +66,7 @@ export async function GET(req: NextRequest) {
       const [students, prefs, activity] = await Promise.all([
         fetchAllPages((from, to) => dbAdmin
           .from('users')
-          .select('id, name, email, role, created_at')
+          .select('id, name, email, role, created_at, is_internal')
           .eq('role', 'student')
           .order('id')
           .range(from, to)),
@@ -83,7 +92,8 @@ export async function GET(req: NextRequest) {
           email: u.email ?? null,
           role: u.role,
           nickname: p?.nickname ?? null,
-          isTestUser: p?.is_test_user ?? false,
+          isTestUser: isTestAccount({ isInternal: u.is_internal, isStudyTestUser: p?.is_test_user }),
+          isInternal: !!u.is_internal,
           // Best available recency signal: last session heartbeat, else the
           // last prefs write, else account creation.
           lastActiveAt: activeMap.get(u.id) ?? p?.updated_at ?? u.created_at ?? null,
@@ -107,7 +117,7 @@ export async function GET(req: NextRequest) {
     { data: memberships },
     { data: reports },
   ] = await Promise.all([
-    dbAdmin.from('users').select('id, name, email, role, created_at').eq('id', id).maybeSingle(),
+    dbAdmin.from('users').select('id, name, email, role, created_at, is_internal').eq('id', id).maybeSingle(),
     dbAdmin.from('study_subscriptions')
       .select('status, plan, currency, grant_credits_remaining, purchased_credits_remaining, current_period_end, cancel_at_period_end, last_payment_failure, pending_plan')
       .eq('student_id', id).maybeSingle(),
@@ -166,7 +176,8 @@ export async function GET(req: NextRequest) {
     memberships: memberships ?? [],
     ledger: ledger ?? [],
     reports: reports ?? [],
-    isTestUser: prefs?.is_test_user ?? false,
+    isTestUser: isTestAccount({ isInternal: user.is_internal, isStudyTestUser: prefs?.is_test_user }),
+    isInternal: !!user.is_internal,
   });
 }
 
@@ -186,7 +197,7 @@ export async function PATCH(req: NextRequest) {
   const { studentId, isTestUser } = parsed.data;
 
   const { data: user } = await dbAdmin
-    .from('users').select('id, email').eq('id', studentId).maybeSingle();
+    .from('users').select('id, email, is_internal').eq('id', studentId).maybeSingle();
   if (!user) return NextResponse.json({ error: 'user not found' }, { status: 404 });
 
   // Upsert: a student who never opened study mode has no prefs row yet; the
@@ -202,10 +213,21 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: 'update failed' }, { status: 500 });
   }
 
+  // Unmark clears is_internal too — otherwise the account stays a test
+  // account under the union and the toggle is a no-op.
+  const clearedInternal = !isTestUser && !!user.is_internal;
+  if (clearedInternal) {
+    const { error: iErr } = await dbAdmin.from('users').update({ is_internal: false }).eq('id', studentId);
+    if (iErr) {
+      console.error('[admin/study/user] clear is_internal', iErr);
+      return NextResponse.json({ error: 'update failed' }, { status: 500 });
+    }
+  }
+
   await logAdminActivity({
     adminUserId: auth.user.id,
     action: 'STUDY_TEST_USER_FLAG',
-    description: `${isTestUser ? 'Marked' : 'Unmarked'} ${user.email} as study test user`,
+    description: `${isTestUser ? 'Marked' : 'Unmarked'} ${user.email} as study test user${clearedInternal ? ' (also cleared users.is_internal)' : ''}`,
     targetType: 'user',
     targetId: studentId,
   });

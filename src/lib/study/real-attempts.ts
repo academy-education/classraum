@@ -13,17 +13,22 @@
  * Student level — any one of these excludes the student entirely:
  *   is_internal         users.is_internal (064), set explicitly by the team
  *   study_test_user     study_user_prefs.is_test_user (084), set in the admin
- *                       console. 44 accounts carry this and NOT is_internal;
- *                       the two flags were never unified.
+ *                       console. The two flags are ONE decision (owner,
+ *                       2026-10-07; isTestAccount in ./test-accounts, view
+ *                       study_test_accounts in migration 125). Both are
+ *                       still reported separately so a count shows which.
  *   admin_role          users.role admin / super_admin
  *   staff               an active row in managers or teachers — a teacher
  *                       trying the student view is not a student
  *   test_academy        a student of an academies.is_test academy (101):
  *                       the demo, E2E and dev academies
- *   team_domain         an @classraum.com / @demo.classraum.com address. 064
- *                       already matches demo.classraum.com; classraum.com is
- *                       the team's own domain (the E2E camp account lives
- *                       there and carries no other flag)
+ *   demo_domain         an @demo.classraum.com address — the seeded demo
+ *                       academy. All 316 carry is_internal (064); this is a
+ *                       belt for a future seed that forgets the flag.
+ *                       @classraum.com is NOT excluded by address (owner,
+ *                       2026-10-07): a flag decides, never an email. The
+ *                       E2E camp fixtures that lived there are flagged
+ *                       is_internal in migration 125.
  *   email_suppressed    on public.email_suppressions — the Manning test
  *                       accounts the owner asked us to stop mailing (111)
  *
@@ -36,7 +41,10 @@
  *   unanswered          is_correct null (skipped / ran out of time)
  *   not_first_exposure  the student had already SEEN this item — in an
  *                       earlier session, or earlier in study_item_exposures
- *                       (served but unanswered still counts as seen)
+ *                       (served but unanswered still counts as seen). The
+ *                       exposure side reads first_seen_at /
+ *                       first_seen_session_id (migration 126, write-once),
+ *                       NOT seen_at / session_id, which a re-serve refreshes.
  *   repeat_in_session   a second attempt row for the same item in one session
  *
  * Camp-assigned sessions (config.campAssignmentId) are kept but TAGGED: they
@@ -48,7 +56,7 @@
 
 export type StudentExclusion =
   | 'is_internal' | 'study_test_user' | 'admin_role' | 'staff'
-  | 'test_academy' | 'team_domain' | 'email_suppressed'
+  | 'test_academy' | 'demo_domain' | 'email_suppressed'
 
 export interface StudentFacts {
   id: string
@@ -61,17 +69,19 @@ export interface StudentFacts {
   emailSuppressed: boolean
 }
 
-export const TEAM_DOMAINS = ['classraum.com', 'demo.classraum.com']
+/** Excluded by address. Deliberately NOT classraum.com — see the header. */
+export const DEMO_DOMAINS = ['demo.classraum.com']
 
 export function studentExclusions(f: StudentFacts): StudentExclusion[] {
   const out: StudentExclusion[] = []
+  // isTestAccount(f) is the decision; the two reasons say which flag fired.
   if (f.isInternal) out.push('is_internal')
   if (f.isStudyTestUser) out.push('study_test_user')
   if (f.role === 'admin' || f.role === 'super_admin') out.push('admin_role')
   if (f.isStaff) out.push('staff')
   if (f.inTestAcademy) out.push('test_academy')
   const d = (f.emailDomain ?? '').toLowerCase()
-  if (TEAM_DOMAINS.includes(d)) out.push('team_domain')
+  if (DEMO_DOMAINS.includes(d)) out.push('demo_domain')
   if (f.emailSuppressed) out.push('email_suppressed')
   return out
 }
@@ -94,11 +104,14 @@ export interface SessionRow {
   camp: boolean
 }
 
+/** One study_item_exposures row, as its FIRST sighting. Pass first_seen_at
+ *  and first_seen_session_id — never seen_at/session_id, which are the
+ *  LATEST serve and would credit a re-serve as a first exposure. */
 export interface ExposureRow {
   studentId: string
   itemId: string
-  sessionId: string | null
-  seenAt: string
+  firstSessionId: string | null
+  firstSeenAt: string
 }
 
 export type AttemptDrop =
@@ -148,7 +161,7 @@ export function selectRealAttempts(
     const prev = first.get(k)
     if (!prev || at < prev.at || (at === prev.at && prev.sessionId === null)) first.set(k, { at, sessionId })
   }
-  for (const e of exposures) consider(e.studentId, e.itemId, e.seenAt, e.sessionId)
+  for (const e of exposures) consider(e.studentId, e.itemId, e.firstSeenAt, e.firstSessionId)
   for (const a of attempts) {
     if (!a.itemId) continue
     const s = sess.get(a.sessionId)
