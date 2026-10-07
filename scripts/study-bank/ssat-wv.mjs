@@ -54,6 +54,7 @@ const a1Exempt = kind => kind === 'vocabulary-in-context' || kind === 'attitude'
 //    contain a word from exactly one class below, and the five options must cover five different classes.
 //    Unknown attitude words refuse (use the lexicon). Plus the licensing pre-check (licbuild / verify --lic). ──
 const isV6 = id => /^WV(?:[6-9]|\d{2,})-/.test(String(id))
+const isV7 = id => /^WV(?:[7-9]|\d{2,})-/.test(String(id))
 export const ATT_DIR = {
   warm: 'admiring admiration approving approval appreciative appreciation proud pride respectful respect grateful gratitude sympathetic sympathy fond fondness affectionate affection enthusiastic enthusiasm reverent reverence tender'.split(' '),
   critical: 'critical disapproving disapproval scornful scorn contemptuous contempt indignant indignation irritated irritation resentful resentment exasperated exasperation disdainful disdain annoyed annoyance angry'.split(' '),
@@ -145,6 +146,14 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null } = {}) {
       const maxRatio = isV5(id) ? 1.5 : 1.6
       if (Math.max(...cl) / Math.min(...cl) > maxRatio) problems.push(`${tag}: choice length ratio ${(Math.max(...cl) / Math.min(...cl)).toFixed(2)} > ${maxRatio}`)
       if (isV6(id) && q.kind === 'attitude') attitudeDirections(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
+      // WV7+ (READING-BATCH-WV7-WV8-2026-10-07.prereg.md): every attitude choice is some version's key, so an
+      // indifferent-class choice (detached, neutral, ...) is a key in one world. WV6 P01-5 showed that key fails when the
+      // narrator has a stake. Allowed only if the unit declares narrator_role "observer" (author/narrator with no stake).
+      if (isV7(id) && q.kind === 'attitude') {
+        const cls = attitudeDirections(q.choices).classes
+        if (cls.includes('indifferent') && p.narrator_role !== 'observer') problems.push(`${tag}: an indifferent-class attitude choice ("${q.choices[cls.indexOf('indifferent')]}") is a key in one version; allowed only when the unit declares "narrator_role": "observer" (got ${JSON.stringify(p.narrator_role ?? null)})`)
+      }
+      if (isV7(id) && !['observer', 'participant'].includes(p.narrator_role)) { if (q === p.questions[0]) problems.push(`${id}: narrator_role must be "observer" or "participant"`) }
       if (isV6(id) && (q.kind === 'attitude' || q.kind === 'vocabulary-in-context')) {
         p.versions.forEach((v, k) => {
           const lid = licId(id, k, q.qid)
