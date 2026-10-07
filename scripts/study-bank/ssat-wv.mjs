@@ -36,22 +36,22 @@ const NEG = /\b(not|no|never|nothing|nor|none|neither|nobody|nowhere)\b|n't\b/gi
 const die = m => { console.error(`REFUSING: ${m}`); process.exit(2) }
 const sha = b => createHash('sha256').update(b).digest('hex')
 const words = s => String(s).trim().split(/\s+/).filter(Boolean).length
-const norm = s => String(s).toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[—–]/g, '-').replace(/\s+/g, ' ').trim()
+export const norm = s => String(s).toLowerCase().replace(/[‘’]/g, "'").replace(/[“”]/g, '"').replace(/[—–]/g, '-').replace(/\s+/g, ' ').trim()
 const STOP = new Set('the a an of to in on and or for with by at from as that this which who whom whose was were is are be been his her their its it he she they them him one what how why when chiefly most best passage author writer narrator'.split(' '))
-const content = s => norm(s).replace(/[^a-z' ]/g, ' ').split(' ').filter(w => w.length > 3 && !STOP.has(w))
+export const content = s => norm(s).replace(/[^a-z' ]/g, ' ').split(' ').filter(w => w.length > 3 && !STOP.has(w))
 
 // ── pilot 4 rules (SSAT-READING-WV4-PREREGISTERED.md), applied to passage_ids WV4- and later ──
 const isV4 = id => /^WV(?:[4-9]|\d{2,})-/.test(String(id))
 const GENERIC = new Set('show shows describe describes explain explains illustrate illustrates introduce introduces suggest suggests reveal reveals emphasize emphasizes contrast compare provide provides offer offers present presents recount recounts recall recalls account example give gives point reader readers establish establishes indicate indicates highlight highlights note notes stress stresses primarily serves serve mainly concerned where more into than there then been have would could about after before over some only also what other such each every very much made make makes take took became become becomes most many under upon them once just even still'.split(' '))
-const stemW = w => w.replace(/'s$/, '').replace(/'/g, '')
+export const stemW = w => w.replace(/'s$/, '').replace(/'/g, '')
 const stemEq = (a, b) => { const n = Math.min(5, a.length, b.length); return n >= 4 && a.slice(0, n) === b.slice(0, n) }
-const cw4 = s => [...new Set(content(s).map(stemW).filter(w => w.length > 3 && !STOP.has(w) && !GENERIC.has(w)))]
+export const cw4 = s => [...new Set(content(s).map(stemW).filter(w => w.length > 3 && !STOP.has(w) && !GENERIC.has(w)))]
 // distinctive words of choice j: content words NOT present in every other choice of the question
 export function distinctive(choices, j) {
   const others = choices.filter((_, i) => i !== j).map(cw4)
   return cw4(choices[j]).filter(w => !others.every(o => o.some(x => stemEq(x, w))))
 }
-const present = (w, textWords) => textWords.some(t => stemEq(t, w))
+export const present = (w, textWords) => textWords.some(t => stemEq(t, w))
 export const V4_MIX = { 'vocabulary-in-context': [1, 1], attitude: [1, 1], detail: [0, 1], 'main-idea': [0, 1], inference: [2, 6], purpose: [1, 6] }
 
 export function kOf(frozenSha, pid) {
@@ -193,12 +193,13 @@ function shuffle(a, r) { const b = [...a]; for (let i = b.length - 1; i > 0; i--
 function dealer(n, r) { const d = []; while (d.length < n) d.push(...shuffle([...L], r)); let i = 0; return () => d[i++] }
 function placeKey(choices, key, letter, r) { const rest = shuffle(choices.filter(c => c !== key), r); rest.splice(L.indexOf(letter), 0, key); return rest }
 
-function build(outdir, ctlDir, wvFiles, fixturesFile, natLiveFile) {
+function build(outdir, ctlDir, wvFiles, fixturesFile, natLiveFile, isoAll = false) {
   const batch = JSON.parse(readFileSync(join(outdir, 'batch.json'), 'utf8'))
   if (!batch.length) die('empty batch')
   const r = rng(`render|${outdir}`)
   const key = {}
-  const nonVocab = batch.filter(x => x.subskill !== 'vocabulary-in-context')
+  // --iso-all (SSAT-READING-AX1-PREREGISTERED.md): vocabulary items are attacked too; default keeps pilots 1-4
+  const nonVocab = isoAll ? batch : batch.filter(x => x.subskill !== 'vocabulary-in-context')
   const dealC = dealer(nonVocab.length, r)
   const cand = nonVocab.map(x => {
     const opts = placeKey(x.choices, x.correct_answer, dealC(), r)
@@ -435,7 +436,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const after = flag => { const i = rest.indexOf(flag); if (i < 0) return []; const out = []; for (let j = i + 1; j < rest.length && !rest[j].startsWith('--'); j++) out.push(rest[j]); return out }
   if (cmd === 'verify') { if (!rest.length) die('no files'); verify(rest) }
   else if (cmd === 'draw') { const [out, ...f] = rest; if (!f.length) die('no files'); draw(out, f) }
-  else if (cmd === 'build') build(rest[0], after('--ctl')[0] ?? join(HERE, 'ssat-reading-diag'), after('--wv'), after('--fixtures')[0], after('--natlive')[0])
+  else if (cmd === 'build') build(rest[0], after('--ctl')[0] ?? join(HERE, 'ssat-reading-diag'), after('--wv'), after('--fixtures')[0], after('--natlive')[0], rest.includes('--iso-all'))
   else if (cmd === 'score') score(rest[0], rest.slice(1))
   else if (cmd === 'null') nullDist(rest[0], rest.slice(1))
   else die('usage: verify | draw | build | score | null')

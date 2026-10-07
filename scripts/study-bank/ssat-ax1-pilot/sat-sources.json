@@ -1,0 +1,107 @@
+[
+ {
+  "id": "999a5869-dea8-4529-8158-2a29d15e983d",
+  "cohort": "rsw-v1",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Occupational health researcher Tomás Herrera measured airborne flour dust in 15 commercial bakeries.\n- Each bakery was sampled for one week before and one week after overhead exhaust hoods were installed.\n- Average dust concentration fell by 64 percent after installation.\n- Levels still exceeded the recommended exposure limit during end-of-day sweeping.\n- The bakeries kept their existing mixing equipment and staffing throughout the study.",
+  "prompt": "The student wants to present a cautious summary of the findings. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Herrera's findings suggest the hoods helped but did not solve the problem: across the 12 bakeries sampled, average dust fell by roughly 51 percent, yet levels during dough sheeting runs still exceeded the recommended limit.",
+   "Herrera's findings suggest the hoods helped but did not solve the problem: across the 9 bakeries sampled, average dust fell by roughly 38 percent, yet levels during hand bench dusting still exceeded the recommended limit.",
+   "Herrera's findings suggest the hoods helped but did not solve the problem: across the 6 bakeries sampled, average dust fell by roughly 22 percent, yet levels during flour sack emptying still exceeded the recommended limit.",
+   "Herrera's findings suggest the hoods helped but did not solve the problem: across the 15 bakeries sampled, average dust fell by roughly 64 percent, yet levels during end-of-day sweeping still exceeded the recommended limit."
+  ],
+  "correct_answer": "Herrera's findings suggest the hoods helped but did not solve the problem: across the 15 bakeries sampled, average dust fell by roughly 64 percent, yet levels during end-of-day sweeping still exceeded the recommended limit."
+ },
+ {
+  "id": "1f9b9746-7059-4ba5-a257-6545acb20082",
+  "cohort": "rsw2",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Geomorphologist Petra Varadi installed erosion markers at 30 stations along a six-kilometer coastal footpath and resurveyed them for four years.\n- Standard exposure models predicted the open headland segment would retreat about 16 centimeters per year.\n- Markers recorded 11 centimeters of annual retreat on the headland but 24 centimeters in the sheltered cove.\n- Varadi attributes the cove's losses to winter frost heave in the cove's clay soils.\n- Wave energy and sediment type were logged at every station.",
+  "prompt": "The student wants to explain why the finding surprised researchers. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Varadi expected the exposed headland to retreat about 14 centimeters a year, yet it lost only 9 while the sheltered cove lost 21, a reversal she traces to runoff from a resurfaced car park.",
+   "Varadi expected the exposed headland to retreat about 16 centimeters a year, yet it lost only 11 while the sheltered cove lost 24, a reversal she traces to winter frost heave in the cove's clay soils.",
+   "Varadi expected the exposed headland to retreat about 12 centimeters a year, yet it lost only 8 while the sheltered cove lost 18, a reversal she traces to burrowing by a colony of sand martins.",
+   "Varadi expected the exposed headland to retreat about 18 centimeters a year, yet it lost only 13 while the sheltered cove lost 28, a reversal she traces to foot traffic diverted by a boardwalk closure."
+  ],
+  "correct_answer": "Varadi expected the exposed headland to retreat about 16 centimeters a year, yet it lost only 11 while the sheltered cove lost 24, a reversal she traces to winter frost heave in the cove's clay soils."
+ },
+ {
+  "id": "9f80f084-1d90-4a11-a97f-9e4102508976",
+  "cohort": "rsw2",
+  "subskill": "Rhetorical Synthesis",
+  "difficulty": "hard",
+  "passage": "While researching a topic, a student has taken the following notes:\n- Dr. Nadia Oyelaran audited all 26 public clocks in Harbury, a town of 12,000 residents.\n- Each clock's displayed time was compared against a satellite time signal twice daily for one year.\n- The clocks include pendulum, electric-synchronous, and quartz mechanisms, all serviced by town custodians.\n- Across the year, the median clock drifted 92 seconds fast per week.\n- Of the factors Oyelaran tracked, vibration from passing heavy traffic best predicted a clock's drift.",
+  "prompt": "The student wants to emphasize the study's main finding. Which choice most effectively accomplishes this goal?",
+  "choices": [
+   "Oyelaran's audit found that Harbury's public clocks drifted a median of 63 seconds slow per week, with the age of the mechanism the strongest predictor of a clock's drift.",
+   "Oyelaran's audit found that Harbury's public clocks drifted a median of 92 seconds fast per week, with vibration from passing heavy traffic the strongest predictor of a clock's drift.",
+   "Oyelaran's audit found that Harbury's public clocks drifted a median of 47 seconds fast per week, with enclosure temperature swings the strongest predictor of a clock's drift.",
+   "Oyelaran's audit found that Harbury's public clocks drifted a median of 38 seconds slow per week, with irregular manual resetting by custodians the strongest predictor of a clock's drift."
+  ],
+  "correct_answer": "Oyelaran's audit found that Harbury's public clocks drifted a median of 92 seconds fast per week, with vibration from passing heavy traffic the strongest predictor of a clock's drift."
+ },
+ {
+  "id": "abc04f5c-7171-4c3c-8dbc-19e9dfb5fa4a",
+  "cohort": "rw-v15-wic",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "passage": "A salt marsh keeps pace with rising water by an arrangement that looks like luck. When a high tide floods the marsh more deeply, the water slows further as it spreads through the grass and drops more of the silt it carries, so the surface gains most in exactly those years when it lies under water longest. Nothing in this anticipates the sea. The rising water is not something the marsh survives but something it ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "requires",
+   "withstands",
+   "measures",
+   "invites"
+  ],
+  "correct_answer": "requires"
+ },
+ {
+  "id": "45212eff-a3b6-4980-9bd2-6e723b420e8c",
+  "cohort": "rw-v16-wic",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "passage": "Seismometers everywhere record a continuous hum at periods of five to twenty seconds, produced when ocean waves press on the seafloor. Networks built to catch earthquakes filter it out before they look for anything else, since a small event is lost beneath it. Then researchers began to correlate the hum recorded at pairs of distant stations and found that its travel time between them measured the structure of the crust in between, as an earthquake would, but without the wait for one. On the earthquake networks the hum was, and remains, ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "noise",
+   "an instrument",
+   "an anomaly",
+   "a malfunction"
+  ],
+  "correct_answer": "noise"
+ },
+ {
+  "id": "9df2d9b1-ef1b-4fc0-ac71-3ea0c1142ffd",
+  "cohort": "rw-v16-wic",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "passage": "The hallmarks struck into medieval silver have lately been read as a guild's weapon against outsiders: by controlling the mark, the argument runs, the town's smiths kept foreign work off their market. The assay records do not bear this out. Imported pieces were brought to the assay like any others, and those that reached the standard were marked and sold; what the wardens refused was metal below the standard, whoever had worked it. Silver could not lawfully be sold without the mark, the fines for selling it unmarked were paid over to the buyer, doubled, and the smiths prosecuted most often were the guild's own members. The mark itself was struck on the underside of a piece, where no one admiring it would see. On the records' evidence, the mark's purpose was ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "advisory",
+   "exclusionary",
+   "protective",
+   "decorative"
+  ],
+  "correct_answer": "protective"
+ },
+ {
+  "id": "bbdd4fb0-1971-4697-9910-5d30ee1ceb45",
+  "cohort": "rw-v16-wic",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "passage": "Defects on a silicon wafer fall at random, at a rate the fabrication plant can measure but not eliminate. A chip fails if a single defect lands within its borders, so the fraction of working chips falls steeply as chips grow: doubling the area more than halves the yield. A transistor, meanwhile, switches at the same speed whichever die it sits on. Designers who want more transistors thus face a choice between a large chip that is powerful and a small one that is ______, and the industry's answer has increasingly been to build the large chip out of several small ones, wired together in the package.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+   "fast",
+   "economical",
+   "elegant",
+   "versatile"
+  ],
+  "correct_answer": "economical"
+ }
+]
