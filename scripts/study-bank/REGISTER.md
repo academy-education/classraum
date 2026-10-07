@@ -189,6 +189,25 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-07** — **SSAT UPPER READING BATCH WV5, BARS RELATIVE TO THE LIVE CONTROL (pre-registered `024b0b88`, frozen `31054b11`, drawn `ff6cca97`): FAILS STAGE 1 ON C, EXCLUSIVITY 9/12 (bar >= 11/12). STOPPED. NOTHING INSERTED.**
+  - Method: pilot 3's five-version method plus the NAEP lure checklist (`SSAT-WV5-AUTHOR-BRIEF.md`), with A1 as the absent-option gate. Two fresh units: P01 narrative fiction (kiln) and P02 science feature (bat tunnel).
+  - Stage 0 passed after one fix round (12 off-target kill quotes, quotes only). A1 cleared all 9 lexical flags.
+  - **Against live, the batch did better on every other measure:**
+
+    | measure | WV5 | live |
+    |---|---|---|
+    | easy | 5/12 | 32/33 |
+    | Q plausible | 44.8% of 96 | 6.1% of 264 |
+    | dead-by-both | 4/12 | 15/33 |
+    | pilot-pass | 4/12 | 1/33 |
+  - **The misses:**
+    - both attitude items: regret/unease, and approving/uneasy (one grader picked off key);
+    - one vocabulary sense pair: "settled", resolved/soothed.
+  - **Inference, purpose, detail and main-idea items were 8/8 exclusive.** The attitude near-synonym failure recurred even though the brief named it. That is the third run in a row (pilot 4, pilot 5, WV5).
+  - E, A and B were not run. Repairing these items or re-running is not allowed.
+  - Recommendation for the owner: a new prereg that drops attitude and vocabulary from agent WV units, or has a person write those two, under the same relative bars.
+  - Evidence: `READING-BATCH-WV5-2026-10-07{.prereg,}.md`, `ssat-wv5-batch/`. → **B10**
+
 - **2026-10-07** — **READING BAR CALIBRATION, STAGE A: THE LIVE BANK FAILS THE ABSOLUTE BARS THE PILOTS FAILED, MATERIALLY, EXCEPT EXCLUSIVITY. A1 REPLACES THE A0 ABSENT-OPTION RULE (0 correct keys flagged, 11/11 bad options caught).** Pre-registered `5d705576`; draw and renders frozen `4b5a169c` before any grader ran. The same with-source prompts were used (SSAT pilot 4 C+F and MAP pilot 7 prompt 4, each with the misread pilot's single `option_quality` field).
   - **SSAT live** (33 items / 7 groups, seeded and cohort-stratified): C 33/33 PASS. Easy **32/33 = 97.0%** (bar <= 50%). Q plausible **6.1%** of 264 labels (bar >= 75%). Dead-by-both **15/33** (bar <= 16.7%). Pilot-pass **1/33**. All four fails are material (Wilson). Naturalness median 3; s4 passages rated 1-2.
   - **ISEE live on the MAP grader** (31 items / 6 groups, grade 8, RIT 210-219): C 30/31 PASS. S1-b **1/31**. Easier **61/62**, and S1-d offsets -3.1 / -2.8, so it is graded at RIT 170-189, not above grade 8 as the prereg predicted. G 1/31 PASS. Q **9.7%**. Naturalness median 1.5.
