@@ -15,7 +15,10 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { rng, shuffleWith } from './seeded-shuffle.mjs'
 import { periodicity } from './map-pilot-2-checks.mjs'
 
-const D = 'scripts/study-bank/', O = D + 'map-adapt6/'
+const D = 'scripts/study-bank/'
+const _a = process.argv.slice(2), _d = _a.indexOf('--dir')
+const SUB = _d >= 0 ? _a[_d + 1] : 'map-adapt6/'           // pilot 7: --dir map-adapt7/
+const O = D + SUB, ADAPTED_ONLY = _a.includes('--adapted-only')
 const L4 = ['A', 'B', 'C', 'D']
 const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
 const rd = p => { if (!existsSync(D + p)) die(`missing ${p}`); return JSON.parse(readFileSync(D + p, 'utf8')) }
@@ -50,7 +53,7 @@ function ooFile(items, seed0, name) {
   console.log(`${name}: ${order.length} items, seeds tried ${tries}; candidate keys ${cand}`)
 }
 function load() {
-  const sources = rd('map-adapt6/sources.json'), batch = rd('map-adapt6/batch.json')
+  const sources = rd(SUB + 'sources.json'), batch = rd(SUB + 'batch.json')
   for (const it of batch) { const s = sources.find(x => x.adapt_id === it.id); if (!s || s.source_id !== it.source_id) die(`${it.id} has no matching source`) }
   return { sources, batch }
 }
@@ -72,7 +75,7 @@ if (mode === 'screen') {
   for (let f = 0; f < K; f++) {
     const mine = new Set(ids.filter((_, i) => i % K === f))
     ooFile([...batch.filter(x => mine.has(x.id)).map(it => ({ uid: it.id, arm: 'comprehension', pair: it.id, choices: it.choices, key: it.correct_answer })), ...R, ...V], 20261023 + f, `oo-adapted-f${f + 1}`)
-    ooFile([...sources.filter(s => mine.has(s.adapt_id)).map(s => ({ uid: `src:${s.source_id}`, arm: 'comprehension', pair: s.adapt_id, choices: s.item.choices, key: s.item.correct_answer })), ...R, ...V], 20261123 + f, `oo-source-f${f + 1}`)
+    if (!ADAPTED_ONLY) ooFile([...sources.filter(s => mine.has(s.adapt_id)).map(s => ({ uid: `src:${s.source_id}`, arm: 'comprehension', pair: s.adapt_id, choices: s.item.choices, key: s.item.correct_answer })), ...R, ...V], 20261123 + f, `oo-source-f${f + 1}`)
   }
 } else if (mode === 'ws') {
   const { batch } = load()

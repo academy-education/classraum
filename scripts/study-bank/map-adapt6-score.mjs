@@ -16,7 +16,8 @@ import { barA, barP } from './map-adapt-score.mjs'
 import { wsItem } from './map-pilot-3-score.mjs'
 import { scoreNat } from './map-wv.mjs'
 
-const O = 'scripts/study-bank/map-adapt6/'
+const _a = process.argv.slice(2), _d = _a.indexOf('--dir')
+const O = 'scripts/study-bank/' + (_d >= 0 ? _a[_d + 1] : 'map-adapt6/')   // pilot 7: --dir map-adapt7/
 const N = 12
 const die = m => { console.error('REFUSING: ' + m); process.exit(2) }
 const rd = p => { if (!existsSync(p)) die(`missing ${p}`); return JSON.parse(readFileSync(p, 'utf8')) }
@@ -91,6 +92,16 @@ else if (mode === 'screen') {
   const P = barP(rate(aC), 25, rate(sC), 25, rate([...ctl(ad, 'controlR'), ...ctl(ad, 'controlV')]), rate([...ctl(sr, 'controlR'), ...ctl(sr, 'controlV')]))
   console.log(`BAR P  (n=${pairs.length} pairs x 3 a side): adapted margin ${P.adM.toFixed(1)}, source margin ${P.srcM.toFixed(1)}, delta ${P.delta >= 0 ? '+' : ''}${P.delta.toFixed(1)} (bar <= +10) -> ${P.verdict}`)
   console.log(`BAR V  not applicable (no vocabulary items)\n\nSTAGE 1 ${A === 'PASS' && P.verdict === 'PASS' ? 'PASSES' : 'DOES NOT PASS'}`)
+} else if (mode === 'oo-report') {
+  // pilot 7: options-only is REPORT-ONLY for CoE (model/human disagreement, pilot 6). No verdict.
+  const ad = [1, 2, 3].flatMap(f => readFile3(`oo-adapted-f${f}`)), batch = rd(O + 'batch.json')
+  const c = ad.filter(r => r.arm === 'comprehension'), R = ad.filter(r => r.arm === 'controlR'), V = ad.filter(r => r.arm === 'controlV')
+  const un = rs => rs.filter(r => new Set(r.picks).size === 1).length, unK = rs => rs.filter(r => r.h === 3).length
+  console.log(`denominators: ${c.length} adapted items x 3 (3 split files, own samples; frozen ${batch.length} of ${N}); control R ${R.length / 3} x 9, control V ${V.length / 3} x 9`)
+  console.log(`  adapted ${rate(c).toFixed(1)}% | unanimous on some letter ${un(c)}/${c.length} (${(100 * un(c) / c.length).toFixed(1)}%), on key ${unK(c)}/${c.length}`)
+  console.log(`  control R ${rate(R).toFixed(1)}% | unanimous ${un(R)}/${R.length} (${(100 * un(R) / R.length).toFixed(1)}%)   control V ${rate(V).toFixed(1)}% | unanimous ${un(V)}/${V.length} (${(100 * un(V) / V.length).toFixed(1)}%)`)
+  console.log(`  per item ${c.map(r => `${r.localId}:${r.h}/3`).join(' ')}`)
+  console.log('REPORT-ONLY: gates nothing (MAP-ADAPT7 prereg)')
 } else if (mode === 'ws') {
   const key = rd(O + 'ws.key.json'), ids = Object.keys(key)
   const gr = ['a', 'b'].map(t => [t, lab(rd(O + `ws.grader-${t}.json`))])
