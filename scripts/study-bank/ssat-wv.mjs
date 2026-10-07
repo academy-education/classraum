@@ -73,6 +73,35 @@ export function attitudeDirections(choices) {
   for (const [k, js] of Object.entries(seen)) if (js.length > 1) probs.push(`attitude choices ${js.join(' and ')} share the direction "${k}" (${js.map(j => `"${choices[j]}"`).join(' / ')}): they differ in shade, not direction`)
   return { classes, probs }
 }
+// ── batch WV9 (READING-BATCH-WV9-2026-10-08.prereg.md): five FELT direction classes (no indifferent key), and the
+//    passage may not announce its tone (no direction word, no tone-announcing word, in any version). ──
+const isV9 = id => /^WV(?:9|\d{2,})-/.test(String(id))
+export const ATT_DIR9 = {
+  warm: ATT_DIR.warm,
+  critical: ATT_DIR.critical,
+  anxious: 'uneasy unease worried worry apprehensive apprehension anxious anxiety wary wariness fearful alarmed troubled'.split(' '),
+  sorrowful: 'regretful regret sad sadness wistful nostalgic nostalgia mournful melancholy rueful sorrowful sorrow grief'.split(' '),
+  amused: ATT_DIR.amused,
+}
+const INDIFF = ATT_DIR.indifferent
+export const TONE_ANNOUNCE = 'comic comical funny laughable amusing hilarious absurd admirable praiseworthy shameful regrettable regrettably sadly worrying troubling lamentable delightful heartbreaking deplorable'.split(' ')
+export function attitudeDirections9(choices) {
+  const probs = [], classes = choices.map((c, j) => {
+    const ws = norm(c).replace(/[^a-z ]/g, ' ').split(/\s+/).filter(Boolean)
+    if (ws.some(w => INDIFF.includes(w))) { probs.push(`attitude choice ${j} ("${c}") is indifferent-class: not keyable in WV9+ (use five felt directions)`); return null }
+    const hits = Object.entries(ATT_DIR9).filter(([, lex]) => ws.some(w => lex.includes(w))).map(([k]) => k)
+    if (hits.length !== 1) probs.push(`attitude choice ${j} ("${c}") matches ${hits.length ? hits.join('+') : 'no'} felt direction class (need exactly one; use a lexicon word)`)
+    return hits.length === 1 ? hits[0] : null
+  })
+  const seen = {}; classes.forEach((k, j) => { if (k) (seen[k] ??= []).push(j) })
+  for (const [k, js] of Object.entries(seen)) if (js.length > 1) probs.push(`attitude choices ${js.join(' and ')} share the direction "${k}" (${js.map(j => `"${choices[j]}"`).join(' / ')})`)
+  return { classes, probs }
+}
+export function announcedTone(text) {
+  const ws = norm(text).replace(/[^a-z ]/g, ' ').split(/\s+/).filter(Boolean)
+  const lex = new Set([...Object.values(ATT_DIR9).flat(), ...INDIFF, ...TONE_ANNOUNCE])
+  return [...new Set(ws.filter(w => lex.has(w)))]
+}
 export const licId = (pid, k, qid) => `${pid}.v${k}.${qid.slice(pid.length + 1)}`
 export const a1Oid = (pid, k, qid, j) => `${pid}.v${k}.${qid.slice(pid.length + 1)}.${'ABCDE'[j]}`
 const GENERIC = new Set('show shows describe describes explain explains illustrate illustrates introduce introduces suggest suggests reveal reveals emphasize emphasizes contrast compare provide provides offer offers present presents recount recounts recall recalls account example give gives point reader readers establish establishes indicate indicates highlight highlights note notes stress stresses primarily serves serve mainly concerned where more into than there then been have would could about after before over some only also what other such each every very much made make makes take took became become becomes most many under upon them once just even still'.split(' '))
@@ -145,7 +174,11 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null } = {}) {
       const cl = q.choices.map(c => c.length)
       const maxRatio = isV5(id) ? 1.5 : 1.6
       if (Math.max(...cl) / Math.min(...cl) > maxRatio) problems.push(`${tag}: choice length ratio ${(Math.max(...cl) / Math.min(...cl)).toFixed(2)} > ${maxRatio}`)
-      if (isV6(id) && q.kind === 'attitude') attitudeDirections(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
+      if (isV6(id) && !isV9(id) && q.kind === 'attitude') attitudeDirections(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
+      if (isV9(id) && q.kind === 'attitude') {
+        attitudeDirections9(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
+        p.versions.forEach((v, k) => { const a = announcedTone(v.text); if (a.length) problems.push(`${tag} v${k}: the passage announces a tone ("${a.join('", "')}"); the attitude must be inferable, not named`) })
+      }
       // WV7+ (READING-BATCH-WV7-WV8-2026-10-07.prereg.md): every attitude choice is some version's key, so an
       // indifferent-class choice (detached, neutral, ...) is a key in one world. WV6 P01-5 showed that key fails when the
       // narrator has a stake. Allowed only if the unit declares narrator_role "observer" (author/narrator with no stake).
@@ -296,6 +329,36 @@ function a1build(outdir, files) {
   writeFileSync(join(outdir, 'a1-judge.json'), JSON.stringify(out, null, 1) + '\n')
   writeFileSync(join(outdir, 'a1-key.json'), JSON.stringify(key, null, 1) + '\n')
   console.log(`  a1build: ${out.length} passage-versions, ${out.reduce((a, x) => a + x.option_lists.length, 0)} question-versions, ${Object.keys(key).length} option ids (${Object.values(key).filter(x => x.lexFlag).length} lexically flagged)`)
+}
+
+
+// ── WV9 pre-draw grouped-guess screen: one grouped options-only render per unit (version-independent), seeded
+//    letters; three fresh samples; hits counted against EVERY version k (choice k). Pre-registered threshold: refuse a
+//    unit if any version gets more than 40% of its picks (n = 6 questions x 3 samples = 18 -> refuse at >= 8/18).
+//    With every unit at <= 7/18 for every version, ANY draw pools to <= 40% on these picks. ──
+export function gscreenVerdict(hitsPerVersion, n) {
+  const max = Math.max(...hitsPerVersion), lim = Math.floor(0.4 * n + 1e-9)
+  return { max, lim, pass: max <= lim, argmax: hitsPerVersion.indexOf(max) }
+}
+function gscreenBuild(outdir, files) {
+  mkdirSync(outdir, { recursive: true }); const key = {}
+  for (const f of [...files].sort()) {
+    const p = JSON.parse(readFileSync(f, 'utf8')), id = p.passage_id, r = rng(`gscreen|${id}`)
+    const items = p.questions.map((q, i) => { const order = shuffle([0, 1, 2, 3, 4], r), qid = `${id}-G${i + 1}`; key[qid] = { unit: id, order }; return { qid, prompt: q.prompt, options: Object.fromEntries(order.map((ci, s) => ['ABCDE'[s], q.choices[ci]])) } })
+    writeFileSync(join(outdir, `gscreen-${id}.json`), JSON.stringify(items, null, 1) + '\n')
+  }
+  writeFileSync(join(outdir, 'gscreen-key.json'), JSON.stringify(key, null, 1) + '\n')
+  console.log(`  gscreen-build: ${Object.keys(key).length} questions in ${[...new Set(Object.values(key).map(k => k.unit))].length} unit files`)
+}
+function gscreenScore(outdir, samples) {
+  const key = JSON.parse(readFileSync(join(outdir, 'gscreen-key.json'), 'utf8')), units = {}
+  if (samples.length !== 3) die(`gscreen needs exactly 3 samples, got ${samples.length}`)
+  for (const f of samples) { const lab = JSON.parse(readFileSync(f, 'utf8')); const L0 = lab.labels ?? lab
+    for (const [qid, k] of Object.entries(key)) { const pk = L0[qid]?.pick; if (!'ABCDE'.includes(pk ?? '_') || !pk) die(`${f}: no pick for ${qid}`); (units[k.unit] ??= [0, 0, 0, 0, 0])[k.order['ABCDE'.indexOf(pk)]]++ } }
+  let allPass = true
+  for (const [u, h] of Object.entries(units)) { const n = h.reduce((a, b) => a + b, 0), v = gscreenVerdict(h, n); if (!v.pass) allPass = false
+    console.log(`  ${u}: hits by version ${h.join('/')} of ${n}; max ${v.max} (v${v.argmax}) vs limit ${v.lim} -> ${v.pass ? 'PASS' : 'REFUSE'}`) }
+  console.log(`  GSCREEN ${allPass ? 'all units pass' : 'at least one unit refused'}`)
 }
 
 function draw(outdir, files, a1Dir = null, licDir = null) {
@@ -570,6 +633,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const after = flag => { const i = rest.indexOf(flag); if (i < 0) return []; const out = []; for (let j = i + 1; j < rest.length && !rest[j].startsWith('--'); j++) out.push(rest[j]); return out }
   const strip = flags => rest.filter((x, i) => !flags.includes(x) && !flags.includes(rest[i - 1]))
   if (cmd === 'verify') { const a1Dir = after('--a1')[0] ?? null, licDir = after('--lic')[0] ?? null; const fl = strip(['--a1', '--lic']); if (!fl.length) die('no files'); verify(fl, { a1Dir, licDir }) }
+  else if (cmd === 'gscreen-build') { const [out, ...f] = rest; if (!f.length) die('no files'); gscreenBuild(out, f) }
+  else if (cmd === 'gscreen-score') { const [out, ...f] = rest; gscreenScore(out, f) }
   else if (cmd === 'licbuild') { const [out, ...f] = rest; if (!f.length) die('no files'); licbuild(out, f) }
   else if (cmd === 'a1build') { const [out, ...f] = rest; if (!f.length) die('no files'); a1build(out, f) }
   else if (cmd === 'draw') { const a1Dir = after('--a1')[0] ?? null, licDir = after('--lic')[0] ?? null; const [out, ...f] = strip(['--a1', '--lic']); if (!f.length) die('no files'); draw(out, f, a1Dir, licDir) }
