@@ -1390,6 +1390,28 @@ recorded only in a commit message is a finding nobody reads.
 
   Evidence: `math-mechanism-dup.mjs` (header records the break-test), `.claude/skills/bank-act-math/SKILL.md` § Duplicate checks, `RUNBOOK.md` step 3b.
 
+- **2026-10-08** — **`act-math-v21` HELD AT STAGE 1: 0 OF 5 INSERTED. ACT MATH STAYS AT 16 FORMS; FORM 17 STILL NEEDS ALGEBRA +1.** Bars pre-registered before authoring (`ACT-MATH-V21-PREREGISTERED.md`, 7ac3d322): v20's rules, a declared `mechanism` field, and the new `math-mechanism-dup.mjs` beside the Jaccard scan.
+
+  **Scope.** `next-form`: form 17 needs Algebra +1 (`form-capacity` 16 forms, Algebra 135 / 8 binding). Five Algebra items, one Claude author, medium/hard. The author was given the 951-row live ACT Algebra + SAT Algebra/Advanced mechanism list and **replaced two drafts on its own dup checks**: a Diophantine count live in act, ssat and isee (the list it was given covered only ACT/SAT — it dumped all 2,765 rows to find them), and an accelerating catch-up that `math-mechanism-dup` FLAGged five times.
+
+  **Stage 0 PASS.** Alone: sandbox 5/5, distractors 15/15, 0 composites, stem echo 0/5, 0 stem duplicates, 0 duplicate option sets; key-extremity and magnitude NOT MEASURED (n = 5 < 10, as pre-registered). Merged with `act-math-v20.kept` (41, **context — 36 of the 41 are already shipped**): key at an extreme 19/41 = 46.3% (bar 40.0%), magnitude z −0.35 / 0.57 / −0.19. Alone, key at an extreme 2/5 (descriptive). **Dup checks:** Jaccard 0 flags / 2 near; mechanism check 0 FLAG / 1 near, both read as different mechanisms; AM21A-04 (seesaw moments) carries no lexicon term, so the check could not score it — hand-grepped across all 2,765 rows, no live lever/seesaw item.
+
+  **Stage 1 — both pre-registered batch bars fire:**
+
+      CANDIDATE     8/15 = 53.3%   line 40.0% (2/5 best-fixed at n = 5)   margin +13.3
+      LIVE CONTROL  5/45 = 11.1%   line 26.7%  (15 Algebra, 3:1)          margin −15.6
+      candidate minus control  +28.9   (HOLD bar +10; still +13.3 against a control sitting on its own line)
+      unanimous-correct        candidate 2/5 = 40.0% vs control 1/15 = 6.7%   (HOLD: >= 2 items AND > +15)
+      pairwise agreement 83.3% vs 27.7% if independent: one solver sampled three times
+
+  The two unanimous items, AM21A-03 (options 72/4, 72/3, 72/9, 72/10) and AM21A-04, were picked with all six labels "guess" — on AM21A-04 all three wrote "no signal". That is the shared-prior pattern recorded above (§ three solvers are one solver), and at n = 5 a batch comparison is two items. **It is held anyway: the bar was written for exactly this sample size ("fires at 2 excess picks"), checked against the ceiling, and fired. Re-reading it now would be the pre-registration violation.** No repair.
+
+  **With-source run for the record** (render eb3456628ea0bf92, `bounds` / `distractor_kind` / `quantity_asked` / `mechanism` stripped; 10/10 picks on key, 0 second-defensible) — would-be verdicts, NOT acted on (`act-math-v21.verdicts.json`): AM21A-01 pass; AM21A-02 a backsolving judgement (as AM20N-02); **AM21A-03 a rule-6 drop** (unanimous + grader B's option-grid tell: either idea alone narrows to two); AM21A-04 borderline (unanimous, no shared weak option); **AM21A-05 a rule-3 drop** (a₃/a₁ = 4x/x = 4 gives r = 2 with no quadratic, so the sum is 15x and 90 is the only multiple of 15 — confirmed by hand; also a weak Algebra fit). So the with-source half independently condemns the same option-structure item the blind half found (AM21A-03), plus one it could not see (AM21A-05).
+
+  **For the next author (v22):** avoid option sets that are one quantity divided by a 2×2 grid of factors (AM21A-03), and sequence items whose ratio falls out of a₃/a₁. One Algebra item is still the whole deficit; a v22 of 5–6 with these two shapes banned is the cheapest route to form 17.
+
+  Evidence: `ACT-MATH-V21-PREREGISTERED.md`, `act-math-v21.batch.json`, `act-math-v21-attack-draw.mjs`, `act-math-v21-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v21-grade.{grade,gradekey}.json`, `act-math-v21.grader-{a,b}.json`, `act-math-v21.verdicts.json`; ledger `act-math-v21-held-2026-10-08`. `verify-act-draw`: act/math draws 45 of 45 (unchanged); `form-capacity`: ACT Math 16 forms.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

@@ -1,0 +1,107 @@
+{
+  "_render_sha": "eb3456628ea0bf92",
+  "AM21A-01": {
+    "pick": "45",
+    "work": "D/30 - D/72 = 70/60 h -> D(7/360)=7/6 -> D=60 mi; T = 60/30 - 2/3 = 4/3 h; v = 60/(4/3) = 45.",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "on-time speed strictly between 30 and 72", "kills": []},
+      {"bound": "plug-back: (1/30 - 1/v)/(1/v - 1/72) must equal 40/30; as costly as solving, needs reciprocal arithmetic per option", "kills": []}
+    ],
+    "estimation_bound": {"estimate": "harmonic midpoint of 30 and 72 (~42.4) with weight shifted toward 72 because 40 late > 30 early, so v in (42.4, 72); not a one-step estimate an average student would make", "interval": "(42.4, 72)", "kills": []},
+    "survivors": 4,
+    "limiting_case": null,
+    "neighbouring_setup": {"option": "54", "what": "time-weighted ARITHMETIC mean (3/7*30 + 4/7*72) — the right weights applied to speeds instead of to 1/speed", "bound_kills": false},
+    "free_elimination": "A test-wise student may reject 51 as the bare arithmetic mean of 30 and 72 (a known trap), but that still leaves 45/50/54.",
+    "distractor_quality": "plausible",
+    "weak_distractors": ["50"],
+    "difficulty": "medium",
+    "duplicate_note": "Standard 'late at speed A / early at speed B, find on-time speed' textbook template (classic GMAT/SAT rate problem).",
+    "domain_fit": "Fair Algebra: set up and solve a 2x2 linear system in context."
+  },
+  "AM21A-02": {
+    "pick": "6",
+    "work": "Subtract: 2x - k = 0 -> common root r = k/2; (k/2)^2 - 5(k/2) + k = 0 -> k(k-6)=0, k nonzero -> k=6. Check: (x-2)(x-3), (x-3)(x-4): exactly one common root 3.",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "plugging an option back in is cheaper than solving: each k makes the second quadratic x^2-7x+2k; integer k=3,4 and 9/4 give discriminants 25/17/31 for the pair, only k=6 makes both factor with a shared root", "kills": ["3", "4", "9/4"]},
+      {"bound": "discriminant of x^2-7x+2k must be a perfect square for a rational common root with integer-ish options: 49-8k = 25, 17, 1, 31 -> k=4 and 9/4 give irrational roots of the second equation while the first's are rational", "kills": ["4", "9/4"]}
+    ],
+    "estimation_bound": null,
+    "survivors": 1,
+    "survivors_note": "Survivors=1 only via option plug-back (factoring each pair); that is a legitimate alternative path, arguably comparable effort to the subtract-and-substitute method, so the item is not broken but is option-checkable.",
+    "limiting_case": null,
+    "neighbouring_setup": {"option": "3", "what": "the common SOLUTION x=3, not k", "bound_kills": true},
+    "free_elimination": "Back-solving: factor the two quadratics for each option; k=6 is the only one where both factor nicely ((x-2)(x-3), (x-3)(x-4)). Fast for a test-wise student.",
+    "distractor_quality": "plausible",
+    "weak_distractors": ["9/4"],
+    "difficulty": "medium",
+    "duplicate_note": "Common-root-of-two-quadratics template (subtract to isolate the shared root); familiar from competition/olympiad prep banks.",
+    "domain_fit": "Algebra (quadratics/systems) - fair, slightly competition-flavoured for ACT."
+  },
+  "AM21A-03": {
+    "pick": "18",
+    "work": "9c/a^2 = c/b^2 -> a = 3b; a + b = 72 -> b = 18 (a = 54).",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "equal-intensity point is closer to the weaker lamp B: b < 36", "kills": []},
+      {"bound": "plug-back: (72-b)/b must equal sqrt(9)=3; 24->2, 8->8, 7.2->9, 18->3; one division per option", "kills": ["24", "8", "7.2"]}
+    ],
+    "estimation_bound": null,
+    "survivors": 1,
+    "survivors_note": "The plug-back IS essentially the item's work (needs sqrt(9)=3 insight), so honestly 4 survive a student who lacks the a=3b step.",
+    "limiting_case": null,
+    "neighbouring_setup": {"option": "7.2", "what": "split 72 in ratio 1:9 (forgot the square root)", "bound_kills": false},
+    "free_elimination": null,
+    "distractor_quality": "strong",
+    "weak_distractors": [],
+    "difficulty": "medium",
+    "duplicate_note": "Classic inverse-square equal-field point between two sources (physics/precalc template).",
+    "domain_fit": "Acceptable as Algebra (rational/quadratic equation in context); could be tagged Functions/modeling."
+  },
+  "AM21A-04": {
+    "pick": "120",
+    "work": "6A = 4B; 6(A+30) = 5B. Subtract: 180 = B -> A = 4(180)/6 = 120.",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "Ari sits farther out, so Ari is lighter than Bo; and Bo moving out by 1 ft must add exactly the dog's moment 6x30=180, so Bo = 180 and Ari < 180", "kills": ["180", "270"]},
+      {"bound": "plug-back: A=120 -> B=180 -> 150x6 = 900 = 5x180; one line per option", "kills": ["100"]}
+    ],
+    "estimation_bound": null,
+    "survivors": 2,
+    "survivors_note": "Ari < Bo is free from the seating distances (kills 270 trivially; 180 only once Bo=180 is seen). 120 vs 100 needs the actual setup.",
+    "limiting_case": null,
+    "neighbouring_setup": {"option": "180", "what": "Bo's weight (other variable)", "bound_kills": true},
+    "free_elimination": "Moment-difference shortcut: Bo's 1-ft move must supply exactly the dog's 180 lb-ft, so Bo = 180 in one step; this is elegant but still the item's work.",
+    "distractor_quality": "plausible",
+    "weak_distractors": ["270"],
+    "difficulty": "easy",
+    "duplicate_note": "Lever/seesaw balance two-condition linear system - standard textbook template.",
+    "domain_fit": "Fair Algebra: linear system in context, definition supplied in stem."
+  },
+  "AM21A-05": {
+    "pick": "90",
+    "work": "(x+6)^2 = 4x^2 -> x+6 = 2x (x>0) -> x=6; terms 6,12,24,48; sum 90. Faster: a3/a1 = r^2 = 4, terms positive so r=2, then x+6 = 2x.",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {"bound": "x>0 and x+6 > x, so all terms positive and r>1; every term after the first exceeds 6, so sum > 18", "kills": ["10"]},
+      {"bound": "a3/a1 = 4x/x = 4 = r^2 -> r = 2 with no quadratic; sum = 15x and x = 6 immediately", "kills": ["186", "52", "10"]}
+    ],
+    "estimation_bound": null,
+    "survivors": 1,
+    "survivors_note": "The r^2 = a3/a1 = 4 observation collapses the item: ratio known for free, x=6 by inspection. Arguably the intended elegant path, but it removes the quadratic the topic tag implies.",
+    "limiting_case": null,
+    "neighbouring_setup": {"option": "10", "what": "the other root x=-2 (terms -2,4,-8,16), excluded by 'positive'", "bound_kills": true},
+    "free_elimination": "Third term over first term is 4 regardless of x, so r=2 without solving; then x+6=2x gives x=6. Also 186 = sum of first FIVE terms and 52 = arithmetic-sequence misread (x=4: 4,10,16,22).",
+    "distractor_quality": "strong",
+    "weak_distractors": [],
+    "difficulty": "easy",
+    "duplicate_note": "Standard 'x, x+a, bx form a geometric sequence' template.",
+    "domain_fit": "Borderline: sequences are usually tagged Number & Quantity or Functions on the enhanced ACT, not Algebra. The algebra content is thin once r=2 is read off."
+  }
+}

@@ -5821,6 +5821,35 @@
           "verdict": "Residuals recorded, not acted on: AM20F-08 both graders count 2 survivors (cos x = 1/3 < 1/2 so x > 60, killing 19.5 and 18.4) and name the inverse-trig ladder; I judge the bound downstream of the item work (reducing 3 sin x = tan x to cos x = 1/3 IS the item; arccos is one keystroke), as AM18I-10. AM20G-07 grader A counts 2 (the turn angle is acute, so d < 147.1, killing 169.1 and 198.2); grader B and I judge the 70-degree interior angle IS the item crux (169.1 is exactly its failure). AM20A-03 grader B counts 2 (linear remainder through (2,7),(-1,13) is decreasing, so r(4) < 7); grader A and I judge recognising the linear interpolant is the item. AM20I-06 11314.29 sits on the amounts-only bound (Ben has the fewest months, so his share < 24/49); one dead, no weak, 3 survivors, kept. AM20S-03 three-set Venn asks exactly-one; live isee-math-s11 a8b7895d asks none on the same structure - judged different computation. AM20N-02 grader B: plugging options is cheaper than the exponent work (backsolving, not a free bound). One-weak-by-both kept: AM20N-01 42, AM20A-03 19, AM20F-06 3.1, AM20F-07 8 (unanimous blind, no grader-named elimination)."
         }
       }
+    },
+    {
+      "id": "act-math-v21-held-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v21",
+      "contentSha": "2726c97b2827e899e22d094df02946a72aa24fb1b34005f78e9e10a1635be0fb",
+      "status": "held",
+      "note": "5 Algebra items from one Claude author against next-form for ACT Math form 17 (Algebra +1; form-capacity 16 forms, Algebra 135/8 binding), bars pre-registered in ACT-MATH-V21-PREREGISTERED.md (commit 7ac3d322) before authoring: v20 rules plus a declared mechanism field and the new math-mechanism-dup.mjs check. HELD at stage 1 on both pre-registered batch bars; nothing inserted; ACT Math stays 16 forms.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "2726c97b2827e899e22d094df02946a72aa24fb1b34005f78e9e10a1635be0fb",
+          "verdict": "act-math-v18-preflight.sh on v21 alone: sandbox 5/5, distractors 15/15, numeric hub margin -25.0, 0 unique composites, stem echo 0/5, 0 stem duplicates vs 1,423 live act rows, 0 duplicate option sets; key-extremity NO-MEASUREMENT and check-key-magnitude REFUSING (n=5 < 10) - NOT MEASURED, as pre-registered. Merged with act-math-v20.kept (41 items, CONTEXT - 36 of the 41 are shipped): key at an extreme 19/41 = 46.3% (bar 40.0%), magnitude consistent (z -0.35/0.57/-0.19). v21 alone key at an extreme 2/5, descriptive. Duplicate checks: act-math-v16-dupscan 0 flags, 2 near (read: different mechanisms); math-mechanism-dup 0 FLAG, 1 near (AM21A-01 ~ act d10e7240, different), AM21A-04 unscorable by it (no lexicon term) and hand-grepped across all 2,765 live rows (seesaw/pivot/fulcrum/lever/balance: 0 maths hits). Author replaced two drafts on its own dup checks (a Diophantine count live in act/ssat/isee; an accelerating catch-up the mechanism check FLAGged 5 times)."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "2726c97b2827e899e22d094df02946a72aa24fb1b34005f78e9e10a1635be0fb",
+          "verdict": "Options-only (act-math-v21-attack-draw.mjs, blind sha bed5b3960f9f383c): 5 candidates + 15 live act Algebra controls (3:1, v16-v21 excluded), keys flat within arm (candidate best-fixed 2/5 = 40.0%, control 26.7%), three Claude samples (pairwise agreement 83.3% vs 27.7% if independent - one solver sampled three times). Candidate 8/15 = 53.3% (line 40.0%, +13.3) vs control 5/45 = 11.1% (line 26.7%, -15.6): candidate minus control +28.9, HOLD bar +10 FIRES (it would fire against a control at its own line too, +13.3). Unanimous-correct candidate 2/5 = 40.0% (AM21A-03, AM21A-04) vs control 1/15 = 6.7%: +33.3 with >= 2 items, HOLD bar FIRES. All six picks on the two unanimous items were labelled guess; on AM21A-04 all three wrote no signal."
+        },
+        "withsource": {
+          "passed": null,
+          "contentSha": "2726c97b2827e899e22d094df02946a72aa24fb1b34005f78e9e10a1635be0fb",
+          "verdict": "Run for the record (render sha eb3456628ea0bf92 of a copy with bounds, distractor_kind, quantity_asked, mechanism stripped; no unrecognised field; quoted by both). 10 of 10 picks equal the key, 0 second-defensible. Would-be verdicts (not acted on - the batch is held): AM21A-01 pass (4 survivors by both, 50 weak by both); AM21A-02 judgement (1 survivor by back-solving / discriminant squares, grader B: costlier than solving); AM21A-03 rule-6 drop (unanimous + grader B option-grid tell); AM21A-04 borderline (unanimous, no shared weak); AM21A-05 rule-3 drop (a3/a1 = 4 gives r = 2 free; 15x makes 90 the only multiple of 15). See act-math-v21.verdicts.json."
+        }
+      }
     }
   ],
   "auditedCohorts": [

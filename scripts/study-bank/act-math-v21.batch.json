@@ -1,0 +1,196 @@
+[
+ {
+  "id": "AM21A-01",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rate problems with two scenarios",
+  "subskill": "two trial speeds that arrive a stated time late and a stated time early fix both the distance and the scheduled travel time; the on-time speed is distance over scheduled time (not an average of the two speeds)",
+  "prompt": "Nadia is driving from her home to a job interview. She calculates that if she averages 30 miles per hour, she will arrive 40 minutes late, and if she averages 72 miles per hour, she will arrive 30 minutes early. At what average speed, in miles per hour, must she drive to arrive exactly on time?",
+  "choices": [
+   "51",
+   "50",
+   "45",
+   "54"
+  ],
+  "correct_answer": "45",
+  "explanation": "Let d be the distance in miles. The two trial times differ by 40 + 30 = 70 minutes = 7/6 hours, so d/30 − d/72 = 7/6. Since 1/30 − 1/72 = 12/360 − 5/360 = 7/360, 7d/360 = 7/6 and d = 60 miles. At 30 mph the trip takes 60/30 = 2 hours = 120 minutes, so the scheduled travel time is 120 − 40 = 80 minutes (check: at 72 mph it takes 60/72 hour = 50 minutes, and 50 + 30 = 80). The on-time speed is 60 miles ÷ (80/60) hours = 45 mph. The option \"51\" is the average of the two speeds, (30 + 72)/2, which ignores that the time spent depends on the reciprocal of the speed. The option \"54\" interpolates the speed in proportion to the minutes, 30 + (72 − 30)(40/70). The option \"50\" finds the 80 minutes correctly but writes 1 hour 20 minutes as 1.20 hours, giving 60/1.2.",
+  "solve": "const gap=(40+30)/60; const d=gap/(1/30-1/72); const t=d/30-40/60; if (Math.abs(d/72+30/60-t)>1e-9) return \"inconsistent\"; return String(Math.round(d/t*1000)/1000);",
+  "distractor_solve": {
+   "50": "const d=((40+30)/60)/(1/30-1/72); const mins=Math.round((d/30)*60-40); const wrongHours=Math.floor(mins/60)+(mins%60)/100; return String(Math.round(d/wrongHours*1000)/1000);",
+   "51": "return String((30+72)/2);",
+   "54": "return String(30+(72-30)*40/(40+30));"
+  },
+  "quantity_asked": "the speed d/t, where d is the trip distance and t the scheduled travel time, both fixed by the two late/early trials.",
+  "distractor_kind": {
+   "50": "wrong procedure: correct distance and scheduled time, then 80 minutes = 1 h 20 min written as 1.20 h. (a) no. (b) no. (c) interval (42.35, 72); 50 strictly inside. (d) real: decimal-hours slip.",
+   "51": "wrong procedure: arithmetic mean of the two speeds. (a) limiting case: no parameter extreme; it is not the equal-offset case either (that is the harmonic mean, 42.35). (b) neighbouring setup: no adjacent problem has 51 as its answer. (c) cheapest one-step bound over the whole quantity: the speed lies strictly between 30 and 72; one step finer, the early offset (30) is smaller than the late offset (40), so the scheduled time is nearer the fast trial time, below the midpoint of the two trial times, so v > harmonic mean 2(30)(72)/102 = 42.35. Interval (42.35, 72); 51 strictly inside. No integrality, parity or divisibility is forced on v. (d) real: averaging speeds is the classic error, and here it overshoots.",
+   "54": "wrong procedure: interpolating the speed linearly in the minutes, 30 + 42(40/70). (a) no. (b) no. (c) interval (42.35, 72); 54 strictly inside. (d) real: treating speed as proportional along the late-to-early span."
+  },
+  "bounds": [
+   "v > 30",
+   "v < 72",
+   "v > 2*30*72/(30+72)"
+  ],
+  "mechanism": [
+   "arrive late",
+   "arrive early",
+   "on time",
+   "two trial speeds",
+   "scheduled travel time"
+  ]
+ },
+ {
+  "id": "AM21A-02",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratic equations with a common solution",
+  "subskill": "two quadratics with the same leading coefficient that share a root: subtracting them eliminates x² and gives the shared root in terms of the parameter, which is then substituted back",
+  "prompt": "The equations x² − 5x + k = 0 and x² − 7x + 2k = 0, where k is a nonzero constant, have exactly one solution in common. What is the value of k ?",
+  "choices": [
+   "6",
+   "9/4",
+   "3",
+   "4"
+  ],
+  "correct_answer": "6",
+  "explanation": "Let r be the common solution. Subtracting the first equation from the second at x = r gives −2r + k = 0, so r = k/2. Substituting into the first equation: k²/4 − 5k/2 + k = 0, so k²/4 − 3k/2 = 0, k(k − 6) = 0, and since k ≠ 0, k = 6. Check: x² − 5x + 6 = (x − 2)(x − 3) and x² − 7x + 12 = (x − 3)(x − 4) share exactly the solution 3. The option \"3\" is that common solution, not k (it is also what results from writing (k/2)² as k²/2). The option \"9/4\" inverts 2r = k as r = 2k, giving 4k² − 10k + k = 0. The option \"4\" is the solution of the second equation that is not shared.",
+  "solve": "for (let n=-400;n<=400;n++){ const k=n/4; if(k===0) continue; const d1=25-4*k, d2=49-8*k; if(d1<0||d2<0) continue; const A=[...new Set([(5+Math.sqrt(d1))/2,(5-Math.sqrt(d1))/2])], B=[...new Set([(7+Math.sqrt(d2))/2,(7-Math.sqrt(d2))/2])]; let c=0; for(const x of A) for(const y of B) if(Math.abs(x-y)<1e-9) c++; if(c===1) return Number.isInteger(k)?String(k):String(n)+\"/4\"; } return \"none\";",
+  "distractor_solve": {
+   "3": "for (let n=1;n<=400;n++){ const k=n/4; if (Math.abs((k/2)**2-5*(k/2)+k)<1e-9 && Math.abs((k/2)**2-7*(k/2)+2*k)<1e-9) return String(k/2); } return \"none\";",
+   "4": "for (let n=1;n<=400;n++){ const k=n/4; if (Math.abs((k/2)**2-5*(k/2)+k)<1e-9){ const d=49-8*k; const roots=[(7+Math.sqrt(d))/2,(7-Math.sqrt(d))/2]; return String(roots.find(x=>Math.abs(x-k/2)>1e-9)); } } return \"none\";",
+   "9/4": "for (let n=1;n<=400;n++){ const k=n/4; if (Math.abs(4*k*k-10*k+k)<1e-9) return (k===2.25)?\"9/4\":String(k); } return \"none\";"
+  },
+  "quantity_asked": "the nonzero constant k for which the two quadratics share exactly one solution.",
+  "distractor_kind": {
+   "3": "wrong quantity: the shared solution r = k/2 reported as k (same value as the slip (k/2)² = k²/2). (a) limiting case: no parameter extreme. (b) neighbouring setup: it answers \"what is the common solution\", but 3 is not an extreme of any feasible interval for k. (c) cheapest one-step bound: both equations need real roots, 25 − 4k ≥ 0 and 49 − 8k ≥ 0, so k ≤ 49/8 = 6.125; k ≠ 0; no sign is forced (k < 0 gives real roots too). Interval (−∞, 6.125] minus 0; 3 strictly inside. No parity, integrality or perfect-square condition is forced: k = 3 gives x² − 5x + 3 with irrational roots, which is rejected only by doing the item (checking for a shared root). (d) real: answering the variable you solved for first.",
+   "4": "wrong quantity: the unshared solution of x² − 7x + 12 = 0. (a) no. (b) neighbouring setup: answers \"the other solution of the second equation\"; not an extreme of k's feasible interval. (c) interval (−∞, 6.125]; 4 strictly inside, and k = 4 gives real roots in both equations (1 and 4; (7 ± √17)/2), so only the shared-root check rejects it. (d) real: reporting a root instead of the parameter.",
+   "9/4": "wrong procedure: 2r = k inverted to r = 2k, then 4k² − 9k = 0. (a) no. (b) no. (c) interval (−∞, 6.125]; 9/4 strictly inside. (d) real algebra slip."
+  },
+  "bounds": [
+   "v <= 49/8",
+   "v <= 25/4",
+   "v !== 0"
+  ],
+  "mechanism": [
+   "common solution",
+   "shared root",
+   "solution in common",
+   "two quadratics",
+   "subtract the equations"
+  ]
+ },
+ {
+  "id": "AM21A-03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "rational equations in context (inverse-square model)",
+  "subskill": "equal inverse-square intensities from two sources: the distance ratio is the SQUARE ROOT of the strength ratio, so the point divides the segment in the ratio 1 : √k, not 1 : k",
+  "prompt": "The intensity of light from a lamp at a distance of d meters from the lamp is c/d², where c is a positive constant for that lamp. Lamp A has a c-value 9 times that of lamp B, and the two lamps are 72 meters apart. At a point on the segment between the two lamps, the intensities from the two lamps are equal. How far, in meters, is that point from lamp B ?",
+  "choices": [
+   "7.2",
+   "18",
+   "8",
+   "24"
+  ],
+  "correct_answer": "18",
+  "explanation": "Let x be the distance from lamp B, so the point is 72 − x meters from lamp A. Equal intensities: 9c/(72 − x)² = c/x², so (72 − x)² = 9x². Both distances are positive, so 72 − x = 3x, which gives x = 18 (and 54 meters from lamp A; check: 9c/54² = 9c/2916 = c/324 = c/18²). The option \"7.2\" drops the square root and divides the segment in the ratio 1 : 9, 72/10. The option \"8\" takes the point to be 1/9 of the way from B, 72/9. The option \"24\" uses the correct ratio √9 = 3 but takes the distance from B to be 1/3 of the whole 72 rather than 1/(3 + 1) of it.",
+  "solve": "let lo=1e-6, hi=72-1e-6; const f=x=>9/((72-x)**2)-1/(x*x); for(let i=0;i<200;i++){const m=(lo+hi)/2; if(f(lo)*f(m)<=0) hi=m; else lo=m;} return String(Math.round(lo*1000)/1000);",
+  "distractor_solve": {
+   "8": "return String(72/9);",
+   "24": "return String(72/Math.sqrt(9));",
+   "7.2": "return String(72/(9+1));"
+  },
+  "quantity_asked": "the distance x from lamp B, on the segment, at which 9c/(72 − x)² = c/x².",
+  "distractor_kind": {
+   "8": "wrong procedure: \"9 times as strong, so 1/9 of the distance\", x = 72/9. (a) no. (b) no. (c) interval (0, 36); 8 strictly inside. (d) real proportional-reasoning slip.",
+   "24": "wrong procedure: correct ratio 3 but x = 72/3, the part-to-whole confusion (1 : 3 read as 1/3 of the total). (a) no. (b) no. (c) interval (0, 36); 24 strictly inside. (d) real: ratio-to-fraction slip.",
+   "7.2": "wrong procedure: ratio of strengths used for the ratio of distances (square root dropped), x : (72 − x) = 1 : 9. (a) limiting case: no parameter extreme. (b) neighbouring setup: it is the answer for an inverse (not inverse-square) law, but that is not an extreme of the feasible interval. (c) cheapest one-step bound over the whole quantity: the point is nearer the weaker lamp, so 0 < x < 36 (the midpoint, equal strengths, is the excluded edge); one step finer needs √9, which is the item's work. Interval (0, 36); 7.2 strictly inside. (d) real: forgetting the square in the model."
+  },
+  "bounds": [
+   "v > 0",
+   "v < 36"
+  ],
+  "mechanism": [
+   "inverse square",
+   "equal intensity",
+   "point between two lamps",
+   "square root of the ratio",
+   "intensity c/d^2"
+  ]
+ },
+ {
+  "id": "AM21A-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "systems of linear equations in context (balance condition)",
+  "subskill": "a balance condition (weight × distance equal on both sides) stated twice, before and after a load is added and one person moves: the change in one side balances the added load, which fixes one weight, and the first condition then gives the other",
+  "prompt": "Ari and Bo balance on a seesaw when Ari sits 6 feet from the pivot and Bo sits 4 feet from the pivot on the other side. (A seesaw balances when weight × distance from the pivot is the same on both sides.) Ari's 30-pound dog then sits on Ari's lap, and the seesaw balances again once Bo moves to 5 feet from the pivot. How many pounds does Ari weigh?",
+  "choices": [
+   "180",
+   "100",
+   "270",
+   "120"
+  ],
+  "correct_answer": "120",
+  "explanation": "Let A and B be the weights, in pounds, of Ari and Bo. Before the dog: 6A = 4B. After: 6(A + 30) = 5B, that is, 6A + 180 = 5B. Subtracting the first equation from the second gives 180 = B, so Bo weighs 180 pounds, and 6A = 4(180) = 720 gives A = 120. (Check: 6(150) = 900 = 5(180).) The option \"180\" is Bo's weight, not Ari's. The option \"270\" inverts the first condition, using A = 6B/4 = 1.5(180). The option \"100\" multiplies the dog's weight by Bo's new distance instead of Ari's, 6A + 5(30) = 5B with B = 1.5A, so 1.5A = 150.",
+  "solve": "for (let A=1;A<=1000;A++){ const B=6*A/4; if (Math.abs(6*(A+30)-5*B)<1e-9) return String(A); } return \"none\";",
+  "distractor_solve": {
+   "100": "for (let A=1;A<=1000;A++){ const B=6*A/4; if (Math.abs(6*A+5*30-5*B)<1e-9) return String(A); } return \"none\";",
+   "180": "for (let A=1;A<=1000;A++){ const B=6*A/4; if (Math.abs(6*(A+30)-5*B)<1e-9) return String(B); } return \"none\";",
+   "270": "for (let A=1;A<=1000;A++){ const B=6*A/4; if (Math.abs(6*(A+30)-5*B)<1e-9) return String(6*B/4); } return \"none\";"
+  },
+  "quantity_asked": "Ari's weight A, where 6A = 4B and 6(A + 30) = 5B.",
+  "distractor_kind": {
+   "100": "wrong procedure: the dog's torque taken at Bo's new distance, 6A + 5(30) = 5B. (a) no. (b) no. (c) (0, ∞); inside. (d) real: attaching the new distance to the wrong load.",
+   "180": "wrong quantity: Bo's weight B, found first by subtracting the two balance equations. (a) limiting case: no parameter extreme. (b) neighbouring setup: the answer to \"how much does Bo weigh\"; not an extreme of any feasible interval for A. (c) cheapest one-step bound over the whole quantity: A > 0; Ari sits farther out, so A < B, but B is not known without the subtraction, which is half the item; no integrality, parity or divisibility of A is forced (A = 4B/6 with B unknown). Interval (0, ∞); 180 inside. (d) real: reporting the first unknown found.",
+   "270": "wrong procedure: lever ratio inverted, A = (6/4)B instead of (4/6)B. (a) no. (b) no. (c) (0, ∞); inside. (d) real: putting the larger distance with the larger weight."
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "seesaw",
+   "balances",
+   "weight times distance",
+   "pivot",
+   "moves to rebalance"
+  ]
+ },
+ {
+  "id": "AM21A-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "geometric sequences with algebraic terms",
+  "subskill": "three algebraic expressions in geometric sequence: the middle term squared equals the product of the outer two, a quadratic whose root is selected by a sign condition, then the terms are generated and summed",
+  "prompt": "For a certain positive number x, the numbers x, x + 6, and 4x, in that order, are the first three terms of a geometric sequence. What is the sum of the first four terms of this sequence?",
+  "choices": [
+   "10",
+   "90",
+   "52",
+   "186"
+  ],
+  "correct_answer": "90",
+  "explanation": "In a geometric sequence the square of the middle term equals the product of its neighbours: (x + 6)² = x · 4x. So x² + 12x + 36 = 4x², 3x² − 12x − 36 = 0, x² − 4x − 12 = 0, and (x − 6)(x + 2) = 0. Since x is positive, x = 6, and the terms are 6, 12, 24, 48 (common ratio 2). Their sum is 90. The option \"10\" uses the root x = −2 that the stem excludes (terms −2, 4, −8, 16). The option \"52\" treats the terms as arithmetic, 2(x + 6) = x + 4x, so x = 4 and the terms 4, 10, 16, 22 sum to 52. The option \"186\" adds five terms instead of four, 6 + 12 + 24 + 48 + 96.",
+  "solve": "for (let n=1;n<=4000;n++){ const x=n/100; if (Math.abs((x+6)**2-4*x*x)<1e-9){ const r=(x+6)/x; let s=0, a=x; for(let i=0;i<4;i++){ s+=a; a*=r; } return String(Math.round(s*1000)/1000);} } return \"none\";",
+  "distractor_solve": {
+   "10": "for (let n=-4000;n<0;n++){ const x=n/100; if (Math.abs((x+6)**2-4*x*x)<1e-9){ const r=(x+6)/x; let s=0, a=x; for(let i=0;i<4;i++){ s+=a; a*=r; } return String(Math.round(s*1000)/1000);} } return \"none\";",
+   "52": "for (let n=1;n<=4000;n++){ const x=n/100; if (Math.abs(2*(x+6)-(x+4*x))<1e-9){ const d=6; let s=0; for(let i=0;i<4;i++) s+=x+i*d; return String(s);} } return \"none\";",
+   "186": "for (let n=1;n<=4000;n++){ const x=n/100; if (Math.abs((x+6)**2-4*x*x)<1e-9){ const r=(x+6)/x; let s=0, a=x; for(let i=0;i<5;i++){ s+=a; a*=r; } return String(Math.round(s*1000)/1000);} } return \"none\";"
+  },
+  "quantity_asked": "the sum of the first four terms x + xr + xr² + xr³ of the geometric sequence, with x > 0.",
+  "distractor_kind": {
+   "10": "wrong root: x = −2, which the stem excludes. (a) limiting case: no. (b) neighbouring setup: the other root of the quadratic; the resulting SUM, 10, is positive, so no sign check on the sum rejects it, and it is not an extreme of any one-step interval — only noticing that x = −2 is the root behind it rejects it, which is the item's work. (c) cheapest one-step estimate: r² = 4x/x = 4 and r = (x + 6)/x > 0 for x > 0, so r = 2 and the sum is 15x > 0; x is not fixed without solving x + 6 = 2x. Interval (0, ∞); 10 inside (x = 2/3 would give it). (d) real: ignoring the stated sign condition.",
+   "52": "wrong procedure: arithmetic-mean condition used for a geometric sequence. (a) no. (b) neighbouring setup: answers the arithmetic version of the item; not an extreme. (c) sum = 15x with x > 0: interval (0, ∞); 52 inside (no integrality of x is stated). (d) real: confusing the two sequence conditions.",
+   "186": "wrong procedure: one term too many (first five terms). (a) limiting case: no parameter extreme. (b) neighbouring setup: the sum of five terms; no stem-forced bound sits at 186 without first finding the terms. (c) cheapest one-step estimate: r² = 4x/x = 4 and r = (x + 6)/x > 0 for x > 0, so r = 2 and the four-term sum is 15x > 0; x is not fixed without solving x + 6 = 2x, and no integrality of x is stated, so 186 (x = 12.4) is not excluded for free. Interval (0, ∞); inside. (d) real: off-by-one in the term count."
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "geometric sequence of expressions",
+   "middle term squared",
+   "x, x + 6, 4x",
+   "geometric mean condition"
+  ]
+ }
+]

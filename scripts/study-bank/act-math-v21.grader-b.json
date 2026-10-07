@@ -1,0 +1,193 @@
+{
+  "_render_sha": "eb3456628ea0bf92",
+  "AM21A-01": {
+    "pick": "45",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {
+        "bound": "on-time speed strictly between 30 and 72",
+        "kills": []
+      },
+      {
+        "bound": "late margin (40 min) > early margin (30 min), so on-time time is nearer the 72-mph time; speed above the equal-margin harmonic mean 42.35",
+        "kills": []
+      },
+      {
+        "bound": "plug-back via (1/30-1/v)/(1/v-1/72)=4/3 - same cost as solving, not cheaper",
+        "kills": []
+      }
+    ],
+    "estimation_bound": null,
+    "survivors": 4,
+    "limiting_case": null,
+    "neighbouring_setup": {
+      "option": "54",
+      "what": "time-weighted mean of speeds with weights swapped ((30*30+72*40)/70)",
+      "bound_kills": []
+    },
+    "free_elimination": null,
+    "distractor_quality": "plausible",
+    "weak_distractors": [
+      "50"
+    ],
+    "difficulty": "medium",
+    "duplicate_note": "Classic 'late at speed A, early at speed B, find on-time speed' textbook template (d=60, t=4/3 h).",
+    "domain_fit": "Fair Algebra: two linear equations in d and t from a rate context. 51 is the arithmetic-mean trap; I could not reconstruct a natural error path to 50."
+  },
+  "AM21A-02": {
+    "pick": "6",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {
+        "bound": "k nonzero",
+        "kills": []
+      },
+      {
+        "bound": "subtracting the equations gives the common root r=k/2, which is rational for every option, so both discriminants (25-4k, 49-8k) must be perfect squares. This takes more work than solving.",
+        "kills": [
+          "3",
+          "4",
+          "9/4"
+        ]
+      }
+    ],
+    "estimation_bound": null,
+    "survivors": 1,
+    "limiting_case": null,
+    "neighbouring_setup": {
+      "option": "3",
+      "what": "the common solution x=3 itself, not k",
+      "bound_kills": [
+        "rational-discriminant bound"
+      ]
+    },
+    "free_elimination": "No cheaper path. Plugging each k and factoring rules out 3, 4 and 9/4 (no shared integer root), but that costs about as much as the two-line subtract-and-substitute solve. Survivors=1 is only under the discriminant bound, which costs more than the work.",
+    "distractor_quality": "plausible",
+    "weak_distractors": [
+      "9/4"
+    ],
+    "difficulty": "medium",
+    "duplicate_note": "Standard 'two quadratics with a common root' template (subtract to eliminate x^2).",
+    "domain_fit": "Fair Algebra (quadratic equations). 4 matches the error of taking the root as k instead of k/2; 9/4 has no clear error path."
+  },
+  "AM21A-03": {
+    "pick": "18",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {
+        "bound": "point is nearer the dimmer lamp B: distance from B < 36",
+        "kills": []
+      },
+      {
+        "bound": "on-segment: 0 < distance < 72 (removes the external root 36 m beyond B, which is not offered)",
+        "kills": []
+      }
+    ],
+    "estimation_bound": null,
+    "survivors": 4,
+    "limiting_case": null,
+    "neighbouring_setup": {
+      "option": "24",
+      "what": "72/sqrt(9): ratio 3 used as a divisor of the whole span instead of a 3:1 split",
+      "bound_kills": []
+    },
+    "free_elimination": "Partial pattern tell: the options are 72/4, 72/3, 72/9 and 72/10, forming a 2x2 grid of sqrt-or-not by split-or-divide. A student who knows inverse-square means square root narrows it to 18/24, and one who knows it is a split narrows it to 18/7.2. Only both ideas together, which is the item's work, give 18.",
+    "distractor_quality": "strong",
+    "weak_distractors": [],
+    "difficulty": "medium",
+    "duplicate_note": "Standard inverse-square 'equal intensity between two sources' template (also the gravity null-point problem).",
+    "domain_fit": "Acceptable as Algebra (rational equation solved by square roots). It could also be tagged Modeling, but the core is solving c/x^2 = 9c/(72-x)^2."
+  },
+  "AM21A-04": {
+    "pick": "120",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {
+        "bound": "6a=4b means Ari is lighter than Bo (a = 2b/3)",
+        "kills": [
+          "270"
+        ]
+      },
+      {
+        "bound": "the dog adds 180 ft-lb and Bo moves 1 ft, so b=180. This IS the item work, so it is not counted as a free kill.",
+        "kills": []
+      }
+    ],
+    "estimation_bound": null,
+    "survivors": 3,
+    "limiting_case": null,
+    "neighbouring_setup": {
+      "option": "180",
+      "what": "Bo's weight (the other variable)",
+      "bound_kills": []
+    },
+    "free_elimination": "No free route to the key. 270 is Bo's weight times 1.5, so it needs Ari to be heavier than Bo, which the 6-vs-4 distances rule out at a glance. Plug-back is quick: a=120 gives b=180, and 6*150 = 5*180.",
+    "distractor_quality": "plausible",
+    "weak_distractors": [
+      "100"
+    ],
+    "difficulty": "easy",
+    "duplicate_note": "Standard lever/seesaw balance two-equation template.",
+    "domain_fit": "Fair Algebra: a linear system from a stated rule. Easy for ACT."
+  },
+  "AM21A-05": {
+    "pick": "90",
+    "second_defensible": null,
+    "stem_issue": null,
+    "bounds": [
+      {
+        "bound": "third term / first term = 4 gives r^2=4 directly; all terms are positive, so r=2 and sum4 = 15x",
+        "kills": []
+      },
+      {
+        "bound": "with r=2, x=(x+6)/2 > 3, so sum = 15x > 45",
+        "kills": [
+          "10"
+        ]
+      },
+      {
+        "bound": "x positive gives positive terms and a positive ratio (removes the r=-2, x=-2 branch)",
+        "kills": [
+          "10"
+        ]
+      },
+      {
+        "bound": "NOT stem-forced: if a student assumes integer x, sum=15x must be a multiple of 15",
+        "kills": [
+          "186",
+          "52",
+          "10"
+        ]
+      }
+    ],
+    "estimation_bound": {
+      "estimate": "x>3 from r=2 and x+6>6, so sum>45",
+      "interval": "(45, inf)",
+      "kills": [
+        "10"
+      ]
+    },
+    "survivors": 3,
+    "limiting_case": null,
+    "neighbouring_setup": {
+      "option": "10",
+      "what": "sum for the excluded root x=-2 (terms -2, 4, -8, 16)",
+      "bound_kills": [
+        "positivity",
+        "sum>45"
+      ]
+    },
+    "free_elimination": "Test-wise integer heuristic: r=2 can be read off (4x/x = r^2), so the sum is 15x, and 90 is the only multiple of 15. Integrality is not forced by the stem, but students will assume it, so this nearly gives the key away for free. 186 is the five-term sum (6..96).",
+    "distractor_quality": "plausible",
+    "weak_distractors": [
+      "52"
+    ],
+    "difficulty": "medium",
+    "duplicate_note": "Standard 'x, x+a, bx form a geometric sequence' template.",
+    "domain_fit": "Borderline: geometric sequences are usually Functions/N&Q on ACT. The algebraic core ((x+6)^2=4x^2) fits Algebra."
+  }
+}
