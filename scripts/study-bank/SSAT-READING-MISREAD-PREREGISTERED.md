@@ -169,3 +169,14 @@ items used as models only, never shipped or copied.
 - If the guide is not ready, the run waits for it.
 
 **No bar changes.**
+
+## Result (2026-10-07): FAILS STAGE P (panel yield). Stopped at the first stage. Nothing frozen, graded or inserted.
+
+- **Yield:** U1 (Hudson, *Far Away and Long Ago*) **1/10** eligible stems, U2 (Burroughs, *Ways of Nature*) **2/10**. The bar was 6 per set.
+- **Keys:** skilled consensus formed on 20/20 stems, at 100% skilled agreement.
+- **Panel convergence:** the 10 misreaders answered correctly on 57.5% of stems. The panel produced a mean of 3.05 non-key clusters per stem, against the 4 needed.
+- **Not an artefact of the assembler's exclusions.** Even with every cluster excluded on judgement (`defensible` 9, `not-refutable` 2) counted as usable, U1 reaches only 2 eligible stems and U2 only 3.
+- Both vocabulary stems drew at most 1 wrong cluster (85% and 92% correct).
+- Stage 0, run report-only, would also have failed: E3 key uniquely longest on 1/3 items, and A0 on 2/3. **A0 is a prereg defect for paraphrase options.** On SSAT pilot 4's batch it flags the key on 2/10 items. Full analysis: `MAP-MISREAD-PILOT-2026-10-07.md`.
+- **C, F, Q, E, A and B were not run.**
+- **B10 stands:** SSAT Reading needs a human author.

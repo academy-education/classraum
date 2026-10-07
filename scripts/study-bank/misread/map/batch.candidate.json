@@ -1,0 +1,661 @@
+[
+ {
+  "id": "MAPM-M6-S1",
+  "set_id": "M6",
+  "sid": "M6-S1",
+  "passage": "I was beginning to feel secretly worried because I did not grow. I had overheard Aunt Janet say I was going to be short, like Uncle Alec. Now, I loved Uncle Alec, but I wanted to be taller than he was. So when Billy confided to me, under solemn promise of secrecy, that he had some “magic seed,” which would make boys grow, and would sell me a box of it for ten cents, I jumped at the offer. Billy was taller than any boy of his age in Carlisle, and he assured me it all came from taking magic seed.\n\n“I was a regular runt before I begun,” he said, “and look at me now. I got it from Peg Bowen. She’s a witch, you know. I wouldn’t go near her again for a bushel of magic seed. It was an awful experience. I haven’t much left, but I guess I’ve enough to do me till I’m as tall as I want to be. You must take a pinch of the seed every three hours, walking backward, and you must never tell a soul you’re taking it, or it won’t work. I wouldn’t spare any of it to any one but you.”\n\nI felt deeply grateful to Billy, and sorry that I had not liked him better. Somehow, nobody did like Billy Robinson over and above. But I vowed I WOULD like him in future. I paid him the ten cents cheerfully and took the magic seed as directed, measuring myself carefully every day by a mark on the hall door. I could not see any advance in growth yet, but then I had been taking it only three days.",
+  "prompt": "Which statement best expresses a theme of the passage?",
+  "choices": [
+   "People will always believe anything to get what they want, so no one offering magic should be trusted.",
+   "Wanting something very badly can make a person trust a promise that is too good to be true.",
+   "A person who wants something should try hard and follow directions carefully, even if results come slowly.",
+   "Good friends share special things, so a person should be kind even to someone he once disliked."
+  ],
+  "correct_answer": "Wanting something very badly can make a person trust a promise that is too good to be true.",
+  "distractors": [
+   {
+    "text": "Good friends share special things, so a person should be kind even to someone he once disliked.",
+    "cid": "w-friends",
+    "habit": "H3",
+    "readers": [
+     "H3"
+    ],
+    "quotes": [
+     "Good friends share special things with you, so you should be nice to people even if you didn't like them before."
+    ],
+    "refutation_sentence": "So when Billy confided to me, under solemn promise of secrecy, that he had some “magic seed,” which would make boys grow, and would sell me a box of it for ten cents, I jumped at the offer.",
+    "why_not_single_sentence": "The sentence never says Billy is not a friend; a student has to notice that the \"sharing\" is actually a sale for ten cents, which no wording match reveals."
+   },
+   {
+    "text": "People will always believe anything to get what they want, so no one offering magic should be trusted.",
+    "cid": "w-always",
+    "habit": "H2",
+    "readers": [
+     "H2"
+    ],
+    "quotes": [
+     "People will always believe anything to get what they want, and you should never trust anyone who offers you magic."
+    ],
+    "refutation_sentence": "Somehow, nobody did like Billy Robinson over and above.",
+    "why_not_single_sentence": "Nothing in the sentence mentions belief, trust or magic; the student must infer that the townspeople were wary of Billy, so not everyone believes anything."
+   },
+   {
+    "text": "A person who wants something should try hard and follow directions carefully, even if results come slowly.",
+    "cid": "w-follow",
+    "habit": "H5",
+    "readers": [
+     "H5"
+    ],
+    "quotes": [
+     "If you really want something, like growing taller, you should try hard and follow the directions carefully, even if it takes time to work."
+    ],
+    "refutation_sentence": "You must take a pinch of the seed every three hours, walking backward, and you must never tell a soul you’re taking it, or it won’t work.",
+    "why_not_single_sentence": "The sentence is the directions themselves and seems to support \"follow directions\"; only recognising them as absurd terms of a trick shows that obeying them is not the lesson."
+   }
+  ],
+  "key_support": [
+   "I was beginning to feel secretly worried because I did not grow.",
+   "So when Billy confided to me, under solemn promise of secrecy, that he had some “magic seed,” which would make boys grow, and would sell me a box of it for ten cents, I jumped at the offer.",
+   "I could not see any advance in growth yet, but then I had been taking it only three days."
+  ],
+  "subskill": "theme",
+  "simulated_p": {
+   "all": 0.46153846153846156,
+   "mis": 0.3,
+   "skilled": 1
+  },
+  "map_area": "Literary Text",
+  "map_strand": "Analyze Theme and Literary Elements; Summarize",
+  "stratum": "comprehension",
+  "grade_target": 6,
+  "target_band": "RIT 190-199"
+ },
+ {
+  "id": "MAPM-M6-S2",
+  "set_id": "M6",
+  "sid": "M6-S2",
+  "passage": "I was beginning to feel secretly worried because I did not grow. I had overheard Aunt Janet say I was going to be short, like Uncle Alec. Now, I loved Uncle Alec, but I wanted to be taller than he was. So when Billy confided to me, under solemn promise of secrecy, that he had some “magic seed,” which would make boys grow, and would sell me a box of it for ten cents, I jumped at the offer. Billy was taller than any boy of his age in Carlisle, and he assured me it all came from taking magic seed.\n\n“I was a regular runt before I begun,” he said, “and look at me now. I got it from Peg Bowen. She’s a witch, you know. I wouldn’t go near her again for a bushel of magic seed. It was an awful experience. I haven’t much left, but I guess I’ve enough to do me till I’m as tall as I want to be. You must take a pinch of the seed every three hours, walking backward, and you must never tell a soul you’re taking it, or it won’t work. I wouldn’t spare any of it to any one but you.”\n\nI felt deeply grateful to Billy, and sorry that I had not liked him better. Somehow, nobody did like Billy Robinson over and above. But I vowed I WOULD like him in future. I paid him the ten cents cheerfully and took the magic seed as directed, measuring myself carefully every day by a mark on the hall door. I could not see any advance in growth yet, but then I had been taking it only three days.",
+  "prompt": "What is the most likely reason Billy tells the narrator that he must never tell anyone he is taking the seed?",
+  "choices": [
+   "Billy fears that others would all want the seed if they found out, and his supply would run out.",
+   "Billy knows the seed’s magic will stop working if the narrator tells anyone about it.",
+   "Billy wants to keep the narrator from asking others, who might reveal that the seed is fake.",
+   "Billy fears that Peg Bowen would learn he had given away her seed and would be angry with him."
+  ],
+  "correct_answer": "Billy wants to keep the narrator from asking others, who might reveal that the seed is fake.",
+  "distractors": [
+   {
+    "text": "Billy knows the seed’s magic will stop working if the narrator tells anyone about it.",
+    "cid": "w-magic-rule",
+    "habit": "H10",
+    "readers": [
+     "H1",
+     "H3",
+     "H4",
+     "H5",
+     "H6",
+     "H8",
+     "H9",
+     "H10"
+    ],
+    "quotes": [
+     "Because the magic seed won't work if you tell anyone, and Billy only had a little left from the witch.",
+     "Because the magic seed won't work if you tell anyone. That's one of the rules, like walking backward.",
+     "Because it's a magic seed and Billy says the magic won't work if you tell someone. It's like a secret rule for the magic.",
+     "Because the magic seed only works if it is kept secret. If he tells someone, the magic will break and he won't grow.",
+     "Because in stories magic only works if you keep it a secret, so telling people would break the spell.",
+     "Because Billy said if he tells anybody, the magic seed will not work anymore.",
+     "Because if you tell a soul you are taking it, the magic seed won't work.",
+     "Because Billy said if you tell a soul you're taking it, it won't work."
+    ],
+    "refutation_sentence": "Somehow, nobody did like Billy Robinson over and above.",
+    "why_not_single_sentence": "The sentence says nothing about the seed or the secrecy rule; the student must connect Billy’s poor reputation to the conclusion that the \"rule\" is a cover, not a fact."
+   },
+   {
+    "text": "Billy fears that others would all want the seed if they found out, and his supply would run out.",
+    "cid": "w-run-out",
+    "habit": "H2",
+    "readers": [
+     "H2"
+    ],
+    "quotes": [
+     "Because if people found out, everyone would want the seed and Billy would run out, so the secret keeps it working only for him and the narrator."
+    ],
+    "refutation_sentence": "I haven’t much left, but I guess I’ve enough to do me till I’m as tall as I want to be.",
+    "why_not_single_sentence": "The sentence actually mentions the small supply, so matching its words makes the option look supported; only noticing that Billy claims enough for himself and still sells it rules scarcity out."
+   },
+   {
+    "text": "Billy fears that Peg Bowen would learn he had given away her seed and would be angry with him.",
+    "cid": "w-peg-mad",
+    "habit": "H7",
+    "readers": [
+     "H7"
+    ],
+    "quotes": [
+     "Because Peg Bowen the witch might find out he gave her seed away and get mad at him."
+    ],
+    "refutation_sentence": "You must take a pinch of the seed every three hours, walking backward, and you must never tell a soul you’re taking it, or it won’t work.",
+    "why_not_single_sentence": "The sentence never mentions Peg Bowen, so no wording match kills the option; the student must see that Billy ties secrecy to the seed working, not to the witch."
+   }
+  ],
+  "key_support": [
+   "You must take a pinch of the seed every three hours, walking backward, and you must never tell a soul you’re taking it, or it won’t work.",
+   "Somehow, nobody did like Billy Robinson over and above.",
+   "I could not see any advance in growth yet, but then I had been taking it only three days."
+  ],
+  "subskill": "character",
+  "simulated_p": {
+   "all": 0.23076923076923078,
+   "mis": 0,
+   "skilled": 1
+  },
+  "map_area": "Literary Text",
+  "map_strand": "Analyze Theme and Literary Elements; Summarize",
+  "stratum": "comprehension",
+  "grade_target": 6,
+  "target_band": "RIT 190-199"
+ },
+ {
+  "id": "MAPM-M6-S4",
+  "set_id": "M6",
+  "sid": "M6-S4",
+  "passage": "I was beginning to feel secretly worried because I did not grow. I had overheard Aunt Janet say I was going to be short, like Uncle Alec. Now, I loved Uncle Alec, but I wanted to be taller than he was. So when Billy confided to me, under solemn promise of secrecy, that he had some “magic seed,” which would make boys grow, and would sell me a box of it for ten cents, I jumped at the offer. Billy was taller than any boy of his age in Carlisle, and he assured me it all came from taking magic seed.\n\n“I was a regular runt before I begun,” he said, “and look at me now. I got it from Peg Bowen. She’s a witch, you know. I wouldn’t go near her again for a bushel of magic seed. It was an awful experience. I haven’t much left, but I guess I’ve enough to do me till I’m as tall as I want to be. You must take a pinch of the seed every three hours, walking backward, and you must never tell a soul you’re taking it, or it won’t work. I wouldn’t spare any of it to any one but you.”\n\nI felt deeply grateful to Billy, and sorry that I had not liked him better. Somehow, nobody did like Billy Robinson over and above. But I vowed I WOULD like him in future. I paid him the ten cents cheerfully and took the magic seed as directed, measuring myself carefully every day by a mark on the hall door. I could not see any advance in growth yet, but then I had been taking it only three days.",
+  "prompt": "Why is the narrator so quick to accept Billy's offer?",
+  "choices": [
+   "He feels so grateful to Billy and so eager to like him that he agrees and pays at once.",
+   "He is anxious because Uncle Alec told him he would be short, and he wants to grow fast.",
+   "He is terrified he will be the shortest person forever and would do anything at all to grow.",
+   "He is anxious that he will end up short like his uncle and badly wants to grow taller."
+  ],
+  "correct_answer": "He is anxious that he will end up short like his uncle and badly wants to grow taller.",
+  "distractors": [
+   {
+    "text": "He is anxious because Uncle Alec told him he would be short, and he wants to grow fast.",
+    "cid": "w-uncle-said",
+    "habit": "H7",
+    "readers": [
+     "H7"
+    ],
+    "quotes": [
+     "Because Uncle Alec said he was going to be short, and he was worried and wanted to grow taller fast."
+    ],
+    "refutation_sentence": "I had overheard Aunt Janet say I was going to be short, like Uncle Alec.",
+    "why_not_single_sentence": "The sentence contains \"short\" and \"Uncle Alec\", so a wording match seems to support the option; the student must track that Aunt Janet is the speaker."
+   },
+   {
+    "text": "He feels so grateful to Billy and so eager to like him that he agrees and pays at once.",
+    "cid": "w-grateful",
+    "habit": "H8",
+    "readers": [
+     "H8"
+    ],
+    "quotes": [
+     "He felt really grateful to Billy and wanted to like him more, so he said yes and paid him right away."
+    ],
+    "refutation_sentence": "So when Billy confided to me, under solemn promise of secrecy, that he had some “magic seed,” which would make boys grow, and would sell me a box of it for ten cents, I jumped at the offer.",
+    "why_not_single_sentence": "The sentence says nothing about gratitude; the student must notice that \"So\" ties the acceptance to his worry and that the gratitude appears only afterward."
+   },
+   {
+    "text": "He is terrified he will be the shortest person forever and would do anything at all to grow.",
+    "cid": "w-terrified",
+    "habit": "H2",
+    "readers": [
+     "H2"
+    ],
+    "quotes": [
+     "He was terrified he would be the shortest person forever, just like Uncle Alec, and would do anything at all to grow tall."
+    ],
+    "refutation_sentence": "Now, I loved Uncle Alec, but I wanted to be taller than he was.",
+    "why_not_single_sentence": "The sentence does not negate \"terrified\" or \"shortest\"; the student must see that his goal is only to outgrow one uncle, a far narrower wish."
+   }
+  ],
+  "key_support": [
+   "I was beginning to feel secretly worried because I did not grow.",
+   "I had overheard Aunt Janet say I was going to be short, like Uncle Alec.",
+   "Now, I loved Uncle Alec, but I wanted to be taller than he was."
+  ],
+  "subskill": "inference",
+  "simulated_p": {
+   "all": 0.46153846153846156,
+   "mis": 0.4,
+   "skilled": 0.6666666666666666
+  },
+  "map_area": "Literary Text",
+  "map_strand": "Analyze Theme and Literary Elements; Summarize",
+  "stratum": "comprehension",
+  "grade_target": 6,
+  "target_band": "RIT 190-199"
+ },
+ {
+  "id": "MAPM-M6-S6",
+  "set_id": "M6",
+  "sid": "M6-S6",
+  "passage": "I was beginning to feel secretly worried because I did not grow. I had overheard Aunt Janet say I was going to be short, like Uncle Alec. Now, I loved Uncle Alec, but I wanted to be taller than he was. So when Billy confided to me, under solemn promise of secrecy, that he had some “magic seed,” which would make boys grow, and would sell me a box of it for ten cents, I jumped at the offer. Billy was taller than any boy of his age in Carlisle, and he assured me it all came from taking magic seed.\n\n“I was a regular runt before I begun,” he said, “and look at me now. I got it from Peg Bowen. She’s a witch, you know. I wouldn’t go near her again for a bushel of magic seed. It was an awful experience. I haven’t much left, but I guess I’ve enough to do me till I’m as tall as I want to be. You must take a pinch of the seed every three hours, walking backward, and you must never tell a soul you’re taking it, or it won’t work. I wouldn’t spare any of it to any one but you.”\n\nI felt deeply grateful to Billy, and sorry that I had not liked him better. Somehow, nobody did like Billy Robinson over and above. But I vowed I WOULD like him in future. I paid him the ten cents cheerfully and took the magic seed as directed, measuring myself carefully every day by a mark on the hall door. I could not see any advance in growth yet, but then I had been taking it only three days.",
+  "prompt": "How does the last sentence of the passage add to the story?",
+  "choices": [
+   "It shows the narrator measured himself for a few days first and only then started taking the seed.",
+   "It shows the narrator excusing a seed that is not working, which hints he was fooled and adds humor.",
+   "It shows the seed does not work at all and the narrator will never grow, though he keeps believing in it.",
+   "It shows the seed has not made him grow yet only because he has been using it for just three days."
+  ],
+  "correct_answer": "It shows the narrator excusing a seed that is not working, which hints he was fooled and adds humor.",
+  "distractors": [
+   {
+    "text": "It shows the seed has not made him grow yet only because he has been using it for just three days.",
+    "cid": "w-three-days",
+    "habit": "H10",
+    "readers": [
+     "H1",
+     "H3",
+     "H5",
+     "H9",
+     "H10"
+    ],
+    "quotes": [
+     "It shows he is measuring himself on the hall door every day and still hasn't grown, but it's only been three days.",
+     "It shows the seed hasn't made him grow yet, but it will soon since he's only taken it for three days.",
+     "It shows the seed hasn't worked yet, but it has only been three days, so he still has to wait to grow.",
+     "It tells that he could not see any growth yet, but he had only been taking the seed for three days.",
+     "It shows he hasn't grown yet because he has only been taking the seed for three days."
+    ],
+    "refutation_sentence": "Somehow, nobody did like Billy Robinson over and above.",
+    "why_not_single_sentence": "The sentence mentions neither the seed nor the three days; the student must link Billy’s reputation to the realisation that \"only three days\" is the narrator’s excuse."
+   },
+   {
+    "text": "It shows the seed does not work at all and the narrator will never grow, though he keeps believing in it.",
+    "cid": "w-never-grow",
+    "habit": "H2",
+    "readers": [
+     "H2"
+    ],
+    "quotes": [
+     "It shows the seed does not work at all and the narrator will never grow, but he still keeps believing it."
+    ],
+    "refutation_sentence": "I had overheard Aunt Janet say I was going to be short, like Uncle Alec.",
+    "why_not_single_sentence": "The sentence never mentions growing or never growing; the student must infer that being short like an adult uncle means he will still grow, just not tall."
+   },
+   {
+    "text": "It shows the narrator measured himself for a few days first and only then started taking the seed.",
+    "cid": "w-measured-first",
+    "habit": "H8",
+    "readers": [
+     "H8"
+    ],
+    "quotes": [
+     "It shows he measured himself for a few days and then started taking the seed, so we wonder if it will work."
+    ],
+    "refutation_sentence": "I paid him the ten cents cheerfully and took the magic seed as directed, measuring myself carefully every day by a mark on the hall door.",
+    "why_not_single_sentence": "The sentence shares the option’s words \"measuring\" and \"seed\", so matching seems to confirm it; only reading that the measuring accompanied the seed-taking shows the order is wrong."
+   }
+  ],
+  "key_support": [
+   "I could not see any advance in growth yet, but then I had been taking it only three days.",
+   "Somehow, nobody did like Billy Robinson over and above."
+  ],
+  "subskill": "structure",
+  "simulated_p": {
+   "all": 0.3076923076923077,
+   "mis": 0.1,
+   "skilled": 1
+  },
+  "map_area": "Literary Text",
+  "map_strand": "Analyze Point of View, Features, and Structure",
+  "stratum": "comprehension",
+  "grade_target": 6,
+  "target_band": "RIT 190-199"
+ },
+ {
+  "id": "MAPM-M8-S1",
+  "set_id": "M8",
+  "sid": "M8-S1",
+  "passage": "I wished to know something more about my Mason-bees. I had heard that they knew how to find their nests even if carried away from them. One day I managed to capture forty Bees from a nest under the eaves of my shed, and to put them one by one in screws of paper. I asked my daughter Aglaé to stay near the nest and watch for the return of the Bees. Things being thus arranged, I carried off my forty captives to a spot two and a half miles from home.\n\nI had to mark each captive with a mixture of chalk and gum arabic before I set her free. It was no easy business. I was stung many times, and sometimes I forgot myself and squeezed the Bee harder than I should have. As a result, about twenty out of my forty Bees were injured. The rest started off, in different directions at first; but most of them seemed to me to be making for their home.\n\nMeanwhile a stiff breeze sprang up, making things still harder for the Bees. They must have had to fly close to the ground; they could not possibly go up high and get a view of the country.\n\nUnder the circumstances, I hardly thought, when I reached home, that the Bees would be there. But Aglaé greeted me at once, her cheeks flushed with excitement:\n\n“Two!” she cried. “Two arrived at twenty minutes to three, with a load of pollen under their bellies!” I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way.",
+  "prompt": "Which statement best describes the central idea of the passage?",
+  "choices": [
+   "The author is stung many times and injures about half the bees while marking them, yet two still come home with pollen.",
+   "The author already knows Mason-bees can find their nests from far away and runs an experiment to show others.",
+   "The author tests whether bees taken far from home can find their nest, and despite injuries and wind, a few return quickly.",
+   "Mason-bees can always find their way home from far away, even when hurt or in bad weather, proving their sense of direction."
+  ],
+  "correct_answer": "The author tests whether bees taken far from home can find their nest, and despite injuries and wind, a few return quickly.",
+  "distractors": [
+   {
+    "text": "Mason-bees can always find their way home from far away, even when hurt or in bad weather, proving their sense of direction.",
+    "cid": "w-always-home",
+    "habit": "H2",
+    "readers": [
+     "H2",
+     "H6"
+    ],
+    "quotes": [
+     "Mason bees can always find their way home from far away, even when hurt or in bad weather, which proves they have an amazing sense of direction.",
+     "Bees have a natural instinct that lets them always find their way back to their hive, even from far away."
+    ],
+    "refutation_sentence": "The rest started off, in different directions at first; but most of them seemed to me to be making for their home.",
+    "why_not_single_sentence": "No wording in the sentence negates \"always\"; the student must notice \"different directions at first\", \"most\" and \"seemed\" and see they undercut a universal claim."
+   },
+   {
+    "text": "The author is stung many times and injures about half the bees while marking them, yet two still come home with pollen.",
+    "cid": "w-stings-pollen",
+    "habit": "H1",
+    "readers": [
+     "H1"
+    ],
+    "quotes": [
+     "The author got stung many times and hurt about half the bees while marking them with chalk, but two bees still came home with pollen."
+    ],
+    "refutation_sentence": "I had heard that they knew how to find their nests even if carried away from them.",
+    "why_not_single_sentence": "The sentence says nothing about stings or injuries; the student must recognise it sets the passage’s real question, which makes the marking trouble a supporting detail."
+   },
+   {
+    "text": "The author already knows Mason-bees can find their nests from far away and runs an experiment to show others.",
+    "cid": "w-already-knows",
+    "habit": "H3",
+    "readers": [
+     "H3"
+    ],
+    "quotes": [
+     "The author already knows Mason-bees can find their nests from far away, and he does an experiment to show people that his bees really can do it."
+    ],
+    "refutation_sentence": "Under the circumstances, I hardly thought, when I reached home, that the Bees would be there.",
+    "why_not_single_sentence": "The wording differs entirely from the option, and the opening \"I had heard that they knew\" sentence even echoes it; only inferring that his doubt rules out certainty kills it."
+   }
+  ],
+  "key_support": [
+   "I wished to know something more about my Mason-bees.",
+   "I had heard that they knew how to find their nests even if carried away from them.",
+   "I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way."
+  ],
+  "subskill": "main-idea",
+  "simulated_p": {
+   "all": 0.46153846153846156,
+   "mis": 0.3,
+   "skilled": 1
+  },
+  "map_area": "Informational Text",
+  "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+  "stratum": "comprehension",
+  "grade_target": 8,
+  "target_band": "RIT 210-219"
+ },
+ {
+  "id": "MAPM-M8-S2",
+  "set_id": "M8",
+  "sid": "M8-S2",
+  "passage": "I wished to know something more about my Mason-bees. I had heard that they knew how to find their nests even if carried away from them. One day I managed to capture forty Bees from a nest under the eaves of my shed, and to put them one by one in screws of paper. I asked my daughter Aglaé to stay near the nest and watch for the return of the Bees. Things being thus arranged, I carried off my forty captives to a spot two and a half miles from home.\n\nI had to mark each captive with a mixture of chalk and gum arabic before I set her free. It was no easy business. I was stung many times, and sometimes I forgot myself and squeezed the Bee harder than I should have. As a result, about twenty out of my forty Bees were injured. The rest started off, in different directions at first; but most of them seemed to me to be making for their home.\n\nMeanwhile a stiff breeze sprang up, making things still harder for the Bees. They must have had to fly close to the ground; they could not possibly go up high and get a view of the country.\n\nUnder the circumstances, I hardly thought, when I reached home, that the Bees would be there. But Aglaé greeted me at once, her cheeks flushed with excitement:\n\n“Two!” she cried. “Two arrived at twenty minutes to three, with a load of pollen under their bellies!” I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way.",
+  "prompt": "Why does the author describe the stiff breeze that sprang up after the bees were released?",
+  "choices": [
+   "To show that the wind made it hard for the author to carry the bees and get home, so he doubted it would work.",
+   "To show the bees faced an extra obstacle, flying low without a view of the land, so their return is more impressive.",
+   "To show that the bees could see nothing while flying low, so they found home without using their eyes, only instinct.",
+   "To show that because the bees were flying low near the ground, the wind grew stronger and made their trip home harder."
+  ],
+  "correct_answer": "To show the bees faced an extra obstacle, flying low without a view of the land, so their return is more impressive.",
+  "distractors": [
+   {
+    "text": "To show that because the bees were flying low near the ground, the wind grew stronger and made their trip home harder.",
+    "cid": "w-low-made-wind",
+    "habit": "H8",
+    "readers": [
+     "H8"
+    ],
+    "quotes": [
+     "To show that because the bees were flying low near the ground, the wind got stronger and made it harder for them to get home."
+    ],
+    "refutation_sentence": "Meanwhile a stiff breeze sprang up, making things still harder for the Bees.",
+    "why_not_single_sentence": "The sentence shares \"breeze\" and \"harder for the Bees\" with the option, so matching seems to confirm it; only the order (breeze first, low flight after) shows the cause is reversed."
+   },
+   {
+    "text": "To show that the wind made it hard for the author to carry the bees and get home, so he doubted it would work.",
+    "cid": "w-author-trip",
+    "habit": "H7",
+    "readers": [
+     "H7"
+    ],
+    "quotes": [
+     "To show the trip got harder. The wind made it tough for the author to carry the bees and get home, so he didn't think it would work."
+    ],
+    "refutation_sentence": "They must have had to fly close to the ground; they could not possibly go up high and get a view of the country.",
+    "why_not_single_sentence": "The sentence never mentions the author; the student must resolve \"They\" to the bees to see the difficulty belongs to them."
+   },
+   {
+    "text": "To show that the bees could see nothing while flying low, so they found home without using their eyes, only instinct.",
+    "cid": "w-no-eyes",
+    "habit": "H2",
+    "readers": [
+     "H2"
+    ],
+    "quotes": [
+     "To show the bees had to fly low and couldn't see anything, so they found home without using their eyes at all, just instinct."
+    ],
+    "refutation_sentence": "They must have had to fly close to the ground; they could not possibly go up high and get a view of the country.",
+    "why_not_single_sentence": "The words \"could not possibly ... get a view\" seem to support \"could see nothing\"; only the narrower \"of the country\" shows they lacked a high view, not all sight."
+   }
+  ],
+  "key_support": [
+   "Meanwhile a stiff breeze sprang up, making things still harder for the Bees.",
+   "They must have had to fly close to the ground; they could not possibly go up high and get a view of the country."
+  ],
+  "subskill": "purpose",
+  "simulated_p": {
+   "all": 0.6153846153846154,
+   "mis": 0.5,
+   "skilled": 1
+  },
+  "map_area": "Informational Text",
+  "map_strand": "Analyze Point of View, Purpose, Features, and Structure",
+  "stratum": "comprehension",
+  "grade_target": 8,
+  "target_band": "RIT 210-219"
+ },
+ {
+  "id": "MAPM-M8-S3",
+  "set_id": "M8",
+  "sid": "M8-S3",
+  "passage": "I wished to know something more about my Mason-bees. I had heard that they knew how to find their nests even if carried away from them. One day I managed to capture forty Bees from a nest under the eaves of my shed, and to put them one by one in screws of paper. I asked my daughter Aglaé to stay near the nest and watch for the return of the Bees. Things being thus arranged, I carried off my forty captives to a spot two and a half miles from home.\n\nI had to mark each captive with a mixture of chalk and gum arabic before I set her free. It was no easy business. I was stung many times, and sometimes I forgot myself and squeezed the Bee harder than I should have. As a result, about twenty out of my forty Bees were injured. The rest started off, in different directions at first; but most of them seemed to me to be making for their home.\n\nMeanwhile a stiff breeze sprang up, making things still harder for the Bees. They must have had to fly close to the ground; they could not possibly go up high and get a view of the country.\n\nUnder the circumstances, I hardly thought, when I reached home, that the Bees would be there. But Aglaé greeted me at once, her cheeks flushed with excitement:\n\n“Two!” she cried. “Two arrived at twenty minutes to three, with a load of pollen under their bellies!” I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way.",
+  "prompt": "What does the detail that the first bees arrived carrying pollen suggest about their trip home?",
+  "choices": [
+   "They were not lost or struggling, since they had time to stop and gather food yet still got home fast.",
+   "The trip was easy and they were never lost, which shows bees always know exactly where they are going.",
+   "Aglaé had gone out gathering while she waited, so the bees came back loaded and were not tired.",
+   "They reached home first and then went back out for pollen, which shows the trip was easy for them."
+  ],
+  "correct_answer": "They were not lost or struggling, since they had time to stop and gather food yet still got home fast.",
+  "distractors": [
+   {
+    "text": "Aglaé had gone out gathering while she waited, so the bees came back loaded and were not tired.",
+    "cid": "w-aglae",
+    "habit": "H7",
+    "readers": [
+     "H7"
+    ],
+    "quotes": [
+     "It suggests Aglaé had been out collecting while she waited, so the bees came back loaded and weren't even tired from the trip."
+    ],
+    "refutation_sentence": "I asked my daughter Aglaé to stay near the nest and watch for the return of the Bees.",
+    "why_not_single_sentence": "The sentence does not negate gathering; the student must see that Aglaé’s job was to stay and watch, so the pollen belongs to the bees."
+   },
+   {
+    "text": "They reached home first and then went back out for pollen, which shows the trip was easy for them.",
+    "cid": "w-home-then-out",
+    "habit": "H8",
+    "readers": [
+     "H8"
+    ],
+    "quotes": [
+     "They made it home first and then went back out to get pollen, so the trip was easy for them."
+    ],
+    "refutation_sentence": "I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way.",
+    "why_not_single_sentence": "Only the short phrase \"on the way\" settles the order, and nothing negates the option’s words; the student must read the whole calculation to find it."
+   },
+   {
+    "text": "The trip was easy and they were never lost, which shows bees always know exactly where they are going.",
+    "cid": "w-always-know",
+    "habit": "H2",
+    "readers": [
+     "H2"
+    ],
+    "quotes": [
+     "It suggests the trip was easy for them. They weren't lost at all and had plenty of time, so bees always know exactly where they are going."
+    ],
+    "refutation_sentence": "The rest started off, in different directions at first; but most of them seemed to me to be making for their home.",
+    "why_not_single_sentence": "The sentence never uses \"always\" or \"exactly\"; the student must notice \"different directions at first\" and see it undercuts the universal claim."
+   }
+  ],
+  "key_support": [
+   "“Two arrived at twenty minutes to three, with a load of pollen under their bellies!”",
+   "I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way."
+  ],
+  "subskill": "inference",
+  "simulated_p": {
+   "all": 0.5384615384615384,
+   "mis": 0.4,
+   "skilled": 1
+  },
+  "map_area": "Informational Text",
+  "map_strand": "Analyze Central Idea, Concepts, and Events; Summarize",
+  "stratum": "comprehension",
+  "grade_target": 8,
+  "target_band": "RIT 210-219"
+ },
+ {
+  "id": "MAPM-M8-S5",
+  "set_id": "M8",
+  "sid": "M8-S5",
+  "passage": "I wished to know something more about my Mason-bees. I had heard that they knew how to find their nests even if carried away from them. One day I managed to capture forty Bees from a nest under the eaves of my shed, and to put them one by one in screws of paper. I asked my daughter Aglaé to stay near the nest and watch for the return of the Bees. Things being thus arranged, I carried off my forty captives to a spot two and a half miles from home.\n\nI had to mark each captive with a mixture of chalk and gum arabic before I set her free. It was no easy business. I was stung many times, and sometimes I forgot myself and squeezed the Bee harder than I should have. As a result, about twenty out of my forty Bees were injured. The rest started off, in different directions at first; but most of them seemed to me to be making for their home.\n\nMeanwhile a stiff breeze sprang up, making things still harder for the Bees. They must have had to fly close to the ground; they could not possibly go up high and get a view of the country.\n\nUnder the circumstances, I hardly thought, when I reached home, that the Bees would be there. But Aglaé greeted me at once, her cheeks flushed with excitement:\n\n“Two!” she cried. “Two arrived at twenty minutes to three, with a load of pollen under their bellies!” I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way.",
+  "prompt": "Which statement best describes how the author's view of the experiment changes from the time he heads home to the end of the passage?",
+  "choices": [
+   "He moves from thinking the experiment failed and no bees will return to feeling sure all the bees can find home.",
+   "He moves from barely thinking about the bees at all on the way home to feeling excited when two came back.",
+   "He moves from doubting any bees would make it home to being surprised and impressed that two came back fast.",
+   "He moves from feeling sure the bees will be there when he heads home to doubting at the end that it worked."
+  ],
+  "correct_answer": "He moves from doubting any bees would make it home to being surprised and impressed that two came back fast.",
+  "distractors": [
+   {
+    "text": "He moves from barely thinking about the bees at all on the way home to feeling excited when two came back.",
+    "cid": "w-not-thinking",
+    "habit": "H5",
+    "readers": [
+     "H5"
+    ],
+    "quotes": [
+     "On the way home he was hardly thinking about the bees at all, but then he got excited when Aglaé told him two had come back."
+    ],
+    "refutation_sentence": "They must have had to fly close to the ground; they could not possibly go up high and get a view of the country.",
+    "why_not_single_sentence": "This sentence shares no words with the option, while the \"hardly thought\" sentence actually lures toward it; the student must see the author was reasoning about the bees’ flight."
+   },
+   {
+    "text": "He moves from feeling sure the bees will be there when he heads home to doubting at the end that it worked.",
+    "cid": "w-sure-then-unsure",
+    "habit": "H8",
+    "readers": [
+     "H8"
+    ],
+    "quotes": [
+     "When he heads home he is sure the bees will be there, but by the end he isn't sure the experiment worked."
+    ],
+    "refutation_sentence": "I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way.",
+    "why_not_single_sentence": "The sentence does not say \"sure\" or \"worked\"; the student must infer from his calculation that the experiment ended in success, not doubt."
+   },
+   {
+    "text": "He moves from thinking the experiment failed and no bees will return to feeling sure all the bees can find home.",
+    "cid": "w-sure-all",
+    "habit": "H2",
+    "readers": [
+     "H2"
+    ],
+    "quotes": [
+     "At first he thinks the experiment failed and no bees will return, but at the end he is sure all the bees can find home."
+    ],
+    "refutation_sentence": "“Two arrived at twenty minutes to three, with a load of pollen under their bellies!”",
+    "why_not_single_sentence": "The sentence says nothing about \"all\"; the student must notice that only two of the forty had arrived."
+   }
+  ],
+  "key_support": [
+   "Under the circumstances, I hardly thought, when I reached home, that the Bees would be there.",
+   "“Two arrived at twenty minutes to three, with a load of pollen under their bellies!”",
+   "I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way."
+  ],
+  "subskill": "point-of-view",
+  "simulated_p": {
+   "all": 0.5384615384615384,
+   "mis": 0.4,
+   "skilled": 1
+  },
+  "map_area": "Informational Text",
+  "map_strand": "Analyze Point of View, Purpose, Features, and Structure",
+  "stratum": "comprehension",
+  "grade_target": 8,
+  "target_band": "RIT 210-219"
+ },
+ {
+  "id": "MAPM-M8-S7",
+  "set_id": "M8",
+  "sid": "M8-S7",
+  "passage": "I wished to know something more about my Mason-bees. I had heard that they knew how to find their nests even if carried away from them. One day I managed to capture forty Bees from a nest under the eaves of my shed, and to put them one by one in screws of paper. I asked my daughter Aglaé to stay near the nest and watch for the return of the Bees. Things being thus arranged, I carried off my forty captives to a spot two and a half miles from home.\n\nI had to mark each captive with a mixture of chalk and gum arabic before I set her free. It was no easy business. I was stung many times, and sometimes I forgot myself and squeezed the Bee harder than I should have. As a result, about twenty out of my forty Bees were injured. The rest started off, in different directions at first; but most of them seemed to me to be making for their home.\n\nMeanwhile a stiff breeze sprang up, making things still harder for the Bees. They must have had to fly close to the ground; they could not possibly go up high and get a view of the country.\n\nUnder the circumstances, I hardly thought, when I reached home, that the Bees would be there. But Aglaé greeted me at once, her cheeks flushed with excitement:\n\n“Two!” she cried. “Two arrived at twenty minutes to three, with a load of pollen under their bellies!” I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way.",
+  "prompt": "Why does the author work out the time and distance the first bees traveled in the last paragraph?",
+  "choices": [
+   "To show how fast bees in general can fly, since bees are quick fliers that cover long distances easily.",
+   "To show that because the bees stopped to collect pollen along the way, they were able to get home very fast.",
+   "To prove that the bees can fly home quickly from anywhere at all, even while stopping on the way for food.",
+   "To show how fast and impressive the return was, covering the distance quickly despite stopping for food."
+  ],
+  "correct_answer": "To show how fast and impressive the return was, covering the distance quickly despite stopping for food.",
+  "distractors": [
+   {
+    "text": "To show that because the bees stopped to collect pollen along the way, they were able to get home very fast.",
+    "cid": "w-pollen-caused-speed",
+    "habit": "H8",
+    "readers": [
+     "H8"
+    ],
+    "quotes": [
+     "To show that because the bees stopped to get pollen, they got home really fast, in less than an hour."
+    ],
+    "refutation_sentence": "I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way.",
+    "why_not_single_sentence": "The sentence joins speed and foraging with a plain \"and\", so matching its words seems to fit; the student must reason that stopping costs time, so it cannot be the cause."
+   },
+   {
+    "text": "To prove that the bees can fly home quickly from anywhere at all, even while stopping on the way for food.",
+    "cid": "w-from-anywhere",
+    "habit": "H2",
+    "readers": [
+     "H2"
+    ],
+    "quotes": [
+     "To prove how fast and amazing the bees are, showing they can fly home quickly from anywhere even while stopping to get food."
+    ],
+    "refutation_sentence": "Things being thus arranged, I carried off my forty captives to a spot two and a half miles from home.",
+    "why_not_single_sentence": "The sentence does not negate \"anywhere\"; the student must notice that the test used one single release spot."
+   },
+   {
+    "text": "To show how fast bees in general can fly, since bees are quick fliers that cover long distances easily.",
+    "cid": "w-bees-fast-general",
+    "habit": "H6",
+    "readers": [
+     "H6"
+    ],
+    "quotes": [
+     "To show how fast bees can fly, since bees are really quick fliers and can go long distances easily."
+    ],
+    "refutation_sentence": "Under the circumstances, I hardly thought, when I reached home, that the Bees would be there.",
+    "why_not_single_sentence": "The sentence shares no wording with the option; the student must infer that the author doubted the bees could manage the trip, so it was not \"easy\"."
+   }
+  ],
+  "key_support": [
+   "I had released my insects at about two o’clock; these first arrivals had therefore flown two miles and a half in less than three quarters of an hour, and lingered to forage on the way.",
+   "Under the circumstances, I hardly thought, when I reached home, that the Bees would be there."
+  ],
+  "subskill": "purpose",
+  "simulated_p": {
+   "all": 0.6153846153846154,
+   "mis": 0.5,
+   "skilled": 1
+  },
+  "map_area": "Informational Text",
+  "map_strand": "Analyze Point of View, Purpose, Features, and Structure",
+  "stratum": "comprehension",
+  "grade_target": 8,
+  "target_band": "RIT 210-219"
+ }
+]

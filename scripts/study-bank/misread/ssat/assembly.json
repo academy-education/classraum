@@ -1,0 +1,1262 @@
+[
+  {
+    "sid": "U1-S1",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H3",
+          "H6",
+          "H7",
+          "H8"
+        ],
+        "gist": "first sight of flamingos at six; that delight never equalled by any later sighting",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H9",
+          "H10"
+        ],
+        "habit": "H10",
+        "gist": "a boy walks to a river and sees many kinds of birds, including the tall white-and-rose ones"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H1"
+        ],
+        "habit": "H1",
+        "gist": "the flamingo's crimson wings made it look angel-like"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "seeing flamingos at six was the greatest experience of his whole life"
+      },
+      {
+        "cid": "c5",
+        "status": "wrong",
+        "readers": [
+          "H4"
+        ],
+        "habit": "H4",
+        "gist": "his first long walk across the plain with his brother, before he could ride alone"
+      },
+      {
+        "cid": "c6",
+        "status": "ineligible",
+        "readers": [
+          "H5"
+        ],
+        "habit": "H10",
+        "reason": "defensible",
+        "gist": "his first long walk to a river where he first saw flamingos and was amazed (the key minus the later comparison; a careful reader could defend it as the central idea)"
+      }
+    ],
+    "item": {
+      "prompt": "Which statement best expresses the central idea of the passage?",
+      "correct_answer": "An adult recalls the wonder of first seeing flamingos at age six, a thrill that none of his many later sightings ever matched.",
+      "choices": [
+        "A flamingo spreading its crimson wings looks to a young boy like the most angelic creature he could imagine anywhere.",
+        "An adult recalls the wonder of first seeing flamingos at age six, a thrill that none of his many later sightings ever matched.",
+        "An adult recalls his first long walk across the plain with his brother, taken before he was able to ride off alone.",
+        "A young boy walks with his brothers to a river on the plain and sees many kinds of wild birds, among them some tall flamingos.",
+        "An adult recalls seeing flamingos at age six as the greatest experience of his life, one that nothing afterward could equal."
+      ],
+      "distractors": [
+        {
+          "text": "A young boy walks with his brothers to a river on the plain and sees many kinds of wild birds, among them some tall flamingos.",
+          "cid": "c2",
+          "habit": "H10",
+          "readers": [
+            "H9",
+            "H10"
+          ],
+          "quotes": [
+            "A six-year-old boy walks two miles with his brothers to a river on the pampas and sees lots of wild birds, like ducks, swans, herons and flamingos.",
+            "A boy goes on a long walk with his brother to a river and sees many birds, including three tall white-and-rose birds with crimson wings."
+          ],
+          "refutation_sentence": "It was not for several years that I had an opportunity of seeing the bird again; later I have seen it scores and hundreds of times, at rest or flying, at all times of the day and in all states of the atmosphere, in all its most beautiful aspects, as when at sunset or in the early morning it stands motionless in the still water with its clear image reflected below; or when seen flying in flocks--seen from some high bank beneath one--moving low over the blue water in a long crimson line or half moon, the birds at equal distances apart, their wing-tips all but touching; but the delight in these spectacles has never equalled in degree that which I experienced on this occasion when I was six years old.",
+          "why_not_single_sentence": "The sentence never mentions the walk or the variety of birds; it shows the passage builds to the unmatched first sighting, so ruling this out needs a judgement about the whole passage's point, not a wording match."
+        },
+        {
+          "text": "A flamingo spreading its crimson wings looks to a young boy like the most angelic creature he could imagine anywhere.",
+          "cid": "c3",
+          "habit": "H1",
+          "readers": [
+            "H1"
+          ],
+          "quotes": [
+            "The flamingo's wings were a glorious crimson color when it opened them, making it look like the most angel-like creature on earth."
+          ],
+          "refutation_sentence": "It was not for several years that I had an opportunity of seeing the bird again; later I have seen it scores and hundreds of times, at rest or flying, at all times of the day and in all states of the atmosphere, in all its most beautiful aspects, as when at sunset or in the early morning it stands motionless in the still water with its clear image reflected below; or when seen flying in flocks--seen from some high bank beneath one--moving low over the blue water in a long crimson line or half moon, the birds at equal distances apart, their wing-tips all but touching; but the delight in these spectacles has never equalled in degree that which I experienced on this occasion when I was six years old.",
+          "why_not_single_sentence": "The sentence does not mention wings, crimson as a key point, or angels; it refutes the option only by showing the wing moment is one part of a larger reflection on that first sighting."
+        },
+        {
+          "text": "An adult recalls seeing flamingos at age six as the greatest experience of his life, one that nothing afterward could equal.",
+          "cid": "c4",
+          "habit": "H2",
+          "readers": [
+            "H2"
+          ],
+          "quotes": [
+            "Seeing flamingos as a six-year-old was the greatest experience of the narrator's life, and nothing he ever saw afterward could compare to it."
+          ],
+          "refutation_sentence": "It was not for several years that I had an opportunity of seeing the bird again; later I have seen it scores and hundreds of times, at rest or flying, at all times of the day and in all states of the atmosphere, in all its most beautiful aspects, as when at sunset or in the early morning it stands motionless in the still water with its clear image reflected below; or when seen flying in flocks--seen from some high bank beneath one--moving low over the blue water in a long crimson line or half moon, the birds at equal distances apart, their wing-tips all but touching; but the delight in these spectacles has never equalled in degree that which I experienced on this occasion when I was six years old.",
+          "why_not_single_sentence": "The sentence agrees that nothing later equalled the first sight, so a word match supports the option; only noticing that the comparison is limited to 'these spectacles' (flamingo sightings), not his whole life, refutes it."
+        },
+        {
+          "text": "An adult recalls his first long walk across the plain with his brother, taken before he was able to ride off alone.",
+          "cid": "c5",
+          "habit": "H4",
+          "readers": [
+            "H4"
+          ],
+          "quotes": [
+            "The narrator remembers his first long walk across the plain with his brother when he was young, before he could ride off alone to see the world."
+          ],
+          "refutation_sentence": "It was not for several years that I had an opportunity of seeing the bird again; later I have seen it scores and hundreds of times, at rest or flying, at all times of the day and in all states of the atmosphere, in all its most beautiful aspects, as when at sunset or in the early morning it stands motionless in the still water with its clear image reflected below; or when seen flying in flocks--seen from some high bank beneath one--moving low over the blue water in a long crimson line or half moon, the birds at equal distances apart, their wing-tips all but touching; but the delight in these spectacles has never equalled in degree that which I experienced on this occasion when I was six years old.",
+          "why_not_single_sentence": "The sentence shares no wording with the walk or riding; seeing that the walk is only the opening setting requires following the passage to its conclusion."
+        }
+      ],
+      "key_support": [
+        "I was amazed and enchanted at the sight, and my delight was intensified when the leading bird stood still and, raising his head and long neck aloft, opened and shook his wings.",
+        "It was not for several years that I had an opportunity of seeing the bird again; later I have seen it scores and hundreds of times, at rest or flying, at all times of the day and in all states of the atmosphere, in all its most beautiful aspects, as when at sunset or in the early morning it stands motionless in the still water with its clear image reflected below; or when seen flying in flocks--seen from some high bank beneath one--moving low over the blue water in a long crimson line or half moon, the birds at equal distances apart, their wing-tips all but touching; but the delight in these spectacles has never equalled in degree that which I experienced on this occasion when I was six years old."
+      ]
+    }
+  },
+  {
+    "sid": "U1-S2",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H4",
+          "H5",
+          "H6",
+          "H7"
+        ],
+        "gist": "he was young and timid, not yet confident on the plain",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "a fearful boy scared of animals and the outdoors in general, never brave enough to go anywhere alone"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H3"
+        ],
+        "habit": "H3",
+        "gist": "there really was no herd, so he was worrying over nothing (the brother's assurance taken as fact)"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H8"
+        ],
+        "habit": "H8",
+        "gist": "he agreed first and only became nervous about the cattle afterward"
+      },
+      {
+        "cid": "c5",
+        "status": "ineligible",
+        "readers": [
+          "H9",
+          "H10"
+        ],
+        "habit": "H10",
+        "reason": "non-answer",
+        "gist": "he was terrified of the cattle (restates the reaction, says nothing about what it suggests)"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U1-S3",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H10"
+        ],
+        "gist": "to show how long and tiring the walk was for a six-year-old",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "the plain was a difficult, almost dangerous place for children"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H8"
+        ],
+        "habit": "H8",
+        "gist": "because the walk was long they wandered into thistles and tall grass"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H1"
+        ],
+        "habit": "H1",
+        "gist": "to describe the plain's vegetation, like an English meadow in June"
+      },
+      {
+        "cid": "c5",
+        "status": "ineligible",
+        "readers": [
+          "H9"
+        ],
+        "habit": "H9",
+        "reason": "non-answer",
+        "gist": "restates that they took many turns and the grass was flowery; no purpose given"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U1-S4",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H2",
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8"
+        ],
+        "gist": "gravely, slowly, in a dignified serious way",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H9",
+          "H10"
+        ],
+        "habit": "H9",
+        "gist": "in a row, evenly spaced a yard apart"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U1-S5",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H2",
+          "H3",
+          "H4",
+          "H5",
+          "H7"
+        ],
+        "gist": "the open wings revealed a crimson colour not visible before, making the bird even more beautiful",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "ineligible",
+        "readers": [
+          "H9",
+          "H10"
+        ],
+        "habit": "H10",
+        "reason": "defensible",
+        "gist": "because the open wings were a glorious crimson (true; the key minus 'hidden before')"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H6"
+        ],
+        "habit": "H6",
+        "gist": "flamingos are famous for pink and he finally saw all the pink"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H8"
+        ],
+        "habit": "H8",
+        "gist": "the bird noticed him staring and showed off its wings"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U1-S6",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H4",
+          "H5",
+          "H7",
+          "H9"
+        ],
+        "gist": "the birds were rare or unknown in their area",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H2",
+          "H3"
+        ],
+        "habit": "H2",
+        "gist": "flamingos were extremely rare, a bird almost nobody anywhere had ever seen"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H6"
+        ],
+        "habit": "H6",
+        "gist": "flamingos are exotic tropical birds, so seeing them there was unusual"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H8"
+        ],
+        "habit": "H8",
+        "gist": "the newness of the birds is why the river overflowed and brought them"
+      },
+      {
+        "cid": "c5",
+        "status": "ineligible",
+        "readers": [
+          "H10"
+        ],
+        "habit": "H10",
+        "reason": "defensible",
+        "gist": "they had never seen birds like them before (literally true)"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U1-S7",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H2",
+          "H4",
+          "H6",
+          "H7",
+          "H8"
+        ],
+        "gist": "its beauty seemed heavenly, otherworldly to the enchanted child",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H3"
+        ],
+        "habit": "H3",
+        "gist": "the flamingo objectively is the most beautiful bird there is"
+      },
+      {
+        "cid": "c3",
+        "status": "ineligible",
+        "readers": [
+          "H5"
+        ],
+        "habit": "H5",
+        "reason": "defensible",
+        "gist": "it looked like a pictured angel: white, with big spread wings"
+      },
+      {
+        "cid": "c4",
+        "status": "ineligible",
+        "readers": [
+          "H9",
+          "H10"
+        ],
+        "habit": "H10",
+        "reason": "non-answer",
+        "gist": "because its wings were crimson (restates colour, not why 'angel-like')"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U1-S8",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H4",
+          "H5",
+          "H6",
+          "H8"
+        ],
+        "gist": "the first sight had a child's fresh novelty and wonder, which familiarity could never repeat",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "growing up destroys the ability to feel real wonder at all"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H3"
+        ],
+        "habit": "H7",
+        "gist": "flamingos in flocks look less amazing than one bird alone"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H7"
+        ],
+        "habit": "H7",
+        "gist": "later he only saw them far off in flocks from a high bank, never close up"
+      },
+      {
+        "cid": "c5",
+        "status": "ineligible",
+        "readers": [
+          "H1",
+          "H9",
+          "H10"
+        ],
+        "habit": "H10",
+        "reason": "non-answer",
+        "gist": "restates that later sightings never equalled the first; gives no reason"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U1-S9",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H5",
+          "H6",
+          "H7",
+          "H8"
+        ],
+        "gist": "moves forward to later sightings and contrasts them with the first, which stays unmatched",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H1",
+          "H4",
+          "H9",
+          "H10"
+        ],
+        "habit": "H10",
+        "gist": "it describes his many later sightings in beautiful settings (no contrast)"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "proves childhood experiences are always more powerful than anything adults feel"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H3"
+        ],
+        "habit": "H2",
+        "gist": "shows flamingos became common and less special to him over the years"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U1-S10",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "gist": "fond, nostalgic appreciation; treasures the memory as unsurpassed",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "longing; feels his adult life has never been as wonderful"
+      },
+      {
+        "cid": "c3",
+        "status": "ineligible",
+        "readers": [
+          "H3"
+        ],
+        "habit": "H3",
+        "reason": "not-refutable",
+        "gist": "still excited like a child (the child's response given as the adult's attitude)"
+      },
+      {
+        "cid": "c4",
+        "status": "ineligible",
+        "readers": [
+          "H4"
+        ],
+        "habit": "H4",
+        "reason": "non-answer",
+        "gist": "loves watching flamingos in general as a grown-up; not an attitude toward the recalled experience"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U2-S1",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H5",
+          "H7",
+          "H8",
+          "H9"
+        ],
+        "gist": "nature prepares for the next season while the current one is still going on",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H1",
+          "H4"
+        ],
+        "habit": "H4",
+        "gist": "why some trees (oaks, beeches) keep old leaves while tidy trees drop them"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H3"
+        ],
+        "habit": "H3",
+        "gist": "the new season really begins in December (the correspondent's view as the author's)"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H6"
+        ],
+        "habit": "H6",
+        "gist": "trees lose leaves in fall so new buds can grow; spring brings nature back to life"
+      },
+      {
+        "cid": "c5",
+        "status": "wrong",
+        "readers": [
+          "H10"
+        ],
+        "habit": "H1",
+        "gist": "new buds form on trees in late summer, before old leaves fall (one detail as the whole)"
+      },
+      {
+        "cid": "c6",
+        "status": "ineligible",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "reason": "defensible",
+        "gist": "every plant and animal readies its new growth in late summer (the passage itself says 'In all cases')"
+      }
+    ],
+    "item": {
+      "prompt": "Which statement best expresses the central idea of the passage?",
+      "correct_answer": "Nature prepares for each coming season while the current one is still going on, forming buds and new growth months before spring.",
+      "choices": [
+        "Trees shed their old leaves in the fall to make room for new buds, and then nature comes back to life each spring.",
+        "Some trees, such as oaks and beeches, hold on to their old leaves, while tidier trees like maples drop theirs neatly.",
+        "New buds form on trees in late summer, well before the old leaves are ready to drop from their branches.",
+        "Nature prepares for each coming season while the current one is still going on, forming buds and new growth months before spring.",
+        "The new growing season actually begins in December, since plants are already preparing for spring by early winter."
+      ],
+      "distractors": [
+        {
+          "text": "Some trees, such as oaks and beeches, hold on to their old leaves, while tidier trees like maples drop theirs neatly.",
+          "cid": "c2",
+          "habit": "H4",
+          "readers": [
+            "H1",
+            "H4"
+          ],
+          "quotes": [
+            "Some trees like oaks and beeches hang on to their old dead leaves because they can't let go, while tidy trees like maples drop them neatly.",
+            "The passage is mainly about how trees lose their old leaves, and why some trees like maples drop them neatly while oaks and beeches hold on."
+          ],
+          "refutation_sentence": "Nature looks ahead, and makes ready for the new season in the midst of the old.",
+          "why_not_single_sentence": "The sentence says nothing about which trees keep or drop leaves; rejecting the option requires recognising the leaf-shedding discussion as an opening example of the broader claim."
+        },
+        {
+          "text": "The new growing season actually begins in December, since plants are already preparing for spring by early winter.",
+          "cid": "c3",
+          "habit": "H3",
+          "readers": [
+            "H3"
+          ],
+          "quotes": [
+            "Nature's new season really starts in winter, around December, because plants and trees are already getting ready for spring long before it arrives."
+          ],
+          "refutation_sentence": "It is in late summer, when the new buds are formed on the trees.",
+          "why_not_single_sentence": "The sentence does not contain 'December' or 'begins'; a student matching the option's word 'December' lands on the correspondent's claim, which supports it, and only by resolving 'It' to the real start of the season does this sentence refute it."
+        },
+        {
+          "text": "Trees shed their old leaves in the fall to make room for new buds, and then nature comes back to life each spring.",
+          "cid": "c4",
+          "habit": "H6",
+          "readers": [
+            "H6"
+          ],
+          "quotes": [
+            "Trees lose their old leaves in fall so new buds can grow, and in spring nature comes back to life after the winter."
+          ],
+          "refutation_sentence": "The new bud is formed in the axil of the old leaf long before the leaves are ready to fall.",
+          "why_not_single_sentence": "The sentence does not say leaves are not shed to make room; it states the bud is already formed beside the old leaf before it falls, and the student must infer that the bud therefore does not wait for the leaf to go."
+        },
+        {
+          "text": "New buds form on trees in late summer, well before the old leaves are ready to drop from their branches.",
+          "cid": "c5",
+          "habit": "H1",
+          "readers": [
+            "H10"
+          ],
+          "quotes": [
+            "New buds are formed on trees in late summer, long before the old leaves are ready to fall."
+          ],
+          "refutation_sentence": "The egg, the seed, the bud, are all alike in many ways, and look to the future.",
+          "why_not_single_sentence": "The option is a true detail, so no sentence negates its words; this sentence shows the bud is one of several examples (egg, seed, bud) of a general pattern, which the student must weigh to see the detail is not the central idea."
+        }
+      ],
+      "key_support": [
+        "Nature looks ahead, and makes ready for the new season in the midst of the old.",
+        "The present season is always the mother of the next, and the inception takes place long before the sun loses his power.",
+        "In all cases, before Nature closes her house in the fall, she makes ready for its spring opening."
+      ]
+    }
+  },
+  {
+    "sid": "U2-S2",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H4",
+          "H10"
+        ],
+        "gist": "to correct a popular but mistaken idea",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H3",
+          "H5",
+          "H6",
+          "H7",
+          "H9"
+        ],
+        "habit": "H3",
+        "gist": "to show/explain that new buds do push the old leaves off (the writer's claim taken as the author's)"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H8"
+        ],
+        "habit": "H8",
+        "gist": "to show the order is reversed: leaves fall first, then buds form"
+      },
+      {
+        "cid": "c4",
+        "status": "ineligible",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "reason": "not-refutable",
+        "gist": "to show writers are usually wrong about nature"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U2-S3",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H3",
+          "H4",
+          "H6",
+          "H7",
+          "H8"
+        ],
+        "gist": "playful, humorous personification",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H2",
+          "H5",
+          "H9"
+        ],
+        "habit": "H5",
+        "gist": "a serious statement/criticism that these trees are weak and indecisive"
+      },
+      {
+        "cid": "c3",
+        "status": "ineligible",
+        "readers": [
+          "H10"
+        ],
+        "habit": "H10",
+        "reason": "non-answer",
+        "gist": "a way of saying the trees cling to their leaves; does not characterise the remark"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U2-S4",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H9",
+          "H10"
+        ],
+        "gist": "shedding leaves is an active act needing a healthy tree; a dead or weak tree keeps its leaves",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "so trees that keep leaves, like oaks and beeches, must be weak or dying"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H8"
+        ],
+        "habit": "H8",
+        "gist": "letting go of leaves is what gives trees their strength"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U2-S5",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H2",
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H10"
+        ],
+        "gist": "beginning, start",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H9"
+        ],
+        "habit": "H9",
+        "gist": "something that happens long before the sun loses its power"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U2-S6",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H4",
+          "H5",
+          "H10"
+        ],
+        "gist": "partly agrees growth starts early, but the real start is earlier, in late summer",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H3",
+          "H9"
+        ],
+        "habit": "H3",
+        "gist": "he agrees that spring begins in December"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H6",
+          "H8"
+        ],
+        "habit": "H8",
+        "gist": "he disagrees: the new season starts later, when it warms up in spring"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "he calls the correspondent completely wrong"
+      },
+      {
+        "cid": "c5",
+        "status": "wrong",
+        "readers": [
+          "H7"
+        ],
+        "habit": "H7",
+        "gist": "he agrees it starts early, and the correspondent is the one who places it in late summer"
+      }
+    ],
+    "item": {
+      "prompt": "Which statement best describes the author's response to his correspondent's suggestion that spring really begins in December?",
+      "correct_answer": "He accepts that growth starts before spring but argues the true start comes even sooner, in late summer when trees form buds.",
+      "choices": [
+        "He agrees that spring really begins in December, and he cites wildflowers and skunk-cabbage that are already growing then.",
+        "He agrees that spring starts early, and notes that his correspondent places its true start in late summer, when buds form.",
+        "He accepts that growth starts before spring but argues the true start comes even sooner, in late summer when trees form buds.",
+        "He disagrees, holding that the new season really starts later, in spring, once the weather warms and the flowers bloom.",
+        "He rejects his correspondent's view as completely wrong, since every plant forms its buds in late summer and not in December."
+      ],
+      "distractors": [
+        {
+          "text": "He agrees that spring really begins in December, and he cites wildflowers and skunk-cabbage that are already growing then.",
+          "cid": "c2",
+          "habit": "H3",
+          "readers": [
+            "H3",
+            "H9"
+          ],
+          "quotes": [
+            "He agrees with the correspondent that spring starts in December, and adds examples like wildflowers and skunk-cabbage already growing then.",
+            "He says spring begins in December because the annual cycle of vegetable life starts then and wild flowers already have new shoots."
+          ],
+          "refutation_sentence": "But the real start of the next season's vegetable life in this sense is long before December.",
+          "why_not_single_sentence": "Matching the option's words (December, wildflowers, skunk-cabbage) leads to sentences that support it; this sentence does not say 'he disagrees' but corrects the date with 'But ... long before', and a second sentence ('It is in late summer...') refutes it with no shared wording."
+        },
+        {
+          "text": "He disagrees, holding that the new season really starts later, in spring, once the weather warms and the flowers bloom.",
+          "cid": "c3",
+          "habit": "H8",
+          "readers": [
+            "H6",
+            "H8"
+          ],
+          "quotes": [
+            "He disagrees, because spring really starts in March when it warms up and flowers bloom, not in cold December.",
+            "He disagrees; he thinks the new season actually starts later, after the old leaves are gone and things warm up, not as early as December."
+          ],
+          "refutation_sentence": "It is in late summer, when the new buds are formed on the trees.",
+          "why_not_single_sentence": "The sentence does not mention spring, warmth or blooming; it refutes the option by placing the start earlier, not later, and only once 'It' is resolved to the real start of the season."
+        },
+        {
+          "text": "He rejects his correspondent's view as completely wrong, since every plant forms its buds in late summer and not in December.",
+          "cid": "c4",
+          "habit": "H2",
+          "readers": [
+            "H2"
+          ],
+          "quotes": [
+            "He says his correspondent is completely wrong, because spring actually starts in late summer when all plants form their buds, not in December."
+          ],
+          "refutation_sentence": "Our earliest spring flower, the skunk-cabbage, may be found with its round green spear-point an inch or two above the mould in December.",
+          "why_not_single_sentence": "The sentence never mentions the correspondent or judges him right or wrong; the student must infer that by confirming growth in December the author accepts the correspondent's observations, so he is not rejecting them wholesale."
+        },
+        {
+          "text": "He agrees that spring starts early, and notes that his correspondent places its true start in late summer, when buds form.",
+          "cid": "c5",
+          "habit": "H7",
+          "readers": [
+            "H7"
+          ],
+          "quotes": [
+            "He agrees with him that spring starts early, and the correspondent adds that it actually begins in late summer when buds form on the trees."
+          ],
+          "refutation_sentence": "A correspondent, writing to me from one of the colleges, suggests that our spring really begins in December, because the \"annual cycle of vegetable life\" seems to start then.",
+          "why_not_single_sentence": "The sentence does not mention late summer at all; the student must notice that the correspondent's date is December and therefore that the late-summer claim is the author's own correction."
+        }
+      ],
+      "key_support": [
+        "But the real start of the next season's vegetable life in this sense is long before December.",
+        "It is in late summer, when the new buds are formed on the trees."
+      ]
+    },
+    "tiebreak": "Both size-2 wrong clusters (c2, c3) and both size-1 wrong clusters (c4, c5) are all selected, so the tie does not change the set; c2 is listed first among the size-2 pair as the passage-anchored lure (the correspondent's December claim really is in the passage, NAEP guide §3.3/§4 item 11), ahead of the prior-belief lure c3."
+  },
+  {
+    "sid": "U2-S7",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H3",
+          "H4",
+          "H5",
+          "H7",
+          "H8"
+        ],
+        "gist": "like eggs, they hold fully formed future life, packed and protected, waiting for spring warmth",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "ineligible",
+        "readers": [
+          "H9",
+          "H10"
+        ],
+        "habit": "H10",
+        "reason": "defensible",
+        "gist": "they are like eggs hatched by spring warmth (restates the comparison; true)"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "buds and catkins are basically the same as eggs, holding a baby plant"
+      },
+      {
+        "cid": "c4",
+        "status": "ineligible",
+        "readers": [
+          "H6"
+        ],
+        "habit": "H6",
+        "reason": "defensible",
+        "gist": "both buds and eggs hatch in spring when it gets warm"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U2-S8",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H3",
+          "H4",
+          "H5",
+          "H7"
+        ],
+        "gist": "each season produces and prepares the next; next growth begins within the current season",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "wrong",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "gist": "everything in spring is completely caused and decided by the season before"
+      },
+      {
+        "cid": "c3",
+        "status": "wrong",
+        "readers": [
+          "H6"
+        ],
+        "habit": "H6",
+        "gist": "seasons simply follow one another in a cycle"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H8"
+        ],
+        "habit": "H8",
+        "gist": "each season grows out of the one that comes after it"
+      },
+      {
+        "cid": "c5",
+        "status": "ineligible",
+        "readers": [
+          "H9",
+          "H10"
+        ],
+        "habit": "H10",
+        "reason": "defensible",
+        "gist": "the next season's start takes place long before the sun loses its power (true elaboration of the key)"
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U2-S9",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H2",
+          "H3",
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "gist": "his own direct observation of nature",
+        "habit": null
+      }
+    ],
+    "item": null
+  },
+  {
+    "sid": "U2-S10",
+    "clusters": [
+      {
+        "cid": "c1",
+        "status": "key",
+        "readers": [
+          "S1",
+          "S2",
+          "S3",
+          "H1",
+          "H3",
+          "H6",
+          "H7",
+          "H8"
+        ],
+        "gist": "sums up the main idea in a closing metaphor",
+        "habit": null
+      },
+      {
+        "cid": "c2",
+        "status": "ineligible",
+        "readers": [
+          "H5",
+          "H9",
+          "H10"
+        ],
+        "habit": "H10",
+        "reason": "non-answer",
+        "gist": "restates what the sentence says; gives no function"
+      },
+      {
+        "cid": "c3",
+        "status": "ineligible",
+        "readers": [
+          "H2"
+        ],
+        "habit": "H2",
+        "reason": "defensible",
+        "gist": "every living thing is prepared for spring, no exceptions ('In all cases')"
+      },
+      {
+        "cid": "c4",
+        "status": "wrong",
+        "readers": [
+          "H4"
+        ],
+        "habit": "H4",
+        "gist": "trees get ready for spring by dropping their leaves in fall"
+      }
+    ],
+    "item": null
+  }
+]

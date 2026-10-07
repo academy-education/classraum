@@ -431,6 +431,7 @@ export const WORK: WorkItem[] = [
     why: "The A69 pilot (2026-10-02) refuted the last untried agent construction: 80.0% options-only vs a 24.3% live control. SSAT Reading is a family where the attack discriminates (shipped bank 21.1% model / 15.0% human), so the deviation is real; agent authoring of SSAT Reading stops and the deficit needs a human author.",
     owner: "you",
     state: "open",
+    note: "2026-10-07: SSAT pilot 5 (misreading-derived distractors, simulated 13-reader panel, real public-domain passages) failed panel yield, U1 1/10 and U2 2/10 eligible stems; the misreaders converged on the key. Human authoring remains the route.",
     doc: "scripts/study-bank/SSAT-READING-DIAGNOSIS.md",
   },
   {
@@ -440,6 +441,7 @@ export const WORK: WorkItem[] = [
     why: "MAP pilot batch 2 (2026-10-02) fixed the Mechanics centroid tell, but comprehension still leaks options-only at 83.3% (5/6 unanimous) against a comprehension-shaped live control at 25.0%, with the fixing rule followed. Per the stop-after-a-failed-rewrite rule no third comprehension batch is recommended; MAP has no human sitting and nothing is inserted.",
     owner: "you",
     state: "open",
+    note: "2026-10-07: MAP pilot 8 (misreading-derived distractors) failed panel yield, M6 4/9 and M8 5/9 (bar 6); keys held 18/18, too few refutable non-defensible wrong answers. A person writes or selects (MAP-MISREAD-PILOT-2026-10-07.md).",
     doc: "scripts/study-bank/MAP-PILOT-2-2026-10-02.md",
   },
   {
