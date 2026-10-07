@@ -1,0 +1,596 @@
+[
+ {
+  "id": "AM16N-01",
+  "prompt": "Matrix A has first row (2, -1) and second row (4, 0). Matrix B has first row (5, 2) and second row (-3, 8). What is the entry in the 2nd row, 1st column of the matrix 3A - 2B ?",
+  "choices": [
+   "6",
+   "15",
+   "18",
+   "-7"
+  ],
+  "topic_tag": "matrices"
+ },
+ {
+  "id": "AM16N-02",
+  "prompt": "If x > 0 and x^(2/3) = 9, what is the value of x ?",
+  "choices": [
+   "91.125",
+   "364.5",
+   "729",
+   "27"
+  ],
+  "topic_tag": "rational exponents"
+ },
+ {
+  "id": "AM16N-03",
+  "prompt": "The vector u = <6, k> has magnitude 10, and k < 0. The vector v = <-2, 11>. What is the magnitude of the vector u + v ?",
+  "choices": [
+   "5",
+   "√73",
+   "7",
+   "√377"
+  ],
+  "topic_tag": "vectors"
+ },
+ {
+  "id": "AM16N-04",
+  "prompt": "For i = √(-1), the complex number z = a + bi, where a and b are real numbers, satisfies z + 3z̄ = 16 - 6i, where z̄ = a - bi is the complex conjugate of z. What is the value of a + b ?",
+  "choices": [
+   "2.5",
+   "7",
+   "12",
+   "-9.5"
+  ],
+  "topic_tag": "complex numbers"
+ },
+ {
+  "id": "AM16N-05",
+  "prompt": "Matrix A has first row (1, 3) and second row (0, 2). What is the entry in the 1st row, 2nd column of A^4, the product A·A·A·A ?",
+  "choices": [
+   "45",
+   "21",
+   "36",
+   "12"
+  ],
+  "topic_tag": "matrices"
+ },
+ {
+  "id": "AM16N-06",
+  "prompt": "Let a = 2^(1/2), b = 3^(1/3), and c = 6^(1/6). Which of the following correctly orders a, b, and c ?",
+  "choices": [
+   "c < a < b",
+   "a < b < c",
+   "c < b < a",
+   "a < c < b"
+  ],
+  "topic_tag": "radicals and rational exponents"
+ },
+ {
+  "id": "AM16N-07",
+  "prompt": "How many integers n with 1 ≤ n ≤ 300 have an odd number of positive divisors?",
+  "choices": [
+   "7",
+   "150",
+   "17",
+   "9"
+  ],
+  "topic_tag": "number properties"
+ },
+ {
+  "id": "AM16N-08",
+  "prompt": "The vectors u = <5, 4> and v = <1, 2> are given. For what value of the scalar k is the vector u + kv perpendicular to v ?",
+  "choices": [
+   "-41/13",
+   "-13/5",
+   "-13/3",
+   "-13"
+  ],
+  "topic_tag": "vectors"
+ },
+ {
+  "id": "AM16A-01",
+  "prompt": "What is the value of a^2·b - 2a·b^2 when a = -3 and b = 2 ?",
+  "choices": [
+   "6",
+   "-54",
+   "60",
+   "42"
+  ],
+  "topic_tag": "evaluating expressions"
+ },
+ {
+  "id": "AM16A-02",
+  "prompt": "The product of 4 and the sum of a number and 3 is 8 less than 6 times the number. What is the number?",
+  "choices": [
+   "2",
+   "10",
+   "-0.4",
+   "5.5"
+  ],
+  "topic_tag": "linear equations"
+ },
+ {
+  "id": "AM16A-03",
+  "prompt": "The nonzero numbers a and b satisfy 2a/b = 8 and a - b = 15. What is the value of a ?",
+  "choices": [
+   "12",
+   "20",
+   "16",
+   "-5"
+  ],
+  "topic_tag": "systems of equations"
+ },
+ {
+  "id": "AM16A-04",
+  "prompt": "The numbers x, y, and z satisfy x + y = 7, y + z = -3, and x + z = 14. What is the value of y ?",
+  "choices": [
+   "12",
+   "-8",
+   "9",
+   "-5"
+  ],
+  "topic_tag": "systems of equations"
+ },
+ {
+  "id": "AM16A-05",
+  "prompt": "For all real numbers x, x^3 - 27 = (x - 3)(x^2 + ax + b), where a and b are constants. What is the value of a + b ?",
+  "choices": [
+   "6",
+   "12",
+   "15",
+   "9"
+  ],
+  "topic_tag": "factoring polynomials"
+ },
+ {
+  "id": "AM16A-06",
+  "prompt": "When the polynomial 2x^3 + 3x^2 - 5x + 4 is divided by x + 2, the quotient is a polynomial q(x) and the remainder is a constant. What is the value of q(1) ?",
+  "choices": [
+   "-6",
+   "10",
+   "18",
+   "-2"
+  ],
+  "topic_tag": "polynomial division"
+ },
+ {
+  "id": "AM16A-07",
+  "prompt": "The nonzero numbers x and y satisfy 1/x + 1/y = 5/6 and 1/x - 1/y = 1/6. What is the value of x + y ?",
+  "choices": [
+   "5",
+   "7",
+   "-1",
+   "1.2"
+  ],
+  "topic_tag": "rational equations"
+ },
+ {
+  "id": "AM16A-08",
+  "prompt": "A club rents a hall for $1,000, and the rental is split equally among the members who attend. Each member who attends also pays $12 for a meal. Members will sit at tables of exactly 4, and every table must be full. If each member's total cost (share of the rental plus meal) can be no more than $45, what is the least number of members who can attend?",
+  "choices": [
+   "32",
+   "20",
+   "24",
+   "28"
+  ],
+  "topic_tag": "linear inequalities in context"
+ },
+ {
+  "id": "AM16A-09",
+  "prompt": "Phone plan A costs $20 per month plus $0.15 for each minute of calls. Phone plan B costs $35 per month, which includes the first 200 minutes of calls, plus $0.10 for each minute beyond 200. What is the greatest whole number of minutes in a month for which plan A costs less than plan B?",
+  "choices": [
+   "233",
+   "299",
+   "99",
+   "149"
+  ],
+  "topic_tag": "linear inequalities in context"
+ },
+ {
+  "id": "AM16G-01",
+  "topic_tag": "solids",
+  "prompt": "A right prism has two bases that are regular octagons. How many edges does the prism have?",
+  "choices": [
+   "16",
+   "24",
+   "26",
+   "10"
+  ]
+ },
+ {
+  "id": "AM16G-02",
+  "topic_tag": "coordinate geometry",
+  "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(−3, 2), B(7, −1), and C(2, 11). The three medians of the triangle meet at point G. What is the y-coordinate of G ?",
+  "choices": [
+   "6",
+   "5.75",
+   "4",
+   "7.5"
+  ]
+ },
+ {
+  "id": "AM16G-03",
+  "topic_tag": "transformations",
+  "prompt": "In the standard (x,y) coordinate plane, point P(5, 6) is dilated by a scale factor of 3 with the center of dilation at point C(1, 2). What is the x-coordinate of the image of P ?",
+  "choices": [
+   "8",
+   "7",
+   "13",
+   "12"
+  ]
+ },
+ {
+  "id": "AM16G-04",
+  "topic_tag": "cones",
+  "prompt": "A sector of a circle has a radius of 10 centimeters and a central angle of 216°. The sector is rolled up so that its two straight edges meet exactly, without overlapping, forming the curved surface of a right circular cone with no base. What is the height of the cone, in centimeters, to the nearest tenth?",
+  "choices": [
+   "9.5",
+   "6.0",
+   "9.2",
+   "8.0"
+  ]
+ },
+ {
+  "id": "AM16G-05",
+  "topic_tag": "triangle area",
+  "prompt": "In triangle ABC, side BC is extended past C to a point D so that B, C and D lie on one line and BC : CD = 2 : 3. The area of triangle ABC is 66 square centimeters. What is the area of triangle ACD, in square centimeters?",
+  "choices": [
+   "165",
+   "99",
+   "110",
+   "148.5"
+  ]
+ },
+ {
+  "id": "AM16G-06",
+  "topic_tag": "transformations",
+  "prompt": "In the standard (x,y) coordinate plane, point P(4, 7) is reflected across the line y = 3 to give point P′. Point P′ is then reflected across the line x = −1 to give point P″. To the nearest tenth of a coordinate unit, what is the distance from P to P″?",
+  "choices": [
+   "8.0",
+   "14.9",
+   "12.8",
+   "10.0"
+  ]
+ },
+ {
+  "id": "AM16G-07",
+  "topic_tag": "circles and triangles",
+  "prompt": "Triangle ABC has side lengths AB = 9, BC = 10, and CA = 11. The circle inscribed in the triangle touches side BC at point T. What is the length of CT ?",
+  "choices": [
+   "6",
+   "4",
+   "5.5",
+   "5"
+  ]
+ },
+ {
+  "id": "AM16G-08",
+  "topic_tag": "surface area",
+  "prompt": "A storage tank is shaped like a right circular cylinder with a hemisphere attached to each end. The cylinder has a radius of 3 meters and a length of 10 meters, and each hemisphere has a radius of 3 meters, so there are no flat surfaces. To the nearest tenth of a square meter, what is the total outside surface area of the tank?",
+  "choices": [
+   "301.6",
+   "245.0",
+   "207.3",
+   "358.1"
+  ]
+ },
+ {
+  "id": "AM16G-09",
+  "topic_tag": "volume",
+  "prompt": "A solid ball in the shape of a sphere fits exactly inside a cube-shaped box with an edge length of 10 centimeters, touching all six faces of the box. To the nearest tenth of a percent, what percent of the volume of the box does the ball take up?",
+  "choices": [
+   "52.4",
+   "66.7",
+   "31.4",
+   "39.3"
+  ]
+ },
+ {
+  "id": "AM16G-10",
+  "topic_tag": "polygons and trigonometry",
+  "prompt": "A regular pentagon has sides that are each 8 inches long. To the nearest tenth of a square inch, what is the area of the pentagon?",
+  "choices": [
+   "152.2",
+   "136.1",
+   "110.1",
+   "129.4"
+  ]
+ },
+ {
+  "id": "AM16F-01",
+  "topic_tag": "polynomial functions",
+  "prompt": "How many distinct real zeros does the function f(x) = x(x² − 64)(x² + 25)(x − 8)(x + 3) have?",
+  "choices": [
+   "6",
+   "7",
+   "5",
+   "4"
+  ]
+ },
+ {
+  "id": "AM16F-02",
+  "topic_tag": "exponential functions",
+  "prompt": "The graph of g(x) = 2^x + k in the standard (x,y) coordinate plane passes through the point (3, 2), where k is a constant. What is the value of k ?",
+  "choices": [
+   "1/4",
+   "-4",
+   "-1",
+   "-6"
+  ]
+ },
+ {
+  "id": "AM16F-03",
+  "topic_tag": "domain",
+  "prompt": "The function f is defined by f(x) = √(x + 5) / (x² − 4). How many integers x with −6 ≤ x ≤ 8 are in the domain of f ?",
+  "choices": [
+   "11",
+   "14",
+   "12",
+   "13"
+  ]
+ },
+ {
+  "id": "AM16F-04",
+  "topic_tag": "composition of functions",
+  "prompt": "The functions f and g are defined by f(x) = x² − 4 and g(x) = x + 5. For what value of x is f(g(x)) = g(f(x)) ?",
+  "choices": [
+   "-12/5",
+   "-4",
+   "-2",
+   "3"
+  ]
+ },
+ {
+  "id": "AM16F-05",
+  "topic_tag": "trigonometric functions",
+  "prompt": "The function f is defined by f(x) = a sin(bx) + d, where a and b are positive constants, d is a constant, and x is measured in radians. The maximum value of f is 11, the minimum value of f is 3, and the period of f is 4π. To the nearest tenth, what is the value of f(π/5) ?",
+  "choices": [
+   "8.2",
+   "10.8",
+   "6.2",
+   "9.5"
+  ]
+ },
+ {
+  "id": "AM16F-06",
+  "topic_tag": "function properties",
+  "prompt": "A function f is defined for all positive numbers and satisfies f(xy) = f(x) + f(y) for all positive numbers x and y. If f(2) = 3 and f(3) = 5, what is the value of f(72) ?",
+  "choices": [
+   "19",
+   "52",
+   "21",
+   "143"
+  ]
+ },
+ {
+  "id": "AM16F-07",
+  "topic_tag": "rational functions",
+  "prompt": "The function f is defined by f(x) = k/x, where k is a positive constant. The points (3, a) and (7, b) lie on the graph of f, and a − b = 8. What is the value of k ?",
+  "choices": [
+   "42",
+   "168",
+   "441/5",
+   "32"
+  ]
+ },
+ {
+  "id": "AM16F-08",
+  "topic_tag": "rational functions",
+  "prompt": "The function f is defined by f(x) = (2x² − 3x − 5)/(x² − 4). The graph of f in the standard (x,y) coordinate plane has a horizontal asymptote, and the graph crosses that asymptote at exactly one point. What is the x-coordinate of that point?",
+  "choices": [
+   "-1/3",
+   "2.5",
+   "1",
+   "-2"
+  ]
+ },
+ {
+  "id": "AM16F-09",
+  "topic_tag": "polynomial functions",
+  "prompt": "The function p is defined by p(x) = (x − 2)²(x + 1)(x − 5). For how many integers x with −5 ≤ x ≤ 9 is p(x) < 0 ?",
+  "choices": [
+   "7",
+   "6",
+   "4",
+   "8"
+  ]
+ },
+ {
+  "id": "AM16S-01",
+  "topic_tag": "standard deviation",
+  "prompt": "Scores on a statewide exam have a mean of 74 points and a standard deviation of 6 points. Mei's score is 1.5 standard deviations below the mean. What is Mei's score?",
+  "choices": [
+   "72.5",
+   "66.5",
+   "65",
+   "70"
+  ]
+ },
+ {
+  "id": "AM16S-02",
+  "topic_tag": "probability and counting",
+  "prompt": "A 3-digit code is formed by choosing each of its three digits at random from 0 through 9. Digits may repeat, and 0 may be used in any position, so all 1,000 codes from 000 to 999 are equally likely. What is the probability that the three digits, read from left to right, are in strictly increasing order (for example, 2-5-9)?",
+  "choices": [
+   "21/250",
+   "2/15",
+   "81/400",
+   "3/25"
+  ]
+ },
+ {
+  "id": "AM16S-03",
+  "topic_tag": "measures of spread",
+  "prompt": "The mean absolute deviation of a data set is the mean of the distances between each value and the mean of the data set. What is the mean absolute deviation of the data set 2, 5, 6, 11, 16 ?",
+  "choices": [
+   "3.5",
+   "4.4",
+   "3",
+   "5.5"
+  ]
+ },
+ {
+  "id": "AM16S-04",
+  "topic_tag": "counting",
+  "prompt": "A town's streets form a rectangular grid of square blocks. Rosa walks from her home to the library, which is 4 blocks east and 3 blocks north of her home. She walks along the streets, and every block she walks takes her either 1 block east or 1 block north. How many different routes can Rosa take?",
+  "choices": [
+   "125",
+   "12",
+   "20",
+   "35"
+  ]
+ },
+ {
+  "id": "AM16S-05",
+  "topic_tag": "probability of compound events",
+  "prompt": "A basketball player makes each of her three-point shots with probability 0.3, independently of her other shots. She takes 4 three-point shots. What is the probability that she makes exactly 2 of them?",
+  "choices": [
+   "0.3483",
+   "0.2646",
+   "0.0900",
+   "0.1764"
+  ]
+ },
+ {
+  "id": "AM16S-06",
+  "topic_tag": "conditional probability",
+  "prompt": "A red die and a blue die, each a fair 6-sided die numbered 1 through 6, are rolled. Given that the sum of the two numbers rolled is 8, what is the probability that at least one of the two dice shows a 3 ?",
+  "choices": [
+   "1/6",
+   "1/3",
+   "1/5",
+   "2/5"
+  ]
+ },
+ {
+  "id": "AM16S-07",
+  "topic_tag": "probability of compound events",
+  "prompt": "Three friends each choose one of the six days Monday through Saturday for an appointment. Each friend chooses at random, with every day equally likely, independently of the others. What is the probability that at least two of the friends choose the same day?",
+  "choices": [
+   "91/216",
+   "5/12",
+   "11/36",
+   "4/9"
+  ]
+ },
+ {
+  "id": "AM16S-08",
+  "topic_tag": "measures of center",
+  "prompt": "A list of five positive integers has a mean of 9.2 and a median of 10. The list has exactly one mode, 13, meaning 13 appears more often than any other value in the list. What is the greatest possible value of the smallest integer in the list?",
+  "choices": [
+   "4",
+   "5",
+   "1",
+   "6"
+  ]
+ },
+ {
+  "id": "AM16S-09",
+  "topic_tag": "mean",
+  "prompt": "A store reports a 3-day moving average of its daily sales: the moving average for a given day is the mean of the number of units sold on that day and on each of the 2 days before it. The 3-day moving average was 50 units for Wednesday and 56 units for Thursday. The store sold 39 units on Monday. How many units did the store sell on Thursday?",
+  "choices": [
+   "45",
+   "74",
+   "57",
+   "62"
+  ]
+ },
+ {
+  "id": "AM16I-01",
+  "topic_tag": "perimeter",
+  "prompt": "A rectangular garden measures 66 feet by 30 feet. A fence is built along its entire boundary, with a post at each corner and posts every 6 feet along each side. How many posts are used in all?",
+  "choices": [
+   "36",
+   "72",
+   "33",
+   "32"
+  ]
+ },
+ {
+  "id": "AM16I-02",
+  "topic_tag": "rates and time",
+  "prompt": "Dana started work at 8:45 a.m. and finished at 5:15 p.m. the same day. She took one 30-minute unpaid lunch break and was paid $16.00 per hour for all the other time. How much did Dana earn that day, in dollars?",
+  "choices": [
+   "120.00",
+   "128.00",
+   "131.20",
+   "144.00"
+  ]
+ },
+ {
+  "id": "AM16I-03",
+  "topic_tag": "rates",
+  "prompt": "A delivery company drives 9,000 miles in a year. Its old van travels 15 miles per gallon of gasoline, and a new van would travel 60 miles per gallon. Gasoline costs $4.00 per gallon. How many dollars less would the company spend on gasoline for those 9,000 miles with the new van than with the old van?",
+  "choices": [
+   "450",
+   "1800",
+   "600",
+   "800"
+  ]
+ },
+ {
+  "id": "AM16I-04",
+  "topic_tag": "rates and time",
+  "prompt": "At an average speed of 40 miles per hour, a drive takes 4 hours 30 minutes. How many minutes shorter would the same drive be at an average speed of 60 miles per hour?",
+  "choices": [
+   "90",
+   "110",
+   "135",
+   "180"
+  ]
+ },
+ {
+  "id": "AM16I-05",
+  "topic_tag": "rates and time",
+  "prompt": "A train trip of 240 kilometers took 3 hours in all, including one 15-minute stop at a station during which the train did not move. To the nearest tenth, what was the train's average speed, in kilometers per hour, while it was moving?",
+  "choices": [
+   "87.3",
+   "84.2",
+   "94.1",
+   "86.7"
+  ]
+ },
+ {
+  "id": "AM16I-06",
+  "topic_tag": "percent change",
+  "prompt": "A box of crackers that held 20 ounces and sold for $5.00 is replaced by a box that holds 18 ounces and sells for $5.30. To the nearest tenth of a percent, by what percent did the price per ounce increase?",
+  "choices": [
+   "17.1",
+   "16.0",
+   "15.1",
+   "17.8"
+  ]
+ },
+ {
+  "id": "AM16I-07",
+  "topic_tag": "rates and proportional reasoning",
+  "prompt": "A clinic must have exactly 9 nurses on duty at all times, every day of the week. Each day is divided into three 8-hour shifts, and no nurse may work more than 5 shifts in a week. What is the least number of nurses the clinic must employ to staff one full week?",
+  "choices": [
+   "27",
+   "38",
+   "13",
+   "45"
+  ]
+ },
+ {
+  "id": "AM16I-08",
+  "topic_tag": "rates",
+  "prompt": "A snail starts at the bottom of a well that is 31 feet deep. Each day it climbs 6 feet up the wall, and each night it slides 4 feet back down. On which day does the snail first reach the top of the well?",
+  "choices": [
+   "16",
+   "14",
+   "13",
+   "17"
+  ]
+ },
+ {
+  "id": "AM16I-09",
+  "topic_tag": "rates and cost",
+  "prompt": "A print shop charges $0.12 per page for an order of 500 pages or fewer. For an order of more than 500 pages, the shop charges $0.09 per page for every page in the order. What is the difference, in dollars, between the cost of a 480-page order and the cost of a 520-page order?",
+  "choices": [
+   "10.20",
+   "10.80",
+   "4.80",
+   "4.20"
+  ]
+ }
+]

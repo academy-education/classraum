@@ -1,0 +1,420 @@
+[
+  {
+    "id": "AM16G-01",
+    "domain": "Geometry",
+    "difficulty": "easy",
+    "topic_tag": "solids",
+    "subskill": "counting the edges of a prism from the shape of its bases",
+    "prompt": "A right prism has two bases that are regular octagons. How many edges does the prism have?",
+    "choices": [
+      "16",
+      "26",
+      "24",
+      "10"
+    ],
+    "correct_answer": "24",
+    "explanation": "Each octagonal base has 8 edges, giving 8 + 8 = 16, and 8 more edges run from the vertices of one base to the matching vertices of the other. The prism has 16 + 8 = 24 edges. (Check with Euler's formula: 16 vertices − 24 edges + 10 faces = 2.) The option \"16\" is the number of VERTICES, 8 on each base. The option \"10\" is the number of FACES, the 2 bases and 8 rectangular sides. The option \"26\" applies Euler's formula without the 2, taking edges = vertices + faces = 16 + 10.",
+    "solve": "const n=8; return String(3*n);",
+    "distractor_solve": {
+      "10": "const n=8; return String(n+2);",
+      "16": "const n=8; return String(2*n);",
+      "26": "const n=8; return String(2*n+(n+2));"
+    }
+  },
+  {
+    "id": "AM16G-02",
+    "domain": "Geometry",
+    "difficulty": "easy",
+    "topic_tag": "coordinate geometry",
+    "subskill": "location of the point where the three medians of a triangle meet",
+    "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(−3, 2), B(7, −1), and C(2, 11). The three medians of the triangle meet at point G. What is the y-coordinate of G ?",
+    "choices": [
+      "6",
+      "7.5",
+      "4",
+      "5.75"
+    ],
+    "correct_answer": "4",
+    "explanation": "The medians of a triangle meet at the centroid, whose coordinates are the averages of the vertices' coordinates. The y-coordinate is (2 + (−1) + 11)/3 = 12/3 = 4. (Equivalently, G lies two-thirds of the way from C to the midpoint of AB, which has y-coordinate 0.5: 11 − (2/3)(10.5) = 4.) The option \"6\" divides the sum of the y-coordinates by 2 instead of 3. The option \"7.5\" places G only one-third of the way from C toward the midpoint of AB: 11 − (1/3)(10.5). The option \"5.75\" takes the midpoint of the median from C, (11 + 0.5)/2.",
+    "solve": "const ys=[2,-1,11]; return String(ys.reduce((a,b)=>a+b,0)/3);",
+    "distractor_solve": {
+      "6": "const ys=[2,-1,11]; return String(ys.reduce((a,b)=>a+b,0)/2);",
+      "7.5": "const ys=[2,-1,11]; const m=(ys[0]+ys[1])/2; return String(ys[2]-(ys[2]-m)/3);",
+      "5.75": "const ys=[2,-1,11]; const m=(ys[0]+ys[1])/2; return String((ys[2]+m)/2);"
+    }
+  },
+  {
+    "id": "AM16G-03",
+    "domain": "Geometry",
+    "difficulty": "medium",
+    "topic_tag": "transformations",
+    "subskill": "image of a point under a dilation centered at a point other than the origin",
+    "prompt": "In the standard (x,y) coordinate plane, point P(5, 6) is dilated by a scale factor of 3 with the center of dilation at point C(1, 2). What is the x-coordinate of the image of P ?",
+    "choices": [
+      "8",
+      "12",
+      "13",
+      "7"
+    ],
+    "correct_answer": "13",
+    "explanation": "A dilation centered at C multiplies each point's displacement FROM C by the scale factor. P is 5 − 1 = 4 units to the right of C, so its image is 3(4) = 12 units to the right of C, at x = 1 + 12 = 13. The option \"12\" multiplies the displacement by 3 but forgets to add it back to the center's x-coordinate. The option \"7\" applies the factor to the center instead of to the displacement, computing 3(1) + 4. The option \"8\" adds the scale factor to the displacement instead of multiplying, computing 1 + (4 + 3).",
+    "solve": "const px=5,cx=1,k=3; return String(cx+k*(px-cx));",
+    "distractor_solve": {
+      "7": "const px=5,cx=1,k=3; return String(k*cx+(px-cx));",
+      "8": "const px=5,cx=1,k=3; return String(cx+(px-cx)+k);",
+      "12": "const px=5,cx=1,k=3; return String(k*(px-cx));"
+    }
+  },
+  {
+    "id": "AM16G-04",
+    "domain": "Geometry",
+    "difficulty": "hard",
+    "topic_tag": "cones",
+    "subskill": "dimensions of a cone formed by rolling up a circular sector",
+    "prompt": "A sector of a circle has a radius of 10 centimeters and a central angle of 216°. The sector is rolled up so that its two straight edges meet exactly, without overlapping, forming the curved surface of a right circular cone with no base. What is the height of the cone, in centimeters, to the nearest tenth?",
+    "choices": [
+      "6.0",
+      "9.2",
+      "8.0",
+      "9.5"
+    ],
+    "correct_answer": "8.0",
+    "explanation": "The sector's radius becomes the cone's slant height, 10 cm, and the sector's arc becomes the circumference of the cone's base. The arc length is (216/360)(2π)(10) = 12π, so the base radius r satisfies 2πr = 12π and r = 6. The height h satisfies h² + 6² = 10², so h = 8.0. The option \"6.0\" is the base radius, not the height. The option \"9.5\" treats the 6 found from 2πr = 12π as the DIAMETER of the base, so it uses r = 3 and gets √(10² − 3²) = √91 ≈ 9.5. The option \"9.2\" uses the angle of the part of the circle that was cut away, 360° − 216° = 144°, which gives a base radius of 4 and a height of √84 ≈ 9.2.",
+    "solve": "const R=10, ang=216; const r=R*ang/360; return (Math.round(Math.sqrt(R*R-r*r)*10)/10).toFixed(1);",
+    "distractor_solve": {
+      "6.0": "const R=10, ang=216; return (R*ang/360).toFixed(1);",
+      "9.5": "const R=10, ang=216; const r=R*ang/360/2; return (Math.round(Math.sqrt(R*R-r*r)*10)/10).toFixed(1);",
+      "9.2": "const R=10, ang=360-216; const r=R*ang/360; return (Math.round(Math.sqrt(R*R-r*r)*10)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM16G-05",
+    "domain": "Geometry",
+    "difficulty": "medium",
+    "topic_tag": "triangle area",
+    "subskill": "areas of two triangles that share a vertex and have bases on one line",
+    "prompt": "In triangle ABC, side BC is extended past C to a point D so that B, C and D lie on one line and BC : CD = 2 : 3. The area of triangle ABC is 66 square centimeters. What is the area of triangle ACD, in square centimeters?",
+    "choices": [
+      "148.5",
+      "99",
+      "165",
+      "110"
+    ],
+    "correct_answer": "99",
+    "explanation": "Triangles ABC and ACD have the same height, the distance from A to line BD, so their areas are in the ratio of their bases BC and CD. The area of ACD is (3/2)(66) = 99 square centimeters. The option \"165\" is the area of the whole triangle ABD, 66 + 99, rather than of triangle ACD. The option \"148.5\" squares the ratio, (3/2)²(66), as is done for similar figures — but the two triangles are not similar. The option \"110\" compares CD with BD instead of with BC, setting the areas in the ratio BD : CD = 5 : 3 and computing (5/3)(66).",
+    "solve": "const T=66,p=2,q=3; return String(T*q/p);",
+    "distractor_solve": {
+      "110": "const T=66,p=2,q=3; return String(Math.round(T*(p+q)/q*1e9)/1e9);",
+      "165": "const T=66,p=2,q=3; return String(T+T*q/p);",
+      "148.5": "const T=66,p=2,q=3; return String(T*(q/p)**2);"
+    }
+  },
+  {
+    "id": "AM16G-06",
+    "domain": "Geometry",
+    "difficulty": "medium",
+    "topic_tag": "transformations",
+    "subskill": "distance between a point and its image after two reflections in perpendicular lines",
+    "prompt": "In the standard (x,y) coordinate plane, point P(4, 7) is reflected across the line y = 3 to give point P′. Point P′ is then reflected across the line x = −1 to give point P″. To the nearest tenth of a coordinate unit, what is the distance from P to P″?",
+    "choices": [
+      "8.0",
+      "12.8",
+      "14.9",
+      "10.0"
+    ],
+    "correct_answer": "12.8",
+    "explanation": "Reflecting P(4, 7) across the horizontal line y = 3 keeps x and sends y to 2(3) − 7 = −1, so P′ = (4, −1). Reflecting across the vertical line x = −1 keeps y and sends x to 2(−1) − 4 = −6, so P″ = (−6, −1). The distance from P to P″ is √(10² + 8²) = √164 ≈ 12.8. (Two reflections in perpendicular lines amount to a half-turn about their intersection (−1, 3), so the distance is also twice the distance from P to (−1, 3).) The option \"8.0\" treats y = 3 as the vertical line x = 3, sending P to (2, 7) and then to (−4, 7). The option \"14.9\" reflects across y = 3 by computing 3 − 7 = −4 without doubling the 3, giving P′ = (4, −4) and P″ = (−6, −4). The option \"10.0\" reports the distance from P′ to P″, the length of the second move only.",
+    "solve": "const P=[4,7],k=3,h=-1; const P1=[P[0],2*k-P[1]]; const P2=[2*h-P1[0],P1[1]]; return (Math.round(Math.hypot(P2[0]-P[0],P2[1]-P[1])*10)/10).toFixed(1);",
+    "distractor_solve": {
+      "8.0": "const P=[4,7],k=3,h=-1; const P1=[2*k-P[0],P[1]]; const P2=[2*h-P1[0],P1[1]]; return (Math.round(Math.hypot(P2[0]-P[0],P2[1]-P[1])*10)/10).toFixed(1);",
+      "14.9": "const P=[4,7],k=3,h=-1; const P1=[P[0],k-P[1]]; const P2=[2*h-P1[0],P1[1]]; return (Math.round(Math.hypot(P2[0]-P[0],P2[1]-P[1])*10)/10).toFixed(1);",
+      "10.0": "const P=[4,7],k=3,h=-1; const P1=[P[0],2*k-P[1]]; const P2=[2*h-P1[0],P1[1]]; return (Math.round(Math.hypot(P2[0]-P1[0],P2[1]-P1[1])*10)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM16G-07",
+    "domain": "Geometry",
+    "difficulty": "medium",
+    "topic_tag": "circles and triangles",
+    "subskill": "lengths of the tangent segments from the vertices of a triangle to its inscribed circle",
+    "prompt": "Triangle ABC has side lengths AB = 9, BC = 10, and CA = 11. The circle inscribed in the triangle touches side BC at point T. What is the length of CT ?",
+    "choices": [
+      "5.5",
+      "4",
+      "6",
+      "5"
+    ],
+    "correct_answer": "6",
+    "explanation": "The two tangent segments drawn to a circle from the same vertex are equal. Call them x from A, y from B and z from C. Then x + y = 9, y + z = 10, and z + x = 11. Adding gives 2(x + y + z) = 30, so x + y + z = 15, and z = 15 − 9 = 6. Since T is the point of tangency on BC, CT = z = 6. The option \"4\" is BT, the tangent length from B, 15 − 11. The option \"5\" assumes T is the midpoint of BC. The option \"5.5\" locates the point where the bisector of angle A meets BC, which divides BC in the ratio 9 : 11, giving 10(11/20) from C — a different point from T.",
+    "solve": "const AB=9,BC=10,CA=11; const s=(AB+BC+CA)/2; return String(s-AB);",
+    "distractor_solve": {
+      "4": "const AB=9,BC=10,CA=11; const s=(AB+BC+CA)/2; return String(s-CA);",
+      "5": "const BC=10; return String(BC/2);",
+      "5.5": "const AB=9,BC=10,CA=11; return String(BC*CA/(AB+CA));"
+    }
+  },
+  {
+    "id": "AM16G-08",
+    "domain": "Geometry",
+    "difficulty": "medium",
+    "topic_tag": "surface area",
+    "subskill": "surface area of a cylinder capped at both ends by hemispheres",
+    "prompt": "A storage tank is shaped like a right circular cylinder with a hemisphere attached to each end. The cylinder has a radius of 3 meters and a length of 10 meters, and each hemisphere has a radius of 3 meters, so there are no flat surfaces. To the nearest tenth of a square meter, what is the total outside surface area of the tank?",
+    "choices": [
+      "245.0",
+      "301.6",
+      "207.3",
+      "358.1"
+    ],
+    "correct_answer": "301.6",
+    "explanation": "The curved side of the cylinder has area 2π(3)(10) = 60π. The two hemispheres together make one sphere of radius 3, with surface area 4π(3)² = 36π. The total is 96π ≈ 301.6 square meters. The option \"358.1\" also adds the two circular ends of the cylinder, 2π(3)² = 18π, which are covered by the hemispheres and are not part of the outside surface. The option \"245.0\" counts the two hemispheres as 2π(3)² in total, the area of ONE hemisphere, instead of 4π(3)². The option \"207.3\" uses πrh = 30π for the curved side of the cylinder instead of 2πrh.",
+    "solve": "const r=3,L=10; return (Math.round((2*Math.PI*r*L+4*Math.PI*r*r)*10)/10).toFixed(1);",
+    "distractor_solve": {
+      "358.1": "const r=3,L=10; return (Math.round((2*Math.PI*r*L+4*Math.PI*r*r+2*Math.PI*r*r)*10)/10).toFixed(1);",
+      "245.0": "const r=3,L=10; return (Math.round((2*Math.PI*r*L+2*Math.PI*r*r)*10)/10).toFixed(1);",
+      "207.3": "const r=3,L=10; return (Math.round((Math.PI*r*L+4*Math.PI*r*r)*10)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM16G-09",
+    "domain": "Geometry",
+    "difficulty": "medium",
+    "topic_tag": "volume",
+    "subskill": "fraction of a cube occupied by the sphere that fits inside it, as a percent",
+    "prompt": "A solid ball in the shape of a sphere fits exactly inside a cube-shaped box with an edge length of 10 centimeters, touching all six faces of the box. To the nearest tenth of a percent, what percent of the volume of the box does the ball take up?",
+    "choices": [
+      "39.3",
+      "66.7",
+      "31.4",
+      "52.4"
+    ],
+    "correct_answer": "52.4",
+    "explanation": "The ball's diameter equals the edge of the box, so its radius is 5 cm and its volume is (4/3)π(5)³ ≈ 523.6 cubic centimeters. The box holds 10³ = 1,000 cubic centimeters, so the ball takes up about 523.6/1,000 = 52.4%. The option \"39.3\" leaves the 4/3 out of the sphere formula, using π(5)³ ≈ 392.7. The option \"31.4\" uses the sphere's SURFACE AREA formula, 4π(5)² ≈ 314.2, in place of its volume. The option \"66.7\" uses 2/3, which is the fraction of a circumscribing CYLINDER that a sphere fills, not the fraction of a cube.",
+    "solve": "const s=10; const r=s/2; return String(Math.round(4/3*Math.PI*r**3/s**3*1000)/10);",
+    "distractor_solve": {
+      "39.3": "const s=10; const r=s/2; return String(Math.round(Math.PI*r**3/s**3*1000)/10);",
+      "31.4": "const s=10; const r=s/2; return String(Math.round(4*Math.PI*r**2/s**3*1000)/10);",
+      "66.7": "return String(Math.round(2/3*1000)/10);"
+    }
+  },
+  {
+    "id": "AM16G-10",
+    "domain": "Geometry",
+    "difficulty": "hard",
+    "topic_tag": "polygons and trigonometry",
+    "subskill": "area of a regular pentagon from its side length using right-triangle trigonometry",
+    "prompt": "A regular pentagon has sides that are each 8 inches long. To the nearest tenth of a square inch, what is the area of the pentagon?",
+    "choices": [
+      "136.1",
+      "152.2",
+      "129.4",
+      "110.1"
+    ],
+    "correct_answer": "110.1",
+    "explanation": "Joining the center to the five vertices splits the pentagon into 5 congruent isosceles triangles, each with an 8-inch base and an apex angle of 360°/5 = 72°. The height of each triangle (the apothem) bisects that angle and the base, so tan 36° = 4/a and a = 4/tan 36° ≈ 5.506. The area is (1/2)(perimeter)(apothem) = (1/2)(40)(5.506) ≈ 110.1 square inches. The option \"136.1\" uses the distance from the center to a VERTEX, 4/sin 36° ≈ 6.805, as the height of each triangle. The option \"152.2\" assumes each central triangle has two sides of length 8, as in a regular hexagon, and adds 5 · (1/2)(8)(8) sin 72°. The option \"129.4\" treats the 8-inch side as the hypotenuse of the right triangle, taking the apothem as 8 cos 36° ≈ 6.472.",
+    "solve": "const s=8,n=5; const t=Math.PI/n; const a=(s/2)/Math.tan(t); return (Math.round(0.5*n*s*a*10)/10).toFixed(1);",
+    "distractor_solve": {
+      "136.1": "const s=8,n=5; const t=Math.PI/n; const R=(s/2)/Math.sin(t); return (Math.round(0.5*n*s*R*10)/10).toFixed(1);",
+      "152.2": "const s=8,n=5; return (Math.round(n*0.5*s*s*Math.sin(2*Math.PI/n)*10)/10).toFixed(1);",
+      "129.4": "const s=8,n=5; const t=Math.PI/n; const a=s*Math.cos(t); return (Math.round(0.5*n*s*a*10)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM16F-01",
+    "domain": "Functions",
+    "difficulty": "easy",
+    "topic_tag": "polynomial functions",
+    "subskill": "number of distinct real zeros of a factored polynomial function",
+    "prompt": "How many distinct real zeros does the function f(x) = x(x² − 64)(x² + 25)(x − 8)(x + 3) have?",
+    "choices": [
+      "6",
+      "4",
+      "7",
+      "5"
+    ],
+    "correct_answer": "4",
+    "explanation": "f(x) = 0 when x = 0, when x² = 64 (x = 8 or x = −8), when x − 8 = 0 (x = 8 again), or when x = −3. The factor x² + 25 is never 0 for a real x, since x² + 25 ≥ 25. The distinct real zeros are 0, 8, −8 and −3, so there are 4. The option \"5\" counts x = 8 twice, once from x² − 64 and once from x − 8. The option \"6\" treats x² + 25 = 0 as giving x = 5 and x = −5, adding two zeros that do not exist. The option \"7\" is the degree of the polynomial, 1 + 2 + 2 + 1 + 1, which counts zeros with multiplicity and includes the non-real ones.",
+    "solve": "const z=new Set([0,8,-8,8,-3]); return String(z.size);",
+    "distractor_solve": {
+      "5": "const z=[0,8,-8,8,-3]; return String(z.length);",
+      "6": "const z=new Set([0,8,-8,8,-3,5,-5]); return String(z.size);",
+      "7": "return String(1+2+2+1+1);"
+    }
+  },
+  {
+    "id": "AM16F-02",
+    "domain": "Functions",
+    "difficulty": "easy",
+    "topic_tag": "exponential functions",
+    "subskill": "vertical shift of an exponential function found from one point on its graph",
+    "prompt": "The graph of g(x) = 2^x + k in the standard (x,y) coordinate plane passes through the point (3, 2), where k is a constant. What is the value of k ?",
+    "choices": [
+      "-4",
+      "-1",
+      "1/4",
+      "-6"
+    ],
+    "correct_answer": "-6",
+    "explanation": "Substituting the point gives 2 = 2³ + k = 8 + k, so k = −6. The option \"-4\" evaluates 2³ as 2 · 3 = 6 and solves 2 = 6 + k. The option \"1/4\" reads the + as multiplication, solving 2 = 8k. The option \"-1\" reads the point with its coordinates exchanged, as (2, 3), and solves 3 = 2² + k.",
+    "solve": "const x=3,y=2; return String(y-2**x);",
+    "distractor_solve": {
+      "-4": "const x=3,y=2; return String(y-2*x);",
+      "1/4": "const x=3,y=2; return String(y/2**x);",
+      "-1": "const x=3,y=2; return String(x-2**y);"
+    }
+  },
+  {
+    "id": "AM16F-03",
+    "domain": "Functions",
+    "difficulty": "medium",
+    "topic_tag": "domain",
+    "subskill": "counting the integers in the domain of a function that combines a square root and a quotient",
+    "prompt": "The function f is defined by f(x) = √(x + 5) / (x² − 4). How many integers x with −6 ≤ x ≤ 8 are in the domain of f ?",
+    "choices": [
+      "14",
+      "11",
+      "13",
+      "12"
+    ],
+    "correct_answer": "12",
+    "explanation": "The square root requires x + 5 ≥ 0, so x ≥ −5, and the denominator requires x² − 4 ≠ 0, so x ≠ 2 and x ≠ −2. The integers from −5 through 8 number 14; removing −2 and 2 leaves 12. The option \"14\" ignores the denominator. The option \"13\" removes only x = 2, missing the solution x = −2 of x² = 4. The option \"11\" requires x + 5 > 0 instead of x + 5 ≥ 0, wrongly excluding x = −5, where the square root is √0 = 0.",
+    "solve": "let n=0; for(let x=-6;x<=8;x++){ if(x+5>=0 && x*x-4!==0) n++; } return String(n);",
+    "distractor_solve": {
+      "11": "let n=0; for(let x=-6;x<=8;x++){ if(x+5>0 && x*x-4!==0) n++; } return String(n);",
+      "13": "let n=0; for(let x=-6;x<=8;x++){ if(x+5>=0 && x!==2) n++; } return String(n);",
+      "14": "let n=0; for(let x=-6;x<=8;x++){ if(x+5>=0) n++; } return String(n);"
+    }
+  },
+  {
+    "id": "AM16F-04",
+    "domain": "Functions",
+    "difficulty": "medium",
+    "topic_tag": "composition of functions",
+    "subskill": "input at which two compositions of the same pair of functions take equal values",
+    "prompt": "The functions f and g are defined by f(x) = x² − 4 and g(x) = x + 5. For what value of x is f(g(x)) = g(f(x)) ?",
+    "choices": [
+      "3",
+      "-12/5",
+      "-2",
+      "-4"
+    ],
+    "correct_answer": "-2",
+    "explanation": "f(g(x)) = (x + 5)² − 4 = x² + 10x + 21, and g(f(x)) = (x² − 4) + 5 = x² + 1. Setting them equal gives 10x + 21 = 1, so x = −2. The option \"-4\" expands (x + 5)² as x² + 5x + 25, leaving out the factor 2 in the middle term, and solves 5x + 21 = 1. The option \"3\" expands (x + 5)² as x² + 10x − 25, with the wrong sign on the constant, and solves 10x − 29 = 1. The option \"-12/5\" drops the \"− 4\" from f when forming f(g(x)), solving x² + 10x + 25 = x² + 1.",
+    "solve": "const b=5,c=-4; // (x+b)^2 + c = x^2 + c + b  ->  2bx + b^2 = b\n return String((b-b*b)/(2*b));",
+    "distractor_solve": {
+      "3": "const b=5,c=-4; return String(((c+b)-(-b*b+c))/(2*b));",
+      "-4": "const b=5,c=-4; return String(((c+b)-(b*b+c))/b);",
+      "-12/5": "const b=5,c=-4; return String(((c+b)-b*b)/(2*b));"
+    }
+  },
+  {
+    "id": "AM16F-05",
+    "domain": "Functions",
+    "difficulty": "medium",
+    "topic_tag": "trigonometric functions",
+    "subskill": "evaluating a sine function after recovering its amplitude, midline and period from stated features",
+    "prompt": "The function f is defined by f(x) = a sin(bx) + d, where a and b are positive constants, d is a constant, and x is measured in radians. The maximum value of f is 11, the minimum value of f is 3, and the period of f is 4π. To the nearest tenth, what is the value of f(π/5) ?",
+    "choices": [
+      "10.8",
+      "8.2",
+      "9.5",
+      "6.2"
+    ],
+    "correct_answer": "8.2",
+    "explanation": "The amplitude is half the distance from the minimum to the maximum, a = (11 − 3)/2 = 4, and the midline is their average, d = (11 + 3)/2 = 7. A period of 4π means 2π/b = 4π, so b = 1/2. Then f(π/5) = 4 sin(π/10) + 7 ≈ 4(0.3090) + 7 ≈ 8.2. The option \"10.8\" inverts the period rule, taking b = 4π/(2π) = 2, and computes 4 sin(2π/5) + 7. The option \"9.5\" uses the full distance 11 − 3 = 8 as the amplitude without halving it, computing 8 sin(π/10) + 7. The option \"6.2\" exchanges the amplitude and the midline, computing 7 sin(π/10) + 4.",
+    "solve": "const M=11,m=3,P=4*Math.PI,x=Math.PI/5; const a=(M-m)/2,d=(M+m)/2,b=2*Math.PI/P; return (Math.round((a*Math.sin(b*x)+d)*10)/10).toFixed(1);",
+    "distractor_solve": {
+      "10.8": "const M=11,m=3,P=4*Math.PI,x=Math.PI/5; const a=(M-m)/2,d=(M+m)/2,b=P/(2*Math.PI); return (Math.round((a*Math.sin(b*x)+d)*10)/10).toFixed(1);",
+      "9.5": "const M=11,m=3,P=4*Math.PI,x=Math.PI/5; const a=M-m,d=(M+m)/2,b=2*Math.PI/P; return (Math.round((a*Math.sin(b*x)+d)*10)/10).toFixed(1);",
+      "6.2": "const M=11,m=3,P=4*Math.PI,x=Math.PI/5; const a=(M+m)/2,d=(M-m)/2,b=2*Math.PI/P; return (Math.round((a*Math.sin(b*x)+d)*10)/10).toFixed(1);"
+    }
+  },
+  {
+    "id": "AM16F-06",
+    "domain": "Functions",
+    "difficulty": "medium",
+    "topic_tag": "function properties",
+    "subskill": "value of a function that turns products of inputs into sums of outputs",
+    "prompt": "A function f is defined for all positive numbers and satisfies f(xy) = f(x) + f(y) for all positive numbers x and y. If f(2) = 3 and f(3) = 5, what is the value of f(72) ?",
+    "choices": [
+      "52",
+      "21",
+      "143",
+      "19"
+    ],
+    "correct_answer": "19",
+    "explanation": "Because 72 = 2 · 2 · 2 · 3 · 3, applying the rule repeatedly gives f(72) = f(2) + f(2) + f(2) + f(3) + f(3) = 3(3) + 2(5) = 19. The option \"52\" turns the repeated factors into powers of the OUTPUTS, 3³ + 5² = 27 + 25. The option \"21\" pairs each exponent with the wrong prime, computing 2 · f(2) + 3 · f(3) = 6 + 15. The option \"143\" assumes f is linear, fitting f(x) = 2x − 1 through the two given values and evaluating 2(72) − 1; no linear function with a nonzero output at 2 satisfies f(xy) = f(x) + f(y).",
+    "solve": "const f2=3,f3=5; let n=72,e2=0,e3=0; while(n%2===0){n/=2;e2++;} while(n%3===0){n/=3;e3++;} return String(e2*f2+e3*f3);",
+    "distractor_solve": {
+      "21": "const f2=3,f3=5; let n=72,e2=0,e3=0; while(n%2===0){n/=2;e2++;} while(n%3===0){n/=3;e3++;} return String(e3*f2+e2*f3);",
+      "52": "const f2=3,f3=5; let n=72,e2=0,e3=0; while(n%2===0){n/=2;e2++;} while(n%3===0){n/=3;e3++;} return String(f2**e2+f3**e3);",
+      "143": "const f2=3,f3=5; const m=(f3-f2)/(3-2), c=f2-2*m; return String(m*72+c);"
+    }
+  },
+  {
+    "id": "AM16F-07",
+    "domain": "Functions",
+    "difficulty": "medium",
+    "topic_tag": "rational functions",
+    "subskill": "constant of a reciprocal function from the difference of two of its outputs",
+    "prompt": "The function f is defined by f(x) = k/x, where k is a positive constant. The points (3, a) and (7, b) lie on the graph of f, and a − b = 8. What is the value of k ?",
+    "choices": [
+      "168",
+      "42",
+      "441/5",
+      "32"
+    ],
+    "correct_answer": "42",
+    "explanation": "Since a = k/3 and b = k/7, a − b = k/3 − k/7 = 7k/21 − 3k/21 = 4k/21. Setting 4k/21 = 8 gives k = 42. The option \"32\" subtracts the fractions by subtracting their denominators, writing k/3 − k/7 = k/4. The option \"168\" puts both fractions over 21 without rescaling the numerators, writing k/3 − k/7 = k/21. The option \"441/5\" treats f as an inverse-SQUARE relation, k/x², and solves k/9 − k/49 = 8.",
+    "solve": "const x1=3,x2=7,D=8; return String(D/(1/x1-1/x2));",
+    "distractor_solve": {
+      "32": "const x1=3,x2=7,D=8; return String(D*(x2-x1));",
+      "168": "const x1=3,x2=7,D=8; return String(D*x1*x2);",
+      "441/5": "const x1=3,x2=7,D=8; return String(Math.round(D/(1/x1**2-1/x2**2)*1e9)/1e9);"
+    }
+  },
+  {
+    "id": "AM16F-08",
+    "domain": "Functions",
+    "difficulty": "hard",
+    "topic_tag": "rational functions",
+    "subskill": "point at which the graph of a rational function crosses its own horizontal asymptote",
+    "prompt": "The function f is defined by f(x) = (2x² − 3x − 5)/(x² − 4). The graph of f in the standard (x,y) coordinate plane has a horizontal asymptote, and the graph crosses that asymptote at exactly one point. What is the x-coordinate of that point?",
+    "choices": [
+      "2.5",
+      "-2",
+      "1",
+      "-1/3"
+    ],
+    "correct_answer": "1",
+    "explanation": "The numerator and denominator have the same degree, so the horizontal asymptote is the ratio of the leading coefficients, y = 2/1 = 2. The graph crosses it where f(x) = 2: 2x² − 3x − 5 = 2(x² − 4) = 2x² − 8, so −3x = −3 and x = 1. (Check: f(1) = (−6)/(−3) = 2.) The option \"2.5\" takes the asymptote to be the x-axis, y = 0, and solves 2x² − 3x − 5 = 0, keeping the positive solution. The option \"-1/3\" multiplies only the x² term by 2, writing 2(x² − 4) as 2x² − 4, and solves −3x − 5 = −4. The option \"-2\" gives a VERTICAL asymptote, where the denominator is 0, which the graph never reaches.",
+    "solve": "const a=2,b=-3,c=-5,d=-4; const H=a/1; return String((H*d-c)/b);",
+    "distractor_solve": {
+      "2.5": "const a=2,b=-3,c=-5; return String((-b+Math.sqrt(b*b-4*a*c))/(2*a));",
+      "-1/3": "const a=2,b=-3,c=-5,d=-4; const H=a; return String((d-c)/b);",
+      "-2": "const d=-4; return String(-Math.sqrt(-d));"
+    }
+  },
+  {
+    "id": "AM16F-09",
+    "domain": "Functions",
+    "difficulty": "hard",
+    "topic_tag": "polynomial functions",
+    "subskill": "sign of a polynomial function on intervals between zeros of different multiplicities",
+    "prompt": "The function p is defined by p(x) = (x − 2)²(x + 1)(x − 5). For how many integers x with −5 ≤ x ≤ 9 is p(x) < 0 ?",
+    "choices": [
+      "7",
+      "4",
+      "8",
+      "6"
+    ],
+    "correct_answer": "4",
+    "explanation": "The zeros are −1, 2 and 5. The factor (x − 2)² is never negative, so p(x) < 0 exactly where (x + 1)(x − 5) < 0 and x ≠ 2, that is, for −1 < x < 5 with x ≠ 2. The integers are 0, 1, 3 and 4, so the count is 4. The option \"6\" treats x = 2 like an ordinary zero, assuming the sign changes at every zero; that makes p negative for 2 < x < 5 and for x < −1, giving 3, 4, −5, −4, −3 and −2. The option \"7\" counts p(x) ≤ 0, adding the three zeros −1, 2 and 5. The option \"8\" counts where p(x) > 0 instead, the integers −5 through −2 and 6 through 9.",
+    "solve": "const p=x=>(x-2)**2*(x+1)*(x-5); let n=0; for(let x=-5;x<=9;x++) if(p(x)<0) n++; return String(n);",
+    "distractor_solve": {
+      "6": "let n=0; for(let x=-5;x<=9;x++) if((x>2&&x<5)||x<-1) n++; return String(n);",
+      "7": "const p=x=>(x-2)**2*(x+1)*(x-5); let n=0; for(let x=-5;x<=9;x++) if(p(x)<=0) n++; return String(n);",
+      "8": "const p=x=>(x-2)**2*(x+1)*(x-5); let n=0; for(let x=-5;x<=9;x++) if(p(x)>0) n++; return String(n);"
+    }
+  }
+]

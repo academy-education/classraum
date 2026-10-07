@@ -1,0 +1,376 @@
+[
+ {
+  "id": "AM16N-01",
+  "domain": "Number and Quantity",
+  "subskill": "an entry of a linear combination of two matrices",
+  "prompt": "Matrix A has first row (2, -1) and second row (4, 0). Matrix B has first row (5, 2) and second row (-3, 8). What is the entry in the 2nd row, 1st column of the matrix 3A - 2B ?",
+  "choices": [
+   "15",
+   "-7",
+   "18",
+   "6"
+  ],
+  "correct_answer": "18",
+  "explanation": "Each entry of 3A - 2B is 3 times the entry of A minus 2 times the matching entry of B. In row 2, column 1, A has 4 and B has -3, so the entry is 3(4) - 2(-3) = 12 + 6 = 18. The option \"6\" treats -2(-3) as -6, giving 12 - 6. The option \"15\" multiplies A by 3 but forgets to multiply B by 2, giving 12 - (-3). The option \"-7\" computes the entry in row 1, column 2 instead: 3(-1) - 2(2) = -3 - 4.",
+  "topic_tag": "matrices",
+  "difficulty": "easy",
+  "solve": "const A=[[2,-1],[4,0]],B=[[5,2],[-3,8]]; return String(3*A[1][0]-2*B[1][0]);",
+  "distractor_solve": {
+   "6": "const A=[[2,-1],[4,0]],B=[[5,2],[-3,8]]; return String(3*A[1][0]-Math.abs(2*B[1][0]));",
+   "15": "const A=[[2,-1],[4,0]],B=[[5,2],[-3,8]]; return String(3*A[1][0]-B[1][0]);",
+   "-7": "const A=[[2,-1],[4,0]],B=[[5,2],[-3,8]]; return String(3*A[0][1]-2*B[0][1]);"
+  }
+ },
+ {
+  "id": "AM16N-02",
+  "domain": "Number and Quantity",
+  "subskill": "solving an equation in which the unknown is raised to a rational power",
+  "prompt": "If x > 0 and x^(2/3) = 9, what is the value of x ?",
+  "choices": [
+   "364.5",
+   "27",
+   "91.125",
+   "729"
+  ],
+  "correct_answer": "27",
+  "explanation": "Raise both sides to the 3/2 power, the reciprocal of 2/3: x = 9^(3/2) = (square root of 9)^3 = 3^3 = 27. Check: 27^(2/3) = (cube root of 27)^2 = 3^2 = 9. The option \"364.5\" reads 9^(3/2) as 9^3/2, cubing 9 and then dividing by 2. The option \"91.125\" undoes the square by halving instead of taking a square root, so it uses x^(1/3) = 4.5 and x = 4.5^3. The option \"729\" cubes 9 to undo the cube root but never takes the square root, giving 9^3.",
+  "topic_tag": "rational exponents",
+  "difficulty": "easy",
+  "solve": "return String(Math.round(Math.pow(Math.sqrt(9),3)));",
+  "distractor_solve": {
+   "364.5": "return String(Math.pow(9,3)/2);",
+   "91.125": "return String(Math.pow(9/2,3));",
+   "729": "return String(Math.pow(9,3));"
+  }
+ },
+ {
+  "id": "AM16N-03",
+  "domain": "Number and Quantity",
+  "subskill": "magnitude of a vector sum after fixing an unknown component from a stated magnitude",
+  "prompt": "The vector u = <6, k> has magnitude 10, and k < 0. The vector v = <-2, 11>. What is the magnitude of the vector u + v ?",
+  "choices": [
+   "√73",
+   "5",
+   "√377",
+   "7"
+  ],
+  "correct_answer": "5",
+  "explanation": "From 6^2 + k^2 = 10^2, k^2 = 64, and k < 0 gives k = -8, so u = <6, -8>. Then u + v = <6 + (-2), -8 + 11> = <4, 3>, whose magnitude is the square root of 16 + 9, which is 5. The option \"√377\" uses k = 8, ignoring k < 0, so u + v = <4, 19> and the magnitude is the square root of 16 + 361. The option \"√73\" subtracts the x-components, 6 - (-2) = 8, giving <8, 3> and the square root of 64 + 9. The option \"7\" adds the components 4 + 3 instead of using the square root of the sum of their squares.",
+  "topic_tag": "vectors",
+  "difficulty": "medium",
+  "solve": "const k=-Math.sqrt(100-36); const x=6+(-2), y=k+11; return String(Math.sqrt(x*x+y*y));",
+  "distractor_solve": {
+   "√377": "const k=Math.sqrt(100-36); const x=6+(-2), y=k+11; return \"√\"+(x*x+y*y);",
+   "√73": "const k=-Math.sqrt(100-36); const x=6-(-2), y=k+11; return \"√\"+(x*x+y*y);",
+   "7": "const k=-Math.sqrt(100-36); const x=6+(-2), y=k+11; return String(Math.abs(x)+Math.abs(y));"
+  }
+ },
+ {
+  "id": "AM16N-04",
+  "domain": "Number and Quantity",
+  "subskill": "finding a complex number from an equation that involves its conjugate",
+  "prompt": "For i = √(-1), the complex number z = a + bi, where a and b are real numbers, satisfies z + 3z̄ = 16 - 6i, where z̄ = a - bi is the complex conjugate of z. What is the value of a + b ?",
+  "choices": [
+   "2.5",
+   "7",
+   "-9.5",
+   "12"
+  ],
+  "correct_answer": "7",
+  "explanation": "Substituting, z + 3z̄ = (a + bi) + 3(a - bi) = 4a - 2bi. Matching real parts, 4a = 16, so a = 4; matching imaginary parts, -2b = -6, so b = 3. Then a + b = 7. The option \"2.5\" treats z̄ as if it were z, so 4a + 4bi = 16 - 6i gives a = 4 and b = -1.5. The option \"-9.5\" negates the real part instead of the imaginary part when forming the conjugate (z̄ = -a + bi), so -2a + 4bi = 16 - 6i gives a = -8 and b = -1.5. The option \"12\" finds a = 4 and b = 3 correctly but reports their product.",
+  "topic_tag": "complex numbers",
+  "difficulty": "medium",
+  "solve": "const a=16/(1+3), b=-6/(1-3); return String(a+b);",
+  "distractor_solve": {
+   "2.5": "const a=16/(1+3), b=-6/(1+3); return String(a+b);",
+   "-9.5": "const a=16/(1-3), b=-6/(1+3); return String(a+b);",
+   "12": "const a=16/(1+3), b=-6/(1-3); return String(a*b);"
+  }
+ },
+ {
+  "id": "AM16N-05",
+  "domain": "Number and Quantity",
+  "subskill": "an entry of a power of a 2 x 2 matrix",
+  "prompt": "Matrix A has first row (1, 3) and second row (0, 2). What is the entry in the 1st row, 2nd column of A^4, the product A·A·A·A ?",
+  "choices": [
+   "21",
+   "12",
+   "45",
+   "36"
+  ],
+  "correct_answer": "45",
+  "explanation": "Multiplying step by step: A^2 has first row (1, 9) and second row (0, 4); A^3 = A^2·A has first row (1, 21) and second row (0, 8); A^4 = A^3·A has first row (1, 45) and second row (0, 16), since 1(3) + 21(2) = 45. The option \"21\" is the entry of A^3, one multiplication short. The option \"12\" assumes the entry grows by 3 with each power, 3 x 4. The option \"36\" squares A^2 but drops the first product in the row-by-column sum, keeping only 9(4) and leaving out 1(9).",
+  "topic_tag": "matrices",
+  "difficulty": "medium",
+  "solve": "const A=[[1,3],[0,2]]; const mul=(X,Y)=>[[X[0][0]*Y[0][0]+X[0][1]*Y[1][0],X[0][0]*Y[0][1]+X[0][1]*Y[1][1]],[X[1][0]*Y[0][0]+X[1][1]*Y[1][0],X[1][0]*Y[0][1]+X[1][1]*Y[1][1]]]; let P=A; for(let i=1;i<4;i++) P=mul(P,A); return String(P[0][1]);",
+  "distractor_solve": {
+   "21": "const A=[[1,3],[0,2]]; const mul=(X,Y)=>[[X[0][0]*Y[0][0]+X[0][1]*Y[1][0],X[0][0]*Y[0][1]+X[0][1]*Y[1][1]],[X[1][0]*Y[0][0]+X[1][1]*Y[1][0],X[1][0]*Y[0][1]+X[1][1]*Y[1][1]]]; let P=A; for(let i=1;i<3;i++) P=mul(P,A); return String(P[0][1]);",
+   "12": "const A=[[1,3],[0,2]]; return String(A[0][1]*4);",
+   "36": "const A=[[1,3],[0,2]]; const S=[[1,1*3+3*2],[0,4]]; return String(S[0][1]*S[1][1]);"
+  }
+ },
+ {
+  "id": "AM16N-06",
+  "domain": "Number and Quantity",
+  "subskill": "ordering three roots with different indices",
+  "prompt": "Let a = 2^(1/2), b = 3^(1/3), and c = 6^(1/6). Which of the following correctly orders a, b, and c ?",
+  "choices": [
+   "a < b < c",
+   "c < b < a",
+   "a < c < b",
+   "c < a < b"
+  ],
+  "correct_answer": "c < a < b",
+  "explanation": "Raise all three to the 6th power, which preserves order for positive numbers: a^6 = 2^3 = 8, b^6 = 3^2 = 9, and c^6 = 6. Since 6 < 8 < 9, c < a < b. The option \"a < b < c\" orders the numbers by their bases 2, 3, 6, ignoring the roots. The option \"c < b < a\" orders them by their root indices alone, assuming a larger index always means a smaller number. The option \"a < c < b\" raises to the 6th power but swaps the exponents, using 2^2 = 4 for a^6 and 3^3 = 27 for b^6.",
+  "topic_tag": "radicals and rational exponents",
+  "difficulty": "medium",
+  "solve": "const v={a:Math.pow(2,6/2),b:Math.pow(3,6/3),c:Math.pow(6,6/6)}; return Object.keys(v).sort((p,q)=>v[p]-v[q]).join(\" < \");",
+  "distractor_solve": {
+   "a < b < c": "const v={a:2,b:3,c:6}; return Object.keys(v).sort((p,q)=>v[p]-v[q]).join(\" < \");",
+   "c < b < a": "const v={a:1/2,b:1/3,c:1/6}; return Object.keys(v).sort((p,q)=>v[p]-v[q]).join(\" < \");",
+   "a < c < b": "const v={a:Math.pow(2,2),b:Math.pow(3,3),c:6}; return Object.keys(v).sort((p,q)=>v[p]-v[q]).join(\" < \");"
+  }
+ },
+ {
+  "id": "AM16N-07",
+  "domain": "Number and Quantity",
+  "subskill": "counting integers in a range whose number of positive divisors is odd",
+  "prompt": "How many integers n with 1 ≤ n ≤ 300 have an odd number of positive divisors?",
+  "choices": [
+   "9",
+   "150",
+   "17",
+   "7"
+  ],
+  "correct_answer": "17",
+  "explanation": "Divisors of n pair up as d and n/d, and the two members of a pair are different unless d = n/d, which happens only when n is a perfect square. So n has an odd number of divisors exactly when n is a perfect square. The perfect squares from 1 to 300 are 1^2, 2^2, ..., 17^2 = 289 (18^2 = 324 is too large), so there are 17. The option \"9\" counts only the odd perfect squares, 1^2, 3^2, ..., 17^2. The option \"7\" counts only the numbers with exactly 3 divisors, the squares of primes 4, 9, 25, 49, 121, 169, and 289. The option \"150\" counts the odd integers, confusing an odd number of divisors with an odd number.",
+  "topic_tag": "number properties",
+  "difficulty": "hard",
+  "solve": "let c=0; for(let n=1;n<=300;n++){let d=0; for(let k=1;k<=n;k++) if(n%k===0) d++; if(d%2===1) c++;} return String(c);",
+  "distractor_solve": {
+   "9": "let c=0; for(let n=1;n<=300;n++){const r=Math.round(Math.sqrt(n)); if(r*r===n && n%2===1) c++;} return String(c);",
+   "7": "let c=0; for(let n=1;n<=300;n++){let d=0; for(let k=1;k<=n;k++) if(n%k===0) d++; if(d===3) c++;} return String(c);",
+   "150": "let c=0; for(let n=1;n<=300;n++) if(n%2===1) c++; return String(c);"
+  }
+ },
+ {
+  "id": "AM16N-08",
+  "domain": "Number and Quantity",
+  "subskill": "choosing a scalar so that a combination of two vectors is perpendicular to one of them",
+  "prompt": "The vectors u = <5, 4> and v = <1, 2> are given. For what value of the scalar k is the vector u + kv perpendicular to v ?",
+  "choices": [
+   "-13/3",
+   "-13/5",
+   "-13",
+   "-41/13"
+  ],
+  "correct_answer": "-13/5",
+  "explanation": "Two vectors are perpendicular when their dot product is 0. Here u + kv = <5 + k, 4 + 2k>, and its dot product with v = <1, 2> is (5 + k)(1) + (4 + 2k)(2) = 13 + 5k. Setting 13 + 5k = 0 gives k = -13/5. The option \"-13/3\" adds k to each component, writing u + kv as <5 + k, 4 + k>, so the dot product becomes 13 + 3k. The option \"-13\" sets the dot product of u and v, 13, against k alone and never divides by v·v = 5. The option \"-41/13\" makes u + kv perpendicular to u instead of v: (5 + k)(5) + (4 + 2k)(4) = 41 + 13k.",
+  "topic_tag": "vectors",
+  "difficulty": "hard",
+  "solve": "const u=[5,4],v=[1,2]; const uv=u[0]*v[0]+u[1]*v[1], vv=v[0]*v[0]+v[1]*v[1]; return String(-uv/vv);",
+  "distractor_solve": {
+   "-13/3": "const u=[5,4],v=[1,2]; const uv=u[0]*v[0]+u[1]*v[1]; return String(-uv/(v[0]+v[1]));",
+   "-13": "const u=[5,4],v=[1,2]; return String(-(u[0]*v[0]+u[1]*v[1]));",
+   "-41/13": "const u=[5,4],v=[1,2]; const uu=u[0]*u[0]+u[1]*u[1], uv=u[0]*v[0]+u[1]*v[1]; return String(-uu/uv);"
+  }
+ },
+ {
+  "id": "AM16A-01",
+  "domain": "Algebra",
+  "subskill": "evaluating a two-variable expression at a negative value",
+  "prompt": "What is the value of a^2·b - 2a·b^2 when a = -3 and b = 2 ?",
+  "choices": [
+   "6",
+   "42",
+   "-54",
+   "60"
+  ],
+  "correct_answer": "42",
+  "explanation": "With a = -3 and b = 2: a^2·b = (9)(2) = 18 and 2a·b^2 = 2(-3)(4) = -24, so a^2·b - 2a·b^2 = 18 - (-24) = 42. The option \"6\" reads a^2 as -3^2 = -9, giving -18 + 24. The option \"60\" reads a^2·b as (ab)^2 = 36, giving 36 + 24. The option \"-54\" reads a·b^2 as (ab)^2 = 36, giving 18 - 2(36).",
+  "topic_tag": "evaluating expressions",
+  "difficulty": "easy",
+  "solve": "const a=-3,b=2; return String(a*a*b-2*a*b*b);",
+  "distractor_solve": {
+   "6": "const a=-3,b=2; return String(-(3*3)*b-2*a*b*b);",
+   "60": "const a=-3,b=2; return String((a*b)*(a*b)-2*a*b*b);",
+   "-54": "const a=-3,b=2; return String(a*a*b-2*(a*b)*(a*b));"
+  }
+ },
+ {
+  "id": "AM16A-02",
+  "domain": "Algebra",
+  "subskill": "translating a verbal statement with a grouped sum into a linear equation",
+  "prompt": "The product of 4 and the sum of a number and 3 is 8 less than 6 times the number. What is the number?",
+  "choices": [
+   "2",
+   "-0.4",
+   "10",
+   "5.5"
+  ],
+  "correct_answer": "10",
+  "explanation": "Let the number be x. \"The product of 4 and the sum of a number and 3\" is 4(x + 3), and \"8 less than 6 times the number\" is 6x - 8. Solving 4x + 12 = 6x - 8 gives 20 = 2x, so x = 10. The option \"5.5\" writes the left side as 4x + 3, leaving the 3 outside the product. The option \"-0.4\" writes \"8 less than 6 times the number\" as 8 - 6x. The option \"2\" sets up the right equation but moves the -8 across without changing its sign, getting 12 - 8 = 2x.",
+  "topic_tag": "linear equations",
+  "difficulty": "easy",
+  "solve": "return String((4*3+8)/(6-4));",
+  "distractor_solve": {
+   "5.5": "return String((3+8)/(6-4));",
+   "-0.4": "return String((8-4*3)/(4+6));",
+   "2": "return String((4*3-8)/(6-4));"
+  }
+ },
+ {
+  "id": "AM16A-03",
+  "domain": "Algebra",
+  "subskill": "a ratio equation paired with a difference equation",
+  "prompt": "The nonzero numbers a and b satisfy 2a/b = 8 and a - b = 15. What is the value of a ?",
+  "choices": [
+   "12",
+   "16",
+   "-5",
+   "20"
+  ],
+  "correct_answer": "20",
+  "explanation": "From 2a/b = 8, a/b = 4, so a = 4b. Substituting into a - b = 15 gives 3b = 15, so b = 5 and a = 20. The option \"12\" adds instead of subtracts, solving 4b + b = 15 to get b = 3. The option \"16\" reads 2a/b = 8 as a/b = 16, multiplying by 2 instead of dividing; then 15b = 15 gives b = 1. The option \"-5\" inverts the ratio, using b = 4a, so a - 4a = 15.",
+  "topic_tag": "systems of equations",
+  "difficulty": "medium",
+  "solve": "const r=8/2; const b=15/(r-1); return String(r*b);",
+  "distractor_solve": {
+   "12": "const r=8/2; const b=15/(r+1); return String(r*b);",
+   "16": "const r=8*2; const b=15/(r-1); return String(r*b);",
+   "-5": "const r=8/2; return String(15/(1-r));"
+  }
+ },
+ {
+  "id": "AM16A-04",
+  "domain": "Algebra",
+  "subskill": "three equations each giving the sum of two of three unknowns",
+  "prompt": "The numbers x, y, and z satisfy x + y = 7, y + z = -3, and x + z = 14. What is the value of y ?",
+  "choices": [
+   "9",
+   "-8",
+   "12",
+   "-5"
+  ],
+  "correct_answer": "-5",
+  "explanation": "Adding the three equations gives 2x + 2y + 2z = 18, so x + y + z = 9. Subtracting x + z = 14 leaves y = 9 - 14 = -5. The option \"9\" is x + y + z, the sum of all three, not y. The option \"-8\" divides the sum of the three equations by 3 instead of 2, getting x + y + z = 6 and then y = 6 - 14. The option \"12\" subtracts the wrong equation, y + z = -3, which gives x = 9 - (-3) rather than y.",
+  "topic_tag": "systems of equations",
+  "difficulty": "medium",
+  "solve": "const s=(7+(-3)+14)/2; return String(s-14);",
+  "distractor_solve": {
+   "9": "return String((7+(-3)+14)/2);",
+   "-8": "const s=(7+(-3)+14)/3; return String(s-14);",
+   "12": "const s=(7+(-3)+14)/2; return String(s-(-3));"
+  }
+ },
+ {
+  "id": "AM16A-05",
+  "domain": "Algebra",
+  "subskill": "factoring a difference of two cubes and reading off coefficients",
+  "prompt": "For all real numbers x, x^3 - 27 = (x - 3)(x^2 + ax + b), where a and b are constants. What is the value of a + b ?",
+  "choices": [
+   "15",
+   "6",
+   "12",
+   "9"
+  ],
+  "correct_answer": "12",
+  "explanation": "A difference of cubes factors as p^3 - q^3 = (p - q)(p^2 + pq + q^2). With p = x and q = 3, x^3 - 27 = (x - 3)(x^2 + 3x + 9), so a = 3, b = 9, and a + b = 12. Expanding confirms it: x^3 + 3x^2 + 9x - 3x^2 - 9x - 27 = x^3 - 27. The option \"6\" uses -3x as the middle term, the sign pattern of a sum of cubes. The option \"9\" drops the middle term, as if x^3 - 27 factored like a difference of squares into (x - 3)(x^2 + 9). The option \"15\" uses 6x as the middle term, writing the second factor as the perfect square (x + 3)^2.",
+  "topic_tag": "factoring polynomials",
+  "difficulty": "medium",
+  "solve": "const q=Math.round(Math.cbrt(27)); const a=q, b=q*q; return String(a+b);",
+  "distractor_solve": {
+   "6": "const q=Math.round(Math.cbrt(27)); return String(-q+q*q);",
+   "9": "const q=Math.round(Math.cbrt(27)); return String(0+q*q);",
+   "15": "const q=Math.round(Math.cbrt(27)); return String(2*q+q*q);"
+  }
+ },
+ {
+  "id": "AM16A-06",
+  "domain": "Algebra",
+  "subskill": "the quotient of polynomial division by a linear factor, then evaluated",
+  "prompt": "When the polynomial 2x^3 + 3x^2 - 5x + 4 is divided by x + 2, the quotient is a polynomial q(x) and the remainder is a constant. What is the value of q(1) ?",
+  "choices": [
+   "18",
+   "-2",
+   "10",
+   "-6"
+  ],
+  "correct_answer": "-2",
+  "explanation": "Synthetic division by x + 2 uses -2: bring down 2; 2(-2) + 3 = -1; -1(-2) - 5 = -3; -3(-2) + 4 = 10. So q(x) = 2x^2 - x - 3 with remainder 10, and q(1) = 2 - 1 - 3 = -2. The option \"18\" divides using +2 instead of -2, which gives the quotient 2x^2 + 7x + 9. The option \"10\" is the remainder, not a value of the quotient. The option \"-6\" makes a sign slip in the third step, taking (-1)(-2) as -2, so that step gives -2 - 5 = -7 and the quotient becomes 2x^2 - x - 7.",
+  "topic_tag": "polynomial division",
+  "difficulty": "medium",
+  "solve": "const c=[2,3,-5,4], r=-2; const q=[c[0]]; for(let i=1;i<c.length-1;i++) q.push(q[i-1]*r+c[i]); return String(q.reduce((s,v)=>s+v,0));",
+  "distractor_solve": {
+   "18": "const c=[2,3,-5,4], r=2; const q=[c[0]]; for(let i=1;i<c.length-1;i++) q.push(q[i-1]*r+c[i]); return String(q.reduce((s,v)=>s+v,0));",
+   "10": "const c=[2,3,-5,4], r=-2; let acc=c[0]; for(let i=1;i<c.length;i++) acc=acc*r+c[i]; return String(acc);",
+   "-6": "const c=[2,3,-5,4], r=-2; const q=[c[0], c[0]*r+c[1]]; q.push(-Math.abs(q[1]*r)+c[2]); return String(q.reduce((s,v)=>s+v,0));"
+  }
+ },
+ {
+  "id": "AM16A-07",
+  "domain": "Algebra",
+  "subskill": "a system of two equations in the reciprocals of the unknowns",
+  "prompt": "The nonzero numbers x and y satisfy 1/x + 1/y = 5/6 and 1/x - 1/y = 1/6. What is the value of x + y ?",
+  "choices": [
+   "7",
+   "1.2",
+   "-1",
+   "5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Adding the equations gives 2/x = 1, so x = 2. Subtracting them gives 2/y = 4/6, so 1/y = 1/3 and y = 3. Then x + y = 5. The option \"1.2\" treats 1/x + 1/y as 1/(x + y), so x + y = 6/5. The option \"-1\" makes a sign error when subtracting, getting -2/y = 4/6, so y = -3 while x = 2. The option \"7\" adds the fractions by adding numerators and denominators, so 5/6 + 1/6 becomes 6/12 and 2/x = 1/2 gives x = 4; with y = 3 the sum is 7.",
+  "topic_tag": "rational equations",
+  "difficulty": "medium",
+  "solve": "const p=5/6, m=1/6; const x=1/((p+m)/2), y=1/((p-m)/2); return String(x+y);",
+  "distractor_solve": {
+   "1.2": "const p=5/6; return String(1/p);",
+   "-1": "const p=5/6, m=1/6; const x=1/((p+m)/2), y=1/(-(p-m)/2); return String(Math.round(x+y));",
+   "7": "const p=5/6, m=1/6; const wrongSum=(5+1)/(6+6); const x=1/(wrongSum/2), y=1/((p-m)/2); return String(Math.round(x+y));"
+  }
+ },
+ {
+  "id": "AM16A-08",
+  "domain": "Algebra",
+  "subskill": "least group size when a fixed cost is shared and the group must fill equal tables",
+  "prompt": "A club rents a hall for $1,000, and the rental is split equally among the members who attend. Each member who attends also pays $12 for a meal. Members will sit at tables of exactly 4, and every table must be full. If each member's total cost (share of the rental plus meal) can be no more than $45, what is the least number of members who can attend?",
+  "choices": [
+   "28",
+   "20",
+   "32",
+   "24"
+  ],
+  "correct_answer": "32",
+  "explanation": "With n members, each pays 1000/n + 12, so 1000/n + 12 ≤ 45 means 1000/n ≤ 33, or n ≥ 1000/33 ≈ 30.3. So at least 31 members are needed, and n must also be a multiple of 4 to fill every table; the least multiple of 4 that is at least 30.3 is 32. Check: 1000/32 + 12 = 43.25 ≤ 45, while 28 members would pay 1000/28 + 12 ≈ 47.71. The option \"28\" rounds 30.3 down to a multiple of 4 instead of up. The option \"24\" leaves out the $12 meal, using 1000/n ≤ 45, so n ≥ 22.2. The option \"20\" adds the meal to the limit instead of subtracting it, using 1000/n ≤ 57, so n ≥ 17.5.",
+  "topic_tag": "linear inequalities in context",
+  "difficulty": "hard",
+  "solve": "const m=1000/(45-12); return String(Math.ceil(m/4)*4);",
+  "distractor_solve": {
+   "28": "const m=1000/(45-12); return String(Math.floor(m/4)*4);",
+   "24": "const m=1000/45; return String(Math.ceil(m/4)*4);",
+   "20": "const m=1000/(45+12); return String(Math.ceil(m/4)*4);"
+  }
+ },
+ {
+  "id": "AM16A-09",
+  "domain": "Algebra",
+  "subskill": "comparing two pricing plans when one includes a block of usage",
+  "prompt": "Phone plan A costs $20 per month plus $0.15 for each minute of calls. Phone plan B costs $35 per month, which includes the first 200 minutes of calls, plus $0.10 for each minute beyond 200. What is the greatest whole number of minutes in a month for which plan A costs less than plan B?",
+  "choices": [
+   "299",
+   "99",
+   "233",
+   "149"
+  ],
+  "correct_answer": "99",
+  "explanation": "For m ≤ 200 minutes, plan B costs a flat $35, so plan A is cheaper when 20 + 0.15m < 35, that is, m < 100. For m > 200, plan B costs 35 + 0.10(m - 200) = 15 + 0.10m, and 20 + 0.15m < 15 + 0.10m would need 0.05m < -5, which never happens. So plan A is cheaper only for m < 100, and the greatest whole number is 99. The option \"299\" ignores the 200 included minutes and compares 20 + 0.15m with 35 + 0.10m. The option \"149\" uses plan B's rate of $0.10 for plan A, solving 20 + 0.10m < 35. The option \"233\" drops plan A's $20 monthly charge, solving 0.15m < 35.",
+  "topic_tag": "linear inequalities in context",
+  "difficulty": "hard",
+  "solve": "let best=-1; for(let m=0;m<=2000;m++){const A=20+0.15*m, B=m<=200?35:35+0.10*(m-200); if(A<B-1e-9) best=m;} return String(best);",
+  "distractor_solve": {
+   "299": "let best=-1; for(let m=0;m<=2000;m++){if(20+0.15*m<35+0.10*m-1e-9) best=m;} return String(best);",
+   "149": "let best=-1; for(let m=0;m<=2000;m++){if(20+0.10*m<35-1e-9) best=m;} return String(best);",
+   "233": "let best=-1; for(let m=0;m<=2000;m++){if(0.15*m<35-1e-9) best=m;} return String(best);"
+  }
+ }
+]

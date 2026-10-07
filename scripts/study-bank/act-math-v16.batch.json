@@ -1,0 +1,1190 @@
+[
+ {
+  "id": "AM16N-01",
+  "domain": "Number and Quantity",
+  "subskill": "an entry of a linear combination of two matrices",
+  "prompt": "Matrix A has first row (2, -1) and second row (4, 0). Matrix B has first row (5, 2) and second row (-3, 8). What is the entry in the 2nd row, 1st column of the matrix 3A - 2B ?",
+  "choices": [
+   "15",
+   "-7",
+   "18",
+   "6"
+  ],
+  "correct_answer": "18",
+  "explanation": "Each entry of 3A - 2B is 3 times the entry of A minus 2 times the matching entry of B. In row 2, column 1, A has 4 and B has -3, so the entry is 3(4) - 2(-3) = 12 + 6 = 18. The option \"6\" treats -2(-3) as -6, giving 12 - 6. The option \"15\" multiplies A by 3 but forgets to multiply B by 2, giving 12 - (-3). The option \"-7\" computes the entry in row 1, column 2 instead: 3(-1) - 2(2) = -3 - 4.",
+  "topic_tag": "matrices",
+  "difficulty": "easy",
+  "solve": "const A=[[2,-1],[4,0]],B=[[5,2],[-3,8]]; return String(3*A[1][0]-2*B[1][0]);",
+  "distractor_solve": {
+   "6": "const A=[[2,-1],[4,0]],B=[[5,2],[-3,8]]; return String(3*A[1][0]-Math.abs(2*B[1][0]));",
+   "15": "const A=[[2,-1],[4,0]],B=[[5,2],[-3,8]]; return String(3*A[1][0]-B[1][0]);",
+   "-7": "const A=[[2,-1],[4,0]],B=[[5,2],[-3,8]]; return String(3*A[0][1]-2*B[0][1]);"
+  }
+ },
+ {
+  "id": "AM16N-02",
+  "domain": "Number and Quantity",
+  "subskill": "solving an equation in which the unknown is raised to a rational power",
+  "prompt": "If x > 0 and x^(2/3) = 9, what is the value of x ?",
+  "choices": [
+   "364.5",
+   "27",
+   "91.125",
+   "729"
+  ],
+  "correct_answer": "27",
+  "explanation": "Raise both sides to the 3/2 power, the reciprocal of 2/3: x = 9^(3/2) = (square root of 9)^3 = 3^3 = 27. Check: 27^(2/3) = (cube root of 27)^2 = 3^2 = 9. The option \"364.5\" reads 9^(3/2) as 9^3/2, cubing 9 and then dividing by 2. The option \"91.125\" undoes the square by halving instead of taking a square root, so it uses x^(1/3) = 4.5 and x = 4.5^3. The option \"729\" cubes 9 to undo the cube root but never takes the square root, giving 9^3.",
+  "topic_tag": "rational exponents",
+  "difficulty": "easy",
+  "solve": "return String(Math.round(Math.pow(Math.sqrt(9),3)));",
+  "distractor_solve": {
+   "729": "return String(Math.pow(9,3));",
+   "364.5": "return String(Math.pow(9,3)/2);",
+   "91.125": "return String(Math.pow(9/2,3));"
+  }
+ },
+ {
+  "id": "AM16N-03",
+  "domain": "Number and Quantity",
+  "subskill": "magnitude of a vector sum after fixing an unknown component from a stated magnitude",
+  "prompt": "The vector u = <6, k> has magnitude 10, and k < 0. The vector v = <-2, 11>. What is the magnitude of the vector u + v ?",
+  "choices": [
+   "√73",
+   "5",
+   "√377",
+   "7"
+  ],
+  "correct_answer": "5",
+  "explanation": "From 6^2 + k^2 = 10^2, k^2 = 64, and k < 0 gives k = -8, so u = <6, -8>. Then u + v = <6 + (-2), -8 + 11> = <4, 3>, whose magnitude is the square root of 16 + 9, which is 5. The option \"√377\" uses k = 8, ignoring k < 0, so u + v = <4, 19> and the magnitude is the square root of 16 + 361. The option \"√73\" subtracts the x-components, 6 - (-2) = 8, giving <8, 3> and the square root of 64 + 9. The option \"7\" adds the components 4 + 3 instead of using the square root of the sum of their squares.",
+  "topic_tag": "vectors",
+  "difficulty": "medium",
+  "solve": "const k=-Math.sqrt(100-36); const x=6+(-2), y=k+11; return String(Math.sqrt(x*x+y*y));",
+  "distractor_solve": {
+   "7": "const k=-Math.sqrt(100-36); const x=6+(-2), y=k+11; return String(Math.abs(x)+Math.abs(y));",
+   "√377": "const k=Math.sqrt(100-36); const x=6+(-2), y=k+11; return \"√\"+(x*x+y*y);",
+   "√73": "const k=-Math.sqrt(100-36); const x=6-(-2), y=k+11; return \"√\"+(x*x+y*y);"
+  }
+ },
+ {
+  "id": "AM16N-04",
+  "domain": "Number and Quantity",
+  "subskill": "finding a complex number from an equation that involves its conjugate",
+  "prompt": "For i = √(-1), the complex number z = a + bi, where a and b are real numbers, satisfies z + 3z̄ = 16 - 6i, where z̄ = a - bi is the complex conjugate of z. What is the value of a + b ?",
+  "choices": [
+   "2.5",
+   "7",
+   "-9.5",
+   "12"
+  ],
+  "correct_answer": "7",
+  "explanation": "Substituting, z + 3z̄ = (a + bi) + 3(a - bi) = 4a - 2bi. Matching real parts, 4a = 16, so a = 4; matching imaginary parts, -2b = -6, so b = 3. Then a + b = 7. The option \"2.5\" treats z̄ as if it were z, so 4a + 4bi = 16 - 6i gives a = 4 and b = -1.5. The option \"-9.5\" negates the real part instead of the imaginary part when forming the conjugate (z̄ = -a + bi), so -2a + 4bi = 16 - 6i gives a = -8 and b = -1.5. The option \"12\" finds a = 4 and b = 3 correctly but reports their product.",
+  "topic_tag": "complex numbers",
+  "difficulty": "medium",
+  "solve": "const a=16/(1+3), b=-6/(1-3); return String(a+b);",
+  "distractor_solve": {
+   "12": "const a=16/(1+3), b=-6/(1-3); return String(a*b);",
+   "2.5": "const a=16/(1+3), b=-6/(1+3); return String(a+b);",
+   "-9.5": "const a=16/(1-3), b=-6/(1+3); return String(a+b);"
+  }
+ },
+ {
+  "id": "AM16N-05",
+  "domain": "Number and Quantity",
+  "subskill": "an entry of a power of a 2 x 2 matrix",
+  "prompt": "Matrix A has first row (1, 3) and second row (0, 2). What is the entry in the 1st row, 2nd column of A^4, the product A·A·A·A ?",
+  "choices": [
+   "21",
+   "12",
+   "45",
+   "36"
+  ],
+  "correct_answer": "45",
+  "explanation": "Multiplying step by step: A^2 has first row (1, 9) and second row (0, 4); A^3 = A^2·A has first row (1, 21) and second row (0, 8); A^4 = A^3·A has first row (1, 45) and second row (0, 16), since 1(3) + 21(2) = 45. The option \"21\" is the entry of A^3, one multiplication short. The option \"12\" assumes the entry grows by 3 with each power, 3 x 4. The option \"36\" squares A^2 but drops the first product in the row-by-column sum, keeping only 9(4) and leaving out 1(9).",
+  "topic_tag": "matrices",
+  "difficulty": "medium",
+  "solve": "const A=[[1,3],[0,2]]; const mul=(X,Y)=>[[X[0][0]*Y[0][0]+X[0][1]*Y[1][0],X[0][0]*Y[0][1]+X[0][1]*Y[1][1]],[X[1][0]*Y[0][0]+X[1][1]*Y[1][0],X[1][0]*Y[0][1]+X[1][1]*Y[1][1]]]; let P=A; for(let i=1;i<4;i++) P=mul(P,A); return String(P[0][1]);",
+  "distractor_solve": {
+   "12": "const A=[[1,3],[0,2]]; return String(A[0][1]*4);",
+   "21": "const A=[[1,3],[0,2]]; const mul=(X,Y)=>[[X[0][0]*Y[0][0]+X[0][1]*Y[1][0],X[0][0]*Y[0][1]+X[0][1]*Y[1][1]],[X[1][0]*Y[0][0]+X[1][1]*Y[1][0],X[1][0]*Y[0][1]+X[1][1]*Y[1][1]]]; let P=A; for(let i=1;i<3;i++) P=mul(P,A); return String(P[0][1]);",
+   "36": "const A=[[1,3],[0,2]]; const S=[[1,1*3+3*2],[0,4]]; return String(S[0][1]*S[1][1]);"
+  }
+ },
+ {
+  "id": "AM16N-06",
+  "domain": "Number and Quantity",
+  "subskill": "ordering three roots with different indices",
+  "prompt": "Let a = 2^(1/2), b = 3^(1/3), and c = 6^(1/6). Which of the following correctly orders a, b, and c ?",
+  "choices": [
+   "a < b < c",
+   "c < b < a",
+   "a < c < b",
+   "c < a < b"
+  ],
+  "correct_answer": "c < a < b",
+  "explanation": "Raise all three to the 6th power, which preserves order for positive numbers: a^6 = 2^3 = 8, b^6 = 3^2 = 9, and c^6 = 6. Since 6 < 8 < 9, c < a < b. The option \"a < b < c\" orders the numbers by their bases 2, 3, 6, ignoring the roots. The option \"c < b < a\" orders them by their root indices alone, assuming a larger index always means a smaller number. The option \"a < c < b\" raises to the 6th power but swaps the exponents, using 2^2 = 4 for a^6 and 3^3 = 27 for b^6.",
+  "topic_tag": "radicals and rational exponents",
+  "difficulty": "medium",
+  "solve": "const v={a:Math.pow(2,6/2),b:Math.pow(3,6/3),c:Math.pow(6,6/6)}; return Object.keys(v).sort((p,q)=>v[p]-v[q]).join(\" < \");",
+  "distractor_solve": {
+   "a < b < c": "const v={a:2,b:3,c:6}; return Object.keys(v).sort((p,q)=>v[p]-v[q]).join(\" < \");",
+   "c < b < a": "const v={a:1/2,b:1/3,c:1/6}; return Object.keys(v).sort((p,q)=>v[p]-v[q]).join(\" < \");",
+   "a < c < b": "const v={a:Math.pow(2,2),b:Math.pow(3,3),c:6}; return Object.keys(v).sort((p,q)=>v[p]-v[q]).join(\" < \");"
+  }
+ },
+ {
+  "id": "AM16N-07",
+  "domain": "Number and Quantity",
+  "subskill": "counting integers in a range whose number of positive divisors is odd",
+  "prompt": "How many integers n with 1 ≤ n ≤ 300 have an odd number of positive divisors?",
+  "choices": [
+   "9",
+   "150",
+   "17",
+   "7"
+  ],
+  "correct_answer": "17",
+  "explanation": "Divisors of n pair up as d and n/d, and the two members of a pair are different unless d = n/d, which happens only when n is a perfect square. So n has an odd number of divisors exactly when n is a perfect square. The perfect squares from 1 to 300 are 1^2, 2^2, ..., 17^2 = 289 (18^2 = 324 is too large), so there are 17. The option \"9\" counts only the odd perfect squares, 1^2, 3^2, ..., 17^2. The option \"7\" counts only the numbers with exactly 3 divisors, the squares of primes 4, 9, 25, 49, 121, 169, and 289. The option \"150\" counts the odd integers, confusing an odd number of divisors with an odd number.",
+  "topic_tag": "number properties",
+  "difficulty": "hard",
+  "solve": "let c=0; for(let n=1;n<=300;n++){let d=0; for(let k=1;k<=n;k++) if(n%k===0) d++; if(d%2===1) c++;} return String(c);",
+  "distractor_solve": {
+   "7": "let c=0; for(let n=1;n<=300;n++){let d=0; for(let k=1;k<=n;k++) if(n%k===0) d++; if(d===3) c++;} return String(c);",
+   "9": "let c=0; for(let n=1;n<=300;n++){const r=Math.round(Math.sqrt(n)); if(r*r===n && n%2===1) c++;} return String(c);",
+   "150": "let c=0; for(let n=1;n<=300;n++) if(n%2===1) c++; return String(c);"
+  }
+ },
+ {
+  "id": "AM16N-08",
+  "domain": "Number and Quantity",
+  "subskill": "choosing a scalar so that a combination of two vectors is perpendicular to one of them",
+  "prompt": "The vectors u = <5, 4> and v = <1, 2> are given. For what value of the scalar k is the vector u + kv perpendicular to v ?",
+  "choices": [
+   "-13/3",
+   "-13/5",
+   "-13",
+   "-41/13"
+  ],
+  "correct_answer": "-13/5",
+  "explanation": "Two vectors are perpendicular when their dot product is 0. Here u + kv = <5 + k, 4 + 2k>, and its dot product with v = <1, 2> is (5 + k)(1) + (4 + 2k)(2) = 13 + 5k. Setting 13 + 5k = 0 gives k = -13/5. The option \"-13/3\" adds k to each component, writing u + kv as <5 + k, 4 + k>, so the dot product becomes 13 + 3k. The option \"-13\" sets the dot product of u and v, 13, against k alone and never divides by v·v = 5. The option \"-41/13\" makes u + kv perpendicular to u instead of v: (5 + k)(5) + (4 + 2k)(4) = 41 + 13k.",
+  "topic_tag": "vectors",
+  "difficulty": "hard",
+  "solve": "const u=[5,4],v=[1,2]; const uv=u[0]*v[0]+u[1]*v[1], vv=v[0]*v[0]+v[1]*v[1]; return String(-uv/vv);",
+  "distractor_solve": {
+   "-13/3": "const u=[5,4],v=[1,2]; const uv=u[0]*v[0]+u[1]*v[1]; return String(-uv/(v[0]+v[1]));",
+   "-13": "const u=[5,4],v=[1,2]; return String(-(u[0]*v[0]+u[1]*v[1]));",
+   "-41/13": "const u=[5,4],v=[1,2]; const uu=u[0]*u[0]+u[1]*u[1], uv=u[0]*v[0]+u[1]*v[1]; return String(-uu/uv);"
+  }
+ },
+ {
+  "id": "AM16A-01",
+  "domain": "Algebra",
+  "subskill": "evaluating a two-variable expression at a negative value",
+  "prompt": "What is the value of a^2·b - 2a·b^2 when a = -3 and b = 2 ?",
+  "choices": [
+   "6",
+   "42",
+   "-54",
+   "60"
+  ],
+  "correct_answer": "42",
+  "explanation": "With a = -3 and b = 2: a^2·b = (9)(2) = 18 and 2a·b^2 = 2(-3)(4) = -24, so a^2·b - 2a·b^2 = 18 - (-24) = 42. The option \"6\" reads a^2 as -3^2 = -9, giving -18 + 24. The option \"60\" reads a^2·b as (ab)^2 = 36, giving 36 + 24. The option \"-54\" reads a·b^2 as (ab)^2 = 36, giving 18 - 2(36).",
+  "topic_tag": "evaluating expressions",
+  "difficulty": "easy",
+  "solve": "const a=-3,b=2; return String(a*a*b-2*a*b*b);",
+  "distractor_solve": {
+   "6": "const a=-3,b=2; return String(-(3*3)*b-2*a*b*b);",
+   "60": "const a=-3,b=2; return String((a*b)*(a*b)-2*a*b*b);",
+   "-54": "const a=-3,b=2; return String(a*a*b-2*(a*b)*(a*b));"
+  }
+ },
+ {
+  "id": "AM16A-02",
+  "domain": "Algebra",
+  "subskill": "translating a verbal statement with a grouped sum into a linear equation",
+  "prompt": "The product of 4 and the sum of a number and 3 is 8 less than 6 times the number. What is the number?",
+  "choices": [
+   "2",
+   "-0.4",
+   "10",
+   "5.5"
+  ],
+  "correct_answer": "10",
+  "explanation": "Let the number be x. \"The product of 4 and the sum of a number and 3\" is 4(x + 3), and \"8 less than 6 times the number\" is 6x - 8. Solving 4x + 12 = 6x - 8 gives 20 = 2x, so x = 10. The option \"5.5\" writes the left side as 4x + 3, leaving the 3 outside the product. The option \"-0.4\" writes \"8 less than 6 times the number\" as 8 - 6x. The option \"2\" sets up the right equation but moves the -8 across without changing its sign, getting 12 - 8 = 2x.",
+  "topic_tag": "linear equations",
+  "difficulty": "easy",
+  "solve": "return String((4*3+8)/(6-4));",
+  "distractor_solve": {
+   "2": "return String((4*3-8)/(6-4));",
+   "5.5": "return String((3+8)/(6-4));",
+   "-0.4": "return String((8-4*3)/(4+6));"
+  }
+ },
+ {
+  "id": "AM16A-03",
+  "domain": "Algebra",
+  "subskill": "a ratio equation paired with a difference equation",
+  "prompt": "The nonzero numbers a and b satisfy 2a/b = 8 and a - b = 15. What is the value of a ?",
+  "choices": [
+   "12",
+   "16",
+   "-5",
+   "20"
+  ],
+  "correct_answer": "20",
+  "explanation": "From 2a/b = 8, a/b = 4, so a = 4b. Substituting into a - b = 15 gives 3b = 15, so b = 5 and a = 20. The option \"12\" adds instead of subtracts, solving 4b + b = 15 to get b = 3. The option \"16\" reads 2a/b = 8 as a/b = 16, multiplying by 2 instead of dividing; then 15b = 15 gives b = 1. The option \"-5\" inverts the ratio, using b = 4a, so a - 4a = 15.",
+  "topic_tag": "systems of equations",
+  "difficulty": "medium",
+  "solve": "const r=8/2; const b=15/(r-1); return String(r*b);",
+  "distractor_solve": {
+   "12": "const r=8/2; const b=15/(r+1); return String(r*b);",
+   "16": "const r=8*2; const b=15/(r-1); return String(r*b);",
+   "-5": "const r=8/2; return String(15/(1-r));"
+  }
+ },
+ {
+  "id": "AM16A-04",
+  "domain": "Algebra",
+  "subskill": "three equations each giving the sum of two of three unknowns",
+  "prompt": "The numbers x, y, and z satisfy x + y = 7, y + z = -3, and x + z = 14. What is the value of y ?",
+  "choices": [
+   "9",
+   "-8",
+   "12",
+   "-5"
+  ],
+  "correct_answer": "-5",
+  "explanation": "Adding the three equations gives 2x + 2y + 2z = 18, so x + y + z = 9. Subtracting x + z = 14 leaves y = 9 - 14 = -5. The option \"9\" is x + y + z, the sum of all three, not y. The option \"-8\" divides the sum of the three equations by 3 instead of 2, getting x + y + z = 6 and then y = 6 - 14. The option \"12\" subtracts the wrong equation, y + z = -3, which gives x = 9 - (-3) rather than y.",
+  "topic_tag": "systems of equations",
+  "difficulty": "medium",
+  "solve": "const s=(7+(-3)+14)/2; return String(s-14);",
+  "distractor_solve": {
+   "9": "return String((7+(-3)+14)/2);",
+   "12": "const s=(7+(-3)+14)/2; return String(s-(-3));",
+   "-8": "const s=(7+(-3)+14)/3; return String(s-14);"
+  }
+ },
+ {
+  "id": "AM16A-05",
+  "domain": "Algebra",
+  "subskill": "factoring a difference of two cubes and reading off coefficients",
+  "prompt": "For all real numbers x, x^3 - 27 = (x - 3)(x^2 + ax + b), where a and b are constants. What is the value of a + b ?",
+  "choices": [
+   "15",
+   "6",
+   "12",
+   "9"
+  ],
+  "correct_answer": "12",
+  "explanation": "A difference of cubes factors as p^3 - q^3 = (p - q)(p^2 + pq + q^2). With p = x and q = 3, x^3 - 27 = (x - 3)(x^2 + 3x + 9), so a = 3, b = 9, and a + b = 12. Expanding confirms it: x^3 + 3x^2 + 9x - 3x^2 - 9x - 27 = x^3 - 27. The option \"6\" uses -3x as the middle term, the sign pattern of a sum of cubes. The option \"9\" drops the middle term, as if x^3 - 27 factored like a difference of squares into (x - 3)(x^2 + 9). The option \"15\" uses 6x as the middle term, writing the second factor as the perfect square (x + 3)^2.",
+  "topic_tag": "factoring polynomials",
+  "difficulty": "medium",
+  "solve": "const q=Math.round(Math.cbrt(27)); const a=q, b=q*q; return String(a+b);",
+  "distractor_solve": {
+   "6": "const q=Math.round(Math.cbrt(27)); return String(-q+q*q);",
+   "9": "const q=Math.round(Math.cbrt(27)); return String(0+q*q);",
+   "15": "const q=Math.round(Math.cbrt(27)); return String(2*q+q*q);"
+  }
+ },
+ {
+  "id": "AM16A-06",
+  "domain": "Algebra",
+  "subskill": "the quotient of polynomial division by a linear factor, then evaluated",
+  "prompt": "When the polynomial 2x^3 + 3x^2 - 5x + 4 is divided by x + 2, the quotient is a polynomial q(x) and the remainder is a constant. What is the value of q(1) ?",
+  "choices": [
+   "18",
+   "-2",
+   "10",
+   "-6"
+  ],
+  "correct_answer": "-2",
+  "explanation": "Synthetic division by x + 2 uses -2: bring down 2; 2(-2) + 3 = -1; -1(-2) - 5 = -3; -3(-2) + 4 = 10. So q(x) = 2x^2 - x - 3 with remainder 10, and q(1) = 2 - 1 - 3 = -2. The option \"18\" divides using +2 instead of -2, which gives the quotient 2x^2 + 7x + 9. The option \"10\" is the remainder, not a value of the quotient. The option \"-6\" makes a sign slip in the third step, taking (-1)(-2) as -2, so that step gives -2 - 5 = -7 and the quotient becomes 2x^2 - x - 7.",
+  "topic_tag": "polynomial division",
+  "difficulty": "medium",
+  "solve": "const c=[2,3,-5,4], r=-2; const q=[c[0]]; for(let i=1;i<c.length-1;i++) q.push(q[i-1]*r+c[i]); return String(q.reduce((s,v)=>s+v,0));",
+  "distractor_solve": {
+   "10": "const c=[2,3,-5,4], r=-2; let acc=c[0]; for(let i=1;i<c.length;i++) acc=acc*r+c[i]; return String(acc);",
+   "18": "const c=[2,3,-5,4], r=2; const q=[c[0]]; for(let i=1;i<c.length-1;i++) q.push(q[i-1]*r+c[i]); return String(q.reduce((s,v)=>s+v,0));",
+   "-6": "const c=[2,3,-5,4], r=-2; const q=[c[0], c[0]*r+c[1]]; q.push(-Math.abs(q[1]*r)+c[2]); return String(q.reduce((s,v)=>s+v,0));"
+  }
+ },
+ {
+  "id": "AM16A-07",
+  "domain": "Algebra",
+  "subskill": "a system of two equations in the reciprocals of the unknowns",
+  "prompt": "The nonzero numbers x and y satisfy 1/x + 1/y = 5/6 and 1/x - 1/y = 1/6. What is the value of x + y ?",
+  "choices": [
+   "7",
+   "1.2",
+   "-1",
+   "5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Adding the equations gives 2/x = 1, so x = 2. Subtracting them gives 2/y = 4/6, so 1/y = 1/3 and y = 3. Then x + y = 5. The option \"1.2\" treats 1/x + 1/y as 1/(x + y), so x + y = 6/5. The option \"-1\" makes a sign error when subtracting, getting -2/y = 4/6, so y = -3 while x = 2. The option \"7\" adds the fractions by adding numerators and denominators, so 5/6 + 1/6 becomes 6/12 and 2/x = 1/2 gives x = 4; with y = 3 the sum is 7.",
+  "topic_tag": "rational equations",
+  "difficulty": "medium",
+  "solve": "const p=5/6, m=1/6; const x=1/((p+m)/2), y=1/((p-m)/2); return String(x+y);",
+  "distractor_solve": {
+   "7": "const p=5/6, m=1/6; const wrongSum=(5+1)/(6+6); const x=1/(wrongSum/2), y=1/((p-m)/2); return String(Math.round(x+y));",
+   "1.2": "const p=5/6; return String(1/p);",
+   "-1": "const p=5/6, m=1/6; const x=1/((p+m)/2), y=1/(-(p-m)/2); return String(Math.round(x+y));"
+  }
+ },
+ {
+  "id": "AM16A-08",
+  "domain": "Algebra",
+  "subskill": "least group size when a fixed cost is shared and the group must fill equal tables",
+  "prompt": "A club rents a hall for $1,000, and the rental is split equally among the members who attend. Each member who attends also pays $12 for a meal. Members will sit at tables of exactly 4, and every table must be full. If each member's total cost (share of the rental plus meal) can be no more than $45, what is the least number of members who can attend?",
+  "choices": [
+   "28",
+   "20",
+   "32",
+   "24"
+  ],
+  "correct_answer": "32",
+  "explanation": "With n members, each pays 1000/n + 12, so 1000/n + 12 ≤ 45 means 1000/n ≤ 33, or n ≥ 1000/33 ≈ 30.3. So at least 31 members are needed, and n must also be a multiple of 4 to fill every table; the least multiple of 4 that is at least 30.3 is 32. Check: 1000/32 + 12 = 43.25 ≤ 45, while 28 members would pay 1000/28 + 12 ≈ 47.71. The option \"28\" rounds 30.3 down to a multiple of 4 instead of up. The option \"24\" leaves out the $12 meal, using 1000/n ≤ 45, so n ≥ 22.2. The option \"20\" adds the meal to the limit instead of subtracting it, using 1000/n ≤ 57, so n ≥ 17.5.",
+  "topic_tag": "linear inequalities in context",
+  "difficulty": "hard",
+  "solve": "const m=1000/(45-12); return String(Math.ceil(m/4)*4);",
+  "distractor_solve": {
+   "20": "const m=1000/(45+12); return String(Math.ceil(m/4)*4);",
+   "24": "const m=1000/45; return String(Math.ceil(m/4)*4);",
+   "28": "const m=1000/(45-12); return String(Math.floor(m/4)*4);"
+  }
+ },
+ {
+  "id": "AM16A-09",
+  "domain": "Algebra",
+  "subskill": "comparing two pricing plans when one includes a block of usage",
+  "prompt": "Phone plan A costs $20 per month plus $0.15 for each minute of calls. Phone plan B costs $35 per month, which includes the first 200 minutes of calls, plus $0.10 for each minute beyond 200. What is the greatest whole number of minutes in a month for which plan A costs less than plan B?",
+  "choices": [
+   "299",
+   "99",
+   "233",
+   "149"
+  ],
+  "correct_answer": "99",
+  "explanation": "For m ≤ 200 minutes, plan B costs a flat $35, so plan A is cheaper when 20 + 0.15m < 35, that is, m < 100. For m > 200, plan B costs 35 + 0.10(m - 200) = 15 + 0.10m, and 20 + 0.15m < 15 + 0.10m would need 0.05m < -5, which never happens. So plan A is cheaper only for m < 100, and the greatest whole number is 99. The option \"299\" ignores the 200 included minutes and compares 20 + 0.15m with 35 + 0.10m. The option \"149\" uses plan B's rate of $0.10 for plan A, solving 20 + 0.10m < 35. The option \"233\" drops plan A's $20 monthly charge, solving 0.15m < 35.",
+  "topic_tag": "linear inequalities in context",
+  "difficulty": "hard",
+  "solve": "let best=-1; for(let m=0;m<=2000;m++){const A=20+0.15*m, B=m<=200?35:35+0.10*(m-200); if(A<B-1e-9) best=m;} return String(best);",
+  "distractor_solve": {
+   "149": "let best=-1; for(let m=0;m<=2000;m++){if(20+0.10*m<35-1e-9) best=m;} return String(best);",
+   "233": "let best=-1; for(let m=0;m<=2000;m++){if(0.15*m<35-1e-9) best=m;} return String(best);",
+   "299": "let best=-1; for(let m=0;m<=2000;m++){if(20+0.15*m<35+0.10*m-1e-9) best=m;} return String(best);"
+  }
+ },
+ {
+  "id": "AM16G-01",
+  "domain": "Geometry",
+  "difficulty": "easy",
+  "topic_tag": "solids",
+  "subskill": "counting the edges of a prism from the shape of its bases",
+  "prompt": "A right prism has two bases that are regular octagons. How many edges does the prism have?",
+  "choices": [
+   "16",
+   "26",
+   "24",
+   "10"
+  ],
+  "correct_answer": "24",
+  "explanation": "Each octagonal base has 8 edges, giving 8 + 8 = 16, and 8 more edges run from the vertices of one base to the matching vertices of the other. The prism has 16 + 8 = 24 edges. (Check with Euler's formula: 16 vertices − 24 edges + 10 faces = 2.) The option \"16\" is the number of VERTICES, 8 on each base. The option \"10\" is the number of FACES, the 2 bases and 8 rectangular sides. The option \"26\" applies Euler's formula without the 2, taking edges = vertices + faces = 16 + 10.",
+  "solve": "const n=8; return String(3*n);",
+  "distractor_solve": {
+   "10": "const n=8; return String(n+2);",
+   "16": "const n=8; return String(2*n);",
+   "26": "const n=8; return String(2*n+(n+2));"
+  }
+ },
+ {
+  "id": "AM16G-02",
+  "domain": "Geometry",
+  "difficulty": "easy",
+  "topic_tag": "coordinate geometry",
+  "subskill": "location of the point where the three medians of a triangle meet",
+  "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(−3, 2), B(7, −1), and C(2, 11). The three medians of the triangle meet at point G. What is the y-coordinate of G ?",
+  "choices": [
+   "6",
+   "7.5",
+   "4",
+   "5.75"
+  ],
+  "correct_answer": "4",
+  "explanation": "The medians of a triangle meet at the centroid, whose coordinates are the averages of the vertices' coordinates. The y-coordinate is (2 + (−1) + 11)/3 = 12/3 = 4. (Equivalently, G lies two-thirds of the way from C to the midpoint of AB, which has y-coordinate 0.5: 11 − (2/3)(10.5) = 4.) The option \"6\" divides the sum of the y-coordinates by 2 instead of 3. The option \"7.5\" places G only one-third of the way from C toward the midpoint of AB: 11 − (1/3)(10.5). The option \"5.75\" takes the midpoint of the median from C, (11 + 0.5)/2.",
+  "solve": "const ys=[2,-1,11]; return String(ys.reduce((a,b)=>a+b,0)/3);",
+  "distractor_solve": {
+   "6": "const ys=[2,-1,11]; return String(ys.reduce((a,b)=>a+b,0)/2);",
+   "7.5": "const ys=[2,-1,11]; const m=(ys[0]+ys[1])/2; return String(ys[2]-(ys[2]-m)/3);",
+   "5.75": "const ys=[2,-1,11]; const m=(ys[0]+ys[1])/2; return String((ys[2]+m)/2);"
+  }
+ },
+ {
+  "id": "AM16G-03",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "transformations",
+  "subskill": "image of a point under a dilation centered at a point other than the origin",
+  "prompt": "In the standard (x,y) coordinate plane, point P(5, 6) is dilated by a scale factor of 3 with the center of dilation at point C(1, 2). What is the x-coordinate of the image of P ?",
+  "choices": [
+   "8",
+   "12",
+   "13",
+   "7"
+  ],
+  "correct_answer": "13",
+  "explanation": "A dilation centered at C multiplies each point's displacement FROM C by the scale factor. P is 5 − 1 = 4 units to the right of C, so its image is 3(4) = 12 units to the right of C, at x = 1 + 12 = 13. The option \"12\" multiplies the displacement by 3 but forgets to add it back to the center's x-coordinate. The option \"7\" applies the factor to the center instead of to the displacement, computing 3(1) + 4. The option \"8\" adds the scale factor to the displacement instead of multiplying, computing 1 + (4 + 3).",
+  "solve": "const px=5,cx=1,k=3; return String(cx+k*(px-cx));",
+  "distractor_solve": {
+   "7": "const px=5,cx=1,k=3; return String(k*cx+(px-cx));",
+   "8": "const px=5,cx=1,k=3; return String(cx+(px-cx)+k);",
+   "12": "const px=5,cx=1,k=3; return String(k*(px-cx));"
+  }
+ },
+ {
+  "id": "AM16G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "cones",
+  "subskill": "dimensions of a cone formed by rolling up a circular sector",
+  "prompt": "A sector of a circle has a radius of 10 centimeters and a central angle of 216°. The sector is rolled up so that its two straight edges meet exactly, without overlapping, forming the curved surface of a right circular cone with no base. What is the height of the cone, in centimeters, to the nearest tenth?",
+  "choices": [
+   "6.0",
+   "9.2",
+   "8.0",
+   "9.5"
+  ],
+  "correct_answer": "8.0",
+  "explanation": "The sector's radius becomes the cone's slant height, 10 cm, and the sector's arc becomes the circumference of the cone's base. The arc length is (216/360)(2π)(10) = 12π, so the base radius r satisfies 2πr = 12π and r = 6. The height h satisfies h² + 6² = 10², so h = 8.0. The option \"6.0\" is the base radius, not the height. The option \"9.5\" treats the 6 found from 2πr = 12π as the DIAMETER of the base, so it uses r = 3 and gets √(10² − 3²) = √91 ≈ 9.5. The option \"9.2\" uses the angle of the part of the circle that was cut away, 360° − 216° = 144°, which gives a base radius of 4 and a height of √84 ≈ 9.2.",
+  "solve": "const R=10, ang=216; const r=R*ang/360; return (Math.round(Math.sqrt(R*R-r*r)*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "6.0": "const R=10, ang=216; return (R*ang/360).toFixed(1);",
+   "9.5": "const R=10, ang=216; const r=R*ang/360/2; return (Math.round(Math.sqrt(R*R-r*r)*10)/10).toFixed(1);",
+   "9.2": "const R=10, ang=360-216; const r=R*ang/360; return (Math.round(Math.sqrt(R*R-r*r)*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM16G-05",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "triangle area",
+  "subskill": "areas of two triangles that share a vertex and have bases on one line",
+  "prompt": "In triangle ABC, side BC is extended past C to a point D so that B, C and D lie on one line and BC : CD = 2 : 3. The area of triangle ABC is 66 square centimeters. What is the area of triangle ACD, in square centimeters?",
+  "choices": [
+   "148.5",
+   "99",
+   "165",
+   "110"
+  ],
+  "correct_answer": "99",
+  "explanation": "Triangles ABC and ACD have the same height, the distance from A to line BD, so their areas are in the ratio of their bases BC and CD. The area of ACD is (3/2)(66) = 99 square centimeters. The option \"165\" is the area of the whole triangle ABD, 66 + 99, rather than of triangle ACD. The option \"148.5\" squares the ratio, (3/2)²(66), as is done for similar figures — but the two triangles are not similar. The option \"110\" compares CD with BD instead of with BC, setting the areas in the ratio BD : CD = 5 : 3 and computing (5/3)(66).",
+  "solve": "const T=66,p=2,q=3; return String(T*q/p);",
+  "distractor_solve": {
+   "110": "const T=66,p=2,q=3; return String(Math.round(T*(p+q)/q*1e9)/1e9);",
+   "165": "const T=66,p=2,q=3; return String(T+T*q/p);",
+   "148.5": "const T=66,p=2,q=3; return String(T*(q/p)**2);"
+  }
+ },
+ {
+  "id": "AM16G-06",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "transformations",
+  "subskill": "distance between a point and its image after two reflections in perpendicular lines",
+  "prompt": "In the standard (x,y) coordinate plane, point P(4, 7) is reflected across the line y = 3 to give point P′. Point P′ is then reflected across the line x = −1 to give point P″. To the nearest tenth of a coordinate unit, what is the distance from P to P″?",
+  "choices": [
+   "8.0",
+   "12.8",
+   "14.9",
+   "10.0"
+  ],
+  "correct_answer": "12.8",
+  "explanation": "Reflecting P(4, 7) across the horizontal line y = 3 keeps x and sends y to 2(3) − 7 = −1, so P′ = (4, −1). Reflecting across the vertical line x = −1 keeps y and sends x to 2(−1) − 4 = −6, so P″ = (−6, −1). The distance from P to P″ is √(10² + 8²) = √164 ≈ 12.8. (Two reflections in perpendicular lines amount to a half-turn about their intersection (−1, 3), so the distance is also twice the distance from P to (−1, 3).) The option \"8.0\" treats y = 3 as the vertical line x = 3, sending P to (2, 7) and then to (−4, 7). The option \"14.9\" reflects across y = 3 by computing 3 − 7 = −4 without doubling the 3, giving P′ = (4, −4) and P″ = (−6, −4). The option \"10.0\" reports the distance from P′ to P″, the length of the second move only.",
+  "solve": "const P=[4,7],k=3,h=-1; const P1=[P[0],2*k-P[1]]; const P2=[2*h-P1[0],P1[1]]; return (Math.round(Math.hypot(P2[0]-P[0],P2[1]-P[1])*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "8.0": "const P=[4,7],k=3,h=-1; const P1=[2*k-P[0],P[1]]; const P2=[2*h-P1[0],P1[1]]; return (Math.round(Math.hypot(P2[0]-P[0],P2[1]-P[1])*10)/10).toFixed(1);",
+   "14.9": "const P=[4,7],k=3,h=-1; const P1=[P[0],k-P[1]]; const P2=[2*h-P1[0],P1[1]]; return (Math.round(Math.hypot(P2[0]-P[0],P2[1]-P[1])*10)/10).toFixed(1);",
+   "10.0": "const P=[4,7],k=3,h=-1; const P1=[P[0],2*k-P[1]]; const P2=[2*h-P1[0],P1[1]]; return (Math.round(Math.hypot(P2[0]-P1[0],P2[1]-P1[1])*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM16G-07",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "circles and triangles",
+  "subskill": "lengths of the tangent segments from the vertices of a triangle to its inscribed circle",
+  "prompt": "Triangle ABC has side lengths AB = 9, BC = 10, and CA = 11. The circle inscribed in the triangle touches side BC at point T. What is the length of CT ?",
+  "choices": [
+   "5.5",
+   "4",
+   "6",
+   "5"
+  ],
+  "correct_answer": "6",
+  "explanation": "The two tangent segments drawn to a circle from the same vertex are equal. Call them x from A, y from B and z from C. Then x + y = 9, y + z = 10, and z + x = 11. Adding gives 2(x + y + z) = 30, so x + y + z = 15, and z = 15 − 9 = 6. Since T is the point of tangency on BC, CT = z = 6. The option \"4\" is BT, the tangent length from B, 15 − 11. The option \"5\" assumes T is the midpoint of BC. The option \"5.5\" locates the point where the bisector of angle A meets BC, which divides BC in the ratio 9 : 11, giving 10(11/20) from C — a different point from T.",
+  "solve": "const AB=9,BC=10,CA=11; const s=(AB+BC+CA)/2; return String(s-AB);",
+  "distractor_solve": {
+   "4": "const AB=9,BC=10,CA=11; const s=(AB+BC+CA)/2; return String(s-CA);",
+   "5": "const BC=10; return String(BC/2);",
+   "5.5": "const AB=9,BC=10,CA=11; return String(BC*CA/(AB+CA));"
+  }
+ },
+ {
+  "id": "AM16G-08",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "surface area",
+  "subskill": "surface area of a cylinder capped at both ends by hemispheres",
+  "prompt": "A storage tank is shaped like a right circular cylinder with a hemisphere attached to each end. The cylinder has a radius of 3 meters and a length of 10 meters, and each hemisphere has a radius of 3 meters, so there are no flat surfaces. To the nearest tenth of a square meter, what is the total outside surface area of the tank?",
+  "choices": [
+   "245.0",
+   "301.6",
+   "207.3",
+   "358.1"
+  ],
+  "correct_answer": "301.6",
+  "explanation": "The curved side of the cylinder has area 2π(3)(10) = 60π. The two hemispheres together make one sphere of radius 3, with surface area 4π(3)² = 36π. The total is 96π ≈ 301.6 square meters. The option \"358.1\" also adds the two circular ends of the cylinder, 2π(3)² = 18π, which are covered by the hemispheres and are not part of the outside surface. The option \"245.0\" counts the two hemispheres as 2π(3)² in total, the area of ONE hemisphere, instead of 4π(3)². The option \"207.3\" uses πrh = 30π for the curved side of the cylinder instead of 2πrh.",
+  "solve": "const r=3,L=10; return (Math.round((2*Math.PI*r*L+4*Math.PI*r*r)*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "358.1": "const r=3,L=10; return (Math.round((2*Math.PI*r*L+4*Math.PI*r*r+2*Math.PI*r*r)*10)/10).toFixed(1);",
+   "245.0": "const r=3,L=10; return (Math.round((2*Math.PI*r*L+2*Math.PI*r*r)*10)/10).toFixed(1);",
+   "207.3": "const r=3,L=10; return (Math.round((Math.PI*r*L+4*Math.PI*r*r)*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM16G-09",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "volume",
+  "subskill": "fraction of a cube occupied by the sphere that fits inside it, as a percent",
+  "prompt": "A solid ball in the shape of a sphere fits exactly inside a cube-shaped box with an edge length of 10 centimeters, touching all six faces of the box. To the nearest tenth of a percent, what percent of the volume of the box does the ball take up?",
+  "choices": [
+   "39.3",
+   "66.7",
+   "31.4",
+   "52.4"
+  ],
+  "correct_answer": "52.4",
+  "explanation": "The ball's diameter equals the edge of the box, so its radius is 5 cm and its volume is (4/3)π(5)³ ≈ 523.6 cubic centimeters. The box holds 10³ = 1,000 cubic centimeters, so the ball takes up about 523.6/1,000 = 52.4%. The option \"39.3\" leaves the 4/3 out of the sphere formula, using π(5)³ ≈ 392.7. The option \"31.4\" uses the sphere's SURFACE AREA formula, 4π(5)² ≈ 314.2, in place of its volume. The option \"66.7\" uses 2/3, which is the fraction of a circumscribing CYLINDER that a sphere fills, not the fraction of a cube.",
+  "solve": "const s=10; const r=s/2; return String(Math.round(4/3*Math.PI*r**3/s**3*1000)/10);",
+  "distractor_solve": {
+   "39.3": "const s=10; const r=s/2; return String(Math.round(Math.PI*r**3/s**3*1000)/10);",
+   "31.4": "const s=10; const r=s/2; return String(Math.round(4*Math.PI*r**2/s**3*1000)/10);",
+   "66.7": "return String(Math.round(2/3*1000)/10);"
+  }
+ },
+ {
+  "id": "AM16G-10",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "polygons and trigonometry",
+  "subskill": "area of a regular pentagon from its side length using right-triangle trigonometry",
+  "prompt": "A regular pentagon has sides that are each 8 inches long. To the nearest tenth of a square inch, what is the area of the pentagon?",
+  "choices": [
+   "136.1",
+   "152.2",
+   "129.4",
+   "110.1"
+  ],
+  "correct_answer": "110.1",
+  "explanation": "Joining the center to the five vertices splits the pentagon into 5 congruent isosceles triangles, each with an 8-inch base and an apex angle of 360°/5 = 72°. The height of each triangle (the apothem) bisects that angle and the base, so tan 36° = 4/a and a = 4/tan 36° ≈ 5.506. The area is (1/2)(perimeter)(apothem) = (1/2)(40)(5.506) ≈ 110.1 square inches. The option \"136.1\" uses the distance from the center to a VERTEX, 4/sin 36° ≈ 6.805, as the height of each triangle. The option \"152.2\" assumes each central triangle has two sides of length 8, as in a regular hexagon, and adds 5 · (1/2)(8)(8) sin 72°. The option \"129.4\" treats the 8-inch side as the hypotenuse of the right triangle, taking the apothem as 8 cos 36° ≈ 6.472.",
+  "solve": "const s=8,n=5; const t=Math.PI/n; const a=(s/2)/Math.tan(t); return (Math.round(0.5*n*s*a*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "136.1": "const s=8,n=5; const t=Math.PI/n; const R=(s/2)/Math.sin(t); return (Math.round(0.5*n*s*R*10)/10).toFixed(1);",
+   "152.2": "const s=8,n=5; return (Math.round(n*0.5*s*s*Math.sin(2*Math.PI/n)*10)/10).toFixed(1);",
+   "129.4": "const s=8,n=5; const t=Math.PI/n; const a=s*Math.cos(t); return (Math.round(0.5*n*s*a*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM16F-01",
+  "domain": "Functions",
+  "difficulty": "easy",
+  "topic_tag": "polynomial functions",
+  "subskill": "number of distinct real zeros of a factored polynomial function",
+  "prompt": "How many distinct real zeros does the function f(x) = x(x² − 64)(x² + 25)(x − 8)(x + 3) have?",
+  "choices": [
+   "6",
+   "4",
+   "7",
+   "5"
+  ],
+  "correct_answer": "4",
+  "explanation": "f(x) = 0 when x = 0, when x² = 64 (x = 8 or x = −8), when x − 8 = 0 (x = 8 again), or when x = −3. The factor x² + 25 is never 0 for a real x, since x² + 25 ≥ 25. The distinct real zeros are 0, 8, −8 and −3, so there are 4. The option \"5\" counts x = 8 twice, once from x² − 64 and once from x − 8. The option \"6\" treats x² + 25 = 0 as giving x = 5 and x = −5, adding two zeros that do not exist. The option \"7\" is the degree of the polynomial, 1 + 2 + 2 + 1 + 1, which counts zeros with multiplicity and includes the non-real ones.",
+  "solve": "const z=new Set([0,8,-8,8,-3]); return String(z.size);",
+  "distractor_solve": {
+   "5": "const z=[0,8,-8,8,-3]; return String(z.length);",
+   "6": "const z=new Set([0,8,-8,8,-3,5,-5]); return String(z.size);",
+   "7": "return String(1+2+2+1+1);"
+  }
+ },
+ {
+  "id": "AM16F-02",
+  "domain": "Functions",
+  "difficulty": "easy",
+  "topic_tag": "exponential functions",
+  "subskill": "vertical shift of an exponential function found from one point on its graph",
+  "prompt": "The graph of g(x) = 2^x + k in the standard (x,y) coordinate plane passes through the point (3, 2), where k is a constant. What is the value of k ?",
+  "choices": [
+   "-4",
+   "-1",
+   "1/4",
+   "-6"
+  ],
+  "correct_answer": "-6",
+  "explanation": "Substituting the point gives 2 = 2³ + k = 8 + k, so k = −6. The option \"-4\" evaluates 2³ as 2 · 3 = 6 and solves 2 = 6 + k. The option \"1/4\" reads the + as multiplication, solving 2 = 8k. The option \"-1\" reads the point with its coordinates exchanged, as (2, 3), and solves 3 = 2² + k.",
+  "solve": "const x=3,y=2; return String(y-2**x);",
+  "distractor_solve": {
+   "-4": "const x=3,y=2; return String(y-2*x);",
+   "1/4": "const x=3,y=2; return String(y/2**x);",
+   "-1": "const x=3,y=2; return String(x-2**y);"
+  }
+ },
+ {
+  "id": "AM16F-03",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "domain",
+  "subskill": "counting the integers in the domain of a function that combines a square root and a quotient",
+  "prompt": "The function f is defined by f(x) = √(x + 5) / (x² − 4). How many integers x with −6 ≤ x ≤ 8 are in the domain of f ?",
+  "choices": [
+   "14",
+   "11",
+   "13",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "The square root requires x + 5 ≥ 0, so x ≥ −5, and the denominator requires x² − 4 ≠ 0, so x ≠ 2 and x ≠ −2. The integers from −5 through 8 number 14; removing −2 and 2 leaves 12. The option \"14\" ignores the denominator. The option \"13\" removes only x = 2, missing the solution x = −2 of x² = 4. The option \"11\" requires x + 5 > 0 instead of x + 5 ≥ 0, wrongly excluding x = −5, where the square root is √0 = 0.",
+  "solve": "let n=0; for(let x=-6;x<=8;x++){ if(x+5>=0 && x*x-4!==0) n++; } return String(n);",
+  "distractor_solve": {
+   "11": "let n=0; for(let x=-6;x<=8;x++){ if(x+5>0 && x*x-4!==0) n++; } return String(n);",
+   "13": "let n=0; for(let x=-6;x<=8;x++){ if(x+5>=0 && x!==2) n++; } return String(n);",
+   "14": "let n=0; for(let x=-6;x<=8;x++){ if(x+5>=0) n++; } return String(n);"
+  }
+ },
+ {
+  "id": "AM16F-04",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "composition of functions",
+  "subskill": "input at which two compositions of the same pair of functions take equal values",
+  "prompt": "The functions f and g are defined by f(x) = x² − 4 and g(x) = x + 5. For what value of x is f(g(x)) = g(f(x)) ?",
+  "choices": [
+   "3",
+   "-12/5",
+   "-2",
+   "-4"
+  ],
+  "correct_answer": "-2",
+  "explanation": "f(g(x)) = (x + 5)² − 4 = x² + 10x + 21, and g(f(x)) = (x² − 4) + 5 = x² + 1. Setting them equal gives 10x + 21 = 1, so x = −2. The option \"-4\" expands (x + 5)² as x² + 5x + 25, leaving out the factor 2 in the middle term, and solves 5x + 21 = 1. The option \"3\" expands (x + 5)² as x² + 10x − 25, with the wrong sign on the constant, and solves 10x − 29 = 1. The option \"-12/5\" drops the \"− 4\" from f when forming f(g(x)), solving x² + 10x + 25 = x² + 1.",
+  "solve": "const b=5,c=-4; // (x+b)^2 + c = x^2 + c + b  ->  2bx + b^2 = b\n return String((b-b*b)/(2*b));",
+  "distractor_solve": {
+   "3": "const b=5,c=-4; return String(((c+b)-(-b*b+c))/(2*b));",
+   "-4": "const b=5,c=-4; return String(((c+b)-(b*b+c))/b);",
+   "-12/5": "const b=5,c=-4; return String(((c+b)-b*b)/(2*b));"
+  }
+ },
+ {
+  "id": "AM16F-05",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "trigonometric functions",
+  "subskill": "evaluating a sine function after recovering its amplitude, midline and period from stated features",
+  "prompt": "The function f is defined by f(x) = a sin(bx) + d, where a and b are positive constants, d is a constant, and x is measured in radians. The maximum value of f is 11, the minimum value of f is 3, and the period of f is 4π. To the nearest tenth, what is the value of f(π/5) ?",
+  "choices": [
+   "10.8",
+   "8.2",
+   "9.5",
+   "6.2"
+  ],
+  "correct_answer": "8.2",
+  "explanation": "The amplitude is half the distance from the minimum to the maximum, a = (11 − 3)/2 = 4, and the midline is their average, d = (11 + 3)/2 = 7. A period of 4π means 2π/b = 4π, so b = 1/2. Then f(π/5) = 4 sin(π/10) + 7 ≈ 4(0.3090) + 7 ≈ 8.2. The option \"10.8\" inverts the period rule, taking b = 4π/(2π) = 2, and computes 4 sin(2π/5) + 7. The option \"9.5\" uses the full distance 11 − 3 = 8 as the amplitude without halving it, computing 8 sin(π/10) + 7. The option \"6.2\" exchanges the amplitude and the midline, computing 7 sin(π/10) + 4.",
+  "solve": "const M=11,m=3,P=4*Math.PI,x=Math.PI/5; const a=(M-m)/2,d=(M+m)/2,b=2*Math.PI/P; return (Math.round((a*Math.sin(b*x)+d)*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "10.8": "const M=11,m=3,P=4*Math.PI,x=Math.PI/5; const a=(M-m)/2,d=(M+m)/2,b=P/(2*Math.PI); return (Math.round((a*Math.sin(b*x)+d)*10)/10).toFixed(1);",
+   "9.5": "const M=11,m=3,P=4*Math.PI,x=Math.PI/5; const a=M-m,d=(M+m)/2,b=2*Math.PI/P; return (Math.round((a*Math.sin(b*x)+d)*10)/10).toFixed(1);",
+   "6.2": "const M=11,m=3,P=4*Math.PI,x=Math.PI/5; const a=(M+m)/2,d=(M-m)/2,b=2*Math.PI/P; return (Math.round((a*Math.sin(b*x)+d)*10)/10).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM16F-06",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "function properties",
+  "subskill": "value of a function that turns products of inputs into sums of outputs",
+  "prompt": "A function f is defined for all positive numbers and satisfies f(xy) = f(x) + f(y) for all positive numbers x and y. If f(2) = 3 and f(3) = 5, what is the value of f(72) ?",
+  "choices": [
+   "52",
+   "21",
+   "143",
+   "19"
+  ],
+  "correct_answer": "19",
+  "explanation": "Because 72 = 2 · 2 · 2 · 3 · 3, applying the rule repeatedly gives f(72) = f(2) + f(2) + f(2) + f(3) + f(3) = 3(3) + 2(5) = 19. The option \"52\" turns the repeated factors into powers of the OUTPUTS, 3³ + 5² = 27 + 25. The option \"21\" pairs each exponent with the wrong prime, computing 2 · f(2) + 3 · f(3) = 6 + 15. The option \"143\" assumes f is linear, fitting f(x) = 2x − 1 through the two given values and evaluating 2(72) − 1; no linear function with a nonzero output at 2 satisfies f(xy) = f(x) + f(y).",
+  "solve": "const f2=3,f3=5; let n=72,e2=0,e3=0; while(n%2===0){n/=2;e2++;} while(n%3===0){n/=3;e3++;} return String(e2*f2+e3*f3);",
+  "distractor_solve": {
+   "21": "const f2=3,f3=5; let n=72,e2=0,e3=0; while(n%2===0){n/=2;e2++;} while(n%3===0){n/=3;e3++;} return String(e3*f2+e2*f3);",
+   "52": "const f2=3,f3=5; let n=72,e2=0,e3=0; while(n%2===0){n/=2;e2++;} while(n%3===0){n/=3;e3++;} return String(f2**e2+f3**e3);",
+   "143": "const f2=3,f3=5; const m=(f3-f2)/(3-2), c=f2-2*m; return String(m*72+c);"
+  }
+ },
+ {
+  "id": "AM16F-07",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "rational functions",
+  "subskill": "constant of a reciprocal function from the difference of two of its outputs",
+  "prompt": "The function f is defined by f(x) = k/x, where k is a positive constant. The points (3, a) and (7, b) lie on the graph of f, and a − b = 8. What is the value of k ?",
+  "choices": [
+   "168",
+   "42",
+   "441/5",
+   "32"
+  ],
+  "correct_answer": "42",
+  "explanation": "Since a = k/3 and b = k/7, a − b = k/3 − k/7 = 7k/21 − 3k/21 = 4k/21. Setting 4k/21 = 8 gives k = 42. The option \"32\" subtracts the fractions by subtracting their denominators, writing k/3 − k/7 = k/4. The option \"168\" puts both fractions over 21 without rescaling the numerators, writing k/3 − k/7 = k/21. The option \"441/5\" treats f as an inverse-SQUARE relation, k/x², and solves k/9 − k/49 = 8.",
+  "solve": "const x1=3,x2=7,D=8; return String(D/(1/x1-1/x2));",
+  "distractor_solve": {
+   "32": "const x1=3,x2=7,D=8; return String(D*(x2-x1));",
+   "168": "const x1=3,x2=7,D=8; return String(D*x1*x2);",
+   "441/5": "const x1=3,x2=7,D=8; return String(Math.round(D/(1/x1**2-1/x2**2)*1e9)/1e9);"
+  }
+ },
+ {
+  "id": "AM16F-08",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "rational functions",
+  "subskill": "point at which the graph of a rational function crosses its own horizontal asymptote",
+  "prompt": "The function f is defined by f(x) = (2x² − 3x − 5)/(x² − 4). The graph of f in the standard (x,y) coordinate plane has a horizontal asymptote, and the graph crosses that asymptote at exactly one point. What is the x-coordinate of that point?",
+  "choices": [
+   "2.5",
+   "-2",
+   "1",
+   "-1/3"
+  ],
+  "correct_answer": "1",
+  "explanation": "The numerator and denominator have the same degree, so the horizontal asymptote is the ratio of the leading coefficients, y = 2/1 = 2. The graph crosses it where f(x) = 2: 2x² − 3x − 5 = 2(x² − 4) = 2x² − 8, so −3x = −3 and x = 1. (Check: f(1) = (−6)/(−3) = 2.) The option \"2.5\" takes the asymptote to be the x-axis, y = 0, and solves 2x² − 3x − 5 = 0, keeping the positive solution. The option \"-1/3\" multiplies only the x² term by 2, writing 2(x² − 4) as 2x² − 4, and solves −3x − 5 = −4. The option \"-2\" gives a VERTICAL asymptote, where the denominator is 0, which the graph never reaches.",
+  "solve": "const a=2,b=-3,c=-5,d=-4; const H=a/1; return String((H*d-c)/b);",
+  "distractor_solve": {
+   "2.5": "const a=2,b=-3,c=-5; return String((-b+Math.sqrt(b*b-4*a*c))/(2*a));",
+   "-1/3": "const a=2,b=-3,c=-5,d=-4; const H=a; return String((d-c)/b);",
+   "-2": "const d=-4; return String(-Math.sqrt(-d));"
+  }
+ },
+ {
+  "id": "AM16F-09",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "polynomial functions",
+  "subskill": "sign of a polynomial function on intervals between zeros of different multiplicities",
+  "prompt": "The function p is defined by p(x) = (x − 2)²(x + 1)(x − 5). For how many integers x with −5 ≤ x ≤ 9 is p(x) < 0 ?",
+  "choices": [
+   "7",
+   "4",
+   "8",
+   "6"
+  ],
+  "correct_answer": "4",
+  "explanation": "The zeros are −1, 2 and 5. The factor (x − 2)² is never negative, so p(x) < 0 exactly where (x + 1)(x − 5) < 0 and x ≠ 2, that is, for −1 < x < 5 with x ≠ 2. The integers are 0, 1, 3 and 4, so the count is 4. The option \"6\" treats x = 2 like an ordinary zero, assuming the sign changes at every zero; that makes p negative for 2 < x < 5 and for x < −1, giving 3, 4, −5, −4, −3 and −2. The option \"7\" counts p(x) ≤ 0, adding the three zeros −1, 2 and 5. The option \"8\" counts where p(x) > 0 instead, the integers −5 through −2 and 6 through 9.",
+  "solve": "const p=x=>(x-2)**2*(x+1)*(x-5); let n=0; for(let x=-5;x<=9;x++) if(p(x)<0) n++; return String(n);",
+  "distractor_solve": {
+   "6": "let n=0; for(let x=-5;x<=9;x++) if((x>2&&x<5)||x<-1) n++; return String(n);",
+   "7": "const p=x=>(x-2)**2*(x+1)*(x-5); let n=0; for(let x=-5;x<=9;x++) if(p(x)<=0) n++; return String(n);",
+   "8": "const p=x=>(x-2)**2*(x+1)*(x-5); let n=0; for(let x=-5;x<=9;x++) if(p(x)>0) n++; return String(n);"
+  }
+ },
+ {
+  "id": "AM16S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "easy",
+  "subskill": "a score located a stated number of standard deviations from the mean",
+  "topic_tag": "standard deviation",
+  "prompt": "Scores on a statewide exam have a mean of 74 points and a standard deviation of 6 points. Mei's score is 1.5 standard deviations below the mean. What is Mei's score?",
+  "choices": [
+   "72.5",
+   "70",
+   "65",
+   "66.5"
+  ],
+  "correct_answer": "65",
+  "explanation": "A score 1.5 standard deviations below the mean is 74 − 1.5(6) = 74 − 9 = 65. The option \"72.5\" subtracts the 1.5 itself from the mean, as if it were a number of points rather than a number of standard deviations. The option \"70\" divides the standard deviation by 1.5 instead of multiplying, giving 74 − 4. The option \"66.5\" subtracts one full standard deviation and then also subtracts the 1.5 as points, 74 − 6 − 1.5.",
+  "solve": "const m=74,s=6,z=1.5; return String(m-z*s);",
+  "distractor_solve": {
+   "70": "const m=74,s=6,z=1.5; return String(m-s/z);",
+   "72.5": "const m=74,z=1.5; return String(m-z);",
+   "66.5": "const m=74,s=6,z=1.5; return String(m-s-z);"
+  }
+ },
+ {
+  "id": "AM16S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "probability that randomly chosen digits come out in strictly increasing order",
+  "topic_tag": "probability and counting",
+  "prompt": "A 3-digit code is formed by choosing each of its three digits at random from 0 through 9. Digits may repeat, and 0 may be used in any position, so all 1,000 codes from 000 to 999 are equally likely. What is the probability that the three digits, read from left to right, are in strictly increasing order (for example, 2-5-9)?",
+  "choices": [
+   "2/15",
+   "21/250",
+   "81/400",
+   "3/25"
+  ],
+  "correct_answer": "3/25",
+  "explanation": "A strictly increasing code is fixed once its set of three different digits is chosen, because those three digits can be written in increasing order in exactly one way. There are C(10, 3) = 120 such sets, so the probability is 120/1,000 = 3/25. The option \"21/250\" leaves 0 out of the digits that can be chosen, counting C(9, 3) = 84 sets over 1,000, although 0 can begin an increasing code such as 0-4-7. The option \"2/15\" keeps the count of 120 but divides by 900, as if a code could not begin with 0, which the stem allows. The option \"81/400\" treats \"first digit less than second\" and \"second digit less than third\" as independent events, each with probability 45/100, and multiplies (45/100)(45/100).",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; const p=C(10,3)/1000; return String(p);",
+  "distractor_solve": {
+   "21/250": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(9,3)/1000);",
+   "2/15": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(10,3)/900);",
+   "81/400": "let lt=0; for(let a=0;a<10;a++)for(let b=0;b<10;b++) if(a<b) lt++; const p=lt/100; return String(p*p);"
+  }
+ },
+ {
+  "id": "AM16S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "easy",
+  "subskill": "mean absolute deviation of a small data set from its stated definition",
+  "topic_tag": "measures of spread",
+  "prompt": "The mean absolute deviation of a data set is the mean of the distances between each value and the mean of the data set. What is the mean absolute deviation of the data set 2, 5, 6, 11, 16 ?",
+  "choices": [
+   "3.5",
+   "5.5",
+   "4.4",
+   "3"
+  ],
+  "correct_answer": "4.4",
+  "explanation": "The mean is (2 + 5 + 6 + 11 + 16)/5 = 40/5 = 8. The distances from 8 are 6, 3, 2, 3 and 8, whose sum is 22, so the mean absolute deviation is 22/5 = 4.4. The option \"5.5\" divides the sum of the distances by 4 instead of by the 5 values. The option \"3\" takes the median of the five distances (2, 3, 3, 6, 8) rather than their mean. The option \"3.5\" averages the gaps between consecutive values, (3 + 1 + 5 + 5)/4, which measures distances between neighbours, not distances from the mean.",
+  "solve": "const d=[2,5,6,11,16]; const m=d.reduce((a,b)=>a+b)/d.length; return String(d.reduce((s,x)=>s+Math.abs(x-m),0)/d.length);",
+  "distractor_solve": {
+   "3": "const d=[2,5,6,11,16]; const m=d.reduce((a,b)=>a+b)/d.length; const t=d.map(x=>Math.abs(x-m)).sort((a,b)=>a-b); return String(t[2]);",
+   "5.5": "const d=[2,5,6,11,16]; const m=d.reduce((a,b)=>a+b)/d.length; return String(d.reduce((s,x)=>s+Math.abs(x-m),0)/(d.length-1));",
+   "3.5": "const d=[2,5,6,11,16]; let s=0; for(let i=1;i<d.length;i++) s+=d[i]-d[i-1]; return String(s/(d.length-1));"
+  }
+ },
+ {
+  "id": "AM16S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "number of shortest routes along a street grid",
+  "topic_tag": "counting",
+  "prompt": "A town's streets form a rectangular grid of square blocks. Rosa walks from her home to the library, which is 4 blocks east and 3 blocks north of her home. She walks along the streets, and every block she walks takes her either 1 block east or 1 block north. How many different routes can Rosa take?",
+  "choices": [
+   "20",
+   "125",
+   "12",
+   "35"
+  ],
+  "correct_answer": "35",
+  "explanation": "Every route is a sequence of 7 blocks, 4 of them east and 3 of them north, and a route is determined by choosing which 3 of the 7 blocks are the northward ones. That gives C(7, 3) = 35 routes. The option \"12\" multiplies the two block counts, 4 × 3. The option \"20\" counts street corners in the grid, 5 × 4, rather than paths through it. The option \"125\" lets each of the 3 northward blocks be walked along any of the 5 north–south streets independently, 5 × 5 × 5, which counts the same route several times because the order of those choices is already forced.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(4+3,3));",
+  "distractor_solve": {
+   "12": "return String(4*3);",
+   "20": "return String((4+1)*(3+1));",
+   "125": "return String(Math.pow(4+1,3));"
+  }
+ },
+ {
+  "id": "AM16S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "probability of exactly a given number of successes in repeated independent attempts",
+  "topic_tag": "probability of compound events",
+  "prompt": "A basketball player makes each of her three-point shots with probability 0.3, independently of her other shots. She takes 4 three-point shots. What is the probability that she makes exactly 2 of them?",
+  "choices": [
+   "0.3483",
+   "0.0900",
+   "0.2646",
+   "0.1764"
+  ],
+  "correct_answer": "0.2646",
+  "explanation": "Any one particular order of 2 makes and 2 misses, such as make-make-miss-miss, has probability (0.3)²(0.7)² = 0.09 × 0.49 = 0.0441. The 2 makes can fall in C(4, 2) = 6 different positions among the 4 shots, so the probability is 6 × 0.0441 = 0.2646. The option \"0.1764\" multiplies by 4, the number of shots, instead of by the 6 ways to place the 2 makes. The option \"0.0900\" is (0.3)², the chance of making 2 particular shots, with the 2 misses left out. The option \"0.3483\" is the probability of making AT LEAST 2 of the 4 shots, 1 − (0.7)⁴ − 4(0.3)(0.7)³, which also counts 3 or 4 makes.",
+  "solve": "const p=0.3,q=0.7; return String((6*p*p*q*q).toFixed(4));",
+  "distractor_solve": {
+   "0.1764": "const p=0.3,q=0.7; return String((4*p*p*q*q).toFixed(4));",
+   "0.0900": "const p=0.3; return String((p*p).toFixed(4));",
+   "0.3483": "const p=0.3,q=0.7; return String((1-Math.pow(q,4)-4*p*Math.pow(q,3)).toFixed(4));"
+  }
+ },
+ {
+  "id": "AM16S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "probability conditioned on a stated sum of two dice",
+  "topic_tag": "conditional probability",
+  "prompt": "A red die and a blue die, each a fair 6-sided die numbered 1 through 6, are rolled. Given that the sum of the two numbers rolled is 8, what is the probability that at least one of the two dice shows a 3 ?",
+  "choices": [
+   "1/3",
+   "2/5",
+   "1/6",
+   "1/5"
+  ],
+  "correct_answer": "2/5",
+  "explanation": "Knowing the sum is 8 restricts the equally likely outcomes (red, blue) to (2, 6), (3, 5), (4, 4), (5, 3) and (6, 2) — five outcomes. Two of them, (3, 5) and (5, 3), contain a 3, so the probability is 2/5. The option \"1/5\" counts only (3, 5) and forgets that the 3 can be on either die. The option \"1/3\" lists the sums as unordered pairs {2, 6}, {3, 5}, {4, 4} and treats those three as equally likely, but {4, 4} can happen in only one way while the other two can each happen in two. The option \"1/6\" is the chance that one particular die shows a 3, ignoring the information that the sum is 8.",
+  "solve": "let n=0,k=0; for(let r=1;r<=6;r++)for(let b=1;b<=6;b++) if(r+b===8){n++; if(r===3||b===3)k++;} return String(k/n);",
+  "distractor_solve": {
+   "1/5": "let n=0,k=0; for(let r=1;r<=6;r++)for(let b=1;b<=6;b++) if(r+b===8){n++; if(r===3)k++;} return String(k/n);",
+   "1/3": "const s=new Set(); for(let r=1;r<=6;r++)for(let b=1;b<=6;b++) if(r+b===8) s.add([Math.min(r,b),Math.max(r,b)].join()); let k=0; for(const x of s) if(x.split(\",\").includes(\"3\")) k++; return String(k/s.size);",
+   "1/6": "return String(1/6);"
+  }
+ },
+ {
+  "id": "AM16S-07",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "subskill": "probability that at least two of three independent choices coincide",
+  "topic_tag": "probability of compound events",
+  "prompt": "Three friends each choose one of the six days Monday through Saturday for an appointment. Each friend chooses at random, with every day equally likely, independently of the others. What is the probability that at least two of the friends choose the same day?",
+  "choices": [
+   "91/216",
+   "4/9",
+   "5/12",
+   "11/36"
+  ],
+  "correct_answer": "4/9",
+  "explanation": "It is easier to find the complement, that all three choose different days: (6/6)(5/6)(4/6) = 120/216 = 5/9. So the probability that at least two share a day is 1 − 5/9 = 4/9. The option \"5/12\" is the probability that exactly two of them share a day, 3 × (1/6) × (5/6), which leaves out the case in which all three choose the same day. The option \"11/36\" checks only whether the second or third friend matches the first friend, 1 − (5/6)², and misses the case in which the second and third match each other but not the first. The option \"91/216\" computes 1 − (5/6)³, the chance that at least one friend picks one particular day, which is a different event.",
+  "solve": "const p=1-(6/6)*(5/6)*(4/6); return String(p);",
+  "distractor_solve": {
+   "5/12": "return String(3*(1/6)*(5/6));",
+   "11/36": "return String(1-Math.pow(5/6,2));",
+   "91/216": "return String(1-Math.pow(5/6,3));"
+  }
+ },
+ {
+  "id": "AM16S-08",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "subskill": "extreme value in a list constrained by its mean, median and mode together",
+  "topic_tag": "measures of center",
+  "prompt": "A list of five positive integers has a mean of 9.2 and a median of 10. The list has exactly one mode, 13, meaning 13 appears more often than any other value in the list. What is the greatest possible value of the smallest integer in the list?",
+  "choices": [
+   "5",
+   "1",
+   "6",
+   "4"
+  ],
+  "correct_answer": "4",
+  "explanation": "Write the list in order as a, b, 10, d, e. The sum is 5 × 9.2 = 46. For 13 to be a mode it must appear at least twice, and only d and e can be 13, so d = e = 13. Then a + b = 46 − 10 − 26 = 10. For 13 to be the ONLY mode, no other value may appear twice, so a ≠ b and b ≠ 10; with a < b ≤ 9 and a + b = 10, the largest a is 4 (the list 4, 6, 10, 13, 13). The option \"5\" takes a = b = 5, but then 5 appears twice and ties 13 as a mode. The option \"6\" puts only one 13 in the list, making d = 10 and a + b = 13, so a = 6 and b = 7, which ignores that a mode must repeat. The option \"1\" makes b as large as possible, b = 9, which gives the smallest possible a, not the greatest.",
+  "solve": "let best=null; for(let a=1;a<=10;a++)for(let b=a;b<=10;b++)for(let d=10;d<=40;d++)for(let e=d;e<=40;e++){const L=[a,b,10,d,e]; if(L.reduce((x,y)=>x+y)!==46) continue; const c={}; L.forEach(v=>c[v]=(c[v]||0)+1); const mx=Math.max(...Object.values(c)); const modes=Object.keys(c).filter(k=>c[k]===mx); if(modes.length===1&&modes[0]===\"13\"&&mx>=2){ if(best===null||a>best) best=a; }} return String(best);",
+  "distractor_solve": {
+   "1": "const ab=46-10-13-13; return String(ab-9);",
+   "5": "const ab=46-10-13-13; return String(ab/2);",
+   "6": "const ab=46-10-10-13; return String(Math.floor(ab/2));"
+  }
+ },
+ {
+  "id": "AM16S-09",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "recovering one day's value from two overlapping moving averages",
+  "topic_tag": "mean",
+  "prompt": "A store reports a 3-day moving average of its daily sales: the moving average for a given day is the mean of the number of units sold on that day and on each of the 2 days before it. The 3-day moving average was 50 units for Wednesday and 56 units for Thursday. The store sold 39 units on Monday. How many units did the store sell on Thursday?",
+  "choices": [
+   "74",
+   "45",
+   "62",
+   "57"
+  ],
+  "correct_answer": "57",
+  "explanation": "Wednesday's average covers Monday, Tuesday and Wednesday, so those three days total 3 × 50 = 150 units, and Tuesday plus Wednesday is 150 − 39 = 111. Thursday's average covers Tuesday, Wednesday and Thursday, which total 3 × 56 = 168, so Thursday is 168 − 111 = 57. The option \"45\" adds the 6-unit rise in the average to Monday's sales once, 39 + 6, instead of three times. The option \"62\" continues the trend of the averages, 56 + 6, as though Thursday's sales were the next average. The option \"74\" adds three times the rise to Thursday's average, 56 + 18, instead of to Monday's sales — the day that left the window.",
+  "solve": "const w=50,t=56,mon=39; return String(3*t-(3*w-mon));",
+  "distractor_solve": {
+   "45": "const w=50,t=56,mon=39; return String(mon+(t-w));",
+   "62": "const w=50,t=56; return String(t+(t-w));",
+   "74": "const w=50,t=56; return String(t+3*(t-w));"
+  }
+ },
+ {
+  "id": "AM16I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "easy",
+  "subskill": "number of evenly spaced posts around a closed rectangular boundary",
+  "topic_tag": "perimeter",
+  "prompt": "A rectangular garden measures 66 feet by 30 feet. A fence is built along its entire boundary, with a post at each corner and posts every 6 feet along each side. How many posts are used in all?",
+  "choices": [
+   "33",
+   "72",
+   "36",
+   "32"
+  ],
+  "correct_answer": "32",
+  "explanation": "The boundary is a closed loop with perimeter 2(66 + 30) = 192 feet. On a closed loop the number of posts equals the number of 6-foot gaps, so there are 192/6 = 32 posts. The option \"33\" adds 1 as it would for posts along an open, straight fence. The option \"36\" counts each side separately as 66/6 + 1 = 12 or 30/6 + 1 = 6 posts and adds 12 + 12 + 6 + 6, so each corner post is counted twice. The option \"72\" multiplies the posts on a long side by the posts on a short side, 12 × 6, as if posts filled the whole garden in a grid rather than running along its edge.",
+  "solve": "const L=66,W=30,g=6; return String(2*(L+W)/g);",
+  "distractor_solve": {
+   "33": "const L=66,W=30,g=6; return String(2*(L+W)/g+1);",
+   "36": "const L=66,W=30,g=6; return String(2*(L/g+1)+2*(W/g+1));",
+   "72": "const L=66,W=30,g=6; return String((L/g+1)*(W/g+1));"
+  }
+ },
+ {
+  "id": "AM16I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "easy",
+  "subskill": "pay for a shift read from clock times with an unpaid break",
+  "topic_tag": "rates and time",
+  "prompt": "Dana started work at 8:45 a.m. and finished at 5:15 p.m. the same day. She took one 30-minute unpaid lunch break and was paid $16.00 per hour for all the other time. How much did Dana earn that day, in dollars?",
+  "choices": [
+   "131.20",
+   "144.00",
+   "128.00",
+   "120.00"
+  ],
+  "correct_answer": "128.00",
+  "explanation": "From 8:45 a.m. to 5:15 p.m. is 8 hours 30 minutes. Removing the 30-minute break leaves 8 hours, and 8 × $16.00 = $128.00. The option \"131.20\" subtracts the break as 0.3 hour instead of 0.5 hour, paying 8.2 hours. The option \"144.00\" finds the span as 9 hours 30 minutes by subtracting the minutes in the wrong direction, then pays 9 hours. The option \"120.00\" rounds the start and finish to 9:00 and 5:00 before subtracting, paying 7.5 hours.",
+  "solve": "const start=8*60+45, end=17*60+15, brk=30, rate=16; return String(((end-start-brk)/60*rate).toFixed(2));",
+  "distractor_solve": {
+   "131.20": "const start=8*60+45, end=17*60+15, rate=16; return String((((end-start)/60-0.3)*rate).toFixed(2));",
+   "144.00": "const rate=16; const span=(17-8)+(45-15)/60; return String(((span-0.5)*rate).toFixed(2));",
+   "120.00": "const rate=16; return String((((17-9)-0.5)*rate).toFixed(2));"
+  }
+ },
+ {
+  "id": "AM16I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "subskill": "difference in fuel cost between two vehicles with different fuel economy",
+  "topic_tag": "rates",
+  "prompt": "A delivery company drives 9,000 miles in a year. Its old van travels 15 miles per gallon of gasoline, and a new van would travel 60 miles per gallon. Gasoline costs $4.00 per gallon. How many dollars less would the company spend on gasoline for those 9,000 miles with the new van than with the old van?",
+  "choices": [
+   "600",
+   "1800",
+   "450",
+   "800"
+  ],
+  "correct_answer": "1800",
+  "explanation": "The old van uses 9,000/15 = 600 gallons, costing $2,400. The new van uses 9,000/60 = 150 gallons, costing $600. The saving is $2,400 − $600 = $1,800. The option \"800\" subtracts the fuel economies first, 60 − 15 = 45 miles per gallon, and prices 9,000/45 = 200 gallons — but gallons used vary inversely with miles per gallon, so a difference of fuel economies does not give a difference in gallons. The option \"450\" is the 450 gallons saved, not the dollars saved. The option \"600\" is what the new van would spend, not how much less it would spend.",
+  "solve": "const d=9000,a=15,b=60,p=4; return String((d/a-d/b)*p);",
+  "distractor_solve": {
+   "450": "const d=9000,a=15,b=60; return String(d/a-d/b);",
+   "600": "const d=9000,b=60,p=4; return String(d/b*p);",
+   "800": "const d=9000,a=15,b=60,p=4; return String(d/(b-a)*p);"
+  }
+ },
+ {
+  "id": "AM16I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "time saved on a fixed distance when the speed increases",
+  "topic_tag": "rates and time",
+  "prompt": "At an average speed of 40 miles per hour, a drive takes 4 hours 30 minutes. How many minutes shorter would the same drive be at an average speed of 60 miles per hour?",
+  "choices": [
+   "135",
+   "90",
+   "180",
+   "110"
+  ],
+  "correct_answer": "90",
+  "explanation": "The distance is 40 × 4.5 = 180 miles. At 60 miles per hour the drive takes 180/60 = 3 hours = 180 minutes, compared with 270 minutes before, so it is 270 − 180 = 90 minutes shorter. The option \"135\" assumes that a speed 50% higher cuts the time by 50%, 0.5 × 270; time varies inversely with speed, so the time falls only to 2/3 of what it was. The option \"180\" is the new driving time, not the time saved. The option \"110\" finds the saving correctly as 1.5 hours but writes 1.5 hours as 1 hour 50 minutes.",
+  "solve": "const v1=40,t1=4.5,v2=60; const d=v1*t1; return String(t1*60-d/v2*60);",
+  "distractor_solve": {
+   "110": "const v1=40,t1=4.5,v2=60; const h=t1-v1*t1/v2; return String(Math.floor(h)*60+Math.round((h-Math.floor(h))*100));",
+   "135": "const v1=40,t1=4.5,v2=60; return String((v2-v1)/v1*t1*60);",
+   "180": "const v1=40,t1=4.5,v2=60; return String(v1*t1/v2*60);"
+  }
+ },
+ {
+  "id": "AM16I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "moving speed from total distance and a total time that includes a stop",
+  "topic_tag": "rates and time",
+  "prompt": "A train trip of 240 kilometers took 3 hours in all, including one 15-minute stop at a station during which the train did not move. To the nearest tenth, what was the train's average speed, in kilometers per hour, while it was moving?",
+  "choices": [
+   "86.7",
+   "94.1",
+   "84.2",
+   "87.3"
+  ],
+  "correct_answer": "87.3",
+  "explanation": "The train was moving for 3 hours − 15 minutes = 2.75 hours, so its moving speed was 240/2.75 ≈ 87.3 kilometers per hour. The option \"84.2\" writes 15 minutes as 0.15 hour, dividing 240 by 2.85. The option \"94.1\" treats the 15-minute stop as 15% of the trip and divides the overall average of 80 by 0.85. The option \"86.7\" raises the overall average of 80 by the stop's share of the trip time, 80 × (1 + 0.25/3), instead of dividing the distance by the moving time.",
+  "solve": "const d=240,t=3,stop=15/60; return String((d/(t-stop)).toFixed(1));",
+  "distractor_solve": {
+   "84.2": "const d=240,t=3; return String((d/(t-0.15)).toFixed(1));",
+   "94.1": "const d=240,t=3; return String((d/t/0.85).toFixed(1));",
+   "86.7": "const d=240,t=3,stop=15/60; return String((d/t*(1+stop/t)).toFixed(1));"
+  }
+ },
+ {
+  "id": "AM16I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "percent change in a unit price when both the package size and the price change",
+  "topic_tag": "percent change",
+  "prompt": "A box of crackers that held 20 ounces and sold for $5.00 is replaced by a box that holds 18 ounces and sells for $5.30. To the nearest tenth of a percent, by what percent did the price per ounce increase?",
+  "choices": [
+   "17.1",
+   "15.1",
+   "17.8",
+   "16.0"
+  ],
+  "correct_answer": "17.8",
+  "explanation": "The price per ounce was $5.00/20 = $0.25 and became $5.30/18 ≈ $0.2944, an increase of about $0.0444, which is 0.0444/0.25 ≈ 17.8% of the original price per ounce. (Equivalently, 1.06 × 20/18 ≈ 1.178.) The option \"17.1\" adds the 6% price increase to the 11.1% that comes from the size change (20/18 ≈ 1.111), but the two changes multiply rather than add. The option \"16.0\" adds the 6% price increase to the 10% decrease in size, 2/20. The option \"15.1\" divides the increase in price per ounce by the NEW price per ounce, about $0.2944, instead of the original $0.25.",
+  "solve": "const u1=5.00/20,u2=5.30/18; return String(((u2-u1)/u1*100).toFixed(1));",
+  "distractor_solve": {
+   "17.1": "const pr=(5.30-5.00)/5.00*100, sz=(20/18-1)*100; return String((pr+sz).toFixed(1));",
+   "16.0": "const pr=(5.30-5.00)/5.00*100, sz=(20-18)/20*100; return String((pr+sz).toFixed(1));",
+   "15.1": "const u1=5.00/20,u2=5.30/18; return String(((u2-u1)/u2*100).toFixed(1));"
+  }
+ },
+ {
+  "id": "AM16I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "staffing count from round-the-clock coverage and a weekly limit per worker",
+  "topic_tag": "rates and proportional reasoning",
+  "prompt": "A clinic must have exactly 9 nurses on duty at all times, every day of the week. Each day is divided into three 8-hour shifts, and no nurse may work more than 5 shifts in a week. What is the least number of nurses the clinic must employ to staff one full week?",
+  "choices": [
+   "45",
+   "13",
+   "38",
+   "27"
+  ],
+  "correct_answer": "38",
+  "explanation": "One week has 7 × 3 = 21 shifts, each needing 9 nurses, for 21 × 9 = 189 nurse-shifts. Each nurse covers at most 5 of them, so the clinic needs at least 189/5 = 37.8 nurses, which must be rounded up to 38; 38 nurses can cover 190 nurse-shifts, enough to fill the schedule. The option \"13\" divides 9 × 7 by 5 and rounds up, as if each day had only one shift. The option \"27\" is the number of nurse-shifts in a single day, 9 × 3, which ignores the weekly limit. The option \"45\" works per position: each of the 9 positions needs 21/5 = 4.2 nurses, but it rounds that up to 5 for every position before multiplying by 9, when only the total needs to be a whole number.",
+  "solve": "const n=9,sh=3,days=7,cap=5; return String(Math.ceil(n*sh*days/cap));",
+  "distractor_solve": {
+   "13": "const n=9,days=7,cap=5; return String(Math.ceil(n*days/cap));",
+   "27": "const n=9,sh=3; return String(n*sh);",
+   "45": "const n=9,sh=3,days=7,cap=5; return String(n*Math.ceil(sh*days/cap));"
+  }
+ },
+ {
+  "id": "AM16I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "subskill": "day on which a climb with a nightly setback first reaches a height",
+  "topic_tag": "rates",
+  "prompt": "A snail starts at the bottom of a well that is 31 feet deep. Each day it climbs 6 feet up the wall, and each night it slides 4 feet back down. On which day does the snail first reach the top of the well?",
+  "choices": [
+   "16",
+   "14",
+   "17",
+   "13"
+  ],
+  "correct_answer": "14",
+  "explanation": "The snail gains 2 feet per full day and night, so at the start of day n it is 2(n − 1) feet up, and during day n it climbs to 2(n − 1) + 6 feet. This first reaches 31 when 2(n − 1) ≥ 25, that is, n − 1 ≥ 12.5, so n = 14: it starts day 14 at 26 feet and climbs to 32. Once it reaches the top it does not slide back. The option \"16\" divides 31 by the net gain of 2 feet per day and rounds 15.5 up, ignoring that the last day's climb has no night after it. The option \"13\" finds that 12.5 net days bring it within 6 feet of the top and rounds that up to 13, but day 13 begins at only 24 feet and ends the climb at 30, so the day that finishes the job is day 14. The option \"17\" adds one extra day for the final climb to the 16 days, instead of taking days away.",
+  "solve": "let h=0; for(let day=1;day<100;day++){ h+=6; if(h>=31) return String(day); h-=4; }",
+  "distractor_solve": {
+   "13": "return String(Math.ceil((31-6)/(6-4)));",
+   "16": "return String(Math.ceil(31/(6-4)));",
+   "17": "return String(Math.ceil(31/(6-4))+1);"
+  }
+ },
+ {
+  "id": "AM16I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "order costs under a price that changes for every unit once a size threshold is passed",
+  "topic_tag": "rates and cost",
+  "prompt": "A print shop charges $0.12 per page for an order of 500 pages or fewer. For an order of more than 500 pages, the shop charges $0.09 per page for every page in the order. What is the difference, in dollars, between the cost of a 480-page order and the cost of a 520-page order?",
+  "choices": [
+   "4.20",
+   "10.20",
+   "4.80",
+   "10.80"
+  ],
+  "correct_answer": "10.80",
+  "explanation": "A 480-page order costs 480 × $0.12 = $57.60. A 520-page order is over 500 pages, so every page costs $0.09: 520 × $0.09 = $46.80. The difference is $57.60 − $46.80 = $10.80 (the larger order is the cheaper one). The option \"4.20\" prices the 520-page order as 500 pages at $0.12 and only the 20 extra pages at $0.09, $61.80, as if the lower price applied only above 500. The option \"10.20\" swaps the two prices for the 520-page order, 500 pages at $0.09 and 20 at $0.12, which is $47.40. The option \"4.80\" prices the 40-page gap at $0.12 and ignores the price change altogether.",
+  "solve": "const c=(n)=>n<=500?n*0.12:n*0.09; return String(Math.abs(c(480)-c(520)).toFixed(2));",
+  "distractor_solve": {
+   "4.20": "const big=500*0.12+20*0.09, small=480*0.12; return String(Math.abs(big-small).toFixed(2));",
+   "10.20": "const big=500*0.09+20*0.12, small=480*0.12; return String(Math.abs(big-small).toFixed(2));",
+   "4.80": "return String((40*0.12).toFixed(2));"
+  }
+ }
+]

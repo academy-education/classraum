@@ -5651,6 +5651,40 @@
           "verdict": "Candidate unanimous items S14A-03, S14A-11, S14A-18, S14B-09, S14B-22, S14B-23, S14B-26, S14B-28 kept: with-source names no >= 2 free elimination on any (pre-registered: unanimity alone never drops). S14A-08, S14A-17, S14B-18 were unanimous AND carry a confirmed with-source free elimination, and are dropped. Grader A noted S14B-06 (exponent grid, key at the modal intersection; plurality checker does not score it) and S14B-16 (7 and -7 beside key 5, sec 13a) as blind-shape notes - neither unanimous blind, both kept."
         }
       }
+    },
+    {
+      "id": "act-math-v16-kept-2026-10-07",
+      "createdAt": "2026-10-07",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v16",
+      "contentSha": "23eb409a4c2b15a7e08ba4f1b5e0885fdc3e73d3947219dfe822c0165c97eb0b",
+      "status": "shipped",
+      "note": "45 of 54 authored survive. Commissioned against the next-form deficit for forms 14 AND 15 across all six domains (41 items) plus 31.7% margin, bars pre-registered in ACT-MATH-V16-PREREGISTERED.md before authoring. Three Claude authors (N&Q+Algebra, Geometry+Functions, S&P+IES). Geometry lands one short of the form-15 need (7 kept vs 8 needed) because three Geometry items dropped; no repairs this round. BANK_BAND=mixed declared at commission.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "23eb409a4c2b15a7e08ba4f1b5e0885fdc3e73d3947219dfe822c0165c97eb0b",
+          "verdict": "54 authored, all exactly 4 choices (act-test.ts math block choiceCount 4), key present, distinct values. Sandbox 54/54 keys recompute, 162/162 distractors recompute to their named path. Kept 45: sandbox 45/45, 135/135; numeric hub 3 structured, key-is-hub 0.0%; key at an extreme 22/44 = 50.0% (gate bar 40.0%); check-key-magnitude consistent with live (z 0.34/0.39/-0.61); 0 unique-composite keys; stem-duplicates 0 vs 1,291 live act rows; 0 internal duplicate option sets. Duplicate scan (act-math-v16-dupscan.mjs, break-tested: re-finds all 39 rows of a live batch at Jaccard 1.00) against all 2,587 live maths rows in every family, paged: 40 flags read by hand, 0 mechanism duplicates (matrix items are linear combination and power; live holds product/determinant/dimension/singularity)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "23eb409a4c2b15a7e08ba4f1b5e0885fdc3e73d3947219dfe822c0165c97eb0b",
+          "verdict": "Two independent Claude graders on make-grade-render (key, difficulty, explanation, solve withheld; render sha afe54686eead16d9). 108 of 108 picks equal the key; 0 second-defensible answers; 0 stem issues. Dropped under the pre-registered rules: <3 survivors on a bound confirmed by hand - AM16A-03 (a>15 from signs kills 12 and -5), AM16G-07 (5 is the equal-tangent midpoint ON the CT>5 bound), AM16I-06 (16.0 is the additive limiting case ON the >16% bound), AM16I-08 (snail puzzle, 16 ON the net-rate bound, 17 beyond); weak by both graders - AM16N-02, AM16G-06 (key 12.8 is the hypotenuse of options 8.0 and 10.0). Difficulty banked from the graders (agree -> that; one band apart -> easier): easy 28 / medium 15 / hard 2 against the authors 11/24/10 on the same 45."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "23eb409a4c2b15a7e08ba4f1b5e0885fdc3e73d3947219dfe822c0165c97eb0b",
+          "verdict": "Options-only attack, three Claude samples (pairwise agreement 79.6% vs 25.7% if independent - one solver sampled three times), 54 candidates interleaved 1:1 by domain with 54 live act/math items, keys dealt flat within each arm (25.9% best-fixed-letter each). CANDIDATE 44/162 = 27.2%, LIVE CONTROL 44/162 = 27.2%, candidate minus control +0.0 (pre-registered hold bar +10). Unanimous-correct: candidate 9/54 = 16.7% vs control 11/54 = 20.4% (bar +15). Live margin +1.2 so the instrument is not saturated. Unanimous candidates dropped only with with-source corroboration: AM16N-07 (perfect-square recall named by both graders), AM16G-09 (pi/6 memorised constant, both), AM16F-03 (complete 11-14 ladder, grader B). AM16A-07, AM16F-07, AM16G-01, AM16G-08, AM16S-05, AM16I-02 kept: no grader named an elimination."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "23eb409a4c2b15a7e08ba4f1b5e0885fdc3e73d3947219dfe822c0165c97eb0b",
+          "verdict": "Key-extremity 50.0% (chance 50.0%); magnitude ranks largest/smallest/interior consistent with live; tightest-pair 61.3% on 31 scorable of 54, not distinguishable from 50% (z 1.26); recycled-distractor unique-option key 1/9 vs 25%; stem echo 0/51; sign pairs none; plurality fires once, not on the key. Residual recorded: AM16A-05 options 6/9/12/15 are an arithmetic ladder with the key interior and the difference-of-cubes identity is the skill (kept, 4 survivors both graders); AM16A-08 key is the largest option on a least question (3 survivors both graders)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

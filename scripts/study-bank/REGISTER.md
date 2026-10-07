@@ -1119,6 +1119,41 @@ recorded only in a commit message is a finding nobody reads.
 
   **Recorded, not acted on.** On the kept 46 the symbolic-hub line prints +11.7, over its 10-point pre-flight bar. It is three structured items carrying 0.95 credit against 0.60 expected. Dropping B-19 and B-21 (credit 0.33 and 0) moved it from the frozen file's +5.7. A rate over three items is not a measurement. `check-sign-pair.mjs` is four-option only and correctly prints NOT MEASURED on five-choice SSAT; key/−key pairs were checked by hand (S14B-16 carries 7 and −7 beside key 5, which grader A noted; it was not unanimous blind and is kept).
 
+- **2026-10-07** — **ACT MATH 13 → 14 FORMS: `act-math-v16` INSERTED 45 OF 54. act/math 619 → 664. FORM 15 IS ONE GEOMETRY ITEM AWAY** (`next-form`: *"Geometry +1"*; binding domain is now Geometry at 119 / 8 per form). Bars pre-registered before any item existed: `ACT-MATH-V16-PREREGISTERED.md`.
+
+  **Why it was 13, not the 14 recorded on 2026-09-22.** One Number and Quantity row (`act-math-v8-nq` b0c5c122) was archived on 2026-10-06, taking N&Q 70 → 69, one under the form-14 need. Nothing in §5 recorded that the archive cost a form; this entry is where it is noticed. **An archive in a binding domain should re-run `form-capacity` in the same commit.**
+
+  **Commissioned against the deficit for forms 14 AND 15 across all six domains**, not against the binding one: `next-form` showed N&Q +1 for form 14, but form 15 needs N&Q +6, Geometry +8, S&P +6, Algebra +7, Functions +7, IES +7 = 41. Authored 54 (+31.7%) by three Claude authors (N&Q 8 + Algebra 9 / Geometry 10 + Functions 9 / S&P 9 + IES 9), mixed band (`BANK_BAND=mixed` declared at commission). Format read from `act-test.ts` (`questions: 45, choiceCount: 4`), not from a brief.
+
+  **Pre-flight (my re-run on the merged 54, not the authors' word):** sandbox 54/54, distractors 162/162, numeric hub 8.3% on 6 structured, key-at-extreme 26/53 = 49.1% (bar 40.0%), magnitude consistent with live, 0 unique-composite keys, 0 stem duplicates against 1,291 live act rows.
+
+  **Duplicate scan against all 2,587 live maths rows in every family**, paged with ORDER BY and a distinct-id assertion (`act-math-v16-dupscan.mjs`, break-tested by re-finding all 39 rows of `act-math-v11.kept` at Jaccard 1.00): 40 flags, every one read by hand, **0 mechanism duplicates**. The matrix items are a linear combination and a matrix power; the 7 live matrix rows are products, a determinant, dimensions and singularity. The other flags were short-stem token overlap ("what is the value of") and coincidental small-integer option sets. Jaccard on short maths stems is noisy enough that a 0.60 flag line means "read it", never "duplicate".
+
+  **Options-only attack (screen):** 54 candidates interleaved 1:1 by domain with 54 live items, keys dealt flat within each arm (25.9% each), three Claude samples.
+
+      CANDIDATE     44/162 = 27.2%   line 25.9%   margin +1.2
+      LIVE CONTROL  44/162 = 27.2%   line 25.9%   margin +1.2
+      candidate minus control  +0.0  (hold bar +10; reachable, control ceiling ~74 points away)
+      unanimous-correct        candidate 9/54 = 16.7%  vs  control 11/54 = 20.4%  (hold bar +15)
+      pairwise agreement 79.6% vs 25.7% if independent: one solver sampled three times
+
+  Mechanism-labelled picks 29.9% vs guesses 26.2%: the self-report carries nothing, as on every recent maths run.
+
+  **With-source (decides): two Claude graders, 108 of 108 picks equal the key, 0 second-defensible, 0 stem issues.** Nine dropped under the pre-registered rules, no repairs:
+  - **< 3 survivors on a bound I confirmed:** `AM16A-03` (2a/b = 8 and a − b = 15 force a > 15 by signs alone, killing 12 and −5), `AM16G-07` (5 is the equal-tangent midpoint sitting ON the CT > 5 bound), `AM16I-06` (16.0 is the additive limiting case ON the "> 16%" bound for +6% price / −10% size), `AM16I-08` (the snail puzzle: 16 is the net-rate count ON the upper bound, 17 beyond it). **Three of the four are §13b limiting cases the brief named by example** — the additive-percent case and the no-last-climb case are textbook members of the family. The authors were told and still wrote them.
+  - **Weak by both graders:** `AM16N-02` (two ugly decimals leave 27 vs 729), `AM16G-06` (the key 12.8 is the hypotenuse of two other options, 8.0 and 10.0 — the option set announces it).
+  - **Unanimous blind solve plus with-source corroboration:** `AM16N-07` (odd divisor count ⇔ perfect square, named by both graders), `AM16G-09` (sphere in cube = π/6 ≈ 52.4%, a memorised constant, both), `AM16F-03` (options 11/12/13/14, a complete monotone ladder with the key interior, §8c). Six other unanimous candidates had no grader-named elimination and were kept.
+
+  **Difficulty banked from the graders (agree → that; one band apart → the easier): easy 28 / medium 15 / hard 2, against the authors' 11 / 24 / 10 on the same 45.** Eight of ten author "hard" labels came down. This is the batch where the over-labelling is starkest, and the "easier of two" rule pushes the same way; the two graders agreed outright on 35 of 45, so the rule decided 10.
+
+  **Kept 45:** N&Q 6, Algebra 8, Geometry 7, Functions 8, S&P 9, IES 7. Every deficit met except Geometry (7 of 8), which is why the batch buys form 14 and not form 15. Kept-set gates all pass: sandbox 45/45, 135/135; key-at-extreme 22/44 = 50.0%; magnitude z 0.34 / 0.39 / −0.61; 0 unique composites; 0 stem duplicates. `verify-act-draw` draws 45 of 45.
+
+  **Residuals recorded, not acted on:** `AM16A-05` (options 6/9/12/15 an arithmetic ladder, key interior; the difference-of-cubes identity is the whole skill — 4 survivors from both graders, kept) and `AM16A-08` (key is the LARGEST option on a "least" question — 3 survivors from both, kept). Both are the §8c shape the S&P and Functions drops died of, and they survive only because the pre-registered rule counts survivors. If either surfaces in a human sitting, that is the reason.
+
+  **A tool slip of mine, caught by `git status`:** I wrote this batch's attack renderer to `v16attack-draw.mjs`, which already existed as a tracked SAT script, and overwrote it. Restored from HEAD before anything ran; the ACT renderer lives at `act-math-v16-attack-draw.mjs`. AUTHORING-BRIEF §0 says *never overwrite a tracked file*; it applies to the coordinator too, and a `v<N>` prefix is not unique across families.
+
+  Evidence: `ACT-MATH-V16-PREREGISTERED.md`, `act-math-v16{-a,-b,-c,}.batch.json`, `act-math-v16.kept.batch.json`, `act-math-v16.qc.json`, `act-math-v16.drops.json`, `act-math-v16-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v16.grader-{a,b}.json`, `act-math-v16-grade.{grade,gradekey}.json`, `act-math-v16-attack-draw.mjs`, `act-math-v16-dupscan.mjs`; ledger `act-math-v16-kept-2026-10-07`.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

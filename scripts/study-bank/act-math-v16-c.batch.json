@@ -1,0 +1,398 @@
+[
+ {
+  "id": "AM16S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "easy",
+  "subskill": "a score located a stated number of standard deviations from the mean",
+  "topic_tag": "standard deviation",
+  "prompt": "Scores on a statewide exam have a mean of 74 points and a standard deviation of 6 points. Mei's score is 1.5 standard deviations below the mean. What is Mei's score?",
+  "choices": [
+   "72.5",
+   "70",
+   "65",
+   "66.5"
+  ],
+  "correct_answer": "65",
+  "explanation": "A score 1.5 standard deviations below the mean is 74 − 1.5(6) = 74 − 9 = 65. The option \"72.5\" subtracts the 1.5 itself from the mean, as if it were a number of points rather than a number of standard deviations. The option \"70\" divides the standard deviation by 1.5 instead of multiplying, giving 74 − 4. The option \"66.5\" subtracts one full standard deviation and then also subtracts the 1.5 as points, 74 − 6 − 1.5.",
+  "solve": "const m=74,s=6,z=1.5; return String(m-z*s);",
+  "distractor_solve": {
+   "70": "const m=74,s=6,z=1.5; return String(m-s/z);",
+   "72.5": "const m=74,z=1.5; return String(m-z);",
+   "66.5": "const m=74,s=6,z=1.5; return String(m-s-z);"
+  }
+ },
+ {
+  "id": "AM16S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "probability that randomly chosen digits come out in strictly increasing order",
+  "topic_tag": "probability and counting",
+  "prompt": "A 3-digit code is formed by choosing each of its three digits at random from 0 through 9. Digits may repeat, and 0 may be used in any position, so all 1,000 codes from 000 to 999 are equally likely. What is the probability that the three digits, read from left to right, are in strictly increasing order (for example, 2-5-9)?",
+  "choices": [
+   "2/15",
+   "21/250",
+   "81/400",
+   "3/25"
+  ],
+  "correct_answer": "3/25",
+  "explanation": "A strictly increasing code is fixed once its set of three different digits is chosen, because those three digits can be written in increasing order in exactly one way. There are C(10, 3) = 120 such sets, so the probability is 120/1,000 = 3/25. The option \"21/250\" leaves 0 out of the digits that can be chosen, counting C(9, 3) = 84 sets over 1,000, although 0 can begin an increasing code such as 0-4-7. The option \"2/15\" keeps the count of 120 but divides by 900, as if a code could not begin with 0, which the stem allows. The option \"81/400\" treats \"first digit less than second\" and \"second digit less than third\" as independent events, each with probability 45/100, and multiplies (45/100)(45/100).",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; const p=C(10,3)/1000; return String(p);",
+  "distractor_solve": {
+   "21/250": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(9,3)/1000);",
+   "2/15": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(10,3)/900);",
+   "81/400": "let lt=0; for(let a=0;a<10;a++)for(let b=0;b<10;b++) if(a<b) lt++; const p=lt/100; return String(p*p);"
+  }
+ },
+ {
+  "id": "AM16S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "easy",
+  "subskill": "mean absolute deviation of a small data set from its stated definition",
+  "topic_tag": "measures of spread",
+  "prompt": "The mean absolute deviation of a data set is the mean of the distances between each value and the mean of the data set. What is the mean absolute deviation of the data set 2, 5, 6, 11, 16 ?",
+  "choices": [
+   "3.5",
+   "5.5",
+   "4.4",
+   "3"
+  ],
+  "correct_answer": "4.4",
+  "explanation": "The mean is (2 + 5 + 6 + 11 + 16)/5 = 40/5 = 8. The distances from 8 are 6, 3, 2, 3 and 8, whose sum is 22, so the mean absolute deviation is 22/5 = 4.4. The option \"5.5\" divides the sum of the distances by 4 instead of by the 5 values. The option \"3\" takes the median of the five distances (2, 3, 3, 6, 8) rather than their mean. The option \"3.5\" averages the gaps between consecutive values, (3 + 1 + 5 + 5)/4, which measures distances between neighbours, not distances from the mean.",
+  "solve": "const d=[2,5,6,11,16]; const m=d.reduce((a,b)=>a+b)/d.length; return String(d.reduce((s,x)=>s+Math.abs(x-m),0)/d.length);",
+  "distractor_solve": {
+   "3": "const d=[2,5,6,11,16]; const m=d.reduce((a,b)=>a+b)/d.length; const t=d.map(x=>Math.abs(x-m)).sort((a,b)=>a-b); return String(t[2]);",
+   "5.5": "const d=[2,5,6,11,16]; const m=d.reduce((a,b)=>a+b)/d.length; return String(d.reduce((s,x)=>s+Math.abs(x-m),0)/(d.length-1));",
+   "3.5": "const d=[2,5,6,11,16]; let s=0; for(let i=1;i<d.length;i++) s+=d[i]-d[i-1]; return String(s/(d.length-1));"
+  }
+ },
+ {
+  "id": "AM16S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "number of shortest routes along a street grid",
+  "topic_tag": "counting",
+  "prompt": "A town's streets form a rectangular grid of square blocks. Rosa walks from her home to the library, which is 4 blocks east and 3 blocks north of her home. She walks along the streets, and every block she walks takes her either 1 block east or 1 block north. How many different routes can Rosa take?",
+  "choices": [
+   "20",
+   "125",
+   "12",
+   "35"
+  ],
+  "correct_answer": "35",
+  "explanation": "Every route is a sequence of 7 blocks, 4 of them east and 3 of them north, and a route is determined by choosing which 3 of the 7 blocks are the northward ones. That gives C(7, 3) = 35 routes. The option \"12\" multiplies the two block counts, 4 × 3. The option \"20\" counts street corners in the grid, 5 × 4, rather than paths through it. The option \"125\" lets each of the 3 northward blocks be walked along any of the 5 north–south streets independently, 5 × 5 × 5, which counts the same route several times because the order of those choices is already forced.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(4+3,3));",
+  "distractor_solve": {
+   "12": "return String(4*3);",
+   "20": "return String((4+1)*(3+1));",
+   "125": "return String(Math.pow(4+1,3));"
+  }
+ },
+ {
+  "id": "AM16S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "probability of exactly a given number of successes in repeated independent attempts",
+  "topic_tag": "probability of compound events",
+  "prompt": "A basketball player makes each of her three-point shots with probability 0.3, independently of her other shots. She takes 4 three-point shots. What is the probability that she makes exactly 2 of them?",
+  "choices": [
+   "0.3483",
+   "0.0900",
+   "0.2646",
+   "0.1764"
+  ],
+  "correct_answer": "0.2646",
+  "explanation": "Any one particular order of 2 makes and 2 misses, such as make-make-miss-miss, has probability (0.3)²(0.7)² = 0.09 × 0.49 = 0.0441. The 2 makes can fall in C(4, 2) = 6 different positions among the 4 shots, so the probability is 6 × 0.0441 = 0.2646. The option \"0.1764\" multiplies by 4, the number of shots, instead of by the 6 ways to place the 2 makes. The option \"0.0900\" is (0.3)², the chance of making 2 particular shots, with the 2 misses left out. The option \"0.3483\" is the probability of making AT LEAST 2 of the 4 shots, 1 − (0.7)⁴ − 4(0.3)(0.7)³, which also counts 3 or 4 makes.",
+  "solve": "const p=0.3,q=0.7; return String((6*p*p*q*q).toFixed(4));",
+  "distractor_solve": {
+   "0.1764": "const p=0.3,q=0.7; return String((4*p*p*q*q).toFixed(4));",
+   "0.0900": "const p=0.3; return String((p*p).toFixed(4));",
+   "0.3483": "const p=0.3,q=0.7; return String((1-Math.pow(q,4)-4*p*Math.pow(q,3)).toFixed(4));"
+  }
+ },
+ {
+  "id": "AM16S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "probability conditioned on a stated sum of two dice",
+  "topic_tag": "conditional probability",
+  "prompt": "A red die and a blue die, each a fair 6-sided die numbered 1 through 6, are rolled. Given that the sum of the two numbers rolled is 8, what is the probability that at least one of the two dice shows a 3 ?",
+  "choices": [
+   "1/3",
+   "2/5",
+   "1/6",
+   "1/5"
+  ],
+  "correct_answer": "2/5",
+  "explanation": "Knowing the sum is 8 restricts the equally likely outcomes (red, blue) to (2, 6), (3, 5), (4, 4), (5, 3) and (6, 2) — five outcomes. Two of them, (3, 5) and (5, 3), contain a 3, so the probability is 2/5. The option \"1/5\" counts only (3, 5) and forgets that the 3 can be on either die. The option \"1/3\" lists the sums as unordered pairs {2, 6}, {3, 5}, {4, 4} and treats those three as equally likely, but {4, 4} can happen in only one way while the other two can each happen in two. The option \"1/6\" is the chance that one particular die shows a 3, ignoring the information that the sum is 8.",
+  "solve": "let n=0,k=0; for(let r=1;r<=6;r++)for(let b=1;b<=6;b++) if(r+b===8){n++; if(r===3||b===3)k++;} return String(k/n);",
+  "distractor_solve": {
+   "1/5": "let n=0,k=0; for(let r=1;r<=6;r++)for(let b=1;b<=6;b++) if(r+b===8){n++; if(r===3)k++;} return String(k/n);",
+   "1/3": "const s=new Set(); for(let r=1;r<=6;r++)for(let b=1;b<=6;b++) if(r+b===8) s.add([Math.min(r,b),Math.max(r,b)].join()); let k=0; for(const x of s) if(x.split(\",\").includes(\"3\")) k++; return String(k/s.size);",
+   "1/6": "return String(1/6);"
+  }
+ },
+ {
+  "id": "AM16S-07",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "subskill": "probability that at least two of three independent choices coincide",
+  "topic_tag": "probability of compound events",
+  "prompt": "Three friends each choose one of the six days Monday through Saturday for an appointment. Each friend chooses at random, with every day equally likely, independently of the others. What is the probability that at least two of the friends choose the same day?",
+  "choices": [
+   "91/216",
+   "4/9",
+   "5/12",
+   "11/36"
+  ],
+  "correct_answer": "4/9",
+  "explanation": "It is easier to find the complement, that all three choose different days: (6/6)(5/6)(4/6) = 120/216 = 5/9. So the probability that at least two share a day is 1 − 5/9 = 4/9. The option \"5/12\" is the probability that exactly two of them share a day, 3 × (1/6) × (5/6), which leaves out the case in which all three choose the same day. The option \"11/36\" checks only whether the second or third friend matches the first friend, 1 − (5/6)², and misses the case in which the second and third match each other but not the first. The option \"91/216\" computes 1 − (5/6)³, the chance that at least one friend picks one particular day, which is a different event.",
+  "solve": "const p=1-(6/6)*(5/6)*(4/6); return String(p);",
+  "distractor_solve": {
+   "5/12": "return String(3*(1/6)*(5/6));",
+   "11/36": "return String(1-Math.pow(5/6,2));",
+   "91/216": "return String(1-Math.pow(5/6,3));"
+  }
+ },
+ {
+  "id": "AM16S-08",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "subskill": "extreme value in a list constrained by its mean, median and mode together",
+  "topic_tag": "measures of center",
+  "prompt": "A list of five positive integers has a mean of 9.2 and a median of 10. The list has exactly one mode, 13, meaning 13 appears more often than any other value in the list. What is the greatest possible value of the smallest integer in the list?",
+  "choices": [
+   "5",
+   "1",
+   "6",
+   "4"
+  ],
+  "correct_answer": "4",
+  "explanation": "Write the list in order as a, b, 10, d, e. The sum is 5 × 9.2 = 46. For 13 to be a mode it must appear at least twice, and only d and e can be 13, so d = e = 13. Then a + b = 46 − 10 − 26 = 10. For 13 to be the ONLY mode, no other value may appear twice, so a ≠ b and b ≠ 10; with a < b ≤ 9 and a + b = 10, the largest a is 4 (the list 4, 6, 10, 13, 13). The option \"5\" takes a = b = 5, but then 5 appears twice and ties 13 as a mode. The option \"6\" puts only one 13 in the list, making d = 10 and a + b = 13, so a = 6 and b = 7, which ignores that a mode must repeat. The option \"1\" makes b as large as possible, b = 9, which gives the smallest possible a, not the greatest.",
+  "solve": "let best=null; for(let a=1;a<=10;a++)for(let b=a;b<=10;b++)for(let d=10;d<=40;d++)for(let e=d;e<=40;e++){const L=[a,b,10,d,e]; if(L.reduce((x,y)=>x+y)!==46) continue; const c={}; L.forEach(v=>c[v]=(c[v]||0)+1); const mx=Math.max(...Object.values(c)); const modes=Object.keys(c).filter(k=>c[k]===mx); if(modes.length===1&&modes[0]===\"13\"&&mx>=2){ if(best===null||a>best) best=a; }} return String(best);",
+  "distractor_solve": {
+   "1": "const ab=46-10-13-13; return String(ab-9);",
+   "5": "const ab=46-10-13-13; return String(ab/2);",
+   "6": "const ab=46-10-10-13; return String(Math.floor(ab/2));"
+  }
+ },
+ {
+  "id": "AM16S-09",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "subskill": "recovering one day's value from two overlapping moving averages",
+  "topic_tag": "mean",
+  "prompt": "A store reports a 3-day moving average of its daily sales: the moving average for a given day is the mean of the number of units sold on that day and on each of the 2 days before it. The 3-day moving average was 50 units for Wednesday and 56 units for Thursday. The store sold 39 units on Monday. How many units did the store sell on Thursday?",
+  "choices": [
+   "74",
+   "45",
+   "62",
+   "57"
+  ],
+  "correct_answer": "57",
+  "explanation": "Wednesday's average covers Monday, Tuesday and Wednesday, so those three days total 3 × 50 = 150 units, and Tuesday plus Wednesday is 150 − 39 = 111. Thursday's average covers Tuesday, Wednesday and Thursday, which total 3 × 56 = 168, so Thursday is 168 − 111 = 57. The option \"45\" adds the 6-unit rise in the average to Monday's sales once, 39 + 6, instead of three times. The option \"62\" continues the trend of the averages, 56 + 6, as though Thursday's sales were the next average. The option \"74\" adds three times the rise to Thursday's average, 56 + 18, instead of to Monday's sales — the day that left the window.",
+  "solve": "const w=50,t=56,mon=39; return String(3*t-(3*w-mon));",
+  "distractor_solve": {
+   "45": "const w=50,t=56,mon=39; return String(mon+(t-w));",
+   "62": "const w=50,t=56; return String(t+(t-w));",
+   "74": "const w=50,t=56; return String(t+3*(t-w));"
+  }
+ },
+ {
+  "id": "AM16I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "easy",
+  "subskill": "number of evenly spaced posts around a closed rectangular boundary",
+  "topic_tag": "perimeter",
+  "prompt": "A rectangular garden measures 66 feet by 30 feet. A fence is built along its entire boundary, with a post at each corner and posts every 6 feet along each side. How many posts are used in all?",
+  "choices": [
+   "33",
+   "72",
+   "36",
+   "32"
+  ],
+  "correct_answer": "32",
+  "explanation": "The boundary is a closed loop with perimeter 2(66 + 30) = 192 feet. On a closed loop the number of posts equals the number of 6-foot gaps, so there are 192/6 = 32 posts. The option \"33\" adds 1 as it would for posts along an open, straight fence. The option \"36\" counts each side separately as 66/6 + 1 = 12 or 30/6 + 1 = 6 posts and adds 12 + 12 + 6 + 6, so each corner post is counted twice. The option \"72\" multiplies the posts on a long side by the posts on a short side, 12 × 6, as if posts filled the whole garden in a grid rather than running along its edge.",
+  "solve": "const L=66,W=30,g=6; return String(2*(L+W)/g);",
+  "distractor_solve": {
+   "33": "const L=66,W=30,g=6; return String(2*(L+W)/g+1);",
+   "36": "const L=66,W=30,g=6; return String(2*(L/g+1)+2*(W/g+1));",
+   "72": "const L=66,W=30,g=6; return String((L/g+1)*(W/g+1));"
+  }
+ },
+ {
+  "id": "AM16I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "easy",
+  "subskill": "pay for a shift read from clock times with an unpaid break",
+  "topic_tag": "rates and time",
+  "prompt": "Dana started work at 8:45 a.m. and finished at 5:15 p.m. the same day. She took one 30-minute unpaid lunch break and was paid $16.00 per hour for all the other time. How much did Dana earn that day, in dollars?",
+  "choices": [
+   "131.20",
+   "144.00",
+   "128.00",
+   "120.00"
+  ],
+  "correct_answer": "128.00",
+  "explanation": "From 8:45 a.m. to 5:15 p.m. is 8 hours 30 minutes. Removing the 30-minute break leaves 8 hours, and 8 × $16.00 = $128.00. The option \"131.20\" subtracts the break as 0.3 hour instead of 0.5 hour, paying 8.2 hours. The option \"144.00\" finds the span as 9 hours 30 minutes by subtracting the minutes in the wrong direction, then pays 9 hours. The option \"120.00\" rounds the start and finish to 9:00 and 5:00 before subtracting, paying 7.5 hours.",
+  "solve": "const start=8*60+45, end=17*60+15, brk=30, rate=16; return String(((end-start-brk)/60*rate).toFixed(2));",
+  "distractor_solve": {
+   "131.20": "const start=8*60+45, end=17*60+15, rate=16; return String((((end-start)/60-0.3)*rate).toFixed(2));",
+   "144.00": "const rate=16; const span=(17-8)+(45-15)/60; return String(((span-0.5)*rate).toFixed(2));",
+   "120.00": "const rate=16; return String((((17-9)-0.5)*rate).toFixed(2));"
+  }
+ },
+ {
+  "id": "AM16I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "subskill": "difference in fuel cost between two vehicles with different fuel economy",
+  "topic_tag": "rates",
+  "prompt": "A delivery company drives 9,000 miles in a year. Its old van travels 15 miles per gallon of gasoline, and a new van would travel 60 miles per gallon. Gasoline costs $4.00 per gallon. How many dollars less would the company spend on gasoline for those 9,000 miles with the new van than with the old van?",
+  "choices": [
+   "600",
+   "1800",
+   "450",
+   "800"
+  ],
+  "correct_answer": "1800",
+  "explanation": "The old van uses 9,000/15 = 600 gallons, costing $2,400. The new van uses 9,000/60 = 150 gallons, costing $600. The saving is $2,400 − $600 = $1,800. The option \"800\" subtracts the fuel economies first, 60 − 15 = 45 miles per gallon, and prices 9,000/45 = 200 gallons — but gallons used vary inversely with miles per gallon, so a difference of fuel economies does not give a difference in gallons. The option \"450\" is the 450 gallons saved, not the dollars saved. The option \"600\" is what the new van would spend, not how much less it would spend.",
+  "solve": "const d=9000,a=15,b=60,p=4; return String((d/a-d/b)*p);",
+  "distractor_solve": {
+   "450": "const d=9000,a=15,b=60; return String(d/a-d/b);",
+   "600": "const d=9000,b=60,p=4; return String(d/b*p);",
+   "800": "const d=9000,a=15,b=60,p=4; return String(d/(b-a)*p);"
+  }
+ },
+ {
+  "id": "AM16I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "time saved on a fixed distance when the speed increases",
+  "topic_tag": "rates and time",
+  "prompt": "At an average speed of 40 miles per hour, a drive takes 4 hours 30 minutes. How many minutes shorter would the same drive be at an average speed of 60 miles per hour?",
+  "choices": [
+   "135",
+   "90",
+   "180",
+   "110"
+  ],
+  "correct_answer": "90",
+  "explanation": "The distance is 40 × 4.5 = 180 miles. At 60 miles per hour the drive takes 180/60 = 3 hours = 180 minutes, compared with 270 minutes before, so it is 270 − 180 = 90 minutes shorter. The option \"135\" assumes that a speed 50% higher cuts the time by 50%, 0.5 × 270; time varies inversely with speed, so the time falls only to 2/3 of what it was. The option \"180\" is the new driving time, not the time saved. The option \"110\" finds the saving correctly as 1.5 hours but writes 1.5 hours as 1 hour 50 minutes.",
+  "solve": "const v1=40,t1=4.5,v2=60; const d=v1*t1; return String(t1*60-d/v2*60);",
+  "distractor_solve": {
+   "110": "const v1=40,t1=4.5,v2=60; const h=t1-v1*t1/v2; return String(Math.floor(h)*60+Math.round((h-Math.floor(h))*100));",
+   "135": "const v1=40,t1=4.5,v2=60; return String((v2-v1)/v1*t1*60);",
+   "180": "const v1=40,t1=4.5,v2=60; return String(v1*t1/v2*60);"
+  }
+ },
+ {
+  "id": "AM16I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "moving speed from total distance and a total time that includes a stop",
+  "topic_tag": "rates and time",
+  "prompt": "A train trip of 240 kilometers took 3 hours in all, including one 15-minute stop at a station during which the train did not move. To the nearest tenth, what was the train's average speed, in kilometers per hour, while it was moving?",
+  "choices": [
+   "86.7",
+   "94.1",
+   "84.2",
+   "87.3"
+  ],
+  "correct_answer": "87.3",
+  "explanation": "The train was moving for 3 hours − 15 minutes = 2.75 hours, so its moving speed was 240/2.75 ≈ 87.3 kilometers per hour. The option \"84.2\" writes 15 minutes as 0.15 hour, dividing 240 by 2.85. The option \"94.1\" treats the 15-minute stop as 15% of the trip and divides the overall average of 80 by 0.85. The option \"86.7\" raises the overall average of 80 by the stop's share of the trip time, 80 × (1 + 0.25/3), instead of dividing the distance by the moving time.",
+  "solve": "const d=240,t=3,stop=15/60; return String((d/(t-stop)).toFixed(1));",
+  "distractor_solve": {
+   "84.2": "const d=240,t=3; return String((d/(t-0.15)).toFixed(1));",
+   "94.1": "const d=240,t=3; return String((d/t/0.85).toFixed(1));",
+   "86.7": "const d=240,t=3,stop=15/60; return String((d/t*(1+stop/t)).toFixed(1));"
+  }
+ },
+ {
+  "id": "AM16I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "percent change in a unit price when both the package size and the price change",
+  "topic_tag": "percent change",
+  "prompt": "A box of crackers that held 20 ounces and sold for $5.00 is replaced by a box that holds 18 ounces and sells for $5.30. To the nearest tenth of a percent, by what percent did the price per ounce increase?",
+  "choices": [
+   "17.1",
+   "15.1",
+   "17.8",
+   "16.0"
+  ],
+  "correct_answer": "17.8",
+  "explanation": "The price per ounce was $5.00/20 = $0.25 and became $5.30/18 ≈ $0.2944, an increase of about $0.0444, which is 0.0444/0.25 ≈ 17.8% of the original price per ounce. (Equivalently, 1.06 × 20/18 ≈ 1.178.) The option \"17.1\" adds the 6% price increase to the 11.1% that comes from the size change (20/18 ≈ 1.111), but the two changes multiply rather than add. The option \"16.0\" adds the 6% price increase to the 10% decrease in size, 2/20. The option \"15.1\" divides the increase in price per ounce by the NEW price per ounce, about $0.2944, instead of the original $0.25.",
+  "solve": "const u1=5.00/20,u2=5.30/18; return String(((u2-u1)/u1*100).toFixed(1));",
+  "distractor_solve": {
+   "17.1": "const pr=(5.30-5.00)/5.00*100, sz=(20/18-1)*100; return String((pr+sz).toFixed(1));",
+   "16.0": "const pr=(5.30-5.00)/5.00*100, sz=(20-18)/20*100; return String((pr+sz).toFixed(1));",
+   "15.1": "const u1=5.00/20,u2=5.30/18; return String(((u2-u1)/u2*100).toFixed(1));"
+  }
+ },
+ {
+  "id": "AM16I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "staffing count from round-the-clock coverage and a weekly limit per worker",
+  "topic_tag": "rates and proportional reasoning",
+  "prompt": "A clinic must have exactly 9 nurses on duty at all times, every day of the week. Each day is divided into three 8-hour shifts, and no nurse may work more than 5 shifts in a week. What is the least number of nurses the clinic must employ to staff one full week?",
+  "choices": [
+   "45",
+   "13",
+   "38",
+   "27"
+  ],
+  "correct_answer": "38",
+  "explanation": "One week has 7 × 3 = 21 shifts, each needing 9 nurses, for 21 × 9 = 189 nurse-shifts. Each nurse covers at most 5 of them, so the clinic needs at least 189/5 = 37.8 nurses, which must be rounded up to 38; 38 nurses can cover 190 nurse-shifts, enough to fill the schedule. The option \"13\" divides 9 × 7 by 5 and rounds up, as if each day had only one shift. The option \"27\" is the number of nurse-shifts in a single day, 9 × 3, which ignores the weekly limit. The option \"45\" works per position: each of the 9 positions needs 21/5 = 4.2 nurses, but it rounds that up to 5 for every position before multiplying by 9, when only the total needs to be a whole number.",
+  "solve": "const n=9,sh=3,days=7,cap=5; return String(Math.ceil(n*sh*days/cap));",
+  "distractor_solve": {
+   "13": "const n=9,days=7,cap=5; return String(Math.ceil(n*days/cap));",
+   "27": "const n=9,sh=3; return String(n*sh);",
+   "45": "const n=9,sh=3,days=7,cap=5; return String(n*Math.ceil(sh*days/cap));"
+  }
+ },
+ {
+  "id": "AM16I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "subskill": "day on which a climb with a nightly setback first reaches a height",
+  "topic_tag": "rates",
+  "prompt": "A snail starts at the bottom of a well that is 31 feet deep. Each day it climbs 6 feet up the wall, and each night it slides 4 feet back down. On which day does the snail first reach the top of the well?",
+  "choices": [
+   "16",
+   "14",
+   "17",
+   "13"
+  ],
+  "correct_answer": "14",
+  "explanation": "The snail gains 2 feet per full day and night, so at the start of day n it is 2(n − 1) feet up, and during day n it climbs to 2(n − 1) + 6 feet. This first reaches 31 when 2(n − 1) ≥ 25, that is, n − 1 ≥ 12.5, so n = 14: it starts day 14 at 26 feet and climbs to 32. Once it reaches the top it does not slide back. The option \"16\" divides 31 by the net gain of 2 feet per day and rounds 15.5 up, ignoring that the last day's climb has no night after it. The option \"13\" finds that 12.5 net days bring it within 6 feet of the top and rounds that up to 13, but day 13 begins at only 24 feet and ends the climb at 30, so the day that finishes the job is day 14. The option \"17\" adds one extra day for the final climb to the 16 days, instead of taking days away.",
+  "solve": "let h=0; for(let day=1;day<100;day++){ h+=6; if(h>=31) return String(day); h-=4; }",
+  "distractor_solve": {
+   "13": "return String(Math.ceil((31-6)/(6-4)));",
+   "16": "return String(Math.ceil(31/(6-4)));",
+   "17": "return String(Math.ceil(31/(6-4))+1);"
+  }
+ },
+ {
+  "id": "AM16I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "subskill": "order costs under a price that changes for every unit once a size threshold is passed",
+  "topic_tag": "rates and cost",
+  "prompt": "A print shop charges $0.12 per page for an order of 500 pages or fewer. For an order of more than 500 pages, the shop charges $0.09 per page for every page in the order. What is the difference, in dollars, between the cost of a 480-page order and the cost of a 520-page order?",
+  "choices": [
+   "4.20",
+   "10.20",
+   "4.80",
+   "10.80"
+  ],
+  "correct_answer": "10.80",
+  "explanation": "A 480-page order costs 480 × $0.12 = $57.60. A 520-page order is over 500 pages, so every page costs $0.09: 520 × $0.09 = $46.80. The difference is $57.60 − $46.80 = $10.80 (the larger order is the cheaper one). The option \"4.20\" prices the 520-page order as 500 pages at $0.12 and only the 20 extra pages at $0.09, $61.80, as if the lower price applied only above 500. The option \"10.20\" swaps the two prices for the 520-page order, 500 pages at $0.09 and 20 at $0.12, which is $47.40. The option \"4.80\" prices the 40-page gap at $0.12 and ignores the price change altogether.",
+  "solve": "const c=(n)=>n<=500?n*0.12:n*0.09; return String(Math.abs(c(480)-c(520)).toFixed(2));",
+  "distractor_solve": {
+   "4.20": "const big=500*0.12+20*0.09, small=480*0.12; return String(Math.abs(big-small).toFixed(2));",
+   "10.20": "const big=500*0.09+20*0.12, small=480*0.12; return String(Math.abs(big-small).toFixed(2));",
+   "4.80": "return String((40*0.12).toFixed(2));"
+  }
+ }
+]
