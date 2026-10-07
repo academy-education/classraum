@@ -1,0 +1,156 @@
+[
+ {
+  "id": "SM22L-A1",
+  "domain": "Algebra",
+  "subskill": "Linear system with two constants: k^2 = 36 gives two parallel-coefficient candidates; c must turn the positive candidate into identical lines so only the negative one gives no solution",
+  "difficulty": "hard",
+  "prompt": "kx + 3y = k + 12\n12x + ky = c\n\nIn the system of equations above, k and c are constants. There is exactly one value of k for which the system has no solution, and that value of k is negative. What is the value of c?",
+  "choices": [
+   "-12",
+   "18",
+   "24",
+   "36"
+  ],
+  "correct_answer": "36",
+  "explanation": "The system fails to have exactly one solution only when the coefficients are proportional: k/12 = 3/k, so k^2 = 36 and k = 6 or k = −6. For every other value of k the system has exactly one solution. For only one of k = 6 and k = −6 to give no solution, the other must give two equations of the same line (infinitely many solutions). The no-solution value is negative, so k = 6 must give the same line. When k = 6, the first equation is 6x + 3y = 18; multiplying by 2 gives 12x + 6y = 36, so c = 36. Check: when k = −6 the first equation is −6x + 3y = 6, which is 12x − 6y = −12, while the second is 12x − 6y = 36, so there is no solution, as required.\n\nChoice −12 makes k = −6 give the same line, which leaves k = 6, a positive value, as the one with no solution. Choice 18 uses the first equation's constant at k = 6 without multiplying by 2 to match the coefficient 12. Choice 24 multiplies by 2 but uses 12 as the first equation's constant, dropping the k in k + 12.",
+  "bounds": [],
+  "solve": "const c=[];for(let k=-50;k<=50;k++){if(k*k===12*3)c.push(k);}const pos=c.find(k=>k>0);const f=12/pos;return (pos+12)*f;",
+  "distractor_solve": {
+   "-12": "const c=[];for(let k=-50;k<=50;k++){if(k*k===12*3)c.push(k);}const neg=c.find(k=>k<0);const f=12/neg;return (neg+12)*f;",
+   "18": "const c=[];for(let k=-50;k<=50;k++){if(k*k===12*3)c.push(k);}const pos=c.find(k=>k>0);return pos+12;",
+   "24": "const c=[];for(let k=-50;k<=50;k++){if(k*k===12*3)c.push(k);}const pos=c.find(k=>k>0);return 12*(12/pos);"
+  }
+ },
+ {
+  "id": "SM22L-A2",
+  "domain": "Algebra",
+  "subskill": "One-variable linear inequality with a parameter: greatest integer solution fixed at 3; deciding which end of 3 < (8+k)/5 <= 4 is strict and which end the question asks for",
+  "difficulty": "hard",
+  "prompt": "3(2 − x) + k > 2x − 2\n\nFor a certain constant k, the largest integer solution of the inequality above is 3. What is the smallest integer value k could have?",
+  "choices": [
+   "7",
+   "8",
+   "11",
+   "12"
+  ],
+  "correct_answer": "8",
+  "explanation": "Distribute and collect terms: 6 − 3x + k > 2x − 2, so 8 + k > 5x, which means x < (8 + k)/5. The greatest integer in this solution set is 3 exactly when 3 is in the set and 4 is not. 3 is in the set when 3 < (8 + k)/5. 4 is not in the set when 4 ≥ (8 + k)/5, because the inequality is strict, so 4 is excluded even when (8 + k)/5 equals 4. Together, 15 < 8 + k ≤ 20, so 7 < k ≤ 12. The least integer value of k is 8. Check: when k = 8 the solutions are x < 3.2, and the greatest integer solution is 3.\n\nChoice 7 gives the solution set x < 3, which does not contain 3, so the greatest integer solution would be 2. Choice 12 is the greatest possible value of k, not the least. Choice 11 comes from treating the solution set as x ≤ (8 + k)/5 and then taking the greatest value of k instead of the least.",
+  "bounds": [],
+  "solve": "const ok=k=>Math.ceil((8+k)/5)-1===3;for(let k=-100;k<=100;k++){if(ok(k))return k;}",
+  "distractor_solve": {
+   "7": "const ok=k=>Math.floor((8+k)/5)===3;for(let k=-100;k<=100;k++){if(ok(k))return k;}",
+   "12": "const ok=k=>Math.ceil((8+k)/5)-1===3;let g=null;for(let k=-100;k<=100;k++){if(ok(k))g=k;}return g;",
+   "11": "const ok=k=>Math.floor((8+k)/5)===3;let g=null;for(let k=-100;k<=100;k++){if(ok(k))g=k;}return g;"
+  }
+ },
+ {
+  "id": "SM22L-A3",
+  "domain": "Algebra",
+  "subskill": "Linear function from a translation identity: 6 left equals 4 down means f(x+6) = f(x) - 4; decoding the direction of the horizontal shift fixes the sign of the slope",
+  "difficulty": "hard",
+  "prompt": "The function f is linear. In the xy-plane, translating the graph of y = f(x) 6 units to the left produces the same line as translating the graph of y = f(x) 4 units down. The graph of y = f(x) passes through the point (3, 7). What is the x-intercept of the graph of y = f(x)?",
+  "choices": [
+   "-15/2",
+   "-5/3",
+   "23/3",
+   "27/2"
+  ],
+  "correct_answer": "27/2",
+  "explanation": "Translating the graph 6 units to the left gives the graph of y = f(x + 6), and translating it 4 units down gives the graph of y = f(x) − 4. These are the same line, so f(x + 6) = f(x) − 4 for every x: increasing x by 6 decreases f by 4, so the slope of f is −4/6 = −2/3. Then f(x) = 7 − (2/3)(x − 3). Setting f(x) = 0 gives (2/3)(x − 3) = 7, so x − 3 = 21/2 and x = 27/2.\n\nChoice −15/2 comes from writing the left translation as f(x − 6), which gives a slope of 2/3. Choice 23/3 comes from using 6/4 instead of 4/6, a slope of −3/2. Choice −5/3 makes both errors, a slope of 3/2.",
+  "bounds": [],
+  "solve": "const m=-4/6;return 3-7/m;",
+  "distractor_solve": {
+   "-15/2": "const m=4/6;return 3-7/m;",
+   "23/3": "const m=-6/4;return 3-7/m;",
+   "-5/3": "const m=6/4;return 3-7/m;"
+  }
+ },
+ {
+  "id": "SM22L-A4",
+  "domain": "Algebra",
+  "subskill": "Linear cost function recovered from a shifted rule B(n) = A(n - 20) + 15; inverting the shift (which direction, add or subtract) decides the fixed fee",
+  "difficulty": "hard",
+  "prompt": "Shop A charges a fixed fee plus a constant amount per poster to print posters. Shop B sets its prices by the following rule: for any order of n posters, where n > 20, Shop B charges $15 more than Shop A charges for an order of n − 20 posters. Shop B charges $105 for an order of 50 posters and $165 for an order of 90 posters. What is Shop A's fixed fee, in dollars?",
+  "choices": [
+   "35",
+   "45",
+   "60",
+   "75"
+  ],
+  "correct_answer": "45",
+  "explanation": "Shop B's price for n posters is $15 more than Shop A's price for n − 20 posters, so Shop A's price for n − 20 posters is $15 less than Shop B's price for n posters. Shop B's $105 for 50 posters means Shop A charges 105 − 15 = $90 for 30 posters, and Shop B's $165 for 90 posters means Shop A charges 165 − 15 = $150 for 70 posters. Shop A's rate is (150 − 90)/(70 − 30) = $1.50 per poster, so its fixed fee is 90 − 1.5(30) = $45.\n\nChoice 75 adds $15 to Shop B's prices instead of subtracting it. Choice 35 starts from Shop B's fixed fee of $30 and adds $20 for the 20-poster difference instead of 20 times the $1.50 rate before subtracting $15. Choice 60 accounts for the 20-poster difference but ignores the $15, treating Shop A's price for n − 20 posters as equal to Shop B's price for n posters.",
+  "bounds": [],
+  "solve": "const B=[[50,105],[90,165]];const A=B.map(([n,p])=>[n-20,p-15]);const r=(A[1][1]-A[0][1])/(A[1][0]-A[0][0]);return A[0][1]-r*A[0][0];",
+  "distractor_solve": {
+   "75": "const B=[[50,105],[90,165]];const A=B.map(([n,p])=>[n-20,p+15]);const r=(A[1][1]-A[0][1])/(A[1][0]-A[0][0]);return A[0][1]-r*A[0][0];",
+   "35": "const B=[[50,105],[90,165]];const r=(B[1][1]-B[0][1])/(B[1][0]-B[0][0]);const feeB=B[0][1]-r*B[0][0];return feeB+20-15;",
+   "60": "const B=[[50,105],[90,165]];const A=B.map(([n,p])=>[n-20,p]);const r=(A[1][1]-A[0][1])/(A[1][0]-A[0][0]);return A[0][1]-r*A[0][0];"
+  }
+ },
+ {
+  "id": "SM22L-A5",
+  "domain": "Algebra",
+  "subskill": "Two linear constraints with whole-number variables: the best whole-number plan is not the rounded intersection of the boundary lines (nearest rounding is infeasible, rounding down is not optimal)",
+  "difficulty": "hard",
+  "prompt": "A florist makes large and small bouquets from a supply of 72 roses and 66 lilies. Each large bouquet uses 7 roses and 5 lilies, and each small bouquet uses 3 roses and 4 lilies. The florist earns a profit of $9 on each large bouquet and $5 on each small bouquet. If the florist makes only whole bouquets and uses no more roses or lilies than the supply, what is the greatest possible total profit, in dollars?",
+  "choices": [
+   "89",
+   "99",
+   "101",
+   "103"
+  ],
+  "correct_answer": "99",
+  "explanation": "Let L be the number of large bouquets and S the number of small bouquets. The supply gives 7L + 3S ≤ 72 (roses) and 5L + 4S ≤ 66 (lilies), and the profit is 9L + 5S. The two boundary lines meet at L = 90/13 ≈ 6.92 and S = 102/13 ≈ 7.85, where the profit would be about $101.54, but these are not whole numbers. Check whole-number plans near that point. With L = 7, the roses allow at most S = 7 (49 + 21 = 70), for a profit of 63 + 35 = $98. With L = 6, the roses allow S ≤ 10 and the lilies allow S ≤ 9, so S = 9 (42 + 27 = 69 roses, 30 + 36 = 66 lilies), for a profit of 54 + 45 = $99. With L = 5, S ≤ 10, for a profit of at most 45 + 50 = $95, and smaller values of L give even less; L = 8 allows at most S = 5 for $97, and larger values of L give even less. The greatest possible profit is $99.\n\nChoice 103 comes from rounding the intersection to 7 large and 8 small bouquets, which needs 73 roses. Choice 101 rounds down the profit at the intersection point, which is not a whole-number plan. Choice 89 comes from rounding both coordinates of the intersection down to 6 large and 7 small bouquets, which is possible but not the best plan.",
+  "bounds": [],
+  "solve": "let best=-1;for(let L=0;L<=20;L++){for(let S=0;S<=30;S++){if(7*L+3*S<=72&&5*L+4*S<=66){best=Math.max(best,9*L+5*S);}}}return best;",
+  "distractor_solve": {
+   "103": "const d=7*4-5*3;const L=(72*4-66*3)/d,S=(7*66-5*72)/d;return 9*Math.round(L)+5*Math.round(S);",
+   "101": "const d=7*4-5*3;const L=(72*4-66*3)/d,S=(7*66-5*72)/d;return Math.floor(9*L+5*S);",
+   "89": "const d=7*4-5*3;const L=(72*4-66*3)/d,S=(7*66-5*72)/d;return 9*Math.floor(L)+5*Math.floor(S);"
+  }
+ },
+ {
+  "id": "SM22L-A6",
+  "domain": "Algebra",
+  "subskill": "System of two strict linear inequalities with a parameter: no solution with x >= 4 means the wedge's vertex x = (c+7)/5 is at most 4; deciding whether the vertex itself belongs to the solution set",
+  "difficulty": "hard",
+  "prompt": "y > 3x − 7\ny < c − 2x\n\nIn the system of inequalities above, c is a constant. In the xy-plane, no point (x, y) with x ≥ 4 is a solution to the system. What is the greatest possible integer value of c?",
+  "choices": [
+   "4",
+   "5",
+   "12",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "A point (x, y) is a solution when 3x − 7 < y < c − 2x. Such a y exists exactly when 3x − 7 < c − 2x, that is, when 5x < c + 7, or x < (c + 7)/5. So the solutions have x-coordinates filling the interval x < (c + 7)/5. No solution has x ≥ 4 exactly when (c + 7)/5 ≤ 4; equality is allowed because both inequalities are strict, so the point where the two boundary lines meet is not a solution. This gives c + 7 ≤ 20, so c ≤ 13, and the greatest integer value is 13. Check: when c = 13 the boundary lines meet at (4, 5), and every solution has x < 4.\n\nChoice 12 treats the intersection point (4, 5) as a solution when c = 13, which requires c < 13. Choice 4 drops the −2x when comparing the boundaries and also requires c to be strictly less than the boundary value. Choice 5 drops the −2x when comparing the boundaries, using 3x − 7 < c, so x < (c + 7)/3 ≤ 4.",
+  "bounds": [],
+  "solve": "let g=null;for(let c=-100;c<=100;c++){if((c+7)/5<=4)g=c;}return g;",
+  "distractor_solve": {
+   "12": "let g=null;for(let c=-100;c<=100;c++){if((c+7)/5<4)g=c;}return g;",
+   "4": "let g=null;for(let c=-100;c<=100;c++){if((c+7)/3<4)g=c;}return g;",
+   "5": "let g=null;for(let c=-100;c<=100;c++){if((c+7)/3<=4)g=c;}return g;"
+  }
+ },
+ {
+  "id": "SM22L-A7",
+  "domain": "Algebra",
+  "subskill": "One-variable linear equation with two constants: a solution must exist for every k, so the single k that zeroes the x-coefficient must make the equation an identity",
+  "difficulty": "hard",
+  "prompt": "k(2x − 3) + 7 = 6x + c\n\nIn the equation above, k and c are constants. The equation has at least one real solution for every value of k. What is the value of c?",
+  "choices": [
+   "-2",
+   "3",
+   "7",
+   "16"
+  ],
+  "correct_answer": "-2",
+  "explanation": "Rewrite the equation as (2k − 6)x = c + 3k − 7. When 2k − 6 ≠ 0, dividing gives exactly one solution, whatever c is. The only value of k that needs attention is k = 3, which makes the x-coefficient 0 and turns the equation into 0 = c + 9 − 7, or 0 = c + 2. If c + 2 were not 0, the equation would have no solution when k = 3. So c + 2 = 0 and c = −2; then k = 3 gives an equation true for every x.\n\nChoice 3 is the value of k that makes the x-coefficient 0, not the value of c. Choice 7 drops the −3k term from the constant. Choice 16 takes the constant term from k(2x − 3) as +9 instead of −9 when k = 3.",
+  "bounds": [],
+  "solve": "let k0=null;for(let k=-50;k<=50;k++){if(2*k-6===0)k0=k;}return -(3*k0-7);",
+  "distractor_solve": {
+   "3": "let k0=null;for(let k=-50;k<=50;k++){if(2*k-6===0)k0=k;}return k0;",
+   "7": "let k0=null;for(let k=-50;k<=50;k++){if(2*k-6===0)k0=k;}return -(0*k0-7);",
+   "16": "let k0=null;for(let k=-50;k<=50;k++){if(2*k-6===0)k0=k;}return 3*k0+7;"
+  }
+ }
+]

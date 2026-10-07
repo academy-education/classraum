@@ -1,0 +1,156 @@
+[
+ {
+  "id": "SM22L-B1",
+  "domain": "Algebra",
+  "subskill": "Two linear models, one given only by two readings; encode 'B is 4 taller than A' with the correct direction and the extrapolated starting value",
+  "difficulty": "hard",
+  "prompt": "Two candles are lit at the same time, and each burns down at its own constant rate. Candle A is 40 centimeters tall when lit and its height decreases by 4 centimeters per hour. Candle B is 27 centimeters tall 1.5 hours after it is lit and 22 centimeters tall 4 hours after it is lit. While both candles are still burning, how many hours after they are lit is candle B exactly 4 centimeters taller than candle A?",
+  "choices": [
+   "3",
+   "4.5",
+   "7",
+   "8.5"
+  ],
+  "correct_answer": "7",
+  "explanation": "Candle B loses 27 − 22 = 5 centimeters in 4 − 1.5 = 2.5 hours, so it burns 2 centimeters per hour. Its height when lit was 27 + 1.5(2) = 30 centimeters, so B(t) = 30 − 2t, while A(t) = 40 − 4t. Candle B is 4 centimeters taller when B(t) − A(t) = 4: (30 − 2t) − (40 − 4t) = 4, so 2t − 10 = 4 and t = 7. Check: A(7) = 12 and B(7) = 16, and both candles are still burning. The value 3 is the time when candle A is 4 centimeters taller than candle B. The value 8.5 comes from using 27 centimeters, the height at 1.5 hours, as candle B's height when lit. The value 4.5 comes from making both of those errors.",
+  "bounds": [],
+  "solve": "const rB=(27-22)/(4-1.5); const b0=27+1.5*rB; return (4+40-b0)/(4-rB);",
+  "distractor_solve": {
+   "3": "const rB=(27-22)/(4-1.5); const b0=27+1.5*rB; return (40-b0-4)/(4-rB);",
+   "8.5": "const rB=(27-22)/(4-1.5); const b0=27; return (4+40-b0)/(4-rB);",
+   "4.5": "const rB=(27-22)/(4-1.5); const b0=27; return (40-b0-4)/(4-rB);"
+  }
+ },
+ {
+  "id": "SM22L-B2",
+  "domain": "Algebra",
+  "subskill": "Linear functions known only through two values of their difference; encode 'g exceeds f by 4' as f − g = −4, not +4 or 0",
+  "difficulty": "hard",
+  "prompt": "Linear functions f and g satisfy f(2) − g(2) = −5 and f(6) − g(6) = 7. At which input does the output of g exceed the output of f by 4?",
+  "choices": [
+   "1/3",
+   "7/3",
+   "11/3",
+   "5"
+  ],
+  "correct_answer": "7/3",
+  "explanation": "Because f and g are both linear, h(x) = f(x) − g(x) is also linear. Its slope is (7 − (−5))/(6 − 2) = 3, so h(x) = −5 + 3(x − 2) = 3x − 11. The value of g(x) is 4 greater than f(x) when f(x) − g(x) = −4, so 3x − 11 = −4 and x = 7/3. The value 5 comes from setting f(x) − g(x) = 4, which is where f(x) is 4 greater than g(x). The value 11/3 comes from setting f(x) − g(x) = 0, which is where the two functions are equal. The value 1/3 comes from writing h(x) = 3x − 5, treating h(2) = −5 as if it were the value at x = 0.",
+  "bounds": [],
+  "solve": "const m=(7-(-5))/(6-2); return 2+(-4-(-5))/m;",
+  "distractor_solve": {
+   "5": "const m=(7-(-5))/(6-2); return 2+(4-(-5))/m;",
+   "11/3": "const m=(7-(-5))/(6-2); return 2+(0-(-5))/m;",
+   "1/3": "const m=(7-(-5))/(6-2); return (-4-(-5))/m;"
+  }
+ },
+ {
+  "id": "SM22L-B3",
+  "domain": "Algebra",
+  "subskill": "Transfer system: moving 10 units changes the difference by 20, and 'twice as many' multiplies the reduced amount",
+  "difficulty": "hard",
+  "prompt": "Warehouses A and B each store crates. If 10 crates were moved from warehouse A to warehouse B, the two warehouses would have the same number of crates. If instead 10 crates were moved from warehouse B to warehouse A, warehouse A would have twice as many crates as warehouse B. How many crates does warehouse A store?",
+  "choices": [
+   "40",
+   "50",
+   "60",
+   "70"
+  ],
+  "correct_answer": "70",
+  "explanation": "Let A and B be the numbers of crates. The first condition gives A − 10 = B + 10, so A = B + 20. The second gives A + 10 = 2(B − 10), so A = 2B − 30. Then B + 20 = 2B − 30, so B = 50 and A = 70. Check: moving 10 crates from A to B gives 60 and 60, and moving 10 from B to A gives 80 and 40. The value 50 comes from writing the first condition as A − 10 = B, which forgets that warehouse B also gains the 10 crates. The value 60 comes from writing the second condition as A + 10 = 2B − 10, applying the factor of 2 to B but not to the 10 crates removed. The value 40 comes from making both of those errors.",
+  "bounds": [],
+  "solve": "const t=10; const d=2*t; const B=d+3*t; return B+d;",
+  "distractor_solve": {
+   "40": "const t=10; const d=t; const B=d+2*t; return B+d;",
+   "50": "const t=10; const d=t; const B=d+3*t; return B+d;",
+   "60": "const t=10; const d=2*t; const B=d+2*t; return B+d;"
+  }
+ },
+ {
+  "id": "SM22L-B4",
+  "domain": "Algebra",
+  "subskill": "Two-variable inequality with a ratio constraint; the ratio binds, must be encoded f >= 2w (not w >= 2f), then round down",
+  "difficulty": "hard",
+  "prompt": "A hiker is packing water bottles that weigh 1.2 kilograms each and food packs that weigh 0.8 kilogram each. The total weight of the bottles and food packs can be at most 16 kilograms, and the hiker must pack at least 2 food packs for each water bottle. What is the greatest number of water bottles the hiker can pack?",
+  "choices": [
+   "5",
+   "8",
+   "10",
+   "13"
+  ],
+  "correct_answer": "5",
+  "explanation": "Let w be the number of water bottles and f the number of food packs. The conditions are 1.2w + 0.8f ≤ 16 and f ≥ 2w. To pack as many bottles as possible, use the fewest food packs allowed, f = 2w. Then 1.2w + 1.6w ≤ 16, so 2.8w ≤ 16 and w ≤ 5.71. The number of bottles must be a whole number, so the greatest is 5 (with 10 food packs, for 14 kilograms). Six bottles would need at least 12 food packs, for 16.8 kilograms. The value 13 comes from ignoring the food-pack requirement: 1.2w ≤ 16. The value 10 comes from reversing the requirement to w ≥ 2f, so that f = w/2 and 1.6w ≤ 16. The value 8 comes from packing only 1 food pack per bottle: 2w ≤ 16.",
+  "bounds": [],
+  "solve": "return Math.floor(16/(1.2+2*0.8));",
+  "distractor_solve": {
+   "8": "return Math.floor(16/(1.2+0.8));",
+   "10": "return Math.floor(16/(1.2+0.8/2));",
+   "13": "return Math.floor(16/1.2);"
+  }
+ },
+ {
+  "id": "SM22L-B5",
+  "domain": "Algebra",
+  "subskill": "Net-change with a staggered start: the line grows before the gate opens, and the asked time is measured from the opening",
+  "difficulty": "hard",
+  "prompt": "At 9:00 a.m., 120 people are waiting in line at the entrance to a stadium. From 9:00 a.m. on, people join the line at a constant rate of 10 people per minute. The entrance gate opens at 9:15 a.m., and from then on people are admitted through the gate at a constant rate of 25 people per minute. Assuming these rates do not change, how many minutes after the gate opens will the line first be empty?",
+  "choices": [
+   "8",
+   "10.8",
+   "18",
+   "33"
+  ],
+  "correct_answer": "18",
+  "explanation": "From 9:00 to 9:15 the line grows by 10(15) = 150 people, so 120 + 150 = 270 people are waiting when the gate opens. After that, the line shrinks by 25 − 10 = 15 people per minute, so it is empty after 270/15 = 18 minutes. The value 33 is the number of minutes after 9:00 a.m., not after the gate opens. The value 8 comes from ignoring the people who join before the gate opens: 120/15. The value 10.8 comes from ignoring the people who keep joining after the gate opens: 270/25.",
+  "bounds": [],
+  "solve": "const open=15; const atOpen=120+10*open; return atOpen/(25-10);",
+  "distractor_solve": {
+   "8": "return 120/(25-10);",
+   "33": "const open=15; const atOpen=120+10*open; return open+atOpen/(25-10);",
+   "10.8": "const open=15; const atOpen=120+10*open; return atOpen/25;"
+  }
+ },
+ {
+  "id": "SM22L-B6",
+  "domain": "Algebra",
+  "subskill": "One linear equation in two unknowns fixes only x/y; the asked combination is (x+y)/(x-y), not x/y or (x+y)/y",
+  "difficulty": "hard",
+  "prompt": "4x − 3y = 2(x + y)\n\nIn the equation above, x and y are nonzero numbers and x ≠ y. What is the value of (x + y)/(x − y)?",
+  "choices": [
+   "7/3",
+   "5/2",
+   "3",
+   "7/2"
+  ],
+  "correct_answer": "7/3",
+  "explanation": "Distributing gives 4x − 3y = 2x + 2y, so 2x = 5y and x = (5/2)y. Then x + y = (7/2)y and x − y = (3/2)y, so (x + y)/(x − y) = (7/2)/(3/2) = 7/3. The value 5/2 is x/y, the ratio found along the way. The value 7/2 is (x + y)/y, which divides by y instead of by x − y. The value 3 comes from writing the right side as 2x + y instead of 2x + 2y, which gives x = 2y and (x + y)/(x − y) = 3y/y.",
+  "bounds": [],
+  "solve": "const r=(2+3)/(4-2); return (r+1)/(r-1);",
+  "distractor_solve": {
+   "3": "const r=(1+3)/(4-2); return (r+1)/(r-1);",
+   "5/2": "const r=(2+3)/(4-2); return r;",
+   "7/2": "const r=(2+3)/(4-2); return r+1;"
+  }
+ },
+ {
+  "id": "SM22L-B7",
+  "domain": "Algebra",
+  "subskill": "Two equations in three unknowns determine x + 8y − 7z only as 3E1 − E2; other natural combinations give the distractors",
+  "difficulty": "hard",
+  "prompt": "x + 3y − z = 9\n2x + y + 4z = 13\n\nThe real numbers x, y, and z satisfy both equations shown. Which number equals x + 8y − 7z?",
+  "choices": [
+   "-30",
+   "14",
+   "22",
+   "40"
+  ],
+  "correct_answer": "14",
+  "explanation": "Look for numbers a and b with a(x + 3y − z) + b(2x + y + 4z) = x + 8y − 7z. Matching the x- and y-coefficients gives a + 2b = 1 and 3a + b = 8, so a = 3 and b = −1. The z-coefficient checks: 3(−1) − 1(4) = −7. So x + 8y − 7z = 3(9) − 13 = 14. The value 40 comes from adding the second equation instead of subtracting it: 3(9) + 13. The value −30 comes from multiplying the wrong equation by 3: 9 − 3(13). The value 22 comes from simply adding the two equations, which gives 3x + 4y + 3z, a different expression.",
+  "bounds": [],
+  "solve": "const E1=[1,3,-1,9], E2=[2,1,4,13]; const T=[1,8]; const det=E1[0]*E2[1]-E2[0]*E1[1]; const a=(T[0]*E2[1]-E2[0]*T[1])/det; const b=(E1[0]*T[1]-T[0]*E1[1])/det; return a*E1[3]+b*E2[3];",
+  "distractor_solve": {
+   "22": "return 9+13;",
+   "40": "const a=3,b=1; return a*9+b*13;",
+   "-30": "const a=1,b=-3; return a*9+b*13;"
+  }
+ }
+]
