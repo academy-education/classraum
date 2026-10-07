@@ -1,0 +1,508 @@
+[
+ {
+  "id": "AM18N-01",
+  "topic_tag": "matrices",
+  "prompt": "Matrix A has first row (4, 3) and second row (2, 5). What is the entry in the 1st row, 2nd column of A⁻¹, the inverse of matrix A ?",
+  "choices": [
+   "5/14",
+   "-1/7",
+   "-3/14",
+   "1/3"
+  ]
+ },
+ {
+  "id": "AM18N-02",
+  "topic_tag": "logarithms",
+  "prompt": "For x > 0, log₂ x + log₈ x = 8. What is the value of x ?",
+  "choices": [
+   "16",
+   "4",
+   "64",
+   "6"
+  ]
+ },
+ {
+  "id": "AM18N-03",
+  "topic_tag": "complex numbers",
+  "prompt": "For i = √(-1), the product (a + 5i)(2 − i), where a is a real number, is a real number. What is the value of the product (a + 5i)(2 − i) ?",
+  "choices": [
+   "25",
+   "15",
+   "20",
+   "12.5"
+  ]
+ },
+ {
+  "id": "AM18N-04",
+  "topic_tag": "sequences",
+  "prompt": "The numbers 1, x, and y, in that order, are the first three terms of a geometric sequence. The numbers x, y, and 15, in that order, are the first three terms of an arithmetic sequence. If x and y are both positive, what is the value of y − x ?",
+  "choices": [
+   "6",
+   "3.75",
+   "12",
+   "8.75"
+  ]
+ },
+ {
+  "id": "AM18N-05",
+  "topic_tag": "arithmetic series",
+  "prompt": "The first row of a theater has 18 seats, and each row after the first has 3 more seats than the row in front of it. What is the least number of rows the theater must have so that it has at least 1,000 seats in all?",
+  "choices": [
+   "20",
+   "23",
+   "14",
+   "21"
+  ]
+ },
+ {
+  "id": "AM18N-06",
+  "topic_tag": "complex numbers",
+  "prompt": "For i = √(-1), the complex number 2 + 3i is a solution of the equation x² + bx + c = 0, where b and c are real numbers. What is the value of c − b ?",
+  "choices": [
+   "9",
+   "-1",
+   "5",
+   "17"
+  ]
+ },
+ {
+  "id": "AM18N-07",
+  "topic_tag": "vectors",
+  "prompt": "In the standard (x,y) coordinate plane, a particle starts at the point (1, 2) and moves along a straight line in the direction of the vector <3, 4>. It stops when it is 10 units from its starting point. What is the x-coordinate of the point where it stops?",
+  "choices": [
+   "9",
+   "7",
+   "37/7",
+   "11/5"
+  ]
+ },
+ {
+  "id": "AM18A-01",
+  "topic_tag": "systems of linear equations",
+  "prompt": "At a store, the price of a jacket is 25% more than the price of a sweater. After the price of the jacket is reduced by $6, the jacket's price is 10% more than the price of the sweater. What is the price, in dollars, of the sweater?",
+  "choices": [
+   "60",
+   "32",
+   "27",
+   "40"
+  ]
+ },
+ {
+  "id": "AM18A-02",
+  "topic_tag": "rational inequalities",
+  "prompt": "How many integers x with −10 ≤ x ≤ 10 satisfy the inequality (x − 1)(x + 4)/(x − 5) ≤ 0 ?",
+  "choices": [
+   "9",
+   "12",
+   "11",
+   "6"
+  ]
+ },
+ {
+  "id": "AM18A-03",
+  "topic_tag": "systems of inequalities",
+  "prompt": "A bakery packs two kinds of gift boxes. Each Classic box holds 3 cookies and 2 brownies and sells for $20. Each Deluxe box holds 1 cookie and 4 brownies and sells for $18. The bakery has 30 cookies and 40 brownies. Assuming every box made is sold, what is the greatest total revenue, in dollars, the bakery can earn from these boxes?",
+  "choices": [
+   "360",
+   "290",
+   "268",
+   "264"
+  ]
+ },
+ {
+  "id": "AM18A-04",
+  "topic_tag": "working backward",
+  "prompt": "A tank contains some water. Each night, exactly half of the water in the tank leaks out, and each following morning 12 liters of water are added. After two nights and the two mornings that follow them, the tank holds 40 liters. How many liters of water did the tank hold before the first night?",
+  "choices": [
+   "88",
+   "112",
+   "45",
+   "124"
+  ]
+ },
+ {
+  "id": "AM18A-05",
+  "topic_tag": "linear equations",
+  "prompt": "For nonzero numbers x and y with x ≠ y, (3x + 2y)/(x − y) = 5. What is the value of x/y ?",
+  "choices": [
+   "-11/14",
+   "2/7",
+   "3/2",
+   "7/2"
+  ]
+ },
+ {
+  "id": "AM18A-06",
+  "topic_tag": "absolute value equations",
+  "prompt": "What is the sum of the squares of all real solutions of the equation |x² − 4x| = 5 ?",
+  "choices": [
+   "50",
+   "26",
+   "16",
+   "32"
+  ]
+ },
+ {
+  "id": "AM18A-07",
+  "topic_tag": "rational expressions",
+  "prompt": "Consider all positive integers n for which (n + 10)/(n − 2) is an integer. What is the sum of all such n ?",
+  "choices": [
+   "27",
+   "24",
+   "41",
+   "40"
+  ]
+ },
+ {
+  "id": "AM18A-08",
+  "topic_tag": "linear models",
+  "prompt": "On a temperature scale called the X scale, water freezes at 20°X and boils at 220°X, and the X reading is a linear function of the Celsius reading. Fahrenheit and Celsius readings are related by F = 1.8C + 32. What is the X reading for a temperature of 77°F ?",
+  "choices": [
+   "65",
+   "50",
+   "55",
+   "70"
+  ]
+ },
+ {
+  "id": "AM18A-09",
+  "topic_tag": "linear inequalities",
+  "prompt": "A print shop charges a one-time setup fee of $480 plus $2.40 for each poster printed. What is the least number of posters an order must contain so that the average cost per poster, including the setup fee, is at most $3.00 ?",
+  "choices": [
+   "8000",
+   "800",
+   "160",
+   "200"
+  ]
+ },
+ {
+  "id": "AM18F-01",
+  "topic_tag": "exponential functions",
+  "prompt": "The function f is defined by f(x) = a·2^x, where a is a positive constant. The average rate of change of f from x = 1 to x = 4 is 28. What is the value of a ?",
+  "choices": [
+   "5.6",
+   "8",
+   "10.5",
+   "6"
+  ]
+ },
+ {
+  "id": "AM18F-02",
+  "topic_tag": "recursive functions",
+  "prompt": "A function f is defined for nonnegative integers by f(0) = 4 and f(n + 1) = f(n) + 2n + 1 for every integer n ≥ 0. What is the value of f(6) ?",
+  "choices": [
+   "40",
+   "36",
+   "34",
+   "53"
+  ]
+ },
+ {
+  "id": "AM18F-03",
+  "topic_tag": "exponential functions",
+  "prompt": "Colony A has 300 bacteria and triples in size every 4 hours. Colony B has 2,700 bacteria and triples in size every 20 hours. Both colonies begin growing at the same moment. After how many hours will the two colonies have the same number of bacteria?",
+  "choices": [
+   "10",
+   "45",
+   "32",
+   "40"
+  ]
+ },
+ {
+  "id": "AM18F-04",
+  "topic_tag": "rational functions",
+  "prompt": "The function f is defined by f(x) = (ax + 5)/(x − b), where a and b are constants. In the standard (x,y) coordinate plane, the graph of y = f(x) has a vertical asymptote at x = 3 and a horizontal asymptote at y = 2. What is the value of f(1) ?",
+  "choices": [
+   "-8",
+   "-3.5",
+   "-5.5",
+   "1.75"
+  ]
+ },
+ {
+  "id": "AM18F-05",
+  "topic_tag": "function transformations",
+  "prompt": "The function f has domain −2 ≤ x ≤ 6 and range 2 ≤ f(x) ≤ 8. The function g is defined by g(x) = 3 − 2f(x + 4). What is the greatest value of g(x) ?",
+  "choices": [
+   "-1",
+   "19",
+   "-13",
+   "-9"
+  ]
+ },
+ {
+  "id": "AM18F-06",
+  "topic_tag": "sequences",
+  "prompt": "In a geometric sequence in which every term is positive, the sum of the first 2 terms is 15 and the sum of the first 4 terms is 75. To the nearest tenth, what is the first term of the sequence?",
+  "choices": [
+   "5.0",
+   "1.9",
+   "4.6",
+   "3.0"
+  ]
+ },
+ {
+  "id": "AM18F-07",
+  "topic_tag": "trigonometric functions",
+  "prompt": "The function f is defined by f(θ) = 2sin²θ − sin θ − 1. What is the sum, in degrees, of all values of θ with 0° ≤ θ < 360° for which f(θ) = 0 ?",
+  "choices": [
+   "270",
+   "300",
+   "450",
+   "630"
+  ]
+ },
+ {
+  "id": "AM18F-08",
+  "topic_tag": "sequences",
+  "prompt": "For every positive integer n, the sum of the first n terms of a certain sequence is 3n² + 2n. What is the 10th term of the sequence?",
+  "choices": [
+   "112",
+   "59",
+   "53",
+   "57"
+  ]
+ },
+ {
+  "id": "AM18F-09",
+  "topic_tag": "sequences",
+  "prompt": "A sequence is defined by a₁ = 3 and a₍ₙ₊₁₎ = 1/(1 − aₙ) for every integer n ≥ 1. What is the value of the product a₁₀₀ · a₁₀₁ ?",
+  "choices": [
+   "2",
+   "-6",
+   "-3/2",
+   "-1/3"
+  ]
+ },
+ {
+  "id": "AM18G-01",
+  "topic_tag": "transformations",
+  "prompt": "In the standard (x,y) coordinate plane, point P(7, 3) is rotated 90° counterclockwise about point C(2, 1). What is the x-coordinate of the image of P ?",
+  "choices": [
+   "4",
+   "0",
+   "-3",
+   "-2"
+  ]
+ },
+ {
+  "id": "AM18G-02",
+  "topic_tag": "circles",
+  "prompt": "A sector of a circle has a central angle of 120°. The perimeter of the sector, which is the length of its arc plus the lengths of its two radii, is 40 centimeters. To the nearest square centimeter, what is the area of the sector?",
+  "choices": [
+   "100",
+   "175",
+   "382",
+   "180"
+  ]
+ },
+ {
+  "id": "AM18G-03",
+  "topic_tag": "solids",
+  "prompt": "A right circular cylinder is inscribed in a sphere with a radius of 10 centimeters, so that the circular edge of each base of the cylinder lies on the sphere. The height of the cylinder is 12 centimeters. To the nearest cubic centimeter, what is the volume of the cylinder?",
+  "choices": [
+   "3544",
+   "1659",
+   "2413",
+   "603"
+  ]
+ },
+ {
+  "id": "AM18G-04",
+  "topic_tag": "circles",
+  "prompt": "Two circles have radii of 9 centimeters and 4 centimeters, and their centers are 17 centimeters apart. A line is tangent to both circles, and both circles lie on the same side of the line. To the nearest tenth of a centimeter, what is the distance between the two points of tangency?",
+  "choices": [
+   "12.0",
+   "15.0",
+   "16.2",
+   "14.4"
+  ]
+ },
+ {
+  "id": "AM18G-05",
+  "topic_tag": "right triangles",
+  "prompt": "A rectangular sheet of paper is 15 inches long and 8 inches wide. The sheet is folded once so that one corner lands exactly on the opposite corner, and the fold is flattened to make a straight crease. To the nearest tenth of an inch, what is the length of the crease?",
+  "choices": [
+   "9.1",
+   "12.5",
+   "14.1",
+   "9.6"
+  ]
+ },
+ {
+  "id": "AM18I-01",
+  "topic_tag": "rates and time",
+  "prompt": "A flight leaves Denver at 10:35 a.m. Denver time and lands in New York at 4:50 p.m. New York time on the same day. New York time is 2 hours ahead of Denver time. The flight covers 1,620 miles. To the nearest mile per hour, what is the plane's average speed for the flight?",
+  "choices": [
+   "390",
+   "259",
+   "381",
+   "196"
+  ]
+ },
+ {
+  "id": "AM18I-02",
+  "topic_tag": "volume and unit conversion",
+  "prompt": "A rectangular patio slab is to be 18 feet long, 12 feet wide, and 4 inches thick. Concrete costs $135 per cubic yard, where 1 yard = 3 feet, and the supplier charges for exactly the volume used. What is the cost of the concrete for the slab, in dollars?",
+  "choices": [
+   "1080",
+   "432",
+   "360",
+   "3240"
+  ]
+ },
+ {
+  "id": "AM18I-03",
+  "topic_tag": "unit conversion and rates",
+  "prompt": "An oven is switched on when its temperature is 68°F, and its temperature then rises at a constant rate of 4 degrees Celsius per minute until it reaches 350°F. Temperatures are related by F = (9/5)C + 32, where F is in degrees Fahrenheit and C is in degrees Celsius. To the nearest tenth of a minute, how many minutes does the oven take to heat from 68°F to 350°F?",
+  "choices": [
+   "34.7",
+   "126.9",
+   "70.5",
+   "39.2"
+  ]
+ },
+ {
+  "id": "AM18I-04",
+  "topic_tag": "area in context",
+  "prompt": "A cake recipe is written for one rectangular pan that is 9 inches by 12 inches, and it uses 3 cups of flour. A baker will instead bake the cake in two round pans, each 9 inches in diameter, filled to the same depth as the rectangular pan would be. The amount of flour is proportional to the total pan area. To the nearest tenth of a cup, how many cups of flour should the baker use?",
+  "choices": [
+   "4.0",
+   "3.5",
+   "4.5",
+   "14.1"
+  ]
+ },
+ {
+  "id": "AM18I-05",
+  "topic_tag": "ratios and proportions",
+  "prompt": "A movie ticket cost $2.50 in a year when the consumer price index (CPI) was 130.7. The CPI is now 314.4. If the ticket price had risen exactly in proportion to the CPI, what would the ticket cost now, to the nearest cent?",
+  "choices": [
+   "$8.51",
+   "$6.01",
+   "$7.86",
+   "$7.09"
+  ]
+ },
+ {
+  "id": "AM18I-06",
+  "topic_tag": "rates",
+  "prompt": "Boxes are placed one at a time on a moving conveyor belt, one box every 1.5 seconds. The belt moves at a constant 0.8 meter per second and carries each box 30 meters to the end of the belt, where it is removed. While the belt is running steadily, about how many boxes are on the belt at any moment?",
+  "choices": [
+   "36",
+   "56",
+   "16",
+   "25"
+  ]
+ },
+ {
+  "id": "AM18I-07",
+  "topic_tag": "rates and percents",
+  "prompt": "An electric car's battery stores 75 kilowatt-hours (kWh) of energy when fully charged. The car is plugged into an 11-kilowatt charger, which supplies 11 kWh of energy each hour, when the battery is at 20% of full charge, and it is unplugged when the battery reaches 80% of full charge. Only 90% of the energy the charger supplies is stored in the battery. To the nearest minute, for how many minutes is the car plugged in?",
+  "choices": [
+   "333",
+   "273",
+   "295",
+   "270"
+  ]
+ },
+ {
+  "id": "AM18I-08",
+  "topic_tag": "area in context",
+  "prompt": "A circular fountain has a diameter of 12 feet. A paved path 3 feet wide is built around the fountain, touching its edge all the way around. Paving costs $9.50 per square foot. To the nearest dollar, what is the cost, in dollars, of paving the path?",
+  "choices": [
+   "5372",
+   "604",
+   "1612",
+   "1343"
+  ]
+ },
+ {
+  "id": "AM18I-09",
+  "topic_tag": "rates and unit conversion",
+  "prompt": "A camera's memory card has 64 gigabytes (GB) of free space, where 1 GB = 1,000 megabytes (MB). Video recorded in 4K uses 375 MB per minute, and video recorded in HD uses 130 MB per minute. Jae first records 45 minutes of 4K video. After that, what is the greatest number of whole minutes of HD video the card can still hold?",
+  "choices": [
+   "155",
+   "362",
+   "125",
+   "447"
+  ]
+ },
+ {
+  "id": "AM18I-10",
+  "topic_tag": "rates in context",
+  "prompt": "A swimmer crosses a river that is 120 meters wide. She swims at 1.5 meters per second relative to the water, always aimed straight at the opposite bank, while the current carries her downstream at 0.9 meter per second. How many meters downstream from her starting point does she reach the opposite bank?",
+  "choices": [
+   "139.9",
+   "72",
+   "180",
+   "200"
+  ]
+ },
+ {
+  "id": "AM18I-11",
+  "topic_tag": "surface area in context",
+  "prompt": "A cylindrical water tank has a diameter of 10 feet and a height of 12 feet. Its curved side and its top are to be given two coats of paint; the bottom rests on the ground and is not painted. One gallon of paint covers 350 square feet. To the nearest tenth of a gallon, how many gallons of paint are needed?",
+  "choices": [
+   "2.3",
+   "6.1",
+   "1.5",
+   "2.6"
+  ]
+ },
+ {
+  "id": "AM18I-12",
+  "topic_tag": "counting and cost",
+  "prompt": "A rectangular floor that is 12 feet by 15 feet is covered exactly with 1-foot-square tiles. Every tile that touches an edge of the floor is blue and costs $3.20; every other tile is white and costs $2.15. What is the total cost of the tiles, in dollars?",
+  "choices": [
+   "414.30",
+   "439.50",
+   "443.70",
+   "523.50"
+  ]
+ },
+ {
+  "id": "AM18S-01",
+  "topic_tag": "standard deviation",
+  "prompt": "On a chemistry test, the scores had a mean of 72 points and a standard deviation of 8 points, and Ana scored 84. On a physics test, the scores had a mean of 65 points and a standard deviation of 10 points. What score on the physics test is the same number of standard deviations above its mean as Ana's chemistry score is above the chemistry mean?",
+  "choices": [
+   "80",
+   "75.8",
+   "77",
+   "74.6"
+  ]
+ },
+ {
+  "id": "AM18S-02",
+  "topic_tag": "probability",
+  "prompt": "Two fair 6-sided dice, each numbered 1 through 6, are rolled. What is the probability that the greater of the two numbers rolled is 4 ? (If both dice show the same number, that number counts as the greater.)",
+  "choices": [
+   "7/36",
+   "4/9",
+   "1/6",
+   "1/9"
+  ]
+ },
+ {
+  "id": "AM18S-03",
+  "topic_tag": "counting",
+  "prompt": "Ten points lie in a plane. Four of the points lie on one straight line, and no three of the ten points lie on a line unless all three are among those four. How many triangles have all three of their vertices among the ten points?",
+  "choices": [
+   "116",
+   "114",
+   "96",
+   "80"
+  ]
+ },
+ {
+  "id": "AM18S-04",
+  "topic_tag": "probability",
+  "prompt": "A production line has three machines, A, B, and C, that operate independently. On any given day, the probabilities that A, B, and C are working are 0.9, 0.8, and 0.7, respectively. The line can run on a day when at least two of the three machines are working. To the nearest thousandth, what is the probability that the line can run on a given day?",
+  "choices": [
+   "0.896",
+   "0.846",
+   "0.902",
+   "0.637"
+  ]
+ }
+]

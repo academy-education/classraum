@@ -5719,6 +5719,40 @@
           "verdict": "Residuals recorded, not acted on: AM17G-01 grader A counts 2 survivors on the translation-direction bound (kills 1 and 7); grader B and I judge reading the direction IS the item's work (undoing the translation), so not counted. AM17G-04 both graders name Ptolemy (d^2 = 10*22 + 10^2) as a recall route, rare on ACT; not unanimous blind; grader A survivors 3."
         }
       }
+    },
+    {
+      "id": "act-math-v18-kept-2026-10-07",
+      "createdAt": "2026-10-07",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v18",
+      "contentSha": "a40b8648972fe55214e501d1863f16a2401c13cfa28e6cc933ace3f2775f3383",
+      "status": "shipped",
+      "note": "36 of 46 authored survive. Commissioned against next-form for ACT Math form 16 (34 items: N&Q +5, IES +9, Algebra +7, Functions +7, S&P +3, Geometry +3) plus 35% margin, bars pre-registered in ACT-MATH-V18-PREREGISTERED.md (commit c6f8d17d) before authoring. Three Claude authors (A N&Q+Algebra, B Functions+Geometry, C IES+S&P), commissioned medium/hard (no author-easy). BANK_BAND=mixed declared at commission. No repairs. Form 16 NOT bought: N&Q kept 4 of 5 needed, IES 8 of 9.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "a40b8648972fe55214e501d1863f16a2401c13cfa28e6cc933ace3f2775f3383",
+          "verdict": "46 authored, all exactly 4 choices (act-test.ts math choiceCount 4). Authored set (my re-run of act-math-v18-preflight.sh on each file and the merged 46, sha 3f69ef323b139b3e): sandbox 46/46, distractors 138/138; symbolic hub no structure, numeric hub 2 structured of 46 key-is-hub 0.0%; key at an extreme 20/46 = 43.5% (bar 40.0%); check-key-magnitude consistent with live (z 0.75/-0.93/0.18); 0/46 unique-composite keys; stem echo 0/45; sign-pair, dead-options, key-singleton exit 0; stem-duplicates 0 vs live act; 0 internal duplicate option sets. Kept 36 (sha a40b8648972fe552): sandbox 36/36, 108/108; key at an extreme 16/36 = 44.4% PASS; magnitude consistent (z 1.31/-1.32/0.04); 0 composites; 0 echoes. Duplicate scan (act-math-v16-dupscan.mjs, unchanged) against all 2,684 live maths rows in every family, paged: 19 flags + 41 near read by hand; 1 mechanism duplicate (AM18F-05 vs sat/math-v6-adv-hard 9b4c06b0, range of k - 2f), dropped."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "a40b8648972fe55214e501d1863f16a2401c13cfa28e6cc933ace3f2775f3383",
+          "verdict": "Options-only attack (act-math-v18-attack-draw.mjs, blind sha df0c14e10bd8705f), three Claude samples (pairwise agreement 72.5% vs 28.5% if independent - one solver sampled three times), 46 candidates interleaved 1:1 by domain with 46 live act/math items (v16/v17/v18 excluded), keys flat within each arm (26.1% best-fixed each). Candidate 48/138 = 34.8% (margin +8.7) vs live control 50/138 = 36.2% (margin +10.1): candidate minus control -1.4 (hold bar +10; control margin under the +25 invalid line). Unanimous-correct 11/46 = 23.9% vs 11/46 = 23.9% (+0.0, hold bar +15). Mechanism-labelled 45.9% vs guess 33.9% pooled."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "a40b8648972fe55214e501d1863f16a2401c13cfa28e6cc933ace3f2775f3383",
+          "verdict": "Two independent Claude graders on make-grade-render with the authors bounds and distractor_kind stripped before rendering (render sha 7014012b20b23f9b, quoted by both), with dedicated limiting_case and neighbouring_setup fields. 92 of 92 picks equal the key; 0 second-defensible. Dropped 10: survivors < 3 on a bound I confirmed - AM18N-02 (1), AM18N-04 (2), AM18A-03 (2), AM18G-02 (1), AM18I-03 (2), AM18I-04 (2), AM18I-05 (1); one dead + one weak by both - AM18N-07; unanimous + grader-named limiting case - AM18I-07; mechanism duplicate - AM18F-05. Of the 9 quality drops, 8 involve a limiting-case or neighbouring-setup option ON or beyond a free bound. Difficulty banked from graders (agree 32/36; one apart -> easier): easy 8 / medium 26 / hard 2, against authors 0 / 23 / 13 on the same 36."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "a40b8648972fe55214e501d1863f16a2401c13cfa28e6cc933ace3f2775f3383",
+          "verdict": "Residuals recorded, not acted on: AM18I-10 grader A counts 1 survivor via drift/width = 0.9/1.5 < 1; grader B 4 and I judge that ratio IS the item work, not a free bound; 180 weak by both. AM18F-06 both graders note to the nearest tenth on an exact key 5.0 (not an error; pushes away from the key). AM18N-03 grader A names a modulus shortcut (|a+5i||2-i| = 25), not unanimous. AM18A-02 grader B: 9 (strict) and 12 (includes x = 5) are neighbouring setups bracketing 11, with 10 also between so not a forced elimination. AM18F-09 unanimous blind; grader B notes three options are the 3-cycle consecutive products but names no route to the key without the phase; kept under rule 6. Confirmation standard for the two-weak rule: a distractor counts as confirmed weak only if both graders name it or it sits on a bound I confirmed; graders split on which option is weak on 9 kept items."
+        }
+      }
     }
   ],
   "auditedCohorts": [

@@ -1,0 +1,494 @@
+[
+ {
+  "id": "AM18I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "rates and time",
+  "subskill": "average speed from local departure and arrival times in different time zones",
+  "prompt": "A flight leaves Denver at 10:35 a.m. Denver time and lands in New York at 4:50 p.m. New York time on the same day. New York time is 2 hours ahead of Denver time. The flight covers 1,620 miles. To the nearest mile per hour, what is the plane's average speed for the flight?",
+  "choices": [
+   "381",
+   "259",
+   "390",
+   "196"
+  ],
+  "correct_answer": "381",
+  "explanation": "Put both times on one clock. 4:50 p.m. New York time is 2:50 p.m. Denver time, so the flight lasts from 10:35 a.m. to 2:50 p.m., which is 4 hours 15 minutes = 4.25 hours. The average speed is 1,620 ÷ 4.25 ≈ 381.2, or 381 miles per hour. The option \"259\" ignores the time difference and uses the clock gap of 6 hours 15 minutes: 1,620 ÷ 6.25. The option \"196\" shifts the time the wrong way, adding the 2 hours to get 8 hours 15 minutes: 1,620 ÷ 8.25. The option \"390\" finds 4 hours 15 minutes correctly but writes it as 4.15 hours: 1,620 ÷ 4.15.",
+  "solve": "const dep=10*60+35, arrNY=16*60+50, shift=120; const t=(arrNY-shift-dep)/60; return String(Math.round(1620/t));",
+  "distractor_solve": {
+   "196": "const dep=10*60+35, arrNY=16*60+50, shift=120; return String(Math.round(1620/((arrNY+shift-dep)/60)));",
+   "259": "const dep=10*60+35, arrNY=16*60+50; return String(Math.round(1620/((arrNY-dep)/60)));",
+   "390": "return String(Math.round(1620/4.15));"
+  },
+  "bounds": [
+   "v > 0",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "196": "wrong procedure: time-zone shift applied in the wrong direction. (a) no; (b) no adjacent problem yields it. Strictly inside (0, inf).",
+   "259": "wrong procedure: no time-zone conversion (clock gap used). (a) not a parameter extreme; (b) it is the answer if both cities shared a clock (neighbouring setup), but the stem gives no free bound placing the key on one side of it: deciding that an eastbound clock gap overstates the flight time IS the item's work. Kept.",
+   "390": "wrong procedure: 4 h 15 min written as 4.15 h. (a) no; (b) no. Lies just above the key, not on any bound."
+  }
+ },
+ {
+  "id": "AM18I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "volume and unit conversion",
+  "subskill": "cost of a concrete slab priced per cubic yard from dimensions in feet and inches",
+  "prompt": "A rectangular patio slab is to be 18 feet long, 12 feet wide, and 4 inches thick. Concrete costs $135 per cubic yard, where 1 yard = 3 feet, and the supplier charges for exactly the volume used. What is the cost of the concrete for the slab, in dollars?",
+  "choices": [
+   "360",
+   "432",
+   "1080",
+   "3240"
+  ],
+  "correct_answer": "360",
+  "explanation": "The thickness is 4 inches = 4/12 = 1/3 foot, so the volume is 18 × 12 × 1/3 = 72 cubic feet. One cubic yard is 3 × 3 × 3 = 27 cubic feet, so the slab is 72 ÷ 27 = 8/3 cubic yards and costs (8/3)(135) = $360. The option \"432\" writes 4 inches as 0.4 foot, giving 86.4 cubic feet. The option \"1080\" converts with 9 cubic feet per cubic yard, the square-yard factor, giving 8 cubic yards. The option \"3240\" converts the price instead of the volume and divides it by 3 rather than 27, charging $45 per cubic foot for 72 cubic feet.",
+  "solve": "const v=18*12*(4/12); return String(Math.round(v/27*135));",
+  "distractor_solve": {
+   "432": "const v=18*12*0.4; return String(Math.round(v/27*135));",
+   "1080": "const v=18*12*(4/12); return String(Math.round(v/9*135));",
+   "3240": "const v=18*12*(4/12); return String(Math.round(v*(135/3)));"
+  },
+  "bounds": [
+   "v > 0",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "432": "wrong procedure: inches read as tenths of a foot. (a) no; (b) no. Inside (0, inf); no stem bound reaches it.",
+   "1080": "wrong procedure: square-yard factor 9 used for cubic yards. (a) no; (b) no.",
+   "3240": "wrong procedure: price converted with a linear factor 3. (a) no; (b) no. Key is the smallest option here by design (errors overshoot)."
+  }
+ },
+ {
+  "id": "AM18I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "unit conversion and rates",
+  "subskill": "converting a temperature DIFFERENCE between Fahrenheit and Celsius to use a Celsius rate",
+  "prompt": "An oven is switched on when its temperature is 68°F, and its temperature then rises at a constant rate of 4 degrees Celsius per minute until it reaches 350°F. Temperatures are related by F = (9/5)C + 32, where F is in degrees Fahrenheit and C is in degrees Celsius. To the nearest tenth of a minute, how many minutes does the oven take to heat from 68°F to 350°F?",
+  "choices": [
+   "70.5",
+   "39.2",
+   "126.9",
+   "34.7"
+  ],
+  "correct_answer": "39.2",
+  "explanation": "Convert both temperatures: 68°F is (68 − 32)(5/9) = 20°C and 350°F is (350 − 32)(5/9) ≈ 176.67°C. The oven must rise about 156.67 Celsius degrees at 4 per minute, which takes 156.67 ÷ 4 ≈ 39.2 minutes. (Equivalently, a change of 282 Fahrenheit degrees is a change of 282 × 5/9 Celsius degrees; the 32 cancels in a difference.) The option \"70.5\" applies the Celsius rate to the Fahrenheit change, 282 ÷ 4. The option \"34.7\" converts the 282-degree difference as if it were a temperature, subtracting 32 first: (282 − 32)(5/9) ÷ 4. The option \"126.9\" converts the difference in the wrong direction, multiplying by 9/5: 282 × 9/5 ÷ 4.",
+  "solve": "const c=f=>(f-32)*5/9; return String(Math.round((c(350)-c(68))/4*10)/10);",
+  "distractor_solve": {
+   "70.5": "return String(Math.round((350-68)/4*10)/10);",
+   "34.7": "return String(Math.round(((350-68)-32)*5/9/4*10)/10);",
+   "126.9": "return String(Math.round((350-68)*9/5/4*10)/10);"
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "distractor_kind": {
+   "70.5": "wrong procedure: Celsius rate applied to a Fahrenheit change. (a) no; (b) it is the answer if the rate were 4 F-degrees per minute, but the stem forces no bound on that side the student can read without converting units, which is the item's work.",
+   "34.7": "wrong procedure: the -32 offset applied to a difference. (a) no; (b) no. Strictly inside (0, inf).",
+   "126.9": "wrong procedure: conversion factor inverted (9/5 for 5/9). (a) no; (b) no."
+  }
+ },
+ {
+  "id": "AM18I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "area in context",
+  "subskill": "scaling a recipe by pan area when one rectangular pan is replaced by two round pans",
+  "prompt": "A cake recipe is written for one rectangular pan that is 9 inches by 12 inches, and it uses 3 cups of flour. A baker will instead bake the cake in two round pans, each 9 inches in diameter, filled to the same depth as the rectangular pan would be. The amount of flour is proportional to the total pan area. To the nearest tenth of a cup, how many cups of flour should the baker use?",
+  "choices": [
+   "3.5",
+   "4.5",
+   "14.1",
+   "4.0"
+  ],
+  "correct_answer": "3.5",
+  "explanation": "The rectangular pan has area 9 × 12 = 108 square inches. Each round pan has radius 4.5 inches and area π(4.5)² ≈ 63.62 square inches, so the two together have about 127.23 square inches. The flour scales by area: 3 × 127.23/108 ≈ 3.53, or 3.5 cups. The option \"14.1\" uses the 9-inch diameter as the radius, giving 2π(9)² ≈ 508.9 square inches. The option \"4.5\" treats each round pan as a 9-inch square, 2 × 81 = 162 square inches. The option \"4.0\" scales by perimeter instead of area: the two circumferences total 2 × 9π ≈ 56.55 inches against the rectangle's 42 inches, and 3 × 56.55/42 ≈ 4.0.",
+  "solve": "const rect=9*12, rounds=2*Math.PI*4.5**2; return String(Math.round(3*rounds/rect*10)/10);",
+  "distractor_solve": {
+   "14.1": "const rect=9*12, rounds=2*Math.PI*9**2; return String(Math.round(3*rounds/rect*10)/10);",
+   "4.5": "const rect=9*12, rounds=2*9*9; return String(Math.round(3*rounds/rect*10)/10);",
+   "4.0": "const per=2*(9+12), circ=2*Math.PI*9; return String(Math.round(3*circ/per*10)/10);"
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "distractor_kind": {
+   "14.1": "wrong procedure: diameter used as radius. (a) no; (b) no. Inside (0, inf).",
+   "4.5": "wrong procedure: circle area replaced by the circumscribed square d^2. (a) no; (b) no; the stem gives no inscribed/circumscribed bound.",
+   "4.0": "wrong procedure: scaled by perimeter rather than area. (a) no; (b) no. Key smallest here (errors overshoot)."
+  }
+ },
+ {
+  "id": "AM18I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "ratios and proportions",
+  "subskill": "adjusting a past price for inflation in proportion to a price index",
+  "prompt": "A movie ticket cost $2.50 in a year when the consumer price index (CPI) was 130.7. The CPI is now 314.4. If the ticket price had risen exactly in proportion to the CPI, what would the ticket cost now, to the nearest cent?",
+  "choices": [
+   "$7.09",
+   "$6.01",
+   "$8.51",
+   "$7.86"
+  ],
+  "correct_answer": "$6.01",
+  "explanation": "Rising in proportion to the CPI means the price is multiplied by the same factor as the index: 314.4/130.7 ≈ 2.4055. The price is 2.50 × 2.4055 ≈ $6.01. The option \"$7.09\" treats the 183.7-point rise in the index as a 183.7% increase: 2.50 × 2.837. The option \"$7.86\" treats the current CPI as a percent of the old price, as if the old index were 100: 2.50 × 3.144. The option \"$8.51\" adds the scaled price to the original price instead of replacing it: 2.50 + 2.50 × 2.4055.",
+  "solve": "return String(Math.round(2.5*314.4/130.7*100)/100);",
+  "distractor_solve": {
+   "$7.09": "return String(Math.round(2.5*(1+(314.4-130.7)/100)*100)/100);",
+   "$7.86": "return String(Math.round(2.5*314.4/100*100)/100);",
+   "$8.51": "return String(Math.round((2.5+2.5*314.4/130.7)*100)/100);"
+  },
+  "bounds": [
+   "v > 2.5"
+  ],
+  "distractor_kind": {
+   "$7.09": "wrong procedure: index points read as percent. (a) no; (b) no. Above the key, inside (2.50, inf). All three distractors were placed ABOVE the doubling line ($5.00) so the \"CPI more than doubled\" estimate kills none of them.",
+   "$7.86": "wrong procedure: old index taken as 100. (a) no; (b) it is the answer for a base-100 index, a different problem, but the stem names 130.7 and no free bound separates the two.",
+   "$8.51": "wrong procedure: scaled amount added to the original. (a) no; (b) no."
+  }
+ },
+ {
+  "id": "AM18I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates",
+  "subskill": "number of objects on a moving belt from a placement interval and belt speed",
+  "prompt": "Boxes are placed one at a time on a moving conveyor belt, one box every 1.5 seconds. The belt moves at a constant 0.8 meter per second and carries each box 30 meters to the end of the belt, where it is removed. While the belt is running steadily, about how many boxes are on the belt at any moment?",
+  "choices": [
+   "16",
+   "36",
+   "25",
+   "56"
+  ],
+  "correct_answer": "25",
+  "explanation": "In 1.5 seconds the belt moves 0.8 × 1.5 = 1.2 meters, so consecutive boxes are 1.2 meters apart. A 30-meter stretch holds about 30 ÷ 1.2 = 25 boxes. (Equivalently, each box rides for 30 ÷ 0.8 = 37.5 seconds, and one box is added every 1.5 seconds, so 37.5 ÷ 1.5 = 25.) The option \"16\" multiplies the length by the speed and divides by the interval: 30 × 0.8 ÷ 1.5. The option \"56\" uses a spacing of 0.8 ÷ 1.5 ≈ 0.53 meter, giving 30 ÷ 0.533 ≈ 56. The option \"36\" multiplies all three numbers, 30 × 0.8 × 1.5.",
+  "solve": "return String(Math.round(30/(0.8*1.5)));",
+  "distractor_solve": {
+   "16": "return String(Math.round(30*0.8/1.5));",
+   "36": "return String(Math.round(30*0.8*1.5));",
+   "56": "return String(Math.round(30/(0.8/1.5)));"
+  },
+  "bounds": [
+   "v > 0",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "16": "wrong procedure: speed divided by the interval and multiplied into the length. (a) no; (b) no.",
+   "36": "wrong procedure: multiplies all three givens. (a) no; (b) no. None is a parameter extreme; no stem bound on the count.",
+   "56": "wrong procedure: spacing computed as speed / interval. (a) no; (b) no."
+  }
+ },
+ {
+  "id": "AM18I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "rates and percents",
+  "subskill": "charging time when only a percent of supplied energy is stored, between two charge levels",
+  "prompt": "An electric car's battery stores 75 kilowatt-hours (kWh) of energy when fully charged. The car is plugged into an 11-kilowatt charger, which supplies 11 kWh of energy each hour, when the battery is at 20% of full charge, and it is unplugged when the battery reaches 80% of full charge. Only 90% of the energy the charger supplies is stored in the battery. To the nearest minute, for how many minutes is the car plugged in?",
+  "choices": [
+   "295",
+   "270",
+   "333",
+   "273"
+  ],
+  "correct_answer": "273",
+  "explanation": "The battery must gain 80% − 20% = 60% of 75 kWh, which is 45 kWh. Because only 90% of the supplied energy is stored, the charger must supply 45 ÷ 0.9 = 50 kWh, which takes 50 ÷ 11 ≈ 4.545 hours ≈ 272.7, or 273 minutes. The option \"270\" adds 10% to the lossless time instead of dividing by 0.9: (45 ÷ 11)(1.1) = 4.5 hours. The option \"295\" rounds the time to 4.55 hours and reads it as 4 hours 55 minutes. The option \"333\" subtracts 20 kWh from 75 kWh instead of taking 60% of 75, so it charges 55 kWh: 55 ÷ 0.9 ÷ 11 ≈ 5.56 hours.",
+  "solve": "const need=(0.8-0.2)*75; return String(Math.round(need/0.9/11*60));",
+  "distractor_solve": {
+   "270": "const need=(0.8-0.2)*75; return String(Math.round(need/11*1.1*60));",
+   "295": "const h=Math.round((0.8-0.2)*75/0.9/11*100)/100; const whole=Math.floor(h); return String(whole*60+Math.round((h-whole)*100));",
+   "333": "const need=75-20; return String(Math.round(need/0.9/11*60));"
+  },
+  "bounds": [
+   "v > 245",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "270": "wrong procedure: loss applied as +10% of time rather than /0.9. (a) it is NOT the lossless value (245 min, deliberately absent); (b) no adjacent problem gives it. Above the lossless bound 245, so it survives the one free bound (charging with losses takes longer than lossless).",
+   "295": "wrong procedure: decimal hours read as h:mm. (a) no; (b) no.",
+   "333": "wrong procedure: percent of capacity read as kWh. (a) no; (b) no. The from-empty value (364) was deliberately not used."
+  }
+ },
+ {
+  "id": "AM18I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "area in context",
+  "subskill": "cost of a circular ring path from the inner diameter and the path width",
+  "prompt": "A circular fountain has a diameter of 12 feet. A paved path 3 feet wide is built around the fountain, touching its edge all the way around. Paving costs $9.50 per square foot. To the nearest dollar, what is the cost, in dollars, of paving the path?",
+  "choices": [
+   "1612",
+   "1343",
+   "5372",
+   "604"
+  ],
+  "correct_answer": "1343",
+  "explanation": "The fountain has radius 6 feet, so the outer edge of the path has radius 6 + 3 = 9 feet. The path is the ring between the circles: π(9²) − π(6²) = 45π ≈ 141.37 square feet, which costs 141.37 × 9.50 ≈ 1,343 dollars. The option \"1612\" approximates the ring as a straight strip whose length is the OUTER circumference, 2π(9) × 3 = 54π square feet. The option \"604\" adds the path width to the diameter instead of to the radius, using an outer radius of 7.5 feet: π(7.5² − 6²). The option \"5372\" uses the diameters 18 and 12 as if they were radii: π(18² − 12²) = 180π.",
+  "solve": "return String(Math.round(Math.PI*(9**2-6**2)*9.5));",
+  "distractor_solve": {
+   "604": "return String(Math.round(Math.PI*(7.5**2-6**2)*9.5));",
+   "1612": "return String(Math.round(2*Math.PI*9*3*9.5));",
+   "5372": "return String(Math.round(Math.PI*(18**2-12**2)*9.5));"
+  },
+  "bounds": [
+   "v > 0",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "604": "wrong procedure: width added to the diameter. (a) no; (b) no. Below the key; nothing in the stem bounds the ring area from below except 0.",
+   "1612": "wrong procedure: strip approximation using the OUTER circumference. (a) no; (b) it is a neighbouring approximation; its inner-circumference twin (1074, which with it would bracket the key) is deliberately absent, and the earlier draft option 269 was removed because 1074 + 269 = key (composition check). No stem bound reaches it.",
+   "5372": "wrong procedure: diameters used as radii. (a) no; (b) no."
+  }
+ },
+ {
+  "id": "AM18I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates and unit conversion",
+  "subskill": "remaining recording time after storage is used at a different rate",
+  "prompt": "A camera's memory card has 64 gigabytes (GB) of free space, where 1 GB = 1,000 megabytes (MB). Video recorded in 4K uses 375 MB per minute, and video recorded in HD uses 130 MB per minute. Jae first records 45 minutes of 4K video. After that, what is the greatest number of whole minutes of HD video the card can still hold?",
+  "choices": [
+   "362",
+   "125",
+   "447",
+   "155"
+  ],
+  "correct_answer": "362",
+  "explanation": "The card holds 64 × 1,000 = 64,000 MB. The 4K video uses 45 × 375 = 16,875 MB, leaving 47,125 MB. At 130 MB per minute that is 47,125 ÷ 130 = 362.5 minutes, so the greatest whole number of minutes is 362. The option \"447\" finds the HD minutes for the empty card, 64,000 ÷ 130 ≈ 492.3, and subtracts the 45 minutes of 4K as if a minute were a minute at either quality. The option \"155\" swaps the two rates: (64,000 − 45 × 130) ÷ 375. The option \"125\" divides the card by the 4K rate and subtracts 45 minutes: 64,000 ÷ 375 − 45 ≈ 125.7.",
+  "solve": "return String(Math.floor((64*1000-45*375)/130));",
+  "distractor_solve": {
+   "125": "return String(Math.floor(64*1000/375-45));",
+   "155": "return String(Math.floor((64*1000-45*130)/375));",
+   "447": "return String(Math.floor(64*1000/130-45));"
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v >= 0",
+   "v <= 492"
+  ],
+  "distractor_kind": {
+   "125": "wrong procedure: card measured in 4K minutes. (a) no; (b) no.",
+   "155": "wrong procedure: rates swapped. (a) no; (b) no.",
+   "447": "wrong procedure: minutes subtracted across qualities. (a) not the empty-card value (492, absent); (b) no. Inside [0, 492]; it is the option ABOVE the key on this greatest-question (13j)."
+  }
+ },
+ {
+  "id": "AM18I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates in context",
+  "subskill": "downstream drift of a swimmer heading straight across a river",
+  "prompt": "A swimmer crosses a river that is 120 meters wide. She swims at 1.5 meters per second relative to the water, always aimed straight at the opposite bank, while the current carries her downstream at 0.9 meter per second. How many meters downstream from her starting point does she reach the opposite bank?",
+  "choices": [
+   "180",
+   "72",
+   "139.9",
+   "200"
+  ],
+  "correct_answer": "72",
+  "explanation": "Her swimming carries her across at 1.5 meters per second, so the crossing takes 120 ÷ 1.5 = 80 seconds. During those 80 seconds the current carries her 0.9 × 80 = 72 meters downstream. The option \"200\" swaps the two speeds: 120 × 1.5 ÷ 0.9. The option \"180\" uses the difference of the speeds for the crossing, 120 ÷ (1.5 − 0.9) = 200 seconds, then multiplies by 0.9. The option \"139.9\" is the length of her actual path, √(120² + 72²), not the downstream distance.",
+  "solve": "const t=120/1.5; return String(0.9*t);",
+  "distractor_solve": {
+   "180": "return String(120/(1.5-0.9)*0.9);",
+   "200": "return String(120*1.5/0.9);",
+   "139.9": "const d=120/1.5*0.9; return String(Math.round(Math.hypot(120,d)*10)/10);"
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "distractor_kind": {
+   "180": "wrong procedure: relative speed (difference) used for the crossing time. (a) no; (b) no.",
+   "200": "wrong procedure: speeds swapped in the ratio. (a) no; (b) no.",
+   "139.9": "neighbouring quantity: the path length rather than the drift. (b) YES, the answer to \"how far does she travel\"; the key is smaller than it only after computing the drift (it is the hypotenuse of a triangle whose leg is the key), so no free stem bound forces the key below it. Kept; flagged for the graders."
+  }
+ },
+ {
+  "id": "AM18I-11",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "surface area in context",
+  "subskill": "paint for the curved side and top of a cylindrical tank, two coats",
+  "prompt": "A cylindrical water tank has a diameter of 10 feet and a height of 12 feet. Its curved side and its top are to be given two coats of paint; the bottom rests on the ground and is not painted. One gallon of paint covers 350 square feet. To the nearest tenth of a gallon, how many gallons of paint are needed?",
+  "choices": [
+   "2.6",
+   "1.5",
+   "6.1",
+   "2.3"
+  ],
+  "correct_answer": "2.6",
+  "explanation": "The radius is 5 feet. The curved side has area 2π(5)(12) = 120π square feet and the top has area π(5²) = 25π square feet, for 145π ≈ 455.5 square feet. Two coats cover 2 × 455.5 = 911.1 square feet, which takes 911.1 ÷ 350 ≈ 2.6 gallons. The option \"6.1\" uses the diameter 10 as the radius: 2π(10)(12) + π(10²) = 340π. The option \"2.3\" computes the top as πd = 10π instead of πr². The option \"1.5\" computes the curved side as πrh = 60π, dropping the factor 2: (60π + 25π) × 2 ÷ 350.",
+  "solve": "const r=5,h=12; const a=2*Math.PI*r*h+Math.PI*r*r; return String(Math.round(2*a/350*10)/10);",
+  "distractor_solve": {
+   "6.1": "const r=10,h=12; const a=2*Math.PI*r*h+Math.PI*r*r; return String(Math.round(2*a/350*10)/10);",
+   "2.3": "const r=5,h=12; const a=2*Math.PI*r*h+Math.PI*10; return String(Math.round(2*a/350*10)/10);",
+   "1.5": "const r=5,h=12; const a=Math.PI*r*h+Math.PI*r*r; return String(Math.round(2*a/350*10)/10);"
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "distractor_kind": {
+   "6.1": "wrong procedure: diameter as radius. (a) no; (b) no.",
+   "2.3": "wrong procedure: top area as pi*d. (a) no; (b) no. It is NOT the one-coat value or the no-top value (both absent).",
+   "1.5": "wrong procedure: lateral area missing its factor 2. (a) no; (b) no."
+  }
+ },
+ {
+  "id": "AM18I-12",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "counting and cost",
+  "subskill": "cost of a floor whose edge tiles and inner tiles are priced differently",
+  "prompt": "A rectangular floor that is 12 feet by 15 feet is covered exactly with 1-foot-square tiles. Every tile that touches an edge of the floor is blue and costs $3.20; every other tile is white and costs $2.15. What is the total cost of the tiles, in dollars?",
+  "choices": [
+   "443.70",
+   "414.30",
+   "523.50",
+   "439.50"
+  ],
+  "correct_answer": "439.50",
+  "explanation": "The floor uses 12 × 15 = 180 tiles. The white tiles form a rectangle 2 tiles shorter in each direction, 10 × 13 = 130 tiles, so 180 − 130 = 50 tiles are blue. The cost is 50(3.20) + 130(2.15) = 160.00 + 279.50 = 439.50 dollars. The option \"443.70\" counts the blue tiles as 2(12) + 2(15) = 54, counting each corner tile twice, and leaves 126 white. The option \"414.30\" makes the white rectangle only 1 tile shorter in each direction, 11 × 14 = 154, leaving 26 blue. The option \"523.50\" keeps the correct counts but swaps the two prices.",
+  "solve": "const all=12*15, white=(12-2)*(15-2), blue=all-white; return String(Math.round((blue*3.2+white*2.15)*100)/100);",
+  "distractor_solve": {
+   "443.70": "const blue=2*12+2*15, white=12*15-blue; return String(Math.round((blue*3.2+white*2.15)*100)/100);",
+   "414.30": "const white=(12-1)*(15-1), blue=12*15-white; return String(Math.round((blue*3.2+white*2.15)*100)/100);",
+   "523.50": "const white=(12-2)*(15-2), blue=12*15-white; return String(Math.round((blue*2.15+white*3.2)*100)/100);"
+  },
+  "bounds": [
+   "v > 387",
+   "v < 576"
+  ],
+  "distractor_kind": {
+   "443.70": "wrong procedure: corners double-counted. (a) no; (b) no. Inside (all-white 387, all-blue 576).",
+   "414.30": "wrong procedure: border removed once instead of twice per dimension. (a) no; (b) no.",
+   "523.50": "wrong procedure: prices swapped. (a) no; (b) no. All-white and all-blue limiting values deliberately absent."
+  }
+ },
+ {
+  "id": "AM18S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "standard deviation",
+  "subskill": "matching a relative standing (standard deviations above the mean) across two distributions",
+  "prompt": "On a chemistry test, the scores had a mean of 72 points and a standard deviation of 8 points, and Ana scored 84. On a physics test, the scores had a mean of 65 points and a standard deviation of 10 points. What score on the physics test is the same number of standard deviations above its mean as Ana's chemistry score is above the chemistry mean?",
+  "choices": [
+   "77",
+   "74.6",
+   "80",
+   "75.8"
+  ],
+  "correct_answer": "80",
+  "explanation": "Ana's score is 84 − 72 = 12 points above the mean, which is 12 ÷ 8 = 1.5 standard deviations. On the physics test, 1.5 standard deviations is 1.5 × 10 = 15 points, so the score is 65 + 15 = 80. The option \"77\" keeps the same 12-point gap above the physics mean. The option \"75.8\" keeps the same ratio of score to mean: 65 × 84/72. The option \"74.6\" rescales the 12-point gap by 8/10 instead of 10/8: 65 + 12(0.8).",
+  "solve": "const z=(84-72)/8; return String(65+z*10);",
+  "distractor_solve": {
+   "77": "return String(65+(84-72));",
+   "75.8": "return String(Math.round(65*84/72*10)/10);",
+   "74.6": "return String(Math.round((65+(84-72)*8/10)*10)/10);"
+  },
+  "bounds": [
+   "v > 65"
+  ],
+  "distractor_kind": {
+   "77": "wrong procedure: equal raw gap instead of equal standardized gap. (a) no; (b) no.",
+   "75.8": "wrong procedure: proportional to the mean. (a) no; (b) no.",
+   "74.6": "wrong procedure: SD ratio inverted. (a) no; (b) no. All above the physics mean 65 (the one stem bound). Key largest here by design."
+  }
+ },
+ {
+  "id": "AM18S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "probability",
+  "subskill": "probability that the larger of two dice equals a given value",
+  "prompt": "Two fair 6-sided dice, each numbered 1 through 6, are rolled. What is the probability that the greater of the two numbers rolled is 4 ? (If both dice show the same number, that number counts as the greater.)",
+  "choices": [
+   "1/9",
+   "4/9",
+   "1/6",
+   "7/36"
+  ],
+  "correct_answer": "7/36",
+  "explanation": "Of the 36 equally likely outcomes, the greater number is 4 exactly when both dice show at most 4 but not both show at most 3: 4 × 4 − 3 × 3 = 16 − 9 = 7 outcomes ((4,1), (4,2), (4,3), (1,4), (2,4), (3,4), (4,4)). The probability is 7/36. The option \"1/6\" counts only the 6 outcomes with exactly one 4 and leaves out (4, 4). The option \"1/9\" counts only the 4 outcomes in which the first die is the 4 and the second is at most 4, forgetting that the 4 can be on either die. The option \"4/9\" counts the 16 outcomes in which both dice are at most 4, without removing those whose greater number is less than 4.",
+  "solve": "let n=0; for(let a=1;a<=6;a++)for(let b=1;b<=6;b++) if(Math.max(a,b)===4) n++; return String(n/36);",
+  "distractor_solve": {
+   "1/6": "let n=0; for(let a=1;a<=6;a++)for(let b=1;b<=6;b++) if(Math.max(a,b)===4 && a!==b) n++; return String(n/36);",
+   "1/9": "let n=0; for(let b=1;b<=6;b++) if(b<=4) n++; return String(n/36);",
+   "4/9": "let n=0; for(let a=1;a<=6;a++)for(let b=1;b<=6;b++) if(a<=4&&b<=4) n++; return String(n/36);"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 1"
+  ],
+  "distractor_kind": {
+   "1/6": "wrong procedure: the double (4,4) omitted. (a) no; (b) no.",
+   "1/9": "wrong procedure: order ignored, one die fixed as the 4. (a) no; (b) no.",
+   "4/9": "neighbouring event P(max <= 4). (b) YES. Key < it, but seeing that needs the count 16/36 and the subtraction, i.e. the item's work; no stem-forced numeric bound. The other neighbour, P(at least one 4) = 11/36, was deliberately left out so two neighbours do not bracket the key. Options avoid the 6-7-8 ladder."
+  }
+ },
+ {
+  "id": "AM18S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "counting",
+  "subskill": "counting triangles from points when some of the points are collinear",
+  "prompt": "Ten points lie in a plane. Four of the points lie on one straight line, and no three of the ten points lie on a line unless all three are among those four. How many triangles have all three of their vertices among the ten points?",
+  "choices": [
+   "80",
+   "116",
+   "96",
+   "114"
+  ],
+  "correct_answer": "116",
+  "explanation": "Any 3 of the 10 points form a triangle unless all 3 come from the 4 collinear points. There are C(10, 3) = 120 ways to choose 3 points and C(4, 3) = 4 collinear choices, so there are 120 − 4 = 116 triangles. (By cases: none of the four, C(6, 3) = 20; one of the four, 4·C(6, 2) = 60; two of the four, C(4, 2)·6 = 36; total 116.) The option \"114\" subtracts C(4, 2) = 6 instead of C(4, 3). The option \"80\" leaves out the triangles that use two of the collinear points: 20 + 60. The option \"96\" leaves out the triangles that use none of them: 60 + 36.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(10,3)-C(4,3));",
+  "distractor_solve": {
+   "80": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(6,3)+4*C(6,2));",
+   "96": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(4*C(6,2)+C(4,2)*6);",
+   "114": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(10,3)-C(4,2));"
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v > 0",
+   "v < 120"
+  ],
+  "distractor_kind": {
+   "80": "wrong procedure: one case of the split dropped. (a) no; (b) no.",
+   "96": "wrong procedure: another case dropped. (a) no; (b) no. The no-collinearity value C(10,3)=120 (limiting case) is deliberately absent; every option is strictly below it.",
+   "114": "wrong procedure: subtracts pairs not triples. (a) no; (b) no. Below 120."
+  }
+ },
+ {
+  "id": "AM18S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability",
+  "subskill": "probability that at least two of three independent events with different probabilities occur",
+  "prompt": "A production line has three machines, A, B, and C, that operate independently. On any given day, the probabilities that A, B, and C are working are 0.9, 0.8, and 0.7, respectively. The line can run on a day when at least two of the three machines are working. To the nearest thousandth, what is the probability that the line can run on a given day?",
+  "choices": [
+   "0.902",
+   "0.896",
+   "0.637",
+   "0.846"
+  ],
+  "correct_answer": "0.902",
+  "explanation": "Add the probabilities of the disjoint ways at least two machines work. All three: (0.9)(0.8)(0.7) = 0.504. Exactly two: only C down, (0.9)(0.8)(0.3) = 0.216; only B down, (0.9)(0.2)(0.7) = 0.126; only A down, (0.1)(0.8)(0.7) = 0.056. The total is 0.504 + 0.216 + 0.126 + 0.056 = 0.902. The option \"0.846\" leaves out the case in which A is the machine that is down. The option \"0.896\" replaces the three probabilities by their average, 0.8, and uses 3(0.8)²(0.2) + (0.8)³. The option \"0.637\" averages the three pairwise products, (0.72 + 0.63 + 0.56)/3.",
+  "solve": "const a=.9,b=.8,c=.7; const p=a*b*c+a*b*(1-c)+a*(1-b)*c+(1-a)*b*c; return String(Math.round(p*1000)/1000);",
+  "distractor_solve": {
+   "0.846": "const a=.9,b=.8,c=.7; return String(Math.round((a*b*c+a*b*(1-c)+a*(1-b)*c)*1000)/1000);",
+   "0.896": "const p=(.9+.8+.7)/3; return String(Math.round((3*p*p*(1-p)+p**3)*1000)/1000);",
+   "0.637": "const a=.9,b=.8,c=.7; return String(Math.round((a*b+a*c+b*c)/3*1000)/1000);"
+  },
+  "bounds": [
+   "v > 0.504",
+   "v < 0.994"
+  ],
+  "distractor_kind": {
+   "0.846": "wrong procedure: one exactly-two case dropped. (a) no; (b) no. Inside (P(all three) 0.504, P(at least one) 0.994); neither endpoint value is an option.",
+   "0.896": "wrong procedure: unequal probabilities replaced by their mean. (a) no (not an extreme of any parameter); (b) no.",
+   "0.637": "wrong procedure: averaged pairwise products. (a) no; (b) no."
+  }
+ }
+]

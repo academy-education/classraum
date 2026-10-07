@@ -1,0 +1,1008 @@
+{
+ "_render_sha": "7014012b20b23f9b",
+ "AM18N-01": {
+  "pick": "-3/14",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "-1/7",
+   "what": "the (2,1) entry -2/14 of the inverse (the other off-diagonal)",
+   "bound_kills": false
+  },
+  "free_elimination": "5/14 is the (1,1) entry; 1/3 is just the reciprocal of the original entry 3. Knowing 'swap diagonal, negate off-diagonal' kills both positive options, but that is the skill tested.",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "1/3"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18N-02": {
+  "pick": "64",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "sum 8 > 0 forces x > 1, and for x > 1 log8 x < log2 x, so 2 log2 x > 8, x > 16 (strict; 16 on bound)",
+    "kills": [
+     "16",
+     "4",
+     "6"
+    ]
+   }
+  ],
+  "survivors": 1,
+  "limiting_case": {
+   "option": "6",
+   "what": "the value of log2 x, un-exponentiated (no-last-step)",
+   "bound_kills": true
+  },
+  "neighbouring_setup": null,
+  "free_elimination": "the log-comparison bound alone leaves only 64",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "4"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18N-03": {
+  "pick": "25",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "15",
+   "what": "2a - 5 with a = 10: the real part with the sign of i^2 dropped (i^2 = +1)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "12.5"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18N-04": {
+  "pick": "6",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "common difference d = 15 - y and x = 15 - 2d > 0 force d < 7.5",
+    "kills": [
+     "12",
+     "8.75"
+    ]
+   }
+  ],
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "8.75",
+   "what": "y - x for the other root x = -5/2, y = 25/4 (excluded by positivity)",
+   "bound_kills": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "12"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18N-05": {
+  "pick": "21",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": {
+   "option": "20",
+   "what": "the last row count before the total reaches 1,000 (930 seats)",
+   "bound_kills": false
+  },
+  "neighbouring_setup": null,
+  "free_elimination": "23 also satisfies 'at least 1,000'; only computing S(21)=1008 separates it",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "14"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18N-06": {
+  "pick": "17",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "9",
+   "what": "c - b with b = +4 (sum of roots taken as b rather than -b)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "5"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18N-07": {
+  "pick": "7",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "direction <3,4> is steeper than 45 deg, so the horizontal displacement is < 10/sqrt2 ~ 7.07; x < 8.07",
+    "kills": [
+     "9"
+    ]
+   }
+  ],
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "9",
+   "what": "1 + 8: uses the y-component of the displacement (the other axis)",
+   "bound_kills": true
+  },
+  "free_elimination": "37/7 comes from scaling by 3+4 instead of the magnitude 5",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "11/5"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18A-01": {
+  "pick": "40",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "60",
+   "what": "6 / 0.10: divides by the post-cut 10% rather than the 15-point gap",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "27"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18A-02": {
+  "pick": "11",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "12",
+   "what": "count including x = 5, where the expression is undefined",
+   "bound_kills": false
+  },
+  "free_elimination": "9 is the strict-inequality count (< 0) and 12 includes x = 5; 9 and 12 bracket the key 11 with no other option between them",
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "6"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18A-03": {
+  "pick": "268",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "every box holds 5 items and 70 items exist, so at most 14 boxes, each <= $20: revenue <= 280",
+    "kills": [
+     "360",
+     "290"
+    ]
+   }
+  ],
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": "the 5-items-per-box cap leaves only 268 and 264",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "360"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18A-04": {
+  "pick": "88",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "112",
+   "what": "(40+12)*2 + ... : adds the 12 L instead of subtracting when working backward",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "45"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18A-05": {
+  "pick": "7/2",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "2/7",
+   "what": "y/x (the reciprocal ratio)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "-11/14"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM18A-06": {
+  "pick": "26",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "32",
+   "what": "includes the squares of the complex roots 2 +/- i of x^2 - 4x + 5 = 0 (adds 6)",
+   "bound_kills": false
+  },
+  "free_elimination": "16 is (sum of the real roots)^2",
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "50"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18A-07": {
+  "pick": "41",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "40",
+   "what": "the sum omitting n = 1 (the negative divisor n - 2 = -1)",
+   "bound_kills": false
+  },
+  "free_elimination": "40 and 41 are adjacent: once a student finds the positive divisors the only decision is n = 1",
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "27"
+  ],
+  "difficulty": "hard",
+  "duplicate_note": null
+ },
+ "AM18A-08": {
+  "pick": "70",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "50",
+   "what": "2C without the +20 offset of the X scale",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "65"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "AM18I-03 (both a F = 1.8C + 32 conversion)"
+ },
+ "AM18A-09": {
+  "pick": "800",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "the setup fee per poster alone must be < $3 (it is $0.60 at most), so n > 160; 160 is on the bound",
+    "kills": [
+     "160"
+    ]
+   }
+  ],
+  "survivors": 3,
+  "limiting_case": {
+   "option": "200",
+   "what": "480/2.40: divides the fee by the per-poster price",
+   "bound_kills": false
+  },
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "8000"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18F-01": {
+  "pick": "6",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": "a=2 (no division by the interval 3) is not offered",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "5.6"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18F-02": {
+  "pick": "40",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": {
+   "option": "36",
+   "what": "n^2 without f(0) = 4",
+   "bound_kills": false
+  },
+  "neighbouring_setup": {
+   "option": "53",
+   "what": "f(7) = 4 + 49 (off-by-one index)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "34"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM18F-03": {
+  "pick": "10",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "32"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18F-04": {
+  "pick": "-3.5",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1.75",
+   "what": "7/4: uses x - b with b = -3 (asymptote sign flipped)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "-8"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18F-05": {
+  "pick": "-1",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "f >= 2 > 0, so g = 3 - 2f < 3",
+    "kills": [
+     "19"
+    ]
+   }
+  ],
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "-13",
+   "what": "the least value of g (the other extreme, f = 8)",
+   "bound_kills": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "19"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18F-06": {
+  "pick": "5.0",
+  "second_defensible": null,
+  "stem_issue": "'to the nearest tenth' on an integer key (5.0) is not an error but may push students away from the key",
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "1.9"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18F-07": {
+  "pick": "630",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "450",
+   "what": "30 + 150 + 270: roots of the sign-flipped factorisation sin = 1/2, -1",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "300"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18F-08": {
+  "pick": "59",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "53",
+   "what": "a9 = S9 - S8 (off-by-one term)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "112"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18F-09": {
+  "pick": "-3/2",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "-1/3",
+   "what": "a2*a3 = -1/3: the product of the next consecutive pair in the 3-cycle (off-by-one phase)",
+   "bound_kills": false
+  },
+  "free_elimination": "2 (a3*a1) and -1/3 (a2*a3) are the other two consecutive-pair products of the 3-cycle; -6 matches no natural slip",
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "-6"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18G-01": {
+  "pick": "0",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "(P - C) = (5,2) is in quadrant I; 90 deg CCW sends it to quadrant II, so image x < 2",
+    "kills": [
+     "4"
+    ]
+   }
+  ],
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "4",
+   "what": "the clockwise rotation (the other direction)",
+   "bound_kills": true
+  },
+  "free_elimination": "-3 is rotation about the origin; -2 forgets to add C back",
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18G-02": {
+  "pick": "100",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "arc = 2*pi*r/3 > 2r, so perimeter > 4r, r < 10, area < 100*pi/3 ~ 104.7",
+    "kills": [
+     "175",
+     "382",
+     "180"
+    ]
+   }
+  ],
+  "survivors": 1,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "382",
+   "what": "area when 40 is taken as the arc alone (radii omitted)",
+   "bound_kills": true
+  },
+  "free_elimination": "the arc > 2r estimate kills all three distractors",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "175"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18G-03": {
+  "pick": "2413",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "3544",
+   "what": "r^2 = 100 - 6 = 94 (half-height not squared)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "603"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18G-04": {
+  "pick": "16.2",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": "internal tangent sqrt(120) ~ 11.0 is not offered",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "12.0"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18G-05": {
+  "pick": "9.1",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "14.1"
+  ],
+  "difficulty": "hard",
+  "duplicate_note": null
+ },
+ "AM18I-01": {
+  "pick": "381",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": {
+   "option": "390",
+   "what": "1620/4.15: reads 4 h 15 min as 4.15 h",
+   "bound_kills": false
+  },
+  "neighbouring_setup": {
+   "option": "259",
+   "what": "1620/6.25: adds the 2-hour difference instead of subtracting",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "196"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18I-02": {
+  "pick": "360",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1080",
+   "what": "converts with 9 ft^3 per yd^3 (square-yard factor)",
+   "bound_kills": false
+  },
+  "free_elimination": "3240 uses 3 ft^3 per yd^3",
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "432"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18I-03": {
+  "pick": "39.2",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "a Celsius degree is larger than a Fahrenheit degree, so the 282 F-degree rise is < 282 C-degrees; time < 282/4 = 70.5",
+    "kills": [
+     "70.5",
+     "126.9"
+    ]
+   }
+  ],
+  "survivors": 2,
+  "limiting_case": {
+   "option": "70.5",
+   "what": "282/4 with no conversion",
+   "bound_kills": true
+  },
+  "neighbouring_setup": {
+   "option": "34.7",
+   "what": "(282 - 32)*5/9/4: applies the 32 offset to a temperature difference",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "126.9"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "AM18A-08 (same F/C conversion)"
+ },
+ "AM18I-04": {
+  "pick": "3.5",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "each 9-in round pan is smaller than a 9x9 square, so total area < 162 and flour < 4.5",
+    "kills": [
+     "4.5",
+     "14.1"
+    ]
+   }
+  ],
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "14.1",
+   "what": "uses the diameter 9 as the radius",
+   "bound_kills": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "14.1"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18I-05": {
+  "pick": "$6.01",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "CPI ratio 314.4/130.7 < 2.5 (326.75/130.7), so price < $6.25",
+    "kills": [
+     "$8.51",
+     "$7.86",
+     "$7.09"
+    ]
+   }
+  ],
+  "survivors": 1,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "$7.86",
+   "what": "2.50 * 314.4 / 100 (CPI treated as a percent of base 100)",
+   "bound_kills": true
+  },
+  "free_elimination": "a one-line estimate (ratio a bit under 2.5) picks the key",
+  "distractor_quality": "weak",
+  "weak_distractors": [
+   "$8.51",
+   "$7.09"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM18I-06": {
+  "pick": "25",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "56",
+   "what": "37.5 * 1.5: multiplies belt time by the interval",
+   "bound_kills": false
+  },
+  "free_elimination": "16 = 30*0.8/1.5",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "36"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18I-07": {
+  "pick": "273",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "losses make the time exceed the lossless 45/11 h = 245.5 min",
+    "kills": []
+   }
+  ],
+  "survivors": 4,
+  "limiting_case": {
+   "option": "270",
+   "what": "4.5 h truncation of 50/11 h",
+   "bound_kills": false
+  },
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "333"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18I-08": {
+  "pick": "1343",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "path area < outer disk 81*pi ~ 254 ft^2, cost < $2,417",
+    "kills": [
+     "5372"
+    ]
+   }
+  ],
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "5372"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18I-09": {
+  "pick": "362",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "HD minutes <= 64000/130 ~ 492",
+    "kills": []
+   }
+  ],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "155"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18I-10": {
+  "pick": "72",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "139.9",
+   "what": "the length of her actual path sqrt(120^2 + 72^2), not the downstream drift",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "180"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM18I-11": {
+  "pick": "2.6",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": {
+   "option": "1.5",
+   "what": "fewer surfaces/one coat variant",
+   "bound_kills": false
+  },
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "6.1"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18I-12": {
+  "pick": "439.50",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "total between 180*2.15 = 387 and 180*3.20 = 576",
+    "kills": []
+   }
+  ],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "443.70",
+   "what": "54 blue tiles: corners counted twice",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "523.50"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18S-01": {
+  "pick": "80",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": {
+   "option": "77",
+   "what": "65 + 12: raw-point difference, not z-score",
+   "bound_kills": false
+  },
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "74.6"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM18S-02": {
+  "pick": "7/36",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "4/9",
+   "what": "P(max <= 4) = 16/36 (cumulative, not exact)",
+   "bound_kills": false
+  },
+  "free_elimination": "1/6 is P(a given die shows 4)",
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "1/9"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18S-03": {
+  "pick": "116",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": "C(10,3) = 120 is not offered; 114 subtracts 6 = C(4,2)",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "80"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM18S-04": {
+  "pick": "0.902",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "P >= P(A and B both work) = 0.72",
+    "kills": []
+   }
+  ],
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "0.637"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ }
+}

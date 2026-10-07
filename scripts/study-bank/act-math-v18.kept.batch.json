@@ -1,0 +1,1113 @@
+[
+ {
+  "id": "AM18N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "matrices",
+  "subskill": "an entry of the inverse of a 2x2 matrix",
+  "prompt": "Matrix A has first row (4, 3) and second row (2, 5). What is the entry in the 1st row, 2nd column of A⁻¹, the inverse of matrix A ?",
+  "choices": [
+   "-1/7",
+   "5/14",
+   "-3/14",
+   "1/3"
+  ],
+  "correct_answer": "-3/14",
+  "explanation": "For a 2 × 2 matrix with first row (a, b) and second row (c, d), the inverse is 1/(ad − bc) times the matrix with first row (d, −b) and second row (−c, a). Here ad − bc = 4(5) − 3(2) = 14, so the first row of A⁻¹ is (5/14, −3/14) and the entry in the 1st row, 2nd column is −3/14. Check: the first row of A times the second column of A⁻¹ is 4(−3/14) + 3(4/14) = 0, as it must be. The option \"-1/7\" negates the wrong off-diagonal entry, putting −c = −2 in that position: −2/14. The option \"1/3\" inverts the matrix entry by entry, taking the reciprocal of the entry 3 in that position. The option \"5/14\" is d/(ad − bc), the entry in the 1st row, 1st column, not the 1st row, 2nd column.",
+  "solve": "const a=4,b=3,c=2,d=5; const det=a*d-b*c; return String(-b/det);",
+  "distractor_solve": {
+   "-1/7": "const a=4,b=3,c=2,d=5; const det=a*d-b*c; return String(-c/det);",
+   "1/3": "const b=3; return String(1/b);",
+   "5/14": "const a=4,b=3,c=2,d=5; const det=a*d-b*c; return String(d/det);"
+  },
+  "distractor_kind": {
+   "-1/7": "wrong procedure: negates c instead of b in the off-diagonal slot. (a) not a parameter-at-extreme value: no. (b) it equals the 2nd-row 1st-column entry of the inverse, a neighbouring entry; the stem forces no order between the entries, so it is rejected only by applying the formula. Kept.",
+   "1/3": "wrong procedure: entrywise reciprocal as the inverse. (a) no. (b) no. No stem bound reaches it.",
+   "5/14": "neighbouring setup: the 1st-row 1st-column entry d/det. (a) no. (b) yes; nothing in the stem places the asked entry on one side of it (its sign is only readable from the formula). Kept."
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ]
+ },
+ {
+  "id": "AM18N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "complex numbers",
+  "subskill": "choosing a real parameter so that a product of complex numbers is real",
+  "prompt": "For i = √(-1), the product (a + 5i)(2 − i), where a is a real number, is a real number. What is the value of the product (a + 5i)(2 − i) ?",
+  "choices": [
+   "20",
+   "12.5",
+   "25",
+   "15"
+  ],
+  "correct_answer": "25",
+  "explanation": "Expanding, (a + 5i)(2 − i) = 2a − ai + 10i − 5i² = (2a + 5) + (10 − a)i, using i² = −1. The product is real only when the imaginary part is 0, so 10 − a = 0 and a = 10. The product is then 2(10) + 5 = 25. The option \"15\" treats i² as +1, so the real part becomes 2a − 5 = 20 − 5. The option \"20\" drops the product 5i·(−i) entirely and reports 2a. The option \"12.5\" sets the real part to 0 instead, as if the product were to be purely imaginary: 2a + 5 = 0 gives a = −2.5, and the coefficient of i is then 10 − (−2.5).",
+  "solve": "const a=5*2; const re=2*a-5*(-1), im=-a+5*2; return im===0?String(re):'not real';",
+  "distractor_solve": {
+   "15": "const a=10; return String(2*a-5);",
+   "20": "const a=10; return String(2*a);",
+   "12.5": "const a=-5/2; return String(-a+10);"
+  },
+  "distractor_kind": {
+   "15": "wrong procedure: i^2 taken as +1. (a) no. (b) no. Above the stem-forced floor 5*sqrt(5) (the product equals |a+5i||2-i| when real and positive).",
+   "20": "wrong procedure: drops the 5i(-i) term. (a) no. (b) no. Above the floor.",
+   "12.5": "neighbouring setup: purely-imaginary condition (real part 0), reporting the coefficient of i. (a) no. (b) yes; 12.5 > 5*sqrt(5) = 11.18, so no stem-forced bound separates it from the key; rejected only by expanding. Kept."
+  },
+  "bounds": [
+   "v > 0",
+   "v >= 5*Math.sqrt(5)"
+  ]
+ },
+ {
+  "id": "AM18N-05",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "arithmetic series",
+  "subskill": "least number of terms for an arithmetic series to reach a total",
+  "prompt": "The first row of a theater has 18 seats, and each row after the first has 3 more seats than the row in front of it. What is the least number of rows the theater must have so that it has at least 1,000 seats in all?",
+  "choices": [
+   "20",
+   "14",
+   "23",
+   "21"
+  ],
+  "correct_answer": "21",
+  "explanation": "With n rows the seats form an arithmetic series with first term 18 and common difference 3, so the total is n/2·(2·18 + 3(n − 1)) = n(3n + 33)/2. Setting n(3n + 33)/2 ≥ 1,000 gives 3n² + 33n − 2,000 ≥ 0, whose positive root is about 20.9, so n must be at least 21. Check: 20 rows hold 20(93)/2 = 930 seats, too few, and 21 rows hold 21(96)/2 = 1,008. The option \"20\" rounds the root 20.9 down instead of up. The option \"23\" takes the last row to have 3n seats instead of 18 + 3(n − 1), so it uses n(18 + 3n)/2 ≥ 1,000. The option \"14\" leaves out the division by 2 in the series formula, using n(36 + 3(n − 1)) ≥ 1,000.",
+  "solve": "let n=0,s=0; while(s<1000){n++; s+=18+3*(n-1);} return String(n);",
+  "distractor_solve": {
+   "14": "let n=0; while(n*(36+3*(n-1))<1000) n++; return String(n);",
+   "20": "const r=(-33+Math.sqrt(33*33+4*3*2000))/6; return String(Math.floor(r));",
+   "23": "let n=0; while(n*(18+3*n)/2<1000) n++; return String(n);"
+  },
+  "distractor_kind": {
+   "14": "wrong procedure: series formula without the 1/2. (a) no. (b) no. Inside the stem-forced range.",
+   "20": "wrong procedure: rounds the root down. (a) it is one row short of the key but not a parameter-at-extreme value; the stem forces no bound between 20 and 21 without computing a series sum. (b) no. Kept; it also supplies the 'least' question with an option below the key.",
+   "23": "wrong procedure: last term written as 3n. (a) no. (b) no. Inside 1 <= n <= 56 (56 rows of at least 18 seats already exceed 1,000)."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v > 0",
+   "v <= 56"
+  ]
+ },
+ {
+  "id": "AM18N-06",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "complex numbers",
+  "subskill": "coefficients of a real quadratic from one complex solution",
+  "prompt": "For i = √(-1), the complex number 2 + 3i is a solution of the equation x² + bx + c = 0, where b and c are real numbers. What is the value of c − b ?",
+  "choices": [
+   "9",
+   "5",
+   "17",
+   "-1"
+  ],
+  "correct_answer": "17",
+  "explanation": "A quadratic with real coefficients that has the solution 2 + 3i also has its conjugate 2 − 3i as a solution. The sum of the solutions is 4, so b = −4; the product is (2 + 3i)(2 − 3i) = 4 − 9i² = 13, so c = 13. Then c − b = 13 − (−4) = 17. The option \"9\" takes b to be the sum of the solutions, 4, instead of its opposite, giving 13 − 4. The option \"-1\" computes the product as 4 − 9 = −5, treating i² as +1, so c − b = −5 + 4. The option \"5\" squares 2 + 3i as 4 + 9i² and drops the cross term 12i; with no imaginary part left, b must be 0 and c = 5.",
+  "solve": "const p=2,q=3; const b=-(2*p), c=p*p+q*q; return String(c-b);",
+  "distractor_solve": {
+   "5": "const p=2,q=3; const sqRe=p*p-q*q; const b=0, c=-sqRe; return String(c-b);",
+   "9": "const p=2,q=3; const b=2*p, c=p*p+q*q; return String(c-b);",
+   "-1": "const p=2,q=3; const b=-(2*p), c=p*p-q*q; return String(c-b);"
+  },
+  "distractor_kind": {
+   "5": "wrong procedure: drops the cross term when substituting 2 + 3i. (a) no. (b) no. No stem bound.",
+   "9": "wrong procedure: sign of b (b = sum of roots). (a) no. (b) no. No stem bound.",
+   "-1": "wrong procedure: conjugate product with i^2 = +1. (a) no. (b) no. No stem bound."
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ]
+ },
+ {
+  "id": "AM18A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "systems of linear equations",
+  "subskill": "setting up two percent-comparison equations and solving",
+  "prompt": "At a store, the price of a jacket is 25% more than the price of a sweater. After the price of the jacket is reduced by $6, the jacket's price is 10% more than the price of the sweater. What is the price, in dollars, of the sweater?",
+  "choices": [
+   "32",
+   "60",
+   "27",
+   "40"
+  ],
+  "correct_answer": "40",
+  "explanation": "Let s be the sweater's price and j the jacket's price. Then j = 1.25s and j − 6 = 1.10s. Subtracting, 6 = 0.15s, so s = 40. Check: the jacket costs 50, and after the reduction it costs 44, which is 10% more than 40. The option \"32\" solves 0.15s = 6 correctly but treats the 40 as the jacket's price and divides it by 1.25. The option \"27\" reads 'j is 25% more than s' as s = 0.75j and 'j − 6 is 10% more than s' as s = 0.9(j − 6), which gives j = 36 and s = 27. The option \"60\" treats the $6 reduction as 10% of the sweater's price.",
+  "solve": "return String(Math.round(6/(1.25-1.10)*1e6)/1e6);",
+  "distractor_solve": {
+   "27": "const j=0.9*6/(0.9-0.75); return String(Math.round(0.75*j*1e6)/1e6);",
+   "32": "const j=6/(0.25-0.10); return String(Math.round(j/1.25*1e6)/1e6);",
+   "60": "return String(Math.round(6/0.10*1e6)/1e6);"
+  },
+  "distractor_kind": {
+   "27": "wrong procedure: reverses both percent comparisons. (a) no. (b) no. No stem bound.",
+   "32": "wrong procedure: divides the solved value by 1.25 a second time. (a) no. (b) no. No stem bound.",
+   "60": "wrong procedure: treats $6 as 10% of the sweater. (a) not a limiting case of a parameter. (b) no. No stem bound."
+  },
+  "bounds": [
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM18A-02",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational inequalities",
+  "subskill": "counting integer solutions of a rational inequality with a sign chart",
+  "prompt": "How many integers x with −10 ≤ x ≤ 10 satisfy the inequality (x − 1)(x + 4)/(x − 5) ≤ 0 ?",
+  "choices": [
+   "12",
+   "11",
+   "6",
+   "9"
+  ],
+  "correct_answer": "11",
+  "explanation": "The expression is 0 at x = −4 and x = 1 and is undefined at x = 5. A sign chart gives: negative for x < −4, positive for −4 < x < 1, negative for 1 < x < 5, positive for x > 5. So the solution set is x ≤ −4 or 1 ≤ x < 5. The integers from −10 to −4 number 7, and the integers 1, 2, 3, 4 number 4, for a total of 11. The option \"12\" also counts x = 5, treating the denominator as if it were a factor that may equal 0. The option \"9\" uses < instead of ≤, losing the two zeros x = −4 and x = 1. The option \"6\" ignores the denominator and solves (x − 1)(x + 4) ≤ 0, which gives −4 ≤ x ≤ 1.",
+  "solve": "let n=0; for(let x=-10;x<=10;x++){ if(x===5) continue; if((x-1)*(x+4)/(x-5)<=0) n++; } return String(n);",
+  "distractor_solve": {
+   "6": "let n=0; for(let x=-10;x<=10;x++){ if((x-1)*(x+4)<=0) n++; } return String(n);",
+   "9": "let n=0; for(let x=-10;x<=10;x++){ if(x===5) continue; if((x-1)*(x+4)/(x-5)<0) n++; } return String(n);",
+   "12": "let n=0; for(let x=-10;x<=10;x++){ if((x-1)*(x+4)*(x-5)<=0) n++; } return String(n);"
+  },
+  "distractor_kind": {
+   "6": "wrong procedure: ignores the denominator. (a) no. (b) no. Inside 0..21.",
+   "9": "wrong procedure: strict inequality. (a) no. (b) it answers the < version; not a free bound. Kept.",
+   "12": "wrong procedure: counts the excluded x = 5. (a) it is one more than the key, but the stem forces no bound between 11 and 12 without the sign chart. (b) it answers the polynomial inequality (x-1)(x+4)(x-5) <= 0, an adjacent problem; that problem's answer is not a bound on this one (the sets differ only at x = 5, which is not visible without the chart). Kept."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v >= 0",
+   "v <= 21"
+  ]
+ },
+ {
+  "id": "AM18A-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "working backward",
+  "subskill": "reversing a repeated halve-then-add process",
+  "prompt": "A tank contains some water. Each night, exactly half of the water in the tank leaks out, and each following morning 12 liters of water are added. After two nights and the two mornings that follow them, the tank holds 40 liters. How many liters of water did the tank hold before the first night?",
+  "choices": [
+   "124",
+   "88",
+   "45",
+   "112"
+  ],
+  "correct_answer": "88",
+  "explanation": "If the tank starts with w liters, after the first night and morning it holds w/2 + 12, and after the second night and morning it holds (w/2 + 12)/2 + 12 = w/4 + 18. Setting w/4 + 18 = 40 gives w/4 = 22, so w = 88. Working backward also works: undo the morning (40 − 12 = 28), undo the night (28 × 2 = 56), then again (56 − 12 = 44, 44 × 2 = 88). The option \"45\" undoes each night by increasing the amount by half instead of doubling it: 40 − 12 = 28, 28 + 14 = 42, 42 − 12 = 30, 30 + 15 = 45. The option \"112\" combines the two nights into one quarter and adds 12 only once, using w/4 + 12 = 40. The option \"124\" works backward in the wrong order, undoing the halving before the addition each time: 40 × 2 − 12 = 68, then 68 × 2 − 12 = 124.",
+  "solve": "const w=(40-12-12/2)*4; return String(w);",
+  "distractor_solve": {
+   "45": "let v=40; for(let k=0;k<2;k++){ v=v-12; v=v*1.5; } return String(v);",
+   "112": "return String((40-12)*4);",
+   "124": "let v=40; for(let k=0;k<2;k++) v=v*2-12; return String(v);"
+  },
+  "distractor_kind": {
+   "45": "wrong procedure: undoes 'half leaks out' by adding half back. (a) no. (b) no. Inside the stem-forced range w > 40 (the level falls toward the fixed point 24, so it started above 40).",
+   "112": "wrong procedure: one addition of 12 instead of two. (a) not a no-last-step count: the process still has two nights, only one addition is lost. (b) no. Inside w > 40.",
+   "124": "wrong procedure: inverse steps applied in the wrong order. (a) no. (b) no. Inside w > 40."
+  },
+  "bounds": [
+   "v > 40"
+  ]
+ },
+ {
+  "id": "AM18A-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equations",
+  "subskill": "finding a ratio of two variables from a rational equation",
+  "prompt": "For nonzero numbers x and y with x ≠ y, (3x + 2y)/(x − y) = 5. What is the value of x/y ?",
+  "choices": [
+   "-11/14",
+   "2/7",
+   "7/2",
+   "3/2"
+  ],
+  "correct_answer": "7/2",
+  "explanation": "Multiplying both sides by x − y gives 3x + 2y = 5x − 5y. Collecting terms, 7y = 2x, so x/y = 7/2. Check with x = 7 and y = 2: (21 + 4)/(7 − 2) = 25/5 = 5. The option \"3/2\" multiplies only the x by 5 when clearing the fraction, writing 3x + 2y = 5x − y, so 3y = 2x. The option \"-11/14\" divides by 5 instead of multiplying, writing 3x + 2y = (x − y)/5, so 15x + 10y = x − y and 14x = −11y. The option \"2/7\" solves 7y = 2x correctly but reports y/x instead of x/y.",
+  "solve": "/* 3x+2y=5x-5y -> (5-3)x = (2+5)y */ return String((2+5)/(5-3));",
+  "distractor_solve": {
+   "3/2": "/* 3x+2y=5x-y -> 3y = 2x */ return String((2+1)/(5-3));",
+   "-11/14": "/* 15x+10y = x-y -> 14x = -11y */ return String(-(10+1)/(15-1));",
+   "2/7": "return String((5-3)/(2+5));"
+  },
+  "distractor_kind": {
+   "3/2": "wrong procedure: 5 not distributed to -y. (a) no. (b) no. No stem bound (the only stem condition is x != y, i.e. x/y != 1).",
+   "-11/14": "wrong procedure: divides by 5 when clearing the fraction. (a) no. (b) no. No stem bound.",
+   "2/7": "neighbouring setup: reports y/x. (a) no. (b) yes; no stem bound orders x/y against 1, so the reciprocal is not excluded free. Kept."
+  },
+  "bounds": [
+   "v !== 1",
+   "v !== 0"
+  ]
+ },
+ {
+  "id": "AM18A-06",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "absolute value equations",
+  "subskill": "absolute value of a quadratic: splitting into cases and discarding the case with no real roots",
+  "prompt": "What is the sum of the squares of all real solutions of the equation |x² − 4x| = 5 ?",
+  "choices": [
+   "32",
+   "16",
+   "26",
+   "50"
+  ],
+  "correct_answer": "26",
+  "explanation": "The equation means x² − 4x = 5 or x² − 4x = −5. The first is x² − 4x − 5 = 0, which factors as (x − 5)(x + 1) = 0, giving x = 5 and x = −1. The second is x² − 4x + 5 = 0, whose discriminant 16 − 20 is negative, so it has no real solutions. The real solutions are 5 and −1, and the sum of their squares is 25 + 1 = 26. The option \"32\" keeps the second case and adds the sum of the squares of its roots from r + s = 4 and rs = 5, which is 16 − 10 = 6, without checking that those roots are not real. The option \"50\" treats |x² − 4x| as x² − 4|x|, so |x| = 5 and x = ±5. The option \"16\" squares the sum of the solutions, (5 + (−1))², instead of adding their squares.",
+  "solve": "const sols=[]; for(const k of [5,-5]){ const D=16+4*k; if(D>=0){ sols.push((4+Math.sqrt(D))/2,(4-Math.sqrt(D))/2);} } return String(sols.reduce((s,x)=>s+x*x,0));",
+  "distractor_solve": {
+   "16": "const s=5+(-1); return String(s*s);",
+   "32": "let t=0; for(const k of [5,-5]){ const sum=4, prod=-k; t+=sum*sum-2*prod; } return String(t);",
+   "50": "const a=5; return String(a*a+(-a)*(-a));"
+  },
+  "distractor_kind": {
+   "16": "wrong procedure: squares the sum. (a) no. (b) no. No stem bound.",
+   "32": "wrong procedure: keeps the non-real case via Vieta. (a) no. (b) no. No stem bound below 32.",
+   "50": "wrong procedure: |x^2 - 4x| read as x^2 - 4|x|. (a) no. (b) no. No stem bound."
+  },
+  "bounds": [
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM18A-07",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational expressions",
+  "subskill": "integer values of a rational expression by rewriting it as a whole number plus a remainder fraction",
+  "prompt": "Consider all positive integers n for which (n + 10)/(n − 2) is an integer. What is the sum of all such n ?",
+  "choices": [
+   "24",
+   "41",
+   "27",
+   "40"
+  ],
+  "correct_answer": "41",
+  "explanation": "Rewrite (n + 10)/(n − 2) = 1 + 12/(n − 2). This is an integer exactly when n − 2 divides 12, so n − 2 is one of ±1, ±2, ±3, ±4, ±6, ±12. Since n is positive, n − 2 ≥ −1, which leaves n − 2 = −1, 1, 2, 3, 4, 6, 12, that is, n = 1, 3, 4, 5, 6, 8, 14. Their sum is 41. The option \"40\" uses only the positive divisors of 12 and misses n = 1, where (1 + 10)/(1 − 2) = −11. The option \"24\" rewrites the fraction as 1 + 8/(n − 2), subtracting 2 from 10 instead of adding, so n − 2 must divide 8 and n = 1, 3, 4, 6, 10. The option \"27\" requires n − 2 to divide the constant 10 in the numerator, giving n = 1, 3, 4, 7, 12.",
+  "solve": "let s=0; for(let n=1;n<=200;n++){ if(n===2) continue; if((n+10)%(n-2)===0) s+=n; } return String(s);",
+  "distractor_solve": {
+   "24": "let s=0; for(let n=1;n<=200;n++){ if(n===2) continue; if(8%(n-2)===0) s+=n; } return String(s);",
+   "27": "let s=0; for(let n=1;n<=200;n++){ if(n===2) continue; if(10%(n-2)===0) s+=n; } return String(s);",
+   "40": "let s=0; for(let n=3;n<=200;n++){ if((n+10)%(n-2)===0) s+=n; } return String(s);"
+  },
+  "distractor_kind": {
+   "24": "wrong procedure: remainder 8 instead of 12. (a) no. (b) no. No stem bound.",
+   "27": "wrong procedure: n - 2 must divide 10. (a) no. (b) no. No stem bound.",
+   "40": "wrong procedure: positive divisors only (misses n = 1). (a) it is one less than the key, but no stem bound puts the sum on one side of 40 without listing the n. (b) no. Kept."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM18A-08",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear models",
+  "subskill": "building a linear conversion from two reference points and composing it with another",
+  "prompt": "On a temperature scale called the X scale, water freezes at 20°X and boils at 220°X, and the X reading is a linear function of the Celsius reading. Fahrenheit and Celsius readings are related by F = 1.8C + 32. What is the X reading for a temperature of 77°F ?",
+  "choices": [
+   "55",
+   "50",
+   "65",
+   "70"
+  ],
+  "correct_answer": "70",
+  "explanation": "Water freezes at 0°C and boils at 100°C, so 100 Celsius degrees span 220 − 20 = 200 X degrees, and X = 20 + 2C. From F = 1.8C + 32, a reading of 77°F gives C = (77 − 32)/1.8 = 25. Then X = 20 + 2(25) = 70. The option \"50\" uses X = 2C and leaves out the 20 at the freezing point. The option \"65\" treats one X degree as one Fahrenheit degree and adds the 45 degrees above freezing directly to 20. The option \"55\" scales by the ratio of the boiling points, 220/100 = 2.2, giving X = 2.2(25).",
+  "solve": "const C=(77-32)/1.8; return String(Math.round((20+2*C)*1e6)/1e6);",
+  "distractor_solve": {
+   "50": "const C=(77-32)/1.8; return String(Math.round(2*C*1e6)/1e6);",
+   "55": "const C=(77-32)/1.8; return String(Math.round(2.2*C*1e6)/1e6);",
+   "65": "return String(20+(77-32));"
+  },
+  "distractor_kind": {
+   "50": "wrong procedure: drops the offset. (a) no. (b) no. Inside the stem-forced interval 20 < X < 120 (77°F is between freezing and the 122°F midpoint).",
+   "55": "wrong procedure: proportional scaling through 0. (a) no. (b) no. Inside 20 < X < 120.",
+   "65": "wrong procedure: equal degree sizes. (a) no. (b) no. Inside 20 < X < 120."
+  },
+  "bounds": [
+   "v > 20",
+   "v < 120"
+  ]
+ },
+ {
+  "id": "AM18A-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear inequalities",
+  "subskill": "average cost per item including a fixed fee",
+  "prompt": "A print shop charges a one-time setup fee of $480 plus $2.40 for each poster printed. What is the least number of posters an order must contain so that the average cost per poster, including the setup fee, is at most $3.00 ?",
+  "choices": [
+   "160",
+   "8000",
+   "800",
+   "200"
+  ],
+  "correct_answer": "800",
+  "explanation": "For n posters the total cost is 480 + 2.40n, so the average cost per poster is (480 + 2.40n)/n. Requiring (480 + 2.40n)/n ≤ 3.00 and multiplying by the positive n gives 480 + 2.40n ≤ 3.00n, so 480 ≤ 0.60n and n ≥ 800. Check: 800 posters cost 480 + 1,920 = 2,400 dollars, which is exactly $3.00 each. The option \"160\" divides the fee by $3.00 and ignores the $2.40 per poster. The option \"200\" divides the fee by the per-poster price $2.40. The option \"8000\" subtracts 3.00 − 2.40 as 0.06 instead of 0.60.",
+  "solve": "return String(Math.ceil(Math.round(480/(3.00-2.40)*1e6)/1e6));",
+  "distractor_solve": {
+   "160": "return String(Math.round(480/3.00));",
+   "200": "return String(Math.round(480/2.40));",
+   "8000": "return String(Math.round(480/0.06));"
+  },
+  "distractor_kind": {
+   "160": "wrong procedure: fee spread at the full $3.00. (a) no. (b) no. Positive integer, no stem bound; supplies the below-key option for a 'least' question.",
+   "200": "wrong procedure: fee divided by the per-poster price. (a) no. (b) no. No stem bound.",
+   "8000": "wrong procedure: decimal slip in 3.00 - 2.40. (a) no. (b) no. No stem bound."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM18F-01",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "exponential functions",
+  "subskill": "recovering the coefficient of an exponential function from an average rate of change",
+  "prompt": "The function f is defined by f(x) = a·2^x, where a is a positive constant. The average rate of change of f from x = 1 to x = 4 is 28. What is the value of a ?",
+  "choices": [
+   "5.6",
+   "10.5",
+   "6",
+   "8"
+  ],
+  "correct_answer": "6",
+  "explanation": "The average rate of change from x = 1 to x = 4 is (f(4) − f(1))/(4 − 1) = (16a − 2a)/3 = 14a/3. Setting 14a/3 = 28 gives 14a = 84, so a = 6. The option \"5.6\" evaluates 2^1 as 1, so f(1) = a and (16a − a)/3 = 28. The option \"10.5\" rewrites 2^4 − 2^1 as 2^(4 − 1) = 8, so 8a/3 = 28. The option \"8\" divides by 4, the right endpoint, instead of by the interval length 3: 14a/4 = 28.",
+  "solve": "const r=28, x1=1, x2=4; const a=r*(x2-x1)/(2**x2-2**x1); return String(a);",
+  "distractor_solve": {
+   "8": "const r=28, x1=1, x2=4; return String(r*x2/(2**x2-2**x1));",
+   "5.6": "const r=28, x1=1, x2=4; return String(Math.round(r*(x2-x1)/(2**x2-1)*1e9)/1e9);",
+   "10.5": "const r=28, x1=1, x2=4; return String(r*(x2-x1)/(2**(x2-x1)));"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 28"
+  ],
+  "distractor_kind": {
+   "8": "wrong procedure: divides by the right endpoint 4 instead of the interval length 3. (a) no; (b) it is not the rate on any stated interval of the stem (the interval [0,4] would give 15a/4, not 14a/4). Inside 0 < a < 28; survives.",
+   "5.6": "wrong procedure: evaluates 2^1 as 1. (a) not a parameter-at-extreme value; (b) not the answer to an adjacent problem. Stem forces only 0 < a < 28 (slope on [0,1] is below the average slope 28); survives.",
+   "10.5": "wrong procedure: treats 2^4 − 2^1 as 2^(4−1). (a) no; (b) no. Inside 0 < a < 28; survives."
+  }
+ },
+ {
+  "id": "AM18F-02",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "recursive functions",
+  "subskill": "evaluating a function defined by a recursive rule whose increment depends on n",
+  "prompt": "A function f is defined for nonnegative integers by f(0) = 4 and f(n + 1) = f(n) + 2n + 1 for every integer n ≥ 0. What is the value of f(6) ?",
+  "choices": [
+   "34",
+   "40",
+   "53",
+   "36"
+  ],
+  "correct_answer": "40",
+  "explanation": "Each step adds 2n + 1 for the current n. Going from f(0) to f(6) uses n = 0, 1, 2, 3, 4, 5, adding 1 + 3 + 5 + 7 + 9 + 11 = 36. So f(6) = 4 + 36 = 40. The option \"53\" also adds the increment for n = 6 (13), which is the step from f(6) to f(7). The option \"34\" drops the \"+ 1\" in each increment, adding 2(0 + 1 + 2 + 3 + 4 + 5) = 30. The option \"36\" adds the six correct increments but leaves out the starting value f(0) = 4.",
+  "solve": "let f=4; for(let n=0;n<6;n++) f+=2*n+1; return String(f);",
+  "distractor_solve": {
+   "34": "let f=4; for(let n=0;n<6;n++) f+=2*n; return String(f);",
+   "36": "let s=0; for(let n=0;n<6;n++) s+=2*n+1; return String(s);",
+   "53": "let f=4; for(let n=0;n<=6;n++) f+=2*n+1; return String(f);"
+  },
+  "bounds": [
+   "v >= 10",
+   "v <= 70",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "34": "wrong procedure: drops the +1 from each increment. (a) no; (b) no. Inside [10, 70]; survives.",
+   "36": "wrong procedure: sums the increments but omits f(0). (a) no (it is not the f(0)=0 limit of anything the stem varies); (b) no. Inside [10, 70]; survives.",
+   "53": "counting error: one increment too many (it equals f(7)). (a) not an extreme of a stem parameter; (b) it is the answer to the adjacent question f(7), but the stem gives no free bound placing f(6) below f(7) without computing; increments 1..11 give only 10 <= f(6) <= 70; survives."
+  }
+ },
+ {
+  "id": "AM18F-03",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "exponential functions",
+  "subskill": "finding when two exponential growth models with different tripling times are equal",
+  "prompt": "Colony A has 300 bacteria and triples in size every 4 hours. Colony B has 2,700 bacteria and triples in size every 20 hours. Both colonies begin growing at the same moment. After how many hours will the two colonies have the same number of bacteria?",
+  "choices": [
+   "40",
+   "10",
+   "45",
+   "32"
+  ],
+  "correct_answer": "10",
+  "explanation": "A(t) = 300·3^(t/4) and B(t) = 2700·3^(t/20). Setting them equal: 3^(t/4)/3^(t/20) = 2700/300 = 9, so 3^(t/4 − t/20) = 3^2. Since t/4 − t/20 = t/5, t/5 = 2 and t = 10. Check: A(10) = 300·3^2.5 and B(10) = 2700·3^0.5 = 300·3^2·3^0.5, the same number. The option \"45\" sets t/5 equal to 9 without writing 9 as 3^2. The option \"32\" subtracts the fractions by subtracting denominators, using t/16 for t/4 − t/20, so t/16 = 2. The option \"40\" reasons that A gains one tripling on B every 20 hours (B's tripling time) and needs two.",
+  "solve": "const a=300,b=2700,pa=4,pb=20; const k=Math.log(b/a)/Math.log(3); const t=k/(1/pa-1/pb); return String(Math.round(t*1e9)/1e9);",
+  "distractor_solve": {
+   "32": "const a=300,b=2700,pa=4,pb=20; const k=Math.log(b/a)/Math.log(3); return String(Math.round(k*(pb-pa)*1e9)/1e9);",
+   "40": "const a=300,b=2700,pb=20; const k=Math.log(b/a)/Math.log(3); return String(Math.round(k*pb*1e9)/1e9);",
+   "45": "const a=300,b=2700,pa=4,pb=20; const t=(b/a)/(1/pa-1/pb); return String(Math.round(t*1e9)/1e9);"
+  },
+  "bounds": [
+   "v > 8"
+  ],
+  "distractor_kind": {
+   "32": "wrong procedure: t/4 − t/20 taken as t/16. (a) no; (b) no. Above the t > 8 bound; survives.",
+   "40": "wrong procedure: two relative triplings at B's 20-hour period. (a) no — the limiting case \"B does not grow\" gives 8, which is deliberately NOT an option (it would sit on the t > 8 bound); (b) no. Survives.",
+   "45": "wrong procedure: equates the exponent to the ratio 9 instead of log base 3 of 9. (a) no; (b) no. The free bound is t > 8 (A needs 8 h just to reach B's starting 2,700, and B keeps growing); survives."
+  }
+ },
+ {
+  "id": "AM18F-04",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "rational functions",
+  "subskill": "determining the constants of a rational function from its asymptotes, then evaluating it",
+  "prompt": "The function f is defined by f(x) = (ax + 5)/(x − b), where a and b are constants. In the standard (x,y) coordinate plane, the graph of y = f(x) has a vertical asymptote at x = 3 and a horizontal asymptote at y = 2. What is the value of f(1) ?",
+  "choices": [
+   "-5.5",
+   "1.75",
+   "-3.5",
+   "-8"
+  ],
+  "correct_answer": "-3.5",
+  "explanation": "The vertical asymptote is where the denominator x − b is 0 (and the numerator is not), so b = 3. Numerator and denominator have the same degree, so the horizontal asymptote is the ratio of leading coefficients, a/1 = 2, so a = 2. Then f(1) = (2 + 5)/(1 − 3) = 7/(−2) = −3.5. The option \"1.75\" takes b = −3 from the asymptote x = 3, giving 7/4. The option \"-8\" swaps the roles of the two asymptotes, using a = 3 and b = 2: (3 + 5)/(1 − 2). The option \"-5.5\" sets a/b = 2 for the horizontal asymptote, so a = 6: (6 + 5)/(1 − 3).",
+  "solve": "const va=3, ha=2; const a=ha, b=va; return String((a*1+5)/(1-b));",
+  "distractor_solve": {
+   "1.75": "const va=3, ha=2; const a=ha, b=-va; return String((a*1+5)/(1-b));",
+   "-8": "const va=3, ha=2; const a=va, b=ha; return String((a*1+5)/(1-b));",
+   "-5.5": "const va=3, ha=2; const b=va, a=ha*b; return String((a*1+5)/(1-b));"
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "distractor_kind": {
+   "1.75": "sign error on b. (a) no; (b) it is f(1) for the asymptote x = −3, an adjacent setup, but nothing in the stem bounds f(1) away from 1.75 without finding a and b (f(1) relative to y = 2 depends on the sign of the numerator constant); survives.",
+   "-8": "swaps which constant each asymptote fixes. (a) no; (b) no. No stem-forced bound; survives.",
+   "-5.5": "wrong rule for the horizontal asymptote (a/b instead of a/1). (a) no; (b) no. No stem-forced bound; survives."
+  }
+ },
+ {
+  "id": "AM18F-06",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sequences",
+  "subskill": "using the ratio of two partial sums to find the first term of a geometric sequence",
+  "prompt": "In a geometric sequence in which every term is positive, the sum of the first 2 terms is 15 and the sum of the first 4 terms is 75. To the nearest tenth, what is the first term of the sequence?",
+  "choices": [
+   "3.0",
+   "1.9",
+   "5.0",
+   "4.6"
+  ],
+  "correct_answer": "5.0",
+  "explanation": "Let the first term be a and the common ratio r. The first two terms sum to a(1 + r) = 15. The 3rd and 4th terms are r^2 times the 1st and 2nd, so the first four sum to a(1 + r) + r^2·a(1 + r) = 15(1 + r^2) = 75. Then 1 + r^2 = 5, r^2 = 4 and r = 2 (terms are positive). So a = 15/(1 + 2) = 5.0, and the sequence is 5, 10, 20, 40. The option \"4.6\" reads 75 as the sum of the 3rd and 4th terms only, so 15r² = 75, r = √5 and a = 15/(1 + √5) ≈ 4.6. The option \"3.0\" finds r^2 = 4 but uses r = 4: a = 15/5. The option \"1.9\" treats the sequence as arithmetic: 2a + d = 15 and 4a + 6d = 75 give d = 11.25 and a = 1.875.",
+  "solve": "const s2=15,s4=75; const r=Math.sqrt(s4/s2-1); return (s2/(1+r)).toFixed(1);",
+  "distractor_solve": {
+   "4.6": "const s2=15,s4=75; const r=Math.sqrt(s4/s2); return (s2/(1+r)).toFixed(1);",
+   "3.0": "const s2=15,s4=75; const r=s4/s2-1; return (s2/(1+r)).toFixed(1);",
+   "1.9": "const s2=15,s4=75; const d=(s4-2*s2)/(6-2); return ((s2-d)/2).toFixed(1);"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 7.5"
+  ],
+  "distractor_kind": {
+   "4.6": "misreading: 75 taken as a3 + a4 (the sum of the NEXT two terms). (a) no; (b) it is the answer to an adjacent reading of the stem, but no stem-forced bound separates 4.6 from 5.0: stem forces only 0 < a < 7.5 (75 > 2·15 so r > 1 and a < a·r); survives.",
+   "3.0": "wrong procedure: r^2 = 4 taken as r = 4. (a) no; (b) no. Inside (0, 7.5); survives.",
+   "1.9": "neighbouring family: the arithmetic sequence with the same two sums. (a) no; (b) yes, the same question for an arithmetic sequence — but no stem-forced bound puts the geometric first term on one side of the arithmetic one (both lie in (0, 7.5)); survives. The equal-terms value 7.5 (r = 1 limit) is deliberately not an option."
+  }
+ },
+ {
+  "id": "AM18F-07",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "trigonometric functions",
+  "subskill": "zeros of a trigonometric function that factors as a quadratic in sin θ",
+  "prompt": "The function f is defined by f(θ) = 2sin²θ − sin θ − 1. What is the sum, in degrees, of all values of θ with 0° ≤ θ < 360° for which f(θ) = 0 ?",
+  "choices": [
+   "450",
+   "300",
+   "630",
+   "270"
+  ],
+  "correct_answer": "630",
+  "explanation": "Factor: 2sin²θ − sin θ − 1 = (2sin θ + 1)(sin θ − 1). So sin θ = 1, giving θ = 90°, or sin θ = −1/2, giving θ = 210° and θ = 330°. The sum is 90 + 210 + 330 = 630. The option \"450\" factors with the signs reversed, (2sin θ − 1)(sin θ + 1), giving sin θ = 1/2 or −1: 30 + 150 + 270. The option \"300\" finds only one angle for sin θ = −1/2: 90 + 210. The option \"270\" uses the quadratic formula with denominator 2 instead of 2·2: sin θ = (1 ± 3)/2 = 2 or −1, rejects 2 and keeps θ = 270°.",
+  "solve": "const sols=[]; for(let d=0; d<360; d++){ const s=Math.sin(d*Math.PI/180); if(Math.abs(2*s*s-s-1)<1e-9) sols.push(d);} return String(sols.reduce((p,c)=>p+c,0));",
+  "distractor_solve": {
+   "270": "const roots=[(1+3)/2,(1-3)/2].filter(s=>Math.abs(s)<=1); let sum=0; for(let d=0; d<360; d++){ const s=Math.sin(d*Math.PI/180); if(roots.some(r=>Math.abs(s-r)<1e-9)) sum+=d;} return String(sum);",
+   "300": "return String(90+210);",
+   "450": "const sols=[]; for(let d=0; d<360; d++){ const s=Math.sin(d*Math.PI/180); if(Math.abs(2*s*s+s-1)<1e-9) sols.push(d);} return String(sols.reduce((p,c)=>p+c,0));"
+  },
+  "bounds": [
+   "v >= 0",
+   "v < 1080"
+  ],
+  "distractor_kind": {
+   "270": "wrong procedure: quadratic-formula denominator error. (a) no; (b) no. Survives.",
+   "300": "incomplete solution: misses the QIV angle. (a) no; (b) no. Stem gives only 0 <= sum < 1080; survives. Not bracketing: the twin \"misses QIII\" value 420 is deliberately not used.",
+   "450": "wrong procedure: sign error in the factoring. (a) no; (b) it is the answer for 2sin²θ + sin θ − 1, an adjacent equation, but the stem forces no ordering between the two sums; survives."
+  }
+ },
+ {
+  "id": "AM18F-08",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "sequences",
+  "subskill": "finding a term of a sequence from a formula for its partial sums",
+  "prompt": "For every positive integer n, the sum of the first n terms of a certain sequence is 3n² + 2n. What is the 10th term of the sequence?",
+  "choices": [
+   "57",
+   "112",
+   "53",
+   "59"
+  ],
+  "correct_answer": "59",
+  "explanation": "The 10th term is the sum of the first 10 terms minus the sum of the first 9 terms: (3·100 + 20) − (3·81 + 18) = 320 − 261 = 59. Equivalently, the nth term is (3n² + 2n) − (3(n − 1)² + 2(n − 1)) = 6n − 1, and 6·10 − 1 = 59. The option \"53\" subtracts the sum of the first 8 terms from the sum of the first 9, which is the 9th term. The option \"112\" subtracts the sum of the first 8 terms from the sum of the first 10, which is the 9th and 10th terms together. The option \"57\" substitutes n − 1 into the squared term but not the linear term, using 3·9² + 2·10 = 263 for the sum of the first 9 terms.",
+  "solve": "const S=n=>3*n*n+2*n; return String(S(10)-S(9));",
+  "distractor_solve": {
+   "53": "const S=n=>3*n*n+2*n; return String(S(9)-S(8));",
+   "57": "const n=10; return String(3*n*n+2*n-(3*(n-1)**2+2*n));",
+   "112": "const S=n=>3*n*n+2*n; return String(S(10)-S(8));"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 320"
+  ],
+  "distractor_kind": {
+   "53": "index error (it is the 9th term). (a) no; (b) yes, the adjacent question \"9th term\" — but the stem does not place a10 above a9 without the work (that terms increase follows only from computing 6n − 1); survives inside (0, 320).",
+   "57": "substitution slip in S(n−1) (linear term left as 2n). (a) no; (b) no. Survives. Note: the average term S10/10 = 32 and the S10 = 320 itself are deliberately not options (each sits on a bound).",
+   "112": "wrong procedure: subtracts S8 instead of S9. (a) no; (b) it is a9 + a10, not a quantity the stem names; inside (0, 320); survives."
+  }
+ },
+ {
+  "id": "AM18F-09",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "sequences",
+  "subskill": "recognizing a repeating cycle in a recursively defined sequence and locating far terms",
+  "prompt": "A sequence is defined by a₁ = 3 and a₍ₙ₊₁₎ = 1/(1 − aₙ) for every integer n ≥ 1. What is the value of the product a₁₀₀ · a₁₀₁ ?",
+  "choices": [
+   "2",
+   "-6",
+   "-3/2",
+   "-1/3"
+  ],
+  "correct_answer": "-3/2",
+  "explanation": "a₂ = 1/(1 − 3) = −1/2, a₃ = 1/(1 + 1/2) = 2/3, and a₄ = 1/(1 − 2/3) = 3 = a₁, so the terms repeat with period 3. Since 100 = 3·33 + 1, a₁₀₀ = a₁ = 3 and a₁₀₁ = a₂ = −1/2, so the product is 3·(−1/2) = −3/2. The option \"2\" lands one position early, multiplying a₉₉·a₁₀₀ = (2/3)(3). The option \"-1/3\" lands one position late, multiplying a₁₀₁·a₁₀₂ = (−1/2)(2/3). The option \"-6\" reads 1/(1 − aₙ) as 1/1 − aₙ = 1 − aₙ, which makes the sequence 3, −2, 3, −2, …, so a₁₀₀ = −2 and a₁₀₁ = 3.",
+  "solve": "const t=[]; let a=3; for(let n=1;n<=102;n++){ t[n]=a; a=1/(1-a);} return String(Math.round(t[100]*t[101]*1e9)/1e9);",
+  "distractor_solve": {
+   "2": "const t=[]; let a=3; for(let n=1;n<=102;n++){ t[n]=a; a=1/(1-a);} return String(Math.round(t[99]*t[100]*1e9)/1e9);",
+   "-1/3": "const t=[]; let a=3; for(let n=1;n<=102;n++){ t[n]=a; a=1/(1-a);} return String(Math.round(t[101]*t[102]*1e9)/1e9);",
+   "-6": "const t=[]; let a=3; for(let n=1;n<=102;n++){ t[n]=a; a=1-a;} return String(t[100]*t[101]);"
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "distractor_kind": {
+   "2": "off-by-one cycle position (a99·a100). (a) no; (b) adjacent index pair — no stem bound separates it from the key; survives.",
+   "-1/3": "off-by-one the other way (a101·a102). (a) no; (b) adjacent index pair — no stem bound; survives. Not bracketing with nothing between: the key and the two shifted products are the only three cycle products, and \"-6\" lies outside them.",
+   "-6": "misreads the rule as 1 − aₙ. (a) no; (b) no. Survives."
+  }
+ },
+ {
+  "id": "AM18G-01",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "transformations",
+  "subskill": "rotating a point 90 degrees about a center other than the origin",
+  "prompt": "In the standard (x,y) coordinate plane, point P(7, 3) is rotated 90° counterclockwise about point C(2, 1). What is the x-coordinate of the image of P ?",
+  "choices": [
+   "-3",
+   "0",
+   "4",
+   "-2"
+  ],
+  "correct_answer": "0",
+  "explanation": "Measure P from the center: P − C = (5, 2). A 90° counterclockwise rotation sends (a, b) to (−b, a), so (5, 2) becomes (−2, 5). Adding C back gives the image (2 − 2, 1 + 5) = (0, 6). The x-coordinate is 0. The option \"4\" rotates clockwise, sending (5, 2) to (2, −5), image (4, −4). The option \"-3\" rotates P about the origin instead of about C: (7, 3) becomes (−3, 7). The option \"-2\" rotates the offset (5, 2) correctly but does not add C back.",
+  "solve": "const P=[7,3],C=[2,1]; const d=[P[0]-C[0],P[1]-C[1]]; return String(C[0]-d[1]);",
+  "distractor_solve": {
+   "4": "const P=[7,3],C=[2,1]; const d=[P[0]-C[0],P[1]-C[1]]; return String(C[0]+d[1]);",
+   "-3": "const P=[7,3]; return String(-P[1]);",
+   "-2": "const P=[7,3],C=[2,1]; const d=[P[0]-C[0],P[1]-C[1]]; return String(-d[1]);"
+  },
+  "bounds": [
+   "v >= 2-Math.sqrt(29)",
+   "v <= 2+Math.sqrt(29)"
+  ],
+  "distractor_kind": {
+   "4": "neighbouring setup: the clockwise rotation. (b) yes; does the stem force the key to one side of it? No — both images lie on the circle of radius sqrt(29) about C and the stem gives no ordering of x without doing the rotation; survives. Not bracketing alone: -3 and -2 also lie on the other side.",
+   "-3": "neighbouring setup: rotation about the origin. (b) yes; forced side? No — -3 lies inside the free interval 2 ± sqrt(29) = [-3.39, 7.39]; survives.",
+   "-2": "wrong procedure: forgets to translate back by C. (a) no; (b) no. Inside [-3.39, 7.39]; survives."
+  }
+ },
+ {
+  "id": "AM18G-03",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "solids",
+  "subskill": "volume of a cylinder inscribed in a sphere, using the radius-half-height-sphere-radius right triangle",
+  "prompt": "A right circular cylinder is inscribed in a sphere with a radius of 10 centimeters, so that the circular edge of each base of the cylinder lies on the sphere. The height of the cylinder is 12 centimeters. To the nearest cubic centimeter, what is the volume of the cylinder?",
+  "choices": [
+   "1659",
+   "2413",
+   "603",
+   "3544"
+  ],
+  "correct_answer": "2413",
+  "explanation": "The center of the sphere is midway up the cylinder, so a radius of the sphere drawn to the edge of a base is the hypotenuse of a right triangle with legs equal to the cylinder's radius r and half its height, 6. Then r² + 6² = 10², so r² = 64 and r = 8. The volume is πr²h = π(64)(12) = 768π ≈ 2,413 cubic centimeters. The option \"603\" takes r = 10 − 6 = 4, subtracting lengths instead of squares. The option \"1659\" uses the whole height 12 with the sphere radius and subtracts the wrong way, r² = 12² − 10² = 44. The option \"3544\" forgets to square the half-height, r² = 100 − 6 = 94.",
+  "solve": "const R=10,h=12; const r2=R*R-(h/2)**2; return String(Math.round(Math.PI*r2*h));",
+  "distractor_solve": {
+   "603": "const R=10,h=12; const r=R-h/2; return String(Math.round(Math.PI*r*r*h));",
+   "1659": "const R=10,h=12; const r2=h*h-R*R; return String(Math.round(Math.PI*r2*h));",
+   "3544": "const R=10,h=12; const r2=R*R-h/2; return String(Math.round(Math.PI*r2*h));"
+  },
+  "bounds": [
+   "v > 0",
+   "v < Math.PI*100*12",
+   "v < (4/3)*Math.PI*1000"
+  ],
+  "distractor_kind": {
+   "603": "wrong procedure: linear subtraction R − h/2. (a) no; (b) no. Free bounds: r < R so V < 1200π ≈ 3770, and V < sphere volume 4189; survives.",
+   "1659": "wrong procedure: Pythagorean relation set up with the full height and reversed. (a) no; (b) no. Inside (0, 3770); survives.",
+   "3544": "wrong procedure: half-height not squared. (a) no — the limiting case r = R (V = 3770) is deliberately not an option and 3544 is strictly below it; (b) no. Survives."
+  }
+ },
+ {
+  "id": "AM18G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "circles",
+  "subskill": "length of a common external tangent segment of two circles",
+  "prompt": "Two circles have radii of 9 centimeters and 4 centimeters, and their centers are 17 centimeters apart. A line is tangent to both circles, and both circles lie on the same side of the line. To the nearest tenth of a centimeter, what is the distance between the two points of tangency?",
+  "choices": [
+   "14.4",
+   "16.2",
+   "12.0",
+   "15.0"
+  ],
+  "correct_answer": "16.2",
+  "explanation": "Both radii drawn to the tangent line are perpendicular to it, so they are parallel. Slide the tangent segment over to start at the smaller circle's center: it forms a right triangle with hypotenuse 17 (the distance between centers) and one leg 9 − 4 = 5 (the difference of the radii). The tangent segment is the other leg: √(17² − 5²) = √264 ≈ 16.2 centimeters. The option \"15.0\" subtracts the difference of the squared radii, √(17² − (9² − 4²)) = √224. The option \"14.4\" subtracts only the larger radius, √(17² − 9²). The option \"12.0\" subtracts the difference of the radii without squaring, 17 − 5.",
+  "solve": "const d=17,r1=9,r2=4; return (Math.sqrt(d*d-(r1-r2)**2)).toFixed(1);",
+  "distractor_solve": {
+   "15.0": "const d=17,r1=9,r2=4; return (Math.sqrt(d*d-(r1*r1-r2*r2))).toFixed(1);",
+   "14.4": "const d=17,r1=9; return (Math.sqrt(d*d-r1*r1)).toFixed(1);",
+   "12.0": "const d=17,r1=9,r2=4; return (d-(r1-r2)).toFixed(1);"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 17"
+  ],
+  "distractor_kind": {
+   "15.0": "wrong procedure: (r1² − r2²) in place of (r1 − r2)². (a) no; (b) no. Free bound: the tangent segment is a leg of a right triangle with hypotenuse 17, so < 17; survives.",
+   "14.4": "wrong procedure: larger radius only. (a) it is the r2 -> 0 value, but that is not a stem-forced bound (the key exceeds it only through the formula); (b) it equals the tangent length from the small circle's center to the big circle, an adjacent problem — not separated from the key by anything free. Survives.",
+   "12.0": "wrong procedure: subtracts lengths instead of squares. (a) no; (b) no. Survives. The internal-tangent length (√120 ≈ 11.0, the other configuration) is deliberately not an option."
+  }
+ },
+ {
+  "id": "AM18G-05",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "right triangles",
+  "subskill": "length of the crease when a rectangle is folded so that opposite corners meet",
+  "prompt": "A rectangular sheet of paper is 15 inches long and 8 inches wide. The sheet is folded once so that one corner lands exactly on the opposite corner, and the fold is flattened to make a straight crease. To the nearest tenth of an inch, what is the length of the crease?",
+  "choices": [
+   "12.5",
+   "9.6",
+   "14.1",
+   "9.1"
+  ],
+  "correct_answer": "9.1",
+  "explanation": "When corner A lands on the opposite corner C, every point of the crease is equally far from A and C, so the crease is the perpendicular bisector of diagonal AC, which has length √(15² + 8²) = 17. The crease passes through the center O of the rectangle, and from O to the long side it makes a right triangle similar to triangle ABC, so half the crease is 8.5·(8/15) ≈ 4.533. The crease is 2(4.533) ≈ 9.1 inches. (Check: the crease meets the long sides 289/30 ≈ 9.633 inches from A and from C, and √(8² + (2·9.633 − 15)²) ≈ 9.07.) The option \"9.6\" is that distance 9.633 from the corner to the crease along a long side, not the crease. The option \"12.5\" uses 9.633 as the horizontal run of the crease: √(8² + 9.633²). The option \"14.1\" takes half the crease to be the distance from corner B to the diagonal, 8·15/17 ≈ 7.06, and doubles it.",
+  "solve": "const L=15,W=8; const d=Math.hypot(L,W); return (2*(d/2)*(W/L)).toFixed(1);",
+  "distractor_solve": {
+   "9.6": "const L=15,W=8; const x=(L*L+W*W)/(2*L); return x.toFixed(1);",
+   "12.5": "const L=15,W=8; const x=(L*L+W*W)/(2*L); return Math.hypot(W,x).toFixed(1);",
+   "14.1": "const L=15,W=8; const d=Math.hypot(L,W); return (2*(L*W/d)).toFixed(1);"
+  },
+  "bounds": [
+   "v > 8",
+   "v < 17"
+  ],
+  "distractor_kind": {
+   "9.6": "neighbouring quantity: the fold-line distance from the corner (AE). (b) yes; forced side? Free bounds are 8 < crease < 17 (it joins the two long sides obliquely and is shorter than the diagonal); 9.6 is inside, and EF < AE holds only after computing x; survives.",
+   "12.5": "wrong procedure: uses AE as the horizontal run. (a) no; (b) no. Inside (8, 17); survives.",
+   "14.1": "wrong procedure: the corner-to-diagonal distance used as half the crease. (a) no; (b) it is twice an adjacent quantity (the altitude of triangle ABC to AC), not separated from the key by a free bound; inside (8, 17); survives. The diagonal 17 and the half-diagonal 8.5 are not options; a sine-for-tangent slip giving exactly 8.0 (ON the width bound) was deliberately not used."
+  }
+ },
+ {
+  "id": "AM18I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "rates and time",
+  "subskill": "average speed from local departure and arrival times in different time zones",
+  "prompt": "A flight leaves Denver at 10:35 a.m. Denver time and lands in New York at 4:50 p.m. New York time on the same day. New York time is 2 hours ahead of Denver time. The flight covers 1,620 miles. To the nearest mile per hour, what is the plane's average speed for the flight?",
+  "choices": [
+   "381",
+   "259",
+   "390",
+   "196"
+  ],
+  "correct_answer": "381",
+  "explanation": "Put both times on one clock. 4:50 p.m. New York time is 2:50 p.m. Denver time, so the flight lasts from 10:35 a.m. to 2:50 p.m., which is 4 hours 15 minutes = 4.25 hours. The average speed is 1,620 ÷ 4.25 ≈ 381.2, or 381 miles per hour. The option \"259\" ignores the time difference and uses the clock gap of 6 hours 15 minutes: 1,620 ÷ 6.25. The option \"196\" shifts the time the wrong way, adding the 2 hours to get 8 hours 15 minutes: 1,620 ÷ 8.25. The option \"390\" finds 4 hours 15 minutes correctly but writes it as 4.15 hours: 1,620 ÷ 4.15.",
+  "solve": "const dep=10*60+35, arrNY=16*60+50, shift=120; const t=(arrNY-shift-dep)/60; return String(Math.round(1620/t));",
+  "distractor_solve": {
+   "196": "const dep=10*60+35, arrNY=16*60+50, shift=120; return String(Math.round(1620/((arrNY+shift-dep)/60)));",
+   "259": "const dep=10*60+35, arrNY=16*60+50; return String(Math.round(1620/((arrNY-dep)/60)));",
+   "390": "return String(Math.round(1620/4.15));"
+  },
+  "bounds": [
+   "v > 0",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "196": "wrong procedure: time-zone shift applied in the wrong direction. (a) no; (b) no adjacent problem yields it. Strictly inside (0, inf).",
+   "259": "wrong procedure: no time-zone conversion (clock gap used). (a) not a parameter extreme; (b) it is the answer if both cities shared a clock (neighbouring setup), but the stem gives no free bound placing the key on one side of it: deciding that an eastbound clock gap overstates the flight time IS the item's work. Kept.",
+   "390": "wrong procedure: 4 h 15 min written as 4.15 h. (a) no; (b) no. Lies just above the key, not on any bound."
+  }
+ },
+ {
+  "id": "AM18I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "volume and unit conversion",
+  "subskill": "cost of a concrete slab priced per cubic yard from dimensions in feet and inches",
+  "prompt": "A rectangular patio slab is to be 18 feet long, 12 feet wide, and 4 inches thick. Concrete costs $135 per cubic yard, where 1 yard = 3 feet, and the supplier charges for exactly the volume used. What is the cost of the concrete for the slab, in dollars?",
+  "choices": [
+   "360",
+   "432",
+   "1080",
+   "3240"
+  ],
+  "correct_answer": "360",
+  "explanation": "The thickness is 4 inches = 4/12 = 1/3 foot, so the volume is 18 × 12 × 1/3 = 72 cubic feet. One cubic yard is 3 × 3 × 3 = 27 cubic feet, so the slab is 72 ÷ 27 = 8/3 cubic yards and costs (8/3)(135) = $360. The option \"432\" writes 4 inches as 0.4 foot, giving 86.4 cubic feet. The option \"1080\" converts with 9 cubic feet per cubic yard, the square-yard factor, giving 8 cubic yards. The option \"3240\" converts the price instead of the volume and divides it by 3 rather than 27, charging $45 per cubic foot for 72 cubic feet.",
+  "solve": "const v=18*12*(4/12); return String(Math.round(v/27*135));",
+  "distractor_solve": {
+   "432": "const v=18*12*0.4; return String(Math.round(v/27*135));",
+   "1080": "const v=18*12*(4/12); return String(Math.round(v/9*135));",
+   "3240": "const v=18*12*(4/12); return String(Math.round(v*(135/3)));"
+  },
+  "bounds": [
+   "v > 0",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "432": "wrong procedure: inches read as tenths of a foot. (a) no; (b) no. Inside (0, inf); no stem bound reaches it.",
+   "1080": "wrong procedure: square-yard factor 9 used for cubic yards. (a) no; (b) no.",
+   "3240": "wrong procedure: price converted with a linear factor 3. (a) no; (b) no. Key is the smallest option here by design (errors overshoot)."
+  }
+ },
+ {
+  "id": "AM18I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates",
+  "subskill": "number of objects on a moving belt from a placement interval and belt speed",
+  "prompt": "Boxes are placed one at a time on a moving conveyor belt, one box every 1.5 seconds. The belt moves at a constant 0.8 meter per second and carries each box 30 meters to the end of the belt, where it is removed. While the belt is running steadily, about how many boxes are on the belt at any moment?",
+  "choices": [
+   "16",
+   "36",
+   "25",
+   "56"
+  ],
+  "correct_answer": "25",
+  "explanation": "In 1.5 seconds the belt moves 0.8 × 1.5 = 1.2 meters, so consecutive boxes are 1.2 meters apart. A 30-meter stretch holds about 30 ÷ 1.2 = 25 boxes. (Equivalently, each box rides for 30 ÷ 0.8 = 37.5 seconds, and one box is added every 1.5 seconds, so 37.5 ÷ 1.5 = 25.) The option \"16\" multiplies the length by the speed and divides by the interval: 30 × 0.8 ÷ 1.5. The option \"56\" uses a spacing of 0.8 ÷ 1.5 ≈ 0.53 meter, giving 30 ÷ 0.533 ≈ 56. The option \"36\" multiplies all three numbers, 30 × 0.8 × 1.5.",
+  "solve": "return String(Math.round(30/(0.8*1.5)));",
+  "distractor_solve": {
+   "16": "return String(Math.round(30*0.8/1.5));",
+   "36": "return String(Math.round(30*0.8*1.5));",
+   "56": "return String(Math.round(30/(0.8/1.5)));"
+  },
+  "bounds": [
+   "v > 0",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "16": "wrong procedure: speed divided by the interval and multiplied into the length. (a) no; (b) no.",
+   "36": "wrong procedure: multiplies all three givens. (a) no; (b) no. None is a parameter extreme; no stem bound on the count.",
+   "56": "wrong procedure: spacing computed as speed / interval. (a) no; (b) no."
+  }
+ },
+ {
+  "id": "AM18I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "area in context",
+  "subskill": "cost of a circular ring path from the inner diameter and the path width",
+  "prompt": "A circular fountain has a diameter of 12 feet. A paved path 3 feet wide is built around the fountain, touching its edge all the way around. Paving costs $9.50 per square foot. To the nearest dollar, what is the cost, in dollars, of paving the path?",
+  "choices": [
+   "1612",
+   "1343",
+   "5372",
+   "604"
+  ],
+  "correct_answer": "1343",
+  "explanation": "The fountain has radius 6 feet, so the outer edge of the path has radius 6 + 3 = 9 feet. The path is the ring between the circles: π(9²) − π(6²) = 45π ≈ 141.37 square feet, which costs 141.37 × 9.50 ≈ 1,343 dollars. The option \"1612\" approximates the ring as a straight strip whose length is the OUTER circumference, 2π(9) × 3 = 54π square feet. The option \"604\" adds the path width to the diameter instead of to the radius, using an outer radius of 7.5 feet: π(7.5² − 6²). The option \"5372\" uses the diameters 18 and 12 as if they were radii: π(18² − 12²) = 180π.",
+  "solve": "return String(Math.round(Math.PI*(9**2-6**2)*9.5));",
+  "distractor_solve": {
+   "604": "return String(Math.round(Math.PI*(7.5**2-6**2)*9.5));",
+   "1612": "return String(Math.round(2*Math.PI*9*3*9.5));",
+   "5372": "return String(Math.round(Math.PI*(18**2-12**2)*9.5));"
+  },
+  "bounds": [
+   "v > 0",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "604": "wrong procedure: width added to the diameter. (a) no; (b) no. Below the key; nothing in the stem bounds the ring area from below except 0.",
+   "1612": "wrong procedure: strip approximation using the OUTER circumference. (a) no; (b) it is a neighbouring approximation; its inner-circumference twin (1074, which with it would bracket the key) is deliberately absent, and the earlier draft option 269 was removed because 1074 + 269 = key (composition check). No stem bound reaches it.",
+   "5372": "wrong procedure: diameters used as radii. (a) no; (b) no."
+  }
+ },
+ {
+  "id": "AM18I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates and unit conversion",
+  "subskill": "remaining recording time after storage is used at a different rate",
+  "prompt": "A camera's memory card has 64 gigabytes (GB) of free space, where 1 GB = 1,000 megabytes (MB). Video recorded in 4K uses 375 MB per minute, and video recorded in HD uses 130 MB per minute. Jae first records 45 minutes of 4K video. After that, what is the greatest number of whole minutes of HD video the card can still hold?",
+  "choices": [
+   "362",
+   "125",
+   "447",
+   "155"
+  ],
+  "correct_answer": "362",
+  "explanation": "The card holds 64 × 1,000 = 64,000 MB. The 4K video uses 45 × 375 = 16,875 MB, leaving 47,125 MB. At 130 MB per minute that is 47,125 ÷ 130 = 362.5 minutes, so the greatest whole number of minutes is 362. The option \"447\" finds the HD minutes for the empty card, 64,000 ÷ 130 ≈ 492.3, and subtracts the 45 minutes of 4K as if a minute were a minute at either quality. The option \"155\" swaps the two rates: (64,000 − 45 × 130) ÷ 375. The option \"125\" divides the card by the 4K rate and subtracts 45 minutes: 64,000 ÷ 375 − 45 ≈ 125.7.",
+  "solve": "return String(Math.floor((64*1000-45*375)/130));",
+  "distractor_solve": {
+   "125": "return String(Math.floor(64*1000/375-45));",
+   "155": "return String(Math.floor((64*1000-45*130)/375));",
+   "447": "return String(Math.floor(64*1000/130-45));"
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v >= 0",
+   "v <= 492"
+  ],
+  "distractor_kind": {
+   "125": "wrong procedure: card measured in 4K minutes. (a) no; (b) no.",
+   "155": "wrong procedure: rates swapped. (a) no; (b) no.",
+   "447": "wrong procedure: minutes subtracted across qualities. (a) not the empty-card value (492, absent); (b) no. Inside [0, 492]; it is the option ABOVE the key on this greatest-question (13j)."
+  }
+ },
+ {
+  "id": "AM18I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates in context",
+  "subskill": "downstream drift of a swimmer heading straight across a river",
+  "prompt": "A swimmer crosses a river that is 120 meters wide. She swims at 1.5 meters per second relative to the water, always aimed straight at the opposite bank, while the current carries her downstream at 0.9 meter per second. How many meters downstream from her starting point does she reach the opposite bank?",
+  "choices": [
+   "180",
+   "72",
+   "139.9",
+   "200"
+  ],
+  "correct_answer": "72",
+  "explanation": "Her swimming carries her across at 1.5 meters per second, so the crossing takes 120 ÷ 1.5 = 80 seconds. During those 80 seconds the current carries her 0.9 × 80 = 72 meters downstream. The option \"200\" swaps the two speeds: 120 × 1.5 ÷ 0.9. The option \"180\" uses the difference of the speeds for the crossing, 120 ÷ (1.5 − 0.9) = 200 seconds, then multiplies by 0.9. The option \"139.9\" is the length of her actual path, √(120² + 72²), not the downstream distance.",
+  "solve": "const t=120/1.5; return String(0.9*t);",
+  "distractor_solve": {
+   "180": "return String(120/(1.5-0.9)*0.9);",
+   "200": "return String(120*1.5/0.9);",
+   "139.9": "const d=120/1.5*0.9; return String(Math.round(Math.hypot(120,d)*10)/10);"
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "distractor_kind": {
+   "180": "wrong procedure: relative speed (difference) used for the crossing time. (a) no; (b) no.",
+   "200": "wrong procedure: speeds swapped in the ratio. (a) no; (b) no.",
+   "139.9": "neighbouring quantity: the path length rather than the drift. (b) YES, the answer to \"how far does she travel\"; the key is smaller than it only after computing the drift (it is the hypotenuse of a triangle whose leg is the key), so no free stem bound forces the key below it. Kept; flagged for the graders."
+  }
+ },
+ {
+  "id": "AM18I-11",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "surface area in context",
+  "subskill": "paint for the curved side and top of a cylindrical tank, two coats",
+  "prompt": "A cylindrical water tank has a diameter of 10 feet and a height of 12 feet. Its curved side and its top are to be given two coats of paint; the bottom rests on the ground and is not painted. One gallon of paint covers 350 square feet. To the nearest tenth of a gallon, how many gallons of paint are needed?",
+  "choices": [
+   "2.6",
+   "1.5",
+   "6.1",
+   "2.3"
+  ],
+  "correct_answer": "2.6",
+  "explanation": "The radius is 5 feet. The curved side has area 2π(5)(12) = 120π square feet and the top has area π(5²) = 25π square feet, for 145π ≈ 455.5 square feet. Two coats cover 2 × 455.5 = 911.1 square feet, which takes 911.1 ÷ 350 ≈ 2.6 gallons. The option \"6.1\" uses the diameter 10 as the radius: 2π(10)(12) + π(10²) = 340π. The option \"2.3\" computes the top as πd = 10π instead of πr². The option \"1.5\" computes the curved side as πrh = 60π, dropping the factor 2: (60π + 25π) × 2 ÷ 350.",
+  "solve": "const r=5,h=12; const a=2*Math.PI*r*h+Math.PI*r*r; return String(Math.round(2*a/350*10)/10);",
+  "distractor_solve": {
+   "6.1": "const r=10,h=12; const a=2*Math.PI*r*h+Math.PI*r*r; return String(Math.round(2*a/350*10)/10);",
+   "2.3": "const r=5,h=12; const a=2*Math.PI*r*h+Math.PI*10; return String(Math.round(2*a/350*10)/10);",
+   "1.5": "const r=5,h=12; const a=Math.PI*r*h+Math.PI*r*r; return String(Math.round(2*a/350*10)/10);"
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "distractor_kind": {
+   "6.1": "wrong procedure: diameter as radius. (a) no; (b) no.",
+   "2.3": "wrong procedure: top area as pi*d. (a) no; (b) no. It is NOT the one-coat value or the no-top value (both absent).",
+   "1.5": "wrong procedure: lateral area missing its factor 2. (a) no; (b) no."
+  }
+ },
+ {
+  "id": "AM18I-12",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "counting and cost",
+  "subskill": "cost of a floor whose edge tiles and inner tiles are priced differently",
+  "prompt": "A rectangular floor that is 12 feet by 15 feet is covered exactly with 1-foot-square tiles. Every tile that touches an edge of the floor is blue and costs $3.20; every other tile is white and costs $2.15. What is the total cost of the tiles, in dollars?",
+  "choices": [
+   "443.70",
+   "414.30",
+   "523.50",
+   "439.50"
+  ],
+  "correct_answer": "439.50",
+  "explanation": "The floor uses 12 × 15 = 180 tiles. The white tiles form a rectangle 2 tiles shorter in each direction, 10 × 13 = 130 tiles, so 180 − 130 = 50 tiles are blue. The cost is 50(3.20) + 130(2.15) = 160.00 + 279.50 = 439.50 dollars. The option \"443.70\" counts the blue tiles as 2(12) + 2(15) = 54, counting each corner tile twice, and leaves 126 white. The option \"414.30\" makes the white rectangle only 1 tile shorter in each direction, 11 × 14 = 154, leaving 26 blue. The option \"523.50\" keeps the correct counts but swaps the two prices.",
+  "solve": "const all=12*15, white=(12-2)*(15-2), blue=all-white; return String(Math.round((blue*3.2+white*2.15)*100)/100);",
+  "distractor_solve": {
+   "443.70": "const blue=2*12+2*15, white=12*15-blue; return String(Math.round((blue*3.2+white*2.15)*100)/100);",
+   "414.30": "const white=(12-1)*(15-1), blue=12*15-white; return String(Math.round((blue*3.2+white*2.15)*100)/100);",
+   "523.50": "const white=(12-2)*(15-2), blue=12*15-white; return String(Math.round((blue*2.15+white*3.2)*100)/100);"
+  },
+  "bounds": [
+   "v > 387",
+   "v < 576"
+  ],
+  "distractor_kind": {
+   "443.70": "wrong procedure: corners double-counted. (a) no; (b) no. Inside (all-white 387, all-blue 576).",
+   "414.30": "wrong procedure: border removed once instead of twice per dimension. (a) no; (b) no.",
+   "523.50": "wrong procedure: prices swapped. (a) no; (b) no. All-white and all-blue limiting values deliberately absent."
+  }
+ },
+ {
+  "id": "AM18S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "standard deviation",
+  "subskill": "matching a relative standing (standard deviations above the mean) across two distributions",
+  "prompt": "On a chemistry test, the scores had a mean of 72 points and a standard deviation of 8 points, and Ana scored 84. On a physics test, the scores had a mean of 65 points and a standard deviation of 10 points. What score on the physics test is the same number of standard deviations above its mean as Ana's chemistry score is above the chemistry mean?",
+  "choices": [
+   "77",
+   "74.6",
+   "80",
+   "75.8"
+  ],
+  "correct_answer": "80",
+  "explanation": "Ana's score is 84 − 72 = 12 points above the mean, which is 12 ÷ 8 = 1.5 standard deviations. On the physics test, 1.5 standard deviations is 1.5 × 10 = 15 points, so the score is 65 + 15 = 80. The option \"77\" keeps the same 12-point gap above the physics mean. The option \"75.8\" keeps the same ratio of score to mean: 65 × 84/72. The option \"74.6\" rescales the 12-point gap by 8/10 instead of 10/8: 65 + 12(0.8).",
+  "solve": "const z=(84-72)/8; return String(65+z*10);",
+  "distractor_solve": {
+   "77": "return String(65+(84-72));",
+   "75.8": "return String(Math.round(65*84/72*10)/10);",
+   "74.6": "return String(Math.round((65+(84-72)*8/10)*10)/10);"
+  },
+  "bounds": [
+   "v > 65"
+  ],
+  "distractor_kind": {
+   "77": "wrong procedure: equal raw gap instead of equal standardized gap. (a) no; (b) no.",
+   "75.8": "wrong procedure: proportional to the mean. (a) no; (b) no.",
+   "74.6": "wrong procedure: SD ratio inverted. (a) no; (b) no. All above the physics mean 65 (the one stem bound). Key largest here by design."
+  }
+ },
+ {
+  "id": "AM18S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "probability",
+  "subskill": "probability that the larger of two dice equals a given value",
+  "prompt": "Two fair 6-sided dice, each numbered 1 through 6, are rolled. What is the probability that the greater of the two numbers rolled is 4 ? (If both dice show the same number, that number counts as the greater.)",
+  "choices": [
+   "1/9",
+   "4/9",
+   "1/6",
+   "7/36"
+  ],
+  "correct_answer": "7/36",
+  "explanation": "Of the 36 equally likely outcomes, the greater number is 4 exactly when both dice show at most 4 but not both show at most 3: 4 × 4 − 3 × 3 = 16 − 9 = 7 outcomes ((4,1), (4,2), (4,3), (1,4), (2,4), (3,4), (4,4)). The probability is 7/36. The option \"1/6\" counts only the 6 outcomes with exactly one 4 and leaves out (4, 4). The option \"1/9\" counts only the 4 outcomes in which the first die is the 4 and the second is at most 4, forgetting that the 4 can be on either die. The option \"4/9\" counts the 16 outcomes in which both dice are at most 4, without removing those whose greater number is less than 4.",
+  "solve": "let n=0; for(let a=1;a<=6;a++)for(let b=1;b<=6;b++) if(Math.max(a,b)===4) n++; return String(n/36);",
+  "distractor_solve": {
+   "1/6": "let n=0; for(let a=1;a<=6;a++)for(let b=1;b<=6;b++) if(Math.max(a,b)===4 && a!==b) n++; return String(n/36);",
+   "1/9": "let n=0; for(let b=1;b<=6;b++) if(b<=4) n++; return String(n/36);",
+   "4/9": "let n=0; for(let a=1;a<=6;a++)for(let b=1;b<=6;b++) if(a<=4&&b<=4) n++; return String(n/36);"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 1"
+  ],
+  "distractor_kind": {
+   "1/6": "wrong procedure: the double (4,4) omitted. (a) no; (b) no.",
+   "1/9": "wrong procedure: order ignored, one die fixed as the 4. (a) no; (b) no.",
+   "4/9": "neighbouring event P(max <= 4). (b) YES. Key < it, but seeing that needs the count 16/36 and the subtraction, i.e. the item's work; no stem-forced numeric bound. The other neighbour, P(at least one 4) = 11/36, was deliberately left out so two neighbours do not bracket the key. Options avoid the 6-7-8 ladder."
+  }
+ },
+ {
+  "id": "AM18S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "counting",
+  "subskill": "counting triangles from points when some of the points are collinear",
+  "prompt": "Ten points lie in a plane. Four of the points lie on one straight line, and no three of the ten points lie on a line unless all three are among those four. How many triangles have all three of their vertices among the ten points?",
+  "choices": [
+   "80",
+   "116",
+   "96",
+   "114"
+  ],
+  "correct_answer": "116",
+  "explanation": "Any 3 of the 10 points form a triangle unless all 3 come from the 4 collinear points. There are C(10, 3) = 120 ways to choose 3 points and C(4, 3) = 4 collinear choices, so there are 120 − 4 = 116 triangles. (By cases: none of the four, C(6, 3) = 20; one of the four, 4·C(6, 2) = 60; two of the four, C(4, 2)·6 = 36; total 116.) The option \"114\" subtracts C(4, 2) = 6 instead of C(4, 3). The option \"80\" leaves out the triangles that use two of the collinear points: 20 + 60. The option \"96\" leaves out the triangles that use none of them: 60 + 36.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(10,3)-C(4,3));",
+  "distractor_solve": {
+   "80": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(6,3)+4*C(6,2));",
+   "96": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(4*C(6,2)+C(4,2)*6);",
+   "114": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r}; return String(C(10,3)-C(4,2));"
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v > 0",
+   "v < 120"
+  ],
+  "distractor_kind": {
+   "80": "wrong procedure: one case of the split dropped. (a) no; (b) no.",
+   "96": "wrong procedure: another case dropped. (a) no; (b) no. The no-collinearity value C(10,3)=120 (limiting case) is deliberately absent; every option is strictly below it.",
+   "114": "wrong procedure: subtracts pairs not triples. (a) no; (b) no. Below 120."
+  }
+ },
+ {
+  "id": "AM18S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability",
+  "subskill": "probability that at least two of three independent events with different probabilities occur",
+  "prompt": "A production line has three machines, A, B, and C, that operate independently. On any given day, the probabilities that A, B, and C are working are 0.9, 0.8, and 0.7, respectively. The line can run on a day when at least two of the three machines are working. To the nearest thousandth, what is the probability that the line can run on a given day?",
+  "choices": [
+   "0.902",
+   "0.896",
+   "0.637",
+   "0.846"
+  ],
+  "correct_answer": "0.902",
+  "explanation": "Add the probabilities of the disjoint ways at least two machines work. All three: (0.9)(0.8)(0.7) = 0.504. Exactly two: only C down, (0.9)(0.8)(0.3) = 0.216; only B down, (0.9)(0.2)(0.7) = 0.126; only A down, (0.1)(0.8)(0.7) = 0.056. The total is 0.504 + 0.216 + 0.126 + 0.056 = 0.902. The option \"0.846\" leaves out the case in which A is the machine that is down. The option \"0.896\" replaces the three probabilities by their average, 0.8, and uses 3(0.8)²(0.2) + (0.8)³. The option \"0.637\" averages the three pairwise products, (0.72 + 0.63 + 0.56)/3.",
+  "solve": "const a=.9,b=.8,c=.7; const p=a*b*c+a*b*(1-c)+a*(1-b)*c+(1-a)*b*c; return String(Math.round(p*1000)/1000);",
+  "distractor_solve": {
+   "0.846": "const a=.9,b=.8,c=.7; return String(Math.round((a*b*c+a*b*(1-c)+a*(1-b)*c)*1000)/1000);",
+   "0.896": "const p=(.9+.8+.7)/3; return String(Math.round((3*p*p*(1-p)+p**3)*1000)/1000);",
+   "0.637": "const a=.9,b=.8,c=.7; return String(Math.round((a*b+a*c+b*c)/3*1000)/1000);"
+  },
+  "bounds": [
+   "v > 0.504",
+   "v < 0.994"
+  ],
+  "distractor_kind": {
+   "0.846": "wrong procedure: one exactly-two case dropped. (a) no; (b) no. Inside (P(all three) 0.504, P(at least one) 0.994); neither endpoint value is an option.",
+   "0.896": "wrong procedure: unequal probabilities replaced by their mean. (a) no (not an extreme of any parameter); (b) no.",
+   "0.637": "wrong procedure: averaged pairwise products. (a) no; (b) no."
+  }
+ }
+]

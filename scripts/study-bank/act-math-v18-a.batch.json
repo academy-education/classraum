@@ -1,0 +1,497 @@
+[
+ {
+  "id": "AM18N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "matrices",
+  "subskill": "an entry of the inverse of a 2x2 matrix",
+  "prompt": "Matrix A has first row (4, 3) and second row (2, 5). What is the entry in the 1st row, 2nd column of A⁻¹, the inverse of matrix A ?",
+  "choices": [
+   "-1/7",
+   "5/14",
+   "-3/14",
+   "1/3"
+  ],
+  "correct_answer": "-3/14",
+  "explanation": "For a 2 × 2 matrix with first row (a, b) and second row (c, d), the inverse is 1/(ad − bc) times the matrix with first row (d, −b) and second row (−c, a). Here ad − bc = 4(5) − 3(2) = 14, so the first row of A⁻¹ is (5/14, −3/14) and the entry in the 1st row, 2nd column is −3/14. Check: the first row of A times the second column of A⁻¹ is 4(−3/14) + 3(4/14) = 0, as it must be. The option \"-1/7\" negates the wrong off-diagonal entry, putting −c = −2 in that position: −2/14. The option \"1/3\" inverts the matrix entry by entry, taking the reciprocal of the entry 3 in that position. The option \"5/14\" is d/(ad − bc), the entry in the 1st row, 1st column, not the 1st row, 2nd column.",
+  "solve": "const a=4,b=3,c=2,d=5; const det=a*d-b*c; return String(-b/det);",
+  "distractor_solve": {
+   "-1/7": "const a=4,b=3,c=2,d=5; const det=a*d-b*c; return String(-c/det);",
+   "1/3": "const b=3; return String(1/b);",
+   "5/14": "const a=4,b=3,c=2,d=5; const det=a*d-b*c; return String(d/det);"
+  },
+  "distractor_kind": {
+   "-1/7": "wrong procedure: negates c instead of b in the off-diagonal slot. (a) not a parameter-at-extreme value: no. (b) it equals the 2nd-row 1st-column entry of the inverse, a neighbouring entry; the stem forces no order between the entries, so it is rejected only by applying the formula. Kept.",
+   "1/3": "wrong procedure: entrywise reciprocal as the inverse. (a) no. (b) no. No stem bound reaches it.",
+   "5/14": "neighbouring setup: the 1st-row 1st-column entry d/det. (a) no. (b) yes; nothing in the stem places the asked entry on one side of it (its sign is only readable from the formula). Kept."
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ]
+ },
+ {
+  "id": "AM18N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "logarithms",
+  "subskill": "solving an equation that adds logarithms with different bases",
+  "prompt": "For x > 0, log₂ x + log₈ x = 8. What is the value of x ?",
+  "choices": [
+   "16",
+   "64",
+   "6",
+   "4"
+  ],
+  "correct_answer": "64",
+  "explanation": "Since 8 = 2³, log₈ x = (log₂ x)/3. Writing L = log₂ x, the equation becomes L + L/3 = 8, so (4/3)L = 8 and L = 6. Then x = 2⁶ = 64. Check: log₂ 64 = 6 and log₈ 64 = 2, and 6 + 2 = 8. The option \"4\" uses log₈ x = 3·log₂ x, so 4L = 8, L = 2 and x = 2². The option \"16\" treats log₈ x as if it were log₂ x, so 2L = 8, L = 4 and x = 2⁴. The option \"6\" finds log₂ x = 6 correctly but reports that logarithm instead of x.",
+  "solve": "const L=8/(1+1/3); return String(Math.round(Math.pow(2,L)));",
+  "distractor_solve": {
+   "4": "const L=8/(1+3); return String(Math.pow(2,L));",
+   "16": "const L=8/(1+1); return String(Math.pow(2,L));",
+   "6": "return String(Math.round(8/(1+1/3)));"
+  },
+  "distractor_kind": {
+   "4": "wrong procedure: change of base inverted (log8 x = 3 log2 x). (a) no. (b) no. Inside the stem-forced interval 1 < x < 256.",
+   "16": "wrong procedure: ignores the base change. (a) no. (b) it answers log2 x + log2 x = 8, an adjacent equation, but the stem only forces 1 < x < 256, which 16 satisfies; rejected only by doing the base change. Kept.",
+   "6": "wrong procedure: reports log2 x instead of x. (a) no. (b) no. Inside 1 < x < 256."
+  },
+  "bounds": [
+   "v > 1",
+   "v < 256"
+  ]
+ },
+ {
+  "id": "AM18N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "complex numbers",
+  "subskill": "choosing a real parameter so that a product of complex numbers is real",
+  "prompt": "For i = √(-1), the product (a + 5i)(2 − i), where a is a real number, is a real number. What is the value of the product (a + 5i)(2 − i) ?",
+  "choices": [
+   "20",
+   "12.5",
+   "25",
+   "15"
+  ],
+  "correct_answer": "25",
+  "explanation": "Expanding, (a + 5i)(2 − i) = 2a − ai + 10i − 5i² = (2a + 5) + (10 − a)i, using i² = −1. The product is real only when the imaginary part is 0, so 10 − a = 0 and a = 10. The product is then 2(10) + 5 = 25. The option \"15\" treats i² as +1, so the real part becomes 2a − 5 = 20 − 5. The option \"20\" drops the product 5i·(−i) entirely and reports 2a. The option \"12.5\" sets the real part to 0 instead, as if the product were to be purely imaginary: 2a + 5 = 0 gives a = −2.5, and the coefficient of i is then 10 − (−2.5).",
+  "solve": "const a=5*2; const re=2*a-5*(-1), im=-a+5*2; return im===0?String(re):'not real';",
+  "distractor_solve": {
+   "15": "const a=10; return String(2*a-5);",
+   "20": "const a=10; return String(2*a);",
+   "12.5": "const a=-5/2; return String(-a+10);"
+  },
+  "distractor_kind": {
+   "15": "wrong procedure: i^2 taken as +1. (a) no. (b) no. Above the stem-forced floor 5*sqrt(5) (the product equals |a+5i||2-i| when real and positive).",
+   "20": "wrong procedure: drops the 5i(-i) term. (a) no. (b) no. Above the floor.",
+   "12.5": "neighbouring setup: purely-imaginary condition (real part 0), reporting the coefficient of i. (a) no. (b) yes; 12.5 > 5*sqrt(5) = 11.18, so no stem-forced bound separates it from the key; rejected only by expanding. Kept."
+  },
+  "bounds": [
+   "v > 0",
+   "v >= 5*Math.sqrt(5)"
+  ]
+ },
+ {
+  "id": "AM18N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "sequences",
+  "subskill": "combining a geometric and an arithmetic condition on shared terms",
+  "prompt": "The numbers 1, x, and y, in that order, are the first three terms of a geometric sequence. The numbers x, y, and 15, in that order, are the first three terms of an arithmetic sequence. If x and y are both positive, what is the value of y − x ?",
+  "choices": [
+   "8.75",
+   "6",
+   "12",
+   "3.75"
+  ],
+  "correct_answer": "6",
+  "explanation": "Because 1, x, y is geometric, the ratio is x, so y = x². Because x, y, 15 is arithmetic, y is the average of its neighbors: 2y = x + 15. Substituting, 2x² = x + 15, so 2x² − x − 15 = 0, which factors as (2x + 5)(x − 3) = 0. Then x = 3 or x = −2.5. Positivity rules out x = −2.5, so x = 3, y = 9, and y − x = 6. Check: 1, 3, 9 has ratio 3, and 3, 9, 15 has difference 6. The option \"8.75\" keeps the root x = −2.5, for which y = 6.25 and y − x = 6.25 + 2.5. The option \"3.75\" factors 2x² − x − 15 with the signs reversed, as (2x − 5)(x + 3), takes x = 2.5, and gets y = 6.25 and y − x = 3.75. The option \"12\" finds x = 3 and y = 9 correctly but reports x + y instead of y − x.",
+  "solve": "const x=(1+Math.sqrt(1+120))/4; const y=x*x; return String(y-x);",
+  "distractor_solve": {
+   "8.75": "const x=(1-Math.sqrt(1+120))/4; const y=x*x; return String(y-x);",
+   "3.75": "const x=5/2; const y=x*x; return String(y-x);",
+   "12": "const x=(1+Math.sqrt(1+120))/4; const y=x*x; return String(x+y);"
+  },
+  "distractor_kind": {
+   "8.75": "neighbouring setup: the other root of 2x^2 - x - 15 = 0 (x = -2.5), which the positivity condition excludes only after solving; the value 8.75 itself is positive and below the stem-forced ceiling (y < 15), so no free bound reaches it. (a) no. (b) yes, kept.",
+   "3.75": "wrong procedure: sign-reversed factorisation. (a) no. (b) no. Inside 0 < y - x < 15.",
+   "12": "neighbouring setup: reports x + y instead of y - x. (a) no. (b) yes; y - x and x + y are not ordered against the options by any stem bound other than y - x < 15, which 12 satisfies. Kept."
+  },
+  "bounds": [
+   "v > 0",
+   "v < 15"
+  ]
+ },
+ {
+  "id": "AM18N-05",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "arithmetic series",
+  "subskill": "least number of terms for an arithmetic series to reach a total",
+  "prompt": "The first row of a theater has 18 seats, and each row after the first has 3 more seats than the row in front of it. What is the least number of rows the theater must have so that it has at least 1,000 seats in all?",
+  "choices": [
+   "20",
+   "14",
+   "23",
+   "21"
+  ],
+  "correct_answer": "21",
+  "explanation": "With n rows the seats form an arithmetic series with first term 18 and common difference 3, so the total is n/2·(2·18 + 3(n − 1)) = n(3n + 33)/2. Setting n(3n + 33)/2 ≥ 1,000 gives 3n² + 33n − 2,000 ≥ 0, whose positive root is about 20.9, so n must be at least 21. Check: 20 rows hold 20(93)/2 = 930 seats, too few, and 21 rows hold 21(96)/2 = 1,008. The option \"20\" rounds the root 20.9 down instead of up. The option \"23\" takes the last row to have 3n seats instead of 18 + 3(n − 1), so it uses n(18 + 3n)/2 ≥ 1,000. The option \"14\" leaves out the division by 2 in the series formula, using n(36 + 3(n − 1)) ≥ 1,000.",
+  "solve": "let n=0,s=0; while(s<1000){n++; s+=18+3*(n-1);} return String(n);",
+  "distractor_solve": {
+   "20": "const r=(-33+Math.sqrt(33*33+4*3*2000))/6; return String(Math.floor(r));",
+   "23": "let n=0; while(n*(18+3*n)/2<1000) n++; return String(n);",
+   "14": "let n=0; while(n*(36+3*(n-1))<1000) n++; return String(n);"
+  },
+  "distractor_kind": {
+   "20": "wrong procedure: rounds the root down. (a) it is one row short of the key but not a parameter-at-extreme value; the stem forces no bound between 20 and 21 without computing a series sum. (b) no. Kept; it also supplies the 'least' question with an option below the key.",
+   "23": "wrong procedure: last term written as 3n. (a) no. (b) no. Inside 1 <= n <= 56 (56 rows of at least 18 seats already exceed 1,000).",
+   "14": "wrong procedure: series formula without the 1/2. (a) no. (b) no. Inside the stem-forced range."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v > 0",
+   "v <= 56"
+  ]
+ },
+ {
+  "id": "AM18N-06",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "complex numbers",
+  "subskill": "coefficients of a real quadratic from one complex solution",
+  "prompt": "For i = √(-1), the complex number 2 + 3i is a solution of the equation x² + bx + c = 0, where b and c are real numbers. What is the value of c − b ?",
+  "choices": [
+   "9",
+   "5",
+   "17",
+   "-1"
+  ],
+  "correct_answer": "17",
+  "explanation": "A quadratic with real coefficients that has the solution 2 + 3i also has its conjugate 2 − 3i as a solution. The sum of the solutions is 4, so b = −4; the product is (2 + 3i)(2 − 3i) = 4 − 9i² = 13, so c = 13. Then c − b = 13 − (−4) = 17. The option \"9\" takes b to be the sum of the solutions, 4, instead of its opposite, giving 13 − 4. The option \"-1\" computes the product as 4 − 9 = −5, treating i² as +1, so c − b = −5 + 4. The option \"5\" squares 2 + 3i as 4 + 9i² and drops the cross term 12i; with no imaginary part left, b must be 0 and c = 5.",
+  "solve": "const p=2,q=3; const b=-(2*p), c=p*p+q*q; return String(c-b);",
+  "distractor_solve": {
+   "9": "const p=2,q=3; const b=2*p, c=p*p+q*q; return String(c-b);",
+   "-1": "const p=2,q=3; const b=-(2*p), c=p*p-q*q; return String(c-b);",
+   "5": "const p=2,q=3; const sqRe=p*p-q*q; const b=0, c=-sqRe; return String(c-b);"
+  },
+  "distractor_kind": {
+   "9": "wrong procedure: sign of b (b = sum of roots). (a) no. (b) no. No stem bound.",
+   "-1": "wrong procedure: conjugate product with i^2 = +1. (a) no. (b) no. No stem bound.",
+   "5": "wrong procedure: drops the cross term when substituting 2 + 3i. (a) no. (b) no. No stem bound."
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ]
+ },
+ {
+  "id": "AM18N-07",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "vectors",
+  "subskill": "moving a given distance along the direction of a vector",
+  "prompt": "In the standard (x,y) coordinate plane, a particle starts at the point (1, 2) and moves along a straight line in the direction of the vector <3, 4>. It stops when it is 10 units from its starting point. What is the x-coordinate of the point where it stops?",
+  "choices": [
+   "37/7",
+   "9",
+   "11/5",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "The vector <3, 4> has magnitude √(3² + 4²) = 5, so the unit vector in its direction is <3/5, 4/5>. Moving 10 units means adding 10<3/5, 4/5> = <6, 8>, so the particle stops at (1 + 6, 2 + 8) = (7, 10). The x-coordinate is 7. The option \"9\" adds the y-displacement 8 to the x-coordinate, 1 + 8. The option \"37/7\" divides by 3 + 4 = 7 instead of the magnitude 5, so it adds 10(3/7). The option \"11/5\" divides by 3² + 4² = 25, the squared magnitude, so it adds 10(3/25).",
+  "solve": "const m=Math.hypot(3,4); return String(1+10*3/m);",
+  "distractor_solve": {
+   "9": "const m=Math.hypot(3,4); return String(1+10*4/m);",
+   "37/7": "return String(1+10*3/(3+4));",
+   "11/5": "return String(1+10*3/(3*3+4*4));"
+  },
+  "distractor_kind": {
+   "9": "wrong procedure: assigns the y-displacement to x. (a) no. (b) no. Inside 1 < x < 11 (the x-change is positive and less than the 10-unit distance).",
+   "37/7": "wrong procedure: 'length' taken as 3 + 4. (a) no. (b) no. Inside 1 < x < 11.",
+   "11/5": "wrong procedure: divides by the squared magnitude. (a) no. (b) no. Inside 1 < x < 11."
+  },
+  "bounds": [
+   "v > 1",
+   "v < 11"
+  ]
+ },
+ {
+  "id": "AM18A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "systems of linear equations",
+  "subskill": "setting up two percent-comparison equations and solving",
+  "prompt": "At a store, the price of a jacket is 25% more than the price of a sweater. After the price of the jacket is reduced by $6, the jacket's price is 10% more than the price of the sweater. What is the price, in dollars, of the sweater?",
+  "choices": [
+   "32",
+   "60",
+   "27",
+   "40"
+  ],
+  "correct_answer": "40",
+  "explanation": "Let s be the sweater's price and j the jacket's price. Then j = 1.25s and j − 6 = 1.10s. Subtracting, 6 = 0.15s, so s = 40. Check: the jacket costs 50, and after the reduction it costs 44, which is 10% more than 40. The option \"32\" solves 0.15s = 6 correctly but treats the 40 as the jacket's price and divides it by 1.25. The option \"27\" reads 'j is 25% more than s' as s = 0.75j and 'j − 6 is 10% more than s' as s = 0.9(j − 6), which gives j = 36 and s = 27. The option \"60\" treats the $6 reduction as 10% of the sweater's price.",
+  "solve": "return String(Math.round(6/(1.25-1.10)*1e6)/1e6);",
+  "distractor_solve": {
+   "32": "const j=6/(0.25-0.10); return String(Math.round(j/1.25*1e6)/1e6);",
+   "27": "const j=0.9*6/(0.9-0.75); return String(Math.round(0.75*j*1e6)/1e6);",
+   "60": "return String(Math.round(6/0.10*1e6)/1e6);"
+  },
+  "distractor_kind": {
+   "32": "wrong procedure: divides the solved value by 1.25 a second time. (a) no. (b) no. No stem bound.",
+   "27": "wrong procedure: reverses both percent comparisons. (a) no. (b) no. No stem bound.",
+   "60": "wrong procedure: treats $6 as 10% of the sweater. (a) not a limiting case of a parameter. (b) no. No stem bound."
+  },
+  "bounds": [
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM18A-02",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational inequalities",
+  "subskill": "counting integer solutions of a rational inequality with a sign chart",
+  "prompt": "How many integers x with −10 ≤ x ≤ 10 satisfy the inequality (x − 1)(x + 4)/(x − 5) ≤ 0 ?",
+  "choices": [
+   "12",
+   "11",
+   "6",
+   "9"
+  ],
+  "correct_answer": "11",
+  "explanation": "The expression is 0 at x = −4 and x = 1 and is undefined at x = 5. A sign chart gives: negative for x < −4, positive for −4 < x < 1, negative for 1 < x < 5, positive for x > 5. So the solution set is x ≤ −4 or 1 ≤ x < 5. The integers from −10 to −4 number 7, and the integers 1, 2, 3, 4 number 4, for a total of 11. The option \"12\" also counts x = 5, treating the denominator as if it were a factor that may equal 0. The option \"9\" uses < instead of ≤, losing the two zeros x = −4 and x = 1. The option \"6\" ignores the denominator and solves (x − 1)(x + 4) ≤ 0, which gives −4 ≤ x ≤ 1.",
+  "solve": "let n=0; for(let x=-10;x<=10;x++){ if(x===5) continue; if((x-1)*(x+4)/(x-5)<=0) n++; } return String(n);",
+  "distractor_solve": {
+   "12": "let n=0; for(let x=-10;x<=10;x++){ if((x-1)*(x+4)*(x-5)<=0) n++; } return String(n);",
+   "9": "let n=0; for(let x=-10;x<=10;x++){ if(x===5) continue; if((x-1)*(x+4)/(x-5)<0) n++; } return String(n);",
+   "6": "let n=0; for(let x=-10;x<=10;x++){ if((x-1)*(x+4)<=0) n++; } return String(n);"
+  },
+  "distractor_kind": {
+   "12": "wrong procedure: counts the excluded x = 5. (a) it is one more than the key, but the stem forces no bound between 11 and 12 without the sign chart. (b) it answers the polynomial inequality (x-1)(x+4)(x-5) <= 0, an adjacent problem; that problem's answer is not a bound on this one (the sets differ only at x = 5, which is not visible without the chart). Kept.",
+   "9": "wrong procedure: strict inequality. (a) no. (b) it answers the < version; not a free bound. Kept.",
+   "6": "wrong procedure: ignores the denominator. (a) no. (b) no. Inside 0..21."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v >= 0",
+   "v <= 21"
+  ]
+ },
+ {
+  "id": "AM18A-03",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "systems of inequalities",
+  "subskill": "maximizing revenue under two shared resource constraints",
+  "prompt": "A bakery packs two kinds of gift boxes. Each Classic box holds 3 cookies and 2 brownies and sells for $20. Each Deluxe box holds 1 cookie and 4 brownies and sells for $18. The bakery has 30 cookies and 40 brownies. Assuming every box made is sold, what is the greatest total revenue, in dollars, the bakery can earn from these boxes?",
+  "choices": [
+   "290",
+   "264",
+   "268",
+   "360"
+  ],
+  "correct_answer": "268",
+  "explanation": "Let c be the number of Classic boxes and d the number of Deluxe boxes. Cookies give 3c + d ≤ 30 and brownies give 2c + 4d ≤ 40, that is, c + 2d ≤ 20. Revenue 20c + 18d is greatest at a corner of this region. The corners are (0, 0), (10, 0) with revenue 200, (0, 10) with revenue 180, and the intersection of 3c + d = 30 and c + 2d = 20, which is c = 8, d = 6, with revenue 160 + 108 = 268. So the greatest revenue is 268. The option \"290\" makes 10 Classic boxes with all 30 cookies and then 5 Deluxe boxes from the 20 remaining brownies, forgetting that each Deluxe box also needs a cookie. The option \"264\" finds the right mix of 8 Classic and 6 Deluxe boxes but swaps the prices, computing 8(18) + 6(20). The option \"360\" swaps the brownie counts of the two boxes, using 4c + 2d ≤ 40; that region has the corner (0, 20), with revenue 20(18).",
+  "solve": "let best=0; for(let c=0;c<=30;c++) for(let d=0;d<=40;d++){ if(3*c+d<=30 && 2*c+4*d<=40) best=Math.max(best,20*c+18*d);} return String(best);",
+  "distractor_solve": {
+   "290": "let best=0; for(let c=0;c<=30;c++) for(let d=0;d<=40;d++){ if(3*c<=30 && 2*c+4*d<=40) best=Math.max(best,20*c+18*d);} return String(best);",
+   "264": "const c=8,d=6; return String(18*c+20*d);",
+   "360": "let best=0; for(let c=0;c<=30;c++) for(let d=0;d<=40;d++){ if(3*c+d<=30 && 4*c+2*d<=40) best=Math.max(best,20*c+18*d);} return String(best);"
+  },
+  "distractor_kind": {
+   "290": "wrong procedure: drops the Deluxe box's cookie (a relaxed constraint). (a) not a single parameter at an extreme; the trivial stem ceiling is 380 (10 of each box), and 290 is well inside it; the only bound at 290 is the relaxed LP's optimum, which costs the item's work to find. (b) no. Kept; it is the 'beyond the key' option 13j asks for.",
+   "264": "wrong procedure: correct mix, prices swapped. (a) no. (b) no. Inside [200, 380] (200 = the feasible all-Classic corner).",
+   "360": "wrong procedure: swaps the brownie coefficients. (a) no. (b) no. Inside [200, 380]."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v >= 200",
+   "v <= 380",
+   "v % 2 === 0"
+  ]
+ },
+ {
+  "id": "AM18A-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "working backward",
+  "subskill": "reversing a repeated halve-then-add process",
+  "prompt": "A tank contains some water. Each night, exactly half of the water in the tank leaks out, and each following morning 12 liters of water are added. After two nights and the two mornings that follow them, the tank holds 40 liters. How many liters of water did the tank hold before the first night?",
+  "choices": [
+   "124",
+   "88",
+   "45",
+   "112"
+  ],
+  "correct_answer": "88",
+  "explanation": "If the tank starts with w liters, after the first night and morning it holds w/2 + 12, and after the second night and morning it holds (w/2 + 12)/2 + 12 = w/4 + 18. Setting w/4 + 18 = 40 gives w/4 = 22, so w = 88. Working backward also works: undo the morning (40 − 12 = 28), undo the night (28 × 2 = 56), then again (56 − 12 = 44, 44 × 2 = 88). The option \"45\" undoes each night by increasing the amount by half instead of doubling it: 40 − 12 = 28, 28 + 14 = 42, 42 − 12 = 30, 30 + 15 = 45. The option \"112\" combines the two nights into one quarter and adds 12 only once, using w/4 + 12 = 40. The option \"124\" works backward in the wrong order, undoing the halving before the addition each time: 40 × 2 − 12 = 68, then 68 × 2 − 12 = 124.",
+  "solve": "const w=(40-12-12/2)*4; return String(w);",
+  "distractor_solve": {
+   "45": "let v=40; for(let k=0;k<2;k++){ v=v-12; v=v*1.5; } return String(v);",
+   "112": "return String((40-12)*4);",
+   "124": "let v=40; for(let k=0;k<2;k++) v=v*2-12; return String(v);"
+  },
+  "distractor_kind": {
+   "45": "wrong procedure: undoes 'half leaks out' by adding half back. (a) no. (b) no. Inside the stem-forced range w > 40 (the level falls toward the fixed point 24, so it started above 40).",
+   "112": "wrong procedure: one addition of 12 instead of two. (a) not a no-last-step count: the process still has two nights, only one addition is lost. (b) no. Inside w > 40.",
+   "124": "wrong procedure: inverse steps applied in the wrong order. (a) no. (b) no. Inside w > 40."
+  },
+  "bounds": [
+   "v > 40"
+  ]
+ },
+ {
+  "id": "AM18A-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equations",
+  "subskill": "finding a ratio of two variables from a rational equation",
+  "prompt": "For nonzero numbers x and y with x ≠ y, (3x + 2y)/(x − y) = 5. What is the value of x/y ?",
+  "choices": [
+   "-11/14",
+   "2/7",
+   "7/2",
+   "3/2"
+  ],
+  "correct_answer": "7/2",
+  "explanation": "Multiplying both sides by x − y gives 3x + 2y = 5x − 5y. Collecting terms, 7y = 2x, so x/y = 7/2. Check with x = 7 and y = 2: (21 + 4)/(7 − 2) = 25/5 = 5. The option \"3/2\" multiplies only the x by 5 when clearing the fraction, writing 3x + 2y = 5x − y, so 3y = 2x. The option \"-11/14\" divides by 5 instead of multiplying, writing 3x + 2y = (x − y)/5, so 15x + 10y = x − y and 14x = −11y. The option \"2/7\" solves 7y = 2x correctly but reports y/x instead of x/y.",
+  "solve": "/* 3x+2y=5x-5y -> (5-3)x = (2+5)y */ return String((2+5)/(5-3));",
+  "distractor_solve": {
+   "3/2": "/* 3x+2y=5x-y -> 3y = 2x */ return String((2+1)/(5-3));",
+   "-11/14": "/* 15x+10y = x-y -> 14x = -11y */ return String(-(10+1)/(15-1));",
+   "2/7": "return String((5-3)/(2+5));"
+  },
+  "distractor_kind": {
+   "3/2": "wrong procedure: 5 not distributed to -y. (a) no. (b) no. No stem bound (the only stem condition is x != y, i.e. x/y != 1).",
+   "-11/14": "wrong procedure: divides by 5 when clearing the fraction. (a) no. (b) no. No stem bound.",
+   "2/7": "neighbouring setup: reports y/x. (a) no. (b) yes; no stem bound orders x/y against 1, so the reciprocal is not excluded free. Kept."
+  },
+  "bounds": [
+   "v !== 1",
+   "v !== 0"
+  ]
+ },
+ {
+  "id": "AM18A-06",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "absolute value equations",
+  "subskill": "absolute value of a quadratic: splitting into cases and discarding the case with no real roots",
+  "prompt": "What is the sum of the squares of all real solutions of the equation |x² − 4x| = 5 ?",
+  "choices": [
+   "32",
+   "16",
+   "26",
+   "50"
+  ],
+  "correct_answer": "26",
+  "explanation": "The equation means x² − 4x = 5 or x² − 4x = −5. The first is x² − 4x − 5 = 0, which factors as (x − 5)(x + 1) = 0, giving x = 5 and x = −1. The second is x² − 4x + 5 = 0, whose discriminant 16 − 20 is negative, so it has no real solutions. The real solutions are 5 and −1, and the sum of their squares is 25 + 1 = 26. The option \"32\" keeps the second case and adds the sum of the squares of its roots from r + s = 4 and rs = 5, which is 16 − 10 = 6, without checking that those roots are not real. The option \"50\" treats |x² − 4x| as x² − 4|x|, so |x| = 5 and x = ±5. The option \"16\" squares the sum of the solutions, (5 + (−1))², instead of adding their squares.",
+  "solve": "const sols=[]; for(const k of [5,-5]){ const D=16+4*k; if(D>=0){ sols.push((4+Math.sqrt(D))/2,(4-Math.sqrt(D))/2);} } return String(sols.reduce((s,x)=>s+x*x,0));",
+  "distractor_solve": {
+   "32": "let t=0; for(const k of [5,-5]){ const sum=4, prod=-k; t+=sum*sum-2*prod; } return String(t);",
+   "50": "const a=5; return String(a*a+(-a)*(-a));",
+   "16": "const s=5+(-1); return String(s*s);"
+  },
+  "distractor_kind": {
+   "32": "wrong procedure: keeps the non-real case via Vieta. (a) no. (b) no. No stem bound below 32.",
+   "50": "wrong procedure: |x^2 - 4x| read as x^2 - 4|x|. (a) no. (b) no. No stem bound.",
+   "16": "wrong procedure: squares the sum. (a) no. (b) no. No stem bound."
+  },
+  "bounds": [
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM18A-07",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational expressions",
+  "subskill": "integer values of a rational expression by rewriting it as a whole number plus a remainder fraction",
+  "prompt": "Consider all positive integers n for which (n + 10)/(n − 2) is an integer. What is the sum of all such n ?",
+  "choices": [
+   "24",
+   "41",
+   "27",
+   "40"
+  ],
+  "correct_answer": "41",
+  "explanation": "Rewrite (n + 10)/(n − 2) = 1 + 12/(n − 2). This is an integer exactly when n − 2 divides 12, so n − 2 is one of ±1, ±2, ±3, ±4, ±6, ±12. Since n is positive, n − 2 ≥ −1, which leaves n − 2 = −1, 1, 2, 3, 4, 6, 12, that is, n = 1, 3, 4, 5, 6, 8, 14. Their sum is 41. The option \"40\" uses only the positive divisors of 12 and misses n = 1, where (1 + 10)/(1 − 2) = −11. The option \"24\" rewrites the fraction as 1 + 8/(n − 2), subtracting 2 from 10 instead of adding, so n − 2 must divide 8 and n = 1, 3, 4, 6, 10. The option \"27\" requires n − 2 to divide the constant 10 in the numerator, giving n = 1, 3, 4, 7, 12.",
+  "solve": "let s=0; for(let n=1;n<=200;n++){ if(n===2) continue; if((n+10)%(n-2)===0) s+=n; } return String(s);",
+  "distractor_solve": {
+   "40": "let s=0; for(let n=3;n<=200;n++){ if((n+10)%(n-2)===0) s+=n; } return String(s);",
+   "24": "let s=0; for(let n=1;n<=200;n++){ if(n===2) continue; if(8%(n-2)===0) s+=n; } return String(s);",
+   "27": "let s=0; for(let n=1;n<=200;n++){ if(n===2) continue; if(10%(n-2)===0) s+=n; } return String(s);"
+  },
+  "distractor_kind": {
+   "40": "wrong procedure: positive divisors only (misses n = 1). (a) it is one less than the key, but no stem bound puts the sum on one side of 40 without listing the n. (b) no. Kept.",
+   "24": "wrong procedure: remainder 8 instead of 12. (a) no. (b) no. No stem bound.",
+   "27": "wrong procedure: n - 2 must divide 10. (a) no. (b) no. No stem bound."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM18A-08",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear models",
+  "subskill": "building a linear conversion from two reference points and composing it with another",
+  "prompt": "On a temperature scale called the X scale, water freezes at 20°X and boils at 220°X, and the X reading is a linear function of the Celsius reading. Fahrenheit and Celsius readings are related by F = 1.8C + 32. What is the X reading for a temperature of 77°F ?",
+  "choices": [
+   "55",
+   "50",
+   "65",
+   "70"
+  ],
+  "correct_answer": "70",
+  "explanation": "Water freezes at 0°C and boils at 100°C, so 100 Celsius degrees span 220 − 20 = 200 X degrees, and X = 20 + 2C. From F = 1.8C + 32, a reading of 77°F gives C = (77 − 32)/1.8 = 25. Then X = 20 + 2(25) = 70. The option \"50\" uses X = 2C and leaves out the 20 at the freezing point. The option \"65\" treats one X degree as one Fahrenheit degree and adds the 45 degrees above freezing directly to 20. The option \"55\" scales by the ratio of the boiling points, 220/100 = 2.2, giving X = 2.2(25).",
+  "solve": "const C=(77-32)/1.8; return String(Math.round((20+2*C)*1e6)/1e6);",
+  "distractor_solve": {
+   "50": "const C=(77-32)/1.8; return String(Math.round(2*C*1e6)/1e6);",
+   "65": "return String(20+(77-32));",
+   "55": "const C=(77-32)/1.8; return String(Math.round(2.2*C*1e6)/1e6);"
+  },
+  "distractor_kind": {
+   "50": "wrong procedure: drops the offset. (a) no. (b) no. Inside the stem-forced interval 20 < X < 120 (77°F is between freezing and the 122°F midpoint).",
+   "65": "wrong procedure: equal degree sizes. (a) no. (b) no. Inside 20 < X < 120.",
+   "55": "wrong procedure: proportional scaling through 0. (a) no. (b) no. Inside 20 < X < 120."
+  },
+  "bounds": [
+   "v > 20",
+   "v < 120"
+  ]
+ },
+ {
+  "id": "AM18A-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear inequalities",
+  "subskill": "average cost per item including a fixed fee",
+  "prompt": "A print shop charges a one-time setup fee of $480 plus $2.40 for each poster printed. What is the least number of posters an order must contain so that the average cost per poster, including the setup fee, is at most $3.00 ?",
+  "choices": [
+   "160",
+   "8000",
+   "800",
+   "200"
+  ],
+  "correct_answer": "800",
+  "explanation": "For n posters the total cost is 480 + 2.40n, so the average cost per poster is (480 + 2.40n)/n. Requiring (480 + 2.40n)/n ≤ 3.00 and multiplying by the positive n gives 480 + 2.40n ≤ 3.00n, so 480 ≤ 0.60n and n ≥ 800. Check: 800 posters cost 480 + 1,920 = 2,400 dollars, which is exactly $3.00 each. The option \"160\" divides the fee by $3.00 and ignores the $2.40 per poster. The option \"200\" divides the fee by the per-poster price $2.40. The option \"8000\" subtracts 3.00 − 2.40 as 0.06 instead of 0.60.",
+  "solve": "return String(Math.ceil(Math.round(480/(3.00-2.40)*1e6)/1e6));",
+  "distractor_solve": {
+   "160": "return String(Math.round(480/3.00));",
+   "200": "return String(Math.round(480/2.40));",
+   "8000": "return String(Math.round(480/0.06));"
+  },
+  "distractor_kind": {
+   "160": "wrong procedure: fee spread at the full $3.00. (a) no. (b) no. Positive integer, no stem bound; supplies the below-key option for a 'least' question.",
+   "200": "wrong procedure: fee divided by the per-poster price. (a) no. (b) no. No stem bound.",
+   "8000": "wrong procedure: decimal slip in 3.00 - 2.40. (a) no. (b) no. No stem bound."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v > 0"
+  ]
+ }
+]

@@ -1,0 +1,434 @@
+[
+ {
+  "id": "AM18F-01",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "exponential functions",
+  "subskill": "recovering the coefficient of an exponential function from an average rate of change",
+  "prompt": "The function f is defined by f(x) = a·2^x, where a is a positive constant. The average rate of change of f from x = 1 to x = 4 is 28. What is the value of a ?",
+  "choices": [
+   "5.6",
+   "10.5",
+   "6",
+   "8"
+  ],
+  "correct_answer": "6",
+  "explanation": "The average rate of change from x = 1 to x = 4 is (f(4) − f(1))/(4 − 1) = (16a − 2a)/3 = 14a/3. Setting 14a/3 = 28 gives 14a = 84, so a = 6. The option \"5.6\" evaluates 2^1 as 1, so f(1) = a and (16a − a)/3 = 28. The option \"10.5\" rewrites 2^4 − 2^1 as 2^(4 − 1) = 8, so 8a/3 = 28. The option \"8\" divides by 4, the right endpoint, instead of by the interval length 3: 14a/4 = 28.",
+  "solve": "const r=28, x1=1, x2=4; const a=r*(x2-x1)/(2**x2-2**x1); return String(a);",
+  "distractor_solve": {
+   "8": "const r=28, x1=1, x2=4; return String(r*x2/(2**x2-2**x1));",
+   "5.6": "const r=28, x1=1, x2=4; return String(Math.round(r*(x2-x1)/(2**x2-1)*1e9)/1e9);",
+   "10.5": "const r=28, x1=1, x2=4; return String(r*(x2-x1)/(2**(x2-x1)));"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 28"
+  ],
+  "distractor_kind": {
+   "8": "wrong procedure: divides by the right endpoint 4 instead of the interval length 3. (a) no; (b) it is not the rate on any stated interval of the stem (the interval [0,4] would give 15a/4, not 14a/4). Inside 0 < a < 28; survives.",
+   "5.6": "wrong procedure: evaluates 2^1 as 1. (a) not a parameter-at-extreme value; (b) not the answer to an adjacent problem. Stem forces only 0 < a < 28 (slope on [0,1] is below the average slope 28); survives.",
+   "10.5": "wrong procedure: treats 2^4 − 2^1 as 2^(4−1). (a) no; (b) no. Inside 0 < a < 28; survives."
+  }
+ },
+ {
+  "id": "AM18F-02",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "recursive functions",
+  "subskill": "evaluating a function defined by a recursive rule whose increment depends on n",
+  "prompt": "A function f is defined for nonnegative integers by f(0) = 4 and f(n + 1) = f(n) + 2n + 1 for every integer n ≥ 0. What is the value of f(6) ?",
+  "choices": [
+   "34",
+   "40",
+   "53",
+   "36"
+  ],
+  "correct_answer": "40",
+  "explanation": "Each step adds 2n + 1 for the current n. Going from f(0) to f(6) uses n = 0, 1, 2, 3, 4, 5, adding 1 + 3 + 5 + 7 + 9 + 11 = 36. So f(6) = 4 + 36 = 40. The option \"53\" also adds the increment for n = 6 (13), which is the step from f(6) to f(7). The option \"34\" drops the \"+ 1\" in each increment, adding 2(0 + 1 + 2 + 3 + 4 + 5) = 30. The option \"36\" adds the six correct increments but leaves out the starting value f(0) = 4.",
+  "solve": "let f=4; for(let n=0;n<6;n++) f+=2*n+1; return String(f);",
+  "distractor_solve": {
+   "34": "let f=4; for(let n=0;n<6;n++) f+=2*n; return String(f);",
+   "36": "let s=0; for(let n=0;n<6;n++) s+=2*n+1; return String(s);",
+   "53": "let f=4; for(let n=0;n<=6;n++) f+=2*n+1; return String(f);"
+  },
+  "bounds": [
+   "v >= 10",
+   "v <= 70",
+   "Number.isInteger(v)"
+  ],
+  "distractor_kind": {
+   "34": "wrong procedure: drops the +1 from each increment. (a) no; (b) no. Inside [10, 70]; survives.",
+   "36": "wrong procedure: sums the increments but omits f(0). (a) no (it is not the f(0)=0 limit of anything the stem varies); (b) no. Inside [10, 70]; survives.",
+   "53": "counting error: one increment too many (it equals f(7)). (a) not an extreme of a stem parameter; (b) it is the answer to the adjacent question f(7), but the stem gives no free bound placing f(6) below f(7) without computing; increments 1..11 give only 10 <= f(6) <= 70; survives."
+  }
+ },
+ {
+  "id": "AM18F-03",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "exponential functions",
+  "subskill": "finding when two exponential growth models with different tripling times are equal",
+  "prompt": "Colony A has 300 bacteria and triples in size every 4 hours. Colony B has 2,700 bacteria and triples in size every 20 hours. Both colonies begin growing at the same moment. After how many hours will the two colonies have the same number of bacteria?",
+  "choices": [
+   "40",
+   "10",
+   "45",
+   "32"
+  ],
+  "correct_answer": "10",
+  "explanation": "A(t) = 300·3^(t/4) and B(t) = 2700·3^(t/20). Setting them equal: 3^(t/4)/3^(t/20) = 2700/300 = 9, so 3^(t/4 − t/20) = 3^2. Since t/4 − t/20 = t/5, t/5 = 2 and t = 10. Check: A(10) = 300·3^2.5 and B(10) = 2700·3^0.5 = 300·3^2·3^0.5, the same number. The option \"45\" sets t/5 equal to 9 without writing 9 as 3^2. The option \"32\" subtracts the fractions by subtracting denominators, using t/16 for t/4 − t/20, so t/16 = 2. The option \"40\" reasons that A gains one tripling on B every 20 hours (B's tripling time) and needs two.",
+  "solve": "const a=300,b=2700,pa=4,pb=20; const k=Math.log(b/a)/Math.log(3); const t=k/(1/pa-1/pb); return String(Math.round(t*1e9)/1e9);",
+  "distractor_solve": {
+   "32": "const a=300,b=2700,pa=4,pb=20; const k=Math.log(b/a)/Math.log(3); return String(Math.round(k*(pb-pa)*1e9)/1e9);",
+   "40": "const a=300,b=2700,pb=20; const k=Math.log(b/a)/Math.log(3); return String(Math.round(k*pb*1e9)/1e9);",
+   "45": "const a=300,b=2700,pa=4,pb=20; const t=(b/a)/(1/pa-1/pb); return String(Math.round(t*1e9)/1e9);"
+  },
+  "bounds": [
+   "v > 8"
+  ],
+  "distractor_kind": {
+   "32": "wrong procedure: t/4 − t/20 taken as t/16. (a) no; (b) no. Above the t > 8 bound; survives.",
+   "40": "wrong procedure: two relative triplings at B's 20-hour period. (a) no — the limiting case \"B does not grow\" gives 8, which is deliberately NOT an option (it would sit on the t > 8 bound); (b) no. Survives.",
+   "45": "wrong procedure: equates the exponent to the ratio 9 instead of log base 3 of 9. (a) no; (b) no. The free bound is t > 8 (A needs 8 h just to reach B's starting 2,700, and B keeps growing); survives."
+  }
+ },
+ {
+  "id": "AM18F-04",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "rational functions",
+  "subskill": "determining the constants of a rational function from its asymptotes, then evaluating it",
+  "prompt": "The function f is defined by f(x) = (ax + 5)/(x − b), where a and b are constants. In the standard (x,y) coordinate plane, the graph of y = f(x) has a vertical asymptote at x = 3 and a horizontal asymptote at y = 2. What is the value of f(1) ?",
+  "choices": [
+   "-5.5",
+   "1.75",
+   "-3.5",
+   "-8"
+  ],
+  "correct_answer": "-3.5",
+  "explanation": "The vertical asymptote is where the denominator x − b is 0 (and the numerator is not), so b = 3. Numerator and denominator have the same degree, so the horizontal asymptote is the ratio of leading coefficients, a/1 = 2, so a = 2. Then f(1) = (2 + 5)/(1 − 3) = 7/(−2) = −3.5. The option \"1.75\" takes b = −3 from the asymptote x = 3, giving 7/4. The option \"-8\" swaps the roles of the two asymptotes, using a = 3 and b = 2: (3 + 5)/(1 − 2). The option \"-5.5\" sets a/b = 2 for the horizontal asymptote, so a = 6: (6 + 5)/(1 − 3).",
+  "solve": "const va=3, ha=2; const a=ha, b=va; return String((a*1+5)/(1-b));",
+  "distractor_solve": {
+   "1.75": "const va=3, ha=2; const a=ha, b=-va; return String((a*1+5)/(1-b));",
+   "-8": "const va=3, ha=2; const a=va, b=ha; return String((a*1+5)/(1-b));",
+   "-5.5": "const va=3, ha=2; const b=va, a=ha*b; return String((a*1+5)/(1-b));"
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "distractor_kind": {
+   "1.75": "sign error on b. (a) no; (b) it is f(1) for the asymptote x = −3, an adjacent setup, but nothing in the stem bounds f(1) away from 1.75 without finding a and b (f(1) relative to y = 2 depends on the sign of the numerator constant); survives.",
+   "-8": "swaps which constant each asymptote fixes. (a) no; (b) no. No stem-forced bound; survives.",
+   "-5.5": "wrong rule for the horizontal asymptote (a/b instead of a/1). (a) no; (b) no. No stem-forced bound; survives."
+  }
+ },
+ {
+  "id": "AM18F-05",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "function transformations",
+  "subskill": "range of a function after a vertical stretch, reflection and horizontal shift",
+  "prompt": "The function f has domain −2 ≤ x ≤ 6 and range 2 ≤ f(x) ≤ 8. The function g is defined by g(x) = 3 − 2f(x + 4). What is the greatest value of g(x) ?",
+  "choices": [
+   "-9",
+   "19",
+   "-1",
+   "-13"
+  ],
+  "correct_answer": "-1",
+  "explanation": "The horizontal shift x + 4 changes the domain but not the set of output values, so f(x + 4) still takes every value from 2 to 8. Multiplying by −2 reverses the order: −2f(x + 4) runs from −16 (when f = 8) to −4 (when f = 2). Adding 3 gives −13 ≤ g(x) ≤ −1, so the greatest value is −1. The option \"-13\" uses the largest value of f without noticing that multiplying by −2 makes it the smallest value of g. The option \"-9\" applies the shift to the output, computing 3 − 2(2 + 4). The option \"19\" drops the negative sign, computing 3 + 2(8).",
+  "solve": "const lo=2, hi=8; return String(Math.max(3-2*lo, 3-2*hi));",
+  "distractor_solve": {
+   "19": "const hi=8; return String(3+2*hi);",
+   "-13": "const hi=8; return String(3-2*hi);",
+   "-9": "const lo=2; return String(3-2*(lo+4));"
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "distractor_kind": {
+   "19": "wrong procedure: drops the reflection. (a) no; (b) no. Survives.",
+   "-13": "sign/order error. (a) it is the other endpoint of g's range (the least value) — but no bound in the stem places the greatest value above -13 without computing the range itself; (b) it answers the adjacent question \"least value of g\"; the key is not forced away from it by anything cheaper than the item's own work. Survives. The key is not the extreme option in the asked direction (19 is larger).",
+   "-9": "wrong procedure: the input shift applied to the output. (a) no; (b) no. Survives."
+  }
+ },
+ {
+  "id": "AM18F-06",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sequences",
+  "subskill": "using the ratio of two partial sums to find the first term of a geometric sequence",
+  "prompt": "In a geometric sequence in which every term is positive, the sum of the first 2 terms is 15 and the sum of the first 4 terms is 75. To the nearest tenth, what is the first term of the sequence?",
+  "choices": [
+   "3.0",
+   "1.9",
+   "5.0",
+   "4.6"
+  ],
+  "correct_answer": "5.0",
+  "explanation": "Let the first term be a and the common ratio r. The first two terms sum to a(1 + r) = 15. The 3rd and 4th terms are r^2 times the 1st and 2nd, so the first four sum to a(1 + r) + r^2·a(1 + r) = 15(1 + r^2) = 75. Then 1 + r^2 = 5, r^2 = 4 and r = 2 (terms are positive). So a = 15/(1 + 2) = 5.0, and the sequence is 5, 10, 20, 40. The option \"4.6\" reads 75 as the sum of the 3rd and 4th terms only, so 15r² = 75, r = √5 and a = 15/(1 + √5) ≈ 4.6. The option \"3.0\" finds r^2 = 4 but uses r = 4: a = 15/5. The option \"1.9\" treats the sequence as arithmetic: 2a + d = 15 and 4a + 6d = 75 give d = 11.25 and a = 1.875.",
+  "solve": "const s2=15,s4=75; const r=Math.sqrt(s4/s2-1); return (s2/(1+r)).toFixed(1);",
+  "distractor_solve": {
+   "4.6": "const s2=15,s4=75; const r=Math.sqrt(s4/s2); return (s2/(1+r)).toFixed(1);",
+   "3.0": "const s2=15,s4=75; const r=s4/s2-1; return (s2/(1+r)).toFixed(1);",
+   "1.9": "const s2=15,s4=75; const d=(s4-2*s2)/(6-2); return ((s2-d)/2).toFixed(1);"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 7.5"
+  ],
+  "distractor_kind": {
+   "4.6": "misreading: 75 taken as a3 + a4 (the sum of the NEXT two terms). (a) no; (b) it is the answer to an adjacent reading of the stem, but no stem-forced bound separates 4.6 from 5.0: stem forces only 0 < a < 7.5 (75 > 2·15 so r > 1 and a < a·r); survives.",
+   "3.0": "wrong procedure: r^2 = 4 taken as r = 4. (a) no; (b) no. Inside (0, 7.5); survives.",
+   "1.9": "neighbouring family: the arithmetic sequence with the same two sums. (a) no; (b) yes, the same question for an arithmetic sequence — but no stem-forced bound puts the geometric first term on one side of the arithmetic one (both lie in (0, 7.5)); survives. The equal-terms value 7.5 (r = 1 limit) is deliberately not an option."
+  }
+ },
+ {
+  "id": "AM18F-07",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "trigonometric functions",
+  "subskill": "zeros of a trigonometric function that factors as a quadratic in sin θ",
+  "prompt": "The function f is defined by f(θ) = 2sin²θ − sin θ − 1. What is the sum, in degrees, of all values of θ with 0° ≤ θ < 360° for which f(θ) = 0 ?",
+  "choices": [
+   "450",
+   "300",
+   "630",
+   "270"
+  ],
+  "correct_answer": "630",
+  "explanation": "Factor: 2sin²θ − sin θ − 1 = (2sin θ + 1)(sin θ − 1). So sin θ = 1, giving θ = 90°, or sin θ = −1/2, giving θ = 210° and θ = 330°. The sum is 90 + 210 + 330 = 630. The option \"450\" factors with the signs reversed, (2sin θ − 1)(sin θ + 1), giving sin θ = 1/2 or −1: 30 + 150 + 270. The option \"300\" finds only one angle for sin θ = −1/2: 90 + 210. The option \"270\" uses the quadratic formula with denominator 2 instead of 2·2: sin θ = (1 ± 3)/2 = 2 or −1, rejects 2 and keeps θ = 270°.",
+  "solve": "const sols=[]; for(let d=0; d<360; d++){ const s=Math.sin(d*Math.PI/180); if(Math.abs(2*s*s-s-1)<1e-9) sols.push(d);} return String(sols.reduce((p,c)=>p+c,0));",
+  "distractor_solve": {
+   "270": "const roots=[(1+3)/2,(1-3)/2].filter(s=>Math.abs(s)<=1); let sum=0; for(let d=0; d<360; d++){ const s=Math.sin(d*Math.PI/180); if(roots.some(r=>Math.abs(s-r)<1e-9)) sum+=d;} return String(sum);",
+   "300": "return String(90+210);",
+   "450": "const sols=[]; for(let d=0; d<360; d++){ const s=Math.sin(d*Math.PI/180); if(Math.abs(2*s*s+s-1)<1e-9) sols.push(d);} return String(sols.reduce((p,c)=>p+c,0));"
+  },
+  "bounds": [
+   "v >= 0",
+   "v < 1080"
+  ],
+  "distractor_kind": {
+   "270": "wrong procedure: quadratic-formula denominator error. (a) no; (b) no. Survives.",
+   "300": "incomplete solution: misses the QIV angle. (a) no; (b) no. Stem gives only 0 <= sum < 1080; survives. Not bracketing: the twin \"misses QIII\" value 420 is deliberately not used.",
+   "450": "wrong procedure: sign error in the factoring. (a) no; (b) it is the answer for 2sin²θ + sin θ − 1, an adjacent equation, but the stem forces no ordering between the two sums; survives."
+  }
+ },
+ {
+  "id": "AM18F-08",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "sequences",
+  "subskill": "finding a term of a sequence from a formula for its partial sums",
+  "prompt": "For every positive integer n, the sum of the first n terms of a certain sequence is 3n² + 2n. What is the 10th term of the sequence?",
+  "choices": [
+   "57",
+   "112",
+   "53",
+   "59"
+  ],
+  "correct_answer": "59",
+  "explanation": "The 10th term is the sum of the first 10 terms minus the sum of the first 9 terms: (3·100 + 20) − (3·81 + 18) = 320 − 261 = 59. Equivalently, the nth term is (3n² + 2n) − (3(n − 1)² + 2(n − 1)) = 6n − 1, and 6·10 − 1 = 59. The option \"53\" subtracts the sum of the first 8 terms from the sum of the first 9, which is the 9th term. The option \"112\" subtracts the sum of the first 8 terms from the sum of the first 10, which is the 9th and 10th terms together. The option \"57\" substitutes n − 1 into the squared term but not the linear term, using 3·9² + 2·10 = 263 for the sum of the first 9 terms.",
+  "solve": "const S=n=>3*n*n+2*n; return String(S(10)-S(9));",
+  "distractor_solve": {
+   "53": "const S=n=>3*n*n+2*n; return String(S(9)-S(8));",
+   "57": "const n=10; return String(3*n*n+2*n-(3*(n-1)**2+2*n));",
+   "112": "const S=n=>3*n*n+2*n; return String(S(10)-S(8));"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 320"
+  ],
+  "distractor_kind": {
+   "53": "index error (it is the 9th term). (a) no; (b) yes, the adjacent question \"9th term\" — but the stem does not place a10 above a9 without the work (that terms increase follows only from computing 6n − 1); survives inside (0, 320).",
+   "57": "substitution slip in S(n−1) (linear term left as 2n). (a) no; (b) no. Survives. Note: the average term S10/10 = 32 and the S10 = 320 itself are deliberately not options (each sits on a bound).",
+   "112": "wrong procedure: subtracts S8 instead of S9. (a) no; (b) it is a9 + a10, not a quantity the stem names; inside (0, 320); survives."
+  }
+ },
+ {
+  "id": "AM18F-09",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "sequences",
+  "subskill": "recognizing a repeating cycle in a recursively defined sequence and locating far terms",
+  "prompt": "A sequence is defined by a₁ = 3 and a₍ₙ₊₁₎ = 1/(1 − aₙ) for every integer n ≥ 1. What is the value of the product a₁₀₀ · a₁₀₁ ?",
+  "choices": [
+   "2",
+   "-6",
+   "-3/2",
+   "-1/3"
+  ],
+  "correct_answer": "-3/2",
+  "explanation": "a₂ = 1/(1 − 3) = −1/2, a₃ = 1/(1 + 1/2) = 2/3, and a₄ = 1/(1 − 2/3) = 3 = a₁, so the terms repeat with period 3. Since 100 = 3·33 + 1, a₁₀₀ = a₁ = 3 and a₁₀₁ = a₂ = −1/2, so the product is 3·(−1/2) = −3/2. The option \"2\" lands one position early, multiplying a₉₉·a₁₀₀ = (2/3)(3). The option \"-1/3\" lands one position late, multiplying a₁₀₁·a₁₀₂ = (−1/2)(2/3). The option \"-6\" reads 1/(1 − aₙ) as 1/1 − aₙ = 1 − aₙ, which makes the sequence 3, −2, 3, −2, …, so a₁₀₀ = −2 and a₁₀₁ = 3.",
+  "solve": "const t=[]; let a=3; for(let n=1;n<=102;n++){ t[n]=a; a=1/(1-a);} return String(Math.round(t[100]*t[101]*1e9)/1e9);",
+  "distractor_solve": {
+   "2": "const t=[]; let a=3; for(let n=1;n<=102;n++){ t[n]=a; a=1/(1-a);} return String(Math.round(t[99]*t[100]*1e9)/1e9);",
+   "-1/3": "const t=[]; let a=3; for(let n=1;n<=102;n++){ t[n]=a; a=1/(1-a);} return String(Math.round(t[101]*t[102]*1e9)/1e9);",
+   "-6": "const t=[]; let a=3; for(let n=1;n<=102;n++){ t[n]=a; a=1-a;} return String(t[100]*t[101]);"
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "distractor_kind": {
+   "2": "off-by-one cycle position (a99·a100). (a) no; (b) adjacent index pair — no stem bound separates it from the key; survives.",
+   "-1/3": "off-by-one the other way (a101·a102). (a) no; (b) adjacent index pair — no stem bound; survives. Not bracketing with nothing between: the key and the two shifted products are the only three cycle products, and \"-6\" lies outside them.",
+   "-6": "misreads the rule as 1 − aₙ. (a) no; (b) no. Survives."
+  }
+ },
+ {
+  "id": "AM18G-01",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "transformations",
+  "subskill": "rotating a point 90 degrees about a center other than the origin",
+  "prompt": "In the standard (x,y) coordinate plane, point P(7, 3) is rotated 90° counterclockwise about point C(2, 1). What is the x-coordinate of the image of P ?",
+  "choices": [
+   "-3",
+   "0",
+   "4",
+   "-2"
+  ],
+  "correct_answer": "0",
+  "explanation": "Measure P from the center: P − C = (5, 2). A 90° counterclockwise rotation sends (a, b) to (−b, a), so (5, 2) becomes (−2, 5). Adding C back gives the image (2 − 2, 1 + 5) = (0, 6). The x-coordinate is 0. The option \"4\" rotates clockwise, sending (5, 2) to (2, −5), image (4, −4). The option \"-3\" rotates P about the origin instead of about C: (7, 3) becomes (−3, 7). The option \"-2\" rotates the offset (5, 2) correctly but does not add C back.",
+  "solve": "const P=[7,3],C=[2,1]; const d=[P[0]-C[0],P[1]-C[1]]; return String(C[0]-d[1]);",
+  "distractor_solve": {
+   "4": "const P=[7,3],C=[2,1]; const d=[P[0]-C[0],P[1]-C[1]]; return String(C[0]+d[1]);",
+   "-3": "const P=[7,3]; return String(-P[1]);",
+   "-2": "const P=[7,3],C=[2,1]; const d=[P[0]-C[0],P[1]-C[1]]; return String(-d[1]);"
+  },
+  "bounds": [
+   "v >= 2-Math.sqrt(29)",
+   "v <= 2+Math.sqrt(29)"
+  ],
+  "distractor_kind": {
+   "4": "neighbouring setup: the clockwise rotation. (b) yes; does the stem force the key to one side of it? No — both images lie on the circle of radius sqrt(29) about C and the stem gives no ordering of x without doing the rotation; survives. Not bracketing alone: -3 and -2 also lie on the other side.",
+   "-3": "neighbouring setup: rotation about the origin. (b) yes; forced side? No — -3 lies inside the free interval 2 ± sqrt(29) = [-3.39, 7.39]; survives.",
+   "-2": "wrong procedure: forgets to translate back by C. (a) no; (b) no. Inside [-3.39, 7.39]; survives."
+  }
+ },
+ {
+  "id": "AM18G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "circles",
+  "subskill": "finding a sector's radius from its perimeter and central angle, then its area",
+  "prompt": "A sector of a circle has a central angle of 120°. The perimeter of the sector, which is the length of its arc plus the lengths of its two radii, is 40 centimeters. To the nearest square centimeter, what is the area of the sector?",
+  "choices": [
+   "382",
+   "180",
+   "100",
+   "175"
+  ],
+  "correct_answer": "100",
+  "explanation": "For radius r, the arc is (120/360)·2πr = (2π/3)r, so the perimeter is 2r + (2π/3)r = 40, giving r = 40/(2 + 2π/3) ≈ 9.769 cm. The area is (120/360)·πr² = (π/3)(9.769)² ≈ 99.9, or 100 square centimeters. The option \"382\" treats 40 as the arc length alone, so r = 40/(2π/3) ≈ 19.10. The option \"175\" counts only one radius, so r + (2π/3)r = 40 and r ≈ 12.93. The option \"180\" uses πr instead of 2πr for the full circumference, so the arc is (π/3)r and r = 40/(2 + π/3) ≈ 13.13.",
+  "solve": "const P=40, f=120/360; const r=P/(2+f*2*Math.PI); return String(Math.round(f*Math.PI*r*r));",
+  "distractor_solve": {
+   "175": "const P=40, f=120/360; const r=P/(1+f*2*Math.PI); return String(Math.round(f*Math.PI*r*r));",
+   "180": "const P=40, f=120/360; const r=P/(2+f*Math.PI); return String(Math.round(f*Math.PI*r*r));",
+   "382": "const P=40, f=120/360; const r=P/(f*2*Math.PI); return String(Math.round(f*Math.PI*r*r));"
+  },
+  "bounds": [
+   "v > 0",
+   "v < (Math.PI/3)*400"
+  ],
+  "distractor_kind": {
+   "175": "wrong procedure: one radius omitted. (a) no; (b) no. Inside (0, 418.9); survives.",
+   "180": "wrong procedure: circumference taken as πr. (a) no; (b) no. Inside (0, 418.9); survives. The full-circle area (3x the key) is deliberately not an option.",
+   "382": "wrong procedure: perimeter read as arc only. (a) it is the radii-length-0 reading, but it does not sit on a stem bound: the free bound is 2r < 40, i.e. area < 418.9, and 382 is strictly inside; (b) no. Survives."
+  }
+ },
+ {
+  "id": "AM18G-03",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "solids",
+  "subskill": "volume of a cylinder inscribed in a sphere, using the radius-half-height-sphere-radius right triangle",
+  "prompt": "A right circular cylinder is inscribed in a sphere with a radius of 10 centimeters, so that the circular edge of each base of the cylinder lies on the sphere. The height of the cylinder is 12 centimeters. To the nearest cubic centimeter, what is the volume of the cylinder?",
+  "choices": [
+   "1659",
+   "2413",
+   "603",
+   "3544"
+  ],
+  "correct_answer": "2413",
+  "explanation": "The center of the sphere is midway up the cylinder, so a radius of the sphere drawn to the edge of a base is the hypotenuse of a right triangle with legs equal to the cylinder's radius r and half its height, 6. Then r² + 6² = 10², so r² = 64 and r = 8. The volume is πr²h = π(64)(12) = 768π ≈ 2,413 cubic centimeters. The option \"603\" takes r = 10 − 6 = 4, subtracting lengths instead of squares. The option \"1659\" uses the whole height 12 with the sphere radius and subtracts the wrong way, r² = 12² − 10² = 44. The option \"3544\" forgets to square the half-height, r² = 100 − 6 = 94.",
+  "solve": "const R=10,h=12; const r2=R*R-(h/2)**2; return String(Math.round(Math.PI*r2*h));",
+  "distractor_solve": {
+   "603": "const R=10,h=12; const r=R-h/2; return String(Math.round(Math.PI*r*r*h));",
+   "1659": "const R=10,h=12; const r2=h*h-R*R; return String(Math.round(Math.PI*r2*h));",
+   "3544": "const R=10,h=12; const r2=R*R-h/2; return String(Math.round(Math.PI*r2*h));"
+  },
+  "bounds": [
+   "v > 0",
+   "v < Math.PI*100*12",
+   "v < (4/3)*Math.PI*1000"
+  ],
+  "distractor_kind": {
+   "603": "wrong procedure: linear subtraction R − h/2. (a) no; (b) no. Free bounds: r < R so V < 1200π ≈ 3770, and V < sphere volume 4189; survives.",
+   "1659": "wrong procedure: Pythagorean relation set up with the full height and reversed. (a) no; (b) no. Inside (0, 3770); survives.",
+   "3544": "wrong procedure: half-height not squared. (a) no — the limiting case r = R (V = 3770) is deliberately not an option and 3544 is strictly below it; (b) no. Survives."
+  }
+ },
+ {
+  "id": "AM18G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "circles",
+  "subskill": "length of a common external tangent segment of two circles",
+  "prompt": "Two circles have radii of 9 centimeters and 4 centimeters, and their centers are 17 centimeters apart. A line is tangent to both circles, and both circles lie on the same side of the line. To the nearest tenth of a centimeter, what is the distance between the two points of tangency?",
+  "choices": [
+   "14.4",
+   "16.2",
+   "12.0",
+   "15.0"
+  ],
+  "correct_answer": "16.2",
+  "explanation": "Both radii drawn to the tangent line are perpendicular to it, so they are parallel. Slide the tangent segment over to start at the smaller circle's center: it forms a right triangle with hypotenuse 17 (the distance between centers) and one leg 9 − 4 = 5 (the difference of the radii). The tangent segment is the other leg: √(17² − 5²) = √264 ≈ 16.2 centimeters. The option \"15.0\" subtracts the difference of the squared radii, √(17² − (9² − 4²)) = √224. The option \"14.4\" subtracts only the larger radius, √(17² − 9²). The option \"12.0\" subtracts the difference of the radii without squaring, 17 − 5.",
+  "solve": "const d=17,r1=9,r2=4; return (Math.sqrt(d*d-(r1-r2)**2)).toFixed(1);",
+  "distractor_solve": {
+   "15.0": "const d=17,r1=9,r2=4; return (Math.sqrt(d*d-(r1*r1-r2*r2))).toFixed(1);",
+   "14.4": "const d=17,r1=9; return (Math.sqrt(d*d-r1*r1)).toFixed(1);",
+   "12.0": "const d=17,r1=9,r2=4; return (d-(r1-r2)).toFixed(1);"
+  },
+  "bounds": [
+   "v > 0",
+   "v < 17"
+  ],
+  "distractor_kind": {
+   "15.0": "wrong procedure: (r1² − r2²) in place of (r1 − r2)². (a) no; (b) no. Free bound: the tangent segment is a leg of a right triangle with hypotenuse 17, so < 17; survives.",
+   "14.4": "wrong procedure: larger radius only. (a) it is the r2 -> 0 value, but that is not a stem-forced bound (the key exceeds it only through the formula); (b) it equals the tangent length from the small circle's center to the big circle, an adjacent problem — not separated from the key by anything free. Survives.",
+   "12.0": "wrong procedure: subtracts lengths instead of squares. (a) no; (b) no. Survives. The internal-tangent length (√120 ≈ 11.0, the other configuration) is deliberately not an option."
+  }
+ },
+ {
+  "id": "AM18G-05",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "right triangles",
+  "subskill": "length of the crease when a rectangle is folded so that opposite corners meet",
+  "prompt": "A rectangular sheet of paper is 15 inches long and 8 inches wide. The sheet is folded once so that one corner lands exactly on the opposite corner, and the fold is flattened to make a straight crease. To the nearest tenth of an inch, what is the length of the crease?",
+  "choices": [
+   "12.5",
+   "9.6",
+   "14.1",
+   "9.1"
+  ],
+  "correct_answer": "9.1",
+  "explanation": "When corner A lands on the opposite corner C, every point of the crease is equally far from A and C, so the crease is the perpendicular bisector of diagonal AC, which has length √(15² + 8²) = 17. The crease passes through the center O of the rectangle, and from O to the long side it makes a right triangle similar to triangle ABC, so half the crease is 8.5·(8/15) ≈ 4.533. The crease is 2(4.533) ≈ 9.1 inches. (Check: the crease meets the long sides 289/30 ≈ 9.633 inches from A and from C, and √(8² + (2·9.633 − 15)²) ≈ 9.07.) The option \"9.6\" is that distance 9.633 from the corner to the crease along a long side, not the crease. The option \"12.5\" uses 9.633 as the horizontal run of the crease: √(8² + 9.633²). The option \"14.1\" takes half the crease to be the distance from corner B to the diagonal, 8·15/17 ≈ 7.06, and doubles it.",
+  "solve": "const L=15,W=8; const d=Math.hypot(L,W); return (2*(d/2)*(W/L)).toFixed(1);",
+  "distractor_solve": {
+   "9.6": "const L=15,W=8; const x=(L*L+W*W)/(2*L); return x.toFixed(1);",
+   "12.5": "const L=15,W=8; const x=(L*L+W*W)/(2*L); return Math.hypot(W,x).toFixed(1);",
+   "14.1": "const L=15,W=8; const d=Math.hypot(L,W); return (2*(L*W/d)).toFixed(1);"
+  },
+  "bounds": [
+   "v > 8",
+   "v < 17"
+  ],
+  "distractor_kind": {
+   "9.6": "neighbouring quantity: the fold-line distance from the corner (AE). (b) yes; forced side? Free bounds are 8 < crease < 17 (it joins the two long sides obliquely and is shorter than the diagonal); 9.6 is inside, and EF < AE holds only after computing x; survives.",
+   "12.5": "wrong procedure: uses AE as the horizontal run. (a) no; (b) no. Inside (8, 17); survives.",
+   "14.1": "wrong procedure: the corner-to-diagonal distance used as half the crease. (a) no; (b) it is twice an adjacent quantity (the altitude of triangle ABC to AC), not separated from the key by a free bound; inside (8, 17); survives. The diagonal 17 and the half-diagonal 8.5 are not options; a sine-for-tangent slip giving exactly 8.0 (ON the width bound) was deliberately not used."
+  }
+ }
+]

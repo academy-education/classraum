@@ -1220,6 +1220,38 @@ recorded only in a commit message is a finding nobody reads.
 
   Evidence: `ACT-MATH-V17-PREREGISTERED.md`, `act-math-v17.batch.json`, `act-math-v17.kept.batch.json`, `act-math-v17.qc.json`, `act-math-v17.drops.json`, `act-math-v17-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v17.grader-{a,b}.json`, `act-math-v17-grade.{grade,gradekey}.json`, `act-math-v17-attack-draw.mjs`; ledger `act-math-v17-kept-2026-10-07`.
 
+- **2026-10-07** — **ACT MATH STAYS AT 15 FORMS: `act-math-v18` INSERTED 36 OF 46. act/math 670 → 706. FORM 16 IS NOW 2 ITEMS AWAY** (`next-form`: *"Number and Quantity +1, Integrating Essential Skills +1"*). Algebra, Functions, Geometry and S&P are past form 16. Bars pre-registered before any item existed: `ACT-MATH-V18-PREREGISTERED.md` (committed alone, c6f8d17d).
+
+  **Scope.** Commissioned against form 16's whole deficit (N&Q +5, IES +9, Algebra +7, Functions +7, S&P +3, Geometry +3 = 34) plus 35%: 46 items from three Claude authors (A N&Q 7 + Algebra 9 / B Functions 9 + Geometry 5 / C IES 12 + S&P 4). Format from `act-test.ts` (`choiceCount: 4`). **Commissioned medium/hard** (no author-easy; ~55/45) because graders bank this family easier than authors do.
+
+  **Both earlier lessons were built in.** Every distractor carried a `distractor_kind` stating whether it is (a) a parameter-at-extreme value (v16) or (b) the exact answer to a neighbouring configuration (v17), and whether the stem bounds the key away from it. That field and `bounds` were stripped before the grade render; graders had dedicated `limiting_case` and `neighbouring_setup` fields.
+
+  **Pre-flight (my re-run, `act-math-v18-preflight.sh`, break-tested by failing on the live v17 kept file):** sandbox 46/46, distractors 138/138, hub no structure, key-at-extreme 20/46 = 43.5% (bar 40.0%), magnitude consistent with live, 0 unique composites, stem echo 0/45, 0 stem duplicates. **Duplicate scan** against all 2,684 live maths rows, paged: 19 flags and 41 near, all read by hand; **1 mechanism duplicate** — AM18F-05 (range of g = 3 − 2f(x + 4)) is `sat/math-v6-adv-hard` 9b4c06b0 (range of g = −2f(x) + 5) with an irrelevant horizontal shift.
+
+  **Options-only attack:** 46 candidates + 46 live controls matched 1:1 by domain (v16–v18 excluded), keys flat within each arm (26.1% each), three Claude samples.
+
+      CANDIDATE     48/138 = 34.8%   line 26.1%   margin  +8.7
+      LIVE CONTROL  50/138 = 36.2%   line 26.1%   margin +10.1
+      candidate minus control  −1.4  (hold bar +10; control under the +25 invalid line)
+      unanimous-correct        candidate 11/46 = 23.9%  vs  control 11/46 = 23.9%  (hold bar +15)
+      pairwise agreement 72.5% vs 28.5% if independent: one solver sampled three times
+
+  **With-source: two Claude graders, 92 of 92 picks equal the key, 0 second-defensible.** Ten dropped, no repairs:
+  - **< 3 survivors on a bound I confirmed (7):** `AM18N-02` (log₈x < log₂x for x > 1 forces x > 16; 16 ON it, 6 is the un-exponentiated no-last-step value), `AM18N-04` (x = 15 − 2d > 0 forces y − x < 7.5; 8.75 is y − x for the *rejected root*), `AM18A-03` (5 items per box, 70 items: ≤ 14 boxes at ≤ $20), `AM18G-02` (arc > 2r so r < 10, area < 104.7; leaves one), `AM18I-03` (a Celsius degree exceeds a Fahrenheit degree, so time < 282/4 = 70.5, which is an option), `AM18I-04` (a 9-in circle fits in a 9×9 square: flour < 4.5, which is an option), `AM18I-05` (CPI ratio < 2.5 by one multiplication; leaves one).
+  - **One dead + one weak by both (v17 precedent):** `AM18N-07` — 9 is the other axis's displacement (1 + 8) and dies on "steeper than 45°".
+  - **Unanimous + grader-named limiting case:** `AM18I-07` — 270 is the ×1.1-instead-of-÷0.9 value and the key 273 is its precise twin. Grader A also called it hard to exploit; a judgement call under rule 6, recorded as one.
+  - **Mechanism duplicate:** `AM18F-05`.
+
+  **What the lessons did and did not buy.** Eight of the nine quality drops still turn on a limiting-case or neighbouring-setup option ON or beyond a free bound — the same two families, after authors had declared every distractor against both. 46 declarations of "(a) no, (b) no / no stem bound" sat beside 7 bounds both graders found in one line. **Author declarations still killed nothing the graders did not; the graders' dedicated fields found every one.** The new shape in this batch is the **estimation bound in IES**: all four IES drops turn on a one-multiplication comparison (CPI × 2.5, square vs circle, °C vs °F degree, ×1.1 vs ÷0.9) — the IES brief named limiting cases by example and the authors avoided those, and the *unit/scale* version took their place. Drop rate by domain: N&Q 3/7, IES 4/12, Algebra 1/9, Functions 1/9 (a duplicate), Geometry 1/5, S&P 0/4.
+
+  **Difficulty banked from graders (agree 32/36; one apart → easier): easy 8 / medium 26 / hard 2, against the authors' 0 / 23 / 13 on the same 36.** The medium/hard commission moved the banked mix from v16's 28 / 15 / 2 to 8 / 26 / 2: it bought medium, not hard. 11 of 13 author "hard" came down.
+
+  **Kept 36:** N&Q 4, Algebra 8, Functions 8, Geometry 4, IES 8, S&P 4. Kept-set gates pass: sandbox 36/36, 108/108; key-at-extreme 16/36 = 44.4%; magnitude z 1.31 / −1.32 / 0.04; 0 composites, 0 echoes. `verify-act-draw`: act/math draws 45 of 45. `form-capacity`: ACT Math **15 forms** (N&Q 79 / 5, binding). **Form 16 needs N&Q +1 and IES +1.**
+
+  **Residuals recorded, not acted on:** `AM18I-10` (river crossing) — grader A counts 1 survivor via drift/width = 0.9/1.5 < 1; grader B and I judge that ratio IS the item, not a free bound. `AM18F-06` — "to the nearest tenth" on an exact key 5.0, noted by both (not an error; it pushes away from the key). `AM18N-03` — grader A names the modulus route |a + 5i|·|2 − i| = 25; not unanimous. `AM18A-02` — 9 (strict) and 12 (includes x = 5) bracket 11, but 10 also lies between, so not a forced elimination. `AM18F-09` — unanimous blind; three options are the 3-cycle's consecutive products, but no grader named a route to the key without the phase. **Confirmation standard used for the two-weak rule** (not written in the pre-registration, stated here): a distractor is confirmed weak only if both graders name it or it sits on a bound I confirmed. The graders split on *which* option is weak on 9 kept items; a split opinion was not counted.
+
+  Evidence: `ACT-MATH-V18-PREREGISTERED.md`, `act-math-v18-preflight.sh`, `act-math-v18{-a,-b,-c,}.batch.json`, `act-math-v18.kept.batch.json`, `act-math-v18.qc.json`, `act-math-v18.drops.json`, `act-math-v18-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v18.grader-{a,b}.json`, `act-math-v18-grade.{grade,gradekey}.json`, `act-math-v18-attack-draw.mjs`; ledger `act-math-v18-kept-2026-10-07`.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
