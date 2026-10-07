@@ -189,6 +189,24 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-07/08** — **SSAT WV8 FAILS STAGE 4 (grouped options-only 21/36 = 58.3%, bar <= 40%). STOPPED. NOTHING INSERTED.**
+  - **Commits:** prereg `159757d1`, freeze `38572021`, draw `d169f81c`.
+  - **Stages passed before B:**
+
+    | stage | result | bar |
+    |---|---|---|
+    | 0 | PASS after one fix round; licensing 20/20 on re-run | clean |
+    | C exclusivity | **12/12**, including the drawn "detached" item | >= 11/12 |
+    | Q plausible | 50% | >= 4/96 |
+    | dead-by-both | 4/12 | <= 7/12 |
+    | E naturalness | 4.5 vs live 2.5 | >= live |
+    | A options-only isolated | 30.0% vs control 24.3% (+5.7) | <= control + 10 |
+  - **Why B failed:** grouped solvers reconstructed one coherent "world" per unit from the options. For P01 that world is v1, which was drawn: 15/18 hits.
+    - Exact null over all 25 draws, picks fixed: mean 20%, P(>= observed) 0.08, P(B fails) 0.20.
+    - So the method is not leaky on average, but the drawn P01 is.
+  - **Proposed for WV9 (new prereg):** a pre-freeze per-unit grouped-world check across all five versions; refuse a unit whose hits concentrate on one version.
+  - Evidence: `READING-BATCH-WV8-2026-10-07.md`, `ssat-wv8-batch/`. → **B10**
+
 - **2026-10-07** — **SSAT WV7 FAILS STAGE 0. STOPPED. NOTHING FROZEN, DRAWN OR INSERTED.** Prereg `159757d1`.
   - **Round 0:**
     - 21 mechanical problems;
