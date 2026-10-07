@@ -102,6 +102,17 @@ export function announcedTone(text) {
   const lex = new Set([...Object.values(ATT_DIR9).flat(), ...INDIFF, ...TONE_ANNOUNCE])
   return [...new Set(ws.filter(w => lex.has(w)))]
 }
+// ── batch WV10 (READING-BATCH-WV10-2026-10-08.prereg.md): the attitude item is CHARACTER-ACTION form:
+//    "X's [action/reply] in paragraph N suggests that X feels/is". Never a tone judgement about author or narrator. ──
+const isV10 = id => /^WV(?:1\d|[2-9]\d)-/.test(String(id))
+export function characterActionStem(prompt) {
+  const s = String(prompt ?? ''), probs = []
+  if (!/\bparagraph\s+\w+/i.test(s) && !/\b(first|second|third|fourth|fifth|sixth|final|last)\s+paragraph\b/i.test(s)) probs.push('stem must name the paragraph where the action is')
+  if (!/\bsuggests?\b/i.test(s)) probs.push('stem must read "... suggests that X feels/is"')
+  if (!/\b[A-Z][a-z]+(?:'s|’s)\s/.test(s)) probs.push("stem must name the character whose action it is (\"X's ...\")")
+  if (/\b(author|narrator)(?:'s|’s)?\s+(attitude|tone|feeling)|\btone\b|\bauthor's\b|\bnarrator's\b/i.test(s)) probs.push('stem asks about the author or narrator, not a character action')
+  return probs
+}
 export const licId = (pid, k, qid) => `${pid}.v${k}.${qid.slice(pid.length + 1)}`
 export const a1Oid = (pid, k, qid, j) => `${pid}.v${k}.${qid.slice(pid.length + 1)}.${'ABCDE'[j]}`
 const GENERIC = new Set('show shows describe describes explain explains illustrate illustrates introduce introduces suggest suggests reveal reveals emphasize emphasizes contrast compare provide provides offer offers present presents recount recounts recall recalls account example give gives point reader readers establish establishes indicate indicates highlight highlights note notes stress stresses primarily serves serve mainly concerned where more into than there then been have would could about after before over some only also what other such each every very much made make makes take took became become becomes most many under upon them once just even still'.split(' '))
@@ -175,6 +186,7 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null } = {}) {
       const maxRatio = isV5(id) ? 1.5 : 1.6
       if (Math.max(...cl) / Math.min(...cl) > maxRatio) problems.push(`${tag}: choice length ratio ${(Math.max(...cl) / Math.min(...cl)).toFixed(2)} > ${maxRatio}`)
       if (isV6(id) && !isV9(id) && q.kind === 'attitude') attitudeDirections(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
+      if (isV10(id) && q.kind === 'attitude') characterActionStem(q.prompt).forEach(x => problems.push(`${tag}: ${x}`))
       if (isV9(id) && q.kind === 'attitude') {
         attitudeDirections9(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
         p.versions.forEach((v, k) => { const a = announcedTone(v.text); if (a.length) problems.push(`${tag} v${k}: the passage announces a tone ("${a.join('", "')}"); the attitude must be inferable, not named`) })
