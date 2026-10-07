@@ -1,0 +1,10 @@
+{
+ "prereg": "35b5bd43", "freeze": "5e4433e7", "draw": "596d77f0",
+ "verdicts": { "stage0_preflight": "PASS", "C_exclusivity": "PASS", "Q_distractor": "PASS", "dead_by_both": "PASS", "E_naturalness": "PASS", "A_options_only_iso": "PASS", "B_options_only_grouped": "PASS" },
+ "numbers": {
+  "C": "11/12 (bar >= 11/12; live 33/33)", "Q": "38/96 = 39.6% (bar >= 4/96; live 6.1%)", "dead_by_both": "6/12 (bar <= 7/12; live 15/33)",
+  "F_easy_reported": "10/12 (not decidable; live 32/33)", "pilot_pass_reported": "0/12 (not decidable; live 1/33)",
+  "E": "candidate median 4.5 (n=4) vs live 2 (n=14)", "A": "candidate 4/30 = 13.3% vs in-run live control 34/144 = 23.6%, margin -10.3 (bar <= +10)",
+  "B": "8/36 = 22.2% (bar <= 40%)"
+ }
+}

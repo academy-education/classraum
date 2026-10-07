@@ -189,6 +189,30 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-07** — **SSAT UPPER READING BATCH WV6 PASSES EVERY DECIDING STAGE. 12 ITEMS INSERTED STAGED (`verified=false`) AS COHORT `ssat-reading-wv6`; DRAWABLE UNCHANGED AT 138. A HUMAN READ IS REQUIRED BEFORE RELEASE.**
+  - **Commits:** prereg `35b5bd43`, freeze `5e4433e7`, draw `596d77f0`.
+  - **What changed from WV5 (owner-approved):** WV5 failed C at 9/12, on two attitude items and one vocabulary item. WV6 fixed both kinds by construction.
+    - Vocabulary: SAT words-in-context style, exactly one sense fits each version.
+    - Attitude: options must differ in direction. A mechanical lexicon check (`ATT_DIR`) flags every attitude set the WV method has produced before (WV3/4/5) and passes a constructed clean set.
+    - A grader licensing pre-check runs on every version.
+      - Its first design FAILED its break test: it was silent on all 3 WV5 failures, and a judge read "version k keys letter k". That design is kept on record.
+      - The redesign (one file per version, seeded letters) fires on all 3 WV5 failures and is silent on 15 of 20 question-versions.
+  - **Results:**
+
+    | stage | result | bar |
+    |---|---|---|
+    | 0 pre-flight | PASS after one fix round; A1 and licensing re-run fresh, 0 absent, 20/20 clean | all clean |
+    | C exclusivity | **11/12** | >= 11/12 |
+    | Q plausible | 39.6% | >= 4/96 |
+    | dead-by-both | 6/12 | <= 7/12 |
+    | E naturalness | median 4.5 vs live 2 | >= live |
+    | A options-only | 13.3% vs control 23.6% | <= control + 10 |
+    | B grouped | 22.2% | <= 40% |
+    | F easy | 10/12 | reported only |
+  - **The one miss is P01-5 (attitude, key "detached").** Both graders named "regretful" as second defensible, after the licensing pre-check had cleared that version. A key that is the absence of affect invites any implied feeling as a rival. Next brief: no indifferent-class key when the narrator has a stake.
+  - **Human read:** P01-5 first; also the stored distractor rationales that a fixer called "formal only". The batch is mostly easy (10/12; live 32/33).
+  - Evidence: `READING-BATCH-WV6-2026-10-07{.prereg,}.md`, `ssat-wv6-batch/`, `ssat-wv6-breaktest/`, `insert-ssat-wv.mjs`. → **B10** (the agent route now has one staged batch; release is a person's call)
+
 - **2026-10-07** — **SSAT UPPER READING BATCH WV5, BARS RELATIVE TO THE LIVE CONTROL (pre-registered `024b0b88`, frozen `31054b11`, drawn `ff6cca97`): FAILS STAGE 1 ON C, EXCLUSIVITY 9/12 (bar >= 11/12). STOPPED. NOTHING INSERTED.**
   - Method: pilot 3's five-version method plus the NAEP lure checklist (`SSAT-WV5-AUTHOR-BRIEF.md`), with A1 as the absent-option gate. Two fresh units: P01 narrative fiction (kiln) and P02 science feature (bat tunnel).
   - Stage 0 passed after one fix round (12 off-target kill quotes, quotes only). A1 cleared all 9 lexical flags.
