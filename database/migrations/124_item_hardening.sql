@@ -1,6 +1,6 @@
 -- 124_item_hardening.sql — the co-founder hardening pass.
 --
--- NOT APPLIED. Tested in a rolled-back transaction against the live
+-- APPLIED 2026-10-07 after c6cd5efd deployed; candidates written (97). Originally: Tested in a rolled-back transaction against the live
 -- database on 2026-10-07 (database/tests/124_item_hardening.test.sql).
 -- Review before running.
 --
