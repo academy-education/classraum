@@ -189,6 +189,18 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-07** — **SSAT WV7 FAILS STAGE 0. STOPPED. NOTHING FROZEN, DRAWN OR INSERTED.** Prereg `159757d1`.
+  - **Round 0:**
+    - 21 mechanical problems;
+    - A1: 0 absent;
+    - licensing pre-check: 16/20 clean. All 4 failures were attitude items. Both "detached" versions read as critical or admiring, and the felt versions read as detached or admiring.
+    - Vocabulary: 10/10 clean.
+  - **Why it stops:** after the one fix round, one mechanical refusal remains. A kill quote uses "trading" for the choice word "trade". The brief counts that as a plain form; the checker's five-letter stem does not.
+    - Per the prereg, a refused unit fails stage 0, so the batch fails.
+    - The checker is not loosened after seeing the data. Fixer prompts will now require the exact listed word.
+  - **Finding:** an observer narrator does not make an indifferent-class attitude key safe. That is the third unit in a row (WV6-P01, WV7-P01, WV7-P02). The recommended next step is to replace the indifferent class with a fifth felt class, under a new prereg.
+  - Evidence: `READING-BATCH-WV7-2026-10-07.md`, `ssat-wv7-batch/preflight/`. → **B10**
+
 - **2026-10-07** — **SSAT WV6 CO-FOUNDER READ PREPARED, NOT SENT: run `ssat-wv6-cofounder-2026-10-07`, all 12 staged `ssat-reading-wv6` items for `support@classraum.com` (reviewer `6ca6edaf…`).**
   - **Deal:** keys 3/3/2/2/2, giving a 25.0% control, against a 20% five-choice line.
   - **Order:** P01-5 (`32521213`, the flagged attitude item) is first. New `draw-review-run.mjs DRAW_FIRST` inserts its row alone, before the rest. Checked: the panel's next-item query returns it.
