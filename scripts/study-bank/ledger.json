@@ -5787,6 +5787,40 @@
           "verdict": "Residuals recorded, not acted on: AM19I-03 grader B kills 59.5 and 62.4 with a rounded total (~30,000 / 62,000 < 50 cents); grader A calls that estimate the computation itself and I agree - it sums all four cost components, so it is the item done at low precision, not a one-step bound; 62.4 weak by both (one weak, rule 4 needs two). AM19I-04 grader A notes 2764.8 = 4 x key (80% vs 20%), a 1:4 pair that hints but does not pick; grader B banks it easy. AM19N-01 2.05 and AM19I-05 343 weak by both (no traceable path from the option alone; both have named author paths) - one weak each, kept under rule 4. AM19N-03 grader A: parity kills 12 only once the expansion is known, not counted."
         }
       }
+    },
+    {
+      "id": "act-math-v20-kept-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v20",
+      "contentSha": "4b974de4a4aea3fd14f317ad5ab3d4c68ce11c59a911bcc68bcb623cc9097953",
+      "status": "shipped",
+      "note": "36 of 45 authored survive. Commissioned against next-form for ACT Math form 17 (33 items: Algebra +7, Functions +7, Geometry +7, IES +6, S&P +5, N&Q +1) plus 36%: N&Q 2 + Algebra 9 / Functions 9 + S&P 6 / Geometry 10 / IES 9 from four Claude authors, bars pre-registered in ACT-MATH-V20-PREREGISTERED.md (commit fc9e8e16) before authoring: all four distractor rules (v16 limiting case, v17 neighbouring setup, v18/v19 one-step estimate strictly inside its bracket over the WHOLE quantity asked and one step finer, v18 both-graders weak standard). Medium/hard commission, BANK_BAND=mixed. No repairs. Form 17 NOT bought: Algebra kept 6 of 7 needed; every other domain met (N&Q 2/1, Functions 8/7, Geometry 7/7, IES 7/6, S&P 6/5).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "4b974de4a4aea3fd14f317ad5ab3d4c68ce11c59a911bcc68bcb623cc9097953",
+          "verdict": "45 authored, all exactly 4 choices (act-test.ts math choiceCount 4). Merged 45 (my re-run of act-math-v18-preflight.sh, sha 64d587f887a98fd4; preflight re-break-tested before authoring: FAIL on live act-math-v18.kept, 6 stem duplicates): PREFLIGHT PASS - sandbox 45/45, distractors 135/135; numeric hub no structure, symbolic 1 structured (margin +8.3); key at an extreme 21/45 = 46.7% (bar 40.0%); magnitude consistent (z 0.05/0.26/-0.26); 0 unique composites; stem echo keys 3/44; 0 stem duplicates vs 1,387 live act rows; 0 duplicate option sets. Kept 36 (sha 4b974de4a4aea3fd): PREFLIGHT PASS - sandbox 36/36, 108/108; key at an extreme 17/36 = 47.2%; magnitude z -0.36/0.71/-0.30; 0 composites. Duplicate scan (act-math-v16-dupscan.mjs, unchanged) against all 2,729 live maths rows, paged: 24 flags + 57 near, read by hand, PLUS a keyword search of all 2,729 rows per candidate mechanism: 4 mechanism duplicates, 3 of them invisible to the Jaccard scan (AM20A-05 = act-math-v1 e8f17f52 quadratic through three values; AM20G-03 = isee-math-s13 da512959 same two lines, its key 27 is a candidate distractor; AM20I-03 = sat-math-v12 7c27e30c head-start meeting; AM20F-01 ~ act-math-v8-fn 991f721f inner-argument solve, dropped on bounds anyway)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "4b974de4a4aea3fd14f317ad5ab3d4c68ce11c59a911bcc68bcb623cc9097953",
+          "verdict": "Options-only attack (act-math-v20-attack-draw.mjs, blind sha 4e51bacd93ad05f7), three Claude samples (pairwise agreement 78.5% vs 28.3% if independent - one solver sampled three times), 45 candidates interleaved 1:1 by domain with 45 live act/math items (v16-v20 excluded), keys flat within each arm (26.7% best-fixed each). Candidate 36/135 = 26.7% (margin +0.0) vs live control 51/135 = 37.8% (margin +11.1): candidate minus control -11.1 (hold bar +10). Unanimous-correct candidate 6/45 = 13.3% vs control 13/45 = 28.9% (hold bar +15). Mechanism-labelled 40.7% vs guess 29.9% pooled."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "4b974de4a4aea3fd14f317ad5ab3d4c68ce11c59a911bcc68bcb623cc9097953",
+          "verdict": "Two independent Claude graders on make-grade-render of a copy with bounds, distractor_kind and quantity_asked stripped (render sha 0210fd169aa1082e, quoted by both; render summary: no unrecognised field kept), with dedicated limiting_case, neighbouring_setup and estimation_bound fields. 90 of 90 picks equal the key; 0 second-defensible; 1 stem note (AM20F-09 closest to on an exact 6, harmless). Dropped 9 of 45: bounds/weak 5 - AM20A-01 (survivors 1, three weak by both), AM20F-01 (survivors 2, 22 and 26 weak by both), AM20G-05 (100 pi - 24 = 290.16 containment: 290.2 ON, 293.0 beyond; grader A, confirmed), AM20G-08 (height < face altitude: 27.0 ON, 29.4 beyond; both), AM20I-02 (~800-gallon one-chain estimate; 70 and 147 weak by both); rule 6 1 - AM20A-04 (unanimous + perfect-cube elimination); mechanism duplicates 3 - AM20A-05, AM20G-03, AM20I-03. Difficulty from graders (agree 25/36; one apart -> easier): easy 12 / medium 22 / hard 2, against authors 0 / 17 / 19 on the same 36."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "4b974de4a4aea3fd14f317ad5ab3d4c68ce11c59a911bcc68bcb623cc9097953",
+          "verdict": "Residuals recorded, not acted on: AM20F-08 both graders count 2 survivors (cos x = 1/3 < 1/2 so x > 60, killing 19.5 and 18.4) and name the inverse-trig ladder; I judge the bound downstream of the item work (reducing 3 sin x = tan x to cos x = 1/3 IS the item; arccos is one keystroke), as AM18I-10. AM20G-07 grader A counts 2 (the turn angle is acute, so d < 147.1, killing 169.1 and 198.2); grader B and I judge the 70-degree interior angle IS the item crux (169.1 is exactly its failure). AM20A-03 grader B counts 2 (linear remainder through (2,7),(-1,13) is decreasing, so r(4) < 7); grader A and I judge recognising the linear interpolant is the item. AM20I-06 11314.29 sits on the amounts-only bound (Ben has the fewest months, so his share < 24/49); one dead, no weak, 3 survivors, kept. AM20S-03 three-set Venn asks exactly-one; live isee-math-s11 a8b7895d asks none on the same structure - judged different computation. AM20N-02 grader B: plugging options is cheaper than the exponent work (backsolving, not a free bound). One-weak-by-both kept: AM20N-01 42, AM20A-03 19, AM20F-06 3.1, AM20F-07 8 (unanimous blind, no grader-named elimination)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

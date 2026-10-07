@@ -1,0 +1,320 @@
+[
+ {
+  "id": "AM20G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "law of cosines",
+  "subskill": "length of a cevian from three side lengths: the law of cosines run twice, first for the angle at B, then in the smaller triangle ABD",
+  "prompt": "In triangle ABC, AB = 12, AC = 15, and BC = 20. Point D lies on side BC so that BD = 11. To the nearest tenth, what is the length of segment AD ?",
+  "choices": [
+   "7.3",
+   "9.5",
+   "8.2",
+   "9.0"
+  ],
+  "correct_answer": "9.5",
+  "explanation": "No angle is given, so find one first. In triangle ABC the law of cosines gives cos B = (AB² + BC² − AC²)/(2 · AB · BC) = (144 + 400 − 225)/480 = 319/480 ≈ 0.6646. Angle B is also an angle of triangle ABD, whose sides at B are AB = 12 and BD = 11, so AD² = 12² + 11² − 2(12)(11)(319/480) = 265 − 175.45 = 89.55 and AD ≈ 9.46, or 9.5. The option \"7.3\" computes the cosine of the wrong angle — angle C, (225 + 400 − 144)/600 ≈ 0.8017 — and uses it at B. The option \"9.0\" places D 11 units from C instead of from B, so it uses BD = 9 with angle B. The option \"8.2\" uses sin B ≈ 0.7472 in place of cos B in the second law-of-cosines step.",
+  "solve": "const cB=(144+400-225)/(2*12*20); return Math.sqrt(144+121-2*12*11*cB).toFixed(1);",
+  "distractor_solve": {
+   "7.3": "const cC=(225+400-144)/(2*15*20); return Math.sqrt(144+121-2*12*11*cC).toFixed(1);",
+   "9.0": "const cB=(144+400-225)/(2*12*20); return Math.sqrt(144+81-2*12*9*cB).toFixed(1);",
+   "8.2": "const cB=(144+400-225)/(2*12*20); const sB=Math.sqrt(1-cB*cB); return Math.sqrt(144+121-2*12*11*sB).toFixed(1);"
+  },
+  "quantity_asked": "The length of segment AD, where D is the point on BC with BD = 11 (not a side of triangle ABC).",
+  "bounds": [
+   "v > 6",
+   "v < Math.sqrt(265)"
+  ],
+  "distractor_kind": {
+   "7.3": "wrong procedure: cosine of angle C used at vertex B. (a) limiting case: no parameter at an extreme. (b) neighbouring setup: it is not AD for any adjacent configuration (it is no cevian of this triangle). (c) cheapest estimates over the whole quantity AD: triangle ADC gives AD > AC − DC = 15 − 9 = 6; angle B is acute because 12² + 20² > 15², so AD² < AB² + BD² = 265, AD < 16.28. Interval (6, 16.28); 7.3 is 1.3 inside the floor. One step finer: AD >= the altitude from A, but the altitude needs the area (Heron) — the item's own work. Bracketing B between 45 and 60 degrees also needs cos B, the item's first step. (d) not weak: cosine of the wrong vertex is the common law-of-cosines slip.",
+   "9.0": "wrong procedure: D located 11 from C (BD = 9). (a) no. (b) it is the length of a different cevian (the point 9 from B), an adjacent setup, but it is not an extreme of (6, 16.28): AD is not monotone in BD across this range (the foot of the altitude is at BH = 12 cos B = 7.98, between 9 and 11 on neither side cheaply). (c) strictly inside (6, 16.28). (d) not weak: misreading which endpoint BD is measured from.",
+   "8.2": "wrong procedure: sin B substituted for cos B. (a) no. (b) no. (c) strictly inside (6, 16.28), 2.2 above the floor. (d) not weak: sine/cosine swap in the law of cosines."
+  }
+ },
+ {
+  "id": "AM20G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "trapezoids",
+  "subskill": "area of a non-isosceles trapezoid from its four sides: the two unequal overhangs found from a pair of Pythagorean equations sharing the height",
+  "prompt": "A trapezoid has parallel sides of lengths 26 centimeters and 10 centimeters. Its two nonparallel sides have lengths 9 centimeters and 14 centimeters. To the nearest tenth of a square centimeter, what is the area of the trapezoid?",
+  "choices": [
+   "124.0",
+   "74.2",
+   "141.3",
+   "116.4"
+  ],
+  "correct_answer": "141.3",
+  "explanation": "Drop perpendiculars from the ends of the 10-cm side. They cut the 26-cm side into an overhang x under the 9-cm leg, a 10-cm middle, and an overhang y under the 14-cm leg, so x + y = 16. Both right triangles share the height h: h² = 81 − x² = 196 − y². Then y² − x² = 115, and since y² − x² = (y − x)(y + x) = 16(y − x), y − x = 115/16 = 7.1875. So x = (16 − 7.1875)/2 = 4.40625 and h² = 81 − 4.40625² ≈ 61.585, h ≈ 7.848. Area = (26 + 10)/2 × h = 18 × 7.848 ≈ 141.26, or 141.3. The option \"74.2\" assumes equal overhangs of 8 (an isosceles trapezoid) and takes the height from the 9-cm leg, h = √17. The option \"124.0\" factors y² − x² but divides 115 by the long side 26 instead of by x + y = 16. The option \"116.4\" splits the 16 cm of overhang in proportion to the legs, x = 16 × 9/23.",
+  "solve": "const yx=(196-81)/16; const x=(16-yx)/2; return (18*Math.sqrt(81-x*x)).toFixed(1);",
+  "distractor_solve": {
+   "74.2": "return (18*Math.sqrt(81-64)).toFixed(1);",
+   "124.0": "const yx=(196-81)/26; const x=(16-yx)/2; return (18*Math.sqrt(81-x*x)).toFixed(1);",
+   "116.4": "const x=16*9/23; return (18*Math.sqrt(81-x*x)).toFixed(1);"
+  },
+  "quantity_asked": "The area of the whole trapezoid (mean of the parallel sides times the height).",
+  "bounds": [
+   "v > 0",
+   "v < 162"
+  ],
+  "distractor_kind": {
+   "74.2": "wrong procedure: isosceles assumption (overhangs 8 and 8) with the 9-cm leg. (a) limiting case: equal overhangs are not an extreme of the feasible overhangs here — the extremes would be a vertical 9-cm leg (h = 9, area 162) or a degenerate one. (b) neighbouring setup: the isosceles trapezoid with legs 9 is an adjacent shape, but it is not at an end of the interval. (c) cheapest estimate over the whole area: the height is less than the shorter leg, 9, so area < 18 x 9 = 162; no cheap lower bound (the 9-cm leg may be nearly flat). Interval (0, 162); 74.2 strictly inside. The other leg gives h <= sqrt(196 - 49) = 12.1 (its overhang is at least 16 - 9 = 7), which is looser. (d) not weak: the most common trapezoid shortcut.",
+   "124.0": "wrong procedure: (y - x)(y + x) with y + x taken as 26. (a) no. (b) no. (c) strictly inside (0, 162). (d) not weak: a named factoring slip.",
+   "116.4": "wrong procedure: overhangs split in the ratio of the legs, 9 : 14. (a) no. (b) no. (c) strictly inside (0, 162). (d) not weak: proportional split is a common guess for unequal legs."
+  }
+ },
+ {
+  "id": "AM20G-03",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "coordinate geometry",
+  "subskill": "area of the triangle enclosed by three lines: two intersections with a horizontal line that is not an axis, and the apex from solving the other pair",
+  "prompt": "In the standard (x,y) coordinate plane, the lines y = x + 2, y = −2x + 14, and y = −1 enclose a triangle. What is the area of the triangle, in square coordinate units?",
+  "choices": [
+   "31.5",
+   "27",
+   "36.75",
+   "33.25"
+  ],
+  "correct_answer": "36.75",
+  "explanation": "The two slanted lines meet where x + 2 = −2x + 14, so x = 4 and y = 6: the apex is (4, 6). The line y = −1 meets y = x + 2 at x = −3 and meets y = −2x + 14 where −2x = −15, x = 7.5. The base on y = −1 runs from x = −3 to x = 7.5, length 10.5, and the height is the vertical distance from y = 6 down to y = −1, which is 7. Area = ½ × 10.5 × 7 = 36.75. The option \"27\" uses the x-axis instead of y = −1: base from −2 to 7 (length 9) and height 6. The option \"31.5\" finds the correct base but takes the apex's y-coordinate, 6, as the height, measuring to y = 0. The option \"33.25\" solves −2x + 14 = −1 as −2x = −13, x = 6.5, giving a base of 9.5.",
+  "solve": "const xa=4, ya=6; const L=-3, R=(14+1)/2; return String((R-L)*(ya+1)/2);",
+  "distractor_solve": {
+   "27": "return String((7-(-2))*6/2);",
+   "31.5": "return String((7.5-(-3))*6/2);",
+   "33.25": "return String((6.5-(-3))*7/2);"
+  },
+  "quantity_asked": "The area of the triangle bounded by all three lines (vertices (−3, −1), (7.5, −1), (4, 6)).",
+  "bounds": [
+   "v > 0"
+  ],
+  "distractor_kind": {
+   "27": "neighbouring setup / misread: the triangle made with the x-axis instead of y = -1. (a) limiting case: no. (b) neighbouring setup: yes, the adjacent triangle with the axis; it is not an extreme of any stem-forced interval, because the only cheap bound on this area is positivity — the base and the height are each the item's own intersections. (c) cheapest estimate over the whole area: none cheaper than the two intersections; the apex height 7 needs the apex, and the base needs both x-intercepts on y = -1. Interval (0, infinity). (d) not weak: reading \"y = -1\" as the axis is common.",
+   "31.5": "wrong procedure: correct base, height measured to y = 0. (a) no. (b) no. (c) inside (0, infinity). (d) not weak: forgetting the base line is below the axis.",
+   "33.25": "wrong procedure: sign slip solving -2x + 14 = -1. (a) no. (b) no. (c) inside. (d) not weak: arithmetic slip a student makes."
+  }
+ },
+ {
+  "id": "AM20G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "rectangles",
+  "subskill": "distance from an interior point to the fourth corner of a rectangle: the sums of squared distances to OPPOSITE corners are equal (coordinates give it in two lines)",
+  "prompt": "Point P lies inside rectangle ABCD, where vertices A and C are opposite each other. The distances from P to three of the vertices are PA = 7, PB = 10, and PC = 11. To the nearest tenth, what is the distance from P to vertex D ?",
+  "choices": [
+   "8.0",
+   "13.1",
+   "8.4",
+   "5.3"
+  ],
+  "correct_answer": "8.4",
+  "explanation": "Place A at (0, 0), B at (w, 0), C at (w, h), and D at (0, h), with P at (x, y). Then PA² + PC² = x² + y² + (w − x)² + (h − y)² and PB² + PD² = (w − x)² + y² + x² + (h − y)², which are the same sum. So PD² = PA² + PC² − PB² = 49 + 121 − 100 = 70 and PD = √70 ≈ 8.37, or 8.4. The option \"8.0\" applies the relation to the distances themselves, 7 + 11 − 10. The option \"13.1\" pairs adjacent corners, PA² + PD² = PB² + PC², so PD² = 100 + 121 − 49 = 172. The option \"5.3\" pairs the other adjacent corners, PA² + PB² = PC² + PD², so PD² = 49 + 100 − 121 = 28.",
+  "solve": "return Math.sqrt(49+121-100).toFixed(1);",
+  "distractor_solve": {
+   "8.0": "return (7+11-10).toFixed(1);",
+   "13.1": "return Math.sqrt(100+121-49).toFixed(1);",
+   "5.3": "return Math.sqrt(49+100-121).toFixed(1);"
+  },
+  "quantity_asked": "The distance PD from the interior point P to vertex D (D is opposite B).",
+  "bounds": [
+   "v > 0",
+   "v < 25"
+  ],
+  "distractor_kind": {
+   "8.0": "wrong procedure: the opposite-corner relation applied to lengths, not squares. (a) limiting case: no parameter at an extreme. (b) neighbouring setup: no. (c) cheapest estimates over the whole quantity PD: positivity; PD < PA + AD and AD < AC <= PA + PC = 18, so PD < 25; with P inside, AC^2 >= PA^2 + PC^2 = 170 (P lies inside the circle on diameter AC), which bounds the rectangle, not PD. No cheap bound separates 8.0 from 8.37 — (7 + 11 - 10)^2 versus 7^2 + 11^2 - 10^2 has no general order. Interval (0, 25). (d) not weak: linearising a squared relation is the standard slip.",
+   "13.1": "wrong procedure: adjacent corners paired. (a) no. (b) no. (c) strictly inside (0, 25). (d) not weak: pairing B with C instead of with D.",
+   "5.3": "wrong procedure: the other adjacent pairing. (a) no. (b) no. (c) strictly inside (0, 25). (d) not weak: same family, the other wrong diagonal."
+  }
+ },
+ {
+  "id": "AM20G-05",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "circles and sectors",
+  "subskill": "grazing area around an obstacle: a three-quarter circle plus two quarter circles whose radii are the rope left over after each corner",
+  "prompt": "A goat is tied with a 10-meter rope to one outside corner of a closed rectangular shed that measures 8 meters by 3 meters. The goat can walk anywhere outside the shed that the rope allows, but the rope cannot pass through or over the shed. To the nearest tenth of a square meter, what is the area of the region the goat can reach?",
+  "choices": [
+   "290.2",
+   "277.2",
+   "293.0",
+   "238.8"
+  ],
+  "correct_answer": "277.2",
+  "explanation": "With the rope tied at a corner, the shed blocks the quarter of the plane on its side, so the goat can sweep three quarters of a circle of radius 10: (3/4)π(10²) = 75π. Going along the 8-m wall, the rope reaches the next corner with 10 − 8 = 2 m left and swings a quarter circle of radius 2 around it: (1/4)π(2²) = π. Going along the 3-m wall, it reaches that corner with 10 − 3 = 7 m left and swings a quarter circle of radius 7: (1/4)π(7²) = 12.25π. The 7-m rope cannot reach the far corner (it would need 8 m), and the two small regions do not overlap. Total = 88.25π ≈ 277.2. The option \"238.8\" forgets the 7-m quarter circle around the corner at the end of the 3-m wall. The option \"290.2\" takes the full circle and subtracts only the shed's area, 100π − 24. The option \"293.0\" uses the shed's side lengths, 8 and 3, as the radii of the two quarter circles.",
+  "solve": "const P=Math.PI; return (0.75*P*100+0.25*P*4+0.25*P*49).toFixed(1);",
+  "distractor_solve": {
+   "238.8": "const P=Math.PI; return (0.75*P*100+0.25*P*4).toFixed(1);",
+   "290.2": "const P=Math.PI; return (P*100-24).toFixed(1);",
+   "293.0": "const P=Math.PI; return (0.75*P*100+0.25*P*(64+9)).toFixed(1);"
+  },
+  "quantity_asked": "The total area the goat can reach: the three-quarter circle plus both wrap-around regions.",
+  "bounds": [
+   "v > 75*Math.PI",
+   "v < 99.5*Math.PI"
+  ],
+  "distractor_kind": {
+   "238.8": "wrong procedure: one wrap-around region omitted. (a) limiting case: no — the no-wrap value 75pi = 235.6 is the limiting case and was deliberately not used. (b) neighbouring setup: no. (c) cheapest estimates over the WHOLE reachable area: more than the three-quarter circle 75pi = 235.6 (both wraps add area); less than the full circle 100pi = 314.2; one step finer, each wrap is at most a quarter circle of radius 10 - 3 = 7, so area <= 75pi + 2(12.25pi) = 99.5pi = 312.6. Interval (235.6, 312.6); 238.8 is 3.2 above the floor. (d) not weak: forgetting a wrap is the standard error on this problem.",
+   "290.2": "wrong procedure: full circle minus the shed. (a) no — not the full-circle value 314.2. (b) no. (c) strictly inside (235.6, 312.6), 22.4 below the finer cap. (d) not weak: treating the shed as the only lost area.",
+   "293.0": "wrong procedure: shed sides 8 and 3 used as wrap radii. (a) no. (b) no. (c) strictly inside (235.6, 312.6), 19.6 below the finer cap. (d) not weak: confusing the wall length with the rope left over."
+  }
+ },
+ {
+  "id": "AM20G-06",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "equilateral triangles",
+  "subskill": "side of an equilateral triangle from the distances of an interior point to its three sides: the distances sum to the altitude (split the area into three triangles), then side = 2h/sqrt3",
+  "prompt": "Point P lies inside an equilateral triangle. The perpendicular distances from P to the three sides of the triangle are 2 units, 3.5 units, and 4 units. To the nearest hundredth of a unit, what is the length of each side of the triangle?",
+  "choices": [
+   "13.44",
+   "14.25",
+   "10.97",
+   "16.45"
+  ],
+  "correct_answer": "10.97",
+  "explanation": "Let each side be s. Joining P to the three vertices splits the triangle into three triangles, each with a side of length s as its base and one of the distances as its height, so the area is ½s(2) + ½s(3.5) + ½s(4) = ½s(9.5). The area is also ½s·h, where h is the altitude, so h = 9.5: the three distances add up to the altitude. In an equilateral triangle h = (√3/2)s, so s = 2(9.5)/√3 = 19/√3 ≈ 10.97. The option \"13.44\" uses a 45°-45°-90° ratio, s = h√2. The option \"16.45\" multiplies the altitude by √3 instead of dividing, s = h√3. The option \"14.25\" treats the altitude as two-thirds of the side (the centroid fraction), s = 1.5h.",
+  "solve": "const h=2+3.5+4; return (2*h/Math.sqrt(3)).toFixed(2);",
+  "distractor_solve": {
+   "13.44": "const h=2+3.5+4; return (h*Math.SQRT2).toFixed(2);",
+   "16.45": "const h=2+3.5+4; return (h*Math.sqrt(3)).toFixed(2);",
+   "14.25": "const h=2+3.5+4; return (1.5*h).toFixed(2);"
+  },
+  "quantity_asked": "The side length of the equilateral triangle (not its altitude, which is 9.5).",
+  "bounds": [
+   "v > 9.5",
+   "v < 19"
+  ],
+  "distractor_kind": {
+   "13.44": "wrong procedure: s = h sqrt2 (45-45-90 ratio). (a) limiting case: no — s = h (9.5) and s = 2h (19) are the bounds and neither is an option. (b) neighbouring setup: no. (c) cheapest estimate over the whole quantity s: once the altitude is 9.5 (the item's first step), s > h because the altitude is a leg of a right triangle whose hypotenuse is a side, and s < 2h because half the side is the other leg and is shorter than the altitude (the angle at the base is 60 > 45). Interval (9.5, 19); 13.44 strictly inside. Without the altitude, no bound on s exists at all — every distance only says s is large enough to contain them. One step finer is s = 2h/sqrt3 itself. (d) not weak: the wrong special-triangle ratio.",
+   "16.45": "wrong procedure: multiplied by sqrt3 instead of dividing. (a) no. (b) no. (c) strictly inside (9.5, 19), 2.55 below the cap. (d) not weak: inverting the sqrt3/2 ratio.",
+   "14.25": "wrong procedure: altitude taken as two-thirds of the side (centroid fraction), s = 1.5h. (a) limiting case: no — it is not an end of (9.5, 19); it happens to be the midpoint of that pair, which is not itself a bound. (b) neighbouring setup: no. (c) strictly inside (9.5, 19), 4.75 from each end. (d) not weak: confusing the altitude with the centroid distance."
+  }
+ },
+ {
+  "id": "AM20G-07",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "law of cosines",
+  "subskill": "distance from the start after two legs given as bearings: the triangle's included angle must be built from the bearings (180 minus the turn), then the law of cosines",
+  "prompt": "A boat leaves a dock and travels 120 kilometers on a bearing of 040° (40° clockwise from due north). It then turns and travels 85 kilometers on a bearing of 150°. To the nearest tenth of a kilometer, how far is the boat from the dock?",
+  "choices": [
+   "169.1",
+   "121.0",
+   "198.2",
+   "77.4"
+  ],
+  "correct_answer": "121.0",
+  "explanation": "The boat turns from a heading of 040° to a heading of 150°, a turn of 110°. The angle inside the triangle at the turning point is the supplement of the turn, 180° − 110° = 70°. By the law of cosines, d² = 120² + 85² − 2(120)(85)cos 70° = 21,625 − 20,400(0.34202) ≈ 14,648, so d ≈ 121.0 km. The option \"169.1\" uses the turn, 110°, as the included angle. The option \"198.2\" uses the second bearing, 150°, as the included angle. The option \"77.4\" uses the first bearing, 40°, as the included angle.",
+  "solve": "const D=Math.PI/180; return Math.sqrt(120*120+85*85-2*120*85*Math.cos(70*D)).toFixed(1);",
+  "distractor_solve": {
+   "169.1": "const D=Math.PI/180; return Math.sqrt(120*120+85*85-2*120*85*Math.cos(110*D)).toFixed(1);",
+   "198.2": "const D=Math.PI/180; return Math.sqrt(120*120+85*85-2*120*85*Math.cos(150*D)).toFixed(1);",
+   "77.4": "const D=Math.PI/180; return Math.sqrt(120*120+85*85-2*120*85*Math.cos(40*D)).toFixed(1);"
+  },
+  "quantity_asked": "The straight-line distance from the dock to the boat's final position.",
+  "bounds": [
+   "v > 35",
+   "v < 205"
+  ],
+  "distractor_kind": {
+   "169.1": "wrong procedure: the turn angle used as the included angle. (a) limiting case: no — the straight-ahead (205) and full-reversal (35) values are the extremes and are not options; the right-angle value 147.1 was deliberately not used (it is the Pythagorean neighbour). (b) neighbouring setup: the turn-angle triangle is an adjacent reading, but at 169.1 it is not at an end of (35, 205). (c) cheapest estimate over the whole distance: triangle inequality, 120 - 85 < d < 120 + 85, interval (35, 205). Bracketing the included angle needs the included angle, which is the decision the item tests. (d) not weak: the classic bearings error.",
+   "198.2": "wrong procedure: second bearing used as the included angle. (a) no. (b) no. (c) strictly inside (35, 205), 6.8 below the cap. (d) not weak: using a bearing directly as a triangle angle.",
+   "77.4": "wrong procedure: first bearing used as the included angle. (a) no. (b) no. (c) strictly inside (35, 205). (d) not weak: same family, the other bearing."
+  }
+ },
+ {
+  "id": "AM20G-08",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "volume of pyramids",
+  "subskill": "volume of a regular tetrahedron from its edge: the height comes from the distance between a base vertex and the base's center, two-thirds of the face altitude",
+  "prompt": "A regular tetrahedron is a pyramid whose four faces are congruent equilateral triangles. A regular tetrahedron has edges that are each 6 centimeters long. To the nearest tenth of a cubic centimeter, what is its volume?",
+  "choices": [
+   "27.0",
+   "29.4",
+   "18.0",
+   "25.5"
+  ],
+  "correct_answer": "25.5",
+  "explanation": "The base is an equilateral triangle with side 6, so its area is (√3/4)(36) = 9√3 ≈ 15.588. The apex lies directly above the base's center, which is two-thirds of the way along a face altitude from a vertex: the face altitude is 3√3, so that distance is 2√3. The height then comes from the right triangle formed with a lateral edge: h² = 6² − (2√3)² = 36 − 12 = 24, h = √24 ≈ 4.899. Volume = (1/3)(9√3)(√24) ≈ 25.46, or 25.5. The option \"18.0\" uses the center-to-vertex distance 2√3 as the height. The option \"27.0\" uses the face altitude 3√3 as the height. The option \"29.4\" uses ½ × 6 × 6 = 18 as the base area, as if the base were a right triangle.",
+  "solve": "const B=Math.sqrt(3)/4*36; const h=Math.sqrt(36-12); return (B*h/3).toFixed(1);",
+  "distractor_solve": {
+   "18.0": "const B=Math.sqrt(3)/4*36; return (B*2*Math.sqrt(3)/3).toFixed(1);",
+   "27.0": "const B=Math.sqrt(3)/4*36; return (B*3*Math.sqrt(3)/3).toFixed(1);",
+   "29.4": "const h=Math.sqrt(36-12); return (18*h/3).toFixed(1);"
+  },
+  "quantity_asked": "The volume of the whole tetrahedron.",
+  "bounds": [
+   "v > 9*Math.sqrt(3)",
+   "v < 18*Math.sqrt(3)"
+  ],
+  "distractor_kind": {
+   "18.0": "wrong procedure: horizontal offset used as the height. (a) limiting case: no. (b) neighbouring setup: no. (c) cheapest estimates over the whole volume: V = (1/3)(9 sqrt3)h with the height less than the lateral edge 6, so V < 18 sqrt3 = 31.18; the horizontal offset from a vertex to the center is less than the face altitude 3 sqrt3, so h > sqrt(36 - 27) = 3 and V > 9 sqrt3 = 15.59. Interval (15.59, 31.18); 18.0 is 2.4 above the floor. (d) not weak: confusing the offset with the height.",
+   "27.0": "wrong procedure: face altitude (slant) used as the height. (a) no — the height-equals-edge value 31.18 is the limiting case and is not an option. (b) the slant-height reading is an adjacent setup but not at an end of (15.59, 31.18). (c) strictly inside, 4.2 below the cap. (d) not weak: slant height vs height.",
+   "29.4": "wrong procedure: base area 1/2 x 6 x 6. (a) no. (b) no. (c) strictly inside, 1.8 below the cap. (d) not weak: right-triangle area formula on an equilateral base."
+  }
+ },
+ {
+  "id": "AM20G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "triangles and ratios",
+  "subskill": "the ratio in which one cevian cuts another, from two given side ratios (Menelaus on triangle ADC, or mass points, or areas)",
+  "prompt": "In triangle ABC, point D lies on side BC so that BD : DC = 2 : 3, and point E lies on side AC so that AE : EC = 1 : 2. Segments AD and BE intersect at point P. To the nearest hundredth, what is the value of AP/PD ?",
+  "choices": [
+   "5.00",
+   "1.25",
+   "3.33",
+   "0.83"
+  ],
+  "correct_answer": "1.25",
+  "explanation": "Line BE crosses the sides of triangle ADC: it meets AD at P, DC extended at B, and CA at E. Menelaus's theorem gives (AP/PD)(DB/BC)(CE/EA) = 1. Here DB/BC = 2/5 and CE/EA = 2, so (AP/PD)(2/5)(2) = 1 and AP/PD = 5/4 = 1.25. (With masses: put 3 at B and 2 at C so D balances BC, then 4 at A so E balances AC; D carries 5, so AP/PD = 5/4.) The option \"5.00\" inverts the ratio on AC, using EA/CE = 1/2 in place of CE/EA. The option \"0.83\" uses DC/BC = 3/5 in place of DB/BC. The option \"3.33\" makes both inversions.",
+  "solve": "const DBBC=2/5, CEEA=2; return (1/(DBBC*CEEA)).toFixed(2);",
+  "distractor_solve": {
+   "5.00": "const DBBC=2/5, EACE=1/2; return (1/(DBBC*EACE)).toFixed(2);",
+   "0.83": "const DCBC=3/5, CEEA=2; return (1/(DCBC*CEEA)).toFixed(2);",
+   "3.33": "const DCBC=3/5, EACE=1/2; return (1/(DCBC*EACE)).toFixed(2);"
+  },
+  "quantity_asked": "The ratio AP/PD along cevian AD (not BP/PE).",
+  "bounds": [
+   "v > 0"
+  ],
+  "distractor_kind": {
+   "5.00": "wrong procedure: AE : EC inverted. (a) limiting case: no — the extremes are E at A (ratio 0) and E at C (P at D, ratio unbounded). (b) neighbouring setup: it is AP/PD for E with AE : EC = 2 : 1, an adjacent configuration, not at an extreme of (0, infinity). (c) cheapest estimate over the whole quantity: monotonicity in E's position gives only (0, infinity) without a reference value; the midpoint reference (E at the midpoint gives 2.5) costs the same Menelaus step as the item. (d) not weak: ratio inversion is the standard mass-point / Menelaus slip.",
+   "0.83": "wrong procedure: DC/BC in place of DB/BC. (a) no. (b) adjacent configuration (BD : DC = 3 : 2), not an extreme. (c) inside (0, infinity). (d) not weak.",
+   "3.33": "wrong procedure: both ratios inverted. (a) no. (b) no. (c) inside (0, infinity). (d) not weak."
+  }
+ },
+ {
+  "id": "AM20G-10",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "squares and octagons",
+  "subskill": "overlap of a square and its 45-degree rotation about the center: the four corner pieces are isosceles right triangles whose HEIGHT, not leg, is half the diagonal minus half the side",
+  "prompt": "A square with sides 10 centimeters long is rotated 45° about its center, and the rotated copy is placed on top of the original square. The region covered by both squares is an octagon. To the nearest tenth of a square centimeter, what is the area of the octagon?",
+  "choices": [
+   "91.4",
+   "87.5",
+   "82.8",
+   "95.7"
+  ],
+  "correct_answer": "82.8",
+  "explanation": "Each corner of the rotated square reaches 5√2 ≈ 7.071 cm from the center, while each side of the original square is 5 cm from the center. So each corner of the rotated square sticks out past the original by a small isosceles right triangle whose height (from the right angle to the long side) is t = 5√2 − 5 ≈ 2.071. Such a triangle has long side 2t and area ½(2t)(t) = t² ≈ 4.289. The octagon is the rotated square minus these four triangles: 100 − 4t² ≈ 100 − 17.157 = 82.84, or 82.8. The option \"91.4\" treats t as each triangle's legs, area ½t². The option \"87.5\" assumes each cut-off leg is half the octagon's side, so s + s = 10 and the legs are 2.5. The option \"95.7\" treats t as each triangle's long side, area t²/4.",
+  "solve": "const t=5*Math.SQRT2-5; return (100-4*t*t).toFixed(1);",
+  "distractor_solve": {
+   "91.4": "const t=5*Math.SQRT2-5; return (100-4*0.5*t*t).toFixed(1);",
+   "87.5": "const l=2.5; return (100-4*0.5*l*l).toFixed(1);",
+   "95.7": "const t=5*Math.SQRT2-5; return (100-4*t*t/4).toFixed(1);"
+  },
+  "quantity_asked": "The area of the octagon common to both squares.",
+  "bounds": [
+   "v > 25*Math.PI",
+   "v < 100"
+  ],
+  "distractor_kind": {
+   "91.4": "wrong procedure: t taken as the legs of each corner triangle. (a) limiting case: no — the full square (100) and the inscribed circle (78.54) are the bounds and neither is an option. (b) neighbouring setup: no. (c) cheapest estimates over the whole octagon: it contains the circle of radius 5 inscribed in both squares, so area > 25pi = 78.54; it lies inside the original square, so area < 100. One step finer: the octagon lies inside the circle through its vertices, radius sqrt(25 + t^2) = 5.41, area 92.0 — but that needs t, the item's own quantity. Interval (78.54, 100). (d) not weak: height vs leg of a 45-45-90 triangle.",
+   "87.5": "wrong procedure: leg = half the hypotenuse in a 45-45-90 triangle. (a) no — the equal-thirds reading (legs 10/3, area 77.8) is below the circle bound and was not used. (b) no. (c) strictly inside (78.54, 100). (d) not weak: a named 45-45-90 ratio slip.",
+   "95.7": "wrong procedure: t taken as the long side of each corner triangle. (a) no. (b) no. (c) strictly inside (78.54, 100), 4.3 below the cap. (d) borderline: same family as \"91.4\" (misplacing t in the 45-45-90 triangle), declared so the graders can rule."
+  }
+ }
+]

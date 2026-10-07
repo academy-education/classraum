@@ -1,0 +1,468 @@
+[
+ {
+  "id": "AM20F-01",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "domain of a transformed function",
+  "subskill": "domain of g(x) = f(3x + 2) found by solving the inner expression against f's domain, not by applying the map to the endpoints",
+  "prompt": "The function f is defined only for −4 ≤ x ≤ 8. The function g is defined by g(x) = f(3x + 2) for every x for which f(3x + 2) is defined. What is the greatest value of x in the domain of g ?",
+  "choices": [
+   "2",
+   "26",
+   "10/3",
+   "22"
+  ],
+  "correct_answer": "2",
+  "explanation": "g(x) is defined exactly when its input to f, 3x + 2, lies in f's domain: −4 ≤ 3x + 2 ≤ 8. Subtracting 2 gives −6 ≤ 3x ≤ 6, so −2 ≤ x ≤ 2, and the greatest value is 2. The option \"26\" applies the inner rule to the endpoint, 3(8) + 2, instead of solving 3x + 2 = 8. The option \"10/3\" moves the 2 with the wrong sign, 3x = 8 + 2. The option \"22\" undoes the rule in the wrong order and direction, computing 3(8) − 2.",
+  "solve": "return String((8-2)/3);",
+  "distractor_solve": {
+   "26": "return String(3*8+2);",
+   "10/3": "const n=8+2; return n+'/3';",
+   "22": "return String(3*8-2);"
+  },
+  "quantity_asked": "the greatest x for which 3x + 2 lies in [−4, 8] (an x-value of g's domain).",
+  "bounds": [],
+  "distractor_kind": {
+   "26": "wrong procedure: map applied forward to the endpoint. (a) limiting case: no. (b) neighbouring setup: it is the greatest output of the inner map over f's domain - an adjacent question; no stem-forced interval bounds g's domain endpoint without solving the inequality, which is the item. (c) estimation bound: none cheaper than the one-line inequality. (d) weak: no - applying the transformation to the domain instead of inverting it is the defining error.",
+   "10/3": "wrong procedure: sign slip. (a) no. (b) no. (c) none. (d) no.",
+   "22": "wrong procedure: inverse taken as 3y − 2. (a) no. (b) no. (c) none. (d) no - a reversed-operations slip."
+  }
+ },
+ {
+  "id": "AM20F-02",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "polynomial functions",
+  "subskill": "building a real cubic from one real zero and one non-real zero, which forces the conjugate zero, then evaluating it",
+  "prompt": "A polynomial function p of degree 3 has real coefficients and a leading coefficient of 1. Two of the zeros of p are 2 and 3 − i, where i = √−1. What is the value of p(−1) ?",
+  "choices": [
+   "-51",
+   "-45",
+   "-33",
+   "-15"
+  ],
+  "correct_answer": "-51",
+  "explanation": "Because p has real coefficients, the conjugate 3 + i is also a zero, so the three zeros are 2, 3 − i and 3 + i, and p(x) = (x − 2)(x − (3 − i))(x − (3 + i)). The last two factors multiply to (x − 3)² − i² = (x − 3)² + 1 = x² − 6x + 10. So p(x) = (x − 2)(x² − 6x + 10) and p(−1) = (−3)(1 + 6 + 10) = (−3)(17) = −51. The option \"-45\" treats i² as +1, writing the quadratic factor as (x − 3)² − 1 = x² − 6x + 8, so p(−1) = (−3)(15). The option \"-33\" expands (x − 3)² as x² + 9, dropping the middle term, so the factor is x² + 10 and p(−1) = (−3)(11). The option \"-15\" writes the conjugate-pair factors as (x + 3 − i)(x + 3 + i), with the wrong sign on the real part, giving x² + 6x + 10 and p(−1) = (−3)(5).",
+  "solve": "const q=x=>x*x-6*x+10; return String((-1-2)*q(-1));",
+  "distractor_solve": {
+   "-45": "const q=x=>x*x-6*x+8; return String((-1-2)*q(-1));",
+   "-33": "const q=x=>x*x+10; return String((-1-2)*q(-1));",
+   "-15": "const q=x=>x*x+6*x+10; return String((-1-2)*q(-1));"
+  },
+  "quantity_asked": "p(−1) for the monic real cubic with zeros 2, 3 − i (and hence 3 + i).",
+  "bounds": [
+   "v < 0",
+   "v % 3 === 0"
+  ],
+  "distractor_kind": {
+   "-45": "wrong procedure: i² taken as +1. (a) limiting case: no. (b) neighbouring setup: no - it is the cubic with zeros 2, 2, 4, not an adjacent question in the stem. (c) estimation bound: the free facts are p(−1) = (−1 − 2)·q(−1) with q(−1) > 0 (q has no real zeros and is monic), so p(−1) < 0 and is a multiple of 3. All four options satisfy both; no one-step estimate of q(−1) exists short of forming q, which is the item. Interval (−∞, 0). (d) weak: no.",
+   "-33": "wrong procedure: (x − 3)² expanded as x² + 9. (a) no. (b) no. (c) inside (−∞, 0), multiple of 3. (d) no - dropping the middle term of a square is a standard slip.",
+   "-15": "wrong procedure: conjugate factors written with +3 (zeros taken as −3 ± i). (a) no. (b) no. (c) inside (−∞, 0), multiple of 3. (d) no - factor-sign error from a zero."
+  }
+ },
+ {
+  "id": "AM20F-03",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "functional equations",
+  "subskill": "a functional equation linking f(x) and f(1/x): a second substitution produces a second equation, and the system is solved for the asked value",
+  "prompt": "A function f is defined for all nonzero real numbers and satisfies f(x) + 2f(1/x) = 6x for every nonzero x. What is the value of f(2) ?",
+  "choices": [
+   "-2",
+   "4",
+   "3.6",
+   "-11"
+  ],
+  "correct_answer": "-2",
+  "explanation": "Let A = f(2) and B = f(1/2). Substituting x = 2 gives A + 2B = 12. Substituting x = 1/2 gives B + 2A = 3. From the second, B = 3 − 2A; substituting into the first, A + 6 − 4A = 12, so −3A = 6 and A = −2. (Then B = 3 + 4 = 7.) The option \"4\" uses only the x = 2 equation and treats f(1/2) as if it were f(2), giving 3f(2) = 12. The option \"3.6\" rearranges the second equation with a sign error, B = 2A − 3, so A + 4A − 6 = 12 and A = 18/5 = 3.6. The option \"-11\" first eliminates A correctly to get B = f(1/2) = 7, then substitutes back into the x = 1/2 equation read with the roles of A and B swapped, A + 2B = 3, giving A = 3 − 14 = −11.",
+  "solve": "const A=(2*3-12)/3; return String(A);",
+  "distractor_solve": {
+   "4": "return String(12/3);",
+   "3.6": "return String((12+6)/5);",
+   "-11": "const B=(2*12-3)/3; return String(3-2*B);"
+  },
+  "quantity_asked": "f(2), a single value of f.",
+  "bounds": [],
+  "distractor_kind": {
+   "4": "wrong procedure: one equation, f(1/2) identified with f(2). (a) limiting case: it is the value if f were the same at x and 1/x; the stem gives no such symmetry, and nothing forces f(2) to one side of 4 without the second substitution. (b) neighbouring setup: no. (c) estimation bound: none - f is unknown; there is no monotonicity, sign or size bound on f(2) obtainable without forming the second equation, which is the item. (d) weak: no - using only the given substitution is the natural first wrong move.",
+   "3.6": "wrong procedure: sign error rearranging B + 2A = 3. (a) no. (b) no. f(1/2) = 7 (the adjacent value) was not used. (c) none. (d) no - a rearrangement slip.",
+   "-11": "wrong procedure: back-substitution into the second equation with A and B swapped. (a) no. (b) no. (c) none. (d) no - an elimination slip; a student rejects it only by checking it in the equations, i.e. doing the item."
+  }
+ },
+ {
+  "id": "AM20F-04",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "trigonometric functions",
+  "subskill": "maximum of a trigonometric function rewritten as a quadratic in sin x whose vertex lies inside the allowed interval [−1, 1]",
+  "prompt": "The function f is defined by f(x) = 3cos²x − 2sin x for all real numbers x. What is the maximum value of f(x) ?",
+  "choices": [
+   "10/3",
+   "32/9",
+   "11/3",
+   "4"
+  ],
+  "correct_answer": "10/3",
+  "explanation": "Using cos²x = 1 − sin²x and letting s = sin x, f = 3(1 − s²) − 2s = −3s² − 2s + 3 with −1 ≤ s ≤ 1. This downward parabola in s has its vertex at s = −(−2)/(2·(−3)) = −1/3, which is inside [−1, 1], so the maximum is −3(1/9) − 2(−1/3) + 3 = −1/3 + 2/3 + 3 = 10/3. The option \"4\" rewrites 3cos²x as 3 − sin²x (distributing the 3 only to the 1), so f = −s² − 2s + 3, whose vertex is at s = −1, giving 3 − 1 + 2 = 4. The option \"32/9\" locates the vertex s = −1/3 correctly but then evaluates 3cos²x as 3 − 1/9 with the same distribution slip, giving 3 − 1/9 + 2/3 = 32/9. The option \"11/3\" evaluates at s = −1/3 but drops the squared term, giving 3 + 2/3.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=27-3+6, d=9; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "4": "const s=-1; return String(3-s*s-2*s);",
+   "32/9": "const n=27-1+6; return n+'/9';",
+   "11/3": "const n=9+2; return n+'/3';"
+  },
+  "quantity_asked": "the maximum value of f(x) over all real x (the whole function, not one term).",
+  "bounds": [
+   "v >= 3",
+   "v <= 5"
+  ],
+  "distractor_kind": {
+   "4": "wrong procedure: 3cos²x -> 3 − sin²x. (a) limiting case: the term-by-term cap 3 + 2 = 5 (each term at its own maximum) is the limiting value and was NOT used. (b) neighbouring setup: no. (c) estimation bound over the whole f: floor f(0) = 3 (one evaluation), cap 3cos²x ≤ 3 and −2 sin x ≤ 2 so f ≤ 5; finer floor at sin x = −1/2 gives 3.25. Interval [3.25, 5). 4 is strictly inside (1 below the cap). (d) weak: no - distribution slip in the identity substitution.",
+   "32/9": "wrong procedure: right vertex, 3cos²x evaluated as 3 − s². (a) no. (b) no. (c) inside [3.25, 5): 3.556. (d) no.",
+   "11/3": "wrong procedure: squared term dropped at the vertex. (a) no. (b) no. (c) inside [3.25, 5): 3.667. (d) no."
+  }
+ },
+ {
+  "id": "AM20F-05",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "composition of functions",
+  "subskill": "location of the minimum of a composition f(g(x)): the inner function must equal the outer function's vertex input",
+  "prompt": "The functions f and g are defined by f(x) = x² + 4x and g(x) = 3 − 2x. For what value of x does f(g(x)) attain its minimum value?",
+  "choices": [
+   "2.5",
+   "-2",
+   "5",
+   "1.75"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The outer function f(u) = u² + 4u has its minimum at u = −4/2 = −2. So f(g(x)) is smallest when g(x) = −2, that is 3 − 2x = −2, giving x = 2.5. (Expanding, f(g(x)) = 4x² − 20x + 21, whose vertex is at x = 20/8 = 2.5.) The option \"-2\" reports the vertex of f itself, the value of u rather than of x. The option \"5\" expands correctly to 4x² − 20x + 21 but takes the vertex as −b/a = 20/4 instead of −b/(2a). The option \"1.75\" expands (3 − 2x)² as 9 − 6x + 4x², dropping the factor 2 from the middle term, so f(g(x)) = 4x² − 14x + 21 and the vertex is at 14/8 = 1.75.",
+  "solve": "const u=-4/2; return String((3-u)/2);",
+  "distractor_solve": {
+   "-2": "return String(-4/2);",
+   "5": "const a=4,b=-20; return String(-b/a);",
+   "1.75": "const a=4,b=-6-8; return String(-b/(2*a));"
+  },
+  "quantity_asked": "the input x at which the composition f(g(x)) is smallest (an x-value, not the minimum value).",
+  "bounds": [],
+  "distractor_kind": {
+   "-2": "wrong procedure: vertex of f reported as the answer. (a) limiting case: no. (b) neighbouring setup: it is the answer to 'where is f smallest', the adjacent question; no stem-forced interval for x exists, so it sits on no edge. (c) estimation bound: none cheaper than the item - f(g(x)) is a parabola in x with unknown vertex; evaluating at two inputs and using symmetry is solving it. (d) weak: no - confusing the outer variable with x is the defining error for this skill.",
+   "5": "wrong procedure: −b/a. (a) no. (b) no. (c) none. (d) no - common vertex-formula slip.",
+   "1.75": "wrong procedure: middle term of (3 − 2x)² without its factor 2. (a) no. (b) no. (c) none. (d) no - the commonest binomial-square slip."
+  }
+ },
+ {
+  "id": "AM20F-06",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "logarithmic functions",
+  "subskill": "an equation in a logarithmic function: a difference of outputs becomes a ratio of inputs, the log is undone with base^value, and the domain is respected",
+  "prompt": "The function f is defined by f(x) = log₂ x for all x > 0. For what value of x is f(4x) − f(x − 3) = 3 ?",
+  "choices": [
+   "6",
+   "9",
+   "5.4",
+   "3.1"
+  ],
+  "correct_answer": "6",
+  "explanation": "f(4x) − f(x − 3) = log₂(4x) − log₂(x − 3) = log₂(4x/(x − 3)). Setting this equal to 3 gives 4x/(x − 3) = 2³ = 8, so 4x = 8x − 24 and x = 6 (which satisfies x − 3 > 0). The option \"9\" undoes the logarithm as 2 × 3 = 6 instead of 2³, so 4x = 6(x − 3). The option \"5.4\" uses 3² = 9 instead of 2³, so 4x = 9(x − 3). The option \"3.1\" splits log₂(4x) as 2 + log₂x but moves the 2 to the wrong side, getting log₂(x/(x − 3)) = 5, so x = 32(x − 3) and x = 96/31 ≈ 3.1.",
+  "solve": "return String(8*3/(8-4));",
+  "distractor_solve": {
+   "9": "return String(6*3/(6-4));",
+   "5.4": "return String(9*3/(9-4));",
+   "3.1": "return (32*3/(32-1)).toFixed(1);"
+  },
+  "quantity_asked": "the input x satisfying log₂(4x) − log₂(x − 3) = 3.",
+  "bounds": [
+   "v > 3"
+  ],
+  "distractor_kind": {
+   "9": "wrong procedure: log undone as multiplication. (a) limiting case: no. (b) neighbouring setup: no. (c) estimation bound: domain x > 3 (all options satisfy it). The left side decreases in x, but locating 3 on it needs an evaluation - substitution, not a bound. (d) weak: no - writing log_b y = c as y = bc is a common slip.",
+   "5.4": "wrong procedure: c^2 for 2^c. (a) no. (b) no. (c) inside (3, ∞). (d) no.",
+   "3.1": "wrong procedure: sign slip moving log₂4. (a) no. (b) no. (c) inside (3, ∞), about 0.1 above the domain floor; the floor itself (x = 3, where f(x − 3) is undefined) is not an option. (d) no."
+  }
+ },
+ {
+  "id": "AM20F-07",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "piecewise functions",
+  "subskill": "solving a piecewise-defined equation: each piece's solutions must be checked against that piece's domain",
+  "prompt": "The function f is defined by f(x) = x² − 7 for x < 1 and f(x) = 3x − 2 for x ≥ 1. What is the greatest value of x for which f(x) = 9 ?",
+  "choices": [
+   "11/3",
+   "4",
+   "8",
+   "7/3"
+  ],
+  "correct_answer": "11/3",
+  "explanation": "On the piece x < 1: x² − 7 = 9 gives x = ±4, and only x = −4 satisfies x < 1 (x = 4 is rejected, since f(4) = 3(4) − 2 = 10). On the piece x ≥ 1: 3x − 2 = 9 gives x = 11/3, which satisfies x ≥ 1. The solutions are −4 and 11/3, so the greatest is 11/3. The option \"4\" keeps the positive root of x² − 7 = 9 without checking x < 1 (and so takes it as the greatest solution). The option \"8\" halves 16 instead of taking its square root in x² = 16 and, not checking x < 1, takes 8 as the greatest solution. The option \"7/3\" moves the 2 with the wrong sign, 3x = 9 − 2.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=9+2, d=3; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "4": "return String(Math.sqrt(9+7));",
+   "8": "return String((9+7)/2);",
+   "7/3": "const n=9-2; return n+'/3';"
+  },
+  "quantity_asked": "the greatest x with f(x) = 9, over both pieces.",
+  "bounds": [],
+  "distractor_kind": {
+   "4": "wrong procedure: quadratic root kept without the domain check. (a) limiting case: no. (b) neighbouring setup: the root of x² − 7 = 9 for the unrestricted quadratic; no forced interval. (c) estimation bound: none cheaper than solving the two one-line equations; checking an option by substitution is doing the item. (d) weak: no - ignoring the piece's domain is the error the item tests.",
+   "8": "wrong procedure: halving for square root, domain unchecked. (a) no. (b) no. (c) none. It also keeps the 13j rule: distractors lie beyond the key in the asked (greatest) direction. (d) no.",
+   "7/3": "wrong procedure: sign slip moving −2. (a) no. (b) no. (c) none; 7/3 ≥ 1 so the piece condition does not kill it. (d) no."
+  }
+ },
+ {
+  "id": "AM20F-08",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "trigonometric functions",
+  "subskill": "solving an equation that mixes tan and sin by writing tan as sin/cos and dividing out a nonzero sine",
+  "prompt": "For an angle x with 0° < x < 90°, 3sin x = tan x. To the nearest tenth of a degree, what is the value of x ?",
+  "choices": [
+   "70.5",
+   "19.5",
+   "71.6",
+   "18.4"
+  ],
+  "correct_answer": "70.5",
+  "explanation": "Write tan x = sin x/cos x. Then 3sin x = sin x/cos x, and since sin x ≠ 0 for 0° < x < 90°, dividing by sin x gives 3 = 1/cos x, so cos x = 1/3 and x = cos⁻¹(1/3) ≈ 70.5°. The option \"19.5\" solves sin x = 1/3 instead of cos x = 1/3. The option \"71.6\" drops the sin x factor from both sides as if tan x = 3, so x = tan⁻¹ 3. The option \"18.4\" inverts that, solving tan x = 1/3.",
+  "solve": "return (Math.acos(1/3)*180/Math.PI).toFixed(1);",
+  "distractor_solve": {
+   "19.5": "return (Math.asin(1/3)*180/Math.PI).toFixed(1);",
+   "71.6": "return (Math.atan(3)*180/Math.PI).toFixed(1);",
+   "18.4": "return (Math.atan(1/3)*180/Math.PI).toFixed(1);"
+  },
+  "quantity_asked": "the angle x in (0°, 90°) with 3 sin x = tan x.",
+  "bounds": [
+   "v > 0",
+   "v < 90"
+  ],
+  "distractor_kind": {
+   "19.5": "wrong procedure: sin x = 1/3. (a) limiting case: no. (b) neighbouring setup: the complementary angle of the key; no stem-forced bound separates the two halves of (0°, 90°) without reaching cos x = 1/3, which is the item. (c) estimation bound: (0°, 90°) only. (d) weak: no - sine/cosine swap.",
+   "71.6": "wrong procedure: sin x cancelled as if tan x = 3. (a) no. (b) no. (c) inside (0, 90). (d) no.",
+   "18.4": "wrong procedure: tan x = 1/3. (a) no. (b) no. (c) inside (0, 90). (d) no."
+  }
+ },
+ {
+  "id": "AM20F-09",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "logarithmic functions",
+  "subskill": "fitting a shifted logarithmic function through two points: subtracting the equations eliminates b and turns the log difference into a ratio",
+  "prompt": "The function f is defined by f(x) = log₂(x + a) + b, where a and b are constants and a > 0. In the standard (x,y) coordinate plane, the graph of y = f(x) passes through the points (0, 3) and (6, 5). Which of the following is closest to f(14) ?",
+  "choices": [
+   "6",
+   "5.81",
+   "6.81",
+   "7"
+  ],
+  "correct_answer": "6",
+  "explanation": "The two points give log₂a + b = 3 and log₂(6 + a) + b = 5. Subtracting, log₂((6 + a)/a) = 2, so (6 + a)/a = 4, 6 + a = 4a, and a = 2. Then b = 3 − log₂2 = 2. So f(14) = log₂(16) + 2 = 4 + 2 = 6. The option \"5.81\" finds a = 2 and b = 2 but evaluates log₂14 + 2, dropping the + a inside the logarithm. The option \"6.81\" multiplies instead of adding inside the logarithm, log₂(14 × 2) + 2. The option \"7\" finds a = 2 from the subtraction but takes b = 3 directly from the point (0, 3), as if f(0) were b, giving 4 + 3.",
+  "solve": "const a=6/(4-1); const b=3-Math.log2(a); return String(Math.round((Math.log2(14+a)+b)*100)/100);",
+  "distractor_solve": {
+   "5.81": "const a=6/(4-1); const b=3-Math.log2(a); return (Math.log2(14)+b).toFixed(2);",
+   "6.81": "const a=6/(4-1); const b=3-Math.log2(a); return (Math.log2(14*a)+b).toFixed(2);",
+   "7": "const a=6/(4-1); const b=3; return String(Math.log2(14+a)+b);"
+  },
+  "quantity_asked": "f(14), the function's value at x = 14 (whole function, both constants included).",
+  "bounds": [
+   "v > 5",
+   "v < 7.667"
+  ],
+  "distractor_kind": {
+   "5.81": "wrong procedure: + a dropped at evaluation. (a) limiting case: the linear extrapolation 5 + (8/6)(2) = 7.67 is the limiting value and was NOT used. (b) neighbouring setup: no. (c) estimation bound over f(14) itself: f is increasing, so f(14) > f(6) = 5; f is concave (a log), so the rise over [6, 14] is less than (8/6) of the rise over [0, 6]: f(14) < 7.667. Interval (5, 7.667). 5.81 is strictly inside. (d) weak: no.",
+   "6.81": "wrong procedure: product instead of sum inside the log. (a) no. (b) no. (c) inside (5, 7.667). (d) no.",
+   "7": "wrong procedure: b read off f(0). (a) no. (b) no. (c) inside (5, 7.667), 0.667 below the cap. (d) no - reading the y-intercept as the vertical shift ignores log₂a, a common slip."
+  }
+ },
+ {
+  "id": "AM20S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "counting",
+  "subskill": "circular arrangements with a non-adjacency condition: fix one person to remove rotations, then count the other's allowed seats",
+  "prompt": "Six people, including Ana and Ben, are to be seated around a circular table that has exactly 6 seats. Two seatings are considered the same if one is a rotation of the other. In how many different seatings are Ana and Ben NOT seated next to each other?",
+  "choices": [
+   "72",
+   "48",
+   "36",
+   "96"
+  ],
+  "correct_answer": "72",
+  "explanation": "Fix Ana's seat to remove rotations. Of the 5 remaining seats, 2 are next to Ana, so Ben has 3 allowed seats, and the other 4 people fill the remaining 4 seats in 4! = 24 ways: 3 × 24 = 72. (Equivalently, 5! = 120 seatings in all, minus 2 × 4! = 48 with them together.) The option \"48\" counts the seatings in which Ana and Ben ARE next to each other. The option \"36\" also divides by 2, treating mirror-image seatings as the same, which the stem does not do. The option \"96\" excludes only one of Ana's two neighbouring seats, giving Ben 4 choices: 4 × 24.",
+  "solve": "const f=n=>n<=1?1:n*f(n-1); return String(f(5)-2*f(4));",
+  "distractor_solve": {
+   "48": "const f=n=>n<=1?1:n*f(n-1); return String(2*f(4));",
+   "36": "const f=n=>n<=1?1:n*f(n-1); return String((f(5)-2*f(4))/2);",
+   "96": "const f=n=>n<=1?1:n*f(n-1); return String(4*f(4));"
+  },
+  "quantity_asked": "the number of rotation-distinct seatings of all six people with Ana and Ben not adjacent.",
+  "bounds": [
+   "v > 0",
+   "v < 120"
+  ],
+  "distractor_kind": {
+   "48": "wrong procedure: complementary count. (a) limiting case: no. (b) neighbouring setup: answer to 'adjacent'; the only stem-forced bound is the total 5! = 120, and 48 is strictly inside. Deciding which of 48/72 is larger requires the 2-of-5 seat count, which is the item. (c) estimation bound: total 120 caps everything: interval (0, 120). (d) weak: no.",
+   "36": "wrong procedure: reflections divided out. (a) no. (b) no. (c) inside (0, 120). (d) no - a standard circular-permutation over-correction.",
+   "96": "wrong procedure: only one neighbour excluded. (a) no. (b) no. (c) inside (0, 120), 24 below the cap. (d) no."
+  }
+ },
+ {
+  "id": "AM20S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "probability",
+  "subskill": "probability that a simultaneous draw contains one of each of three colours: product of colour counts over the number of unordered selections",
+  "prompt": "A bag contains 4 red marbles, 3 blue marbles, and 2 green marbles. Three marbles are drawn from the bag at random, all at the same time. What is the probability that the three marbles are all different colors?",
+  "choices": [
+   "2/7",
+   "1/21",
+   "2/21",
+   "3/28"
+  ],
+  "correct_answer": "2/7",
+  "explanation": "There are C(9, 3) = (9 × 8 × 7)/(3 × 2 × 1) = 84 equally likely sets of three marbles. A set with one of each color can be chosen in 4 × 3 × 2 = 24 ways. The probability is 24/84 = 2/7. The option \"1/21\" multiplies (4/9)(3/8)(2/7) for one particular order (red, then blue, then green) and forgets the 3! = 6 orders. The option \"2/21\" computes C(9, 3) by dividing 9 × 8 × 7 by 2 instead of by 3! = 6, getting 252, and 24/252 = 2/21. The option \"3/28\" adds the color counts, 4 + 3 + 2 = 9, instead of multiplying them, 9/84.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=4*3*2, d=9*8*7/6; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "1/21": "const g=(a,b)=>b?g(b,a%b):a; const n=4*3*2, d=9*8*7; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "2/21": "const g=(a,b)=>b?g(b,a%b):a; const n=4*3*2, d=9*8*7/2; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "3/28": "const g=(a,b)=>b?g(b,a%b):a; const n=4+3+2, d=9*8*7/6; const k=g(n,d); return (n/k)+'/'+(d/k);"
+  },
+  "quantity_asked": "P(the three drawn marbles are one red, one blue, one green).",
+  "bounds": [
+   "v > 0",
+   "v < 1"
+  ],
+  "distractor_kind": {
+   "1/21": "wrong procedure: one order only. (a) limiting case: the with-replacement value 16/81 is the limiting case (infinite bag) and was deliberately NOT used, since without replacement favours mixed colours. (b) neighbouring setup: it is P(red, blue, green in that order), an adjacent question; no forced interval puts the key on one side of it for free. (c) estimation bound: none sharper than (0, 1) in one step. (d) weak: no - the missing-orderings error is the commonest one here.",
+   "2/21": "wrong procedure: C(9,3) with /2. (a) no. (b) no. (c) inside (0, 1). (d) no.",
+   "3/28": "wrong procedure: counts added. (a) no. (b) no. (c) inside (0, 1). (d) no."
+  }
+ },
+ {
+  "id": "AM20S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "sets and counting",
+  "subskill": "exactly-one count for three overlapping sets: each pairwise count contains the triple overlap, which must be removed from the exactly-two count",
+  "prompt": "Each of the 100 members of a language club studies French, Spanish, Latin, some combination of these, or none of them. Of the members, 45 study French, 40 study Spanish, and 30 study Latin; 15 study both French and Spanish, 10 study both French and Latin, and 8 study both Spanish and Latin; and 3 study all three languages. (Each count of members who study both of two languages includes the members who study all three.) How many members study exactly one of the three languages?",
+  "choices": [
+   "58",
+   "61",
+   "73",
+   "52"
+  ],
+  "correct_answer": "58",
+  "explanation": "French only = 45 − 15 − 10 + 3 = 23; Spanish only = 40 − 15 − 8 + 3 = 20; Latin only = 30 − 10 − 8 + 3 = 15. So 23 + 20 + 15 = 58 study exactly one. (Check: at least one = 45 + 40 + 30 − 33 + 3 = 85; exactly two = 12 + 7 + 5 = 24; 85 − 24 − 3 = 58.) The option \"61\" takes the 85 who study at least one and subtracts the 24 who study exactly two, but forgets to remove the 3 who study all three. The option \"73\" subtracts the exactly-two and all-three members from all 100 members, forgetting the 15 who study none. The option \"52\" subtracts the sum of the pairwise counts, 33, from 85, treating every pairwise count as separate people in two or more languages.",
+  "solve": "const U=45+40+30-15-10-8+3; const two=(15-3)+(10-3)+(8-3); return String(U-two-3);",
+  "distractor_solve": {
+   "61": "const U=45+40+30-15-10-8+3; const two=(15-3)+(10-3)+(8-3); return String(U-two);",
+   "73": "const two=(15-3)+(10-3)+(8-3); return String(100-two-3);",
+   "52": "const U=45+40+30-15-10-8+3; return String(U-(15+10+8));"
+  },
+  "quantity_asked": "the number of members who study exactly one of French, Spanish, Latin.",
+  "bounds": [
+   "v >= 49",
+   "v <= 75"
+  ],
+  "distractor_kind": {
+   "61": "wrong procedure: triple not removed. (a) limiting case: the no-add-back value 115 − 2(33) = 49 is the limiting case and sits ON the floor; it was NOT used. (b) neighbouring setup: 'at least one' (85) was not used - it lies beyond the cap. (c) estimation bound over the whole exactly-one count: each 'only' count is at least its single total minus both of its pairwise counts (20 + 17 + 12 = 49) and at most its single total minus its larger pairwise count (30 + 25 + 20 = 75). Interval [49, 75]. 61 is strictly inside. (d) weak: no.",
+   "73": "wrong procedure: 'none' forgotten. (a) no. (b) no. (c) inside [49, 75], 2 below the cap. (d) no - ignoring the none-group is common.",
+   "52": "wrong procedure: pairwise counts treated as disjoint. (a) no. (b) no. (c) inside [49, 75], 3 above the floor. (d) no."
+  }
+ },
+ {
+  "id": "AM20S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "regression",
+  "subskill": "the least-squares line passes through the point of means, so the intercept is recovered from the means before predicting",
+  "prompt": "For a set of paired data (x, y), the least-squares regression line has a slope of 2.5. The mean of the x-values in the data set is 8, and the mean of the y-values is 31. What y-value does the regression line predict for x = 12 ?",
+  "choices": [
+   "41",
+   "46.5",
+   "58.5",
+   "61"
+  ],
+  "correct_answer": "41",
+  "explanation": "A least-squares regression line always passes through the point (mean of x, mean of y) = (8, 31). Moving from x = 8 to x = 12 changes the prediction by 2.5 × 4 = 10, so the predicted y-value is 31 + 10 = 41. (The line is y = 2.5x + 11.) The option \"46.5\" scales the mean ratio proportionally, 31/8 × 12, as if the line passed through the origin. The option \"58.5\" computes the intercept as 31 − 2.5, forgetting to multiply the slope by the mean x of 8, then predicts 2.5(12) + 28.5. The option \"61\" uses the mean of y, 31, as the intercept: 2.5(12) + 31.",
+  "solve": "return String(31+2.5*(12-8));",
+  "distractor_solve": {
+   "46.5": "return String(31/8*12);",
+   "58.5": "const b=31-2.5; return String(2.5*12+b);",
+   "61": "return String(2.5*12+31);"
+  },
+  "quantity_asked": "the predicted y at x = 12 from the regression line.",
+  "bounds": [
+   "v > 31"
+  ],
+  "distractor_kind": {
+   "46.5": "wrong procedure: proportional (line through the origin). (a) limiting case: no parameter extreme - the stem does not fix the intercept's sign, so the key is not forced to one side of the proportional value without finding the intercept. (b) neighbouring setup: no. (c) estimation bound: with positive slope and 12 > 8 the prediction exceeds 31 (this bound itself needs the point-of-means fact the item tests); all options satisfy it. No upper bound is forced. Interval (31, ∞). (d) weak: no.",
+   "58.5": "wrong procedure: intercept 31 − 2.5. (a) no. (b) no. (c) inside (31, ∞). (d) no.",
+   "61": "wrong procedure: mean y used as intercept. (a) no. (b) no. (c) inside (31, ∞). (d) no."
+  }
+ },
+ {
+  "id": "AM20S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "counting",
+  "subskill": "counting all rectangles in a grid by choosing two of the horizontal grid lines and two of the vertical grid lines",
+  "prompt": "A rectangular grid is made of unit squares arranged in 4 rows and 5 columns. Counting squares as rectangles, how many different rectangles of any size have all four of their sides along lines of the grid?",
+  "choices": [
+   "150",
+   "60",
+   "110",
+   "100"
+  ],
+  "correct_answer": "150",
+  "explanation": "A grid of 4 rows and 5 columns of squares is drawn with 5 horizontal lines and 6 vertical lines. Every rectangle is fixed by choosing 2 of the horizontal lines and 2 of the vertical lines: C(5, 2) × C(6, 2) = 10 × 15 = 150. The option \"60\" chooses 2 of the 4 rows and 2 of the 5 columns of squares, C(4, 2) × C(5, 2), instead of choosing lines. The option \"110\" leaves out the 40 squares (20 + 12 + 6 + 2) even though the stem counts them. The option \"100\" uses 5 vertical lines instead of 6, C(5, 2) × C(5, 2).",
+  "solve": "const C2=n=>n*(n-1)/2; return String(C2(5)*C2(6));",
+  "distractor_solve": {
+   "60": "const C2=n=>n*(n-1)/2; return String(C2(4)*C2(5));",
+   "110": "const C2=n=>n*(n-1)/2; return String(C2(5)*C2(6)-(20+12+6+2));",
+   "100": "const C2=n=>n*(n-1)/2; return String(C2(5)*C2(5));"
+  },
+  "quantity_asked": "the total number of rectangles (squares included) with sides on the grid lines.",
+  "bounds": [
+   "v >= 20",
+   "v <= 400"
+  ],
+  "distractor_kind": {
+   "60": "wrong procedure: rows/columns of squares instead of lines. (a) limiting case: the unit-square count 20 is the floor and was not used. (b) neighbouring setup: no. (c) estimation bound over all rectangles: at least the 20 unit squares; at most 20 × 20 = 400 (a rectangle is fixed by its top-left and bottom-right unit squares). Interval [20, 400]. 60 is inside. (d) weak: no.",
+   "110": "wrong procedure: squares excluded. (a) no. (b) neighbouring setup: non-square rectangles; not an extreme of the interval. (c) inside [20, 400]. (d) no.",
+   "100": "wrong procedure: line count off by one on one axis. (a) no. (b) no. (c) inside [20, 400]. (d) no - fencepost error."
+  }
+ },
+ {
+  "id": "AM20S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability",
+  "subskill": "probability that three random vertices of a regular hexagon form a right triangle, which requires a diameter of the circumscribed circle as one side",
+  "prompt": "Three of the six vertices of a regular hexagon are chosen at random, and the triangle with those three vertices is drawn. What is the probability that the triangle is a right triangle?",
+  "choices": [
+   "3/5",
+   "3/10",
+   "1/10",
+   "1/5"
+  ],
+  "correct_answer": "3/5",
+  "explanation": "The six vertices lie on a circle, and an inscribed triangle is a right triangle exactly when one of its sides is a diameter. The hexagon has 3 diameters (its long diagonals), and each pairs with any of the other 4 vertices, giving 3 × 4 = 12 right triangles. There are C(6, 3) = 20 triangles in all, so the probability is 12/20 = 3/5. The option \"3/10\" halves the 12, treating the two mirror-image triangles on each diameter as the same triangle. The option \"1/10\" divides the 12 right triangles by 6 × 5 × 4 = 120 ordered choices of vertices. The option \"1/5\" computes C(6, 3) as 6 × 5 × 4/2 = 60.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=3*4, d=6*5*4/6; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "3/10": "const g=(a,b)=>b?g(b,a%b):a; const n=3*4/2, d=6*5*4/6; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "1/10": "const g=(a,b)=>b?g(b,a%b):a; const n=3*4, d=6*5*4; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "1/5": "const g=(a,b)=>b?g(b,a%b):a; const n=3*4, d=6*5*4/2; const k=g(n,d); return (n/k)+'/'+(d/k);"
+  },
+  "quantity_asked": "P(the triangle on three random hexagon vertices is a right triangle).",
+  "bounds": [
+   "v > 0",
+   "v <= 0.9"
+  ],
+  "distractor_kind": {
+   "3/10": "wrong procedure: mirror images merged. (a) limiting case: no. (b) neighbouring setup: no. (c) estimation bound: the 2 equilateral triangles are cheaply seen not to be right, so P ≤ 18/20 = 0.9; no cheap floor. Interval (0, 0.9]. 3/10 inside. (d) weak: no.",
+   "1/10": "wrong procedure: ordered denominator. (a) no. (b) no. (c) inside (0, 0.9]. (d) no - mixing ordered and unordered counts.",
+   "1/5": "wrong procedure: C(6,3) divided by 2 instead of 6. (a) no. (b) no. (c) inside (0, 0.9]. (d) no."
+  }
+ }
+]

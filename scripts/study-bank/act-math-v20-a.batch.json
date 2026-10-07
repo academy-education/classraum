@@ -1,0 +1,347 @@
+[
+ {
+  "id": "AM20N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "matrices",
+  "subskill": "solving the matrix equation AX = B for X by LEFT-multiplying by the inverse of A, then reading one entry",
+  "prompt": "Matrix A has first row (2, 1) and second row (5, 3). Matrix B has first row (4, 1) and second row (11, 2). The 2 × 2 matrix X satisfies the equation AX = B. What is the entry in the 2nd row, 1st column of X ?",
+  "choices": [
+   "13",
+   "2",
+   "42",
+   "23"
+  ],
+  "correct_answer": "2",
+  "explanation": "Since AX = B, multiply both sides on the LEFT by A⁻¹: X = A⁻¹B. det(A) = 2(3) − 1(5) = 1, so A⁻¹ has first row (3, −1) and second row (−5, 2) (swap the diagonal entries, negate the off-diagonal entries, divide by 1). The 2nd row, 1st column of A⁻¹B is (−5)(4) + (2)(11) = −20 + 22 = 2. (Equivalently, the first column of X is the solution of 2p + q = 4, 5p + 3q = 11, which is p = 1, q = 2.) The option \"23\" multiplies in the wrong order, computing BA⁻¹: row 2 of B times column 1 of A⁻¹ is 11(3) + 2(−5) = 23. The option \"13\" negates the off-diagonal entries of A but forgets to swap the diagonal entries, using rows (2, −1) and (−5, 3) as the inverse: (−5)(4) + 3(11) = 13. The option \"42\" swaps the diagonal entries but forgets to negate the off-diagonal entries, using rows (3, 1) and (5, 2): 5(4) + 2(11) = 42.",
+  "solve": "const inv=[[3,-1],[-5,2]]; const B=[[4,1],[11,2]]; return String(inv[1][0]*B[0][0]+inv[1][1]*B[1][0]);",
+  "distractor_solve": {
+   "13": "const bad=[[2,-1],[-5,3]]; const B=[[4,1],[11,2]]; return String(bad[1][0]*B[0][0]+bad[1][1]*B[1][0]);",
+   "23": "const inv=[[3,-1],[-5,2]]; const B=[[4,1],[11,2]]; return String(B[1][0]*inv[0][0]+B[1][1]*inv[1][0]);",
+   "42": "const bad=[[3,1],[5,2]]; const B=[[4,1],[11,2]]; return String(bad[1][0]*B[0][0]+bad[1][1]*B[1][0]);"
+  },
+  "quantity_asked": "the single entry x₂₁ of the matrix X with AX = B (not of BA⁻¹, not of A⁻¹).",
+  "distractor_kind": {
+   "13": "wrong procedure: inverse formed without swapping the diagonal. (a) no. (b) no. (c) integer, inside (−∞, ∞). (d) real, common inverse-formula slip.",
+   "23": "wrong procedure: X = BA⁻¹ (right-multiplied). (a) limiting case: no parameter at an extreme. (b) neighbouring setup: yes in the sense that it is the entry for XA = B, the other-order equation; there is no stem-forced bound separating the XA = B answer from the AX = B answer, so it does not sit on an edge. (c) estimation bound: det A = 1, so every entry of X is an integer, but no cheaper bracket on x₂₁ exists; the only stem-forced constraint is v an integer, interval (−∞, ∞) of integers; 23 strictly inside. (d) not weak: matrix multiplication order is the commonest matrix error.",
+   "42": "wrong procedure: inverse formed without negating the off-diagonal. (a) no. (b) no. (c) integer, inside (−∞, ∞). (d) real, common inverse-formula slip."
+  },
+  "bounds": [
+   "Number.isInteger(v)"
+  ]
+ },
+ {
+  "id": "AM20N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "prime factorization",
+  "subskill": "least multiplier satisfying a perfect-square condition and a perfect-cube condition AT THE SAME TIME (exponent parity and exponent mod 3 together)",
+  "prompt": "What is the least positive integer k for which 24k is a perfect square and 18k is a perfect cube?",
+  "choices": [
+   "72",
+   "12",
+   "96",
+   "6"
+  ],
+  "correct_answer": "96",
+  "explanation": "Write 24 = 2³ · 3 and 18 = 2 · 3², and let k = 2ᵃ · 3ᵇ (any other prime would only make k larger). For 24k = 2³⁺ᵃ · 3¹⁺ᵇ to be a perfect square, 3 + a and 1 + b must be even, so a and b are both odd. For 18k = 2¹⁺ᵃ · 3²⁺ᵇ to be a perfect cube, 1 + a and 2 + b must be multiples of 3, so a is 2, 5, 8, … and b is 1, 4, 7, … . The least a that is odd and in 2, 5, 8, … is 5; the least b that is odd and in 1, 4, 7, … is 1. So k = 2⁵ · 3 = 96. Check: 24 · 96 = 2304 = 48², and 18 · 96 = 1728 = 12³. The option \"6\" satisfies only the square condition (24 · 6 = 144 = 12², but 18 · 6 = 108 is not a cube). The option \"12\" satisfies only the cube condition (18 · 12 = 216 = 6³, but 24 · 12 = 288 is not a square); it is also the least common multiple of 6 and 12, the result of combining the two separate answers by LCM. The option \"72\" multiplies the two separate answers, 6 × 12 (24 · 72 = 1728 is a cube, not a square).",
+  "solve": "const sq=n=>Math.round(Math.sqrt(n))**2===n, cu=n=>Math.round(Math.cbrt(n))**3===n; for(let k=1;;k++) if(sq(24*k)&&cu(18*k)) return String(k);",
+  "distractor_solve": {
+   "6": "const sq=n=>Math.round(Math.sqrt(n))**2===n; for(let k=1;;k++) if(sq(24*k)) return String(k);",
+   "12": "const cu=n=>Math.round(Math.cbrt(n))**3===n; for(let k=1;;k++) if(cu(18*k)) return String(k);",
+   "72": "const sq=n=>Math.round(Math.sqrt(n))**2===n, cu=n=>Math.round(Math.cbrt(n))**3===n; let s,c; for(let k=1;;k++) if(sq(24*k)){s=k;break} for(let k=1;;k++) if(cu(18*k)){c=k;break} return String(s*c);"
+  },
+  "quantity_asked": "the least k satisfying BOTH conditions at once (not either condition alone).",
+  "distractor_kind": {
+   "6": "wrong procedure: square condition only. (a) limiting case: it is the least value for one of the two conditions, a lower bound on k (k must be a multiple of 6); the stem forces the key to be a multiple of 6 but not strictly above 6 by any cheap observation without solving the cube condition, which is the item. (b) neighbouring setup: answer to the square-only question; it sits inside the feasible set \"multiples of 6\" and is rejected only by testing 18 · 6 = 108, i.e. doing the item. (c) cheapest estimate: 24k square forces k = 6m², so k ∈ {6, 24, 54, 96, …}; all four options are multiples of 6, none sits outside; 6 is ON the least element of that set but the set itself is not an interval and 6 is a member of it. (d) real error.",
+   "12": "wrong procedure: cube condition only (= LCM of the separate answers). (a) no. (b) neighbouring setup: the cube-only answer; rejected only by testing 24 · 12 = 288. (c) multiples-of-6 constraint: 12 satisfies it. (d) real, the \"one condition is enough\" error.",
+   "72": "wrong procedure: product of the separate answers 6 × 12. (a) no. (b) no. (c) multiple of 6; inside. (d) real: multiplying separate least values is the standard wrong way to combine conditions."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v % 6 === 0",
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM20A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "quadratics",
+  "subskill": "coefficients of a quadratic whose roots are a fixed amount LESS than the roots of a given quadratic (horizontal shift p(x + 2)), via the roots or via Vieta",
+  "prompt": "The solutions of the equation x² + 8x + 15 = 0 are each 2 greater than the solutions of the equation x² + bx + c = 0, where b and c are constants. What is the value of c ?",
+  "choices": [
+   "31",
+   "19",
+   "35",
+   "27"
+  ],
+  "correct_answer": "35",
+  "explanation": "x² + 8x + 15 = (x + 3)(x + 5), so its solutions are −3 and −5. The solutions of x² + bx + c = 0 are each 2 less: −5 and −7. So x² + bx + c = (x + 5)(x + 7) = x² + 12x + 35, and c = 35. (Equivalently, x² + bx + c = p(x + 2) where p(x) = x² + 8x + 15: (x + 2)² + 8(x + 2) + 15 = x² + 12x + 35.) The option \"31\" expands p(x + 2) but drops the 4 from (x + 2)² = x² + 4x + 4. The option \"19\" expands 8(x + 2) as 8x, dropping the 16, so the constant is 4 + 15. The option \"27\" uses Vieta on (r + 2)(s + 2) = rs + 2(r + s) + 4 = 15 but takes r + s = −8, the sum of the GIVEN solutions, instead of −12, so rs = 15 + 16 − 4 = 27.",
+  "solve": "const r=-3-2, s=-5-2; return String(r*s);",
+  "distractor_solve": {
+   "19": "return String(4+15);",
+   "27": "const sum=-8; return String(15-2*sum-4);",
+   "31": "return String(8*2+15);"
+  },
+  "quantity_asked": "the constant term c = rs of the quadratic whose roots are the given roots minus 2.",
+  "distractor_kind": {
+   "19": "wrong procedure: 8(x + 2) expanded as 8x, the 16 dropped. (a) no. (b) no. (c) (15, ∞): 19 is 4 above the floor, strictly inside. The value 15 itself (no shift) and anything below it were deliberately not used. (d) real distribution slip.",
+   "27": "wrong procedure: Vieta with the unshifted sum −8. (a) no. (b) it is not the answer to an adjacent question (the shift-by-1 problem gives 24, the shift-the-other-way problem gives 3). (c) (15, ∞): inside. (d) real Vieta slip.",
+   "31": "wrong procedure: (x + 2)² expanded without its constant. (a) limiting case: no. (b) neighbouring setup: no. (c) cheapest estimate: both given roots are negative (sum −8 < 0, product 15 > 0), and subtracting 2 moves each further from 0, so c = rs > 15. No cheap upper bound: an upper bound needs the roots themselves. Interval (15, ∞); 31 strictly inside. (d) real expansion slip."
+  },
+  "bounds": [
+   "v > 15",
+   "Number.isInteger(v)"
+  ]
+ },
+ {
+  "id": "AM20A-02",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "discriminant",
+  "subskill": "counting the integer values of a coefficient for which a quadratic with leading coefficient other than 1 has no real solutions (strict discriminant inequality)",
+  "prompt": "For how many integer values of k does the equation 2x² + kx + 8 = 0 have no real solutions?",
+  "choices": [
+   "11",
+   "15",
+   "7",
+   "17"
+  ],
+  "correct_answer": "15",
+  "explanation": "The equation has no real solutions exactly when its discriminant is negative: k² − 4(2)(8) < 0, so k² < 64 and −8 < k < 8. The integers −7, −6, …, 6, 7 number 15. The option \"17\" uses k² ≤ 64 and counts k = ±8 as well, but those give a discriminant of 0 and one real (double) solution. The option \"7\" drops the 4 from the discriminant, using k² < 16, which gives −3 through 3. The option \"11\" drops the leading coefficient 2, using k² < 4(8) = 32, which gives −5 through 5.",
+  "solve": "let n=0; for(let k=-100;k<=100;k++) if(k*k-4*2*8<0) n++; return String(n);",
+  "distractor_solve": {
+   "7": "let n=0; for(let k=-100;k<=100;k++) if(k*k-2*8<0) n++; return String(n);",
+   "11": "let n=0; for(let k=-100;k<=100;k++) if(k*k-4*8<0) n++; return String(n);",
+   "17": "let n=0; for(let k=-100;k<=100;k++) if(k*k-4*2*8<=0) n++; return String(n);"
+  },
+  "quantity_asked": "the number of integers k with k² − 64 < 0.",
+  "distractor_kind": {
+   "7": "wrong procedure: discriminant b² − ac (4 dropped). (a) no. (b) no. (c) odd: inside. (d) real formula slip.",
+   "11": "wrong procedure: discriminant b² − 4c (a dropped, as if a = 1). (a) no. (b) no. (c) odd: inside. (d) real: treating every quadratic as monic.",
+   "17": "wrong procedure: non-strict inequality (double root counted as \"no real solutions\"). (a) limiting case: no parameter extreme. (b) neighbouring setup: yes, inclusive vs exclusive count; but no stem-forced bound separates 15 from 17 without computing the discriminant, which is the item. (c) cheapest estimate: k = 0 works (0 − 64 < 0) and the condition depends only on k², so the solution set is symmetric about 0 and its count is ODD; all four options are odd. No cheaper size bound. Interval: odd positive integers; 17 inside. (d) real: the strict/non-strict slip."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v % 2 === 1",
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM20A-03",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "polynomial remainder",
+  "subskill": "remainder on division by a QUADRATIC is linear and agrees with p at the quadratic's two zeros; build it from two linear-divisor remainders and evaluate",
+  "prompt": "When the polynomial p(x) is divided by x − 2, the remainder is 7, and when p(x) is divided by x + 1, the remainder is 13. When p(x) is divided by x² − x − 2, the remainder is r(x). What is the value of r(4) ?",
+  "choices": [
+   "17",
+   "−5",
+   "19",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "By the remainder theorem, p(2) = 7 and p(−1) = 13. Since x² − x − 2 = (x − 2)(x + 1) has degree 2, the remainder r(x) has degree at most 1: r(x) = ax + b, and p(x) = (x − 2)(x + 1)q(x) + ax + b. Substituting x = 2 and x = −1 gives 2a + b = 7 and −a + b = 13. Subtracting, 3a = −6, so a = −2 and b = 11. Then r(4) = −2(4) + 11 = 3. The option \"19\" takes the zeros of x − 2 and x + 1 to be −2 and 1 (the constants with their signs kept), so r(−2) = 7 and r(1) = 13, giving r(x) = 2x + 11. The option \"−5\" handles x − 2 correctly but takes the zero of x + 1 to be 1, so r(2) = 7 and r(1) = 13, giving r(x) = −6x + 19. The option \"17\" swaps the two remainders, r(2) = 13 and r(−1) = 7, giving r(x) = 2x + 9.",
+  "solve": "const a=(13-7)/(-1-2), b=7-a*2; return String(a*4+b);",
+  "distractor_solve": {
+   "17": "const a=(7-13)/(-1-2), b=13-a*2; return String(a*4+b);",
+   "19": "const a=(13-7)/(1-(-2)), b=7-a*(-2); return String(a*4+b);",
+   "−5": "const a=(13-7)/(1-2), b=7-a*2; return String(a*4+b);"
+  },
+  "quantity_asked": "r(4), where r is the remainder (degree ≤ 1) on division by (x − 2)(x + 1).",
+  "distractor_kind": {
+   "17": "wrong procedure: remainders attached to the wrong divisors. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real pairing slip.",
+   "19": "wrong procedure: both zeros sign-flipped. (a) limiting case: no. (b) neighbouring setup: it is the answer for divisors x + 2 and x − 1, a sign misreading, not an adjacent question the stem bounds away. (c) cheapest estimate: none exists before the remainder's form is known; once a student knows r is the line through (2, 7) and (−1, 13) the item is solved (that monotonicity IS the item's work, §8a). Interval with no stem-forced bound: (−∞, ∞); 19 inside. (d) real sign slip.",
+   "−5": "wrong procedure: one zero sign-flipped (x + 1 read as zero 1). (a) no. (b) no. (c) (−∞, ∞): inside. (d) real."
+  },
+  "bounds": [
+   "Number.isInteger(v)"
+  ]
+ },
+ {
+  "id": "AM20A-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "rational exponents",
+  "subskill": "solving an equation with a NEGATIVE fractional exponent and then evaluating a different fractional power of the solution",
+  "prompt": "If x > 0 and x^(−1/2) = 1/4, what is the value of x^(3/2) ?",
+  "choices": [
+   "24",
+   "2,048",
+   "8",
+   "64"
+  ],
+  "correct_answer": "64",
+  "explanation": "x^(−1/2) = 1/4 means 1/√x = 1/4, so √x = 4 and x = 16. Then x^(3/2) = (√x)³ = 4³ = 64. (Directly: x^(3/2) = (x^(−1/2))^(−3) = (1/4)^(−3) = 64.) The option \"8\" raises 1/4 to the power −3/2 — the target exponent itself — instead of to −3, giving 4^(3/2) = 8; the same value comes from reading x^(−1/2) = 1/4 as x^(−1) = 1/4, x = 4. The option \"24\" finds x = 16 correctly but multiplies by the exponent, 16 × 3/2 = 24, instead of raising to it. The option \"2,048\" finds x = 16 and evaluates x^(3/2) as x³/2 = 4,096/2.",
+  "solve": "const x=Math.pow(4,2); return String(Math.round(Math.pow(x,1.5)));",
+  "distractor_solve": {
+   "8": "return String(Math.round(Math.pow(1/4,-1.5)));",
+   "24": "const x=16; return String(x*3/2);",
+   "2,048": "const x=16; return (x**3/2).toLocaleString(\"en-US\");"
+  },
+  "quantity_asked": "x^(3/2) for the positive x with x^(−1/2) = 1/4.",
+  "distractor_kind": {
+   "8": "wrong procedure: (1/4)^(−3/2). (a) limiting case: no. (b) neighbouring setup: it equals x^(3/2) for x = 4, the solution of x^(−1) = 1/4, a misreading rather than an adjacent question the stem bounds away. (c) cheapest estimate: x^(−1/2) = 1/4 < 1 forces x > 1, hence x^(3/2) > 1. Interval (1, ∞); 8 strictly inside. The tempting 1/64 (dropping the negative sign) was deliberately not used because it sits below 1 and dies on this bound. (d) real exponent slip.",
+   "24": "wrong procedure: multiplies by the exponent. (a) no. (b) no. (c) (1, ∞): inside. (d) real: the commonest power-vs-product slip.",
+   "2,048": "wrong procedure: x^(3/2) read as x³/2. (a) no. (b) no. (c) (1, ∞): inside; nothing in the stem caps x^(3/2). (d) real order-of-operations slip on the fractional exponent."
+  },
+  "bounds": [
+   "v > 1"
+  ]
+ },
+ {
+  "id": "AM20A-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "quadratic coefficients",
+  "subskill": "determining a, b, c of a quadratic from three function values (c from p(0), then a system from p(1) and p(−1)) and evaluating at a new input",
+  "prompt": "A quadratic function q is given by q(x) = ax² + bx + c. If q(0) = 5, q(1) = 4, and q(−1) = 10, what is the value of q(3) ?",
+  "choices": [
+   "2",
+   "9",
+   "−16",
+   "14"
+  ],
+  "correct_answer": "14",
+  "explanation": "q(0) = c = 5. Then q(1) = a + b + 5 = 4 gives a + b = −1, and q(−1) = a − b + 5 = 10 gives a − b = 5. Adding, 2a = 4, so a = 2 and b = −3. Then q(3) = 2(9) − 3(3) + 5 = 18 − 9 + 5 = 14. The option \"2\" extends the straight-line pattern through q(0) = 5 and q(1) = 4 (falling 1 per unit) to x = 3, ignoring the x² term. The option \"−16\" solves the system with a and b swapped, a = −3 and b = 2, giving −27 + 6 + 5. The option \"9\" finds a and b correctly but leaves out c, giving 18 − 9.",
+  "solve": "const c=5, s=4-c, d=10-c, a=(s+d)/2, b=(s-d)/2; return String(a*9+b*3+c);",
+  "distractor_solve": {
+   "2": "const slope=4-5; return String(5+slope*3);",
+   "9": "const c=5, s=4-c, d=10-c, a=(s+d)/2, b=(s-d)/2; return String(a*9+b*3);",
+   "−16": "const c=5, s=4-c, d=10-c, a=(s-d)/2, b=(s+d)/2; return String(a*9+b*3+c);"
+  },
+  "quantity_asked": "the value q(3) of the quadratic through (0, 5), (1, 4), (−1, 10).",
+  "distractor_kind": {
+   "2": "wrong procedure: linear extrapolation. (a) limiting case: it is the a = 0 model, but the stem gives q(−1) = 10 which is inconsistent with a = 0, and nothing cheap places the key on one side of 2 without finding the sign of a (that needs the second difference, which is most of the item). (b) neighbouring setup: the answer to \"the line through the first two points\", not an adjacent question in the stem. (c) cheapest estimate: none bracketing q(3) without a; interval (−∞, ∞); inside. (d) real: ignoring curvature.",
+   "9": "wrong procedure: constant term omitted at the end. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real final-step slip.",
+   "−16": "wrong procedure: a and b swapped. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real system slip."
+  },
+  "bounds": [
+   "Number.isInteger(v)"
+  ]
+ },
+ {
+  "id": "AM20A-06",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "integer solutions",
+  "subskill": "positive-integer solutions of xy = 3x + 2y + 6 by rewriting as a product (x − 2)(y − 3) = 12 and choosing among factor pairs",
+  "prompt": "Positive integers x and y satisfy the equation xy = 3x + 2y + 6. What is the least possible value of x + y ?",
+  "choices": [
+   "10",
+   "18",
+   "7",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "Move every term to one side: xy − 3x − 2y = 6. Adding 6 to both sides makes the left side factor: xy − 3x − 2y + 6 = (x − 2)(y − 3), so (x − 2)(y − 3) = 12. Because x ≥ 1 and y ≥ 1, x − 2 ≥ −1 and y − 3 ≥ −2, and no negative factor pair of 12 fits those limits, so both factors are positive. The pairs (x − 2, y − 3) = (1, 12), (2, 6), (3, 4), (4, 3), (6, 2), (12, 1) give (x, y) = (3, 15), (4, 9), (5, 7), (6, 6), (8, 5), (14, 4), with sums 18, 13, 12, 12, 13, 18. The least is 12 (for example, 5 · 7 = 35 = 15 + 14 + 6). The option \"10\" adds 6 to the left side only, writing (x − 2)(y − 3) = 6; its pairs give (4, 6) and (5, 5), sum 10. The option \"7\" finds (x − 2)(y − 3) = 12 and minimizes (x − 2) + (y − 3) = 3 + 4 but does not add the 2 and 3 back. The option \"18\" answers for the greatest possible sum instead of the least.",
+  "solve": "let best=Infinity; for(let x=1;x<=100;x++) for(let y=1;y<=100;y++) if(x*y===3*x+2*y+6) best=Math.min(best,x+y); return String(best);",
+  "distractor_solve": {
+   "7": "let best=Infinity; for(let d=1;d<=12;d++) if(12%d===0) best=Math.min(best,d+12/d); return String(best);",
+   "10": "let best=Infinity; for(let x=1;x<=100;x++) for(let y=1;y<=100;y++) if((x-2)*(y-3)===6) best=Math.min(best,x+y); return String(best);",
+   "18": "let best=-Infinity; for(let x=1;x<=100;x++) for(let y=1;y<=100;y++) if(x*y===3*x+2*y+6) best=Math.max(best,x+y); return String(best);"
+  },
+  "quantity_asked": "the minimum of x + y over positive-integer solutions of xy = 3x + 2y + 6.",
+  "distractor_kind": {
+   "7": "wrong procedure: minimizes the shifted sum and forgets the shift. (a) no. (b) no. (c) positive integers ≥ 2: inside. (d) real final-step slip.",
+   "10": "wrong procedure: completes the product without balancing, (x − 2)(y − 3) = 6. (a) limiting case: no. (b) neighbouring setup: no. (c) cheapest estimate: before factoring, none; x and y can each be large (x = 14, y = 4) or small, and no one-step observation on xy = 3x + 2y + 6 bounds x + y. After factoring, x + y = (x − 2) + (y − 3) + 5 ≥ 2√12 + 5 ≈ 11.9, but that bound needs the factorization, which is the item (§8a). Interval with no stem-forced bound short of the work: positive integers ≥ 2; 10 inside. (d) real: unbalanced completion of the product.",
+   "18": "wrong procedure: greatest sum instead of least. (a) limiting case: it is the extreme factor pair (1, 12); a reader cannot place it relative to the key without the factorization. (b) neighbouring setup: yes, max instead of min; it sits on the upper end of the solution set, which the stem does not expose (nothing caps x + y without factoring). (c) inside. (d) real misreading; also gives the item a value above the key, so the key is not the extreme option on a \"least\" question."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v >= 2"
+  ]
+ },
+ {
+  "id": "AM20A-07",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "exponential equations",
+  "subskill": "all real solutions of (polynomial)^(polynomial) = 1: base 1, exponent 0 with nonzero base, and base −1 with an EVEN integer exponent, each case checked",
+  "prompt": "What is the sum of all real numbers x for which (x² − 5x + 5)^(x − 2) = 1 ?",
+  "choices": [
+   "10",
+   "9",
+   "12",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "A real power equals 1 in three ways. (1) The base is 1: x² − 5x + 5 = 1 gives x² − 5x + 4 = 0, so x = 1 or x = 4; both work (1 raised to any power is 1). (2) The exponent is 0 and the base is not 0: x − 2 = 0 gives x = 2, and the base is 4 − 10 + 5 = −1 ≠ 0, so (−1)⁰ = 1 works. (3) The base is −1 and the exponent is an even integer: x² − 5x + 5 = −1 gives x² − 5x + 6 = 0, so x = 2 or x = 3; x = 2 is already counted, and x = 3 gives (−1)¹ = −1, which fails. The solutions are 1, 2, and 4, with sum 7. The option \"10\" accepts x = 3 from case (3) without checking that its exponent, 1, is odd: 1 + 2 + 3 + 4. The option \"9\" counts x = 2 twice, once from case (2) and once from case (3): 1 + 4 + 2 + 2. The option \"12\" also adds the two solutions of x² − 5x + 5 = 0 (sum 5), treating 0 raised to a power as 1: 7 + 5.",
+  "solve": "const sols=[]; for (const x of [1,4]) sols.push(x); if (4-10+5!==0) sols.push(2); for (const x of [2,3]) { const e=x-2; if (e%2===0 && !sols.includes(x)) sols.push(x); } return String(sols.reduce((s,v)=>s+v,0));",
+  "distractor_solve": {
+   "9": "return String(1+4+2+2);",
+   "10": "return String(1+4+2+3);",
+   "12": "const zeroBaseSum=5; return String(1+4+2+zeroBaseSum);"
+  },
+  "quantity_asked": "the sum of the distinct real x with (x² − 5x + 5)^(x − 2) = 1.",
+  "distractor_kind": {
+   "9": "wrong procedure: x = 2 double-counted across cases. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real counting slip when cases overlap.",
+   "10": "wrong procedure: base −1 accepted with an odd exponent. (a) limiting case: no. (b) neighbouring setup: no. (c) cheapest estimate: none; the base-1 case alone gives 5 by Vieta, and other cases can add or not; no stem-forced interval on the sum. Interval (−∞, ∞); inside. (d) real: the classic unchecked (−1)ⁿ case.",
+   "12": "wrong procedure: 0^(…) treated as 1. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real: the zero-base case is a standard trap."
+  },
+  "bounds": [
+   "Number.isInteger(v)"
+  ]
+ },
+ {
+  "id": "AM20A-08",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equations with a parameter",
+  "subskill": "solving two linear equations in terms of a parameter and setting one solution equal to TWICE the other",
+  "prompt": "For what value of a is the solution of the equation 3(x − a) = x + 8 equal to twice the solution of the equation x − 4 = a ?",
+  "choices": [
+   "−8",
+   "−2",
+   "0",
+   "−8/3"
+  ],
+  "correct_answer": "−8",
+  "explanation": "Solve each equation for x in terms of a. From 3(x − a) = x + 8: 3x − 3a = x + 8, so 2x = 3a + 8 and x = (3a + 8)/2. From x − 4 = a: x = a + 4. The first solution must be twice the second: (3a + 8)/2 = 2(a + 4), so 3a + 8 = 4a + 16 and a = −8. (Check: with a = −8 the first equation gives x = −8 and the second gives x = −4, and −8 = 2(−4).) The option \"−2\" puts the factor 2 on the wrong side, setting twice the first solution equal to the second: 3a + 8 = a + 4. The option \"0\" ignores the word \"twice\" and sets the solutions equal: (3a + 8)/2 = a + 4. The option \"−8/3\" distributes the 3 only to x, writing 3x − a = x + 8, so x = (a + 8)/2 and (a + 8)/2 = 2(a + 4).",
+  "solve": "for (let n=-400;n<=400;n++){const a=n/3; if (Math.abs((3*a+8)/2-2*(a+4))<1e-9) return Number.isInteger(a)?String(a):\"?\";} return \"none\";",
+  "distractor_solve": {
+   "0": "for (let a=-50;a<=50;a++) if ((3*a+8)/2===(a+4)) return String(a); return \"none\";",
+   "−2": "for (let a=-50;a<=50;a++) if ((3*a+8)===(a+4)) return String(a); return \"none\";",
+   "−8/3": "for (let n=-400;n<=400;n++){const a=n/3; if (Math.abs((a+8)/2-2*(a+4))<1e-9) return n+\"/3\";} return \"none\";"
+  },
+  "quantity_asked": "the parameter a for which (solution of the first equation) = 2 × (solution of the second).",
+  "distractor_kind": {
+   "0": "wrong procedure: \"twice\" ignored. (a) limiting case: no parameter at an extreme. (b) neighbouring setup: answer to \"the solutions are equal\"; not bounded away. (c) (−∞, ∞): inside. (d) real misreading.",
+   "−2": "wrong procedure: factor 2 on the wrong side. (a) limiting case: no. (b) neighbouring setup: it is the answer to \"the second solution is twice the first\", the reversed relation; no stem-forced bound separates the two (no sign or magnitude is fixed for a). (c) cheapest estimate: none; a is unconstrained by the stem. Interval (−∞, ∞); inside. (d) real.",
+   "−8/3": "wrong procedure: 3 distributed only to x. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real distribution slip."
+  },
+  "bounds": []
+ },
+ {
+  "id": "AM20A-09",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratic inequalities",
+  "subskill": "the solution set of a quadratic \"less than 0\" inequality is the interval between the roots; its length is the root difference 2√(25 − k), set equal to a given length",
+  "prompt": "The solution set of the inequality x² − 10x + k < 0, where k is a constant, is an interval of length 8. What is the value of k ?",
+  "choices": [
+   "21",
+   "9",
+   "23",
+   "−39"
+  ],
+  "correct_answer": "9",
+  "explanation": "x² − 10x + k < 0 holds strictly between the two roots of x² − 10x + k = 0, which are 5 ± √(25 − k). The interval between them has length 2√(25 − k). Setting 2√(25 − k) = 8 gives √(25 − k) = 4, so 25 − k = 16 and k = 9. (Check: x² − 10x + 9 = (x − 1)(x − 9) < 0 for 1 < x < 9, length 8.) The option \"−39\" uses the half-width as the whole length, √(25 − k) = 8, so 25 − k = 64. The option \"21\" correctly halves to √(25 − k) = 4 but does not square, writing 25 − k = 4. The option \"23\" sets the full root difference √(100 − 4k) = 8 correctly but does not square, writing 100 − 4k = 8.",
+  "solve": "const half=8/2; return String(25-half*half);",
+  "distractor_solve": {
+   "21": "return String(25-8/2);",
+   "23": "return String((100-8)/4);",
+   "−39": "return String(25-8*8);"
+  },
+  "quantity_asked": "the constant k for which the roots of x² − 10x + k are 8 apart.",
+  "distractor_kind": {
+   "21": "wrong procedure: forgot to square (half-width form). (a) no. (b) no. (c) (−∞, 25): inside, 4 below the cap. (d) real.",
+   "23": "wrong procedure: forgot to square (discriminant form). (a) no. (b) no. (c) (−∞, 25): inside, 2 below the cap. (d) real.",
+   "−39": "wrong procedure: half-width taken as the length. (a) limiting case: no. (b) neighbouring setup: it is k for an interval of length 16; nothing in the stem gives a lower bound on k (k may be any number below 25). (c) cheapest estimate: a nonempty solution interval needs a positive discriminant, 100 − 4k > 0, so k < 25. No cheap lower bound. Interval (−∞, 25); −39 inside. The \"drop the 4 in the discriminant\" value 36 was deliberately not used because it dies on k < 25. (d) real."
+  },
+  "bounds": [
+   "v < 25"
+  ]
+ }
+]

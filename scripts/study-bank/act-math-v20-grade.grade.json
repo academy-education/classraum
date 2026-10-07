@@ -1,0 +1,497 @@
+[
+ {
+  "id": "AM20N-01",
+  "topic_tag": "matrices",
+  "prompt": "Matrix A has first row (2, 1) and second row (5, 3). Matrix B has first row (4, 1) and second row (11, 2). The 2 × 2 matrix X satisfies the equation AX = B. What is the entry in the 2nd row, 1st column of X ?",
+  "choices": [
+   "2",
+   "13",
+   "23",
+   "42"
+  ]
+ },
+ {
+  "id": "AM20N-02",
+  "topic_tag": "prime factorization",
+  "prompt": "What is the least positive integer k for which 24k is a perfect square and 18k is a perfect cube?",
+  "choices": [
+   "72",
+   "96",
+   "6",
+   "12"
+  ]
+ },
+ {
+  "id": "AM20A-01",
+  "topic_tag": "quadratics",
+  "prompt": "The solutions of the equation x² + 8x + 15 = 0 are each 2 greater than the solutions of the equation x² + bx + c = 0, where b and c are constants. What is the value of c ?",
+  "choices": [
+   "35",
+   "31",
+   "19",
+   "27"
+  ]
+ },
+ {
+  "id": "AM20A-02",
+  "topic_tag": "discriminant",
+  "prompt": "For how many integer values of k does the equation 2x² + kx + 8 = 0 have no real solutions?",
+  "choices": [
+   "17",
+   "11",
+   "15",
+   "7"
+  ]
+ },
+ {
+  "id": "AM20A-03",
+  "topic_tag": "polynomial remainder",
+  "prompt": "When the polynomial p(x) is divided by x − 2, the remainder is 7, and when p(x) is divided by x + 1, the remainder is 13. When p(x) is divided by x² − x − 2, the remainder is r(x). What is the value of r(4) ?",
+  "choices": [
+   "−5",
+   "19",
+   "3",
+   "17"
+  ]
+ },
+ {
+  "id": "AM20A-04",
+  "topic_tag": "rational exponents",
+  "prompt": "If x > 0 and x^(−1/2) = 1/4, what is the value of x^(3/2) ?",
+  "choices": [
+   "8",
+   "24",
+   "64",
+   "2,048"
+  ]
+ },
+ {
+  "id": "AM20A-05",
+  "topic_tag": "quadratic coefficients",
+  "prompt": "A quadratic function q is given by q(x) = ax² + bx + c. If q(0) = 5, q(1) = 4, and q(−1) = 10, what is the value of q(3) ?",
+  "choices": [
+   "−16",
+   "9",
+   "2",
+   "14"
+  ]
+ },
+ {
+  "id": "AM20A-06",
+  "topic_tag": "integer solutions",
+  "prompt": "Positive integers x and y satisfy the equation xy = 3x + 2y + 6. What is the least possible value of x + y ?",
+  "choices": [
+   "7",
+   "18",
+   "12",
+   "10"
+  ]
+ },
+ {
+  "id": "AM20A-07",
+  "topic_tag": "exponential equations",
+  "prompt": "What is the sum of all real numbers x for which (x² − 5x + 5)^(x − 2) = 1 ?",
+  "choices": [
+   "12",
+   "7",
+   "9",
+   "10"
+  ]
+ },
+ {
+  "id": "AM20A-08",
+  "topic_tag": "linear equations with a parameter",
+  "prompt": "For what value of a is the solution of the equation 3(x − a) = x + 8 equal to twice the solution of the equation x − 4 = a ?",
+  "choices": [
+   "−2",
+   "−8",
+   "−8/3",
+   "0"
+  ]
+ },
+ {
+  "id": "AM20A-09",
+  "topic_tag": "quadratic inequalities",
+  "prompt": "The solution set of the inequality x² − 10x + k < 0, where k is a constant, is an interval of length 8. What is the value of k ?",
+  "choices": [
+   "−39",
+   "9",
+   "21",
+   "23"
+  ]
+ },
+ {
+  "id": "AM20F-01",
+  "topic_tag": "domain of a transformed function",
+  "prompt": "The function f is defined only for −4 ≤ x ≤ 8. The function g is defined by g(x) = f(3x + 2) for every x for which f(3x + 2) is defined. What is the greatest value of x in the domain of g ?",
+  "choices": [
+   "2",
+   "22",
+   "26",
+   "10/3"
+  ]
+ },
+ {
+  "id": "AM20F-02",
+  "topic_tag": "polynomial functions",
+  "prompt": "A polynomial function p of degree 3 has real coefficients and a leading coefficient of 1. Two of the zeros of p are 2 and 3 − i, where i = √−1. What is the value of p(−1) ?",
+  "choices": [
+   "-51",
+   "-33",
+   "-45",
+   "-15"
+  ]
+ },
+ {
+  "id": "AM20F-03",
+  "topic_tag": "functional equations",
+  "prompt": "A function f is defined for all nonzero real numbers and satisfies f(x) + 2f(1/x) = 6x for every nonzero x. What is the value of f(2) ?",
+  "choices": [
+   "-2",
+   "4",
+   "-11",
+   "3.6"
+  ]
+ },
+ {
+  "id": "AM20F-04",
+  "topic_tag": "trigonometric functions",
+  "prompt": "The function f is defined by f(x) = 3cos²x − 2sin x for all real numbers x. What is the maximum value of f(x) ?",
+  "choices": [
+   "32/9",
+   "4",
+   "10/3",
+   "11/3"
+  ]
+ },
+ {
+  "id": "AM20F-05",
+  "topic_tag": "composition of functions",
+  "prompt": "The functions f and g are defined by f(x) = x² + 4x and g(x) = 3 − 2x. For what value of x does f(g(x)) attain its minimum value?",
+  "choices": [
+   "1.75",
+   "2.5",
+   "-2",
+   "5"
+  ]
+ },
+ {
+  "id": "AM20F-06",
+  "topic_tag": "logarithmic functions",
+  "prompt": "The function f is defined by f(x) = log₂ x for all x > 0. For what value of x is f(4x) − f(x − 3) = 3 ?",
+  "choices": [
+   "6",
+   "9",
+   "3.1",
+   "5.4"
+  ]
+ },
+ {
+  "id": "AM20F-07",
+  "topic_tag": "piecewise functions",
+  "prompt": "The function f is defined by f(x) = x² − 7 for x < 1 and f(x) = 3x − 2 for x ≥ 1. What is the greatest value of x for which f(x) = 9 ?",
+  "choices": [
+   "11/3",
+   "4",
+   "8",
+   "7/3"
+  ]
+ },
+ {
+  "id": "AM20F-08",
+  "topic_tag": "trigonometric functions",
+  "prompt": "For an angle x with 0° < x < 90°, 3sin x = tan x. To the nearest tenth of a degree, what is the value of x ?",
+  "choices": [
+   "19.5",
+   "71.6",
+   "18.4",
+   "70.5"
+  ]
+ },
+ {
+  "id": "AM20F-09",
+  "topic_tag": "logarithmic functions",
+  "prompt": "The function f is defined by f(x) = log₂(x + a) + b, where a and b are constants and a > 0. In the standard (x,y) coordinate plane, the graph of y = f(x) passes through the points (0, 3) and (6, 5). Which of the following is closest to f(14) ?",
+  "choices": [
+   "6.81",
+   "7",
+   "5.81",
+   "6"
+  ]
+ },
+ {
+  "id": "AM20S-01",
+  "topic_tag": "counting",
+  "prompt": "Six people, including Ana and Ben, are to be seated around a circular table that has exactly 6 seats. Two seatings are considered the same if one is a rotation of the other. In how many different seatings are Ana and Ben NOT seated next to each other?",
+  "choices": [
+   "96",
+   "36",
+   "48",
+   "72"
+  ]
+ },
+ {
+  "id": "AM20S-02",
+  "topic_tag": "probability",
+  "prompt": "A bag contains 4 red marbles, 3 blue marbles, and 2 green marbles. Three marbles are drawn from the bag at random, all at the same time. What is the probability that the three marbles are all different colors?",
+  "choices": [
+   "2/21",
+   "3/28",
+   "2/7",
+   "1/21"
+  ]
+ },
+ {
+  "id": "AM20S-03",
+  "topic_tag": "sets and counting",
+  "prompt": "Each of the 100 members of a language club studies French, Spanish, Latin, some combination of these, or none of them. Of the members, 45 study French, 40 study Spanish, and 30 study Latin; 15 study both French and Spanish, 10 study both French and Latin, and 8 study both Spanish and Latin; and 3 study all three languages. (Each count of members who study both of two languages includes the members who study all three.) How many members study exactly one of the three languages?",
+  "choices": [
+   "73",
+   "52",
+   "61",
+   "58"
+  ]
+ },
+ {
+  "id": "AM20S-04",
+  "topic_tag": "regression",
+  "prompt": "For a set of paired data (x, y), the least-squares regression line has a slope of 2.5. The mean of the x-values in the data set is 8, and the mean of the y-values is 31. What y-value does the regression line predict for x = 12 ?",
+  "choices": [
+   "46.5",
+   "58.5",
+   "61",
+   "41"
+  ]
+ },
+ {
+  "id": "AM20S-05",
+  "topic_tag": "counting",
+  "prompt": "A rectangular grid is made of unit squares arranged in 4 rows and 5 columns. Counting squares as rectangles, how many different rectangles of any size have all four of their sides along lines of the grid?",
+  "choices": [
+   "110",
+   "100",
+   "60",
+   "150"
+  ]
+ },
+ {
+  "id": "AM20S-06",
+  "topic_tag": "probability",
+  "prompt": "Three of the six vertices of a regular hexagon are chosen at random, and the triangle with those three vertices is drawn. What is the probability that the triangle is a right triangle?",
+  "choices": [
+   "3/5",
+   "1/10",
+   "1/5",
+   "3/10"
+  ]
+ },
+ {
+  "id": "AM20G-01",
+  "topic_tag": "law of cosines",
+  "prompt": "In triangle ABC, AB = 12, AC = 15, and BC = 20. Point D lies on side BC so that BD = 11. To the nearest tenth, what is the length of segment AD ?",
+  "choices": [
+   "9.0",
+   "9.5",
+   "7.3",
+   "8.2"
+  ]
+ },
+ {
+  "id": "AM20G-02",
+  "topic_tag": "trapezoids",
+  "prompt": "A trapezoid has parallel sides of lengths 26 centimeters and 10 centimeters. Its two nonparallel sides have lengths 9 centimeters and 14 centimeters. To the nearest tenth of a square centimeter, what is the area of the trapezoid?",
+  "choices": [
+   "74.2",
+   "116.4",
+   "141.3",
+   "124.0"
+  ]
+ },
+ {
+  "id": "AM20G-03",
+  "topic_tag": "coordinate geometry",
+  "prompt": "In the standard (x,y) coordinate plane, the lines y = x + 2, y = −2x + 14, and y = −1 enclose a triangle. What is the area of the triangle, in square coordinate units?",
+  "choices": [
+   "36.75",
+   "31.5",
+   "33.25",
+   "27"
+  ]
+ },
+ {
+  "id": "AM20G-04",
+  "topic_tag": "rectangles",
+  "prompt": "Point P lies inside rectangle ABCD, where vertices A and C are opposite each other. The distances from P to three of the vertices are PA = 7, PB = 10, and PC = 11. To the nearest tenth, what is the distance from P to vertex D ?",
+  "choices": [
+   "8.0",
+   "8.4",
+   "13.1",
+   "5.3"
+  ]
+ },
+ {
+  "id": "AM20G-05",
+  "topic_tag": "circles and sectors",
+  "prompt": "A goat is tied with a 10-meter rope to one outside corner of a closed rectangular shed that measures 8 meters by 3 meters. The goat can walk anywhere outside the shed that the rope allows, but the rope cannot pass through or over the shed. To the nearest tenth of a square meter, what is the area of the region the goat can reach?",
+  "choices": [
+   "290.2",
+   "277.2",
+   "238.8",
+   "293.0"
+  ]
+ },
+ {
+  "id": "AM20G-06",
+  "topic_tag": "equilateral triangles",
+  "prompt": "Point P lies inside an equilateral triangle. The perpendicular distances from P to the three sides of the triangle are 2 units, 3.5 units, and 4 units. To the nearest hundredth of a unit, what is the length of each side of the triangle?",
+  "choices": [
+   "16.45",
+   "13.44",
+   "10.97",
+   "14.25"
+  ]
+ },
+ {
+  "id": "AM20G-07",
+  "topic_tag": "law of cosines",
+  "prompt": "A boat leaves a dock and travels 120 kilometers on a bearing of 040° (40° clockwise from due north). It then turns and travels 85 kilometers on a bearing of 150°. To the nearest tenth of a kilometer, how far is the boat from the dock?",
+  "choices": [
+   "169.1",
+   "77.4",
+   "198.2",
+   "121.0"
+  ]
+ },
+ {
+  "id": "AM20G-08",
+  "topic_tag": "volume of pyramids",
+  "prompt": "A regular tetrahedron is a pyramid whose four faces are congruent equilateral triangles. A regular tetrahedron has edges that are each 6 centimeters long. To the nearest tenth of a cubic centimeter, what is its volume?",
+  "choices": [
+   "18.0",
+   "29.4",
+   "27.0",
+   "25.5"
+  ]
+ },
+ {
+  "id": "AM20G-09",
+  "topic_tag": "triangles and ratios",
+  "prompt": "In triangle ABC, point D lies on side BC so that BD : DC = 2 : 3, and point E lies on side AC so that AE : EC = 1 : 2. Segments AD and BE intersect at point P. To the nearest hundredth, what is the value of AP/PD ?",
+  "choices": [
+   "1.25",
+   "3.33",
+   "5.00",
+   "0.83"
+  ]
+ },
+ {
+  "id": "AM20G-10",
+  "topic_tag": "squares and octagons",
+  "prompt": "A square with sides 10 centimeters long is rotated 45° about its center, and the rotated copy is placed on top of the original square. The region covered by both squares is an octagon. To the nearest tenth of a square centimeter, what is the area of the octagon?",
+  "choices": [
+   "87.5",
+   "82.8",
+   "95.7",
+   "91.4"
+  ]
+ },
+ {
+  "id": "AM20I-01",
+  "topic_tag": "weighted averages",
+  "prompt": "In a chemistry course, the final grade is a weighted average: homework counts 15%, quizzes 25%, the midterm exam 25%, and the final exam 35%. The quiz average is computed after dropping each student's single lowest quiz score. Dana's homework average is 92, her six quiz scores are 88, 64, 93, 52, 85, and 76, her midterm exam score is 70, and her final exam score is 86. To the nearest tenth, what is Dana's final grade?",
+  "choices": [
+   "80.9",
+   "81.7",
+   "82.8",
+   "82.3"
+  ]
+ },
+ {
+  "id": "AM20I-02",
+  "topic_tag": "area and volume in context",
+  "prompt": "A house has a gable roof made of two rectangular faces that meet at a ridge. Each face is 42 feet long and measures 17 feet from the ridge down to its lower edge. Seen from directly above, the whole roof covers a rectangle 42 feet by 30 feet. Gutters along both 42-foot lower edges carry 85% of the rain that falls on the roof into storage tanks. During a storm, 1.25 inches of rain falls straight down. One cubic foot of water is 7.48 gallons. To the nearest gallon, how many gallons of water reach the tanks?",
+  "choices": [
+   "834",
+   "70",
+   "147",
+   "946"
+  ]
+ },
+ {
+  "id": "AM20I-03",
+  "topic_tag": "rates",
+  "prompt": "Towns P and Q are 300 kilometers apart on a straight highway. A truck leaves P at 9:00 a.m. and travels toward Q at a constant 80 kilometers per hour. A car leaves Q at 9:45 a.m. and travels toward P on the same highway at a constant 100 kilometers per hour. How many minutes after 9:00 a.m. do the truck and the car meet?",
+  "choices": [
+   "138",
+   "133",
+   "120",
+   "125"
+  ]
+ },
+ {
+  "id": "AM20I-04",
+  "topic_tag": "unit conversion",
+  "prompt": "A city bills water by the CCF, where 1 CCF = 100 cubic feet. At the start of a billing period a household's water meter read 48,215 cubic feet, and at the end of the period it read 49,067 cubic feet. The bill has three parts: a fixed service charge of $14.50; a water charge of $4.10 per CCF used; and a sewer charge of $5.35 per CCF on 90% of the water used (the other 10% is assumed to go to lawn watering and is not charged for sewer). What is the total bill, in dollars?",
+  "choices": [
+   "86.96",
+   "91.52",
+   "90.46",
+   "53.99"
+  ]
+ },
+ {
+  "id": "AM20I-05",
+  "topic_tag": "rates and percents",
+  "prompt": "A hotel charges $142 per night for Sunday through Thursday nights and $189 per night for Friday and Saturday nights. An 11% tax is added to the room charges. A resort fee of $24.85 per night, which is not taxed, is then added. A guest checks in on Thursday, March 5, and checks out on the morning of Tuesday, March 10. What is the guest's total bill, in dollars?",
+  "choices": [
+   "1068.86",
+   "917.29",
+   "1030.36",
+   "1016.69"
+  ]
+ },
+ {
+  "id": "AM20I-06",
+  "topic_tag": "proportional reasoning",
+  "prompt": "Three partners shared a year's profit of $23,100 in proportion to the amount each one invested multiplied by the number of months that money was invested. Ana invested $15,000 for all 12 months of the year. Ben invested $24,000, but he joined when 7 months of the year had already passed and kept his money in until the end of the year. Cara invested $10,000 for the last 9 months of the year. What was Ben's share of the profit, in dollars?",
+  "choices": [
+   "8860.27",
+   "7107.69",
+   "11314.29",
+   "8400.00"
+  ]
+ },
+ {
+  "id": "AM20I-07",
+  "topic_tag": "percents",
+  "prompt": "At the start of a year, 65% of the value of Rosa's investment account was in a stock fund and the rest was in a bond fund. During the year, the value of her stock fund holdings increased by 12% and the value of her bond fund holdings decreased by 3%. She made no deposits or withdrawals. At the end of the year, to the nearest tenth of a percent, what percent of the account's value was in the stock fund?",
+  "choices": [
+   "68.2",
+   "67.5",
+   "66.1",
+   "67.0"
+  ]
+ },
+ {
+  "id": "AM20I-08",
+  "topic_tag": "rates and percents",
+  "prompt": "Omar is paid $18.00 per hour. Hours he works on a paid holiday are paid at double time (2 times his hourly rate) and are not counted toward the 40-hour overtime threshold. All other hours beyond 40 in a week are paid at time and a half (1.5 times his hourly rate). One week, Omar worked 8 hours on Monday, which was a paid holiday, and 10, 11, 9, 6, and 9 hours on Tuesday through Saturday. What were Omar's total earnings for that week, in dollars?",
+  "choices": [
+   "1287.00",
+   "1215.00",
+   "1143.00",
+   "1233.00"
+  ]
+ },
+ {
+  "id": "AM20I-09",
+  "topic_tag": "rates",
+  "prompt": "A moving truck rents for $39.95 per day, where each day is a full 24-hour period beginning at pickup. Each day of the rental includes 100 free miles, and the free miles may be used on any day of the rental; each mile driven beyond the total free miles costs $0.79. The truck uses 1 gallon of fuel for every 12.5 miles driven, and the renter pays $4.60 for each gallon used. A renter picks up the truck at 8:00 a.m. on Friday, returns it at 8:00 a.m. on Monday, and drives 520 miles. What is the total cost, in dollars?",
+  "choices": [
+   "643.01",
+   "445.96",
+   "485.01",
+   "374.61"
+  ]
+ }
+]

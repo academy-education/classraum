@@ -1,0 +1,1144 @@
+[
+ {
+  "id": "AM20N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "matrices",
+  "subskill": "solving the matrix equation AX = B for X by LEFT-multiplying by the inverse of A, then reading one entry",
+  "prompt": "Matrix A has first row (2, 1) and second row (5, 3). Matrix B has first row (4, 1) and second row (11, 2). The 2 × 2 matrix X satisfies the equation AX = B. What is the entry in the 2nd row, 1st column of X ?",
+  "choices": [
+   "13",
+   "2",
+   "42",
+   "23"
+  ],
+  "correct_answer": "2",
+  "explanation": "Since AX = B, multiply both sides on the LEFT by A⁻¹: X = A⁻¹B. det(A) = 2(3) − 1(5) = 1, so A⁻¹ has first row (3, −1) and second row (−5, 2) (swap the diagonal entries, negate the off-diagonal entries, divide by 1). The 2nd row, 1st column of A⁻¹B is (−5)(4) + (2)(11) = −20 + 22 = 2. (Equivalently, the first column of X is the solution of 2p + q = 4, 5p + 3q = 11, which is p = 1, q = 2.) The option \"23\" multiplies in the wrong order, computing BA⁻¹: row 2 of B times column 1 of A⁻¹ is 11(3) + 2(−5) = 23. The option \"13\" negates the off-diagonal entries of A but forgets to swap the diagonal entries, using rows (2, −1) and (−5, 3) as the inverse: (−5)(4) + 3(11) = 13. The option \"42\" swaps the diagonal entries but forgets to negate the off-diagonal entries, using rows (3, 1) and (5, 2): 5(4) + 2(11) = 42.",
+  "solve": "const inv=[[3,-1],[-5,2]]; const B=[[4,1],[11,2]]; return String(inv[1][0]*B[0][0]+inv[1][1]*B[1][0]);",
+  "distractor_solve": {
+   "13": "const bad=[[2,-1],[-5,3]]; const B=[[4,1],[11,2]]; return String(bad[1][0]*B[0][0]+bad[1][1]*B[1][0]);",
+   "23": "const inv=[[3,-1],[-5,2]]; const B=[[4,1],[11,2]]; return String(B[1][0]*inv[0][0]+B[1][1]*inv[1][0]);",
+   "42": "const bad=[[3,1],[5,2]]; const B=[[4,1],[11,2]]; return String(bad[1][0]*B[0][0]+bad[1][1]*B[1][0]);"
+  },
+  "quantity_asked": "the single entry x₂₁ of the matrix X with AX = B (not of BA⁻¹, not of A⁻¹).",
+  "distractor_kind": {
+   "13": "wrong procedure: inverse formed without swapping the diagonal. (a) no. (b) no. (c) integer, inside (−∞, ∞). (d) real, common inverse-formula slip.",
+   "23": "wrong procedure: X = BA⁻¹ (right-multiplied). (a) limiting case: no parameter at an extreme. (b) neighbouring setup: yes in the sense that it is the entry for XA = B, the other-order equation; there is no stem-forced bound separating the XA = B answer from the AX = B answer, so it does not sit on an edge. (c) estimation bound: det A = 1, so every entry of X is an integer, but no cheaper bracket on x₂₁ exists; the only stem-forced constraint is v an integer, interval (−∞, ∞) of integers; 23 strictly inside. (d) not weak: matrix multiplication order is the commonest matrix error.",
+   "42": "wrong procedure: inverse formed without negating the off-diagonal. (a) no. (b) no. (c) integer, inside (−∞, ∞). (d) real, common inverse-formula slip."
+  },
+  "bounds": [
+   "Number.isInteger(v)"
+  ]
+ },
+ {
+  "id": "AM20N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "prime factorization",
+  "subskill": "least multiplier satisfying a perfect-square condition and a perfect-cube condition AT THE SAME TIME (exponent parity and exponent mod 3 together)",
+  "prompt": "What is the least positive integer k for which 24k is a perfect square and 18k is a perfect cube?",
+  "choices": [
+   "72",
+   "12",
+   "96",
+   "6"
+  ],
+  "correct_answer": "96",
+  "explanation": "Write 24 = 2³ · 3 and 18 = 2 · 3², and let k = 2ᵃ · 3ᵇ (any other prime would only make k larger). For 24k = 2³⁺ᵃ · 3¹⁺ᵇ to be a perfect square, 3 + a and 1 + b must be even, so a and b are both odd. For 18k = 2¹⁺ᵃ · 3²⁺ᵇ to be a perfect cube, 1 + a and 2 + b must be multiples of 3, so a is 2, 5, 8, … and b is 1, 4, 7, … . The least a that is odd and in 2, 5, 8, … is 5; the least b that is odd and in 1, 4, 7, … is 1. So k = 2⁵ · 3 = 96. Check: 24 · 96 = 2304 = 48², and 18 · 96 = 1728 = 12³. The option \"6\" satisfies only the square condition (24 · 6 = 144 = 12², but 18 · 6 = 108 is not a cube). The option \"12\" satisfies only the cube condition (18 · 12 = 216 = 6³, but 24 · 12 = 288 is not a square); it is also the least common multiple of 6 and 12, the result of combining the two separate answers by LCM. The option \"72\" multiplies the two separate answers, 6 × 12 (24 · 72 = 1728 is a cube, not a square).",
+  "solve": "const sq=n=>Math.round(Math.sqrt(n))**2===n, cu=n=>Math.round(Math.cbrt(n))**3===n; for(let k=1;;k++) if(sq(24*k)&&cu(18*k)) return String(k);",
+  "distractor_solve": {
+   "6": "const sq=n=>Math.round(Math.sqrt(n))**2===n; for(let k=1;;k++) if(sq(24*k)) return String(k);",
+   "12": "const cu=n=>Math.round(Math.cbrt(n))**3===n; for(let k=1;;k++) if(cu(18*k)) return String(k);",
+   "72": "const sq=n=>Math.round(Math.sqrt(n))**2===n, cu=n=>Math.round(Math.cbrt(n))**3===n; let s,c; for(let k=1;;k++) if(sq(24*k)){s=k;break} for(let k=1;;k++) if(cu(18*k)){c=k;break} return String(s*c);"
+  },
+  "quantity_asked": "the least k satisfying BOTH conditions at once (not either condition alone).",
+  "distractor_kind": {
+   "6": "wrong procedure: square condition only. (a) limiting case: it is the least value for one of the two conditions, a lower bound on k (k must be a multiple of 6); the stem forces the key to be a multiple of 6 but not strictly above 6 by any cheap observation without solving the cube condition, which is the item. (b) neighbouring setup: answer to the square-only question; it sits inside the feasible set \"multiples of 6\" and is rejected only by testing 18 · 6 = 108, i.e. doing the item. (c) cheapest estimate: 24k square forces k = 6m², so k ∈ {6, 24, 54, 96, …}; all four options are multiples of 6, none sits outside; 6 is ON the least element of that set but the set itself is not an interval and 6 is a member of it. (d) real error.",
+   "12": "wrong procedure: cube condition only (= LCM of the separate answers). (a) no. (b) neighbouring setup: the cube-only answer; rejected only by testing 24 · 12 = 288. (c) multiples-of-6 constraint: 12 satisfies it. (d) real, the \"one condition is enough\" error.",
+   "72": "wrong procedure: product of the separate answers 6 × 12. (a) no. (b) no. (c) multiple of 6; inside. (d) real: multiplying separate least values is the standard wrong way to combine conditions."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v % 6 === 0",
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM20A-02",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "discriminant",
+  "subskill": "counting the integer values of a coefficient for which a quadratic with leading coefficient other than 1 has no real solutions (strict discriminant inequality)",
+  "prompt": "For how many integer values of k does the equation 2x² + kx + 8 = 0 have no real solutions?",
+  "choices": [
+   "11",
+   "15",
+   "7",
+   "17"
+  ],
+  "correct_answer": "15",
+  "explanation": "The equation has no real solutions exactly when its discriminant is negative: k² − 4(2)(8) < 0, so k² < 64 and −8 < k < 8. The integers −7, −6, …, 6, 7 number 15. The option \"17\" uses k² ≤ 64 and counts k = ±8 as well, but those give a discriminant of 0 and one real (double) solution. The option \"7\" drops the 4 from the discriminant, using k² < 16, which gives −3 through 3. The option \"11\" drops the leading coefficient 2, using k² < 4(8) = 32, which gives −5 through 5.",
+  "solve": "let n=0; for(let k=-100;k<=100;k++) if(k*k-4*2*8<0) n++; return String(n);",
+  "distractor_solve": {
+   "7": "let n=0; for(let k=-100;k<=100;k++) if(k*k-2*8<0) n++; return String(n);",
+   "11": "let n=0; for(let k=-100;k<=100;k++) if(k*k-4*8<0) n++; return String(n);",
+   "17": "let n=0; for(let k=-100;k<=100;k++) if(k*k-4*2*8<=0) n++; return String(n);"
+  },
+  "quantity_asked": "the number of integers k with k² − 64 < 0.",
+  "distractor_kind": {
+   "7": "wrong procedure: discriminant b² − ac (4 dropped). (a) no. (b) no. (c) odd: inside. (d) real formula slip.",
+   "11": "wrong procedure: discriminant b² − 4c (a dropped, as if a = 1). (a) no. (b) no. (c) odd: inside. (d) real: treating every quadratic as monic.",
+   "17": "wrong procedure: non-strict inequality (double root counted as \"no real solutions\"). (a) limiting case: no parameter extreme. (b) neighbouring setup: yes, inclusive vs exclusive count; but no stem-forced bound separates 15 from 17 without computing the discriminant, which is the item. (c) cheapest estimate: k = 0 works (0 − 64 < 0) and the condition depends only on k², so the solution set is symmetric about 0 and its count is ODD; all four options are odd. No cheaper size bound. Interval: odd positive integers; 17 inside. (d) real: the strict/non-strict slip."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v % 2 === 1",
+   "v > 0"
+  ]
+ },
+ {
+  "id": "AM20A-03",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "polynomial remainder",
+  "subskill": "remainder on division by a QUADRATIC is linear and agrees with p at the quadratic's two zeros; build it from two linear-divisor remainders and evaluate",
+  "prompt": "When the polynomial p(x) is divided by x − 2, the remainder is 7, and when p(x) is divided by x + 1, the remainder is 13. When p(x) is divided by x² − x − 2, the remainder is r(x). What is the value of r(4) ?",
+  "choices": [
+   "17",
+   "−5",
+   "19",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "By the remainder theorem, p(2) = 7 and p(−1) = 13. Since x² − x − 2 = (x − 2)(x + 1) has degree 2, the remainder r(x) has degree at most 1: r(x) = ax + b, and p(x) = (x − 2)(x + 1)q(x) + ax + b. Substituting x = 2 and x = −1 gives 2a + b = 7 and −a + b = 13. Subtracting, 3a = −6, so a = −2 and b = 11. Then r(4) = −2(4) + 11 = 3. The option \"19\" takes the zeros of x − 2 and x + 1 to be −2 and 1 (the constants with their signs kept), so r(−2) = 7 and r(1) = 13, giving r(x) = 2x + 11. The option \"−5\" handles x − 2 correctly but takes the zero of x + 1 to be 1, so r(2) = 7 and r(1) = 13, giving r(x) = −6x + 19. The option \"17\" swaps the two remainders, r(2) = 13 and r(−1) = 7, giving r(x) = 2x + 9.",
+  "solve": "const a=(13-7)/(-1-2), b=7-a*2; return String(a*4+b);",
+  "distractor_solve": {
+   "17": "const a=(7-13)/(-1-2), b=13-a*2; return String(a*4+b);",
+   "19": "const a=(13-7)/(1-(-2)), b=7-a*(-2); return String(a*4+b);",
+   "−5": "const a=(13-7)/(1-2), b=7-a*2; return String(a*4+b);"
+  },
+  "quantity_asked": "r(4), where r is the remainder (degree ≤ 1) on division by (x − 2)(x + 1).",
+  "distractor_kind": {
+   "17": "wrong procedure: remainders attached to the wrong divisors. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real pairing slip.",
+   "19": "wrong procedure: both zeros sign-flipped. (a) limiting case: no. (b) neighbouring setup: it is the answer for divisors x + 2 and x − 1, a sign misreading, not an adjacent question the stem bounds away. (c) cheapest estimate: none exists before the remainder's form is known; once a student knows r is the line through (2, 7) and (−1, 13) the item is solved (that monotonicity IS the item's work, §8a). Interval with no stem-forced bound: (−∞, ∞); 19 inside. (d) real sign slip.",
+   "−5": "wrong procedure: one zero sign-flipped (x + 1 read as zero 1). (a) no. (b) no. (c) (−∞, ∞): inside. (d) real."
+  },
+  "bounds": [
+   "Number.isInteger(v)"
+  ]
+ },
+ {
+  "id": "AM20A-06",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "integer solutions",
+  "subskill": "positive-integer solutions of xy = 3x + 2y + 6 by rewriting as a product (x − 2)(y − 3) = 12 and choosing among factor pairs",
+  "prompt": "Positive integers x and y satisfy the equation xy = 3x + 2y + 6. What is the least possible value of x + y ?",
+  "choices": [
+   "10",
+   "18",
+   "7",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "Move every term to one side: xy − 3x − 2y = 6. Adding 6 to both sides makes the left side factor: xy − 3x − 2y + 6 = (x − 2)(y − 3), so (x − 2)(y − 3) = 12. Because x ≥ 1 and y ≥ 1, x − 2 ≥ −1 and y − 3 ≥ −2, and no negative factor pair of 12 fits those limits, so both factors are positive. The pairs (x − 2, y − 3) = (1, 12), (2, 6), (3, 4), (4, 3), (6, 2), (12, 1) give (x, y) = (3, 15), (4, 9), (5, 7), (6, 6), (8, 5), (14, 4), with sums 18, 13, 12, 12, 13, 18. The least is 12 (for example, 5 · 7 = 35 = 15 + 14 + 6). The option \"10\" adds 6 to the left side only, writing (x − 2)(y − 3) = 6; its pairs give (4, 6) and (5, 5), sum 10. The option \"7\" finds (x − 2)(y − 3) = 12 and minimizes (x − 2) + (y − 3) = 3 + 4 but does not add the 2 and 3 back. The option \"18\" answers for the greatest possible sum instead of the least.",
+  "solve": "let best=Infinity; for(let x=1;x<=100;x++) for(let y=1;y<=100;y++) if(x*y===3*x+2*y+6) best=Math.min(best,x+y); return String(best);",
+  "distractor_solve": {
+   "7": "let best=Infinity; for(let d=1;d<=12;d++) if(12%d===0) best=Math.min(best,d+12/d); return String(best);",
+   "10": "let best=Infinity; for(let x=1;x<=100;x++) for(let y=1;y<=100;y++) if((x-2)*(y-3)===6) best=Math.min(best,x+y); return String(best);",
+   "18": "let best=-Infinity; for(let x=1;x<=100;x++) for(let y=1;y<=100;y++) if(x*y===3*x+2*y+6) best=Math.max(best,x+y); return String(best);"
+  },
+  "quantity_asked": "the minimum of x + y over positive-integer solutions of xy = 3x + 2y + 6.",
+  "distractor_kind": {
+   "7": "wrong procedure: minimizes the shifted sum and forgets the shift. (a) no. (b) no. (c) positive integers ≥ 2: inside. (d) real final-step slip.",
+   "10": "wrong procedure: completes the product without balancing, (x − 2)(y − 3) = 6. (a) limiting case: no. (b) neighbouring setup: no. (c) cheapest estimate: before factoring, none; x and y can each be large (x = 14, y = 4) or small, and no one-step observation on xy = 3x + 2y + 6 bounds x + y. After factoring, x + y = (x − 2) + (y − 3) + 5 ≥ 2√12 + 5 ≈ 11.9, but that bound needs the factorization, which is the item (§8a). Interval with no stem-forced bound short of the work: positive integers ≥ 2; 10 inside. (d) real: unbalanced completion of the product.",
+   "18": "wrong procedure: greatest sum instead of least. (a) limiting case: it is the extreme factor pair (1, 12); a reader cannot place it relative to the key without the factorization. (b) neighbouring setup: yes, max instead of min; it sits on the upper end of the solution set, which the stem does not expose (nothing caps x + y without factoring). (c) inside. (d) real misreading; also gives the item a value above the key, so the key is not the extreme option on a \"least\" question."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v >= 2"
+  ]
+ },
+ {
+  "id": "AM20A-07",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "exponential equations",
+  "subskill": "all real solutions of (polynomial)^(polynomial) = 1: base 1, exponent 0 with nonzero base, and base −1 with an EVEN integer exponent, each case checked",
+  "prompt": "What is the sum of all real numbers x for which (x² − 5x + 5)^(x − 2) = 1 ?",
+  "choices": [
+   "10",
+   "9",
+   "12",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "A real power equals 1 in three ways. (1) The base is 1: x² − 5x + 5 = 1 gives x² − 5x + 4 = 0, so x = 1 or x = 4; both work (1 raised to any power is 1). (2) The exponent is 0 and the base is not 0: x − 2 = 0 gives x = 2, and the base is 4 − 10 + 5 = −1 ≠ 0, so (−1)⁰ = 1 works. (3) The base is −1 and the exponent is an even integer: x² − 5x + 5 = −1 gives x² − 5x + 6 = 0, so x = 2 or x = 3; x = 2 is already counted, and x = 3 gives (−1)¹ = −1, which fails. The solutions are 1, 2, and 4, with sum 7. The option \"10\" accepts x = 3 from case (3) without checking that its exponent, 1, is odd: 1 + 2 + 3 + 4. The option \"9\" counts x = 2 twice, once from case (2) and once from case (3): 1 + 4 + 2 + 2. The option \"12\" also adds the two solutions of x² − 5x + 5 = 0 (sum 5), treating 0 raised to a power as 1: 7 + 5.",
+  "solve": "const sols=[]; for (const x of [1,4]) sols.push(x); if (4-10+5!==0) sols.push(2); for (const x of [2,3]) { const e=x-2; if (e%2===0 && !sols.includes(x)) sols.push(x); } return String(sols.reduce((s,v)=>s+v,0));",
+  "distractor_solve": {
+   "9": "return String(1+4+2+2);",
+   "10": "return String(1+4+2+3);",
+   "12": "const zeroBaseSum=5; return String(1+4+2+zeroBaseSum);"
+  },
+  "quantity_asked": "the sum of the distinct real x with (x² − 5x + 5)^(x − 2) = 1.",
+  "distractor_kind": {
+   "9": "wrong procedure: x = 2 double-counted across cases. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real counting slip when cases overlap.",
+   "10": "wrong procedure: base −1 accepted with an odd exponent. (a) limiting case: no. (b) neighbouring setup: no. (c) cheapest estimate: none; the base-1 case alone gives 5 by Vieta, and other cases can add or not; no stem-forced interval on the sum. Interval (−∞, ∞); inside. (d) real: the classic unchecked (−1)ⁿ case.",
+   "12": "wrong procedure: 0^(…) treated as 1. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real: the zero-base case is a standard trap."
+  },
+  "bounds": [
+   "Number.isInteger(v)"
+  ]
+ },
+ {
+  "id": "AM20A-08",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equations with a parameter",
+  "subskill": "solving two linear equations in terms of a parameter and setting one solution equal to TWICE the other",
+  "prompt": "For what value of a is the solution of the equation 3(x − a) = x + 8 equal to twice the solution of the equation x − 4 = a ?",
+  "choices": [
+   "−8",
+   "−2",
+   "0",
+   "−8/3"
+  ],
+  "correct_answer": "−8",
+  "explanation": "Solve each equation for x in terms of a. From 3(x − a) = x + 8: 3x − 3a = x + 8, so 2x = 3a + 8 and x = (3a + 8)/2. From x − 4 = a: x = a + 4. The first solution must be twice the second: (3a + 8)/2 = 2(a + 4), so 3a + 8 = 4a + 16 and a = −8. (Check: with a = −8 the first equation gives x = −8 and the second gives x = −4, and −8 = 2(−4).) The option \"−2\" puts the factor 2 on the wrong side, setting twice the first solution equal to the second: 3a + 8 = a + 4. The option \"0\" ignores the word \"twice\" and sets the solutions equal: (3a + 8)/2 = a + 4. The option \"−8/3\" distributes the 3 only to x, writing 3x − a = x + 8, so x = (a + 8)/2 and (a + 8)/2 = 2(a + 4).",
+  "solve": "for (let n=-400;n<=400;n++){const a=n/3; if (Math.abs((3*a+8)/2-2*(a+4))<1e-9) return Number.isInteger(a)?String(a):\"?\";} return \"none\";",
+  "distractor_solve": {
+   "0": "for (let a=-50;a<=50;a++) if ((3*a+8)/2===(a+4)) return String(a); return \"none\";",
+   "−2": "for (let a=-50;a<=50;a++) if ((3*a+8)===(a+4)) return String(a); return \"none\";",
+   "−8/3": "for (let n=-400;n<=400;n++){const a=n/3; if (Math.abs((a+8)/2-2*(a+4))<1e-9) return n+\"/3\";} return \"none\";"
+  },
+  "quantity_asked": "the parameter a for which (solution of the first equation) = 2 × (solution of the second).",
+  "distractor_kind": {
+   "0": "wrong procedure: \"twice\" ignored. (a) limiting case: no parameter at an extreme. (b) neighbouring setup: answer to \"the solutions are equal\"; not bounded away. (c) (−∞, ∞): inside. (d) real misreading.",
+   "−2": "wrong procedure: factor 2 on the wrong side. (a) limiting case: no. (b) neighbouring setup: it is the answer to \"the second solution is twice the first\", the reversed relation; no stem-forced bound separates the two (no sign or magnitude is fixed for a). (c) cheapest estimate: none; a is unconstrained by the stem. Interval (−∞, ∞); inside. (d) real.",
+   "−8/3": "wrong procedure: 3 distributed only to x. (a) no. (b) no. (c) (−∞, ∞): inside. (d) real distribution slip."
+  },
+  "bounds": []
+ },
+ {
+  "id": "AM20A-09",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratic inequalities",
+  "subskill": "the solution set of a quadratic \"less than 0\" inequality is the interval between the roots; its length is the root difference 2√(25 − k), set equal to a given length",
+  "prompt": "The solution set of the inequality x² − 10x + k < 0, where k is a constant, is an interval of length 8. What is the value of k ?",
+  "choices": [
+   "21",
+   "9",
+   "23",
+   "−39"
+  ],
+  "correct_answer": "9",
+  "explanation": "x² − 10x + k < 0 holds strictly between the two roots of x² − 10x + k = 0, which are 5 ± √(25 − k). The interval between them has length 2√(25 − k). Setting 2√(25 − k) = 8 gives √(25 − k) = 4, so 25 − k = 16 and k = 9. (Check: x² − 10x + 9 = (x − 1)(x − 9) < 0 for 1 < x < 9, length 8.) The option \"−39\" uses the half-width as the whole length, √(25 − k) = 8, so 25 − k = 64. The option \"21\" correctly halves to √(25 − k) = 4 but does not square, writing 25 − k = 4. The option \"23\" sets the full root difference √(100 − 4k) = 8 correctly but does not square, writing 100 − 4k = 8.",
+  "solve": "const half=8/2; return String(25-half*half);",
+  "distractor_solve": {
+   "21": "return String(25-8/2);",
+   "23": "return String((100-8)/4);",
+   "−39": "return String(25-8*8);"
+  },
+  "quantity_asked": "the constant k for which the roots of x² − 10x + k are 8 apart.",
+  "distractor_kind": {
+   "21": "wrong procedure: forgot to square (half-width form). (a) no. (b) no. (c) (−∞, 25): inside, 4 below the cap. (d) real.",
+   "23": "wrong procedure: forgot to square (discriminant form). (a) no. (b) no. (c) (−∞, 25): inside, 2 below the cap. (d) real.",
+   "−39": "wrong procedure: half-width taken as the length. (a) limiting case: no. (b) neighbouring setup: it is k for an interval of length 16; nothing in the stem gives a lower bound on k (k may be any number below 25). (c) cheapest estimate: a nonempty solution interval needs a positive discriminant, 100 − 4k > 0, so k < 25. No cheap lower bound. Interval (−∞, 25); −39 inside. The \"drop the 4 in the discriminant\" value 36 was deliberately not used because it dies on k < 25. (d) real."
+  },
+  "bounds": [
+   "v < 25"
+  ]
+ },
+ {
+  "id": "AM20F-02",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "polynomial functions",
+  "subskill": "building a real cubic from one real zero and one non-real zero, which forces the conjugate zero, then evaluating it",
+  "prompt": "A polynomial function p of degree 3 has real coefficients and a leading coefficient of 1. Two of the zeros of p are 2 and 3 − i, where i = √−1. What is the value of p(−1) ?",
+  "choices": [
+   "-51",
+   "-45",
+   "-33",
+   "-15"
+  ],
+  "correct_answer": "-51",
+  "explanation": "Because p has real coefficients, the conjugate 3 + i is also a zero, so the three zeros are 2, 3 − i and 3 + i, and p(x) = (x − 2)(x − (3 − i))(x − (3 + i)). The last two factors multiply to (x − 3)² − i² = (x − 3)² + 1 = x² − 6x + 10. So p(x) = (x − 2)(x² − 6x + 10) and p(−1) = (−3)(1 + 6 + 10) = (−3)(17) = −51. The option \"-45\" treats i² as +1, writing the quadratic factor as (x − 3)² − 1 = x² − 6x + 8, so p(−1) = (−3)(15). The option \"-33\" expands (x − 3)² as x² + 9, dropping the middle term, so the factor is x² + 10 and p(−1) = (−3)(11). The option \"-15\" writes the conjugate-pair factors as (x + 3 − i)(x + 3 + i), with the wrong sign on the real part, giving x² + 6x + 10 and p(−1) = (−3)(5).",
+  "solve": "const q=x=>x*x-6*x+10; return String((-1-2)*q(-1));",
+  "distractor_solve": {
+   "-45": "const q=x=>x*x-6*x+8; return String((-1-2)*q(-1));",
+   "-33": "const q=x=>x*x+10; return String((-1-2)*q(-1));",
+   "-15": "const q=x=>x*x+6*x+10; return String((-1-2)*q(-1));"
+  },
+  "quantity_asked": "p(−1) for the monic real cubic with zeros 2, 3 − i (and hence 3 + i).",
+  "bounds": [
+   "v < 0",
+   "v % 3 === 0"
+  ],
+  "distractor_kind": {
+   "-45": "wrong procedure: i² taken as +1. (a) limiting case: no. (b) neighbouring setup: no - it is the cubic with zeros 2, 2, 4, not an adjacent question in the stem. (c) estimation bound: the free facts are p(−1) = (−1 − 2)·q(−1) with q(−1) > 0 (q has no real zeros and is monic), so p(−1) < 0 and is a multiple of 3. All four options satisfy both; no one-step estimate of q(−1) exists short of forming q, which is the item. Interval (−∞, 0). (d) weak: no.",
+   "-33": "wrong procedure: (x − 3)² expanded as x² + 9. (a) no. (b) no. (c) inside (−∞, 0), multiple of 3. (d) no - dropping the middle term of a square is a standard slip.",
+   "-15": "wrong procedure: conjugate factors written with +3 (zeros taken as −3 ± i). (a) no. (b) no. (c) inside (−∞, 0), multiple of 3. (d) no - factor-sign error from a zero."
+  }
+ },
+ {
+  "id": "AM20F-03",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "functional equations",
+  "subskill": "a functional equation linking f(x) and f(1/x): a second substitution produces a second equation, and the system is solved for the asked value",
+  "prompt": "A function f is defined for all nonzero real numbers and satisfies f(x) + 2f(1/x) = 6x for every nonzero x. What is the value of f(2) ?",
+  "choices": [
+   "-2",
+   "4",
+   "3.6",
+   "-11"
+  ],
+  "correct_answer": "-2",
+  "explanation": "Let A = f(2) and B = f(1/2). Substituting x = 2 gives A + 2B = 12. Substituting x = 1/2 gives B + 2A = 3. From the second, B = 3 − 2A; substituting into the first, A + 6 − 4A = 12, so −3A = 6 and A = −2. (Then B = 3 + 4 = 7.) The option \"4\" uses only the x = 2 equation and treats f(1/2) as if it were f(2), giving 3f(2) = 12. The option \"3.6\" rearranges the second equation with a sign error, B = 2A − 3, so A + 4A − 6 = 12 and A = 18/5 = 3.6. The option \"-11\" first eliminates A correctly to get B = f(1/2) = 7, then substitutes back into the x = 1/2 equation read with the roles of A and B swapped, A + 2B = 3, giving A = 3 − 14 = −11.",
+  "solve": "const A=(2*3-12)/3; return String(A);",
+  "distractor_solve": {
+   "4": "return String(12/3);",
+   "3.6": "return String((12+6)/5);",
+   "-11": "const B=(2*12-3)/3; return String(3-2*B);"
+  },
+  "quantity_asked": "f(2), a single value of f.",
+  "bounds": [],
+  "distractor_kind": {
+   "4": "wrong procedure: one equation, f(1/2) identified with f(2). (a) limiting case: it is the value if f were the same at x and 1/x; the stem gives no such symmetry, and nothing forces f(2) to one side of 4 without the second substitution. (b) neighbouring setup: no. (c) estimation bound: none - f is unknown; there is no monotonicity, sign or size bound on f(2) obtainable without forming the second equation, which is the item. (d) weak: no - using only the given substitution is the natural first wrong move.",
+   "3.6": "wrong procedure: sign error rearranging B + 2A = 3. (a) no. (b) no. f(1/2) = 7 (the adjacent value) was not used. (c) none. (d) no - a rearrangement slip.",
+   "-11": "wrong procedure: back-substitution into the second equation with A and B swapped. (a) no. (b) no. (c) none. (d) no - an elimination slip; a student rejects it only by checking it in the equations, i.e. doing the item."
+  }
+ },
+ {
+  "id": "AM20F-04",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "trigonometric functions",
+  "subskill": "maximum of a trigonometric function rewritten as a quadratic in sin x whose vertex lies inside the allowed interval [−1, 1]",
+  "prompt": "The function f is defined by f(x) = 3cos²x − 2sin x for all real numbers x. What is the maximum value of f(x) ?",
+  "choices": [
+   "10/3",
+   "32/9",
+   "11/3",
+   "4"
+  ],
+  "correct_answer": "10/3",
+  "explanation": "Using cos²x = 1 − sin²x and letting s = sin x, f = 3(1 − s²) − 2s = −3s² − 2s + 3 with −1 ≤ s ≤ 1. This downward parabola in s has its vertex at s = −(−2)/(2·(−3)) = −1/3, which is inside [−1, 1], so the maximum is −3(1/9) − 2(−1/3) + 3 = −1/3 + 2/3 + 3 = 10/3. The option \"4\" rewrites 3cos²x as 3 − sin²x (distributing the 3 only to the 1), so f = −s² − 2s + 3, whose vertex is at s = −1, giving 3 − 1 + 2 = 4. The option \"32/9\" locates the vertex s = −1/3 correctly but then evaluates 3cos²x as 3 − 1/9 with the same distribution slip, giving 3 − 1/9 + 2/3 = 32/9. The option \"11/3\" evaluates at s = −1/3 but drops the squared term, giving 3 + 2/3.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=27-3+6, d=9; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "4": "const s=-1; return String(3-s*s-2*s);",
+   "32/9": "const n=27-1+6; return n+'/9';",
+   "11/3": "const n=9+2; return n+'/3';"
+  },
+  "quantity_asked": "the maximum value of f(x) over all real x (the whole function, not one term).",
+  "bounds": [
+   "v >= 3",
+   "v <= 5"
+  ],
+  "distractor_kind": {
+   "4": "wrong procedure: 3cos²x -> 3 − sin²x. (a) limiting case: the term-by-term cap 3 + 2 = 5 (each term at its own maximum) is the limiting value and was NOT used. (b) neighbouring setup: no. (c) estimation bound over the whole f: floor f(0) = 3 (one evaluation), cap 3cos²x ≤ 3 and −2 sin x ≤ 2 so f ≤ 5; finer floor at sin x = −1/2 gives 3.25. Interval [3.25, 5). 4 is strictly inside (1 below the cap). (d) weak: no - distribution slip in the identity substitution.",
+   "32/9": "wrong procedure: right vertex, 3cos²x evaluated as 3 − s². (a) no. (b) no. (c) inside [3.25, 5): 3.556. (d) no.",
+   "11/3": "wrong procedure: squared term dropped at the vertex. (a) no. (b) no. (c) inside [3.25, 5): 3.667. (d) no."
+  }
+ },
+ {
+  "id": "AM20F-05",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "composition of functions",
+  "subskill": "location of the minimum of a composition f(g(x)): the inner function must equal the outer function's vertex input",
+  "prompt": "The functions f and g are defined by f(x) = x² + 4x and g(x) = 3 − 2x. For what value of x does f(g(x)) attain its minimum value?",
+  "choices": [
+   "2.5",
+   "-2",
+   "5",
+   "1.75"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The outer function f(u) = u² + 4u has its minimum at u = −4/2 = −2. So f(g(x)) is smallest when g(x) = −2, that is 3 − 2x = −2, giving x = 2.5. (Expanding, f(g(x)) = 4x² − 20x + 21, whose vertex is at x = 20/8 = 2.5.) The option \"-2\" reports the vertex of f itself, the value of u rather than of x. The option \"5\" expands correctly to 4x² − 20x + 21 but takes the vertex as −b/a = 20/4 instead of −b/(2a). The option \"1.75\" expands (3 − 2x)² as 9 − 6x + 4x², dropping the factor 2 from the middle term, so f(g(x)) = 4x² − 14x + 21 and the vertex is at 14/8 = 1.75.",
+  "solve": "const u=-4/2; return String((3-u)/2);",
+  "distractor_solve": {
+   "5": "const a=4,b=-20; return String(-b/a);",
+   "-2": "return String(-4/2);",
+   "1.75": "const a=4,b=-6-8; return String(-b/(2*a));"
+  },
+  "quantity_asked": "the input x at which the composition f(g(x)) is smallest (an x-value, not the minimum value).",
+  "bounds": [],
+  "distractor_kind": {
+   "5": "wrong procedure: −b/a. (a) no. (b) no. (c) none. (d) no - common vertex-formula slip.",
+   "-2": "wrong procedure: vertex of f reported as the answer. (a) limiting case: no. (b) neighbouring setup: it is the answer to 'where is f smallest', the adjacent question; no stem-forced interval for x exists, so it sits on no edge. (c) estimation bound: none cheaper than the item - f(g(x)) is a parabola in x with unknown vertex; evaluating at two inputs and using symmetry is solving it. (d) weak: no - confusing the outer variable with x is the defining error for this skill.",
+   "1.75": "wrong procedure: middle term of (3 − 2x)² without its factor 2. (a) no. (b) no. (c) none. (d) no - the commonest binomial-square slip."
+  }
+ },
+ {
+  "id": "AM20F-06",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "logarithmic functions",
+  "subskill": "an equation in a logarithmic function: a difference of outputs becomes a ratio of inputs, the log is undone with base^value, and the domain is respected",
+  "prompt": "The function f is defined by f(x) = log₂ x for all x > 0. For what value of x is f(4x) − f(x − 3) = 3 ?",
+  "choices": [
+   "6",
+   "9",
+   "5.4",
+   "3.1"
+  ],
+  "correct_answer": "6",
+  "explanation": "f(4x) − f(x − 3) = log₂(4x) − log₂(x − 3) = log₂(4x/(x − 3)). Setting this equal to 3 gives 4x/(x − 3) = 2³ = 8, so 4x = 8x − 24 and x = 6 (which satisfies x − 3 > 0). The option \"9\" undoes the logarithm as 2 × 3 = 6 instead of 2³, so 4x = 6(x − 3). The option \"5.4\" uses 3² = 9 instead of 2³, so 4x = 9(x − 3). The option \"3.1\" splits log₂(4x) as 2 + log₂x but moves the 2 to the wrong side, getting log₂(x/(x − 3)) = 5, so x = 32(x − 3) and x = 96/31 ≈ 3.1.",
+  "solve": "return String(8*3/(8-4));",
+  "distractor_solve": {
+   "9": "return String(6*3/(6-4));",
+   "5.4": "return String(9*3/(9-4));",
+   "3.1": "return (32*3/(32-1)).toFixed(1);"
+  },
+  "quantity_asked": "the input x satisfying log₂(4x) − log₂(x − 3) = 3.",
+  "bounds": [
+   "v > 3"
+  ],
+  "distractor_kind": {
+   "9": "wrong procedure: log undone as multiplication. (a) limiting case: no. (b) neighbouring setup: no. (c) estimation bound: domain x > 3 (all options satisfy it). The left side decreases in x, but locating 3 on it needs an evaluation - substitution, not a bound. (d) weak: no - writing log_b y = c as y = bc is a common slip.",
+   "5.4": "wrong procedure: c^2 for 2^c. (a) no. (b) no. (c) inside (3, ∞). (d) no.",
+   "3.1": "wrong procedure: sign slip moving log₂4. (a) no. (b) no. (c) inside (3, ∞), about 0.1 above the domain floor; the floor itself (x = 3, where f(x − 3) is undefined) is not an option. (d) no."
+  }
+ },
+ {
+  "id": "AM20F-07",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "piecewise functions",
+  "subskill": "solving a piecewise-defined equation: each piece's solutions must be checked against that piece's domain",
+  "prompt": "The function f is defined by f(x) = x² − 7 for x < 1 and f(x) = 3x − 2 for x ≥ 1. What is the greatest value of x for which f(x) = 9 ?",
+  "choices": [
+   "11/3",
+   "4",
+   "8",
+   "7/3"
+  ],
+  "correct_answer": "11/3",
+  "explanation": "On the piece x < 1: x² − 7 = 9 gives x = ±4, and only x = −4 satisfies x < 1 (x = 4 is rejected, since f(4) = 3(4) − 2 = 10). On the piece x ≥ 1: 3x − 2 = 9 gives x = 11/3, which satisfies x ≥ 1. The solutions are −4 and 11/3, so the greatest is 11/3. The option \"4\" keeps the positive root of x² − 7 = 9 without checking x < 1 (and so takes it as the greatest solution). The option \"8\" halves 16 instead of taking its square root in x² = 16 and, not checking x < 1, takes 8 as the greatest solution. The option \"7/3\" moves the 2 with the wrong sign, 3x = 9 − 2.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=9+2, d=3; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "4": "return String(Math.sqrt(9+7));",
+   "8": "return String((9+7)/2);",
+   "7/3": "const n=9-2; return n+'/3';"
+  },
+  "quantity_asked": "the greatest x with f(x) = 9, over both pieces.",
+  "bounds": [],
+  "distractor_kind": {
+   "4": "wrong procedure: quadratic root kept without the domain check. (a) limiting case: no. (b) neighbouring setup: the root of x² − 7 = 9 for the unrestricted quadratic; no forced interval. (c) estimation bound: none cheaper than solving the two one-line equations; checking an option by substitution is doing the item. (d) weak: no - ignoring the piece's domain is the error the item tests.",
+   "8": "wrong procedure: halving for square root, domain unchecked. (a) no. (b) no. (c) none. It also keeps the 13j rule: distractors lie beyond the key in the asked (greatest) direction. (d) no.",
+   "7/3": "wrong procedure: sign slip moving −2. (a) no. (b) no. (c) none; 7/3 ≥ 1 so the piece condition does not kill it. (d) no."
+  }
+ },
+ {
+  "id": "AM20F-08",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "trigonometric functions",
+  "subskill": "solving an equation that mixes tan and sin by writing tan as sin/cos and dividing out a nonzero sine",
+  "prompt": "For an angle x with 0° < x < 90°, 3sin x = tan x. To the nearest tenth of a degree, what is the value of x ?",
+  "choices": [
+   "70.5",
+   "19.5",
+   "71.6",
+   "18.4"
+  ],
+  "correct_answer": "70.5",
+  "explanation": "Write tan x = sin x/cos x. Then 3sin x = sin x/cos x, and since sin x ≠ 0 for 0° < x < 90°, dividing by sin x gives 3 = 1/cos x, so cos x = 1/3 and x = cos⁻¹(1/3) ≈ 70.5°. The option \"19.5\" solves sin x = 1/3 instead of cos x = 1/3. The option \"71.6\" drops the sin x factor from both sides as if tan x = 3, so x = tan⁻¹ 3. The option \"18.4\" inverts that, solving tan x = 1/3.",
+  "solve": "return (Math.acos(1/3)*180/Math.PI).toFixed(1);",
+  "distractor_solve": {
+   "19.5": "return (Math.asin(1/3)*180/Math.PI).toFixed(1);",
+   "71.6": "return (Math.atan(3)*180/Math.PI).toFixed(1);",
+   "18.4": "return (Math.atan(1/3)*180/Math.PI).toFixed(1);"
+  },
+  "quantity_asked": "the angle x in (0°, 90°) with 3 sin x = tan x.",
+  "bounds": [
+   "v > 0",
+   "v < 90"
+  ],
+  "distractor_kind": {
+   "19.5": "wrong procedure: sin x = 1/3. (a) limiting case: no. (b) neighbouring setup: the complementary angle of the key; no stem-forced bound separates the two halves of (0°, 90°) without reaching cos x = 1/3, which is the item. (c) estimation bound: (0°, 90°) only. (d) weak: no - sine/cosine swap.",
+   "71.6": "wrong procedure: sin x cancelled as if tan x = 3. (a) no. (b) no. (c) inside (0, 90). (d) no.",
+   "18.4": "wrong procedure: tan x = 1/3. (a) no. (b) no. (c) inside (0, 90). (d) no."
+  }
+ },
+ {
+  "id": "AM20F-09",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "logarithmic functions",
+  "subskill": "fitting a shifted logarithmic function through two points: subtracting the equations eliminates b and turns the log difference into a ratio",
+  "prompt": "The function f is defined by f(x) = log₂(x + a) + b, where a and b are constants and a > 0. In the standard (x,y) coordinate plane, the graph of y = f(x) passes through the points (0, 3) and (6, 5). Which of the following is closest to f(14) ?",
+  "choices": [
+   "6",
+   "5.81",
+   "6.81",
+   "7"
+  ],
+  "correct_answer": "6",
+  "explanation": "The two points give log₂a + b = 3 and log₂(6 + a) + b = 5. Subtracting, log₂((6 + a)/a) = 2, so (6 + a)/a = 4, 6 + a = 4a, and a = 2. Then b = 3 − log₂2 = 2. So f(14) = log₂(16) + 2 = 4 + 2 = 6. The option \"5.81\" finds a = 2 and b = 2 but evaluates log₂14 + 2, dropping the + a inside the logarithm. The option \"6.81\" multiplies instead of adding inside the logarithm, log₂(14 × 2) + 2. The option \"7\" finds a = 2 from the subtraction but takes b = 3 directly from the point (0, 3), as if f(0) were b, giving 4 + 3.",
+  "solve": "const a=6/(4-1); const b=3-Math.log2(a); return String(Math.round((Math.log2(14+a)+b)*100)/100);",
+  "distractor_solve": {
+   "7": "const a=6/(4-1); const b=3; return String(Math.log2(14+a)+b);",
+   "5.81": "const a=6/(4-1); const b=3-Math.log2(a); return (Math.log2(14)+b).toFixed(2);",
+   "6.81": "const a=6/(4-1); const b=3-Math.log2(a); return (Math.log2(14*a)+b).toFixed(2);"
+  },
+  "quantity_asked": "f(14), the function's value at x = 14 (whole function, both constants included).",
+  "bounds": [
+   "v > 5",
+   "v < 7.667"
+  ],
+  "distractor_kind": {
+   "7": "wrong procedure: b read off f(0). (a) no. (b) no. (c) inside (5, 7.667), 0.667 below the cap. (d) no - reading the y-intercept as the vertical shift ignores log₂a, a common slip.",
+   "5.81": "wrong procedure: + a dropped at evaluation. (a) limiting case: the linear extrapolation 5 + (8/6)(2) = 7.67 is the limiting value and was NOT used. (b) neighbouring setup: no. (c) estimation bound over f(14) itself: f is increasing, so f(14) > f(6) = 5; f is concave (a log), so the rise over [6, 14] is less than (8/6) of the rise over [0, 6]: f(14) < 7.667. Interval (5, 7.667). 5.81 is strictly inside. (d) weak: no.",
+   "6.81": "wrong procedure: product instead of sum inside the log. (a) no. (b) no. (c) inside (5, 7.667). (d) no."
+  }
+ },
+ {
+  "id": "AM20S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "counting",
+  "subskill": "circular arrangements with a non-adjacency condition: fix one person to remove rotations, then count the other's allowed seats",
+  "prompt": "Six people, including Ana and Ben, are to be seated around a circular table that has exactly 6 seats. Two seatings are considered the same if one is a rotation of the other. In how many different seatings are Ana and Ben NOT seated next to each other?",
+  "choices": [
+   "72",
+   "48",
+   "36",
+   "96"
+  ],
+  "correct_answer": "72",
+  "explanation": "Fix Ana's seat to remove rotations. Of the 5 remaining seats, 2 are next to Ana, so Ben has 3 allowed seats, and the other 4 people fill the remaining 4 seats in 4! = 24 ways: 3 × 24 = 72. (Equivalently, 5! = 120 seatings in all, minus 2 × 4! = 48 with them together.) The option \"48\" counts the seatings in which Ana and Ben ARE next to each other. The option \"36\" also divides by 2, treating mirror-image seatings as the same, which the stem does not do. The option \"96\" excludes only one of Ana's two neighbouring seats, giving Ben 4 choices: 4 × 24.",
+  "solve": "const f=n=>n<=1?1:n*f(n-1); return String(f(5)-2*f(4));",
+  "distractor_solve": {
+   "36": "const f=n=>n<=1?1:n*f(n-1); return String((f(5)-2*f(4))/2);",
+   "48": "const f=n=>n<=1?1:n*f(n-1); return String(2*f(4));",
+   "96": "const f=n=>n<=1?1:n*f(n-1); return String(4*f(4));"
+  },
+  "quantity_asked": "the number of rotation-distinct seatings of all six people with Ana and Ben not adjacent.",
+  "bounds": [
+   "v > 0",
+   "v < 120"
+  ],
+  "distractor_kind": {
+   "36": "wrong procedure: reflections divided out. (a) no. (b) no. (c) inside (0, 120). (d) no - a standard circular-permutation over-correction.",
+   "48": "wrong procedure: complementary count. (a) limiting case: no. (b) neighbouring setup: answer to 'adjacent'; the only stem-forced bound is the total 5! = 120, and 48 is strictly inside. Deciding which of 48/72 is larger requires the 2-of-5 seat count, which is the item. (c) estimation bound: total 120 caps everything: interval (0, 120). (d) weak: no.",
+   "96": "wrong procedure: only one neighbour excluded. (a) no. (b) no. (c) inside (0, 120), 24 below the cap. (d) no."
+  }
+ },
+ {
+  "id": "AM20S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "probability",
+  "subskill": "probability that a simultaneous draw contains one of each of three colours: product of colour counts over the number of unordered selections",
+  "prompt": "A bag contains 4 red marbles, 3 blue marbles, and 2 green marbles. Three marbles are drawn from the bag at random, all at the same time. What is the probability that the three marbles are all different colors?",
+  "choices": [
+   "2/7",
+   "1/21",
+   "2/21",
+   "3/28"
+  ],
+  "correct_answer": "2/7",
+  "explanation": "There are C(9, 3) = (9 × 8 × 7)/(3 × 2 × 1) = 84 equally likely sets of three marbles. A set with one of each color can be chosen in 4 × 3 × 2 = 24 ways. The probability is 24/84 = 2/7. The option \"1/21\" multiplies (4/9)(3/8)(2/7) for one particular order (red, then blue, then green) and forgets the 3! = 6 orders. The option \"2/21\" computes C(9, 3) by dividing 9 × 8 × 7 by 2 instead of by 3! = 6, getting 252, and 24/252 = 2/21. The option \"3/28\" adds the color counts, 4 + 3 + 2 = 9, instead of multiplying them, 9/84.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=4*3*2, d=9*8*7/6; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "1/21": "const g=(a,b)=>b?g(b,a%b):a; const n=4*3*2, d=9*8*7; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "2/21": "const g=(a,b)=>b?g(b,a%b):a; const n=4*3*2, d=9*8*7/2; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "3/28": "const g=(a,b)=>b?g(b,a%b):a; const n=4+3+2, d=9*8*7/6; const k=g(n,d); return (n/k)+'/'+(d/k);"
+  },
+  "quantity_asked": "P(the three drawn marbles are one red, one blue, one green).",
+  "bounds": [
+   "v > 0",
+   "v < 1"
+  ],
+  "distractor_kind": {
+   "1/21": "wrong procedure: one order only. (a) limiting case: the with-replacement value 16/81 is the limiting case (infinite bag) and was deliberately NOT used, since without replacement favours mixed colours. (b) neighbouring setup: it is P(red, blue, green in that order), an adjacent question; no forced interval puts the key on one side of it for free. (c) estimation bound: none sharper than (0, 1) in one step. (d) weak: no - the missing-orderings error is the commonest one here.",
+   "2/21": "wrong procedure: C(9,3) with /2. (a) no. (b) no. (c) inside (0, 1). (d) no.",
+   "3/28": "wrong procedure: counts added. (a) no. (b) no. (c) inside (0, 1). (d) no."
+  }
+ },
+ {
+  "id": "AM20S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "sets and counting",
+  "subskill": "exactly-one count for three overlapping sets: each pairwise count contains the triple overlap, which must be removed from the exactly-two count",
+  "prompt": "Each of the 100 members of a language club studies French, Spanish, Latin, some combination of these, or none of them. Of the members, 45 study French, 40 study Spanish, and 30 study Latin; 15 study both French and Spanish, 10 study both French and Latin, and 8 study both Spanish and Latin; and 3 study all three languages. (Each count of members who study both of two languages includes the members who study all three.) How many members study exactly one of the three languages?",
+  "choices": [
+   "58",
+   "61",
+   "73",
+   "52"
+  ],
+  "correct_answer": "58",
+  "explanation": "French only = 45 − 15 − 10 + 3 = 23; Spanish only = 40 − 15 − 8 + 3 = 20; Latin only = 30 − 10 − 8 + 3 = 15. So 23 + 20 + 15 = 58 study exactly one. (Check: at least one = 45 + 40 + 30 − 33 + 3 = 85; exactly two = 12 + 7 + 5 = 24; 85 − 24 − 3 = 58.) The option \"61\" takes the 85 who study at least one and subtracts the 24 who study exactly two, but forgets to remove the 3 who study all three. The option \"73\" subtracts the exactly-two and all-three members from all 100 members, forgetting the 15 who study none. The option \"52\" subtracts the sum of the pairwise counts, 33, from 85, treating every pairwise count as separate people in two or more languages.",
+  "solve": "const U=45+40+30-15-10-8+3; const two=(15-3)+(10-3)+(8-3); return String(U-two-3);",
+  "distractor_solve": {
+   "52": "const U=45+40+30-15-10-8+3; return String(U-(15+10+8));",
+   "61": "const U=45+40+30-15-10-8+3; const two=(15-3)+(10-3)+(8-3); return String(U-two);",
+   "73": "const two=(15-3)+(10-3)+(8-3); return String(100-two-3);"
+  },
+  "quantity_asked": "the number of members who study exactly one of French, Spanish, Latin.",
+  "bounds": [
+   "v >= 49",
+   "v <= 75"
+  ],
+  "distractor_kind": {
+   "52": "wrong procedure: pairwise counts treated as disjoint. (a) no. (b) no. (c) inside [49, 75], 3 above the floor. (d) no.",
+   "61": "wrong procedure: triple not removed. (a) limiting case: the no-add-back value 115 − 2(33) = 49 is the limiting case and sits ON the floor; it was NOT used. (b) neighbouring setup: 'at least one' (85) was not used - it lies beyond the cap. (c) estimation bound over the whole exactly-one count: each 'only' count is at least its single total minus both of its pairwise counts (20 + 17 + 12 = 49) and at most its single total minus its larger pairwise count (30 + 25 + 20 = 75). Interval [49, 75]. 61 is strictly inside. (d) weak: no.",
+   "73": "wrong procedure: 'none' forgotten. (a) no. (b) no. (c) inside [49, 75], 2 below the cap. (d) no - ignoring the none-group is common."
+  }
+ },
+ {
+  "id": "AM20S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "regression",
+  "subskill": "the least-squares line passes through the point of means, so the intercept is recovered from the means before predicting",
+  "prompt": "For a set of paired data (x, y), the least-squares regression line has a slope of 2.5. The mean of the x-values in the data set is 8, and the mean of the y-values is 31. What y-value does the regression line predict for x = 12 ?",
+  "choices": [
+   "41",
+   "46.5",
+   "58.5",
+   "61"
+  ],
+  "correct_answer": "41",
+  "explanation": "A least-squares regression line always passes through the point (mean of x, mean of y) = (8, 31). Moving from x = 8 to x = 12 changes the prediction by 2.5 × 4 = 10, so the predicted y-value is 31 + 10 = 41. (The line is y = 2.5x + 11.) The option \"46.5\" scales the mean ratio proportionally, 31/8 × 12, as if the line passed through the origin. The option \"58.5\" computes the intercept as 31 − 2.5, forgetting to multiply the slope by the mean x of 8, then predicts 2.5(12) + 28.5. The option \"61\" uses the mean of y, 31, as the intercept: 2.5(12) + 31.",
+  "solve": "return String(31+2.5*(12-8));",
+  "distractor_solve": {
+   "61": "return String(2.5*12+31);",
+   "46.5": "return String(31/8*12);",
+   "58.5": "const b=31-2.5; return String(2.5*12+b);"
+  },
+  "quantity_asked": "the predicted y at x = 12 from the regression line.",
+  "bounds": [
+   "v > 31"
+  ],
+  "distractor_kind": {
+   "61": "wrong procedure: mean y used as intercept. (a) no. (b) no. (c) inside (31, ∞). (d) no.",
+   "46.5": "wrong procedure: proportional (line through the origin). (a) limiting case: no parameter extreme - the stem does not fix the intercept's sign, so the key is not forced to one side of the proportional value without finding the intercept. (b) neighbouring setup: no. (c) estimation bound: with positive slope and 12 > 8 the prediction exceeds 31 (this bound itself needs the point-of-means fact the item tests); all options satisfy it. No upper bound is forced. Interval (31, ∞). (d) weak: no.",
+   "58.5": "wrong procedure: intercept 31 − 2.5. (a) no. (b) no. (c) inside (31, ∞). (d) no."
+  }
+ },
+ {
+  "id": "AM20S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "counting",
+  "subskill": "counting all rectangles in a grid by choosing two of the horizontal grid lines and two of the vertical grid lines",
+  "prompt": "A rectangular grid is made of unit squares arranged in 4 rows and 5 columns. Counting squares as rectangles, how many different rectangles of any size have all four of their sides along lines of the grid?",
+  "choices": [
+   "150",
+   "60",
+   "110",
+   "100"
+  ],
+  "correct_answer": "150",
+  "explanation": "A grid of 4 rows and 5 columns of squares is drawn with 5 horizontal lines and 6 vertical lines. Every rectangle is fixed by choosing 2 of the horizontal lines and 2 of the vertical lines: C(5, 2) × C(6, 2) = 10 × 15 = 150. The option \"60\" chooses 2 of the 4 rows and 2 of the 5 columns of squares, C(4, 2) × C(5, 2), instead of choosing lines. The option \"110\" leaves out the 40 squares (20 + 12 + 6 + 2) even though the stem counts them. The option \"100\" uses 5 vertical lines instead of 6, C(5, 2) × C(5, 2).",
+  "solve": "const C2=n=>n*(n-1)/2; return String(C2(5)*C2(6));",
+  "distractor_solve": {
+   "60": "const C2=n=>n*(n-1)/2; return String(C2(4)*C2(5));",
+   "100": "const C2=n=>n*(n-1)/2; return String(C2(5)*C2(5));",
+   "110": "const C2=n=>n*(n-1)/2; return String(C2(5)*C2(6)-(20+12+6+2));"
+  },
+  "quantity_asked": "the total number of rectangles (squares included) with sides on the grid lines.",
+  "bounds": [
+   "v >= 20",
+   "v <= 400"
+  ],
+  "distractor_kind": {
+   "60": "wrong procedure: rows/columns of squares instead of lines. (a) limiting case: the unit-square count 20 is the floor and was not used. (b) neighbouring setup: no. (c) estimation bound over all rectangles: at least the 20 unit squares; at most 20 × 20 = 400 (a rectangle is fixed by its top-left and bottom-right unit squares). Interval [20, 400]. 60 is inside. (d) weak: no.",
+   "100": "wrong procedure: line count off by one on one axis. (a) no. (b) no. (c) inside [20, 400]. (d) no - fencepost error.",
+   "110": "wrong procedure: squares excluded. (a) no. (b) neighbouring setup: non-square rectangles; not an extreme of the interval. (c) inside [20, 400]. (d) no."
+  }
+ },
+ {
+  "id": "AM20S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability",
+  "subskill": "probability that three random vertices of a regular hexagon form a right triangle, which requires a diameter of the circumscribed circle as one side",
+  "prompt": "Three of the six vertices of a regular hexagon are chosen at random, and the triangle with those three vertices is drawn. What is the probability that the triangle is a right triangle?",
+  "choices": [
+   "3/5",
+   "3/10",
+   "1/10",
+   "1/5"
+  ],
+  "correct_answer": "3/5",
+  "explanation": "The six vertices lie on a circle, and an inscribed triangle is a right triangle exactly when one of its sides is a diameter. The hexagon has 3 diameters (its long diagonals), and each pairs with any of the other 4 vertices, giving 3 × 4 = 12 right triangles. There are C(6, 3) = 20 triangles in all, so the probability is 12/20 = 3/5. The option \"3/10\" halves the 12, treating the two mirror-image triangles on each diameter as the same triangle. The option \"1/10\" divides the 12 right triangles by 6 × 5 × 4 = 120 ordered choices of vertices. The option \"1/5\" computes C(6, 3) as 6 × 5 × 4/2 = 60.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=3*4, d=6*5*4/6; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "3/10": "const g=(a,b)=>b?g(b,a%b):a; const n=3*4/2, d=6*5*4/6; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "1/10": "const g=(a,b)=>b?g(b,a%b):a; const n=3*4, d=6*5*4; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "1/5": "const g=(a,b)=>b?g(b,a%b):a; const n=3*4, d=6*5*4/2; const k=g(n,d); return (n/k)+'/'+(d/k);"
+  },
+  "quantity_asked": "P(the triangle on three random hexagon vertices is a right triangle).",
+  "bounds": [
+   "v > 0",
+   "v <= 0.9"
+  ],
+  "distractor_kind": {
+   "3/10": "wrong procedure: mirror images merged. (a) limiting case: no. (b) neighbouring setup: no. (c) estimation bound: the 2 equilateral triangles are cheaply seen not to be right, so P ≤ 18/20 = 0.9; no cheap floor. Interval (0, 0.9]. 3/10 inside. (d) weak: no.",
+   "1/10": "wrong procedure: ordered denominator. (a) no. (b) no. (c) inside (0, 0.9]. (d) no - mixing ordered and unordered counts.",
+   "1/5": "wrong procedure: C(6,3) divided by 2 instead of 6. (a) no. (b) no. (c) inside (0, 0.9]. (d) no."
+  }
+ },
+ {
+  "id": "AM20G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "law of cosines",
+  "subskill": "length of a cevian from three side lengths: the law of cosines run twice, first for the angle at B, then in the smaller triangle ABD",
+  "prompt": "In triangle ABC, AB = 12, AC = 15, and BC = 20. Point D lies on side BC so that BD = 11. To the nearest tenth, what is the length of segment AD ?",
+  "choices": [
+   "7.3",
+   "9.5",
+   "8.2",
+   "9.0"
+  ],
+  "correct_answer": "9.5",
+  "explanation": "No angle is given, so find one first. In triangle ABC the law of cosines gives cos B = (AB² + BC² − AC²)/(2 · AB · BC) = (144 + 400 − 225)/480 = 319/480 ≈ 0.6646. Angle B is also an angle of triangle ABD, whose sides at B are AB = 12 and BD = 11, so AD² = 12² + 11² − 2(12)(11)(319/480) = 265 − 175.45 = 89.55 and AD ≈ 9.46, or 9.5. The option \"7.3\" computes the cosine of the wrong angle — angle C, (225 + 400 − 144)/600 ≈ 0.8017 — and uses it at B. The option \"9.0\" places D 11 units from C instead of from B, so it uses BD = 9 with angle B. The option \"8.2\" uses sin B ≈ 0.7472 in place of cos B in the second law-of-cosines step.",
+  "solve": "const cB=(144+400-225)/(2*12*20); return Math.sqrt(144+121-2*12*11*cB).toFixed(1);",
+  "distractor_solve": {
+   "7.3": "const cC=(225+400-144)/(2*15*20); return Math.sqrt(144+121-2*12*11*cC).toFixed(1);",
+   "9.0": "const cB=(144+400-225)/(2*12*20); return Math.sqrt(144+81-2*12*9*cB).toFixed(1);",
+   "8.2": "const cB=(144+400-225)/(2*12*20); const sB=Math.sqrt(1-cB*cB); return Math.sqrt(144+121-2*12*11*sB).toFixed(1);"
+  },
+  "quantity_asked": "The length of segment AD, where D is the point on BC with BD = 11 (not a side of triangle ABC).",
+  "bounds": [
+   "v > 6",
+   "v < Math.sqrt(265)"
+  ],
+  "distractor_kind": {
+   "7.3": "wrong procedure: cosine of angle C used at vertex B. (a) limiting case: no parameter at an extreme. (b) neighbouring setup: it is not AD for any adjacent configuration (it is no cevian of this triangle). (c) cheapest estimates over the whole quantity AD: triangle ADC gives AD > AC − DC = 15 − 9 = 6; angle B is acute because 12² + 20² > 15², so AD² < AB² + BD² = 265, AD < 16.28. Interval (6, 16.28); 7.3 is 1.3 inside the floor. One step finer: AD >= the altitude from A, but the altitude needs the area (Heron) — the item's own work. Bracketing B between 45 and 60 degrees also needs cos B, the item's first step. (d) not weak: cosine of the wrong vertex is the common law-of-cosines slip.",
+   "9.0": "wrong procedure: D located 11 from C (BD = 9). (a) no. (b) it is the length of a different cevian (the point 9 from B), an adjacent setup, but it is not an extreme of (6, 16.28): AD is not monotone in BD across this range (the foot of the altitude is at BH = 12 cos B = 7.98, between 9 and 11 on neither side cheaply). (c) strictly inside (6, 16.28). (d) not weak: misreading which endpoint BD is measured from.",
+   "8.2": "wrong procedure: sin B substituted for cos B. (a) no. (b) no. (c) strictly inside (6, 16.28), 2.2 above the floor. (d) not weak: sine/cosine swap in the law of cosines."
+  }
+ },
+ {
+  "id": "AM20G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "trapezoids",
+  "subskill": "area of a non-isosceles trapezoid from its four sides: the two unequal overhangs found from a pair of Pythagorean equations sharing the height",
+  "prompt": "A trapezoid has parallel sides of lengths 26 centimeters and 10 centimeters. Its two nonparallel sides have lengths 9 centimeters and 14 centimeters. To the nearest tenth of a square centimeter, what is the area of the trapezoid?",
+  "choices": [
+   "124.0",
+   "74.2",
+   "141.3",
+   "116.4"
+  ],
+  "correct_answer": "141.3",
+  "explanation": "Drop perpendiculars from the ends of the 10-cm side. They cut the 26-cm side into an overhang x under the 9-cm leg, a 10-cm middle, and an overhang y under the 14-cm leg, so x + y = 16. Both right triangles share the height h: h² = 81 − x² = 196 − y². Then y² − x² = 115, and since y² − x² = (y − x)(y + x) = 16(y − x), y − x = 115/16 = 7.1875. So x = (16 − 7.1875)/2 = 4.40625 and h² = 81 − 4.40625² ≈ 61.585, h ≈ 7.848. Area = (26 + 10)/2 × h = 18 × 7.848 ≈ 141.26, or 141.3. The option \"74.2\" assumes equal overhangs of 8 (an isosceles trapezoid) and takes the height from the 9-cm leg, h = √17. The option \"124.0\" factors y² − x² but divides 115 by the long side 26 instead of by x + y = 16. The option \"116.4\" splits the 16 cm of overhang in proportion to the legs, x = 16 × 9/23.",
+  "solve": "const yx=(196-81)/16; const x=(16-yx)/2; return (18*Math.sqrt(81-x*x)).toFixed(1);",
+  "distractor_solve": {
+   "74.2": "return (18*Math.sqrt(81-64)).toFixed(1);",
+   "124.0": "const yx=(196-81)/26; const x=(16-yx)/2; return (18*Math.sqrt(81-x*x)).toFixed(1);",
+   "116.4": "const x=16*9/23; return (18*Math.sqrt(81-x*x)).toFixed(1);"
+  },
+  "quantity_asked": "The area of the whole trapezoid (mean of the parallel sides times the height).",
+  "bounds": [
+   "v > 0",
+   "v < 162"
+  ],
+  "distractor_kind": {
+   "74.2": "wrong procedure: isosceles assumption (overhangs 8 and 8) with the 9-cm leg. (a) limiting case: equal overhangs are not an extreme of the feasible overhangs here — the extremes would be a vertical 9-cm leg (h = 9, area 162) or a degenerate one. (b) neighbouring setup: the isosceles trapezoid with legs 9 is an adjacent shape, but it is not at an end of the interval. (c) cheapest estimate over the whole area: the height is less than the shorter leg, 9, so area < 18 x 9 = 162; no cheap lower bound (the 9-cm leg may be nearly flat). Interval (0, 162); 74.2 strictly inside. The other leg gives h <= sqrt(196 - 49) = 12.1 (its overhang is at least 16 - 9 = 7), which is looser. (d) not weak: the most common trapezoid shortcut.",
+   "124.0": "wrong procedure: (y - x)(y + x) with y + x taken as 26. (a) no. (b) no. (c) strictly inside (0, 162). (d) not weak: a named factoring slip.",
+   "116.4": "wrong procedure: overhangs split in the ratio of the legs, 9 : 14. (a) no. (b) no. (c) strictly inside (0, 162). (d) not weak: proportional split is a common guess for unequal legs."
+  }
+ },
+ {
+  "id": "AM20G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "rectangles",
+  "subskill": "distance from an interior point to the fourth corner of a rectangle: the sums of squared distances to OPPOSITE corners are equal (coordinates give it in two lines)",
+  "prompt": "Point P lies inside rectangle ABCD, where vertices A and C are opposite each other. The distances from P to three of the vertices are PA = 7, PB = 10, and PC = 11. To the nearest tenth, what is the distance from P to vertex D ?",
+  "choices": [
+   "8.0",
+   "13.1",
+   "8.4",
+   "5.3"
+  ],
+  "correct_answer": "8.4",
+  "explanation": "Place A at (0, 0), B at (w, 0), C at (w, h), and D at (0, h), with P at (x, y). Then PA² + PC² = x² + y² + (w − x)² + (h − y)² and PB² + PD² = (w − x)² + y² + x² + (h − y)², which are the same sum. So PD² = PA² + PC² − PB² = 49 + 121 − 100 = 70 and PD = √70 ≈ 8.37, or 8.4. The option \"8.0\" applies the relation to the distances themselves, 7 + 11 − 10. The option \"13.1\" pairs adjacent corners, PA² + PD² = PB² + PC², so PD² = 100 + 121 − 49 = 172. The option \"5.3\" pairs the other adjacent corners, PA² + PB² = PC² + PD², so PD² = 49 + 100 − 121 = 28.",
+  "solve": "return Math.sqrt(49+121-100).toFixed(1);",
+  "distractor_solve": {
+   "8.0": "return (7+11-10).toFixed(1);",
+   "13.1": "return Math.sqrt(100+121-49).toFixed(1);",
+   "5.3": "return Math.sqrt(49+100-121).toFixed(1);"
+  },
+  "quantity_asked": "The distance PD from the interior point P to vertex D (D is opposite B).",
+  "bounds": [
+   "v > 0",
+   "v < 25"
+  ],
+  "distractor_kind": {
+   "8.0": "wrong procedure: the opposite-corner relation applied to lengths, not squares. (a) limiting case: no parameter at an extreme. (b) neighbouring setup: no. (c) cheapest estimates over the whole quantity PD: positivity; PD < PA + AD and AD < AC <= PA + PC = 18, so PD < 25; with P inside, AC^2 >= PA^2 + PC^2 = 170 (P lies inside the circle on diameter AC), which bounds the rectangle, not PD. No cheap bound separates 8.0 from 8.37 — (7 + 11 - 10)^2 versus 7^2 + 11^2 - 10^2 has no general order. Interval (0, 25). (d) not weak: linearising a squared relation is the standard slip.",
+   "13.1": "wrong procedure: adjacent corners paired. (a) no. (b) no. (c) strictly inside (0, 25). (d) not weak: pairing B with C instead of with D.",
+   "5.3": "wrong procedure: the other adjacent pairing. (a) no. (b) no. (c) strictly inside (0, 25). (d) not weak: same family, the other wrong diagonal."
+  }
+ },
+ {
+  "id": "AM20G-06",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "equilateral triangles",
+  "subskill": "side of an equilateral triangle from the distances of an interior point to its three sides: the distances sum to the altitude (split the area into three triangles), then side = 2h/sqrt3",
+  "prompt": "Point P lies inside an equilateral triangle. The perpendicular distances from P to the three sides of the triangle are 2 units, 3.5 units, and 4 units. To the nearest hundredth of a unit, what is the length of each side of the triangle?",
+  "choices": [
+   "13.44",
+   "14.25",
+   "10.97",
+   "16.45"
+  ],
+  "correct_answer": "10.97",
+  "explanation": "Let each side be s. Joining P to the three vertices splits the triangle into three triangles, each with a side of length s as its base and one of the distances as its height, so the area is ½s(2) + ½s(3.5) + ½s(4) = ½s(9.5). The area is also ½s·h, where h is the altitude, so h = 9.5: the three distances add up to the altitude. In an equilateral triangle h = (√3/2)s, so s = 2(9.5)/√3 = 19/√3 ≈ 10.97. The option \"13.44\" uses a 45°-45°-90° ratio, s = h√2. The option \"16.45\" multiplies the altitude by √3 instead of dividing, s = h√3. The option \"14.25\" treats the altitude as two-thirds of the side (the centroid fraction), s = 1.5h.",
+  "solve": "const h=2+3.5+4; return (2*h/Math.sqrt(3)).toFixed(2);",
+  "distractor_solve": {
+   "13.44": "const h=2+3.5+4; return (h*Math.SQRT2).toFixed(2);",
+   "16.45": "const h=2+3.5+4; return (h*Math.sqrt(3)).toFixed(2);",
+   "14.25": "const h=2+3.5+4; return (1.5*h).toFixed(2);"
+  },
+  "quantity_asked": "The side length of the equilateral triangle (not its altitude, which is 9.5).",
+  "bounds": [
+   "v > 9.5",
+   "v < 19"
+  ],
+  "distractor_kind": {
+   "13.44": "wrong procedure: s = h sqrt2 (45-45-90 ratio). (a) limiting case: no — s = h (9.5) and s = 2h (19) are the bounds and neither is an option. (b) neighbouring setup: no. (c) cheapest estimate over the whole quantity s: once the altitude is 9.5 (the item's first step), s > h because the altitude is a leg of a right triangle whose hypotenuse is a side, and s < 2h because half the side is the other leg and is shorter than the altitude (the angle at the base is 60 > 45). Interval (9.5, 19); 13.44 strictly inside. Without the altitude, no bound on s exists at all — every distance only says s is large enough to contain them. One step finer is s = 2h/sqrt3 itself. (d) not weak: the wrong special-triangle ratio.",
+   "16.45": "wrong procedure: multiplied by sqrt3 instead of dividing. (a) no. (b) no. (c) strictly inside (9.5, 19), 2.55 below the cap. (d) not weak: inverting the sqrt3/2 ratio.",
+   "14.25": "wrong procedure: altitude taken as two-thirds of the side (centroid fraction), s = 1.5h. (a) limiting case: no — it is not an end of (9.5, 19); it happens to be the midpoint of that pair, which is not itself a bound. (b) neighbouring setup: no. (c) strictly inside (9.5, 19), 4.75 from each end. (d) not weak: confusing the altitude with the centroid distance."
+  }
+ },
+ {
+  "id": "AM20G-07",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "law of cosines",
+  "subskill": "distance from the start after two legs given as bearings: the triangle's included angle must be built from the bearings (180 minus the turn), then the law of cosines",
+  "prompt": "A boat leaves a dock and travels 120 kilometers on a bearing of 040° (40° clockwise from due north). It then turns and travels 85 kilometers on a bearing of 150°. To the nearest tenth of a kilometer, how far is the boat from the dock?",
+  "choices": [
+   "169.1",
+   "121.0",
+   "198.2",
+   "77.4"
+  ],
+  "correct_answer": "121.0",
+  "explanation": "The boat turns from a heading of 040° to a heading of 150°, a turn of 110°. The angle inside the triangle at the turning point is the supplement of the turn, 180° − 110° = 70°. By the law of cosines, d² = 120² + 85² − 2(120)(85)cos 70° = 21,625 − 20,400(0.34202) ≈ 14,648, so d ≈ 121.0 km. The option \"169.1\" uses the turn, 110°, as the included angle. The option \"198.2\" uses the second bearing, 150°, as the included angle. The option \"77.4\" uses the first bearing, 40°, as the included angle.",
+  "solve": "const D=Math.PI/180; return Math.sqrt(120*120+85*85-2*120*85*Math.cos(70*D)).toFixed(1);",
+  "distractor_solve": {
+   "169.1": "const D=Math.PI/180; return Math.sqrt(120*120+85*85-2*120*85*Math.cos(110*D)).toFixed(1);",
+   "198.2": "const D=Math.PI/180; return Math.sqrt(120*120+85*85-2*120*85*Math.cos(150*D)).toFixed(1);",
+   "77.4": "const D=Math.PI/180; return Math.sqrt(120*120+85*85-2*120*85*Math.cos(40*D)).toFixed(1);"
+  },
+  "quantity_asked": "The straight-line distance from the dock to the boat's final position.",
+  "bounds": [
+   "v > 35",
+   "v < 205"
+  ],
+  "distractor_kind": {
+   "169.1": "wrong procedure: the turn angle used as the included angle. (a) limiting case: no — the straight-ahead (205) and full-reversal (35) values are the extremes and are not options; the right-angle value 147.1 was deliberately not used (it is the Pythagorean neighbour). (b) neighbouring setup: the turn-angle triangle is an adjacent reading, but at 169.1 it is not at an end of (35, 205). (c) cheapest estimate over the whole distance: triangle inequality, 120 - 85 < d < 120 + 85, interval (35, 205). Bracketing the included angle needs the included angle, which is the decision the item tests. (d) not weak: the classic bearings error.",
+   "198.2": "wrong procedure: second bearing used as the included angle. (a) no. (b) no. (c) strictly inside (35, 205), 6.8 below the cap. (d) not weak: using a bearing directly as a triangle angle.",
+   "77.4": "wrong procedure: first bearing used as the included angle. (a) no. (b) no. (c) strictly inside (35, 205). (d) not weak: same family, the other bearing."
+  }
+ },
+ {
+  "id": "AM20G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "triangles and ratios",
+  "subskill": "the ratio in which one cevian cuts another, from two given side ratios (Menelaus on triangle ADC, or mass points, or areas)",
+  "prompt": "In triangle ABC, point D lies on side BC so that BD : DC = 2 : 3, and point E lies on side AC so that AE : EC = 1 : 2. Segments AD and BE intersect at point P. To the nearest hundredth, what is the value of AP/PD ?",
+  "choices": [
+   "5.00",
+   "1.25",
+   "3.33",
+   "0.83"
+  ],
+  "correct_answer": "1.25",
+  "explanation": "Line BE crosses the sides of triangle ADC: it meets AD at P, DC extended at B, and CA at E. Menelaus's theorem gives (AP/PD)(DB/BC)(CE/EA) = 1. Here DB/BC = 2/5 and CE/EA = 2, so (AP/PD)(2/5)(2) = 1 and AP/PD = 5/4 = 1.25. (With masses: put 3 at B and 2 at C so D balances BC, then 4 at A so E balances AC; D carries 5, so AP/PD = 5/4.) The option \"5.00\" inverts the ratio on AC, using EA/CE = 1/2 in place of CE/EA. The option \"0.83\" uses DC/BC = 3/5 in place of DB/BC. The option \"3.33\" makes both inversions.",
+  "solve": "const DBBC=2/5, CEEA=2; return (1/(DBBC*CEEA)).toFixed(2);",
+  "distractor_solve": {
+   "5.00": "const DBBC=2/5, EACE=1/2; return (1/(DBBC*EACE)).toFixed(2);",
+   "0.83": "const DCBC=3/5, CEEA=2; return (1/(DCBC*CEEA)).toFixed(2);",
+   "3.33": "const DCBC=3/5, EACE=1/2; return (1/(DCBC*EACE)).toFixed(2);"
+  },
+  "quantity_asked": "The ratio AP/PD along cevian AD (not BP/PE).",
+  "bounds": [
+   "v > 0"
+  ],
+  "distractor_kind": {
+   "5.00": "wrong procedure: AE : EC inverted. (a) limiting case: no — the extremes are E at A (ratio 0) and E at C (P at D, ratio unbounded). (b) neighbouring setup: it is AP/PD for E with AE : EC = 2 : 1, an adjacent configuration, not at an extreme of (0, infinity). (c) cheapest estimate over the whole quantity: monotonicity in E's position gives only (0, infinity) without a reference value; the midpoint reference (E at the midpoint gives 2.5) costs the same Menelaus step as the item. (d) not weak: ratio inversion is the standard mass-point / Menelaus slip.",
+   "0.83": "wrong procedure: DC/BC in place of DB/BC. (a) no. (b) adjacent configuration (BD : DC = 3 : 2), not an extreme. (c) inside (0, infinity). (d) not weak.",
+   "3.33": "wrong procedure: both ratios inverted. (a) no. (b) no. (c) inside (0, infinity). (d) not weak."
+  }
+ },
+ {
+  "id": "AM20G-10",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "squares and octagons",
+  "subskill": "overlap of a square and its 45-degree rotation about the center: the four corner pieces are isosceles right triangles whose HEIGHT, not leg, is half the diagonal minus half the side",
+  "prompt": "A square with sides 10 centimeters long is rotated 45° about its center, and the rotated copy is placed on top of the original square. The region covered by both squares is an octagon. To the nearest tenth of a square centimeter, what is the area of the octagon?",
+  "choices": [
+   "91.4",
+   "87.5",
+   "82.8",
+   "95.7"
+  ],
+  "correct_answer": "82.8",
+  "explanation": "Each corner of the rotated square reaches 5√2 ≈ 7.071 cm from the center, while each side of the original square is 5 cm from the center. So each corner of the rotated square sticks out past the original by a small isosceles right triangle whose height (from the right angle to the long side) is t = 5√2 − 5 ≈ 2.071. Such a triangle has long side 2t and area ½(2t)(t) = t² ≈ 4.289. The octagon is the rotated square minus these four triangles: 100 − 4t² ≈ 100 − 17.157 = 82.84, or 82.8. The option \"91.4\" treats t as each triangle's legs, area ½t². The option \"87.5\" assumes each cut-off leg is half the octagon's side, so s + s = 10 and the legs are 2.5. The option \"95.7\" treats t as each triangle's long side, area t²/4.",
+  "solve": "const t=5*Math.SQRT2-5; return (100-4*t*t).toFixed(1);",
+  "distractor_solve": {
+   "91.4": "const t=5*Math.SQRT2-5; return (100-4*0.5*t*t).toFixed(1);",
+   "87.5": "const l=2.5; return (100-4*0.5*l*l).toFixed(1);",
+   "95.7": "const t=5*Math.SQRT2-5; return (100-4*t*t/4).toFixed(1);"
+  },
+  "quantity_asked": "The area of the octagon common to both squares.",
+  "bounds": [
+   "v > 25*Math.PI",
+   "v < 100"
+  ],
+  "distractor_kind": {
+   "91.4": "wrong procedure: t taken as the legs of each corner triangle. (a) limiting case: no — the full square (100) and the inscribed circle (78.54) are the bounds and neither is an option. (b) neighbouring setup: no. (c) cheapest estimates over the whole octagon: it contains the circle of radius 5 inscribed in both squares, so area > 25pi = 78.54; it lies inside the original square, so area < 100. One step finer: the octagon lies inside the circle through its vertices, radius sqrt(25 + t^2) = 5.41, area 92.0 — but that needs t, the item's own quantity. Interval (78.54, 100). (d) not weak: height vs leg of a 45-45-90 triangle.",
+   "87.5": "wrong procedure: leg = half the hypotenuse in a 45-45-90 triangle. (a) no — the equal-thirds reading (legs 10/3, area 77.8) is below the circle bound and was not used. (b) no. (c) strictly inside (78.54, 100). (d) not weak: a named 45-45-90 ratio slip.",
+   "95.7": "wrong procedure: t taken as the long side of each corner triangle. (a) no. (b) no. (c) strictly inside (78.54, 100), 4.3 below the cap. (d) borderline: same family as \"91.4\" (misplacing t in the 45-45-90 triangle), declared so the graders can rule."
+  }
+ },
+ {
+  "id": "AM20I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "weighted averages",
+  "subskill": "weighted course grade with a drop-the-lowest rule inside one category",
+  "prompt": "In a chemistry course, the final grade is a weighted average: homework counts 15%, quizzes 25%, the midterm exam 25%, and the final exam 35%. The quiz average is computed after dropping each student's single lowest quiz score. Dana's homework average is 92, her six quiz scores are 88, 64, 93, 52, 85, and 76, her midterm exam score is 70, and her final exam score is 86. To the nearest tenth, what is Dana's final grade?",
+  "choices": [
+   "82.3",
+   "80.9",
+   "81.7",
+   "82.8"
+  ],
+  "correct_answer": "81.7",
+  "explanation": "Drop the lowest quiz, 52. The other five quizzes total 88 + 64 + 93 + 85 + 76 = 406, so the quiz average is 406 / 5 = 81.2. The final grade is 0.15(92) + 0.25(81.2) + 0.25(70) + 0.35(86) = 13.8 + 20.3 + 17.5 + 30.1 = 81.7. The option \"82.3\" gives the four parts equal weight: (92 + 81.2 + 70 + 86) / 4 = 82.3. The option \"82.8\" swaps the homework and quiz weights, counting homework 25% and quizzes 15%: 23 + 12.18 + 17.5 + 30.1 = 82.78. The option \"80.9\" treats the two exams as one 60% category and averages them equally, 0.60(78) + 13.8 + 20.3 = 80.9, ignoring that the final counts more than the midterm.",
+  "solve": "const q=(88+64+93+85+76)/5; const g=0.15*92+0.25*q+0.25*70+0.35*86; return (Math.round(g*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "82.3": "const q=(88+64+93+85+76)/5; const g=(92+q+70+86)/4; return (Math.round(g*10)/10).toFixed(1);",
+   "82.8": "const q=(88+64+93+85+76)/5; const g=0.25*92+0.15*q+0.25*70+0.35*86; return (Math.round(g*10)/10).toFixed(1);",
+   "80.9": "const q=(88+64+93+85+76)/5; const g=0.15*92+0.25*q+0.60*(70+86)/2; return (Math.round(g*10)/10).toFixed(1);"
+  },
+  "quantity_asked": "Dana's weighted final grade (one number, all four categories), to the nearest tenth.",
+  "bounds": [
+   "v > 80.48 (dropping the lowest quiz cannot lower the quiz average, so quiz average >= mean of all six = 76.33; grade >= 13.8 + 0.25(76.33) + 17.5 + 30.1)",
+   "v < 84.65 (quiz average <= highest quiz 93)",
+   "v < 92 (max component)",
+   "v > 52 (min score)"
+  ],
+  "distractor_kind": {
+   "82.3": "wrong procedure: equal weights for the four categories (the 'other averaging rule' in category weight, not in the quizzes). (a) not a parameter extreme: the no-drop value 80.48 (limiting case, sits ON the lower bound) and the drop-but-divide-by-6 value 78.3 were deliberately NOT used; (b) it is the equal-weight neighbour, but no stem-forced bound separates it from the key - the two differ only through 0.10(92) - 0.10(86), which takes the item's own arithmetic; (c) cheapest whole-quantity bracket: exams and homework are fixed (61.4 of the grade), quiz average lies between the six-quiz mean 76.33 (dropping cannot lower it) and the top score 93, so grade in (80.48, 84.65); 82.3 strictly inside. (d) real error: ignoring stated weights.",
+   "82.8": "wrong procedure: homework and quiz weights swapped. (a) no; (b) no adjacent problem; (c) inside (80.48, 84.65); (d) real misread of a weight list.",
+   "80.9": "wrong procedure: exams lumped into one equally-split 60% category. (a) not an extreme; (b) no; (c) inside (80.48, 84.65), 0.42 above the drop-floor 80.48, which was checked one step finer (the six-quiz mean, not the lowest quiz). (d) real error: averaging two exams before weighting."
+  }
+ },
+ {
+  "id": "AM20I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "unit conversion",
+  "subskill": "utility bill from meter readings: cubic feet to CCF, a per-unit charge on all use and a second per-unit charge on a percent of use, plus a fixed charge",
+  "prompt": "A city bills water by the CCF, where 1 CCF = 100 cubic feet. At the start of a billing period a household's water meter read 48,215 cubic feet, and at the end of the period it read 49,067 cubic feet. The bill has three parts: a fixed service charge of $14.50; a water charge of $4.10 per CCF used; and a sewer charge of $5.35 per CCF on 90% of the water used (the other 10% is assumed to go to lawn watering and is not charged for sewer). What is the total bill, in dollars?",
+  "choices": [
+   "90.46",
+   "53.99",
+   "91.52",
+   "86.96"
+  ],
+  "correct_answer": "90.46",
+  "explanation": "The household used 49,067 − 48,215 = 852 cubic feet, which is 8.52 CCF. The water charge is 8.52 × 4.10 = $34.932. The sewer charge applies to 0.90 × 8.52 = 7.668 CCF: 7.668 × 5.35 = $41.0238. The total is 14.50 + 34.932 + 41.0238 ≈ $90.46. The option \"91.52\" swaps the two rates, charging water at $5.35 on all 8.52 CCF and sewer at $4.10 on 90% of it. The option \"86.96\" applies the 90% to the water charge as well as to the sewer charge. The option \"53.99\" charges sewer on the 10% that goes to the lawn, 0.10 × 8.52 × 5.35, instead of on the 90%.",
+  "solve": "const u=(49067-48215)/100; return (14.5+u*4.10+0.9*u*5.35).toFixed(2);",
+  "distractor_solve": {
+   "91.52": "const u=(49067-48215)/100; return (14.5+u*5.35+0.9*u*4.10).toFixed(2);",
+   "86.96": "const u=(49067-48215)/100; return (14.5+0.9*u*4.10+0.9*u*5.35).toFixed(2);",
+   "53.99": "const u=(49067-48215)/100; return (14.5+u*4.10+0.1*u*5.35).toFixed(2);"
+  },
+  "quantity_asked": "The household's total bill for the period (fixed + water + sewer), in dollars.",
+  "bounds": [
+   "v > 49.43 (fixed + water alone, no sewer)",
+   "v < 95.01 (sewer charged on all 8.52 CCF)",
+   "v > 14.50"
+  ],
+  "distractor_kind": {
+   "91.52": "wrong procedure: water and sewer rates swapped. (a) not a parameter extreme: the no-sewer value 49.43 and the sewer-on-all-water value 95.01 (the limiting cases of the 90% share) are absent; (b) no adjacent problem; (c) cheapest whole-quantity bracket (49.43, 95.01): the sewer share is between 0% and 100% of use; 91.52 strictly inside (also below the one-step cap 14.50 + 8.52 x 9.45). (d) real error.",
+   "86.96": "wrong procedure: 90% applied to both per-CCF charges. (a) not the uniform-base extreme (the 100%-for-both value 95.01 is absent); (b) no; (c) inside (49.43, 95.01). (d) real error.",
+   "53.99": "wrong procedure: sewer charged on the exempt 10%. (a) not the 0% extreme (49.43, absent); (b) it is the complement share, inside the interval; (c) inside (49.43, 95.01), 4.56 above the no-sewer floor. (d) real misread. Key interior (one option above, two below)."
+  }
+ },
+ {
+  "id": "AM20I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates and percents",
+  "subskill": "lodging bill: counting nights in a date range by day of week, tax on room charges only, per-night untaxed fee",
+  "prompt": "A hotel charges $142 per night for Sunday through Thursday nights and $189 per night for Friday and Saturday nights. An 11% tax is added to the room charges. A resort fee of $24.85 per night, which is not taxed, is then added. A guest checks in on Thursday, March 5, and checks out on the morning of Tuesday, March 10. What is the guest's total bill, in dollars?",
+  "choices": [
+   "1030.36",
+   "1068.86",
+   "917.29",
+   "1016.69"
+  ],
+  "correct_answer": "1016.69",
+  "explanation": "The guest stays the nights of Thursday, Friday, Saturday, Sunday, and Monday, March 5 through March 9: 5 nights. Thursday, Sunday, and Monday nights are $142 each and Friday and Saturday nights are $189 each, so the room charges are 3(142) + 2(189) = $804. With 11% tax that is 804 × 1.11 = $892.44. The resort fee for 5 nights is 5 × 24.85 = $124.25, for a total of 892.44 + 124.25 = $1,016.69. The option \"1068.86\" treats Sunday night as a weekend night, pricing 3 nights at $189 and 2 at $142. The option \"1030.36\" taxes the resort fee along with the room: (804 + 124.25) × 1.11. The option \"917.29\" adds the resort fee once instead of once per night.",
+  "solve": "const room=3*142+2*189; return (room*1.11+5*24.85).toFixed(2);",
+  "distractor_solve": {
+   "1068.86": "const room=2*142+3*189; return (room*1.11+5*24.85).toFixed(2);",
+   "1030.36": "const room=3*142+2*189; return ((room+5*24.85)*1.11).toFixed(2);",
+   "917.29": "const room=3*142+2*189; return (room*1.11+24.85).toFixed(2);"
+  },
+  "quantity_asked": "The guest's whole bill for the stay (room + tax + fees, all nights), in dollars.",
+  "bounds": [
+   "v > 912.35 (all 5 nights at the weeknight rate)",
+   "v < 1173.20 (all 5 nights at the weekend rate)"
+  ],
+  "distractor_kind": {
+   "1068.86": "wrong procedure: Sunday night priced as a weekend night. (a) not a parameter extreme: the all-weeknight 912.35 and all-weekend 1173.20 values are absent; (b) not the 6-night inclusive-count neighbour (1199.16, deliberately NOT used - it lies beyond the all-weekend cap); (c) cheapest whole-quantity bracket (912.35, 1173.20): every night costs between $142 and $189; strictly inside. (d) real error (weekend read as Fri-Sun).",
+   "1030.36": "wrong procedure: tax applied to the fee too. (a) no; (b) no; (c) inside (912.35, 1173.20). (d) real error.",
+   "917.29": "wrong procedure: per-night fee charged once. (a) not the no-fee value (892.44, absent; it would sit below the all-weeknight floor); (b) no; (c) inside (912.35, 1173.20), 4.94 above the floor; checked one step finer - the floor already uses the cheapest rate for every night, and no cheaper per-night price exists in the stem. (d) real misread. Key interior."
+  }
+ },
+ {
+  "id": "AM20I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "proportional reasoning",
+  "subskill": "profit shared in proportion to capital x time: reading months invested from join times, not from amounts or months alone",
+  "prompt": "Three partners shared a year's profit of $23,100 in proportion to the amount each one invested multiplied by the number of months that money was invested. Ana invested $15,000 for all 12 months of the year. Ben invested $24,000, but he joined when 7 months of the year had already passed and kept his money in until the end of the year. Cara invested $10,000 for the last 9 months of the year. What was Ben's share of the profit, in dollars?",
+  "choices": [
+   "8400.00",
+   "11314.29",
+   "7107.69",
+   "8860.27"
+  ],
+  "correct_answer": "7107.69",
+  "explanation": "Ben's money was invested for 12 − 7 = 5 months. The amount-times-months products are Ana 15,000 × 12 = 180,000, Ben 24,000 × 5 = 120,000, and Cara 10,000 × 9 = 90,000, a total of 390,000. Ben's share is 23,100 × 120,000 / 390,000 ≈ $7,107.69. The option \"11314.29\" shares by the amounts alone: 23,100 × 24 / 49. The option \"8860.27\" counts Ben's 7 months before joining as his months invested: 24,000 × 7 = 168,000 out of 438,000. The option \"8400.00\" reads Cara's \"last 9 months\" as joining after 9 months, giving her 3 months: 120,000 out of 330,000.",
+  "solve": "const a=15000*12,b=24000*5,c=10000*9; return (23100*b/(a+b+c)).toFixed(2);",
+  "distractor_solve": {
+   "11314.29": "return (23100*24000/(15000+24000+10000)).toFixed(2);",
+   "8860.27": "const a=15000*12,b=24000*7,c=10000*9; return (23100*b/(a+b+c)).toFixed(2);",
+   "8400.00": "const a=15000*12,b=24000*5,c=10000*3; return (23100*b/(a+b+c)).toFixed(2);"
+  },
+  "quantity_asked": "Ben's dollar share of the $23,100 profit.",
+  "bounds": [
+   "v < 11550 (Ben's product 120,000 is below Ana's 180,000, so Ben gets less than half)",
+   "v > 0",
+   "v < 23100"
+  ],
+  "distractor_kind": {
+   "11314.29": "wrong procedure: shares by amount only (the time factor ignored). (a) not the equal-split limiting case 7700 (absent; Ben's share is forced away from it only by the products); (b) it is the amount-only neighbour; checked whether the stem bounds the key away from it cheaply: Ben < Ana in amount x months caps Ben below 11,550, and 11,314.29 is strictly inside (2% margin); no one-step comparison orders it against the key without computing the products. (c) whole-quantity bracket (0, 11550); strictly inside. (d) real error.",
+   "8860.27": "wrong procedure: Ben's 7 months before joining used as his months. (a) no; (b) no adjacent problem with a stem bound; (c) inside (0, 11550). (d) real misread.",
+   "8400.00": "wrong procedure: Cara's 'last 9 months' read as 3 months. (a) no; (b) no; (c) inside (0, 11550). (d) real misread. Key is the SMALLEST option on this item: all three error paths raise Ben's weight; not a greatest/least stem, so 13j does not apply."
+  }
+ },
+ {
+  "id": "AM20I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "percents",
+  "subskill": "share of a total after its two parts change by different percents: each part grows on its own base and the total must be renormalized",
+  "prompt": "At the start of a year, 65% of the value of Rosa's investment account was in a stock fund and the rest was in a bond fund. During the year, the value of her stock fund holdings increased by 12% and the value of her bond fund holdings decreased by 3%. She made no deposits or withdrawals. At the end of the year, to the nearest tenth of a percent, what percent of the account's value was in the stock fund?",
+  "choices": [
+   "67.5",
+   "66.1",
+   "68.2",
+   "67.0"
+  ],
+  "correct_answer": "68.2",
+  "explanation": "Take the starting value as 100. The stock holdings grow to 65 × 1.12 = 72.8 and the bond holdings fall to 35 × 0.97 = 33.95, so the account is worth 106.75. The stock share is 72.8 / 106.75 ≈ 0.6820, or 68.2%. The option \"67.5\" grows the stocks but forgets that the bonds fell, dividing 72.8 by 72.8 + 35 = 107.8. The option \"66.1\" lowers the bonds to 33.95 but treats the account as still worth 100, taking 100 − 33.95. The option \"67.0\" multiplies the two funds' growth factors as if both changes applied to the whole account in turn, dividing 72.8 by 100 × 1.12 × 0.97 = 108.64.",
+  "solve": "const s=65*1.12,b=35*0.97; return (Math.round(s/(s+b)*1000)/10).toFixed(1);",
+  "distractor_solve": {
+   "67.5": "const s=65*1.12; return (Math.round(s/(s+35)*1000)/10).toFixed(1);",
+   "66.1": "return (Math.round((100-35*0.97)*10)/10).toFixed(1);",
+   "67.0": "const s=65*1.12; return (Math.round(s/(100*1.12*0.97)*1000)/10).toFixed(1);"
+  },
+  "quantity_asked": "The stock fund’s percent of the whole account’s end-of-year value.",
+  "bounds": [
+   "v > 65 (stocks rose and bonds fell, so the stock share rose)",
+   "v < 72.8 (the account grew, so the share is below 72.8 / 100)",
+   "v < 75.05 (looser: account fell at most 3%)"
+  ],
+  "distractor_kind": {
+   "67.5": "wrong procedure: renormalizes without applying the bond loss. (a) not a limiting case: the no-change share 65 and the no-renormalizing share 72.8 (the no-last-step value) are absent; (b) no adjacent problem with a stem bound; (c) cheapest whole-quantity bracket (65, 72.8): share rose, and the total grew so the share is below 72.8; strictly inside. One step finer: the total grew by less than 12% and more than 0, which leaves (65, 72.8). (d) real error.",
+   "66.1": "wrong procedure: applies only the bond change and keeps the total at 100. (a) not the no-change 65 (absent); (b) no; (c) inside (65, 72.8). (d) real error.",
+   "67.0": "wrong procedure: compounds the two growth factors over the whole account. (a) no; (b) no; (c) inside (65, 72.8). (d) real error. Key is the LARGEST option on this item: each error over- or under-states the denominator in the direction that lowers the share; option values spaced 0.6 / 0.5 / 0.7, not a ladder."
+  }
+ },
+ {
+  "id": "AM20I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates and percents",
+  "subskill": "weekly pay with overtime beyond 40 hours where holiday hours are paid double and excluded from the overtime count",
+  "prompt": "Omar is paid $18.00 per hour. Hours he works on a paid holiday are paid at double time (2 times his hourly rate) and are not counted toward the 40-hour overtime threshold. All other hours beyond 40 in a week are paid at time and a half (1.5 times his hourly rate). One week, Omar worked 8 hours on Monday, which was a paid holiday, and 10, 11, 9, 6, and 9 hours on Tuesday through Saturday. What were Omar's total earnings for that week, in dollars?",
+  "choices": [
+   "1215.00",
+   "1287.00",
+   "1233.00",
+   "1143.00"
+  ],
+  "correct_answer": "1143.00",
+  "explanation": "The holiday hours earn 8 × 2 × 18 = $288 and do not count toward 40. Tuesday through Saturday total 10 + 11 + 9 + 6 + 9 = 45 hours: 40 regular hours earn 40 × 18 = $720 and 5 overtime hours earn 5 × 27 = $135. The total is 288 + 720 + 135 = $1,143.00. The option \"1215.00\" counts the 8 holiday hours toward the 40, leaving only 32 regular hours and making 13 hours overtime: 288 + 576 + 351. The option \"1233.00\" pays all 45 hours at $18 and then adds $27 for each of the 5 overtime hours, paying those hours twice. The option \"1287.00\" pays the holiday hours their regular $18 plus a double-time $36, or $54 an hour.",
+  "solve": "const r=18; return (8*2*r+40*r+5*1.5*r).toFixed(2);",
+  "distractor_solve": {
+   "1215.00": "const r=18; return (8*2*r+32*r+13*1.5*r).toFixed(2);",
+   "1233.00": "const r=18; return (8*2*r+45*r+5*1.5*r).toFixed(2);",
+   "1287.00": "const r=18; return (8*3*r+40*r+5*1.5*r).toFixed(2);"
+  },
+  "quantity_asked": "Omar's total pay for the whole week (holiday + regular + overtime), in dollars.",
+  "bounds": [
+   "v > 954 (all 53 hours at the base rate)",
+   "v < 1908 (all 53 hours at double time)",
+   "v > 1098 (holiday double, everything else at base)",
+   "v < 1503 (holiday double, all other 45 hours at 1.5x)"
+  ],
+  "distractor_kind": {
+   "1215.00": "wrong procedure: holiday hours counted toward the 40. (a) not a limiting case: the no-premium values (954, 1098) are absent; (b) it answers 'holiday hours do count' - the decision the stem settles in words, but no numerical bound separates it from the key short of counting the overtime hours (the item's work); (c) cheapest whole-quantity bracket: holiday pay 288 is fixed, the other 45 hours earn between 45(18) and 45(27), so total in (1098, 1503); strictly inside. (d) real error.",
+   "1233.00": "wrong procedure: overtime hours paid at base and again at 1.5x. (a) no; (b) no; (c) inside (1098, 1503). (d) real error.",
+   "1287.00": "wrong procedure: holiday hours paid regular plus double time (3x). (a) not an extreme; (b) no; (c) inside (1098, 1503). (d) a known holiday-premium misreading; the weakest of the three. Key is the SMALLEST option on this item; not a greatest/least stem."
+  }
+ },
+ {
+  "id": "AM20I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "rates",
+  "subskill": "rental cost: 24-hour periods from pickup and return times, a per-day mileage allowance pooled over the rental, and fuel for every mile driven",
+  "prompt": "A moving truck rents for $39.95 per day, where each day is a full 24-hour period beginning at pickup. Each day of the rental includes 100 free miles, and the free miles may be used on any day of the rental; each mile driven beyond the total free miles costs $0.79. The truck uses 1 gallon of fuel for every 12.5 miles driven, and the renter pays $4.60 for each gallon used. A renter picks up the truck at 8:00 a.m. on Friday, returns it at 8:00 a.m. on Monday, and drives 520 miles. What is the total cost, in dollars?",
+  "choices": [
+   "445.96",
+   "485.01",
+   "643.01",
+   "374.61"
+  ],
+  "correct_answer": "485.01",
+  "explanation": "From 8:00 a.m. Friday to 8:00 a.m. Monday is 72 hours, or 3 days, costing 3 × 39.95 = $119.85. The free miles total 3 × 100 = 300, so 520 − 300 = 220 miles cost 220 × 0.79 = $173.80. The fuel used is 520 / 12.5 = 41.6 gallons, costing 41.6 × 4.60 = $191.36. The total is 119.85 + 173.80 + 191.36 = $485.01. The option \"445.96\" counts the calendar days Friday, Saturday, Sunday, and Monday as 4 rental days, which adds a day's charge but also 100 more free miles. The option \"643.01\" allows the 100 free miles only once for the whole rental, charging 420 miles. The option \"374.61\" pays for fuel only on the 220 miles beyond the free miles.",
+  "solve": "return (3*39.95+(520-300)*0.79+520/12.5*4.60).toFixed(2);",
+  "distractor_solve": {
+   "445.96": "return (4*39.95+(520-400)*0.79+520/12.5*4.60).toFixed(2);",
+   "643.01": "return (3*39.95+(520-100)*0.79+520/12.5*4.60).toFixed(2);",
+   "374.61": "return (3*39.95+(520-300)*0.79+(520-300)/12.5*4.60).toFixed(2);"
+  },
+  "quantity_asked": "The renter’s total cost for the whole rental (day charges + extra miles + fuel), in dollars.",
+  "bounds": [
+   "v > 311.21 (day charges + fuel with no mileage charge)",
+   "v < 722.01 (no free miles at all)"
+  ],
+  "distractor_kind": {
+   "445.96": "wrong procedure: calendar days counted (4) instead of 24-hour periods (3). (a) not a limiting case: the no-free-miles 722.01 and no-mileage-charge 311.21 values are absent; (b) it is the 'calendar days' neighbour, but a 4th day both adds $39.95 and removes 100 x $0.79, so it is not on either side of a stem-forced bound; (c) cheapest whole-quantity bracket (311.21, 722.01): the mileage charge lies between 0 and all 520 miles; strictly inside. (d) real error.",
+   "643.01": "wrong procedure: free miles allowed once, not per day. (a) not the no-free-miles extreme (722.01, absent); (b) no; (c) inside (311.21, 722.01). (d) real misread.",
+   "374.61": "wrong procedure: fuel counted only beyond the free miles. (a) not the no-fuel value (293.65, absent); (b) no; (c) inside (311.21, 722.01). (d) real misconception (free miles taken to include fuel). Key interior."
+  }
+ }
+]

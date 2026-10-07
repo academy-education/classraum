@@ -1,0 +1,299 @@
+[
+ {
+  "id": "AM20I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "weighted averages",
+  "subskill": "weighted course grade with a drop-the-lowest rule inside one category",
+  "prompt": "In a chemistry course, the final grade is a weighted average: homework counts 15%, quizzes 25%, the midterm exam 25%, and the final exam 35%. The quiz average is computed after dropping each student's single lowest quiz score. Dana's homework average is 92, her six quiz scores are 88, 64, 93, 52, 85, and 76, her midterm exam score is 70, and her final exam score is 86. To the nearest tenth, what is Dana's final grade?",
+  "choices": [
+   "82.3",
+   "80.9",
+   "81.7",
+   "82.8"
+  ],
+  "correct_answer": "81.7",
+  "explanation": "Drop the lowest quiz, 52. The other five quizzes total 88 + 64 + 93 + 85 + 76 = 406, so the quiz average is 406 / 5 = 81.2. The final grade is 0.15(92) + 0.25(81.2) + 0.25(70) + 0.35(86) = 13.8 + 20.3 + 17.5 + 30.1 = 81.7. The option \"82.3\" gives the four parts equal weight: (92 + 81.2 + 70 + 86) / 4 = 82.3. The option \"82.8\" swaps the homework and quiz weights, counting homework 25% and quizzes 15%: 23 + 12.18 + 17.5 + 30.1 = 82.78. The option \"80.9\" treats the two exams as one 60% category and averages them equally, 0.60(78) + 13.8 + 20.3 = 80.9, ignoring that the final counts more than the midterm.",
+  "solve": "const q=(88+64+93+85+76)/5; const g=0.15*92+0.25*q+0.25*70+0.35*86; return (Math.round(g*10)/10).toFixed(1);",
+  "distractor_solve": {
+   "82.3": "const q=(88+64+93+85+76)/5; const g=(92+q+70+86)/4; return (Math.round(g*10)/10).toFixed(1);",
+   "82.8": "const q=(88+64+93+85+76)/5; const g=0.25*92+0.15*q+0.25*70+0.35*86; return (Math.round(g*10)/10).toFixed(1);",
+   "80.9": "const q=(88+64+93+85+76)/5; const g=0.15*92+0.25*q+0.60*(70+86)/2; return (Math.round(g*10)/10).toFixed(1);"
+  },
+  "quantity_asked": "Dana's weighted final grade (one number, all four categories), to the nearest tenth.",
+  "bounds": [
+   "v > 80.48 (dropping the lowest quiz cannot lower the quiz average, so quiz average >= mean of all six = 76.33; grade >= 13.8 + 0.25(76.33) + 17.5 + 30.1)",
+   "v < 84.65 (quiz average <= highest quiz 93)",
+   "v < 92 (max component)",
+   "v > 52 (min score)"
+  ],
+  "distractor_kind": {
+   "82.3": "wrong procedure: equal weights for the four categories (the 'other averaging rule' in category weight, not in the quizzes). (a) not a parameter extreme: the no-drop value 80.48 (limiting case, sits ON the lower bound) and the drop-but-divide-by-6 value 78.3 were deliberately NOT used; (b) it is the equal-weight neighbour, but no stem-forced bound separates it from the key - the two differ only through 0.10(92) - 0.10(86), which takes the item's own arithmetic; (c) cheapest whole-quantity bracket: exams and homework are fixed (61.4 of the grade), quiz average lies between the six-quiz mean 76.33 (dropping cannot lower it) and the top score 93, so grade in (80.48, 84.65); 82.3 strictly inside. (d) real error: ignoring stated weights.",
+   "82.8": "wrong procedure: homework and quiz weights swapped. (a) no; (b) no adjacent problem; (c) inside (80.48, 84.65); (d) real misread of a weight list.",
+   "80.9": "wrong procedure: exams lumped into one equally-split 60% category. (a) not an extreme; (b) no; (c) inside (80.48, 84.65), 0.42 above the drop-floor 80.48, which was checked one step finer (the six-quiz mean, not the lowest quiz). (d) real error: averaging two exams before weighting."
+  }
+ },
+ {
+  "id": "AM20I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "area and volume in context",
+  "subskill": "rain catchment: the horizontal footprint, not the sloped roof area, receives vertical rain; inches to feet; cubic feet to gallons; percent captured",
+  "prompt": "A house has a gable roof made of two rectangular faces that meet at a ridge. Each face is 42 feet long and measures 17 feet from the ridge down to its lower edge. Seen from directly above, the whole roof covers a rectangle 42 feet by 30 feet. Gutters along both 42-foot lower edges carry 85% of the rain that falls on the roof into storage tanks. During a storm, 1.25 inches of rain falls straight down. One cubic foot of water is 7.48 gallons. To the nearest gallon, how many gallons of water reach the tanks?",
+  "choices": [
+   "946",
+   "70",
+   "147",
+   "834"
+  ],
+  "correct_answer": "834",
+  "explanation": "Rain falling straight down lands on the roof exactly as it would land on the ground the roof covers, so the catchment is the 42-foot by 30-foot rectangle seen from above, 1,260 square feet, not the sloped faces. The rain depth is 1.25 / 12 foot, so the rain on the roof is 1,260 × (1.25 / 12) = 131.25 cubic feet, or 131.25 × 7.48 = 981.75 gallons. The tanks receive 85% of it: 0.85 × 981.75 ≈ 834 gallons. The option \"946\" uses the sloped area of the two faces, 2 × 42 × 17 = 1,428 square feet, as the catchment. The option \"147\" reads 85% as the share lost and keeps 15%: 0.15 × 981.75. The option \"70\" converts the rain depth by dividing 1.25 by 144, a square-unit factor, instead of by 12.",
+  "solve": "const v=42*30*(1.25/12)*7.48*0.85; return String(Math.round(v));",
+  "distractor_solve": {
+   "70": "const v=42*30*(1.25/144)*7.48*0.85; return String(Math.round(v));",
+   "147": "const v=42*30*(1.25/12)*7.48*0.15; return String(Math.round(v));",
+   "946": "const v=2*42*17*(1.25/12)*7.48*0.85; return String(Math.round(v));"
+  },
+  "quantity_asked": "Gallons reaching the tanks from the whole roof (both faces) in the storm, to the nearest gallon.",
+  "bounds": [
+   "v < 981.75 (the tanks cannot receive more than all the rain on the 42 x 30 area the roof covers)",
+   "v > 0",
+   "v < 1112.65 (looser cap if a reader takes the sloped area as the catchment)"
+  ],
+  "distractor_kind": {
+   "70": "wrong procedure: inches converted to feet with the square factor 144. (a) not the no-conversion value (10,014, absent); (b) no; (c) inside (0, 981.75). (d) real unit-factor error. Key is interior on this item (one option above, two below).",
+   "147": "wrong procedure: 85% read as lost, 15% kept. (a) not the 0% or 100% extreme; (b) no; (c) inside (0, 981.75); no lower bound on collected water is readable from the stem without the item's arithmetic. (d) real misread (as in AM19I-04's 20%/80% option, which survived).",
+   "946": "wrong procedure: sloped face area (1,428 sq ft) used as the catchment. (a) not a parameter extreme: the 100%-captured values 982 (footprint) and 1,113 (sloped) were deliberately NOT used; (b) it is the 'other area' neighbour, but it is NOT on an extreme of the feasible interval: the cheapest whole-quantity bound is 'no more than all the rain on the 42 x 30 footprint', 981.75, and 946 is strictly below it (3.6% margin); under the looser sloped cap 1,112.65 it is also inside. Separating it from the key needs the item's own insight (vertical rain sees the footprint). (c) bracket over the whole quantity (both faces, the whole storm): (0, 981.75); strictly inside. (d) real, common error."
+  }
+ },
+ {
+  "id": "AM20I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates",
+  "subskill": "two vehicles approaching with a staggered start: head-start distance, then closing speed, with clock-time and decimal-hour handling",
+  "prompt": "Towns P and Q are 300 kilometers apart on a straight highway. A truck leaves P at 9:00 a.m. and travels toward Q at a constant 80 kilometers per hour. A car leaves Q at 9:45 a.m. and travels toward P on the same highway at a constant 100 kilometers per hour. How many minutes after 9:00 a.m. do the truck and the car meet?",
+  "choices": [
+   "133",
+   "125",
+   "138",
+   "120"
+  ],
+  "correct_answer": "125",
+  "explanation": "By 9:45 the truck has driven 0.75 hour at 80 kilometers per hour, or 60 kilometers, so 240 kilometers separate the two vehicles. They then close the gap at 80 + 100 = 180 kilometers per hour, which takes 240 / 180 = 4/3 hours = 80 minutes. They meet 45 + 80 = 125 minutes after 9:00 a.m. The option \"120\" swaps the speeds, giving the truck 100 kilometers per hour: a 75-kilometer head start, then 225 / 180 hours = 75 minutes. The option \"133\" writes 45 minutes as 0.45 hour, a 36-kilometer head start, then 264 / 180 hours = 88 minutes. The option \"138\" finds 4/3 ≈ 1.33 hours and reads it as 1 hour 33 minutes, 45 + 93.",
+  "solve": "const h=0.75*80; const t=(300-h)/180*60; return String(Math.round(45+t));",
+  "distractor_solve": {
+   "120": "const h=0.75*100; const t=(300-h)/180*60; return String(Math.round(45+t));",
+   "133": "const h=0.45*80; const t=(300-h)/180*60; return String(Math.round(45+t));",
+   "138": "const x=(300-60)/180; const m=Math.floor(x)*60+Math.round((x-Math.floor(x))*100); return String(45+m);"
+  },
+  "quantity_asked": "Minutes from 9:00 a.m. (the truck’s start) to the moment the two vehicles meet.",
+  "bounds": [
+   "v > 100 (later than if both had left at 9:00: 300/180 h)",
+   "v < 145 (earlier than if the truck had also waited until 9:45: 45 + 100)",
+   "v > 45 (after the car starts)"
+  ],
+  "distractor_kind": {
+   "120": "wrong procedure: speeds swapped between the vehicles. (a) not a parameter extreme: the both-at-9:00 value 100 and the both-at-9:45 value 145 (the two limiting cases) are absent; (b) not the adjacent 'minutes after 9:45' (80) or 'car's driving time' answer; (c) cheapest whole-quantity bracket (100, 145) from the two simultaneous-start limits; 120 strictly inside. Checked one step finer: the head start can only save time relative to 145 and the car cannot start before 9:45 - neither cuts inside (100, 145) without computing the head start. (d) real error.",
+   "133": "wrong procedure: 45 minutes written as 0.45 hour. (a) no; (b) no; (c) inside (100, 145). (d) real decimal-time error.",
+   "138": "wrong procedure: 1.33 hours read as 1 h 33 min. (a) no; (b) no; (c) inside (100, 145). (d) real decimal-time error. Key interior (one option below, two above)."
+  }
+ },
+ {
+  "id": "AM20I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "unit conversion",
+  "subskill": "utility bill from meter readings: cubic feet to CCF, a per-unit charge on all use and a second per-unit charge on a percent of use, plus a fixed charge",
+  "prompt": "A city bills water by the CCF, where 1 CCF = 100 cubic feet. At the start of a billing period a household's water meter read 48,215 cubic feet, and at the end of the period it read 49,067 cubic feet. The bill has three parts: a fixed service charge of $14.50; a water charge of $4.10 per CCF used; and a sewer charge of $5.35 per CCF on 90% of the water used (the other 10% is assumed to go to lawn watering and is not charged for sewer). What is the total bill, in dollars?",
+  "choices": [
+   "90.46",
+   "53.99",
+   "91.52",
+   "86.96"
+  ],
+  "correct_answer": "90.46",
+  "explanation": "The household used 49,067 − 48,215 = 852 cubic feet, which is 8.52 CCF. The water charge is 8.52 × 4.10 = $34.932. The sewer charge applies to 0.90 × 8.52 = 7.668 CCF: 7.668 × 5.35 = $41.0238. The total is 14.50 + 34.932 + 41.0238 ≈ $90.46. The option \"91.52\" swaps the two rates, charging water at $5.35 on all 8.52 CCF and sewer at $4.10 on 90% of it. The option \"86.96\" applies the 90% to the water charge as well as to the sewer charge. The option \"53.99\" charges sewer on the 10% that goes to the lawn, 0.10 × 8.52 × 5.35, instead of on the 90%.",
+  "solve": "const u=(49067-48215)/100; return (14.5+u*4.10+0.9*u*5.35).toFixed(2);",
+  "distractor_solve": {
+   "91.52": "const u=(49067-48215)/100; return (14.5+u*5.35+0.9*u*4.10).toFixed(2);",
+   "86.96": "const u=(49067-48215)/100; return (14.5+0.9*u*4.10+0.9*u*5.35).toFixed(2);",
+   "53.99": "const u=(49067-48215)/100; return (14.5+u*4.10+0.1*u*5.35).toFixed(2);"
+  },
+  "quantity_asked": "The household's total bill for the period (fixed + water + sewer), in dollars.",
+  "bounds": [
+   "v > 49.43 (fixed + water alone, no sewer)",
+   "v < 95.01 (sewer charged on all 8.52 CCF)",
+   "v > 14.50"
+  ],
+  "distractor_kind": {
+   "91.52": "wrong procedure: water and sewer rates swapped. (a) not a parameter extreme: the no-sewer value 49.43 and the sewer-on-all-water value 95.01 (the limiting cases of the 90% share) are absent; (b) no adjacent problem; (c) cheapest whole-quantity bracket (49.43, 95.01): the sewer share is between 0% and 100% of use; 91.52 strictly inside (also below the one-step cap 14.50 + 8.52 x 9.45). (d) real error.",
+   "86.96": "wrong procedure: 90% applied to both per-CCF charges. (a) not the uniform-base extreme (the 100%-for-both value 95.01 is absent); (b) no; (c) inside (49.43, 95.01). (d) real error.",
+   "53.99": "wrong procedure: sewer charged on the exempt 10%. (a) not the 0% extreme (49.43, absent); (b) it is the complement share, inside the interval; (c) inside (49.43, 95.01), 4.56 above the no-sewer floor. (d) real misread. Key interior (one option above, two below)."
+  }
+ },
+ {
+  "id": "AM20I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates and percents",
+  "subskill": "lodging bill: counting nights in a date range by day of week, tax on room charges only, per-night untaxed fee",
+  "prompt": "A hotel charges $142 per night for Sunday through Thursday nights and $189 per night for Friday and Saturday nights. An 11% tax is added to the room charges. A resort fee of $24.85 per night, which is not taxed, is then added. A guest checks in on Thursday, March 5, and checks out on the morning of Tuesday, March 10. What is the guest's total bill, in dollars?",
+  "choices": [
+   "1030.36",
+   "1068.86",
+   "917.29",
+   "1016.69"
+  ],
+  "correct_answer": "1016.69",
+  "explanation": "The guest stays the nights of Thursday, Friday, Saturday, Sunday, and Monday, March 5 through March 9: 5 nights. Thursday, Sunday, and Monday nights are $142 each and Friday and Saturday nights are $189 each, so the room charges are 3(142) + 2(189) = $804. With 11% tax that is 804 × 1.11 = $892.44. The resort fee for 5 nights is 5 × 24.85 = $124.25, for a total of 892.44 + 124.25 = $1,016.69. The option \"1068.86\" treats Sunday night as a weekend night, pricing 3 nights at $189 and 2 at $142. The option \"1030.36\" taxes the resort fee along with the room: (804 + 124.25) × 1.11. The option \"917.29\" adds the resort fee once instead of once per night.",
+  "solve": "const room=3*142+2*189; return (room*1.11+5*24.85).toFixed(2);",
+  "distractor_solve": {
+   "1068.86": "const room=2*142+3*189; return (room*1.11+5*24.85).toFixed(2);",
+   "1030.36": "const room=3*142+2*189; return ((room+5*24.85)*1.11).toFixed(2);",
+   "917.29": "const room=3*142+2*189; return (room*1.11+24.85).toFixed(2);"
+  },
+  "quantity_asked": "The guest's whole bill for the stay (room + tax + fees, all nights), in dollars.",
+  "bounds": [
+   "v > 912.35 (all 5 nights at the weeknight rate)",
+   "v < 1173.20 (all 5 nights at the weekend rate)"
+  ],
+  "distractor_kind": {
+   "1068.86": "wrong procedure: Sunday night priced as a weekend night. (a) not a parameter extreme: the all-weeknight 912.35 and all-weekend 1173.20 values are absent; (b) not the 6-night inclusive-count neighbour (1199.16, deliberately NOT used - it lies beyond the all-weekend cap); (c) cheapest whole-quantity bracket (912.35, 1173.20): every night costs between $142 and $189; strictly inside. (d) real error (weekend read as Fri-Sun).",
+   "1030.36": "wrong procedure: tax applied to the fee too. (a) no; (b) no; (c) inside (912.35, 1173.20). (d) real error.",
+   "917.29": "wrong procedure: per-night fee charged once. (a) not the no-fee value (892.44, absent; it would sit below the all-weeknight floor); (b) no; (c) inside (912.35, 1173.20), 4.94 above the floor; checked one step finer - the floor already uses the cheapest rate for every night, and no cheaper per-night price exists in the stem. (d) real misread. Key interior."
+  }
+ },
+ {
+  "id": "AM20I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "proportional reasoning",
+  "subskill": "profit shared in proportion to capital x time: reading months invested from join times, not from amounts or months alone",
+  "prompt": "Three partners shared a year's profit of $23,100 in proportion to the amount each one invested multiplied by the number of months that money was invested. Ana invested $15,000 for all 12 months of the year. Ben invested $24,000, but he joined when 7 months of the year had already passed and kept his money in until the end of the year. Cara invested $10,000 for the last 9 months of the year. What was Ben's share of the profit, in dollars?",
+  "choices": [
+   "8400.00",
+   "11314.29",
+   "7107.69",
+   "8860.27"
+  ],
+  "correct_answer": "7107.69",
+  "explanation": "Ben's money was invested for 12 − 7 = 5 months. The amount-times-months products are Ana 15,000 × 12 = 180,000, Ben 24,000 × 5 = 120,000, and Cara 10,000 × 9 = 90,000, a total of 390,000. Ben's share is 23,100 × 120,000 / 390,000 ≈ $7,107.69. The option \"11314.29\" shares by the amounts alone: 23,100 × 24 / 49. The option \"8860.27\" counts Ben's 7 months before joining as his months invested: 24,000 × 7 = 168,000 out of 438,000. The option \"8400.00\" reads Cara's \"last 9 months\" as joining after 9 months, giving her 3 months: 120,000 out of 330,000.",
+  "solve": "const a=15000*12,b=24000*5,c=10000*9; return (23100*b/(a+b+c)).toFixed(2);",
+  "distractor_solve": {
+   "11314.29": "return (23100*24000/(15000+24000+10000)).toFixed(2);",
+   "8860.27": "const a=15000*12,b=24000*7,c=10000*9; return (23100*b/(a+b+c)).toFixed(2);",
+   "8400.00": "const a=15000*12,b=24000*5,c=10000*3; return (23100*b/(a+b+c)).toFixed(2);"
+  },
+  "quantity_asked": "Ben's dollar share of the $23,100 profit.",
+  "bounds": [
+   "v < 11550 (Ben's product 120,000 is below Ana's 180,000, so Ben gets less than half)",
+   "v > 0",
+   "v < 23100"
+  ],
+  "distractor_kind": {
+   "11314.29": "wrong procedure: shares by amount only (the time factor ignored). (a) not the equal-split limiting case 7700 (absent; Ben's share is forced away from it only by the products); (b) it is the amount-only neighbour; checked whether the stem bounds the key away from it cheaply: Ben < Ana in amount x months caps Ben below 11,550, and 11,314.29 is strictly inside (2% margin); no one-step comparison orders it against the key without computing the products. (c) whole-quantity bracket (0, 11550); strictly inside. (d) real error.",
+   "8860.27": "wrong procedure: Ben's 7 months before joining used as his months. (a) no; (b) no adjacent problem with a stem bound; (c) inside (0, 11550). (d) real misread.",
+   "8400.00": "wrong procedure: Cara's 'last 9 months' read as 3 months. (a) no; (b) no; (c) inside (0, 11550). (d) real misread. Key is the SMALLEST option on this item: all three error paths raise Ben's weight; not a greatest/least stem, so 13j does not apply."
+  }
+ },
+ {
+  "id": "AM20I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "percents",
+  "subskill": "share of a total after its two parts change by different percents: each part grows on its own base and the total must be renormalized",
+  "prompt": "At the start of a year, 65% of the value of Rosa's investment account was in a stock fund and the rest was in a bond fund. During the year, the value of her stock fund holdings increased by 12% and the value of her bond fund holdings decreased by 3%. She made no deposits or withdrawals. At the end of the year, to the nearest tenth of a percent, what percent of the account's value was in the stock fund?",
+  "choices": [
+   "67.5",
+   "66.1",
+   "68.2",
+   "67.0"
+  ],
+  "correct_answer": "68.2",
+  "explanation": "Take the starting value as 100. The stock holdings grow to 65 × 1.12 = 72.8 and the bond holdings fall to 35 × 0.97 = 33.95, so the account is worth 106.75. The stock share is 72.8 / 106.75 ≈ 0.6820, or 68.2%. The option \"67.5\" grows the stocks but forgets that the bonds fell, dividing 72.8 by 72.8 + 35 = 107.8. The option \"66.1\" lowers the bonds to 33.95 but treats the account as still worth 100, taking 100 − 33.95. The option \"67.0\" multiplies the two funds' growth factors as if both changes applied to the whole account in turn, dividing 72.8 by 100 × 1.12 × 0.97 = 108.64.",
+  "solve": "const s=65*1.12,b=35*0.97; return (Math.round(s/(s+b)*1000)/10).toFixed(1);",
+  "distractor_solve": {
+   "67.5": "const s=65*1.12; return (Math.round(s/(s+35)*1000)/10).toFixed(1);",
+   "66.1": "return (Math.round((100-35*0.97)*10)/10).toFixed(1);",
+   "67.0": "const s=65*1.12; return (Math.round(s/(100*1.12*0.97)*1000)/10).toFixed(1);"
+  },
+  "quantity_asked": "The stock fund’s percent of the whole account’s end-of-year value.",
+  "bounds": [
+   "v > 65 (stocks rose and bonds fell, so the stock share rose)",
+   "v < 72.8 (the account grew, so the share is below 72.8 / 100)",
+   "v < 75.05 (looser: account fell at most 3%)"
+  ],
+  "distractor_kind": {
+   "67.5": "wrong procedure: renormalizes without applying the bond loss. (a) not a limiting case: the no-change share 65 and the no-renormalizing share 72.8 (the no-last-step value) are absent; (b) no adjacent problem with a stem bound; (c) cheapest whole-quantity bracket (65, 72.8): share rose, and the total grew so the share is below 72.8; strictly inside. One step finer: the total grew by less than 12% and more than 0, which leaves (65, 72.8). (d) real error.",
+   "66.1": "wrong procedure: applies only the bond change and keeps the total at 100. (a) not the no-change 65 (absent); (b) no; (c) inside (65, 72.8). (d) real error.",
+   "67.0": "wrong procedure: compounds the two growth factors over the whole account. (a) no; (b) no; (c) inside (65, 72.8). (d) real error. Key is the LARGEST option on this item: each error over- or under-states the denominator in the direction that lowers the share; option values spaced 0.6 / 0.5 / 0.7, not a ladder."
+  }
+ },
+ {
+  "id": "AM20I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "rates and percents",
+  "subskill": "weekly pay with overtime beyond 40 hours where holiday hours are paid double and excluded from the overtime count",
+  "prompt": "Omar is paid $18.00 per hour. Hours he works on a paid holiday are paid at double time (2 times his hourly rate) and are not counted toward the 40-hour overtime threshold. All other hours beyond 40 in a week are paid at time and a half (1.5 times his hourly rate). One week, Omar worked 8 hours on Monday, which was a paid holiday, and 10, 11, 9, 6, and 9 hours on Tuesday through Saturday. What were Omar's total earnings for that week, in dollars?",
+  "choices": [
+   "1215.00",
+   "1287.00",
+   "1233.00",
+   "1143.00"
+  ],
+  "correct_answer": "1143.00",
+  "explanation": "The holiday hours earn 8 × 2 × 18 = $288 and do not count toward 40. Tuesday through Saturday total 10 + 11 + 9 + 6 + 9 = 45 hours: 40 regular hours earn 40 × 18 = $720 and 5 overtime hours earn 5 × 27 = $135. The total is 288 + 720 + 135 = $1,143.00. The option \"1215.00\" counts the 8 holiday hours toward the 40, leaving only 32 regular hours and making 13 hours overtime: 288 + 576 + 351. The option \"1233.00\" pays all 45 hours at $18 and then adds $27 for each of the 5 overtime hours, paying those hours twice. The option \"1287.00\" pays the holiday hours their regular $18 plus a double-time $36, or $54 an hour.",
+  "solve": "const r=18; return (8*2*r+40*r+5*1.5*r).toFixed(2);",
+  "distractor_solve": {
+   "1215.00": "const r=18; return (8*2*r+32*r+13*1.5*r).toFixed(2);",
+   "1233.00": "const r=18; return (8*2*r+45*r+5*1.5*r).toFixed(2);",
+   "1287.00": "const r=18; return (8*3*r+40*r+5*1.5*r).toFixed(2);"
+  },
+  "quantity_asked": "Omar's total pay for the whole week (holiday + regular + overtime), in dollars.",
+  "bounds": [
+   "v > 954 (all 53 hours at the base rate)",
+   "v < 1908 (all 53 hours at double time)",
+   "v > 1098 (holiday double, everything else at base)",
+   "v < 1503 (holiday double, all other 45 hours at 1.5x)"
+  ],
+  "distractor_kind": {
+   "1215.00": "wrong procedure: holiday hours counted toward the 40. (a) not a limiting case: the no-premium values (954, 1098) are absent; (b) it answers 'holiday hours do count' - the decision the stem settles in words, but no numerical bound separates it from the key short of counting the overtime hours (the item's work); (c) cheapest whole-quantity bracket: holiday pay 288 is fixed, the other 45 hours earn between 45(18) and 45(27), so total in (1098, 1503); strictly inside. (d) real error.",
+   "1233.00": "wrong procedure: overtime hours paid at base and again at 1.5x. (a) no; (b) no; (c) inside (1098, 1503). (d) real error.",
+   "1287.00": "wrong procedure: holiday hours paid regular plus double time (3x). (a) not an extreme; (b) no; (c) inside (1098, 1503). (d) a known holiday-premium misreading; the weakest of the three. Key is the SMALLEST option on this item; not a greatest/least stem."
+  }
+ },
+ {
+  "id": "AM20I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "rates",
+  "subskill": "rental cost: 24-hour periods from pickup and return times, a per-day mileage allowance pooled over the rental, and fuel for every mile driven",
+  "prompt": "A moving truck rents for $39.95 per day, where each day is a full 24-hour period beginning at pickup. Each day of the rental includes 100 free miles, and the free miles may be used on any day of the rental; each mile driven beyond the total free miles costs $0.79. The truck uses 1 gallon of fuel for every 12.5 miles driven, and the renter pays $4.60 for each gallon used. A renter picks up the truck at 8:00 a.m. on Friday, returns it at 8:00 a.m. on Monday, and drives 520 miles. What is the total cost, in dollars?",
+  "choices": [
+   "445.96",
+   "485.01",
+   "643.01",
+   "374.61"
+  ],
+  "correct_answer": "485.01",
+  "explanation": "From 8:00 a.m. Friday to 8:00 a.m. Monday is 72 hours, or 3 days, costing 3 × 39.95 = $119.85. The free miles total 3 × 100 = 300, so 520 − 300 = 220 miles cost 220 × 0.79 = $173.80. The fuel used is 520 / 12.5 = 41.6 gallons, costing 41.6 × 4.60 = $191.36. The total is 119.85 + 173.80 + 191.36 = $485.01. The option \"445.96\" counts the calendar days Friday, Saturday, Sunday, and Monday as 4 rental days, which adds a day's charge but also 100 more free miles. The option \"643.01\" allows the 100 free miles only once for the whole rental, charging 420 miles. The option \"374.61\" pays for fuel only on the 220 miles beyond the free miles.",
+  "solve": "return (3*39.95+(520-300)*0.79+520/12.5*4.60).toFixed(2);",
+  "distractor_solve": {
+   "445.96": "return (4*39.95+(520-400)*0.79+520/12.5*4.60).toFixed(2);",
+   "643.01": "return (3*39.95+(520-100)*0.79+520/12.5*4.60).toFixed(2);",
+   "374.61": "return (3*39.95+(520-300)*0.79+(520-300)/12.5*4.60).toFixed(2);"
+  },
+  "quantity_asked": "The renter’s total cost for the whole rental (day charges + extra miles + fuel), in dollars.",
+  "bounds": [
+   "v > 311.21 (day charges + fuel with no mileage charge)",
+   "v < 722.01 (no free miles at all)"
+  ],
+  "distractor_kind": {
+   "445.96": "wrong procedure: calendar days counted (4) instead of 24-hour periods (3). (a) not a limiting case: the no-free-miles 722.01 and no-mileage-charge 311.21 values are absent; (b) it is the 'calendar days' neighbour, but a 4th day both adds $39.95 and removes 100 x $0.79, so it is not on either side of a stem-forced bound; (c) cheapest whole-quantity bracket (311.21, 722.01): the mileage charge lies between 0 and all 520 miles; strictly inside. (d) real error.",
+   "643.01": "wrong procedure: free miles allowed once, not per day. (a) not the no-free-miles extreme (722.01, absent); (b) no; (c) inside (311.21, 722.01). (d) real misread.",
+   "374.61": "wrong procedure: fuel counted only beyond the free miles. (a) not the no-fuel value (293.65, absent); (b) no; (c) inside (311.21, 722.01). (d) real misconception (free miles taken to include fuel). Key interior."
+  }
+ }
+]

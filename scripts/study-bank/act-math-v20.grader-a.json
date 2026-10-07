@@ -1,0 +1,1258 @@
+{
+ "_render_sha": "0210fd169aa1082e",
+ "AM20N-01": {
+  "pick": "2",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "det A = 1, so A^-1 is an integer matrix and X is integer: all four options integers",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "23",
+   "what": "entry (2,1) of B·A^-1, i.e. solving XA = B instead of AX = B (11·3 + 2·(−5) = 23)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "13",
+   "42"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM20N-02": {
+  "pick": "96",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "k must make 24k=2^3·3·k a square: k needs an odd power of 2 and an odd power of 3 — 6, 12, 72, 96 all satisfy parity of 3's exponent; 72=2^3·3^2 has even 3-exponent, 24·72=1728 not a square",
+    "kills": [
+     "72"
+    ]
+   },
+   {
+    "bound": "plugging small options: 24·6=144 square but 18·6=108 not a cube; 18·12=216 cube but 24·12=288 not a square",
+    "kills": [
+     "6",
+     "12"
+    ]
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "72",
+   "what": "swapped conditions: 24·72=1728=12^3 is a cube and 18·72=1296=36^2 is a square",
+   "bound_kills": false
+  },
+  "free_elimination": "Option-plugging (4 multiplications) eliminates 6, 12, 72; plugging IS the cheap route here and is about as costly as the factor work, so not counted as free. The two smaller options 6 and 12 are each 'one condition only' traps.",
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "Standard 'least k for square and cube' competition problem; likely exists in textbook/AMC form."
+ },
+ "AM20A-01": {
+  "pick": "35",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "shifting roots preserves their difference (2) and the discriminant b²−4c = 64−60 = 4; with b even, c+1 = (b/2)² must be a perfect square: 36 yes, 32/20/28 no",
+    "kills": [
+     "31",
+     "19",
+     "27"
+    ]
+   },
+   {
+    "bound": "c = product of two integers differing by 2; 31 and 19 are prime (only factorizations 1·31, 1·19) — no such pair",
+    "kills": [
+     "31",
+     "19"
+    ]
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 1,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "31",
+   "what": "no identified adjacent setup; shifting the other way gives c = 3 (roots −1, −3), not offered",
+   "bound_kills": false
+  },
+  "free_elimination": "Only 35 is m(m+2) (5·7). 'Two odd integers differing by 2' picks the key from the option set without the substitution.",
+  "distractor_quality": "weak",
+  "weak_distractors": [
+   "31",
+   "19",
+   "27"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM20A-02": {
+  "pick": "15",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "count must be odd by symmetry k ↔ −k with k=0 included: all options odd",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": {
+   "option": "17",
+   "what": "inclusive endpoints k = ±8 (discriminant = 0 counted)",
+   "bound_kills": false
+  },
+  "neighbouring_setup": {
+   "option": "7",
+   "what": "positive k only (1..7)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "11"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": "Textbook discriminant-count problem."
+ },
+ "AM20A-03": {
+  "pick": "3",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "r is linear through (2,7) and (−1,13), decreasing; r(4) < 7 — but recognizing r linear through those points is the item's work",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "17",
+   "what": "remainders swapped: r(2)=13, r(−1)=7 gives r(x)=2x+9, r(4)=17",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "19"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Standard remainder-theorem item."
+ },
+ "AM20A-04": {
+  "pick": "64",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "x^(−1/2)=1/4 <1 so x>1 and x^(3/2) > x^(1/2) = 4: all options >4",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "8",
+   "what": "x^(1/2)·2 / treating x=4 as the answer base (4^(3/2)=8)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [
+   "24",
+   "2,048"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": "Routine rational-exponent drill."
+ },
+ "AM20A-05": {
+  "pick": "14",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "c = q(0) = 5 is read off directly; parity: q(3)=9a+3b+5 with a+b=−1 → q(3)=6a+2 even, kills odd option",
+    "kills": [
+     "9"
+    ]
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "9"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": "Standard three-point quadratic."
+ },
+ "AM20A-06": {
+  "pick": "12",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "Simon's trick (x−2)(y−3)=12; AM-GM gives x+y ≥ 5+2√12 ≈ 11.93 — but that needs the factoring which is the item's work",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": {
+   "option": "18",
+   "what": "maximum of x+y over the factor pairs (1,12)/(12,1) instead of minimum",
+   "bound_kills": false
+  },
+  "neighbouring_setup": {
+   "option": "7",
+   "what": "3+4, the factor-pair sum without adding back 2 and 3",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "10"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Standard SFFT problem; minimum 12 is attained twice ((5,7) and (6,6)), which is fine."
+ },
+ "AM20A-07": {
+  "pick": "7",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "none free: candidate roots come from three cases (base 1, exponent 0, base −1 with even exponent)",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "10",
+   "what": "includes x=3 (base −1 but exponent 1, value −1): 1+2+3+4",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": "Classic 'a^b = 1' three-case problem; widely circulated."
+ },
+ "AM20A-08": {
+  "pick": "−8",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "a=0 makes both solutions 4, equal not double (one substitution)",
+    "kills": [
+     "0"
+    ]
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "−2",
+   "what": "'twice' applied to the wrong equation: (3a+8)/2·2 = a+4 → a = −2",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "0"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM20A-09": {
+  "pick": "9",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "nonempty solution set requires discriminant >0: k < 25 — all options pass",
+    "kills": []
+   },
+   {
+    "bound": "interval length 8 means roots 5±4 (vertex at 5): k = 1·9 — this is the work",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "−39",
+   "what": "length taken as the half-width: √(100−4k)=16 → k=−39",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "21 = length 4 (100−4k=16); 23 = setting the discriminant (not its root) to 8."
+ },
+ "AM20F-01": {
+  "pick": "2",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "g(x)=f(3x+2) compresses the domain: endpoints become (−4−2)/3 and (8−2)/3, so the max must be < 8; kills 22 and 26 at a glance",
+    "kills": [
+     "22",
+     "26"
+    ]
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "10/3",
+   "what": "(8+2)/3: solved 3x−2=8 sign error",
+   "bound_kills": false
+  },
+  "free_elimination": "Horizontal compression by 3 means the new domain is shorter than 12; 22 and 26 expand it — rejectable without computing.",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "22",
+   "26"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": "Standard transformed-domain item."
+ },
+ "AM20F-02": {
+  "pick": "-51",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "monic cubic with only real zero 2 is negative for x < 2 (quadratic factor positive): p(−1) < 0 — all options negative",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "-15",
+   "what": "conjugate factor with sign error (x²+6x+10) → (−3)(5)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "-33"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "-45 = (x−2)(x²−6x+8), the i² = +1 error. Standard conjugate-root item."
+ },
+ "AM20F-03": {
+  "pick": "-2",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "none free; f(x)=4/x−2x",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "4",
+   "what": "treating f(1/x) as f(x): 3f(2)=12",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "-11",
+   "3.6"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Textbook functional equation f(x)+2f(1/x)=…; very common."
+ },
+ "AM20F-04": {
+  "pick": "10/3",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "f(0)=3 so max ≥ 3; at sin x = 1, f = −2; all options >3",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "11/3",
+   "what": "3 + 2/3: dropped the s² term at s = −1/3",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM20F-05": {
+  "pick": "2.5",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "none free",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "-2",
+   "what": "value of u = g(x) at which f is minimized, not x",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM20F-06": {
+  "pick": "6",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "domain x > 3: all options satisfy (3.1 barely)",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "5.4",
+   "what": "ratio set to 9 = 3² instead of 2³ = 8",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "3.1"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM20F-07": {
+  "pick": "11/3",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "4 fails x<1 for the first piece — that check is the item's point",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": {
+   "option": "4",
+   "what": "positive root of x²=16 ignoring the domain restriction x<1",
+   "bound_kills": false
+  },
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "8"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM20F-08": {
+  "pick": "70.5",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "3 sin x = tan x → cos x = 1/3 → x > 60° (cos x < 1/2): kills two small angles",
+    "kills": [
+     "19.5",
+     "18.4"
+    ]
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "71.6",
+   "what": "arctan 3 instead of arccos(1/3)",
+   "bound_kills": false
+  },
+  "free_elimination": "Options form a ladder of inverse-trig values of 1/3 and 3 (arcsin 1/3=19.5, arctan 1/3=18.4, arctan 3=71.6, arccos 1/3=70.5). Once cos x=1/3, sin x > cos x so x > 45° kills 19.5 and 18.4.",
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM20F-09": {
+  "pick": "6",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "f increasing: f(14) > f(6) = 5",
+    "kills": []
+   },
+   {
+    "bound": "f concave: f(14) ≤ 5 + (8)(2/6) = 7.67",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "6.81",
+   "what": "log₂14 + 3: took a = 0, b = 3 from (0,3)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "Stem says 'closest to' but the exact value is 6; 5.81 = log₂14 + 2."
+ },
+ "AM20S-01": {
+  "pick": "72",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "answer < 5! = 120 total circular seatings",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": {
+   "option": "96",
+   "what": "120 − 24: adjacent count without ×2 for Ana/Ben order",
+   "bound_kills": false
+  },
+  "neighbouring_setup": {
+   "option": "48",
+   "what": "complement — number with Ana and Ben adjacent",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "Standard circular-permutation complement item."
+ },
+ "AM20S-02": {
+  "pick": "2/7",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "none free",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1/21",
+   "what": "ordered denominator 9·8·7 without the 3! orderings",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "2/21"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Standard hypergeometric item."
+ },
+ "AM20S-03": {
+  "pick": "58",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "exactly-one ≤ union 85 and ≤ 115 total memberships: all pass",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "52",
+   "what": "115 − 2(33) + 3 (triple counted once instead of 3 times)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "73"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Textbook three-set Venn problem; 61 = 58+3."
+ },
+ "AM20S-04": {
+  "pick": "41",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "x = 12 > x̄ with positive slope: prediction > 31 — all options",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "61",
+   "what": "31 + 2.5·12: forgot to center at x̄ = 8",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "46.5",
+   "58.5"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM20S-05": {
+  "pick": "150",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "count ≥ 20 unit squares: all pass",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": {
+   "option": "110",
+   "what": "150 − 40: excluded squares despite 'counting squares as rectangles'",
+   "bound_kills": false
+  },
+  "neighbouring_setup": {
+   "option": "60",
+   "what": "C(4,2)·C(5,2): chose from rows/columns of squares instead of 5 and 6 grid lines",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "100"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Textbook grid-rectangle count."
+ },
+ "AM20S-06": {
+  "pick": "3/5",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "none free",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1/10",
+   "what": "probability of an equilateral triangle (2 of 20)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "3/10 = 6/20 (one triangle per diameter direction counted once); Thales/diameter mechanism is standard."
+ },
+ "AM20G-01": {
+  "pick": "9.5",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "triangle ABD: AD > |AB−BD| = 1; triangle ADC: AD > AC−DC = 6 — kills nothing",
+    "kills": []
+   },
+   {
+    "bound": "AD ≥ altitude from A (8.97) kills 7.3 and 8.2, but the altitude needs Heron — not free",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "9.0",
+   "what": "D measured from C (DC = 11) gives 9.02 → 9.0; also ≈ the altitude 8.97",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "7.3"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Stewart's theorem item."
+ },
+ "AM20G-02": {
+  "pick": "141.3",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "height ≤ shorter leg 9: area < 18·9 = 162 — kills nothing",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "74.2"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Height 7.848 from the 9-14-16 triangle; distractor origins for 74.2/116.4/124.0 not identifiable (no clear student error)."
+ },
+ "AM20G-03": {
+  "pick": "36.75",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "none free",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "27",
+   "what": "triangle with the x-axis (y=0) instead of y=−1: base 9, height 6",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null
+ },
+ "AM20G-04": {
+  "pick": "8.4",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "√70 between 8 and 9 — but 70 comes from the British flag theorem which is the work",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "13.1",
+   "what": "wrong pairing of opposite vertices: √(100+121−49) = √172",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "British flag theorem; textbook-standard. 5.3 = √28 is the third pairing."
+ },
+ "AM20G-05": {
+  "pick": "277.2",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "reachable region ⊂ disc minus shed: area < 100π − 24 = 290.16 (strict, since the shed casts a shadow)",
+    "kills": [
+     "293.0",
+     "290.2"
+    ]
+   },
+   {
+    "bound": "reachable ⊇ 3/4 disc = 235.6",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "upper cap 100π − 24 one step finer than 100π = 314.2",
+   "interval": "235.6 < A < 290.16",
+   "kills_or_edge": [
+    "293.0",
+    "290.2"
+   ]
+  },
+  "survivors": 2,
+  "limiting_case": {
+   "option": "290.2",
+   "what": "100π − 24: the whole disc minus the shed, no shadow — sits ON the strict upper bound",
+   "bound_kills": true
+  },
+  "neighbouring_setup": {
+   "option": "238.8",
+   "what": "76π: 3/4 disc + the r=2 wrap only, omitting the r=7 quarter around the 3-m side",
+   "bound_kills": false
+  },
+  "free_elimination": "Disc-minus-shed bound kills two of four for free.",
+  "distractor_quality": "weak",
+  "weak_distractors": [
+   "293.0",
+   "290.2"
+  ],
+  "difficulty": "hard",
+  "duplicate_note": "Classic goat-and-shed problem."
+ },
+ "AM20G-06": {
+  "pick": "10.97",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "side > altitude = 2+3.5+4 = 9.5 (Viviani) — all pass",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "16.45",
+   "what": "9.5·√3 instead of 9.5·2/√3",
+   "bound_kills": false
+  },
+  "free_elimination": "All four options are 9.5 × {√3, √2, 2/√3, 1.5}: knowing h = 9.5 and that s = h·1.155 picks it; still the work.",
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "14.25"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Viviani's theorem — textbook standard."
+ },
+ "AM20G-07": {
+  "pick": "121.0",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "turn from 040 to 150 is 110° clockwise, so the interior angle is 70° < 90°: d² < 120²+85² → d < 147.1",
+    "kills": [
+     "169.1",
+     "198.2"
+    ]
+   },
+   {
+    "bound": "triangle inequality 35 < d < 205",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "169.1",
+   "what": "law of cosines with 110° (the bearing difference) instead of 70°",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "77.4 = 40° and 198.2 = 150° use a single bearing as the angle; acute-angle bound needs only the turn direction."
+ },
+ "AM20G-08": {
+  "pick": "25.5",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "height < face slant height 3√3 = 5.196: V < (1/3)(9√3)(5.196) = 27.0",
+    "kills": [
+     "27.0",
+     "29.4"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "pyramid height < slant height of a face",
+   "interval": "V < 27.0",
+   "kills_or_edge": [
+    "27.0",
+    "29.4"
+   ]
+  },
+  "survivors": 2,
+  "limiting_case": {
+   "option": "27.0",
+   "what": "used the face altitude (slant height) as the pyramid's height — exactly ON the cheap upper bound",
+   "bound_kills": true
+  },
+  "neighbouring_setup": {
+   "option": "18.0",
+   "what": "a³/12 (dropped √2 from a³√2/12)",
+   "bound_kills": false
+  },
+  "free_elimination": "Slant-height cap kills 27.0 (on edge) and 29.4.",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "29.4"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Regular tetrahedron volume formula is standard."
+ },
+ "AM20G-09": {
+  "pick": "1.25",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "none free",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "0.83",
+   "what": "inverted-type ratio 5/6 from wrong mass assignment",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "5.00"
+  ],
+  "difficulty": "hard",
+  "duplicate_note": "Mass-points item; mass B=3, C=2, A=4, D=5 → AP/PD = 5/4."
+ },
+ "AM20G-10": {
+  "pick": "82.8",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "octagon contains inscribed circle r=5 (78.5) and lies inside the square (100)",
+    "kills": []
+   },
+   {
+    "bound": "octagon lies inside circumcircle r = 5/cos22.5° = 5.41 (area 92.0) — needs a trig step",
+    "kills": [
+     "95.7"
+    ]
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "95.7"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "Area = 200·tan 22.5° = 100 − 4(5√2−5)²; standard rotated-square overlap."
+ },
+ "AM20I-01": {
+  "pick": "81.7",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "weighted average lies in [70, 92]: all pass",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "82.3",
+   "what": "equal weights (92+81.2+70+86)/4",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [
+   "80.9"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": "82.8 = dropped the two lowest quizzes."
+ },
+ "AM20I-02": {
+  "pick": "834",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "rain falling straight down is caught by the horizontal footprint 1260 ft², not the sloped 1428 ft²",
+    "kills": [
+     "946"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "1260 ft² × ~0.1 ft × 0.85 × 7.5 ≈ 800",
+   "interval": "~780–850",
+   "kills_or_edge": [
+    "70",
+    "147"
+   ]
+  },
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "946",
+   "what": "used the sloped roof area 2·42·17 = 1428",
+   "bound_kills": false
+  },
+  "free_elimination": "Order-of-magnitude estimate kills 70 and 147.",
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "70",
+   "147"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM20I-03": {
+  "pick": "125",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "meet after 9:45 and at least 300/180 h = 100 min, at most 100+45 = 145",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "120",
+   "what": "added the 60 km head start instead of subtracting: 360/180 h",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "138"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": "133 = 400/180 h."
+ },
+ "AM20I-04": {
+  "pick": "90.46",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "8.52 CCF used",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "8.52 CCF × ~$9/CCF + 14.50 ≈ $91",
+   "interval": "~88–93",
+   "kills_or_edge": [
+    "53.99"
+   ]
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "86.96",
+   "what": "applied the 90% factor to both water and sewer charges",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "53.99"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "91.52 = 90% on water, 100% on sewer (swapped)."
+ },
+ "AM20I-05": {
+  "pick": "1016.69",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "5 nights: total between 5·142·1.11+124.25 = 912.35 and 5·189·1.11+124.25 = 1173.2 — all pass",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1030.36",
+   "what": "taxed the resort fee: (804+124.25)·1.11",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "1068.86 = 3 weekend nights (Thursday treated as weekend)."
+ },
+ "AM20I-06": {
+  "pick": "7107.69",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "Ben's capital-months 120,000 < Ana's 180,000 and > Cara's 90,000: Ben is the middle share, < 23100/2 — kills nothing",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "8860.27",
+   "what": "used 7 months (the months already passed) for Ben: 168,000 of 438,000",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "11314.29 = ignores time (24/49); 8400 = Cara at 3 months."
+ },
+ "AM20I-07": {
+  "pick": "68.2",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "stock outgrew bond, so share > 65%: all pass",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "67.5",
+   "what": "ignored the bond decrease: 72.8/(72.8+35)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "66.1"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM20I-08": {
+  "pick": "1143.00",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "≥ 53·18 = 954 and holiday hours at double: all pass",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1215.00",
+   "what": "counted the 8 holiday hours toward the 40-hour threshold (32 regular + 13 OT)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [
+   "1287.00"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null
+ },
+ "AM20I-09": {
+  "pick": "485.01",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "cost > rental + fuel = 119.85 + 191.36 = 311.21: all pass",
+    "kills": []
+   }
+  ],
+  "estimation_bound": null,
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "643.01",
+   "what": "only 100 free miles total (not pooled over 3 days)",
+   "bound_kills": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "445.96 = 4 rental days / 400 free miles (counted Monday); 374.61 = fuel charged only on excess miles."
+ }
+}

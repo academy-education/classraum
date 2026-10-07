@@ -1328,6 +1328,39 @@ recorded only in a commit message is a finding nobody reads.
 
   Evidence: `ACT-MATH-V19-PREREGISTERED.md`, `act-math-v19{-a,-b,}.batch.json`, `act-math-v19.kept.batch.json`, `act-math-v19.qc.json`, `act-math-v19.drops.json`, `act-math-v19-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v19.grader-{a,b}.json`, `act-math-v19-grade.{grade,gradekey}.json`, `act-math-v19-attack-draw.mjs`; ledger `act-math-v19-kept-2026-10-08`.
 
+- **2026-10-08** — **ACT MATH STAYS AT 16 FORMS: `act-math-v20` INSERTED 36 OF 45. act/math 715 → 751. FORM 17 IS ONE ALGEBRA ITEM AWAY** (`next-form`: *"Algebra +1"*; binding domain is now Algebra at 135 / 8 per form). Bars pre-registered before any item existed: `ACT-MATH-V20-PREREGISTERED.md` (committed alone, fc9e8e16).
+
+  **Scope.** `next-form` after v19: form 17 needs 33 — Algebra +7, Functions +7, Geometry +7, IES +6, S&P +5, N&Q +1 — confirmed by `form-capacity` (16 forms, N&Q 84 / 5). Authored 45 (+36%), margins per domain from recent kept rates (Algebra 9, Functions 9, Geometry 10, IES 9, S&P 6, N&Q 2), four Claude authors (A N&Q + Algebra / B Functions + S&P / C Geometry / D IES). Format from `act-test.ts` (`choiceCount: 4`). Medium/hard commission.
+
+  **The brief carried all four distractor rules**, declared per distractor and stripped before grading: v16 limiting case; v17 neighbouring setup; v18/v19 cheapest one-step estimate with every distractor strictly inside its bracket — **new: a `quantity_asked` line per item, the estimate taken over that WHOLE quantity (v19's AM19I-02 bracketed a sub-stretch) and one step finer than the obvious cap (AM19I-06)**; v18's both-graders weak standard.
+
+  **Pre-flight (my re-run on the merged 45; the script re-break-tested first by failing on the live `act-math-v18.kept`):** PREFLIGHT PASS — sandbox 45/45, distractors 135/135, numeric hub none, symbolic +8.3, key-at-extreme 21/45 = 46.7% (bar 40.0%), magnitude consistent (z 0.05 / 0.26 / −0.26), 0 composites, 0 stem duplicates, 0 duplicate option sets. Author D's 9-item file failed `check-key-magnitude` alone (n < 10, exit 2), as v19 recorded; the merged run decides.
+
+  **Duplicate scan: the Jaccard scan missed three of the four mechanism duplicates.** `act-math-v16-dupscan.mjs` (unchanged) over all 2,729 live maths rows, paged: 24 flags and 57 near, read by hand — none a duplicate. A **keyword search of all 2,729 rows per candidate mechanism** then found: `AM20A-05` = `act-math-v1` e8f17f52 (fit a quadratic through three given values, evaluate a fourth; Jaccard below the 0.45 floor); `AM20G-03` = `isee-math-s13` da512959 (**the same two lines** y = x + 2 and y = −2x + 14, with the x-axis; the candidate swapped in y = −1, and its distractor 27 is that live item's key — the scan flagged a different row); `AM20I-03` = `sat-math-v12` 7c27e30c (head-start-then-closing-speed meeting). Two authors also reported finding same-mechanism live rows only by reading the near list or querying directly (A: a cubic at 0.52; B: three Functions items). **A stem-Jaccard scan cannot see a reworded mechanism; the per-mechanism keyword search is what found these, and it should be a standing step of stage 3.**
+
+  **Options-only attack:** 45 candidates + 45 live controls matched 1:1 by domain (v16–v20 excluded), keys flat within each arm (26.7% each), three Claude samples.
+
+      CANDIDATE     36/135 = 26.7%   line 26.7%   margin  +0.0
+      LIVE CONTROL  51/135 = 37.8%   line 26.7%   margin +11.1
+      candidate minus control  −11.1  (hold bar +10; control under the +25 invalid line)
+      unanimous-correct        candidate 6/45 = 13.3%  vs  control 13/45 = 28.9%  (hold bar +15)
+      pairwise agreement 78.5% vs 28.3% if independent: one solver sampled three times
+
+  **With-source: two Claude graders, 90 of 90 picks equal the key, 0 second-defensible** (one stem note: AM20F-09 says "closest to" on an exact 6 — harmless). Render had `bounds`, `distractor_kind` and `quantity_asked` stripped (no unrecognised field; sha 0210fd169aa1082e quoted by both). Nine dropped, no repairs:
+  - **Bounds / weak (5):** `AM20A-01` (survivors 1, all three weak by both: c + 1 must be a perfect square), `AM20F-01` (survivors 2: 3x + 2 ≥ x puts the answer under 8; 22 and 26 weak by both), `AM20G-05` (goat: the shed lies inside the disc, so area < 100π − 24 = 290.16 — 290.2 ON it, 293.0 beyond; grader A, confirmed), `AM20G-08` (tetrahedron height < face altitude, so V < 27.0 — 27.0 ON it as the slant-height neighbouring setup, 29.4 beyond; both), `AM20I-02` (rain: ~1,260 × 0.1 × 7.5 × 0.85 ≈ 800 gal; 70 and 147 weak by both).
+  - **Rule 6 (1):** `AM20A-04` — unanimous blind + grader B's perfect-cube elimination (√x = 4, so x^(3/2) is a cube; 24 and 2,048 are not).
+  - **Mechanism duplicates (3):** `AM20A-05`, `AM20G-03`, `AM20I-03` (above).
+
+  **What the four rules bought.** Quality drops 6/45 = 13% (v19 2/11, v18 9/46 = 20%); overall 9/45 = 20% with the duplicates. **IES lost nothing to an estimation bound for the first time** (its one quality drop, AM20I-02, is two order-of-magnitude distractors, not a bracket edge); the `quantity_asked` line plus the finer-cap duty held across 9 items. The surviving bound kills moved to **Geometry containment** — rope disc ⊃ shed, height < slant height — the v16/v17 family in a domain whose author listed both checks and still shipped two option values ON the edge. Author declarations still killed nothing the graders did not.
+
+  **Difficulty banked from graders (agree 25/36; one apart → easier): easy 12 / medium 22 / hard 2, against the authors' 0 / 17 / 19 on the same 36.** 17 of 19 author "hard" came down — the medium/hard commission bought medium, as in v18/v19.
+
+  **Kept 36:** N&Q 2, Algebra 6, Functions 8, Geometry 7, IES 7, S&P 6. Kept-set gates pass: sandbox 36/36, 108/108; key-at-extreme 17/36 = 47.2%; magnitude z −0.36 / 0.71 / −0.30; 0 composites, 0 stem duplicates. `verify-act-draw`: act/math draws 45 of 45. `form-capacity`: **ACT Math 16 forms** (Algebra 135 / 8 binding). **Form 17 needs Algebra +1** — every other deficit met (Functions 8/7, Geometry 7/7, IES 7/6, S&P 6/5, N&Q 2/1). Algebra lost 3 of 9: one dead option set, one rule-6, one duplicate.
+
+  **Residuals recorded, not acted on:** `AM20F-08` — **both** graders count 2 survivors (cos x = 1/3 < ½ so x > 60°, killing 19.5 and 18.4) and name the inverse-trig option ladder; I judge the bound downstream of the item's work (reducing 3 sin x = tan x to cos x = 1/3 IS the item, and arccos is one calculator keystroke), as AM18I-10. `AM20G-07` — grader A counts 2 (acute turn angle, so d < 147.1); grader B and I judge the 70° interior angle is the item's crux (169.1 is exactly its failure). `AM20A-03` — grader B counts 2 (the linear remainder through (2, 7) and (−1, 13) falls, so r(4) < 7); grader A and I judge recognising that interpolant is the item. `AM20I-06` — 11314.29 (amounts only) sits on the "Ben has the fewest months, so his share < 24/49" bound: one dead, no weak, 3 survivors. `AM20S-03` asks exactly-one on a three-set Venn; live `isee-math-s11` a8b7895d asks none on the same structure — judged a different computation. `AM20N-02` — grader B: backsolving the options is cheaper than the exponent work (not a free bound). One-weak-by-both kept: AM20N-01 42, AM20A-03 19, AM20F-06 3.1, AM20F-07 8. If any surfaces in a human sitting, that is the reason.
+
+  Evidence: `ACT-MATH-V20-PREREGISTERED.md`, `act-math-v20{-a,-b,-c,-d,}.batch.json`, `act-math-v20.kept.batch.json`, `act-math-v20.qc.json`, `act-math-v20.drops.json`, `act-math-v20-attack.{blind,key,solver-a,solver-b,solver-c}.json`, `act-math-v20.grader-{a,b}.json`, `act-math-v20-grade.{grade,gradekey}.json`, `act-math-v20-attack-draw.mjs`; ledger `act-math-v20-kept-2026-10-08`.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
