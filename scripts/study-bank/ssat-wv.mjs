@@ -27,6 +27,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { lexicalFlags, a1Absent } from './absent-check.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const L = 'ABCDE'
@@ -42,6 +43,14 @@ export const content = s => norm(s).replace(/[^a-z' ]/g, ' ').split(' ').filter(
 
 // ── pilot 4 rules (SSAT-READING-WV4-PREREGISTERED.md), applied to passage_ids WV4- and later ──
 const isV4 = id => /^WV(?:[4-9]|\d{2,})-/.test(String(id))
+// ── batch WV5 (READING-BATCH-WV5-2026-10-07.prereg.md): pilot 3's one-of-each kinds, choice ratio 1.5, NAEP lure
+//    labels on every kill of a non-vocabulary/non-attitude question (>= 2 kinds per question-version), and the
+//    absent-option refusal is A1 (absent-check.mjs), not the lexical rule: a lexically flagged choice-version needs
+//    two presence judgements (a1build, then verify --a1 <dir>) and is refused only if A1 calls it absent ──
+const isV5 = id => /^WV(?:[5-9]|\d{2,})-/.test(String(id))
+export const LURES = ['stops-short', 'reversed', 'half-right', 'detail-as-whole', 'misplaced-detail', 'character-not-author']
+const a1Exempt = kind => kind === 'vocabulary-in-context' || kind === 'attitude'
+export const a1Oid = (pid, k, qid, j) => `${pid}.v${k}.${qid.slice(pid.length + 1)}.${'ABCDE'[j]}`
 const GENERIC = new Set('show shows describe describes explain explains illustrate illustrates introduce introduces suggest suggests reveal reveals emphasize emphasizes contrast compare provide provides offer offers present presents recount recounts recall recalls account example give gives point reader readers establish establishes indicate indicates highlight highlights note notes stress stresses primarily serves serve mainly concerned where more into than there then been have would could about after before over some only also what other such each every very much made make makes take took became become becomes most many under upon them once just even still'.split(' '))
 export const stemW = w => w.replace(/'s$/, '').replace(/'/g, '')
 const stemEq = (a, b) => { const n = Math.min(5, a.length, b.length); return n >= 4 && a.slice(0, n) === b.slice(0, n) }
@@ -58,8 +67,15 @@ export function kOf(frozenSha, pid) {
   return parseInt(sha(`${SEED}|${frozenSha}|${pid}`).slice(0, 8), 16) % 5
 }
 
-function verify(files, { quiet = false } = {}) {
+function verify(files, { quiet = false, a1Dir = null } = {}) {
   const problems = [], notes = []
+  let a1 = null
+  if (a1Dir) {
+    const rdj = f => { const p = join(a1Dir, f); try { return JSON.parse(readFileSync(p, 'utf8')) } catch { die(`A1: cannot read ${p}`) } }
+    const key = rdj('a1-key.json'), ja = rdj('a1-judge.a.json'), jb = rdj('a1-judge.b.json')
+    a1 = { key, j: [ja.labels ?? ja, jb.labels ?? jb] }
+  }
+  let a1Flagged = 0, a1AbsentN = 0
   const passages = files.map(f => ({ f, p: JSON.parse(readFileSync(f, 'utf8')) }))
   for (const { f, p } of passages) {
     const id = p.passage_id ?? f
@@ -79,7 +95,7 @@ function verify(files, { quiet = false } = {}) {
     })
     if (p.questions.length !== 6) problems.push(`${id}: ${p.questions.length} questions (need 6)`)
     const kinds = p.questions.map(q => q.kind).sort().join(',')
-    if (!isV4(id)) { if (kinds !== [...KINDS].sort().join(',')) problems.push(`${id}: kinds ${kinds} (need one each of ${KINDS.join(', ')})`) }
+    if (!isV4(id) || isV5(id)) { if (kinds !== [...KINDS].sort().join(',')) problems.push(`${id}: kinds ${kinds} (need one each of ${KINDS.join(', ')})`) }
     else {
       // pilot 4 mix: weighted to inference/purpose/tone/vocab; at most one detail and one main-idea
       for (const q of p.questions) if (!KINDS.includes(q.kind)) problems.push(`${id}/${q.qid}: kind ${q.kind} not one of ${KINDS.join(', ')}`)
@@ -97,7 +113,8 @@ function verify(files, { quiet = false } = {}) {
       if (q.choices?.length !== 5) { problems.push(`${tag}: ${q.choices?.length} choices`); continue }
       if (new Set(q.choices.map(norm)).size !== 5) problems.push(`${tag}: choices not distinct`)
       const cl = q.choices.map(c => c.length)
-      if (Math.max(...cl) / Math.min(...cl) > 1.6) problems.push(`${tag}: choice length ratio ${(Math.max(...cl) / Math.min(...cl)).toFixed(2)} > 1.6`)
+      const maxRatio = isV5(id) ? 1.5 : 1.6
+      if (Math.max(...cl) / Math.min(...cl) > maxRatio) problems.push(`${tag}: choice length ratio ${(Math.max(...cl) / Math.min(...cl)).toFixed(2)} > ${maxRatio}`)
       if (q.kind === 'vocabulary-in-context') {
         const w = (q.prompt.match(/["“]([^"”]+)["”]/) ?? [])[1]
         if (!w) problems.push(`${tag}: vocabulary stem must quote the word`)
@@ -131,12 +148,26 @@ function verify(files, { quiet = false } = {}) {
               const d = distinctive(q.choices, j)
               if (!d.length) return
               const hit = d.filter(w => present(w, Tw4)), need = Math.ceil(d.length / 2)
-              if (hit.length < need) { v4absent++; problems.push(`${tag} v${k}: choice ${j} is ABSENT from this version (distinctive words present ${hit.length}/${d.length}, need ${need}; missing ${d.filter(w => !hit.includes(w)).join(',')})`) }
+              if (!isV5(id) && hit.length < need) { v4absent++; problems.push(`${tag} v${k}: choice ${j} is ABSENT from this version (distinctive words present ${hit.length}/${d.length}, need ${need}; missing ${d.filter(w => !hit.includes(w)).join(',')})`) }
               if (j !== k) {
                 const kq = s.kills?.[String(j)]?.quote
                 if (kq) { const qw = [...new Set(content(kq).map(stemW))]; if (!d.some(w => present(w, qw))) problems.push(`${tag} v${k}: kill quote for choice ${j} shares no distinctive word with it (${d.join(',')}); quote where the passage discusses it`) }
               }
             })
+          }
+        }
+        if (isV5(id) && !a1Exempt(q.kind)) {
+          const lures = Object.entries(s.kills ?? {}).map(([, x]) => x?.lure)
+          lures.forEach((l, i) => { if (!LURES.includes(l)) problems.push(`${tag} v${k}: kill ${i} lure "${l}" is not one of ${LURES.join('|')}`) })
+          if (new Set(lures).size < 2) problems.push(`${tag} v${k}: the four wrong choices use ${new Set(lures).size} lure kind(s); need >= 2`)
+          const flags = lexicalFlags({ subskill: q.kind, prompt: q.prompt, passage: p.versions[k].text, choices: q.choices })
+          for (const L0 of flags) {
+            const j = 'ABCDE'.indexOf(L0), oid = a1Oid(id, k, q.qid, j); a1Flagged++
+            if (!a1) { problems.push(`${tag} v${k}: choice ${j} is lexically flagged; A1 judgements required (a1build, then verify --a1 <dir>)`); continue }
+            const ke = a1.key[oid]
+            if (!ke || ke.choice !== q.choices[j] || ke.versionSha !== sha(p.versions[k].text)) { problems.push(`${tag} v${k}: A1 judgement for choice ${j} missing or stale (${oid}); re-run a1build and the judges`); continue }
+            const vs = a1.j.map(J => J[oid]); if (vs.some(v => typeof v?.discussed !== 'boolean')) { problems.push(`${tag} v${k}: A1 judge output missing ${oid}`); continue }
+            if (a1Absent(true, vs, p.versions[k].text)) { a1AbsentN++; problems.push(`${tag} v${k}: choice ${j} is ABSENT from this version under A1 (lexically flagged, and neither judge found it discussed with a verbatim quote)`) }
           }
         }
         // lexical word-match solver (reported): choice with most content words present in the version
@@ -156,7 +187,7 @@ function verify(files, { quiet = false } = {}) {
         if (own.length) problems.push(`${id}: stem of ${o.qid} contains "${own.join(',')}", unique to one choice of ${q.qid}`)
       }
     }
-    notes.push(`${id}: words ${vl.join('/')}; negations per version ${negs.join('/')}; kills naming the rival ${named}/${nk}; lexical word-match solver ${lexHits.toFixed(1)}/${lexN} (20% = ${(lexN / 5).toFixed(1)})${isV4(id) ? `; v4 absent-option hits ${v4absent}, named-attitude hits ${v4attn}` : ''}`)
+    notes.push(`${id}: words ${vl.join('/')}; negations per version ${negs.join('/')}; kills naming the rival ${named}/${nk}; lexical word-match solver ${lexHits.toFixed(1)}/${lexN} (20% = ${(lexN / 5).toFixed(1)})${isV4(id) ? `; ${isV5(id) ? `A1 lexical flags ${a1Flagged}, A1 absent ${a1AbsentN}` : `v4 absent-option hits ${v4absent}`}, named-attitude hits ${v4attn}` : ''}`)
   }
   if (!quiet) notes.forEach(n => console.log('  ' + n))
   if (problems.length) { problems.forEach(x => console.log('  PROBLEM ' + x)); die(`${problems.length} mechanical problem(s)`) }
@@ -164,9 +195,32 @@ function verify(files, { quiet = false } = {}) {
   return passages
 }
 
-function draw(outdir, files) {
+// A1 judge input for every lexically flagged non-exempt question-version of WV5 units (all five choices listed)
+function a1build(outdir, files) {
+  const key = {}, out = []
+  for (const f of [...files].sort()) {
+    const p = JSON.parse(readFileSync(f, 'utf8')), id = p.passage_id
+    if (!isV5(id)) die(`${id}: a1build is for WV5 units`)
+    p.versions.forEach((v, k) => {
+      const lists = []
+      for (const q of p.questions) {
+        if (a1Exempt(q.kind)) continue
+        const flags = lexicalFlags({ subskill: q.kind, prompt: q.prompt, passage: v.text, choices: q.choices })
+        if (!flags.length) continue
+        lists.push({ list_id: `${id}.v${k}.${q.qid.slice(id.length + 1)}`, options: Object.fromEntries(q.choices.map((c, j) => { const oid = a1Oid(id, k, q.qid, j); key[oid] = { choice: c, versionSha: sha(v.text), lexFlag: flags.includes('ABCDE'[j]) }; return [oid, c] })) })
+      }
+      if (lists.length) out.push({ passage_id: `${id}.v${k}`, passage: v.text, option_lists: lists })
+    })
+  }
+  mkdirSync(outdir, { recursive: true })
+  writeFileSync(join(outdir, 'a1-judge.json'), JSON.stringify(out, null, 1) + '\n')
+  writeFileSync(join(outdir, 'a1-key.json'), JSON.stringify(key, null, 1) + '\n')
+  console.log(`  a1build: ${out.length} passage-versions, ${out.reduce((a, x) => a + x.option_lists.length, 0)} question-versions, ${Object.keys(key).length} option ids (${Object.values(key).filter(x => x.lexFlag).length} lexically flagged)`)
+}
+
+function draw(outdir, files, a1Dir = null) {
   const sorted = [...files].sort()
-  const passages = verify(sorted, { quiet: true })
+  const passages = verify(sorted, { quiet: true, a1Dir })
   const frozenSha = sha(Buffer.concat(sorted.map(f => readFileSync(f))))
   mkdirSync(outdir, { recursive: true })
   const drawn = {}, batch = []
@@ -434,8 +488,9 @@ function nullDist(outdir, args) {
 const [cmd, ...rest] = process.argv.slice(2)
 if (import.meta.url === `file://${process.argv[1]}`) {
   const after = flag => { const i = rest.indexOf(flag); if (i < 0) return []; const out = []; for (let j = i + 1; j < rest.length && !rest[j].startsWith('--'); j++) out.push(rest[j]); return out }
-  if (cmd === 'verify') { if (!rest.length) die('no files'); verify(rest) }
-  else if (cmd === 'draw') { const [out, ...f] = rest; if (!f.length) die('no files'); draw(out, f) }
+  if (cmd === 'verify') { const a1Dir = after('--a1')[0] ?? null; const fl = rest.filter((x, i) => x !== '--a1' && rest[i - 1] !== '--a1'); if (!fl.length) die('no files'); verify(fl, { a1Dir }) }
+  else if (cmd === 'a1build') { const [out, ...f] = rest; if (!f.length) die('no files'); a1build(out, f) }
+  else if (cmd === 'draw') { const a1Dir = after('--a1')[0] ?? null; const [out, ...f] = rest.filter((x, i) => x !== '--a1' && rest[i - 1] !== '--a1'); if (!f.length) die('no files'); draw(out, f, a1Dir) }
   else if (cmd === 'build') build(rest[0], after('--ctl')[0] ?? join(HERE, 'ssat-reading-diag'), after('--wv'), after('--fixtures')[0], after('--natlive')[0], rest.includes('--iso-all'))
   else if (cmd === 'score') score(rest[0], rest.slice(1))
   else if (cmd === 'null') nullDist(rest[0], rest.slice(1))

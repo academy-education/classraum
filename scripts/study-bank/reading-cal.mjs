@@ -284,6 +284,39 @@ export function relBar(k, nl, nc, dir, power = 0.8) {
   return { dir, live, p, bar: m, barRate: 100 * m / nc, tol: 100 * m / nc - live, decidable: m <= nc - 1, passProbAtLive: cdfLe(nc, p, m) }
 }
 
+/** Stage B bar A: options-only, candidate vs the in-run live control. INVALID unless control is 10-45%. */
+export function barAMargin(cand, live, margin = 10) {
+  if (!(live >= 10 && live <= 45)) return 'INVALID'
+  return cand <= live + margin + 1e-9 ? 'PASS' : 'FAIL'
+}
+function cmdWv5(outdir, stage) {
+  const key = rd(join(outdir, 'attack.key.json')), live = rd(join(O, 'ssat', 'score.json'))
+  const get = n => live.find(x => x.name.startsWith(n)) ?? die(`reading-cal/ssat/score.json has no ${n}`)
+  if (stage === 'ws') {
+    const wk = Object.fromEntries(Object.entries(key).filter(([, k]) => k.pop === 'withsource').map(([q, k]) => [q, { fKey: k.fKey }]))
+    const n = Object.keys(wk).length; if (n !== 12) die(`with-source key has ${n} items; the bars are computed for 12`)
+    let s; try { s = scoreSsat(wk, ['ws-a.json', 'ws-b.json'].map(f => lab(rd(join(outdir, f))))) } catch (e) { die(e.message) }
+    console.log(`STAGE 1 (C+F+Q): ${s.n} items x 2 graders; Q over ${s.Q.n} labels. Bars relative to Stage A live (reading-cal/ssat/score.json)\n`)
+    let ok = true
+    for (const [name, k, nc, dir, liveName] of [['C exclusivity', s.excl, s.n, 'good', 'C exclusivity'], ['Q distractor >= plausible', s.Q.good, s.Q.n, 'good', 'Q distractor'], ['dead-by-both', s.deadBoth, s.n, 'bad', 'dead-by-both'], ['F easy', s.easy, s.n, 'bad', 'F easy'], ['pilot-pass', s.pass, s.n, 'good', 'pilot-pass']]) {
+      const L0 = get(liveName), b = relBar(L0.k, L0.n, nc, dir)
+      const pass = dir === 'good' ? k >= b.bar : k <= b.bar
+      if (b.decidable && !pass) ok = false
+      console.log(`  ${name.padEnd(26)} candidate ${k}/${nc} = ${(100 * k / nc).toFixed(1)}%  live ${L0.k}/${L0.n} = ${L0.rate.toFixed(1)}%  bar ${dir === 'good' ? '>=' : '<='} ${b.bar}/${nc}  -> ${b.decidable ? (pass ? 'PASS' : 'FAIL') : `reported (not decidable; would ${pass ? 'pass' : 'fail'})`}`)
+    }
+    console.log(`  (for information, the pilots' absolute bars: C >= 10/12 ${s.excl >= 10 ? 'met' : 'not met'}; F <= 6/12 easy ${s.easy <= 6 ? 'met' : 'not met'}; Q >= 75% ${s.Q.rate >= 75 ? 'met' : 'not met'})`)
+    for (const r of s.res) console.log(`    ${r.q} ${key[r.q].src}: ${r.excl ? 'excl' : 'NOT-EXCL'} mean-rank ${r.mean}${r.deadBoth.length ? ` dead-both ${r.deadBoth}` : ''}`)
+    console.log(`\nSTAGE 1 ${ok ? 'PASSES' : 'FAILS'}`)
+  } else if (stage === 'iso') {
+    const files = ['iso-a.json', 'iso-b.json', 'iso-c.json'].map(f => lab(rd(join(outdir, f))))
+    const c = [0, 0], l = [0, 0], nc = Object.values(key).filter(k => k.pop === 'candidate').length, nl = Object.values(key).filter(k => k.pop === 'live').length
+    if (nl !== 48 || nc < 8) die(`iso key: candidate ${nc}, live ${nl}`)
+    files.forEach((f, i) => { for (const [q, k] of Object.entries(key)) { if (k.pop !== 'candidate' && k.pop !== 'live') continue; const v = f[q]; if (!'ABCDE'.includes(v?.pick ?? '') || !v?.pick) die(`iso sample ${i + 1}: no pick for ${q}`); const a = k.pop === 'candidate' ? c : l; a[0]++; a[1] += v.pick === k.fKey ? 1 : 0 } })
+    const cr = 100 * c[1] / c[0], lr = 100 * l[1] / l[0], v = barAMargin(cr, lr)
+    console.log(`STAGE 3 (A, options-only, 3 samples of one solver): candidate ${c[1]}/${c[0]} = ${cr.toFixed(1)}%  live control ${l[1]}/${l[0]} = ${lr.toFixed(1)}%  margin ${(cr - lr >= 0 ? '+' : '') + (cr - lr).toFixed(1)}  bar: control 10-45% and margin <= +10 -> ${v}`)
+  } else die('wv5 <outdir> ws|iso')
+}
+
 function selftest() {
   let fail = 0
   const expect = (c, m) => { console.log(`${c ? 'ok  ' : 'FAIL'} ${m}`); if (!c) fail++ }
@@ -313,6 +346,7 @@ function selftest() {
   const f = relBar(32, 33, 12, 'bad'); expect(f.bar === 12 && !f.decidable, `F at 32/33 live easy -> <= 12/12, NOT decidable (got ${f.bar})`)
   const z = relBar(1, 33, 12, 'good'); expect(z.bar === 0 && !z.decidable, 'pilot-pass at 1/33 live -> bar 0, NOT decidable')
   const h = relBar(6, 12, 12, 'bad'); expect(h.decidable && h.bar >= 6 && h.bar <= 8, `a mid-range live rate gives a decidable bar near it (got <= ${h.bar}/12)`)
+  expect(barAMargin(36.4, 26.4) === 'PASS' && barAMargin(36.5, 26.4) === 'FAIL' && barAMargin(20, 50) === 'INVALID' && barAMargin(20, 9) === 'INVALID', 'A margin: +10.0 passes, +10.1 fails; control outside 10-45% is INVALID')
   console.log(fail ? `SELFTEST FAILED (${fail})` : 'selftest passed'); process.exit(fail ? 1 : 0)
 }
 
@@ -328,6 +362,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.log(`relative bars for a ${nc}-item SSAT candidate, from ssat/score.json (live control); power 0.8\n`)
     for (const [n, d, c] of rows) { const x = get(n), b = relBar(x.k, x.n, c, d); console.log(`  ${n.padEnd(14)} live ${x.k}/${x.n} = ${b.live.toFixed(1)}% -> candidate ${d === 'good' ? '>=' : '<='} ${b.bar}/${c} (${b.barRate.toFixed(1)}%), tolerance ${b.tol.toFixed(1)} pts, P(pass | candidate = live) ${b.passProbAtLive.toFixed(2)} -> ${b.decidable ? 'DECIDING' : 'NOT DECIDABLE (cannot fail inside the attainable range): reported only'}`) }
   }
+  else if (cmd === 'wv5') cmdWv5(arg, process.argv[4])
   else if (cmd === '--selftest') selftest()
   else die('usage: draw | render | score ssat|isee | nat ssat|isee | --selftest')
 }
