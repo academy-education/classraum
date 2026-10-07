@@ -1000,6 +1000,8 @@ recorded only in a commit message is a finding nobody reads.
 
 - **2026-10-07** — **ACT ENGLISH v8 HUMAN SITTING PREPARED, NOT SENT: run `act-en8-cofounder-2026-10-07`, 40 items for `support@classraum.com` (reviewer `6ca6edaf…`), CSE 24 → PoW 12 → KoL 4, keys 6/6/6/6, 3/3/3/3, 1/1/1/1 → control 25.0% in every domain.** Prereg `act-english-v8.SITTING.PREREG.md` committed before the draw (the act-en7 design and cutoffs unchanged): CSE n=24 ≤9 clean / 10-14 second reader / ≥15 archive; PoW n=12 ≤4 / 5-7 / ≥8; KoL report-only, follows CSE. Release (`verified=true` on all 120) needs CSE and PoW both clean. Checked after the draw: 40 rows, 40 distinct items over all 12 passages, all `reviewer_kind='human'`, `item_sha` stamped on 40, 0 previously seen by this reviewer, 0 v8 rows `verified=true`; `bank-state.mjs open` shows the run 40/40 unseen. New B15. Forwardable note: `ACT-EN8-SITTING.md`. Stated limit: same reader as B7/B9, now 80 blind items into this authoring method, so familiarity could raise his score (the conservative direction).
 
+- **2026-10-07** — **ACT English sitting rule changed by the owner, committed before v8 is sat:** `ACT-ENGLISH-SPOTCHECK-RULE.md`. If v8 releases, later batches from the same method get a 20-item spot check every other batch instead of a full 40-item sitting per batch; dead zone or failure falls back to full sittings.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
