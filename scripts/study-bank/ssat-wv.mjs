@@ -75,7 +75,6 @@ function verify(files, { quiet = false, a1Dir = null } = {}) {
     const key = rdj('a1-key.json'), ja = rdj('a1-judge.a.json'), jb = rdj('a1-judge.b.json')
     a1 = { key, j: [ja.labels ?? ja, jb.labels ?? jb] }
   }
-  let a1Flagged = 0, a1AbsentN = 0
   const passages = files.map(f => ({ f, p: JSON.parse(readFileSync(f, 'utf8')) }))
   for (const { f, p } of passages) {
     const id = p.passage_id ?? f
@@ -104,7 +103,7 @@ function verify(files, { quiet = false, a1Dir = null } = {}) {
         if (n < lo || n > hi) problems.push(`${id}: ${n} ${k} question(s) (pilot 4 mix needs ${lo}-${hi})`)
       }
     }
-    let v4absent = 0, v4attn = 0
+    let v4absent = 0, v4attn = 0, a1Flagged = 0, a1AbsentN = 0
     let named = 0, nk = 0, lexHits = 0, lexN = 0
     for (const q of p.questions) {
       const tag = `${id}/${q.qid}`
