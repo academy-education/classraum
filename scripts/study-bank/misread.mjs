@@ -6,6 +6,7 @@
  *
  *   fk       <fam>            words / paragraphs / FK of every passage in misread/<fam>/passages.json
  *   verbatim <fam>            V: each passage is a contiguous excerpt of its saved source (sha256 checked)
+ *   panel    <fam>            writes panel/<set>/input.json (passage + stems only)
  *   tally    <fam>            T1-T3 over assembly.json, eligibility, simulated difficulty, habit counts;
  *                             writes batch.candidate.json (first 6 eligible stems per set, writer order)
  *   checks   <fam> [file]     stage 0 exact checks (default batch.candidate.json, or batch.json once frozen)
@@ -16,7 +17,7 @@
  * fam = map | ssat. Every reader refuses (exit 2) on a missing file or a short population, and prints
  * its denominators before its verdict.
  */
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { createHash } from 'node:crypto'
 import { rng, shuffleWith } from './seeded-shuffle.mjs'
 import { periodicity } from './map-pilot-2-checks.mjs'
@@ -150,6 +151,16 @@ function cmdVerbatim(fam) {
   }
   console.log(bad ? `V FAILS on ${bad}` : `V passes ${ps.length}/${ps.length}`); process.exit(bad ? 1 : 0)
 }
+function cmdPanel(fam) {   // panel/<set>/input.json: passage + stems ONLY (prompts §4)
+  const ps = rd(fam, 'passages.json'), stems = rd(fam, 'stems.json')
+  for (const sid of Object.keys(CFG[fam].sets)) {
+    const st = stems.find(s => s.set_id === sid), p = ps.find(x => x.set_id === sid)
+    if (!st || !p || st.stems.length !== CFG[fam].stems) die(`${sid}: need passage and ${CFG[fam].stems} stems`)
+    const out = dir(fam) + `panel/${sid}/`; mkdirSync(out, { recursive: true })
+    writeFileSync(out + 'input.json', JSON.stringify({ passage: p.text, questions: st.stems.map(s => ({ id: s.sid, question: s.prompt })) }, null, 1) + '\n')
+    console.log(`${out}input.json: ${st.stems.length} questions`)
+  }
+}
 function cmdTally(fam) {
   const c = CFG[fam], asm = rd(fam, 'assembly.json'), stems = rd(fam, 'stems.json'), ps = rd(fam, 'passages.json')
   const out = [], habitCount = {}, yields = {}
@@ -163,6 +174,12 @@ function cmdTally(fam) {
     for (const s of sset.stems) {
       const a = asm.find(x => x.sid === s.sid); if (!a) die(`assembly has no stem ${s.sid}`)
       const t = tallyStem(a, c.k)
+      // T4: every distractor quote is the reader's panel answer, verbatim (provenance is mechanical, not trusted)
+      for (const d of a.item?.distractors ?? []) (d.readers ?? []).forEach((r, i) => {
+        const f = dir(fam) + `panel/${sid}/${r}.json`; if (!existsSync(f)) { t.e.push(`T4 missing panel file ${r}`); return }
+        const ans = lab(rdAbs(f)).answers?.[s.sid]
+        if (vnorm(ans ?? '') !== vnorm(d.quotes?.[i] ?? '')) t.e.push(`T4 ${s.sid} option "${String(d.text).slice(0, 30)}" quote for ${r} is not that reader's answer`)
+      })
       const match = !t.eligible || chosenMatch(a.item, t.chosen)
       if (t.e.length || !match) { errs++; console.log(`  ERROR ${s.sid}: ${[...t.e, ...(match ? [] : [`T3 chosen distractors ${(a.item?.distractors ?? []).map(d => d.cid)} != top-${c.k} wrong clusters ${t.chosen}`])].join(' | ')}`) }
       const n = READERS.length, kr = t.key?.readers ?? []
@@ -394,6 +411,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (cmd === '--selftest') selftest()
   else if (cmd === 'fk') cmdFk(fam)
   else if (cmd === 'verbatim') cmdVerbatim(fam)
+  else if (cmd === 'panel') cmdPanel(fam)
   else if (cmd === 'tally') cmdTally(fam)
   else if (cmd === 'checks') cmdChecks(fam, arg)
   else if (cmd === 'render') cmdRender(fam, arg)
