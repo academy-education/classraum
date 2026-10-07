@@ -348,11 +348,21 @@ export function gradeSchemaForCriteria(keys: string[]) {
 export type Grade = z.infer<typeof GradeSchema>
 
 // --- Stage 1: hard zero gate -----------------------------------------------
-// Verbatim ETS 0-band conditions, asked as independent yes/no
-// classifications with only the prompt + response in context. Kept
-// separate from quality scoring on purpose: a model that is also being
-// asked "how good is this?" will not answer "is this a 0?" honestly.
+// The ETS 0-band conditions, asked as independent yes/no classifications
+// with only the prompt + response in context. Kept separate from quality
+// scoring on purpose: a model that is also being asked "how good is
+// this?" will not answer "is this a 0?" honestly.
+//
+// Writing gets its OWN schema, because the official guides list
+// different conditions (see zeroGateFlagsFor). A condition the Writing
+// guide does not list is not asked at all: handed an "entirely
+// unintelligible" box, the model ticked it, and that sent band-1 answers
+// built from borrowed prompt phrases to 0 in 10 of 12 grades (grader
+// ladder, 2026-10-07).
 
+/** Speaking gate (and, before 2026-10-07, the shared one). Speaking only
+ *  reads noResponse, notInEnglish, entirelyUnintelligible and
+ *  entirelyUnconnected from it; see SPEAKING_ZERO_FLAGS. */
 export const ZeroGateSchema = z.object({
   quotedSpan: z.string().describe('Quote up to 140 characters of the response verbatim (empty string if there is no response).'),
   reasoning: z.string().describe('1-2 sentences comparing the response to the prompt. Write this BEFORE answering the flags.'),
@@ -366,7 +376,39 @@ export const ZeroGateSchema = z.object({
   feedback: z.string().describe('1-2 sentences of feedback for the student, written in the requested output language, explaining why this scores 0 and what to do instead. Leave empty if no flag is true.'),
 })
 
-export type ZeroGate = z.infer<typeof ZeroGateSchema>
+/**
+ * Writing gate: exactly the six conditions in the official Writing
+ * guides (both tasks, identical wording), and nothing else:
+ *
+ *   "The response is blank, rejects the topic, is not in English, is
+ *    entirely copied from the prompt, is entirely unconnected to the
+ *    prompt or consists of arbitrary keystrokes."
+ *
+ * "Entirely unintelligible" is NOT among them. The Writing guides put
+ * unintelligibility at band 1 ("The message may be limited to the point
+ * of being unintelligible"), borrowed language at band 1 ("Minimal
+ * original language; any coherent language is mostly borrowed from the
+ * stimulus") and irrelevant elaboration at band 2 ("Limited or irrelevant
+ * elaboration"). Each description says where the line to those bands
+ * falls, in the guide's own words.
+ */
+export const WritingZeroGateSchema = z.object({
+  quotedSpan: z.string().describe('Quote up to 140 characters of the response verbatim (empty string if the response is blank).'),
+  reasoning: z.string().describe('1-2 sentences: which part of the response, if any, responds to the task in the prompt? Write this BEFORE answering the flags.'),
+  // Evidence BEFORE the flags it decides. reconcileWritingGate checks each
+  // quote against the actual texts, so a flag the model's own evidence
+  // contradicts cannot zero the response.
+  connectedSpan: z.string().describe('Quote verbatim any span of the response that relates to the prompt: its situation, the people in it, its question or its topic (a greeting to the right person counts). Empty string ONLY if nothing in the response relates to the prompt.'),
+  originalWords: z.string().describe('Quote verbatim words in the response that the writer added, i.e. NOT copied from the prompt. Empty string ONLY if every word is copied from the prompt.'),
+  refusalQuote: z.string().describe('If the writer explicitly refuses to do the writing task, quote that refusal verbatim. Otherwise empty string.'),
+  noResponse: z.boolean().describe('"The response is blank." True ONLY if there is no text at all (or only whitespace/punctuation). Any attempt in words, however short or weak, is false.'),
+  rejectsTopic: z.boolean().describe('"Rejects the topic." True ONLY if the writer explicitly refuses to do the writing task (e.g. "I will not write about this", "this question is pointless so I won\'t answer"). Drifting away from the topic is false. Declining, refusing or criticising something INSIDE the scenario (e.g. turning down an invitation in an email) is responding to the task, so false.'),
+  notInEnglish: z.boolean().describe('"Is not in English." True ONLY if the response is written in a language other than English. English with errors, however many, is false.'),
+  entirelyCopiedFromPrompt: z.boolean().describe('"Is entirely copied from the prompt." True ONLY if EVERY sentence is copied from the prompt and the writer added no words of their own. A response MOSTLY borrowed from the prompt with some original words is band 1 ("minimal original language; any coherent language is mostly borrowed from the stimulus"), so false.'),
+  entirelyUnconnected: z.boolean().describe('"Is entirely unconnected to the prompt." True ONLY if NOTHING in the response relates to the prompt: it is about a different subject from start to finish and could have been written without reading the prompt. If ANY part addresses the prompt\'s situation, people, question or topic (even a greeting to the right person, or one relevant sentence among irrelevant ones), it is false: mostly irrelevant content is band 2 ("limited or irrelevant elaboration"), not 0.'),
+  arbitraryKeystrokes: z.boolean().describe('"Consists of arbitrary keystrokes." True ONLY if the response is random characters or keyboard mashing rather than words.'),
+  feedback: z.string().describe('1-2 sentences of feedback for the student, written in the requested output language, explaining why this scores 0 and what to do instead. Leave empty if no flag is true.'),
+})
 
 export const ZERO_GATE_FLAGS = [
   'noResponse',
@@ -378,10 +420,76 @@ export const ZERO_GATE_FLAGS = [
   'arbitraryKeystrokes',
 ] as const
 
+export type ZeroGateFlag = (typeof ZERO_GATE_FLAGS)[number]
+
+/** Either skill's gate result. A flag that skill's schema does not ask is
+ *  absent, and an absent flag never fires. */
+export type ZeroGate = {
+  quotedSpan: string
+  reasoning: string
+  feedback: string
+  /** Writing only: the evidence fields reconcileWritingGate checks. */
+  connectedSpan?: string
+  originalWords?: string
+  refusalQuote?: string
+} & Partial<Record<ZeroGateFlag, boolean>>
+
+function normalizeForQuote(s: string): string {
+  return s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim()
+}
+
+/** True when every ellipsis-separated piece of `quote` occurs in `text`. */
+export function quoteOccursIn(quote: string | undefined, text: string): boolean {
+  if (!quote) return false
+  const hay = ` ${normalizeForQuote(text)} `
+  const pieces = quote.split(/\.\.\.|…/).map(normalizeForQuote).filter(Boolean)
+  return pieces.length > 0 && pieces.every(p => hay.includes(` ${p} `))
+}
+
+/**
+ * Drop any Writing zero flag that the gate's OWN quoted evidence
+ * contradicts. On the 2026-10-07 ladder gpt-4o-mini marked fluent emails
+ * "entirely unconnected" that open "Dear Professor Lee, Thank you for your
+ * email about the symposium" and end by declining the symposium role:
+ * the description already said a greeting to the right person makes the
+ * flag false, and the model ticked it anyway. A rule the model reads is
+ * not a rule it follows, so the guide's word "entirely" is enforced here:
+ *
+ *  - entirelyUnconnected needs NO quoted span of the response that
+ *    relates to the prompt;
+ *  - entirelyCopiedFromPrompt needs NO quoted words of the writer's own
+ *    (a quote counts only if it is in the response and holds at least one
+ *    word that is not in the prompt);
+ *  - rejectsTopic needs a quoted refusal that is actually in the response.
+ *
+ * A quote that is not in the response is not evidence and is ignored.
+ * Every other flag (blank, not in English, arbitrary keystrokes) stands.
+ */
+export function reconcileWritingGate(gate: ZeroGate, promptText: string, responseText: string): ZeroGate {
+  const out = { ...gate }
+  if (out.entirelyUnconnected && quoteOccursIn(gate.connectedSpan, responseText)) {
+    out.entirelyUnconnected = false
+  }
+  if (out.entirelyCopiedFromPrompt && quoteOccursIn(gate.originalWords, responseText)) {
+    const promptWords = new Set(normalizeForQuote(promptText).split(' '))
+    const ownWord = normalizeForQuote(gate.originalWords ?? '').split(' ').some(w => w && !promptWords.has(w))
+    if (ownWord) out.entirelyCopiedFromPrompt = false
+  }
+  if (out.rejectsTopic && !quoteOccursIn(gate.refusalQuote, responseText)) {
+    out.rejectsTopic = false
+  }
+  return out
+}
+
+export function zeroGateSchemaFor(skill: ResponseSkill): z.ZodType<ZeroGate> {
+  return skill === 'writing' ? WritingZeroGateSchema : ZeroGateSchema
+}
+
 /**
  * The 0-band conditions, which are NOT the same for the two skills.
  *
- * Taken verbatim from the official ETS scoring guides (2025 PDFs):
+ * Taken verbatim from the official ETS scoring guides (2025 PDFs; diffed
+ * again with `pdftotext -layout` on 2026-10-07):
  *
  *   Writing 0  — "The response is blank, rejects the topic, is not in
  *                 English, is entirely copied from the prompt, is
@@ -397,8 +505,21 @@ export const ZERO_GATE_FLAGS = [
  * 2 descriptor reads "consists mainly of language from the question" —
  * so zeroing a spoken response for it is two bands below the published
  * rubric. We had been applying the Writing conditions to both skills.
+ *
+ * The leak also ran the other way: Writing's list does not contain
+ * "entirely unintelligible", which is Speaking's. The Writing guides put
+ * unintelligibility at band 1. Until 2026-10-07 Writing used every flag,
+ * that one included, and zeroed borrowed-language band-1 answers as
+ * "entirely unintelligible".
  */
-const WRITING_ZERO_FLAGS = ZERO_GATE_FLAGS
+const WRITING_ZERO_FLAGS = [
+  'noResponse',
+  'rejectsTopic',
+  'notInEnglish',
+  'entirelyCopiedFromPrompt',
+  'entirelyUnconnected',
+  'arbitraryKeystrokes',
+] as const
 const SPEAKING_ZERO_FLAGS = [
   'noResponse',
   'notInEnglish',
@@ -406,7 +527,7 @@ const SPEAKING_ZERO_FLAGS = [
   'entirelyUnconnected',
 ] as const
 
-export function zeroGateFlagsFor(skill: ResponseSkill): readonly (typeof ZERO_GATE_FLAGS)[number][] {
+export function zeroGateFlagsFor(skill: ResponseSkill): readonly ZeroGateFlag[] {
   return skill === 'speaking' ? SPEAKING_ZERO_FLAGS : WRITING_ZERO_FLAGS
 }
 

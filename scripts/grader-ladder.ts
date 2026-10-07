@@ -117,6 +117,10 @@ interface GradeDetail {
 
 type Grader = (p: LadderPrompt, stepIndex: number) => Promise<GradeDetail>
 
+/** Stage attempts that failed their schema and were retried INSIDE the
+ *  pipeline (withSchemaRetry). Recovered ones never reach a student. */
+const stageRetries: Array<{ stepId: string; stage: string; attempt: number; message: string }> = []
+
 function contentHash(p: LadderPrompt, i: number): string {
   return createHash('sha256').update(`${p.taskType}\n${p.passage}\n${p.prompt}\n${p.steps[i]!.response}`).digest('hex').slice(0, 12)
 }
@@ -155,7 +159,17 @@ async function modelGrader(): Promise<Grader> {
       // Production passes an all-null signals object for a speaking
       // answer with no recording, and null for writing. Mirror it.
       speechSignals: skill === 'speaking' ? { wpm: null, pauseCount: null, clarity: null } : null,
-    }, stages)
+    }, stages, {
+      // runStagedGrade retries a schema failure itself (as production
+      // does since 2026-10-07). Count those here, so a failure the
+      // pipeline absorbed is still reported rather than hidden.
+      onStageRetry: info => stageRetries.push({
+        stepId: step.id,
+        stage: info.stage,
+        attempt: info.attempt,
+        message: info.error instanceof Error ? info.error.message : String(info.error),
+      }),
+    })
     return {
       band: staged.grade.overallBand,
       relevanceLevel: staged.relevance?.level ?? null,
@@ -279,9 +293,10 @@ async function main() {
     console.log(`resume: reused ${reused} grades from ${args.resume} (only unchanged step+prompt content is reused)`)
   }
 
-  // Attempts that produced no grade at all. Production has no retry, so
-  // every entry here is a request on which a student would have got an
-  // error instead of a band. Reported whether or not a retry recovered.
+  // Whole grades that came back with NO band even after the pipeline's own
+  // per-stage schema retries (withSchemaRetry, 3 attempts per stage). Each
+  // is a request on which a student would have got an error. Reported
+  // whether or not this runner's outer retry then recovered it.
   const attemptFailures: Array<{ stepId: string; stage: string; message: string }> = []
   const tasks: Array<() => Promise<void>> = []
   for (const p of prompts) {
@@ -320,6 +335,7 @@ async function main() {
       n: args.n,
       partial,
       attemptFailures,
+      stageRetries,
       grades: Object.fromEntries(byStep),
     }, null, 2))
     console.log(`raw grades${partial ? ' (PARTIAL — resume with --resume=' + args.json + ')' : ''} → ${args.json}`)
@@ -329,7 +345,13 @@ async function main() {
     const byKey = new Map<string, number>()
     for (const f of attemptFailures) byKey.set(`${f.stepId} [${f.stage}]`, (byKey.get(`${f.stepId} [${f.stage}]`) ?? 0) + 1)
     console.log(`
-GRADER FAILURES — ${attemptFailures.length} attempt(s) produced no grade (production does not retry: each is an error a student would see)`)
+GRADER FAILURES — ${attemptFailures.length} grade(s) produced no band after the pipeline's stage retries (each is an error a student would see)`)
+    for (const [k, c] of byKey) console.log(`  ${k}: ${c}`)
+  }
+  {
+    const byKey = new Map<string, number>()
+    for (const f of stageRetries) byKey.set(`${f.stepId} [${f.stage}]`, (byKey.get(`${f.stepId} [${f.stage}]`) ?? 0) + 1)
+    console.log(`\nSTAGE SCHEMA FAILURES retried inside the pipeline: ${stageRetries.length} attempt(s)${stageRetries.length ? ' (a grade still failing after 3 attempts appears under GRADER FAILURES)' : ''}`)
     for (const [k, c] of byKey) console.log(`  ${k}: ${c}`)
   }
   const missing: string[] = []

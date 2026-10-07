@@ -2,20 +2,23 @@ import { z } from 'zod'
 import {
   GradeSchema,
   RelevanceSchema,
-  ZeroGateSchema,
   getAnchor,
   getRubric,
+  reconcileWritingGate,
   relevanceCeiling,
   zeroGateReasons,
+  zeroGateSchemaFor,
   zeroGateTriggered,
   type Grade,
   type Relevance,
+  type RelevanceLevel,
   type ResponseSkill,
   type ResponseTaskType,
   type ResponseTestFamily,
   type RubricSpec,
   type ZeroGate,
 } from './responseRubrics'
+import { withSchemaRetry, type StageRetryInfo } from './gradeRetry'
 
 /**
  * Staged ETS-parity grader for Speaking + Writing responses.
@@ -242,6 +245,43 @@ export interface StageContext {
 }
 
 export function buildZeroGatePrompt(ctx: StageContext): string {
+  return ctx.skill === 'writing' ? buildWritingZeroGatePrompt(ctx) : buildSpeakingZeroGatePrompt(ctx)
+}
+
+/**
+ * Writing: the guide's 0 sentence verbatim, plus where the guide itself
+ * puts the near-misses. Every 0 the ladder found to be wrong was one of
+ * these near-misses (mostly irrelevant → band 2; borrowed phrases →
+ * band 1), so the prompt names them rather than leaving "entirely" to do
+ * all the work.
+ */
+function buildWritingZeroGatePrompt(ctx: StageContext): string {
+  return `You are applying the official ETS TOEFL WRITING 0-band rule. This is a CLASSIFICATION task, not a scoring task. Do NOT judge how good the response is — only whether one of the automatic-zero conditions applies.
+
+The official Writing scoring guide's complete score-0 description is:
+"The response is blank, rejects the topic, is not in English, is entirely copied from the prompt, is entirely unconnected to the prompt or consists of arbitrary keystrokes."
+
+Those six conditions are the ONLY ways a written response scores 0. The same guide places these responses at band 1 or 2, NOT 0:
+- band 2: "Limited or irrelevant elaboration" — a response that is mostly off topic, or pads with irrelevant content, but still connects to the prompt somewhere (the right recipient, the situation, the question, one relevant sentence).
+- band 1: "Minimal original language; any coherent language is mostly borrowed from the stimulus" — a response built mostly from phrases taken from the prompt, with some words of the writer's own.
+- band 1: "The message may be limited to the point of being unintelligible" — hard-to-understand English is band 1, not 0.
+- Declining, refusing or criticising something INSIDE the task's scenario (e.g. turning down an invitation in an email) is responding to the task, not rejecting the topic.
+
+Be strict about "entirely". Only mark a flag true when the condition fully applies.
+
+First quote the response and reason about which part of it, if any, responds to the prompt. Only then set the flags.
+
+${outputLanguageLine(ctx.language)}
+
+----- PROMPT GIVEN TO THE STUDENT -----
+${ctx.promptText}
+
+----- STUDENT RESPONSE -----
+${ctx.responseText}
+`.trim()
+}
+
+function buildSpeakingZeroGatePrompt(ctx: StageContext): string {
   return `You are applying the official ETS 0-band rules. This is a CLASSIFICATION task, not a scoring task. Do NOT judge how good the response is — only whether one of the automatic-zero conditions applies.
 
 A response scores 0 if ANY of the following is true:
@@ -422,7 +462,12 @@ export interface StagedGradeResult {
 
 export async function runStagedGrade(
   ctx: StageContext,
-  calls: { text: TextStageCall; quality: QualityStageCall },
+  rawCalls: { text: TextStageCall; quality: QualityStageCall },
+  opts: {
+    /** Observes each schema failure that is about to be retried. The
+     *  retry itself always logs; this is for harnesses that count them. */
+    onStageRetry?: (info: StageRetryInfo) => void
+  } = {},
 ): Promise<StagedGradeResult> {
   const rubric = getRubric(ctx.family, ctx.skill, ctx.taskType)
   const padding = analyzePadding(ctx.promptText, ctx.responseText)
@@ -433,14 +478,26 @@ export async function runStagedGrade(
     usage.tokensOut += u.tokensOut
   }
 
+  // Every stage gets the same bounded retry on a schema failure, with the
+  // same inputs. Nothing is persisted until the whole pipeline returns, so
+  // a retry cannot create a row; if every attempt fails, the last error is
+  // thrown exactly as before and the caller's 502 + error_logs path runs.
+  const retry = { onRetry: opts.onStageRetry }
+  const calls: { text: TextStageCall; quality: QualityStageCall } = {
+    text: args => withSchemaRetry(args.schemaName, () => rawCalls.text(args), retry),
+    quality: args => withSchemaRetry('rubric_grade', () => rawCalls.quality(args), retry),
+  }
+
   // ── Stage 1: hard zero gate ──────────────────────────────────────
   const gateRes = await calls.text({
-    schema: ZeroGateSchema,
+    schema: zeroGateSchemaFor(ctx.skill),
     schemaName: 'zero_gate',
     prompt: buildZeroGatePrompt(ctx),
   })
   addUsage(gateRes.usage)
-  const gate = gateRes.object
+  const gate = ctx.skill === 'writing'
+    ? reconcileWritingGate(gateRes.object, ctx.promptText, ctx.responseText)
+    : gateRes.object
   if (zeroGateTriggered(gate, ctx.skill)) {
     const reasons = zeroGateReasons(gate, ctx.skill)
     return {
@@ -502,7 +559,7 @@ export async function runStagedGrade(
   const relRes = await relevancePromise
   addUsage(relRes.usage)
   const relevance = relRes.object
-  const ceiling = relevanceCeiling(relevance.level, rubric.scaleMax)
+  const ceiling = relevanceCeiling(levelAfterGatePassed(relevance.level), rubric.scaleMax)
 
   // ── The ceiling, not an average ──────────────────────────────────
   const { grade, ceilingApplied, languageScore } = enforceRelevanceCeiling(
@@ -523,6 +580,27 @@ export async function runStagedGrade(
     padding,
     usage,
   }
+}
+
+/**
+ * A 0 is decided by the zero gate and nowhere else.
+ *
+ * The relevance ladder's lowest level, "entirely_unconnected", maps to a
+ * ceiling of 0, which made it a SECOND zero decision taken by a stage that
+ * is never shown the 0-band rules. Reaching the ladder means the gate,
+ * which is asked exactly the guide's 0 conditions, has already found none
+ * of them. On the 2026-10-07 ladder re-run, with the gate fixed, the ladder
+ * still zeroed `email-lin-G` (fluent, mostly off-topic, intended 2) and
+ * `email-lin-H` (borrowed prompt phrases, intended 1) on every repeat, and
+ * `int-luxury-G` (Speaking, intended 2) on one of three. Neither guide
+ * puts those responses at 0, and both list "entirely unconnected" as a 0
+ * condition the gate already checked.
+ *
+ * So once the gate has passed, the ladder's floor is "vaguely_connected"
+ * (ceiling 1 on the 0-5 scale). RELEVANCE_CEILING_5 itself is unchanged.
+ */
+export function levelAfterGatePassed(level: RelevanceLevel): RelevanceLevel {
+  return level === 'entirely_unconnected' ? 'vaguely_connected' : level
 }
 
 /** Grade object for a stage-1 zero. The student-facing text comes from

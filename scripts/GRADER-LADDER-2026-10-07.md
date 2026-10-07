@@ -131,3 +131,58 @@ npx tsx scripts/grader-ladder.ts --resume=/tmp/ladder.json --json=/tmp/ladder.js
 The runner exits 1, after saving the raw grades, if any step is still
 short of N after retries. It prints no statistics over a partial ladder.
 Every failed attempt is listed under GRADER FAILURES with its stage.
+
+## After the two owner-approved fixes (same day)
+
+Owner decision 2026-10-07: fix exactly findings 1 (wrong Writing zeros) and
+6 (no-grade errors). Nothing else changed: no typo allowance, no
+repeat-grading, no label or score-mapping changes. Both runs below are
+`--n=3 --concurrency=5`, same day, same models, 138 grades each.
+
+**What changed**
+
+1. *Zero decision.* Diffed against the 2025 Writing guide (`pdftotext
+   -layout`). Its whole 0 rule is "blank, rejects the topic, is not in
+   English, is entirely copied from the prompt, is entirely unconnected to
+   the prompt or consists of arbitrary keystrokes". Three things were wrong:
+   - Writing used Speaking's "entirely unintelligible" flag. The Writing
+     guide puts unintelligibility at band 1. That flag is now gone from the
+     Writing gate (`WritingZeroGateSchema`, `zeroGateFlagsFor`).
+   - gpt-4o-mini ticked `entirelyUnconnected` / `rejectsTopic` on emails that
+     greet the right professor and decline the request. Prompt wording alone
+     did not stop it (first re-run: 9/12 off-topic answers still at 0). The
+     gate now quotes its evidence before each flag, and
+     `reconcileWritingGate` drops any flag that its own quote contradicts.
+   - The relevance ladder's `entirely_unconnected` level (ceiling 0) was a
+     second zero decision. It is taken by a stage that never sees the 0
+     rules, and it zeroed `email-lin-G/H` on every repeat. Once the gate has
+     passed, the ladder's floor is now `vaguely_connected` (1). This applies
+     to both skills, because Speaking showed it too (`int-luxury-G` 2,0,2).
+     The Speaking gate itself is unchanged.
+2. *Retry.* Every stage gets `withSchemaRetry`: on a schema/parse failure
+   only, it retries up to 2 more times with the same inputs, then throws the
+   last error. It never returns a default. It runs before anything is
+   persisted. The audio route's own one-off parse retry was removed, so the
+   two retries do not nest.
+
+**Before vs after**
+
+| | before | after |
+|---|---|---|
+| Writing off-topic `*-G` (intended 2) scored 0 | 12/12 | 0/12 (disc 3,3,3 ×2; email 1,1,1 ×2) |
+| Writing borrowed `*-H` (intended 1) scored 0 | 9/12 | 0/12 (disc 1–2; email 1,1,1 ×2) |
+| Speaking scored 0 anywhere | 0/42 | 0/42 (the separate first run had `int-luxury-G` at 2,0,2) |
+| Discussion: hit rate vs constant control | 12/48 vs 24/48 | 18/48 vs 24/48 |
+| Email: hit rate vs constant control | 13/48 vs 24/48 | 20/48 vs 24/48 |
+| Interview: hit rate vs constant control | 32/42 vs 18/42 | 31/42 vs 18/42 |
+| Spearman D / E / I / all | 0.89 / 0.89 / 0.96 / 0.87 | 0.87 / 0.88 / 0.97 / 0.85 |
+| inversions D / E / I | 3/50, 0/50, 0/42 | 1/50, 1/50, 0/42 |
+| grades with no band (student would see a 502) | 3 (no in-pipeline retry) | 0; 8 stage attempts were retried and recovered |
+
+Writing band hits are **still below the constant-grader control**. The
+email G answers now land at 1, not their intended 2. Findings 2–5 and 7
+are untouched by design.
+
+`calibrate-grader.ts` (ETS published samples, 3 runs each side): before,
+5→3 and 4→3, mean −1.50, FAIL. After, identical on all 3 runs. No better,
+and no worse.
