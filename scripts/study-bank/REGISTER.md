@@ -1076,6 +1076,37 @@ recorded only in a commit message is a finding nobody reads.
 - **2026-10-07** — **B15 CLOSED: ACT English v8 RELEASED, all 120 items `verified=true`.** Co-founder sat `act-en8-cofounder-2026-10-07`: 40/40 answered in 25 min (0.63 min/item, faster than v7's 1.10; the prereg sets no pace floor), zero abstentions, no step-2 flags. Against the integer cutoffs fixed in `act-english-v8.SITTING.PREREG.md`: **CSE 7/24 = 29.2%** (clean <= 9), **PoW 2/12 = 16.7%** (clean <= 4), KoL 1/4 report-only. Both CLEAN, so the release rule fired as written. ACT English drawable 270 -> 390, forms **5 -> 7**, blueprint mix satisfied on all 7; `verify-act-draw.ts` English 50/50, Math 45/45, Reading 36/36, Science 40/40.
   **The spot-check rule now starts** (`ACT-ENGLISH-SPOTCHECK-RULE.md`): the v7/v8 method has passed two consecutive full sittings, so the next same-method batch releases on the with-source gate and the one after gets a 20-item spot check.
 
+- **2026-10-07** — **SEC v15 INSERTED: 9 of 14, 2 HARD / 7 MEDIUM BY PANEL MEDIAN. SEC hard 49 → 51. THE R&W MODULE-2 HARD ROUTE STAYS AT 7 FORMS; FORM 8 WAS NOT BOUGHT (needs 56, 5 short)** (form-capacity "SAT MODULE-2 HARD ROUTE": 7, capped by SEC 51 / ~7; `verify-sat-hard-route.ts`: 3 of 3 drawn forms all-hard, 0 repeats, 81 distinct). `rw-v15-sec-hard`, kept sha `800a275c`, frozen sha `8cdf9ba3` (d3a01ff2), prereg `030448b5` (PREREG-SEC15-2026-10-07.md: v14's bars and control; 14 items weighted to agreement/verb form; template, nearest-noun, added-connector and lone-strong-mark rules; the grader-brief sentence "options often repeat the word before the blank" REMOVED; a decidable doubled-word pre-flight drop), ledger `sat-sec-hard-v15-kept-2026-10-07`. Two Claude authors, 7 each, disjoint construction lists; no audit or repair round, nothing repaired after freeze. Every agent Claude.
+
+      near-dup    sec-near-dup.mjs frozen 14 vs ALL live SEC rows: paged 373 = exact 373; 0 flagged against live, max passage
+                  Jaccard 0.026, 0 skeletons equal to a live hard item. Within batch 4 skeleton pairs: A-04~B-04 (a real shared
+                  template, below) and A-06/A-07/B-06 (punctuation-only none/,/;/. frames, different deciders)
+      pre-flight  doubled-word drop (new; break-tested on v14, catches SEC14B-06 and nothing else): 0/14. Brief counts on the frozen
+                  file: Form/Structure/Sense 9/14 (agreement/verb 8), boundary 5; 2x2 number-by-tense grids 2; nearest noun agrees
+                  with key in A-01, A-02, B-01; added-word options in boundary items 0; key the sole strong mark 0. MISSED: the
+                  no-shared-template rule (A-04 and B-04) - recorded, not repaired
+      render      BLIND=bare; asserted before any grader read it: 0 subskill strings, 0 header words (the labelled render hits 14/14)
+      nosource    candidate 69.0% (29/42) vs live HARD-band control 68.1% (49/72), margin +1.0 (bar <= +10); MEASURED
+                  pairwise agreement 86.0% vs 25.4% independent; unanimity rate candidate 9/14 = 64.3%, control 15/24 = 62.5%
+      withsource  three graders (ws-d/e/f), phase 1 cold snapshotted (sha) before the key file existed, 0 phase-1 fields changed
+                  in phase 2: 14/14 keys on all three, 0 cold misses, 0 path errors, 0 matches_open_mark, 0 doubled_word,
+                  0 off-blueprint; gate-verdict 9/14 KEEP
+      drops       SEC15A-01 (panel HARD): 2/3 non-exclusive - "one of the few components that is shaped" is accepted notional
+                  singular (Merriam-Webster, Garner per grader f); recommend_drop d, f. SEC15A-03 (panel hard): resolving "that"
+                  2/3. SEC15A-06: resolving "copied" 2/3. SEC15A-05 (its/their, it's/they're) and SEC15B-03 (date-fixed simple
+                  past): panel easy, weak 3/3
+      elimination candidate 4.8% vs matched control 3.6% (n=14 vs 28), margin +1.2, PASS (A23), run on all 14 authored; only
+                  eliminations: the interchangeable ;/. pair in A-07 and B-06 (sample b)
+      panel       hard B-01 (plural compound "escapements in X and in Y", nearest noun plural, present perfect from a far
+                  since-phrase), B-06 (comma before a sentence-final absolute phrase; period and semicolon wrong); medium A-02,
+                  A-04, A-07, B-02, B-04, B-05, B-07; authors labelled all 14 hard (17th demotion)
+
+  **The weighting toward agreement and verb form did not reproduce v14's yield.** 4 of 14 were panel-hard before drops (A-01, A-03, B-01, B-06) and 2 survived; v10-v15 now read 3/26, 4/12, 3/14, 4/12, 5/12, 2/14. Two of the four hard items were lost to rules that exist for good reason: A-01 rested on the contested "one of those that" agreement, and A-03 ("together with" interrupter) had "that" right after the blank. The verb-form items without a number contrast (A-02, B-02, B-03) all came back medium or easy: a printed date decides tense.
+
+  **Tells.** (1) All three graders: **the semicolon (and colon, dash) is never the key** in the boundary items - keys are no mark, comma, comma, no mark, period. This is the brief's own rule 5 overcorrecting: requiring a strong mark to be WRONG while the key is a comma/no mark, in a batch of only 5 boundary items, made "strike every strong mark" a winning rule. Graders e and f: the ;/. twin offered in A-07 and B-06 lets a reader strike both (elimination sample b did exactly this). (2) All three: **SEC15A-04 and SEC15B-04 are one template** (finite singular verb after a long subject full of plurals; options -ing / to- / plural / -s; nonfinite options always lose) - the v14 A-02/B-01 failure again, from two authors with disjoint lists and the template named as banned. Do not serve both in one form; nothing enforces it. (3) All three, in variants: in agreement items the key is the verb that does NOT match the noun next to the blank; the nearest-noun-agrees rule was met by A-01 (dropped) and B-01 only. (4) Graders d, f: tense-only items are solved by matching the printed date. The added-connector tell is gone (0 added-word options).
+
+  **Next form:** form 8 needs 56 SEC hard (5 more). The next brief should let strong marks be keys again (balanced: a strong-mark key in about half the boundary items, with the competing strong mark ruled out by a fragment, not by ;/. twins), drop tense-only items, and check templates across authors before freeze, because disjoint construction lists did not stop two authors converging on one.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

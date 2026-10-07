@@ -1,0 +1,155 @@
+[
+ {
+  "id": "SEC15A-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: past perfect progressive required for an ongoing action before a past reference point (\"by the time ... arrived ... in 1896\") that follows the blank, crossed with aspect for a stated duration",
+  "difficulty": "hard",
+  "passage": "The papyri that made the ancient Egyptian town of Oxyrhynchus famous survived only because the town's garbage lay buried under dry sand. Local farmers ______ the rubbish mounds for nitrogen-rich soil for many generations by the time two young scholars arrived to excavate there in 1896, and many of the richest layers of discarded documents were already gone.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "have been mining",
+   "were mining",
+   "will have mined",
+   "had been mining"
+  ],
+  "correct_answer": "had been mining",
+  "explanation": "The digging went on \"for many generations\" and was already under way \"by the time two young scholars arrived to excavate there in 1896.\" An action that continued up to a later past moment takes the past perfect (here progressive, because of the stated duration): \"had been mining.\" \"have been mining\" is present perfect, which connects the action to the present, not to a moment in 1896; it cannot be paired with \"by the time ... arrived.\" \"were mining\" is simple past progressive, which does not express an action continuing for a duration up to an earlier past point, so it cannot take \"for many generations by the time ... arrived.\" \"will have mined\" is future perfect, which contradicts the past events described (\"arrived ... in 1896,\" \"were already gone\").",
+  "topic_tag": "papyrology: Egyptian rubbish-mound excavation"
+ },
+ {
+  "id": "SEC15A-04",
+  "domain": "Standard English Conventions",
+  "subskill": "structure: finite main verb needed after an infinitive-phrase subject, crossed with agreement across the plural nouns inside that phrase",
+  "difficulty": "hard",
+  "passage": "Historical climatologists have learned that some of their most valuable sources were never intended as scientific records. To reconstruct the day-by-day weather of eighteenth-century Bohemia from the handwritten diaries of farmers, innkeepers, and village priests ______ months of patient transcription, since each writer described frost, rain, and wind in a private shorthand that must be decoded before any single entry can be compared with another.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "requiring",
+   "to require",
+   "require",
+   "requires"
+  ],
+  "correct_answer": "requires",
+  "explanation": "The sentence's subject is the whole infinitive phrase \"To reconstruct the day-by-day weather of eighteenth-century Bohemia from the handwritten diaries of farmers, innkeepers, and village priests\"; nothing else in the main clause can serve as its verb (\"described\" belongs to the \"since\" clause). The blank must supply a finite verb, and an infinitive-phrase subject is singular: \"requires.\" \"requiring\" is a participle, so the sentence would have no main verb. \"to require\" is an infinitive and leaves the same fragment. \"require\" is finite but plural; it agrees with nearby plural nouns such as \"diaries\" or \"priests,\" none of which is the subject.",
+  "topic_tag": "historical climatology: weather diaries"
+ },
+ {
+  "id": "SEC15A-07",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: comma before a sentence-final nonrestrictive appositive whose relative clause contains the only finite verbs, crossed with fragment avoidance",
+  "difficulty": "hard",
+  "passage": "Venetian glassmakers in the thirteenth century worked furnaces that burned day and night in a city built largely of wood. In 1291 the city's government ordered every furnace moved across the lagoon to ______ island whose distance from the crowded capital reduced the danger of fire and, many historians argue, also made it easier for the guild to keep its techniques secret.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "Murano an",
+   "Murano; an",
+   "Murano, an",
+   "Murano. An"
+  ],
+  "correct_answer": "Murano, an",
+  "explanation": "\"an island whose distance from the crowded capital reduced the danger of fire and ... also made it easier ...\" is an appositive renaming \"Murano.\" Its verbs \"reduced\" and \"made\" belong to the relative clause beginning \"whose distance,\" so the phrase has no main verb of its own and cannot stand as a sentence. Because \"Murano\" is a proper name, the appositive is nonrestrictive and is set off with a comma: \"Murano, an.\" \"Murano an\" omits the comma, running the name and the nonrestrictive appositive together. \"Murano; an\" uses a semicolon, which requires an independent clause on each side, but the appositive is not a clause. \"Murano. An\" makes \"An island whose distance ... reduced ... and ... made ...\" a separate sentence, which is a fragment because both of its verbs are inside the relative clause.",
+  "topic_tag": "history of glassmaking: Venetian furnaces"
+ },
+ {
+  "id": "SEC15B-01",
+  "domain": "Standard English Conventions",
+  "subskill": "form: plural subject whose modifier holds singular attractors early while the noun before the verb is plural, crossed with present-perfect aspect required by a distant since-phrase",
+  "difficulty": "hard",
+  "passage": "For most of the eighteenth century, no clock could keep reliable time aboard a rolling ship. The steel escapements in the lone surviving prototype by a little-known Lancashire watchmaker and in the many later instruments built from copies of its drawings ______ to within a few seconds a day since the first sea trials in 1774, a record that restorers credit to the unusual hardness of the metal.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "keeps time",
+   "keep time",
+   "has kept time",
+   "have kept time"
+  ],
+  "correct_answer": "have kept time",
+  "explanation": "The subject is \"The steel escapements,\" which is plural; the phrases \"in the lone surviving prototype by a little-known Lancashire watchmaker and in the many later instruments built from copies of its drawings\" only modify it, so the singular nouns \"prototype\" and \"watchmaker\" do not control the verb. The verb must therefore be plural. The phrase \"since the first sea trials in 1774\" describes an action that began in the past and continues into the present, which requires the present perfect. Only \"have kept time\" is both plural and present perfect. \"has kept time\" has the right aspect but is singular. \"keep time\" is plural but simple present, which cannot combine with \"since the first sea trials.\" \"keeps time\" is both singular and simple present.",
+  "topic_tag": "horology: marine chronometers"
+ },
+ {
+  "id": "SEC15B-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: passive voice required because the subject is acted upon by a distant agent phrase, crossed with past tense required by the narrative frame",
+  "difficulty": "hard",
+  "passage": "Before wood pulp was adopted in the nineteenth century, European paper was made almost entirely from discarded cloth. At a mill that operated near Fabriano in the 1340s, the linen rags beaten into pulp in its stone vats ______ from households across the surrounding countryside by itinerant peddlers, who sold them to the mill's owner by the cartload.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "were collected",
+   "are collected",
+   "collected",
+   "have collected"
+  ],
+  "correct_answer": "were collected",
+  "explanation": "The subject is \"the linen rags beaten into pulp in its stone vats.\" The rags did not do the collecting; the phrase \"by itinerant peddlers\" names who collected them, so the verb must be passive. The passage describes a mill that \"operated ... in the 1340s\" and peddlers who \"sold\" the rags, so the verb must also be past tense. \"were collected\" is passive and past. \"are collected\" is passive but present tense, which conflicts with the fourteenth-century frame. \"have collected\" is active, so it makes the rags the collectors and leaves \"by itinerant peddlers\" with no function, and its present perfect tense also clashes with the 1340s. \"collected\" leaves the sentence without a main verb: it reads as a second participle modifying \"the linen rags,\" like \"beaten,\" so the sentence becomes a fragment.",
+  "topic_tag": "history of papermaking: rag paper"
+ },
+ {
+  "id": "SEC15B-04",
+  "domain": "Standard English Conventions",
+  "subskill": "structure: finite singular main verb required after a singular head noun followed by a long appositive with a reduced relative ending in plural nouns",
+  "difficulty": "hard",
+  "passage": "The domesticated silkworm, a moth bred for roughly five thousand years in China by generations of farmers tending mulberry groves, ______ on human keepers at every stage of its life: the adult cannot fly, and the caterpillars will not even search for food.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "depend entirely",
+   "depending entirely",
+   "to depend entirely",
+   "depends entirely"
+  ],
+  "correct_answer": "depends entirely",
+  "explanation": "The subject of the sentence is \"The domesticated silkworm\"; the material between the commas, \"a moth bred for roughly five thousand years in China by generations of farmers tending mulberry groves,\" is an appositive, and \"bred\" and \"tending\" are participles, not main verbs. The sentence therefore still needs a finite main verb, and it must agree with the singular \"silkworm\" rather than with \"farmers\" or \"groves.\" \"depends entirely\" is finite and singular. \"depend entirely\" is finite but plural, agreeing with the nearby plural nouns instead of the subject. \"depending entirely\" and \"to depend entirely\" are nonfinite forms, so with either one the clause before the colon has no main verb and is a fragment.",
+  "topic_tag": "sericulture"
+ },
+ {
+  "id": "SEC15B-05",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: end punctuation of a statement containing an embedded indirect question, crossed with the boundary between two independent clauses",
+  "difficulty": "hard",
+  "passage": "Historians of cryptography have long puzzled over how a sixteenth-century Venetian envoy managed to read dispatches enciphered with a key that he could not possibly have ______ answer, recovered from a merchant's ledger only in 2019, turns out to be simple bribery.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "possessed? The",
+   "possessed. The",
+   "possessed, the",
+   "possessed the"
+  ],
+  "correct_answer": "possessed. The",
+  "explanation": "The first sentence is a statement: \"Historians of cryptography have long puzzled over how ... envoy managed to read dispatches ...\" The \"how\" clause is an indirect question embedded as the object of \"puzzled over,\" so the sentence ends with a period, not a question mark. What follows, \"The answer ... turns out to be simple bribery,\" is a separate independent clause. \"possessed. The\" correctly ends the statement and begins the new sentence. \"possessed? The\" punctuates the statement as though it were a direct question. \"possessed, the\" joins two independent clauses with only a comma, a comma splice. \"possessed the\" fuses the two clauses with no punctuation, and it misreads \"the answer\" as the object of \"possessed.\"",
+  "topic_tag": "history of cryptography"
+ },
+ {
+  "id": "SEC15B-06",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: comma before a sentence-final absolute phrase whose verb is a participle, against semicolon and period that require an independent clause",
+  "difficulty": "hard",
+  "passage": "Large church bells were often cast in pits dug beside the church itself, because moving several tons of bronze afterward was nearly impossible. One such bell, poured in a Flemish town in the 1480s, split along its waist at the first stroke of the ______, alloyed with far more tin than the founders had meant to add, proving too brittle to absorb the shock.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "clapper, its bronze",
+   "clapper; its bronze",
+   "clapper. Its bronze",
+   "clapper its bronze"
+  ],
+  "correct_answer": "clapper, its bronze",
+  "explanation": "The words after the blank, \"its bronze, alloyed with far more tin than the founders had meant to add, proving too brittle to absorb the shock,\" contain no main verb: \"had meant\" belongs to the comparison inside the interrupting phrase, and \"proving\" is a participle. The group is therefore an absolute phrase explaining why the bell split, not an independent clause, and an absolute phrase at the end of a sentence is set off with a comma. \"clapper, its bronze\" does this. \"clapper; its bronze\" uses a semicolon, which must join two independent clauses, so the second part is a fragment. \"clapper. Its bronze\" makes that same phrase a sentence on its own, also a fragment. \"clapper its bronze\" runs the absolute phrase into \"clapper\" with no punctuation, so it reads as though \"its bronze\" continued the noun phrase \"the clapper.\"",
+  "topic_tag": "metallurgy: bell founding"
+ },
+ {
+  "id": "SEC15B-07",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: no mark before a restrictive participial phrase inside the subject, against a single comma, dash, or colon that separates the subject from its distant verb",
+  "difficulty": "hard",
+  "passage": "During a typhoid outbreak in 1893, a Norwegian fishing town recorded cases in nearly every one of its several hundred households. Only the ______ water from a single spring above the harbor escaped infection entirely, a pattern that led the town's physician to suspect contamination of the lower wells.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "households, drawing",
+   "households—drawing",
+   "households drawing",
+   "households: drawing"
+  ],
+  "correct_answer": "households drawing",
+  "explanation": "The subject of the second sentence is \"Only the households drawing water from a single spring above the harbor,\" and its verb is \"escaped.\" The phrase \"drawing water from a single spring above the harbor\" is restrictive: it identifies which households escaped, as \"Only\" signals, so it takes no punctuation, and nothing should separate the subject from \"escaped.\" \"households drawing\" is correct. \"households, drawing\" inserts a single comma, which either treats the essential phrase as nonessential without the closing comma it would need or separates the subject from its verb. \"households—drawing\" has the same problem with a single dash. \"households: drawing\" uses a colon, which must follow a complete independent clause, but \"Only the households\" is not a clause; the colon also cuts the subject off from its verb.",
+  "topic_tag": "public health: waterborne typhoid"
+ }
+]
