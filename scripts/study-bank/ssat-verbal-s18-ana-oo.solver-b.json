@@ -1,0 +1,851 @@
+{
+ "L01": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L02": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L03": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L04": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L05": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L07": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L08": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L09": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L10": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L11": {
+  "pick": "B",
+  "basis": "lean",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "odd domain out (non-ship) vs ship-themed lures"
+ },
+ "L12": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L13": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L14": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tool/worker; E is reversal lure"
+ },
+ "L15": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "stops-harm relation"
+ },
+ "L16": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L17": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L19": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L20": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L21": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L22": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L23": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L24": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L25": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L26": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "B/E are noun-adjective lures"
+ },
+ "L27": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L28": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L29": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L31": {
+  "pick": "B",
+  "basis": "lean",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "odd domain out vs music lures; C reversal"
+ },
+ "L32": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L33": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L35": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal"
+ },
+ "L36": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal"
+ },
+ "L37": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L38": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L39": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L40": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L41": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L42": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L43": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L45": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L46": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "odd out of car-domain lures"
+ },
+ "L47": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L49": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L50": {
+  "pick": "C",
+  "basis": "lean",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "unique order (low-high) among degree pairs"
+ },
+ "L51": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L52": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L53": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "odd domain out vs book lures"
+ },
+ "L54": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L55": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L56": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L57": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L58": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L59": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L60": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "D adjective lure"
+ },
+ "L61": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L62": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L63": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L64": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L65": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L66": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal"
+ },
+ "L67": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L68": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L69": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L70": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L71": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no signal"
+ },
+ "L72": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no signal"
+ },
+ "L73": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L74": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L76": {
+  "pick": "C",
+  "basis": "lean",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "odd domain out vs music lures"
+ },
+ "L77": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L78": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L79": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L81": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "B adjective lure"
+ },
+ "L82": {
+  "pick": "E",
+  "basis": "lean",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "odd out vs baking lures; D reversal"
+ },
+ "L83": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L84": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L86": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L87": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L88": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L89": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L90": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L91": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L92": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L93": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "cause-effect"
+ },
+ "L94": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L95": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal"
+ },
+ "L97": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L99": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L100": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L101": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L102": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L103": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L104": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L105": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no signal"
+ },
+ "L106": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L107": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L108": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L109": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L110": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L111": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L112": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L113": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L114": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L115": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "B adjective lure"
+ },
+ "L116": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L117": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "E verb lure"
+ },
+ "L118": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L119": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "L120": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one relation type per option; no option-only signal"
+ },
+ "_heuristics": {
+  "no_signal_random_guess": 98,
+  "odd_domain_out_vs_themed_lures": 6,
+  "reversed_pair_marks_relation_family_pick_forward_order": 3,
+  "noun_adjective_or_verb_pair_is_lure_(reject)": 6,
+  "unique_order_among_degree_pairs": 1,
+  "relation_intuition_guess": 6,
+  "note": "Candidate items show five distinct relation types per item with no duplicated/odd relation; no reject judged certain."
+ }
+}

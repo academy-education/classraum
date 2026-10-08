@@ -1,0 +1,855 @@
+{
+ "L01": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; gas:neon odd category order"
+ },
+ "L02": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; antonym pick cause"
+ },
+ "L03": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal"
+ },
+ "L04": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; material"
+ },
+ "L05": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; measure family"
+ },
+ "L06": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; part:whole"
+ },
+ "L08": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L09": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L10": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; measure"
+ },
+ "L11": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "mast:sail weak pair; keel:ship clean part:whole"
+ },
+ "L12": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; material"
+ },
+ "L13": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; measure"
+ },
+ "L14": {
+  "pick": "E",
+  "basis": "lean",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "wrench:plumber is reversed twin of carpenter:hammer"
+ },
+ "L15": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; prevents relation"
+ },
+ "L16": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; field of study"
+ },
+ "L17": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; member:group"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; worker:tool"
+ },
+ "L19": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "stapler:fasten/auditor:inspect pair; pick worker one"
+ },
+ "L20": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L21": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; measure"
+ },
+ "L22": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L23": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L24": {
+  "pick": "D",
+  "basis": "lean",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "generosity:philanthropist is reversed twin of recluse:solitude"
+ },
+ "L25": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; field"
+ },
+ "L26": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pelt:coarse and rind:bitter duplicate noun:adj, rule both out"
+ },
+ "L27": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; container"
+ },
+ "L28": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L29": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L30": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; container"
+ },
+ "L31": {
+  "pick": "B",
+  "basis": "lean",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "score:composer reversed twin of playwright:drama"
+ },
+ "L32": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L33": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; worker:action"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L35": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; worker:tool"
+ },
+ "L36": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "loom:weaver reversed; pick worker:action"
+ },
+ "L37": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; measure"
+ },
+ "L38": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L39": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; material"
+ },
+ "L40": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L41": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; symbol"
+ },
+ "L42": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; container"
+ },
+ "L43": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; worker:tool"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L45": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L46": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; part:whole"
+ },
+ "L47": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; user:tool"
+ },
+ "L48": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L49": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L50": {
+  "pick": "C",
+  "basis": "lean",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "A and B are reversed degree (strong:weak); C is only forward degree"
+ },
+ "L51": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L52": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; user:tool"
+ },
+ "L53": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "manuscript:editor reversed twin of tanner:leather"
+ },
+ "L54": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; cause"
+ },
+ "L55": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; material"
+ },
+ "L56": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; function"
+ },
+ "L57": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L58": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; user:tool"
+ },
+ "L59": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; user:tool"
+ },
+ "L60": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; lectern:sturdy noun:adj odd"
+ },
+ "L61": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; part:whole"
+ },
+ "L62": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L63": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L64": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; user:tool"
+ },
+ "L65": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "lean",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "trowel:mason reversed twin of surveyor:theodolite"
+ },
+ "L67": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; part:whole"
+ },
+ "L68": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L69": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L70": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L71": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; worker:tool"
+ },
+ "L72": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "revise:manuscript and cancel:event duplicate verb:object"
+ },
+ "L73": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L74": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L75": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L76": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; user:tool"
+ },
+ "L77": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L78": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; trait"
+ },
+ "L79": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L80": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L81": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L82": {
+  "pick": "E",
+  "basis": "lean",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "portrait:painter reversed twin of blacksmith:horseshoe; oven:baker also reversed"
+ },
+ "L83": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; cause, only clean pair"
+ },
+ "L84": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L85": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; worker:tool"
+ },
+ "L86": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L87": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L88": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; field"
+ },
+ "L89": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L90": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; agent:action"
+ },
+ "L91": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L92": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L93": {
+  "pick": "E",
+  "basis": "lean",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "thunder:lightning is reversed cause; friction:heat forward cause"
+ },
+ "L94": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L95": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; trait"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; part:whole"
+ },
+ "L97": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L99": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L100": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L101": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L102": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L103": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L104": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L105": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L106": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "courier:deliver/ladder:climb near-duplicate; pick agent"
+ },
+ "L107": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; cause"
+ },
+ "L108": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "L109": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; material"
+ },
+ "L110": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L111": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no-signal; part:whole"
+ },
+ "L112": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; young:adult"
+ },
+ "L113": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L114": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L115": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; relic:ancient adj odd"
+ },
+ "L116": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; worker:product"
+ },
+ "L117": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; container"
+ },
+ "L118": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L119": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no-signal; degree"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "no-signal; lacks"
+ },
+ "_heuristics": {
+  "reversed-twin: two options share a relation, one in reversed order -> pick the forward one (L14,L24,L31,L50,L53,L66,L82,L93)": 8,
+  "duplicate relation without reversal -> exclude both duplicates (L26,L72; partial L19,L106)": 4,
+  "weak/odd pair rejected (mast:sail, noun:adjective pairs)": 3,
+  "own-judgment guess with no option-set signal, spreading picks across relation families and letters": 105,
+  "pick letter counts": {
+   "B": 31,
+   "A": 17,
+   "D": 18,
+   "E": 18,
+   "C": 36
+  }
+ }
+}

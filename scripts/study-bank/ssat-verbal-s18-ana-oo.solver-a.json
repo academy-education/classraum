@@ -1,0 +1,848 @@
+{
+ "L01": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "part:whole classic; no distinguishing signal"
+ },
+ "L02": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cause:effect common; all families distinct"
+ },
+ "L03": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "worker:product classic; D is reversed category"
+ },
+ "L04": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "container:contents; no signal"
+ },
+ "L05": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "part:whole; no signal"
+ },
+ "L06": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L07": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L08": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "cause:effect; no signal"
+ },
+ "L09": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "worker:tool; E reversed category"
+ },
+ "L10": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L11": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "mixed-domain live-style set; keel:ship part:whole, ship domain repeated"
+ },
+ "L12": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "worker:product; live-style mixed set"
+ },
+ "L13": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "specialist:field; no signal"
+ },
+ "L14": {
+  "pick": "E",
+  "basis": "lean",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "A is reversed duplicate of worker:tool; E straight form"
+ },
+ "L15": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "thing:what it prevents; no signal"
+ },
+ "L16": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "specialist:field; no signal"
+ },
+ "L17": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "member:group; no signal"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "worker:tool; live-style set"
+ },
+ "L19": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L20": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worker:product; no signal"
+ },
+ "L21": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L22": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "container:contents; no signal"
+ },
+ "L23": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L24": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "person:defining trait; no signal"
+ },
+ "L25": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "specialist:field; no signal"
+ },
+ "L26": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "B and E duplicate thing:adjective; A unique"
+ },
+ "L27": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "container:contents; no signal"
+ },
+ "L28": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "specialist:field; no signal"
+ },
+ "L29": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L30": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "container:contents; no signal"
+ },
+ "L31": {
+  "pick": "B",
+  "basis": "lean",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "C is reversed creator:work; B straight form"
+ },
+ "L32": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L33": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L34": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L35": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "worker:tool; live-style set"
+ },
+ "L36": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "C reversed tool:worker; live-style set"
+ },
+ "L37": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L38": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worker:product; no signal"
+ },
+ "L39": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "worker:product; no signal"
+ },
+ "L40": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L41": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "worker:product; no signal"
+ },
+ "L42": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L43": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L44": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L45": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "specialist:field; no signal"
+ },
+ "L46": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "part:whole; live-style set"
+ },
+ "L47": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L48": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "animal:trait; no signal"
+ },
+ "L49": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "specialist:field; no signal"
+ },
+ "L50": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "A/B extreme:mild duplicated, C reversed; E odd out"
+ },
+ "L51": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "degree; no signal"
+ },
+ "L52": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L53": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "B reversed worker:object; A straight"
+ },
+ "L54": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "cause:effect; no signal"
+ },
+ "L55": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "structure:material; no signal"
+ },
+ "L56": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L57": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "head:institution; no signal"
+ },
+ "L58": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L59": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L60": {
+  "pick": "C",
+  "basis": "lean",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "A reversed whole:part, D adjective; C worker:tool"
+ },
+ "L61": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L62": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L63": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "symbol:meaning; no signal"
+ },
+ "L64": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "tool:function; live-style set"
+ },
+ "L65": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "lean",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "E reversed tool:worker; D straight worker:tool"
+ },
+ "L67": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L68": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L69": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L70": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L71": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "part:whole; live-style set"
+ },
+ "L72": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "condensed:full; live-style set"
+ },
+ "L73": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L74": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "degree/stage; no signal"
+ },
+ "L75": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "stage:later stage; no signal"
+ },
+ "L76": {
+  "pick": "C",
+  "basis": "lean",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "E reversed place:worker; C worker:tool"
+ },
+ "L77": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "degree; no signal"
+ },
+ "L78": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "symbol:meaning; no signal"
+ },
+ "L79": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "worker:product; no signal"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worker:product; no signal"
+ },
+ "L81": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "worker:product; B adjective odd"
+ },
+ "L82": {
+  "pick": "E",
+  "basis": "lean",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "D reversed product:worker; E straight"
+ },
+ "L83": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "cause:effect; no signal"
+ },
+ "L84": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L85": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L86": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "worker:product; no signal"
+ },
+ "L87": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L88": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L89": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L90": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cause:reaction; no signal"
+ },
+ "L91": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L92": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L93": {
+  "pick": "E",
+  "basis": "lean",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "C reversed cause:effect (lightning causes thunder); E straight"
+ },
+ "L94": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L95": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "part:whole; live-style set, B reversed-ish"
+ },
+ "L97": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "cause:effect; no signal"
+ },
+ "L98": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L99": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "degree; no signal"
+ },
+ "L100": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "degree; no signal"
+ },
+ "L101": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "worker:tool; no signal"
+ },
+ "L102": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "worker:product; no signal"
+ },
+ "L103": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cause:effect; no signal"
+ },
+ "L104": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "worker:product; no signal"
+ },
+ "L105": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "worker:product; live-style set"
+ },
+ "L106": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worker:function; no signal"
+ },
+ "L107": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cause:effect; no signal"
+ },
+ "L108": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "part:whole; no signal"
+ },
+ "L110": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "part:whole; no signal"
+ },
+ "L111": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L112": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "container:contents; no signal"
+ },
+ "L113": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L114": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "specialist:field; no signal"
+ },
+ "L115": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "item:where kept; live-style set"
+ },
+ "L116": {
+  "pick": "E",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tool:function; no signal"
+ },
+ "L117": {
+  "pick": "A",
+  "basis": "lean",
+  "reject": "E",
+  "reject_certain": false,
+  "why": "A worker:tool; E verb odd"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "L119": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "specialist:field; no signal"
+ },
+ "L120": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "instrument:measure; no signal"
+ },
+ "_heuristics": {
+  "reversed-duplicate: when one option is the reversed form of another option's relation (e.g. tool:worker vs worker:tool), pick the straight form": 9,
+  "odd-relation-out: duplicated relation type (two degree pairs, two thing:adjective pairs) -> pick the unique one": 3,
+  "prior for common SSAT relation (instrument:measure, worker:tool/product, specialist:field) when option set gave no signal; essentially guesses": 108,
+  "note": "candidate-style sets each show five distinct relation families with no visible tell; 108/120 are guesses"
+ }
+}
