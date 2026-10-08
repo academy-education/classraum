@@ -1,0 +1,38 @@
+{
+  "CTRL.pitch": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "distinct",
+      "0-4": "overlap",
+      "1-2": "distinct",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "overlap",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "0-4": "\"The rookie's pitch impressed the owners\" (or \"pitched it to the scouts\") can be read as his throw or his sales talk; the selling sense extends the throwing one.",
+      "2-4": "\"She softened her pitch for the older clients\" is defensible as her tone of voice or her sales talk."
+    }
+  },
+  "CTRL.bank": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "distinct",
+      "0-4": "overlap",
+      "1-2": "distinct",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "overlap",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "0-4": "\"They scrambled up the bank by the canal\" can mean the riverside or a heaped-up ridge of earth (an embankment).",
+      "2-4": "\"The engineers banked the curve\" can mean they tilted the roadway or built up (heaped) earth on its outer edge."
+    }
+  }
+}

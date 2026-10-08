@@ -1,0 +1,63 @@
+{
+  "WV10-P01.4": {
+    "pairs": {
+      "0-1": "distinct",
+      "0-2": "distinct",
+      "0-3": "distinct",
+      "0-4": "distinct",
+      "1-2": "overlap",
+      "1-3": "distinct",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "distinct",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "1-2": "'It struck her that he was lying' = it dawned on her, and a reader can defend 'she concluded' because the gloss 'concluded' reads as reaching a conclusion as well as settling a deal (the 'struck a deal' sense)"
+    }
+  },
+  "WV10-P02.4": {
+    "pairs": {
+      "0-1": "overlap",
+      "0-2": "overlap",
+      "0-3": "overlap",
+      "0-4": "distinct",
+      "1-2": "distinct",
+      "1-3": "overlap",
+      "1-4": "distinct",
+      "2-3": "distinct",
+      "2-4": "distinct",
+      "3-4": "overlap"
+    },
+    "notes": {
+      "0-1": "'The inspector raised a red flag': literally hoisted a flag, or the idiom for voicing (mentioning) a concern",
+      "0-2": "'The horse raised its head' = hoisted, and also 'reared its head' (rear = lift up), apart from the bring-up-children sense",
+      "0-3": "'raised the bar': physically hoisted the crossbar, or increased the standard; likewise 'raised the water level'",
+      "1-3": "'The report raised concerns': brought concerns up (mentioned), or heightened them (increased)",
+      "3-4": "'The city raised revenue': collected revenue, or increased it"
+    }
+  },
+  "WV10-P03.4": {
+    "pairs": {
+      "0-1": "overlap",
+      "0-2": "overlap",
+      "0-3": "overlap",
+      "0-4": "distinct",
+      "1-2": "overlap",
+      "1-3": "overlap",
+      "1-4": "overlap",
+      "2-3": "overlap",
+      "2-4": "distinct",
+      "3-4": "distinct"
+    },
+    "notes": {
+      "0-1": "'The series ran for six weeks': was published for six weeks, or extended over six weeks",
+      "0-2": "'She ran the newsletter': operated it, or published it; the editor who 'ran the column' can be read either way",
+      "0-3": "'The site ran the documentary': published it, or streamed (broadcast) it",
+      "1-2": "'The bus line ran from the station to the harbor': the route extended there, or the service operated there",
+      "1-3": "'The river ran through the valley': extended through it, or streamed (flowed) through it",
+      "1-4": "'The report ran to 300 pages': extended to, or amounted to, 300 pages",
+      "2-3": "'The tap ran all night': the tap operated, or water streamed from it; also 'ran the video' = operated/played vs streamed"
+    }
+  }
+}

@@ -113,6 +113,19 @@ export function characterActionStem(prompt) {
   if (/\b(author|narrator)(?:'s|’s)?\s+(attitude|tone|feeling)|\btone\b|\bauthor's\b|\bnarrator's\b/i.test(s)) probs.push('stem asks about the author or narrator, not a character action')
   return probs
 }
+// ── batch WV11 (READING-BATCH-WV11-2026-10-08.prereg.md): (1) the attitude action/reply quoted as each version's
+//    "why" is at least one full sentence (>= 6 words, sentence-shaped); (2) no irony (licensing prompt; not mechanical);
+//    (3) vocabulary senses must not overlap: two judges rate every pair of the five glosses (sensebuild / --senses). ──
+const isV11 = id => /^WV(?:1[1-9]|[2-9]\d)-/.test(String(id))
+export function fullSentence(why) {
+  const t = String(why ?? '').trim(), w = t.split(/\s+/).filter(x => /[a-z]/i.test(x)).length
+  const probs = []
+  if (w < 6) probs.push(`the attitude action quoted as "why" has ${w} word(s); it must be at least one full sentence of >= 6 words`)
+  if (!/^["'‘“(]?[A-Z]/.test(t)) probs.push('the attitude action must be quoted from the start of a sentence')
+  if (!/[.!?]["'’”)]?$/.test(t)) probs.push('the attitude action must be quoted to the end of a sentence')
+  return probs
+}
+export const senseId = (pid, qid) => `${pid}.${qid.slice(pid.length + 1)}`
 export const licId = (pid, k, qid) => `${pid}.v${k}.${qid.slice(pid.length + 1)}`
 export const a1Oid = (pid, k, qid, j) => `${pid}.v${k}.${qid.slice(pid.length + 1)}.${'ABCDE'[j]}`
 const GENERIC = new Set('show shows describe describes explain explains illustrate illustrates introduce introduces suggest suggests reveal reveals emphasize emphasizes contrast compare provide provides offer offers present presents recount recounts recall recalls account example give gives point reader readers establish establishes indicate indicates highlight highlights note notes stress stresses primarily serves serve mainly concerned where more into than there then been have would could about after before over some only also what other such each every very much made make makes take took became become becomes most many under upon them once just even still'.split(' '))
@@ -131,8 +144,14 @@ export function kOf(frozenSha, pid) {
   return parseInt(sha(`${SEED}|${frozenSha}|${pid}`).slice(0, 8), 16) % 5
 }
 
-function verify(files, { quiet = false, a1Dir = null, licDir = null } = {}) {
+function verify(files, { quiet = false, a1Dir = null, licDir = null, senseDir = null } = {}) {
   const problems = [], notes = []
+  let senses = null
+  if (senseDir) {
+    const rdj = f => { const p = join(senseDir, f); try { return JSON.parse(readFileSync(p, 'utf8')) } catch { die(`senses: cannot read ${p}`) } }
+    const ja = rdj('sense-judge.a.json'), jb = rdj('sense-judge.b.json')
+    senses = { key: rdj('sense-key.json'), j: [ja.labels ?? ja, jb.labels ?? jb] }
+  }
   let lic = null
   if (licDir) {
     const rdj = f => { const p = join(licDir, f); try { return JSON.parse(readFileSync(p, 'utf8')) } catch { die(`licensing: cannot read ${p}`) } }
@@ -187,6 +206,26 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null } = {}) {
       if (Math.max(...cl) / Math.min(...cl) > maxRatio) problems.push(`${tag}: choice length ratio ${(Math.max(...cl) / Math.min(...cl)).toFixed(2)} > ${maxRatio}`)
       if (isV6(id) && !isV9(id) && q.kind === 'attitude') attitudeDirections(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
       if (isV10(id) && q.kind === 'attitude') characterActionStem(q.prompt).forEach(x => problems.push(`${tag}: ${x}`))
+      if (isV11(id) && q.kind === 'attitude') (q.support ?? []).forEach((sp, k) => fullSentence(sp?.why).forEach(x => problems.push(`${tag} v${k}: ${x}`)))
+      if (isV11(id) && q.kind === 'vocabulary-in-context') {
+        const sid = senseId(id, q.qid)
+        if (!senses) problems.push(`${tag}: sense-overlap pre-check required (sensebuild, then verify --senses <dir>)`)
+        else {
+          const ke = senses.key[sid]
+          if (!ke || JSON.stringify(ke.choices) !== JSON.stringify(q.choices)) problems.push(`${tag}: sense judgement missing or stale (${sid})`)
+          else {
+            // WV11 prereg: refuse a pair only if BOTH judges rate it "overlap" (agreement rule; either-judge refused every
+            // break-test set, a constructed homonym set included). Missing or malformed output refuses.
+            const rs = senses.j.map(J => J[sid])
+            if (rs.some(r => !r || typeof r.pairs !== 'object')) problems.push(`${tag}: sense judge output missing ${sid}`)
+            else for (let a = 0; a < 5; a++) for (let b = a + 1; b < 5; b++) {
+              const vs = rs.map(r => r.pairs[`${a}-${b}`])
+              if (vs.some(v => v !== 'overlap' && v !== 'distinct')) problems.push(`${tag}: sense pair ${a}-${b} not rated by both judges`)
+              else if (vs.every(v => v === 'overlap')) problems.push(`${tag}: both sense judges rate "${q.choices[a]}" / "${q.choices[b]}" as overlapping`)
+            }
+          }
+        }
+      }
       if (isV9(id) && q.kind === 'attitude') {
         attitudeDirections9(q.choices).probs.forEach(x => problems.push(`${tag}: ${x}`))
         p.versions.forEach((v, k) => { const a = announcedTone(v.text); if (a.length) problems.push(`${tag} v${k}: the passage announces a tone ("${a.join('", "')}"); the attitude must be inferable, not named`) })
@@ -295,6 +334,24 @@ function verify(files, { quiet = false, a1Dir = null, licDir = null } = {}) {
   return passages
 }
 
+// WV11 sense-overlap pre-check input: for every vocabulary question, the word, the five glosses and the ten pairs.
+function sensebuild(outdir, files) {
+  const key = {}, out = []
+  for (const f of [...files].sort()) {
+    const p = JSON.parse(readFileSync(f, 'utf8')), id = p.passage_id
+    for (const q of p.questions.filter(q => q.kind === 'vocabulary-in-context')) {
+      const sid = senseId(id, q.qid), word = (q.prompt.match(/["“]([^"”]+)["”]/) ?? [])[1] ?? ''
+      key[sid] = { choices: q.choices }
+      const pairs = []; for (let a = 0; a < 5; a++) for (let b = a + 1; b < 5; b++) pairs.push({ pair: `${a}-${b}`, senses: [q.choices[a], q.choices[b]] })
+      out.push({ id: sid, word, glosses: q.choices, pairs })
+    }
+  }
+  mkdirSync(outdir, { recursive: true })
+  writeFileSync(join(outdir, 'sense-judge.json'), JSON.stringify(out, null, 1) + '\n')
+  writeFileSync(join(outdir, 'sense-key.json'), JSON.stringify(key, null, 1) + '\n')
+  console.log(`  sensebuild: ${out.length} vocabulary questions, ${out.length * 10} pairs`)
+}
+
 // licensing pre-check input (WV6), v2 after the v1 design failed its break test on WV5 (letters in choice order gave
 // "version k keys letter k"; one file showed all five versions side by side). Now: ONE FILE PER VERSION INDEX k (both
 // passages' version k, never two versions of one passage), only the attitude and vocabulary questions, letters
@@ -373,9 +430,9 @@ function gscreenScore(outdir, samples) {
   console.log(`  GSCREEN ${allPass ? 'all units pass' : 'at least one unit refused'}`)
 }
 
-function draw(outdir, files, a1Dir = null, licDir = null) {
+function draw(outdir, files, a1Dir = null, licDir = null, senseDir = null) {
   const sorted = [...files].sort()
-  const passages = verify(sorted, { quiet: true, a1Dir, licDir })
+  const passages = verify(sorted, { quiet: true, a1Dir, licDir, senseDir })
   const frozenSha = sha(Buffer.concat(sorted.map(f => readFileSync(f))))
   mkdirSync(outdir, { recursive: true })
   const drawn = {}, batch = []
@@ -644,12 +701,13 @@ const [cmd, ...rest] = process.argv.slice(2)
 if (import.meta.url === `file://${process.argv[1]}`) {
   const after = flag => { const i = rest.indexOf(flag); if (i < 0) return []; const out = []; for (let j = i + 1; j < rest.length && !rest[j].startsWith('--'); j++) out.push(rest[j]); return out }
   const strip = flags => rest.filter((x, i) => !flags.includes(x) && !flags.includes(rest[i - 1]))
-  if (cmd === 'verify') { const a1Dir = after('--a1')[0] ?? null, licDir = after('--lic')[0] ?? null; const fl = strip(['--a1', '--lic']); if (!fl.length) die('no files'); verify(fl, { a1Dir, licDir }) }
+  if (cmd === 'verify') { const a1Dir = after('--a1')[0] ?? null, licDir = after('--lic')[0] ?? null, senseDir = after('--senses')[0] ?? null; const fl = strip(['--a1', '--lic', '--senses']); if (!fl.length) die('no files'); verify(fl, { a1Dir, licDir, senseDir }) }
+  else if (cmd === 'sensebuild') { const [out, ...f] = rest; if (!f.length) die('no files'); sensebuild(out, f) }
   else if (cmd === 'gscreen-build') { const [out, ...f] = rest; if (!f.length) die('no files'); gscreenBuild(out, f) }
   else if (cmd === 'gscreen-score') { const [out, ...f] = rest; gscreenScore(out, f) }
   else if (cmd === 'licbuild') { const [out, ...f] = rest; if (!f.length) die('no files'); licbuild(out, f) }
   else if (cmd === 'a1build') { const [out, ...f] = rest; if (!f.length) die('no files'); a1build(out, f) }
-  else if (cmd === 'draw') { const a1Dir = after('--a1')[0] ?? null, licDir = after('--lic')[0] ?? null; const [out, ...f] = strip(['--a1', '--lic']); if (!f.length) die('no files'); draw(out, f, a1Dir, licDir) }
+  else if (cmd === 'draw') { const a1Dir = after('--a1')[0] ?? null, licDir = after('--lic')[0] ?? null, senseDir = after('--senses')[0] ?? null; const [out, ...f] = strip(['--a1', '--lic', '--senses']); if (!f.length) die('no files'); draw(out, f, a1Dir, licDir, senseDir) }
   else if (cmd === 'build') build(rest[0], after('--ctl')[0] ?? join(HERE, 'ssat-reading-diag'), after('--wv'), after('--fixtures')[0], after('--natlive')[0], rest.includes('--iso-all'))
   else if (cmd === 'score') score(rest[0], rest.slice(1))
   else if (cmd === 'null') nullDist(rest[0], rest.slice(1))
