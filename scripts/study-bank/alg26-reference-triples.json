@@ -1,0 +1,464 @@
+[
+ {
+  "id": "SM23L-A1",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "system with k in two coefficients",
+  "ii": "solution lies on a third stated line",
+  "iii": "y-coordinate of the solution"
+ },
+ {
+  "id": "SM23L-A2",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "system with k in two coefficients",
+  "ii": "intersection lies on a third stated line",
+  "iii": "y-coordinate of the intersection"
+ },
+ {
+  "id": "SM23L-A3",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope of a line through a fixed point",
+  "ii": "x-intercept and y-intercept conditions",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM23L-A4",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope of a line through a fixed point",
+  "ii": "graph meets a fixed segment",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM23L-A5",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope and intercept both unknown",
+  "ii": "image of an interval given exactly",
+  "iii": "a value of f"
+ },
+ {
+  "id": "SM23L-A6",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope, pivot inside interval",
+  "ii": "two-sided",
+  "iii": "spread of f(t), t outside interval"
+ },
+ {
+  "id": "SM23L-A7",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "coefficient of x in an inequality",
+  "ii": "given solution set",
+  "iii": "value of k"
+ },
+ {
+  "id": "SM23L-B1",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "system with k in a coefficient",
+  "ii": "quadrant / sign condition",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM23L-B2",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "system with k in a coefficient",
+  "ii": "quadrant / sign condition",
+  "iii": "number of integer values of k"
+ },
+ {
+  "id": "SM23L-B3",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slopes written in k",
+  "ii": "perpendicular, meeting on the y-axis",
+  "iii": "value of a second constant"
+ },
+ {
+  "id": "SM23L-B4",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope written in k",
+  "ii": "parallel to a line through two points, through a point",
+  "iii": "value of a second constant"
+ },
+ {
+  "id": "SM23L-B5",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope of a half-plane boundary",
+  "ii": "contains two points, excludes one",
+  "iii": "sum of all integer values of k"
+ },
+ {
+  "id": "SM23L-B6",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "slope of a half-plane boundary",
+  "ii": "contains a segment, excludes a point",
+  "iii": "number of integer values of k"
+ },
+ {
+  "id": "SM23L-B7",
+  "source": "v23 (hand-written 2026-10-08 from the prompt; v23 carried no setup field)",
+  "i": "solution of a one-variable equation",
+  "ii": "compared with k itself",
+  "iii": "number of values of k"
+ },
+ {
+  "id": "SM24L-A1",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "two-sided",
+  "iii": "width of k-range"
+ },
+ {
+  "id": "SM24L-A2",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "lower only",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM24L-A3",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, pivot inside interval",
+  "ii": "two-sided",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM24L-A4",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, pivot inside interval",
+  "ii": "between two fixed lines",
+  "iii": "greatest or least f(t)"
+ },
+ {
+  "id": "SM24L-A5",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, pivot outside interval",
+  "ii": "two-sided",
+  "iii": "spread of f(t), t outside interval"
+ },
+ {
+  "id": "SM24L-A6",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope, pivot outside interval",
+  "ii": "between two fixed lines",
+  "iii": "width of k-range"
+ },
+ {
+  "id": "SM24L-A7",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "function value at a point",
+  "ii": "two-sided",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM24L-A8",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "function value at a point",
+  "ii": "upper only",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM24L-A9",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope of a combination",
+  "ii": "two-sided",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM24L-A10",
+  "source": "sat-math-v24-alg-a.batch.json",
+  "i": "slope of a combination",
+  "ii": "upper only",
+  "iii": "other: sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM24L-B1",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "solution of a one-variable equation",
+  "ii": "range on a second derived quantity",
+  "iii": "sum of all values of k"
+ },
+ {
+  "id": "SM24L-B2",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "x-coordinate of intersection",
+  "ii": "quadrant / sign condition",
+  "iii": "number of values of k"
+ },
+ {
+  "id": "SM24L-B3",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "y-coordinate of intersection",
+  "ii": "compared with k itself",
+  "iii": "greatest or least value of k"
+ },
+ {
+  "id": "SM24L-B4",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "intercept of a line with k",
+  "ii": "range only",
+  "iii": "number of values of k"
+ },
+ {
+  "id": "SM24L-B5",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "function value f(t)",
+  "ii": "range on a second derived quantity",
+  "iii": "sum of all values of k"
+ },
+ {
+  "id": "SM24L-B6",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "solution where k is the x-coefficient",
+  "ii": "range only",
+  "iii": "number of values of k"
+ },
+ {
+  "id": "SM24L-B7",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "solution of a one-variable equation",
+  "ii": "range only",
+  "iii": "other: difference between greatest and least k"
+ },
+ {
+  "id": "SM24L-B8",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "x-coordinate of intersection",
+  "ii": "range on a second derived quantity",
+  "iii": "greatest or least value of k"
+ },
+ {
+  "id": "SM24L-B9",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "y-coordinate of intersection",
+  "ii": "quadrant / sign condition",
+  "iii": "sum of all values of k"
+ },
+ {
+  "id": "SM24L-B10",
+  "source": "sat-math-v24-alg-b.batch.json",
+  "i": "intercept of a line with k",
+  "ii": "range on a second derived quantity",
+  "iii": "other: mean (average) of all values of k"
+ },
+ {
+  "id": "SM25L-P1",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "two-sided",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-P2",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "upper only",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-P3",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "two-sided",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-P4",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "lower only",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-P5",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "between two fixed lines",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-P6",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "two-sided",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-P7",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "between two fixed lines",
+  "iii": "spread of f(t) for t outside the interval"
+ },
+ {
+  "id": "SM25L-P8",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "lower only",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-P9",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "between two fixed lines",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-P10",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, fixed y-intercept",
+  "ii": "upper only",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-P11",
+  "source": "sat-math-v25-alg-p.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "two-sided",
+  "iii": "width of the k-range"
+ },
+ {
+  "id": "SM25L-Q1",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "two-sided",
+  "iii": "width of the k-range"
+ },
+ {
+  "id": "SM25L-Q2",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "between two fixed lines",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-Q3",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "two-sided",
+  "iii": "other: Q number of integer slopes"
+ },
+ {
+  "id": "SM25L-Q4",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "two-sided",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-Q5",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "lower only",
+  "iii": "other: Q sum of greatest and least y-intercept"
+ },
+ {
+  "id": "SM25L-Q6",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "two-sided",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-Q7",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "between two fixed lines",
+  "iii": "spread of f(t) for t outside the interval"
+ },
+ {
+  "id": "SM25L-Q8",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "two-sided",
+  "iii": "other: Q spread of f(t) for t inside the interval"
+ },
+ {
+  "id": "SM25L-Q9",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "slope, pivot point outside the interval",
+  "ii": "between two fixed lines",
+  "iii": "other: Q mean of the greatest and least k"
+ },
+ {
+  "id": "SM25L-Q10",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "slope, pivot point inside the interval",
+  "ii": "upper only",
+  "iii": "other: Q number of integers f(s) can equal, s inside the interval"
+ },
+ {
+  "id": "SM25L-Q11",
+  "source": "sat-math-v25-alg-q.batch.json",
+  "i": "a function value at a stated point",
+  "ii": "lower only",
+  "iii": "other: Q width of the slope range"
+ },
+ {
+  "id": "SM25L-R1",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "two-sided",
+  "iii": "width of the k-range"
+ },
+ {
+  "id": "SM25L-R2",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "k in the BOUNDING line, f fixed",
+  "ii": "lower only",
+  "iii": "sum of greatest and least k"
+ },
+ {
+  "id": "SM25L-R3",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "upper only",
+  "iii": "number of integers f(t) can equal"
+ },
+ {
+  "id": "SM25L-R4",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "between two fixed lines",
+  "iii": "sum of greatest and least f(t)"
+ },
+ {
+  "id": "SM25L-R5",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "k in the BOUNDING line, f fixed",
+  "ii": "two-sided",
+  "iii": "number of integer k"
+ },
+ {
+  "id": "SM25L-R6",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "k in the BOUNDING line, f fixed",
+  "ii": "two-sided",
+  "iii": "other: R number of integers the bounding line can equal at a stated x"
+ },
+ {
+  "id": "SM25L-R7",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "lower only",
+  "iii": "spread of f(t) for t outside the interval"
+ },
+ {
+  "id": "SM25L-R8",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+  "ii": "two-sided",
+  "iii": "other: R sum of all integer k"
+ },
+ {
+  "id": "SM25L-R9",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "y-coordinate of intersection",
+  "ii": "range only",
+  "iii": "sum of all values of k"
+ },
+ {
+  "id": "SM25L-R10",
+  "source": "sat-math-v25-alg-r.batch.json",
+  "i": "function value f(t)",
+  "ii": "compared with k itself",
+  "iii": "number of values of k"
+ }
+]

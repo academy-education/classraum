@@ -47,6 +47,18 @@
  *             commissioning to land at 50% after a 2.9x differential drop puts
  *             the authored set near 75% extreme by construction, so neither can
  *             hold, and the prereg records the equal-rate case as the known risk.
+ *
+ * --profile sat-alg26 (added 2026-10-08 for sat-math-v26-alg, PREREG-ALG26-2026-10-08.md,
+ * after A85: v25's kept set failed the band HIGH because the projection carried
+ * a rate measured on 7 and 6 items):
+ *   rates     POOLED v24 + v25, DERIVED from sat-math-v24-alg.batch.json /
+ *             .held.batch.json (13 frozen / 7 survived) and sat-math-v25-alg.batch.json
+ *             / .held.batch.json (32 frozen / 19 survived): extreme-key 15/31,
+ *             interior-key 11/14. Asserted, never typed. v24-only and v25-only
+ *             projections are printed beside it.
+ *   bars      merged set only: the pooled-rate projection AND the equal-rate
+ *             projection (= the authored share) BOTH inside 42.0-58.0% (2 points
+ *             inside the 40-60% kept-set band); projected kept n >= 12.
  */
 import { readFileSync } from 'node:fs'
 import { createClient } from '@supabase/supabase-js'
@@ -96,8 +108,9 @@ const argv = process.argv.slice(2)
 const pi = argv.indexOf('--profile')
 const PROFILE = pi >= 0 ? argv[pi + 1] : 'act-v25'
 const args = argv.filter((a, i) => !(i === pi || (pi >= 0 && i === pi + 1)))
-if (!['act-v25', 'sat-alg25'].includes(PROFILE)) { console.error(`REFUSING: unknown --profile ${PROFILE}`); process.exit(2) }
-const SAT = PROFILE === 'sat-alg25'
+if (!['act-v25', 'sat-alg25', 'sat-alg26'].includes(PROFILE)) { console.error(`REFUSING: unknown --profile ${PROFILE}`); process.exit(2) }
+const SAT = PROFILE === 'sat-alg25' || PROFILE === 'sat-alg26'
+const POOL = PROFILE === 'sat-alg26'
 if (args.includes('--selftest')) { selftest(); process.exit(0) }
 selftest()
 if (!args.length) { console.error('usage: key-extremity-projection.mjs [--profile act-v25|sat-alg25] <batch.json ...>'); process.exit(2) }
@@ -118,9 +131,25 @@ for (const x of v24) {
   const s = scoreItem(x.choices.map(String), String(x.correct_answer)); if (s.skip) continue
   if (s.keyMin || s.keyMax) { e0++; if (v24keep.has(x.id)) e1++ } else { i0++; if (v24keep.has(x.id)) i1++ }
 }
-const KE = e1 / e0, KI = i1 / i0
+let KE = e1 / e0, KI = i1 / i0
 if (SAT && (e1 !== 2 || e0 !== 7 || i1 !== 5 || i0 !== 6)) { console.error(`REFUSING: sat-math-v24-alg rates derived ${e1}/${e0}, ${i1}/${i0}; A84 measured 2/7, 5/6`); process.exit(2) }
 console.log(`[${PROFILE}] ${SAT ? 'sat-math-v24-alg' : 'act-math-v24'} survival (derived): extreme-key ${e1}/${e0} = ${pct(KE)}, interior-key ${i1}/${i0} = ${pct(KI)}`)
+const ALT = []   // other rate projections printed (not barred) under sat-alg26
+if (POOL) {
+  const v25 = JSON.parse(readFileSync(DIR + 'sat-math-v25-alg.batch.json', 'utf8'))
+  const v25keep = new Set(JSON.parse(readFileSync(DIR + 'sat-math-v25-alg.held.batch.json', 'utf8')).map(x => x.id))
+  if (v25.length !== 32 || v25keep.size !== 19) { console.error(`REFUSING: sat-math-v25-alg files read ${v25.length} frozen / ${v25keep.size} survived, expected 32 / 19`); process.exit(2) }
+  let f0 = 0, f1 = 0, g0 = 0, g1 = 0
+  for (const x of v25) {
+    const s = scoreItem(x.choices.map(String), String(x.correct_answer)); if (s.skip) continue
+    if (s.keyMin || s.keyMax) { f0++; if (v25keep.has(x.id)) f1++ } else { g0++; if (v25keep.has(x.id)) g1++ }
+  }
+  if (f1 !== 13 || f0 !== 24 || g1 !== 6 || g0 !== 8) { console.error(`REFUSING: sat-math-v25-alg rates derived ${f1}/${f0}, ${g1}/${g0}; A85 measured 13/24, 6/8`); process.exit(2) }
+  console.log(`[${PROFILE}] sat-math-v25-alg survival (derived): extreme-key ${f1}/${f0} = ${pct(f1 / f0)}, interior-key ${g1}/${g0} = ${pct(g1 / g0)}`)
+  ALT.push(['v24-only', KE, KI], ['v25-only', f1 / f0, g1 / g0])
+  KE = (e1 + f1) / (e0 + f0); KI = (i1 + g1) / (i0 + g0)
+  console.log(`[${PROFILE}] POOLED survival: extreme-key ${e1 + f1}/${e0 + f0} = ${pct(KE)}, interior-key ${i1 + g1}/${i0 + g0} = ${pct(KI)}`)
+}
 
 // live maths rates for the profile's family
 const FAM = SAT ? 'sat' : 'act'
@@ -161,7 +190,16 @@ for (const { p, items, merged } of sets) {
   console.log(`  v24-rate     kept ~${vr.n.toFixed(1)}, extreme ${pct(vr.share)}  (interior z at that n ${zV.toFixed(2)})`)
   console.log(`  equal-rate   extreme ${pct(er.share)}  (interior z at kept n ${vr.n.toFixed(1)}: ${zE.toFixed(2)})`)
   console.log(`  author-kept  ${kept.length} of ${items.length} (at-risk ${atRisk.length}${atRisk.length ? ': ' + atRisk.map(i => i.id).join(',') : ''})  key-extremity-gate ${g.status.toUpperCase()}  ${g.n ? `${g.ext}/${g.n} = ${pct(g.rate)}` : ''}`)
-  if (merged && SAT) {
+  if (merged && POOL) {
+    for (const [name, a, b] of ALT) { const q = project(t, a, b); console.log(`  ${name.padEnd(12)} kept ~${q.n.toFixed(1)}, extreme ${pct(q.share)}  (reported)`) }
+    const fails = []
+    if (!(vr.share >= 0.42 && vr.share <= 0.58)) fails.push(`pooled-rate ${pct(vr.share)} outside [42.0%, 58.0%]`)
+    if (!(er.share >= 0.42 && er.share <= 0.58)) fails.push(`equal-rate ${pct(er.share)} outside [42.0%, 58.0%]`)
+    if (vr.n < 12) fails.push(`projected kept n ${vr.n.toFixed(1)} < 12`)
+    console.log(`  (the "v24-rate" line above is the POOLED v24+v25 rate under sat-alg26)`)
+    console.log(`  PROJECTION ${fails.length ? 'FAIL: ' + fails.join('; ') : 'PASS'}`)
+    if (fails.length) failed = true
+  } else if (merged && SAT) {
     const fails = []
     if (!(vr.share >= 0.45 && vr.share <= 0.55)) fails.push(`alg24-rate ${pct(vr.share)} outside [45.0%, 55.0%]`)
     if (vr.n < 12) fails.push(`projected kept n ${vr.n.toFixed(1)} < 12`)
