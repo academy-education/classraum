@@ -1,0 +1,30 @@
+[
+ {
+  "id": "SM23L-B2",
+  "domain": "Algebra",
+  "subskill": "Parameter system: solution in quadrant IV (count)",
+  "difficulty": "hard",
+  "prompt": "kx − 2y = 2k + 14\n3x + y = 9\n\nIn the system of equations above, k is a constant. For how many integer values of k does the system have a solution (x, y) with x > 0 and y < 0?",
+  "choices": [
+   "19",
+   "20",
+   "28",
+   "29"
+  ],
+  "correct_answer": "19",
+  "explanation": "From the second equation, y = 9 − 3x. Substituting into the first gives kx − 18 + 6x = 2k + 14, so (k + 6)x = 2k + 32. When k = −6 this reads 0 = 20, so there is no solution. Otherwise x = (2k + 32)/(k + 6) and y = 9 − 3x = (3k − 42)/(k + 6). If k + 6 < 0, then y < 0 would need 3k − 42 > 0, that is, k > 14, which is impossible when k < −6. So k + 6 > 0, that is, k > −6. Then y < 0 needs 3k − 42 < 0, so k < 14, and x > 0 needs 2k + 32 > 0, which holds for every k > −6. The integers with −6 < k < 14 are −5 through 13, which is 19 values. Check: k = −10 gives x = 3 and y = 18, which is not in the required region.\n\nChoice 29 comes from clearing the denominator as if k + 6 were always positive, which gives −16 < k < 14, and counting −15 through 13, including k = −6, for which there is no solution. Choice 28 uses the same interval but leaves out k = −6; the values from −15 through −7 still give a positive y. Choice 20 also counts k = 14, but then y = 0, which is not negative.",
+  "bounds": [],
+  "mechanism": [
+   "sign of a parameter denominator when clearing fractions",
+   "count of integer parameter values",
+   "solution of a linear system in a quadrant"
+  ],
+  "solve": "const sol=(a1,b1,c1,a2,b2,c2)=>{const d=a1*b2-a2*b1;if(Math.abs(d)<1e-12)return null;return [(c1*b2-c2*b1)/d,(a1*c2-a2*c1)/d];};let n=0;for(let k=-300;k<=300;k++){const r=sol(k,-2,2*k+14,3,1,9);if(r&&r[0]>0&&r[1]<0)n++;}return n;",
+  "distractor_solve": {
+   "20": "const sol=(a1,b1,c1,a2,b2,c2)=>{const d=a1*b2-a2*b1;if(Math.abs(d)<1e-12)return null;return [(c1*b2-c2*b1)/d,(a1*c2-a2*c1)/d];};let n=0;for(let k=-300;k<=300;k++){const r=sol(k,-2,2*k+14,3,1,9);if(r&&r[0]>0&&r[1]<=0)n++;}return n;",
+   "28": "let n=0;for(let k=-300;k<=300;k++){if(k===-6)continue;if(2*k+32>0&&3*k-42<0)n++;}return n;",
+   "29": "let n=0;for(let k=-300;k<=300;k++){if(2*k+32>0&&3*k-42<0)n++;}return n;"
+  },
+  "drop_reason": "rule 5: explanation check line prints x = 3 for k = -10; the value is -3 (grader E; confirmed by hand). No repair after freeze."
+ }
+]

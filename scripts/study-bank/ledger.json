@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T04:31:01.585Z",
+  "generatedAt": "2026-10-08T04:46:46.621Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -6118,6 +6118,40 @@
           "passed": true,
           "contentSha": "b226cb155ac5cf23fb67d52e186de858c95cd40cc015299e28bf6e8d0c61715f",
           "verdict": "Named by all three graders: where options vary voice, the passive is the key in 4 of 5 (A-03, B-02, B-03, B-06; B-01 active) - 3 of 4 in the kept set; \"would\" wins both would/will items (A-05, B-05). Graders d, e: the comma option never wins the four punctuation items and a strong mark wins 3 (the inverse of v14/v15's semicolon-never tell). Grader f: a past-perfect \"had\" option appears in 8 of 12 verb items and is never the key (6 of the kept). Grader d: \"distrust the nearest noun\" still solves A-02, A-04, B-01, B-03. Template pairs: A-03~B-03 (number x voice, plural passive key, all three graders), B-01~B-02 (e), A-01~A-04 (compound subject, e, f), A-05~B-05 (would) - all kept, recorded, not enforced."
+        }
+      }
+    },
+    {
+      "id": "sat-math-v23-alg-kept-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "sat",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "sat-math-v23-alg",
+      "contentSha": "c086c5a5e4dd90ddcdfda7ef9b434919b49c367b9390498d74482bd0b43fa7d5",
+      "status": "inserted",
+      "note": "14 pure-algebra PARAMETER items authored as HARD in two halves (separate Claude authors), no auditor and no repair (PREREG-ALG23-2026-10-08.md, 2222115e), frozen 7dfb8e30 (sha 9ef5b914), 11 kept: 2 panel-median HARD (A6 B7) + 9 medium. PARTIAL hard commission (1-2 hard): Algebra hard 69 -> 71, hard route stays 8 (form 9 needs 72). Drop: B2 (rule 5: explanation check line prints x = 3 for k = -10, value is -3). HELD: A1 A2 (3 of 3 graders off-blueprint: a third linear condition makes three equations in x, y, k; both graded hard 3/3). No item tripped rule 6 (plug-back <= 2).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "c086c5a5e4dd90ddcdfda7ef9b434919b49c367b9390498d74482bd0b43fa7d5",
+          "verdict": "11 items, all 4-choice numeric. On the 14-item frozen file: sandbox 14/14 and 42/42 distractor_solve recompute (mutation: A1 key -> -10 fails); zero +-pair sets holding the key (2 pair sets, key in 0); zero key-as-unique-composite; no numeric or symbolic hub; key at an extreme 8/14 = 57.1%; zero reviewer-facing text; zero stem duplicates vs 2,558 live SAT rows; near-dup max prompt Jaccard 0.500 vs 1,372 live SAT Math rows (threshold 0.60); math-mechanism-dup 0 FLAG over 2,773 live maths rows (2 near, read by hand: plain parallel/perpendicular-through-a-point, no parameter). Kept file: key at an extreme 6/11 = 54.5% (gate PASS)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "c086c5a5e4dd90ddcdfda7ef9b434919b49c367b9390498d74482bd0b43fa7d5",
+          "verdict": "Three fresh Claude graders, stage 1 cold (stem + options, written to disk before the keyed file was opened): all three matched the key on all 14; every item exclusive. Kept items: median free strikes 0 (A7: 1, direction kills 9); no item with plug-back <= 2 (A7 3, B3 4, B4 4 tries; the rest not checkable by substitution). Panel: A6 B7 hard 3/3; B4 hard/medium/medium; the rest medium 3/3. No kept item off-blueprint."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "c086c5a5e4dd90ddcdfda7ef9b434919b49c367b9390498d74482bd0b43fa7d5",
+          "verdict": "Options-only attack on the 14-item frozen file, three samples of one solver (pairwise agreement 71.4% vs 27.3% independent), 14 candidates + 14 live Algebra HARD-band controls excluding v2 and sat-math-v17/v18/v19/v22/v23-alg (32 eligible), keys dealt flat (control line 25.0%). CANDIDATE 1/42 = 2.4% vs CONTROL 17/42 = 40.5%: margin -38.1, inside +10; control far below the 90% ceiling. Unanimous-correct 0/14 candidate vs 3/14 control. Below chance: the solver favours interior values and 8/14 keys sit at an extreme; recorded, not a pre-registered bar."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "c086c5a5e4dd90ddcdfda7ef9b434919b49c367b9390498d74482bd0b43fa7d5",
+          "verdict": "Recorded, not dropped: graders call A3 A4 A7 B1 B3 insight-bypassable (Desmos slider or a two-case check); D notes B3 solvable without the perpendicular condition; F calls B4 distractors 2 and 6 one shared error; template pairs B1/B2 and B5/B6; F names a batch-level k^2 = n two-root template across A1 A2 A7 B3 B4."
         }
       }
     }

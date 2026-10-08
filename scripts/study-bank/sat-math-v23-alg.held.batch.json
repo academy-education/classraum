@@ -1,0 +1,56 @@
+[
+ {
+  "id": "SM23L-A1",
+  "domain": "Algebra",
+  "subskill": "System with a constant and a condition on its solution",
+  "difficulty": "hard",
+  "prompt": "kx + 5y = 10\n4x + (k − 1)y = 8\n\nFor the constant k, exactly one ordered pair (x, y) makes both equations above true, and that ordered pair also makes x + 2y = −26 true. What is y?",
+  "choices": [
+   "-28",
+   "-10",
+   "-8",
+   "30"
+  ],
+  "correct_answer": "-8",
+  "explanation": "Because x + 2y = −26, substitute x = −26 − 2y into both equations. The first equation becomes (5 − 2k)y = 10 + 26k. The second becomes −104 − 8y + (k − 1)y = 8, so (k − 9)y = 112 and y = 112/(k − 9). Substituting this into the first equation gives 112(5 − 2k) = (10 + 26k)(k − 9), which simplifies to 26k² = 650, so k² = 25 and k = 5 or k = −5. When k = 5, the equations are 5x + 5y = 10 and 4x + 4y = 8, and both describe the line x + y = 2, so the system has infinitely many solutions, not exactly one. Therefore k = −5, and y = 112/(−5 − 9) = −8. Check: when k = −5 the equations are −5x + 5y = 10 and 4x − 6y = 8, whose only solution is (−10, −8), and −10 + 2(−8) = −26.\n\nChoice −28 is the value of y found with k = 5, but for that value of k the system has infinitely many solutions. Choice 30 is the x-coordinate of the point found with k = 5. Choice −10 is the x-coordinate of the solution, not the y-coordinate.",
+  "bounds": [],
+  "mechanism": [
+   "parameter value from a condition on the solution",
+   "rejected root makes the two lines coincide",
+   "system must have exactly one solution"
+  ],
+  "solve": "for(let k=-60;k<=60;k+=0.5){const D=k*(k-1)-20;if(Math.abs(D)<1e-9)continue;const x=(10*(k-1)-40)/D,y=(8*k-40)/D;if(Math.abs(x+2*y+26)<1e-9)return y;}return null;",
+  "distractor_solve": {
+   "30": "const ks=[];for(let k=-60;k<=60;k++){if(112*(5-2*k)===(10+26*k)*(k-9))ks.push(k);}const k=Math.max(...ks);const y=112/(k-9);return -26-2*y;",
+   "-28": "const ks=[];for(let k=-60;k<=60;k++){if(112*(5-2*k)===(10+26*k)*(k-9))ks.push(k);}const k=Math.max(...ks);return 112/(k-9);",
+   "-10": "for(let k=-60;k<=60;k+=0.5){const D=k*(k-1)-20;if(Math.abs(D)<1e-9)continue;const x=(10*(k-1)-40)/D,y=(8*k-40)/D;if(Math.abs(x+2*y+26)<1e-9)return x;}return null;"
+  }
+ },
+ {
+  "id": "SM23L-A2",
+  "domain": "Algebra",
+  "subskill": "Linear system with a constant: intersection on a third line",
+  "difficulty": "hard",
+  "prompt": "kx + 4y = 5\n6x + (k + 5)y = 10\n\nIn the xy-plane, the graphs of the two equations above, where k is a constant, intersect at exactly one point. That point lies on the line x − 2y = −3. What is the y-coordinate of the point of intersection?",
+  "choices": [
+   "-3",
+   "-1/5",
+   "7/5",
+   "2"
+  ],
+  "correct_answer": "2",
+  "explanation": "Because the point lies on x − 2y = −3, its coordinates satisfy x = 2y − 3. Substituting into the first equation gives k(2y − 3) + 4y = 5, so (2k + 4)y = 5 + 3k. Substituting into the second gives 6(2y − 3) + (k + 5)y = 10, so (k + 17)y = 28 and y = 28/(k + 17). Then 28(2k + 4) = (5 + 3k)(k + 17), which simplifies to 56k + 112 = 3k² + 56k + 85, so 3k² = 27 and k = 3 or k = −3. When k = 3, the equations are 3x + 4y = 5 and 6x + 8y = 10, which are the same line, so the graphs intersect at infinitely many points, not exactly one. Therefore k = −3, and y = 28/(−3 + 17) = 2. Check: when k = −3 the equations are −3x + 4y = 5 and 6x + 2y = 10, which intersect only at (1, 2), and 1 − 2(2) = −3.\n\nChoice 7/5 is the y-coordinate found with k = 3, but for that value of k the two graphs are the same line. Choice −1/5 is the x-coordinate of the point found with k = 3. Choice −3 is the value of k, not a coordinate.",
+  "bounds": [],
+  "mechanism": [
+   "intersection point constrained to a third line",
+   "constant from cross-multiplying gives two candidates",
+   "one candidate makes the graphs the same line"
+  ],
+  "solve": "for(let k=-60;k<=60;k+=0.5){const D=k*(k+5)-24;if(Math.abs(D)<1e-9)continue;const x=(5*(k+5)-40)/D,y=(10*k-30)/D;if(Math.abs(x-2*y+3)<1e-9)return y;}return null;",
+  "distractor_solve": {
+   "7/5": "const ks=[];for(let k=-60;k<=60;k++){if(28*(2*k+4)===(5+3*k)*(k+17))ks.push(k);}const k=Math.max(...ks);return 28/(k+17);",
+   "-1/5": "const ks=[];for(let k=-60;k<=60;k++){if(28*(2*k+4)===(5+3*k)*(k+17))ks.push(k);}const k=Math.max(...ks);return 2*(28/(k+17))-3;",
+   "-3": "for(let k=-60;k<=60;k+=0.5){const D=k*(k+5)-24;if(Math.abs(D)<1e-9)continue;const x=(5*(k+5)-40)/D,y=(10*k-30)/D;if(Math.abs(x-2*y+3)<1e-9)return k;}return null;"
+  }
+ }
+]
