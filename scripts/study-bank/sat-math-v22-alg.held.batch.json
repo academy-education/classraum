@@ -1,0 +1,24 @@
+[
+ {
+  "id": "SM22L-B7",
+  "domain": "Algebra",
+  "subskill": "Two equations in three unknowns: asked linear combination",
+  "difficulty": "hard",
+  "prompt": "x + 3y − z = 9\n2x + y + 4z = 13\n\nThe real numbers x, y, and z satisfy both equations shown. Which number equals x + 8y − 7z?",
+  "choices": [
+   "-30",
+   "14",
+   "22",
+   "40"
+  ],
+  "correct_answer": "14",
+  "explanation": "Look for numbers a and b with a(x + 3y − z) + b(2x + y + 4z) = x + 8y − 7z. Matching the x- and y-coefficients gives a + 2b = 1 and 3a + b = 8, so a = 3 and b = −1. The z-coefficient checks: 3(−1) − 1(4) = −7. So x + 8y − 7z = 3(9) − 13 = 14. The value 40 comes from adding the second equation instead of subtracting it: 3(9) + 13. The value −30 comes from multiplying the wrong equation by 3: 9 − 3(13). The value 22 comes from simply adding the two equations, which gives 3x + 4y + 3z, a different expression.",
+  "bounds": [],
+  "solve": "const E1=[1,3,-1,9], E2=[2,1,4,13]; const T=[1,8]; const det=E1[0]*E2[1]-E2[0]*E1[1]; const a=(T[0]*E2[1]-E2[0]*T[1])/det; const b=(E1[0]*T[1]-T[0]*E1[1])/det; return a*E1[3]+b*E2[3];",
+  "distractor_solve": {
+   "22": "return 9+13;",
+   "40": "const a=3,b=1; return a*9+b*13;",
+   "-30": "const a=1,b=-3; return a*9+b*13;"
+  }
+ }
+]

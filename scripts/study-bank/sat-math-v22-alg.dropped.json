@@ -1,0 +1,127 @@
+[
+ {
+  "id": "SM22L-A2",
+  "domain": "Algebra",
+  "subskill": "Linear inequality with a parameter: greatest integer solution condition",
+  "difficulty": "hard",
+  "prompt": "3(2 − x) + k > 2x − 2\n\nFor a certain constant k, the largest integer solution of the inequality above is 3. What is the smallest integer value k could have?",
+  "choices": [
+   "7",
+   "8",
+   "11",
+   "12"
+  ],
+  "correct_answer": "8",
+  "explanation": "Distribute and collect terms: 6 − 3x + k > 2x − 2, so 8 + k > 5x, which means x < (8 + k)/5. The greatest integer in this solution set is 3 exactly when 3 is in the set and 4 is not. 3 is in the set when 3 < (8 + k)/5. 4 is not in the set when 4 ≥ (8 + k)/5, because the inequality is strict, so 4 is excluded even when (8 + k)/5 equals 4. Together, 15 < 8 + k ≤ 20, so 7 < k ≤ 12. The least integer value of k is 8. Check: when k = 8 the solutions are x < 3.2, and the greatest integer solution is 3.\n\nChoice 7 gives the solution set x < 3, which does not contain 3, so the greatest integer solution would be 2. Choice 12 is the greatest possible value of k, not the least. Choice 11 comes from treating the solution set as x ≤ (8 + k)/5 and then taking the greatest value of k instead of the least.",
+  "bounds": [],
+  "solve": "const ok=k=>Math.ceil((8+k)/5)-1===3;for(let k=-100;k<=100;k++){if(ok(k))return k;}",
+  "distractor_solve": {
+   "7": "const ok=k=>Math.floor((8+k)/5)===3;for(let k=-100;k<=100;k++){if(ok(k))return k;}",
+   "11": "const ok=k=>Math.floor((8+k)/5)===3;let g=null;for(let k=-100;k<=100;k++){if(ok(k))g=k;}return g;",
+   "12": "const ok=k=>Math.ceil((8+k)/5)-1===3;let g=null;for(let k=-100;k<=100;k++){if(ok(k))g=k;}return g;"
+  },
+  "_drop": [
+   "median struck 2"
+  ]
+ },
+ {
+  "id": "SM22L-A3",
+  "domain": "Algebra",
+  "subskill": "Linear function from a translation identity",
+  "difficulty": "hard",
+  "prompt": "The function f is linear. In the xy-plane, translating the graph of y = f(x) 6 units to the left produces the same line as translating the graph of y = f(x) 4 units down. The graph of y = f(x) passes through the point (3, 7). What is the x-intercept of the graph of y = f(x)?",
+  "choices": [
+   "-15/2",
+   "-5/3",
+   "23/3",
+   "27/2"
+  ],
+  "correct_answer": "27/2",
+  "explanation": "Translating the graph 6 units to the left gives the graph of y = f(x + 6), and translating it 4 units down gives the graph of y = f(x) − 4. These are the same line, so f(x + 6) = f(x) − 4 for every x: increasing x by 6 decreases f by 4, so the slope of f is −4/6 = −2/3. Then f(x) = 7 − (2/3)(x − 3). Setting f(x) = 0 gives (2/3)(x − 3) = 7, so x − 3 = 21/2 and x = 27/2.\n\nChoice −15/2 comes from writing the left translation as f(x − 6), which gives a slope of 2/3. Choice 23/3 comes from using 6/4 instead of 4/6, a slope of −3/2. Choice −5/3 makes both errors, a slope of 3/2.",
+  "bounds": [],
+  "solve": "const m=-4/6;return 3-7/m;",
+  "distractor_solve": {
+   "-15/2": "const m=4/6;return 3-7/m;",
+   "23/3": "const m=-6/4;return 3-7/m;",
+   "-5/3": "const m=6/4;return 3-7/m;"
+  },
+  "_drop": [
+   "median struck 2"
+  ]
+ },
+ {
+  "id": "SM22L-B2",
+  "domain": "Algebra",
+  "subskill": "Linear functions from values of their difference",
+  "difficulty": "hard",
+  "prompt": "Linear functions f and g satisfy f(2) − g(2) = −5 and f(6) − g(6) = 7. At which input does the output of g exceed the output of f by 4?",
+  "choices": [
+   "1/3",
+   "7/3",
+   "11/3",
+   "5"
+  ],
+  "correct_answer": "7/3",
+  "explanation": "Because f and g are both linear, h(x) = f(x) − g(x) is also linear. Its slope is (7 − (−5))/(6 − 2) = 3, so h(x) = −5 + 3(x − 2) = 3x − 11. The value of g(x) is 4 greater than f(x) when f(x) − g(x) = −4, so 3x − 11 = −4 and x = 7/3. The value 5 comes from setting f(x) − g(x) = 4, which is where f(x) is 4 greater than g(x). The value 11/3 comes from setting f(x) − g(x) = 0, which is where the two functions are equal. The value 1/3 comes from writing h(x) = 3x − 5, treating h(2) = −5 as if it were the value at x = 0.",
+  "bounds": [],
+  "solve": "const m=(7-(-5))/(6-2); return 2+(-4-(-5))/m;",
+  "distractor_solve": {
+   "5": "const m=(7-(-5))/(6-2); return 2+(4-(-5))/m;",
+   "11/3": "const m=(7-(-5))/(6-2); return 2+(0-(-5))/m;",
+   "1/3": "const m=(7-(-5))/(6-2); return (-4-(-5))/m;"
+  },
+  "_drop": [
+   "EXT-1 drop recommended"
+  ]
+ },
+ {
+  "id": "SM22L-B3",
+  "domain": "Algebra",
+  "subskill": "System from context: transfer between two quantities",
+  "difficulty": "hard",
+  "prompt": "Warehouses A and B each store crates. If 10 crates were moved from warehouse A to warehouse B, the two warehouses would have the same number of crates. If instead 10 crates were moved from warehouse B to warehouse A, warehouse A would have twice as many crates as warehouse B. How many crates does warehouse A store?",
+  "choices": [
+   "40",
+   "50",
+   "60",
+   "70"
+  ],
+  "correct_answer": "70",
+  "explanation": "Let A and B be the numbers of crates. The first condition gives A − 10 = B + 10, so A = B + 20. The second gives A + 10 = 2(B − 10), so A = 2B − 30. Then B + 20 = 2B − 30, so B = 50 and A = 70. Check: moving 10 crates from A to B gives 60 and 60, and moving 10 from B to A gives 80 and 40. The value 50 comes from writing the first condition as A − 10 = B, which forgets that warehouse B also gains the 10 crates. The value 60 comes from writing the second condition as A + 10 = 2B − 10, applying the factor of 2 to B but not to the 10 crates removed. The value 40 comes from making both of those errors.",
+  "bounds": [],
+  "solve": "const t=10; const d=2*t; const B=d+3*t; return B+d;",
+  "distractor_solve": {
+   "40": "const t=10; const d=t; const B=d+2*t; return B+d;",
+   "50": "const t=10; const d=t; const B=d+3*t; return B+d;",
+   "60": "const t=10; const d=2*t; const B=d+2*t; return B+d;"
+  },
+  "_drop": [
+   "panel median easy"
+  ]
+ },
+ {
+  "id": "SM22L-B6",
+  "domain": "Algebra",
+  "subskill": "Linear equation in two unknowns: asked combination from a ratio",
+  "difficulty": "hard",
+  "prompt": "4x − 3y = 2(x + y)\n\nIn the equation above, x and y are nonzero numbers and x ≠ y. What is the value of (x + y)/(x − y)?",
+  "choices": [
+   "7/3",
+   "5/2",
+   "3",
+   "7/2"
+  ],
+  "correct_answer": "7/3",
+  "explanation": "Distributing gives 4x − 3y = 2x + 2y, so 2x = 5y and x = (5/2)y. Then x + y = (7/2)y and x − y = (3/2)y, so (x + y)/(x − y) = (7/2)/(3/2) = 7/3. The value 5/2 is x/y, the ratio found along the way. The value 7/2 is (x + y)/y, which divides by y instead of by x − y. The value 3 comes from writing the right side as 2x + y instead of 2x + 2y, which gives x = 2y and (x + y)/(x − y) = 3y/y.",
+  "bounds": [],
+  "solve": "const r=(2+3)/(4-2); return (r+1)/(r-1);",
+  "distractor_solve": {
+   "3": "const r=(1+3)/(4-2); return (r+1)/(r-1);",
+   "5/2": "const r=(2+3)/(4-2); return r;",
+   "7/2": "const r=(2+3)/(4-2); return r+1;"
+  },
+  "_drop": [
+   "panel median easy"
+  ]
+ }
+]

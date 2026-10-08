@@ -1,0 +1,178 @@
+[
+ {
+  "id": "SM22L-A1",
+  "domain": "Algebra",
+  "subskill": "System with parameters: no-solution condition with a coincident-lines candidate",
+  "difficulty": "hard",
+  "prompt": "kx + 3y = k + 12\n12x + ky = c\n\nIn the system of equations above, k and c are constants. There is exactly one value of k for which the system has no solution, and that value of k is negative. What is the value of c?",
+  "choices": [
+   "-12",
+   "18",
+   "24",
+   "36"
+  ],
+  "correct_answer": "36",
+  "explanation": "The system fails to have exactly one solution only when the coefficients are proportional: k/12 = 3/k, so k^2 = 36 and k = 6 or k = −6. For every other value of k the system has exactly one solution. For only one of k = 6 and k = −6 to give no solution, the other must give two equations of the same line (infinitely many solutions). The no-solution value is negative, so k = 6 must give the same line. When k = 6, the first equation is 6x + 3y = 18; multiplying by 2 gives 12x + 6y = 36, so c = 36. Check: when k = −6 the first equation is −6x + 3y = 6, which is 12x − 6y = −12, while the second is 12x − 6y = 36, so there is no solution, as required.\n\nChoice −12 makes k = −6 give the same line, which leaves k = 6, a positive value, as the one with no solution. Choice 18 uses the first equation's constant at k = 6 without multiplying by 2 to match the coefficient 12. Choice 24 multiplies by 2 but uses 12 as the first equation's constant, dropping the k in k + 12.",
+  "bounds": [],
+  "solve": "const c=[];for(let k=-50;k<=50;k++){if(k*k===12*3)c.push(k);}const pos=c.find(k=>k>0);const f=12/pos;return (pos+12)*f;",
+  "distractor_solve": {
+   "18": "const c=[];for(let k=-50;k<=50;k++){if(k*k===12*3)c.push(k);}const pos=c.find(k=>k>0);return pos+12;",
+   "24": "const c=[];for(let k=-50;k<=50;k++){if(k*k===12*3)c.push(k);}const pos=c.find(k=>k>0);return 12*(12/pos);",
+   "-12": "const c=[];for(let k=-50;k<=50;k++){if(k*k===12*3)c.push(k);}const neg=c.find(k=>k<0);const f=12/neg;return (neg+12)*f;"
+  }
+ },
+ {
+  "id": "SM22L-A4",
+  "domain": "Algebra",
+  "subskill": "Linear function recovered from a shifted rule",
+  "difficulty": "medium",
+  "prompt": "Shop A charges a fixed fee plus a constant amount per poster to print posters. Shop B sets its prices by the following rule: for any order of n posters, where n > 20, Shop B charges $15 more than Shop A charges for an order of n − 20 posters. Shop B charges $105 for an order of 50 posters and $165 for an order of 90 posters. What is Shop A's fixed fee, in dollars?",
+  "choices": [
+   "35",
+   "45",
+   "60",
+   "75"
+  ],
+  "correct_answer": "45",
+  "explanation": "Shop B's price for n posters is $15 more than Shop A's price for n − 20 posters, so Shop A's price for n − 20 posters is $15 less than Shop B's price for n posters. Shop B's $105 for 50 posters means Shop A charges 105 − 15 = $90 for 30 posters, and Shop B's $165 for 90 posters means Shop A charges 165 − 15 = $150 for 70 posters. Shop A's rate is (150 − 90)/(70 − 30) = $1.50 per poster, so its fixed fee is 90 − 1.5(30) = $45.\n\nChoice 75 adds $15 to Shop B's prices instead of subtracting it. Choice 35 starts from Shop B's fixed fee of $30 and adds $20 for the 20-poster difference instead of 20 times the $1.50 rate before subtracting $15. Choice 60 accounts for the 20-poster difference but ignores the $15, treating Shop A's price for n − 20 posters as equal to Shop B's price for n posters.",
+  "bounds": [],
+  "solve": "const B=[[50,105],[90,165]];const A=B.map(([n,p])=>[n-20,p-15]);const r=(A[1][1]-A[0][1])/(A[1][0]-A[0][0]);return A[0][1]-r*A[0][0];",
+  "distractor_solve": {
+   "35": "const B=[[50,105],[90,165]];const r=(B[1][1]-B[0][1])/(B[1][0]-B[0][0]);const feeB=B[0][1]-r*B[0][0];return feeB+20-15;",
+   "60": "const B=[[50,105],[90,165]];const A=B.map(([n,p])=>[n-20,p]);const r=(A[1][1]-A[0][1])/(A[1][0]-A[0][0]);return A[0][1]-r*A[0][0];",
+   "75": "const B=[[50,105],[90,165]];const A=B.map(([n,p])=>[n-20,p+15]);const r=(A[1][1]-A[0][1])/(A[1][0]-A[0][0]);return A[0][1]-r*A[0][0];"
+  }
+ },
+ {
+  "id": "SM22L-A5",
+  "domain": "Algebra",
+  "subskill": "Two linear constraints: whole-number optimum",
+  "difficulty": "hard",
+  "prompt": "A florist makes large and small bouquets from a supply of 72 roses and 66 lilies. Each large bouquet uses 7 roses and 5 lilies, and each small bouquet uses 3 roses and 4 lilies. The florist earns a profit of $9 on each large bouquet and $5 on each small bouquet. If the florist makes only whole bouquets and uses no more roses or lilies than the supply, what is the greatest possible total profit, in dollars?",
+  "choices": [
+   "89",
+   "99",
+   "101",
+   "103"
+  ],
+  "correct_answer": "99",
+  "explanation": "Let L be the number of large bouquets and S the number of small bouquets. The supply gives 7L + 3S ≤ 72 (roses) and 5L + 4S ≤ 66 (lilies), and the profit is 9L + 5S. The two boundary lines meet at L = 90/13 ≈ 6.92 and S = 102/13 ≈ 7.85, where the profit would be about $101.54, but these are not whole numbers. Check whole-number plans near that point. With L = 7, the roses allow at most S = 7 (49 + 21 = 70), for a profit of 63 + 35 = $98. With L = 6, the roses allow S ≤ 10 and the lilies allow S ≤ 9, so S = 9 (42 + 27 = 69 roses, 30 + 36 = 66 lilies), for a profit of 54 + 45 = $99. With L = 5, S ≤ 10, for a profit of at most 45 + 50 = $95, and smaller values of L give even less; L = 8 allows at most S = 5 for $97, and larger values of L give even less. The greatest possible profit is $99.\n\nChoice 103 comes from rounding the intersection to 7 large and 8 small bouquets, which needs 73 roses. Choice 101 rounds down the profit at the intersection point, which is not a whole-number plan. Choice 89 comes from rounding both coordinates of the intersection down to 6 large and 7 small bouquets, which is possible but not the best plan.",
+  "bounds": [],
+  "solve": "let best=-1;for(let L=0;L<=20;L++){for(let S=0;S<=30;S++){if(7*L+3*S<=72&&5*L+4*S<=66){best=Math.max(best,9*L+5*S);}}}return best;",
+  "distractor_solve": {
+   "89": "const d=7*4-5*3;const L=(72*4-66*3)/d,S=(7*66-5*72)/d;return 9*Math.floor(L)+5*Math.floor(S);",
+   "101": "const d=7*4-5*3;const L=(72*4-66*3)/d,S=(7*66-5*72)/d;return Math.floor(9*L+5*S);",
+   "103": "const d=7*4-5*3;const L=(72*4-66*3)/d,S=(7*66-5*72)/d;return 9*Math.round(L)+5*Math.round(S);"
+  }
+ },
+ {
+  "id": "SM22L-A6",
+  "domain": "Algebra",
+  "subskill": "System of linear inequalities with a parameter: no-solution region",
+  "difficulty": "medium",
+  "prompt": "y > 3x − 7\ny < c − 2x\n\nIn the system of inequalities above, c is a constant. In the xy-plane, no point (x, y) with x ≥ 4 is a solution to the system. What is the greatest possible integer value of c?",
+  "choices": [
+   "4",
+   "5",
+   "12",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "A point (x, y) is a solution when 3x − 7 < y < c − 2x. Such a y exists exactly when 3x − 7 < c − 2x, that is, when 5x < c + 7, or x < (c + 7)/5. So the solutions have x-coordinates filling the interval x < (c + 7)/5. No solution has x ≥ 4 exactly when (c + 7)/5 ≤ 4; equality is allowed because both inequalities are strict, so the point where the two boundary lines meet is not a solution. This gives c + 7 ≤ 20, so c ≤ 13, and the greatest integer value is 13. Check: when c = 13 the boundary lines meet at (4, 5), and every solution has x < 4.\n\nChoice 12 treats the intersection point (4, 5) as a solution when c = 13, which requires c < 13. Choice 4 drops the −2x when comparing the boundaries and also requires c to be strictly less than the boundary value. Choice 5 drops the −2x when comparing the boundaries, using 3x − 7 < c, so x < (c + 7)/3 ≤ 4.",
+  "bounds": [],
+  "solve": "let g=null;for(let c=-100;c<=100;c++){if((c+7)/5<=4)g=c;}return g;",
+  "distractor_solve": {
+   "4": "let g=null;for(let c=-100;c<=100;c++){if((c+7)/3<4)g=c;}return g;",
+   "5": "let g=null;for(let c=-100;c<=100;c++){if((c+7)/3<=4)g=c;}return g;",
+   "12": "let g=null;for(let c=-100;c<=100;c++){if((c+7)/5<4)g=c;}return g;"
+  }
+ },
+ {
+  "id": "SM22L-A7",
+  "domain": "Algebra",
+  "subskill": "Linear equation with constants: solution for every parameter value",
+  "difficulty": "hard",
+  "prompt": "k(2x − 3) + 7 = 6x + c\n\nIn the equation above, k and c are constants. The equation has at least one real solution for every value of k. What is the value of c?",
+  "choices": [
+   "-2",
+   "3",
+   "7",
+   "16"
+  ],
+  "correct_answer": "-2",
+  "explanation": "Rewrite the equation as (2k − 6)x = c + 3k − 7. When 2k − 6 ≠ 0, dividing gives exactly one solution, whatever c is. The only value of k that needs attention is k = 3, which makes the x-coefficient 0 and turns the equation into 0 = c + 9 − 7, or 0 = c + 2. If c + 2 were not 0, the equation would have no solution when k = 3. So c + 2 = 0 and c = −2; then k = 3 gives an equation true for every x.\n\nChoice 3 is the value of k that makes the x-coefficient 0, not the value of c. Choice 7 drops the −3k term from the constant. Choice 16 takes the constant term from k(2x − 3) as +9 instead of −9 when k = 3.",
+  "bounds": [],
+  "solve": "let k0=null;for(let k=-50;k<=50;k++){if(2*k-6===0)k0=k;}return -(3*k0-7);",
+  "distractor_solve": {
+   "3": "let k0=null;for(let k=-50;k<=50;k++){if(2*k-6===0)k0=k;}return k0;",
+   "7": "let k0=null;for(let k=-50;k<=50;k++){if(2*k-6===0)k0=k;}return -(0*k0-7);",
+   "16": "let k0=null;for(let k=-50;k<=50;k++){if(2*k-6===0)k0=k;}return 3*k0+7;"
+  }
+ },
+ {
+  "id": "SM22L-B1",
+  "domain": "Algebra",
+  "subskill": "Two linear models: difference equal to a constant",
+  "difficulty": "medium",
+  "prompt": "Two candles are lit at the same time, and each burns down at its own constant rate. Candle A is 40 centimeters tall when lit and its height decreases by 4 centimeters per hour. Candle B is 27 centimeters tall 1.5 hours after it is lit and 22 centimeters tall 4 hours after it is lit. While both candles are still burning, how many hours after they are lit is candle B exactly 4 centimeters taller than candle A?",
+  "choices": [
+   "3",
+   "4.5",
+   "7",
+   "8.5"
+  ],
+  "correct_answer": "7",
+  "explanation": "Candle B loses 27 − 22 = 5 centimeters in 4 − 1.5 = 2.5 hours, so it burns 2 centimeters per hour. Its height when lit was 27 + 1.5(2) = 30 centimeters, so B(t) = 30 − 2t, while A(t) = 40 − 4t. Candle B is 4 centimeters taller when B(t) − A(t) = 4: (30 − 2t) − (40 − 4t) = 4, so 2t − 10 = 4 and t = 7. Check: A(7) = 12 and B(7) = 16, and both candles are still burning. The value 3 is the time when candle A is 4 centimeters taller than candle B. The value 8.5 comes from using 27 centimeters, the height at 1.5 hours, as candle B's height when lit. The value 4.5 comes from making both of those errors.",
+  "bounds": [],
+  "solve": "const rB=(27-22)/(4-1.5); const b0=27+1.5*rB; return (4+40-b0)/(4-rB);",
+  "distractor_solve": {
+   "3": "const rB=(27-22)/(4-1.5); const b0=27+1.5*rB; return (40-b0-4)/(4-rB);",
+   "8.5": "const rB=(27-22)/(4-1.5); const b0=27; return (4+40-b0)/(4-rB);",
+   "4.5": "const rB=(27-22)/(4-1.5); const b0=27; return (40-b0-4)/(4-rB);"
+  }
+ },
+ {
+  "id": "SM22L-B4",
+  "domain": "Algebra",
+  "subskill": "Linear inequality in two variables with a ratio constraint",
+  "difficulty": "medium",
+  "prompt": "A hiker is packing water bottles that weigh 1.2 kilograms each and food packs that weigh 0.8 kilogram each. The total weight of the bottles and food packs can be at most 16 kilograms, and the hiker must pack at least 2 food packs for each water bottle. What is the greatest number of water bottles the hiker can pack?",
+  "choices": [
+   "5",
+   "8",
+   "10",
+   "13"
+  ],
+  "correct_answer": "5",
+  "explanation": "Let w be the number of water bottles and f the number of food packs. The conditions are 1.2w + 0.8f ≤ 16 and f ≥ 2w. To pack as many bottles as possible, use the fewest food packs allowed, f = 2w. Then 1.2w + 1.6w ≤ 16, so 2.8w ≤ 16 and w ≤ 5.71. The number of bottles must be a whole number, so the greatest is 5 (with 10 food packs, for 14 kilograms). Six bottles would need at least 12 food packs, for 16.8 kilograms. The value 13 comes from ignoring the food-pack requirement: 1.2w ≤ 16. The value 10 comes from reversing the requirement to w ≥ 2f, so that f = w/2 and 1.6w ≤ 16. The value 8 comes from packing only 1 food pack per bottle: 2w ≤ 16.",
+  "bounds": [],
+  "solve": "return Math.floor(16/(1.2+2*0.8));",
+  "distractor_solve": {
+   "8": "return Math.floor(16/(1.2+0.8));",
+   "10": "return Math.floor(16/(1.2+0.8/2));",
+   "13": "return Math.floor(16/1.2);"
+  }
+ },
+ {
+  "id": "SM22L-B5",
+  "domain": "Algebra",
+  "subskill": "Linear net change with a staggered start",
+  "difficulty": "medium",
+  "prompt": "At 9:00 a.m., 120 people are waiting in line at the entrance to a stadium. From 9:00 a.m. on, people join the line at a constant rate of 10 people per minute. The entrance gate opens at 9:15 a.m., and from then on people are admitted through the gate at a constant rate of 25 people per minute. Assuming these rates do not change, how many minutes after the gate opens will the line first be empty?",
+  "choices": [
+   "8",
+   "10.8",
+   "18",
+   "33"
+  ],
+  "correct_answer": "18",
+  "explanation": "From 9:00 to 9:15 the line grows by 10(15) = 150 people, so 120 + 150 = 270 people are waiting when the gate opens. After that, the line shrinks by 25 − 10 = 15 people per minute, so it is empty after 270/15 = 18 minutes. The value 33 is the number of minutes after 9:00 a.m., not after the gate opens. The value 8 comes from ignoring the people who join before the gate opens: 120/15. The value 10.8 comes from ignoring the people who keep joining after the gate opens: 270/25.",
+  "bounds": [],
+  "solve": "const open=15; const atOpen=120+10*open; return atOpen/(25-10);",
+  "distractor_solve": {
+   "8": "return 120/(25-10);",
+   "33": "const open=15; const atOpen=120+10*open; return open+atOpen/(25-10);",
+   "10.8": "const open=15; const atOpen=120+10*open; return atOpen/25;"
+  }
+ }
+]

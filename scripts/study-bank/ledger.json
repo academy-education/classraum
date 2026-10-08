@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-07T13:03:27.779Z",
+  "generatedAt": "2026-10-08T04:10:13.198Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -5637,7 +5637,7 @@
         "nosource": {
           "passed": true,
           "n": 168,
-          "mean": 28.0,
+          "mean": 28,
           "control": 42.2,
           "margin": -14.2,
           "verdict": "make-oo-render --control 30, stems withheld, keys dealt 12/11/11/11/11 (candidate) and 6/6/6/6/6 (control), three Claude samples x 86 interleaved items. Candidate 47/168 = 28.0% (own best-fixed-letter line 21.4%), live control 38/90 = 42.2% (line 20.0%): CANDIDATE minus LIVE CONTROL -14.2 (pre-registered pass <= +5.0; control far below the 80% void ceiling). Unanimous-correct rate 11/56 = 19.6% vs control 12/30 = 40.0%. Pairwise agreement 83.3% vs 21.1% independent - one solver sampled three times. 0 picks labelled confident."
@@ -5906,6 +5906,40 @@
           "passed": null,
           "contentSha": "b835fe09c98ca9d0d17a82ab9ea16a3629e6acd79c028305cd93c09fa16f0598",
           "verdict": "Run for the record (render sha d659bd2947c2ea3f of a copy with bounds, distractor_kind, quantity_asked, mechanism, arith_class_check, one_sided_check, distractor_meta stripped; no unrecognised field; quoted by both). 110 of 110 picks equal the key, 0 second-defensible. Would-be verdicts (not acted on - the batch is held): 37 of 55 pass (Algebra 6, Functions 5, S&P 4, Geometry 10, IES 7, N&Q 5 - form 17 met, form 18 not); 18 drop: rule 3 A-04, A-08, F-01, F-07, F-09, G-03, I-04, I-06; rule 4 A-05; rule 5 A-12, F-08; rule 6 A-01, A-02, A-09, S-04, S-06; rule 7 A-07, I-07; rule 8 A-04, F-09, I-07. See act-math-v23.verdicts.json."
+        }
+      }
+    },
+    {
+      "id": "sat-math-v22-alg-kept-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "sat",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "sat-math-v22-alg",
+      "contentSha": "dc03f6983066c6b58c07db4557e5bf9459e701356af62fe10b03b57dcef50990",
+      "status": "inserted",
+      "note": "14 authored as HARD in two halves (separate authors), no pre-gate auditor and no repair (PREREG-ALG22-2026-10-07.md), frozen at sha 295bf16b, 8 kept: 3 panel-median HARD (A1 A5 A7) + 5 medium. PARTIAL hard commission (1-5 hard): Algebra hard 66 -> 69, hard route stays 8 (form 9 needs 72). Drops: A2 (median 2 free strikes: smallest-k stem with two boundary pairs, plug-back), A3 (median 2 strikes: decreasing-line direction kills both negative options; the only split-hard item), B2 (EXT-1: f-g runs -5..7 so the root sits just above 2), B3 and B6 (panel median easy). HELD: B7 (2 of 3 graders off-blueprint: three unknowns; also z=0 bypass).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "dc03f6983066c6b58c07db4557e5bf9459e701356af62fe10b03b57dcef50990",
+          "verdict": "8 items, all 4-choice numeric. On the 14-item frozen file: sandbox 14/14 and 42/42 distractor_solve recompute; zero +-pair sets; zero key-as-unique-composite; no numeric or symbolic hub; key at an extreme 7/14 = 50.0% (gate bar 40%); zero reviewer-facing text; zero exact stem duplicates vs 2,517 live SAT rows; near-dup max prompt Jaccard 0.591 vs 1,364 live SAT Math rows (threshold 0.60; top three read by hand, boilerplate only). Kept file: key at an extreme 4/8 (below the gate's n>=10 floor). Shared key value 7/3 across B2/B6 (both dropped)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "dc03f6983066c6b58c07db4557e5bf9459e701356af62fe10b03b57dcef50990",
+          "verdict": "Three fresh graders, stage 1 cold (stem + options, written to disk before the keyed file was opened): all three matched the key on all 14; every item exclusive; every path coherent. Kept items: median free strikes 0 or 1 (B4: 13 struck by all three; B5: 33 by two). Panel: A1 A5 A7 hard 3/3; A4 A6 B1 B4 B5 medium 3/3. No kept item off-blueprint."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "dc03f6983066c6b58c07db4557e5bf9459e701356af62fe10b03b57dcef50990",
+          "verdict": "Options-only attack on the 14-item frozen file, three samples of one solver (pairwise agreement 78.6% vs 27.8% independent), 14 candidates + 14 live Algebra HARD-band controls excluding v2 and sat-math-v17/v18/v19/v22-alg (32 eligible), keys dealt flat (control line 25.0%). CANDIDATE 11/42 = 26.2% vs CONTROL 15/42 = 35.7%: margin -9.5, inside +10; control far below the 90% ceiling. Unanimous-correct 3/14 both arms."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "dc03f6983066c6b58c07db4557e5bf9459e701356af62fe10b03b57dcef50990",
+          "verdict": "Recorded, not dropped: graders call B1 B4 B6 B7 insight-bypassable; F calls A4 35 a weak distractor (one, not two). A6: one grader struck 2 by Desmos slider/plug-back, median 0."
         }
       }
     }
