@@ -1,0 +1,662 @@
+[
+ {
+  "id": "IS22B-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples: the listed budget lines, plus the mayor's reaction in the following clause",
+  "prompt": "[Sentence Completion] Reporters had come expecting a fight over the new bridge, but the session that ran past midnight was spent on the cost of renaming a park bench, a disputed $40 parking refund, and the office supply of paper clips. The sums were so ------- that the mayor finally asked, to some laughter, why any of them were still in the room.",
+  "choices": [
+   "inconclusive",
+   "insignificant",
+   "imprudent",
+   "inadvertent"
+  ],
+  "correct_answer": "insignificant",
+  "explanation": "insignificant (too small to matter): a bench name, a $40 refund and paper clips are trivial amounts, and the mayor's question about why anyone stayed confirms the sums were not worth the time.",
+  "distractor_rationales": [
+   "inconclusive - not leading to a firm result ('the test results were inconclusive'); a sum of money is not something that settles or fails to settle a question",
+   "imprudent - unwise ('an imprudent loan'); nothing suggests the spending was foolish, only that it was too small to argue over",
+   "inadvertent - accidental ('an inadvertent error'); the items were deliberate budget lines, and accidental sums would not explain asking why anyone stayed"
+  ],
+  "rarity_order": [
+   "imprudent",
+   "inadvertent",
+   "inconclusive",
+   "insignificant"
+  ],
+  "polarity": {
+   "inconclusive": "-",
+   "insignificant": "0",
+   "imprudent": "-",
+   "inadvertent": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "inadvertent",
+   "odd_one_out": "imprudent",
+   "most_specific": "inconclusive",
+   "test_word": "imprudent"
+  }
+ },
+ {
+  "id": "IS22B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree: modest earlier works contrasted with the scale of the new symphony; the final clause says the spectacle outgrew the music it served",
+  "prompt": "[Sentence Completion] The critic had praised the young composer's early chamber pieces for their restraint. Her review of the new symphony, with its three choirs, a cannon fired on stage, and a running time of nearly four hours, was cooler: the staging, she wrote, had become ------- to the score it was meant to serve, until the audience left talking about the cannon and could not hum a single theme.",
+  "choices": [
+   "impromptu",
+   "heartfelt",
+   "disproportionate",
+   "fragmentary"
+  ],
+  "correct_answer": "disproportionate",
+  "explanation": "disproportionate (out of scale with something else): the choirs, cannon and four-hour length overwhelmed the music, so the staging was far too large relative to the score, as the audience remembering only the cannon shows.",
+  "distractor_rationales": [
+   "impromptu - unplanned, improvised ('an impromptu speech'); a cannon and three choirs are elaborately planned, and the complaint is about scale, not spontaneity",
+   "heartfelt - sincere ('a heartfelt apology'); the review is critical, and sincerity is not something that drowns out a score",
+   "fragmentary - incomplete, in pieces ('fragmentary records'); a four-hour work with everything added is the opposite problem from missing parts, and the clue is about excess"
+  ],
+  "rarity_order": [
+   "impromptu",
+   "fragmentary",
+   "disproportionate",
+   "heartfelt"
+  ],
+  "polarity": {
+   "impromptu": "0",
+   "heartfelt": "+",
+   "disproportionate": "-",
+   "fragmentary": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "heartfelt",
+   "odd_one_out": "impromptu",
+   "most_specific": "impromptu",
+   "test_word": "impromptu"
+  }
+ },
+ {
+  "id": "IS22B-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose: the coach was hired to restore discipline; the clue is the opening clause and the mild-joke detail, two sentences from the blank",
+  "prompt": "[Sentence Completion] The club hired its new coach specifically to tighten up a squad that had grown used to skipped drills and late arrivals. By midseason, however, players were once again wandering in after warm-ups, and the only consequence anyone could remember was a mild joke at the next practice. The man brought in to restore order had proved every bit as ------- as the one he replaced.",
+  "choices": [
+   "idealistic",
+   "egotistical",
+   "easygoing",
+   "incoherent"
+  ],
+  "correct_answer": "easygoing",
+  "explanation": "easygoing (relaxed, unwilling to be strict): he was hired to be strict, yet lateness returned and drew only a joke, so like his predecessor he was too relaxed to enforce discipline.",
+  "distractor_rationales": [
+   "idealistic - guided by lofty ideals ('an idealistic young volunteer'); nothing in the sentence concerns his principles or hopes, only his failure to enforce rules",
+   "egotistical - self-centered, vain ('an egotistical star'); vanity would not explain letting players arrive late with no consequence",
+   "incoherent - unclear, hard to follow ('an incoherent speech'); his jokes and instructions are not described as confusing, and confusion is not the predecessor's failing either"
+  ],
+  "rarity_order": [
+   "egotistical",
+   "idealistic",
+   "incoherent",
+   "easygoing"
+  ],
+  "polarity": {
+   "idealistic": "+",
+   "egotistical": "-",
+   "easygoing": "+",
+   "incoherent": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "incoherent",
+   "odd_one_out": "incoherent",
+   "most_specific": "egotistical",
+   "test_word": "idealistic"
+  }
+ },
+ {
+  "id": "IS22B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples plus a restatement: three listed passages that are true and charming yet could be cut with no loss to the argument",
+  "prompt": "[Sentence Completion] Ms. Ortiz returned the essays with the same comment beside three passages: the paragraph on the writer's childhood pets, a brief history of the printing press, and a closing quotation from a film. Each, she conceded, was accurate and even charming, but cutting all three would have left the argument exactly as strong as before, and that, she wrote, was the problem: the material was -------.",
+  "choices": [
+   "elementary",
+   "fallacious",
+   "inflammatory",
+   "extraneous"
+  ],
+  "correct_answer": "extraneous",
+  "explanation": "extraneous (not belonging to the matter at hand): if removing the passages leaves the argument just as strong, they contribute nothing to it, though they are accurate and charming.",
+  "distractor_rationales": [
+   "elementary - basic, simple ('elementary arithmetic'); the passages are not faulted for being simple, and a basic point can still support an argument",
+   "fallacious - based on faulty reasoning ('a fallacious argument'); she concedes each passage is accurate, which rules out an error in logic or fact",
+   "inflammatory - likely to provoke anger ('inflammatory remarks'); pets, a printing-press history and a film quotation are described as charming, not provocative"
+  ],
+  "rarity_order": [
+   "fallacious",
+   "extraneous",
+   "inflammatory",
+   "elementary"
+  ],
+  "polarity": {
+   "elementary": "0",
+   "fallacious": "-",
+   "inflammatory": "-",
+   "extraneous": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "elementary",
+   "odd_one_out": "elementary",
+   "most_specific": "inflammatory",
+   "test_word": "fallacious"
+  }
+ },
+ {
+  "id": "IS22B-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree: 'not just steep but' escalates past the expected overrun, set up by the two expectations the owners were braced for",
+  "prompt": "[Sentence Completion] The owners expected the contractor to charge more than the neighborhood handyman, and they were braced for the final bill to run somewhat over the quote. They were not prepared for a total three times the estimate, including $900 for a single doorknob; his rates, they decided, were not just steep but -------.",
+  "choices": [
+   "discretionary",
+   "exorbitant",
+   "domestic",
+   "genuine"
+  ],
+  "correct_answer": "exorbitant",
+  "explanation": "exorbitant (far beyond what is reasonable): 'not just steep but' demands a stronger degree of high price, and triple the estimate with a $900 doorknob goes well past the overrun they had expected.",
+  "distractor_rationales": [
+   "discretionary - left to one's choice ('discretionary spending'); the charges were imposed on the owners, and the phrase needs a greater degree of expense, not optional status",
+   "domestic - relating to the home or one's own country ('domestic travel'); it says nothing about how high the rates were, so it cannot escalate 'steep'",
+   "genuine - real, authentic ('a genuine signature'); the bill is real either way, and the phrase needs a stronger degree of expense, not authenticity"
+  ],
+  "rarity_order": [
+   "discretionary",
+   "exorbitant",
+   "domestic",
+   "genuine"
+  ],
+  "polarity": {
+   "discretionary": "0",
+   "exorbitant": "-",
+   "domestic": "0",
+   "genuine": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "genuine",
+   "odd_one_out": "genuine",
+   "most_specific": "domestic",
+   "test_word": "exorbitant"
+  }
+ },
+ {
+  "id": "IS22B-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose/contrast: the reassuring memo versus the order of the cuts; the night editors' perfect deadline record rules out fault",
+  "prompt": "[Sentence Completion] The memo was written to reassure the night-shift editors, and it called them \"valued colleagues\" twice. Yet their department, which had not missed a deadline in six years, was the first one cut, before a single manager's job had even been reviewed, and the editors understood what the order of events said that the memo did not: the company had always regarded them as -------.",
+  "choices": [
+   "discreet",
+   "expendable",
+   "delinquent",
+   "endearing"
+  ],
+  "correct_answer": "expendable",
+  "explanation": "expendable (able to be given up without much loss): despite the flattering memo, cutting the department first, without reviewing anyone else, shows the company saw them as the easiest thing to do without.",
+  "distractor_rationales": [
+   "discreet - careful to keep confidences and avoid attention ('a discreet assistant'); the sentence is about how the company valued them, not about how quietly they behaved",
+   "delinquent - failing in one's duty ('a delinquent account'); six years without a missed deadline rules out any failure of duty as the reason they were cut first",
+   "endearing - inspiring affection ('an endearing habit'); that is what the memo pretends, but the order of the cuts says the opposite of what the memo said"
+  ],
+  "rarity_order": [
+   "expendable",
+   "delinquent",
+   "discreet",
+   "endearing"
+  ],
+  "polarity": {
+   "discreet": "0",
+   "expendable": "-",
+   "delinquent": "-",
+   "endearing": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "endearing",
+   "odd_one_out": "discreet",
+   "most_specific": "delinquent",
+   "test_word": "discreet"
+  }
+ },
+ {
+  "id": "IS22B-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples plus concession: no single line was false, yet the overall impression (large, established, safe) was none of those; the trap is that the FIRM, not the impression, was weak",
+  "prompt": "[Sentence Completion] The brochure promised \"thousands of satisfied investors\" and a \"guaranteed\" twelve percent return, and its cover showed a marble headquarters that turned out to be a hotel lobby. The regulator who reviewed it did not claim any single line was false, since the investors could be counted generously and \"guaranteed\" had a footnote; her objection was that the whole was -------: a reader came away sure the firm was large, established and safe, and it was none of those.",
+  "choices": [
+   "dated",
+   "ingrained",
+   "deceptive",
+   "disjointed"
+  ],
+  "correct_answer": "deceptive",
+  "explanation": "deceptive (giving a false impression): each line can be defended, but together they leave a reader believing the firm is large, established and safe when it is none of those.",
+  "distractor_rationales": [
+   "dated - old-fashioned, out of date ('dated slang'); nothing suggests the brochure looked old, and the objection is to the false impression it leaves, not its age",
+   "ingrained - deeply fixed, hard to remove ('an ingrained habit'); the objection is that the impression is false, not that it is long-held or hard to change",
+   "disjointed - lacking connection, incoherent ('a disjointed speech'); the pieces combine all too smoothly into one clear picture, since a reader comes away sure of it"
+  ],
+  "rarity_order": [
+   "ingrained",
+   "disjointed",
+   "deceptive",
+   "dated"
+  ],
+  "polarity": {
+   "dated": "-",
+   "ingrained": "0",
+   "deceptive": "-",
+   "disjointed": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "ingrained",
+   "odd_one_out": "ingrained",
+   "most_specific": "dated",
+   "test_word": "ingrained"
+  }
+ },
+ {
+  "id": "IS22B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose: the designer's aim (call up smells and memories) two sentences before the blank; the bare set rules out vivid detail",
+  "prompt": "[Sentence Completion] The designer had no interest in building a real kitchen on stage; she wanted the audience to smell bread that was not there and to think of their grandmothers' houses. Three mismatched chairs, an empty window frame and the sound of a kettle were all she allowed herself. The critics who complained that the set was bare had missed what it was for: it was meant to be -------, not complete.",
+  "choices": [
+   "functional",
+   "evocative",
+   "iconic",
+   "graphic"
+  ],
+  "correct_answer": "evocative",
+  "explanation": "evocative (bringing memories or feelings to mind): the designer's stated aim was for a few objects to make viewers smell absent bread and recall their grandmothers' houses.",
+  "distractor_rationales": [
+   "functional - practical, built to be used ('functional furniture'); her aim was memory and feeling, not usefulness, and a practical set would not need to call up absent bread",
+   "iconic - widely recognized as a symbol ('an iconic landmark'); three mismatched chairs are chosen to stir personal memories, not to be famous or instantly recognized",
+   "graphic - vividly detailed ('a graphic description'); the set is deliberately bare, so it is the opposite of richly detailed"
+  ],
+  "rarity_order": [
+   "evocative",
+   "iconic",
+   "graphic",
+   "functional"
+  ],
+  "polarity": {
+   "functional": "0",
+   "evocative": "+",
+   "iconic": "+",
+   "graphic": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "functional",
+   "odd_one_out": "functional",
+   "most_specific": "graphic",
+   "test_word": "evocative"
+  }
+ },
+ {
+  "id": "IS22B-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree: a larger total that is still too small once enrollment doubles; the board's boast is a concession the reader must look past",
+  "prompt": "[Sentence Completion] The new library budget was not stingy, exactly; it bought more books than the year before, and the board described it in its newsletter as \"record spending.\" But enrollment had doubled in the same period, so each student's share had fallen by a third, and the boast could not hide the fact that, for a school of that size, the sum was -------.",
+  "choices": [
+   "egalitarian",
+   "inadequate",
+   "incidental",
+   "irrevocable"
+  ],
+  "correct_answer": "inadequate",
+  "explanation": "inadequate (not enough for what is needed): though larger than before, the budget shrank to two-thirds per student once enrollment doubled, so it fell short of what a school that size required.",
+  "distractor_rationales": [
+   "egalitarian - treating everyone equally ('an egalitarian society'); the per-student share is mentioned to show it shrank, not that it was distributed fairly",
+   "incidental - minor, a side matter ('incidental expenses'); the board calls it record spending, so the sum is not minor in itself, only too small for the need",
+   "irrevocable - impossible to undo ('an irrevocable decision'); nothing concerns whether the budget can be changed, only whether it is enough"
+  ],
+  "rarity_order": [
+   "irrevocable",
+   "egalitarian",
+   "incidental",
+   "inadequate"
+  ],
+  "polarity": {
+   "egalitarian": "+",
+   "inadequate": "-",
+   "incidental": "0",
+   "irrevocable": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "egalitarian",
+   "odd_one_out": "irrevocable",
+   "most_specific": "egalitarian",
+   "test_word": "irrevocable"
+  }
+ },
+ {
+  "id": "IS22B-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples: three stock quotes, then the restatement that they could have been read word for word after last week's win",
+  "prompt": "[Sentence Completion] Fans hoping to learn why the team had collapsed in the final ten minutes got nothing useful from the captain. \"Credit to the other side,\" she said, then \"We'll regroup,\" and finally \"It's a long season.\" Every one of those answers could have been read out, word for word, after the previous week's win, and that was exactly what made them so -------.",
+  "choices": [
+   "dejected",
+   "generic",
+   "emphatic",
+   "ironic"
+  ],
+  "correct_answer": "generic",
+  "explanation": "generic (not specific to any particular case): the captain's lines would fit a win as well as this loss, so they said nothing about why this game collapsed.",
+  "distractor_rationales": [
+   "dejected - sad and dispirited ('a dejected fan'); the complaint is that the answers fit any game, which says nothing about her mood",
+   "emphatic - forceful, stressed strongly ('an emphatic denial'); the point is their emptiness, not their force, and the fans got nothing useful from them",
+   "ironic - meaning the opposite of what is said ('an ironic remark'); she means her stock phrases plainly, and fitting a win equally well makes them empty, not ironic"
+  ],
+  "rarity_order": [
+   "emphatic",
+   "dejected",
+   "generic",
+   "ironic"
+  ],
+  "polarity": {
+   "dejected": "-",
+   "generic": "0",
+   "emphatic": "0",
+   "ironic": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "dejected",
+   "odd_one_out": "ironic",
+   "most_specific": "dejected",
+   "test_word": "emphatic"
+  }
+ },
+ {
+  "id": "IS22B-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples plus concession: her instincts are granted as sometimes right, then the pattern (ignoring the plan in every race, shrugging off a warned-about loss) sits a sentence before the blank",
+  "prompt": "[Sentence Completion] Dana's coaches never doubted her speed, and they admitted that her instincts were occasionally right: once, ignoring the race plan, she broke away early and won. But she ignored the plan in every race, cheerfully and without a moment's pause, and when she finally lost to the very tactic they had warned her about for a month, she shrugged and said she would run it her own way next time too. What held her back, they agreed, was not a lack of talent but the fact that she was so -------.",
+  "choices": [
+   "finicky",
+   "glum",
+   "headstrong",
+   "infallible"
+  ],
+  "correct_answer": "headstrong",
+  "explanation": "headstrong (stubbornly determined to do things one's own way): she ignored the plan in every race and, even after losing to the tactic she was warned about, insisted on her own way next time.",
+  "distractor_rationales": [
+   "finicky - fussy, hard to please about small details ('a finicky eater'); she broke from the plan cheerfully and without a pause, the reverse of fussing over details",
+   "glum - gloomy, downcast ('a glum face'); she ignored the plan cheerfully and simply shrugged off the loss",
+   "infallible - never wrong ('an infallible memory'); her instincts were only occasionally right, and she lost to the tactic she was warned about"
+  ],
+  "rarity_order": [
+   "infallible",
+   "headstrong",
+   "finicky",
+   "glum"
+  ],
+  "polarity": {
+   "finicky": "-",
+   "glum": "-",
+   "headstrong": "-",
+   "infallible": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "infallible",
+   "odd_one_out": "glum",
+   "most_specific": "finicky",
+   "test_word": "infallible"
+  }
+ },
+ {
+  "id": "IS22B-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples: three days' prices in the first sentence; the middle sentence rules out hidden, unreal and cheap prices, leaving the variation itself",
+  "prompt": "[Sentence Completion] On Monday a loaf at the corner bakery cost three dollars; on Tuesday it cost seven; on Wednesday the owner gave the last one away to a boy who asked politely. Nobody claimed to have been cheated, since every price was chalked plainly on the board, and over a month the bread cost about what it did at the supermarket, no more and no less. What finally drove the regulars away was that the prices were so ------- that no one could plan even a week's shopping around them.",
+  "choices": [
+   "implicit",
+   "inexpensive",
+   "inconsistent",
+   "fictitious"
+  ],
+  "correct_answer": "inconsistent",
+  "explanation": "inconsistent (not staying the same; changing unpredictably): three dollars, seven dollars and free on successive days, posted plainly and with an ordinary average, means the only problem was that the price kept changing.",
+  "distractor_rationales": [
+   "implicit - suggested but not stated outright ('an implicit threat'); every price was chalked plainly on the board, stated as directly as a price can be",
+   "inexpensive - cheap ('an inexpensive meal'); over a month the bread cost about the same as at the supermarket, so it was not notably cheap, and cheapness would not drive regulars away",
+   "fictitious - invented, not real ('a fictitious name'); the prices were real, chalked on the board and actually charged"
+  ],
+  "rarity_order": [
+   "implicit",
+   "fictitious",
+   "inexpensive",
+   "inconsistent"
+  ],
+  "polarity": {
+   "implicit": "0",
+   "inexpensive": "+",
+   "inconsistent": "-",
+   "fictitious": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "inexpensive",
+   "odd_one_out": "inexpensive",
+   "most_specific": "fictitious",
+   "test_word": "implicit"
+  }
+ },
+ {
+  "id": "IS22B-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree: 'a few' studies requested versus all 212 found, translated and logged; 'left nothing out' restates the key two sentences from the blank",
+  "prompt": "[Sentence Completion] Asked to summarize \"a few\" studies on homework and sleep, Jae tracked down every one published since 1990, all 212 of them, translated several from German himself, and logged each in a forty-page appendix. The report drew no conclusion of its own; it simply left nothing out. His teacher, who had expected a page and a half, returned it with a note that was half praise and half alarm, calling it the most ------- piece of work she had ever been handed.",
+  "choices": [
+   "incisive",
+   "disdainful",
+   "encyclopedic",
+   "fanciful"
+  ],
+  "correct_answer": "encyclopedic",
+  "explanation": "encyclopedic (covering a subject completely, with every item included): Jae found all 212 studies where a few were asked for and the report 'left nothing out', so its defining quality was completeness.",
+  "distractor_rationales": [
+   "incisive - sharp and penetrating in analysis ('an incisive critique'); the report drew no conclusion of its own, so it offered no sharp analysis, only completeness",
+   "disdainful - showing scorn or contempt ('a disdainful glance'); the report drew no conclusion and took no attitude toward anything, it simply logged every study",
+   "fanciful - imaginative, not based on fact ('a fanciful tale'); a log of published studies is purely factual"
+  ],
+  "rarity_order": [
+   "incisive",
+   "disdainful",
+   "encyclopedic",
+   "fanciful"
+  ],
+  "polarity": {
+   "incisive": "+",
+   "disdainful": "-",
+   "encyclopedic": "0",
+   "fanciful": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "disdainful",
+   "odd_one_out": "fanciful",
+   "most_specific": "fanciful",
+   "test_word": "incisive"
+  }
+ },
+ {
+  "id": "IS22B-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples: the quoted specialist phrases and the 'ages six and up' audience; the concession sentence rules out inaccuracy, irrelevance and tone",
+  "prompt": "[Sentence Completion] The orchestra's family concert was advertised for ages six and up, but the program notes had been commissioned from a distinguished musicologist, who wrote in dry, careful prose about \"motivic transformation\" and \"the dissolution of tonal hierarchy.\" Every sentence was accurate, and every one concerned a piece on that afternoon's program. The trouble was that for nearly everyone holding the booklet, parents included, the notes were -------.",
+  "choices": [
+   "inane",
+   "gushing",
+   "irrelevant",
+   "inaccessible"
+  ],
+  "correct_answer": "inaccessible",
+  "explanation": "inaccessible (hard to understand or make use of): specialist phrases written for scholars could not be followed by children or most parents, even though every sentence was accurate and on topic.",
+  "distractor_rationales": [
+   "inane - silly, senseless ('an inane joke'); the notes were careful and accurate, written by a distinguished scholar",
+   "gushing - overly enthusiastic ('a gushing review'); the prose is described as dry and careful",
+   "irrelevant - unrelated to the matter at hand ('an irrelevant detail'); every sentence concerned a piece on the program"
+  ],
+  "rarity_order": [
+   "inane",
+   "gushing",
+   "inaccessible",
+   "irrelevant"
+  ],
+  "polarity": {
+   "inane": "-",
+   "gushing": "+",
+   "irrelevant": "-",
+   "inaccessible": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "gushing",
+   "odd_one_out": "gushing",
+   "most_specific": "inane",
+   "test_word": "irrelevant"
+  }
+ },
+ {
+  "id": "IS22B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples against an expectation: the manager braced for fury finds silence, no proposals, no complaints and a light workload; the key must name what is 'harder to fix than fury'",
+  "prompt": "[Sentence Completion] The new manager arrived braced for anger. After three rounds of layoffs, she assumed the remaining staff would shout in meetings and send long, furious emails. Instead the meetings were silent: no one proposed anything, no one complained even about the oddly light workload, and everyone left at five sharp without a word. What she faced was harder to fix than fury, a team that was thoroughly -------.",
+  "choices": [
+   "harried",
+   "dispirited",
+   "intemperate",
+   "hysterical"
+  ],
+  "correct_answer": "dispirited",
+  "explanation": "dispirited (having lost enthusiasm and hope): after the layoffs the staff no longer proposed, complained or engaged at all, a silent loss of heart the manager finds harder to fix than anger.",
+  "distractor_rationales": [
+   "harried - rushed and harassed by too much to do ('a harried waiter'); the workload was oddly light and everyone left at five sharp",
+   "intemperate - lacking self-control, given to outbursts ('intemperate language'); that is the shouting and fury she expected and did not find",
+   "hysterical - wildly emotional, out of control ('hysterical screaming'); the meetings were silent and everyone left without a word"
+  ],
+  "rarity_order": [
+   "intemperate",
+   "harried",
+   "dispirited",
+   "hysterical"
+  ],
+  "polarity": {
+   "harried": "-",
+   "dispirited": "-",
+   "intemperate": "-",
+   "hysterical": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "harried",
+   "odd_one_out": "harried",
+   "most_specific": "hysterical",
+   "test_word": "intemperate"
+  }
+ }
+]

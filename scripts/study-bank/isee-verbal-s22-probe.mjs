@@ -25,6 +25,13 @@
  * Steering only: it decides nothing at the gate.
  * Refuses (exit 2) on a probe file missing any id or field, or naming an
  * above_ceiling entry that is not on that item.
+ *
+ * render r2 --plant <id,id,...>  (added after r1, steering only): r1's probe put 0 of
+ *   180 SC words and 0 of 125 synonym words above the ceiling. A reader that flags
+ *   nothing cannot be told from one that cannot flag, so r2 interleaves CALIBRATION
+ *   items - real option sets of s20/s21 SC items whose distractors >= 2 graders
+ *   marked above band - into the SC render. They are scored on their own line
+ *   ("PLANT"), never named for revision, and never enter any file of this batch.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { createHash } from 'node:crypto'
@@ -45,7 +52,11 @@ const load = fs => fs.flatMap(f => {
 const headword = it => it.prompt.replace(/^\[Synonym\]\s*/, '').trim()
 if (mode === 'render') {
   const rand = rng(round === 'r1' ? 20261153 : 20261154)
-  const sc = shuffleWith(load(SC_FILES), rand), syn = shuffleWith(load(SYN_FILES), rand)
+  const pi = process.argv.indexOf('--plant')
+  const plantIds = pi >= 0 ? process.argv[pi + 1].split(',').filter(Boolean) : []
+  const prior = load([`${D}/isee-verbal-s21-sc.batch.json`, `${D}/isee-verbal-s20-sc.batch.json`])
+  const plants = plantIds.map(id => { const it = prior.find(x => x.id === id); if (!it) { console.error(`REFUSING: plant ${id} not in s20/s21 SC`); process.exit(2) } return { ...it, plant: true } })
+  const sc = shuffleWith([...load(SC_FILES), ...plants], rand), syn = shuffleWith(load(SYN_FILES), rand)
   const scBlind = {}, synBlind = {}, key = {}
   sc.forEach((it, i) => {
     const want = SLOT[i % 4]
@@ -53,7 +64,7 @@ if (mode === 'render') {
     let r = 0
     const pid = `P${String(i + 1).padStart(2, '0')}`
     scBlind[pid] = { options: Object.fromEntries(SLOT.map(s => [s, s === want ? it.correct_answer : rest[r++]])) }
-    key[pid] = { letter: want, localId: it.id }
+    key[pid] = { letter: want, localId: it.id, ...(it.plant ? { plant: true } : {}) }
   })
   syn.forEach((it, i) => {
     const sid = `S${String(i + 1).padStart(2, '0')}`
@@ -84,12 +95,12 @@ if (mode === 'render') {
     }
   }
   const by = {}
-  for (const [id, k] of Object.entries(key)) { const a = k.localId.replace(/-\d+$/, ''); (by[a] ??= []).push(id) }
+  for (const [id, k] of Object.entries(key)) { const a = k.plant ? 'PLANT' : k.localId.replace(/-\d+$/, ''); (by[a] ??= []).push(id) }
   const named = new Set()
   for (const [a, ids] of Object.entries(by).sort()) {
     const n = ids.length
     if (ids[0].startsWith('P')) {
-      const line = H.map(h => { const hit = ids.filter(id => P[id][h] === key[id].letter); const over = hit.length / n >= 0.35; if (over) hit.forEach(id => named.add(key[id].localId)); return `${h} ${hit.length}/${n} = ${(100 * hit.length / n).toFixed(1)}%${over ? ' OVER' : ''}` })
+      const line = H.map(h => { const hit = ids.filter(id => P[id][h] === key[id].letter); const over = hit.length / n >= 0.35; if (over && a !== 'PLANT') hit.forEach(id => named.add(key[id].localId)); return `${h} ${hit.length}/${n} = ${(100 * hit.length / n).toFixed(1)}%${over ? ' OVER' : ''}` })
       const opp = ids.filter(id => P[id].opposite_pairs.length)
       const polBreach = ids.filter(id => {
         const pol = P[id].polarity, kv = pol[key[id].letter], c = {}
@@ -97,6 +108,11 @@ if (mode === 'render') {
         return Object.entries(c).some(([v, m]) => v !== kv && m >= 3)
       })
       const above = ids.filter(id => P[id].above_ceiling.length)
+      if (a === 'PLANT') {
+        const w = id => Object.entries(scBlind[id].options).filter(([x]) => P[id].above_ceiling.includes(x)).map(([, t]) => t)
+        console.log(`PLANT (calibration, n=${n}): items with >= 1 word flagged ${above.length}/${n}; flagged: ${ids.map(id => `${key[id].localId} [${w(id).join(',') || '-'}]`).join('; ')}`)
+        continue
+      }
       for (const id of [...opp, ...polBreach, ...above]) named.add(key[id].localId)
       const word = (id, x) => scBlind[id].options[x] + (x === key[id].letter ? ' (KEY)' : '')
       console.log(`${a} (n=${n}): ${line.join('; ')}`)
@@ -111,7 +127,7 @@ if (mode === 'render') {
       console.log(`${a} (n=${n}, synonyms): above ceiling on ${above.length}: ${above.map(id => `${key[id].localId} ${P[id].above_ceiling.map(w => role(id, w)).join(',')}`).join('; ') || '-'}`)
     }
   }
-  const sc = Object.keys(key).filter(id => id.startsWith('P'))
+  const sc = Object.keys(key).filter(id => id.startsWith('P') && !key[id].plant)
   console.log(`all SC (n=${sc.length}): ${H.map(h => `${h} ${sc.filter(id => P[id][h] === key[id].letter).length}/${sc.length}`).join('; ')}; above-ceiling words ${sc.reduce((s, id) => s + P[id].above_ceiling.length, 0)} of ${sc.length * 4}`)
   console.log(named.size ? `STEERING: ${named.size} items named for the revision round: ${[...named].sort().join(', ')}` : 'STEERING: nothing named')
 }

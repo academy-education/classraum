@@ -1,0 +1,662 @@
+[
+ {
+  "id": "IS22C-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "concession: the portrait and crowded lectures a sentence earlier, set against today's shrugs, establish former public stature",
+  "prompt": "[Sentence Completion] The judge's portrait still hangs in the courthouse lobby, and a generation ago law students lined the halls to hear her speak. Yet when her name comes up today, the young clerks only shrug, unable to say why anyone thought her picture worth hanging; it is hard for them to believe she was ever so -------.",
+  "choices": [
+   "punitive",
+   "significant",
+   "subjective",
+   "preoccupied"
+  ],
+  "correct_answer": "significant",
+  "explanation": "significant (important, of real consequence): the portrait in the lobby and the crowded lectures show she was once a figure of public standing, and the clerks' shrugs show that standing has been forgotten - exactly what they cannot believe she had.",
+  "distractor_rationales": [
+   "punitive - inclined to punish ('a punitive sentence'); nothing about a portrait or packed lectures speaks to harshness, and the clerks are puzzled about her importance, not her severity",
+   "subjective - based on personal feeling rather than fact ('a subjective judgment'); the clerks are puzzled about her importance, and nothing about the portrait or the packed lectures concerns personal bias",
+   "preoccupied - absorbed in one's own thoughts ('too preoccupied to notice'); a distracted manner would not explain why her picture was hung or why students crowded to hear her"
+  ],
+  "rarity_order": [
+   "punitive",
+   "preoccupied",
+   "subjective",
+   "significant"
+  ],
+  "polarity": {
+   "punitive": "-",
+   "significant": "+",
+   "subjective": "0",
+   "preoccupied": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "punitive",
+   "odd_one_out": "punitive",
+   "most_specific": "punitive",
+   "test_word": "subjective"
+  }
+ },
+ {
+  "id": "IS22C-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison: the blank is the opposite term of 'restrained', and the overrun pastures two sentences earlier define it",
+  "prompt": "[Sentence Completion] Ranchers who had shrugged at the native thistle - slow to spread, and cropped short each spring by the deer - were caught off guard by its imported cousin. The deer would not touch it, and by the third summer the fields where it had first been noticed were no longer worth calling pastures. Its growth, in short, had been as ------- as the native plant's was restrained.",
+  "choices": [
+   "perverse",
+   "plaintive",
+   "rampant",
+   "superstitious"
+  ],
+  "correct_answer": "rampant",
+  "explanation": "rampant (spreading unchecked): the comparison asks for the opposite of 'restrained', and the uneaten thistle overrunning the pastures within three summers is growth that nothing held back.",
+  "distractor_rationales": [
+   "perverse - stubbornly contrary to what is expected or right ('a perverse refusal'); the passage describes how fast and far the plant spread, not a contrariness set against 'restrained'",
+   "plaintive - sounding sad and mournful ('a plaintive cry'); describes a voice or tune, not the spread of a weed",
+   "superstitious - believing in luck, omens or magic ('a superstitious sailor'); describes a person's beliefs, not how fast and far a weed spread over the pastures"
+  ],
+  "rarity_order": [
+   "plaintive",
+   "perverse",
+   "superstitious",
+   "rampant"
+  ],
+  "polarity": {
+   "perverse": "-",
+   "plaintive": "-",
+   "rampant": "-",
+   "superstitious": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "superstitious",
+   "odd_one_out": "superstitious",
+   "most_specific": "plaintive",
+   "test_word": "perverse"
+  }
+ },
+ {
+  "id": "IS22C-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession/contrast: the planned itinerary is described only by its details a sentence earlier (velvet ropes, Latin-quoting guides, wine discussed longer than drunk)",
+  "prompt": "[Sentence Completion] Marguerite had packed for the trip her guidebook promised: velvet-roped galleries, guides who dropped Latin into every sentence, dinners at which the wine was discussed longer than it was drunk. What she got instead was a fortnight of noodle stalls and night buses, and, to her own surprise, she did not once miss the ------- itinerary she had dressed for.",
+  "choices": [
+   "rushed",
+   "squalid",
+   "snooty",
+   "provincial"
+  ],
+  "correct_answer": "snooty",
+  "explanation": "snooty (snobbishly superior, looking down on plainer tastes): the planned trip is all display of refinement - roped galleries, Latin tags, wine talked about more than tasted - which is what she found she did not miss.",
+  "distractor_rationales": [
+   "rushed - done too quickly ('a rushed visit'); nothing in the planned galleries and long dinners suggests haste",
+   "squalid - dirty and wretched ('squalid lodgings'); velvet ropes and wine dinners are the reverse of squalor, and the noodle stalls are what she actually got",
+   "provincial - narrow and small-town in outlook ('provincial tastes'); Latin-quoting guides and wine connoisseurship are the opposite of a provincial itinerary"
+  ],
+  "rarity_order": [
+   "squalid",
+   "provincial",
+   "snooty",
+   "rushed"
+  ],
+  "polarity": {
+   "rushed": "-",
+   "squalid": "-",
+   "snooty": "-",
+   "provincial": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "squalid",
+   "odd_one_out": "rushed",
+   "most_specific": "squalid",
+   "test_word": "provincial"
+  }
+ },
+ {
+  "id": "IS22C-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence: 1932 reviewers' dismissal versus readers now who own listening speakers; 'less dated than' sets the contrast",
+  "prompt": "[Sentence Completion] Reviewers in 1932 laughed off the novel's household machines that recorded every word spoken near them, calling them the author's least convincing invention. Readers who keep a listening speaker on the kitchen counter tend to find that the joke has worn thin; to them the book seems less dated than -------.",
+  "choices": [
+   "pastoral",
+   "prophetic",
+   "rhetorical",
+   "reputable"
+  ],
+  "correct_answer": "prophetic",
+  "explanation": "prophetic (accurately foretelling the future): an invention mocked as unconvincing in 1932 now sits on readers' counters, so the book reads not as old-fashioned but as having foreseen what came.",
+  "distractor_rationales": [
+   "pastoral - concerned with idyllic country life ('a pastoral poem'); a novel about recording machines in the home is not rural, and the contrast is about time, not setting",
+   "rhetorical - concerned with persuasive or showy language ('a rhetorical flourish'); the passage is about whether the novel's predictions came true, not its style",
+   "reputable - well regarded, trustworthy ('a reputable firm'); the point is that events caught up with the book, not that it gained standing, and 'reputable' is no contrast to 'dated'"
+  ],
+  "rarity_order": [
+   "pastoral",
+   "reputable",
+   "prophetic",
+   "rhetorical"
+  ],
+  "polarity": {
+   "pastoral": "0",
+   "prophetic": "+",
+   "rhetorical": "0",
+   "reputable": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "rhetorical",
+   "odd_one_out": "pastoral",
+   "most_specific": "pastoral",
+   "test_word": "rhetorical"
+  }
+ },
+ {
+  "id": "IS22C-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: eleven years of silence names the thing; 'shallower than feared' and the dinner a clause later show it closing",
+  "prompt": "[Sentence Completion] Though the two sisters had not exchanged a word in eleven years, the ------- between them proved shallower than either had feared: an hour into their father's birthday dinner they were finishing each other's sentences and arguing, cheerfully, over who had broken the porch swing in 1998.",
+  "choices": [
+   "quandary",
+   "rift",
+   "pretext",
+   "surfeit"
+  ],
+  "correct_answer": "rift",
+  "explanation": "rift (a break in a relationship): eleven years of silence is an estrangement, and 'shallower than feared' plus their easy talk at dinner shows the break was easily closed.",
+  "distractor_rationales": [
+   "quandary - a state of uncertainty about what to do ('in a quandary over the offer'); a dilemma is one person's, not something that lies between two sisters and is measured as shallow",
+   "pretext - a false reason given to hide the real one ('a pretext for leaving early'); nothing in the sentence involves an excuse, and a pretext cannot be shallow or deep between people",
+   "surfeit - an excessive amount ('a surfeit of sweets'); the sisters' trouble was a silence, a lack of contact, not an excess of anything"
+  ],
+  "rarity_order": [
+   "surfeit",
+   "quandary",
+   "pretext",
+   "rift"
+  ],
+  "polarity": {
+   "quandary": "-",
+   "rift": "-",
+   "pretext": "-",
+   "surfeit": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "surfeit",
+   "odd_one_out": "surfeit",
+   "most_specific": "pretext",
+   "test_word": "quandary"
+  }
+ },
+ {
+  "id": "IS22C-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "sequence: an accepted explanation, then a second and third slip each dated before her trips; what the partners felt 'hardened into something close to certainty'",
+  "prompt": "[Sentence Completion] At first the partners accepted the bookkeeper's explanation: the missing money was a clerical slip, and she had already put it right. Then a second slip surfaced, and a third, each corrected in her own hand and each dated to the week before one of her long trips abroad; by the time the auditors arrived, the partners' ------- had hardened into something close to certainty.",
+  "choices": [
+   "reprieve",
+   "recourse",
+   "suspicion",
+   "ruse"
+  ],
+  "correct_answer": "suspicion",
+  "explanation": "suspicion (a belief that someone is guilty, held without proof): trust gives way as matching slips pile up around her trips, and what the partners now feel is an unproven sense of her guilt that is nearly certain.",
+  "distractor_rationales": [
+   "reprieve - a temporary cancellation or delay of a punishment ('a last-minute reprieve'); the partners are not being spared anything, and relief cannot harden into certainty",
+   "recourse - a source of help one can turn to ('legal recourse'); the partners' options for action are not what grows as the slips pile up, and a remedy cannot harden into certainty about who took the money",
+   "ruse - a trick meant to deceive ('a clever ruse'); if anyone is playing a trick it is the bookkeeper, and the partners' own trick could not harden into certainty"
+  ],
+  "rarity_order": [
+   "reprieve",
+   "recourse",
+   "ruse",
+   "suspicion"
+  ],
+  "polarity": {
+   "reprieve": "+",
+   "recourse": "0",
+   "suspicion": "-",
+   "ruse": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "reprieve",
+   "odd_one_out": "recourse",
+   "most_specific": "ruse",
+   "test_word": "recourse"
+  }
+ },
+ {
+  "id": "IS22C-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: the guidebook's 'gravel and the odd lizard' is overturned; the color running to the horizon and every frame looking alike, a clause after the blank, define it",
+  "prompt": "[Sentence Completion] Although the guidebook warned that the desert in April would offer little to look at beyond gravel and the odd lizard, it had not reckoned on the one wet winter in twenty. For an hour we drove through gold and violet that ran all the way to the horizon, the bloom so ------- that we stopped taking photographs, since any frame looked much like every other.",
+  "choices": [
+   "staid",
+   "secular",
+   "profuse",
+   "reclusive"
+  ],
+  "correct_answer": "profuse",
+  "explanation": "profuse (abundant, pouring out in great quantity): flowers covering everything to the horizon, so thick that every photograph looks the same, are a bloom of overwhelming abundance - the reverse of the bare gravel the guidebook promised.",
+  "distractor_rationales": [
+   "staid - sedate, dull and respectable ('a staid old club'); a sudden blaze of gold and violet after a rare wet winter is anything but sedate, and dullness would not explain why every frame looked alike",
+   "secular - not connected with religion ('secular music'); a field of wildflowers is neither religious nor non-religious, and the word says nothing about color reaching the horizon or why every frame looked alike",
+   "reclusive - avoiding the company of others, withdrawn ('a reclusive author'); a bloom stretching to the horizon is the opposite of hidden away"
+  ],
+  "rarity_order": [
+   "staid",
+   "profuse",
+   "reclusive",
+   "secular"
+  ],
+  "polarity": {
+   "staid": "0",
+   "secular": "0",
+   "profuse": "0",
+   "reclusive": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "reclusive",
+   "odd_one_out": "profuse",
+   "most_specific": "secular",
+   "test_word": "staid"
+  }
+ },
+ {
+  "id": "IS22C-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison: the laureate's own fifty years of reticence set against the boy's eleven pages, corrections and proposal; 'verse more than his manners' marks it as a fault of manners",
+  "prompt": "[Sentence Completion] The young poet's first letter to the laureate ran to eleven pages, corrected the older man's meter in two places, and closed by proposing that the two of them write a collection together. The laureate, who had waited until he was fifty before showing his own poems to anyone, replied in a single line: he admired the boy's verse a great deal more than his manners, and had found the letter -------.",
+  "choices": [
+   "remiss",
+   "perceptive",
+   "presumptuous",
+   "philanthropic"
+  ],
+  "correct_answer": "presumptuous",
+  "explanation": "presumptuous (overstepping, taking liberties one has no standing for): a beginner correcting a laureate's meter and proposing to co-write a book, judged by a man who waited until fifty to show anyone his work, is a failure of manners by overreaching.",
+  "distractor_rationales": [
+   "remiss - careless about a duty, negligent ('remiss in replying'); an eleven-page letter that checks the older poet's meter is overdone, not neglectful",
+   "perceptive - quick to notice and understand ('a perceptive critic'); praise for insight would belong with the verse he admired, not with the manners he faults",
+   "philanthropic - generous in giving to good causes ('a philanthropic foundation'); the letter gives nothing away - it corrects the laureate and asks him for a joint collection, which is the opposite of charity, and the reply faults its manners"
+  ],
+  "rarity_order": [
+   "remiss",
+   "presumptuous",
+   "philanthropic",
+   "perceptive"
+  ],
+  "polarity": {
+   "remiss": "-",
+   "perceptive": "+",
+   "presumptuous": "-",
+   "philanthropic": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "perceptive",
+   "odd_one_out": "philanthropic",
+   "most_specific": "philanthropic",
+   "test_word": "perceptive"
+  }
+ },
+ {
+  "id": "IS22C-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence: a silent first year, then a wet October over a broken motor, then spring talk so constant the mother cannot break in",
+  "prompt": "[Sentence Completion] For the first year after the wedding, Theo answered his stepfather in single words and ate dinner with his eyes on his plate. It was not a lecture or a present that changed things but a broken outboard motor, which the two of them spent a wet October taking apart on the garage floor; by spring their ------- was such that his mother complained she could hardly get a word in at the table.",
+  "choices": [
+   "perspective",
+   "rapport",
+   "stalemate",
+   "prowess"
+  ],
+  "correct_answer": "rapport",
+  "explanation": "rapport (a close, easy understanding between people): after a silent year, a shared project leads to conversation so constant the mother cannot join it - the two have built an easy closeness.",
+  "distractor_rationales": [
+   "perspective - a particular way of viewing things ('a fresh perspective'); a point of view is not something that grows between two people until a third cannot get a word in - the change is in how the two get along",
+   "stalemate - a deadlock in which neither side can advance ('talks ended in stalemate'); the silent first year was the deadlock, and the passage says the motor broke it",
+   "prowess - outstanding skill at something ('prowess as a mechanic'); skill at repairing motors would not explain why the mother cannot get a word in - the change is in how the two get along"
+  ],
+  "rarity_order": [
+   "prowess",
+   "rapport",
+   "stalemate",
+   "perspective"
+  ],
+  "polarity": {
+   "perspective": "0",
+   "rapport": "+",
+   "stalemate": "-",
+   "prowess": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "stalemate",
+   "odd_one_out": "perspective",
+   "most_specific": "stalemate",
+   "test_word": "perspective"
+  }
+ },
+ {
+  "id": "IS22C-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: 'Though... without so much as a headache' sets up the reversal; 'at the rail' and the nephew 'undisturbed' after his pastries show she was the one overcome",
+  "prompt": "[Sentence Completion] Though she had crossed three continents without so much as a headache, and liked to tell the family that anyone who came home from a trip unwell had only their own carelessness to blame, on the ferry to the island Ingrid at last -------, and spent the crossing at the rail while her nephew, who had eaten two fried pastries at the dock, read his comic undisturbed.",
+  "choices": [
+   "scoffed",
+   "procrastinated",
+   "reminisced",
+   "succumbed"
+  ],
+  "correct_answer": "succumbed",
+  "explanation": "succumbed (gave way, was overcome, here by seasickness): the concession sets her lifelong immunity against the ferry, where she spends the crossing at the rail while the nephew she might have blamed stays well - she finally gave in to illness.",
+  "distractor_rationales": [
+   "scoffed - spoke with mocking contempt ('scoffed at the idea'); scoffing is what she did before the trip, and the 'Though' clause sets up a reversal of her boasting, not more of it",
+   "procrastinated - put off doing something that needed doing ('procrastinated on her homework'); she has no task to delay, and putting something off would not keep her at the rail for the whole crossing",
+   "reminisced - talked or thought fondly about the past ('reminisced about school days'); fond memories are no reversal of her proud health record, and the 'Though' clause demands that she, not her nephew, be the one undone"
+  ],
+  "rarity_order": [
+   "succumbed",
+   "reminisced",
+   "procrastinated",
+   "scoffed"
+  ],
+  "polarity": {
+   "scoffed": "-",
+   "procrastinated": "-",
+   "reminisced": "0",
+   "succumbed": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "reminisced",
+   "odd_one_out": "reminisced",
+   "most_specific": "scoffed",
+   "test_word": "procrastinated"
+  }
+ },
+ {
+  "id": "IS22C-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence: a plain account given twice, then on the stand poor light, fear, and no certainty, one step at a time; the blank is what she does to her own story",
+  "prompt": "[Sentence Completion] On the night of the robbery the clerk told police she had seen the man's face plainly under the streetlight, and she repeated it, almost word for word, to a grand jury. Eight months later, on the stand, she allowed first that the light had been poor, then that she had been frightened, and finally that she could not be sure the man had come into the shop at all; the prosecutor, whose case had rested on her, could only sit and watch her ------- the story she had told, one detail at a time.",
+  "choices": [
+   "paraphrase",
+   "recant",
+   "shun",
+   "reproach"
+  ],
+  "correct_answer": "recant",
+  "explanation": "recant (to take back a statement one made earlier): each admission on the stand withdraws part of the account she had given police and the grand jury, until nothing of it is left for the prosecutor to rely on.",
+  "distractor_rationales": [
+   "paraphrase - to restate in different words ('paraphrase the poem'); she is not putting the same account into new words - each admission takes part of it back",
+   "shun - to deliberately avoid ('shunned by his neighbors'); she does not avoid the story, she talks about it on the stand and undoes it",
+   "reproach - to scold or express disappointment in someone ('reproached him for lying'); one reproaches a person, and she never blames anyone - she only withdraws what she said"
+  ],
+  "rarity_order": [
+   "recant",
+   "reproach",
+   "paraphrase",
+   "shun"
+  ],
+  "polarity": {
+   "paraphrase": "0",
+   "recant": "0",
+   "shun": "-",
+   "reproach": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "shun",
+   "odd_one_out": "shun",
+   "most_specific": "paraphrase",
+   "test_word": "paraphrase"
+  }
+ },
+ {
+  "id": "IS22C-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison: the decade of drought the farmers 'weathered' is set against the one week of hail; the lost orchards and the growers selling up a clause later define the blank",
+  "prompt": "[Sentence Completion] The valley's farmers still speak of the long drought of the 1970s almost fondly, as the years they learned to drill deeper wells and get by on less. They do not speak that way of the single week of hail in June 1987. Compared with the drought, that week was far more -------: it tore down orchards that had taken thirty years to grow, and within a year half the growers in the valley had sold their land.",
+  "choices": [
+   "sophisticated",
+   "sacred",
+   "ruinous",
+   "shoddy"
+  ],
+  "correct_answer": "ruinous",
+  "explanation": "ruinous (causing ruin or destruction): the drought was survived by adapting, while the hail destroyed thirty-year orchards and drove half the growers off their land - far greater ruin.",
+  "distractor_rationales": [
+   "sophisticated - refined, complex, worldly ('a sophisticated design'); a hailstorm is not refined or complex, and the comparison with the drought is about the damage it did",
+   "sacred - holy, deserving reverence ('a sacred site'); the farmers do not revere the week - they refuse to speak of it fondly because of what it destroyed",
+   "shoddy - badly made, of poor quality ('shoddy workmanship'); a storm is not built well or badly, and poor quality would not tear down orchards or drive growers from their land"
+  ],
+  "rarity_order": [
+   "ruinous",
+   "shoddy",
+   "sophisticated",
+   "sacred"
+  ],
+  "polarity": {
+   "sophisticated": "+",
+   "sacred": "+",
+   "ruinous": "-",
+   "shoddy": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "shoddy",
+   "odd_one_out": "sacred",
+   "most_specific": "shoddy",
+   "test_word": "sophisticated"
+  }
+ },
+ {
+  "id": "IS22C-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: his former refusal to fly and white-knuckled first trip are set against sleeping through the worst storm a pilot had seen; the blank is what he has run out of",
+  "prompt": "[Sentence Completion] Though Rafael had once refused to set foot on a plane, and on his first trip abroad had gripped both armrests from takeoff to landing, the job that sent him across the Pacific every other month left him with so few ------- about it that he slept soundly through a storm the pilot later called the roughest of her career.",
+  "choices": [
+   "statutes",
+   "retorts",
+   "qualms",
+   "protocols"
+  ],
+  "correct_answer": "qualms",
+  "explanation": "qualms (uneasy feelings or doubts about something): his old refusal and armrest-gripping were misgivings about flying, and sleeping through the worst storm a pilot had known shows that frequent flights have worn those misgivings away.",
+  "distractor_rationales": [
+   "statutes - written laws ('a statute against littering'); laws about flying have nothing to do with a once-terrified flyer sleeping through a storm",
+   "retorts - sharp, quick replies ('a witty retort'); nothing in the passage is an exchange of words, and running out of replies has nothing to do with his calm in the storm",
+   "protocols - official rules for how something must be done ('safety protocols'); having few procedures about flying has nothing to do with a once-terrified flyer sleeping through a storm"
+  ],
+  "rarity_order": [
+   "retorts",
+   "qualms",
+   "protocols",
+   "statutes"
+  ],
+  "polarity": {
+   "statutes": "0",
+   "retorts": "-",
+   "qualms": "-",
+   "protocols": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "retorts",
+   "odd_one_out": "retorts",
+   "most_specific": "retorts",
+   "test_word": "protocols"
+  }
+ },
+ {
+  "id": "IS22C-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison: the first novel's 900 pages of wandering digressions against the second's tight, in-order story; 'relieved' makes the first book's fault one of wandering",
+  "prompt": "[Sentence Completion] Okafor's first novel ran to nine hundred pages and kept leaving its story behind: whole chapters went to the history of the narrator's grandfather's bicycle shop, to a recipe for plum dumplings, to a dream that lasted forty pages. Her second, written after a year editing a small-town newspaper, tells its story in two hundred pages and never once looks away from it, and the reviewers who had found the first book ------- were relieved to call the second the work of a grown writer.",
+  "choices": [
+   "studious",
+   "prudish",
+   "sprawling",
+   "pessimistic"
+  ],
+  "correct_answer": "sprawling",
+  "explanation": "sprawling (spread out in an untidy, unchecked way): a nine-hundred-page book that keeps abandoning its story for a bicycle shop, a recipe and a forty-page dream spreads in every direction, and the reviewers' relief at a short, focused second book shows that this shapelessness was what they disliked.",
+  "distractor_rationales": [
+   "studious - devoted to study and learning ('a studious pupil'); recipes and dreams are not scholarship, and a learned book would give reviewers no reason to be relieved by a shorter one",
+   "prudish - easily shocked by anything improper ('too prudish to laugh'); nothing about the digressions concerns modesty or propriety",
+   "pessimistic - expecting the worst ('a pessimistic forecast'); nothing in the digressions is gloomy, and the reviewers' complaint, judged by their relief at a shorter, focused book, is about the first book's wandering shape"
+  ],
+  "rarity_order": [
+   "prudish",
+   "sprawling",
+   "pessimistic",
+   "studious"
+  ],
+  "polarity": {
+   "studious": "+",
+   "prudish": "-",
+   "sprawling": "-",
+   "pessimistic": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "studious",
+   "odd_one_out": "sprawling",
+   "most_specific": "prudish",
+   "test_word": "pessimistic"
+  }
+ },
+ {
+  "id": "IS22C-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence: forty years of one dish, a 'just this once' substitute, cousins asking for it by name; the clause after the blank (the old dish appears only when Ruth is there) defines it",
+  "prompt": "[Sentence Completion] For forty years the family's Thanksgiving had centered on Grandma Ruth's oyster stuffing. The year she broke her hip, her granddaughter made a cornbread stuffing instead, 'just this once'; the next November two cousins asked for it by name, and by the third the newcomer had quietly ------- the old recipe, which now comes out of the oven only when Ruth herself is at the table.",
+  "choices": [
+   "plagiarized",
+   "rehabilitated",
+   "superseded",
+   "revoked"
+  ],
+  "correct_answer": "superseded",
+  "explanation": "superseded (took the place of): the cornbread dish moves from a one-time stand-in to the regular choice, and the oyster stuffing survives only as a courtesy to Ruth - the new recipe has taken over the old one's place.",
+  "distractor_rationales": [
+   "plagiarized - copied someone else's work and passed it off as one's own ('plagiarized an essay'); the cornbread is a different dish, not a copy of the oyster stuffing, and the point is that it has replaced it",
+   "rehabilitated - restored to good condition or standing ('rehabilitated the old theater'); the old recipe has been pushed aside, not restored",
+   "revoked - officially cancelled ('revoked his license'); a dish has no authority to cancel anything, and the oyster stuffing is still made when Ruth comes"
+  ],
+  "rarity_order": [
+   "superseded",
+   "plagiarized",
+   "rehabilitated",
+   "revoked"
+  ],
+  "polarity": {
+   "plagiarized": "-",
+   "rehabilitated": "+",
+   "superseded": "0",
+   "revoked": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "rehabilitated",
+   "odd_one_out": "plagiarized",
+   "most_specific": "revoked",
+   "test_word": "superseded"
+  }
+ }
+]
