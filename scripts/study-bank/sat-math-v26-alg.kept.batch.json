@@ -1,0 +1,655 @@
+[
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-A1",
+  "subskill": "Linear model on a closed interval with two-sided bound; count admissible integer slopes",
+  "prompt": "A lab sets the temperature of a test chamber, in degrees Celsius, using the model T(t) = 5 + k(t - 1), where t is the number of minutes after a reference time and k is a constant. During a test that runs from t = 3 to t = 9, the temperature must stay at or above -11 and at or below 17 at every moment. For how many integer values of k does the model meet this requirement?",
+  "choices": [
+   "4",
+   "9",
+   "10",
+   "15"
+  ],
+  "correct_answer": "4",
+  "explanation": "T is linear in t, so on 3 ≤ t ≤ 9 its greatest and least values occur at t = 3 and t = 9, but which end is higher depends on the sign of k. Since t - 1 is 2 at t = 3 and 8 at t = 9, T(9) = 5 + 8k is the farther of the two from 5 in either case. If k ≥ 0, T(9) is the greatest value: 5 + 8k ≤ 17 gives k ≤ 1.5 (and T(3) ≥ -11 then holds automatically). If k < 0, T(9) is the least value: 5 + 8k ≥ -11 gives k ≥ -2 (and T(3) ≤ 17 holds automatically). So -2 ≤ k ≤ 1.5, and the integer values are -2, -1, 0 and 1: 4 values. 10 comes from assuming the temperature rises, so checking T(3) ≥ -11 (k ≥ -8) and T(9) ≤ 17; for negative k the low point is at t = 9, not t = 3. 9 comes from assuming the temperature falls, so checking T(3) ≤ 17 (k ≤ 6) and T(9) ≥ -11. 15 comes from checking both limits only at t = 3, which gives -8 ≤ k ≤ 6.",
+  "mechanism": [
+   "linear model on a closed interval",
+   "two-sided bound checked at the binding endpoint for each slope sign",
+   "count of integer slopes"
+  ],
+  "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=3+(9-(3))*j/600;if(!(5+k*(t-1)>=-11-1e-9 && 5+k*(t-1)<=17+1e-9)){good=false;break}}if(good)ok.push(k)}return ok.filter(k=>Number.isInteger(k)).length",
+  "distractor_solve": {
+   "9": "let n=0;for(let k=-50;k<=50;k++){if(5+k*2<=17&&5+k*8>=-11)n++}return n",
+   "10": "let n=0;for(let k=-50;k<=50;k++){if(5+k*2>=-11&&5+k*8<=17)n++}return n",
+   "15": "let n=0;for(let k=-50;k<=50;k++){const v=5+k*2;if(v>=-11&&v<=17)n++}return n"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-B4",
+  "subskill": "Linear functions: where two graphs with a parameter intersect, including the parallel case",
+  "prompt": "f(x) = kx - 1\ng(x) = 7x + k\n\nThe functions f and g are defined above, where k is a constant. What is the sum of all integer values of k with -10 ≤ k ≤ 10 for which the graphs of y = f(x) and y = g(x) in the xy-plane have no point in common with x > 0 ?",
+  "choices": [
+   "-55",
+   "20",
+   "27",
+   "54"
+  ],
+  "correct_answer": "27",
+  "explanation": "The graphs meet where kx - 1 = 7x + k, that is, (k - 7)x = k + 1.\nIf k = 7, this reads 0 = 8: the lines are parallel and never meet, so they certainly have no common point with x > 0. So k = 7 counts.\nOtherwise they meet only at x = (k + 1)/(k - 7), and we need this x to be 0 or negative. That happens when k + 1 and k - 7 do not have the same sign (or k + 1 = 0): -1 ≤ k < 7.\nSo the integer values are -1, 0, 1, ..., 7, and their sum is 27.\n20 leaves out k = 7, treating \"no solution\" as if it did not satisfy the condition; with no intersection at all, there is no common point with x > 0.\n-55 multiplies by k - 7 as though it were positive for every k: it gives k + 1 ≤ 0 and sums -10 through -1.\n54 multiplies by k - 7 as though it were negative for every k: it gives k ≥ -1 and sums -1 through 10.",
+  "mechanism": [
+   "parallel lines at k = 7 have no intersection at all",
+   "sign of k - 7 decides where the intersection lies",
+   "a condition about intersection points holds when there are none"
+  ],
+  "solve": "let s=0; for(let k=-10;k<=10;k++){ const a=k-7, b=k+1; if(a===0){ if(b!==0) s+=k; continue } if(b/a<=0) s+=k } return s",
+  "distractor_solve": {
+   "20": "let s=0; for(let k=-10;k<=10;k++){ const a=k-7; if(a===0) continue; if((k+1)/a<=0) s+=k } return s",
+   "54": "let s=0; for(let k=-10;k<=10;k++){ if(k+1>=0) s+=k } return s",
+   "-55": "let s=0; for(let k=-10;k<=10;k++){ if(k+1<=0) s+=k } return s"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-B8",
+  "subskill": "Linear functions: a family of lines through a fixed point and a function given by a table",
+  "prompt": "The table gives two values of the linear function f, where c is a constant.\n\nx | f(x)\n-1 | 11\n4 | c\n\nThe equation f(x) = k(x - 2) + 5 has at least one solution for every value of the constant k. What is the value of c?",
+  "choices": [
+   "-19",
+   "-3",
+   "1",
+   "9"
+  ],
+  "correct_answer": "1",
+  "explanation": "Write f(x) = mx + b. The equation becomes (m - k)x = 5 - 2k - b.\nFor every k other than m, the coefficient m - k is not zero and there is exactly one solution. The one value to check is k = m: then the equation reads 0 = 5 - 2m - b, and it has a solution only if 5 - 2m - b = 0, that is, f(2) = 2m + b = 5.\nSo the graph of f must pass through (2, 5) as well as (-1, 11). Its slope is (5 - 11)/(2 - (-1)) = -2, so f(4) = 5 + (-2)(2) = 1. Thus c = 1.\n9 uses a slope of +2 by subtracting the points in mismatched order.\n-19 requires f(0) = 5 instead of f(2) = 5, which gives slope -6 and f(4) = 5 - 24.\n-3 uses the correct slope -2 but treats 5 as the y-intercept, so f(4) = -8 + 5.",
+  "mechanism": [
+   "k equal to the slope of f makes the x-coefficient zero",
+   "that case needs 0 = 0, so f(2) = 5",
+   "every line y = k(x - 2) + 5 passes through (2, 5)"
+  ],
+  "solve": "const x1=-1,y1=11,x2=4; for(let c=-100;c<=100;c+=0.5){ const m=(c-y1)/(x2-x1), b=y1-m*x1; if(Math.abs(5-2*m-b)<1e-9) return c } return null",
+  "distractor_solve": {
+   "9": "const m=(11-5)/(2-(-1)); return 5+m*2",
+   "-19": "const m=(5-11)/(0-(-1)); return 5+m*4",
+   "-3": "const m=(5-11)/(2-(-1)); return m*4+5"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-A7",
+  "subskill": "Two-sided bound on an interval containing the y-axis; greatest value of f over a wider interval",
+  "prompt": "For the function f(x) = kx + 1, where k is a constant, -11 ≤ f(x) ≤ 10 for every x with -2 ≤ x ≤ 3. Considering all such functions f and all x with -6 ≤ x ≤ 5, what is the greatest value that f(x) can have?",
+  "choices": [
+   "16",
+   "25",
+   "28",
+   "31"
+  ],
+  "correct_answer": "25",
+  "explanation": "First find the allowed k. If k > 0, f is greatest at x = 3 and least at x = -2: 3k + 1 ≤ 10 gives k ≤ 3, and -2k + 1 ≥ -11 gives k ≤ 6, so k ≤ 3. If k < 0, f is greatest at x = -2 and least at x = 3: -2k + 1 ≤ 10 gives k ≥ -4.5, and 3k + 1 ≥ -11 gives k ≥ -4, so k ≥ -4. So -4 ≤ k ≤ 3. On -6 ≤ x ≤ 5, a rising line is highest at x = 5, where f(5) = 5k + 1 is at most 5(3) + 1 = 16; a falling line is highest at x = -6, where f(-6) = -6k + 1 is at most -6(-4) + 1 = 25. The greatest value is 25. 16 comes from considering only k ≥ 0. 28 comes from using only the upper limit f(x) ≤ 10, which would allow k = -4.5 and give -6(-4.5) + 1 = 28. 31 comes from using only the lower limit f(x) ≥ -11, which would allow k = 6 and give 5(6) + 1 = 31.",
+  "mechanism": [
+   "two-sided bound on an interval containing x = 0",
+   "each slope sign has its own binding limit",
+   "greatest value over a wider interval compares both signs"
+  ],
+  "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=-2+(3-(-2))*j/600;if(!(k*t+1>=-11-1e-9 && k*t+1<=10+1e-9)){good=false;break}}if(good)ok.push(k)}let best=-Infinity;for(const k of ok)for(let j=0;j<=1100;j++){const x=-6+11*j/1100;best=Math.max(best,k*x+1)}return Math.round(best*1e6)/1e6",
+  "distractor_solve": {
+   "16": "const kmax=Math.min((10-1)/3,(1+11)/2);return 5*kmax+1",
+   "28": "const kmin=-(10-1)/2, kmax=(10-1)/3;return Math.max(5*kmax+1,-6*kmin+1)",
+   "31": "const kmin=-(1+11)/3, kmax=(1+11)/2;return Math.max(5*kmax+1,-6*kmin+1)"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-D1",
+  "subskill": "Linear inequalities in two variables: counting whole-number optimal plans",
+  "prompt": "A food bank buys small meal kits for $10 each and large meal kits for $25 each. A small kit feeds 2 people and a large kit feeds 5 people. The food bank can spend at most $487, and it must buy at least 11 small kits and at least 5 large kits. Only whole kits can be bought. How many different combinations of small and large kits feed the greatest possible number of people?",
+  "choices": [
+   "1",
+   "2",
+   "6",
+   "8"
+  ],
+  "correct_answer": "6",
+  "explanation": "Let x be the number of small kits and y the number of large kits. The conditions are 10x + 25y ≤ 487, x ≥ 11 and y ≥ 5, and the number of people fed is 2x + 5y. Since 10x + 25y = 5(2x + 5y), the budget says 5(2x + 5y) ≤ 487, so 2x + 5y ≤ 97.4. Because x and y are whole numbers, 2x + 5y is a whole number, so at most 97 people can be fed. Every whole-number pair with 2x + 5y = 97 costs $485, so it is within budget; it is not just one corner plan. 2x + 5y = 97 forces y to be odd, and x = (97 - 5y)/2. With y ≥ 5 and x ≥ 11 (so 5y ≤ 75, y ≤ 15), y can be 5, 7, 9, 11, 13 or 15, giving (36, 5), (31, 7), (26, 9), (21, 11), (16, 13) and (11, 15): 6 combinations. Choice 1 assumes the best plan is a single rounded corner. Choice 2 counts only the two ends of the best edge, (11, 15) and (36, 5), and misses the plans between them. Choice 8 ignores the minimum of 11 small kits, so y can be any odd number from 5 to 19.",
+  "mechanism": [
+   "objective parallel to the budget line",
+   "whole-number cap on the objective",
+   "count lattice points on the optimal line"
+  ],
+  "solve": "let best=-1,n=0;for(let x=0;x<=60;x++)for(let y=0;y<=30;y++){if(10*x+25*y>487||x<11||y<5)continue;const v=2*x+5*y;if(v>best){best=v;n=1}else if(v===best)n++}return n;",
+  "distractor_solve": {
+   "1": "// treats the optimum as one rounded corner plan\nconst x=11,y=Math.floor((487-10*x)/25);return [[x,y]].length;",
+   "2": "// counts only the two ends of the optimal edge\nlet ends=0;const a=[11,Math.floor((487-110)/25)],b=[Math.floor((487-125)/10),5];for(const [x,y] of [a,b]) if(2*x+5*y===97) ends++;return ends;",
+   "8": "// drops the minimum of 11 small kits\nlet best=-1,n=0;for(let x=0;x<=60;x++)for(let y=0;y<=30;y++){if(10*x+25*y>487||y<5)continue;const v=2*x+5*y;if(v>best){best=v;n=1}else if(v===best)n++}return n;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-A2",
+  "subskill": "Linear function through a stated point with an upper bound on an interval; count integer outputs outside the interval",
+  "prompt": "The function f is linear, f(4) = 6, and the graph of y = f(x) has slope k, where k is a constant. For every x with 1 ≤ x ≤ 9, f(x) ≤ 16. How many different integer values can f(12) have?",
+  "choices": [
+   "6",
+   "17",
+   "33",
+   "43"
+  ],
+  "correct_answer": "43",
+  "explanation": "Write f(x) = 6 + k(x - 4). On 1 ≤ x ≤ 9 the largest value of f is at x = 9 if k > 0 and at x = 1 if k < 0. For k ≥ 0: f(9) = 6 + 5k ≤ 16, so k ≤ 2. For k < 0: f(1) = 6 - 3k ≤ 16, so k ≥ -10/3. So -10/3 ≤ k ≤ 2, and f(12) = 6 + 8k takes every value from 6 - 80/3 = -62/3 (about -20.67) up to 6 + 16 = 22. The integers in that range are -20 through 22, which is 43 values. 17 comes from allowing only k ≥ 0, so f(12) runs only from 6 to 22. 33 comes from assuming the allowed slopes are symmetric about 0 and using the limit 2 on both sides, so f(12) would run only from -10 to 22. 6 comes from letting k take only the integer values -3 through 2, although k can be any number in its range.",
+  "mechanism": [
+   "linear function through a fixed point",
+   "upper bound on an interval binds at different endpoints for each slope sign",
+   "count integer values at an outside point"
+  ],
+  "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=1+(9-(1))*j/600;if(!(6+k*(t-4)<=16+1e-9)){good=false;break}}if(good)ok.push(k)}const v=ok.map(k=>6+8*k);const lo=Math.min(...v),hi=Math.max(...v);return Math.floor(hi+1e-9)-Math.ceil(lo-1e-9)+1",
+  "distractor_solve": {
+   "6": "const s=new Set();for(let k=-20;k<=20;k++){if(6+5*k<=16&&6-3*k<=16)s.add(6+8*k)}return s.size",
+   "17": "const kmax=(16-6)/5;const lo=6,hi=6+8*kmax;return Math.floor(hi+1e-9)-Math.ceil(lo-1e-9)+1",
+   "33": "const m=(16-6)/5;const lo=6-8*m,hi=6+8*m;return Math.floor(hi+1e-9)-Math.ceil(lo-1e-9)+1"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-D5",
+  "subskill": "Linear inequalities in two variables: least whole-number cost meeting two minimums",
+  "prompt": "A feed mix is made from whole scoops of two pellets. Each scoop of pellet P contains 8 grams of protein and 3 grams of fiber and costs 8 cents. Each scoop of pellet Q contains 5 grams of protein and 8 grams of fiber and costs 6 cents. The mix must contain at least 49 grams of protein and at least 52 grams of fiber. What is the least possible cost, in cents, of the mix?",
+  "choices": [
+   "42",
+   "54",
+   "55",
+   "58"
+  ],
+  "correct_answer": "58",
+  "explanation": "Let p and q be the numbers of scoops. The conditions are 8p + 5q ≥ 49 and 3p + 8q ≥ 52, and the cost is 8p + 6q. The real-number corner of the two boundary lines is p = 132/49 ≈ 2.69, q = 269/49 ≈ 5.49, with cost about 54.5, but scoops are whole. Check each p: p = 0 needs q ≥ 10 (protein), cost 60; p = 1 needs q ≥ 9, cost 62; p = 2 needs q ≥ 7 (protein 16 + 5q ≥ 49 and fiber 6 + 8q ≥ 52 give q ≥ 6.6 and q ≥ 5.75), cost 16 + 42 = 58; p = 3 needs q ≥ 6 (fiber 9 + 8q ≥ 52), cost 60; p = 4 needs q ≥ 5, cost 62; larger p costs more. The least cost is 58 cents, with 2 scoops of P and 7 of Q. Choice 54 rounds the corner to (3, 5), which gives only 49 grams of fiber. Choice 55 rounds the real-number minimum cost up, but no whole-number mix costs 55. Choice 42 meets only the fiber requirement, with 7 scoops of Q, and ignores protein.",
+  "mechanism": [
+   "covering constraints with whole-number scoops",
+   "rounded corner infeasible",
+   "lattice minimum above the real minimum"
+  ],
+  "solve": "let m=1e9;for(let p=0;p<=30;p++)for(let q=0;q<=30;q++)if(8*p+5*q>=49&&3*p+8*q>=52)m=Math.min(m,8*p+6*q);return m;",
+  "distractor_solve": {
+   "42": "// fiber requirement only\nlet m=1e9;for(let p=0;p<=30;p++)for(let q=0;q<=30;q++)if(3*p+8*q>=52)m=Math.min(m,8*p+6*q);return m;",
+   "54": "// corner rounded to the nearest whole numbers\nconst d=8*8-3*5,p=(49*8-52*5)/d,q=(8*52-3*49)/d;return 8*Math.round(p)+6*Math.round(q);",
+   "55": "// real-number minimum cost rounded up\nconst d=8*8-3*5,p=(49*8-52*5)/d,q=(8*52-3*49)/d;return Math.ceil(8*p+6*q);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-C5",
+  "subskill": "Compound linear inequality with the parameter multiplying x: both signs of k",
+  "prompt": "-4 ≤ kx ≤ 45\nFor a nonzero constant k, exactly 3 integers x satisfy the compound inequality above. What is the difference between the greatest and least integer values of k for which this is true?",
+  "choices": [
+   "3",
+   "6",
+   "30",
+   "44"
+  ],
+  "correct_answer": "44",
+  "explanation": "x = 0 always satisfies the inequality. If k > 0, dividing by k gives -4/k ≤ x ≤ 45/k. Exactly 3 integers means the solutions are 0, 1, 2, so 2 ≤ 45/k < 3 and -1 < -4/k. The first gives 15 < k ≤ 22.5, and for those k the second holds too, so k = 16 through 22. If k < 0, dividing by k reverses both inequalities: 45/k ≤ x ≤ -4/k. Now the solutions must be -2, -1, 0, so -3 < 45/k ≤ -2, which for negative k gives -22.5 ≤ k < -15: k = -22 through -16. The greatest integer value is 22 and the least is -22, so the difference is 44. The option 6 uses only positive k (22 - 16), which is what results from not reversing the inequalities for negative k: the bounds come out in the wrong order and no negative k seems to work. The option 30 forgets that 0 is a solution and looks for three nonzero solutions, giving k from -15 to 15. The option 3 makes both of those errors (15 - 12).",
+  "mechanism": [
+   "dividing by a negative k reverses both parts",
+   "x = 0 is always a solution",
+   "positive and negative k ranges are separate"
+  ],
+  "solve": "const ks=[]; for(let k=-200;k<=200;k++){ if(k===0) continue; let m=0; for(let x=-200;x<=200;x++){ if(-4<=k*x && k*x<=45) m++ } if(m===3) ks.push(k) } return Math.max(...ks)-Math.min(...ks)",
+  "distractor_solve": {
+   "3": "const ks=[]; for(let k=1;k<=200;k++){ let m=0; for(let x=-200;x<=200;x++){ if(x!==0 && -4<=k*x && k*x<=45) m++ } if(m===3) ks.push(k) } return Math.max(...ks)-Math.min(...ks)",
+   "6": "const ks=[]; for(let k=-200;k<=200;k++){ if(k===0) continue; let m=0; for(let x=-200;x<=200;x++){ if(-4/k<=x && x<=45/k) m++ } if(m===3) ks.push(k) } return Math.max(...ks)-Math.min(...ks)",
+   "30": "const ks=[]; for(let k=-200;k<=200;k++){ if(k===0) continue; let m=0; for(let x=-200;x<=200;x++){ if(x!==0 && -4<=k*x && k*x<=45) m++ } if(m===3) ks.push(k) } return Math.max(...ks)-Math.min(...ks)"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-D4",
+  "subskill": "Systems of linear inequalities: greatest objective over integer points",
+  "prompt": "3x + 7y ≤ 63\n9x + 4y ≤ 71\ny ≥ 3\nThe integers x and y satisfy all three inequalities above. What is the greatest possible value of 7x + 6y?",
+  "choices": [
+   "60",
+   "64",
+   "71",
+   "75"
+  ],
+  "correct_answer": "71",
+  "explanation": "The real-number maximum is at the intersection of 3x + 7y = 63 and 9x + 4y = 71, which is x = 245/51 ≈ 4.80, y = 354/51 ≈ 6.94, where 7x + 6y ≈ 75.3. That point is not an integer point, so check the integer points near it row by row. For y = 7: 3x ≤ 14 gives x ≤ 4, value 28 + 42 = 70. For y = 6: 3x ≤ 21 and 9x ≤ 47 give x ≤ 5, value 35 + 36 = 71. For y = 5: 9x ≤ 51 gives x ≤ 5, value 65. For y = 8: 3x ≤ 7 gives x ≤ 2, value 62. For y = 4: 9x ≤ 55 gives x ≤ 6, value 66. For y = 3: x ≤ 6, value 60. Larger y (9 or more) forces x ≤ 0. The greatest value is 71, at (5, 6). Choice 75 is the real-number maximum rounded down; no integer point reaches it. Choice 64 rounds both coordinates of the corner down to (4, 6). Choice 60 uses the other corner, where y = 3 meets 9x + 4y = 71, and rounds x down to 6.",
+  "mechanism": [
+   "integer point near a fractional corner",
+   "rounded corner infeasible or suboptimal",
+   "row-by-row lattice search"
+  ],
+  "solve": "let M=-1e9;for(let x=-100;x<=100;x++)for(let y=-100;y<=100;y++)if(3*x+7*y<=63&&9*x+4*y<=71&&y>=3)M=Math.max(M,7*x+6*y);return M;",
+  "distractor_solve": {
+   "60": "// other corner: y=3 on 9x+4y=71, x rounded down\nconst y=3,x=Math.floor((71-4*y)/9);return 7*x+6*y;",
+   "64": "// corner of the first two lines, both coordinates rounded down\nconst d=3*4-9*7,x=(63*4-71*7)/d,y=(3*71-9*63)/d;return 7*Math.floor(x)+6*Math.floor(y);",
+   "75": "// real-number maximum rounded down\nconst d=3*4-9*7,x=(63*4-71*7)/d,y=(3*71-9*63)/d;return Math.floor(7*x+6*y);"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-A3",
+  "subskill": "Line with an unknown slope through a fixed point kept above a fixed line on an interval; sum of extreme y-intercepts",
+  "prompt": "In the xy-plane, line L has equation y = k(x - 3) + 24, where k is a constant. For every x with 0 ≤ x ≤ 8, line L lies on or above the graph of y = 2x + 3. What is the sum of the greatest possible y-intercept and the least possible y-intercept of line L?",
+  "choices": [
+   "21",
+   "30",
+   "42",
+   "45"
+  ],
+  "correct_answer": "30",
+  "explanation": "The vertical gap from y = 2x + 3 up to line L is k(x - 3) + 24 - (2x + 3) = (k - 2)(x - 3) + 15, which must be at least 0 for 0 ≤ x ≤ 8. At x = 3 the gap is 15 for every k; whether it shrinks to the left or to the right depends on the sign of k - 2. If k > 2, the gap is smallest at x = 0: -3(k - 2) + 15 ≥ 0 gives k ≤ 7. If k < 2, the gap is smallest at x = 8: 5(k - 2) + 15 ≥ 0 gives k ≥ -1. (k = 2 also works.) So -1 ≤ k ≤ 7. The y-intercept of L is 24 - 3k, which runs from 3 (at k = 7) to 27 (at k = -1), so the sum is 30. 21 comes from assuming L is steeper than the fixed line, so checking only x = 0 and keeping k ≥ 2; the y-intercept then only reaches 18. 45 comes from assuming L is less steep, so checking only x = 8 and keeping k ≤ 2; the y-intercept then only goes down to 18. 42 comes from ignoring the slope 2 of the fixed line and using k itself as the slope of the gap, which gives -3 ≤ k ≤ 5.",
+  "mechanism": [
+   "line through a fixed point with unknown slope",
+   "kept above a fixed line on an interval",
+   "sign of the slope difference decides the binding endpoint",
+   "sum of extreme y-intercepts"
+  ],
+  "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=0+(8-(0))*j/600;if(!(k*(t-3)+24>=2*t+3-1e-9)){good=false;break}}if(good)ok.push(k)}const v=ok.map(k=>24-3*k);return Math.max(...v)+Math.min(...v)",
+  "distractor_solve": {
+   "21": "const kmin=2, kmax=2+15/3;return (24-3*kmin)+(24-3*kmax)",
+   "42": "const kmin=-15/5, kmax=15/3;return (24-3*kmin)+(24-3*kmax)",
+   "45": "const kmin=2-15/5, kmax=2;return (24-3*kmin)+(24-3*kmax)"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-A5",
+  "subskill": "Linear combination kept between two parallel lines on an interval; width of the range of the constant",
+  "prompt": "Let h(x) = f(x) + kx, where f(x) = 3x + 2 and k is a constant. In the xy-plane, for every x with 1 ≤ x ≤ 3, the point (x, h(x)) lies on or between the lines y = 2x - 13 and y = 2x + 26. What is the difference between the greatest and least possible values of k?",
+  "choices": [
+   "13",
+   "19.5",
+   "23",
+   "29"
+  ],
+  "correct_answer": "13",
+  "explanation": "h(x) = (k + 3)x + 2, so h(0) = 2 for every k. Measured against the lines, which have slope 2: h(x) - (2x - 13) = (k + 1)x + 15 and (2x + 26) - h(x) = -(k + 1)x + 24, and both must be at least 0 for 1 ≤ x ≤ 3. If k + 1 ≥ 0, the first is positive and the second is smallest at x = 3: -3(k + 1) + 24 ≥ 0 gives k ≤ 7. If k + 1 < 0, the second is positive and the first is smallest at x = 3: 3(k + 1) + 15 ≥ 0 gives k ≥ -6. So -6 ≤ k ≤ 7, and the difference is 13. 23 comes from assuming h rises faster than the lines and checking the lower line at x = 1, which gives k ≥ -16. 29 comes from assuming h rises more slowly than the lines and checking the upper line at x = 1, which gives k ≤ 23. 19.5 comes from dividing the margins 15 and 24 by the length of the interval, 2, instead of by 3, the distance from x = 0, where h(0) = 2 is fixed.",
+  "mechanism": [
+   "sum of a fixed linear function and kx",
+   "kept between two parallel lines on an interval",
+   "slope relative to the lines can take either sign",
+   "width of the k-range"
+  ],
+  "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=1+(3-(1))*j/600;if(!((3*t+2+k*t)>=2*t-13-1e-9 && (3*t+2+k*t)<=2*t+26+1e-9)){good=false;break}}if(good)ok.push(k)}return Math.max(...ok)-Math.min(...ok)",
+  "distractor_solve": {
+   "23": "const rmin=-15/1, rmax=24/3;return rmax-rmin",
+   "29": "const rmin=-15/3, rmax=24/1;return rmax-rmin",
+   "19.5": "const run=3-1;return 24/run-(-15/run)"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-B2",
+  "subskill": "Systems of linear equations: coordinate comparison of the solution as a parameter varies",
+  "prompt": "kx + y = 7\n2x - y = 5\n\nIn the system of equations above, k is a constant. For how many integer values of k with -7 ≤ k ≤ 13 does the system have a solution (x, y) with x > y ?",
+  "choices": [
+   "2",
+   "7",
+   "13",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "Adding the equations gives (k + 2)x = 12.\nIf k = -2, this reads 0 = 12, so the system has no solution; k = -2 does not count. Otherwise x = 12/(k + 2) and y = 2x - 5.\nThe condition x > y becomes x > 2x - 5, that is, x < 5, so 12/(k + 2) < 5.\nIf k + 2 > 0 (k > -2): 12 < 5(k + 2), so k > 2/5. The integers are 1 through 13, which is 13 values.\nIf k + 2 < 0 (k < -2): x is negative, so x < 5 holds automatically. The integers are -7 through -3, which is 5 values.\nThe total is 13 + 5 = 18.\n13 counts only the case k + 2 > 0, treating k + 2 as positive for every k.\n7 multiplies by k + 2 as though it were always negative: it gives k < 2/5 and counts -7 through 0 except -2.\n2 comes from reversing the inequality when solving x > 2x - 5, which gives x > 5 instead of x < 5.",
+  "mechanism": [
+   "determinant zero at k = -2: no solution",
+   "sign of k + 2 splits the inequality into two cases",
+   "reduce x > y to a bound on x"
+  ],
+  "solve": "let n=0; for(let k=-7;k<=13;k++){ const det=k*(-1)-1*2; if(det===0) continue; const x=(7*(-1)-1*5)/det, y=(k*5-2*7)/det; if(x>y+1e-12) n++ } return n",
+  "distractor_solve": {
+   "2": "let n=0; for(let k=-7;k<=13;k++){ if(k===-2) continue; if(12/(k+2)>5) n++ } return n",
+   "7": "let n=0; for(let k=-7;k<=13;k++){ if(k===-2) continue; if(12>5*(k+2)) n++ } return n",
+   "13": "let n=0; for(let k=-7;k<=13;k++){ if(12<5*(k+2)) n++ } return n"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-B1",
+  "subskill": "Linear models: break-even time with a rate parameter, counted over whole-number values",
+  "prompt": "Ana has $200 in a savings account and adds $5 to it each week. Ben has $50 in his account and adds $k to it each week, where k is a whole number with 1 ≤ k ≤ 29. Neither makes any other deposits or withdrawals. For how many values of k will the two balances be equal at some time t weeks from now with t ≥ 10 ?",
+  "choices": [
+   "10",
+   "15",
+   "19",
+   "24"
+  ],
+  "correct_answer": "15",
+  "explanation": "After t weeks Ana has 200 + 5t dollars and Ben has 50 + kt dollars. Setting them equal gives (k - 5)t = 150.\nIf k = 5, the equation reads 0 = 150, so the balances are never equal (Ben always stays $150 behind). For any other k, t = 150/(k - 5).\nIf k < 5, then t is negative: the balances were equal in the past, not from now on. So only k > 5 can work, and then k - 5 is positive, so t ≥ 10 means 150 ≥ 10(k - 5), that is, k ≤ 20.\nThe values are k = 6, 7, ..., 20, which is 15 values.\n19 comes from clearing the fraction without checking the sign of k - 5: it keeps every k ≤ 20 except 5, including the values below 5 where the balances never meet in the future.\n10 comes from taking reciprocals without reversing the inequality, which gives k - 5 ≥ 15, that is, k = 20, ..., 29.\n24 counts every k > 5 and ignores the requirement t ≥ 10.",
+  "mechanism": [
+   "parallel models at k = 5 never meet",
+   "sign of k - 5 decides whether t is in the future",
+   "clearing a fraction with a variable denominator"
+  ],
+  "solve": "let n=0; for(let k=1;k<=29;k++){ const a=k-5, b=150; if(a===0) continue; const t=b/a; if(t>=10) n++ } return n",
+  "distractor_solve": {
+   "10": "let n=0; for(let k=1;k<=29;k++){ if(k-5>=15) n++ } return n",
+   "19": "let n=0; for(let k=1;k<=29;k++){ if(k===5) continue; if(150>=10*(k-5)) n++ } return n",
+   "24": "let n=0; for(let k=1;k<=29;k++){ if(k>5) n++ } return n"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-A6",
+  "subskill": "Linear model through a fixed point inside the interval with an upper bound; width of the rate range",
+  "prompt": "A water tank's depth D, in centimeters, t hours after noon is modeled by D(t) = 30 + k(t - 4), where k is a constant rate in centimeters per hour. The model is used only for 0 ≤ t ≤ 10, and over that entire period the depth never exceeds 45 centimeters. What is the difference between the greatest and least possible values of k?",
+  "choices": [
+   "2.5",
+   "3",
+   "6.25",
+   "7.5"
+  ],
+  "correct_answer": "6.25",
+  "explanation": "The depth is 30 at t = 4 no matter what k is. If k > 0, the depth is greatest at t = 10: 30 + 6k ≤ 45 gives k ≤ 2.5. If k < 0, the depth is greatest at t = 0: 30 - 4k ≤ 45 gives k ≥ -3.75. (k = 0 also works.) So -3.75 ≤ k ≤ 2.5, and the difference is 2.5 - (-3.75) = 6.25. 2.5 comes from considering only a rising depth, so the least k is taken to be 0. 3 comes from spreading the 15-centimeter margin over the whole 10-hour period, so that -1.5 ≤ k ≤ 1.5, instead of measuring time from t = 4, where the depth is fixed. 7.5 comes from assuming the allowed rates are symmetric about 0 and using 3.75 on both sides.",
+  "mechanism": [
+   "linear model through a fixed interior point",
+   "upper bound binds at opposite ends for rising and falling",
+   "width of the k-range"
+  ],
+  "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=0+(10-(0))*j/600;if(!(30+k*(t-4)<=45+1e-9)){good=false;break}}if(good)ok.push(k)}return Math.max(...ok)-Math.min(...ok)",
+  "distractor_solve": {
+   "3": "const m=(45-30)/(10-0);return m-(-m)",
+   "2.5": "return (45-30)/(10-4)-0",
+   "7.5": "const m=Math.max((45-30)/6,(45-30)/4);return 2*m"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-B7",
+  "subskill": "Linear models: parallel cost models and their constant difference",
+  "prompt": "Two suppliers price an order of n units as follows, where k is a constant.\n\nSupplier A: k(n - 20) + 300 dollars\nSupplier B: 12n + 100 dollars\n\nFor exactly one value of k, there is no value of n for which the two suppliers charge the same amount. For that value of k, how many dollars more than Supplier A does Supplier B charge for an order of any size?",
+  "choices": [
+   "40",
+   "60",
+   "200",
+   "440"
+  ],
+  "correct_answer": "40",
+  "explanation": "Setting the prices equal: kn - 20k + 300 = 12n + 100, so (k - 12)n = 20k - 200.\nFor k other than 12 this has the solution n = (20k - 200)/(k - 12). For k = 12 it reads 0 = 40, so there is no solution: k = 12 is the value described.\nWith k = 12, Supplier A charges 12(n - 20) + 300 = 12n + 60 dollars. Supplier B charges 12n + 100 dollars, which is 40 dollars more for every n.\n200 compares the constants 300 and 100 directly and ignores the -20k hidden in k(n - 20).\n440 expands 12(n - 20) as 12n + 240.\n60 is Supplier A's fixed amount 300 - 240, not the difference between the suppliers.",
+  "mechanism": [
+   "coefficient of n is zero at k = 12: no break-even order",
+   "parallel models differ by a constant",
+   "k also hides in the constant through k(n - 20)"
+  ],
+  "solve": "let kk=null; for(let k=-100;k<=100;k+=0.5){ if(k-12===0 && 20*k-200!==0) kk=k } const A=n=>kk*(n-20)+300, B=n=>12*n+100; return B(7)-A(7)",
+  "distractor_solve": {
+   "60": "const k=12; return 300-20*k",
+   "200": "return 300-100",
+   "440": "const k=12, n=7; return (k*n+20*k+300)-(12*n+100)"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-D3",
+  "subskill": "Linear inequalities in two variables: change in a whole-number optimum",
+  "prompt": "A caterer prepares x trays of sandwiches and y trays of salad, where x and y are whole numbers. Each sandwich tray costs $7 to make and earns a profit of $14, and each salad tray costs $9 to make and earns a profit of $8. The number of sandwich trays can be at most 3 times the number of salad trays. If the caterer's budget increases from $102 to $122, by how many dollars does the greatest possible total profit increase?",
+  "choices": [
+   "33",
+   "42",
+   "50",
+   "80"
+  ],
+  "correct_answer": "42",
+  "explanation": "The conditions are 7x + 9y ≤ B and x ≤ 3y, and the profit is 14x + 8y. Sandwich trays earn more per dollar, so the best plans push x up against x ≤ 3y. With B = 102, the real-number corner is y = 3.4, x = 10.2, but whole numbers are needed. Check each y: y = 3 allows x ≤ 9 (cost 63 + 27 = 90), profit 150; y = 4 allows x ≤ 9 by the budget (7x ≤ 66), profit 126 + 32 = 158; y = 5 allows x ≤ 8, profit 152. The greatest profit is 158. With B = 122: y = 4 allows x ≤ 12 by both conditions (84 + 36 = 120), profit 168 + 32 = 200; y = 5 allows x ≤ 11, profit 194; y = 3 allows x ≤ 9, profit 150. The greatest profit is 200. The increase is 200 - 158 = 42. Choice 33 subtracts the real-number maxima, 170 and 203 1/3, after rounding each down. Choice 50 rounds the first corner down to (10, 3), finds that x ≤ 3y fails, and settles for (9, 3), profit 150, instead of (9, 4). Choice 80 drops the 3-to-1 limit for the new budget and uses 17 sandwich trays, profit 238.",
+  "mechanism": [
+   "re-optimise after a budget change",
+   "lattice optimum moves differently from the real corner",
+   "ratio constraint binds"
+  ],
+  "solve": "const best=B=>{let M=-1;for(let x=0;x<=30;x++)for(let y=0;y<=30;y++)if(7*x+9*y<=B&&x<=3*y)M=Math.max(M,14*x+8*y);return M};return best(122)-best(102);",
+  "distractor_solve": {
+   "33": "// real-number corners x=3y on 7x+9y=B, each profit rounded down\nconst z=B=>{const y=B/30,x=3*y;return 14*x+8*y};return Math.floor(z(122)+1e-9)-Math.floor(z(102)+1e-9);",
+   "50": "// first optimum taken as (9,3) after rounding (10.2,3.4) down and fixing the ratio\nlet M=-1;for(let x=0;x<=30;x++)for(let y=0;y<=30;y++)if(7*x+9*y<=122&&x<=3*y)M=Math.max(M,14*x+8*y);const y0=Math.floor(102/30),x0=Math.min(Math.floor(3*102/30),3*y0);return M-(14*x0+8*y0);",
+   "80": "// ratio dropped for the new budget\nlet M2=-1,M1=-1;for(let x=0;x<=30;x++)for(let y=0;y<=30;y++){if(7*x+9*y<=122)M2=Math.max(M2,14*x+8*y);if(7*x+9*y<=102&&x<=3*y)M1=Math.max(M1,14*x+8*y)}return M2-M1;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-C3",
+  "subskill": "System of linear inequalities with a parameter: sum of integer solutions fixed",
+  "prompt": "4 - 3x ≤ 22\n4x < k - 30\nIn the system of inequalities above, k is a constant. The integer solutions of the system have a sum of -18. What is the sum of all integer values of k for which this is true?",
+  "choices": [
+   "162",
+   "180",
+   "236",
+   "244"
+  ],
+  "correct_answer": "244",
+  "explanation": "The first inequality gives -3x ≤ 18, so x ≥ -6 (dividing by -3 reverses the inequality). The second gives x < (k - 30)/4. So the integer solutions are -6, -5, ..., m, where m is the greatest integer less than (k - 30)/4. Their sum is -18 in two ways: -6 + (-5) + (-4) + (-3) = -18 (m = -3), and -6 + (-5) + ... + 1 + 2 = -18 (m = 2), because the terms from -2 to 2 add to 0. For m = -3: -3 < (k - 30)/4 ≤ -2, so 18 < k ≤ 22, giving k = 19, 20, 21, 22 (sum 82). At k = 22, x < -2 still allows -3, so k = 22 counts. For m = 2: 2 < (k - 30)/4 ≤ 3, so 38 < k ≤ 42, giving k = 39, 40, 41, 42 (sum 162). The total is 82 + 162 = 244. The option 162 finds only the stopping point m = 2 and misses that the solutions can also stop at -3. The option 180 finds both but excludes k = 22 and k = 42, treating (k - 30)/4 = -2 or 3 as though it allowed one more solution. The option 236 treats 4x < k - 30 as 4x ≤ k - 30, which includes k = 18 and k = 38 and excludes k = 22 and k = 42 (k = 18 through 21 and 38 through 41).",
+  "mechanism": [
+   "strict bound on x set by k",
+   "two different solution sets give the same sum",
+   "included versus excluded boundary of k"
+  ],
+  "solve": "let s=0; for(let k=-500;k<=500;k++){ let sum=0, n=0; for(let x=-300;x<=300;x++){ if(4-3*x<=22 && 4*x<k-30){ sum+=x; n++ } } if(n>0 && sum===-18) s+=k } return s",
+  "distractor_solve": {
+   "162": "let s=0; for(let k=-500;k<=500;k++){ let sum=0, n=0, top=-999; for(let x=-300;x<=300;x++){ if(4-3*x<=22 && 4*x<k-30){ sum+=x; n++; top=x } } if(n>0 && sum===-18 && top>0) s+=k } return s",
+   "180": "let s=0; for(let k=-500;k<=500;k++){ let sum=0, n=0; for(let x=-300;x<=300;x++){ if(4-3*x<=22 && 4*x<k-30){ sum+=x; n++ } } if(n>0 && sum===-18 && (k-30)%4!==0) s+=k } return s",
+   "236": "let s=0; for(let k=-500;k<=500;k++){ let sum=0, n=0; for(let x=-300;x<=300;x++){ if(4-3*x<=22 && 4*x<=k-30){ sum+=x; n++ } } if(n>0 && sum===-18) s+=k } return s"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-C4",
+  "subskill": "Linear inequality with the parameter in the x-coefficient: number of positive integer solutions",
+  "prompt": "Exactly 5 positive integers x make the inequality kx ≤ 3x + 2k + 114 true, where k is a constant. If m and M are the least and greatest integer values of k that allow this, what is M - m?",
+  "choices": [
+   "3",
+   "9",
+   "19",
+   "39"
+  ],
+  "correct_answer": "9",
+  "explanation": "Rewrite the inequality as (k - 3)x ≤ 2k + 114. If k = 3, it reads 0 ≤ 120, true for every x. If k < 3, dividing by the negative number k - 3 reverses it: x ≥ (2k + 114)/(k - 3), which every large enough positive integer satisfies, so there are infinitely many solutions. So k > 3, and x ≤ (2k + 114)/(k - 3) = 2 + 120/(k - 3). Exactly 5 positive solutions means x = 1, ..., 5 work and x = 6 does not: 5 ≤ 2 + 120/(k - 3) < 6, so 3 ≤ 120/(k - 3) < 4, which gives 30 < k - 3 ≤ 40, or 33 < k ≤ 43. The integer values are 34 through 43, so M - m = 43 - 34 = 9. The option 3 drops the 2 when dividing and solves 5 ≤ 120/(k - 3) < 6 (k = 24 through 27). The option 19 counts 0 as one of the five solutions, so it allows only x = 1 through 4 (k = 44 through 63). The option 39 requires only that x = 5 work and never checks that x = 6 fails (k = 4 through 43).",
+  "mechanism": [
+   "sign of the x-coefficient k - 3",
+   "reversing the inequality when k - 3 < 0 gives infinitely many solutions",
+   "both x = 5 included and x = 6 excluded"
+  ],
+  "solve": "const ks=[]; for(let k=-300;k<=300;k++){ let m=0; for(let x=1;x<=3000;x++){ if(k*x<=3*x+2*k+114) m++ } if(m===5) ks.push(k) } return Math.max(...ks)-Math.min(...ks)",
+  "distractor_solve": {
+   "3": "const ks=[]; for(let k=4;k<=300;k++){ let m=0; for(let x=1;x<=3000;x++){ if(x<=120/(k-3)) m++ } if(m===5) ks.push(k) } return Math.max(...ks)-Math.min(...ks)",
+   "19": "const ks=[]; for(let k=-300;k<=300;k++){ let m=0; for(let x=0;x<=3000;x++){ if(k*x<=3*x+2*k+114) m++ } if(m===5) ks.push(k) } return Math.max(...ks)-Math.min(...ks)",
+   "39": "const ks=[]; for(let k=4;k<=300;k++){ if(k*5<=3*5+2*k+114) ks.push(k) } return Math.max(...ks)-Math.min(...ks)"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-D7",
+  "subskill": "Linear inequalities in two variables: whole-number profit maximum under a time limit",
+  "prompt": "A workshop has 545 minutes of machine time this week. Product A takes 30 minutes of machine time and earns a profit of $31, and product B takes 40 minutes and earns a profit of $39. Only whole units are made, and at most 4 units of product A can be sold this week. In the plan that gives the greatest total profit, how many units of product A are made?",
+  "choices": [
+   "0",
+   "2",
+   "4",
+   "18"
+  ],
+  "correct_answer": "2",
+  "explanation": "Let a and b be the numbers of units: 30a + 40b ≤ 545 and a ≤ 4, with profit 31a + 39b. Per minute, A earns slightly more, so the real-number best plan is a = 4 and b = 425/40 = 10.625. With whole units, b must be rounded down, wasting 25 minutes. Compare each a: a = 4 gives b = 10, profit 124 + 390 = 514; a = 3 gives b = 11 (90 + 440 = 530 minutes), profit 522; a = 2 gives b = 12 (60 + 480 = 540), profit 62 + 468 = 530; a = 1 gives b = 12, profit 499; a = 0 gives b = 13, profit 507. The greatest profit, 530, uses 2 units of A. Choice 4 takes the real-number plan and rounds b down. Choice 0 makes only product B, the one with the larger profit per unit. Choice 18 ignores the limit of 4 units of A.",
+  "mechanism": [
+   "better-per-minute product first is not optimal",
+   "leftover time after rounding",
+   "lattice optimum at a different point"
+  ],
+  "solve": "let M=-1,ax=-1;for(let a=0;a<=4;a++)for(let b=0;b<=30;b++)if(30*a+40*b<=545){const v=31*a+39*b;if(v>M){M=v;ax=a}}return ax;",
+  "distractor_solve": {
+   "0": "// B only\nconst b=Math.floor(545/40);return 0*b;",
+   "4": "// real-number plan a=4, b rounded down\nconst a=4,b=Math.floor((545-30*a)/40);return a+0*b;",
+   "18": "// cap on A ignored\nlet M=-1,ax=-1;for(let a=0;a<=30;a++)for(let b=0;b<=30;b++)if(30*a+40*b<=545){const v=31*a+39*b;if(v>M){M=v;ax=a}}return ax;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "id": "SM26L-C2",
+  "subskill": "Linear inequality kx ≥ c on a finite set of integers: both signs of k",
+  "prompt": "For how many integer values of the constant k are exactly 4 of the integers from -6 through 9 solutions to the inequality below?\nkx ≥ 36",
+  "choices": [
+   "2",
+   "7",
+   "8",
+   "20"
+  ],
+  "correct_answer": "8",
+  "explanation": "k cannot be 0, since 0 ≥ 36 is false for every x. If k > 0, dividing by k keeps the direction: x ≥ 36/k. The solutions in the list are the integers from the smallest integer at least 36/k up to 9, and exactly 4 of them means they are 6, 7, 8, 9, so 5 < 36/k ≤ 6, which gives 6 ≤ k < 7.2: k = 6 or 7. If k < 0, dividing by k reverses the direction: x ≤ 36/k. The solutions are -6 up to the greatest integer at most 36/k, and exactly 4 means -6, -5, -4, -3, so -3 ≤ 36/k < -2. For negative k this gives -18 < k ≤ -12: k = -17, -16, -15, -14, -13, -12. At k = -18, 36/k = -2, so x ≤ -2 allows 5 integers and k = -18 is excluded. In all, 2 + 6 = 8 values. The option 2 counts only positive k (or divides by a negative k without reversing the inequality, which leaves no negative k that works). The option 7 treats kx ≥ 36 as kx > 36, which moves every boundary and gives k = 7 and k = -18 through -13. The option 20 counts the integers from -6 to n as n + 6 instead of n + 7 in the negative case, which shifts that range to -35 through -18.",
+  "mechanism": [
+   "sign of k decides the direction",
+   "negative k reverses the inequality",
+   "attained versus excluded boundary of k"
+  ],
+  "solve": "let c=0; for(let k=-500;k<=500;k++){let m=0; for(let x=-6;x<=9;x++){ if(k*x>=36) m++ } if(m===4) c++ } return c",
+  "distractor_solve": {
+   "2": "let c=0; for(let k=1;k<=500;k++){let m=0; for(let x=-6;x<=9;x++){ if(k*x>=36) m++ } if(m===4) c++ } return c",
+   "7": "let c=0; for(let k=-500;k<=500;k++){let m=0; for(let x=-6;x<=9;x++){ if(k*x>36) m++ } if(m===4) c++ } return c",
+   "20": "let c=0; for(let k=1;k<=500;k++){let m=0; for(let x=-6;x<=9;x++){ if(k*x>=36) m++ } if(m===4) c++ } for(let k=-500;k<0;k++){ const top=Math.floor(36/k); if(top+6===4) c++ } return c"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-C1",
+  "subskill": "Linear inequality model with a parameter: counting feasible whole-number quantities",
+  "prompt": "A pottery studio charges a one-time registration fee of $35 plus k dollars for each class, where k is a positive integer. Mira will spend at most $180 in total, and she must sign up for at least 2 classes. There are exactly 3 different numbers of classes Mira could sign up for. For how many integer values of k is this true?",
+  "choices": [
+   "7",
+   "9",
+   "12",
+   "15"
+  ],
+  "correct_answer": "7",
+  "explanation": "If Mira signs up for n classes, she pays 35 + kn dollars, so 35 + kn ≤ 180, which gives n ≤ 145/k. Together with n ≥ 2, the possible numbers of classes are 2, 3, ..., up to the greatest integer that is at most 145/k. Exactly 3 numbers means those are 2, 3 and 4, so 4 must be affordable and 5 must not be: 4 ≤ 145/k < 5. That gives 29 < k ≤ 36.25. At k = 29 she can afford exactly 5 classes (35 + 145 = 180 is allowed), which gives 4 choices, so 29 is excluded. The integer values are 30 through 36, which is 7 values. The option 9 leaves out the $35 fee and solves 4 ≤ 180/k < 5. The option 12 ignores the minimum of 2 classes, so it looks for 1, 2 and 3 classes and solves 3 ≤ 145/k < 4. The option 15 makes both of those errors.",
+  "mechanism": [
+   "budget inequality with a per-unit parameter",
+   "minimum quantity shifts the count",
+   "boundary price where the next count becomes affordable"
+  ],
+  "solve": "let c=0; for(let k=1;k<=500;k++){let opts=0; for(let n=2;n<=500;n++){ if(35+k*n<=180) opts++ } if(opts===3) c++ } return c",
+  "distractor_solve": {
+   "9": "let c=0; for(let k=1;k<=500;k++){let opts=0; for(let n=2;n<=500;n++){ if(k*n<=180) opts++ } if(opts===3) c++ } return c",
+   "12": "let c=0; for(let k=1;k<=500;k++){let opts=0; for(let n=1;n<=500;n++){ if(35+k*n<=180) opts++ } if(opts===3) c++ } return c",
+   "15": "let c=0; for(let k=1;k<=500;k++){let opts=0; for(let n=1;n<=500;n++){ if(k*n<=180) opts++ } if(opts===3) c++ } return c"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-C7",
+  "subskill": "Compound inequality with the parameter at both ends: greatest parameter for a fixed integer count",
+  "prompt": "k + 1 ≤ x < 3k\nExactly 5 integers x satisfy the compound inequality above, where k is a constant. What is the greatest possible value of k?",
+  "choices": [
+   "10/3",
+   "7/2",
+   "11/3",
+   "4"
+  ],
+  "correct_answer": "10/3",
+  "explanation": "The solutions are the integers x with k + 1 ≤ x < 3k. Try k = 10/3: the inequality is 13/3 ≤ x < 10, whose integer solutions are 5, 6, 7, 8 and 9, exactly 5. The right end is exactly 10, and x < 10 excludes 10, so the strict inequality is what keeps the count at 5. Now take any k greater than 10/3. If k ≤ 4, the left end k + 1 is at most 5 and the right end 3k is greater than 10, so 5, 6, 7, 8, 9 and 10 are all solutions: at least 6. If k > 4, the interval has length 3k - (k + 1) = 2k - 1 > 7, so it contains at least 7 integers. Either way there are more than 5 solutions, so the greatest possible value of k is 10/3. The option 4 uses only the left-end condition k + 1 ≤ 5 and never checks the right end. The option 11/3 counts 5, 6, 7, 8, 9, 10 as five integers (10 - 5 = 5) and so lets 3k go up to 11. The option 7/2 requires only that the length 3k - (k + 1) = 2k - 1 be at most 6, ignoring where the ends fall.",
+  "mechanism": [
+   "both ends depend on k at different rates",
+   "strict right end attained at the boundary value",
+   "checking both ends rather than the length"
+  ],
+  "solve": "let best=-1e9; for(let i=0;i<=6000;i++){ const k=i/600; let m=0; for(let x=-50;x<=50;x++){ if(k+1<=x && x<3*k) m++ } if(m===5) best=Math.max(best,k) } return best",
+  "distractor_solve": {
+   "4": "const smallest=5; return smallest-1",
+   "11/3": "const first=5, last=first+5; return (last+1)/3",
+   "7/2": "const len=6; return (len+1)/2"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-D8",
+  "subskill": "Linear inequalities in two variables: whole-number optimal plan",
+  "prompt": "A volunteer group assembles large and small care packages. Each package of either size serves 5 people, and the packages must serve at least 73 people in total. A large package takes 8 volunteer-hours to assemble and a small package takes 3 volunteer-hours, and the group has 74 volunteer-hours available. A sponsor donates $6 for each large package and $1 for each small package. Only whole packages are assembled. In the plan that earns the greatest total donation, how many small packages are assembled?",
+  "choices": [
+   "0",
+   "9",
+   "10",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "Let L and S be the numbers of large and small packages. Serving at least 73 people means 5(L + S) ≥ 73, so L + S ≥ 15 for whole packages. The hours give 8L + 3S ≤ 74, and the donation is 6L + S. Large packages earn more, so the best plan uses as many as the two conditions allow. The real-number corner of L + S = 15 and 8L + 3S = 74 is L = 5.8, S = 9.2. L = 6 is impossible: it needs S ≥ 9 for the people, but 48 + 27 = 75 > 74 hours. So L = 5, where 40 + 3S ≤ 74 allows S ≤ 11 and the people condition needs S ≥ 10. Each small package adds $1, so take S = 11: donation 30 + 11 = 41. Fewer large packages lose $6 each and cannot be made up (for example L = 4 allows S ≤ 14, donation 38). The answer is 11. Choice 9 rounds the corner to (6, 9), which needs 75 hours. Choice 10 stops at the fewest small packages that serve 73 people when L = 5, leaving $1 of donation unused. Choice 0 ignores the 73-person requirement and makes only large packages.",
+  "mechanism": [
+   "rounded corner infeasible",
+   "fill remaining capacity after the binding constraint",
+   "lattice optimum"
+  ],
+  "solve": "let M=-1,sy=-1;for(let L=0;L<=30;L++)for(let S=0;S<=30;S++)if(5*L+5*S>=73&&8*L+3*S<=74){const v=6*L+S;if(v>M){M=v;sy=S}}return sy;",
+  "distractor_solve": {
+   "0": "// people requirement ignored: large only\nconst L=Math.floor(74/8);return 0*L;",
+   "9": "// corner of L+S=15 and 8L+3S=74 rounded to nearest\nconst L=(74-45)/5,S=15-L;return Math.round(S);",
+   "10": "// L=5 with the fewest small packages meeting the people requirement\nconst L=5;return Math.ceil(73/5)-L;"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-A4",
+  "subskill": "Difference of two linear functions bounded above on an interval; sum of extreme values of the constant",
+  "prompt": "f(x) = kx - 2\ng(x) = x + 4\nFor the functions above, k is a constant, and g(x) - f(x) ≤ 18 for all values of x such that -2 ≤ x ≤ 4. What is the sum of the greatest and least possible values of k?",
+  "choices": [
+   "-4",
+   "-1",
+   "3",
+   "5"
+  ],
+  "correct_answer": "5",
+  "explanation": "g(x) - f(x) = (1 - k)x + 6, whose slope 1 - k can be positive, zero or negative. If 1 - k > 0, the largest value on -2 ≤ x ≤ 4 is at x = 4: 4(1 - k) + 6 ≤ 18 gives 1 - k ≤ 3, so k ≥ -2. If 1 - k < 0, the largest value is at x = -2: -2(1 - k) + 6 ≤ 18 gives 1 - k ≥ -6, so k ≤ 7. (When k = 1 the difference is the constant 6, which also works.) So -2 ≤ k ≤ 7, and the sum is 5. -1 comes from assuming the difference increases with x, checking only x = 4 and keeping k ≤ 1, which leaves out 1 < k ≤ 7. 3 comes from taking the slope of g(x) - f(x) to be -k, forgetting the slope of g, which gives -3 ≤ k ≤ 6. -4 comes from using f(x) - g(x) ≤ 18 instead, which gives -11 ≤ k ≤ 7.",
+  "mechanism": [
+   "difference of two linear functions",
+   "upper bound on an interval",
+   "slope of the difference can take either sign",
+   "sum of extreme k"
+  ],
+  "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=-2+(4-(-2))*j/600;if(!((t+4)-(k*t-2)<=18+1e-9)){good=false;break}}if(good)ok.push(k)}return Math.max(...ok)+Math.min(...ok)",
+  "distractor_solve": {
+   "3": "const kmin=-(18-6)/4, kmax=(18-6)/2;return kmin+kmax",
+   "-1": "const kmin=1-(18-6)/4;return kmin+1",
+   "-4": "let lo=Infinity,hi=-Infinity;for(let i=-60*240;i<=60*240;i++){const k=i/240;if((k-1)*4-6<=18+1e-9&&(k-1)*(-2)-6<=18+1e-9){lo=Math.min(lo,k);hi=Math.max(hi,k)}}return lo+hi"
+  }
+ },
+ {
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "id": "SM26L-D2",
+  "subskill": "Linear inequalities in two variables: greatest and least whole-number objective",
+  "prompt": "A shop orders x cases of item A and y cases of item B, where x and y are whole numbers. The order must satisfy all of the following.\n12x + 7y ≤ 151\nx + y ≥ 14\nx ≥ 4\nThe shop's profit on the order is 8x + y dollars. What is the sum of the greatest possible profit and the least possible profit?",
+  "choices": [
+   "126",
+   "130",
+   "133",
+   "139"
+  ],
+  "correct_answer": "126",
+  "explanation": "Least profit: the profit 8x + y grows with x much faster than with y, so use as few cases of A as allowed and only as many of B as needed: x = 4, y = 10 (12(4) + 7(10) = 118 ≤ 151, and 14 cases). The least profit is 32 + 10 = 42. Greatest profit: the real-number corner of 12x + 7y = 151 and x + y = 14 is x = 10.6, y = 3.4, with profit 88.2, but whole numbers are required. With x + y ≥ 14, y ≥ 14 - x, so 12x + 7(14 - x) ≤ 151 gives 5x ≤ 53 and x ≤ 10. At x = 10, y can be 4 only (12(10) + 7y ≤ 151 gives y ≤ 4.4), for a profit of 84; smaller x loses 8 dollars per case of A and gains at most a little in y, so 84 is the greatest. The sum is 84 + 42 = 126. Choice 130 uses 88, the real-number maximum rounded down, which no whole-number order reaches. Choice 133 rounds the corner to (11, 3), which costs 12(11) + 7(3) = 153 and breaks the first inequality, giving 91. Choice 139 drops the condition x + y ≥ 14 when maximising and uses (12, 1), profit 97.",
+  "mechanism": [
+   "rounded corner infeasible",
+   "lattice maximum below the real maximum",
+   "pair a nontrivial maximum with a minimum"
+  ],
+  "solve": "const ok=(x,y)=>12*x+7*y<=151&&x+y>=14&&x>=4&&y>=0;let M=-1e9,m=1e9;for(let x=0;x<=20;x++)for(let y=0;y<=30;y++)if(ok(x,y)){const v=8*x+y;M=Math.max(M,v);m=Math.min(m,v)}return M+m;",
+  "distractor_solve": {
+   "130": "// floor of the real-number maximum at the corner of 12x+7y=151 and x+y=14\nconst x=(151-7*14)/5,y=14-x;let m=1e9;for(let a=0;a<=20;a++)for(let b=0;b<=30;b++)if(12*a+7*b<=151&&a+b>=14&&a>=4)m=Math.min(m,8*a+b);return Math.floor(8*x+y)+m;",
+   "133": "// rounds the corner (10.6, 3.4) to (11, 3)\nconst x=Math.round((151-98)/5),y=Math.round(14-(151-98)/5);let m=1e9;for(let a=0;a<=20;a++)for(let b=0;b<=30;b++)if(12*a+7*b<=151&&a+b>=14&&a>=4)m=Math.min(m,8*a+b);return 8*x+y+m;",
+   "139": "// drops x+y>=14 for the maximum\nlet M=-1e9,m=1e9;for(let a=0;a<=20;a++)for(let b=0;b<=30;b++){if(12*a+7*b<=151&&a>=4)M=Math.max(M,8*a+b);if(12*a+7*b<=151&&a+b>=14&&a>=4)m=Math.min(m,8*a+b)}return M+m;"
+  }
+ }
+]

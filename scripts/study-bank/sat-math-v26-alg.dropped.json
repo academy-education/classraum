@@ -1,0 +1,52 @@
+{
+ "SM26L-B5": {
+  "status": "DROP",
+  "why": [
+   "rule6 plug-back <= 2 by majority"
+  ],
+  "difficulty": "medium"
+ },
+ "SM26L-C6": {
+  "status": "DROP",
+  "why": [
+   "rule6 plug-back <= 2 by majority",
+   "EXT-1 drop_recommend by D"
+  ],
+  "difficulty": "medium"
+ },
+ "SM26L-C8": {
+  "status": "DROP",
+  "why": [
+   "rule6 plug-back <= 2 by majority"
+  ],
+  "difficulty": "medium"
+ },
+ "SM26L-B3": {
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM26L-B4 (2/3)"
+  ],
+  "difficulty": "medium"
+ },
+ "SM26L-D6": {
+  "status": "DROP",
+  "why": [
+   "rule6 plug-back <= 2 by majority"
+  ],
+  "difficulty": "medium"
+ },
+ "SM26L-B6": {
+  "status": "DROP",
+  "why": [
+   "rule6 plug-back <= 2 by majority"
+  ],
+  "difficulty": "medium"
+ },
+ "SM26L-A8": {
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM26L-A7 (2/3)"
+  ],
+  "difficulty": "hard"
+ }
+}
