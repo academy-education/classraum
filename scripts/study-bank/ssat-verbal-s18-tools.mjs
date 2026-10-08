@@ -218,7 +218,12 @@ else if (cmd === 'design') {
   const items = loadJson(file)
   if (!Array.isArray(items) || !items.length) { console.error(`REFUSING: ${file} holds no items`); process.exit(2) }
   const also = []
-  for (let i = rest.indexOf('--also'); i >= 0 && i + 1 < rest.length; i++) { if (i === rest.indexOf('--also')) continue; const a = loadJson(rest[i]); if (!Array.isArray(a) || !a.length) { console.error(`REFUSING: ${rest[i]} holds no items`); process.exit(2) } also.push(...a) }
+  const alsoAt = rest.indexOf('--also')
+  const alsoFiles = alsoAt >= 0 ? rest.slice(alsoAt + 1) : []
+  if (alsoAt >= 0 && !alsoFiles.length) { console.error('REFUSING: --also names no file'); process.exit(2) }
+  for (const f of alsoFiles) { const a = loadJson(f); if (!Array.isArray(a) || !a.length) { console.error(`REFUSING: ${f} holds no items`); process.exit(2) } also.push(...a) }
+  // Fixed 2026-10-09 after author B found the old loop skipped a single --also file and printed PASS over 0 items.
+  if (also.length === 0 && alsoAt >= 0) { console.error('REFUSING: --also loaded zero items'); process.exit(2) }
   const { errs, notes } = check(author, items, { also, live })
   console.log(`check ${author} ${file}: live words ${live.length}, other-author items ${also.length}`)
   for (const n of notes) console.log('  ' + n)
