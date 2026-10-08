@@ -1,0 +1,182 @@
+[
+ {
+  "id": "SEC17B-01",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in a relative clause after \"the only one of the [plural noun] that,\" where \"one\" is the antecedent, crossed with active vs. passive voice decided by a delayed object",
+  "difficulty": "hard",
+  "passage": "Many insects visit the trumpet-shaped flowers of sacred datura after dark, but most of them take nectar without picking up much pollen. In footage from the current flowering season at a single desert site, the white-lined sphinx moth is the only one of the regular nocturnal visitors that ______, on nearly every visit and in quantities large enough to matter, pollen from one plant's anthers to a neighboring plant's stigma.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "are carrying",
+   "is carried",
+   "are carried",
+   "is carrying"
+  ],
+  "correct_answer": "is carrying",
+  "explanation": "Because of \"the only,\" the relative pronoun \"that\" refers to \"one\" (the moth), not to \"visitors\": the moth is the single member of the group that does this, so the verb in the relative clause must be singular. The moth is also the one doing the carrying, and the thing carried, \"pollen,\" appears later in the sentence as the verb's object, so the verb must be active: \"is carrying.\" \"are carrying\" is active but plural, agreeing with \"visitors\" as if the clause described the whole group rather than the only one of them. \"is carried\" is singular but passive, which would make the moth the thing carried and leave \"pollen\" with no grammatical role. \"are carried\" is both plural and passive.",
+  "topic_tag": "pollination ecology: hawk moths and night-blooming flowers",
+  "template": "\"the only one of the Xs that\" relative clause, plural noun before blank x plural head noun / object delayed by interrupter x is/are + -ing / is/are + pp"
+ },
+ {
+  "id": "SEC17B-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in an it-cleft (\"it is the [plural noun] ... that\"), where the verb agrees with the clefted plural rather than with \"it is,\" crossed with passive vs. active voice decided by meaning",
+  "difficulty": "hard",
+  "passage": "Freshwater mussels are notoriously hard to tell apart, because the shape of a shell changes with the speed of the water and the age of the animal. After reviewing a large museum collection, curators reported that it is the juvenile shells from fast-flowing headwater streams that ______ most often, since their thin, compressed valves closely resemble those of entirely different species.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is misidentified",
+   "are misidentified",
+   "misidentifies",
+   "are misidentifying"
+  ],
+  "correct_answer": "are misidentified",
+  "explanation": "In a cleft sentence such as \"it is the juvenile shells ... that,\" the verb in the \"that\" clause agrees with the noun that has been singled out, \"the juvenile shells,\" not with the singular \"it is\" that introduces it, so the verb must be plural. The shells are also what the curators and earlier cataloguers get wrong; they do not identify anything themselves, and the clause names nothing that they would be misidentifying, so the verb must be passive: \"are misidentified.\" \"is misidentified\" is passive but singular, agreeing with \"it is\" instead of with \"shells.\" \"are misidentifying\" is plural but active, which would make the shells the ones doing the identifying and leaves the verb without the object it requires. \"misidentifies\" is both singular and active.",
+  "topic_tag": "malacology: freshwater mussel identification",
+  "template": "it-cleft with plural clefted noun + short modifier ending in plural x singular \"it is\" / shells as agents x is+pp / are+pp / -s / are+-ing"
+ },
+ {
+  "id": "SEC17B-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in an embedded \"that\" clause whose own singular subject sits right before the blank, after a long plural matrix subject, crossed with active vs. passive voice decided by a delayed object",
+  "difficulty": "hard",
+  "passage": "Leaf-out dates have been logged at botanical gardens for more than a century, and those records are now being mined to predict how forests will respond to warming. The botanists and climatologists who compiled four decades of these records from gardens across the temperate zone now argue that across those decades photoperiod ______, more decisively than spring warmth or soil moisture, the week in which beech buds finally open.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has determined",
+   "have determined",
+   "is determined",
+   "are determined"
+  ],
+  "correct_answer": "has determined",
+  "explanation": "The verb belongs to the clause introduced by \"that,\" whose subject is \"photoperiod\" (day length), a singular noun; the long plural subject of the main clause, \"The botanists and climatologists ... ,\" goes with \"argue,\" not with this verb. Photoperiod is also what does the determining, and what it determines, \"the week in which beech buds finally open,\" follows the interrupting phrase as the verb's object, so the verb must be active, and the present perfect fits a pattern holding \"across those decades\" of records: \"has determined.\" \"have determined\" is active but plural, agreeing with \"botanists and climatologists.\" \"is determined\" is singular but passive, which would make photoperiod the thing determined and leave \"the week\" with no grammatical role. \"are determined\" is both plural and passive.",
+  "topic_tag": "phenology: beech leaf-out timing",
+  "template": "reporting verb + that-clause with singular subject before blank after long plural matrix subject x plural matrix subject / object delayed by comparison interrupter x has+pp / have+pp / is+pp / are+pp"
+ },
+ {
+  "id": "SEC17B-04",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with a \"more than one [singular noun]\" subject, which takes a singular verb, crossed with simple past vs. present and present perfect decided by a distant \"until\" clause",
+  "difficulty": "hard",
+  "passage": "Sediment cores from deep lakes can preserve thousands of years of pollen, ash, and charcoal, but only if they come out of the ground intact. Until the field team switched to chilled drill bits, which now keep the mud frozen during extraction, more than one core from the lake's deepest basin ______ on arrival at the deck, with the layers smeared beyond reading.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is in pieces",
+   "have been in pieces",
+   "was in pieces",
+   "has been in pieces"
+  ],
+  "correct_answer": "was in pieces",
+  "explanation": "A subject of the form \"more than one\" plus a singular noun (\"more than one core\") takes a singular verb, even though it refers to several cores. The time frame is set by \"Until the field team switched to chilled drill bits\": the damage happened during a past period that ended with the switch, and the bits \"now keep the mud frozen,\" so the problem no longer occurs. That calls for the simple past: \"was in pieces.\" \"is in pieces\" is singular but present, describing a current state that the switch has ended. \"has been in pieces\" is singular but present perfect, which would stretch the damage up to the present, contradicting the past cutoff set by \"until ... switched.\" \"have been in pieces\" has the same tense problem and is also plural, treating \"more than one core\" as plural.",
+  "topic_tag": "paleolimnology: lake sediment coring",
+  "template": "\"more than one\" + singular noun + of-phrase ending in singular x \"more than one\" read as plural / \"now keep\" present x was / is / has been / have been + complement"
+ },
+ {
+  "id": "SEC17B-05",
+  "domain": "Standard English Conventions",
+  "subskill": "form: auxiliary choice in a negative inversion (\"Not until ... do/does/did\") with a postposed plural subject whose head comes well after the blank, crossed with present tense set by the passage's other verbs",
+  "difficulty": "hard",
+  "passage": "Fairy shrimp spend their entire adult lives in desert rock pools that hold water for only a few weeks each year. Not until autumn rains refill the shallow basins worn into the sandstone ledges ______ tiny, thick-walled, and nearly indestructible resting eggs left behind in the dried silt hatch, sometimes after lying dormant for decades.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "does the",
+   "do the",
+   "did the",
+   "is the"
+  ],
+  "correct_answer": "do the",
+  "explanation": "After a fronted \"Not until ...\" phrase, the sentence inverts, and with a base-form main verb (\"hatch\") the inversion uses a form of \"do\" that agrees with the subject. That subject comes after the blank: its head is \"eggs\" (\"the tiny, thick-walled, and nearly indestructible resting eggs\"), which is plural. The passage describes a recurring natural cycle in the present tense (\"spend,\" \"hold,\" \"refill\"), so the auxiliary must be present and plural: \"do the.\" \"does the\" is present but singular, as if the subject were singular. \"did the\" is past, which does not fit a cycle described in the present tense. \"is the\" cannot combine with the base form \"hatch\" at all; \"is\" would need a participle (\"is ... hatching\"), and it is also singular.",
+  "topic_tag": "desert ecology: fairy shrimp in ephemeral pools",
+  "template": "\"Not until\" negative inversion, plural noun before blank, plural subject head 5+ words after x subject head far after blank / adjectives before head x does / do / did / is + the"
+ },
+ {
+  "id": "SEC17B-06",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in a fronted participial inversion with a plural noun before the blank and a singular postposed subject, crossed with simple past vs. present and present perfect decided by a later present-perfect verb",
+  "difficulty": "hard",
+  "passage": "When a retired farmer donated a battered tin box to a regional seed library, the staff expected only seeds. The box held dozens of paper envelopes of bean and squash seed, each labeled in faded pencil. Bundled with the envelopes ______ the farmer's own handwritten account of how her family saved each variety for four generations, though it bore no signature; the library has since transferred it to the county archive for safekeeping.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "is evidently",
+   "were evidently",
+   "has evidently been",
+   "was evidently"
+  ],
+  "correct_answer": "was evidently",
+  "explanation": "This sentence is inverted: it opens with \"Bundled with the envelopes,\" and its subject follows the verb. The subject is \"the farmer's own handwritten account,\" whose head \"account\" is singular, so the verb must be singular even though the plural \"envelopes\" comes just before the blank. The tense is set by what happened afterward: \"the library has since transferred it to the county archive,\" so the account is no longer bundled with the envelopes, and the sentence must describe how the box was when it was donated (\"The box held\"). That calls for the past: \"was evidently.\" \"is evidently\" is singular but present, claiming the account is still in the box, which the transfer rules out. \"has evidently been\" is singular but present perfect, which would extend the bundling up to the present, also ruled out by the transfer. \"were evidently\" is past but plural, agreeing with \"envelopes.\"",
+  "topic_tag": "seed saving: an heirloom seed library",
+  "template": "fronted participial phrase inversion, plural noun before blank, singular postposed subject head 5+ words after x plural \"envelopes\" / box contents read as current x was / were / is / has been + evidently"
+ },
+ {
+  "id": "SEC17B-07",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in a \"Such + be + subject + that\" inversion with the subject head well after the blank, crossed with present perfect vs. past perfect and simple present decided by a distant \"ever since\" clause",
+  "difficulty": "hard",
+  "passage": "On the dry slopes of the island, the native juniper woodland has shrunk to a few stands clinging to cliffs. Such ______ the steady, year-round browsing pressure from free-ranging goat herds ever since farmers stopped penning their animals at night that almost no juniper seedling now survives past its first summer.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been",
+   "have been",
+   "had been",
+   "is now"
+  ],
+  "correct_answer": "has been",
+  "explanation": "In \"Such ... that\" sentences the verb comes before its subject. The subject here is \"the steady, year-round browsing pressure,\" whose head \"pressure\" is singular; the plural nouns that follow (\"goat herds,\" \"farmers,\" \"animals\") belong to modifying phrases. The time frame is set by \"ever since farmers stopped penning their animals,\" which describes a situation running from a past starting point up to the present, where seedlings \"now\" fail to survive; that requires the present perfect. So the answer is \"has been.\" \"have been\" has the right tense but is plural, agreeing with \"goat herds\" instead of \"pressure.\" \"had been\" is past perfect, which needs a later past moment to look back from, but the result is stated in the present (\"now survives\"). \"is now\" is present but cannot carry a span that began \"ever since\" a past event.",
+  "topic_tag": "island ecology: goat browsing and juniper loss",
+  "template": "\"Such + be + subject + that\" inversion, no noun before blank, singular head 5+ words after followed by plural modifiers x plural \"goat herds\" / \"now survives\" present x has been / have been / had been / is now"
+ },
+ {
+  "id": "SEC17B-08",
+  "domain": "Standard English Conventions",
+  "subskill": "form: verb tense, future \"will\" in a clause reported by a present-perfect verb and paired with a present-tense time clause, with nearby past-tense verbs tempting \"would\"",
+  "difficulty": "hard",
+  "passage": "Rebuilding a lock on a disused canal has taken far longer than its planners expected. The restoration trust has announced that the replacement gates, which carpenters shaped by hand from oak beams that were air-dried for several years before anyone cut them, ______ for at least fifty years once the chamber is refilled and boats return to the canal.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "would remain watertight",
+   "remained watertight",
+   "will remain watertight",
+   "had remained watertight"
+  ],
+  "correct_answer": "will remain watertight",
+  "explanation": "The verb completes the clause reported by \"The restoration trust has announced that ... ,\" a present-perfect reporting verb, so the prediction is made from the present looking forward. It is also tied to the time clause \"once the chamber is refilled and boats return,\" whose present-tense verbs refer to future events; such a clause pairs with \"will\" in the main clause. So the answer is \"will remain watertight.\" \"would remain watertight\" is tempting because the nearby verbs \"shaped,\" \"were air-dried,\" and \"cut\" are past, but those describe how the gates were made, not when the trust speaks; \"would\" belongs with a past reporting verb or past-tense time clause (\"once the chamber was refilled\"), not with \"has announced\" and \"is refilled.\" \"remained watertight\" is simple past, describing something already over. \"had remained watertight\" is past perfect, which needs a later past moment that the sentence never supplies.",
+  "topic_tag": "canal history: rebuilding lock gates",
+  "template": "present-perfect reporting verb + that-clause with long relative interrupter full of past verbs, present-tense \"once\" clause after x past verbs in interrupter x will / would / had+pp / simple past + remain watertight"
+ },
+ {
+  "id": "SEC17B-09",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: no punctuation between a long subject (a noun modified by a relative clause with the relative pronoun omitted) and its verb",
+  "difficulty": "hard",
+  "passage": "Medieval book painters could buy most of their colors cheaply, but one was a true luxury. The deep blue pigment the illuminators of a single workshop ground by hand from imported lapis ______ more per ounce than the gold leaf applied beside it, and contracts with patrons often specified exactly how much of it a painter could use.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "lazuli cost",
+   "lazuli, cost",
+   "lazuli: cost",
+   "lazuli—cost"
+  ],
+  "correct_answer": "lazuli cost",
+  "explanation": "The subject of the first clause is \"The deep blue pigment the illuminators of a single workshop ground by hand from imported lapis lazuli\": the noun \"pigment\" is modified by a restrictive relative clause (\"[that] the illuminators ... ground ... from imported lapis lazuli\") whose relative pronoun has been left out. The verb of the main clause is \"cost,\" and no punctuation belongs between a subject and its verb, so the answer is \"lazuli cost.\" \"lazuli, cost\" puts a single comma between the subject and the verb; a restrictive relative clause is not set off by commas, so there is no pair for this comma to close. \"lazuli: cost\" is wrong because a colon must follow a complete independent clause, and everything before it is only the subject, a noun phrase with no main verb of its own (\"ground\" belongs to the relative clause). \"lazuli—cost\" is wrong because a single dash would mark a break after a complete clause or close a dash pair, and here there is neither: no clause is complete before it and no earlier dash opens an interruption, so it simply cuts the subject off from its verb.",
+  "topic_tag": "history of pigments: ultramarine in manuscript painting",
+  "template": "long subject with relative clause, relative pronoun omitted, inner clause looks complete x garden-path main clause before blank x none / comma / colon / dash between subject and verb"
+ },
+ {
+  "id": "SEC17B-10",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: colon after a complete independent clause to introduce a noun phrase that names the \"one thing\" announced earlier in the clause, with a semicolon (fragment after) and a comma (misattaches the noun phrase to a nearby series) as competitors",
+  "difficulty": "hard",
+  "passage": "The salt makers of the coastal flats raked brine through a chain of shallow evaporation pans all summer, and their account books show that they feared one thing more than shipwreck or a collapse in ______ single heavy rain in the final weeks before the harvest. One downpour could dissolve a season's crystals overnight.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "prices; a",
+   "prices, a",
+   "prices a",
+   "prices: a"
+  ],
+  "correct_answer": "prices: a",
+  "explanation": "Everything before the blank, \"their account books show that they feared one thing more than shipwreck or a collapse in prices,\" is a complete clause that announces \"one thing\" without naming it. What follows, \"a single heavy rain in the final weeks before the harvest,\" is a noun phrase that identifies that thing. A colon is the mark that introduces such an explanation after a complete clause, so the answer is \"prices: a.\" \"prices; a\" is wrong because a semicolon must be followed by an independent clause, and \"a single heavy rain ...\" has no verb. \"prices, a\" makes the noun phrase read as another item tacked onto \"shipwreck or a collapse in prices,\" as if rain were a third thing they feared less than the \"one thing,\" which breaks the sentence's logic. \"prices a\" runs the noun phrase directly into \"collapse in prices\" with no mark at all, leaving it with no grammatical connection to the sentence.",
+  "topic_tag": "economic history: coastal salt making",
+  "template": "colon after independent clause announcing \"one thing,\" explained by a bare noun phrase after a comparative \"more than X or Y\" x comma reads as series continuation x colon / semicolon / comma / none before noun phrase"
+ }
+]

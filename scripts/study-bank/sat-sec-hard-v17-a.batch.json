@@ -1,0 +1,182 @@
+[
+  {
+    "id": "SEC17A-01",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with a \"not X but Y\" subject (plural X, singular affirmed Y adjacent to the blank) crossed with active versus passive voice decided by meaning and a delayed object",
+    "difficulty": "hard",
+    "passage": "Bats hunting in dense forest routinely pass within centimeters of branches without touching them. For decades, researchers credited this precision to the animals' oversized ears. A recent acoustic study points elsewhere: in the flights it recorded, not the ears but each outgoing call's rapid pitch sweep ______, during the final milliseconds of an approach, the bat's path around an obstacle.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was steering",
+      "were steering",
+      "was steered",
+      "were steered"
+    ],
+    "correct_answer": "was steering",
+    "explanation": "In a \"not X but Y\" subject, the verb agrees with the affirmed member, Y. Here the sentence denies \"the ears\" and affirms \"each outgoing call's rapid pitch sweep,\" whose head noun \"sweep\" is singular, so the verb must be singular even though \"ears\" is plural. The sweep is also the thing doing the acting: it directs \"the bat's path around an obstacle,\" which is the verb's object, delayed past the interrupting phrase \"during the final milliseconds of an approach.\" So the verb must be active: \"was steering.\" \"were steering\" is active but plural, agreeing with the denied \"ears\" rather than with \"sweep.\" \"was steered\" is singular but passive; it would say the sweep was guided by something else and would leave \"the bat's path\" with no grammatical role. \"were steered\" is both plural and passive.",
+    "topic_tag": "chiropterology: bat echolocation in clutter",
+    "template": "\"not X but Y\" subject, singular Y head adjacent to blank x plural denied X tempts plural; transitive verb with object delayed 9 words tempts passive x was/were + -ing / was/were + -ed"
+  },
+  {
+    "id": "SEC17A-02",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement with an \"every X and every Y\" compound subject (singular verb) crossed with perfect-progressive aspect required by a distant since-clause",
+    "difficulty": "hard",
+    "passage": "Records of when lakes freeze each winter are among the longest climate series kept anywhere. Since the first freeze date on one Swiss alpine lake was written into a parish ledger, every pastor and every schoolteacher assigned to the village ______ each winter's freeze in the same bound volume, so the ledger now gives climatologists an unbroken account of a shrinking ice season.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "have been recording",
+      "is recording",
+      "has been recording",
+      "were recording"
+    ],
+    "correct_answer": "has been recording",
+    "explanation": "When each part of a compound subject is introduced by \"every,\" the subject is treated as singular: \"every pastor and every schoolteacher\" takes a singular verb, even though the two nouns are joined by \"and.\" The sentence opens with \"Since the first freeze date ... was written into a parish ledger\" and continues \"so the ledger now gives,\" so the recording is an activity running from a past starting point up to the present, which requires a perfect form: \"has been recording.\" \"have been recording\" has the right aspect but is plural, treating the \"and\" as if it formed a plural subject. \"is recording\" is singular but present progressive, which describes only what is happening now and does not express a span running from the \"Since\" starting point up to the present. \"were recording\" is plural and past progressive, which places the activity at some past moment rather than across that span.",
+    "topic_tag": "limnology: lake ice freeze records",
+    "template": "\"every X and every Y\" compound subject x \"and\" tempts plural; since-clause far before blank sets aspect x has been/have been + -ing / is/were + -ing"
+  },
+  {
+    "id": "SEC17A-03",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement after a long fronted participial phrase full of plural nouns, singular subject head adjacent to the blank, crossed with passive voice required by meaning",
+    "difficulty": "hard",
+    "passage": "A first-order lighthouse lens can stand taller than two adults and weigh several tons. Built up from hundreds of glass prisms that specialist workshops cast, grind, and set into tiers of brass frames, such a lens ______ in numbered sections whenever a new light station goes up, since no single crate or ship's hold can accommodate the fully assembled structure.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "are transported",
+      "is transported",
+      "transports",
+      "is transporting"
+    ],
+    "correct_answer": "is transported",
+    "explanation": "The subject of the main clause is \"such a lens,\" which is singular; the plural nouns \"prisms,\" \"workshops,\" \"tiers,\" and \"frames\" all sit inside the fronted participial phrase and cannot be the subject. The lens is also not the thing doing the moving: it is carried somewhere \"in numbered sections\" because no crate or hold can take it whole, so the verb must be passive. The passage is in the present tense (\"can stand,\" \"goes up,\" \"can accommodate\"), so the key is \"is transported.\" \"are transported\" is passive but plural, agreeing with the plural nouns of the opening phrase. \"transports\" is singular and present but active; a lens does not transport anything, and the verb would have no object. \"is transporting\" is singular but also active, and it likewise makes the lens the mover, with nothing for it to move.",
+    "topic_tag": "history of optics: lighthouse lenses",
+    "template": "long fronted participial phrase of plurals, singular subject head adjacent to blank x plural nouns in opener tempt plural; lens cannot act x is/are + -ed / -s / is + -ing"
+  },
+  {
+    "id": "SEC17A-04",
+    "domain": "Standard English Conventions",
+    "subskill": "form: plural relative-clause verb after a compound antecedent \"the X and the Y that\" with singular Y nearest, crossed with past progressive versus present perfect decided by a later verb",
+    "difficulty": "hard",
+    "passage": "In a limestone cave in the Zagros Mountains, excavators uncovering a Neanderthal burial first exposed the skull and the lower jaw that ______, after some sixty thousand years beneath the cave floor, still in their original position relative to each other. Both bones have since been lifted out and sent to separate laboratories, one for ancient DNA sampling and the other for dental wear analysis.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has lain",
+      "was lying",
+      "are lying",
+      "were lying"
+    ],
+    "correct_answer": "were lying",
+    "explanation": "The relative pronoun \"that\" refers to the whole compound \"the skull and the lower jaw\": the clause says the two bones were \"still in their original position relative to each other,\" and \"each other\" can only refer to two things. So the verb must be plural, even though \"jaw,\" the noun right before \"that,\" is singular. The verb also has to describe the bones as they were when the excavators \"first exposed\" them; the next sentence says both bones \"have since been lifted out,\" so they no longer lie there, and a form reaching up to the present is impossible. The key is the plural past progressive \"were lying.\" \"was lying\" has the right tense but is singular, agreeing with \"jaw\" alone. \"are lying\" is plural, but the present progressive says the bones lie in place now, which the second sentence contradicts. \"has lain\" is singular, and its present perfect likewise reaches up to the present, wrong on both counts.",
+    "topic_tag": "paleoanthropology: Neanderthal cave burial",
+    "template": "relative clause on compound antecedent \"the X and the Y that\", singular Y nearest x singular nearest noun + long duration tempt singular / perfect x has + lain / was/are/were + lying"
+  },
+  {
+    "id": "SEC17A-05",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a \"So + adjective + be + subject + that\" inversion with the plural subject head five words after the blank, crossed with past tense decided by a later present-perfect verb",
+    "difficulty": "hard",
+    "passage": "When the new concert hall opened, critics praised its sight lines but not its sound. So ______ the hall's early reverberation measurements across different seating sections that the architects ordered dozens of angled wooden panels hung from the ceiling, panels that have since brought the readings into a narrow and consistent range.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "uneven was",
+      "uneven are",
+      "uneven were",
+      "uneven has been"
+    ],
+    "correct_answer": "uneven were",
+    "explanation": "In a sentence that begins \"So + adjective,\" the verb comes before its subject. The subject here is \"the hall's early reverberation measurements across different seating sections,\" whose head noun \"measurements\" is plural, so the verb must be plural. The tense is set by the end of the sentence: the panels \"have since brought the readings into a narrow and consistent range,\" so the unevenness belongs to the past and no longer holds. The key is therefore \"uneven were.\" \"uneven was\" is past but singular, as though \"hall's\" or \"sound\" were the subject. \"uneven are\" is plural but present, which would say the readings are still uneven despite the panels having since evened them out. \"uneven has been\" is singular, and its present perfect reaches up to the present, so it is wrong in number and, like \"uneven are,\" contradicts the panels' later correction.",
+    "topic_tag": "architectural acoustics: concert hall reverberation",
+    "template": "\"So + adj + be + subject + that\" inversion, plural head 5 words after blank, no noun before blank x singular possessive tempts singular; perfect/present tempt x adj + was/are/were/has been"
+  },
+  {
+    "id": "SEC17A-06",
+    "domain": "Standard English Conventions",
+    "subskill": "form: auxiliary in a comparative \"as + auxiliary + postposed subject\" clause, which must copy the lexical-verb type of the first clause (do-support) and agree with the postposed plural subject",
+    "difficulty": "hard",
+    "passage": "Many flowers pollinated by hawkmoths hold back their fragrance through the day and release most of it only after the evening's first cool breezes, ______ the pale, slender, sweetly scented trumpets of several wild tobacco species. Researchers think this timing conserves costly volatile compounds for the hours when the moths are actually foraging.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "as do",
+      "as does",
+      "as is",
+      "as are"
+    ],
+    "correct_answer": "as do",
+    "explanation": "In a comparative clause of the form \"as + auxiliary + subject,\" the auxiliary stands in for the verb of the first clause and must match its type. The first clause's verbs, \"hold back\" and \"release,\" are ordinary lexical verbs in the simple present, so the stand-in is a form of \"do.\" The postposed subject is \"the pale, slender, sweetly scented trumpets,\" whose head noun \"trumpets\" is plural, so the auxiliary must be plural: \"as do.\" \"as does\" is the right auxiliary type but singular. \"as are\" agrees with \"trumpets\" but substitutes \"be\" for a lexical verb, producing \"release ... as are the trumpets,\" which does not complete the comparison. \"as is\" is the wrong auxiliary type and singular.",
+    "topic_tag": "pollination ecology: hawkmoth flowers",
+    "template": "comparative \"as + aux + postposed subject\", aux copies do-type and agrees with plural head 6 words after blank x passive \"pollinated\" and \"are foraging\" tempt be x as + do/does/is/are"
+  },
+  {
+    "id": "SEC17A-07",
+    "domain": "Standard English Conventions",
+    "subskill": "form: subject-verb agreement in a fronted adjective-complement inversion (plural noun before the blank, singular postposed subject head seven words after it) crossed with present-perfect aspect decided by a later continuing verb",
+    "difficulty": "hard",
+    "passage": "Pollen preserved in lake sediments lets researchers trace how northern European forests changed after the last ice age, and most shifts in that record have proved easy to explain. Far more puzzling to the specialists ______ the abrupt and nearly simultaneous collapse of elm pollen across much of the region, a problem that has divided them from the earliest coring surveys to the present day.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "was once",
+      "were once",
+      "have been",
+      "has been"
+    ],
+    "correct_answer": "has been",
+    "explanation": "The sentence is inverted: the fronted phrase \"Far more puzzling to the specialists\" is a complement, and the subject follows the verb. That subject is \"the abrupt and nearly simultaneous collapse of elm pollen,\" whose head noun \"collapse\" is singular, so the verb must be singular even though \"specialists,\" the noun right before the blank, is plural. The aspect is set by the appositive at the end: the collapse is \"a problem that has divided them from the earliest coring surveys to the present day,\" so the puzzle continues up to now, which requires the present perfect \"has been.\" \"have been\" has the right aspect but is plural, agreeing with \"specialists.\" \"was once\" is singular but says the collapse used to be puzzling and no longer is, contradicting a problem that still divides researchers \"to the present day.\" \"were once\" is plural and wrong in the same way.",
+    "topic_tag": "palynology: elm pollen decline",
+    "template": "fronted adjective-complement inversion, plural noun before blank, singular head 7 words after x plural \"specialists\" tempts plural; \"once\" tempts finished past x has/have been / was/were once"
+  },
+  {
+    "id": "SEC17A-08",
+    "domain": "Standard English Conventions",
+    "subskill": "form: past perfect for an earlier action reported after a later past discovery, ruled by the logic of distant past verbs (no date, no \"by the time\")",
+    "difficulty": "hard",
+    "passage": "Printed tables of logarithms spared navigators and astronomers countless hours of multiplication, but only if every entry was correct. While checking one widely used handbook against his own calculations, an astronomer found that its compiler, a meticulous schoolmaster who died decades before the problem came to light, ______ two digits in more than a dozen entries, an error that every later edition reproduced without comment.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "has transposed",
+      "had transposed",
+      "was transposing",
+      "transposes"
+    ],
+    "correct_answer": "had transposed",
+    "explanation": "The verb belongs to the clause reporting what the astronomer \"found\" in the past, and the action it names happened even earlier: the compiler did his work before he \"died,\" and he died \"decades before the problem came to light.\" An action completed before another past event is expressed with the past perfect, so the key is \"had transposed.\" \"has transposed\" is present perfect, which connects the action to the present and does not fit a report framed by \"found\" and \"came to light,\" about a man long dead. \"was transposing\" is past progressive, which would place the compiler in the middle of transposing digits at the time of the discovery, when he had died decades earlier. \"transposes\" is simple present and breaks the past frame entirely.",
+    "topic_tag": "history of mathematics: logarithm tables",
+    "template": "that-clause after past \"found\", subject + long appositive with \"died decades before\" x appositive's past verbs tempt simple aspect, \"found\" proximity tempts progressive x has + pp / had + pp / was + -ing / -s"
+  },
+  {
+    "id": "SEC17A-09",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: comma after a long introductory subordinate clause containing its own that-clause; semicolon and dash would leave the subordinate clause as a fragment",
+    "difficulty": "hard",
+    "passage": "For generations, sailors described lone waves that rose far above the surrounding sea, and for just as long, scientists doubted those accounts. Although the wave models of the time predicted that such giants should form perhaps once in ten thousand years at any given ______ laser gauge on a North Sea gas platform recorded one more than twenty-five meters high on the first day of 1995.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "spot; a",
+      "spot: a",
+      "spot, a",
+      "spot a"
+    ],
+    "correct_answer": "spot, a",
+    "explanation": "The sentence opens with a long subordinate clause, \"Although the wave models of the time predicted that such giants should form perhaps once in ten thousand years at any given spot,\" and the main clause is \"a laser gauge on a North Sea gas platform recorded one.\" An introductory subordinate clause is joined to the main clause with a comma, so the key is \"spot, a.\" \"spot; a\" uses a semicolon, which may only join independent clauses; the \"Although\" clause cannot stand alone, so it would be left as a fragment. \"spot: a\" uses a colon, which must follow a complete independent clause; what precedes it here is only the subordinate \"Although\" clause. \"spot a\" omits any mark, running the long introductory clause straight into the main clause's subject, so that \"spot a laser gauge\" reads as one phrase.",
+    "topic_tag": "oceanography: rogue waves",
+    "template": "long \"Although\" clause with embedded that-clause before main clause x clause length tempts strong mark x ; / : / , / none"
+  },
+  {
+    "id": "SEC17A-10",
+    "domain": "Standard English Conventions",
+    "subskill": "boundaries: semicolon before a conjunctive adverb that opens the second independent clause; the adverb's contrast must attach to the clause it actually contrasts, and a colon cannot introduce a contrast",
+    "difficulty": "hard",
+    "passage": "Isolating the substance in rice bran that prevents beriberi frustrated chemists for years. The compound was present only in minute amounts and broke down whenever it was ______ team that processed several tons of bran eventually obtained a few grams of pure crystals, enough to determine its chemical structure.",
+    "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+    "choices": [
+      "heated; however, a",
+      "heated: however, a",
+      "heated, however; a",
+      "heated, however, a"
+    ],
+    "correct_answer": "heated; however, a",
+    "explanation": "Two independent clauses meet at the blank: \"The compound was present only in minute amounts and broke down whenever it was heated\" and \"a team that processed several tons of bran eventually obtained a few grams of pure crystals.\" The contrast that \"however\" signals is between them: the difficulties of the first clause against the success of the second. So \"however\" belongs to the second clause, and a semicolon must separate the clauses before it: \"heated; however, a.\" \"heated, however; a\" attaches \"however\" to the first clause, where it would contrast the compound's fragility with the previous sentence; but that sentence also describes frustration, so there is no contrast there, and the real turn to success is left unmarked. \"heated: however, a\" uses a colon, which introduces an explanation or elaboration of the preceding clause, not a contrast with it. \"heated, however, a\" joins two independent clauses with only commas, a comma splice.",
+    "topic_tag": "history of nutrition: vitamin isolation",
+    "template": "two independent clauses, conjunctive adverb whose contrast belongs to the second x adverb placement and colon tempt x ; however, / : however, / , however; / , however,"
+  }
+]
