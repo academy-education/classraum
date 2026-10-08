@@ -1,0 +1,265 @@
+{
+ "_method": "Per item: grep of live-maths-all.txt (3,140 live maths rows, all families, dumped 2026-10-08) and alg-held-and-prior.json (77 held/recent Algebra items) for the item's mechanism keywords; every hit read by hand. Verdict dup = same chain of steps on the same kind of givens to the same asked quantity.",
+ "SM26F-B01": {
+  "query": "intercepts equal / equal intercepts",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-B02": {
+  "query": "calibrat|gauge",
+  "hits": "6 hits: 0a58820c (multiple of intercept), fcee5693 (fuel gauge rate), 4 Advanced Math sensor items",
+  "verdict": "clear"
+ },
+ "SM26F-B03": {
+  "query": "3f(x)|2f(x)|f(2x)",
+  "hits": "5 hits, all composition/transformation items; mechanism-dup FLAG 64ad18c9 (f from intercepts of f(x)-5 and f(x+4), asks f(0)) read: different chain Re-flagged by math-mechanism-dup after the return; same hand read: 64ad18c9 builds f from intercepts of f(x)-5 and f(x+4) and asks f(0); B03 builds f from a table and solves f(x) = 3f(x) - 8 for x.",
+  "verdict": "clear"
+ },
+ "SM26F-B04": {
+  "query": "crosses the x-axis at x = b | f(b) = 0",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-B05": {
+  "query": "f(5) + f(-5) | f(-5)",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-B06": {
+  "query": "translated ... left | shifted left",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-B07": {
+  "query": "weeks after | rewrite model",
+  "hits": "4 hits, all Advanced Math rewrites of polynomials",
+  "verdict": "clear"
+ },
+ "SM26F-B08": {
+  "query": "f(5) = 2f(2) | twice its output",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-B09": {
+  "query": "(p + 6, q + k) | (a + n, b",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-B10": {
+  "query": "m + b =",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-B11": {
+  "query": "f(2x) - 2f(x)",
+  "hits": "0 linear hits (5 composition hits read)",
+  "verdict": "clear"
+ },
+ "SM26F-B12": {
+  "query": "recorded incorrectly | one value incorrect",
+  "hits": "1 hit 2aac9913 (ACT mean with a corrected value): different",
+  "verdict": "clear"
+ },
+ "SM26F-B13": {
+  "query": "(original) spring | twice as long | multiple of starting value; (return) intercepts swapped/exchanged | x-intercept equal to y-intercept of another line",
+  "hits": "original: 0a58820c (same final chain) -> returned. Replacement: 0 hits",
+  "verdict": "RETURNED (dup 0a58820c); replacement (intercept exchange, key -4) clear"
+ },
+ "SM26F-A01": {
+  "query": "split equally | fifth friend",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-A02": {
+  "query": "no matter which value of k | every value of k",
+  "hits": "5d99d0e3 (k(2x-3)+7 = 6x+c, a solution for EVERY k: the k making the x-coefficient vanish forces c) read: different chain (A02 is the common root of the k-factor)",
+  "verdict": "RETURN (added during the open A return round): mechanism duplicate of newly live e26c893e (sat-math-v26-alg); also close to 5d99d0e3 || return: solution decreases/changes when a parameter is raised -> 0 hits; replacement clear"
+ },
+ "SM26F-A03": {
+  "query": "tank draining / filling",
+  "hits": "54ebff64 (two tanks, constant rates, equal amounts) is the same family without the rate change; 4 pipe-rate items different",
+  "verdict": "clear on dup; RETURN on plug-back (key smallest: substituting 612 checks in one step) || return: whole number k from | sum of the solutions over k -> 0 hits (mechanism-dup has no term for it; hand search only); replacement clear"
+ },
+ "SM26F-A04": {
+  "query": "(3x - 4) | fractions sum",
+  "hits": "a4f01710 (sum of two fractions = 12, asks x) different asked quantity and repeated binomial",
+  "verdict": "clear"
+ },
+ "SM26F-A05": {
+  "query": "3x - 14 = 25 | value of 6x - 3",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-A06": {
+  "query": "savings | 1/6 of the remaining",
+  "hits": "b2c5cafc ACT: spent 1/3 of savings on a bicycle, then 1/4 of the rest on a helmet,  left, asks savings. A06 = same story and chain, asks the helmet",
+  "verdict": "RETURN: mechanism duplicate of live b2c5cafc; also plug-back (5h = 120 checks in one step) || return: rows | chairs -> 5 hits, none rows x (rows + 5); replacement clear on dup. DROPPED BEFORE FREEZE (after its one return) on rule 8: the total must be r(r + 5) for a whole number r, and 196 and 342 are not (456 = 19 x 24 is): two illegal distractors are free strikes"
+ },
+ "SM26F-A07": {
+  "query": "both true for | shared solution",
+  "hits": "0 hits",
+  "verdict": "clear on dup; RETURN on plug-back (k = 9 smallest, one substitution) || return: two separate equations | p + q -> 2 Advanced Math hits, different; replacement clear"
+ },
+ "SM26F-A08": {
+  "query": "true when x = 2 and when x = 8 | identity",
+  "hits": "0 hits",
+  "verdict": "clear on dup; RETURN on plug-back (b = 23 smallest checks in one step) || return: no solution + stated solution | m + n -> 0 linear hits; one-variable no-solution k rows exist, A08 continues to a second parameter and the sum (different asked quantity); replacement clear"
+ },
+ "SM26F-A09": {
+  "query": "adult tickets",
+  "hits": "0f80668a, 2186d129, 10a1e41c, 2b522a1b: two-equation ticket systems; A09 is one-variable with a multiple-and-offset relation asking the total",
+  "verdict": "clear on dup; RETURN on plug-back (141 fails integrality, 147 checks: 2 tries) and rule 8 (141 makes the child count non-integer: an illegal option) || return: mistake | incorrectly distributed -> 0 algebra hits; replacement clear"
+ },
+ "SM26F-A10": {
+  "query": "three people | more than twice | total",
+  "hits": "0 hits",
+  "verdict": "clear on dup; RETURN on plug-back (115 fails, 133 checks: 2 tries) || return: known solution -> constant combination -> different equation -> 0 hits; replacement clear"
+ },
+ "SM26F-A11": {
+  "query": "mean of expressions",
+  "hits": "0 linear hits (statistics hits only)",
+  "verdict": "clear on dup; RETURN on plug-back (28 smallest: x = 7 checks in one step) || return: a/b lowest terms | no common factor -> probability / ratio hits only; replacement clear"
+ },
+ "SM26F-A12": {
+  "query": "a/b | ratio from a linear relation",
+  "hits": "86e82bde ((a+b)/(a-b) = 4, a/b) and 9152eace ((a+b)/(a-b) = 3, a/b): homogeneous linear relation in a, b solved for a/b. A12 = same chain",
+  "verdict": "RETURN: mechanism duplicate of live 86e82bde / 9152eace || return: number line distance | markers -> 71b9faca (distance between two given points) different; replacement clear"
+ },
+ "SM26F-A13": {
+  "query": "elevation | hike",
+  "hits": "0 algebra hits (trig/ACT temperature only)",
+  "verdict": "clear"
+ },
+ "SM26F-C01": {
+  "query": "no solution ... intercept",
+  "hits": "31 live no-solution rows, all ask the parameter; none continues to the y-intercept of a line",
+  "verdict": "clear (different asked quantity)"
+ },
+ "SM26F-C02": {
+  "query": "a and b fixed + known solution | (x, y) = (6, -4)",
+  "hits": "0 hits for coefficients recovered from a known solution; live a+b items are infinitely-many (262f1ede, 27ddc1f0, 321731c6, 346df59f, 8248eec1)",
+  "verdict": "clear"
+ },
+ "SM26F-C03": {
+  "query": "per kilogram | price higher/lower than last month",
+  "hits": "5 hits, none a system with shifted prices",
+  "verdict": "clear"
+ },
+ "SM26F-C04": {
+  "query": "x/y | system with parameter c",
+  "hits": "5419ab2d (one equation, x/y), c75a4ac8 (x - 7y), eb520af9 (x + y in k): different asked quantity (c cancels in the ratio)",
+  "verdict": "clear"
+ },
+ "SM26F-C05": {
+  "query": "times the first equation subtracted | match a given equation",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-C06": {
+  "query": "added to both numerator and denominator",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-C07": {
+  "query": "no solution + parameter",
+  "hits": "09032fe9 (3x - 4y = 7, 9x + cy = 2, c for no solution), c0ede046 (a for no solution): proportional coefficients solved for the parameter. C07 = same chain with the parameter in both coefficients",
+  "verdict": "RETURNED (dup 09032fe9 / c0ede046). Replacement (f(x) = 2x + b, f(a) = 14, f(5a) = 54, find f(32); key 68): grep f(a) = | f(5a) | linear f from two values -> 1659e4de (f from two KNOWN inputs, evaluate) and f8abd387 (two known inputs, solve f(x) = 0) read: different givens (slope given, inputs unknown, a system in a and b); the returner's first draft collapsed to 1659e4de and was replaced. Clear."
+ },
+ "SM26F-C08": {
+  "query": "product xy",
+  "hits": "41ab8b0a ACT: 3x + 2y = 19 and 4x - 2y = 2, product xy. C08 = same chain (eliminate, solve, multiply)",
+  "verdict": "RETURNED (dup 41ab8b0a). Replacement (elimination multiplier m making the y-terms cancel; key 7/5): grep multiplies each side | terms cancel | eliminate -> 0 hits. Clear."
+ },
+ "SM26F-C09": {
+  "query": "pump",
+  "hits": "28632df4 (together 6 h, faster 9 h less: quadratic), 35550e4a (known rates, together then B alone), 00a635f5 (known times together): none recovers unknown rates from combined + sequential runs",
+  "verdict": "clear"
+ },
+ "SM26F-C10": {
+  "query": "replaced by | constant changed",
+  "hits": "0 system hits (5 statistics hits)",
+  "verdict": "clear"
+ },
+ "SM26F-C11": {
+  "query": "how many ordered pairs | positive integers",
+  "hits": "9a08da87 (lattice count under an inequality), 14838ea8 (xy equation): different (dependent system = one line, lattice points on it)",
+  "verdict": "clear"
+ },
+ "SM26F-C12": {
+  "query": "infinitely many ... point",
+  "hits": "infinitely-many rows all ask a + b or a parameter; none continues to a point on the line",
+  "verdict": "clear (different asked quantity)"
+ },
+ "SM26F-C13": {
+  "query": "stops | delivery",
+  "hits": "5 hits, none a two-route per-stop-time system",
+  "verdict": "clear"
+ },
+ "_recheck_v26alg": "2026-10-08, after sat-math-v26-alg inserted 25 Algebra rows mid-authoring: dumps re-pulled (3,165 live maths) and every B and C item read against the 25 by hand. B: none share a chain (the new rows are parameter-range / integer-count inequalities). C01 vs 383c8b40 (no-solution k, then the constant price gap): C01 continues to the y-intercept of the second line, a different follow-on; clear. C: no other overlap. A02 vs e26c893e (f(x) = k(x - 2) + 5 solvable for every k -> c): same chain (the k-factor root fixes a point that determines c); A02 added to the A return round (still open). D authoring and the A/C returns told to grep the refreshed dumps.",
+ "SM26F-D01": {
+  "query": "maximum value of 12x + 13 | greatest value of ax + b",
+  "hits": "109c9105 (absolute-value boxes), e14de4cc (integer LP, new v26-alg): different",
+  "verdict": "clear"
+ },
+ "SM26F-D02": {
+  "query": "(t, 4t - 5) | point given by a parameter in a system",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-D03": {
+  "query": "satisfy the first but not the second | complement count",
+  "hits": "0 hits; v26-alg integer-count items (07ec7c50, 4fd22741, 3ae4c030) all carry a parameter k: different",
+  "verdict": "clear"
+ },
+ "SM26F-D04": {
+  "query": "half-plane | origin part of the graph | boundary line",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-D05": {
+  "query": "celsius | fahrenheit",
+  "hits": "13d16275 (temperature drop after a cold front), 2dc4ec3b (kiln, PSDA): different; within batch D05/D11 share start + rate x time >= threshold, D11 returned",
+  "verdict": "clear"
+ },
+ "SM26F-D06": {
+  "query": "per page | fixed fee two data points | greatest number under a budget",
+  "hits": "b47d3773 ACT: fixed booking fee plus per guest from two parties (40 -> 860, 65 -> 1235), at most 1500, greatest number of guests. D06 = same chain plus a separate binding charge",
+  "verdict": "RETURN: mechanism duplicate of live b47d3773 || return: least integer solution | smallest integer solution -> 0 hits; replacement (least k given the least integer solution 7) clear"
+ },
+ "SM26F-D07": {
+  "query": "b = 2a + 6 | least possible value of b",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-D08": {
+  "query": "unlock | first 30 minutes | tier",
+  "hits": "0bb269b7 (utility tiers, cost of a usage), 2278aa1f (scooter pass comparison): different chain",
+  "verdict": "clear on dup; RETURN on rule 4: key smallest on a greatest-under-budget stem and all three errors leave out or cheapen a cost, so every error predictably over-counts minutes (pick the smallest) || return: points all satisfy the inequality -> 0 hits; replacement (greatest c with three points in y >= -3x + c) clear"
+ },
+ "SM26F-D09": {
+  "query": "at least 75% of the revenue",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-D10": {
+  "query": "every solution also satisfies | containment",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-D11": {
+  "query": "cyclist | remaining at a constant speed | at least",
+  "hits": "13cf6846 ACT: first part of a ride given, required speed on the remaining distance to hit a goal average. D11 = same chain (goal minus done, over the remaining time) with a distance goal",
+  "verdict": "RETURN: mechanism duplicate of live 13cf6846 (and within-batch template of D05) || return: consecutive odd -> 0f958232, d283376d, de5e424f (SAT), 70f7fd0c (ISEE): the sum of N consecutive odd integers compared with a multiple of one member plus a constant, solved for a member. Replacement = same template and chain made an inequality, with a parity round. DROPPED BEFORE FREEZE (after its one return): mechanism duplicate of the live consecutive-odd family (same standard as B13)"
+ },
+ "SM26F-D12": {
+  "query": "difference between greatest and least value of p",
+  "hits": "0 hits",
+  "verdict": "clear"
+ },
+ "SM26F-D13": {
+  "query": "crates | least number of containers",
+  "hits": "a9d94824 ACT (47 crates onto trucks, can not split, load of the last truck) close but a different asked quantity; 4c95f430/ad6b7da1/d275d717 single-load capacity",
+  "verdict": "clear on dup (close to a9d94824); RETURN on rule 4/5: key largest on a least-containers stem, all three errors pool weight or ignore the crate, so each predictably under-counts; the pooled bound 586 x 3.2 / 25 = 75.0 puts every pooled answer below the key || return: slope between two bounds | count of k -> 0 hits; 16f16b5b (k from a slope via parallel line) read: different chain (interval of slopes -> integer count); replacement clear"
+ },
+ "_merged_stage0": "Merged 50 (A 12 after A06, B 13, C 13, D 12 after D11); merge-halves CLOSURE dropped A01 (12, 44, 76 evenly spaced with the key) and C03 (2.05, 3.25, 4.45 evenly spaced with the key) -> 48 frozen. math-mechanism-dup on the 48 vs 3,165 live: 1 FLAG (B03 ~ 64ad18c9, read: different), 21 near, read. Shared key values recorded, not returned: 11 (A02/B09), 42 (B02/C06). Option values shared across authors recorded (within-author 0)."
+}

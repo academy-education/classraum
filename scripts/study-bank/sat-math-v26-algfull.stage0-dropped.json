@@ -1,0 +1,207 @@
+[
+ {
+  "id": "SM26F-A06",
+  "domain": "Algebra",
+  "subskill": "Rows and chairs per row tied by one linear condition; total as a product",
+  "difficulty": "medium",
+  "prompt": "The chairs in a lecture hall are arranged in rows, with the same number of chairs in every row. Each row has 5 more chairs than the number of rows. If 4 more rows of the same length were added, the hall would have 76 more chairs. How many chairs are in the hall now?",
+  "choices": [
+   "196",
+   "266",
+   "342",
+   "456"
+  ],
+  "correct_answer": "266",
+  "explanation": "Let r be the number of rows, so each row has r + 5 chairs. Adding 4 rows adds 4(r + 5) chairs:\n4(r + 5) = 76\nr + 5 = 19, so r = 14.\nThe hall has 14 rows of 19 chairs: 14(19) = 266 chairs.\n\nChoice 342 is the number of chairs after the 4 rows are added: 18(19).\nChoice 456 comes from making the number of rows 5 more than the chairs per row: 24 rows of 19 chairs.\nChoice 196 comes from finding r = 14 and multiplying 14 by itself instead of by the 19 chairs in each row.",
+  "solve": "const d=5,m=4,T=76; const per=T/m; const r=per-d; return r*per;",
+  "distractor_solve": {
+   "196": "const d=5,m=4,T=76; const per=T/m; const r=per-d; return r*r;",
+   "342": "const d=5,m=4,T=76; const per=T/m; const r=per-d; return (r+m)*per;",
+   "456": "const d=5,m=4,T=76; const per=T/m; return (per+d)*per;"
+  },
+  "mechanism": [
+   "added rows times chairs per row equals the added chairs",
+   "solve for the number of rows",
+   "total chairs as rows times chairs per row"
+  ],
+  "quantity_asked": "number of chairs in the hall now",
+  "distractor_meta": {
+   "196": {
+    "error_kind": "product taken with the wrong factor",
+    "direction": "under"
+   },
+   "342": {
+    "error_kind": "answered for the enlarged hall",
+    "direction": "over"
+   },
+   "456": {
+    "error_kind": "rows and chairs-per-row relation reversed",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values 266 and 342 are three-digit even integers of equal complexity; neither is rounder.",
+  "arith_class_check": "no: all four are even; the multiples of 3 are 342 and 456 and the non-multiples 196 and 266, two and two.",
+  "self_audit": {
+   "risk": "low",
+   "note": "An option is a product of two linked counts, so testing one means factoring it as r(r + 5), which is a quadratic, not a substitution. The wrong options come from three different misreadings of the arrangement."
+  },
+  "bounds": [],
+  "assigned": "M/I",
+  "_stage0_drop": "rule 8 after its one return: total must be r(r + 5); 196 and 342 are not"
+ },
+ {
+  "id": "SM26F-D11",
+  "domain": "Algebra",
+  "subskill": "Inequality from a verbal comparison about consecutive odd integers",
+  "difficulty": "medium",
+  "prompt": "The sum of five consecutive odd integers is less than 71 more than 4 times the least of the five integers. What is the greatest possible value of the greatest of the five integers?",
+  "choices": [
+   "13",
+   "57",
+   "63",
+   "89"
+  ],
+  "correct_answer": "57",
+  "explanation": "Let n be the least of the five integers. Consecutive odd integers differ by 2, so the integers are n, n + 2, n + 4, n + 6, and n + 8, and their sum is 5n + 20.\nThe condition is 5n + 20 < 4n + 71, so n < 51.\nThe number n must be odd and less than 51, so the greatest possible value of n is 49. (For n = 51 the sum is 275 and 4(51) + 71 = 275, and 275 < 275 is false.) The greatest of the five integers is then 49 + 8 = 57.\n\nChoice 13 comes from adding 4n to both sides instead of subtracting it, which gives 9n < 51, so n is at most 5 and the greatest integer is 5 + 8 = 13.\nChoice 63 comes from writing the integers as n, n + 1, n + 2, n + 3, and n + 4, which gives 5n + 10 < 4n + 71, n < 61, n = 59, and a greatest integer of 59 + 4 = 63.\nChoice 89 comes from using 4 times the greatest integer, 4(n + 8), instead of 4 times the least, which gives 5n + 20 < 4n + 103, n < 83, n = 81, and 81 + 8 = 89.",
+  "solve": "const k=5,A=4,C=71; const go=b=>{let n=Number.isInteger(b)?b-1:Math.floor(b); while(((n%2)+2)%2!==1) n--; return n;}; const n=go((C-k*(k-1))/(k-A)); return n+2*(k-1);",
+  "distractor_solve": {
+   "13": "const k=5,A=4,C=71; const go=b=>{let n=Number.isInteger(b)?b-1:Math.floor(b); while(((n%2)+2)%2!==1) n--; return n;}; const n=go((C-k*(k-1))/(k+A)); return n+2*(k-1);",
+   "63": "const k=5,A=4,C=71; const go=b=>{let n=Number.isInteger(b)?b-1:Math.floor(b); while(((n%2)+2)%2!==1) n--; return n;}; const n=go((C-k*(k-1)/2)/(k-A)); return n+(k-1);",
+   "89": "const k=5,A=4,C=71; const go=b=>{let n=Number.isInteger(b)?b-1:Math.floor(b); while(((n%2)+2)%2!==1) n--; return n;}; const n=go((C+A*2*(k-1)-k*(k-1))/(k-A)); return n+2*(k-1);"
+  },
+  "mechanism": [
+   "consecutive odd integers written as n, n + 2, ..., n + 8",
+   "verbal comparison translated to a strict linear inequality in the least integer",
+   "greatest odd value under a strict bound, then the largest term"
+  ],
+  "quantity_asked": "greatest possible value of the greatest of the five integers",
+  "distractor_meta": {
+   "13": {
+    "error_kind": "term added to both sides instead of subtracted",
+    "direction": "under"
+   },
+   "63": {
+    "error_kind": "consecutive odd integers spaced by 1 instead of 2",
+    "direction": "over"
+   },
+   "89": {
+    "error_kind": "comparison applied to the greatest integer instead of the least",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "middle values 57 (key) and 63: both two-digit odd integers, both multiples of 3, neither a multiple of 5; the key is not the cleaner of the two.",
+  "arith_class_check": "no: the quantity asked is an odd integer, so all four options are odd; 57 and 63 are multiples of 3 (13 and 89 are not); none is a multiple of 5; the key is not alone in any class.",
+  "self_audit": {
+   "risk": "medium",
+   "note": "On a greatest stem, descending substitution tests 89 (least integer 81: 425 < 395 is false) and 63 (least integer 55: 295 < 291 is false) before the key, and each test needs the five integers rebuilt and the comparison checked. The decision point is the strict inequality at n = 51, where both sides equal 275, so the odd value 51 is excluded."
+  },
+  "bounds": [],
+  "assigned": "M/I",
+  "_stage0_drop": "rule 1 after its one return: live consecutive-odd family 0f958232/d283376d/de5e424f/70f7fd0c"
+ },
+ {
+  "id": "SM26F-A01",
+  "domain": "Algebra",
+  "subskill": "Equal shares before and after a change in group size and total: fractional linear equation",
+  "difficulty": "medium",
+  "prompt": "Four friends planned to split the cost of a cabin rental equally. Then a fifth friend joined the trip, and the total cost increased by $40 because of the extra guest. The five friends split the new total equally, and each of them paid $9 less than each of the four would have paid under the original plan. How much, in dollars, did each of the five friends pay?",
+  "choices": [
+   "12",
+   "44",
+   "68",
+   "76"
+  ],
+  "correct_answer": "76",
+  "explanation": "Let B be the original total cost. Under the original plan each friend would pay B/4; under the new plan each pays (B + 40)/5. The difference is 9:\nB/4 - (B + 40)/5 = 9\nMultiply by 20: 5B - 4(B + 40) = 180, so B - 160 = 180 and B = 340.\nThe new total is 340 + 40 = 380, so each of the five paid 380/5 = 76 dollars. (Under the original plan each would have paid 340/4 = 85, which is 9 more.)\n\nChoice 68 comes from finding B = 340 correctly but then dividing the original total, not the new total, by 5.\nChoice 44 comes from leaving the $40 out of the equation (B/4 - B/5 = 9 gives B = 180) and then computing (180 + 40)/5.\nChoice 12 comes from writing the new total as B - 40 in the equation (B/4 - (B - 40)/5 = 9 gives B = 20) and then computing (20 + 40)/5.",
+  "solve": "const n=4,m=1,c=40,d=9; const B=(d*n*(n+m)+c*n)/m; return (B+c)/(n+m);",
+  "distractor_solve": {
+   "12": "const n=4,m=1,c=40,d=9; const B=(d*n*(n+m)-c*n)/m; return (B+c)/(n+m);",
+   "44": "const n=4,m=1,c=40,d=9; const B=d*n*(n+m)/m; return (B+c)/(n+m);",
+   "68": "const n=4,m=1,c=40,d=9; const B=(d*n*(n+m)+c*n)/m; return B/(n+m);"
+  },
+  "mechanism": [
+   "express each share as total over group size",
+   "difference of shares equals the stated amount",
+   "clear denominators and solve for the total",
+   "evaluate the new share"
+  ],
+  "quantity_asked": "amount each of the five friends paid",
+  "distractor_meta": {
+   "12": {
+    "error_kind": "sign of the added cost in the equation",
+    "direction": "under"
+   },
+   "44": {
+    "error_kind": "added cost left out of the equation",
+    "direction": "under"
+   },
+   "68": {
+    "error_kind": "divided the wrong total",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: each new share is at least 40/5 = 8 dollars, and all options exceed it. The new share is less than the original share, which is unknown, so no readable bound separates the key.",
+  "interior_parity_check": "L key; interior 44 and 68 are two-digit even integers of equal complexity.",
+  "arith_class_check": "no: all four are multiples of 4; the stem implies no class that isolates the key.",
+  "self_audit": {
+   "risk": "medium",
+   "note": "Testing an option means rebuilding the new total, subtracting 40, and comparing two shares; ascending order reaches the key fourth. Distractors come from three different slips in setting up or finishing the equation."
+  },
+  "bounds": [],
+  "assigned": "M/L",
+  "_stage0_drop": "rule 3 at the merged stage 0 (merge-halves CLOSURE): options 12, 44, 76 are an evenly spaced run including the key 76 (44 = mean of 12 and the key); A had already used its return"
+ },
+ {
+  "id": "SM26F-C03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/L",
+  "subskill": "two purchases at shifted prices: a system in last month's prices, then the new price",
+  "prompt": "At a market last month, 4 kilograms of apples and 3 kilograms of pears cost a total of $22.25. This month, the price of apples is $0.20 per kilogram higher than last month, the price of pears is $0.50 per kilogram lower than last month, and 2 kilograms of apples and 5 kilograms of pears cost a total of $26.35. What is this month's price of pears, in dollars per kilogram?",
+  "choices": [
+   "2.05",
+   "3.25",
+   "4.35",
+   "4.45"
+  ],
+  "correct_answer": "4.45",
+  "explanation": "Let a and p be last month's prices, in dollars per kilogram, of apples and pears. Last month: 4a + 3p = 22.25. This month the prices are a + 0.20 and p - 0.50, so 2(a + 0.20) + 5(p - 0.50) = 26.35, which gives 2a + 0.40 + 5p - 2.50 = 26.35, or 2a + 5p = 28.45. Multiply this equation by 2: 4a + 10p = 56.90. Subtract the first equation: 7p = 34.65, so p = 4.95. This month's price of pears is 4.95 - 0.50 = 4.45 dollars per kilogram.\n\nChoice 4.35 comes from ignoring the price changes and solving 4a + 3p = 22.25 and 2a + 5p = 26.35 as if both purchases used the same prices. Choice 3.25 comes from a sign error when moving the constants: writing 2a + 5p = 26.35 + 0.40 - 2.50 = 24.25, which gives p = 3.75 and then 3.75 - 0.50 = 3.25. Choice 2.05 is this month's price of apples (a = 1.85, plus 0.20), not pears.",
+  "solve": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const sa=0.20,sp=-0.50; const [a,p]=s(4,3,22.25,2,5,26.35-2*sa-5*sp); return Math.round((p+sp)*100)/100;",
+  "distractor_solve": {
+   "4.35": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,p]=s(4,3,22.25,2,5,26.35); return Math.round(p*100)/100;",
+   "3.25": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const sa=0.20,sp=-0.50; const [a,p]=s(4,3,22.25,2,5,26.35+2*sa+5*sp); return Math.round((p+sp)*100)/100;",
+   "2.05": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const sa=0.20,sp=-0.50; const [a,p]=s(4,3,22.25,2,5,26.35-2*sa-5*sp); return Math.round((a+sa)*100)/100;"
+  },
+  "mechanism": [
+   "second equation written in shifted prices",
+   "expand and collect constants",
+   "solve for last month's price, then apply the change"
+  ],
+  "quantity_asked": "this month's price of pears per kilogram",
+  "distractor_meta": {
+   "4.35": {
+    "error_kind": "price changes ignored",
+    "direction": "under"
+   },
+   "3.25": {
+    "error_kind": "sign error moving constants",
+    "direction": "under"
+   },
+   "2.05": {
+    "error_kind": "wrong item (apples)",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bounds: 5 kg of pears cost less than $26.35, so this month's pear price is under 5.27, and 3 kg cost less than $22.25 last month; both are upper bounds that all four options satisfy. The stem says pears got CHEAPER, which points a guesser away from the largest option. No lower bound readable from the stem strikes 4.35, which sits on the key's side of every bound.",
+  "interior_parity_check": "interior options 3.25 and 4.35: both two-place decimals, complexity 5 and 5; key is not interior",
+  "arith_class_check": "no: all four are two-place money decimals ending in 5; none is singled out",
+  "self_audit": {
+   "risk": "medium",
+   "note": "the key is the largest although the stem says the pear price fell; the ignore-the-change answer 4.35 sits within 0.10 of the key, so a student who skips the shift lands next to it rather than far below"
+  },
+  "bounds": [],
+  "_stage0_drop": "rule 3 at the merged stage 0 (merge-halves CLOSURE): options 2.05, 3.25, 4.45 are an evenly spaced run including the key 4.45; C had already used its return"
+ }
+]

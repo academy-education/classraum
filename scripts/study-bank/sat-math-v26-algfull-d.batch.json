@@ -1,0 +1,653 @@
+[
+  {
+    "id": "SM26F-D01",
+    "domain": "Algebra",
+    "subskill": "Solve a linear inequality with distribution, then bound a linear expression",
+    "difficulty": "medium",
+    "prompt": "3(4x - 5) - 7(x - 3) ≤ 2x + 31\n\nAmong all numbers x that make the inequality above true, what is the maximum value of 12x + 13?",
+    "choices": [
+      "73",
+      "113",
+      "209",
+      "281"
+    ],
+    "correct_answer": "113",
+    "explanation": "Distribute on the left side: 3(4x - 5) = 12x - 15 and -7(x - 3) = -7x + 21. So the left side is 12x - 15 - 7x + 21 = 5x + 6.\nThe inequality becomes 5x + 6 ≤ 2x + 31, so 3x ≤ 25 and x ≤ 25/3.\nBecause 12x + 13 grows as x grows, its maximum occurs at x = 25/3: 12(25/3) + 13 = 100 + 13 = 113.\n\nChoice 73 comes from multiplying only the 4x by 3, writing 12x - 5, which gives 5x + 16 ≤ 2x + 31 and x ≤ 5.\nChoice 209 comes from writing -7(x - 3) as -7x - 3, which gives 5x - 18 ≤ 2x + 31 and x ≤ 49/3.\nChoice 281 comes from writing -7(x - 3) as -7x - 21, which gives 5x - 36 ≤ 2x + 31 and x ≤ 67/3.",
+    "solve": "const lhsX=3*4-7, lhsC=-3*5+7*3; const xmax=(31-lhsC)/(lhsX-2); return 12*xmax+13;",
+    "distractor_solve": {
+      "73": "const lhsX=3*4-7, lhsC=-5+7*3; const xmax=(31-lhsC)/(lhsX-2); return 12*xmax+13;",
+      "209": "const lhsX=3*4-7, lhsC=-3*5-3; const xmax=(31-lhsC)/(lhsX-2); return 12*xmax+13;",
+      "281": "const lhsX=3*4-7, lhsC=-3*5-7*3; const xmax=(31-lhsC)/(lhsX-2); return 12*xmax+13;"
+    },
+    "mechanism": [
+      "distribute two products with a negative factor",
+      "collect x on one side for an upper bound on x",
+      "evaluate an increasing linear expression at the bound"
+    ],
+    "quantity_asked": "maximum value of 12x + 13",
+    "distractor_meta": {
+      "73": {
+        "error_kind": "first factor distributed to one term only",
+        "direction": "under"
+      },
+      "209": {
+        "error_kind": "second factor not distributed to the constant",
+        "direction": "over"
+      },
+      "281": {
+        "error_kind": "sign of the distributed constant reversed",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "middle values 113 (key) and 209: both three-digit odd integers (complexity 3 and 3); neither is cleaner.",
+    "arith_class_check": "no: all four options are odd; 73, 113 and 281 are prime and 209 = 11 x 19; none is a multiple of 5; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "low",
+      "note": "Options are values of 12x + 13, so substituting back means converting each to x (fractions such as 49/3) and testing the inequality; descending order reaches the key on the third try only after two fractional checks. Distractors come from three different distribution slips, one under and two over, so no direction reading picks the key."
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-D02",
+    "domain": "Algebra",
+    "subskill": "Points of a line that lie in a region bounded by two inequalities; greatest y-coordinate",
+    "difficulty": "medium",
+    "prompt": "y ≥ x + 1\ny ≤ -x + 40\n\nFor some value of t, the point (t, 4t - 5) is a solution to the system of inequalities above. What is the greatest possible value of the y-coordinate of this point?",
+    "choices": [
+      "3",
+      "9",
+      "23",
+      "31"
+    ],
+    "correct_answer": "31",
+    "explanation": "Substitute x = t and y = 4t - 5 into each inequality.\nFirst: 4t - 5 ≥ t + 1, so 3t ≥ 6 and t ≥ 2.\nSecond: 4t - 5 ≤ -t + 40, so 5t ≤ 45 and t ≤ 9.\nSo 2 ≤ t ≤ 9. The y-coordinate 4t - 5 increases as t increases, so its greatest value is at t = 9: 4(9) - 5 = 31.\n\nChoice 3 is the least possible y-coordinate, 4(2) - 5, which comes from using the first inequality's bound on t.\nChoice 9 is the greatest possible value of t, not of the y-coordinate.\nChoice 23 comes from moving -5 to the other side without changing its sign in the second inequality, writing 5t ≤ 35 and t ≤ 7, so 4(7) - 5 = 23.",
+    "solve": "const p=4,q=-5,S=1,R=40; const tl=(S-q)/(p-1), th=(R-q)/(p+1); if (tl>th) return NaN; return p*th+q;",
+    "distractor_solve": {
+      "3": "const p=4,q=-5,S=1; const tl=(S-q)/(p-1); return p*tl+q;",
+      "9": "const p=4,q=-5,R=40; return (R-q)/(p+1);",
+      "23": "const p=4,q=-5,R=40; const t=(R+q)/(p+1); return p*t+q;"
+    },
+    "mechanism": [
+      "substitute a point given in terms of a parameter into two inequalities",
+      "interval of allowed parameter values",
+      "greatest value of the coordinate built from the parameter"
+    ],
+    "quantity_asked": "greatest y-coordinate of (t, 4t - 5) in the region",
+    "distractor_meta": {
+      "3": {
+        "error_kind": "bound from the other inequality (least instead of greatest)",
+        "direction": "under"
+      },
+      "9": {
+        "error_kind": "reported the parameter instead of the coordinate",
+        "direction": "under"
+      },
+      "23": {
+        "error_kind": "constant moved with the wrong sign",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: y ≤ -x + 40 with x = t ≥ 2 (or any positive t) gives y < 40; every option is below 40, so the bound strikes nothing. A sign reading (y positive) also strikes nothing. 23 lies on the key's side of every bound readable from the stem.",
+    "interior_parity_check": "key is the largest option; interior values 9 and 23 are both odd integers.",
+    "arith_class_check": "no: all four options are odd; 3 and 23 are primes like the key 31; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "medium",
+      "note": "The ask is a coordinate built from the parameter, so testing an option means converting it to t and checking both inequalities. The three wrong paths are different (other bound, parameter reported, sign slip); the slip's direction depends on the sign of the constant -5, not on anything a student can read from the question."
+    },
+    "bounds": [],
+    "assigned": "M/L"
+  },
+  {
+    "id": "SM26F-D03",
+    "domain": "Algebra",
+    "subskill": "Integers satisfying one linear inequality but not a second (complement after a flip)",
+    "difficulty": "hard",
+    "prompt": "-39 < 3x - 9 ≤ 36\n2(x - 7) < 5x + 1\n\nHow many integers x satisfy the first inequality above but do NOT satisfy the second inequality?",
+    "choices": [
+      "5",
+      "11",
+      "21",
+      "25"
+    ],
+    "correct_answer": "5",
+    "explanation": "First inequality: add 9 to each part to get -30 < 3x ≤ 45, then divide by 3: -10 < x ≤ 15.\nSecond inequality: 2x - 14 < 5x + 1, so -3x < 15. Dividing by -3 reverses the inequality: x > -5.\nAn integer that does NOT satisfy the second inequality has x ≤ -5. Together with -10 < x ≤ 15, the integers are -9, -8, -7, -6, and -5, which is 5 integers.\n\nChoice 11 comes from subtracting 9 instead of adding it in the first inequality, which gives -48 < 3x and x > -16, so the integers -15 through -5 are counted.\nChoice 21 comes from not reversing the inequality when dividing by -3, which gives x < -5 for the second inequality, so the integers from -5 through 15 are counted.\nChoice 25 comes from not dividing -30 by 3, which gives x > -30, so the integers -29 through -5 are counted. (It is also the number of integers that satisfy the first inequality alone.)",
+    "solve": "let n=0; for (let x=-100;x<=100;x++){ const A=(-39<3*x-9)&&(3*x-9<=36); const B=2*(x-7)<5*x+1; if (A&&!B) n++; } return n;",
+    "distractor_solve": {
+      "11": "let n=0; for (let x=-100;x<=100;x++){ const A=(x>(-39-9)/3)&&(x<=(36+9)/3); const notB=x<=-5; if (A&&notB) n++; } return n;",
+      "21": "let n=0; for (let x=-100;x<=100;x++){ const A=(-39<3*x-9)&&(3*x-9<=36); const notB=x>=-5; if (A&&notB) n++; } return n;",
+      "25": "let n=0; for (let x=-100;x<=100;x++){ const A=(x>-39+9)&&(x<=(36+9)/3); const notB=x<=-5; if (A&&notB) n++; } return n;"
+    },
+    "mechanism": [
+      "solve a compound inequality",
+      "reverse the inequality when dividing by a negative",
+      "complement of a solution set intersected with another",
+      "count integers in the result"
+    ],
+    "quantity_asked": "number of integers in the first solution set but not the second",
+    "distractor_meta": {
+      "11": {
+        "error_kind": "constant moved with the wrong sign in the compound inequality",
+        "direction": "over"
+      },
+      "21": {
+        "error_kind": "inequality not reversed when dividing by a negative",
+        "direction": "over"
+      },
+      "25": {
+        "error_kind": "one bound not divided by the coefficient",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: the count is at most the number of integers satisfying the first inequality, 25 (-9 through 15), which needs that inequality solved; every option is at most 25, so the bound strikes nothing and 11 and 21 lie on the key's side of it.",
+    "interior_parity_check": "key is the smallest option; interior values 11 and 21 are both two-digit odd integers.",
+    "arith_class_check": "no: all four options are odd; 5 and 25 are multiples of 5 and 11 and 21 are not; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "medium",
+      "note": "Counts cannot be substituted back. A student who treats 'do NOT satisfy' carelessly or skips the reversal lands on 21; the stem gives no hint that errors overshoot, since the complement could as easily have been the larger piece. The key is small because the cut falls near the bottom of the first interval, which is only visible after both inequalities are solved."
+    },
+    "bounds": [],
+    "assigned": "H/S"
+  },
+  {
+    "id": "SM26F-D04",
+    "domain": "Algebra",
+    "subskill": "Half-plane from a boundary through two points and a test point; bound at a new x",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graph of a certain linear inequality consists of a boundary line and all points on one side of it. The boundary line passes through the points (-3, 19) and (1, 3), and the origin, (0, 0), is part of the graph. If the point (13, k) is also part of the graph, what is the greatest possible value of k?",
+    "choices": [
+      "-45",
+      "-21",
+      "15",
+      "83"
+    ],
+    "correct_answer": "-45",
+    "explanation": "The slope of the boundary line is (3 - 19)/(1 - (-3)) = -16/4 = -4. Using the point (1, 3): y - 3 = -4(x - 1), so y = -4x + 7.\nAt x = 0 the line is at y = 7, and the origin has y = 0 < 7, so the origin lies below the line. The graph is therefore the line together with every point below it: y ≤ -4x + 7.\nFor the point (13, k): k ≤ -4(13) + 7 = -45. The greatest possible value of k is -45.\n\nChoice -21 comes from writing the line through (-3, 19) as y - 19 = -4(x - 3), with the wrong sign on -3, and then evaluating at x = 13.\nChoice 15 comes from computing the slope as change in x over change in y, -1/4, instead of -4.\nChoice 83 comes from using a slope of +4 instead of -4.",
+    "solve": "const x1=-3,y1=19,x2=1,y2=3,x3=13; const m=(y2-y1)/(x2-x1); const b=y1-m*x1; if (!(0<=b)) return NaN; return m*x3+b;",
+    "distractor_solve": {
+      "15": "const x1=-3,y1=19,x2=1,y2=3,x3=13; const m=(x2-x1)/(y2-y1); return y1+m*(x3-x1);",
+      "83": "const x1=-3,y1=19,x2=1,y2=3,x3=13; const m=-(y2-y1)/(x2-x1); return y1+m*(x3-x1);",
+      "-21": "const x1=-3,y1=19,x2=1,y2=3,x3=13; const m=(y2-y1)/(x2-x1); return y1+m*(x3+x1);"
+    },
+    "mechanism": [
+      "boundary line from two points",
+      "test point fixes the side of the half-plane",
+      "bound on y at a new x-value"
+    ],
+    "quantity_asked": "greatest possible k for (13, k) in the half-plane",
+    "distractor_meta": {
+      "15": {
+        "error_kind": "slope inverted (run over rise)",
+        "direction": "over"
+      },
+      "83": {
+        "error_kind": "slope sign reversed",
+        "direction": "over"
+      },
+      "-21": {
+        "error_kind": "sign slip on a point's x-coordinate in point-slope form",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: the two given points show y falling as x increases, so at x = 13 the boundary is below 3 and k < 3; this strikes 15 and 83, but -21 lies on the key's side of it with -45.",
+    "interior_parity_check": "key is the smallest option; interior values -21 and 15 are both two-digit odd integers.",
+    "arith_class_check": "no: all four options are odd; two negative and two positive; -45 and 15 are both multiples of 15 and of 5; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "low",
+      "note": "On a greatest stem, descending substitution reaches the key last, and checking any option needs the boundary equation and the side, which is the whole task. The sign reading (k negative because the line falls) leaves -21 alongside the key."
+    },
+    "bounds": [],
+    "assigned": "M/S"
+  },
+  {
+    "id": "SM26F-D05",
+    "domain": "Algebra",
+    "subskill": "Linear inequality across a unit conversion (Celsius target, Fahrenheit rate)",
+    "difficulty": "medium",
+    "prompt": "A liquid in a lab starts at a temperature of 40 degrees Fahrenheit (°F). It is heated so that its temperature rises at a constant rate of 1.5°F per minute. A reaction can begin only when the liquid's temperature is at least 70 degrees Celsius (°C). Temperatures are related by F = (9/5)C + 32, where F is the temperature in °F and C is the temperature in °C. What is the least whole number of minutes of heating needed before the reaction can begin?",
+    "choices": [
+      "44",
+      "58",
+      "79",
+      "103"
+    ],
+    "correct_answer": "79",
+    "explanation": "First write the requirement in °F: F = (9/5)(70) + 32 = 126 + 32 = 158, so the liquid must reach at least 158°F.\nAfter m minutes, the temperature is 40 + 1.5m degrees Fahrenheit, so 40 + 1.5m ≥ 158, which gives 1.5m ≥ 118 and m ≥ 78.66... .\nThe least whole number of minutes is 79.\n\nChoice 44 comes from converting the starting temperature to Celsius (about 4.4°C) but then using 1.5 as a rate in °C per minute: (70 - 4.44...)/1.5 is about 43.7.\nChoice 58 comes from leaving out the 32 in the conversion, so the target is taken as 126°F: (126 - 40)/1.5 is about 57.3.\nChoice 103 comes from subtracting the starting temperature in Celsius from the target in Fahrenheit: (158 - 4.44...)/1.5 is about 102.4.",
+    "solve": "const S=40,r=1.5,T=70; const TF=9/5*T+32; return Math.ceil((TF-S)/r-1e-9);",
+    "distractor_solve": {
+      "44": "const S=40,r=1.5,T=70; const SC=(S-32)*5/9; return Math.ceil((T-SC)/r-1e-9);",
+      "58": "const S=40,r=1.5,T=70; return Math.ceil((9/5*T-S)/r-1e-9);",
+      "103": "const S=40,r=1.5,T=70; const TF=9/5*T+32, SC=(S-32)*5/9; return Math.ceil((TF-SC)/r-1e-9);"
+    },
+    "mechanism": [
+      "convert a Celsius threshold to Fahrenheit with a linear formula",
+      "starting value plus rate times time at least the threshold",
+      "least whole number by rounding up"
+    ],
+    "quantity_asked": "least whole number of minutes of heating",
+    "distractor_meta": {
+      "44": {
+        "error_kind": "Fahrenheit rate used on a Celsius scale",
+        "direction": "under"
+      },
+      "58": {
+        "error_kind": "conversion constant 32 left out",
+        "direction": "under"
+      },
+      "103": {
+        "error_kind": "start and target in different units",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "middle values 58 and 79 (key): both two-digit integers, neither a multiple of 5 or 10; the key is not the cleaner of the two.",
+    "arith_class_check": "no: 44 and 58 are even, 79 and 103 odd; no multiples of 5; 79 and 103 are prime; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "low",
+      "note": "On a least stem, ascending substitution must reject 44 and 58 first, and each check needs the converted target. The errors come from three different unit mistakes and fall on both sides of the key."
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-D06",
+    "domain": "Algebra",
+    "subskill": "Least integer solution of a linear inequality fixes a range for a constant",
+    "difficulty": "medium",
+    "prompt": "11x - k > 4(x - 4) + 11\n\nIn the inequality above, k is a constant. The least integer that is a solution to the inequality is 7. What is the least possible value of k?",
+    "choices": [
+      "35",
+      "37",
+      "47",
+      "95"
+    ],
+    "correct_answer": "47",
+    "explanation": "Simplify the right side: 4(x - 4) + 11 = 4x - 16 + 11 = 4x - 5. Then 11x - k > 4x - 5 gives 7x > k - 5, so x > (k - 5)/7.\nThe solutions are all numbers greater than (k - 5)/7. For 7 to be the least integer solution, 7 must be a solution and 6 must not be. Since 6 is not a solution, (k - 5)/7 ≥ 6, so k - 5 ≥ 42 and k ≥ 47. (Since 7 is a solution, (k - 5)/7 < 7, so k < 54.)\nCheck k = 47: the inequality becomes x > 6, and its least integer solution is 7. The least possible value of k is 47.\n\nChoice 35 comes from multiplying only the x by 4, writing 4x - 4 + 11 = 4x + 7, which gives x > (k + 7)/7 and k ≥ 35.\nChoice 37 comes from moving the -5 to the other side without changing its sign, writing 7x > k + 5, which gives k ≥ 37.\nChoice 95 comes from combining 11x and 4x by adding instead of subtracting, writing 15x > k - 5, which gives (k - 5)/15 ≥ 6 and k ≥ 95.",
+    "solve": "const a=11,b=4,p=4,q=11,N=7; const d=a-b, c=-b*p+q; return d*(N-1)-c;",
+    "distractor_solve": {
+      "35": "const a=11,b=4,p=4,q=11,N=7; const d=a-b, c=-p+q; return d*(N-1)-c;",
+      "37": "const a=11,b=4,p=4,q=11,N=7; const d=a-b, c=-b*p+q; return d*(N-1)+c;",
+      "95": "const a=11,b=4,p=4,q=11,N=7; const d=a+b, c=-b*p+q; return d*(N-1)-c;"
+    },
+    "mechanism": [
+      "solve the inequality for x in terms of the constant",
+      "a stated least integer solution N puts the bound in [N - 1, N)",
+      "least constant from the lower end of that range"
+    ],
+    "quantity_asked": "least possible value of the constant k",
+    "distractor_meta": {
+      "35": {
+        "error_kind": "factor not distributed to the constant inside the parentheses",
+        "direction": "under"
+      },
+      "37": {
+        "error_kind": "sign of a constant not changed when moved across the inequality",
+        "direction": "under"
+      },
+      "95": {
+        "error_kind": "x-coefficients added instead of subtracted",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "middle values 37 and 47 (key): both two-digit odd integers, both prime, neither a multiple of 5; the key is not the cleaner of the two.",
+    "arith_class_check": "no: all four options are odd; 35 and 95 are the multiples of 5 (two of them); 37 and 47 are prime (two of them); the key is not alone in any class.",
+    "self_audit": {
+      "risk": "medium",
+      "note": "On a least stem, ascending substitution tries 35 (least integer solution 5), 37 (least integer solution 5), then the key, so the key is the third substitution and each one needs the inequality re-solved. The wrong paths are two constant slips (both below) and a coefficient slip (above), so their direction is not readable from the stem. The decision point is that 6 must fail, which gives the inclusive lower end k ≥ 47."
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-D07",
+    "domain": "Algebra",
+    "subskill": "Inequality in two variables tied by a linear equation; least value of one variable",
+    "difficulty": "medium",
+    "prompt": "b = 2a + 6\n2b - 5a ≤ -22\n\nThe numbers a and b satisfy both the equation and the inequality shown. What is the least possible value of b?",
+    "choices": [
+      "26",
+      "34",
+      "62",
+      "74"
+    ],
+    "correct_answer": "74",
+    "explanation": "Substitute b = 2a + 6 into the inequality: 2(2a + 6) - 5a ≤ -22, so 4a + 12 - 5a ≤ -22 and -a + 12 ≤ -22.\nThen -a ≤ -34. Multiplying by -1 reverses the inequality: a ≥ 34.\nSince b = 2a + 6 increases as a increases, the least possible value of b is 2(34) + 6 = 74.\n\nChoice 26 comes from writing 2(2a + 6) as 4a - 12, which gives -a - 12 ≤ -22, a ≥ 10, and b = 2(10) + 6.\nChoice 34 is the least possible value of a, not of b.\nChoice 62 comes from multiplying only 2a by 2, writing 4a + 6, which gives -a + 6 ≤ -22, a ≥ 28, and b = 2(28) + 6.",
+    "solve": "const m=2,q=6,w=2,u=-5,r=-22; const A=u+w*m; const abound=(r-w*q)/A; return m*abound+q;",
+    "distractor_solve": {
+      "26": "const m=2,q=6,w=2,u=-5,r=-22; const A=u+w*m; const abound=(r+w*q)/A; return m*abound+q;",
+      "34": "const m=2,q=6,w=2,u=-5,r=-22; const A=u+w*m; return (r-w*q)/A;",
+      "62": "const m=2,q=6,w=2,u=-5,r=-22; const A=u+w*m; const abound=(r-q)/A; return m*abound+q;"
+    },
+    "mechanism": [
+      "substitute a linear relation into an inequality",
+      "reverse the inequality to get a lower bound on a",
+      "least value of the related variable"
+    ],
+    "quantity_asked": "least possible value of b",
+    "distractor_meta": {
+      "26": {
+        "error_kind": "sign of a distributed constant reversed",
+        "direction": "under"
+      },
+      "34": {
+        "error_kind": "reported the other variable's bound",
+        "direction": "under"
+      },
+      "62": {
+        "error_kind": "factor not distributed to the constant",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: from 2b - 5a ≤ -22 one could note 5a ≥ 2b + 22, but that needs a's value; no sign or size bound on b is readable from the stem (b's sign depends on a). Once the slip-free bound a ≥ 34 is found, all options are checked anyway; no stated cap orders the options, and 62 lies next to the key.",
+    "interior_parity_check": "key is the largest option; interior values 34 and 62 are both two-digit even integers.",
+    "arith_class_check": "no: all four options are even; none is a multiple of 5; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "medium",
+      "note": "On a least stem, ascending substitution tests 26, 34 and 62 before the key, each needing a from b and the inequality check. The three wrong paths differ (two distribution slips and a reported variable); their being below the key depends on the specific constants, not on anything the stem signals."
+    },
+    "bounds": [],
+    "assigned": "M/L"
+  },
+  {
+    "id": "SM26F-D08",
+    "domain": "Algebra",
+    "subskill": "Points in a half-plane: greatest intercept constant of the boundary line",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the points (3, 14), (-5, -11), and (6, 1) all satisfy the inequality y ≥ -3x + c, where c is a constant. What is the greatest possible value of c?",
+    "choices": [
+      "-26",
+      "-17",
+      "4",
+      "19"
+    ],
+    "correct_answer": "-26",
+    "explanation": "Rewrite y ≥ -3x + c as c ≤ y + 3x. Each of the three points must make this true.\nFor (3, 14): c ≤ 14 + 3(3) = 23.\nFor (-5, -11): c ≤ -11 + 3(-5) = -11 - 15 = -26.\nFor (6, 1): c ≤ 1 + 3(6) = 19.\nAll three conditions must hold, so c ≤ -26. The greatest possible value of c is -26.\n\nChoice -17 comes from rewriting the inequality as c ≤ y - 3x, which gives 5, 4, and -17 for the three points, the least of which is -17.\nChoice 4 comes from computing 3(-5) as 15 for the point (-5, -11), which gives c ≤ 4 for that point; with 23 and 19 from the other two points, the least value is 4.\nChoice 19 comes from using only the points (3, 14) and (6, 1) and leaving out (-5, -11).",
+    "solve": "const P=[[3,14],[-5,-11],[6,1]], m=-3; return Math.min(...P.map(([x,y])=>y-m*x));",
+    "distractor_solve": {
+      "4": "const P=[[3,14],[-5,-11],[6,1]], m=-3; return Math.min(...P.map(([x,y])=>x<0 ? y-m*(-x) : y-m*x));",
+      "19": "const P=[[3,14],[-5,-11],[6,1]], m=-3; return Math.min(...P.filter(([x])=>x>0).map(([x,y])=>y-m*x));",
+      "-17": "const P=[[3,14],[-5,-11],[6,1]], m=-3; return Math.min(...P.map(([x,y])=>y+m*x));"
+    },
+    "mechanism": [
+      "each point in the half-plane gives an upper bound on the intercept constant",
+      "the tightest point bound binds",
+      "greatest intercept constant of a boundary line with a fixed slope"
+    ],
+    "quantity_asked": "greatest possible value of the constant c",
+    "distractor_meta": {
+      "4": {
+        "error_kind": "product with a negative coordinate computed as positive",
+        "direction": "over"
+      },
+      "19": {
+        "error_kind": "one point left out of the conditions",
+        "direction": "over"
+      },
+      "-17": {
+        "error_kind": "sign of the x-term reversed when isolating c",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: any one point gives c ≤ y + 3x in one step; (3, 14) gives c ≤ 23 and (6, 1) gives c ≤ 19. All four options are at most 19, so these one-point bounds eliminate nothing, and -17 and 4 lie on the key's side (below) of both. The only bound that separates the options is the one from (-5, -11), and computing it is the work. Sign gives nothing: two options are negative and two positive, and the stem does not fix the sign of c. A sign slip on the x-term raises the bound for a point with positive x and lowers it for a point with negative x, so whether it moves the answer up or down depends on the points, not on the stem.",
+    "interior_parity_check": "middle values -17 and 4: both integers; neither is a multiple of 5; the key is the smallest option, not a middle one.",
+    "arith_class_check": "no: -26 and 4 are even, -17 and 19 are odd; -26 and -17 are negative, 4 and 19 positive; no option is a multiple of 5; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "medium",
+      "note": "On a greatest stem, descending substitution tests 19, 4 and -17 before the key, each needing all three points checked (each fails at (-5, -11)). Two wrong paths are sign slips whose direction depends on the sign of each x-coordinate, and one leaves out a point, so the errors do not share one predictable direction."
+    },
+    "bounds": [],
+    "assigned": "M/S"
+  },
+  {
+    "id": "SM26F-D09",
+    "domain": "Algebra",
+    "subskill": "Part at least a fixed fraction of a total that contains it; least whole count",
+    "difficulty": "hard",
+    "prompt": "A theater sold exactly 89 tickets for one show. Each ticket was either an adult ticket for $14 or a child ticket for $10. The theater's manager wants the revenue from adult tickets to be at least 75% of the total ticket revenue for the show. What is the least number of adult tickets that meets this goal?",
+    "choices": [
+      "32",
+      "48",
+      "61",
+      "67"
+    ],
+    "correct_answer": "61",
+    "explanation": "Let a be the number of adult tickets. Then 89 - a tickets are child tickets.\nAdult revenue is 14a, and total revenue is 14a + 10(89 - a) = 4a + 890.\nThe goal is 14a ≥ 0.75(4a + 890), so 14a ≥ 3a + 667.5 and 11a ≥ 667.5, which gives a ≥ 60.68... .\nThe least whole number of adult tickets is 61. (Check: with 61 adult tickets, adult revenue is 854 and total revenue is 854 + 28(10) = 1,134, and 854/1,134 is about 75.3%; with 60 it is about 74.3%.)\n\nChoice 32 comes from comparing adult revenue with 75% of the child revenue only: 14a ≥ 0.75(10)(89 - a).\nChoice 48 comes from using 10 × 89, the revenue if every ticket were a child ticket, as the total: 14a ≥ 0.75(890).\nChoice 67 comes from requiring 75% of the tickets, rather than 75% of the revenue, to be adult tickets: a ≥ 0.75(89) = 66.75.",
+    "solve": "const pa=14,pc=10,N=89,f=0.75; for (let a=0;a<=N;a++){ if (pa*a >= f*(pa*a+pc*(N-a))-1e-9) return a; } return NaN;",
+    "distractor_solve": {
+      "32": "const pa=14,pc=10,N=89,f=0.75; return Math.ceil(f*pc*N/(pa+f*pc)-1e-9);",
+      "48": "const pa=14,pc=10,N=89,f=0.75; return Math.ceil(f*pc*N/pa-1e-9);",
+      "67": "const N=89,f=0.75; return Math.ceil(f*N-1e-9);"
+    },
+    "mechanism": [
+      "express the total as a linear expression that contains the part",
+      "fraction-of-total inequality",
+      "collect the unknown and round up"
+    ],
+    "quantity_asked": "least number of adult tickets",
+    "distractor_meta": {
+      "32": {
+        "error_kind": "compared with a fraction of the other part, not the total",
+        "direction": "under"
+      },
+      "48": {
+        "error_kind": "total revenue computed as if all tickets were child tickets",
+        "direction": "under"
+      },
+      "67": {
+        "error_kind": "fraction applied to ticket count instead of revenue",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "middle values 48 and 61 (key): both two-digit integers (complexity 2 and 2), neither a multiple of 5 or 10; the key is not the cleaner of the two.",
+    "arith_class_check": "no: 32 and 48 are even, 61 and 67 odd; no multiples of 5; 61 and 67 are prime; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "medium",
+      "note": "Testing an option needs both revenues and a percent comparison; ascending order rejects 32 and 48 first. The tempting shortcut (75% of 89 tickets) gives 67, above the key, while the two set-up errors that drop the adult share from the total land below it. A student who reasons that adult tickets cost more, so fewer than 75% of tickets are needed, can strike 67, which still leaves three options and requires the inequality."
+    },
+    "bounds": [],
+    "assigned": "H/I"
+  },
+  {
+    "id": "SM26F-D10",
+    "domain": "Algebra",
+    "subskill": "Constant that makes one inequality's solution set contain another's",
+    "difficulty": "medium",
+    "prompt": "4x - 6 < 2x + 28\n3x - c < 5\n\nIn the inequalities above, c is a constant. Every value of x that satisfies the first inequality also satisfies the second inequality. What is the least possible value of c?",
+    "choices": [
+      "12",
+      "28",
+      "46",
+      "56"
+    ],
+    "correct_answer": "46",
+    "explanation": "First inequality: 4x - 6 < 2x + 28, so 2x < 34 and x < 17.\nSecond inequality: 3x < 5 + c, so x < (5 + c)/3.\nEvery x with x < 17 must also satisfy x < (5 + c)/3. This happens exactly when (5 + c)/3 is at least 17 (if (5 + c)/3 were less than 17, numbers just below 17 would satisfy the first inequality but not the second).\nSo (5 + c)/3 ≥ 17, which gives 5 + c ≥ 51 and c ≥ 46. The least possible value of c is 46.\n\nChoice 12 comes from writing 5 + c ≥ 17 without multiplying 17 by 3.\nChoice 28 comes from subtracting 6 instead of adding it in the first inequality, which gives 2x < 22 and x < 11, so (5 + c)/3 ≥ 11 and c ≥ 28.\nChoice 56 comes from a sign error when isolating c: writing c > 3x + 5 instead of c > 3x - 5, so c ≥ 3(17) + 5.",
+    "solve": "const s=(28+6)/(4-2); const m=3,k=5; return m*s-k;",
+    "distractor_solve": {
+      "12": "const s=(28+6)/(4-2); const k=5; return s-k;",
+      "28": "const s=(28-6)/(4-2); const m=3,k=5; return m*s-k;",
+      "56": "const s=(28+6)/(4-2); const m=3,k=5; return m*s+k;"
+    },
+    "mechanism": [
+      "solve the first inequality for its bound",
+      "solve the second for a bound in terms of c",
+      "containment of solution sets compares the bounds"
+    ],
+    "quantity_asked": "least c so the first solution set is inside the second",
+    "distractor_meta": {
+      "12": {
+        "error_kind": "bound not multiplied back by the coefficient",
+        "direction": "under"
+      },
+      "28": {
+        "error_kind": "constant moved with the wrong sign in the first inequality",
+        "direction": "under"
+      },
+      "56": {
+        "error_kind": "sign error isolating the constant c",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "middle values 28 and 46 (key): both two-digit even integers, neither a multiple of 5 or 10; the key is not the cleaner of the two.",
+    "arith_class_check": "no: all four options are even; none is a multiple of 5; 12 and 28 are multiples of 4 while 46 and 56 split; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "low",
+      "note": "On a least stem, ascending substitution must reject 12 and 28 before the key, and rejecting a value of c means finding an x below 17 that fails the second inequality, which already requires solving both. Errors land on both sides of the key."
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-D11",
+    "domain": "Algebra",
+    "subskill": "Inequality from a verbal comparison about consecutive odd integers",
+    "difficulty": "medium",
+    "prompt": "The sum of five consecutive odd integers is less than 71 more than 4 times the least of the five integers. What is the greatest possible value of the greatest of the five integers?",
+    "choices": [
+      "13",
+      "57",
+      "63",
+      "89"
+    ],
+    "correct_answer": "57",
+    "explanation": "Let n be the least of the five integers. Consecutive odd integers differ by 2, so the integers are n, n + 2, n + 4, n + 6, and n + 8, and their sum is 5n + 20.\nThe condition is 5n + 20 < 4n + 71, so n < 51.\nThe number n must be odd and less than 51, so the greatest possible value of n is 49. (For n = 51 the sum is 275 and 4(51) + 71 = 275, and 275 < 275 is false.) The greatest of the five integers is then 49 + 8 = 57.\n\nChoice 13 comes from adding 4n to both sides instead of subtracting it, which gives 9n < 51, so n is at most 5 and the greatest integer is 5 + 8 = 13.\nChoice 63 comes from writing the integers as n, n + 1, n + 2, n + 3, and n + 4, which gives 5n + 10 < 4n + 71, n < 61, n = 59, and a greatest integer of 59 + 4 = 63.\nChoice 89 comes from using 4 times the greatest integer, 4(n + 8), instead of 4 times the least, which gives 5n + 20 < 4n + 103, n < 83, n = 81, and 81 + 8 = 89.",
+    "solve": "const k=5,A=4,C=71; const go=b=>{let n=Number.isInteger(b)?b-1:Math.floor(b); while(((n%2)+2)%2!==1) n--; return n;}; const n=go((C-k*(k-1))/(k-A)); return n+2*(k-1);",
+    "distractor_solve": {
+      "13": "const k=5,A=4,C=71; const go=b=>{let n=Number.isInteger(b)?b-1:Math.floor(b); while(((n%2)+2)%2!==1) n--; return n;}; const n=go((C-k*(k-1))/(k+A)); return n+2*(k-1);",
+      "63": "const k=5,A=4,C=71; const go=b=>{let n=Number.isInteger(b)?b-1:Math.floor(b); while(((n%2)+2)%2!==1) n--; return n;}; const n=go((C-k*(k-1)/2)/(k-A)); return n+(k-1);",
+      "89": "const k=5,A=4,C=71; const go=b=>{let n=Number.isInteger(b)?b-1:Math.floor(b); while(((n%2)+2)%2!==1) n--; return n;}; const n=go((C+A*2*(k-1)-k*(k-1))/(k-A)); return n+2*(k-1);"
+    },
+    "mechanism": [
+      "consecutive odd integers written as n, n + 2, ..., n + 8",
+      "verbal comparison translated to a strict linear inequality in the least integer",
+      "greatest odd value under a strict bound, then the largest term"
+    ],
+    "quantity_asked": "greatest possible value of the greatest of the five integers",
+    "distractor_meta": {
+      "13": {
+        "error_kind": "term added to both sides instead of subtracted",
+        "direction": "under"
+      },
+      "63": {
+        "error_kind": "consecutive odd integers spaced by 1 instead of 2",
+        "direction": "over"
+      },
+      "89": {
+        "error_kind": "comparison applied to the greatest integer instead of the least",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "middle values 57 (key) and 63: both two-digit odd integers, both multiples of 3, neither a multiple of 5; the key is not the cleaner of the two.",
+    "arith_class_check": "no: the quantity asked is an odd integer, so all four options are odd; 57 and 63 are multiples of 3 (13 and 89 are not); none is a multiple of 5; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "medium",
+      "note": "On a greatest stem, descending substitution tests 89 (least integer 81: 425 < 395 is false) and 63 (least integer 55: 295 < 291 is false) before the key, and each test needs the five integers rebuilt and the comparison checked. The decision point is the strict inequality at n = 51, where both sides equal 275, so the odd value 51 is excluded."
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-D12",
+    "domain": "Algebra",
+    "subskill": "Range of a variable bounded by two separate linear inequalities",
+    "difficulty": "medium",
+    "prompt": "3p + 15 ≤ 228\n5p - 35 ≥ 45\n\nThe number p satisfies both inequalities shown. What is the difference between the greatest possible value of p and the least possible value of p?",
+    "choices": [
+      "55",
+      "65",
+      "69",
+      "71"
+    ],
+    "correct_answer": "55",
+    "explanation": "First inequality: 3p + 15 ≤ 228, so 3p ≤ 213 and p ≤ 71.\nSecond inequality: 5p - 35 ≥ 45, so 5p ≥ 80 and p ≥ 16.\nSo 16 ≤ p ≤ 71. The greatest possible value of p is 71 and the least is 16, and the difference is 71 - 16 = 55.\n\nChoice 65 comes from adding 15 instead of subtracting it in the first inequality, writing 3p ≤ 243 and p ≤ 81, so the difference is 81 - 16.\nChoice 69 comes from subtracting 35 instead of adding it in the second inequality, writing 5p ≥ 10 and p ≥ 2, so the difference is 71 - 2.\nChoice 71 is the greatest possible value of p, not the difference between the greatest and least values.",
+    "solve": "const U=(228-15)/3, L=(45+35)/5; return U-L;",
+    "distractor_solve": {
+      "65": "const U=(228+15)/3, L=(45+35)/5; return U-L;",
+      "69": "const U=(228-15)/3, L=(45-35)/5; return U-L;",
+      "71": "const U=(228-15)/3; return U;"
+    },
+    "mechanism": [
+      "solve one inequality for an upper bound",
+      "solve a second inequality for a lower bound",
+      "length of the resulting interval"
+    ],
+    "quantity_asked": "greatest possible p minus least possible p",
+    "distractor_meta": {
+      "65": {
+        "error_kind": "constant moved with the wrong sign (upper-bound inequality)",
+        "direction": "over"
+      },
+      "69": {
+        "error_kind": "constant moved with the wrong sign (lower-bound inequality)",
+        "direction": "over"
+      },
+      "71": {
+        "error_kind": "reported an endpoint instead of the difference",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: the difference is less than the greatest value of p (since p ≥ 16 > 0), but that value is not readable without solving the first inequality; once p ≤ 71 is known, 65 and 69 still lie on the key's side of it, so the bound strikes at most 71. The raw constants (228, 45) do not order the options.",
+    "interior_parity_check": "key is the smallest option; interior values 65 and 69 are both two-digit odd integers.",
+    "arith_class_check": "no: all four options are odd; 55 and 65 are multiples of 5; no squares; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "low",
+      "note": "The ask is a difference, so no option can be substituted back. The two sign-slip distractors move different endpoints, by amounts set by the constants (30/3 up, 70/5 down), so the direction of an error is not readable from the stem."
+    },
+    "bounds": [],
+    "assigned": "M/S"
+  },
+  {
+    "id": "SM26F-D13",
+    "domain": "Algebra",
+    "subskill": "Slope between two bounds for a line through points with an unknown coordinate",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, line ℓ passes through the points (-9, k) and (12, 2k - 30), where k is an integer. The slope of line ℓ is greater than -1/3 and less than 7/4. How many different values of k are possible?",
+    "choices": [
+      "6",
+      "24",
+      "29",
+      "43"
+    ],
+    "correct_answer": "43",
+    "explanation": "The slope of line ℓ is ((2k - 30) - k)/(12 - (-9)) = (k - 30)/21.\nSo -1/3 < (k - 30)/21 < 7/4. Multiply each part by 21: -7 < k - 30 < 36.75. Add 30 to each part: 23 < k < 66.75.\nThe integers in this range are 24, 25, ..., 66, and there are 66 - 24 + 1 = 43 of them.\n\nChoice 6 comes from using 12 - 9 = 3 as the change in x, which gives -1 < k - 30 < 5.25, so 29 < k < 35.25: the 6 integers 30 through 35.\nChoice 24 comes from using 12 as the change in x, leaving out the x-coordinate -9, which gives -4 < k - 30 < 21, so 26 < k < 51: the 24 integers 27 through 50.\nChoice 29 comes from using 1/3 instead of -1/3 as the lower limit, which gives 7 < k - 30 < 36.75, so 37 < k < 66.75: the 29 integers 38 through 66.",
+    "solve": "const x1=-9,x2=12,b=-30,s1=-1/3,s2=7/4; const R=x2-x1; const lo=s1*R-b, hi=s2*R-b; let c=0; for(let k=Math.floor(lo)-2;k<=Math.ceil(hi)+2;k++){ if(k>lo+1e-9&&k<hi-1e-9) c++; } return c;",
+    "distractor_solve": {
+      "6": "const x1=-9,x2=12,b=-30,s1=-1/3,s2=7/4; const R=x2+x1; const lo=s1*R-b, hi=s2*R-b; let c=0; for(let k=Math.floor(lo)-2;k<=Math.ceil(hi)+2;k++){ if(k>lo+1e-9&&k<hi-1e-9) c++; } return c;",
+      "24": "const x1=-9,x2=12,b=-30,s1=-1/3,s2=7/4; const R=x2; const lo=s1*R-b, hi=s2*R-b; let c=0; for(let k=Math.floor(lo)-2;k<=Math.ceil(hi)+2;k++){ if(k>lo+1e-9&&k<hi-1e-9) c++; } return c;",
+      "29": "const x1=-9,x2=12,b=-30,s1=-1/3,s2=7/4; const R=x2-x1; const lo=-s1*R-b, hi=s2*R-b; let c=0; for(let k=Math.floor(lo)-2;k<=Math.ceil(hi)+2;k++){ if(k>lo+1e-9&&k<hi-1e-9) c++; } return c;"
+    },
+    "mechanism": [
+      "slope from two points whose coordinates involve the unknown",
+      "compound inequality on the slope",
+      "solve for the unknown and count integers strictly inside"
+    ],
+    "quantity_asked": "number of integer values of k",
+    "distractor_meta": {
+      "6": {
+        "error_kind": "change in x computed with the sign of a negative coordinate dropped",
+        "direction": "under"
+      },
+      "24": {
+        "error_kind": "change in x taken as one coordinate only",
+        "direction": "under"
+      },
+      "29": {
+        "error_kind": "sign of a slope bound dropped",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: the count cannot exceed the length of the allowed k-interval plus 1, and that length is (7/4 + 1/3) times the change in x; nothing in the stem bounds it more cheaply, and the change in x must be computed first (21, giving at most 44). All four options are below 44, on the key's side. No sign reading applies: all options are positive counts. Each wrong path changes the change in x or the slope range, and whether that raises or lowers the count is not readable from the stem without computing it; a slip in the intercept-like constant, for example, would shift the interval without changing the count.",
+    "interior_parity_check": "middle values 24 and 29: both two-digit integers, neither a multiple of 5; the key is the largest option, not a middle one.",
+    "arith_class_check": "no: 6 and 24 are even, 29 and 43 are odd; 6 and 24 are multiples of 3; none is a multiple of 5 or a perfect square; the key is not alone in any class.",
+    "self_audit": {
+      "risk": "medium",
+      "note": "A count of integers strictly inside a two-sided interval cannot be checked by substituting an option. The three wrong paths are two different change-in-x slips and a dropped sign on a slope bound; the key is largest for these numbers, but no rule in the stem says which way a wrong change in x moves the count. The decision points are the negative coordinate in the change in x and the strict inequalities at non-integer ends."
+    },
+    "bounds": [],
+    "assigned": "M/L"
+  }
+]

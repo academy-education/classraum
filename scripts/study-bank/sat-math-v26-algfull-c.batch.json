@@ -1,0 +1,652 @@
+[
+ {
+  "id": "SM26F-C01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/S",
+  "subskill": "no-solution system: find the parameter, then the y-intercept of the second line",
+  "prompt": "12x - 8y = 7\n3x + ky = 18\n\nIn the system of equations above, k is a constant. The system has no solution. In the xy-plane, what is the y-coordinate of the y-intercept of the graph of the second equation?",
+  "choices": [
+   "-9",
+   "-7/8",
+   "3/2",
+   "6"
+  ],
+  "correct_answer": "-9",
+  "explanation": "A system of two linear equations has no solution when the lines are parallel and distinct, so the coefficients of x and y must be proportional. The x-coefficients are 12 and 3, so the second equation's coefficients are 3/12 = 1/4 of the first's: k = (1/4)(-8) = -2. (The constants 7 and 18 are not in that ratio, so the lines are distinct.) The second equation is 3x - 2y = 18. At the y-intercept x = 0, so -2y = 18 and y = -9.\n\nChoice -7/8 is the y-intercept of the first equation, 12x - 8y = 7, not the second. Choice 3/2 is the common slope of the two parallel lines, not an intercept. Choice 6 is the x-intercept of the second equation, 18/3, found by setting y = 0 instead of x = 0.",
+  "solve": "const a=12,b=-8,d=3,c2=18; const k=b*d/a; return c2/k;",
+  "distractor_solve": {
+   "6": "const d=3,c2=18; return c2/d;",
+   "-7/8": "const b=-8,c1=7; return c1/b;",
+   "3/2": "const a=12,b=-8; return -a/b;"
+  },
+  "mechanism": [
+   "no solution: proportional x- and y-coefficients",
+   "solve for k from the coefficient ratio",
+   "y-intercept of the second line = constant / k"
+  ],
+  "quantity_asked": "the y-intercept of the second equation's graph",
+  "distractor_meta": {
+   "6": {
+    "error_kind": "x-intercept instead of y-intercept",
+    "direction": "over"
+   },
+   "-7/8": {
+    "error_kind": "intercept of the wrong line",
+    "direction": "over"
+   },
+   "3/2": {
+    "error_kind": "slope reported instead of intercept",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: sign. Parallel to the first line means positive slope 3/2, so -3/k > 0 and k < 0, making 18/k negative. The distractor -7/8 is also negative, on the key's side, so the sign bound strikes only 3/2 and 6.",
+  "interior_parity_check": "interior options -7/8 and 3/2: both fractions, complexity 3 and 3; key is not interior",
+  "arith_class_check": "no: two integers (-9, 6) and two fractions; two negatives and two positives; the key is not the lone member of any class",
+  "self_audit": {
+   "risk": "low",
+   "note": "no plug-back is possible on an intercept; the sign of the intercept needs k's sign, and one distractor shares it"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C02",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "assigned": "H/I",
+  "subskill": "a system with a known solution: the unknown coefficients form a new linear system",
+  "prompt": "ax + by = -26\nbx - ay = 52\n\nHere a and b are fixed numbers, and the only pair (x, y) that makes both equations true is (6, -4). Find a + b.",
+  "choices": [
+   "-11",
+   "-7",
+   "9",
+   "13"
+  ],
+  "correct_answer": "9",
+  "explanation": "Because (6, -4) satisfies both equations, substitute x = 6 and y = -4. The first equation gives 6a - 4b = -26. The second gives 6b - a(-4) = 52, that is, 4a + 6b = 52. Now a and b are the unknowns. Multiply the first equation by 3 and the second by 2: 18a - 12b = -78 and 8a + 12b = 104. Adding gives 26a = 26, so a = 1. Then 4(1) + 6b = 52 gives b = 8. So a + b = 9.\n\nChoice 13 comes from writing -a(-4) as -4a, which gives 6b - 4a = 52; with 6a - 4b = -26 this gives a = 2.6 and b = 10.4. Choice -11 comes from substituting x = -4 and y = 6, reversing the coordinates of the ordered pair. Choice -7 is a - b rather than a + b.",
+  "solve": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const x0=6,y0=-4; const [a,b]=s(x0,y0,-26,-y0,x0,52); return a+b;",
+  "distractor_solve": {
+   "13": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const x0=6,y0=-4; const [a,b]=s(x0,y0,-26,y0,x0,52); return Math.round((a+b)*1e9)/1e9;",
+   "-11": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const x0=-4,y0=6; const [a,b]=s(x0,y0,-26,-y0,x0,52); return a+b;",
+   "-7": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,b]=s(6,-4,-26,4,6,52); return a-b;"
+  },
+  "mechanism": [
+   "known solution substituted into both equations",
+   "coefficients a and b become the unknowns",
+   "solve the new 2x2 system, then a + b"
+  ],
+  "quantity_asked": "a + b",
+  "distractor_meta": {
+   "13": {
+    "error_kind": "sign error on -ay with negative y",
+    "direction": "over"
+   },
+   "-11": {
+    "error_kind": "ordered pair coordinates reversed",
+    "direction": "under"
+   },
+   "-7": {
+    "error_kind": "a - b instead of a + b",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "interior options -7 and 9: both one-digit integers, complexity 1 and 1 (tie); the key is not the cleaner one",
+  "arith_class_check": "no: all four options are odd integers; two negative, two positive",
+  "self_audit": {
+   "risk": "medium",
+   "note": "no option can be substituted, because a + b alone does not fix a and b; the decision point is treating a and b as the unknowns. Risk: the panel may call it medium once that is seen"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/L",
+  "subskill": "two purchases at shifted prices: a system in last month's prices, then the new price",
+  "prompt": "At a market last month, 4 kilograms of apples and 3 kilograms of pears cost a total of $22.25. This month, the price of apples is $0.20 per kilogram higher than last month, the price of pears is $0.50 per kilogram lower than last month, and 2 kilograms of apples and 5 kilograms of pears cost a total of $26.35. What is this month's price of pears, in dollars per kilogram?",
+  "choices": [
+   "2.05",
+   "3.25",
+   "4.35",
+   "4.45"
+  ],
+  "correct_answer": "4.45",
+  "explanation": "Let a and p be last month's prices, in dollars per kilogram, of apples and pears. Last month: 4a + 3p = 22.25. This month the prices are a + 0.20 and p - 0.50, so 2(a + 0.20) + 5(p - 0.50) = 26.35, which gives 2a + 0.40 + 5p - 2.50 = 26.35, or 2a + 5p = 28.45. Multiply this equation by 2: 4a + 10p = 56.90. Subtract the first equation: 7p = 34.65, so p = 4.95. This month's price of pears is 4.95 - 0.50 = 4.45 dollars per kilogram.\n\nChoice 4.35 comes from ignoring the price changes and solving 4a + 3p = 22.25 and 2a + 5p = 26.35 as if both purchases used the same prices. Choice 3.25 comes from a sign error when moving the constants: writing 2a + 5p = 26.35 + 0.40 - 2.50 = 24.25, which gives p = 3.75 and then 3.75 - 0.50 = 3.25. Choice 2.05 is this month's price of apples (a = 1.85, plus 0.20), not pears.",
+  "solve": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const sa=0.20,sp=-0.50; const [a,p]=s(4,3,22.25,2,5,26.35-2*sa-5*sp); return Math.round((p+sp)*100)/100;",
+  "distractor_solve": {
+   "4.35": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,p]=s(4,3,22.25,2,5,26.35); return Math.round(p*100)/100;",
+   "3.25": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const sa=0.20,sp=-0.50; const [a,p]=s(4,3,22.25,2,5,26.35+2*sa+5*sp); return Math.round((p+sp)*100)/100;",
+   "2.05": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const sa=0.20,sp=-0.50; const [a,p]=s(4,3,22.25,2,5,26.35-2*sa-5*sp); return Math.round((a+sa)*100)/100;"
+  },
+  "mechanism": [
+   "second equation written in shifted prices",
+   "expand and collect constants",
+   "solve for last month's price, then apply the change"
+  ],
+  "quantity_asked": "this month's price of pears per kilogram",
+  "distractor_meta": {
+   "4.35": {
+    "error_kind": "price changes ignored",
+    "direction": "under"
+   },
+   "3.25": {
+    "error_kind": "sign error moving constants",
+    "direction": "under"
+   },
+   "2.05": {
+    "error_kind": "wrong item (apples)",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bounds: 5 kg of pears cost less than $26.35, so this month's pear price is under 5.27, and 3 kg cost less than $22.25 last month; both are upper bounds that all four options satisfy. The stem says pears got CHEAPER, which points a guesser away from the largest option. No lower bound readable from the stem strikes 4.35, which sits on the key's side of every bound.",
+  "interior_parity_check": "interior options 3.25 and 4.35: both two-place decimals, complexity 5 and 5; key is not interior",
+  "arith_class_check": "no: all four are two-place money decimals ending in 5; none is singled out",
+  "self_audit": {
+   "risk": "medium",
+   "note": "the key is the largest although the stem says the pear price fell; the ignore-the-change answer 4.35 sits within 0.10 of the key, so a student who skips the shift lands next to it rather than far below"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/S",
+  "subskill": "system whose constants are multiples of a parameter c: the ratio x/y",
+  "prompt": "5x + 3y = 11c\n3x + 2y = 6c\n\nThe letter c stands for a fixed nonzero number. For the pair (x, y) that makes both equations true, what does the quotient x/y equal?",
+  "choices": [
+   "-4/3",
+   "-3/5",
+   "4/9",
+   "11/6"
+  ],
+  "correct_answer": "-4/3",
+  "explanation": "Solve for x and y in terms of c. Multiply the first equation by 2 and the second by 3: 10x + 6y = 22c and 9x + 6y = 18c. Subtracting gives x = 4c. Then 3(4c) + 2y = 6c, so 2y = -6c and y = -3c. Because c is not zero, x/y = 4c/(-3c) = -4/3.\n\nChoice -3/5 comes from dropping the constant term and treating the first equation as 5x + 3y = 0, which gives x/y = -3/5. Choice 4/9 comes from a sign error when isolating y in the second equation: writing 2y = 6c + 12c, so y = 9c. Choice 11/6 is the ratio of the two constants, 11c/6c, which is not the ratio of x to y.",
+  "solve": "const c=1; const D=5*2-3*3; const x=(11*c*2-6*c*3)/D, y=(5*6*c-3*11*c)/D; return x/y;",
+  "distractor_solve": {
+   "-3/5": "const a1=5,b1=3; return -b1/a1;",
+   "4/9": "const c=1; const x=(11*c*2-6*c*3)/(5*2-3*3); const y=(6*c+3*x)/2; return x/y;",
+   "11/6": "const c=1; return (11*c)/(6*c);"
+  },
+  "mechanism": [
+   "elimination with constants that carry a parameter c",
+   "solution is a multiple of c",
+   "c cancels in the ratio x/y"
+  ],
+  "quantity_asked": "x/y",
+  "distractor_meta": {
+   "-3/5": {
+    "error_kind": "constant term dropped (homogeneous misread)",
+    "direction": "over"
+   },
+   "4/9": {
+    "error_kind": "sign error isolating y",
+    "direction": "over"
+   },
+   "11/6": {
+    "error_kind": "ratio of constants taken as ratio of variables",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: the sign of x/y. Nothing in the stem fixes it without solving (all coefficients positive, both constants share c's sign, which is unknown); once solved, -3/5 is also negative, on the key's side, so a sign reading strikes at most two options.",
+  "interior_parity_check": "interior options -3/5 and 4/9: both fractions, complexity 3 and 3; key is not interior",
+  "arith_class_check": "no: all four are non-integer fractions with distinct denominators (3, 5, 9, 6); two negative, two positive",
+  "self_audit": {
+   "risk": "low",
+   "note": "x/y cannot be substituted back without a value of c and one of the variables; the reciprocal and +/- partner of the key are both absent"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/L",
+  "subskill": "reading an elimination step backward to recover the unknown constants",
+  "prompt": "2x + ky = 13\n6x + 10y = c\n\nIn the system of equations above, k and c are constants. When 3 times the first equation is subtracted from the second equation, the result is the equation 7y = 28. What is the value of c?",
+  "choices": [
+   "11",
+   "41",
+   "43",
+   "67"
+  ],
+  "correct_answer": "67",
+  "explanation": "Three times the first equation is 6x + 3ky = 39. Subtracting it from the second equation gives (6x - 6x) + (10 - 3k)y = c - 39, that is, (10 - 3k)y = c - 39. This must be the equation 7y = 28, so 10 - 3k = 7 (which gives k = 1) and c - 39 = 28. Therefore c = 67.\n\nChoice 41 comes from multiplying only the left side of the first equation by 3, so that c - 13 = 28. Choice 11 comes from subtracting in the opposite order, (3 times the first equation) minus the second, which gives 39 - c = 28. Choice 43 comes from solving 7y = 28 to get y = 4 and then using 4 instead of 28 as the right side: c - 39 = 4.",
+  "solve": "const d=13,m=3,e=28; return m*d+e;",
+  "distractor_solve": {
+   "11": "const d=13,m=3,e=28; return m*d-e;",
+   "41": "const d=13,e=28; return d+e;",
+   "43": "const d=13,m=3,e=28; const y=e/7; return m*d+y;"
+  },
+  "mechanism": [
+   "scale and subtract one equation (elimination)",
+   "match the result term by term to a given equation",
+   "solve for the unknown constant"
+  ],
+  "quantity_asked": "the constant c in the second equation",
+  "distractor_meta": {
+   "11": {
+    "error_kind": "subtraction in the wrong order",
+    "direction": "under"
+   },
+   "41": {
+    "error_kind": "constant term not scaled",
+    "direction": "under"
+   },
+   "43": {
+    "error_kind": "solved value of y used as the right side",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: 7y = 28 has a positive right side, so c - 39 > 0 and c > 39. This strikes only 11; the distractors 41 and 43 lie on the key's side of it.",
+  "interior_parity_check": "interior options 41 and 43: both two-digit odd integers, complexity 2 and 2; key is not interior",
+  "arith_class_check": "no: all four options are odd integers, none a multiple of 5 or 10; no lone class",
+  "self_audit": {
+   "risk": "medium",
+   "note": "a student who reads the stem's 13 and 3 can form 39 quickly, but 39 is not an option and both 41 and 43 also exceed it; choosing among 41, 43 and 67 needs the right side matched correctly"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C06",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/L",
+  "subskill": "two fraction conditions cross-multiplied into a linear system in numerator and denominator",
+  "prompt": "A fraction a/b, where a and b are positive integers, has the following two properties.\n\nWhen 3 is added to both the numerator and the denominator, the resulting fraction is equivalent to 5/7.\nWhen 9 is subtracted from both the numerator and the denominator, the resulting fraction is equivalent to 1/2.\n\nWhat is the value of a + b?",
+  "choices": [
+   "10",
+   "24",
+   "30",
+   "42"
+  ],
+  "correct_answer": "42",
+  "explanation": "The first property says (a + 3)/(b + 3) = 5/7, so 7(a + 3) = 5(b + 3), which gives 7a + 21 = 5b + 15, or 7a - 5b = -6. The second says (a - 9)/(b - 9) = 1/2, so 2(a - 9) = b - 9, which gives b = 2a - 9. Substitute: 7a - 5(2a - 9) = -6, so -3a + 45 = -6 and a = 17. Then b = 2(17) - 9 = 25. The fraction is 17/25, and a + b = 42.\n\nChoice 24 comes from not distributing the 7 to the 3, writing 7a + 3 = 5b + 15 (7a - 5b = 12), which gives a = 11 and b = 13. Choice 30 comes from a sign error when collecting the constants, writing 7a - 5b = 6, which gives a = 13 and b = 17. Choice 10 comes from cross-multiplying the first proportion the wrong way, 5(a + 3) = 7(b + 3).",
+  "solve": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,b]=s(7,-5,5*3-7*3,2,-1,2*9-9); return Math.round((a+b)*1e9)/1e9;",
+  "distractor_solve": {
+   "10": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,b]=s(5,-7,7*3-5*3,2,-1,2*9-9); return Math.round((a+b)*1e9)/1e9;",
+   "24": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,b]=s(7,-5,5*3-3,2,-1,2*9-9); return Math.round((a+b)*1e9)/1e9;",
+   "30": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,b]=s(7,-5,7*3-5*3,2,-1,2*9-9); return Math.round((a+b)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "each proportion cross-multiplied into a linear equation",
+   "numerator and denominator as the two unknowns",
+   "substitute and solve, then a + b"
+  ],
+  "quantity_asked": "a + b",
+  "distractor_meta": {
+   "10": {
+    "error_kind": "proportion cross-multiplied the wrong way",
+    "direction": "under"
+   },
+   "24": {
+    "error_kind": "coefficient not distributed over the added constant",
+    "direction": "under"
+   },
+   "30": {
+    "error_kind": "sign error collecting constants",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: a and b must exceed 9 (9 is subtracted and the result is a positive fraction 1/2), so a + b > 18; this strikes only 10. The distractors 24 and 30 lie on the key's side of it. Options cannot be substituted back, because a + b alone does not fix a and b.",
+  "interior_parity_check": "interior options 24 and 30: both two-digit even integers, complexity 2 and 1 (within 1); key is not interior",
+  "arith_class_check": "no: all four are even; two are multiples of 10 (10, 30) and two are not; no lone class",
+  "self_audit": {
+   "risk": "medium",
+   "note": "the three slips all lower the total here, so the key is the largest; the a, b > 9 bound strikes only 10 and nothing in the stem orders 24, 30 and 42"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C07",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/I",
+  "subskill": "values at two unknown inputs a and 5a: system in the input a and the intercept b",
+  "prompt": "f(x) = 2x + b\n\nIn the function f above, b is a constant. For a certain number a, f(a) = 14 and f(5a) = 54. What is the value of f(32)?",
+  "choices": [
+   "28",
+   "38",
+   "68",
+   "70"
+  ],
+  "correct_answer": "68",
+  "explanation": "The two facts give a system in a and b: 2a + b = 14 and 2(5a) + b = 54, that is, 10a + b = 54. Subtracting the first equation from the second gives 8a = 40, so a = 5. Then b = 14 - 2(5) = 4, so f(x) = 2x + 4 and f(32) = 64 + 4 = 68.\n\nChoice 70 comes from subtracting 2a from 10a and getting 10a instead of 8a, so a = 4 and b = 6. Choice 38 comes from dividing the difference of the outputs, 40, by the slope 2 and calling that a, so a = 20 and b = 14 - 40 = -26; but the inputs a and 5a are 4a apart, not a apart. Choice 28 comes from finding a = 5 correctly but then using 5a = 25 in place of a in f(a) = 14, so b = 14 - 50 = -36.",
+  "solve": "const s=2,k=5,V1=14,V2=54,c0=32; const aa=(V2-V1)/(s*(k-1)); const b=V1-s*aa; return s*c0+b;",
+  "distractor_solve": {
+   "28": "const s=2,k=5,V1=14,V2=54,c0=32; const aa=(V2-V1)/(s*(k-1)); const b=V1-s*k*aa; return s*c0+b;",
+   "38": "const s=2,V1=14,V2=54,c0=32; const aa=(V2-V1)/s; const b=V1-s*aa; return s*c0+b;",
+   "70": "const s=2,k=5,V1=14,V2=54,c0=32; const aa=(V2-V1)/(s*k); const b=V1-s*aa; return s*c0+b;"
+  },
+  "mechanism": [
+   "outputs given at unknown inputs a and 5a",
+   "system in the input a and the intercept b",
+   "evaluate the recovered function"
+  ],
+  "quantity_asked": "f(32)",
+  "distractor_meta": {
+   "28": {
+    "error_kind": "substituted 5a into the f(a) equation when finding b",
+    "direction": "under"
+   },
+   "38": {
+    "error_kind": "input gap taken as a instead of 4a",
+    "direction": "under"
+   },
+   "70": {
+    "error_kind": "coefficient slip: 10a - 2a taken as 10a",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "interior options 38 and 68: both two-digit even integers (complexity 2 and 2); the key is not the cleaner one",
+  "arith_class_check": "no: all four are even two-digit positive integers; none is a square; no class the stem implies isolates the key",
+  "self_audit": {
+   "risk": "low",
+   "note": "f(32) cannot be tested against the stem without recovering both a and b, so options give no shortcut; trying options ascending reaches the key third, and every option is even, positive and two-digit"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C08",
+  "domain": "Algebra",
+  "difficulty": "easy",
+  "assigned": "E/I",
+  "subskill": "elimination: the multiplier on one equation that makes the y-terms cancel",
+  "prompt": "3x - 5y = 4\n2x + 7y = -9\n\nTo solve the system of equations above, Mina multiplies each side of the first equation by a constant m and then adds the resulting equation to the second equation. In the equation she gets, the y-terms cancel. What is the value of m?",
+  "choices": [
+   "-7/3",
+   "-2/3",
+   "7/5",
+   "9/4"
+  ],
+  "correct_answer": "7/5",
+  "explanation": "After the first equation is multiplied by m, its y-term is -5my. Adding it to the second equation gives a y-coefficient of -5m + 7. The y-terms cancel when -5m + 7 = 0, so 5m = 7 and m = 7/5.\n\nChoice -2/3 makes the x-terms cancel instead: 3m + 2 = 0. Choice -7/3 pairs the x-coefficient of the first equation with the y-coefficient of the second: 3m + 7 = 0. Choice 9/4 makes the constant terms cancel: 4m - 9 = 0, which removes the constants, not the y-terms.",
+  "solve": "const b1=-5,b2=7; return -b2/b1;",
+  "distractor_solve": {
+   "-2/3": "const a1=3,a2=2; return -a2/a1;",
+   "-7/3": "const a1=3,b2=7; return -b2/a1;",
+   "9/4": "const c1=4,c2=-9; return -c2/c1;"
+  },
+  "mechanism": [
+   "elimination multiplier",
+   "y-coefficient of the sum set to zero",
+   "solve one linear equation for the multiplier"
+  ],
+  "quantity_asked": "the multiplier m applied to the first equation",
+  "distractor_meta": {
+   "-2/3": {
+    "error_kind": "cancelled the x-terms instead of the y-terms",
+    "direction": "under"
+   },
+   "-7/3": {
+    "error_kind": "mismatched coefficients (x of first with y of second)",
+    "direction": "under"
+   },
+   "9/4": {
+    "error_kind": "cancelled the constant terms",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "interior options -2/3 and 7/5: both proper/simple fractions with one-digit numerator and denominator (complexity 3 and 3); the key is not the cleaner one",
+  "arith_class_check": "no: all four are non-integer fractions; two negative (-7/3, -2/3), two positive (7/5, 9/4); denominators 3, 3, 5, 4, so no denominator class isolates the key",
+  "self_audit": {
+   "risk": "low",
+   "note": "a single-step easy item: the multiplier is read from the two y-coefficients. Ascending substitution reaches the key on the third try, and sign alone cannot decide it (two options of each sign)"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C09",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "assigned": "H/L",
+  "subskill": "two unknown work rates from a combined time and a sequential run",
+  "prompt": "Two pumps, A and B, working together fill an empty tank in 10 hours. On another occasion, starting with the tank empty, pump A ran alone for 8 hours and was turned off, and then pump B ran alone for 15 hours, which filled the tank. Each pump works at its own constant rate. How many hours would it take pump B, working alone, to fill the empty tank?",
+  "choices": [
+   "14",
+   "20",
+   "23",
+   "35"
+  ],
+  "correct_answer": "35",
+  "explanation": "Let a and b be the fractions of the tank that pumps A and B fill per hour. Together they fill the tank in 10 hours, so a + b = 1/10. The second occasion gives 8a + 15b = 1. Multiply the first equation by 8: 8a + 8b = 8/10. Subtract it from the second equation: 7b = 1 - 8/10 = 1/5, so b = 1/35. Pump B alone takes 1/b = 35 hours. (Then a = 1/10 - 1/35 = 1/14, and 8/14 + 15/35 = 4/7 + 3/7 = 1, as required.)\n\nChoice 14 is the time for pump A alone, 1/a, not pump B. Choice 20 comes from assuming the two pumps work at the same rate, so that each alone takes twice the combined time. Choice 23 adds the 8 hours and the 15 hours as if that were the time for one pump to fill the tank alone.",
+  "solve": "const T=10,t1=8,t2=15; const b=(1-t1/T)/(t2-t1); return Math.round(1/b*1e9)/1e9;",
+  "distractor_solve": {
+   "14": "const T=10,t1=8,t2=15; const b=(1-t1/T)/(t2-t1); const a=1/T-b; return Math.round(1/a*1e9)/1e9;",
+   "20": "const T=10; return 2*T;",
+   "23": "const t1=8,t2=15; return t1+t2;"
+  },
+  "mechanism": [
+   "unknowns are the hourly rates, not the times",
+   "combined-rate equation plus sequential-run equation",
+   "eliminate pump A's rate, invert pump B's rate"
+  ],
+  "quantity_asked": "hours for pump B alone to fill the tank",
+  "distractor_meta": {
+   "14": {
+    "error_kind": "wrong pump (A) reported",
+    "direction": "under"
+   },
+   "20": {
+    "error_kind": "equal-rates assumption",
+    "direction": "under"
+   },
+   "23": {
+    "error_kind": "hours added instead of rates",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bounds: B alone takes longer than the 10-hour combined time (strikes nothing), and B filled only part of the tank in its 15 hours, so B alone takes more than 15 hours, which strikes only 14. The distractors 20 and 23 lie on the key's side of both bounds.",
+  "interior_parity_check": "interior options 20 and 23: both two-digit integers, complexity 1 and 2 (within 1); key is not interior",
+  "arith_class_check": "no: two even (14, 20) and two odd (23, 35); 14 and 35 are both multiples of 7; no lone class",
+  "self_audit": {
+   "risk": "medium",
+   "note": "the decision point is writing the system in rates (1/time); a student who writes equations in hours cannot reach 35. The over-15 bound strikes 14 only. Risk: 23 and 20 are shallow paths"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C10",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/I",
+  "subskill": "how far the solution of a system moves when one constant changes",
+  "prompt": "4x + 5y = 70\nx - 3y = 9\n\nThe system of equations above has a solution (x, y). If the constant 70 in the first equation is replaced by 138 and the second equation is unchanged, the new system has a different solution. By how much is the x-value of the new solution greater than the x-value of the original solution?",
+  "choices": [
+   "4",
+   "12",
+   "17",
+   "27"
+  ],
+  "correct_answer": "12",
+  "explanation": "Solve each system. Original: from x - 3y = 9, x = 3y + 9, so 4(3y + 9) + 5y = 70, which gives 17y = 34, y = 2 and x = 15. New: 4(3y + 9) + 5y = 138 gives 17y = 102, y = 6 and x = 27. The x-value increases by 27 - 15 = 12.\n\n(Equivalently, the changes in x and y satisfy 4(change in x) + 5(change in y) = 68 and (change in x) - 3(change in y) = 0, so the change in y is 4 and the change in x is 12.)\n\nChoice 4 is the increase in y, not in x. Choice 17 comes from assuming y stays the same, so that 4(change in x) = 68. Choice 27 is the x-value of the new solution itself, not the increase.",
+  "solve": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [x0]=s(4,5,70,1,-3,9); const [x1]=s(4,5,138,1,-3,9); return Math.round((x1-x0)*1e9)/1e9;",
+  "distractor_solve": {
+   "4": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [,y0]=s(4,5,70,1,-3,9); const [,y1]=s(4,5,138,1,-3,9); return Math.round((y1-y0)*1e9)/1e9;",
+   "17": "return (138-70)/4;",
+   "27": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [x1]=s(4,5,138,1,-3,9); return Math.round(x1*1e9)/1e9;"
+  },
+  "mechanism": [
+   "two systems differing in one constant",
+   "solve both (or the system of changes)",
+   "difference of the x-values"
+  ],
+  "quantity_asked": "increase in the x-value of the solution",
+  "distractor_meta": {
+   "4": {
+    "error_kind": "change in y reported",
+    "direction": "under"
+   },
+   "17": {
+    "error_kind": "other variable assumed fixed",
+    "direction": "over"
+   },
+   "27": {
+    "error_kind": "new value reported instead of the change",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "interior options 12 and 17: both two-digit integers, complexity 2 and 2 (tie); the key is not the cleaner one",
+  "arith_class_check": "no: two even (4, 12), two odd (17, 27); two multiples of 3 (12, 27); no lone class",
+  "self_audit": {
+   "risk": "low",
+   "note": "no option can be substituted; the 17 path (hold y fixed) is the natural shortcut and gives a wrong answer, so the second equation has to be used"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C11",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/S",
+  "subskill": "recognising a dependent system, then counting its positive-integer solutions",
+  "prompt": "3x + 5y = 110\n6x + 10y = 220\n\nHow many ordered pairs (x, y), where x and y are both positive integers, satisfy the system of equations above?",
+  "choices": [
+   "7",
+   "8",
+   "21",
+   "36"
+  ],
+  "correct_answer": "7",
+  "explanation": "The second equation is exactly 2 times the first, so the two equations describe the same line and the system has infinitely many solutions: every point on 3x + 5y = 110. Count the points on this line with positive integer coordinates. Since 3x = 110 - 5y must be a positive multiple of 3, 110 - 5y must be divisible by 3, which happens when y = 1, 4, 7, 10, 13, 16, 19 (the next value, y = 22, gives x = 0, which is not positive). These give x = 35, 30, 25, 20, 15, 10, 5. There are 7 ordered pairs.\n\nChoice 8 also counts y = 22, x = 0, but 0 is not a positive integer. Choice 21 counts every positive integer y with 5y < 110 without requiring x to be an integer. Choice 36 counts every positive integer x with 3x < 110 without requiring y to be an integer.",
+  "solve": "let n=0; for(let x=1;x<110;x++){const r=110-3*x; if(r>0&&r%5===0) n++;} return n;",
+  "distractor_solve": {
+   "8": "let n=0; for(let y=1;y<=22;y++){const r=110-5*y; if(r>=0&&r%3===0) n++;} return n;",
+   "21": "let n=0; for(let y=1;y<110;y++){ if(110-5*y>0) n++;} return n;",
+   "36": "let n=0; for(let x=1;x<110;x++){ if(110-3*x>0) n++;} return n;"
+  },
+  "mechanism": [
+   "second equation a multiple of the first: same line",
+   "positive-integer points on a line",
+   "divisibility condition on one coordinate"
+  ],
+  "quantity_asked": "number of ordered pairs of positive integers satisfying the system",
+  "distractor_meta": {
+   "8": {
+    "error_kind": "endpoint with a zero coordinate included",
+    "direction": "over"
+   },
+   "21": {
+    "error_kind": "integrality of x ignored",
+    "direction": "over"
+   },
+   "36": {
+    "error_kind": "integrality of y ignored",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: y can only be 1 through 21 (5y < 110), so the count is at most 21; this strikes only 36. The distractors 8 and 21 lie on the key's side of it. A student who expects a unique solution finds no 1 among the options and must count.",
+  "interior_parity_check": "interior options 8 and 21: both integers, complexity 1 and 2 (within 1); key is not interior",
+  "arith_class_check": "no: two even (8, 36), two odd (7, 21); 7 and 21 are multiples of 7; no lone class",
+  "self_audit": {
+   "risk": "medium",
+   "note": "the key is the smallest because each slip overcounts; but each overcount comes from a different relaxation, and the cheap y-range bound strikes only 36"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C12",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/I",
+  "subskill": "infinitely many solutions fixes both constants; then a point on the common line",
+  "prompt": "3x - 7y = c\n6x + ky = 30\n\nThe numbers c and k are chosen so that these two equations are satisfied by infinitely many pairs (x, y). The point (p, 2) lies on both graphs in the xy-plane. Find p.",
+  "choices": [
+   "1/3",
+   "29/3",
+   "44/3",
+   "74/3"
+  ],
+  "correct_answer": "29/3",
+  "explanation": "For infinitely many solutions, the second equation must be a multiple of the first. The x-coefficients show the multiplier is 6/3 = 2, so k = 2(-7) = -14 and 30 = 2c, which gives c = 15. Both equations then describe the line 3x - 7y = 15. Substituting the point (p, 2): 3p - 14 = 15, so 3p = 29 and p = 29/3.\n\nChoice 74/3 comes from multiplying 30 by 2 instead of dividing, so that c = 60 and 3p - 14 = 60. Choice 44/3 comes from using 30 as the constant of the first equation, 3p - 14 = 30. Choice 1/3 comes from taking k = 14 instead of -14 and substituting into the second equation, 6p + 28 = 30.",
+  "solve": "const a=3,b=-7,d=6,e=30,q=2; const m=d/a; const c=e/m; return (c-b*q)/a;",
+  "distractor_solve": {
+   "74/3": "const a=3,b=-7,d=6,e=30,q=2; const m=d/a; const c=e*m; return (c-b*q)/a;",
+   "44/3": "const a=3,b=-7,e=30,q=2; return (e-b*q)/a;",
+   "1/3": "const a=3,b=-7,d=6,e=30,q=2; const k=-(b*(d/a)); return (e-k*q)/d;"
+  },
+  "mechanism": [
+   "infinitely many solutions: one equation a multiple of the other",
+   "recover both constants from the multiplier",
+   "substitute a given point to find its missing coordinate"
+  ],
+  "quantity_asked": "the x-coordinate p of a point on both lines",
+  "distractor_meta": {
+   "74/3": {
+    "error_kind": "multiplier applied the wrong way to the constant",
+    "direction": "over"
+   },
+   "44/3": {
+    "error_kind": "constant of the second equation used in the first",
+    "direction": "over"
+   },
+   "1/3": {
+    "error_kind": "sign of k lost",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "interior options 29/3 and 44/3: both fractions with denominator 3, complexity 4 and 4 (tie); the key is not the cleaner one",
+  "arith_class_check": "no: all four are thirds and all positive; no lone class",
+  "self_audit": {
+   "risk": "low",
+   "note": "all four options share the denominator 3, so the denominator carries no signal; p cannot be checked without first finding c"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM26F-C13",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "assigned": "M/I",
+  "subskill": "two per-task times from two routes, then the greatest count that fits a time limit",
+  "prompt": "A delivery driver's route consists of drop-off stops and pickup stops. Every drop-off stop takes the same amount of time, and every pickup stop takes the same amount of time. On Monday, a route with 12 drop-off stops and 5 pickup stops took 83 minutes. On Tuesday, a route with 8 drop-off stops and 9 pickup stops took 95 minutes. On Wednesday, the driver has 9 drop-off stops and 240 minutes in all. What is the greatest number of pickup stops the driver can also complete on Wednesday?",
+  "choices": [
+   "18",
+   "29",
+   "44",
+   "51"
+  ],
+  "correct_answer": "29",
+  "explanation": "Let d and p be the minutes for one drop-off stop and one pickup stop. Then 12d + 5p = 83 and 8d + 9p = 95. Multiply the first equation by 2 and the second by 3: 24d + 10p = 166 and 24d + 27p = 285. Subtracting gives 17p = 119, so p = 7, and then 12d = 83 - 35 = 48, so d = 4. On Wednesday the drop-off stops take 9(4) = 36 minutes, leaving 240 - 36 = 204 minutes. Since 204/7 is about 29.1, the driver can complete at most 29 pickup stops.\n\nChoice 44 comes from switching the two times (using 7 minutes per drop-off and 4 minutes per pickup): (240 - 63)/4 is about 44.3. Choice 18 comes from dividing the 204 remaining minutes by 7 + 4 = 11, the time for one stop of each kind. Choice 51 is the number of additional drop-off stops that would fit, 240/4 - 9, not pickup stops.",
+  "solve": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [d,p]=s(12,5,83,8,9,95); return Math.floor((240-9*d)/p+1e-9);",
+  "distractor_solve": {
+   "18": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [d,p]=s(12,5,83,8,9,95); return Math.floor((240-9*d)/(d+p)+1e-9);",
+   "44": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [d,p]=s(12,5,83,8,9,95); return Math.floor((240-9*p)/d+1e-9);",
+   "51": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [d]=s(12,5,83,8,9,95); return Math.round(240/d-9);"
+  },
+  "mechanism": [
+   "two routes give a system in per-stop times",
+   "solve by elimination",
+   "remaining time divided by one rate, rounded down"
+  ],
+  "quantity_asked": "greatest number of pickup stops that fit in the remaining time",
+  "distractor_meta": {
+   "18": {
+    "error_kind": "divided by the time for one stop of each kind",
+    "direction": "under"
+   },
+   "44": {
+    "error_kind": "the two per-stop times switched",
+    "direction": "over"
+   },
+   "51": {
+    "error_kind": "answered for drop-off stops",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "interior options 29 and 44: both two-digit integers, complexity 2 and 2 (tie); the key is not the cleaner one",
+  "arith_class_check": "no: two even (18, 44), two odd (29, 51); no lone class",
+  "self_audit": {
+   "risk": "low",
+   "note": "a count cannot be substituted into the two route equations; every option is a legal whole number of stops under the 240-minute limit"
+  },
+  "bounds": []
+ }
+]

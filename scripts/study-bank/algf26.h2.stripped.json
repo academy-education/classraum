@@ -1,0 +1,506 @@
+[
+ {
+  "id": "SM26F-B10",
+  "domain": "Algebra",
+  "subskill": "Reading m + b as f(1); slope from f(1) and a given point; evaluate",
+  "difficulty": "medium",
+  "prompt": "The graph of y = mx + b, where m and b are constants, contains the point (-3, 3), and the constants satisfy m + b = 15. When x = 3, what does y equal?",
+  "choices": [
+   "9",
+   "21",
+   "27",
+   "39"
+  ],
+  "correct_answer": "21",
+  "explanation": "When x = 1, y = m(1) + b = m + b = 15, so the line passes through (1, 15) as well as (-3, 3).\n\nThe slope is (15 - 3)/(1 - (-3)) = 12/4 = 3, and b = 15 - 3 = 12. So the line is y = 3x + 12.\n\nAt x = 3, y = 3(3) + 12 = 21.\n\nChoice 27 comes from treating 15 as the y-intercept b, which gives the slope (3 - 15)/(-3 - 0) = 4 and y = 4(3) + 15. Choice 39 comes from treating 15 as the y-value at x = -1, which gives the slope 6 and the line y = 6x + 21. Choice 9 comes from finding the slope with the wrong sign, -3, so b = 18 and y = -3(3) + 18.",
+  "solve": "const p=-3,q=3,T=15,r=3; const m=(q-T)/(p-1); const b=T-m; return m*r+b;",
+  "distractor_solve": {
+   "9": "const p=-3,q=3,T=15,r=3; const m=-(q-T)/(p-1); return m*r+(T-m);",
+   "27": "const p=-3,q=3,T=15,r=3; const m=(q-T)/p; return m*r+T;",
+   "39": "const p=-3,q=3,T=15,r=3; const m=(q-T)/(p+1); return m*r+T+m;"
+  }
+ },
+ {
+  "id": "SM26F-D07",
+  "domain": "Algebra",
+  "subskill": "Inequality in two variables tied by a linear equation; least value of one variable",
+  "difficulty": "medium",
+  "prompt": "b = 2a + 6\n2b - 5a ≤ -22\n\nThe numbers a and b satisfy both the equation and the inequality shown. What is the least possible value of b?",
+  "choices": [
+   "26",
+   "34",
+   "62",
+   "74"
+  ],
+  "correct_answer": "74",
+  "explanation": "Substitute b = 2a + 6 into the inequality: 2(2a + 6) - 5a ≤ -22, so 4a + 12 - 5a ≤ -22 and -a + 12 ≤ -22.\nThen -a ≤ -34. Multiplying by -1 reverses the inequality: a ≥ 34.\nSince b = 2a + 6 increases as a increases, the least possible value of b is 2(34) + 6 = 74.\n\nChoice 26 comes from writing 2(2a + 6) as 4a - 12, which gives -a - 12 ≤ -22, a ≥ 10, and b = 2(10) + 6.\nChoice 34 is the least possible value of a, not of b.\nChoice 62 comes from multiplying only 2a by 2, writing 4a + 6, which gives -a + 6 ≤ -22, a ≥ 28, and b = 2(28) + 6.",
+  "solve": "const m=2,q=6,w=2,u=-5,r=-22; const A=u+w*m; const abound=(r-w*q)/A; return m*abound+q;",
+  "distractor_solve": {
+   "26": "const m=2,q=6,w=2,u=-5,r=-22; const A=u+w*m; const abound=(r+w*q)/A; return m*abound+q;",
+   "34": "const m=2,q=6,w=2,u=-5,r=-22; const A=u+w*m; return (r-w*q)/A;",
+   "62": "const m=2,q=6,w=2,u=-5,r=-22; const A=u+w*m; const abound=(r-q)/A; return m*abound+q;"
+  }
+ },
+ {
+  "id": "SM26F-C09",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "two unknown work rates from a combined time and a sequential run",
+  "prompt": "Two pumps, A and B, working together fill an empty tank in 10 hours. On another occasion, starting with the tank empty, pump A ran alone for 8 hours and was turned off, and then pump B ran alone for 15 hours, which filled the tank. Each pump works at its own constant rate. How many hours would it take pump B, working alone, to fill the empty tank?",
+  "choices": [
+   "14",
+   "20",
+   "23",
+   "35"
+  ],
+  "correct_answer": "35",
+  "explanation": "Let a and b be the fractions of the tank that pumps A and B fill per hour. Together they fill the tank in 10 hours, so a + b = 1/10. The second occasion gives 8a + 15b = 1. Multiply the first equation by 8: 8a + 8b = 8/10. Subtract it from the second equation: 7b = 1 - 8/10 = 1/5, so b = 1/35. Pump B alone takes 1/b = 35 hours. (Then a = 1/10 - 1/35 = 1/14, and 8/14 + 15/35 = 4/7 + 3/7 = 1, as required.)\n\nChoice 14 is the time for pump A alone, 1/a, not pump B. Choice 20 comes from assuming the two pumps work at the same rate, so that each alone takes twice the combined time. Choice 23 adds the 8 hours and the 15 hours as if that were the time for one pump to fill the tank alone.",
+  "solve": "const T=10,t1=8,t2=15; const b=(1-t1/T)/(t2-t1); return Math.round(1/b*1e9)/1e9;",
+  "distractor_solve": {
+   "14": "const T=10,t1=8,t2=15; const b=(1-t1/T)/(t2-t1); const a=1/T-b; return Math.round(1/a*1e9)/1e9;",
+   "20": "const T=10; return 2*T;",
+   "23": "const t1=8,t2=15; return t1+t2;"
+  }
+ },
+ {
+  "id": "SM26F-B09",
+  "domain": "Algebra",
+  "subskill": "Point on one line, shifted point on a parallel line: change in y from slope and intercepts",
+  "difficulty": "medium",
+  "prompt": "A point with coordinates (p, q) sits on the graph of y = 4x + 5, and a second point with coordinates (p + 6, q + k) sits on the graph of 8x - 2y = 16. Which number must k equal?",
+  "choices": [
+   "-13",
+   "-7",
+   "11",
+   "37"
+  ],
+  "correct_answer": "11",
+  "explanation": "Since (p, q) is on y = 4x + 5, q = 4p + 5.\n\nThe second line 8x - 2y = 16 can be written as y = 4x - 8. Since (p + 6, q + k) is on it, q + k = 4(p + 6) - 8 = 4p + 16.\n\nSubtract: k = (4p + 16) - (4p + 5) = 11. (The slope adds 4 × 6 = 24, and moving from the first line to the second subtracts 13.)\n\nChoice -13 comes from using only the change in y-intercept, from 5 to -8. Choice 37 comes from adding the 13 instead of subtracting it. Choice -7 comes from adding the 6 without multiplying it by the slope 4.",
+  "solve": "const m=4,b1=5,A=8,B=-2,C=16,h=6; const b2=C/B; const m2=-A/B; return (m2*h + b2) - b1;",
+  "distractor_solve": {
+   "37": "const m=4,b1=5,B=-2,C=16,h=6; const b2=C/B; return m*h - (b2-b1);",
+   "-13": "const b1=5,B=-2,C=16; const b2=C/B; return b2-b1;",
+   "-7": "const b1=5,B=-2,C=16,h=6; const b2=C/B; return h + (b2-b1);"
+  }
+ },
+ {
+  "id": "SM26F-D10",
+  "domain": "Algebra",
+  "subskill": "Constant that makes one inequality's solution set contain another's",
+  "difficulty": "medium",
+  "prompt": "4x - 6 < 2x + 28\n3x - c < 5\n\nIn the inequalities above, c is a constant. Every value of x that satisfies the first inequality also satisfies the second inequality. What is the least possible value of c?",
+  "choices": [
+   "12",
+   "28",
+   "46",
+   "56"
+  ],
+  "correct_answer": "46",
+  "explanation": "First inequality: 4x - 6 < 2x + 28, so 2x < 34 and x < 17.\nSecond inequality: 3x < 5 + c, so x < (5 + c)/3.\nEvery x with x < 17 must also satisfy x < (5 + c)/3. This happens exactly when (5 + c)/3 is at least 17 (if (5 + c)/3 were less than 17, numbers just below 17 would satisfy the first inequality but not the second).\nSo (5 + c)/3 ≥ 17, which gives 5 + c ≥ 51 and c ≥ 46. The least possible value of c is 46.\n\nChoice 12 comes from writing 5 + c ≥ 17 without multiplying 17 by 3.\nChoice 28 comes from subtracting 6 instead of adding it in the first inequality, which gives 2x < 22 and x < 11, so (5 + c)/3 ≥ 11 and c ≥ 28.\nChoice 56 comes from a sign error when isolating c: writing c > 3x + 5 instead of c > 3x - 5, so c ≥ 3(17) + 5.",
+  "solve": "const s=(28+6)/(4-2); const m=3,k=5; return m*s-k;",
+  "distractor_solve": {
+   "12": "const s=(28+6)/(4-2); const k=5; return s-k;",
+   "28": "const s=(28-6)/(4-2); const m=3,k=5; return m*s-k;",
+   "56": "const s=(28+6)/(4-2); const m=3,k=5; return m*s+k;"
+  }
+ },
+ {
+  "id": "SM26F-A07",
+  "domain": "Algebra",
+  "subskill": "Sum of the solutions of two separate one-variable linear equations with fractions",
+  "difficulty": "medium",
+  "prompt": "Two separate equations are given. The first, x/3 + 2 = (x + 10)/4, is satisfied only by x = p. The second, (y + 14)/3 = y/2 + 3, is satisfied only by y = q. Compute the total p + q.",
+  "choices": [
+   "16",
+   "31",
+   "41",
+   "64"
+  ],
+  "correct_answer": "16",
+  "explanation": "First equation: multiply both sides by 12.\n4x + 24 = 3x + 30, so x = 6. Thus p = 6.\nSecond equation: multiply both sides by 6.\n2y + 28 = 3y + 18, so y = 10. Thus q = 10.\np + q = 6 + 10 = 16.\n\nChoice 31 comes from multiplying only the fractions in the second equation by 6 and leaving the 3 unchanged: 2y + 28 = 3y + 3 gives q = 25, and 6 + 25 = 31.\nChoice 41 comes from reading x/3 + 2 as (x + 2)/3 and y/2 + 3 as (y + 3)/2, which gives p = 22 and q = 19.\nChoice 64 comes from 4x - 3x = 30 + 24 in the first equation, moving 24 without changing its sign, which gives p = 54 and 54 + 10 = 64.",
+  "solve": "const p=(30-24)/(4-3); const q=(28-18)/(3-2); return p+q;",
+  "distractor_solve": {
+   "31": "const p=(30-24)/(4-3); const q=(28-3)/(3-2); return p+q;",
+   "41": "const p=(30-8)/(4-3); const q=(28-9)/(3-2); return p+q;",
+   "64": "const p=(30+24)/(4-3); const q=(28-18)/(3-2); return p+q;"
+  }
+ },
+ {
+  "id": "SM26F-A12",
+  "domain": "Algebra",
+  "subskill": "Distance between two variable points on a number line: one-variable linear setup",
+  "difficulty": "medium",
+  "prompt": "Two markers, A and B, are placed along a number line at positions 2x + 2 and 4x - 6, respectively, with marker B to the right of marker A. The markers are 36 units apart. At what position is marker B?",
+  "choices": [
+   "22",
+   "46",
+   "74",
+   "82"
+  ],
+  "correct_answer": "82",
+  "explanation": "Because B is to the right of A, the distance is B - A:\n(4x - 6) - (2x + 2) = 36\n2x - 8 = 36, so x = 22.\nThe coordinate of B is 4(22) - 6 = 82. (A is at 46, and 82 - 46 = 36.)\n\nChoice 22 is the value of x, not the coordinate of B.\nChoice 46 is the coordinate of A.\nChoice 74 comes from writing (4x - 6) - (2x + 2) as 2x - 4, subtracting only the 2x, which gives x = 20 and 4(20) - 6 = 74.",
+  "solve": "const a1=2,a0=2,b1=4,b0=-6,D=36; const x=(D-(b0-a0))/(b1-a1); return b1*x+b0;",
+  "distractor_solve": {
+   "22": "const a1=2,a0=2,b1=4,b0=-6,D=36; return (D-(b0-a0))/(b1-a1);",
+   "46": "const a1=2,a0=2,b1=4,b0=-6,D=36; const x=(D-(b0-a0))/(b1-a1); return a1*x+a0;",
+   "74": "const a1=2,a0=2,b1=4,b0=-6,D=36; const x=(D-(b0+a0))/(b1-a1); return b1*x+b0;"
+  }
+ },
+ {
+  "id": "SM26F-B08",
+  "domain": "Algebra",
+  "subskill": "Linear f from one value and an output-ratio condition f(5) = 2f(2)",
+  "difficulty": "medium",
+  "prompt": "A linear function f satisfies f(4) = 10. Its output at x = 5 is exactly twice its output at x = 2. Find f(-8).",
+  "choices": [
+   "-30",
+   "-20",
+   "-18",
+   "-14"
+  ],
+  "correct_answer": "-14",
+  "explanation": "Write f(x) = mx + b. The condition f(5) = 2f(2) gives 5m + b = 2(2m + b) = 4m + 2b, so m = b.\n\nThen f(4) = 4m + m = 5m = 10, so m = 2 and b = 2. So f(x) = 2x + 2.\n\nTherefore f(-8) = 2(-8) + 2 = -14.\n\nChoice -20 comes from assuming the graph passes through the origin (b = 0), so f(x) = (10/4)x. Choice -30 comes from a sign slip that gives b = -m, so 3m = 10 and f(-8) = -9m. Choice -18 comes from finding f(x) = 2x + 2 but evaluating it as 2(-8) - 2.",
+  "solve": "const A=5,B=2,R=2,p=4,q=10,r=-8; const t=(R*B-A)/(1-R); const m=q/(p+t); const b=m*t; return m*r+b;",
+  "distractor_solve": {
+   "-20": "const p=4,q=10,r=-8; return (q/p)*r;",
+   "-30": "const A=5,B=2,R=2,p=4,q=10,r=-8; const t=(R*B-A)/(R-1); const m=q/(p+t); return m*r+m*t;",
+   "-18": "const A=5,B=2,R=2,p=4,q=10,r=-8; const t=(R*B-A)/(1-R); const m=q/(p+t); const b=m*t; return m*r-b;"
+  }
+ },
+ {
+  "id": "SM26F-B06",
+  "domain": "Algebra",
+  "subskill": "x-intercept of a line after a horizontal and vertical translation",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l has equation x + 6y = -10. Line l is translated 2 units to the left and 7 units up to form line m. What is the x-coordinate of the x-intercept of line m?",
+  "choices": [
+   "-12",
+   "-10",
+   "30",
+   "34"
+  ],
+  "correct_answer": "30",
+  "explanation": "Solve for y: 6y = -x - 10, so line l is y = -(1/6)x - 5/3.\n\nTranslating 2 units to the left replaces x with x + 2, and translating 7 units up adds 7:\ny = -(1/6)(x + 2) - 5/3 + 7 = -(1/6)x - 1/3 - 5/3 + 7 = -(1/6)x + 5.\n\nLine m crosses the x-axis where -(1/6)x + 5 = 0, so x = 30.\n\nChoice 34 comes from moving the line 2 units to the right instead of the left (replacing x with x - 2). Choice -12 comes from making the horizontal move but leaving out the 7 units up. Choice -10 is the x-intercept of line l itself, before any translation.",
+  "solve": "const A=1,B=6,C=-10,h=2,v=7; const m=-A/B, c=C/B; return -(m*h+c+v)/m;",
+  "distractor_solve": {
+   "34": "const A=1,B=6,C=-10,h=2,v=7; const m=-A/B, c=C/B; return -(-m*h+c+v)/m;",
+   "-12": "const A=1,B=6,C=-10,h=2,v=7; const m=-A/B, c=C/B; return -(m*h+c)/m;",
+   "-10": "const A=1,B=6,C=-10; const m=-A/B, c=C/B; return -c/m;"
+  }
+ },
+ {
+  "id": "SM26F-A13",
+  "domain": "Algebra",
+  "subskill": "Two phases with linked durations and a total: one-variable setup, then one phase",
+  "difficulty": "medium",
+  "prompt": "A hiker climbed at an average rate of 360 meters of elevation per hour for t hours, and then at 120 meters per hour for t + 1 hours. The total elevation gained during the two parts of the hike was 2,280 meters. How many meters of elevation did the hiker gain during the first part of the hike?",
+  "choices": [
+   "480",
+   "1440",
+   "1590",
+   "1620"
+  ],
+  "correct_answer": "1620",
+  "explanation": "The two parts add to the total gain:\n360t + 120(t + 1) = 2,280\n480t + 120 = 2,280\n480t = 2,160, so t = 4.5.\nThe first part gained 360(4.5) = 1,620 meters (and the second part 120(5.5) = 660 meters; 1,620 + 660 = 2,280).\n\nChoice 480 comes from attaching the rates to the wrong parts, 120t + 360(t + 1) = 2,280, which gives t = 4, and then computing 120t for the first part.\nChoice 1440 comes from the same swapped equation (t = 4) but then computing 360t.\nChoice 1590 comes from leaving out the extra hour when solving (480t = 2,280, t = 4.75) and then subtracting a second part of 120(t + 1) = 690 from 2,280.",
+  "solve": "const r1=360,r2=120,d=1,G=2280; const t=(G-r2*d)/(r1+r2); return r1*t;",
+  "distractor_solve": {
+   "480": "const r1=360,r2=120,d=1,G=2280; const t=(G-r1*d)/(r1+r2); return r2*t;",
+   "1440": "const r1=360,r2=120,d=1,G=2280; const t=(G-r1*d)/(r1+r2); return r1*t;",
+   "1590": "const r1=360,r2=120,d=1,G=2280; const t=G/(r1+r2); return G-r2*(t+d);"
+  }
+ },
+ {
+  "id": "SM26F-C05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "reading an elimination step backward to recover the unknown constants",
+  "prompt": "2x + ky = 13\n6x + 10y = c\n\nIn the system of equations above, k and c are constants. When 3 times the first equation is subtracted from the second equation, the result is the equation 7y = 28. What is the value of c?",
+  "choices": [
+   "11",
+   "41",
+   "43",
+   "67"
+  ],
+  "correct_answer": "67",
+  "explanation": "Three times the first equation is 6x + 3ky = 39. Subtracting it from the second equation gives (6x - 6x) + (10 - 3k)y = c - 39, that is, (10 - 3k)y = c - 39. This must be the equation 7y = 28, so 10 - 3k = 7 (which gives k = 1) and c - 39 = 28. Therefore c = 67.\n\nChoice 41 comes from multiplying only the left side of the first equation by 3, so that c - 13 = 28. Choice 11 comes from subtracting in the opposite order, (3 times the first equation) minus the second, which gives 39 - c = 28. Choice 43 comes from solving 7y = 28 to get y = 4 and then using 4 instead of 28 as the right side: c - 39 = 4.",
+  "solve": "const d=13,m=3,e=28; return m*d+e;",
+  "distractor_solve": {
+   "11": "const d=13,m=3,e=28; return m*d-e;",
+   "41": "const d=13,e=28; return d+e;",
+   "43": "const d=13,m=3,e=28; const y=e/7; return m*d+y;"
+  }
+ },
+ {
+  "id": "SM26F-C07",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "values at two unknown inputs a and 5a: system in the input a and the intercept b",
+  "prompt": "f(x) = 2x + b\n\nIn the function f above, b is a constant. For a certain number a, f(a) = 14 and f(5a) = 54. What is the value of f(32)?",
+  "choices": [
+   "28",
+   "38",
+   "68",
+   "70"
+  ],
+  "correct_answer": "68",
+  "explanation": "The two facts give a system in a and b: 2a + b = 14 and 2(5a) + b = 54, that is, 10a + b = 54. Subtracting the first equation from the second gives 8a = 40, so a = 5. Then b = 14 - 2(5) = 4, so f(x) = 2x + 4 and f(32) = 64 + 4 = 68.\n\nChoice 70 comes from subtracting 2a from 10a and getting 10a instead of 8a, so a = 4 and b = 6. Choice 38 comes from dividing the difference of the outputs, 40, by the slope 2 and calling that a, so a = 20 and b = 14 - 40 = -26; but the inputs a and 5a are 4a apart, not a apart. Choice 28 comes from finding a = 5 correctly but then using 5a = 25 in place of a in f(a) = 14, so b = 14 - 50 = -36.",
+  "solve": "const s=2,k=5,V1=14,V2=54,c0=32; const aa=(V2-V1)/(s*(k-1)); const b=V1-s*aa; return s*c0+b;",
+  "distractor_solve": {
+   "28": "const s=2,k=5,V1=14,V2=54,c0=32; const aa=(V2-V1)/(s*(k-1)); const b=V1-s*k*aa; return s*c0+b;",
+   "38": "const s=2,V1=14,V2=54,c0=32; const aa=(V2-V1)/s; const b=V1-s*aa; return s*c0+b;",
+   "70": "const s=2,k=5,V1=14,V2=54,c0=32; const aa=(V2-V1)/(s*k); const b=V1-s*aa; return s*c0+b;"
+  }
+ },
+ {
+  "id": "SM26F-C12",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "infinitely many solutions fixes both constants; then a point on the common line",
+  "prompt": "3x - 7y = c\n6x + ky = 30\n\nThe numbers c and k are chosen so that these two equations are satisfied by infinitely many pairs (x, y). The point (p, 2) lies on both graphs in the xy-plane. Find p.",
+  "choices": [
+   "1/3",
+   "29/3",
+   "44/3",
+   "74/3"
+  ],
+  "correct_answer": "29/3",
+  "explanation": "For infinitely many solutions, the second equation must be a multiple of the first. The x-coefficients show the multiplier is 6/3 = 2, so k = 2(-7) = -14 and 30 = 2c, which gives c = 15. Both equations then describe the line 3x - 7y = 15. Substituting the point (p, 2): 3p - 14 = 15, so 3p = 29 and p = 29/3.\n\nChoice 74/3 comes from multiplying 30 by 2 instead of dividing, so that c = 60 and 3p - 14 = 60. Choice 44/3 comes from using 30 as the constant of the first equation, 3p - 14 = 30. Choice 1/3 comes from taking k = 14 instead of -14 and substituting into the second equation, 6p + 28 = 30.",
+  "solve": "const a=3,b=-7,d=6,e=30,q=2; const m=d/a; const c=e/m; return (c-b*q)/a;",
+  "distractor_solve": {
+   "74/3": "const a=3,b=-7,d=6,e=30,q=2; const m=d/a; const c=e*m; return (c-b*q)/a;",
+   "44/3": "const a=3,b=-7,e=30,q=2; return (e-b*q)/a;",
+   "1/3": "const a=3,b=-7,d=6,e=30,q=2; const k=-(b*(d/a)); return (e-k*q)/d;"
+  }
+ },
+ {
+  "id": "SM26F-D13",
+  "domain": "Algebra",
+  "subskill": "Slope between two bounds for a line through points with an unknown coordinate",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line ℓ passes through the points (-9, k) and (12, 2k - 30), where k is an integer. The slope of line ℓ is greater than -1/3 and less than 7/4. How many different values of k are possible?",
+  "choices": [
+   "6",
+   "24",
+   "29",
+   "43"
+  ],
+  "correct_answer": "43",
+  "explanation": "The slope of line ℓ is ((2k - 30) - k)/(12 - (-9)) = (k - 30)/21.\nSo -1/3 < (k - 30)/21 < 7/4. Multiply each part by 21: -7 < k - 30 < 36.75. Add 30 to each part: 23 < k < 66.75.\nThe integers in this range are 24, 25, ..., 66, and there are 66 - 24 + 1 = 43 of them.\n\nChoice 6 comes from using 12 - 9 = 3 as the change in x, which gives -1 < k - 30 < 5.25, so 29 < k < 35.25: the 6 integers 30 through 35.\nChoice 24 comes from using 12 as the change in x, leaving out the x-coordinate -9, which gives -4 < k - 30 < 21, so 26 < k < 51: the 24 integers 27 through 50.\nChoice 29 comes from using 1/3 instead of -1/3 as the lower limit, which gives 7 < k - 30 < 36.75, so 37 < k < 66.75: the 29 integers 38 through 66.",
+  "solve": "const x1=-9,x2=12,b=-30,s1=-1/3,s2=7/4; const R=x2-x1; const lo=s1*R-b, hi=s2*R-b; let c=0; for(let k=Math.floor(lo)-2;k<=Math.ceil(hi)+2;k++){ if(k>lo+1e-9&&k<hi-1e-9) c++; } return c;",
+  "distractor_solve": {
+   "6": "const x1=-9,x2=12,b=-30,s1=-1/3,s2=7/4; const R=x2+x1; const lo=s1*R-b, hi=s2*R-b; let c=0; for(let k=Math.floor(lo)-2;k<=Math.ceil(hi)+2;k++){ if(k>lo+1e-9&&k<hi-1e-9) c++; } return c;",
+   "24": "const x1=-9,x2=12,b=-30,s1=-1/3,s2=7/4; const R=x2; const lo=s1*R-b, hi=s2*R-b; let c=0; for(let k=Math.floor(lo)-2;k<=Math.ceil(hi)+2;k++){ if(k>lo+1e-9&&k<hi-1e-9) c++; } return c;",
+   "29": "const x1=-9,x2=12,b=-30,s1=-1/3,s2=7/4; const R=x2-x1; const lo=-s1*R-b, hi=s2*R-b; let c=0; for(let k=Math.floor(lo)-2;k<=Math.ceil(hi)+2;k++){ if(k>lo+1e-9&&k<hi-1e-9) c++; } return c;"
+  }
+ },
+ {
+  "id": "SM26F-C10",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "how far the solution of a system moves when one constant changes",
+  "prompt": "4x + 5y = 70\nx - 3y = 9\n\nThe system of equations above has a solution (x, y). If the constant 70 in the first equation is replaced by 138 and the second equation is unchanged, the new system has a different solution. By how much is the x-value of the new solution greater than the x-value of the original solution?",
+  "choices": [
+   "4",
+   "12",
+   "17",
+   "27"
+  ],
+  "correct_answer": "12",
+  "explanation": "Solve each system. Original: from x - 3y = 9, x = 3y + 9, so 4(3y + 9) + 5y = 70, which gives 17y = 34, y = 2 and x = 15. New: 4(3y + 9) + 5y = 138 gives 17y = 102, y = 6 and x = 27. The x-value increases by 27 - 15 = 12.\n\n(Equivalently, the changes in x and y satisfy 4(change in x) + 5(change in y) = 68 and (change in x) - 3(change in y) = 0, so the change in y is 4 and the change in x is 12.)\n\nChoice 4 is the increase in y, not in x. Choice 17 comes from assuming y stays the same, so that 4(change in x) = 68. Choice 27 is the x-value of the new solution itself, not the increase.",
+  "solve": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [x0]=s(4,5,70,1,-3,9); const [x1]=s(4,5,138,1,-3,9); return Math.round((x1-x0)*1e9)/1e9;",
+  "distractor_solve": {
+   "4": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [,y0]=s(4,5,70,1,-3,9); const [,y1]=s(4,5,138,1,-3,9); return Math.round((y1-y0)*1e9)/1e9;",
+   "17": "return (138-70)/4;",
+   "27": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [x1]=s(4,5,138,1,-3,9); return Math.round(x1*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM26F-D12",
+  "domain": "Algebra",
+  "subskill": "Range of a variable bounded by two separate linear inequalities",
+  "difficulty": "medium",
+  "prompt": "3p + 15 ≤ 228\n5p - 35 ≥ 45\n\nThe number p satisfies both inequalities shown. What is the difference between the greatest possible value of p and the least possible value of p?",
+  "choices": [
+   "55",
+   "65",
+   "69",
+   "71"
+  ],
+  "correct_answer": "55",
+  "explanation": "First inequality: 3p + 15 ≤ 228, so 3p ≤ 213 and p ≤ 71.\nSecond inequality: 5p - 35 ≥ 45, so 5p ≥ 80 and p ≥ 16.\nSo 16 ≤ p ≤ 71. The greatest possible value of p is 71 and the least is 16, and the difference is 71 - 16 = 55.\n\nChoice 65 comes from adding 15 instead of subtracting it in the first inequality, writing 3p ≤ 243 and p ≤ 81, so the difference is 81 - 16.\nChoice 69 comes from subtracting 35 instead of adding it in the second inequality, writing 5p ≥ 10 and p ≥ 2, so the difference is 71 - 2.\nChoice 71 is the greatest possible value of p, not the difference between the greatest and least values.",
+  "solve": "const U=(228-15)/3, L=(45+35)/5; return U-L;",
+  "distractor_solve": {
+   "65": "const U=(228+15)/3, L=(45+35)/5; return U-L;",
+   "69": "const U=(228-15)/3, L=(45-35)/5; return U-L;",
+   "71": "const U=(228-15)/3; return U;"
+  }
+ },
+ {
+  "id": "SM26F-C06",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "two fraction conditions cross-multiplied into a linear system in numerator and denominator",
+  "prompt": "A fraction a/b, where a and b are positive integers, has the following two properties.\n\nWhen 3 is added to both the numerator and the denominator, the resulting fraction is equivalent to 5/7.\nWhen 9 is subtracted from both the numerator and the denominator, the resulting fraction is equivalent to 1/2.\n\nWhat is the value of a + b?",
+  "choices": [
+   "10",
+   "24",
+   "30",
+   "42"
+  ],
+  "correct_answer": "42",
+  "explanation": "The first property says (a + 3)/(b + 3) = 5/7, so 7(a + 3) = 5(b + 3), which gives 7a + 21 = 5b + 15, or 7a - 5b = -6. The second says (a - 9)/(b - 9) = 1/2, so 2(a - 9) = b - 9, which gives b = 2a - 9. Substitute: 7a - 5(2a - 9) = -6, so -3a + 45 = -6 and a = 17. Then b = 2(17) - 9 = 25. The fraction is 17/25, and a + b = 42.\n\nChoice 24 comes from not distributing the 7 to the 3, writing 7a + 3 = 5b + 15 (7a - 5b = 12), which gives a = 11 and b = 13. Choice 30 comes from a sign error when collecting the constants, writing 7a - 5b = 6, which gives a = 13 and b = 17. Choice 10 comes from cross-multiplying the first proportion the wrong way, 5(a + 3) = 7(b + 3).",
+  "solve": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,b]=s(7,-5,5*3-7*3,2,-1,2*9-9); return Math.round((a+b)*1e9)/1e9;",
+  "distractor_solve": {
+   "10": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,b]=s(5,-7,7*3-5*3,2,-1,2*9-9); return Math.round((a+b)*1e9)/1e9;",
+   "24": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,b]=s(7,-5,5*3-3,2,-1,2*9-9); return Math.round((a+b)*1e9)/1e9;",
+   "30": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [a,b]=s(7,-5,7*3-5*3,2,-1,2*9-9); return Math.round((a+b)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM26F-C04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "system whose constants are multiples of a parameter c: the ratio x/y",
+  "prompt": "5x + 3y = 11c\n3x + 2y = 6c\n\nThe letter c stands for a fixed nonzero number. For the pair (x, y) that makes both equations true, what does the quotient x/y equal?",
+  "choices": [
+   "-4/3",
+   "-3/5",
+   "4/9",
+   "11/6"
+  ],
+  "correct_answer": "-4/3",
+  "explanation": "Solve for x and y in terms of c. Multiply the first equation by 2 and the second by 3: 10x + 6y = 22c and 9x + 6y = 18c. Subtracting gives x = 4c. Then 3(4c) + 2y = 6c, so 2y = -6c and y = -3c. Because c is not zero, x/y = 4c/(-3c) = -4/3.\n\nChoice -3/5 comes from dropping the constant term and treating the first equation as 5x + 3y = 0, which gives x/y = -3/5. Choice 4/9 comes from a sign error when isolating y in the second equation: writing 2y = 6c + 12c, so y = 9c. Choice 11/6 is the ratio of the two constants, 11c/6c, which is not the ratio of x to y.",
+  "solve": "const c=1; const D=5*2-3*3; const x=(11*c*2-6*c*3)/D, y=(5*6*c-3*11*c)/D; return x/y;",
+  "distractor_solve": {
+   "-3/5": "const a1=5,b1=3; return -b1/a1;",
+   "4/9": "const c=1; const x=(11*c*2-6*c*3)/(5*2-3*3); const y=(6*c+3*x)/2; return x/y;",
+   "11/6": "const c=1; return (11*c)/(6*c);"
+  }
+ },
+ {
+  "id": "SM26F-C13",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "subskill": "two per-task times from two routes, then the greatest count that fits a time limit",
+  "prompt": "A delivery driver's route consists of drop-off stops and pickup stops. Every drop-off stop takes the same amount of time, and every pickup stop takes the same amount of time. On Monday, a route with 12 drop-off stops and 5 pickup stops took 83 minutes. On Tuesday, a route with 8 drop-off stops and 9 pickup stops took 95 minutes. On Wednesday, the driver has 9 drop-off stops and 240 minutes in all. What is the greatest number of pickup stops the driver can also complete on Wednesday?",
+  "choices": [
+   "18",
+   "29",
+   "44",
+   "51"
+  ],
+  "correct_answer": "29",
+  "explanation": "Let d and p be the minutes for one drop-off stop and one pickup stop. Then 12d + 5p = 83 and 8d + 9p = 95. Multiply the first equation by 2 and the second by 3: 24d + 10p = 166 and 24d + 27p = 285. Subtracting gives 17p = 119, so p = 7, and then 12d = 83 - 35 = 48, so d = 4. On Wednesday the drop-off stops take 9(4) = 36 minutes, leaving 240 - 36 = 204 minutes. Since 204/7 is about 29.1, the driver can complete at most 29 pickup stops.\n\nChoice 44 comes from switching the two times (using 7 minutes per drop-off and 4 minutes per pickup): (240 - 63)/4 is about 44.3. Choice 18 comes from dividing the 204 remaining minutes by 7 + 4 = 11, the time for one stop of each kind. Choice 51 is the number of additional drop-off stops that would fit, 240/4 - 9, not pickup stops.",
+  "solve": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [d,p]=s(12,5,83,8,9,95); return Math.floor((240-9*d)/p+1e-9);",
+  "distractor_solve": {
+   "18": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [d,p]=s(12,5,83,8,9,95); return Math.floor((240-9*d)/(d+p)+1e-9);",
+   "44": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [d,p]=s(12,5,83,8,9,95); return Math.floor((240-9*p)/d+1e-9);",
+   "51": "const s=(a1,b1,c1,a2,b2,c2)=>{const D=a1*b2-a2*b1;return [(c1*b2-c2*b1)/D,(a1*c2-a2*c1)/D]}; const [d]=s(12,5,83,8,9,95); return Math.round(240/d-9);"
+  }
+ },
+ {
+  "id": "SM26F-B11",
+  "domain": "Algebra",
+  "subskill": "g(x) = f(2x) - 2f(x) for linear f is the constant -b; recover f and evaluate",
+  "difficulty": "medium",
+  "prompt": "Suppose f is a linear function with f(2) = 7, and let g(x) = f(2x) - 2f(x) for all x. Given that g(4) = 5, find f(-4).",
+  "choices": [
+   "-29",
+   "-19",
+   "1",
+   "13"
+  ],
+  "correct_answer": "-29",
+  "explanation": "Write f(x) = mx + b. Then f(2x) = 2mx + b and 2f(x) = 2mx + 2b, so g(x) = (2mx + b) - (2mx + 2b) = -b for every x.\n\nSince g(4) = 5, -b = 5 and b = -5. Then f(2) = 2m - 5 = 7, so m = 6, and f(x) = 6x - 5.\n\nTherefore f(-4) = 6(-4) - 5 = -29.\n\nChoice 1 comes from taking g(x) = b instead of -b, which gives b = 5, m = 1 and f(-4) = 1. Choice -19 comes from finding b = -5 but taking the slope as 7/2 (as if f(2) = 2m), so f(-4) = -14 - 5. Choice 13 comes from treating g(4) = 5 as f(4) = 5, which gives a slope of -1 through (2, 7).",
+  "solve": "const p=2,q=7,G=5,r=-4; const b=-G; const m=(q-b)/p; return m*r+b;",
+  "distractor_solve": {
+   "1": "const p=2,q=7,G=5,r=-4; const b=G; const m=(q-b)/p; return m*r+b;",
+   "13": "const p=2,q=7,xg=4,G=5,r=-4; const m=(G-q)/(xg-p); return q+m*(r-p);",
+   "-19": "const p=2,q=7,G=5,r=-4; const b=-G; const m=q/p; return m*r+b;"
+  }
+ },
+ {
+  "id": "SM26F-B01",
+  "domain": "Algebra",
+  "subskill": "Line through a fixed point with equal intercepts, including the origin case",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, a line passes through the points (-6, 3) and (k, 8), where k is a constant. The x-coordinate of the line's x-intercept is equal to the y-coordinate of its y-intercept. What is the sum of all possible values of k?",
+  "choices": [
+   "-27",
+   "-17",
+   "-15",
+   "-11"
+  ],
+  "correct_answer": "-27",
+  "explanation": "If the x-intercept and the y-intercept are both equal to a number a, there are two possibilities.\n\nIf a is not 0, the line passes through (a, 0) and (0, a), so its slope is (a - 0)/(0 - a) = -1 and its equation is x + y = a. Because (-6, 3) is on the line, a = -6 + 3 = -3, so the line is x + y = -3. Then k + 8 = -3, so k = -11.\n\nIf a is 0, the line passes through the origin. The line through (0, 0) and (-6, 3) is y = -(1/2)x. Then 8 = -(1/2)k, so k = -16.\n\nBoth lines meet the condition, so the sum of all possible values of k is -11 + (-16) = -27.\n\nChoice -11 is the value from the line x + y = -3 alone; the line through the origin also has equal intercepts (both 0). Choice -17 comes from taking the slope to be 1 instead of -1, which gives y - x = 9 and k = -1, and then adding -16. Choice -15 comes from using a slope of -2 (run over rise) for the line through the origin, which gives k = -4, and then adding -11.",
+  "solve": "const p1=-6,p2=3,c=8; const kA=(p1+p2)-c; const kB=c*p1/p2; return kA+kB;",
+  "distractor_solve": {
+   "-11": "const p1=-6,p2=3,c=8; return (p1+p2)-c;",
+   "-17": "const p1=-6,p2=3,c=8; const kWrong=c-(p2-p1); return kWrong + c*p1/p2;",
+   "-15": "const p1=-6,p2=3,c=8; return ((p1+p2)-c) + c*p2/p1;"
+  }
+ },
+ {
+  "id": "SM26F-D04",
+  "domain": "Algebra",
+  "subskill": "Half-plane from a boundary through two points and a test point; bound at a new x",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of a certain linear inequality consists of a boundary line and all points on one side of it. The boundary line passes through the points (-3, 19) and (1, 3), and the origin, (0, 0), is part of the graph. If the point (13, k) is also part of the graph, what is the greatest possible value of k?",
+  "choices": [
+   "-45",
+   "-21",
+   "15",
+   "83"
+  ],
+  "correct_answer": "-45",
+  "explanation": "The slope of the boundary line is (3 - 19)/(1 - (-3)) = -16/4 = -4. Using the point (1, 3): y - 3 = -4(x - 1), so y = -4x + 7.\nAt x = 0 the line is at y = 7, and the origin has y = 0 < 7, so the origin lies below the line. The graph is therefore the line together with every point below it: y ≤ -4x + 7.\nFor the point (13, k): k ≤ -4(13) + 7 = -45. The greatest possible value of k is -45.\n\nChoice -21 comes from writing the line through (-3, 19) as y - 19 = -4(x - 3), with the wrong sign on -3, and then evaluating at x = 13.\nChoice 15 comes from computing the slope as change in x over change in y, -1/4, instead of -4.\nChoice 83 comes from using a slope of +4 instead of -4.",
+  "solve": "const x1=-3,y1=19,x2=1,y2=3,x3=13; const m=(y2-y1)/(x2-x1); const b=y1-m*x1; if (!(0<=b)) return NaN; return m*x3+b;",
+  "distractor_solve": {
+   "15": "const x1=-3,y1=19,x2=1,y2=3,x3=13; const m=(x2-x1)/(y2-y1); return y1+m*(x3-x1);",
+   "83": "const x1=-3,y1=19,x2=1,y2=3,x3=13; const m=-(y2-y1)/(x2-x1); return y1+m*(x3-x1);",
+   "-21": "const x1=-3,y1=19,x2=1,y2=3,x3=13; const m=(y2-y1)/(x2-x1); return y1+m*(x3+x1);"
+  }
+ },
+ {
+  "id": "SM26F-A08",
+  "domain": "Algebra",
+  "subskill": "Two conditions on one equation with a parameter: no solution, and a given solution",
+  "difficulty": "medium",
+  "prompt": "k(x + 1) + 4x = 9x + 35\n\nChoosing the constant k equal to m makes the equation above impossible to satisfy for any x. Choosing k equal to n instead makes x = 1 its only solution. Find m + n.",
+  "choices": [
+   "25",
+   "27",
+   "33",
+   "55"
+  ],
+  "correct_answer": "25",
+  "explanation": "Collect the x-terms: (k + 4)x + k = 9x + 35, so (k - 5)x = 35 - k.\nNo solution: the x-terms must cancel while the constants differ. k - 5 = 0 gives k = 5, and then 0 = 30, which is false. So m = 5.\nSolution x = 1: substitute x = 1 into the original equation: 2k + 4 = 44, so k = 20. So n = 20.\nm + n = 5 + 20 = 25.\n\nChoice 33 comes from moving 4x the wrong way, so k - 4 = 9 and m = 13.\nChoice 55 comes from making the constants equal instead of the x-coefficients, k = 35, which is the condition for infinitely many solutions, not none.\nChoice 27 comes from leaving out the 4x term when substituting x = 1: 2k = 44 gives n = 22.",
+  "solve": "const a=1,b=4,c=9,d=35,s=1; const m=c-b; const n=((c-b)*s+d)/(s+a); return m+n;",
+  "distractor_solve": {
+   "27": "const a=1,b=4,c=9,d=35,s=1; const m=c-b; const n=(c*s+d)/(s+a); return m+n;",
+   "33": "const a=1,b=4,c=9,d=35,s=1; const m=c+b; const n=((c-b)*s+d)/(s+a); return m+n;",
+   "55": "const a=1,b=4,c=9,d=35,s=1; const m=d/a; const n=((c-b)*s+d)/(s+a); return m+n;"
+  }
+ },
+ {
+  "id": "SM26F-D03",
+  "domain": "Algebra",
+  "subskill": "Integers satisfying one linear inequality but not a second (complement after a flip)",
+  "difficulty": "hard",
+  "prompt": "-39 < 3x - 9 ≤ 36\n2(x - 7) < 5x + 1\n\nHow many integers x satisfy the first inequality above but do NOT satisfy the second inequality?",
+  "choices": [
+   "5",
+   "11",
+   "21",
+   "25"
+  ],
+  "correct_answer": "5",
+  "explanation": "First inequality: add 9 to each part to get -30 < 3x ≤ 45, then divide by 3: -10 < x ≤ 15.\nSecond inequality: 2x - 14 < 5x + 1, so -3x < 15. Dividing by -3 reverses the inequality: x > -5.\nAn integer that does NOT satisfy the second inequality has x ≤ -5. Together with -10 < x ≤ 15, the integers are -9, -8, -7, -6, and -5, which is 5 integers.\n\nChoice 11 comes from subtracting 9 instead of adding it in the first inequality, which gives -48 < 3x and x > -16, so the integers -15 through -5 are counted.\nChoice 21 comes from not reversing the inequality when dividing by -3, which gives x < -5 for the second inequality, so the integers from -5 through 15 are counted.\nChoice 25 comes from not dividing -30 by 3, which gives x > -30, so the integers -29 through -5 are counted. (It is also the number of integers that satisfy the first inequality alone.)",
+  "solve": "let n=0; for (let x=-100;x<=100;x++){ const A=(-39<3*x-9)&&(3*x-9<=36); const B=2*(x-7)<5*x+1; if (A&&!B) n++; } return n;",
+  "distractor_solve": {
+   "11": "let n=0; for (let x=-100;x<=100;x++){ const A=(x>(-39-9)/3)&&(x<=(36+9)/3); const notB=x<=-5; if (A&&notB) n++; } return n;",
+   "21": "let n=0; for (let x=-100;x<=100;x++){ const A=(-39<3*x-9)&&(3*x-9<=36); const notB=x>=-5; if (A&&notB) n++; } return n;",
+   "25": "let n=0; for (let x=-100;x<=100;x++){ const A=(x>-39+9)&&(x<=(36+9)/3); const notB=x<=-5; if (A&&notB) n++; } return n;"
+  }
+ }
+]

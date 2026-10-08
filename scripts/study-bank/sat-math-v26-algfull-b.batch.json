@@ -1,0 +1,657 @@
+[
+  {
+    "id": "SM26F-B01",
+    "domain": "Algebra",
+    "subskill": "Line through a fixed point with equal intercepts, including the origin case",
+    "difficulty": "hard",
+    "prompt": "In the xy-plane, a line passes through the points (-6, 3) and (k, 8), where k is a constant. The x-coordinate of the line's x-intercept is equal to the y-coordinate of its y-intercept. What is the sum of all possible values of k?",
+    "choices": [
+      "-27",
+      "-17",
+      "-15",
+      "-11"
+    ],
+    "correct_answer": "-27",
+    "explanation": "If the x-intercept and the y-intercept are both equal to a number a, there are two possibilities.\n\nIf a is not 0, the line passes through (a, 0) and (0, a), so its slope is (a - 0)/(0 - a) = -1 and its equation is x + y = a. Because (-6, 3) is on the line, a = -6 + 3 = -3, so the line is x + y = -3. Then k + 8 = -3, so k = -11.\n\nIf a is 0, the line passes through the origin. The line through (0, 0) and (-6, 3) is y = -(1/2)x. Then 8 = -(1/2)k, so k = -16.\n\nBoth lines meet the condition, so the sum of all possible values of k is -11 + (-16) = -27.\n\nChoice -11 is the value from the line x + y = -3 alone; the line through the origin also has equal intercepts (both 0). Choice -17 comes from taking the slope to be 1 instead of -1, which gives y - x = 9 and k = -1, and then adding -16. Choice -15 comes from using a slope of -2 (run over rise) for the line through the origin, which gives k = -4, and then adding -11.",
+    "solve": "const p1=-6,p2=3,c=8; const kA=(p1+p2)-c; const kB=c*p1/p2; return kA+kB;",
+    "distractor_solve": {
+      "-11": "const p1=-6,p2=3,c=8; return (p1+p2)-c;",
+      "-17": "const p1=-6,p2=3,c=8; const kWrong=c-(p2-p1); return kWrong + c*p1/p2;",
+      "-15": "const p1=-6,p2=3,c=8; return ((p1+p2)-c) + c*p2/p1;"
+    },
+    "mechanism": [
+      "equal intercepts means slope -1 or through origin",
+      "two cases for the line",
+      "solve for k in each case",
+      "sum the cases"
+    ],
+    "quantity_asked": "sum of all possible values of k",
+    "distractor_meta": {
+      "-11": {
+        "error_kind": "missed the through-origin case",
+        "direction": "over"
+      },
+      "-17": {
+        "error_kind": "slope +1 instead of -1 for equal intercepts",
+        "direction": "over"
+      },
+      "-15": {
+        "error_kind": "origin-line slope inverted (run over rise)",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: Q has y = 8 above P's y = 3, and IF one already knows both qualifying lines slope downward, each k < -6 and the sum < -12. That bound needs the two-case analysis itself; even then -17 and -15 lie on the key's side of it with the key; only -11 lies beyond it.",
+    "interior_parity_check": "interior -17 and -15: both two-digit negative odd integers, same display form; the key -27 is extreme, not interior",
+    "arith_class_check": "no: all four are negative odd integers; the stem implies no class that only -27 belongs to",
+    "self_audit": {
+      "risk": "medium",
+      "note": "a test-wise student cannot get the sum without finding both lines; -11 (the usual single answer) is present, and the two other errors also add a second case so the key is not the lone 'sum-like' option"
+    },
+    "bounds": [],
+    "assigned": "H/S"
+  },
+  {
+    "id": "SM26F-B02",
+    "domain": "Algebra",
+    "subskill": "Linear calibration model from two readings; input where output equals input",
+    "difficulty": "medium",
+    "prompt": "A pressure gauge is not calibrated correctly. When the true pressure is 10 pounds per square inch (psi), the gauge reads 18 psi. When the true pressure is 50 psi, the gauge reads 48 psi. The gauge reading is a linear function of the true pressure. At what true pressure, in psi, does the gauge reading equal the true pressure?",
+    "choices": [
+      "6",
+      "14",
+      "32",
+      "42"
+    ],
+    "correct_answer": "42",
+    "explanation": "Let p be the true pressure and R the gauge reading. The slope is (48 - 18)/(50 - 10) = 30/40 = 0.75. Using the point (10, 18): R = 18 + 0.75(p - 10) = 0.75p + 10.5.\n\nThe reading equals the true pressure when 0.75p + 10.5 = p. Then 10.5 = 0.25p, so p = 42.\n\nCheck: at p = 42 the gauge reads 0.75(42) + 10.5 = 31.5 + 10.5 = 42.\n\nChoice 14 comes from dropping the p on the right side and solving 0.75p = 10.5. Choice 32 comes from using the 8 psi difference at the first reading (18 - 10) as the constant term, so 8 = 0.25p. Choice 6 comes from moving 0.75p to the wrong side, 10.5 = 1.75p.",
+    "solve": "const t1=10,r1=18,t2=50,r2=48; const m=(r2-r1)/(t2-t1); const b=r1-m*t1; return b/(1-m);",
+    "distractor_solve": {
+      "14": "const t1=10,r1=18,t2=50,r2=48; const m=(r2-r1)/(t2-t1); const b=r1-m*t1; return b/m;",
+      "32": "const t1=10,r1=18,t2=50,r2=48; const m=(r2-r1)/(t2-t1); return (r1-t1)/(1-m);",
+      "6": "const t1=10,r1=18,t2=50,r2=48; const m=(r2-r1)/(t2-t1); const b=r1-m*t1; return b/(1+m);"
+    },
+    "mechanism": [
+      "linear model from two calibration points",
+      "set output equal to input",
+      "solve fixed point b/(1 - m)"
+    ],
+    "quantity_asked": "the true pressure at which reading = true pressure",
+    "distractor_meta": {
+      "14": {
+        "error_kind": "dropped the variable on one side",
+        "direction": "under"
+      },
+      "32": {
+        "error_kind": "offset at first point used as intercept",
+        "direction": "under"
+      },
+      "6": {
+        "error_kind": "sign slip moving the variable term",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: the gauge reads 8 high at 10 psi and 2 low at 50 psi, so the crossing lies between 10 and 50. Distractors 14 and 32 lie inside that interval with the key; only 6 lies outside it.",
+    "interior_parity_check": "interior 14 and 32: both two-digit even integers; the key 42 is extreme, not interior",
+    "arith_class_check": "no: all four options are even integers; nothing in the stem singles out 42",
+    "self_audit": {
+      "risk": "low",
+      "note": "the between-10-and-50 bound removes only 6; choosing among 14, 32 and 42 needs the model; the key is not the midpoint (30) or any simple stem combination"
+    },
+    "bounds": [],
+    "assigned": "M/L"
+  },
+  {
+    "id": "SM26F-B03",
+    "domain": "Algebra",
+    "subskill": "Linear function from a table; intersection of y = f(x) with y = 3f(x) - 8",
+    "difficulty": "medium",
+    "prompt": "x | f(x)\n-3 | -7\n6 | -1\n\nThe table gives two values of the linear function f. In the xy-plane, the graphs of y = f(x) and y = 3f(x) - 8 intersect at exactly one point. What is the x-coordinate of that point?",
+    "choices": [
+      "3/2",
+      "21/2",
+      "23/2",
+      "27/2"
+    ],
+    "correct_answer": "27/2",
+    "explanation": "The slope of f is (-1 - (-7))/(6 - (-3)) = 6/9 = 2/3, and f(6) = -1 gives -1 = (2/3)(6) + b, so b = -5. So f(x) = (2/3)x - 5.\n\nAt the intersection the two y-values are equal: f(x) = 3f(x) - 8, so 8 = 2f(x) and f(x) = 4.\n\nThen (2/3)x - 5 = 4, so (2/3)x = 9 and x = 27/2.\n\nChoice 23/2 comes from setting 3f(x) - 8 equal to 0 (the x-intercept of the second graph), so f(x) = 8/3. Choice 21/2 comes from adding instead of subtracting, 4f(x) = 8, so f(x) = 2. Choice 3/2 comes from a sign slip that gives -2f(x) = 8, so f(x) = -4.",
+    "solve": "const x1=-3,y1=-7,x2=6,y2=-1; const m=(y2-y1)/(x2-x1); const b=y2-m*x2; const fv=8/2; return (fv-b)/m;",
+    "distractor_solve": {
+      "23/2": "const x1=-3,y1=-7,x2=6,y2=-1; const m=(y2-y1)/(x2-x1); const b=y2-m*x2; const fv=8/3; return (fv-b)/m;",
+      "21/2": "const x1=-3,y1=-7,x2=6,y2=-1; const m=(y2-y1)/(x2-x1); const b=y2-m*x2; const fv=8/4; return (fv-b)/m;",
+      "3/2": "const x1=-3,y1=-7,x2=6,y2=-1; const m=(y2-y1)/(x2-x1); const b=y2-m*x2; const fv=-8/2; return (fv-b)/m;"
+    },
+    "mechanism": [
+      "linear function from two table values",
+      "f(x) = 3f(x) - 8 gives the shared output value",
+      "solve f(x) = that value for x"
+    ],
+    "quantity_asked": "x-coordinate of the intersection of y = f(x) and y = 3f(x) - 8",
+    "distractor_meta": {
+      "23/2": {
+        "error_kind": "used the zero of the second graph instead of the intersection",
+        "direction": "under"
+      },
+      "21/2": {
+        "error_kind": "added instead of subtracting f(x)",
+        "direction": "under"
+      },
+      "3/2": {
+        "error_kind": "sign slip giving f(x) = -4",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: f increases (table) and f(6) = -1, so any x where f(x) is positive lies beyond 7.5. That needs f(x) > 0, i.e. the shared value already found; even then 21/2 and 23/2 lie on the key's side of 7.5 with the key, only 3/2 lies beyond it. The stem itself states no bound on the intersection.",
+    "interior_parity_check": "interior 21/2 and 23/2: both improper fractions with denominator 2, same display length; the key 27/2 is extreme, not interior",
+    "arith_class_check": "no: all four options are halves (odd numerator over 2); none is an integer",
+    "self_audit": {
+      "risk": "medium",
+      "note": "plugging options back needs f first and then both graphs; ascending order reaches the key on the fourth try; the shared y-value 4 is not an option"
+    },
+    "bounds": [],
+    "assigned": "M/L"
+  },
+  {
+    "id": "SM26F-B04",
+    "domain": "Algebra",
+    "subskill": "f(x) = mx + b with f(b) = 0 and b nonzero forces the slope; then evaluate",
+    "difficulty": "medium",
+    "prompt": "For constants m and b with b not equal to 0, let f(x) = mx + b. In the xy-plane, the graph of y = f(x) crosses the x-axis exactly at x = b, and it also contains the point (-5, -13). Find f(10).",
+    "choices": [
+      "-28",
+      "-8",
+      "2",
+      "26"
+    ],
+    "correct_answer": "-28",
+    "explanation": "The graph crosses the x-axis at x = b, so f(b) = 0: m(b) + b = 0, so b(m + 1) = 0. Because b is not 0, m + 1 = 0 and m = -1.\n\nSo f(x) = -x + b. The point (-5, -13) gives 5 + b = -13, so b = -18, and f(x) = -x - 18.\n\nTherefore f(10) = -10 - 18 = -28.\n\nChoice 2 comes from concluding m = 1 instead of m = -1, which gives b = -8 and f(10) = 10 - 8. Choice 26 comes from using b = 0 (the other factor) even though b is not 0: then f(x) = (13/5)x and f(10) = 26. Choice -8 comes from finding f(x) = -x - 18 but evaluating it as 10 - 18.",
+    "solve": "const p=-5,q=-13,r=10; const m=-1; const b=q-m*p; return m*r+b;",
+    "distractor_solve": {
+      "2": "const p=-5,q=-13,r=10; const m=1; const b=q-m*p; return m*r+b;",
+      "26": "const p=-5,q=-13,r=10; const m=q/p; return m*r;",
+      "-8": "const p=-5,q=-13,r=10; const m=-1; const b=q-m*p; return r+b;"
+    },
+    "mechanism": [
+      "f(b) = 0 factors as b(m + 1) = 0",
+      "b nonzero forces m = -1",
+      "intercept from a given point",
+      "evaluate f"
+    ],
+    "quantity_asked": "f(10)",
+    "distractor_meta": {
+      "2": {
+        "error_kind": "sign of the forced slope reversed",
+        "direction": "over"
+      },
+      "26": {
+        "error_kind": "took the excluded factor b = 0",
+        "direction": "over"
+      },
+      "-8": {
+        "error_kind": "sign slip when evaluating -x",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "No one-sided bound is readable from the stem: neither the sign of m nor of b is stated, and the point (-5, -13) alone does not order f(10) against -13. The direction of each error depends on the hidden slope, so -8 and 2 are not excludable without solving; all three errors land above the key only because m turns out negative.",
+    "interior_parity_check": "interior -8 and 2: both one-digit even integers, one negative and one positive; the key -28 is extreme, not interior",
+    "arith_class_check": "no: all four options are even integers, two negative and two positive",
+    "self_audit": {
+      "risk": "medium",
+      "note": "the key is the smallest and all three errors land above it; a student cannot see that without finding m = -1, since the sign of f(10) is not readable from the stem"
+    },
+    "bounds": [],
+    "assigned": "M/S"
+  },
+  {
+    "id": "SM26F-B05",
+    "domain": "Algebra",
+    "subskill": "Slope and intercept of linear f from f(5) + f(-5) and f(5) - f(-5)",
+    "difficulty": "medium",
+    "prompt": "For a certain linear function f, adding the outputs f(5) and f(-5) gives 20, while subtracting f(-5) from f(5) gives 40. Find f(-4).",
+    "choices": [
+      "-22",
+      "-6",
+      "4",
+      "12"
+    ],
+    "correct_answer": "-6",
+    "explanation": "Write f(x) = mx + b. Then f(5) = 5m + b and f(-5) = -5m + b.\n\nThe sum is (5m + b) + (-5m + b) = 2b = 20, so b = 10. The difference is (5m + b) - (-5m + b) = 10m = 40, so m = 4.\n\nSo f(x) = 4x + 10, and f(-4) = 4(-4) + 10 = -6.\n\nChoice 4 comes from taking b = 20, forgetting that the sum is 2b. Choice -22 comes from taking m = 8, dividing the difference by 5 instead of 10. Choice 12 comes from switching the roles of the two facts, so m = 20/10 = 2 and b = 40/2 = 20.",
+    "solve": "const S=20,D=40,a=5,c=-4; const b=S/2; const m=D/(2*a); return m*c+b;",
+    "distractor_solve": {
+      "4": "const S=20,D=40,a=5,c=-4; const m=D/(2*a); return m*c+S;",
+      "-22": "const S=20,D=40,a=5,c=-4; const b=S/2; const m=D/a; return m*c+b;",
+      "12": "const S=20,D=40,a=5,c=-4; const m=S/(2*a); const b=D/2; return m*c+b;"
+    },
+    "mechanism": [
+      "sum of symmetric values gives 2b",
+      "difference of symmetric values gives 2a times m",
+      "evaluate f"
+    ],
+    "quantity_asked": "f(-4)",
+    "distractor_meta": {
+      "4": {
+        "error_kind": "forgot the sum equals 2b",
+        "direction": "over"
+      },
+      "-22": {
+        "error_kind": "difference divided by 5 instead of 10",
+        "direction": "under"
+      },
+      "12": {
+        "error_kind": "roles of sum and difference switched",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "interior -6 and 4: both one-digit even integers of opposite sign, same display length; the key -6 is not the cleaner of the two",
+    "arith_class_check": "no: all four are even integers, two negative and two positive",
+    "self_audit": {
+      "risk": "low",
+      "note": "errors fall on both sides of the key; no option is the key plus a stem number (20 or 40)"
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-B06",
+    "domain": "Algebra",
+    "subskill": "x-intercept of a line after a horizontal and vertical translation",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, line l has equation x + 6y = -10. Line l is translated 2 units to the left and 7 units up to form line m. What is the x-coordinate of the x-intercept of line m?",
+    "choices": [
+      "-12",
+      "-10",
+      "30",
+      "34"
+    ],
+    "correct_answer": "30",
+    "explanation": "Solve for y: 6y = -x - 10, so line l is y = -(1/6)x - 5/3.\n\nTranslating 2 units to the left replaces x with x + 2, and translating 7 units up adds 7:\ny = -(1/6)(x + 2) - 5/3 + 7 = -(1/6)x - 1/3 - 5/3 + 7 = -(1/6)x + 5.\n\nLine m crosses the x-axis where -(1/6)x + 5 = 0, so x = 30.\n\nChoice 34 comes from moving the line 2 units to the right instead of the left (replacing x with x - 2). Choice -12 comes from making the horizontal move but leaving out the 7 units up. Choice -10 is the x-intercept of line l itself, before any translation.",
+    "solve": "const A=1,B=6,C=-10,h=2,v=7; const m=-A/B, c=C/B; return -(m*h+c+v)/m;",
+    "distractor_solve": {
+      "34": "const A=1,B=6,C=-10,h=2,v=7; const m=-A/B, c=C/B; return -(-m*h+c+v)/m;",
+      "-12": "const A=1,B=6,C=-10,h=2,v=7; const m=-A/B, c=C/B; return -(m*h+c)/m;",
+      "-10": "const A=1,B=6,C=-10; const m=-A/B, c=C/B; return -c/m;"
+    },
+    "mechanism": [
+      "slope-intercept form from standard form",
+      "translate left and up (x -> x + h, add v)",
+      "x-intercept of the image"
+    ],
+    "quantity_asked": "x-intercept of the translated line",
+    "distractor_meta": {
+      "34": {
+        "error_kind": "horizontal shift in the wrong direction",
+        "direction": "over"
+      },
+      "-12": {
+        "error_kind": "vertical shift omitted",
+        "direction": "under"
+      },
+      "-10": {
+        "error_kind": "no translation applied",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "interior -10 and 30: both two-digit integers, same display form; the key 30 is not the cleaner of the two",
+    "arith_class_check": "no: all four are even integers, two negative and two positive; -10 and 30 are both multiples of 10",
+    "self_audit": {
+      "risk": "medium",
+      "note": "a student who reasons qualitatively (up 7 on a gently falling line moves the intercept far right, left 2 moves it a little left) still has to choose between 30 and 34 by applying the horizontal shift in the right direction; the no-translation and vertical-shift-omitted values are both present"
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-B07",
+    "domain": "Algebra",
+    "subskill": "Rewrite a linear context model from days after one date to weeks after an earlier date",
+    "difficulty": "medium",
+    "prompt": "The amount of water A, in thousands of liters, in a storage tank is modeled by A = 0.8d + 150, where d is the number of days after June 15. An engineer rewrites the model in the form A = kw + c, where w is the number of weeks after June 1 and k and c are constants. What is the value of c?",
+    "choices": [
+      "71.6",
+      "138.8",
+      "148.4",
+      "161.2"
+    ],
+    "correct_answer": "138.8",
+    "explanation": "June 1 is 14 days before June 15, so a time that is w weeks after June 1 is 7w days after June 1, which is d = 7w - 14 days after June 15.\n\nSubstitute: A = 0.8(7w - 14) + 150 = 5.6w - 11.2 + 150 = 5.6w + 138.8.\n\nSo k = 5.6 and c = 138.8. (Check: c is the amount on June 1, which is 14 days before June 15: 150 - 0.8(14) = 138.8.)\n\nChoice 161.2 comes from using d = 7w + 14, which moves the starting date in the wrong direction. Choice 148.4 comes from shifting by 2 instead of 14, treating the 2 weeks as 2 days. Choice 71.6 comes from multiplying the new weekly rate 5.6 by the 14 days.",
+    "solve": "const r=0.8,c0=150,s=14; return c0 - r*s;",
+    "distractor_solve": {
+      "161.2": "const r=0.8,c0=150,s=14; return c0 + r*s;",
+      "148.4": "const r=0.8,c0=150,s=14; return c0 - r*(s/7);",
+      "71.6": "const r=0.8,c0=150,s=14; return Math.round((c0 - 7*r*s)*10)/10;"
+    },
+    "mechanism": [
+      "express d in terms of w (unit change and origin shift)",
+      "substitute into the model",
+      "read the new constant term"
+    ],
+    "quantity_asked": "the constant term c of the rewritten model",
+    "distractor_meta": {
+      "161.2": {
+        "error_kind": "origin shifted in the wrong direction",
+        "direction": "over"
+      },
+      "148.4": {
+        "error_kind": "shift counted in weeks as days",
+        "direction": "over"
+      },
+      "71.6": {
+        "error_kind": "weekly rate applied to a day count",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "interior 138.8 and 148.4: both three-digit numbers with one decimal place; the key 138.8 is not the cleaner of the two",
+    "arith_class_check": "no: all four options have one decimal place; none is an integer",
+    "self_audit": {
+      "risk": "low",
+      "note": "the key sits between the wrong-direction and the half-shift values; a student must decide both the direction and the size of the origin shift"
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-B08",
+    "domain": "Algebra",
+    "subskill": "Linear f from one value and an output-ratio condition f(5) = 2f(2)",
+    "difficulty": "medium",
+    "prompt": "A linear function f satisfies f(4) = 10. Its output at x = 5 is exactly twice its output at x = 2. Find f(-8).",
+    "choices": [
+      "-30",
+      "-20",
+      "-18",
+      "-14"
+    ],
+    "correct_answer": "-14",
+    "explanation": "Write f(x) = mx + b. The condition f(5) = 2f(2) gives 5m + b = 2(2m + b) = 4m + 2b, so m = b.\n\nThen f(4) = 4m + m = 5m = 10, so m = 2 and b = 2. So f(x) = 2x + 2.\n\nTherefore f(-8) = 2(-8) + 2 = -14.\n\nChoice -20 comes from assuming the graph passes through the origin (b = 0), so f(x) = (10/4)x. Choice -30 comes from a sign slip that gives b = -m, so 3m = 10 and f(-8) = -9m. Choice -18 comes from finding f(x) = 2x + 2 but evaluating it as 2(-8) - 2.",
+    "solve": "const A=5,B=2,R=2,p=4,q=10,r=-8; const t=(R*B-A)/(1-R); const m=q/(p+t); const b=m*t; return m*r+b;",
+    "distractor_solve": {
+      "-20": "const p=4,q=10,r=-8; return (q/p)*r;",
+      "-30": "const A=5,B=2,R=2,p=4,q=10,r=-8; const t=(R*B-A)/(R-1); const m=q/(p+t); return m*r+m*t;",
+      "-18": "const A=5,B=2,R=2,p=4,q=10,r=-8; const t=(R*B-A)/(1-R); const m=q/(p+t); const b=m*t; return m*r-b;"
+    },
+    "mechanism": [
+      "output-ratio condition f(5) = 2f(2)",
+      "relation between slope and intercept",
+      "solve with a second value",
+      "evaluate f"
+    ],
+    "quantity_asked": "f(-8)",
+    "distractor_meta": {
+      "-20": {
+        "error_kind": "assumed a proportional function",
+        "direction": "under"
+      },
+      "-30": {
+        "error_kind": "sign slip solving for b in terms of m",
+        "direction": "under"
+      },
+      "-18": {
+        "error_kind": "intercept sign dropped when evaluating",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: f(5) = 2f(2) with f(4) = 10 > 0 suggests f increases, so f(-8) < 10; all four options satisfy it, so it kills nothing. No stem value bounds f(-8) from below.",
+    "interior_parity_check": "interior -20 and -18: both two-digit negative even integers; the key -14 is extreme, not interior",
+    "arith_class_check": "no: all four options are negative even integers",
+    "self_audit": {
+      "risk": "low",
+      "note": "the key is the largest, but each error lowers the value for a different reason (b dropped, b sign flipped in solving, b sign flipped in evaluating); a test-wise student cannot read that from the stem"
+    },
+    "bounds": [],
+    "assigned": "M/L"
+  },
+  {
+    "id": "SM26F-B09",
+    "domain": "Algebra",
+    "subskill": "Point on one line, shifted point on a parallel line: change in y from slope and intercepts",
+    "difficulty": "medium",
+    "prompt": "A point with coordinates (p, q) sits on the graph of y = 4x + 5, and a second point with coordinates (p + 6, q + k) sits on the graph of 8x - 2y = 16. Which number must k equal?",
+    "choices": [
+      "-13",
+      "-7",
+      "11",
+      "37"
+    ],
+    "correct_answer": "11",
+    "explanation": "Since (p, q) is on y = 4x + 5, q = 4p + 5.\n\nThe second line 8x - 2y = 16 can be written as y = 4x - 8. Since (p + 6, q + k) is on it, q + k = 4(p + 6) - 8 = 4p + 16.\n\nSubtract: k = (4p + 16) - (4p + 5) = 11. (The slope adds 4 × 6 = 24, and moving from the first line to the second subtracts 13.)\n\nChoice -13 comes from using only the change in y-intercept, from 5 to -8. Choice 37 comes from adding the 13 instead of subtracting it. Choice -7 comes from adding the 6 without multiplying it by the slope 4.",
+    "solve": "const m=4,b1=5,A=8,B=-2,C=16,h=6; const b2=C/B; const m2=-A/B; return (m2*h + b2) - b1;",
+    "distractor_solve": {
+      "-13": "const b1=5,B=-2,C=16; const b2=C/B; return b2-b1;",
+      "37": "const m=4,b1=5,B=-2,C=16,h=6; const b2=C/B; return m*h - (b2-b1);",
+      "-7": "const b1=5,B=-2,C=16,h=6; const b2=C/B; return h + (b2-b1);"
+    },
+    "mechanism": [
+      "second line to slope-intercept form",
+      "point on each line gives two expressions",
+      "difference eliminates p"
+    ],
+    "quantity_asked": "the vertical change k between the two points",
+    "distractor_meta": {
+      "-13": {
+        "error_kind": "intercept change only, slope effect omitted",
+        "direction": "under"
+      },
+      "37": {
+        "error_kind": "intercept change added with the wrong sign",
+        "direction": "over"
+      },
+      "-7": {
+        "error_kind": "horizontal change not multiplied by the slope",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "interior -7 and 11: both integers (one and two digits), same display form; the key 11 is not the cleaner of the two",
+    "arith_class_check": "no: all four options are odd integers, two negative and two positive",
+    "self_audit": {
+      "risk": "low",
+      "note": "options cannot be substituted (p and q are unknown); each distractor drops or flips a different one of the two contributions"
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-B10",
+    "domain": "Algebra",
+    "subskill": "Reading m + b as f(1); slope from f(1) and a given point; evaluate",
+    "difficulty": "medium",
+    "prompt": "The graph of y = mx + b, where m and b are constants, contains the point (-3, 3), and the constants satisfy m + b = 15. When x = 3, what does y equal?",
+    "choices": [
+      "9",
+      "21",
+      "27",
+      "39"
+    ],
+    "correct_answer": "21",
+    "explanation": "When x = 1, y = m(1) + b = m + b = 15, so the line passes through (1, 15) as well as (-3, 3).\n\nThe slope is (15 - 3)/(1 - (-3)) = 12/4 = 3, and b = 15 - 3 = 12. So the line is y = 3x + 12.\n\nAt x = 3, y = 3(3) + 12 = 21.\n\nChoice 27 comes from treating 15 as the y-intercept b, which gives the slope (3 - 15)/(-3 - 0) = 4 and y = 4(3) + 15. Choice 39 comes from treating 15 as the y-value at x = -1, which gives the slope 6 and the line y = 6x + 21. Choice 9 comes from finding the slope with the wrong sign, -3, so b = 18 and y = -3(3) + 18.",
+    "solve": "const p=-3,q=3,T=15,r=3; const m=(q-T)/(p-1); const b=T-m; return m*r+b;",
+    "distractor_solve": {
+      "27": "const p=-3,q=3,T=15,r=3; const m=(q-T)/p; return m*r+T;",
+      "39": "const p=-3,q=3,T=15,r=3; const m=(q-T)/(p+1); return m*r+T+m;",
+      "9": "const p=-3,q=3,T=15,r=3; const m=-(q-T)/(p-1); return m*r+(T-m);"
+    },
+    "mechanism": [
+      "m + b is the value at x = 1",
+      "slope from two points",
+      "evaluate the line"
+    ],
+    "quantity_asked": "y-coordinate at x = 3",
+    "distractor_meta": {
+      "27": {
+        "error_kind": "m + b taken as the y-intercept",
+        "direction": "over"
+      },
+      "39": {
+        "error_kind": "m + b taken as the value at x = -1",
+        "direction": "over"
+      },
+      "9": {
+        "error_kind": "slope sign reversed",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "interior key",
+    "interior_parity_check": "interior 21 and 27: both two-digit odd integers; the key 21 is not the cleaner of the two",
+    "arith_class_check": "no: all four are odd multiples of 3; no option is alone in a class",
+    "self_audit": {
+      "risk": "low",
+      "note": "the decision is seeing m + b as f(1); each distractor reads that sum as a different value of the line"
+    },
+    "bounds": [],
+    "assigned": "M/I"
+  },
+  {
+    "id": "SM26F-B11",
+    "domain": "Algebra",
+    "subskill": "g(x) = f(2x) - 2f(x) for linear f is the constant -b; recover f and evaluate",
+    "difficulty": "medium",
+    "prompt": "Suppose f is a linear function with f(2) = 7, and let g(x) = f(2x) - 2f(x) for all x. Given that g(4) = 5, find f(-4).",
+    "choices": [
+      "-29",
+      "-19",
+      "1",
+      "13"
+    ],
+    "correct_answer": "-29",
+    "explanation": "Write f(x) = mx + b. Then f(2x) = 2mx + b and 2f(x) = 2mx + 2b, so g(x) = (2mx + b) - (2mx + 2b) = -b for every x.\n\nSince g(4) = 5, -b = 5 and b = -5. Then f(2) = 2m - 5 = 7, so m = 6, and f(x) = 6x - 5.\n\nTherefore f(-4) = 6(-4) - 5 = -29.\n\nChoice 1 comes from taking g(x) = b instead of -b, which gives b = 5, m = 1 and f(-4) = 1. Choice -19 comes from finding b = -5 but taking the slope as 7/2 (as if f(2) = 2m), so f(-4) = -14 - 5. Choice 13 comes from treating g(4) = 5 as f(4) = 5, which gives a slope of -1 through (2, 7).",
+    "solve": "const p=2,q=7,G=5,r=-4; const b=-G; const m=(q-b)/p; return m*r+b;",
+    "distractor_solve": {
+      "1": "const p=2,q=7,G=5,r=-4; const b=G; const m=(q-b)/p; return m*r+b;",
+      "-19": "const p=2,q=7,G=5,r=-4; const b=-G; const m=q/p; return m*r+b;",
+      "13": "const p=2,q=7,xg=4,G=5,r=-4; const m=(G-q)/(xg-p); return q+m*(r-p);"
+    },
+    "mechanism": [
+      "expand f(2x) - 2f(x)",
+      "combination equals -b for every x",
+      "slope from one value",
+      "evaluate f"
+    ],
+    "quantity_asked": "f(-4)",
+    "distractor_meta": {
+      "1": {
+        "error_kind": "sign of the constant reversed",
+        "direction": "over"
+      },
+      "-19": {
+        "error_kind": "slope read as a proportion, ignoring b",
+        "direction": "over"
+      },
+      "13": {
+        "error_kind": "treated g(4) as a value of f",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "No bound is readable: the stem gives one value of f and a value of g, neither of which fixes the sign of the slope or of f(-4). A student who guesses f is increasing (f(2) = 7 > 0) only gets f(-4) < 7, which leaves -19 and 1 on the key's side with -29.",
+    "interior_parity_check": "interior -19 and 1: both odd integers; the key -29 is extreme, not interior",
+    "arith_class_check": "no: all four options are odd integers, two negative and two positive",
+    "self_audit": {
+      "risk": "low",
+      "note": "the decisive step is seeing g is constant; each error is a different misreading of g, and no option is the key plus a stem number"
+    },
+    "bounds": [],
+    "assigned": "M/S"
+  },
+  {
+    "id": "SM26F-B12",
+    "domain": "Algebra",
+    "subskill": "Table of five points with one recorded incorrectly; identify it and find the line's y-intercept",
+    "difficulty": "hard",
+    "prompt": "x | y\n2 | 11\n3 | 13\n6 | 4\n7 | 1\n12 | -14\n\nA student recorded the five pairs (x, y) shown in the table. Exactly one of the five y-values was recorded incorrectly; the other four pairs all lie on the same line in the xy-plane. What is the y-coordinate of the y-intercept of that line?",
+    "choices": [
+      "7",
+      "16",
+      "17",
+      "22"
+    ],
+    "correct_answer": "22",
+    "explanation": "Compare slopes between consecutive pairs:\nfrom (2, 11) to (3, 13): 2/1 = 2\nfrom (3, 13) to (6, 4): -9/3 = -3\nfrom (6, 4) to (7, 1): -3/1 = -3\nfrom (7, 1) to (12, -14): -15/5 = -3\n\nThe pairs (3, 13), (6, 4), (7, 1) and (12, -14) all lie on a line of slope -3, and only (2, 11) is off it. So the y-value at x = 2 was recorded incorrectly.\n\nUsing (3, 13) and slope -3: 13 = -3(3) + b, so b = 22. The line is y = -3x + 22, and its y-intercept is 22. (The correct value at x = 2 would have been 16.)\n\nChoice 7 comes from using the first two rows, which gives slope 2 and y = 2x + 7. Choice 16 comes from using the first and last rows, which gives slope -2.5 and 11 = -2.5(2) + b. Choice 17 comes from using the correct slope -3 but the incorrect row (2, 11) to find b.",
+    "solve": "const xs=[2,3,6,7,12], ys=[11,13,4,1,-14]; const m=(ys[2]-ys[1])/(xs[2]-xs[1]); return ys[1]-m*xs[1];",
+    "distractor_solve": {
+      "7": "const xs=[2,3,6,7,12], ys=[11,13,4,1,-14]; const m=(ys[1]-ys[0])/(xs[1]-xs[0]); return ys[0]-m*xs[0];",
+      "16": "const xs=[2,3,6,7,12], ys=[11,13,4,1,-14]; const m=(ys[4]-ys[0])/(xs[4]-xs[0]); return ys[0]-m*xs[0];",
+      "17": "const xs=[2,3,6,7,12], ys=[11,13,4,1,-14]; const m=(ys[2]-ys[1])/(xs[2]-xs[1]); return ys[0]-m*xs[0];"
+    },
+    "mechanism": [
+      "consecutive slopes to locate the inconsistent row",
+      "line through the four consistent rows",
+      "y-intercept of that line"
+    ],
+    "quantity_asked": "y-intercept of the line through the four correct pairs",
+    "distractor_meta": {
+      "7": {
+        "error_kind": "used the first two rows, including the bad one",
+        "direction": "under"
+      },
+      "16": {
+        "error_kind": "used the first and last rows, including the bad one",
+        "direction": "under"
+      },
+      "17": {
+        "error_kind": "correct slope anchored at the bad row",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: the y-values fall from x = 3 onward, so a student guessing a decreasing line expects the intercept above 13 (the value at x = 3); 16 and 17 lie on the key's side of that bound with the key, only 7 lies beyond it.",
+    "interior_parity_check": "interior 16 and 17: both two-digit positive integers; the key 22 is extreme, not interior",
+    "arith_class_check": "no: two odd (7, 17) and two even (16, 22); the stem implies no class only 22 belongs to",
+    "self_audit": {
+      "risk": "medium",
+      "note": "every route through the bad row gives a different distractor; only a student who checks which row is off reaches 22. The correct value 16 at x = 2 coincides with the first-and-last distractor, but 16 is not the asked quantity"
+    },
+    "bounds": [],
+    "assigned": "H/L"
+  },
+  {
+    "id": "SM26F-B13",
+    "domain": "Algebra",
+    "subskill": "Second line built by exchanging a standard-form line's intercepts; evaluate it",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, line k has equation 3x + 4y = 24. Line j is a different line: the x-coordinate of the x-intercept of line j is equal to the y-coordinate of the y-intercept of line k, and the y-coordinate of the y-intercept of line j is equal to the x-coordinate of the x-intercept of line k. What is the y-coordinate of the point on line j whose x-coordinate is 9?",
+    "choices": [
+      "-4",
+      "-0.75",
+      "1.25",
+      "20"
+    ],
+    "correct_answer": "-4",
+    "explanation": "For line k, setting y = 0 gives 3x = 24, so its x-intercept is at x = 8. Setting x = 0 gives 4y = 24, so its y-intercept is at y = 6.\n\nSo line j crosses the x-axis at (6, 0) and the y-axis at (0, 8). Its slope is (8 - 0)/(0 - 6) = -4/3, and its equation is y = -(4/3)x + 8.\n\nAt x = 9, y = -(4/3)(9) + 8 = -12 + 8 = -4.\n\nChoice 20 comes from losing the negative sign in the slope, using y = (4/3)x + 8. Choice 1.25 comes from finding the slope as run over rise, -6/8 = -3/4, and using y = -(3/4)x + 8. Choice -0.75 comes from evaluating line k itself at x = 9 instead of line j: y = (24 - 27)/4.",
+    "solve": "const a=3,b=4,c=24,t=9; const px=c/a, qy=c/b; return Math.round((px-(px/qy)*t)*1e9)/1e9;",
+    "distractor_solve": {
+      "20": "const a=3,b=4,c=24,t=9; const px=c/a, qy=c/b; return Math.round((px+(px/qy)*t)*1e9)/1e9;",
+      "1.25": "const a=3,b=4,c=24,t=9; const px=c/a, qy=c/b; return Math.round((px-(qy/px)*t)*1e9)/1e9;",
+      "-0.75": "const a=3,b=4,c=24,t=9; const px=c/a, qy=c/b; return Math.round(((c-a*t)/b)*1e9)/1e9;"
+    },
+    "mechanism": [
+      "both intercepts of a standard-form line",
+      "exchange them to fix a second line",
+      "slope from the two intercept points",
+      "evaluate the second line"
+    ],
+    "quantity_asked": "y-value of line j (intercepts exchanged from line k) at x = 9",
+    "distractor_meta": {
+      "20": {
+        "error_kind": "sign of slope dropped",
+        "direction": "over"
+      },
+      "1.25": {
+        "error_kind": "slope inverted (run over rise)",
+        "direction": "over"
+      },
+      "-0.75": {
+        "error_kind": "evaluated the given line k, not the new line j",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: once line j's intercepts (6 and 8, same sign) are known, j falls to the right and crosses the x-axis at x = 6, so at x = 9 > 6 its y-value is negative. The key -4 is negative and so is the distractor -0.75, so the bound leaves two options. A one-step estimate (slope about -1 over 3 units from (6, 0), so about -3 to -4) also leaves -0.75 on the key's side, nearer the estimate than 1.25 or 20. Before the intercepts are found, nothing in the stem fixes the sign: line k itself takes both signs.",
+    "interior_parity_check": "interior -0.75 and 1.25: both decimals with two places, same display complexity; the key -4 is extreme, not interior",
+    "arith_class_check": "no: two integers (-4, 20, both even, both multiples of 4) and two two-place decimals; two negatives and two positives; the key is alone in no class",
+    "self_audit": {
+      "risk": "medium",
+      "note": "a student who reads the sign of line j's slope keeps -4 and -0.75 but has already done the intercept work, and the two survivors differ only by which line is evaluated; reflecting k across y = x (4x + 3y = 24) is a legitimate fast solve, not a guess"
+    },
+    "bounds": [],
+    "assigned": "M/S"
+  }
+]
