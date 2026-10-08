@@ -1,0 +1,740 @@
+[
+  {
+    "id": "SM24V-A01",
+    "domain": "Advanced Math",
+    "subskill": "Equivalent forms: expanding vertex form to read the constant term",
+    "difficulty": "easy",
+    "prompt": "A student rewrites the expression 3(x - 2)^2 - 29 by expanding the square and combining like terms. The result is 3x^2 + bx + c, where b and c are constants. What is the value of c?",
+    "choices": [
+      "-35",
+      "-25",
+      "-17",
+      "7"
+    ],
+    "correct_answer": "-17",
+    "explanation": "Expand the square first: (x - 2)^2 = x^2 - 4x + 4. Then 3(x - 2)^2 = 3x^2 - 12x + 12, so 3(x - 2)^2 - 29 = 3x^2 - 12x + 12 - 29 = 3x^2 - 12x - 17. The constant term is c = -17.\n\nChoice -25 comes from forgetting to multiply the constant 4 by 3: 4 - 29 = -25. Choice -35 comes from using -2 for the constant instead of (-2)^2 = 4: 3(-2) - 29 = -35. Choice 7 comes from multiplying 3 by 2 before squaring: (3 · 2)^2 - 29 = 36 - 29 = 7.",
+    "bounds": [],
+    "mechanism": [
+      "expand vertex form",
+      "constant term = a*h^2 + k",
+      "leading coefficient multiplies the whole square"
+    ],
+    "quantity_asked": "the constant term c of f in standard form",
+    "solve": "const a=3,h=2,k=-29; return a*h*h+k;",
+    "distractor_solve": {
+      "-35": "const a=3,h=2,k=-29; return a*(-h)+k;",
+      "-25": "const h=2,k=-29; return h*h+k;",
+      "7": "const a=3,h=2,k=-29; return (a*h)*(a*h)+k;"
+    },
+    "distractor_meta": {
+      "-35": {
+        "error_kind": "constant not squared",
+        "direction": "under"
+      },
+      "-25": {
+        "error_kind": "leading coefficient not distributed",
+        "direction": "under"
+      },
+      "7": {
+        "error_kind": "coefficient squared with h",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options -25 and -17: both two-digit negative integers; the key is not the cleaner one",
+    "arith_class_check": "no: three of four options are odd negatives; the stem implies no class",
+    "self_audit": {
+      "risk": "low",
+      "note": "one routine expansion; distractors are three distinct expansion slips on both sides of the key"
+    }
+  },
+  {
+    "id": "SM24V-A02",
+    "domain": "Advanced Math",
+    "subskill": "Quadratic equation in a shifted variable: solve in u = x + 2, then return to x",
+    "difficulty": "medium",
+    "prompt": "3(x + 2)^2 = 27(x + 2) - 54\n\nIf r and s are the two values of x that satisfy the equation above, what is the value of rs?",
+    "choices": [
+      "4",
+      "12",
+      "18",
+      "40"
+    ],
+    "correct_answer": "4",
+    "explanation": "Let u = x + 2. The equation becomes 3u^2 = 27u - 54, or 3u^2 - 27u + 54 = 0. Dividing by 3 gives u^2 - 9u + 18 = 0, so (u - 3)(u - 6) = 0 and u = 3 or u = 6. Since x = u - 2, the solutions are x = 1 and x = 4, and their product is 1 · 4 = 4.\n\nChoice 18 is the product of the values of u, 3 · 6, before converting back to x. Choice 40 comes from converting back in the wrong direction, x = u + 2, which gives 5 and 8. Choice 12 comes from expanding the equation to 3x^2 - 15x + 12 = 0 and taking the constant term as the product without dividing by the leading coefficient 3.",
+    "mechanism": [
+      "substitute u = x + 2",
+      "solve quadratic in u",
+      "convert each u back to x",
+      "product of x-solutions"
+    ],
+    "quantity_asked": "the product of the two solutions x",
+    "solve": "const a=3,m=27,n=-54,h=-2; const A=a,B=-m,C=-n; const d=Math.sqrt(B*B-4*A*C); const u1=(-B+d)/(2*A),u2=(-B-d)/(2*A); return (u1+h)*(u2+h);",
+    "distractor_solve": {
+      "12": "const a=3,m=27,n=-54,s=2; return a*s*s-m*s-n;",
+      "18": "const A=3,B=-27,C=54; const d=Math.sqrt(B*B-4*A*C); return ((-B+d)/(2*A))*((-B-d)/(2*A));",
+      "40": "const A=3,B=-27,C=54; const d=Math.sqrt(B*B-4*A*C); return ((-B+d)/(2*A)+2)*((-B-d)/(2*A)+2);"
+    },
+    "distractor_meta": {
+      "12": {
+        "error_kind": "product taken as c without dividing by a",
+        "direction": "over"
+      },
+      "18": {
+        "error_kind": "answered in u, not x",
+        "direction": "over"
+      },
+      "40": {
+        "error_kind": "shifted back the wrong way",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "S key 4. Cheapest stem reads: the sign of the product is not visible (both u-roots are positive, and whether both x = u - 2 stay positive needs the roots); a student who spots x = 1 by inspection still has to find the other root. No single bound places 4 below a line that 12, 18 and 40 all sit above: 12 is the expanded constant, 18 the u-product, 40 the wrong shift, each needing its own computation.",
+    "interior_parity_check": "interior options 12 and 18: both two-digit integers; the key 4 is not interior",
+    "arith_class_check": "no: all four options are positive even integers; the key is only the smallest, and the stem implies no class",
+    "self_audit": {
+      "risk": "low",
+      "note": "product cannot be plugged back; three distractors from three different slips (u not converted, wrong shift, forgot to divide by a); x = 1 is guessable but does not give the product"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A03",
+    "domain": "Advanced Math",
+    "subskill": "A line meeting a parabola at two given x-values: recovering b and c, then the vertex",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graph of y = x^2 + bx + c, where b and c are constants, intersects the line y = -4x + 5 at exactly two points. The x-coordinates of these points are -5 and 3. What is the y-coordinate of the vertex of the graph of y = x^2 + bx + c?",
+    "choices": [
+      "-29",
+      "-19",
+      "-16",
+      "-11"
+    ],
+    "correct_answer": "-11",
+    "explanation": "At an intersection point, x^2 + bx + c = -4x + 5, so x^2 + (b + 4)x + (c - 5) = 0. The solutions of this equation are -5 and 3, so the left side equals (x + 5)(x - 3) = x^2 + 2x - 15. Matching coefficients, b + 4 = 2 and c - 5 = -15, so b = -2 and c = -10. The parabola is y = x^2 - 2x - 10 = (x - 1)^2 - 11, so its vertex is (1, -11), and the y-coordinate is -11.\n\nChoice -16 comes from ignoring the line and writing x^2 + bx + c = (x + 5)(x - 3) directly, which gives y = x^2 + 2x - 15 with vertex y-coordinate -16. Choice -19 comes from setting b + 4 equal to the sum of the solutions, -2, instead of its opposite, which gives b = -6 and the parabola y = x^2 - 6x - 10. Choice -29 comes from that same sign error together with c + 5 = -15, which gives y = x^2 - 6x - 20.",
+    "mechanism": [
+      "set the parabola equal to the line",
+      "combined quadratic factored from the given intersection x-values",
+      "match coefficients to recover b and c",
+      "vertex of the recovered parabola"
+    ],
+    "quantity_asked": "the y-coordinate of the vertex of y = x^2 + bx + c",
+    "solve": "const m=-4,n=5,r=-5,s=3; const b=m-(r+s), c=n+r*s; return c-b*b/4;",
+    "distractor_solve": {
+      "-16": "const r=-5,s=3; const b=-(r+s), c=r*s; return c-b*b/4;",
+      "-19": "const m=-4,n=5,r=-5,s=3; const b=m+(r+s), c=n+r*s; return c-b*b/4;",
+      "-29": "const m=-4,n=5,r=-5,s=3; const b=m+(r+s), c=r*s-n; return c-b*b/4;"
+    },
+    "distractor_meta": {
+      "-16": {
+        "error_kind": "ignored the line",
+        "direction": "under"
+      },
+      "-19": {
+        "error_kind": "sum of roots sign on b",
+        "direction": "under"
+      },
+      "-29": {
+        "error_kind": "sign errors on both b and c",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "L key -11. Cheapest bound: the vertex is the lowest point, so its y-coordinate is at most the y-value at either intersection point, which can be read off the line: -4(3) + 5 = -7. All four options are below -7, so that bound kills nothing. No cheap lower bound exists without recovering b and c, and the key being the GREATEST option on a 'lowest point' question runs against any 'pick the lowest' instinct.",
+    "interior_parity_check": "interior options -19 and -16: both two-digit negative integers; the key is not interior",
+    "arith_class_check": "no: the key -11 is one of three odd options; the stem implies no class",
+    "self_audit": {
+      "risk": "low",
+      "note": "key is the largest on a minimum-type question, so distractors run against the naive direction; three different coefficient-matching slips; the intersection x-values are printed but no option equals a printed number"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A04",
+    "domain": "Advanced Math",
+    "subskill": "A line through the vertex of a parabola: the second intersection point",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, a line with slope 7 passes through the vertex of the parabola y = 2x^2 - 12x + 13. The line intersects the parabola at the vertex and at exactly one other point. What is the y-coordinate of that other point?",
+    "choices": [
+      "-5",
+      "-4.5",
+      "19.5",
+      "86"
+    ],
+    "correct_answer": "19.5",
+    "explanation": "The vertex has x-coordinate -(-12)/(2 · 2) = 3, and y = 2(9) - 36 + 13 = -5, so the vertex is (3, -5). The line through (3, -5) with slope 7 is y = 7x - 26. Setting 2x^2 - 12x + 13 = 7x - 26 gives 2x^2 - 19x + 39 = 0, which factors as (x - 3)(2x - 13) = 0. The other intersection has x = 6.5, and y = 7(6.5) - 26 = 19.5.\n\nChoice -5 is the y-coordinate of the vertex, the intersection point that was already known. Choice -4.5 comes from locating the vertex at x = 12/2 = 6 (dividing by a instead of 2a): the line through (6, 13) with slope 7 meets the parabola again at x = 3.5, where y = -4.5. Choice 86 comes from taking the sum of the two x-coordinates as 19 instead of 19/2, which gives the other x-coordinate as 16 and y = 7(16) - 26 = 86.",
+    "mechanism": [
+      "vertex from -b/(2a)",
+      "line through the vertex with given slope",
+      "factor out the known root to find the second intersection"
+    ],
+    "quantity_asked": "the y-coordinate of the second intersection of the line and the parabola",
+    "solve": "const a=2,b=-12,c=13,m=7; const h=-b/(2*a), k=a*h*h+b*h+c; const n=k-m*h; const A=a,B=b-m,C=c-n; const d=Math.sqrt(B*B-4*A*C); const x1=(-B+d)/(2*A),x2=(-B-d)/(2*A); const x=Math.abs(x1-h)>1e-9?x1:x2; return m*x+n;",
+    "distractor_solve": {
+      "-5": "const a=2,b=-12,c=13; const h=-b/(2*a); return a*h*h+b*h+c;",
+      "-4.5": "const a=2,b=-12,c=13,m=7; const h=-b/a, k=a*h*h+b*h+c; const n=k-m*h; const A=a,B=b-m,C=c-n; const d=Math.sqrt(B*B-4*A*C); const x1=(-B+d)/(2*A),x2=(-B-d)/(2*A); const x=Math.abs(x1-h)>1e-9?x1:x2; return m*x+n;",
+      "86": "const a=2,b=-12,c=13,m=7; const h=-b/(2*a), k=a*h*h+b*h+c; const n=k-m*h; const x=(m-b)-h; return m*x+n;"
+    },
+    "distractor_meta": {
+      "-5": {
+        "error_kind": "reported the known intersection (vertex)",
+        "direction": "under"
+      },
+      "-4.5": {
+        "error_kind": "vertex x from -b/a",
+        "direction": "under"
+      },
+      "86": {
+        "error_kind": "sum of roots without dividing by a",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options -4.5 and 19.5: both one-decimal-place numbers of similar length; the key is not the cleaner one",
+    "arith_class_check": "no: two options are integers and two are one-place decimals; the key shares its class with -4.5",
+    "self_audit": {
+      "risk": "low",
+      "note": "the y-value cannot be plugged back without building the line; the vertex is a minimum so y >= -5 kills nothing (-4.5 sits above -5); distractors split under/over"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A05",
+    "domain": "Advanced Math",
+    "subskill": "A line through two points of a parabola: the line's y-intercept",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, a line intersects the graph of y = 2x^2 - 7x - 4 at the two points with x-coordinates 3 and 4. At what y-coordinate does the line cross the y-axis?",
+    "choices": [
+      "-28",
+      "-20",
+      "-10",
+      "14"
+    ],
+    "correct_answer": "-28",
+    "explanation": "The points on the parabola are found by substituting: at x = 3, y = 2(9) - 21 - 4 = -7, and at x = 4, y = 2(16) - 28 - 4 = 0. The line through (3, -7) and (4, 0) has slope (0 - (-7))/(4 - 3) = 7. Using y = 7x + k and the point (4, 0) gives 0 = 28 + k, so k = -28. The line crosses the y-axis at y = -28.\n\nChoice 14 comes from a sign error in the point-slope step, adding 7 · 3 to -7 instead of subtracting it. Choice -20 comes from evaluating the parabola with +4 instead of -4, which gives the points (3, 1) and (4, 8); the slope is still 7, and the line is y = 7x - 20. Choice -10 comes from dividing the change in y by 3 + 4 = 7 instead of 4 - 3 = 1, which gives a slope of 1 and the line y = x - 10.",
+    "mechanism": [
+      "evaluate the parabola at two inputs",
+      "slope of the line through the two points",
+      "y-intercept of that line"
+    ],
+    "quantity_asked": "the y-intercept of the line through the parabola's points at x = 3 and x = 4",
+    "solve": "const f=x=>2*x*x-7*x-4; const m=(f(4)-f(3))/(4-3); return f(3)-m*3;",
+    "distractor_solve": {
+      "14": "const f=x=>2*x*x-7*x-4; const m=(f(4)-f(3))/(4-3); return f(3)+m*3;",
+      "-20": "const f=x=>2*x*x-7*x+4; const m=(f(4)-f(3))/(4-3); return f(3)-m*3;",
+      "-10": "const f=x=>2*x*x-7*x-4; const m=(f(4)-f(3))/(4+3); return f(3)-m*3;"
+    },
+    "distractor_meta": {
+      "14": {
+        "error_kind": "point-slope sign",
+        "direction": "over"
+      },
+      "-20": {
+        "error_kind": "sign slip on the parabola's constant",
+        "direction": "over"
+      },
+      "-10": {
+        "error_kind": "run taken as the sum of x-values",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "S key -28. Cheapest bound: both points lie to the right of the y-axis on an upward parabola, so the line through them lies below the parabola for x < 3 and its y-intercept is below the parabola's, -4. That kills only 14; -20 and -10 are also below -4, on the key's side. A sign reading (the line has positive slope and passes through (4, 0), so its intercept is negative) likewise leaves -20 and -10 standing.",
+    "interior_parity_check": "interior options -20 and -10: both two-digit negative integers; the key is not interior",
+    "arith_class_check": "no: all four options are even integers; the key is only the smallest, and the stem implies no class",
+    "self_audit": {
+      "risk": "low",
+      "note": "y-intercept of a line cannot be checked by substitution into the parabola; three different slips (point-slope sign, constant sign, run as sum); 4 (printed) and 7 (slope) are not options"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A06",
+    "domain": "Advanced Math",
+    "subskill": "Sum of two quadratic expressions: the minimum of the combined function",
+    "difficulty": "medium",
+    "prompt": "For every real number x, g(x) = (x - 3)(x - 6) + 3(x + 3)(x - 4). What is the least possible value of g(x)?",
+    "choices": [
+      "-39",
+      "-36",
+      "-27",
+      "-23"
+    ],
+    "correct_answer": "-27",
+    "explanation": "Expand each product and combine: (x - 3)(x - 6) = x^2 - 9x + 18 and 3(x + 3)(x - 4) = 3x^2 - 3x - 36, so g(x) = 4x^2 - 12x - 18. The least value occurs at x = 12/(2 · 4) = 1.5, and g(1.5) = 4(2.25) - 18 - 18 = -27.\n\nChoice -39 adds the minimum values of the two parts, -2.25 and 3(-12.25), but those minimums occur at different values of x, so g never reaches -39. Choice -36 uses c - b^2/(2a) instead of c - b^2/(4a): -18 - 144/8 = -36. Choice -23 evaluates f at the average of the two parts' axes of symmetry, (4.5 + 0.5)/2 = 2.5, which ignores the factor of 3 on the second part: g(2.5) = -23.",
+    "mechanism": [
+      "expand and add two quadratic expressions",
+      "vertex of the combined quadratic",
+      "minimum of a sum is not the sum of minimums"
+    ],
+    "quantity_asked": "the minimum value of f",
+    "solve": "const f=x=>(x-3)*(x-6)+3*(x+3)*(x-4); const A=(f(1)+f(-1))/2-f(0), B=(f(1)-f(-1))/2; return f(-B/(2*A));",
+    "distractor_solve": {
+      "-39": "return -Math.pow(6-3,2)/4 + 3*(-Math.pow(4-(-3),2)/4);",
+      "-36": "const f=x=>(x-3)*(x-6)+3*(x+3)*(x-4); const A=(f(1)+f(-1))/2-f(0), B=(f(1)-f(-1))/2, C=f(0); return C-B*B/(2*A);",
+      "-23": "const f=x=>(x-3)*(x-6)+3*(x+3)*(x-4); return f(((3+6)/2+(-3+4)/2)/2);"
+    },
+    "distractor_meta": {
+      "-39": {
+        "error_kind": "added the two parts' minimums",
+        "direction": "under"
+      },
+      "-36": {
+        "error_kind": "vertex value with b^2/(2a)",
+        "direction": "under"
+      },
+      "-23": {
+        "error_kind": "unweighted average of the two axes",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options -36 and -27: both two-digit negative integers; the key is not the cleaner one",
+    "arith_class_check": "no: the key -27 is one of three odd negatives; the stem implies no class",
+    "self_audit": {
+      "risk": "low",
+      "note": "'min of a sum >= sum of mins' removes -39 for a strong student, leaving three; -23 sits below every value of f at the printed zeros (f(3) = -18, f(4) = -2, f(6) = 54, f(-3) = 54) and below f(0) = -18, so no evaluation at a visible point removes it"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A07",
+    "domain": "Advanced Math",
+    "subskill": "Triangle formed by a parabola's vertex and its two x-intercepts: area",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the graph of y = x^2 + 6x - 16 crosses the x-axis at points A and B, and its vertex is point V. What is the area of triangle ABV?",
+    "choices": [
+      "75",
+      "80",
+      "95",
+      "125"
+    ],
+    "correct_answer": "125",
+    "explanation": "Factoring, x^2 + 6x - 16 = (x + 8)(x - 2), so A and B are (-8, 0) and (2, 0), and AB = 10. The vertex has x-coordinate -6/2 = -3, and y = 9 - 18 - 16 = -25, so V is (-3, -25), which is 25 units from the x-axis. The area is (1/2)(10)(25) = 125.\n\nChoice 80 uses the y-intercept (0, -16) as if it were the vertex: (1/2)(10)(16) = 80. Choice 95 comes from completing the square without squaring half the linear coefficient, so the vertex's y-coordinate is taken as -16 - 3 = -19: (1/2)(10)(19) = 95. Choice 75 comes from finding the base by adding the x-intercepts, |-8 + 2| = 6, instead of subtracting them: (1/2)(6)(25) = 75.",
+    "mechanism": [
+      "x-intercepts give the base",
+      "vertex depth gives the height",
+      "area of the triangle under the x-axis"
+    ],
+    "quantity_asked": "the area of the triangle with vertices at the two x-intercepts and the vertex",
+    "solve": "const b=6,c=-16; const d=Math.sqrt(b*b-4*c); const r1=(-b+d)/2,r2=(-b-d)/2; const h=-b/2,k=h*h+b*h+c; return 0.5*Math.abs(r1-r2)*Math.abs(k);",
+    "distractor_solve": {
+      "80": "const b=6,c=-16; const d=Math.sqrt(b*b-4*c); return 0.5*d*Math.abs(c);",
+      "95": "const b=6,c=-16; const d=Math.sqrt(b*b-4*c); return 0.5*d*Math.abs(c-b/2);",
+      "75": "const b=6,c=-16; const d=Math.sqrt(b*b-4*c); const r1=(-b+d)/2,r2=(-b-d)/2; const h=-b/2,k=h*h+b*h+c; return 0.5*Math.abs(r1+r2)*Math.abs(k);"
+    },
+    "distractor_meta": {
+      "80": {
+        "error_kind": "y-intercept used as the vertex",
+        "direction": "under"
+      },
+      "95": {
+        "error_kind": "half the linear coefficient not squared",
+        "direction": "under"
+      },
+      "75": {
+        "error_kind": "base from the sum of the intercepts",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "L key 125. Cheapest bound: the vertex is the lowest point, so it is at least 16 below the x-axis (the y-intercept is -16), giving area >= (1/2)(base)(16). With the base 10 from factoring, that is area >= 80: it kills 75 and leaves 80 on the boundary, while 95 lies strictly on the key's side. Without the base, no bound is available at all.",
+    "interior_parity_check": "interior options 80 and 95: both two-digit integers; the key is not interior",
+    "arith_class_check": "no: 75, 95 and 125 are all odd multiples of 5; the stem implies no class",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "the 'vertex is below the y-intercept' bound removes 75 and 80 for a strong student, leaving 95 vs 125; the rule is met (95 sits on the key's side) but this is the item's weak point"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A08",
+    "domain": "Advanced Math",
+    "subskill": "Greatest vertical distance between a line and a parabola between their intersections",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, the line y = 4x + 9 and the parabola y = x^2 - 3x + 10 intersect at two points. For every x-value between the x-coordinates of those two points, the line lies above the parabola. What is the greatest vertical distance between the line and the parabola over these x-values?",
+    "choices": [
+      "1",
+      "7.25",
+      "11.25",
+      "19.25"
+    ],
+    "correct_answer": "11.25",
+    "explanation": "The vertical distance at x is d(x) = (4x + 9) - (x^2 - 3x + 10) = -x^2 + 7x - 1. This is a downward-opening quadratic, so its greatest value is at x = -7/(2(-1)) = 3.5: d(3.5) = -12.25 + 24.5 - 1 = 11.25.\n\nChoice 7.25 measures the distance at the parabola's vertex, x = 1.5, instead of where the distance itself is greatest. Choice 19.25 comes from subtracting only the x^2 term of the parabola, (4x + 9) - x^2 - 3x + 10 = -x^2 + x + 19, whose greatest value is 19.25. Choice 1 is the difference between the y-intercepts, 10 - 9.",
+    "mechanism": [
+      "difference function line minus parabola",
+      "vertex of the difference function",
+      "maximum of a downward quadratic"
+    ],
+    "quantity_asked": "the maximum of (line - parabola) between the intersection points",
+    "solve": "const m=4,n=9,p=-3,q=10; const d=x=>(m*x+n)-(x*x+p*x+q); const A=-1,B=m-p; return d(-B/(2*A));",
+    "distractor_solve": {
+      "7.25": "const m=4,n=9,p=-3,q=10; const x=-p/2; return (m*x+n)-(x*x+p*x+q);",
+      "19.25": "const m=4,n=9,p=-3,q=10; const g=x=>(m*x+n)-x*x+p*x+q; const B=m+p; return g(B/2);",
+      "1": "const n=9,q=10; return Math.abs(n-q);"
+    },
+    "distractor_meta": {
+      "7.25": {
+        "error_kind": "measured at the parabola's vertex",
+        "direction": "under"
+      },
+      "19.25": {
+        "error_kind": "subtraction not distributed",
+        "direction": "over"
+      },
+      "1": {
+        "error_kind": "difference of y-intercepts",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options 7.25 and 11.25: both two-place decimals ending in .25; the key is not the cleaner one",
+    "arith_class_check": "no: three options end in .25 and one is an integer; the key is not alone in its class",
+    "self_audit": {
+      "risk": "low",
+      "note": "Desmos can graph the difference, so this is a careful-procedure medium; distractors split under/over; the 'distance at the parabola vertex' is a lower bound that removes 1 only"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A09",
+    "domain": "Advanced Math",
+    "subskill": "Quadratic function values at opposite inputs: the odd-degree term cancels",
+    "difficulty": "medium",
+    "prompt": "Suppose f is a quadratic function with f(0) = 7. Adding f(1) and f(-1) gives 4. What number results from adding f(3) and f(-3)?",
+    "choices": [
+      "-76",
+      "-31",
+      "-13",
+      "50"
+    ],
+    "correct_answer": "-76",
+    "explanation": "Write f(x) = ax^2 + bx + c. Then f(0) = c = 7. Adding f(1) = a + b + c and f(-1) = a - b + c, the b terms cancel: f(1) + f(-1) = 2a + 2c. So 2a + 14 = 4, and a = -5. In the same way, f(3) + f(-3) = 9a + 3b + c + 9a - 3b + c = 18a + 2c = 18(-5) + 14 = -76.\n\nChoice -13 comes from subtracting c only once: 2a = 4 - 7, so a = -1.5 and 18a + 2c = -13. Choice 50 comes from ignoring c when finding a: 2a = 4, so a = 2 and 18a + 2c = 50. Choice -31 uses the correct a but adds only one copy of the x^2 term, 9a + 2c, instead of 9a + 9a.",
+    "mechanism": [
+      "f(x) + f(-x) cancels the linear term",
+      "f(x) + f(-x) = 2ax^2 + 2c",
+      "solve for a, then evaluate the sum at 3"
+    ],
+    "quantity_asked": "f(3) + f(-3)",
+    "solve": "const c=7,S=4; const a=(S-2*c)/2; const b=11; const f=x=>a*x*x+b*x+c; return f(3)+f(-3);",
+    "distractor_solve": {
+      "-13": "const c=7,S=4; const a=(S-c)/2; return 18*a+2*c;",
+      "50": "const c=7,S=4; const a=S/2; return 18*a+2*c;",
+      "-31": "const c=7,S=4; const a=(S-2*c)/2; return 9*a+2*c;"
+    },
+    "distractor_meta": {
+      "-13": {
+        "error_kind": "subtracted c once",
+        "direction": "over"
+      },
+      "50": {
+        "error_kind": "ignored c when solving for a",
+        "direction": "over"
+      },
+      "-31": {
+        "error_kind": "x^2 term not doubled",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "S key -76. Cheapest bound: f(1) + f(-1) = 4 is less than 2f(0) = 14, so the parabola opens downward, and f(3) + f(-3) must be less than f(1) + f(-1) = 4. That kills 50 only; -31 and -13 are both below 4, on the key's side. No cheap estimate of the size of the drop exists without solving for a.",
+    "interior_parity_check": "interior options -31 and -13: both two-digit negative integers; the key is not interior",
+    "arith_class_check": "no: -76 is one of two even options (-76, 50); the stem implies no class",
+    "self_audit": {
+      "risk": "low",
+      "note": "the value of b is never needed (solve uses an arbitrary b to show it cancels); three different slips in the two stages; plug-back is impossible because a sum is asked"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A10",
+    "domain": "Advanced Math",
+    "subskill": "Two points fix b and c of a quadratic with a known leading coefficient; minimum value",
+    "difficulty": "medium",
+    "prompt": "In the xy-plane, a parabola with equation y = 3x^2 + bx + c, where b and c are constants, contains the points (-3, 2) and (1, 18). What is the least y-value of any point on this parabola?",
+    "choices": [
+      "-58/3",
+      "-43/3",
+      "-35/3",
+      "-10/3"
+    ],
+    "correct_answer": "-10/3",
+    "explanation": "Substituting the two points gives 27 - 3b + c = 2 and 3 + b + c = 18. Subtracting the first equation from the second eliminates c: -24 + 4b = 16, so b = 10, and then c = 18 - 3 - 10 = 5. So the parabola is y = 3x^2 + 10x + 5. Its least y-value is c - b^2/(4a) = 5 - 100/12 = 5 - 25/3 = -10/3, at x = -5/3.\n\nChoice -35/3 uses c - b^2/(2a) = 5 - 100/6. Choice -43/3 comes from subtracting the equations but dropping the 3x^2 terms (27 and 3), which gives 4b = 16, b = 4, c = -13, and a minimum of -13 - 16/12. Choice -58/3 comes from subtracting the y-values in the opposite order, 4b - 24 = 2 - 18, which gives b = 2, c = -19, and a minimum of -19 - 4/12.",
+    "mechanism": [
+      "two points give two linear equations in b and c",
+      "subtract to eliminate c",
+      "minimum from c - b^2/(4a)"
+    ],
+    "quantity_asked": "the minimum value of f",
+    "solve": "const a=3,p1=-3,y1=2,p2=1,y2=18; const b=(y2-y1-a*(p2*p2-p1*p1))/(p2-p1); const c=y1-a*p1*p1-b*p1; const x=-b/(2*a); return a*x*x+b*x+c;",
+    "distractor_solve": {
+      "-35/3": "const a=3,p1=-3,y1=2,p2=1,y2=18; const b=(y2-y1-a*(p2*p2-p1*p1))/(p2-p1); const c=y1-a*p1*p1-b*p1; return c-b*b/(2*a);",
+      "-43/3": "const a=3,p1=-3,y1=2,p2=1,y2=18; const b=(y2-y1)/(p2-p1); const c=y1-a*p1*p1-b*p1; return c-b*b/(4*a);",
+      "-58/3": "const a=3,p1=-3,y1=2,p2=1,y2=18; const b=(y1-y2-a*(p2*p2-p1*p1))/(p2-p1); const c=y1-a*p1*p1-b*p1; return c-b*b/(4*a);"
+    },
+    "distractor_meta": {
+      "-35/3": {
+        "error_kind": "vertex value with b^2/(2a)",
+        "direction": "under"
+      },
+      "-43/3": {
+        "error_kind": "dropped the x^2 terms when subtracting",
+        "direction": "under"
+      },
+      "-58/3": {
+        "error_kind": "subtracted the y-values in the opposite order",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "L key -10/3. Cheapest bound: the minimum is at most the smaller printed y-value, 2. All four options are below 2, so it kills nothing. A lower bound would need b and c. The key being the GREATEST option on a minimum question runs against the 'smallest is the minimum' instinct.",
+    "interior_parity_check": "interior options -43/3 and -35/3: both improper fractions with denominator 3 and two-digit numerators; the key is not interior",
+    "arith_class_check": "no: all four options have denominator 3 (no shared-denominator singling); the stem implies no class",
+    "self_audit": {
+      "risk": "low",
+      "note": "min question with the key largest; three different slips at two stages; a minimum value cannot be plugged back"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A11",
+    "domain": "Advanced Math",
+    "subskill": "Parabolic arch in context: building the model from width and height, then evaluating",
+    "difficulty": "medium",
+    "prompt": "The opening of a tunnel has the shape of a parabola. At ground level the opening is 40 feet wide, and its highest point is 25 feet above the ground, directly above the middle of the opening. How many feet above the ground is the top of the opening at a point 8 feet (measured horizontally) from one edge of the opening?",
+    "choices": [
+      "9",
+      "10",
+      "16",
+      "21"
+    ],
+    "correct_answer": "16",
+    "explanation": "Place the middle of the opening at x = 0, so the edges are at x = -20 and x = 20 and the highest point is (0, 25). The parabola is y = a x^2 + 25, and y = 0 at x = 20 gives 400a + 25 = 0, so a = -1/16. A point 8 feet from one edge is 20 - 8 = 12 feet from the middle, so the height there is 25 - 144/16 = 25 - 9 = 16 feet.\n\nChoice 21 uses x = 8 as the distance from the middle instead of from the edge: 25 - 64/16 = 21. Choice 10 treats the height as growing in proportion to the distance from the edge, (8/20)(25) = 10, as if the sides were straight lines. Choice 9 uses the full width, 40, as the distance from the middle to an edge, so the point is 40 - 8 = 32 from the middle and the height is 25(1 - (32/40)^2) = 9.",
+    "mechanism": [
+      "vertex form from the width at ground level and the maximum height",
+      "convert a distance from the edge to a distance from the axis",
+      "evaluate the model"
+    ],
+    "quantity_asked": "the height of the parabolic opening 8 feet from one edge",
+    "solve": "const W=40,H=25,d=8; const a=-H/Math.pow(W/2,2); const x=W/2-d; return a*x*x+H;",
+    "distractor_solve": {
+      "21": "const W=40,H=25,d=8; const a=-H/Math.pow(W/2,2); return a*d*d+H;",
+      "10": "const W=40,H=25,d=8; return H*d/(W/2);",
+      "9": "const W=40,H=25,d=8; const x=W-d; return H*(1-Math.pow(x/W,2));"
+    },
+    "distractor_meta": {
+      "21": {
+        "error_kind": "distance from the edge used as distance from the middle",
+        "direction": "over"
+      },
+      "10": {
+        "error_kind": "linear (triangular) profile",
+        "direction": "under"
+      },
+      "9": {
+        "error_kind": "full width used as half-width",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options 10 and 16: both two-digit integers; the key is not the cleaner one (10 is rounder)",
+    "arith_class_check": "no: 10 and 16 are even, 9 and 21 odd; the key is not alone in any class",
+    "self_audit": {
+      "risk": "low",
+      "note": "a parabola bulges above the straight line from edge to top, so height > 10 is a cheap bound that removes 9 and 10; 16 vs 21 then needs the model, and 21 is the most tempting error"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A12",
+    "domain": "Advanced Math",
+    "subskill": "Quadratic model in context: counting heights reached twice after launch (t > 0)",
+    "difficulty": "hard",
+    "prompt": "A ball is thrown upward from a platform. Until it lands, its height above the ground, in feet, t seconds after it is thrown is h(t) = -16t^2 + 40t + 6. For how many different whole-number values of H is the ball at a height of exactly H feet at two different times after it is thrown?",
+    "choices": [
+      "24",
+      "26",
+      "30",
+      "49"
+    ],
+    "correct_answer": "24",
+    "explanation": "The ball is at height H when 16t^2 - 40t + (H - 6) = 0. The highest point is at t = 40/32 = 1.25, where h = -25 + 50 + 6 = 31, so each height below 31 feet is reached at most twice, once on the way up and once on the way down. For both times to come after the ball is thrown (t > 0), the product of the two solutions, (H - 6)/16, must be positive, so H > 6. At H = 6 one of the two times is t = 0, the moment of the throw, and at H = 31 there is only one time. So H can be 7, 8, ..., 30, which is 24 values.\n\nChoice 26 also counts H = 6 and H = 31. Choice 30 counts every whole number from 1 to 30 as reached twice, ignoring that for H below 6 one solution is a negative time. Choice 49 comes from finding the maximum height as 6 + 40^2/32 = 56 instead of 6 + 40^2/64 = 31, which gives H = 7 through 55.",
+    "mechanism": [
+      "maximum height from the vertex",
+      "t > 0 removes the negative-time branch below launch height",
+      "count whole-number levels strictly between launch height and maximum"
+    ],
+    "quantity_asked": "the number of whole-number heights reached at two different positive times",
+    "solve": "let n=0; for(let H=0;H<=200;H++){const A=16,B=-40,C=H-6; const D=B*B-4*A*C; if(D<=0) continue; const r1=(-B-Math.sqrt(D))/(2*A), r2=(-B+Math.sqrt(D))/(2*A); if(r1>0&&r2>0) n++;} return n;",
+    "distractor_solve": {
+      "26": "const M=6+40*40/64; let n=0; for(let H=6;H<=M;H++) n++; return n;",
+      "30": "let n=0; for(let H=1;H<=200;H++){const D=1600-64*(H-6); if(D>0) n++;} return n;",
+      "49": "const M=6+40*40/32; let n=0; for(let H=7;H<M;H++) n++; return n;"
+    },
+    "distractor_meta": {
+      "26": {
+        "error_kind": "included the launch height and the maximum",
+        "direction": "over"
+      },
+      "30": {
+        "error_kind": "ignored t > 0 (negative-time branch counted)",
+        "direction": "over"
+      },
+      "49": {
+        "error_kind": "maximum height from b^2/(2a)",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "S key 24. Cheapest bound: the count cannot exceed the maximum height, and a one-step estimate of the maximum (about 31) kills 49 only; 26 and 30 both lie below it, on the key's side. Nothing in the stem announces that heights below the platform are reached only once, which is the step that separates 24 from 30.",
+    "interior_parity_check": "interior options 26 and 30: both two-digit integers; the key is not interior",
+    "arith_class_check": "no: 24, 26, 30 are even and 49 odd; the key is not alone in its class",
+    "self_audit": {
+      "risk": "low",
+      "note": "the decision (heights below 6 ft occur once after the throw because the other root is a negative time) is not announced; Desmos shows the curve but the count still needs that decision; distractors are three different errors though all overcount"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A13",
+    "domain": "Advanced Math",
+    "subskill": "Vertex location given as an inequality; two values fix the quadratic; evaluate",
+    "difficulty": "hard",
+    "prompt": "Quadratic function f has the property that f(x) ≥ f(3) for all real x. Given f(0) = 14 and f(7) = 28, what is f(9)?",
+    "choices": [
+      "32",
+      "47",
+      "56",
+      "68"
+    ],
+    "correct_answer": "68",
+    "explanation": "Because f(x) ≥ f(3) for every x, the least value of f occurs at x = 3, so the vertex of the graph is at x = 3 and f(x) = a(x - 3)^2 + k for some constants a and k. Then f(0) = 9a + k = 14 and f(7) = 16a + k = 28. Subtracting, 7a = 14, so a = 2 and k = -4. Therefore f(9) = 2(6)^2 - 4 = 68.\n\nChoice 32 extends the straight line through (0, 14) and (7, 28), which has slope 2, to x = 9. Choice 56 uses the distance from 3 instead of its square, 3a + k = 14 and 4a + k = 28, which gives a = 14, k = -28, and 14(6) - 28 = 56. Choice 47 reads f(x) ≥ f(3) as saying the minimum value is 3: then 9a + 3 = 14 gives a = 11/9, and f(9) = (11/9)(36) + 3 = 47.",
+    "mechanism": [
+      "f(x) >= f(3) locates the vertex at x = 3",
+      "vertex form with unknown a and k",
+      "two values give a linear system",
+      "evaluate far from the vertex"
+    ],
+    "quantity_asked": "f(9)",
+    "solve": "const h=3; const a=(28-14)/((7-h)**2-(0-h)**2); const k=14-a*(0-h)**2; return a*(9-h)**2+k;",
+    "distractor_solve": {
+      "32": "return 14+(28-14)/(7-0)*(9-0);",
+      "56": "const h=3; const a=(28-14)/(Math.abs(7-h)-Math.abs(0-h)); const k=14-a*Math.abs(0-h); return a*Math.abs(9-h)+k;",
+      "47": "const h=3; return (14-3)*(9-h)**2/((0-h)**2)+3;"
+    },
+    "distractor_meta": {
+      "32": {
+        "error_kind": "linear extrapolation",
+        "direction": "under"
+      },
+      "56": {
+        "error_kind": "absolute distance instead of squared",
+        "direction": "under"
+      },
+      "47": {
+        "error_kind": "read f(3) as the number 3",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "L key 68. Cheapest bounds: (1) 9 is farther from the vertex than 7, so f(9) > f(7) = 28 — kills nothing, all options exceed 28; (2) an upward parabola grows faster than the straight line through two of its points, so f(9) > 32 — kills 32 only, leaving 47 and 56 on the key's side. No one-step estimate of the growth rate separates 68 from 56 without fixing a.",
+    "interior_parity_check": "interior options 47 and 56: both two-digit integers; the key is not interior",
+    "arith_class_check": "no: 32, 56 and 68 are even and 47 odd; the key is not alone in its class",
+    "self_audit": {
+      "risk": "low",
+      "note": "the vertex is never named; the decision is reading f(x) >= f(3) as 'minimum at x = 3' (not 'minimum value 3', which is distractor 47); Desmos cannot draw f until a and k are found. math-mechanism-dup FLAG vs live ce0df3d6 (f(2) = f(6) = 5, f(1) = 0, find f(7)) read by hand: that item is a pure reflection (f(7) = f(1)); here 9 reflects to -3, which is not given, so a and k must be solved; judged a different mechanism"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A14",
+    "domain": "Advanced Math",
+    "subskill": "Recovering a quadratic from its first difference f(x + 1) - f(x); minimum value",
+    "difficulty": "hard",
+    "prompt": "For a quadratic function f, the difference f(x + 1) - f(x) equals 8x + 24 for every real number x, and f(0) = 3. What is the smallest value that f(x) attains?",
+    "choices": [
+      "-33",
+      "-22",
+      "-21",
+      "-15"
+    ],
+    "correct_answer": "-22",
+    "explanation": "Write f(x) = ax^2 + bx + c. Then f(x + 1) - f(x) = a(x + 1)^2 + b(x + 1) - ax^2 - bx = 2ax + a + b. Matching with 8x + 24 gives 2a = 8 and a + b = 24, so a = 4 and b = 20. Since f(0) = c = 3, f(x) = 4x^2 + 20x + 3. The minimum occurs at x = -20/8 = -2.5, and f(-2.5) = 25 - 50 + 3 = -22.\n\nChoice -33 sets b = 24, forgetting that the constant in 2ax + a + b includes a: then f(x) = 4x^2 + 24x + 3, with minimum -33. Choice -15 matches 8x + 24 directly to ax + b, so a = 8 and b = 24, and the minimum of 8x^2 + 24x + 3 is -15. Choice -21 is the least value of f at a whole-number input: stepping from f(0) = 3 gives f(-1) = -13, f(-2) = -21, f(-3) = -21, but the vertex is between -3 and -2, at -2.5.",
+    "mechanism": [
+      "first difference of a quadratic is 2ax + a + b",
+      "match coefficients to get a and b",
+      "minimum at a non-integer vertex"
+    ],
+    "quantity_asked": "the minimum value of f",
+    "solve": "const P=8,Q=24,c=3; const a=P/2,b=Q-a; const x=-b/(2*a); return a*x*x+b*x+c;",
+    "distractor_solve": {
+      "-33": "const P=8,Q=24,c=3; const a=P/2,b=Q; return c-b*b/(4*a);",
+      "-15": "const P=8,Q=24,c=3; const a=P,b=Q; return c-b*b/(4*a);",
+      "-21": "const P=8,Q=24,c=3; const a=P/2,b=Q-a; const f=x=>a*x*x+b*x+c; let m=Infinity; for(let x=-50;x<=50;x++) m=Math.min(m,f(x)); return m;"
+    },
+    "distractor_meta": {
+      "-33": {
+        "error_kind": "b taken as the constant 24",
+        "direction": "under"
+      },
+      "-15": {
+        "error_kind": "matched to ax + b directly",
+        "direction": "over"
+      },
+      "-21": {
+        "error_kind": "minimum over whole-number inputs only",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options -22 and -21: both two-digit negative integers; the key is not the cleaner one",
+    "arith_class_check": "incidental: -22 is the only even option, but nothing in the stem makes parity matter (a, b and the vertex are not integers-by-construction from the stem's point of view)",
+    "self_audit": {
+      "risk": "low",
+      "note": "iterating the difference equation is a real path but stalls at -21 (both f(-2) and f(-3)); the decision is recognising that the minimum is at -2.5, between the integers; Desmos cannot graph f from the stem. Hostile read: once f(-2) = f(-3) = -21 is found, min < -21 removes -21 and -15, leaving -33 vs -22"
+    },
+    "bounds": []
+  },
+  {
+    "id": "SM24V-A15",
+    "domain": "Advanced Math",
+    "subskill": "Minimum value of a quadratic as a function of a parameter: its greatest value",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x^2 - 2kx + 12k - 13, where k is a constant. The minimum value of f depends on the value of k. What is the greatest value that the minimum of f can have?",
+    "choices": [
+      "5",
+      "6",
+      "23",
+      "36"
+    ],
+    "correct_answer": "23",
+    "explanation": "For a fixed k, the vertex of the graph of f is at x = -(-2k)/2 = k, so the minimum value of f is m = f(k) = k^2 - 2k^2 + 12k - 13 = -k^2 + 12k - 13. This is itself a quadratic in k that opens downward, so its greatest value is at k = 12/2 = 6: m = -36 + 72 - 13 = 23.\n\nChoice 36 drops the constant -13 and maximizes -k^2 + 12k. Choice 5 computes the minimum of f as c - b^2/(2a) = 12k - 13 - 2k^2, whose greatest value (at k = 3) is 5. Choice 6 is the value of k that makes the minimum as large as possible, not the minimum itself.",
+    "mechanism": [
+      "minimum value as a function of the parameter",
+      "that function is a downward quadratic in k",
+      "maximize over k"
+    ],
+    "quantity_asked": "the maximum over k of the minimum value of f",
+    "solve": "let best=-Infinity; for(let i=-3000;i<=3000;i++){const k=i/100; const f=x=>x*x-2*k*x+12*k-13; best=Math.max(best,f(k));} return best;",
+    "distractor_solve": {
+      "36": "const k=12/2; return -k*k+12*k;",
+      "5": "const k=12/4; return 12*k-13-2*k*k;",
+      "6": "return 12/2;"
+    },
+    "distractor_meta": {
+      "36": {
+        "error_kind": "dropped the constant term",
+        "direction": "over"
+      },
+      "5": {
+        "error_kind": "minimum written as c - b^2/(2a)",
+        "direction": "under"
+      },
+      "6": {
+        "error_kind": "reported the maximizing k",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options 6 and 23: integers of one and two digits (complexity gap 1); the key is the messier one",
+    "arith_class_check": "no: 5 and 23 are odd, 6 and 36 even; the key is not alone in its class",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "the stem says 'greatest value of the minimum', which announces a two-level optimisation, so the panel may grade it medium; Desmos with a slider on k can approximate 23, but not without the m(k) idea"
+    },
+    "bounds": []
+  }
+]

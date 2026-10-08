@@ -1,0 +1,738 @@
+[
+  {
+    "id": "SM24V-C01",
+    "domain": "Advanced Math",
+    "subskill": "Polynomial operations: a coefficient of a difference with a scalar multiple",
+    "difficulty": "easy",
+    "prompt": "The polynomials p and q are defined by p(x) = 4x^3 - 3x^2 + 5x - 2 and q(x) = x^3 + 2x^2 - 7x + 6. Subtracting twice q(x) from p(x) produces a cubic polynomial ax^3 + bx^2 + cx + d. Which number is c?",
+    "choices": [
+      "-9",
+      "12",
+      "17",
+      "19"
+    ],
+    "correct_answer": "19",
+    "explanation": "Only the x terms contribute to c. In p(x) the x term is 5x, and in 2q(x) it is 2(-7x) = -14x. Subtracting, 5x - (-14x) = 19x, so c = 19.\n\nChoice 12 comes from subtracting q(x) instead of 2q(x): 5 - (-7) = 12. Choice -9 comes from not distributing the subtraction to the negative term, computing 5 + 2(-7) = -9. Choice 17 comes from doubling p(x) instead of q(x): 2(5) - (-7) = 17.",
+    "bounds": [],
+    "mechanism": [
+      "difference of polynomials with a scalar multiple",
+      "collect one power's coefficients",
+      "distribute the subtraction over a negative coefficient"
+    ],
+    "quantity_asked": "the coefficient c of x in p(x) - 2q(x)",
+    "solve": "const p1=5,q1=-7; return p1-2*q1;",
+    "distractor_solve": {
+      "12": "const p1=5,q1=-7; return p1-q1;",
+      "-9": "const p1=5,q1=-7; return p1+2*q1;",
+      "17": "const p1=5,q1=-7; return 2*p1-q1;"
+    },
+    "distractor_meta": {
+      "12": {
+        "error_kind": "dropped the scalar 2",
+        "direction": "under"
+      },
+      "-9": {
+        "error_kind": "subtraction not distributed (sign)",
+        "direction": "under"
+      },
+      "17": {
+        "error_kind": "scaled the wrong polynomial",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "L key 19. Cheapest bound: subtracting a negative x-coefficient increases it, so c > 5 (p's own coefficient); 12 and 17 are also above 5, on the key's side. A one-step estimate 'about 5 + 7' lands on 12, a distractor, not the key.",
+    "interior_parity_check": "interior options 12 and 17: both two-digit positive integers; the key is not interior",
+    "arith_class_check": "no: 19 shares oddness with 17 and -9; no class is implied by the stem",
+    "self_audit": {
+      "risk": "low",
+      "note": "one routine step; three different slips (dropped scalar, sign, wrong polynomial scaled); no option is a printed stem number; plug-back not applicable (a coefficient)"
+    }
+  },
+  {
+    "id": "SM24V-C02",
+    "domain": "Advanced Math",
+    "subskill": "Rational expressions: splitting a fraction into a sum of two simpler fractions",
+    "difficulty": "medium",
+    "prompt": "For all x other than 3 and 7, the fraction (2x + 26)/(x^2 - 10x + 21) splits into a sum of two simpler fractions, a/(x - 3) + b/(x - 7), with constant numerators a and b. Which number is a?",
+    "choices": [
+      "-8",
+      "-2",
+      "5",
+      "32"
+    ],
+    "correct_answer": "-8",
+    "explanation": "Since x^2 - 10x + 21 = (x - 3)(x - 7), multiplying both sides by (x - 3)(x - 7) gives 2x + 26 = a(x - 7) + b(x - 3) for all x. Substituting x = 3 makes the b term vanish: 2(3) + 26 = a(3 - 7), so 32 = -4a and a = -8. (Then x = 7 gives 40 = 4b, so b = 10.)\n\nChoice -2 comes from substituting x = -3 instead of x = 3: 2(-3) + 26 = 20 and -3 - 7 = -10, giving -2. Choice 5 comes from writing the constant terms as 7a + 3b instead of -7a - 3b: with a + b = 2 and 7a + 3b = 26, a = 5. Choice 32 is 2(3) + 26, the value of the left side's numerator at x = 3, before dividing by 3 - 7.",
+    "bounds": [],
+    "mechanism": [
+      "factor the quadratic denominator",
+      "decompose into a/(x - 3) + b/(x - 7)",
+      "clear denominators and substitute the zero of one factor"
+    ],
+    "quantity_asked": "the constant a over the factor x - 3",
+    "solve": "const N=x=>2*x+26; return N(3)/(3-7);",
+    "distractor_solve": {
+      "-2": "const N=x=>2*x+26; return N(-3)/(-3-7);",
+      "5": "const p=2,q=26; /* a+b=p, 7a+3b=q */ return (q-3*p)/(7-3);",
+      "32": "const N=x=>2*x+26; return N(3);"
+    },
+    "distractor_meta": {
+      "-2": {
+        "error_kind": "substituted the wrong sign of the zero",
+        "direction": "over"
+      },
+      "5": {
+        "error_kind": "sign error in matched constant terms",
+        "direction": "over"
+      },
+      "32": {
+        "error_kind": "did not divide by (3 - 7)",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "S key -8. Cheapest bound: the sign of a. Nothing in the stem fixes it without substituting x = 3 (the numerator 2x + 26 is positive for every x near the excluded values, which suggests positive constants if anything); -2 is negative, on the key's side of 0, so the sign bound does not isolate the key. The other quick fact, a + b = 2, constrains neither a's size nor sign alone.",
+    "interior_parity_check": "interior options -2 and 5: both one-digit integers; the key is not interior",
+    "arith_class_check": "no: two options are negative and three are even; 'negative' is not implied by the stem, whose numerator and constant are positive",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "S key on a coefficient: checking an option needs b from a + b = 2 and then the constant -7a - 3b = 26, which is the full solve, but a grader may count ascending plug-back as 1 check. Choice 32 is -4 times the key (the undivided value), a grader may read it as derivational. Distractors are three different errors; no printed number is an option"
+    }
+  },
+  {
+    "id": "SM24V-C03",
+    "domain": "Advanced Math",
+    "subskill": "Equivalent expressions: evaluating a product of four linear factors by pairing them",
+    "difficulty": "medium",
+    "prompt": "A number x satisfies x^2 - 6x = -2. What number is equal to the product (x - 1)(x - 2)(x - 4)(x - 5)?",
+    "choices": [
+      "-30",
+      "-22",
+      "18",
+      "44"
+    ],
+    "correct_answer": "18",
+    "explanation": "Pair the factors so that each product contains x^2 - 6x: (x - 1)(x - 5) = x^2 - 6x + 5 and (x - 2)(x - 4) = x^2 - 6x + 8. Since x^2 - 6x = -2, these are -2 + 5 = 3 and -2 + 8 = 6, so the product is 3(6) = 18.\n\nChoice -30 comes from a sign error in the second pair, writing (x - 2)(x - 4) = x^2 - 6x - 8, which gives 3(-10) = -30. Choice -22 comes from expanding (u + 5)(u + 8), with u = x^2 - 6x, as u^2 + 13u and leaving off the constant 40: 4 - 26 = -22. Choice 44 comes from expanding (u + 5)(u + 8) as u^2 + 40 and leaving off the middle term 13u: 4 + 40 = 44.",
+    "bounds": [],
+    "mechanism": [
+      "pair linear factors to share x^2 - 6x",
+      "substitute the given value of the quadratic expression",
+      "product of two shifted values"
+    ],
+    "quantity_asked": "the value of (x - 1)(x - 2)(x - 4)(x - 5) given x^2 - 6x = -2",
+    "solve": "const u=-2; return (u+5)*(u+8);",
+    "distractor_solve": {
+      "-30": "const u=-2; return (u+5)*(u-8);",
+      "-22": "const u=-2; return u*u+13*u;",
+      "44": "const u=-2; return u*u+40;"
+    },
+    "distractor_meta": {
+      "-30": {
+        "error_kind": "sign error in one paired product",
+        "direction": "under"
+      },
+      "-22": {
+        "error_kind": "dropped the constant term of the expansion",
+        "direction": "under"
+      },
+      "44": {
+        "error_kind": "dropped the middle term of the expansion",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options -22 and 18: both two-digit integers, one negative and one positive; the key 18 is not the cleaner of the two",
+    "arith_class_check": "no: all four options are even and none is a multiple pattern unique to the key; the key is one of two positive options",
+    "self_audit": {
+      "risk": "low",
+      "note": "plug-back impossible (x is irrational, 3 +/- sqrt 7); a calculator route through x is allowed and is still multi-step; distractors split over and under the key; the printed -2 is not an option"
+    }
+  },
+  {
+    "id": "SM24V-C04",
+    "domain": "Advanced Math",
+    "subskill": "Equivalent expressions: rewriting x^4 as ax + b with a quadratic relation",
+    "difficulty": "medium",
+    "prompt": "A real number x satisfies the equation x^2 = 11 - 3x. By using this equation repeatedly to replace x^2, the fourth power x^4 can be rewritten as ax + b, where a and b are integers. What is a?",
+    "choices": [
+      "-93",
+      "-39",
+      "-27",
+      "20"
+    ],
+    "correct_answer": "-93",
+    "explanation": "Use x^2 = 11 - 3x to lower the power. Squaring both sides gives x^4 = (11 - 3x)^2 = 121 - 66x + 9x^2. Replace x^2 once more: 9x^2 = 9(11 - 3x) = 99 - 27x. So x^4 = 121 - 66x + 99 - 27x = 220 - 93x, and a = -93.\n\nChoice -27 comes from squaring 11 - 3x as 121 + 9x^2, leaving out the middle term -66x. Choice -39 comes from replacing 9x^2 with 9(11 + 3x), a sign error, which gives -66x + 27x. Choice 20 is the coefficient for x^3, not x^4: x^3 = x(11 - 3x) = 11x - 3x^2 = 20x - 33.",
+    "bounds": [],
+    "mechanism": [
+      "reduce a power with a quadratic relation",
+      "square the relation, then substitute for x^2 again",
+      "read the coefficient of x in the reduced form"
+    ],
+    "quantity_asked": "the integer a with x^4 = ax + b, given x^2 = 11 - 3x",
+    "solve": "const p=-3,q=11; let a=1,b=0; for(let n=1;n<4;n++){const na=a*p+b, nb=a*q; a=na; b=nb;} return a;",
+    "distractor_solve": {
+      "-39": "const p=-3,q=11; return 2*p*q - p*p*p;",
+      "-27": "const p=-3,q=11; return p*p*p;",
+      "20": "const p=-3,q=11; return p*p+q;"
+    },
+    "distractor_meta": {
+      "-39": {
+        "error_kind": "sign error substituting for x^2",
+        "direction": "over"
+      },
+      "-27": {
+        "error_kind": "dropped the middle term of the square",
+        "direction": "over"
+      },
+      "20": {
+        "error_kind": "reduced x^3 instead of x^4",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "S key -93. No sign or monotonicity reading of the stem bounds a: x is irrational and a is not printed. The cheapest partial step, (11 - 3x)^2, shows -66x before the x^2 term is replaced; it gives no bound that places -93 below all three options, and -39 and -27 sit on the key's (negative) side of 0 with it.",
+    "interior_parity_check": "interior options -39 and -27: both two-digit negative odd integers; the key -93 is not interior",
+    "arith_class_check": "no: the key is one of three negative and one of three odd options; the stem implies no sign, parity or divisibility class for a",
+    "self_audit": {
+      "risk": "low",
+      "note": "all three distractors lie above the key (forced for an S key) but come from three different errors (missing middle term, sign error, stopping at x^3), and 20 errs by a different route than the two negative distractors. Plug-back impossible (a coefficient, and x is irrational); Desmos gives decimal roots, not a and b"
+    }
+  },
+  {
+    "id": "SM24V-C05",
+    "domain": "Advanced Math",
+    "subskill": "Equivalent expressions: recognizing an expanded fourth power of a binomial",
+    "difficulty": "medium",
+    "prompt": "Evaluate the polynomial p(x) = x^4 - 8x^3 + 24x^2 - 32x + 20 at the irrational input x = 2 + √5. What number results?",
+    "choices": [
+      "9",
+      "21",
+      "25",
+      "29"
+    ],
+    "correct_answer": "29",
+    "explanation": "The first four terms match the expansion (x - 2)^4 = x^4 - 8x^3 + 24x^2 - 32x + 16, so p(x) = (x - 2)^4 + 4. Then p(2 + √5) = (√5)^4 + 4 = 25 + 4 = 29.\n\nChoice 25 is (√5)^4 alone, leaving off the 4 that remains after the constant 16 of (x - 2)^4 is taken out of 20. Choice 21 comes from taking 20 - 16 the wrong way, writing p(x) = (x - 2)^4 - 4. Choice 9 comes from squaring √5 instead of raising it to the fourth power: 5 + 4 = 9.",
+    "bounds": [],
+    "mechanism": [
+      "recognize the binomial expansion of (x - 2)^4",
+      "rewrite the polynomial as a fourth power plus a constant",
+      "evaluate at an irrational input without expanding"
+    ],
+    "quantity_asked": "the value of p(2 + sqrt 5)",
+    "solve": "const x=2+Math.sqrt(5); return Math.round(x**4-8*x**3+24*x**2-32*x+20);",
+    "distractor_solve": {
+      "25": "return Math.round(Math.sqrt(5)**4);",
+      "21": "return Math.round(Math.sqrt(5)**4-(20-16));",
+      "9": "return Math.round(Math.sqrt(5)**2+(20-16));"
+    },
+    "distractor_meta": {
+      "25": {
+        "error_kind": "dropped the leftover constant",
+        "direction": "under"
+      },
+      "21": {
+        "error_kind": "leftover constant with the wrong sign",
+        "direction": "under"
+      },
+      "9": {
+        "error_kind": "wrong power of the radical",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "L key 29. Cheapest bound: once (x - 2)^4 is spotted, (sqrt 5)^4 = 25 is a floor only if the leftover constant is known to be positive, which is the step itself; without the recognition there is no single-step estimate (a rough decimal evaluation is the full calculation). 21 and 25 both sit in the 20s with the key, so 'about 25' does not isolate it.",
+    "interior_parity_check": "interior options 21 and 25: both two-digit integers; the key is not interior",
+    "arith_class_check": "no: 9, 21, 25 and 29 are all odd; 25 and 9 are the perfect squares, not the key",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "L key with all distractors below by construction; three distinct errors (dropped constant, constant sign, wrong power). A calculator evaluation of the given polynomial at 2 + sqrt 5 reaches 29 directly, so a panel may call it easy-to-medium; the stem prints 2, 5, 8, 20, 24, 32, none an option"
+    }
+  },
+  {
+    "id": "SM24V-C06",
+    "domain": "Advanced Math",
+    "subskill": "Polynomial division by x^2: the remainder is the linear and constant part",
+    "difficulty": "medium",
+    "prompt": "Dividing the product p(x) = (x^2 - x + 4)(x^3 + 4x + 2) by x^2 leaves a linear remainder ax + b. Find a + b.",
+    "choices": [
+      "-10",
+      "14",
+      "22",
+      "28"
+    ],
+    "correct_answer": "22",
+    "explanation": "Every term of p(x) of degree 2 or higher is a multiple of x^2, so the remainder on division by x^2 is the part of p(x) of degree less than 2: its x term and its constant term. The constant term is 4(2) = 8. The x term comes from (-x)(2) + 4(4x) = -2x + 16x = 14x. So the remainder is 14x + 8, and a + b = 14 + 8 = 22.\n\nChoice 28 is p(1) = (4)(7), which is the remainder on division by x - 1, not by x^2. Choice -10 comes from a sign error in one of the two products that form the x term, -2x - 16x = -18x, giving -18 + 8 = -10. Choice 14 is the value of a alone.",
+    "bounds": [],
+    "mechanism": [
+      "remainder on division by x^2 is the degree-less-than-2 part",
+      "collect the constant and linear terms of a product",
+      "no long division needed"
+    ],
+    "quantity_asked": "a + b, where ax + b is the remainder when p(x) is divided by x^2",
+    "solve": "const u=-1,v=4,w=4,z=2; const a=u*z+v*w, b=v*z; return a+b;",
+    "distractor_solve": {
+      "28": "const p=x=>(x*x-x+4)*(x**3+4*x+2); return p(1);",
+      "-10": "const u=-1,v=4,w=4,z=2; return u*z-v*w+v*z;",
+      "14": "const u=-1,v=4,w=4,z=2; return u*z+v*w;"
+    },
+    "distractor_meta": {
+      "28": {
+        "error_kind": "remainder theorem applied to x^2 as if x - 1",
+        "direction": "over"
+      },
+      "-10": {
+        "error_kind": "sign error in a cross product",
+        "direction": "under"
+      },
+      "14": {
+        "error_kind": "a only, constant dropped",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options 14 and 22: both two-digit even integers; the key 22 is not the cleaner of the two",
+    "arith_class_check": "no: all four options are even; the key is one of three positive options",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "the decision (remainder by x^2 = linear plus constant part) is the only idea; after it the work is two small products, so a panel may grade it easy-to-medium, and the arithmetic resembles the live 'one coefficient of a product' rows. Distractors on both sides; ascending plug-back impossible"
+    }
+  },
+  {
+    "id": "SM24V-C07",
+    "domain": "Advanced Math",
+    "subskill": "Polynomial zeros: factoring out a common binomial product before solving",
+    "difficulty": "medium",
+    "prompt": "The polynomial p is given by p(x) = (x + 7)(x - 1)(x - 5) - 3(x + 7)(x - 1). If every zero of p is multiplied together, what product results?",
+    "choices": [
+      "-56",
+      "-35",
+      "-14",
+      "2"
+    ],
+    "correct_answer": "-56",
+    "explanation": "Both terms share the factor (x + 7)(x - 1), so p(x) = (x + 7)(x - 1)[(x - 5) - 3] = (x + 7)(x - 1)(x - 8). The zeros of p are -7, 1, and 8, and their product is (-7)(1)(8) = -56.\n\nChoice -35 is the product of the zeros of the first product alone, (-7)(1)(5), which ignores the subtracted term. Choice -14 comes from simplifying (x - 5) - 3 as x - 2, which makes the third zero 2: (-7)(1)(2) = -14. Choice 2 is the sum of the zeros, -7 + 1 + 8, rather than their product.",
+    "bounds": [],
+    "mechanism": [
+      "factor out a shared binomial product",
+      "combine the leftover linear factor",
+      "product of the resulting zeros"
+    ],
+    "quantity_asked": "the product of all zeros of p",
+    "solve": "const r=[-7,1,5+3]; return r[0]*r[1]*r[2];",
+    "distractor_solve": {
+      "-35": "return (-7)*1*5;",
+      "-14": "return (-7)*1*(5-3);",
+      "2": "return -7+1+(5+3);"
+    },
+    "distractor_meta": {
+      "-35": {
+        "error_kind": "ignored the subtracted product",
+        "direction": "over"
+      },
+      "-14": {
+        "error_kind": "sign slip combining (x - 5) - 3",
+        "direction": "over"
+      },
+      "2": {
+        "error_kind": "sum of zeros instead of product",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "S key -56. Cheapest bound: the visible zeros -7 and 1 have product -7, and the third zero (from the leftover factor) is positive, so the product is negative; -35 and -14 are also negative, on the key's side. A one-step estimate from the printed first product gives -35, a distractor.",
+    "interior_parity_check": "interior options -35 and -14: both two-digit negative integers; the key is not interior",
+    "arith_class_check": "no: three options are negative and two are even; the key is not the only member of any class the stem implies",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "S key, all distractors above it by construction but from three different errors (ignored term, sign slip, sum for product); expanding to a cubic and using the constant term also works and is longer. Choice 2 is a wrong-quantity distractor and may be judged weak"
+    }
+  },
+  {
+    "id": "SM24V-C08",
+    "domain": "Advanced Math",
+    "subskill": "Rational expressions: exactly one excluded value forces a perfect-square denominator",
+    "difficulty": "medium",
+    "prompt": "The rational expression (x + 4)/(x^2 + bx + c), in which b and c are constants, fails to be defined for exactly one real number x, namely x = 9. Find b + c.",
+    "choices": [
+      "-81",
+      "-41",
+      "63",
+      "99"
+    ],
+    "correct_answer": "63",
+    "explanation": "The expression is undefined exactly where the denominator x^2 + bx + c equals 0. A quadratic with exactly one real zero, at x = 9, must be (x - 9)^2 = x^2 - 18x + 81. So b = -18 and c = 81, and b + c = 63.\n\nChoice 99 comes from (x + 9)^2 = x^2 + 18x + 81, which is zero at x = -9, not x = 9. Choice -81 comes from x^2 - 81, which is zero at both 9 and -9, so the expression would be undefined for two values. Choice -41 comes from (x - 9)(x + 4) = x^2 - 5x - 36, chosen so that x + 4 cancels; but the original expression is still undefined at x = -4, so it would have two excluded values.",
+    "bounds": [],
+    "mechanism": [
+      "excluded values are the zeros of the denominator",
+      "exactly one zero means a perfect-square quadratic",
+      "a cancelled factor still excludes its zero"
+    ],
+    "quantity_asked": "b + c for the denominator x^2 + bx + c",
+    "solve": "const r=9; const b=-2*r, c=r*r; return b+c;",
+    "distractor_solve": {
+      "99": "const r=9; return 2*r+r*r;",
+      "-81": "const r=9; return 0-r*r;",
+      "-41": "const r=9,s=-4; return -(r+s)+r*s;"
+    },
+    "distractor_meta": {
+      "99": {
+        "error_kind": "sign of the repeated zero",
+        "direction": "over"
+      },
+      "-81": {
+        "error_kind": "difference of squares, two excluded values",
+        "direction": "under"
+      },
+      "-41": {
+        "error_kind": "cancelled factor treated as defined",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options -41 and 63: both two-digit odd integers; the key 63 is not the cleaner of the two",
+    "arith_class_check": "no: all four options are odd; the key is one of two positive options",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "once 'exactly one zero means a square' is seen the work is one expansion, so a panel may grade it easy; the cancelled-factor distractor targets a real domain misconception. Distractors split two over/under; no option is a printed number (4 and 9 are printed, 63 and 99 are not)"
+    }
+  },
+  {
+    "id": "SM24V-C09",
+    "domain": "Advanced Math",
+    "subskill": "Zeros and multiplicity: a shared zero is the only way to get two distinct zeros",
+    "difficulty": "medium",
+    "prompt": "The polynomial p is defined by p(x) = (x - 3)(x^2 + kx - 21), where k is a constant. Exactly two different real numbers solve p(x) = 0. What is the value of p(-1)?",
+    "choices": [
+      "-24",
+      "40",
+      "64",
+      "96"
+    ],
+    "correct_answer": "96",
+    "explanation": "The factor x - 3 gives the solution x = 3. The quadratic x^2 + kx - 21 has discriminant k^2 + 84, which is always positive, so it always has two distinct real zeros. For p to have only two distinct zeros in total, one zero of the quadratic must be 3: 9 + 3k - 21 = 0, so k = 4. Then x^2 + 4x - 21 = (x - 3)(x + 7), p(x) = (x - 3)^2(x + 7), and p(-1) = (-4)^2(6) = 96.\n\nChoice 64 comes from using x = -3 instead of x = 3 as the shared zero: 9 - 3k - 21 = 0 gives k = -4, and then p(-1) = (-4)(1 + 4 - 21) = 64. Choice 40 comes from a sign slip in 9 + 3k - 21 = 0, writing 9 + 3k + 21 = 0, so k = -10 and p(-1) = (-4)(1 + 10 - 21) = 40. Choice -24 is the value of the quadratic factor alone at x = -1 with k = 4: 1 - 4 - 21 = -24, leaving out the factor x - 3.",
+    "bounds": [],
+    "mechanism": [
+      "discriminant shows the quadratic factor always has two zeros",
+      "two distinct zeros forces a shared zero",
+      "factor theorem fixes k, then evaluate"
+    ],
+    "quantity_asked": "p(-1) for the k that gives exactly two distinct real zeros",
+    "solve": "const r=3,c=21; const k=(c-r*r)/r; const p=(x,kk)=>(x-r)*(x*x+kk*x-c); return p(-1,k);",
+    "distractor_solve": {
+      "64": "const r=3,c=21; const k=(r*r-c)/r; return (-1-r)*(1-k-c);",
+      "40": "const r=3,c=21; const k=-(c+r*r)/r; return (-1-r)*(1-k-c);",
+      "-24": "const r=3,c=21; const k=(c-r*r)/r; return 1-k-c;"
+    },
+    "distractor_meta": {
+      "64": {
+        "error_kind": "shared zero taken as -3",
+        "direction": "under"
+      },
+      "40": {
+        "error_kind": "sign slip in the factor-theorem equation",
+        "direction": "under"
+      },
+      "-24": {
+        "error_kind": "dropped the factor x - 3",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "L key 96. Cheapest bound: p(-1) = (-4)(1 - k - 21) is positive whenever k > -20, which holds for every k a student is likely to find, so the sign bound leaves 40, 64 and 96 together; -24 is excluded only because it drops a factor. No single bound separates 96 from 40 and 64 without fixing k.",
+    "interior_parity_check": "interior options 40 and 64: both two-digit even integers; the key is not interior",
+    "arith_class_check": "no: all options are multiples of 8; the key is one of three positive options",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "the decision (the quadratic factor can never have a repeated zero here, so the zeros must overlap at 3) is not announced; the three wrong values of k come from different slips. All distractors are below by construction"
+    }
+  },
+  {
+    "id": "SM24V-C10",
+    "domain": "Advanced Math",
+    "subskill": "Zeros and multiplicity: summing zeros counted with multiplicity from powers of factors",
+    "difficulty": "medium",
+    "prompt": "The polynomial p is defined by p(x) = (x^2 + 14x + 49)^3(x - 1)^2. What is the sum of the zeros of p, where each zero is counted as many times as its multiplicity?",
+    "choices": [
+      "-40",
+      "-19",
+      "-12",
+      "-6"
+    ],
+    "correct_answer": "-40",
+    "explanation": "Since x^2 + 14x + 49 = (x + 7)^2, p(x) = (x + 7)^6(x - 1)^2. The zero -7 has multiplicity 6 and the zero 1 has multiplicity 2, so the sum is 6(-7) + 2(1) = -42 + 2 = -40.\n\nChoice -19 comes from not rewriting x^2 + 14x + 49 as a square, so that -7 is counted only 3 times: 3(-7) + 2(1) = -19. Choice -12 comes from ignoring the outer exponent 3, so that -7 is counted only twice: 2(-7) + 2(1) = -12. Choice -6 adds each distinct zero once: -7 + 1 = -6.",
+    "bounds": [],
+    "mechanism": [
+      "recognize a perfect-square trinomial factor",
+      "multiplicity multiplies through an outer power",
+      "weighted sum of zeros"
+    ],
+    "quantity_asked": "the sum of the zeros of p counted with multiplicity",
+    "solve": "const a=7,b=1; return -a*2*3 + b*2;",
+    "distractor_solve": {
+      "-19": "const a=7,b=1; return -a*3 + b*2;",
+      "-12": "const a=7,b=1; return -a*2 + b*2;",
+      "-6": "const a=7,b=1; return -a + b;"
+    },
+    "distractor_meta": {
+      "-19": {
+        "error_kind": "perfect square not recognized",
+        "direction": "over"
+      },
+      "-12": {
+        "error_kind": "outer exponent ignored",
+        "direction": "over"
+      },
+      "-6": {
+        "error_kind": "distinct zeros only",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "S key -40. Cheapest bound: the sum is at most (number of copies of -7) times -7 plus 2, so it is negative once -7 appears at least once; all four options are negative, so the sign bound kills nothing. A one-step reading of the printed exponents (3 and 2) gives -19, a distractor, not the key.",
+    "interior_parity_check": "interior options -19 and -12: both two-digit negative integers; the key is not interior",
+    "arith_class_check": "no: all four options are negative; three are even (-40, -12, -6); the stem implies no class",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "S key with every distractor above it, but each is a different miscount of multiplicity (square unseen, outer exponent ignored, distinct only); the computation is short once the square is seen, so a panel may grade it easy-to-medium. Plug-back impossible"
+    }
+  },
+  {
+    "id": "SM24V-C11",
+    "domain": "Advanced Math",
+    "subskill": "Polynomial zeros: a symmetry p(x) = p(6 - x) pairs each zero with a mirror zero",
+    "difficulty": "medium",
+    "prompt": "A fourth-degree polynomial function p with leading coefficient 1 is symmetric in the sense that p(x) = p(6 - x) for all real x. Two zeros of p are 0 and 2. Find p(-1).",
+    "choices": [
+      "-3",
+      "24",
+      "105",
+      "189"
+    ],
+    "correct_answer": "105",
+    "explanation": "Because p(x) = p(6 - x), each zero r of p comes with a second zero 6 - r: if p(r) = 0, then p(6 - r) = p(r) = 0. So the zeros 0 and 2 bring the zeros 6 and 4. A polynomial of degree 4 with leading coefficient 1 and the four zeros 0, 2, 4, and 6 is p(x) = x(x - 2)(x - 4)(x - 6). Then p(-1) = (-1)(-3)(-5)(-7) = 105.\n\nChoice 189 comes from pairing each zero r with 6 + r instead of 6 - r, which gives the zeros 6 and 8: (-1)(-3)(-7)(-9) = 189. Choice 24 comes from pairing r with 3 - r, using half of 6, which gives the zeros 3 and 1: (-1)(-3)(-4)(-2) = 24. Choice -3 comes from treating the graph as symmetric about the y-axis, pairing r with -r, which gives the zeros 0, 0, 2, and -2: (-1)(-1)(-3)(1) = -3.",
+    "bounds": [],
+    "mechanism": [
+      "symmetry about a vertical line pairs zeros r and 6 - r",
+      "build the monic quartic from four zeros",
+      "evaluate the factored form"
+    ],
+    "quantity_asked": "p(-1) for the monic quartic with p(x) = p(6 - x) and zeros at 0 and 2",
+    "solve": "const g=[0,2]; const zs=[...g, ...g.map(r=>6-r)]; return zs.reduce((s,z)=>s*(-1-z),1);",
+    "distractor_solve": {
+      "189": "const g=[0,2]; const zs=[...g, ...g.map(r=>6+r)]; return zs.reduce((s,z)=>s*(-1-z),1);",
+      "24": "const g=[0,2]; const zs=[...g, ...g.map(r=>3-r)]; return zs.reduce((s,z)=>s*(-1-z),1);",
+      "-3": "const g=[0,2]; const zs=[...g, ...g.map(r=>-r)]; return zs.reduce((s,z)=>s*(-1-z),1);"
+    },
+    "distractor_meta": {
+      "189": {
+        "error_kind": "mirror zero taken as 6 + r",
+        "direction": "over"
+      },
+      "24": {
+        "error_kind": "mirrored about 3 using 3 - r",
+        "direction": "under"
+      },
+      "-3": {
+        "error_kind": "mirrored about the y-axis",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options 24 and 105: both positive integers of two and three digits; the key 105 is not the cleaner of the two",
+    "arith_class_check": "no: the key is one of three positive and one of three odd options; the stem implies no sign or parity class",
+    "self_audit": {
+      "risk": "low",
+      "note": "distractors on both sides from three different readings of the symmetry; plug-back impossible (p must be built first), and Desmos cannot draw p until the mirror zeros are found. The printed numbers 4, 1, 6, 0, 2, -1 are not options"
+    }
+  },
+  {
+    "id": "SM24V-C12",
+    "domain": "Advanced Math",
+    "subskill": "Polynomial coefficients: a quartic that is the square of a quadratic",
+    "difficulty": "hard",
+    "prompt": "Suppose p(x) = x^4 + 8x^3 + kx^2 + mx + 289 for constants k and m. This quartic is the square of a quadratic polynomial with real coefficients, and the graph of y = p(x) in the xy-plane meets the x-axis. What is k?",
+    "choices": [
+      "-18",
+      "-1",
+      "30",
+      "50"
+    ],
+    "correct_answer": "-18",
+    "explanation": "Write p(x) = (x^2 + bx + c)^2 = x^4 + 2bx^3 + (b^2 + 2c)x^2 + 2bcx + c^2. Matching the x^3 terms gives 2b = 8, so b = 4, and matching the constant terms gives c^2 = 289, so c = 17 or c = -17. The graph of y = p(x) meets the x-axis exactly where x^2 + 4x + c = 0. When c = 17, this quadratic has discriminant 16 - 68, which is negative, so the graph of y = p(x) would never meet the x-axis. When c = -17, the discriminant is 16 + 68, which is positive. So c = -17, and k = b^2 + 2c = 16 - 34 = -18.\n\nChoice 50 comes from taking c = 17, the positive square root of 289, without checking that the graph meets the x-axis: 16 + 34 = 50. Choice -1 comes from writing the x^2 coefficient of the square as b^2 + c instead of b^2 + 2c: 16 - 17 = -1. Choice 30 comes from taking b equal to the x^3 coefficient, 8, instead of half of it: 64 - 34 = 30.",
+    "bounds": [],
+    "mechanism": [
+      "match a quartic to the square of a quadratic",
+      "the constant term has two square roots",
+      "meeting the x-axis requires a real zero, removing one sign of c"
+    ],
+    "quantity_asked": "the x^2 coefficient k of the quartic",
+    "solve": "const b=8/2; const c=[17,-17].find(c=>b*b-4*c>=0); return b*b+2*c;",
+    "distractor_solve": {
+      "50": "const b=8/2, c=Math.sqrt(289); return b*b+2*c;",
+      "-1": "const b=8/2, c=-17; return b*b+c;",
+      "30": "const b=8, c=-17; return b*b+2*c;"
+    },
+    "distractor_meta": {
+      "50": {
+        "error_kind": "kept the positive square root of 289",
+        "direction": "over"
+      },
+      "-1": {
+        "error_kind": "x^2 coefficient of a square without doubling c",
+        "direction": "over"
+      },
+      "30": {
+        "error_kind": "took b as the x^3 coefficient, not half",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "S key -18. The stem gives no sign for k and none for m; the cheapest reading, 'the square of something has positive coefficients', would put k at or above b^2 and is false here. The one-step estimate b^2 = 16 does not separate the key from all three: -1 lies with the key below 16 and below 0, and 30 and 50 come from different errors (wrong b, wrong sign of c), not from one bound.",
+    "interior_parity_check": "interior options -1 and 30: integers of one and two digits; the key -18 is not interior",
+    "arith_class_check": "no: two options are negative and two positive, three are even; the key is not the unique member of any class the stem implies",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "all three distractors lie above the key (forced for an S key) but from three different errors; the decision point is the condition that the graph meets the x-axis, which silently removes c = 17 and is not announced as a case split. k cannot be read from a graph because p is unknown until c is chosen. Risk: a grader may call the coefficient matching routine and grade it medium"
+    }
+  },
+  {
+    "id": "SM24V-C13",
+    "domain": "Advanced Math",
+    "subskill": "Polynomial values on a line: subtracting the line exposes three zeros of a cubic",
+    "difficulty": "hard",
+    "prompt": "The polynomial p has degree 3, and its leading coefficient is 2. If p(1) = -1, p(2) = 1, and p(3) = 3, what is the value of p(5)?",
+    "choices": [
+      "7",
+      "15",
+      "31",
+      "55"
+    ],
+    "correct_answer": "55",
+    "explanation": "The three given points all lie on the line y = 2x - 3. So the polynomial q(x) = p(x) - (2x - 3) has degree 3, leading coefficient 2, and zeros at x = 1, 2, and 3, which means q(x) = 2(x - 1)(x - 2)(x - 3). Therefore p(x) = 2(x - 1)(x - 2)(x - 3) + 2x - 3, and p(5) = 2(4)(3)(2) + 10 - 3 = 48 + 7 = 55.\n\nChoice 7 comes from continuing the straight-line pattern -1, 1, 3, ... to x = 5, which ignores the cubic part entirely. Choice 31 comes from writing q(x) = (x - 1)(x - 2)(x - 3) without the leading coefficient 2: 24 + 7 = 31. Choice 15 comes from extending the table with a constant third difference equal to the leading coefficient, 2, instead of 6 times it, 12: the differences become 2, 2, 4, 8, giving 3, 7, 15.",
+    "bounds": [],
+    "mechanism": [
+      "given values are collinear",
+      "subtract the line to get a cubic with three known zeros",
+      "rebuild with the leading coefficient and evaluate"
+    ],
+    "quantity_asked": "p(5) for the cubic with leading coefficient 2 through (1, -1), (2, 1), (3, 3)",
+    "solve": "const A=2,L=x=>2*x-3,Z=x=>(x-1)*(x-2)*(x-3); return A*Z(5)+L(5);",
+    "distractor_solve": {
+      "7": "const L=x=>2*x-3; return L(5);",
+      "31": "const L=x=>2*x-3,Z=x=>(x-1)*(x-2)*(x-3); return Z(5)+L(5);",
+      "15": "const v=[-1,1,3]; let d1=[2,2], d2=[0], t=2; d2.push(d2[d2.length-1]+t); d1.push(d1[d1.length-1]+d2[1]); v.push(v[2]+d1[2]); d2.push(d2[2-1]+t); d1.push(d1[2]+d2[2]); v.push(v[3]+d1[3]); return v[4];"
+    },
+    "distractor_meta": {
+      "7": {
+        "error_kind": "linear extrapolation, cubic part ignored",
+        "direction": "under"
+      },
+      "31": {
+        "error_kind": "dropped the leading coefficient",
+        "direction": "under"
+      },
+      "15": {
+        "error_kind": "third difference taken as the leading coefficient",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "L key 55. Cheapest bound: the straight-line continuation gives 7, and with a positive leading coefficient a cubic through three collinear points rises above that line after the last point, so p(5) > 7; 15 and 31 are also above 7, on the key's side. No one-step estimate reaches the size of the cubic term without building q(x).",
+    "interior_parity_check": "interior options 15 and 31: both two-digit odd integers; the key is not interior",
+    "arith_class_check": "no: all four options are odd positive integers; the stem implies no class",
+    "self_audit": {
+      "risk": "low",
+      "note": "decision point (the given values lie on a line, so p minus that line has three known zeros) is not announced by the stem; brute force needs a 3x3 system or a fitted regression. All distractors are below by construction; their three errors differ in kind. Plug-back impossible"
+    }
+  },
+  {
+    "id": "SM24V-C14",
+    "domain": "Advanced Math",
+    "subskill": "Polynomial operations: one coefficient of the cube of a trinomial",
+    "difficulty": "hard",
+    "prompt": "The polynomial p is defined by p(x) = (x^2 - 4x - 3)^3. When p(x) is expanded and like terms are combined, what is the coefficient of x^2?",
+    "choices": [
+      "-144",
+      "-135",
+      "-117",
+      "-21"
+    ],
+    "correct_answer": "-117",
+    "explanation": "Write p(x) as the product (x^2 - 4x - 3)(x^2 - 4x - 3)(x^2 - 4x - 3). Each term of the expansion comes from choosing one term from each factor, and it is an x^2 term when the powers of x add to 2. There are two ways to do this. First, x^2 from one factor and -3 from the other two: any of the 3 factors can supply the x^2, so these terms total 3(1)(-3)(-3) = 27. Second, -4x from two factors and -3 from the remaining one: any of the 3 factors can supply the -3, so these terms total 3(-4)(-4)(-3) = -144. The coefficient of x^2 is 27 + (-144) = -117.\n\nChoice -144 comes from counting only the products of two -4x terms with -3 and missing the products of x^2 with two -3 terms. Choice -135 counts the product x^2(-3)(-3) only once instead of 3 times: 9 - 144. Choice -21 counts the product (-4x)(-4x)(-3) only once instead of 3 times: 27 - 48.",
+    "bounds": [],
+    "mechanism": [
+      "coefficient from choosing one term in each factor",
+      "two different term combinations give x^2",
+      "count the arrangements of each combination"
+    ],
+    "quantity_asked": "the coefficient of x^2 in (x^2 - 4x - 3)^3",
+    "solve": "const f=[-3,-4,1]; let r=[1]; for(let k=0;k<3;k++){const n=new Array(r.length+2).fill(0); r.forEach((a,i)=>f.forEach((b,j)=>{n[i+j]+=a*b;})); r=n;} return r[2];",
+    "distractor_solve": {
+      "-144": "const b=-4,c=-3; return 3*b*b*c;",
+      "-135": "const b=-4,c=-3; return c*c+3*b*b*c;",
+      "-21": "const b=-4,c=-3; return 3*c*c+b*b*c;"
+    },
+    "distractor_meta": {
+      "-144": {
+        "error_kind": "missed the x^2 times constant-squared terms",
+        "direction": "under"
+      },
+      "-135": {
+        "error_kind": "counted one arrangement of x^2(-3)(-3)",
+        "direction": "under"
+      },
+      "-21": {
+        "error_kind": "counted one arrangement of (-4x)(-4x)(-3)",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options -135 and -117: both three-digit negative odd integers; the key is not the cleaner of the two",
+    "arith_class_check": "no: all four options are negative and three are odd; the key is not the unique member of any class the stem implies",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "the decision point is that x^2 arises in two ways and each way has 3 arrangements; the stem does not announce either. A coefficient cannot be read from a graph. Risk: a full expansion by hand reaches the key without any decision, so a grader may grade it medium; distractors on both sides from three different counting errors"
+    }
+  },
+  {
+    "id": "SM24V-C15",
+    "domain": "Advanced Math",
+    "subskill": "Rational function: never-reached outputs from an asymptote and a removed point",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = (2x^2 + 14x + 12)/(x^2 + 2x - 24). In the xy-plane, for some values of the constant k, the horizontal line y = k does not intersect the graph of y = f(x). What is the sum of all such values of k?",
+    "choices": [
+      "-4",
+      "1",
+      "3",
+      "6"
+    ],
+    "correct_answer": "3",
+    "explanation": "Factor: f(x) = 2(x + 1)(x + 6)/((x + 6)(x - 4)). For x ≠ -6 and x ≠ 4, f(x) = 2(x + 1)/(x - 4). Setting 2(x + 1)/(x - 4) = k gives 2x + 2 = kx - 4k, so (2 - k)x = -4k - 2. When k = 2, this reads 0 = -10, which has no solution, so y = 2 is never reached (it is the horizontal asymptote). For any other k, x = (-4k - 2)/(2 - k), but that x must not be -6: x = -6 when -12 + 6k = -4k - 2, that is, k = 1. So y = 1 is reached only at x = -6, where f is undefined (the graph has a hole at (-6, 1)). The line y = k misses the graph exactly for k = 2 and k = 1, and the sum is 2 + 1 = 3.\n\nChoice 1 is only the y-value of the hole, leaving out the horizontal asymptote y = 2. Choice -4 comes from adding the asymptote value 2 to the x-coordinate of the hole, -6, instead of its y-coordinate. Choice 6 comes from adding the asymptote value 2 to the vertical asymptote's location, x = 4, which is an excluded input, not an output.",
+    "bounds": [],
+    "mechanism": [
+      "factor and cancel the common factor",
+      "horizontal asymptote value is never reached",
+      "the y-value at the removed point is also never reached",
+      "sum the missing output values"
+    ],
+    "quantity_asked": "the sum of all k for which y = k misses the graph of f",
+    "solve": "const a=2,p=-1,q=4,h=-6; const yh=a*(h-p)/(h-q); return a+yh;",
+    "distractor_solve": {
+      "1": "const a=2,p=-1,q=4,h=-6; return a*(h-p)/(h-q);",
+      "-4": "const a=2,h=-6; return a+h;",
+      "6": "const a=2,q=4; return a+q;"
+    },
+    "distractor_meta": {
+      "1": {
+        "error_kind": "missed the horizontal asymptote",
+        "direction": "under"
+      },
+      "-4": {
+        "error_kind": "used the hole's x-coordinate as a y-value",
+        "direction": "under"
+      },
+      "6": {
+        "error_kind": "used the vertical asymptote's x as a y-value",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior options 1 and 3: both one-digit positive integers; the key 3 is not the cleaner of the two",
+    "arith_class_check": "no: two options are odd and two even; the key is one of three positive options",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "decision point (a removable discontinuity also removes an output value) is not announced and a graphing calculator draws the asymptote but no visible hole; distractors fall on both sides. The live bank asks for the y-coordinate of a removed point directly; here that value is one of two parts of the answer, which a grader may judge adjacent. No option is a printed coefficient"
+    }
+  }
+]

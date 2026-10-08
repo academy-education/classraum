@@ -1,0 +1,737 @@
+[
+ {
+  "id": "SM24V-B01",
+  "domain": "Advanced Math",
+  "subskill": "Exponential function: ratio of two outputs, where the coefficient cancels",
+  "difficulty": "easy",
+  "prompt": "A model predicts that the number of users of an app, in thousands, t years after launch is f(t) = 7(4)^t. According to the model, the number of users 3 years after launch is how many times the number of users 1 year after launch?",
+  "choices": [
+   "16",
+   "49",
+   "64",
+   "112"
+  ],
+  "correct_answer": "16",
+  "explanation": "f(3) = 7(4)^3 and f(1) = 7(4)^1. In the quotient the factor 7 cancels, and 4^3/4^1 = 4^(3 - 1) = 4^2 = 16. So f(3)/f(1) = 16.\n\nChoice 112 comes from keeping the 7 after dividing the powers: 7(4)^2 = 112. Choice 64 comes from dividing the exponents instead of subtracting them: 4^(3/1) = 4^3 = 64. Choice 49 comes from switching the roles of 7 and 4, as if f(x) = 4(7)^x: 7^(3 - 1) = 49.",
+  "bounds": [],
+  "mechanism": [
+   "ratio of exponential outputs",
+   "coefficient cancels",
+   "quotient of powers subtract exponents"
+  ],
+  "quantity_asked": "the quotient f(3)/f(1)",
+  "solve": "const a=7,b=4; return (a*b**3)/(a*b**1);",
+  "distractor_solve": {
+   "112": "const a=7,b=4; return a*b**(3-1);",
+   "64": "const b=4; return b**(3/1);",
+   "49": "const a=7; return a**(3-1);"
+  },
+  "distractor_meta": {
+   "112": {
+    "error_kind": "coefficient kept",
+    "direction": "over"
+   },
+   "64": {
+    "error_kind": "exponents divided",
+    "direction": "over"
+   },
+   "49": {
+    "error_kind": "base and coefficient swapped",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: f is increasing, so the ratio exceeds 1 (all four options do); a second bound, ratio < f(3) = 448, also keeps all four. No cheap bound separates 16 from 49, 64 and 112.",
+  "interior_parity_check": "interior options 49 and 64: both two-digit integers and both perfect squares; key is the smallest, not interior",
+  "arith_class_check": "no: 16, 49 and 64 are all perfect squares; key is not alone in any class the stem implies",
+  "self_audit": {
+   "risk": "low",
+   "note": "one routine step (quotient of powers). Key is S; plug-back does not apply (asked a quotient). Distractors: kept coefficient, divided exponents, swapped base/coefficient."
+  }
+ },
+ {
+  "id": "SM24V-B02",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay of a temperature difference toward a fixed room temperature",
+  "difficulty": "medium",
+  "prompt": "A steel rod at a temperature of 888°C is taken out of a furnace and placed in a room where the temperature stays at 24°C. As the rod cools, the difference between the rod's temperature and the room temperature is halved every 6 minutes. What is the rod's temperature, in °C, 18 minutes after it is taken out of the furnace?",
+  "choices": [
+   "78",
+   "111",
+   "132",
+   "135"
+  ],
+  "correct_answer": "132",
+  "explanation": "The quantity that is halved is the difference between the two temperatures. At the start, that difference is 888 - 24 = 864 degrees. In 18 minutes there are 18/6 = 3 halving periods, so the difference becomes 864(1/2)^3 = 108 degrees. The rod is 108 degrees warmer than the room, so its temperature is 24 + 108 = 132°C.\n\nChoice 135 comes from halving the rod's whole temperature, 888(1/2)^3 = 111, and then adding the room temperature. Choice 111 comes from halving the rod's whole temperature three times and ignoring the room temperature. Choice 78 comes from counting four halving periods (one for each of the times 0, 6, 12 and 18 minutes): 24 + 864(1/2)^4 = 78.",
+  "bounds": [],
+  "mechanism": [
+   "exponential decay of a difference",
+   "vertical shift by the room temperature",
+   "number of halving periods t/6"
+  ],
+  "quantity_asked": "the rod's temperature 18 minutes after removal",
+  "solve": "const T0=888,R=24,h=6,t=18; return R+(T0-R)*0.5**(t/h);",
+  "distractor_solve": {
+   "78": "const T0=888,R=24; return R+(T0-R)*0.5**4;",
+   "111": "const T0=888; return T0*0.5**3;",
+   "135": "const T0=888,R=24; return T0*0.5**3+R;"
+  },
+  "distractor_meta": {
+   "78": {
+    "error_kind": "one halving period too many",
+    "direction": "under"
+   },
+   "111": {
+    "error_kind": "whole temperature halved, room ignored",
+    "direction": "under"
+   },
+   "135": {
+    "error_kind": "whole temperature halved, room added after",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 111 and 132: both three-digit integers; neither is cleaner",
+  "arith_class_check": "no: two options are even (78, 132) and two odd; key is not alone in any class the stem implies",
+  "self_audit": {
+   "risk": "low",
+   "note": "Live rows halve a mass or amount that decays to 0; none decays the gap to a nonzero constant. Key rank 3 of 4. Every option lies between 24 and the 6-minute value 456, so no cheap bound removes any. 135 and 111 share one error (halving the whole temperature) with and without adding 24 back; 78 is a period-count error."
+  }
+ },
+ {
+  "id": "SM24V-B03",
+  "domain": "Advanced Math",
+  "subskill": "Exponential models: percent difference between two decay models at a given time",
+  "difficulty": "medium",
+  "prompt": "Two lakes each had 5,000 fish at the start of a study. The number of fish in Lake A is modeled by A(t) = 5,000(0.9)^t, and the number of fish in Lake B is modeled by B(t) = 5,000(0.7)^t, where t is the number of years since the start of the study. According to the models, 4 years after the start of the study, the number of fish in Lake B is what percent less than the number of fish in Lake A, to the nearest tenth of a percent?",
+  "choices": [
+   "20.0",
+   "22.2",
+   "41.6",
+   "63.4"
+  ],
+  "correct_answer": "63.4",
+  "explanation": "After 4 years, A(4) = 5,000(0.9)^4 = 5,000(0.6561) = 3,280.5 and B(4) = 5,000(0.7)^4 = 5,000(0.2401) = 1,200.5. Lake B has 3,280.5 - 1,200.5 = 2,080 fewer fish, and 2,080/3,280.5 is about 0.6341. So Lake B has about 63.4% fewer fish than Lake A. (Equivalently, B(4)/A(4) = (0.7/0.9)^4, about 0.3659, and 1 - 0.3659 = 0.6341.)\n\nChoice 41.6 comes from subtracting the two percents of the starting population, 65.61% - 24.01%, which compares the gap with 5,000 rather than with Lake A. Choice 22.2 comes from comparing the lakes after only 1 year: 1 - 0.7/0.9, about 0.222. Choice 20.0 comes from subtracting the yearly factors: 0.9 - 0.7 = 0.2.",
+  "bounds": [],
+  "mechanism": [
+   "ratio of two exponential models with equal starting values",
+   "(0.7/0.9)^t compounds the yearly ratio",
+   "percent less measured against Lake A"
+  ],
+  "quantity_asked": "the percent by which B(4) is less than A(4), to the nearest tenth",
+  "solve": "const A=5000*0.9**4, B=5000*0.7**4; return Math.round((A-B)/A*1000)/10;",
+  "distractor_solve": {
+   "20.0": "return Math.round((0.9-0.7)*1000)/10;",
+   "22.2": "return Math.round((1-0.7/0.9)*1000)/10;",
+   "41.6": "return Math.round((0.9**4-0.7**4)*1000)/10;"
+  },
+  "distractor_meta": {
+   "20.0": {
+    "error_kind": "yearly factors subtracted",
+    "direction": "under"
+   },
+   "22.2": {
+    "error_kind": "one year instead of four",
+    "direction": "under"
+   },
+   "41.6": {
+    "error_kind": "percentage points of the start, not of A",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound without solving: the yearly ratio 0.7/0.9 compounds, so the 4-year gap exceeds the 1-year gap of about 22.2%, which removes 20.0 and 22.2; 41.6 lies on the key side of it. The upper bound (less than 100) keeps all four.",
+  "interior_parity_check": "interior options 22.2 and 41.6: both one-decimal percents with three significant digits; key is the largest, not interior",
+  "arith_class_check": "no: the options are one-decimal values and none sum to 100; key is not alone in any class",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "No live row compares two exponential models by a percent difference. All three errors fall below the key (three different kinds), and the compounding bound leaves 41.6 beside the key. Risk: B01 also cancels a shared coefficient in a ratio of exponential outputs; here the ratio is of two models and is then turned into a percent less."
+  }
+ },
+ {
+  "id": "SM24V-B04",
+  "domain": "Advanced Math",
+  "subskill": "Radical expressions: writing √(p + q√r) in the form a + √b",
+  "difficulty": "medium",
+  "prompt": "Positive integers a and b satisfy a + √b = √(22 + 8√6). Find the sum a + b.",
+  "choices": [
+   "10",
+   "14",
+   "24",
+   "26"
+  ],
+  "correct_answer": "10",
+  "explanation": "Square both sides: (a + √b)^2 = a^2 + b + 2a√b. For this to equal 22 + 8√6, the whole-number parts must match, a^2 + b = 22, and the radical parts must match, 2a√b = 8√6, so a√b = 4√6. The second condition allows a = 1, b = 96; a = 2, b = 24; or a = 4, b = 6, and only a = 4, b = 6 also gives a^2 + b = 16 + 6 = 22. So √(22 + 8√6) = 4 + √6, and a + b = 4 + 6 = 10.\n\nChoice 26 comes from a = 2 and b = 24, which satisfy a√b = 4√6 but give a^2 + b = 28, not 22. Choice 14 comes from leaving out the 2 in 2a√b, so that a√b = 8√6 and a = 8, b = 6. Choice 24 is the product ab = 4 · 6 rather than the sum.",
+  "bounds": [],
+  "mechanism": [
+   "square of a + √b",
+   "match whole-number and radical parts",
+   "denest a square root"
+  ],
+  "quantity_asked": "the sum a + b",
+  "solve": "for(let a=1;a<=4;a++){ const b=22-a*a; if(b>0 && Math.abs(2*a*Math.sqrt(b)-8*Math.sqrt(6))<1e-9) return a+b; } return null;",
+  "distractor_solve": {
+   "14": "return 8+6;",
+   "24": "return 4*6;",
+   "26": "return 2+24;"
+  },
+  "distractor_meta": {
+   "14": {
+    "error_kind": "factor 2 dropped from the cross term",
+    "direction": "over"
+   },
+   "24": {
+    "error_kind": "product instead of sum",
+    "direction": "over"
+   },
+   "26": {
+    "error_kind": "whole-number part not checked",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: a + b is at least a + √b = √(22 + 8√6), about 6.45, which keeps all four. Writing a^2 + b = 22 gives a + b <= 22, which removes 24 and 26 but leaves 14 on the key side.",
+  "interior_parity_check": "interior options 14 and 24: both two-digit even integers; key is the smallest, not interior",
+  "arith_class_check": "no: all four options are even; 10 is the only multiple of 5, which the stem does not make relevant",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "No live row denests a square root of a + b√c. Nearest live mechanism is act afb53506 (z^2 = 21 - 20i, match real and imaginary parts), a different object. Risk: the whole-number equation a^2 + b = 22 alone allows a + b only in {22, 20, 16, 10}, so a student who writes it can reach 10 without the radical part; that equation is half of the intended work."
+  }
+ },
+ {
+  "id": "SM24V-B05",
+  "domain": "Advanced Math",
+  "subskill": "Exponential growth: time for a smaller growth factor when growth per fixed interval is known",
+  "difficulty": "medium",
+  "prompt": "A bacteria population is multiplied by 8 every 9 hours. Assuming this exponential growth continues, how many minutes does it take for the population to become 4 times as large?",
+  "choices": [
+   "231",
+   "270",
+   "360",
+   "810"
+  ],
+  "correct_answer": "360",
+  "explanation": "After t hours the population is multiplied by 8^(t/9). Set 8^(t/9) = 4. Since 8 = 2^3 and 4 = 2^2, this is 2^(3t/9) = 2^2, so t/3 = 2 and t = 6 hours, which is 360 minutes.\n\nChoice 270 comes from reasoning that 4 is half of 8, so the time is half of 9 hours: 4.5 hours. Choice 231 comes from treating the growth as linear: an increase of 3 times the original out of 7 takes (3/7)(540) minutes, about 231. Choice 810 comes from inverting the exponent, writing 4 = 8^(3/2) instead of 8^(2/3): (3/2)(9) = 13.5 hours.",
+  "bounds": [],
+  "mechanism": [
+   "growth factor per interval",
+   "fractional number of intervals",
+   "common base 2 for 8 and 4"
+  ],
+  "quantity_asked": "the time, in minutes, for the population to quadruple",
+  "solve": "return Math.round(9*Math.log(4)/Math.log(8)*60);",
+  "distractor_solve": {
+   "270": "return Math.round(9*(4/8)*60);",
+   "231": "return Math.round((4-1)/(8-1)*9*60);",
+   "810": "return Math.round(9*(3/2)*60);"
+  },
+  "distractor_meta": {
+   "270": {
+    "error_kind": "proportional factor",
+    "direction": "under"
+   },
+   "231": {
+    "error_kind": "linear growth",
+    "direction": "under"
+   },
+   "810": {
+    "error_kind": "exponent inverted",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 270 and 360: both three-digit multiples of 90; neither is visibly cleaner",
+  "arith_class_check": "no: 270, 360 and 810 are all multiples of 90; 231 is the lone odd one and it is a distractor",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "unit change (hours to minutes) plus a fractional count of growth intervals. Key rank 3; plug-back would need computing 8^(t/9) for each option. Weakness: 810 exceeds the 540 minutes needed for 8 times, so a careful reader can drop it free; 231, 270 and 360 then remain."
+  }
+ },
+ {
+  "id": "SM24V-B06",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: powers of 2 and 5 with matching exponents combined into a power of 10",
+  "difficulty": "medium",
+  "prompt": "The number x satisfies 2^(x + 2) · 5^(x - 1) = 800. Using this equation, find the value of the product 2^x · 5^(x + 1).",
+  "choices": [
+   "128",
+   "1000",
+   "2000",
+   "5000"
+  ],
+  "correct_answer": "5000",
+  "explanation": "Rewrite the given product: 2^(x + 2) · 5^(x - 1) = (2^x · 5^x) · 2^2 · 5^(-1) = 10^x · (4/5). So 10^x · (4/5) = 800 and 10^x = 1000. Then 2^x · 5^(x + 1) = 10^x · 5 = 5000.\n\nChoice 1000 is the value of 10^x, the intermediate step, not the expression asked for. Choice 2000 comes from shifting each exponent by only 1, multiplying 800 by 5/2 instead of 25/4. Choice 128 comes from applying the change of exponents in the wrong direction, multiplying 800 by 4/25.",
+  "bounds": [],
+  "mechanism": [
+   "product of powers with equal exponents",
+   "2^x times 5^x equals 10^x",
+   "shifted exponents as constant factors"
+  ],
+  "quantity_asked": "the value of 2^x · 5^(x + 1)",
+  "solve": "const tenx=800/(4/5); return tenx*5;",
+  "distractor_solve": {
+   "1000": "return 800/(4/5);",
+   "2000": "return 800*5/2;",
+   "128": "return 800*4/25;"
+  },
+  "distractor_meta": {
+   "1000": {
+    "error_kind": "stopped at intermediate",
+    "direction": "under"
+   },
+   "2000": {
+    "error_kind": "exponent shift miscounted",
+    "direction": "under"
+   },
+   "128": {
+    "error_kind": "ratio inverted",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: moving exponent from the 2s to the 5s makes the product larger, so the answer exceeds 800; that removes 128, but 1000 and 2000 lie on the key side of it. No single bound isolates 5000.",
+  "interior_parity_check": "interior options 1000 and 2000: both four-digit round numbers; key is the largest, not interior",
+  "arith_class_check": "no: 1000, 2000 and 5000 are all multiples of 1000; key is not alone in any class",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "key L with three under-errors of different kinds (intermediate, half-shift, inverted). Direction: a student who senses the value grows still has 1000/2000/5000. x = 3 can be found by trial, which then gives 5000 directly; that is the solve, not a plug-back of options."
+  }
+ },
+ {
+  "id": "SM24V-B07",
+  "domain": "Advanced Math",
+  "subskill": "Radical functions: integers in the domain of a sum of two square roots",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = √(34 - 2x) + √(x + 3). How many integers are in the domain of f?",
+  "choices": [
+   "15",
+   "19",
+   "21",
+   "38"
+  ],
+  "correct_answer": "21",
+  "explanation": "Both square roots must be of nonnegative numbers. 34 - 2x >= 0 gives x <= 17, and x + 3 >= 0 gives x >= -3. So the domain is -3 <= x <= 17, and the integers in it are -3, -2, ..., 17. There are 17 - (-3) + 1 = 21 of them.\n\nChoice 19 comes from leaving out both endpoints, -3 and 17, although the square root of 0 is defined. Choice 15 comes from a sign error that gives x >= 3, so the integers counted are 3 through 17. Choice 38 comes from reading 34 - 2x >= 0 as x <= 34, so the integers counted are -3 through 34.",
+  "bounds": [],
+  "mechanism": [
+   "domain of a square root: radicand nonnegative",
+   "intersect two conditions",
+   "count integers in a closed interval"
+  ],
+  "quantity_asked": "the number of integers in the domain of f",
+  "solve": "let n=0; for(let x=-100;x<=100;x++){ if(34-2*x>=0 && x+3>=0) n++; } return n;",
+  "distractor_solve": {
+   "15": "let n=0; for(let x=-100;x<=100;x++){ if(34-2*x>=0 && x-3>=0) n++; } return n;",
+   "19": "let n=0; for(let x=-100;x<=100;x++){ if(34-2*x>0 && x+3>0) n++; } return n;",
+   "38": "let n=0; for(let x=-100;x<=100;x++){ if(34-x>=0 && x+3>=0) n++; } return n;"
+  },
+  "distractor_meta": {
+   "15": {
+    "error_kind": "sign error on the lower bound",
+    "direction": "under"
+   },
+   "19": {
+    "error_kind": "endpoints excluded",
+    "direction": "under"
+   },
+   "38": {
+    "error_kind": "coefficient of x dropped",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 19 and 21: both two-digit odd integers; neither is cleaner",
+  "arith_class_check": "no: 15, 19 and 21 are all odd; key is not alone in any class the stem implies",
+  "self_audit": {
+   "risk": "low",
+   "note": "Live domain rows are a composite f(g(x)) (act 1c408a51) and a log; none counts the integers in the domain of a sum of radicals. Key rank 3; a count cannot be plugged back."
+  }
+ },
+ {
+  "id": "SM24V-B08",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay: one period's decrease as a percent of the original amount",
+  "difficulty": "medium",
+  "prompt": "Each year, the value of a machine decreases by 15% of its value at the beginning of that year. To the nearest tenth of a percent, the decrease in the machine's value during the fourth year is what percent of the machine's original value?",
+  "choices": [
+   "9.2",
+   "10.8",
+   "17.6",
+   "47.8"
+  ],
+  "correct_answer": "9.2",
+  "explanation": "Let V be the original value. After 3 years the value is V(0.85)^3 = 0.614125V, which is the value at the beginning of the fourth year. During the fourth year it decreases by 15% of that: 0.15(0.614125V) = 0.09211875V. As a percent of the original value, that is about 9.2%.\n\nChoice 10.8 is the decrease during the third year: 0.15(0.85)^2 = 0.108375. Choice 17.6 compares the fourth-year decrease with the value at the end of the fourth year, 0.85^4 V = 0.52200625V, instead of with the original value. Choice 47.8 is the total decrease over all four years: 1 - 0.85^4 = 0.47799375.",
+  "bounds": [],
+  "mechanism": [
+   "value at the start of the period b^(n-1)",
+   "decrease in one period = rate times that value",
+   "percent of the original amount"
+  ],
+  "quantity_asked": "the fourth-year decrease as a percent of the original value, to the nearest tenth",
+  "solve": "const r=0.15; return Math.round(r*(1-r)**3*1000)/10;",
+  "distractor_solve": {
+   "10.8": "const r=0.15; return Math.round(r*(1-r)**2*1000)/10;",
+   "17.6": "const r=0.15; return Math.round(r*(1-r)**3/(1-r)**4*1000)/10;",
+   "47.8": "const r=0.15; return Math.round((1-(1-r)**4)*1000)/10;"
+  },
+  "distractor_meta": {
+   "10.8": {
+    "error_kind": "wrong year",
+    "direction": "over"
+   },
+   "17.6": {
+    "error_kind": "wrong base for the percent",
+    "direction": "over"
+   },
+   "47.8": {
+    "error_kind": "total instead of one year",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound without solving: after the first year the value is below the original, so any later one-year decrease is less than 15% of the original; this removes 17.6 and 47.8, and 10.8 lies on the key side of it. The lower bound (positive) keeps all four.",
+  "interior_parity_check": "interior options 10.8 and 17.6: both one-decimal values with three significant digits; key is the smallest, not interior",
+  "arith_class_check": "no: all four are one-decimal non-integers; key is not alone in any class",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Live depreciation rows ask for the value or percent remaining after n years; none asks for the decrease during one particular year. Key S with three over errors of three kinds (wrong year, wrong base, cumulative); the 15% bound leaves 10.8 beside the key. Risk: a student who knows the yearly decreases shrink may lean toward the smallest option."
+  }
+ },
+ {
+  "id": "SM24V-B09",
+  "domain": "Advanced Math",
+  "subskill": "Power model with a rational exponent: effect of scaling the input on the output",
+  "difficulty": "medium",
+  "prompt": "For planets orbiting a star, the time T for one orbit is proportional to d^(3/2), where d is the planet's average distance from the star. If one planet's average distance is 36 times another planet's, the first planet's orbit time is how many times the second planet's?",
+  "choices": [
+   "10.9",
+   "18",
+   "54",
+   "216"
+  ],
+  "correct_answer": "216",
+  "explanation": "Write T = k·d^(3/2). If d is multiplied by 36, T is multiplied by 36^(3/2) = (√36)^3 = 6^3 = 216.\n\nChoice 54 comes from multiplying 36 by the exponent 3/2 instead of raising 36 to it. Choice 18 comes from reading d^(3/2) as 3√d, giving 3 · √36 = 18. Choice 10.9 comes from inverting the exponent: 36^(2/3) is about 10.9.",
+  "bounds": [],
+  "mechanism": [
+   "power function with rational exponent",
+   "scale factor raised to the exponent",
+   "square root then cube"
+  ],
+  "quantity_asked": "the factor by which orbit time is multiplied",
+  "solve": "return 36**1.5;",
+  "distractor_solve": {
+   "54": "return 36*1.5;",
+   "18": "return 3*Math.sqrt(36);",
+   "10.9": "return Math.round(36**(2/3)*10)/10;"
+  },
+  "distractor_meta": {
+   "54": {
+    "error_kind": "exponent used as multiplier",
+    "direction": "under"
+   },
+   "18": {
+    "error_kind": "misread 3/2 power",
+    "direction": "under"
+   },
+   "10.9": {
+    "error_kind": "exponent inverted",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: an exponent above 1 means the factor exceeds 36; that removes 10.9 and 18, but 54 lies on the key side of it. No single bound isolates 216.",
+  "interior_parity_check": "interior options 18 and 54: both two-digit integers; key is the largest, not interior",
+  "arith_class_check": "key 216 is the only perfect cube; the stem does not imply a cube (6^3 is the solve itself)",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "scaling a power model rather than evaluating one (live rows fix constants of a·x^(3/2)+b). Errors all below the key; the bound \"factor > 25\" leaves 37.5. The context may read as physics but the item is a rational-exponent computation."
+  }
+ },
+ {
+  "id": "SM24V-B10",
+  "domain": "Advanced Math",
+  "subskill": "Radical functions: finding a and b in √(ax + b) from two values, then solving",
+  "difficulty": "medium",
+  "prompt": "For constants a and b, the radical function h(x) = √(ax + b) satisfies h(11) = 2 and h(27) = 6. What input x gives an output of h(x) = 10?",
+  "choices": [
+   "43",
+   "50",
+   "59",
+   "107"
+  ],
+  "correct_answer": "59",
+  "explanation": "Square both given values: h(11) = 2 gives 11a + b = 4, and h(27) = 6 gives 27a + b = 36. Subtracting, 16a = 32, so a = 2, and then b = 4 - 22 = -18. So h(x) = √(2x - 18). Setting √(2x - 18) = 10 and squaring gives 2x - 18 = 100, so x = 59.\n\nChoice 107 comes from using (6 - 2)^2 = 16 instead of 6^2 - 2^2 = 32 for the change in ax + b, which gives a = 1, b = -7 and x - 7 = 100. Choice 50 comes from finding a = 2 but leaving out b: 2x = 100. Choice 43 comes from treating h as linear: h rises 4 as x rises 16, so rising another 4 from h(27) = 6 to 10 would take x from 27 to 43.",
+  "bounds": [],
+  "mechanism": [
+   "square to get a linear system in a and b",
+   "subtract the squared equations",
+   "solve the radical equation for x"
+  ],
+  "quantity_asked": "the input x with h(x) = 10",
+  "solve": "const x1=11,y1=2,x2=27,y2=6,y3=10; const a=(y2*y2-y1*y1)/(x2-x1), b=y1*y1-a*x1; return (y3*y3-b)/a;",
+  "distractor_solve": {
+   "43": "const x1=11,y1=2,x2=27,y2=6,y3=10; return x2+(y3-y2)*(x2-x1)/(y2-y1);",
+   "50": "const a=(36-4)/(27-11); return 100/a;",
+   "107": "const a=(6-2)**2/(27-11), b=4-a*11; return (100-b)/a;"
+  },
+  "distractor_meta": {
+   "43": {
+    "error_kind": "function treated as linear",
+    "direction": "under"
+   },
+   "50": {
+    "error_kind": "constant b left out",
+    "direction": "under"
+   },
+   "107": {
+    "error_kind": "difference squared instead of squares differenced",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 50 and 59: both two-digit integers; key is the less round of the two",
+  "arith_class_check": "no: 43, 59 and 107 are all prime and 50 is not; the stem makes neither class relevant",
+  "self_audit": {
+   "risk": "low",
+   "note": "Live radical models carry one unknown (n = sqrt(a + 32), v = k*sqrt(d)) or are a*x^(3/2) + b with f(0) given (bf5e72d3); none fits both constants inside the radical from two values. Key rank 3: substituting needs a and b first, and the key is then the third option checked."
+  }
+ },
+ {
+  "id": "SM24V-B11",
+  "domain": "Advanced Math",
+  "subskill": "Equation quadratic in 2^x: condition on a parameter for exactly two real solutions",
+  "difficulty": "hard",
+  "prompt": "In the equation 4^x - k(2^x) + 40 = 0, k is a constant. If the equation has exactly two real solutions, which of the following could be the value of k?",
+  "choices": [
+   "-14",
+   "1",
+   "7",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Let u = 2^x, so the equation becomes u^2 - ku + 40 = 0. Each positive value of u gives exactly one x, and a negative u gives none, because 2^x is always positive. So the equation in x has two solutions only when the quadratic in u has two different positive roots.\n\nTwo different real roots need k^2 - 4(40) > 0, so k^2 > 160. Two positive roots need their sum, k, to be positive (their product, 40, is already positive). So k > √160, which is about 12.65. Of the choices, only k = 13 works: u^2 - 13u + 40 = (u - 5)(u - 8) = 0 gives 2^x = 5 or 2^x = 8, two solutions.\n\nChoice -14 satisfies k^2 > 160, but then both roots in u are negative, so the equation has no real solutions. Choice 7 comes from leaving out the 4 in the discriminant (k^2 > 40). Choice 1 comes from checking only that k is positive.",
+  "bounds": [],
+  "mechanism": [
+   "substitute u = 2^x",
+   "two positive roots in u",
+   "discriminant plus sign of root sum"
+  ],
+  "quantity_asked": "a value of k giving exactly two real x-solutions",
+  "solve": "const o=[-14,1,7,13]; return o.find(k=>k>0 && k*k-160>0);",
+  "distractor_solve": {
+   "-14": "const o=[-14,1,7,13]; return o.find(k=>k*k-160>0);",
+   "7": "const o=[-14,1,7,13]; return o.find(k=>k>0 && k*k-40>0);",
+   "1": "const o=[-14,1,7,13]; return o.find(k=>k>0);"
+  },
+  "distractor_meta": {
+   "-14": {
+    "error_kind": "discriminant only, sign of u ignored",
+    "direction": "under"
+   },
+   "7": {
+    "error_kind": "discriminant without the factor 4",
+    "direction": "under"
+   },
+   "1": {
+    "error_kind": "sign condition only",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: 4^x + 40 > 0, so k(2^x) must be positive and k > 0; that removes -14, but 1 and 7 lie on the key side of it. The decision between 1, 7 and 13 needs the discriminant with its factor 4. Plug-back in ascending order reaches 13 on the 4th try.",
+  "interior_parity_check": "interior options 1 and 7: both one-digit positive integers; key is the largest, not interior",
+  "arith_class_check": "no: 1, 7 and 13 are all odd; key is not alone in any class the stem implies",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "the unannounced decision is that a root in u must be positive: -14 passes the discriminant and fails only that test. Live rows reject a negative 2^x branch for a fixed equation; none asks for the parameter. A Desmos user can graph each k, but must test four graphs."
+  }
+ },
+ {
+  "id": "SM24V-B12",
+  "domain": "Advanced Math",
+  "subskill": "Equation quadratic in 3^x: 3 raised to the difference of the two solutions",
+  "difficulty": "hard",
+  "prompt": "Let x1 and x2 be the two real numbers that satisfy 9^x - 4(3^(x + 1)) + 20 = 0, with x1 < x2. Compute 3^(x2 - x1).",
+  "choices": [
+   "5",
+   "8",
+   "12",
+   "36"
+  ],
+  "correct_answer": "5",
+  "explanation": "Let u = 3^x. Then 9^x = u^2 and 4(3^(x + 1)) = 12u, so u^2 - 12u + 20 = 0, which factors as (u - 2)(u - 10) = 0. So 3^(x1) = 2 and 3^(x2) = 10. Then 3^(x2 - x1) = 3^(x2)/3^(x1) = 10/2 = 5.\n\nChoice 8 comes from subtracting the two values of 3^x instead of dividing: 10 - 2. Choice 12 comes from adding the two values of 3^x. Choice 36 comes from substituting v = 3^(x + 1) and adding its two values, 6 and 30, without converting back.",
+  "bounds": [],
+  "mechanism": [
+   "substitute u = 3^x",
+   "b^(x2 - x1) = ratio of the u roots",
+   "3^(x+1) = 3·3^x"
+  ],
+  "quantity_asked": "3 raised to the difference of the two solutions",
+  "solve": "const s=12,p=20; const d=Math.sqrt(s*s-4*p); const u2=(s+d)/2,u1=(s-d)/2; return u2/u1;",
+  "distractor_solve": {
+   "8": "const s=12,p=20; const d=Math.sqrt(s*s-4*p); return (s+d)/2-(s-d)/2;",
+   "12": "return 12;",
+   "36": "const s=12,p=20; const d=Math.sqrt(s*s-4*p); return 3*((s+d)/2)+3*((s-d)/2);"
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "difference instead of quotient",
+    "direction": "over"
+   },
+   "12": {
+    "error_kind": "sum of u roots",
+    "direction": "over"
+   },
+   "36": {
+    "error_kind": "shifted substitution not undone",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: x2 > x1 so 3^(x2 - x1) > 1, which keeps all four; the solutions themselves are not integers (log base 3 of 2 and of 10), so neither the graph nor a guess at x gives the quotient directly. No single bound isolates 5.",
+  "interior_parity_check": "interior options 8 and 12: both small even integers; key is the smallest, not interior",
+  "arith_class_check": "no: 5 is the only odd option, but the stem implies no parity; 8 and 12 are the even values from sum/difference",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "same family as live 2^x quadratics, but the asked quantity is b to the DIFFERENCE of solutions, read as a quotient of u roots; the x values are irrational, so Desmos only helps after a further exponentiation. Key S; error directions are all over but from three different slips."
+  }
+ },
+ {
+  "id": "SM24V-B13",
+  "domain": "Advanced Math",
+  "subskill": "Exponential function: sums of consecutive outputs two steps apart differ by the factor b^2",
+  "difficulty": "hard",
+  "prompt": "For the exponential function f(x) = a(b)^x, where a and b are positive constants, f(1) + f(2) = 30 and f(3) + f(4) = 120. Which number is the output of f at x = 5?",
+  "choices": [
+   "96",
+   "160",
+   "240",
+   "480"
+  ],
+  "correct_answer": "160",
+  "explanation": "Each output two steps later is b^2 times as large: f(3) = b^2 f(1) and f(4) = b^2 f(2). So f(3) + f(4) = b^2 (f(1) + f(2)), which gives 120 = 30b^2, so b^2 = 4 and b = 2 (b is positive). Since f(4) = 2f(3), f(3) + f(4) = 3f(3) = 120, so f(3) = 40. Two steps later, f(5) = b^2 f(3) = 4(40) = 160.\n\nChoice 480 comes from multiplying the whole sum f(3) + f(4) by 4 without splitting it: that is f(5) + f(6), not f(5). Choice 240 comes from splitting 120 equally, so f(3) = 60, and then multiplying by 4. Choice 96 comes from taking the ratio 120/30 = 4 as b instead of b^2: then f(5) + f(6) = 4(120) = 480 is split as 480/(1 + 4) = 96.",
+  "bounds": [],
+  "mechanism": [
+   "ratio of sums of outputs",
+   "span of two steps gives b^2",
+   "split a sum using f(4) = b·f(3)"
+  ],
+  "quantity_asked": "the value f(5)",
+  "solve": "const b=Math.sqrt(120/30); const f3=120/(1+b); return f3*b*b;",
+  "distractor_solve": {
+   "480": "return 120*(120/30);",
+   "240": "return (120/2)*(120/30);",
+   "96": "const b=120/30; return 120*b/(1+b);"
+  },
+  "distractor_meta": {
+   "480": {
+    "error_kind": "sum scaled without splitting",
+    "direction": "over"
+   },
+   "240": {
+    "error_kind": "sum split equally",
+    "direction": "over"
+   },
+   "96": {
+    "error_kind": "ratio taken as b",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 160 and 240: both three-digit multiples of 80; neither is cleaner",
+  "arith_class_check": "no: all four are multiples of 16; key is not alone in any class",
+  "self_audit": {
+   "risk": "low",
+   "note": "no point value is given, only sums, so the two-point recipe in the live bank does not apply directly; the decision is that the sums are b^2 apart and must be split by 1 + b. A first version asked f(3) with an equal-split distractor that f(3) < f(4) eliminated free; asking f(5) keeps every option above f(4) > 60. Key rank 2; f(5) cannot be plugged back without b."
+  }
+ },
+ {
+  "id": "SM24V-B14",
+  "domain": "Advanced Math",
+  "subskill": "Exponential function with a vertical shift: constants from three outputs",
+  "difficulty": "hard",
+  "prompt": "A model has the form g(x) = a(b)^x + c, where a, b, and c are constants. The model gives g(0) = 23, g(1) = 29, and g(2) = 47. According to the model, what is g(3)?",
+  "choices": [
+   "65",
+   "77",
+   "81",
+   "101"
+  ],
+  "correct_answer": "101",
+  "explanation": "Subtracting consecutive values removes c: g(1) - g(0) = a(b - 1) = 6 and g(2) - g(1) = ab(b - 1) = 18. Dividing the second difference by the first gives b = 3. Then a(3 - 1) = 6, so a = 3, and c = g(0) - a = 23 - 3 = 20. So g(x) = 3(3)^x + 20, and g(3) = 3(27) + 20 = 101.\n\nChoice 81 comes from finding a = 3 and b = 3 but leaving out c: 3(3)^3 = 81. Choice 77 comes from assuming the differences 6 and 18 grow by the same amount each step, as they would for a quadratic, so the next difference is 30: 47 + 30 = 77. Choice 65 comes from assuming the next difference is again 18: 47 + 18 = 65.",
+  "bounds": [],
+  "mechanism": [
+   "consecutive differences cancel the constant c",
+   "ratio of differences gives b",
+   "rebuild a and c, then evaluate"
+  ],
+  "quantity_asked": "the value of g(3)",
+  "solve": "const f0=23,f1=29,f2=47; const d1=f1-f0,d2=f2-f1,b=d2/d1,a=d1/(b-1),c=f0-a; return a*b**3+c;",
+  "distractor_solve": {
+   "65": "const f1=29,f2=47; return f2+(f2-f1);",
+   "77": "const f0=23,f1=29,f2=47; const d1=f1-f0,d2=f2-f1; return f2+d2+(d2-d1);",
+   "81": "const f0=23,f1=29,f2=47; const d1=f1-f0,d2=f2-f1,b=d2/d1,a=d1/(b-1); return a*b**3;"
+  },
+  "distractor_meta": {
+   "65": {
+    "error_kind": "constant difference assumed",
+    "direction": "under"
+   },
+   "77": {
+    "error_kind": "quadratic pattern assumed",
+    "direction": "under"
+   },
+   "81": {
+    "error_kind": "vertical shift c left out",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound without solving: the differences grow (6, then 18), so g(3) exceeds g(2) + 18 = 65, which removes 65 only; 77 and 81 lie on the key side of it. No upper bound is readable from the stem.",
+  "interior_parity_check": "interior options 77 and 81: both two-digit odd integers; key is the largest, not interior",
+  "arith_class_check": "no: all four options are odd; 101 is the only prime and 81 the only perfect square, and the stem implies neither class",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "No live row recovers a(b)^x + c from three values; the nearest is act e8f17f52 (a quadratic from f(0), f(1), f(2)), whose method gives choice 77 here. The decision (difference out c before dividing) is not announced. Risks: all three errors fall below the key, though only 65 is removed by a cheap bound; Desmos regression on the three points also returns a, b and c; B13 also combines outputs so that b appears as a ratio, but there the combination is a sum over a two-step span with no constant."
+  }
+ },
+ {
+  "id": "SM24V-B15",
+  "domain": "Advanced Math",
+  "subskill": "Exponential equation in 9^x, 6^x and 4^x as a quadratic in (3/2)^x",
+  "difficulty": "hard",
+  "prompt": "If 9^x + 6^x = 12(4^x), what is the value of (9^x + 4^x)/6^x, rounded to the nearest hundredth?",
+  "choices": [
+   "2.67",
+   "3.33",
+   "4.25",
+   "9.11"
+  ],
+  "correct_answer": "3.33",
+  "explanation": "Divide the equation by 4^x: (9/4)^x + (6/4)^x = 12. With v = (3/2)^x this is v^2 + v - 12 = 0, so (v + 4)(v - 3) = 0. Since (3/2)^x is positive, v = 3. Then (9^x + 4^x)/6^x = (9/6)^x + (4/6)^x = v + 1/v = 3 + 1/3 = 10/3, which is about 3.33.\n\nChoice 2.67 comes from subtracting the second term: v - 1/v = 3 - 1/3. Choice 4.25 comes from factoring v^2 + v - 12 with the signs reversed, taking v = 4: 4 + 1/4. Choice 9.11 comes from rewriting each term over 4^x and 9^x instead of 6^x, computing (9/4)^x + (4/9)^x = 9 + 1/9.",
+  "bounds": [],
+  "mechanism": [
+   "divide by 4^x",
+   "quadratic in (3/2)^x",
+   "v + 1/v from the same ratio"
+  ],
+  "quantity_asked": "the value of (9^x + 4^x)/6^x",
+  "solve": "const v=(-1+Math.sqrt(1+48))/2; return Math.round((v+1/v)*100)/100;",
+  "distractor_solve": {
+   "2.67": "const v=3; return Math.round((v-1/v)*100)/100;",
+   "4.25": "const v=4; return Math.round((v+1/v)*100)/100;",
+   "9.11": "const v=3; return Math.round((v*v+1/(v*v))*100)/100;"
+  },
+  "distractor_meta": {
+   "2.67": {
+    "error_kind": "sign error on second term",
+    "direction": "under"
+   },
+   "4.25": {
+    "error_kind": "factor signs reversed",
+    "direction": "over"
+   },
+   "9.11": {
+    "error_kind": "wrong ratio base",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 3.33 and 4.25: both 2-dp decimals with three significant digits; neither is cleaner",
+  "arith_class_check": "no: all four are 2-dp non-integers; key is not alone in any class",
+  "self_audit": {
+   "risk": "low",
+   "note": "three bases tied by 4·9 = 6^2; the decision (divide by 4^x, keep the positive root) is not announced. Key rank 2; the expression cannot be plugged back. A Desmos user can solve for x numerically and evaluate, which shortens the work."
+  }
+ }
+]

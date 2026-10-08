@@ -1,0 +1,736 @@
+[
+  {
+    "id": "SM24V-D01",
+    "domain": "Advanced Math",
+    "subskill": "Rational model in context: evaluating a shifted reciprocal term plus a constant",
+    "difficulty": "easy",
+    "prompt": "A cup of tea is left to cool in a room. Its temperature T, in degrees Celsius, t minutes after it is poured is modeled by T = 120/(t + 3) + 19. According to the model, what is the temperature of the tea 5 minutes after it is poured?",
+    "choices": [
+      "15",
+      "34",
+      "43",
+      "46"
+    ],
+    "correct_answer": "34",
+    "explanation": "Substitute t = 5: T = 120/(5 + 3) + 19 = 120/8 + 19 = 15 + 19 = 34 degrees Celsius. The value 15 is only the fraction 120/8, leaving out the 19 degrees added to it. The value 43 divides 120 by 5 instead of by 5 + 3: 120/5 + 19 = 43. The value 46 divides 120 by 5 and then adds the 3 outside the fraction: 120/5 + 3 + 19 = 46.",
+    "bounds": [],
+    "mechanism": [
+      "evaluate rational model at an input",
+      "denominator t + 3 evaluated as a group",
+      "constant added after the fraction"
+    ],
+    "quantity_asked": "the model's temperature T at t = 5",
+    "solve": "const T=t=>120/(t+3)+19; return T(5);",
+    "distractor_solve": {
+      "15": "return 120/(5+3);",
+      "43": "return 120/5+19;",
+      "46": "return 120/5+3+19;"
+    },
+    "distractor_meta": {
+      "15": {
+        "error_kind": "dropped the added constant",
+        "direction": "under"
+      },
+      "43": {
+        "error_kind": "divided by t, not t + 3",
+        "direction": "over"
+      },
+      "46": {
+        "error_kind": "moved the + 3 outside the denominator",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior 34 and 43: both 2-digit integers; key 34 is not cleaner than 43",
+    "arith_class_check": "key 34 is even like 46; no class the stem implies isolates it",
+    "self_audit": {
+      "risk": "low",
+      "note": "one routine evaluation (easy). A reader who knows the tea cannot fall below the room's 19 degrees removes 15 only; 34, 43 and 46 all need the fraction evaluated."
+    }
+  },
+  {
+    "id": "SM24V-D02",
+    "domain": "Advanced Math",
+    "subskill": "Absolute value function a|x - h| + k recovered from three points using symmetry",
+    "difficulty": "medium",
+    "prompt": "For constants a, h, and k with a > 0, let f(x) = a|x - h| + k. In the xy-plane, the V-shaped graph of y = f(x) contains the points (-2, 20), (10, 20), and (6, 8). At what y-value does this graph cross the y-axis?",
+    "choices": [
+      "14",
+      "16",
+      "17",
+      "26"
+    ],
+    "correct_answer": "14",
+    "explanation": "The graph of y = a|x - h| + k is symmetric about the vertical line x = h. The points (-2, 20) and (10, 20) have the same y-coordinate, so they are mirror images and h = (-2 + 10)/2 = 4. Then 20 = a|10 - 4| + k = 6a + k and 8 = a|6 - 4| + k = 2a + k. Subtracting gives 4a = 12, so a = 3 and k = 2. The graph crosses the y-axis at f(0) = 3|0 - 4| + 2 = 14. The value 26 treats (6, 8) as the vertex, using slope 3 from (6, 8) to (10, 20): 3|0 - 6| + 8 = 26. The value 17 ignores the corner and uses the straight line through (-2, 20) and (6, 8), which has slope -1.5: 20 - 1.5(2) = 17. The value 16 uses h = 4 but takes the lowest given point's y-coordinate, 8, as the minimum value k; then a = (20 - 8)/6 = 2 and 2(4) + 8 = 16.",
+    "bounds": [],
+    "mechanism": [
+      "absolute value graph symmetry axis",
+      "fit a and k from two points",
+      "evaluate y-intercept"
+    ],
+    "quantity_asked": "the y-intercept f(0) of the fitted absolute value function",
+    "solve": "const P=[[-2,20],[10,20],[6,8]]; const h=(P[0][0]+P[1][0])/2; const a=(P[1][1]-P[2][1])/(Math.abs(P[1][0]-h)-Math.abs(P[2][0]-h)); const k=P[2][1]-a*Math.abs(P[2][0]-h); return a*Math.abs(0-h)+k;",
+    "distractor_solve": {
+      "26": "const a=(20-8)/(10-6); return a*Math.abs(0-6)+8;",
+      "17": "const m=(8-20)/(6+2); return 20+m*(0+2);",
+      "16": "const h=4, k=8; const a=(20-k)/(10-h); return a*Math.abs(0-h)+k;"
+    },
+    "distractor_meta": {
+      "26": {
+        "error_kind": "lowest given point taken as the vertex",
+        "direction": "over"
+      },
+      "17": {
+        "error_kind": "corner ignored; chord through two points",
+        "direction": "over"
+      },
+      "16": {
+        "error_kind": "right axis, but minimum taken as the lowest given y",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: the graph is a V that opens upward, so on [-2, 6] it lies on or below the chord from (-2, 20) to (6, 8), giving f(0) <= 17. That removes 26 only; 16 is also below 17, on the key's side, and the minimum value is not given, so no lower bound separates 14 from 16.",
+    "interior_parity_check": "interior 16 and 17: both 2-digit integers; key 14 is an extreme",
+    "arith_class_check": "key 14 is even like 16 and 26; positive like all; no implied class isolates it",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "f(0) is an evaluation, so no plug-back. Distractors come from three different misreadings of the V shape. Risk: the key is the smallest, and all three wrong paths raise the vertex or straighten the corner; the convexity bound leaves 14 and 16, which only the fitted a and k separate."
+    }
+  },
+  {
+    "id": "SM24V-D03",
+    "domain": "Advanced Math",
+    "subskill": "Rational model in context: solving 1/R = 1/R1 + 1/R2 for one resistor",
+    "difficulty": "medium",
+    "prompt": "When two resistors with resistances R1 and R2, in ohms, are connected in parallel, the combined resistance R, in ohms, satisfies 1/R = 1/R1 + 1/R2. An engineer connects a 105-ohm resistor in parallel with a second resistor, and the combined resistance is 70 ohms. What is the resistance, in ohms, of the second resistor?",
+    "choices": [
+      "35",
+      "42",
+      "140",
+      "210"
+    ],
+    "correct_answer": "210",
+    "explanation": "Substitute R = 70 and R1 = 105: 1/70 = 1/105 + 1/R2, so 1/R2 = 1/70 - 1/105 = 3/210 - 2/210 = 1/210, and R2 = 210 ohms. The value 35 subtracts the resistances, 105 - 70, as if 1/70 - 1/105 were 1/(105 - 70). The value 42 combines 105 and 70 as two resistors in parallel, (105)(70)/(105 + 70) = 42, instead of solving for the unknown one. The value 140 doubles the combined resistance, which would be right only if the two resistors had equal resistance.",
+    "bounds": [],
+    "mechanism": [
+      "reciprocal sum formula solved for one term",
+      "subtract unit fractions with a common denominator",
+      "reciprocate the result"
+    ],
+    "quantity_asked": "the resistance R2 of the second resistor",
+    "solve": "return Math.round(1/(1/70-1/105)*1e9)/1e9;",
+    "distractor_solve": {
+      "35": "return 105-70;",
+      "42": "return 105*70/(105+70);",
+      "140": "return 2*70;"
+    },
+    "distractor_meta": {
+      "35": {
+        "error_kind": "subtracted resistances instead of reciprocals",
+        "direction": "under"
+      },
+      "42": {
+        "error_kind": "combined the two known values as a parallel pair",
+        "direction": "under"
+      },
+      "140": {
+        "error_kind": "assumed equal resistors (double the combined value)",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: a parallel combination is smaller than each resistor in it, so R2 > 70. That removes 35 and 42, but 140 also exceeds 70 and lies on the key's side; separating 210 from 140 requires the reciprocal computation.",
+    "interior_parity_check": "interior 42 and 140: both integers (2 and 3 digits); key 210 is an extreme",
+    "arith_class_check": "key 210 is a multiple of 35 and 70 like 35 and 140; even like 42 and 140; no implied class isolates it",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "plug-back in ascending order reaches the key fourth. Risk: the key is the largest; the R2 > 70 bound leaves 140 beside it, but all three wrong paths land below the key, and the equal-resistor path for 140 is the weakest of the three."
+    }
+  },
+  {
+    "id": "SM24V-D04",
+    "domain": "Advanced Math",
+    "subskill": "Absolute value equation with a constant fixed by one known solution, then the other solution",
+    "difficulty": "medium",
+    "prompt": "Suppose k is a positive constant and x = -6 satisfies |2x - k| = 14. Which other value of x also satisfies this absolute value equation?",
+    "choices": [
+      "-20",
+      "1",
+      "8",
+      "22"
+    ],
+    "correct_answer": "8",
+    "explanation": "Substituting x = -6 gives |-12 - k| = 14, so -12 - k = 14 or -12 - k = -14. These give k = -26 or k = 2, and since k is positive, k = 2. The equation is then |2x - 2| = 14, so 2x - 2 = 14 or 2x - 2 = -14, which give x = 8 or x = -6. The other solution is 8. The value -20 uses the rejected value k = -26: |2x + 26| = 14 gives x = -6 or x = -20. The value 1 is the midpoint of the two solutions, x = k/2, where 2x - k = 0. The value 22 adds 2(14) = 28 to -6, forgetting that the two solutions of |2x - 2| = 14 are 28/2 = 14 apart, not 28.",
+    "bounds": [],
+    "mechanism": [
+      "absolute value equation with unknown constant",
+      "constant fixed from a given solution, sign condition picks one",
+      "second solution from the fixed constant"
+    ],
+    "quantity_asked": "the other solution of |2x - k| = 14 once k is fixed",
+    "solve": "const ks=[2*(-6)+14,2*(-6)-14].filter(k=>k>0); const k=ks[0]; const sols=[(k+14)/2,(k-14)/2]; return sols.find(x=>x!==-6);",
+    "distractor_solve": {
+      "-20": "const k=2*(-6)-14; const sols=[(k+14)/2,(k-14)/2]; return sols.find(x=>x!==-6);",
+      "1": "const k=2; return k/2;",
+      "22": "return -6+2*14;"
+    },
+    "distractor_meta": {
+      "-20": {
+        "error_kind": "kept the rejected (negative) value of k",
+        "direction": "under"
+      },
+      "1": {
+        "error_kind": "reported the center of the V instead of a solution",
+        "direction": "under"
+      },
+      "22": {
+        "error_kind": "gap between solutions not divided by the coefficient 2",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior 1 and 8: both 1-digit integers; key 8 is not cleaner than 1",
+    "arith_class_check": "key 8 is even like -20 and 22; positive like 1 and 22; no implied class isolates it",
+    "self_audit": {
+      "risk": "low",
+      "note": "the stem gives k > 0, so the case split is announced (fits a medium slot). Plug-back works only after k is found, and then reaches 8 third in ascending order. Errors go both ways."
+    }
+  },
+  {
+    "id": "SM24V-D05",
+    "domain": "Advanced Math",
+    "subskill": "Quadratic in |x|: reject the negative root for |x|, pair opposite solutions",
+    "difficulty": "medium",
+    "prompt": "Every real number x satisfying x^2 - 2|x| - 15 = 0 is found, and these numbers are multiplied together. What product results?",
+    "choices": [
+      "-25",
+      "-5",
+      "75",
+      "225"
+    ],
+    "correct_answer": "-25",
+    "explanation": "Since x^2 = |x|^2, the equation is |x|^2 - 2|x| - 15 = 0, which factors as (|x| - 5)(|x| + 3) = 0. Because |x| cannot be negative, |x| + 3 = 0 has no solution, so |x| = 5 and x = 5 or x = -5. The product of the solutions is 5(-5) = -25. The value -5 solves only the case x < 0, where the equation is x^2 + 2x - 15 = 0 with solutions -5 and 3, and keeps only -5. The value 75 also keeps x = -3, a root of x^2 - 2x - 15 = 0 from the case x ≥ 0 that does not satisfy x ≥ 0: 5(-5)(-3) = 75. The value 225 keeps both roots that fail their cases, -3 and 3: 5(-5)(-3)(3) = 225.",
+    "bounds": [],
+    "mechanism": [
+      "quadratic in |x|",
+      "reject the negative value of |x|",
+      "each |x| value gives a pair of opposite solutions"
+    ],
+    "quantity_asked": "the product of all real solutions",
+    "solve": "const sols=[]; for(let n=-2000;n<=2000;n++){ const x=n/100; if(Math.abs(x*x-2*Math.abs(x)-15)<1e-9) sols.push(x);} return sols.reduce((p,x)=>p*x,1);",
+    "distractor_solve": {
+      "-5": "return -5;",
+      "75": "return 5*(-5)*(-3);",
+      "225": "return 5*(-5)*(-3)*3;"
+    },
+    "distractor_meta": {
+      "-5": {
+        "error_kind": "solved only the case x < 0",
+        "direction": "over"
+      },
+      "75": {
+        "error_kind": "kept a root that fails its case condition",
+        "direction": "over"
+      },
+      "225": {
+        "error_kind": "kept both roots that fail their case conditions",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest reading: the equation depends only on |x|, so solutions come in opposite pairs and the product's sign depends on how many pairs there are. That reading favours a negative answer only if the student already knows there is exactly one pair, and -5 is negative too, so it lies on the key's side; no sign or size reading separates -25 from -5 without solving.",
+    "interior_parity_check": "interior -5 and 75: both integers of 1-2 digits; key -25 is an extreme",
+    "arith_class_check": "key -25 is negative like -5, odd like all four, a multiple of 5 like all four; no implied class isolates it",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "the decision (|x| = -3 is impossible, and |x| = 5 gives two opposite solutions) is not announced; the asked product cannot be plugged back. Risk: the key is the most negative option; the symmetry of the equation favours a negative product only for a student who already knows there is one pair, and -5 shares the key's sign, but a grader may still read 'most negative' as a tell."
+    }
+  },
+  {
+    "id": "SM24V-D06",
+    "domain": "Advanced Math",
+    "subskill": "Rational model t = k/(x - c) in context: fixing both constants from two data points",
+    "difficulty": "medium",
+    "prompt": "A lab models the time t, in seconds, that a reaction takes to finish when it is run at a temperature of x degrees Celsius by the equation t = k/(x - c), where k and c are constants. At 35 degrees Celsius the reaction takes 72 seconds, and at 55 degrees Celsius it takes 36 seconds. According to the model, how many seconds does the reaction take at 60 degrees Celsius?",
+    "choices": [
+      "24",
+      "27",
+      "32",
+      "33"
+    ],
+    "correct_answer": "32",
+    "explanation": "From the two data points, k = 72(35 - c) and k = 36(55 - c). Setting these equal gives 2,520 - 72c = 1,980 - 36c, so 36c = 540 and c = 15. Then k = 72(35 - 15) = 1,440, and at 60 degrees Celsius t = 1,440/(60 - 15) = 1,440/45 = 32 seconds. The value 27 extends the straight line through the two data points: the time drops 36 seconds over 20 degrees, or 1.8 seconds per degree, and 36 - 1.8(5) = 27. The value 33 ignores c and treats t as varying inversely with x, using the 55-degree data point: 36(55)/60 = 33. The value 24 finds k = 1,440 correctly but forgets to subtract c at the new temperature: 1,440/60 = 24.",
+    "bounds": [],
+    "mechanism": [
+      "shifted inverse variation k/(x - c)",
+      "two data points give two equations",
+      "evaluate the fitted model"
+    ],
+    "quantity_asked": "the model's time t at x = 60",
+    "solve": "const c=(36*55-72*35)/(36-72); const k=72*(35-c); return k/(60-c);",
+    "distractor_solve": {
+      "27": "const m=(36-72)/(55-35); return 36+m*(60-55);",
+      "33": "return 36*55/60;",
+      "24": "const c=(36*55-72*35)/(36-72); const k=72*(35-c); return k/60;"
+    },
+    "distractor_meta": {
+      "27": {
+        "error_kind": "linear extrapolation from the two data points",
+        "direction": "under"
+      },
+      "33": {
+        "error_kind": "plain inverse variation, c ignored",
+        "direction": "over"
+      },
+      "24": {
+        "error_kind": "c not subtracted at the new input",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior 27 and 32: both 2-digit integers; key 32 is not cleaner than 27",
+    "arith_class_check": "key 32 is even like 24; positive like all; no implied class isolates it",
+    "self_audit": {
+      "risk": "low",
+      "note": "all four options are below 36, so the falling trend kills none; a convexity argument (the curve lies above the extended secant) would remove 24 and 27 but is not a cheap reading, and still leaves 32 against 33, which needs the fitted model. Asked value is a model output, so no plug-back."
+    }
+  },
+  {
+    "id": "SM24V-D07",
+    "domain": "Advanced Math",
+    "subskill": "Saturating rational model W = Mt/(t + k): fixing k from one data point, then solving for t",
+    "difficulty": "medium",
+    "prompt": "A language app models the number of words W that a student has learned t days after starting a course by the equation W = 300t/(t + k), where k is a positive constant. After 4 days, the student has learned 120 words. According to the model, how many days after starting the course will the student have learned 270 words?",
+    "choices": [
+      "5.4",
+      "9",
+      "50",
+      "54"
+    ],
+    "correct_answer": "54",
+    "explanation": "Using the data point, 120 = 300(4)/(4 + k), so 120(4 + k) = 1,200, 4 + k = 10, and k = 6. Then 270 = 300t/(t + 6) gives 270t + 1,620 = 300t, so 30t = 1,620 and t = 54 days. The value 50 is 54 - 4, the number of days after the 4th day rather than after the start of the course. The value 9 treats the number of words as proportional to the number of days: 4(270/120) = 9. The value 5.4 solves 270(t + 6) = 300t incorrectly as t = 6(270/300), dropping the subtraction 300 - 270 in the denominator.",
+    "bounds": [],
+    "mechanism": [
+      "saturating rational model Mt/(t + k)",
+      "fit k from one data point",
+      "solve the model for the input"
+    ],
+    "quantity_asked": "the number of days after the start at which W = 270",
+    "solve": "const k=4*(300-120)/120; return k*270/(300-270);",
+    "distractor_solve": {
+      "50": "const k=4*(300-120)/120; return k*270/(300-270)-4;",
+      "9": "return 4*270/120;",
+      "5.4": "const k=4*(300-120)/120; return Math.round(k*270/300*10)/10;"
+    },
+    "distractor_meta": {
+      "50": {
+        "error_kind": "counted days after the data point, not after the start",
+        "direction": "under"
+      },
+      "9": {
+        "error_kind": "proportional (linear through origin) reasoning",
+        "direction": "under"
+      },
+      "5.4": {
+        "error_kind": "dropped M - W when isolating t",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: W grows more slowly as it nears 300, so the time to reach 270 is more than the proportional estimate 4(270/120) = 9. That bound removes 5.4 and leaves 9 at the boundary, but 50 lies on the key's side of it, and nothing cheap separates 54 from 50 without solving for k.",
+    "interior_parity_check": "interior 9 and 50: both integers (1 and 2 digits); key 54 is an extreme",
+    "arith_class_check": "key 54 is even like 50; integer like 9 and 50; no implied class isolates it",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "all three wrong paths land below the key, but they are three different errors (a counting reference, a proportional model, an algebra slip), and the strongest cheap bound (slower than proportional) leaves 50 on the key's side. Risk: 50 and 54 differ by exactly the 4 printed days, which a grader may read as a pair whose larger member is the total."
+    }
+  },
+  {
+    "id": "SM24V-D08",
+    "domain": "Advanced Math",
+    "subskill": "Absolute-value equation with a common factor on both sides: keeping the root it hides",
+    "difficulty": "medium",
+    "prompt": "Each real number x satisfying |x - 5| = |x^2 - 25| is squared, and those squares are added together. What total results?",
+    "choices": [
+      "41",
+      "61",
+      "77",
+      "102"
+    ],
+    "correct_answer": "77",
+    "explanation": "Since x^2 - 25 = (x - 5)(x + 5), the right side is |x - 5| · |x + 5|, so the equation is |x - 5| = |x - 5| · |x + 5|, or |x - 5|(|x + 5| - 1) = 0. Either |x - 5| = 0, giving x = 5, or |x + 5| = 1, giving x = -4 or x = -6. The sum of the squares of the three solutions is 25 + 16 + 36 = 77. The value 41 uses only the case x - 5 = x^2 - 25, which gives x^2 - x - 20 = 0 with solutions 5 and -4: 25 + 16 = 41. The value 61 uses only the case x - 5 = -(x^2 - 25), which gives x^2 + x - 30 = 0 with solutions 5 and -6: 25 + 36 = 61. The value 102 solves both cases but counts the solution 5, which appears in each, twice: 25 + 16 + 25 + 36 = 102.",
+    "bounds": [],
+    "mechanism": [
+      "absolute value of a product |a||b|",
+      "common factor kept, not divided out",
+      "shared root counted once across cases"
+    ],
+    "quantity_asked": "the sum of the squares of all real solutions",
+    "solve": "const sols=new Set(); for(let n=-4000;n<=4000;n++){ const x=n/100; if(Math.abs(Math.abs(x-5)-Math.abs(x*x-25))<1e-9) sols.add(x);} let s=0; for(const x of sols) s+=x*x; return Math.round(s*1e6)/1e6;",
+    "distractor_solve": {
+      "41": "const b=-1,c=-20; const d=Math.sqrt(b*b-4*c); return ((-b+d)/2)**2+((-b-d)/2)**2;",
+      "61": "const b=1,c=-30; const d=Math.sqrt(b*b-4*c); return ((-b+d)/2)**2+((-b-d)/2)**2;",
+      "102": "const r=[]; for(const [b,c] of [[-1,-20],[1,-30]]){ const d=Math.sqrt(b*b-4*c); r.push((-b+d)/2,(-b-d)/2);} return r.reduce((s,x)=>s+x*x,0);"
+    },
+    "distractor_meta": {
+      "41": {
+        "error_kind": "solved only the positive case",
+        "direction": "under"
+      },
+      "61": {
+        "error_kind": "solved only the negative case",
+        "direction": "under"
+      },
+      "102": {
+        "error_kind": "repeated solution counted twice across cases",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior 61 and 77: both 2-digit odd integers; key 77 is not cleaner than 61",
+    "arith_class_check": "key 77 is odd like 61; not a perfect square, like all four; no implied class isolates it",
+    "self_audit": {
+      "risk": "low",
+      "note": "the decision (factor |x^2 - 25| and keep x = 5, then count it once) is not announced. Errors go both ways: a missing case lowers the total, the double count raises it. The asked sum of squares cannot be plugged back. Desmos shows three intersections, consistent with a medium label."
+    }
+  },
+  {
+    "id": "SM24V-D09",
+    "domain": "Advanced Math",
+    "subskill": "Composition of a linear function with its own inverse after an input shift",
+    "difficulty": "medium",
+    "prompt": "Let f(x) = -2x - 9, with inverse f⁻¹. A new rule h applies f⁻¹ to its input, adds 6, and then applies f, so that h(x) = f(f⁻¹(x) + 6). Compute h(-5).",
+    "choices": [
+      "-17",
+      "-11",
+      "-8",
+      "4"
+    ],
+    "correct_answer": "-17",
+    "explanation": "First, f⁻¹(-5) is the input that f sends to -5: -2x - 9 = -5 gives x = -2. Then h(-5) = f(-2 + 6) = f(4) = -2(4) - 9 = -17. (In general, adding 6 to the input of f changes the output by 6 times the slope -2, so h(x) = x - 12.) The value -11 skips the inverse and computes f(-5 + 6) = f(1) = -11. The value 4 skips the outer f and reports f⁻¹(-5) + 6 = -2 + 6 = 4. The value -8 divides the shift by the slope instead of multiplying: -5 + 6/(-2) = -8.",
+    "bounds": [],
+    "mechanism": [
+      "composition of f with f-inverse",
+      "input shift scaled by slope",
+      "linear inverse evaluation"
+    ],
+    "quantity_asked": "h(-5), where h(x) = f(f-inverse(x) + 6)",
+    "solve": "const f=x=>-2*x-9; const finv=y=>(y+9)/(-2); return f(finv(-5)+6);",
+    "distractor_solve": {
+      "-11": "const f=x=>-2*x-9; return f(-5+6);",
+      "4": "const finv=y=>(y+9)/(-2); return finv(-5)+6;",
+      "-8": "return -5+6/(-2);"
+    },
+    "distractor_meta": {
+      "-11": {
+        "error_kind": "inverse skipped (f applied to x + 6)",
+        "direction": "over"
+      },
+      "4": {
+        "error_kind": "outer f skipped",
+        "direction": "over"
+      },
+      "-8": {
+        "error_kind": "shift divided by the slope instead of multiplied",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: f is decreasing, so raising its input by 6 lowers its output, giving h(-5) < -5. That removes 4 only; -11 and -8 are also below -5, on the key's side, and separating -17 from them requires the slope factor.",
+    "interior_parity_check": "interior -11 and -8: both negative integers of 1-2 digits; key -17 is an extreme",
+    "arith_class_check": "key -17 is odd like -11; negative like -11 and -8; no implied class isolates it",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "the asked value h(-5) is an evaluation, so no plug-back. The decreasing-f bound removes 4 but leaves -11 and -8 beside the key. Risk: a student who knows f(f⁻¹(x)) = x may still not see that the +6 is scaled by the slope, which is the decision; a grader may still find it a routine medium."
+    }
+  },
+  {
+    "id": "SM24V-D10",
+    "domain": "Advanced Math",
+    "subskill": "Linear function recovered from two points on the graph of its inverse",
+    "difficulty": "medium",
+    "prompt": "A linear function f has inverse f⁻¹. Plotted in the xy-plane, y = f⁻¹(x) contains (9, 5) and (11, 6). Compute f(25).",
+    "choices": [
+      "13",
+      "19",
+      "37",
+      "49"
+    ],
+    "correct_answer": "49",
+    "explanation": "If the graph of y = f⁻¹(x) passes through (9, 5) and (11, 6), then f⁻¹(9) = 5 and f⁻¹(11) = 6, so f(5) = 9 and f(6) = 11. The graph of f therefore passes through (5, 9) and (6, 11), so its slope is (11 - 9)/(6 - 5) = 2 and f(x) = 9 + 2(x - 5) = 2x - 1. Then f(25) = 2(25) - 1 = 49. The value 13 is f⁻¹(25), found by using the given points as points of f: that line has slope 1/2, and 5 + (1/2)(25 - 9) = 13. The value 37 uses the correct slope 2 but starts from the unswapped point (9, 5): 5 + 2(25 - 9) = 37. The value 19 swaps the point to (5, 9) but keeps the slope 1/2 of the given line: 9 + (1/2)(25 - 5) = 19.",
+    "bounds": [],
+    "mechanism": [
+      "inverse graph points swapped",
+      "linear function from two points",
+      "evaluate f from f-inverse data"
+    ],
+    "quantity_asked": "the value of f(25), where the two given points lie on the graph of f-inverse",
+    "solve": "const P=[[9,5],[11,6]]; const Q=P.map(([a,b])=>[b,a]); const m=(Q[1][1]-Q[0][1])/(Q[1][0]-Q[0][0]); return Q[0][1]+m*(25-Q[0][0]);",
+    "distractor_solve": {
+      "13": "const m=(6-5)/(11-9); return 5+m*(25-9);",
+      "37": "const m=(11-9)/(6-5); return 5+m*(25-9);",
+      "19": "const m=(6-5)/(11-9); return 9+m*(25-5);"
+    },
+    "distractor_meta": {
+      "13": {
+        "error_kind": "used inverse's points as f (computed f-inverse(25))",
+        "direction": "under"
+      },
+      "37": {
+        "error_kind": "right slope, unswapped point",
+        "direction": "under"
+      },
+      "19": {
+        "error_kind": "swapped point, inverse's slope kept",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: f is increasing and f(6) = 11 can be read off by swapping one point, so f(25) > 11. All four options exceed 11, so 37 and 19 lie on the key's side; separating 49 from 37 needs the slope of f, which is the reciprocal of the slope of the given line.",
+    "interior_parity_check": "interior 19 and 37: both 2-digit odd integers; key 49 is an extreme",
+    "arith_class_check": "key 49 is odd like all four; a perfect square, but nothing in the stem makes squares relevant; no implied class isolates it",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "the asked value f(25) cannot be plugged back. All three wrong paths fall below the key because each keeps the shallower slope or the unswapped point, but they are three different errors and the cheap bound f(25) > 11 removes none. Risk: a grader may note that the steeper of the two candidate slopes always gives the largest value here."
+    }
+  },
+  {
+    "id": "SM24V-D11",
+    "domain": "Advanced Math",
+    "subskill": "Inverse-square variation: percent change in the input from a percent change in the output",
+    "difficulty": "hard",
+    "prompt": "The intensity of light from a small lamp varies inversely with the square of the distance from the lamp. A light meter is moved directly away from the lamp, and at its new position the intensity it measures is 64% of the intensity it measured at its original position. By what percent did the meter's distance from the lamp increase?",
+    "choices": [
+      "6",
+      "20",
+      "25",
+      "36"
+    ],
+    "correct_answer": "25",
+    "explanation": "Let I = k/d^2. If the original distance is d and the new distance is D, then k/D^2 = 0.64(k/d^2), so D^2 = d^2/0.64 and D = d/0.8 = 1.25d. The distance increased by 25%. The value 20 comes from taking the new distance as 0.8 of the original and reading 1 - 0.8 = 0.2 as the change; the factor 0.8 belongs to the intensity side, so the distance is divided by it, not multiplied. The value 36 is the percent decrease in intensity, 100% - 64%, applied to the distance as if the variation were linear. The value 6 takes the square root of 36, the percent decrease in intensity, instead of working with the factor 0.64.",
+    "bounds": [],
+    "mechanism": [
+      "inverse-square variation",
+      "percent change through a squared reciprocal",
+      "scale factor 1/sqrt(0.64)"
+    ],
+    "quantity_asked": "the percent increase in the distance from the lamp",
+    "solve": "const f=1/Math.sqrt(0.64); return Math.round((f-1)*100*1e6)/1e6;",
+    "distractor_solve": {
+      "20": "return Math.round((1-Math.sqrt(0.64))*100*1e6)/1e6;",
+      "36": "return Math.round((1-0.64)*100*1e6)/1e6;",
+      "6": "return Math.round(Math.sqrt(100-64)*1e6)/1e6;"
+    },
+    "distractor_meta": {
+      "20": {
+        "error_kind": "multiplied distance by the root factor instead of dividing",
+        "direction": "under"
+      },
+      "36": {
+        "error_kind": "linear transfer of the intensity drop",
+        "direction": "over"
+      },
+      "6": {
+        "error_kind": "square root of the percent drop",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior 20 and 25: both 2-digit integers; key 25 is not cleaner than 20",
+    "arith_class_check": "all four are integers; key 25 is a perfect square as is 36; the only odd option, but nothing in the stem makes parity relevant",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "plug-back in ascending order (6, 20, 25) reaches the key on the third check, which the brief allows. Risk: the 20 vs 25 confusion is the whole decision, and a grader may judge the item medium rather than hard; the key is also the only odd option (incidental)."
+    }
+  },
+  {
+    "id": "SM24V-D12",
+    "domain": "Advanced Math",
+    "subskill": "Counting solutions of f(f(x)) = 0 for a quadratic with an unknown constant",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x^2 + 24x + c, where c is a constant. The equation f(f(x)) = 0 has exactly three distinct real solutions. What is the minimum value of f(x) ?",
+    "choices": [
+      "-16",
+      "-12",
+      "-9",
+      "0"
+    ],
+    "correct_answer": "-16",
+    "explanation": "The graph of f has its vertex at x = -12, so the minimum value of f is m = f(-12) = c - 144, and the zeros of f are -12 - √(-m) and -12 + √(-m). The equation f(f(x)) = 0 holds exactly when f(x) equals one of the zeros of f. An equation f(x) = r has two solutions if r > m, one solution if r = m, and none if r < m. Since the smaller zero is less than the larger, exactly three solutions requires the smaller zero to equal m (one solution) while the larger zero is above m (two solutions). Writing t = √(-m), the condition -12 - t = -t^2 gives t^2 - t - 12 = 0, so t = 4 and m = -16 (then c = 128). Check: the zeros are -16 and -8, f(x) = -16 has one solution, and f(x) = -8 has two, for three in all. The value -9 comes from setting the larger zero equal to the minimum instead (t^2 + t - 12 = 0, t = 3); then f(x) = -9 has one solution and f(x) = -15 has none, so f(f(x)) = 0 has only one solution. The value 0 comes from making the zero of f a repeated zero at the vertex, but then f(f(x)) = 0 requires f(x) = -12, which has no solution. The value -12 is the x-coordinate of the vertex, not the minimum value.",
+    "bounds": [],
+    "mechanism": [
+      "self-composition f(f(x))=0 solution count",
+      "zero of f equal to its minimum value",
+      "one branch silently empty"
+    ],
+    "quantity_asked": "the minimum value of f, given that f(f(x)) = 0 has exactly three distinct real solutions",
+    "solve": "function count(c){const m=c-144; if(m>0) return 0; const s=Math.sqrt(-m); const zs=s===0?[-12]:[-12-s,-12+s]; let n=0; for(const r of zs){ if(Math.abs(r-m)<1e-9) n+=1; else if(r>m) n+=2; } return n;} for(let c=0;c<=200;c++){ if(count(c)===3) return c-144; } return null;",
+    "distractor_solve": {
+      "-9": "for(let t=0;t<20;t++){ if(t*t+t-12===0) return -t*t; } return null;",
+      "0": "const c=144; return c-144;",
+      "-12": "return -24/2;"
+    },
+    "distractor_meta": {
+      "-9": {
+        "error_kind": "larger zero set equal to the minimum (unchecked case)",
+        "direction": "over"
+      },
+      "0": {
+        "error_kind": "repeated zero of f assumed",
+        "direction": "over"
+      },
+      "-12": {
+        "error_kind": "vertex x-coordinate reported as minimum value",
+        "direction": "over"
+      }
+    },
+    "cheap_bound_check": "Cheapest bound: f must have real zeros, so the minimum value is at most 0. All four options satisfy it, so -12 and -9 lie on the key's side; no sign or size reading from the stem separates -16 from the other three.",
+    "interior_parity_check": "interior -12 and -9: both negative integers of 1-2 digits; key -16 is an extreme",
+    "arith_class_check": "key -16 shares evenness with -12 and 0 and negativity with -12 and -9; not the unique member of any class the stem implies",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "decision not announced: the stem never says which zero must touch the minimum, and the algebra yields two candidates (t = 4 and t = 3) of which only one gives three solutions. A student who quotes the vertex x-coordinate or assumes a repeated zero lands on distractors. Risk: the key is the most negative option and a student might reason 'minimum = smallest'; the -12 and -9 options sit on the same side of every cheap bound."
+    }
+  },
+  {
+    "id": "SM24V-D13",
+    "domain": "Advanced Math",
+    "subskill": "Increasing function and its inverse meet on y = x: fixing a constant",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x^2 - 16x + c for x ≥ 8, where c is a constant, and f⁻¹ is the inverse function of f. In the xy-plane, the graphs of y = f(x) and y = f⁻¹(x) intersect at exactly one point, and that point has an x-coordinate of 11. What is the value of c?",
+    "choices": [
+      "55",
+      "56",
+      "63",
+      "66"
+    ],
+    "correct_answer": "66",
+    "explanation": "For x ≥ 8, f is increasing, and the graph of f⁻¹ is the reflection of the graph of f across the line y = x. An increasing function can meet its inverse only at points where the graph of f crosses y = x, so the intersection point is (11, 11) and f(11) = 11. Then 121 - 176 + c = 11, so c = 66. (Check: f(x) = x becomes x^2 - 17x + 66 = 0, with solutions 6 and 11; only 11 satisfies x ≥ 8, so there is exactly one intersection point.) The value 55 places the point on the x-axis, using f(11) = 0, as if the inverse were the reflection across the x-axis. The value 56 treats f⁻¹(x) as the reciprocal 1/f(x), so f(11) = 1/f(11) and f(11) = 1. The value 63 takes the y-coordinate of the intersection to be 8, the left end of the domain of f, so f(11) = 8.",
+    "bounds": [],
+    "mechanism": [
+      "increasing function meets its inverse on y = x",
+      "fixed point f(a) = a fixes a constant",
+      "domain restriction removes the other fixed point"
+    ],
+    "quantity_asked": "the constant c",
+    "solve": "for(let c=0;c<=200;c++){ const f=x=>x*x-16*x+c; const pts=[]; for(let x=8;x<=40;x++){ if(f(x)===x) pts.push(x);} if(pts.length===1&&pts[0]===11) return c; } return null;",
+    "distractor_solve": {
+      "55": "return 0-(121-176);",
+      "56": "return 1-(121-176);",
+      "63": "return 8-(121-176);"
+    },
+    "distractor_meta": {
+      "55": {
+        "error_kind": "reflection taken across the x-axis (y = 0)",
+        "direction": "under"
+      },
+      "56": {
+        "error_kind": "inverse confused with reciprocal",
+        "direction": "under"
+      },
+      "63": {
+        "error_kind": "domain endpoint used as the shared y-value",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": "Cheapest reading: c must make f(11) a sensible output, but the stem never states the y-coordinate, so no sign or size bound on c is readable without deciding where the intersection lies. Each distractor is a different guess at that y-coordinate (0, 1, 8), and 63 sits within 3 of the key.",
+    "interior_parity_check": "interior 56 and 63: both 2-digit integers; key 66 is an extreme",
+    "arith_class_check": "key 66 is even like 56, a multiple of 11 like 55; no implied class isolates it",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "decision not announced: the stem gives only the x-coordinate, and the student must see that an increasing function meets its inverse on y = x; solving f(x) = f⁻¹(x) directly leads to a quartic. Desmos cannot show f⁻¹ without c. Risk: the key is the largest and 63's path (domain endpoint as y-value) is the weakest."
+    }
+  },
+  {
+    "id": "SM24V-D14",
+    "domain": "Advanced Math",
+    "subskill": "Piecewise function with an inverse defined for all reals: the pieces must meet",
+    "difficulty": "hard",
+    "prompt": "For a constant k, let f(x) = 3x + k when x < 1 and f(x) = x^2 + 8 when x ≥ 1. This f has an inverse, and that inverse accepts every real number as an input. Compute f⁻¹(-12).",
+    "choices": [
+      "-30",
+      "-7",
+      "-6",
+      "-2"
+    ],
+    "correct_answer": "-6",
+    "explanation": "For x ≥ 1, f(x) = x^2 + 8 takes every value from 9 upward. For x < 1, f(x) = 3x + k takes every value below 3 + k. If 3 + k were less than 9, the values between them would never be outputs, so f⁻¹ would not be defined there; if 3 + k were greater than 9, some outputs would come from both pieces, and f would not have an inverse. So 3 + k = 9 and k = 6. Since -12 < 9, f⁻¹(-12) comes from the linear piece: 3x + 6 = -12 gives x = -6. The value -7 takes k = 9 by matching the linear piece's constant to f(1) = 9 without subtracting 3(1): 3x + 9 = -12. The value -2 takes k = -6 from a sign error, 3 - 9 = k: 3x - 6 = -12. The value -30 evaluates f(-12) = 3(-12) + 6 instead of finding the input whose output is -12.",
+    "bounds": [],
+    "mechanism": [
+      "invertible piecewise function with full range forces the pieces to meet",
+      "fix a constant from the junction value",
+      "inverse value from the correct piece"
+    ],
+    "quantity_asked": "f-inverse(-12) once k is fixed",
+    "solve": "let K=null; for(let k=-20;k<=20;k++){ const top=3*1+k; const bottom=1+8; if(top===bottom) K=k; } return (-12-K)/3;",
+    "distractor_solve": {
+      "-7": "const k=1+8; return (-12-k)/3;",
+      "-2": "const k=3-9; return (-12-k)/3;",
+      "-30": "const k=6; return 3*(-12)+k;"
+    },
+    "distractor_meta": {
+      "-7": {
+        "error_kind": "constant matched to f(1) without subtracting 3(1)",
+        "direction": "under"
+      },
+      "-2": {
+        "error_kind": "sign error fixing k",
+        "direction": "over"
+      },
+      "-30": {
+        "error_kind": "evaluated f instead of f-inverse",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior -7 and -6: both 1-digit negative integers; key -6 is not cleaner than -7",
+    "arith_class_check": "key -6 is even like -30 and -2, negative like all four; no implied class isolates it",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "decision not announced: the stem never says the pieces meet; that follows from 'has an inverse' (no overlap) together with 'defined for every real number' (no gap). Desmos cannot show f without k. Plug-back requires k first. Risk: -7 and -6 are adjacent, and a grader may judge the continuity step routine."
+    }
+  },
+  {
+    "id": "SM24V-D15",
+    "domain": "Advanced Math",
+    "subskill": "A rational function that is its own inverse: fixing a coefficient, then evaluating",
+    "difficulty": "hard",
+    "prompt": "For a constant a, let f(x) = (ax + 7)/(x - 3). Applying f twice returns the original input: f(f(x)) = x whenever x is in the domain of f. Compute f(5).",
+    "choices": [
+      "-14",
+      "-4",
+      "11",
+      "21"
+    ],
+    "correct_answer": "11",
+    "explanation": "Since f(f(x)) = x, the function f is its own inverse. To find the inverse, write y = (ax + 7)/(x - 3) and solve for x: y(x - 3) = ax + 7, so xy - ax = 3y + 7 and x = (3y + 7)/(y - a). So f⁻¹(x) = (3x + 7)/(x - a). For this to be the same function as f(x) = (ax + 7)/(x - 3), the numerators and denominators must match, so a = 3. Then f(5) = (3(5) + 7)/(5 - 3) = 22/2 = 11. (Check: f(11) = (33 + 7)/(11 - 3) = 5.) The value -4 comes from a sign error when isolating x, which gives a = -3 and f(5) = (-15 + 7)/2. The value 21 comes from taking a equal to the constant 7 in the numerator: (35 + 7)/2 = 21. The value -14 comes from taking a = -7: (-35 + 7)/2 = -14.",
+    "bounds": [],
+    "mechanism": [
+      "self-inverse rational function",
+      "match inverse to original to fix coefficient"
+    ],
+    "quantity_asked": "f(5) after the coefficient a is fixed by f(f(x)) = x",
+    "solve": "for(let a=-20;a<=20;a++){ if(-3*a-7===0) continue; const f=x=>(a*x+7)/(x-3); let ok=true; for(const x of [0,1,2,4,5,7,10]){ const y=f(x); if(Math.abs(y-3)<1e-12){continue;} if(Math.abs(f(y)-x)>1e-9){ok=false;break;} } if(ok) return f(5); } return null;",
+    "distractor_solve": {
+      "-4": "const a=-3; return (a*5+7)/(5-3);",
+      "21": "const a=7; return (a*5+7)/(5-3);",
+      "-14": "const a=-7; return (a*5+7)/(5-3);"
+    },
+    "distractor_meta": {
+      "-4": {
+        "error_kind": "sign error isolating x in the inverse (a = -3)",
+        "direction": "under"
+      },
+      "21": {
+        "error_kind": "a taken as the numerator constant 7",
+        "direction": "over"
+      },
+      "-14": {
+        "error_kind": "a taken as the opposite of the numerator constant",
+        "direction": "under"
+      }
+    },
+    "cheap_bound_check": null,
+    "interior_parity_check": "interior -4 and 11: both integers of 1-2 digits; key 11 is not cleaner than -4",
+    "arith_class_check": "key 11 is positive like 21, odd like 21; no class the stem implies singles it out",
+    "self_audit": {
+      "risk": "at-risk",
+      "note": "the condition f(f(x)) = x does not tell the student how to use it; Desmos cannot display f(5) without a. Plug-back (a = (2y - 7)/5 then test f(y) = 5) reaches the key third in ascending order. Risk: the three distractors all come from a wrong value of a, so a grader may call them one family."
+    }
+  }
+]
