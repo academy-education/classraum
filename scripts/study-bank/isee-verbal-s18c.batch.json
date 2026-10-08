@@ -1,0 +1,622 @@
+[
+ {
+  "id": "IS18C-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Although the new battery design looked promising in early bench tests, engineers found its output -------, surging and sagging unpredictably over the course of a single charge cycle.",
+  "choices": [
+   "fluctuating",
+   "paltry",
+   "excessive",
+   "sustained"
+  ],
+  "correct_answer": "fluctuating",
+  "explanation": "'Although ... looked promising' sets up a flaw, and 'surging and sagging unpredictably' restates the blank: fluctuating.",
+  "distractor_rationales": [
+   "paltry — 'surging' shows the output is at times high, not consistently small.",
+   "sustained — 'sagging unpredictably' contradicts steady, continued output.",
+   "excessive — 'sagging' shows the output also drops low, not only too high."
+  ],
+  "rarity_order": [
+   "paltry",
+   "fluctuating",
+   "sustained",
+   "excessive"
+  ]
+ },
+ {
+  "id": "IS18C-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] The surgeon's preferred suture thread is -------: within a few months the body breaks it down and absorbs it, so no second procedure is needed to remove the stitches.",
+  "choices": [
+   "translucent",
+   "biodegradable",
+   "hypoallergenic",
+   "impermeable"
+  ],
+  "correct_answer": "biodegradable",
+  "explanation": "The colon introduces a restatement: thread that the body 'breaks it down and absorbs' is biodegradable.",
+  "distractor_rationales": [
+   "hypoallergenic — the colon explains breakdown and absorption, not freedom from allergic reaction.",
+   "translucent — nothing after the colon concerns how the thread looks or passes light.",
+   "impermeable — the clause describes the thread dissolving away, not resisting the passage of fluid."
+  ],
+  "rarity_order": [
+   "hypoallergenic",
+   "impermeable",
+   "biodegradable",
+   "translucent"
+  ]
+ },
+ {
+  "id": "IS18C-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Unlike the rattling diesel boats it replaced, the electric ferry glides across the harbor almost -------, so passengers on deck can chat without raising their voices.",
+  "choices": [
+   "jauntily",
+   "fitfully",
+   "laboriously",
+   "inaudibly"
+  ],
+  "correct_answer": "inaudibly",
+  "explanation": "'Unlike the rattling diesel boats' contrasts on noise, and 'chat without raising their voices' confirms the ferry makes almost no sound: inaudibly.",
+  "distractor_rationales": [
+   "jauntily — the contrast with 'rattling' boats is about sound, not a cheerful, breezy manner.",
+   "laboriously — 'glides' signals ease, not strain, and the contrast is about noise.",
+   "fitfully — 'glides' describes smooth, continuous motion, not stops and starts."
+  ],
+  "rarity_order": [
+   "inaudibly",
+   "jauntily",
+   "fitfully",
+   "laboriously"
+  ]
+ },
+ {
+  "id": "IS18C-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] The vaccine is given -------, that is, as a fine mist sprayed into the nostrils rather than by a needle in the arm.",
+  "choices": [
+   "intranasally",
+   "intravenously",
+   "subcutaneously",
+   "sublingually"
+  ],
+  "correct_answer": "intranasally",
+  "explanation": "'That is' restates the blank: a mist sprayed 'into the nostrils' is given intranasally.",
+  "distractor_rationales": [
+   "intravenously — that means through a needle into a vein, which 'rather than by a needle' rules out.",
+   "subcutaneously — that is an injection under the skin, again ruled out by 'rather than by a needle'.",
+   "sublingually — that means under the tongue, not 'into the nostrils'."
+  ],
+  "rarity_order": [
+   "sublingually",
+   "intranasally",
+   "subcutaneously",
+   "intravenously"
+  ]
+ },
+ {
+  "id": "IS18C-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Although early critics predicted that the telephone would prove -------, a novelty soon forgotten, within a generation it had become indispensable to commerce.",
+  "choices": [
+   "proprietary",
+   "cumbersome",
+   "transitory",
+   "surreptitious"
+  ],
+  "correct_answer": "transitory",
+  "explanation": "The appositive 'a novelty soon forgotten' defines the blank, and 'Although ... within a generation it had become indispensable' contrasts it with lasting importance: transitory.",
+  "distractor_rationales": [
+   "cumbersome — the critics' prediction is about being 'soon forgotten', not about being bulky or awkward.",
+   "proprietary — nothing about ownership or patents; the contrast is between fading and lasting.",
+   "surreptitious — secrecy has no link to 'a novelty soon forgotten'."
+  ],
+  "rarity_order": [
+   "surreptitious",
+   "transitory",
+   "proprietary",
+   "cumbersome"
+  ]
+ },
+ {
+  "id": "IS18C-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Reef-building coral and the algae living inside its tissues share a ------- relationship: the algae supply the coral with sugars, and the coral gives the algae shelter and nutrients.",
+  "choices": [
+   "competitive",
+   "reciprocal",
+   "parasitic",
+   "hierarchical"
+  ],
+  "correct_answer": "reciprocal",
+  "explanation": "After the colon each partner gives the other something, which restates a reciprocal relationship.",
+  "distractor_rationales": [
+   "hierarchical — neither partner ranks above the other; each supplies the other.",
+   "parasitic — neither feeds at the expense of the other; each supplies the other with sugars or shelter.",
+   "competitive — they help each other rather than vie for the same resource."
+  ],
+  "rarity_order": [
+   "parasitic",
+   "hierarchical",
+   "reciprocal",
+   "competitive"
+  ]
+ },
+ {
+  "id": "IS18C-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] The first mobile phones were bulky enough to need a shoulder strap, but today's models are so ------- that one slips easily into a shirt pocket.",
+  "choices": [
+   "compact",
+   "waterproof",
+   "insulated",
+   "fluorescent"
+  ],
+  "correct_answer": "compact",
+  "explanation": "'But' contrasts 'bulky' with the blank, and 'slips easily into a shirt pocket' confirms small size: compact.",
+  "distractor_rationales": [
+   "waterproof — resisting water is not the opposite of 'bulky' and does not explain fitting in a pocket.",
+   "insulated — the contrast is about size, not heat or electrical protection.",
+   "fluorescent — glowing has nothing to do with fitting 'into a shirt pocket'."
+  ],
+  "rarity_order": [
+   "fluorescent",
+   "insulated",
+   "waterproof",
+   "compact"
+  ]
+ },
+ {
+  "id": "IS18C-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] The dermatologist described the rash as -------, confined to a single patch on the forearm rather than spread across the body.",
+  "choices": [
+   "contagious",
+   "localized",
+   "chronic",
+   "hereditary"
+  ],
+  "correct_answer": "localized",
+  "explanation": "The phrase 'confined to a single patch ... rather than spread across the body' restates localized.",
+  "distractor_rationales": [
+   "chronic — the clause describes where the rash is, not how long it has lasted.",
+   "contagious — the clause concerns spread across her own body, not passing to other people.",
+   "hereditary — nothing about family inheritance; the clause is about location."
+  ],
+  "rarity_order": [
+   "hereditary",
+   "localized",
+   "contagious",
+   "chronic"
+  ]
+ },
+ {
+  "id": "IS18C-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Although the meteorite looked like an ordinary dark stone, its sliced interior proved -------: tiny crystals of olivine glittered throughout the iron, catching every beam of the lab's lamps.",
+  "choices": [
+   "lustrous",
+   "fibrous",
+   "friable",
+   "fusible"
+  ],
+  "correct_answer": "lustrous",
+  "explanation": "'Although ... ordinary dark stone' sets up a contrast in appearance, and 'glittered ... catching every beam' restates lustrous.",
+  "distractor_rationales": [
+   "fusible — the colon describes glittering, not how readily the material melts.",
+   "friable — crumbling is never mentioned; the contrast is with how the stone looked.",
+   "fibrous — the interior is described as crystals glittering in iron, not threads."
+  ],
+  "rarity_order": [
+   "fusible",
+   "friable",
+   "lustrous",
+   "fibrous"
+  ]
+ },
+ {
+  "id": "IS18C-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Tardigrades are famously -------: these tiny animals can survive boiling, freezing, the vacuum of space, and decades without water.",
+  "choices": [
+   "arboreal",
+   "amphibious",
+   "diurnal",
+   "hardy"
+  ],
+  "correct_answer": "hardy",
+  "explanation": "Everything after the colon is about surviving harsh conditions, which restates hardy.",
+  "distractor_rationales": [
+   "diurnal — the list is about survival, not being active by day.",
+   "arboreal — nothing about living in trees; the colon lists conditions they endure.",
+   "amphibious — living on land and in water is not the same as surviving boiling, space and decades of drought."
+  ],
+  "rarity_order": [
+   "diurnal",
+   "arboreal",
+   "amphibious",
+   "hardy"
+  ]
+ },
+ {
+  "id": "IS18C-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Though the antibiotic cleared the infection within days, its side effects were so ------- that many patients abandoned the course before it was finished.",
+  "choices": [
+   "manageable",
+   "transient",
+   "debilitating",
+   "foreseeable"
+  ],
+  "correct_answer": "debilitating",
+  "explanation": "'Though' contrasts the drug's success with its side effects, and 'abandoned the course' shows they were severe enough to stop patients: debilitating.",
+  "distractor_rationales": [
+   "transient — brief side effects would not drive patients to abandon the treatment.",
+   "manageable — effects patients can cope with give no reason to quit, and 'Though' demands a serious drawback.",
+   "foreseeable — knowing what to expect is not a drawback that would make patients stop."
+  ],
+  "rarity_order": [
+   "debilitating",
+   "transient",
+   "foreseeable",
+   "manageable"
+  ]
+ },
+ {
+  "id": "IS18C-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] The new scanning technique is -------: it lets doctors see inside the body without making a single incision or inserting any instrument.",
+  "choices": [
+   "automated",
+   "noninvasive",
+   "archaic",
+   "radioactive"
+  ],
+  "correct_answer": "noninvasive",
+  "explanation": "The colon restates the blank: seeing inside 'without making a single incision or inserting any instrument' is noninvasive.",
+  "distractor_rationales": [
+   "radioactive — nothing after the colon concerns radiation.",
+   "archaic — the clause describes an advanced ability, not an outdated one.",
+   "automated — the clause says nothing about machines working without people; doctors do the seeing."
+  ],
+  "rarity_order": [
+   "noninvasive",
+   "archaic",
+   "radioactive",
+   "automated"
+  ]
+ },
+ {
+  "id": "IS18C-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Unlike lead, which builds up in the body over years of exposure, caffeine is ------- by the liver and leaves the bloodstream within hours.",
+  "choices": [
+   "metabolized",
+   "synthesized",
+   "sterilized",
+   "calcified"
+  ],
+  "correct_answer": "metabolized",
+  "explanation": "'Unlike lead, which builds up' sets up the contrast, and 'leaves the bloodstream within hours' shows the liver breaks it down: metabolized.",
+  "distractor_rationales": [
+   "synthesized — making caffeine would add more of it, not clear it 'within hours'.",
+   "sterilized — killing germs has nothing to do with removal from the bloodstream.",
+   "calcified — hardening into deposits is building up, which the contrast with lead rules out."
+  ],
+  "rarity_order": [
+   "calcified",
+   "metabolized",
+   "synthesized",
+   "sterilized"
+  ]
+ },
+ {
+  "id": "IS18C-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Manatees are strictly -------: they graze on seagrass and other water plants for hours each day and never eat fish or other animals.",
+  "choices": [
+   "insectivorous",
+   "fecund",
+   "gelatinous",
+   "herbivorous"
+  ],
+  "correct_answer": "herbivorous",
+  "explanation": "The colon restates the blank: an animal that eats only 'seagrass and other water plants' and 'never' eats animals is herbivorous.",
+  "distractor_rationales": [
+   "insectivorous — an insect-eater eats animals, which 'never eat fish or other animals' rules out.",
+   "fecund — the colon describes diet, not producing many offspring.",
+   "gelatinous — a jelly-like body is not what grazing on seagrass restates."
+  ],
+  "rarity_order": [
+   "fecund",
+   "gelatinous",
+   "insectivorous",
+   "herbivorous"
+  ]
+ },
+ {
+  "id": "IS18C-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Most early factory robots could perform only one task, but the new warehouse machine is remarkably -------, able to sort parcels, stack crates, and sweep floors with a quick change of attachments.",
+  "choices": [
+   "ponderous",
+   "economical",
+   "multipurpose",
+   "scrupulous"
+  ],
+  "correct_answer": "multipurpose",
+  "explanation": "'But' contrasts 'only one task' with the blank, and the list of three jobs restates multipurpose.",
+  "distractor_rationales": [
+   "scrupulous — the contrast is with doing 'only one task', not with careless work.",
+   "ponderous — slowness and heaviness are not the opposite of a single task.",
+   "economical — cost is never mentioned; the list is about variety of jobs."
+  ],
+  "rarity_order": [
+   "scrupulous",
+   "ponderous",
+   "economical",
+   "multipurpose"
+  ]
+ },
+ {
+  "id": "IS18C-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] The town draws its water from an -------, a layer of porous rock deep underground that holds water like a sponge.",
+  "choices": [
+   "isthmus",
+   "outcrop",
+   "estuary",
+   "aquifer"
+  ],
+  "correct_answer": "aquifer",
+  "explanation": "The appositive 'a layer of porous rock deep underground that holds water' defines an aquifer.",
+  "distractor_rationales": [
+   "estuary — a river mouth meeting the sea, at the surface, not rock 'deep underground'.",
+   "isthmus — a narrow strip of land between two seas, not a water-holding rock layer.",
+   "outcrop — rock exposed at the surface, the opposite of 'deep underground'."
+  ],
+  "rarity_order": [
+   "aquifer",
+   "outcrop",
+   "isthmus",
+   "estuary"
+  ]
+ },
+ {
+  "id": "IS18C-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Despite the patient's alarming fever, the infection proved -------, clearing up on its own within two days without any medication.",
+  "choices": [
+   "quiescent",
+   "systemic",
+   "benign",
+   "congenital"
+  ],
+  "correct_answer": "benign",
+  "explanation": "'Despite ... alarming fever' sets up a contrast, and 'clearing up on its own within two days' shows the infection was harmless: benign.",
+  "distractor_rationales": [
+   "quiescent — an inactive infection lies quiet; this one caused a fever and then cleared up.",
+   "systemic — spreading through the whole body would be serious, not the mild outcome 'Despite' signals.",
+   "congenital — present from birth, which an infection with a fever and a two-day course is not."
+  ],
+  "rarity_order": [
+   "quiescent",
+   "congenital",
+   "systemic",
+   "benign"
+  ]
+ },
+ {
+  "id": "IS18C-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Some lizards can ------- a lost tail: over several weeks, a new one grows back where the old one broke off.",
+  "choices": [
+   "insulate",
+   "excrete",
+   "regenerate",
+   "incubate"
+  ],
+  "correct_answer": "regenerate",
+  "explanation": "The colon restates the blank: a new tail that 'grows back' means the lizard can regenerate it.",
+  "distractor_rationales": [
+   "incubate — keeping eggs warm until they hatch is not growing a tail back.",
+   "insulate — protecting against heat or cold is not regrowth.",
+   "excrete — expelling waste has nothing to do with a tail growing back."
+  ],
+  "rarity_order": [
+   "excrete",
+   "regenerate",
+   "incubate",
+   "insulate"
+  ]
+ },
+ {
+  "id": "IS18C-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] The first electronic computers filled entire rooms, but the processor that replaced them is -------, no larger than a fingernail.",
+  "choices": [
+   "conductive",
+   "combustible",
+   "hygroscopic",
+   "minuscule"
+  ],
+  "correct_answer": "minuscule",
+  "explanation": "'But' contrasts machines that 'filled entire rooms' with the blank, and 'no larger than a fingernail' restates minuscule.",
+  "distractor_rationales": [
+   "hygroscopic — drawing moisture from the air has nothing to do with being 'no larger than a fingernail'.",
+   "conductive — carrying current well says nothing about being 'no larger than a fingernail'.",
+   "combustible — the contrast is about size, not whether it burns."
+  ],
+  "rarity_order": [
+   "hygroscopic",
+   "combustible",
+   "minuscule",
+   "conductive"
+  ]
+ },
+ {
+  "id": "IS18C-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] The physician concluded that the athlete's stomach pains were -------; that is, no scan or test revealed any physical cause, and the pains came and went with her anxiety before races.",
+  "choices": [
+   "communicable",
+   "psychosomatic",
+   "degenerative",
+   "terminal"
+  ],
+  "correct_answer": "psychosomatic",
+  "explanation": "'That is' restates the blank: pains with no physical cause that track anxiety are psychosomatic.",
+  "distractor_rationales": [
+   "degenerative — a worsening physical disease would show up on a scan, but 'no scan or test revealed any physical cause'.",
+   "communicable — nothing about passing to others; the pains follow her own anxiety.",
+   "terminal — fatal illness contradicts pains that 'came and went' with no physical cause."
+  ],
+  "rarity_order": [
+   "psychosomatic",
+   "degenerative",
+   "communicable",
+   "terminal"
+  ]
+ }
+]

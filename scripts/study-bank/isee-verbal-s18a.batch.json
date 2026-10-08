@@ -1,0 +1,437 @@
+[
+ {
+  "id": "IVS18A-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] CLUTCH",
+  "choices": [
+   "crumple",
+   "gallop",
+   "clasp",
+   "hiccup"
+  ],
+  "correct_answer": "clasp",
+  "explanation": "To clutch is to grip something tightly; to clasp.",
+  "distractor_rationales": [
+   "crumple — to crush into wrinkles; done with the hands, but squashing rather than holding",
+   "gallop — to run fast (of a horse)",
+   "hiccup — to make a sudden involuntary sound in the throat"
+  ],
+  "rarity_order": [
+   "crumple",
+   "clasp",
+   "hiccup",
+   "gallop"
+  ]
+ },
+ {
+  "id": "IVS18A-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] CHERISH",
+  "choices": [
+   "adore",
+   "tremble",
+   "strew",
+   "jangle"
+  ],
+  "correct_answer": "adore",
+  "explanation": "To cherish is to hold dear and love deeply; to adore.",
+  "distractor_rationales": [
+   "tremble — to shake",
+   "strew — to scatter things untidily over a surface",
+   "jangle — to make a harsh ringing noise"
+  ],
+  "rarity_order": [
+   "strew",
+   "jangle",
+   "adore",
+   "tremble"
+  ]
+ },
+ {
+  "id": "IVS18A-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] IRATE",
+  "choices": [
+   "homesick",
+   "befuddled",
+   "foolhardy",
+   "furious"
+  ],
+  "correct_answer": "furious",
+  "explanation": "Irate means very angry; furious.",
+  "distractor_rationales": [
+   "homesick — longing for home while away",
+   "befuddled — confused; a strong reaction, but bewilderment rather than anger",
+   "foolhardy — recklessly bold"
+  ],
+  "rarity_order": [
+   "befuddled",
+   "foolhardy",
+   "homesick",
+   "furious"
+  ]
+ },
+ {
+  "id": "IVS18A-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "easy",
+  "prompt": "[Synonym] HOARD",
+  "choices": [
+   "squander",
+   "amass",
+   "whet",
+   "wrestle"
+  ],
+  "correct_answer": "amass",
+  "explanation": "To hoard is to gather and store up a large supply; to amass.",
+  "distractor_rationales": [
+   "squander — to waste carelessly; the opposite of saving up",
+   "whet — to sharpen, or to stimulate an appetite",
+   "wrestle — to grapple with an opponent"
+  ],
+  "rarity_order": [
+   "whet",
+   "amass",
+   "squander",
+   "wrestle"
+  ]
+ },
+ {
+  "id": "IVS18A-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ADEPT",
+  "choices": [
+   "impish",
+   "proficient",
+   "sheepish",
+   "torpid"
+  ],
+  "correct_answer": "proficient",
+  "explanation": "Adept means very skilled; proficient.",
+  "distractor_rationales": [
+   "impish — playfully mischievous",
+   "sheepish — embarrassed at a mistake",
+   "torpid — sluggish and inactive"
+  ],
+  "rarity_order": [
+   "torpid",
+   "impish",
+   "proficient",
+   "sheepish"
+  ]
+ },
+ {
+  "id": "IVS18A-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] BERATE",
+  "choices": [
+   "dislodge",
+   "haggle",
+   "whittle",
+   "upbraid"
+  ],
+  "correct_answer": "upbraid",
+  "explanation": "To berate is to criticize angrily and at length; to upbraid.",
+  "distractor_rationales": [
+   "dislodge — to knock or force out of position",
+   "haggle — to argue over a price",
+   "whittle — to carve wood by shaving off small pieces"
+  ],
+  "rarity_order": [
+   "upbraid",
+   "whittle",
+   "dislodge",
+   "haggle"
+  ]
+ },
+ {
+  "id": "IVS18A-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] CALLOUS",
+  "choices": [
+   "heartless",
+   "combative",
+   "mournful",
+   "snide"
+  ],
+  "correct_answer": "heartless",
+  "explanation": "Callous means showing no concern for others' suffering; heartless.",
+  "distractor_rationales": [
+   "combative — eager to fight or argue; aggressive, but not necessarily unfeeling",
+   "mournful — full of sorrow",
+   "snide — slyly mocking; unkind in remarks, not indifferent to suffering"
+  ],
+  "rarity_order": [
+   "snide",
+   "combative",
+   "mournful",
+   "heartless"
+  ]
+ },
+ {
+  "id": "IVS18A-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] DEARTH",
+  "choices": [
+   "momentum",
+   "decree",
+   "scarcity",
+   "surplus"
+  ],
+  "correct_answer": "scarcity",
+  "explanation": "A dearth is a lack or shortage of something; scarcity.",
+  "distractor_rationales": [
+   "momentum — force gained by motion",
+   "decree — an official order",
+   "surplus — an excess; the opposite of a shortage"
+  ],
+  "rarity_order": [
+   "scarcity",
+   "decree",
+   "surplus",
+   "momentum"
+  ]
+ },
+ {
+  "id": "IVS18A-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] FUTILE",
+  "choices": [
+   "antiquated",
+   "garish",
+   "vindictive",
+   "fruitless"
+  ],
+  "correct_answer": "fruitless",
+  "explanation": "Futile means having no useful result; fruitless.",
+  "distractor_rationales": [
+   "antiquated — old-fashioned and out of date; not the same as failing to work",
+   "garish — glaringly bright and showy",
+   "vindictive — wanting revenge"
+  ],
+  "rarity_order": [
+   "garish",
+   "vindictive",
+   "antiquated",
+   "fruitless"
+  ]
+ },
+ {
+  "id": "IVS18A-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] AFFLUENT",
+  "choices": [
+   "stuffy",
+   "moneyed",
+   "tawdry",
+   "belligerent"
+  ],
+  "correct_answer": "moneyed",
+  "explanation": "Affluent means having plenty of money; moneyed.",
+  "distractor_rationales": [
+   "stuffy — formal and dull, or lacking fresh air",
+   "tawdry — cheap and tasteless",
+   "belligerent — hostile and ready to fight"
+  ],
+  "rarity_order": [
+   "tawdry",
+   "moneyed",
+   "belligerent",
+   "stuffy"
+  ]
+ },
+ {
+  "id": "IVS18A-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "medium",
+  "prompt": "[Synonym] ELICIT",
+  "choices": [
+   "smudge",
+   "pester",
+   "evoke",
+   "grovel"
+  ],
+  "correct_answer": "evoke",
+  "explanation": "To elicit is to draw out a response or reaction; to evoke.",
+  "distractor_rationales": [
+   "smudge — to smear",
+   "pester — to annoy with repeated requests; trying to get something, but by nagging, not drawing out a response",
+   "grovel — to act humbly to win favor"
+  ],
+  "rarity_order": [
+   "grovel",
+   "evoke",
+   "smudge",
+   "pester"
+  ]
+ },
+ {
+  "id": "IVS18A-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] ABRIDGE",
+  "choices": [
+   "condense",
+   "assess",
+   "vilify",
+   "garnish"
+  ],
+  "correct_answer": "condense",
+  "explanation": "To abridge is to shorten a text while keeping its substance; to condense.",
+  "distractor_rationales": [
+   "assess — to judge the value or quality of",
+   "vilify — to speak of someone as wicked",
+   "garnish — to decorate food"
+  ],
+  "rarity_order": [
+   "vilify",
+   "garnish",
+   "condense",
+   "assess"
+  ]
+ },
+ {
+  "id": "IVS18A-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] CAJOLE",
+  "choices": [
+   "wheedle",
+   "fumble",
+   "banish",
+   "abduct"
+  ],
+  "correct_answer": "wheedle",
+  "explanation": "To cajole is to persuade with flattery or gentle urging; to wheedle.",
+  "distractor_rationales": [
+   "fumble — to handle clumsily",
+   "banish — to send away as punishment",
+   "abduct — to take someone away by force; force, not coaxing"
+  ],
+  "rarity_order": [
+   "wheedle",
+   "abduct",
+   "banish",
+   "fumble"
+  ]
+ },
+ {
+  "id": "IVS18A-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] EBULLIENT",
+  "choices": [
+   "garbled",
+   "rueful",
+   "exuberant",
+   "faithful"
+  ],
+  "correct_answer": "exuberant",
+  "explanation": "Ebullient means overflowing with cheerful energy and enthusiasm; exuberant.",
+  "distractor_rationales": [
+   "garbled — mixed up and confusing",
+   "rueful — expressing regret; a mood, but sorrowful rather than lively",
+   "faithful — loyal and steady"
+  ],
+  "rarity_order": [
+   "rueful",
+   "garbled",
+   "exuberant",
+   "faithful"
+  ]
+ },
+ {
+  "id": "IVS18A-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "synonym",
+  "subskill": "synonym",
+  "difficulty": "hard",
+  "prompt": "[Synonym] INCESSANT",
+  "choices": [
+   "covetous",
+   "ceaseless",
+   "demure",
+   "abrasive"
+  ],
+  "correct_answer": "ceaseless",
+  "explanation": "Incessant means continuing without pause; ceaseless.",
+  "distractor_rationales": [
+   "covetous — greedily wanting what others have",
+   "demure — reserved and modest",
+   "abrasive — harsh or rough, in texture or manner; can describe an irritating noise, but says nothing about it never stopping"
+  ],
+  "rarity_order": [
+   "demure",
+   "covetous",
+   "ceaseless",
+   "abrasive"
+  ]
+ }
+]

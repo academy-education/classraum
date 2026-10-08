@@ -1,0 +1,622 @@
+[
+ {
+  "id": "IS18D-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] Because the medieval town's charter exempted visiting merchants from the lord's road tolls, traders from three neighboring provinces ------- there, and within a generation its market had tripled in size.",
+  "choices": [
+   "malingered",
+   "congregated",
+   "seceded",
+   "perjured"
+  ],
+  "correct_answer": "congregated",
+  "explanation": "'Because' the charter removed the tolls, traders came together in the town, and the result clause ('its market had tripled in size') confirms that they gathered there in numbers: congregated.",
+  "distractor_rationales": [
+   "malingered — pretending to be ill to avoid work would not make a market triple in size.",
+   "seceded — nothing in the sentence describes traders breaking away from a political body; they are drawn to a market.",
+   "perjured — nothing in the sentence involves a court or false testimony; the result is a market that grew."
+  ],
+  "rarity_order": [
+   "malingered",
+   "perjured",
+   "congregated",
+   "seceded"
+  ]
+ },
+ {
+  "id": "IS18D-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] In order to ------- any appearance of favoritism, the judge withdrew from the case as soon as she learned that her former law partner was representing the defendant.",
+  "choices": [
+   "propagate",
+   "forestall",
+   "reconcile",
+   "substantiate"
+  ],
+  "correct_answer": "forestall",
+  "explanation": "Withdrawing 'as soon as she learned' is a step taken in advance so that favoritism will never seem to arise: forestall means to prevent by acting first.",
+  "distractor_rationales": [
+   "propagate — a judge would not step aside in order to spread an appearance of favoritism; withdrawing is meant to keep it from arising.",
+   "reconcile — there is no conflict between parties she is trying to settle; she is preventing an appearance.",
+   "substantiate — proving favoritism is the opposite of what withdrawing from the case aims at."
+  ],
+  "rarity_order": [
+   "forestall",
+   "propagate",
+   "substantiate",
+   "reconcile"
+  ]
+ },
+ {
+  "id": "IS18D-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] The factory's owners had borrowed heavily to build a second plant just before demand collapsed, so when sales fell by half the company soon became ------- and could no longer pay its lenders.",
+  "choices": [
+   "insolvent",
+   "complacent",
+   "prestigious",
+   "autonomous"
+  ],
+  "correct_answer": "insolvent",
+  "explanation": "Heavy borrowing plus halved sales leads to the stated result, 'could no longer pay its lenders' — the definition of insolvent.",
+  "distractor_rationales": [
+   "complacent — the sentence describes debts and lost sales, not a self-satisfied attitude.",
+   "prestigious — collapsing sales and unpaid lenders do not raise a company's reputation.",
+   "autonomous — a company unable to pay its lenders becomes less independent, not more."
+  ],
+  "rarity_order": [
+   "insolvent",
+   "autonomous",
+   "complacent",
+   "prestigious"
+  ]
+ },
+ {
+  "id": "IS18D-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] To ------- the tight switchbacks on the mountain road, the bus line replaced its long coaches with shorter vans that could turn in a much smaller circle.",
+  "choices": [
+   "circumvent",
+   "negotiate",
+   "commemorate",
+   "replicate"
+  ],
+  "correct_answer": "negotiate",
+  "explanation": "Vehicles that 'could turn in a much smaller circle' are chosen so the buses can travel through the bends successfully: to negotiate a road is to get through it.",
+  "distractor_rationales": [
+   "circumvent — going around the switchbacks would not require vans that turn more tightly; tight turning is needed to drive them.",
+   "commemorate — nothing about honoring or remembering the road; the change is practical.",
+   "replicate — the bus line is not copying the switchbacks; it is driving them."
+  ],
+  "rarity_order": [
+   "circumvent",
+   "commemorate",
+   "replicate",
+   "negotiate"
+  ]
+ },
+ {
+  "id": "IS18D-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] Roman engineers laid their highways on deep beds of packed stone and dug drainage ditches along both sides; as a result, many stretches have proved so ------- that they still carry traffic two thousand years later.",
+  "choices": [
+   "sinuous",
+   "enduring",
+   "sumptuous",
+   "derelict"
+  ],
+  "correct_answer": "enduring",
+  "explanation": "The construction details lead, 'as a result,' to roads that 'still carry traffic two thousand years later' — that is, roads that last: enduring.",
+  "distractor_rationales": [
+   "sinuous — stone beds and drainage ditches explain how long a road lasts, not whether it winds.",
+   "sumptuous — nothing about lavish cost or splendor follows from stone beds and ditches, and it would not explain the roads still carrying traffic.",
+   "derelict — roads that 'still carry traffic' are not abandoned or in ruins."
+  ],
+  "rarity_order": [
+   "sumptuous",
+   "derelict",
+   "sinuous",
+   "enduring"
+  ]
+ },
+ {
+  "id": "IS18D-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] So that they would never have to ------- with each other for passengers, the two airlines secretly divided the country's routes between them, an arrangement that regulators later ruled illegal.",
+  "choices": [
+   "dabble",
+   "vie",
+   "quibble",
+   "tamper"
+  ],
+  "correct_answer": "vie",
+  "explanation": "Dividing the routes means each airline gets its own passengers, so the purpose is to avoid competing 'for passengers': vie.",
+  "distractor_rationales": [
+   "dabble — one does not dabble 'with each other for passengers'; the purpose of splitting routes is to avoid competition, not casual involvement.",
+   "quibble — the arrangement removes rivalry 'for passengers,' not petty arguments between the firms.",
+   "tamper — dividing routes is not meant to stop the airlines from interfering with each other's equipment; the phrase 'for passengers' points to competition."
+  ],
+  "rarity_order": [
+   "vie",
+   "quibble",
+   "dabble",
+   "tamper"
+  ]
+ },
+ {
+  "id": "IS18D-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] Because the senator had voted against her own party on nearly every major bill that session, its leaders came to regard her as a -------, impossible to count on in any close vote.",
+  "choices": [
+   "maverick",
+   "figurehead",
+   "loyalist",
+   "envoy"
+  ],
+  "correct_answer": "maverick",
+  "explanation": "Voting 'against her own party on nearly every major bill' and being 'impossible to count on' describe an independent who goes her own way: a maverick.",
+  "distractor_rationales": [
+   "figurehead — a figurehead holds a title without real power; her votes clearly mattered to the leaders.",
+   "loyalist — a loyalist votes with the party, the opposite of what the sentence reports.",
+   "envoy — nothing in the sentence concerns representing a government abroad."
+  ],
+  "rarity_order": [
+   "envoy",
+   "maverick",
+   "figurehead",
+   "loyalist"
+  ]
+ },
+ {
+  "id": "IS18D-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] To ------- their shaky claim to the throne, the new rulers commissioned genealogies tracing their family back to the ancient kings, though most of the ancestors listed had never existed.",
+  "choices": [
+   "relinquish",
+   "contest",
+   "legitimize",
+   "jeopardize"
+  ],
+  "correct_answer": "legitimize",
+  "explanation": "Invented royal ancestors are meant to make a 'shaky claim' look lawful and rightful: legitimize.",
+  "distractor_rationales": [
+   "relinquish — rulers giving up the throne would not invent royal ancestors to support their claim.",
+   "contest — they would not dispute their own claim; the genealogies are built to support it.",
+   "jeopardize — inventing ancestors to tie themselves to the ancient kings is meant to strengthen the claim, not endanger it."
+  ],
+  "rarity_order": [
+   "jeopardize",
+   "legitimize",
+   "relinquish",
+   "contest"
+  ]
+ },
+ {
+  "id": "IS18D-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] The village lies in a deep valley that the sun reaches for only a few hours each winter day, so its farmers coax only ------- harvests of potatoes and rye from the thin, cold soil, barely enough to feed the village until spring.",
+  "choices": [
+   "exotic",
+   "perishable",
+   "marginal",
+   "tropical"
+  ],
+  "correct_answer": "marginal",
+  "explanation": "The cold, sunless valley and thin soil lead to harvests 'barely enough to feed the village' — yields just at the edge of sufficiency: marginal.",
+  "distractor_rationales": [
+   "exotic — potatoes and rye are familiar staples, and the clue 'barely enough' concerns quantity, not unusualness.",
+   "perishable — 'barely enough to feed the village' describes how small the harvest is, not how quickly it spoils.",
+   "tropical — tropical harvests need heat, which is exactly what a sunless valley with cold soil lacks."
+  ],
+  "rarity_order": [
+   "perishable",
+   "marginal",
+   "exotic",
+   "tropical"
+  ]
+ },
+ {
+  "id": "IS18D-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] To ------- shoppers who might otherwise wait for the holiday sales, the department store offered a free gift with every purchase made before November.",
+  "choices": [
+   "appease",
+   "exempt",
+   "reimburse",
+   "entice"
+  ],
+  "correct_answer": "entice",
+  "explanation": "A free gift for buying early is a lure aimed at shoppers who 'might otherwise wait': entice means to attract with an offer.",
+  "distractor_rationales": [
+   "appease — nothing suggests the shoppers are angry and need calming; they are simply waiting for sales.",
+   "exempt — a gift with purchase does not free shoppers from any rule or charge.",
+   "reimburse — the shoppers have not spent anything yet that the store would repay; the gift is an incentive to buy."
+  ],
+  "rarity_order": [
+   "appease",
+   "entice",
+   "reimburse",
+   "exempt"
+  ]
+ },
+ {
+  "id": "IS18D-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] The witness had changed her account of that night three times before the trial began, so the jury regarded her testimony as -------.",
+  "choices": [
+   "dubious",
+   "unbiased",
+   "verbose",
+   "inaudible"
+  ],
+  "correct_answer": "dubious",
+  "explanation": "An account changed 'three times' gives the jury reason to doubt it: dubious.",
+  "distractor_rationales": [
+   "unbiased — changing her story says nothing about her being free of prejudice; it undermines trust instead.",
+   "verbose — the clue is that the account kept changing, not that it was long-winded.",
+   "inaudible — whether the jury could hear her has nothing to do with her changing account."
+  ],
+  "rarity_order": [
+   "verbose",
+   "dubious",
+   "inaudible",
+   "unbiased"
+  ]
+ },
+ {
+  "id": "IS18D-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] In order not to ------- the island's single freshwater spring, the council limits visitors to two hundred a month and turns away every cruise ship that asks to anchor in its harbor.",
+  "choices": [
+   "desalinate",
+   "monopolize",
+   "chlorinate",
+   "overtax"
+  ],
+  "correct_answer": "overtax",
+  "explanation": "Limiting the number of visitors is a way of keeping demand on 'the single freshwater spring' below what it can supply, so the council acts so as not to overtax it.",
+  "distractor_rationales": [
+   "desalinate — a freshwater spring has no salt to remove, and limiting visitors has nothing to do with that process.",
+   "monopolize — the council is keeping outsiders' demand low, not avoiding exclusive control of the spring by itself.",
+   "chlorinate — treating the water is unrelated to the number of visitors allowed on the island."
+  ],
+  "rarity_order": [
+   "desalinate",
+   "overtax",
+   "chlorinate",
+   "monopolize"
+  ]
+ },
+ {
+  "id": "IS18D-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] Because the printing press let a single workshop turn out hundreds of identical copies in a week, books that had once been rare luxuries became ------- within a few generations.",
+  "choices": [
+   "unabridged",
+   "illicit",
+   "commonplace",
+   "redacted"
+  ],
+  "correct_answer": "commonplace",
+  "explanation": "The contrast with 'rare luxuries' and the cause (hundreds of copies a week) point to books becoming ordinary and widely available: commonplace.",
+  "distractor_rationales": [
+   "unabridged — printing many copies says nothing about whether the texts were shortened.",
+   "illicit — mass production makes books more available, not illegal.",
+   "redacted — printing many copies does not black out parts of a text; the change described is from rare to plentiful."
+  ],
+  "rarity_order": [
+   "unabridged",
+   "redacted",
+   "illicit",
+   "commonplace"
+  ]
+ },
+ {
+  "id": "IS18D-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] The framers divided authority among three branches of government so that no single branch could ------- the powers meant for the others.",
+  "choices": [
+   "apportion",
+   "usurp",
+   "ratify",
+   "disavow"
+  ],
+  "correct_answer": "usurp",
+  "explanation": "Dividing authority 'so that no single branch could' take what is 'meant for the others' guards against seizing power wrongfully: usurp.",
+  "distractor_rationales": [
+   "apportion — dividing powers among the branches is what the framers themselves did; it is not the danger they were guarding against.",
+   "ratify — approving the other branches' powers is not a threat that a separation of powers would be designed to prevent.",
+   "disavow — a branch renouncing other branches' powers would not endanger the balance; seizing them would."
+  ],
+  "rarity_order": [
+   "usurp",
+   "apportion",
+   "disavow",
+   "ratify"
+  ]
+ },
+ {
+  "id": "IS18D-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] After a hard frost destroyed most of that year's coffee harvest, the beans that remained became so ------- that their price on world markets nearly doubled in a single season.",
+  "choices": [
+   "precious",
+   "pungent",
+   "potent",
+   "mellow"
+  ],
+  "correct_answer": "precious",
+  "explanation": "A frost that 'destroyed most of' the harvest leaves few beans, so each one becomes highly valued, and the doubled price confirms it: precious.",
+  "distractor_rationales": [
+   "pungent — the frost reduced how many beans there were, not how strongly they smelled.",
+   "potent — nothing in the sentence concerns the beans' strength; the price rose because supply fell.",
+   "mellow — a milder flavor would not follow from the frost or explain a doubled price."
+  ],
+  "rarity_order": [
+   "pungent",
+   "mellow",
+   "potent",
+   "precious"
+  ]
+ },
+ {
+  "id": "IS18D-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] Early mapmakers filled the unexplored interior of continents with sketches of elephants and sea monsters, a practice meant to ------- the empty regions that would otherwise have revealed how little they knew.",
+  "choices": [
+   "fortify",
+   "annex",
+   "partition",
+   "disguise"
+  ],
+  "correct_answer": "disguise",
+  "explanation": "The drawings were 'meant to' hide the blank spaces that 'would otherwise have revealed' the mapmakers' ignorance: disguise.",
+  "distractor_rationales": [
+   "fortify — sketches on a map do not strengthen the regions against attack; they hide the mapmakers' ignorance.",
+   "annex — drawing animals does not claim the land; the purpose is to keep the gaps from revealing ignorance.",
+   "partition — the sketches fill the regions rather than dividing them, and dividing would not hide how little was known."
+  ],
+  "rarity_order": [
+   "annex",
+   "partition",
+   "fortify",
+   "disguise"
+  ]
+ },
+ {
+  "id": "IS18D-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] Since the contract had never been signed by either party, the court declared it ------- and refused to enforce any of its terms.",
+  "choices": [
+   "mutual",
+   "notarized",
+   "rigid",
+   "void"
+  ],
+  "correct_answer": "void",
+  "explanation": "An unsigned contract that the court 'refused to enforce' has no legal force: void.",
+  "distractor_rationales": [
+   "mutual — an agreement both sides had entered would be enforceable; this one was never signed by either party.",
+   "notarized — a notary certifies signatures, and this contract was never signed.",
+   "rigid — strict terms would still be enforced; the court refused to enforce any of them."
+  ],
+  "rarity_order": [
+   "notarized",
+   "void",
+   "mutual",
+   "rigid"
+  ]
+ },
+ {
+  "id": "IS18D-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] To avoid ------- the powerful nobles, whose armies he still needed, the young king introduced his reforms gradually and credited each one to the advice of his council.",
+  "choices": [
+   "pardoning",
+   "outflanking",
+   "antagonizing",
+   "enlisting"
+  ],
+  "correct_answer": "antagonizing",
+  "explanation": "Moving 'gradually' and crediting his council are ways to keep from provoking nobles whose armies he 'still needed': antagonizing.",
+  "distractor_rationales": [
+   "pardoning — the nobles have done nothing that needs forgiveness, and pardoning them would not be something to avoid.",
+   "outflanking — maneuvering around the nobles militarily is not what gradual reforms are designed to avoid.",
+   "enlisting — he 'still needed' their armies, so winning their support is something he wants, not avoids."
+  ],
+  "rarity_order": [
+   "outflanking",
+   "antagonizing",
+   "pardoning",
+   "enlisting"
+  ]
+ },
+ {
+  "id": "IS18D-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause/effect",
+  "prompt": "[Sentence Completion] The paper mill had been the town's only employer for sixty years, so when it closed, the local economy ------- and half the shops on Main Street were boarded up within two years.",
+  "choices": [
+   "foundered",
+   "prospered",
+   "diversified",
+   "industrialized"
+  ],
+  "correct_answer": "foundered",
+  "explanation": "Losing the 'only employer' leads to shops being 'boarded up' — the economy sank and failed: foundered.",
+  "distractor_rationales": [
+   "prospered — boarded-up shops show decline, not success.",
+   "diversified — with the only employer gone and shops closing, no new range of businesses appeared.",
+   "industrialized — the closing of the town's one mill removes industry rather than adding it."
+  ],
+  "rarity_order": [
+   "foundered",
+   "industrialized",
+   "diversified",
+   "prospered"
+  ]
+ },
+ {
+  "id": "IS18D-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose/consequence",
+  "prompt": "[Sentence Completion] To ------- voters who could not read, the election board printed a small picture of each candidate beside the candidate's name on the ballot.",
+  "choices": [
+   "disqualify",
+   "enumerate",
+   "censure",
+   "accommodate"
+  ],
+  "correct_answer": "accommodate",
+  "explanation": "Pictures on the ballot are added so that voters 'who could not read' can still vote: accommodate means to adjust to meet someone's needs.",
+  "distractor_rationales": [
+   "disqualify — adding pictures helps these voters take part; it does not bar them.",
+   "enumerate — pictures beside names do not count the voters.",
+   "censure — nothing in the sentence involves officially criticizing the voters."
+  ],
+  "rarity_order": [
+   "censure",
+   "enumerate",
+   "accommodate",
+   "disqualify"
+  ]
+ }
+]
