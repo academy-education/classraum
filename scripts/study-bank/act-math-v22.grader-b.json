@@ -1,0 +1,137 @@
+{
+ "_render_sha": "69796ca5b6468130",
+ "AM22A-01": {
+  "pick": "52.6",
+  "work": "T1 = 23+273 = 296 K. T2 = T1*(P2V2)/(P1V1) = 296*(165*4)/(120*5) = 296*660/600 = 296*1.1 = 325.6 K, so 325.6-273 = 52.6 C.",
+  "second_defensible": null,
+  "stem_issue": "Significant figures: '5.0' and '4.0' liters suggest 2 s.f. yet the answer is asked to a tenth of a degree; harmless on ACT but slightly inconsistent. Otherwise clean.",
+  "bounds": [
+   {"bound": "PV rises (pressure up 37.5%, volume down 20%: a test-wise student sees 165/120 outweighs 5/4) so T rises: answer > 23 C", "kills": []},
+   {"bound": "Answer must be far from a 'Celsius-ratio' value: none readable without work", "kills": []}
+  ],
+  "estimation_bound": {"estimate": "PV ratio = 660/600 = 1.1 exactly, so T2 ~ 1.1*300 = 330 K ~ 57 C; one step finer 296*1.1 = 325.6 -> 52.6", "interval": "coarse 50-60 C (kills 25.3, 74.8; 60.0 sits on the coarse edge); finer pins 52.6", "kills": ["25.3", "74.8", "60.0"]},
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {"option": "25.3", "what": "applies the factor 1.1 to the Celsius temperature (23*1.1) - the exact trap the stem warns against; 74.8 = 296*1.175 - 273, i.e. adding the percent changes (+37.5% - 20% = +17.5%) instead of multiplying", "bound_kills": "25.3 survives the >23 bound (barely); neither is killed without work"},
+  "arith_class": null,
+  "option_structure": "No clear pattern; 60.0 I could not reconstruct from any natural error (60.0+273 = 333 = 296*9/8), so it reads as a filler value.",
+  "free_elimination": "None cheaper than solving; the ratio 660/600 = 1.1 is so clean that solving IS the one-step estimate.",
+  "distractor_quality": "plausible",
+  "weak_distractors": ["60.0"],
+  "difficulty": "medium",
+  "duplicate_note": "Stock combined-gas-law with Celsius-to-Kelvin trap; very common in chemistry and SAT/ACT prep.",
+  "domain_fit": "Acceptable as Algebra (evaluate/rearrange a rational formula in context), but it is science-content-flavoured; ACT would more likely file it under Algebra/modeling. OK."
+ },
+ "AM22A-02": {
+  "pick": "110",
+  "work": "400-5p = 3(p-8)-40 = 3p-64 -> 464 = 8p -> p = 58 -> q = 400-290 = 110 (check: s = 50, 3*50-40 = 110).",
+  "second_defensible": null,
+  "stem_issue": "Long but unambiguous. 'charged to the sellers' plus the explicit s = p-8 removes the incidence ambiguity.",
+  "bounds": [
+   {"bound": "q = 400-5p: q is a multiple of 5 if p is a whole dollar - all four options are multiples of 5", "kills": []},
+   {"bound": "q < 400 and q > 0", "kills": []}
+  ],
+  "estimation_bound": {"estimate": "No-tax equilibrium 440 = 8p -> p = 55, q = 125; a tax lowers q. Price rises by 8*3/8 = 3 -> q drops 5*3 = 15 -> 110", "interval": "q < 125 kills nothing (all options below); the one-step-finer incidence estimate gives 110 exactly", "kills": ["95", "100", "105"]},
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": "Partial: q = 3s-40 means q+40 is a multiple of 3 when the seller's amount s is a whole dollar. 95+40=135 and 110+40=150 pass; 100 and 105 fail. The stem does NOT state integer prices, so this narrows to two only for a student who assumes whole-dollar prices - flag as a soft integrality tell (95 vs 110).",
+  "option_structure": "Arithmetic progression 95, 100, 105, 110 (step 5) with the key at an END of the progression. None of the three distractors corresponds to an identifiable error I could find (tax added the wrong way gives 140, no tax gives 125, both absent), so the set reads as key minus 5/10/15 filler.",
+  "free_elimination": "Backsolving is about as cheap as solving: for each q compute p = (400-q)/5 and s = (q+40)/3 and test p-s = 8; 110 -> 58-50 = 8 on the first try if started from the end. Not materially cheaper. Integrality (above) cuts to 95/110 for free if integer prices are assumed.",
+  "distractor_quality": "weak",
+  "weak_distractors": ["95", "100", "105"],
+  "difficulty": "medium",
+  "duplicate_note": "Stock econ supply/demand-with-per-unit-tax template.",
+  "domain_fit": "Yes - system of linear equations in context; genuine Algebra."
+ },
+ "AM22A-03": {
+  "pick": "14",
+  "work": "Minimise tablets: T = 3L. 320*3L + 650L = 1610L <= 24000 -> L <= 14.91 -> greatest integer 14 (14*1610 = 22540 <= 24000; 15*1610 = 24150 > 24000).",
+  "second_defensible": null,
+  "stem_issue": "'at least 3 tablets for every laptop' is standard ACT phrasing; fine. Does not say the school must spend on tablets only to meet the ratio, but minimal tablets is the natural reading.",
+  "bounds": [
+   {"bound": "L <= 24000/650 = 36.9 (laptops alone)", "kills": []},
+   {"bound": "Every laptop needs >= 3 tablets, so each laptop 'costs' at least 650+3*320 > 1500: L < 16 (a test-wise student does 24000/1500)", "kills": ["23"]}
+  ],
+  "estimation_bound": {"estimate": "Per-laptop bundle ~1600 -> 24000/1600 = 15; one step finer 1610 -> 14.9 -> 14", "interval": "14-15", "kills": ["10", "12", "23"]},
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": {"option": "10", "what": "Reverses the ratio (3 laptops per tablet: bundle 1950+320 = 2270, 24000/2270 = 10.6 -> 10 bundles); 12 = 24000/1950 (bundle of 3 laptops, ignoring tablets)", "bound_kills": "neither killed by the no-work bound"},
+  "arith_class": null,
+  "option_structure": "23 is far outside the cluster 10/12/14 and dies on sight; I could not reconstruct 23 from a natural error.",
+  "free_elimination": "Backsolve from the largest: 23 -> 23*1610 way over; 14 -> 22540 fits. Because the question asks for the GREATEST and 15 is not an option, finding the largest feasible option ends the item without checking 15 - roughly as cheap as solving, slightly cheaper for a weak student.",
+  "distractor_quality": "plausible",
+  "weak_distractors": ["23"],
+  "difficulty": "medium",
+  "duplicate_note": "Stock budget-plus-ratio inequality template.",
+  "domain_fit": "Yes - linear inequalities in context; genuine Algebra."
+ },
+ "AM22A-04": {
+  "pick": "21.2",
+  "work": "Fat: 7*9 = 63 cal. Remaining 127 = 4(c+p) with c = 2p -> 12p = 127 -> p = 10.583, c = 21.17 -> 21.2.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {"bound": "c < (190-63)/4 = 31.75 (all non-fat grams); needs one subtraction but is arguably the work", "kills": []},
+   {"bound": "c < 190/4 = 47.5", "kills": []}
+  ],
+  "estimation_bound": {"estimate": "127/4 ~ 32 g of carb+protein, carbs are 2/3 -> ~21", "interval": "20-22", "kills": ["30.5", "15.9", "27.0"]},
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {"option": "27.0", "what": "Fat at 4 cal/g: (190-28)/12*2 = 27.0. Also 30.5 = (190-7)/6, i.e. subtracts 7 GRAMS instead of 63 calories; 15.9 = 127/8, i.e. carbs as half (not two-thirds) of the 31.75 g", "bound_kills": "none killed without work"},
+  "arith_class": null,
+  "option_structure": null,
+  "free_elimination": "None; backsolving (c -> p = c/2 -> check 4*1.5c+63 = 190) is equal in cost to solving.",
+  "distractor_quality": "strong",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": "Common nutrition-label linear-equation template.",
+  "domain_fit": "Yes - linear equation in context; genuine Algebra (easy end)."
+ },
+ "AM22A-05": {
+  "pick": "5177",
+  "work": "P*1.05^4 + P*1.05^2 = 12000 -> P(1.21550625 + 1.1025) = P*2.31800625 = 12000 -> P = 5176.86 -> 5177.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {"bound": "Compound >= simple interest: the multiplier exceeds the simple-interest multiplier 1.20 + 1.10 = 2.30, so P < 12000/2.3 = 5217.4. A test-wise student gets 2.30 with no exponent work.", "kills": ["5217", "5297", "5416"]},
+   {"bound": "Multiplier > 2 (both deposits grow): P < 6000", "kills": []},
+   {"bound": "Second deposit grows at least something: multiplier > 1.2155+1 -> P < 5416.3", "kills": ["5416"]}
+  ],
+  "estimation_bound": {"estimate": "Coarse: simple interest 2.3 -> 5217 (lands ON a distractor); one step finer 1.2155+1.1025 = 2.318 -> 12000/2.318 = 5177", "interval": "below 5217", "kills": ["5217", "5297", "5416"]},
+  "survivors": 1,
+  "limiting_case": {"option": "5416", "what": "Second deposit earns nothing (12000/2.2155 = 5416.3) - the zero-growth extreme for deposit 2"},
+  "neighbouring_setup": {"option": "5217", "what": "Exact answer under SIMPLE interest (12000/2.30); also sits exactly on the compound > simple bound", "bound_kills": "killed (on the bound)"},
+  "arith_class": null,
+  "option_structure": "The key is the MINIMUM of the four options and every distractor corresponds to a weaker-growth model (simple interest, no growth on deposit 2, 5297 unreconstructed but also lower-growth). Because every error model under-counts growth, every distractor is larger than the key: 'pick the smallest' solves it. Serious structural tell.",
+  "free_elimination": "Yes, and far cheaper than solving: compute 1.20+1.10 = 2.30, note compound beats simple, so P < 12000/2.3 = 5217 - only 5177 survives. No powers of 1.05 needed. Item is broken as written; needs at least one distractor ABOVE the simple-interest line removed... i.e. distractors on both sides of the key (e.g. an over-counting error such as compounding deposit 2 for 4 years, 12000/2.431 = 4936).",
+  "distractor_quality": "weak",
+  "weak_distractors": ["5297", "5416"],
+  "difficulty": "medium",
+  "duplicate_note": "Stock two-deposit compound-interest template.",
+  "domain_fit": "Borderline: exponential models in context are usually filed under Functions (or Number & Quantity) on the enhanced ACT, not Algebra. Defensible as 'exponential expressions in context', but a reviewer could move it."
+ },
+ "AM22A-06": {
+  "pick": "103.0",
+  "work": "h1 = -16t^2 + 100t, h2 = -16t^2 + 130. Equal when 100t = 130 -> t = 1.3. h = 130 - 16(1.69) = 130 - 27.04 = 102.96 -> 103.0.",
+  "second_defensible": null,
+  "stem_issue": "Tagged 'quadratic' but the t^2 terms cancel and the equation is linear (100t = 130); the item is easier than its tag and does not test quadratics. Also 'thrown from the ground' is idealised (h0 = 0) - fine.",
+  "bounds": [
+   {"bound": "0 < h < 130", "kills": []},
+   {"bound": "The thrown ball moves much faster than the dropped ball throughout, so it covers more than half the 130 ft gap: meeting height > 65", "kills": ["65.0"]}
+  ],
+  "estimation_bound": {"estimate": "Gap closes at 100 ft/s -> t = 1.3 s; dropped ball falls 16*1.3^2 ~ 16*1.7 ~ 27 -> ~103", "interval": "100-105", "kills": ["109.2", "65.0", "120.5"]},
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": {"option": "109.2", "what": "Forgets to square t: 130 - 16*1.3 = 109.2. 65.0 is the naive midpoint (equal speeds)", "bound_kills": "109.2 not killed without work; 65.0 killed by the faster-ball bound"},
+  "arith_class": null,
+  "option_structure": null,
+  "free_elimination": "Relative-motion insight (gravity cancels, gap closes at 100 ft/s) makes the item one line; this is the intended algebraic cancellation, not a flaw, but it means the item is easier than a genuine quadratic.",
+  "distractor_quality": "plausible",
+  "weak_distractors": ["65.0", "120.5"],
+  "difficulty": "medium",
+  "duplicate_note": "Classic 'thrown up / dropped down, where do they meet' physics template.",
+  "domain_fit": "Algebra yes (setting expressions equal), but it is NOT a quadratic-equations item despite the tag - the solved equation is linear."
+ },
+ "_render_sha_end": "69796ca5b6468130"
+}

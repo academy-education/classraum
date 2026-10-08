@@ -1,0 +1,237 @@
+[
+ {
+  "id": "AM22A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "rational formulas in context (combined gas law with a unit conversion)",
+  "subskill": "solving the combined gas law P1V1/T1 = P2V2/T2 for the final temperature when temperatures are given in Celsius: convert to kelvins before using the ratio, then convert back",
+  "prompt": "For a fixed amount of gas, the pressure P, volume V, and temperature T satisfy P₁V₁/T₁ = P₂V₂/T₂, where each temperature must be measured in kelvins. A temperature of c degrees Celsius is equal to c + 273 kelvins. A sample of gas at 23°C has a pressure of 120 kilopascals and a volume of 5.0 liters. The gas is compressed to a volume of 4.0 liters, and its pressure rises to 165 kilopascals. What is the new temperature of the gas, in degrees Celsius?",
+  "choices": [
+   "60.0",
+   "25.3",
+   "74.8",
+   "52.6"
+  ],
+  "correct_answer": "52.6",
+  "explanation": "Convert the starting temperature: 23 + 273 = 296 K. Solving the relation for T₂ gives T₂ = T₁ · (P₂V₂)/(P₁V₁) = 296 · (165 · 4.0)/(120 · 5.0) = 296 · 660/600 = 296 · 1.1 = 325.6 K. Converting back, 325.6 − 273 = 52.6°C. The option \"25.3\" uses the Celsius temperature directly in the ratio, 23 · 1.1. The option \"60.0\" reasons additively: compressing from 5.0 to 4.0 liters alone would raise the pressure by 25%, so it attributes the remaining 37.5% − 25% = 12.5% to heating and multiplies 296 K by 1.125. The option \"74.8\" adds the percent changes, +37.5% for pressure and −20% for volume, to get a 17.5% rise in temperature, 296 · 1.175 = 347.8 K. Percent changes in a product combine by multiplication (1.375 × 0.8 = 1.1), not by addition or subtraction.",
+  "solve": "const T1=23+273; const T2=T1*(165*4.0)/(120*5.0); return (T2-273).toFixed(1);",
+  "distractor_solve": {
+   "25.3": "return (23*(165*4.0)/(120*5.0)).toFixed(1);",
+   "60.0": "const boyle=5.0/4.0-1; const heat=(165/120-1)-boyle; return ((23+273)*(1+heat)-273).toFixed(1);",
+   "74.8": "const pct=(165/120-1)+(4.0/5.0-1); return ((23+273)*(1+pct)-273).toFixed(1);"
+  },
+  "quantity_asked": "the final Celsius temperature T2 - 273, where T2 = 296 x (165 x 4.0)/(120 x 5.0) kelvins.",
+  "distractor_kind": {
+   "25.3": "wrong procedure: Celsius used in the ratio, 23 x 1.1. (a) limiting case: no parameter extreme; it is not 'no temperature change' (23). (b) neighbouring setup: it is the exact answer only to a problem on a scale whose zero is absolute at 0°C, not an extreme of the feasible interval. (c) cheapest one-step bound over the whole quantity: PV rises (more pressure, less volume but the pressure rise dominates), so the temperature rises: T > 23; one step finer, the temperature factor is less than the pressure factor because the volume fell: T_K < 296 x 1.375 = 407 K, so T < 134°C. Interval (23, 134); 25.3 strictly inside. (d) real: the standard gas-law error of skipping the kelvin conversion.",
+   "60.0": "wrong procedure: additive split of the pressure rise into a 25% compression part and a 12.5% heating part. (a) no. (b) no adjacent problem has 60.0 as its answer. (c) interval (23, 134); 60.0 strictly inside. (d) real: decomposing a multiplicative change into additive percent pieces.",
+   "74.8": "wrong procedure: adds the percent changes, +37.5% and -20%, as a 17.5% rise in temperature. (a) no. (b) no. (c) interval (23, 134); 74.8 strictly inside. (d) real: adding percent changes of factors in a product."
+  },
+  "bounds": [
+   "v > 23",
+   "v < 296*165/120 - 273"
+  ],
+  "mechanism": [
+   "combined gas law",
+   "kelvin conversion",
+   "pressure volume temperature",
+   "compressed gas new temperature"
+  ],
+  "arith_class_check": "No. A temperature carries no divisibility, parity or integrality. Key 52.6 is one of three one-decimal non-integers (25.3, 52.6, 74.8); the lone integer is 60.0, a distractor. The set is not one stem number passed through a grid of factors: the three errors are a unit slip and two different additive-percent slips."
+ },
+ {
+  "id": "AM22A-02",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "systems of linear equations in context (market equilibrium with a per-unit tax)",
+  "subskill": "a per-unit tax on sellers shifts the supply equation by substituting p − 8 for the seller's price; solving the new demand = supply system gives the quantity, which falls by less than full pass-through of the tax would imply",
+  "prompt": "In a certain market, the weekly demand for a product is q = 400 − 5p, where q is the number of units buyers will purchase when the price buyers pay is p dollars per unit. The weekly supply is q = 3s − 40, where q is the number of units sellers will offer when the amount sellers keep is s dollars per unit. With no tax, s = p. A tax of $8 per unit is then charged to the sellers, so that s = p − 8, and the market settles at the price p at which the quantity demanded equals the quantity supplied. How many units per week are sold at this new price?",
+  "choices": [
+   "100",
+   "110",
+   "95",
+   "105"
+  ],
+  "correct_answer": "110",
+  "explanation": "With the tax, supply is q = 3(p − 8) − 40 = 3p − 64. Setting demand equal to supply: 400 − 5p = 3p − 64, so 464 = 8p and p = 58. Then q = 400 − 5(58) = 110 (check: 3(58 − 8) − 40 = 110). For comparison, with no tax 400 − 5p = 3p − 40 gives p = 55 and q = 125, so buyers' price rises by only $3 of the $8 tax. The option \"105\" assumes buyers and sellers split the tax equally, so buyers pay 55 + 4 = 59 and demand is 400 − 295 = 105. The option \"100\" uses the slopes the wrong way around, giving buyers 5/8 of the tax: p = 55 + 5 = 60, q = 100. The option \"95\" applies the tax to both sides at once, 400 − 5(p + 8) = 3(p − 8) − 40, which gives p = 53 and q = 400 − 5(61) = 95.",
+  "solve": "const p=(400+40+3*8)/(5+3); const q=400-5*p; if(Math.abs(q-(3*(p-8)-40))>1e-9) return 'inconsistent'; return String(Math.round(q*1000)/1000);",
+  "distractor_solve": {
+   "100": "const p0=(400+40)/(5+3); const p=p0+8*5/(5+3); return String(Math.round((400-5*p)*1000)/1000);",
+   "105": "const p0=(400+40)/(5+3); return String(Math.round((400-5*(p0+8/2))*1000)/1000);",
+   "95": "const p=(400-5*8+3*8+40)/(5+3); return String(Math.round((400-5*(p+8))*1000)/1000);"
+  },
+  "quantity_asked": "the equilibrium quantity q after the tax, from 400 - 5p = 3(p - 8) - 40.",
+  "distractor_kind": {
+   "105": "wrong procedure: tax split equally, buyers pay p0 + 4. (a) limiting case: the two parameter extremes are buyers bearing none of the tax (q = 125, the no-tax quantity) and buyers bearing all of it (p = 63, q = 85); 105 is on neither. (b) neighbouring setup: it is the exact answer to a market with equal slopes, not an extreme of the feasible interval. (c) cheapest one-step bound over the whole quantity: the tax lowers the quantity below the untaxed 125, and buyers cannot pay more than the whole tax on top of 55, so q > 400 - 5(63) = 85. Interval (85, 125); one step finer needs the slope ratio, which is the item's work. 105 strictly inside. q is not forced to be an integer or a multiple of anything (p need not be an integer). (d) real: 'the tax is shared, so each side pays half'.",
+   "100": "wrong procedure: incidence by the slopes inverted, buyers bear 5/8 of the tax. (a) no. (b) no. (c) interval (85, 125); 100 strictly inside. (d) real: reversing which side bears the larger share.",
+   "95": "wrong procedure: shifts both demand (p + 8) and supply (p - 8), counting the tax twice. (a) no. (b) no. (c) interval (85, 125); 95 strictly inside. (d) real: double-counting a per-unit tax."
+  },
+  "bounds": [
+   "v > 400-5*((400+40)/8+8)",
+   "v < 400-5*(400+40)/8"
+  ],
+  "mechanism": [
+   "supply and demand",
+   "market equilibrium",
+   "per-unit tax",
+   "tax on sellers shifts supply"
+  ],
+  "arith_class_check": "No. q = 400 - 5p does not force q to be a multiple of 5 because p need not be an integer, and all four options are multiples of 5 anyway; two are even (100, 110) and two odd (95, 105). Key 110 is the only multiple of 11, which no stem number implies (400, 5, 3, 40, 8). The options are equally spaced, but every error path overstates the burden on quantity, so the spacing does not single out an end: the key is the largest option and either end of the progression is equally available to a guesser."
+ },
+ {
+  "id": "AM22A-03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear inequalities in context (budget with a ratio constraint)",
+  "subskill": "maximizing one count under a budget inequality and a 'at least k of A for every B' constraint: the ratio constraint binds, so each laptop carries the cost of 3 tablets, and the greatest whole number is the floor",
+  "prompt": "A school has $24,000 to spend on new devices. Tablets cost $320 each, and laptops cost $650 each. The school's plan requires it to buy at least 3 tablets for every laptop it buys. If the school stays within its budget, what is the greatest number of laptops it can buy?",
+  "choices": [
+   "12",
+   "23",
+   "14",
+   "10"
+  ],
+  "correct_answer": "14",
+  "explanation": "Let t be the number of tablets and l the number of laptops. The conditions are t ≥ 3l and 320t + 650l ≤ 24,000. To make l as large as possible, buy as few tablets as allowed, t = 3l: 320(3l) + 650l = 1,610l ≤ 24,000, so l ≤ 14.9, and the greatest whole number is 14 (14 laptops and 42 tablets cost $22,540; 15 laptops with 45 tablets would cost $24,150). The option \"10\" triples the wrong price, 24,000/(3 · 650 + 320). The option \"12\" divides the budget by the simple average of the two prices, (320 + 650)/2, to get about 49 devices and takes a quarter of them. The option \"23\" reads the condition as 3 more tablets than laptops, t = l + 3, so 970l + 960 ≤ 24,000.",
+  "solve": "let best=-1; for(let l=0;l<=40;l++){ const t=3*l; if(320*t+650*l<=24000) best=l; } return String(best);",
+  "distractor_solve": {
+   "10": "return String(Math.floor(24000/(3*650+320)));",
+   "12": "const items=24000/((320+650)/2); return String(Math.floor(items/4));",
+   "23": "return String(Math.floor((24000-3*320)/(320+650)));"
+  },
+  "quantity_asked": "the greatest integer l with 320(3l) + 650l <= 24000.",
+  "distractor_kind": {
+   "23": "wrong procedure: 'at least 3 tablets for every laptop' read as 3 more tablets than laptops. (a) limiting case: the parameter extreme is no tablets at all, l = floor(24000/650) = 36; 23 is not on it. (b) neighbouring setup: 23 is the exact answer to the 'three more' problem, but it is not an extreme of the feasible interval below. (c) cheapest one-step bound over the whole quantity: obvious cap l <= 36 (all money on laptops); one step finer, every laptop needs at least one tablet, so l <= 24000/970 = 24.7. Interval [0, 24.7]; 23 strictly inside. (d) real: ratio read as difference.",
+   "10": "wrong procedure: the multiplier 3 applied to the laptop price instead of the tablet price. (a) no. (b) no. (c) interval [0, 24.7]; 10 strictly inside. (d) real: attaching the ratio to the wrong item.",
+   "12": "wrong procedure: unweighted average price, then a quarter of the devices are laptops. (a) no. (b) no. (c) interval [0, 24.7]; 12 strictly inside. (d) real: averaging prices without weighting by the 3:1 mix."
+  },
+  "bounds": [
+   "Number.isInteger(v)",
+   "v >= 0",
+   "v <= 24000/(650+320)"
+  ],
+  "mechanism": [
+   "budget inequality",
+   "at least 3 for every 1",
+   "ratio constraint binds",
+   "greatest number of laptops"
+  ],
+  "arith_class_check": "No. The count must be a whole number, and all four options are; nothing in the stem forces divisibility (320 = 2^6*5, 650 = 2*5^2*13, 24000 = 2^6*3*5^3). Key 14 is the lone multiple of 7, which no stem number implies (1610 = 7*230 appears only after doing the work, and 14 is its floor, not a multiple). Three options are even, so parity does not isolate the key; 23 is the lone odd option and a distractor. No two options differ by 1 (no rounding pair), and the key is not a sum or difference of two other options."
+ },
+ {
+  "id": "AM22A-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equations in context (calories from grams of nutrients)",
+  "subskill": "calories are a weighted sum of grams (9 per gram of fat, 4 per gram of carbohydrate or protein): remove the fat's calories, convert the rest to grams at 4 per gram, then split that mass in the stated 2 : 1 ratio",
+  "prompt": "A granola bar contains 190 calories. It has 7 grams of fat, and it has twice as many grams of carbohydrate as grams of protein. Each gram of fat provides 9 calories, and each gram of carbohydrate or protein provides 4 calories. If all of the bar's calories come from fat, carbohydrate, and protein, how many grams of carbohydrate does the bar contain, to the nearest tenth of a gram?",
+  "choices": [
+   "30.5",
+   "21.2",
+   "15.9",
+   "27.0"
+  ],
+  "correct_answer": "21.2",
+  "explanation": "The fat provides 7 · 9 = 63 calories, so carbohydrate and protein provide 190 − 63 = 127 calories. At 4 calories per gram, that is 127/4 = 31.75 grams of carbohydrate and protein together. If p is the grams of protein, then 2p + p = 31.75, so p ≈ 10.58 and the carbohydrate is 2p ≈ 21.17, or 21.2 grams (check: 4(21.17 + 10.58) + 63 = 190). The option \"30.5\" subtracts the 7 grams of fat from the 190 calories, mixing grams with calories: (190 − 7)/4 · 2/3. The option \"27.0\" counts the fat at 4 calories per gram like the other two: (190 − 28)/4 · 2/3. The option \"15.9\" finds the 31.75 grams correctly but reads 'twice as many' as carbohydrate being half of the total, 31.75/2.",
+  "solve": "const cp=(190-7*9)/4; const p=cp/3; const c=2*p; if(Math.abs(4*(c+p)+9*7-190)>1e-9) return 'inconsistent'; return c.toFixed(1);",
+  "distractor_solve": {
+   "30.5": "return ((190-7)/4*2/3).toFixed(1);",
+   "27.0": "return ((190-7*4)/4*2/3).toFixed(1);",
+   "15.9": "return ((190-7*9)/4/2).toFixed(1);"
+  },
+  "quantity_asked": "the grams of carbohydrate c = (2/3)(190 - 63)/4.",
+  "distractor_kind": {
+   "30.5": "wrong procedure: 7 grams subtracted from 190 calories. (a) limiting case: the parameter extreme is a bar with no fat, c = (2/3)(190/4) = 31.67; 30.5 is not on it. (b) neighbouring setup: it answers no adjacent problem stated in the stem. (c) cheapest one-step bound over the whole quantity: obvious cap, carbohydrate is less than all 190 calories at 4 per gram, 47.5; one step finer, it is only 2/3 of the non-fat mass even with no fat, c < 31.67. Interval (0, 31.67); 30.5 strictly inside. No integrality, parity or divisibility is forced on a mass. (d) real: subtracting grams from calories.",
+   "27.0": "wrong procedure: fat counted at 4 calories per gram. (a) no. (b) no. (c) interval (0, 31.67); 27.0 strictly inside. (d) real: applying one conversion rate to every nutrient.",
+   "15.9": "wrong procedure: correct 31.75 g of carbohydrate plus protein, then 'twice as many' read as carbohydrate = half the total. (a) no - the half split is not a parameter extreme. (b) neighbouring setup: it is the answer if carbohydrate and protein were equal, which is not an extreme of the feasible interval. (c) interval (0, 31.67); 15.9 strictly inside. (d) real: misreading a 2 : 1 ratio as halves."
+  },
+  "bounds": [
+   "v > 0",
+   "v < (2/3)*190/4"
+  ],
+  "mechanism": [
+   "calories per gram",
+   "fat 9 calories carbohydrate protein 4",
+   "grams of carbohydrate from calories",
+   "nutrition label"
+  ],
+  "arith_class_check": "No. A mass in grams carries no divisibility or parity, and the stem forces none. Key 21.2 is one of three one-decimal non-integers (30.5, 21.2, 15.9); 27.0 is the lone integer and a distractor. The set is not one stem number through a grid of factors: the errors are a grams/calories slip, a wrong conversion rate, and a ratio misreading, each in a different step."
+ },
+ {
+  "id": "AM22A-05",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "exponential expressions in context (two staggered deposits under compound interest)",
+  "subskill": "a balance made of two equal deposits made at different times: each deposit grows by its own factor (1.05^4 and 1.05^2), and the equation P(1.05^4 + 1.05^2) = balance is solved for P",
+  "prompt": "Maya deposits P dollars into a savings account that earns 5% interest compounded annually. Exactly 2 years later, she deposits another P dollars into the same account. She makes no other deposits and no withdrawals. Exactly 4 years after her first deposit, the balance in the account is $12,000. To the nearest dollar, what is the value of P ?",
+  "choices": [
+   "5297",
+   "5217",
+   "5416",
+   "5177"
+  ],
+  "correct_answer": "5177",
+  "explanation": "The first deposit earns interest for 4 years and the second for 2 years, so P(1.05)⁴ + P(1.05)² = 12,000. Since 1.05⁴ ≈ 1.21551 and 1.05² = 1.1025, P(2.31801) = 12,000 and P ≈ 5,176.86, or $5,177. The option \"5217\" uses simple interest, 1 + 0.05(4) = 1.20 and 1 + 0.05(2) = 1.10. The option \"5297\" miscounts the second deposit's time as 1 year, 12,000/(1.05⁴ + 1.05). The option \"5416\" lets the second deposit earn no interest at all, 12,000/(1.05⁴ + 1).",
+  "solve": "return String(Math.round(12000/(1.05**4+1.05**2)));",
+  "distractor_solve": {
+   "5217": "return String(Math.round(12000/((1+0.05*4)+(1+0.05*2))));",
+   "5297": "return String(Math.round(12000/(1.05**4+1.05**1)));",
+   "5416": "return String(Math.round(12000/(1.05**4+1)));"
+  },
+  "quantity_asked": "the deposit P = 12000/(1.05^4 + 1.05^2), to the nearest dollar.",
+  "distractor_kind": {
+   "5217": "wrong procedure: simple interest on each deposit. (a) limiting case: the parameter extremes are both deposits growing the full 4 years (P = 12000/(2 x 1.2155) = 4936) and both growing only 2 years (P = 12000/(2 x 1.1025) = 5442); 5217 is on neither. (b) neighbouring setup: it is the exact answer for simple interest, not an extreme of the feasible interval. (c) cheapest one-step bound over the whole quantity: obvious cap P < 6000 (no growth at all); one step finer, each deposit grows for at least 2 and at most 4 years, so 4936 < P < 5442. 5217 strictly inside. (d) real: simple instead of compound interest.",
+   "5297": "wrong procedure: second deposit counted as growing 1 year. (a) no. (b) no. (c) interval (4936, 5442); 5297 strictly inside. (d) real: fence-post miscount of years.",
+   "5416": "wrong procedure: second deposit given no growth. (a) no - 'no growth for the later deposit' is not one of the two stem-forced extremes above, which treat both deposits alike. (b) no. (c) interval (4936, 5442); 5416 strictly inside. (d) real: treating the later deposit as just added to the final balance."
+  },
+  "bounds": [
+   "v > 12000/(2*1.05**4)",
+   "v < 12000/(2*1.05**2)"
+  ],
+  "mechanism": [
+   "two deposits at different times",
+   "compound interest",
+   "solve for the deposit amount",
+   "staggered deposits"
+  ],
+  "arith_class_check": "No. P is a dollar amount produced by dividing 12000 by an irrational-looking sum, so the stem implies no divisibility or parity. 5416 is the lone even option and 5217 the lone multiple of 3, both distractors; key 5177 (= 31 x 167) is lone in no class up to 30. The options are not one number through a grid of factors: each comes from a different growth error."
+ },
+ {
+  "id": "AM22A-06",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "quadratic equations in context (two falling objects)",
+  "subskill": "two objects under the same height model h = −16t² + v₀t + h₀: setting the heights equal cancels the t² terms, leaving a linear equation for the meeting time, which is then substituted back",
+  "prompt": "The height h, in feet, of an object t seconds after it is set in motion is given by h = −16t² + v₀t + h₀, where v₀ is the object's initial upward velocity, in feet per second, and h₀ is its initial height, in feet. A ball is thrown straight up from the ground with an initial upward velocity of 100 feet per second. At the same instant, a second ball is dropped (initial velocity 0) from a window 130 feet directly above the point where the first ball was thrown. To the nearest tenth of a foot, at what height above the ground do the two balls pass each other?",
+  "choices": [
+   "109.2",
+   "65.0",
+   "120.5",
+   "103.0"
+  ],
+  "correct_answer": "103.0",
+  "explanation": "The thrown ball's height is −16t² + 100t and the dropped ball's height is −16t² + 130. Setting them equal, the −16t² terms cancel: 100t = 130, so t = 1.3 seconds. The height is then −16(1.3)² + 130 = 130 − 27.04 = 102.96, or 103.0 feet (check: −27.04 + 130 = 102.96 from the thrown ball too). The option \"65.0\" assumes the balls meet halfway, 130/2. The option \"109.2\" finds t = 1.3 correctly but forgets to square it, 130 − 16(1.3). The option \"120.5\" inverts the ratio as t = 100/130 and computes 130 − 16(100/130)².",
+  "solve": "const t=130/100; const h=-16*t*t+100*t; if(Math.abs(h-(-16*t*t+130))>1e-9) return 'inconsistent'; return h.toFixed(1);",
+  "distractor_solve": {
+   "65.0": "return (130/2).toFixed(1);",
+   "109.2": "const t=130/100; return (130-16*t).toFixed(1);",
+   "120.5": "const t=100/130; return (130-16*t*t).toFixed(1);"
+  },
+  "quantity_asked": "the common height -16t^2 + 130 at the time t = 130/100 when the two heights are equal.",
+  "distractor_kind": {
+   "65.0": "wrong model: meeting at the midpoint, as if the two balls closed the gap at equal constant speeds. (a) limiting case: the parameter extremes are the ground (0) and the window (130); 65 is on neither. (b) neighbouring setup: 65 is the exact answer to an equal-speed problem, but it is the middle of the feasible interval, not an extreme. (c) cheapest one-step bound over the whole quantity: the meeting height lies between 0 and 130; one step finer, the thrown ball's peak is 100^2/64 = 156 ft, above the window, so the peak gives no cut; the dropped ball falls 16t^2, which needs t, the item's work. Interval (0, 130); 65 strictly inside. (d) real: the naive 'they meet halfway'.",
+   "109.2": "wrong procedure: correct t = 1.3, then 16t instead of 16t^2. (a) no. (b) no. (c) interval (0, 130); 109.2 strictly inside. (d) real: dropping the square on substitution.",
+   "120.5": "wrong procedure: 100t = 130 solved as t = 100/130. (a) no. (b) no. (c) interval (0, 130); 120.5 strictly inside. (d) real: inverting the ratio when isolating t."
+  },
+  "bounds": [
+   "v > 0",
+   "v < 130"
+  ],
+  "mechanism": [
+   "ball thrown up and ball dropped",
+   "two objects pass each other",
+   "t squared terms cancel",
+   "free fall height model"
+  ],
+  "arith_class_check": "No. A height carries no divisibility or parity, and the stem forces none. Two options read as integers (65.0, 103.0) and two do not (109.2, 120.5), so integrality does not isolate the key; both integers are odd. Key 103 is prime and lone in no class up to 30. 65.0 is the stem's 130 halved, but that is the naive-error distractor, not the key."
+ }
+]

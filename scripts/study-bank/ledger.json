@@ -5850,6 +5850,35 @@
           "verdict": "Run for the record (render sha eb3456628ea0bf92 of a copy with bounds, distractor_kind, quantity_asked, mechanism stripped; no unrecognised field; quoted by both). 10 of 10 picks equal the key, 0 second-defensible. Would-be verdicts (not acted on - the batch is held): AM21A-01 pass (4 survivors by both, 50 weak by both); AM21A-02 judgement (1 survivor by back-solving / discriminant squares, grader B: costlier than solving); AM21A-03 rule-6 drop (unanimous + grader B option-grid tell); AM21A-04 borderline (unanimous, no shared weak); AM21A-05 rule-3 drop (a3/a1 = 4 gives r = 2 free; 15x makes 90 the only multiple of 15). See act-math-v21.verdicts.json."
         }
       }
+    },
+    {
+      "id": "act-math-v22-held-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v22",
+      "contentSha": "0d73672b3941c26a316b8db73bd0d02f6be0856663563eb252fd3de9d1ef925f",
+      "status": "held",
+      "note": "6 Algebra items from one Claude author against next-form for ACT Math form 17 (Algebra +1; form-capacity 16 forms, Algebra 135/8 binding), bars pre-registered in ACT-MATH-V22-PREREGISTERED.md (commit e13a69cb) before authoring: v21 bars plus bans on (a) a key that stands out arithmetically and (b) a stem-implied divisibility/ratio class leaving one option, rule 7, and the check-key-arith-class.mjs reading list. HELD at stage 1 on both pre-registered batch bars; nothing inserted; ACT Math stays 16 forms.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "0d73672b3941c26a316b8db73bd0d02f6be0856663563eb252fd3de9d1ef925f",
+          "verdict": "act-math-v18-preflight.sh on v22 alone: sandbox 6/6, distractors 18/18, numeric hub none, 0 composites, stem echo 0, key singleton 0, dead options 0, 0 stem duplicates, 0 duplicate option sets; key-extremity NO-MEASUREMENT and check-key-magnitude REFUSING (n=6 < 10) - NOT MEASURED, as pre-registered. Merged with act-math-v20.kept (36, CONTEXT - all shipped; merged sha a1a228bd31e2e578): key at an extreme 19/42 = 45.2% (bar 40.0%), magnitude z -0.43/0.48/-0.05. v22 alone key at an extreme 2/6, descriptive. Duplicate checks over all 2,765 live maths rows: act-math-v16-dupscan 0 flags 0 near; math-mechanism-dup 0 FLAG, 5 near (all AM22A-05 vs single-deposit balance items, read as different); hand greps (gas law, tax incidence, ratio budget, thrown-and-dropped) 0 hits, one calorie mixture-system hit read as different. check-key-arith-class: candidate keys lone in some class 2/6 vs distractors 11/18 (controls 6/16 vs 22/48); both key lines (110 multiple of 11, 14 multiple of 7) read as not stem-implied."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "0d73672b3941c26a316b8db73bd0d02f6be0856663563eb252fd3de9d1ef925f",
+          "verdict": "Options-only (act-math-v22-attack-draw.mjs, blind sha 1fa11cda8d897514): 6 candidates + 18 live act Algebra controls (3:1, v16-v22 excluded), keys flat within arm (candidate best-fixed 2/6 = 33.3%, control 5/18 = 27.8%), three Claude samples (pairwise agreement 75.0% vs 30.8% if independent - one solver sampled three times). Candidate 8/18 = 44.4% (line 33.3%, +11.1) vs control 14/54 = 25.9% (line 27.8%, -1.9): candidate minus control +18.5, HOLD bar +10 FIRES. Unanimous-correct candidate 2/6 = 33.3% (AM22A-01, AM22A-04, all six picks labelled guess) vs control 2/18 = 11.1%: +22.2 with >= 2 items, HOLD bar FIRES. Descriptive: solvers picked an interior option on 18/18 candidate and 49/54 control picks; v22 keys interior 4/6 vs control 9/18."
+        },
+        "withsource": {
+          "passed": null,
+          "contentSha": "0d73672b3941c26a316b8db73bd0d02f6be0856663563eb252fd3de9d1ef925f",
+          "verdict": "Run for the record (render sha 69796ca5b6468130 of a copy with bounds, distractor_kind, quantity_asked, mechanism, arith_class_check stripped; no unrecognised field; quoted by both). 12 of 12 picks equal the key, 0 second-defensible. Would-be verdicts (not acted on - the batch is held): AM22A-01 pass; AM22A-03 pass (grader A greatest-heuristic residual); AM22A-04 pass; AM22A-02 drop (95/100/105 weak by both, arithmetic progression with key at an end); AM22A-05 drop (survivors 1: compound > simple gives P < 12000/2.3 = 5217.4; one-sided error family, key the minimum); AM22A-06 drop (65.0 and 120.5 weak by both). See act-math-v22.verdicts.json."
+        }
+      }
     }
   ],
   "auditedCohorts": [

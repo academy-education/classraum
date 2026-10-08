@@ -1,0 +1,68 @@
+[
+ {
+  "id": "AM22A-01",
+  "topic_tag": "rational formulas in context (combined gas law with a unit conversion)",
+  "prompt": "For a fixed amount of gas, the pressure P, volume V, and temperature T satisfy P₁V₁/T₁ = P₂V₂/T₂, where each temperature must be measured in kelvins. A temperature of c degrees Celsius is equal to c + 273 kelvins. A sample of gas at 23°C has a pressure of 120 kilopascals and a volume of 5.0 liters. The gas is compressed to a volume of 4.0 liters, and its pressure rises to 165 kilopascals. What is the new temperature of the gas, in degrees Celsius?",
+  "choices": [
+   "52.6",
+   "25.3",
+   "74.8",
+   "60.0"
+  ]
+ },
+ {
+  "id": "AM22A-02",
+  "topic_tag": "systems of linear equations in context (market equilibrium with a per-unit tax)",
+  "prompt": "In a certain market, the weekly demand for a product is q = 400 − 5p, where q is the number of units buyers will purchase when the price buyers pay is p dollars per unit. The weekly supply is q = 3s − 40, where q is the number of units sellers will offer when the amount sellers keep is s dollars per unit. With no tax, s = p. A tax of $8 per unit is then charged to the sellers, so that s = p − 8, and the market settles at the price p at which the quantity demanded equals the quantity supplied. How many units per week are sold at this new price?",
+  "choices": [
+   "95",
+   "110",
+   "105",
+   "100"
+  ]
+ },
+ {
+  "id": "AM22A-03",
+  "topic_tag": "linear inequalities in context (budget with a ratio constraint)",
+  "prompt": "A school has $24,000 to spend on new devices. Tablets cost $320 each, and laptops cost $650 each. The school's plan requires it to buy at least 3 tablets for every laptop it buys. If the school stays within its budget, what is the greatest number of laptops it can buy?",
+  "choices": [
+   "10",
+   "12",
+   "14",
+   "23"
+  ]
+ },
+ {
+  "id": "AM22A-04",
+  "topic_tag": "linear equations in context (calories from grams of nutrients)",
+  "prompt": "A granola bar contains 190 calories. It has 7 grams of fat, and it has twice as many grams of carbohydrate as grams of protein. Each gram of fat provides 9 calories, and each gram of carbohydrate or protein provides 4 calories. If all of the bar's calories come from fat, carbohydrate, and protein, how many grams of carbohydrate does the bar contain, to the nearest tenth of a gram?",
+  "choices": [
+   "30.5",
+   "15.9",
+   "27.0",
+   "21.2"
+  ]
+ },
+ {
+  "id": "AM22A-05",
+  "topic_tag": "exponential expressions in context (two staggered deposits under compound interest)",
+  "prompt": "Maya deposits P dollars into a savings account that earns 5% interest compounded annually. Exactly 2 years later, she deposits another P dollars into the same account. She makes no other deposits and no withdrawals. Exactly 4 years after her first deposit, the balance in the account is $12,000. To the nearest dollar, what is the value of P ?",
+  "choices": [
+   "5217",
+   "5177",
+   "5297",
+   "5416"
+  ]
+ },
+ {
+  "id": "AM22A-06",
+  "topic_tag": "quadratic equations in context (two falling objects)",
+  "prompt": "The height h, in feet, of an object t seconds after it is set in motion is given by h = −16t² + v₀t + h₀, where v₀ is the object's initial upward velocity, in feet per second, and h₀ is its initial height, in feet. A ball is thrown straight up from the ground with an initial upward velocity of 100 feet per second. At the same instant, a second ball is dropped (initial velocity 0) from a window 130 feet directly above the point where the first ball was thrown. To the nearest tenth of a foot, at what height above the ground do the two balls pass each other?",
+  "choices": [
+   "103.0",
+   "109.2",
+   "65.0",
+   "120.5"
+  ]
+ }
+]
