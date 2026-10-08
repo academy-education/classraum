@@ -1,0 +1,1002 @@
+[
+ {
+  "id": "IS17C-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Although the hognose snake hisses and spreads its neck like a cobra when it is cornered, its temperament is so ------- that it almost never bites, even when a keeper lifts it from its enclosure.",
+  "choices": [
+   "docile",
+   "fickle",
+   "possessive",
+   "inquisitive"
+  ],
+  "correct_answer": "docile",
+  "explanation": "The 'Although' sets the snake's threatening display against its real temperament, and 'almost never bites, even when lifted' describes a calm, easily handled animal: docile.",
+  "distractor_rationales": [
+   "inquisitive — a curious temperament would not explain why a handled snake almost never bites; nothing in the sentence describes curiosity.",
+   "fickle — an unpredictable temperament would mean it sometimes bites, which contradicts 'almost never bites.'",
+   "possessive — a snake that guarded what it considered its own would be more likely to bite, not less; the sentence gives no support for it."
+  ]
+ },
+ {
+  "id": "IS17C-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Climbing ropes are made to be -------, which means they stretch under the shock of a fall and then return to their full length, so a falling climber is slowed gently rather than jerked to a stop.",
+  "choices": [
+   "elastic",
+   "frayed",
+   "knotted",
+   "waxed"
+  ],
+  "correct_answer": "elastic",
+  "explanation": "The 'which means' clause defines the blank: something that stretches and then returns to its full length is elastic.",
+  "distractor_rationales": [
+   "knotted — knots do not let a rope stretch and spring back; the definition does not describe knots.",
+   "waxed — a wax coating says nothing about stretching and returning to length.",
+   "frayed — a frayed rope is damaged; no rope is made to be frayed, and fraying does not describe stretching and recovering."
+  ]
+ },
+ {
+  "id": "IS17C-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples",
+  "prompt": "[Sentence Completion] When Ms. Adeyemi passed a chunk of pumice around the lab, her students found it surprisingly -------: water poured over it vanished into the stone, tiny holes riddled every broken face, and a stream of bubbles rose from it when it was held underwater.",
+  "choices": [
+   "glossy",
+   "magnetic",
+   "scented",
+   "porous"
+  ],
+  "correct_answer": "porous",
+  "explanation": "Each observation — water soaking in, holes everywhere, trapped air escaping — shows a stone full of small openings: porous.",
+  "distractor_rationales": [
+   "glossy — a surface riddled with holes that soaks up water is not described as shiny; none of the observations concern shine.",
+   "magnetic — nothing the students did tested or showed attraction to metal.",
+   "scented — none of the observations involve smell."
+  ]
+ },
+ {
+  "id": "IS17C-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Biologists long described the naked mole rat colony as -------, until animals marked with dye were seen switching from digging tunnels to guarding the entrance to tending pups as the colony's needs changed.",
+  "choices": [
+   "inflexible",
+   "nomadic",
+   "quarrelsome",
+   "boisterous"
+  ],
+  "correct_answer": "inflexible",
+  "explanation": "'Until' signals that the observation overturned the old description. Animals switching jobs as needs change refutes only the idea that the colony was rigid and unchanging: inflexible.",
+  "distractor_rationales": [
+   "nomadic — the observation is about workers changing jobs, not the colony moving from place to place, so it would not overturn this description.",
+   "quarrelsome — switching tasks says nothing about fighting, so it would not overturn a description of the colony as quarrelsome.",
+   "boisterous — noise level is not addressed by the observation, so 'until' has nothing to reverse."
+  ]
+ },
+ {
+  "id": "IS17C-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] The creek behind Tomasz's cabin is -------: it rushes downhill for a few hours after every storm, then sinks into its gravel bed and disappears until the next rain.",
+  "choices": [
+   "brackish",
+   "intermittent",
+   "navigable",
+   "frigid"
+  ],
+  "correct_answer": "intermittent",
+  "explanation": "The colon introduces an explanation: water that flows for a while, stops, and returns with the next rain is intermittent — flowing on and off.",
+  "distractor_rationales": [
+   "brackish — brackish water is slightly salty; the explanation is about when the creek flows, not its saltiness.",
+   "frigid — the sentence says nothing about the water's temperature.",
+   "navigable — a creek that sinks into its gravel bed and disappears for long stretches could not carry boats; the explanation is about flowing on and off, not travel."
+  ]
+ },
+ {
+  "id": "IS17C-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples",
+  "prompt": "[Sentence Completion] Its designers made every critical system on the deep-space probe -------: it carried three flight computers, two independent radios, and a spare thruster beside each main one, so that no single failure could end the mission.",
+  "choices": [
+   "obsolete",
+   "redundant",
+   "affordable",
+   "lightweight"
+  ],
+  "correct_answer": "redundant",
+  "explanation": "Every example is a duplicate kept as a backup, and the purpose is that 'no single failure could end the mission.' In engineering, a system with built-in backups is redundant — the word here means duplicated on purpose, not useless.",
+  "distractor_rationales": [
+   "lightweight — carrying three computers and an extra thruster for each main one adds weight; the examples point the other way.",
+   "obsolete — nothing suggests the equipment was out of date; the examples are about backups.",
+   "affordable — tripling and doubling every critical part raises cost; the examples do not show economy."
+  ]
+ },
+ {
+  "id": "IS17C-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Commentators described Olga's pacing in the marathon as -------, but her split times told another story: she ran every one of the twenty-six miles within four seconds of the others.",
+  "choices": [
+   "tactical",
+   "haphazard",
+   "flashy",
+   "leisurely"
+  ],
+  "correct_answer": "haphazard",
+  "explanation": "'But ... told another story' means the splits contradict the commentators. Miles run within four seconds of one another show perfectly even, controlled pacing, which contradicts only a description of the pacing as haphazard (random, disorganized).",
+  "distractor_rationales": [
+   "leisurely — evenly matched miles say nothing about whether she ran slowly, so the splits would not tell 'another story.'",
+   "tactical — perfectly even pacing is consistent with a deliberate plan, so the splits would confirm this description rather than contradict it.",
+   "flashy — the splits measure evenness, not showiness, so they would not contradict this description."
+  ]
+ },
+ {
+  "id": "IS17C-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Unlike most frogs, which lay hundreds of eggs and leave them to chance, the poison dart frog is a ------- parent, carrying each newly hatched tadpole on its back to its own small pool of water and returning again and again to feed it.",
+  "choices": [
+   "permissive",
+   "dutiful",
+   "youthful",
+   "prolific"
+  ],
+  "correct_answer": "dutiful",
+  "explanation": "'Unlike' contrasts the dart frog with frogs that abandon their eggs, and the details — carrying each tadpole to its own pool and returning to feed it — describe a parent who carefully fulfills its responsibilities: dutiful.",
+  "distractor_rationales": [
+   "prolific — laying hundreds of eggs describes the OTHER frogs; 'Unlike' sets the dart frog apart from them, and the details are about care, not number of offspring.",
+   "youthful — the parent's age is never mentioned.",
+   "permissive — a permissive parent lets its young do as they please; leaving eggs 'to chance' fits the other frogs, while carrying each tadpole and returning to feed it describes active care, not leniency."
+  ]
+ },
+ {
+  "id": "IS17C-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples",
+  "prompt": "[Sentence Completion] Hamid's first canoe trip was a string of -------: a paddle cracked on the first rapid, the stove clogged at supper, and a raccoon made off with the bag of oatmeal.",
+  "choices": [
+   "detours",
+   "mishaps",
+   "bargains",
+   "reunions"
+  ],
+  "correct_answer": "mishaps",
+  "explanation": "The three examples after the colon are all small accidents or misfortunes: mishaps.",
+  "distractor_rationales": [
+   "detours — none of the examples involves changing route.",
+   "bargains — none of the examples involves buying anything cheaply.",
+   "reunions — none of the examples involves meeting people again."
+  ]
+ },
+ {
+  "id": "IS17C-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples",
+  "prompt": "[Sentence Completion] Lichens cling to bare rock at the edge of glaciers, to fence posts in scorching deserts, and to the bark of rain-forest trees; few living things are as ------- as these humble organisms.",
+  "choices": [
+   "aromatic",
+   "infectious",
+   "adaptable",
+   "luminous"
+  ],
+  "correct_answer": "adaptable",
+  "explanation": "The examples span freezing, scorching, and wet environments; a living thing that survives in all of them is adaptable.",
+  "distractor_rationales": [
+   "infectious — the examples are about the range of places lichens survive, not about spreading disease; nothing in the sentence mentions illness.",
+   "luminous — the examples are about where lichens live, not about giving off light.",
+   "aromatic — none of the examples concern smell."
+  ]
+ },
+ {
+  "id": "IS17C-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] A comet's tail always streams away from the sun rather than trailing along the comet's path, so once the comet rounds the sun and heads back toward the outer planets, its tail actually ------- it.",
+  "choices": [
+   "precedes",
+   "encircles",
+   "eclipses",
+   "shelters"
+  ],
+  "correct_answer": "precedes",
+  "explanation": "The tail points away from the sun. When the comet is moving away from the sun, 'away from the sun' is the direction of travel, so the tail goes out in front: it precedes the comet. 'Actually' and 'rather than trailing' flag this reversal of the expected order.",
+  "distractor_rationales": [
+   "eclipses — to eclipse is to block light from something; the sentence reasons only about the direction the tail points.",
+   "encircles — a tail streaming in one direction does not surround the comet.",
+   "shelters — nothing in the sentence suggests the tail protects the comet."
+  ]
+ },
+ {
+  "id": "IS17C-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples",
+  "prompt": "[Sentence Completion] Nearly every creature Eun-ji found in that patch of forest was -------: a beetle shaped exactly like a twig, a moth whose wings matched the bark beneath it, and a frog the precise brown of a fallen leaf.",
+  "choices": [
+   "camouflaged",
+   "iridescent",
+   "venomous",
+   "predatory"
+  ],
+  "correct_answer": "camouflaged",
+  "explanation": "Each example is an animal that blends into its surroundings — twig, bark, leaf — so the creatures were camouflaged.",
+  "distractor_rationales": [
+   "iridescent — iridescent animals shimmer with shifting colors; these match dull twigs, bark, and leaves.",
+   "predatory — the examples describe appearance, not hunting, and a bark-colored moth is not a predator.",
+   "venomous — nothing in the examples concerns poison."
+  ]
+ },
+ {
+  "id": "IS17C-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Chiamaka refused to ------- the rapids, that is, to haul her kayak along the bank around them as her rivals had done; instead she studied each drop for an hour and then paddled straight through.",
+  "choices": [
+   "pollute",
+   "bypass",
+   "narrate",
+   "attempt"
+  ],
+  "correct_answer": "bypass",
+  "explanation": "'That is' defines the blank: hauling a kayak along the bank around the rapids is going around them — bypassing them.",
+  "distractor_rationales": [
+   "attempt — she did attempt the rapids by paddling straight through, so she did not refuse to; the 'that is' definition also describes going around them, not trying them.",
+   "pollute — the definition is about carrying a kayak around the rapids, not dirtying the water.",
+   "narrate — the definition says nothing about describing the rapids aloud."
+  ]
+ },
+ {
+  "id": "IS17C-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples",
+  "prompt": "[Sentence Completion] Goalkeeper Bao read a shooter's hips rather than his feet, began moving before the ball was struck, and shouted his defenders into position before every corner kick; his saves looked less like reflex than like -------.",
+  "choices": [
+   "endurance",
+   "foresight",
+   "flamboyance",
+   "modesty"
+  ],
+  "correct_answer": "foresight",
+  "explanation": "Every example shows Bao acting before the shot happens, and 'less like reflex than like' asks for the opposite of a quick reaction: planning ahead, or foresight.",
+  "distractor_rationales": [
+   "modesty — the examples say nothing about humility, and modesty is not the opposite of reflex.",
+   "endurance — nothing in the examples concerns lasting through a long effort.",
+   "flamboyance — reading hips and moving early are quiet, careful habits, not showy ones."
+  ]
+ },
+ {
+  "id": "IS17C-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Some wildflower seeds stay -------, neither sprouting nor rotting, for decades until a fire finally clears the ground above them.",
+  "choices": [
+   "medicinal",
+   "lopsided",
+   "dormant",
+   "speckled"
+  ],
+  "correct_answer": "dormant",
+  "explanation": "The phrase 'neither sprouting nor rotting' restates the blank: alive but inactive, waiting — dormant.",
+  "distractor_rationales": [
+   "lopsided — the restating phrase is about growth and decay, not the seed's shape.",
+   "medicinal — use as medicine is not mentioned; 'neither sprouting nor rotting' describes inactivity.",
+   "speckled — markings on the seed coat have nothing to do with 'neither sprouting nor rotting.'"
+  ]
+ },
+ {
+  "id": "IS17C-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] The classroom robot proved -------; in other words, it could tumble down the gym stairs dozens of times and still roll away without a scratch.",
+  "choices": [
+   "programmable",
+   "nimble",
+   "pricey",
+   "indestructible"
+  ],
+  "correct_answer": "indestructible",
+  "explanation": "'In other words' signals a restatement: tumbling down the stairs dozens of times and rolling away without a scratch means the robot could not be damaged — indestructible.",
+  "distractor_rationales": [
+   "nimble — falling down the stairs repeatedly is the opposite of quick, sure movement; the restatement is about surviving damage.",
+   "programmable — whether the robot can be given instructions is not part of the restatement, which is only about surviving falls.",
+   "pricey — cost is not part of the restatement."
+  ]
+ },
+ {
+  "id": "IS17C-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples",
+  "prompt": "[Sentence Completion] The air in Kalinda Cave stays at the same temperature in July and January, its underground stream has not shifted course in recorded history, and its tallest column grows by less than a centimeter a century; to the geologists who study it, the cave is a model of -------.",
+  "choices": [
+   "mischief",
+   "symmetry",
+   "secrecy",
+   "constancy"
+  ],
+  "correct_answer": "constancy",
+  "explanation": "Each detail describes something that does not change, or changes almost imperceptibly — temperature, stream course, column height — so the cave is a model of constancy.",
+  "distractor_rationales": [
+   "symmetry — none of the details concern balanced shape or matching halves.",
+   "mischief — nothing in the details involves playful trouble-making; every detail describes something that does not change.",
+   "secrecy — nothing suggests the cave is hidden or unknown; geologists study it."
+  ]
+ },
+ {
+  "id": "IS17C-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement",
+  "prompt": "[Sentence Completion] Coach Ruiz told Darius that his swimming stroke was -------: he spent most of his energy splashing and twisting, and very little of it actually moved him forward.",
+  "choices": [
+   "unrehearsed",
+   "unoriginal",
+   "inconspicuous",
+   "inefficient"
+  ],
+  "correct_answer": "inefficient",
+  "explanation": "The colon explains the judgment: much energy spent and little forward motion gained is the definition of inefficient.",
+  "distractor_rationales": [
+   "inconspicuous — a stroke spent mostly \"splashing and twisting\" would draw attention, and the explanation is about wasted energy, not about being noticed.",
+   "unoriginal — the explanation is about wasted energy, not about copying others.",
+   "unrehearsed — the explanation does not concern practice or preparation."
+  ]
+ },
+ {
+  "id": "IS17C-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] Hikers who come upon the cushion plant on a windswept ridge often mistake it for a mossy rock and stride across it without a thought, yet the low green dome is so ------- that a single bootprint can take decades to heal.",
+  "choices": [
+   "prickly",
+   "lifeless",
+   "vulnerable",
+   "toxic"
+  ],
+  "correct_answer": "vulnerable",
+  "explanation": "'Yet' reverses the hikers' careless view, and 'a single bootprint can take decades to heal' shows the plant is easily and lastingly harmed: vulnerable.",
+  "distractor_rationales": [
+   "lifeless — this is the hikers' mistaken view (they take it for a rock); 'yet' signals the truth is different, and a lifeless thing would not 'heal' at all.",
+   "prickly — a prickly plant would hurt the hiker, not be hurt by the hiker, and people do not stride across it 'without a thought.'",
+   "toxic — poison would not explain why a bootprint takes decades to heal."
+  ]
+ },
+ {
+  "id": "IS17C-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast",
+  "prompt": "[Sentence Completion] A sloth's slowness looks like a weakness, yet it serves as a defense: the hawks and eagles that hunt the canopy spot their prey by its movement, so an animal that hardly stirs is, to them, all but -------.",
+  "choices": [
+   "irresistible",
+   "invisible",
+   "defenseless",
+   "nutritious"
+  ],
+  "correct_answer": "invisible",
+  "explanation": "Hunters that find prey by its movement cannot detect an animal that barely moves, so to them the sloth is all but invisible — which is why its slowness works as a defense.",
+  "distractor_rationales": [
+   "defenseless — this is the 'weakness' view that 'yet' overturns; the sentence argues slowness is a defense.",
+   "irresistible — being very attractive to hawks would make slowness a danger, not a defense.",
+   "nutritious — food value does not depend on movement, and being nourishing prey would not make slowness a defense."
+  ]
+ },
+ {
+  "id": "IS17D-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because the supply boat reached the island research station three weeks late, the cook had to ------- the last sack of flour, measuring out a single cup each day.",
+  "choices": [
+   "ration",
+   "sift",
+   "transport",
+   "label"
+  ],
+  "correct_answer": "ration",
+  "explanation": "The boat's delay means flour is running out, and measuring out one cup a day is exactly what it means to ration a scarce supply.",
+  "distractor_rationales": [
+   "sift — sifting removes lumps; it does nothing to make a short supply last, and the delay gives no reason for it",
+   "label — labeling the sack would not stretch the flour, and 'a single cup each day' describes limiting, not marking",
+   "transport — moving the sack somewhere else would not make the flour last, and 'a single cup each day' describes limiting, not carrying"
+  ]
+ },
+ {
+  "id": "IS17D-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] So that the audience in the back rows could hear every line without microphones, the drama teacher, Mr. Castellanos, taught the young cast to ------- from the diaphragm instead of straining their throats.",
+  "choices": [
+   "pause",
+   "harmonize",
+   "project",
+   "gesture"
+  ],
+  "correct_answer": "project",
+  "explanation": "The purpose is to be heard in the back rows without amplification; to project the voice is to make it carry, and actors are taught to do it from the diaphragm.",
+  "distractor_rationales": [
+   "harmonize — blending voices in harmony is a singing skill and does not make spoken lines carry to the back rows",
+   "pause — pausing adds silence; it does nothing to make words audible far away",
+   "gesture — gestures are seen, not heard, so they cannot help the back rows hear every line"
+  ]
+ },
+ {
+  "id": "IS17D-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] The army's withdrawal across the river was not merely orderly but -------: every wagon, cannon, and wounded soldier had crossed the bridge before enemy scouts even noticed that the camp was empty.",
+  "choices": [
+   "calamitous",
+   "grudging",
+   "clandestine",
+   "premature"
+  ],
+  "correct_answer": "clandestine",
+  "explanation": "'Not merely orderly but' calls for a further quality, and the colon supplies it: the enemy never noticed the army leaving, so the withdrawal was secret, or clandestine.",
+  "distractor_rationales": [
+   "grudging — nothing in the sentence says the soldiers retreated unwillingly; the evidence after the colon is about going unnoticed",
+   "calamitous — every wagon, cannon, and soldier crossed safely, so the withdrawal was the reverse of a disaster",
+   "premature — the sentence gives no sign the army left too early; it stresses that the enemy did not see them go"
+  ]
+ },
+ {
+  "id": "IS17D-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because Mr. Okonkwo announced his chemistry quizzes only minutes before handing them out, his students discovered that ------- review, a few pages of notes every single evening, served them far better than last-minute cramming.",
+  "choices": [
+   "silent",
+   "rapid",
+   "visual",
+   "consistent"
+  ],
+  "correct_answer": "consistent",
+  "explanation": "Surprise quizzes leave no time to cram, so steady daily study wins; the appositive 'a few pages of notes every single evening' defines consistent review.",
+  "distractor_rationales": [
+   "silent — the sentence says nothing about noise; the appositive describes regularity, not quiet",
+   "visual — nothing mentions charts or diagrams; 'a few pages of notes every single evening' describes a schedule, not a format",
+   "rapid — fast review is closer to the cramming the sentence rejects than to steady nightly study"
+  ]
+ },
+ {
+  "id": "IS17D-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] To keep its oldest customers from drifting to the new chain store across the highway, the family hardware shop set out to ------- them with small favors: free key cutting, coffee by the register, and delivery at no charge.",
+  "choices": [
+   "survey",
+   "badger",
+   "deceive",
+   "court"
+  ],
+  "correct_answer": "court",
+  "explanation": "The shop wants to hold on to customers it might lose, and offering favors to win someone's loyalty is to court them.",
+  "distractor_rationales": [
+   "survey — surveying means asking questions; free key cutting and coffee are not questions",
+   "badger — badgering is nagging, which would drive customers away rather than keep them, and favors are not nagging",
+   "deceive — the favors are real and freely given; nothing in the sentence suggests tricking the customers"
+  ]
+ },
+ {
+  "id": "IS17D-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] The restorer's repairs to the cracked mural were so ------- that even the painter's granddaughter, who had studied the wall since childhood, could not say where the original brushwork ended and the new paint began.",
+  "choices": [
+   "expensive",
+   "imperceptible",
+   "belated",
+   "makeshift"
+  ],
+  "correct_answer": "imperceptible",
+  "explanation": "The 'so ... that' result is that even the person who knew the wall best could not find the repairs, so the repairs were impossible to notice: imperceptible.",
+  "distractor_rationales": [
+   "belated — repairs made late could still be easy to spot; lateness does not explain why no one could find them",
+   "makeshift — rough, temporary patches would be easy to spot, the opposite of the result described",
+   "expensive — cost does not make repairs hard to see; the result is about what the eye could detect"
+  ]
+ },
+ {
+  "id": "IS17D-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Within a single generation the great fair at the river crossing, which had once drawn merchants from a dozen kingdoms, stood all but -------, because a new sea route let traders carry their goods past the town without ever stopping there.",
+  "choices": [
+   "forsaken",
+   "exclusive",
+   "hazardous",
+   "tumultuous"
+  ],
+  "correct_answer": "forsaken",
+  "explanation": "The cause comes after the blank: traders now bypass the town, so the once-crowded fair was left nearly abandoned, or forsaken.",
+  "distractor_rationales": [
+   "tumultuous — a noisy, crowded fair would need visitors, but the traders had stopped coming",
+   "exclusive — the fair did not turn people away; the merchants simply took another route",
+   "hazardous — nothing in the sentence makes the fair dangerous; the change is that nobody stops there"
+  ]
+ },
+ {
+  "id": "IS17D-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] In order to reach the summit hut before the afternoon thunderstorms rolled in, Tenzin's trekking group agreed to ------- at four in the morning, while the trail was still dark and cold.",
+  "choices": [
+   "embark",
+   "encamp",
+   "loiter",
+   "disband"
+  ],
+  "correct_answer": "embark",
+  "explanation": "To beat the afternoon storms the group must set off early; to embark is to start out on a journey.",
+  "distractor_rationales": [
+   "loiter — idling about at four in the morning wastes the early start the storms demand",
+   "disband — breaking up the group would not get it to the hut, and the group is acting together",
+   "encamp — setting up camp means stopping for the night, not starting the climb before the storms"
+  ]
+ },
+ {
+  "id": "IS17D-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] Ms. Farouk's comments on our research papers were more than -------; they were exhaustive, often running longer than the papers themselves.",
+  "choices": [
+   "cordial",
+   "encouraging",
+   "extensive",
+   "witty"
+  ],
+  "correct_answer": "extensive",
+  "explanation": "'More than X; they were exhaustive' needs X to be a weaker step on the same scale as exhaustive. Extensive is that step: long and wide-ranging, but less than exhaustive.",
+  "distractor_rationales": [
+   "cordial — friendliness is not a milder form of exhaustiveness, so 'more than cordial; exhaustive' does not build",
+   "encouraging — supportiveness is a different quality, and the evidence about length does not intensify it",
+   "witty — cleverness is not on the scale of length that 'exhaustive' and 'longer than the papers' describe"
+  ]
+ },
+ {
+  "id": "IS17D-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because the bakery's only oven broke down on the morning of the town festival, Mrs. Haddad spent the afternoon calling customers to apologize and to ------- their cake orders for the following week.",
+  "choices": [
+   "reschedule",
+   "personalize",
+   "price",
+   "decorate"
+  ],
+  "correct_answer": "reschedule",
+  "explanation": "With no working oven the cakes could not be made that day, so the orders had to be moved to a later date, 'for the following week': rescheduled.",
+  "distractor_rationales": [
+   "decorate — decorating cakes by phone, a week later, does not answer the broken oven",
+   "price — the problem is that the cakes cannot be baked, not what they cost",
+   "personalize — adding custom touches does nothing about an oven that cannot bake the cakes"
+  ]
+ },
+ {
+  "id": "IS17D-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] The emperor ordered the old coins melted down and reissued with less silver in each, a measure meant to ------- his nearly empty treasury that instead sent the price of bread soaring.",
+  "choices": [
+   "relocate",
+   "inventory",
+   "renounce",
+   "replenish"
+  ],
+  "correct_answer": "replenish",
+  "explanation": "Putting less silver in each coin lets the ruler mint more coins from the same metal; the goal for a 'nearly empty' treasury is to fill it again, or replenish it.",
+  "distractor_rationales": [
+   "inventory — melting and reissuing coins does not count what the treasury holds; it changes how much money there is",
+   "relocate — the measure changes the coins, not the treasury's location",
+   "renounce — giving up the treasury is the reverse of what a ruler short of money intends"
+  ]
+ },
+ {
+  "id": "IS17D-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] The lanes of the old spice market were so ------- that two shoppers carrying baskets could not pass each other unless one of them stepped into a doorway.",
+  "choices": [
+   "crumbling",
+   "sloping",
+   "shadowy",
+   "narrow"
+  ],
+  "correct_answer": "narrow",
+  "explanation": "The 'so ... that' result, two people unable to pass side by side, describes lanes with too little width: narrow.",
+  "distractor_rationales": [
+   "shadowy — darkness would make the lane hard to see, not too tight for two baskets",
+   "sloping — a slope makes walking harder but leaves room for two people to pass",
+   "crumbling — worn walls and paving could still leave room for two shoppers to pass side by side"
+  ]
+ },
+ {
+  "id": "IS17D-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because the choir had rehearsed the anthem only in a small, carpeted practice room, its members were unprepared for the cathedral's -------: each note they sang came back to them a full second later, and the basses twice lost their place.",
+  "choices": [
+   "ventilation",
+   "illumination",
+   "reverberation",
+   "ornamentation"
+  ],
+  "correct_answer": "reverberation",
+  "explanation": "The effect after the colon, each note returning a second later, is an echo; a carpeted practice room has almost none, so the singers were unready for the cathedral's reverberation.",
+  "distractor_rationales": [
+   "illumination — lighting does not send sound back to the singers",
+   "ornamentation — decoration may be striking, but it does not explain notes coming back a second later",
+   "ventilation — airflow has nothing to do with notes returning and the basses losing their place"
+  ]
+ },
+ {
+  "id": "IS17D-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] Every Saturday the neighborhood association set up folding tables outside the library so that residents could ------- books, puzzles, and tools they no longer needed for ones they did.",
+  "choices": [
+   "repair",
+   "appraise",
+   "swap",
+   "catalog"
+  ],
+  "correct_answer": "swap",
+  "explanation": "'Things they no longer needed for ones they did' describes giving one item and taking another back: to swap.",
+  "distractor_rationales": [
+   "repair — fixing an item does not turn it into a different one that residents need",
+   "catalog — listing items records them; it does not exchange unwanted items 'for ones they did' need",
+   "appraise — estimating what items are worth does not trade them; the 'for ones they did' clause requires an exchange"
+  ]
+ },
+ {
+  "id": "IS17D-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] For the small print shop, losing its only paper supplier was more than an inconvenience; it was -------, since no other mill in the region made the heavy cotton stock that nearly all its customers ordered.",
+  "choices": [
+   "negotiable",
+   "anticipated",
+   "reversible",
+   "catastrophic"
+  ],
+  "correct_answer": "catastrophic",
+  "explanation": "'More than an inconvenience' moves up the scale of harm, and the reason given, that no one else makes the paper nearly every customer wants, makes the loss a disaster: catastrophic.",
+  "distractor_rationales": [
+   "anticipated — whether the loss was expected is not on the scale 'more than an inconvenience' climbs",
+   "negotiable — the supplier is gone and no other mill makes the stock, so nothing is left to bargain over",
+   "reversible — 'no other mill in the region' says the loss cannot easily be undone"
+  ]
+ },
+ {
+  "id": "IS17D-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Travelers who arrive in the mountain village in late October often find it oddly -------, since nearly every hotel, café, and ski shop closes for the weeks between the hiking season and the first snow.",
+  "choices": [
+   "formal",
+   "grand",
+   "hushed",
+   "scenic"
+  ],
+  "correct_answer": "hushed",
+  "explanation": "With the hotels, cafés, and shops closed between seasons, few people are about, so the village is quiet and still: hushed.",
+  "distractor_rationales": [
+   "scenic — closed businesses do not change the scenery, and 'oddly' makes no sense with a mountain view",
+   "formal — shut cafés do not make a village stiff or ceremonious",
+   "grand — nothing describes impressive buildings, and closed shops make a village quieter, not grander"
+  ]
+ },
+ {
+  "id": "IS17D-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] Visitors complain that the watercolor room is too dim for them to study the brushwork, but the curators keep its lights low on purpose: they mean to ------- pigments that strong light would fade within a few years.",
+  "choices": [
+   "reproduce",
+   "authenticate",
+   "frame",
+   "conserve"
+  ],
+  "correct_answer": "conserve",
+  "explanation": "The lights are kept low because strong light fades the pigments; the aim is to protect them so they last, which is to conserve them.",
+  "distractor_rationales": [
+   "authenticate — proving a painting genuine needs close study, which the dim light makes harder, and it has nothing to do with fading",
+   "frame — framing protects a picture's edges and glass, but the low light is aimed at pigments fading, which a frame does not stop",
+   "reproduce — copying the paintings would need more light, not less, and does not stop the originals fading"
+  ]
+ },
+ {
+  "id": "IS17D-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] The farmers' co-op began posting every vendor's prices on one chalkboard by the entrance in order to make the market more -------, and within a month the old habit of charging newcomers more than regulars for the same basket of plums had disappeared.",
+  "choices": [
+   "hygienic",
+   "spacious",
+   "equitable",
+   "fashionable"
+  ],
+  "correct_answer": "equitable",
+  "explanation": "The result two clauses later shows the purpose: once prices were public, newcomers stopped paying more than regulars for the same goods, so everyone was treated fairly. The market became more equitable.",
+  "distractor_rationales": [
+   "fashionable — a price board does not make the market stylish, and the result is about fair prices, not trends",
+   "hygienic — posting prices has nothing to do with cleanliness",
+   "spacious — a chalkboard of prices does not give the market more room; the outcome described is fair pricing for newcomers"
+  ]
+ },
+ {
+  "id": "IS17D-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because Aiyana, the debate captain, had memorized her rebuttals word for word, she was thrown when her opponent raised an argument she had not foreseen, and her replies, so polished in practice, turned -------.",
+  "choices": [
+   "halting",
+   "condescending",
+   "sarcastic",
+   "courteous"
+  ],
+  "correct_answer": "halting",
+  "explanation": "The chain runs memorized answers, then an unexpected argument, then being thrown. A speaker with no script to fall back on stops and starts, and 'so polished in practice' sets up the contrast with halting.",
+  "distractor_rationales": [
+   "sarcastic — mockery is a tone choice; nothing in the chain of causes points to it",
+   "condescending — being thrown makes a speaker less sure of herself, not more superior toward her opponent",
+   "courteous — politeness is not the opposite of 'polished' and does not follow from being caught unprepared"
+  ]
+ },
+ {
+  "id": "IS17D-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] The student council's bake sale was even more ------- than its organizers had hoped: by ten o'clock every tray was empty, and the cash box held enough to pay for both spring field trips.",
+  "choices": [
+   "festive",
+   "successful",
+   "relaxed",
+   "elegant"
+  ],
+  "correct_answer": "successful",
+  "explanation": "'Even more ___ than they had hoped' needs a quality the evidence measures, and the colon gives results: a sell-out by ten and money for both trips, so the sale went better than planned: successful.",
+  "distractor_rationales": [
+   "festive — a cheerful mood may be hoped for, but the evidence after the colon is about sales and money, not atmosphere",
+   "elegant — nothing describes how the sale looked; an early sell-out and a full cash box measure results, not style",
+   "relaxed — an easygoing mood may be hoped for, but trays empty by ten and a full cash box measure results, not how calm the sale felt"
+  ]
+ }
+]

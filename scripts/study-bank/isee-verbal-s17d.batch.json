@@ -1,0 +1,502 @@
+[
+ {
+  "id": "IS17D-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because the supply boat reached the island research station three weeks late, the cook had to ------- the last sack of flour, measuring out a single cup each day.",
+  "choices": [
+   "sift",
+   "ration",
+   "label",
+   "transport"
+  ],
+  "correct_answer": "ration",
+  "explanation": "The boat's delay means flour is running out, and measuring out one cup a day is exactly what it means to ration a scarce supply.",
+  "distractor_rationales": [
+   "sift — sifting removes lumps; it does nothing to make a short supply last, and the delay gives no reason for it",
+   "label — labeling the sack would not stretch the flour, and 'a single cup each day' describes limiting, not marking",
+   "transport — moving the sack somewhere else would not make the flour last, and 'a single cup each day' describes limiting, not carrying"
+  ]
+ },
+ {
+  "id": "IS17D-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] So that the audience in the back rows could hear every line without microphones, the drama teacher, Mr. Castellanos, taught the young cast to ------- from the diaphragm instead of straining their throats.",
+  "choices": [
+   "harmonize",
+   "pause",
+   "gesture",
+   "project"
+  ],
+  "correct_answer": "project",
+  "explanation": "The purpose is to be heard in the back rows without amplification; to project the voice is to make it carry, and actors are taught to do it from the diaphragm.",
+  "distractor_rationales": [
+   "harmonize — blending voices in harmony is a singing skill and does not make spoken lines carry to the back rows",
+   "pause — pausing adds silence; it does nothing to make words audible far away",
+   "gesture — gestures are seen, not heard, so they cannot help the back rows hear every line"
+  ]
+ },
+ {
+  "id": "IS17D-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] The army's withdrawal across the river was not merely orderly but -------: every wagon, cannon, and wounded soldier had crossed the bridge before enemy scouts even noticed that the camp was empty.",
+  "choices": [
+   "clandestine",
+   "grudging",
+   "calamitous",
+   "premature"
+  ],
+  "correct_answer": "clandestine",
+  "explanation": "'Not merely orderly but' calls for a further quality, and the colon supplies it: the enemy never noticed the army leaving, so the withdrawal was secret, or clandestine.",
+  "distractor_rationales": [
+   "grudging — nothing in the sentence says the soldiers retreated unwillingly; the evidence after the colon is about going unnoticed",
+   "calamitous — every wagon, cannon, and soldier crossed safely, so the withdrawal was the reverse of a disaster",
+   "premature — the sentence gives no sign the army left too early; it stresses that the enemy did not see them go"
+  ]
+ },
+ {
+  "id": "IS17D-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because Mr. Okonkwo announced his chemistry quizzes only minutes before handing them out, his students discovered that ------- review, a few pages of notes every single evening, served them far better than last-minute cramming.",
+  "choices": [
+   "silent",
+   "visual",
+   "consistent",
+   "rapid"
+  ],
+  "correct_answer": "consistent",
+  "explanation": "Surprise quizzes leave no time to cram, so steady daily study wins; the appositive 'a few pages of notes every single evening' defines consistent review.",
+  "distractor_rationales": [
+   "silent — the sentence says nothing about noise; the appositive describes regularity, not quiet",
+   "visual — nothing mentions charts or diagrams; 'a few pages of notes every single evening' describes a schedule, not a format",
+   "rapid — fast review is closer to the cramming the sentence rejects than to steady nightly study"
+  ]
+ },
+ {
+  "id": "IS17D-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] To keep its oldest customers from drifting to the new chain store across the highway, the family hardware shop set out to ------- them with small favors: free key cutting, coffee by the register, and delivery at no charge.",
+  "choices": [
+   "survey",
+   "badger",
+   "court",
+   "deceive"
+  ],
+  "correct_answer": "court",
+  "explanation": "The shop wants to hold on to customers it might lose, and offering favors to win someone's loyalty is to court them.",
+  "distractor_rationales": [
+   "survey — surveying means asking questions; free key cutting and coffee are not questions",
+   "badger — badgering is nagging, which would drive customers away rather than keep them, and favors are not nagging",
+   "deceive — the favors are real and freely given; nothing in the sentence suggests tricking the customers"
+  ]
+ },
+ {
+  "id": "IS17D-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] The restorer's repairs to the cracked mural were so ------- that even the painter's granddaughter, who had studied the wall since childhood, could not say where the original brushwork ended and the new paint began.",
+  "choices": [
+   "imperceptible",
+   "belated",
+   "makeshift",
+   "expensive"
+  ],
+  "correct_answer": "imperceptible",
+  "explanation": "The 'so ... that' result is that even the person who knew the wall best could not find the repairs, so the repairs were impossible to notice: imperceptible.",
+  "distractor_rationales": [
+   "belated — repairs made late could still be easy to spot; lateness does not explain why no one could find them",
+   "makeshift — rough, temporary patches would be easy to spot, the opposite of the result described",
+   "expensive — cost does not make repairs hard to see; the result is about what the eye could detect"
+  ]
+ },
+ {
+  "id": "IS17D-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Within a single generation the great fair at the river crossing, which had once drawn merchants from a dozen kingdoms, stood all but -------, because a new sea route let traders carry their goods past the town without ever stopping there.",
+  "choices": [
+   "tumultuous",
+   "exclusive",
+   "hazardous",
+   "forsaken"
+  ],
+  "correct_answer": "forsaken",
+  "explanation": "The cause comes after the blank: traders now bypass the town, so the once-crowded fair was left nearly abandoned, or forsaken.",
+  "distractor_rationales": [
+   "tumultuous — a noisy, crowded fair would need visitors, but the traders had stopped coming",
+   "exclusive — the fair did not turn people away; the merchants simply took another route",
+   "hazardous — nothing in the sentence makes the fair dangerous; the change is that nobody stops there"
+  ]
+ },
+ {
+  "id": "IS17D-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] In order to reach the summit hut before the afternoon thunderstorms rolled in, Tenzin's trekking group agreed to ------- at four in the morning, while the trail was still dark and cold.",
+  "choices": [
+   "loiter",
+   "embark",
+   "disband",
+   "encamp"
+  ],
+  "correct_answer": "embark",
+  "explanation": "To beat the afternoon storms the group must set off early; to embark is to start out on a journey.",
+  "distractor_rationales": [
+   "loiter — idling about at four in the morning wastes the early start the storms demand",
+   "disband — breaking up the group would not get it to the hut, and the group is acting together",
+   "encamp — setting up camp means stopping for the night, not starting the climb before the storms"
+  ]
+ },
+ {
+  "id": "IS17D-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] Ms. Farouk's comments on our research papers were more than -------; they were exhaustive, often running longer than the papers themselves.",
+  "choices": [
+   "cordial",
+   "encouraging",
+   "witty",
+   "extensive"
+  ],
+  "correct_answer": "extensive",
+  "explanation": "'More than X; they were exhaustive' needs X to be a weaker step on the same scale as exhaustive. Extensive is that step: long and wide-ranging, but less than exhaustive.",
+  "distractor_rationales": [
+   "cordial — friendliness is not a milder form of exhaustiveness, so 'more than cordial; exhaustive' does not build",
+   "encouraging — supportiveness is a different quality, and the evidence about length does not intensify it",
+   "witty — cleverness is not on the scale of length that 'exhaustive' and 'longer than the papers' describe"
+  ]
+ },
+ {
+  "id": "IS17D-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because the bakery's only oven broke down on the morning of the town festival, Mrs. Haddad spent the afternoon calling customers to apologize and to ------- their cake orders for the following week.",
+  "choices": [
+   "decorate",
+   "reschedule",
+   "price",
+   "personalize"
+  ],
+  "correct_answer": "reschedule",
+  "explanation": "With no working oven the cakes could not be made that day, so the orders had to be moved to a later date, 'for the following week': rescheduled.",
+  "distractor_rationales": [
+   "decorate — decorating cakes by phone, a week later, does not answer the broken oven",
+   "price — the problem is that the cakes cannot be baked, not what they cost",
+   "personalize — adding custom touches does nothing about an oven that cannot bake the cakes"
+  ]
+ },
+ {
+  "id": "IS17D-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] The emperor ordered the old coins melted down and reissued with less silver in each, a measure meant to ------- his nearly empty treasury that instead sent the price of bread soaring.",
+  "choices": [
+   "replenish",
+   "inventory",
+   "relocate",
+   "renounce"
+  ],
+  "correct_answer": "replenish",
+  "explanation": "Putting less silver in each coin lets the ruler mint more coins from the same metal; the goal for a 'nearly empty' treasury is to fill it again, or replenish it.",
+  "distractor_rationales": [
+   "inventory — melting and reissuing coins does not count what the treasury holds; it changes how much money there is",
+   "relocate — the measure changes the coins, not the treasury's location",
+   "renounce — giving up the treasury is the reverse of what a ruler short of money intends"
+  ]
+ },
+ {
+  "id": "IS17D-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] The lanes of the old spice market were so ------- that two shoppers carrying baskets could not pass each other unless one of them stepped into a doorway.",
+  "choices": [
+   "shadowy",
+   "sloping",
+   "narrow",
+   "crumbling"
+  ],
+  "correct_answer": "narrow",
+  "explanation": "The 'so ... that' result, two people unable to pass side by side, describes lanes with too little width: narrow.",
+  "distractor_rationales": [
+   "shadowy — darkness would make the lane hard to see, not too tight for two baskets",
+   "sloping — a slope makes walking harder but leaves room for two people to pass",
+   "crumbling — worn walls and paving could still leave room for two shoppers to pass side by side"
+  ]
+ },
+ {
+  "id": "IS17D-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because the choir had rehearsed the anthem only in a small, carpeted practice room, its members were unprepared for the cathedral's -------: each note they sang came back to them a full second later, and the basses twice lost their place.",
+  "choices": [
+   "illumination",
+   "reverberation",
+   "ornamentation",
+   "ventilation"
+  ],
+  "correct_answer": "reverberation",
+  "explanation": "The effect after the colon, each note returning a second later, is an echo; a carpeted practice room has almost none, so the singers were unready for the cathedral's reverberation.",
+  "distractor_rationales": [
+   "illumination — lighting does not send sound back to the singers",
+   "ornamentation — decoration may be striking, but it does not explain notes coming back a second later",
+   "ventilation — airflow has nothing to do with notes returning and the basses losing their place"
+  ]
+ },
+ {
+  "id": "IS17D-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] Every Saturday the neighborhood association set up folding tables outside the library so that residents could ------- books, puzzles, and tools they no longer needed for ones they did.",
+  "choices": [
+   "repair",
+   "catalog",
+   "appraise",
+   "swap"
+  ],
+  "correct_answer": "swap",
+  "explanation": "'Things they no longer needed for ones they did' describes giving one item and taking another back: to swap.",
+  "distractor_rationales": [
+   "repair — fixing an item does not turn it into a different one that residents need",
+   "catalog — listing items records them; it does not exchange unwanted items 'for ones they did' need",
+   "appraise — estimating what items are worth does not trade them; the 'for ones they did' clause requires an exchange"
+  ]
+ },
+ {
+  "id": "IS17D-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] For the small print shop, losing its only paper supplier was more than an inconvenience; it was -------, since no other mill in the region made the heavy cotton stock that nearly all its customers ordered.",
+  "choices": [
+   "anticipated",
+   "negotiable",
+   "catastrophic",
+   "reversible"
+  ],
+  "correct_answer": "catastrophic",
+  "explanation": "'More than an inconvenience' moves up the scale of harm, and the reason given, that no one else makes the paper nearly every customer wants, makes the loss a disaster: catastrophic.",
+  "distractor_rationales": [
+   "anticipated — whether the loss was expected is not on the scale 'more than an inconvenience' climbs",
+   "negotiable — the supplier is gone and no other mill makes the stock, so nothing is left to bargain over",
+   "reversible — 'no other mill in the region' says the loss cannot easily be undone"
+  ]
+ },
+ {
+  "id": "IS17D-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Travelers who arrive in the mountain village in late October often find it oddly -------, since nearly every hotel, café, and ski shop closes for the weeks between the hiking season and the first snow.",
+  "choices": [
+   "hushed",
+   "scenic",
+   "formal",
+   "grand"
+  ],
+  "correct_answer": "hushed",
+  "explanation": "With the hotels, cafés, and shops closed between seasons, few people are about, so the village is quiet and still: hushed.",
+  "distractor_rationales": [
+   "scenic — closed businesses do not change the scenery, and 'oddly' makes no sense with a mountain view",
+   "formal — shut cafés do not make a village stiff or ceremonious",
+   "grand — nothing describes impressive buildings, and closed shops make a village quieter, not grander"
+  ]
+ },
+ {
+  "id": "IS17D-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] Visitors complain that the watercolor room is too dim for them to study the brushwork, but the curators keep its lights low on purpose: they mean to ------- pigments that strong light would fade within a few years.",
+  "choices": [
+   "conserve",
+   "authenticate",
+   "frame",
+   "reproduce"
+  ],
+  "correct_answer": "conserve",
+  "explanation": "The lights are kept low because strong light fades the pigments; the aim is to protect them so they last, which is to conserve them.",
+  "distractor_rationales": [
+   "authenticate — proving a painting genuine needs close study, which the dim light makes harder, and it has nothing to do with fading",
+   "frame — framing protects a picture's edges and glass, but the low light is aimed at pigments fading, which a frame does not stop",
+   "reproduce — copying the paintings would need more light, not less, and does not stop the originals fading"
+  ]
+ },
+ {
+  "id": "IS17D-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose",
+  "prompt": "[Sentence Completion] The farmers' co-op began posting every vendor's prices on one chalkboard by the entrance in order to make the market more -------, and within a month the old habit of charging newcomers more than regulars for the same basket of plums had disappeared.",
+  "choices": [
+   "fashionable",
+   "hygienic",
+   "equitable",
+   "spacious"
+  ],
+  "correct_answer": "equitable",
+  "explanation": "The result two clauses later shows the purpose: once prices were public, newcomers stopped paying more than regulars for the same goods, so everyone was treated fairly. The market became more equitable.",
+  "distractor_rationales": [
+   "fashionable — a price board does not make the market stylish, and the result is about fair prices, not trends",
+   "hygienic — posting prices has nothing to do with cleanliness",
+   "spacious — a chalkboard of prices does not give the market more room; the outcome described is fair pricing for newcomers"
+  ]
+ },
+ {
+  "id": "IS17D-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause",
+  "prompt": "[Sentence Completion] Because Aiyana, the debate captain, had memorized her rebuttals word for word, she was thrown when her opponent raised an argument she had not foreseen, and her replies, so polished in practice, turned -------.",
+  "choices": [
+   "sarcastic",
+   "condescending",
+   "courteous",
+   "halting"
+  ],
+  "correct_answer": "halting",
+  "explanation": "The chain runs memorized answers, then an unexpected argument, then being thrown. A speaker with no script to fall back on stops and starts, and 'so polished in practice' sets up the contrast with halting.",
+  "distractor_rationales": [
+   "sarcastic — mockery is a tone choice; nothing in the chain of causes points to it",
+   "condescending — being thrown makes a speaker less sure of herself, not more superior toward her opponent",
+   "courteous — politeness is not the opposite of 'polished' and does not follow from being caught unprepared"
+  ]
+ },
+ {
+  "id": "IS17D-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "degree",
+  "prompt": "[Sentence Completion] The student council's bake sale was even more ------- than its organizers had hoped: by ten o'clock every tray was empty, and the cash box held enough to pay for both spring field trips.",
+  "choices": [
+   "festive",
+   "successful",
+   "elegant",
+   "relaxed"
+  ],
+  "correct_answer": "successful",
+  "explanation": "'Even more ___ than they had hoped' needs a quality the evidence measures, and the colon gives results: a sell-out by ten and money for both trips, so the sale went better than planned: successful.",
+  "distractor_rationales": [
+   "festive — a cheerful mood may be hoped for, but the evidence after the colon is about sales and money, not atmosphere",
+   "elegant — nothing describes how the sale looked; an early sell-out and a full cash box measure results, not style",
+   "relaxed — an easygoing mood may be hoped for, but trays empty by ten and a full cash box measure results, not how calm the sale felt"
+  ]
+ }
+]
