@@ -1,0 +1,406 @@
+[
+ {
+  "id": "SM27F-D05",
+  "position": 3,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DE"
+  ],
+  "flags": {
+   "r7pair": "DF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-D10",
+  "position": 4,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: One-sided: key 80 is the largest option and all three distractors (20, 46, 56) come from under-scaling or a shrunk offset; k = 4*(17+3) and a student who sees the k/4 structure knows every slip lands low (A88 cause).",
+   "r7pair CONFIRMED by hand (DEF)"
+  ],
+  "flags": {
+   "r7pair": "DEF",
+   "r8": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-D03",
+  "position": 5,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by DF: One-sided: key 49 is the largest option; 8, 19, 25 all come from stopping early or shrinking the x-bound before the 6x+1 transform, which enlarges values, so 'take the biggest' is predictable from the stem (A88 cause). | Option-pair tell: the x upper bound 8 is printed as an option and the key 49 = 6(8)+1 is its image under the printed map 6x+1; no other option is the image of an option. Also one-sided: key is the largest and every natural error (untransformed endpoint, wrong endpoint) lands below. Plus routine single-procedure item.",
+   "r7pair CONFIRMED by hand (F)",
+   "r8 CONFIRMED by hand (DF)",
+   "r10 CONFIRMED by hand (F)"
+  ],
+  "flags": {
+   "r7": "E",
+   "r7pair": "F",
+   "r8": "DF",
+   "r10": "F"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-A05",
+  "position": 6,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DF"
+  ],
+  "flags": {
+   "r7": "E"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-D04",
+  "position": 11,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r7pair CONFIRMED by hand (DF)"
+  ],
+  "flags": {
+   "r7": "E",
+   "r7pair": "DF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-D12",
+  "position": 14,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by D: One-sided: key 21 is the largest; all three distractors are differences that come out smaller (fee mishandling raises P's count or lowers Q's). Also the floor decision is partly bypassed: the un-floored difference 32.57-11.73=20.84 rounds to the key."
+  ],
+  "flags": {
+   "r8": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-D08",
+  "position": 18,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DE"
+  ],
+  "flags": {
+   "r7pair": "F"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-A09",
+  "position": 23,
+  "difficulty": "easy",
+  "difficulties": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 2,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r4 median struck 2",
+   "r6 plug-back <= 2 by DEF",
+   "EXT-1 drop_recommend by DEF: Two options (100, 50) are illegal without solving: notebook spending = 126 minus a multiple of 5 must be 1 mod 5; leaves 26 vs 46 and one plug-back of 46 (23 nb, 16 binders, differ by 7) confirms. Easy item with 2 free strikes. | Two of three distractors (100, 50) die on a free divisibility check: 126 minus notebook spend must be a multiple of 5 (binders $5). The remaining pair 26/46 is settled by one plug-back (26 gives more binders than notebooks). Key reachable in <=2 routine checks without setting up the equation. | Free strikes: binder spending 126 - (notebook spend) must be a multiple of $5, which kills 100 and 50 without solving; of 26 and 46, 26 gives 13 notebooks / 20 binders (binders more, not notebooks), so the key falls out of a legality check plus one look.",
+   "r7 CONFIRMED by hand (DEF)"
+  ],
+  "flags": {
+   "r7": "DEF",
+   "r7pair": "F"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-B01",
+  "position": 25,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r7pair CONFIRMED by hand (DEF)"
+  ],
+  "flags": {
+   "r7pair": "DEF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-B09",
+  "position": 27,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by EF"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-D06",
+  "position": 28,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by EF"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-B07",
+  "position": 30,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by EF"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-A10",
+  "position": 34,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 2,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r4 median struck 2",
+   "EXT-1 drop_recommend by D: Two of three distractors (190, 250) are struck by divisibility: P = 3Q makes the combined amount 4Q, a multiple of 4. The survivors 200 and 280 are then a one-check plug (Q = total/4, then check P = 3Q against the rates) - the item reduces to a coin flip or one substitution without the setup. Re-author 190 and 250 as multiples of 4."
+  ],
+  "flags": {
+   "r9": "D"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-D13",
+  "position": 37,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by DEF",
+   "EXT-1 drop_recommend by F: Free strike: 265 minutes exceeds the 4-hour (240-minute) trip, so it is illegal on its face; per A89's R4 rule a no-work strike drops the item (repairing the distractor after this round would be fitting to the instrument)."
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-C01",
+  "position": 38,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by EF: One-sided extreme key with a cheap killing bound: the 30h->50h rise of 400 includes 10 overtime hours, so the overtime rate is < 40, so 56-h pay < 784+6x40 = 1024; 1064, 1120, 1248 all sit above it and 928 is the only option under it. All three distractors are above the key, and the most natural flat-rate error (784+6x20 = 904), which would fall below, is absent. A88 cause; repair by adding a below-key distractor such as 904. | One-sided extreme key (A88 cause): the key is the smallest option and every distractor comes from an error that raises the pay (deduction added, 1.5 on all hours, inflated wage). Cheap bound: 10 regular + 10 overtime hours earn $400, so an overtime hour earns < $40 and the 56-hour pay is < 784 + 240 = 1024, which kills 1064, 1120 and 1248 without finding w or d.",
+   "r8 CONFIRMED by hand (EF)",
+   "r10 CONFIRMED by hand (EF)"
+  ],
+  "flags": {
+   "r8": "EF",
+   "r10": "EF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-B10",
+  "position": 39,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r6 plug-back <= 2 by EF"
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-A13",
+  "position": 41,
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 2,
+  "extreme": false,
+  "status": "DROP",
+  "why": [
+   "r4 median struck 2",
+   "EXT-1 drop_recommend by DE: Two of three distractors (63, 99) are odd, but the counterfactual score is 54 + 2*(incorrect), necessarily even - a test-wise student strikes both without solving, leaving 72 vs 96. Re-author 63 and 99 as even values. | Two free parity strikes: the new score is 54 plus 2 points per wrong answer removed, so it must be even; 63 and 99 are odd and fall without solving, leaving 72 vs 96 (R4 free strikes). Replace the odd distractors with even plausible errors."
+  ],
+  "flags": {},
+  "open": [],
+  "off_blueprint_votes": 0
+ },
+ {
+  "id": "SM27F-B13",
+  "position": 47,
+  "difficulty": "easy",
+  "difficulties": [
+   "medium",
+   "easy",
+   "easy"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "extreme": true,
+  "status": "DROP",
+  "why": [
+   "r11 template of earlier SM27F-B02 (2/3)"
+  ],
+  "flags": {
+   "r8": "EF",
+   "r10": "EF"
+  },
+  "open": [],
+  "off_blueprint_votes": 0
+ }
+]

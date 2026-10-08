@@ -1,0 +1,527 @@
+[
+ {
+  "id": "SM27F-B02",
+  "domain": "Algebra",
+  "subskill": "Linear function from slope and sum of intercepts",
+  "difficulty": "medium",
+  "prompt": "For a linear function f, each 1-unit increase in x decreases f(x) by 2. Its graph in the xy-plane crosses the horizontal axis at (a, 0) and the vertical axis at (0, c). Given that a + c = 24, find f(14).",
+  "choices": [
+   "-20",
+   "-12",
+   "1",
+   "20"
+  ],
+  "correct_answer": "-12",
+  "explanation": "The slope of f is -2, so write f(x) = -2x + c, so the graph meets the y-axis at (0, c). Setting f(x) = 0 gives x = c/2, so a = c/2. Then c/2 + c = 24, so 3c/2 = 24 and c = 16. Thus f(x) = -2x + 16 and f(14) = -28 + 16 = -12. Choice 20 comes from a sign error in the x-intercept, taking a = -c/2, which gives c/2 = 24 and c = 48. Choice 1 comes from using the reciprocal slope -1/2, which makes a = 2c and gives c = 8. Choice -20 comes from switching the two intercepts, using the value of a, 8, as the y-intercept.",
+  "solve": "const m=-2; const b=24/(1+(-1/m)); return m*14+b;",
+  "distractor_solve": {
+   "1": "const m=-1/2; const b=24/(1+(-1/m)); return m*14+b;",
+   "20": "const m=-2; const b=24/(1-(-1/m)); return m*14+b;",
+   "-20": "const m=-2; const b=24/(1+(-1/m)); const a=-b/m; return m*14+a;"
+  }
+ },
+ {
+  "id": "SM27F-B09",
+  "domain": "Algebra",
+  "subskill": "Line defined by a constant linear expression",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, line l has the following property: for every point (x, y) on line l, the expression 5x + 2y has the same value. Line l passes through the points (-3, 6) and (k, -6), where k is a constant. What is the value of k?",
+  "choices": [
+   "1.8",
+   "7.2",
+   "13.5",
+   "27"
+  ],
+  "correct_answer": "1.8",
+  "explanation": "Because 5x + 2y has the same value at every point of line l, line l is the graph of 5x + 2y = c for some constant c. At (-3, 6), c = 5(-3) + 2(6) = -3, so line l is 5x + 2y = -3. At (k, -6): 5k + 2(-6) = -3, so 5k = 9 and k = 1.8. Choice 27 uses slope -2/5 (the coefficients' ratio turned upside down) instead of the line's slope, -5/2. Choice 7.2 substitutes the first point as (6, -3), with its coordinates swapped. Choice 13.5 substitutes the second point as (-6, k), with its coordinates swapped.",
+  "solve": "const c=5*(-3)+2*6; return (c-2*(-6))/5;",
+  "distractor_solve": {
+   "27": "const m=-2/5; return Math.round((-3+(-6-6)/m)*10)/10;",
+   "7.2": "const c=5*6+2*(-3); return (c-2*(-6))/5;",
+   "13.5": "const c=5*(-3)+2*6; return (c-5*(-6))/2;"
+  }
+ },
+ {
+  "id": "SM27F-D06",
+  "domain": "Algebra",
+  "subskill": "Inequality true for every real x: vanishing x-coefficient",
+  "difficulty": "medium",
+  "prompt": "3(kx + 1) + 6x ≥ 0.5(32x - 7)\n\nIn the inequality above, k is a constant. If the inequality is true for every real number x, what is the value of k?",
+  "choices": [
+   "10/3",
+   "22/3",
+   "26/3",
+   "58/3"
+  ],
+  "correct_answer": "10/3",
+  "explanation": "Expand both sides: 3kx + 3 + 6x ≥ 16x - 3.5. Collect the x-terms on the left: (3k + 6 - 16)x ≥ -6.5, or (3k - 10)x ≥ -6.5. If 3k - 10 were positive, the inequality would fail for large negative x; if it were negative, it would fail for large positive x. So 3k - 10 = 0, which leaves 0 ≥ -6.5, true for every x. Therefore k = 10/3. Choice 22/3 comes from moving 6x to the right side as +6x (3k = 16 + 6). Choice 26/3 comes from not multiplying 32x by 0.5 (3k + 6 = 32). Choice 58/3 comes from multiplying by 2 instead of 0.5 (3k + 6 = 64).",
+  "solve": "return (0.5*32-6)/3;",
+  "distractor_solve": {
+   "22/3": "return (0.5*32+6)/3;",
+   "26/3": "return (32-6)/3;",
+   "58/3": "return (2*32-6)/3;"
+  }
+ },
+ {
+  "id": "SM27F-A11",
+  "domain": "Algebra",
+  "subskill": "Constant recovered from a stated solution, then a miscopied equation",
+  "difficulty": "medium",
+  "prompt": "3(x - 8) = 8x + c\n\nIn the equation above, c is a constant, and the solution of the equation is x = 20. Mei copied the equation with 8x written as 7x but kept the same value of c. What is the solution of the equation Mei wrote?",
+  "choices": [
+   "-124",
+   "-10",
+   "13",
+   "25"
+  ],
+  "correct_answer": "25",
+  "explanation": "First find c. Since x = 20 is the solution, 3(20 - 8) = 8(20) + c, so 36 = 160 + c and c = -124.\nMei's equation is 3(x - 8) = 7x - 124. Expanding gives 3x - 24 = 7x - 124. Subtracting 3x and adding 124 to both sides gives 100 = 4x, so x = 25.\n\nChoice -124 is the value of c, not the solution of Mei's equation.\nChoice 13 comes from a sign slip when finding c: writing 3(20 - 8) as 3(20) + 24 = 84 gives c = -76, and then 3x - 24 = 7x - 76 gives x = 13.\nChoice -10 comes from adding the x-terms instead of subtracting them: 3x + 7x = -124 + 24 gives 10x = -100.",
+  "solve": "const a=3,p=8,b=8,bm=7,s=20; const c=a*(s-p)-b*s; return (c+a*p)/(a-bm);",
+  "distractor_solve": {
+   "13": "const a=3,p=8,b=8,bm=7,s=20; const c=a*(s+p)-b*s; return (c+a*p)/(a-bm);",
+   "-124": "const a=3,p=8,b=8,s=20; return a*(s-p)-b*s;",
+   "-10": "const a=3,p=8,b=8,bm=7,s=20; const c=a*(s-p)-b*s; return (c+a*p)/(a+bm);"
+  }
+ },
+ {
+  "id": "SM27F-B07",
+  "domain": "Algebra",
+  "subskill": "Intercept of a line through a point found on another line",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l has equation 3x + 2y = 27. Line m has slope 2, and lines l and m intersect at a point whose x-coordinate is -5. What is the x-coordinate of the x-intercept of line m?",
+  "choices": [
+   "-15.5",
+   "-8",
+   "21",
+   "23.5"
+  ],
+  "correct_answer": "-15.5",
+  "explanation": "The intersection point lies on line l, so 3(-5) + 2y = 27, which gives 2y = 42 and y = 21. Line m passes through (-5, 21) with slope 2, so its equation is y - 21 = 2(x + 5), or y = 2x + 31. At the x-intercept y = 0, so 2x = -31 and x = -15.5. Choice 21 is the y-coordinate of the intersection point. Choice -8 comes from a sign error in 3(-5) + 2y = 27 that gives 2y = 12 and y = 6. Choice 23.5 uses the intersection point as (21, -5), with its coordinates swapped.",
+  "solve": "const k=(27-3*(-5))/2; return -5-k/2;",
+  "distractor_solve": {
+   "21": "const k=(27-3*(-5))/2; return k;",
+   "-8": "const k=(27+3*(-5))/2; return -5-k/2;",
+   "23.5": "const k=(27-3*(-5))/2; return k-(-5)/2;"
+  }
+ },
+ {
+  "id": "SM27F-B03",
+  "domain": "Algebra",
+  "subskill": "Line recovered from images under two translations",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, line l is translated 7 units to the right, and the resulting line passes through the point (-1, -1). Separately, line l is translated 4 units down, and the resulting line passes through the point (-4, -7). What is the y-coordinate of the y-intercept of line l?",
+  "choices": [
+   "-21",
+   "-17",
+   "-10",
+   "-5"
+  ],
+  "correct_answer": "-5",
+  "explanation": "A translation moves every point of line l by the same amount. The point (-1, -1) on the line shifted 7 units right came from the point (-1 - 7, -1) = (-8, -1) on line l. The point (-4, -7) on the line shifted 4 units down came from (-4, -7 + 4) = (-4, -3) on line l. The slope of l is (-3 - (-1)) / (-4 - (-8)) = -2/4 = -1/2. Using (-8, -1): -1 = (-1/2)(-8) + b, so -1 = 4 + b and b = -5. The y-intercept of line l is (0, -5), so the answer is -5. Choice -21 comes from undoing the downward translation in the wrong direction, using (-4, -11). Choice -17 uses the reciprocal slope, -2. Choice -10 is the x-coordinate of the x-intercept of line l, not the y-intercept.",
+  "solve": "const A=[-1-7,-1], B=[-4,-7+4]; const m=(B[1]-A[1])/(B[0]-A[0]); return A[1]-m*A[0];",
+  "distractor_solve": {
+   "-21": "const A=[-1-7,-1], B=[-4,-7-4]; const m=(B[1]-A[1])/(B[0]-A[0]); return A[1]-m*A[0];",
+   "-17": "const A=[-1-7,-1], B=[-4,-7+4]; const m=(B[0]-A[0])/(B[1]-A[1]); return A[1]-m*A[0];",
+   "-10": "const A=[-1-7,-1], B=[-4,-7+4]; const m=(B[1]-A[1])/(B[0]-A[0]); const b=A[1]-m*A[0]; return -b/m;"
+  }
+ },
+ {
+  "id": "SM27F-D09",
+  "domain": "Algebra",
+  "subskill": "Inequality with an unknown-sign coefficient in a system",
+  "difficulty": "hard",
+  "prompt": "a(x - 3) > 5x - 15\n-14 < 7 - 3x ≤ 19\n\nIn the first inequality above, a is a constant, and x = 0 is a solution to the first inequality. What is the sum of all integers x that satisfy both inequalities?",
+  "choices": [
+   "-33",
+   "-7",
+   "-3",
+   "15"
+  ],
+  "correct_answer": "-7",
+  "explanation": "The first inequality can be written as a(x - 3) > 5(x - 3), or (a - 5)(x - 3) > 0. Since x = 0 is a solution, (a - 5)(-3) > 0, so a - 5 < 0, that is, a < 5. Dividing (a - 5)(x - 3) > 0 by the negative number a - 5 reverses the inequality: x - 3 < 0, so x < 3. For the second inequality, subtract 7 from each part: -21 < -3x ≤ 12. Dividing by -3 reverses both inequalities: 7 > x ≥ -4. Both hold when -4 ≤ x < 3, so the integers are -4, -3, -2, -1, 0, 1, 2, whose sum is -7. Choice 15 comes from dividing by a - 5 as if it were positive, which gives x > 3 and the integers 4, 5, 6; choice -33 comes from treating the 7 in the second inequality as -7; choice -3 leaves out the endpoint -4, which is included because of the ≤ sign.",
+  "solve": "const f=(lo,loInc,hi,hiInc)=>{let s=0;for(let x=-100;x<=100;x++){if((loInc?x>=lo:x>lo)&&(hiInc?x<=hi:x<hi))s+=x}return s};const a=0; /* any a<5 */ const L=(7-19)/3, U=(7+14)/3; return f(L,true,Math.min(3,U),false);",
+  "distractor_solve": {
+   "15": "const f=(lo,loInc,hi,hiInc)=>{let s=0;for(let x=-100;x<=100;x++){if((loInc?x>=lo:x>lo)&&(hiInc?x<=hi:x<hi))s+=x}return s};const L=(7-19)/3, U=(7+14)/3; return f(Math.max(3,L),false,U,false);",
+   "-33": "const f=(lo,loInc,hi,hiInc)=>{let s=0;for(let x=-100;x<=100;x++){if((loInc?x>=lo:x>lo)&&(hiInc?x<=hi:x<hi))s+=x}return s};const L=(-7-19)/3, U=(-7+14)/3; return f(L,true,Math.min(3,U),false);",
+   "-3": "const f=(lo,loInc,hi,hiInc)=>{let s=0;for(let x=-100;x<=100;x++){if((loInc?x>=lo:x>lo)&&(hiInc?x<=hi:x<hi))s+=x}return s};const L=(7-19)/3, U=(7+14)/3; return f(L,false,Math.min(3,U),false);"
+  }
+ },
+ {
+  "id": "SM27F-A06",
+  "domain": "Algebra",
+  "subskill": "Common value of both sides at the solution",
+  "difficulty": "medium",
+  "prompt": "3(4x - 2) - 8 = -2 - 4(x - 9)\n\nWhen x is the solution to the equation above, both sides of the equation are equal to the same number. What is that number?",
+  "choices": [
+   "-32",
+   "3",
+   "10",
+   "22"
+  ],
+  "correct_answer": "22",
+  "explanation": "Expand both sides. The left side is 12x - 6 - 8 = 12x - 14. The right side is -2 - 4x + 36 = 34 - 4x.\nSo 12x - 14 = 34 - 4x, which gives 16x = 48 and x = 3.\nAt x = 3 the left side is 3(12 - 2) - 8 = 30 - 8 = 22, and the right side is -2 - 4(3 - 9) = -2 + 24 = 22. The common value is 22.\n\nChoice 3 is the solution x itself, not the value of each side.\nChoice 10 comes from a sign error on the - 8, writing 12x - 6 + 8 = 12x + 2 on the left. Then 16x = 32, x = 2, and the left side becomes 3(6) - 8 = 10.\nChoice -32 comes from distributing the - 4 incorrectly on the right, writing -4x - 36 instead of -4x + 36. Then 12x - 14 = -38 - 4x, so x = -1.5 and the left side is 3(-8) - 8 = -32.",
+  "solve": "const p=3,q=4,r=2,t=8,u=-2,v=4,w=9; const x=(u+v*w+p*r+t)/(p*q+v); return p*(q*x-r)-t;",
+  "distractor_solve": {
+   "3": "const p=3,q=4,r=2,t=8,u=-2,v=4,w=9; return (u+v*w+p*r+t)/(p*q+v);",
+   "10": "const p=3,q=4,r=2,t=8,u=-2,v=4,w=9; const x=(u+v*w+p*r-t)/(p*q+v); return p*(q*x-r)-t;",
+   "-32": "const p=3,q=4,r=2,t=8,u=-2,v=4,w=9; const x=(u-v*w+p*r+t)/(p*q+v); return p*(q*x-r)-t;"
+  }
+ },
+ {
+  "id": "SM27F-A10",
+  "domain": "Algebra",
+  "subskill": "Ratio of two changing amounts, then their combined total",
+  "difficulty": "hard",
+  "prompt": "Tank P contains 300 liters of water and is drained at a constant rate of 10 liters per minute. At the same moment, tank Q, which contains 25 liters of water, begins to be filled at a constant rate of 5 liters per minute. At the moment when tank P contains exactly 3 times as much water as tank Q, how many liters of water are in the two tanks combined?",
+  "choices": [
+   "190",
+   "200",
+   "250",
+   "280"
+  ],
+  "correct_answer": "280",
+  "explanation": "After t minutes, tank P contains 300 - 10t liters and tank Q contains 25 + 5t liters. Tank P contains 3 times as much as tank Q when 300 - 10t = 3(25 + 5t).\nThen 300 - 10t = 75 + 15t, so 225 = 25t and t = 9.\nAt t = 9, tank P contains 300 - 90 = 210 liters and tank Q contains 25 + 45 = 70 liters, and 210 = 3(70). Combined, the tanks contain 210 + 70 = 280 liters.\nAnother way to finish: the combined amount starts at 325 liters and falls by 10 - 5 = 5 liters each minute, so after 9 minutes it is 325 - 45 = 280 liters.\n\nChoice 200 comes from placing the 3 on the wrong tank, 3(300 - 10t) = 25 + 5t, which gives t = 25 and amounts of 50 and 150 liters.\nChoice 250 comes from multiplying only the 25 by 3, writing 300 - 10t = 75 + 5t, which gives t = 15 and a combined amount of 325 - 75 = 250 liters.\nChoice 190 comes from finding t = 9 and then treating both rates as losses from the total, 325 - (10 + 5)(9) = 190.",
+  "solve": "const P=300,rp=10,Q=25,rq=5,m=3; const t=(P-m*Q)/(rp+m*rq); return (P-rp*t)+(Q+rq*t);",
+  "distractor_solve": {
+   "190": "const P=300,rp=10,Q=25,rq=5,m=3; const t=(P-m*Q)/(rp+m*rq); return (P+Q)-(rp+rq)*t;",
+   "200": "const P=300,rp=10,Q=25,rq=5,m=3; const t=(m*P-Q)/(m*rp+rq); return (P-rp*t)+(Q+rq*t);",
+   "250": "const P=300,rp=10,Q=25,rq=5,m=3; const t=(P-m*Q)/(rp+rq); return (P-rp*t)+(Q+rq*t);"
+  }
+ },
+ {
+  "id": "SM27F-A03",
+  "domain": "Algebra",
+  "subskill": "Fraction equation from a stated difference of expressions",
+  "difficulty": "medium",
+  "prompt": "For a certain value of x, the value of (3x - 3)/5 is 4 more than the value of (x - 2)/2. For this value of x, what is the value of (x - 2)/2?",
+  "choices": [
+   "-23",
+   "-1",
+   "17",
+   "36"
+  ],
+  "correct_answer": "17",
+  "explanation": "\"(3x - 3)/5 is 4 more than (x - 2)/2\" means (3x - 3)/5 = (x - 2)/2 + 4.\nMultiply every term by 10: 2(3x - 3) = 5(x - 2) + 40, so 6x - 6 = 5x - 10 + 40 = 5x + 30.\nThen x = 36, and (x - 2)/2 = 34/2 = 17.\n(Check: (3(36) - 3)/5 = 105/5 = 21, which is 4 more than 17.)\n\nChoice 36 is the value of x, not the value of (x - 2)/2.\nChoice -1 comes from multiplying the fractions by 10 but not the 4: 6x - 6 = 5x - 10 + 4 gives x = 0, and (0 - 2)/2 = -1.\nChoice -23 comes from reversing the relationship, writing (3x - 3)/5 + 4 = (x - 2)/2: then 6x - 6 + 40 = 5x - 10, so x = -44 and (x - 2)/2 = -23.",
+  "solve": "const p=3,q=-3,m=5,r=-2,n=2,d=4; const L=10; const x=((L/n)*r+L*d-(L/m)*q)/((L/m)*p-(L/n)); return (x+r)/n;",
+  "distractor_solve": {
+   "36": "const p=3,q=-3,m=5,r=-2,n=2,d=4; const L=10; return ((L/n)*r+L*d-(L/m)*q)/((L/m)*p-(L/n));",
+   "-1": "const p=3,q=-3,m=5,r=-2,n=2,d=4; const L=10; const x=((L/n)*r+d-(L/m)*q)/((L/m)*p-(L/n)); return (x+r)/n;",
+   "-23": "const p=3,q=-3,m=5,r=-2,n=2,d=4; const L=10; const x=((L/n)*r-L*d-(L/m)*q)/((L/m)*p-(L/n)); return (x+r)/n;"
+  }
+ },
+ {
+  "id": "SM27F-C06",
+  "domain": "Algebra",
+  "subskill": "System in the grouped quantities x + y and x - y; product xy",
+  "difficulty": "medium",
+  "prompt": "4(x + y) + 3(x - y) = 23\n5(x + y) - 2(x - y) = -23\n\nThe ordered pair (x, y) satisfies both equations shown. What is the value of xy?",
+  "choices": [
+   "-20",
+   "-1",
+   "6",
+   "9"
+  ],
+  "correct_answer": "-20",
+  "explanation": "Treat x + y and x - y as the two unknowns. Multiply the first equation by 2 and the second by 3: 8(x + y) + 6(x - y) = 46 and 15(x + y) - 6(x - y) = -69. Adding gives 23(x + y) = -23, so x + y = -1. Then 4(-1) + 3(x - y) = 23, so x - y = 9. Adding x + y = -1 and x - y = 9 gives 2x = 8, so x = 4 and y = -5. Therefore xy = 4(-5) = -20. Choice -1 is the value of x + y and choice 9 is the value of x - y; both stop before x and y are found. Choice 6 comes from dropping the negative sign on -23 in the second equation, which gives x + y = 5, x - y = 1, so x = 3, y = 2.",
+  "solve": "const D=4*(-2)-3*5; const u=(23*(-2)-3*(-23))/D; const v=(4*(-23)-23*5)/D; return ((u+v)/2)*((u-v)/2);",
+  "distractor_solve": {
+   "6": "const D=4*(-2)-3*5; const u=(23*(-2)-3*23)/D; const v=(4*23-23*5)/D; return ((u+v)/2)*((u-v)/2);",
+   "9": "const D=4*(-2)-3*5; return (4*(-23)-23*5)/D;",
+   "-1": "const D=4*(-2)-3*5; return (23*(-2)-3*(-23))/D;"
+  }
+ },
+ {
+  "id": "SM27F-D13",
+  "domain": "Algebra",
+  "subskill": "Linear inequality in context with complementary times",
+  "difficulty": "medium",
+  "prompt": "During a 4-hour trip, Mara cycles at an average speed of 18 kilometers per hour for part of the time and walks at an average speed of 4 kilometers per hour for the rest of the time. She wants to cover a total distance of at least 53 kilometers. What is the least number of whole minutes she must spend cycling?",
+  "choices": [
+   "124",
+   "159",
+   "189",
+   "265"
+  ],
+  "correct_answer": "159",
+  "explanation": "Let t be the number of hours Mara cycles. Then she walks for 4 - t hours, and her total distance is 18t + 4(4 - t) = 14t + 16 kilometers. The condition 14t + 16 ≥ 53 gives 14t ≥ 37, so t ≥ 37/14, which is about 2.6429 hours, or about 158.6 minutes. The least whole number of minutes is 159. Choice 124 uses 4 hours of walking in addition to the cycling time (18t + 16 ≥ 53); choice 189 subtracts the walking distance instead of adding it (18t - 4(4 - t) ≥ 53); choice 265 converts hours to minutes by multiplying by 100 instead of 60.",
+  "solve": "const t=(53-4*4)/(18-4); return Math.ceil(t*60-1e-9);",
+  "distractor_solve": {
+   "124": "const t=(53-4*4)/18; return Math.ceil(t*60-1e-9);",
+   "189": "const t=(53+4*4)/(18+4); return Math.ceil(t*60-1e-9);",
+   "265": "const t=(53-4*4)/(18-4); return Math.ceil(t*100-1e-9);"
+  }
+ },
+ {
+  "id": "SM27F-C01",
+  "domain": "Algebra",
+  "subskill": "Wage and deduction from two weeks across an overtime threshold",
+  "difficulty": "hard",
+  "prompt": "Mara is paid a fixed hourly wage for each of the first 40 hours she works in a week and 1.5 times that hourly wage for each hour she works beyond 40 in that week. Each week, the same fixed amount is deducted from her pay for a parking permit. In a week in which she worked 30 hours, her pay after the deduction was $384. In a week in which she worked 50 hours, her pay after the deduction was $784. What is Mara's pay, in dollars, after the deduction for a week in which she works 56 hours?",
+  "choices": [
+   "928",
+   "1064",
+   "1120",
+   "1248"
+  ],
+  "correct_answer": "928",
+  "explanation": "Let w be the hourly wage and d the weekly deduction. In the 30-hour week every hour is paid at w, so 30w - d = 384. In the 50-hour week, 40 hours are paid at w and the other 10 hours at 1.5w, so the pay before the deduction is 40w + 15w = 55w, and 55w - d = 784. Subtracting the first equation from the second gives 25w = 400, so w = 16, and then d = 30(16) - 384 = 96. In a 56-hour week, 40 hours are paid at 16 dollars and 16 hours at 1.5(16) = 24 dollars, for 640 + 384 = 1,024 dollars before the deduction, so the pay after the deduction is 1,024 - 96 = 928 dollars. Choice 1064 comes from treating the 50-hour week as 50 hours at the ordinary wage (which gives w = 20 and d = 216) and then applying the overtime rule to the 56-hour week. Choice 1120 adds the deduction instead of subtracting it. Choice 1248 pays all 56 hours at 1.5 times the wage instead of only the hours beyond 40.",
+  "solve": "const w=(784-384)/((40+1.5*10)-30); const d=30*w-384; return 40*w+1.5*w*16-d;",
+  "distractor_solve": {
+   "1064": "const w=(784-384)/(50-30); const d=30*w-384; return 40*w+1.5*w*16-d;",
+   "1120": "const w=(784-384)/((40+1.5*10)-30); const d=30*w-384; return 40*w+1.5*w*16+d;",
+   "1248": "const w=(784-384)/((40+1.5*10)-30); const d=30*w-384; return 1.5*w*56-d;"
+  }
+ },
+ {
+  "id": "SM27F-B10",
+  "domain": "Algebra",
+  "subskill": "Horizontal distance from a point to a line",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l passes through the points (-4, -4) and (1, -2). Point P has coordinates (1, -1). If point P is moved horizontally until it lies on line l, how many units does point P move?",
+  "choices": [
+   "2.5",
+   "3.8",
+   "10.5",
+   "12.5"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The slope of line l is (-2 - (-4))/(1 - (-4)) = 2/5 = 0.4, and -2 = 0.4(1) + b gives b = -2.4, so line l is y = 0.4x - 2.4. Moving horizontally keeps the y-coordinate at -1, so -1 = 0.4x - 2.4, 0.4x = 1.4, and x = 3.5. Point P moves from x = 1 to x = 3.5, a distance of 2.5 units. Choice 3.8 uses slope 5/2 instead of 2/5. Choice 12.5 uses slope -0.4 instead of 0.4. Choice 10.5 finds the y-intercept from (-4, -4) as -4 + 0.4(-4) = -5.6 instead of -4 - 0.4(-4) = -2.4.",
+  "solve": "const s=(-2+4)/(1+4); const x=-4+(-1+4)/s; return Math.abs(x-1);",
+  "distractor_solve": {
+   "3.8": "const s=(1+4)/(-2+4); const x=-4+(-1+4)/s; return Math.round(Math.abs(x-1)*10)/10;",
+   "12.5": "const s=-(-2+4)/(1+4); const x=-4+(-1+4)/s; return Math.abs(x-1);",
+   "10.5": "const s=(-2+4)/(1+4); const b=-4+s*(-4); const x=(-1-b)/s; return Math.round(Math.abs(x-1)*10)/10;"
+  }
+ },
+ {
+  "id": "SM27F-A02",
+  "domain": "Algebra",
+  "subskill": "No-solution parameter reused in a second equation",
+  "difficulty": "medium",
+  "prompt": "k(2x - 3) + 2x = 14x + 7\nk(2x - 3) + 2x = 17x - 33\n\nThe number k is chosen so that no value of x satisfies the first equation. Using that same number k, let x be the number that satisfies the second equation. Find x + k.",
+  "choices": [
+   "11",
+   "16",
+   "19",
+   "23"
+  ],
+  "correct_answer": "11",
+  "explanation": "Expand the first equation: 2kx - 3k + 2x = 14x + 7, so (2k + 2)x - 3k = 14x + 7. A linear equation has no solution when the x-coefficients on the two sides are equal but the constants are not. So 2k + 2 = 14, which gives k = 6 (and then -3k = -18, which is not 7, as required).\nWith k = 6, the second equation is 6(2x - 3) + 2x = 17x - 33, so 14x - 18 = 17x - 33. Then 15 = 3x, so x = 5.\nTherefore x + k = 5 + 6 = 11.\n\nChoice 19 comes from leaving out the + 2x when finding k (2k = 14, so k = 7), which gives 16x - 21 = 17x - 33, x = 12, and x + k = 19.\nChoice 16 comes from multiplying only the 2x by k, writing 12x - 3 + 2x = 17x - 33, which gives x = 10 and x + k = 16.\nChoice 23 comes from a sign error when moving the - 18 across in 14x - 18 = 17x - 33: writing -3x = -33 - 18 = -51 gives x = 17 and x + k = 23.",
+  "solve": "const p=2,q=3,r=2,s=14,u=17,w=-33; const k=(s-r)/p; const x=(w+k*q)/(k*p+r-u); return x+k;",
+  "distractor_solve": {
+   "16": "const p=2,q=3,r=2,s=14,u=17,w=-33; const k=(s-r)/p; const x=(w+q)/(k*p+r-u); return x+k;",
+   "19": "const p=2,q=3,r=2,s=14,u=17,w=-33; const k=s/p; const x=(w+k*q)/(k*p+r-u); return x+k;",
+   "23": "const p=2,q=3,r=2,s=14,u=17,w=-33; const k=(s-r)/p; const x=(w-k*q)/(k*p+r-u); return x+k;"
+  }
+ },
+ {
+  "id": "SM27F-A13",
+  "domain": "Algebra",
+  "subskill": "Penalty scoring with a blank ratio, then a counterfactual score",
+  "difficulty": "hard",
+  "prompt": "A 60-question contest awards 3 points for each correct answer, subtracts 2 points for each incorrect answer, and gives 0 points for each question left blank. Rosa left 3 times as many questions blank as she answered incorrectly, and her score was 54 points. If Rosa had instead left blank every question she answered incorrectly, and nothing else had changed, what would her score have been?",
+  "choices": [
+   "63",
+   "72",
+   "96",
+   "99"
+  ],
+  "correct_answer": "72",
+  "explanation": "Let w be the number of questions Rosa answered incorrectly. She left 3w questions blank, so she answered 60 - w - 3w = 60 - 4w questions correctly. Her score gives the equation 3(60 - 4w) - 2w = 54, so 180 - 14w = 54, 14w = 126, and w = 9. She answered 60 - 4(9) = 24 questions correctly.\nIf the 9 incorrect answers had been left blank, they would score 0 instead of -2 each, and the 24 correct answers would still earn 3 points each, so her score would have been 3(24) = 72. (Equivalently, 54 + 2(9) = 72.)\n\nChoice 63 comes from adding back only 1 point for each incorrect answer, 54 + 9, instead of the 2 points each one cost.\nChoice 96 comes from reversing the ratio, taking the number of incorrect answers to be 3 times the number of blanks: then 3(60 - 4b) - 2(3b) = 54 gives b = 7, 32 correct answers, and 3(32) = 96.\nChoice 99 comes from scoring the 9 incorrect answers as if they had been correct, 3(24 + 9) = 99, instead of as blanks.",
+  "solve": "const N=60,a=3,d=2,r=3,S=54; const w=(a*N-S)/(a*(r+1)+d); const c=N-(r+1)*w; return a*c;",
+  "distractor_solve": {
+   "63": "const N=60,a=3,d=2,r=3,S=54; const w=(a*N-S)/(a*(r+1)+d); return S+w;",
+   "96": "const N=60,a=3,d=2,r=3,S=54; const b=(a*N-S)/(a*(r+1)+d*r); return a*(N-(r+1)*b);",
+   "99": "const N=60,a=3,d=2,r=3,S=54; const w=(a*N-S)/(a*(r+1)+d); const c=N-(r+1)*w; return a*(c+w);"
+  }
+ },
+ {
+  "id": "SM27F-A08",
+  "domain": "Algebra",
+  "subskill": "Change in the solution when a constant on both sides changes",
+  "difficulty": "medium",
+  "prompt": "3(x - k) = 5x - 11k\n\nIn the equation above, k is a constant. The value of k is increased by 6, and the equation is solved again. What is the new solution minus the original solution?",
+  "choices": [
+   "-42",
+   "-6",
+   "24",
+   "33"
+  ],
+  "correct_answer": "24",
+  "explanation": "Solve for x in terms of k. Expanding gives 3x - 3k = 5x - 11k, so -2x = -8k and x = 4k.\nThe solution is always 4 times k, so when k increases by 6, the solution increases by 4(6) = 24.\nThe new solution minus the original solution is 24.\n\nChoice 33 comes from leaving out the - 3k after distributing: 3x = 5x - 11k gives -2x = -11k, so x = 5.5k and the change is 5.5(6) = 33.\nChoice -42 comes from a sign error on the 11k when collecting terms, writing -2x = 3k + 11k = 14k, so x = -7k and the change is -7(6) = -42.\nChoice -6 comes from a sign error on the 5x when collecting terms, writing 8x = -8k, so x = -k and the change is -6.",
+  "solve": "const a=3,b=5,c=-11,dk=6; return (a+c)/(a-b)*dk;",
+  "distractor_solve": {
+   "33": "const a=3,b=5,c=-11,dk=6; return c/(a-b)*dk;",
+   "-42": "const a=3,b=5,c=-11,dk=6; return (a-c)/(a-b)*dk;",
+   "-6": "const a=3,b=5,c=-11,dk=6; return (a+c)/(a+b)*dk;"
+  }
+ },
+ {
+  "id": "SM27F-C02",
+  "domain": "Algebra",
+  "subskill": "Two solutions force a dependent system; constant from a point",
+  "difficulty": "hard",
+  "prompt": "px - 8y = 36\n9x + qy = c\n\nThe letters p, q, and c stand for fixed numbers. At least two different ordered pairs (x, y) make both equations true, and (1, -3) is one of them. Find c.",
+  "choices": [
+   "5.4",
+   "12",
+   "27",
+   "48"
+  ],
+  "correct_answer": "27",
+  "explanation": "Two distinct lines meet in at most one point, so if two different pairs satisfy both equations, the equations describe the same line and the second is a constant multiple of the first. The pair (1, -3) satisfies the first equation: p(1) - 8(-3) = 36, so p + 24 = 36 and p = 12. The first equation is 12x - 8y = 36. To turn 12x into 9x, multiply by 9/12 = 3/4: 9x - 6y = 27. So q = -6 and c = 27. Choice 48 uses the factor 12/9 instead of 9/12. Choice 5.4 comes from a sign slip when substituting the point (p - 24 = 36, so p = 60). Choice 12 is the value of p, not c.",
+  "solve": "const p = 36 + 8*(-3); return 36 * 9 / p;",
+  "distractor_solve": {
+   "12": "return 36 + 8*(-3);",
+   "48": "const p = 36 + 8*(-3); return 36 * p / 9;",
+   "5.4": "const p = 36 + 24; return 36 * 9 / p;"
+  }
+ },
+ {
+  "id": "SM27F-C08",
+  "domain": "Algebra",
+  "subskill": "Line from a table meets a given line; product of coordinates",
+  "difficulty": "medium",
+  "prompt": "x | y\n-3 | 13\n3 | 1\n\nThe table shows two ordered pairs (x, y) that satisfy a linear equation L. In the xy-plane, the graph of L and the graph of x - y = -13 intersect at the point (a, b). What is the value of ab?",
+  "choices": [
+   "-22",
+   "-12",
+   "11",
+   "30"
+  ],
+  "correct_answer": "-22",
+  "explanation": "The slope of L is (1 - 13)/(3 - (-3)) = -12/6 = -2. Using the point (3, 1), 1 = -2(3) + c gives c = 7, so L is y = -2x + 7. Substitute into x - y = -13: x - (-2x + 7) = -13, so 3x - 7 = -13, 3x = -6, and x = -2. Then y = -2(-2) + 7 = 11. The intersection is (-2, 11), so ab = -22. Choice 11 is the value of b alone. Choice -12 comes from using the reciprocal slope -1/2, which gives the point (-1, 12). Choice 30 comes from a sign slip in finding the intercept from (-3, 13) (writing 13 + (-2)(-3) = 19 instead of 13 - 6 = 7), which gives the point (2, 15).",
+  "solve": "const m=(1-13)/(3-(-3)); const c=1-m*3; const x=(-13+c)/(1-m); const y=m*x+c; return x*y;",
+  "distractor_solve": {
+   "11": "const m=(1-13)/(3-(-3)); const c=1-m*3; const x=(-13+c)/(1-m); return m*x+c;",
+   "30": "const m=(1-13)/(3-(-3)); const c=13+m*(-3); const x=(-13+c)/(1-m); const y=m*x+c; return x*y;",
+   "-12": "const m=(3-(-3))/(1-13); const c=13-m*(-3); const x=(-13+c)/(1-m); const y=m*x+c; return x*y;"
+  }
+ },
+ {
+  "id": "SM27F-B12",
+  "domain": "Algebra",
+  "subskill": "Point on the reflection of a line across the y-axis",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l passes through the points (-6, 5) and (-5, 7). Line m is the reflection of line l across the y-axis. Line m passes through the point (4, t), where t is a constant. What is the value of t?",
+  "choices": [
+   "-25",
+   "-11",
+   "6",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "The slope of line l is (7 - 5)/(-5 - (-6)) = 2, and 5 = 2(-6) + b gives b = 17, so line l is y = 2x + 17. Reflecting across the y-axis replaces x with -x, so line m is y = 2(-x) + 17 = -2x + 17. At x = 4, t = -2(4) + 17 = 9. Choice -25 reflects line l across the x-axis instead, y = -2x - 17. Choice -11 changes the slope to -2 but keeps line l's point (-5, 7) instead of reflecting it to (5, 7). Choice 6 uses slope 1/2 for line l (run over rise) before reflecting.",
+  "solve": "const s=(7-5)/(-5+6); const b=5-s*(-6); return -s*4+b;",
+  "distractor_solve": {
+   "6": "const s=(-5+6)/(7-5); return 5+(-s)*(4-6);",
+   "-25": "const s=(7-5)/(-5+6); const b=5-s*(-6); return -(s*4+b);",
+   "-11": "const s=(7-5)/(-5+6); return 7+(-s)*(4-(-5));"
+  }
+ },
+ {
+  "id": "SM27F-B08",
+  "domain": "Algebra",
+  "subskill": "Intercept of a line through two points sharing a parameter",
+  "difficulty": "medium",
+  "prompt": "A line in the xy-plane has slope 3. The line contains the point (k, 5) and the point (-3, k), where k is a constant. At what y-coordinate does the line cross the y-axis?",
+  "choices": [
+   "-4",
+   "-1",
+   "8",
+   "26"
+  ],
+  "correct_answer": "8",
+  "explanation": "The slope through (k, 5) and (-3, k) is (k - 5)/(-3 - k). Setting this equal to 3 gives k - 5 = -9 - 3k, so 4k = -4 and k = -1. The line passes through (-1, 5) with slope 3, so 5 = 3(-1) + b and b = 8. Choice -1 is the value of k, not the intercept. Choice -4 comes from writing the slope as run over rise, (-3 - k)/(k - 5) = 3, which gives k = 3. Choice 26 comes from subtracting the x-coordinates in the opposite order from the y-coordinates, (k - 5)/(k - (-3)) = 3, which gives k = -7.",
+  "solve": "const k=(5+3*(-3))/(1+3); return 5-3*k;",
+  "distractor_solve": {
+   "26": "const k=(5-3*(-3))/(1-3); return 5-3*k;",
+   "-1": "const k=(5+3*(-3))/(1+3); return k;",
+   "-4": "const k=(-3+3*5)/(1+3); return 5-3*k;"
+  }
+ },
+ {
+  "id": "SM27F-B13",
+  "domain": "Algebra",
+  "subskill": "Evaluate a linear function from a rate statement and its zero",
+  "difficulty": "medium",
+  "prompt": "For the linear function f, each time x increases by 4, the value of f(x) increases by 6. In the xy-plane, the graph of y = f(x) crosses the x-axis at the point (-7, 0). What is the value of f(8)?",
+  "choices": [
+   "1.5",
+   "5",
+   "10",
+   "22.5"
+  ],
+  "correct_answer": "22.5",
+  "explanation": "The slope of the graph is 6/4 = 1.5. Because the graph passes through (-7, 0), f(x) = 1.5(x - (-7)) = 1.5(x + 7). So f(8) = 1.5(15) = 22.5. Choice 10 uses the slope 4/6, the rate turned upside down. Choice 5 treats -7 as the y-intercept, f(x) = 1.5x - 7. Choice 1.5 uses the zero as x = 7 instead of x = -7, f(x) = 1.5(x - 7).",
+  "solve": "const s=6/4; return s*(8-(-7));",
+  "distractor_solve": {
+   "5": "const s=6/4; return s*8+(-7);",
+   "10": "const s=4/6; return s*(8-(-7));",
+   "1.5": "const s=6/4; return s*(8-7);"
+  }
+ },
+ {
+  "id": "SM27F-B06",
+  "domain": "Algebra",
+  "subskill": "Time to a target level from two timed readings",
+  "difficulty": "medium",
+  "prompt": "While a generator runs, the amount of fuel in its tank decreases at a constant rate. Seven minutes after the generator is started, the tank holds 72 liters of fuel, and 28 minutes after it is started, the tank holds 58 liters. How many minutes after the 28-minute reading will the tank hold 42 liters of fuel?",
+  "choices": [
+   "24",
+   "32",
+   "60",
+   "63"
+  ],
+  "correct_answer": "24",
+  "explanation": "Between the two readings, 28 - 7 = 21 minutes pass and the fuel falls 72 - 58 = 14 liters, so the fuel decreases at 14/21 = 2/3 liter per minute. From 58 liters to 42 liters is a decrease of 16 liters, which takes 16 / (2/3) = 24 minutes. Choice 60 treats the 72-liter reading as the amount at the moment the generator started, so it finds a rate of 14/28 = 1/2 liter per minute and then counts the time from the start for the fuel to fall from 72 to 42 liters: 30 / (1/2) = 60. Choice 32 divides the 14-liter decrease by 28 minutes, the time on the clock, instead of the 21 minutes between readings. Choice 63 treats 42 liters as the amount the fuel must fall rather than the amount left in the tank.",
+  "solve": "const r=(72-58)/(28-7); return (58-42)/r;",
+  "distractor_solve": {
+   "32": "const r=(72-58)/28; return (58-42)/r;",
+   "60": "const r=(72-58)/28; return (72-42)/r;",
+   "63": "const r=(72-58)/(28-7); return 42/r;"
+  }
+ },
+ {
+  "id": "SM27F-C11",
+  "domain": "Algebra",
+  "subskill": "Parameter fixed by a condition on the solution's coordinates",
+  "difficulty": "medium",
+  "prompt": "5x - y = 9\nkx - 6y = 78\n\nThe letter k stands for a fixed number. Exactly one ordered pair (x, y) makes both equations true, and for that pair, y is equal to twice x. Find k.",
+  "choices": [
+   "14",
+   "16",
+   "38",
+   "42"
+  ],
+  "correct_answer": "38",
+  "explanation": "Because y = 2x for the pair that satisfies both equations, substitute 2x for y in the first equation: 5x - 2x = 9, so 3x = 9 and x = 3. Then y = 2(3) = 6. The pair (3, 6) must also satisfy the second equation: k(3) - 6(6) = 78, so 3k - 36 = 78, 3k = 114, and k = 38. Choice 42 comes from reversing the condition (taking x = 2y, which gives y = 1 and x = 2, then 2k - 6 = 78). Choice 14 comes from a sign error when moving the y-term: writing 3k = 78 - 36 instead of 3k = 78 + 36. Choice 16 comes from substituting the coordinates into the wrong places in the second equation, multiplying k by 6 and 6 by 3: 6k - 18 = 78.",
+  "solve": "const x=9/(5-2); const y=2*x; return (78+6*y)/x;",
+  "distractor_solve": {
+   "14": "const x=9/(5-2); const y=2*x; return (78-6*y)/x;",
+   "16": "const x=9/(5-2); const y=2*x; return (78+6*x)/y;",
+   "42": "const y=9/(5*2-1); const x=2*y; return (78+6*y)/x;"
+  }
+ },
+ {
+  "id": "SM27F-D07",
+  "domain": "Algebra",
+  "subskill": "Equivalent linear inequalities in two variables",
+  "difficulty": "medium",
+  "prompt": "4x - 5y ≤ 22\nax + 15y ≥ b\n\nIn the inequalities above, a and b are constants. In the xy-plane, the graphs of the two inequalities are exactly the same region. What is the value of a - b?",
+  "choices": [
+   "-78",
+   "-34",
+   "6",
+   "54"
+  ],
+  "correct_answer": "54",
+  "explanation": "Two linear inequalities in x and y have the same graph exactly when one can be obtained from the other by multiplying both sides by the same nonzero number. To turn -5y into 15y, multiply 4x - 5y ≤ 22 by -3. Multiplying by a negative number reverses the inequality symbol, which gives -12x + 15y ≥ -66, and this matches ax + 15y ≥ b with its ≥ symbol. So a = -12 and b = -66, and a - b = -12 - (-66) = 54. Choice 6 multiplies by -1/3 (dividing 15 by -5 the wrong way round); choice -34 multiplies only the left side by -3 and keeps 22 as the constant; choice -78 is the value of a + b rather than a - b.",
+  "solve": "const p=4,q=-5,r=22,s=15; const m=s/q; return m*p - m*r;",
+  "distractor_solve": {
+   "6": "const p=4,q=-5,r=22,s=15; const m=q/s; return Math.round(m*p - m*r);",
+   "-34": "const p=4,q=-5,r=22,s=15; const m=s/q; return m*p - r;",
+   "-78": "const p=4,q=-5,r=22,s=15; const m=s/q; return m*p + m*r;"
+  }
+ }
+]

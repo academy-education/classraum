@@ -1,0 +1,527 @@
+[
+ {
+  "id": "SM27F-B11",
+  "domain": "Algebra",
+  "subskill": "Recover a linear function from a point on f(x) + 4x",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of a linear function f contains the point (-4, -11). When 4x is added to each output of f, the new output at x = 4 is 1. What is the y-coordinate of the point where the graph of f crosses the y-axis?",
+  "choices": [
+   "-15",
+   "-13",
+   "-7",
+   "3"
+  ],
+  "correct_answer": "-13",
+  "explanation": "The new output at x = 4 is f(4) + 4(4) = 1, so f(4) = 1 - 16 = -15. The slope of f is (-15 - (-11))/(4 - (-4)) = -4/8 = -1/2. Then the y-intercept is f(0) = f(-4) + (-1/2)(0 - (-4)) = -11 - 2 = -13. Choice -15 is f(4), not f(0). Choice -7 subtracts 4 instead of 4(4) = 16 when finding f(4), which gives f(4) = -3. Choice 3 adds 16 instead of subtracting it, which gives f(4) = 17.",
+  "solve": "const f4=1-4*4; const s=(f4-(-11))/(4-(-4)); return -11+s*(0-(-4));",
+  "distractor_solve": {
+   "3": "const f4=1+4*4; const s=(f4-(-11))/(4-(-4)); return -11+s*(0-(-4));",
+   "-15": "return 1-4*4;",
+   "-7": "const f4=1-4; const s=(f4-(-11))/(4-(-4)); return -11+s*(0-(-4));"
+  }
+ },
+ {
+  "id": "SM27F-C13",
+  "domain": "Algebra",
+  "subskill": "Two hourly rates from two weeks; equal-pay hours conversion",
+  "difficulty": "medium",
+  "prompt": "Rina has two part-time jobs, tutoring and grading. Each job pays its own fixed amount per hour. In one week, she tutored for 10 hours and graded for 8 hours and earned a total of $280. In another week, she tutored for 8 hours and graded for 9 hours and earned a total of $276. The amount Rina earns for 30 hours of tutoring is equal to the amount she earns for how many hours of grading?",
+  "choices": [
+   "4",
+   "18",
+   "24",
+   "50"
+  ],
+  "correct_answer": "18",
+  "explanation": "Let t be the hourly pay for tutoring and g the hourly pay for grading, in dollars. Then 10t + 8g = 280 and 8t + 9g = 276. Multiplying the first equation by 4 and the second by 5 gives 40t + 32g = 1,120 and 40t + 45g = 1,380. Subtracting, 13g = 260, so g = 20. Then 10t + 160 = 280, so t = 12. Pay for 30 hours of tutoring is 30(12) = 360 dollars, and 360 / 20 = 18 hours of grading. Choice 50 answers the reverse question (the tutoring hours that match 30 hours of grading, 30(20) / 12). Choice 24 uses the ratio of hours in the first week, 8 / 10, instead of the ratio of the hourly rates. Choice 4 comes from switching the tutoring and grading hours in the second week, which gives rates of 4 and 30 dollars per hour.",
+  "solve": "const D=10*9-8*8; const t=(280*9-276*8)/D; const g=(10*276-8*280)/D; return 30*t/g;",
+  "distractor_solve": {
+   "4": "const D=10*8-9*8; const t=(280*8-276*8)/D; const g=(10*276-9*280)/D; return 30*t/g;",
+   "24": "return 30*8/10;",
+   "50": "const D=10*9-8*8; const t=(280*9-276*8)/D; const g=(10*276-8*280)/D; return 30*g/t;"
+  }
+ },
+ {
+  "id": "SM27F-D05",
+  "domain": "Algebra",
+  "subskill": "System of inequalities whose solution set is one line",
+  "difficulty": "medium",
+  "prompt": "2y - 4x + 8 ≤ k\n12x - 6y ≤ -42\n\nIn the system of inequalities above, k is a constant. The solutions of the system are exactly the points on one line in the xy-plane. What is the value of k?",
+  "choices": [
+   "22",
+   "29",
+   "50",
+   "92"
+  ],
+  "correct_answer": "22",
+  "explanation": "Solve each inequality for y. The second gives -6y ≤ -42 - 12x, so y ≥ 2x + 7 (dividing by -6 reverses the sign). The first gives 2y ≤ 4x + k - 8, so y ≤ 2x + (k - 8)/2. Both boundary lines have slope 2, so the solutions lie on or between two parallel lines. The solution set is a single line only when the two boundary lines are the same line: (k - 8)/2 = 7, so k = 22. Choice 92 comes from not dividing 42 by 6, which gives y ≥ 2x + 42. Choice 50 comes from setting k - 8 equal to 42 without first rescaling 6y - 12x to 2y - 4x. Choice 29 comes from dividing the second inequality by 2 instead of 3 and then setting k - 8 equal to 21.",
+  "solve": "const b=42/6; return 2*b+8;",
+  "distractor_solve": {
+   "29": "return 42/2+8;",
+   "50": "return 42+8;",
+   "92": "const b=42; return 2*b+8;"
+  }
+ },
+ {
+  "id": "SM27F-D10",
+  "domain": "Algebra",
+  "subskill": "System of inequalities with parallel boundaries: band width",
+  "difficulty": "medium",
+  "prompt": "x - 2y ≤ -6\n2(2y - x) ≤ k\n\nIn the system of inequalities above, k is a constant. For each value of x, the values of y for which (x, y) is a solution to the system are exactly the numbers in an interval of length 17. What is the value of k?",
+  "choices": [
+   "20",
+   "46",
+   "56",
+   "80"
+  ],
+  "correct_answer": "80",
+  "explanation": "Solve each inequality for y. From x - 2y ≤ -6, -2y ≤ -x - 6, and dividing by -2 reverses the inequality: y ≥ (1/2)x + 3. From 2(2y - x) ≤ k, 4y - 2x ≤ k, so y ≤ (1/2)x + k/4. The boundary lines are parallel, so for each x the values of y run from (1/2)x + 3 to (1/2)x + k/4, an interval of length k/4 - 3. Setting k/4 - 3 = 17 gives k/4 = 20 and k = 80. Choice 56 comes from writing the first inequality as y ≥ (1/2)x - 3; choice 20 comes from forgetting to divide k by 4; choice 46 measures the horizontal width of the band, k/2 - 6, instead of the vertical one.",
+  "solve": "const lowC=6/2; return 4*(17+lowC);",
+  "distractor_solve": {
+   "20": "const lowC=6/2; return 17+lowC;",
+   "46": "return 2*(17+6);",
+   "56": "const lowC=-6/2; return 4*(17+lowC);"
+  }
+ },
+ {
+  "id": "SM27F-D03",
+  "domain": "Algebra",
+  "subskill": "Compound inequality carried to a new linear expression",
+  "difficulty": "medium",
+  "prompt": "-11 < 5 - 2x ≤ 13\n\nThe values of x that satisfy the compound inequality above are exactly the values for which a ≤ 6x + 1 < b, where a and b are constants. What is the value of b?",
+  "choices": [
+   "8",
+   "19",
+   "25",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "Subtract 5 from each part: -16 < -2x ≤ 8. Divide each part by -2 and reverse both inequality signs: 8 > x ≥ -4, so -4 ≤ x < 8. Multiply by 6 and add 1: -23 ≤ 6x + 1 < 49, so b = 49. Choice 25 comes from dividing by 2 instead of -2, which gives -8 < x ≤ 4 and an upper end of 6(4) + 1. Choice 19 comes from adding 5 instead of subtracting it, which gives -6 < -2x, so x < 3 and 6(3) + 1 = 19. Choice 8 is the upper bound on x itself, not on 6x + 1.",
+  "solve": "const hi=(5-(-11))/2; return 6*hi+1;",
+  "distractor_solve": {
+   "8": "return (5-(-11))/2;",
+   "19": "const hi=-(-11+5)/2; return 6*hi+1;",
+   "25": "const hi=(13-5)/2; return 6*hi+1;"
+  }
+ },
+ {
+  "id": "SM27F-A05",
+  "domain": "Algebra",
+  "subskill": "Linear rule applied twice, then the intermediate value",
+  "difficulty": "medium",
+  "prompt": "When a certain calculator key is pressed, it multiplies the number on the display by -2 and then adds 3 to the result. Lena enters a number and presses this key two times in a row. The number then on the display is 13 more than 3 times the number she entered. What number was on the display right after her first press of the key?",
+  "choices": [
+   "-29",
+   "-20",
+   "-5",
+   "7"
+  ],
+  "correct_answer": "-29",
+  "explanation": "Let n be the number Lena entered. After the first press the display shows -2n + 3. After the second press it shows -2(-2n + 3) + 3 = 4n - 6 + 3 = 4n - 3.\nThis is 13 more than 3 times n, so 4n - 3 = 3n + 13, and n = 16.\nRight after the first press the display showed -2(16) + 3 = -29.\n\nChoice -20 comes from adding 3 before multiplying by -2 on each press: the second display is then 4n + 6, so n = 7 and the first display is -2(7 + 3) = -20.\nChoice -5 comes from a sign error in -2(-2n + 3), writing 4n + 6: then 4n + 9 = 3n + 13, n = 4, and the first display is -2(4) + 3 = -5.\nChoice 7 comes from applying the key only once: -2n + 3 = 3n + 13 gives n = -2, and -2(-2) + 3 = 7.",
+  "solve": "const m=-2,c=3,p=3,q=13; const n=(q-(m*c+c))/(m*m-p); return m*n+c;",
+  "distractor_solve": {
+   "7": "const m=-2,c=3,p=3,q=13; const n=(q-c)/(m-p); return m*n+c;",
+   "-20": "const m=-2,c=3,p=3,q=13; const n=(q-(m*m*c+m*c))/(m*m-p); return m*(n+c);",
+   "-5": "const m=-2,c=3,p=3,q=13; const n=(q-(-m*c+c))/(m*m-p); return m*n+c;"
+  }
+ },
+ {
+  "id": "SM27F-C05",
+  "domain": "Algebra",
+  "subskill": "Two pump rates from two runs; time to finish a job",
+  "difficulty": "medium",
+  "prompt": "Pumps A and B each move water at its own constant rate. In one test, pump A ran for 4 minutes and pump B ran for 1 minute, and together they moved 280 liters. In a second test, pump A ran for 1 minute and pump B ran for 3 minutes, and together they moved 180 liters. To empty a 1,500-liter tank, pump A ran for 3 minutes and then stopped, and pump B alone moved the rest of the water. For how many minutes did pump B run?",
+  "choices": [
+   "15",
+   "22",
+   "23",
+   "33"
+  ],
+  "correct_answer": "33",
+  "explanation": "Let a and b be the rates of pumps A and B, in liters per minute. The tests give 4a + b = 280 and a + 3b = 180. From the second equation, a = 180 - 3b. Substituting, 4(180 - 3b) + b = 280, so 720 - 11b = 280 and b = 40. Then a = 180 - 120 = 60. In 3 minutes pump A moved 3(60) = 180 liters, leaving 1,500 - 180 = 1,320 liters for pump B, which takes 1,320 / 40 = 33 minutes. Choice 23 comes from mixing up the two rates (A at 40 and B at 60). Choice 22 divides the remaining 1,320 liters by pump A's rate instead of pump B's. Choice 15 divides the whole 1,500 liters by the combined rate of 100 liters per minute, as if both pumps ran the whole time.",
+  "solve": "const D=4*3-1*1; const a=(280*3-1*180)/D; const b=(4*180-280*1)/D; return (1500-3*a)/b;",
+  "distractor_solve": {
+   "15": "const D=4*3-1*1; const a=(280*3-1*180)/D; const b=(4*180-280*1)/D; return 1500/(a+b);",
+   "22": "const D=4*3-1*1; const a=(280*3-1*180)/D; const b=(4*180-280*1)/D; return (1500-3*a)/a;",
+   "23": "const D=4*3-1*1; const a=(280*3-1*180)/D; const b=(4*180-280*1)/D; return (1500-3*b)/a;"
+  }
+ },
+ {
+  "id": "SM27F-C09",
+  "domain": "Algebra",
+  "subskill": "Shortfall and surplus from two equal-share plans; new shortfall",
+  "difficulty": "medium",
+  "prompt": "The members of a club are sharing the cost of a bus rental equally. If each member pays $10, the total collected is $19 less than the cost of the rental. If each member pays $11, the total collected is $7 more than the cost of the rental. If each member paid only $7, how many dollars less than the cost of the rental would the total collected be?",
+  "choices": [
+   "26",
+   "55",
+   "85",
+   "97"
+  ],
+  "correct_answer": "97",
+  "explanation": "Let n be the number of members and C the cost of the rental, in dollars. Paying $10 each falls $19 short, so 10n = C - 19, or C = 10n + 19. Paying $11 each gives $7 extra, so 11n = C + 7, or C = 11n - 7. Setting the two expressions for C equal gives 10n + 19 = 11n - 7, so n = 26, and C = 10(26) + 19 = 279. Paying $7 each collects 7(26) = 182 dollars, which is 279 - 182 = 97 dollars less than the cost. Choice 85 attaches the $7 to the $10 plan and the $19 to the $11 plan, which gives the same n but C = 267. Choice 55 treats the $7 surplus as another shortfall (10n + 19 = 11n + 7), which gives n = 12 and C = 139. Choice 26 is the number of members, not the shortfall.",
+  "solve": "const n=(19+7)/(11-10); const C=10*n+19; return C-7*n;",
+  "distractor_solve": {
+   "26": "return (19+7)/(11-10);",
+   "55": "const n=(19-7)/(11-10); const C=10*n+19; return C-7*n;",
+   "85": "const n=(19+7)/(11-10); const C=10*n+7; return C-7*n;"
+  }
+ },
+ {
+  "id": "SM27F-C04",
+  "domain": "Algebra",
+  "subskill": "System built from a comparison of two expressions",
+  "difficulty": "medium",
+  "prompt": "Two conditions relate x and y. First, 4x + 5y = 76. Second, when the values of x and y are substituted, the expression 3x + 4y comes out 6 greater than the expression 5x + y. Find x + y.",
+  "choices": [
+   "8",
+   "17",
+   "41",
+   "53"
+  ],
+  "correct_answer": "17",
+  "explanation": "The second condition says 3x + 4y = (5x + y) + 6. Collecting terms gives -2x + 3y = 6. Multiply this equation by 2 to get -4x + 6y = 12, and add it to 4x + 5y = 76: 11y = 88, so y = 8. Then 4x + 40 = 76, so x = 9, and x + y = 17. Choice 8 is the value of y alone. Choice 53 is the value of the expression 5x + y, not x + y. Choice 41 comes from moving the 4y term with the wrong sign, which gives -2x - 3y = 6 instead of -2x + 3y = 6.",
+  "solve": "const a1=3-5, b1=4-1, c1=6; const D=a1*5-b1*4; const x=(c1*5-b1*76)/D; const y=(a1*76-c1*4)/D; return x+y;",
+  "distractor_solve": {
+   "8": "const a1=3-5, b1=4-1, c1=6; const D=a1*5-b1*4; return (a1*76-c1*4)/D;",
+   "41": "const a1=3-5, b1=1-4, c1=6; const D=a1*5-b1*4; const x=(c1*5-b1*76)/D; const y=(a1*76-c1*4)/D; return x+y;",
+   "53": "const a1=3-5, b1=4-1, c1=6; const D=a1*5-b1*4; const x=(c1*5-b1*76)/D; const y=(a1*76-c1*4)/D; return 5*x+y;"
+  }
+ },
+ {
+  "id": "SM27F-C03",
+  "domain": "Algebra",
+  "subskill": "System from two resource totals; profit from the solution",
+  "difficulty": "medium",
+  "prompt": "A workshop makes only chairs and benches. Each chair requires 1 hour of cutting and 3 hours of sanding, and each bench requires 2 hours of cutting and 1 hour of sanding. Last week the workshop used exactly 40 hours of cutting and 45 hours of sanding. The workshop earns a profit of $25 on each chair and $40 on each bench. What was the total profit, in dollars, on the chairs and benches made last week?",
+  "choices": [
+   "600",
+   "755",
+   "775",
+   "850"
+  ],
+  "correct_answer": "850",
+  "explanation": "Let c be the number of chairs and b the number of benches. Cutting time gives c + 2b = 40, and sanding time gives 3c + b = 45. From the first equation, c = 40 - 2b. Substituting, 3(40 - 2b) + b = 45, so 120 - 5b = 45 and b = 15. Then c = 40 - 30 = 10. The profit is 25(10) + 40(15) = 250 + 600 = 850 dollars. Choice 600 is the profit on the benches alone. Choice 775 attaches the $25 profit to the benches and the $40 profit to the chairs. Choice 755 comes from writing one equation per product (c + 3b = 40 and 2c + b = 45) instead of one equation per kind of work.",
+  "solve": "const d = 1*1 - 3*2; const c = (40*1 - 2*45)/d; const b = (1*45 - 3*40)/d; return 25*c + 40*b;",
+  "distractor_solve": {
+   "600": "const d = 1*1 - 3*2; const b = (1*45 - 3*40)/d; return 40*b;",
+   "755": "const d = 1*1 - 2*3; const c = (40*1 - 3*45)/d; const b = (1*45 - 2*40)/d; return 25*c + 40*b;",
+   "775": "const d = 1*1 - 3*2; const c = (40*1 - 2*45)/d; const b = (1*45 - 3*40)/d; return 25*b + 40*c;"
+  }
+ },
+ {
+  "id": "SM27F-D04",
+  "domain": "Algebra",
+  "subskill": "Budget inequality with a fixed purchase ratio",
+  "difficulty": "medium",
+  "prompt": "A teacher can spend at most $200 on notebooks and pens. Each notebook costs $4.50 and each pen costs $1.25, and she will buy exactly 3 pens for every notebook she buys. If she buys as many notebooks as her budget allows under these conditions, how many items (notebooks and pens together) will she buy?",
+  "choices": [
+   "24",
+   "52",
+   "96",
+   "136"
+  ],
+  "correct_answer": "96",
+  "explanation": "Let n be the number of notebooks. She buys 3n pens, so the cost is 4.50n + 1.25(3n) = 8.25n, and 8.25n ≤ 200 gives n ≤ 24.24.... The number of notebooks is a whole number, so n = 24, and she buys 24 + 3(24) = 96 items. Choice 24 is the number of notebooks only. Choice 52 comes from reversing the ratio (3 notebooks for every pen), which gives 14.75 dollars per group, 13 groups and 13(4) items. Choice 136 comes from pricing each notebook with only one pen (5.75n ≤ 200, so n = 34) and then counting 4 items per notebook.",
+  "solve": "const n=Math.floor(200/(4.5+3*1.25)); return 4*n;",
+  "distractor_solve": {
+   "24": "return Math.floor(200/(4.5+3*1.25));",
+   "52": "const g=Math.floor(200/(3*4.5+1.25)); return 4*g;",
+   "136": "const n=Math.floor(200/(4.5+1.25)); return 4*n;"
+  }
+ },
+ {
+  "id": "SM27F-C07",
+  "domain": "Algebra",
+  "subskill": "Two systems share a solution; constants from that solution",
+  "difficulty": "medium",
+  "prompt": "System 1:  2x + 3y = 16\n           x - y = -2\n\nSystem 2:  ax - 3y = -2\n           4x - by = 28\n\nIn System 2, a and b are constants. The two systems have exactly the same solution (x, y). What is the value of ab?",
+  "choices": [
+   "-25",
+   "-6",
+   "-5",
+   "35"
+  ],
+  "correct_answer": "-25",
+  "explanation": "Solve System 1 first. From x - y = -2, x = y - 2. Substituting, 2(y - 2) + 3y = 16, so 5y = 20 and y = 4; then x = 2. The same pair (2, 4) satisfies System 2. In the first equation, 2a - 3(4) = -2, so 2a = 10 and a = 5. In the second equation, 4(2) - 4b = 28, so -4b = 20 and b = -5. Therefore ab = 5(-5) = -25. Choice -5 is the value of b alone. Choice -6 comes from reading the solution as x = 4, y = 2, which gives a = 1 and b = -6. Choice 35 comes from moving -3y to the right side without changing its sign (2a = -2 - 12), which gives a = -7.",
+  "solve": "const y=(16-2*(-2))/(2+3); const x=y-2; const a=(-2+3*y)/x; const b=(4*x-28)/y; return a*b;",
+  "distractor_solve": {
+   "35": "const y=(16-2*(-2))/(2+3); const x=y-2; const a=(-2-3*y)/x; const b=(4*x-28)/y; return a*b;",
+   "-5": "const y=(16-2*(-2))/(2+3); const x=y-2; return (4*x-28)/y;",
+   "-6": "const y0=(16-2*(-2))/(2+3); const x0=y0-2; const x=y0, y=x0; const a=(-2+3*y)/x; const b=(4*x-28)/y; return a*b;"
+  }
+ },
+ {
+  "id": "SM27F-C10",
+  "domain": "Algebra",
+  "subskill": "Two linear rules matched at different inputs; p - q at a point",
+  "difficulty": "medium",
+  "prompt": "For some constants a and b, let p(x) = ax + 5 and q(x) = 3x + b. It is known that p(5) = q(3) and p(-1) = q(-5). What is p(-3) - q(-3)?",
+  "choices": [
+   "-38",
+   "-30",
+   "-21",
+   "-14"
+  ],
+  "correct_answer": "-14",
+  "explanation": "From p(5) = q(3): 5a + 5 = 9 + b, so 5a - b = 4. From p(-1) = q(-5): -a + 5 = -15 + b, so -a - b = -20. Subtracting the second equation from the first gives 6a = 24, so a = 4, and then b = 5(4) - 4 = 16. So p(x) = 4x + 5 and q(x) = 3x + 16, giving p(-3) = -7 and q(-3) = 7, and p(-3) - q(-3) = -7 - 7 = -14. Choice -21 comes from matching p at x = 3 with q at x = 5 (the inputs exchanged), which gives a = 7.5 and b = 12.5. Choice -30 comes from evaluating p(-1) as a + 5, which gives a = 6 and b = 26. Choice -38 finds a and b correctly but uses b as the coefficient of p and a as the constant of q.",
+  "solve": "const a=((9-5)-(-15-5))/(5-(-1)); const b=5*a+5-9; return (a*-3+5)-(3*-3+b);",
+  "distractor_solve": {
+   "-21": "const a=((15-5)-(-15-5))/(3-(-1)); const b=3*a+5-15; return (a*-3+5)-(3*-3+b);",
+   "-30": "const a=((9-5)-(-15-5))/(5-1); const b=5*a+5-9; return (a*-3+5)-(3*-3+b);",
+   "-38": "const a=((9-5)-(-15-5))/(5-(-1)); const b=5*a+5-9; return (b*-3+5)-(3*-3+a);"
+  }
+ },
+ {
+  "id": "SM27F-D12",
+  "domain": "Algebra",
+  "subskill": "Two budget inequalities in context compared",
+  "difficulty": "medium",
+  "prompt": "Rita has $120 to spend on notebooks and can buy them from one of two stores. Store P charges $7.50 per notebook plus a $32 delivery charge for the order. Store Q charges $3.50 per notebook but requires a one-time $6 membership fee. Rita's total cost cannot exceed $120. How many more notebooks can Rita buy from store Q than from store P?",
+  "choices": [
+   "10",
+   "12",
+   "16",
+   "21"
+  ],
+  "correct_answer": "21",
+  "explanation": "At store P, buying n notebooks costs 7.50n + 32 dollars, so 7.50n + 32 ≤ 120 gives 7.50n ≤ 88 and n ≤ 11.7 (to the nearest tenth). Rita can buy at most 11 notebooks there. At store Q, 3.50n + 6 ≤ 120 gives 3.50n ≤ 114 and n ≤ 32.6 (to the nearest tenth), so she can buy at most 32. The difference is 32 - 11 = 21. Choice 16 leaves out store P's delivery charge (16 notebooks at store P); choice 12 adds the delivery charge to the $120 instead of subtracting it (20 notebooks at store P); choice 10 applies each store's fee to the other store's price (25 at store Q and 15 at store P).",
+  "solve": "const NP=Math.floor((120-32)/7.5), NQ=Math.floor((120-6)/3.5); return NQ-NP;",
+  "distractor_solve": {
+   "10": "const NP=Math.floor((120-6)/7.5), NQ=Math.floor((120-32)/3.5); return NQ-NP;",
+   "12": "const NP=Math.floor((120+32)/7.5), NQ=Math.floor((120-6)/3.5); return NQ-NP;",
+   "16": "const NP=Math.floor(120/7.5), NQ=Math.floor((120-6)/3.5); return NQ-NP;"
+  }
+ },
+ {
+  "id": "SM27F-A04",
+  "domain": "Algebra",
+  "subskill": "One-variable equation from a wire split into two shapes",
+  "difficulty": "medium",
+  "prompt": "A wire 160 centimeters long is cut into two pieces, and all of the wire is used. One piece is bent to form a square, and the other piece is bent to form a regular hexagon. Each side of the hexagon is 5 centimeters longer than each side of the square. How many centimeters longer is the piece used for the hexagon than the piece used for the square?",
+  "choices": [
+   "8",
+   "56",
+   "68",
+   "108"
+  ],
+  "correct_answer": "56",
+  "explanation": "Let s be the side length of the square, in centimeters. Then each side of the hexagon is s + 5.\nThe square uses 4s centimeters of wire and the hexagon uses 6(s + 5) centimeters, so 4s + 6(s + 5) = 160.\nThis gives 10s + 30 = 160, so 10s = 130 and s = 13.\nThe square piece is 4(13) = 52 centimeters and the hexagon piece is 6(18) = 108 centimeters.\nThe hexagon piece is 108 - 52 = 56 centimeters longer.\n\nChoice 108 is the length of the hexagon piece itself, not how much longer it is.\nChoice 68 comes from a sign error in 10s + 30 = 160, writing 10s = 190: then s = 19, the pieces are 76 and 144, and the difference is 68.\nChoice 8 comes from adding the 5 centimeters to the square's side instead of the hexagon's: 4(s + 5) + 6s = 160 gives s = 14 for the hexagon and 19 for the square, so the pieces are 84 and 76, a difference of 8.",
+  "solve": "const L=160,d=5,a=4,b=6; const s=(L-b*d)/(a+b); return b*(s+d)-a*s;",
+  "distractor_solve": {
+   "8": "const L=160,d=5,a=4,b=6; const h=(L-a*d)/(a+b); return b*h-a*(h+d);",
+   "68": "const L=160,d=5,a=4,b=6; const s=(L+b*d)/(a+b); return b*(s+d)-a*s;",
+   "108": "const L=160,d=5,a=4,b=6; const s=(L-b*d)/(a+b); return b*(s+d);"
+  }
+ },
+ {
+  "id": "SM27F-A01",
+  "domain": "Algebra",
+  "subskill": "Parameter fixed by the gap between solution and constant",
+  "difficulty": "medium",
+  "prompt": "4(x - k) = x + 13\n\nFor a certain constant k, the equation above has a solution that is exactly 2 more than k. Using that solution x, find x + k.",
+  "choices": [
+   "-12",
+   "-7",
+   "9",
+   "40"
+  ],
+  "correct_answer": "-12",
+  "explanation": "Because the solution x is 2 more than k, x - k = 2. So the left side of the equation is 4(x - k) = 4(2) = 8.\nThe equation becomes 8 = x + 13, so x = -5.\nThen k = x - 2 = -7, and x + k = -5 + (-7) = -12.\n\nChoice -7 is the value of k alone, not x + k.\nChoice 9 comes from distributing incorrectly, writing 4(x - k) as 4x - k: with x = k + 2 this gives 3k + 8 = k + 15, so k = 3.5, x = 5.5, and x + k = 9.\nChoice 40 comes from a sign error when isolating x: 8 = x + 13 rewritten as x = 8 + 13 = 21, so k = 19 and x + k = 40.",
+  "solve": "const a=4,c=13,d=2; const x=a*d-c; const k=x-d; return x+k;",
+  "distractor_solve": {
+   "9": "const a=4,c=13,d=2; const k=(d+c-a*d)/(a-2); return 2*k+d;",
+   "40": "const a=4,c=13,d=2; const x=a*d+c; const k=x-d; return x+k;",
+   "-7": "const a=4,c=13,d=2; const x=a*d-c; return x-d;"
+  }
+ },
+ {
+  "id": "SM27F-A07",
+  "domain": "Algebra",
+  "subskill": "Parameter from a solution shared with a fraction equation",
+  "difficulty": "medium",
+  "prompt": "(3x - 1)/4 = (x + 2)/2\nk(x - 6) = 5x - 3\n\nIn the two equations above, k is a constant. The two equations are satisfied by the same value of x. What is the value of k?",
+  "choices": [
+   "-22",
+   "-13",
+   "2",
+   "5"
+  ],
+  "correct_answer": "-22",
+  "explanation": "Solve the first equation. Multiplying both sides by 4 gives 3x - 1 = 2(x + 2) = 2x + 4, so x = 5.\nThe second equation is satisfied by the same x, so substitute x = 5: k(5 - 6) = 5(5) - 3, which is -k = 22. So k = -22.\n\nChoice -13 comes from cross-multiplying to 2(3x - 1) = 4(x + 2) but writing the left side as 6x - 1; that gives x = 4.5, and then -1.5k = 19.5.\nChoice 2 comes from treating the + 2 in the first equation as - 2 when clearing the fractions; that gives x = -3, and then -9k = -18.\nChoice 5 is the shared value of x, not the value of k.",
+  "solve": "const x=(2*1+4*2)/(2*3-4); return (5*x-3)/(x-6);",
+  "distractor_solve": {
+   "2": "const x=(2*1-4*2)/(2*3-4); return (5*x-3)/(x-6);",
+   "5": "const x=(2*1+4*2)/(2*3-4); return x;",
+   "-13": "const x=(1+4*2)/(2*3-4); return (5*x-3)/(x-6);"
+  }
+ },
+ {
+  "id": "SM27F-D08",
+  "domain": "Algebra",
+  "subskill": "Two one-variable inequalities sharing exactly one solution",
+  "difficulty": "medium",
+  "prompt": "16 - 3x ≤ 2x - 29\n6(k - x) ≥ -x - 21\n\nIn the inequalities above, k is a constant. Exactly one real number x satisfies both inequalities. What is the value of k?",
+  "choices": [
+   "4",
+   "9",
+   "11",
+   "34"
+  ],
+  "correct_answer": "4",
+  "explanation": "First inequality: 16 - 3x ≤ 2x - 29 gives 45 ≤ 5x, so x ≥ 9. Second inequality: 6k - 6x ≥ -x - 21 gives -5x ≥ -6k - 21; dividing by -5 reverses the inequality, so x ≤ (6k + 21)/5. The first set is x ≥ 9 and the second is x ≤ (6k + 21)/5, so exactly one number is in both when (6k + 21)/5 = 9. Then 6k + 21 = 45 and k = 4. Choice 9 is the number x that satisfies both, not k; choice 11 comes from moving -21 across without changing its sign; choice 34 comes from combining -3x and 2x as -x, which gives x ≥ 45.",
+  "solve": "const N=(16+29)/5; return (5*N-21)/6;",
+  "distractor_solve": {
+   "9": "return (16+29)/5;",
+   "11": "const N=(16+29)/5; return (5*N+21)/6;",
+   "34": "const N=(16+29)/1; return (5*N-21)/6;"
+  }
+ },
+ {
+  "id": "SM27F-B04",
+  "domain": "Algebra",
+  "subskill": "Vertical gap between parallel lines via intercepts",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l contains (-4, 9) and (2, -3). Line m contains (6, 2) and never meets line l. Lines l and m cross the y-axis at (0, p) and (0, q), respectively. What is the value of q - p?",
+  "choices": [
+   "-27",
+   "-2",
+   "13",
+   "14"
+  ],
+  "correct_answer": "13",
+  "explanation": "The slope of line l is (-3 - 9)/(2 - (-4)) = -12/6 = -2. Using (2, -3): -3 = -2(2) + b, so the y-intercept of l is (0, 1). Since line m never meets line l, the lines are parallel and m also has slope -2, so 2 = -2(6) + c and c = 14; the y-intercept of m is (0, 14). So p = 1, q = 14, and q - p = 13. Choice 14 is q alone. Choice -2 comes from using the reciprocal slope -1/2 with the point (-4, 9). Choice -27 comes from using slope 2 instead of -2.",
+  "solve": "const s=(-3-9)/(2+4); const bl=-3-s*2; const bm=2-s*6; return bm-bl;",
+  "distractor_solve": {
+   "14": "const s=(-3-9)/(2+4); const bm=2-s*6; return bm;",
+   "-27": "const s=-(-3-9)/(2+4); const bl=9-s*(-4); const bm=2-s*6; return bm-bl;",
+   "-2": "const s=(2+4)/(-3-9); const bl=9-s*(-4); const bm=2-s*6; return bm-bl;"
+  }
+ },
+ {
+  "id": "SM27F-A12",
+  "domain": "Algebra",
+  "subskill": "Total from the gap between two completed fractions",
+  "difficulty": "medium",
+  "prompt": "A crew is painting a long fence. By the end of the first day, the crew has painted 3/10 of the fence. On the second day, the crew paints 315 more meters of the fence, and then 3/4 of the fence has been painted. How many meters of the fence did the crew paint on the first day?",
+  "choices": [
+   "90",
+   "135",
+   "175",
+   "210"
+  ],
+  "correct_answer": "210",
+  "explanation": "Let L be the length of the fence, in meters. The 315 meters painted on the second day take the painted part from (3/10)L to (3/4)L, so (3/10)L + 315 = (3/4)L.\nThen (3/4 - 3/10)L = 315, so (9/20)L = 315 and L = 700.\nOn the first day the crew painted (3/10)(700) = 210 meters.\n\nChoice 135 comes from treating the 315 meters as finishing the fence, (3/10)L + 315 = L, which gives L = 450 and (3/10)(450) = 135.\nChoice 90 comes from adding the fractions instead of subtracting them: (3/10 + 3/4)L = 315 gives L = 300, and (3/10)(300) = 90.\nChoice 175 is the part of the fence still unpainted after the second day, (1/4)(700).",
+  "solve": "const f1=3/10,f2=3/4,d=315; const L=d/(f2-f1); return Math.round(f1*L*1e9)/1e9;",
+  "distractor_solve": {
+   "90": "const f1=3/10,f2=3/4,d=315; return Math.round(f1*d/(f1+f2)*1e9)/1e9;",
+   "135": "const f1=3/10,f2=3/4,d=315; return Math.round(f1*d/(1-f1)*1e9)/1e9;",
+   "175": "const f1=3/10,f2=3/4,d=315; const L=d/(f2-f1); return Math.round((1-f2)*L*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM27F-D01",
+  "domain": "Algebra",
+  "subskill": "System of linear inequalities: lattice points on a line",
+  "difficulty": "medium",
+  "prompt": "y ≥ 3x - 20\n2x + 3y < 60\n\nIn the xy-plane, the point (6, y) is a solution to the system of inequalities above. How many integer values of y are possible?",
+  "choices": [
+   "14",
+   "17",
+   "18",
+   "26"
+  ],
+  "correct_answer": "18",
+  "explanation": "Substitute x = 6 into each inequality. The first gives y ≥ 3(6) - 20 = -2. The second gives 12 + 3y < 60, so 3y < 48 and y < 16. The integers y with -2 ≤ y < 16 are -2, -1, 0, ..., 15, which is 15 - (-2) + 1 = 18 values. Choice 14 comes from writing the first bound as y ≥ 2 instead of y ≥ -2; choice 17 counts 15 - (-2) without adding 1 for the included endpoint; choice 26 comes from adding 12 to 60 instead of subtracting it, which gives y < 24.",
+  "solve": "const lo=Math.ceil(3*6-20); const hi=Math.ceil((60-2*6)/3)-1; return hi-lo+1;",
+  "distractor_solve": {
+   "14": "const lo=Math.abs(3*6-20); const hi=Math.ceil((60-2*6)/3)-1; return hi-lo+1;",
+   "17": "const lo=Math.ceil(3*6-20); const hi=Math.ceil((60-2*6)/3)-1; return hi-lo;",
+   "26": "const lo=Math.ceil(3*6-20); const hi=Math.ceil((60+2*6)/3)-1; return hi-lo+1;"
+  }
+ },
+ {
+  "id": "SM27F-C12",
+  "domain": "Algebra",
+  "subskill": "Two masses from two balanced plank arrangements; new position",
+  "difficulty": "medium",
+  "prompt": "A long plank rests on a pivot. The plank balances when the sum of (mass x distance from the pivot) for everything on the left side equals the same sum for everything on the right side. Crate A is always placed on the left side and crate B on the right side. The plank balances when crate A is 3 meters from the pivot and crate B is 2.5 meters from the pivot, with a 15-kilogram sandbag placed 3 meters from the pivot on crate B's side. It also balances, with no sandbag, when crate A is 1 meter from the pivot with a 5-kilogram box set on top of it and crate B is 1.5 meters from the pivot. If crate A, with nothing else on the plank, is placed 3.6 meters from the pivot, how many meters from the pivot must crate B be placed for the plank to balance?",
+  "choices": [
+   "2.7",
+   "4.2",
+   "4.8",
+   "6.6"
+  ],
+  "correct_answer": "4.8",
+  "explanation": "Let a and b be the masses, in kilograms, of crates A and B. The first arrangement gives 3a = 2.5b + 3(15), or 3a = 2.5b + 45. In the second, the box is 1 meter from the pivot on the left, so 1(a) + 1(5) = 1.5b, or a = 1.5b - 5. Substituting, 3(1.5b - 5) = 2.5b + 45, so 4.5b - 15 = 2.5b + 45, 2b = 60, b = 30, and a = 40. For balance with crate A at 3.6 meters, 3.6(40) = d(30), so d = 144/30 = 4.8 meters. Choice 2.7 sets up the last equation as 3.6(30) = 40d, mixing up the two masses. Choice 4.2 counts the sandbag as 15 instead of 3(15), which gives b = 15 and a = 17.5. Choice 6.6 puts the 5-kilogram box on the right side (a = 1.5b + 5), which gives b = 15 and a = 27.5.",
+  "solve": "const b=(45+3*5)/(3*1.5-2.5); const a=1.5*b-5; return Math.round(3.6*a/b*100)/100;",
+  "distractor_solve": {
+   "2.7": "const b=(45+3*5)/(3*1.5-2.5); const a=1.5*b-5; return Math.round(3.6*b/a*100)/100;",
+   "4.2": "const b=(15+3*5)/(3*1.5-2.5); const a=1.5*b-5; return Math.round(3.6*a/b*100)/100;",
+   "6.6": "const b=(45-3*5)/(3*1.5-2.5); const a=1.5*b+5; return Math.round(3.6*a/b*100)/100;"
+  }
+ },
+ {
+  "id": "SM27F-A09",
+  "domain": "Algebra",
+  "subskill": "One-variable equation from a purchase with a count offset",
+  "difficulty": "medium",
+  "prompt": "A student buys some notebooks that cost $2 each and some binders that cost $5 each, spending $126 in all. The student buys 7 more notebooks than binders. How many dollars does the student spend on notebooks?",
+  "choices": [
+   "26",
+   "46",
+   "50",
+   "100"
+  ],
+  "correct_answer": "46",
+  "explanation": "Let b be the number of binders. Then the number of notebooks is b + 7, and the total cost gives 2(b + 7) + 5b = 126.\nExpanding gives 7b + 14 = 126, so 7b = 112 and b = 16.\nThe student buys 16 + 7 = 23 notebooks, which cost 2(23) = 46 dollars.\n\nChoice 26 comes from attaching the 7 extra items to the binders instead: 2b + 5(b + 7) = 126 gives b = 13 notebooks, which cost 26 dollars.\nChoice 100 comes from swapping the two prices: 5(b + 7) + 2b = 126 gives b = 13, so 20 notebooks at $5 each would be 100 dollars.\nChoice 50 comes from dropping the 14 after distributing: 7b = 126 gives b = 18, so 25 notebooks cost 50 dollars.",
+  "solve": "const pn=2,pb=5,T=126,d=7; const b=(T-pn*d)/(pn+pb); return pn*(b+d);",
+  "distractor_solve": {
+   "26": "const pn=2,pb=5,T=126,d=7; const n=(T-pb*d)/(pn+pb); return pn*n;",
+   "50": "const pn=2,pb=5,T=126,d=7; const b=T/(pn+pb); return pn*(b+d);",
+   "100": "const pn=2,pb=5,T=126,d=7; const b=(T-pb*d)/(pn+pb); return pb*(b+d);"
+  }
+ },
+ {
+  "id": "SM27F-D11",
+  "domain": "Algebra",
+  "subskill": "Linear inequality relating two quantities in context",
+  "difficulty": "medium",
+  "prompt": "A day camp uses the inequality 5c - k ≥ 26 to check whether it has enough counselors, where c is the number of counselors and k is the number of campers enrolled. The camp currently has 19 counselors and 50 campers enrolled. If 210 more campers enroll, what is the least number of additional counselors the camp must hire so that the inequality is still satisfied?",
+  "choices": [
+   "28",
+   "33",
+   "39",
+   "48"
+  ],
+  "correct_answer": "39",
+  "explanation": "After 210 more campers enroll, k = 50 + 210 = 260. The inequality becomes 5c - 260 ≥ 26, so 5c ≥ 286 and c ≥ 57.2. Since c is a whole number, the camp needs at least 58 counselors. It has 19, so it must hire at least 58 - 19 = 39 more. Choice 28 moves 26 to the wrong side (5c ≥ 260 - 26); choice 33 ignores the 26 in the inequality; choice 48 applies the inequality to the 210 new campers alone, as though the camp had no counselors and no campers before.",
+  "solve": "const a=5,b=26,C0=19,K0=50,n=210; return Math.ceil((K0+n+b)/a)-C0;",
+  "distractor_solve": {
+   "28": "const a=5,b=26,C0=19,K0=50,n=210; return Math.ceil((K0+n-b)/a)-C0;",
+   "33": "const a=5,C0=19,K0=50,n=210; return Math.ceil((K0+n)/a)-C0;",
+   "48": "const a=5,b=26,n=210; return Math.ceil((n+b)/a);"
+  }
+ },
+ {
+  "id": "SM27F-B01",
+  "domain": "Algebra",
+  "subskill": "Fixed fee per order from two linear price points",
+  "difficulty": "medium",
+  "prompt": "An online box office charges a fixed processing fee on every order plus the same price for each ticket in the order. An order of 6 tickets costs $87, and an order of 14 tickets costs $183. A group needs 20 tickets. How many more dollars does the group pay if it buys the tickets as 4 separate orders of 5 tickets each instead of as a single order of 20 tickets?",
+  "choices": [
+   "15",
+   "36",
+   "45",
+   "48"
+  ],
+  "correct_answer": "45",
+  "explanation": "Let p be the price per ticket and f the processing fee, so an order of n tickets costs pn + f. From the two orders, p = (183 - 87)/(14 - 6) = 96/8 = 12, and f = 87 - 6(12) = 15. Four orders of 5 tickets cost 4(5(12) + 15) = 4(75) = 300 dollars. One order of 20 tickets costs 20(12) + 15 = 255 dollars. The group pays 300 - 255 = 45 dollars more, which is 3 extra processing fees. Choice 15 is a single processing fee. Choice 36 comes from swapping the roles of the two constants, treating 12 as the fee and multiplying it by the 3 extra orders. Choice 48 multiplies the per-ticket price by the 4 orders instead of counting the 3 extra fees.",
+  "solve": "const p=(183-87)/(14-6); const f=87-6*p; return 4*(5*p+f)-(20*p+f);",
+  "distractor_solve": {
+   "15": "const p=(183-87)/(14-6); const f=87-6*p; return f;",
+   "36": "const p=(183-87)/(14-6); const f=87-6*p; const fee=p; return 3*fee;",
+   "48": "const p=(183-87)/(14-6); return 4*p;"
+  }
+ }
+]
