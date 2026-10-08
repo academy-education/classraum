@@ -1,0 +1,746 @@
+[
+  {
+    "id": "IS19C-01",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Far from being cured when the rash faded, the patient still carried a ------- form of the virus that could reawaken in her nerve cells decades later.",
+    "choices": [
+      "latent",
+      "nascent",
+      "manifest",
+      "jaundiced"
+    ],
+    "correct_answer": "latent",
+    "explanation": "'Far from being cured' and 'could reawaken ... decades later' mean the virus is present but hidden and inactive: latent.",
+    "distractor_rationales": [
+      "nascent — nascent means just beginning to develop; the virus is not new but lying dormant until it 'reawakens'.",
+      "manifest — manifest means plainly visible; the rash had faded, so nothing was visible.",
+      "jaundiced — jaundiced describes yellowed skin or a bitter outlook, not a virus hiding in nerve cells."
+    ],
+    "rarity_order": [
+      "nascent",
+      "jaundiced",
+      "latent",
+      "manifest"
+    ]
+  },
+  {
+    "id": "IS19C-02",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] The new battery's capacity sounds impressive in the advertisement, but its gains over last year's model are merely -------, a two-percent improvement at best.",
+    "choices": [
+      "monumental",
+      "incremental",
+      "hypothetical",
+      "pivotal"
+    ],
+    "correct_answer": "incremental",
+    "explanation": "'Sounds impressive ... but merely' and 'a two-percent improvement' call for a word meaning small, step-by-step gains: incremental.",
+    "distractor_rationales": [
+      "monumental — monumental means huge, the opposite of 'merely' a two-percent gain.",
+      "hypothetical — the two-percent improvement is measured and real, so the gains are not hypothetical.",
+      "pivotal — pivotal means decisive; 'merely' and 'two percent at best' deny that the gains matter much."
+    ],
+    "rarity_order": [
+      "incremental",
+      "hypothetical",
+      "pivotal",
+      "monumental"
+    ]
+  },
+  {
+    "id": "IS19C-03",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Glaciologists had assumed the ice shelf would retreat over centuries, yet the satellite record shows a ------- collapse: ice that had stood for millennia disintegrated within a single summer.",
+    "choices": [
+      "protracted",
+      "periodic",
+      "headlong",
+      "glacial"
+    ],
+    "correct_answer": "headlong",
+    "explanation": "'Yet' reverses 'over centuries'; 'disintegrated within a single summer' means the collapse was sudden and rushing: headlong.",
+    "distractor_rationales": [
+      "protracted — protracted means drawn out, which is what the scientists assumed, not what the record shows.",
+      "periodic — periodic means recurring at intervals; this was a single unprecedented event.",
+      "glacial — glacial means extremely slow, the expectation that 'yet' overturns."
+    ],
+    "rarity_order": [
+      "protracted",
+      "headlong",
+      "glacial",
+      "periodic"
+    ]
+  },
+  {
+    "id": "IS19C-04",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Although the compound dissolves instantly in alcohol, it is ------- in water, so the researchers had to abandon their plan to give it to patients as a simple drinking solution.",
+    "choices": [
+      "gaseous",
+      "inert",
+      "potable",
+      "insoluble"
+    ],
+    "correct_answer": "insoluble",
+    "explanation": "'Although it dissolves instantly in alcohol' sets up the opposite behavior in water, and the abandoned drinking solution confirms it will not dissolve: insoluble.",
+    "distractor_rationales": [
+      "gaseous — gaseous describes a state of matter, not how a compound behaves when mixed into water; it would not explain the failed solution.",
+      "inert — inert means it does not react; a nonreactive compound could still be dissolved and drunk, so the plan would not have to be abandoned.",
+      "potable — potable means safe to drink, which would make a drinking solution easier, not impossible."
+    ],
+    "rarity_order": [
+      "potable",
+      "insoluble",
+      "inert",
+      "gaseous"
+    ]
+  },
+  {
+    "id": "IS19C-05",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "restatement",
+    "prompt": "[Sentence Completion] The physician warned that the drug's side effects were -------: they crept in so gradually over many months that most patients never connected their growing fatigue to the medication.",
+    "choices": [
+      "insidious",
+      "patent",
+      "lurid",
+      "hyperbolic"
+    ],
+    "correct_answer": "insidious",
+    "explanation": "Harm that 'crept in so gradually' that patients 'never connected' it to the drug is harm that advances unnoticed: insidious.",
+    "distractor_rationales": [
+      "patent — patent means plainly evident; these effects went unnoticed.",
+      "lurid — lurid means vivid and shocking; a slowly growing fatigue is neither.",
+      "hyperbolic — hyperbolic means exaggerated; the warning is that the effects are real but hidden, not overstated."
+    ],
+    "rarity_order": [
+      "patent",
+      "lurid",
+      "insidious",
+      "hyperbolic"
+    ]
+  },
+  {
+    "id": "IS19C-06",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Most metals crack when struck again and again, but gold is so ------- that a single ounce can be hammered into a sheet large enough to cover a small room.",
+    "choices": [
+      "granular",
+      "malleable",
+      "opalescent",
+      "hermetic"
+    ],
+    "correct_answer": "malleable",
+    "explanation": "'But' contrasts gold with metals that crack under hammering; being beaten into a huge thin sheet shows it can be shaped without breaking: malleable.",
+    "distractor_rationales": [
+      "granular — granular means made of grains, which would make the metal crumble, not spread into a sheet.",
+      "opalescent — opalescent describes a milky shimmer of color and says nothing about surviving hammering.",
+      "hermetic — hermetic means airtight; it has nothing to do with being beaten thin."
+    ],
+    "rarity_order": [
+      "opalescent",
+      "hermetic",
+      "granular",
+      "malleable"
+    ]
+  },
+  {
+    "id": "IS19C-07",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Whereas the finished robot had a single button that a child could operate, the first prototype was so ------- that even its own builders needed a thick manual just to switch it on.",
+    "choices": [
+      "minimalist",
+      "monolithic",
+      "labyrinthine",
+      "gossamer"
+    ],
+    "correct_answer": "labyrinthine",
+    "explanation": "'Whereas' contrasts the one-button final design; needing a thick manual just to switch it on means the prototype was bewilderingly complicated: labyrinthine.",
+    "distractor_rationales": [
+      "minimalist — minimalist describes the one-button final design, the very thing 'whereas' contrasts with the prototype.",
+      "monolithic — monolithic means a single uniform block, which would be simple, not something requiring a manual.",
+      "gossamer — gossamer means light and delicate; it does not explain why the machine was hard to operate."
+    ],
+    "rarity_order": [
+      "labyrinthine",
+      "gossamer",
+      "monolithic",
+      "minimalist"
+    ]
+  },
+  {
+    "id": "IS19C-08",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Although the comet looks ------- to the naked eye, a faint smudge easily mistaken for a distant star, a telescope reveals a glowing tail that stretches millions of kilometers.",
+    "choices": [
+      "gargantuan",
+      "kaleidoscopic",
+      "incandescent",
+      "nondescript"
+    ],
+    "correct_answer": "nondescript",
+    "explanation": "'Although' sets the naked-eye view against the spectacular telescope view; 'a faint smudge easily mistaken for a distant star' means it looks unremarkable: nondescript.",
+    "distractor_rationales": [
+      "gargantuan — gargantuan means enormous, which is what the telescope reveals, not what the naked eye sees.",
+      "kaleidoscopic — kaleidoscopic means brightly multicolored and changing; a faint smudge is neither.",
+      "incandescent — incandescent means glowing brilliantly, the opposite of a faint smudge."
+    ],
+    "rarity_order": [
+      "kaleidoscopic",
+      "nondescript",
+      "incandescent",
+      "gargantuan"
+    ]
+  },
+  {
+    "id": "IS19C-09",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "restatement",
+    "prompt": "[Sentence Completion] The programmer's patch proved merely -------: the crashes stopped for a week, but because the memory leak causing them was never found, they returned as soon as traffic doubled.",
+    "choices": [
+      "palliative",
+      "pernicious",
+      "holistic",
+      "orthodox"
+    ],
+    "correct_answer": "palliative",
+    "explanation": "A fix that quiets the symptom (the crashes) for a while without curing the cause (the leak) is palliative.",
+    "distractor_rationales": [
+      "pernicious — pernicious means harmful; the patch did not cause damage, it stopped the crashes for a week.",
+      "holistic — holistic means treating the whole system; this patch ignored the underlying leak.",
+      "orthodox — orthodox means conventional; nothing in the sentence concerns whether the method was standard, and 'merely' plus the returning crashes point to a temporary fix."
+    ],
+    "rarity_order": [
+      "pernicious",
+      "palliative",
+      "holistic",
+      "orthodox"
+    ]
+  },
+  {
+    "id": "IS19C-10",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Rather than giving every patient the same dose, the clinic now tailors treatment to each person's genes, having learned that people's responses to the drug are strikingly -------.",
+    "choices": [
+      "invariable",
+      "heterogeneous",
+      "gradual",
+      "optimal"
+    ],
+    "correct_answer": "heterogeneous",
+    "explanation": "Dropping one dose for all ('rather than') in favor of tailoring only makes sense if responses differ widely from person to person: heterogeneous.",
+    "distractor_rationales": [
+      "invariable — invariable means unchanging and uniform, which would justify one dose for everyone, the policy the clinic dropped.",
+      "gradual — gradual describes the speed of a response, not why each patient needs a different dose.",
+      "optimal — optimal means already ideal, which would give no reason to change the dosing."
+    ],
+    "rarity_order": [
+      "heterogeneous",
+      "invariable",
+      "optimal",
+      "gradual"
+    ]
+  },
+  {
+    "id": "IS19C-11",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Many desert shrubs look dead through the long dry season, yet they are anything but -------; within hours of the first rain they unfurl bright new leaves.",
+    "choices": [
+      "gnarled",
+      "noxious",
+      "moribund",
+      "germinal"
+    ],
+    "correct_answer": "moribund",
+    "explanation": "'Look dead ... yet anything but' calls for a word meaning near death, which the quick new leaves disprove: moribund.",
+    "distractor_rationales": [
+      "gnarled — gnarled means twisted and knotted; the shrubs may well be gnarled, and leafing out does not disprove it.",
+      "noxious — noxious means harmful or poisonous; the sentence is about seeming dead versus being alive.",
+      "germinal — germinal means in an early stage of growth; 'anything but' must deny the look of death, not of newness."
+    ],
+    "rarity_order": [
+      "germinal",
+      "moribund",
+      "gnarled",
+      "noxious"
+    ]
+  },
+  {
+    "id": "IS19C-12",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Though the herbal tonic was once sold as a cure for nearly every ailment, careful trials showed it to be -------, doing no more for patients than a sugar pill.",
+    "choices": [
+      "poisonous",
+      "palatable",
+      "miraculous",
+      "ineffectual"
+    ],
+    "correct_answer": "ineffectual",
+    "explanation": "'Though ... a cure for nearly every ailment' is reversed by 'no more than a sugar pill': the tonic has no real effect, ineffectual.",
+    "distractor_rationales": [
+      "poisonous — poisonous means toxic, but a sugar pill does no harm; the comparison is about doing nothing.",
+      "palatable — palatable means pleasant to taste, which the trials of effectiveness did not address.",
+      "miraculous — miraculous is the claim the trials overturned."
+    ],
+    "rarity_order": [
+      "ineffectual",
+      "palatable",
+      "poisonous",
+      "miraculous"
+    ]
+  },
+  {
+    "id": "IS19C-13",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Doctors long regarded damage to heart muscle as -------, but new research shows that heart cells can slowly regenerate after an attack.",
+    "choices": [
+      "irreversible",
+      "gratuitous",
+      "pervasive",
+      "illusory"
+    ],
+    "correct_answer": "irreversible",
+    "explanation": "'But' sets the old view against the finding that cells 'can slowly regenerate'; the old view must have been that the damage could never be undone: irreversible.",
+    "distractor_rationales": [
+      "gratuitous — gratuitous means uncalled-for; regeneration does not answer whether damage was necessary.",
+      "pervasive — pervasive means widespread; regrowth of cells does not contradict how far damage spreads.",
+      "illusory — illusory would mean the damage was not real, but regeneration presupposes real damage, so 'but' would make no sense."
+    ],
+    "rarity_order": [
+      "gratuitous",
+      "illusory",
+      "pervasive",
+      "irreversible"
+    ]
+  },
+  {
+    "id": "IS19C-14",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Critics dismissed the early internet as a ------- curiosity, never guessing that within two decades it would reshape how nearly everyone shops, works, and talks.",
+    "choices": [
+      "groundbreaking",
+      "niche",
+      "nefarious",
+      "menacing"
+    ],
+    "correct_answer": "niche",
+    "explanation": "'Dismissed' plus 'never guessing it would reshape how nearly everyone' lives means critics saw it as something of interest only to a small group: niche.",
+    "distractor_rationales": [
+      "groundbreaking — groundbreaking is praise, not a dismissal, and is what critics failed to foresee.",
+      "nefarious — nefarious means wicked; the critics' mistake was about how widely it would matter, not about morality.",
+      "menacing — menacing means threatening; 'curiosity' and 'never guessing' its reach point to unimportance, not danger."
+    ],
+    "rarity_order": [
+      "nefarious",
+      "niche",
+      "menacing",
+      "groundbreaking"
+    ]
+  },
+  {
+    "id": "IS19C-15",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Parents often treat a high fever as the most alarming symptom, but the pediatrician explained that a fever is usually -------, a sign that the body is fighting the infection rather than losing to it.",
+    "choices": [
+      "hallucinatory",
+      "malignant",
+      "protective",
+      "omnipresent"
+    ],
+    "correct_answer": "protective",
+    "explanation": "'But' reverses 'most alarming'; a fever that shows the body 'fighting the infection' is serving as a defense: protective.",
+    "distractor_rationales": [
+      "hallucinatory — hallucinatory describes visions; it is not what shows the body fighting infection.",
+      "malignant — malignant means dangerous and spreading, which repeats the alarm 'but' overturns.",
+      "omnipresent — omnipresent means present everywhere; the sentence explains what a fever does, not how common it is."
+    ],
+    "rarity_order": [
+      "hallucinatory",
+      "omnipresent",
+      "malignant",
+      "protective"
+    ]
+  },
+  {
+    "id": "IS19C-16",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Although its maker boasted of the robot vacuum's intelligence, its navigation was -------: it bumped the same chair leg dozens of times before finding the doorway by chance.",
+    "choices": [
+      "masterful",
+      "lyrical",
+      "officious",
+      "inept"
+    ],
+    "correct_answer": "inept",
+    "explanation": "'Although ... intelligence' is reversed by repeated bumping and finding the door only 'by chance': the navigation was clumsy and unskilled, inept.",
+    "distractor_rationales": [
+      "masterful — masterful repeats the maker's boast, which 'although' overturns.",
+      "lyrical — lyrical means expressive like poetry; it says nothing about skill at navigating.",
+      "officious — officious means meddling and bossy; the vacuum's failure is incompetence, not interference."
+    ],
+    "rarity_order": [
+      "officious",
+      "inept",
+      "lyrical",
+      "masterful"
+    ]
+  },
+  {
+    "id": "IS19C-17",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Unlike the dry valley below, the mountain's windward slope is so ------- that moss coats every boulder and ferns sprout from the trunks of the trees.",
+    "choices": [
+      "lush",
+      "gaunt",
+      "jagged",
+      "molten"
+    ],
+    "correct_answer": "lush",
+    "explanation": "'Unlike the dry valley' plus moss on every boulder and ferns on trunks describe thick, rich plant growth: lush.",
+    "distractor_rationales": [
+      "gaunt — gaunt means bare and bleak, closer to the dry valley the slope is contrasted with.",
+      "jagged — jagged describes a rough outline, which would not cause moss and ferns to cover everything.",
+      "molten — molten means melted by heat; nothing can grow on molten rock."
+    ],
+    "rarity_order": [
+      "gaunt",
+      "molten",
+      "jagged",
+      "lush"
+    ]
+  },
+  {
+    "id": "IS19C-18",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "restatement",
+    "prompt": "[Sentence Completion] Engineers called the bridge's new sensors -------, since they had flagged a hairline crack months before it grew large enough for any inspector to see.",
+    "choices": [
+      "myopic",
+      "prescient",
+      "obtrusive",
+      "histrionic"
+    ],
+    "correct_answer": "prescient",
+    "explanation": "Detecting a crack 'months before' anyone could see it is perceiving a problem ahead of time: prescient.",
+    "distractor_rationales": [
+      "myopic — myopic means shortsighted, the opposite of catching a problem months early.",
+      "obtrusive — obtrusive means getting in the way; the sentence is praise for early detection.",
+      "histrionic — histrionic means overly dramatic; quietly flagging a hairline crack is the opposite of a theatrical display."
+    ],
+    "rarity_order": [
+      "histrionic",
+      "prescient",
+      "obtrusive",
+      "myopic"
+    ]
+  },
+  {
+    "id": "IS19C-19",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Most of the island's birds scattered when the sailors landed, but the dodo, having never met a predator, was dangerously -------, waddling right up to the men who would hunt it.",
+    "choices": [
+      "gangly",
+      "lugubrious",
+      "heedless",
+      "overwrought"
+    ],
+    "correct_answer": "heedless",
+    "explanation": "'But' sets the dodo against the birds that fled; never having met a predator, it paid no attention to danger: heedless.",
+    "distractor_rationales": [
+      "gangly — gangly means awkwardly tall and thin; build does not explain walking up to hunters.",
+      "lugubrious — lugubrious means mournful; the dodo's problem was lack of fear, not sadness.",
+      "overwrought — overwrought means agitated and nervous, the reaction of the birds that fled, not of the dodo."
+    ],
+    "rarity_order": [
+      "lugubrious",
+      "overwrought",
+      "heedless",
+      "gangly"
+    ]
+  },
+  {
+    "id": "IS19C-20",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "restatement",
+    "prompt": "[Sentence Completion] Before the printing press, copying a book was so ------- that a single monk might labor for a year to produce one Bible by hand.",
+    "choices": [
+      "nominal",
+      "mechanized",
+      "immaterial",
+      "onerous"
+    ],
+    "correct_answer": "onerous",
+    "explanation": "A year of one monk's labor for one book means the work was a heavy burden: onerous.",
+    "distractor_rationales": [
+      "nominal — nominal means trivial in amount, the opposite of a year of labor.",
+      "mechanized — mechanized contradicts 'by hand'.",
+      "immaterial — immaterial means unimportant; the sentence stresses how much effort copying took."
+    ],
+    "rarity_order": [
+      "onerous",
+      "immaterial",
+      "mechanized",
+      "nominal"
+    ]
+  },
+  {
+    "id": "IS19C-21",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Physicists had expected the new particle to be -------, decaying within a billionth of a second, but it survived long enough to cross the entire detector.",
+    "choices": [
+      "momentary",
+      "kinetic",
+      "paradoxical",
+      "orbital"
+    ],
+    "correct_answer": "momentary",
+    "explanation": "The expectation of 'decaying within a billionth of a second', reversed by 'but it survived', is of a very brief existence: momentary.",
+    "distractor_rationales": [
+      "kinetic — kinetic means relating to motion; crossing the detector is the surprise, so it cannot be what was expected.",
+      "paradoxical — paradoxical means self-contradictory; nothing was expected to be contradictory, only short-lived.",
+      "orbital — orbital means circling something; the expectation concerned how long the particle would last."
+    ],
+    "rarity_order": [
+      "paradoxical",
+      "orbital",
+      "kinetic",
+      "momentary"
+    ]
+  },
+  {
+    "id": "IS19C-22",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] The patient insisted his cough was -------, nothing worse than the tail end of a cold, but the X-ray revealed pneumonia.",
+    "choices": [
+      "incurable",
+      "inconsequential",
+      "gastric",
+      "melodious"
+    ],
+    "correct_answer": "inconsequential",
+    "explanation": "'Nothing worse than the tail end of a cold', reversed by the pneumonia finding, means he thought it unimportant: inconsequential.",
+    "distractor_rationales": [
+      "incurable — incurable is the opposite of dismissing it as a lingering cold.",
+      "gastric — gastric refers to the stomach; a cough is not a stomach complaint.",
+      "melodious — melodious means pleasant-sounding; the contrast is about how serious the cough was."
+    ],
+    "rarity_order": [
+      "melodious",
+      "inconsequential",
+      "gastric",
+      "incurable"
+    ]
+  },
+  {
+    "id": "IS19C-23",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] The early search engine's results were so ------- that a query about jaguars returned pages on cars, cats, and football teams alike, whereas modern engines guess which meaning the user intends.",
+    "choices": [
+      "pertinent",
+      "parochial",
+      "indiscriminate",
+      "imperious"
+    ],
+    "correct_answer": "indiscriminate",
+    "explanation": "Returning every kind of 'jaguar' page alike, contrasted with engines that 'guess which meaning the user intends', means the results failed to make distinctions: indiscriminate.",
+    "distractor_rationales": [
+      "pertinent — pertinent means relevant, which pages about the wrong jaguars were not.",
+      "parochial — parochial means narrow and limited, the opposite of results ranging over cars, cats, and football.",
+      "imperious — imperious means domineering; it describes a manner, not a set of search results."
+    ],
+    "rarity_order": [
+      "parochial",
+      "imperious",
+      "indiscriminate",
+      "pertinent"
+    ]
+  },
+  {
+    "id": "IS19C-24",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "contrast",
+    "prompt": "[Sentence Completion] Cars of the 1950s were ------- with fuel, burning a gallon every ten miles, whereas today's hybrids stretch the same gallon across fifty.",
+    "choices": [
+      "provident",
+      "glutted",
+      "imbued",
+      "prodigal"
+    ],
+    "correct_answer": "prodigal",
+    "explanation": "Burning a gallon every ten miles, set against hybrids that 'stretch' a gallon, means the old cars spent fuel wastefully: prodigal.",
+    "distractor_rationales": [
+      "provident — provident means careful to save for the future, which describes the hybrids, not the gas-guzzlers.",
+      "glutted — glutted means overfilled; the sentence is about how fast fuel was used, not how full the tank was.",
+      "imbued — imbued means filled or soaked with a quality; it does not describe using fuel up quickly."
+    ],
+    "rarity_order": [
+      "glutted",
+      "prodigal",
+      "imbued",
+      "provident"
+    ]
+  }
+]

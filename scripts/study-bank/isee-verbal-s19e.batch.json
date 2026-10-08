@@ -1,0 +1,715 @@
+[
+  {
+    "id": "IS19E-01",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] Far from the spare canvases of her early career, the painter's late works are crowded with gilded frames, swirling cherubs, and layered ornament, an almost ------- excess that critics either adore or deplore.",
+    "choices": [
+      "chaste",
+      "jejune",
+      "baroque",
+      "bucolic"
+    ],
+    "correct_answer": "baroque",
+    "explanation": "The gilded frames, swirling cherubs and layered ornament, set against her earlier 'spare' canvases, describe extravagant, highly ornamented style: baroque.",
+    "distractor_rationales": [
+      "chaste — chaste means plain and restrained, which is what her EARLY spare work was, not the crowded late work",
+      "jejune — jejune means dull or naive; 'excess' of ornament is the opposite of dull thinness",
+      "bucolic — bucolic means rural and pastoral; nothing about frames, cherubs and ornament concerns country life"
+    ],
+    "rarity_order": [
+      "jejune",
+      "bucolic",
+      "baroque",
+      "chaste"
+    ]
+  },
+  {
+    "id": "IS19E-02",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] The coach had braced for mild disappointment after the narrow loss, but the mood in the locker room was nothing short of -------: players sat motionless, heads in hands, unable to say a word.",
+    "choices": [
+      "chagrined",
+      "frenzied",
+      "disconsolate",
+      "bemused"
+    ],
+    "correct_answer": "disconsolate",
+    "explanation": "'Nothing short of' pushes past 'mild disappointment' to its extreme, and motionless, speechless players with heads in hands show grief beyond comfort: disconsolate.",
+    "distractor_rationales": [
+      "chagrined — chagrined is embarrassed annoyance, the mild end the sentence says the mood went far beyond",
+      "frenzied — frenzied means wildly agitated, contradicted by players sitting motionless",
+      "bemused — bemused means puzzled; nothing suggests confusion, and it is not a stronger form of disappointment"
+    ],
+    "rarity_order": [
+      "disconsolate",
+      "chagrined",
+      "bemused",
+      "frenzied"
+    ]
+  },
+  {
+    "id": "IS19E-03",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] Hardly a ------- student, Mina turned in every assignment early, color-coded her notes, and reread each chapter twice before the exam.",
+    "choices": [
+      "dedicated",
+      "fractious",
+      "dogged",
+      "lackadaisical"
+    ],
+    "correct_answer": "lackadaisical",
+    "explanation": "'Hardly' reverses the examples: early work, color-coded notes and double rereading show great care, so she is hardly a careless, lazy student: lackadaisical.",
+    "distractor_rationales": [
+      "dedicated — her habits show she IS dedicated, so 'hardly a dedicated student' contradicts the examples",
+      "fractious — fractious means unruly; the examples are about study habits, not behavior, so they give 'hardly' nothing to deny",
+      "dogged — her persistence IS dogged, so 'hardly' would contradict the evidence"
+    ],
+    "rarity_order": [
+      "lackadaisical",
+      "fractious",
+      "dedicated",
+      "dogged"
+    ]
+  },
+  {
+    "id": "IS19E-04",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] Far from ------- in her praise, the senior editor rarely offered a writer more than a brief nod and a single penciled check mark.",
+    "choices": [
+      "effusive",
+      "chary",
+      "brusque",
+      "guileless"
+    ],
+    "correct_answer": "effusive",
+    "explanation": "'Far from' reverses the description: a brief nod and one check mark is the least praise possible, so she is far from gushing and lavish with it: effusive.",
+    "distractor_rationales": [
+      "chary — chary of praise means sparing with it, which is exactly what she is; 'far from' rules it out",
+      "brusque — a bare nod IS brusque, so 'far from brusque' contradicts the description",
+      "guileless — guileless means innocent and sincere; nothing in the nod or check mark speaks to deceit, so the contrast has no point"
+    ],
+    "rarity_order": [
+      "chary",
+      "guileless",
+      "effusive",
+      "brusque"
+    ]
+  },
+  {
+    "id": "IS19E-05",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] The director's films are ------- to an exhausting degree: a single scene may quote a silent comedy, a Renaissance altarpiece, a jazz standard, and a Korean folk tale.",
+    "choices": [
+      "didactic",
+      "jingoistic",
+      "allusive",
+      "elliptical"
+    ],
+    "correct_answer": "allusive",
+    "explanation": "Every example is a reference to another work, so the films are full of allusions: allusive.",
+    "distractor_rationales": [
+      "didactic — didactic means preachy and instructive; quoting comedies and folk tales is reference, not teaching",
+      "jingoistic — jingoistic means aggressively nationalistic, contradicted by references drawn from many countries and traditions",
+      "elliptical — elliptical means leaving things out or hard to follow through omission; the scene ADDS references rather than omitting"
+    ],
+    "rarity_order": [
+      "allusive",
+      "elliptical",
+      "jingoistic",
+      "didactic"
+    ]
+  },
+  {
+    "id": "IS19E-06",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] Once so ------- that the two captains shared a meal after every match, the rivalry between the clubs had by the decade's end grown so bitter that fans were barred from each other's grounds.",
+    "choices": [
+      "bellicose",
+      "collegial",
+      "internecine",
+      "acrimonious"
+    ],
+    "correct_answer": "collegial",
+    "explanation": "'Once' sets the early rivalry against its later bitterness, and captains sharing a meal after every match shows friendly cooperation among peers: collegial.",
+    "distractor_rationales": [
+      "bellicose — bellicose means warlike; that describes the LATER rivalry, and warlike captains would not dine together",
+      "internecine — internecine means mutually destructive, the end state the sentence contrasts with",
+      "acrimonious — acrimonious means bitter, which is what the rivalry BECAME; 'once' sets the earlier state against it"
+    ],
+    "rarity_order": [
+      "internecine",
+      "bellicose",
+      "acrimonious",
+      "collegial"
+    ]
+  },
+  {
+    "id": "IS19E-07",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] The principal's reprimand was no gentle reminder but a ------- rebuke, delivered before the whole assembly and leaving the two boys red-faced for days.",
+    "choices": [
+      "ambivalent",
+      "blistering",
+      "facetious",
+      "halfhearted"
+    ],
+    "correct_answer": "blistering",
+    "explanation": "'No gentle reminder but' calls for the strong end of the scale, and a public rebuke that left them red-faced for days is fiercely harsh: blistering.",
+    "distractor_rationales": [
+      "ambivalent — ambivalent means of two minds; a rebuke that shamed them for days was not hesitant",
+      "facetious — facetious means joking; a joke would not leave the boys red-faced for days",
+      "halfhearted — halfhearted is the gentle end the sentence explicitly rejects"
+    ],
+    "rarity_order": [
+      "facetious",
+      "ambivalent",
+      "blistering",
+      "halfhearted"
+    ]
+  },
+  {
+    "id": "IS19E-08",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] Unlike his predecessor, who signed every request after a glance, the new auditor was almost -------: he challenged receipts for a single coffee and found fault with forms that had passed inspection for years.",
+    "choices": [
+      "censorious",
+      "credulous",
+      "jovial",
+      "insouciant"
+    ],
+    "correct_answer": "censorious",
+    "explanation": "'Unlike' his easy-going predecessor, and challenging tiny receipts and long-accepted forms shows a severely fault-finding manner: censorious.",
+    "distractor_rationales": [
+      "credulous — credulous means too ready to believe, which describes the PREDECESSOR who signed after a glance, not the man 'unlike' him",
+      "jovial — jovial means jolly; challenging every receipt and finding fault is not cheer",
+      "insouciant — insouciant means carefree and unconcerned, again the predecessor who signed after a glance"
+    ],
+    "rarity_order": [
+      "censorious",
+      "insouciant",
+      "credulous",
+      "jovial"
+    ]
+  },
+  {
+    "id": "IS19E-09",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] The pianist's reading of the sonata was not merely restrained but almost -------, so drained of rubato and dynamic contrast that several critics compared it to a player piano.",
+    "choices": [
+      "febrile",
+      "electrifying",
+      "elegiac",
+      "bloodless"
+    ],
+    "correct_answer": "bloodless",
+    "explanation": "'Not merely restrained but almost' asks for the extreme of restraint, and playing drained of all expressive variation, like a machine, is lifeless and without feeling: bloodless.",
+    "distractor_rationales": [
+      "febrile — febrile means feverishly intense, the opposite of drained, mechanical playing",
+      "electrifying — electrifying means thrilling; playing compared to a player piano excites no one",
+      "elegiac — elegiac means mournfully expressive; the playing has no emotion at all, sad or otherwise"
+    ],
+    "rarity_order": [
+      "febrile",
+      "elegiac",
+      "bloodless",
+      "electrifying"
+    ]
+  },
+  {
+    "id": "IS19E-10",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] Known for her ------- style of play, the midfielder seemed to be everywhere at once, chasing loose balls, tackling, and still sprinting back to defend in the final minutes.",
+    "choices": [
+      "indefatigable",
+      "languorous",
+      "cagey",
+      "dilatory"
+    ],
+    "correct_answer": "indefatigable",
+    "explanation": "Being everywhere at once and still sprinting back in the final minutes shows a player who never tires: indefatigable.",
+    "distractor_rationales": [
+      "languorous — languorous means slow and lazy, contradicted by chasing and sprinting",
+      "cagey — cagey means cautious and holding back; she chases every ball rather than holding back",
+      "dilatory — dilatory means slow to act, contradicted by sprinting back and being everywhere at once"
+    ],
+    "rarity_order": [
+      "languorous",
+      "indefatigable",
+      "dilatory",
+      "cagey"
+    ]
+  },
+  {
+    "id": "IS19E-11",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] The new teacher's lessons were anything but -------; one week the class built a catapult, the next they staged a mock trial, and the week after that they printed their own newspaper.",
+    "choices": [
+      "frenetic",
+      "humdrum",
+      "enterprising",
+      "engrossing"
+    ],
+    "correct_answer": "humdrum",
+    "explanation": "'Anything but' reverses the examples: a catapult, a mock trial and a newspaper in successive weeks show constant variety, so the lessons were anything but dull and routine: humdrum.",
+    "distractor_rationales": [
+      "frenetic — frenetic means frantic, which the rapid succession of projects could suggest, so 'anything but' contradicts the examples rather than summarizing them",
+      "enterprising — the projects ARE enterprising, so 'anything but enterprising' contradicts them",
+      "engrossing — such projects are engrossing, so 'anything but' rules it out"
+    ],
+    "rarity_order": [
+      "humdrum",
+      "frenetic",
+      "engrossing",
+      "enterprising"
+    ]
+  },
+  {
+    "id": "IS19E-12",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] The intern's error was a single typo in an internal memo, yet the supervisor's response was -------: a two-hour lecture, a formal warning in his file, and a month of reassigned duties.",
+    "choices": [
+      "evenhanded",
+      "clement",
+      "inordinate",
+      "apposite"
+    ],
+    "correct_answer": "inordinate",
+    "explanation": "'A single typo ... yet' sets a trivial error against a lecture, a formal warning and a month of punishment, a response far exceeding what the error deserved: inordinate.",
+    "distractor_rationales": [
+      "evenhanded — evenhanded means fair and balanced; 'yet' signals the response was out of line with a typo",
+      "clement — clement means merciful, contradicted by the lecture, warning and reassignment",
+      "apposite — apposite means fitting and appropriate, exactly what 'yet' denies"
+    ],
+    "rarity_order": [
+      "apposite",
+      "clement",
+      "inordinate",
+      "evenhanded"
+    ]
+  },
+  {
+    "id": "IS19E-13",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] The museum's new wing is almost aggressively -------: its galleries are bare concrete boxes with no moldings, no color on the walls, and labels printed in tiny gray type.",
+    "choices": [
+      "bedecked",
+      "decadent",
+      "ascetic",
+      "convivial"
+    ],
+    "correct_answer": "ascetic",
+    "explanation": "Bare concrete, no moldings, no color and tiny gray labels describe a design that denies itself every comfort and ornament: ascetic.",
+    "distractor_rationales": [
+      "bedecked — bedecked means lavishly decorated, contradicted by bare boxes with no moldings or color",
+      "decadent — decadent means self-indulgently luxurious, contradicted by plain concrete and tiny gray labels",
+      "convivial — convivial means warm and sociable; bare gray rooms are the opposite of welcoming"
+    ],
+    "rarity_order": [
+      "bedecked",
+      "ascetic",
+      "decadent",
+      "convivial"
+    ]
+  },
+  {
+    "id": "IS19E-14",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] Though her lead had shrunk to a single point, the champion's demeanor between rallies remained utterly -------, as if she were hitting balls alone on an empty court.",
+    "choices": [
+      "jittery",
+      "frazzled",
+      "distraught",
+      "imperturbable"
+    ],
+    "correct_answer": "imperturbable",
+    "explanation": "'Though' her lead had nearly vanished, she stayed 'utterly' as calm as someone practicing alone, so nothing could disturb her: imperturbable.",
+    "distractor_rationales": [
+      "jittery — jittery means nervous, the reaction 'though' says she did NOT have",
+      "frazzled — frazzled means worn out and flustered, inconsistent with practicing calmly alone",
+      "distraught — distraught means deeply upset, the opposite of the calm the comparison describes"
+    ],
+    "rarity_order": [
+      "imperturbable",
+      "distraught",
+      "frazzled",
+      "jittery"
+    ]
+  },
+  {
+    "id": "IS19E-15",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] Leo's interest in chess began as idle curiosity, but within a year it had become a ------- passion that kept him at the board long past midnight.",
+    "choices": [
+      "consuming",
+      "desultory",
+      "lukewarm",
+      "flagging"
+    ],
+    "correct_answer": "consuming",
+    "explanation": "'Began as idle curiosity, but' marks growth to the strong end, and a passion keeping him up past midnight absorbs him completely: consuming.",
+    "distractor_rationales": [
+      "desultory — desultory means random and half-hearted, the idle curiosity it grew OUT of",
+      "lukewarm — lukewarm is the weak end that 'but within a year' moves away from",
+      "flagging — flagging means weakening, while the sentence says the interest grew"
+    ],
+    "rarity_order": [
+      "desultory",
+      "flagging",
+      "lukewarm",
+      "consuming"
+    ]
+  },
+  {
+    "id": "IS19E-16",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] Far from -------, the new union leader conceded three points in the first hour, praised the company's proposal on overtime, and offered to drop the strike threat entirely.",
+    "choices": [
+      "amenable",
+      "intransigent",
+      "biddable",
+      "compliant"
+    ],
+    "correct_answer": "intransigent",
+    "explanation": "'Far from' reverses the examples: conceding, praising the other side and dropping the strike threat show readiness to give way, so he is far from refusing to compromise: intransigent.",
+    "distractor_rationales": [
+      "amenable — conceding points shows he IS amenable, so 'far from amenable' contradicts the examples",
+      "biddable — offering to drop the threat shows he IS biddable, so 'far from' rules it out",
+      "compliant — conceding and giving way is compliant behavior, so 'far from compliant' contradicts it"
+    ],
+    "rarity_order": [
+      "biddable",
+      "intransigent",
+      "amenable",
+      "compliant"
+    ]
+  },
+  {
+    "id": "IS19E-17",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] The novelist's early stories were only faintly melancholy, but her final book is unremittingly -------, with no character escaping illness, ruin, or grief.",
+    "choices": [
+      "halcyon",
+      "farcical",
+      "anodyne",
+      "bleak"
+    ],
+    "correct_answer": "bleak",
+    "explanation": "'Faintly melancholy, but unremittingly' calls for the dark extreme, and no one escaping illness, ruin or grief is hopeless and grim: bleak.",
+    "distractor_rationales": [
+      "halcyon — halcyon means idyllically happy and calm, contradicted by illness, ruin and grief",
+      "farcical — farcical means absurdly comic; nothing in illness and grief is played for laughs",
+      "anodyne — anodyne means bland and inoffensive; a book of unrelieved ruin and grief is not mild"
+    ],
+    "rarity_order": [
+      "anodyne",
+      "halcyon",
+      "farcical",
+      "bleak"
+    ]
+  },
+  {
+    "id": "IS19E-18",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] The young gymnast was so ------- that she could fold herself flat over her own legs, arch backward into a full bridge, and kick one foot past her ear.",
+    "choices": [
+      "brawny",
+      "lithe",
+      "lumbering",
+      "hapless"
+    ],
+    "correct_answer": "lithe",
+    "explanation": "Folding flat, arching into a bridge and kicking past her ear all show supple, graceful flexibility: lithe.",
+    "distractor_rationales": [
+      "brawny — brawny means bulky and muscular; the examples are feats of flexibility, not strength",
+      "lumbering — lumbering means heavy and clumsy, contradicted by folding flat and kicking past her ear",
+      "hapless — hapless means unlucky; the examples show physical ability, not misfortune"
+    ],
+    "rarity_order": [
+      "hapless",
+      "lithe",
+      "lumbering",
+      "brawny"
+    ]
+  },
+  {
+    "id": "IS19E-19",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] Rather than merely disagreeing with the board's new policy, the students' editorial was -------, calling the rule a betrayal of every teacher and demanding that the board resign.",
+    "choices": [
+      "diplomatic",
+      "fawning",
+      "irresolute",
+      "excoriating"
+    ],
+    "correct_answer": "excoriating",
+    "explanation": "'Rather than merely disagreeing' calls for something far stronger, and calling the rule a betrayal and demanding resignation is savagely critical: excoriating.",
+    "distractor_rationales": [
+      "diplomatic — diplomatic means tactful, the opposite of calling the rule a betrayal and demanding resignation",
+      "fawning — fawning means flattering, contradicted by calling the rule a betrayal",
+      "irresolute — irresolute means wavering, contradicted by the flat demand that the board resign"
+    ],
+    "rarity_order": [
+      "irresolute",
+      "excoriating",
+      "fawning",
+      "diplomatic"
+    ]
+  },
+  {
+    "id": "IS19E-20",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] Despite his impressive title, the office manager's duties were largely -------: he ordered paper clips, refilled the printer, and kept the visitors' log.",
+    "choices": [
+      "executive",
+      "editorial",
+      "budgetary",
+      "clerical"
+    ],
+    "correct_answer": "clerical",
+    "explanation": "'Despite his impressive title' contrasts with routine office chores: ordering supplies, refilling the printer and keeping a log are clerical work.",
+    "distractor_rationales": [
+      "executive — executive duties would match the impressive title, which 'despite' says they did not",
+      "editorial — editorial duties involve writing and revising text, not paper clips and printers",
+      "budgetary — budgetary duties mean managing money, not ordering paper clips and refilling the printer"
+    ],
+    "rarity_order": [
+      "budgetary",
+      "editorial",
+      "clerical",
+      "executive"
+    ]
+  },
+  {
+    "id": "IS19E-21",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] The actor was notoriously ------- on set: he snapped at assistants over a lukewarm coffee, shouted at the director over a missed cue, and once hurled a script across the room.",
+    "choices": [
+      "irascible",
+      "equable",
+      "affable",
+      "ingenuous"
+    ],
+    "correct_answer": "irascible",
+    "explanation": "Snapping, shouting and hurling a script over small things show a man easily provoked to anger: irascible.",
+    "distractor_rationales": [
+      "equable — equable means even-tempered, contradicted by every outburst listed",
+      "affable — affable means friendly and pleasant, contradicted by snapping and shouting",
+      "ingenuous — ingenuous means innocently naive; the examples show temper, not naivety"
+    ],
+    "rarity_order": [
+      "ingenuous",
+      "irascible",
+      "equable",
+      "affable"
+    ]
+  },
+  {
+    "id": "IS19E-22",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "medium",
+    "blanks": 1,
+    "clue_type": "degree/intensity",
+    "prompt": "[Sentence Completion] The rookie's debut was not just good but -------: four goals in a single half, a feat no first-year player in the league's history had ever matched.",
+    "choices": [
+      "extraordinary",
+      "creditable",
+      "adequate",
+      "lackluster"
+    ],
+    "correct_answer": "extraordinary",
+    "explanation": "'Not just good but' asks for a degree beyond good, and a feat never matched in league history is far beyond the ordinary: extraordinary.",
+    "distractor_rationales": [
+      "creditable — creditable means respectably good, the level 'not just good' moves past",
+      "adequate — adequate means merely sufficient, weaker even than good",
+      "lackluster — lackluster means dull and unimpressive, contradicted by a record-setting four goals"
+    ],
+    "rarity_order": [
+      "creditable",
+      "lackluster",
+      "adequate",
+      "extraordinary"
+    ]
+  },
+  {
+    "id": "IS19E-23",
+    "family": "isee",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "sentence completion",
+    "subskill": "sentence_completion",
+    "difficulty": "hard",
+    "blanks": 1,
+    "clue_type": "examples/description",
+    "prompt": "[Sentence Completion] Ms. Ortiz was a ------- grader: she accepted late work without penalty, rounded every borderline score up, and gave partial credit for any honest attempt.",
+    "choices": [
+      "captious",
+      "hidebound",
+      "charitable",
+      "intolerant"
+    ],
+    "correct_answer": "charitable",
+    "explanation": "Waiving late penalties, rounding up and crediting honest attempts all give students the benefit of the doubt: charitable.",
+    "distractor_rationales": [
+      "captious — captious means fault-finding over trifles, contradicted by rounding every score up",
+      "hidebound — hidebound means rigidly bound by convention, contradicted by waiving penalties and rounding up",
+      "intolerant — intolerant means unwilling to accept lapses, contradicted by accepting late work without penalty"
+    ],
+    "rarity_order": [
+      "captious",
+      "hidebound",
+      "intolerant",
+      "charitable"
+    ]
+  }
+]
