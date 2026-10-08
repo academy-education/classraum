@@ -1,0 +1,380 @@
+[
+ {
+  "id": "SM23L-A1",
+  "domain": "Algebra",
+  "subskill": "System with a constant and a condition on its solution",
+  "difficulty": "hard",
+  "prompt": "kx + 5y = 10\n4x + (k − 1)y = 8\n\nFor the constant k, exactly one ordered pair (x, y) makes both equations above true, and that ordered pair also makes x + 2y = −26 true. What is y?",
+  "choices": [
+   "-28",
+   "-10",
+   "-8",
+   "30"
+  ],
+  "correct_answer": "-8",
+  "explanation": "Because x + 2y = −26, substitute x = −26 − 2y into both equations. The first equation becomes (5 − 2k)y = 10 + 26k. The second becomes −104 − 8y + (k − 1)y = 8, so (k − 9)y = 112 and y = 112/(k − 9). Substituting this into the first equation gives 112(5 − 2k) = (10 + 26k)(k − 9), which simplifies to 26k² = 650, so k² = 25 and k = 5 or k = −5. When k = 5, the equations are 5x + 5y = 10 and 4x + 4y = 8, and both describe the line x + y = 2, so the system has infinitely many solutions, not exactly one. Therefore k = −5, and y = 112/(−5 − 9) = −8. Check: when k = −5 the equations are −5x + 5y = 10 and 4x − 6y = 8, whose only solution is (−10, −8), and −10 + 2(−8) = −26.\n\nChoice −28 is the value of y found with k = 5, but for that value of k the system has infinitely many solutions. Choice 30 is the x-coordinate of the point found with k = 5. Choice −10 is the x-coordinate of the solution, not the y-coordinate.",
+  "bounds": [],
+  "mechanism": [
+   "parameter value from a condition on the solution",
+   "rejected root makes the two lines coincide",
+   "system must have exactly one solution"
+  ],
+  "solve": "for(let k=-60;k<=60;k+=0.5){const D=k*(k-1)-20;if(Math.abs(D)<1e-9)continue;const x=(10*(k-1)-40)/D,y=(8*k-40)/D;if(Math.abs(x+2*y+26)<1e-9)return y;}return null;",
+  "distractor_solve": {
+   "30": "const ks=[];for(let k=-60;k<=60;k++){if(112*(5-2*k)===(10+26*k)*(k-9))ks.push(k);}const k=Math.max(...ks);const y=112/(k-9);return -26-2*y;",
+   "-28": "const ks=[];for(let k=-60;k<=60;k++){if(112*(5-2*k)===(10+26*k)*(k-9))ks.push(k);}const k=Math.max(...ks);return 112/(k-9);",
+   "-10": "for(let k=-60;k<=60;k+=0.5){const D=k*(k-1)-20;if(Math.abs(D)<1e-9)continue;const x=(10*(k-1)-40)/D,y=(8*k-40)/D;if(Math.abs(x+2*y+26)<1e-9)return x;}return null;"
+  }
+ },
+ {
+  "id": "SM23L-A2",
+  "domain": "Algebra",
+  "subskill": "Linear system with a constant: intersection on a third line",
+  "difficulty": "hard",
+  "prompt": "kx + 4y = 5\n6x + (k + 5)y = 10\n\nIn the xy-plane, the graphs of the two equations above, where k is a constant, intersect at exactly one point. That point lies on the line x − 2y = −3. What is the y-coordinate of the point of intersection?",
+  "choices": [
+   "-3",
+   "-1/5",
+   "7/5",
+   "2"
+  ],
+  "correct_answer": "2",
+  "explanation": "Because the point lies on x − 2y = −3, its coordinates satisfy x = 2y − 3. Substituting into the first equation gives k(2y − 3) + 4y = 5, so (2k + 4)y = 5 + 3k. Substituting into the second gives 6(2y − 3) + (k + 5)y = 10, so (k + 17)y = 28 and y = 28/(k + 17). Then 28(2k + 4) = (5 + 3k)(k + 17), which simplifies to 56k + 112 = 3k² + 56k + 85, so 3k² = 27 and k = 3 or k = −3. When k = 3, the equations are 3x + 4y = 5 and 6x + 8y = 10, which are the same line, so the graphs intersect at infinitely many points, not exactly one. Therefore k = −3, and y = 28/(−3 + 17) = 2. Check: when k = −3 the equations are −3x + 4y = 5 and 6x + 2y = 10, which intersect only at (1, 2), and 1 − 2(2) = −3.\n\nChoice 7/5 is the y-coordinate found with k = 3, but for that value of k the two graphs are the same line. Choice −1/5 is the x-coordinate of the point found with k = 3. Choice −3 is the value of k, not a coordinate.",
+  "bounds": [],
+  "mechanism": [
+   "intersection point constrained to a third line",
+   "constant from cross-multiplying gives two candidates",
+   "one candidate makes the graphs the same line"
+  ],
+  "solve": "for(let k=-60;k<=60;k+=0.5){const D=k*(k+5)-24;if(Math.abs(D)<1e-9)continue;const x=(5*(k+5)-40)/D,y=(10*k-30)/D;if(Math.abs(x-2*y+3)<1e-9)return y;}return null;",
+  "distractor_solve": {
+   "7/5": "const ks=[];for(let k=-60;k<=60;k++){if(28*(2*k+4)===(5+3*k)*(k+17))ks.push(k);}const k=Math.max(...ks);return 28/(k+17);",
+   "-1/5": "const ks=[];for(let k=-60;k<=60;k++){if(28*(2*k+4)===(5+3*k)*(k+17))ks.push(k);}const k=Math.max(...ks);return 2*(28/(k+17))-3;",
+   "-3": "for(let k=-60;k<=60;k+=0.5){const D=k*(k+5)-24;if(Math.abs(D)<1e-9)continue;const x=(5*(k+5)-40)/D,y=(10*k-30)/D;if(Math.abs(x-2*y+3)<1e-9)return k;}return null;"
+  }
+ },
+ {
+  "id": "SM23L-A3",
+  "domain": "Algebra",
+  "subskill": "Line through a fixed point: intercept conditions on slope",
+  "difficulty": "hard",
+  "prompt": "y = mx − m + 6\n\nThe equation above defines a line in the xy-plane, where m is an integer constant. The x-intercept of the line is greater than 2, and the y-intercept of the line is less than 16. What is the sum of all possible values of m?",
+  "choices": [
+   "-34",
+   "-24",
+   "-21",
+   "-15"
+  ],
+  "correct_answer": "-15",
+  "explanation": "The equation can be written as y = m(x − 1) + 6, so the line passes through (1, 6) for every value of m. If m = 0, the line is y = 6, which has no x-intercept. Otherwise, setting y = 0 gives the x-intercept x = 1 − 6/m, and setting x = 0 gives the y-intercept 6 − m. The condition 1 − 6/m > 2 means −6/m > 1. If m > 0, then −6/m is negative, so this is impossible. If m < 0, multiplying both sides by m reverses the inequality: −6 < m. So −6 < m < 0. For these values the y-intercept 6 − m is between 6 and 12, so it is less than 16. The possible integer values are −5, −4, −3, −2, and −1, and their sum is −15. Check: when m = −1, the x-intercept is 7 and the y-intercept is 7; when m = −6, the x-intercept is exactly 2, which is not greater than 2.\n\nChoice −24 comes from multiplying −6/m > 1 by m without reversing the inequality, which gives m < −6; with m > −10 from the y-intercept condition, that leaves −9, −8, and −7. Choice −21 includes m = −6, for which the x-intercept equals 2. Choice −34 makes the same error as −24 and also includes m = −10, for which the y-intercept equals 16.",
+  "bounds": [],
+  "mechanism": [
+   "line through a fixed point with integer slope",
+   "x-intercept inequality requires sign of slope",
+   "sum of all integer slopes"
+  ],
+  "solve": "let s=0;for(let m=-200;m<=200;m++){if(m===0)continue;const xi=1-6/m,yi=6-m;if(xi>2&&yi<16)s+=m;}return s;",
+  "distractor_solve": {
+   "-24": "let s=0;for(let m=-200;m<=200;m++){if(m===0)continue;const yi=6-m;if(m<-6&&yi<16)s+=m;}return s;",
+   "-21": "let s=0;for(let m=-200;m<=200;m++){if(m===0)continue;const xi=1-6/m,yi=6-m;if(xi>=2&&yi<16)s+=m;}return s;",
+   "-34": "let s=0;for(let m=-200;m<=200;m++){if(m===0)continue;const yi=6-m;if(m<-6&&yi<=16)s+=m;}return s;"
+  }
+ },
+ {
+  "id": "SM23L-A4",
+  "domain": "Algebra",
+  "subskill": "Family of lines through a fixed point meeting a segment",
+  "difficulty": "hard",
+  "prompt": "kx + y = 2k + 5\n\nIn the xy-plane, k is an integer constant with −10 ≤ k ≤ 10, and the graph of the equation above intersects the line segment whose endpoints are (−1, −4) and (3, −4). What is the sum of all possible values of k?",
+  "choices": [
+   "-39",
+   "-33",
+   "19",
+   "39"
+  ],
+  "correct_answer": "-33",
+  "explanation": "The equation can be written as y − 5 = −k(x − 2), so for every value of k the graph is a line through (2, 5) with slope −k. The segment lies on the line y = −4 and runs from x = −1 to x = 3. If k = 0, the graph is y = 5, which never reaches y = −4. Otherwise, setting y = −4 gives −9 = −k(x − 2), so x = 2 + 9/k. The graph meets the segment when −1 ≤ 2 + 9/k ≤ 3, that is, when −3 ≤ 9/k ≤ 1. If k > 0, then 9/k is positive and the condition is 9/k ≤ 1, so k ≥ 9. If k < 0, then 9/k is negative and the condition is 9/k ≥ −3; multiplying by the negative number k reverses it, giving 9 ≤ −3k, so k ≤ −3. The possible values are −10 through −3 and 9 and 10. Their sum is (−52) + 19 = −33. These lines are the steep ones: the line through (2, 5) and (−1, −4) has k = −3, the line through (2, 5) and (3, −4) has k = 9, and every value of k strictly between −3 and 9 gives a line that passes beside the segment.\n\nChoice 39 is the sum of the integers from −3 to 9, the values that give lines missing the segment, together with −3 and 9. Choice 19 comes from multiplying 9/k ≥ −3 by k without reversing the inequality, which leaves only k ≥ 9. Choice −39 leaves out k = −3 and k = 9, the lines through the endpoints of the segment.",
+  "bounds": [],
+  "mechanism": [
+   "family of lines through a hidden fixed point",
+   "line must meet a horizontal segment",
+   "rotating line passes through vertical so slopes outside the endpoint slopes"
+  ],
+  "solve": "let s=0;for(let k=-10;k<=10;k++){if(k===0)continue;const x=2+9/k;if(x>=-1&&x<=3)s+=k;}return s;",
+  "distractor_solve": {
+   "19": "let s=0;for(let k=-10;k<=10;k++){if(k===0)continue;if(9<=k&&9>=-3*k)s+=k;}return s;",
+   "39": "let s=0;for(let k=-10;k<=10;k++){if(k>=-3&&k<=9)s+=k;}return s;",
+   "-39": "let s=0;for(let k=-10;k<=10;k++){if(k===0)continue;const x=2+9/k;if(x>-1&&x<3)s+=k;}return s;"
+  }
+ },
+ {
+  "id": "SM23L-A5",
+  "domain": "Algebra",
+  "subskill": "Linear function from its range on an interval",
+  "difficulty": "hard",
+  "prompt": "f(x) = ax + b\n\nIn the function f defined above, a and b are constants. As x takes every value from −1 to 3, inclusive, f(x) takes every value from −7 to 9, inclusive, and no other values. The graph of y = f(x) in the xy-plane has a positive y-intercept. What is the value of f(8)?",
+  "choices": [
+   "-27",
+   "-23",
+   "-11",
+   "29"
+  ],
+  "correct_answer": "-27",
+  "explanation": "A linear function takes its least and greatest values on an interval at the endpoints of the interval. The outputs change by 9 − (−7) = 16 while x changes by 3 − (−1) = 4, so the slope is 4 or −4. If the slope is 4, then f(−1) = −7, so f(x) = −7 + 4(x + 1) = 4x − 3, whose y-intercept −3 is not positive. So the slope is −4: f(−1) = 9 and f(3) = −7, which gives f(x) = 9 − 4(x + 1) = −4x + 5, with y-intercept 5. Then f(8) = −32 + 5 = −27.\n\nChoice 29 comes from f(x) = 4x − 3, whose y-intercept is negative. Choice −23 comes from writing the decreasing function as f(x) = −4x + 9, using the greatest output as the y-intercept. Choice −11 comes from pairing the output 9 with x = 3 while using the slope −4, f(x) = 9 − 4(x − 3).",
+  "bounds": [],
+  "mechanism": [
+   "linear function from its range on a closed interval",
+   "increasing or decreasing case",
+   "y-intercept sign selects the case"
+  ],
+  "solve": "const p=-1,q=3,L=-7,U=9,s=(U-L)/(q-p);const inc=x=>L+s*(x-p),dec=x=>U-s*(x-p);return inc(0)>0?inc(8):dec(8);",
+  "distractor_solve": {
+   "29": "const p=-1,q=3,L=-7,U=9,s=(U-L)/(q-p);return L+s*(8-p);",
+   "-23": "const p=-1,q=3,L=-7,U=9,s=(U-L)/(q-p);return U-s*8;",
+   "-11": "const p=-1,q=3,L=-7,U=9,s=(U-L)/(q-p);return U-s*(8-q);"
+  }
+ },
+ {
+  "id": "SM23L-A6",
+  "domain": "Algebra",
+  "subskill": "Linear function bounded on an interval: range of a constant",
+  "difficulty": "hard",
+  "prompt": "f(x) = kx + 4 − k\n\nIn the function f defined above, k is a constant, and 0 ≤ f(x) ≤ 10 for every value of x with −2 ≤ x ≤ 5. What is the difference between the greatest possible value of f(9) and the least possible value of f(9)?",
+  "choices": [
+   "56/3",
+   "20",
+   "80/3",
+   "28"
+  ],
+  "correct_answer": "56/3",
+  "explanation": "Write f(x) = 4 + k(x − 1). Because f is linear, its least and greatest values for −2 ≤ x ≤ 5 occur at x = −2 and x = 5, so the condition holds exactly when both f(−2) and f(5) are between 0 and 10. f(−2) = 4 − 3k, and 0 ≤ 4 − 3k ≤ 10 gives −2 ≤ k ≤ 4/3. f(5) = 4 + 4k, and 0 ≤ 4 + 4k ≤ 10 gives −1 ≤ k ≤ 3/2. Both hold when −1 ≤ k ≤ 4/3. When k is positive, the binding requirement is f(−2) ≥ 0, not f(5) ≤ 10; when k is negative, it is f(5) ≥ 0, not f(−2) ≤ 10. Since f(9) = 4 + 8k, f(9) ranges from 4 + 8(−1) = −4 to 4 + 8(4/3) = 44/3. The difference is 44/3 − (−4) = 56/3.\n\nChoice 28 uses only f(5) ≤ 10 for the greatest k, giving k = 3/2, and only f(−2) ≤ 10 for the least k, giving k = −2, so f(9) would range from −12 to 16. Choice 80/3 uses the correct greatest value 44/3 but the least value −12 from k = −2. Choice 20 uses the correct least value −4 but the greatest value 16 from k = 3/2.",
+  "bounds": [],
+  "mechanism": [
+   "linear function bounded on a whole interval",
+   "slope sign decides which endpoint binds",
+   "difference of extreme values at an outside input"
+  ],
+  "solve": "const lo0=0,hi0=10,pts=[-2,5];let lo=-1e9,hi=1e9;for(const x0 of pts){const c=x0-1;const a=(lo0-4)/c,b=(hi0-4)/c;const mn=Math.min(a,b),mx=Math.max(a,b);lo=Math.max(lo,mn);hi=Math.min(hi,mx);}return 8*(hi-lo);",
+  "distractor_solve": {
+   "20": "const lo0=0,hi0=10,pts=[-2,5];let lo=-1e9,hi=1e9;for(const x0 of pts){const c=x0-1;const a=(lo0-4)/c,b=(hi0-4)/c;const mn=Math.min(a,b),mx=Math.max(a,b);lo=Math.max(lo,mn);hi=Math.min(hi,mx);}const hi2=(10-4)/4;return 8*(hi2-lo);",
+   "28": "const hi=(10-4)/4,lo=(10-4)/(-3);return 8*(hi-lo);",
+   "80/3": "const lo0=0,hi0=10,pts=[-2,5];let lo=-1e9,hi=1e9;for(const x0 of pts){const c=x0-1;const a=(lo0-4)/c,b=(hi0-4)/c;const mn=Math.min(a,b),mx=Math.max(a,b);lo=Math.max(lo,mn);hi=Math.min(hi,mx);}const lo2=(10-4)/(-3);return 8*(hi-lo2);"
+  }
+ },
+ {
+  "id": "SM23L-A7",
+  "domain": "Algebra",
+  "subskill": "Linear inequality with a constant coefficient: given solution set",
+  "difficulty": "hard",
+  "prompt": "kx − 25 ≥ 4x\n\nFor the constant k, the inequality above is true for exactly those values of x that are less than or equal to k − 4. What is k?",
+  "choices": [
+   "-9",
+   "-5",
+   "-1",
+   "9"
+  ],
+  "correct_answer": "-1",
+  "explanation": "Subtracting 4x from both sides and adding 25 gives (k − 4)x ≥ 25. If k = 4, this is 0 ≥ 25, which has no solutions. If k > 4, dividing by the positive number k − 4 gives x ≥ 25/(k − 4), a solution set of the form x ≥ (a number), not x ≤ (a number). So k < 4, and dividing by the negative number k − 4 reverses the inequality: x ≤ 25/(k − 4). This must be the same as x ≤ k − 4, so 25/(k − 4) = k − 4, which gives (k − 4)² = 25. Then k − 4 = 5 or k − 4 = −5, and because k − 4 must be negative, k − 4 = −5 and k = −1. Check: when k = −1 the inequality is −x − 25 ≥ 4x, so −5x ≥ 25 and x ≤ −5, which is x ≤ k − 4.\n\nChoice 9 comes from k − 4 = 5; with k = 9 the inequality becomes 5x ≥ 25, whose solution set is x ≥ 5, not x ≤ 5. Choice −5 comes from dropping the 4 and solving k² = 25 with the negative root. Choice −9 comes from writing k + 4 = −5 instead of k − 4 = −5.",
+  "bounds": [],
+  "mechanism": [
+   "linear inequality with a constant in the x-coefficient",
+   "given solution set fixes the direction",
+   "boundary equation has a root with the wrong sign"
+  ],
+  "solve": "for(let k=-100;k<=100;k++){const c=k-4;if(c>=0)continue;if(Math.abs(25/c-(k-4))<1e-9)return k;}return null;",
+  "distractor_solve": {
+   "9": "for(let k=-100;k<=100;k++){const c=k-4;if(c<=0)continue;if(Math.abs(25/c-(k-4))<1e-9)return k;}return null;",
+   "-5": "for(let k=-100;k<=0;k++){if(k*k===25)return k;}return null;",
+   "-9": "for(let k=-100;k<=100;k++){if(k+4===-5)return k;}return null;"
+  }
+ },
+ {
+  "id": "SM23L-B1",
+  "domain": "Algebra",
+  "subskill": "Parameter system: solution in quadrant I (sum)",
+  "difficulty": "hard",
+  "prompt": "kx − y = k + 6\ny = 4x − 6\n\nIn the system of equations above, k is a constant. What is the sum of all integer values of k for which the system has a solution (x, y) with x > 0 and y > 0?",
+  "choices": [
+   "56",
+   "62",
+   "66",
+   "68"
+  ],
+  "correct_answer": "56",
+  "explanation": "Substitute y = 4x − 6 into the first equation: kx − 4x + 6 = k + 6, so (k − 4)x = k. When k = 4 the equation reads 0 = 4, so there is no solution; otherwise x = k/(k − 4) and y = 4x − 6 = (24 − 2k)/(k − 4). Both fractions share the denominator k − 4, so its sign matters. If k − 4 < 0, then x > 0 would need k < 0, and y > 0 would need 24 − 2k < 0, that is, k > 12; no k does both. If k − 4 > 0, that is, k > 4, then x > 0 needs k > 0 and y > 0 needs k < 12. So 4 < k < 12, and the integer values are 5, 6, 7, 8, 9, 10, and 11, whose sum is 56. Check: k = 1 gives x = −1/3, which is not positive.\n\nChoice 66 comes from clearing the denominator as if k − 4 were always positive, which gives 0 < k < 12, and adding 1 through 11, including k = 4, for which the system has no solution. Choice 62 uses the same interval 0 < k < 12 but leaves out k = 4; the values 1, 2, and 3 still give a negative x. Choice 68 also counts k = 12, but then y = 0, which is not positive.",
+  "bounds": [],
+  "mechanism": [
+   "sign of a parameter denominator when clearing fractions",
+   "degenerate parameter value inside the naive interval",
+   "solution of a linear system in a quadrant"
+  ],
+  "solve": "const sol=(a1,b1,c1,a2,b2,c2)=>{const d=a1*b2-a2*b1;if(Math.abs(d)<1e-12)return null;return [(c1*b2-c2*b1)/d,(a1*c2-a2*c1)/d];};let s=0;for(let k=-200;k<=200;k++){const r=sol(k,-1,k+6,-4,1,-6);if(r&&r[0]>0&&r[1]>0)s+=k;}return s;",
+  "distractor_solve": {
+   "62": "let s=0;for(let k=-200;k<=200;k++){if(k===4)continue;if(k>0&&(24-2*k)>0)s+=k;}return s;",
+   "66": "let s=0;for(let k=-200;k<=200;k++){if(k>0&&(24-2*k)>0)s+=k;}return s;",
+   "68": "const sol=(a1,b1,c1,a2,b2,c2)=>{const d=a1*b2-a2*b1;if(Math.abs(d)<1e-12)return null;return [(c1*b2-c2*b1)/d,(a1*c2-a2*c1)/d];};let s=0;for(let k=-200;k<=200;k++){const r=sol(k,-1,k+6,-4,1,-6);if(r&&r[0]>0&&r[1]>=0)s+=k;}return s;"
+  }
+ },
+ {
+  "id": "SM23L-B2",
+  "domain": "Algebra",
+  "subskill": "Parameter system: solution in quadrant IV (count)",
+  "difficulty": "hard",
+  "prompt": "kx − 2y = 2k + 14\n3x + y = 9\n\nIn the system of equations above, k is a constant. For how many integer values of k does the system have a solution (x, y) with x > 0 and y < 0?",
+  "choices": [
+   "19",
+   "20",
+   "28",
+   "29"
+  ],
+  "correct_answer": "19",
+  "explanation": "From the second equation, y = 9 − 3x. Substituting into the first gives kx − 18 + 6x = 2k + 14, so (k + 6)x = 2k + 32. When k = −6 this reads 0 = 20, so there is no solution. Otherwise x = (2k + 32)/(k + 6) and y = 9 − 3x = (3k − 42)/(k + 6). If k + 6 < 0, then y < 0 would need 3k − 42 > 0, that is, k > 14, which is impossible when k < −6. So k + 6 > 0, that is, k > −6. Then y < 0 needs 3k − 42 < 0, so k < 14, and x > 0 needs 2k + 32 > 0, which holds for every k > −6. The integers with −6 < k < 14 are −5 through 13, which is 19 values. Check: k = −10 gives x = 3 and y = 18, which is not in the required region.\n\nChoice 29 comes from clearing the denominator as if k + 6 were always positive, which gives −16 < k < 14, and counting −15 through 13, including k = −6, for which there is no solution. Choice 28 uses the same interval but leaves out k = −6; the values from −15 through −7 still give a positive y. Choice 20 also counts k = 14, but then y = 0, which is not negative.",
+  "bounds": [],
+  "mechanism": [
+   "sign of a parameter denominator when clearing fractions",
+   "count of integer parameter values",
+   "solution of a linear system in a quadrant"
+  ],
+  "solve": "const sol=(a1,b1,c1,a2,b2,c2)=>{const d=a1*b2-a2*b1;if(Math.abs(d)<1e-12)return null;return [(c1*b2-c2*b1)/d,(a1*c2-a2*c1)/d];};let n=0;for(let k=-300;k<=300;k++){const r=sol(k,-2,2*k+14,3,1,9);if(r&&r[0]>0&&r[1]<0)n++;}return n;",
+  "distractor_solve": {
+   "20": "const sol=(a1,b1,c1,a2,b2,c2)=>{const d=a1*b2-a2*b1;if(Math.abs(d)<1e-12)return null;return [(c1*b2-c2*b1)/d,(a1*c2-a2*c1)/d];};let n=0;for(let k=-300;k<=300;k++){const r=sol(k,-2,2*k+14,3,1,9);if(r&&r[0]>0&&r[1]<=0)n++;}return n;",
+   "28": "let n=0;for(let k=-300;k<=300;k++){if(k===-6)continue;if(2*k+32>0&&3*k-42<0)n++;}return n;",
+   "29": "let n=0;for(let k=-300;k<=300;k++){if(2*k+32>0&&3*k-42<0)n++;}return n;"
+  }
+ },
+ {
+  "id": "SM23L-B3",
+  "domain": "Algebra",
+  "subskill": "Perpendicular lines with a parameter meeting on the y-axis",
+  "difficulty": "hard",
+  "prompt": "y = (k/3)x + 47 − k\ny = −(k/12)x + b\n\nIn the xy-plane, the graphs of the equations above are perpendicular lines, where k and b are constants. The two lines intersect at a point on the y-axis, and the graph of the second equation passes through the point (−10, 48). What is the y-coordinate of the point where the two lines intersect?",
+  "choices": [
+   "-34",
+   "41",
+   "43",
+   "53"
+  ],
+  "correct_answer": "53",
+  "explanation": "The slopes are k/3 and −k/12. Perpendicular lines have slopes whose product is −1, so −k²/36 = −1, which gives k² = 36, so k = 6 or k = −6. The second line passes through (−10, 48), so 48 = −(k/12)(−10) + b, which gives b = 48 − 5k/6. The lines meet on the y-axis exactly when their y-intercepts are equal, that is, when 47 − k = 48 − 5k/6.\n\nIf k = 6, the first line has y-intercept 41 and the second has y-intercept 43, so the lines meet off the y-axis, and k = 6 is rejected. If k = −6, both y-intercepts are 53: the lines are y = −2x + 53 and y = (1/2)x + 53, which are perpendicular and meet at (0, 53). The y-coordinate of the intersection point is 53.\n\nChoice 41 uses k = 6 and reports the y-intercept of the first line without checking the second line. Choice 43 uses k = 6 and reports the y-intercept of the second line; with k = 6 the two y-intercepts differ, so the lines do not meet on the y-axis. Choice −34 uses k = −6 but substitutes the point as (48, −10), with its coordinates reversed.",
+  "bounds": [],
+  "mechanism": [
+   "perpendicular slopes give two parameter values",
+   "intersection on the y-axis rejects one root",
+   "equal y-intercepts"
+  ],
+  "solve": "const res=[];for(let k=-100;k<=100;k++){if(k===0)continue;if(Math.abs((k/3)*(-k/12)+1)>1e-12)continue;const b=48+(k/12)*(-10);const yl=47-k;if(Math.abs(b-yl)>1e-9)continue;res.push({k,b,yl});}return res.length===1?res[0].b:null;",
+  "distractor_solve": {
+   "41": "const res=[];for(let k=-100;k<=100;k++){if(k===0)continue;if(Math.abs((k/3)*(-k/12)+1)>1e-12)continue;const b=48+(k/12)*(-10);const yl=47-k;res.push({k,b,yl});}return res.find(r=>r.k>0).yl;",
+   "43": "const res=[];for(let k=-100;k<=100;k++){if(k===0)continue;if(Math.abs((k/3)*(-k/12)+1)>1e-12)continue;const b=48+(k/12)*(-10);const yl=47-k;res.push({k,b,yl});}return res.find(r=>r.k>0).b;",
+   "-34": "const res=[];for(let k=-100;k<=100;k++){if(k===0)continue;if(Math.abs((k/3)*(-k/12)+1)>1e-12)continue;const b=-10+(k/12)*(48);const yl=47-k;res.push({k,b,yl});}return res.find(r=>r.k<0).b;"
+  }
+ },
+ {
+  "id": "SM23L-B4",
+  "domain": "Algebra",
+  "subskill": "Parallel lines with a parameter: line above line",
+  "difficulty": "hard",
+  "prompt": "y = ((k − 2)/2)x + b\n\nIn the equation above, k and b are constants. Its graph in the xy-plane is parallel to the line containing (2, 1) and (k, 9), contains the point (4, 1), and lies entirely above that line. What is the value of b?",
+  "choices": [
+   "-7",
+   "2",
+   "6",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "Call the line containing (2, 1) and (k, 9) line ℓ, and call the graph of the equation line m. The slope of line ℓ is (9 − 1)/(k − 2) = 8/(k − 2), and the slope of line m is (k − 2)/2. Parallel lines have equal slopes, so 8/(k − 2) = (k − 2)/2, which gives (k − 2)² = 16. So k − 2 = 4 or k − 2 = −4, that is, k = 6 or k = −2. Because line m passes through (4, 1), 1 = ((k − 2)/2)(4) + b, so b = 5 − 2k.\n\nIf k = 6, both slopes are 2: line ℓ is y = 2x − 3 and line m is y = 2x − 7. Line m has the smaller y-intercept, so it lies below line ℓ, and k = 6 is rejected. If k = −2, both slopes are −2: line ℓ is y = −2x + 5 and line m is y = −2x + 9, which lies above line ℓ. So b = 9.\n\nChoice −7 uses k = 6 without checking which line is above; with k = 6, line m lies below line ℓ. Choice 2 substitutes the point as (1, 4), with its coordinates reversed, and uses k = 6. Choice 6 substitutes the point as (1, 4) and uses k = −2.",
+  "bounds": [],
+  "mechanism": [
+   "parallel slopes give two parameter values",
+   "line above line rejects one root",
+   "slope from two points with a parameter"
+  ],
+  "solve": "const res=[];for(let k=-100;k<=100;k++){if(k===2)continue;const sl=8/(k-2),sm=(k-2)/2;if(Math.abs(sl-sm)>1e-12)continue;const bl=1-sl*2;const b=1-sm*(4);res.push({k,b,bl});}const ok=res.filter(r=>r.b>r.bl);return ok.length===1?ok[0].b:null;",
+  "distractor_solve": {
+   "2": "const res=[];for(let k=-100;k<=100;k++){if(k===2)continue;const sl=8/(k-2),sm=(k-2)/2;if(Math.abs(sl-sm)>1e-12)continue;const bl=1-sl*2;const b=4-sm*(1);res.push({k,b,bl});}return res.find(r=>r.k>2).b;",
+   "6": "const res=[];for(let k=-100;k<=100;k++){if(k===2)continue;const sl=8/(k-2),sm=(k-2)/2;if(Math.abs(sl-sm)>1e-12)continue;const bl=1-sl*2;const b=4-sm*(1);res.push({k,b,bl});}return res.find(r=>r.k<2).b;",
+   "-7": "const res=[];for(let k=-100;k<=100;k++){if(k===2)continue;const sl=8/(k-2),sm=(k-2)/2;if(Math.abs(sl-sm)>1e-12)continue;const bl=1-sl*2;const b=1-sm*(4);res.push({k,b,bl});}return res.find(r=>r.k>2).b;"
+  }
+ },
+ {
+  "id": "SM23L-B5",
+  "domain": "Algebra",
+  "subskill": "Half-plane with a parameter: contains and excludes points",
+  "difficulty": "hard",
+  "prompt": "y ≥ kx − 4\n\nIn the inequality above, k is a constant. In the xy-plane, the graph of the inequality contains the points (2, 14) and (−3, −1) but does not contain the point (3, 5). What is the sum of all possible integer values of k?",
+  "choices": [
+   "30",
+   "39",
+   "42",
+   "44"
+  ],
+  "correct_answer": "39",
+  "explanation": "A point is in the graph when its y-coordinate is at least kx − 4. The point (2, 14) is in the graph when 14 ≥ 2k − 4, that is, k ≤ 9. The point (−3, −1) is in the graph when −1 ≥ −3k − 4, that is, 3k ≥ −3, or k ≥ −1. The point (3, 5) is NOT in the graph when 5 < 3k − 4, that is, k > 3. The inequality includes its boundary line, so when k = 3 the point (3, 5) lies on the boundary and is in the graph; k = 3 must be excluded. Together, 3 < k ≤ 9, so the integer values are 4, 5, 6, 7, 8, and 9, whose sum is 39.\n\nChoice 42 also includes k = 3, for which (3, 5) is on the boundary line and therefore in the graph. Choice 30 excludes k = 9, treating the point (2, 14) on the boundary as outside the graph. Choice 44 uses only the two points the graph contains, adding every integer from −1 through 9.",
+  "bounds": [],
+  "mechanism": [
+   "half-plane boundary inclusion",
+   "excluded point on a non-strict boundary",
+   "parameter range from points in a half-plane"
+  ],
+  "solve": "const inG=(k,x,y)=>y>=k*x-4;let s=0;for(let k=-200;k<=200;k++){if(inG(k,2,14)&&inG(k,-3,-1)&&!inG(k,3,5))s+=k;}return s;",
+  "distractor_solve": {
+   "30": "const inG=(k,x,y)=>y>=k*x-4;let s=0;for(let k=-200;k<=200;k++){if((14>2*k-4)&&inG(k,-3,-1)&&!inG(k,3,5))s+=k;}return s;",
+   "42": "const inG=(k,x,y)=>y>=k*x-4;let s=0;for(let k=-200;k<=200;k++){if(inG(k,2,14)&&inG(k,-3,-1)&&!(5>3*k-4))s+=k;}return s;",
+   "44": "const inG=(k,x,y)=>y>=k*x-4;let s=0;for(let k=-200;k<=200;k++){if(inG(k,2,14)&&inG(k,-3,-1))s+=k;}return s;"
+  }
+ },
+ {
+  "id": "SM23L-B6",
+  "domain": "Algebra",
+  "subskill": "Strict half-plane with a parameter: segment and excluded point",
+  "difficulty": "hard",
+  "prompt": "y < kx + 3\n\nIn the inequality above, k is a constant. In the xy-plane, the graph of the inequality contains every point of the line segment with endpoints (1, −17) and (−2, −32), and it does not contain the point (2, 27). For how many integer values of k is this true?",
+  "choices": [
+   "31",
+   "32",
+   "37",
+   "38"
+  ],
+  "correct_answer": "32",
+  "explanation": "The graph of y < kx + 3 is the region below its boundary line, which lies on one side of a line, so it contains a whole segment exactly when it contains both endpoints. The point (1, −17) is in the graph when −17 < k + 3, that is, k > −20. The point (−2, −32) is in the graph when −32 < −2k + 3, that is, 2k < 35, or k < 17.5. The point (2, 27) is NOT in the graph when 27 ≥ 2k + 3, that is, k ≤ 12; because the inequality is strict, a point on the boundary line is not in the graph, so k = 12 is allowed. Together, −20 < k ≤ 12, so the integer values are −19 through 12, which is 32 values.\n\nChoice 31 requires k < 12, treating the point (2, 27) on the boundary line as part of the graph. Choice 37 leaves out the condition on (2, 27) and counts −19 through 17. Choice 38 also leaves out that condition and counts −20 through 17, treating (1, −17) on the boundary line as part of the graph.",
+  "bounds": [],
+  "mechanism": [
+   "strict half-plane excludes its boundary",
+   "segment contained iff both endpoints are",
+   "count of integer parameter values"
+  ],
+  "solve": "const inG=(k,x,y)=>y<k*x+3;let n=0;for(let k=-300;k<=300;k++){if(inG(k,1,-17)&&inG(k,-2,-32)&&!inG(k,2,27))n++;}return n;",
+  "distractor_solve": {
+   "31": "const inG=(k,x,y)=>y<k*x+3;let n=0;for(let k=-300;k<=300;k++){if(inG(k,1,-17)&&inG(k,-2,-32)&&27>2*k+3)n++;}return n;",
+   "37": "const inG=(k,x,y)=>y<k*x+3;let n=0;for(let k=-300;k<=300;k++){if(inG(k,1,-17)&&inG(k,-2,-32))n++;}return n;",
+   "38": "let n=0;for(let k=-300;k<=300;k++){if(-17<=k+3&&-32<=-2*k+3)n++;}return n;"
+  }
+ },
+ {
+  "id": "SM23L-B7",
+  "domain": "Algebra",
+  "subskill": "Linear equation with a parameter: conditions on the solution",
+  "difficulty": "hard",
+  "prompt": "2(x − k) = x + k − 10\n\nIn the equation above, k is a constant. For how many values of k is the solution to the equation a positive integer that is less than 52 and greater than k?",
+  "choices": [
+   "15",
+   "17",
+   "46",
+   "51"
+  ],
+  "correct_answer": "46",
+  "explanation": "Expanding gives 2x − 2k = x + k − 10, so x = 3k − 10, and each value of k gives exactly one solution. Going the other way, k = (x + 10)/3, so each possible solution x comes from exactly one value of k, and k does not have to be an integer. The solution is greater than k when x > (x + 10)/3, that is, 3x > x + 10, or x > 5. (When x = 5, k = 5 as well, and the solution is not greater than k.) So x can be any integer from 6 through 51, which is 46 integers, and each gives a different value of k. For example, x = 7 comes from k = 17/3, and 7 > 17/3.\n\nChoice 51 counts every positive integer less than 52, including 1 through 5, for which the solution is not greater than k. Choice 15 counts only integer values of k, that is, only the solutions 8, 11, 14, ..., 50. Choice 17 counts only integer values of k and also includes the solutions 2 and 5, which are not greater than k.",
+  "bounds": [],
+  "mechanism": [
+   "parameter need not be an integer",
+   "solution compared with the parameter",
+   "count of parameter values from solution conditions"
+  ],
+  "solve": "let n=0;for(let x=1;x<52;x++){const k=(x+10)/3;if(Math.abs(2*(x-k)-(x+k-10))>1e-9)return null;if(x>k)n++;}return n;",
+  "distractor_solve": {
+   "15": "let n=0;for(let x=1;x<52;x++){const k=(x+10)/3;if(Number.isInteger(k)&&x>k)n++;}return n;",
+   "17": "let n=0;for(let x=1;x<52;x++){const k=(x+10)/3;if(Number.isInteger(k))n++;}return n;",
+   "51": "let n=0;for(let x=1;x<52;x++){n++;}return n;"
+  }
+ }
+]
