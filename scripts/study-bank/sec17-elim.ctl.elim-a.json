@@ -1,0 +1,250 @@
+{
+  "L01": {
+    "reject_first": "C",
+    "why": "Simple past is plausible in many contexts but least marked for a sequence needing a perfect or conditional; context could still require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L02": {
+    "reject_first": "A",
+    "why": "\"did\" is the least likely auxiliary in a typical agreement/tense item, but any of the four could fit some sentence.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L03": {
+    "reject_first": "A",
+    "why": "Simple past may clash with an ongoing-duration context, but a hidden sentence could require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L04": {
+    "reject_first": "D",
+    "why": "No punctuation between \"frame\" and \"three\" is likely a run-together, yet some sentence could read \"frame three\" as a phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L05": {
+    "reject_first": "D",
+    "why": "Active \"damped out\" differs in voice from the others, but a sentence with an object could need it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L06": {
+    "reject_first": "A",
+    "why": "Plural \"have\" fails with a singular subject, but the subject is hidden and could be plural.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L07": {
+    "reject_first": "B",
+    "why": "Plural \"contain\" would need a plural subject, which is possible though less likely given the three singular options.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L08": {
+    "reject_first": "C",
+    "why": "A single comma between a compound subject and its verb is always an error.",
+    "certain": true,
+    "confident_rejects": [
+      "A",
+      "C"
+    ]
+  },
+  "L09": {
+    "reject_first": "D",
+    "why": "\"however\" spliced between commas before \"because\" risks a comma splice, but a sentence could accommodate it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L10": {
+    "reject_first": "C",
+    "why": "Present perfect is the odd tense out, but context could require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L11": {
+    "reject_first": "A",
+    "why": "A lone comma between \"bones\" and \"outlasts\" likely separates subject and verb, but \"bones\" could close an interrupting phrase whose opening comma is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L12": {
+    "reject_first": "A",
+    "why": "Plural \"stocks\" with singular \"stays\" looks mismatched, though \"stocks\" could be a verb with a singular subject.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L13": {
+    "reject_first": "B",
+    "why": "Past perfect is least likely for a general or future claim, but context could require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L14": {
+    "reject_first": "A",
+    "why": "Joining two parts with no punctuation is likely a run-on, but some sentence could make it grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L15": {
+    "reject_first": "B",
+    "why": "The contraction \"that's\" is informal and unlikely, but it is not grammatically impossible.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L16": {
+    "reject_first": "C",
+    "why": "Present perfect passive likely clashes with a past-narrative context, but the context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L17": {
+    "reject_first": "B",
+    "why": "Plural \"were\" needs a plural subject, which the hidden sentence could supply.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L18": {
+    "reject_first": "D",
+    "why": "Present perfect is the odd one out, but context could require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L19": {
+    "reject_first": "D",
+    "why": "The dummy \"it was found\" construction likely leaves a preceding modifier dangling, but the modifier is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L20": {
+    "reject_first": "A",
+    "why": "A comma between the subject \"trains\" and its verb \"arrive\" is always an error.",
+    "certain": true,
+    "confident_rejects": [
+      "A"
+    ]
+  },
+  "L21": {
+    "reject_first": "C",
+    "why": "A semicolon followed by a \"that\" clause usually leaves a fragment, but a noun-clause subject could make it independent.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L22": {
+    "reject_first": "B",
+    "why": "A semicolon before \"that\" likely creates a fragment, but a hidden continuation could rescue it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L23": {
+    "reject_first": "A",
+    "why": "Plural active \"seal\" depends on a hidden subject and voice that could match.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L24": {
+    "reject_first": "C",
+    "why": "\"those of a similarly sized seal's\" is a doubled possessive in a comparison, very likely wrong but not provably so.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L25": {
+    "reject_first": "D",
+    "why": "\"1954, was\" leaves any opening parenthesis unclosed, but the sentence might contain no parenthesis.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L26": {
+    "reject_first": "A",
+    "why": "Past \"were\" is the odd tense out, but context could require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L27": {
+    "reject_first": "A",
+    "why": "Plural \"prices\" is the odd number out, but a sentence could refer to multiple prices.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L28": {
+    "reject_first": "C",
+    "why": "The participle \"discovering\" implies discovery before climbing into the attic, which is illogical, though grammatical.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L29": {
+    "reject_first": "C",
+    "why": "A colon directly after the verb \"harbors\" separates verb from object, always an error; likewise a colon between \"diversity\" and \"of corals\".",
+    "certain": true,
+    "confident_rejects": [
+      "C",
+      "D"
+    ]
+  },
+  "L30": {
+    "reject_first": "B",
+    "why": "No punctuation before \"over\" may run clauses together, but \"over\" could begin a simple prepositional phrase.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L31": {
+    "reject_first": "A",
+    "why": "\"it was a heavy suitcase that\" likely leaves a preceding modifier dangling, but the modifier is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L32": {
+    "reject_first": "A",
+    "why": "\"that one anticipates\" is wordy and likely breaks parallelism, but context could fit it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L33": {
+    "reject_first": "D",
+    "why": "\"there was finally a firm conclusion\" likely dangles a preceding modifier, but the modifier is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L34": {
+    "reject_first": "D",
+    "why": "The comma before \"differing\" may wrongly set off the phrase, but some sentence could permit it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L35": {
+    "reject_first": "D",
+    "why": "Progressive \"is modeling\" is the odd form out, but a sentence could require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L36": {
+    "reject_first": "C",
+    "why": "The nominalised \"the jars' acquisition\" likely cannot serve as a subject that a preceding modifier attaches to, but context is hidden.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L37": {
+    "reject_first": "D",
+    "why": "Past progressive \"was anticipating\" is the odd tense out, but context could require it.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L38": {
+    "reject_first": "C",
+    "why": "Singular past progressive \"was keeping\" depends on a hidden subject and tense that could match.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L39": {
+    "reject_first": "B",
+    "why": "A comma after \"mortality\" may separate subject and verb, but it could close an appositive or list.",
+    "certain": false,
+    "confident_rejects": []
+  },
+  "L40": {
+    "reject_first": "C",
+    "why": "\"but, because\" with a comma after \"but\" is unusual, though grammatical if the because-clause is parenthetical.",
+    "certain": false,
+    "confident_rejects": []
+  }
+}

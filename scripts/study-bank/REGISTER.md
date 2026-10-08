@@ -2110,6 +2110,40 @@ recorded only in a commit message is a finding nobody reads.
   - Batches (held, never frozen): `act-math-v27{-d1,-d2,-b,-c}.batch.json`; `-c` still holds the dropped N-01, which is excluded from the merged 47 in `act-math-v27.batch.json`.
   - Ledger `act-math-v27-held-2026-10-09`. `verify-act-draw`: act/math draws 45 of 45 (unchanged). `form-capacity`: ACT Math 18 forms (853; IES 170 / 9 binding). `next-form`: IES +1.
 
+- **2026-10-09** — **SEC v17 INSERTED: 12 OF 20, 7 HARD / 5 MEDIUM BY PANEL MEDIAN. SEC HARD 59 → 66 (SEC alone now carries 9 forms; form 10 needs 70, 4 short). THE R&W MODULE-2 HARD ROUTE STAYS AT 8 FORMS: form 9's SEC slot is now 7/7 hard, but form 9 is still short in C&S (7/8; that commission runs separately) and I&I (6 hard + 2 medium in the draw).** `form-capacity`: "SAT R&W 8 hard forms capped by Craft and Structure — 70 hard". `verify-sat-hard-route.ts reading_writing 10`: 1198 live / 283 hard; forms 1-8 ALL-HARD, form 9 = 25 hard + 2 medium (was 21 + 6), form 10 = 11 hard + 16 medium (was 8 + 19; SEC 3 hard + 4 medium), 0 repeats. `rw-v17-sec-hard`, kept sha `2429b648`, frozen sha `e5802b32` (83f1ccea), prereg `e1895b7c` (PREREG-SEC17-2026-10-08.md), ledger `sat-sec-hard-v17-kept-2026-10-09`. Two Claude authors, 10 each, at most 2 subagents at a time throughout; no audit or repair round, nothing repaired after freeze. Every agent Claude. No new env var.
+
+      pre-freeze  one literal cross-author grid collision, A-01 ~ B-02 (identical {was,were} x {V-ing,V-ed}); B-02 replaced once (it-cleft,
+                  passive plural key, new topic). Recorded, frozen as they stood: A-07 ~ B-07 (both keyed "has been"), A-05 ~ B-07 (So/Such
+                  inversion), A-01 ~ B-01 (same grid, present), A-06 / B-01 same topic (hawkmoth flowers)
+      pre-flight  shape 20/20; doubled-word 0/20; sec-near-dup 0/20 flagged vs 394 live (paged = exact), max passage 0.014; within batch
+                  A-09 ~ B-10 same option skeleton (recorded). sec17-brief-counts.mjs (new, break-tested on v16: reproduces passive 4/5,
+                  comma 0 / strong 3 of 4, had 0/8, would 2/2): passive key 2/5 = 40.0%, comma key 1 + strong 2 of 4, had key 1/3 = 33.3%,
+                  would 0/1 + will 1 - ALL MET. Missed and recorded: frozen key letters A6/B4/C5/D5 (B-09 keyed A, assigned B)
+      render      BLIND=bare asserted: 0 subskill strings, 0 header words (labelled render hits 20/20)
+      nosource    candidate 33.3% (20/60) vs live HARD-band control 63.9% (46/72), margin -30.6 (bar +10), MEASURED; agreement 81.8% vs 25.8%
+                  independent; unanimity rate candidate 4/20 = 20.0%, control 15/24 = 62.5%
+      withsource  ws-d/e/f, phase 1 snapshotted before the key file: 60/60 cold picks on key, 20/20 exclusive 3/3, 0 path errors, 0 resolving,
+                  0 open-mark, 0 doubled_word, 0 off-blueprint, 0 phase-1 fields changed; gate-verdict rules 1-6 20/20 KEEP (13 hard / 7 medium)
+      drops       SEC17B-08 ("will" key): recommend_drop e - only "would" is a live lure; the two past forms die on "once the chamber is
+                  refilled" (panel medium, weak by e)
+      held        TEMPLATE-PAIR RULE (new, pre-registered): 7 grader-majority pairs; lower panel difficulty held, higher id on a tie:
+                  B-07 (~A-05 So/Such, 3/3), B-06 (~A-07 fronted inversion + singular postposed, 3/3), B-03 (~A-01 singular active after
+                  an interrupter, 3/3), B-04 (~A-02 quantifier subject, 3/3), B-01 (~A-01 grid, d e), B-05 (~A-06 do-inversion, e f),
+                  B-02 (~B-01 relative/cleft "that", d f; medium). Six of the seven are panel-hard. sat-sec-hard-v17.held.batch.json
+      elimination candidate 0.0% vs matched control 7.5% (n=20 vs 40), margin -7.5, PASS (A23), run on all 20 authored
+      panel       hard A-01 (not-X-but-Y + voice), A-02 (every X and every Y + aspect), A-04 (compound-antecedent relative), A-05 (So-inversion),
+                  A-06 (as + do + postposed subject), A-07 (adjective-complement inversion), B-09 (no mark between a reduced-relative subject
+                  and its verb); medium A-03 (fronted participial + passive), A-08 (past perfect key), A-09 (comma key), A-10 (semicolon +
+                  however), B-10 (colon key). Authors labelled all 20 hard (19th demotion)
+
+  **Hard yield 13/20 through the gate, the best of v10-v17 (v16 9/16); 7/12 banked because the template-pair rule held six hard items.** Agreement on the two v16 shapes held up: 12 of 14 agreement items panel-hard (A-03 and B-02 medium), against 0 of 2 verb form and 1 of 4 punctuation (B-09). **The cost was the template rule, and the cause was my construction table, not the authors.** I assigned I3 and I5 the same misleader (plural noun before the blank, singular postposed subject), I1 and I6 the same frame (So/Such + be + subject + that), and five voice slots the same number x voice grid. Every one of those came back as a majority pair. The rule as written also takes the higher id on every hard-hard tie, so all seven holds fell on author B. A minimum cover would have held one fewer hard item (A-01 alone covers A-01~B-01 and A-01~B-03). The rule was applied as pre-registered, and the held seven are not re-counted.
+
+  **The v16 tells are broken; graders found these instead.** (1) All three: **"a plural noun near the blank means a singular key"**. 10 of 15 agreement keys are singular. The 8 "nearest noun agrees" slots did not stop it, because in A-01, A-03, B-03 and B-07 an earlier or later plural reads as "the nearby noun". (2) All three: **"since / to the present day" means a present-perfect key** (A-02, A-07, B-03, B-07). (3) Graders e, f: voice is readable from whether an object follows the interrupter (A-01, B-01, B-02, B-03). Passive was keyed 2/5, so the v16 "passive wins" tell is gone, but the object-delay device became its own tell. (4) Grader f: an option with an extra adverb or odd auxiliary never wins (A-07, B-06, B-07). The punctuation keys differ in all four items (comma, ;, none, :), so graders found no mark tell. Recorded single-grader pairs: B-01~B-03 (e), A-03~B-02 (e), A-05~B-05 (d).
+
+  **Next (form 10 needs SEC +4; form 9 needs C&S +2 and an I&I check).** (a) Commission agreement only, on constructions whose MISLEADERS differ as well as their frames: the construction table must give no two slots the same (misleader x number direction x grid), and I check the table against itself before authors start. (b) Key plural in about half the agreement items, and put the attractor on both sides. (c) Settle aspect by a verb, not by "since/to the present" adverbials. (d) Stop using one object-delay device for voice. (e) Pre-register the template-pair hold as a minimum cover with a fixed tie-break, decided before the graders run. (f) form 9's I&I drew 6 hard + 2 medium although I&I has 66 hard (9 by division): check whether the draw or the count is wrong before commissioning I&I.
+
+  Evidence: `PREREG-SEC17-2026-10-08.md`, `sec17-brief-counts.mjs`, `sat-sec-hard-v17{-a,-b,,.kept,.held,.dropped}.batch.json`, `sec17-oo.{blind,key,solver-a,-b,-c}.json`, `sec17.ws-{blind.txt,key.json,d,e,f}.json`, `sec17.all.qc.json`, `sec17.qc.json`, `sec17-elim.{cand,ctl}.{blind,key,elim-a,-b,-c}.json`, `write-sec17-ledger.mjs`.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

@@ -1,0 +1,19 @@
+[
+ {
+  "id": "SEC17B-08",
+  "domain": "Standard English Conventions",
+  "subskill": "form: verb tense, future \"will\" in a clause reported by a present-perfect verb and paired with a present-tense time clause, with nearby past-tense verbs tempting \"would\"",
+  "difficulty": "hard",
+  "passage": "Rebuilding a lock on a disused canal has taken far longer than its planners expected. The restoration trust has announced that the replacement gates, which carpenters shaped by hand from oak beams that were air-dried for several years before anyone cut them, ______ for at least fifty years once the chamber is refilled and boats return to the canal.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "would remain watertight",
+   "remained watertight",
+   "will remain watertight",
+   "had remained watertight"
+  ],
+  "correct_answer": "will remain watertight",
+  "explanation": "The verb completes the clause reported by \"The restoration trust has announced that ... ,\" a present-perfect reporting verb, so the prediction is made from the present looking forward. It is also tied to the time clause \"once the chamber is refilled and boats return,\" whose present-tense verbs refer to future events; such a clause pairs with \"will\" in the main clause. So the answer is \"will remain watertight.\" \"would remain watertight\" is tempting because the nearby verbs \"shaped,\" \"were air-dried,\" and \"cut\" are past, but those describe how the gates were made, not when the trust speaks; \"would\" belongs with a past reporting verb or past-tense time clause (\"once the chamber was refilled\"), not with \"has announced\" and \"is refilled.\" \"remained watertight\" is simple past, describing something already over. \"had remained watertight\" is past perfect, which needs a later past moment that the sentence never supplies.",
+  "topic_tag": "canal history: rebuilding lock gates"
+ }
+]
