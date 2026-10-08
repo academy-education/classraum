@@ -1,0 +1,5 @@
+{"heuristics":[
+{"name":"most-typical-sentence-context","description":"Pick the option whose meaning corresponds to the most stereotypical ISEE sentence I could imagine for this option set (e.g. treaty -> ratify, harmless tumor -> benign, word-for-word -> verbatim)","picks_decided":88},
+{"name":"two-blank internal coherence","description":"For two-blank items, prefer the pair whose halves are logically consistent with each other (guardian/release, lucid/summarize) or form a clean contrast (austere/lavish, brief/thorough)","picks_decided":12}
+],
+"notes":"Single-blank options mostly share a domain (medical, geology, temperament) with no axis visible without the sentence, so nearly all picks are guesses. Two-blank pairs gave weak coherence signal only. Nothing could be ruled out with certainty."}

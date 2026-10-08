@@ -1,0 +1,7 @@
+{"heuristics":[
+{"name":"typical collocation","description":"pick the option that most readily completes a stock SC sentence frame (arboreal species, desalinate seawater, ratify treaty, fitfully slept, void contract)","picks_decided":58},
+{"name":"rarest / most test-worthy word","description":"when nothing else discriminates, pick the most advanced vocabulary (hygroscopic, friable, quiescent, punctilious)","picks_decided":22},
+{"name":"odd one out by valence","description":"pick the single option whose valence differs from the other three (unruffled among hostile words, foundered among growth words)","picks_decided":8},
+{"name":"coherent two-blank pair","description":"for two-blank items pick the pair whose halves form a natural contrast or consequence (austere/lavish, homage/transforms, lucid/summarize)","picks_decided":12}
+],
+"notes":"Distractors are mostly as specific and rare as plausible keys, so options alone give little signal. All 100 picks are guesses; no option was certainly ruled out, including in two-blank items where any pair can be made coherent by a contrast frame, so reject_certain is false throughout."}

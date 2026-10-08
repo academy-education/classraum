@@ -1,0 +1,7 @@
+{"heuristics":[
+{"name":"common-ISEE-headword match","description":"pick the option that is the plain synonym of a well-known ISEE headword (e.g. sporadic=intermittent, stingy=parsimonious)","picks_decided":38},
+{"name":"antonym-pair member","description":"when two options are antonyms (amass/squander, lull/commotion, submit/rebel), pick one of the pair, preferring the more test-worthy sense","picks_decided":9},
+{"name":"rarest word","description":"pick the least common word when nothing else discriminates (wheedle, upbraid, petulant, brandish)","picks_decided":8},
+{"name":"near-synonym cluster centre","description":"pick the centre of a cluster of semantically close options (salvage among forage/loot; wince among shudder)","picks_decided":5}
+],
+"notes":"Options-only synonyms carry essentially no signal: each set is four unrelated plain words. All 60 picks are guesses; no option could be ruled out with certainty, so reject_certain is false throughout."}

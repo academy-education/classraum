@@ -6615,6 +6615,77 @@
           "verdict": "37 candidate items unanimous blind; 10 of them dropped on a confirmed with-source defect (B-01 C-04 C-24 C-32 E-02 E-08 E-10 E-17 E-18 F-14). 27 kept: with-source names no confirmed >= 2 free elimination on any (pre-registered: unanimity alone never drops, read as in s13/s14). 14 of those 27 carry a single named free kill, recorded not acted on: A-04 (865 units digit), A-13 (14 not a multiple of 3), B-30 (400), B-32 (3 : 8), C-25 (-8), C-27 (6), D-18 (25.2), E-24 (540), E-25 (24), F-01 (2/7), F-08 (69), F-12 (120), F-21 (7/30), F-27 (5/44) - several are sec 1 illegal options (a probability denominator the sample space forbids, a count above C(n,k)) that the brief told authors to exclude."
         }
       }
+    },
+    {
+      "id": "isee-verbal-s18-syn-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s18",
+      "contentSha": "9eac6657b4ac9096e8e984fc3ec821097e55e086f00a8a39ab23aa24c9d79fbb",
+      "status": "killed",
+      "note": "HELD at nosource, 0 of 30 inserted. 30 ISEE Upper synonyms from two independent Claude authors (A headwords A-L, B M-Z), s17 method with new headwords. Pre-registered in isee-verbal-s18.prereg.md (commit 69dcd5d7) before authoring; frozen in f9ed43a3 before any solver. Excess +11.1 > +10 against a live synonym arm that read 47.8% (s17 read the same arm at 70.0%); the bar is the bar, no later stage run, no item repaired.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "9eac6657b4ac9096e8e984fc3ec821097e55e086f00a8a39ab23aa24c9d79fbb",
+          "verdict": "30 items, 4 distinct single-word choices, key among them, '[Synonym] HEADWORD' prompt, verbalKind()=synonym 30/30; 0 stem duplicates vs 940 live isee rows; no live/s17 headword, key or option word (inflections checked) and 0 cross-author collisions after one pre-freeze fix pass; stored key slots 8/8/7/7; key-spread ok."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "9eac6657b4ac9096e8e984fc3ec821097e55e086f00a8a39ab23aa24c9d79fbb",
+          "n": 30,
+          "mean": 58.9,
+          "control": 26.7,
+          "margin": 32.2,
+          "verdict": "Options-only, interleaved with 30 live ISEE synonyms (isee-verbal-s4 excluded; pool 143), three samples of one Claude solver (pairwise agreement 76.1%). Candidate 53/90 = 58.9% vs letter 26.7% (+32.2); live 43/90 = 47.8% vs 26.7% (+21.1). EXCESS +11.1 > +10 -> HOLD. Ceiling not reached. Unanimous-correct candidate 14/30 vs live 11/30. Per sample candidate 18/17/18 of 30, live 13/15/15 of 30; by author A 28/45 = 62.2%, B 25/45 = 55.6%. Named heuristic, all three samples: pick the plain gloss of a likely ISEE headword (52/38/56 picks). reject_certain false on every item in every sample (judged per brief), so elimination would read 0 vs 0."
+        }
+      }
+    },
+    {
+      "id": "isee-verbal-s18-sc-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s18",
+      "contentSha": "4526fa3638e7ff028adf8d89d09a4db2bcb87288f9a9a37ea2e2c90492b3c13f",
+      "status": "killed",
+      "note": "HELD at tells, 0 of 60 inserted. 60 single-blank medium/hard ISEE SC from three independent Claude authors (C contrast/restatement in science/tech/medicine; D cause/purpose in history/government/economics/geography; E examples/degree in arts/sport/school/work) under a brief requiring every distractor to be as specific, rare and test-worthy as the key. Passed nosource (excess -5.0 all live, -6.9 single-blank), elimination (0 vs 0, a default) and withsource (180/180 on key, 32 of 60 would have survived the per-item rules). Stopped by the pre-registered validity rule of the new rarity measurement: three fresh raters read the s17 SC anchor at K 38.3% / T 35.8%, both under the 40% line, so the rarity result is NO MEASUREMENT and SC cannot pass tells on it. Candidate K was 16.7% (bar <= 30%) but that number is not a reading. No repair, no re-run.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "4526fa3638e7ff028adf8d89d09a4db2bcb87288f9a9a37ea2e2c90492b3c13f",
+          "verdict": "60 items, 4 distinct single-word choices, one 7-hyphen blank, '[Sentence Completion]' tag, no 'is to', verbalKind()=sentence completion 60/60; 0 stem duplicates vs 940 live isee rows; 0 live/s17/cross-author word reuse after one pre-freeze fix pass (C-14 key reverberations ~ s17 reverberation replaced); stored key slots 15/15/15/15; key-spread ok."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "4526fa3638e7ff028adf8d89d09a4db2bcb87288f9a9a37ea2e2c90492b3c13f",
+          "n": 60,
+          "mean": 40.0,
+          "control": 25.0,
+          "margin": 15.0,
+          "verdict": "Options-only, interleaved with 40 live SC (hard+medium, isee-verbal-s4 excluded; pool 77; 35 single-blank), three samples of one Claude solver (pairwise agreement 74.0%). Candidate 72/180 = 40.0% vs letter 25.0% (+15.0); live all 54/120 = 45.0% vs 25.0% (+20.0) EXCESS -5.0; live single-blank 50/105 = 47.6% vs 25.7% (+21.9) EXCESS -6.9; both <= +10 PASS. s17 SC read +4.7 / +12.7 on the same rule. Unanimous-correct candidate 15/60 vs live 14/40. By author C 31.7%, D 43.3%, E 45.0%. Named heuristic, all three samples: the option that fits the most typical ISEE sentence / collocation (88/58/78 picks); one sample also named rarest/most test-worthy (22 picks)."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "4526fa3638e7ff028adf8d89d09a4db2bcb87288f9a9a37ea2e2c90492b3c13f",
+          "verdict": "Items >=2 samples certainly rejected the same non-key option: candidate 0/60, live 0/40; bar <= max(live, 5%) PASS. CAVEAT: reject_certain was false on every item in all three samples, now JUDGED per the s18 brief (s17 samples filled it by formula), so this is a reading of 'nothing is certainly eliminable without the stem' on both arms, not a discriminating measurement."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "4526fa3638e7ff028adf8d89d09a4db2bcb87288f9a9a37ea2e2c90492b3c13f",
+          "verdict": "Three fresh Claude graders, each on its own unmarked render (grade-a make-grade-render sha c89a5f5f35f9912b; b/c reshuffled with the shared seeded generator): 180/180 picks on key (bar: FAIL if any grader >10% off key). Second defensible 0, free elimination 0, reads-incorrectly 0. Per-item drops: C-04 (key intranasally marked above band), C-09 (fusible x3, friable x2 above band), C-19 (hygroscopic x3), E-14 (mawkish x2), and 26 items with median grade easy (authored medium 20, hard 6) -> 32 of 60 would have been kept (29 medium / 3 hard; C 6, D 15, E 11). Per-item outcomes in isee-verbal-s18-sc.withsource.json. Not inserted: the type stopped at tells."
+        },
+        "tells": {
+          "passed": false,
+          "contentSha": "4526fa3638e7ff028adf8d89d09a4db2bcb87288f9a9a37ea2e2c90492b3c13f",
+          "verdict": "Key strictly longest 16/60 = 26.7%, strictly shortest 12/60 = 20.0% (bar <= 35%). check-recycled-distractor NO MEASUREMENT (240 distinct / 240 slots). verify-answer-key-spread ok (quads p=0.44). Solver-heuristic rule cannot fire (sample a's heuristic decided 88/100 picks with 22/60 candidate hits, <= 45.8%). R2 rarity, three fresh Claude raters, stem withheld (isee-verbal-s18-rarity.mjs): candidate K 30/180 = 16.7% (C 18.3, D 20.0, E 11.7), T 34/180 = 18.9%; live single-blank K 33/90 = 36.7%; s17 anchor K 46/120 = 38.3%, T 43/120 = 35.8%. Pre-registered validity: anchor K or T >= 40% -> NOT MET -> NO MEASUREMENT -> SC cannot pass tells -> HOLD. (R1, one rater, had read the anchor T at exactly 40.0%.)"
+        }
+      }
     }
   ],
   "auditedCohorts": [

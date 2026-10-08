@@ -1,0 +1,6 @@
+{"heuristics":[
+{"name":"most typical collocation","description":"Picked the option whose most common collocation (benign tumor, redacted document, perishable goods, draconian rules) seemed the likeliest sentence the item was built around.","picks_decided":78},
+{"name":"classic test-word","description":"When collocations tied, picked the option that is a canonical ISEE/SSAT vocabulary word (malingered, surreptitious, mercurial).","picks_decided":13},
+{"name":"two-blank internal coherence","description":"For two-blank items, picked the pair whose halves are logically linked (lucid->summarize, growing->afford, stability->unchanged) or form a canonical contrast (austere/lavish, brief/thorough).","picks_decided":9}
+],
+"notes":"Single-blank sets share part of speech and register; distractors are as rare as plausible keys, so no reliable option-only tell. Two-blank items were the only ones with any internal structure, and even there every pair was internally sensible. All picks marked guess; no reject marked certain."}

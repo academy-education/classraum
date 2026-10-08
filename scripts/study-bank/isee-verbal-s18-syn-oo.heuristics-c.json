@@ -1,0 +1,6 @@
+{"heuristics":[
+{"name":"classic-headword gloss","description":"Pick the option that is the plain-English gloss of a well-known ISEE-upper headword (e.g. meticulous->painstaking, indefatigable->tireless, intermittent->sporadic). Distractors in these sets are same-part-of-speech, same-register, so this is the only signal.","picks_decided":56},
+{"name":"odd-register option","description":"When one option is unusually phrased or archaic as an everyday word (moneyed, upbraid), treat it as a gloss chosen for a hard headword.","picks_decided":2},
+{"name":"pure guess among equals","description":"No option stood out; picked the most commonly tested sense.","picks_decided":2}
+],
+"notes":"Option sets are well matched (same POS, similar frequency); no structural tell found. All picks basis=guess; no option could be ruled out with certainty, since any of the four words could be the gloss of some headword."}
