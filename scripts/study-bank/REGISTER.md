@@ -1507,6 +1507,49 @@ recorded only in a commit message is a finding nobody reads.
 
   **Next:** SEC is the cap (51; form 8 needs 56). Once SEC reaches 63, form 9 needs C&S +2 hard (I&I is covered); form 10 needs C&S +10 and I&I +4.
 
+- **2026-10-08** — **`act-math-v24` HELD AT STAGE 4: 0 OF 59 INSERTED. ACT MATH STAYS AT 16 FORMS; FORM 17 STILL NEEDS ALGEBRA +1.** It passed the screen and the graders and was then held by the kept set's own key-extremity gate, 15/39 = 38.5% against 40.0%, one item short. Bars pre-registered before authoring: `ACT-MATH-V24-PREREGISTERED.md` (committed alone, 2d7ad01e). That file holds v23's bars and bans plus **(d) interior parity** and **(e) no complement pairs and no shared-denominator singling**. Both are mechanical returns from the new `check-interior-niceness.mjs`. Algebra got about twice its deficit and the hand keyword search was mandatory.
+
+  **Scope.** `form-capacity` 16 forms (751; Algebra 135 / 8 binding); `next-form`: form 17 = Algebra +1. Forms 17+18 need 41: Algebra 9, Geometry 8, IES 8, Functions 7, S&P 5, N&Q 4. Authored 59: Algebra 18 (2x), Geometry 10, IES 10, Functions 9, S&P 7, N&Q 5 (+30%). Five Claude authors, every file >= 10: A1 Algebra 10 / A2 Algebra 8 + N&Q 5 / B Functions 9 + S&P 7 / C Geometry 10 / D IES 10.
+
+  **`check-interior-niceness.mjs` (new), break-tested on v23 before the pre-registration. The register's v24 hypothesis was wrong in its narrow form.** v23's keys were the CLEANER interior option on only 6 of 20 differing pairs (30.0%; matched controls 9/12 = 75.0%; live act/math 115/187 = 61.5%). What separated v23 from its control was that the interior pair was **asymmetric** at all: 20/28 interior-key candidates vs 12/32 controls (live 187/397 = 47.1%). Blind samples found asymmetric-pair keys in either direction (candidates 44/60, controls 28/36), against 12/24 and 19/60 on tie pairs. So (d) was enforced as parity, not as "key not nicer". The selftest is 11/11 and fails 4 of 11 with trailing-zero stripping removed. **It worked:** v24 had an asymmetric interior pair on 1 of 31 interior-key items (3.2%), against 12/30 (40.0%) in its own matched controls. Interior-key blind hits fell from v23's 66.7% (vs 49.0%) to **49/93 = 52.7% vs the control's 48/90 = 53.3%**.
+
+  **Stage 0 PASS**, merged 59 (sha 4b78ec4d9b178b8e) and each file:
+  - Sandbox 59/59, distractors 177/177, no hub structure.
+  - **Key at an extreme 28/59 = 47.5%** (bar 40.0%). Magnitude z 0.36 / 0.12 / −0.40.
+  - 0 composites, stem echo 0/59, 0 stem duplicates, 0 duplicate option sets.
+  - **Key position 14/31/14**, inside the band.
+  - (c) mechanical: 28 extreme-key items, all with 3 distinct `error_kind`s.
+  - Interior niceness: 0 parity / 0 KEY-CLEANER / 0 complement / 0 denominator flags of 59.
+  - Arith-class: keys lone in some class 9/59 vs distractors 34/177. All 9 key lines were read against their stems; none is stem-implied.
+
+  **Duplicate checks: the hand search found four live duplicates and two in-batch overlaps that neither script flagged.** All six went back in the single stage-0 return and were replaced: `AM24A-12` ~ sat 79d14e77 (x² + y² from xy = 10), `AM24N-03` ~ act 3fd7747a (magnitude of a vector combination), `AM24N-04` ~ act 7d39df0a (mixed repeating decimal), `AM24S-05` ~ act b32534dc (mean = median), `AM24A-07` (sum-of-integer-solutions format, as A-02), `AM24I-10` (weighted mean, as I-03). On the final 59: Jaccard 9 FLAG lines on 5 items, math-mechanism-dup 0 FLAG / 42 near, all read as different mechanisms. This is the **fourth batch running** where the keyword search is the channel that finds the duplicates.
+
+  **Stage 1 PASS, comfortably:**
+
+      CANDIDATE     49/177 = 27.7%   line 25.4%   margin  +2.3
+      LIVE CONTROL  61/177 = 34.5%   line 25.4%   margin  +9.0   (59 matched 1:1 by domain, v16–v24 excluded)
+      candidate minus control  −6.8    (HOLD bar +10)
+      unanimous-correct        candidate 8/59 = 13.6%  vs  control 14/59 = 23.7%   −10.1  (HOLD bar +15)
+      pairwise agreement 75.1% vs 26.6% if independent: one solver sampled three times
+  Blind sha d683ab672e8eaa7e. The control's margin (+9.0) is far from the +25 invalid line.
+
+  **Stage 2** (render efe896545a5373d3, author fields stripped, no unrecognised field, quoted by both at start and end; **118/118 picks on key, 0 second-defensible**; difficulty agree 46/59). **Kept 39, dropped 20:**
+  - **Rule 3, bounds (12):** A-05 density-midpoint, A-07 corner and constraint-sum, A-08 rate bracket, A-16 x = 4 check, N-04 |x|+|y| distractor ON the bound, N-05 sign forces k < −6, F-01 integer t check, F-03 f(g(0)) ON, F-05 7 < PQ < 11, F-06 sin²/cos > 2, F-07 a8 < 3a6, G-04 right-angle limits ON.
+  - **Rule 8, one-sided (5, plus F-06 and F-07 above):** A-02, I-01, I-02, I-03, I-04.
+  - **Rule 9, new (2):** S-03 0.21 + 0.44 = the stem-forced 0.65; G-06 60.32 + 90.48 = 48π.
+  - **Rule 7 (1):** G-08 halving pair.
+
+  **Stage 4 — the kept 39 FAIL key-extremity-gate: 15/39 = 38.5% < 40.0%.** Key position 7/24/8; magnitude z −0.19 / −0.76 / 0.81. Pre-registered: a measured gate failing holds the batch, with no dropping or editing to pass; the inserter refuses it anyway. **HELD.** The drops fell unevenly by key position: **extreme-key items 13 of 28 dropped, interior-key 7 of 31**. Would-be kept by domain (`act-math-v24.verdicts.json`): Algebra 13, Geometry 7, IES 6, Functions 4, S&P 6, N&Q 3. That would have met form 17 (Algebra +1) but not form 18 (Geometry 7/8, IES 6/8, Functions 4/7, N&Q 3/4 short).
+
+  **For the next author (v25).**
+  1. **Interior parity is solved.** The residual failure is at the **extremes**, the half of the batch the position target forces into existence.
+  2. **The one-sided family (c) is still the dominant extreme-key defect, and author declarations do not catch it.** All 28 `one_sided_check` lines said "no"; graders confirmed (c) on 7, four of them IES "trap" stems (I-01 descents add nothing, I-02 two LOWEST, I-03 retake replaces D, I-04 rider on every leg). **A stem that announces its trap announces the direction of every error.**
+  3. **Rule-3 bounds also concentrate on extreme keys:** when the key is the extreme, a single cheap one-sided bound (a8 < 3a6; |y| > 120/13; sin²/cos > 2; x = 4 overshoots) kills all three distractors at once.
+  4. **Over-commission extreme-key items** (~60% at authoring, so ~50% survive) **or** make the extremity gate's input the would-be kept set at authoring time. Do not lower the gate.
+  5. Functions lost 5 of 9; it now needs the 2x arm Algebra had. Algebra kept 13 of 18.
+
+  Evidence: `ACT-MATH-V24-PREREGISTERED.md`, `check-interior-niceness.mjs`, `act-math-v24-attack-draw.mjs`, `act-math-v24{-a1,-a2,-b,-c,-d,}.batch.json`, `act-math-v24.kept.batch.json` (would-be, not inserted), `act-math-v24.drops.json`, `act-math-v24.verdicts.json`, `act-math-v24-attack.{blind,key,controls,solver-a,solver-b,solver-c}.json`, `act-math-v24-grade.{batch,grade,gradekey}.json`, `act-math-v24.grader-{a,b}.json`; ledger `act-math-v24-held-2026-10-08`. `verify-act-draw`: act/math draws 45 of 45 (unchanged); `form-capacity`: ACT Math 16 forms; `next-form`: Algebra +1.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

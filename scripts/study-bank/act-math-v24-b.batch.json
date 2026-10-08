@@ -1,0 +1,876 @@
+[
+ {
+  "id": "AM24F-01",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "composition of functions in context",
+  "subskill": "form A(r(t)) from a linear radius function and the circle-area function, set it equal to a value and solve for t by undoing the outer function first",
+  "prompt": "The radius r, in centimeters, of a circular oil spill t minutes after a sensor begins recording is given by r(t) = 1.5t + 4. The area of a circle with radius r is given by A(r) = πr². To the nearest hundredth of a minute, what is the value of t for which A(r(t)) = 400 ?",
+  "choices": [
+   "10.67",
+   "3.52",
+   "4.86",
+   "7.03"
+  ],
+  "correct_answer": "4.86",
+  "explanation": "A(r(t)) = π(1.5t + 4)² = 400, so (1.5t + 4)² = 400/π ≈ 127.32 and 1.5t + 4 = √(400/π) ≈ 11.284 (the radius is positive). Then t = (11.284 − 4)/1.5 ≈ 4.86. The option \"3.52\" undoes the steps in the wrong order, dividing the radius by 1.5 before subtracting 4. The option \"7.03\" squares the sum term by term, π(2.25t² + 16) = 400. The option \"10.67\" drops π, taking r = √400 = 20.",
+  "solve": "return ((Math.sqrt(400/Math.PI)-4)/1.5).toFixed(2);",
+  "distractor_solve": {
+   "3.52": "return (Math.sqrt(400/Math.PI)/1.5-4).toFixed(2);",
+   "7.03": "return Math.sqrt((400/Math.PI-16)/2.25).toFixed(2);",
+   "10.67": "return ((20-4)/1.5).toFixed(2);"
+  },
+  "quantity_asked": "the time t > 0 at which π(1.5t + 4)² = 400.",
+  "distractor_kind": {
+   "3.52": "error path: inverts r(t) in the wrong order, (r/1.5) − 4. (a) limiting case: the only stem-forced bound is t > 0 (A(r(0)) = 16π < 400); 3.52 inside. (b) neighbouring setup: it is the exact answer for the radius model with the operations undone in reverse order, not an adjacent problem's extreme; not an extreme of (0, infinity). (c) cheapest one-step estimate: πr² = 400 needs r a little over 11, so t is \"around 5\"; that is a point estimate, not a bracket, and bracketing it closer is the item's own computation; inside (0, infinity). (d) real: wrong inverse order.",
+   "7.03": "error path: (1.5t + 4)² expanded as 2.25t² + 16. (a) no bound other than t > 0. (b) not an adjacent problem's extreme. (c) inside (0, infinity). (d) real: freshman's-dream squaring.",
+   "10.67": "error path: drops π, so r = 20. (a) no. (b) it is the answer for a square of area 400 with \"radius\" as side, not an extreme. (c) inside (0, infinity). (d) real: dropped constant."
+  },
+  "distractor_meta": {
+   "3.52": {
+    "direction": "under",
+    "error_kind": "wrong inverse order"
+   },
+   "7.03": {
+    "direction": "over",
+    "error_kind": "squared a sum term by term"
+   },
+   "10.67": {
+    "direction": "over",
+    "error_kind": "dropped pi"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "composition of functions in context",
+   "area of circle as function of time",
+   "A(r(t)) equals a value",
+   "undo outer function then inner function"
+  ],
+  "arith_class_check": "No. t is not stated to be an integer or a terminating decimal; all four options are 2-decimal values with distinct decimal parts (.67, .52, .86, .03); no class isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 4.86 and 7.03; both 2-decimal numbers with one integer digit and nonzero last digit (display complexity 5 and 5); neither is rounder."
+ },
+ {
+  "id": "AM24F-02",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "range of a rational (linear-over-linear) function",
+  "subskill": "the one output a function (ax + b)/(cx + d) never takes is a/c, the horizontal asymptote; solve f(x) = k for x and find the k that makes the equation impossible",
+  "prompt": "The function f is defined by f(x) = (4x − 1)/(7x + 3) for every real number x for which the expression is defined. There is exactly one real number k for which the equation f(x) = k has no solution. To the nearest hundredth, what is the value of k ?",
+  "choices": [
+   "0.57",
+   "-0.43",
+   "0.25",
+   "-0.33"
+  ],
+  "correct_answer": "0.57",
+  "explanation": "Solving (4x − 1)/(7x + 3) = k gives 4x − 1 = 7kx + 3k, so x(4 − 7k) = 3k + 1. If k = 4/7 the left side is 0 while the right side is 3(4/7) + 1 = 19/7, so there is no solution; for every other k, x = (3k + 1)/(4 − 7k), which is never −3/7. So k = 4/7 ≈ 0.57, the horizontal asymptote. The option \"-0.43\" is −3/7, the input excluded from the domain, not an excluded output. The option \"0.25\" is the x-intercept 1/4 (the solution of f(x) = 0). The option \"-0.33\" is f(0) = −1/3, the y-intercept.",
+  "solve": "return (4/7).toFixed(2);",
+  "distractor_solve": {
+   "-0.43": "return (-3/7).toFixed(2);",
+   "0.25": "return (1/4).toFixed(2);",
+   "-0.33": "return (-1/3).toFixed(2);"
+  },
+  "quantity_asked": "the single value k not in the range of f.",
+  "distractor_kind": {
+   "-0.43": "error path: excluded input (vertical asymptote x = −3/7) read as excluded output. (a) limiting case: no stem-forced bound on k. (b) neighbouring setup: the domain question's answer; not an extreme of any interval. (c) cheapest estimate: none exists short of solving f(x) = k; inside the reals. (d) real: domain/range confusion.",
+   "0.25": "error path: takes the x-intercept (zero of the numerator). (a) no. (b) answer to f(x) = 0 asked for x; not a bound. (c) inside. (d) real: intercept confused with excluded value.",
+   "-0.33": "error path: takes f(0) = −1/3, ratio of the constant terms. (a) no. (b) y-intercept; not a bound. (c) inside. (d) real: ratio of constants instead of leading coefficients."
+  },
+  "distractor_meta": {
+   "-0.43": {
+    "direction": "under",
+    "error_kind": "domain-range confusion"
+   },
+   "0.25": {
+    "direction": "under",
+    "error_kind": "x-intercept"
+   },
+   "-0.33": {
+    "direction": "under",
+    "error_kind": "ratio of constant terms"
+   }
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "mechanism": [
+   "value not in the range of a rational function",
+   "f(x) = k has no solution",
+   "horizontal asymptote as excluded output",
+   "linear over linear function"
+  ],
+  "arith_class_check": "No. k is not stated to be positive or an integer; options are two positive and two negative 2-decimal values; the key is the largest, but sign and size are not implied by the stem (a/c could have either sign).",
+  "one_sided_check": "Key largest. No: the three distractors come from three different mistakes (domain value, x-intercept, y-intercept) whose signs depend on the coefficients; nothing in the stem says those values must fall below 4/7.",
+  "interior_parity_check": "interior options by value -0.33 and 0.25; both 2-decimal numbers below 1 in absolute value with display complexity 4 and 4; neither is rounder."
+ },
+ {
+  "id": "AM24F-03",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "extreme value of a composite function",
+  "subskill": "f is decreasing for inputs above −5, so the greatest value of f(g(x)) occurs where g(x) is least; find the minimum of the quadratic g by completing the square",
+  "prompt": "The functions f and g are defined by f(x) = 84/(x + 5) and g(x) = x² − 8x + 22. To the nearest hundredth, what is the greatest value of f(g(x)) ?",
+  "choices": [
+   "3.11",
+   "9.33",
+   "1.12",
+   "7.64"
+  ],
+  "correct_answer": "7.64",
+  "explanation": "g(x) = (x − 4)² + 6, so g(x) ≥ 6 for every x, with g(4) = 6. Since g(x) + 5 > 0 and f(u) = 84/(u + 5) decreases as u increases for u > −5, f(g(x)) is greatest when g(x) is least: 84/(6 + 5) = 84/11 ≈ 7.64. The option \"1.12\" evaluates g at x = −4 (sign error on the vertex), 84/75. The option \"3.11\" treats the constant term 22 as the least value of g, 84/27. The option \"9.33\" uses the x-coordinate of the vertex, 4, as if it were the least value of g, 84/9.",
+  "solve": "const m=22-16; return (84/(m+5)).toFixed(2);",
+  "distractor_solve": {
+   "1.12": "const g=16+32+22; return (84/(g+5)).toFixed(2);",
+   "3.11": "return (84/(22+5)).toFixed(2);",
+   "9.33": "return (84/(4+5)).toFixed(2);"
+  },
+  "quantity_asked": "the maximum over all real x of 84/(g(x) + 5).",
+  "distractor_kind": {
+   "1.12": "error path: vertex sign slip, uses g(−4) = 70. (a) limiting case: the only stem-forced facts are f(g(x)) > 0 and f(g(x)) <= 84/(min g + 5), which is the item; 1.12 inside (0, infinity). (b) neighbouring setup: not an extreme. (c) cheapest estimate: none short of finding min g; inside. (d) real.",
+   "3.11": "error path: least value of g taken as g(0) = 22. (a) no. (b) f(g(0)) is a value of the composite, below its maximum, but rejecting it needs the minimum of g, the item's own work. (c) inside. (d) real: intercept for vertex.",
+   "9.33": "error path: vertex x-coordinate used as the minimum value. (a) no. (b) no. (c) inside. (d) real: confuses where the minimum occurs with what it is."
+  },
+  "distractor_meta": {
+   "1.12": {
+    "direction": "under",
+    "error_kind": "vertex sign error"
+   },
+   "3.11": {
+    "direction": "under",
+    "error_kind": "y-intercept as minimum"
+   },
+   "9.33": {
+    "direction": "over",
+    "error_kind": "vertex x for vertex y"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "greatest value of a composite function",
+   "decreasing outer function",
+   "minimum of inner quadratic",
+   "range of f(g(x))"
+  ],
+  "arith_class_check": "No. Options are 2-decimal values (.11, .33, .12, .64); nothing in the stem implies a class (the answer is a fraction 84/11 shown rounded).",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 3.11 and 7.64; both 2-decimal numbers with one integer digit, complexity 5 and 5; neither is rounder."
+ },
+ {
+  "id": "AM24F-04",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sinusoidal model: time above a level",
+  "subskill": "solve 25 − 20cos(πt/6) > 32.5 over one period: cos(πt/6) < −0.375, so πt/6 lies strictly between arccos(−0.375) and 2π − arccos(−0.375); convert that arc to minutes",
+  "prompt": "A Ferris wheel completes one full revolution every 12 minutes. A rider's height h, in meters, above the ground t minutes after boarding is modeled by h(t) = 25 − 20cos(πt/6). During the first 12 minutes of the ride, for how many minutes, to the nearest hundredth, is the rider more than 32.5 meters above the ground?",
+  "choices": [
+   "5.36",
+   "4.53",
+   "5.27",
+   "4.84"
+  ],
+  "correct_answer": "4.53",
+  "explanation": "h(t) > 32.5 means −20cos(πt/6) > 7.5, so cos(πt/6) < −0.375. On 0 ≤ πt/6 ≤ 2π this holds for arccos(−0.375) < πt/6 < 2π − arccos(−0.375), an arc of 2π − 2(1.9552) ≈ 2.3727 radians. Converting with t = (6/π)(angle) gives about 4.53 minutes. The option \"4.84\" divides 7.5 by the midline height 25 instead of the amplitude 20. The option \"5.27\" finds the time from the midline to 32.5 on one side only and subtracts it once from the 6 minutes spent above the midline. The option \"5.36\" divides 7.5 by the maximum height 45 instead of the amplitude.",
+  "solve": "const a=Math.acos(-7.5/20); return (12-2*a*6/Math.PI).toFixed(2);",
+  "distractor_solve": {
+   "4.84": "const a=Math.acos(-7.5/25); return (12-2*a*6/Math.PI).toFixed(2);",
+   "5.27": "return (6-Math.asin(7.5/20)*6/Math.PI).toFixed(2);",
+   "5.36": "const a=Math.acos(-7.5/45); return (12-2*a*6/Math.PI).toFixed(2);"
+  },
+  "quantity_asked": "the total time in one 12-minute revolution during which 25 − 20cos(πt/6) > 32.5.",
+  "distractor_kind": {
+   "4.84": "error path: ratio 7.5/25 (midline) instead of 7.5/20 (amplitude). (a) limiting case: 32.5 is above the 25-m midline, so the time is under 6 minutes; 4.84 inside. (b) neighbouring setup: 35 m (half the amplitude above the midline, cos = −1/2) gives exactly 4 minutes, and 32.5 < 35, so the time exceeds 4; 4.84 strictly inside (4, 6). (c) cheapest one-step estimate: (4, 6) as just described; strictly inside. (d) real.",
+   "5.27": "error path: subtracts the midline-to-32.5 time once instead of twice. (a) inside (4, 6). (b) inside. (c) inside. (d) real: symmetry of the arc ignored.",
+   "5.36": "error path: ratio 7.5/45 (maximum height) instead of the amplitude. (a) inside (4, 6). (b) inside. (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "4.84": {
+    "direction": "over",
+    "error_kind": "midline used as amplitude"
+   },
+   "5.27": {
+    "direction": "over",
+    "error_kind": "one side of symmetric arc"
+   },
+   "5.36": {
+    "direction": "over",
+    "error_kind": "maximum height used as amplitude"
+   }
+  },
+  "bounds": [
+   "v > 4",
+   "v < 6"
+  ],
+  "mechanism": [
+   "Ferris wheel height model",
+   "time above a height during one revolution",
+   "cosine inequality over one period",
+   "arccos arc length converted to time"
+  ],
+  "arith_class_check": "No. All options are 2-decimal values strictly between 4 and 6 with distinct decimal parts; no class from the stem isolates the key.",
+  "one_sided_check": "Key smallest. No: the three errors are different (wrong denominator 25, wrong denominator 45, one-sided subtraction); a student who has not solved it cannot tell from the stem that each one lengthens the interval, and all three stay inside the (4, 6) bracket the stem forces.",
+  "interior_parity_check": "interior options by value 4.84 and 5.27; both 2-decimal numbers with one integer digit, complexity 5 and 5; neither is rounder."
+ },
+ {
+  "id": "AM24F-05",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "sinusoid: locating a maximum and the next minimum",
+  "subskill": "for y = A sin(Bx) the period is 2π/B; the first maximum is a quarter period from 0 and the next minimum is half a period later, with vertical separation 2A; apply the distance formula",
+  "prompt": "In the standard (x,y) coordinate plane, P is the point with the least positive x-coordinate at which the graph of y = 2sin(πx/7) reaches its maximum value, and Q is the first point to the right of P at which the graph reaches its minimum value. To the nearest hundredth, what is the distance between P and Q ?",
+  "choices": [
+   "8.06",
+   "11.24",
+   "5.32",
+   "7.28"
+  ],
+  "correct_answer": "8.06",
+  "explanation": "The period is 2π/(π/7) = 14. The first maximum is at x = 14/4 = 3.5, so P = (3.5, 2), and the next minimum is half a period later, Q = (10.5, −2). PQ = √(7² + 4²) = √65 ≈ 8.06. The option \"5.32\" uses a quarter period, 3.5, as the horizontal distance. The option \"7.28\" uses the amplitude 2 as the vertical distance instead of 2 − (−2) = 4. The option \"11.24\" uses the x-coordinate of Q, 10.5, as the horizontal distance.",
+  "solve": "return Math.hypot(7,4).toFixed(2);",
+  "distractor_solve": {
+   "5.32": "return Math.hypot(3.5,4).toFixed(2);",
+   "7.28": "return Math.hypot(7,2).toFixed(2);",
+   "11.24": "return Math.hypot(10.5,4).toFixed(2);"
+  },
+  "quantity_asked": "the straight-line distance between the first maximum point (3.5, 2) and the next minimum point (10.5, −2).",
+  "distractor_kind": {
+   "5.32": "error path: quarter period as the horizontal gap. (a) limiting case: PQ >= 4, the vertical separation of a maximum and a minimum; 5.32 inside. (b) neighbouring setup: it is the distance from P to the next zero-level point shifted to y = −2, not an extreme of [4, infinity); inside. (c) cheapest estimate: PQ is at least the vertical gap 4, and the horizontal gap is the item's own period computation; inside. (d) real.",
+   "7.28": "error path: amplitude as the vertical separation. (a) 7.28 >= 4, inside. (b) not an extreme. (c) inside. (d) real.",
+   "11.24": "error path: Q's x-coordinate taken as the horizontal gap. (a) inside. (b) not an adjacent problem's extreme; not on a bound. (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "5.32": {
+    "direction": "under",
+    "error_kind": "quarter period for half period"
+   },
+   "7.28": {
+    "direction": "under",
+    "error_kind": "amplitude for peak-to-trough"
+   },
+   "11.24": {
+    "direction": "over",
+    "error_kind": "coordinate for difference"
+   }
+  },
+  "bounds": [
+   "v >= 4"
+  ],
+  "mechanism": [
+   "distance between maximum and minimum of a sine graph",
+   "period from coefficient of x",
+   "quarter period to first maximum",
+   "distance formula on graph points"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values (square roots shown rounded); no stem-implied class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 7.28 and 8.06; both 2-decimal numbers with one integer digit, complexity 5 and 5; neither is rounder."
+ },
+ {
+  "id": "AM24F-06",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "trigonometric identities with quadrant signs",
+  "subskill": "(sin θ)(tan θ) = sin²θ/cos θ; with cos θ = 3/8, sin²θ = 1 − 9/64 = 55/64, and in Quadrant IV sin θ and tan θ are both negative so the product is positive",
+  "prompt": "For an angle θ with 270° < θ < 360°, cos θ = 3/8. To the nearest hundredth, what is the value of (sin θ)(tan θ) ?",
+  "choices": [
+   "1.04",
+   "0.32",
+   "2.29",
+   "0.44"
+  ],
+  "correct_answer": "2.29",
+  "explanation": "(sin θ)(tan θ) = sin θ · (sin θ/cos θ) = sin²θ/cos θ. Since sin²θ = 1 − (3/8)² = 55/64, the product is (55/64)/(3/8) = 55/24 ≈ 2.29 (positive, because sin θ and tan θ are both negative in Quadrant IV). The option \"0.32\" multiplies by cos θ instead of dividing. The option \"1.04\" finds the opposite side of the reference triangle as 8 − 3 = 5 instead of √(8² − 3²) = √55, giving (25/64)/(3/8). The option \"0.44\" inverts the fraction, cos θ/sin²θ.",
+  "solve": "return ((1-9/64)/(3/8)).toFixed(2);",
+  "distractor_solve": {
+   "0.32": "return ((1-9/64)*(3/8)).toFixed(2);",
+   "1.04": "const opp=8-3; return ((opp*opp/64)/(3/8)).toFixed(2);",
+   "0.44": "return ((3/8)/(1-9/64)).toFixed(2);"
+  },
+  "quantity_asked": "the product sin θ · tan θ for the Quadrant IV angle with cos θ = 3/8.",
+  "distractor_kind": {
+   "0.32": "error path: sin²θ · cos θ. (a) limiting case: the product is positive (both factors negative) and below |tan θ| = √55/3 ≈ 2.47; 0.32 inside (0, 2.47). (b) neighbouring setup: not an extreme. (c) cheapest estimate: (0, 2.47) as stated; strictly inside. (d) real: multiply for divide.",
+   "1.04": "error path: opposite side taken as hypotenuse minus adjacent, 8 − 3 = 5. (a) inside (0, 2.47). (b) no. (c) inside. (d) real: subtracted sides instead of using the Pythagorean theorem.",
+   "0.44": "error path: cos θ/sin²θ, the fraction inverted. (a) inside (0, 2.47). (b) no. (c) inside. (d) real: reciprocal."
+  },
+  "distractor_meta": {
+   "0.32": {
+    "direction": "under",
+    "error_kind": "multiplied by cosine"
+   },
+   "1.04": {
+    "direction": "under",
+    "error_kind": "subtracted sides for Pythagoras"
+   },
+   "0.44": {
+    "direction": "under",
+    "error_kind": "inverted fraction"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < Math.sqrt(55)/3"
+  ],
+  "mechanism": [
+   "sin theta times tan theta",
+   "sin squared over cos",
+   "Quadrant IV signs",
+   "given cosine find product of trig functions"
+  ],
+  "arith_class_check": "No. Options are 2-decimal values (.04, .32, .29, .44); the key is 55/24 rounded and nothing in the stem implies a class that isolates it.",
+  "one_sided_check": "Key largest. No: the three errors are of different kinds (multiply for divide, subtracting sides, inverting the fraction); none of their directions is readable from the stem without computing, and all lie inside the stem-forced interval (0, 2.47).",
+  "interior_parity_check": "interior options by value 0.44 and 1.04; both 2-decimal values with nonzero last digit, complexity 4 and 5 (difference 1); the key is not interior."
+ },
+ {
+  "id": "AM24F-07",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "recursively defined sequence with an unknown term",
+  "subskill": "with a(n+2) = a(n+1) + a(n), write later terms in terms of a1 and a2 (a6 = 3a1 + 5a2), solve for a2 from the given 6th term, then generate the 8th term",
+  "prompt": "In a certain sequence, each term after the second is the sum of the two terms immediately before it. The 1st term of the sequence is 2, and the 6th term is 33. What is the 8th term of the sequence?",
+  "choices": [
+   "141.7",
+   "115.7",
+   "139.4",
+   "86.2"
+  ],
+  "correct_answer": "86.2",
+  "explanation": "Let the 2nd term be x. The terms are 2, x, 2 + x, 2 + 2x, 4 + 3x, 6 + 5x, so 6 + 5x = 33 and x = 5.4. The sequence is 2, 5.4, 7.4, 12.8, 20.2, 33, 53.2, 86.2, so the 8th term is 86.2. The option \"141.7\" sets the 5th-term expression 4 + 3x equal to 33 (an index off by one). The option \"115.7\" swaps the coefficients, 10 + 3x = 33. The option \"139.4\" is the 9th term of the correct sequence.",
+  "solve": "const a1=2; const x=(33-3*a1)/5; const s=[a1,x]; while(s.length<8) s.push(s[s.length-1]+s[s.length-2]); return s[7].toFixed(1);",
+  "distractor_solve": {
+   "141.7": "const a1=2; const x=(33-2*a1)/3; const s=[a1,x]; while(s.length<8) s.push(s[s.length-1]+s[s.length-2]); return s[7].toFixed(1);",
+   "115.7": "const a1=2; const x=(33-5*a1)/3; const s=[a1,x]; while(s.length<8) s.push(s[s.length-1]+s[s.length-2]); return s[7].toFixed(1);",
+   "139.4": "const a1=2; const x=(33-3*a1)/5; const s=[a1,x]; while(s.length<9) s.push(s[s.length-1]+s[s.length-2]); return s[8].toFixed(1);"
+  },
+  "quantity_asked": "the 8th term of the sequence with a1 = 2, a6 = 33 and a(n+2) = a(n+1) + a(n).",
+  "distractor_kind": {
+   "141.7": "error path: off-by-one index, uses a5 = 2a1 + 3a2 = 33. (a) limiting case: all terms positive (a2 > 0 from 33 = 6 + 5a2), so the 8th term exceeds the 6th, 33; 141.7 inside (33, infinity). (b) neighbouring setup: answer for \"5th term is 33\"; not an extreme. (c) cheapest estimate: terms grow by about 1.6 per step, so a8 is roughly 2.6 x 33, about 86; that is a point estimate requiring the recurrence, not a bracket; inside (33, infinity). (d) real.",
+   "115.7": "error path: coefficients of a1 and a2 swapped in a6. (a) inside (33, infinity). (b) no. (c) inside. (d) real.",
+   "139.4": "error path: one term too far (9th term). (a) inside. (b) adjacent term of the item's own sequence, not on any bound. (c) inside. (d) real: counting error."
+  },
+  "distractor_meta": {
+   "141.7": {
+    "direction": "over",
+    "error_kind": "index off by one"
+   },
+   "115.7": {
+    "direction": "over",
+    "error_kind": "swapped coefficients"
+   },
+   "139.4": {
+    "direction": "over",
+    "error_kind": "one term too many"
+   }
+  },
+  "bounds": [
+   "v > 33"
+  ],
+  "mechanism": [
+   "sum of two previous terms recursion",
+   "unknown second term",
+   "Fibonacci-type sequence",
+   "express later terms in terms of first two"
+  ],
+  "arith_class_check": "No. Terms are not stated to be integers; all four options are 1-decimal values with distinct tenths digits (.7, .7, .4, .2 — two share .7 but neither is the key); no class isolates the key.",
+  "one_sided_check": "Key smallest. No: the stem gives no reason a student could see that an index slip, a coefficient swap and an extra term all overshoot; the three are different error kinds and all stay above the stem-forced 33.",
+  "interior_parity_check": "interior options by value 115.7 and 139.4; both 1-decimal numbers with three integer digits, complexity 5 and 5; neither is rounder."
+ },
+ {
+  "id": "AM24F-08",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "exponential function with a vertical shift through two points",
+  "subskill": "for g(x) = a·2^x + c, subtract the two point equations to eliminate c (16a − 2a = 35), then back-substitute and evaluate at a negative input",
+  "prompt": "The function g is defined by g(x) = a·2^x + c, where a and c are constants. The graph of y = g(x) in the standard (x,y) coordinate plane passes through the points (1, 27) and (4, 62). What is the value of g(−1) ?",
+  "choices": [
+   "6.75",
+   "23.25",
+   "3.67",
+   "20.44"
+  ],
+  "correct_answer": "23.25",
+  "explanation": "From the points, 2a + c = 27 and 16a + c = 62. Subtracting gives 14a = 35, so a = 2.5 and c = 27 − 5 = 22. Then g(−1) = 2.5/2 + 22 = 23.25. The option \"3.67\" fits a line through the two points and extends it to x = −1. The option \"20.44\" computes 2⁴ − 2¹ as 2³, giving a = 35/8. The option \"6.75\" ignores c, finding a = 13.5 from g(1) = 27 alone.",
+  "solve": "const a=(62-27)/(16-2), c=27-2*a; return (a/2+c).toFixed(2);",
+  "distractor_solve": {
+   "3.67": "return (27-2*(62-27)/3).toFixed(2);",
+   "20.44": "const a=(62-27)/8, c=27-2*a; return (a/2+c).toFixed(2);",
+   "6.75": "return (27/2/2).toFixed(2);"
+  },
+  "quantity_asked": "g(−1) for g(x) = a·2^x + c through (1, 27) and (4, 62).",
+  "distractor_kind": {
+   "3.67": "error path: linear model through the two points. (a) limiting case: g is increasing (g(4) > g(1) and only a·2^x varies), so g(−1) < g(1) = 27; 3.67 inside (−infinity, 27). (b) neighbouring setup: the linear-model answer; not an extreme. (c) cheapest estimate: g(−1) < 27 is the only cheap bound; a lower bound needs c, the item's own work; inside. (d) real: wrong model.",
+   "20.44": "error path: 2^4 − 2^1 computed as 2^3. (a) inside (−infinity, 27). (b) no. (c) inside. (d) real: exponent subtraction.",
+   "6.75": "error path: drops c. (a) inside. (b) no. (c) inside. (d) real: ignored the vertical shift."
+  },
+  "distractor_meta": {
+   "3.67": {
+    "direction": "under",
+    "error_kind": "linear model"
+   },
+   "20.44": {
+    "direction": "under",
+    "error_kind": "subtracted exponents"
+   },
+   "6.75": {
+    "direction": "under",
+    "error_kind": "dropped constant"
+   }
+  },
+  "bounds": [
+   "v < 27"
+  ],
+  "mechanism": [
+   "exponential with vertical shift",
+   "a times 2 to the x plus c",
+   "two points determine a and c",
+   "evaluate at negative input"
+  ],
+  "arith_class_check": "No. Options are 2-decimal values with distinct decimal parts (.75, .25, .67, .44); no stem-implied class.",
+  "one_sided_check": "Key largest. No: linear fitting, exponent subtraction and dropping c are three different errors; the stem does not reveal that each one lowers g(−1), and all three stay under the stem-forced bound 27.",
+  "interior_parity_check": "interior options by value 6.75 and 20.44; both 2-decimal numbers with nonzero last digit, complexity 5 and 6 (difference 1); neither is rounder."
+ },
+ {
+  "id": "AM24F-09",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "trigonometric identities: squaring a sum",
+  "subskill": "square sin θ + cos θ to get sin θ cos θ = (1.25² − 1)/2, then use sin⁴θ + cos⁴θ = (sin²θ + cos²θ)² − 2sin²θcos²θ = 1 − 2(sin θ cos θ)²",
+  "prompt": "The real number θ satisfies sin θ + cos θ = 1.25. Rounded to the nearest hundredth, sin⁴θ + cos⁴θ equals which of the following?",
+  "choices": [
+   "0.92",
+   "0.68",
+   "0.84",
+   "0.72"
+  ],
+  "correct_answer": "0.84",
+  "explanation": "Squaring, (sin θ + cos θ)² = sin²θ + 2sin θ cos θ + cos²θ = 1 + 2sin θ cos θ = 1.5625, so sin θ cos θ = 0.28125. Then sin⁴θ + cos⁴θ = (sin²θ + cos²θ)² − 2sin²θcos²θ = 1 − 2(0.28125)² ≈ 0.84. The option \"0.92\" subtracts sin²θcos²θ only once. The option \"0.68\" subtracts (2sin θ cos θ)² instead of 2(sin θ cos θ)². The option \"0.72\" subtracts sin θ cos θ without squaring it.",
+  "solve": "const sc=(1.25*1.25-1)/2; return (1-2*sc*sc).toFixed(2);",
+  "distractor_solve": {
+   "0.92": "const sc=(1.25*1.25-1)/2; return (1-sc*sc).toFixed(2);",
+   "0.68": "const sc=(1.25*1.25-1)/2; return (1-4*sc*sc).toFixed(2);",
+   "0.72": "const sc=(1.25*1.25-1)/2; return (1-sc).toFixed(2);"
+  },
+  "quantity_asked": "sin⁴θ + cos⁴θ when sin θ + cos θ = 1.25.",
+  "distractor_kind": {
+   "0.92": "error path: 1 − (sin θ cos θ)², factor 2 dropped. (a) limiting case: sin⁴θ + cos⁴θ = 1 − (1/2)sin²(2θ) lies in [0.5, 1]; 0.92 inside. (b) neighbouring setup: not an extreme. (c) cheapest one-step estimate: [0.5, 1] as stated; strictly inside. (d) real.",
+   "0.68": "error path: 1 − (2 sin θ cos θ)². (a) inside [0.5, 1]. (b) no. (c) inside. (d) real: squared the doubled product.",
+   "0.72": "error path: 1 − sin θ cos θ, missing square. (a) inside [0.5, 1]. (b) no. (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "0.92": {
+    "direction": "over",
+    "error_kind": "dropped factor 2"
+   },
+   "0.68": {
+    "direction": "under",
+    "error_kind": "squared doubled product"
+   },
+   "0.72": {
+    "direction": "under",
+    "error_kind": "missing square"
+   }
+  },
+  "bounds": [
+   "v >= 0.5",
+   "v <= 1"
+  ],
+  "mechanism": [
+   "sin theta plus cos theta given",
+   "sin to the fourth plus cos to the fourth",
+   "square a sum of sine and cosine",
+   "Pythagorean identity squared"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values in [0.5, 1] with distinct last digits; no stem-implied class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 0.72 and 0.84; both 2-decimal values below 1 with nonzero last digit, complexity 4 and 4; neither is rounder."
+ },
+ {
+  "id": "AM24S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "expected value of a score with a guessing penalty",
+  "subskill": "expected points from one guess among 4 remaining choices = 5(1/4) − 1(3/4) = 0.5; add the certain points and multiply the per-guess value by the number of guesses; blanks contribute 0",
+  "prompt": "On a 25-question test, each question has 5 answer choices, exactly 1 of which is correct. Each correct answer earns 5 points, each incorrect answer loses 1 point, and each unanswered question earns 0 points. Nadia answers 11 questions correctly. On 8 other questions she can rule out exactly 1 incorrect choice, and she guesses at random among the remaining 4 choices. She leaves the other 6 questions unanswered. What is the expected value of Nadia's score on the test?",
+  "choices": [
+   "59",
+   "71",
+   "63",
+   "53"
+  ],
+  "correct_answer": "59",
+  "explanation": "The 11 sure answers give 55 points. Each of the 8 guesses has a 1/4 chance of +5 and a 3/4 chance of −1, worth 5/4 − 3/4 = 0.5 point on average, so the guesses add 8(0.5) = 4. Unanswered questions add 0. The expected score is 59. The option \"53\" also takes 1 point off for each of the 6 unanswered questions. The option \"71\" averages +5 and −1 as if they were equally likely, 2 points per guess. The option \"63\" uses (5 − 1)/4 = 1 point per guess, applying the 1/4 chance to the penalty as well as to the reward.",
+  "solve": "const per=5*(1/4)-1*(3/4); return String(5*11+8*per);",
+  "distractor_solve": {
+   "53": "const per=5*(1/4)-1*(3/4); return String(5*11+8*per-6);",
+   "63": "return String(5*11+8*(5-1)/4);",
+   "71": "return String(5*11+8*(5-1)/2);"
+  },
+  "quantity_asked": "Nadia's expected total score: 55 certain points plus the expected value of 8 guesses among 4 choices.",
+  "distractor_kind": {
+   "53": "error path: penalises the unanswered questions. (a) limiting case: the score lies between 55 − 8 = 47 (every guess wrong) and 55 + 40 = 95; 53 inside. (b) neighbouring setup: not an extreme. (c) cheapest estimate: [47, 95]; strictly inside. (d) real: misread scoring rule.",
+   "63": "error path: (5 − 1)/4 per guess. (a) inside. (b) no. (c) inside. (d) real: probability applied to the net instead of to each outcome.",
+   "71": "error path: +5 and −1 treated as equally likely. (a) inside [47, 95]. (b) no. (c) inside. (d) real: unweighted average."
+  },
+  "distractor_meta": {
+   "53": {
+    "direction": "under",
+    "error_kind": "blanks penalised"
+   },
+   "63": {
+    "direction": "over",
+    "error_kind": "probability applied to net"
+   },
+   "71": {
+    "direction": "over",
+    "error_kind": "unweighted average of outcomes"
+   }
+  },
+  "bounds": [
+   "v >= 47",
+   "v <= 95"
+  ],
+  "mechanism": [
+   "expected score with guessing penalty",
+   "eliminate one choice then guess",
+   "expected value per guess",
+   "unanswered questions score zero"
+  ],
+  "arith_class_check": "No. All options are integers (the stem does not imply the expected value is an integer: per-guess value 0.5 times 8 happens to be whole); parity: 59, 71, 63, 53 all odd; no class isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 59 and 63; both two-digit integers, neither a multiple of 5 or 10 (complexity 2 and 2); neither is rounder."
+ },
+ {
+  "id": "AM24S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability over the set of divisors of a number",
+  "subskill": "1,440 = 2^5 · 3^2 · 5 has 6·3·2 = 36 divisors; a divisor is a multiple of 12 exactly when its exponent of 2 is at least 2 and its exponent of 3 is at least 1, giving 4·2·2 = 16",
+  "prompt": "One of the positive divisors of 1,440 is chosen at random, with every positive divisor equally likely to be chosen. To the nearest hundredth, what is the probability that the divisor chosen is a multiple of 12 ?",
+  "choices": [
+   "0.17",
+   "0.08",
+   "0.33",
+   "0.44"
+  ],
+  "correct_answer": "0.44",
+  "explanation": "Since 1,440 = 2⁵ · 3² · 5, it has (5 + 1)(2 + 1)(1 + 1) = 36 positive divisors. A divisor 2^a · 3^b · 5^c is a multiple of 12 = 2² · 3 exactly when a is 2, 3, 4 or 5 and b is 1 or 2, with c either 0 or 1: 4 · 2 · 2 = 16 divisors. The probability is 16/36 ≈ 0.44. The option \"0.08\" is 1/12, the chance that a randomly chosen whole number is a multiple of 12. The option \"0.17\" counts the divisors of 12 (6 of them) instead of the multiples of 12. The option \"0.33\" counts the exponents of 2 from 2 to 5 as 5 − 2 = 3 values, giving 12/36.",
+  "solve": "let d=0,m=0; for(let i=1;i<=1440;i++) if(1440%i===0){d++; if(i%12===0) m++;} return (m/d).toFixed(2);",
+  "distractor_solve": {
+   "0.08": "return (1/12).toFixed(2);",
+   "0.17": "let d=0,m=0; for(let i=1;i<=1440;i++) if(1440%i===0){d++; if(12%i===0) m++;} return (m/d).toFixed(2);",
+   "0.33": "return ((5-2)*2*2/36).toFixed(2);"
+  },
+  "quantity_asked": "the fraction of the 36 divisors of 1,440 that are multiples of 12.",
+  "distractor_kind": {
+   "0.08": "error path: 1/12 from integers in general. (a) limiting case: the probability is at most P(multiple of 4) = 2/3 and at most P(multiple of 3) = 2/3; 0.08 inside. (b) neighbouring setup: the answer for \"a random integer\"; not an extreme. (c) cheapest estimate: (0, 2/3); strictly inside. (d) real.",
+   "0.17": "error path: counts divisors of 12 among the divisors of 1,440. (a) inside (0, 2/3). (b) no. (c) inside. (d) real: \"divides 12\" for \"multiple of 12\".",
+   "0.33": "error path: exponent range 2..5 counted as 3 values. (a) inside. (b) no. (c) inside. (d) real: off-by-one count."
+  },
+  "distractor_meta": {
+   "0.08": {
+    "direction": "under",
+    "error_kind": "naive 1 over 12"
+   },
+   "0.17": {
+    "direction": "under",
+    "error_kind": "divisors of 12 for multiples"
+   },
+   "0.33": {
+    "direction": "under",
+    "error_kind": "off-by-one exponent count"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v <= 2/3"
+  ],
+  "mechanism": [
+   "random divisor of a number",
+   "probability divisor is a multiple of 12",
+   "counting divisors from prime factorization",
+   "exponent ranges"
+  ],
+  "arith_class_check": "No. Options are 2-decimal values (.17, .08, .33, .44); the stem implies the answer is a fraction over 36 but three options (0.17, 0.33, 0.44) are consistent with that, so the class does not isolate the key.",
+  "one_sided_check": "Key largest. No: the three errors (1/12 from all integers, divisors of 12, an off-by-one exponent count) are different kinds and their direction is not readable from the stem; all are under the stem-forced cap 2/3, as the key is.",
+  "interior_parity_check": "interior options by value 0.17 and 0.33; both 2-decimal values below 1 with nonzero last digit, complexity 4 and 4; neither is rounder."
+ },
+ {
+  "id": "AM24S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "probability distribution with unknown probabilities and a given expected value",
+  "subskill": "the probabilities sum to 1 (p + q = 0.65) and the expected value equation gives p + 3q = 2.13 − 0.40 − 0.20 = 1.53; solve the system for p",
+  "prompt": "A random variable X takes only the values 0, 1, 2, 3, and 4. The probabilities are P(X = 0) = 0.10, P(X = 1) = p, P(X = 2) = 0.20, P(X = 3) = q, and P(X = 4) = 0.05, where p and q are constants. The expected value of X is 2.13. What is the value of p ?",
+  "choices": [
+   "0.36",
+   "0.21",
+   "0.44",
+   "0.26"
+  ],
+  "correct_answer": "0.21",
+  "explanation": "The probabilities sum to 1, so p + q = 1 − 0.10 − 0.20 − 0.05 = 0.65. The expected value is 0(0.10) + 1p + 2(0.20) + 3q + 4(0.05) = 2.13, so p + 3q = 2.13 − 0.40 − 0.20 = 1.53. Subtracting, 2q = 0.88, so q = 0.44 and p = 0.21. The option \"0.44\" is q, the other unknown. The option \"0.36\" leaves P(X = 0) out of the sum, using p + q = 0.75. The option \"0.26\" counts P(X = 0) as contributing 0.10 to the expected value, as if X were 1 there.",
+  "solve": "const S=1-0.10-0.20-0.05, T=2.13-2*0.20-4*0.05; const q=(T-S)/2; return (S-q).toFixed(2);",
+  "distractor_solve": {
+   "0.44": "const S=1-0.10-0.20-0.05, T=2.13-2*0.20-4*0.05; return ((T-S)/2).toFixed(2);",
+   "0.36": "const S=1-0.20-0.05, T=2.13-2*0.20-4*0.05; const q=(T-S)/2; return (S-q).toFixed(2);",
+   "0.26": "const S=1-0.10-0.20-0.05, T=2.13-2*0.20-4*0.05-0.10; const q=(T-S)/2; return (S-q).toFixed(2);"
+  },
+  "quantity_asked": "P(X = 1) = p.",
+  "distractor_kind": {
+   "0.44": "error path: reports q instead of p. (a) limiting case: 0 < p < 0.65 since p + q = 0.65; 0.44 inside. (b) neighbouring setup: q is the other unknown of the same system, an intermediate value, and sits strictly inside (0, 0.65), not on an end. (c) cheapest estimate: (0, 0.65); strictly inside. (d) real: wrong variable.",
+   "0.36": "error path: omits P(X = 0) from the total. (a) inside (0, 0.65). (b) no. (c) inside. (d) real: dropped term in the sum to 1.",
+   "0.26": "error path: weights the X = 0 row by 1 in the mean. (a) inside. (b) no. (c) inside. (d) real: value-probability confusion."
+  },
+  "distractor_meta": {
+   "0.44": {
+    "direction": "over",
+    "error_kind": "reported the other unknown"
+   },
+   "0.36": {
+    "direction": "over",
+    "error_kind": "dropped term from total"
+   },
+   "0.26": {
+    "direction": "over",
+    "error_kind": "zero row weighted as one"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 0.65"
+  ],
+  "mechanism": [
+   "probability distribution with two unknowns",
+   "expected value equation",
+   "probabilities sum to 1",
+   "solve system for a probability"
+  ],
+  "arith_class_check": "No. All four are 2-decimal probabilities with distinct last digits; the stem implies only 0 < p < 0.65, which all four satisfy.",
+  "one_sided_check": "Key smallest. No: reporting q, dropping P(X = 0) from the total and mis-weighting the X = 0 row are three different errors; a student cannot read from the stem that each produces a larger value, and all lie inside (0, 0.65).",
+  "interior_parity_check": "interior options by value 0.26 and 0.36; both 2-decimal values below 1 with nonzero last digit, complexity 4 and 4; neither is rounder."
+ },
+ {
+  "id": "AM24S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "expected number of successes when drawing without replacement",
+  "subskill": "each of the 3 draws is red with probability 5/12 (by symmetry), so the expected number of red marbles is 3(5/12) = 1.25, even though the draws are not independent",
+  "prompt": "A bag contains 5 red marbles and 7 blue marbles. Three marbles are drawn at random, one at a time, without replacement. To the nearest hundredth, what is the expected number of red marbles drawn?",
+  "choices": [
+   "1.36",
+   "2.14",
+   "1.25",
+   "1.09"
+  ],
+  "correct_answer": "1.25",
+  "explanation": "P(0 red) = C(7,3)/C(12,3) = 35/220, P(1) = 5·21/220 = 105/220, P(2) = 10·7/220 = 70/220, P(3) = 10/220. The expected number is (105 + 140 + 30)/220 = 275/220 = 1.25. (Equivalently, each draw is red with probability 5/12, so the expected count is 3 · 5/12.) The option \"1.09\" assumes every draw happens after one red marble has been removed, 3 · 4/11. The option \"1.36\" removes one marble from the total but not from the reds, 3 · 5/11. The option \"2.14\" uses the ratio of red to blue, 3 · 5/7, as the chance of red.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++) r=r*(n-i)/(i+1);return r;}; let e=0; for(let k=0;k<=3;k++) e+=k*C(5,k)*C(7,3-k)/C(12,3); return e.toFixed(2);",
+  "distractor_solve": {
+   "1.09": "return (3*4/11).toFixed(2);",
+   "1.36": "return (3*5/11).toFixed(2);",
+   "2.14": "return (3*5/7).toFixed(2);"
+  },
+  "quantity_asked": "the expected number of red marbles among 3 drawn without replacement from 5 red and 7 blue.",
+  "distractor_kind": {
+   "1.09": "error path: 3 x 4/11. (a) limiting case: 0 <= v <= 3; inside. (b) neighbouring setup: not an extreme. (c) cheapest estimate: the expected count is 3 x (5/12) by symmetry, which is the item itself; no cheaper bracket than [0, 3]; inside. (d) real: decremented both counts for every draw.",
+   "1.36": "error path: 3 x 5/11. (a) inside [0, 3]. (b) no. (c) inside. (d) real: decremented only the total.",
+   "2.14": "error path: odds 5:7 used as probability. (a) inside [0, 3]. (b) no. (c) inside. (d) real: ratio for probability."
+  },
+  "distractor_meta": {
+   "1.09": {
+    "direction": "under",
+    "error_kind": "decremented red and total"
+   },
+   "1.36": {
+    "direction": "over",
+    "error_kind": "decremented total only"
+   },
+   "2.14": {
+    "direction": "over",
+    "error_kind": "odds as probability"
+   }
+  },
+  "bounds": [
+   "v >= 0",
+   "v <= 3"
+  ],
+  "mechanism": [
+   "expected number of red marbles",
+   "drawing without replacement",
+   "linearity of expectation",
+   "hypergeometric expected value"
+  ],
+  "arith_class_check": "No. The stem does not imply a terminating decimal; options are 2-decimal values (.36, .14, .25, .09) and the key happening to terminate is not stem-readable.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 1.25 and 1.36; both 2-decimal numbers with one integer digit, complexity 5 and 5; neither is rounder by the display rule."
+ },
+ {
+  "id": "AM24S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability by counting: selection avoiding pairs",
+  "subskill": "count 4-person selections with no married pair: choose 4 of the 5 couples, then 1 spouse from each, C(5,4)·2^4 = 80, out of C(10,4) = 210 (or multiply 8/9 · 6/8 · 4/7 pick by pick)",
+  "prompt": "A group of 10 people consists of 5 married couples. Four of the 10 people are chosen at random to form a committee, with every group of 4 equally likely to be chosen. To the nearest hundredth, what is the probability that no two of the people chosen are married to each other?",
+  "choices": [
+   "0.48",
+   "0.38",
+   "0.02",
+   "0.56"
+  ],
+  "correct_answer": "0.38",
+  "explanation": "There are C(10,4) = 210 equally likely committees. A committee with no married pair uses 4 different couples, C(5,4) = 5 ways, and one spouse from each of those couples, 2⁴ = 16 ways: 80 committees. The probability is 80/210 ≈ 0.38. (Pick by pick: after the first person, the second must avoid 1 of the 9 remaining people, the third 2 of 8, the fourth 3 of 7: (8/9)(6/8)(4/7) = 80/210.) The option \"0.02\" chooses the 4 couples but forgets that either spouse can be chosen from each, 5/210. The option \"0.48\" lets the fourth person avoid only 2 people, (8/9)(6/8)(5/7). The option \"0.56\" lets the third person avoid only 1 person and the fourth only 2, (8/9)(7/8)(5/7).",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++) r=r*(n-i)/(i+1);return r;}; return (C(5,4)*16/C(10,4)).toFixed(2);",
+  "distractor_solve": {
+   "0.02": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++) r=r*(n-i)/(i+1);return r;}; return (C(5,4)/C(10,4)).toFixed(2);",
+   "0.48": "return (8/9*6/8*5/7).toFixed(2);",
+   "0.56": "return (8/9*7/8*5/7).toFixed(2);"
+  },
+  "quantity_asked": "the fraction of the 210 four-person committees that contain no married couple.",
+  "distractor_kind": {
+   "0.02": "error path: C(5,4)/C(10,4), spouse choice 2^4 dropped. (a) limiting case: 0 < v and v <= P(first three chosen include no couple) = (8/9)(6/8) = 2/3; 0.02 inside. (b) neighbouring setup: not an extreme. (c) cheapest estimate: (0, 2/3); strictly inside. (d) real: forgot the factor for choosing a spouse.",
+   "0.48": "error path: fourth pick excludes 2 people instead of 3. (a) inside (0, 2/3). (b) no. (c) inside. (d) real: lost track of excluded spouses.",
+   "0.56": "error path: third pick excludes 1 and fourth excludes 2. (a) inside (0, 2/3). (b) no. (c) inside. (d) real: excluded only the most recent spouse at each step."
+  },
+  "distractor_meta": {
+   "0.02": {
+    "direction": "under",
+    "error_kind": "dropped spouse choice"
+   },
+   "0.48": {
+    "direction": "over",
+    "error_kind": "last pick under-excluded"
+   },
+   "0.56": {
+    "direction": "over",
+    "error_kind": "only latest spouse excluded"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v <= 2/3"
+  ],
+  "mechanism": [
+   "married couples committee",
+   "no two chosen are married",
+   "choose couples then one spouse each",
+   "selection avoiding pairs probability"
+  ],
+  "arith_class_check": "No. All options are 2-decimal probabilities with distinct last digits; the stem implies a fraction over 210 but nothing that isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 0.38 and 0.48; both 2-decimal values below 1 with nonzero last digit, complexity 4 and 4; neither is rounder."
+ },
+ {
+  "id": "AM24S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "probability by counting with the triangle inequality",
+  "subskill": "three lengths a <= b <= c form a triangle exactly when a + b > c (strictly); count such triples among the C(7,3) = 35 equally likely sets",
+  "prompt": "Seven sticks have lengths 2, 3, 4, 5, 8, 9, and 10 centimeters. Three of the sticks are chosen at random, with every set of 3 sticks equally likely to be chosen. To the nearest hundredth, what is the probability that the 3 sticks chosen can be placed end to end to form a triangle?",
+  "choices": [
+   "0.46",
+   "0.84",
+   "0.57",
+   "0.76"
+  ],
+  "correct_answer": "0.46",
+  "explanation": "There are C(7,3) = 35 equally likely sets. Listing each set with a < b < c and checking a + b > c gives 16 sets that form a triangle: (2,3,4), (2,4,5), (2,8,9), (2,9,10), (3,4,5), (3,8,9), (3,8,10), (3,9,10), (4,5,8), (4,8,9), (4,8,10), (4,9,10), (5,8,9), (5,8,10), (5,9,10), (8,9,10). The probability is 16/35 ≈ 0.46. The option \"0.57\" also counts the 4 sets with a + b = c, such as (2,3,5) and (4,5,9), which only lie flat. The option \"0.76\" divides by C(7,2) = 21 instead of C(7,3). The option \"0.84\" gives the odds 16 : 19 instead of the probability.",
+  "solve": "const L=[2,3,4,5,8,9,10]; let ok=0,n=0; for(let i=0;i<7;i++)for(let j=i+1;j<7;j++)for(let k=j+1;k<7;k++){n++; if(L[i]+L[j]>L[k]) ok++;} return (ok/n).toFixed(2);",
+  "distractor_solve": {
+   "0.57": "const L=[2,3,4,5,8,9,10]; let ok=0,n=0; for(let i=0;i<7;i++)for(let j=i+1;j<7;j++)for(let k=j+1;k<7;k++){n++; if(L[i]+L[j]>=L[k]) ok++;} return (ok/n).toFixed(2);",
+   "0.76": "const L=[2,3,4,5,8,9,10]; let ok=0; for(let i=0;i<7;i++)for(let j=i+1;j<7;j++)for(let k=j+1;k<7;k++){ if(L[i]+L[j]>L[k]) ok++;} return (ok/21).toFixed(2);",
+   "0.84": "const L=[2,3,4,5,8,9,10]; let ok=0,n=0; for(let i=0;i<7;i++)for(let j=i+1;j<7;j++)for(let k=j+1;k<7;k++){n++; if(L[i]+L[j]>L[k]) ok++;} return (ok/(n-ok)).toFixed(2);"
+  },
+  "quantity_asked": "the fraction of the 35 three-stick sets that satisfy the strict triangle inequality.",
+  "distractor_kind": {
+   "0.57": "error path: counts degenerate sets (a + b = c) as triangles. (a) limiting case: 0 < v < 1; inside. (b) neighbouring setup: the non-strict-inequality version; not an extreme. (c) cheapest estimate: no bracket short of enumerating; inside. (d) real.",
+   "0.76": "error path: denominator C(7,2) = 21. (a) inside (0, 1). (b) no. (c) inside. (d) real: wrong combination count.",
+   "0.84": "error path: favourable : unfavourable = 16/19. (a) inside (0, 1). (b) no. (c) inside. (d) real: odds for probability."
+  },
+  "distractor_meta": {
+   "0.57": {
+    "direction": "over",
+    "error_kind": "degenerate triangles counted"
+   },
+   "0.76": {
+    "direction": "over",
+    "error_kind": "wrong denominator C(7,2)"
+   },
+   "0.84": {
+    "direction": "over",
+    "error_kind": "odds for probability"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 1"
+  ],
+  "mechanism": [
+   "three sticks form a triangle",
+   "triangle inequality probability",
+   "choose 3 of 7 lengths",
+   "strict inequality a + b > c"
+  ],
+  "arith_class_check": "No. Options are 2-decimal values (.46, .84, .57, .76); the stem implies a fraction over 35 but 0.46 and 0.57 are both consistent with that, so the class does not isolate the key.",
+  "one_sided_check": "Key smallest. No: counting flat triples, using C(7,2) and reporting odds are three different errors; the stem gives no readable reason that every natural mistake raises the value.",
+  "interior_parity_check": "interior options by value 0.57 and 0.76; both 2-decimal values below 1 with nonzero last digit, complexity 4 and 4; neither is rounder."
+ },
+ {
+  "id": "AM24S-07",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "conditional probability across two dependent events",
+  "subskill": "rain on exactly one day is the union of (rain Saturday, dry Sunday) and (dry Saturday, rain Sunday); multiply along each branch with the matching conditional probability and add",
+  "prompt": "The probability that it rains on Saturday is 0.40. If it rains on Saturday, the probability that it rains on Sunday is 0.65. If it does not rain on Saturday, the probability that it rains on Sunday is 0.30. What is the probability that it rains on exactly one of the two days?",
+  "choices": [
+   "0.44",
+   "0.26",
+   "0.67",
+   "0.32"
+  ],
+  "correct_answer": "0.32",
+  "explanation": "Rain on Saturday only: 0.40 × (1 − 0.65) = 0.14. Rain on Sunday only: (1 − 0.40) × 0.30 = 0.18. The probability of rain on exactly one day is 0.14 + 0.18 = 0.32. The option \"0.26\" is the probability of rain on both days, 0.40 × 0.65. The option \"0.44\" is the probability of rain on Sunday, 0.26 + 0.18. The option \"0.67\" pairs each Saturday outcome with the wrong conditional probability, 0.40 × 0.70 + 0.60 × 0.65.",
+  "solve": "const M=0.40,A=0.65,B=0.30; return (M*(1-A)+(1-M)*B).toFixed(2);",
+  "distractor_solve": {
+   "0.26": "const M=0.40,A=0.65; return (M*A).toFixed(2);",
+   "0.44": "const M=0.40,A=0.65,B=0.30; return (M*A+(1-M)*B).toFixed(2);",
+   "0.67": "const M=0.40,A=0.65,B=0.30; return (M*(1-B)+(1-M)*A).toFixed(2);"
+  },
+  "quantity_asked": "P(rain on Saturday and not Sunday) + P(no rain Saturday and rain Sunday).",
+  "distractor_kind": {
+   "0.26": "error path: P(both days). (a) limiting case: 0 < v < 1; inside. (b) neighbouring setup: the \"both days\" event is disjoint from \"exactly one\", so it bounds nothing; inside. (c) cheapest estimate: no bracket short of the two branch products; inside. (d) real: wrong event.",
+   "0.44": "error path: P(rain on Sunday). (a) inside (0, 1). (b) the marginal for Sunday overlaps \"exactly one\" but neither contains the other; not a bound. (c) inside. (d) real: wrong event.",
+   "0.67": "error path: conditionals attached to the wrong Saturday branch. (a) inside. (b) no. (c) inside. (d) real: swapped conditionals."
+  },
+  "distractor_meta": {
+   "0.26": {
+    "direction": "under",
+    "error_kind": "both days"
+   },
+   "0.44": {
+    "direction": "over",
+    "error_kind": "marginal for Sunday"
+   },
+   "0.67": {
+    "direction": "over",
+    "error_kind": "swapped conditionals"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 1"
+  ],
+  "mechanism": [
+   "rain on exactly one of two days",
+   "dependent events conditional probability",
+   "tree diagram two branches",
+   "probability depends on previous day"
+  ],
+  "arith_class_check": "No. All options are 2-decimal probabilities; last digits 4, 6, 7, 2 are all different; nothing in the stem implies a class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 0.32 and 0.44; both 2-decimal values below 1 with nonzero last digit, complexity 4 and 4; neither is rounder."
+ }
+]

@@ -1,0 +1,549 @@
+[
+ {
+  "id": "AM24I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "hiking time estimate from a map scale and a climbing allowance",
+  "subskill": "converting a map length with a ratio scale, converting decimal hours to minutes, and adding a per-100-meter allowance for climbs only across a route with two ascents",
+  "prompt": "A hiking guidebook estimates the time needed for a route with this rule: walking time at 4 kilometers per hour over the route's horizontal length, plus 10 minutes for every 100 meters of climbing. Descending adds no time. On a map with a scale of 1:25,000, a certain route measures 39.2 centimeters. The route starts at a trailhead at an elevation of 368 meters, climbs steadily to a summit at 1,146 meters, descends to a saddle at 861 meters, climbs to a second summit at 1,043 meters, and then descends to its finish at 486 meters. To the nearest minute, what is the guidebook's estimated time for the route, in minutes?",
+  "choices": [
+   "261",
+   "243",
+   "299",
+   "292"
+  ],
+  "correct_answer": "243",
+  "explanation": "On the map, 39.2 cm represents 39.2 × 25,000 = 980,000 cm = 9.8 km. At 4 km/h, walking takes 9.8 ÷ 4 = 2.45 hours = 2.45 × 60 = 147 minutes. The route climbs 1,146 − 368 = 778 m to the first summit and 1,043 − 861 = 182 m from the saddle to the second summit, 960 m in all, which adds 960 ÷ 100 × 10 = 96 minutes. The estimate is 147 + 96 = 243 minutes. The option \"261\" reads 2.45 hours as 2 hours 45 minutes (165 minutes). The option \"292\" measures the second climb from the trailhead (1,043 − 368 = 675 m) instead of from the saddle. The option \"299\" also charges the final 557-meter descent as if it were climbing.",
+  "solve": "const km=39.2*25000/100000; const walk=km/4*60; const climb=(1146-368)+(1043-861); return String(Math.round(walk+climb/10));",
+  "distractor_solve": {
+   "261": "const km=39.2*25000/100000; const h=km/4; const misread=Math.floor(h)*60+Math.round((h%1)*100); const climb=(1146-368)+(1043-861); return String(Math.round(misread+climb/10));",
+   "292": "const km=39.2*25000/100000; const walk=km/4*60; const climb=(1146-368)+(1043-368); return String(Math.round(walk+climb/10));",
+   "299": "const km=39.2*25000/100000; const walk=km/4*60; const climb=(1146-368)+(1043-861)+(1043-486); return String(Math.round(walk+climb/10));"
+  },
+  "quantity_asked": "estimated route time in minutes = 60(9.8/4) + (778 + 182)/10 = 147 + 96.",
+  "distractor_kind": {
+   "261": "decimal hours read as hours:minutes (2.45 h -> 2 h 45 min). (a) limiting case: no parameter extreme; walking time is fixed by the map. (b) neighbouring setup: not an adjacent problem, a unit slip; 261 is not an endpoint of any interval. (c) cheapest one-step bracket over the whole time: floor = walk + (highest point - start)/10 = 147 + 77.8 = 224.8 (total climb is at least the rise to the highest point); ceiling = walk + all vertical change/10 = 147 + (960 + 285 + 557)/10 = 327.2. 261 strictly inside. (d) real: the classic decimal-time slip.",
+   "292": "second climb measured from the trailhead elevation instead of the saddle. (a) no. (b) neighbouring setup (climb counted from the start each time) gives 292.3; inside (224.8, 327.2), not on either end. (c) strictly inside. (d) real: using the starting elevation as the reference for every summit.",
+   "299": "the last descent (1,043 -> 486) charged as climbing. (a) no. (b) charging ALL descents would sit ON the 327.2 ceiling, which is why that version is not used; charging one descent is 298.7, strictly inside. (c) strictly inside (224.8, 327.2). (d) real: ignoring the rule that descents add nothing for one leg of the route."
+  },
+  "distractor_meta": {
+   "261": {
+    "direction": "over",
+    "error_kind": "decimal-hours time slip"
+   },
+   "292": {
+    "direction": "over",
+    "error_kind": "wrong elevation reference"
+   },
+   "299": {
+    "direction": "over",
+    "error_kind": "descent counted as climb"
+   }
+  },
+  "bounds": [
+   "v > 147 + (1146-368)/10 = 224.8 (climb at least the rise to the highest point)",
+   "v < 147 + (960+285+557)/10 = 327.2 (all vertical change)"
+  ],
+  "mechanism": [
+   "hiking time rule",
+   "map scale 1:25,000",
+   "minutes per 100 meters of climbing",
+   "descents add no time",
+   "two summits and a saddle"
+  ],
+  "arith_class_check": "No. All four options are 3-digit integers, none a multiple of 10 or 5; the stem forces an integer (nearest minute) on every option alike, and the gaps (18, 31, 7) are not a run.",
+  "one_sided_check": "Key smallest, three different error kinds (a time-format slip, a wrong reference elevation, a descent charged as climb). The stem does not reveal a direction: the natural under-counts (net change only, first climb only) exist and lead below the key, and the decimal-hours slip direction is not visible without computing 2.45 h.",
+  "interior_parity_check": "Interior options 261 and 292: both 3-digit integers, neither a multiple of 5 or 10, equal display complexity; the key 243 is an extreme, not interior."
+ },
+ {
+  "id": "AM24I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "handicap index from the lowest two of three slope-adjusted differentials",
+  "subskill": "computing three rate-adjusted values from a given formula, selecting the two lowest computed values (not the two lowest raw scores), and averaging them",
+  "prompt": "A golfer's handicap differential for one round is found with the formula (score − course rating) × 113 ÷ slope rating. Her handicap index is the average of the two LOWEST differentials from her three most recent rounds. Her three most recent rounds are shown below.\n\nRound 1: score 87, course rating 70.1, slope rating 119\nRound 2: score 93, course rating 75.6, slope rating 144\nRound 3: score 90, course rating 71.8, slope rating 131\n\nTo the nearest hundredth, what is her handicap index?",
+  "choices": [
+   "15.87",
+   "14.68",
+   "17.15",
+   "15.13"
+  ],
+  "correct_answer": "14.68",
+  "explanation": "The differentials are (87 − 70.1) × 113 ÷ 119 ≈ 16.048 for round 1, (93 − 75.6) × 113 ÷ 144 ≈ 13.654 for round 2, and (90 − 71.8) × 113 ÷ 131 ≈ 15.699 for round 3. The two lowest are 13.654 and 15.699, so the index is (13.654 + 15.699) ÷ 2 ≈ 14.68. The option \"15.13\" averages all three differentials. The option \"15.87\" averages the differentials of the two lowest SCORES (rounds 1 and 3) instead of the two lowest differentials. The option \"17.15\" averages the two lowest values of score − course rating without the 113 ÷ slope adjustment.",
+  "solve": "const R=[[87,70.1,119],[93,75.6,144],[90,71.8,131]]; const d=R.map(([s,r,sl])=>(s-r)*113/sl).sort((a,b)=>a-b); return ((d[0]+d[1])/2).toFixed(2);",
+  "distractor_solve": {
+   "15.13": "const R=[[87,70.1,119],[93,75.6,144],[90,71.8,131]]; const d=R.map(([s,r,sl])=>(s-r)*113/sl); return ((d[0]+d[1]+d[2])/3).toFixed(2);",
+   "15.87": "const R=[[87,70.1,119],[93,75.6,144],[90,71.8,131]]; const d=R.map(([s,r,sl])=>(s-r)*113/sl); return ((d[0]+d[2])/2).toFixed(2);",
+   "17.15": "const R=[[87,70.1,119],[93,75.6,144],[90,71.8,131]]; const d=R.map(([s,r])=>(s-r)).sort((a,b)=>a-b); return ((d[0]+d[1])/2).toFixed(2);"
+  },
+  "quantity_asked": "handicap index = mean of the two smallest of (s - r)*113/slope over the three rounds = (13.654 + 15.699)/2.",
+  "distractor_kind": {
+   "15.13": "averages all three differentials. (a) no limiting case. (b) neighbouring setup (average of all rounds); not an interval endpoint: the index can be anywhere between the smallest and largest differential. (c) cheapest bracket: the index lies between the smallest and largest differential, (13.65, 16.05); strictly inside. (d) real: ignoring the \"two lowest\" selection rule.",
+   "15.87": "selects by lowest score instead of lowest differential. (a) no. (b) a different selection, strictly inside (13.65, 16.05). (c) inside. (d) real: the round with the highest score has the lowest differential here because its course is hardest; picking by score is the natural mistake.",
+   "17.15": "drops the 113/slope adjustment. (a) no. (b) best two unadjusted differences (16.9 and 17.4) average 17.15; it is not the endpoint of any stem-forced interval. (c) cheapest bracket that does not require computing the factor: the index is (s - r) scaled by 113/slope with slopes 119 to 144, so between 0.78 and 0.95 of the raw differences, about (13.2, 17.3); 17.15 strictly inside. Rejecting it needs the factor applied, which is the item's own work. (d) real: forgetting the slope term."
+  },
+  "distractor_meta": {
+   "15.13": {
+    "direction": "over",
+    "error_kind": "selection rule ignored"
+   },
+   "15.87": {
+    "direction": "over",
+    "error_kind": "selected by raw score"
+   },
+   "17.15": {
+    "direction": "over",
+    "error_kind": "formula factor omitted"
+   }
+  },
+  "bounds": [
+   "v >= min differential 13.654",
+   "v <= max differential 16.048"
+  ],
+  "mechanism": [
+   "golf handicap differential",
+   "slope rating and course rating",
+   "average of two lowest differentials",
+   "times 113 divided by slope"
+  ],
+  "arith_class_check": "No. Four 2-decimal values with nonzero last digits; the index is the mean of two irrational-looking quotients, so no stem-readable divisibility or integrality applies to any option.",
+  "one_sided_check": "Key smallest; three different error kinds (no selection, selection by score, missing slope factor). A student cannot see from the stem that selection by score raises the index: it does so only because the highest score is on the hardest course, which needs the differentials computed. The missing-factor direction also needs the factor computed.",
+  "interior_parity_check": "Interior options 15.13 and 15.87: both 2-decimal values with nonzero hundredths, 4 significant digits, equal display complexity; key 14.68 is the smallest, not interior."
+ },
+ {
+  "id": "AM24I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "credit-weighted grade point average with a retaken course replacing the first attempt",
+  "subskill": "weighting grade points by credit hours and applying a replacement policy so the retaken course counts once, with the retake grade",
+  "prompt": "At a college, a student's grade point average (GPA) is the total of (credit hours × grade points) for the courses counted, divided by the total credit hours counted, where an A is worth 4 grade points, a B is worth 3, a C is worth 2, and a D is worth 1. When a course is retaken, only the retake is counted: the first attempt's grade and credit hours are dropped. Lena's courses are listed below.\n\nCalculus, 5 credit hours: A\nChemistry, 4 credit hours: D on the first attempt; B on the retake\nLiterature, 4 credit hours: B\nPhysics, 5 credit hours: A\nSpanish, 3 credit hours: C\nEconomics, 3 credit hours: B\n\nTo the nearest hundredth, what is Lena's GPA?",
+  "choices": [
+   "3.17",
+   "3.25",
+   "3.29",
+   "2.96"
+  ],
+  "correct_answer": "3.29",
+  "explanation": "Counting Chemistry once, with the B, the grade points are 5(4) + 4(3) + 4(3) + 5(4) + 3(2) + 3(3) = 20 + 12 + 12 + 20 + 6 + 9 = 79 over 5 + 4 + 4 + 5 + 3 + 3 = 24 credit hours, so the GPA is 79 ÷ 24 ≈ 3.29. The option \"2.96\" also counts the first Chemistry attempt, adding 4 credit hours of D: 83 ÷ 28. The option \"3.17\" averages the six letter grades without weighting by credit hours: 19 ÷ 6. The option \"3.25\" keeps the 4 credit hours of both attempts but gives both the retake's B: 91 ÷ 28.",
+  "solve": "const cr=[5,4,4,5,3,3], g=[4,3,3,4,2,3]; let P=0,C=0; cr.forEach((c,i)=>{P+=c*g[i];C+=c;}); return (Math.round(P/C*100+1e-9)/100).toFixed(2);",
+  "distractor_solve": {
+   "2.96": "const cr=[5,4,4,5,3,3], g=[4,3,3,4,2,3]; let P=4*1,C=4; cr.forEach((c,i)=>{P+=c*g[i];C+=c;}); return (Math.round(P/C*100+1e-9)/100).toFixed(2);",
+   "3.17": "const g=[4,3,3,4,2,3]; return (Math.round(g.reduce((a,b)=>a+b)/6*100+1e-9)/100).toFixed(2);",
+   "3.25": "const cr=[5,4,4,5,3,3], g=[4,3,3,4,2,3]; let P=4*3,C=4; cr.forEach((c,i)=>{P+=c*g[i];C+=c;}); return (Math.round(P/C*100+1e-9)/100).toFixed(2);"
+  },
+  "quantity_asked": "GPA = 79/24 with Chemistry counted once at B.",
+  "distractor_kind": {
+   "2.96": "first attempt not dropped (D kept as an extra 4-credit course). (a) no. (b) neighbouring setup (no replacement policy) = 83/28 = 2.96; the feasible range of a GPA built from these grades is (2, 4); strictly inside. (c) cheapest bracket: between the lowest and highest grade counted, (2, 4); inside. Lattice: 2.96 rounds from 71/24, so a k/24 integrality test does not reject it. (d) real: ignoring the replacement policy.",
+   "3.17": "unweighted mean of letter grades. (a) no. (b) a different averaging rule, 3.17; inside (2, 4). Its direction depends on which grades sit on the heavy courses, which a solver cannot read without weighting. Lattice: 3.17 rounds from 76/24. (d) real: forgetting credit weights.",
+   "3.25": "both attempts' credits counted, both at the retake grade. (a) no. (b) inside (2, 4). Lattice: 3.25 = 78/24 exactly, so it survives a k/24 test. (d) real: misreading \"replaced\" as \"the new grade overwrites the old one but both attempts stay on the transcript\"."
+  },
+  "distractor_meta": {
+   "2.96": {
+    "direction": "under",
+    "error_kind": "first attempt kept"
+   },
+   "3.17": {
+    "direction": "under",
+    "error_kind": "credit weights ignored"
+   },
+   "3.25": {
+    "direction": "under",
+    "error_kind": "credits double-counted"
+   }
+  },
+  "bounds": [
+   "2 < v < 4 (grades counted run from C to A)"
+  ],
+  "mechanism": [
+   "grade point average",
+   "credit hours weighted",
+   "retaken course replaces first attempt",
+   "letter grade points A=4 B=3 C=2 D=1"
+  ],
+  "arith_class_check": "Checked the stem-readable lattice: counted credits are 24, so the key must round from k/24; every distractor also rounds from some k/24 (71/24, 76/24, 78/24), so the integrality test leaves all four. No other class property.",
+  "one_sided_check": "Key largest; three different error kinds. The unweighted-mean error can go either way in general (it is below here only because the A grades sit on the 5-credit courses), so the stem does not reveal that the natural errors all lower the GPA.",
+  "interior_parity_check": "Interior options 3.17 and 3.25: both 2-decimal values, 3 significant digits, equal display complexity; key 3.29 is the largest, not interior."
+ },
+ {
+  "id": "AM24I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "splitting a shared ride fare leg by leg among the riders aboard",
+  "subskill": "pricing each leg of a multi-stop trip from a per-mile rate, dividing each leg among the riders present for it, and adding an equally shared base fee",
+  "prompt": "Three coworkers share one ride-hail trip home. The fare is a $3.45 base fee plus $1.85 per mile. The car drives 6.2 miles to Ana's stop, then 4.6 more miles to Ben's stop, then 7.8 more miles to Cy's stop. They split the fare this way: the base fee is shared equally by all three, and the cost of each leg (the miles between consecutive stops) is shared equally by the riders who are in the car during that leg. To the nearest cent, how much does Cy pay?",
+  "choices": [
+   "18.93",
+   "22.24",
+   "23.66",
+   "19.78"
+  ],
+  "correct_answer": "23.66",
+  "explanation": "Cy pays one third of the base fee, 3.45 ÷ 3 = $1.15. The first leg costs 6.2 × 1.85 = $11.47, shared by all three: $3.823. The second leg costs 4.6 × 1.85 = $8.51, shared by Ben and Cy: $4.255. The last leg costs 7.8 × 1.85 = $14.43, paid by Cy alone. Cy pays 1.15 + 3.823 + 4.255 + 14.43 ≈ $23.66. The option \"22.24\" splits the second leg three ways, as if Ana were still in the car. The option \"19.78\" splits the whole $37.86 fare in proportion to the miles each person rode (6.2, 10.8, and 18.6 miles). The option \"18.93\" splits the fare in proportion to the number of legs each person rode (1, 2, and 3).",
+  "solve": "const b=3.45,r=1.85; const cy=b/3+6.2*r/3+4.6*r/2+7.8*r; return (Math.round(cy*100+1e-9)/100).toFixed(2);",
+  "distractor_solve": {
+   "18.93": "const b=3.45,r=1.85; const tot=b+r*(6.2+4.6+7.8); return (Math.round(tot*3/6*100+1e-9)/100).toFixed(2);",
+   "19.78": "const b=3.45,r=1.85; const tot=b+r*(6.2+4.6+7.8); const pm=6.2+10.8+18.6; return (Math.round(18.6/pm*tot*100+1e-9)/100).toFixed(2);",
+   "22.24": "const b=3.45,r=1.85; const cy=b/3+6.2*r/3+4.6*r/3+7.8*r; return (Math.round(cy*100+1e-9)/100).toFixed(2);"
+  },
+  "quantity_asked": "Cy's share = 3.45/3 + 11.47/3 + 8.51/2 + 14.43.",
+  "distractor_kind": {
+   "18.93": "fare split by number of legs ridden (1:2:3). (a) no. (b) a different sharing rule, 18.93. Cheapest bound: Cy pays at least his solo last leg plus his base share, 14.43 + 1.15 = 15.58, and at most the whole fare 37.86; strictly inside. (d) real: \"Cy rode three legs out of six rider-legs\".",
+   "19.78": "fare split in proportion to miles ridden. (a) no. (b) 19.78, inside (15.58, 37.86). (d) real: the other common \"fair\" rule.",
+   "22.24": "second leg divided by three riders instead of two. (a) no parameter extreme: the stem fixes the riders on each leg. (b) 22.24, inside (15.58, 37.86). (d) real: losing track of who is still in the car after the first stop."
+  },
+  "distractor_meta": {
+   "18.93": {
+    "direction": "under",
+    "error_kind": "shared by count of legs"
+   },
+   "19.78": {
+    "direction": "under",
+    "error_kind": "shared by distance ridden"
+   },
+   "22.24": {
+    "direction": "under",
+    "error_kind": "wrong riders on a leg"
+   }
+  },
+  "bounds": [
+   "v >= 1.15 + 14.43 = 15.58 (base share plus solo leg)",
+   "v <= 37.86 (whole fare)"
+  ],
+  "mechanism": [
+   "ride-hail fare split",
+   "cost of each leg shared by riders in the car",
+   "base fee shared equally",
+   "multi-stop trip"
+  ],
+  "arith_class_check": "No. Fares to the cent with nonzero last digits; Cy's share involves thirds and halves of cents, so no option is forced to any divisibility class.",
+  "one_sided_check": "Key largest; three different error kinds (two different whole-fare sharing rules and a rider-count slip). Whether a whole-fare proportional rule charges Cy more or less than the leg rule is not visible without computing it, so the stem does not reveal that the natural errors all lower his share.",
+  "interior_parity_check": "Interior options 19.78 and 22.24: both 2-decimal dollar amounts with nonzero cents, 4 significant digits; key 23.66 is the largest, not interior."
+ },
+ {
+  "id": "AM24I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "baseboard trim for a room measured on a scale drawing",
+  "subskill": "scaling fractional drawing measurements to feet for both the walls and the doorway openings, removing the openings from the perimeter, and pricing by the linear foot",
+  "prompt": "On a floor plan drawn to the scale 1/4 inch = 1 foot, a rectangular room is shown as 5 1/4 inches by 4 1/2 inches. Baseboard trim will run along every wall of the room except across its two doorways, which are 3/4 inch and 5/8 inch wide on the plan. Trim costs $2.87 per linear foot, and only the exact length needed is bought. To the nearest cent, what is the cost of the trim?",
+  "choices": [
+   "219.91",
+   "208.08",
+   "192.29",
+   "216.69"
+  ],
+  "correct_answer": "208.08",
+  "explanation": "At 4 feet per inch of plan, the room is 5.25 × 4 = 21 ft by 4.5 × 4 = 18 ft, so the walls total 2(21 + 18) = 78 ft. The doorways are 0.75 × 4 = 3 ft and 0.625 × 4 = 2.5 ft, so the trim is 78 − 5.5 = 72.5 ft, costing 72.5 × 2.87 ≈ $208.08. The option \"192.29\" subtracts each doorway twice, once for each side of the opening (67 ft). The option \"216.69\" subtracts only the 2.5-foot doorway (75.5 ft). The option \"219.91\" subtracts the doorway widths in plan inches, 1 3/8, without scaling them to feet (76.625 ft).",
+  "solve": "const per=2*(5.25+4.5)*4; const doors=(0.75+0.625)*4; return (Math.round((per-doors)*2.87*100+1e-9)/100).toFixed(2);",
+  "distractor_solve": {
+   "192.29": "const per=2*(5.25+4.5)*4; const doors=(0.75+0.625)*4; return (Math.round((per-2*doors)*2.87*100+1e-9)/100).toFixed(2);",
+   "216.69": "const per=2*(5.25+4.5)*4; return (Math.round((per-0.625*4)*2.87*100+1e-9)/100).toFixed(2);",
+   "219.91": "const per=2*(5.25+4.5)*4; return (Math.round((per-(0.75+0.625))*2.87*100+1e-9)/100).toFixed(2);"
+  },
+  "quantity_asked": "trim cost = 2.87 x (2(21 + 18) - (3 + 2.5)).",
+  "distractor_kind": {
+   "192.29": "doorways subtracted twice. (a) no. (b) 67 ft x 2.87 = 192.29. Cheapest bracket over the cost: at most the full perimeter 78 ft (223.86) and at least 2 x longest side 42 ft (120.54); strictly inside. (d) real: treating each opening as two wall faces.",
+   "216.69": "one doorway forgotten. (a) no. (b) 216.69, inside (120.54, 223.86), not on the full-perimeter ceiling. (d) real.",
+   "219.91": "doorway widths left in plan inches. (a) no. (b) 219.91, inside; the ceiling 223.86 is 3.95 away. (d) real: scaling the room but not the openings."
+  },
+  "distractor_meta": {
+   "192.29": {
+    "direction": "under",
+    "error_kind": "doorways double-subtracted"
+   },
+   "216.69": {
+    "direction": "over",
+    "error_kind": "doorway omitted"
+   },
+   "219.91": {
+    "direction": "over",
+    "error_kind": "scale not applied to a part"
+   }
+  },
+  "bounds": [
+   "v < 78 x 2.87 = 223.86 (no doorways removed)",
+   "v > 42 x 2.87 = 120.54"
+  ],
+  "mechanism": [
+   "scale drawing 1/4 inch = 1 foot",
+   "baseboard trim",
+   "subtract doorway openings",
+   "cost per linear foot"
+  ],
+  "arith_class_check": "No. All four are 2.87 x (a length) rounded to cents with nonzero last digits; lengths 72.5, 67, 75.5, 76.625 give no shared or lone divisibility visible from the stem.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 208.08 and 216.69: both 3-digit-dollar amounts with nonzero cents (5 significant digits, 2 decimals); neither ends in .25/.50/.75 or 0. Key is not the cleaner one."
+ },
+ {
+  "id": "AM24I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "server tip-out computed partly on sales and partly on tips",
+  "subskill": "applying percents to two different bases (sales and tips) and subtracting each share from the tips",
+  "prompt": "At a restaurant, each server \"tips out\" to coworkers at the end of a shift: 3% of the server's food-and-drink SALES goes to the bussers, 1.5% of the server's SALES goes to the host, and 10% of the server's TIPS goes to the bartender. All three amounts are figured from the shift's totals and are paid out of the server's tips. During one shift, Mara had sales of $1,418.60 and received $247.35 in tips. To the nearest cent, how much of her tips does Mara keep after tipping out?",
+  "choices": [
+   "158.78",
+   "211.48",
+   "165.16",
+   "147.65"
+  ],
+  "correct_answer": "158.78",
+  "explanation": "Bussers and host get 4.5% of sales: 0.045 × 1,418.60 = $63.837. The bartender gets 10% of tips: 0.10 × 247.35 = $24.735. Mara keeps 247.35 − 63.837 − 24.735 ≈ $158.78. The option \"147.65\" figures the bussers' and host's 4.5% on sales plus tips. The option \"165.16\" takes the bartender's 10% from what is left AFTER paying the bussers and host, instead of from her total tips. The option \"211.48\" figures the bussers' and host's shares on her tips instead of her sales.",
+  "solve": "const S=1418.6,T=247.35; return (Math.round((T-0.03*S-0.015*S-0.10*T)*100+1e-9)/100).toFixed(2);",
+  "distractor_solve": {
+   "147.65": "const S=1418.6,T=247.35; return (Math.round((T-0.045*(S+T)-0.10*T)*100+1e-9)/100).toFixed(2);",
+   "165.16": "const S=1418.6,T=247.35; return (Math.round(((T-0.045*S)*0.9)*100+1e-9)/100).toFixed(2);",
+   "211.48": "const S=1418.6,T=247.35; return (Math.round((T*(1-0.045-0.10))*100+1e-9)/100).toFixed(2);"
+  },
+  "quantity_asked": "tips kept = 247.35 - 0.045(1418.60) - 0.10(247.35).",
+  "distractor_kind": {
+   "147.65": "sales-based shares figured on sales plus tips. (a) no. (b) 147.65. Cheapest bracket over the amount kept: at most 90% of tips, 222.62 (bartender only), at least 0 ; finer, the sales shares are about 4.5% of about 1,400, near 64, so roughly 247 - 64 - 25 = 158 give or take a couple of dollars, which is the work itself. Strictly inside (0, 222.62). (d) real: blurring which total a percent is taken of.",
+   "165.16": "bartender share taken from the remainder. (a) no. (b) 165.16, inside. (d) real: applying percents in sequence when the stem says each is figured from the shift totals.",
+   "211.48": "sales-based shares figured on tips. (a) no. (b) 211.48, inside (0, 222.62); not on the 90%-of-tips ceiling. (d) real: reading \"3% goes to the bussers\" as 3% of the tips, which is the most common tip-out misreading."
+  },
+  "distractor_meta": {
+   "147.65": {
+    "direction": "under",
+    "error_kind": "base inflated with tips"
+   },
+   "165.16": {
+    "direction": "over",
+    "error_kind": "sequential instead of parallel percents"
+   },
+   "211.48": {
+    "direction": "over",
+    "error_kind": "wrong base (tips for sales)"
+   }
+  },
+  "bounds": [
+   "0 < v < 0.9 x 247.35 = 222.62"
+  ],
+  "mechanism": [
+   "tip-out",
+   "percent of sales to bussers and host",
+   "percent of tips to bartender",
+   "server net tips"
+  ],
+  "arith_class_check": "No. Four amounts to the cent with nonzero last digits; no stem-implied divisibility (both bases are given to the cent).",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 158.78 and 165.16: both 3-digit-dollar amounts with nonzero cents, equal display complexity. Key is not cleaner."
+ },
+ {
+  "id": "AM24I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "slugging percentage from hit types and at-bats",
+  "subskill": "computing total bases by weighting each hit type, excluding walks from at-bats, and forming a rate to three decimal places",
+  "prompt": "In baseball, a player's total bases are 1 for each single, 2 for each double, 3 for each triple, and 4 for each home run. Walks are not hits and are NOT counted as at-bats. A player's slugging percentage is total bases divided by at-bats. Last season a player had 95 singles, 35 doubles, 2 triples, and 18 home runs in 497 at-bats, and he also drew 49 walks. To the nearest thousandth, what was his slugging percentage?",
+  "choices": [
+   "0.445",
+   "0.588",
+   "0.489",
+   "0.453"
+  ],
+  "correct_answer": "0.489",
+  "explanation": "Total bases are 95(1) + 35(2) + 2(3) + 18(4) = 95 + 70 + 6 + 72 = 243, and 243 ÷ 497 ≈ 0.489. The option \"0.445\" adds the 49 walks to the at-bats (243 ÷ 546). The option \"0.453\" counts each home run as 3 bases (225 ÷ 497). The option \"0.588\" adds 1 base for each walk (292 ÷ 497).",
+  "solve": "const TB=95+2*35+3*2+4*18; return (Math.round(TB/497*1000+1e-9)/1000).toFixed(3);",
+  "distractor_solve": {
+   "0.445": "const TB=95+2*35+3*2+4*18; return (Math.round(TB/(497+49)*1000+1e-9)/1000).toFixed(3);",
+   "0.453": "const TB=95+2*35+3*2+3*18; return (Math.round(TB/497*1000+1e-9)/1000).toFixed(3);",
+   "0.588": "const TB=95+2*35+3*2+4*18; return (Math.round((TB+49)/497*1000+1e-9)/1000).toFixed(3);"
+  },
+  "quantity_asked": "slugging percentage = (95 + 70 + 6 + 72)/497.",
+  "distractor_kind": {
+   "0.445": "walks added to at-bats. (a) no. (b) 0.445. Cheapest bracket: at least the batting average 150/497 = 0.302 (every hit is worth at least 1 base) and at most 4 x 0.302; inside. Lattice: 0.445 rounds from 221/497, so a k/497 test keeps it. (d) real: the stem flags it, and it is the standard slip.",
+   "0.453": "home runs counted as 3 bases. (a) no. (b) 0.453 = 225/497 rounded; inside. (d) real: the \"home run = 3 bases plus home\" miscount.",
+   "0.588": "walks added to total bases. (a) no. (b) 0.588 = 292/497 rounded; inside (0.302, 1.208). (d) real: treating a walk like a single."
+  },
+  "distractor_meta": {
+   "0.445": {
+    "direction": "under",
+    "error_kind": "walks counted as at-bats"
+   },
+   "0.453": {
+    "direction": "under",
+    "error_kind": "base value of a hit miscounted"
+   },
+   "0.588": {
+    "direction": "over",
+    "error_kind": "walks counted as bases"
+   }
+  },
+  "bounds": [
+   "v > 150/497 = 0.302 (batting average)",
+   "v < 4 x 0.302"
+  ],
+  "mechanism": [
+   "slugging percentage",
+   "total bases",
+   "walks not counted as at-bats",
+   "singles doubles triples home runs"
+  ],
+  "arith_class_check": "Checked the lattice: the stem fixes 497 at-bats, and each option rounds from some k/497 (221, 225, 243, 292), so a k/497 integrality test eliminates nothing. All four have three decimals with nonzero last digit.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 0.453 and 0.489: both 0.xxx with three nonzero-ending decimals, equal display complexity. Key not cleaner."
+ },
+ {
+  "id": "AM24I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "average speed needed for the remaining distance to meet a deadline",
+  "subskill": "converting clock times and minutes to hours, subtracting time already used (driving and a stop), and dividing the remaining distance by the remaining time",
+  "prompt": "Dae must drive 298 kilometers to arrive by 2:15 p.m. He leaves at 9:30 a.m. and drives the first 121 kilometers at an average speed of 84 kilometers per hour. He then stops for exactly 20 minutes. To the nearest hundredth, what average speed, in kilometers per hour, must he maintain for the rest of the drive to arrive exactly at 2:15 p.m.?",
+  "choices": [
+   "62.74",
+   "59.47",
+   "66.14",
+   "56.92"
+  ],
+  "correct_answer": "59.47",
+  "explanation": "From 9:30 a.m. to 2:15 p.m. is 4 hours 45 minutes = 4.75 hours. The first 121 km took 121 ÷ 84 ≈ 1.4405 hours, and the stop took 20 ÷ 60 ≈ 0.3333 hour, leaving 4.75 − 1.4405 − 0.3333 ≈ 2.9762 hours for the remaining 298 − 121 = 177 km. The required speed is 177 ÷ 2.9762 ≈ 59.47 km/h. The option \"56.92\" writes the 20-minute stop as 0.20 hour. The option \"62.74\" is the average speed for the whole 298-km trip over 4.75 hours, not the speed needed for the rest. The option \"66.14\" writes 4 hours 45 minutes as 4.45 hours.",
+  "solve": "const rem=(14.25-9.5)-121/84-20/60; return (Math.round((298-121)/rem*100+1e-9)/100).toFixed(2);",
+  "distractor_solve": {
+   "56.92": "const rem=(14.25-9.5)-121/84-0.20; return (Math.round((298-121)/rem*100+1e-9)/100).toFixed(2);",
+   "62.74": "return (Math.round(298/(14.25-9.5)*100+1e-9)/100).toFixed(2);",
+   "66.14": "const rem=4.45-121/84-20/60; return (Math.round((298-121)/rem*100+1e-9)/100).toFixed(2);"
+  },
+  "quantity_asked": "required speed = 177 / (4.75 - 121/84 - 1/3).",
+  "distractor_kind": {
+   "56.92": "minutes written as a decimal hour (20 min -> 0.20 h). (a) limiting case: ignoring the stop entirely gives the floor 177/(4.75 - 1.4405) = 53.49; 56.92 is strictly above it. (b) not an adjacent problem. (c) cheapest bracket: (53.49, infinity) from the stop; no cheap ceiling. Inside. (d) real.",
+   "62.74": "whole-trip average 298/4.75. (a) no. (b) neighbouring quantity (the average for the entire trip) = 62.74; it is not an endpoint of the feasible interval, since the required speed depends on how the first part went. Strictly inside (53.49, inf). (d) real: answering the overall average instead of the remaining-leg speed.",
+   "66.14": "clock interval 4 h 45 min written as 4.45 h. (a) no. (b) 66.14, inside. (d) real: the decimal-time slip on the total time."
+  },
+  "distractor_meta": {
+   "56.92": {
+    "direction": "under",
+    "error_kind": "minutes as decimal hours (stop)"
+   },
+   "62.74": {
+    "direction": "over",
+    "error_kind": "whole-trip average answered"
+   },
+   "66.14": {
+    "direction": "over",
+    "error_kind": "clock interval as decimal"
+   }
+  },
+  "bounds": [
+   "v > 177/(4.75 - 121/84) = 53.49 (stop ignored)"
+  ],
+  "mechanism": [
+   "required average speed for remaining distance",
+   "arrive by a deadline",
+   "stop of 20 minutes",
+   "clock time to hours"
+  ],
+  "arith_class_check": "No. Four 2-decimal speeds with nonzero hundredths; the key is 177 over an irrational-looking time, no stem-readable class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 59.47 and 62.74: both 2-digit-integer-part speeds with two nonzero-ending decimals, equal display complexity. Key not cleaner."
+ },
+ {
+  "id": "AM24I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "fuel economy by the fill-up method across several fill-ups",
+  "subskill": "matching each fill-up to the miles driven before it, then dividing total miles by total gallons rather than averaging per-leg rates",
+  "prompt": "Rosa tracks her car's fuel economy by the fill-up method: she fills the tank completely every time, so the gallons pumped at a fill-up equal the gasoline used since the previous fill-up. Her log is shown below.\n\nOdometer 41,286 miles: filled the tank with 10.5 gallons\nOdometer 41,615 miles: filled the tank with 9.8 gallons\nOdometer 41,980 miles: filled the tank with 12.1 gallons\nOdometer 42,298 miles: filled the tank with 9.4 gallons\n\nTo the nearest hundredth, what was the car's fuel economy, in miles per gallon, for the driving from odometer 41,286 to odometer 42,298?",
+  "choices": [
+   "32.33",
+   "31.62",
+   "32.52",
+   "31.23"
+  ],
+  "correct_answer": "32.33",
+  "explanation": "The driving covers 42,298 − 41,286 = 1,012 miles. The gasoline used for those miles is what was pumped at the three LATER fill-ups, 9.8 + 12.1 + 9.4 = 31.3 gallons (the 10.5 gallons at 41,286 replaced gasoline used before the log starts). The fuel economy is 1,012 ÷ 31.3 ≈ 32.33 mpg. The option \"32.52\" averages the three legs' rates (329 ÷ 9.8, 365 ÷ 12.1, and 318 ÷ 9.4) instead of dividing total miles by total gallons. The option \"31.23\" uses the first three fill-ups (10.5 + 9.8 + 12.1 = 32.4 gallons) instead of the last three. The option \"31.62\" pairs each leg with the fill-up at its START and averages those three rates.",
+  "solve": "const m=42298-41286, g=9.8+12.1+9.4; return (Math.round(m/g*100+1e-9)/100).toFixed(2);",
+  "distractor_solve": {
+   "31.23": "const m=42298-41286, g=10.5+9.8+12.1; return (Math.round(m/g*100+1e-9)/100).toFixed(2);",
+   "31.62": "const v=((41615-41286)/10.5+(41980-41615)/9.8+(42298-41980)/12.1)/3; return (Math.round(v*100+1e-9)/100).toFixed(2);",
+   "32.52": "const v=((41615-41286)/9.8+(41980-41615)/12.1+(42298-41980)/9.4)/3; return (Math.round(v*100+1e-9)/100).toFixed(2);"
+  },
+  "quantity_asked": "fuel economy = 1012 / (9.8 + 12.1 + 9.4).",
+  "distractor_kind": {
+   "31.23": "gallons from the first three fill-ups. (a) no. (b) 1012/32.4 = 31.23. Cheapest bracket: between the smallest and largest leg rate (30.17 to 33.83), which needs the three leg rates computed; inside it. (d) real: counting the fill-up at the starting reading.",
+   "31.62": "each leg divided by the fill-up at its start, then averaged. (a) no. (b) 31.62, inside (30.17, 33.83). (d) real: the same attribution slip made leg by leg.",
+   "32.52": "mean of the three leg rates. (a) no. (b) 32.52, inside. (d) real: averaging rates instead of dividing totals."
+  },
+  "distractor_meta": {
+   "31.23": {
+    "direction": "under",
+    "error_kind": "fill-ups attributed to the wrong miles"
+   },
+   "31.62": {
+    "direction": "under",
+    "error_kind": "leg-start fill-up, averaged"
+   },
+   "32.52": {
+    "direction": "over",
+    "error_kind": "mean of rates"
+   }
+  },
+  "bounds": [
+   "30.17 < v < 33.83 (between the leg rates)"
+  ],
+  "mechanism": [
+   "fill-up method fuel economy",
+   "odometer readings",
+   "gallons pumped replace gasoline used",
+   "total miles over total gallons"
+  ],
+  "arith_class_check": "No. Four 2-decimal mpg values with nonzero hundredths; 1012/31.3 has no stem-readable class, and the other denominators are also tenths of gallons.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 31.62 and 32.33: both 2-digit-integer-part values with two nonzero-ending decimals, equal display complexity. Key not cleaner."
+ },
+ {
+  "id": "AM24I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "total run time of a print job with a cooling pause after every block of pages",
+  "subskill": "converting a pages-per-minute rate to seconds, counting how many full blocks trigger a pause (no pause after the job ends), and converting minutes-and-seconds durations correctly",
+  "prompt": "A printer prints at a constant rate of 38 pages per minute. After every 250 pages it prints, it stops for a cooling pause of 1 minute 15 seconds and then continues; it does not pause once the job is finished. A job of 1,870 pages is started on this printer. To the nearest second, how many seconds does the printer take to finish the job, including the pauses?",
+  "choices": [
+   "3486",
+   "3478",
+   "3514",
+   "3436"
+  ],
+  "correct_answer": "3478",
+  "explanation": "Printing 1,870 pages at 38 pages per minute takes 1,870 ÷ 38 ≈ 49.2105 minutes ≈ 2,952.63 seconds. Pauses come after pages 250, 500, 750, 1,000, 1,250, 1,500, and 1,750, which is 7 pauses (the job ends before page 2,000), each 75 seconds, for 525 seconds. The total is 2,952.63 + 525 ≈ 3478 seconds. The option \"3436\" writes 1 minute 15 seconds as 1.15 minutes (69 seconds). The option \"3486\" reads 49.21 minutes as 49 minutes 21 seconds. The option \"3514\" charges 1,870 ÷ 250 = 7.48 pauses.",
+  "solve": "const print=1870/38*60; const pauses=Math.floor((1870-1)/250); return String(Math.round(print+pauses*75));",
+  "distractor_solve": {
+   "3436": "const print=1870/38*60; const pauses=Math.floor((1870-1)/250); return String(Math.round(print+pauses*69));",
+   "3486": "const m=1870/38; const misread=Math.floor(m)*60+Math.round((m%1)*100); const pauses=Math.floor((1870-1)/250); return String(Math.round(misread+pauses*75));",
+   "3514": "const print=1870/38*60; return String(Math.round(print+(1870/250)*75));"
+  },
+  "quantity_asked": "total seconds = 60(1870/38) + 7(75).",
+  "distractor_kind": {
+   "3436": "minutes:seconds written as a decimal minute (1 min 15 s -> 1.15 min = 69 s). (a) limiting case: no pauses gives the floor 2952.6; 3436 is above it. (b) not an adjacent problem. (c) cheapest bracket over the whole time: floor 2952.6 (no pauses), ceiling 2952.6 + 8(75) = 3552.6 (at most ceil(1870/250) = 8 pauses); strictly inside. (d) real.",
+   "3486": "decimal minutes of printing read as minutes:seconds (49.21 -> 49 min 21 s). (a) no. (b) 3486, inside (2952.6, 3552.6). (d) real: the decimal-time slip on the printing time.",
+   "3514": "fractional pause count 7.48. (a) the extreme pause counts 7 and 8 are the key and the 3552.6 ceiling; 7.48 lies strictly between them, not on either. (b) 3514, inside. (d) real: dividing pages by 250 without asking how many pauses actually occur."
+  },
+  "distractor_meta": {
+   "3436": {
+    "direction": "under",
+    "error_kind": "min:sec as decimal (pause)"
+   },
+   "3486": {
+    "direction": "over",
+    "error_kind": "decimal minutes as min:sec (printing)"
+   },
+   "3514": {
+    "direction": "over",
+    "error_kind": "non-integer event count"
+   }
+  },
+  "bounds": [
+   "v > 60(1870/38) = 2952.6 (no pauses)",
+   "v < 2952.6 + 8(75) = 3552.6 (at most 8 pauses)"
+  ],
+  "mechanism": [
+   "printer pages per minute",
+   "cooling pause after every 250 pages",
+   "counting pauses with no pause at the end",
+   "minutes and seconds conversion"
+  ],
+  "arith_class_check": "No. Four 4-digit integers, all even, none a multiple of 5 or 10; the stem forces an integer (nearest second) on all alike; gaps 42, 8, 28 are not a run.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 3478 and 3486: both 4-digit integers, neither a multiple of 5 or 10, equal display complexity. Key not cleaner."
+ }
+]

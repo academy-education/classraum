@@ -1,0 +1,706 @@
+[
+ {
+  "id": "AM24A-11",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratic expressions in two variables (completing the square)",
+  "subskill": "completing the square separately in x and in y, including factoring out a leading coefficient of 4, to find the least value of a two-variable quadratic expression",
+  "prompt": "For all real numbers x and y, the expression x² + 4y² − 14x + 24y + 97 has a least possible value. What is that least possible value?",
+  "choices": [
+   "12",
+   "39",
+   "47",
+   "36"
+  ],
+  "correct_answer": "12",
+  "explanation": "Complete the square in each variable. x² − 14x = (x − 7)² − 49. For the y-terms, factor out 4 first: 4y² + 24y = 4(y² + 6y) = 4[(y + 3)² − 9] = 4(y + 3)² − 36. So the expression equals (x − 7)² + 4(y + 3)² + 97 − 49 − 36 = (x − 7)² + 4(y + 3)² + 12. Both squared terms are at least 0 and both equal 0 at x = 7, y = −3, so the least value is 12. The option \"39\" subtracts 9 instead of 4 · 9 = 36 (the constant from completing the square inside the parentheses was not multiplied by 4). The option \"36\" subtracts 4 · 3 = 12 for the y-terms (the half-coefficient 3 was not squared). The option \"47\" subtracts 14 instead of 7² = 49 for the x-terms.",
+  "solve": "return String(97 - 7*7 - 4*3*3);",
+  "distractor_solve": {
+   "36": "return String(97 - 7*7 - 4*3);",
+   "39": "return String(97 - 7*7 - 3*3);",
+   "47": "return String(97 - 14 - 4*3*3);"
+  },
+  "quantity_asked": "the minimum over all real (x, y) of x² + 4y² − 14x + 24y + 97.",
+  "distractor_kind": {
+   "36": "error path: writes 4(y + 3)^2 - 4*3 (half-coefficient not squared), so 97 - 49 - 12. (a) none. (b) strictly below 48 = f(7, 0). (c) inside (-inf, 48). (d) real: subtracting 4*(b/2) instead of 4*(b/2)^2.",
+   "39": "error path: completes y² + 6y but does not multiply the -9 by the factored-out 4 (97 - 49 - 9). (a) limiting case: none; the only stem values are coefficients. (b) neighbouring setup: the value at (7, 0) is 48 and at (0, 0) is 97, both upper bounds on the minimum; 39 is strictly below both. (c) cheapest estimate: the minimum is at most f(7, 0) = 48 (or f(0, 0) = 97) and has no cheap lower bound short of completing both squares; 39 strictly inside. (d) real: dropping the leading coefficient when completing the square.",
+   "47": "error path: writes x^2 - 14x = (x - 7)^2 - 14 (subtracts b instead of (b/2)^2), so 97 - 14 - 36. (a) none. (b) 47 < 48 = f(7, 0), strictly inside. (c) inside (-inf, 48). (d) real: subtracting the linear coefficient instead of its half squared."
+  },
+  "distractor_meta": {
+   "36": {
+    "direction": "over",
+    "error_kind": "half-coefficient not squared"
+   },
+   "39": {
+    "direction": "over",
+    "error_kind": "completed-square constant not scaled by leading coefficient"
+   },
+   "47": {
+    "direction": "over",
+    "error_kind": "subtracted b instead of (b/2)^2"
+   }
+  },
+  "bounds": [
+   "v <= 48 (value at x = 7, y = 0)",
+   "v <= 97 (value at x = 0, y = 0)"
+  ],
+  "mechanism": [
+   "least value of a quadratic in two variables",
+   "completing the square in x and in y",
+   "factoring out a leading coefficient before completing the square",
+   "sum of squares plus a constant"
+  ],
+  "arith_class_check": "No stem-implied class: all four are integers; even values are 12 and 36 (two), multiples of 3 are 12, 36, 39 (three); no even spacing (12, 36, 39, 47) and no option is a sum or difference of two others.",
+  "one_sided_check": "key smallest; the three distractors come from three different completing-the-square slips (unscaled constant, unsquared half-coefficient, b instead of (b/2)^2); the stem does not reveal that the errors under-subtract - that is visible only after completing both squares.",
+  "interior_parity_check": "interior options 36 and 39: both two-digit integers, neither a multiple of 10, complexity 2 vs 2; neither is nicer."
+ },
+ {
+  "id": "AM24A-12",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "rational expressions (telescoping sum)",
+  "subskill": "rewriting each term 1/(k(k + 1)) as 1/k − 1/(k + 1) so that a long sum collapses to its first and last pieces, then reducing the result",
+  "prompt": "The sum 1/(3 · 4) + 1/(4 · 5) + 1/(5 · 6) + ... + 1/(17 · 18), in which each term has the form 1/(k(k + 1)) for k = 3, 4, 5, ..., 17, can be written as p/q, where p and q are positive integers with no common factor greater than 1. What is the value of p + q ?",
+  "choices": [
+   "65",
+   "16",
+   "23",
+   "43"
+  ],
+  "correct_answer": "23",
+  "explanation": "Each term can be written as 1/(k(k + 1)) = 1/k − 1/(k + 1). The sum becomes (1/3 − 1/4) + (1/4 − 1/5) + ... + (1/17 − 1/18); every middle piece cancels, leaving 1/3 − 1/18 = 6/18 − 1/18 = 5/18. So p + q = 5 + 18 = 23. The option \"65\" stops at −1/17 instead of −1/18, giving 1/3 − 1/17 = 14/51. The option \"43\" starts at 1/4 instead of 1/3, giving 1/4 − 1/18 = 7/36. The option \"16\" subtracts the fractions by subtracting denominators, taking 1/3 − 1/18 as 1/15.",
+  "solve": "const g = (x, y) => y ? g(y, x % y) : x; let n = 0, d = 1; for (let k = 3; k <= 17; k++) { n = n*k*(k+1) + d; d = d*k*(k+1); const c = g(n, d); n /= c; d /= c; } return String(n + d);",
+  "distractor_solve": {
+   "16": "return String(1 + (18 - 3));",
+   "43": "const g = (x, y) => y ? g(y, x % y) : x; const n = 18 - 4, d = 4*18; const c = g(n, d); return String(n/c + d/c);",
+   "65": "const g = (x, y) => y ? g(y, x % y) : x; const n = 17 - 3, d = 3*17; const c = g(n, d); return String(n/c + d/c);"
+  },
+  "quantity_asked": "p + q for the sum 1/3 - 1/18 = 5/18.",
+  "distractor_kind": {
+   "16": "error path: 1/3 - 1/18 computed as 1/(18 - 3). (a) none. (b) none. (c) inside. (d) real: subtracting fractions by subtracting denominators.",
+   "43": "error path: first surviving piece taken as 1/4. (a) none. (b) none. (c) inside. (d) real: off-by-one at the start of a telescoping sum.",
+   "65": "error path: last surviving piece taken as -1/17. (a) limiting case: none. (b) neighbouring setup: the sum to k = 16, not a bound a reader can use without the telescoping. (c) cheapest estimate: p and q are positive and the sum is below 15*(1/12) = 1.25, which constrains p/q but not p + q; inside. (d) real: off-by-one at the end of a telescoping sum."
+  },
+  "distractor_meta": {
+   "16": {
+    "direction": "under",
+    "error_kind": "fractions subtracted by subtracting denominators"
+   },
+   "43": {
+    "direction": "over",
+    "error_kind": "off-by-one at the first term"
+   },
+   "65": {
+    "direction": "over",
+    "error_kind": "off-by-one at the last term"
+   }
+  },
+  "bounds": [
+   "v >= 2"
+  ],
+  "mechanism": [
+   "telescoping sum",
+   "1/(k(k + 1)) = 1/k - 1/(k + 1)",
+   "cancellation leaves first and last pieces",
+   "fraction in lowest terms, then p + q"
+  ],
+  "arith_class_check": "No stem-implied class: 16 even, 23, 43, 65 odd; nothing in the stem forces a parity or divisibility on p + q; gaps 7, 20, 22 are not even spacing; no option is a sum of two others.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options 23 and 43: two-digit integers, not multiples of 10, complexity 2 vs 2."
+ },
+ {
+  "id": "AM24A-13",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "systems of nonlinear equations (two circles)",
+  "subskill": "subtracting two circle equations to eliminate the squared terms, solving the resulting linear equation for x, then finding the two intersection points and the distance between them",
+  "prompt": "In the xy-plane, the circles with equations x² + y² = 29 and (x − 6)² + y² = 45 intersect at two points. To the nearest hundredth, what is the distance between those two points?",
+  "choices": [
+   "10.13",
+   "10.24",
+   "10.46",
+   "10.75"
+  ],
+  "correct_answer": "10.24",
+  "explanation": "Subtract the second equation from the first: x² − (x − 6)² = 29 − 45, so x² − (x² − 12x + 36) = −16, which gives 12x − 36 = −16 and x = 20/12 = 5/3. Then y² = 29 − (5/3)² = 29 − 25/9 = 236/9, so y = ±√236/3 ≈ ±5.121. The two points have the same x-coordinate, so the distance between them is 2(5.121) ≈ 10.24. The option \"10.13\" squares 5/3 as 2(5/3) = 10/3. The option \"10.46\" uses 29 − 5/3, forgetting to square x. The option \"10.75\" takes 6² as 12, so 12x − 12 = −16 and x = −1/3.",
+  "solve": "const x = (29 - 45 + 36)/12; return (2*Math.sqrt(29 - x*x)).toFixed(2);",
+  "distractor_solve": {
+   "10.13": "const x = (29 - 45 + 36)/12; return (2*Math.sqrt(29 - 2*x)).toFixed(2);",
+   "10.46": "const x = (29 - 45 + 36)/12; return (2*Math.sqrt(29 - x)).toFixed(2);",
+   "10.75": "const x = (29 - 45 + 12)/12; return (2*Math.sqrt(29 - x*x)).toFixed(2);"
+  },
+  "quantity_asked": "the length of the common chord of the two circles, 2*sqrt(29 - x^2) at x = 5/3.",
+  "distractor_kind": {
+   "10.13": "error path: x = 5/3 found correctly, then x^2 computed as 2x = 10/3. (a) limiting case: none. (b) neighbouring setup: the chord of circle 1 on x = 3 (midway between centres) is 2*sqrt(20) = 8.94, and because the larger circle is on the right the true chord lies left of x = 3, so the chord exceeds 8.94; 10.13 is strictly above. (c) cheapest estimate: 8.94 < chord <= 2*sqrt(29) = 10.77 (diameter of the smaller circle); 10.13 strictly inside. (d) real: squaring a fraction as doubling.",
+   "10.46": "error path: y^2 = 29 - x (x not squared). (a) none. (b) above 8.94. (c) inside (8.94, 10.77). (d) real: dropping the square on the coordinate.",
+   "10.75": "error path: (x - 6)^2 expanded with constant 12 instead of 36, x = -1/3. (a) none. (b) above 8.94. (c) inside (8.94, 10.77): 10.75 < 10.77. (d) real: 6^2 computed as 12."
+  },
+  "distractor_meta": {
+   "10.13": {
+    "direction": "under",
+    "error_kind": "x squared computed as 2x"
+   },
+   "10.46": {
+    "direction": "over",
+    "error_kind": "coordinate not squared"
+   },
+   "10.75": {
+    "direction": "over",
+    "error_kind": "6 squared computed as 12"
+   }
+  },
+  "bounds": [
+   "8.94 < v <= 2*sqrt(29) ≈ 10.77 (the chord lies between the midpoint line x = 3 and the centre of the smaller circle; a chord is at most the diameter)"
+  ],
+  "mechanism": [
+   "intersection of two circles",
+   "subtract the circle equations to eliminate x^2 and y^2",
+   "common chord length",
+   "vertical chord through two intersection points"
+  ],
+  "arith_class_check": "Decimals to the hundredth; no stem-implied class. 10.13, 10.24, 10.46, 10.75 are not evenly spaced and none is a simple multiple of another.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options 10.24 and 10.46: two-decimal numbers with nonzero last digit, complexity 6 vs 6."
+ },
+ {
+  "id": "AM24A-14",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "systems of nonlinear equations (a circle and a parabola)",
+  "subskill": "substituting x² = y + 7 into the circle equation to get a quadratic in y, finding all three intersection points, and computing the area of the triangle they form",
+  "prompt": "In the xy-plane, the graphs of y = x² − 7 and x² + y² = 49 intersect at exactly three points. To the nearest tenth, what is the area of the triangle whose vertices are those three points?",
+  "choices": [
+   "21.6",
+   "48.6",
+   "14.7",
+   "46.9"
+  ],
+  "correct_answer": "46.9",
+  "explanation": "From the parabola, x² = y + 7. Substituting into the circle: y + 7 + y² = 49, so y² + y − 42 = 0 and (y + 7)(y − 6) = 0. If y = −7, then x² = 0, giving (0, −7). If y = 6, then x² = 13, giving (√13, 6) and (−√13, 6). The triangle has a horizontal base of length 2√13 at y = 6 and height 6 − (−7) = 13, so its area is (1/2)(2√13)(13) = 13√13 ≈ 46.9. The option \"21.6\" uses the height 6 (measured from the x-axis instead of from (0, −7)). The option \"48.6\" uses the slanted side √(13 + 169) = √182 as the height. The option \"14.7\" expands (x² − 7)² as x⁴ − 7x² + 49, which gives x⁴ − 6x² = 0, x² = 6, y = −1, and area (1/2)(2√6)(6).",
+  "solve": "const y = 6, x = Math.sqrt(y + 7); return (0.5*(2*x)*(y + 7)).toFixed(1);",
+  "distractor_solve": {
+   "21.6": "const x = Math.sqrt(13); return (0.5*(2*x)*6).toFixed(1);",
+   "48.6": "const x = Math.sqrt(13); return (0.5*(2*x)*Math.sqrt(13 + 169)).toFixed(1);",
+   "14.7": "const x = Math.sqrt(6); return (0.5*(2*x)*(-1 + 7)).toFixed(1);"
+  },
+  "quantity_asked": "the area of the triangle with vertices (0, -7), (sqrt(13), 6), (-sqrt(13), 6).",
+  "distractor_kind": {
+   "21.6": "error path: height 6 (distance to the x-axis) instead of 13. (a) limiting case: none. (b) neighbouring setup: it is the area of the triangle with apex at the origin, not a bound on the true triangle. (c) cheapest estimate: the triangle is inscribed in a circle of radius 7, so 0 < area <= (3*sqrt(3)/4)*49 ≈ 63.7; 21.6 strictly inside. (d) real: wrong height.",
+   "48.6": "error path: slanted side sqrt(182) used as the height. (a) none. (b) none. (c) inside (0, 63.7); also below (1/2)(2*sqrt(13))(14) ≈ 50.5. (d) real: using a side as the altitude.",
+   "14.7": "error path: (x^2 - 7)^2 expanded with middle term -7x^2, giving x^2 = 6, y = -1. (a) none. (b) none. (c) inside (0, 63.7). (d) real: undoubled middle term in a binomial square."
+  },
+  "distractor_meta": {
+   "21.6": {
+    "direction": "under",
+    "error_kind": "height measured to the x-axis"
+   },
+   "48.6": {
+    "direction": "over",
+    "error_kind": "slanted side used as height"
+   },
+   "14.7": {
+    "direction": "under",
+    "error_kind": "middle term of binomial square not doubled"
+   }
+  },
+  "bounds": [
+   "0 < v <= (3*sqrt(3)/4)*49 ≈ 63.7 (largest triangle inscribed in a circle of radius 7)"
+  ],
+  "mechanism": [
+   "circle and parabola intersection",
+   "substitute x^2 = y + 7 into the circle",
+   "quadratic in y gives three intersection points",
+   "area of triangle from intersection points"
+  ],
+  "arith_class_check": "Decimals to the tenth; no stem-implied class. 14.7, 21.6, 46.9, 48.6 are not evenly spaced and no option is a multiple or sum of others.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options 21.6 and 46.9: both one-decimal numbers with nonzero tenths digit, complexity 4 vs 4."
+ },
+ {
+  "id": "AM24A-15",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "factoring quadratics over the integers",
+  "subskill": "listing the factor pairs of the constant term to find every positive integer middle coefficient for which a monic quadratic factors over the integers, and summing them",
+  "prompt": "The expression x² + bx + 144, where b is a positive integer, can be written as (x + m)(x + n), where m and n are integers. What is the sum of all possible values of b ?",
+  "choices": [
+   "415",
+   "270",
+   "806",
+   "391"
+  ],
+  "correct_answer": "415",
+  "explanation": "Since (x + m)(x + n) = x² + (m + n)x + mn, we need mn = 144 and b = m + n > 0, so m and n are both positive. The factor pairs of 144 are 1·144, 2·72, 3·48, 4·36, 6·24, 8·18, 9·16, and 12·12, giving b = 145, 74, 51, 40, 30, 26, 25, and 24. Their sum is 415. The option \"391\" leaves out the pair 12·12 (b = 24). The option \"270\" leaves out the pair 1·144 (b = 145). The option \"806\" counts each pair twice, once in each order, so every value except 24 is added twice.",
+  "solve": "let s = 0; for (let m = 1; m*m <= 144; m++) if (144 % m === 0) s += m + 144/m; return String(s);",
+  "distractor_solve": {
+   "270": "let s = 0; for (let m = 2; m*m <= 144; m++) if (144 % m === 0) s += m + 144/m; return String(s);",
+   "391": "let s = 0; for (let m = 1; m*m < 144; m++) if (144 % m === 0) s += m + 144/m; return String(s);",
+   "806": "let s = 0; for (let m = 1; m <= 144; m++) if (144 % m === 0) s += m + 144/m; return String(s);"
+  },
+  "quantity_asked": "the sum of m + n over all unordered positive factor pairs {m, n} of 144.",
+  "distractor_kind": {
+   "270": "error path: omits the pair 1*144 (b = 145). (a) none. (b) none. (c) inside (145, 1160). (d) real: overlooking the trivial factor pair.",
+   "391": "error path: omits the repeated pair 12*12 (b = 24). (a) limiting case: none. (b) neighbouring setup: not an adjacent problem. (c) cheapest estimate: the sum is at least 145 (b = 1 + 144 is possible) and each of at most 8 values is at most 145, so the sum is below 8*145 = 1160; 391 strictly inside. (d) real: treating m and n as distinct.",
+   "806": "error path: counts ordered pairs, so every b except 24 twice. (a) none. (b) none. (c) inside (145, 1160). (d) real: counting (m, n) and (n, m) separately."
+  },
+  "distractor_meta": {
+   "270": {
+    "direction": "under",
+    "error_kind": "trivial factor pair omitted"
+   },
+   "391": {
+    "direction": "under",
+    "error_kind": "repeated factor pair omitted"
+   },
+   "806": {
+    "direction": "over",
+    "error_kind": "ordered pairs double-counted"
+   }
+  },
+  "bounds": [
+   "v >= 145 (b = 145 is one possible value)",
+   "v < 8*145 = 1160"
+  ],
+  "mechanism": [
+   "factor pairs of the constant term",
+   "monic quadratic factors over the integers",
+   "sum of all possible middle coefficients",
+   "b = m + n with mn = 144"
+  ],
+  "arith_class_check": "No single-candidate class: 391 and 415 are odd, 270 and 806 even; deciding parity requires listing which pairs have an odd member (the work itself). No option is prime; not evenly spaced.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options 391 and 415: three-digit integers, neither a multiple of 10, complexity 3 vs 3."
+ },
+ {
+  "id": "AM24A-16",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "polynomial equations (recognizing a binomial cube)",
+  "subskill": "recognizing x³ + 9x² + 27x as (x + 3)³ − 27, solving the resulting cube equation, and rounding the real solution",
+  "prompt": "What is the real solution of the equation x³ + 9x² + 27x = 310, to the nearest hundredth?",
+  "choices": [
+   "3.83",
+   "3.77",
+   "3.96",
+   "3.57"
+  ],
+  "correct_answer": "3.96",
+  "explanation": "Since (x + 3)³ = x³ + 9x² + 27x + 27, the equation can be written as (x + 3)³ − 27 = 310, so (x + 3)³ = 337. Then x + 3 = ∛337 ≈ 6.962, and x ≈ 3.96. The option \"3.77\" leaves out the 27, solving (x + 3)³ = 310. The option \"3.57\" subtracts 27 instead of adding it, solving (x + 3)³ = 283. The option \"3.83\" uses 3³ = 9, solving (x + 3)³ = 319.",
+  "solve": "return (Math.cbrt(310 + 27) - 3).toFixed(2);",
+  "distractor_solve": {
+   "3.77": "return (Math.cbrt(310) - 3).toFixed(2);",
+   "3.57": "return (Math.cbrt(310 - 27) - 3).toFixed(2);",
+   "3.83": "return (Math.cbrt(310 + 9) - 3).toFixed(2);"
+  },
+  "quantity_asked": "the real root x = cbrt(337) - 3.",
+  "distractor_kind": {
+   "3.77": "error path: (x + 3)^3 = 310, the 27 not added. (a) limiting case: none. (b) neighbouring setup: root of an adjacent equation, not a bound. (c) cheapest estimate: f(3) = 189 < 310 < f(4) = 316, so 3 < x < 4; 3.77 strictly inside. (d) real: forgetting the constant term of the binomial cube.",
+   "3.57": "error path: (x + 3)^3 = 310 - 27. (a) none. (b) none. (c) inside (3, 4). (d) real: moving the constant to the wrong side.",
+   "3.83": "error path: 3^3 taken as 9, (x + 3)^3 = 319. (a) none. (b) none. (c) inside (3, 4). (d) real: arithmetic slip cubing 3."
+  },
+  "distractor_meta": {
+   "3.77": {
+    "direction": "under",
+    "error_kind": "constant of the binomial cube omitted"
+   },
+   "3.57": {
+    "direction": "under",
+    "error_kind": "constant moved with the wrong sign"
+   },
+   "3.83": {
+    "direction": "under",
+    "error_kind": "3 cubed computed as 9"
+   }
+  },
+  "bounds": [
+   "3 < v < 4 (f(3) = 189 < 310 < f(4) = 316, f increasing)"
+  ],
+  "mechanism": [
+   "recognize a binomial cube",
+   "x^3 + 9x^2 + 27x = (x + 3)^3 - 27",
+   "cube root to solve",
+   "completing the cube"
+  ],
+  "arith_class_check": "Decimals to the hundredth, all in (3, 4); no class singles out 3.96. Values 3.57, 3.77, 3.83, 3.96 not evenly spaced.",
+  "one_sided_check": "key largest; the three distractors are three different slips (omitted constant, wrong-side sign, 3^3 = 9); the stem shows only x^3 + 9x^2 + 27x = 310 and gives no reason for a reader to expect every error to lower the root.",
+  "interior_parity_check": "interior options 3.77 and 3.83: two-decimal numbers with nonzero last digit, complexity 5 vs 5."
+ },
+ {
+  "id": "AM24A-17",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "polynomial operations (reducing powers with a quadratic relation)",
+  "subskill": "using x² = 5x − 3 repeatedly to rewrite x⁴ as a linear expression ax + b",
+  "prompt": "The number x satisfies x² = 5x − 3. The expression x⁴ can be written in the form ax + b, where a and b are integers. What is the value of a + b ?",
+  "choices": [
+   "41",
+   "11",
+   "59",
+   "29"
+  ],
+  "correct_answer": "29",
+  "explanation": "Square both sides: x⁴ = (5x − 3)² = 25x² − 30x + 9. Replace x² again: 25x² = 25(5x − 3) = 125x − 75, so x⁴ = 125x − 75 − 30x + 9 = 95x − 66. (Because x = (5 ± √13)/2 is irrational, the integers a = 95 and b = −66 are the only possible ones.) So a + b = 29. The option \"59\" drops the −30x term ((5x − 3)² taken as 25x² + 9). The option \"41\" takes (5x − 3)² as 25x² − 9. The option \"11\" combines −75 and +9 as −84.",
+  "solve": "let p = 5, q = -3; for (let n = 2; n < 4; n++) { const np = 5*p + q, nq = -3*p; p = np; q = nq; } return String(p + q);",
+  "distractor_solve": {
+   "11": "return String((25*5 - 30) + (25*-3 - 9));",
+   "41": "return String((25*5) + (25*-3 - 9));",
+   "59": "return String((25*5) + (25*-3 + 9));"
+  },
+  "quantity_asked": "a + b where x^4 = ax + b, i.e. 95 + (-66).",
+  "distractor_kind": {
+   "11": "error path: correct 95x but -75 + 9 combined as -84. (a) none. (b) none. (c) inside. (d) real: sign slip combining constants.",
+   "41": "error path: (5x - 3)^2 = 25x^2 - 9, giving 125x - 84. (a) none. (b) none. (c) inside. (d) real: confusing a square with a difference of squares.",
+   "59": "error path: (5x - 3)^2 = 25x^2 + 9 (cross term dropped), giving 125x - 66. (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest estimate: no stem-forced bound on a + b beyond integrality; inside. (d) real: squaring a binomial without the middle term."
+  },
+  "distractor_meta": {
+   "11": {
+    "direction": "under",
+    "error_kind": "sign slip combining constants"
+   },
+   "41": {
+    "direction": "over",
+    "error_kind": "square taken as difference of squares"
+   },
+   "59": {
+    "direction": "over",
+    "error_kind": "cross term dropped"
+   }
+  },
+  "bounds": [
+   "v is an integer"
+  ],
+  "mechanism": [
+   "reduce a higher power using a quadratic relation",
+   "x^2 = 5x - 3 substituted repeatedly",
+   "express x^4 as ax + b",
+   "square the relation then substitute again"
+  ],
+  "arith_class_check": "All four options are odd primes (11, 29, 41, 59), so no parity/primality class singles out 29; gaps 18, 12, 18 are not even spacing; no option is a sum of two others.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options 29 and 41: two-digit integers, not multiples of 10, complexity 2 vs 2."
+ },
+ {
+  "id": "AM24A-18",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "polynomial functions (equal values at three inputs)",
+  "subskill": "recognizing that p(x) − 23 has zeros 1, 2, and 3, writing the monic cubic in factored form, and evaluating it",
+  "prompt": "A polynomial function p has degree 3 and leading coefficient 1, and p(1) = p(2) = p(3) = 23. What is the value of p(7) ?",
+  "choices": [
+   "743",
+   "143",
+   "120",
+   "233"
+  ],
+  "correct_answer": "143",
+  "explanation": "The polynomial p(x) − 23 has degree 3, leading coefficient 1, and zeros at x = 1, 2, and 3, so p(x) − 23 = (x − 1)(x − 2)(x − 3). Then p(7) = (6)(5)(4) + 23 = 120 + 23 = 143. The option \"120\" forgets to add the 23 back. The option \"233\" uses the factors x(x − 1)(x − 2), giving 7 · 6 · 5 + 23. The option \"743\" uses (x + 1)(x + 2)(x + 3), giving 8 · 9 · 10 + 23.",
+  "solve": "return String((7-1)*(7-2)*(7-3) + 23);",
+  "distractor_solve": {
+   "120": "return String((7-1)*(7-2)*(7-3));",
+   "233": "return String(7*(7-1)*(7-2) + 23);",
+   "743": "return String((7+1)*(7+2)*(7+3) + 23);"
+  },
+  "quantity_asked": "p(7) = (7 - 1)(7 - 2)(7 - 3) + 23.",
+  "distractor_kind": {
+   "120": "error path: p(7) taken as (6)(5)(4), the constant 23 not added back. (a) limiting case: none. (b) neighbouring setup: it is the value of p(x) - 23, not a bound on p(7) a reader can see without the factored form. (c) cheapest estimate: no stem-forced bound (a monic cubic can take any value at 7 until it is pinned); inside. (d) real: dropping the vertical shift.",
+   "233": "error path: zeros taken as 0, 1, 2 (off by one), 7*6*5 + 23. (a) none. (b) none. (c) inside. (d) real: shifted factor labels.",
+   "743": "error path: factors written as (x + 1)(x + 2)(x + 3), 8*9*10 + 23. (a) none. (b) none. (c) inside. (d) real: sign error converting zeros to factors."
+  },
+  "distractor_meta": {
+   "120": {
+    "direction": "under",
+    "error_kind": "vertical shift dropped"
+   },
+   "233": {
+    "direction": "over",
+    "error_kind": "factors shifted by one"
+   },
+   "743": {
+    "direction": "over",
+    "error_kind": "zero-to-factor sign error"
+   }
+  },
+  "bounds": [
+   "none stem-forced"
+  ],
+  "mechanism": [
+   "polynomial takes the same value at three inputs",
+   "p(x) - k has known zeros",
+   "monic cubic in factored form",
+   "evaluate after shifting"
+  ],
+  "arith_class_check": "No: 120 is the only even option (a distractor); 143 = 11*13 while 233 and 743 are prime, so no class leaves the key alone; not evenly spaced.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options 143 and 233: three-digit integers, not multiples of 10, complexity 3 vs 3."
+ },
+ {
+  "id": "AM24N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "complex numbers (evaluating a polynomial at a complex number)",
+  "subskill": "squaring a complex number with i² = −1 and combining real and imaginary parts after substituting into a quadratic polynomial",
+  "prompt": "For i = √(−1), let p(x) = x² + 5x + 1. The value of p(1 + 3i) can be written as a + bi, where a and b are real numbers. What is the value of a + b ?",
+  "choices": [
+   "19",
+   "-11",
+   "13",
+   "37"
+  ],
+  "correct_answer": "19",
+  "explanation": "(1 + 3i)² = 1 + 6i + 9i² = 1 + 6i − 9 = −8 + 6i, and 5(1 + 3i) = 5 + 15i. So p(1 + 3i) = (−8 + 6i) + (5 + 15i) + 1 = −2 + 21i, and a + b = −2 + 21 = 19. The option \"37\" uses i² = 1, so the square is 10 + 6i and the value is 16 + 21i. The option \"13\" drops the 6i cross term of the square, giving −2 + 15i. The option \"−11\" writes 5(1 + 3i) as 5 − 15i, giving −2 − 9i.",
+  "solve": "const a = 1, b = 3; const re = a*a - b*b + 5*a + 1, im = 2*a*b + 5*b; return String(re + im);",
+  "distractor_solve": {
+   "13": "const a = 1, b = 3; const re = a*a - b*b + 5*a + 1, im = 5*b; return String(re + im);",
+   "37": "const a = 1, b = 3; const re = a*a + b*b + 5*a + 1, im = 2*a*b + 5*b; return String(re + im);",
+   "-11": "const a = 1, b = 3; const re = a*a - b*b + 5*a + 1, im = 2*a*b - 5*b; return String(re + im);"
+  },
+  "quantity_asked": "a + b for p(1 + 3i) = -2 + 21i.",
+  "distractor_kind": {
+   "13": "error path: (1 + 3i)^2 written as 1 + 9i^2 (cross term dropped). (a) none. (b) none. (c) inside. (d) real: squaring a binomial without the middle term.",
+   "37": "error path: i^2 taken as +1. (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest estimate: no stem-forced bound on a + b; inside. (d) real: the most common complex-arithmetic slip.",
+   "-11": "error path: sign slip distributing 5 over 3i. (a) none. (b) none. (c) inside. (d) real: sign error in the imaginary part."
+  },
+  "distractor_meta": {
+   "13": {
+    "direction": "under",
+    "error_kind": "cross term dropped"
+   },
+   "37": {
+    "direction": "over",
+    "error_kind": "i squared taken as +1"
+   },
+   "-11": {
+    "direction": "under",
+    "error_kind": "sign slip in imaginary part"
+   }
+  },
+  "bounds": [
+   "none stem-forced"
+  ],
+  "mechanism": [
+   "evaluate a polynomial at a complex number",
+   "square a complex number",
+   "i^2 = -1",
+   "combine real and imaginary parts, then a + b"
+  ],
+  "arith_class_check": "No: options -11, 13, 19, 37 are all odd primes up to sign; not evenly spaced (gaps 24, 6, 18); no option is a sum of two others.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options 13 and 19: two-digit integers, complexity 2 vs 2."
+ },
+ {
+  "id": "AM24N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "matrices (matrix multiplication and the identity matrix)",
+  "subskill": "computing a matrix square by row-column multiplication, subtracting a scalar multiple, and reading the constant of the resulting multiple of the identity",
+  "prompt": "Matrix A has first row (5, 3) and second row (2, 4). The matrix A² − 9A, where A² = A · A, is equal to kI, where I is the 2 × 2 identity matrix and k is a constant. What is the value of k ?",
+  "choices": [
+   "-26",
+   "-20",
+   "-16",
+   "-14"
+  ],
+  "correct_answer": "-14",
+  "explanation": "A² = A · A has first row (5·5 + 3·2, 5·3 + 3·4) = (31, 27) and second row (2·5 + 4·2, 2·3 + 4·4) = (18, 22). 9A has first row (45, 27) and second row (18, 36). So A² − 9A has first row (−14, 0) and second row (0, −14), which is −14I, and k = −14. The option \"−20\" squares each entry instead of multiplying matrices (25 − 45 and 16 − 36). The option \"−16\" computes the top-left entry of A² as column 1 times column 1, 5·5 + 2·2. The option \"−26\" computes it like a determinant, 5·5 − 3·2.",
+  "solve": "const A = [[5,3],[2,4]]; const s = A[0][0]*A[0][0] + A[0][1]*A[1][0]; return String(s - 9*A[0][0]);",
+  "distractor_solve": {
+   "-20": "return String(5*5 - 9*5);",
+   "-16": "return String(5*5 + 2*2 - 9*5);",
+   "-26": "return String(5*5 - 3*2 - 9*5);"
+  },
+  "quantity_asked": "the diagonal entry k of A^2 - 9A = kI.",
+  "distractor_kind": {
+   "-20": "error path: entrywise squaring (consistent on both diagonal entries, 25 - 45 = 16 - 36 = -20). (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest estimate: no stem-forced bound on k; inside. (d) real: squaring a matrix entry by entry.",
+   "-16": "error path: top-left of A^2 as column 1 dot column 1 (transpose times A). (a) none. (b) none. (c) inside. (d) real: column-by-column multiplication.",
+   "-26": "error path: top-left of A^2 as 5*5 - 3*2, a determinant-style difference. (a) none. (b) none. (c) inside. (d) real: mixing the determinant pattern into matrix multiplication."
+  },
+  "distractor_meta": {
+   "-20": {
+    "direction": "under",
+    "error_kind": "entrywise squaring"
+   },
+   "-16": {
+    "direction": "under",
+    "error_kind": "column times column"
+   },
+   "-26": {
+    "direction": "under",
+    "error_kind": "determinant pattern in a product entry"
+   }
+  },
+  "bounds": [
+   "none stem-forced"
+  ],
+  "mechanism": [
+   "square a 2x2 matrix",
+   "subtract a scalar multiple of the matrix",
+   "result is a multiple of the identity",
+   "read k from the diagonal"
+  ],
+  "arith_class_check": "No: all four options are even negatives; -14 alone is a multiple of 7, but nothing in the stem implies a multiple of 7; gaps 6, 4, 2 are not even spacing.",
+  "one_sided_check": "key largest; distractors from three different multiplication errors (entrywise, column-by-column, determinant pattern); the stem gives no reason that every slip lowers k.",
+  "interior_parity_check": "interior options -20 and -16: two-digit negative integers; -20 has complexity 1 and -16 complexity 2 (difference 1, same form); key is an extreme option so no interior-key asymmetry arises."
+ },
+ {
+  "id": "AM24N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "matrices (determinant as an area scale factor)",
+  "subskill": "using the absolute value of a 2 × 2 determinant as the factor by which a linear transformation multiplies area",
+  "prompt": "The matrix M has first row (4, 1) and second row (3, 2). When every point of a region in the xy-plane is multiplied by M, the region is transformed into a new region, and every area is multiplied by the absolute value of the determinant of M. A region with an area of 9 square units is transformed by M. What is the area, in square units, of the new region?",
+  "choices": [
+   "54",
+   "72",
+   "45",
+   "99"
+  ],
+  "correct_answer": "45",
+  "explanation": "The determinant of M is (4)(2) − (1)(3) = 8 − 3 = 5, so every area is multiplied by 5. The new region has area 9 · 5 = 45 square units. The option \"99\" adds the products, (4)(2) + (1)(3) = 11. The option \"72\" uses only the product of the main diagonal, (4)(2) = 8. The option \"54\" uses the sum of the main-diagonal entries, 4 + 2 = 6.",
+  "solve": "return String(9*Math.abs(4*2 - 1*3));",
+  "distractor_solve": {
+   "54": "return String(9*(4 + 2));",
+   "72": "return String(9*(4*2));",
+   "99": "return String(9*(4*2 + 1*3));"
+  },
+  "quantity_asked": "the image area 9*|det M| = 9*5.",
+  "distractor_kind": {
+   "54": "error path: trace a + d = 6 used as the factor. (a) none. (b) none. (c) inside. (d) real: confusing trace with determinant.",
+   "72": "error path: only the main-diagonal product ad = 8. (a) none. (b) none. (c) inside. (d) real: dropping the bc term.",
+   "99": "error path: determinant taken as ad + bc = 11. (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest estimate: the only stem-forced facts are area > 0 and a multiple of 9 for an integer determinant - all four options qualify; inside. (d) real: sign error in the determinant formula."
+  },
+  "distractor_meta": {
+   "54": {
+    "direction": "over",
+    "error_kind": "trace used for determinant"
+   },
+   "72": {
+    "direction": "over",
+    "error_kind": "bc term dropped"
+   },
+   "99": {
+    "direction": "over",
+    "error_kind": "determinant computed as ad + bc"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "determinant of a 2x2 matrix",
+   "absolute determinant as area scale factor",
+   "linear transformation of a region",
+   "image area = |det| times original area"
+  ],
+  "arith_class_check": "All four options are multiples of 9 (the stem area), so that class leaves four candidates; parity 45, 99 odd and 54, 72 even; gaps 9, 18, 27 are not even spacing.",
+  "one_sided_check": "key smallest; distractors from three different determinant errors (sign of bc, dropped bc, trace); the stem states the rule (|det| scales area) but gives no reason a reader would expect every slip to enlarge the factor.",
+  "interior_parity_check": "interior options 54 and 72: two-digit integers, not multiples of 10, complexity 2 vs 2."
+ },
+ {
+  "id": "AM24N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "vectors (unit vectors and scaling to a given magnitude)",
+  "subskill": "dividing a vector by its magnitude to get a unit vector and scaling it to a required length, then reading off a component",
+  "prompt": "The vector v has magnitude 20 and points in the same direction as the vector ⟨7, −6⟩. To the nearest hundredth, what is the y-component of v ?",
+  "choices": [
+   "-0.65",
+   "-13.02",
+   "-9.23",
+   "-1.41"
+  ],
+  "correct_answer": "-13.02",
+  "explanation": "The magnitude of ⟨7, −6⟩ is √(49 + 36) = √85 ≈ 9.220. The unit vector in that direction is ⟨7, −6⟩/√85, and v = 20⟨7, −6⟩/√85, so its y-component is −120/√85 ≈ −13.02. The option \"−9.23\" divides by 7 + 6 = 13 instead of √85. The option \"−1.41\" divides by 85 (the squared magnitude) instead of √85. The option \"−0.65\" stops at the unit vector, −6/√85, without multiplying by 20.",
+  "solve": "return (20*(-6)/Math.sqrt(85)).toFixed(2);",
+  "distractor_solve": {
+   "-9.23": "return (20*(-6)/13).toFixed(2);",
+   "-1.41": "return (20*(-6)/85).toFixed(2);",
+   "-0.65": "return ((-6)/Math.sqrt(85)).toFixed(2);"
+  },
+  "quantity_asked": "the y-component of 20 times the unit vector <7, -6>/sqrt(85).",
+  "distractor_kind": {
+   "-9.23": "error path: divides by |7| + |-6| = 13. (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest estimate: the y-component is negative, and since |-6| < 7 the y-component is smaller in size than the x-component, so -20/sqrt(2) ≈ -14.14 < y < 0; -9.23 strictly inside. (d) real: using the sum of the components as the length.",
+   "-1.41": "error path: divides by 85, the squared magnitude. (a) none. (b) none. (c) inside (-14.14, 0). (d) real: forgetting the square root in the magnitude.",
+   "-0.65": "error path: unit vector only, -6/sqrt(85), not scaled by 20. (a) none. (b) none. (c) inside (-14.14, 0). (d) real: stopping at the unit vector."
+  },
+  "distractor_meta": {
+   "-9.23": {
+    "direction": "over",
+    "error_kind": "sum of components used as magnitude"
+   },
+   "-1.41": {
+    "direction": "over",
+    "error_kind": "squared magnitude used"
+   },
+   "-0.65": {
+    "direction": "over",
+    "error_kind": "unit vector not scaled"
+   }
+  },
+  "bounds": [
+   "-20/sqrt(2) ≈ -14.14 < v < 0 (negative, and smaller in size than the x-component because 6 < 7)"
+  ],
+  "mechanism": [
+   "unit vector in a given direction",
+   "divide by the magnitude",
+   "scale to a required magnitude",
+   "read one component"
+  ],
+  "arith_class_check": "Decimals to the hundredth, all negative; no stem-implied class; -13.02, -9.23, -1.41, -0.65 are not evenly spaced and no option is a simple multiple of another.",
+  "one_sided_check": "key smallest (most negative); distractors from three different errors (sum-of-components length, squared magnitude, unscaled unit vector); the stem gives no reason a reader would expect every slip to shrink the component.",
+  "interior_parity_check": "interior options -9.23 and -1.41: two-decimal numbers with nonzero last digit, complexity 5 vs 5."
+ },
+ {
+  "id": "AM24N-05",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "vectors (scalar multiples)",
+  "subskill": "setting the cross-product condition for two vectors to be scalar multiples, solving the resulting quadratic, choosing the root the stem allows, and finding a magnitude",
+  "prompt": "The vectors ⟨k, 8⟩ and ⟨2, k + 6⟩ are scalar multiples of each other, where k is a negative number. To the nearest hundredth, what is the magnitude of the vector ⟨k, 8⟩ ?",
+  "choices": [
+   "11.31",
+   "8.49",
+   "9.33",
+   "8.25"
+  ],
+  "correct_answer": "11.31",
+  "explanation": "Two vectors ⟨a, b⟩ and ⟨c, d⟩ are scalar multiples of each other exactly when ad − bc = 0. Here k(k + 6) − 8·2 = 0, so k² + 6k − 16 = 0 and (k + 8)(k − 2) = 0. Since k is negative, k = −8, and the magnitude of ⟨−8, 8⟩ is √(64 + 64) = 8√2 ≈ 11.31. The option \"8.25\" uses the positive root k = 2, giving √68. The option \"9.33\" uses the perpendicularity condition 2k + 8(k + 6) = 0, giving k = −4.8 and √87.04. The option \"8.49\" uses k = −8 but adds 8 instead of 8², giving √72.",
+  "solve": "const k = (-6 - Math.sqrt(36 + 64))/2; return Math.hypot(k, 8).toFixed(2);",
+  "distractor_solve": {
+   "8.25": "const k = (-6 + Math.sqrt(36 + 64))/2; return Math.hypot(k, 8).toFixed(2);",
+   "9.33": "const k = -48/10; return Math.hypot(k, 8).toFixed(2);",
+   "8.49": "const k = -8; return Math.sqrt(k*k + 8).toFixed(2);"
+  },
+  "quantity_asked": "the magnitude of <k, 8> at k = -8, i.e. 8*sqrt(2).",
+  "distractor_kind": {
+   "8.25": "error path: positive root k = 2. (a) limiting case: none. (b) neighbouring setup: the k > 0 version, not a bound. (c) cheapest estimate: |<k, 8>| >= 8 (second component) - 8.25 strictly above. (d) real: ignoring the sign condition on k.",
+   "9.33": "error path: perpendicular (dot product zero) instead of parallel, k = -4.8. (a) none. (b) none. (c) > 8, inside. (d) real: confusing the parallel and perpendicular conditions.",
+   "8.49": "error path: sqrt(k^2 + 8) (second component not squared). (a) none. (b) none. (c) > 8, inside. (d) real: magnitude formula slip."
+  },
+  "distractor_meta": {
+   "8.25": {
+    "direction": "under",
+    "error_kind": "wrong root of the quadratic"
+   },
+   "9.33": {
+    "direction": "under",
+    "error_kind": "perpendicular condition used for parallel"
+   },
+   "8.49": {
+    "direction": "under",
+    "error_kind": "component not squared in magnitude"
+   }
+  },
+  "bounds": [
+   "v >= 8 (the magnitude is at least the absolute value of either component)"
+  ],
+  "mechanism": [
+   "parallel vectors condition ad - bc = 0",
+   "quadratic in the unknown component",
+   "choose the root by sign",
+   "magnitude of the resulting vector"
+  ],
+  "arith_class_check": "Decimals to the hundredth; no stem-implied class. 8.25, 8.49, 9.33, 11.31 not evenly spaced.",
+  "one_sided_check": "key largest; distractors from three different kinds (wrong root, perpendicular-for-parallel, magnitude slip); the stem gives no reason that all errors shrink the magnitude.",
+  "interior_parity_check": "interior options 8.49 and 9.33: two-decimal numbers with nonzero last digit, complexity 5 vs 5."
+ }
+]

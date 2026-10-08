@@ -1,0 +1,196 @@
+{
+ "_note": "act-math-v24 passed stage 1 (candidate minus control -6.8, unanimity 13.6% vs 23.7%) and stage 2 kept 39 of 59, but the KEPT SET failed the pre-registered stage-4 re-run: key-extremity-gate 15/39 = 38.5% < 40.0%. Per ACT-MATH-V24-PREREGISTERED.md (a measured gate failing holds the batch - no dropping or editing items to pass) the batch is HELD; nothing inserted. Grader render sha efe896545a5373d3 (author fields stripped); 118/118 picks equal the key; 0 second-defensible.",
+ "would_keep": {
+  "AM24A-01": {
+   "domain": "Algebra",
+   "banked_difficulty": "hard"
+  },
+  "AM24A-03": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24A-04": {
+   "domain": "Algebra",
+   "banked_difficulty": "easy"
+  },
+  "AM24A-06": {
+   "domain": "Algebra",
+   "banked_difficulty": "easy"
+  },
+  "AM24A-09": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24A-10": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24A-11": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24A-12": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24A-13": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24A-14": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24A-15": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24A-17": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24A-18": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM24N-01": {
+   "domain": "Number and Quantity",
+   "banked_difficulty": "easy"
+  },
+  "AM24N-02": {
+   "domain": "Number and Quantity",
+   "banked_difficulty": "easy"
+  },
+  "AM24N-03": {
+   "domain": "Number and Quantity",
+   "banked_difficulty": "easy"
+  },
+  "AM24F-02": {
+   "domain": "Functions",
+   "banked_difficulty": "easy"
+  },
+  "AM24F-04": {
+   "domain": "Functions",
+   "banked_difficulty": "hard"
+  },
+  "AM24F-08": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM24F-09": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM24S-01": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "easy"
+  },
+  "AM24S-02": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "medium"
+  },
+  "AM24S-04": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "easy"
+  },
+  "AM24S-05": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "medium"
+  },
+  "AM24S-06": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "medium"
+  },
+  "AM24S-07": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "easy"
+  },
+  "AM24G-01": {
+   "domain": "Geometry",
+   "banked_difficulty": "hard"
+  },
+  "AM24G-02": {
+   "domain": "Geometry",
+   "banked_difficulty": "hard"
+  },
+  "AM24G-03": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM24G-05": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM24G-07": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM24G-09": {
+   "domain": "Geometry",
+   "banked_difficulty": "easy"
+  },
+  "AM24G-10": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM24I-05": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "easy"
+  },
+  "AM24I-06": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "easy"
+  },
+  "AM24I-07": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "easy"
+  },
+  "AM24I-08": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  },
+  "AM24I-09": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  },
+  "AM24I-10": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  }
+ },
+ "would_drop": {
+  "AM24A-02": "rule 8 (+7): key largest; 84 = 99 - 15 and 92 = 99 - 7 are the key's own run with an endpoint dropped, so endpoint errors all lower the sum and 'pick the largest' wins - named by both graders, confirmed",
+  "AM24A-05": "rule 3 (+4): mean density 380/28 = 13.57 < midpoint 14.9 so gold volume < 14 cc and gold mass < 270.2, killing 277 and 352 - both graders, confirmed by hand; 352 weak by both; survivors 2",
+  "AM24A-07": "rule 3: x+y <= 18 from adding the constraints gives profit <= 234, killing 308 (weak by both); the planter-only corner (0,14) is feasible at 182, so max >= 182 kills 143 - both graders, confirmed; survivors 2",
+  "AM24A-08": "rule 3: rate 175/75 is between 2 and 2.5 L/min, so time in [240, 300], killing 237 and 319 - both graders count 2 survivors, confirmed (600/2.5 = 240 > 237)",
+  "AM24A-16": "rule 3: x = 4 gives 316, x = 3.9 gives 301.5, so x in (3.9, 4) and only 3.96 survives - both graders, survivors 1, confirmed",
+  "AM24N-04": "rule 3 + rule 4: sqrt85 < 13 so |y| > 120/13 = 9.23 (the |x|+|y| normalisation distractor sits ON it), killing -9.23, -1.41, -0.65 - both graders, survivors 1; -1.41 and -0.65 weak by both",
+  "AM24N-05": "rule 3: k/2 = 8/(k+6) with k < 0 forces k + 6 < 0, so |k| > 6 and magnitude > 10, killing 8.25, 8.49, 9.33 - grader B, confirmed by hand; survivors 1",
+  "AM24F-01": "rule 3: t = 4 gives A = 314 < 400 and t = 5 gives 415 > 400, so t in (4, 5) and only 4.86 survives - grader B (two multiplications, cheaper than solving), confirmed",
+  "AM24F-03": "rule 3: max f(g(x)) >= f(g(0)) = 84/27 = 3.11 (g(0) is not g's minimum), killing 3.11 (ON) and 1.12 - grader B, confirmed; survivors 2",
+  "AM24F-05": "rule 3: horizontal gap 7 < PQ < 7 + 4 = 11 (containment), killing 5.32 and 11.24 - both graders, confirmed; survivors 2",
+  "AM24F-06": "rule 3 + rule 8: cos = 3/8 < 1/2 so sin^2 > 3/4 and sin tan = sin^2/cos > 2, killing the other three; key the largest - both graders, survivors 1",
+  "AM24F-07": "rule 3 + rule 8: 0 < a5 < a6 gives 66 < a8 < 99 = 3 x a6, killing 115.7, 139.4, 141.7; key smallest; quality weak by both - survivors 1",
+  "AM24S-03": "rule 9 (+3): p + q = 1 - 0.35 = 0.65 is stem-forced and 0.21 + 0.44 is the only option pair summing to it; mean 1.9 < 2.13 at p = q forces p < q - named by both graders (B survivors 1), confirmed",
+  "AM24G-04": "rule 3 (rule 1): B + D = 180 forces 61 <= AC^2 <= 90; 7.81 = sqrt61 and 9.49 = sqrt90 (the right-angle limiting cases) sit ON the bounds - grader B, confirmed by hand; survivors 2",
+  "AM24G-06": "rule 9: heights 4.8 + 7.2 = 12 (the cone height), so 60.32 + 90.48 = 48 pi, a complement pair containing the key; with r = 2 < 5/2 the cylinder is taller than half the cone, picking 90.48 - named by both graders, confirmed",
+  "AM24G-08": "rule 7: 1.13 and 2.27 are a halving pair (radius vs the gap between the lines), pointing at the key once diameter = gap - named by both graders, confirmed",
+  "AM24I-01": "rule 8: key smallest; the stem states descents add no time, and every natural error (counting descents, summit elevations, the saddle drop) only adds climbing time - named by both graders, confirmed",
+  "AM24I-02": "rule 8: key smallest; 'the two LOWEST differentials' makes the key no larger than the all-three or top-two averages - named by both graders, confirmed",
+  "AM24I-03": "rule 8: key largest; the retake (B) replaces a D, so keeping the first attempt or not weighting lowers the GPA - named by both graders, confirmed",
+  "AM24I-04": "rule 8: key largest; Cy rides every leg and the last leg alone, so any mis-split moves cost away from him - named by both graders, confirmed"
+ },
+ "stage4": {
+  "kept": 39,
+  "key_at_extreme": "15/39 = 38.5%",
+  "bar": "40.0%",
+  "result": "FAIL -> batch HELD",
+  "key_position": "7/24/8 (17.9/61.5/20.5%)",
+  "magnitude_z": [
+   -0.19,
+   -0.76,
+   0.81
+  ],
+  "dropped_by_key_position": "extreme-key 13/28 vs interior-key 7/31"
+ }
+}

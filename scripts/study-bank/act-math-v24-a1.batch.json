@@ -1,0 +1,543 @@
+[
+ {
+  "domain": "Algebra",
+  "id": "AM24A-01",
+  "difficulty": "hard",
+  "topic_tag": "linear cost and break-even",
+  "subskill": "recovering the per-unit margin and the fixed cost from two break-even quantities, then finding the least whole-number break-even quantity under a new price",
+  "prompt": "A bakery sells every loaf of bread it makes at one fixed price. Its weekly cost is a fixed amount plus the same cost for each loaf it makes. At its current price and costs, the bakery breaks even (weekly revenue equals weekly cost) when it sells 150 loaves in a week. If the cost of making each loaf rose by $0.30, with the price and the fixed amount unchanged, the bakery would instead break even at 175 loaves. Suppose that the costs stay at their current levels and the bakery raises its price by $1.00 per loaf. What is the least number of loaves the bakery must then sell in a week so that its weekly revenue is at least its weekly cost?",
+  "choices": [
+   "102",
+   "113",
+   "119",
+   "132"
+  ],
+  "correct_answer": "102",
+  "explanation": "Let m be the current amount by which the price exceeds the cost per loaf and F the fixed amount. Breaking even means F = 150m, and with the cost $0.30 higher, F = 175(m − 0.30). So 150m = 175m − 52.5, 25m = 52.5, m = 2.10 and F = 150(2.10) = 315. With the price $1.00 higher the margin is 3.10, and revenue covers cost when 3.10n ≥ 315, n ≥ 101.6, so the least whole number is 102. The option \"113\" keeps the hypothetical $0.30 cost increase as well as the $1.00 price rise, 315/2.80 = 112.5. The option \"119\" computes the fixed amount from the 175-loaf break-even at the current margin, 175(2.10) = 367.5, and divides by 3.10. The option \"132\" makes both of those slips, 367.5/2.80 = 131.25.",
+  "solve": "const m=0.30*175/25, F=150*m; return String(Math.ceil(F/(m+1)-1e-9));",
+  "distractor_solve": {
+   "113": "const m=0.30*175/25, F=150*m; return String(Math.ceil(F/(m+1-0.30)-1e-9));",
+   "119": "const m=0.30*175/25; return String(Math.ceil(175*m/(m+1)-1e-9));",
+   "132": "const m=0.30*175/25; return String(Math.ceil(175*m/(m+1-0.30)-1e-9));"
+  },
+  "quantity_asked": "the least whole number n with (m + 1.00)n >= F, where m = 2.10 and F = 315 come from the two break-even quantities.",
+  "distractor_kind": {
+   "113": "error path: price rise applied but the hypothetical $0.30 cost rise also kept, margin 2.80. (a) limiting case: none; no option sits on a stem-forced bound. (b) neighbouring setup: it is the break-even for the scenario cost +0.30 and price +1.00; finding it takes the full solve, so it is not a free bound. (c) cheapest one-step estimate over the whole quantity: a higher price lowers break-even, so 0 < n < 150; inside. (d) real: carrying the hypothetical over.",
+   "119": "error path: fixed amount computed as 175m instead of 150m. (a) none. (b) not an adjacent problem. (c) 0 < n < 150; inside. (d) real: pairing the 175-loaf count with the current margin.",
+   "132": "error path: both slips, F = 175m and margin 2.80. (a) none. (b) no. (c) 0 < n < 150; inside. (d) real."
+  },
+  "distractor_meta": {
+   "113": {
+    "direction": "over",
+    "error_kind": "hypothetical cost rise kept"
+   },
+   "119": {
+    "direction": "over",
+    "error_kind": "fixed cost from wrong count"
+   },
+   "132": {
+    "direction": "over",
+    "error_kind": "wrong count and cost rise kept"
+   }
+  },
+  "bounds": [
+   "0 < v < 150 (a price rise lowers the break-even quantity)",
+   "v is a whole number"
+  ],
+  "mechanism": [
+   "two break-even quantities",
+   "recover fixed cost and margin",
+   "price increase new break-even",
+   "least whole number of units"
+  ],
+  "arith_class_check": "No. All four are whole numbers (forced); parity two and two; multiples of 3 are 102 and 132 (two); no even spacing (11, 6, 13).",
+  "one_sided_check": "Key is the smallest. The distractors come from different error kinds (a hypothetical carried over, a fixed cost built from the wrong count, and both together); the stem does not say every slip raises the answer: pairing the $0.30 with the original 150 loaves (25m = 0.30 x 150) gives m = 1.80 and 97, an underestimate.",
+  "interior_parity_check": "Interior options 113 and 119: both three-digit integers without trailing zero, complexity 3 each."
+ },
+ {
+  "domain": "Algebra",
+  "id": "AM24A-02",
+  "difficulty": "hard",
+  "topic_tag": "absolute value inequalities",
+  "subskill": "solving an absolute value inequality whose right side contains the variable by splitting into two linear inequalities, then summing the integer solutions",
+  "prompt": "What is the sum of all integers x that satisfy the inequality |3x − 28| < x + 3 ?",
+  "choices": [
+   "75",
+   "84",
+   "92",
+   "99"
+  ],
+  "correct_answer": "99",
+  "explanation": "|3x − 28| < x + 3 means −(x + 3) < 3x − 28 < x + 3. The right half gives 2x < 31, x < 15.5. The left half gives −x − 3 < 3x − 28, 25 < 4x, x > 6.25. The integers from 7 through 15 satisfy it, and their sum is 99. The option \"92\" distributes the negative sign as −x + 3, getting 3x − 28 > −x + 3, x > 7.75, and sums 8 through 15. The option \"75\" solves only the case 3x − 28 ≥ 0 (x ≥ 28/3) and forgets the case 3x − 28 < 0, summing 10 through 15. The option \"84\" drops the x from the right side in the second inequality, 3x − 28 > −3, x > 25/3, and sums 9 through 15.",
+  "solve": "let s=0; for(let x=-100;x<=100;x++){ if(Math.abs(3*x-28)<x+3) s+=x; } return String(s);",
+  "distractor_solve": {
+   "75": "let s=0; for(let x=-100;x<=100;x++){ if(x>=28/3 && 3*x-28<x+3) s+=x; } return String(s);",
+   "84": "let s=0; for(let x=-100;x<=100;x++){ if(3*x-28>-3 && 3*x-28<x+3) s+=x; } return String(s);",
+   "92": "let s=0; for(let x=-100;x<=100;x++){ if(3*x-28>-x+3 && 3*x-28<x+3) s+=x; } return String(s);"
+  },
+  "quantity_asked": "the sum of the integers in the open interval (6.25, 15.5).",
+  "distractor_kind": {
+   "75": "error path: only the case where 3x − 28 is nonnegative. (a) none. (b) the sum over one case is not a bound the stem states. (c) inside. (d) real: forgetting the second case of an absolute value.",
+   "84": "error path: x dropped from −(x + 3) in the second inequality. (a) none. (b) no. (c) inside. (d) real: losing a variable term.",
+   "92": "error path: sign slip, −(x + 3) written as −x + 3. (a) none. (b) not an adjacent problem. (c) no stem-forced bound on the sum short of solving; inside. (d) real: distributing a negative over a sum."
+  },
+  "distractor_meta": {
+   "75": {
+    "direction": "under",
+    "error_kind": "one case of the absolute value only"
+   },
+   "84": {
+    "direction": "under",
+    "error_kind": "variable term dropped"
+   },
+   "92": {
+    "direction": "under",
+    "error_kind": "sign distribution slip"
+   }
+  },
+  "bounds": [
+   "v is an integer"
+  ],
+  "mechanism": [
+   "absolute value inequality with variable on right side",
+   "two-case split",
+   "sum of integer solutions"
+  ],
+  "arith_class_check": "No. Three options are multiples of 3 (75, 84, 99) including the key, so that class leaves three; parity two and two; no even spacing (9, 8, 7).",
+  "one_sided_check": "Key is the largest. The three distractors come from three different error kinds (a sign-distribution slip, a forgotten case, a dropped variable term); the stem gives no reason that a slip must shrink the solution set: the obvious alternative slips (reading < as ≤, or dividing the left half by 2 instead of 4) widen it.",
+  "interior_parity_check": "Interior options 84 and 92: both two-digit integers, complexity 2 each; neither is a multiple of 10."
+ },
+ {
+  "domain": "Algebra",
+  "id": "AM24A-03",
+  "difficulty": "hard",
+  "topic_tag": "systems of linear equations in context",
+  "subskill": "removing a fixed fee from two totals and solving the resulting 2-by-2 linear system for one of the two rates",
+  "prompt": "A city's taxis charge a fixed pickup fee of $2.45 for every ride, plus a constant charge for each mile and a constant charge for each minute of the ride. A 4.2-mile ride that took 22 minutes cost $14.48, and a 9.6-mile ride that took 13 minutes cost $19.88. What is the charge, in dollars, for each minute of a ride?",
+  "choices": [
+   "0.27",
+   "0.35",
+   "0.42",
+   "0.46"
+  ],
+  "correct_answer": "0.27",
+  "explanation": "Remove the pickup fee from both totals: 4.2m + 22t = 12.03 and 9.6m + 13t = 17.43, where m is the charge per mile and t the charge per minute. Multiply the first by 9.6 and the second by 4.2: 40.32m + 211.2t = 115.488 and 40.32m + 54.6t = 73.206. Subtracting, 156.6t = 42.282, so t = 0.27 (and m = 1.45). The option \"0.35\" forgets the pickup fee and solves 4.2m + 22t = 14.48 and 9.6m + 13t = 19.88. The option \"0.42\" subtracts the fee from the second ride only. The option \"0.46\" assumes one rate covers both miles and minutes, 12.03/(4.2 + 22).",
+  "solve": "const D=4.2*13-9.6*22; const t=(4.2*(19.88-2.45)-9.6*(14.48-2.45))/D; return t.toFixed(2);",
+  "distractor_solve": {
+   "0.35": "const D=4.2*13-9.6*22; const t=(4.2*19.88-9.6*14.48)/D; return t.toFixed(2);",
+   "0.42": "const D=4.2*13-9.6*22; const t=(4.2*(19.88-2.45)-9.6*14.48)/D; return t.toFixed(2);",
+   "0.46": "return ((14.48-2.45)/(4.2+22)).toFixed(2);"
+  },
+  "quantity_asked": "the per-minute charge t solving 4.2m + 22t = 12.03 and 9.6m + 13t = 17.43.",
+  "distractor_kind": {
+   "0.35": "error path: fee not removed. (a) none. (b) the fee-free system is a different problem but not a bound. (c) cheapest bound: 22t < 12.03 gives t < 0.547; inside. (d) real: ignoring the fixed fee.",
+   "0.42": "error path: fee removed from one ride only. (a) none. (b) no. (c) t < 0.547; inside. (d) real: inconsistent subtraction.",
+   "0.46": "error path: one rate for miles and minutes together. (a) it is not a stem-forced bound: it bounds t only if the per-mile charge is assumed larger, which the stem does not say. (b) no. (c) t < 0.547; inside. (d) real: collapsing two rates into one."
+  },
+  "distractor_meta": {
+   "0.35": {
+    "direction": "over",
+    "error_kind": "fixed fee ignored"
+   },
+   "0.42": {
+    "direction": "over",
+    "error_kind": "fee subtracted from one equation only"
+   },
+   "0.46": {
+    "direction": "over",
+    "error_kind": "single combined rate"
+   }
+  },
+  "bounds": [
+   "0 < v < 12.03/22 = 0.547",
+   "0 < v < 17.43/13"
+  ],
+  "mechanism": [
+   "taxi fare fixed fee",
+   "per mile and per minute rates",
+   "two rides two equations",
+   "subtract fixed fee then solve system"
+  ],
+  "arith_class_check": "No. All four are cents values; no property of whole cents singles one out (each is a two-decimal value with nonzero last digit), and none is a multiple of another listed option.",
+  "one_sided_check": "Key is the smallest. The distractors come from three different error kinds (fee ignored, fee removed once, rates merged); nothing in the stem says every slip must raise the per-minute charge (removing the fee from the first ride only gives 0.20, and removing it twice gives 0.19).",
+  "interior_parity_check": "Interior options 0.35 and 0.42: both two-decimal values with nonzero last digit, complexity 4 each."
+ },
+ {
+  "domain": "Algebra",
+  "id": "AM24A-04",
+  "difficulty": "medium",
+  "topic_tag": "linear equations in context",
+  "subskill": "writing and solving a linear equation with fractional coefficients for a total that is shared equally by two different group sizes",
+  "prompt": "Eleven friends agreed to share the cost of renting a cabin equally. Three of them later dropped out, and the remaining friends shared the same total cost equally, which increased each remaining friend's share by $5.28. What was the total cost, in dollars, of renting the cabin?",
+  "choices": [
+   "58.08",
+   "112.64",
+   "154.88",
+   "271.04"
+  ],
+  "correct_answer": "154.88",
+  "explanation": "Let C be the total cost. The share rose from C/11 to C/8, so C/8 − C/11 = 5.28. Multiplying by 88, 11C − 8C = 464.64, so 3C = 464.64 and C = 154.88. The option \"58.08\" takes the $5.28 increase to be one original share, 11(5.28). The option \"112.64\" notes that the 3 missing shares equal 8(5.28) = 42.24, so one share is 14.08, but then multiplies by the 8 remaining friends instead of the 11 original shares. The option \"271.04\" reads eleven as the number who remained, so that 14 had agreed: C/11 − C/14 = 5.28.",
+  "solve": "const C=5.28*88/3; return C.toFixed(2);",
+  "distractor_solve": {
+   "58.08": "return (5.28*11).toFixed(2);",
+   "112.64": "return (5.28*8/3*8).toFixed(2);",
+   "271.04": "return (5.28*11*14/3).toFixed(2);"
+  },
+  "quantity_asked": "the total C with C/8 − C/11 = 5.28.",
+  "distractor_kind": {
+   "58.08": "error path: increase taken as a full original share. (a) none. (b) not adjacent. (c) cheapest bound: the 8 remaining friends each pay more than 5.28, so C > 42.24; inside. (d) real.",
+   "112.64": "error path: one share found correctly (14.08) but multiplied by 8. (a) none. (b) it is what the 8 remaining would pay at the original share, not a bound. (c) C > 42.24; inside. (d) real: wrong group size in the last step.",
+   "271.04": "error path: group sizes read as 14 and 11. (a) none. (b) different problem, not a bound. (c) C > 42.24; inside. (d) real: misreading which count is the original group."
+  },
+  "distractor_meta": {
+   "58.08": {
+    "direction": "under",
+    "error_kind": "increase taken as a share"
+   },
+   "112.64": {
+    "direction": "under",
+    "error_kind": "multiplied by remaining count"
+   },
+   "271.04": {
+    "direction": "over",
+    "error_kind": "group sizes misread"
+   }
+  },
+  "bounds": [
+   "v > 8(5.28) = 42.24",
+   "v is a whole number of cents"
+  ],
+  "mechanism": [
+   "friends share cost equally",
+   "some drop out",
+   "each remaining share increases",
+   "C/8 − C/11"
+  ],
+  "arith_class_check": "No. Every option is a multiple of 88 cents (66, 128, 176, 308 times 0.88), so the whole-cent shares C/11 and C/8 single nothing out; no option is a multiple of another by a stem number; spacing 54.56, 42.24, 116.16.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 112.64 and 154.88: both three-digit, two-decimal values with nonzero last digit, complexity 7 each."
+ },
+ {
+  "domain": "Algebra",
+  "id": "AM24A-05",
+  "difficulty": "hard",
+  "topic_tag": "mixture problems set up as linear systems",
+  "subskill": "setting up a two-variable linear system from total mass and total volume with given densities and solving for one mass",
+  "prompt": "A 380-gram bar is made of an alloy containing only gold and silver, and the volume of the bar is 28.0 cubic centimeters. The density of gold is 19.3 grams per cubic centimeter, the density of silver is 10.5 grams per cubic centimeter, and the volume of the bar is the sum of the volumes of the gold and the silver in it. To the nearest gram, what is the mass of the gold in the bar?",
+  "choices": [
+   "189",
+   "246",
+   "277",
+   "352"
+  ],
+  "correct_answer": "189",
+  "explanation": "Let g and s be the masses, in grams, of gold and silver. Then g + s = 380 and g/19.3 + s/10.5 = 28.0. Substituting s = 380 − g, g/19.3 + (380 − g)/10.5 = 28, so g(1/10.5 − 1/19.3) = 380/10.5 − 28 = 8.190, and g = 8.190/0.043425 ≈ 188.6, or 189 grams. The option \"246\" splits the 380 grams in the ratio of the densities, 380(19.3/29.8). The option \"277\" finds the gold volume 188.6/19.3 ≈ 9.77 cubic centimeters but then subtracts the mass that volume would have as silver, 380 − 9.77(10.5). The option \"352\" multiplies the silver's volume, 191.4/10.5 ≈ 18.23 cubic centimeters, by the density of gold.",
+  "solve": "const g=(28-380/10.5)/(1/19.3-1/10.5); return String(Math.round(g));",
+  "distractor_solve": {
+   "246": "return String(Math.round(380*19.3/(19.3+10.5)));",
+   "277": "const g=(28-380/10.5)/(1/19.3-1/10.5); return String(Math.round(380-g/19.3*10.5));",
+   "352": "const g=(28-380/10.5)/(1/19.3-1/10.5); return String(Math.round((380-g)/10.5*19.3));"
+  },
+  "quantity_asked": "the gold mass g solving g + s = 380 and g/19.3 + s/10.5 = 28.0, to the nearest gram.",
+  "distractor_kind": {
+   "246": "error path: mass split in the ratio of densities. (a) none. (b) not an adjacent problem with a bound. (c) cheapest bounds: 0 < g < 380 and g < 19.3(28) = 540; inside. (d) real: treating density as a share of mass.",
+   "277": "error path: gold volume correct, then 380 minus that volume times silver density. (a) none. (b) no. (c) 0 < g < 380; inside. (d) real: subtracting a mismatched product.",
+   "352": "error path: silver volume times gold density. (a) none. (b) no. (c) 0 < g < 380; inside. (d) real: pairing a volume with the other metal's density."
+  },
+  "distractor_meta": {
+   "246": {
+    "direction": "over",
+    "error_kind": "mass split by density ratio"
+   },
+   "277": {
+    "direction": "over",
+    "error_kind": "subtracted mismatched product"
+   },
+   "352": {
+    "direction": "over",
+    "error_kind": "volume paired with wrong density"
+   }
+  },
+  "bounds": [
+   "0 < v < 380",
+   "v < 19.3 x 28.0 = 540.4"
+  ],
+  "mechanism": [
+   "alloy of gold and silver",
+   "density and volume",
+   "total mass and total volume system",
+   "volumes add"
+  ],
+  "arith_class_check": "No. Rounded grams, no integrality property; parity two and two; multiples of 3 are 189 and 246 (two); spacing 57, 31, 75.",
+  "one_sided_check": "Key is the smallest. The distractors come from three different error kinds (ratio split, subtraction of a mismatched product, mismatched volume-density pairing); the stem gives no reason all errors overestimate the gold (pairing the gold volume with silver density, the natural mirror slip, gives 103, an underestimate).",
+  "interior_parity_check": "Interior options 246 and 277: both three-digit integers without trailing zero, complexity 3 each."
+ },
+ {
+  "domain": "Algebra",
+  "id": "AM24A-06",
+  "difficulty": "medium",
+  "topic_tag": "literal equations and formula rearrangement",
+  "subskill": "converting a Celsius temperature to Fahrenheit and then solving a linear model for its input variable",
+  "prompt": "Dolbear's law models the air temperature T, in degrees Fahrenheit, from N, the number of times a snowy tree cricket chirps in one minute: T = 50 + (N − 40)/4. A temperature of C degrees Celsius equals (9/5)C + 32 degrees Fahrenheit. According to the model, to the nearest tenth, how many times per minute does the cricket chirp when the air temperature is 26.5 degrees Celsius?",
+  "choices": [
+   "30.8",
+   "47.4",
+   "78.8",
+   "158.8"
+  ],
+  "correct_answer": "158.8",
+  "explanation": "First T = (9/5)(26.5) + 32 = 47.7 + 32 = 79.7 degrees Fahrenheit. Solving the model for N: T − 50 = (N − 40)/4, so N = 4(T − 50) + 40 = 4(29.7) + 40 = 158.8. The option \"30.8\" leaves out the +32 in the conversion, using T = 47.7. The option \"47.4\" applies the model's operations instead of undoing them, (T − 50)/4 + 40 = 47.425. The option \"78.8\" moves the 40 to the wrong side with the wrong sign, N = 4(T − 50) − 40.",
+  "solve": "const T=9/5*26.5+32; return (4*(T-50)+40).toFixed(1);",
+  "distractor_solve": {
+   "30.8": "const T=9/5*26.5; return (4*(T-50)+40).toFixed(1);",
+   "47.4": "const T=9/5*26.5+32; return ((T-50)/4+40).toFixed(1);",
+   "78.8": "const T=9/5*26.5+32; return (4*(T-50)-40).toFixed(1);"
+  },
+  "quantity_asked": "N = 4(T − 50) + 40 at T = (9/5)(26.5) + 32.",
+  "distractor_kind": {
+   "30.8": "error path: Celsius-to-Fahrenheit conversion without the +32. (a) none. (b) not adjacent. (c) no stem-forced bound on N short of computing T; inside. (d) real.",
+   "47.4": "error path: the formula applied forward instead of inverted. (a) none. (b) no. (c) inside. (d) real: inverse-operation error.",
+   "78.8": "error path: sign slip moving the 40 across. (a) none. (b) no. (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "30.8": {
+    "direction": "under",
+    "error_kind": "conversion constant dropped"
+   },
+   "47.4": {
+    "direction": "under",
+    "error_kind": "formula not inverted"
+   },
+   "78.8": {
+    "direction": "under",
+    "error_kind": "sign slip moving a constant"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "cricket chirps temperature formula",
+   "solve formula for N",
+   "Celsius to Fahrenheit conversion"
+  ],
+  "arith_class_check": "No. All four are one-decimal values; three end in .8 including the key, so that class leaves three; no even spacing (16.6, 31.4, 80.0).",
+  "one_sided_check": "Key is the largest. The distractors come from three different error kinds (dropped conversion constant, uninverted formula, sign slip); the stem gives no reason all errors lower N (the parenthesis slip F = (9/5)(C + 32) and swapping the 40 and 50 both raise it).",
+  "interior_parity_check": "Interior options 47.4 and 78.8: both two-digit, one-decimal values with nonzero last digit, complexity 4 each."
+ },
+ {
+  "domain": "Algebra",
+  "id": "AM24A-07",
+  "difficulty": "hard",
+  "topic_tag": "systems of linear inequalities in context",
+  "subskill": "maximizing a linear profit expression over the region defined by two resource inequalities by solving for the intersection vertex and comparing vertex values",
+  "prompt": "A workshop makes birdhouses and planter boxes. Each birdhouse takes 2 hours of cutting and 1 hour of finishing, and each planter box takes 1 hour of cutting and 2 hours of finishing. Each week the workshop has at most 26 hours of cutting time and at most 28 hours of finishing time. The workshop earns a profit of $11 on each birdhouse and $13 on each planter box. What is the greatest weekly profit, in dollars, the workshop can earn?",
+  "choices": [
+   "143",
+   "182",
+   "218",
+   "308"
+  ],
+  "correct_answer": "218",
+  "explanation": "Let b be the number of birdhouses and p the number of planter boxes. The constraints are 2b + p ≤ 26, b + 2p ≤ 28, b ≥ 0, and p ≥ 0, and the profit is 11b + 13p. The greatest value occurs at a corner of the region. The corners are (0, 0), (13, 0), (0, 14), and the intersection of 2b + p = 26 and b + 2p = 28: from the first, p = 26 − 2b, so b + 52 − 4b = 28, b = 8 and p = 10. The profits at the corners are 0, 143, 182, and 11(8) + 13(10) = 218, so the greatest is $218. The option \"143\" makes only birdhouses (13, the cutting limit). The option \"182\" makes only planter boxes (14, the finishing limit). The option \"308\" makes 28 birdhouses, using only the finishing limit and ignoring cutting time, which 28 birdhouses (56 hours) would exceed.",
+  "solve": "let best=0; for(let b=0;b<=40;b++) for(let p=0;p<=40;p++){ if(2*b+p<=26 && b+2*p<=28) best=Math.max(best,11*b+13*p); } return String(best);",
+  "distractor_solve": {
+   "143": "return String(11*Math.floor(26/2));",
+   "182": "return String(13*Math.floor(28/2));",
+   "308": "return String(11*28);"
+  },
+  "quantity_asked": "the maximum of 11b + 13p subject to 2b + p <= 26, b + 2p <= 28, b, p >= 0.",
+  "distractor_kind": {
+   "143": "error path: corner (13, 0) taken as optimal (birdhouses only). (a) limiting case: it is a feasible corner value, so it is a lower bound on the maximum, but it is not excluded without evaluating another corner, which is the item's own work. (b) neighbouring setup: one-product plan, a real corner. (c) cheapest upper bound: making each product at its own limit, 11(13) + 13(14) = 325; inside. (d) real: picking an intercept corner.",
+   "182": "error path: corner (0, 14) taken as optimal (planter boxes only). (a) as for 143. (b) real corner. (c) below 325; inside. (d) real.",
+   "308": "error path: 28 birdhouses from the finishing limit alone, cutting ignored. (a) none. (b) infeasible point; rejecting it means checking it against the cutting constraint, part of the work. (c) 308 < 325; inside. (d) real: using one constraint only."
+  },
+  "distractor_meta": {
+   "143": {
+    "direction": "under",
+    "error_kind": "single-product corner (cutting)"
+   },
+   "182": {
+    "direction": "under",
+    "error_kind": "single-product corner (finishing)"
+   },
+   "308": {
+    "direction": "over",
+    "error_kind": "one constraint ignored"
+   }
+  },
+  "bounds": [
+   "0 < v <= 11(13) + 13(14) = 325",
+   "v is a whole number"
+  ],
+  "mechanism": [
+   "two resource constraints",
+   "maximize profit at a vertex",
+   "system of linear inequalities in context",
+   "intersection of two constraint lines"
+  ],
+  "arith_class_check": "No. Whole dollars; parity: 143 odd, 182, 218, 308 even (key in the majority); no multiples of 3 or 5; multiples of 7 are 182 and 308, of 11 are 143 and 308; the key is not a sum or midpoint of two options; spacing 39, 36, 90.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 182 and 218: both three-digit integers without trailing zero, complexity 3 each."
+ },
+ {
+  "domain": "Algebra",
+  "id": "AM24A-08",
+  "difficulty": "medium",
+  "topic_tag": "linear modeling (rate of change)",
+  "subskill": "finding a constant rate from two clock-time readings and using it to find the time remaining until a linear quantity reaches zero",
+  "prompt": "A water tank is drained at a constant rate. At 8:50 a.m. the tank held 775 liters of water, and at 10:05 a.m. the same morning it held 600 liters. If the water continues to drain at the same rate, how many minutes after 10:05 a.m. will the tank be empty, to the nearest minute?",
+  "choices": [
+   "237",
+   "257",
+   "269",
+   "319"
+  ],
+  "correct_answer": "257",
+  "explanation": "From 8:50 a.m. to 10:05 a.m. is 1 hour 15 minutes, or 75 minutes, and the tank lost 775 − 600 = 175 liters, so it drains at 175/75 = 7/3 liters per minute. The remaining 600 liters take 600 ÷ (7/3) = 1,800/7 ≈ 257.1 minutes. The option \"237\" writes the 1 hour 15 minutes as 1.15 hours, that is 69 minutes. The option \"319\" subtracts the clock times as decimals, 10.05 − 8.50 = 1.55, and uses 1.55 hours = 93 minutes. The option \"269\" works in hours, 600 ÷ (175/1.25) ≈ 4.29 hours, and then reads 4.29 hours as 4 hours 29 minutes.",
+  "solve": "return String(Math.round(600/(175/75)));",
+  "distractor_solve": {
+   "237": "return String(Math.round(600/(175/69)));",
+   "269": "const h=600/(175/1.25); return String(Math.floor(h)*60+Math.round((h%1)*100));",
+   "319": "return String(Math.round(600/(175/93)));"
+  },
+  "quantity_asked": "minutes from 10:05 a.m. until 600 liters drain at 175 liters per 75 minutes.",
+  "distractor_kind": {
+   "237": "error path: 1 h 15 min written as 1.15 h (69 min). (a) none. (b) not adjacent. (c) cheapest bound: the elapsed time is between 1 and 2 hours, so the answer is between 600(60)/175 = 206 and 600(120)/175 = 411; inside. (d) real: hours-and-minutes read as a decimal.",
+   "269": "error path: correct time in hours, 4.29 h, read as 4 h 29 min. (a) none. (b) no. (c) 206 < v < 411; inside. (d) real: decimal hours read as hours and minutes.",
+   "319": "error path: clock times subtracted as decimals, 1.55 h = 93 min. (a) none. (b) no. (c) 206 < v < 411; inside. (d) real."
+  },
+  "distractor_meta": {
+   "237": {
+    "direction": "under",
+    "error_kind": "h:mm elapsed read as decimal hours"
+   },
+   "269": {
+    "direction": "over",
+    "error_kind": "decimal hours answer read as h:mm"
+   },
+   "319": {
+    "direction": "over",
+    "error_kind": "clock times subtracted as decimals"
+   }
+  },
+  "bounds": [
+   "206 < v < 411 (elapsed time between readings is between 1 and 2 hours)"
+  ],
+  "mechanism": [
+   "tank drains constant rate",
+   "two readings at clock times",
+   "elapsed time between clock times",
+   "time until empty"
+  ],
+  "arith_class_check": "No. Rounded minutes, all four odd; the only multiple of 3 is 237 (a distractor); the key is not the midpoint or sum of any two options; spacing 20, 12, 50.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 257 and 269: both three-digit integers without trailing zero, complexity 3 each."
+ },
+ {
+  "domain": "Algebra",
+  "id": "AM24A-09",
+  "difficulty": "medium",
+  "topic_tag": "linear modeling (rate interpretation)",
+  "subskill": "deriving an exchange rate between two quantities from two combinations with equal totals and applying it to a third combination",
+  "prompt": "A stove gives off the same amount of heat burning 2 kilograms of coal together with 10 kilograms of wood as it does burning 7 kilograms of coal together with 2 kilograms of wood. Every kilogram of coal gives off the same heat as every other kilogram of coal, and the same is true for wood. How many kilograms of wood, burned alone, would give off the same heat as 7.5 kilograms of coal together with 6.5 kilograms of wood?",
+  "choices": [
+   "16.5",
+   "17.9",
+   "18.5",
+   "24.5"
+  ],
+  "correct_answer": "18.5",
+  "explanation": "Let c and w be the heat from 1 kilogram of coal and of wood. Then 2c + 10w = 7c + 2w, so 8w = 5c and c = 1.6w. The load gives 7.5c + 6.5w = 12w + 6.5w = 18.5w, the heat of 18.5 kilograms of wood. The option \"16.5\" uses the ratio of all the wood to all the coal in the two loads, 12/9, as the exchange rate. The option \"24.5\" adds the wood amounts instead of subtracting them, getting the rate 12/5 = 2.4. The option \"17.9\" applies the rate 1.6 to the wood instead of the coal, 6.5(1.6) + 7.5.",
+  "solve": "return (7.5*8/5+6.5).toFixed(1);",
+  "distractor_solve": {
+   "16.5": "return (7.5*12/9+6.5).toFixed(1);",
+   "24.5": "return (7.5*12/5+6.5).toFixed(1);",
+   "17.9": "return (6.5*8/5+7.5).toFixed(1);"
+  },
+  "quantity_asked": "the wood mass 7.5(8/5) + 6.5 equivalent in heat to the given load.",
+  "distractor_kind": {
+   "16.5": "error path: rate from the totals 12/9. (a) none. (b) no. (c) cheapest bound: 10 − 2 = 8 kg of wood replaces 7 − 2 = 5 kg of coal, so coal is worth more than wood and v > 7.5 + 6.5 = 14; inside. (d) real: ratio of totals instead of differences.",
+   "24.5": "error path: (10 + 2)/(7 − 2). (a) none. (b) no. (c) v > 14; inside. (d) real: sign slip in the difference.",
+   "17.9": "error path: rate applied to the wrong component. (a) none. (b) no. (c) v > 14; inside. (d) real."
+  },
+  "distractor_meta": {
+   "16.5": {
+    "direction": "under",
+    "error_kind": "ratio of totals"
+   },
+   "24.5": {
+    "direction": "over",
+    "error_kind": "sum instead of difference"
+   },
+   "17.9": {
+    "direction": "under",
+    "error_kind": "rate applied to wrong component"
+   }
+  },
+  "bounds": [
+   "v > 14 (coal gives more heat per kilogram than wood)"
+  ],
+  "mechanism": [
+   "same heat two combinations",
+   "exchange rate between coal and wood",
+   "equivalent amount of one fuel"
+  ],
+  "arith_class_check": "No. One-decimal values; 16.5, 18.5, 24.5 end in .5 including the key and 17.9 does not, so that class leaves three; spacing 1.4, 0.6, 6.0.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 17.9 and 18.5: both two-digit, one-decimal values with nonzero last digit, complexity 3 each."
+ },
+ {
+  "domain": "Algebra",
+  "id": "AM24A-10",
+  "difficulty": "hard",
+  "topic_tag": "systems of three linear equations",
+  "subskill": "solving a system of three linear equations in three unknowns from three purchases for one of the unit prices",
+  "prompt": "A store sells notebooks, pens, and folders, each at its own fixed price. One customer bought 2 notebooks, 1 pen, and 3 folders for $11.50; a second bought 1 notebook, 3 pens, and 2 folders for $10.10; and a third bought 3 notebooks, 2 pens, and 1 folder for $11.10. What is the price, in dollars, of one folder?",
+  "choices": [
+   "1.35",
+   "1.82",
+   "1.95",
+   "2.15"
+  ],
+  "correct_answer": "1.95",
+  "explanation": "Let n, p, and f be the prices. Adding the three equations gives 6n + 6p + 6f = 32.70, so n + p + f = 5.45. Subtracting this from each equation: n + 2f = 6.05, 2p + f = 4.65, and 2n + p = 5.65. From the first two, n = 6.05 − 2f and p = (4.65 − f)/2; substituting into the third, 12.10 − 4f + 2.325 − 0.5f = 5.65, so 4.5f = 8.775 and f = 1.95 (with n = 2.15 and p = 1.35). The option \"1.35\" is the price of a pen and \"2.15\" the price of a notebook, from solving for the wrong unknown. The option \"1.82\" assumes the three items cost the same, 5.45/3.",
+  "solve": "const A=[[2,1,3,11.50],[1,3,2,10.10],[3,2,1,11.10]]; for(let i=0;i<3;i++){ for(let j=0;j<3;j++){ if(j!==i){ const r=A[j][i]/A[i][i]; for(let k=0;k<4;k++) A[j][k]-=r*A[i][k]; } } } const v=A.map((row,i)=>row[3]/row[i]); return v[2].toFixed(2);",
+  "distractor_solve": {
+   "1.35": "const A=[[2,1,3,11.50],[1,3,2,10.10],[3,2,1,11.10]]; for(let i=0;i<3;i++){ for(let j=0;j<3;j++){ if(j!==i){ const r=A[j][i]/A[i][i]; for(let k=0;k<4;k++) A[j][k]-=r*A[i][k]; } } } const v=A.map((row,i)=>row[3]/row[i]); return v[1].toFixed(2);",
+   "2.15": "const A=[[2,1,3,11.50],[1,3,2,10.10],[3,2,1,11.10]]; for(let i=0;i<3;i++){ for(let j=0;j<3;j++){ if(j!==i){ const r=A[j][i]/A[i][i]; for(let k=0;k<4;k++) A[j][k]-=r*A[i][k]; } } } const v=A.map((row,i)=>row[3]/row[i]); return v[0].toFixed(2);",
+   "1.82": "return ((11.50+10.10+11.10)/6/3).toFixed(2);"
+  },
+  "quantity_asked": "the folder price f in the solution of the three purchase equations.",
+  "distractor_kind": {
+   "1.35": "error path: solved for the pen price. (a) none. (b) the pen price is not a bound on the folder price. (c) cheapest bound: 3f < 11.50 gives f < 3.83; inside. (d) real: wrong unknown reported.",
+   "2.15": "error path: solved for the notebook price. (a) none. (b) no. (c) f < 3.83; inside. (d) real: wrong unknown reported.",
+   "1.82": "error path: equal prices assumed, 5.45/3. (a) none. (b) the mean price is not a bound on any single price. (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "1.35": {
+    "direction": "under",
+    "error_kind": "wrong unknown (pen)"
+   },
+   "2.15": {
+    "direction": "over",
+    "error_kind": "wrong unknown (notebook)"
+   },
+   "1.82": {
+    "direction": "under",
+    "error_kind": "equal prices assumed"
+   }
+  },
+  "bounds": [
+   "0 < v < 11.50/3 = 3.83"
+  ],
+  "mechanism": [
+   "three purchases three unknown prices",
+   "system of three linear equations",
+   "add all equations then eliminate"
+  ],
+  "arith_class_check": "No. Cents values, none singled by whole-cent or divisibility properties (1.35, 1.95, 2.15 end in 5, 1.82 does not, key in the majority); spacing 0.47, 0.13, 0.20.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options 1.82 and 1.95: both one-digit, two-decimal values with nonzero last digit, complexity 5 each."
+ }
+]

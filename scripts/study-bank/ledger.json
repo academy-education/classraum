@@ -6039,6 +6039,40 @@
           "verdict": "candidate 0.0% vs control 0.0%, PASS (information only; batch held on nosource)."
         }
       }
+    },
+    {
+      "id": "act-math-v24-held-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v24",
+      "contentSha": "4b78ec4d9b178b8e7e27979960fe5a26fc93f7256b2fd394d3fa9d0539e73501",
+      "status": "held",
+      "note": "59 items (Algebra 18, Geometry 10, IES 10, Functions 9, S&P 7, N&Q 5) from five Claude authors: Algebra ~2x its form-17+18 deficit of 9, other domains +30%. Bars pre-registered in ACT-MATH-V24-PREREGISTERED.md (commit 2d7ad01e) before authoring: v23 bars and bans plus (d) interior parity and (e) complement / shared-denominator bans, check-interior-niceness.mjs, mandatory hand keyword search. Passed stages 0-2; HELD at stage 4 because the kept 39 fail key-extremity-gate (15/39 = 38.5% < 40.0%). Nothing inserted; ACT Math stays 16 forms.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "4b78ec4d9b178b8e7e27979960fe5a26fc93f7256b2fd394d3fa9d0539e73501",
+          "verdict": "act-math-v18-preflight.sh PASS on the merged 59 (sha 4b78ec4d9b178b8e) and each author file: sandbox 59/59, distractors 177/177, no hub structure, key at an extreme 28/59 = 47.5% (bar 40.0%), magnitude z 0.36/0.12/-0.40, 0 composites, stem echo 0/59, 0 stem duplicates, 0 duplicate option sets. Key position 14/31/14 (band 9-18/25-36/9-18). (c) mechanical: 28 extreme-key items, all 3 distinct error_kinds. check-interior-niceness: 0 parity violations, 0 KEY-CLEANER, 0 complement pairs, 0 shared-denominator singling of 59; asymmetric interior pair on interior-key items 1/31 = 3.2% vs matched controls 12/30 = 40.0%. Arith-class: keys lone 9/59 vs distractors 34/177, none stem-implied. Dups over all 2,765 live maths rows: Jaccard 9 FLAG / near, math-mechanism-dup 0 FLAG / 42 near, all read as different; hand keyword search (all 59 + 5 replacements) found 4 live mechanism duplicates and 2 in-batch overlaps, all returned to authors in the single stage-0 return: AM24A-12 ~ sat 79d14e77, AM24N-03 ~ act 3fd7747a, AM24N-04 ~ act 7d39df0a, AM24S-05 ~ act b32534dc (scripts flagged none), AM24A-07 ~ AM24A-02 format, AM24I-10 ~ AM24I-03 mechanism."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "4b78ec4d9b178b8e7e27979960fe5a26fc93f7256b2fd394d3fa9d0539e73501",
+          "verdict": "Options-only (act-math-v24-attack-draw.mjs, blind sha d683ab672e8eaa7e): 59 candidates + 59 live act/math controls matched 1:1 by domain (v16-v24 excluded), keys flat within arm (25.4%), three Claude samples (pairwise agreement 75.1% vs 26.6% if independent - one solver sampled three times). Candidate 49/177 = 27.7% (+2.3) vs control 61/177 = 34.5% (+9.0): -6.8 (hold bar +10). Unanimous-correct 8/59 = 13.6% vs 14/59 = 23.7%: -10.1 (hold bar +15). Interior-key hits candidate 49/93 = 52.7% vs control 48/90 = 53.3% (v23: 66.7% vs 49.0%)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "4b78ec4d9b178b8e7e27979960fe5a26fc93f7256b2fd394d3fa9d0539e73501",
+          "verdict": "Two independent Claude graders on make-grade-render (render sha efe896545a5373d3, author fields stripped, no unrecognised field, quoted by both at start and end). 118/118 picks equal the key, 0 second-defensible. Kept 39, dropped 20: rule 3 bounds A-05, A-07, A-08, A-16, N-04, N-05, F-01, F-03, F-05, F-06, F-07, G-04; rule 8 one-sided A-02, I-01, I-02, I-03, I-04 (+F-06, F-07); rule 9 S-03, G-06; rule 7 G-08. See act-math-v24.verdicts.json / drops.json."
+        },
+        "kept_set": {
+          "passed": false,
+          "contentSha": "fdedbae6ac6f53963bbf6bf735eff793c96154509e51d78c0b399b4532db2b7b",
+          "verdict": "Kept 39 re-run as a set: key-extremity-gate FAIL 15/39 = 38.5% < 40.0% (the inserter would refuse it too); key position 7/24/8; magnitude z -0.19/-0.76/0.81. Pre-registered: a measured gate failing holds the batch, no dropping or editing to pass. HELD. Would-be kept by domain: Algebra 13, Geometry 7, IES 6, Functions 4, S&P 6, N&Q 3 (form 17 would have been met; form 18 not)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

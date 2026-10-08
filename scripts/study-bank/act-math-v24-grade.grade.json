@@ -1,0 +1,651 @@
+[
+ {
+  "id": "AM24A-01",
+  "topic_tag": "linear cost and break-even",
+  "prompt": "A bakery sells every loaf of bread it makes at one fixed price. Its weekly cost is a fixed amount plus the same cost for each loaf it makes. At its current price and costs, the bakery breaks even (weekly revenue equals weekly cost) when it sells 150 loaves in a week. If the cost of making each loaf rose by $0.30, with the price and the fixed amount unchanged, the bakery would instead break even at 175 loaves. Suppose that the costs stay at their current levels and the bakery raises its price by $1.00 per loaf. What is the least number of loaves the bakery must then sell in a week so that its weekly revenue is at least its weekly cost?",
+  "choices": [
+   "102",
+   "113",
+   "132",
+   "119"
+  ]
+ },
+ {
+  "id": "AM24A-02",
+  "topic_tag": "absolute value inequalities",
+  "prompt": "What is the sum of all integers x that satisfy the inequality |3x − 28| < x + 3 ?",
+  "choices": [
+   "99",
+   "84",
+   "92",
+   "75"
+  ]
+ },
+ {
+  "id": "AM24A-03",
+  "topic_tag": "systems of linear equations in context",
+  "prompt": "A city's taxis charge a fixed pickup fee of $2.45 for every ride, plus a constant charge for each mile and a constant charge for each minute of the ride. A 4.2-mile ride that took 22 minutes cost $14.48, and a 9.6-mile ride that took 13 minutes cost $19.88. What is the charge, in dollars, for each minute of a ride?",
+  "choices": [
+   "0.35",
+   "0.42",
+   "0.46",
+   "0.27"
+  ]
+ },
+ {
+  "id": "AM24A-04",
+  "topic_tag": "linear equations in context",
+  "prompt": "Eleven friends agreed to share the cost of renting a cabin equally. Three of them later dropped out, and the remaining friends shared the same total cost equally, which increased each remaining friend's share by $5.28. What was the total cost, in dollars, of renting the cabin?",
+  "choices": [
+   "271.04",
+   "154.88",
+   "58.08",
+   "112.64"
+  ]
+ },
+ {
+  "id": "AM24A-05",
+  "topic_tag": "mixture problems set up as linear systems",
+  "prompt": "A 380-gram bar is made of an alloy containing only gold and silver, and the volume of the bar is 28.0 cubic centimeters. The density of gold is 19.3 grams per cubic centimeter, the density of silver is 10.5 grams per cubic centimeter, and the volume of the bar is the sum of the volumes of the gold and the silver in it. To the nearest gram, what is the mass of the gold in the bar?",
+  "choices": [
+   "246",
+   "352",
+   "277",
+   "189"
+  ]
+ },
+ {
+  "id": "AM24A-06",
+  "topic_tag": "literal equations and formula rearrangement",
+  "prompt": "Dolbear's law models the air temperature T, in degrees Fahrenheit, from N, the number of times a snowy tree cricket chirps in one minute: T = 50 + (N − 40)/4. A temperature of C degrees Celsius equals (9/5)C + 32 degrees Fahrenheit. According to the model, to the nearest tenth, how many times per minute does the cricket chirp when the air temperature is 26.5 degrees Celsius?",
+  "choices": [
+   "47.4",
+   "30.8",
+   "158.8",
+   "78.8"
+  ]
+ },
+ {
+  "id": "AM24A-07",
+  "topic_tag": "systems of linear inequalities in context",
+  "prompt": "A workshop makes birdhouses and planter boxes. Each birdhouse takes 2 hours of cutting and 1 hour of finishing, and each planter box takes 1 hour of cutting and 2 hours of finishing. Each week the workshop has at most 26 hours of cutting time and at most 28 hours of finishing time. The workshop earns a profit of $11 on each birdhouse and $13 on each planter box. What is the greatest weekly profit, in dollars, the workshop can earn?",
+  "choices": [
+   "218",
+   "308",
+   "143",
+   "182"
+  ]
+ },
+ {
+  "id": "AM24A-08",
+  "topic_tag": "linear modeling (rate of change)",
+  "prompt": "A water tank is drained at a constant rate. At 8:50 a.m. the tank held 775 liters of water, and at 10:05 a.m. the same morning it held 600 liters. If the water continues to drain at the same rate, how many minutes after 10:05 a.m. will the tank be empty, to the nearest minute?",
+  "choices": [
+   "319",
+   "257",
+   "237",
+   "269"
+  ]
+ },
+ {
+  "id": "AM24A-09",
+  "topic_tag": "linear modeling (rate interpretation)",
+  "prompt": "A stove gives off the same amount of heat burning 2 kilograms of coal together with 10 kilograms of wood as it does burning 7 kilograms of coal together with 2 kilograms of wood. Every kilogram of coal gives off the same heat as every other kilogram of coal, and the same is true for wood. How many kilograms of wood, burned alone, would give off the same heat as 7.5 kilograms of coal together with 6.5 kilograms of wood?",
+  "choices": [
+   "24.5",
+   "17.9",
+   "18.5",
+   "16.5"
+  ]
+ },
+ {
+  "id": "AM24A-10",
+  "topic_tag": "systems of three linear equations",
+  "prompt": "A store sells notebooks, pens, and folders, each at its own fixed price. One customer bought 2 notebooks, 1 pen, and 3 folders for $11.50; a second bought 1 notebook, 3 pens, and 2 folders for $10.10; and a third bought 3 notebooks, 2 pens, and 1 folder for $11.10. What is the price, in dollars, of one folder?",
+  "choices": [
+   "1.82",
+   "2.15",
+   "1.95",
+   "1.35"
+  ]
+ },
+ {
+  "id": "AM24A-11",
+  "topic_tag": "quadratic expressions in two variables (completing the square)",
+  "prompt": "For all real numbers x and y, the expression x² + 4y² − 14x + 24y + 97 has a least possible value. What is that least possible value?",
+  "choices": [
+   "39",
+   "36",
+   "12",
+   "47"
+  ]
+ },
+ {
+  "id": "AM24A-12",
+  "topic_tag": "rational expressions (telescoping sum)",
+  "prompt": "The sum 1/(3 · 4) + 1/(4 · 5) + 1/(5 · 6) + ... + 1/(17 · 18), in which each term has the form 1/(k(k + 1)) for k = 3, 4, 5, ..., 17, can be written as p/q, where p and q are positive integers with no common factor greater than 1. What is the value of p + q ?",
+  "choices": [
+   "16",
+   "23",
+   "43",
+   "65"
+  ]
+ },
+ {
+  "id": "AM24A-13",
+  "topic_tag": "systems of nonlinear equations (two circles)",
+  "prompt": "In the xy-plane, the circles with equations x² + y² = 29 and (x − 6)² + y² = 45 intersect at two points. To the nearest hundredth, what is the distance between those two points?",
+  "choices": [
+   "10.46",
+   "10.13",
+   "10.24",
+   "10.75"
+  ]
+ },
+ {
+  "id": "AM24A-14",
+  "topic_tag": "systems of nonlinear equations (a circle and a parabola)",
+  "prompt": "In the xy-plane, the graphs of y = x² − 7 and x² + y² = 49 intersect at exactly three points. To the nearest tenth, what is the area of the triangle whose vertices are those three points?",
+  "choices": [
+   "46.9",
+   "21.6",
+   "14.7",
+   "48.6"
+  ]
+ },
+ {
+  "id": "AM24A-15",
+  "topic_tag": "factoring quadratics over the integers",
+  "prompt": "The expression x² + bx + 144, where b is a positive integer, can be written as (x + m)(x + n), where m and n are integers. What is the sum of all possible values of b ?",
+  "choices": [
+   "806",
+   "415",
+   "270",
+   "391"
+  ]
+ },
+ {
+  "id": "AM24A-16",
+  "topic_tag": "polynomial equations (recognizing a binomial cube)",
+  "prompt": "What is the real solution of the equation x³ + 9x² + 27x = 310, to the nearest hundredth?",
+  "choices": [
+   "3.77",
+   "3.57",
+   "3.83",
+   "3.96"
+  ]
+ },
+ {
+  "id": "AM24A-17",
+  "topic_tag": "polynomial operations (reducing powers with a quadratic relation)",
+  "prompt": "The number x satisfies x² = 5x − 3. The expression x⁴ can be written in the form ax + b, where a and b are integers. What is the value of a + b ?",
+  "choices": [
+   "29",
+   "11",
+   "59",
+   "41"
+  ]
+ },
+ {
+  "id": "AM24A-18",
+  "topic_tag": "polynomial functions (equal values at three inputs)",
+  "prompt": "A polynomial function p has degree 3 and leading coefficient 1, and p(1) = p(2) = p(3) = 23. What is the value of p(7) ?",
+  "choices": [
+   "743",
+   "143",
+   "233",
+   "120"
+  ]
+ },
+ {
+  "id": "AM24N-01",
+  "topic_tag": "complex numbers (evaluating a polynomial at a complex number)",
+  "prompt": "For i = √(−1), let p(x) = x² + 5x + 1. The value of p(1 + 3i) can be written as a + bi, where a and b are real numbers. What is the value of a + b ?",
+  "choices": [
+   "-11",
+   "37",
+   "13",
+   "19"
+  ]
+ },
+ {
+  "id": "AM24N-02",
+  "topic_tag": "matrices (matrix multiplication and the identity matrix)",
+  "prompt": "Matrix A has first row (5, 3) and second row (2, 4). The matrix A² − 9A, where A² = A · A, is equal to kI, where I is the 2 × 2 identity matrix and k is a constant. What is the value of k ?",
+  "choices": [
+   "-26",
+   "-16",
+   "-14",
+   "-20"
+  ]
+ },
+ {
+  "id": "AM24N-03",
+  "topic_tag": "matrices (determinant as an area scale factor)",
+  "prompt": "The matrix M has first row (4, 1) and second row (3, 2). When every point of a region in the xy-plane is multiplied by M, the region is transformed into a new region, and every area is multiplied by the absolute value of the determinant of M. A region with an area of 9 square units is transformed by M. What is the area, in square units, of the new region?",
+  "choices": [
+   "54",
+   "45",
+   "72",
+   "99"
+  ]
+ },
+ {
+  "id": "AM24N-04",
+  "topic_tag": "vectors (unit vectors and scaling to a given magnitude)",
+  "prompt": "The vector v has magnitude 20 and points in the same direction as the vector ⟨7, −6⟩. To the nearest hundredth, what is the y-component of v ?",
+  "choices": [
+   "-9.23",
+   "-1.41",
+   "-13.02",
+   "-0.65"
+  ]
+ },
+ {
+  "id": "AM24N-05",
+  "topic_tag": "vectors (scalar multiples)",
+  "prompt": "The vectors ⟨k, 8⟩ and ⟨2, k + 6⟩ are scalar multiples of each other, where k is a negative number. To the nearest hundredth, what is the magnitude of the vector ⟨k, 8⟩ ?",
+  "choices": [
+   "11.31",
+   "8.25",
+   "8.49",
+   "9.33"
+  ]
+ },
+ {
+  "id": "AM24F-01",
+  "topic_tag": "composition of functions in context",
+  "prompt": "The radius r, in centimeters, of a circular oil spill t minutes after a sensor begins recording is given by r(t) = 1.5t + 4. The area of a circle with radius r is given by A(r) = πr². To the nearest hundredth of a minute, what is the value of t for which A(r(t)) = 400 ?",
+  "choices": [
+   "10.67",
+   "3.52",
+   "7.03",
+   "4.86"
+  ]
+ },
+ {
+  "id": "AM24F-02",
+  "topic_tag": "range of a rational (linear-over-linear) function",
+  "prompt": "The function f is defined by f(x) = (4x − 1)/(7x + 3) for every real number x for which the expression is defined. There is exactly one real number k for which the equation f(x) = k has no solution. To the nearest hundredth, what is the value of k ?",
+  "choices": [
+   "-0.43",
+   "0.25",
+   "-0.33",
+   "0.57"
+  ]
+ },
+ {
+  "id": "AM24F-03",
+  "topic_tag": "extreme value of a composite function",
+  "prompt": "The functions f and g are defined by f(x) = 84/(x + 5) and g(x) = x² − 8x + 22. To the nearest hundredth, what is the greatest value of f(g(x)) ?",
+  "choices": [
+   "7.64",
+   "1.12",
+   "3.11",
+   "9.33"
+  ]
+ },
+ {
+  "id": "AM24F-04",
+  "topic_tag": "sinusoidal model: time above a level",
+  "prompt": "A Ferris wheel completes one full revolution every 12 minutes. A rider's height h, in meters, above the ground t minutes after boarding is modeled by h(t) = 25 − 20cos(πt/6). During the first 12 minutes of the ride, for how many minutes, to the nearest hundredth, is the rider more than 32.5 meters above the ground?",
+  "choices": [
+   "5.36",
+   "4.53",
+   "4.84",
+   "5.27"
+  ]
+ },
+ {
+  "id": "AM24F-05",
+  "topic_tag": "sinusoid: locating a maximum and the next minimum",
+  "prompt": "In the standard (x,y) coordinate plane, P is the point with the least positive x-coordinate at which the graph of y = 2sin(πx/7) reaches its maximum value, and Q is the first point to the right of P at which the graph reaches its minimum value. To the nearest hundredth, what is the distance between P and Q ?",
+  "choices": [
+   "8.06",
+   "11.24",
+   "5.32",
+   "7.28"
+  ]
+ },
+ {
+  "id": "AM24F-06",
+  "topic_tag": "trigonometric identities with quadrant signs",
+  "prompt": "For an angle θ with 270° < θ < 360°, cos θ = 3/8. To the nearest hundredth, what is the value of (sin θ)(tan θ) ?",
+  "choices": [
+   "0.32",
+   "1.04",
+   "2.29",
+   "0.44"
+  ]
+ },
+ {
+  "id": "AM24F-07",
+  "topic_tag": "recursively defined sequence with an unknown term",
+  "prompt": "In a certain sequence, each term after the second is the sum of the two terms immediately before it. The 1st term of the sequence is 2, and the 6th term is 33. What is the 8th term of the sequence?",
+  "choices": [
+   "139.4",
+   "141.7",
+   "115.7",
+   "86.2"
+  ]
+ },
+ {
+  "id": "AM24F-08",
+  "topic_tag": "exponential function with a vertical shift through two points",
+  "prompt": "The function g is defined by g(x) = a·2^x + c, where a and c are constants. The graph of y = g(x) in the standard (x,y) coordinate plane passes through the points (1, 27) and (4, 62). What is the value of g(−1) ?",
+  "choices": [
+   "23.25",
+   "3.67",
+   "6.75",
+   "20.44"
+  ]
+ },
+ {
+  "id": "AM24F-09",
+  "topic_tag": "trigonometric identities: squaring a sum",
+  "prompt": "The real number θ satisfies sin θ + cos θ = 1.25. Rounded to the nearest hundredth, sin⁴θ + cos⁴θ equals which of the following?",
+  "choices": [
+   "0.72",
+   "0.92",
+   "0.84",
+   "0.68"
+  ]
+ },
+ {
+  "id": "AM24S-01",
+  "topic_tag": "expected value of a score with a guessing penalty",
+  "prompt": "On a 25-question test, each question has 5 answer choices, exactly 1 of which is correct. Each correct answer earns 5 points, each incorrect answer loses 1 point, and each unanswered question earns 0 points. Nadia answers 11 questions correctly. On 8 other questions she can rule out exactly 1 incorrect choice, and she guesses at random among the remaining 4 choices. She leaves the other 6 questions unanswered. What is the expected value of Nadia's score on the test?",
+  "choices": [
+   "59",
+   "63",
+   "53",
+   "71"
+  ]
+ },
+ {
+  "id": "AM24S-02",
+  "topic_tag": "probability over the set of divisors of a number",
+  "prompt": "One of the positive divisors of 1,440 is chosen at random, with every positive divisor equally likely to be chosen. To the nearest hundredth, what is the probability that the divisor chosen is a multiple of 12 ?",
+  "choices": [
+   "0.33",
+   "0.17",
+   "0.08",
+   "0.44"
+  ]
+ },
+ {
+  "id": "AM24S-03",
+  "topic_tag": "probability distribution with unknown probabilities and a given expected value",
+  "prompt": "A random variable X takes only the values 0, 1, 2, 3, and 4. The probabilities are P(X = 0) = 0.10, P(X = 1) = p, P(X = 2) = 0.20, P(X = 3) = q, and P(X = 4) = 0.05, where p and q are constants. The expected value of X is 2.13. What is the value of p ?",
+  "choices": [
+   "0.21",
+   "0.44",
+   "0.26",
+   "0.36"
+  ]
+ },
+ {
+  "id": "AM24S-04",
+  "topic_tag": "expected number of successes when drawing without replacement",
+  "prompt": "A bag contains 5 red marbles and 7 blue marbles. Three marbles are drawn at random, one at a time, without replacement. To the nearest hundredth, what is the expected number of red marbles drawn?",
+  "choices": [
+   "1.36",
+   "1.25",
+   "2.14",
+   "1.09"
+  ]
+ },
+ {
+  "id": "AM24S-05",
+  "topic_tag": "probability by counting: selection avoiding pairs",
+  "prompt": "A group of 10 people consists of 5 married couples. Four of the 10 people are chosen at random to form a committee, with every group of 4 equally likely to be chosen. To the nearest hundredth, what is the probability that no two of the people chosen are married to each other?",
+  "choices": [
+   "0.48",
+   "0.02",
+   "0.56",
+   "0.38"
+  ]
+ },
+ {
+  "id": "AM24S-06",
+  "topic_tag": "probability by counting with the triangle inequality",
+  "prompt": "Seven sticks have lengths 2, 3, 4, 5, 8, 9, and 10 centimeters. Three of the sticks are chosen at random, with every set of 3 sticks equally likely to be chosen. To the nearest hundredth, what is the probability that the 3 sticks chosen can be placed end to end to form a triangle?",
+  "choices": [
+   "0.57",
+   "0.84",
+   "0.46",
+   "0.76"
+  ]
+ },
+ {
+  "id": "AM24S-07",
+  "topic_tag": "conditional probability across two dependent events",
+  "prompt": "The probability that it rains on Saturday is 0.40. If it rains on Saturday, the probability that it rains on Sunday is 0.65. If it does not rain on Saturday, the probability that it rains on Sunday is 0.30. What is the probability that it rains on exactly one of the two days?",
+  "choices": [
+   "0.26",
+   "0.67",
+   "0.32",
+   "0.44"
+  ]
+ },
+ {
+  "id": "AM24G-01",
+  "topic_tag": "law of sines ambiguous case (SSA)",
+  "prompt": "In triangle ABC, AB = 10, BC = 7, and the measure of angle A is 37°. Exactly two noncongruent triangles satisfy these conditions. To the nearest hundredth, what is the positive difference between the two possible lengths of side AC ?",
+  "choices": [
+   "6.02",
+   "1.96",
+   "4.41",
+   "7.15"
+  ]
+ },
+ {
+  "id": "AM24G-02",
+  "topic_tag": "square inscribed in a right triangle on the hypotenuse",
+  "prompt": "Right triangle ABC has its right angle at C, with legs AC = 6 and BC = 11. A square is drawn inside the triangle so that one side of the square lies along hypotenuse AB, one of the other two vertices of the square lies on AC, and the remaining vertex lies on BC. To the nearest hundredth, what is the side length of the square?",
+  "choices": [
+   "3.88",
+   "3.71",
+   "3.56",
+   "4.93"
+  ]
+ },
+ {
+  "id": "AM24G-03",
+  "topic_tag": "circumradius from two sides and included angle",
+  "prompt": "In triangle ABC, AB = 9, AC = 11, and the measure of angle A is 64°. To the nearest hundredth, what is the radius of the circle that passes through points A, B, and C ?",
+  "choices": [
+   "6.12",
+   "5.97",
+   "9.45",
+   "12.24"
+  ]
+ },
+ {
+  "id": "AM24G-04",
+  "topic_tag": "cyclic quadrilateral diagonal",
+  "prompt": "Quadrilateral ABCD is inscribed in a circle, with AB = 5, BC = 6, CD = 3, and DA = 9. To the nearest hundredth, what is the length of diagonal AC ?",
+  "choices": [
+   "8.73",
+   "9.49",
+   "8.31",
+   "7.81"
+  ]
+ },
+ {
+  "id": "AM24G-05",
+  "topic_tag": "angle between two lines",
+  "prompt": "In the standard (x,y) coordinate plane, the lines 2x − y = −1 and x + 3y = 12 intersect. To the nearest tenth of a degree, what is the measure of the acute angle formed by the two lines?",
+  "choices": [
+   "54.5",
+   "81.9",
+   "63.4",
+   "66.8"
+  ]
+ },
+ {
+  "id": "AM24G-06",
+  "topic_tag": "cylinder inscribed in a cone",
+  "prompt": "A right circular cone has a base radius of 5 centimeters and a height of 12 centimeters. A right circular cylinder with a radius of 2 centimeters stands inside the cone: its bottom base lies on the base of the cone, its axis lies along the axis of the cone, and the circular edge of its top base touches the curved surface of the cone. To the nearest hundredth of a cubic centimeter, what is the volume of the cylinder?",
+  "choices": [
+   "60.32",
+   "90.48",
+   "98.02",
+   "125.66"
+  ]
+ },
+ {
+  "id": "AM24G-07",
+  "topic_tag": "greatest distance between points on two circles",
+  "prompt": "In the standard (x,y) coordinate plane, the circles x² + y² − 6x + 2y − 11 = 0 and x² + y² + 8x − 10y + 34 = 0 do not intersect, and neither lies inside the other. To the nearest hundredth of a coordinate unit, what is the greatest possible distance between a point on the first circle and a point on the second circle?",
+  "choices": [
+   "11.35",
+   "22.46",
+   "16.45",
+   "1.99"
+  ]
+ },
+ {
+  "id": "AM24G-08",
+  "topic_tag": "distance between parallel lines",
+  "prompt": "In the standard (x,y) coordinate plane, a circle is tangent to both of the parallel lines 5x − 12y = 8 and 10x − 24y = 75. To the nearest hundredth of a coordinate unit, what is the radius of the circle?",
+  "choices": [
+   "1.13",
+   "2.27",
+   "1.29",
+   "1.75"
+  ]
+ },
+ {
+  "id": "AM24G-09",
+  "topic_tag": "inradius of an isosceles triangle",
+  "prompt": "An isosceles triangle has two sides of length 11 inches and a base of length 8 inches. To the nearest hundredth of an inch, what is the radius of the circle inscribed in the triangle?",
+  "choices": [
+   "2.73",
+   "2.01",
+   "1.37",
+   "1.62"
+  ]
+ },
+ {
+  "id": "AM24G-10",
+  "topic_tag": "cube inscribed in a hemisphere",
+  "prompt": "A cube sits inside a solid hemisphere of radius 6 centimeters. One face of the cube lies on the flat circular face of the hemisphere, with its center at the center of that circular face, and the 4 vertices of the opposite face of the cube lie on the curved surface of the hemisphere. To the nearest hundredth of a cubic centimeter, what is the volume of the cube?",
+  "choices": [
+   "76.37",
+   "41.57",
+   "154.56",
+   "117.58"
+  ]
+ },
+ {
+  "id": "AM24I-01",
+  "topic_tag": "hiking time estimate from a map scale and a climbing allowance",
+  "prompt": "A hiking guidebook estimates the time needed for a route with this rule: walking time at 4 kilometers per hour over the route's horizontal length, plus 10 minutes for every 100 meters of climbing. Descending adds no time. On a map with a scale of 1:25,000, a certain route measures 39.2 centimeters. The route starts at a trailhead at an elevation of 368 meters, climbs steadily to a summit at 1,146 meters, descends to a saddle at 861 meters, climbs to a second summit at 1,043 meters, and then descends to its finish at 486 meters. To the nearest minute, what is the guidebook's estimated time for the route, in minutes?",
+  "choices": [
+   "292",
+   "299",
+   "261",
+   "243"
+  ]
+ },
+ {
+  "id": "AM24I-02",
+  "topic_tag": "handicap index from the lowest two of three slope-adjusted differentials",
+  "prompt": "A golfer's handicap differential for one round is found with the formula (score − course rating) × 113 ÷ slope rating. Her handicap index is the average of the two LOWEST differentials from her three most recent rounds. Her three most recent rounds are shown below.\n\nRound 1: score 87, course rating 70.1, slope rating 119\nRound 2: score 93, course rating 75.6, slope rating 144\nRound 3: score 90, course rating 71.8, slope rating 131\n\nTo the nearest hundredth, what is her handicap index?",
+  "choices": [
+   "15.87",
+   "17.15",
+   "15.13",
+   "14.68"
+  ]
+ },
+ {
+  "id": "AM24I-03",
+  "topic_tag": "credit-weighted grade point average with a retaken course replacing the first attempt",
+  "prompt": "At a college, a student's grade point average (GPA) is the total of (credit hours × grade points) for the courses counted, divided by the total credit hours counted, where an A is worth 4 grade points, a B is worth 3, a C is worth 2, and a D is worth 1. When a course is retaken, only the retake is counted: the first attempt's grade and credit hours are dropped. Lena's courses are listed below.\n\nCalculus, 5 credit hours: A\nChemistry, 4 credit hours: D on the first attempt; B on the retake\nLiterature, 4 credit hours: B\nPhysics, 5 credit hours: A\nSpanish, 3 credit hours: C\nEconomics, 3 credit hours: B\n\nTo the nearest hundredth, what is Lena's GPA?",
+  "choices": [
+   "3.29",
+   "2.96",
+   "3.25",
+   "3.17"
+  ]
+ },
+ {
+  "id": "AM24I-04",
+  "topic_tag": "splitting a shared ride fare leg by leg among the riders aboard",
+  "prompt": "Three coworkers share one ride-hail trip home. The fare is a $3.45 base fee plus $1.85 per mile. The car drives 6.2 miles to Ana's stop, then 4.6 more miles to Ben's stop, then 7.8 more miles to Cy's stop. They split the fare this way: the base fee is shared equally by all three, and the cost of each leg (the miles between consecutive stops) is shared equally by the riders who are in the car during that leg. To the nearest cent, how much does Cy pay?",
+  "choices": [
+   "18.93",
+   "22.24",
+   "19.78",
+   "23.66"
+  ]
+ },
+ {
+  "id": "AM24I-05",
+  "topic_tag": "baseboard trim for a room measured on a scale drawing",
+  "prompt": "On a floor plan drawn to the scale 1/4 inch = 1 foot, a rectangular room is shown as 5 1/4 inches by 4 1/2 inches. Baseboard trim will run along every wall of the room except across its two doorways, which are 3/4 inch and 5/8 inch wide on the plan. Trim costs $2.87 per linear foot, and only the exact length needed is bought. To the nearest cent, what is the cost of the trim?",
+  "choices": [
+   "216.69",
+   "219.91",
+   "208.08",
+   "192.29"
+  ]
+ },
+ {
+  "id": "AM24I-06",
+  "topic_tag": "server tip-out computed partly on sales and partly on tips",
+  "prompt": "At a restaurant, each server \"tips out\" to coworkers at the end of a shift: 3% of the server's food-and-drink SALES goes to the bussers, 1.5% of the server's SALES goes to the host, and 10% of the server's TIPS goes to the bartender. All three amounts are figured from the shift's totals and are paid out of the server's tips. During one shift, Mara had sales of $1,418.60 and received $247.35 in tips. To the nearest cent, how much of her tips does Mara keep after tipping out?",
+  "choices": [
+   "211.48",
+   "158.78",
+   "147.65",
+   "165.16"
+  ]
+ },
+ {
+  "id": "AM24I-07",
+  "topic_tag": "slugging percentage from hit types and at-bats",
+  "prompt": "In baseball, a player's total bases are 1 for each single, 2 for each double, 3 for each triple, and 4 for each home run. Walks are not hits and are NOT counted as at-bats. A player's slugging percentage is total bases divided by at-bats. Last season a player had 95 singles, 35 doubles, 2 triples, and 18 home runs in 497 at-bats, and he also drew 49 walks. To the nearest thousandth, what was his slugging percentage?",
+  "choices": [
+   "0.445",
+   "0.588",
+   "0.489",
+   "0.453"
+  ]
+ },
+ {
+  "id": "AM24I-08",
+  "topic_tag": "average speed needed for the remaining distance to meet a deadline",
+  "prompt": "Dae must drive 298 kilometers to arrive by 2:15 p.m. He leaves at 9:30 a.m. and drives the first 121 kilometers at an average speed of 84 kilometers per hour. He then stops for exactly 20 minutes. To the nearest hundredth, what average speed, in kilometers per hour, must he maintain for the rest of the drive to arrive exactly at 2:15 p.m.?",
+  "choices": [
+   "66.14",
+   "56.92",
+   "59.47",
+   "62.74"
+  ]
+ },
+ {
+  "id": "AM24I-09",
+  "topic_tag": "fuel economy by the fill-up method across several fill-ups",
+  "prompt": "Rosa tracks her car's fuel economy by the fill-up method: she fills the tank completely every time, so the gallons pumped at a fill-up equal the gasoline used since the previous fill-up. Her log is shown below.\n\nOdometer 41,286 miles: filled the tank with 10.5 gallons\nOdometer 41,615 miles: filled the tank with 9.8 gallons\nOdometer 41,980 miles: filled the tank with 12.1 gallons\nOdometer 42,298 miles: filled the tank with 9.4 gallons\n\nTo the nearest hundredth, what was the car's fuel economy, in miles per gallon, for the driving from odometer 41,286 to odometer 42,298?",
+  "choices": [
+   "31.23",
+   "32.33",
+   "31.62",
+   "32.52"
+  ]
+ },
+ {
+  "id": "AM24I-10",
+  "topic_tag": "total run time of a print job with a cooling pause after every block of pages",
+  "prompt": "A printer prints at a constant rate of 38 pages per minute. After every 250 pages it prints, it stops for a cooling pause of 1 minute 15 seconds and then continues; it does not pause once the job is finished. A job of 1,870 pages is started on this printer. To the nearest second, how many seconds does the printer take to finish the job, including the pauses?",
+  "choices": [
+   "3436",
+   "3478",
+   "3486",
+   "3514"
+  ]
+ }
+]

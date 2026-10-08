@@ -1,0 +1,549 @@
+[
+ {
+  "id": "AM24G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "law of sines ambiguous case (SSA)",
+  "subskill": "recognizing the two triangles of an SSA configuration and finding the gap between the two possible third sides",
+  "prompt": "In triangle ABC, AB = 10, BC = 7, and the measure of angle A is 37°. Exactly two noncongruent triangles satisfy these conditions. To the nearest hundredth, what is the positive difference between the two possible lengths of side AC ?",
+  "choices": [
+   "6.02",
+   "1.96",
+   "4.41",
+   "7.15"
+  ],
+  "correct_answer": "7.15",
+  "explanation": "Drop the altitude from B to line AC, meeting it at H. Then BH = 10 sin 37° ≈ 6.018 and AH = 10 cos 37° ≈ 7.986. Because BH < BC = 7 < AB, point C can sit on either side of H with HC = √(7² − BH²) ≈ √(49 − 36.22) ≈ 3.575. The two possible lengths are AH + HC ≈ 11.56 and AH − HC ≈ 4.41, so their difference is 2·HC ≈ 7.15. (Equivalently, the law of cosines gives AC² − 2(10 cos 37°)AC + (100 − 49) = 0, whose roots differ by the square root of the discriminant, ≈ 7.15.) The option \"4.41\" is the shorter possible length of AC, reported instead of the difference. The option \"6.02\" is BH, the altitude that decides whether the case is ambiguous. The option \"1.96\" finds HC by subtracting, HC = BC − BH = 7 − 6.018, instead of using the Pythagorean theorem, and doubles that.",
+  "solve": "const A=37*Math.PI/180;return (2*Math.sqrt(49-(10*Math.sin(A))**2)).toFixed(2);",
+  "distractor_solve": {
+   "4.41": "const A=37*Math.PI/180;return (10*Math.cos(A)-Math.sqrt(49-(10*Math.sin(A))**2)).toFixed(2);",
+   "6.02": "const A=37*Math.PI/180;return (10*Math.sin(A)).toFixed(2);",
+   "1.96": "const A=37*Math.PI/180;return (2*(7-10*Math.sin(A))).toFixed(2);"
+  },
+  "quantity_asked": "the positive difference between the two possible lengths of AC, 2√(7² − (10 sin 37°)²).",
+  "distractor_kind": {
+   "4.41": "shorter length reported. (a) no parameter extreme. (b) neighbouring setup: 'the shorter possible AC'; the feasible interval for the difference is (0, 14) since both lengths lie in (3, 17); 4.41 strictly inside. (c) cheapest estimate: each length in (10 - 7, 10 + 7), so the difference is in (0, 14); 4.41 strictly inside. (d) real: answering one of the two triangles.",
+   "6.02": "altitude BH reported. (a) no. (b) neighbouring setup: distance from B to line AC; strictly inside (0, 14). (c) inside. (d) real: confusing the deciding altitude with the gap.",
+   "1.96": "subtraction for Pythagoras: 2(BC - BH). (a) no. (b) no adjacent problem has it as an extreme. (c) inside (0, 14). (d) real: treating the hypotenuse minus a leg as the other leg."
+  },
+  "distractor_meta": {
+   "4.41": {
+    "direction": "under",
+    "error_kind": "one triangle only (shorter root)"
+   },
+   "6.02": {
+    "direction": "under",
+    "error_kind": "altitude reported"
+   },
+   "1.96": {
+    "direction": "under",
+    "error_kind": "subtraction instead of Pythagorean theorem"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 14"
+  ],
+  "mechanism": [
+   "ambiguous case SSA",
+   "two possible triangles law of sines",
+   "difference of two possible side lengths",
+   "altitude decides ambiguous case"
+  ],
+  "arith_class_check": "No. A length difference from an SSA configuration carries no integrality or divisibility; all four options are 2-dp decimals with nonzero last digit and the key is not the lone member of any class.",
+  "one_sided_check": "Key is the largest. Three error kinds (answering one triangle, reporting the deciding altitude, subtracting instead of using the Pythagorean theorem). Nothing in the stem says these undershoot: with the same two sides and angle A = 42 degrees the shorter length (5.38) and the altitude (6.69) both EXCEED the difference (4.11), so neither error is below the key in general; the only stem bound (difference < 14) is above every option.",
+  "interior_parity_check": "Interior options by value: 4.41 and 6.02 - both 2-dp decimals, three significant digits, nonzero last digit; neither is rounder."
+ },
+ {
+  "id": "AM24G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "square inscribed in a right triangle on the hypotenuse",
+  "subskill": "using the altitude to the hypotenuse and the similar triangle cut off above the square to find a square's side when the square rests on the hypotenuse",
+  "prompt": "Right triangle ABC has its right angle at C, with legs AC = 6 and BC = 11. A square is drawn inside the triangle so that one side of the square lies along hypotenuse AB, one of the other two vertices of the square lies on AC, and the remaining vertex lies on BC. To the nearest hundredth, what is the side length of the square?",
+  "choices": [
+   "3.88",
+   "4.93",
+   "3.56",
+   "3.71"
+  ],
+  "correct_answer": "3.71",
+  "explanation": "The hypotenuse is AB = √(6² + 11²) = √157 ≈ 12.530, and the altitude from C to AB is h = (6)(11)/√157 ≈ 5.267. The top side of the square is parallel to AB, so the small triangle between that side and C is similar to triangle ABC, with base s (the square's side) and height h − s. Then s/√157 = (h − s)/h, so s = √157·h/(√157 + h) = 66√157/(157 + 66) ≈ 3.71. The option \"3.88\" is the side of the square that sits in the right-angle corner with two sides along the legs, 6·11/(6 + 11) - a different inscribed square. The option \"3.56\" uses the leg BC = 11 in place of the hypotenuse in the similarity, s/11 = (h − s)/h. The option \"4.93\" takes the altitude to the hypotenuse to be √(6·11), the geometric mean of the legs, instead of 6·11/√157.",
+  "solve": "const c=Math.sqrt(157),h=66/c;return (c*h/(c+h)).toFixed(2);",
+  "distractor_solve": {
+   "3.88": "return (66/17).toFixed(2);",
+   "3.56": "const c=Math.sqrt(157),h=66/c;return (11*h/(11+h)).toFixed(2);",
+   "4.93": "const c=Math.sqrt(157),h=Math.sqrt(66);return (c*h/(c+h)).toFixed(2);"
+  },
+  "quantity_asked": "the side of the square on the hypotenuse, s = ch/(c + h) with c = √157, h = 66/√157.",
+  "distractor_kind": {
+   "3.88": "corner square. (a) no. (b) neighbouring setup: the other classic inscribed square (live sat a199b898 asks exactly this); is it an extreme of the feasible interval? The interval is (h/2, h) = (2.63, 5.27) since c > h; 3.88 strictly inside. (c) cheapest estimate: the square fits under the altitude, s < h = 5.27, and s = ch/(c+h) > h/2 = 2.63; strictly inside. (d) real: solving the more familiar configuration.",
+   "3.56": "leg for hypotenuse. (a) no. (b) no. (c) inside (2.63, 5.27). (d) real: wrong corresponding side in the similar triangles.",
+   "4.93": "geometric mean for the altitude. (a) no. (b) no. (c) 4.93 < 5.27 strictly. (d) real: confusing the altitude-on-hypotenuse geometric-mean relation (h² = product of the hypotenuse segments) with the product of the legs."
+  },
+  "distractor_meta": {
+   "3.88": {
+    "direction": "over",
+    "error_kind": "corner-square setup"
+   },
+   "3.56": {
+    "direction": "under",
+    "error_kind": "leg for hypotenuse in similarity"
+   },
+   "4.93": {
+    "direction": "over",
+    "error_kind": "wrong altitude (geometric mean of legs)"
+   }
+  },
+  "bounds": [
+   "v > 66/Math.sqrt(157)/2",
+   "v < 66/Math.sqrt(157)"
+  ],
+  "mechanism": [
+   "square inscribed in right triangle side on hypotenuse",
+   "altitude to hypotenuse similar triangles",
+   "square resting on hypotenuse",
+   "s = ch/(c+h)"
+  ],
+  "arith_class_check": "No. 66√157/223 carries no integrality; all options are 2-dp decimals with nonzero last digit.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 3.71 (key) and 3.88 - both 2-dp, three significant digits, nonzero last digit; neither rounder."
+ },
+ {
+  "id": "AM24G-03",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "circumradius from two sides and included angle",
+  "subskill": "using the law of cosines for the third side and the extended law of sines a/sin A = 2R for the circumradius",
+  "prompt": "In triangle ABC, AB = 9, AC = 11, and the measure of angle A is 64°. To the nearest hundredth, what is the radius of the circle that passes through points A, B, and C ?",
+  "choices": [
+   "9.45",
+   "6.12",
+   "5.97",
+   "12.24"
+  ],
+  "correct_answer": "5.97",
+  "explanation": "By the law of cosines, BC² = 9² + 11² − 2(9)(11)cos 64° ≈ 202 − 86.80 = 115.20, so BC ≈ 10.733. By the extended law of sines, BC/sin A = 2R, so R = 10.733/(2 sin 64°) ≈ 10.733/1.7976 ≈ 5.97. The option \"6.12\" pairs side AC = 11 with angle A, but AC is not opposite angle A. The option \"9.45\" uses + instead of − in the law of cosines (BC² ≈ 288.80). The option \"12.24\" divides by 2 cos 64° instead of 2 sin 64°.",
+  "solve": "const A=64*Math.PI/180,a=Math.sqrt(81+121-198*Math.cos(A));return (a/(2*Math.sin(A))).toFixed(2);",
+  "distractor_solve": {
+   "6.12": "const A=64*Math.PI/180;return (11/(2*Math.sin(A))).toFixed(2);",
+   "9.45": "const A=64*Math.PI/180,a=Math.sqrt(81+121+198*Math.cos(A));return (a/(2*Math.sin(A))).toFixed(2);",
+   "12.24": "const A=64*Math.PI/180,a=Math.sqrt(81+121-198*Math.cos(A));return (a/(2*Math.cos(A))).toFixed(2);"
+  },
+  "quantity_asked": "the circumradius R = BC/(2 sin 64°), BC from the law of cosines.",
+  "distractor_kind": {
+   "6.12": "wrong side opposite the angle. (a) no. (b) neighbouring setup: the circumradius if AC were opposite A; the feasible interval starts at 5.5; 6.12 strictly above. (c) cheapest bound: every side is a chord, so 2R >= 11, R >= 5.5; no cheap upper bound below 12.24 (R grows without limit as the triangle flattens is not available, but a one-step bound R <= (longest side)/(2 sin of its angle) is the item itself). 6.12 strictly inside [5.5, inf). (d) real: matching the wrong side to the angle in a/sin A = 2R.",
+   "9.45": "sign error in the law of cosines. (a) no. (b) no. (c) inside. (d) real: + 2bc cos A.",
+   "12.24": "cos for sin. (a) no. (b) no. (c) inside. (d) real: trig function slip."
+  },
+  "distractor_meta": {
+   "6.12": {
+    "direction": "over",
+    "error_kind": "wrong side-angle pairing"
+   },
+   "9.45": {
+    "direction": "over",
+    "error_kind": "law of cosines sign error"
+   },
+   "12.24": {
+    "direction": "over",
+    "error_kind": "cos for sin"
+   }
+  },
+  "bounds": [
+   "v >= 5.5"
+  ],
+  "mechanism": [
+   "circumradius",
+   "extended law of sines",
+   "circle through three vertices of a triangle",
+   "a over sin A equals 2R"
+  ],
+  "arith_class_check": "No. A circumradius from a 64° angle carries no integrality; all options are 2-dp decimals with nonzero last digit; the key is not the lone member of any class.",
+  "one_sided_check": "Key is the smallest. The three errors are of three kinds (wrong side-angle pairing, a sign slip, a trig-function slip); nothing in the stem says they push R up - a cos/sin swap would lower R for an angle under 45°, and the sign slip would lower it for an obtuse A. The only stem-forced bound, R >= 5.5, sits under every option.",
+  "interior_parity_check": "Interior options by value: 6.12 and 9.45 - both 2-dp, three significant digits, nonzero last digit; neither rounder."
+ },
+ {
+  "id": "AM24G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "cyclic quadrilateral diagonal",
+  "subskill": "applying the law of cosines in both triangles of a cyclic quadrilateral, using that opposite angles are supplementary so their cosines are opposites",
+  "prompt": "Quadrilateral ABCD is inscribed in a circle, with AB = 5, BC = 6, CD = 3, and DA = 9. To the nearest hundredth, what is the length of diagonal AC ?",
+  "choices": [
+   "8.73",
+   "9.49",
+   "7.81",
+   "8.31"
+  ],
+  "correct_answer": "8.73",
+  "explanation": "Let AC = x. In triangle ABC, x² = 25 + 36 − 60 cos B; in triangle ADC, x² = 81 + 9 − 54 cos D. Opposite angles of an inscribed quadrilateral are supplementary, so cos D = −cos B. Then cos B = (61 − x²)/60 and −cos B = (90 − x²)/54, so 54(61 − x²) = −60(90 − x²), giving 3294 + 5400 = 114x² and x² = 8694/114 ≈ 76.26. So AC ≈ 8.73. The option \"7.81\" treats angle B as a right angle (x² = 61). The option \"9.49\" treats angle D as a right angle (x² = 90). The option \"8.31\" applies Ptolemy's theorem AC·BD = AB·CD + BC·DA as if the two diagonals were equal: x² = 15 + 54 = 69.",
+  "solve": "const x=(27*61+30*90)/(30+27);return Math.sqrt(x).toFixed(2);",
+  "distractor_solve": {
+   "7.81": "return Math.sqrt(61).toFixed(2);",
+   "9.49": "return Math.sqrt(90).toFixed(2);",
+   "8.31": "return Math.sqrt(5*3+6*9).toFixed(2);"
+  },
+  "quantity_asked": "the length of diagonal AC, x with x² = 8694/114.",
+  "distractor_kind": {
+   "7.81": "angle B taken as right. (a) limiting case: B = 90° is not a stem bound; triangle inequality gives AC in (6, 11); 7.81 strictly inside. (b) neighbouring setup: AC if B were right; inside (6, 11). (c) cheapest estimate: AC in (max(6-5, 9-3), min(5+6, 3+9)) = (6, 11); strictly inside. (d) real: assuming a right angle at B.",
+   "9.49": "angle D taken as right. (a) no. (b) neighbouring: AC if D were right; inside (6, 11). (c) inside. (d) real.",
+   "8.31": "Ptolemy with equal diagonals. (a) no. (b) neighbouring: the diagonal of an isosceles-trapezoid-style quadrilateral; inside (6, 11). (c) inside. (d) real: misapplying Ptolemy by assuming AC = BD."
+  },
+  "distractor_meta": {
+   "7.81": {
+    "direction": "under",
+    "error_kind": "right angle assumed at B"
+   },
+   "9.49": {
+    "direction": "over",
+    "error_kind": "right angle assumed at D"
+   },
+   "8.31": {
+    "direction": "under",
+    "error_kind": "Ptolemy with equal diagonals"
+   }
+  },
+  "bounds": [
+   "v > 6",
+   "v < 11"
+  ],
+  "mechanism": [
+   "cyclic quadrilateral diagonal",
+   "opposite angles supplementary cosines opposite",
+   "law of cosines in two triangles",
+   "quadrilateral inscribed in a circle side lengths"
+  ],
+  "arith_class_check": "No. A diagonal from x² = 8694/114 carries no integrality; all options are square roots of non-squares shown as 2-dp decimals with nonzero last digit.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 8.31 and 8.73 (key) - both 2-dp, three significant digits, nonzero last digit; equally clean."
+ },
+ {
+  "id": "AM24G-05",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "angle between two lines",
+  "subskill": "finding the acute angle between two lines from their slopes with tan θ = |(m1 − m2)/(1 + m1m2)|",
+  "prompt": "In the standard (x,y) coordinate plane, the lines 2x − y = −1 and x + 3y = 12 intersect. To the nearest tenth of a degree, what is the measure of the acute angle formed by the two lines?",
+  "choices": [
+   "63.4",
+   "81.9",
+   "54.5",
+   "66.8"
+  ],
+  "correct_answer": "81.9",
+  "explanation": "The slopes are m1 = 2 (from y = 2x + 1) and m2 = −1/3 (from y = −x/3 + 4). The acute angle θ between the lines satisfies tan θ = |(m1 − m2)/(1 + m1m2)| = |(7/3)/(1/3)| = 7, so θ = tan⁻¹ 7 ≈ 81.9°. (Equivalently, the lines make angles of about 63.43° and 161.57° with the positive x-axis; they differ by 98.13°, whose acute supplement is 81.87°.) The option \"54.5\" uses 1 − m1m2 in the denominator: tan θ = (7/3)/(5/3) = 1.4. The option \"66.8\" drops the denominator: tan θ = 7/3. The option \"63.4\" is the angle the first line alone makes with the x-axis, tan⁻¹ 2.",
+  "solve": "const m1=2,m2=-1/3;return (Math.atan(Math.abs((m1-m2)/(1+m1*m2)))*180/Math.PI).toFixed(1);",
+  "distractor_solve": {
+   "54.5": "const m1=2,m2=-1/3;return (Math.atan(Math.abs((m1-m2)/(1-m1*m2)))*180/Math.PI).toFixed(1);",
+   "66.8": "const m1=2,m2=-1/3;return (Math.atan(Math.abs(m1-m2))*180/Math.PI).toFixed(1);",
+   "63.4": "return (Math.atan(2)*180/Math.PI).toFixed(1);"
+  },
+  "quantity_asked": "the acute angle between the lines, tan⁻¹ 7 in degrees.",
+  "distractor_kind": {
+   "54.5": "sign error in the denominator. (a) no. (b) no. (c) stem bound: acute, so (0, 90); strictly inside. (d) real.",
+   "66.8": "dropped denominator. (a) no. (b) no. (c) inside (0, 90). (d) real: using tan θ = m1 − m2.",
+   "63.4": "one line's inclination. (a) no. (b) neighbouring setup: the angle of the first line with the x-axis; inside (0, 90). (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "54.5": {
+    "direction": "under",
+    "error_kind": "formula sign error"
+   },
+   "66.8": {
+    "direction": "under",
+    "error_kind": "dropped denominator"
+   },
+   "63.4": {
+    "direction": "under",
+    "error_kind": "single line inclination"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 90"
+  ],
+  "mechanism": [
+   "angle between two lines",
+   "tangent of angle between lines from slopes",
+   "acute angle formed by two lines",
+   "inclination angle of a line"
+  ],
+  "arith_class_check": "No. An inverse tangent in degrees carries no integrality; all options are 1-dp decimals with nonzero last digit, and no two sum to 90 or 180.",
+  "one_sided_check": "Key is the largest. The errors are of three kinds (a sign slip in the formula, a dropped denominator, reporting one line's inclination). Nothing in the stem says they lower the angle: the only stem bound is 'acute', which caps every option at 90 equally, and with other slopes the same slips raise the angle (e.g. slopes 1/2 and 3: (5/2)/(5/2) vs (5/2)/(-1/2)).",
+  "interior_parity_check": "Interior options by value: 63.4 and 66.8 - both 1-dp decimals, three significant digits, nonzero last digit; neither rounder."
+ },
+ {
+  "id": "AM24G-06",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "cylinder inscribed in a cone",
+  "subskill": "using similar triangles in the axial cross-section of a cone to find the height of an inscribed cylinder, then its volume",
+  "prompt": "A right circular cone has a base radius of 5 centimeters and a height of 12 centimeters. A right circular cylinder with a radius of 2 centimeters stands inside the cone: its bottom base lies on the base of the cone, its axis lies along the axis of the cone, and the circular edge of its top base touches the curved surface of the cone. To the nearest hundredth of a cubic centimeter, what is the volume of the cylinder?",
+  "choices": [
+   "125.66",
+   "60.32",
+   "90.48",
+   "98.02"
+  ],
+  "correct_answer": "90.48",
+  "explanation": "In the axial cross-section, the part of the cone above the cylinder is a smaller cone similar to the whole cone, with radius 2 and height 12 − h. So (12 − h)/12 = 2/5, giving 12 − h = 4.8 and h = 7.2 centimeters. The volume is π(2²)(7.2) = 28.8π ≈ 90.48 cubic centimeters. The option \"60.32\" sets h/12 = 2/5, matching the cylinder's height (not the small cone's) to the radius 2, so h = 4.8. The option \"98.02\" uses the slant height 13 in place of the height 12, so h = 13(3/5) = 7.8. The option \"125.66\" subtracts the radius from the height, h = 12 − 2 = 10, as if the cone's side dropped one unit per unit outward.",
+  "solve": "const h=12*(1-2/5);return (Math.PI*4*h).toFixed(2);",
+  "distractor_solve": {
+   "60.32": "const h=12*2/5;return (Math.PI*4*h).toFixed(2);",
+   "98.02": "const h=13*(1-2/5);return (Math.PI*4*h).toFixed(2);",
+   "125.66": "const h=12-2;return (Math.PI*4*h).toFixed(2);"
+  },
+  "quantity_asked": "the volume of the cylinder, π·2²·h with h = 12(1 − 2/5).",
+  "distractor_kind": {
+   "60.32": "similar-triangle correspondence error. (a) no. (b) neighbouring setup: 4.8 is the small cone's height, so this is the volume of a cylinder of that height; inside the interval below. (c) cheapest estimate: the cylinder is shorter than the cone, so v < π·4·12 ≈ 150.80; v > 0. 60.32 strictly inside. (d) real.",
+   "98.02": "slant for height. (a) no. (b) no. (c) inside (0, 150.80). (d) real: 5-12-13 slant height used as height.",
+   "125.66": "linear subtraction. (a) no. (b) no. (c) 125.66 < 150.80 strictly. (d) real: assuming slope 1 for the cone's side."
+  },
+  "distractor_meta": {
+   "60.32": {
+    "direction": "under",
+    "error_kind": "wrong similar-triangle correspondence"
+   },
+   "98.02": {
+    "direction": "over",
+    "error_kind": "slant height for height"
+   },
+   "125.66": {
+    "direction": "over",
+    "error_kind": "subtracted radius from height"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 150.80"
+  ],
+  "mechanism": [
+   "cylinder inscribed in a cone",
+   "similar triangles axial cross-section",
+   "inscribed cylinder height from cone dimensions",
+   "volume of inscribed cylinder"
+  ],
+  "arith_class_check": "No. A volume 28.8π carries no integrality; all options are 2-dp decimals with nonzero last digit.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 90.48 (key) and 98.02 - both 2-dp, four significant digits, nonzero last digit; equally clean."
+ },
+ {
+  "id": "AM24G-07",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "greatest distance between points on two circles",
+  "subskill": "completing the square to find each circle's center and radius, then adding both radii to the distance between the centers",
+  "prompt": "In the standard (x,y) coordinate plane, the circles x² + y² − 6x + 2y − 11 = 0 and x² + y² + 8x − 10y + 34 = 0 do not intersect, and neither lies inside the other. To the nearest hundredth of a coordinate unit, what is the greatest possible distance between a point on the first circle and a point on the second circle?",
+  "choices": [
+   "11.35",
+   "22.46",
+   "16.45",
+   "1.99"
+  ],
+  "correct_answer": "16.45",
+  "explanation": "Completing the square, the first circle is (x − 3)² + (y + 1)² = 11 + 9 + 1 = 21, with center (3, −1) and radius √21 ≈ 4.583; the second is (x + 4)² + (y − 5)² = −34 + 16 + 25 = 7, with center (−4, 5) and radius √7 ≈ 2.646. The centers are √(7² + 6²) = √85 ≈ 9.220 apart. The farthest pair of points lies on the line through the centers, on the far side of each circle, so the greatest distance is √85 + √21 + √7 ≈ 16.45. The option \"1.99\" is the least distance, √85 − √21 − √7. The option \"11.35\" takes the first center as (−3, 1), with the signs reversed, so the centers seem √17 apart. The option \"22.46\" moves the constant 34 to the right side without changing its sign, giving the second radius as √75.",
+  "solve": "return (Math.sqrt(85)+Math.sqrt(21)+Math.sqrt(7)).toFixed(2);",
+  "distractor_solve": {
+   "1.99": "return (Math.sqrt(85)-Math.sqrt(21)-Math.sqrt(7)).toFixed(2);",
+   "11.35": "return (Math.sqrt(17)+Math.sqrt(21)+Math.sqrt(7)).toFixed(2);",
+   "22.46": "return (Math.sqrt(85)+Math.sqrt(21)+Math.sqrt(75)).toFixed(2);"
+  },
+  "quantity_asked": "the greatest distance between the circles, √85 + √21 + √7.",
+  "distractor_kind": {
+   "1.99": "least distance. (a) no. (b) neighbouring setup: the closest-points distance; not on any bound of the greatest distance. (c) cheapest estimate: the greatest distance exceeds the distance between centers; with centers read off the equations, d is about 9.2, so v > 9.2 kills 1.99 only after the center distance is found - the item's own first step. (d) real: answering the least distance.",
+   "11.35": "center sign error. (a) no. (b) no. (c) inside (9.2, inf) only via the item's own work; 11.35 > 9.22. (d) real: reading (x - 3) as center -3.",
+   "22.46": "constant sign error. (a) no. (b) no. (c) inside. (d) real: sign slip when moving the constant."
+  },
+  "distractor_meta": {
+   "1.99": {
+    "direction": "under",
+    "error_kind": "least instead of greatest distance"
+   },
+   "11.35": {
+    "direction": "under",
+    "error_kind": "center sign error"
+   },
+   "22.46": {
+    "direction": "over",
+    "error_kind": "radius from constant sign error"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "greatest distance between two circles",
+   "completing the square circle center radius",
+   "distance between centers plus both radii",
+   "farthest points on two circles"
+  ],
+  "arith_class_check": "No. A sum of three irrational square roots carries no integrality; all options are 2-dp decimals with nonzero last digit and no two share a fractional part.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 11.35 and 16.45 (key) - both 2-dp, four significant digits, nonzero last digit; neither rounder."
+ },
+ {
+  "id": "AM24G-08",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "distance between parallel lines",
+  "subskill": "rescaling two parallel line equations to a common normal before applying the distance formula, then halving for a circle tangent to both",
+  "prompt": "In the standard (x,y) coordinate plane, a circle is tangent to both of the parallel lines 5x − 12y = 8 and 10x − 24y = 75. To the nearest hundredth of a coordinate unit, what is the radius of the circle?",
+  "choices": [
+   "1.75",
+   "2.27",
+   "1.29",
+   "1.13"
+  ],
+  "correct_answer": "1.13",
+  "explanation": "A circle tangent to two parallel lines has diameter equal to the distance between them. Rewrite the first line as 10x − 24y = 16 so both have the same coefficients. The distance is |75 − 16|/√(10² + 24²) = 59/26 ≈ 2.269, so the radius is 59/52 ≈ 1.13. The option \"1.29\" uses the constants 8 and 75 as given without rescaling the first equation: |75 − 8|/26/2 = 67/52. The option \"1.75\" adds the constants instead of subtracting them: (75 + 16)/26/2 = 91/52. The option \"2.27\" is the distance between the lines, the diameter, not halved.",
+  "solve": "return (Math.abs(16-75)/26/2).toFixed(2);",
+  "distractor_solve": {
+   "1.29": "return (Math.abs(8-75)/26/2).toFixed(2);",
+   "1.75": "return (Math.abs(16+75)/26/2).toFixed(2);",
+   "2.27": "return (Math.abs(16-75)/26).toFixed(2);"
+  },
+  "quantity_asked": "the radius, half the distance between the lines: (59/26)/2.",
+  "distractor_kind": {
+   "1.29": "constants not rescaled. (a) no. (b) no. (c) no stem bound narrower than v > 0; inside. (d) real: comparing constants of non-matching equations.",
+   "1.75": "sign slip on the constants. (a) no. (b) no. (c) inside. (d) real: treating the lines as on opposite sides of the origin.",
+   "2.27": "diameter reported. (a) no. (b) neighbouring setup: the distance between the lines, an intermediate; not on any stem bound. (c) inside. (d) real: forgetting to halve."
+  },
+  "distractor_meta": {
+   "1.29": {
+    "direction": "over",
+    "error_kind": "equation not rescaled"
+   },
+   "1.75": {
+    "direction": "over",
+    "error_kind": "sign error on constants"
+   },
+   "2.27": {
+    "direction": "over",
+    "error_kind": "forgot to halve (diameter)"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "distance between parallel lines",
+   "rescale line equations common coefficients",
+   "circle tangent to two parallel lines",
+   "radius half the distance between lines"
+  ],
+  "arith_class_check": "No. 59/52 carries no integrality the stem implies; all options are 2-dp decimals with nonzero last digit; the key is not the lone member of any class.",
+  "one_sided_check": "Key is the smallest. Three error kinds (no rescaling, a sign slip, not halving). The stem does not reveal that these push up: no rescaling lowers the distance whenever the second constant is smaller than twice the first (e.g. 75 -> 9), and a sign slip lowers it when the constants have opposite signs.",
+  "interior_parity_check": "Key is the smallest, so not interior. Interior options 1.29 and 1.75 - both 2-dp, three significant digits, nonzero last digit."
+ },
+ {
+  "id": "AM24G-09",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "inradius of an isosceles triangle",
+  "subskill": "finding the height of an isosceles triangle with the Pythagorean theorem, then the inradius r = (area)/(semiperimeter)",
+  "prompt": "An isosceles triangle has two sides of length 11 inches and a base of length 8 inches. To the nearest hundredth of an inch, what is the radius of the circle inscribed in the triangle?",
+  "choices": [
+   "1.62",
+   "2.01",
+   "2.73",
+   "1.37"
+  ],
+  "correct_answer": "2.73",
+  "explanation": "The altitude to the base bisects it, so the height is √(11² − 4²) = √105 ≈ 10.247 inches and the area is (1/2)(8)(10.247) ≈ 40.99 square inches. The semiperimeter is (11 + 11 + 8)/2 = 15, and the inradius is area/semiperimeter ≈ 40.99/15 ≈ 2.73 inches. The option \"1.37\" divides the area by the whole perimeter 30. The option \"1.62\" applies the right-triangle inradius formula (a + b − c)/2 to half of the triangle (legs 4 and √105, hypotenuse 11), which gives the circle inscribed in the half-triangle, not in the whole triangle. The option \"2.01\" finds the height as √(11² − 8²) = √57, using the whole base instead of half.",
+  "solve": "const h=Math.sqrt(121-16),K=8*h/2;return (K/15).toFixed(2);",
+  "distractor_solve": {
+   "1.37": "const h=Math.sqrt(121-16),K=8*h/2;return (K/30).toFixed(2);",
+   "1.62": "const h=Math.sqrt(121-16);return ((4+h-11)/2).toFixed(2);",
+   "2.01": "const h=Math.sqrt(121-64),K=8*h/2;return (K/15).toFixed(2);"
+  },
+  "quantity_asked": "the inradius, (area)/(semiperimeter) = 4√105/15.",
+  "distractor_kind": {
+   "1.37": "area over perimeter. (a) no. (b) no. (c) cheapest bound: the inscribed circle fits across the base, 2r < 8, and 2r < height < 11, so v in (0, 4); strictly inside. (d) real: perimeter for semiperimeter.",
+   "1.62": "half-triangle inradius. (a) no. (b) neighbouring setup: inradius of the right half-triangle; inside (0, 4). (c) inside. (d) real.",
+   "2.01": "whole base in the Pythagorean step. (a) no. (b) no. (c) inside. (d) real: forgetting the altitude bisects the base."
+  },
+  "distractor_meta": {
+   "1.37": {
+    "direction": "under",
+    "error_kind": "perimeter for semiperimeter"
+   },
+   "1.62": {
+    "direction": "under",
+    "error_kind": "inradius of half-triangle"
+   },
+   "2.01": {
+    "direction": "under",
+    "error_kind": "whole base in height"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 4"
+  ],
+  "mechanism": [
+   "inradius of a triangle",
+   "circle inscribed in an isosceles triangle",
+   "area divided by semiperimeter",
+   "height of isosceles triangle"
+  ],
+  "arith_class_check": "No. 4√105/15 carries no integrality; all options are 2-dp decimals with nonzero last digit.",
+  "one_sided_check": "Key is the largest. Three error kinds (perimeter for semiperimeter, a different inscribed circle, a wrong height). The stem gives no reason all slips shrink r: using the whole base in the height step would raise r if the stem fixed area another way, and the half-triangle's circle is not readably smaller without computing it; the only stem bound (r < 4) sits above every option.",
+  "interior_parity_check": "Interior options by value: 1.62 and 2.01 - both 2-dp, three significant digits, nonzero last digit; neither rounder."
+ },
+ {
+  "id": "AM24G-10",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "cube inscribed in a hemisphere",
+  "subskill": "locating a top vertex of a cube whose base is centered on a hemisphere's flat face, and solving (s/√2)² + s² = r² for the edge",
+  "prompt": "A cube sits inside a solid hemisphere of radius 6 centimeters. One face of the cube lies on the flat circular face of the hemisphere, with its center at the center of that circular face, and the 4 vertices of the opposite face of the cube lie on the curved surface of the hemisphere. To the nearest hundredth of a cubic centimeter, what is the volume of the cube?",
+  "choices": [
+   "154.56",
+   "117.58",
+   "41.57",
+   "76.37"
+  ],
+  "correct_answer": "117.58",
+  "explanation": "Let the edge be s. A top vertex is s above the flat face and horizontally s/√2 (half a face diagonal) from the center, and it lies on the sphere of radius 6: (s/√2)² + s² = 36, so 1.5s² = 36, s² = 24, s = √24 ≈ 4.899. The volume is s³ = 24√24 ≈ 117.58 cubic centimeters. The option \"41.57\" uses the whole face diagonal s√2 for the horizontal distance (3s² = 36). The option \"76.37\" uses the edge s for the horizontal distance (2s² = 36). The option \"154.56\" works in the cross-section through the centers of two opposite side faces, using horizontal distance s/2 (1.25s² = 36), which puts the midpoint of a top edge, not a vertex, on the sphere.",
+  "solve": "const s=Math.sqrt(36/1.5);return (s**3).toFixed(2);",
+  "distractor_solve": {
+   "41.57": "const s=Math.sqrt(36/3);return (s**3).toFixed(2);",
+   "76.37": "const s=Math.sqrt(36/2);return (s**3).toFixed(2);",
+   "154.56": "const s=Math.sqrt(36/1.25);return (s**3).toFixed(2);"
+  },
+  "quantity_asked": "the cube's volume s³ with 1.5s² = 36.",
+  "distractor_kind": {
+   "41.57": "full face diagonal. (a) no. (b) no. (c) cheapest bound: the cube's height is below the radius, s < 6, so v < 216; strictly inside (0, 216). (d) real.",
+   "76.37": "edge for horizontal offset. (a) no. (b) no. (c) inside. (d) real: using s as the vertex's distance from the axis.",
+   "154.56": "edge-midpoint cross-section. (a) no. (b) neighbouring setup: the cube whose top edge midpoints touch; 154.56 < 216 strictly. (c) inside. (d) real: 2D cross-section through the wrong plane."
+  },
+  "distractor_meta": {
+   "41.57": {
+    "direction": "under",
+    "error_kind": "full diagonal for half-diagonal"
+   },
+   "76.37": {
+    "direction": "under",
+    "error_kind": "edge for half-diagonal"
+   },
+   "154.56": {
+    "direction": "over",
+    "error_kind": "wrong cross-section plane"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 216"
+  ],
+  "mechanism": [
+   "cube inscribed in a hemisphere",
+   "vertices on curved surface of hemisphere",
+   "half face diagonal Pythagorean in 3D",
+   "volume of inscribed cube"
+  ],
+  "arith_class_check": "No. 24√24 carries no integrality; all options are 2-dp decimals with nonzero last digit.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 76.37 and 117.58 (key) - both 2-dp, nonzero last digit, four vs five significant digits (complexity differs by 1); the key is not the cleaner of the two."
+ }
+]
