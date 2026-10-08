@@ -1,0 +1,885 @@
+[
+ {
+  "id": "SM27F-A01",
+  "domain": "Algebra",
+  "subskill": "Parameter fixed by the gap between solution and constant",
+  "difficulty": "medium",
+  "prompt": "4(x - k) = x + 13\n\nFor a certain constant k, the equation above has a solution that is exactly 2 more than k. Using that solution x, find x + k.",
+  "choices": [
+   "-12",
+   "-7",
+   "9",
+   "40"
+  ],
+  "correct_answer": "-12",
+  "explanation": "Because the solution x is 2 more than k, x - k = 2. So the left side of the equation is 4(x - k) = 4(2) = 8.\nThe equation becomes 8 = x + 13, so x = -5.\nThen k = x - 2 = -7, and x + k = -5 + (-7) = -12.\n\nChoice -7 is the value of k alone, not x + k.\nChoice 9 comes from distributing incorrectly, writing 4(x - k) as 4x - k: with x = k + 2 this gives 3k + 8 = k + 15, so k = 3.5, x = 5.5, and x + k = 9.\nChoice 40 comes from a sign error when isolating x: 8 = x + 13 rewritten as x = 8 + 13 = 21, so k = 19 and x + k = 40.",
+  "solve": "const a=4,c=13,d=2; const x=a*d-c; const k=x-d; return x+k;",
+  "distractor_solve": {
+   "9": "const a=4,c=13,d=2; const k=(d+c-a*d)/(a-2); return 2*k+d;",
+   "40": "const a=4,c=13,d=2; const x=a*d+c; const k=x-d; return x+k;",
+   "-7": "const a=4,c=13,d=2; const x=a*d-c; return x-d;"
+  },
+  "mechanism": [
+   "substitute the stated gap x - k into the grouped side",
+   "solve the reduced one-step equation",
+   "recover the constant and combine"
+  ],
+  "quantity_asked": "x + k, the sum of the solution and the constant",
+  "distractor_meta": {
+   "9": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Mis-distributing changes the coefficient on k; whether that raises or lowers x + k depends on the constants, not on anything readable from the ask."
+   },
+   "40": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the 13 can push x either way depending on which side it is moved to; the same slip on the stated gap (next field) lands far below."
+   },
+   "-7": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "k alone versus x + k: k exceeds x + k only when x is negative, which the stem does not reveal before solving."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const a=4,c=13,d=2; const x=-a*d-c; const k=x+d; return x+k;",
+   "direction": "below",
+   "why": "Reading 'the solution is 2 more than k' backwards as k = x + 2 makes 4(x - k) = -8, so x = -21, k = -19 and x + k = -40, below every option."
+  },
+  "cheap_bound_check": "No one-sided bound is readable from the stem: x + k = 2x - 2 has no sign or size constraint until the equation is solved (x = -5). No distractor sits on a stem-readable side of the key.",
+  "interior_parity_check": "Key is the smallest option. Interior -7 and 9 are both one-digit integers; neither is cleaner.",
+  "arith_class_check": "No: two negatives (-12, -7) and two positives; two even (-12, 40) and two odd; multiples of 4 are -12 and 40, multiples of 3 are -12 and 9. The stem implies no class.",
+  "dup_search": {
+   "queries": [
+    "solution&(greater|more|less) than k",
+    "solution is (\\d+ )?(greater|more|less) than",
+    "x \\+ k|k \\+ x&constant",
+    "solution&than the constant|than k"
+   ],
+   "hits_read": 21,
+   "nearest": "d78409d6 / SM23L-B7 (2(x - k) = x + k - 10, counts values of k making the solution a positive integer above k): an inequality-and-count chain, not a stated gap substituted into a grouped side to recover x and k."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Covering the work, a student cannot tell which way the errors go: the errors on the 13 and on the stated gap move x + k in opposite directions (40 versus -40), and k alone sits above the key only because x happens to be negative. The options are sums, so they cannot be substituted back without first splitting each into x and k, which is the problem itself."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A02",
+  "domain": "Algebra",
+  "subskill": "No-solution parameter reused in a second equation",
+  "difficulty": "medium",
+  "prompt": "k(2x - 3) + 2x = 14x + 7\nk(2x - 3) + 2x = 17x - 33\n\nThe number k is chosen so that no value of x satisfies the first equation. Using that same number k, let x be the number that satisfies the second equation. Find x + k.",
+  "choices": [
+   "11",
+   "16",
+   "19",
+   "23"
+  ],
+  "correct_answer": "11",
+  "explanation": "Expand the first equation: 2kx - 3k + 2x = 14x + 7, so (2k + 2)x - 3k = 14x + 7. A linear equation has no solution when the x-coefficients on the two sides are equal but the constants are not. So 2k + 2 = 14, which gives k = 6 (and then -3k = -18, which is not 7, as required).\nWith k = 6, the second equation is 6(2x - 3) + 2x = 17x - 33, so 14x - 18 = 17x - 33. Then 15 = 3x, so x = 5.\nTherefore x + k = 5 + 6 = 11.\n\nChoice 19 comes from leaving out the + 2x when finding k (2k = 14, so k = 7), which gives 16x - 21 = 17x - 33, x = 12, and x + k = 19.\nChoice 16 comes from multiplying only the 2x by k, writing 12x - 3 + 2x = 17x - 33, which gives x = 10 and x + k = 16.\nChoice 23 comes from a sign error when moving the - 18 across in 14x - 18 = 17x - 33: writing -3x = -33 - 18 = -51 gives x = 17 and x + k = 23.",
+  "solve": "const p=2,q=3,r=2,s=14,u=17,w=-33; const k=(s-r)/p; const x=(w+k*q)/(k*p+r-u); return x+k;",
+  "distractor_solve": {
+   "16": "const p=2,q=3,r=2,s=14,u=17,w=-33; const k=(s-r)/p; const x=(w+q)/(k*p+r-u); return x+k;",
+   "19": "const p=2,q=3,r=2,s=14,u=17,w=-33; const k=s/p; const x=(w+k*q)/(k*p+r-u); return x+k;",
+   "23": "const p=2,q=3,r=2,s=14,u=17,w=-33; const k=(s-r)/p; const x=(w-k*q)/(k*p+r-u); return x+k;"
+  },
+  "mechanism": [
+   "no solution: equate x-coefficients to find the constant",
+   "substitute the constant into a second equation",
+   "solve and combine the solution with the constant"
+  ],
+  "quantity_asked": "x + k, where x solves the second equation",
+  "distractor_meta": {
+   "16": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Distributing k to only one term changes the constant term by 3k - 3; whether that raises or lowers x depends on the sign of the remaining coefficient, which is negative here and not visible before expanding."
+   },
+   "19": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the + 2x changes k, and a changed k changes both the coefficient and the constant of the second equation; the net move of x + k depends on the numbers, not on the wording."
+   },
+   "23": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the -18 moves x by 2(18)/3; with a negative net coefficient the slip raises x, but with the sign of k's error (counter_error) the result falls far below."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const p=2,q=3,r=2,s=14,u=17,w=-33; const k=(s+r)/p; const x=(w+k*q)/(k*p+r-u); return x+k;",
+   "direction": "below",
+   "why": "Moving the 2 across with the wrong sign (2k = 14 + 2, so k = 8) gives 18x - 24 = 17x - 33, x = -9, and x + k = -1, below every option."
+  },
+  "cheap_bound_check": "No one-sided bound is readable: x + k needs k from the coefficient condition and then x from the second equation, whose solution can be negative (the k = 8 slip gives x = -9). The sign-slip-on-k path lands below the key; the other three paths land above.",
+  "interior_parity_check": "Key is the smallest option. Interior 16 and 19 are both two-digit integers; neither is cleaner.",
+  "arith_class_check": "No: 11, 19 and 23 are odd and 16 is even; no multiples of 3 or 5; the stem implies no class that isolates 11.",
+  "dup_search": {
+   "queries": [
+    "no solution&value of a",
+    "no solution&k",
+    "no solution&what is the (value of )?(solution|x)",
+    "no solution&(this|that|same) value of",
+    "no solution&x \\+ k|k \\+ x"
+   ],
+   "hits_read": 50,
+   "nearest": "5222b188 / AL-H-01 (single equation with no solution, find k): those stop at k. Here k is only the first step; it is reused in a second equation whose solution is combined with k. No live item reuses a no-solution constant in a second one-variable equation."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: the sign slip on k pushes x + k down to -1 while the omission and distribution slips push it up, because the second equation's net coefficient changes sign between them. The options are sums of two unknowns, so none can be substituted back. Medium risk only because three of the four authored paths sit above the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A03",
+  "domain": "Algebra",
+  "subskill": "Fraction equation from a stated difference of expressions",
+  "difficulty": "medium",
+  "prompt": "For a certain value of x, the value of (3x - 3)/5 is 4 more than the value of (x - 2)/2. For this value of x, what is the value of (x - 2)/2?",
+  "choices": [
+   "-23",
+   "-1",
+   "17",
+   "36"
+  ],
+  "correct_answer": "17",
+  "explanation": "\"(3x - 3)/5 is 4 more than (x - 2)/2\" means (3x - 3)/5 = (x - 2)/2 + 4.\nMultiply every term by 10: 2(3x - 3) = 5(x - 2) + 40, so 6x - 6 = 5x - 10 + 40 = 5x + 30.\nThen x = 36, and (x - 2)/2 = 34/2 = 17.\n(Check: (3(36) - 3)/5 = 105/5 = 21, which is 4 more than 17.)\n\nChoice 36 is the value of x, not the value of (x - 2)/2.\nChoice -1 comes from multiplying the fractions by 10 but not the 4: 6x - 6 = 5x - 10 + 4 gives x = 0, and (0 - 2)/2 = -1.\nChoice -23 comes from reversing the relationship, writing (3x - 3)/5 + 4 = (x - 2)/2: then 6x - 6 + 40 = 5x - 10, so x = -44 and (x - 2)/2 = -23.",
+  "solve": "const p=3,q=-3,m=5,r=-2,n=2,d=4; const L=10; const x=((L/n)*r+L*d-(L/m)*q)/((L/m)*p-(L/n)); return (x+r)/n;",
+  "distractor_solve": {
+   "36": "const p=3,q=-3,m=5,r=-2,n=2,d=4; const L=10; return ((L/n)*r+L*d-(L/m)*q)/((L/m)*p-(L/n));",
+   "-1": "const p=3,q=-3,m=5,r=-2,n=2,d=4; const L=10; const x=((L/n)*r+d-(L/m)*q)/((L/m)*p-(L/n)); return (x+r)/n;",
+   "-23": "const p=3,q=-3,m=5,r=-2,n=2,d=4; const L=10; const x=((L/n)*r-L*d-(L/m)*q)/((L/m)*p-(L/n)); return (x+r)/n;"
+  },
+  "mechanism": [
+   "translate 'is d more than' between two fractional expressions",
+   "clear denominators and solve",
+   "evaluate one expression at the solution"
+  ],
+  "quantity_asked": "the value of (x - 2)/2 at the solution",
+  "distractor_meta": {
+   "36": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "x itself versus (x - 2)/2: x is larger only when x > -2, which is not known before solving."
+   },
+   "-1": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Not scaling the 4 by the common denominator shrinks the added constant; whether that raises or lowers the result depends on the sign of the net x-coefficient, not on the wording."
+   },
+   "-23": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Putting the 4 on the wrong side reverses which expression is larger; with a different coefficient balance the same reversal would raise the answer."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values -1 and 17 are integers of one and two digits (gap 1); -1 is not the key.",
+  "arith_class_check": "No: -23, -1 and 17 are odd and 36 is even; two negatives and two positives; no multiples of 5; the key is in no singleton class.",
+  "dup_search": {
+   "queries": [
+    "\\)/\\d&(more|less|greater) than",
+    "value of the expression&(more|less|greater|twice)",
+    "\\(x [+-] \\d+\\)/\\d+ [+-] \\(x [+-] \\d+\\)/\\d+&value of",
+    "x/\\d+ [+-] \\(x|\\)/\\d+ - \\(&what is the value of"
+   ],
+   "hits_read": 5,
+   "nearest": "114a24d3 (an equation already written with fractions, then evaluate 4 - 3x): here the equation must first be built from a verbal 'is 4 more than' comparison, whose reversal is the main trap, and the ask is one of the two compared expressions."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student can test an option V by setting x = 2V + 2 and checking that (3x - 3)/5 = V + 4; that is a substitution with an inversion, about as long as solving. The errors split: x alone lies above, the reversal and the unscaled 4 below."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A04",
+  "domain": "Algebra",
+  "subskill": "One-variable equation from a wire split into two shapes",
+  "difficulty": "medium",
+  "prompt": "A wire 160 centimeters long is cut into two pieces, and all of the wire is used. One piece is bent to form a square, and the other piece is bent to form a regular hexagon. Each side of the hexagon is 5 centimeters longer than each side of the square. How many centimeters longer is the piece used for the hexagon than the piece used for the square?",
+  "choices": [
+   "8",
+   "56",
+   "68",
+   "108"
+  ],
+  "correct_answer": "56",
+  "explanation": "Let s be the side length of the square, in centimeters. Then each side of the hexagon is s + 5.\nThe square uses 4s centimeters of wire and the hexagon uses 6(s + 5) centimeters, so 4s + 6(s + 5) = 160.\nThis gives 10s + 30 = 160, so 10s = 130 and s = 13.\nThe square piece is 4(13) = 52 centimeters and the hexagon piece is 6(18) = 108 centimeters.\nThe hexagon piece is 108 - 52 = 56 centimeters longer.\n\nChoice 108 is the length of the hexagon piece itself, not how much longer it is.\nChoice 68 comes from a sign error in 10s + 30 = 160, writing 10s = 190: then s = 19, the pieces are 76 and 144, and the difference is 68.\nChoice 8 comes from adding the 5 centimeters to the square's side instead of the hexagon's: 4(s + 5) + 6s = 160 gives s = 14 for the hexagon and 19 for the square, so the pieces are 84 and 76, a difference of 8.",
+  "solve": "const L=160,d=5,a=4,b=6; const s=(L-b*d)/(a+b); return b*(s+d)-a*s;",
+  "distractor_solve": {
+   "8": "const L=160,d=5,a=4,b=6; const h=(L-a*d)/(a+b); return b*h-a*(h+d);",
+   "68": "const L=160,d=5,a=4,b=6; const s=(L+b*d)/(a+b); return b*(s+d)-a*s;",
+   "108": "const L=160,d=5,a=4,b=6; const s=(L-b*d)/(a+b); return b*(s+d);"
+  },
+  "mechanism": [
+   "write total length as perimeter sum with a side offset",
+   "solve the one-variable equation for the side",
+   "build both piece lengths and subtract"
+  ],
+  "quantity_asked": "how much longer the hexagon piece is than the square piece, in centimeters",
+  "distractor_meta": {
+   "8": {
+    "error_kind": "wrong_base",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Attaching the 5 to the wrong shape swaps which side is longer, which shrinks the gap; it is a different error from the sign slip and lands on the opposite side of the key."
+   },
+   "68": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the 30 makes s too large here, but a slip on the + 5 inside the hexagon's side (s - 5) moves the difference the other way; the stem does not fix the direction of a slip."
+   },
+   "108": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reporting one piece instead of the difference: a piece can be longer or shorter than the gap between the pieces, so nothing in the stem says which side it lands."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values 56 and 68 are both two-digit even integers; neither is cleaner than the other.",
+  "arith_class_check": "No: all four options are even and all are multiples of 4; none is a multiple of 5 or 10; the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "hexagon&square",
+    "(wire|string|cord|rope)&(bent|form|shape)",
+    "piece&longer than&(cut|divided)",
+    "candle",
+    "same&(per day|per week|per month|each month|each week)"
+   ],
+   "hits_read": 22,
+   "nearest": "d87011c7 (rope cut into three pieces in a ratio, find the total): a ratio-scaling chain with no side offset. Here the unknown side length feeds two perimeters with an offset, and the ask is the difference of the pieces."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might plug options back: an option is a difference of pieces, so checking it needs both pieces from the total (a two-equation step) and then the side lengths, which is the problem itself. Errors land on both sides (8 below, 68 and 108 above)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A05",
+  "domain": "Algebra",
+  "subskill": "Linear rule applied twice, then the intermediate value",
+  "difficulty": "medium",
+  "prompt": "When a certain calculator key is pressed, it multiplies the number on the display by -2 and then adds 3 to the result. Lena enters a number and presses this key two times in a row. The number then on the display is 13 more than 3 times the number she entered. What number was on the display right after her first press of the key?",
+  "choices": [
+   "-29",
+   "-20",
+   "-5",
+   "7"
+  ],
+  "correct_answer": "-29",
+  "explanation": "Let n be the number Lena entered. After the first press the display shows -2n + 3. After the second press it shows -2(-2n + 3) + 3 = 4n - 6 + 3 = 4n - 3.\nThis is 13 more than 3 times n, so 4n - 3 = 3n + 13, and n = 16.\nRight after the first press the display showed -2(16) + 3 = -29.\n\nChoice -20 comes from adding 3 before multiplying by -2 on each press: the second display is then 4n + 6, so n = 7 and the first display is -2(7 + 3) = -20.\nChoice -5 comes from a sign error in -2(-2n + 3), writing 4n + 6: then 4n + 9 = 3n + 13, n = 4, and the first display is -2(4) + 3 = -5.\nChoice 7 comes from applying the key only once: -2n + 3 = 3n + 13 gives n = -2, and -2(-2) + 3 = 7.",
+  "solve": "const m=-2,c=3,p=3,q=13; const n=(q-(m*c+c))/(m*m-p); return m*n+c;",
+  "distractor_solve": {
+   "7": "const m=-2,c=3,p=3,q=13; const n=(q-c)/(m-p); return m*n+c;",
+   "-20": "const m=-2,c=3,p=3,q=13; const n=(q-(m*m*c+m*c))/(m*m-p); return m*(n+c);",
+   "-5": "const m=-2,c=3,p=3,q=13; const n=(q-(-m*c+c))/(m*m-p); return m*n+c;"
+  },
+  "mechanism": [
+   "compose a multiply-then-add rule with itself",
+   "set the twice-applied expression equal to a stated expression in the input and solve",
+   "evaluate the rule once at the solved input"
+  ],
+  "quantity_asked": "the number on the display after the first press",
+  "distractor_meta": {
+   "7": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Applying the rule once gives a negative input and a positive display; nothing in the stem says whether a one-press reading overshoots or undershoots the two-press answer."
+   },
+   "-20": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Doing the add before the multiply changes both the input found and the first display; because the first display is -2n + 3, an error that shrinks n lands above the key and one that grows n lands below, and the stem does not say which a slip will do."
+   },
+   "-5": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the -2 times 3 term can move the constant either way; here it lowers n and so raises the first display, while the omitted final +3 (counter_error) raises n and lands below the key."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const m=-2,c=3,p=3,q=13; const n=(q-m*c)/(m*m-p); return m*n+c;",
+   "direction": "below",
+   "why": "Dropping the final +3 of the second press gives 4n - 6 = 3n + 13, so n = 19 and a first display of -35, below the key. Misreading '13 more than 3 times the number' as 3(n + 13) also lands below, at n = 42 and -81."
+  },
+  "cheap_bound_check": "The cheapest one-sided bound is that the first display -2n + 3 is below 3 exactly when n is positive; the stem does not reveal the sign of n. A student who guesses n > 0 keeps -29, -20 and -5 on the key's side and strikes only 7; the omitted-constant error (-35) and the misread-phrase error (-81) both lie below the key, so 'the key is the most negative option' is not readable from the stem.",
+  "interior_parity_check": "Middle values -20 and -5 are both negative integers of comparable size; the key is not interior.",
+  "arith_class_check": "No: -29, -20 and -5 are negative and 7 positive, so the key does not stand alone in sign; -29, -5 and 7 are odd and -20 even; -20 and -5 are multiples of 5 and -29 and 7 are not. The key is in no singleton class.",
+  "dup_search": {
+   "queries": [
+    "calculator|display&key|button",
+    "press|machine&output|input",
+    "twice in a row|applied twice|applies the rule|then applies",
+    "multiplied by -|multiplies",
+    "thinks of a number|a number is"
+   ],
+   "hits_read": 10,
+   "nearest": "The 'a number is' hits (23731a43, 6b743e79, a38f97a9, 322acefe) translate one sentence into a one-step-each-side equation and ask for the number itself; none applies a rule twice or asks for an intermediate value. SM26F-C08 multiplies an equation by a constant to eliminate a variable in a system, a different chain. No identity or coefficient-matching step anywhere."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, the stem gives no reason to expect the errors to push the answer up rather than down: the first display decreases as n grows, and natural slips move n both ways (the omitted +3 and the misread '13 more than 3 times' land below -29). A student back-solving must invert the rule to get n and apply it again to check, which is a two-step check per option; that is the main exposure, recorded here."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A06",
+  "domain": "Algebra",
+  "subskill": "Common value of both sides at the solution",
+  "difficulty": "medium",
+  "prompt": "3(4x - 2) - 8 = -2 - 4(x - 9)\n\nWhen x is the solution to the equation above, both sides of the equation are equal to the same number. What is that number?",
+  "choices": [
+   "-32",
+   "3",
+   "10",
+   "22"
+  ],
+  "correct_answer": "22",
+  "explanation": "Expand both sides. The left side is 12x - 6 - 8 = 12x - 14. The right side is -2 - 4x + 36 = 34 - 4x.\nSo 12x - 14 = 34 - 4x, which gives 16x = 48 and x = 3.\nAt x = 3 the left side is 3(12 - 2) - 8 = 30 - 8 = 22, and the right side is -2 - 4(3 - 9) = -2 + 24 = 22. The common value is 22.\n\nChoice 3 is the solution x itself, not the value of each side.\nChoice 10 comes from a sign error on the - 8, writing 12x - 6 + 8 = 12x + 2 on the left. Then 16x = 32, x = 2, and the left side becomes 3(6) - 8 = 10.\nChoice -32 comes from distributing the - 4 incorrectly on the right, writing -4x - 36 instead of -4x + 36. Then 12x - 14 = -38 - 4x, so x = -1.5 and the left side is 3(-8) - 8 = -32.",
+  "solve": "const p=3,q=4,r=2,t=8,u=-2,v=4,w=9; const x=(u+v*w+p*r+t)/(p*q+v); return p*(q*x-r)-t;",
+  "distractor_solve": {
+   "3": "const p=3,q=4,r=2,t=8,u=-2,v=4,w=9; return (u+v*w+p*r+t)/(p*q+v);",
+   "10": "const p=3,q=4,r=2,t=8,u=-2,v=4,w=9; const x=(u+v*w+p*r-t)/(p*q+v); return p*(q*x-r)-t;",
+   "-32": "const p=3,q=4,r=2,t=8,u=-2,v=4,w=9; const x=(u-v*w+p*r+t)/(p*q+v); return p*(q*x-r)-t;"
+  },
+  "mechanism": [
+   "distribute on both sides",
+   "collect the variable on one side and solve",
+   "evaluate one side at the solution"
+  ],
+  "quantity_asked": "the common value of the two sides at the solution",
+  "distractor_meta": {
+   "3": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting x instead of the side value: x can be larger or smaller than 12x - 14 depending on x, which is unknown before solving."
+   },
+   "10": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the - 8 lowers x but raises the left side's constant; the net change in the side value depends on the coefficients, not on the wording."
+   },
+   "-32": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Mis-distributing the - 4 changes the right side's constant by 72; the counter_error (distributing the 3 to the 4x only) lands above the key, so a distribution error can go either way."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const p=3,q=4,r=2,t=8,u=-2,v=4,w=9; const x=(u+v*w+r+t)/(p*q+v); return p*q*x-r-t;",
+   "direction": "above",
+   "why": "Multiplying only the 4x by 3, writing 12x - 2 - 8 on the left, gives 16x = 44, x = 2.75, and a left side of 33 - 10 = 23, above every option."
+  },
+  "cheap_bound_check": "No one-sided bound is readable: the common value is 12x - 14 = 34 - 4x, whose sign and size depend on x. Mis-distributing the 3 lands above the key (23); the authored distractors land below.",
+  "interior_parity_check": "Key is the largest option. Interior 3 and 10 are integers of one and two digits (complexity gap 1).",
+  "arith_class_check": "Not alone: 22, 10 and -32 are even and 3 is odd; 22, 10 and -32 all leave remainder 1 on division by 3 (as every left-side value 3(4x - 2) - 8 at integer x would), so the stem's form does not single out the key.",
+  "dup_search": {
+   "queries": [
+    "(each|either|both) side",
+    "common value|equal value",
+    "\\(x [+-] \\d+\\)/\\d+ [+-] \\(x [+-] \\d+\\)/\\d+&value of"
+   ],
+   "hits_read": 14,
+   "nearest": "114a24d3 (solve a fraction equation, then evaluate 4 - 3x): evaluates a new expression unrelated to the equation. Here the ask is the value the two sides share, and the distractors come from distribution slips on each side."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: mis-distributing the 3 pushes the value up (23) while mis-distributing the - 4 pushes it down (-32), and x alone is just a different quantity. A student could try each option V by solving 12x - 14 = V and checking the right side; that is a solve plus a substitution per option, not a plug-in. Risk medium because all three authored distractors lie below the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A07",
+  "domain": "Algebra",
+  "subskill": "Parameter from a solution shared with a fraction equation",
+  "difficulty": "medium",
+  "prompt": "(3x - 1)/4 = (x + 2)/2\nk(x - 6) = 5x - 3\n\nIn the two equations above, k is a constant. The two equations are satisfied by the same value of x. What is the value of k?",
+  "choices": [
+   "-22",
+   "-13",
+   "2",
+   "5"
+  ],
+  "correct_answer": "-22",
+  "explanation": "Solve the first equation. Multiplying both sides by 4 gives 3x - 1 = 2(x + 2) = 2x + 4, so x = 5.\nThe second equation is satisfied by the same x, so substitute x = 5: k(5 - 6) = 5(5) - 3, which is -k = 22. So k = -22.\n\nChoice -13 comes from cross-multiplying to 2(3x - 1) = 4(x + 2) but writing the left side as 6x - 1; that gives x = 4.5, and then -1.5k = 19.5.\nChoice 2 comes from treating the + 2 in the first equation as - 2 when clearing the fractions; that gives x = -3, and then -9k = -18.\nChoice 5 is the shared value of x, not the value of k.",
+  "solve": "const x=(2*1+4*2)/(2*3-4); return (5*x-3)/(x-6);",
+  "distractor_solve": {
+   "2": "const x=(2*1-4*2)/(2*3-4); return (5*x-3)/(x-6);",
+   "5": "const x=(2*1+4*2)/(2*3-4); return x;",
+   "-13": "const x=(1+4*2)/(2*3-4); return (5*x-3)/(x-6);"
+  },
+  "mechanism": [
+   "clear fractions to solve the first equation",
+   "carry the shared solution into the parameter equation",
+   "solve for the parameter"
+  ],
+  "quantity_asked": "the constant k in the second equation",
+  "distractor_meta": {
+   "2": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "The slip sends x to -3; with k = (5x - 3)/(x - 6), whether that raises or lowers k is not readable from the stem, and a sign slip on the - 3 instead (counter_error) lands below the key."
+   },
+   "5": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reporting x instead of k: whether x exceeds k depends on the sign of k, which the stem does not show."
+   },
+   "-13": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "The distribution slip moves x by half a unit; because k = (5x - 3)/(x - 6), the direction the slip moves k depends on where x sits relative to 6, which is not readable before solving."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const x=(2*1+4*2)/(2*3-4); return (5*x+3)/(x-6);",
+   "direction": "below",
+   "why": "Mishandling the - 3 at the substitution step (writing 5(5) + 3) gives -k = 28, so k = -28, below every option."
+  },
+  "cheap_bound_check": "None readable: k = (5x - 3)/(x - 6) is negative only because the shared x (5) is below 6, which needs the first equation solved. No distractor is struck by a stem-readable bound.",
+  "interior_parity_check": "Key is the smallest option. Interior -13 and 2 are both integers (two digits and one digit, complexity gap 1); the key is not interior.",
+  "arith_class_check": "No: two negatives (-22, -13) and two positives (2, 5); two even (-22, 2) and two odd (-13, 5). The stem implies no class.",
+  "dup_search": {
+   "queries": [
+    "same solution|same value of x|also (a )?solution|also satisf",
+    "two equations&constant&(solution|value of x)"
+   ],
+   "hits_read": 3,
+   "nearest": "022ad264 (3x + y = 14, 5x - y = c, solution with x = 2y; find c): a two-variable system with an added condition, not a one-variable fraction equation whose solution is carried into a second parameter equation."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Covering the work, a student cannot tell which way the errors go: k = (5x - 3)/(x - 6) changes sign at x = 6 and the slips in the first equation move x to 4.5 and to -3, giving k above the key, while a slip in the second equation gives -28 below it. The constant k cannot be checked by substitution without solving the second equation for each option and the first equation as well."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A08",
+  "domain": "Algebra",
+  "subskill": "Change in the solution when a constant on both sides changes",
+  "difficulty": "medium",
+  "prompt": "3(x - k) = 5x - 11k\n\nIn the equation above, k is a constant. The value of k is increased by 6, and the equation is solved again. What is the new solution minus the original solution?",
+  "choices": [
+   "-42",
+   "-6",
+   "24",
+   "33"
+  ],
+  "correct_answer": "24",
+  "explanation": "Solve for x in terms of k. Expanding gives 3x - 3k = 5x - 11k, so -2x = -8k and x = 4k.\nThe solution is always 4 times k, so when k increases by 6, the solution increases by 4(6) = 24.\nThe new solution minus the original solution is 24.\n\nChoice 33 comes from leaving out the - 3k after distributing: 3x = 5x - 11k gives -2x = -11k, so x = 5.5k and the change is 5.5(6) = 33.\nChoice -42 comes from a sign error on the 11k when collecting terms, writing -2x = 3k + 11k = 14k, so x = -7k and the change is -7(6) = -42.\nChoice -6 comes from a sign error on the 5x when collecting terms, writing 8x = -8k, so x = -k and the change is -6.",
+  "solve": "const a=3,b=5,c=-11,dk=6; return (a+c)/(a-b)*dk;",
+  "distractor_solve": {
+   "33": "const a=3,b=5,c=-11,dk=6; return c/(a-b)*dk;",
+   "-42": "const a=3,b=5,c=-11,dk=6; return (a-c)/(a-b)*dk;",
+   "-6": "const a=3,b=5,c=-11,dk=6; return (a+c)/(a+b)*dk;"
+  },
+  "mechanism": [
+   "solve a one-variable equation for x in terms of a constant",
+   "scale the change in the constant by the resulting coefficient"
+  ],
+  "quantity_asked": "the change in the solution when k increases by 6",
+  "distractor_meta": {
+   "33": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the -3k changes the coefficient of k from -8 to -11 over a negative divisor; the effect on the change depends on signs that are not visible until terms are collected."
+   },
+   "-42": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the 11k flips the sign of the k-coefficient, so it can land far on either side of the key depending on the other coefficients."
+   },
+   "-6": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the 5x changes the divisor from -2 to 8; whether the result rises or falls depends on the sign of the k-coefficient, not on the wording."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values -6 and 24 are integers of one and two digits (gap 1); the key is not the simpler of the two.",
+  "arith_class_check": "No: all four options are multiples of 3; -42, -6 and 24 are even and 33 is odd; two negatives and two positives. The key is in no singleton class.",
+  "dup_search": {
+   "queries": [
+    "solution&(increase|decrease)s? by&constant",
+    "new solution|original solution",
+    "k (increases|is increased|changes)",
+    "in terms of k&solution"
+   ],
+   "hits_read": 5,
+   "nearest": "SM26F-C10 (prior, held: a two-equation system whose constant is replaced; find the change in x by re-solving the system). Here a single equation carries the constant on both sides, the solution is found in terms of k, and the change follows from its coefficient without solving twice."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "The options are changes, so none can be substituted into the equation; a student must express x in terms of k. Two sign slips land below the key and the omission above, and the stem's 'increased' does not fix the sign of the change because the k-coefficient's sign is hidden until terms are collected. Medium risk because the 'change in the solution' ask is shared with a held prior item, though on a different structure."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A09",
+  "domain": "Algebra",
+  "subskill": "One-variable equation from a purchase with a count offset",
+  "difficulty": "medium",
+  "prompt": "A student buys some notebooks that cost $2 each and some binders that cost $5 each, spending $126 in all. The student buys 7 more notebooks than binders. How many dollars does the student spend on notebooks?",
+  "choices": [
+   "26",
+   "46",
+   "50",
+   "100"
+  ],
+  "correct_answer": "46",
+  "explanation": "Let b be the number of binders. Then the number of notebooks is b + 7, and the total cost gives 2(b + 7) + 5b = 126.\nExpanding gives 7b + 14 = 126, so 7b = 112 and b = 16.\nThe student buys 16 + 7 = 23 notebooks, which cost 2(23) = 46 dollars.\n\nChoice 26 comes from attaching the 7 extra items to the binders instead: 2b + 5(b + 7) = 126 gives b = 13 notebooks, which cost 26 dollars.\nChoice 100 comes from swapping the two prices: 5(b + 7) + 2b = 126 gives b = 13, so 20 notebooks at $5 each would be 100 dollars.\nChoice 50 comes from dropping the 14 after distributing: 7b = 126 gives b = 18, so 25 notebooks cost 50 dollars.",
+  "solve": "const pn=2,pb=5,T=126,d=7; const b=(T-pn*d)/(pn+pb); return pn*(b+d);",
+  "distractor_solve": {
+   "26": "const pn=2,pb=5,T=126,d=7; const n=(T-pb*d)/(pn+pb); return pn*n;",
+   "50": "const pn=2,pb=5,T=126,d=7; const b=T/(pn+pb); return pn*(b+d);",
+   "100": "const pn=2,pb=5,T=126,d=7; const b=(T-pb*d)/(pn+pb); return pb*(b+d);"
+  },
+  "mechanism": [
+   "define one count and express the other with the offset",
+   "solve the total-cost equation",
+   "price the requested item's count"
+  ],
+  "quantity_asked": "the amount spent on notebooks, in dollars",
+  "distractor_meta": {
+   "26": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Putting the offset on the wrong item is notebooks = binders - 7; the stem gives no reading of whether that raises or lowers the notebook spending before the equation is solved."
+   },
+   "50": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the 14 from 2(b + 7) inflates b; the opposite slip (dropping the 7 when building the notebook count) lands below, so the omission family goes both ways."
+   },
+   "100": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Using the binder price for the notebooks changes both the solved count and the multiplier; the count falls while the price rises, so the stem does not say which way the product moves."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values 46 and 50 are both two-digit even integers; 50 is the rounder one, so the key is not the cleaner of the two.",
+  "arith_class_check": "No: all four options are even, two are multiples of 5 and two are not (26 and 46), and all are positive integers. The key is in no singleton class.",
+  "dup_search": {
+   "queries": [
+    "notebooks?|binders?&more",
+    "more&than&each costs?|cost \\$"
+   ],
+   "hits_read": 1,
+   "nearest": "2b522a1b (SSAT, two-equation ticket system asking a price difference); here one unknown count with a stated offset and the ask is a spend on one item."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might backsolve from the options: 46 means 23 notebooks and 16 binders, total 46 + 80 = 126. That is the same setup as solving. Legality strikes nothing (all even, all can be spent). Errors land on both sides: the offset placed on the binders lands below, the omission and the price swap land above."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A10",
+  "domain": "Algebra",
+  "subskill": "Ratio of two changing amounts, then their combined total",
+  "difficulty": "hard",
+  "prompt": "Tank P contains 300 liters of water and is drained at a constant rate of 10 liters per minute. At the same moment, tank Q, which contains 25 liters of water, begins to be filled at a constant rate of 5 liters per minute. At the moment when tank P contains exactly 3 times as much water as tank Q, how many liters of water are in the two tanks combined?",
+  "choices": [
+   "190",
+   "200",
+   "250",
+   "280"
+  ],
+  "correct_answer": "280",
+  "explanation": "After t minutes, tank P contains 300 - 10t liters and tank Q contains 25 + 5t liters. Tank P contains 3 times as much as tank Q when 300 - 10t = 3(25 + 5t).\nThen 300 - 10t = 75 + 15t, so 225 = 25t and t = 9.\nAt t = 9, tank P contains 300 - 90 = 210 liters and tank Q contains 25 + 45 = 70 liters, and 210 = 3(70). Combined, the tanks contain 210 + 70 = 280 liters.\nAnother way to finish: the combined amount starts at 325 liters and falls by 10 - 5 = 5 liters each minute, so after 9 minutes it is 325 - 45 = 280 liters.\n\nChoice 200 comes from placing the 3 on the wrong tank, 3(300 - 10t) = 25 + 5t, which gives t = 25 and amounts of 50 and 150 liters.\nChoice 250 comes from multiplying only the 25 by 3, writing 300 - 10t = 75 + 5t, which gives t = 15 and a combined amount of 325 - 75 = 250 liters.\nChoice 190 comes from finding t = 9 and then treating both rates as losses from the total, 325 - (10 + 5)(9) = 190.",
+  "solve": "const P=300,rp=10,Q=25,rq=5,m=3; const t=(P-m*Q)/(rp+m*rq); return (P-rp*t)+(Q+rq*t);",
+  "distractor_solve": {
+   "190": "const P=300,rp=10,Q=25,rq=5,m=3; const t=(P-m*Q)/(rp+m*rq); return (P+Q)-(rp+rq)*t;",
+   "200": "const P=300,rp=10,Q=25,rq=5,m=3; const t=(m*P-Q)/(m*rp+rq); return (P-rp*t)+(Q+rq*t);",
+   "250": "const P=300,rp=10,Q=25,rq=5,m=3; const t=(P-m*Q)/(rp+rq); return (P-rp*t)+(Q+rq*t);"
+  },
+  "mechanism": [
+   "model two linear amounts over time",
+   "set one equal to a multiple of the other and solve for time",
+   "evaluate the combined amount, which itself changes"
+  ],
+  "quantity_asked": "the combined amount of water in the two tanks at that moment, in liters",
+  "distractor_meta": {
+   "190": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the two rates instead of taking their difference treats filling as draining; the mirror slip (adding the net change, 370) lands above, so the stem does not fix the side."
+   },
+   "200": {
+    "error_kind": "inverted_rate",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reversing which tank is 3 times the other changes the solved time; the stem does not show whether the reversed equation gives a later or earlier moment until both are solved."
+   },
+   "250": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Multiplying only the 25 by 3 lowers the right side's rate, which delays the moment; whether that raises or lowers the total depends on the sign of the net rate, which the stem gives only implicitly."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const P=300,rp=10,Q=25,rq=5,m=3; const t=(P-m*Q)/(rp+m*rq); return (P+Q)+(rp-rq)*t;",
+   "direction": "above",
+   "why": "Finding t = 9 correctly and then adding the net change of 5 liters per minute to the starting total, 325 + 45 = 370, instead of subtracting it."
+  },
+  "cheap_bound_check": "The cheapest bound is that the combined amount starts at 325 and falls (net 5 L/min out), so the answer is below 325; all four options satisfy it, so it strikes nothing. A student who reads 'tank Q is filling' as the total rising puts the answer above 325, the counter_error side (370). No option sits above the key.",
+  "interior_parity_check": "Middle values 200 and 250 are both three-digit multiples of 50; neither is the key.",
+  "arith_class_check": "No: all four options are multiples of 10 and below the starting 325 liters; 200 and 250 are multiples of 50, 190 and 280 are not. The key is in no singleton class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "times as much&per minute|each minute|rate",
+    "drain|drained|leak&fill|filled|pumped"
+   ],
+   "hits_read": 16,
+   "nearest": "f9b28c46 / SALG6C-07 (two tanks, least whole minute with A at least half of B: an inequality and a time ask); 54ebff64 / SM17L-B5 (B holds a fixed amount more than A, time ask); SALGB-04 (equal amounts, time ask). Here the relation is a multiple (orientation is the decision), the time is not asked, and the ask is the combined amount, which changes because the rates differ."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go? The only stem-readable fact is that the total falls from 325, and every option is below 325. The three distractors come from a later moment or a doubled outflow, but which errors give a later moment is not visible without setting up both orientations; the natural sign slip on the net change (370) lands above the key. The tank-family context is crowded in the bank, so risk is medium on duplication rather than on direction."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A11",
+  "domain": "Algebra",
+  "subskill": "Constant recovered from a stated solution, then a miscopied equation",
+  "difficulty": "medium",
+  "prompt": "3(x - 8) = 8x + c\n\nIn the equation above, c is a constant, and the solution of the equation is x = 20. Mei copied the equation with 8x written as 7x but kept the same value of c. What is the solution of the equation Mei wrote?",
+  "choices": [
+   "-124",
+   "-10",
+   "13",
+   "25"
+  ],
+  "correct_answer": "25",
+  "explanation": "First find c. Since x = 20 is the solution, 3(20 - 8) = 8(20) + c, so 36 = 160 + c and c = -124.\nMei's equation is 3(x - 8) = 7x - 124. Expanding gives 3x - 24 = 7x - 124. Subtracting 3x and adding 124 to both sides gives 100 = 4x, so x = 25.\n\nChoice -124 is the value of c, not the solution of Mei's equation.\nChoice 13 comes from a sign slip when finding c: writing 3(20 - 8) as 3(20) + 24 = 84 gives c = -76, and then 3x - 24 = 7x - 76 gives x = 13.\nChoice -10 comes from adding the x-terms instead of subtracting them: 3x + 7x = -124 + 24 gives 10x = -100.",
+  "solve": "const a=3,p=8,b=8,bm=7,s=20; const c=a*(s-p)-b*s; return (c+a*p)/(a-bm);",
+  "distractor_solve": {
+   "13": "const a=3,p=8,b=8,bm=7,s=20; const c=a*(s+p)-b*s; return (c+a*p)/(a-bm);",
+   "-124": "const a=3,p=8,b=8,s=20; return a*(s-p)-b*s;",
+   "-10": "const a=3,p=8,b=8,bm=7,s=20; const c=a*(s-p)-b*s; return (c+a*p)/(a+bm);"
+  },
+  "mechanism": [
+   "recover the constant from a stated solution",
+   "re-solve the equation with one coefficient changed"
+  ],
+  "quantity_asked": "the solution of the miscopied equation",
+  "distractor_meta": {
+   "13": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the -8 changes c by 48; because the x-coefficient in Mei's equation is negative after collecting, the effect on her solution is not readable from the stem."
+   },
+   "-124": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting the constant c instead of the new solution; the stem gives no sign or size for c before it is computed."
+   },
+   "-10": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the x-terms changes the divisor from -4 to 10, flipping the sign of the result; whether that lands above or below depends on signs hidden until the work is done."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const a=3,p=8,b=8,bm=7,s=20; const c=a*(s-p)-b*s; return (c-a*p)/(a-bm);",
+   "direction": "above",
+   "why": "Moving the -24 to the wrong side with the wrong sign, -4x = -124 - 24, gives x = 37, above the key."
+  },
+  "cheap_bound_check": "No one-sided bound is readable: the stem does not say whether changing 8x to 7x raises or lowers the solution, since both x-coefficients exceed the 3 on the left and the constant is unknown. Every distractor is below the key; the natural sign slip on the 24 (37) lands above it.",
+  "interior_parity_check": "Middle values -10 and 13 are both two-digit integers; neither is visibly cleaner.",
+  "arith_class_check": "No: two options are even and two odd, two negative and two positive, two multiples of 5 (-10 and the key 25) and two not; the key is in no singleton class.",
+  "dup_search": {
+   "queries": [
+    "copied|miscopied|mistakenly|by mistake|error"
+   ],
+   "hits_read": 15,
+   "nearest": "a live quadratic item where two students miscopy b and c of x^2 + bx + c = 0 and the ask is c - b (Advanced Math, sum/product of roots); here a linear equation, the constant is recovered from one stated solution and the miscopied equation is re-solved. No other hit was an equation-copying item."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go? No: the key sits above three distractors, but the one natural slip on the 24 lands at 37, above it, and nothing in the stem says whether 7x instead of 8x moves the solution up or down. Backsolving needs c first, which is half the work. Medium risk because the ask is a solution (of the copied equation, not of the printed one)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A12",
+  "domain": "Algebra",
+  "subskill": "Total from the gap between two completed fractions",
+  "difficulty": "medium",
+  "prompt": "A crew is painting a long fence. By the end of the first day, the crew has painted 3/10 of the fence. On the second day, the crew paints 315 more meters of the fence, and then 3/4 of the fence has been painted. How many meters of the fence did the crew paint on the first day?",
+  "choices": [
+   "90",
+   "135",
+   "175",
+   "210"
+  ],
+  "correct_answer": "210",
+  "explanation": "Let L be the length of the fence, in meters. The 315 meters painted on the second day take the painted part from (3/10)L to (3/4)L, so (3/10)L + 315 = (3/4)L.\nThen (3/4 - 3/10)L = 315, so (9/20)L = 315 and L = 700.\nOn the first day the crew painted (3/10)(700) = 210 meters.\n\nChoice 135 comes from treating the 315 meters as finishing the fence, (3/10)L + 315 = L, which gives L = 450 and (3/10)(450) = 135.\nChoice 90 comes from adding the fractions instead of subtracting them: (3/10 + 3/4)L = 315 gives L = 300, and (3/10)(300) = 90.\nChoice 175 is the part of the fence still unpainted after the second day, (1/4)(700).",
+  "solve": "const f1=3/10,f2=3/4,d=315; const L=d/(f2-f1); return Math.round(f1*L*1e9)/1e9;",
+  "distractor_solve": {
+   "90": "const f1=3/10,f2=3/4,d=315; return Math.round(f1*d/(f1+f2)*1e9)/1e9;",
+   "135": "const f1=3/10,f2=3/4,d=315; return Math.round(f1*d/(1-f1)*1e9)/1e9;",
+   "175": "const f1=3/10,f2=3/4,d=315; const L=d/(f2-f1); return Math.round((1-f2)*L*1e9)/1e9;"
+  },
+  "mechanism": [
+   "write the second day's work as the gap between two fractions of the whole",
+   "solve for the whole",
+   "scale back to the first day's share"
+  ],
+  "quantity_asked": "the length painted on the first day, in meters",
+  "distractor_meta": {
+   "90": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the fractions gives a coefficient above 1, so the whole comes out smaller than the 315 meters; the stem does not say whether the asked share is above or below 315."
+   },
+   "135": {
+    "error_kind": "wrong_base",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Measuring the second day against the whole fence instead of 3/4 of it changes the gap fraction from 9/20 to 7/10; whether the first-day share rises or falls is not visible until the whole is rescaled."
+   },
+   "175": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting the unpainted quarter instead of the first day's 3/10; the companion slip of reporting what remained after the first day (490) lands above the key."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const f1=3/10,f2=3/4,d=315; const L=d/(f2-f1); return Math.round((1-f1)*L*1e9)/1e9;",
+   "direction": "above",
+   "why": "Reporting the part still unpainted after the first day, (7/10)(700) = 490, instead of the part painted; reporting the whole fence (700) also lands above."
+  },
+  "cheap_bound_check": "The cheapest bound compares the first day's share (3/10) with the second day's (3/4 - 3/10 = 9/20): the first day is the smaller, so the key is below 315. All four options are below 315, so the bound strikes nothing. The natural wrong-variable reads (490 unpainted after day one, 700 the whole fence) lie above the key.",
+  "interior_parity_check": "Middle values 135 and 175 are both three-digit odd multiples of 5; neither is cleaner and neither is the key.",
+  "arith_class_check": "No: all four options are multiples of 5; 90 and 210 are even, 135 and 175 odd; 90, 135 and 210 are multiples of 15, 175 is not. The key is in no singleton class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "\\d/\\d of the&more&then|after|now",
+    "painted|paints|has read|had read|completed&of the"
+   ],
+   "hits_read": 8,
+   "nearest": "d6eb19c8 (ISEE wall-area painting, subtract openings): no equation in an unknown whole. No hit sets up a fraction-gap equation for a whole."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Covering the work, could a student tell which way the errors go? The one cheap comparison (day one 3/10 is less than day two 9/20) only says the key is below 315, and every option is. Every distractor is below the key, but the two natural wrong-variable reads (490 and 700) are above it, so 'strike everything below' is not stem-readable. Backsolving needs L for each option."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-A13",
+  "domain": "Algebra",
+  "subskill": "Penalty scoring with a blank ratio, then a counterfactual score",
+  "difficulty": "hard",
+  "prompt": "A 60-question contest awards 3 points for each correct answer, subtracts 2 points for each incorrect answer, and gives 0 points for each question left blank. Rosa left 3 times as many questions blank as she answered incorrectly, and her score was 54 points. If Rosa had instead left blank every question she answered incorrectly, and nothing else had changed, what would her score have been?",
+  "choices": [
+   "63",
+   "72",
+   "96",
+   "99"
+  ],
+  "correct_answer": "72",
+  "explanation": "Let w be the number of questions Rosa answered incorrectly. She left 3w questions blank, so she answered 60 - w - 3w = 60 - 4w questions correctly. Her score gives the equation 3(60 - 4w) - 2w = 54, so 180 - 14w = 54, 14w = 126, and w = 9. She answered 60 - 4(9) = 24 questions correctly.\nIf the 9 incorrect answers had been left blank, they would score 0 instead of -2 each, and the 24 correct answers would still earn 3 points each, so her score would have been 3(24) = 72. (Equivalently, 54 + 2(9) = 72.)\n\nChoice 63 comes from adding back only 1 point for each incorrect answer, 54 + 9, instead of the 2 points each one cost.\nChoice 96 comes from reversing the ratio, taking the number of incorrect answers to be 3 times the number of blanks: then 3(60 - 4b) - 2(3b) = 54 gives b = 7, 32 correct answers, and 3(32) = 96.\nChoice 99 comes from scoring the 9 incorrect answers as if they had been correct, 3(24 + 9) = 99, instead of as blanks.",
+  "solve": "const N=60,a=3,d=2,r=3,S=54; const w=(a*N-S)/(a*(r+1)+d); const c=N-(r+1)*w; return a*c;",
+  "distractor_solve": {
+   "63": "const N=60,a=3,d=2,r=3,S=54; const w=(a*N-S)/(a*(r+1)+d); return S+w;",
+   "96": "const N=60,a=3,d=2,r=3,S=54; const b=(a*N-S)/(a*(r+1)+d*r); return a*(N-(r+1)*b);",
+   "99": "const N=60,a=3,d=2,r=3,S=54; const w=(a*N-S)/(a*(r+1)+d); const c=N-(r+1)*w; return a*(c+w);"
+  },
+  "mechanism": [
+   "express three answer categories through one unknown using a stated ratio",
+   "solve the scoring equation with a penalty term",
+   "rescore a counterfactual that changes only the penalized category"
+  ],
+  "quantity_asked": "Rosa's score, in points, if her incorrect answers had been left blank",
+  "distractor_meta": {
+   "63": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Restoring 1 point per incorrect answer instead of the 2-point penalty under-restores; the stem does not say whether a slip in the counterfactual over- or under-restores, and the other two errors land above."
+   },
+   "96": {
+    "error_kind": "inverted_rate",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reversing which category is 3 times the other changes the count of correct answers; whether that raises or lowers the result depends on the solved counts, not on anything the stem signals."
+   },
+   "99": {
+    "error_kind": "wrong_base",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Rescoring the incorrect answers as correct rather than blank uses the wrong category as the base of the counterfactual; a student who instead removes them from the total entirely and rescales would land elsewhere, so the stem does not fix the side."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values 72 and 96 are both two-digit even integers and both multiples of 24; neither is rounder, and the key is not the cleaner one.",
+  "arith_class_check": "No: all four options are multiples of 3; 63, 72 and 99 are multiples of 9 and 96 is not; 72 and 96 are even, 63 and 99 odd. The key is in no singleton class, and the counterfactual score is not forced to be a multiple of anything the others avoid.",
+  "dup_search": {
+   "queries": [
+    "contest|quiz|exam|test&points for each|points per",
+    "blank",
+    "points&each&question",
+    "score&answered",
+    "incorrect"
+   ],
+   "hits_read": 3,
+   "nearest": "No live or prior item scores correct / incorrect / blank answers. The three 'incorrect' hits (2aac9913 median of a corrected list, ad262fa1 miscopied quadratic, SM26F-B12 one misrecorded table value) share only the word. The removed overtime item (ea1b64a0 family) is not reused: no threshold or two-rate pay."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student may add something to 54, since leaving answers blank cannot lower a score; 63, 72, 96 and 99 are all above 54, so that bound strikes nothing. Back-solving an option requires dividing by 3 for the correct count, recovering the incorrect count from the score difference and checking the blank ratio against 60, which is three steps per option rather than a substitution. The decision is the counterfactual: only the incorrect answers change, and only by the penalty; routine solving for w does not give the asked score."
+  },
+  "bounds": []
+ }
+]

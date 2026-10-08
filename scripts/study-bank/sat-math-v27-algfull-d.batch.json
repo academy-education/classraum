@@ -1,0 +1,877 @@
+[
+ {
+  "id": "SM27F-D01",
+  "domain": "Algebra",
+  "subskill": "System of linear inequalities: lattice points on a line",
+  "difficulty": "medium",
+  "prompt": "y ≥ 3x - 20\n2x + 3y < 60\n\nIn the xy-plane, the point (6, y) is a solution to the system of inequalities above. How many integer values of y are possible?",
+  "choices": [
+   "14",
+   "17",
+   "18",
+   "26"
+  ],
+  "correct_answer": "18",
+  "explanation": "Substitute x = 6 into each inequality. The first gives y ≥ 3(6) - 20 = -2. The second gives 12 + 3y < 60, so 3y < 48 and y < 16. The integers y with -2 ≤ y < 16 are -2, -1, 0, ..., 15, which is 15 - (-2) + 1 = 18 values. Choice 14 comes from writing the first bound as y ≥ 2 instead of y ≥ -2; choice 17 counts 15 - (-2) without adding 1 for the included endpoint; choice 26 comes from adding 12 to 60 instead of subtracting it, which gives y < 24.",
+  "solve": "const lo=Math.ceil(3*6-20); const hi=Math.ceil((60-2*6)/3)-1; return hi-lo+1;",
+  "distractor_solve": {
+   "14": "const lo=Math.abs(3*6-20); const hi=Math.ceil((60-2*6)/3)-1; return hi-lo+1;",
+   "17": "const lo=Math.ceil(3*6-20); const hi=Math.ceil((60-2*6)/3)-1; return hi-lo;",
+   "26": "const lo=Math.ceil(3*6-20); const hi=Math.ceil((60+2*6)/3)-1; return hi-lo+1;"
+  },
+  "mechanism": [
+   "substitute fixed x into both inequalities",
+   "lower bound and strict upper bound on y",
+   "inclusive integer count across negative values"
+  ],
+  "quantity_asked": "number of integer y for which (6, y) satisfies the system",
+  "distractor_meta": {
+   "14": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "dropping the sign of the negative lower bound narrows the range; the stem gives no hint whether the bound is negative"
+   },
+   "17": {
+    "error_kind": "other",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "fencepost error on an inclusive endpoint; the strict upper bound could equally tempt a student to over-count"
+   },
+   "26": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "moving 2x to the wrong side widens the range; a sign slip on the other inequality narrows it, so slips go both ways"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "middle values 17 and 18: both two-digit integers; the key 18 is not rounder than 17",
+  "arith_class_check": "14, 18, 26 even and 17 odd; 18 is a multiple of 3 and 6 (as is nothing else) but the count has no reason to be a multiple of 3; no sign or integrality tell",
+  "dup_search": {
+   "queries": [
+    "inequalit&integer",
+    "system of inequalities&how many|integer",
+    "\\(\\d+, y\\)&how many|integer values of y"
+   ],
+   "hits_read": 48,
+   "nearest": "9a08da87 counts lattice pairs under one inequality in the first quadrant; here x is fixed and two bounds on y from a system are combined across zero"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might pick the middle values; 17 and 18 are adjacent but only the inclusive count across the negative bound gives 18, and the errors land on both sides (14, 17 below, 26 above)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D02",
+  "domain": "Algebra",
+  "subskill": "System of inequalities: parameter from the region's top vertex",
+  "difficulty": "hard",
+  "prompt": "2x - y ≥ -3\n3x + y ≤ k\n\nIn the system of inequalities above, k is a constant. Every solution (x, y) of the system satisfies y ≤ 11, and there is exactly one solution of the system whose y-coordinate is 11. What is the value of k?",
+  "choices": [
+   "23",
+   "32",
+   "35",
+   "37"
+  ],
+  "correct_answer": "23",
+  "explanation": "Rewrite the inequalities as y ≤ 2x + 3 and y ≤ k - 3x. The region lies below a line with positive slope and below a line with negative slope, so its one highest point is where the two boundary lines meet; every other solution lies lower. That point is the one solution with y = 11, so 2x + 3 = 11 and x = 4. That point also lies on 3x + y = k, so k = 3(4) + 11 = 23. Choice 32 comes from rewriting the first inequality as y ≤ 2x - 3, which gives x = 7 and k = 21 + 11. Choice 35 comes from not dividing by 2, which gives x = 8 and k = 24 + 11. Choice 37 comes from substituting 11 for x and 4 for y in the second inequality, which gives k = 33 + 4.",
+  "solve": "const x=(11-3)/2; return 3*x+11;",
+  "distractor_solve": {
+   "32": "const x=(11+3)/2; return 3*x+11;",
+   "35": "const x=(11-3); return 3*x+11;",
+   "37": "const x=(11-3)/2; return 3*11+x;"
+  },
+  "mechanism": [
+   "rewrite both inequalities in slope form",
+   "top of region at intersection of rising and falling boundaries",
+   "use given height to find vertex x, then the parameter"
+  ],
+  "quantity_asked": "the constant k",
+  "distractor_meta": {
+   "32": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "a sign slip when isolating y moves the vertex right; a sign slip on the 3x term instead (y ≤ k + 3x) gives k = -1, below the key"
+   },
+   "35": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "skipping the division by 2 enlarges x here only because 11 - 3 is positive; nothing in the stem signals which way an arithmetic omission moves k"
+   },
+   "37": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "swapping the roles of x and y in the second boundary; using the wrong slope instead (k = 2(4) + 11 = 19) lands below"
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const x=(11-3)/2; return 11-3*x;",
+   "direction": "below",
+   "why": "rewriting 3x + y ≤ k as y ≤ k + 3x gives k = 11 - 12 = -1; using slope 2 in the second line gives 19; both below the key and not options"
+  },
+  "cheap_bound_check": "The cheapest bound is k > 11 (the vertex has positive x, so 3x + 11 > 11); every option satisfies it, so it strikes nothing. No bound from the stem separates 23 from 32, 35, 37.",
+  "interior_parity_check": "middle values 32 and 35: both two-digit integers, one even one odd; key is not interior",
+  "arith_class_check": "23, 37 odd and prime; 32 even; 35 odd composite - the key shares parity and primality with 37, no lone class",
+  "dup_search": {
+   "queries": [
+    "≤ k|<= k|< k&greatest|maximum|least",
+    "y-coordinate&solution&inequalit"
+   ],
+   "hits_read": 6,
+   "nearest": "03fe044c finds a greatest c so that no solution has x ≥ 4 (a bound on x); here the region is capped at y = 11 with a single point at that height, and k is recovered through the vertex"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way errors go? The stem gives only the height 11 and the two forms; a sign slip on either boundary moves k in opposite directions (32 above, -1 below), a slope swap gives 19 below, so 'strike the side the stem points to' has no side. The key is the smallest option, but the natural low errors (-1, 19, 11) exist and are absent."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D03",
+  "domain": "Algebra",
+  "subskill": "Compound inequality carried to a new linear expression",
+  "difficulty": "medium",
+  "prompt": "-11 < 5 - 2x ≤ 13\n\nThe values of x that satisfy the compound inequality above are exactly the values for which a ≤ 6x + 1 < b, where a and b are constants. What is the value of b?",
+  "choices": [
+   "8",
+   "19",
+   "25",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "Subtract 5 from each part: -16 < -2x ≤ 8. Divide each part by -2 and reverse both inequality signs: 8 > x ≥ -4, so -4 ≤ x < 8. Multiply by 6 and add 1: -23 ≤ 6x + 1 < 49, so b = 49. Choice 25 comes from dividing by 2 instead of -2, which gives -8 < x ≤ 4 and an upper end of 6(4) + 1. Choice 19 comes from adding 5 instead of subtracting it, which gives -6 < -2x, so x < 3 and 6(3) + 1 = 19. Choice 8 is the upper bound on x itself, not on 6x + 1.",
+  "solve": "const hi=(5-(-11))/2; return 6*hi+1;",
+  "distractor_solve": {
+   "8": "return (5-(-11))/2;",
+   "19": "const hi=-(-11+5)/2; return 6*hi+1;",
+   "25": "const hi=(13-5)/2; return 6*hi+1;"
+  },
+  "mechanism": [
+   "isolate x in a compound inequality with a negative coefficient",
+   "reverse both signs when dividing by a negative",
+   "map the x-interval through a second linear expression"
+  ],
+  "quantity_asked": "the upper constant b of the equivalent interval for 6x + 1",
+  "distractor_meta": {
+   "8": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "reports the bound on x instead of on 6x + 1; skipping the division by -2 instead (x < 16, b = 97) lands far above"
+   },
+   "19": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "adding 5 instead of subtracting shifts the bound toward zero here; on the other end the same slip moves it outward"
+   },
+   "25": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "dividing by 2 instead of -2 swaps which given bound becomes the upper end; with other bounds it lands above, and nothing in the stem says which"
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const hi=(5-(-11)); return 6*hi+1;",
+   "direction": "above",
+   "why": "forgetting to divide by -2 (taking x < 16) gives 97; adding 6 instead of multiplying by 6 is another slip; 97 is above the key and not an option"
+  },
+  "cheap_bound_check": "Cheapest bound: b is 6 times an x-bound plus 1, so b leaves remainder 1 on division by 6 when the x-bound is an integer; 19, 25 and 49 all fit and 8 does not, so the key shares that class with two distractors. No magnitude bound from the stem separates 49 from 19 or 25.",
+  "interior_parity_check": "middle values 19 and 25: both two-digit odd integers; key is not interior",
+  "arith_class_check": "49, 25 perfect squares, 19 prime, 8 a cube; 49, 25, 19 odd and 8 even. The key shares parity and square-ness with 25.",
+  "dup_search": {
+   "queries": [
+    "< \\d - \\dx|< -?\\d+ - \\dx|compound&what is the value of|which of the following",
+    "inequalit&integer"
+   ],
+   "hits_read": 46,
+   "nearest": "e291704b / ALG-H4-16 solve a compound inequality for x and choose the interval; here the x-interval is carried through 6x + 1 and one endpoint constant is asked. Near-dup j=0.69 vs d4ce2d95 (polynomial division) was wording only; stem reworded."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way errors go? The stem fixes a and b as constants of an equivalent interval; a sign slip or a dropped division can push b either way (25 below, 97 above), and reporting the x-bound is below. A student striking large options would strike the key. 8 is the one value not of the form 6n + 1, but it is the natural wrong-variable answer."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D04",
+  "domain": "Algebra",
+  "subskill": "Budget inequality with a fixed purchase ratio",
+  "difficulty": "medium",
+  "prompt": "A teacher can spend at most $200 on notebooks and pens. Each notebook costs $4.50 and each pen costs $1.25, and she will buy exactly 3 pens for every notebook she buys. If she buys as many notebooks as her budget allows under these conditions, how many items (notebooks and pens together) will she buy?",
+  "choices": [
+   "24",
+   "52",
+   "96",
+   "136"
+  ],
+  "correct_answer": "96",
+  "explanation": "Let n be the number of notebooks. She buys 3n pens, so the cost is 4.50n + 1.25(3n) = 8.25n, and 8.25n ≤ 200 gives n ≤ 24.24.... The number of notebooks is a whole number, so n = 24, and she buys 24 + 3(24) = 96 items. Choice 24 is the number of notebooks only. Choice 52 comes from reversing the ratio (3 notebooks for every pen), which gives 14.75 dollars per group, 13 groups and 13(4) items. Choice 136 comes from pricing each notebook with only one pen (5.75n ≤ 200, so n = 34) and then counting 4 items per notebook.",
+  "solve": "const n=Math.floor(200/(4.5+3*1.25)); return 4*n;",
+  "distractor_solve": {
+   "24": "return Math.floor(200/(4.5+3*1.25));",
+   "52": "const g=Math.floor(200/(3*4.5+1.25)); return 4*g;",
+   "136": "const n=Math.floor(200/(4.5+1.25)); return 4*n;"
+  },
+  "mechanism": [
+   "combine a ratio constraint into one cost per notebook",
+   "solve the budget inequality and take the whole-number part",
+   "convert notebooks to total items"
+  ],
+  "quantity_asked": "total number of notebooks and pens bought",
+  "distractor_meta": {
+   "24": {
+    "error_kind": "partial_answer",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "stops at the notebook count; the stem asks for a total but gives no signal about the size of the other errors"
+   },
+   "52": {
+    "error_kind": "inverted_rate",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "reversing the 3-to-1 ratio prices each group higher; reversing it could also be read as 1 pen per 3 items, and the stem does not show which side lands"
+   },
+   "136": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "adding one pen's price instead of three underprices each group, so more items fit; a cost slip the other way (multiplying both prices by 3) lands below"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "middle values 52 and 96: both two-digit integers, both even; 96 is not rounder than 52",
+  "arith_class_check": "24, 52, 96, 136 are all even and all multiples of 4; the key is not alone in any class",
+  "dup_search": {
+   "queries": [
+    "at most&unused|left over|remain",
+    "pounds|kilograms&as many|at most&truck|elevator|van",
+    "for every|times as many&at most|no more than|budget"
+   ],
+   "hits_read": 17,
+   "nearest": "f3f35eaf (van, two crate types, at least 5 of B, greatest count of A) has a floor on one type, not a fixed ratio; here the ratio folds into one cost per bundle and the asked quantity is the total item count"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student could try 'total must be a multiple of 4', but every option is. Checking 96 against the budget (24 notebooks, 72 pens, $198) confirms it, but 136 and 52 both also need a ratio check to reject, and the errors land on both sides."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D05",
+  "domain": "Algebra",
+  "subskill": "System of inequalities whose solution set is one line",
+  "difficulty": "medium",
+  "prompt": "2y - 4x + 8 ≤ k\n12x - 6y ≤ -42\n\nIn the system of inequalities above, k is a constant. The solutions of the system are exactly the points on one line in the xy-plane. What is the value of k?",
+  "choices": [
+   "22",
+   "29",
+   "50",
+   "92"
+  ],
+  "correct_answer": "22",
+  "explanation": "Solve each inequality for y. The second gives -6y ≤ -42 - 12x, so y ≥ 2x + 7 (dividing by -6 reverses the sign). The first gives 2y ≤ 4x + k - 8, so y ≤ 2x + (k - 8)/2. Both boundary lines have slope 2, so the solutions lie on or between two parallel lines. The solution set is a single line only when the two boundary lines are the same line: (k - 8)/2 = 7, so k = 22. Choice 92 comes from not dividing 42 by 6, which gives y ≥ 2x + 42. Choice 50 comes from setting k - 8 equal to 42 without first rescaling 6y - 12x to 2y - 4x. Choice 29 comes from dividing the second inequality by 2 instead of 3 and then setting k - 8 equal to 21.",
+  "solve": "const b=42/6; return 2*b+8;",
+  "distractor_solve": {
+   "29": "return 42/2+8;",
+   "50": "return 42+8;",
+   "92": "const b=42; return 2*b+8;"
+  },
+  "mechanism": [
+   "rewrite two inequalities with parallel boundaries in slope form",
+   "solution set is a line exactly when the boundaries coincide",
+   "solve for the constant from equal intercepts"
+  ],
+  "quantity_asked": "the constant k",
+  "distractor_meta": {
+   "29": {
+    "error_kind": "wrong_base",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "rescaling by the wrong factor; a factor larger than 3 would land below, so the direction is set by the slip, not the stem"
+   },
+   "50": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "matching constants without matching coefficients; matching with the opposite sign (k - 8 = -42) lands far below"
+   },
+   "92": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "leaving 42 undivided inflates the intercept; leaving k - 8 undivided instead (k - 8 = 7, k = 15) lands below, and the stem does not say which division a student skips"
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const b=42/6; return 2*b-8;",
+   "direction": "below",
+   "why": "moving +8 to the right side without changing its sign gives (k + 8)/2 = 7, so k = 6; a sign slip on the second inequality (y ≥ 2x - 7) gives k = -6; both below the key and not options"
+  },
+  "cheap_bound_check": "The only cheap bound is k > 8 (the shared intercept 7 is positive, so k - 8 > 0); every option satisfies it. No bound readable from the stem separates 22 from 29, 50, 92.",
+  "interior_parity_check": "middle values 29 and 50: both two-digit integers; key is not interior",
+  "arith_class_check": "22, 50, 92 even, 29 odd; 22 and 92 are both 2 times an odd number; no option is a multiple of 3; the key shares parity and divisibility classes with distractors",
+  "dup_search": {
+   "queries": [
+    "inequalit&exactly one|a line|single point|no solution",
+    "system of inequalities&how many|integer"
+   ],
+   "hits_read": 7,
+   "nearest": "91e525ac asks for the greatest c making a one-variable inequality have no solution; here two parallel half-planes must meet in exactly their shared boundary line"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go? The stem prints 8, 12, 6, 42 and k; skipping a division can inflate k (92) or deflate it (15), and sign slips go below (6, -6). The key is the smallest option, but the natural low errors exist and are absent, so 'strike everything above the stem's direction' has no side to read."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D06",
+  "domain": "Algebra",
+  "subskill": "Inequality true for every real x: vanishing x-coefficient",
+  "difficulty": "medium",
+  "prompt": "3(kx + 1) + 6x ≥ 0.5(32x - 7)\n\nIn the inequality above, k is a constant. If the inequality is true for every real number x, what is the value of k?",
+  "choices": [
+   "10/3",
+   "22/3",
+   "26/3",
+   "58/3"
+  ],
+  "correct_answer": "10/3",
+  "explanation": "Expand both sides: 3kx + 3 + 6x ≥ 16x - 3.5. Collect the x-terms on the left: (3k + 6 - 16)x ≥ -6.5, or (3k - 10)x ≥ -6.5. If 3k - 10 were positive, the inequality would fail for large negative x; if it were negative, it would fail for large positive x. So 3k - 10 = 0, which leaves 0 ≥ -6.5, true for every x. Therefore k = 10/3. Choice 22/3 comes from moving 6x to the right side as +6x (3k = 16 + 6). Choice 26/3 comes from not multiplying 32x by 0.5 (3k + 6 = 32). Choice 58/3 comes from multiplying by 2 instead of 0.5 (3k + 6 = 64).",
+  "solve": "return (0.5*32-6)/3;",
+  "distractor_solve": {
+   "22/3": "return (0.5*32+6)/3;",
+   "26/3": "return (32-6)/3;",
+   "58/3": "return (2*32-6)/3;"
+  },
+  "mechanism": [
+   "expand and collect x-terms of a one-variable inequality",
+   "true for every x forces the x-coefficient to be zero",
+   "check the constant terms, solve for the parameter"
+  ],
+  "quantity_asked": "the constant k",
+  "distractor_meta": {
+   "22/3": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "a sign slip on 6x adds instead of subtracts; a sign slip on 16x instead gives -10/3, below; the stem does not say which term a student mishandles"
+   },
+   "26/3": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "dropping the factor 0.5 enlarges the right-side coefficient; dropping the factor 3 on kx instead gives k = 10, also an omission but of the other factor, and dropping 6x gives 16/3; omissions land at several places"
+   },
+   "58/3": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "treating 0.5 as division by 0.5; the inverse slip on the final step (k = 3/10) lands below"
+   }
+  },
+  "counter_error": {
+   "error_kind": "inverted_rate",
+   "solve": "return 3/(0.5*32-6);",
+   "direction": "below",
+   "why": "solving 3k = 10 as k = 3/10 is a common inversion; a sign slip on 16x gives -10/3; both below the key and not options"
+  },
+  "cheap_bound_check": "The cheapest bound is k > 0 (the right side's x-coefficient 16 exceeds 6, so 3k must be positive); every option satisfies it. No bound readable from the stem separates 10/3 from 22/3, 26/3, 58/3.",
+  "interior_parity_check": "middle values 22/3 and 26/3: both improper fractions with denominator 3 and two-digit numerators; key is not interior",
+  "arith_class_check": "all four are thirds with even numerators (10, 22, 26, 58); none is an integer; the key shares every class with the distractors",
+  "dup_search": {
+   "queries": [
+    "≥|≤|<|>&every real|all real|for all values|true for all|every value of x",
+    "inequalit&exactly one|a line|single point|no solution"
+   ],
+   "hits_read": 23,
+   "nearest": "91e525ac asks for the greatest integer c giving NO solution; d2f9831f/SM24L bound a function on an interval. Here a single inequality must hold for EVERY real x, which forces the x-coefficient to vanish and fixes k exactly"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way errors go? Slips on the 6x and 16x terms push k in opposite directions (22/3 above, -10/3 below), dropping the 3 on kx gives 10 while dropping 0.5 gives 26/3, and an inversion gives 3/10. The key is the smallest option, but the stem gives no side to strike; all options share the form n/3."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D07",
+  "domain": "Algebra",
+  "subskill": "Equivalent linear inequalities in two variables",
+  "difficulty": "medium",
+  "prompt": "4x - 5y ≤ 22\nax + 15y ≥ b\n\nIn the inequalities above, a and b are constants. In the xy-plane, the graphs of the two inequalities are exactly the same region. What is the value of a - b?",
+  "choices": [
+   "-78",
+   "-34",
+   "6",
+   "54"
+  ],
+  "correct_answer": "54",
+  "explanation": "Two linear inequalities in x and y have the same graph exactly when one can be obtained from the other by multiplying both sides by the same nonzero number. To turn -5y into 15y, multiply 4x - 5y ≤ 22 by -3. Multiplying by a negative number reverses the inequality symbol, which gives -12x + 15y ≥ -66, and this matches ax + 15y ≥ b with its ≥ symbol. So a = -12 and b = -66, and a - b = -12 - (-66) = 54. Choice 6 multiplies by -1/3 (dividing 15 by -5 the wrong way round); choice -34 multiplies only the left side by -3 and keeps 22 as the constant; choice -78 is the value of a + b rather than a - b.",
+  "solve": "const p=4,q=-5,r=22,s=15; const m=s/q; return m*p - m*r;",
+  "distractor_solve": {
+   "6": "const p=4,q=-5,r=22,s=15; const m=q/s; return Math.round(m*p - m*r);",
+   "-34": "const p=4,q=-5,r=22,s=15; const m=s/q; return m*p - r;",
+   "-78": "const p=4,q=-5,r=22,s=15; const m=s/q; return m*p + m*r;"
+  },
+  "mechanism": [
+   "same half-plane means a constant multiple of the inequality",
+   "match the y-coefficient to find a negative multiplier that reverses the symbol",
+   "scale the x-coefficient and the constant, then combine"
+  ],
+  "quantity_asked": "a - b, where ax + 15y ≥ b has the same graph as 4x - 5y ≤ 22",
+  "distractor_meta": {
+   "6": {
+    "error_kind": "inverted_rate",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "using -5/15 instead of 15/(-5) as the multiplier shrinks both a and b by a factor of 9; whether that moves a - b up or down depends on the sign of a - b, which is not visible before the work"
+   },
+   "-34": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "leaving the constant unscaled replaces b = -66 by 22; that this lowers a - b depends on the sign of the multiplier, which the student must find first"
+   },
+   "-78": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "adding instead of subtracting gives a + b; with a and b both negative it lands below, but the stem does not say a and b are negative"
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const p=4,q=-5,r=22,s=15; const m=s/q; return -m*p - m*r;",
+   "direction": "above",
+   "why": "dropping the negative sign when scaling the x-coefficient (a = 12 instead of -12) while scaling 22 correctly gives 12 - (-66) = 78, above the key"
+  },
+  "cheap_bound_check": "the only cheap read from the stem is that 15 and -5 have opposite signs, so the multiplier is negative and a and b are both negative; that bounds a - b neither above nor below (its sign depends on whether 22 exceeds 4), so it strikes nothing; 6 sits on the same (positive) side of 0 as the key, and the sign slip on a lands at 78, above the key",
+  "interior_parity_check": "extreme key; middle values -34 and 6 are both integers",
+  "arith_class_check": "-78, -34, 6, 54 are all even and all integers; two negative and two positive; 6, 54 and -78 are multiples of 3 and -34 is not, so the key is not alone; no option is a perfect square; the key is in no singleton class",
+  "dup_search": {
+   "queries": [
+    "inequalit&same|equivalent",
+    "same|equivalent|identical&inequalit&y",
+    "≤&≥&a and b are constants|value of a - b|value of a \\+ b",
+    "inequalit&a and b|constants a|graphs? of"
+   ],
+   "hits_read": 7,
+   "nearest": "fc8da121 / de06e964 (y ≥ kx - 4 or y < kx + 3 must contain given points; count or sum integer k): they test points against a half-plane; this item matches two whole inequalities as constant multiples of each other, with the symbol reversal fixing the multiplier's sign; no live or prior item asks for equivalent two-variable inequalities"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the stem does not reveal the sign of a - b, and the natural sign slip on a (78) lands above the key while the inverted multiplier, the unscaled constant and a + b land below. A test-wise student who notices a and b must both be negative still cannot tell whether a - b is positive without computing. Picking the largest option is the only shortcut, and that is the slot design the batch tests."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D08",
+  "domain": "Algebra",
+  "subskill": "Two one-variable inequalities sharing exactly one solution",
+  "difficulty": "medium",
+  "prompt": "16 - 3x ≤ 2x - 29\n6(k - x) ≥ -x - 21\n\nIn the inequalities above, k is a constant. Exactly one real number x satisfies both inequalities. What is the value of k?",
+  "choices": [
+   "4",
+   "9",
+   "11",
+   "34"
+  ],
+  "correct_answer": "4",
+  "explanation": "First inequality: 16 - 3x ≤ 2x - 29 gives 45 ≤ 5x, so x ≥ 9. Second inequality: 6k - 6x ≥ -x - 21 gives -5x ≥ -6k - 21; dividing by -5 reverses the inequality, so x ≤ (6k + 21)/5. The first set is x ≥ 9 and the second is x ≤ (6k + 21)/5, so exactly one number is in both when (6k + 21)/5 = 9. Then 6k + 21 = 45 and k = 4. Choice 9 is the number x that satisfies both, not k; choice 11 comes from moving -21 across without changing its sign; choice 34 comes from combining -3x and 2x as -x, which gives x ≥ 45.",
+  "solve": "const N=(16+29)/5; return (5*N-21)/6;",
+  "distractor_solve": {
+   "9": "return (16+29)/5;",
+   "11": "const N=(16+29)/5; return (5*N+21)/6;",
+   "34": "const N=(16+29)/1; return (5*N-21)/6;"
+  },
+  "mechanism": [
+   "solve a one-variable inequality to a ray",
+   "solve a second inequality with a negative x-coefficient, reversing the sign",
+   "exactly one common solution means the two endpoints coincide"
+  ],
+  "quantity_asked": "the constant k for which the two solution rays share exactly one point",
+  "distractor_meta": {
+   "9": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "reports the shared value of x instead of k; nothing in the stem says whether x or k is larger"
+   },
+   "11": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "a sign slip on the constant 21 raises k, but a sign slip on the constant 16 in the first inequality lowers it (to -4/3), so a sign slip has no stem-readable direction"
+   },
+   "34": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "combining -3x and 2x as -x inflates the first endpoint; a slip combining -6x and -x as -7x in the second inequality would move k the other way"
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const N=(29-16)/5; return (5*N-21)/6;",
+   "direction": "below",
+   "why": "moving 16 across without changing its sign gives -5x ≤ -13, x ≥ 2.6, and k = -4/3, below the key"
+  },
+  "cheap_bound_check": "no one-sided bound on k is printed; the only cheap number is the first endpoint 9, and the key 4 is below it while 11 and 34 are above, but k and x are different quantities and the stem does not say k < x, so the bound strikes nothing without solving the second inequality",
+  "interior_parity_check": "extreme key; middle values 9 and 11 are both odd integers, one and two digits",
+  "arith_class_check": "4 and 34 even, 9 and 11 odd; 4 and 9 are perfect squares; no option sum is 90 or 100; no sign or integrality tell",
+  "dup_search": {
+   "queries": [
+    "exactly one (number|value|real)&inequalit|both inequalities",
+    "satisf&both&constant|exactly one"
+   ],
+   "hits_read": 1,
+   "nearest": "SM26L-C8 (prior) asks the least integer k for which no integer satisfies both of two inequalities; here the two rays must touch at exactly one real number, which fixes k as an equation"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the sign slips available in the stem push k up (on 21) or down (on 16, to -4/3), and reporting x instead of k is not directional from the stem. A test-wise student who solves only the first inequality gets 9 and might pick it; 4 needs the second inequality. Plugging k = 4 still needs the second inequality solved with the reversal, so substitution is not a shortcut."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D09",
+  "domain": "Algebra",
+  "subskill": "Inequality with an unknown-sign coefficient in a system",
+  "difficulty": "hard",
+  "prompt": "a(x - 3) > 5x - 15\n-14 < 7 - 3x ≤ 19\n\nIn the first inequality above, a is a constant, and x = 0 is a solution to the first inequality. What is the sum of all integers x that satisfy both inequalities?",
+  "choices": [
+   "-33",
+   "-7",
+   "-3",
+   "15"
+  ],
+  "correct_answer": "-7",
+  "explanation": "The first inequality can be written as a(x - 3) > 5(x - 3), or (a - 5)(x - 3) > 0. Since x = 0 is a solution, (a - 5)(-3) > 0, so a - 5 < 0, that is, a < 5. Dividing (a - 5)(x - 3) > 0 by the negative number a - 5 reverses the inequality: x - 3 < 0, so x < 3. For the second inequality, subtract 7 from each part: -21 < -3x ≤ 12. Dividing by -3 reverses both inequalities: 7 > x ≥ -4. Both hold when -4 ≤ x < 3, so the integers are -4, -3, -2, -1, 0, 1, 2, whose sum is -7. Choice 15 comes from dividing by a - 5 as if it were positive, which gives x > 3 and the integers 4, 5, 6; choice -33 comes from treating the 7 in the second inequality as -7; choice -3 leaves out the endpoint -4, which is included because of the ≤ sign.",
+  "solve": "const f=(lo,loInc,hi,hiInc)=>{let s=0;for(let x=-100;x<=100;x++){if((loInc?x>=lo:x>lo)&&(hiInc?x<=hi:x<hi))s+=x}return s};const a=0; /* any a<5 */ const L=(7-19)/3, U=(7+14)/3; return f(L,true,Math.min(3,U),false);",
+  "distractor_solve": {
+   "15": "const f=(lo,loInc,hi,hiInc)=>{let s=0;for(let x=-100;x<=100;x++){if((loInc?x>=lo:x>lo)&&(hiInc?x<=hi:x<hi))s+=x}return s};const L=(7-19)/3, U=(7+14)/3; return f(Math.max(3,L),false,U,false);",
+   "-33": "const f=(lo,loInc,hi,hiInc)=>{let s=0;for(let x=-100;x<=100;x++){if((loInc?x>=lo:x>lo)&&(hiInc?x<=hi:x<hi))s+=x}return s};const L=(-7-19)/3, U=(-7+14)/3; return f(L,true,Math.min(3,U),false);",
+   "-3": "const f=(lo,loInc,hi,hiInc)=>{let s=0;for(let x=-100;x<=100;x++){if((loInc?x>=lo:x>lo)&&(hiInc?x<=hi:x<hi))s+=x}return s};const L=(7-19)/3, U=(7+14)/3; return f(L,false,Math.min(3,U),false);"
+  },
+  "mechanism": [
+   "factor a(x - 3) - 5(x - 3) to isolate an unknown-sign coefficient",
+   "use a given solution to fix the sign of a - 5",
+   "reverse when dividing by a negative in both inequalities, then sum the common integers"
+  ],
+  "quantity_asked": "sum of the integers satisfying both inequalities",
+  "distractor_meta": {
+   "15": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "divides by a - 5 without using its sign, keeping x > 3; the resulting integers are on the other side of 3, and the stem does not say which side holds the solutions"
+   },
+   "-33": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "a sign slip on the 7 shifts both ends of the second interval the same way; with the opposite sign slip on 19 or -14 the shift would go the other way"
+   },
+   "-3": {
+    "error_kind": "other",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "drops the included endpoint -4; dropping it raises the sum only because -4 is negative, which needs the interval to be solved first"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "middle values -7 and -3 are both one-digit negative integers; the key -7 is not the cleaner of the two",
+  "arith_class_check": "all four options are odd integers; -33, -7, -3 negative and 15 positive; the key is not alone in sign, parity or integrality",
+  "dup_search": {
+   "queries": [
+    "sum of (all )?(the )?integer&inequalit",
+    "is a solution&constant&inequalit"
+   ],
+   "hits_read": 5,
+   "nearest": "e0559aab sums integer solutions of a system to find a parameter range; here the parameter's sign must be inferred from a given solution and the sum of the common integers is asked"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "The decision point is that a is unknown: a graphing calculator cannot draw the first inequality, and the sign of a - 5 must be inferred from x = 0 being a solution. A test-wise student who ignores a and treats the first inequality as x > 3 gets 15. The key is interior; -7 and -3 are close, but -3 is reached only by excluding a ≤ endpoint."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D10",
+  "domain": "Algebra",
+  "subskill": "System of inequalities with parallel boundaries: band width",
+  "difficulty": "medium",
+  "prompt": "x - 2y ≤ -6\n2(2y - x) ≤ k\n\nIn the system of inequalities above, k is a constant. For each value of x, the values of y for which (x, y) is a solution to the system are exactly the numbers in an interval of length 17. What is the value of k?",
+  "choices": [
+   "20",
+   "46",
+   "56",
+   "80"
+  ],
+  "correct_answer": "80",
+  "explanation": "Solve each inequality for y. From x - 2y ≤ -6, -2y ≤ -x - 6, and dividing by -2 reverses the inequality: y ≥ (1/2)x + 3. From 2(2y - x) ≤ k, 4y - 2x ≤ k, so y ≤ (1/2)x + k/4. The boundary lines are parallel, so for each x the values of y run from (1/2)x + 3 to (1/2)x + k/4, an interval of length k/4 - 3. Setting k/4 - 3 = 17 gives k/4 = 20 and k = 80. Choice 56 comes from writing the first inequality as y ≥ (1/2)x - 3; choice 20 comes from forgetting to divide k by 4; choice 46 measures the horizontal width of the band, k/2 - 6, instead of the vertical one.",
+  "solve": "const lowC=6/2; return 4*(17+lowC);",
+  "distractor_solve": {
+   "20": "const lowC=6/2; return 17+lowC;",
+   "46": "return 2*(17+6);",
+   "56": "const lowC=-6/2; return 4*(17+lowC);"
+  },
+  "mechanism": [
+   "solve two inequalities for y, reversing on division by a negative",
+   "recognize parallel boundary lines forming a band",
+   "vertical band width in terms of the constant"
+  ],
+  "quantity_asked": "the constant k that makes the vertical extent of the solution band equal 7",
+  "distractor_meta": {
+   "20": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "forgets to divide k by 4; whether the undivided constant is larger or smaller than the key depends on the sign and size of k, which the stem does not give"
+   },
+   "46": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "measures the band's width along x instead of y; with slope 1/2 the horizontal width is twice the vertical one, but a student cannot tell from the stem whether the boundary slope is above or below 1 without solving"
+   },
+   "56": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "a sign slip on the first boundary's constant lowers k, but a slip of the same kind made by not halving -6 raises it to 92; the stem does not say which constant a slip hits"
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const lowC=6; return 4*(17+lowC);",
+   "direction": "above",
+   "why": "dividing only the y-term by -2 and leaving 6, so y ≥ (1/2)x + 6, gives k = 92, above the key"
+  },
+  "cheap_bound_check": "the cheapest bound is k > 0 (the upper boundary must lie above the lower one, which sits at +3 only after solving); all four options are positive, so it strikes nothing",
+  "interior_parity_check": "extreme key; middle values 46 and 56 are both two-digit integers",
+  "arith_class_check": "all four options are even positive integers; 20, 56, 80 are multiples of 4 and 46 is not, and 20 and 80 are multiples of 10, so the key is not alone; no sign or integrality tell",
+  "dup_search": {
+   "queries": [
+    "length|distance|apart&inequalit",
+    "parallel&inequalit|between&inequalit&line"
+   ],
+   "hits_read": 4,
+   "nearest": "517bc754 asks the length of an absolute-value solution interval; here two parallel half-planes form a band and the constant sets its vertical width"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the slip on the first boundary's constant can land below (56) or above (92), and the undivided k (20) has no stem-readable side. A test-wise student might multiply the printed 17 by something or add 6 and 17; neither gives 80 without the division by 4."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D11",
+  "domain": "Algebra",
+  "subskill": "Linear inequality relating two quantities in context",
+  "difficulty": "medium",
+  "prompt": "A day camp uses the inequality 5c - k ≥ 26 to check whether it has enough counselors, where c is the number of counselors and k is the number of campers enrolled. The camp currently has 19 counselors and 50 campers enrolled. If 210 more campers enroll, what is the least number of additional counselors the camp must hire so that the inequality is still satisfied?",
+  "choices": [
+   "28",
+   "33",
+   "39",
+   "48"
+  ],
+  "correct_answer": "39",
+  "explanation": "After 210 more campers enroll, k = 50 + 210 = 260. The inequality becomes 5c - 260 ≥ 26, so 5c ≥ 286 and c ≥ 57.2. Since c is a whole number, the camp needs at least 58 counselors. It has 19, so it must hire at least 58 - 19 = 39 more. Choice 28 moves 26 to the wrong side (5c ≥ 260 - 26); choice 33 ignores the 26 in the inequality; choice 48 applies the inequality to the 210 new campers alone, as though the camp had no counselors and no campers before.",
+  "solve": "const a=5,b=26,C0=19,K0=50,n=210; return Math.ceil((K0+n+b)/a)-C0;",
+  "distractor_solve": {
+   "28": "const a=5,b=26,C0=19,K0=50,n=210; return Math.ceil((K0+n-b)/a)-C0;",
+   "33": "const a=5,C0=19,K0=50,n=210; return Math.ceil((K0+n)/a)-C0;",
+   "48": "const a=5,b=26,n=210; return Math.ceil((n+b)/a);"
+  },
+  "mechanism": [
+   "substitute the new count into a given two-variable inequality",
+   "solve for the other quantity and round up to a whole number",
+   "subtract the amount already on hand"
+  ],
+  "quantity_asked": "the least number of additional counselors needed after the enrollment increase",
+  "distractor_meta": {
+   "28": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "moving 26 to the wrong side lowers the requirement; nothing in the stem marks which side the constant belongs on"
+   },
+   "33": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "dropping the constant lowers the requirement, but dropping the current campers and counselors (48) raises it; the stem gives omissions in both directions"
+   },
+   "48": {
+    "error_kind": "wrong_base",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "applying the whole inequality to the new campers only throws away the 19 counselors' surplus; it lands above, and the related increment-only shortcut (210/5, 42) also lands above"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "middle values 33 and 39 are both two-digit odd integers; neither is round; the key is not the cleaner one",
+  "arith_class_check": "28 and 48 even, 33 and 39 odd; 33, 39 and 48 are multiples of 3; none is a multiple of 5; no perfect squares; the key is in no singleton class",
+  "dup_search": {
+   "queries": [
+    "chaperone|supervisor|staff|lifeguard|counselor&at least",
+    "camp|counselor|staffing|hire&additional|more",
+    "inequality&currently|enroll|join&least number",
+    "currently|already&at most|limit|no more than|cannot exceed&each",
+    "uses the inequality|the inequality .* represents|is modeled by the inequality|satisfy the inequality&where"
+   ],
+   "hits_read": 6,
+   "nearest": "29a29f62 (teachers hired to change a student-teacher ratio from 1:18 to 1:15) is a ratio item with no inequality, buffer or rounding; 4c95f430 / d275d717 (van already loaded, greatest number of boxes) divide remaining capacity by a unit weight; here a given two-variable inequality with a constant is re-solved at a new value of one quantity, rounded up, and the amount already on hand is subtracted"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might plug options back in from the smallest: 28 and 33 fail, 39 works, so three substitutions are needed and the student must still trust that 38 fails. Picking a middle option is the guessing shortcut the slot is built for; the distractors split two below and one above, from three different named errors."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D12",
+  "domain": "Algebra",
+  "subskill": "Two budget inequalities in context compared",
+  "difficulty": "medium",
+  "prompt": "Rita has $120 to spend on notebooks and can buy them from one of two stores. Store P charges $7.50 per notebook plus a $32 delivery charge for the order. Store Q charges $3.50 per notebook but requires a one-time $6 membership fee. Rita's total cost cannot exceed $120. How many more notebooks can Rita buy from store Q than from store P?",
+  "choices": [
+   "10",
+   "12",
+   "16",
+   "21"
+  ],
+  "correct_answer": "21",
+  "explanation": "At store P, buying n notebooks costs 7.50n + 32 dollars, so 7.50n + 32 ≤ 120 gives 7.50n ≤ 88 and n ≤ 11.7 (to the nearest tenth). Rita can buy at most 11 notebooks there. At store Q, 3.50n + 6 ≤ 120 gives 3.50n ≤ 114 and n ≤ 32.6 (to the nearest tenth), so she can buy at most 32. The difference is 32 - 11 = 21. Choice 16 leaves out store P's delivery charge (16 notebooks at store P); choice 12 adds the delivery charge to the $120 instead of subtracting it (20 notebooks at store P); choice 10 applies each store's fee to the other store's price (25 at store Q and 15 at store P).",
+  "solve": "const NP=Math.floor((120-32)/7.5), NQ=Math.floor((120-6)/3.5); return NQ-NP;",
+  "distractor_solve": {
+   "10": "const NP=Math.floor((120-6)/7.5), NQ=Math.floor((120-32)/3.5); return NQ-NP;",
+   "12": "const NP=Math.floor((120+32)/7.5), NQ=Math.floor((120-6)/3.5); return NQ-NP;",
+   "16": "const NP=Math.floor(120/7.5), NQ=Math.floor((120-6)/3.5); return NQ-NP;"
+  },
+  "mechanism": [
+   "write a budget inequality for each store with its fixed charge",
+   "solve each and round down to a whole number",
+   "subtract the two whole-number counts"
+  ],
+  "quantity_asked": "difference between the numbers of notebooks affordable at the two stores",
+  "distractor_meta": {
+   "10": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "swapping which fee goes with which price changes both counts at once, and the net direction depends on the two prices, not on anything the stem announces"
+   },
+   "12": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "a sign slip on store P's charge lowers the difference; the same slip on store Q's fee raises it (to 25)"
+   },
+   "16": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "dropping store P's charge lowers the difference, but dropping store Q's fee raises it (to 23); the stem has a fixed charge on each side"
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const NP=Math.floor((120-32)/7.5), NQ=Math.floor(120/3.5); return NQ-NP;",
+   "direction": "above",
+   "why": "leaving out store Q's $6 membership fee gives 34 notebooks at store Q and a difference of 23, above the key"
+  },
+  "cheap_bound_check": "the cheapest estimate ignores both fees: 120/3.5 - 120/7.5 = 18.3, nearest to 16, not the key; it is not a one-sided bound, because store P's charge raises the difference and store Q's fee lowers it, and which effect is larger needs 32/7.5 against 6/3.5",
+  "interior_parity_check": "extreme key; middle values 12 and 16 are both two-digit even integers",
+  "arith_class_check": "10, 12, 16 even and 21 odd; the key is the only odd option, but nothing in the stem makes a difference of two floored counts even or odd; 21 and 12 are multiples of 3, so the key is not alone there",
+  "dup_search": {
+   "queries": [
+    "how many more&can buy|could buy|afford",
+    "store&delivery|shipping&each&spend"
+   ],
+   "hits_read": 0,
+   "nearest": "D04 in this batch solves one budget inequality with a ratio constraint and counts items; here two separate budget inequalities with fees are solved, floored and compared"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: each store carries a fixed charge, and an omission or sign slip on store P lowers the difference while the same slip on store Q raises it (23 and 25). A test-wise student who ignores both fees gets 120/3.5 - 120/7.5 = 18.3 and picks 16, a distractor; reaching 21 needs both fees and both round-downs."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-D13",
+  "domain": "Algebra",
+  "subskill": "Linear inequality in context with complementary times",
+  "difficulty": "medium",
+  "prompt": "During a 4-hour trip, Mara cycles at an average speed of 18 kilometers per hour for part of the time and walks at an average speed of 4 kilometers per hour for the rest of the time. She wants to cover a total distance of at least 53 kilometers. What is the least number of whole minutes she must spend cycling?",
+  "choices": [
+   "124",
+   "159",
+   "189",
+   "265"
+  ],
+  "correct_answer": "159",
+  "explanation": "Let t be the number of hours Mara cycles. Then she walks for 4 - t hours, and her total distance is 18t + 4(4 - t) = 14t + 16 kilometers. The condition 14t + 16 ≥ 53 gives 14t ≥ 37, so t ≥ 37/14, which is about 2.6429 hours, or about 158.6 minutes. The least whole number of minutes is 159. Choice 124 uses 4 hours of walking in addition to the cycling time (18t + 16 ≥ 53); choice 189 subtracts the walking distance instead of adding it (18t - 4(4 - t) ≥ 53); choice 265 converts hours to minutes by multiplying by 100 instead of 60.",
+  "solve": "const t=(53-4*4)/(18-4); return Math.ceil(t*60-1e-9);",
+  "distractor_solve": {
+   "124": "const t=(53-4*4)/18; return Math.ceil(t*60-1e-9);",
+   "189": "const t=(53+4*4)/(18+4); return Math.ceil(t*60-1e-9);",
+   "265": "const t=(53-4*4)/(18-4); return Math.ceil(t*100-1e-9);"
+  },
+  "mechanism": [
+   "express the second activity's time as total minus the first",
+   "solve a linear distance inequality",
+   "convert hours to whole minutes, rounding up"
+  ],
+  "quantity_asked": "least whole number of minutes of cycling that gives at least 53 km in 4 hours",
+  "distractor_meta": {
+   "124": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "counts a full 4 hours of walking on top of the cycling, which overstates the walking distance and lowers the cycling time; using too little walking time would raise it"
+   },
+   "189": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "subtracting the walking distance raises the cycling time; the opposite slip on the 4 - t term (4t + 16) lowers it"
+   },
+   "265": {
+    "error_kind": "wrong_base",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "converts hours to minutes with 100 per hour; a slip that divides instead of multiplying would land far below"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "middle values 159 and 189 are both three-digit odd integers; the key 159 is not rounder than 189",
+  "arith_class_check": "159, 189, 265 odd and 124 even; 159 and 189 are multiples of 3; the key is not alone in parity, size or roundness",
+  "dup_search": {
+   "queries": [
+    "per hour&at least&rest|remaining|walk",
+    "kilometers per hour|miles per hour&least",
+    "hours&minutes&inequalit|at least"
+   ],
+   "hits_read": 0,
+   "nearest": "D11 in this batch rounds a decimal bound up to a whole count from a fee inequality; here the unknown time and its complement share a fixed total and the bound is converted to minutes"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key. A test-wise student might divide 53 by 18 (2.94 hours, 177 minutes) and pick the nearest option, 189, which is a distractor; the errors land on both sides of the key."
+  },
+  "bounds": []
+ }
+]

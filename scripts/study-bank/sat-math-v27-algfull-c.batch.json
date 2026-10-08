@@ -1,0 +1,890 @@
+[
+ {
+  "id": "SM27F-C01",
+  "domain": "Algebra",
+  "subskill": "Wage and deduction from two weeks across an overtime threshold",
+  "difficulty": "hard",
+  "prompt": "Mara is paid a fixed hourly wage for each of the first 40 hours she works in a week and 1.5 times that hourly wage for each hour she works beyond 40 in that week. Each week, the same fixed amount is deducted from her pay for a parking permit. In a week in which she worked 30 hours, her pay after the deduction was $384. In a week in which she worked 50 hours, her pay after the deduction was $784. What is Mara's pay, in dollars, after the deduction for a week in which she works 56 hours?",
+  "choices": [
+   "928",
+   "1064",
+   "1120",
+   "1248"
+  ],
+  "correct_answer": "928",
+  "explanation": "Let w be the hourly wage and d the weekly deduction. In the 30-hour week every hour is paid at w, so 30w - d = 384. In the 50-hour week, 40 hours are paid at w and the other 10 hours at 1.5w, so the pay before the deduction is 40w + 15w = 55w, and 55w - d = 784. Subtracting the first equation from the second gives 25w = 400, so w = 16, and then d = 30(16) - 384 = 96. In a 56-hour week, 40 hours are paid at 16 dollars and 16 hours at 1.5(16) = 24 dollars, for 640 + 384 = 1,024 dollars before the deduction, so the pay after the deduction is 1,024 - 96 = 928 dollars. Choice 1064 comes from treating the 50-hour week as 50 hours at the ordinary wage (which gives w = 20 and d = 216) and then applying the overtime rule to the 56-hour week. Choice 1120 adds the deduction instead of subtracting it. Choice 1248 pays all 56 hours at 1.5 times the wage instead of only the hours beyond 40.",
+  "solve": "const w=(784-384)/((40+1.5*10)-30); const d=30*w-384; return 40*w+1.5*w*16-d;",
+  "distractor_solve": {
+   "1064": "const w=(784-384)/(50-30); const d=30*w-384; return 40*w+1.5*w*16-d;",
+   "1120": "const w=(784-384)/((40+1.5*10)-30); const d=30*w-384; return 40*w+1.5*w*16+d;",
+   "1248": "const w=(784-384)/((40+1.5*10)-30); const d=30*w-384; return 1.5*w*56-d;"
+  },
+  "mechanism": [
+   "decide which week crosses the overtime threshold",
+   "one equation per week in wage and deduction",
+   "solve the 2x2 for the wage and the deduction",
+   "evaluate the piecewise pay for a new week"
+  ],
+  "quantity_asked": "the pay after the deduction for a 56-hour week",
+  "distractor_meta": {
+   "1064": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Ignoring overtime in the 50-hour week inflates the wage and the deduction together; whether the final pay moves up or down depends on whether the overtime rule is then used for the 56-hour week. Used consistently, the same error lands below the key (904), so the stem gives no side."
+   },
+   "1120": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the deduction; the deduction's size is not printed, so the stem does not say how far or that the key must be the lower of the two."
+   },
+   "1248": {
+    "error_kind": "wrong_base",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Applies the 1.5 multiplier to every hour instead of only the hours beyond 40; the matching misreading in the setup (1.5 times for all 50 hours) would shrink the wage and pull the answer below the key, so the stem does not fix the side."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const w=(784-384)/(50-30); const d=30*w-384; return 56*w-d;",
+   "direction": "below",
+   "why": "Treating pay as one straight line through the two weeks (no overtime anywhere, equivalently extending the $20-per-hour trend from 30 to 50 hours) gives 56(20) - 216 = 904, below the key."
+  },
+  "cheap_bound_check": "The cheapest one-sided bound: the deduction is nonnegative, so w >= 384/30 = 12.8, and the 56-hour pay is at least 784 + 9(12.8) = 899.2. All four options lie above it, so it strikes nothing; there is no stem-readable upper bound without solving for w.",
+  "interior_parity_check": "Middle values 1064 and 1120: both four-digit integers; the key is not a middle value.",
+  "arith_class_check": "All four options are even multiples of 8; 928, 1120 and 1248 are multiples of 16 and 1064 is not; only 1120 is a multiple of 10. The key is alone in no class.",
+  "dup_search": {
+   "queries": [
+    "overtime|time and a half|time-and-a-half",
+    "beyond|in excess of|over 40&hour"
+   ],
+   "hits_read": 9,
+   "nearest": "830d6f4a (act) and ea1b64a0 (isee) give the wage and solve one equation for the overtime hours; here the wage AND a fixed deduction are unknown, two weeks give a 2x2 only after deciding which week crosses the threshold, and the ask is a new week's pay. The tiered-electricity hits are one-unknown piecewise evaluation."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: ignoring overtime moves the answer up or down depending on whether it is ignored in the setup only or throughout (904 below the key), the 1.5-on-every-hour misreading flips side between setup and final step, and the deduction's size is not printed. The only cheap bound (deduction >= 0) sits below every option. The decision point is recognizing the 30-hour week has no overtime and the 50-hour week has 10 overtime hours; a calculator cannot make it."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C02",
+  "domain": "Algebra",
+  "subskill": "Two solutions force a dependent system; constant from a point",
+  "difficulty": "hard",
+  "prompt": "px - 8y = 36\n9x + qy = c\n\nThe letters p, q, and c stand for fixed numbers. At least two different ordered pairs (x, y) make both equations true, and (1, -3) is one of them. Find c.",
+  "choices": [
+   "5.4",
+   "12",
+   "27",
+   "48"
+  ],
+  "correct_answer": "27",
+  "explanation": "Two distinct lines meet in at most one point, so if two different pairs satisfy both equations, the equations describe the same line and the second is a constant multiple of the first. The pair (1, -3) satisfies the first equation: p(1) - 8(-3) = 36, so p + 24 = 36 and p = 12. The first equation is 12x - 8y = 36. To turn 12x into 9x, multiply by 9/12 = 3/4: 9x - 6y = 27. So q = -6 and c = 27. Choice 48 uses the factor 12/9 instead of 9/12. Choice 5.4 comes from a sign slip when substituting the point (p - 24 = 36, so p = 60). Choice 12 is the value of p, not c.",
+  "solve": "const p = 36 + 8*(-3); return 36 * 9 / p;",
+  "distractor_solve": {
+   "12": "return 36 + 8*(-3);",
+   "48": "const p = 36 + 8*(-3); return 36 * p / 9;",
+   "5.4": "const p = 36 + 24; return 36 * 9 / p;"
+  },
+  "mechanism": [
+   "two common solutions of a linear system means the lines coincide",
+   "point substituted into the first equation gives p",
+   "scale factor from the x-coefficients",
+   "constant of the second equation from the scale factor"
+  ],
+  "quantity_asked": "the constant c on the right side of the second equation",
+  "distractor_meta": {
+   "12": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reports the intermediate constant p instead of c; p and c are unrelated in size until the scale factor is known."
+   },
+   "48": {
+    "error_kind": "inverted_rate",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses 12/9 in place of 9/12; the stem does not show p, so whether the scale factor is above or below 1 is not readable before p is found."
+   },
+   "5.4": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on -8(-3) gives p = 60 and a small scale factor; nothing in the stem bounds c."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values 12 and 27: both two-digit integers; the key 27 is not the rounder of the two.",
+  "arith_class_check": "Three integers and one decimal (5.4, a distractor); the stem fixes no integrality, sign or divisibility for c. The key 27 is the lone multiple of 9, but nothing in the stem implies c is a multiple of 9 before p is found.",
+  "dup_search": {
+   "queries": [
+    "at least two|more than one solution|two different solutions|two solutions \\(x",
+    "infinitely many&\\(-?\\d+, -?\\d+\\)",
+    "at least one solution"
+   ],
+   "hits_read": 5,
+   "nearest": "63d50c2f (4x - 6y = c, 9y = 6x + 12, at least one solution, find c): parallel lines must coincide, one ratio step; here a point first fixes p in the first equation and the coincidence then fixes q and c."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would substitute (1, -3) into the second equation and find q is unknown, then try to plug options for c: each needs q as well, so no option can be checked by substitution. The decision that two solutions means the same line is the step Desmos does not supply."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C03",
+  "domain": "Algebra",
+  "subskill": "System from two resource totals; profit from the solution",
+  "difficulty": "medium",
+  "prompt": "A workshop makes only chairs and benches. Each chair requires 1 hour of cutting and 3 hours of sanding, and each bench requires 2 hours of cutting and 1 hour of sanding. Last week the workshop used exactly 40 hours of cutting and 45 hours of sanding. The workshop earns a profit of $25 on each chair and $40 on each bench. What was the total profit, in dollars, on the chairs and benches made last week?",
+  "choices": [
+   "600",
+   "755",
+   "775",
+   "850"
+  ],
+  "correct_answer": "850",
+  "explanation": "Let c be the number of chairs and b the number of benches. Cutting time gives c + 2b = 40, and sanding time gives 3c + b = 45. From the first equation, c = 40 - 2b. Substituting, 3(40 - 2b) + b = 45, so 120 - 5b = 45 and b = 15. Then c = 40 - 30 = 10. The profit is 25(10) + 40(15) = 250 + 600 = 850 dollars. Choice 600 is the profit on the benches alone. Choice 775 attaches the $25 profit to the benches and the $40 profit to the chairs. Choice 755 comes from writing one equation per product (c + 3b = 40 and 2c + b = 45) instead of one equation per kind of work.",
+  "solve": "const d = 1*1 - 3*2; const c = (40*1 - 2*45)/d; const b = (1*45 - 3*40)/d; return 25*c + 40*b;",
+  "distractor_solve": {
+   "600": "const d = 1*1 - 3*2; const b = (1*45 - 3*40)/d; return 40*b;",
+   "755": "const d = 1*1 - 2*3; const c = (40*1 - 3*45)/d; const b = (1*45 - 2*40)/d; return 25*c + 40*b;",
+   "775": "const d = 1*1 - 3*2; const c = (40*1 - 2*45)/d; const b = (1*45 - 3*40)/d; return 25*b + 40*c;"
+  },
+  "mechanism": [
+   "one equation per resource from two hour totals",
+   "solve the 2x2 by substitution",
+   "weighted total from the solution"
+  ],
+  "quantity_asked": "total profit on the week's chairs and benches",
+  "distractor_meta": {
+   "600": {
+    "error_kind": "partial_answer",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counts only the bench profit; nothing in the stem marks which option is a part rather than the whole."
+   },
+   "755": {
+    "error_kind": "other",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Builds one equation per product instead of per resource; the transposed system has a different solution whose total can fall on either side."
+   },
+   "775": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Pairs each profit with the other product's count; whether that raises or lowers the total depends on which product is more numerous, which is unknown until solved (with the hour totals swapped, the same kind of slip lands above)."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const d = 1*1 - 3*2; const c = (45*1 - 2*40)/d; const b = (1*40 - 3*45)/d; return 25*c + 40*b;",
+   "direction": "above",
+   "why": "Attaching 45 hours to cutting and 40 to sanding gives 7 chairs and 19 benches and a profit of 935, above the key."
+  },
+  "cheap_bound_check": "Total hours 85 with 4 h per chair and 3 h per bench bound the profit between about 531 (all chairs) and 1133 (all benches); every option lies inside. No option is excluded by a one-sided reading; the counter error 935 sits above the key.",
+  "interior_parity_check": "Middle values 755 and 775: both three-digit integers ending in 5; the key is not one of them.",
+  "arith_class_check": "All four are multiples of 5 (as every 25c + 40b is); 600 and 850 are multiples of 50, 755 and 775 are not, so the key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "hours of (cutting|sewing|assembly|machine)|cutting|sewing",
+    "profit&each&hours",
+    "chairs|benches|tables&hours",
+    "profit&(two|both) (products|types|kinds)"
+   ],
+   "hits_read": 2,
+   "nearest": "0f25b6a0 (van rental: fee plus per-mile charge from two rentals) - a one-variable linear function from two points; here two unknown counts from two resource totals, then a weighted profit."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student strike the three lower options from the stem? The partial profit is lower than the whole, but nothing marks which option is the partial; the swapped-profit and transposed-system slips can land either side (the swapped-hours slip lands at 935, above). The resource bounds (about 531 to 1133) leave all four standing."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C04",
+  "domain": "Algebra",
+  "subskill": "System built from a comparison of two expressions",
+  "difficulty": "medium",
+  "prompt": "Two conditions relate x and y. First, 4x + 5y = 76. Second, when the values of x and y are substituted, the expression 3x + 4y comes out 6 greater than the expression 5x + y. Find x + y.",
+  "choices": [
+   "8",
+   "17",
+   "41",
+   "53"
+  ],
+  "correct_answer": "17",
+  "explanation": "The second condition says 3x + 4y = (5x + y) + 6. Collecting terms gives -2x + 3y = 6. Multiply this equation by 2 to get -4x + 6y = 12, and add it to 4x + 5y = 76: 11y = 88, so y = 8. Then 4x + 40 = 76, so x = 9, and x + y = 17. Choice 8 is the value of y alone. Choice 53 is the value of the expression 5x + y, not x + y. Choice 41 comes from moving the 4y term with the wrong sign, which gives -2x - 3y = 6 instead of -2x + 3y = 6.",
+  "solve": "const a1=3-5, b1=4-1, c1=6; const D=a1*5-b1*4; const x=(c1*5-b1*76)/D; const y=(a1*76-c1*4)/D; return x+y;",
+  "distractor_solve": {
+   "8": "const a1=3-5, b1=4-1, c1=6; const D=a1*5-b1*4; return (a1*76-c1*4)/D;",
+   "41": "const a1=3-5, b1=1-4, c1=6; const D=a1*5-b1*4; const x=(c1*5-b1*76)/D; const y=(a1*76-c1*4)/D; return x+y;",
+   "53": "const a1=3-5, b1=4-1, c1=6; const D=a1*5-b1*4; const x=(c1*5-b1*76)/D; const y=(a1*76-c1*4)/D; return 5*x+y;"
+  },
+  "mechanism": [
+   "translate 'A is 6 more than B' into a linear equation",
+   "collect terms into standard form",
+   "solve the 2x2 by elimination",
+   "sum of the solution's coordinates"
+  ],
+  "quantity_asked": "the value of x + y",
+  "distractor_meta": {
+   "8": {
+    "error_kind": "partial_answer",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Stops at y. Whether y is smaller than x + y depends on the sign of x, which the stem does not give."
+   },
+   "41": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moving 4y across with the wrong sign changes the solution to a point with a large negative y; the sum of its coordinates could fall on either side, and nothing in the stem shows which."
+   },
+   "53": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reports the value of 5x + y. With no sign information on x and y, the stem does not say whether 5x + y exceeds x + y."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values 17 and 41: both two-digit integers; neither is rounder, and 41 is not simpler than 17.",
+  "arith_class_check": "17, 41 and 53 are odd primes and 8 is even; the key shares oddness and primality with two distractors. The stem implies no parity or divisibility.",
+  "dup_search": {
+   "queries": [
+    "more than the value of|exceeds the value|less than the value of",
+    "value of \\d*x ?[+-] ?\\d*y&system|equations",
+    "value of xy|product xy|value of x ?\\* ?y",
+    "numbers x and y satisfy"
+   ],
+   "hits_read": 21,
+   "nearest": "ff6a717d / ALG-H2-15 (both equations printed in standard form, solve, report x + y): here one equation must first be built from a verbal comparison of two expressions, and the comparison's terms must be collected before any solving; no live item builds an equation that way (0 hits on the comparison phrasing). check-math-near-dup's closest by wording, c83fc421 (x^2 - y^2 = 40, x - y = 4), is a quadratic factoring item; the stem was reworded away from its phrasing."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student would try substituting options for x + y, but no option fixes x and y separately, so that fails. Nothing in the stem bounds x + y from one side: the coefficients are mixed and no sign is given. The partial 8 sits below and the reported expression 53 and sign-slip 41 sit above, so no side can be struck. The two compared expressions are not both offered, so no option pair differs by the printed 6."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C05",
+  "domain": "Algebra",
+  "subskill": "Two pump rates from two runs; time to finish a job",
+  "difficulty": "medium",
+  "prompt": "Pumps A and B each move water at its own constant rate. In one test, pump A ran for 4 minutes and pump B ran for 1 minute, and together they moved 280 liters. In a second test, pump A ran for 1 minute and pump B ran for 3 minutes, and together they moved 180 liters. To empty a 1,500-liter tank, pump A ran for 3 minutes and then stopped, and pump B alone moved the rest of the water. For how many minutes did pump B run?",
+  "choices": [
+   "15",
+   "22",
+   "23",
+   "33"
+  ],
+  "correct_answer": "33",
+  "explanation": "Let a and b be the rates of pumps A and B, in liters per minute. The tests give 4a + b = 280 and a + 3b = 180. From the second equation, a = 180 - 3b. Substituting, 4(180 - 3b) + b = 280, so 720 - 11b = 280 and b = 40. Then a = 180 - 120 = 60. In 3 minutes pump A moved 3(60) = 180 liters, leaving 1,500 - 180 = 1,320 liters for pump B, which takes 1,320 / 40 = 33 minutes. Choice 23 comes from mixing up the two rates (A at 40 and B at 60). Choice 22 divides the remaining 1,320 liters by pump A's rate instead of pump B's. Choice 15 divides the whole 1,500 liters by the combined rate of 100 liters per minute, as if both pumps ran the whole time.",
+  "solve": "const D=4*3-1*1; const a=(280*3-1*180)/D; const b=(4*180-280*1)/D; return (1500-3*a)/b;",
+  "distractor_solve": {
+   "15": "const D=4*3-1*1; const a=(280*3-1*180)/D; const b=(4*180-280*1)/D; return 1500/(a+b);",
+   "22": "const D=4*3-1*1; const a=(280*3-1*180)/D; const b=(4*180-280*1)/D; return (1500-3*a)/a;",
+   "23": "const D=4*3-1*1; const a=(280*3-1*180)/D; const b=(4*180-280*1)/D; return (1500-3*b)/a;"
+  },
+  "mechanism": [
+   "one equation per test run",
+   "solve the 2x2 for the two rates",
+   "subtract the first pump's output from the job",
+   "divide the remainder by the second pump's rate"
+  ],
+  "quantity_asked": "the number of minutes pump B ran",
+  "distractor_meta": {
+   "15": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats the job as both pumps running throughout; with A's 3 minutes being a small share, the stem alone does not fix whether this is above or below B's solo time without the rates."
+   },
+   "22": {
+    "error_kind": "wrong_base",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Divides the remainder by A's rate; that lands below only because A turns out faster, which the stem does not reveal."
+   },
+   "23": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Swaps the two rates. Which pump is faster is not stated and is only known after solving, so whether the swap shortens or lengthens B's time is not readable from the stem."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const D=4*3-1*1; const a=(280*3-1*180)/D; const b=(4*180-280*1)/D; return 3+(1500-3*a)/b;",
+   "direction": "above",
+   "why": "Reporting the total time the tank took (A's 3 minutes plus B's 33) gives 36, above the key; forgetting A's 180 liters and dividing all 1,500 by B's rate gives 37.5, also above."
+  },
+  "cheap_bound_check": "The stem gives no one-sided bound on B's time: the tests show only mixed pump-minutes (280 liters in 5 pump-minutes, 180 in 4), so a rough per-minute rate of 45 to 56 suggests about 24 to 30 minutes, which sits below the key and among the distractors, not on one side. The natural slips that add A's minutes or drop A's output land above (36, 37.5), the rate swaps land below.",
+  "interior_parity_check": "Middle values 22 and 23: both two-digit integers of the same form; neither is cleaner.",
+  "arith_class_check": "33 and 15 and 23 are odd, 22 even; 33 and 15 are multiples of 3 and 15 is a multiple of 5; the key is not alone in any class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "pump",
+    "pump&gallons&hours",
+    "crates of apples|pounds of apples",
+    "same (cost|total|amount)|cost the same|equal cost"
+   ],
+   "hits_read": 31,
+   "nearest": "12738028 / 67a9f3bb (two purchases or loads give a 2x2; report one unit value): here the solved rates are then used in a sequential job (subtract A's output, divide the remainder by B's rate), a second stage those items do not have; 28632df4 and 00a635f5 are reciprocal work-rate items, not linear systems."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go? The stem never says which pump is faster, so a rate swap or a wrong divisor cannot be placed on a side before solving; adding A's minutes or ignoring A's output both overshoot (36, 37.5). A student who guesses 'the longest time is safest' has no stem reason to do so. Plugging an option for B's time still needs both rates."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C06",
+  "domain": "Algebra",
+  "subskill": "System in the grouped quantities x + y and x - y; product xy",
+  "difficulty": "medium",
+  "prompt": "4(x + y) + 3(x - y) = 23\n5(x + y) - 2(x - y) = -23\n\nThe ordered pair (x, y) satisfies both equations shown. What is the value of xy?",
+  "choices": [
+   "-20",
+   "-1",
+   "6",
+   "9"
+  ],
+  "correct_answer": "-20",
+  "explanation": "Treat x + y and x - y as the two unknowns. Multiply the first equation by 2 and the second by 3: 8(x + y) + 6(x - y) = 46 and 15(x + y) - 6(x - y) = -69. Adding gives 23(x + y) = -23, so x + y = -1. Then 4(-1) + 3(x - y) = 23, so x - y = 9. Adding x + y = -1 and x - y = 9 gives 2x = 8, so x = 4 and y = -5. Therefore xy = 4(-5) = -20. Choice -1 is the value of x + y and choice 9 is the value of x - y; both stop before x and y are found. Choice 6 comes from dropping the negative sign on -23 in the second equation, which gives x + y = 5, x - y = 1, so x = 3, y = 2.",
+  "solve": "const D=4*(-2)-3*5; const u=(23*(-2)-3*(-23))/D; const v=(4*(-23)-23*5)/D; return ((u+v)/2)*((u-v)/2);",
+  "distractor_solve": {
+   "6": "const D=4*(-2)-3*5; const u=(23*(-2)-3*23)/D; const v=(4*23-23*5)/D; return ((u+v)/2)*((u-v)/2);",
+   "9": "const D=4*(-2)-3*5; return (4*(-23)-23*5)/D;",
+   "-1": "const D=4*(-2)-3*5; return (23*(-2)-3*(-23))/D;"
+  },
+  "mechanism": [
+   "treat x + y and x - y as the unknowns",
+   "solve the 2x2 in the grouped quantities",
+   "recover x and y from their sum and difference",
+   "product of the solution's coordinates"
+  ],
+  "quantity_asked": "the value of the product xy",
+  "distractor_meta": {
+   "6": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Drops the minus sign on -23. That moves the solution to a different point; whether its product is larger or smaller is not readable from the stem (a coefficient sign slip lands far below, see counter error)."
+   },
+   "9": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Stops at x - y. Nothing in the stem says whether x - y is above or below xy before x and y are known."
+   },
+   "-1": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Stops at x + y. The product xy and the sum x + y are not ordered by anything in the stem; their relation depends on the unsolved signs of x and y."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const D=4*2-3*5; const u=(23*2-3*(-23))/D; const v=(4*(-23)-23*5)/D; return ((u+v)/2)*((u-v)/2);",
+   "direction": "below",
+   "why": "Reading -2(x - y) as +2(x - y) gives the system 4u + 3v = 23, 5u + 2v = -23, whose point has a product of about -151, far below the key."
+  },
+  "cheap_bound_check": "No one-sided bound is readable: the right sides 23 and -23 have opposite signs and the grouped coefficients are mixed, so the stem fixes neither the signs of x and y nor the size of xy. A product can be negative or positive; the constant sign slip lands above (6), the coefficient sign slip lands far below (about -151).",
+  "interior_parity_check": "Middle values -1 and 6: both one-digit integers; neither is cleaner.",
+  "arith_class_check": "Two negative and two positive options; -20 and 6 even, -1 and 9 odd. The key -20 is the lone multiple of 4, 5 and 10, but the stem implies no divisibility for xy.",
+  "dup_search": {
+   "queries": [
+    "\\(x ?\\+ ?y\\)&\\(x ?- ?y\\)",
+    "value of \\d*x ?[+-] ?\\d*y&system|equations",
+    "value of xy|product xy|value of x ?\\* ?y"
+   ],
+   "hits_read": 24,
+   "nearest": "SALG-20 ((x + y)/3 = (x - y)/5 = 2, find xy): each grouped quantity is given directly by one equality; here the grouped quantities are mixed in both equations and must be solved as a 2x2 before x and y are recovered. 05d545ec / 2804a6ed (xy from x + y and x^2 + y^2) are quadratic identity items. ff6a717d / ALG-H2-15 solve a standard-form system for x + y with no grouping."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student strike three options from the stem? The constants 23 and -23 have opposite signs and the grouped coefficients are mixed, so neither a sign nor a size reading picks a side; the natural sign slips split (6 above, about -151 below). Options for xy cannot be substituted back, since a product does not fix x and y. A student who solves only the grouped system lands on -1 or 9, which are distractors by design."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C07",
+  "domain": "Algebra",
+  "subskill": "Two systems share a solution; constants from that solution",
+  "difficulty": "medium",
+  "prompt": "System 1:  2x + 3y = 16\n           x - y = -2\n\nSystem 2:  ax - 3y = -2\n           4x - by = 28\n\nIn System 2, a and b are constants. The two systems have exactly the same solution (x, y). What is the value of ab?",
+  "choices": [
+   "-25",
+   "-6",
+   "-5",
+   "35"
+  ],
+  "correct_answer": "-25",
+  "explanation": "Solve System 1 first. From x - y = -2, x = y - 2. Substituting, 2(y - 2) + 3y = 16, so 5y = 20 and y = 4; then x = 2. The same pair (2, 4) satisfies System 2. In the first equation, 2a - 3(4) = -2, so 2a = 10 and a = 5. In the second equation, 4(2) - 4b = 28, so -4b = 20 and b = -5. Therefore ab = 5(-5) = -25. Choice -5 is the value of b alone. Choice -6 comes from reading the solution as x = 4, y = 2, which gives a = 1 and b = -6. Choice 35 comes from moving -3y to the right side without changing its sign (2a = -2 - 12), which gives a = -7.",
+  "solve": "const y=(16-2*(-2))/(2+3); const x=y-2; const a=(-2+3*y)/x; const b=(4*x-28)/y; return a*b;",
+  "distractor_solve": {
+   "35": "const y=(16-2*(-2))/(2+3); const x=y-2; const a=(-2-3*y)/x; const b=(4*x-28)/y; return a*b;",
+   "-5": "const y=(16-2*(-2))/(2+3); const x=y-2; return (4*x-28)/y;",
+   "-6": "const y0=(16-2*(-2))/(2+3); const x0=y0-2; const x=y0, y=x0; const a=(-2+3*y)/x; const b=(4*x-28)/y; return a*b;"
+  },
+  "mechanism": [
+   "solve the fully known system",
+   "substitute its solution into the second system",
+   "one constant from each equation",
+   "product of the two constants"
+  ],
+  "quantity_asked": "the value of the product ab",
+  "distractor_meta": {
+   "35": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on -3y flips the sign of a and so of the product; whether that lands above or below depends on the sign of b, which is unknown until solved (a sign slip on y itself lands below, see counter error)."
+   },
+   "-5": {
+    "error_kind": "partial_answer",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Stops at b. Whether b is above or below ab depends on the size and sign of a, which the stem does not give."
+   },
+   "-6": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Swaps the coordinates of the shared solution. That changes both constants, and the stem gives no reason the new product should be larger or smaller."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const y=-(16-2*(-2))/(2+3); const x=-y-2; const a=(-2+3*y)/x; const b=(4*x-28)/y; return a*b;",
+   "direction": "below",
+   "why": "Substituting y = -4 instead of 4 (with x = 2) gives a = -7 and b = 5, a product of -35, below the key."
+  },
+  "cheap_bound_check": "No stem-only bound fixes a side: a product of two constants can be positive or negative, and the stem shows neither sign. The sign slip on -3y lands above (35); the sign slip on y lands below (-35).",
+  "interior_parity_check": "Middle values -6 and -5: both one-digit negative integers; neither is cleaner.",
+  "arith_class_check": "Three negative options and one positive (a distractor). The key -25 shares multiple-of-5 with -5 and 35; it is the lone perfect-square magnitude, but nothing in the stem implies ab is a square.",
+  "dup_search": {
+   "queries": [
+    "same solution|same ordered pair|also (a|the) solution",
+    "bx ?\\+ ?ay|bx ?- ?ay",
+    "y = \\d+x&solution&constant|value of a|value of k"
+   ],
+   "hits_read": 12,
+   "nearest": "SM26F-C02 (held A88: one system whose only solution (6, -4) is printed; a and b both appear in both equations, so the point gives a 2x2 in a and b, find a + b): here the solution is not printed but must be found from a second, fully known system, and each equation of System 2 then yields one constant on its own. SALG2-02 uses a printed relation y = 2x, not a second system."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go? A product's sign depends on the signs of a and b, which the stem does not reveal, so no side of -25 can be struck: the slip on -3y lands at 35 and the slip on y lands at -35. Options for ab cannot be substituted back, since a product does not fix a and b. A student might notice a = -b only after solving."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C08",
+  "domain": "Algebra",
+  "subskill": "Line from a table meets a given line; product of coordinates",
+  "difficulty": "medium",
+  "prompt": "x | y\n-3 | 13\n3 | 1\n\nThe table shows two ordered pairs (x, y) that satisfy a linear equation L. In the xy-plane, the graph of L and the graph of x - y = -13 intersect at the point (a, b). What is the value of ab?",
+  "choices": [
+   "-22",
+   "-12",
+   "11",
+   "30"
+  ],
+  "correct_answer": "-22",
+  "explanation": "The slope of L is (1 - 13)/(3 - (-3)) = -12/6 = -2. Using the point (3, 1), 1 = -2(3) + c gives c = 7, so L is y = -2x + 7. Substitute into x - y = -13: x - (-2x + 7) = -13, so 3x - 7 = -13, 3x = -6, and x = -2. Then y = -2(-2) + 7 = 11. The intersection is (-2, 11), so ab = -22. Choice 11 is the value of b alone. Choice -12 comes from using the reciprocal slope -1/2, which gives the point (-1, 12). Choice 30 comes from a sign slip in finding the intercept from (-3, 13) (writing 13 + (-2)(-3) = 19 instead of 13 - 6 = 7), which gives the point (2, 15).",
+  "solve": "const m=(1-13)/(3-(-3)); const c=1-m*3; const x=(-13+c)/(1-m); const y=m*x+c; return x*y;",
+  "distractor_solve": {
+   "11": "const m=(1-13)/(3-(-3)); const c=1-m*3; const x=(-13+c)/(1-m); return m*x+c;",
+   "30": "const m=(1-13)/(3-(-3)); const c=13+m*(-3); const x=(-13+c)/(1-m); const y=m*x+c; return x*y;",
+   "-12": "const m=(3-(-3))/(1-13); const c=13-m*(-3); const x=(-13+c)/(1-m); const y=m*x+c; return x*y;"
+  },
+  "mechanism": [
+   "line equation from two tabled points",
+   "substitute into the second line to find the intersection",
+   "product of the intersection's coordinates"
+  ],
+  "quantity_asked": "the product ab of the intersection point's coordinates",
+  "distractor_meta": {
+   "11": {
+    "error_kind": "partial_answer",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Stops at b. A product of two coordinates can be larger or smaller than one of them; the stem gives neither sign."
+   },
+   "30": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip in the intercept shifts L; whether the product of the new intersection point is larger or smaller is not readable before solving."
+   },
+   "-12": {
+    "error_kind": "inverted_rate",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses run over rise for the slope. The new intersection moves in a way the stem does not show; its product happens to be above the key, and a sign slip on the slope lands below (counter error)."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const m=-(1-13)/(3-(-3)); const c=13-m*(-3); const x=(-13+c)/(1-m); const y=m*x+c; return x*y;",
+   "direction": "below",
+   "why": "Taking the slope as +2 (sign slip on the rise) gives L: y = 2x + 19 through (-3, 13), meeting x - y = -13 at (-6, 7), a product of -42, below the key."
+  },
+  "cheap_bound_check": "No one-sided bound from the stem: the product of the intersection's coordinates has no sign or size readable before L is built, and the given line x - y = -13 passes through points with products of both signs. The slope sign slip lands below (-42); the inverted slope and the intercept slip land above.",
+  "interior_parity_check": "Middle values -12 and 11: both two-digit integers; neither is cleaner.",
+  "arith_class_check": "Two negative and two positive; -22, -12 and 30 even, 11 odd (a distractor). The key shares evenness with two distractors and is not alone in any divisibility class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "table&intersect|system of|both equations|satisf",
+    "intersect&slope&origin",
+    "intercept&intersect"
+   ],
+   "hits_read": 9,
+   "nearest": "b7fee95d / SALG5A-11 (two printed lines meet at P; slope of the line through P and the origin) and SALG6B-03 (two printed lines meet at P; a parallel line's x-intercept): there both lines of the system are printed; here one equation of the system must first be built from two tabled points, and the asked quantity is the product of the intersection's coordinates."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go? The product of the intersection's coordinates has no readable sign, and the natural slope errors split: the reciprocal slope and the intercept slip land above, the slope sign slip lands below (-42). A product cannot be substituted back to recover the point, so the options cannot be tested. A test-wise student might pick the only odd option or the only one sharing a digit with the stem; neither is the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C09",
+  "domain": "Algebra",
+  "subskill": "Shortfall and surplus from two equal-share plans; new shortfall",
+  "difficulty": "medium",
+  "prompt": "The members of a club are sharing the cost of a bus rental equally. If each member pays $10, the total collected is $19 less than the cost of the rental. If each member pays $11, the total collected is $7 more than the cost of the rental. If each member paid only $7, how many dollars less than the cost of the rental would the total collected be?",
+  "choices": [
+   "26",
+   "55",
+   "85",
+   "97"
+  ],
+  "correct_answer": "97",
+  "explanation": "Let n be the number of members and C the cost of the rental, in dollars. Paying $10 each falls $19 short, so 10n = C - 19, or C = 10n + 19. Paying $11 each gives $7 extra, so 11n = C + 7, or C = 11n - 7. Setting the two expressions for C equal gives 10n + 19 = 11n - 7, so n = 26, and C = 10(26) + 19 = 279. Paying $7 each collects 7(26) = 182 dollars, which is 279 - 182 = 97 dollars less than the cost. Choice 85 attaches the $7 to the $10 plan and the $19 to the $11 plan, which gives the same n but C = 267. Choice 55 treats the $7 surplus as another shortfall (10n + 19 = 11n + 7), which gives n = 12 and C = 139. Choice 26 is the number of members, not the shortfall.",
+  "solve": "const n=(19+7)/(11-10); const C=10*n+19; return C-7*n;",
+  "distractor_solve": {
+   "26": "return (19+7)/(11-10);",
+   "55": "const n=(19-7)/(11-10); const C=10*n+19; return C-7*n;",
+   "85": "const n=(19+7)/(11-10); const C=10*n+7; return C-7*n;"
+  },
+  "mechanism": [
+   "shortfall and surplus each give an equation for the cost",
+   "solve the 2x2 for the number of members and the cost",
+   "shortfall under a third equal share"
+  ],
+  "quantity_asked": "the shortfall, in dollars, if each member paid $7",
+  "distractor_meta": {
+   "26": {
+    "error_kind": "partial_answer",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Stops at the member count; the stem gives no reason the count must be smaller than the shortfall."
+   },
+   "55": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the surplus as a shortfall changes the member count; the size of the change, and so the side, comes only from solving."
+   },
+   "85": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Pairs each plan with the other plan's gap; whether that lowers or raises the answer depends on whether the shortfall or the surplus is larger, which the stem does not flag as relevant."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const n=(19+7)/(11-10); return 10*n+19;",
+   "direction": "above",
+   "why": "Reporting the cost of the rental (279) instead of the shortfall lands far above the key; a sign slip in the cost step only (C = 11n + 7, giving 111) also lands above."
+  },
+  "cheap_bound_check": "The cheapest bound: paying less than $10 leaves the club more than $19 short, so the answer exceeds 19. All four options exceed 19, so it strikes nothing; the stem gives no upper bound short of finding n.",
+  "interior_parity_check": "Middle values 55 and 85: both two-digit integers ending in 5; the key is not a middle value.",
+  "arith_class_check": "Three options are odd (55, 85, 97) and one even (26); 55 and 85 are multiples of 5 while 26 and 97 are not. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "short|shortfall&extra|left over|surplus",
+    "each pays|each paid|each contributes|per person&short|more than|extra",
+    "bench|benches|tables&empty|left over"
+   ],
+   "hits_read": 1,
+   "nearest": "No live or prior item uses the shortfall/surplus pair; the nearest system items (C03, C05, C13 in this file) take two totals of two products or two runs, not one unknown cost compared against two equal-share plans."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: swapping the gaps or flipping the surplus to a shortfall moves the answer by amounts only solving reveals, and the natural slip of reporting the cost (279) or flipping the sign in the cost step (111) overshoots the key. The only cheap bound (more than 19) clears every option. Plug-back is impossible because the options are a shortfall, not n or C."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C10",
+  "domain": "Algebra",
+  "subskill": "Two linear rules matched at different inputs; p - q at a point",
+  "difficulty": "medium",
+  "prompt": "For some constants a and b, let p(x) = ax + 5 and q(x) = 3x + b. It is known that p(5) = q(3) and p(-1) = q(-5). What is p(-3) - q(-3)?",
+  "choices": [
+   "-38",
+   "-30",
+   "-21",
+   "-14"
+  ],
+  "correct_answer": "-14",
+  "explanation": "From p(5) = q(3): 5a + 5 = 9 + b, so 5a - b = 4. From p(-1) = q(-5): -a + 5 = -15 + b, so -a - b = -20. Subtracting the second equation from the first gives 6a = 24, so a = 4, and then b = 5(4) - 4 = 16. So p(x) = 4x + 5 and q(x) = 3x + 16, giving p(-3) = -7 and q(-3) = 7, and p(-3) - q(-3) = -7 - 7 = -14. Choice -21 comes from matching p at x = 3 with q at x = 5 (the inputs exchanged), which gives a = 7.5 and b = 12.5. Choice -30 comes from evaluating p(-1) as a + 5, which gives a = 6 and b = 26. Choice -38 finds a and b correctly but uses b as the coefficient of p and a as the constant of q.",
+  "solve": "const a=((9-5)-(-15-5))/(5-(-1)); const b=5*a+5-9; return (a*-3+5)-(3*-3+b);",
+  "distractor_solve": {
+   "-21": "const a=((15-5)-(-15-5))/(3-(-1)); const b=3*a+5-15; return (a*-3+5)-(3*-3+b);",
+   "-30": "const a=((9-5)-(-15-5))/(5-1); const b=5*a+5-9; return (a*-3+5)-(3*-3+b);",
+   "-38": "const a=((9-5)-(-15-5))/(5-(-1)); const b=5*a+5-9; return (b*-3+5)-(3*-3+a);"
+  },
+  "mechanism": [
+   "equal outputs at different inputs give one equation each",
+   "solve the 2x2 for the two constants",
+   "difference of the two functions at a new input"
+  ],
+  "quantity_asked": "the value of p(-3) - q(-3)",
+  "distractor_meta": {
+   "-21": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Exchanging which input goes with which function changes both constants; the new value can land on either side of the key depending on the inputs, and nothing in the stem orders them."
+   },
+   "-30": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the sign of the negative input inflates a and b together; their effects on p(-2) - q(-2) pull in opposite directions, so the side is not readable before solving."
+   },
+   "-38": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Swapping the roles of a and b in the last step; which way that moves the value depends on whether a or b is larger, which the stem does not reveal."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const a=((9-5)-(-15-5))/(5-(-1)); const b=5*a+5-9; return (a*-3+5)-3*-3+b;",
+   "direction": "above",
+   "why": "Distributing the subtraction over q(-3) only to its first term, computing -7 - (-9) + 16 = 18, lands above the key."
+  },
+  "cheap_bound_check": "No one-sided bound is readable: the sign and size of p(-3) - q(-3) depend on a and b, which appear only inside the two matching conditions. The natural slip of not distributing the minus sign over q(-3) gives 18, above every option.",
+  "interior_parity_check": "Middle values -30 and -21: both negative two-digit integers; the key is not a middle value.",
+  "arith_class_check": "All four options are negative two-digit integers; -38, -30 and -14 are even and -21 is odd; -21 and -14 are multiples of 7; -30 is the only multiple of 5. The key is alone in no small class.",
+  "dup_search": {
+   "queries": [
+    "f\\([-0-9]+\\) ?= ?g\\([-0-9]+\\)",
+    "g\\(x\\) ?= ?[0-9]*x ?\\+ ?b&f\\(x\\) ?= ?ax",
+    "f\\(.*\\) ?\\+ ?f\\(|sum of f\\(",
+    "f\\(x\\) ?= ?ax ?[-+]&g\\(x\\)"
+   ],
+   "hits_read": 7,
+   "nearest": "c8eb0870 (f(g(x)) from a table, two values of f give its slope and intercept) and c08ec569 (one linear f from two points) each fit ONE function; here two functions each carry one unknown constant and are tied by equal outputs at mismatched inputs, so the 2x2 couples a and b, and the ask is the gap between the functions at a new input. C08 in this file builds a line from a table and intersects it; this item does neither."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the ask is a difference of two linear rules whose constants enter with opposite signs, so every slip (exchanged inputs, a dropped negative, swapped constants) moves the value by an amount whose sign comes only from solving, and the natural distribution slip on the minus sign lands above the key at 18. Options cannot be plugged back."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C11",
+  "domain": "Algebra",
+  "subskill": "Parameter fixed by a condition on the solution's coordinates",
+  "difficulty": "medium",
+  "prompt": "5x - y = 9\nkx - 6y = 78\n\nThe letter k stands for a fixed number. Exactly one ordered pair (x, y) makes both equations true, and for that pair, y is equal to twice x. Find k.",
+  "choices": [
+   "14",
+   "16",
+   "38",
+   "42"
+  ],
+  "correct_answer": "38",
+  "explanation": "Because y = 2x for the pair that satisfies both equations, substitute 2x for y in the first equation: 5x - 2x = 9, so 3x = 9 and x = 3. Then y = 2(3) = 6. The pair (3, 6) must also satisfy the second equation: k(3) - 6(6) = 78, so 3k - 36 = 78, 3k = 114, and k = 38. Choice 42 comes from reversing the condition (taking x = 2y, which gives y = 1 and x = 2, then 2k - 6 = 78). Choice 14 comes from a sign error when moving the y-term: writing 3k = 78 - 36 instead of 3k = 78 + 36. Choice 16 comes from substituting the coordinates into the wrong places in the second equation, multiplying k by 6 and 6 by 3: 6k - 18 = 78.",
+  "solve": "const x=9/(5-2); const y=2*x; return (78+6*y)/x;",
+  "distractor_solve": {
+   "14": "const x=9/(5-2); const y=2*x; return (78-6*y)/x;",
+   "16": "const x=9/(5-2); const y=2*x; return (78+6*x)/y;",
+   "42": "const y=9/(5*2-1); const x=2*y; return (78+6*y)/x;"
+  },
+  "mechanism": [
+   "substitute the stated relation between the solution's coordinates into the fully known equation",
+   "solve for the solution point",
+   "substitute the point into the equation with the unknown coefficient",
+   "solve for the coefficient"
+  ],
+  "quantity_asked": "the constant k",
+  "distractor_meta": {
+   "14": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the sign of -4y when moving it across; the stem does not say whether the y-term helps or hurts until the point is known."
+   },
+   "16": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Puts x where y belongs in the second equation (6k - 18 = 78); which way this moves k depends on the solved point, not on the stem."
+   },
+   "42": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reversing which coordinate is twice the other gives the point (2, 1); whether that pushes k up or down depends on both equations and is not readable from the stem."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values 16 and 38: both two-digit positive even integers; 38 is not cleaner than 16.",
+  "arith_class_check": "All four options are even; 14 and 42 are multiples of 7 and 14; 38 and 16 share no class the stem implies (38 is not a multiple of 3, 5, 6 or 9, and neither is 16). The key is not alone in parity or roundness.",
+  "dup_search": {
+   "queries": [
+    "y = 2x|y is twice|twice the value of x|x = y",
+    "solution&twice|double|times the|three times&constant"
+   ],
+   "hits_read": 38,
+   "nearest": "No live or prior item fixes a linear-system parameter from a ratio condition on the solution; the y = 2x + c hits are tangency items (Advanced Math / Geometry), and 3940995b is a quadratic with one root four times the other. SM26F-C02 (A88) finds a and b from a given solution point, a different chain (two equations in a and b)."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might plug each k in and solve the system, which takes four full solves and is no faster than the direct route. Reversing the condition gives the largest option and the sign and placement slips give the two smallest, so neither 'pick the biggest' nor 'pick the smallest' works, and nothing in the stem orders them. The stem is worded around the pair, not 'exactly one solution', so it does not read as a tangency or a solution-count item."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C12",
+  "domain": "Algebra",
+  "subskill": "Two masses from two balanced plank arrangements; new position",
+  "difficulty": "medium",
+  "prompt": "A long plank rests on a pivot. The plank balances when the sum of (mass x distance from the pivot) for everything on the left side equals the same sum for everything on the right side. Crate A is always placed on the left side and crate B on the right side. The plank balances when crate A is 3 meters from the pivot and crate B is 2.5 meters from the pivot, with a 15-kilogram sandbag placed 3 meters from the pivot on crate B's side. It also balances, with no sandbag, when crate A is 1 meter from the pivot with a 5-kilogram box set on top of it and crate B is 1.5 meters from the pivot. If crate A, with nothing else on the plank, is placed 3.6 meters from the pivot, how many meters from the pivot must crate B be placed for the plank to balance?",
+  "choices": [
+   "2.7",
+   "4.2",
+   "4.8",
+   "6.6"
+  ],
+  "correct_answer": "4.8",
+  "explanation": "Let a and b be the masses, in kilograms, of crates A and B. The first arrangement gives 3a = 2.5b + 3(15), or 3a = 2.5b + 45. In the second, the box is 1 meter from the pivot on the left, so 1(a) + 1(5) = 1.5b, or a = 1.5b - 5. Substituting, 3(1.5b - 5) = 2.5b + 45, so 4.5b - 15 = 2.5b + 45, 2b = 60, b = 30, and a = 40. For balance with crate A at 3.6 meters, 3.6(40) = d(30), so d = 144/30 = 4.8 meters. Choice 2.7 sets up the last equation as 3.6(30) = 40d, mixing up the two masses. Choice 4.2 counts the sandbag as 15 instead of 3(15), which gives b = 15 and a = 17.5. Choice 6.6 puts the 5-kilogram box on the right side (a = 1.5b + 5), which gives b = 15 and a = 27.5.",
+  "solve": "const b=(45+3*5)/(3*1.5-2.5); const a=1.5*b-5; return Math.round(3.6*a/b*100)/100;",
+  "distractor_solve": {
+   "2.7": "const b=(45+3*5)/(3*1.5-2.5); const a=1.5*b-5; return Math.round(3.6*b/a*100)/100;",
+   "4.2": "const b=(15+3*5)/(3*1.5-2.5); const a=1.5*b-5; return Math.round(3.6*a/b*100)/100;",
+   "6.6": "const b=(45-3*5)/(3*1.5-2.5); const a=1.5*b+5; return Math.round(3.6*a/b*100)/100;"
+  },
+  "mechanism": [
+   "one balance equation per arrangement from the stated rule",
+   "solve the 2x2 for the two masses",
+   "balance distance from the ratio of the masses"
+  ],
+  "quantity_asked": "crate B's distance from the pivot, in meters, when crate A is alone at 3.6 meters",
+  "distractor_meta": {
+   "2.7": {
+    "error_kind": "inverted_rate",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Inverting the mass ratio puts crate B nearer or farther than 3.6 meters depending on which crate is heavier, which the stem does not say."
+   },
+   "4.2": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the sandbag's distance changes both masses; the resulting ratio could rise or fall, so the side is not readable."
+   },
+   "6.6": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moving the box to the wrong side changes both masses by different amounts; only solving shows the ratio rises."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values 4.2 and 4.8: both one-decimal numbers between 4 and 5; neither is cleaner than the other, and the key is not the rounder of the two.",
+  "arith_class_check": "All four options are positive one-decimal numbers; 2.7 has odd tenths and the others even; three exceed 3.6 and one is below it. The key is alone in no class.",
+  "dup_search": {
+   "queries": [
+    "seesaw|see-saw|pivot|fulcrum|torque|lever",
+    "lever|balance&kilogram|weights"
+   ],
+   "hits_read": 1,
+   "nearest": "The only hit is a geometry item about a windshield wiper's pivot (sector area). No live or prior item builds a system from balance conditions; the closest system items in this file (C05 pump runs, C13 weekly pay) multiply rates by times and add, not mass times distance on two sides of an equation."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might guess the lighter crate must sit farther out, but which crate is lighter is known only after solving; even then three options (4.2, 4.8, 6.6) lie beyond 3.6. The middle values share form. Plugging options back does not help because the masses are unknown."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM27F-C13",
+  "domain": "Algebra",
+  "subskill": "Two hourly rates from two weeks; equal-pay hours conversion",
+  "difficulty": "medium",
+  "prompt": "Rina has two part-time jobs, tutoring and grading. Each job pays its own fixed amount per hour. In one week, she tutored for 10 hours and graded for 8 hours and earned a total of $280. In another week, she tutored for 8 hours and graded for 9 hours and earned a total of $276. The amount Rina earns for 30 hours of tutoring is equal to the amount she earns for how many hours of grading?",
+  "choices": [
+   "4",
+   "18",
+   "24",
+   "50"
+  ],
+  "correct_answer": "18",
+  "explanation": "Let t be the hourly pay for tutoring and g the hourly pay for grading, in dollars. Then 10t + 8g = 280 and 8t + 9g = 276. Multiplying the first equation by 4 and the second by 5 gives 40t + 32g = 1,120 and 40t + 45g = 1,380. Subtracting, 13g = 260, so g = 20. Then 10t + 160 = 280, so t = 12. Pay for 30 hours of tutoring is 30(12) = 360 dollars, and 360 / 20 = 18 hours of grading. Choice 50 answers the reverse question (the tutoring hours that match 30 hours of grading, 30(20) / 12). Choice 24 uses the ratio of hours in the first week, 8 / 10, instead of the ratio of the hourly rates. Choice 4 comes from switching the tutoring and grading hours in the second week, which gives rates of 4 and 30 dollars per hour.",
+  "solve": "const D=10*9-8*8; const t=(280*9-276*8)/D; const g=(10*276-8*280)/D; return 30*t/g;",
+  "distractor_solve": {
+   "4": "const D=10*8-9*8; const t=(280*8-276*8)/D; const g=(10*276-9*280)/D; return 30*t/g;",
+   "24": "return 30*8/10;",
+   "50": "const D=10*9-8*8; const t=(280*9-276*8)/D; const g=(10*276-8*280)/D; return 30*g/t;"
+  },
+  "mechanism": [
+   "one equation per week from hours and total pay",
+   "solve the 2x2 for the two hourly rates",
+   "pay for the given hours of one job",
+   "divide by the other job's rate"
+  ],
+  "quantity_asked": "the number of hours of grading that pay the same as 30 hours of tutoring",
+  "distractor_meta": {
+   "4": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Attaches the second week's hours to the wrong jobs, which changes both rates; the stem gives no way to tell whether that raises or lowers the answer."
+   },
+   "24": {
+    "error_kind": "wrong_base",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses a ratio of hours from the data instead of the ratio of the rates; the hours ratio has no fixed relation to the pay ratio that the stem reveals."
+   },
+   "50": {
+    "error_kind": "inverted_rate",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses the ratio of rates upside down; which job pays more is not stated, so whether the reversed ratio lands above or below 30 (and the key) is not readable before solving."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "interior_parity_check": "Middle values 18 and 24: both two-digit even integers; 18 is not cleaner than 24.",
+  "arith_class_check": "4, 18, 24 and 50 are all even; 18 and 24 are multiples of 6 and 3; 50 is the only multiple of 10 (a distractor). The key is not alone in parity, divisibility by 3 or 6, or roundness.",
+  "dup_search": {
+   "queries": [
+    "hours&earn&job",
+    "earn"
+   ],
+   "hits_read": 30,
+   "nearest": "The 'Sam earns $6 more per hour than Lee; 5 hours of Sam's pay equals 8 hours of Lee's' item gives the equal-pay relation and asks for a rate; here two weeks of mixed hours give a 2x2 for the rates, and the equal-pay relation is the asked conversion, so the chain runs the other way. C03 and C05 in this batch use a solved 2x2 for a weighted total and a sequential job, not a rate ratio."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "The stem does not say which job pays more, so a student cannot tell whether the answer is above or below 30 without solving; the reversed ratio and the first-week hour ratio land above the key and the swapped-hours slip lands below it. The first-week hour ratio (24) is a tempting shortcut that skips the system entirely."
+  },
+  "bounds": []
+ }
+]

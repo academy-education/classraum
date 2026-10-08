@@ -1,0 +1,211 @@
+{
+ "_method": "Hand keyword search per item by the commissioner (algf27-kw.mjs over the 3,258 live maths rows in every family and 511 prior/held SAT Algebra batch items, incl. A88's 52), every hit read; plus math-mechanism-dup.mjs over the live table on every author file and on the merged set (0 FLAG; its near hits read: D02 ~ 03fe044c led to a drop). Decision rule (adv25): a duplicate is the same chain on the same kind of givens to the same asked quantity, or a live chain plus one routine step on the same story. Live dump re-pulled immediately before freeze (dump2): 3,258 rows, 0 added or removed since the authoring dump, so no re-read was needed. Returns (one per author, all findings at once): A05 A13 / B05 B06 / C01 C09 C10 C12 / D07 D11. Dropped before freeze: B05 (rewrite still a duplicate), D02 (duplicate found at the merged pass, after D's return).",
+ "SM27F-A01": {
+  "decision": "different",
+  "nearest": "none (0 hits on \"2 more than k\"; x + k with constant k: 1 unrelated adv hit)"
+ },
+ "SM27F-A02": {
+  "decision": "different",
+  "nearest": "prior SALG5C-02 (no-solution k only); A02 adds a second equation in the same k and asks x + k"
+ },
+ "SM27F-A03": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-A04": {
+  "decision": "different",
+  "nearest": "none (wire hits are PSDA density items)"
+ },
+ "SM27F-A05": {
+  "decision": "RETURNED (original), new item different",
+  "nearest": "original ~ live bda94076 (identity a(x+3) - 2(x-1) = 4x + b, a*b) + prior SALG5C-08: \"true at two values -> identity -> combine a, b\" is the same chain. Rewrite (calculator key applied twice): 0 related hits"
+ },
+ "SM27F-A06": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-A07": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-A08": {
+  "decision": "different",
+  "nearest": "held prior SM26F-C10 (change in solution after a constant is replaced, a system); A08 is one equation in k"
+ },
+ "SM27F-A09": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-A10": {
+  "decision": "different",
+  "nearest": "live 54ebff64 / f9b28c46 (two tanks, time to a relation); A10 asks the combined total at a 3x moment"
+ },
+ "SM27F-A11": {
+  "decision": "different",
+  "nearest": "act ad262fa1 (miscopied quadratic, Advanced Math); different"
+ },
+ "SM27F-A12": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-A13": {
+  "decision": "RETURNED (original), new item different",
+  "nearest": "original ~ live isee ea1b64a0 ($14 / $21 beyond 40, find overtime hours; same rates) + one routine step. Rewrite (contest scoring, blanks vs incorrect): 0 related hits"
+ },
+ "SM27F-B01": {
+  "decision": "different",
+  "nearest": "prior SM19L-B6 (print shop setup fee, tiered page price); different. (Two B01 drafts existed after a duplicate author run; the original B author's draft was kept: the other failed near-dup at 0.800 vs f8abd387)"
+ },
+ "SM27F-B02": {
+  "decision": "different",
+  "nearest": "live 6a371cd8 (intercept inequalities, sum of m); held SM26F-B01; different"
+ },
+ "SM27F-B03": {
+  "decision": "different",
+  "nearest": "prior SALG5B-06 (one translation, new y-intercept); B03 recovers l from two translated points"
+ },
+ "SM27F-B04": {
+  "decision": "different (nearest recorded)",
+  "nearest": "live 0cc2f3d3 (line parallel to 6x - 2y = 9 through (4, 6), y-intercept) and v2 ff7847dc (perpendicular through a system solution, y-intercept); B04 builds l from two points and asks the difference of the two intercepts. Judged different: new givens and a different asked quantity"
+ },
+ "SM27F-B05": {
+  "decision": "DROPPED before freeze (return spent)",
+  "nearest": "original ~ live f9569cf1 (candle, two readings -> height before burning; returned). Rewrite (two points on ax + 4y = c, find c) ~ live a8352031 (y = mx + b through two points, m + b): the same two-points -> slope -> constant chain in standard form"
+ },
+ "SM27F-B06": {
+  "decision": "different (option 45 returned: shared with B01)",
+  "nearest": "prior ALG6-07 (two readings, rate only); B06 asks the time to a level after a reading"
+ },
+ "SM27F-B07": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-B08": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-B09": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-B10": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-B11": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-B12": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-B13": {
+  "decision": "different",
+  "nearest": "prior SALG6B-10 (two intercepts -> f(-20)); B13 is a rate statement + x-intercept"
+ },
+ "SM27F-C01": {
+  "decision": "RETURNED (original), new item different",
+  "nearest": "original ~ live infinitely-many a + b family (262f1ede 321731c6 346df59f 8248eec1 27ddc1f0) + one routine step. Rewrite (wage + deduction with an overtime threshold as a 2x2): live 830d6f4a / ea1b64a0 / d2c3c2ff are overtime items with KNOWN rates asking hours; different"
+ },
+ "SM27F-C02": {
+  "decision": "different",
+  "nearest": "none (\"at least two solutions\" 0 hits)"
+ },
+ "SM27F-C03": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-C04": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-C05": {
+  "decision": "different",
+  "nearest": "held SM26F-C09 (two pumps, times only); C05 gets rates from two volume tests"
+ },
+ "SM27F-C06": {
+  "decision": "different",
+  "nearest": "prior SALG-20 ((x + y)/3 = (x - y)/5 = 2, xy); C06 is a 2x2 in u = x + y, v = x - y"
+ },
+ "SM27F-C07": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-C08": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-C09": {
+  "decision": "RETURNED (original), new item different",
+  "nearest": "original ~ live coin-count systems (1e45c38a 4a0bd6bd 75d0beaa dc6726cd) + revaluation step. Rewrite (shortfall / surplus at two contributions): 0 hits"
+ },
+ "SM27F-C10": {
+  "decision": "RETURNED (original: free bound), new item different",
+  "nearest": "original: S perimeter = 48 + 2L with L > 12 strikes 62 and 68. Rewrite (p(5) = q(3), p(-1) = q(-5), p(-3) - q(-3)): 0 hits"
+ },
+ "SM27F-C11": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-C12": {
+  "decision": "RETURNED (original), new item different",
+  "nearest": "original ~ live dd8525be / 4dfb9cfe (boat and current) + trip-time step. Rewrite (balanced plank, two arrangements): no related hit"
+ },
+ "SM27F-C13": {
+  "decision": "different",
+  "nearest": "live 01fa8fbb (tutor fee + hourly rate); different"
+ },
+ "SM27F-D01": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-D02": {
+  "decision": "DROPPED before freeze (return spent)",
+  "nearest": "found by math-mechanism-dup \"near\" 21.8 and read by hand: ~ live 03fe044c (y > 3x - 7, y < c - 2x, no solution with x >= 4, find c): the boundary-lines vertex at a stated coordinate -> parameter chain; also 561f97bb (greatest x of a region = vertex). D02 also restates a \"greatest y\" condition"
+ },
+ "SM27F-D03": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-D04": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-D05": {
+  "decision": "different",
+  "nearest": "live 561f97bb read (region vertex); different (coincident boundaries)"
+ },
+ "SM27F-D06": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-D07": {
+  "decision": "RETURNED (original), new item different",
+  "nearest": "original ~ live 9af9a556 (studio, two plans with included classes, break-even). Rewrite (two inequalities with the same region, a - b): 0 hits"
+ },
+ "SM27F-D08": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-D09": {
+  "decision": "different",
+  "nearest": "live f48160ce (sum of integers satisfying a quadratic inequality, Advanced Math); different"
+ },
+ "SM27F-D10": {
+  "decision": "different",
+  "nearest": "live 47d5953f (quadratic inequality interval length), 517bc754 (absolute value interval); different"
+ },
+ "SM27F-D11": {
+  "decision": "RETURNED (original), new item different",
+  "nearest": "original ~ live 9d4af4ce / 8d79a1a2 (net per unit with fixed costs, least count for a target). Rewrite (staffing inequality 5c - k >= 26): 0 related hits"
+ },
+ "SM27F-D12": {
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM27F-D13": {
+  "decision": "different",
+  "nearest": "none"
+ }
+}
