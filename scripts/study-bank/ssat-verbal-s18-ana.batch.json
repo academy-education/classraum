@@ -1,0 +1,2642 @@
+[
+ {
+  "id": "SVA18C-01",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] bailiff is to courthouse as",
+  "choices": [
+   "tureen is to soup",
+   "scrimmage is to tournament",
+   "stevedore is to wharf",
+   "embroiderer is to hoop",
+   "poult is to turkey"
+  ],
+  "correct_answer": "stevedore is to wharf",
+  "stem_relation": "worker/workplace",
+  "option_relations": [
+   "container/contents",
+   "preparation/act",
+   "worker/workplace",
+   "worker/tool",
+   "young/adult"
+  ],
+  "explanation": "Relation: worker/workplace. Just as a bailiff works in a courthouse, a stevedore works in a wharf.",
+  "distractor_rationales": {
+   "tureen is to soup": "relation it instantiates instead: container/contents (a tureen holds soup), not worker/workplace",
+   "scrimmage is to tournament": "relation it instantiates instead: preparation/act (scrimmage is done to prepare for tournament), not worker/workplace",
+   "embroiderer is to hoop": "relation it instantiates instead: worker/tool (a embroiderer works with a hoop), not worker/workplace",
+   "poult is to turkey": "relation it instantiates instead: young/adult (a poult is a young turkey), not worker/workplace"
+  }
+ },
+ {
+  "id": "SVA18C-02",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] crustacean is to lobster as",
+  "choices": [
+   "arachnid is to scorpion",
+   "cabinetmaker is to armoire",
+   "fingerboard is to banjo",
+   "flail is to threshing",
+   "nanny is to nursery"
+  ],
+  "correct_answer": "arachnid is to scorpion",
+  "stem_relation": "category/instance",
+  "option_relations": [
+   "category/instance",
+   "creator/creation",
+   "part/whole",
+   "tool/function",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: category/instance. Just as lobster is a kind of crustacean, scorpion is a kind of arachnid.",
+  "distractor_rationales": {
+   "cabinetmaker is to armoire": "relation it instantiates instead: creator/creation (a cabinetmaker creates a armoire), not category/instance",
+   "fingerboard is to banjo": "relation it instantiates instead: part/whole (a fingerboard is one part of a banjo), not category/instance",
+   "flail is to threshing": "relation it instantiates instead: tool/function (a flail is used for threshing), not category/instance",
+   "nanny is to nursery": "relation it instantiates instead: worker/workplace (a nanny works in a nursery), not category/instance"
+  }
+ },
+ {
+  "id": "SVA18C-03",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] legume is to lentil as",
+  "choices": [
+   "gemstone is to opal",
+   "cistern is to rainwater",
+   "filament is to tungsten",
+   "pulley is to hoisting",
+   "elver is to eel"
+  ],
+  "correct_answer": "gemstone is to opal",
+  "stem_relation": "category/instance",
+  "option_relations": [
+   "category/instance",
+   "container/contents",
+   "object/material",
+   "tool/function",
+   "young/adult"
+  ],
+  "explanation": "Relation: category/instance. Just as lentil is a kind of legume, opal is a kind of gemstone.",
+  "distractor_rationales": {
+   "cistern is to rainwater": "relation it instantiates instead: container/contents (a cistern holds rainwater), not category/instance",
+   "filament is to tungsten": "relation it instantiates instead: object/material (a filament is made of tungsten), not category/instance",
+   "pulley is to hoisting": "relation it instantiates instead: tool/function (a pulley is used for hoisting), not category/instance",
+   "elver is to eel": "relation it instantiates instead: young/adult (a elver is a young eel), not category/instance"
+  }
+ },
+ {
+  "id": "SVA18C-04",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] leveret is to hare as",
+  "choices": [
+   "noodle is to ramen",
+   "milliner is to bonnet",
+   "gemologist is to loupe",
+   "smolt is to salmon",
+   "friar is to cloister"
+  ],
+  "correct_answer": "smolt is to salmon",
+  "stem_relation": "young/adult",
+  "option_relations": [
+   "category/instance",
+   "creator/creation",
+   "worker/tool",
+   "young/adult",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: young/adult. Just as a leveret is a young hare, a smolt is a young salmon.",
+  "distractor_rationales": {
+   "noodle is to ramen": "relation it instantiates instead: category/instance (ramen is a kind of noodle), not young/adult",
+   "milliner is to bonnet": "relation it instantiates instead: creator/creation (a milliner creates a bonnet), not young/adult",
+   "gemologist is to loupe": "relation it instantiates instead: worker/tool (a gemologist works with a loupe), not young/adult",
+   "friar is to cloister": "relation it instantiates instead: worker/workplace (a friar works in a cloister), not young/adult"
+  }
+ },
+ {
+  "id": "SVA18C-05",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] eggbeater is to mixing as",
+  "choices": [
+   "shellfish is to scallop",
+   "pajamas is to flannel",
+   "hatchet is to chopping",
+   "pane is to window",
+   "warmup is to race"
+  ],
+  "correct_answer": "hatchet is to chopping",
+  "stem_relation": "tool/function",
+  "option_relations": [
+   "category/instance",
+   "object/material",
+   "tool/function",
+   "part/whole",
+   "preparation/act"
+  ],
+  "explanation": "Relation: tool/function. Just as a eggbeater is used for mixing, a hatchet is used for chopping.",
+  "distractor_rationales": {
+   "shellfish is to scallop": "relation it instantiates instead: category/instance (scallop is a kind of shellfish), not tool/function",
+   "pajamas is to flannel": "relation it instantiates instead: object/material (a pajamas is made of flannel), not tool/function",
+   "pane is to window": "relation it instantiates instead: part/whole (a pane is one part of a window), not tool/function",
+   "warmup is to race": "relation it instantiates instead: preparation/act (warmup is done to prepare for race), not tool/function"
+  }
+ },
+ {
+  "id": "SVA18C-06",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] chalkboard is to slate as",
+  "choices": [
+   "cloud is to cumulus",
+   "frisbee is to plastic",
+   "stretching is to marathon",
+   "waiter is to tray",
+   "cockerel is to rooster"
+  ],
+  "correct_answer": "frisbee is to plastic",
+  "stem_relation": "object/material",
+  "option_relations": [
+   "category/instance",
+   "object/material",
+   "preparation/act",
+   "worker/tool",
+   "young/adult"
+  ],
+  "explanation": "Relation: object/material. Just as a chalkboard is made of slate, a frisbee is made of plastic.",
+  "distractor_rationales": {
+   "cloud is to cumulus": "relation it instantiates instead: category/instance (cumulus is a kind of cloud), not object/material",
+   "stretching is to marathon": "relation it instantiates instead: preparation/act (stretching is done to prepare for marathon), not object/material",
+   "waiter is to tray": "relation it instantiates instead: worker/tool (a waiter works with a tray), not object/material",
+   "cockerel is to rooster": "relation it instantiates instead: young/adult (a cockerel is a young rooster), not object/material"
+  }
+ },
+ {
+  "id": "SVA18C-07",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] frond is to fern as",
+  "choices": [
+   "billfold is to bills",
+   "tinkerer is to gadget",
+   "cardigan is to cashmere",
+   "colander is to draining",
+   "valve is to trumpet"
+  ],
+  "correct_answer": "valve is to trumpet",
+  "stem_relation": "part/whole",
+  "option_relations": [
+   "container/contents",
+   "creator/creation",
+   "object/material",
+   "tool/function",
+   "part/whole"
+  ],
+  "explanation": "Relation: part/whole. Just as a frond is one part of a fern, a valve is one part of a trumpet.",
+  "distractor_rationales": {
+   "billfold is to bills": "relation it instantiates instead: container/contents (a billfold holds bills), not part/whole",
+   "tinkerer is to gadget": "relation it instantiates instead: creator/creation (a tinkerer creates a gadget), not part/whole",
+   "cardigan is to cashmere": "relation it instantiates instead: object/material (a cardigan is made of cashmere), not part/whole",
+   "colander is to draining": "relation it instantiates instead: tool/function (a colander is used for draining), not part/whole"
+  }
+ },
+ {
+  "id": "SVA18C-08",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] calligrapher is to nib as",
+  "choices": [
+   "raptor is to osprey",
+   "alpinist is to carabiner",
+   "reed is to oboe",
+   "spindle is to spinning",
+   "projectionist is to cinema"
+  ],
+  "correct_answer": "alpinist is to carabiner",
+  "stem_relation": "worker/tool",
+  "option_relations": [
+   "category/instance",
+   "worker/tool",
+   "part/whole",
+   "tool/function",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: worker/tool. Just as a calligrapher works with a nib, a alpinist works with a carabiner.",
+  "distractor_rationales": {
+   "raptor is to osprey": "relation it instantiates instead: category/instance (osprey is a kind of raptor), not worker/tool",
+   "reed is to oboe": "relation it instantiates instead: part/whole (a reed is one part of a oboe), not worker/tool",
+   "spindle is to spinning": "relation it instantiates instead: tool/function (a spindle is used for spinning), not worker/tool",
+   "projectionist is to cinema": "relation it instantiates instead: worker/workplace (a projectionist works in a cinema), not worker/tool"
+  }
+ },
+ {
+  "id": "SVA18C-09",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] fishbowl is to goldfish as",
+  "choices": [
+   "songwriter is to jingle",
+   "inbox is to emails",
+   "clog is to wood",
+   "accountant is to calculator",
+   "teacher is to classroom"
+  ],
+  "correct_answer": "inbox is to emails",
+  "stem_relation": "container/contents",
+  "option_relations": [
+   "creator/creation",
+   "container/contents",
+   "object/material",
+   "worker/tool",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: container/contents. Just as a fishbowl holds goldfish, a inbox holds emails.",
+  "distractor_rationales": {
+   "songwriter is to jingle": "relation it instantiates instead: creator/creation (a songwriter creates a jingle), not container/contents",
+   "clog is to wood": "relation it instantiates instead: object/material (a clog is made of wood), not container/contents",
+   "accountant is to calculator": "relation it instantiates instead: worker/tool (a accountant works with a calculator), not container/contents",
+   "teacher is to classroom": "relation it instantiates instead: worker/workplace (a teacher works in a classroom), not container/contents"
+  }
+ },
+ {
+  "id": "SVA18C-10",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] chemist is to pipette as",
+  "choices": [
+   "atomizer is to perfume",
+   "porthole is to ferry",
+   "scribe is to stylus",
+   "mobilization is to deployment",
+   "hoglet is to hedgehog"
+  ],
+  "correct_answer": "scribe is to stylus",
+  "stem_relation": "worker/tool",
+  "option_relations": [
+   "container/contents",
+   "part/whole",
+   "worker/tool",
+   "preparation/act",
+   "young/adult"
+  ],
+  "explanation": "Relation: worker/tool. Just as a chemist works with a pipette, a scribe works with a stylus.",
+  "distractor_rationales": {
+   "atomizer is to perfume": "relation it instantiates instead: container/contents (a atomizer holds perfume), not worker/tool",
+   "porthole is to ferry": "relation it instantiates instead: part/whole (a porthole is one part of a ferry), not worker/tool",
+   "mobilization is to deployment": "relation it instantiates instead: preparation/act (mobilization is done to prepare for deployment), not worker/tool",
+   "hoglet is to hedgehog": "relation it instantiates instead: young/adult (a hoglet is a young hedgehog), not worker/tool"
+  }
+ },
+ {
+  "id": "SVA18C-11",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] arrowhead is to obsidian as",
+  "choices": [
+   "gas is to neon",
+   "corral is to broncos",
+   "rotor is to helicopter",
+   "tuning is to recital",
+   "ribbon is to satin"
+  ],
+  "correct_answer": "ribbon is to satin",
+  "stem_relation": "object/material",
+  "option_relations": [
+   "category/instance",
+   "container/contents",
+   "part/whole",
+   "preparation/act",
+   "object/material"
+  ],
+  "explanation": "Relation: object/material. Just as a arrowhead is made of obsidian, a ribbon is made of satin.",
+  "distractor_rationales": {
+   "gas is to neon": "relation it instantiates instead: category/instance (neon is a kind of gas), not object/material",
+   "corral is to broncos": "relation it instantiates instead: container/contents (a corral holds broncos), not object/material",
+   "rotor is to helicopter": "relation it instantiates instead: part/whole (a rotor is one part of a helicopter), not object/material",
+   "tuning is to recital": "relation it instantiates instead: preparation/act (tuning is done to prepare for recital), not object/material"
+  }
+ },
+ {
+  "id": "SVA18C-12",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] caddy is to tea as",
+  "choices": [
+   "saddlebag is to supplies",
+   "canoe is to birchbark",
+   "stencil is to tracing",
+   "locksmith is to pick",
+   "kit is to ferret"
+  ],
+  "correct_answer": "saddlebag is to supplies",
+  "stem_relation": "container/contents",
+  "option_relations": [
+   "container/contents",
+   "object/material",
+   "tool/function",
+   "worker/tool",
+   "young/adult"
+  ],
+  "explanation": "Relation: container/contents. Just as a caddy holds tea, a saddlebag holds supplies.",
+  "distractor_rationales": {
+   "canoe is to birchbark": "relation it instantiates instead: object/material (a canoe is made of birchbark), not container/contents",
+   "stencil is to tracing": "relation it instantiates instead: tool/function (a stencil is used for tracing), not container/contents",
+   "locksmith is to pick": "relation it instantiates instead: worker/tool (a locksmith works with a pick), not container/contents",
+   "kit is to ferret": "relation it instantiates instead: young/adult (a kit is a young ferret), not container/contents"
+  }
+ },
+ {
+  "id": "SVA18C-13",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] cria is to alpaca as",
+  "choices": [
+   "lyricist is to anthem",
+   "fueling is to liftoff",
+   "nozzle is to spraying",
+   "spiderling is to tarantula",
+   "abbot is to abbey"
+  ],
+  "correct_answer": "spiderling is to tarantula",
+  "stem_relation": "young/adult",
+  "option_relations": [
+   "creator/creation",
+   "preparation/act",
+   "tool/function",
+   "young/adult",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: young/adult. Just as a cria is a young alpaca, a spiderling is a young tarantula.",
+  "distractor_rationales": {
+   "lyricist is to anthem": "relation it instantiates instead: creator/creation (a lyricist creates a anthem), not young/adult",
+   "fueling is to liftoff": "relation it instantiates instead: preparation/act (fueling is done to prepare for liftoff), not young/adult",
+   "nozzle is to spraying": "relation it instantiates instead: tool/function (a nozzle is used for spraying), not young/adult",
+   "abbot is to abbey": "relation it instantiates instead: worker/workplace (a abbot works in a abbey), not young/adult"
+  }
+ },
+ {
+  "id": "SVA18C-14",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] backswing is to stroke as",
+  "choices": [
+   "gourd is to pumpkin",
+   "thawing is to roasting",
+   "tutu is to tulle",
+   "slat is to blind",
+   "milkmaid is to dairy"
+  ],
+  "correct_answer": "thawing is to roasting",
+  "stem_relation": "preparation/act",
+  "option_relations": [
+   "category/instance",
+   "preparation/act",
+   "object/material",
+   "part/whole",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: preparation/act. Just as backswing is done to prepare for stroke, thawing is done to prepare for roasting.",
+  "distractor_rationales": {
+   "gourd is to pumpkin": "relation it instantiates instead: category/instance (pumpkin is a kind of gourd), not preparation/act",
+   "tutu is to tulle": "relation it instantiates instead: object/material (a tutu is made of tulle), not preparation/act",
+   "slat is to blind": "relation it instantiates instead: part/whole (a slat is one part of a blind), not preparation/act",
+   "milkmaid is to dairy": "relation it instantiates instead: worker/workplace (a milkmaid works in a dairy), not preparation/act"
+  }
+ },
+ {
+  "id": "SVA18C-15",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] brainstorming is to composition as",
+  "choices": [
+   "scrapbook is to clippings",
+   "clockmaker is to timepiece",
+   "percussionist is to drumstick",
+   "peachick is to peacock",
+   "sparring is to bout"
+  ],
+  "correct_answer": "sparring is to bout",
+  "stem_relation": "preparation/act",
+  "option_relations": [
+   "container/contents",
+   "creator/creation",
+   "worker/tool",
+   "young/adult",
+   "preparation/act"
+  ],
+  "explanation": "Relation: preparation/act. Just as brainstorming is done to prepare for composition, sparring is done to prepare for bout.",
+  "distractor_rationales": {
+   "scrapbook is to clippings": "relation it instantiates instead: container/contents (a scrapbook holds clippings), not preparation/act",
+   "clockmaker is to timepiece": "relation it instantiates instead: creator/creation (a clockmaker creates a timepiece), not preparation/act",
+   "percussionist is to drumstick": "relation it instantiates instead: worker/tool (a percussionist works with a drumstick), not preparation/act",
+   "peachick is to peacock": "relation it instantiates instead: young/adult (a peachick is a young peacock), not preparation/act"
+  }
+ },
+ {
+  "id": "SVA18C-16",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] figurine is to terracotta as",
+  "choices": [
+   "algae is to kelp",
+   "pueblo is to adobe",
+   "vat is to dye",
+   "claw is to paw",
+   "reconnaissance is to invasion"
+  ],
+  "correct_answer": "pueblo is to adobe",
+  "stem_relation": "object/material",
+  "option_relations": [
+   "category/instance",
+   "object/material",
+   "container/contents",
+   "part/whole",
+   "preparation/act"
+  ],
+  "explanation": "Relation: object/material. Just as a figurine is made of terracotta, a pueblo is made of adobe.",
+  "distractor_rationales": {
+   "algae is to kelp": "relation it instantiates instead: category/instance (kelp is a kind of algae), not object/material",
+   "vat is to dye": "relation it instantiates instead: container/contents (a vat holds dye), not object/material",
+   "claw is to paw": "relation it instantiates instead: part/whole (a claw is one part of a paw), not object/material",
+   "reconnaissance is to invasion": "relation it instantiates instead: preparation/act (reconnaissance is done to prepare for invasion), not object/material"
+  }
+ },
+ {
+  "id": "SVA18C-17",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] corkscrew is to uncorking as",
+  "choices": [
+   "filmmaker is to documentary",
+   "latch is to locking",
+   "groomer is to clippers",
+   "cashier is to supermarket",
+   "polliwog is to toad"
+  ],
+  "correct_answer": "latch is to locking",
+  "stem_relation": "tool/function",
+  "option_relations": [
+   "creator/creation",
+   "tool/function",
+   "worker/tool",
+   "worker/workplace",
+   "young/adult"
+  ],
+  "explanation": "Relation: tool/function. Just as a corkscrew is used for uncorking, a latch is used for locking.",
+  "distractor_rationales": {
+   "filmmaker is to documentary": "relation it instantiates instead: creator/creation (a filmmaker creates a documentary), not tool/function",
+   "groomer is to clippers": "relation it instantiates instead: worker/tool (a groomer works with a clippers), not tool/function",
+   "cashier is to supermarket": "relation it instantiates instead: worker/workplace (a cashier works in a supermarket), not tool/function",
+   "polliwog is to toad": "relation it instantiates instead: young/adult (a polliwog is a young toad), not tool/function"
+  }
+ },
+ {
+  "id": "SVA18C-18",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] fingerling is to catfish as",
+  "choices": [
+   "luthier is to mandolin",
+   "screen is to mesh",
+   "megaphone is to amplification",
+   "barista is to coffeehouse",
+   "shoat is to swine"
+  ],
+  "correct_answer": "shoat is to swine",
+  "stem_relation": "young/adult",
+  "option_relations": [
+   "creator/creation",
+   "object/material",
+   "tool/function",
+   "worker/workplace",
+   "young/adult"
+  ],
+  "explanation": "Relation: young/adult. Just as a fingerling is a young catfish, a shoat is a young swine.",
+  "distractor_rationales": {
+   "luthier is to mandolin": "relation it instantiates instead: creator/creation (a luthier creates a mandolin), not young/adult",
+   "screen is to mesh": "relation it instantiates instead: object/material (a screen is made of mesh), not young/adult",
+   "megaphone is to amplification": "relation it instantiates instead: tool/function (a megaphone is used for amplification), not young/adult",
+   "barista is to coffeehouse": "relation it instantiates instead: worker/workplace (a barista works in a coffeehouse), not young/adult"
+  }
+ },
+ {
+  "id": "SVA18C-19",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] cymbal is to drumkit as",
+  "choices": [
+   "element is to helium",
+   "dispenser is to soap",
+   "villa is to stucco",
+   "nymph is to dragonfly",
+   "floret is to broccoli"
+  ],
+  "correct_answer": "floret is to broccoli",
+  "stem_relation": "part/whole",
+  "option_relations": [
+   "category/instance",
+   "container/contents",
+   "object/material",
+   "young/adult",
+   "part/whole"
+  ],
+  "explanation": "Relation: part/whole. Just as a cymbal is one part of a drumkit, a floret is one part of a broccoli.",
+  "distractor_rationales": {
+   "element is to helium": "relation it instantiates instead: category/instance (helium is a kind of element), not part/whole",
+   "dispenser is to soap": "relation it instantiates instead: container/contents (a dispenser holds soap), not part/whole",
+   "villa is to stucco": "relation it instantiates instead: object/material (a villa is made of stucco), not part/whole",
+   "nymph is to dragonfly": "relation it instantiates instead: young/adult (a nymph is a young dragonfly), not part/whole"
+  }
+ },
+ {
+  "id": "SVA18C-20",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] frogman is to flippers as",
+  "choices": [
+   "paramedic is to defibrillator",
+   "cog is to gearbox",
+   "orientation is to semester",
+   "crucible is to melting",
+   "eft is to newt"
+  ],
+  "correct_answer": "paramedic is to defibrillator",
+  "stem_relation": "worker/tool",
+  "option_relations": [
+   "worker/tool",
+   "part/whole",
+   "preparation/act",
+   "tool/function",
+   "young/adult"
+  ],
+  "explanation": "Relation: worker/tool. Just as a frogman works with a flippers, a paramedic works with a defibrillator.",
+  "distractor_rationales": {
+   "cog is to gearbox": "relation it instantiates instead: part/whole (a cog is one part of a gearbox), not worker/tool",
+   "orientation is to semester": "relation it instantiates instead: preparation/act (orientation is done to prepare for semester), not worker/tool",
+   "crucible is to melting": "relation it instantiates instead: tool/function (a crucible is used for melting), not worker/tool",
+   "eft is to newt": "relation it instantiates instead: young/adult (a eft is a young newt), not worker/tool"
+  }
+ },
+ {
+  "id": "SVA18C-21",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] decorator is to roller as",
+  "choices": [
+   "primate is to baboon",
+   "ventriloquist is to dummy",
+   "coffer is to treasure",
+   "capsule is to gelatin",
+   "winch is to hauling"
+  ],
+  "correct_answer": "ventriloquist is to dummy",
+  "stem_relation": "worker/tool",
+  "option_relations": [
+   "category/instance",
+   "worker/tool",
+   "container/contents",
+   "object/material",
+   "tool/function"
+  ],
+  "explanation": "Relation: worker/tool. Just as a decorator works with a roller, a ventriloquist works with a dummy.",
+  "distractor_rationales": {
+   "primate is to baboon": "relation it instantiates instead: category/instance (baboon is a kind of primate), not worker/tool",
+   "coffer is to treasure": "relation it instantiates instead: container/contents (a coffer holds treasure), not worker/tool",
+   "capsule is to gelatin": "relation it instantiates instead: object/material (a capsule is made of gelatin), not worker/tool",
+   "winch is to hauling": "relation it instantiates instead: tool/function (a winch is used for hauling), not worker/tool"
+  }
+ },
+ {
+  "id": "SVA18C-22",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] boxcar is to freight as",
+  "choices": [
+   "scuttle is to coal",
+   "silversmith is to chalice",
+   "fattening is to hibernation",
+   "swordsman is to saber",
+   "ambassador is to embassy"
+  ],
+  "correct_answer": "scuttle is to coal",
+  "stem_relation": "container/contents",
+  "option_relations": [
+   "container/contents",
+   "creator/creation",
+   "preparation/act",
+   "worker/tool",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: container/contents. Just as a boxcar holds freight, a scuttle holds coal.",
+  "distractor_rationales": {
+   "silversmith is to chalice": "relation it instantiates instead: creator/creation (a silversmith creates a chalice), not container/contents",
+   "fattening is to hibernation": "relation it instantiates instead: preparation/act (fattening is done to prepare for hibernation), not container/contents",
+   "swordsman is to saber": "relation it instantiates instead: worker/tool (a swordsman works with a saber), not container/contents",
+   "ambassador is to embassy": "relation it instantiates instead: worker/workplace (a ambassador works in a embassy), not container/contents"
+  }
+ },
+ {
+  "id": "SVA18C-23",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] crowbar is to prying as",
+  "choices": [
+   "mole is to tunnel",
+   "borough is to city",
+   "knight is to lance",
+   "medic is to infirmary",
+   "scythe is to mowing"
+  ],
+  "correct_answer": "scythe is to mowing",
+  "stem_relation": "tool/function",
+  "option_relations": [
+   "creator/creation",
+   "part/whole",
+   "worker/tool",
+   "worker/workplace",
+   "tool/function"
+  ],
+  "explanation": "Relation: tool/function. Just as a crowbar is used for prying, a scythe is used for mowing.",
+  "distractor_rationales": {
+   "mole is to tunnel": "relation it instantiates instead: creator/creation (a mole creates a tunnel), not tool/function",
+   "borough is to city": "relation it instantiates instead: part/whole (a borough is one part of a city), not tool/function",
+   "knight is to lance": "relation it instantiates instead: worker/tool (a knight works with a lance), not tool/function",
+   "medic is to infirmary": "relation it instantiates instead: worker/workplace (a medic works in a infirmary), not tool/function"
+  }
+ },
+ {
+  "id": "SVA18C-24",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] froglet is to bullfrog as",
+  "choices": [
+   "pasta is to penne",
+   "kernel is to cob",
+   "squab is to pigeon",
+   "windup is to throw",
+   "hairdresser is to curler"
+  ],
+  "correct_answer": "squab is to pigeon",
+  "stem_relation": "young/adult",
+  "option_relations": [
+   "category/instance",
+   "part/whole",
+   "young/adult",
+   "preparation/act",
+   "worker/tool"
+  ],
+  "explanation": "Relation: young/adult. Just as a froglet is a young bullfrog, a squab is a young pigeon.",
+  "distractor_rationales": {
+   "pasta is to penne": "relation it instantiates instead: category/instance (penne is a kind of pasta), not young/adult",
+   "kernel is to cob": "relation it instantiates instead: part/whole (a kernel is one part of a cob), not young/adult",
+   "windup is to throw": "relation it instantiates instead: preparation/act (windup is done to prepare for throw), not young/adult",
+   "hairdresser is to curler": "relation it instantiates instead: worker/tool (a hairdresser works with a curler), not young/adult"
+  }
+ },
+ {
+  "id": "SVA18C-25",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] gladiator is to arena as",
+  "choices": [
+   "briefcase is to paperwork",
+   "drumhead is to rawhide",
+   "pestle is to crushing",
+   "inchworm is to moth",
+   "vendor is to bazaar"
+  ],
+  "correct_answer": "vendor is to bazaar",
+  "stem_relation": "worker/workplace",
+  "option_relations": [
+   "container/contents",
+   "object/material",
+   "tool/function",
+   "young/adult",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: worker/workplace. Just as a gladiator works in a arena, a vendor works in a bazaar.",
+  "distractor_rationales": {
+   "briefcase is to paperwork": "relation it instantiates instead: container/contents (a briefcase holds paperwork), not worker/workplace",
+   "drumhead is to rawhide": "relation it instantiates instead: object/material (a drumhead is made of rawhide), not worker/workplace",
+   "pestle is to crushing": "relation it instantiates instead: tool/function (a pestle is used for crushing), not worker/workplace",
+   "inchworm is to moth": "relation it instantiates instead: young/adult (a inchworm is a young moth), not worker/workplace"
+  }
+ },
+ {
+  "id": "SVA18C-26",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] cheese is to brie as",
+  "choices": [
+   "barn is to hay",
+   "dramatist is to farce",
+   "polygon is to hexagon",
+   "planning is to expedition",
+   "whelp is to jackal"
+  ],
+  "correct_answer": "polygon is to hexagon",
+  "stem_relation": "category/instance",
+  "option_relations": [
+   "container/contents",
+   "creator/creation",
+   "category/instance",
+   "preparation/act",
+   "young/adult"
+  ],
+  "explanation": "Relation: category/instance. Just as brie is a kind of cheese, hexagon is a kind of polygon.",
+  "distractor_rationales": {
+   "barn is to hay": "relation it instantiates instead: container/contents (a barn holds hay), not category/instance",
+   "dramatist is to farce": "relation it instantiates instead: creator/creation (a dramatist creates a farce), not category/instance",
+   "planning is to expedition": "relation it instantiates instead: preparation/act (planning is done to prepare for expedition), not category/instance",
+   "whelp is to jackal": "relation it instantiates instead: young/adult (a whelp is a young jackal), not category/instance"
+  }
+ },
+ {
+  "id": "SVA18C-27",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] founder is to company as",
+  "choices": [
+   "organ is to liver",
+   "glider is to balsa",
+   "watercolorist is to palette",
+   "bard is to saga",
+   "porter is to station"
+  ],
+  "correct_answer": "bard is to saga",
+  "stem_relation": "creator/creation",
+  "option_relations": [
+   "category/instance",
+   "object/material",
+   "worker/tool",
+   "creator/creation",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: creator/creation. Just as a founder creates a company, a bard creates a saga.",
+  "distractor_rationales": {
+   "organ is to liver": "relation it instantiates instead: category/instance (liver is a kind of organ), not creator/creation",
+   "glider is to balsa": "relation it instantiates instead: object/material (a glider is made of balsa), not creator/creation",
+   "watercolorist is to palette": "relation it instantiates instead: worker/tool (a watercolorist works with a palette), not creator/creation",
+   "porter is to station": "relation it instantiates instead: worker/workplace (a porter works in a station), not creator/creation"
+  }
+ },
+ {
+  "id": "SVA18C-28",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] diarist is to journal as",
+  "choices": [
+   "tile is to mosaic",
+   "shipbuilder is to schooner",
+   "sterilization is to surgery",
+   "fan is to ventilation",
+   "bullock is to bull"
+  ],
+  "correct_answer": "shipbuilder is to schooner",
+  "stem_relation": "creator/creation",
+  "option_relations": [
+   "part/whole",
+   "creator/creation",
+   "preparation/act",
+   "tool/function",
+   "young/adult"
+  ],
+  "explanation": "Relation: creator/creation. Just as a diarist creates a journal, a shipbuilder creates a schooner.",
+  "distractor_rationales": {
+   "tile is to mosaic": "relation it instantiates instead: part/whole (a tile is one part of a mosaic), not creator/creation",
+   "sterilization is to surgery": "relation it instantiates instead: preparation/act (sterilization is done to prepare for surgery), not creator/creation",
+   "fan is to ventilation": "relation it instantiates instead: tool/function (a fan is used for ventilation), not creator/creation",
+   "bullock is to bull": "relation it instantiates instead: young/adult (a bullock is a young bull), not creator/creation"
+  }
+ },
+ {
+  "id": "SVA18C-29",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] football is to pigskin as",
+  "choices": [
+   "saucer is to china",
+   "dinosaur is to triceratops",
+   "designer is to logo",
+   "eyelash is to eyelid",
+   "nutcracker is to shelling"
+  ],
+  "correct_answer": "saucer is to china",
+  "stem_relation": "object/material",
+  "option_relations": [
+   "object/material",
+   "category/instance",
+   "creator/creation",
+   "part/whole",
+   "tool/function"
+  ],
+  "explanation": "Relation: object/material. Just as a football is made of pigskin, a saucer is made of china.",
+  "distractor_rationales": {
+   "dinosaur is to triceratops": "relation it instantiates instead: category/instance (triceratops is a kind of dinosaur), not object/material",
+   "designer is to logo": "relation it instantiates instead: creator/creation (a designer creates a logo), not object/material",
+   "eyelash is to eyelid": "relation it instantiates instead: part/whole (a eyelash is one part of a eyelid), not object/material",
+   "nutcracker is to shelling": "relation it instantiates instead: tool/function (a nutcracker is used for shelling), not object/material"
+  }
+ },
+ {
+  "id": "SVA18C-30",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] cramming is to exam as",
+  "choices": [
+   "crib is to baby",
+   "pyramid is to limestone",
+   "catcher is to mitt",
+   "preheating is to broiling",
+   "clown is to circus"
+  ],
+  "correct_answer": "preheating is to broiling",
+  "stem_relation": "preparation/act",
+  "option_relations": [
+   "container/contents",
+   "object/material",
+   "worker/tool",
+   "preparation/act",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: preparation/act. Just as cramming is done to prepare for exam, preheating is done to prepare for broiling.",
+  "distractor_rationales": {
+   "crib is to baby": "relation it instantiates instead: container/contents (a crib holds baby), not preparation/act",
+   "pyramid is to limestone": "relation it instantiates instead: object/material (a pyramid is made of limestone), not preparation/act",
+   "catcher is to mitt": "relation it instantiates instead: worker/tool (a catcher works with a mitt), not preparation/act",
+   "clown is to circus": "relation it instantiates instead: worker/workplace (a clown works in a circus), not preparation/act"
+  }
+ },
+ {
+  "id": "SVA18C-31",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] banister is to staircase as",
+  "choices": [
+   "portfolio is to artwork",
+   "silkworm is to cocoon",
+   "rib is to umbrella",
+   "imam is to mosque",
+   "nestling is to raven"
+  ],
+  "correct_answer": "rib is to umbrella",
+  "stem_relation": "part/whole",
+  "option_relations": [
+   "container/contents",
+   "creator/creation",
+   "part/whole",
+   "worker/workplace",
+   "young/adult"
+  ],
+  "explanation": "Relation: part/whole. Just as a banister is one part of a staircase, a rib is one part of a umbrella.",
+  "distractor_rationales": {
+   "portfolio is to artwork": "relation it instantiates instead: container/contents (a portfolio holds artwork), not part/whole",
+   "silkworm is to cocoon": "relation it instantiates instead: creator/creation (a silkworm creates a cocoon), not part/whole",
+   "imam is to mosque": "relation it instantiates instead: worker/workplace (a imam works in a mosque), not part/whole",
+   "nestling is to raven": "relation it instantiates instead: young/adult (a nestling is a young raven), not part/whole"
+  }
+ },
+ {
+  "id": "SVA18C-32",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] cell is to tissue as",
+  "choices": [
+   "veranda is to farmhouse",
+   "mollusk is to squid",
+   "twine is to jute",
+   "scouting is to raid",
+   "prospector is to pan"
+  ],
+  "correct_answer": "veranda is to farmhouse",
+  "stem_relation": "part/whole",
+  "option_relations": [
+   "part/whole",
+   "category/instance",
+   "object/material",
+   "preparation/act",
+   "worker/tool"
+  ],
+  "explanation": "Relation: part/whole. Just as a cell is one part of a tissue, a veranda is one part of a farmhouse.",
+  "distractor_rationales": {
+   "mollusk is to squid": "relation it instantiates instead: category/instance (squid is a kind of mollusk), not part/whole",
+   "twine is to jute": "relation it instantiates instead: object/material (a twine is made of jute), not part/whole",
+   "scouting is to raid": "relation it instantiates instead: preparation/act (scouting is done to prepare for raid), not part/whole",
+   "prospector is to pan": "relation it instantiates instead: worker/tool (a prospector works with a pan), not part/whole"
+  }
+ },
+ {
+  "id": "SVA18C-33",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] astronaut is to spacecraft as",
+  "choices": [
+   "snack is to pretzel",
+   "hutch is to rabbit",
+   "pixel is to image",
+   "scientist is to laboratory",
+   "wheelbarrow is to carting"
+  ],
+  "correct_answer": "scientist is to laboratory",
+  "stem_relation": "worker/workplace",
+  "option_relations": [
+   "category/instance",
+   "container/contents",
+   "part/whole",
+   "worker/workplace",
+   "tool/function"
+  ],
+  "explanation": "Relation: worker/workplace. Just as a astronaut works in a spacecraft, a scientist works in a laboratory.",
+  "distractor_rationales": {
+   "snack is to pretzel": "relation it instantiates instead: category/instance (pretzel is a kind of snack), not worker/workplace",
+   "hutch is to rabbit": "relation it instantiates instead: container/contents (a hutch holds rabbit), not worker/workplace",
+   "pixel is to image": "relation it instantiates instead: part/whole (a pixel is one part of a image), not worker/workplace",
+   "wheelbarrow is to carting": "relation it instantiates instead: tool/function (a wheelbarrow is used for carting), not worker/workplace"
+  }
+ },
+ {
+  "id": "SVA18C-34",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] catapult is to hurling as",
+  "choices": [
+   "mapmaker is to globe",
+   "atom is to molecule",
+   "dean is to college",
+   "machete is to clearing",
+   "grub is to weevil"
+  ],
+  "correct_answer": "machete is to clearing",
+  "stem_relation": "tool/function",
+  "option_relations": [
+   "creator/creation",
+   "part/whole",
+   "worker/workplace",
+   "tool/function",
+   "young/adult"
+  ],
+  "explanation": "Relation: tool/function. Just as a catapult is used for hurling, a machete is used for clearing.",
+  "distractor_rationales": {
+   "mapmaker is to globe": "relation it instantiates instead: creator/creation (a mapmaker creates a globe), not tool/function",
+   "atom is to molecule": "relation it instantiates instead: part/whole (a atom is one part of a molecule), not tool/function",
+   "dean is to college": "relation it instantiates instead: worker/workplace (a dean works in a college), not tool/function",
+   "grub is to weevil": "relation it instantiates instead: young/adult (a grub is a young weevil), not tool/function"
+  }
+ },
+ {
+  "id": "SVA18C-35",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] crouch is to pounce as",
+  "choices": [
+   "vest is to kevlar",
+   "propeller is to airplane",
+   "sledgehammer is to smashing",
+   "broadcaster is to microphone",
+   "research is to thesis"
+  ],
+  "correct_answer": "research is to thesis",
+  "stem_relation": "preparation/act",
+  "option_relations": [
+   "object/material",
+   "part/whole",
+   "tool/function",
+   "worker/tool",
+   "preparation/act"
+  ],
+  "explanation": "Relation: preparation/act. Just as crouch is done to prepare for pounce, research is done to prepare for thesis.",
+  "distractor_rationales": {
+   "vest is to kevlar": "relation it instantiates instead: object/material (a vest is made of kevlar), not preparation/act",
+   "propeller is to airplane": "relation it instantiates instead: part/whole (a propeller is one part of a airplane), not preparation/act",
+   "sledgehammer is to smashing": "relation it instantiates instead: tool/function (a sledgehammer is used for smashing), not preparation/act",
+   "broadcaster is to microphone": "relation it instantiates instead: worker/tool (a broadcaster works with a microphone), not preparation/act"
+  }
+ },
+ {
+  "id": "SVA18C-36",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] goatherd is to pasture as",
+  "choices": [
+   "breadbasket is to biscuits",
+   "videographer is to footage",
+   "excavation is to construction",
+   "warden is to penitentiary",
+   "spelunker is to headlamp"
+  ],
+  "correct_answer": "warden is to penitentiary",
+  "stem_relation": "worker/workplace",
+  "option_relations": [
+   "container/contents",
+   "creator/creation",
+   "preparation/act",
+   "worker/workplace",
+   "worker/tool"
+  ],
+  "explanation": "Relation: worker/workplace. Just as a goatherd works in a pasture, a warden works in a penitentiary.",
+  "distractor_rationales": {
+   "breadbasket is to biscuits": "relation it instantiates instead: container/contents (a breadbasket holds biscuits), not worker/workplace",
+   "videographer is to footage": "relation it instantiates instead: creator/creation (a videographer creates a footage), not worker/workplace",
+   "excavation is to construction": "relation it instantiates instead: preparation/act (excavation is done to prepare for construction), not worker/workplace",
+   "spelunker is to headlamp": "relation it instantiates instead: worker/tool (a spelunker works with a headlamp), not worker/workplace"
+  }
+ },
+ {
+  "id": "SVA18C-37",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] cage is to hamster as",
+  "choices": [
+   "gunnysack is to potatoes",
+   "sport is to lacrosse",
+   "study is to test",
+   "slingshot is to launching",
+   "pharmacist is to drugstore"
+  ],
+  "correct_answer": "gunnysack is to potatoes",
+  "stem_relation": "container/contents",
+  "option_relations": [
+   "container/contents",
+   "category/instance",
+   "preparation/act",
+   "tool/function",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: container/contents. Just as a cage holds hamster, a gunnysack holds potatoes.",
+  "distractor_rationales": {
+   "sport is to lacrosse": "relation it instantiates instead: category/instance (lacrosse is a kind of sport), not container/contents",
+   "study is to test": "relation it instantiates instead: preparation/act (study is done to prepare for test), not container/contents",
+   "slingshot is to launching": "relation it instantiates instead: tool/function (a slingshot is used for launching), not container/contents",
+   "pharmacist is to drugstore": "relation it instantiates instead: worker/workplace (a pharmacist works in a drugstore), not container/contents"
+  }
+ },
+ {
+  "id": "SVA18C-38",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] columnist is to editorial as",
+  "choices": [
+   "scroll is to parchment",
+   "secretary is to typewriter",
+   "lacemaker is to doily",
+   "ploughman is to field",
+   "codling is to cod"
+  ],
+  "correct_answer": "lacemaker is to doily",
+  "stem_relation": "creator/creation",
+  "option_relations": [
+   "object/material",
+   "worker/tool",
+   "creator/creation",
+   "worker/workplace",
+   "young/adult"
+  ],
+  "explanation": "Relation: creator/creation. Just as a columnist creates a editorial, a lacemaker creates a doily.",
+  "distractor_rationales": {
+   "scroll is to parchment": "relation it instantiates instead: object/material (a scroll is made of parchment), not creator/creation",
+   "secretary is to typewriter": "relation it instantiates instead: worker/tool (a secretary works with a typewriter), not creator/creation",
+   "ploughman is to field": "relation it instantiates instead: worker/workplace (a ploughman works in a field), not creator/creation",
+   "codling is to cod": "relation it instantiates instead: young/adult (a codling is a young cod), not creator/creation"
+  }
+ },
+ {
+  "id": "SVA18C-39",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] bone is to femur as",
+  "choices": [
+   "printmaker is to woodcut",
+   "cord is to hemp",
+   "inspection is to takeoff",
+   "squash is to zucchini",
+   "fry is to perch"
+  ],
+  "correct_answer": "squash is to zucchini",
+  "stem_relation": "category/instance",
+  "option_relations": [
+   "creator/creation",
+   "object/material",
+   "preparation/act",
+   "category/instance",
+   "young/adult"
+  ],
+  "explanation": "Relation: category/instance. Just as femur is a kind of bone, zucchini is a kind of squash.",
+  "distractor_rationales": {
+   "printmaker is to woodcut": "relation it instantiates instead: creator/creation (a printmaker creates a woodcut), not category/instance",
+   "cord is to hemp": "relation it instantiates instead: object/material (a cord is made of hemp), not category/instance",
+   "inspection is to takeoff": "relation it instantiates instead: preparation/act (inspection is done to prepare for takeoff), not category/instance",
+   "fry is to perch": "relation it instantiates instead: young/adult (a fry is a young perch), not category/instance"
+  }
+ },
+ {
+  "id": "SVA18C-40",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] journalist is to article as",
+  "choices": [
+   "game is to chess",
+   "terrarium is to gecko",
+   "scriptwriter is to screenplay",
+   "molar is to jaw",
+   "thermostat is to regulating"
+  ],
+  "correct_answer": "scriptwriter is to screenplay",
+  "stem_relation": "creator/creation",
+  "option_relations": [
+   "category/instance",
+   "container/contents",
+   "creator/creation",
+   "part/whole",
+   "tool/function"
+  ],
+  "explanation": "Relation: creator/creation. Just as a journalist creates a article, a scriptwriter creates a screenplay.",
+  "distractor_rationales": {
+   "game is to chess": "relation it instantiates instead: category/instance (chess is a kind of game), not creator/creation",
+   "terrarium is to gecko": "relation it instantiates instead: container/contents (a terrarium holds gecko), not creator/creation",
+   "molar is to jaw": "relation it instantiates instead: part/whole (a molar is one part of a jaw), not creator/creation",
+   "thermostat is to regulating": "relation it instantiates instead: tool/function (a thermostat is used for regulating), not creator/creation"
+  }
+ },
+ {
+  "id": "SVA18D-01",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] wager is to bet as",
+  "choices": [
+   "bacteria is to disease",
+   "haven is to refuge",
+   "fiancee is to bride",
+   "ammeter is to current",
+   "liar is to honesty"
+  ],
+  "correct_answer": "haven is to refuge",
+  "stem_relation": "synonyms",
+  "option_relations": [
+   "cause/effect",
+   "synonyms",
+   "early stage/later stage",
+   "instrument/what it measures",
+   "lack"
+  ],
+  "explanation": "Relation: synonyms. Just as wager and bet mean the same thing, haven and refuge mean the same thing.",
+  "distractor_rationales": {
+   "bacteria is to disease": "relation it instantiates instead: cause/effect (bacteria bring about disease), not synonyms",
+   "fiancee is to bride": "relation it instantiates instead: early stage/later stage (a fiancee is an earlier stage of a bride), not synonyms",
+   "ammeter is to current": "relation it instantiates instead: instrument/what it measures (an ammeter measures current), not synonyms",
+   "liar is to honesty": "relation it instantiates instead: lack (a liar lacks honesty), not synonyms"
+  }
+ },
+ {
+  "id": "SVA18D-02",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] truth is to falsehood as",
+  "choices": [
+   "loon is to craziness",
+   "dislike is to hatred",
+   "acceptance is to rejection",
+   "linguist is to languages",
+   "blindfold is to impartiality"
+  ],
+  "correct_answer": "acceptance is to rejection",
+  "stem_relation": "antonyms",
+  "option_relations": [
+   "animal/characteristic",
+   "degree",
+   "antonyms",
+   "expert/field of study",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: antonyms. Just as truth is the opposite of falsehood, acceptance is the opposite of rejection.",
+  "distractor_rationales": {
+   "loon is to craziness": "relation it instantiates instead: animal/characteristic (the loon is proverbial for craziness), not antonyms",
+   "dislike is to hatred": "relation it instantiates instead: degree (hatred is dislike at far greater intensity), not antonyms",
+   "linguist is to languages": "relation it instantiates instead: expert/field of study (a linguist studies languages), not antonyms",
+   "blindfold is to impartiality": "relation it instantiates instead: symbol/symbolized (a blindfold symbolizes impartiality), not antonyms"
+  }
+ },
+ {
+  "id": "SVA18D-03",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] magma is to lava as",
+  "choices": [
+   "attack is to defense",
+   "boyhood is to manhood",
+   "stimulus is to response",
+   "litmus is to acidity",
+   "mistake is to error"
+  ],
+  "correct_answer": "boyhood is to manhood",
+  "stem_relation": "early stage/later stage",
+  "option_relations": [
+   "antonyms",
+   "early stage/later stage",
+   "cause/effect",
+   "instrument/what it measures",
+   "synonyms"
+  ],
+  "explanation": "Relation: early stage/later stage. Just as magma is an earlier stage of lava, boyhood is an earlier stage of manhood.",
+  "distractor_rationales": {
+   "attack is to defense": "relation it instantiates instead: antonyms (attack is the opposite of defense), not early stage/later stage",
+   "stimulus is to response": "relation it instantiates instead: cause/effect (a stimulus brings about a response), not early stage/later stage",
+   "litmus is to acidity": "relation it instantiates instead: instrument/what it measures (litmus measures acidity), not early stage/later stage",
+   "mistake is to error": "relation it instantiates instead: synonyms (mistake and error mean the same thing), not early stage/later stage"
+  }
+ },
+ {
+  "id": "SVA18D-04",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] youth is to maturity as",
+  "choices": [
+   "export is to import",
+   "hypothesis is to theory",
+   "interest is to obsession",
+   "economist is to economy",
+   "acorn is to potential"
+  ],
+  "correct_answer": "hypothesis is to theory",
+  "stem_relation": "early stage/later stage",
+  "option_relations": [
+   "antonyms",
+   "early stage/later stage",
+   "degree",
+   "expert/field of study",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: early stage/later stage. Just as youth is an earlier stage of maturity, a hypothesis is an earlier stage of a theory.",
+  "distractor_rationales": {
+   "export is to import": "relation it instantiates instead: antonyms (export is the opposite of import), not early stage/later stage",
+   "interest is to obsession": "relation it instantiates instead: degree (obsession is interest at far greater intensity), not early stage/later stage",
+   "economist is to economy": "relation it instantiates instead: expert/field of study (an economist studies the economy), not early stage/later stage",
+   "acorn is to potential": "relation it instantiates instead: symbol/symbolized (an acorn symbolizes potential), not early stage/later stage"
+  }
+ },
+ {
+  "id": "SVA18D-05",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] oxidation is to corrosion as",
+  "choices": [
+   "magpie is to thievery",
+   "contamination is to sickness",
+   "heir is to monarch",
+   "klutz is to grace",
+   "hint is to clue"
+  ],
+  "correct_answer": "contamination is to sickness",
+  "stem_relation": "cause/effect",
+  "option_relations": [
+   "animal/characteristic",
+   "cause/effect",
+   "early stage/later stage",
+   "lack",
+   "synonyms"
+  ],
+  "explanation": "Relation: cause/effect. Just as oxidation brings about corrosion, contamination brings about sickness.",
+  "distractor_rationales": {
+   "magpie is to thievery": "relation it instantiates instead: animal/characteristic (the magpie is proverbial for thievery), not cause/effect",
+   "heir is to monarch": "relation it instantiates instead: early stage/later stage (an heir is an earlier stage of a monarch), not cause/effect",
+   "klutz is to grace": "relation it instantiates instead: lack (a klutz lacks grace), not cause/effect",
+   "hint is to clue": "relation it instantiates instead: synonyms (hint and clue mean the same thing), not cause/effect"
+  }
+ },
+ {
+  "id": "SVA18D-06",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] mycologist is to fungi as",
+  "choices": [
+   "genealogist is to ancestry",
+   "tiger is to fierceness",
+   "maximum is to minimum",
+   "frown is to scowl",
+   "lighthouse is to guidance"
+  ],
+  "correct_answer": "genealogist is to ancestry",
+  "stem_relation": "expert/field of study",
+  "option_relations": [
+   "expert/field of study",
+   "animal/characteristic",
+   "antonyms",
+   "degree",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: expert/field of study. Just as a mycologist studies fungi, a genealogist studies ancestry.",
+  "distractor_rationales": {
+   "tiger is to fierceness": "relation it instantiates instead: animal/characteristic (the tiger is proverbial for fierceness), not expert/field of study",
+   "maximum is to minimum": "relation it instantiates instead: antonyms (maximum is the opposite of minimum), not expert/field of study",
+   "frown is to scowl": "relation it instantiates instead: degree (a scowl is a frown at far greater intensity), not expert/field of study",
+   "lighthouse is to guidance": "relation it instantiates instead: symbol/symbolized (a lighthouse symbolizes guidance), not expert/field of study"
+  }
+ },
+ {
+  "id": "SVA18D-07",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] peep is to shriek as",
+  "choices": [
+   "overspending is to debt",
+   "cabbage is to sauerkraut",
+   "flurry is to blizzard",
+   "slob is to neatness",
+   "chum is to pal"
+  ],
+  "correct_answer": "flurry is to blizzard",
+  "stem_relation": "degree",
+  "option_relations": [
+   "cause/effect",
+   "early stage/later stage",
+   "degree",
+   "lack",
+   "synonyms"
+  ],
+  "explanation": "Relation: degree. Just as a shriek is a peep at far greater intensity, a blizzard is a flurry at far greater intensity.",
+  "distractor_rationales": {
+   "overspending is to debt": "relation it instantiates instead: cause/effect (overspending brings about debt), not degree",
+   "cabbage is to sauerkraut": "relation it instantiates instead: early stage/later stage (cabbage is an earlier stage of sauerkraut), not degree",
+   "slob is to neatness": "relation it instantiates instead: lack (a slob lacks neatness), not degree",
+   "chum is to pal": "relation it instantiates instead: synonyms (chum and pal mean the same thing), not degree"
+  }
+ },
+ {
+  "id": "SVA18D-08",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] procrastinator is to promptness as",
+  "choices": [
+   "attraction is to repulsion",
+   "condensation is to dew",
+   "anthropologist is to cultures",
+   "hydrometer is to density",
+   "pessimist is to hope"
+  ],
+  "correct_answer": "pessimist is to hope",
+  "stem_relation": "lack",
+  "option_relations": [
+   "antonyms",
+   "cause/effect",
+   "expert/field of study",
+   "instrument/what it measures",
+   "lack"
+  ],
+  "explanation": "Relation: lack. Just as a procrastinator lacks promptness, a pessimist lacks hope.",
+  "distractor_rationales": {
+   "attraction is to repulsion": "relation it instantiates instead: antonyms (attraction is the opposite of repulsion), not lack",
+   "condensation is to dew": "relation it instantiates instead: cause/effect (condensation brings about dew), not lack",
+   "anthropologist is to cultures": "relation it instantiates instead: expert/field of study (an anthropologist studies cultures), not lack",
+   "hydrometer is to density": "relation it instantiates instead: instrument/what it measures (a hydrometer measures density), not lack"
+  }
+ },
+ {
+  "id": "SVA18D-09",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] omen is to portent as",
+  "choices": [
+   "ape is to imitation",
+   "amusement is to hilarity",
+   "caliper is to diameter",
+   "fragment is to shard",
+   "crossroads is to decision"
+  ],
+  "correct_answer": "fragment is to shard",
+  "stem_relation": "synonyms",
+  "option_relations": [
+   "animal/characteristic",
+   "degree",
+   "instrument/what it measures",
+   "synonyms",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: synonyms. Just as omen and portent mean the same thing, fragment and shard mean the same thing.",
+  "distractor_rationales": {
+   "ape is to imitation": "relation it instantiates instead: animal/characteristic (the ape is proverbial for imitation), not synonyms",
+   "amusement is to hilarity": "relation it instantiates instead: degree (hilarity is amusement at far greater intensity), not synonyms",
+   "caliper is to diameter": "relation it instantiates instead: instrument/what it measures (a caliper measures diameter), not synonyms",
+   "crossroads is to decision": "relation it instantiates instead: symbol/symbolized (a crossroads symbolizes decision), not synonyms"
+  }
+ },
+ {
+  "id": "SVA18D-10",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] poppy is to remembrance as",
+  "choices": [
+   "confetti is to celebration",
+   "batter is to cake",
+   "mathematician is to numbers",
+   "dunce is to intelligence",
+   "inquiry is to question"
+  ],
+  "correct_answer": "confetti is to celebration",
+  "stem_relation": "symbol/symbolized",
+  "option_relations": [
+   "symbol/symbolized",
+   "early stage/later stage",
+   "expert/field of study",
+   "lack",
+   "synonyms"
+  ],
+  "explanation": "Relation: symbol/symbolized. Just as a poppy symbolizes remembrance, confetti symbolizes celebration.",
+  "distractor_rationales": {
+   "batter is to cake": "relation it instantiates instead: early stage/later stage (batter is an earlier stage of a cake), not symbol/symbolized",
+   "mathematician is to numbers": "relation it instantiates instead: expert/field of study (a mathematician studies numbers), not symbol/symbolized",
+   "dunce is to intelligence": "relation it instantiates instead: lack (a dunce lacks intelligence), not symbol/symbolized",
+   "inquiry is to question": "relation it instantiates instead: synonyms (inquiry and question mean the same thing), not symbol/symbolized"
+  }
+ },
+ {
+  "id": "SVA18D-11",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] tachometer is to revolutions as",
+  "choices": [
+   "lemming is to conformity",
+   "guilt is to innocence",
+   "micrometer is to thickness",
+   "ingrate is to thankfulness",
+   "halo is to holiness"
+  ],
+  "correct_answer": "micrometer is to thickness",
+  "stem_relation": "instrument/what it measures",
+  "option_relations": [
+   "animal/characteristic",
+   "antonyms",
+   "instrument/what it measures",
+   "lack",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: instrument/what it measures. Just as a tachometer measures revolutions, a micrometer measures thickness.",
+  "distractor_rationales": {
+   "lemming is to conformity": "relation it instantiates instead: animal/characteristic (the lemming is proverbial for conformity), not instrument/what it measures",
+   "guilt is to innocence": "relation it instantiates instead: antonyms (guilt is the opposite of innocence), not instrument/what it measures",
+   "ingrate is to thankfulness": "relation it instantiates instead: lack (an ingrate lacks thankfulness), not instrument/what it measures",
+   "halo is to holiness": "relation it instantiates instead: symbol/symbolized (a halo symbolizes holiness), not instrument/what it measures"
+  }
+ },
+ {
+  "id": "SVA18D-12",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] ruse is to ploy as",
+  "choices": [
+   "maxim is to proverb",
+   "admiration is to worship",
+   "cream is to butter",
+   "geneticist is to heredity",
+   "calorimeter is to calories"
+  ],
+  "correct_answer": "maxim is to proverb",
+  "stem_relation": "synonyms",
+  "option_relations": [
+   "synonyms",
+   "degree",
+   "early stage/later stage",
+   "expert/field of study",
+   "instrument/what it measures"
+  ],
+  "explanation": "Relation: synonyms. Just as ruse and ploy mean the same thing, maxim and proverb mean the same thing.",
+  "distractor_rationales": {
+   "admiration is to worship": "relation it instantiates instead: degree (worship is admiration at far greater intensity), not synonyms",
+   "cream is to butter": "relation it instantiates instead: early stage/later stage (cream is an earlier stage of butter), not synonyms",
+   "geneticist is to heredity": "relation it instantiates instead: expert/field of study (a geneticist studies heredity), not synonyms",
+   "calorimeter is to calories": "relation it instantiates instead: instrument/what it measures (a calorimeter measures calories), not synonyms"
+  }
+ },
+ {
+  "id": "SVA18D-13",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] sociologist is to society as",
+  "choices": [
+   "inactivity is to atrophy",
+   "apprehension is to horror",
+   "checkmark is to correctness",
+   "ecologist is to ecosystems",
+   "ruckus is to tumult"
+  ],
+  "correct_answer": "ecologist is to ecosystems",
+  "stem_relation": "expert/field of study",
+  "option_relations": [
+   "cause/effect",
+   "degree",
+   "symbol/symbolized",
+   "expert/field of study",
+   "synonyms"
+  ],
+  "explanation": "Relation: expert/field of study. Just as a sociologist studies society, an ecologist studies ecosystems.",
+  "distractor_rationales": {
+   "inactivity is to atrophy": "relation it instantiates instead: cause/effect (inactivity brings about atrophy), not expert/field of study",
+   "apprehension is to horror": "relation it instantiates instead: degree (horror is apprehension at far greater intensity), not expert/field of study",
+   "checkmark is to correctness": "relation it instantiates instead: symbol/symbolized (a checkmark symbolizes correctness), not expert/field of study",
+   "ruckus is to tumult": "relation it instantiates instead: synonyms (ruckus and tumult mean the same thing), not expert/field of study"
+  }
+ },
+ {
+  "id": "SVA18D-14",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] phoenix is to rebirth as",
+  "choices": [
+   "weasel is to sneakiness",
+   "sanity is to madness",
+   "prototype is to product",
+   "traitor is to fidelity",
+   "cornucopia is to plenty"
+  ],
+  "correct_answer": "cornucopia is to plenty",
+  "stem_relation": "symbol/symbolized",
+  "option_relations": [
+   "animal/characteristic",
+   "antonyms",
+   "early stage/later stage",
+   "lack",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: symbol/symbolized. Just as a phoenix symbolizes rebirth, a cornucopia symbolizes plenty.",
+  "distractor_rationales": {
+   "weasel is to sneakiness": "relation it instantiates instead: animal/characteristic (the weasel is proverbial for sneakiness), not symbol/symbolized",
+   "sanity is to madness": "relation it instantiates instead: antonyms (sanity is the opposite of madness), not symbol/symbolized",
+   "prototype is to product": "relation it instantiates instead: early stage/later stage (a prototype is an earlier stage of a product), not symbol/symbolized",
+   "traitor is to fidelity": "relation it instantiates instead: lack (a traitor lacks fidelity), not symbol/symbolized"
+  }
+ },
+ {
+  "id": "SVA18D-15",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] seismometer is to quakes as",
+  "choices": [
+   "noon is to midnight",
+   "grenade is to shrapnel",
+   "neurologist is to nerves",
+   "garbage is to rubbish",
+   "glucometer is to glucose"
+  ],
+  "correct_answer": "glucometer is to glucose",
+  "stem_relation": "instrument/what it measures",
+  "option_relations": [
+   "antonyms",
+   "cause/effect",
+   "expert/field of study",
+   "synonyms",
+   "instrument/what it measures"
+  ],
+  "explanation": "Relation: instrument/what it measures. Just as a seismometer measures quakes, a glucometer measures glucose.",
+  "distractor_rationales": {
+   "noon is to midnight": "relation it instantiates instead: antonyms (noon is the opposite of midnight), not instrument/what it measures",
+   "grenade is to shrapnel": "relation it instantiates instead: cause/effect (a grenade brings about shrapnel), not instrument/what it measures",
+   "neurologist is to nerves": "relation it instantiates instead: expert/field of study (a neurologist studies nerves), not instrument/what it measures",
+   "garbage is to rubbish": "relation it instantiates instead: synonyms (garbage and rubbish mean the same thing), not instrument/what it measures"
+  }
+ },
+ {
+  "id": "SVA18D-16",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] tension is to relaxation as",
+  "choices": [
+   "inflation is to deflation",
+   "dormouse is to sleepiness",
+   "criminologist is to crime",
+   "accelerometer is to acceleration",
+   "purple is to royalty"
+  ],
+  "correct_answer": "inflation is to deflation",
+  "stem_relation": "antonyms",
+  "option_relations": [
+   "antonyms",
+   "animal/characteristic",
+   "expert/field of study",
+   "instrument/what it measures",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: antonyms. Just as tension is the opposite of relaxation, inflation is the opposite of deflation.",
+  "distractor_rationales": {
+   "dormouse is to sleepiness": "relation it instantiates instead: animal/characteristic (the dormouse is proverbial for sleepiness), not antonyms",
+   "criminologist is to crime": "relation it instantiates instead: expert/field of study (a criminologist studies crime), not antonyms",
+   "accelerometer is to acceleration": "relation it instantiates instead: instrument/what it measures (an accelerometer measures acceleration), not antonyms",
+   "purple is to royalty": "relation it instantiates instead: symbol/symbolized (purple symbolizes royalty), not antonyms"
+  }
+ },
+ {
+  "id": "SVA18D-17",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] toddler is to adolescent as",
+  "choices": [
+   "pleasure is to ecstasy",
+   "magnetometer is to magnetism",
+   "layman is to expertise",
+   "cacao is to chocolate",
+   "memento is to souvenir"
+  ],
+  "correct_answer": "cacao is to chocolate",
+  "stem_relation": "early stage/later stage",
+  "option_relations": [
+   "degree",
+   "instrument/what it measures",
+   "lack",
+   "early stage/later stage",
+   "synonyms"
+  ],
+  "explanation": "Relation: early stage/later stage. Just as a toddler is an earlier stage of an adolescent, cacao is an earlier stage of chocolate.",
+  "distractor_rationales": {
+   "pleasure is to ecstasy": "relation it instantiates instead: degree (ecstasy is pleasure at far greater intensity), not early stage/later stage",
+   "magnetometer is to magnetism": "relation it instantiates instead: instrument/what it measures (a magnetometer measures magnetism), not early stage/later stage",
+   "layman is to expertise": "relation it instantiates instead: lack (a layman lacks expertise), not early stage/later stage",
+   "memento is to souvenir": "relation it instantiates instead: synonyms (memento and souvenir mean the same thing), not early stage/later stage"
+  }
+ },
+ {
+  "id": "SVA18D-18",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] scuff is to gouge as",
+  "choices": [
+   "addition is to subtraction",
+   "drip is to gush",
+   "tyranny is to revolt",
+   "semifinalist is to finalist",
+   "gyroscope is to rotation"
+  ],
+  "correct_answer": "drip is to gush",
+  "stem_relation": "degree",
+  "option_relations": [
+   "antonyms",
+   "degree",
+   "cause/effect",
+   "early stage/later stage",
+   "instrument/what it measures"
+  ],
+  "explanation": "Relation: degree. Just as a gouge is a scuff at far greater intensity, a gush is a drip at far greater intensity.",
+  "distractor_rationales": {
+   "addition is to subtraction": "relation it instantiates instead: antonyms (addition is the opposite of subtraction), not degree",
+   "tyranny is to revolt": "relation it instantiates instead: cause/effect (tyranny brings about revolt), not degree",
+   "semifinalist is to finalist": "relation it instantiates instead: early stage/later stage (a semifinalist is an earlier stage of a finalist), not degree",
+   "gyroscope is to rotation": "relation it instantiates instead: instrument/what it measures (a gyroscope measures rotation), not degree"
+  }
+ },
+ {
+  "id": "SVA18D-19",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] prince is to king as",
+  "choices": [
+   "sedative is to calmness",
+   "squeak is to screech",
+   "cucumber is to pickle",
+   "boor is to manners",
+   "chasm is to abyss"
+  ],
+  "correct_answer": "cucumber is to pickle",
+  "stem_relation": "early stage/later stage",
+  "option_relations": [
+   "cause/effect",
+   "degree",
+   "early stage/later stage",
+   "lack",
+   "synonyms"
+  ],
+  "explanation": "Relation: early stage/later stage. Just as a prince is an earlier stage of a king, a cucumber is an earlier stage of a pickle.",
+  "distractor_rationales": {
+   "sedative is to calmness": "relation it instantiates instead: cause/effect (a sedative brings about calmness), not early stage/later stage",
+   "squeak is to screech": "relation it instantiates instead: degree (a screech is a squeak at far greater intensity), not early stage/later stage",
+   "boor is to manners": "relation it instantiates instead: lack (a boor lacks manners), not early stage/later stage",
+   "chasm is to abyss": "relation it instantiates instead: synonyms (chasm and abyss mean the same thing), not early stage/later stage"
+  }
+ },
+ {
+  "id": "SVA18D-20",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] ostrich is to denial as",
+  "choices": [
+   "anesthetic is to numbness",
+   "mouse is to quietness",
+   "spore is to mushroom",
+   "cosmologist is to universe",
+   "lotus is to enlightenment"
+  ],
+  "correct_answer": "mouse is to quietness",
+  "stem_relation": "animal/characteristic",
+  "option_relations": [
+   "cause/effect",
+   "animal/characteristic",
+   "early stage/later stage",
+   "expert/field of study",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: animal/characteristic. Just as the ostrich is proverbial for denial, the mouse is proverbial for quietness.",
+  "distractor_rationales": {
+   "anesthetic is to numbness": "relation it instantiates instead: cause/effect (an anesthetic brings about numbness), not animal/characteristic",
+   "spore is to mushroom": "relation it instantiates instead: early stage/later stage (a spore is an earlier stage of a mushroom), not animal/characteristic",
+   "cosmologist is to universe": "relation it instantiates instead: expert/field of study (a cosmologist studies universe), not animal/characteristic",
+   "lotus is to enlightenment": "relation it instantiates instead: symbol/symbolized (a lotus symbolizes enlightenment), not animal/characteristic"
+  }
+ },
+ {
+  "id": "SVA18D-21",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] presence is to absence as",
+  "choices": [
+   "increase is to decrease",
+   "lark is to cheerfulness",
+   "esteem is to reverence",
+   "brute is to gentleness",
+   "rainbow is to diversity"
+  ],
+  "correct_answer": "increase is to decrease",
+  "stem_relation": "antonyms",
+  "option_relations": [
+   "antonyms",
+   "animal/characteristic",
+   "degree",
+   "lack",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: antonyms. Just as presence is the opposite of absence, increase is the opposite of decrease.",
+  "distractor_rationales": {
+   "lark is to cheerfulness": "relation it instantiates instead: animal/characteristic (the lark is proverbial for cheerfulness), not antonyms",
+   "esteem is to reverence": "relation it instantiates instead: degree (reverence is esteem at far greater intensity), not antonyms",
+   "brute is to gentleness": "relation it instantiates instead: lack (a brute lacks gentleness), not antonyms",
+   "rainbow is to diversity": "relation it instantiates instead: symbol/symbolized (a rainbow symbolizes diversity), not antonyms"
+  }
+ },
+ {
+  "id": "SVA18D-22",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] onion is to tears as",
+  "choices": [
+   "daytime is to nighttime",
+   "bulb is to daffodil",
+   "demographer is to population",
+   "moon is to tides",
+   "audiometer is to hearing"
+  ],
+  "correct_answer": "moon is to tides",
+  "stem_relation": "cause/effect",
+  "option_relations": [
+   "antonyms",
+   "early stage/later stage",
+   "expert/field of study",
+   "cause/effect",
+   "instrument/what it measures"
+  ],
+  "explanation": "Relation: cause/effect. Just as an onion brings about tears, the moon brings about tides.",
+  "distractor_rationales": {
+   "daytime is to nighttime": "relation it instantiates instead: antonyms (daytime is the opposite of nighttime), not cause/effect",
+   "bulb is to daffodil": "relation it instantiates instead: early stage/later stage (a bulb is an earlier stage of a daffodil), not cause/effect",
+   "demographer is to population": "relation it instantiates instead: expert/field of study (a demographer studies population), not cause/effect",
+   "audiometer is to hearing": "relation it instantiates instead: instrument/what it measures (an audiometer measures hearing), not cause/effect"
+  }
+ },
+ {
+  "id": "SVA18D-23",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] zenith is to nadir as",
+  "choices": [
+   "cheetah is to swiftness",
+   "blow is to concussion",
+   "conjecture is to theorem",
+   "precipice is to cliff",
+   "tidiness is to messiness"
+  ],
+  "correct_answer": "tidiness is to messiness",
+  "stem_relation": "antonyms",
+  "option_relations": [
+   "animal/characteristic",
+   "cause/effect",
+   "early stage/later stage",
+   "synonyms",
+   "antonyms"
+  ],
+  "explanation": "Relation: antonyms. Just as zenith is the opposite of nadir, tidiness is the opposite of messiness.",
+  "distractor_rationales": {
+   "cheetah is to swiftness": "relation it instantiates instead: animal/characteristic (the cheetah is proverbial for swiftness), not antonyms",
+   "blow is to concussion": "relation it instantiates instead: cause/effect (a blow brings about a concussion), not antonyms",
+   "conjecture is to theorem": "relation it instantiates instead: early stage/later stage (a conjecture is an earlier stage of a theorem), not antonyms",
+   "precipice is to cliff": "relation it instantiates instead: synonyms (precipice and cliff mean the same thing), not antonyms"
+  }
+ },
+ {
+  "id": "SVA18D-24",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] sentinel is to guard as",
+  "choices": [
+   "gazelle is to gracefulness",
+   "motion is to stillness",
+   "fright is to scare",
+   "nick is to gash",
+   "circle is to eternity"
+  ],
+  "correct_answer": "fright is to scare",
+  "stem_relation": "synonyms",
+  "option_relations": [
+   "animal/characteristic",
+   "antonyms",
+   "synonyms",
+   "degree",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: synonyms. Just as sentinel and guard mean the same thing, fright and scare mean the same thing.",
+  "distractor_rationales": {
+   "gazelle is to gracefulness": "relation it instantiates instead: animal/characteristic (the gazelle is proverbial for gracefulness), not synonyms",
+   "motion is to stillness": "relation it instantiates instead: antonyms (motion is the opposite of stillness), not synonyms",
+   "nick is to gash": "relation it instantiates instead: degree (a gash is a nick at far greater intensity), not synonyms",
+   "circle is to eternity": "relation it instantiates instead: symbol/symbolized (a circle symbolizes eternity), not synonyms"
+  }
+ },
+ {
+  "id": "SVA18D-25",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] puff is to blast as",
+  "choices": [
+   "clapping is to ovation",
+   "meteorologist is to atmosphere",
+   "photometer is to luminosity",
+   "ruffian is to refinement",
+   "endeavor is to attempt"
+  ],
+  "correct_answer": "clapping is to ovation",
+  "stem_relation": "degree",
+  "option_relations": [
+   "degree",
+   "expert/field of study",
+   "instrument/what it measures",
+   "lack",
+   "synonyms"
+  ],
+  "explanation": "Relation: degree. Just as a blast is a puff at far greater intensity, an ovation is clapping at far greater intensity.",
+  "distractor_rationales": {
+   "meteorologist is to atmosphere": "relation it instantiates instead: expert/field of study (a meteorologist studies atmosphere), not degree",
+   "photometer is to luminosity": "relation it instantiates instead: instrument/what it measures (a photometer measures luminosity), not degree",
+   "ruffian is to refinement": "relation it instantiates instead: lack (a ruffian lacks refinement), not degree",
+   "endeavor is to attempt": "relation it instantiates instead: synonyms (endeavor and attempt mean the same thing), not degree"
+  }
+ },
+ {
+  "id": "SVA18D-26",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] satisfaction is to bliss as",
+  "choices": [
+   "interior is to exterior",
+   "espresso is to jitters",
+   "newborn is to grownup",
+   "distaste is to loathing",
+   "archaeologist is to antiquities"
+  ],
+  "correct_answer": "distaste is to loathing",
+  "stem_relation": "degree",
+  "option_relations": [
+   "antonyms",
+   "cause/effect",
+   "early stage/later stage",
+   "degree",
+   "expert/field of study"
+  ],
+  "explanation": "Relation: degree. Just as bliss is satisfaction at far greater intensity, loathing is distaste at far greater intensity.",
+  "distractor_rationales": {
+   "interior is to exterior": "relation it instantiates instead: antonyms (interior is the opposite of exterior), not degree",
+   "espresso is to jitters": "relation it instantiates instead: cause/effect (espresso brings about jitters), not degree",
+   "newborn is to grownup": "relation it instantiates instead: early stage/later stage (a newborn is an earlier stage of a grownup), not degree",
+   "archaeologist is to antiquities": "relation it instantiates instead: expert/field of study (an archaeologist studies antiquities), not degree"
+  }
+ },
+ {
+  "id": "SVA18D-27",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] zoologist is to animals as",
+  "choices": [
+   "vulture is to greediness",
+   "inconvenience is to disaster",
+   "blabbermouth is to discretion",
+   "oceanographer is to seas",
+   "crossbones is to piracy"
+  ],
+  "correct_answer": "oceanographer is to seas",
+  "stem_relation": "expert/field of study",
+  "option_relations": [
+   "animal/characteristic",
+   "degree",
+   "lack",
+   "expert/field of study",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: expert/field of study. Just as a zoologist studies animals, an oceanographer studies seas.",
+  "distractor_rationales": {
+   "vulture is to greediness": "relation it instantiates instead: animal/characteristic (the vulture is proverbial for greediness), not expert/field of study",
+   "inconvenience is to disaster": "relation it instantiates instead: degree (disaster is an inconvenience at far greater intensity), not expert/field of study",
+   "blabbermouth is to discretion": "relation it instantiates instead: lack (a blabbermouth lacks discretion), not expert/field of study",
+   "crossbones is to piracy": "relation it instantiates instead: symbol/symbolized (a crossbones symbolizes piracy), not expert/field of study"
+  }
+ },
+ {
+  "id": "SVA18D-28",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] rebel is to obedience as",
+  "choices": [
+   "center is to periphery",
+   "cheater is to integrity",
+   "girlhood is to womanhood",
+   "hygrometer is to dampness",
+   "objective is to goal"
+  ],
+  "correct_answer": "cheater is to integrity",
+  "stem_relation": "lack",
+  "option_relations": [
+   "antonyms",
+   "lack",
+   "early stage/later stage",
+   "instrument/what it measures",
+   "synonyms"
+  ],
+  "explanation": "Relation: lack. Just as a rebel lacks obedience, a cheater lacks integrity.",
+  "distractor_rationales": {
+   "center is to periphery": "relation it instantiates instead: antonyms (center is the opposite of periphery), not lack",
+   "girlhood is to womanhood": "relation it instantiates instead: early stage/later stage (girlhood is an earlier stage of womanhood), not lack",
+   "hygrometer is to dampness": "relation it instantiates instead: instrument/what it measures (a hygrometer measures dampness), not lack",
+   "objective is to goal": "relation it instantiates instead: synonyms (objective and goal mean the same thing), not lack"
+  }
+ },
+ {
+  "id": "SVA18D-29",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] oximeter is to oxygen as",
+  "choices": [
+   "slug is to sluggishness",
+   "ragweed is to hayfever",
+   "theologian is to religion",
+   "breathalyzer is to alcohol",
+   "handshake is to friendship"
+  ],
+  "correct_answer": "breathalyzer is to alcohol",
+  "stem_relation": "instrument/what it measures",
+  "option_relations": [
+   "animal/characteristic",
+   "cause/effect",
+   "expert/field of study",
+   "instrument/what it measures",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: instrument/what it measures. Just as an oximeter measures oxygen, a breathalyzer measures alcohol.",
+  "distractor_rationales": {
+   "slug is to sluggishness": "relation it instantiates instead: animal/characteristic (the slug is proverbial for sluggishness), not instrument/what it measures",
+   "ragweed is to hayfever": "relation it instantiates instead: cause/effect (ragweed brings about hayfever), not instrument/what it measures",
+   "theologian is to religion": "relation it instantiates instead: expert/field of study (a theologian studies religion), not instrument/what it measures",
+   "handshake is to friendship": "relation it instantiates instead: symbol/symbolized (a handshake symbolizes friendship), not instrument/what it measures"
+  }
+ },
+ {
+  "id": "SVA18D-30",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] taximeter is to fare as",
+  "choices": [
+   "mockingbird is to mimicry",
+   "decline is to collapse",
+   "doormat is to assertiveness",
+   "motive is to reason",
+   "graduated cylinder is to volume"
+  ],
+  "correct_answer": "graduated cylinder is to volume",
+  "stem_relation": "instrument/what it measures",
+  "option_relations": [
+   "animal/characteristic",
+   "degree",
+   "lack",
+   "synonyms",
+   "instrument/what it measures"
+  ],
+  "explanation": "Relation: instrument/what it measures. Just as a taximeter measures fare, a graduated cylinder measures volume.",
+  "distractor_rationales": {
+   "mockingbird is to mimicry": "relation it instantiates instead: animal/characteristic (the mockingbird is proverbial for mimicry), not instrument/what it measures",
+   "decline is to collapse": "relation it instantiates instead: degree (collapse is a decline at far greater intensity), not instrument/what it measures",
+   "doormat is to assertiveness": "relation it instantiates instead: lack (a doormat lacks assertiveness), not instrument/what it measures",
+   "motive is to reason": "relation it instantiates instead: synonyms (motive and reason mean the same thing), not instrument/what it measures"
+  }
+ },
+ {
+  "id": "SVA18D-31",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] panther is to stealth as",
+  "choices": [
+   "attachment is to devotion",
+   "crocodile is to insincerity",
+   "princess is to queen",
+   "pulse monitor is to heartbeat",
+   "cab is to taxi"
+  ],
+  "correct_answer": "crocodile is to insincerity",
+  "stem_relation": "animal/characteristic",
+  "option_relations": [
+   "degree",
+   "animal/characteristic",
+   "early stage/later stage",
+   "instrument/what it measures",
+   "synonyms"
+  ],
+  "explanation": "Relation: animal/characteristic. Just as the panther is proverbial for stealth, the crocodile is proverbial for insincerity.",
+  "distractor_rationales": {
+   "attachment is to devotion": "relation it instantiates instead: degree (devotion is attachment at far greater intensity), not animal/characteristic",
+   "princess is to queen": "relation it instantiates instead: early stage/later stage (a princess is an earlier stage of a queen), not animal/characteristic",
+   "pulse monitor is to heartbeat": "relation it instantiates instead: instrument/what it measures (a pulse monitor measures heartbeat), not animal/characteristic",
+   "cab is to taxi": "relation it instantiates instead: synonyms (cab and taxi mean the same thing), not animal/characteristic"
+  }
+ },
+ {
+  "id": "SVA18D-32",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] recession is to unemployment as",
+  "choices": [
+   "rigidity is to flexibility",
+   "rangefinder is to yardage",
+   "weakling is to brawn",
+   "fist is to defiance",
+   "aggression is to retaliation"
+  ],
+  "correct_answer": "aggression is to retaliation",
+  "stem_relation": "cause/effect",
+  "option_relations": [
+   "antonyms",
+   "instrument/what it measures",
+   "lack",
+   "symbol/symbolized",
+   "cause/effect"
+  ],
+  "explanation": "Relation: cause/effect. Just as recession brings about unemployment, aggression brings about retaliation.",
+  "distractor_rationales": {
+   "rigidity is to flexibility": "relation it instantiates instead: antonyms (rigidity is the opposite of flexibility), not cause/effect",
+   "rangefinder is to yardage": "relation it instantiates instead: instrument/what it measures (a rangefinder measures yardage), not cause/effect",
+   "weakling is to brawn": "relation it instantiates instead: lack (a weakling lacks brawn), not cause/effect",
+   "fist is to defiance": "relation it instantiates instead: symbol/symbolized (a fist symbolizes defiance), not cause/effect"
+  }
+ },
+ {
+  "id": "SVA18D-33",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] pushover is to firmness as",
+  "choices": [
+   "polio is to paralysis",
+   "concern is to hysteria",
+   "musicologist is to music",
+   "spectrometer is to wavelength",
+   "scrooge is to charity"
+  ],
+  "correct_answer": "scrooge is to charity",
+  "stem_relation": "lack",
+  "option_relations": [
+   "cause/effect",
+   "degree",
+   "expert/field of study",
+   "instrument/what it measures",
+   "lack"
+  ],
+  "explanation": "Relation: lack. Just as a pushover lacks firmness, a scrooge lacks charity.",
+  "distractor_rationales": {
+   "polio is to paralysis": "relation it instantiates instead: cause/effect (polio brings about paralysis), not lack",
+   "concern is to hysteria": "relation it instantiates instead: degree (hysteria is concern at far greater intensity), not lack",
+   "musicologist is to music": "relation it instantiates instead: expert/field of study (a musicologist studies music), not lack",
+   "spectrometer is to wavelength": "relation it instantiates instead: instrument/what it measures (a spectrometer measures wavelength), not lack"
+  }
+ },
+ {
+  "id": "SVA18D-34",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] shackles is to bondage as",
+  "choices": [
+   "grasshopper is to idleness",
+   "inclusion is to exclusion",
+   "preteen is to teenager",
+   "tombstone is to death",
+   "insomniac is to slumber"
+  ],
+  "correct_answer": "tombstone is to death",
+  "stem_relation": "symbol/symbolized",
+  "option_relations": [
+   "animal/characteristic",
+   "antonyms",
+   "early stage/later stage",
+   "symbol/symbolized",
+   "lack"
+  ],
+  "explanation": "Relation: symbol/symbolized. Just as shackles symbolize bondage, a tombstone symbolizes death.",
+  "distractor_rationales": {
+   "grasshopper is to idleness": "relation it instantiates instead: animal/characteristic (the grasshopper is proverbial for idleness), not symbol/symbolized",
+   "inclusion is to exclusion": "relation it instantiates instead: antonyms (inclusion is the opposite of exclusion), not symbol/symbolized",
+   "preteen is to teenager": "relation it instantiates instead: early stage/later stage (a preteen is an earlier stage of a teenager), not symbol/symbolized",
+   "insomniac is to slumber": "relation it instantiates instead: lack (an insomniac lacks slumber), not symbol/symbolized"
+  }
+ },
+ {
+  "id": "SVA18D-35",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] volcanologist is to volcanoes as",
+  "choices": [
+   "primatologist is to monkeys",
+   "virus is to influenza",
+   "nominee is to officeholder",
+   "snowflake is to uniqueness",
+   "border is to boundary"
+  ],
+  "correct_answer": "primatologist is to monkeys",
+  "stem_relation": "expert/field of study",
+  "option_relations": [
+   "expert/field of study",
+   "cause/effect",
+   "early stage/later stage",
+   "symbol/symbolized",
+   "synonyms"
+  ],
+  "explanation": "Relation: expert/field of study. Just as a volcanologist studies volcanoes, a primatologist studies monkeys.",
+  "distractor_rationales": {
+   "virus is to influenza": "relation it instantiates instead: cause/effect (a virus brings about influenza), not expert/field of study",
+   "nominee is to officeholder": "relation it instantiates instead: early stage/later stage (a nominee is an earlier stage of an officeholder), not expert/field of study",
+   "snowflake is to uniqueness": "relation it instantiates instead: symbol/symbolized (a snowflake symbolizes uniqueness), not expert/field of study",
+   "border is to boundary": "relation it instantiates instead: synonyms (border and boundary mean the same thing), not expert/field of study"
+  }
+ },
+ {
+  "id": "SVA18D-36",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] oppression is to uprising as",
+  "choices": [
+   "typhoon is to destruction",
+   "cruelty is to compassion",
+   "psychologist is to behavior",
+   "spirometer is to lung capacity",
+   "illiterate is to literacy"
+  ],
+  "correct_answer": "typhoon is to destruction",
+  "stem_relation": "cause/effect",
+  "option_relations": [
+   "cause/effect",
+   "antonyms",
+   "expert/field of study",
+   "instrument/what it measures",
+   "lack"
+  ],
+  "explanation": "Relation: cause/effect. Just as oppression brings about an uprising, a typhoon brings about destruction.",
+  "distractor_rationales": {
+   "cruelty is to compassion": "relation it instantiates instead: antonyms (cruelty is the opposite of compassion), not cause/effect",
+   "psychologist is to behavior": "relation it instantiates instead: expert/field of study (a psychologist studies behavior), not cause/effect",
+   "spirometer is to lung capacity": "relation it instantiates instead: instrument/what it measures (a spirometer measures lung capacity), not cause/effect",
+   "illiterate is to literacy": "relation it instantiates instead: lack (an illiterate lacks literacy), not cause/effect"
+  }
+ },
+ {
+  "id": "SVA18D-37",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] throne is to kingship as",
+  "choices": [
+   "jellyfish is to spinelessness",
+   "arson is to cinders",
+   "glitch is to breakdown",
+   "biologist is to organisms",
+   "lily is to purity"
+  ],
+  "correct_answer": "lily is to purity",
+  "stem_relation": "symbol/symbolized",
+  "option_relations": [
+   "animal/characteristic",
+   "cause/effect",
+   "degree",
+   "expert/field of study",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: symbol/symbolized. Just as a throne symbolizes kingship, a lily symbolizes purity.",
+  "distractor_rationales": {
+   "jellyfish is to spinelessness": "relation it instantiates instead: animal/characteristic (the jellyfish is proverbial for spinelessness), not symbol/symbolized",
+   "arson is to cinders": "relation it instantiates instead: cause/effect (arson brings about cinders), not symbol/symbolized",
+   "glitch is to breakdown": "relation it instantiates instead: degree (breakdown is a glitch at far greater intensity), not symbol/symbolized",
+   "biologist is to organisms": "relation it instantiates instead: expert/field of study (a biologist studies organisms), not symbol/symbolized"
+  }
+ },
+ {
+  "id": "SVA18D-38",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] otter is to playfulness as",
+  "choices": [
+   "anemometer is to windspeed",
+   "hothead is to patience",
+   "piranha is to voracity",
+   "skeleton is to mortality",
+   "sanctuary is to asylum"
+  ],
+  "correct_answer": "piranha is to voracity",
+  "stem_relation": "animal/characteristic",
+  "option_relations": [
+   "instrument/what it measures",
+   "lack",
+   "animal/characteristic",
+   "symbol/symbolized",
+   "synonyms"
+  ],
+  "explanation": "Relation: animal/characteristic. Just as the otter is proverbial for playfulness, the piranha is proverbial for voracity.",
+  "distractor_rationales": {
+   "anemometer is to windspeed": "relation it instantiates instead: instrument/what it measures (an anemometer measures windspeed), not animal/characteristic",
+   "hothead is to patience": "relation it instantiates instead: lack (a hothead lacks patience), not animal/characteristic",
+   "skeleton is to mortality": "relation it instantiates instead: symbol/symbolized (a skeleton symbolizes mortality), not animal/characteristic",
+   "sanctuary is to asylum": "relation it instantiates instead: synonyms (sanctuary and asylum mean the same thing), not animal/characteristic"
+  }
+ },
+ {
+  "id": "SVA18D-39",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] pig is to gluttony as",
+  "choices": [
+   "multiplication is to division",
+   "physicist is to matter",
+   "rat is to disloyalty",
+   "hallmark is to authenticity",
+   "attire is to apparel"
+  ],
+  "correct_answer": "rat is to disloyalty",
+  "stem_relation": "animal/characteristic",
+  "option_relations": [
+   "antonyms",
+   "expert/field of study",
+   "animal/characteristic",
+   "symbol/symbolized",
+   "synonyms"
+  ],
+  "explanation": "Relation: animal/characteristic. Just as the pig is proverbial for gluttony, the rat is proverbial for disloyalty.",
+  "distractor_rationales": {
+   "multiplication is to division": "relation it instantiates instead: antonyms (multiplication is the opposite of division), not animal/characteristic",
+   "physicist is to matter": "relation it instantiates instead: expert/field of study (a physicist studies matter), not animal/characteristic",
+   "hallmark is to authenticity": "relation it instantiates instead: symbol/symbolized (a hallmark symbolizes authenticity), not animal/characteristic",
+   "attire is to apparel": "relation it instantiates instead: synonyms (attire and apparel mean the same thing), not animal/characteristic"
+  }
+ },
+ {
+  "id": "SVA18D-40",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] sluggard is to diligence as",
+  "choices": [
+   "workhorse is to tirelessness",
+   "allergen is to sniffles",
+   "chatterbox is to reticence",
+   "awkwardness is to humiliation",
+   "storyboard is to animation"
+  ],
+  "correct_answer": "chatterbox is to reticence",
+  "stem_relation": "lack",
+  "option_relations": [
+   "animal/characteristic",
+   "cause/effect",
+   "lack",
+   "degree",
+   "early stage/later stage"
+  ],
+  "explanation": "Relation: lack. Just as a sluggard lacks diligence, a chatterbox lacks reticence.",
+  "distractor_rationales": {
+   "workhorse is to tirelessness": "relation it instantiates instead: animal/characteristic (the workhorse is proverbial for tirelessness), not lack",
+   "allergen is to sniffles": "relation it instantiates instead: cause/effect (an allergen brings about sniffles), not lack",
+   "awkwardness is to humiliation": "relation it instantiates instead: degree (humiliation is awkwardness at far greater intensity), not lack",
+   "storyboard is to animation": "relation it instantiates instead: early stage/later stage (a storyboard is an earlier stage of an animation), not lack"
+  }
+ }
+]
