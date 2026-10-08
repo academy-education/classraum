@@ -1,0 +1,662 @@
+[
+ {
+  "id": "SM26F-A03",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: one-sided error family on an extreme key (every path that mishandles the -12 or -2k raises the sum; 123 smallest) plus option-structure tell: 267 = key + 12*12 and 279 - 267 = 12",
+   "E: extreme (smallest) key with a one-sided error family: each sign slip on a subtracted term, or under-subtracting the constant, raises the total, so all three distractors sit above",
+   "F: One-sided error family on an extreme key: key 123 is the smallest and all three paths (constant once, -12 sign, -2k sign) land above, because every slip removes a subtractive term."
+  ],
+  "leads": [
+   "d:one-sided",
+   "d:arith",
+   "e:one-sided",
+   "e:arith",
+   "f:one-sided"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-A05",
+  "diff": "easy",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: weak distractors and a one-sided family on an extreme key: 13 is x itself, 10 is x-3, 36 is 3x-3; every one is a smaller multiple of x, so 75 (largest) is picked by 'the full 6x' instinct",
+   "E: extreme (largest) key with a one-sided error family: every partial step (x=13, 3x-3=36, x-3=10) sits below 6x-3; also one routine step (easy)",
+   "F: 2 options free-strikable by parity: 3x = 39 gives integer x, so 6x - 3 is odd (kills 36, 10); one-step easy item."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   1,
+   0,
+   2
+  ],
+  "diffs": "easy/easy/easy"
+ },
+ {
+  "id": "SM26F-A08",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: incoherent explanation: it says k = 35 is 'the condition for infinitely many solutions', but k = 35 gives 30x = 0, a unique solution x = 0; no k gives infinitely many. A student-facing falsehood. Key 25 is also the smallest"
+  ],
+  "leads": [
+   "d:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-A11",
+  "diff": "easy",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: one-sided error family on an extreme key: key 15 is the smallest, and the lead distractor (45, unreduced 33/12) can only sit above it, readable from the 'no common factor' clause; 37 and 17 also above",
+   "E: extreme (smallest) key with a one-sided error family: every path (unreduced 45, 37, 17) lands above; 45 = 3 x 15 exposes the reduce-the-fraction step and points at 15",
+   "F: Option-structure tell on an extreme key: 45 = 3 x 15 exactly (unreduced 33/12 sums to a multiple of the reduced sum), so the largest option reduces to the smallest and points at the key; item is also easy. Borderline."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:one-sided",
+   "e:arith",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "easy/easy/easy"
+ },
+ {
+  "id": "SM26F-A12",
+  "diff": "easy",
+  "verdict": "DROP",
+  "why": [
+   "R4 median struck 2",
+   "EXT-1"
+  ],
+  "ext": [
+   "D: one-sided family on an extreme key: 22 (x) and 46 (A) must be less than B because the stem puts B to the right, and 74 is also below; key 82 is the largest",
+   "E: key identifiable for free: 82 and 46 are exactly the stem's 36 apart and B is the right-hand marker, so the larger of the pair is the key; one-sided too (22=x, 46=A, 74 all below); easy",
+   "F: Key identifiable for free: options 46 and 82 differ by exactly the stated 36-unit gap, so they read as (A, B) and B is the larger; 22 is x. Every error lands below the extreme key."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:key-free",
+   "e:one-sided",
+   "e:arith",
+   "f:key-free",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   2,
+   3
+  ],
+  "diffs": "easy/easy/easy"
+ },
+ {
+  "id": "SM26F-A13",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "F: One-sided error family on an extreme key: key 1620 is the largest; swapping the rates puts the fast rate on the longer leg and dropping the extra hour, both of which shrink part 1 (480, 1440, 1590 all below). Plug-back via F + F/3 + 120 = 2280 is also quick."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "easy/medium/medium"
+ },
+ {
+  "id": "SM26F-B01",
+  "diff": "hard",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "E: BORDERLINE, kept consistent with the stage-1 one_sided flag: the key is the most negative option and the single-case -11 is necessarily above the two-case sum; -17 and -15 are wrong two-case sums whose direction is not stem-readable. Otherwise a genuine hard item",
+   "F: One-sided family on an extreme key on a 'sum of all possible values' stem: all k are negative, so the missing-case error (-11) and both wrong-component sums (-17, -15) land above the key -27; the most negative option reads as 'more values summed'. Note: this is the half's only hard item."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "hard/hard/hard"
+ },
+ {
+  "id": "SM26F-B06",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "E: 2 options free-struck: moving a slope -1/6 line up 7 pushes its x-intercept right by 42, swamping the 2 left -> kills -10 (line l itself) and -12 (horizontal shift only)"
+  ],
+  "leads": [
+   "e:arith",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   2,
+   0
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-B07",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: option-structure tell: 161.2 and 138.8 are 150 +/- 11.2, a symmetric pair around the stem's 150, narrowing to two",
+   "E: option-structure tell: 161.2/138.8 = 150 +/- 11.2, and monotonicity (June 1 is before June 15, A increasing) strikes 161.2 for free, leaving its mirror as the key",
+   "F: Arithmetic +/- pair tell: 138.8 and 161.2 are 150 -/+ 11.2 around the stem constant, and a free sign bound (June 1 precedes June 15 on an increasing model, so c < 150) kills the mirror and leaves the key."
+  ],
+  "leads": [
+   "d:arith",
+   "e:arith",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   1,
+   1
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-B09",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: +/- pair: 11 and 37 are 24 -/+ 13 (24 = slope 4 x the stem's 6, 13 = intercept gap), narrowing to two"
+  ],
+  "leads": [
+   "d:arith",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-B12",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: one-sided family on an extreme key plus a tell: all three wrong lines sit below 22; a negative-slope majority puts the intercept above 13 (kills 7); 16/17 adjacent pair"
+  ],
+  "leads": [
+   "d:one-sided",
+   "d:arith",
+   "e:arith",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-B13",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "R4 median struck 2",
+   "EXT-1"
+  ],
+  "ext": [
+   "D: cheap single bound on an extreme key: once j's intercepts are swapped (6 and 8, one glance), negative slope with x=9 past the x-intercept 6 forces y<0, killing 20 and 1.25; key -4 smallest and all errors sit above",
+   "E: 2 options free-struck by sign (line j has positive intercepts, so negative slope, and x=9 lies past its x-intercept 6, so y<0): kills 20 and 1.25",
+   "F: 2 options free-strikable on an extreme key: j has positive intercepts so negative slope, and x = 9 lies beyond its x-intercept 6, so y < 0 (kills 20, 1.25); key is the smallest option."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   2,
+   2
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-C01",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "F: 3 options free-strikable: x-intercept 6 is read off the stem and the slope is positive, so the y-intercept is negative (kills 6, 3/2); distinct parallel lines cannot share the first line's intercept -7/8. Key identifiable without finding k."
+  ],
+  "leads": [
+   "f:key-free",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   3
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-C05",
+  "diff": "easy",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: +/- pair on an extreme key: 67 = 39 + 28 and 11 = 39 - 28 (39 = 3 x 13, 28 from 7y = 28); key 67 is the largest",
+   "E: extreme (largest) key with a one-sided error family: c = 39 + 28 and every slip loses part of a positive sum (41, 11, 43 all below); one-step easy",
+   "F: One-sided error family on an extreme key: key 67 is the largest; every path (reverse subtraction 11, forget to triple 13 -> 41, use y = 4 for 28 -> 43) uses a smaller right side. Also a one-step easy item."
+  ],
+  "leads": [
+   "d:one-sided",
+   "d:arith",
+   "e:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "easy/easy/easy"
+ },
+ {
+  "id": "SM26F-C06",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: 2 free strikes by integrality: a+3 = 5t, b+3 = 7t forces a+b = 6 mod 12, killing 10 and 24; 30 dies on one check. Also, the 10 path yields non-integer a, b, which the stem rules out"
+  ],
+  "leads": [
+   "d:one-sided",
+   "d:arith",
+   "f:arith"
+  ],
+  "struck": [
+   2,
+   0,
+   1
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-C07",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "F: Arithmetic tell, borderline: 70 = 68 + 2, one option equals the key plus the stem's slope 2, so the 68/70 pair flags the key's neighbourhood."
+  ],
+  "leads": [
+   "e:arith",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "easy/medium/medium"
+ },
+ {
+  "id": "SM26F-C08",
+  "diff": "easy",
+  "verdict": "DROP",
+  "why": [
+   "R4 median struck 2",
+   "EXT-1"
+  ],
+  "ext": [
+   "D: 2 free strikes and key identifiable for free: opposite-sign y-coefficients force m>0 (kills -7/3, -2/3), and 7/5 is built from the y-coefficients 7 and 5",
+   "E: 2 options free-struck by sign (y-coefficients -5,+7 force m>0) and the key is the only option built from the y-coefficients 7 and 5: key identifiable for free; also one-step easy",
+   "F: 2 options free-strikable and key identifiable free: opposite-sign y-coefficients force m > 0 (kills -7/3, -2/3), and 7/5 is the ratio of the y-coefficients the stem names while 9/4 is built from the constants."
+  ],
+  "leads": [
+   "d:key-free",
+   "d:arith",
+   "e:key-free",
+   "e:arith",
+   "f:key-free",
+   "f:arith"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "diffs": "easy/easy/easy"
+ },
+ {
+  "id": "SM26F-C09",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: 2 free strikes plus a stem-sum tell on an extreme key: B is visibly the slower pump (A gave up 2 h, B added 5), so B alone takes over 20 h (kills 14, 20); 23 = 8 + 15; key 35 is the largest",
+   "E: extreme (largest) key with a one-sided error family: A's time (14), the equal-rates time (20) and 8+15 (23) all sit below; 14 also strikes for free because B ran 15 h without filling the tank alone",
+   "F: One-sided error family on an extreme key: key 35 is the largest; 20 (twice the joint time) and 23 (8 + 15) are naive shortcuts below it, and the free bound 'B alone > 15' kills 14."
+  ],
+  "leads": [
+   "d:one-sided",
+   "d:arith",
+   "e:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   2,
+   1,
+   1
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-C11",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: one-sided error family on an extreme key (every relaxed condition over-counts; 7 smallest) plus a 7/8 adjacency tell, the only adjacent pair",
+   "F: One-sided error family on an extreme key: key 7 is the smallest and every path over-counts (endpoint inclusion, range as count), readable from 'positive integers'; 7/8 adjacent off-by-one pair also flags the key's neighbourhood."
+  ],
+  "leads": [
+   "d:one-sided",
+   "d:arith",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   1
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-D02",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "R6 plug-back",
+   "EXT-1"
+  ],
+  "ext": [
+   "D: routine plug-back of 1 try: descending on a 'greatest' stem, y=31 gives t=9 and (9,31) satisfies both inequalities (31 <= 31) on the first check; also extreme key with all errors below",
+   "E: extreme (largest) key with a one-sided error family: the least y (3), t instead of y (9) and the sign slip (23) all sit below, with stem-readable directions",
+   "F: Routine plug-back in 1 try on an extreme key: the largest option tested first is feasible on a 'greatest' stem; all three errors (lower endpoint, t, sign slip) land below."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:one-sided",
+   "e:arith",
+   "f:key-free",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "medium/medium/easy"
+ },
+ {
+  "id": "SM26F-D03",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "E: BORDERLINE, kept consistent with the stage-1 one_sided flag: the key is the smallest option, 25 (the first inequality's whole count) strikes nearly for free as a superset, and 11 and 21 also land above",
+   "F: One-sided error family on an extreme key: key 5 is the smallest; all three paths over-count (25 also equals the first inequality's whole set), and the 'do NOT satisfy' subset ask makes any slip larger."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   1,
+   0
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-D04",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "R4 median struck 2",
+   "EXT-1"
+  ],
+  "ext": [
+   "E: 2 options free-struck: the boundary falls from 19 to 3 and the origin lies below it, so at x=13 the region is below 3 -> kills 15 and 83 without computing",
+   "F: 2 options free-strikable on an extreme key: the boundary visibly falls (19 at x = -3, 3 at x = 1) and the origin is below it, so k < 3 at x = 13 (kills 15 and 83); key -45 is the smallest on a 'greatest' stem."
+  ],
+  "leads": [
+   "d:one-sided",
+   "f:one-sided"
+  ],
+  "struck": [
+   0,
+   2,
+   2
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-D07",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "E: extreme (largest) key with a one-sided error family: a instead of b (34) and both mis-distributions (26, 62) land below 74",
+   "F: One-sided error family on an extreme key: key 74 is the LARGEST option on a 'least' stem, and all three paths (a itself, two slips that lower the a-bound) land below it."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-D08",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: one-sided error family on an extreme key: 'greatest c for ALL points' means any skipped or mis-signed point lands above the minimum; key -26 smallest and visibly from the doubly negative point",
+   "E: extreme (smallest) key on a 'greatest c' stem with a one-sided error family: dropping a point or mis-signing raises the min, so every distractor sits above -26",
+   "F: Cheap single bound isolates an extreme key plus one-sided family: on a 'greatest' stem the min-over-points key is the smallest option, every wrong aggregation lands above, and testing the one point (-5,-11) kills all three others."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:one-sided",
+   "e:arith",
+   "f:key-free",
+   "f:one-sided"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "easy/medium/medium"
+ },
+ {
+  "id": "SM26F-D09",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "R4 median struck 2",
+   "EXT-1"
+  ],
+  "ext": [
+   "E: 2 options free-struck: 67 is the 75%-of-tickets share, impossible since adult tickets cost more; 32 is fewer than half adults, so adult revenue is under 50%",
+   "F: 2 options free-strikable: 67 is 75% of the headcount and adults pay more, so the key is below 66.75; adult revenue >= 3x child revenue with 14 < 30 forces adults to outnumber children (kills 32)."
+  ],
+  "leads": [
+   "f:arith"
+  ],
+  "struck": [
+   1,
+   2,
+   2
+  ],
+  "diffs": "medium/medium/medium"
+ },
+ {
+  "id": "SM26F-D12",
+  "diff": "easy",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "D: one-sided family on an extreme key: 71 (the greatest p) must exceed the difference, and both sign-slip distractors (65, 69) loosen a bound so the range can only grow; key 55 is the smallest",
+   "E: extreme (smallest) key with a one-sided error family: each constant sign slip widens the interval (65, 69) and reporting the max (71) is larger",
+   "F: One-sided error family on an extreme key: key 55 is the smallest; every path (65 and 69 weaken a bound, 71 reports the max) widens the range, which is readable from a 'difference of greatest and least' stem."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "easy/easy/easy"
+ },
+ {
+  "id": "SM26F-D13",
+  "diff": "medium",
+  "verdict": "DROP",
+  "why": [
+   "EXT-1"
+  ],
+  "ext": [
+   "F: One-sided error family on an extreme key: key 43 is the largest; all three paths (run 3, run 12, lower limit +1/3) shrink the interval and land below. Weaker than the others; borderline."
+  ],
+  "leads": [
+   "d:one-sided",
+   "e:arith",
+   "f:one-sided",
+   "f:arith"
+  ],
+  "struck": [
+   0,
+   0,
+   0
+  ],
+  "diffs": "medium/medium/medium"
+ }
+]
