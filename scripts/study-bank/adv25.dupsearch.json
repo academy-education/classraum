@@ -1,0 +1,511 @@
+{
+ "_method": "Hand keyword search per item by the commissioner (kw-search.mjs over 3,165 live maths rows in every family, 492 prior SAT Advanced Math batch prompts v16-v24 incl. held/dropped/stage-0 dropped and sat-adv-*, and the other v25 author files); every hit read. Decision rule: a duplicate is the same chain on the same kind of givens to the same asked quantity, or a live chain plus one routine step on the same story (A08, D01). Returns: A08, D01 (one per author; B and C none). The live dump was refreshed after act-math-v26 inserted 52 rows mid-stage-0 (3,165 -> 3,217); all 52 new rows were read against the 60 by hand: A09 ~ 8e680740 (drop); B06 vs dda05cb0 (two half-lives, total mass at 9 h) different; A12 vs 329f19b3 (find b from axis + points) different; D05 vs 2ed71a18 (rewrite a cubic in powers of x - 3) different.",
+ "SM25V-A01": {
+  "searches": [
+   "(x - n)^2 = n & sum|added|total",
+   "sum of (the|all) solutions & )^2"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-A02": {
+  "searches": [
+   "zero in common|common zero|common solution",
+   "common & zero|root & k"
+  ],
+  "hits": 2,
+  "decision": "different",
+  "nearest": "prior SM24V-C09 (repeated zero count, p(-1)); no shared-zero parameter item"
+ },
+ "SM25V-A03": {
+  "searches": [
+   "least value|minimum value & crosses the x-axis at|zero",
+   "crosses...|zero at & minimum|least"
+  ],
+  "hits": 3,
+  "decision": "different",
+  "nearest": "prior SM17A-B1 (zeros + minimum fix a; reverse direction)"
+ },
+ "SM25V-A04": {
+  "searches": [
+   "translated|shifted & up|down & p^2|q^2"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-A05": {
+  "searches": [
+   "vertex & y-axis|y-intercept & product",
+   "vertex ( & y-intercept|(0,"
+  ],
+  "hits": 2,
+  "decision": "different (nearest relative recorded)",
+  "nearest": "sat-math-v20-adv SM20A-C3 (vertex + point at x=0 -> f(-5)) and act 1ddc67bf; A05 asks the product of the zeros (c/a), a different asked quantity"
+ },
+ "SM25V-A06": {
+  "searches": [
+   "zeros of g & more than|each",
+   "zeros & n more/less than the zeros"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-A07": {
+  "searches": [
+   "maximum height & when t =",
+   "maximum height of n"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none beyond generic projectile items"
+ },
+ "SM25V-A08": {
+  "searches": [
+   "x^2 - nx (=|has the value|is)",
+   ")^4"
+  ],
+  "hits": 2,
+  "decision": "different (replacement after return; original A08 returned as a duplicate of the v2 tangent-find-c family)",
+  "nearest": "live sat-math-v24-adv 8472f2f1 (x^2 - 6x = -2 -> product of four linear factors paired around x^2 - 6x); new A08 completes the square and squares (x - 3)^2",
+  "returned_original": "tangency point of y = 2x + c and y = -x^2 + 10x - 4 ~ v2 2c0a61eb / 43ed9ad5 / 7ca289c8 / f3b737f6"
+ },
+ "SM25V-A09": {
+  "searches": [
+   "parabolas & line",
+   "re-read of the 52 act-math-v26 rows inserted during stage 0"
+  ],
+  "hits": 0,
+  "decision": "DROPPED BEFORE FREEZE: same mechanism as a live row inserted during stage 0 (act-math-v26, committed 355b30df); author A had used its one return on A08",
+  "nearest": "act-math-v26 8e680740: two parabolas meet at two points, slope of the line through both (A09 asks that same line s y-intercept); found by math-mechanism-dup on the merged 60 against 3,217 live rows (FLAG vs act-math-v26 f55d3793 / 511b5ee6 read as different) and by my re-read of all 52 new act-math-v26 rows"
+ },
+ "SM25V-A10": {
+  "searches": [
+   "two different times|apart & height"
+  ],
+  "hits": 2,
+  "decision": "different",
+  "nearest": "live v24 db295551 (count of whole-number heights reached twice)"
+ },
+ "SM25V-A11": {
+  "searches": [
+   "slope of the line through & f(",
+   "slope & f(k)|(k,"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-A12": {
+  "searches": [
+   "symmetric about|axis & f(0)",
+   "zero|x-intercept & symmetric|axis"
+  ],
+  "hits": 1,
+  "decision": "different",
+  "nearest": "live v24 5c91796f (quartic symmetric p(x) = p(6 - x), p(-1))"
+ },
+ "SM25V-A13": {
+  "searches": [
+   "same line of symmetry|same axis",
+   "distance between & vertex|vertices"
+  ],
+  "hits": 1,
+  "decision": "different",
+  "nearest": "prior SM24V-A08 (greatest vertical distance line/parabola)"
+ },
+ "SM25V-A14": {
+  "searches": [
+   "exactly one point|one x-intercept & sum of all possible"
+  ],
+  "hits": 1,
+  "decision": "different",
+  "nearest": "prior sat-adv-hard-v1 AM-H-24 (circle and horizontal line, one point)"
+ },
+ "SM25V-A15": {
+  "searches": [
+   "f(-1) & f(0) & f(1)",
+   "math-mechanism-dup FLAG act e8f17f52"
+  ],
+  "hits": 2,
+  "decision": "different (FLAG read by hand; nearest relative recorded)",
+  "nearest": "act-math-v1 e8f17f52 (f(0), f(1), f(2) -> f(4)); A15 asks the MINIMUM (vertex of the recovered quadratic), a different asked quantity; live v24 91bb7a20 uses f(1)+f(-1) to get a"
+ },
+ "SM25V-B01": {
+  "searches": [
+   "average rate of change & exponential|b^x"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-B02": {
+  "searches": [
+   "sqrt(x) + sqrt(y)|square roots & xy|product"
+  ],
+  "hits": 1,
+  "decision": "different",
+  "nearest": "prior SM24V-C12 (perfect-square quartic) - unrelated"
+ },
+ "SM25V-B03": {
+  "searches": [
+   "increased by & hour & factor|multipl|exponential"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-B04": {
+  "searches": [
+   "x^(2/3)|x^(1/3)"
+  ],
+  "hits": 3,
+  "decision": "different (nearest relative recorded)",
+  "nearest": "sat-math-v16-adv 038a2550 (x^(2/3) - 5x^(1/3) + 6 = 0, GREATEST solution, both cube roots positive); B04 asks the SUM and its decision point is keeping the negative cube root -4"
+ },
+ "SM25V-B05": {
+  "searches": [
+   "dose|medication|drug"
+  ],
+  "hits": 6,
+  "decision": "different",
+  "nearest": "act-math-v8-fn 034a1038 (single-dose half-life, solve for time); B05 superposes two staggered doses"
+ },
+ "SM25V-B06": {
+  "searches": [
+   "half-life & equal|same mass"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-B07": {
+  "searches": [
+   "f(2t)|f(kt)",
+   "increases by n% & every|each"
+  ],
+  "hits": 7,
+  "decision": "different",
+  "nearest": "sat-math-v21-adv f942f036 (44% every 2 years, evaluate); prior SM20A-B7 (period conversion of a model); B07 composes a time scaling then converts period"
+ },
+ "SM25V-B08": {
+  "searches": [
+   "cube root & square root & product|quotient"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-B09": {
+  "searches": [
+   "x^a & x^b"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-B10": {
+  "searches": [
+   "2^x - 2^(-x)|2^x + 2^(-x)|8^x"
+  ],
+  "hits": 3,
+  "decision": "different",
+  "nearest": "v2 79be58aa (8^x = 4^(x+1)) - unrelated"
+ },
+ "SM25V-B11": {
+  "searches": [
+   "3^x = n & 3^("
+  ],
+  "hits": 1,
+  "decision": "different",
+  "nearest": "act-math-v9-alg 19b064a0 (3^x = 7 -> 3^(x+2)); B11 takes a half power and adds the reciprocal"
+ },
+ "SM25V-B12": {
+  "searches": [
+   "sqrt(ax + n) - sqrt"
+  ],
+  "hits": 2,
+  "decision": "different",
+  "nearest": "sat-adv-v11 56d60593 (sqrt(x+7) - sqrt(x) = 1, single solution)"
+ },
+ "SM25V-B13": {
+  "searches": [
+   "2^(x + n) & 2^(x - n)"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-B14": {
+  "searches": [
+   "^(4/3)|^(3/2)|^(2/3) ="
+  ],
+  "hits": 12,
+  "decision": "different (nearest relative recorded)",
+  "nearest": "v2 093560b8, sat-adv-0919 a1505b68 ((ax+b)^(3/2) = n with a positivity condition, solve x); B14 is an even-numerator power with both signs kept, product of solutions"
+ },
+ "SM25V-B15": {
+  "searches": [
+   "(t/n) & (t/n)( |)^(t"
+  ],
+  "hits": 5,
+  "decision": "different (nearest relative recorded)",
+  "nearest": "math-v6-adv-hard bd2b00eb (equivalent form showing annual growth of one exponential, expression options); B15 combines two bases first, numeric percent"
+ },
+ "SM25V-C01": {
+  "searches": [
+   "divid & remainder & (3x + 1|quotient)"
+  ],
+  "hits": 8,
+  "decision": "different",
+  "nearest": "sat-math-v17-adv 9774a252 (long division by x^2+2, sum of quotient/remainder coefficients) and math-v6 1ebdd0c5 (remainder 3x+1 on x^2-4, p(2)); C01 rebuilds N(x) from quotient+remainder and applies the remainder theorem on a new divisor"
+ },
+ "SM25V-C02": {
+  "searches": [
+   "even power|coefficients of all the terms",
+   "sum of the coefficients"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none live; author names the p(1) all-coefficients item family"
+ },
+ "SM25V-C03": {
+  "searches": [
+   "crosses the x-axis & touch"
+  ],
+  "hits": 5,
+  "decision": "different",
+  "nearest": "sat-form24 a523eeb4 / sat-math-v18-adv 7bffd615 build a polynomial from touch/cross description and evaluate; C03 classifies given factors by multiplicity parity and sums crossing zeros"
+ },
+ "SM25V-C04": {
+  "searches": [
+   "(x^2 + ax & equal values|equivalent|defined",
+   "cancel|simplif & (x+7)|(x-3)/"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-C05": {
+  "searches": [
+   "p(-x)",
+   "x^2 coefficient & product|multipl"
+  ],
+  "hits": 1,
+  "decision": "different",
+  "nearest": "isee-math-s15 1a3f5073 (x^2 coefficient of a product, one step)"
+ },
+ "SM25V-C06": {
+  "searches": [
+   "(x - n)^2 & remainder",
+   "q(x) & remainder"
+  ],
+  "hits": 1,
+  "decision": "different",
+  "nearest": "act-math-v16 fad105b3 (quotient value q(1) after synthetic division)"
+ },
+ "SM25V-C07": {
+  "searches": [
+   "degree 2|has degree",
+   "like terms & degree"
+  ],
+  "hits": 6,
+  "decision": "different",
+  "nearest": "sat-math-v24-adv e3ca8523 (cubic through collinear values); no degree-drop parameter item"
+ },
+ "SM25V-C08": {
+  "searches": [
+   "x^4 + ax^2|divides p(x)|is a factor of"
+  ],
+  "hits": 17,
+  "decision": "different",
+  "nearest": "factor-theorem items (math-v6 0228cff0, sat-math-v20-adv 8838786c) use a LINEAR factor; C08 uses even-polynomial mirror factor; mechanism-dup near: sat-form24 5beda92d (reciprocal sum of zeros) different"
+ },
+ "SM25V-C09": {
+  "searches": [
+   "leading coefficient"
+  ],
+  "hits": 13,
+  "decision": "different",
+  "nearest": "prior sat-adv-0919e-d SADV7D-05 (leading coefficient of a composition f(g(x))); C09 is a product of powers"
+ },
+ "SM25V-C10": {
+  "searches": [
+   "touches & (0, n)"
+  ],
+  "hits": 1,
+  "decision": "different (nearest relative recorded)",
+  "nearest": "prior sat-adv-0919c-c SADV5C-03: degree-4 from touch/cross + y-intercept fixes the LEADING COEFFICIENT; C10 fixes an unknown double ZERO (a^2 = 9) and chooses its sign from 'left of the y-axis'"
+ },
+ "SM25V-C11": {
+  "searches": [
+   "(r + 1)(s",
+   "zeros & product"
+  ],
+  "hits": 5,
+  "decision": "different",
+  "nearest": "prior SADV6A-06 product of distinct zeros; C11 evaluates the factored cubic at -1"
+ },
+ "SM25V-C12": {
+  "searches": [
+   "grows without bound|increases without|closer and closer"
+  ],
+  "hits": 3,
+  "decision": "different (nearest relative recorded)",
+  "nearest": "sat-adv-v11 540568be / act-math-v4-fn 8adb1610 ask the horizontal asymptote; C12 runs it backwards (asymptote fixes a) then evaluates f(3)"
+ },
+ "SM25V-C13": {
+  "searches": [
+   "x/(x - 2)|(x + 5)/(x - 2)",
+   "x/(x - n) = n"
+  ],
+  "hits": 2,
+  "decision": "different",
+  "nearest": "v2 bd6cf280 (solve a rational equation for x)"
+ },
+ "SM25V-C14": {
+  "searches": [
+   "remainder & ^2|squared",
+   "remainder & [p(x)]|p(x)^2"
+  ],
+  "hits": 22,
+  "decision": "different",
+  "nearest": "remainder-theorem parameter items (v2 08c0b345, 2284c4ae: find k); none applies the theorem to an expression in p"
+ },
+ "SM25V-C15": {
+  "searches": [
+   "constant term & p(x +|expand"
+  ],
+  "hits": 5,
+  "decision": "different",
+  "nearest": "act-math-v25 f13a9c3e (constant term after a no-x-term condition)"
+ },
+ "SM25V-D02": {
+  "searches": [
+   "f(g(x)) & table|sum"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-D03": {
+  "searches": [
+   "|x - n| & parabola|^2"
+  ],
+  "hits": 2,
+  "decision": "different",
+  "nearest": "sat-math-v12 d41e5451 (|x - 3| = x^2 - 9, sum); live v24 32189cf1 (|x - 5| = |x^2 - 25|); D03 is a quadratic in |u| after a shared shift"
+ },
+ "SM25V-D04": {
+  "searches": [
+   "|x^2 - n|"
+  ],
+  "hits": 5,
+  "decision": "different (nearest relative recorded)",
+  "nearest": "v2 87b83c3e (|x^2 - 4| = 3, count); sat-math-v12 d41e5451; D04 splits |quadratic| = LINEAR and rejects roots making the linear side negative, product"
+ },
+ "SM25V-D05": {
+  "searches": [
+   "g(x) = f(x - h) + k|f(x + h)",
+   "math-mechanism-dup FLAG x5 (G_FROM_F)"
+  ],
+  "hits": 5,
+  "decision": "different (FLAGs read by hand)",
+  "nearest": "sat-math-v21-adv 863304f5 (g = f(x - h), find h from g(1) = 0); act 1ef3db54 (vertex of a shifted quadratic); D05 recovers h and k by matching coefficients of two cubics"
+ },
+ "SM25V-D06": {
+  "searches": [
+   "f(x + h) + k",
+   "math-mechanism-dup FLAG x4"
+  ],
+  "hits": 4,
+  "decision": "different (FLAGs read by hand)",
+  "nearest": "act-math-v1 71fb4402 (vertex of |x - 3| + 2); act-math-v8-fn 7aee11d2 (table, g = f - 10, solve g = 0); D06 locates the shift by matching a table pattern, then evaluates g(0)"
+ },
+ "SM25V-D07": {
+  "searches": [
+   "/(x - n) + n & line|exactly one"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-D08": {
+  "searches": [
+   "/(x - h)|asymptote & k"
+  ],
+  "hits": 3,
+  "decision": "different",
+  "nearest": "prior SADV5B-07 / AM3-09 (asymptote of a rational function from factoring)"
+ },
+ "SM25V-D09": {
+  "searches": [
+   "ax^3 + bx|bx + n, f(-",
+   "f(-n) = & f(n) & constant"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none in the live bank (odd-part identity not present)"
+ },
+ "SM25V-D10": {
+  "searches": [
+   "f(f(x)) & undefined|not defined"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-D11": {
+  "searches": [
+   "larger|greater & smaller & f(p"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-D12": {
+  "searches": [
+   "inverse & 2^|^(x"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-D13": {
+  "searches": [
+   "f(-x) = f(x)",
+   "math-mechanism-dup FLAG act 7aee11d2"
+  ],
+  "hits": 1,
+  "decision": "different (FLAG read by hand)",
+  "nearest": "act-math-v8-fn 7aee11d2 (table, g = f - 10); D13 needs evenness to read f(-4)"
+ },
+ "SM25V-D14": {
+  "searches": [
+   "pendulum|sqrt(L)|k sqrt"
+  ],
+  "hits": 1,
+  "decision": "different (nearest relative recorded)",
+  "nearest": "isee-math-s15 3e78a27c (T = 2 sqrt(L), k given, solve L); D14 fits k from a point, solves for the new length and reports the increase"
+ },
+ "SM25V-D15": {
+  "searches": [
+   "(f(x))^2|[f(x)]^2"
+  ],
+  "hits": 0,
+  "decision": "different",
+  "nearest": "none"
+ },
+ "SM25V-D01": {
+  "searches": [
+   "f(2x)|doubl & output|f(",
+   "ax^n|x^n"
+  ],
+  "hits": 1,
+  "decision": "different (replacement after return; original D01 returned as a duplicate of the inverse-square family)",
+  "nearest": "math-v6-adv-hard b265ab46 (x-intercepts of f(2x)); no power-law scaling item live",
+  "returned_original": "lamp intensity inverse-square, decrease from 5 m to 8 m ~ isee-math-s15 c28b320d, act 1d920174 / 915f2ad1, v2 3977d8f9"
+ }
+}

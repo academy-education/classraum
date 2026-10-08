@@ -1,0 +1,202 @@
+[
+ {
+  "stage": "stage-0 drop (author return already used)",
+  "reason": "DROPPED BEFORE FREEZE: same mechanism as a live row inserted during stage 0 (act-math-v26, committed 355b30df); author A had used its one return on A08 ~ act-math-v26 8e680740: two parabolas meet at two points, slope of the line through both (A09 asks that same line s y-intercept); found by math-mechanism-dup on the merged 60 against 3,217 live rows (FLAG vs act-math-v26 f55d3793 / 511b5ee6 read as different) and by my re-read of all 52 new act-math-v26 rows",
+  "item": {
+   "id": "SM25V-A09",
+   "domain": "Advanced Math",
+   "subskill": "Intersections of two parabolas: the line through both intersection points",
+   "difficulty": "medium",
+   "prompt": "The parabolas y = x^2 - 16x + 2 and y = -x^2 - 4x + 16 cross each other at two points in the xy-plane. A line is drawn through both crossing points. What is the y-intercept of that line?",
+   "choices": [
+    "9",
+    "14",
+    "16",
+    "19"
+   ],
+   "correct_answer": "9",
+   "explanation": "At an intersection point, x^2 - 16x + 2 = -x^2 - 4x + 16, so 2x^2 - 12x - 14 = 0, or x^2 - 6x - 7 = 0, which gives x = 7 or x = -1. The points are (7, 49 - 112 + 2) = (7, -61) and (-1, 1 + 16 + 2) = (-1, 19). The slope of the line through them is (-61 - 19)/(7 - (-1)) = -10, so the line is y = -10x + b with 19 = -10(-1) + b, giving b = 9. The y-intercept of the line is 9.\n\nChoice 19 is the y-coordinate of the intersection point (-1, 19), not of the line's y-intercept. Choice 14 comes from subtracting the two parabolas' y-intercepts, 16 - 2, instead of finding the line. Choice 16 is the y-intercept of the second parabola, not of the line.",
+   "mechanism": [
+    "subtract the two quadratics to find the shared x-values",
+    "build the line through the two intersection points",
+    "read the line's y-intercept"
+   ],
+   "quantity_asked": "y-intercept of the line through the two intersection points",
+   "ask_type": "intercept of a line built from the solution set",
+   "plugback_check": "no printed equation contains the line's intercept; an option can only be checked after both intersection points (or the line) are found",
+   "shape_check": "the stem hands over no stated property of the line's intercept. A derived property: the line through the crossings is the average of the two equations, so at x = 0 it lies between the parabolas' values 2 and 16. The key 9 and distractor 14 lie strictly inside, 16 on the boundary; 19 lies outside, so if a student derives the averaging property, 19 is struck. Three options survive; all four are legal y-values of a line",
+   "solve": "const b1=-16,c1=2,b2=-4,c2=16; const A=2,B=b1-b2,C=c1-c2; const d=Math.sqrt(B*B-4*A*C); const x1=(-B+d)/(2*A), x2=(-B-d)/(2*A); const y1=x1*x1+b1*x1+c1, y2=x2*x2+b1*x2+c1; const m=(y1-y2)/(x1-x2); return y1-m*x1;",
+   "distractor_solve": {
+    "14": "const c1=2,c2=16; return c2-c1;",
+    "16": "const c2=16; const x=0; return -x*x-4*x+c2;",
+    "19": "const b1=-16,c1=2,b2=-4,c2=16; const A=2,B=b1-b2,C=c1-c2; const d=Math.sqrt(B*B-4*A*C); const x2=(-B-d)/(2*A); return x2*x2+b1*x2+c1;"
+   },
+   "distractor_meta": {
+    "14": {
+     "error_kind": "subtracts the parabolas' intercepts",
+     "direction": "over"
+    },
+    "16": {
+     "error_kind": "reports a parabola's y-intercept",
+     "direction": "over"
+    },
+    "19": {
+     "error_kind": "reports an intersection point's y-coordinate",
+     "direction": "over"
+    }
+   },
+   "cheap_bound_check": "cheapest bound: at x = 0 the two parabolas sit at 2 and 16, and a student may guess the line lies between them, giving 2 < b < 16. The key 9 and the distractor 14 lie inside that interval (16 sits on its edge; 19, an intersection point's y-value, lies outside), so the bound does not single out the key",
+   "interior_parity_check": "interior options 14 and 16: both two-digit even integers, equal complexity; the key is extreme",
+   "arith_class_check": "two odd (9, 19) and two even (14, 16); no pair sums to 1, 90, 180 or 360; 9 is not a sum, difference, mean or double of two options (16 - 14 = 2, 19 - 16 = 3, 19 - 14 = 5)",
+   "dup_search": {
+    "searches": [
+     "y = -x\\^2|-x\\^2 \\+ & intersect",
+     "line (that )?passes through (both|the two)",
+     "parabolas|two quadratic|graphs of y = x^2 and y = ...x^2",
+     "intersect & x^2 ... x^2"
+    ],
+    "hits": 6,
+    "nearest": "prior SADV5A-07 (two parabolas intersect, sum of the y-coordinates) - stops at the points; here the line through the points is built and its intercept asked, which no point coordinate gives directly"
+   },
+   "self_audit": {
+    "risk": "med",
+    "note": "a student who spots that the line through the crossings is the average of the two equations gets (2 + 16)/2 = 9 in one step; that is a valid shortcut, not a tell. The key is the smallest option, with three different distractors above it"
+   },
+   "bounds": [
+    "2 < intercept < 16 from the averaging property (9 and 14 inside, 16 on the edge, 19 outside)"
+   ]
+  }
+ },
+ {
+  "stage": "stage-0 return (replaced in place)",
+  "reason": "mechanism duplicate of v2 tangent-find-c family (2c0a61eb, 43ed9ad5, 7ca289c8, f3b737f6)",
+  "item": {
+   "id": "SM25V-A08",
+   "domain": "Advanced Math",
+   "subskill": "A line meeting a parabola: coordinates of the point of tangency",
+   "difficulty": "medium",
+   "prompt": "In the xy-plane, the line y = 2x + c, where c is a constant, is tangent to the parabola y = -x^2 + 10x - 4. What is the y-coordinate of the point of tangency?",
+   "choices": [
+    "-60",
+    "4",
+    "12",
+    "20"
+   ],
+   "correct_answer": "20",
+   "explanation": "At an intersection point, 2x + c = -x^2 + 10x - 4, so x^2 - 8x + (c + 4) = 0. The line is tangent, so this equation has exactly one solution, a double root, and a double root of x^2 - 8x + (c + 4) = 0 is x = 8/2 = 4. The point of tangency is on the parabola, so its y-coordinate is -(4)^2 + 10(4) - 4 = -16 + 40 - 4 = 20. (Then c = 20 - 2(4) = 12.)\n\nChoice -60 comes from taking the double root as x = -4 instead of 4: -(-4)^2 + 10(-4) - 4 = -60. Choice 4 is the x-coordinate of the point of tangency, not the y-coordinate. Choice 12 is the value of c, the y-intercept of the tangent line.",
+   "mechanism": [
+    "set line equal to parabola",
+    "tangency means a double root at -B/(2A)",
+    "evaluate the parabola at the double root"
+   ],
+   "quantity_asked": "y-coordinate of the point of tangency",
+   "ask_type": "coordinate of a point fixed by a structural condition",
+   "plugback_check": "testing an option y0 means solving -x^2 + 10x - 4 = y0 for x (two candidate x-values) and then checking the slope condition for each - more than two routine substitutions, and no printed equation takes y0 directly",
+   "shape_check": "stem hands over: the parabola opens downward with vertex (5, 21), so every point on it has y <= 21. All four options are at most 21; all survive",
+   "solve": "const B=10-2, x=B/2; return -x*x+10*x-4;",
+   "distractor_solve": {
+    "4": "const B=10-2; return B/2;",
+    "12": "const B=10-2, x=B/2; const y=-x*x+10*x-4; return y-2*x;",
+    "-60": "const B=10-2, x=-B/2; return -x*x+10*x-4;"
+   },
+   "distractor_meta": {
+    "4": {
+     "error_kind": "reports the x-coordinate",
+     "direction": "under"
+    },
+    "12": {
+     "error_kind": "reports the intercept c of the line",
+     "direction": "under"
+    },
+    "-60": {
+     "error_kind": "sign of the double root",
+     "direction": "under"
+    }
+   },
+   "cheap_bound_check": "cheapest bound: the parabola's maximum is 21, so y <= 21. All four options satisfy it, so it removes none; a positive-slope line touches a downward parabola left of its vertex, which says y < 21 but nothing that separates 20 from 12 or 4",
+   "interior_parity_check": "interior options 4 and 12: complexity 1 and 2, both positive integers; the key is extreme",
+   "arith_class_check": "all four even and multiples of 4, so no class singles out the key; 20 is not a sum, difference, mean or double of two options (4 + 12 = 16, 12 - 4 = 8, 4 - (-60) = 64, mean of 4 and 12 = 8); no pair sums to 1, 90, 180 or 360",
+   "dup_search": {
+    "searches": [
+     "tangent|exactly one point & coordinate",
+     "tangent to the parabola"
+    ],
+    "hits": 23,
+    "nearest": "live tangency family, 20 rows, every one asking c, a slope or a sum of slopes (e.g. 'The line y = 2x + c is tangent to the parabola y = x^2 + 3x + 7. What is the value of c?') - those ask c; here c is a distractor and the point of tangency is asked, found from the double root without needing c"
+   },
+   "self_audit": {
+    "risk": "med",
+    "note": "the key is the largest option, and every distractor is below it: c, the x-coordinate, and a sign-flipped root. A student who knows the y-value must be <= 21 still has four candidates"
+   },
+   "bounds": [
+    "y <= 21 (all four options satisfy it)"
+   ]
+  }
+ },
+ {
+  "stage": "stage-0 return (replaced in place)",
+  "reason": "mechanism duplicate of the inverse-square family (isee-math-s15 c28b320d, act 1d920174 / 915f2ad1, v2 3977d8f9)",
+  "item": {
+   "id": "SM25V-D01",
+   "domain": "Advanced Math",
+   "subskill": "Nonlinear models: inverse-square variation, change between two inputs",
+   "difficulty": "medium",
+   "prompt": "The intensity of light measured by a sensor varies inversely with the square of the sensor's distance from a lamp. When the sensor is 4 meters from the lamp, the measured intensity is 800 lux. The sensor is moved from a distance of 5 meters to a distance of 8 meters from the lamp. By how many lux does the measured intensity decrease?",
+   "choices": [
+    "78",
+    "192",
+    "240",
+    "312"
+   ],
+   "correct_answer": "312",
+   "explanation": "Write I = k/d^2. Since 800 = k/4^2, k = 800(16) = 12,800. At 5 meters, I = 12,800/25 = 512 lux, and at 8 meters, I = 12,800/64 = 200 lux. The intensity decreases by 512 - 200 = 312 lux.\n\nChoice 240 comes from treating the intensity as varying inversely with the distance itself, I = 3,200/d, which gives 640 - 400. Choice 192 comes from finding 512 lux at 5 meters and then scaling it by the distance ratio 5/8 instead of the squared ratio, which gives a decrease of 512(3/8). Choice 78 comes from finding the constant as 800(4) = 3,200 instead of 800(4^2) and then using I = 3,200/d^2, which gives 128 - 50.",
+   "mechanism": [
+    "constant of inverse-square variation from one reading",
+    "evaluate at two new distances",
+    "difference of the two outputs"
+   ],
+   "quantity_asked": "decrease in intensity between 5 m and 8 m",
+   "ask_type": "change in model output between two inputs",
+   "plugback_check": "an option is a difference of two outputs, not an input or a parameter; there is no printed equation an option can be substituted into, so no option can be confirmed by substitution",
+   "shape_check": "properties handed over: intensity decreases as distance grows (so the decrease is positive) and the intensity at 5 m lies between 200 and 800 (one-step bracket from 4 m and 8 m), so the decrease is below 600; all four options (78, 192, 240, 312) are positive and below 600 and survive both",
+   "solve": "const k=800*4*4; return k/(5*5)-k/(8*8);",
+   "distractor_solve": {
+    "78": "const k=800*4; return k/25-k/64;",
+    "192": "const k=800*16; const i5=k/25; return i5*(1-5/8);",
+    "240": "const k=800*4; return k/5-k/8;"
+   },
+   "distractor_meta": {
+    "78": {
+     "error_kind": "constant computed without squaring the distance",
+     "direction": "under"
+    },
+    "192": {
+     "error_kind": "scales by the distance ratio, not its square",
+     "direction": "under"
+    },
+    "240": {
+     "error_kind": "inverse instead of inverse-square variation",
+     "direction": "under"
+    }
+   },
+   "cheap_bound_check": "cheapest bound for the largest key: the decrease is below I(5) and I(5) < 800, and a one-step estimate (I(8) = 800/4 = 200, I(5) < 800) caps it below 600; all three distractors (78, 192, 240) lie on the key's side of that cap, so the bound kills nothing",
+   "interior_parity_check": "interior options 192 and 240: both three-digit positive integers, complexity 3 and 2; the key is not interior",
+   "arith_class_check": "all four even and multiples of 6; no pair sums to 1, 90, 180 or 360; 312 is not a sum, difference, mean or double of two options (240 + 78 = 318, 192 + 78 = 270)",
+   "dup_search": {
+    "searches": [
+     "inversely & square",
+     "intensity|brightness|gravitational & distance"
+    ],
+    "hits": 14,
+    "nearest": "live/prior SM24V-D11 (lamp intensity, distance from a 64% reading - solves for a distance ratio) and ISEE s15 / SAT v2 (one evaluation of y at a new x); here the constant is found and the model is evaluated at TWO other distances and differenced, a change that no single evaluation gives"
+   },
+   "self_audit": {
+    "risk": "low",
+    "note": "the key is the largest option; the distractors come from three different modelling errors (wrong power, wrong scaling, constant not squared), none of them recognisably smaller by a rule a student can state without computing"
+   },
+   "bounds": [
+    "decrease < 600 from I(8) = 200 and I(5) < 800"
+   ]
+  }
+ }
+]

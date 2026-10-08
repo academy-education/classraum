@@ -1,0 +1,923 @@
+[
+ {
+  "id": "SM25V-A01",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic equations: solving a squared-binomial equation by square roots",
+  "difficulty": "easy",
+  "prompt": "Every value of x that satisfies (x - 5)^2 = 36 is added together. What total results?",
+  "choices": [
+   "0",
+   "6",
+   "10",
+   "11"
+  ],
+  "correct_answer": "10",
+  "explanation": "Taking square roots, x - 5 = 6 or x - 5 = -6, so x = 11 or x = -1. The sum of the solutions is 11 + (-1) = 10.\n\nChoice 0 comes from expanding (x - 5)^2 as x^2 - 25, which gives x^2 = 61 and two solutions that add to 0. Choice 6 comes from stopping at the square root of 36 instead of solving for x. Choice 11 comes from using only the positive square root, which gives the single solution x = 11.",
+  "mechanism": [
+   "square-root property on a squared binomial",
+   "both signs give two solutions",
+   "add the solutions"
+  ],
+  "quantity_asked": "sum of the two solutions",
+  "ask_type": "sum of solutions",
+  "plugback_check": "an option is a sum of two solutions, not a solution; substituting x = 10 (or any option) into the equation does not test it",
+  "shape_check": "the stem hands over no sign or size property of the sum; all four options are legal values of a sum of real solutions",
+  "solve": "const h=5, k=36; const r=Math.sqrt(k); return (h+r)+(h-r);",
+  "distractor_solve": {
+   "0": "const h=5, k=36; const s=Math.sqrt(k+h*h); return s+(-s);",
+   "6": "const k=36; return Math.sqrt(k);",
+   "11": "const h=5, k=36; return h+Math.sqrt(k);"
+  },
+  "distractor_meta": {
+   "0": {
+    "error_kind": "squares a binomial term by term",
+    "direction": "under"
+   },
+   "6": {
+    "error_kind": "stops at the square root",
+    "direction": "under"
+   },
+   "11": {
+    "error_kind": "keeps only the positive root",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 6 and 10: complexity 1 each (10 has its trailing zero stripped), both positive integers; the key is not the cleaner one",
+  "arith_class_check": "0, 6, 10 even and 11 odd (the odd singleton is a distractor); no pair sums to 1, 90, 180 or 360; 10 is not a sum, difference, mean or double of two options (11 - 6 = 5, 6 - 0 = 6, mean of 0 and 11 = 5.5)",
+  "dup_search": {
+   "searches": [
+    "\\(\\d?x ?[-+] ?\\d+\\)\\^2 ?= ?\\d",
+    "sum of (all )?the solutions|sum of all solutions|sum of the two solutions"
+   ],
+   "hits": 33,
+   "nearest": "prior SADV-10 '(x + 3)^2 = 5x + 15, sum of all solutions' - a squared binomial set equal to a linear expression, solved by factoring out (x + 3); here a squared binomial equals a constant and is solved by square roots"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "one-step easy item; each distractor is a common square-root slip, two below and one above the key"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM25V-A02",
+  "domain": "Advanced Math",
+  "subskill": "Zeros of quadratics: a zero shared by two quadratic functions",
+  "difficulty": "hard",
+  "prompt": "The functions f and g are defined by f(x) = x^2 - 9x + 8 and g(x) = x^2 + kx - 40, where k is a constant. The functions f and g have exactly one zero in common. What is the sum of all possible values of k?",
+  "choices": [
+   "-54",
+   "36",
+   "39",
+   "45"
+  ],
+  "correct_answer": "36",
+  "explanation": "Since f(x) = (x - 1)(x - 8), the zeros of f are 1 and 8, and the common zero must be one of them. If x = 1 is a zero of g, then 1 + k - 40 = 0, so k = 39; then g(x) = x^2 + 39x - 40 = (x + 40)(x - 1), which shares only the zero 1 with f. If x = 8 is a zero of g, then 64 + 8k - 40 = 0, so k = -3; then g(x) = x^2 - 3x - 40 = (x - 8)(x + 5), which shares only the zero 8 with f. Both values work, so the sum of all possible values of k is 39 + (-3) = 36.\n\nChoice 39 comes from checking only the zero x = 1 and stopping. Choice 45 comes from leaving out the x^2 term of g when substituting each zero, which gives k = 40 for x = 1 and k = 5 for x = 8. Choice -54 comes from treating the constant term of g as +40, which gives k = -41 for x = 1 and k = -13 for x = 8.",
+  "mechanism": [
+   "factor f to list candidate common zeros",
+   "substitute each candidate into g to fix k",
+   "keep every case that gives exactly one common zero"
+  ],
+  "quantity_asked": "sum of all values of k for which f and g share exactly one zero",
+  "ask_type": "sum of parameter values over cases",
+  "plugback_check": "an option is a SUM of k-values, not a k-value; substituting an option for k into g (e.g. k = 36) gives a g sharing no zero with f, so no option can be confirmed by substitution",
+  "shape_check": "the stem hands over no sign, size or shape property of k (k is any real constant, and a sum of k-values can be any real); all four options are legal values of the quantity asked",
+  "solve": "const zs=[1,8], c=-40; let s=0; for (const r of zs){ const k=-(r*r+c)/r; const other=c/r; if (!zs.includes(other)) s+=k; } return s;",
+  "distractor_solve": {
+   "39": "const r=1, c=-40; return -(r*r+c)/r;",
+   "45": "const zs=[1,8], c=-40; return zs.reduce((s,r)=>s+(-c/r),0);",
+   "-54": "const zs=[1,8], c=40; return zs.reduce((s,r)=>s-(r*r+c)/r,0);"
+  },
+  "distractor_meta": {
+   "39": {
+    "error_kind": "only one case of the common zero",
+    "direction": "over"
+   },
+   "45": {
+    "error_kind": "drops the squared term on substitution",
+    "direction": "over"
+   },
+   "-54": {
+    "error_kind": "sign of the constant term",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 36 and 39: both two-digit positive integers, equal complexity; the key is not the cleaner one",
+  "arith_class_check": "two even (-54, 36) and two odd (39, 45); multiples of 3 are 36, 39, 45 and -54 (all four); no pair sums to 1, 90, 180 or 360; 36 is not a sum, difference, mean or double of two options",
+  "dup_search": {
+   "searches": [
+    "in common|common zero|shared zero|share a & \\^2|²",
+    "one zero|zeros? of & sum of all possible values"
+   ],
+   "hits": 1,
+   "nearest": "prior SM24V-C09 (cubic (x - 3)(x^2 + kx - 21) with exactly two distinct zeros, then p(-1)) - one forced case inside one polynomial; here two separate quadratics, two cases, summed parameter"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "the two-case structure is the hard step; a student who finds only k = 39 lands on a distractor. 39 and 36 are adjacent, but -3 (the second case) is deliberately not an option, so the key is not a composite of listed options"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM25V-A03",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic functions: minimum value from one known zero",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 3x^2 + bx - 48, where b is a constant, and the graph of y = f(x) crosses the x-axis at x = 8. What is the least value that f(x) attains?",
+  "choices": [
+   "-129",
+   "-93",
+   "-75",
+   "-48"
+  ],
+  "correct_answer": "-75",
+  "explanation": "Since the graph crosses the x-axis at x = 8, f(8) = 0, so 3(64) + 8b - 48 = 0, so 192 + 8b - 48 = 0 and b = -18. Then f(x) = 3x^2 - 18x - 48, whose vertex is at x = -(-18)/(2 * 3) = 3. The minimum value is f(3) = 3(9) - 18(3) - 48 = 27 - 54 - 48 = -75.\n\nChoice -129 comes from leaving out the leading coefficient in the vertex value, computing -48 - (-18)^2/4 = -129 instead of -48 - (-18)^2/(4 * 3). Choice -93 comes from forgetting to square x = 3 when evaluating f(3): 3(3) - 18(3) - 48 = -93. Choice -48 is f(0), the y-intercept of the graph, not its lowest point.",
+  "mechanism": [
+   "known zero fixes the linear coefficient",
+   "vertex x from -b/(2a)",
+   "evaluate at the vertex for the minimum"
+  ],
+  "quantity_asked": "minimum value of f",
+  "ask_type": "extreme value of a function built from a condition",
+  "plugback_check": "an option is a minimum value, which appears in no printed equation; substituting an option anywhere checks nothing without first finding b and the vertex",
+  "shape_check": "stem hands over: f opens upward (leading coefficient 3 > 0) and f(0) = -48, f(8) = 0, so the minimum is at most -48. All four options are at most -48 (-48 itself is the boundary value f(0)); all survive",
+  "solve": "const a=3, c=-48, p=8; const b=-(a*p*p+c)/p; const h=-b/(2*a); return a*h*h+b*h+c;",
+  "distractor_solve": {
+   "-129": "const a=3, c=-48, p=8; const b=-(a*p*p+c)/p; return c-b*b/4;",
+   "-93": "const a=3, c=-48, p=8; const b=-(a*p*p+c)/p; const h=-b/(2*a); return a*h+b*h+c;",
+   "-48": "const a=3, c=-48; const x=0; return a*x*x+c;"
+  },
+  "distractor_meta": {
+   "-129": {
+    "error_kind": "leading coefficient dropped from vertex formula",
+    "direction": "under"
+   },
+   "-93": {
+    "error_kind": "vertex x not squared when evaluating",
+    "direction": "under"
+   },
+   "-48": {
+    "error_kind": "reports the y-intercept",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options -93 and -75: both two-digit negative integers, equal complexity; the key is not the cleaner one",
+  "arith_class_check": "all four are multiples of 3; three odd and one even (-48, not the key); no pair sums to 1, 90, 180 or 360; -75 is not the mean, sum, difference or double of two options (mean of -129 and -48 is -88.5)",
+  "dup_search": {
+   "searches": [
+    "f\\(-?\\d+\\) ?= ?0 & minimum|maximum|least|greatest value of f",
+    "x-intercept|zero & bx & minimum|vertex"
+   ],
+   "hits": 2,
+   "nearest": "live sat-math-v21-adv d3b2e62d (minimum -25 and f(3) = 0 given, asks greatest c) - runs the other direction: there the minimum is given and two cases for c; here a and c are given and the minimum is derived"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "the cheap bound min <= f(0) = -48 holds for all four options, so it eliminates nothing; three distractors are distinct slips, two below and one above the key"
+  },
+  "bounds": [
+   "minimum <= f(0) = -48 (all four options satisfy it)"
+  ]
+ },
+ {
+  "id": "SM25V-A04",
+  "domain": "Advanced Math",
+  "subskill": "Zeros of a vertically translated parabola: a symmetric expression in the zeros",
+  "difficulty": "medium",
+  "prompt": "The graph of y = x^2 - 10x + 9 in the xy-plane is translated 5 units up. The translated graph crosses the x-axis at x = p and x = q. What is the value of p^2 + q^2?",
+  "choices": [
+   "44",
+   "72",
+   "82",
+   "86"
+  ],
+  "correct_answer": "72",
+  "explanation": "Translating the graph 5 units up adds 5 to every y-value, so the translated graph is y = x^2 - 10x + 14. Its x-intercepts p and q are the solutions of x^2 - 10x + 14 = 0, so p + q = 10 and pq = 14. Then p^2 + q^2 = (p + q)^2 - 2pq = 100 - 28 = 72.\n\nChoice 44 comes from using (p + q)^2 - 4pq = 100 - 56 instead of (p + q)^2 - 2pq. Choice 82 comes from ignoring the translation and using the original x-intercepts 1 and 9: 1 + 81 = 82. Choice 86 comes from subtracting pq only once: 100 - 14 = 86.",
+  "mechanism": [
+   "vertical translation changes only the constant term",
+   "new zeros are not the old zeros",
+   "sum of squares of zeros from sum and product"
+  ],
+  "quantity_asked": "p^2 + q^2 for the translated graph's zeros",
+  "ask_type": "symmetric expression in the zeros of a transformed quadratic",
+  "plugback_check": "an option is a sum of squares of irrational zeros (5 +/- sqrt(11)); it cannot be substituted into any printed equation",
+  "shape_check": "stem hands over: the translated graph crosses the x-axis (two real zeros); no sign of p or q is handed over. A sum of squares is positive: all four options are positive; all survive",
+  "solve": "const b=-10, c=9, up=5; const s=-b, P=c+up; return s*s-2*P;",
+  "distractor_solve": {
+   "44": "const b=-10, c=9, up=5; const s=-b, P=c+up; return s*s-4*P;",
+   "82": "const b=-10, c=9; const d=Math.sqrt(b*b-4*c); const r1=(-b+d)/2, r2=(-b-d)/2; return r1*r1+r2*r2;",
+   "86": "const b=-10, c=9, up=5; const s=-b, P=c+up; return s*s-P;"
+  },
+  "distractor_meta": {
+   "44": {
+    "error_kind": "discriminant expression used for the sum of squares",
+    "direction": "under"
+   },
+   "82": {
+    "error_kind": "ignores the translation",
+    "direction": "over"
+   },
+   "86": {
+    "error_kind": "product subtracted once instead of twice",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 72 and 82: both two-digit even integers, equal complexity; the key is not the cleaner one",
+  "arith_class_check": "all four even; 44 and 72 multiples of 4, 82 and 86 not; no pair sums to 1, 90, 180 or 360; 72 is not a sum, difference, mean or double of two options (86 - 82 = 4, 82 - 44 = 38, mean of 44 and 86 = 65)",
+  "dup_search": {
+   "searches": [
+    "translated|shifted & p\\^2|r\\^2|squares",
+    "translated|shifted & units (up|down)|up|down & \\^2|²"
+   ],
+   "hits": 0,
+   "nearest": "live 'roots of x^2 - 6x + 4 = 0 are r and s, r^2 + s^2' family (9 rows) - those give the equation directly; here the equation must first be built from a vertical translation, and the untranslated zeros 1 and 9 are the trap"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "the last step is the familiar r^2 + s^2 identity; the item's work is recognising that a vertical shift changes the zeros (82 catches using the old ones). Interior key with one distractor below and two above"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM25V-A05",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic forms: from vertex and y-intercept to the product of the x-intercepts",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of the quadratic function f has its vertex at (2, -75) and crosses the y-axis at (0, -63). What is the product of the x-coordinates of the x-intercepts of the graph?",
+  "choices": [
+   "-71",
+   "-63",
+   "-25",
+   "-21"
+  ],
+  "correct_answer": "-21",
+  "explanation": "Write f(x) = a(x - 2)^2 - 75. Since f(0) = -63, 4a - 75 = -63, so a = 3. Then f(x) = 3(x - 2)^2 - 75 = 3x^2 - 12x + 12 - 75 = 3x^2 - 12x - 63. The product of the zeros of ax^2 + bx + c is c/a, so the product is -63/3 = -21. (Check: 3(x - 2)^2 = 75 gives x - 2 = 5 or x - 2 = -5, so the x-intercepts are at x = 7 and x = -3, and 7(-3) = -21.)\n\nChoice -71 comes from leaving out the leading coefficient and writing f(x) = (x - 2)^2 - 75 = x^2 - 4x - 71. Choice -63 is the constant term c itself, not divided by a. Choice -25 comes from dividing the vertex's y-coordinate, -75, by a instead of using the constant term.",
+  "mechanism": [
+   "vertex form with unknown leading coefficient",
+   "y-intercept fixes a",
+   "product of zeros as c/a"
+  ],
+  "quantity_asked": "product of the x-coordinates of the two x-intercepts",
+  "ask_type": "symmetric function of the zeros",
+  "plugback_check": "no option is an intercept, so none can be substituted into anything; the product is checkable only after the zeros or c/a are found",
+  "shape_check": "stem hands over: the vertex (2, -75) lies below the y-intercept, so the graph opens upward, and f(0) = -63 < 0, so the two zeros have opposite signs and their product is negative. All four options are negative; all survive",
+  "solve": "const h=2, k=-75, c=-63; const a=(c-k)/(h*h); return c/a;",
+  "distractor_solve": {
+   "-71": "const h=2, k=-75; return h*h+k;",
+   "-63": "const h=2, k=-75, c=-63; const a=(c-k)/(h*h); return a*h*h+k;",
+   "-25": "const h=2, k=-75, c=-63; const a=(c-k)/(h*h); return k/a;"
+  },
+  "distractor_meta": {
+   "-71": {
+    "error_kind": "leading coefficient dropped from vertex form",
+    "direction": "under"
+   },
+   "-63": {
+    "error_kind": "product taken as c without dividing by a",
+    "direction": "under"
+   },
+   "-25": {
+    "error_kind": "vertex y-coordinate used for the constant term",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: f(0) < 0 with the graph opening upward, so the product of the zeros is negative. The key -21 is negative and so are all three distractors, so the bound removes none of them; no cheap upper or lower size bound on the product is readable from the stem",
+  "interior_parity_check": "interior options -63 and -25: both two-digit negative integers, equal complexity",
+  "arith_class_check": "all four odd; -63 and -21 are multiples of 3 and 7, -71 and -25 are not; no pair sums to 1, 90, 180 or 360; -21 is not a sum, difference, mean or double of two options (-63 - (-25) = -38, -71 - (-63) = -8, mean of -71 and -25 = -48)",
+  "dup_search": {
+   "searches": [
+    "product & x-intercepts|zeros & vertex",
+    "vertex & y-intercept|y-axis at|\\(0, ?-?\\d+\\)"
+   ],
+   "hits": 1,
+   "nearest": "prior SM20A-C3 (vertex (-2, 12) and (0, 16), asks f(-5)) - same givens shape but asks a function value at a point; here the zeros' product via c/a"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "the key is the largest (least negative) option; all distractors come from three different ways of mishandling a or c, and all sit below the key because each skips a division by a = 3 or uses a larger-magnitude constant. A test-wise student has no stem cue that the answer is the smallest in magnitude"
+  },
+  "bounds": [
+   "product < 0 (all four options satisfy it)"
+  ]
+ },
+ {
+  "id": "SM25V-A06",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic zeros: building a quadratic whose zeros are shifted",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 5x - 4. The quadratic function g has leading coefficient 2, and the zeros of g are each 3 more than the zeros of f. If g(x) = 2x^2 + bx + c, where b and c are constants, what is the value of c?",
+  "choices": [
+   "-1",
+   "17",
+   "29",
+   "37"
+  ],
+  "correct_answer": "29",
+  "explanation": "If r is a zero of f, then r + 3 must be a zero of g, so g(x) = f(x - 3): when x = r + 3, x - 3 = r and f(r) = 0. Then g(x) = 2(x - 3)^2 - 5(x - 3) - 4 = 2x^2 - 12x + 18 - 5x + 15 - 4 = 2x^2 - 17x + 29, so c = 29. (Alternatively, the zeros r and s of f have r + s = 5/2 and rs = -2, so the zeros of g have product (r + 3)(s + 3) = rs + 3(r + s) + 9 = -2 + 7.5 + 9 = 14.5, and c = 2(14.5) = 29.)\n\nChoice -1 comes from shifting in the wrong direction, using f(x + 3), whose constant term is 18 - 15 - 4 = -1. Choice 17 comes from expanding (r + 3)(s + 3) as rs + 3(r + s) + 3, using 3 instead of 3^2 = 9: 2(-2 + 7.5 + 3) = 17. Choice 37 comes from taking the product of the zeros of f as +2 instead of -4/2 = -2: 2(2 + 7.5 + 9) = 37.",
+  "mechanism": [
+   "shift zeros right means g(x) = f(x - 3)",
+   "expand the composed quadratic",
+   "constant term of the shifted quadratic"
+  ],
+  "quantity_asked": "constant term c of g",
+  "ask_type": "coefficient of a transformed quadratic",
+  "plugback_check": "c is not a solution of any printed equation; to test an option a student must already have g, and the zeros of f are irrational (discriminant 57), so trying options against shifted zeros is not a routine substitution",
+  "shape_check": "the stem hands over no sign or size property of c (zeros of f are irrational, of opposite signs, and shifting them by 3 gives no readable sign for their product); all four options are legal values of c",
+  "solve": "const a=2,b=-5,c=-4,s=3; return a*s*s - b*s + c;",
+  "distractor_solve": {
+   "17": "const a=2,b=-5,c=-4,s=3; const sum=-b/a, prod=c/a; return a*(prod + s*sum + s);",
+   "37": "const a=2,b=-5,c=-4,s=3; const sum=-b/a, prod=-c/a; return a*(prod + s*sum + s*s);",
+   "-1": "const a=2,b=-5,c=-4,s=3; return a*s*s + b*s + c;"
+  },
+  "distractor_meta": {
+   "17": {
+    "error_kind": "shift not squared in the product expansion",
+    "direction": "under"
+   },
+   "37": {
+    "error_kind": "sign of the product of the zeros",
+    "direction": "over"
+   },
+   "-1": {
+    "error_kind": "shift applied in the wrong direction",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 17 and 29: both two-digit positive integers, equal complexity; the key is not the cleaner one",
+  "arith_class_check": "all four odd and none a multiple of 3 (17, 29, 37 prime, -1 a unit); no pair sums to 1, 90, 180 or 360; 29 is not a sum, difference, mean or double of two options (37 - 17 = 20, mean of 17 and 37 = 27)",
+  "dup_search": {
+   "searches": [
+    "more than|greater than|less than|twice|times & zeros|roots|solutions & each",
+    "f\\(x ?[-+] ?\\d\\) & zero|root"
+   ],
+   "hits": 1,
+   "nearest": "prior SM24V-C10 (sum of zeros with multiplicity of a perfect-square power) - different chain; no live or prior item builds a quadratic from shifted zeros"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "the hard step is translating 'zeros 3 more' into f(x - 3), not f(x + 3); -1 catches the reversed shift. With irrational zeros, a student cannot list the zeros and add 3 cleanly. Graders may call it medium"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM25V-A07",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic models: height at a given time from the vertex of the model",
+  "difficulty": "medium",
+  "prompt": "A ball is thrown upward from a balcony. Its height above the ground, in feet, t seconds after it is thrown is modeled by h(t) = -16t^2 + bt + c, where b and c are constants. The ball reaches its maximum height of 169 feet when t = 3. What is the height of the ball, in feet, when t = 0.5?",
+  "choices": [
+   "69",
+   "89",
+   "129",
+   "165"
+  ],
+  "correct_answer": "69",
+  "explanation": "The vertex of the graph of h is (3, 169) and the leading coefficient is -16, so h(t) = -16(t - 3)^2 + 169. At t = 0.5, t - 3 = -2.5, so h(0.5) = -16(6.25) + 169 = -100 + 169 = 69 feet.\n\nChoice 89 comes from computing (2.5)^2 as 2(2.5) = 5: 169 - 16(5) = 89. Choice 129 comes from forgetting to square 2.5: 169 - 16(2.5) = 129. Choice 165 comes from substituting t = 0.5 itself instead of its distance from the time of the maximum: 169 - 16(0.5)^2 = 165.",
+  "mechanism": [
+   "vertex of a height model gives vertex form",
+   "known leading coefficient -16",
+   "evaluate at an input measured from the vertex time"
+  ],
+  "quantity_asked": "height h(0.5)",
+  "ask_type": "value of the model at an input other than the vertex",
+  "plugback_check": "an option is an output at t = 0.5; it is not a solution, zero or parameter of a printed equation (b and c are unknown), so it cannot be substituted anywhere to confirm it",
+  "shape_check": "stem hands over: the maximum height is 169 (every option must be below 169) and the ball rises from t = 0 to t = 3, so h(0.5) lies above h(0) = 25 if a student finds it. All four options lie between 25 and 169; all survive",
+  "solve": "const a=-16, m=3, H=169, t=0.5; return a*(t-m)**2 + H;",
+  "distractor_solve": {
+   "89": "const a=-16, m=3, H=169, t=0.5; return a*(2*(m-t)) + H;",
+   "129": "const a=-16, m=3, H=169, t=0.5; return a*(m-t) + H;",
+   "165": "const a=-16, H=169, t=0.5; return a*t*t + H;"
+  },
+  "distractor_meta": {
+   "89": {
+    "error_kind": "squares by doubling",
+    "direction": "over"
+   },
+   "129": {
+    "error_kind": "time offset not squared",
+    "direction": "over"
+   },
+   "165": {
+    "error_kind": "input not shifted by the vertex time",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: h(0.5) < 169 (below the maximum). All four options satisfy it; a finer bound, h(0.5) > h(0) = 25, also keeps all four. The key is the smallest, but 89 is also far below the peak, so 'well below 169' does not single it out",
+  "interior_parity_check": "interior options 89 and 129: odd integers of complexity 2 and 3; the key is extreme",
+  "arith_class_check": "all four odd; no pair sums to 1, 90, 180 or 360 (69 + 89 = 158); 69 is not a sum, difference, mean or double of two options (129 - 89 = 40, 165 - 129 = 36, 165 - 89 = 76)",
+  "dup_search": {
+   "searches": [
+    "maximum height|greatest height|highest & seconds",
+    "initial height|launched from|thrown from|height of the platform|released from & \\^2|²|quadratic"
+   ],
+   "hits": 7,
+   "nearest": "live act-math-v25 f3bea572 (release height and a second point given, maximum height asked) - runs from points to the vertex; here the vertex is given and the height at another time is asked, using only the vertex form"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "the key is the smallest option and every distractor lies above it, each from a different slip with the 2.5-second offset. A student who knows the drop from the peak is 16 times the squared offset gets the answer directly; there is no cue toward the smallest value"
+  },
+  "bounds": [
+   "25 < h(0.5) < 169 (all four options satisfy it)"
+  ]
+ },
+ {
+  "id": "SM25V-A08",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic equations: completing the square to evaluate a power of the shifted variable",
+  "difficulty": "medium",
+  "prompt": "For a real number x, the expression x^2 - 6x has the value 7. What value does (x - 3)^4 take?",
+  "choices": [
+   "4",
+   "49",
+   "100",
+   "256"
+  ],
+  "correct_answer": "256",
+  "explanation": "Completing the square, x^2 - 6x = (x - 3)^2 - 9. Since x^2 - 6x = 7, (x - 3)^2 - 9 = 7, so (x - 3)^2 = 16. Then (x - 3)^4 = ((x - 3)^2)^2 = 16^2 = 256. (Check: x^2 - 6x - 7 = 0 gives x = 7 or x = -1, and (7 - 3)^4 = (-1 - 3)^4 = 256.)\n\nChoice 4 comes from completing the square with the 9 on the wrong side, (x - 3)^2 = 7 - 9 = -2, and then squaring -2. Choice 49 comes from squaring the given value 7 instead of first finding (x - 3)^2. Choice 100 comes from adding 3, half the coefficient of x, instead of its square 9: (x - 3)^2 = 7 + 3 = 10, and 10^2 = 100.",
+  "mechanism": [
+   "complete the square on x^2 - 6x",
+   "solve for the squared binomial",
+   "square it again for the fourth power"
+  ],
+  "quantity_asked": "(x - 3)^4",
+  "ask_type": "value of a different expression in the same unknown",
+  "plugback_check": "an option is a value of (x - 3)^4, not of x; no printed equation takes an option as input, so substitution checks nothing",
+  "shape_check": "stem hands over: x is real, so (x - 3)^4 >= 0 and is a perfect fourth power of a real number. All four options are positive; all survive the sign property",
+  "solve": "const b=-6, v=7; const h=-b/2; const sq=v+h*h; return sq*sq;",
+  "distractor_solve": {
+   "4": "const b=-6, v=7; const h=-b/2; const sq=v-h*h; return sq*sq;",
+   "49": "const v=7; return v*v;",
+   "100": "const b=-6, v=7; const h=-b/2; const sq=v+h; return sq*sq;"
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "completing-the-square constant on the wrong side",
+    "direction": "under"
+   },
+   "49": {
+    "error_kind": "squares the given value",
+    "direction": "under"
+   },
+   "100": {
+    "error_kind": "adds half the coefficient instead of its square",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: (x - 3)^4 >= 0. All four options satisfy it, so it removes none; a test-wise bound such as '(x - 3)^4 exceeds 7^2' needs (x - 3)^2 > 7, which is the solving step itself",
+  "interior_parity_check": "interior options 49 and 100: integers of complexity 2 and 1 (100 has its trailing zeros stripped), gap 1; the key is extreme",
+  "arith_class_check": "all four are perfect squares (no class singles out the key); 4, 100, 256 even and 49 odd (a distractor); no pair sums to 1, 90, 180 or 360; 256 is not a sum, difference, mean or double of two options (100 + 49 = 149, 100 - 4 = 96, 49 + 4 = 53)",
+  "dup_search": {
+   "searches": [
+    "\\)\\^4|\\)⁴ & x\\^2|x²",
+    "x\\^2 ?- ?\\d+x ?= ?-?\\d"
+   ],
+   "hits": 7,
+   "nearest": "live sat-math-v24-adv 8472f2f1 (x^2 - 6x = -2, product (x - 1)(x - 2)(x - 4)(x - 5)) - pairs linear factors so each pair is x^2 - 6x plus a constant; here the given value completes a square and the squared binomial is raised to a power. Prior SM24V-C05 (quartic recognised as (x - 2)^4 + 4 at x = 2 + sqrt(5)) works on a quartic, not from a quadratic equation"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "the key is the largest option and all three distractors are slips that stop short (sign of the 9, squaring 7, using 3 instead of 9). Solving x^2 - 6x - 7 = 0 directly (x = 7 or -1) also gives 256, a valid second path. All options are perfect squares, so form gives nothing away"
+  },
+  "bounds": [
+   "(x - 3)^4 >= 0 (all four options satisfy it)"
+  ]
+ },
+ {
+  "id": "SM25V-A09",
+  "domain": "Advanced Math",
+  "subskill": "Intersections of two parabolas: the line through both intersection points",
+  "difficulty": "medium",
+  "prompt": "The parabolas y = x^2 - 16x + 2 and y = -x^2 - 4x + 16 cross each other at two points in the xy-plane. A line is drawn through both crossing points. What is the y-intercept of that line?",
+  "choices": [
+   "9",
+   "14",
+   "16",
+   "19"
+  ],
+  "correct_answer": "9",
+  "explanation": "At an intersection point, x^2 - 16x + 2 = -x^2 - 4x + 16, so 2x^2 - 12x - 14 = 0, or x^2 - 6x - 7 = 0, which gives x = 7 or x = -1. The points are (7, 49 - 112 + 2) = (7, -61) and (-1, 1 + 16 + 2) = (-1, 19). The slope of the line through them is (-61 - 19)/(7 - (-1)) = -10, so the line is y = -10x + b with 19 = -10(-1) + b, giving b = 9. The y-intercept of the line is 9.\n\nChoice 19 is the y-coordinate of the intersection point (-1, 19), not of the line's y-intercept. Choice 14 comes from subtracting the two parabolas' y-intercepts, 16 - 2, instead of finding the line. Choice 16 is the y-intercept of the second parabola, not of the line.",
+  "mechanism": [
+   "subtract the two quadratics to find the shared x-values",
+   "build the line through the two intersection points",
+   "read the line's y-intercept"
+  ],
+  "quantity_asked": "y-intercept of the line through the two intersection points",
+  "ask_type": "intercept of a line built from the solution set",
+  "plugback_check": "no printed equation contains the line's intercept; an option can only be checked after both intersection points (or the line) are found",
+  "shape_check": "the stem hands over no stated property of the line's intercept. A derived property: the line through the crossings is the average of the two equations, so at x = 0 it lies between the parabolas' values 2 and 16. The key 9 and distractor 14 lie strictly inside, 16 on the boundary; 19 lies outside, so if a student derives the averaging property, 19 is struck. Three options survive; all four are legal y-values of a line",
+  "solve": "const b1=-16,c1=2,b2=-4,c2=16; const A=2,B=b1-b2,C=c1-c2; const d=Math.sqrt(B*B-4*A*C); const x1=(-B+d)/(2*A), x2=(-B-d)/(2*A); const y1=x1*x1+b1*x1+c1, y2=x2*x2+b1*x2+c1; const m=(y1-y2)/(x1-x2); return y1-m*x1;",
+  "distractor_solve": {
+   "14": "const c1=2,c2=16; return c2-c1;",
+   "16": "const c2=16; const x=0; return -x*x-4*x+c2;",
+   "19": "const b1=-16,c1=2,b2=-4,c2=16; const A=2,B=b1-b2,C=c1-c2; const d=Math.sqrt(B*B-4*A*C); const x2=(-B-d)/(2*A); return x2*x2+b1*x2+c1;"
+  },
+  "distractor_meta": {
+   "14": {
+    "error_kind": "subtracts the parabolas' intercepts",
+    "direction": "over"
+   },
+   "16": {
+    "error_kind": "reports a parabola's y-intercept",
+    "direction": "over"
+   },
+   "19": {
+    "error_kind": "reports an intersection point's y-coordinate",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: at x = 0 the two parabolas sit at 2 and 16, and a student may guess the line lies between them, giving 2 < b < 16. The key 9 and the distractor 14 lie inside that interval (16 sits on its edge; 19, an intersection point's y-value, lies outside), so the bound does not single out the key",
+  "interior_parity_check": "interior options 14 and 16: both two-digit even integers, equal complexity; the key is extreme",
+  "arith_class_check": "two odd (9, 19) and two even (14, 16); no pair sums to 1, 90, 180 or 360; 9 is not a sum, difference, mean or double of two options (16 - 14 = 2, 19 - 16 = 3, 19 - 14 = 5)",
+  "dup_search": {
+   "searches": [
+    "y = -x\\^2|-x\\^2 \\+ & intersect",
+    "line (that )?passes through (both|the two)",
+    "parabolas|two quadratic|graphs of y = x^2 and y = ...x^2",
+    "intersect & x^2 ... x^2"
+   ],
+   "hits": 6,
+   "nearest": "prior SADV5A-07 (two parabolas intersect, sum of the y-coordinates) - stops at the points; here the line through the points is built and its intercept asked, which no point coordinate gives directly"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "a student who spots that the line through the crossings is the average of the two equations gets (2 + 16)/2 = 9 in one step; that is a valid shortcut, not a tell. The key is the smallest option, with three different distractors above it"
+  },
+  "bounds": [
+   "2 < intercept < 16 from the averaging property (9 and 14 inside, 16 on the edge, 19 outside)"
+  ]
+ },
+ {
+  "id": "SM25V-A10",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic models: maximum from two equal-height times",
+  "difficulty": "hard",
+  "prompt": "A ball is launched upward from ground level. Its height, in feet, t seconds after launch is modeled by h(t) = -16t^2 + vt, where v is a positive constant. The ball is at a height of 40 feet at two different times, and these two times are 3 seconds apart. What is the maximum height, in feet, that the ball reaches?",
+  "choices": [
+   "76",
+   "88",
+   "112",
+   "184"
+  ],
+  "correct_answer": "76",
+  "explanation": "The graph of h is symmetric about the time of the maximum, so the two times when the height is 40 feet are each 3/2 = 1.5 seconds from that time. Writing h(t) = -16(t - m)^2 + H, where H is the maximum height, gives 40 = -16(1.5)^2 + H = -36 + H, so H = 76 feet. (Check: the solutions of 16t^2 - vt + 40 = 0 differ by 3 when (v/16)^2 - 4(2.5) = 9, so (v/16)^2 = 19; the maximum of -16t^2 + vt is v^2/64 = 256(19)/64 = 76.)\n\nChoice 88 comes from adding 16 times the full 3-second gap without halving or squaring it: 40 + 16(3) = 88. Choice 112 comes from using 32 instead of 16 as the coefficient: 40 + 32(1.5)^2 = 112. Choice 184 comes from using the full 3-second gap instead of half of it: 40 + 16(3)^2 = 184.",
+  "mechanism": [
+   "equal heights are symmetric about the vertex time",
+   "half the gap is the distance to the vertex time",
+   "rise from the given height to the maximum is 16(half-gap)^2"
+  ],
+  "quantity_asked": "maximum height of the ball",
+  "ask_type": "extreme value fixed by a structural condition (the gap between equal-height times)",
+  "plugback_check": "an option is a maximum height; testing one means rebuilding the model (H gives v = 8 sqrt(H), then solving 16t^2 - vt + 40 = 0 and measuring the gap) - several non-routine steps per option, and v is not given",
+  "shape_check": "stem hands over: the ball reaches 40 feet, so the maximum is above 40. All four options are above 40; all survive",
+  "solve": "const H=40, gap=3, a=16; return H + a*(gap/2)**2;",
+  "distractor_solve": {
+   "88": "const H=40, gap=3, a=16; return H + a*gap;",
+   "112": "const H=40, gap=3, a=16; return H + 2*a*(gap/2)**2;",
+   "184": "const H=40, gap=3, a=16; return H + a*gap**2;"
+  },
+  "distractor_meta": {
+   "88": {
+    "error_kind": "gap neither halved nor squared",
+    "direction": "over"
+   },
+   "112": {
+    "error_kind": "coefficient doubled",
+    "direction": "over"
+   },
+   "184": {
+    "error_kind": "full gap used instead of half",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: the maximum exceeds the given height 40. All four options exceed 40, so the bound removes none; the key 76 is not the only option near 40 (88 is 12 above it). No cheaper bound separates the key: v is not given (it is irrational, 16 sqrt(19))",
+  "interior_parity_check": "interior options 88 and 112: two- and three-digit even integers, complexity 2 and 3; the key is extreme",
+  "arith_class_check": "all four are multiples of 4 and none is a multiple of 10; no pair sums to 1, 90, 180 or 360 (76 + 88 = 164, 88 + 112 = 200); 76 is not a sum, difference, mean or double of two options (112 - 88 = 24, 184 - 112 = 72, 184 - 88 = 96)",
+  "dup_search": {
+   "searches": [
+    "apart|differ & second & height",
+    "two (different )?times & height"
+   ],
+   "hits": 3,
+   "nearest": "live math-v3 de15d4d6 (model h(t) = -5t^2 + 30t - 20 given, two times when h = a value) - there the model is given and the times are found; here only the gap between the times is given and the maximum is recovered from symmetry"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "the hard step is using symmetry about the vertex time (half-gap 1.5 s) rather than hunting for v, which is irrational here; the three distractors are distinct slips with the half-gap and the coefficient, all above the key, with the key not the roundest option"
+  },
+  "bounds": [
+   "maximum > 40 (all four options satisfy it)"
+  ]
+ },
+ {
+  "id": "SM25V-A11",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic functions: secant slope (average rate of change) fixes an input",
+  "difficulty": "medium",
+  "prompt": "For the function f(x) = x^2 + 4x + 10, the slope of the line through the points (3, f(3)) and (k, f(k)) on its graph is 15, where k is a constant. What is f(k)?",
+  "choices": [
+   "8",
+   "58",
+   "75",
+   "106"
+  ],
+  "correct_answer": "106",
+  "explanation": "The slope is (f(k) - f(3))/(k - 3) = ((k^2 + 4k + 10) - (9 + 12 + 10))/(k - 3) = (k^2 + 4k - 21)/(k - 3) = ((k - 3)(k + 7))/(k - 3) = k + 7. Setting k + 7 = 15 gives k = 8, so f(k) = f(8) = 64 + 32 + 10 = 106.\n\nChoice 8 is the value of k, not f(k). Choice 58 comes from computing 8^2 as 2(8) = 16: 16 + 32 + 10 = 58. Choice 75 is the rise f(8) - f(3) = 15(8 - 3) = 75, which leaves out f(3) = 31.",
+  "mechanism": [
+   "secant slope of a quadratic factors to k + 7",
+   "solve for the second input",
+   "evaluate the quadratic there"
+  ],
+  "quantity_asked": "f(k), the output at the second point",
+  "ask_type": "value of the function at an input fixed by a rate condition",
+  "plugback_check": "an option is an output; testing it means solving x^2 + 4x + 10 = option for x and then computing the slope from x = 3 - a quadratic solve plus a slope per option, not a routine substitution",
+  "shape_check": "stem hands over a positive secant slope (15) from x = 3, and f(3) = 31 is computable at a glance. If k > 3 then f(k) > 31, which 8 violates; but the stem does not say k > 3 (k < 3 with a positive slope would need f(k) < 31). Options 58, 75, 106 survive every reading; at least three survive",
+  "solve": "const f=x=>x*x+4*x+10; const m=15, p=3; const k=m-(p+4); return f(k);",
+  "distractor_solve": {
+   "8": "const m=15, p=3; return m-(p+4);",
+   "58": "const m=15, p=3; const k=m-(p+4); return 2*k+4*k+10;",
+   "75": "const m=15, p=3; const k=m-(p+4); return m*(k-p);"
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "reports the input instead of the output",
+    "direction": "under"
+   },
+   "58": {
+    "error_kind": "squares by doubling",
+    "direction": "under"
+   },
+   "75": {
+    "error_kind": "rise reported without the starting value",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: with a positive slope and a later input, f(k) > f(3) = 31. The key 106 and the distractors 58 and 75 all lie on the key's side of it, so it removes only 8 (and only for a student who assumes k > 3)",
+  "interior_parity_check": "interior options 58 and 75: two-digit integers, equal complexity; the key is extreme",
+  "arith_class_check": "three even (8, 58, 106) and one odd (75, a distractor); no pair sums to 1, 90, 180 or 360; 106 is not a sum, difference, mean or double of two options (75 + 8 = 83, 58 + 8 = 66, 75 - 58 = 17, 58 + 75 = 133)",
+  "dup_search": {
+   "searches": [
+    "average rate of change & \\^2|²",
+    "slope & f\\(k\\)|\\(k,  & \\^2"
+   ],
+   "hits": 6,
+   "nearest": "live sat-math-v12 bef96a62 (average rate of change of x^2 - 4x from 1 to 5) - computes the rate from two given inputs; here the rate is given, the unknown input is recovered by factoring, and the output is asked"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "the key is the largest option; every distractor stops short (k itself, a squaring slip, the rise without f(3)). The bound f(k) > 31 needs k > 3, which the stem does not give, and still leaves three options"
+  },
+  "bounds": [
+   "f(k) > 31 if k > 3 (58, 75, 106 satisfy it)"
+  ]
+ },
+ {
+  "id": "SM25V-A12",
+  "domain": "Advanced Math",
+  "subskill": "Axis of symmetry and zeros: the second zero by symmetry",
+  "difficulty": "medium",
+  "prompt": "A quadratic function f has a zero at x = -3, and the graph of y = f(x) in the xy-plane is symmetric about the line x = 2. If f(0) = -42, what is the value of f(5)?",
+  "choices": [
+   "-50",
+   "-42",
+   "-32",
+   "-12"
+  ],
+  "correct_answer": "-32",
+  "explanation": "The zeros of f are symmetric about x = 2. The zero x = -3 is 5 units to the left of 2, so the other zero is 5 units to the right, at x = 7. So f(x) = a(x + 3)(x - 7). Since f(0) = a(3)(-7) = -21a = -42, a = 2. Then f(5) = 2(5 + 3)(5 - 7) = 2(8)(-2) = -32.\n\nChoice -50 is f(2), the value at the vertex, not at x = 5. Choice -42 is f(4), the value at the point symmetric to x = 0, which equals f(0) rather than f(5). Choice -12 comes from treating f as linear between the known points (0, -42) and (7, 0): -42 + 5(42/7) = -12.",
+  "mechanism": [
+   "axis of symmetry reflects one zero to the other",
+   "factored form with unknown leading coefficient",
+   "y-intercept fixes a, then evaluate"
+  ],
+  "quantity_asked": "f(5)",
+  "ask_type": "value of the function at an input not given",
+  "plugback_check": "an option is an output at x = 5; no printed equation contains f(5) and f is not given, so no option can be substituted to check it",
+  "shape_check": "stem hands over: f(0) = -42 < 0 with 0 between the zeros, so f is negative between -3 and 7 and the graph opens upward; x = 5 is between the zeros, so -50 <= f(5) < 0 once the vertex is found. All four options are negative and at least -50 (-50 is the boundary value at the vertex); all survive",
+  "solve": "const z1=-3, ax=2, f0=-42, x=5; const z2=2*ax-z1; const a=f0/((0-z1)*(0-z2)); return a*(x-z1)*(x-z2);",
+  "distractor_solve": {
+   "-50": "const z1=-3, ax=2, f0=-42; const z2=2*ax-z1; const a=f0/((0-z1)*(0-z2)); return a*(ax-z1)*(ax-z2);",
+   "-42": "const z1=-3, ax=2, f0=-42; const z2=2*ax-z1; const a=f0/((0-z1)*(0-z2)); const x=2*ax-0; return a*(x-z1)*(x-z2);",
+   "-12": "const z1=-3, ax=2, f0=-42, x=5; const z2=2*ax-z1; return f0 + x*(0-f0)/(z2-0);"
+  },
+  "distractor_meta": {
+   "-50": {
+    "error_kind": "reports the vertex value",
+    "direction": "under"
+   },
+   "-42": {
+    "error_kind": "evaluates at the reflected input",
+    "direction": "under"
+   },
+   "-12": {
+    "error_kind": "linear interpolation between known points",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options -42 and -32: both two-digit negative integers, equal complexity; the key is not the cleaner one",
+  "arith_class_check": "all four even and negative; -32 is the only power of 2 but -12 and -32 are both multiples of 4 and -42, -50 are not - no class holds the key alone; no pair sums to 1, 90, 180 or 360; -32 is not a sum, difference, mean or double of two options (-42 - (-50) = 8, -12 - (-42) = 30, mean of -50 and -12 = -31)",
+  "dup_search": {
+   "searches": [
+    "symmetric about|line of symmetry|axis & zero|x-intercept",
+    "symmetric about|line of symmetry & f\\(0\\)"
+   ],
+   "hits": 13,
+   "nearest": "live sat item 'crosses the x-axis at x = -1 and 7 and passes through (1, -24); y = a(x - h)^2 + k, find k' - there both zeros are given; here only one zero and the axis are given, so the second zero must come from symmetry, and a value at a third input is asked"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "all four options are negative and lie above the vertex value, so sign and the minimum bound remove nothing. -42 repeats the given f(0) (it is f(4)), which a test-wise student may avoid; the key is interior with two distractors below and one above"
+  },
+  "bounds": [
+   "-50 <= f(5) < 0 (all four options satisfy it)"
+  ]
+ },
+ {
+  "id": "SM25V-A13",
+  "domain": "Advanced Math",
+  "subskill": "Axis of symmetry: two parabolas sharing a line of symmetry",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = x^2 + bx + 10 and g(x) = 2x^2 - 16x + 5, where b is a constant. In the xy-plane, the graphs of y = f(x) and y = g(x) have the same line of symmetry. What is the distance between the vertices of the two graphs?",
+  "choices": [
+   "21",
+   "33",
+   "53",
+   "85"
+  ],
+  "correct_answer": "21",
+  "explanation": "The line of symmetry of the graph of g is x = -(-16)/(2 * 2) = 4, with vertex g(4) = 2(16) - 16(4) + 5 = 32 - 64 + 5 = -27. The graph of f has the same line of symmetry, so -b/2 = 4 and b = -8; its vertex is at f(4) = 16 - 32 + 10 = -6. Both vertices lie on the line x = 4, so the distance between them is -6 - (-27) = 21.\n\nChoice 85 comes from a sign slip in matching the axes, taking b = 8, which gives f(4) = 16 + 32 + 10 = 58 and a distance of 58 - (-27) = 85. Choice 33 comes from adding the distances of the two vertices from the x-axis, 6 + 27, although both vertices are below the x-axis. Choice 53 comes from leaving the leading coefficient 2 out of the vertex value of g, which gives 5 - (-16)^2/4 = -59 and a distance of 59 - 6 = 53.",
+  "mechanism": [
+   "axis of symmetry from -b/(2a)",
+   "shared axis fixes the unknown coefficient",
+   "vertical gap between two vertices on one line"
+  ],
+  "quantity_asked": "distance between the two vertices",
+  "ask_type": "distance between features of two functions",
+  "plugback_check": "a distance appears in no printed equation; no option can be substituted anywhere before both vertices are found",
+  "shape_check": "stem hands over: both graphs open upward and share an axis. A distance is positive: all four options are positive; all survive. No option exceeds a bound readable from the stem",
+  "solve": "const ag=2, bg=-16, cg=5, cf=10; const h=-bg/(2*ag); const b=-2*h; const vf=h*h+b*h+cf, vg=ag*h*h+bg*h+cg; return Math.abs(vf-vg);",
+  "distractor_solve": {
+   "33": "const ag=2, bg=-16, cg=5, cf=10; const h=-bg/(2*ag); const b=-2*h; const vf=h*h+b*h+cf, vg=ag*h*h+bg*h+cg; return Math.abs(vf)+Math.abs(vg);",
+   "53": "const ag=2, bg=-16, cg=5, cf=10; const h=-bg/(2*ag); const b=-2*h; const vf=h*h+b*h+cf; const vg=cg-bg*bg/4; return Math.abs(vf-vg);",
+   "85": "const ag=2, bg=-16, cg=5, cf=10; const h=-bg/(2*ag); const b=2*h; const vf=h*h+b*h+cf, vg=ag*h*h+bg*h+cg; return Math.abs(vf-vg);"
+  },
+  "distractor_meta": {
+   "33": {
+    "error_kind": "adds magnitudes across the x-axis",
+    "direction": "over"
+   },
+   "53": {
+    "error_kind": "leading coefficient dropped from vertex formula",
+    "direction": "over"
+   },
+   "85": {
+    "error_kind": "sign slip fixing the unknown coefficient",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: a distance is positive, and since both graphs open upward with vertices below their y-intercepts there is no cheap upper bound. All four options are positive; the key is the smallest but nothing in the stem says the vertices are close",
+  "interior_parity_check": "interior options 33 and 53: both two-digit odd integers, equal complexity; the key is extreme",
+  "arith_class_check": "all four odd; 21 and 33 multiples of 3, 85 a multiple of 5, 53 prime; no pair sums to 1, 90, 180 or 360 (33 + 53 = 86); 21 is not a sum, difference, mean or double of two options (53 - 33 = 20, 85 - 53 = 32, 85 - 33 = 52)",
+  "dup_search": {
+   "searches": [
+    "same (axis|vertex|line of symmetry)|share (the|an) axis|axis of symmetry|line of symmetry",
+    "vertices|both vertices|distance between & \\^2|²"
+   ],
+   "hits": 3,
+   "nearest": "live sat-math-v24-adv 7b0c5276 (greatest vertical gap between a line and a parabola between their crossings) - a line-parabola gap maximized over x; here two parabolas, a shared axis fixes b, and the gap is at one x"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "two real steps (axis from g, then b and both vertex values); the key is the smallest option and the three distractors are different slips (sign of b, adding magnitudes across the x-axis, dropping a) that all enlarge the gap"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM25V-A14",
+  "domain": "Advanced Math",
+  "subskill": "Discriminant: a parabola tangent to the x-axis through two given points",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = ax^2 + bx + c, where a, b, and c are constants and a > 0, crosses the y-axis at (0, 64), passes through the point (2, 4), and intersects the x-axis at exactly one point. What is the sum of all possible values of a?",
+  "choices": [
+   "25",
+   "34",
+   "94",
+   "196"
+  ],
+  "correct_answer": "34",
+  "explanation": "The y-intercept gives c = 64. The point (2, 4) gives 4a + 2b + 64 = 4, so b = -30 - 2a. The graph meets the x-axis at exactly one point, so the discriminant is 0: b^2 - 4ac = 0, or (-30 - 2a)^2 = 256a. Expanding, 4a^2 + 120a + 900 = 256a, so 4a^2 - 136a + 900 = 0, or a^2 - 34a + 225 = 0. Its solutions are a = 9 and a = 25; both are positive and give valid parabolas, y = 9(x - 8/3)^2 and y = 25(x - 1.6)^2, each passing through (0, 64) and (2, 4). The sum of all possible values of a is 9 + 25 = 34.\n\nChoice 25 comes from finding only the parabola y = 25(x - 1.6)^2 and missing the second one. Choice 94 comes from a sign error in solving for b, using b = -30 + 2a, which leads to a^2 - 94a + 225 = 0. Choice 196 comes from substituting x = 2 into ax^2 as 2a instead of 4a, which gives b = -30 - a and a^2 - 196a + 900 = 0.",
+  "mechanism": [
+   "intercept and point fix c and b in terms of a",
+   "one x-intercept means discriminant zero",
+   "quadratic in the parameter a, summed over both cases"
+  ],
+  "quantity_asked": "sum of all possible values of the leading coefficient a",
+  "ask_type": "sum of parameter values over cases",
+  "plugback_check": "an option is a sum of a-values, not an a-value; substituting an option for a (e.g. a = 34) gives b = -98 and discriminant 9604 - 8704 = 900, not 0, so no option can be confirmed by substitution",
+  "shape_check": "stem hands over: a > 0 (opens upward), the graph touches the x-axis, and it passes through (0, 64) and (2, 4). A sum of positive a-values is positive: all four options are positive; all survive",
+  "solve": "const c=64, X=2, Y=4; const q=(Y-c)/X; const A=X*X, B=-2*q*X-4*c, C=q*q; const d=Math.sqrt(B*B-4*A*C); const roots=[(-B+d)/(2*A), (-B-d)/(2*A)]; return roots.filter(a=>a>0).reduce((s,a)=>s+a,0);",
+  "distractor_solve": {
+   "25": "const c=64, X=2, Y=4; const q=(Y-c)/X; const A=X*X, B=-2*q*X-4*c, C=q*q; const d=Math.sqrt(B*B-4*A*C); return (-B+d)/(2*A);",
+   "94": "const c=64, X=2, Y=4; const q=(Y-c)/X; const A=X*X, B=2*q*X-4*c; return -B/A;",
+   "196": "const c=64, X=2, Y=4; const q=(Y-c)/X; const A=1, B=-2*q-4*c; return -B/A;"
+  },
+  "distractor_meta": {
+   "25": {
+    "error_kind": "only one case of the parameter",
+    "direction": "under"
+   },
+   "94": {
+    "error_kind": "sign slip isolating b",
+    "direction": "over"
+   },
+   "196": {
+    "error_kind": "x^2 evaluated as 2x",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 34 and 94: both two-digit even integers, equal complexity; the key is not the cleaner one",
+  "arith_class_check": "three even (34, 94, 196) and one odd (25, a distractor); 25 and 196 are perfect squares, 34 and 94 are not; no pair sums to 1, 90, 180 or 360; 34 is not a sum, difference, mean or double of two options (94 - 25 = 69, 196 - 94 = 102, mean of 25 and 94 = 59.5)",
+  "dup_search": {
+   "searches": [
+    "touch|tangent to the x-axis|exactly one x-intercept|one point on the x-axis|meets the x-axis at exactly",
+    "sum of all possible values of a\\b"
+   ],
+   "hits": 23,
+   "nearest": "live sat-math-v18-adv 7bffd615 (polynomial touches the x-axis at a given x) - the touching point is given there; here neither the vertex nor b is given and the tangency condition produces a quadratic in a with two valid roots. The other hits are circles or geometry"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "hard step: setting the discriminant to 0 after expressing b in a, and keeping both roots (both a > 0 work). The live 'sum of k values' family uses a printed k in the coefficients; here the parameter is the leading coefficient and must first be isolated from a point"
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM25V-A15",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic functions: build the function from three values, then find its minimum",
+  "difficulty": "medium",
+  "prompt": "Three values of the quadratic function f are known: f(-1) = 17, f(0) = 3, and f(1) = -7. What is the minimum value of f?",
+  "choices": [
+   "-69",
+   "-33",
+   "-27",
+   "-15"
+  ],
+  "correct_answer": "-15",
+  "explanation": "Write f(x) = ax^2 + bx + c. From f(0) = 3, c = 3. Then f(1) = a + b + 3 = -7 and f(-1) = a - b + 3 = 17, so a + b = -10 and a - b = 14. Adding gives 2a = 4, so a = 2, and b = -12. So f(x) = 2x^2 - 12x + 3, whose vertex is at x = -(-12)/(2 * 2) = 3. The minimum value is f(3) = 2(9) - 12(3) + 3 = 18 - 36 + 3 = -15.\n\nChoice -69 comes from taking b = f(1) - f(-1) = -24 without dividing by 2, which puts the vertex at x = 6 and gives f(6) = 72 - 144 + 3 = -69. Choice -33 comes from leaving the leading coefficient out of the vertex value: 3 - (-12)^2/4 = -33. Choice -27 comes from forgetting to square x = 3 when evaluating f(3): 2(3) - 12(3) + 3 = -27.",
+  "mechanism": [
+   "recover a, b, c from values at -1, 0, 1",
+   "sum and difference of symmetric values",
+   "vertex of the recovered quadratic"
+  ],
+  "quantity_asked": "minimum value of f",
+  "ask_type": "extreme value of a function recovered from data",
+  "plugback_check": "no printed equation contains the minimum; an option cannot be confirmed without first recovering f",
+  "shape_check": "stem hands over: f has a minimum (opens upward) and takes the value -7 at x = 1, so the minimum is at most -7. All four options are at most -7 (-7 is the boundary case of a vertex at x = 1); all survive",
+  "solve": "const fm=17, f0=3, f1=-7; const c=f0, a=(f1+fm)/2-c, b=(f1-fm)/2; const h=-b/(2*a); return a*h*h+b*h+c;",
+  "distractor_solve": {
+   "-69": "const fm=17, f0=3, f1=-7; const c=f0, a=(f1+fm)/2-c, b=f1-fm; const h=-b/(2*a); return a*h*h+b*h+c;",
+   "-33": "const fm=17, f0=3, f1=-7; const c=f0, b=(f1-fm)/2; return c-b*b/4;",
+   "-27": "const fm=17, f0=3, f1=-7; const c=f0, a=(f1+fm)/2-c, b=(f1-fm)/2; const h=-b/(2*a); return a*h+b*h+c;"
+  },
+  "distractor_meta": {
+   "-69": {
+    "error_kind": "difference of symmetric values not halved",
+    "direction": "under"
+   },
+   "-33": {
+    "error_kind": "leading coefficient dropped from vertex formula",
+    "direction": "under"
+   },
+   "-27": {
+    "error_kind": "vertex x not squared when evaluating",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: the minimum is at most the smallest given value, f(1) = -7. All four options are below -7, so the bound removes none; the key -15 is the largest option but no stem cue says the minimum lies close to -7 rather than far below it",
+  "interior_parity_check": "interior options -33 and -27: both two-digit negative integers, equal complexity; the key is extreme",
+  "arith_class_check": "all four odd and all multiples of 3; no pair sums to 1, 90, 180 or 360; -15 is not a sum, difference, mean or double of two options (-27 - (-33) = 6, -33 - (-69) = 36, mean of -33 and -27 = -30)",
+  "dup_search": {
+   "searches": [
+    "table & quadratic",
+    "table & minimum|maximum|vertex",
+    "f\\(-1\\) & f\\(0\\)"
+   ],
+   "hits": 3,
+   "nearest": "live act-math-v1 e8f17f52 (f(0) = 3, f(1) = 6, f(2) = 13, find f(4)) - recovers the coefficients and evaluates at a fourth input; here the symmetric values at -1, 0, 1 give a and b by sum and difference, and the asked quantity is the vertex value, which needs the axis -b/(2a). Also live 'f(0) = 7, f(1) + f(-1) = 4, find f(3) + f(-3)' uses only the even part"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "the key is the largest option; all three distractors are slips that push the minimum too low (b not halved, a dropped, x not squared). The cheap bound min <= -7 keeps all four"
+  },
+  "bounds": [
+   "minimum <= f(1) = -7 (all four options satisfy it)"
+  ]
+ }
+]

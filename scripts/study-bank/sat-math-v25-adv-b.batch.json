@@ -1,0 +1,932 @@
+[
+ {
+  "id": "SM25V-B01",
+  "domain": "Advanced Math",
+  "subskill": "Exponential function: growth factor recovered from an average rate of change",
+  "difficulty": "medium",
+  "prompt": "An exponential function g satisfies g(x) = a(b)^x for positive constants a and b, with g(0) = 4. Over the interval from x = 0 to x = 2, the average rate of change of g is 10. Over the next interval, from x = 2 to x = 4, what is the average rate of change of g?",
+  "choices": [
+   "35",
+   "40",
+   "60",
+   "72"
+  ],
+  "correct_answer": "60",
+  "explanation": "Since the average rate of change from x = 0 to x = 2 is 10, g(2) - g(0) = 2(10) = 20, so g(2) = 4 + 20 = 24. Over each 2-unit interval g is multiplied by b^2 = g(2)/g(0) = 24/4 = 6, so g(4) = 24(6) = 144. The average rate of change from x = 2 to x = 4 is (144 - 24)/(4 - 2) = 120/2 = 60.\n\nChoice 35 is the average rate of change from x = 0 to x = 4, (144 - 4)/4, instead of from x = 2 to x = 4. Choice 40 comes from taking g(2) = 20, the change itself, instead of 4 + 20; that gives a factor of 5, g(4) = 100, and (100 - 20)/2 = 40. Choice 72 comes from dividing g(4) = 144 by 2 without subtracting g(2).",
+  "mechanism": [
+   "average rate of change gives g(2)",
+   "two-step growth factor b^2 from g(2)/g(0)",
+   "rate over the next interval"
+  ],
+  "quantity_asked": "average rate of change of g on [2, 4]",
+  "ask_type": "derived rate on a different interval",
+  "plugback_check": "An option is a rate on [2, 4]; to test it a student needs g(2) and the factor b^2, which is the whole solution. No printed equation accepts an option in one substitution.",
+  "shape_check": "Stem hands over: g is exponential with positive a and positive rate on [0, 2], so g is increasing and convex; the rate on [2, 4] must exceed 10. All four options (35, 40, 60, 72) exceed 10. No cap is stated. All four survive.",
+  "solve": "const g0=4, r=10; const g2=g0+2*r; const q=g2/g0; const g4=g2*q; return (g4-g2)/2;",
+  "distractor_solve": {
+   "35": "const g0=4, r=10; const g2=g0+2*r; const g4=g2*(g2/g0); return (g4-g0)/4;",
+   "40": "const g0=4, r=10; const g2=2*r; const g4=g2*(g2/g0); return (g4-g2)/2;",
+   "72": "const g0=4, r=10; const g2=g0+2*r; const g4=g2*(g2/g0); return g4/2;"
+  },
+  "distractor_meta": {
+   "35": {
+    "error_kind": "wrong interval for the average",
+    "direction": "under"
+   },
+   "40": {
+    "error_kind": "change taken as the output",
+    "direction": "under"
+   },
+   "72": {
+    "error_kind": "output not differenced",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior 40 and 60: both integers, complexity 1 and 1; tie",
+  "arith_class_check": "all four integers; multiples of 5: 35, 40, 60; multiples of 12: 60, 72; key is not alone in any class",
+  "dup_search": {
+   "searches": [
+    "average rate of change & b^x|^x|exponential",
+    "rate of change & from x = 2 to x = 4"
+   ],
+   "hits": 1,
+   "nearest": "live act-math-v18 852ef7f4: f(x) = a*2^x with known base, rate on [1, 4] gives a; mine has unknown base, recovers b^2 from the rate and asks the rate on the next interval"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Two real steps (recover g(2) and the factor, then the next rate). A student who assumes the rate stays 10 gets no option; the convexity bound (> 10) keeps all four."
+  },
+  "bounds": [
+   "rate on [2, 4] > 10 by convexity: all options pass"
+  ]
+ },
+ {
+  "id": "SM25V-B02",
+  "domain": "Advanced Math",
+  "subskill": "Radical expressions: difference of squares with square roots",
+  "difficulty": "medium",
+  "prompt": "Two positive numbers x and y have square roots whose sum is 8, so sqrt(x) + sqrt(y) = 8, and x exceeds y by 16. What is the product xy?",
+  "choices": [
+   "15",
+   "144",
+   "225",
+   "960"
+  ],
+  "correct_answer": "225",
+  "explanation": "Write x - y as a difference of squares: x - y = (sqrt(x) + sqrt(y))(sqrt(x) - sqrt(y)). So 16 = 8(sqrt(x) - sqrt(y)), and sqrt(x) - sqrt(y) = 2. Adding and subtracting the two equations gives sqrt(x) = 5 and sqrt(y) = 3, so x = 25 and y = 9. Then xy = 25(9) = 225.\n\nChoice 15 is the product sqrt(x) times sqrt(y) = 5(3), which is sqrt(xy), not xy. Choice 144 comes from taking sqrt(x) - sqrt(y) = sqrt(16) = 4, which gives sqrt(x) = 6, sqrt(y) = 2, and xy = 36(4). Choice 960 comes from treating sqrt(x) + sqrt(y) = 8 as x + y = 64, which with x - y = 16 gives x = 40, y = 24, and xy = 960.",
+  "mechanism": [
+   "difference of squares in sqrt(x), sqrt(y)",
+   "divide to get sqrt(x) - sqrt(y)",
+   "product xy from recovered roots"
+  ],
+  "quantity_asked": "the product xy",
+  "ask_type": "product of the solved pair",
+  "plugback_check": "An option is xy, not x or y; checking it needs x and y separately, i.e. the full solution. No printed equation takes an option in one substitution.",
+  "shape_check": "Stem hands over: x, y positive, x > y (x - y = 16), sqrt(x) and sqrt(y) each less than 8 so x, y < 64 and xy < 4096. All four options satisfy these. (AM-GM would cap xy at 256, which removes 960, but that is not handed over; key 225, 144 and 15 survive it anyway.) At least three options survive every property.",
+  "solve": "const S=8, D=16; const d=D/S; const rx=(S+d)/2, ry=(S-d)/2; return rx*rx*ry*ry;",
+  "distractor_solve": {
+   "15": "const S=8, D=16; const d=D/S; return ((S+d)/2)*((S-d)/2);",
+   "144": "const S=8, D=16; const d=Math.sqrt(D); const rx=(S+d)/2, ry=(S-d)/2; return rx*rx*ry*ry;",
+   "960": "const S=8, D=16; const sum=S*S; const x=(sum+D)/2, y=(sum-D)/2; return x*y;"
+  },
+  "distractor_meta": {
+   "15": {
+    "error_kind": "roots not squared",
+    "direction": "under"
+   },
+   "144": {
+    "error_kind": "square root of the difference",
+    "direction": "under"
+   },
+   "960": {
+    "error_kind": "radicals dropped from the sum",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior 144 and 225: both three-digit integers, complexity 3 and 3; tie",
+  "arith_class_check": "perfect squares 144 and 225 (two members); odd 15 and 225; multiples of 3: 15, 144, 225, 960 all; key alone in no class",
+  "dup_search": {
+   "searches": [
+    "sqrt(x) + sqrt(y)",
+    "x - y = & sqrt"
+   ],
+   "hits": 0,
+   "nearest": "no hit; nearest by topic is live 'If 2^x * 2^y = 32 and 2^x/2^y = 2, xy' (exponent rules, not radicals; different chain)"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Two steps: factor x - y and solve the root system, then form xy. The perfect-square options 144 and 225 are paired so 'xy should be a square' does not single the key out."
+  },
+  "bounds": [
+   "x, y < 64",
+   "xy > 0"
+  ]
+ },
+ {
+  "id": "SM25V-B03",
+  "domain": "Advanced Math",
+  "subskill": "Exponential growth: growth factor from the ratio of successive increases",
+  "difficulty": "medium",
+  "prompt": "The number of bacteria in a culture is multiplied by the same factor each hour. During the second hour the number of bacteria increased by 480, and during the third hour the number increased by 720. How many bacteria were in the culture at the end of the fourth hour?",
+  "choices": [
+   "2160",
+   "2600",
+   "3120",
+   "3240"
+  ],
+  "correct_answer": "3240",
+  "explanation": "Let the culture start with P bacteria and be multiplied by b each hour. The increase during hour n is P(b)^(n - 1)(b - 1), so each hourly increase is b times the one before: b = 720/480 = 1.5. The increase during the second hour is P(1.5)(0.5) = 0.75P = 480, so P = 640. At the end of the fourth hour there are 640(1.5)^4 = 640(5.0625) = 3240 bacteria.\n\nChoice 2160 is 640(1.5)^3, the number at the end of the third hour. Choice 2600 is 3240 - 640, the total increase over the four hours rather than the number of bacteria. Choice 3120 comes from finding 2160 at the end of the third hour but then assuming the hourly increase grows by the same amount each hour, 720 + 240 = 960, instead of by the same factor.",
+  "mechanism": [
+   "ratio of successive increments gives the factor",
+   "first increment P b (b - 1) solved for P",
+   "population after n periods"
+  ],
+  "quantity_asked": "number of bacteria at the end of hour 4",
+  "ask_type": "model output at a later time from increments",
+  "plugback_check": "An option is P(4); testing it means dividing by b^4 and checking the increments, which requires b and P, i.e. the full solution. Nothing printed takes an option in one step.",
+  "shape_check": "Stem hands over: increasing, increments growing (convex). So the hour-4 increase exceeds 720 and P(4) > 480 + 720 + 720 = 1920. All four options exceed 1920; all four survive. No cap stated.",
+  "solve": "const d2=480, d3=720; const b=d3/d2; const P=d2/(b*(b-1)); return P*b**4;",
+  "distractor_solve": {
+   "2160": "const d2=480, d3=720; const b=d3/d2; const P=d2/(b*(b-1)); return P*b**3;",
+   "2600": "const d2=480, d3=720; const b=d3/d2; const P=d2/(b*(b-1)); return P*b**4 - P;",
+   "3120": "const d2=480, d3=720; const b=d3/d2; const P=d2/(b*(b-1)); return P*b**3 + (d3 + (d3 - d2));"
+  },
+  "distractor_meta": {
+   "2160": {
+    "error_kind": "one period short",
+    "direction": "under"
+   },
+   "2600": {
+    "error_kind": "growth reported instead of total",
+    "direction": "under"
+   },
+   "3120": {
+    "error_kind": "additive increments for multiplicative",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: increments grow, so P(4) > 480 + 720 + 720 = 1920. Every option (2160, 2600, 3120) lies on the key's side of it; it separates nothing. A finer one-step estimate (P(4) > P(3) + 720) needs P(3), which is the solution.",
+  "interior_parity_check": "interior 2600 and 3120: both four-digit integers, complexity 2 and 3 (within 1); key is the largest, not interior",
+  "arith_class_check": "all multiples of 40 (2160, 2600, 3120, 3240); multiples of 120: 2160, 3120, 3240; key alone in no class",
+  "dup_search": {
+   "searches": [
+    "exponential|multiplied & increased by ... during the second hour|f(2) - f(1)",
+    "f(1) + f(2)|f(2) - f(1)|P(2) - P(1)"
+   ],
+   "hits": 2,
+   "nearest": "SM24V-B13 / live 9295d3dc: ratio of SUMS f(1)+f(2), f(3)+f(4) gives b^2, ask f(5); mine is a ratio of single-step INCREMENTS P b^(n-1)(b - 1), solving for P through the (b - 1) factor, in context"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "Key is largest; the three distractors are all plausible partial or misapplied answers below it. The additive-increment option 3120 sits close to the key, which a test-wise student could read as a near pair; neither is computable without the factor."
+  },
+  "bounds": [
+   "P(4) > 1920"
+  ]
+ },
+ {
+  "id": "SM25V-B04",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: equation quadratic in x^(1/3) with a negative cube root",
+  "difficulty": "hard",
+  "prompt": "In the equation x^(2/3) + 2x^(1/3) = 8, x^(1/3) denotes the real cube root of x, which may be negative. Adding together every real number x that satisfies this equation gives what total?",
+  "choices": [
+   "-56",
+   "-8",
+   "-2",
+   "8"
+  ],
+  "correct_answer": "-56",
+  "explanation": "Let u = x^(1/3), so x^(2/3) = u^2 and the equation becomes u^2 + 2u - 8 = 0, or (u + 4)(u - 2) = 0. So u = 2 or u = -4. A cube root can be negative, so both values give a real solution: x = 2^3 = 8 and x = (-4)^3 = -64. The sum of the solutions is 8 + (-64) = -56.\n\nChoice 8 comes from rejecting u = -4, as if a cube root could not be negative, and keeping only x = 8. Choice -8 comes from adding the two values of u first and cubing the total, (2 + (-4))^3, but the sum of two cubes is not the cube of their sum. Choice -2 is the sum of the two values of u, 2 + (-4), without cubing them to get x.",
+  "mechanism": [
+   "substitution u = x^(1/3)",
+   "negative cube root kept as a real solution",
+   "sum of cubed roots"
+  ],
+  "quantity_asked": "sum of all real solutions x",
+  "ask_type": "sum of solutions with a root that must not be rejected",
+  "plugback_check": "An option is a sum, not a solution. Substituting -56, -8, -2 or 8 for x: 8 does satisfy the equation, so plug-back leads a student TO a distractor; confirming the sum needs both solutions. No order of substitution reaches the key.",
+  "shape_check": "Stem hands over: x^(1/3) is the real cube root (defined for negative x). Since x^(2/3) >= 0, x^(1/3) <= 4 and every solution is <= 64, so the sum is at most 128; also the sum of solutions is not forced positive. All four options pass. No sign, monotonicity or symmetry property is stated. All four survive.",
+  "solve": "const b=2, c=-8; const d=Math.sqrt(b*b-4*c); const u1=(-b+d)/2, u2=(-b-d)/2; return u1**3 + u2**3;",
+  "distractor_solve": {
+   "8": "const b=2, c=-8; const d=Math.sqrt(b*b-4*c); const us=[(-b+d)/2, (-b-d)/2].filter(u=>u>0); return us.reduce((s,u)=>s+u**3,0);",
+   "-2": "const b=2, c=-8; const d=Math.sqrt(b*b-4*c); return (-b+d)/2 + (-b-d)/2;",
+   "-8": "const b=2, c=-8; const d=Math.sqrt(b*b-4*c); const u1=(-b+d)/2, u2=(-b-d)/2; return (u1+u2)**3;"
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "valid negative root rejected",
+    "direction": "over"
+   },
+   "-2": {
+    "error_kind": "substitution not undone",
+    "direction": "over"
+   },
+   "-8": {
+    "error_kind": "cube of the sum for sum of cubes",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: x^(2/3) >= 0 gives x^(1/3) <= 4, so each solution is at most 64 and the sum is at most 128; every option, key and distractors alike, lies on the key's side. The sign of the sum is not readable from the stem without solving (u1 u2 = -8 says one root is negative, not which dominates).",
+  "interior_parity_check": "interior -8 and -2: both one-digit integers, complexity 1 and 1; key is the smallest, not interior",
+  "arith_class_check": "negatives -56, -8, -2 (three members); perfect cubes -8 and 8; multiples of 8: -56, -8, 8; key alone in no class",
+  "dup_search": {
+   "searches": [
+    "x^(1/3)|cube root",
+    "x^(2/3)"
+   ],
+   "hits": 5,
+   "nearest": "live sat-math-v16-adv 038a2550 (x^(2/3) - 5x^(1/3) + 6 = 0, greatest solution): same substitution but both u positive and the ask is the greatest root; mine turns on keeping a NEGATIVE cube root and asks the sum, where rejecting it is the trap"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "The decision is whether u = -4 is admissible; a student trained on 2^x substitutions rejects it and lands on 8. Desmos would graph it, so the hard label rests on the case decision; a grader may call it medium."
+  },
+  "bounds": [
+   "each solution <= 64"
+  ]
+ },
+ {
+  "id": "SM25V-B05",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay: two doses decaying from different start times",
+  "difficulty": "medium",
+  "prompt": "Each hour, a patient's body eliminates 12% of the amount of a medication in the bloodstream at the start of that hour. The patient receives a 300-milligram dose at 8:00 a.m. and a 500-milligram dose at 10:00 a.m. No medication is in the bloodstream before 8:00 a.m. To the nearest tenth of a milligram, how many milligrams of the medication are in the bloodstream at 1:00 p.m.?",
+  "choices": [
+   "340.7",
+   "422.2",
+   "468.3",
+   "499.1"
+  ],
+  "correct_answer": "499.1",
+  "explanation": "Each hour the amount is multiplied by 1 - 0.12 = 0.88, and each dose decays for the time since it was given. The 300-milligram dose has decayed for 5 hours: 300(0.88)^5 = 158.32. The 500-milligram dose has decayed for 3 hours: 500(0.88)^3 = 340.74. The total at 1:00 p.m. is 158.32 + 340.74 = 499.06, or 499.1 milligrams to the nearest tenth.\n\nChoice 340.7 counts only the 500-milligram dose and leaves out what remains of the first dose. Choice 422.2 treats all 800 milligrams as if they had been given at 8:00 a.m., 800(0.88)^5. Choice 468.3 switches the two decay times, decaying the 300-milligram dose for 3 hours and the 500-milligram dose for 5 hours.",
+  "mechanism": [
+   "superposition of two decaying doses",
+   "separate elapsed times per dose",
+   "hourly factor 1 - r"
+  ],
+  "quantity_asked": "amount in the bloodstream at 1:00 p.m.",
+  "ask_type": "model output from two staggered exponentials",
+  "plugback_check": "An option is a total amount; no printed equation accepts it. Checking one needs both decayed doses, which is the solution.",
+  "shape_check": "Stem hands over: amounts only decrease between doses, so the total at 1:00 p.m. is below 800 and below the amount just after the second dose (300(0.88)^2 + 500 = 732.3); it is also above the second dose's own remainder after 3 hours, but that needs the computation. All four options lie in (0, 732.3); all four survive.",
+  "solve": "const f=1-0.12; const v=300*f**5 + 500*f**3; return Math.round(v*10)/10;",
+  "distractor_solve": {
+   "340.7": "const f=1-0.12; return Math.round(500*f**3*10)/10;",
+   "422.2": "const f=1-0.12; return Math.round((300+500)*f**5*10)/10;",
+   "468.3": "const f=1-0.12; return Math.round((300*f**3 + 500*f**5)*10)/10;"
+  },
+  "distractor_meta": {
+   "340.7": {
+    "error_kind": "first dose dropped",
+    "direction": "under"
+   },
+   "422.2": {
+    "error_kind": "doses pooled at the first time",
+    "direction": "under"
+   },
+   "468.3": {
+    "error_kind": "elapsed times swapped",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: total < 800 (no growth), and one step finer, total < 300(0.88)^2 + 500 = 732.3. Every distractor (340.7, 422.2, 468.3) lies below both, on the key's side; neither separates anything. Which way pooling or swapping moves the total depends on which dose is larger, which the stem does not flag.",
+  "interior_parity_check": "interior 422.2 and 468.3: both 1-decimal, complexity 5 and 5; tie",
+  "arith_class_check": "all four are 1-decimal non-integers; no integer, square or multiple class has a lone member",
+  "dup_search": {
+   "searches": [
+    "dose|bloodstream|medication|drug",
+    "another|second|additional & eliminat|remain & percent"
+   ],
+   "hits": 6,
+   "nearest": "live act-math-v8-fn 034a1038: single dose c(h) = 80(0.5)^(h/6), solve for time; mine superposes two doses given at different times (no hit uses two staggered exponentials)"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Two steps: decay each dose for its own elapsed time, then add. The swapped-times option is the closest and is below the key only because the later dose is larger, which a student cannot exploit without computing."
+  },
+  "bounds": [
+   "total < 732.3"
+  ]
+ },
+ {
+  "id": "SM25V-B06",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay: two half-lives, time at which the decaying masses are equal",
+  "difficulty": "hard",
+  "prompt": "Sample X of one radioactive substance has 4 times the mass of sample Y of another radioactive substance. The half-life of the substance in sample X is 6 hours, and the half-life of the substance in sample Y is 15 hours. Both samples begin decaying at the same time. At the moment the two samples have equal mass, what percent of sample Y's initial mass remains, to the nearest tenth of a percent?",
+  "choices": [
+   "39.7",
+   "43.5",
+   "57.4",
+   "67.3"
+  ],
+  "correct_answer": "39.7",
+  "explanation": "Let Y start with mass m, so X starts with 4m. After t hours, X has 4m(1/2)^(t/6) and Y has m(1/2)^(t/15). Setting them equal gives 4 = 2^(t/6) / 2^(t/15) = 2^(t/6 - t/15) = 2^(t/10), so t/10 = 2 and t = 20 hours. Then Y has (1/2)^(20/15) = 0.397 of its initial mass, or 39.7%.\n\nChoice 43.5 comes from treating the difference of the half-lives, 15 - 6 = 9 hours, as the time for the ratio of the masses to halve; that gives t = 18 and (1/2)^(18/15) = 0.435. Choice 57.4 comes from waiting only for X to halve twice, t = 12 hours, as if Y did not decay; then (1/2)^(12/15) = 0.574. Choice 67.3 comes from adding the two exponents instead of subtracting them, 2^(t/6 + t/15) = 4, which gives t = 60/7 and (1/2)^(4/7) = 0.673.",
+  "mechanism": [
+   "two half-life models set equal",
+   "ratio of exponentials halves at rate 1/h1 - 1/h2",
+   "evaluate one model at the crossing time"
+  ],
+  "quantity_asked": "percent of Y's initial mass remaining at the crossing time",
+  "ask_type": "model output at a solved time",
+  "plugback_check": "An option p is a percent of Y; testing it needs t = 15 log2(100/p) and then X's mass at that t - a logarithm per option, not a routine substitution. In ascending order the key is first, but confirming it costs a log and a second exponential; impossible by substitution in one or two routine steps.",
+  "shape_check": "Stem hands over: both masses decrease; Y's percent is between 0 and 100. All four options pass. A derived bound (not stated): X alone needs 12 hours to lose a factor 4 and Y also decays, so t > 12 and Y's percent < 57.4; this removes 57.4 and 67.3 but needs the model and 2^(-0.8) to compute. Key 39.7 and 43.5 survive it together.",
+  "solve": "const k=2, h1=6, h2=15; const t=k/(1/h1-1/h2); return Math.round(100*2**(-t/h2)*10)/10;",
+  "distractor_solve": {
+   "43.5": "const k=2, h1=6, h2=15; const t=k*(h2-h1); return Math.round(100*2**(-t/h2)*10)/10;",
+   "57.4": "const k=2, h1=6, h2=15; const t=k*h1; return Math.round(100*2**(-t/h2)*10)/10;",
+   "67.3": "const k=2, h1=6, h2=15; const t=k/(1/h1+1/h2); return Math.round(100*2**(-t/h2)*10)/10;"
+  },
+  "distractor_meta": {
+   "43.5": {
+    "error_kind": "difference of half-lives as ratio half-life",
+    "direction": "over"
+   },
+   "57.4": {
+    "error_kind": "second decay ignored",
+    "direction": "over"
+   },
+   "67.3": {
+    "error_kind": "decay exponents added",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: X must halve twice relative to Y, which takes longer than X's own 12 hours, so Y's percent < (1/2)^(12/15) = 57.4%. Distractor 43.5 lies on the key's side of it (below 57.4), so the bound leaves two options. The cruder bound 'Y's percent < 100' separates nothing.",
+  "interior_parity_check": "interior 43.5 and 57.4: both 1-decimal, complexity 4 and 4; key is the smallest, not interior",
+  "arith_class_check": "all four are 1-decimal non-integers; key alone in no class",
+  "dup_search": {
+   "searches": [
+    "half-life",
+    "two samples|substances|isotopes & equal|same"
+   ],
+   "hits": 6,
+   "nearest": "live math-v6-adv-hard 81719cfd: one half-life, least whole year below a mass; no hit sets two different half-lives equal - mine solves a ratio of two decays, then evaluates"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "Hard decision is building the equal-mass equation and subtracting the decay rates. The derived 'longer than 12 hours' bound removes two distractors for a student who reasons it and computes 2^(-0.8); 43.5 still survives with the key."
+  },
+  "bounds": [
+   "t > 12 hours, so Y's percent < 57.4"
+  ]
+ },
+ {
+  "id": "SM25V-B07",
+  "domain": "Advanced Math",
+  "subskill": "Exponential functions: growth of a function whose input is rescaled",
+  "difficulty": "hard",
+  "prompt": "The function f is exponential, and its output increases by 21% over every interval of length 2. The function g is defined by g(t) = f(2t). To the nearest tenth of a percent, by what percent does the output of g increase over every interval of length 3?",
+  "choices": [
+   "15.4",
+   "33.1",
+   "77.2",
+   "213.8"
+  ],
+  "correct_answer": "77.2",
+  "explanation": "For any t, g(t + 3)/g(t) = f(2t + 6)/f(2t). An input interval of length 3 for g is an input interval of length 6 for f, which is 3 intervals of length 2. Over each of them f is multiplied by 1.21, so g is multiplied by (1.21)^3 = 1.771561 over every interval of length 3. That is an increase of about 77.2%.\n\nChoice 33.1 comes from ignoring the 2 in f(2t) and finding f's increase over an interval of length 3: (1.21)^(3/2) = 1.331. Choice 15.4 comes from halving the interval instead of doubling it, as if g(t) = f(t/2): (1.21)^(1.5/2) = 1.154. Choice 213.8 comes from applying the 21% six times, (1.21)^6 = 3.138, treating each unit of f's input as a 2-unit interval.",
+  "mechanism": [
+   "input rescaling g(t) = f(2t)",
+   "interval length scales by 2",
+   "compound the 2-unit factor"
+  ],
+  "quantity_asked": "percent increase of g over any 3-unit interval",
+  "ask_type": "rate of a composed exponential over a new period",
+  "plugback_check": "An option is a percent; nothing printed accepts it. To test 77.2 a student must already know the interval of f is 6 units. No substitution route.",
+  "shape_check": "Stem hands over: f increasing (21% gain), so g increasing; any increase is positive: all four pass. No cap or period-length bound is readable before the key step (that g's 3-unit interval is f's 6-unit interval); after it, compounding over 3 two-unit periods forces > 63%, which 77.2 and 213.8 both satisfy.",
+  "solve": "const r=0.21; const v=(1+r)**((3*2)/2) - 1; return Math.round(v*1000)/10;",
+  "distractor_solve": {
+   "15.4": "const r=0.21; const v=(1+r)**((3/2)/2) - 1; return Math.round(v*1000)/10;",
+   "33.1": "const r=0.21; const v=(1+r)**(3/2) - 1; return Math.round(v*1000)/10;",
+   "213.8": "const r=0.21; const v=(1+r)**(3*2) - 1; return Math.round(v*1000)/10;"
+  },
+  "distractor_meta": {
+   "15.4": {
+    "error_kind": "input scaling inverted",
+    "direction": "under"
+   },
+   "33.1": {
+    "error_kind": "input scaling ignored",
+    "direction": "under"
+   },
+   "213.8": {
+    "error_kind": "period length miscounted",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior 33.1 and 77.2: both 1-decimal, complexity 4 and 4; tie",
+  "arith_class_check": "all four are 1-decimal non-integers; key alone in no class",
+  "dup_search": {
+   "searches": [
+    "f(2t)|f(2x)|f(3t)|g(t) = f(",
+    "every 2 years|each 2-year|over any|every two years"
+   ],
+   "hits": 7,
+   "nearest": "live sat-math-v18-alg 3e9d2b2a: linear f, g(t) = f(4t - 1), g(t + 3) - g(t); and live f942f036 / SADV-13: plain period conversion of one exponential. Mine composes an exponential with an input rescaling before converting the period"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "The decision is translating g's interval into f's. After that, the arithmetic is (1.21)^3 with no fractional power. A grader may call it medium; the composition step is what Desmos does not supply because f is never given as a formula."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM25V-B08",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: product and quotient of a cube root and a square root",
+  "difficulty": "medium",
+  "prompt": "For positive numbers a and b, the product of the cube root of a and the square root of b is 6, so a^(1/3) * sqrt(b) = 6, and their quotient is a^(1/3) / sqrt(b) = 3/2. What is a + b?",
+  "choices": [
+   "5",
+   "13",
+   "17",
+   "31"
+  ],
+  "correct_answer": "31",
+  "explanation": "Multiplying the two equations gives (a^(1/3))^2 = 6(3/2) = 9, so a^(1/3) = 3. Dividing the first equation by the second gives (sqrt(b))^2 = 6/(3/2) = 4, so sqrt(b) = 2. Then a = 3^3 = 27 and b = 2^2 = 4, so a + b = 27 + 4 = 31.\n\nChoice 5 is a^(1/3) + sqrt(b) = 3 + 2, found without raising the roots back to powers. Choice 13 comes from squaring both values, a = 3^2 and b = 2^2, as if a^(1/3) were a square root. Choice 17 comes from switching the powers, a = 3^2 = 9 and b = 2^3 = 8.",
+  "mechanism": [
+   "multiply and divide the two equations",
+   "recover a^(1/3) and sqrt(b)",
+   "undo cube root and square root"
+  ],
+  "quantity_asked": "a + b",
+  "ask_type": "sum of the two solved quantities",
+  "plugback_check": "An option is a + b; there is no single substitution into either printed equation. Checking 31 needs a and b separately, which is the solution.",
+  "shape_check": "Stem hands over: a and b are positive, and a^(1/3) is 3/2 times sqrt(b). All four options are positive. No cap, monotonicity or exponent-size property applies to a + b. All four survive.",
+  "solve": "const P=6, Q=1.5; const c=Math.sqrt(P*Q); const r=Math.sqrt(P/Q); return c**3 + r**2;",
+  "distractor_solve": {
+   "5": "const P=6, Q=1.5; return Math.sqrt(P*Q) + Math.sqrt(P/Q);",
+   "13": "const P=6, Q=1.5; return Math.sqrt(P*Q)**2 + Math.sqrt(P/Q)**2;",
+   "17": "const P=6, Q=1.5; return Math.sqrt(P*Q)**2 + Math.sqrt(P/Q)**3;"
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "roots not raised to powers",
+    "direction": "under"
+   },
+   "13": {
+    "error_kind": "cube root undone by squaring",
+    "direction": "under"
+   },
+   "17": {
+    "error_kind": "powers switched between a and b",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: a^(1/3) * sqrt(b) = 6 with a^(1/3) = 1.5 sqrt(b) > sqrt(b), so a^(1/3) > sqrt(6) and a > 6^(3/2) = 14.7; that bound puts a + b above 14.7 and leaves 17 on the key's side. A student cannot tell from the stem that each error falls below the key.",
+  "interior_parity_check": "interior 13 and 17: both two-digit integers, complexity 2 and 2; key is the largest, not interior",
+  "arith_class_check": "all odd; primes 5, 13, 17, 31 (all four); key alone in no class",
+  "dup_search": {
+   "searches": [
+    "^(1/3) & sqrt(b)|sqrt(y)",
+    "a^b|xy & ^x|^y|^(1/"
+   ],
+   "hits": 4,
+   "nearest": "live v2 0d7b9102: 2^x * 2^y = 32 and 2^x/2^y = 2, asks xy (exponents of one base, linear in x and y); mine multiplies and divides a cube root and a square root and must undo two different roots"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "Key is the largest; the three distractors are three different ways of undoing the roots wrongly, all of which happen to land lower. The derived bound a > 14.7 removes 5 and 13 but leaves 17."
+  },
+  "bounds": [
+   "a > 14.7"
+  ]
+ },
+ {
+  "id": "SM25V-B09",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: exponents fixed by product and power rules, then a sum of cubes",
+  "difficulty": "medium",
+  "prompt": "Two positive exponents a and b make both identities (x^a)(x^b) = x^10 and (x^a)^b = x^21 true for every positive x. Compute a^3 + b^3.",
+  "choices": [
+   "100",
+   "160",
+   "316",
+   "370"
+  ],
+  "correct_answer": "370",
+  "explanation": "By the product rule, (x^a)(x^b) = x^(a + b), so a + b = 10. By the power rule, (x^a)^b = x^(ab), so ab = 21. The positive numbers with sum 10 and product 21 are 3 and 7. Therefore a^3 + b^3 = 27 + 343 = 370. (Equivalently, a^3 + b^3 = (a + b)^3 - 3ab(a + b) = 1000 - 630 = 370.)\n\nChoice 100 comes from squaring the sum a + b = 10 instead of cubing a and b. Choice 160 comes from factoring a^3 + b^3 = (a + b)(a^2 - ab + b^2) but replacing a^2 - ab + b^2 with (a - b)^2 = 16, giving 10(16). Choice 316 is 7^3 - 3^3 = 343 - 27, a difference of the cubes instead of their sum.",
+  "mechanism": [
+   "product rule gives a + b",
+   "power rule gives ab",
+   "sum of cubes of the exponents"
+  ],
+  "quantity_asked": "a^3 + b^3",
+  "ask_type": "symmetric function of two exponents",
+  "plugback_check": "An option is a^3 + b^3; neither printed identity accepts it. Testing an option needs a and b, which is the solution.",
+  "shape_check": "Stem hands over: a and b positive with a + b = 10 and ab = 21 (after one step each). All options are positive and below (a + b)^3 = 1000. The larger exponent is at least 5, so the sum is at least 125: 160, 316 and the key survive; a power-mean bound (>= 250, not a routine SAT step) still leaves 316 with the key.",
+  "solve": "const s=10, p=21; return s**3 - 3*p*s;",
+  "distractor_solve": {
+   "100": "const s=10; return s**2;",
+   "160": "const s=10, p=21; return s*(s*s - 4*p);",
+   "316": "const s=10, p=21; const d=Math.sqrt(s*s-4*p); const a=(s-d)/2, b=(s+d)/2; return b**3 - a**3;"
+  },
+  "distractor_meta": {
+   "100": {
+    "error_kind": "sum squared for parts cubed",
+    "direction": "under"
+   },
+   "160": {
+    "error_kind": "factor a^2 - ab + b^2 replaced by (a - b)^2",
+    "direction": "under"
+   },
+   "316": {
+    "error_kind": "difference of cubes for sum",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: the larger of a and b is at least 5, so a^3 + b^3 >= 125; 160 and 316 lie on the key's side of it. A finer bound (sum of cubes >= (a + b)^3/4 = 250) still leaves 316. The error directions are not readable from the stem.",
+  "interior_parity_check": "interior 160 and 316: both three-digit integers, complexity 2 and 3 (within 1); key is the largest, not interior",
+  "arith_class_check": "all even; multiples of 10: 100, 160, 370; multiples of 4: 100, 160, 316; perfect square 100 only (a distractor); key alone in no class",
+  "dup_search": {
+   "searches": [
+    "x^a & x^b",
+    "(x^a)|x^(a|(x^w)^"
+   ],
+   "hits": 1,
+   "nearest": "prior SM20A-C2: (x^a)(4th root of x^3)/sqrt(x) = x^(5/2), solve for a (one linear equation in a); mine uses the product and power rules to get a + b and ab, a nonlinear system, then a sum of cubes"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "Most students will find a = 3 and b = 7 by inspection, then cube. Distractors are three misreadings of the sum of cubes (squared sum, wrong factor in the factorization, difference instead of sum); 316 and 160 survive the size bounds that a test-wise student could apply."
+  },
+  "bounds": [
+   "a^3 + b^3 >= 125",
+   "a^3 + b^3 < 1000"
+  ]
+ },
+ {
+  "id": "SM25V-B10",
+  "domain": "Advanced Math",
+  "subskill": "Exponential expressions: cubing a difference of reciprocal powers",
+  "difficulty": "hard",
+  "prompt": "A real number x makes the difference 2^x - 2^(-x) equal to 5. Using this fact, find 8^x - 8^(-x).",
+  "choices": [
+   "120",
+   "125",
+   "135",
+   "140"
+  ],
+  "correct_answer": "140",
+  "explanation": "Let a = 2^x, so 2^(-x) = 1/a, 8^x = a^3, and 8^(-x) = 1/a^3. Cubing a - 1/a gives (a - 1/a)^3 = a^3 - 3a + 3/a - 1/a^3 = (a^3 - 1/a^3) - 3(a - 1/a). So a^3 - 1/a^3 = (a - 1/a)^3 + 3(a - 1/a) = 5^3 + 3(5) = 125 + 15 = 140.\n\nChoice 125 comes from cubing 5 and treating (a - 1/a)^3 as a^3 - 1/a^3, leaving out the middle terms. Choice 135 comes from multiplying a^2 + 1/a^2 = 5^2 + 2 = 27 by a - 1/a = 5, which gives a^3 - 1/a^3 - (a - 1/a), and not adding back a - 1/a = 5. Choice 120 uses the correct structure, (a^2 + 1/a^2)(a - 1/a) + (a - 1/a), but finds a^2 + 1/a^2 as 5^2 - 2 = 23 instead of 5^2 + 2 = 27: 23(5) + 5 = 120.",
+  "mechanism": [
+   "substitute a = 2^x in the exponential terms",
+   "cube of a - 1/a",
+   "difference of reciprocal cubes from the identity"
+  ],
+  "quantity_asked": "8^x - 8^(-x)",
+  "ask_type": "value of a different expression of the solution",
+  "plugback_check": "x = log2((5 + sqrt(29))/2) is irrational; no option can be substituted for x, and testing an option v means solving a^3 - 1/a^3 = v for a. No substitution route.",
+  "shape_check": "Stem hands over: 2^x - 2^(-x) = 5 > 0, so x > 0 and 8^x - 8^(-x) > 0: all four pass. No cap. A student who knows (a - 1/a)^3 = (a^3 - 1/a^3) - 3(a - 1/a) learns the answer exceeds 125, which leaves 135 and 140 - two options.",
+  "solve": "const d=5; return d**3 + 3*d;",
+  "distractor_solve": {
+   "120": "const d=5; const sq=d**2 - 2; return sq*d + d;",
+   "125": "const d=5; return d**3;",
+   "135": "const d=5; const sq=d**2 + 2; return sq*d;"
+  },
+  "distractor_meta": {
+   "120": {
+    "error_kind": "square identity sign slip",
+    "direction": "under"
+   },
+   "125": {
+    "error_kind": "binomial cubed termwise",
+    "direction": "under"
+   },
+   "135": {
+    "error_kind": "correction term dropped",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: a - 1/a = 5 with a > 1 means a > 5, so a^3 - 1/a^3 > 125 - 1/125; one step finer, the identity puts it at 125 + 3(5). The crude bound (> about 124.99) removes only 120 and leaves 125, 135 and 140; the identity bound (> 125) leaves 135 on the key's side. The error directions (sign slip, termwise cube, dropped term) are not readable from the stem.",
+  "interior_parity_check": "interior 125 and 135: both three-digit integers, complexity 3 and 3; key is the largest, not interior",
+  "arith_class_check": "all multiples of 5; multiples of 10: 120 and 140; odd 125 and 135; perfect cube 125 only (a distractor); key alone in no class",
+  "dup_search": {
+   "searches": [
+    "^(-x)|^-x",
+    "1/x|x^(-1) & ^3|cube"
+   ],
+   "hits": 1,
+   "nearest": "prior SM24V-B15 (9^x + 6^x = 12(4^x), v + 1/v from a quadratic in (3/2)^x) is the closest by idea; mine has no quadratic to solve - it cubes a given difference of reciprocal powers. No live row uses 2^(-x)"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "Key is the largest; all three distractors are under it, from three different slips in the cubing identity. A student who remembers that the cube of a difference is smaller than the difference of cubes narrows to 135 and 140 but still needs the identity."
+  },
+  "bounds": [
+   "8^x - 8^(-x) > 0"
+  ]
+ },
+ {
+  "id": "SM25V-B11",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: half exponent and its reciprocal from a given power",
+  "difficulty": "medium",
+  "prompt": "Suppose 3^x = 49. Evaluate the sum 3^(x/2) + 3^(-x/2), giving your answer to two decimal places.",
+  "choices": [
+   "7.14",
+   "24.54",
+   "49.02",
+   "49.14"
+  ],
+  "correct_answer": "7.14",
+  "explanation": "Since 3^(x/2) = (3^x)^(1/2) = sqrt(49) = 7, and 3^(-x/2) = 1/3^(x/2) = 1/7, the sum is 7 + 1/7 = 7.142..., or 7.14 to the nearest hundredth.\n\nChoice 49.02 comes from not halving the exponent: 3^x + 3^(-x) = 49 + 1/49. Choice 24.54 comes from halving 49 instead of taking its square root: 24.5 + 1/24.5. Choice 49.14 comes from finding 3^(-x/2) = 1/7 correctly but taking 3^(x/2) to be 49.",
+  "mechanism": [
+   "power of a power: (3^x)^(1/2)",
+   "negative exponent as reciprocal",
+   "sum of a power and its reciprocal"
+  ],
+  "quantity_asked": "3^(x/2) + 3^(-x/2)",
+  "ask_type": "value of a different expression of the solution",
+  "plugback_check": "x = log3(49) is irrational and an option is a sum of a power and its reciprocal; recovering 3^x from an option means solving u + 1/u = v, a quadratic. No routine substitution reaches the key.",
+  "shape_check": "Stem hands over: 3^(x/2) and 3^(-x/2) are positive with product 1, so the sum is at least 2; and 3^(x/2) < 3^x = 49 (x > 0), so the sum is below 50. All four options lie in [2, 50); all four survive.",
+  "solve": "const v=49; const h=Math.sqrt(v); return Math.round((h + 1/h)*100)/100;",
+  "distractor_solve": {
+   "24.54": "const v=49; const h=v/2; return Math.round((h + 1/h)*100)/100;",
+   "49.02": "const v=49; return Math.round((v + 1/v)*100)/100;",
+   "49.14": "const v=49; const h=Math.sqrt(v); return Math.round((v + 1/h)*100)/100;"
+  },
+  "distractor_meta": {
+   "24.54": {
+    "error_kind": "half exponent read as half the value",
+    "direction": "over"
+   },
+   "49.02": {
+    "error_kind": "exponent not halved",
+    "direction": "over"
+   },
+   "49.14": {
+    "error_kind": "root applied to one term only",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: the sum of a positive number and its reciprocal is at least 2, and it is below 3^x + 1 = 50 because 3^(x/2) < 3^x. Every option lies inside [2, 50), on the key's side of both bounds, so neither separates the key. Which way each slip moves the sum is not readable from the stem.",
+  "interior_parity_check": "interior 24.54 and 49.02: both 2-decimal, complexity 6 and 6; key is the smallest, not interior",
+  "arith_class_check": "all four are 2-decimal non-integers; no integer, square or multiple class has a lone member",
+  "dup_search": {
+   "searches": [
+    "^(x/2)|^(-x/2)",
+    "3^(2x)|value of 3^"
+   ],
+   "hits": 2,
+   "nearest": "live sat-adv-h3 68917e26: 3^(2x) = 20, value of 3^(4x + 1) (doubling the exponent and a coefficient); mine halves the exponent and adds the reciprocal, so the square root and the negative exponent both have to be read"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Two steps: square root of 49 via the half exponent, then the reciprocal for the negative exponent. All three slips land above the key, from three different misreadings; the [2, 50) range a test-wise student can set keeps all four."
+  },
+  "bounds": [
+   "2 <= sum < 50"
+  ]
+ },
+ {
+  "id": "SM25V-B12",
+  "domain": "Advanced Math",
+  "subskill": "Radical equations with two radicals: a solution lost by dividing by a radical",
+  "difficulty": "hard",
+  "prompt": "The equation sqrt(2x + 8) - sqrt(x + 2) = 2 involves two square roots. Find the sum of every real number x that makes it true.",
+  "choices": [
+   "-28",
+   "0",
+   "12",
+   "14"
+  ],
+  "correct_answer": "12",
+  "explanation": "Isolate one radical: sqrt(2x + 8) = 2 + sqrt(x + 2). Squaring gives 2x + 8 = 4 + 4sqrt(x + 2) + x + 2, which simplifies to x + 2 = 4sqrt(x + 2). Let u = sqrt(x + 2), so u^2 = 4u and u(u - 4) = 0. So u = 0 or u = 4, giving x = -2 or x = 14. Both check in the original equation: sqrt(4) - sqrt(0) = 2 and sqrt(36) - sqrt(16) = 6 - 4 = 2. The sum of the solutions is -2 + 14 = 12.\n\nChoice 14 comes from dividing both sides of x + 2 = 4sqrt(x + 2) by sqrt(x + 2), which loses the solution x = -2. Choice 0 comes from dropping the radical in x + 2 = 4sqrt(x + 2), as if x + 2 = 4, which gives x = 2 in place of x = 14; then -2 + 2 = 0. Choice -28 is the product of the two solutions, (-2)(14), not their sum.",
+  "mechanism": [
+   "isolate and square two radicals",
+   "u^2 = 4u keeps the root u = 0",
+   "check a negative solution"
+  ],
+  "quantity_asked": "sum of all real solutions",
+  "ask_type": "sum of solutions with a root that dividing would lose",
+  "plugback_check": "An option is a sum of solutions. Substituting -28 for x makes a radicand negative; 0 gives sqrt(8) - sqrt(2), not 2; 12 gives sqrt(32) - sqrt(14), not 2; 14 does satisfy the equation, which leads a substituting student to a distractor. No substitution order reaches the key.",
+  "shape_check": "Stem hands over: radicands nonnegative, so every solution is at least -2; the left side equals 2 > 0. Solutions are real numbers >= -3, but a SUM of them is not bounded below by -2 unless there is one solution. No stated property removes any option; all four survive.",
+  "solve": "const c=2, d=2; const u=[0, 2*d]; const xs=u.map(v=>v*v-c).filter(x=>Math.abs(Math.sqrt(2*x+8)-Math.sqrt(x+c)-d)<1e-9); return xs.reduce((s,x)=>s+x,0);",
+  "distractor_solve": {
+   "0": "const c=2, d=2; return (0 - c) + (2*d - c);",
+   "14": "const c=2, d=2; const u=2*d; return u*u - c;",
+   "-28": "const c=2, d=2; const xs=[0, 2*d].map(v=>v*v-c); return xs[0]*xs[1];"
+  },
+  "distractor_meta": {
+   "0": {
+    "error_kind": "radical dropped before solving",
+    "direction": "under"
+   },
+   "14": {
+    "error_kind": "root lost by dividing by a radical",
+    "direction": "over"
+   },
+   "-28": {
+    "error_kind": "product for sum",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior 0 and 12: integers, complexity 1 and 2 (within 1); key is the messier, not the cleaner",
+  "arith_class_check": "all even; multiples of 4: -28, 0, 12; multiples of 7: -28, 0, 14; key alone in no class",
+  "dup_search": {
+   "searches": [
+    "sqrt(ax + b) - sqrt(x",
+    "sqrt...sqrt & sum of all|sum of the"
+   ],
+   "hits": 2,
+   "nearest": "live sat-adv-v11 56d60593: sqrt(x + 7) - sqrt(x) = 1, one solution, asks it; mine has two valid solutions, one of them hidden at u = 0 (x = -2), and asks their sum"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Decision point: x + 3 = 4sqrt(x + 3) must be factored, not divided, and the negative solution x = -2 must be checked rather than rejected. Desmos graphs both intersections, so the hard label rests on the algebraic route; with a graph the item is medium."
+  },
+  "bounds": [
+   "each solution >= -2"
+  ]
+ },
+ {
+  "id": "SM25V-B13",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: factoring a common power from shifted exponents",
+  "difficulty": "medium",
+  "prompt": "Given that 2^(x + 2) - 2^(x - 1) = 126, compute 4^x + 2^x.",
+  "choices": [
+   "812",
+   "1332",
+   "1806",
+   "4032"
+  ],
+  "correct_answer": "1332",
+  "explanation": "Write each term as a multiple of 2^x: 2^(x + 2) = 4(2^x) and 2^(x - 1) = (1/2)(2^x). The equation becomes (4 - 1/2)(2^x) = 126, so (7/2)(2^x) = 126 and 2^x = 36. Then 4^x = (2^x)^2 = 36^2 = 1296, and 4^x + 2^x = 1296 + 36 = 1332.\n\nChoice 812 comes from factoring with the wrong sign, (4 + 1/2)(2^x) = 126, which gives 2^x = 28 and 4^x + 2^x = 784 + 28 = 812. Choice 1806 comes from treating 2^(x - 1) as 2^x, so (4 - 1)(2^x) = 126, 2^x = 42, and 4^x + 2^x = 1764 + 42 = 1806. Choice 4032 comes from treating 2^(x - 1) as 2(2^x), so (4 - 2)(2^x) = 126, 2^x = 63, and 4^x + 2^x = 3969 + 63 = 4032.",
+  "mechanism": [
+   "factor 2^x from shifted powers",
+   "coefficient 2^2 - 2^(-1)",
+   "evaluate 4^x + 2^x from 2^x"
+  ],
+  "quantity_asked": "4^x + 2^x",
+  "ask_type": "value of a different expression of the solution",
+  "plugback_check": "x = log2(36) is irrational, so no option can be substituted for x. Testing an option v means solving t^2 + t = v for t = 2^x (a quadratic) and then checking (7/2)t = 126; that is not a routine substitution, and no printed equation accepts an option directly.",
+  "shape_check": "Stem hands over: 2^(x + 2) > 126, so 2^x > 31.5 and 4^x + 2^x > 1024. 812 falls below that for a student who derives it; 1332, 1806 and 4032 survive. No other property (sign, monotonicity, cap) is stated. Three options survive.",
+  "solve": "const c=126; const t=c/(2**2 - 2**-1); return t*t + t;",
+  "distractor_solve": {
+   "812": "const c=126; const t=c/(2**2 + 2**-1); return t*t + t;",
+   "1806": "const c=126; const t=c/(2**2 - 1); return t*t + t;",
+   "4032": "const c=126; const t=c/(2**2 - 2); return t*t + t;"
+  },
+  "distractor_meta": {
+   "812": {
+    "error_kind": "sign lost in factoring",
+    "direction": "under"
+   },
+   "1806": {
+    "error_kind": "shift dropped from exponent",
+    "direction": "over"
+   },
+   "4032": {
+    "error_kind": "negative exponent as a multiplier",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior 1332 and 1806: both four-digit integers, complexity 4 and 4; tie",
+  "arith_class_check": "all even; multiples of 4: 812, 1332, 4032; multiples of 3: 1332, 1806, 4032; no perfect squares; key alone in no class",
+  "dup_search": {
+   "searches": [
+    "2^(x+k) - 2^(x... | 3^(x+k) - 3^(x...",
+    "^(x - 1) & ^(x + k)"
+   ],
+   "hits": 6,
+   "nearest": "SM24V-B06 / live 5b269623: 2^(x+2)*5^(x-1) = 800, a PRODUCT of different bases; live '2^(x+3) + 2^x = 2304' asks the integer x. Mine factors a DIFFERENCE with a negative shift, x is irrational, and the ask is 4^x + 2^x"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Two steps: factor to get 2^x = 36, then evaluate. The three wrong coefficients (4 + 1/2, 3, 2) are the three common misreadings of 2^(x - 1). Asking 4^x + 2^x rather than 4^x stops a student from square-rooting each option and checking it."
+  },
+  "bounds": [
+   "4^x + 2^x > 1024"
+  ]
+ },
+ {
+  "id": "SM25V-B14",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: an even power of a cube root gives two solutions",
+  "difficulty": "medium",
+  "prompt": "In the equation (x - 1)^(4/3) = 16, the left side means the fourth power of the real cube root of x - 1. Multiplying together every real x that satisfies the equation gives what product?",
+  "choices": [
+   "-63",
+   "-15",
+   "2",
+   "9"
+  ],
+  "correct_answer": "-63",
+  "explanation": "Let c be the real cube root of x - 1. Then c^4 = 16, so c = 2 or c = -2. Cubing gives x - 1 = 8 or x - 1 = -8, so x = 9 or x = -7. Both satisfy the equation, and the product of the solutions is 9(-7) = -63.\n\nChoice 9 comes from keeping only c = 2 and so only the solution x = 9. Choice -15 comes from treating the 4/3 power as a square: x - 1 = 4 or x - 1 = -4, so x = 5 or x = -3, with product -15. Choice 2 is the sum of the solutions, 9 + (-7), not their product.",
+  "mechanism": [
+   "fourth power of a cube root",
+   "both signs of the fourth root",
+   "product of the two solutions"
+  ],
+  "quantity_asked": "product of all real solutions",
+  "ask_type": "product of solutions",
+  "plugback_check": "An option is a product of solutions, not a solution; -63, -15 and 2 give no true statement when substituted for x, and 9 does - which leads a substituting student to a distractor. No substitution order reaches the key.",
+  "shape_check": "Stem hands over: the cube root is real (defined for negative x - 1) and (x - 1)^(4/3) >= 0. No sign of the product, monotonicity or cap is stated. All four options survive.",
+  "solve": "const v=16; const c=v**(1/4); const x1=1+c**3, x2=1+(-c)**3; return x1*x2;",
+  "distractor_solve": {
+   "2": "const v=16; const c=v**(1/4); return (1+c**3) + (1+(-c)**3);",
+   "9": "const v=16; const c=v**(1/4); return 1+c**3;",
+   "-15": "const v=16; const c=Math.sqrt(v); return (1+c)*(1-c);"
+  },
+  "distractor_meta": {
+   "2": {
+    "error_kind": "sum for product",
+    "direction": "over"
+   },
+   "9": {
+    "error_kind": "negative root dropped",
+    "direction": "over"
+   },
+   "-15": {
+    "error_kind": "4/3 power treated as a square",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: (x - 1)^(4/3) = 16 forces |x - 1| = 8 once the cube root is isolated, which is already the solution; before that, nothing in the stem fixes the sign or size of the product. No one-step bound separates -63 from -15, 2 and 9, and a student cannot read from the stem that every slip moves the product upward.",
+  "interior_parity_check": "interior -15 and 2: integers, complexity 2 and 1 (within 1); key is the smallest, not interior",
+  "arith_class_check": "negatives -63 and -15 (two members); odd: -63, -15, 9; multiples of 3: -63, -15, 9; key alone in no class",
+  "dup_search": {
+   "searches": [
+    "x^(2/3)|x^(4/3)|^(4/3)",
+    "cube root & product|solutions"
+   ],
+   "hits": 3,
+   "nearest": "live v2 6443cac7: x^(2/3) = 16, value of x (64; the negative root is ignored); mine has the shifted base x - 1, a fourth power, and asks the product of BOTH real solutions. Within this file SM25V-B04 also admits a negative cube root, but through a quadratic in x^(1/3) and a sum; this item has no quadratic"
+  },
+  "self_audit": {
+   "risk": "med",
+   "note": "The decision is to keep the negative fourth root (c = -2), which the stem's 'real cube root' sentence licenses. It shares the 'negative cube roots are real' idea with SM25V-B04 by a different chain; a reviewer may see the two as one narrow setup."
+  },
+  "bounds": [
+   "-7 <= x <= 9"
+  ]
+ },
+ {
+  "id": "SM25V-B15",
+  "domain": "Advanced Math",
+  "subskill": "Exponential functions: combining two exponential factors into one growth rate",
+  "difficulty": "medium",
+  "prompt": "A model has the form f(t) = 80(9)^(t/4)(1/3)^(t/6). Each time t goes up by 1, the output of f grows by p%. Rounded to the nearest tenth, p equals what?",
+  "choices": [
+   "9.6",
+   "20.1",
+   "44.2",
+   "56.5"
+  ],
+  "correct_answer": "44.2",
+  "explanation": "Write both factors as powers of 3: 9^(t/4) = 3^(t/2) and (1/3)^(t/6) = 3^(-t/6). Then f(t) = 80(3)^(t/2 - t/6) = 80(3)^(t/3) = 80(3^(1/3))^t. Each time t increases by 1, f is multiplied by 3^(1/3) = 1.4422, an increase of about 44.2%.\n\nChoice 56.5 comes from finding the percent change of each factor separately, +73.2% for 9^(1/4) and -16.7% for (1/3)^(1/6), and adding them instead of multiplying the factors. Choice 20.1 comes from treating both bases as 9 and subtracting the exponents: 9^(1/4 - 1/6) = 9^(1/12) = 1.201. Choice 9.6 comes from multiplying the bases first, 9(1/3) = 3, and then subtracting the exponents: 3^(1/4 - 1/6) = 3^(1/12) = 1.096.",
+  "mechanism": [
+   "rewrite 9 and 1/3 as powers of 3",
+   "combine exponents t/2 - t/6",
+   "per-unit growth factor to percent"
+  ],
+  "quantity_asked": "percent increase of f per unit of t",
+  "ask_type": "growth rate of a combined exponential",
+  "plugback_check": "An option is a percent; no printed equation accepts it, and checking it requires the combined base 3^(1/3). No substitution route.",
+  "shape_check": "Stem hands over: f increases (p > 0). The growing factor alone gives 73.2% per unit and the decaying factor pulls it down, so p < 73.2; all four options are between 0 and 73.2. All four survive.",
+  "solve": "const g=Math.pow(9,1/4)*Math.pow(1/3,1/6); return Math.round((g-1)*1000)/10;",
+  "distractor_solve": {
+   "9.6": "const g=Math.pow(9*(1/3), 1/4 - 1/6); return Math.round((g-1)*1000)/10;",
+   "20.1": "const g=Math.pow(9, 1/4 - 1/6); return Math.round((g-1)*1000)/10;",
+   "56.5": "const up=Math.pow(9,1/4)-1, down=Math.pow(1/3,1/6)-1; return Math.round((up+down)*1000)/10;"
+  },
+  "distractor_meta": {
+   "9.6": {
+    "error_kind": "bases multiplied before exponents",
+    "direction": "under"
+   },
+   "20.1": {
+    "error_kind": "both bases taken as 9",
+    "direction": "under"
+   },
+   "56.5": {
+    "error_kind": "percent changes added",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior 20.1 and 44.2: both 1-decimal, complexity 4 and 4; tie",
+  "arith_class_check": "all four are 1-decimal non-integers; key alone in no class",
+  "dup_search": {
+   "searches": [
+    "(1/3)^(t|(1/2)^(t & 9^|4^|(9)^",
+    "increases by p%|by what percent & f(t) = |(t/"
+   ],
+   "hits": 0,
+   "nearest": "no live or prior row multiplies two exponential factors with different periods; nearest are single-factor period conversions such as live 'f(t) = 340(1.44)^(t/2) equivalent form' and SADV-13 (triples every 5 hours, percent over 2 hours)"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Two steps: rewrite both factors in base 3 and combine, then convert the per-unit factor to a percent. The added-percent option is the natural wrong path above the key; the two below come from two different bad base combinations."
+  },
+  "bounds": [
+   "0 < p < 73.2"
+  ]
+ }
+]
