@@ -6227,6 +6227,77 @@
           "verdict": "Residuals recorded, not acted on: AM25A-10 both graders count 2 survivors via the concavity bound (increase > 36.1), judged not cheaper than the item (needs sqrt 60; the tangent form is calculus); single-grader survivors-2 on F-02, F-05, I-02, G-11 judged as the item's own work; one_sided named and not confirmed on F-10 (the linear shortcut overshoots to 72), G-10, I-05, S-05; G-04 1036.73 ON the slant > height bound (3 survive). The 10 unanimous candidates carry no grader-named shortcut (rule 6: none). Kept-set key extremity 26/50 = 52.0% and magnitude interior z -1.01 - neither undershoot (v24) nor overshoot."
         }
       }
+    },
+    {
+      "id": "isee-verbal-s17-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s17",
+      "contentSha": "d2f8b382430c7a12ab85dbfc7b412ec0fd173a71d43d9ae1b9336d181f5c201e",
+      "status": "shipped",
+      "note": "ISEE Upper synonyms: the BINDING verbal type (99 items / 87 groups -> 4 clean forms; SC 143 -> 7). 60 authored by two independent Claude authors (A headwords A-L, B M-Z); all 60 kept. Pre-registered in isee-verbal-s17.prereg.md (commit 74b672ae) before authoring; frozen in aff61e7c before any solver or grader. Pre-freeze fixes: cross-author word collisions (B replaced SUCCINCT->ZEALOUS, TACITURN->RUMINATE) and a brief-created length tell (key was the unique longest option in 1 of 28 such synonym items). Banked difficulty = median of three grader labels: 19 easy / 27 medium / 14 hard (BANK_BAND=mixed). Kept file isee-verbal-s17.kept.batch.json is byte-identical to isee-verbal-s17-syn.batch.json. The 40 SC of the same commission were HELD at nosource (ledger isee-verbal-s17-sc-2026-10-08).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "d2f8b382430c7a12ab85dbfc7b412ec0fd173a71d43d9ae1b9336d181f5c201e",
+          "verdict": "60 items, 4 distinct single-word choices, key among them, '[Synonym] HEADWORD' prompt, verbalKind()=synonym on all 60; 0 stem duplicates vs 715 live isee rows (stem-duplicates.mjs); no live ISEE headword or key reused; 0 words shared across the four s17 authors after pre-freeze fixes; stored key slots dealt 15/15/15/15."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "d2f8b382430c7a12ab85dbfc7b412ec0fd173a71d43d9ae1b9336d181f5c201e",
+          "verdict": "Three fresh Claude graders, each on its own unmarked render (grade-a via make-grade-render, render sha 2930a18298be89e1; grade-b/-c item order and choices reshuffled with the shared seeded generator): 60/60 on key for all three (bar: FAIL if any grader >10% off key). Second defensible: none. Above band: none. Free eliminations: none. Difficulty A 17/28/15, B 18/30/12, C 20/27/13 (e/m/h); medians 19/27/14. Borderline noted by all three, not a drop: DAMP -> humid (looser match)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "d2f8b382430c7a12ab85dbfc7b412ec0fd173a71d43d9ae1b9336d181f5c201e",
+          "n": 60,
+          "mean": 50,
+          "control": 25,
+          "margin": 25,
+          "verdict": "Options-only, interleaved with a type-matched live control (30 live ISEE synonyms, isee-verbal-s4 clone sets excluded; pool 83), three samples of one Claude solver (pairwise agreement 67.0% vs 26.3% independent). Candidate 90/180 = 50.0% vs its letter line 25.0% (+25.0); live 63/90 = 70.0% vs 26.7% (+43.3). EXCESS -18.3 <= +10 PASS; ceiling: live 70.0% < 85%, so the bar could fire. Unanimous-correct candidate 17/60 = 28.3% vs live 17/30 = 56.7%. Per sample candidate 25/32/33 of 60. By author A 53.3%, B 46.7% (of 90 picks); by median difficulty easy 45.6%, medium 56.8%, hard 42.9%."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "d2f8b382430c7a12ab85dbfc7b412ec0fd173a71d43d9ae1b9336d181f5c201e",
+          "verdict": "Items where >=2 samples certainly rejected the same non-key option: candidate 0/60, live 0/30; bar <= max(live share, 5%) PASS. CAVEAT: all three samples marked reject_certain false on every item, and samples b and c reported that their 'reject' letter was filled by formula, not judged, so key-rejected-first rates (32/180 cand, 7/90 live) carry no signal. No grader named a free elimination."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "d2f8b382430c7a12ab85dbfc7b412ec0fd173a71d43d9ae1b9336d181f5c201e",
+          "verdict": "Key strictly longest 14/60 (23.3%), strictly shortest 12/60 (20.0%), bar <= 35% each; among items with a unique extreme the key is it 14/49 longest, 12/44 shortest. check-recycled-distractor: NO MEASUREMENT (240 distinct words over 240 slots). verify-answer-key-spread --batch: ok (quads p=0.44, windows p=0.38, lag p=0.67). Antonym-of-key items ~6/60 (author counts; graders named A-15, A-24, A-30). All three samples named one heuristic, 'pick the plain-English gloss of a likely ISEE headword' (55/82/75 picks), scoring 50.0% on candidate picks, under the 70% bar; sample a's 'antonym pair' heuristic decided ~20 picks."
+        }
+      }
+    },
+    {
+      "id": "isee-verbal-s17-sc-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s17",
+      "contentSha": "3846b7611391e25032080c754046bbeb5a9f5eacb7eebb718359cfc15e2c9e96",
+      "status": "killed",
+      "note": "HELD at nosource, 0 of 40 inserted. 40 single-blank medium/hard ISEE sentence completions from two independent Claude authors (C contrast/restatement/examples in science and nature; D cause/purpose/degree in arts, history, school, work). The pre-registered SC rule needs excess <= +10 against BOTH the full 30-item live control and its single-blank subset: +4.7 and +12.7. Per prereg no later stage was run and no item is repaired.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "3846b7611391e25032080c754046bbeb5a9f5eacb7eebb718359cfc15e2c9e96",
+          "verdict": "40 items, 4 distinct single-word choices, one 7-hyphen blank, '[Sentence Completion]' tag, no 'is to', verbalKind()=sentence completion on all 40; 0 stem duplicates vs 715 live isee rows; stored key slots 10/10/10/10."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "3846b7611391e25032080c754046bbeb5a9f5eacb7eebb718359cfc15e2c9e96",
+          "n": 40,
+          "mean": 40.8,
+          "control": 25,
+          "margin": 15.8,
+          "verdict": "Options-only, interleaved with 30 live SC (hard+medium, isee-verbal-s4 excluded; pool 77; 21 single-blank, 9 two-blank), three samples of one Claude solver (pairwise agreement 77.6% vs 25.3%). Candidate 49/120 = 40.8% vs letter 25.0% (+15.8); live all 34/90 = 37.8% vs 26.7% (+11.1), EXCESS +4.7 (pass); live single-blank 20/63 = 31.7% vs 28.6% (+3.2), EXCESS +12.7 > +10 -> HOLD. Ceiling not reached (live 37.8%). Raw-rate difference against the single-blank controls is +9.2; the prereg defines excess over each arm's letter line, so the hold stands. Unanimous-correct candidate 13/40 = 32.5% vs live 6/30 = 20.0%. Named heuristic, all three samples: pick the most specific / distinctive / collocation-fitting word (40/46/52 picks)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

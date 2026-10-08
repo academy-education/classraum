@@ -1,0 +1,20 @@
+{
+ "heuristics": [
+  {
+   "name": "antonym-pair",
+   "description": "When two options are opposites (hasten/postpone, impede/assist, call/dismiss), pick one of the pair; the other is likely the antonym trap",
+   "picks_decided": 20
+  },
+  {
+   "name": "classic-synonym-target",
+   "description": "Pick the option that is a common ISEE synonym target for a harder headword (cunning~wily, agile~nimble, fleeting~ephemeral)",
+   "picks_decided": 55
+  },
+  {
+   "name": "arbitrary",
+   "description": "No signal; arbitrary pick",
+   "picks_decided": 15
+  }
+ ],
+ "notes": "No option was certainly excludable without the headword; reject_certain false throughout."
+}

@@ -1,0 +1,25 @@
+{
+ "heuristics": [
+  {
+   "name": "distinctive/specific word",
+   "description": "Pick the option most specific or vivid, the one that seems written to fit a particular context while others are generic fillers",
+   "picks_decided": 40
+  },
+  {
+   "name": "two-blank internal coherence/contrast",
+   "description": "For two-blank items pick the pair whose halves form a natural contrast or cause relation; repeated first word (L49) as tell",
+   "picks_decided": 14
+  },
+  {
+   "name": "elevated vocabulary",
+   "description": "Prefer the harder/rarer word in a vocabulary test",
+   "picks_decided": 10
+  },
+  {
+   "name": "pure guess",
+   "description": "No signal",
+   "picks_decided": 6
+  }
+ ],
+ "notes": "No option was certain to reject without the stem; most items felt like near-guesses."
+}

@@ -1,0 +1,20 @@
+{
+ "heuristics": [
+  {
+   "name": "collocation/plausibility",
+   "description": "pick the option that most naturally fits a generic sentence context implied by the option set (e.g. frayed rope, hushed library, camouflaged animal)",
+   "picks_decided": 46
+  },
+  {
+   "name": "two-blank coherence/contrast",
+   "description": "for paired options, pick the pair whose relation is most test-like (contrast or tight agreement)",
+   "picks_decided": 16
+  },
+  {
+   "name": "sophisticated-vocab preference",
+   "description": "tie-break toward the more advanced/ISEE-flavored word",
+   "picks_decided": 8
+  }
+ ],
+ "notes": "Most picks are guesses; no option certainly rejectable without the stem."
+}

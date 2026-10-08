@@ -1,0 +1,20 @@
+{
+ "heuristics": [
+  {
+   "name": "salient/sophisticated vocabulary",
+   "description": "pick the most distinctive or exam-worthy word, or the one that plausibly fits a richer context (e.g. dormant, brackish, nomadic, prolific)",
+   "picks_decided": 52
+  },
+  {
+   "name": "two-blank coherence/contrast",
+   "description": "for paired blanks prefer pairs with a clean contrast or tight logical relation (austere...whimsy, impersonal...intimate, popular...unworkable)",
+   "picks_decided": 14
+  },
+  {
+   "name": "arbitrary guess",
+   "description": "no signal; chose by gut",
+   "picks_decided": 4
+  }
+ ],
+ "notes": "No option could be rejected with certainty without the stem; all reject_certain=false."
+}

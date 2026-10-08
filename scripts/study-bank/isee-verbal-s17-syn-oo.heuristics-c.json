@@ -1,0 +1,15 @@
+{
+ "heuristics": [
+  {
+   "name": "plausible-headword target",
+   "description": "pick the option that is the most natural synonym target for a harder typical ISEE headword (e.g. postpone<-defer, impede<-hinder, fleeting<-ephemeral)",
+   "picks_decided": 75
+  },
+  {
+   "name": "odd-one-out register",
+   "description": "pick the option whose register/specificity differs from the other three when no headword stands out",
+   "picks_decided": 15
+  }
+ ],
+ "notes": "All picks are guesses; no option judged certainly impossible without the stem, so reject_certain is false throughout and reject letters are low-confidence."
+}

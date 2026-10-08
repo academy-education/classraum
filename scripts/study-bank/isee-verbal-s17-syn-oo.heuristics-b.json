@@ -1,0 +1,20 @@
+{
+ "heuristics": [
+  {
+   "name": "likely-headword back-inference",
+   "description": "Pick the option that is the common plain-English gloss for a recognisable ISEE-level headword (e.g. postpone<-defer, impede<-hinder, fleeting<-transient), distractors being unrelated everyday words",
+   "picks_decided": 82
+  },
+  {
+   "name": "phrase-option definition fit",
+   "description": "For phrase options, pick the one that defines a single classic vocabulary word (unwilling to spend=stingy, thinly scattered=sparse, quick to recover=resilient)",
+   "picks_decided": 4
+  },
+  {
+   "name": "arbitrary",
+   "description": "No discernible signal; picked one of the plausible options",
+   "picks_decided": 4
+  }
+ ],
+ "notes": "No option set contained a clear one-option tell; picks are guesses grounded in which option is the canonical gloss of a typical test headword. reject_certain is false everywhere."
+}
