@@ -1,0 +1,902 @@
+[
+  {
+    "id": "SVS18B-01",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] STRANGE",
+    "choices": [
+      "lonely",
+      "rainy",
+      "formal",
+      "weird",
+      "hefty"
+    ],
+    "correct_answer": "weird",
+    "explanation": "STRANGE means unusual or odd in a way that is surprising; 'weird' is the closest synonym.",
+    "distractor_rationales": {
+      "lonely": "'lonely' means sad from being alone, not odd or unusual; sense-family: feeling/solitude.",
+      "rainy": "'rainy' means having a lot of rain, not odd or unusual; sense-family: weather.",
+      "formal": "'formal' means following official or proper rules of behavior, not odd or unusual; sense-family: manner/etiquette.",
+      "hefty": "'hefty' means large and heavy, not odd or unusual; sense-family: size/weight."
+    }
+  },
+  {
+    "id": "SVS18B-02",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SCREECH",
+    "choices": [
+      "glide",
+      "exhale",
+      "sprawl",
+      "graze",
+      "shriek"
+    ],
+    "correct_answer": "shriek",
+    "explanation": "SCREECH means to make a loud, high, piercing cry; 'shriek' is the closest synonym.",
+    "distractor_rationales": {
+      "glide": "'glide' means to move smoothly and quietly through the air or over a surface, not cry out shrilly; sense-family: smooth motion.",
+      "exhale": "'exhale' means to breathe out, not cry out shrilly; sense-family: breathing.",
+      "sprawl": "'sprawl' means to sit or lie with the limbs spread out carelessly, not cry out shrilly; sense-family: posture.",
+      "graze": "'graze' means to feed on growing grass, not cry out shrilly; sense-family: feeding."
+    }
+  },
+  {
+    "id": "SVS18B-03",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] MEDDLE",
+    "choices": [
+      "interfere",
+      "hesitate",
+      "apologize",
+      "dedicate",
+      "reside"
+    ],
+    "correct_answer": "interfere",
+    "explanation": "MEDDLE means to involve oneself in matters that are not one's concern; 'interfere' is the closest synonym.",
+    "distractor_rationales": {
+      "hesitate": "'hesitate' means to pause before acting because of uncertainty, not involve oneself uninvited; sense-family: delay/doubt.",
+      "apologize": "'apologize' means to say one is sorry, not involve oneself uninvited; sense-family: speech/regret.",
+      "dedicate": "'dedicate' means to give time or effort wholly to a purpose, not involve oneself uninvited; sense-family: commitment.",
+      "reside": "'reside' means to live in a particular place, not involve oneself uninvited; sense-family: dwelling."
+    }
+  },
+  {
+    "id": "SVS18B-04",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SURPASS",
+    "choices": [
+      "assign",
+      "inhale",
+      "deposit",
+      "attach",
+      "exceed"
+    ],
+    "correct_answer": "exceed",
+    "explanation": "SURPASS means to go beyond or be greater than; 'exceed' is the closest synonym.",
+    "distractor_rationales": {
+      "assign": "'assign' means to give someone a task or job, not go beyond; sense-family: allocation.",
+      "inhale": "'inhale' means to breathe in, not go beyond; sense-family: breathing.",
+      "deposit": "'deposit' means to put something down or into an account, not go beyond; sense-family: placing/money.",
+      "attach": "'attach' means to fasten or join one thing to another, not go beyond; sense-family: joining."
+    }
+  },
+  {
+    "id": "SVS18B-05",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] TRANSFORM",
+    "choices": [
+      "employ",
+      "erode",
+      "convert",
+      "foster",
+      "recall"
+    ],
+    "correct_answer": "convert",
+    "explanation": "TRANSFORM means to change completely in form, character or use; 'convert' is the closest synonym.",
+    "distractor_rationales": {
+      "employ": "'employ' means to give work to someone or to use something, not change completely; sense-family: work/use.",
+      "erode": "'erode' means to wear away gradually, not change completely; sense-family: wearing away.",
+      "foster": "'foster' means to encourage the growth of, or to care for a child, not change completely; sense-family: nurturing.",
+      "recall": "'recall' means to remember or to call back, not change completely; sense-family: memory."
+    }
+  },
+  {
+    "id": "SVS18B-06",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] SNATCH",
+    "choices": [
+      "knock",
+      "wrap",
+      "sew",
+      "hang",
+      "grab"
+    ],
+    "correct_answer": "grab",
+    "explanation": "SNATCH means to take hold of something quickly and suddenly; 'grab' is the closest synonym.",
+    "distractor_rationales": {
+      "knock": "'knock' means to strike a surface to make a sound, not take hold of quickly; sense-family: striking.",
+      "wrap": "'wrap' means to cover something by winding material around it, not take hold of quickly; sense-family: covering.",
+      "sew": "'sew' means to join cloth with a needle and thread, not take hold of quickly; sense-family: handicraft.",
+      "hang": "'hang' means to fasten something so it is held from above, not take hold of quickly; sense-family: suspending."
+    }
+  },
+  {
+    "id": "SVS18B-07",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] WOBBLY",
+    "choices": [
+      "greasy",
+      "lanky",
+      "crunchy",
+      "shaky",
+      "furry"
+    ],
+    "correct_answer": "shaky",
+    "explanation": "WOBBLY means unsteady and likely to tip or rock; 'shaky' is the closest synonym.",
+    "distractor_rationales": {
+      "greasy": "'greasy' means covered with oil or fat, not unsteady; sense-family: texture/surface.",
+      "lanky": "'lanky' means tall, thin and long-limbed, not unsteady; sense-family: body build.",
+      "crunchy": "'crunchy' means making a crisp sound when bitten, not unsteady; sense-family: texture/food.",
+      "furry": "'furry' means covered with fur, not unsteady; sense-family: texture/surface."
+    }
+  },
+  {
+    "id": "SVS18B-08",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] PORTRAY",
+    "choices": [
+      "evict",
+      "dispute",
+      "swap",
+      "impose",
+      "depict"
+    ],
+    "correct_answer": "depict",
+    "explanation": "PORTRAY means to represent or show someone or something in art or words; 'depict' is the closest synonym.",
+    "distractor_rationales": {
+      "evict": "'evict' means to force a tenant to leave a property, not represent; sense-family: removal.",
+      "dispute": "'dispute' means to argue that something is not true, not represent; sense-family: disagreement.",
+      "swap": "'swap' means to exchange one thing for another, not represent; sense-family: exchange.",
+      "impose": "'impose' means to force something on others, not represent; sense-family: forcing."
+    }
+  },
+  {
+    "id": "SVS18B-09",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] TRAP",
+    "choices": [
+      "kick",
+      "chop",
+      "paddle",
+      "blink",
+      "catch"
+    ],
+    "correct_answer": "catch",
+    "explanation": "TRAP means to capture and hold an animal or person so it cannot escape; 'catch' is the closest synonym.",
+    "distractor_rationales": {
+      "kick": "'kick' means to strike with the foot, not capture; sense-family: striking.",
+      "chop": "'chop' means to cut into pieces with a blade, not capture; sense-family: cutting.",
+      "paddle": "'paddle' means to move a boat with an oar, not capture; sense-family: boating/motion.",
+      "blink": "'blink' means to close and open the eyes quickly, not capture; sense-family: eye movement."
+    }
+  },
+  {
+    "id": "SVS18B-10",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SPLENDID",
+    "choices": [
+      "jittery",
+      "permissive",
+      "magnificent",
+      "sheepish",
+      "nonsensical"
+    ],
+    "correct_answer": "magnificent",
+    "explanation": "SPLENDID means impressively grand or excellent; 'magnificent' is the closest synonym.",
+    "distractor_rationales": {
+      "jittery": "'jittery' means nervous and unable to relax, not grand; sense-family: nerves.",
+      "permissive": "'permissive' means allowing a lot of freedom, not grand; sense-family: rules/strictness.",
+      "sheepish": "'sheepish' means embarrassed after a mistake, not grand; sense-family: embarrassment.",
+      "nonsensical": "'nonsensical' means making no sense, not grand; sense-family: logic."
+    }
+  },
+  {
+    "id": "SVS18B-11",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] VITAL",
+    "choices": [
+      "chatty",
+      "frosty",
+      "essential",
+      "credible",
+      "blameless"
+    ],
+    "correct_answer": "essential",
+    "explanation": "VITAL means absolutely necessary; 'essential' is the closest synonym.",
+    "distractor_rationales": {
+      "chatty": "'chatty' means fond of talking in a friendly way, not necessary; sense-family: speech/sociability.",
+      "frosty": "'frosty' means very cold or covered with frost, not necessary; sense-family: temperature.",
+      "credible": "'credible' means able to be believed, not necessary; sense-family: belief/trust.",
+      "blameless": "'blameless' means free from fault or guilt, not necessary; sense-family: guilt/innocence."
+    }
+  },
+  {
+    "id": "SVS18B-12",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] USURP",
+    "choices": [
+      "sway",
+      "seize",
+      "irrigate",
+      "interpret",
+      "preside"
+    ],
+    "correct_answer": "seize",
+    "explanation": "USURP means to take power or a position by force and without right; 'seize' is the closest synonym.",
+    "distractor_rationales": {
+      "sway": "'sway' means to swing slowly from side to side, not take by force; sense-family: motion.",
+      "irrigate": "'irrigate' means to supply land with water, not take by force; sense-family: farming/water.",
+      "interpret": "'interpret' means to explain the meaning of, not take by force; sense-family: understanding.",
+      "preside": "'preside' means to be in charge of a meeting, not take by force; sense-family: leadership."
+    }
+  },
+  {
+    "id": "SVS18B-13",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] TRADITION",
+    "choices": [
+      "voucher",
+      "pasture",
+      "alibi",
+      "custom",
+      "stamina"
+    ],
+    "correct_answer": "custom",
+    "explanation": "TRADITION means a practice or belief handed down over time; 'custom' is the closest synonym.",
+    "distractor_rationales": {
+      "voucher": "'voucher' means a paper that can be exchanged for goods or services, not handed-down practice; sense-family: documents/money.",
+      "pasture": "'pasture' means land covered with grass for grazing animals, not handed-down practice; sense-family: land/farming.",
+      "alibi": "'alibi' means a claim of being elsewhere when a crime happened, not handed-down practice; sense-family: crime/law.",
+      "stamina": "'stamina' means the strength to keep going for a long time, not handed-down practice; sense-family: physical capacity."
+    }
+  },
+  {
+    "id": "SVS18B-14",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] TEPID",
+    "choices": [
+      "metallic",
+      "lukewarm",
+      "cramped",
+      "savory",
+      "leafy"
+    ],
+    "correct_answer": "lukewarm",
+    "explanation": "TEPID means only slightly warm; 'lukewarm' is the closest synonym.",
+    "distractor_rationales": {
+      "metallic": "'metallic' means made of or like metal, not slightly warm; sense-family: material.",
+      "cramped": "'cramped' means uncomfortably small or crowded, not slightly warm; sense-family: space.",
+      "savory": "'savory' means salty or spicy rather than sweet, not slightly warm; sense-family: taste.",
+      "leafy": "'leafy' means having many leaves, not slightly warm; sense-family: plants."
+    }
+  },
+  {
+    "id": "SVS18B-15",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] VINDICTIVE",
+    "choices": [
+      "vengeful",
+      "fidgety",
+      "legitimate",
+      "preposterous",
+      "reserved"
+    ],
+    "correct_answer": "vengeful",
+    "explanation": "VINDICTIVE means wanting to hurt someone in return for a wrong; 'vengeful' is the closest synonym.",
+    "distractor_rationales": {
+      "fidgety": "'fidgety' means unable to keep still, not seeking revenge; sense-family: restlessness.",
+      "legitimate": "'legitimate' means allowed by rules or law, not seeking revenge; sense-family: law.",
+      "preposterous": "'preposterous' means completely unreasonable or absurd, not seeking revenge; sense-family: logic/absurdity.",
+      "reserved": "'reserved' means slow to show feelings or opinions, not seeking revenge; sense-family: sociability."
+    }
+  },
+  {
+    "id": "SVS18B-16",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SERRATED",
+    "choices": [
+      "frizzy",
+      "tropical",
+      "jagged",
+      "gaudy",
+      "arid"
+    ],
+    "correct_answer": "jagged",
+    "explanation": "SERRATED means having a row of sharp, tooth-like points along the edge; 'jagged' is the closest synonym.",
+    "distractor_rationales": {
+      "frizzy": "'frizzy' means in tight, wiry curls, not toothed edge; sense-family: hair.",
+      "tropical": "'tropical' means of the hot regions near the equator, not toothed edge; sense-family: climate/region.",
+      "gaudy": "'gaudy' means showy in a tasteless, bright way, not toothed edge; sense-family: appearance/taste.",
+      "arid": "'arid' means very dry, with little rain, not toothed edge; sense-family: climate/region."
+    }
+  },
+  {
+    "id": "SVS18B-17",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SWAGGER",
+    "choices": [
+      "browse",
+      "pounce",
+      "recline",
+      "flee",
+      "strut"
+    ],
+    "correct_answer": "strut",
+    "explanation": "SWAGGER means to walk or behave in a very proud, showy way; 'strut' is the closest synonym.",
+    "distractor_rationales": {
+      "browse": "'browse' means to look through things casually, not walk proudly; sense-family: looking.",
+      "pounce": "'pounce' means to jump suddenly to seize something, not walk proudly; sense-family: sudden attack.",
+      "recline": "'recline' means to lean or lie back, not walk proudly; sense-family: posture.",
+      "flee": "'flee' means to run away from danger, not walk proudly; sense-family: escape."
+    }
+  },
+  {
+    "id": "SVS18B-18",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] PHONY",
+    "choices": [
+      "rusty",
+      "fake",
+      "oval",
+      "bony",
+      "dark"
+    ],
+    "correct_answer": "fake",
+    "explanation": "PHONY means not genuine; pretending to be something it is not; 'fake' is the closest synonym.",
+    "distractor_rationales": {
+      "rusty": "'rusty' means covered with rust, not not genuine; sense-family: condition/metal.",
+      "oval": "'oval' means shaped like an egg, not not genuine; sense-family: shape.",
+      "bony": "'bony' means very thin so the bones show, not not genuine; sense-family: body build.",
+      "dark": "'dark' means having little or no light, not not genuine; sense-family: light."
+    }
+  },
+  {
+    "id": "SVS18B-19",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] VENERATE",
+    "choices": [
+      "manipulate",
+      "supervise",
+      "worship",
+      "distribute",
+      "reclaim"
+    ],
+    "correct_answer": "worship",
+    "explanation": "VENERATE means to regard with deep respect and devotion; 'worship' is the closest synonym.",
+    "distractor_rationales": {
+      "manipulate": "'manipulate' means to control cleverly or unfairly, not deeply respect; sense-family: control.",
+      "supervise": "'supervise' means to watch over work or workers, not deeply respect; sense-family: oversight.",
+      "distribute": "'distribute' means to hand out or share among many, not deeply respect; sense-family: sharing.",
+      "reclaim": "'reclaim' means to get back something that was lost or taken, not deeply respect; sense-family: recovery."
+    }
+  },
+  {
+    "id": "SVS18B-20",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ZANY",
+    "choices": [
+      "hideous",
+      "grouchy",
+      "lawful",
+      "wacky",
+      "dainty"
+    ],
+    "correct_answer": "wacky",
+    "explanation": "ZANY means amusingly odd and unconventional; 'wacky' is the closest synonym.",
+    "distractor_rationales": {
+      "hideous": "'hideous' means extremely ugly, not amusingly odd; sense-family: appearance.",
+      "grouchy": "'grouchy' means in a bad, complaining mood, not amusingly odd; sense-family: mood.",
+      "lawful": "'lawful' means allowed by law, not amusingly odd; sense-family: law.",
+      "dainty": "'dainty' means delicately small and pretty, not amusingly odd; sense-family: size/appearance."
+    }
+  },
+  {
+    "id": "SVS18B-21",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] UPBRAID",
+    "choices": [
+      "reprimand",
+      "supplement",
+      "relocate",
+      "substitute",
+      "terminate"
+    ],
+    "correct_answer": "reprimand",
+    "explanation": "UPBRAID means to scold or criticize sharply; 'reprimand' is the closest synonym.",
+    "distractor_rationales": {
+      "supplement": "'supplement' means to add something extra to complete, not scold; sense-family: adding.",
+      "relocate": "'relocate' means to move to a new place, not scold; sense-family: moving.",
+      "substitute": "'substitute' means to put in place of another, not scold; sense-family: replacing.",
+      "terminate": "'terminate' means to bring to an end, not scold; sense-family: ending."
+    }
+  },
+  {
+    "id": "SVS18B-22",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] PROCURE",
+    "choices": [
+      "obtain",
+      "transmit",
+      "perceive",
+      "dissolve",
+      "assert"
+    ],
+    "correct_answer": "obtain",
+    "explanation": "PROCURE means to get something, often with care or effort; 'obtain' is the closest synonym.",
+    "distractor_rationales": {
+      "transmit": "'transmit' means to send or pass from one place to another, not get; sense-family: sending.",
+      "perceive": "'perceive' means to notice or become aware of, not get; sense-family: awareness.",
+      "dissolve": "'dissolve' means to mix into a liquid until it disappears, not get; sense-family: mixing.",
+      "assert": "'assert' means to state something firmly, not get; sense-family: statement."
+    }
+  },
+  {
+    "id": "SVS18B-23",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SCOWL",
+    "choices": [
+      "exclaim",
+      "salute",
+      "stoop",
+      "frown",
+      "gaze"
+    ],
+    "correct_answer": "frown",
+    "explanation": "SCOWL means to wrinkle the brow in an angry or displeased look; 'frown' is the closest synonym.",
+    "distractor_rationales": {
+      "exclaim": "'exclaim' means to cry out suddenly, not make an angry face; sense-family: speech.",
+      "salute": "'salute' means to give a formal sign of respect, not make an angry face; sense-family: gesture/respect.",
+      "stoop": "'stoop' means to bend the body forward and down, not make an angry face; sense-family: posture.",
+      "gaze": "'gaze' means to look steadily for a long time, not make an angry face; sense-family: looking."
+    }
+  },
+  {
+    "id": "SVS18B-24",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] WOE",
+    "choices": [
+      "prestige",
+      "carnival",
+      "misery",
+      "motive",
+      "partner"
+    ],
+    "correct_answer": "misery",
+    "explanation": "WOE means great sorrow or distress; 'misery' is the closest synonym.",
+    "distractor_rationales": {
+      "prestige": "'prestige' means respect earned through success or rank, not sorrow; sense-family: status.",
+      "carnival": "'carnival' means a public festival with rides and games, not sorrow; sense-family: events.",
+      "motive": "'motive' means a reason for doing something, not sorrow; sense-family: reasoning.",
+      "partner": "'partner' means a person who shares an activity with another, not sorrow; sense-family: people/relationships."
+    }
+  },
+  {
+    "id": "SVS18B-25",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] UNKEMPT",
+    "choices": [
+      "vocal",
+      "scruffy",
+      "outgoing",
+      "upbeat",
+      "sinister"
+    ],
+    "correct_answer": "scruffy",
+    "explanation": "UNKEMPT means untidy and poorly cared for in appearance; 'scruffy' is the closest synonym.",
+    "distractor_rationales": {
+      "vocal": "'vocal' means expressing opinions freely and loudly, not untidy; sense-family: speech.",
+      "outgoing": "'outgoing' means friendly and eager to meet people, not untidy; sense-family: sociability.",
+      "upbeat": "'upbeat' means cheerful and hopeful, not untidy; sense-family: mood.",
+      "sinister": "'sinister' means giving the impression of something evil, not untidy; sense-family: threat."
+    }
+  },
+  {
+    "id": "SVS18B-26",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] SHIMMER",
+    "choices": [
+      "revolve",
+      "simplify",
+      "glisten",
+      "consult",
+      "undergo"
+    ],
+    "correct_answer": "glisten",
+    "explanation": "SHIMMER means to shine with a soft, wavering light; 'glisten' is the closest synonym.",
+    "distractor_rationales": {
+      "revolve": "'revolve' means to move in a circle around a center, not shine softly; sense-family: turning.",
+      "simplify": "'simplify' means to make easier to understand, not shine softly; sense-family: making easier.",
+      "consult": "'consult' means to seek advice or information from, not shine softly; sense-family: advice.",
+      "undergo": "'undergo' means to experience something, often unpleasant, not shine softly; sense-family: experience."
+    }
+  },
+  {
+    "id": "SVS18B-27",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] RAPTURE",
+    "choices": [
+      "clue",
+      "bliss",
+      "culprit",
+      "almanac",
+      "tunnel"
+    ],
+    "correct_answer": "bliss",
+    "explanation": "RAPTURE means a feeling of intense joy or delight; 'bliss' is the closest synonym.",
+    "distractor_rationales": {
+      "clue": "'clue' means a piece of evidence that helps solve a problem, not intense joy; sense-family: evidence.",
+      "culprit": "'culprit' means the person responsible for a wrong, not intense joy; sense-family: crime/law.",
+      "almanac": "'almanac' means a yearly book of facts and calendars, not intense joy; sense-family: books.",
+      "tunnel": "'tunnel' means an underground passage, not intense joy; sense-family: structures."
+    }
+  },
+  {
+    "id": "SVS18B-28",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] SQUASH",
+    "choices": [
+      "twirl",
+      "crush",
+      "peek",
+      "lick",
+      "mow"
+    ],
+    "correct_answer": "crush",
+    "explanation": "SQUASH means to press something flat or out of shape by squeezing; 'crush' is the closest synonym.",
+    "distractor_rationales": {
+      "twirl": "'twirl' means to spin around quickly, not press flat; sense-family: turning.",
+      "peek": "'peek' means to look quickly and secretly, not press flat; sense-family: looking.",
+      "lick": "'lick' means to pass the tongue over something, not press flat; sense-family: mouth action.",
+      "mow": "'mow' means to cut grass with a machine or blade, not press flat; sense-family: cutting/yardwork."
+    }
+  },
+  {
+    "id": "SVS18B-29",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] RETRIEVE",
+    "choices": [
+      "squeeze",
+      "enforce",
+      "shrink",
+      "fetch",
+      "admit"
+    ],
+    "correct_answer": "fetch",
+    "explanation": "RETRIEVE means to get something back and bring it; 'fetch' is the closest synonym.",
+    "distractor_rationales": {
+      "squeeze": "'squeeze' means to press firmly together, not get back; sense-family: pressing.",
+      "enforce": "'enforce' means to make sure a rule is obeyed, not get back; sense-family: rules.",
+      "shrink": "'shrink' means to become smaller, not get back; sense-family: size change.",
+      "admit": "'admit' means to confess or to allow to enter, not get back; sense-family: confession/entry."
+    }
+  },
+  {
+    "id": "SVS18B-30",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] SUCCUMB",
+    "choices": [
+      "submit",
+      "reinforce",
+      "renew",
+      "contribute",
+      "straddle"
+    ],
+    "correct_answer": "submit",
+    "explanation": "SUCCUMB means to give in to a stronger force or pressure; 'submit' is the closest synonym.",
+    "distractor_rationales": {
+      "reinforce": "'reinforce' means to make stronger by adding support, not give in; sense-family: strengthening.",
+      "renew": "'renew' means to begin again or extend, not give in; sense-family: repeating.",
+      "contribute": "'contribute' means to give along with others, not give in; sense-family: giving.",
+      "straddle": "'straddle' means to sit or stand with one leg on each side, not give in; sense-family: posture."
+    }
+  },
+  {
+    "id": "SVS18B-31",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] VOLATILE",
+    "choices": [
+      "copious",
+      "innocent",
+      "petite",
+      "unstable",
+      "fortunate"
+    ],
+    "correct_answer": "unstable",
+    "explanation": "VOLATILE means likely to change suddenly or explosively; 'unstable' is the closest synonym.",
+    "distractor_rationales": {
+      "copious": "'copious' means in large amounts, not changeable; sense-family: quantity.",
+      "innocent": "'innocent' means not guilty, not changeable; sense-family: guilt/innocence.",
+      "petite": "'petite' means small and slim, not changeable; sense-family: size.",
+      "fortunate": "'fortunate' means lucky, not changeable; sense-family: luck."
+    }
+  },
+  {
+    "id": "SVS18B-32",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] OUTLANDISH",
+    "choices": [
+      "bizarre",
+      "cheeky",
+      "superb",
+      "notable",
+      "glum"
+    ],
+    "correct_answer": "bizarre",
+    "explanation": "OUTLANDISH means strikingly strange or unfamiliar; 'bizarre' is the closest synonym.",
+    "distractor_rationales": {
+      "cheeky": "'cheeky' means rude in a bold but amusing way, not strikingly strange; sense-family: manners.",
+      "superb": "'superb' means excellent, not strikingly strange; sense-family: quality.",
+      "notable": "'notable' means worth noticing; important, not strikingly strange; sense-family: importance.",
+      "glum": "'glum' means quietly sad and gloomy, not strikingly strange; sense-family: mood."
+    }
+  },
+  {
+    "id": "SVS18B-33",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] YANK",
+    "choices": [
+      "wink",
+      "tug",
+      "hop",
+      "trim",
+      "bury"
+    ],
+    "correct_answer": "tug",
+    "explanation": "YANK means to pull something with a sudden, hard movement; 'tug' is the closest synonym.",
+    "distractor_rationales": {
+      "wink": "'wink' means to close one eye briefly as a signal, not pull hard; sense-family: eye movement.",
+      "hop": "'hop' means to jump on one foot or with small leaps, not pull hard; sense-family: jumping.",
+      "trim": "'trim' means to cut a little off to make neat, not pull hard; sense-family: cutting.",
+      "bury": "'bury' means to put something in the ground and cover it, not pull hard; sense-family: placing/covering."
+    }
+  },
+  {
+    "id": "SVS18B-34",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] SLANDER",
+    "choices": [
+      "entice",
+      "forecast",
+      "uphold",
+      "regulate",
+      "defame"
+    ],
+    "correct_answer": "defame",
+    "explanation": "SLANDER means to damage someone's reputation with false spoken statements; 'defame' is the closest synonym.",
+    "distractor_rationales": {
+      "entice": "'entice' means to tempt or attract, not damage a reputation; sense-family: temptation.",
+      "forecast": "'forecast' means to predict a future event, not damage a reputation; sense-family: prediction.",
+      "uphold": "'uphold' means to support or maintain, not damage a reputation; sense-family: support.",
+      "regulate": "'regulate' means to control by rules, not damage a reputation; sense-family: rules."
+    }
+  },
+  {
+    "id": "SVS18B-35",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] MURKY",
+    "choices": [
+      "cloudy",
+      "witty",
+      "arctic",
+      "chewy",
+      "feathery"
+    ],
+    "correct_answer": "cloudy",
+    "explanation": "MURKY means dark and not clear, as of water; 'cloudy' is the closest synonym.",
+    "distractor_rationales": {
+      "witty": "'witty' means clever and funny with words, not dark and unclear; sense-family: humor.",
+      "arctic": "'arctic' means of the far north; extremely cold, not dark and unclear; sense-family: temperature/region.",
+      "chewy": "'chewy' means needing much chewing, not dark and unclear; sense-family: texture/food.",
+      "feathery": "'feathery' means light and soft like feathers, not dark and unclear; sense-family: texture."
+    }
+  },
+  {
+    "id": "SVS18B-36",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ROUSE",
+    "choices": [
+      "awaken",
+      "confide",
+      "invest",
+      "migrate",
+      "survive"
+    ],
+    "correct_answer": "awaken",
+    "explanation": "ROUSE means to wake someone or stir them to action; 'awaken' is the closest synonym.",
+    "distractor_rationales": {
+      "confide": "'confide' means to tell someone a secret, not wake; sense-family: sharing secrets.",
+      "invest": "'invest' means to put money into something for profit, not wake; sense-family: money.",
+      "migrate": "'migrate' means to move from one region to another, not wake; sense-family: travel.",
+      "survive": "'survive' means to continue to live, not wake; sense-family: living."
+    }
+  }
+]

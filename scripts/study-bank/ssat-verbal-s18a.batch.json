@@ -1,0 +1,902 @@
+[
+  {
+    "id": "SVS18A-01",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] ASTUTE",
+    "choices": [
+      "perceptive",
+      "conceited",
+      "meek",
+      "negligent",
+      "picky"
+    ],
+    "correct_answer": "perceptive",
+    "explanation": "ASTUTE means sharp at noticing and understanding things; 'perceptive' is the closest synonym.",
+    "distractor_rationales": {
+      "conceited": "'conceited' means too proud of oneself, not sharp at noticing and understanding things; sense-family: vanity.",
+      "meek": "'meek' means quiet and easily led, not sharp at noticing and understanding things; sense-family: submissiveness.",
+      "negligent": "'negligent' means failing to take proper care, not sharp at noticing and understanding things; sense-family: carelessness.",
+      "picky": "'picky' means hard to please, not sharp at noticing and understanding things; sense-family: fussiness."
+    }
+  },
+  {
+    "id": "SVS18A-02",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] CAPRICIOUS",
+    "choices": [
+      "covetous",
+      "ruthless",
+      "diplomatic",
+      "studious",
+      "whimsical"
+    ],
+    "correct_answer": "whimsical",
+    "explanation": "CAPRICIOUS means changing mood or mind suddenly and without reason; 'whimsical' is the closest synonym.",
+    "distractor_rationales": {
+      "covetous": "'covetous' means wanting what belongs to others, not changing mood or mind suddenly and without reason; sense-family: envy.",
+      "ruthless": "'ruthless' means without pity, not changing mood or mind suddenly and without reason; sense-family: cruelty.",
+      "diplomatic": "'diplomatic' means tactful in dealing with people, not changing mood or mind suddenly and without reason; sense-family: tact.",
+      "studious": "'studious' means devoted to study, not changing mood or mind suddenly and without reason; sense-family: diligence."
+    }
+  },
+  {
+    "id": "SVS18A-03",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] ACCURATE",
+    "choices": [
+      "handy",
+      "cozy",
+      "scary",
+      "exact",
+      "lively"
+    ],
+    "correct_answer": "exact",
+    "explanation": "ACCURATE means free from error; 'exact' is the closest synonym.",
+    "distractor_rationales": {
+      "handy": "'handy' means useful and convenient, not free from error; sense-family: usefulness.",
+      "cozy": "'cozy' means warm and comfortable, not free from error; sense-family: comfort.",
+      "scary": "'scary' means frightening, not free from error; sense-family: fear.",
+      "lively": "'lively' means full of energy, not free from error; sense-family: energy."
+    }
+  },
+  {
+    "id": "SVS18A-04",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ADORN",
+    "choices": [
+      "beautify",
+      "appoint",
+      "divert",
+      "plead",
+      "hoist"
+    ],
+    "correct_answer": "beautify",
+    "explanation": "ADORN means to make more attractive by adding ornaments; 'beautify' is the closest synonym.",
+    "distractor_rationales": {
+      "appoint": "'appoint' means to assign someone to a job, not to make more attractive by adding ornaments; sense-family: assignment.",
+      "divert": "'divert' means to turn aside from a course, not to make more attractive by adding ornaments; sense-family: redirection.",
+      "plead": "'plead' means to beg earnestly, not to make more attractive by adding ornaments; sense-family: begging.",
+      "hoist": "'hoist' means to raise with ropes, not to make more attractive by adding ornaments; sense-family: lifting."
+    }
+  },
+  {
+    "id": "SVS18A-05",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ALLAY",
+    "choices": [
+      "inquire",
+      "retract",
+      "pacify",
+      "emit",
+      "designate"
+    ],
+    "correct_answer": "pacify",
+    "explanation": "ALLAY means to calm or lessen a fear or worry; 'pacify' is the closest synonym.",
+    "distractor_rationales": {
+      "inquire": "'inquire' means to ask about, not to calm or lessen a fear or worry; sense-family: questioning.",
+      "retract": "'retract' means to take back a statement, not to calm or lessen a fear or worry; sense-family: withdrawal.",
+      "emit": "'emit' means to give off light, heat, or sound, not to calm or lessen a fear or worry; sense-family: release.",
+      "designate": "'designate' means to officially name or choose, not to calm or lessen a fear or worry; sense-family: assignment."
+    }
+  },
+  {
+    "id": "SVS18A-06",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] CALLOUS",
+    "choices": [
+      "heartless",
+      "hysterical",
+      "ludicrous",
+      "tentative",
+      "observant"
+    ],
+    "correct_answer": "heartless",
+    "explanation": "CALLOUS means showing no concern for others' feelings; 'heartless' is the closest synonym.",
+    "distractor_rationales": {
+      "hysterical": "'hysterical' means wildly uncontrolled in emotion, not showing no concern for others' feelings; sense-family: emotional excess.",
+      "ludicrous": "'ludicrous' means so foolish as to be laughable, not showing no concern for others' feelings; sense-family: absurdity.",
+      "tentative": "'tentative' means not certain or fixed, not showing no concern for others' feelings; sense-family: hesitancy.",
+      "observant": "'observant' means quick to notice things, not showing no concern for others' feelings; sense-family: attentiveness."
+    }
+  },
+  {
+    "id": "SVS18A-07",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] BAFFLE",
+    "choices": [
+      "perplex",
+      "beckon",
+      "entrust",
+      "scavenge",
+      "propel"
+    ],
+    "correct_answer": "perplex",
+    "explanation": "BAFFLE means to confuse completely; 'perplex' is the closest synonym.",
+    "distractor_rationales": {
+      "beckon": "'beckon' means to signal someone to come, not to confuse completely; sense-family: signaling.",
+      "entrust": "'entrust' means to give someone responsibility for, not to confuse completely; sense-family: trust.",
+      "scavenge": "'scavenge' means to search through waste for food, not to confuse completely; sense-family: searching.",
+      "propel": "'propel' means to drive forward, not to confuse completely; sense-family: motion."
+    }
+  },
+  {
+    "id": "SVS18A-08",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] BERATE",
+    "choices": [
+      "rebuke",
+      "solicit",
+      "ratify",
+      "intercept",
+      "renovate"
+    ],
+    "correct_answer": "rebuke",
+    "explanation": "BERATE means to scold angrily; 'rebuke' is the closest synonym.",
+    "distractor_rationales": {
+      "solicit": "'solicit' means to ask for or try to obtain, not to scold angrily; sense-family: requesting.",
+      "ratify": "'ratify' means to formally approve, not to scold angrily; sense-family: approval.",
+      "intercept": "'intercept' means to stop something on its way, not to scold angrily; sense-family: blocking.",
+      "renovate": "'renovate' means to restore to good condition, not to scold angrily; sense-family: repair."
+    }
+  },
+  {
+    "id": "SVS18A-09",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] CRAVE",
+    "choices": [
+      "donate",
+      "overlook",
+      "desire",
+      "utilize",
+      "wield"
+    ],
+    "correct_answer": "desire",
+    "explanation": "CRAVE means to want greatly; 'desire' is the closest synonym.",
+    "distractor_rationales": {
+      "donate": "'donate' means to give to a cause, not to want greatly; sense-family: giving.",
+      "overlook": "'overlook' means to fail to notice, not to want greatly; sense-family: neglect.",
+      "utilize": "'utilize' means to make use of, not to want greatly; sense-family: using.",
+      "wield": "'wield' means to hold and use a tool or weapon, not to want greatly; sense-family: using."
+    }
+  },
+  {
+    "id": "SVS18A-10",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] DECEIVE",
+    "choices": [
+      "nurture",
+      "summarize",
+      "delude",
+      "inhabit",
+      "jostle"
+    ],
+    "correct_answer": "delude",
+    "explanation": "DECEIVE means to make someone believe something false; 'delude' is the closest synonym.",
+    "distractor_rationales": {
+      "nurture": "'nurture' means to care for and help grow, not to make someone believe something false; sense-family: caring.",
+      "summarize": "'summarize' means to give the main points briefly, not to make someone believe something false; sense-family: condensing.",
+      "inhabit": "'inhabit' means to live in a place, not to make someone believe something false; sense-family: dwelling.",
+      "jostle": "'jostle' means to push roughly in a crowd, not to make someone believe something false; sense-family: pushing."
+    }
+  },
+  {
+    "id": "SVS18A-11",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] DISMAL",
+    "choices": [
+      "compact",
+      "cheerless",
+      "eternal",
+      "informal",
+      "rational"
+    ],
+    "correct_answer": "cheerless",
+    "explanation": "DISMAL means causing gloom; depressing; 'cheerless' is the closest synonym.",
+    "distractor_rationales": {
+      "compact": "'compact' means closely packed; small, not causing gloom; depressing; sense-family: size.",
+      "eternal": "'eternal' means lasting forever, not causing gloom; depressing; sense-family: duration.",
+      "informal": "'informal' means relaxed, not official, not causing gloom; depressing; sense-family: casualness.",
+      "rational": "'rational' means based on reason, not causing gloom; depressing; sense-family: reason."
+    }
+  },
+  {
+    "id": "SVS18A-12",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] IMMENSE",
+    "choices": [
+      "massive",
+      "curly",
+      "grateful",
+      "juicy",
+      "strict"
+    ],
+    "correct_answer": "massive",
+    "explanation": "IMMENSE means extremely large; 'massive' is the closest synonym.",
+    "distractor_rationales": {
+      "curly": "'curly' means having curls, not extremely large; sense-family: shape.",
+      "grateful": "'grateful' means thankful, not extremely large; sense-family: thanks.",
+      "juicy": "'juicy' means full of juice, not extremely large; sense-family: moisture.",
+      "strict": "'strict' means demanding that rules be obeyed, not extremely large; sense-family: discipline."
+    }
+  },
+  {
+    "id": "SVS18A-13",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] DUBIOUS",
+    "choices": [
+      "sedate",
+      "obnoxious",
+      "doubtful",
+      "uncouth",
+      "prominent"
+    ],
+    "correct_answer": "doubtful",
+    "explanation": "DUBIOUS means doubtful; not sure; 'doubtful' is the closest synonym.",
+    "distractor_rationales": {
+      "sedate": "'sedate' means calm and unhurried, not doubtful; not sure; sense-family: calmness.",
+      "obnoxious": "'obnoxious' means extremely unpleasant, not doubtful; not sure; sense-family: offensiveness.",
+      "uncouth": "'uncouth' means lacking good manners, not doubtful; not sure; sense-family: crudeness.",
+      "prominent": "'prominent' means important or well known, not doubtful; not sure; sense-family: importance."
+    }
+  },
+  {
+    "id": "SVS18A-14",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] CULPABLE",
+    "choices": [
+      "secluded",
+      "guilty",
+      "sprightly",
+      "frightful",
+      "hectic"
+    ],
+    "correct_answer": "guilty",
+    "explanation": "CULPABLE means deserving blame; 'guilty' is the closest synonym.",
+    "distractor_rationales": {
+      "secluded": "'secluded' means hidden away from others, not deserving blame; sense-family: isolation.",
+      "sprightly": "'sprightly' means lively and energetic, not deserving blame; sense-family: energy.",
+      "frightful": "'frightful' means very unpleasant or alarming, not deserving blame; sense-family: fear.",
+      "hectic": "'hectic' means full of frantic activity, not deserving blame; sense-family: busyness."
+    }
+  },
+  {
+    "id": "SVS18A-15",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] CORDIAL",
+    "choices": [
+      "dominant",
+      "reliable",
+      "genial",
+      "nonchalant",
+      "impatient"
+    ],
+    "correct_answer": "genial",
+    "explanation": "CORDIAL means warm and friendly; 'genial' is the closest synonym.",
+    "distractor_rationales": {
+      "dominant": "'dominant' means most powerful or controlling, not warm and friendly; sense-family: power.",
+      "reliable": "'reliable' means able to be trusted, not warm and friendly; sense-family: dependability.",
+      "nonchalant": "'nonchalant' means casually calm and unconcerned, not warm and friendly; sense-family: indifference.",
+      "impatient": "'impatient' means unwilling to wait, not warm and friendly; sense-family: restlessness."
+    }
+  },
+  {
+    "id": "SVS18A-16",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] DELETE",
+    "choices": [
+      "remove",
+      "attend",
+      "bounce",
+      "pinch",
+      "offer"
+    ],
+    "correct_answer": "remove",
+    "explanation": "DELETE means to remove or wipe out; 'remove' is the closest synonym.",
+    "distractor_rationales": {
+      "attend": "'attend' means to be present at, not to remove or wipe out; sense-family: presence.",
+      "bounce": "'bounce' means to spring back after hitting, not to remove or wipe out; sense-family: motion.",
+      "pinch": "'pinch' means to squeeze between finger and thumb, not to remove or wipe out; sense-family: squeezing.",
+      "offer": "'offer' means to present for acceptance, not to remove or wipe out; sense-family: giving."
+    }
+  },
+  {
+    "id": "SVS18A-17",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] GARISH",
+    "choices": [
+      "wholesome",
+      "stoic",
+      "tenacious",
+      "showy",
+      "insincere"
+    ],
+    "correct_answer": "showy",
+    "explanation": "GARISH means too bright and showy; 'showy' is the closest synonym.",
+    "distractor_rationales": {
+      "wholesome": "'wholesome' means good for health or morals, not too bright and showy; sense-family: healthiness.",
+      "stoic": "'stoic' means enduring hardship without complaint, not too bright and showy; sense-family: endurance.",
+      "tenacious": "'tenacious' means holding firmly; persistent, not too bright and showy; sense-family: persistence.",
+      "insincere": "'insincere' means not genuine in feeling, not too bright and showy; sense-family: dishonesty."
+    }
+  },
+  {
+    "id": "SVS18A-18",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ENGULF",
+    "choices": [
+      "bestow",
+      "appraise",
+      "acquire",
+      "overwhelm",
+      "renounce"
+    ],
+    "correct_answer": "overwhelm",
+    "explanation": "ENGULF means to swallow up or overwhelm completely; 'overwhelm' is the closest synonym.",
+    "distractor_rationales": {
+      "bestow": "'bestow' means to give as an honor, not to swallow up or overwhelm completely; sense-family: giving.",
+      "appraise": "'appraise' means to judge the value of, not to swallow up or overwhelm completely; sense-family: evaluation.",
+      "acquire": "'acquire' means to get or obtain, not to swallow up or overwhelm completely; sense-family: gaining.",
+      "renounce": "'renounce' means to formally give up, not to swallow up or overwhelm completely; sense-family: giving up."
+    }
+  },
+  {
+    "id": "SVS18A-19",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] INSOLENT",
+    "choices": [
+      "steadfast",
+      "melodious",
+      "impolite",
+      "fanciful",
+      "spontaneous"
+    ],
+    "correct_answer": "impolite",
+    "explanation": "INSOLENT means rude and disrespectful; 'impolite' is the closest synonym.",
+    "distractor_rationales": {
+      "steadfast": "'steadfast' means firm and unwavering, not rude and disrespectful; sense-family: loyalty.",
+      "melodious": "'melodious' means pleasant-sounding, not rude and disrespectful; sense-family: sound.",
+      "fanciful": "'fanciful' means imaginative; unreal, not rude and disrespectful; sense-family: imagination.",
+      "spontaneous": "'spontaneous' means done on impulse, unplanned, not rude and disrespectful; sense-family: impulsiveness."
+    }
+  },
+  {
+    "id": "SVS18A-20",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] EXTOL",
+    "choices": [
+      "prolong",
+      "retaliate",
+      "deprive",
+      "glorify",
+      "enumerate"
+    ],
+    "correct_answer": "glorify",
+    "explanation": "EXTOL means to praise highly; 'glorify' is the closest synonym.",
+    "distractor_rationales": {
+      "prolong": "'prolong' means to make longer, not to praise highly; sense-family: lengthening.",
+      "retaliate": "'retaliate' means to strike back, not to praise highly; sense-family: revenge.",
+      "deprive": "'deprive' means to take something away from, not to praise highly; sense-family: taking.",
+      "enumerate": "'enumerate' means to list one by one, not to praise highly; sense-family: counting."
+    }
+  },
+  {
+    "id": "SVS18A-21",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] JUDICIOUS",
+    "choices": [
+      "indolent",
+      "zestful",
+      "vicious",
+      "literal",
+      "sensible"
+    ],
+    "correct_answer": "sensible",
+    "explanation": "JUDICIOUS means having or showing good judgment; 'sensible' is the closest synonym.",
+    "distractor_rationales": {
+      "indolent": "'indolent' means lazy, not having or showing good judgment; sense-family: laziness.",
+      "zestful": "'zestful' means full of energy and enjoyment, not having or showing good judgment; sense-family: enthusiasm.",
+      "vicious": "'vicious' means cruel and violent, not having or showing good judgment; sense-family: cruelty.",
+      "literal": "'literal' means taking words in their basic sense, not having or showing good judgment; sense-family: exactness."
+    }
+  },
+  {
+    "id": "SVS18A-22",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ELUDE",
+    "choices": [
+      "enrich",
+      "escape",
+      "scribble",
+      "possess",
+      "decipher"
+    ],
+    "correct_answer": "escape",
+    "explanation": "ELUDE means to escape from, often by cleverness; 'escape' is the closest synonym.",
+    "distractor_rationales": {
+      "enrich": "'enrich' means to improve or make richer, not to escape from, often by cleverness; sense-family: improvement.",
+      "scribble": "'scribble' means to write carelessly, not to escape from, often by cleverness; sense-family: writing.",
+      "possess": "'possess' means to own, not to escape from, often by cleverness; sense-family: ownership.",
+      "decipher": "'decipher' means to work out the meaning of, not to escape from, often by cleverness; sense-family: interpreting."
+    }
+  },
+  {
+    "id": "SVS18A-23",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] ENDORSE",
+    "choices": [
+      "subtract",
+      "stagger",
+      "smash",
+      "reconcile",
+      "approve"
+    ],
+    "correct_answer": "approve",
+    "explanation": "ENDORSE means to declare public support for; 'approve' is the closest synonym.",
+    "distractor_rationales": {
+      "subtract": "'subtract' means to take away a number, not to declare public support for; sense-family: arithmetic.",
+      "stagger": "'stagger' means to walk unsteadily, not to declare public support for; sense-family: motion.",
+      "smash": "'smash' means to break violently, not to declare public support for; sense-family: destruction.",
+      "reconcile": "'reconcile' means to restore friendly relations, not to declare public support for; sense-family: peacemaking."
+    }
+  },
+  {
+    "id": "SVS18A-24",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] INFER",
+    "choices": [
+      "abolish",
+      "reimburse",
+      "sparkle",
+      "pester",
+      "deduce"
+    ],
+    "correct_answer": "deduce",
+    "explanation": "INFER means to conclude from evidence; 'deduce' is the closest synonym.",
+    "distractor_rationales": {
+      "abolish": "'abolish' means to formally put an end to, not to conclude from evidence; sense-family: ending.",
+      "reimburse": "'reimburse' means to pay back, not to conclude from evidence; sense-family: repayment.",
+      "sparkle": "'sparkle' means to shine with flashes of light, not to conclude from evidence; sense-family: light.",
+      "pester": "'pester' means to annoy with repeated requests, not to conclude from evidence; sense-family: annoyance."
+    }
+  },
+  {
+    "id": "SVS18A-25",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] HURL",
+    "choices": [
+      "sniff",
+      "fling",
+      "coil",
+      "peck",
+      "stroke"
+    ],
+    "correct_answer": "fling",
+    "explanation": "HURL means to throw with force; 'fling' is the closest synonym.",
+    "distractor_rationales": {
+      "sniff": "'sniff' means to breathe in through the nose, not to throw with force; sense-family: smelling.",
+      "coil": "'coil' means to wind into rings, not to throw with force; sense-family: winding.",
+      "peck": "'peck' means to strike with a beak, not to throw with force; sense-family: striking.",
+      "stroke": "'stroke' means to move a hand gently over, not to throw with force; sense-family: touching."
+    }
+  },
+  {
+    "id": "SVS18A-26",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] IRATE",
+    "choices": [
+      "envious",
+      "clueless",
+      "insecure",
+      "radiant",
+      "incensed"
+    ],
+    "correct_answer": "incensed",
+    "explanation": "IRATE means very angry; 'incensed' is the closest synonym.",
+    "distractor_rationales": {
+      "envious": "'envious' means wanting what another has, not very angry; sense-family: envy.",
+      "clueless": "'clueless' means having no understanding, not very angry; sense-family: ignorance.",
+      "insecure": "'insecure' means lacking confidence, not very angry; sense-family: self-doubt.",
+      "radiant": "'radiant' means glowing with joy or light, not very angry; sense-family: brightness."
+    }
+  },
+  {
+    "id": "SVS18A-27",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] JUBILANT",
+    "choices": [
+      "skeptical",
+      "intricate",
+      "joyous",
+      "hushed",
+      "thoughtless"
+    ],
+    "correct_answer": "joyous",
+    "explanation": "JUBILANT means filled with great joy, especially over success; 'joyous' is the closest synonym.",
+    "distractor_rationales": {
+      "skeptical": "'skeptical' means inclined to doubt, not filled with great joy, especially over success; sense-family: doubt.",
+      "intricate": "'intricate' means very complicated or detailed, not filled with great joy, especially over success; sense-family: complexity.",
+      "hushed": "'hushed' means quiet; spoken softly, not filled with great joy, especially over success; sense-family: quietness.",
+      "thoughtless": "'thoughtless' means not considering others, not filled with great joy, especially over success; sense-family: carelessness."
+    }
+  },
+  {
+    "id": "SVS18A-28",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] FORLORN",
+    "choices": [
+      "boundless",
+      "ingenious",
+      "fearsome",
+      "superficial",
+      "desolate"
+    ],
+    "correct_answer": "desolate",
+    "explanation": "FORLORN means sad and lonely, as if abandoned; 'desolate' is the closest synonym.",
+    "distractor_rationales": {
+      "boundless": "'boundless' means without limits, not sad and lonely, as if abandoned; sense-family: limitlessness.",
+      "ingenious": "'ingenious' means clever and inventive, not sad and lonely, as if abandoned; sense-family: cleverness.",
+      "fearsome": "'fearsome' means frightening in appearance, not sad and lonely, as if abandoned; sense-family: fear.",
+      "superficial": "'superficial' means shallow; on the surface only, not sad and lonely, as if abandoned; sense-family: shallowness."
+    }
+  },
+  {
+    "id": "SVS18A-29",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] GRIMY",
+    "choices": [
+      "lucky",
+      "tall",
+      "busy",
+      "dirty",
+      "young"
+    ],
+    "correct_answer": "dirty",
+    "explanation": "GRIMY means covered with dirt; 'dirty' is the closest synonym.",
+    "distractor_rationales": {
+      "lucky": "'lucky' means having good fortune, not covered with dirt; sense-family: fortune.",
+      "tall": "'tall' means of great height, not covered with dirt; sense-family: size.",
+      "busy": "'busy' means having much to do, not covered with dirt; sense-family: activity.",
+      "young": "'young' means not old, not covered with dirt; sense-family: age."
+    }
+  },
+  {
+    "id": "SVS18A-30",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] LUCID",
+    "choices": [
+      "eligible",
+      "remote",
+      "gritty",
+      "clear",
+      "lifeless"
+    ],
+    "correct_answer": "clear",
+    "explanation": "LUCID means clear and easy to understand; 'clear' is the closest synonym.",
+    "distractor_rationales": {
+      "eligible": "'eligible' means qualified to be chosen, not clear and easy to understand; sense-family: qualification.",
+      "remote": "'remote' means far away, not clear and easy to understand; sense-family: distance.",
+      "gritty": "'gritty' means containing small hard bits; tough, not clear and easy to understand; sense-family: texture.",
+      "lifeless": "'lifeless' means dead or without energy, not clear and easy to understand; sense-family: deadness."
+    }
+  },
+  {
+    "id": "SVS18A-31",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] HAZY",
+    "choices": [
+      "misty",
+      "sandy",
+      "cute",
+      "nasty",
+      "solid"
+    ],
+    "correct_answer": "misty",
+    "explanation": "HAZY means covered by a thin mist; 'misty' is the closest synonym.",
+    "distractor_rationales": {
+      "sandy": "'sandy' means covered with sand, not covered by a thin mist; sense-family: texture.",
+      "cute": "'cute' means attractive in a charming way, not covered by a thin mist; sense-family: appearance.",
+      "nasty": "'nasty' means very unpleasant, not covered by a thin mist; sense-family: unpleasantness.",
+      "solid": "'solid' means firm and hard, not covered by a thin mist; sense-family: firmness."
+    }
+  },
+  {
+    "id": "SVS18A-32",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] ABSURD",
+    "choices": [
+      "famous",
+      "silly",
+      "helpful",
+      "natural",
+      "ugly"
+    ],
+    "correct_answer": "silly",
+    "explanation": "ABSURD means wildly unreasonable or foolish; 'silly' is the closest synonym.",
+    "distractor_rationales": {
+      "famous": "'famous' means known by many people, not wildly unreasonable or foolish; sense-family: fame.",
+      "helpful": "'helpful' means giving help, not wildly unreasonable or foolish; sense-family: usefulness.",
+      "natural": "'natural' means existing in nature, not wildly unreasonable or foolish; sense-family: nature.",
+      "ugly": "'ugly' means unpleasant to look at, not wildly unreasonable or foolish; sense-family: appearance."
+    }
+  },
+  {
+    "id": "SVS18A-33",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] LEGIBLE",
+    "choices": [
+      "baggy",
+      "sensitive",
+      "comical",
+      "readable",
+      "thrilling"
+    ],
+    "correct_answer": "readable",
+    "explanation": "LEGIBLE means clear enough to be read; 'readable' is the closest synonym.",
+    "distractor_rationales": {
+      "baggy": "'baggy' means loose and hanging, not clear enough to be read; sense-family: fit.",
+      "sensitive": "'sensitive' means quick to react or feel, not clear enough to be read; sense-family: feeling.",
+      "comical": "'comical' means funny, not clear enough to be read; sense-family: humor.",
+      "thrilling": "'thrilling' means very exciting, not clear enough to be read; sense-family: excitement."
+    }
+  },
+  {
+    "id": "SVS18A-34",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "hard",
+    "prompt": "[Synonym] INTREPID",
+    "choices": [
+      "discreet",
+      "daring",
+      "pessimistic",
+      "flawless",
+      "cryptic"
+    ],
+    "correct_answer": "daring",
+    "explanation": "INTREPID means fearless and adventurous; 'daring' is the closest synonym.",
+    "distractor_rationales": {
+      "discreet": "'discreet' means careful not to attract attention, not fearless and adventurous; sense-family: caution.",
+      "pessimistic": "'pessimistic' means expecting the worst, not fearless and adventurous; sense-family: gloom.",
+      "flawless": "'flawless' means without any mistakes, not fearless and adventurous; sense-family: perfection.",
+      "cryptic": "'cryptic' means mysterious in meaning, not fearless and adventurous; sense-family: mystery."
+    }
+  },
+  {
+    "id": "SVS18A-35",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "medium",
+    "prompt": "[Synonym] HARDY",
+    "choices": [
+      "exotic",
+      "ornate",
+      "thick",
+      "mature",
+      "robust"
+    ],
+    "correct_answer": "robust",
+    "explanation": "HARDY means strong and able to endure difficult conditions; 'robust' is the closest synonym.",
+    "distractor_rationales": {
+      "exotic": "'exotic' means strikingly foreign or unusual, not strong and able to endure difficult conditions; sense-family: unfamiliarity.",
+      "ornate": "'ornate' means elaborately decorated, not strong and able to endure difficult conditions; sense-family: decoration.",
+      "thick": "'thick' means wide from side to side, not strong and able to endure difficult conditions; sense-family: size.",
+      "mature": "'mature' means fully grown or developed, not strong and able to endure difficult conditions; sense-family: age."
+    }
+  },
+  {
+    "id": "SVS18A-36",
+    "family": "ssat",
+    "section": "verbal",
+    "domain": "Verbal",
+    "kind": "synonym",
+    "subskill": "synonym",
+    "difficulty": "easy",
+    "prompt": "[Synonym] COMPEL",
+    "choices": [
+      "heal",
+      "force",
+      "wash",
+      "hum",
+      "launch"
+    ],
+    "correct_answer": "force",
+    "explanation": "COMPEL means to make someone do something; 'force' is the closest synonym.",
+    "distractor_rationales": {
+      "heal": "'heal' means to make healthy again, not to make someone do something; sense-family: curing.",
+      "wash": "'wash' means to clean with water, not to make someone do something; sense-family: cleaning.",
+      "hum": "'hum' means to sing with closed lips, not to make someone do something; sense-family: sound.",
+      "launch": "'launch' means to set in motion, not to make someone do something; sense-family: starting."
+    }
+  }
+]
