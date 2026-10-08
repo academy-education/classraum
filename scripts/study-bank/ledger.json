@@ -6869,6 +6869,49 @@
           "verdict": "Subset of sat-math-v24-adv-kept-2026-10-08 (sha f292d4fc6cf922ed): the 5 panel-median easy items (A01 B01 B07 C01 D01), same gate run. Recorded, not dropped: graders call B11-family u = b^x items (B12 B15) Desmos-bypassable; vertex-minimum family A06 A10 A14 A15 shares a theme (different givens); D08 key = 41 + 61 - 25 with 102 = 41 + 61 (not a key composite of options); B15 2.67/3.33 = 3 -/+ 1/3 pair; A14 and D14 keys in adjacent-integer pairs; shared key values 16 (A11 dropped/B01) and -17 (A01/D09 held)."
         }
       }
+    },
+    {
+      "id": "isee-verbal-s20-sc-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s20",
+      "contentSha": "bb7f78fd17fb39ad3fb01567cb3b25c290f55e5270120dd11387d7349b755a17",
+      "status": "shipped",
+      "note": "ISEE Upper single-blank SC, 47 of 70 frozen inserted (frozen file isee-verbal-s20-sc.batch.json sha 03f418894c9f9eaf02571f591c357dfe8e905289946c78ec2acd39e64dc3d309, commit 1effdfc1; kept file isee-verbal-s20.kept.batch.json is the byte-exact subset, qc isee-verbal-s20.qc.json). Three Claude authors (A a-f contrast/restatement science/tech/medicine 24; B g-o cause/purpose history/government/economics/geography 23; C p-z examples/degree arts/sport/school/work 23), 49 hard / 21 medium authored. Pre-registered in isee-verbal-s20.prereg.md (afbdd978) before authoring: s19 brief, controls and gate kept; new rules no antonym among options, no three options sharing a polarity the key lacks, hard difficulty from the sentence not the options, author self-check (antonym pole / odd one out / most specific) <= 35% per file plus a blind steering probe (one revision round on 7 items before freeze). 22 dropped under the pre-registered with-source rules; 1 more (IS20B-14) WITHHELD outside the rules, conservatively and disclosed: its article an ------- leaves only the key grammatical. Banked at median grade 0 easy / 34 medium / 13 hard (BANK_BAND=mixed).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "bb7f78fd17fb39ad3fb01567cb3b25c290f55e5270120dd11387d7349b755a17",
+          "verdict": "Frozen 70: 4 distinct single-word lowercase choices, key among them, one 7-hyphen blank, [Sentence Completion] tag, no is to, verbalKind 70/70 sentence completion, explanation names key 70/70; stem duplicates 0 vs 974 live isee rows; isee-verbal-s19-collisions.mjs --words isee-verbal-s20.live-words.json 0 problems (2,203 live/s17/s18/s19 words incl. inflections, within-file, cross-author); key strictly longest 16/70 = 22.9%, shortest 14/70 = 20.0% (band 15-35%); stored slots 18/18/17/17. Kept 47: longest 10/47, shortest 7/47; key-spread ok."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "bb7f78fd17fb39ad3fb01567cb3b25c290f55e5270120dd11387d7349b755a17",
+          "n": 70,
+          "mean": 46.7,
+          "control": 25.7,
+          "margin": 21,
+          "verdict": "Measured on the frozen 70. Options-only, interleaved with the WHOLE eligible live hard/medium SC pool (77, isee-verbal-s4 excluded; 61 single-blank), three samples of one Claude solver (pairwise agreement 77.8%; blind sha 6429f2eb). Candidate 98/210 = 46.7% vs letter 25.7% (M +21.0); live all 107/231 = 46.3% vs 26.0% (M +20.3) EXCESS +0.6; live single-blank 85/183 = 46.4% vs 27.9% (M +18.6) EXCESS +2.4; both <= +10 PASS; ceiling not reached. Unanimous-correct candidate 28/70 vs live 26/77. By author A 36/72 = 50.0%, B 29/69 = 42.0%, C 33/69 = 47.8%. s19 tells: candidate picks tagged antonym-pole/pair 1/3, odd-one-out 0/1 (s19: 59/76 = 77.6%, 49/56 = 87.5%). s19 was +22.4 / +27.3."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "bb7f78fd17fb39ad3fb01567cb3b25c290f55e5270120dd11387d7349b755a17",
+          "verdict": "Items >= 2 samples certainly rejected the same non-key option: candidate 0/70, live 0/77; bar <= max(live, 5%) PASS. reject_certain false on every item in all three samples: a default, not a discriminating reading."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "bb7f78fd17fb39ad3fb01567cb3b25c290f55e5270120dd11387d7349b755a17",
+          "verdict": "Three fresh Claude graders, each on its own re-shuffled render (isee-verbal-s19-grade-render.mjs, seeds 20261041-3; key/difficulty/explanation withheld): 70/70 on key each (bar: FAIL if any grader > 10% off key). 0 second-defensible. Dropped 22: 17 median easy; 2 key above band per one grader (C-01 sedulous, C-04 recondite; C-04 also raffish x2); 2 distractor above band by >= 2 graders (B-06 lachrymose; C-19 plangent x3 + pellucid x2); 1 key-completed sentence does not read (C-22, a untutored, graders a and c; also scabrous x2). Plus IS20B-14 WITHHELD outside the pre-registered rules (an ------- leaves only ignominious grammatical; graders a and c named it in notes; the free-elimination rule needs blind corroboration that a stem-withheld render cannot give). Kept 47 (A 19/24, B 14/23, C 14/23); medians 0/34/13; authored hard 49 -> e/m/h 3/30/16, authored medium 21 -> 14/7/0. Recorded, kept: the article rules out one distractor in A-01 (aesthetic) and C-11 (unseemly)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "bb7f78fd17fb39ad3fb01567cb3b25c290f55e5270120dd11387d7349b755a17",
+          "verdict": "On the frozen file: key strictly longest 16/70 = 22.9%, shortest 14/70 = 20.0% (bar <= 35%). check-recycled-distractor NO MEASUREMENT (280 distinct / 280 slots). verify-answer-key-spread ok (frozen p=0.62; kept p=0.75). Solver heuristic: the one heuristic all three samples named is pick-the-test-word (a abstract-test-word 19/40, b tested-vocab 14/18, c test-word register 19/38): pooled 52/96 = 54.2% <= 70% PASS (b alone 77.8% on 18 picks). No rarity bar (retired in s19)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

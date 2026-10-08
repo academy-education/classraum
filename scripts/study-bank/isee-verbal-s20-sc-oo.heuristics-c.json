@@ -1,0 +1,35 @@
+{
+ "heuristics": [
+  {
+   "name": "test-word register",
+   "description": "pick the option that looks most like a vocabulary-test target word / most general-purpose abstract word",
+   "picks_decided": 41
+  },
+  {
+   "name": "antonym-pair pole",
+   "description": "two options form an antonym pair; pick one pole (or, once, the outlier) on the assumption the key sits in the pair",
+   "picks_decided": 10
+  },
+  {
+   "name": "odd one out",
+   "description": "pick the option semantically different from the other three",
+   "picks_decided": 6
+  },
+  {
+   "name": "two-blank pair coherence",
+   "description": "pick the two-blank pair whose words relate in the most natural contrast/agreement",
+   "picks_decided": 8
+  },
+  {
+   "name": "shared first blank",
+   "description": "two options share a first word; pick one of those two",
+   "picks_decided": 3
+  },
+  {
+   "name": "none",
+   "description": "no signal; arbitrary pick",
+   "picks_decided": 79
+  }
+ ],
+ "notes": "Solver c. Single-blank vocabulary options carry little signal; most register picks are weak. reject_certain false for all: no option judged ruleable-out without the sentence."
+}

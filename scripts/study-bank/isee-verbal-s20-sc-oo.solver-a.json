@@ -1,0 +1,1178 @@
+{
+ "L01": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "strongest evaluative/character word",
+  "heuristic": "evaluative-word"
+ },
+ "L02": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "strongest evaluative/character word",
+  "heuristic": "evaluative-word"
+ },
+ "L03": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L04": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L07": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "strongest evaluative/character word",
+  "heuristic": "evaluative-word"
+ },
+ "L08": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L09": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L11": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "strongest evaluative/character word",
+  "heuristic": "evaluative-word"
+ },
+ "L12": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L13": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "strongest evaluative/character word",
+  "heuristic": "evaluative-word"
+ },
+ "L14": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L15": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L16": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L17": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "differs in register/valence from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L19": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L20": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L21": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L22": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L23": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L24": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L25": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L26": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "word repeated across options; picked the pair with it that coheres",
+  "heuristic": "repeated-word"
+ },
+ "L27": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L28": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L29": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L31": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L32": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L33": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L34": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L36": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L37": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L38": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L39": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L40": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L41": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L42": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L43": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L44": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L45": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L46": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L47": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L48": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L49": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "strongest evaluative/character word",
+  "heuristic": "evaluative-word"
+ },
+ "L50": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L51": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L52": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L53": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L55": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L56": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L58": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L59": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L60": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L62": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L63": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L64": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L65": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L66": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L67": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L68": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L69": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L70": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L71": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L72": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L73": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L74": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L76": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L77": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L78": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L79": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L81": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L82": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L83": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L84": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L86": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L87": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L88": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L89": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L90": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L91": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L92": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L93": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L94": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L95": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L97": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L99": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L100": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L101": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L103": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L104": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L105": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L106": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L107": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L108": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L110": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L111": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L112": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L113": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L114": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L115": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L116": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L117": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "word repeated across options; picked the pair with it that coheres",
+  "heuristic": "repeated-word"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L119": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L121": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L122": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L124": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L125": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L126": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L127": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L128": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "word repeated across options; picked the pair with it that coheres",
+  "heuristic": "repeated-word"
+ },
+ "L130": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L131": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L132": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L133": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L134": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L136": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "differs in register/valence from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L137": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L138": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L139": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L140": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L141": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L142": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ },
+ "L143": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options form an opposed pair; key likely one pole",
+  "heuristic": "antonym-pole"
+ },
+ "L144": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "the only internally coherent two-blank pair",
+  "heuristic": "pair-coherence"
+ },
+ "L145": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L146": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L147": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most abstract/test-worthy word; others concrete or niche",
+  "heuristic": "abstract-test-word"
+ }
+}

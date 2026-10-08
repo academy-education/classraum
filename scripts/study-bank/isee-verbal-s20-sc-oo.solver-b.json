@@ -1,0 +1,1178 @@
+{
+ "L01": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L02": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L03": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L04": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "option differs in sense/polarity from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L08": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L09": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L11": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L12": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L13": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L14": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L15": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L16": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L17": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "option differs in sense/polarity from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L19": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L20": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L21": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L22": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L23": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L24": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L25": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L26": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "first word repeated in two options; key likely one of those, picked the contrast",
+  "heuristic": "shared-word"
+ },
+ "L27": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L28": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L29": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L31": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L32": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L33": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L36": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L37": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L38": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L39": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L41": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L42": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L43": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "option differs in sense/polarity from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L44": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L45": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L46": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L47": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L48": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L49": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L50": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L51": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L52": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L53": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L55": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L56": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L58": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L59": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L60": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L62": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L63": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L64": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L65": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L67": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L68": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L69": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L70": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L71": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L72": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L73": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L74": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L76": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L77": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L78": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L79": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L81": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L82": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L83": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L84": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L86": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L87": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L88": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L89": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L90": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L91": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L92": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L93": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L94": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L95": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L96": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L97": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L99": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L100": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L103": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L104": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L105": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L106": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L107": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L108": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L110": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L111": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L112": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L113": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L114": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "option differs in sense/polarity from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L115": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L116": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L117": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "first word repeated in two options; key likely one of those, picked the contrast",
+  "heuristic": "shared-word"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L119": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L121": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L122": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "the one high-value test-vocabulary word with broad sentence use",
+  "heuristic": "tested-vocab"
+ },
+ "L124": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L125": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L126": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L127": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L128": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "first word repeated in two options; key likely one of those, picked the contrast",
+  "heuristic": "shared-word"
+ },
+ "L130": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L131": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L132": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L133": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L134": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L136": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L137": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L138": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L139": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L140": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L141": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L142": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L143": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one of the pair",
+  "heuristic": "antonym-pair"
+ },
+ "L144": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "pair whose two words relate most naturally (cause/effect or consistent tone)",
+  "heuristic": "pair-logic"
+ },
+ "L145": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L146": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L147": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal from options alone; arbitrary pick",
+  "heuristic": "none"
+ }
+}

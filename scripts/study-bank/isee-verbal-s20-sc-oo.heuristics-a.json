@@ -1,0 +1,40 @@
+{
+ "heuristics": [
+  {
+   "name": "antonym-pole",
+   "description": "Two options are near-opposites; the sentence likely turns on that axis, so pick one pole (usually the less neutral one).",
+   "picks_decided": 19
+  },
+  {
+   "name": "pair-coherence",
+   "description": "Two-blank items: pick the pair whose two words stand in a natural relation (support or clean contrast).",
+   "picks_decided": 16
+  },
+  {
+   "name": "repeated-word",
+   "description": "A word appears in two options; the key likely contains it; choose the version whose pair coheres.",
+   "picks_decided": 3
+  },
+  {
+   "name": "abstract-test-word",
+   "description": "Pick the most abstract, test-typical vocabulary word when the others are concrete, technical or niche.",
+   "picks_decided": 43
+  },
+  {
+   "name": "evaluative-word",
+   "description": "Pick the option with the strongest evaluative sense about a person or behavior.",
+   "picks_decided": 6
+  },
+  {
+   "name": "odd-one-out",
+   "description": "Pick the option that differs in valence/register from the other three.",
+   "picks_decided": 2
+  },
+  {
+   "name": "none",
+   "description": "No usable signal; arbitrary pick.",
+   "picks_decided": 58
+  }
+ ],
+ "notes": "reject_certain set false on every item: without the sentence no single option could be ruled out with certainty. Heuristic signals are weak; many signal picks are close to guesses."
+}

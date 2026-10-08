@@ -1,0 +1,35 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "No signal; arbitrary pick.",
+   "picks_decided": 93
+  },
+  {
+   "name": "tested-vocab",
+   "description": "Pick the rarest Latinate/classic test-prep word that still fits many sentence frames, over concrete/technical words (nautical, malarial).",
+   "picks_decided": 18
+  },
+  {
+   "name": "odd-one-out",
+   "description": "Pick the option whose meaning or polarity differs from the other three.",
+   "picks_decided": 4
+  },
+  {
+   "name": "pair-logic",
+   "description": "Two-blank items: pick the pair whose words are most internally coherent as a cause/effect or matched-tone pair.",
+   "picks_decided": 11
+  },
+  {
+   "name": "shared-word",
+   "description": "Two-blank items where two options share a first word: assume key is one of those; choose the contrastive second word.",
+   "picks_decided": 3
+  },
+  {
+   "name": "antonym-pair",
+   "description": "When two options are near-antonyms, assume the key is one of them; pick the one fitting a more common frame.",
+   "picks_decided": 18
+  }
+ ],
+ "notes": "No item had a reject that could be ruled out without the sentence, so reject_certain is false throughout. Most picks are arbitrary; signal heuristics are weak priors."
+}
