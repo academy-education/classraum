@@ -1,0 +1,882 @@
+[
+ {
+  "id": "IS21B-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in an earlier sentence (loyalty, reliability)",
+  "prompt": "[Sentence Completion] She played fourteen seasons for the same struggling club, turned down a richer offer every summer, and missed one training session in all that time, on the morning her daughter was born. When she retired, the club named its new stand after the most ------- servant in its history.",
+  "choices": [
+   "stalwart",
+   "venturesome",
+   "vicarious",
+   "sordid"
+  ],
+  "correct_answer": "stalwart",
+  "explanation": "stalwart (loyal, dependable, steadfast): the clue is the whole previous sentence - fourteen seasons at one club, refusing richer offers, missing a single session - examples of unwavering loyalty and reliability.",
+  "distractor_rationales": [
+   "venturesome - inclined to take risks ('a venturesome sailor who crossed the Atlantic alone'); she did the opposite of taking chances by staying put, so the examples do not show daring.",
+   "vicarious - experienced through someone else ('the vicarious thrill of watching her son compete'); her career was lived directly, on the pitch, not through others.",
+   "sordid - morally low or squalid ('a sordid bribery scandal'); her record is praised, and nothing in it is shameful."
+  ],
+  "rarity_order": [
+   "vicarious",
+   "venturesome",
+   "sordid",
+   "stalwart"
+  ],
+  "polarity": {
+   "stalwart": "+",
+   "venturesome": "0",
+   "vicarious": "0",
+   "sordid": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "sordid",
+   "odd_one_out": "vicarious",
+   "most_specific": "venturesome",
+   "test_word": "vicarious"
+  }
+ },
+ {
+  "id": "IS21B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose across sentences (curb rising prices)",
+  "prompt": "[Sentence Completion] Shoppers grumbled when the central bank raised interest rates for the fourth time in a year, but its governor was unapologetic. Borrowing, she said, had to become painful for a while if the bank hoped to ------- the price rises that had nearly doubled the cost of groceries since spring.",
+  "choices": [
+   "stymie",
+   "stipulate",
+   "subsume",
+   "transgress"
+  ],
+  "correct_answer": "stymie",
+  "explanation": "stymie (block, check, obstruct): the purpose of making borrowing 'painful' is to halt the price rises; the bank wants to obstruct inflation.",
+  "distractor_rationales": [
+   "stipulate - to specify as a condition of an agreement ('the contract stipulates delivery by May'); a bank cannot make price rises a contract term by raising rates, and the aim is to stop them.",
+   "subsume - to include within a larger category ('the old department was subsumed into the ministry'); absorbing price rises into something larger is not what painful borrowing achieves.",
+   "transgress - to break a rule or go beyond a moral limit ('players who transgress the code of conduct'); price rises are not a law the bank could break."
+  ],
+  "rarity_order": [
+   "subsume",
+   "stipulate",
+   "stymie",
+   "transgress"
+  ],
+  "polarity": {
+   "stymie": "-",
+   "stipulate": "0",
+   "subsume": "0",
+   "transgress": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "transgress",
+   "odd_one_out": "stymie",
+   "most_specific": "subsume",
+   "test_word": "stipulate"
+  }
+ },
+ {
+  "id": "IS21B-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "degree (even on a famously stormy coast)",
+  "prompt": "[Sentence Completion] Even on a coastline whose winter gales are proverbial, the season of 1953 stood out as -------; in a single night the North Sea breached the dikes at more than forty points and drowned whole villages in their sleep.",
+  "choices": [
+   "turbulent",
+   "vacuous",
+   "superlative",
+   "unassailable"
+  ],
+  "correct_answer": "turbulent",
+  "explanation": "turbulent (violently stormy, agitated): the degree clue 'even on a coastline whose gales are proverbial' plus the breached dikes and drowned villages mark an exceptionally violent season.",
+  "distractor_rationales": [
+   "vacuous - empty of thought or meaning ('a vacuous television quiz'); a storm season is not lacking in ideas.",
+   "superlative - of the highest quality, excellent ('a superlative performance'); a winter that drowned villages is not praised as excellent.",
+   "unassailable - impossible to attack or question ('an unassailable lead in the polls'); the season is not a position or argument that resists challenge."
+  ],
+  "rarity_order": [
+   "unassailable",
+   "vacuous",
+   "superlative",
+   "turbulent"
+  ],
+  "polarity": {
+   "turbulent": "-",
+   "vacuous": "-",
+   "superlative": "+",
+   "unassailable": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "superlative",
+   "odd_one_out": "superlative",
+   "most_specific": "unassailable",
+   "test_word": "unassailable"
+  }
+ },
+ {
+  "id": "IS21B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in an earlier sentence (sustained abuse)",
+  "prompt": "[Sentence Completion] Readers who opened Sunday's paper expecting a review of the new production found something else. Across three columns the critic called the play 'an insult to its author', its leading man 'a coat rack with a voice', and its audience 'accomplices'; by the last paragraph the piece had become one long -------.",
+  "choices": [
+   "tirade",
+   "synopsis",
+   "vignette",
+   "upheaval"
+  ],
+  "correct_answer": "tirade",
+  "explanation": "tirade (a long, angry, abusive speech or piece of writing): the previous clauses give the examples - three columns of escalating insults to author, actor and audience - and 'something else' than a review signals sustained invective.",
+  "distractor_rationales": [
+   "synopsis - a brief summary of a plot ('the program printed a synopsis of each act'); the critic summarizes nothing, he insults.",
+   "vignette - a short, evocative descriptive sketch ('a vignette of village life at dawn'); three columns of abuse are neither short nor a quiet sketch.",
+   "upheaval - a violent disturbance or great change ('the upheaval that followed the revolution'); a newspaper piece is written, not a social disruption, and 'one long upheaval' does not describe a stream of insults."
+  ],
+  "rarity_order": [
+   "vignette",
+   "synopsis",
+   "tirade",
+   "upheaval"
+  ],
+  "polarity": {
+   "tirade": "-",
+   "synopsis": "0",
+   "vignette": "0",
+   "upheaval": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "upheaval",
+   "odd_one_out": "synopsis",
+   "most_specific": "vignette",
+   "test_word": "vignette"
+  }
+ },
+ {
+  "id": "IS21B-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples after the colon, set against his manner elsewhere",
+  "prompt": "[Sentence Completion] On the factory floor the new foreman was blunt to the point of rudeness, which made his manner upstairs all the more striking. With the owners he was -------: he agreed with every suggestion they made, laughed at jokes he had not quite heard, and repeated their opinions at meetings as though they were his own.",
+  "choices": [
+   "subservient",
+   "vitriolic",
+   "virtuous",
+   "uncanny"
+  ],
+  "correct_answer": "subservient",
+  "explanation": "subservient (excessively eager to obey and please): agreeing with everything, laughing at half-heard jokes and parroting the owners' views are examples of servile deference, contrasted with his bluntness below.",
+  "distractor_rationales": [
+   "vitriolic - bitterly and harshly critical ('a vitriolic letter to the editor'); his rudeness is kept for the floor, while toward the owners he only agrees.",
+   "virtuous - having high moral standards ('a virtuous judge who refused every gift'); parroting the owners' opinions as his own is flattery, not moral goodness.",
+   "uncanny - strange in a way that is hard to explain ('an uncanny resemblance to her grandmother'); flattering the owners is ordinary, not mysterious."
+  ],
+  "rarity_order": [
+   "vitriolic",
+   "subservient",
+   "uncanny",
+   "virtuous"
+  ],
+  "polarity": {
+   "subservient": "-",
+   "vitriolic": "-",
+   "virtuous": "+",
+   "uncanny": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "vitriolic",
+   "odd_one_out": "virtuous",
+   "most_specific": "vitriolic",
+   "test_word": "vitriolic"
+  }
+ },
+ {
+  "id": "IS21B-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement in an earlier sentence (unearned, unexpected money)",
+  "prompt": "[Sentence Completion] When the old textile mill sold its riverside land to a developer, each of its four hundred workers received a check worth two years' wages, money none of them had earned, asked for, or dared to count on. Most of them used the ------- to pay off their mortgages.",
+  "choices": [
+   "windfall",
+   "solace",
+   "subterfuge",
+   "ultimatum"
+  ],
+  "correct_answer": "windfall",
+  "explanation": "windfall (an unexpected gain of money): the first sentence paraphrases it without the definition words - a large check 'none of them had earned, asked for, or dared to count on'.",
+  "distractor_rationales": [
+   "solace - comfort in sorrow ('she found solace in her garden after the funeral'); nobody was grieving, and comfort is not money one can pay a mortgage with.",
+   "subterfuge - a deceptive trick used to achieve a goal ('she got backstage by subterfuge'); nothing about the payment is deceptive.",
+   "ultimatum - a final demand backed by a threat ('the landlord issued an ultimatum: pay or leave'); a demand cannot be used to pay off a mortgage."
+  ],
+  "rarity_order": [
+   "subterfuge",
+   "solace",
+   "windfall",
+   "ultimatum"
+  ],
+  "polarity": {
+   "windfall": "+",
+   "solace": "+",
+   "subterfuge": "-",
+   "ultimatum": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "ultimatum",
+   "odd_one_out": "subterfuge",
+   "most_specific": "subterfuge",
+   "test_word": "subterfuge"
+  }
+ },
+ {
+  "id": "IS21B-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose, clue spread across the sentence (pupils mute from dread)",
+  "prompt": "[Sentence Completion] The headmistress kept the old rule that every pupil recite a poem at Monday assembly. She cared little for poetry, she admitted; what she wanted was for the children who sat mute through every lesson to ------- their dread of being heard, and a poem learned by heart was the gentlest way she knew to make them try.",
+  "choices": [
+   "surmount",
+   "straddle",
+   "savor",
+   "underscore"
+  ],
+  "correct_answer": "surmount",
+  "explanation": "surmount (overcome a difficulty): the purpose of the rule is to get silent children past their fear of speaking - 'the gentlest way ... to make them try'.",
+  "distractor_rationales": [
+   "straddle - to sit or stand with a leg on each side, or to take both sides ('the town straddles the border'); a child does not put a leg on each side of dread.",
+   "savor - to enjoy slowly and fully ('she savored every bite'); the headmistress wants the dread gone, not enjoyed.",
+   "underscore - to emphasize ('the report underscores the need for funding'); emphasizing their dread would defeat the purpose of the rule."
+  ],
+  "rarity_order": [
+   "straddle",
+   "surmount",
+   "underscore",
+   "savor"
+  ],
+  "polarity": {
+   "surmount": "+",
+   "straddle": "0",
+   "savor": "+",
+   "underscore": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "savor",
+   "odd_one_out": "straddle",
+   "most_specific": "straddle",
+   "test_word": "underscore"
+  }
+ },
+ {
+  "id": "IS21B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree (even among colleagues trained in composure)",
+  "prompt": "[Sentence Completion] Composure is the first thing air-traffic controllers are trained in, yet even among colleagues who had worked through blizzards and engine fires, Reyes was considered -------. On the night the radar failed in 2019 she guided eleven aircraft down by voice alone, and the recordings show she never once spoke faster than usual.",
+  "choices": [
+   "unflappable",
+   "veracious",
+   "supine",
+   "visceral"
+  ],
+  "correct_answer": "unflappable",
+  "explanation": "unflappable (impossible to upset or fluster): 'even among' trained, crisis-hardened colleagues she stood out, and the next sentence shows it - a radar failure handled without her voice ever speeding up.",
+  "distractor_rationales": [
+   "veracious - habitually truthful ('a veracious witness whose account never changed'); honesty is not what the radar failure tested.",
+   "supine - passive, failing to act, or lying face up ('a supine committee that approved every request'); she acted decisively, guiding eleven planes down.",
+   "visceral - felt deep in the body, instinctive ('a visceral fear of heights'); the anecdote is about cool control, not a gut reaction."
+  ],
+  "rarity_order": [
+   "veracious",
+   "unflappable",
+   "supine",
+   "visceral"
+  ],
+  "polarity": {
+   "unflappable": "+",
+   "veracious": "+",
+   "supine": "-",
+   "visceral": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "supine",
+   "odd_one_out": "visceral",
+   "most_specific": "veracious",
+   "test_word": "veracious"
+  }
+ },
+ {
+  "id": "IS21B-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples in an earlier sentence, in official euphemism (riotous crowd)",
+  "prompt": "[Sentence Completion] For the first hour the derby crowd was merely boisterous. What followed is recorded in the match commissioner's report with bureaucratic restraint: seats 'detached from their fixings', two 'incursions onto the field of play', and a forty-minute suspension 'pending the restoration of order'. By the second half, to put it plainly, the crowd had grown -------.",
+  "choices": [
+   "unruly",
+   "spineless",
+   "wretched",
+   "zany"
+  ],
+  "correct_answer": "unruly",
+  "explanation": "unruly (disorderly, hard to control): the previous sentence decodes, under its bureaucratic wording, to torn-out seats, two pitch invasions and a stoppage until order was restored - a crowd out of control; 'to put it plainly' asks for the plain word.",
+  "distractor_rationales": [
+   "spineless - lacking courage or determination ('a spineless refusal to defend his friend'); a crowd tearing out seats is not timid.",
+   "wretched - in a miserable, unhappy state ('the wretched survivors of the shipwreck'); a rioting crowd is causing damage, not suffering it.",
+   "zany - amusingly eccentric ('a zany cartoon with talking vegetables'); torn-out seats and a halted match are not comic."
+  ],
+  "rarity_order": [
+   "zany",
+   "spineless",
+   "unruly",
+   "wretched"
+  ],
+  "polarity": {
+   "unruly": "-",
+   "spineless": "-",
+   "wretched": "-",
+   "zany": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "spineless",
+   "odd_one_out": "zany",
+   "most_specific": "spineless",
+   "test_word": "wretched"
+  }
+ },
+ {
+  "id": "IS21B-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in earlier sentences (bribery)",
+  "prompt": "[Sentence Completion] Importers learned the system within a month. A container whose papers arrived folded around banknotes cleared the port by lunchtime; one whose papers did not might wait a fortnight for 'inspection'. Everyone knew the customs house was -------, and nobody could prove it.",
+  "choices": [
+   "venal",
+   "virulent",
+   "utilitarian",
+   "vapid"
+  ],
+  "correct_answer": "venal",
+  "explanation": "venal (open to bribery, corrupt): the earlier sentences show papers 'folded around banknotes' clearing at once while others wait - officials who can be bought.",
+  "distractor_rationales": [
+   "virulent - extremely harmful or bitterly hostile ('a virulent strain of flu'); the officials are not hostile - they are cooperative for a price.",
+   "utilitarian - designed to be useful rather than attractive ('a utilitarian concrete warehouse'); the paragraph is about bribes, not plain design.",
+   "vapid - dull, lacking liveliness or interest ('a vapid speech full of cliches'); a dull customs house would need no proof and would not wave cash-wrapped containers through."
+  ],
+  "rarity_order": [
+   "venal",
+   "vapid",
+   "utilitarian",
+   "virulent"
+  ],
+  "polarity": {
+   "venal": "-",
+   "virulent": "-",
+   "utilitarian": "0",
+   "vapid": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "virulent",
+   "odd_one_out": "utilitarian",
+   "most_specific": "utilitarian",
+   "test_word": "vapid"
+  }
+ },
+ {
+  "id": "IS21B-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in earlier sentences (energy over polish)",
+  "prompt": "[Sentence Completion] The young pianist's technique was still uneven: she smudged two runs in the opening movement and rushed the slow one. The audience hardly cared. She attacked the final scherzo as if it were a dare, grinning at the hardest passages, and what she lacked in polish she made up for in -------.",
+  "choices": [
+   "verve",
+   "veneer",
+   "semblance",
+   "stigma"
+  ],
+  "correct_answer": "verve",
+  "explanation": "verve (vigor, spirit and enthusiasm): attacking the scherzo 'as if it were a dare' and 'grinning at the hardest passages' are examples of spirited energy, which is what compensates for lack of polish.",
+  "distractor_rationales": [
+   "veneer - a thin attractive surface layer hiding what lies beneath ('a veneer of politeness'); a surface gloss is exactly what she lacked ('polish'), so it cannot make up for it.",
+   "semblance - an outward appearance, often a false one ('a semblance of order'); attacking the music as a dare is real energy, not a mere appearance.",
+   "stigma - a mark of disgrace ('the stigma once attached to divorce'); disgrace cannot make up for a lack of polish."
+  ],
+  "rarity_order": [
+   "veneer",
+   "verve",
+   "semblance",
+   "stigma"
+  ],
+  "polarity": {
+   "verve": "+",
+   "veneer": "0",
+   "semblance": "0",
+   "stigma": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "stigma",
+   "odd_one_out": "stigma",
+   "most_specific": "veneer",
+   "test_word": "semblance"
+  }
+ },
+ {
+  "id": "IS21B-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast plus example in the following sentence (extreme brevity)",
+  "prompt": "[Sentence Completion] Where other teachers returned essays bleeding with paragraphs of advice, Ms. Hale's comments were notoriously -------. Her students learned to dread a page that came back bearing nothing but a single word in the margin, 'Why?', because it meant an afternoon of rethinking the whole argument.",
+  "choices": [
+   "succinct",
+   "wayward",
+   "topical",
+   "tangential"
+  ],
+  "correct_answer": "succinct",
+  "explanation": "succinct (briefly and clearly expressed): set against 'paragraphs of advice', the next sentence shows a whole page answered by one word that still demands an afternoon of thought - brevity that loses nothing.",
+  "distractor_rationales": [
+   "wayward - unpredictable and hard to control, straying from what is expected ('a wayward son who left school at fifteen'); a one-word comment that sends students back to rethink their argument is controlled and purposeful.",
+   "topical - relating to current events ('a topical joke about the election'); a one-word margin note is not about the news.",
+   "tangential - only slightly connected, digressing ('a tangential remark about the weather'); 'Why?' goes straight to the argument, the opposite of a digression from it."
+  ],
+  "rarity_order": [
+   "tangential",
+   "wayward",
+   "succinct",
+   "topical"
+  ],
+  "polarity": {
+   "succinct": "+",
+   "wayward": "-",
+   "topical": "0",
+   "tangential": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "wayward",
+   "odd_one_out": "wayward",
+   "most_specific": "topical",
+   "test_word": "tangential"
+  }
+ },
+ {
+  "id": "IS21B-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose (why the mounds were built)",
+  "prompt": "[Sentence Completion] Long before modern dikes, farmers on the Frisian coast heaped up terps, mounds of clay and dung as tall as a house, and built their farms on top, not for the view but so that their families and cattle could ------- the storm tides that drowned the surrounding marsh each winter.",
+  "choices": [
+   "withstand",
+   "truncate",
+   "waive",
+   "tout"
+  ],
+  "correct_answer": "withstand",
+  "explanation": "withstand (endure without being harmed): the purpose clause - 'not for the view' but against tides that 'drowned the surrounding marsh' - shows the mounds were built to survive the floods.",
+  "distractor_rationales": [
+   "truncate - to shorten by cutting off the end ('the editor truncated the speech'); a farm on a mound does not shorten a tide.",
+   "waive - to give up a right or set aside a rule ('the school waived the late fee'); storm tides are not a fee or right that can be set aside.",
+   "tout - to promote or praise loudly ('the minister touted the new trade deal'); no one builds a mound to advertise floods."
+  ],
+  "rarity_order": [
+   "waive",
+   "truncate",
+   "tout",
+   "withstand"
+  ],
+  "polarity": {
+   "withstand": "0",
+   "truncate": "0",
+   "waive": "0",
+   "tout": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "tout",
+   "odd_one_out": "tout",
+   "most_specific": "truncate",
+   "test_word": "truncate"
+  }
+ },
+ {
+  "id": "IS21B-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree plus examples a clause away (stale, predictable plot)",
+  "prompt": "[Sentence Completion] The prize jury agreed the novel was well written and could agree on little else. Its harshest member conceded the prose but not the story: an orphaned heir, a wicked uncle, a will found in the attic in the final chapter; every turn, she said, was so ------- that a reader could have written the ending on the first page.",
+  "choices": [
+   "trite",
+   "sententious",
+   "taut",
+   "vulgar"
+  ],
+  "correct_answer": "trite",
+  "explanation": "trite (overused and unoriginal): the stock elements listed (orphaned heir, wicked uncle, will in the attic) and the degree clause 'so ... that a reader could have written the ending on the first page' mark worn-out predictability.",
+  "distractor_rationales": [
+   "sententious - given to pompous moralizing ('a sententious lecture on thrift'); the complaint is predictability of plot, not preachiness.",
+   "taut - tight, tense and controlled ('a taut thriller with no wasted scenes'); taut plotting would be praise, and it does not make an ending guessable.",
+   "vulgar - crude or in bad taste ('a vulgar joke at the dinner table'); a hidden will and a wicked uncle are stale, not crude."
+  ],
+  "rarity_order": [
+   "sententious",
+   "taut",
+   "trite",
+   "vulgar"
+  ],
+  "polarity": {
+   "trite": "-",
+   "sententious": "-",
+   "taut": "+",
+   "vulgar": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "taut",
+   "odd_one_out": "taut",
+   "most_specific": "sententious",
+   "test_word": "sententious"
+  }
+ },
+ {
+  "id": "IS21B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose across sentences (outdo rivals)",
+  "prompt": "[Sentence Completion] A rival firm had been poaching her best engineers with bigger salaries for two years. Unable to match the money, the founder announced a four-day week instead, hoping to ------- her competitors with an offer they could not easily copy.",
+  "choices": [
+   "upstage",
+   "swindle",
+   "typify",
+   "wield"
+  ],
+  "correct_answer": "upstage",
+  "explanation": "upstage (outshine, steal attention from): unable to match salaries, she seeks an advantage 'they could not easily copy' - an offer that outdoes her rivals.",
+  "distractor_rationales": [
+   "swindle - to cheat someone out of money by fraud ('the dealer swindled tourists with fake antiques'); a four-day week is a genuine offer, not a fraud on her rivals.",
+   "typify - to be a typical example of ('the cottage typifies the local style'); an offer her rivals cannot copy sets her apart rather than making her typical of them.",
+   "wield - to hold and use a weapon, tool or power ('she wielded great influence'); one does not wield competitors."
+  ],
+  "rarity_order": [
+   "typify",
+   "upstage",
+   "swindle",
+   "wield"
+  ],
+  "polarity": {
+   "upstage": "0",
+   "swindle": "-",
+   "typify": "0",
+   "wield": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "wield",
+   "odd_one_out": "swindle",
+   "most_specific": "typify",
+   "test_word": "typify"
+  }
+ },
+ {
+  "id": "IS21B-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in earlier sentences (technically true but misleading)",
+  "prompt": "[Sentence Completion] The furniture chain's posters promised savings of 'up to 70 percent', and the promise was, strictly speaking, true: one discontinued sofa in one branch had been marked down that far. Every other item was reduced by a tenth or less. The regulator ruled that a claim so ------- misled shoppers precisely because it could not be called a lie.",
+  "choices": [
+   "specious",
+   "timorous",
+   "unheeded",
+   "unequivocal"
+  ],
+  "correct_answer": "specious",
+  "explanation": "specious (seemingly true or plausible but actually misleading): the claim is 'strictly speaking, true' yet holds for one sofa only, and it misleads 'precisely because it could not be called a lie'.",
+  "distractor_rationales": [
+   "timorous - showing nervousness or lack of confidence ('a timorous knock at the door'); a bold 70 percent promise is not hesitant, and timidity does not mislead.",
+   "unheeded - ignored, not paid attention to ('her warnings went unheeded'); a claim that misled shoppers was clearly noticed.",
+   "unequivocal - leaving no doubt, unambiguous ('an unequivocal denial'); 'up to 70 percent' is slippery precisely because it hides an ambiguity, so it is not unequivocal."
+  ],
+  "rarity_order": [
+   "unequivocal",
+   "specious",
+   "timorous",
+   "unheeded"
+  ],
+  "polarity": {
+   "specious": "-",
+   "timorous": "-",
+   "unheeded": "0",
+   "unequivocal": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "timorous",
+   "odd_one_out": "unheeded",
+   "most_specific": "unequivocal",
+   "test_word": "unequivocal"
+  }
+ },
+ {
+  "id": "IS21B-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in the middle sentence (lively despite age)",
+  "prompt": "[Sentence Completion] The documentary crew had been warned that the choreographer, at eighty-one, tired easily and should be filmed only in the mornings. By the third day they had stopped believing it: she laughed through every interview, led the dancers in songs between takes, and outlasted performers a third her age at the wrap party. 'The most ------- person on the set,' the director wrote in his notes, 'and the oldest.'",
+  "choices": [
+   "vivacious",
+   "shrill",
+   "tenable",
+   "valiant"
+  ],
+  "correct_answer": "vivacious",
+  "explanation": "vivacious (lively and full of high spirits): the middle sentence gives the examples - laughing, leading songs, outlasting much younger dancers - overturning the warning that she tired easily.",
+  "distractor_rationales": [
+   "shrill - high-pitched and piercing, or loudly insistent ('a shrill complaint'); the director's note is admiring, and the examples show high spirits, not a grating voice.",
+   "tenable - able to be defended or maintained ('a tenable argument'); it describes positions and theories, not a person's energy.",
+   "valiant - brave in the face of danger ('a valiant rescue from the burning house'); laughing and singing between takes is liveliness, not courage under danger."
+  ],
+  "rarity_order": [
+   "tenable",
+   "vivacious",
+   "shrill",
+   "valiant"
+  ],
+  "polarity": {
+   "vivacious": "+",
+   "shrill": "-",
+   "tenable": "0",
+   "valiant": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "valiant",
+   "odd_one_out": "tenable",
+   "most_specific": "valiant",
+   "test_word": "tenable"
+  }
+ },
+ {
+  "id": "IS21B-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree with examples in following sentence (courage against setbacks)",
+  "prompt": "[Sentence Completion] Few marathoners have been as ------- as Abebe Bikila. He won Olympic gold in Rome running barefoot over cobblestones, and four years later, with his appendix removed only six weeks before the race, he not only started in Tokyo but won again, by more than four minutes.",
+  "choices": [
+   "undaunted",
+   "salient",
+   "vexing",
+   "unscrupulous"
+  ],
+  "correct_answer": "undaunted",
+  "explanation": "undaunted (not discouraged by difficulty or danger): the next sentence supplies the evidence - running barefoot on cobblestones and racing six weeks after surgery, and winning both times.",
+  "distractor_rationales": [
+   "salient - most noticeable or important ('the salient points of the report'); it describes features and facts, and says nothing about what he overcame.",
+   "vexing - annoying, troublesome ('a vexing delay at the airport'); the examples show his courage, not that he annoyed anyone.",
+   "unscrupulous - without moral principles ('an unscrupulous landlord'); winning barefoot and after surgery shows grit, not dishonesty."
+  ],
+  "rarity_order": [
+   "unscrupulous",
+   "salient",
+   "undaunted",
+   "vexing"
+  ],
+  "polarity": {
+   "undaunted": "+",
+   "salient": "0",
+   "vexing": "-",
+   "unscrupulous": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "unscrupulous",
+   "odd_one_out": "salient",
+   "most_specific": "salient",
+   "test_word": "unscrupulous"
+  }
+ },
+ {
+  "id": "IS21B-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in the following sentence (avoiding the work)",
+  "prompt": "[Sentence Completion] Assigned a month of inventory duty, Delgado managed to ------- nearly all of it. He volunteered for every errand that took him across town, discovered a sudden need for long dental appointments, and was so helpful to the shipping department that the stockroom saw him on only three afternoons.",
+  "choices": [
+   "shirk",
+   "unravel",
+   "traverse",
+   "tarnish"
+  ],
+  "correct_answer": "shirk",
+  "explanation": "shirk (avoid a duty or work): the next sentence lists the evasions - errands, dental appointments, helping elsewhere - so that he spent only three afternoons on the assigned job.",
+  "distractor_rationales": [
+   "unravel - to come apart, or to solve something tangled ('the detective unraveled the mystery'); he did not untangle or undo the inventory, he simply avoided it.",
+   "traverse - to travel across ('the caravan traversed the desert'); one does not travel across a month of duty, and he stayed away from it.",
+   "tarnish - to dull or stain, or damage a reputation ('the scandal tarnished his name'); he did not damage the duty, he dodged it."
+  ],
+  "rarity_order": [
+   "traverse",
+   "shirk",
+   "unravel",
+   "tarnish"
+  ],
+  "polarity": {
+   "shirk": "-",
+   "unravel": "0",
+   "traverse": "0",
+   "tarnish": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "tarnish",
+   "odd_one_out": "unravel",
+   "most_specific": "traverse",
+   "test_word": "traverse"
+  }
+ },
+ {
+  "id": "IS21B-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose with the clue in the following clause (commanding view)",
+  "prompt": "[Sentence Completion] Nobody chose the bluff above the river for comfort: its wells ran dry every August and the wind never stopped. The garrison was posted there for its -------, since a sentry on the north wall could watch every road into the valley and see a rider coming a full day before he arrived.",
+  "choices": [
+   "vantage",
+   "upkeep",
+   "unison",
+   "sanction"
+  ],
+  "correct_answer": "vantage",
+  "explanation": "vantage (a position giving a commanding view or advantage): the clause after the blank explains the posting - from the wall a sentry sees every road and spots riders a day out.",
+  "distractor_rationales": [
+   "upkeep - the cost or work of maintaining something ('the upkeep of the old manor was ruinous'); dry wells and constant wind make the upkeep a reason against the bluff, and the clause after the blank is about sight.",
+   "unison - simultaneous action or agreement ('the choir sang in unison'); a garrison is not posted somewhere for the place's agreement.",
+   "sanction - official permission or approval ('the council gave its sanction to the plan'); a hill does not grant approval, and the clause explains what a sentry could see."
+  ],
+  "rarity_order": [
+   "unison",
+   "vantage",
+   "sanction",
+   "upkeep"
+  ],
+  "polarity": {
+   "vantage": "0",
+   "upkeep": "0",
+   "unison": "0",
+   "sanction": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "unison",
+   "odd_one_out": "upkeep",
+   "most_specific": "vantage",
+   "test_word": "sanction"
+  }
+ }
+]

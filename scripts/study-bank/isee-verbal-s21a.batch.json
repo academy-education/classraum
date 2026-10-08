@@ -1,0 +1,882 @@
+[
+ {
+  "id": "IS21A-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement across clauses (relief without cure)",
+  "prompt": "[Sentence Completion] The drug's makers never promised a cure, and the trial's doctors expected none. What they hoped was that it would ------- the swelling in patients' joints, so that the pain, though it never vanished, would no longer keep them awake at night.",
+  "choices": [
+   "alleviate",
+   "consolidate",
+   "delineate",
+   "advocate"
+  ],
+  "correct_answer": "alleviate",
+  "explanation": "alleviate (to lessen, make more bearable): the pain 'never vanished' yet 'would no longer keep them awake' - reduced, not removed, which is exactly what the drug is hoped to do to the swelling.",
+  "distractor_rationales": [
+   "consolidate - to strengthen or combine into one ('the two firms will consolidate their offices'); a drug that consolidated the swelling would make it worse, not let patients sleep.",
+   "delineate - to describe or mark out precisely ('the report delineates each officer's duties'); a drug does not outline swelling, and outlining it would not ease pain.",
+   "advocate - to speak publicly in favour of ('advocate a ban on smoking'); a drug cannot argue for swelling, and supporting it would not let patients sleep."
+  ],
+  "rarity_order": [
+   "delineate",
+   "alleviate",
+   "consolidate",
+   "advocate"
+  ],
+  "polarity": {
+   "alleviate": "+",
+   "consolidate": "0",
+   "delineate": "0",
+   "advocate": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "consolidate",
+   "odd_one_out": "delineate",
+   "most_specific": "delineate",
+   "test_word": "delineate"
+  }
+ },
+ {
+  "id": "IS21A-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences (earlier simple account vs archive)",
+  "prompt": "[Sentence Completion] Earlier chroniclers had described the treaty as little more than two kings shaking hands. The archive tells a different story: years of secret envoys, rival factions inside each court, and side agreements so ------- that historians are still working out who promised what to whom.",
+  "choices": [
+   "convoluted",
+   "abject",
+   "compulsory",
+   "avaricious"
+  ],
+  "correct_answer": "convoluted",
+  "explanation": "convoluted (intricately complicated, hard to follow): set against the chroniclers' 'two kings shaking hands', and restated by 'still working out who promised what to whom'.",
+  "distractor_rationales": [
+   "abject - wretched, miserable, hopelessly low ('abject poverty'); misery would not make the terms hard to trace.",
+   "compulsory - required by rule ('attendance is compulsory'); being required does not make terms hard to trace.",
+   "avaricious - greedy for wealth ('an avaricious landlord'); describes people, and greed would not explain why the promises are hard to work out."
+  ],
+  "rarity_order": [
+   "avaricious",
+   "abject",
+   "convoluted",
+   "compulsory"
+  ],
+  "polarity": {
+   "convoluted": "-",
+   "abject": "-",
+   "compulsory": "0",
+   "avaricious": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "compulsory",
+   "odd_one_out": "compulsory",
+   "most_specific": "avaricious",
+   "test_word": "abject"
+  }
+ },
+ {
+  "id": "IS21A-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause (budget spent, chairman gone -> body ended)",
+  "prompt": "[Sentence Completion] The committee had spent its entire budget on a study nobody read, and its chairman had resigned amid scandal. Rather than appoint a successor, the legislature voted to declare the body -------, and by the end of the month its offices stood empty and its staff had been reassigned.",
+  "choices": [
+   "defunct",
+   "credible",
+   "bipartisan",
+   "dogmatic"
+  ],
+  "correct_answer": "defunct",
+  "explanation": "defunct (no longer existing or operating): the legislature declines to replace the chairman, and the offices 'stood empty' with staff 'reassigned' - the body has ceased to function.",
+  "distractor_rationales": [
+   "credible - believable, trustworthy ('a credible witness'); a body that wasted its budget amid scandal would not be declared trustworthy, and that would not empty its offices.",
+   "bipartisan - supported by both main political parties ('a bipartisan bill'); the committee is being shut down, and cross-party support would not empty its offices.",
+   "dogmatic - rigidly insisting on one's opinions ('a dogmatic critic'); the legislature is ending the committee, not judging its opinions."
+  ],
+  "rarity_order": [
+   "dogmatic",
+   "defunct",
+   "bipartisan",
+   "credible"
+  ],
+  "polarity": {
+   "defunct": "0",
+   "credible": "+",
+   "bipartisan": "0",
+   "dogmatic": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "credible",
+   "odd_one_out": "dogmatic",
+   "most_specific": "bipartisan",
+   "test_word": "dogmatic"
+  }
+ },
+ {
+  "id": "IS21A-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause (audience could not follow)",
+  "prompt": "[Sentence Completion] The physicist's lecture was applauded by the handful of specialists in the hall and lost on nearly everyone else; even the science reporters admitted afterward that they had followed little beyond the title, so ------- were her arguments about the geometry of higher dimensions.",
+  "choices": [
+   "abstruse",
+   "apt",
+   "caustic",
+   "baleful"
+  ],
+  "correct_answer": "abstruse",
+  "explanation": "abstruse (difficult to understand, obscure): only specialists could follow the lecture and even trained reporters 'followed little beyond the title' - the arguments were too obscure for a general audience.",
+  "distractor_rationales": [
+   "apt - suitable, fitting the occasion ('an apt quotation'); fitting arguments would not leave trained reporters following nothing beyond the title.",
+   "caustic - bitingly harsh ('a caustic review'); harshness does not make an argument impossible to follow.",
+   "baleful - menacing, threatening harm ('a baleful glare'); nothing about the lecture is menacing, and menace does not make an argument hard to follow."
+  ],
+  "rarity_order": [
+   "baleful",
+   "abstruse",
+   "caustic",
+   "apt"
+  ],
+  "polarity": {
+   "abstruse": "0",
+   "apt": "+",
+   "caustic": "-",
+   "baleful": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "apt",
+   "odd_one_out": "apt",
+   "most_specific": "baleful",
+   "test_word": "baleful"
+  }
+ },
+ {
+  "id": "IS21A-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast with a quality not among the options (not subtle) plus cause",
+  "prompt": "[Sentence Completion] The company insisted its new password system was secure, but a student broke into it in one afternoon using nothing more than a list of common words. The flaw, critics said, had never been subtle; it was -------, and the list the student used is published on the internet every year.",
+  "choices": [
+   "blatant",
+   "concerted",
+   "cynical",
+   "consummate"
+  ],
+  "correct_answer": "blatant",
+  "explanation": "blatant (very obvious, glaring): the flaw 'had never been subtle', and anyone could exploit it with a freely published list of common words.",
+  "distractor_rationales": [
+   "concerted - planned and done together ('a concerted effort by the volunteers'); a flaw is not a joint effort.",
+   "cynical - distrustful of others' motives ('a cynical view of politicians'); a weakness in software has no attitude toward anyone.",
+   "consummate - supremely skilled, complete ('a consummate professional'); calling the flaw supremely skilled makes no sense, and the critics are saying how obvious it was."
+  ],
+  "rarity_order": [
+   "consummate",
+   "concerted",
+   "blatant",
+   "cynical"
+  ],
+  "polarity": {
+   "blatant": "-",
+   "concerted": "+",
+   "cynical": "-",
+   "consummate": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "consummate",
+   "odd_one_out": "concerted",
+   "most_specific": "consummate",
+   "test_word": "consummate"
+  }
+ },
+ {
+  "id": "IS21A-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast across sentences (colleagues resist; she champions)",
+  "prompt": "[Sentence Completion] Most of the hospital's surgeons resisted the new hand-washing rules for months, grumbling at every inspection. Dr. Okafor was the exception: she lectured visiting doctors on the rules unasked and timed her own residents at the sink, so that even her critics called her the rules' most ------- champion.",
+  "choices": [
+   "ardent",
+   "decorous",
+   "bilious",
+   "clairvoyant"
+  ],
+  "correct_answer": "ardent",
+  "explanation": "ardent (passionately enthusiastic): unlike the grumbling surgeons, she promotes the rules 'unasked' and enforces them on her own residents - zeal, not mere compliance.",
+  "distractor_rationales": [
+   "decorous - proper and dignified in behaviour ('a decorous dinner party'); nothing here concerns good manners, and lecturing visitors unasked is not what makes a champion decorous.",
+   "bilious - bad-tempered and irritable ('a bilious letter to the editor'); her campaign is energetic support, and irritability is not what makes a champion stand out here.",
+   "clairvoyant - able to see the future ('the clairvoyant claimed to foresee the storm'); nothing she does involves prediction; she enforces rules already written."
+  ],
+  "rarity_order": [
+   "bilious",
+   "clairvoyant",
+   "decorous",
+   "ardent"
+  ],
+  "polarity": {
+   "ardent": "+",
+   "decorous": "+",
+   "bilious": "-",
+   "clairvoyant": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "decorous",
+   "odd_one_out": "clairvoyant",
+   "most_specific": "clairvoyant",
+   "test_word": "decorous"
+  }
+ },
+ {
+  "id": "IS21A-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause across sentences (population growth outpaces maps)",
+  "prompt": "[Sentence Completion] In 1840 the port held a few hundred fishing families; by 1870, after the railway arrived, its docks employed thousands. Mapmakers of the period complained that they could not keep pace, since every edition of the town plan was out of date before it was printed, so ------- were its new streets.",
+  "choices": [
+   "burgeoning",
+   "clamorous",
+   "capacious",
+   "distinctive"
+  ],
+  "correct_answer": "burgeoning",
+  "explanation": "burgeoning (growing or spreading rapidly): the town grows from hundreds to thousands, and new streets appear so fast that each map is 'out of date before it was printed'.",
+  "distractor_rationales": [
+   "clamorous - loud and noisy ('a clamorous crowd at the gates'); noise would not make a map out of date.",
+   "capacious - roomy, able to hold a lot ('a capacious suitcase'); wide streets do not outdate a map; only new ones do.",
+   "distinctive - characteristic, easy to tell apart ('a distinctive accent'); distinct streets are easier to map, not harder."
+  ],
+  "rarity_order": [
+   "capacious",
+   "clamorous",
+   "burgeoning",
+   "distinctive"
+  ],
+  "polarity": {
+   "burgeoning": "+",
+   "clamorous": "-",
+   "capacious": "+",
+   "distinctive": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "capacious",
+   "odd_one_out": "distinctive",
+   "most_specific": "clamorous",
+   "test_word": "burgeoning"
+  }
+ },
+ {
+  "id": "IS21A-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across sentences (contradictory promises)",
+  "prompt": "[Sentence Completion] The minister assured farmers in the north that the dam would never be built, and in the same week promised the southern cities that construction would begin by spring. Once reporters printed the two speeches side by side, even his allies found it hard to defend such ------- conduct.",
+  "choices": [
+   "duplicitous",
+   "decisive",
+   "dispassionate",
+   "doleful"
+  ],
+  "correct_answer": "duplicitous",
+  "explanation": "duplicitous (deceitful, saying different things to different people): he told one audience the dam would never be built and another that it would - two contradictory faces, which is why his allies cannot defend him.",
+  "distractor_rationales": [
+   "decisive - settling things firmly and quickly ('a decisive leader in a crisis'); he committed to nothing, and allies would not struggle to defend decisiveness.",
+   "dispassionate - calm and impartial, free of emotion ('a dispassionate judge'); his fault is contradiction, not coolness, and impartiality needs no defending.",
+   "doleful - sorrowful, mournful ('a doleful song'); his fault is making contradictory promises, not gloom."
+  ],
+  "rarity_order": [
+   "duplicitous",
+   "doleful",
+   "dispassionate",
+   "decisive"
+  ],
+  "polarity": {
+   "duplicitous": "-",
+   "decisive": "+",
+   "dispassionate": "0",
+   "doleful": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "decisive",
+   "odd_one_out": "decisive",
+   "most_specific": "duplicitous",
+   "test_word": "dispassionate"
+  }
+ },
+ {
+  "id": "IS21A-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast + cause across clauses (camouflage lost on pale sand)",
+  "prompt": "[Sentence Completion] In its native forest the beetle vanishes easily among brown leaves, but the specimens released on the island's white sand had no such cover. Against that pale ground they were so ------- that gulls picked off nearly every one within a week.",
+  "choices": [
+   "conspicuous",
+   "contemptuous",
+   "abstemious",
+   "carnivorous"
+  ],
+  "correct_answer": "conspicuous",
+  "explanation": "conspicuous (standing out, easily seen): set against the forest where the beetle 'vanishes', the white sand gives 'no such cover', and gulls find nearly all of them.",
+  "distractor_rationales": [
+   "contemptuous - showing scorn ('a contemptuous sneer'); beetles have no attitude toward gulls, and scorn would not make them easy prey.",
+   "abstemious - sparing in eating and drinking ('an abstemious diet'); eating little would not make beetles easy prey on pale sand.",
+   "carnivorous - meat-eating ('carnivorous plants that trap flies'); what beetles eat has nothing to do with being seen against pale sand."
+  ],
+  "rarity_order": [
+   "abstemious",
+   "carnivorous",
+   "contemptuous",
+   "conspicuous"
+  ],
+  "polarity": {
+   "conspicuous": "0",
+   "contemptuous": "-",
+   "abstemious": "+",
+   "carnivorous": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "abstemious",
+   "odd_one_out": "contemptuous",
+   "most_specific": "carnivorous",
+   "test_word": "abstemious"
+  }
+ },
+ {
+  "id": "IS21A-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement (known only to a few)",
+  "prompt": "[Sentence Completion] Only three living engineers still understood the bank's forty-year-old software, written in a programming language no university had taught since the 1980s. When two of them retired in the same year, the bank learned the danger of depending on code so -------.",
+  "choices": [
+   "arcane",
+   "cloying",
+   "avuncular",
+   "culpable"
+  ],
+  "correct_answer": "arcane",
+  "explanation": "arcane (understood by only a few; obscure): 'only three living engineers still understood' the code, in a language 'no university had taught' for decades.",
+  "distractor_rationales": [
+   "cloying - sickeningly sweet or sentimental ('a cloying love song'); code cannot be oversweet.",
+   "avuncular - kind and friendly like an uncle ('an avuncular family doctor'); software has no warmth, and kindliness would not make depending on it dangerous.",
+   "culpable - deserving blame ('the driver was found culpable'); the danger described is that almost no one can read the code, not that the code is to blame."
+  ],
+  "rarity_order": [
+   "avuncular",
+   "cloying",
+   "arcane",
+   "culpable"
+  ],
+  "polarity": {
+   "arcane": "0",
+   "cloying": "-",
+   "avuncular": "+",
+   "culpable": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "avuncular",
+   "odd_one_out": "avuncular",
+   "most_specific": "avuncular",
+   "test_word": "culpable"
+  }
+ },
+ {
+  "id": "IS21A-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast (credit claimed vs evidence of earlier decline)",
+  "prompt": "[Sentence Completion] Officials were quick to ------- the city's falling crime rate to their new policing strategy, though the same decline had begun two years before the strategy existed and was just as steep in towns that never adopted it.",
+  "choices": [
+   "ascribe",
+   "consign",
+   "acclimate",
+   "attune"
+  ],
+  "correct_answer": "ascribe",
+  "explanation": "ascribe (to credit something to a cause): the officials claim their strategy caused the decline, a claim the 'though' clause undercuts - the decline predates the strategy and appears where it was never used.",
+  "distractor_rationales": [
+   "consign - to hand over or send away for good ('consign the old files to storage'); officials are not sending the crime rate somewhere.",
+   "acclimate - to get used to new surroundings ('acclimate the plants to the cold'); a crime rate is not being accustomed to a strategy.",
+   "attune - to adjust so as to be in harmony with ('attune the program to local needs'); the officials are claiming credit for the decline, not adjusting the crime rate to fit the strategy."
+  ],
+  "rarity_order": [
+   "ascribe",
+   "consign",
+   "attune",
+   "acclimate"
+  ],
+  "polarity": {
+   "ascribe": "0",
+   "consign": "0",
+   "acclimate": "0",
+   "attune": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "consign",
+   "odd_one_out": "consign",
+   "most_specific": "attune",
+   "test_word": "consign"
+  }
+ },
+ {
+  "id": "IS21A-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause across sentences (no moisture -> dried tissue)",
+  "prompt": "[Sentence Completion] The mummified hand had survived three thousand years in the desert tomb for a simple reason. No moisture had reached it since burial, and without water no bacteria could feed on the tissue, which had become as ------- as the sand around it.",
+  "choices": [
+   "desiccated",
+   "ductile",
+   "dappled",
+   "blighted"
+  ],
+  "correct_answer": "desiccated",
+  "explanation": "desiccated (thoroughly dried out): 'no moisture had reached it' and 'without water' bacteria could not survive - the tissue is as dry as desert sand.",
+  "distractor_rationales": [
+   "ductile - able to be drawn out or bent without breaking ('ductile copper wire'); the sentence is about dryness, and desert sand is not pliable.",
+   "dappled - marked with spots of light and shade ('a dappled forest floor'); colour pattern has nothing to do with the absence of water.",
+   "blighted - spoiled or withered by disease or decay ('blighted crops'); the tissue survived precisely because nothing could decay it, and sand is not diseased."
+  ],
+  "rarity_order": [
+   "desiccated",
+   "ductile",
+   "blighted",
+   "dappled"
+  ],
+  "polarity": {
+   "desiccated": "-",
+   "ductile": "0",
+   "dappled": "0",
+   "blighted": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "ductile",
+   "odd_one_out": "dappled",
+   "most_specific": "ductile",
+   "test_word": "ductile"
+  }
+ },
+ {
+  "id": "IS21A-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast across sentences (generations of lawsuits vs settled over dinner)",
+  "prompt": "[Sentence Completion] The two families had fought over the river boundary for three generations, suing and countersuing in every court in the county. It surprised the whole valley, then, when the grandchildren settled the matter over a single dinner, in a spirit so ------- that they ended by sharing the cost of a new bridge.",
+  "choices": [
+   "amicable",
+   "dissolute",
+   "debonair",
+   "cautionary"
+  ],
+  "correct_answer": "amicable",
+  "explanation": "amicable (friendly, without quarrelling): after generations of lawsuits the heirs settle 'over a single dinner' and end up sharing the cost of a bridge - goodwill, the reverse of the old feud.",
+  "distractor_rationales": [
+   "dissolute - living without moral restraint ('a dissolute young heir who gambled away the estate'); a settlement that ends in a shared bridge shows nothing of wild living.",
+   "debonair - stylish, charming and confident ('a debonair host'); nothing in the settlement concerns style or charm, and charm alone does not explain sharing a bridge.",
+   "cautionary - serving as a warning ('a cautionary tale'); the dinner ended in cooperation, not a warning."
+  ],
+  "rarity_order": [
+   "dissolute",
+   "debonair",
+   "cautionary",
+   "amicable"
+  ],
+  "polarity": {
+   "amicable": "+",
+   "dissolute": "-",
+   "debonair": "+",
+   "cautionary": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "dissolute",
+   "odd_one_out": "cautionary",
+   "most_specific": "debonair",
+   "test_word": "dissolute"
+  }
+ },
+ {
+  "id": "IS21A-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across sentences (no rule, shifted with mood)",
+  "prompt": "[Sentence Completion] Under the old king a merchant could lose his license for wearing the wrong color to court or for a remark the king half overheard. No written rule governed such decisions, which shifted with the royal mood from one week to the next, and the reformers' first demand was an end to such ------- power.",
+  "choices": [
+   "arbitrary",
+   "crass",
+   "cardinal",
+   "decent"
+  ],
+  "correct_answer": "arbitrary",
+  "explanation": "arbitrary (based on whim rather than rule or reason): 'no written rule governed such decisions', which 'shifted with the royal mood' - power exercised on whim.",
+  "distractor_rationales": [
+   "crass - crude and insensitive, lacking refinement ('a crass joke at a funeral'); the complaint is that the power followed no rule, not that it was tasteless.",
+   "cardinal - of chief importance ('a cardinal rule of the kitchen'); the complaint is about how unpredictably the power was used, not how important it was.",
+   "decent - fair, respectable, morally acceptable ('a decent wage'); stripping merchants of licenses on a whim is not fair dealing, and reformers would not demand an end to fairness."
+  ],
+  "rarity_order": [
+   "crass",
+   "cardinal",
+   "arbitrary",
+   "decent"
+  ],
+  "polarity": {
+   "arbitrary": "-",
+   "crass": "-",
+   "cardinal": "0",
+   "decent": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "decent",
+   "odd_one_out": "decent",
+   "most_specific": "cardinal",
+   "test_word": "arbitrary"
+  }
+ },
+ {
+  "id": "IS21A-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement across sentences (got through the firewall)",
+  "prompt": "[Sentence Completion] For years the company's engineers had boasted that no outsider could reach its customer records. Last week that confidence ended: a teenager in another country got past the firewall in an afternoon, and the ------- exposed the home addresses of two million users.",
+  "choices": [
+   "breach",
+   "boon",
+   "dilemma",
+   "accolade"
+  ],
+  "correct_answer": "breach",
+  "explanation": "breach (a break-in, a gap made through a defence): the teenager 'got past the firewall' into records 'no outsider could reach', and that break-in exposed the addresses.",
+  "distractor_rationales": [
+   "boon - a welcome benefit ('the new bus line was a boon to commuters'); an intrusion that leaks addresses is no benefit.",
+   "dilemma - a choice between two bad options ('the dilemma of whether to report a friend'); the teenager faced no difficult choice, and a choice cannot expose records.",
+   "accolade - an award or praise ('the film won every accolade'); an intrusion that leaks addresses earns no praise."
+  ],
+  "rarity_order": [
+   "boon",
+   "accolade",
+   "dilemma",
+   "breach"
+  ],
+  "polarity": {
+   "breach": "-",
+   "boon": "+",
+   "dilemma": "-",
+   "accolade": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "boon",
+   "odd_one_out": "dilemma",
+   "most_specific": "accolade",
+   "test_word": "dilemma"
+  }
+ },
+ {
+  "id": "IS21A-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across clauses (biographies read like hymns)",
+  "prompt": "[Sentence Completion] Biographies written in the general's lifetime read like hymns, crediting him with every victory and none of the defeats; it took historians a century to replace that ------- portrait with one that admitted his blunders.",
+  "choices": [
+   "adulatory",
+   "arresting",
+   "diminutive",
+   "abstract"
+  ],
+  "correct_answer": "adulatory",
+  "explanation": "adulatory (full of excessive praise): the early biographies 'read like hymns' and credit him with 'every victory and none of the defeats' - flattery that later historians correct by admitting his blunders.",
+  "distractor_rationales": [
+   "arresting - striking, catching attention ('an arresting photograph'); the fault historians corrected was flattery, not how eye-catching the portrait was.",
+   "diminutive - very small ('a diminutive pony'); the problem with the early biographies was flattery, not size.",
+   "abstract - theoretical, not concrete ('an abstract argument about justice'); biographies listing victories are specific, and abstraction is not what admitting blunders would fix."
+  ],
+  "rarity_order": [
+   "adulatory",
+   "diminutive",
+   "arresting",
+   "abstract"
+  ],
+  "polarity": {
+   "adulatory": "+",
+   "arresting": "+",
+   "diminutive": "0",
+   "abstract": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "diminutive",
+   "odd_one_out": "diminutive",
+   "most_specific": "adulatory",
+   "test_word": "abstract"
+  }
+ },
+ {
+  "id": "IS21A-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast across clauses (sudden onset vs long-standing condition)",
+  "prompt": "[Sentence Completion] The pain came on in the middle of the night, sharp enough to wake him, and had him in the emergency room within the hour. It was this ------- onset, his doctors said, more than the pain's location, that pointed to a burst appendix rather than the ulcer he had lived with for years.",
+  "choices": [
+   "acute",
+   "categorical",
+   "droll",
+   "boorish"
+  ],
+  "correct_answer": "acute",
+  "explanation": "acute (coming on suddenly and severely, as an illness): the pain arrived in one night, sharply, and sent him to hospital within the hour - unlike the ulcer 'he had lived with for years'.",
+  "distractor_rationales": [
+   "categorical - absolute, without exception ('a categorical denial'); an onset of pain is not a statement, and nothing about it is unqualified or absolute.",
+   "droll - amusing in an odd, dry way ('a droll remark'); nothing about a night of sharp pain is amusing.",
+   "boorish - rude and ill-mannered ('a boorish guest'); an onset of pain has no manners."
+  ],
+  "rarity_order": [
+   "droll",
+   "boorish",
+   "categorical",
+   "acute"
+  ],
+  "polarity": {
+   "acute": "0",
+   "categorical": "0",
+   "droll": "+",
+   "boorish": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "categorical",
+   "odd_one_out": "boorish",
+   "most_specific": "droll",
+   "test_word": "categorical"
+  }
+ },
+ {
+  "id": "IS21A-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast with the norm across clauses (one of four hundred)",
+  "prompt": "[Sentence Completion] Of the four hundred fruit flies in the experiment, all but one developed the usual red eyes. That single white-eyed male, whose ------- trait the researcher traced to one altered gene, became the most famous insect in the history of genetics.",
+  "choices": [
+   "aberrant",
+   "disingenuous",
+   "commodious",
+   "bountiful"
+  ],
+  "correct_answer": "aberrant",
+  "explanation": "aberrant (departing from the normal type): all the other flies 'developed the usual red eyes'; the one white-eyed male deviates from that norm.",
+  "distractor_rationales": [
+   "disingenuous - insincere, pretending to know less than one does ('a disingenuous apology'); a fly's eye colour cannot be insincere.",
+   "commodious - roomy and spacious ('a commodious cabin'); a trait has no room in it.",
+   "bountiful - abundant, generous ('a bountiful harvest'); one fly in four hundred is the opposite of plentiful, and eye colour is not generous."
+  ],
+  "rarity_order": [
+   "commodious",
+   "aberrant",
+   "disingenuous",
+   "bountiful"
+  ],
+  "polarity": {
+   "aberrant": "-",
+   "disingenuous": "-",
+   "commodious": "+",
+   "bountiful": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "bountiful",
+   "odd_one_out": "commodious",
+   "most_specific": "commodious",
+   "test_word": "disingenuous"
+  }
+ },
+ {
+  "id": "IS21A-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause across sentences (reserves fell; hours lost rather than a branch)",
+  "prompt": "[Sentence Completion] When the treasury's reserves fell to their lowest level in decades, every department of the city government lost something. The library lost its Sundays and two weekday evenings, the council having voted to ------- its hours rather than close a branch outright.",
+  "choices": [
+   "curtail",
+   "codify",
+   "commandeer",
+   "debase"
+  ],
+  "correct_answer": "curtail",
+  "explanation": "curtail (to cut short, reduce): money ran out, and the library 'lost its Sundays and two weekday evenings' - its hours were cut back as the lesser alternative to closing a branch.",
+  "distractor_rationales": [
+   "codify - to arrange rules into a written system ('codify the club's customs into bylaws'); writing the hours down would not take Sundays away.",
+   "commandeer - to seize for official or military use ('the army commandeered the hotel'); the council cuts the library's hours, it does not seize them for another use.",
+   "debase - to lower in quality or value ('debase the currency'); the library's hours are cut in number, not made worse in quality, and the sentence describes losing whole days."
+  ],
+  "rarity_order": [
+   "commandeer",
+   "debase",
+   "codify",
+   "curtail"
+  ],
+  "polarity": {
+   "curtail": "-",
+   "codify": "0",
+   "commandeer": "-",
+   "debase": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "codify",
+   "odd_one_out": "codify",
+   "most_specific": "commandeer",
+   "test_word": "debase"
+  }
+ },
+ {
+  "id": "IS21A-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across clauses (leaflets, volunteers, radio vans to every household)",
+  "prompt": "[Sentence Completion] Within a month of the vaccine trial's results, the health ministry had printed leaflets in eleven languages, trained village volunteers, and sent radio vans into the mountains, determined to ------- the findings to every household that might need them.",
+  "choices": [
+   "disseminate",
+   "absolve",
+   "dissemble",
+   "ascertain"
+  ],
+  "correct_answer": "disseminate",
+  "explanation": "disseminate (to spread widely): leaflets in eleven languages, village volunteers and radio vans carry the findings 'to every household' - a campaign to spread information as widely as possible.",
+  "distractor_rationales": [
+   "absolve - to free from blame or guilt ('the inquiry absolved the pilot'); findings carry no guilt to be cleared.",
+   "dissemble - to hide one's true feelings or motives ('he dissembled his anger with a smile'); the ministry is broadcasting the results, not concealing anything.",
+   "ascertain - to find out for certain ('ascertain the cause of the fire'); the trial has already produced the findings; the campaign delivers them to households rather than discovering them."
+  ],
+  "rarity_order": [
+   "dissemble",
+   "disseminate",
+   "absolve",
+   "ascertain"
+  ],
+  "polarity": {
+   "disseminate": "0",
+   "absolve": "+",
+   "dissemble": "-",
+   "ascertain": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "dissemble",
+   "odd_one_out": "absolve",
+   "most_specific": "dissemble",
+   "test_word": "disseminate"
+  }
+ }
+]
