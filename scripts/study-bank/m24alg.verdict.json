@@ -1,0 +1,474 @@
+{
+ "SM24L-A2": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-A7"
+   ],
+   [
+    "SM24L-A7"
+   ],
+   [
+    "SM24L-A7"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "KEEP",
+  "why": []
+ },
+ "SM24L-A4": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   3,
+   null,
+   2
+  ],
+  "templates": [
+   [],
+   [],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "KEEP",
+  "why": []
+ },
+ "SM24L-A7": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-A2"
+   ],
+   [
+    "SM24L-A2"
+   ],
+   [
+    "SM24L-A2"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM24L-A2 (3/3)"
+  ]
+ },
+ "SM24L-B1": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "struck": [
+   [
+    "496"
+   ],
+   [
+    "496"
+   ],
+   [
+    "496"
+   ]
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-B5"
+   ],
+   [
+    "SM24L-B7"
+   ],
+   [
+    "SM24L-B7"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "DROP",
+  "why": [
+   "EXT-1 drop_recommend by d"
+  ]
+ },
+ "SM24L-B2": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [
+    "6",
+    "29"
+   ],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-B9"
+   ],
+   [
+    "SM24L-B9"
+   ],
+   [
+    "SM24L-B9"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "KEEP",
+  "why": []
+ },
+ "SM24L-B3": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   [
+    "-7/3",
+    "5"
+   ]
+  ],
+  "plugback": [
+   3,
+   3,
+   3
+  ],
+  "templates": [
+   [],
+   [],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "KEEP",
+  "why": []
+ },
+ "SM24L-B4": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-B10"
+   ],
+   [
+    "SM24L-B10"
+   ],
+   [
+    "SM24L-B10"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "KEEP",
+  "why": []
+ },
+ "SM24L-B5": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "struck": [
+   [
+    "-17/3"
+   ],
+   [
+    "-17/3",
+    "21"
+   ],
+   [
+    "-17/3"
+   ]
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-B1"
+   ],
+   [],
+   [
+    "SM24L-B1",
+    "SM24L-B9"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM24L-B1 (2/3)"
+  ]
+ },
+ "SM24L-B6": {
+  "difficulty": "hard",
+  "difficulties": [
+   "medium",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "struck": [
+   [],
+   [
+    "19",
+    "40"
+   ],
+   [
+    "43"
+   ]
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-B7"
+   ],
+   [],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "KEEP",
+  "why": []
+ },
+ "SM24L-B7": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-B6"
+   ],
+   [
+    "SM24L-B1"
+   ],
+   [
+    "SM24L-B1"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM24L-B1 (2/3)"
+  ]
+ },
+ "SM24L-B8": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   3,
+   3,
+   3
+  ],
+  "templates": [
+   [],
+   [],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "KEEP",
+  "why": []
+ },
+ "SM24L-B9": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [
+    "153"
+   ],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-B2"
+   ],
+   [
+    "SM24L-B2"
+   ],
+   [
+    "SM24L-B2"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM24L-B2 (3/3)"
+  ]
+ },
+ "SM24L-B10": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [
+    "23/4"
+   ],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM24L-B4"
+   ],
+   [
+    "SM24L-B4"
+   ],
+   [
+    "SM24L-B4"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "k2_votes": 0,
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM24L-B4 (3/3)"
+  ]
+ }
+}
