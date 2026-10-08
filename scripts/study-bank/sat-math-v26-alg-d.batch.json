@@ -1,0 +1,282 @@
+[
+ {
+  "id": "SM26L-D1",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear inequalities in two variables: counting whole-number optimal plans",
+  "prompt": "A food bank buys small meal kits for $10 each and large meal kits for $25 each. A small kit feeds 2 people and a large kit feeds 5 people. The food bank can spend at most $487, and it must buy at least 11 small kits and at least 5 large kits. Only whole kits can be bought. How many different combinations of small and large kits feed the greatest possible number of people?",
+  "choices": [
+   "1",
+   "2",
+   "6",
+   "8"
+  ],
+  "correct_answer": "6",
+  "explanation": "Let x be the number of small kits and y the number of large kits. The conditions are 10x + 25y ≤ 487, x ≥ 11 and y ≥ 5, and the number of people fed is 2x + 5y. Since 10x + 25y = 5(2x + 5y), the budget says 5(2x + 5y) ≤ 487, so 2x + 5y ≤ 97.4. Because x and y are whole numbers, 2x + 5y is a whole number, so at most 97 people can be fed. Every whole-number pair with 2x + 5y = 97 costs $485, so it is within budget; it is not just one corner plan. 2x + 5y = 97 forces y to be odd, and x = (97 - 5y)/2. With y ≥ 5 and x ≥ 11 (so 5y ≤ 75, y ≤ 15), y can be 5, 7, 9, 11, 13 or 15, giving (36, 5), (31, 7), (26, 9), (21, 11), (16, 13) and (11, 15): 6 combinations. Choice 1 assumes the best plan is a single rounded corner. Choice 2 counts only the two ends of the best edge, (11, 15) and (36, 5), and misses the plans between them. Choice 8 ignores the minimum of 11 small kits, so y can be any odd number from 5 to 19.",
+  "mechanism": [
+   "objective parallel to the budget line",
+   "whole-number cap on the objective",
+   "count lattice points on the optimal line"
+  ],
+  "mech": "integer-optimum",
+  "ask": "count",
+  "setup": {
+   "i": "budget + a minimum for each kind",
+   "ii": "objective proportional to the budget (many plans tie)",
+   "iii": "number of plans attaining the greatest objective"
+  },
+  "key_position": "rank 3",
+  "off_by_one_options": [],
+  "solve": "let best=-1,n=0;for(let x=0;x<=60;x++)for(let y=0;y<=30;y++){if(10*x+25*y>487||x<11||y<5)continue;const v=2*x+5*y;if(v>best){best=v;n=1}else if(v===best)n++}return n;",
+  "distractor_solve": {
+   "1": "// treats the optimum as one rounded corner plan\nconst x=11,y=Math.floor((487-10*x)/25);return [[x,y]].length;",
+   "2": "// counts only the two ends of the optimal edge\nlet ends=0;const a=[11,Math.floor((487-110)/25)],b=[Math.floor((487-125)/10),5];for(const [x,y] of [a,b]) if(2*x+5*y===97) ends++;return ends;",
+   "8": "// drops the minimum of 11 small kits\nlet best=-1,n=0;for(let x=0;x<=60;x++)for(let y=0;y<=30;y++){if(10*x+25*y>487||y<5)continue;const v=2*x+5*y;if(v>best){best=v;n=1}else if(v===best)n++}return n;"
+  }
+ },
+ {
+  "id": "SM26L-D2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear inequalities in two variables: greatest and least whole-number objective",
+  "prompt": "A shop orders x cases of item A and y cases of item B, where x and y are whole numbers. The order must satisfy all of the following.\n12x + 7y ≤ 151\nx + y ≥ 14\nx ≥ 4\nThe shop's profit on the order is 8x + y dollars. What is the sum of the greatest possible profit and the least possible profit?",
+  "choices": [
+   "126",
+   "130",
+   "133",
+   "139"
+  ],
+  "correct_answer": "126",
+  "explanation": "Least profit: the profit 8x + y grows with x much faster than with y, so use as few cases of A as allowed and only as many of B as needed: x = 4, y = 10 (12(4) + 7(10) = 118 ≤ 151, and 14 cases). The least profit is 32 + 10 = 42. Greatest profit: the real-number corner of 12x + 7y = 151 and x + y = 14 is x = 10.6, y = 3.4, with profit 88.2, but whole numbers are required. With x + y ≥ 14, y ≥ 14 - x, so 12x + 7(14 - x) ≤ 151 gives 5x ≤ 53 and x ≤ 10. At x = 10, y can be 4 only (12(10) + 7y ≤ 151 gives y ≤ 4.4), for a profit of 84; smaller x loses 8 dollars per case of A and gains at most a little in y, so 84 is the greatest. The sum is 84 + 42 = 126. Choice 130 uses 88, the real-number maximum rounded down, which no whole-number order reaches. Choice 133 rounds the corner to (11, 3), which costs 12(11) + 7(3) = 153 and breaks the first inequality, giving 91. Choice 139 drops the condition x + y ≥ 14 when maximising and uses (12, 1), profit 97.",
+  "mechanism": [
+   "rounded corner infeasible",
+   "lattice maximum below the real maximum",
+   "pair a nontrivial maximum with a minimum"
+  ],
+  "mech": "integer-optimum",
+  "ask": "sum",
+  "setup": {
+   "i": "budget + minimum total count + minimum of one kind",
+   "ii": "both the maximum and the minimum of one objective",
+   "iii": "sum of the greatest and least objective"
+  },
+  "key_position": "rank 1",
+  "off_by_one_options": [],
+  "solve": "const ok=(x,y)=>12*x+7*y<=151&&x+y>=14&&x>=4&&y>=0;let M=-1e9,m=1e9;for(let x=0;x<=20;x++)for(let y=0;y<=30;y++)if(ok(x,y)){const v=8*x+y;M=Math.max(M,v);m=Math.min(m,v)}return M+m;",
+  "distractor_solve": {
+   "130": "// floor of the real-number maximum at the corner of 12x+7y=151 and x+y=14\nconst x=(151-7*14)/5,y=14-x;let m=1e9;for(let a=0;a<=20;a++)for(let b=0;b<=30;b++)if(12*a+7*b<=151&&a+b>=14&&a>=4)m=Math.min(m,8*a+b);return Math.floor(8*x+y)+m;",
+   "133": "// rounds the corner (10.6, 3.4) to (11, 3)\nconst x=Math.round((151-98)/5),y=Math.round(14-(151-98)/5);let m=1e9;for(let a=0;a<=20;a++)for(let b=0;b<=30;b++)if(12*a+7*b<=151&&a+b>=14&&a>=4)m=Math.min(m,8*a+b);return 8*x+y+m;",
+   "139": "// drops x+y>=14 for the maximum\nlet M=-1e9,m=1e9;for(let a=0;a<=20;a++)for(let b=0;b<=30;b++){if(12*a+7*b<=151&&a>=4)M=Math.max(M,8*a+b);if(12*a+7*b<=151&&a+b>=14&&a>=4)m=Math.min(m,8*a+b)}return M+m;"
+  }
+ },
+ {
+  "id": "SM26L-D3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear inequalities in two variables: change in a whole-number optimum",
+  "prompt": "A caterer prepares x trays of sandwiches and y trays of salad, where x and y are whole numbers. Each sandwich tray costs $7 to make and earns a profit of $14, and each salad tray costs $9 to make and earns a profit of $8. The number of sandwich trays can be at most 3 times the number of salad trays. If the caterer's budget increases from $102 to $122, by how many dollars does the greatest possible total profit increase?",
+  "choices": [
+   "33",
+   "42",
+   "50",
+   "80"
+  ],
+  "correct_answer": "42",
+  "explanation": "The conditions are 7x + 9y ≤ B and x ≤ 3y, and the profit is 14x + 8y. Sandwich trays earn more per dollar, so the best plans push x up against x ≤ 3y. With B = 102, the real-number corner is y = 3.4, x = 10.2, but whole numbers are needed. Check each y: y = 3 allows x ≤ 9 (cost 63 + 27 = 90), profit 150; y = 4 allows x ≤ 9 by the budget (7x ≤ 66), profit 126 + 32 = 158; y = 5 allows x ≤ 8, profit 152. The greatest profit is 158. With B = 122: y = 4 allows x ≤ 12 by both conditions (84 + 36 = 120), profit 168 + 32 = 200; y = 5 allows x ≤ 11, profit 194; y = 3 allows x ≤ 9, profit 150. The greatest profit is 200. The increase is 200 - 158 = 42. Choice 33 subtracts the real-number maxima, 170 and 203 1/3, after rounding each down. Choice 50 rounds the first corner down to (10, 3), finds that x ≤ 3y fails, and settles for (9, 3), profit 150, instead of (9, 4). Choice 80 drops the 3-to-1 limit for the new budget and uses 17 sandwich trays, profit 238.",
+  "mechanism": [
+   "re-optimise after a budget change",
+   "lattice optimum moves differently from the real corner",
+   "ratio constraint binds"
+  ],
+  "mech": "integer-optimum",
+  "ask": "difference",
+  "setup": {
+   "i": "budget + ratio cap",
+   "ii": "budget raised; both optima compared",
+   "iii": "increase in the greatest objective"
+  },
+  "key_position": "rank 2",
+  "off_by_one_options": [],
+  "solve": "const best=B=>{let M=-1;for(let x=0;x<=30;x++)for(let y=0;y<=30;y++)if(7*x+9*y<=B&&x<=3*y)M=Math.max(M,14*x+8*y);return M};return best(122)-best(102);",
+  "distractor_solve": {
+   "33": "// real-number corners x=3y on 7x+9y=B, each profit rounded down\nconst z=B=>{const y=B/30,x=3*y;return 14*x+8*y};return Math.floor(z(122)+1e-9)-Math.floor(z(102)+1e-9);",
+   "50": "// first optimum taken as (9,3) after rounding (10.2,3.4) down and fixing the ratio\nlet M=-1;for(let x=0;x<=30;x++)for(let y=0;y<=30;y++)if(7*x+9*y<=122&&x<=3*y)M=Math.max(M,14*x+8*y);const y0=Math.floor(102/30),x0=Math.min(Math.floor(3*102/30),3*y0);return M-(14*x0+8*y0);",
+   "80": "// ratio dropped for the new budget\nlet M2=-1,M1=-1;for(let x=0;x<=30;x++)for(let y=0;y<=30;y++){if(7*x+9*y<=122)M2=Math.max(M2,14*x+8*y);if(7*x+9*y<=102&&x<=3*y)M1=Math.max(M1,14*x+8*y)}return M2-M1;"
+  }
+ },
+ {
+  "id": "SM26L-D4",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Systems of linear inequalities: greatest objective over integer points",
+  "prompt": "3x + 7y ≤ 63\n9x + 4y ≤ 71\ny ≥ 3\nThe integers x and y satisfy all three inequalities above. What is the greatest possible value of 7x + 6y?",
+  "choices": [
+   "60",
+   "64",
+   "71",
+   "75"
+  ],
+  "correct_answer": "71",
+  "explanation": "The real-number maximum is at the intersection of 3x + 7y = 63 and 9x + 4y = 71, which is x = 245/51 ≈ 4.80, y = 354/51 ≈ 6.94, where 7x + 6y ≈ 75.3. That point is not an integer point, so check the integer points near it row by row. For y = 7: 3x ≤ 14 gives x ≤ 4, value 28 + 42 = 70. For y = 6: 3x ≤ 21 and 9x ≤ 47 give x ≤ 5, value 35 + 36 = 71. For y = 5: 9x ≤ 51 gives x ≤ 5, value 65. For y = 8: 3x ≤ 7 gives x ≤ 2, value 62. For y = 4: 9x ≤ 55 gives x ≤ 6, value 66. For y = 3: x ≤ 6, value 60. Larger y (9 or more) forces x ≤ 0. The greatest value is 71, at (5, 6). Choice 75 is the real-number maximum rounded down; no integer point reaches it. Choice 64 rounds both coordinates of the corner down to (4, 6). Choice 60 uses the other corner, where y = 3 meets 9x + 4y = 71, and rounds x down to 6.",
+  "mechanism": [
+   "integer point near a fractional corner",
+   "rounded corner infeasible or suboptimal",
+   "row-by-row lattice search"
+  ],
+  "mech": "integer-optimum",
+  "ask": "greatest",
+  "setup": {
+   "i": "bare system of three inequalities",
+   "ii": "maximise a linear objective over integer points",
+   "iii": "greatest objective value"
+  },
+  "key_position": "rank 3",
+  "off_by_one_options": [],
+  "solve": "let M=-1e9;for(let x=-100;x<=100;x++)for(let y=-100;y<=100;y++)if(3*x+7*y<=63&&9*x+4*y<=71&&y>=3)M=Math.max(M,7*x+6*y);return M;",
+  "distractor_solve": {
+   "60": "// other corner: y=3 on 9x+4y=71, x rounded down\nconst y=3,x=Math.floor((71-4*y)/9);return 7*x+6*y;",
+   "64": "// corner of the first two lines, both coordinates rounded down\nconst d=3*4-9*7,x=(63*4-71*7)/d,y=(3*71-9*63)/d;return 7*Math.floor(x)+6*Math.floor(y);",
+   "75": "// real-number maximum rounded down\nconst d=3*4-9*7,x=(63*4-71*7)/d,y=(3*71-9*63)/d;return Math.floor(7*x+6*y);"
+  }
+ },
+ {
+  "id": "SM26L-D5",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear inequalities in two variables: least whole-number cost meeting two minimums",
+  "prompt": "A feed mix is made from whole scoops of two pellets. Each scoop of pellet P contains 8 grams of protein and 3 grams of fiber and costs 8 cents. Each scoop of pellet Q contains 5 grams of protein and 8 grams of fiber and costs 6 cents. The mix must contain at least 49 grams of protein and at least 52 grams of fiber. What is the least possible cost, in cents, of the mix?",
+  "choices": [
+   "42",
+   "54",
+   "55",
+   "58"
+  ],
+  "correct_answer": "58",
+  "explanation": "Let p and q be the numbers of scoops. The conditions are 8p + 5q ≥ 49 and 3p + 8q ≥ 52, and the cost is 8p + 6q. The real-number corner of the two boundary lines is p = 132/49 ≈ 2.69, q = 269/49 ≈ 5.49, with cost about 54.5, but scoops are whole. Check each p: p = 0 needs q ≥ 10 (protein), cost 60; p = 1 needs q ≥ 9, cost 62; p = 2 needs q ≥ 7 (protein 16 + 5q ≥ 49 and fiber 6 + 8q ≥ 52 give q ≥ 6.6 and q ≥ 5.75), cost 16 + 42 = 58; p = 3 needs q ≥ 6 (fiber 9 + 8q ≥ 52), cost 60; p = 4 needs q ≥ 5, cost 62; larger p costs more. The least cost is 58 cents, with 2 scoops of P and 7 of Q. Choice 54 rounds the corner to (3, 5), which gives only 49 grams of fiber. Choice 55 rounds the real-number minimum cost up, but no whole-number mix costs 55. Choice 42 meets only the fiber requirement, with 7 scoops of Q, and ignores protein.",
+  "mechanism": [
+   "covering constraints with whole-number scoops",
+   "rounded corner infeasible",
+   "lattice minimum above the real minimum"
+  ],
+  "mech": "integer-optimum",
+  "ask": "least",
+  "setup": {
+   "i": "two covering minimums",
+   "ii": "minimise cost",
+   "iii": "least total cost"
+  },
+  "key_position": "rank 4",
+  "off_by_one_options": [],
+  "solve": "let m=1e9;for(let p=0;p<=30;p++)for(let q=0;q<=30;q++)if(8*p+5*q>=49&&3*p+8*q>=52)m=Math.min(m,8*p+6*q);return m;",
+  "distractor_solve": {
+   "42": "// fiber requirement only\nlet m=1e9;for(let p=0;p<=30;p++)for(let q=0;q<=30;q++)if(3*p+8*q>=52)m=Math.min(m,8*p+6*q);return m;",
+   "54": "// corner rounded to the nearest whole numbers\nconst d=8*8-3*5,p=(49*8-52*5)/d,q=(8*52-3*49)/d;return 8*Math.round(p)+6*Math.round(q);",
+   "55": "// real-number minimum cost rounded up\nconst d=8*8-3*5,p=(49*8-52*5)/d,q=(8*52-3*49)/d;return Math.ceil(8*p+6*q);"
+  }
+ },
+ {
+  "id": "SM26L-D6",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear inequalities in two variables: least cost under a vehicle cap",
+  "prompt": "A school must take at least 300 people on a trip using vans and buses. A van carries 12 people and costs $80 to rent; a bus carries 40 people and costs $350 to rent. Only 10 drivers are available, so at most 10 vehicles can be used. What is the least possible total rental cost, in dollars?",
+  "choices": [
+   "2610",
+   "2690",
+   "2770",
+   "2800"
+  ],
+  "correct_answer": "2610",
+  "explanation": "Let v be the number of vans and b the number of buses: 12v + 40b ≥ 300 and v + b ≤ 10, with cost 80v + 350b. Vans are cheaper per seat, so the cheapest plans use as many vans as the 10-vehicle limit allows. The real-number corner of 12v + 40b = 300 and v + b = 10 is v ≈ 3.57, b ≈ 6.43. With whole vehicles, b = 6 would need 12v ≥ 60, v ≥ 5, which is 11 vehicles, so b ≥ 7. With b = 7, 12v ≥ 20 gives v ≥ 2, so (2, 7) works, carrying 304 people for 160 + 2450 = 2610 dollars. With b = 8, no vans are needed, cost 2800, and more buses cost more. The least cost is $2,610. Choice 2690 rounds the corner to (3, 7) and keeps all 10 vehicles, but one of those vans is not needed. Choice 2770 rounds both coordinates up to (4, 7), which needs 11 drivers. Choice 2800 uses buses only.",
+  "mechanism": [
+   "cheaper-per-seat vehicle limited by a count cap",
+   "rounding the corner leaves an unneeded vehicle",
+   "lattice minimum"
+  ],
+  "mech": "integer-optimum",
+  "ask": "least",
+  "setup": {
+   "i": "one covering minimum + vehicle-count cap",
+   "ii": "minimise cost where the cheaper-per-unit option is capped",
+   "iii": "least rental cost"
+  },
+  "key_position": "rank 1",
+  "off_by_one_options": [],
+  "solve": "let m=1e9;for(let v=0;v<=10;v++)for(let b=0;b<=10;b++)if(12*v+40*b>=300&&v+b<=10)m=Math.min(m,80*v+350*b);return m;",
+  "distractor_solve": {
+   "2690": "// corner (3.57, 6.43): v rounded down, b rounded up, 10 vehicles kept\nconst b=(300-120)/28,v=10-b;return 80*Math.floor(v)+350*Math.ceil(b);",
+   "2770": "// both coordinates rounded up (11 vehicles)\nconst b=(300-120)/28,v=10-b;return 80*Math.ceil(v)+350*Math.ceil(b);",
+   "2800": "// buses only\nreturn 350*Math.ceil(300/40);"
+  }
+ },
+ {
+  "id": "SM26L-D7",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear inequalities in two variables: whole-number profit maximum under a time limit",
+  "prompt": "A workshop has 545 minutes of machine time this week. Product A takes 30 minutes of machine time and earns a profit of $31, and product B takes 40 minutes and earns a profit of $39. Only whole units are made, and at most 4 units of product A can be sold this week. In the plan that gives the greatest total profit, how many units of product A are made?",
+  "choices": [
+   "0",
+   "2",
+   "4",
+   "18"
+  ],
+  "correct_answer": "2",
+  "explanation": "Let a and b be the numbers of units: 30a + 40b ≤ 545 and a ≤ 4, with profit 31a + 39b. Per minute, A earns slightly more, so the real-number best plan is a = 4 and b = 425/40 = 10.625. With whole units, b must be rounded down, wasting 25 minutes. Compare each a: a = 4 gives b = 10, profit 124 + 390 = 514; a = 3 gives b = 11 (90 + 440 = 530 minutes), profit 522; a = 2 gives b = 12 (60 + 480 = 540), profit 62 + 468 = 530; a = 1 gives b = 12, profit 499; a = 0 gives b = 13, profit 507. The greatest profit, 530, uses 2 units of A. Choice 4 takes the real-number plan and rounds b down. Choice 0 makes only product B, the one with the larger profit per unit. Choice 18 ignores the limit of 4 units of A.",
+  "mechanism": [
+   "better-per-minute product first is not optimal",
+   "leftover time after rounding",
+   "lattice optimum at a different point"
+  ],
+  "mech": "integer-optimum",
+  "ask": "value",
+  "setup": {
+   "i": "single time limit + demand cap on one product",
+   "ii": "maximise profit",
+   "iii": "value of x in the unique optimal plan"
+  },
+  "key_position": "rank 2",
+  "off_by_one_options": [],
+  "solve": "let M=-1,ax=-1;for(let a=0;a<=4;a++)for(let b=0;b<=30;b++)if(30*a+40*b<=545){const v=31*a+39*b;if(v>M){M=v;ax=a}}return ax;",
+  "distractor_solve": {
+   "0": "// B only\nconst b=Math.floor(545/40);return 0*b;",
+   "4": "// real-number plan a=4, b rounded down\nconst a=4,b=Math.floor((545-30*a)/40);return a+0*b;",
+   "18": "// cap on A ignored\nlet M=-1,ax=-1;for(let a=0;a<=30;a++)for(let b=0;b<=30;b++)if(30*a+40*b<=545){const v=31*a+39*b;if(v>M){M=v;ax=a}}return ax;"
+  }
+ },
+ {
+  "id": "SM26L-D8",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear inequalities in two variables: whole-number optimal plan",
+  "prompt": "A volunteer group assembles large and small care packages. Each package of either size serves 5 people, and the packages must serve at least 73 people in total. A large package takes 8 volunteer-hours to assemble and a small package takes 3 volunteer-hours, and the group has 74 volunteer-hours available. A sponsor donates $6 for each large package and $1 for each small package. Only whole packages are assembled. In the plan that earns the greatest total donation, how many small packages are assembled?",
+  "choices": [
+   "0",
+   "9",
+   "10",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "Let L and S be the numbers of large and small packages. Serving at least 73 people means 5(L + S) ≥ 73, so L + S ≥ 15 for whole packages. The hours give 8L + 3S ≤ 74, and the donation is 6L + S. Large packages earn more, so the best plan uses as many as the two conditions allow. The real-number corner of L + S = 15 and 8L + 3S = 74 is L = 5.8, S = 9.2. L = 6 is impossible: it needs S ≥ 9 for the people, but 48 + 27 = 75 > 74 hours. So L = 5, where 40 + 3S ≤ 74 allows S ≤ 11 and the people condition needs S ≥ 10. Each small package adds $1, so take S = 11: donation 30 + 11 = 41. Fewer large packages lose $6 each and cannot be made up (for example L = 4 allows S ≤ 14, donation 38). The answer is 11. Choice 9 rounds the corner to (6, 9), which needs 75 hours. Choice 10 stops at the fewest small packages that serve 73 people when L = 5, leaving $1 of donation unused. Choice 0 ignores the 73-person requirement and makes only large packages.",
+  "mechanism": [
+   "rounded corner infeasible",
+   "fill remaining capacity after the binding constraint",
+   "lattice optimum"
+  ],
+  "mech": "integer-optimum",
+  "ask": "value",
+  "setup": {
+   "i": "minimum served + labour-hour cap",
+   "ii": "maximise donation",
+   "iii": "value of y in the unique optimal plan"
+  },
+  "key_position": "rank 4",
+  "off_by_one_options": [],
+  "solve": "let M=-1,sy=-1;for(let L=0;L<=30;L++)for(let S=0;S<=30;S++)if(5*L+5*S>=73&&8*L+3*S<=74){const v=6*L+S;if(v>M){M=v;sy=S}}return sy;",
+  "distractor_solve": {
+   "0": "// people requirement ignored: large only\nconst L=Math.floor(74/8);return 0*L;",
+   "9": "// corner of L+S=15 and 8L+3S=74 rounded to nearest\nconst L=(74-45)/5,S=15-L;return Math.round(S);",
+   "10": "// L=5 with the fewest small packages meeting the people requirement\nconst L=5;return Math.ceil(73/5)-L;"
+  }
+ }
+]

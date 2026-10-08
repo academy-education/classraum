@@ -1,0 +1,400 @@
+{
+ "SM26L-B5": {
+  "position": 1,
+  "setup": {
+   "i": "k multiplies a binomial in x in a one-variable equation, k over integers in a range",
+   "ii": "the equation has a solution (the coefficient of x is not zero)",
+   "iii": "greatest possible value of the solution"
+  },
+  "ask": "greatest",
+  "mech": "degenerate-parameter",
+  "key_position": "rank 4",
+  "off_by_one_options": []
+ },
+ "SM26L-C6": {
+  "position": 2,
+  "setup": {
+   "i": "k is the constant compared with a decreasing linear function given by a table; x ranges over a fixed set of integers",
+   "ii": "exactly 6 integers in the set satisfy the inequality",
+   "iii": "greatest integer value of k"
+  },
+  "ask": "greatest",
+  "mech": "integer-count-condition",
+  "key_position": "rank 3",
+  "off_by_one_options": []
+ },
+ "SM26L-A1": {
+  "position": 3,
+  "setup": {
+   "i": "slope, pivot point outside the interval",
+   "ii": "two-sided",
+   "iii": "number of integer values of k"
+  },
+  "ask": "count",
+  "mech": "interval-bound",
+  "key_position": "rank 1",
+  "off_by_one_options": []
+ },
+ "SM26L-C8": {
+  "position": 4,
+  "setup": {
+   "i": "k in both inequalities of a system, with the bounds moving at different rates",
+   "ii": "no integer solution",
+   "iii": "least integer value of k"
+  },
+  "ask": "least",
+  "mech": "integer-count-condition",
+  "key_position": "rank 2",
+  "off_by_one_options": [
+   "35",
+   "42"
+  ]
+ },
+ "SM26L-B4": {
+  "position": 5,
+  "setup": {
+   "i": "k is the slope of one line and the intercept of the other (two linear functions)",
+   "ii": "graphs share no point with x > 0",
+   "iii": "sum of all integer k satisfying it"
+  },
+  "ask": "sum",
+  "mech": "degenerate-parameter",
+  "key_position": "rank 3",
+  "off_by_one_options": [
+   "20"
+  ]
+ },
+ "SM26L-B8": {
+  "position": 6,
+  "setup": {
+   "i": "line through a fixed point with slope k versus a function given by a table with one unknown entry",
+   "ii": "at least one solution for every k",
+   "iii": "value of the unknown table entry"
+  },
+  "ask": "value",
+  "mech": "degenerate-parameter",
+  "key_position": "rank 3",
+  "off_by_one_options": []
+ },
+ "SM26L-A7": {
+  "position": 7,
+  "setup": {
+   "i": "slope, fixed y-intercept",
+   "ii": "two-sided",
+   "iii": "greatest value of f(x) over a wider stated interval"
+  },
+  "ask": "greatest",
+  "mech": "interval-bound",
+  "key_position": "rank 2",
+  "off_by_one_options": []
+ },
+ "SM26L-D1": {
+  "position": 8,
+  "setup": {
+   "i": "budget + a minimum for each kind",
+   "ii": "objective proportional to the budget (many plans tie)",
+   "iii": "number of plans attaining the greatest objective"
+  },
+  "ask": "count",
+  "mech": "integer-optimum",
+  "key_position": "rank 3",
+  "off_by_one_options": []
+ },
+ "SM26L-B3": {
+  "position": 9,
+  "setup": {
+   "i": "k in the x-coefficient and the constant of a one-variable equation",
+   "ii": "unique solution is negative",
+   "iii": "sum of integer k in a stated range"
+  },
+  "ask": "sum",
+  "mech": "degenerate-parameter",
+  "key_position": "rank 1",
+  "off_by_one_options": [
+   "35"
+  ]
+ },
+ "SM26L-A2": {
+  "position": 10,
+  "setup": {
+   "i": "a function value at a stated point",
+   "ii": "upper only",
+   "iii": "number of integers f can equal at a stated point outside the interval"
+  },
+  "ask": "count",
+  "mech": "interval-bound",
+  "key_position": "rank 4",
+  "off_by_one_options": []
+ },
+ "SM26L-D5": {
+  "position": 11,
+  "setup": {
+   "i": "two covering minimums",
+   "ii": "minimise cost",
+   "iii": "least total cost"
+  },
+  "ask": "least",
+  "mech": "integer-optimum",
+  "key_position": "rank 4",
+  "off_by_one_options": []
+ },
+ "SM26L-C5": {
+  "position": 12,
+  "setup": {
+   "i": "k multiplies the middle of a compound inequality whose ends are constants",
+   "ii": "exactly 3 integer solutions",
+   "iii": "difference between the greatest and least integer values of k"
+  },
+  "ask": "difference",
+  "mech": "integer-count-condition",
+  "key_position": "rank 4",
+  "off_by_one_options": []
+ },
+ "SM26L-D4": {
+  "position": 13,
+  "setup": {
+   "i": "bare system of three inequalities",
+   "ii": "maximise a linear objective over integer points",
+   "iii": "greatest objective value"
+  },
+  "ask": "greatest",
+  "mech": "integer-optimum",
+  "key_position": "rank 3",
+  "off_by_one_options": []
+ },
+ "SM26L-A3": {
+  "position": 14,
+  "setup": {
+   "i": "k in the BOUNDING line, f fixed",
+   "ii": "upper only",
+   "iii": "sum of greatest and least y-intercept of the bounding line"
+  },
+  "ask": "sum",
+  "mech": "interval-bound",
+  "key_position": "rank 2",
+  "off_by_one_options": []
+ },
+ "SM26L-A5": {
+  "position": 15,
+  "setup": {
+   "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+   "ii": "between two fixed lines",
+   "iii": "width of the k-range"
+  },
+  "ask": "difference",
+  "mech": "interval-bound",
+  "key_position": "rank 1",
+  "off_by_one_options": []
+ },
+ "SM26L-B2": {
+  "position": 16,
+  "setup": {
+   "i": "k is the x-coefficient of one equation in a 2x2 system with fixed constants",
+   "ii": "solution satisfies x > y",
+   "iii": "number of integer k in a stated range"
+  },
+  "ask": "count",
+  "mech": "degenerate-parameter",
+  "key_position": "rank 4",
+  "off_by_one_options": []
+ },
+ "SM26L-B1": {
+  "position": 17,
+  "setup": {
+   "i": "k is the weekly deposit in one of two linear savings models",
+   "ii": "the balances become equal at a time at least a fixed bound",
+   "iii": "number of whole-number k in a stated range"
+  },
+  "ask": "count",
+  "mech": "degenerate-parameter",
+  "key_position": "rank 2",
+  "off_by_one_options": []
+ },
+ "SM26L-A6": {
+  "position": 18,
+  "setup": {
+   "i": "slope, pivot point inside the interval",
+   "ii": "upper only",
+   "iii": "width of the k-range"
+  },
+  "ask": "difference",
+  "mech": "interval-bound",
+  "key_position": "rank 3",
+  "off_by_one_options": []
+ },
+ "SM26L-B7": {
+  "position": 19,
+  "setup": {
+   "i": "k is the per-unit price in one of two linear cost models",
+   "ii": "the costs are never equal",
+   "iii": "constant difference between the two costs"
+  },
+  "ask": "value",
+  "mech": "degenerate-parameter",
+  "key_position": "rank 1",
+  "off_by_one_options": []
+ },
+ "SM26L-D6": {
+  "position": 20,
+  "setup": {
+   "i": "one covering minimum + vehicle-count cap",
+   "ii": "minimise cost where the cheaper-per-unit option is capped",
+   "iii": "least rental cost"
+  },
+  "ask": "least",
+  "mech": "integer-optimum",
+  "key_position": "rank 1",
+  "off_by_one_options": []
+ },
+ "SM26L-D3": {
+  "position": 21,
+  "setup": {
+   "i": "budget + ratio cap",
+   "ii": "budget raised; both optima compared",
+   "iii": "increase in the greatest objective"
+  },
+  "ask": "difference",
+  "mech": "integer-optimum",
+  "key_position": "rank 2",
+  "off_by_one_options": []
+ },
+ "SM26L-C3": {
+  "position": 22,
+  "setup": {
+   "i": "k in the constant of the strict upper bound; the other inequality (after a flip) fixes an attained negative lower bound",
+   "ii": "the integer solutions sum to a given negative number",
+   "iii": "sum of all integer values of k"
+  },
+  "ask": "sum",
+  "mech": "integer-count-condition",
+  "key_position": "rank 4",
+  "off_by_one_options": [
+   "180",
+   "236"
+  ]
+ },
+ "SM26L-C4": {
+  "position": 23,
+  "setup": {
+   "i": "k in both the x-coefficient and the constant of one inequality (x-coefficient k - 3)",
+   "ii": "exactly 5 positive integer solutions",
+   "iii": "difference between the greatest and least integer values of k"
+  },
+  "ask": "difference",
+  "mech": "integer-count-condition",
+  "key_position": "rank 2",
+  "off_by_one_options": []
+ },
+ "SM26L-D7": {
+  "position": 24,
+  "setup": {
+   "i": "single time limit + demand cap on one product",
+   "ii": "maximise profit",
+   "iii": "value of x in the unique optimal plan"
+  },
+  "ask": "value",
+  "mech": "integer-optimum",
+  "key_position": "rank 2",
+  "off_by_one_options": []
+ },
+ "SM26L-C2": {
+  "position": 25,
+  "setup": {
+   "i": "k multiplies x; x ranges over a fixed set of integers spanning negative and positive values",
+   "ii": "exactly 4 integers in the set satisfy the inequality",
+   "iii": "number of integer values of k"
+  },
+  "ask": "count",
+  "mech": "integer-count-condition",
+  "key_position": "rank 3",
+  "off_by_one_options": [
+   "7"
+  ]
+ },
+ "SM26L-C1": {
+  "position": 26,
+  "setup": {
+   "i": "k is the per-class price in a fee-plus-price budget model",
+   "ii": "exactly 3 possible whole-number class counts, with a minimum of 2 classes",
+   "iii": "number of integer values of k"
+  },
+  "ask": "count",
+  "mech": "integer-count-condition",
+  "key_position": "rank 1",
+  "off_by_one_options": []
+ },
+ "SM26L-C7": {
+  "position": 27,
+  "setup": {
+   "i": "k in both ends of a compound inequality with different multipliers",
+   "ii": "exactly 5 integer solutions",
+   "iii": "greatest possible value of k (k need not be an integer)"
+  },
+  "ask": "greatest",
+  "mech": "integer-count-condition",
+  "key_position": "rank 1",
+  "off_by_one_options": [],
+  "nonint_constant": true,
+  "integer_k_answer": "3"
+ },
+ "SM26L-B6": {
+  "position": 28,
+  "setup": {
+   "i": "k is the x-coefficient of one equation in a 2x2 system, k over integers in a range",
+   "ii": "the system has a solution (determinant not zero)",
+   "iii": "least possible y-coordinate of the solution"
+  },
+  "ask": "least",
+  "mech": "degenerate-parameter",
+  "key_position": "rank 1",
+  "off_by_one_options": []
+ },
+ "SM26L-A8": {
+  "position": 29,
+  "setup": {
+   "i": "a function value at a stated point",
+   "ii": "two-sided",
+   "iii": "least value of f(x) over a wider stated interval"
+  },
+  "ask": "least",
+  "mech": "interval-bound",
+  "key_position": "rank 4",
+  "off_by_one_options": []
+ },
+ "SM26L-D8": {
+  "position": 30,
+  "setup": {
+   "i": "minimum served + labour-hour cap",
+   "ii": "maximise donation",
+   "iii": "value of y in the unique optimal plan"
+  },
+  "ask": "value",
+  "mech": "integer-optimum",
+  "key_position": "rank 4",
+  "off_by_one_options": []
+ },
+ "SM26L-A4": {
+  "position": 31,
+  "setup": {
+   "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+   "ii": "upper only",
+   "iii": "sum of greatest and least k"
+  },
+  "ask": "sum",
+  "mech": "interval-bound",
+  "key_position": "rank 4",
+  "off_by_one_options": []
+ },
+ "SM26L-D2": {
+  "position": 32,
+  "setup": {
+   "i": "budget + minimum total count + minimum of one kind",
+   "ii": "both the maximum and the minimum of one objective",
+   "iii": "sum of the greatest and least objective"
+  },
+  "ask": "sum",
+  "mech": "integer-optimum",
+  "key_position": "rank 1",
+  "off_by_one_options": []
+ }
+}

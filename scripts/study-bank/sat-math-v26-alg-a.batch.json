@@ -1,0 +1,285 @@
+[
+  {
+    "id": "SM26L-A1",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear model on a closed interval with two-sided bound; count admissible integer slopes",
+    "prompt": "A lab sets the temperature of a test chamber, in degrees Celsius, using the model T(t) = 5 + k(t - 1), where t is the number of minutes after a reference time and k is a constant. During a test that runs from t = 3 to t = 9, the temperature must stay at or above -11 and at or below 17 at every moment. For how many integer values of k does the model meet this requirement?",
+    "choices": [
+      "4",
+      "9",
+      "10",
+      "15"
+    ],
+    "correct_answer": "4",
+    "explanation": "T is linear in t, so on 3 ≤ t ≤ 9 its greatest and least values occur at t = 3 and t = 9, but which end is higher depends on the sign of k. Since t - 1 is 2 at t = 3 and 8 at t = 9, T(9) = 5 + 8k is the farther of the two from 5 in either case. If k ≥ 0, T(9) is the greatest value: 5 + 8k ≤ 17 gives k ≤ 1.5 (and T(3) ≥ -11 then holds automatically). If k < 0, T(9) is the least value: 5 + 8k ≥ -11 gives k ≥ -2 (and T(3) ≤ 17 holds automatically). So -2 ≤ k ≤ 1.5, and the integer values are -2, -1, 0 and 1: 4 values. 10 comes from assuming the temperature rises, so checking T(3) ≥ -11 (k ≥ -8) and T(9) ≤ 17; for negative k the low point is at t = 9, not t = 3. 9 comes from assuming the temperature falls, so checking T(3) ≤ 17 (k ≤ 6) and T(9) ≥ -11. 15 comes from checking both limits only at t = 3, which gives -8 ≤ k ≤ 6.",
+    "mechanism": [
+      "linear model on a closed interval",
+      "two-sided bound checked at the binding endpoint for each slope sign",
+      "count of integer slopes"
+    ],
+    "mech": "interval-bound",
+    "ask": "count",
+    "setup": {
+      "i": "slope, pivot point outside the interval",
+      "ii": "two-sided",
+      "iii": "number of integer values of k"
+    },
+    "key_position": "rank 1",
+    "off_by_one_options": [],
+    "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=3+(9-(3))*j/600;if(!(5+k*(t-1)>=-11-1e-9 && 5+k*(t-1)<=17+1e-9)){good=false;break}}if(good)ok.push(k)}return ok.filter(k=>Number.isInteger(k)).length",
+    "distractor_solve": {
+      "9": "let n=0;for(let k=-50;k<=50;k++){if(5+k*2<=17&&5+k*8>=-11)n++}return n",
+      "10": "let n=0;for(let k=-50;k<=50;k++){if(5+k*2>=-11&&5+k*8<=17)n++}return n",
+      "15": "let n=0;for(let k=-50;k<=50;k++){const v=5+k*2;if(v>=-11&&v<=17)n++}return n"
+    }
+  },
+  {
+    "id": "SM26L-A2",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear function through a stated point with an upper bound on an interval; count integer outputs outside the interval",
+    "prompt": "The function f is linear, f(4) = 6, and the graph of y = f(x) has slope k, where k is a constant. For every x with 1 ≤ x ≤ 9, f(x) ≤ 16. How many different integer values can f(12) have?",
+    "choices": [
+      "6",
+      "17",
+      "33",
+      "43"
+    ],
+    "correct_answer": "43",
+    "explanation": "Write f(x) = 6 + k(x - 4). On 1 ≤ x ≤ 9 the largest value of f is at x = 9 if k > 0 and at x = 1 if k < 0. For k ≥ 0: f(9) = 6 + 5k ≤ 16, so k ≤ 2. For k < 0: f(1) = 6 - 3k ≤ 16, so k ≥ -10/3. So -10/3 ≤ k ≤ 2, and f(12) = 6 + 8k takes every value from 6 - 80/3 = -62/3 (about -20.67) up to 6 + 16 = 22. The integers in that range are -20 through 22, which is 43 values. 17 comes from allowing only k ≥ 0, so f(12) runs only from 6 to 22. 33 comes from assuming the allowed slopes are symmetric about 0 and using the limit 2 on both sides, so f(12) would run only from -10 to 22. 6 comes from letting k take only the integer values -3 through 2, although k can be any number in its range.",
+    "mechanism": [
+      "linear function through a fixed point",
+      "upper bound on an interval binds at different endpoints for each slope sign",
+      "count integer values at an outside point"
+    ],
+    "mech": "interval-bound",
+    "ask": "count",
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "upper only",
+      "iii": "number of integers f can equal at a stated point outside the interval"
+    },
+    "key_position": "rank 4",
+    "off_by_one_options": [],
+    "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=1+(9-(1))*j/600;if(!(6+k*(t-4)<=16+1e-9)){good=false;break}}if(good)ok.push(k)}const v=ok.map(k=>6+8*k);const lo=Math.min(...v),hi=Math.max(...v);return Math.floor(hi+1e-9)-Math.ceil(lo-1e-9)+1",
+    "distractor_solve": {
+      "6": "const s=new Set();for(let k=-20;k<=20;k++){if(6+5*k<=16&&6-3*k<=16)s.add(6+8*k)}return s.size",
+      "17": "const kmax=(16-6)/5;const lo=6,hi=6+8*kmax;return Math.floor(hi+1e-9)-Math.ceil(lo-1e-9)+1",
+      "33": "const m=(16-6)/5;const lo=6-8*m,hi=6+8*m;return Math.floor(hi+1e-9)-Math.ceil(lo-1e-9)+1"
+    }
+  },
+  {
+    "id": "SM26L-A3",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Line with an unknown slope through a fixed point kept above a fixed line on an interval; sum of extreme y-intercepts",
+    "prompt": "In the xy-plane, line L has equation y = k(x - 3) + 24, where k is a constant. For every x with 0 ≤ x ≤ 8, line L lies on or above the graph of y = 2x + 3. What is the sum of the greatest possible y-intercept and the least possible y-intercept of line L?",
+    "choices": [
+      "21",
+      "30",
+      "42",
+      "45"
+    ],
+    "correct_answer": "30",
+    "explanation": "The vertical gap from y = 2x + 3 up to line L is k(x - 3) + 24 - (2x + 3) = (k - 2)(x - 3) + 15, which must be at least 0 for 0 ≤ x ≤ 8. At x = 3 the gap is 15 for every k; whether it shrinks to the left or to the right depends on the sign of k - 2. If k > 2, the gap is smallest at x = 0: -3(k - 2) + 15 ≥ 0 gives k ≤ 7. If k < 2, the gap is smallest at x = 8: 5(k - 2) + 15 ≥ 0 gives k ≥ -1. (k = 2 also works.) So -1 ≤ k ≤ 7. The y-intercept of L is 24 - 3k, which runs from 3 (at k = 7) to 27 (at k = -1), so the sum is 30. 21 comes from assuming L is steeper than the fixed line, so checking only x = 0 and keeping k ≥ 2; the y-intercept then only reaches 18. 45 comes from assuming L is less steep, so checking only x = 8 and keeping k ≤ 2; the y-intercept then only goes down to 18. 42 comes from ignoring the slope 2 of the fixed line and using k itself as the slope of the gap, which gives -3 ≤ k ≤ 5.",
+    "mechanism": [
+      "line through a fixed point with unknown slope",
+      "kept above a fixed line on an interval",
+      "sign of the slope difference decides the binding endpoint",
+      "sum of extreme y-intercepts"
+    ],
+    "mech": "interval-bound",
+    "ask": "sum",
+    "setup": {
+      "i": "k in the BOUNDING line, f fixed",
+      "ii": "upper only",
+      "iii": "sum of greatest and least y-intercept of the bounding line"
+    },
+    "key_position": "rank 2",
+    "off_by_one_options": [],
+    "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=0+(8-(0))*j/600;if(!(k*(t-3)+24>=2*t+3-1e-9)){good=false;break}}if(good)ok.push(k)}const v=ok.map(k=>24-3*k);return Math.max(...v)+Math.min(...v)",
+    "distractor_solve": {
+      "21": "const kmin=2, kmax=2+15/3;return (24-3*kmin)+(24-3*kmax)",
+      "42": "const kmin=-15/5, kmax=15/3;return (24-3*kmin)+(24-3*kmax)",
+      "45": "const kmin=2-15/5, kmax=2;return (24-3*kmin)+(24-3*kmax)"
+    }
+  },
+  {
+    "id": "SM26L-A4",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Difference of two linear functions bounded above on an interval; sum of extreme values of the constant",
+    "prompt": "f(x) = kx - 2\ng(x) = x + 4\nFor the functions above, k is a constant, and g(x) - f(x) ≤ 18 for all values of x such that -2 ≤ x ≤ 4. What is the sum of the greatest and least possible values of k?",
+    "choices": [
+      "-4",
+      "-1",
+      "3",
+      "5"
+    ],
+    "correct_answer": "5",
+    "explanation": "g(x) - f(x) = (1 - k)x + 6, whose slope 1 - k can be positive, zero or negative. If 1 - k > 0, the largest value on -2 ≤ x ≤ 4 is at x = 4: 4(1 - k) + 6 ≤ 18 gives 1 - k ≤ 3, so k ≥ -2. If 1 - k < 0, the largest value is at x = -2: -2(1 - k) + 6 ≤ 18 gives 1 - k ≥ -6, so k ≤ 7. (When k = 1 the difference is the constant 6, which also works.) So -2 ≤ k ≤ 7, and the sum is 5. -1 comes from assuming the difference increases with x, checking only x = 4 and keeping k ≤ 1, which leaves out 1 < k ≤ 7. 3 comes from taking the slope of g(x) - f(x) to be -k, forgetting the slope of g, which gives -3 ≤ k ≤ 6. -4 comes from using f(x) - g(x) ≤ 18 instead, which gives -11 ≤ k ≤ 7.",
+    "mechanism": [
+      "difference of two linear functions",
+      "upper bound on an interval",
+      "slope of the difference can take either sign",
+      "sum of extreme k"
+    ],
+    "mech": "interval-bound",
+    "ask": "sum",
+    "setup": {
+      "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+      "ii": "upper only",
+      "iii": "sum of greatest and least k"
+    },
+    "key_position": "rank 4",
+    "off_by_one_options": [],
+    "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=-2+(4-(-2))*j/600;if(!((t+4)-(k*t-2)<=18+1e-9)){good=false;break}}if(good)ok.push(k)}return Math.max(...ok)+Math.min(...ok)",
+    "distractor_solve": {
+      "3": "const kmin=-(18-6)/4, kmax=(18-6)/2;return kmin+kmax",
+      "-1": "const kmin=1-(18-6)/4;return kmin+1",
+      "-4": "let lo=Infinity,hi=-Infinity;for(let i=-60*240;i<=60*240;i++){const k=i/240;if((k-1)*4-6<=18+1e-9&&(k-1)*(-2)-6<=18+1e-9){lo=Math.min(lo,k);hi=Math.max(hi,k)}}return lo+hi"
+    }
+  },
+  {
+    "id": "SM26L-A5",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear combination kept between two parallel lines on an interval; width of the range of the constant",
+    "prompt": "Let h(x) = f(x) + kx, where f(x) = 3x + 2 and k is a constant. In the xy-plane, for every x with 1 ≤ x ≤ 3, the point (x, h(x)) lies on or between the lines y = 2x - 13 and y = 2x + 26. What is the difference between the greatest and least possible values of k?",
+    "choices": [
+      "13",
+      "19.5",
+      "23",
+      "29"
+    ],
+    "correct_answer": "13",
+    "explanation": "h(x) = (k + 3)x + 2, so h(0) = 2 for every k. Measured against the lines, which have slope 2: h(x) - (2x - 13) = (k + 1)x + 15 and (2x + 26) - h(x) = -(k + 1)x + 24, and both must be at least 0 for 1 ≤ x ≤ 3. If k + 1 ≥ 0, the first is positive and the second is smallest at x = 3: -3(k + 1) + 24 ≥ 0 gives k ≤ 7. If k + 1 < 0, the second is positive and the first is smallest at x = 3: 3(k + 1) + 15 ≥ 0 gives k ≥ -6. So -6 ≤ k ≤ 7, and the difference is 13. 23 comes from assuming h rises faster than the lines and checking the lower line at x = 1, which gives k ≥ -16. 29 comes from assuming h rises more slowly than the lines and checking the upper line at x = 1, which gives k ≤ 23. 19.5 comes from dividing the margins 15 and 24 by the length of the interval, 2, instead of by 3, the distance from x = 0, where h(0) = 2 is fixed.",
+    "mechanism": [
+      "sum of a fixed linear function and kx",
+      "kept between two parallel lines on an interval",
+      "slope relative to the lines can take either sign",
+      "width of the k-range"
+    ],
+    "mech": "interval-bound",
+    "ask": "difference",
+    "setup": {
+      "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+      "ii": "between two fixed lines",
+      "iii": "width of the k-range"
+    },
+    "key_position": "rank 1",
+    "off_by_one_options": [],
+    "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=1+(3-(1))*j/600;if(!((3*t+2+k*t)>=2*t-13-1e-9 && (3*t+2+k*t)<=2*t+26+1e-9)){good=false;break}}if(good)ok.push(k)}return Math.max(...ok)-Math.min(...ok)",
+    "distractor_solve": {
+      "23": "const rmin=-15/1, rmax=24/3;return rmax-rmin",
+      "29": "const rmin=-15/3, rmax=24/1;return rmax-rmin",
+      "19.5": "const run=3-1;return 24/run-(-15/run)"
+    }
+  },
+  {
+    "id": "SM26L-A6",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear model through a fixed point inside the interval with an upper bound; width of the rate range",
+    "prompt": "A water tank's depth D, in centimeters, t hours after noon is modeled by D(t) = 30 + k(t - 4), where k is a constant rate in centimeters per hour. The model is used only for 0 ≤ t ≤ 10, and over that entire period the depth never exceeds 45 centimeters. What is the difference between the greatest and least possible values of k?",
+    "choices": [
+      "2.5",
+      "3",
+      "6.25",
+      "7.5"
+    ],
+    "correct_answer": "6.25",
+    "explanation": "The depth is 30 at t = 4 no matter what k is. If k > 0, the depth is greatest at t = 10: 30 + 6k ≤ 45 gives k ≤ 2.5. If k < 0, the depth is greatest at t = 0: 30 - 4k ≤ 45 gives k ≥ -3.75. (k = 0 also works.) So -3.75 ≤ k ≤ 2.5, and the difference is 2.5 - (-3.75) = 6.25. 2.5 comes from considering only a rising depth, so the least k is taken to be 0. 3 comes from spreading the 15-centimeter margin over the whole 10-hour period, so that -1.5 ≤ k ≤ 1.5, instead of measuring time from t = 4, where the depth is fixed. 7.5 comes from assuming the allowed rates are symmetric about 0 and using 3.75 on both sides.",
+    "mechanism": [
+      "linear model through a fixed interior point",
+      "upper bound binds at opposite ends for rising and falling",
+      "width of the k-range"
+    ],
+    "mech": "interval-bound",
+    "ask": "difference",
+    "setup": {
+      "i": "slope, pivot point inside the interval",
+      "ii": "upper only",
+      "iii": "width of the k-range"
+    },
+    "key_position": "rank 3",
+    "off_by_one_options": [],
+    "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=0+(10-(0))*j/600;if(!(30+k*(t-4)<=45+1e-9)){good=false;break}}if(good)ok.push(k)}return Math.max(...ok)-Math.min(...ok)",
+    "distractor_solve": {
+      "3": "const m=(45-30)/(10-0);return m-(-m)",
+      "2.5": "return (45-30)/(10-4)-0",
+      "7.5": "const m=Math.max((45-30)/6,(45-30)/4);return 2*m"
+    }
+  },
+  {
+    "id": "SM26L-A7",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Two-sided bound on an interval containing the y-axis; greatest value of f over a wider interval",
+    "prompt": "For the function f(x) = kx + 1, where k is a constant, -11 ≤ f(x) ≤ 10 for every x with -2 ≤ x ≤ 3. Considering all such functions f and all x with -6 ≤ x ≤ 5, what is the greatest value that f(x) can have?",
+    "choices": [
+      "16",
+      "25",
+      "28",
+      "31"
+    ],
+    "correct_answer": "25",
+    "explanation": "First find the allowed k. If k > 0, f is greatest at x = 3 and least at x = -2: 3k + 1 ≤ 10 gives k ≤ 3, and -2k + 1 ≥ -11 gives k ≤ 6, so k ≤ 3. If k < 0, f is greatest at x = -2 and least at x = 3: -2k + 1 ≤ 10 gives k ≥ -4.5, and 3k + 1 ≥ -11 gives k ≥ -4, so k ≥ -4. So -4 ≤ k ≤ 3. On -6 ≤ x ≤ 5, a rising line is highest at x = 5, where f(5) = 5k + 1 is at most 5(3) + 1 = 16; a falling line is highest at x = -6, where f(-6) = -6k + 1 is at most -6(-4) + 1 = 25. The greatest value is 25. 16 comes from considering only k ≥ 0. 28 comes from using only the upper limit f(x) ≤ 10, which would allow k = -4.5 and give -6(-4.5) + 1 = 28. 31 comes from using only the lower limit f(x) ≥ -11, which would allow k = 6 and give 5(6) + 1 = 31.",
+    "mechanism": [
+      "two-sided bound on an interval containing x = 0",
+      "each slope sign has its own binding limit",
+      "greatest value over a wider interval compares both signs"
+    ],
+    "mech": "interval-bound",
+    "ask": "greatest",
+    "setup": {
+      "i": "slope, fixed y-intercept",
+      "ii": "two-sided",
+      "iii": "greatest value of f(x) over a wider stated interval"
+    },
+    "key_position": "rank 2",
+    "off_by_one_options": [],
+    "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=-2+(3-(-2))*j/600;if(!(k*t+1>=-11-1e-9 && k*t+1<=10+1e-9)){good=false;break}}if(good)ok.push(k)}let best=-Infinity;for(const k of ok)for(let j=0;j<=1100;j++){const x=-6+11*j/1100;best=Math.max(best,k*x+1)}return Math.round(best*1e6)/1e6",
+    "distractor_solve": {
+      "16": "const kmax=Math.min((10-1)/3,(1+11)/2);return 5*kmax+1",
+      "28": "const kmin=-(10-1)/2, kmax=(10-1)/3;return Math.max(5*kmax+1,-6*kmin+1)",
+      "31": "const kmin=-(1+11)/3, kmax=(1+11)/2;return Math.max(5*kmax+1,-6*kmin+1)"
+    }
+  },
+  {
+    "id": "SM26L-A8",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear function from a table with a two-sided bound on an interval; least value of f over a wider interval",
+    "prompt": "x | f(x)\n-2 | 3\n-1 | 3 + k\nThe table gives two values of the linear function f, where k is a constant. For every x with -1 ≤ x ≤ 2, -5 ≤ f(x) ≤ 15. Over all such functions f, what is the least value that f(x) can have for some x with -4 ≤ x ≤ 2?",
+    "choices": [
+      "-29",
+      "-21",
+      "-9",
+      "-5"
+    ],
+    "correct_answer": "-5",
+    "explanation": "From the table, the slope of f is k, so f(x) = 3 + k(x + 2). On -1 ≤ x ≤ 2, x + 2 runs from 1 to 4, so both limits are decided at x = 2 whatever the sign of k. If k > 0, f(2) = 3 + 4k ≤ 15 gives k ≤ 3 (and f stays above 3 > -5). If k < 0, f(2) = 3 + 4k ≥ -5 gives k ≥ -2 (and f stays below 3 < 15). So -2 ≤ k ≤ 3. On -4 ≤ x ≤ 2, a rising line is lowest at x = -4, where f(-4) = 3 - 2k is at least 3 - 6 = -3; a falling line is lowest at x = 2, where f(2) = 3 + 4k is at least 3 - 8 = -5. The least value is -5. -29 comes from assuming f rises and checking the lower limit at x = -1 (3 + k ≥ -5, so k ≥ -8), then using k = -8 at x = 2. -21 comes from assuming f falls and checking the upper limit at x = -1 (3 + k ≤ 15, so k ≤ 12), then using k = 12 at x = -4. -9 comes from assuming the allowed slopes are symmetric, -3 ≤ k ≤ 3, and using k = -3 at x = 2.",
+    "mechanism": [
+      "linear function given by a table",
+      "two-sided bound on an interval away from the fixed point",
+      "least value over a wider interval compares both slope signs"
+    ],
+    "mech": "interval-bound",
+    "ask": "least",
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "two-sided",
+      "iii": "least value of f(x) over a wider stated interval"
+    },
+    "key_position": "rank 4",
+    "off_by_one_options": [],
+    "solve": "const ok=[];for(let i=-60*240;i<=60*240;i++){const k=i/240;let good=true;for(let j=0;j<=600;j++){const t=-1+(2-(-1))*j/600;if(!(3+k*(t+2)>=-5-1e-9 && 3+k*(t+2)<=15+1e-9)){good=false;break}}if(good)ok.push(k)}let best=Infinity;for(const k of ok)for(let j=0;j<=600;j++){const x=-4+6*j/600;best=Math.min(best,3+k*(x+2))}return Math.round(best*1e6)/1e6",
+    "distractor_solve": {
+      "-29": "const kmin=(-5-3)/1, kmax=(15-3)/4;return Math.min(3+kmax*(-4+2),3+kmin*(2+2))",
+      "-21": "const kmin=(-5-3)/4, kmax=(15-3)/1;return Math.min(3+kmax*(-4+2),3+kmin*(2+2))",
+      "-9": "const m=Math.max((15-3)/4,(3+5)/4);return Math.min(3-m*2,3-m*4)"
+    }
+  }
+]

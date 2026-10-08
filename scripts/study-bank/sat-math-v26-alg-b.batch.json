@@ -1,0 +1,286 @@
+[
+ {
+  "id": "SM26L-B1",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear models: break-even time with a rate parameter, counted over whole-number values",
+  "prompt": "Ana has $200 in a savings account and adds $5 to it each week. Ben has $50 in his account and adds $k to it each week, where k is a whole number with 1 ≤ k ≤ 29. Neither makes any other deposits or withdrawals. For how many values of k will the two balances be equal at some time t weeks from now with t ≥ 10 ?",
+  "choices": [
+   "10",
+   "15",
+   "19",
+   "24"
+  ],
+  "correct_answer": "15",
+  "explanation": "After t weeks Ana has 200 + 5t dollars and Ben has 50 + kt dollars. Setting them equal gives (k - 5)t = 150.\nIf k = 5, the equation reads 0 = 150, so the balances are never equal (Ben always stays $150 behind). For any other k, t = 150/(k - 5).\nIf k < 5, then t is negative: the balances were equal in the past, not from now on. So only k > 5 can work, and then k - 5 is positive, so t ≥ 10 means 150 ≥ 10(k - 5), that is, k ≤ 20.\nThe values are k = 6, 7, ..., 20, which is 15 values.\n19 comes from clearing the fraction without checking the sign of k - 5: it keeps every k ≤ 20 except 5, including the values below 5 where the balances never meet in the future.\n10 comes from taking reciprocals without reversing the inequality, which gives k - 5 ≥ 15, that is, k = 20, ..., 29.\n24 counts every k > 5 and ignores the requirement t ≥ 10.",
+  "mechanism": [
+   "parallel models at k = 5 never meet",
+   "sign of k - 5 decides whether t is in the future",
+   "clearing a fraction with a variable denominator"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "setup": {
+   "i": "k is the weekly deposit in one of two linear savings models",
+   "ii": "the balances become equal at a time at least a fixed bound",
+   "iii": "number of whole-number k in a stated range"
+  },
+  "key_position": "rank 2",
+  "off_by_one_options": [],
+  "solve": "let n=0; for(let k=1;k<=29;k++){ const a=k-5, b=150; if(a===0) continue; const t=b/a; if(t>=10) n++ } return n",
+  "distractor_solve": {
+   "10": "let n=0; for(let k=1;k<=29;k++){ if(k-5>=15) n++ } return n",
+   "19": "let n=0; for(let k=1;k<=29;k++){ if(k===5) continue; if(150>=10*(k-5)) n++ } return n",
+   "24": "let n=0; for(let k=1;k<=29;k++){ if(k>5) n++ } return n"
+  }
+ },
+ {
+  "id": "SM26L-B2",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Systems of linear equations: coordinate comparison of the solution as a parameter varies",
+  "prompt": "kx + y = 7\n2x - y = 5\n\nIn the system of equations above, k is a constant. For how many integer values of k with -7 ≤ k ≤ 13 does the system have a solution (x, y) with x > y ?",
+  "choices": [
+   "2",
+   "7",
+   "13",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "Adding the equations gives (k + 2)x = 12.\nIf k = -2, this reads 0 = 12, so the system has no solution; k = -2 does not count. Otherwise x = 12/(k + 2) and y = 2x - 5.\nThe condition x > y becomes x > 2x - 5, that is, x < 5, so 12/(k + 2) < 5.\nIf k + 2 > 0 (k > -2): 12 < 5(k + 2), so k > 2/5. The integers are 1 through 13, which is 13 values.\nIf k + 2 < 0 (k < -2): x is negative, so x < 5 holds automatically. The integers are -7 through -3, which is 5 values.\nThe total is 13 + 5 = 18.\n13 counts only the case k + 2 > 0, treating k + 2 as positive for every k.\n7 multiplies by k + 2 as though it were always negative: it gives k < 2/5 and counts -7 through 0 except -2.\n2 comes from reversing the inequality when solving x > 2x - 5, which gives x > 5 instead of x < 5.",
+  "mechanism": [
+   "determinant zero at k = -2: no solution",
+   "sign of k + 2 splits the inequality into two cases",
+   "reduce x > y to a bound on x"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "count",
+  "setup": {
+   "i": "k is the x-coefficient of one equation in a 2x2 system with fixed constants",
+   "ii": "solution satisfies x > y",
+   "iii": "number of integer k in a stated range"
+  },
+  "key_position": "rank 4",
+  "off_by_one_options": [],
+  "solve": "let n=0; for(let k=-7;k<=13;k++){ const det=k*(-1)-1*2; if(det===0) continue; const x=(7*(-1)-1*5)/det, y=(k*5-2*7)/det; if(x>y+1e-12) n++ } return n",
+  "distractor_solve": {
+   "2": "let n=0; for(let k=-7;k<=13;k++){ if(k===-2) continue; if(12/(k+2)>5) n++ } return n",
+   "7": "let n=0; for(let k=-7;k<=13;k++){ if(k===-2) continue; if(12>5*(k+2)) n++ } return n",
+   "13": "let n=0; for(let k=-7;k<=13;k++){ if(12<5*(k+2)) n++ } return n"
+  }
+ },
+ {
+  "id": "SM26L-B3",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear equations in one variable: sign of the solution as a parameter varies",
+  "prompt": "kx - k = 4x - 9\n\nEach whole number k from 1 to 12 gives one version of this equation. Some of those versions have a negative solution. Add up the numbers k that produce such a version. What is the total?",
+  "choices": [
+   "26",
+   "32",
+   "33",
+   "35"
+  ],
+  "correct_answer": "26",
+  "explanation": "Collect the x-terms: (k - 4)x = k - 9.\nIf k = 4, this reads 0 = -5, so there is no solution; k = 4 does not count. Otherwise x = (k - 9)/(k - 4).\nThe solution is negative when the numerator and denominator have opposite signs. If k > 4, the denominator is positive, so we need k - 9 < 0, giving 4 < k < 9. If k < 4, the denominator is negative, so we need k - 9 > 0, which is impossible for k < 4.\nThe values are 5, 6, 7, 8, and their sum is 26.\n32 treats k - 4 as positive for every k: it keeps every k < 9 except 4, adding 1 + 2 + 3.\n33 treats k - 4 as negative for every k: it keeps k > 9, that is, 10 + 11 + 12.\n35 also counts k = 9, where the solution is 0, which is not negative.",
+  "mechanism": [
+   "coefficient zero at k = 4: no solution",
+   "sign of k - 4 decides the inequality direction",
+   "zero is not negative"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "sum",
+  "setup": {
+   "i": "k in the x-coefficient and the constant of a one-variable equation",
+   "ii": "unique solution is negative",
+   "iii": "sum of integer k in a stated range"
+  },
+  "key_position": "rank 1",
+  "off_by_one_options": [
+   "35"
+  ],
+  "solve": "let s=0; for(let k=1;k<=12;k++){ const a=k-4, b=k-9; if(a===0) continue; if(b/a<0) s+=k } return s",
+  "distractor_solve": {
+   "32": "let s=0; for(let k=1;k<=12;k++){ if(k===4) continue; if(k-9<0) s+=k } return s",
+   "33": "let s=0; for(let k=1;k<=12;k++){ if(k===4) continue; if(k-9>0) s+=k } return s",
+   "35": "let s=0; for(let k=1;k<=12;k++){ const a=k-4; if(a===0) continue; if((k-9)/a<=0) s+=k } return s"
+  }
+ },
+ {
+  "id": "SM26L-B4",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear functions: where two graphs with a parameter intersect, including the parallel case",
+  "prompt": "f(x) = kx - 1\ng(x) = 7x + k\n\nThe functions f and g are defined above, where k is a constant. What is the sum of all integer values of k with -10 ≤ k ≤ 10 for which the graphs of y = f(x) and y = g(x) in the xy-plane have no point in common with x > 0 ?",
+  "choices": [
+   "-55",
+   "20",
+   "27",
+   "54"
+  ],
+  "correct_answer": "27",
+  "explanation": "The graphs meet where kx - 1 = 7x + k, that is, (k - 7)x = k + 1.\nIf k = 7, this reads 0 = 8: the lines are parallel and never meet, so they certainly have no common point with x > 0. So k = 7 counts.\nOtherwise they meet only at x = (k + 1)/(k - 7), and we need this x to be 0 or negative. That happens when k + 1 and k - 7 do not have the same sign (or k + 1 = 0): -1 ≤ k < 7.\nSo the integer values are -1, 0, 1, ..., 7, and their sum is 27.\n20 leaves out k = 7, treating \"no solution\" as if it did not satisfy the condition; with no intersection at all, there is no common point with x > 0.\n-55 multiplies by k - 7 as though it were positive for every k: it gives k + 1 ≤ 0 and sums -10 through -1.\n54 multiplies by k - 7 as though it were negative for every k: it gives k ≥ -1 and sums -1 through 10.",
+  "mechanism": [
+   "parallel lines at k = 7 have no intersection at all",
+   "sign of k - 7 decides where the intersection lies",
+   "a condition about intersection points holds when there are none"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "sum",
+  "setup": {
+   "i": "k is the slope of one line and the intercept of the other (two linear functions)",
+   "ii": "graphs share no point with x > 0",
+   "iii": "sum of all integer k satisfying it"
+  },
+  "key_position": "rank 3",
+  "off_by_one_options": [
+   "20"
+  ],
+  "solve": "let s=0; for(let k=-10;k<=10;k++){ const a=k-7, b=k+1; if(a===0){ if(b!==0) s+=k; continue } if(b/a<=0) s+=k } return s",
+  "distractor_solve": {
+   "20": "let s=0; for(let k=-10;k<=10;k++){ const a=k-7; if(a===0) continue; if((k+1)/a<=0) s+=k } return s",
+   "54": "let s=0; for(let k=-10;k<=10;k++){ if(k+1>=0) s+=k } return s",
+   "-55": "let s=0; for(let k=-10;k<=10;k++){ if(k+1<=0) s+=k } return s"
+  }
+ },
+ {
+  "id": "SM26L-B5",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear equations in one variable: the solution as a function of a parameter over an integer range",
+  "prompt": "In the equation k(x - 3) = 4x + 6, k is a constant. For each integer k with 0 ≤ k ≤ 10 for which the equation has a solution, the solution is a single number. What is the greatest of these solutions?",
+  "choices": [
+   "-15",
+   "-3/2",
+   "6",
+   "21"
+  ],
+  "correct_answer": "21",
+  "explanation": "Expanding and collecting the x-terms: kx - 3k = 4x + 6, so (k - 4)x = 3k + 6.\nIf k = 4, this reads 0 = 18, so there is no solution; k = 4 is skipped. Otherwise x = (3k + 6)/(k - 4) = 3 + 18/(k - 4).\nThe solution is largest when 18/(k - 4) is largest. That term is negative for k < 4 and positive for k > 4, and for k > 4 it is largest when k - 4 is as small as possible, at k = 5. Then x = 3 + 18 = 21.\nThe solution does not change steadily with k: it jumps from very negative to very positive across k = 4, so the greatest value is not at an end of the range.\n6 is the solution at k = 10, the result of assuming the solution increases with k and checking the right end.\n-3/2 is the solution at k = 0, the result of assuming the solution decreases with k and checking the left end.\n-15 is the solution at k = 3, next to 4 on the wrong side, where 18/(k - 4) is large in size but negative.",
+  "mechanism": [
+   "coefficient zero at k = 4: no solution",
+   "solution = 3 + 18/(k - 4) jumps across k = 4",
+   "extreme value next to the excluded k, not at an endpoint"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "greatest",
+  "setup": {
+   "i": "k multiplies a binomial in x in a one-variable equation, k over integers in a range",
+   "ii": "the equation has a solution (the coefficient of x is not zero)",
+   "iii": "greatest possible value of the solution"
+  },
+  "key_position": "rank 4",
+  "off_by_one_options": [],
+  "solve": "let best=-Infinity; for(let k=0;k<=10;k++){ const a=k-4, b=3*k+6; if(a===0) continue; best=Math.max(best,b/a) } return best",
+  "distractor_solve": {
+   "6": "const k=10; return (3*k+6)/(k-4)",
+   "-3/2": "const k=0; return (3*k+6)/(k-4)",
+   "-15": "const k=3; return (3*k+6)/(k-4)"
+  }
+ },
+ {
+  "id": "SM26L-B6",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Systems of linear equations: extreme coordinate of the solution as a parameter varies over integers",
+  "prompt": "kx + y = 14\nx - y = 1\n\nIn the system of equations above, k is a constant. For each integer k with -6 ≤ k ≤ 6 for which the system has a solution (x, y), let y be the y-coordinate of that solution. What is the least possible value of y?",
+  "choices": [
+   "-16",
+   "-4",
+   "8/7",
+   "14"
+  ],
+  "correct_answer": "-16",
+  "explanation": "Adding the equations gives (k + 1)x = 15.\nIf k = -1, this reads 0 = 15, so the system has no solution; k = -1 is skipped. Otherwise x = 15/(k + 1) and y = x - 1 = 15/(k + 1) - 1.\ny is smallest when 15/(k + 1) is as negative as possible, which happens when k + 1 is negative and as close to 0 as possible: k = -2. Then x = -15 and y = -16.\nAcross k = -1 the solution jumps from very negative to very positive, so the least value is not at an end of the range.\n-4 is y at k = -6, the result of assuming y changes steadily with k and checking the left end.\n8/7 is y at k = 6, the result of checking only the right end.\n14 is y at k = 0, next to -1 on the wrong side, where 15/(k + 1) is large and positive.",
+  "mechanism": [
+   "determinant zero at k = -1: no solution",
+   "y = 15/(k + 1) - 1 jumps across k = -1",
+   "extreme value next to the excluded k, not at an endpoint"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "least",
+  "setup": {
+   "i": "k is the x-coefficient of one equation in a 2x2 system, k over integers in a range",
+   "ii": "the system has a solution (determinant not zero)",
+   "iii": "least possible y-coordinate of the solution"
+  },
+  "key_position": "rank 1",
+  "off_by_one_options": [],
+  "solve": "let best=Infinity; for(let k=-6;k<=6;k++){ const det=k*(-1)-1*1; if(det===0) continue; const y=(k*1-1*14)/det; best=Math.min(best,y) } return best",
+  "distractor_solve": {
+   "14": "const k=0; return 15/(k+1)-1",
+   "-4": "const k=-6; return 15/(k+1)-1",
+   "8/7": "const k=6; return 15/(k+1)-1"
+  }
+ },
+ {
+  "id": "SM26L-B7",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear models: parallel cost models and their constant difference",
+  "prompt": "Two suppliers price an order of n units as follows, where k is a constant.\n\nSupplier A: k(n - 20) + 300 dollars\nSupplier B: 12n + 100 dollars\n\nFor exactly one value of k, there is no value of n for which the two suppliers charge the same amount. For that value of k, how many dollars more than Supplier A does Supplier B charge for an order of any size?",
+  "choices": [
+   "40",
+   "60",
+   "200",
+   "440"
+  ],
+  "correct_answer": "40",
+  "explanation": "Setting the prices equal: kn - 20k + 300 = 12n + 100, so (k - 12)n = 20k - 200.\nFor k other than 12 this has the solution n = (20k - 200)/(k - 12). For k = 12 it reads 0 = 40, so there is no solution: k = 12 is the value described.\nWith k = 12, Supplier A charges 12(n - 20) + 300 = 12n + 60 dollars. Supplier B charges 12n + 100 dollars, which is 40 dollars more for every n.\n200 compares the constants 300 and 100 directly and ignores the -20k hidden in k(n - 20).\n440 expands 12(n - 20) as 12n + 240.\n60 is Supplier A's fixed amount 300 - 240, not the difference between the suppliers.",
+  "mechanism": [
+   "coefficient of n is zero at k = 12: no break-even order",
+   "parallel models differ by a constant",
+   "k also hides in the constant through k(n - 20)"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "value",
+  "setup": {
+   "i": "k is the per-unit price in one of two linear cost models",
+   "ii": "the costs are never equal",
+   "iii": "constant difference between the two costs"
+  },
+  "key_position": "rank 1",
+  "off_by_one_options": [],
+  "solve": "let kk=null; for(let k=-100;k<=100;k+=0.5){ if(k-12===0 && 20*k-200!==0) kk=k } const A=n=>kk*(n-20)+300, B=n=>12*n+100; return B(7)-A(7)",
+  "distractor_solve": {
+   "60": "const k=12; return 300-20*k",
+   "200": "return 300-100",
+   "440": "const k=12, n=7; return (k*n+20*k+300)-(12*n+100)"
+  }
+ },
+ {
+  "id": "SM26L-B8",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "subskill": "Linear functions: a family of lines through a fixed point and a function given by a table",
+  "prompt": "The table gives two values of the linear function f, where c is a constant.\n\nx | f(x)\n-1 | 11\n4 | c\n\nThe equation f(x) = k(x - 2) + 5 has at least one solution for every value of the constant k. What is the value of c?",
+  "choices": [
+   "-19",
+   "-3",
+   "1",
+   "9"
+  ],
+  "correct_answer": "1",
+  "explanation": "Write f(x) = mx + b. The equation becomes (m - k)x = 5 - 2k - b.\nFor every k other than m, the coefficient m - k is not zero and there is exactly one solution. The one value to check is k = m: then the equation reads 0 = 5 - 2m - b, and it has a solution only if 5 - 2m - b = 0, that is, f(2) = 2m + b = 5.\nSo the graph of f must pass through (2, 5) as well as (-1, 11). Its slope is (5 - 11)/(2 - (-1)) = -2, so f(4) = 5 + (-2)(2) = 1. Thus c = 1.\n9 uses a slope of +2 by subtracting the points in mismatched order.\n-19 requires f(0) = 5 instead of f(2) = 5, which gives slope -6 and f(4) = 5 - 24.\n-3 uses the correct slope -2 but treats 5 as the y-intercept, so f(4) = -8 + 5.",
+  "mechanism": [
+   "k equal to the slope of f makes the x-coefficient zero",
+   "that case needs 0 = 0, so f(2) = 5",
+   "every line y = k(x - 2) + 5 passes through (2, 5)"
+  ],
+  "mech": "degenerate-parameter",
+  "ask": "value",
+  "setup": {
+   "i": "line through a fixed point with slope k versus a function given by a table with one unknown entry",
+   "ii": "at least one solution for every k",
+   "iii": "value of the unknown table entry"
+  },
+  "key_position": "rank 3",
+  "off_by_one_options": [],
+  "solve": "const x1=-1,y1=11,x2=4; for(let c=-100;c<=100;c+=0.5){ const m=(c-y1)/(x2-x1), b=y1-m*x1; if(Math.abs(5-2*m-b)<1e-9) return c } return null",
+  "distractor_solve": {
+   "9": "const m=(11-5)/(2-(-1)); return 5+m*2",
+   "-19": "const m=(5-11)/(0-(-1)); return 5+m*4",
+   "-3": "const m=(5-11)/(2-(-1)); return m*4+5"
+  }
+ }
+]
