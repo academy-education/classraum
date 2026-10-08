@@ -1,0 +1,274 @@
+[
+ {
+  "id": "SEC16A-01",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with an \"either ... or\" subject whose second (nearer) member is plural, crossed with present-perfect aspect required by a distant \"ever since\" clause",
+  "difficulty": "hard",
+  "passage": "Bloodroot, a woodland wildflower, produces seeds that each carry a small fatty appendage called an elaiosome, a food reward for ants. In an ongoing field study, ecologists have been setting seeds out on marked cards near ant colonies and recording what becomes of them. Ever since the first cards were placed, either a lone scout or several of her nestmates ______ nearly every seed to a nest within an hour, where the elaiosome is eaten and the seed itself is discarded intact.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has hauled",
+   "have hauled",
+   "had hauled",
+   "were hauling"
+  ],
+  "correct_answer": "have hauled",
+  "explanation": "In an \"either ... or\" subject, the verb agrees with the member closer to it. Here that member is \"several of her nestmates,\" which is plural, so the verb must be plural even though the first member, \"a lone scout,\" is singular and \"either\" can feel singular. The sentence also opens with \"Ever since the first cards were placed,\" which describes an action continuing from a past starting point up to the present, so the present perfect is required: \"have hauled.\" \"has hauled\" has the right aspect but is singular, agreeing with \"a lone scout\" rather than with the nearer member. \"had hauled\" is a past perfect, which needs a later past moment to look back from; here the span runs up to the present (\"is eaten,\" \"is discarded\"). \"were hauling\" is plural but past progressive, which describes an action in progress at some past moment and does not fit the span from a starting point up to now set up by \"Ever since.\"",
+  "topic_tag": "myrmecology: ant seed dispersal"
+ },
+ {
+  "id": "SEC16A-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in subject-auxiliary inversion after a fronted limiting adverbial (\"Only in the decades since ...\"), subject head noun delayed after the blank, crossed with present-perfect aspect",
+  "difficulty": "hard",
+  "passage": "Textbooks once taught that every food web on Earth depended ultimately on sunlight, with deep-sea animals living off organic debris drifting down from the surface. Only in the decades since crewed submersibles first descended to volcanic vents ______ the long-standing and once nearly universal textbook assumption begun to erode: around the vents, whole communities of tubeworms and clams are fueled instead by bacteria that draw energy from hydrogen sulfide.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has",
+   "have",
+   "had",
+   "did"
+  ],
+  "correct_answer": "has",
+  "explanation": "Because the sentence begins with the limiting phrase \"Only in the decades since ...,\" the auxiliary comes before the subject. That subject is \"the long-standing and once nearly universal textbook assumption,\" whose head noun, \"assumption,\" is singular; the plural \"vents\" just before the blank belongs to the fronted phrase and is not the subject. The period \"in the decades since\" runs up to the present, which the present-tense \"are fueled\" confirms, so the present perfect is needed: \"has ... begun.\" \"have\" is plural, agreeing with \"vents\" or \"submersibles\" rather than with \"assumption.\" \"had\" forms the past perfect, which needs a later past moment to look back from; the passage gives none, since the period extends to now. \"did\" cannot combine with the participle \"begun.\"",
+  "topic_tag": "deep-sea biology: hydrothermal vent communities"
+ },
+ {
+  "id": "SEC16A-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: plural verb in a relative clause whose antecedent is the nearer plural noun in \"the [singular] of the [plural] that\", crossed with passive voice required by meaning",
+  "difficulty": "hard",
+  "passage": "Some desert mosses can lose nearly all of their water and survive for years in a dormant state. Botanists examining an old herbarium collection now report that the rapid revival of the dried moss shoots that ______ in sealed paper envelopes since the collection was assembled is remarkable: when rewetted, many of them begin photosynthesizing again within hours.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been preserved",
+   "have preserved",
+   "has preserved",
+   "have been preserved"
+  ],
+  "correct_answer": "have been preserved",
+  "explanation": "The relative pronoun \"that\" refers to \"shoots\": it is the shoots, not their \"revival,\" that have sat in sealed envelopes since the collection was assembled (a revival happens only when the shoots are rewetted). Because \"shoots\" is plural, the verb in the relative clause must be plural. The shoots are also acted upon (someone preserved them), and no object follows the verb, so the passive voice is needed: \"have been preserved.\" \"has been preserved\" is passive but singular, agreeing with the distant \"revival\" (or with \"collection\"). \"have preserved\" is plural but active, which would require an object stating what the shoots preserved. \"has preserved\" is both singular and active.",
+  "topic_tag": "bryology: desiccation-tolerant mosses"
+ },
+ {
+  "id": "SEC16A-04",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement after expletive \"there\" with a compound subject delayed behind an intervening phrase, crossed with past-tense consistency with the narrative",
+  "difficulty": "hard",
+  "passage": "When conservators lifted the cracked leather cover of a medieval prayer book, they expected to find nothing beneath it but plain wooden boards. Instead, there ______, under a layer of brittle glue applied by some thrifty binder, both a strip cut from an older legal contract and a fragment of a music manuscript whose notation was still legible.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was still concealed",
+   "have long been concealed",
+   "were still concealed",
+   "has long been concealed"
+  ],
+  "correct_answer": "were still concealed",
+  "explanation": "In a sentence beginning with \"there,\" the verb agrees with the subject that follows it. Here the subject comes only after the intervening phrase \"under a layer of brittle glue applied by some thrifty binder\": it is \"both a strip ... and a fragment ...,\" a compound subject, so the verb must be plural. The passage narrates a past discovery (\"lifted,\" \"expected,\" \"was still legible\"), so the verb must be past tense: \"were still concealed.\" \"was still concealed\" is past but singular, as if \"binder,\" \"glue,\" or the first item \"a strip\" alone were the subject. \"have long been concealed\" is plural but present perfect, which describes a state continuing up to now; the passage narrates a finished past discovery, after which the fragments were no longer concealed. \"has long been concealed\" is singular and present perfect.",
+  "topic_tag": "book conservation: binding waste fragments"
+ },
+ {
+  "id": "SEC16A-05",
+  "domain": "Standard English Conventions",
+  "subskill": "form: verb in the result clause of a past counterfactual conditional introduced by an inverted \"Had ... not\" clause placed far from the blank",
+  "difficulty": "hard",
+  "passage": "Early plant pathologists studying a blight that mottled tobacco leaves routinely passed sap from sick plants through porcelain filters fine enough to trap any known bacterium. Had one researcher not taken the unusual step of rubbing the supposedly sterile filtrate onto healthy seedlings, the clear liquid that dripped through the porcelain ______ as harmless, since nothing in it could then be seen under a microscope or grown in a culture dish.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "would be dismissed",
+   "will have been dismissed",
+   "would have been dismissed",
+   "had been dismissed"
+  ],
+  "correct_answer": "would have been dismissed",
+  "explanation": "The sentence opens with \"Had one researcher not taken the unusual step ...,\" an inverted form of \"If one researcher had not taken ....\" This describes a condition contrary to what happened in the past, so the main clause must state an unreal past result with \"would have\" plus a past participle: \"would have been dismissed.\" \"would be dismissed\" expresses an unreal present or general result, not the past outcome the passage describes (\"could then be seen\"). \"will have been dismissed\" is a future perfect, which states a real future outcome and cannot complete a contrary-to-fact past condition. \"had been dismissed\" is past perfect indicative, which presents the dismissal as something that actually happened and leaves the \"Had ...\" clause without a conditional result.",
+  "topic_tag": "history of virology: tobacco mosaic filtrate"
+ },
+ {
+  "id": "SEC16A-06",
+  "domain": "Standard English Conventions",
+  "subskill": "form: parallel finite verbs in a three-part compound predicate whose first verb is far from the blank, against a participle, a past perfect, and a base form",
+  "difficulty": "hard",
+  "passage": "To learn when young salmon leave fresh water, biologists implanted tiny acoustic tags in hatchery smolts and tracked them through a coastal river system. Most tagged fish drifted downstream with the spring current for several weeks, lingered for days in the brackish water of the estuary while their bodies adjusted to rising salinity, and ______ only after their gills had begun to excrete salt rather than absorb it.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "headed out to sea",
+   "heading out to sea",
+   "had headed out to sea",
+   "head out to sea"
+  ],
+  "correct_answer": "headed out to sea",
+  "explanation": "The subject \"Most tagged fish\" has three verbs joined in a series: \"drifted downstream ...,\" \"lingered for days ...,\" and the verb in the blank. Items in such a series must be parallel, and the first two are simple past, so the third must be too: \"headed out to sea.\" \"heading out to sea\" is a participle; joined by \"and\" to two finite verbs it leaves the series unbalanced and cannot serve as the fish's third action. \"had headed out to sea\" is past perfect, which breaks the parallel series and wrongly places the departure before the earlier steps, although the passage says it came last, \"only after\" the gills changed. \"head out to sea\" is the base (present) form, which conflicts with the past-tense verbs in the series.",
+  "topic_tag": "ichthyology: salmon smolt migration"
+ },
+ {
+  "id": "SEC16A-07",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: semicolons separating the items of a series whose items contain internal commas, against comma, colon, and no punctuation",
+  "difficulty": "hard",
+  "passage": "A microbiologist cataloguing the yeasts and bacteria that drive traditional fermentation drew her samples from three sources: rye sourdough starters, some of them maintained by the same families for ______ rice wine cakes, which are dried and crumbled before use. Each source, she found, harbored species absent from the other two.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "generations, kefir grains, a dairy culture from the Caucasus, and",
+   "generations: kefir grains, a dairy culture from the Caucasus: and",
+   "generations kefir grains, a dairy culture from the Caucasus and",
+   "generations; kefir grains, a dairy culture from the Caucasus; and"
+  ],
+  "correct_answer": "generations; kefir grains, a dairy culture from the Caucasus; and",
+  "explanation": "The colon after \"three sources\" introduces a series of three items, and each item contains its own comma: \"rye sourdough starters, some of them maintained ...,\" \"kefir grains, a dairy culture from the Caucasus,\" and \"rice wine cakes, which are dried ....\" When series items contain internal commas, semicolons must separate the items so that the reader can tell where each one ends: \"generations; kefir grains, a dairy culture from the Caucasus; and.\" \"generations, kefir grains, a dairy culture from the Caucasus, and\" uses commas as separators, so the separators cannot be told apart from the commas inside the items, and \"a dairy culture from the Caucasus\" reads as a fourth source. \"generations: kefir grains, a dairy culture from the Caucasus: and\" adds colons inside a series that the earlier colon has already introduced; a colon cannot separate list items. \"generations kefir grains, a dairy culture from the Caucasus and\" leaves no separator at all, running the first item into the second and the second into the third.",
+  "topic_tag": "food microbiology: traditional fermentation starters"
+ },
+ {
+  "id": "SEC16A-08",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: no punctuation before a restrictive appositive (a title) whose restrictiveness is decided by an earlier sentence, against comma, dash, and semicolon",
+  "difficulty": "hard",
+  "passage": "Over a long career, a botanical engraver produced more than a dozen plates of the night-blooming cereus, each depicting the cactus at a different stage of growth. Botanists reconstructing the plant's flowering cycle have relied most heavily on the engraver's ______ because it alone shows the flower fully open, as it appears for only a few hours after dark.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "plate; \"Midnight Bloom,\"",
+   "plate \"Midnight Bloom,\"",
+   "plate, \"Midnight Bloom,\"",
+   "plate—\"Midnight Bloom,\""
+  ],
+  "correct_answer": "plate \"Midnight Bloom,\"",
+  "explanation": "The first sentence says the engraver made \"more than a dozen plates\" of the cactus, so \"the engraver's plate\" alone does not identify which plate botanists rely on; the title \"Midnight Bloom\" is needed to pick it out. A title that identifies one of several is restrictive and takes no punctuation before it: \"plate \"Midnight Bloom,\"\" (the comma after the title simply precedes the \"because\" clause). \"plate, \"Midnight Bloom,\"\" sets the title off with commas, treating it as extra information about the engraver's only plate, which contradicts the first sentence. \"plate—\"Midnight Bloom,\"\" opens a dash interruption mid-sentence that is never closed with a second dash, and it too treats the title as nonessential. \"plate; \"Midnight Bloom,\"\" uses a semicolon, which must join independent clauses, but the words that follow it (a title and a \"because\" clause) cannot stand as a sentence.",
+  "topic_tag": "history of scientific illustration: botanical engravings"
+ },
+ {
+  "id": "SEC16B-01",
+  "domain": "Standard English Conventions",
+  "subskill": "form: singular finite verb after a singular head separated from it by an \"including\" phrase ending in plural nouns, crossed with active vs passive voice (object delayed past a parenthetical)",
+  "difficulty": "hard",
+  "passage": "Harbor walls built by Roman engineers have stood in seawater for two thousand years, while many modern concrete piers crumble within decades. The difference may lie in how the ancient material repairs itself. The mortar in these walls, including its white lumps of lime and its glassy volcanic fragments, ______, a team of materials scientists has argued, the hairline cracks that seawater opens: as water seeps in, the lime dissolves and recrystallizes as calcite inside each crack.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "are repeatedly sealed",
+   "repeatedly seals",
+   "repeatedly seal",
+   "is repeatedly sealed"
+  ],
+  "correct_answer": "repeatedly seals",
+  "explanation": "The subject of the verb is the singular noun \"The mortar\"; the phrase \"including its white lumps of lime and its glassy volcanic fragments\" is set off by commas and does not change the subject's number, so the verb must be singular. The verb must also be active, because the mortar does something to an object: after the parenthetical \"a team of materials scientists has argued,\" the clause continues with \"the hairline cracks that seawater opens,\" which is the direct object. \"repeatedly seals\" is singular and active, so it is correct. \"repeatedly seal\" is active but plural; it agrees with \"fragments\" rather than with \"The mortar.\" \"is repeatedly sealed\" is singular but passive, which leaves \"the hairline cracks\" with no grammatical role in the clause. \"are repeatedly sealed\" is both plural and passive.",
+  "topic_tag": "materials science: Roman marine mortar"
+ },
+ {
+  "id": "SEC16B-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: singular verb after a fraction + \"of\" + singular mass noun (partitive agreement with the nearest noun), with earlier plural attractors, crossed with active vs passive voice",
+  "difficulty": "hard",
+  "passage": "Coastal salt marshes are often praised as carbon sinks, and the credit usually goes to their dense stands of cordgrass. But when ecologists analyzed the chemical signatures of sediment cores from a dozen marshes along the Atlantic coast, they found that in most of the cores roughly two-thirds of the buried carbon ______ into the marsh from elsewhere, carried in on the tides as fine particles of seaweed and river-borne plant debris. The grasses, it seems, mainly act as a filter.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "had actually brought",
+   "were actually brought",
+   "actually brought",
+   "was actually brought"
+  ],
+  "correct_answer": "was actually brought",
+  "explanation": "With a fraction such as \"two-thirds of,\" the verb agrees with the noun after \"of.\" Here that noun is \"carbon,\" a singular mass noun, so the verb must be singular even though \"two-thirds\" sounds plural and the sentence is crowded with plural nouns (\"cores,\" \"marshes,\" \"signatures\"). The verb must also be passive: the carbon does not bring anything; it was carried into the marsh by the tides, and nothing in the rest of the clause (\"into the marsh from elsewhere, carried in on the tides...\") can serve as an object for an active \"bring.\" \"was actually brought\" is singular and passive, so it is correct. \"were actually brought\" is passive but plural, agreeing with \"two-thirds\" or \"cores\" instead of \"carbon.\" \"had actually brought\" is active, so it would make the carbon the bringer of something, and the clause supplies no object. \"actually brought\" can only be read as active past (again with no object) or as a participle modifying \"carbon,\" which would leave the clause after \"found that\" with no main verb at all.",
+  "topic_tag": "coastal biogeochemistry: salt marsh carbon sources"
+ },
+ {
+  "id": "SEC16B-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: plural verb after a plural subject followed by floating \"each\" (subject head far from the blank), crossed with progressive passive vs progressive active voice",
+  "difficulty": "hard",
+  "passage": "A folklorist spent two summers in a remote mountain valley writing down ballads that farm families had sung for generations, often recording several versions of a single song. The two notebooks in which she transcribed the families' ballads each ______ at a separate library, one near the valley and one in a distant capital, where volunteers photograph a few pages every week. Until that work is finished, a scholar who wants to compare her versions line by line must travel between them.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "are now being digitized",
+   "is now being digitized",
+   "are now digitizing",
+   "is now digitizing"
+  ],
+  "correct_answer": "are now being digitized",
+  "explanation": "The subject is \"The two notebooks,\" which is plural. When \"each\" follows a plural subject rather than serving as the subject itself, it does not make the verb singular: \"The two notebooks ... each are,\" not \"each is.\" The verb must also be passive. The notebooks are not doing the digitizing; the passage names who is (\"volunteers photograph a few pages every week\"), and nothing in the clause after the blank (\"at a separate library, one near the valley and one in a distant capital\") can serve as the object an active \"digitizing\" requires. \"are now being digitized\" is plural and passive, so it is correct. \"is now being digitized\" is passive but singular, treating \"each\" as the subject. \"are now digitizing\" is plural but active, making the notebooks the ones digitizing something with no object. \"is now digitizing\" is both singular and active.",
+  "topic_tag": "folklore studies: ballad notebooks"
+ },
+ {
+  "id": "SEC16B-04",
+  "domain": "Standard English Conventions",
+  "subskill": "form: nonfinite (present participle) result phrase required after a complete clause and a comma; finite options create a second predicate joined by a comma alone, crossed with participle aspect (simple vs perfect)",
+  "difficulty": "hard",
+  "passage": "Large rivers crossing flat deltas rarely stay in one bed for long. Over centuries, sediment settles in a river's channel until the riverbed sits higher than the surrounding floodplain; then, during a major flood, the water breaks through a bank and carves a new route to the sea, ______ along the abandoned channel without the waterway that once carried their trade.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "left riverside towns",
+   "had left riverside towns",
+   "leaving riverside towns",
+   "having left riverside towns"
+  ],
+  "correct_answer": "leaving riverside towns",
+  "explanation": "The clause \"the water breaks through a bank and carves a new route to the sea\" is already complete, and only a comma follows it, so the blank must begin a modifying phrase rather than a new verb of the same subject. A present participle phrase does this and expresses the result of the flood: \"leaving riverside towns along the abandoned channel without the waterway.\" \"left riverside towns\" and \"had left riverside towns\" are finite verbs; each would add a third predicate to \"breaks ... and carves\" with only a comma and no conjunction, and their past tenses also clash with the present tense \"breaks\" and \"carves.\" \"having left riverside towns\" is nonfinite, but the perfect participle places the leaving before the main action, which is illogical: the towns are stranded as a result of the new route, not before it.",
+  "topic_tag": "fluvial geomorphology: delta avulsion"
+ },
+ {
+  "id": "SEC16B-05",
+  "domain": "Standard English Conventions",
+  "subskill": "form: future-in-the-past (\"would\" + base) after a past reporting verb when the predicted event lies in the narrative past, decided by later sentences showing the prediction failed",
+  "difficulty": "hard",
+  "passage": "The engineer hired by a small fishing town to design a stone breakwater for its harbor assured the council that the new wall ______ the sand carried along the coast by winter currents. The opposite occurred. Once built, the breakwater created a pocket of calm water where sand settled faster than ever, and within a few years the town was paying dredging crews every spring to keep the channel open.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "would keep out",
+   "will keep out",
+   "keeps out",
+   "had kept out"
+  ],
+  "correct_answer": "would keep out",
+  "explanation": "The engineer's assurance is reported with a past-tense verb, \"assured,\" and it concerned something that, from the time of the assurance, still lay ahead: the wall had not yet been built (\"hired ... to design\"). A future seen from a past point is expressed with \"would\" plus the base verb. The later sentences confirm that the whole episode is in the past and that the prediction has already been tested and failed (\"The opposite occurred,\" \"the town was paying dredging crews\"), so \"would keep out\" is correct. \"will keep out\" speaks from the present about a still-open future, which contradicts the narrative showing the outcome is already known. \"keeps out\" uses the present tense for an event that, at the time of the assurance, had not happened. \"had kept out\" places the keeping out before the assurance, when the wall did not yet exist.",
+  "topic_tag": "coastal engineering: harbor breakwaters"
+ },
+ {
+  "id": "SEC16B-06",
+  "domain": "Standard English Conventions",
+  "subskill": "form: passive modal (\"can be determined\") required because the singular subject is the thing acted upon and the clause has no object, crossed with tense consistency against a past perfect passive",
+  "difficulty": "hard",
+  "passage": "Charred cereal grains are among the most valuable finds at early farming sites. Burning turns a grain into carbon that resists decay, so it survives in the soil for thousands of years, and because each grain grew in a single season, the age of even one seed ______ with remarkable precision from a fragment smaller than a speck of dust, allowing archaeologists to date the very first harvests at a site.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "can determine",
+   "has determined",
+   "had been determined",
+   "can be determined"
+  ],
+  "correct_answer": "can be determined",
+  "explanation": "The subject, \"the age of even one seed,\" is the thing that is measured, not the thing doing the measuring, and the rest of the clause (\"with remarkable precision from a fragment smaller than a speck of dust\") contains no object for an active verb. The verb must therefore be passive. The passage describes what is generally true now (\"are among,\" \"turns,\" \"survives\"), so a present modal fits: \"can be determined.\" \"can determine\" is active, making the age the one that determines something and leaving the verb without an object. \"has determined\" is likewise active and objectless. \"had been determined\" is passive but past perfect, which requires an earlier past reference point; the passage is set in the general present, so it does not fit.",
+  "topic_tag": "archaeobotany: charred cereal grains"
+ },
+ {
+  "id": "SEC16B-07",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: colon after an independent clause to introduce a single noun-phrase explanation; semicolon creates a fragment, comma makes the phrase rename the wrong noun",
+  "difficulty": "hard",
+  "passage": "Typefaces drawn for telephone directories had to stay legible at small sizes on thin, absorbent paper fed through high-speed presses. Under those conditions, ink pooled wherever two strokes met at a sharp angle, blotting letters into smudges. One designer countered the problem with a feature that is invisible at normal reading distance yet obvious under ______ notches at each such junction that give the excess ink room to spread without blurring the letter.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "magnification; deep",
+   "magnification: deep",
+   "magnification, deep",
+   "magnification deep"
+  ],
+  "correct_answer": "magnification: deep",
+  "explanation": "The words before the blank form a complete independent clause that announces something (\"One designer countered the problem with a feature that is invisible at normal reading distance yet obvious under magnification\"), and the words after it identify that feature: \"deep notches at each such junction that give the excess ink room to spread.\" A colon is the mark that introduces such an explanation, so \"magnification: deep\" is correct. \"magnification; deep\" is wrong because a semicolon must join two independent clauses, and \"deep notches at each such junction ...\" has no main verb (\"give\" belongs to the relative clause \"that give\"). \"magnification, deep\" makes the noun phrase an appositive renaming \"magnification,\" which is illogical: the notches are the feature, not the magnification. \"magnification deep\" runs the two noun phrases together with no punctuation, producing an ungrammatical string.",
+  "topic_tag": "typography: ink traps"
+ },
+ {
+  "id": "SEC16B-08",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: dash after a fronted list of noun phrases, resumed by a summarizing subject; period leaves the list as a fragment sentence",
+  "difficulty": "hard",
+  "passage": "Bodies recovered from northern European peat bogs can retain skin, hair, and even the contents of the stomach after two thousand years. Botanists credit the bog itself, and in particular the sphagnum moss that forms it. Cold water, acid released by the moss, and an almost complete absence of ______ one of these conditions would slow the bacteria that break down soft tissue. Together, they halt decay almost entirely.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "oxygen. Any",
+   "oxygen, any",
+   "oxygen—any",
+   "oxygen any"
+  ],
+  "correct_answer": "oxygen—any",
+  "explanation": "The sentence opens with a list of three noun phrases (\"Cold water, acid released by the moss, and an almost complete absence of oxygen\") that has no verb of its own; the main clause is \"any one of these conditions would slow the bacteria,\" whose subject sums up the list. A dash is the mark that sets a fronted list off from a clause that resumes it, so \"oxygen—any\" is correct. \"oxygen. Any\" is wrong because the period would end a sentence consisting only of the list, which has no verb and is therefore a fragment. \"oxygen, any\" leaves the list dangling, attached to the clause by a comma with no grammatical role, since the clause already has its own subject (\"any one of these conditions\"). \"oxygen any\" runs the list straight into the clause with no punctuation, which is ungrammatical.",
+  "topic_tag": "bog preservation: sphagnum and soft tissue"
+ }
+]

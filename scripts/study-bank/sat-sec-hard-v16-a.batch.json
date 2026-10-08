@@ -1,0 +1,146 @@
+[
+ {
+  "id": "SEC16A-01",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement with an \"either ... or\" subject whose second (nearer) member is plural, crossed with present-perfect aspect required by a distant \"ever since\" clause",
+  "difficulty": "hard",
+  "passage": "Bloodroot, a woodland wildflower, produces seeds that each carry a small fatty appendage called an elaiosome, a food reward for ants. In an ongoing field study, ecologists have been setting seeds out on marked cards near ant colonies and recording what becomes of them. Ever since the first cards were placed, either a lone scout or several of her nestmates ______ nearly every seed to a nest within an hour, where the elaiosome is eaten and the seed itself is discarded intact.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has hauled",
+   "have hauled",
+   "had hauled",
+   "were hauling"
+  ],
+  "correct_answer": "have hauled",
+  "explanation": "In an \"either ... or\" subject, the verb agrees with the member closer to it. Here that member is \"several of her nestmates,\" which is plural, so the verb must be plural even though the first member, \"a lone scout,\" is singular and \"either\" can feel singular. The sentence also opens with \"Ever since the first cards were placed,\" which describes an action continuing from a past starting point up to the present, so the present perfect is required: \"have hauled.\" \"has hauled\" has the right aspect but is singular, agreeing with \"a lone scout\" rather than with the nearer member. \"had hauled\" is a past perfect, which needs a later past moment to look back from; here the span runs up to the present (\"is eaten,\" \"is discarded\"). \"were hauling\" is plural but past progressive, which describes an action in progress at some past moment and does not fit the span from a starting point up to now set up by \"Ever since.\"",
+  "topic_tag": "myrmecology: ant seed dispersal",
+  "template": "either/or subject, singular first member + plural second member adjacent to blank x 'either' read as singular / first member x has+pp / have+pp / had+pp / were+ing"
+ },
+ {
+  "id": "SEC16A-02",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement in subject-auxiliary inversion after a fronted limiting adverbial (\"Only in the decades since ...\"), subject head noun delayed after the blank, crossed with present-perfect aspect",
+  "difficulty": "hard",
+  "passage": "Textbooks once taught that every food web on Earth depended ultimately on sunlight, with deep-sea animals living off organic debris drifting down from the surface. Only in the decades since crewed submersibles first descended to volcanic vents ______ the long-standing and once nearly universal textbook assumption begun to erode: around the vents, whole communities of tubeworms and clams are fueled instead by bacteria that draw energy from hydrogen sulfide.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has",
+   "have",
+   "had",
+   "did"
+  ],
+  "correct_answer": "has",
+  "explanation": "Because the sentence begins with the limiting phrase \"Only in the decades since ...,\" the auxiliary comes before the subject. That subject is \"the long-standing and once nearly universal textbook assumption,\" whose head noun, \"assumption,\" is singular; the plural \"vents\" just before the blank belongs to the fronted phrase and is not the subject. The period \"in the decades since\" runs up to the present, which the present-tense \"are fueled\" confirms, so the present perfect is needed: \"has ... begun.\" \"have\" is plural, agreeing with \"vents\" or \"submersibles\" rather than with \"assumption.\" \"had\" forms the past perfect, which needs a later past moment to look back from; the passage gives none, since the period extends to now. \"did\" cannot combine with the participle \"begun.\"",
+  "topic_tag": "deep-sea biology: hydrothermal vent communities",
+  "template": "negative/limiting adverbial inversion, head noun 8 words after blank x plural noun inside the fronted adverbial x has/have/had/did auxiliary"
+ },
+ {
+  "id": "SEC16A-03",
+  "domain": "Standard English Conventions",
+  "subskill": "form: plural verb in a relative clause whose antecedent is the nearer plural noun in \"the [singular] of the [plural] that\", crossed with passive voice required by meaning",
+  "difficulty": "hard",
+  "passage": "Some desert mosses can lose nearly all of their water and survive for years in a dormant state. Botanists examining an old herbarium collection now report that the rapid revival of the dried moss shoots that ______ in sealed paper envelopes since the collection was assembled is remarkable: when rewetted, many of them begin photosynthesizing again within hours.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "has been preserved",
+   "have preserved",
+   "has preserved",
+   "have been preserved"
+  ],
+  "correct_answer": "have been preserved",
+  "explanation": "The relative pronoun \"that\" refers to \"shoots\": it is the shoots, not their \"revival,\" that have sat in sealed envelopes since the collection was assembled (a revival happens only when the shoots are rewetted). Because \"shoots\" is plural, the verb in the relative clause must be plural. The shoots are also acted upon (someone preserved them), and no object follows the verb, so the passive voice is needed: \"have been preserved.\" \"has been preserved\" is passive but singular, agreeing with the distant \"revival\" (or with \"collection\"). \"have preserved\" is plural but active, which would require an object stating what the shoots preserved. \"has preserved\" is both singular and active.",
+  "topic_tag": "bryology: desiccation-tolerant mosses",
+  "template": "relative clause, antecedent = nearest plural noun after singular head 'the X of the Ys that' x distant singular head as attractor x number x active/passive (perfect)"
+ },
+ {
+  "id": "SEC16A-04",
+  "domain": "Standard English Conventions",
+  "subskill": "form: subject-verb agreement after expletive \"there\" with a compound subject delayed behind an intervening phrase, crossed with past-tense consistency with the narrative",
+  "difficulty": "hard",
+  "passage": "When conservators lifted the cracked leather cover of a medieval prayer book, they expected to find nothing beneath it but plain wooden boards. Instead, there ______, under a layer of brittle glue applied by some thrifty binder, both a strip cut from an older legal contract and a fragment of a music manuscript whose notation was still legible.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "was still concealed",
+   "have long been concealed",
+   "were still concealed",
+   "has long been concealed"
+  ],
+  "correct_answer": "were still concealed",
+  "explanation": "In a sentence beginning with \"there,\" the verb agrees with the subject that follows it. Here the subject comes only after the intervening phrase \"under a layer of brittle glue applied by some thrifty binder\": it is \"both a strip ... and a fragment ...,\" a compound subject, so the verb must be plural. The passage narrates a past discovery (\"lifted,\" \"expected,\" \"was still legible\"), so the verb must be past tense: \"were still concealed.\" \"was still concealed\" is past but singular, as if \"binder,\" \"glue,\" or the first item \"a strip\" alone were the subject. \"have long been concealed\" is plural but present perfect, which describes a state continuing up to now; the passage narrates a finished past discovery, after which the fragments were no longer concealed. \"has long been concealed\" is singular and present perfect.",
+  "topic_tag": "book conservation: binding waste fragments",
+  "template": "expletive 'there' + compound both/and subject delayed by 10-word intervening phrase x singular nouns in the intervening phrase / first conjunct x number x past still+pp / present perfect long+been+pp (passive)"
+ },
+ {
+  "id": "SEC16A-05",
+  "domain": "Standard English Conventions",
+  "subskill": "form: verb in the result clause of a past counterfactual conditional introduced by an inverted \"Had ... not\" clause placed far from the blank",
+  "difficulty": "hard",
+  "passage": "Early plant pathologists studying a blight that mottled tobacco leaves routinely passed sap from sick plants through porcelain filters fine enough to trap any known bacterium. Had one researcher not taken the unusual step of rubbing the supposedly sterile filtrate onto healthy seedlings, the clear liquid that dripped through the porcelain ______ as harmless, since nothing in it could then be seen under a microscope or grown in a culture dish.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "would be dismissed",
+   "will have been dismissed",
+   "would have been dismissed",
+   "had been dismissed"
+  ],
+  "correct_answer": "would have been dismissed",
+  "explanation": "The sentence opens with \"Had one researcher not taken the unusual step ...,\" an inverted form of \"If one researcher had not taken ....\" This describes a condition contrary to what happened in the past, so the main clause must state an unreal past result with \"would have\" plus a past participle: \"would have been dismissed.\" \"would be dismissed\" expresses an unreal present or general result, not the past outcome the passage describes (\"could then be seen\"). \"will have been dismissed\" is a future perfect, which states a real future outcome and cannot complete a contrary-to-fact past condition. \"had been dismissed\" is past perfect indicative, which presents the dismissal as something that actually happened and leaves the \"Had ...\" clause without a conditional result.",
+  "topic_tag": "history of virology: tobacco mosaic filtrate",
+  "template": "inverted 'Had X not' counterfactual, decider 20+ words before blank x long relative-clause subject between decider and blank x would have been / would be / will have been / had been + pp"
+ },
+ {
+  "id": "SEC16A-06",
+  "domain": "Standard English Conventions",
+  "subskill": "form: parallel finite verbs in a three-part compound predicate whose first verb is far from the blank, against a participle, a past perfect, and a base form",
+  "difficulty": "hard",
+  "passage": "To learn when young salmon leave fresh water, biologists implanted tiny acoustic tags in hatchery smolts and tracked them through a coastal river system. Most tagged fish drifted downstream with the spring current for several weeks, lingered for days in the brackish water of the estuary while their bodies adjusted to rising salinity, and ______ only after their gills had begun to excrete salt rather than absorb it.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "headed out to sea",
+   "heading out to sea",
+   "had headed out to sea",
+   "head out to sea"
+  ],
+  "correct_answer": "headed out to sea",
+  "explanation": "The subject \"Most tagged fish\" has three verbs joined in a series: \"drifted downstream ...,\" \"lingered for days ...,\" and the verb in the blank. Items in such a series must be parallel, and the first two are simple past, so the third must be too: \"headed out to sea.\" \"heading out to sea\" is a participle; joined by \"and\" to two finite verbs it leaves the series unbalanced and cannot serve as the fish's third action. \"had headed out to sea\" is past perfect, which breaks the parallel series and wrongly places the departure before the earlier steps, although the passage says it came last, \"only after\" the gills changed. \"head out to sea\" is the base (present) form, which conflicts with the past-tense verbs in the series.",
+  "topic_tag": "ichthyology: salmon smolt migration",
+  "template": "three-verb compound predicate, first verb 30+ words before blank x intervening while-clause verb / past perfect after blank x simple past / -ing / past perfect / base"
+ },
+ {
+  "id": "SEC16A-07",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: semicolons separating the items of a series whose items contain internal commas, against comma, colon, and no punctuation",
+  "difficulty": "hard",
+  "passage": "A microbiologist cataloguing the yeasts and bacteria that drive traditional fermentation drew her samples from three sources: rye sourdough starters, some of them maintained by the same families for ______ rice wine cakes, which are dried and crumbled before use. Each source, she found, harbored species absent from the other two.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "generations, kefir grains, a dairy culture from the Caucasus, and",
+   "generations: kefir grains, a dairy culture from the Caucasus: and",
+   "generations kefir grains, a dairy culture from the Caucasus and",
+   "generations; kefir grains, a dairy culture from the Caucasus; and"
+  ],
+  "correct_answer": "generations; kefir grains, a dairy culture from the Caucasus; and",
+  "explanation": "The colon after \"three sources\" introduces a series of three items, and each item contains its own comma: \"rye sourdough starters, some of them maintained ...,\" \"kefir grains, a dairy culture from the Caucasus,\" and \"rice wine cakes, which are dried ....\" When series items contain internal commas, semicolons must separate the items so that the reader can tell where each one ends: \"generations; kefir grains, a dairy culture from the Caucasus; and.\" \"generations, kefir grains, a dairy culture from the Caucasus, and\" uses commas as separators, so the separators cannot be told apart from the commas inside the items, and \"a dairy culture from the Caucasus\" reads as a fourth source. \"generations: kefir grains, a dairy culture from the Caucasus: and\" adds colons inside a series that the earlier colon has already introduced; a colon cannot separate list items. \"generations kefir grains, a dairy culture from the Caucasus and\" leaves no separator at all, running the first item into the second and the second into the third.",
+  "topic_tag": "food microbiology: traditional fermentation starters",
+  "template": "three-item series with internal commas, blank spans both separators x commas inside items / existing introducing colon x ; , : none (identical words)"
+ },
+ {
+  "id": "SEC16A-08",
+  "domain": "Standard English Conventions",
+  "subskill": "boundaries: no punctuation before a restrictive appositive (a title) whose restrictiveness is decided by an earlier sentence, against comma, dash, and semicolon",
+  "difficulty": "hard",
+  "passage": "Over a long career, a botanical engraver produced more than a dozen plates of the night-blooming cereus, each depicting the cactus at a different stage of growth. Botanists reconstructing the plant's flowering cycle have relied most heavily on the engraver's ______ because it alone shows the flower fully open, as it appears for only a few hours after dark.",
+  "prompt": "Which choice completes the text so that it conforms to the conventions of Standard English?",
+  "choices": [
+   "plate; \"Midnight Bloom,\"",
+   "plate \"Midnight Bloom,\"",
+   "plate, \"Midnight Bloom,\"",
+   "plate—\"Midnight Bloom,\""
+  ],
+  "correct_answer": "plate \"Midnight Bloom,\"",
+  "explanation": "The first sentence says the engraver made \"more than a dozen plates\" of the cactus, so \"the engraver's plate\" alone does not identify which plate botanists rely on; the title \"Midnight Bloom\" is needed to pick it out. A title that identifies one of several is restrictive and takes no punctuation before it: \"plate \"Midnight Bloom,\"\" (the comma after the title simply precedes the \"because\" clause). \"plate, \"Midnight Bloom,\"\" sets the title off with commas, treating it as extra information about the engraver's only plate, which contradicts the first sentence. \"plate—\"Midnight Bloom,\"\" opens a dash interruption mid-sentence that is never closed with a second dash, and it too treats the title as nonessential. \"plate; \"Midnight Bloom,\"\" uses a semicolon, which must join independent clauses, but the words that follow it (a title and a \"because\" clause) cannot stand as a sentence.",
+  "topic_tag": "history of scientific illustration: botanical engravings",
+  "template": "restrictive title appositive mid-sentence after 'the X's [noun]', one-of-many set up in prior sentence x comma after title invites a comma pair x none / , / dash / ;"
+ }
+]
