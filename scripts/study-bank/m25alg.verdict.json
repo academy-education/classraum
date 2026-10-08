@@ -1,0 +1,1279 @@
+{
+ "SM25L-P1": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 1,
+  "struck": [
+   [
+    "34"
+   ],
+   [
+    "34"
+   ],
+   [
+    "34"
+   ]
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-P6"
+   ],
+   [],
+   [
+    "SM25L-P6",
+    "SM25L-Q4"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-P2": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [
+    "3/2",
+    "15/2"
+   ],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-P4"
+   ],
+   [
+    "SM25L-P4",
+    "SM25L-Q11"
+   ],
+   [
+    "SM25L-P4",
+    "SM25L-Q11"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-P3": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-Q6"
+   ],
+   [
+    "SM25L-Q6"
+   ],
+   [
+    "SM25L-Q6"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-P4": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   [
+    "5",
+    "8"
+   ]
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-P2"
+   ],
+   [
+    "SM25L-P2",
+    "SM25L-Q11"
+   ],
+   [
+    "SM25L-P2",
+    "SM25L-Q11"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-P2 (3/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-P5": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-P7"
+   ],
+   [
+    "SM25L-P9",
+    "SM25L-Q2"
+   ],
+   [
+    "SM25L-Q2"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-P6": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-P1"
+   ],
+   [
+    "SM25L-Q4"
+   ],
+   [
+    "SM25L-P1",
+    "SM25L-Q4"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-P1 (2/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-P7": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-P5"
+   ],
+   [],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-P8": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-Q10",
+    "SM25L-P10"
+   ],
+   [
+    "SM25L-Q10"
+   ],
+   [
+    "SM25L-Q10"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-P9": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-P5",
+    "SM25L-Q2"
+   ],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-P10": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-P8",
+    "SM25L-Q10"
+   ],
+   [
+    "SM25L-Q5"
+   ],
+   [
+    "SM25L-Q5"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-P11": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-Q3"
+   ],
+   [
+    "SM25L-Q3"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-Q1": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-Q8"
+   ],
+   [
+    "SM25L-Q8"
+   ],
+   [
+    "SM25L-Q8"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-Q2": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-P5",
+    "SM25L-P9"
+   ],
+   [
+    "SM25L-P5"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-P5 (2/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-Q3": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   [
+    "27",
+    "40"
+   ]
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-P11"
+   ],
+   [
+    "SM25L-P11"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-P11 (2/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-Q4": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-P6"
+   ],
+   [
+    "SM25L-P1",
+    "SM25L-P6"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-P6 (2/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-Q5": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-P10"
+   ],
+   [
+    "SM25L-P10"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-P10 (2/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-Q6": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-P3"
+   ],
+   [
+    "SM25L-P3"
+   ],
+   [
+    "SM25L-P3"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-P3 (3/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-Q7": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-R4"
+   ],
+   [
+    "SM25L-Q9",
+    "SM25L-R4"
+   ],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-Q8": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-Q1"
+   ],
+   [
+    "SM25L-Q1"
+   ],
+   [
+    "SM25L-Q1"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-Q1 (3/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-Q9": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-Q7",
+    "SM25L-R4"
+   ],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-Q10": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-P8",
+    "SM25L-P10"
+   ],
+   [
+    "SM25L-P8"
+   ],
+   [
+    "SM25L-P8"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-P8 (3/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-Q11": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-P2",
+    "SM25L-P4"
+   ],
+   [
+    "SM25L-P2",
+    "SM25L-P4"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-P2 (2/3)",
+   "rule7 template of SM25L-P4 (2/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-R1": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-R5",
+    "SM25L-R8"
+   ],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-R2": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-R3": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-R7"
+   ],
+   [
+    "SM25L-R7"
+   ],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-R4": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-Q7"
+   ],
+   [
+    "SM25L-Q7",
+    "SM25L-Q9"
+   ],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-Q7 (2/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-R5": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-R1",
+    "SM25L-R8"
+   ],
+   [
+    "SM25L-R8"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-R6": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-R7": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [
+    "SM25L-R3"
+   ],
+   [
+    "SM25L-R3"
+   ],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-R3 (2/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-R8": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "medium",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [
+    "SM25L-R1",
+    "SM25L-R5"
+   ],
+   [
+    "SM25L-R5"
+   ]
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "DROP",
+  "why": [
+   "rule7 template of SM25L-R5 (2/3)"
+  ],
+  "confirm": null
+ },
+ "SM25L-R9": {
+  "difficulty": "medium",
+  "difficulties": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   "45/2 = including y=12 (strict endpoint read as inclusive at the top)",
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ },
+ "SM25L-R10": {
+  "difficulty": "hard",
+  "difficulties": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "key_votes": 3,
+  "n_struck_median": 0,
+  "struck": [
+   [],
+   [],
+   []
+  ],
+  "plugback": [
+   null,
+   null,
+   null
+  ],
+  "templates": [
+   [],
+   [],
+   []
+  ],
+  "off_blueprint_votes": 0,
+  "off_by_one_named": [
+   null,
+   null,
+   null
+  ],
+  "status": "KEEP",
+  "why": [],
+  "confirm": null
+ }
+}
