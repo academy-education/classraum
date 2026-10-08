@@ -1,0 +1,661 @@
+[
+ {
+  "id": "AM25G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "angle bisector theorem with coordinates",
+  "subskill": "angle bisector divides the opposite side proportionally",
+  "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(−3, −2), B(−7, −5), and C(9, −11). The bisector of angle BAC intersects side BC at point D. To the nearest hundredth of a coordinate unit, what is the distance from D to the origin?",
+  "choices": [
+   "8.06",
+   "10.74",
+   "7.16",
+   "7.44"
+  ],
+  "correct_answer": "7.16",
+  "explanation": "AB = √(4² + 3²) = 5 and AC = √(12² + 9²) = 15. By the angle bisector theorem, BD : DC = AB : AC = 5 : 15 = 1 : 3, so D is 1/4 of the way from B to C: D = (−7 + (1/4)(16), −5 + (1/4)(−6)) = (−3, −6.5). The distance from D to the origin is √(3² + 6.5²) = √51.25 ≈ 7.16. The option \"10.74\" applies the ratio the other way (BD : DC = 3 : 1), giving (5, −9.5). The option \"8.06\" uses the midpoint of BC, (1, −8), as if AD were a median. The option \"7.44\" uses the foot of the altitude from A to BC, about (−4.48, −5.95), as if AD were perpendicular to BC.",
+  "solve": "const A=[-3,-2],B=[-7,-5],C=[9,-11],AB=Math.hypot(B[0]-A[0],B[1]-A[1]),AC=Math.hypot(C[0]-A[0],C[1]-A[1]);const at=(t)=>[B[0]+t*(C[0]-B[0]),B[1]+t*(C[1]-B[1])];const D=at(AB/(AB+AC));return Math.hypot(D[0],D[1]).toFixed(2);",
+  "distractor_solve": {
+   "10.74": "const A=[-3,-2],B=[-7,-5],C=[9,-11],AB=Math.hypot(B[0]-A[0],B[1]-A[1]),AC=Math.hypot(C[0]-A[0],C[1]-A[1]);const at=(t)=>[B[0]+t*(C[0]-B[0]),B[1]+t*(C[1]-B[1])];const D=at(AC/(AB+AC));return Math.hypot(D[0],D[1]).toFixed(2);",
+   "8.06": "const A=[-3,-2],B=[-7,-5],C=[9,-11],AB=Math.hypot(B[0]-A[0],B[1]-A[1]),AC=Math.hypot(C[0]-A[0],C[1]-A[1]);const at=(t)=>[B[0]+t*(C[0]-B[0]),B[1]+t*(C[1]-B[1])];const D=at(0.5);return Math.hypot(D[0],D[1]).toFixed(2);",
+   "7.44": "const A=[-3,-2],B=[-7,-5],C=[9,-11],AB=Math.hypot(B[0]-A[0],B[1]-A[1]),AC=Math.hypot(C[0]-A[0],C[1]-A[1]);const at=(t)=>[B[0]+t*(C[0]-B[0]),B[1]+t*(C[1]-B[1])];const ux=C[0]-B[0],uy=C[1]-B[1],t=((A[0]-B[0])*ux+(A[1]-B[1])*uy)/(ux*ux+uy*uy),D=at(t);return Math.hypot(D[0],D[1]).toFixed(2);"
+  },
+  "quantity_asked": "the distance from D (where the bisector of angle A meets BC) to the origin, √51.25 ≈ 7.16.",
+  "distractor_kind": {
+   "10.74": "bisector ratio reversed. (a) no parameter extreme. (b) neighbouring setup: the reversed point is the reflection of D through the midpoint of BC; nothing bounds |OD| there. (c) cheapest bounds: D is on segment BC, so the distance from O to line BC (≈ 7.14) ≤ |OD| ≤ max(|OB|, |OC|) ≈ 14.21; 10.74 strictly inside. (d) real: the most common bisector-theorem slip.",
+   "8.06": "median foot (midpoint). (a) no. (b) neighbouring setup: the median, not a bound. (c) inside (7.14, 14.21). (d) real: confuses bisector and median.",
+   "7.44": "altitude foot. (a) no. (b) none. (c) inside (7.14, 14.21). (d) real: confuses bisector and altitude."
+  },
+  "distractor_meta": {
+   "10.74": {
+    "direction": "over",
+    "error_kind": "bisector ratio reversed"
+   },
+   "8.06": {
+    "direction": "over",
+    "error_kind": "median foot used"
+   },
+   "7.44": {
+    "direction": "over",
+    "error_kind": "altitude foot used"
+   }
+  },
+  "bounds": [
+   "v ≥ distance from O to line BC ≈ 7.14",
+   "v ≤ |OC| ≈ 14.21"
+  ],
+  "mechanism": [
+   "angle bisector theorem",
+   "bisector divides opposite side in ratio of adjacent sides",
+   "point dividing a segment in a ratio",
+   "distance from origin to a point"
+  ],
+  "arith_class_check": "Two-decimal lengths; the key is √51.25 and two distractors are also irrational square roots (√65, √115.25); no integrality or divisibility is implied, and the key is not lone in any class.",
+  "one_sided_check": "Key is the smallest. Three different error kinds (reversed ratio, median, altitude). All three replace D by another point of segment BC, and whether that point is farther from the origin depends on where the origin projects onto line BC, which the stem does not show: with the origin moved to (9, −11) the reversed-ratio point is the nearest of the four.",
+  "interior_parity_check": "Interior options by value: 7.44 and 8.06 - both two-decimal with nonzero last digit, three significant digits; equally clean.",
+  "cheap_bound_check": "Cheapest one-sided bound: |OD| ≥ the distance from O to line BC ≈ 7.14 (D lies on BC); all three distractors are on the key side of it. The nearest distractor (7.44) is 3.9% above the key; separating them requires locating D with the bisector theorem, i.e. the work.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; every option is a point on BC, so direction depends on the origin's projection; mechanism absent from the live dump (no bisector-theorem row)."
+  }
+ },
+ {
+  "id": "AM25G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "law of sines in a triangulation problem",
+  "subskill": "law of sines then altitude",
+  "prompt": "Two survey stations, A and B, are 600 meters apart on a straight shoreline. A buoy, C, floats offshore. At station A, the angle between the shoreline (toward B) and the line of sight to the buoy measures 48°. At station B, the angle between the shoreline (toward A) and the line of sight to the buoy measures 55°. To the nearest tenth of a meter, what is the shortest distance from the buoy to the shoreline?",
+  "choices": [
+   "340.1",
+   "374.9",
+   "337.5",
+   "365.2"
+  ],
+  "correct_answer": "374.9",
+  "explanation": "In triangle ABC, angle C = 180° − 48° − 55° = 77°. By the law of sines, AC / sin 55° = AB / sin 77°, so AC = 600 sin 55° / sin 77° ≈ 504.4 meters. The shortest distance from C to the shoreline is the altitude from C to line AB, which is AC · sin 48° ≈ 504.4 × 0.7431 ≈ 374.9 meters. The option \"365.2\" treats angle C as a right angle, so AC = 600 sin 55° and the altitude is 600 sin 55° sin 48°. The option \"340.1\" pairs AC with the wrong angle in the law of sines (AC = 600 sin 48° / sin 77°) before multiplying by sin 48°. The option \"337.5\" uses the correct AC but multiplies by cos 48° instead of sin 48°.",
+  "solve": "const R=Math.PI/180;const AC=600*Math.sin(55*R)/Math.sin(77*R);return (AC*Math.sin(48*R)).toFixed(1);",
+  "distractor_solve": {
+   "365.2": "const R=Math.PI/180;return (600*Math.sin(55*R)*Math.sin(48*R)).toFixed(1);",
+   "340.1": "const R=Math.PI/180;const AC=600*Math.sin(48*R)/Math.sin(77*R);return (AC*Math.sin(48*R)).toFixed(1);",
+   "337.5": "const R=Math.PI/180;const AC=600*Math.sin(55*R)/Math.sin(77*R);return (AC*Math.cos(48*R)).toFixed(1);"
+  },
+  "quantity_asked": "the perpendicular distance from C to line AB = 600 sin 55° sin 48° / sin 77° ≈ 374.9.",
+  "distractor_kind": {
+   "365.2": "right angle assumed at C. (a) no parameter extreme. (b) neighbouring setup \"right triangle at C\" gives 365.2; it is not a stem-forced bound on the true altitude without the law of sines itself. (c) cheapest estimate: with the foot H between A and B, AH = h cot 48° and BH = h cot 55°, and cot 48° is the larger, so 600/(2 cot 48°) ≈ 333.2 < h < 600 sin 48° ≈ 445.9 (AC < AB because C is the largest angle); 365.2 strictly inside. (d) real: 77° looks nearly right.",
+   "340.1": "law of sines side/angle mismatch. (a) no. (b) none. (c) inside (333.2, 445.9). (d) real: pairing a side with the wrong opposite angle.",
+   "337.5": "cosine for sine in the altitude. (a) no. (b) none. (c) inside (333.2, 445.9), by 4.3. (d) real: trig ratio confusion in the final right triangle."
+  },
+  "distractor_meta": {
+   "365.2": {
+    "direction": "under",
+    "error_kind": "right angle assumed at the buoy"
+   },
+   "340.1": {
+    "direction": "under",
+    "error_kind": "law of sines side-angle mismatch"
+   },
+   "337.5": {
+    "direction": "under",
+    "error_kind": "cosine instead of sine"
+   }
+  },
+  "bounds": [
+   "v > 600/(2 cot 48°) ≈ 333.2",
+   "v < 600 sin 48° ≈ 445.9 (AC < AB since angle C is largest)"
+  ],
+  "mechanism": [
+   "triangulation from two stations",
+   "law of sines",
+   "altitude to the baseline",
+   "buoy distance from shore"
+  ],
+  "arith_class_check": "All four options are one-decimal lengths with a nonzero tenths digit; no integrality or divisibility is implied by a trigonometric length, and the key is not the lone member of any class.",
+  "one_sided_check": "Key is the largest. Three different error kinds. Their directions are not readable from the stem: the side-angle mismatch goes down only because 48° < 55° (with the angles swapped between the stations it goes up), cosine-for-sine goes down only because 48° > 45°, and the natural over-errors for this setup (AC · sin 55° ≈ 413.2, or reporting AC) are just as available.",
+  "interior_parity_check": "Interior options by value: 340.1 and 365.2 - both 4-significant-digit one-decimal numbers with nonzero last digits; equally clean.",
+  "cheap_bound_check": "Cheapest stem bounds: h < 600 sin 48° ≈ 445.9 (above every option) and h > 600/(2 cot 48°) ≈ 333.2 (below every option), so all three distractors lie on the key side of both. The nearest distractor (365.2) is 2.6% below the key; separating them requires dividing by sin 77°, i.e. the law-of-sines step that is the item's own work.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "A grader may call \"sin C < 1 so h > 600 sin55 sin48\" a cheap bound; it is the law-of-sines step itself, but it would put 365.2 on the edge."
+  }
+ },
+ {
+  "id": "AM25G-03",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "similar right triangles in a ladder-over-fence setup",
+  "subskill": "similar triangles: ladder over a fence",
+  "prompt": "A vertical fence 2.2 meters tall runs parallel to the vertical wall of a building, 3.5 meters from the wall, on level ground. A straight ladder has its foot on the ground 1.9 meters from the fence, on the side away from the building. The ladder just touches the top of the fence, and its upper end rests against the wall. To the nearest hundredth of a meter, what is the length of the ladder?",
+  "choices": [
+   "8.26",
+   "7.17",
+   "10.03",
+   "6.75"
+  ],
+  "correct_answer": "8.26",
+  "explanation": "The ladder's foot is 1.9 + 3.5 = 5.4 meters from the wall. The ladder rises 2.2 meters over the first 1.9 meters, so by similar triangles it reaches the wall at a height of 2.2 × 5.4 / 1.9 ≈ 6.253 meters. Its length is √(6.253² + 5.4²) ≈ √(39.10 + 29.16) ≈ 8.26 meters. The option \"7.17\" uses the correct height but only the 3.5-meter fence-to-wall distance as the horizontal run. The option \"6.75\" uses only the rise above the fence (2.2 × 3.5 / 1.9 ≈ 4.05) as the wall height, forgetting to add the fence's 2.2 meters. The option \"10.03\" adds the fence height to the full similar-triangle height a second time (6.25 + 2.2).",
+  "solve": "const H=2.2*5.4/1.9;return Math.hypot(H,5.4).toFixed(2);",
+  "distractor_solve": {
+   "7.17": "const H=2.2*5.4/1.9;return Math.hypot(H,3.5).toFixed(2);",
+   "6.75": "const H=2.2*3.5/1.9;return Math.hypot(H,5.4).toFixed(2);",
+   "10.03": "const H=2.2*5.4/1.9+2.2;return Math.hypot(H,5.4).toFixed(2);"
+  },
+  "quantity_asked": "the full length of the ladder from the ground to the wall, √((2.2·5.4/1.9)² + 5.4²) ≈ 8.26.",
+  "distractor_kind": {
+   "7.17": "horizontal run truncated to 3.5. (a) no parameter extreme. (b) neighbouring setup: the part of the ladder beyond the fence is 8.26·3.5/5.4 = 5.35, not 7.17, so it is not an intermediate quantity. (c) cheapest bound: ladder > 5.4 (horizontal) and ladder < 5.4 + 6.25 (sum of legs, needs the height); 7.17 strictly inside. (d) real: uses the wrong ground distance.",
+   "6.75": "wall height missing the fence height. (a) no. (b) the rise above the fence 4.05 is an intermediate, but 6.75 is not it. (c) inside (5.4, 11.65). (d) real: forgets to add the 2.2 m below the fence top.",
+   "10.03": "fence height double-counted. (a) no. (b) none. (c) inside (5.4, 11.65). (d) real: adds the fence to a height that already includes it."
+  },
+  "distractor_meta": {
+   "7.17": {
+    "direction": "under",
+    "error_kind": "wrong horizontal run"
+   },
+   "6.75": {
+    "direction": "under",
+    "error_kind": "fence height not added"
+   },
+   "10.03": {
+    "direction": "over",
+    "error_kind": "fence height added twice"
+   }
+  },
+  "bounds": [
+   "v > 5.4",
+   "v < 5.4 + wall height"
+  ],
+  "mechanism": [
+   "ladder over a fence",
+   "similar right triangles slope",
+   "ladder touches top of fence reaches wall",
+   "Pythagorean length after similar triangles"
+  ],
+  "arith_class_check": "Two-decimal lengths; nothing in the stem forces a rational or integer length, and the key is not the lone member of any class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 7.17 and 8.26 - both two-decimal, three significant digits, nonzero last digit; equally clean.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key, errors on both sides, no option on a bound."
+  }
+ },
+ {
+  "id": "AM25G-04",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "lateral surface area of a frustum",
+  "subskill": "frustum lateral area: slant height",
+  "prompt": "A lampshade has the shape of the curved surface of a frustum of a right circular cone, open at both ends. The top opening has a diameter of 14 centimeters, the bottom opening has a diameter of 30 centimeters, and the perpendicular distance between the two openings is 15 centimeters. The lateral surface area of a frustum whose circular ends have radii r and R and whose slant height is s is π(r + R)s. To the nearest hundredth of a square centimeter, what is the lateral surface area of the lampshade?",
+  "choices": [
+   "1466.15",
+   "1036.73",
+   "1174.96",
+   "1515.81"
+  ],
+  "correct_answer": "1174.96",
+  "explanation": "The radii are 7 and 15 centimeters. The slant height is the hypotenuse of a right triangle whose legs are the height, 15, and the difference of the radii, 15 − 7 = 8: s = √(15² + 8²) = 17. The lateral area is π(7 + 15)(17) = 374π ≈ 1174.96 square centimeters. The option \"1036.73\" uses the height 15 in place of the slant height (330π). The option \"1466.15\" finds the slant height from the height and the bottom radius, √(15² + 15²) ≈ 21.21, instead of the difference of the radii. The option \"1515.81\" finds the slant height from the height and the difference of the diameters, √(15² + 16²) ≈ 21.93.",
+  "solve": "const s=Math.hypot(15,(30-14)/2);return (Math.PI*(7+15)*s).toFixed(2);",
+  "distractor_solve": {
+   "1036.73": "return (Math.PI*(7+15)*15).toFixed(2);",
+   "1466.15": "return (Math.PI*(7+15)*Math.hypot(15,15)).toFixed(2);",
+   "1515.81": "return (Math.PI*(7+15)*Math.hypot(15,16)).toFixed(2);"
+  },
+  "quantity_asked": "the curved (lateral) area only, π(7 + 15)·17 = 374π ≈ 1174.96.",
+  "distractor_kind": {
+   "1036.73": "height used as slant. (a) no parameter extreme. (b) neighbouring setup: π(r+R)h is not a stem-forced bound unless the formula is already being applied. (c) cheapest containment: 2πr·s < area < 2πR·s, i.e. 748 < area < 1602 with s = 17; 1036.73 strictly inside. (d) real: confuses height and slant height.",
+   "1466.15": "slant from height and R. (a) no. (b) none. (c) inside (748, 1602). (d) real: drops the subtraction of the radii.",
+   "1515.81": "slant from height and diameter difference. (a) no. (b) none. (c) inside (748, 1602). (d) real: works with diameters in the slant triangle."
+  },
+  "distractor_meta": {
+   "1036.73": {
+    "direction": "under",
+    "error_kind": "height for slant height"
+   },
+   "1466.15": {
+    "direction": "over",
+    "error_kind": "slant leg = bottom radius"
+   },
+   "1515.81": {
+    "direction": "over",
+    "error_kind": "slant leg = diameter difference"
+   }
+  },
+  "bounds": [
+   "v > 2π·7·17 ≈ 748",
+   "v < 2π·15·17 ≈ 1602"
+  ],
+  "mechanism": [
+   "frustum lateral surface area",
+   "lampshade open at both ends",
+   "slant height from radius difference",
+   "given formula pi(r+R)s"
+  ],
+  "arith_class_check": "Areas to the hundredth from multiples of π; every option is a two-decimal number with a nonzero last digit, and no integrality or divisibility property singles out the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 1174.96 and 1466.15 - both four-digit numbers with two nonzero decimals; equally clean.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; all distractors inside the 2πrs-2πRs containment band."
+  }
+ },
+ {
+  "id": "AM25G-05",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "area of a triangle inscribed in a rectangle by subtraction",
+  "subskill": "composite area: rectangle minus corner triangles",
+  "prompt": "Rectangle ABCD has AB = 24 and BC = 15. Point E lies on side AB so that AE : EB = 1 : 3, and point F lies on side BC so that BF : FC = 2 : 3. What is the area of triangle DEF?",
+  "choices": [
+   "144",
+   "165",
+   "126",
+   "153"
+  ],
+  "correct_answer": "153",
+  "explanation": "AE = 24 × 1/4 = 6 and EB = 18; BF = 15 × 2/5 = 6 and FC = 9. The rectangle's area is 24 × 15 = 360. Remove the three right triangles at the corners: DAE has legs AD = 15 and AE = 6 (area 45), EBF has legs EB = 18 and BF = 6 (area 54), and FCD has legs FC = 9 and CD = 24 (area 108). The area of triangle DEF is 360 − 45 − 54 − 108 = 153. The option \"144\" reads AE : EB = 1 : 3 as AE = 1/3 of AB (AE = 8). The option \"165\" reads BF : FC = 2 : 3 as BF = 2/3 of BC (BF = 10). The option \"126\" uses AB instead of AD as the second leg of triangle DAE.",
+  "solve": "const L=24,W=15,AE=L/4,BF=W*2/5;return String(L*W-0.5*AE*W-0.5*(L-AE)*BF-0.5*(W-BF)*L);",
+  "distractor_solve": {
+   "126": "const L=24,W=15,AE=L/4,BF=W*2/5;return String(L*W-0.5*AE*L-0.5*(L-AE)*BF-0.5*(W-BF)*L);",
+   "144": "const L=24,W=15,AE=L/3,BF=W*2/5;return String(L*W-0.5*AE*W-0.5*(L-AE)*BF-0.5*(W-BF)*L);",
+   "165": "const L=24,W=15,AE=L/4,BF=W*2/3;return String(L*W-0.5*AE*W-0.5*(L-AE)*BF-0.5*(W-BF)*L);"
+  },
+  "quantity_asked": "the area of triangle DEF = 360 − 45 − 54 − 108 = 153.",
+  "distractor_kind": {
+   "126": "wrong leg in a corner triangle. (a) no. (b) none. (c) inside (0, 180). (d) real: uses the long side as the leg of triangle DAE.",
+   "144": "part-to-part ratio read as part-to-whole on AB. (a) no parameter extreme. (b) none. (c) cheapest bound: a triangle with vertices on a rectangle's boundary has at most half its area, so area < 180; 144 strictly inside. (d) real: ratio misread.",
+   "165": "part-to-part ratio read as part-to-whole on BC. (a) no. (b) none. (c) inside (0, 180). (d) real."
+  },
+  "distractor_meta": {
+   "126": {
+    "direction": "under",
+    "error_kind": "wrong leg in corner triangle"
+   },
+   "144": {
+    "direction": "under",
+    "error_kind": "part:part ratio as fraction of AB"
+   },
+   "165": {
+    "direction": "over",
+    "error_kind": "part:part ratio as fraction of BC"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 180 (half the rectangle)"
+  ],
+  "mechanism": [
+   "triangle inside rectangle area by subtraction",
+   "three corner right triangles",
+   "points dividing sides in a ratio",
+   "rectangle minus corners"
+  ],
+  "arith_class_check": "Every option is a whole number and a multiple of 3 (the corner triangles have integer areas here); the key is not alone in any class, and the stem fixes only that the area is a multiple of 0.5.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 144 and 153 - three-digit integers, neither a multiple of 5 or 10; 144 is a perfect square but the key is not the cleaner one, and no option is evenly spaced (126, 144, 153, 165 have gaps 18, 9, 12).",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; under and over errors; all options below the half-rectangle bound."
+  }
+ },
+ {
+  "id": "AM25G-06",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "angles of elevation and depression from one observer",
+  "subskill": "elevation and depression to one tower",
+  "prompt": "The roof of a building is 40 meters above level ground. A tower stands on the same level ground some distance away. From a point on the edge of the roof, the angle of elevation to the top of the tower measures 28°, and the angle of depression to the base of the tower measures 35°. To the nearest hundredth of a meter, how tall is the tower?",
+  "choices": [
+   "66.82",
+   "70.37",
+   "54.89",
+   "61.27"
+  ],
+  "correct_answer": "70.37",
+  "explanation": "The angle of depression to the base gives the horizontal distance d from the building to the tower: tan 35° = 40/d, so d = 40/tan 35° ≈ 57.13 meters. The part of the tower above roof level is d·tan 28° ≈ 57.13 × 0.5317 ≈ 30.37 meters. The tower's height is 40 + 30.37 = 70.37 meters. The option \"54.89\" finds the horizontal distance as 40·tan 35° ≈ 28.01 instead of 40/tan 35°. The option \"66.82\" uses sin 28° instead of tan 28° for the part above the roof, 57.13 × sin 28° ≈ 26.82. The option \"61.27\" skips the depression angle and uses the roof height, 40, as the horizontal distance: 40 + 40·tan 28°.",
+  "solve": "const R=Math.PI/180,H=40,d=H/Math.tan(35*R);return (H+d*Math.tan(28*R)).toFixed(2);",
+  "distractor_solve": {
+   "54.89": "const R=Math.PI/180,H=40,d=H*Math.tan(35*R);return (H+d*Math.tan(28*R)).toFixed(2);",
+   "66.82": "const R=Math.PI/180,H=40,d=H/Math.tan(35*R);return (H+d*Math.sin(28*R)).toFixed(2);",
+   "61.27": "const R=Math.PI/180,H=40;return (H+H*Math.tan(28*R)).toFixed(2);"
+  },
+  "quantity_asked": "the full height of the tower, 40 + (40/tan 35°)·tan 28° ≈ 70.37.",
+  "distractor_kind": {
+   "54.89": "horizontal distance from tan instead of cot. (a) no parameter extreme. (b) neighbouring setup: none; 28.01 is not an intermediate of the true process. (c) cheapest bounds: the tower is taller than the roof (v > 40), and because 28° < 35° the part above the roof is shorter than 40, so v < 80; 54.89 strictly inside. (d) real: inverts the tangent ratio.",
+   "66.82": "sine for tangent in the upper triangle. (a) no. (b) none. (c) inside (40, 80). (d) real: trig-ratio slip.",
+   "61.27": "roof height taken as the horizontal distance. (a) no. (b) none: it is the answer if the depression angle were 45°, which is not a bound. (c) inside (40, 80). (d) real: skips a step."
+  },
+  "distractor_meta": {
+   "54.89": {
+    "direction": "under",
+    "error_kind": "horizontal distance via tan not cot"
+   },
+   "66.82": {
+    "direction": "under",
+    "error_kind": "sine for tangent"
+   },
+   "61.27": {
+    "direction": "under",
+    "error_kind": "roof height used as horizontal distance"
+   }
+  },
+  "bounds": [
+   "v > 40 (taller than the roof)",
+   "v < 80 (elevation 28° < depression 35°)"
+  ],
+  "mechanism": [
+   "angle of elevation and angle of depression from a rooftop",
+   "height of a tower from a building",
+   "horizontal distance from angle of depression",
+   "two right triangles sharing a horizontal leg"
+  ],
+  "arith_class_check": "Two-decimal lengths from tangents; no integrality or divisibility; the key is not lone in any class.",
+  "one_sided_check": "Key is the largest. Three different error kinds. Their directions are not stem-readable: the tan-for-cot slip shrinks d only because 35° < 45° (at a 50° depression it overshoots); roof-height-as-distance undershoots only because tan 35° < 1; sine for tangent always undershoots but is one of three.",
+  "interior_parity_check": "Interior options by value: 61.27 and 66.82 - both two-decimal with nonzero last digit; equally clean.",
+  "cheap_bound_check": "Cheapest one-sided bounds: 40 < v < 80 (and, since tan x / x increases, the upper part is below 40·28/35 = 32, so v < 72); all three distractors lie on the key side of every one. The nearest distractor (66.82) is 5.0% below the key; separating them needs d and tan 28°, the item's own work.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; directions depend on the angles relative to 45°; mechanism absent from the dump (only a single angle-of-depression row)."
+  }
+ },
+ {
+  "id": "AM25G-07",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "third vertex of an equilateral triangle in the coordinate plane",
+  "subskill": "equilateral triangle: locating the apex",
+  "prompt": "In the standard (x,y) coordinate plane, points A(−6, −6) and B(4, 1) are two vertices of equilateral triangle ABC, and vertex C lies above line AB. To the nearest hundredth of a coordinate unit, what is the distance from C to the origin?",
+  "choices": [
+   "9.88",
+   "12.25",
+   "9.37",
+   "10.97"
+  ],
+  "correct_answer": "9.37",
+  "explanation": "AB = √(10² + 7²) = √149 ≈ 12.207, and the midpoint of AB is M(−1, −2.5). Vertex C lies on the perpendicular bisector of AB at a distance from M equal to the triangle's height, (√3/2)(12.207) ≈ 10.571. A unit vector perpendicular to AB and pointing up is (−7, 10)/√149, so C ≈ (−1 − 6.062, −2.5 + 8.660) = (−7.062, 6.160), and the distance from C to the origin is √(7.062² + 6.160²) ≈ 9.37. The option \"12.25\" takes the vertex below line AB, (5.062, −11.160). The option \"10.97\" moves the full side length 12.207 from M instead of the height, reaching (−8, 7.5). The option \"9.88\" measures the height from B instead of from the midpoint M, reaching (−2.062, 9.660).",
+  "solve": "const ax=-6,ay=-6,bx=4,by=1,dx=bx-ax,dy=by-ay,s=Math.hypot(dx,dy),mx=(ax+bx)/2,my=(ay+by)/2,nx=-dy/s,ny=dx/s,h=s*Math.sqrt(3)/2;return Math.hypot(mx+h*nx,my+h*ny).toFixed(2);",
+  "distractor_solve": {
+   "12.25": "const ax=-6,ay=-6,bx=4,by=1,dx=bx-ax,dy=by-ay,s=Math.hypot(dx,dy),mx=(ax+bx)/2,my=(ay+by)/2,nx=-dy/s,ny=dx/s,h=s*Math.sqrt(3)/2;return Math.hypot(mx-h*nx,my-h*ny).toFixed(2);",
+   "10.97": "const ax=-6,ay=-6,bx=4,by=1,dx=bx-ax,dy=by-ay,s=Math.hypot(dx,dy),mx=(ax+bx)/2,my=(ay+by)/2,nx=-dy/s,ny=dx/s,h=s*Math.sqrt(3)/2;return Math.hypot(mx+s*nx,my+s*ny).toFixed(2);",
+   "9.88": "const ax=-6,ay=-6,bx=4,by=1,dx=bx-ax,dy=by-ay,s=Math.hypot(dx,dy),mx=(ax+bx)/2,my=(ay+by)/2,nx=-dy/s,ny=dx/s,h=s*Math.sqrt(3)/2;return Math.hypot(bx+h*nx,by+h*ny).toFixed(2);"
+  },
+  "quantity_asked": "the distance from vertex C (above AB) to the origin, ≈ 9.37.",
+  "distractor_kind": {
+   "12.25": "vertex on the wrong side of AB. (a) no parameter extreme. (b) neighbouring setup: the other equilateral apex; it obeys the same bracket. (c) cheapest one-step bracket: |OC| lies within |OM| = 2.69 of the height 10.57, i.e. in (7.88, 13.26); 12.25 strictly inside. (d) real: ignores \"above\".",
+   "10.97": "side length used as the height. (a) no. (b) none. (c) inside (7.88, 13.26). (d) real: equilateral height confused with side.",
+   "9.88": "height erected at B instead of the midpoint. (a) no. (b) none. (c) inside (7.88, 13.26). (d) real: wrong foot of the altitude."
+  },
+  "distractor_meta": {
+   "12.25": {
+    "direction": "over",
+    "error_kind": "wrong side of AB"
+   },
+   "10.97": {
+    "direction": "over",
+    "error_kind": "side length used as height"
+   },
+   "9.88": {
+    "direction": "over",
+    "error_kind": "altitude from B not the midpoint"
+   }
+  },
+  "bounds": [
+   "v > h − |OM| ≈ 7.88",
+   "v < h + |OM| ≈ 13.26"
+  ],
+  "mechanism": [
+   "equilateral triangle third vertex coordinates",
+   "perpendicular bisector of a segment",
+   "height of equilateral triangle sqrt3/2",
+   "distance from origin to vertex"
+  ],
+  "arith_class_check": "Two-decimal lengths from irrational coordinates; no integrality or divisibility property, and the key is not the lone member of any class.",
+  "one_sided_check": "Key is the smallest. Three different error kinds (wrong side, side for height, wrong foot). The stem does not show their direction: whether the other apex is nearer or farther depends on which side of AB the origin lies (with A and B moved 12 units up the wrong-side vertex is at 5.13 against 19.49), and erecting the height at A instead of B, or using the side, moves the point toward or away from the origin according to the same geometry.",
+  "interior_parity_check": "Interior options by value: 9.88 and 10.97 - both two-decimal with nonzero last digit; equally clean.",
+  "cheap_bound_check": "Cheapest one-sided bound: |OC| is within |OM| ≈ 2.69 of the height 10.57, so 7.88 < |OC| < 13.26; all three distractors lie on the key side of the lower bound and inside the upper one. The nearest distractor (9.88) is 5.4% above the key; separating them needs the coordinates of C, i.e. the work.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; AB is slanted (slope 0.7) so no axis-aligned shortcut estimates C; all options inside the |OM|-bracket."
+  }
+ },
+ {
+  "id": "AM25G-08",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "angle between a lateral edge and the base of a pyramid",
+  "subskill": "right-triangle trig in a square pyramid",
+  "prompt": "A right pyramid has a square base with edges 10 centimeters long, and each of its 4 lateral edges is 13 centimeters long. To the nearest hundredth of a degree, what is the measure of the angle that a lateral edge makes with the base of the pyramid?",
+  "choices": [
+   "59.49",
+   "47.49",
+   "49.59",
+   "57.05"
+  ],
+  "correct_answer": "57.05",
+  "explanation": "The apex is directly above the center of the square base. A lateral edge, the pyramid's height, and the segment from the center of the base to a corner form a right triangle. The center-to-corner distance is half the base diagonal, 10√2 / 2 ≈ 7.071, and the lateral edge 13 is the hypotenuse, so the angle θ satisfies cos θ = 7.071/13 and θ ≈ 57.05°. (Equivalently, the height is √(13² − 7.071²) = √119 ≈ 10.909 and tan θ = 10.909/7.071.) The option \"49.59\" finds the height from the lateral edge and the full base edge, √(13² − 10²) = √69 ≈ 8.307, and then uses tan⁻¹(8.307/7.071). The option \"59.49\" uses the slant height √(13² − 5²) = 12 as if it were the height, tan⁻¹(12/7.071). The option \"47.49\" uses the full base edge 10 as the horizontal leg, tan⁻¹(10.909/10).",
+  "solve": "const d=10*Math.SQRT2/2,h=Math.sqrt(169-d*d);return (Math.atan2(h,d)*180/Math.PI).toFixed(2);",
+  "distractor_solve": {
+   "49.59": "const d=10*Math.SQRT2/2;return (Math.atan2(Math.sqrt(169-100),d)*180/Math.PI).toFixed(2);",
+   "59.49": "const d=10*Math.SQRT2/2;return (Math.atan2(12,d)*180/Math.PI).toFixed(2);",
+   "47.49": "const d=10*Math.SQRT2/2,h=Math.sqrt(169-d*d);return (Math.atan2(h,10)*180/Math.PI).toFixed(2);"
+  },
+  "quantity_asked": "the angle between a lateral edge and the base plane, cos⁻¹(5√2/13) ≈ 57.05°.",
+  "distractor_kind": {
+   "49.59": "height from the wrong right triangle. (a) no parameter extreme. (b) neighbouring setup: none. (c) cheapest special-angle bounds: cos θ = 5√2/13 ≈ 0.544 lies between 1/2 and √2/2, so 45° < θ < 60°; 49.59 strictly inside. (d) real: pairs the lateral edge with a base edge instead of the half-diagonal.",
+   "59.49": "slant height used as height. (a) no. (b) none. (c) inside (45, 60). (d) real.",
+   "47.49": "base edge used as the horizontal leg. (a) no. (b) none. (c) inside (45, 60). (d) real: uses the edge instead of the half-diagonal."
+  },
+  "distractor_meta": {
+   "49.59": {
+    "direction": "under",
+    "error_kind": "height from edge and base edge"
+   },
+   "59.49": {
+    "direction": "over",
+    "error_kind": "slant height as height"
+   },
+   "47.49": {
+    "direction": "under",
+    "error_kind": "full edge as horizontal leg"
+   }
+  },
+  "bounds": [
+   "v > 45 (cos θ < √2/2)",
+   "v < 60 (cos θ > 1/2)"
+  ],
+  "mechanism": [
+   "square pyramid lateral edge angle with base",
+   "half diagonal of base",
+   "right triangle inside pyramid",
+   "inverse cosine angle"
+  ],
+  "arith_class_check": "Angles to the hundredth from inverse trig; no class property. The key is not lone in any class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 57.05 and 59.49 - both two-decimal, four significant digits, nonzero last digit; equally clean.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; all four options inside the cheap 45-60 degree bracket; errors on both sides."
+  }
+ },
+ {
+  "id": "AM25G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "tangent segments and arc length",
+  "subskill": "tangents from an external point plus arc",
+  "prompt": "Segments PA and PB are tangent at points A and B, respectively, to a circle with a radius of 9 centimeters, and the measure of angle APB is 40°. A region is bounded by segment PA, segment PB, and the minor arc AB. To the nearest hundredth of a centimeter, what is the perimeter of this region?",
+  "choices": [
+   "71.45",
+   "74.62",
+   "55.74",
+   "84.01"
+  ],
+  "correct_answer": "71.45",
+  "explanation": "Let O be the center. Radii OA and OB are perpendicular to the tangents, so in quadrilateral PAOB the angle AOB = 360° − 90° − 90° − 40° = 140°. The minor arc AB has length 9 × 140° × π/180° ≈ 21.991. In right triangle PAO, angle APO = 20°, so PA = 9 / tan 20° ≈ 24.727, and PB = PA. The perimeter is 2(24.727) + 21.991 ≈ 71.45. The option \"55.74\" uses 40° as the central angle of the arc. The option \"74.62\" uses the distance PO = 9 / sin 20° ≈ 26.31 as the length of each tangent segment. The option \"84.01\" uses the major arc (220°) instead of the minor arc.",
+  "solve": "const R=Math.PI/180;const r=9,PT=r/Math.tan(20*R);return (2*PT+r*140*R).toFixed(2);",
+  "distractor_solve": {
+   "55.74": "const R=Math.PI/180;const r=9,PT=r/Math.tan(20*R);return (2*PT+r*40*R).toFixed(2);",
+   "74.62": "const R=Math.PI/180;const r=9,PT=r/Math.tan(20*R);return (2*r/Math.sin(20*R)+r*140*R).toFixed(2);",
+   "84.01": "const R=Math.PI/180;const r=9,PT=r/Math.tan(20*R);return (2*PT+r*220*R).toFixed(2);"
+  },
+  "quantity_asked": "the full perimeter 2·PA + minor arc AB ≈ 71.45.",
+  "distractor_kind": {
+   "55.74": "central angle taken as 40°. (a) no parameter extreme. (b) neighbouring setup: 40° arc is not a bound. (c) cheapest bracket: the minor arc lies inside the kite, so arc < PA + PB, giving perimeter < 4·PA ≈ 98.9, and perimeter > 2·PA ≈ 49.5; 55.74 strictly inside (both need PA, which is part of the work; without PA no bracket exists). (d) real.",
+   "74.62": "PO used as the tangent length. (a) no. (b) none. (c) inside (49.5, 98.9). (d) real: hypotenuse for leg.",
+   "84.01": "major arc. (a) no. (b) none. (c) inside (49.5, 98.9). (d) real: wrong arc."
+  },
+  "distractor_meta": {
+   "55.74": {
+    "direction": "under",
+    "error_kind": "arc angle = angle at P"
+   },
+   "74.62": {
+    "direction": "over",
+    "error_kind": "PO used as tangent length"
+   },
+   "84.01": {
+    "direction": "over",
+    "error_kind": "major arc"
+   }
+  },
+  "bounds": [
+   "v > 2·PA",
+   "v < 4·PA"
+  ],
+  "mechanism": [
+   "two tangent segments from an external point",
+   "central angle supplementary to angle between tangents",
+   "arc length plus tangent lengths",
+   "perimeter of region bounded by tangents and arc"
+  ],
+  "arith_class_check": "Two-decimal lengths involving π and tan 20°; no class property; the key is not lone in any class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 71.45 and 74.62 - both two-decimal, four significant digits, nonzero last digit; equally clean.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; no option pair sums to a stem quantity (arcs sum to 18π but no option is an arc alone)."
+  }
+ },
+ {
+  "id": "AM25G-10",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "angle formed by two secants outside a circle",
+  "subskill": "inscribed angles to arcs to exterior angle",
+  "prompt": "Points A, B, C, and D lie on a circle in that order. The measure of angle ADB is 17°, the measure of angle BDC is 37°, and the measure of angle CAD is 30°. Line AB and line DC intersect at point P outside the circle, beyond points B and C. What is the measure, in degrees, of angle BPC ?",
+  "choices": [
+   "66",
+   "79",
+   "59",
+   "74"
+  ],
+  "correct_answer": "59",
+  "explanation": "Each inscribed angle is half its intercepted arc, so arc AB = 34°, arc BC = 74°, and arc CD = 60°, which leaves arc DA = 360° − 34° − 74° − 60° = 192°. An angle formed by two secants that meet outside a circle measures half the difference of the intercepted arcs, here the far arc AD and the near arc BC: (192° − 74°)/2 = 59°. (Equivalently, in triangle APD, angle PAD = angle BAC + angle CAD = 37° + 30° = 67°, because angle BAC and angle BDC intercept the same arc, and angle PDA = 17° + 37° = 54°, so angle P = 180° − 67° − 54° = 59°.) The option \"66\" subtracts arc CD instead of arc BC: (192° − 60°)/2. The option \"79\" subtracts arc AB instead of arc BC: (192° − 34°)/2. The option \"74\" forgets to double angle CAD, taking arc CD as 30°, so arc DA = 222° and (222° − 74°)/2 = 74°.",
+  "solve": "const AB=34,BC=74,CD=60,DA=360-AB-BC-CD;return ((DA-BC)/2)+\"\";",
+  "distractor_solve": {
+   "66": "const AB=34,BC=74,CD=60,DA=360-AB-BC-CD;return ((DA-CD)/2)+\"\";",
+   "74": "const AB=34,BC=74,CD=30,DA=360-AB-BC-CD;return ((DA-BC)/2)+\"\";",
+   "79": "const AB=34,BC=74,CD=60,DA=360-AB-BC-CD;return ((DA-AB)/2)+\"\";"
+  },
+  "quantity_asked": "the measure of angle BPC, (arc AD − arc BC)/2 = 59°.",
+  "distractor_kind": {
+   "66": "wrong near arc (CD). (a) no parameter extreme. (b) neighbouring setup: none. (c) cheapest bound: angle ADC = 17° + 37° = 54° and angle DAB > angle CAD = 30°, so in triangle APD angle P < 180° − 54° − 30° = 96°; 66 strictly inside. (d) real: picks the wrong intercepted arc.",
+   "74": "one inscribed angle not doubled. (a) no. (b) none. (c) inside (0, 96). (d) real: forgets the factor 2 on one arc.",
+   "79": "wrong near arc (AB). (a) no. (b) none. (c) inside (0, 96). (d) real: as above, other arc."
+  },
+  "distractor_meta": {
+   "66": {
+    "direction": "over",
+    "error_kind": "near arc taken as CD"
+   },
+   "74": {
+    "direction": "over",
+    "error_kind": "inscribed angle not doubled"
+   },
+   "79": {
+    "direction": "over",
+    "error_kind": "near arc taken as AB"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 96 (180 − angle ADC − angle CAD)"
+  ],
+  "mechanism": [
+   "angle formed by two secants outside a circle",
+   "half the difference of intercepted arcs",
+   "inscribed angle half the arc",
+   "four points on a circle in order"
+  ],
+  "arith_class_check": "Whole-degree options (59, 66, 74, 79); every path gives an integer, so integrality singles out nothing; two odd and two even, two primes (59, 79), none a multiple of 5; the key is not lone in any class.",
+  "one_sided_check": "Key is the smallest. Three error kinds (wrong near arc CD, wrong near arc AB, undoubled angle). Two of their directions depend on the numbers: subtracting arc CD instead of BC raises the answer only because angle BDC (37°) exceeds angle CAD (30°), and subtracting arc AB only because 37° exceeds 17°; with BDC the smallest given angle both would undershoot.",
+  "interior_parity_check": "Interior options by value: 66 and 74 - both two-digit integers, neither a multiple of 5; equally clean.",
+  "cheap_bound_check": "Cheapest one-sided bound: angle P < 180° − (17° + 37°) − 30° = 96° (triangle APD with angle A > 30°); all three distractors lie on the key side of it. No cheap lower bound exists between 59 and 66; separating them needs angle BAC = angle BDC or the arc subtraction, i.e. the item's work. The nearest distractor (66) is 7 degrees above the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; near-arc error directions depend on which given angle is largest; secant-exterior-angle mechanism absent from the dump."
+  }
+ },
+ {
+  "id": "AM25G-11",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "composition of a reflection and a dilation",
+  "subskill": "reflection then dilation about a point",
+  "prompt": "In the standard (x,y) coordinate plane, point P(7, −2) is reflected across the line y = 3. The image is then dilated by a scale factor of 1.5 with the center of dilation at the point (1, 1), producing point Q. To the nearest hundredth of a coordinate unit, what is the distance between P and Q ?",
+  "choices": [
+   "11.88",
+   "13.83",
+   "7.92",
+   "9.49"
+  ],
+  "correct_answer": "13.83",
+  "explanation": "P is 5 units below the line y = 3, so its reflection is 5 units above it: (7, 8). Dilating (7, 8) about (1, 1) by 1.5 multiplies its displacement (6, 7) from the center by 1.5, giving (9, 10.5), so Q = (1 + 9, 1 + 10.5) = (10, 11.5). Then PQ = √((10 − 7)² + (11.5 + 2)²) = √(9 + 182.25) ≈ 13.83. The option \"11.88\" performs the dilation first and the reflection second, giving (10, 9.5). The option \"9.49\" reflects P to (7, 5) by computing 3 − (−2), then dilates to (10, 7). The option \"7.92\" divides the displacement by 1.5 instead of multiplying, giving (5, 5.67).",
+  "solve": "const Rx=7,Ry=2*3-(-2),Qx=1+1.5*(Rx-1),Qy=1+1.5*(Ry-1);return Math.hypot(Qx-7,Qy+2).toFixed(2);",
+  "distractor_solve": {
+   "11.88": "const Dx=1+1.5*(7-1),Dy=1+1.5*(-2-1),Qx=Dx,Qy=2*3-Dy;return Math.hypot(Qx-7,Qy+2).toFixed(2);",
+   "9.49": "const Rx=7,Ry=3-(-2),Qx=1+1.5*(Rx-1),Qy=1+1.5*(Ry-1);return Math.hypot(Qx-7,Qy+2).toFixed(2);",
+   "7.92": "const Rx=7,Ry=2*3-(-2),Qx=1+(Rx-1)/1.5,Qy=1+(Ry-1)/1.5;return Math.hypot(Qx-7,Qy+2).toFixed(2);"
+  },
+  "quantity_asked": "the distance PQ from the original point to its final image, √(3² + 13.5²) ≈ 13.83.",
+  "distractor_kind": {
+   "11.88": "order of transformations reversed. (a) no parameter extreme. (b) neighbouring setup: the reversed composition is not a bound. (c) cheapest estimate: none bounds PQ without locating Q; every option is a plain distance. (d) real: composition order.",
+   "9.49": "reflection computed as k − y. (a) no. (b) none. (c) as above. (d) real: uses the distance to the line as the new coordinate.",
+   "7.92": "scale factor inverted. (a) no. (b) none. (c) as above. (d) real: shrinks instead of enlarging."
+  },
+  "distractor_meta": {
+   "11.88": {
+    "direction": "under",
+    "error_kind": "composition order reversed"
+   },
+   "9.49": {
+    "direction": "under",
+    "error_kind": "reflection coordinate slip"
+   },
+   "7.92": {
+    "direction": "under",
+    "error_kind": "scale factor inverted"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "reflection across a horizontal line then dilation",
+   "dilation about a point not the origin",
+   "composition of transformations",
+   "distance between point and final image"
+  ],
+  "arith_class_check": "Two-decimal distances, all irrational square roots; no class property; the key is not lone in any class.",
+  "one_sided_check": "Key is the largest. Three different error kinds. The stem does not show the direction: reversing the order moves Q down here only because P lies below the center; inverting the scale factor shortens PQ here only because the reflected point lies beyond the center from P; with P(7, 6) the reversed order gives the larger distance.",
+  "interior_parity_check": "Interior options by value: 9.49 and 11.88 - both two-decimal with nonzero last digit; equally clean.",
+  "cheap_bound_check": "Cheapest one-sided reasoning: PQ is at least the vertical gap |y_Q + 2| and the reflection alone moves P 10 units; neither gives a value between 11.88 and 13.83 without computing Q. The nearest distractor (11.88) is 14% below the key and comes from the same arithmetic in the other order.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; directions depend on P relative to line and center. Nearest live row act 7bee37a9 is a single dilation; this composes reflection, dilation and a distance."
+  }
+ }
+]

@@ -1,0 +1,776 @@
+[
+ {
+  "id": "AM25F-01",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential decay model from two readings",
+  "subskill": "half-life from two measurements",
+  "prompt": "The concentration of a medication in a patient's blood decreases exponentially over time. A test at 9:00 a.m. measures 90 micrograms per liter, and a test at 12:00 noon the same day measures 60 micrograms per liter. To the nearest hundredth of an hour, what is the half-life of the medication (the time it takes the concentration to fall to half of any given value)?",
+  "choices": [
+   "4.98",
+   "5.13",
+   "5.19",
+   "5.88"
+  ],
+  "correct_answer": "5.13",
+  "explanation": "Over 3 hours the concentration is multiplied by 60/90 = 2/3, so C(t) = 90(2/3)^(t/3). Half-life h satisfies (2/3)^(h/3) = 1/2, so h = 3 ln 2 / ln(1.5) ≈ 5.13 hours. \"4.98\" rounds the hourly factor 0.8736 to 0.87 before solving; \"5.19\" rounds 2/3 to 0.67; \"5.88\" treats the 33.3% drop as 11.1% per hour compounded.",
+  "solve": "return (3*Math.log(2)/Math.log(90/60)).toFixed(2);",
+  "distractor_solve": {
+   "4.98": "return (Math.log(2)/-Math.log(0.87)).toFixed(2);",
+   "5.19": "return (3*Math.log(2)/-Math.log(0.67)).toFixed(2);",
+   "5.88": "return (Math.log(2)/-Math.log(1-(1/3)/3)).toFixed(2);"
+  },
+  "quantity_asked": "the half-life h, in hours, of C(t) = 90(2/3)^(t/3).",
+  "distractor_kind": {
+   "4.98": "error path: finds the hourly factor (2/3)^(1/3) = 0.8736, rounds it to 0.87, then solves 0.87^h = 1/2, giving 4.98. (a) limiting case: the stem forces 3 < h < 6 (60/90 > 1/2 after 3 h; (2/3)^2 < 1/2); 4.98 inside. (b) neighbouring setup: not the answer to an adjacent problem; inside. (c) cheapest estimate one step finer: (2/3)^1.5 = 0.544 > 1/2 so h > 4.5; 4.98 strictly inside (4.5, 6). (d) real: early rounding of an intermediate factor.",
+   "5.19": "error path: rounds the 3-hour ratio 60/90 to 0.67 before taking logs, 3 ln 2 / -ln 0.67 = 5.19. (a) inside (3, 6). (b) not an adjacent problem's answer. (c) inside (4.5, 6). (d) real: rounding the ratio to two places.",
+   "5.88": "error path: treats the 33.3% drop over 3 hours as 11.1% per hour and solves 0.8889^h = 1/2, giving 5.88. (a) inside (3, 6). (b) not an adjacent answer. (c) inside (4.5, 6). (d) real: dividing a compound percent change by the number of periods."
+  },
+  "distractor_meta": {
+   "4.98": {
+    "direction": "under",
+    "error_kind": "rounded the hourly decay factor"
+   },
+   "5.19": {
+    "direction": "over",
+    "error_kind": "rounded the 3-hour ratio"
+   },
+   "5.88": {
+    "direction": "over",
+    "error_kind": "averaged the percent drop per hour"
+   }
+  },
+  "bounds": [
+   "3 < v < 6 (ratio 2/3 > 1/2 after 3 h; (2/3)^2 = 4/9 < 1/2)",
+   "v > 4.5 one step finer ((2/3)^1.5 = 0.544 > 1/2)"
+  ],
+  "mechanism": [
+   "half-life from two readings",
+   "exponential decay ratio over an interval",
+   "solve (2/3)^(h/3) = 1/2",
+   "medication concentration"
+  ],
+  "arith_class_check": "No. Four 2-decimal values with decimal parts .98, .13, .19, .88; the stem implies no integrality, divisibility or rounding class; the key is not the only value of any class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value 5.13 and 5.19: both 3 significant digits, 2 decimals, nonzero last digit (complexity 5 and 5); neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Live sat 55d6c01d also derives a decay factor from two readings (then extrapolates); this item solves for the half-life with logs, but a grader may call it the same."
+  }
+ },
+ {
+  "id": "AM25F-02",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential equation with different bases",
+  "subskill": "solve exponential equation with logarithms",
+  "prompt": "What is the solution of the equation 2·5^(2x) = 10·2^(x + 1), rounded to the nearest thousandth?",
+  "choices": [
+   "0.766",
+   "0.637",
+   "0.909",
+   "0.912"
+  ],
+  "correct_answer": "0.912",
+  "explanation": "5^(2x) = 25^x and 2^(x + 1) = 2·2^x, so 2·25^x = 20·2^x, which gives (25/2)^x = 10 and x = log 10 / log 12.5 ≈ 0.912. \"0.909\" rounds log 12.5 to 1.10 before dividing; \"0.766\" combines 2·5^(2x) into 10^(2x); \"0.637\" drops the +1 from the exponent 2^(x + 1).",
+  "solve": "return (Math.log(10)/Math.log(12.5)).toFixed(3);",
+  "distractor_solve": {
+   "0.909": "return (1/(Math.round(Math.log10(12.5)*100)/100)).toFixed(3);",
+   "0.766": "return (Math.log(20)/Math.log(50)).toFixed(3);",
+   "0.637": "return (Math.log(5)/Math.log(12.5)).toFixed(3);"
+  },
+  "quantity_asked": "the real x with 2·5^(2x) = 10·2^(x + 1), to three decimals.",
+  "distractor_kind": {
+   "0.909": "error path: correctly reaches 12.5^x = 10, so x = log 10 / log 12.5, but rounds log 12.5 = 1.0969 to 1.10, giving 0.909. (a) limiting case: no parameter; the only stem fact is that the left side outgrows the right, so the root is unique; 0.909 is a valid real. (b) not an adjacent problem's exact answer. (c) cheapest checks: x = 0.5 gives 10 < 28.3 and x = 1 gives 50 > 40, so 0.5 < x < 1; 0.909 inside, and no check short of the computation separates 0.909 from the key. (d) real: early rounding of a logarithm.",
+   "0.766": "error path: rewrites 2·5^(2x) as 10^(2x) = 100^x, then 100^x = 20·2^x gives 50^x = 20 and x = 0.766. (a) inside (0.5, 1). (b) not an adjacent answer. (c) inside (0.5, 1). (d) real: treating a·b^n as (ab)^n.",
+   "0.637": "error path: reads 2^(x + 1) as 2^x, so 2·25^x = 10·2^x, 12.5^x = 5 and x = 0.637. (a) inside (0.5, 1). (b) it is the solution of a different equation, not an extreme of the interval. (c) inside (0.5, 1). (d) real: dropped constant in an exponent."
+  },
+  "distractor_meta": {
+   "0.909": {
+    "direction": "under",
+    "error_kind": "rounded a logarithm early"
+   },
+   "0.766": {
+    "direction": "under",
+    "error_kind": "multiplied the coefficient into the base"
+   },
+   "0.637": {
+    "direction": "under",
+    "error_kind": "dropped the +1 in the exponent"
+   }
+  },
+  "bounds": [
+   "0.5 < v < 1 (sign change of 2·25^x − 20·2^x between x = 0.5 and x = 1)"
+  ],
+  "mechanism": [
+   "exponential equation with two different bases",
+   "take logarithms of both sides",
+   "rewrite 5^(2x) as 25^x",
+   "12.5^x = 10"
+  ],
+  "arith_class_check": "No. All four are 3-decimal numbers below 1 with nonzero last digits; nothing in the stem says the answer is rational or terminating; the key is not alone in any class.",
+  "one_sided_check": "Key largest. Error kinds: early log rounding (direction depends on which way the rounding goes, unpredictable from the stem), coefficient pushed into the base (direction depends on the numbers), dropped +1 (a student cannot tell without solving that losing a factor of 2 on the right moves x down rather than up because both sides change with x). Three distinct kinds.",
+  "interior_parity_check": "Interior options by value 0.766 and 0.909: both 3-decimal, nonzero last digit, complexity 6 and 6.",
+  "cheap_bound_check": "Cheapest bound: plugging x = 0.5 (10 < 28.3) and x = 1 (50 > 40) gives 0.5 < x < 1; all three distractors lie on the key's side of every such bound. Finer plug-ins need the full computation; 0.909 sits within 0.003 of the key, so no estimate short of the solution separates them.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Nearest distractor 0.003 below key from a rounding stage; integer and half checks kill nothing; three distinct error kinds."
+  }
+ },
+ {
+  "id": "AM25F-03",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential growth then decay",
+  "subskill": "time for decay to undo prior growth",
+  "prompt": "A town's population increased by 2.8% per year for 7 years. Then the population began to decrease by 1.8% per year. If the decrease continues at this rate, how many years after the decrease began will the population equal its value at the start of the 7 years? Round to the nearest hundredth of a year.",
+  "choices": [
+   "10.84",
+   "9.85",
+   "10.64",
+   "10.49"
+  ],
+  "correct_answer": "10.64",
+  "explanation": "After 7 years the population is P·1.028^7. It returns to P when 1.028^7 · 0.982^t = 1, so t = 7 ln 1.028 / (−ln 0.982) ≈ 10.64. \"9.85\" treats the growth as simple (factor 1.196); \"10.49\" rounds 1.028^7 = 1.2133 to 1.21; \"10.84\" models the decrease as dividing by 1.018 each year.",
+  "solve": "return (7*Math.log(1.028)/-Math.log(0.982)).toFixed(2);",
+  "distractor_solve": {
+   "9.85": "return (Math.log(1+7*0.028)/-Math.log(0.982)).toFixed(2);",
+   "10.49": "return (Math.log(1.21)/-Math.log(0.982)).toFixed(2);",
+   "10.84": "return (7*Math.log(1.028)/Math.log(1.018)).toFixed(2);"
+  },
+  "quantity_asked": "the number of years t of 1.8% annual decrease after which 1.028^7 · 0.982^t = 1.",
+  "distractor_kind": {
+   "9.85": "error path: treats the 7 years of growth as simple, a factor of 1 + 7(0.028) = 1.196, then solves 0.982^t = 1/1.196, giving 9.85. (a) limiting case: t > 0 only; inside. (b) not an extreme of any interval. (c) cheapest one-step estimate: total growth ~21% undone at ~1.8% per year suggests \"about 10 to 12\"; a bracket that sharp needs the logs; 9.85 inside (0, infinity) and inside any estimate a student can make without logs. (d) real: compounding ignored on the growth phase.",
+   "10.49": "error path: computes 1.028^7 = 1.2133 and rounds it to 1.21 before solving, giving 10.49. (a) inside. (b) not adjacent. (c) inside. (d) real: early rounding of an intermediate factor.",
+   "10.84": "error path: models a 1.8% decrease as dividing by 1.018 each year, so 1.018^t = 1.028^7 and t = 10.84. (a) inside. (b) not adjacent. (c) it is below the linear ceiling 7(2.8)/1.8 = 10.89, so strictly inside even that estimate. (d) real: confusing a percent decrease with the reverse of a percent increase."
+  },
+  "distractor_meta": {
+   "9.85": {
+    "direction": "under",
+    "error_kind": "simple growth instead of compound"
+   },
+   "10.49": {
+    "direction": "under",
+    "error_kind": "rounded the growth factor"
+   },
+   "10.84": {
+    "direction": "over",
+    "error_kind": "decrease modelled as division by 1.018"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 7(0.028)/0.018 = 10.89 (ln(1+g) < g and -ln(1-d) > d)"
+  ],
+  "mechanism": [
+   "percent growth then percent decrease",
+   "return to original value",
+   "solve 1.028^7·0.982^t = 1",
+   "compound growth undone by compound decay"
+  ],
+  "arith_class_check": "No. Four 2-decimal values (.85, .49, .64, .84); no stem-implied class; the key is not the only member of any class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value 10.49 and 10.64: both 4 significant digits, 2 decimals, nonzero last digit (complexity 6 and 6).",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Distractors on both sides; the linear ceiling 10.89 is above every option, so it kills nothing."
+  }
+ },
+ {
+  "id": "AM25F-04",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "inverse of a logarithmic function",
+  "subskill": "evaluate an inverse function at a non-integer input",
+  "prompt": "The function f is defined by f(x) = 4 + log₃(2x − 1) for all x > 1/2, and f has an inverse function, f⁻¹. To the nearest hundredth, what is the value of f⁻¹(6.5) ?",
+  "choices": [
+   "8.29",
+   "5.87",
+   "8.15",
+   "6.26"
+  ],
+  "correct_answer": "8.29",
+  "explanation": "f⁻¹(6.5) is the x with 4 + log₃(2x − 1) = 6.5, so log₃(2x − 1) = 2.5, 2x − 1 = 3^2.5 = 9√3 ≈ 15.588 and x ≈ 8.29. \"8.15\" rounds √3 to 1.7; \"6.26\" computes f(6.5) instead; \"5.87\" treats 3^2.5 as 3^2 + 3^0.5.",
+  "solve": "return ((Math.pow(3,2.5)+1)/2).toFixed(2);",
+  "distractor_solve": {
+   "8.15": "return ((9*1.7+1)/2).toFixed(2);",
+   "6.26": "return (4+Math.log(12)/Math.log(3)).toFixed(2);",
+   "5.87": "return ((9+Math.sqrt(3)+1)/2).toFixed(2);"
+  },
+  "quantity_asked": "the x > 1/2 with 4 + log₃(2x − 1) = 6.5.",
+  "distractor_kind": {
+   "8.15": "error path: writes 3^2.5 = 9√3, rounds √3 to 1.7, so 2x − 1 = 15.3 and x = 8.15. (a) limiting case: x > 1/2 only; inside. (b) not adjacent. (c) cheapest check: f(8) = 4 + log₃15 = 6.46 < 6.5, so x > 8; 8.15 survives on the key's side. (d) real: early rounding.",
+   "6.26": "error path: computes f(6.5) = 4 + log₃12 = 6.26 instead of f⁻¹(6.5). (a) inside. (b) it is the forward value, an adjacent quantity; it is not an extreme here (it is interior). (c) the check f(8) < 6.5 removes it, but 8.15 remains on the key side. (d) real: f and f⁻¹ confused.",
+   "5.87": "error path: evaluates 3^2.5 as 3^2 + 3^0.5 = 10.73, so x = 5.87. (a) inside. (b) not adjacent. (c) removed by f(8) < 6.5, with 8.15 remaining. (d) real: a^(m+n) treated as a^m + a^n."
+  },
+  "distractor_meta": {
+   "8.15": {
+    "direction": "under",
+    "error_kind": "rounded the square root early"
+   },
+   "6.26": {
+    "direction": "under",
+    "error_kind": "evaluated f instead of its inverse"
+   },
+   "5.87": {
+    "direction": "under",
+    "error_kind": "split the power as a sum"
+   }
+  },
+  "bounds": [
+   "v > 1/2",
+   "v > 8 (f(8) = 6.46 < 6.5)",
+   "v < 14 (f(14) = 7.0 > 6.5)"
+  ],
+  "mechanism": [
+   "inverse of a logarithmic function",
+   "f⁻¹ at a non-integer value",
+   "log base 3 of a linear expression",
+   "3^2.5 = 9√3"
+  ],
+  "arith_class_check": "No. Four 2-decimal values; the stem gives no integrality; 8.15 ends in 5 like no other but is a distractor; the key is not alone in a class.",
+  "one_sided_check": "Key largest. Error kinds: early rounding (direction depends on the rounding), forward instead of inverse (direction not predictable from the stem), splitting a power into a sum (direction depends on the numbers). Three distinct kinds.",
+  "interior_parity_check": "Interior options by value 6.26 and 8.15: both 3 significant digits, 2 decimals, nonzero last digit (complexity 5 and 5).",
+  "cheap_bound_check": "Cheapest bound: f(8) = 6.46 < 6.5 so x > 8. It removes 5.87 and 6.26, but 8.15 lies on the key's side of it; separating 8.15 from 8.29 needs 3^2.5 to two decimals, which is the item's work.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Live act 727e9393 solves log base 3 of (x + 5) = 2; this item is an inverse at a non-integer input, but a grader may call the skill the same."
+  }
+ },
+ {
+  "id": "AM25F-05",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "transformations of an exponential graph",
+  "subskill": "x-intercept after stretch and translations",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = 2^x is stretched vertically by a factor of 6, and the resulting graph is then translated 2 units to the right and 11 units down. To the nearest thousandth, what is the x-coordinate of the point where the final graph crosses the x-axis?",
+  "choices": [
+   "2.965",
+   "2.874",
+   "5.459",
+   "2.877"
+  ],
+  "correct_answer": "2.874",
+  "explanation": "The final graph is y = 6·2^(x − 2) − 11. It crosses the x-axis where 2^(x − 2) = 11/6, so x = 2 + log₂(11/6) ≈ 2.874. \"2.877\" uses log 2 ≈ 0.3; \"2.965\" combines 6·2^(x − 2) into 12^(x − 2); \"5.459\" shifts down before stretching, giving 6(2^(x − 2) − 11).",
+  "solve": "return (2+Math.log2(11/6)).toFixed(3);",
+  "distractor_solve": {
+   "2.877": "return (2+Math.log10(11/6)/0.3).toFixed(3);",
+   "2.965": "return (2+Math.log(11)/Math.log(12)).toFixed(3);",
+   "5.459": "return (2+Math.log2(11)).toFixed(3);"
+  },
+  "quantity_asked": "the x-intercept of y = 6·2^(x − 2) − 11.",
+  "distractor_kind": {
+   "2.877": "error path: reaches 2^(x − 2) = 11/6 and computes log₂(11/6) as log(11/6)/0.3 with log 2 rounded to 0.3, giving 2.877. (a) limiting case: no parameter at an extreme; inside. (b) not adjacent. (c) cheapest checks: x = 3 gives 6·2 − 11 = 1 > 0 and x = 2.5 gives 6√2 − 11 < 0, so 2.5 < x < 3; 2.877 inside, 0.003 from the key. (d) real: rounding a constant.",
+   "2.965": "error path: writes 6·2^(x − 2) as 12^(x − 2), so 12^(x − 2) = 11 and x = 2.965. (a) inside. (b) not adjacent. (c) inside (2.5, 3). (d) real: a·b^n treated as (ab)^n.",
+   "5.459": "error path: translates down before stretching, y = 6(2^(x − 2) − 11), so 2^(x − 2) = 11 and x = 5.459. (a) inside x > 2. (b) it is the answer to the same transformations done in the other order. (c) the integer check x = 3 removes it; 2.877 and 2.965 survive on the key side. (d) real: order of transformations."
+  },
+  "distractor_meta": {
+   "2.877": {
+    "direction": "over",
+    "error_kind": "rounded log 2 to 0.3"
+   },
+   "2.965": {
+    "direction": "over",
+    "error_kind": "multiplied the coefficient into the base"
+   },
+   "5.459": {
+    "direction": "over",
+    "error_kind": "applied the downward shift before the stretch"
+   }
+  },
+  "bounds": [
+   "v > 2 (need 2^(x − 2) > 1)",
+   "v < 3 (6·2 − 11 > 0)",
+   "v > 2.5 one step finer (6√2 < 11)"
+  ],
+  "mechanism": [
+   "vertical stretch and translation of y = 2^x",
+   "x-intercept of a transformed exponential",
+   "order of transformations",
+   "solve 6·2^(x − 2) = 11"
+  ],
+  "arith_class_check": "No. Four 3-decimal values with nonzero last digits; the stem implies nothing about the form of the root.",
+  "one_sided_check": "Key smallest. Error kinds: rounded constant (rounding direction not readable from the stem), coefficient into base (log₁₂ 11 vs log₂(11/6): direction needs computing), order of transformations (a student would have to solve to know it moves the root right). Three distinct kinds.",
+  "interior_parity_check": "Interior options by value 2.877 and 2.965: both 4 significant digits, 3 decimals, nonzero last digit (complexity 7 and 7).",
+  "cheap_bound_check": "Cheapest bounds: x = 3 (value +1) and x = 2.5 (value −2.5) give 2.5 < x < 3; the x = 3 check removes 5.459, but 2.877 and 2.965 lie on the key's side. 2.877 is within 0.003 of the key, so no estimate short of the logarithm separates them.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Nearest distractor 0.003 above key from a rounding stage; integer and half checks kill one of three."
+  }
+ },
+ {
+  "id": "AM25F-06",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "intersection of absolute value graphs",
+  "subskill": "solve absolute value equation by cases, then distance",
+  "prompt": "In the standard (x,y) coordinate plane, the graphs of y = 2|x − 4| − 3 and y = 9 − |x| intersect at exactly two points. To the nearest hundredth, what is the distance between these two points?",
+  "choices": [
+   "9.65",
+   "11.31",
+   "9.61",
+   "15.08"
+  ],
+  "correct_answer": "9.61",
+  "explanation": "For x ≥ 4: 2x − 11 = 9 − x gives x = 20/3 (point (20/3, 7/3)). For 0 ≤ x < 4: 5 − 2x = 9 − x gives x = −4, not in the case. For x < 0: 5 − 2x = 9 + x gives x = −4/3 (point (−4/3, 23/3)). The distance is √(8² + (16/3)²) ≈ 9.61. \"11.31\" uses y = 9 − x for the left point; \"15.08\" treats 9 − |x| as 9 − x everywhere; \"9.65\" rounds the coordinates to tenths before using the distance formula.",
+  "solve": "return Math.hypot(20/3+4/3, 7/3-23/3).toFixed(2);",
+  "distractor_solve": {
+   "11.31": "return Math.hypot(20/3+4/3, 7/3-31/3).toFixed(2);",
+   "15.08": "return Math.hypot(20/3+4, 7/3-13).toFixed(2);",
+   "9.65": "return Math.hypot(6.7+1.3, 2.3-7.7).toFixed(2);"
+  },
+  "quantity_asked": "the distance between the two intersection points of y = 2|x − 4| − 3 and y = 9 − |x|.",
+  "distractor_kind": {
+   "11.31": "error path: finds x = 20/3 and x = −4/3 correctly but computes the left point's y from 9 − x instead of 9 − |x| (31/3 instead of 23/3), giving 11.31. (a) limiting case: none; inside. (b) not an extreme of any interval. (c) no bound short of finding the points; inside. (d) real: dropped absolute value in a substitution.",
+   "15.08": "error path: replaces 9 − |x| by 9 − x on both sides of x = 0, so the left intersection becomes (−4, 13), distance 15.08. (a) inside. (b) not adjacent. (c) inside. (d) real: absolute value dropped from one graph.",
+   "9.65": "error path: finds the points correctly but rounds them to tenths, (6.7, 2.3) and (−1.3, 7.7), before using the distance formula, giving 9.65. (a) inside. (b) not adjacent. (c) within 0.04 of the key; no estimate separates it. (d) real: early rounding of intermediate coordinates."
+  },
+  "distractor_meta": {
+   "11.31": {
+    "direction": "over",
+    "error_kind": "took y from the wrong rule"
+   },
+   "15.08": {
+    "direction": "over",
+    "error_kind": "treated 9 − |x| as 9 − x"
+   },
+   "9.65": {
+    "direction": "over",
+    "error_kind": "rounded the coordinates early"
+   }
+  },
+  "bounds": [
+   "v > 4 (one crossing has x < 0 and the other x > 4)"
+  ],
+  "mechanism": [
+   "two absolute value graphs intersect",
+   "solve absolute value equation by cases",
+   "distance between intersection points",
+   "reject a case solution outside its interval"
+  ],
+  "arith_class_check": "No. Four 2-decimal values; the distance is irrational; no option class isolates the key.",
+  "one_sided_check": "Key smallest. Error kinds: wrong rule for one y-value, absolute value dropped from a graph, early rounding of the coordinates. The rounding error moves the distance up or down depending on how each coordinate rounds, which cannot be read from the stem; the other two change which points are found, and their effect on the distance needs the points. Three distinct kinds.",
+  "interior_parity_check": "Interior options by value 9.65 and 11.31: both 2 decimals with nonzero last digit (complexity 5 and 6, gap 1); neither is rounder.",
+  "cheap_bound_check": "Cheapest bound: none below the work. Before solving, a student knows only that one crossing has x < 0 and the other x > 4, so the distance exceeds 4; every option exceeds 4. 9.65 lies 0.04 above the key, inside the resolution of any estimate short of the exact coordinates.",
+  "self_audit": {
+   "risk": "low",
+   "note": "No cheap bound; nearest distractor 0.04 above from early rounding, whose direction is not readable from the stem."
+  }
+ },
+ {
+  "id": "AM25F-07",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "average rate of change of a composite function",
+  "subskill": "evaluate f(g(x)) at two inputs, then average rate of change",
+  "prompt": "The functions f and g are defined by f(x) = 2^x and g(x) = x² − 2x − 1. To the nearest hundredth, what is the average rate of change of the function h(x) = f(g(x)) from x = 0.5 to x = 3 ?",
+  "choices": [
+   "0.99",
+   "1.48",
+   "7.39",
+   "19.53"
+  ],
+  "correct_answer": "1.48",
+  "explanation": "g(0.5) = −1.75 and g(3) = 2, so h(0.5) = 2^(−1.75) ≈ 0.297 and h(3) = 2² = 4. The average rate of change is (4 − 0.297)/(3 − 0.5) ≈ 1.48. \"19.53\" composes as g(f(x)); \"0.99\" divides by g(3) − g(0.5) = 3.75 instead of 2.5; \"7.39\" uses the product f(x)·g(x).",
+  "solve": "const f=x=>2**x,g=x=>x*x-2*x-1;return ((f(g(3))-f(g(0.5)))/2.5).toFixed(2);",
+  "distractor_solve": {
+   "19.53": "const f=x=>2**x,g=x=>x*x-2*x-1;return ((g(f(3))-g(f(0.5)))/2.5).toFixed(2);",
+   "0.99": "const f=x=>2**x,g=x=>x*x-2*x-1;return ((f(g(3))-f(g(0.5)))/(g(3)-g(0.5))).toFixed(2);",
+   "7.39": "const f=x=>2**x,g=x=>x*x-2*x-1;return ((f(3)*g(3)-f(0.5)*g(0.5))/2.5).toFixed(2);"
+  },
+  "quantity_asked": "(h(3) − h(0.5))/2.5 where h(x) = 2^(x² − 2x − 1).",
+  "distractor_kind": {
+   "19.53": "error path: computes g(f(x)) instead of f(g(x)): g(8) = 47 and g(√2) = 1 − 2√2 ≈ −1.83, so (47 + 1.83)/2.5 = 19.53. (a) limiting case: no stem-forced bound on an average rate of change; inside. (b) it is the same rate for the other composite, not an extreme. (c) no one-step estimate of h(3) − h(0.5) short of evaluating it; inside. (d) real: composition order reversed.",
+   "0.99": "error path: divides the change in h by the change in the inner output, g(3) − g(0.5) = 3.75, instead of the change in x, 2.5, giving 0.99. (a) inside. (b) it is the average rate of change of f over [g(0.5), g(3)], an adjacent quantity, but not an extreme of any interval. (c) inside. (d) real: wrong denominator.",
+   "7.39": "error path: treats h(x) as f(x)·g(x): 8·2 = 16 and √2·(−1.75) ≈ −2.47, so (16 + 2.47)/2.5 = 7.39. (a) inside. (b) not adjacent. (c) inside. (d) real: product confused with composition."
+  },
+  "distractor_meta": {
+   "19.53": {
+    "direction": "over",
+    "error_kind": "composed in the wrong order"
+   },
+   "0.99": {
+    "direction": "under",
+    "error_kind": "divided by the change in g"
+   },
+   "7.39": {
+    "direction": "over",
+    "error_kind": "multiplied f and g instead of composing"
+   }
+  },
+  "bounds": [
+   "none forced on the rate beyond being finite"
+  ],
+  "mechanism": [
+   "average rate of change of a composite function",
+   "f(g(x)) with exponential outer function",
+   "evaluate a composition at two inputs",
+   "negative exponent value of 2^x"
+  ],
+  "arith_class_check": "No. Four 2-decimal values; nothing in the stem implies a terminating or integer rate; no class isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value 1.48 and 7.39: both 3 significant digits, 2 decimals, nonzero last digit (complexity 5 and 5).",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key with distractors on both sides; no absolute value; no halving pair (checked 2.95-type sign error rejected for nearly doubling the key)."
+  }
+ },
+ {
+  "id": "AM25N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "angle between two vectors",
+  "subskill": "angle from dot product and magnitudes",
+  "prompt": "The vectors u = ⟨3, 4⟩ and v = ⟨−2, 5⟩ are drawn from the origin in the standard (x,y) coordinate plane. To the nearest hundredth of a degree, what is the measure of the angle between u and v ?",
+  "choices": [
+   "66.42",
+   "58.77",
+   "74.93",
+   "58.67"
+  ],
+  "correct_answer": "58.67",
+  "explanation": "u · v = 3(−2) + 4(5) = 14, |u| = 5 and |v| = √29, so cos θ = 14/(5√29) ≈ 0.5199 and θ ≈ 58.67°. \"58.77\" rounds √29 to 5.4; \"66.42\" takes |v| = 2 + 5; \"74.93\" pairs the x-component of one vector with the y-component of the other.",
+  "solve": "return (Math.acos(14/(5*Math.sqrt(29)))*180/Math.PI).toFixed(2);",
+  "distractor_solve": {
+   "58.77": "return (Math.acos(14/(5*5.4))*180/Math.PI).toFixed(2);",
+   "66.42": "return (Math.acos(14/(5*7))*180/Math.PI).toFixed(2);",
+   "74.93": "return (Math.acos(7/(5*Math.sqrt(29)))*180/Math.PI).toFixed(2);"
+  },
+  "quantity_asked": "the angle, in degrees, between ⟨3, 4⟩ and ⟨−2, 5⟩.",
+  "distractor_kind": {
+   "58.77": "error path: rounds |v| = √29 = 5.385 to 5.4, so cos θ = 14/27 and θ = 58.77°. (a) limiting case: the stem forces 0° < θ < 180°; inside. (b) not adjacent. (c) cheapest bound: u points at about 53° and v into quadrant II between 90° and 135°, so the angle is between about 37° and 82°; 58.77 inside, 0.10 from the key. (d) real: early rounding.",
+   "66.42": "error path: takes |v| as 2 + 5 = 7, so cos θ = 14/35 = 0.4 and θ = 66.42°. (a) inside. (b) not adjacent. (c) inside (37°, 82°). (d) real: magnitude computed as a component sum.",
+   "74.93": "error path: forms the dot product as 3(5) + 4(−2) = 7 (pairing x with y), so cos θ = 7/(5√29) and θ = 74.93°. (a) inside. (b) not adjacent. (c) inside (37°, 82°). (d) real: crossed components in the dot product."
+  },
+  "distractor_meta": {
+   "58.77": {
+    "direction": "over",
+    "error_kind": "rounded a magnitude early"
+   },
+   "66.42": {
+    "direction": "over",
+    "error_kind": "magnitude as sum of components"
+   },
+   "74.93": {
+    "direction": "over",
+    "error_kind": "paired the wrong components"
+   }
+  },
+  "bounds": [
+   "0 < v < 180",
+   "about 37 < v < 82 (u near 53°, v in quadrant II below 135°)"
+  ],
+  "mechanism": [
+   "angle between two vectors",
+   "dot product over product of magnitudes",
+   "inverse cosine in degrees",
+   "vector magnitude"
+  ],
+  "arith_class_check": "No. Four 2-decimal degree values with nonzero last digits; no special angle is implied.",
+  "one_sided_check": "Key smallest. Error kinds: rounding a magnitude (rounding direction not readable from the stem), magnitude as component sum (|v| = 7 vs √29: direction needs knowing that 7 > √29 and that a larger denominator raises the angle), crossed components (changes the dot product unpredictably). Three distinct kinds.",
+  "interior_parity_check": "Interior options by value 58.77 and 66.42: both 4 significant digits, 2 decimals, nonzero last digit (complexity 6 and 6). No pair sums to 90 or 180.",
+  "cheap_bound_check": "Cheapest bound: direction angles (u about 53°, v in quadrant II with |y| > |x|, so between 90° and 135°) give 37° < θ < 82°; all three distractors lie inside it, and 58.77 is within 0.10° of the key, inside the resolution of every estimate short of the computation.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Supplement and complement errors deliberately avoided (they pair with the key); nearest distractor 0.10 above from rounding."
+  }
+ },
+ {
+  "id": "AM25N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "transition matrix applied twice",
+  "subskill": "apply a 2×2 matrix to a column vector twice",
+  "prompt": "Each year, 88% of company A's customers stay with A and 12% switch to company B, while 85% of B's customers stay with B and 15% switch to A. If a column vector lists (A customers, B customers), one year's change is found by multiplying the vector by the matrix T with first row (0.88, 0.15) and second row (0.12, 0.85). This year A has 64 thousand customers and B has 36 thousand. To the nearest hundredth of a thousand, how many customers will A have 2 years from now?",
+  "choices": [
+   "59.44",
+   "60.06",
+   "60.26",
+   "58.19"
+  ],
+  "correct_answer": "60.06",
+  "explanation": "Year 1: A = 0.88(64) + 0.15(36) = 61.72 and B = 0.12(64) + 0.85(36) = 38.28. Year 2: A = 0.88(61.72) + 0.15(38.28) ≈ 60.06. \"58.19\" uses the transpose of T; \"59.44\" repeats the first year's drop of 2.28; \"60.26\" rounds year 1 to (62, 38).",
+  "solve": "let a=64,b=36;for(let i=0;i<2;i++){[a,b]=[0.88*a+0.15*b,0.12*a+0.85*b];}return a.toFixed(2);",
+  "distractor_solve": {
+   "58.19": "let a=64,b=36;for(let i=0;i<2;i++){[a,b]=[0.88*a+0.12*b,0.15*a+0.85*b];}return a.toFixed(2);",
+   "59.44": "return (64-2*(64-(0.88*64+0.15*36))).toFixed(2);",
+   "60.26": "return (0.88*62+0.15*38).toFixed(2);"
+  },
+  "quantity_asked": "the first entry of T²·(64, 36), in thousands.",
+  "distractor_kind": {
+   "58.19": "error path: multiplies by the transpose (first row 0.88, 0.12), which no longer conserves the total, giving 58.19. (a) limiting case: A moves from 64 toward its equilibrium 55.56 (thousand), so 55.56 < v < 64; inside. (b) not adjacent. (c) no cheap estimate brackets the 2-year value more tightly without the year-1 product; inside. (d) real: row/column convention reversed.",
+   "59.44": "error path: computes year 1 (61.72, a drop of 2.28) and subtracts 2.28 again, giving 59.44. (a) inside (55.56, 64). (b) it uses the item's own intermediate, but is interior here. (c) inside. (d) real: linear extrapolation of a matrix process.",
+   "60.26": "error path: rounds year 1, (61.72, 38.28), to whole thousands (62, 38) before the second multiplication, giving 60.26. (a) inside (and below the year-1 value 61.72). (b) not adjacent. (c) inside. (d) real: early rounding."
+  },
+  "distractor_meta": {
+   "58.19": {
+    "direction": "under",
+    "error_kind": "used the transpose of the matrix"
+   },
+   "59.44": {
+    "direction": "under",
+    "error_kind": "extended the first-year change linearly"
+   },
+   "60.26": {
+    "direction": "over",
+    "error_kind": "rounded the year-1 vector"
+   }
+  },
+  "bounds": [
+   "55.56 < v < 64 (A moves monotonically toward its equilibrium 0.15/0.27 of 100)"
+  ],
+  "mechanism": [
+   "transition matrix",
+   "matrix times column vector applied twice",
+   "customers switching between two companies",
+   "T squared applied to a vector"
+  ],
+  "arith_class_check": "No. Four 2-decimal values; nothing in the stem implies a terminating or whole number of thousands for the answer.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value 59.44 and 60.06: both 4 significant digits, 2 decimals, nonzero last digit (complexity 6 and 6). No pair sums to 100.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Distractors on both sides; all inside the equilibrium bracket; no two options differ by a stem quantity."
+  }
+ },
+ {
+  "id": "AM25N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "rational exponent in a physical law",
+  "subskill": "evaluate T^(2/3) from T² = a³",
+  "prompt": "Kepler's third law states that for an object orbiting the Sun, T² = a³, where T is the time for one orbit, in Earth years, and a is the object's average distance from the Sun, in astronomical units (AU). An asteroid takes 6.95 Earth years to orbit the Sun once. To the nearest hundredth of an AU, what is the asteroid's average distance from the Sun?",
+  "choices": [
+   "3.64",
+   "4.63",
+   "3.67",
+   "3.82"
+  ],
+  "correct_answer": "3.64",
+  "explanation": "From T² = a³, a = T^(2/3) = 6.95^(2/3) ≈ 3.64 AU (check: 3.64³ ≈ 48.3 = 6.95²). \"3.67\" uses the exponent 0.67; \"3.82\" computes 2∛6.95; \"4.63\" computes 6.95 × 2/3.",
+  "solve": "return Math.pow(6.95,2/3).toFixed(2);",
+  "distractor_solve": {
+   "3.67": "return Math.pow(6.95,0.67).toFixed(2);",
+   "3.82": "return (2*Math.cbrt(6.95)).toFixed(2);",
+   "4.63": "return (6.95*2/3).toFixed(2);"
+  },
+  "quantity_asked": "a = 6.95^(2/3), in AU.",
+  "distractor_kind": {
+   "3.67": "error path: writes a = T^(2/3) but enters the exponent as 0.67, giving 3.67. (a) limiting case: a is between √T = 2.64 and T = 6.95; inside. (b) not adjacent. (c) cheapest one-step check: 3.6³ = 46.7 < 48.3 = T² < 50.7 = 3.7³, so 3.6 < a < 3.7; 3.67 inside, 0.03 from the key. (d) real: rounding the exponent 2/3.",
+   "3.82": "error path: computes T^(2/3) as 2∛T = 3.82. (a) inside (2.64, 6.95). (b) not adjacent. (c) the 3.7³ check removes it; 3.67 remains on the key side. (d) real: misreading a fractional exponent.",
+   "4.63": "error path: computes T^(2/3) as T × 2/3 = 4.63. (a) inside (2.64, 6.95). (b) not adjacent. (c) removed by the cube check; 3.67 remains. (d) real: exponent treated as a factor."
+  },
+  "distractor_meta": {
+   "3.67": {
+    "direction": "over",
+    "error_kind": "rounded the exponent"
+   },
+   "3.82": {
+    "direction": "over",
+    "error_kind": "read x^(2/3) as 2 times the cube root"
+   },
+   "4.63": {
+    "direction": "over",
+    "error_kind": "multiplied by the exponent"
+   }
+  },
+  "bounds": [
+   "√6.95 = 2.64 < v < 6.95 (T > 1 so T^(1/2) < T^(2/3) < T)"
+  ],
+  "mechanism": [
+   "rational exponent 2/3",
+   "Kepler third law T squared equals a cubed",
+   "solve for a from T",
+   "cube root of a square"
+  ],
+  "arith_class_check": "No. Four 2-decimal values; nothing implies a rational answer; the key is not the only member of any class.",
+  "one_sided_check": "Key smallest. Error kinds: rounded exponent (needs knowing T > 1 and 0.67 > 2/3 to predict, and the rounding itself is a choice), 2∛T (above or below T^(2/3) depending on whether T < 8, not readable without computing), T × 2/3 (above or below depending on T). Three distinct kinds.",
+  "interior_parity_check": "Interior options by value 3.67 and 3.82: both 3 significant digits, 2 decimals, nonzero last digit (complexity 5 and 5).",
+  "cheap_bound_check": "Cheapest bound: cubes of 3.6 and 3.7 bracket T² = 48.3, so 3.6 < a < 3.7. It removes 3.82 and 4.63, but 3.67 lies on the key's side; a ≤ T removes nothing. Separating 3.64 from 3.67 needs the exponent evaluated, which is the work.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Nearest distractor 0.03 above key; three different misreadings of a fractional exponent with directions that depend on T."
+  }
+ },
+ {
+  "id": "AM25N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "unit conversion with scientific notation",
+  "subskill": "bits and bytes rate conversion to time",
+  "prompt": "A file of 1.5 terabytes is copied over a network connection that transfers 2.24 gigabits per second. The copy begins after a 45-second verification step, and the total time is the verification step plus the transfer. Use 1 terabyte = 10^12 bytes, 1 gigabit = 10^9 bits, and 1 byte = 8 bits. To the nearest hundredth of a minute, what is the total time?",
+  "choices": [
+   "134.29",
+   "11.91",
+   "90.04",
+   "90.02"
+  ],
+  "correct_answer": "90.04",
+  "explanation": "The file is 1.5 × 10^12 × 8 = 1.2 × 10^13 bits. At 2.24 × 10^9 bits per second the transfer takes about 5,357.14 seconds; with the 45-second step the total is about 5,402.14 seconds, or 5,402.14/60 ≈ 90.04 minutes. \"11.91\" skips the bytes-to-bits factor of 8; \"90.02\" writes 90 min 2 s as 90.02; \"134.29\" adds 45 minutes instead of 45 seconds.",
+  "solve": "return ((1.5e12*8/2.24e9+45)/60).toFixed(2);",
+  "distractor_solve": {
+   "11.91": "return ((1.5e12/2.24e9+45)/60).toFixed(2);",
+   "90.02": "const s=1.5e12*8/2.24e9+45; return (Math.floor(s/60)+Math.round(s%60)/100).toFixed(2);",
+   "134.29": "return (1.5e12*8/2.24e9/60+45).toFixed(2);"
+  },
+  "quantity_asked": "the total time in minutes: (1.2 × 10^13 / 2.24 × 10^9 + 45) seconds ÷ 60.",
+  "distractor_kind": {
+   "11.91": "error path: divides 1.5 × 10^12 bytes by 2.24 × 10^9 per second without converting bytes to bits, then adds 45 s, giving 11.91 minutes. (a) limiting case: none; inside v > 0.75. (b) not adjacent. (c) cheapest estimate 1.2 × 10^13 / 2.24 × 10^9 ≈ 5,400 s ≈ 90 min is the item's own computation; 11.91 falls outside it, but 90.02 survives on the key side. (d) real: unit slip.",
+   "90.02": "error path: finds 5,402.14 s = 90 min 2 s and writes it as 90.02 minutes. (a) inside. (b) not adjacent. (c) within 0.02 of the key; no estimate separates it. (d) real: mixing base-60 seconds into a decimal.",
+   "134.29": "error path: computes the transfer as 89.29 minutes and adds 45 (minutes) for the verification step, giving 134.29. (a) inside. (b) not adjacent. (c) above the ~90-minute estimate; 90.02 survives on the key side. (d) real: unit mismatch when adding times."
+  },
+  "distractor_meta": {
+   "11.91": {
+    "direction": "under",
+    "error_kind": "treated bits as bytes"
+   },
+   "90.02": {
+    "direction": "under",
+    "error_kind": "wrote minutes and seconds as a decimal"
+   },
+   "134.29": {
+    "direction": "over",
+    "error_kind": "added 45 minutes instead of 45 seconds"
+   }
+  },
+  "bounds": [
+   "v > 0.75 (the 45-second step alone)"
+  ],
+  "mechanism": [
+   "bits and bytes conversion",
+   "transfer time from file size and rate",
+   "scientific notation division",
+   "add a fixed time in a different unit"
+  ],
+  "arith_class_check": "No. Four 2-decimal values; the key and 90.02 share the integer part only because of the min:sec slip, and the stem implies nothing about the decimal part.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value 90.02 and 90.04: both 4 significant digits, 2 decimals, nonzero last digit (complexity 6 and 6).",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key with errors on both sides; no option is a clean multiple of another or differs from one by a stem quantity."
+  }
+ },
+ {
+  "id": "AM25N-05",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "modulus of a complex number",
+  "subskill": "absolute value of z from a product equation",
+  "prompt": "For i = √(−1), the absolute value |a + bi| of a complex number a + bi is its distance from 0 in the complex plane. The complex number z satisfies (4 + 3i)z = 11 − 4i. To the nearest hundredth, what is |z| ?",
+  "choices": [
+   "0.47",
+   "1.28",
+   "2.14",
+   "2.34"
+  ],
+  "correct_answer": "2.34",
+  "explanation": "Taking absolute values, |4 + 3i|·|z| = |11 − 4i|, so |z| = √137/5 ≈ 2.34. (Equivalently z = (11 − 4i)(4 − 3i)/25 = (32 − 49i)/25 and |z| = √(32² + 49²)/25.) \"1.28\" reports Re z = 32/25; \"0.47\" divides |11 − 4i| by 25 instead of 5; \"2.14\" measures size by |a| + |b|.",
+  "solve": "return (Math.hypot(11,-4)/5).toFixed(2);",
+  "distractor_solve": {
+   "1.28": "return ((11*4+(-4)*3)/25).toFixed(2);",
+   "0.47": "return (Math.hypot(11,-4)/25).toFixed(2);",
+   "2.14": "return (15/7).toFixed(2);"
+  },
+  "quantity_asked": "|z| where (4 + 3i)z = 11 − 4i.",
+  "distractor_kind": {
+   "1.28": "error path: solves z = (11 − 4i)(4 − 3i)/25 = (32 − 49i)/25 and reports the real part 1.28. (a) limiting case: none; inside v > 0. (b) it is an intermediate of the item (Re z); |z| > |Re z| removes it only after z is found. (c) the modulus shortcut |11 − 4i|/|4 + 3i| = √137/5 is a full solution, not a bound. (d) real: answered a different part.",
+   "0.47": "error path: from z = (11 − 4i)(4 − 3i)/25 takes |z| = |11 − 4i|/25, forgetting that |4 − 3i| = 5 multiplies the numerator, giving 0.47. (a) inside. (b) not adjacent. (c) inside. (d) real: dropped factor in a modulus.",
+   "2.14": "error path: measures each complex number by |a| + |b| (taxicab), so |z| = 15/7 = 2.14. (a) inside. (b) not adjacent. (c) 0.20 below the key; nothing short of the modulus separates them. (d) real: wrong distance for a complex number."
+  },
+  "distractor_meta": {
+   "1.28": {
+    "direction": "under",
+    "error_kind": "gave the real part instead of the modulus"
+   },
+   "0.47": {
+    "direction": "under",
+    "error_kind": "divided by the squared modulus"
+   },
+   "2.14": {
+    "direction": "under",
+    "error_kind": "used a + b as the size of a + bi"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "modulus of a complex number",
+   "|vw| = |v||w|",
+   "complex number solves a product equation",
+   "distance from 0 in the complex plane"
+  ],
+  "arith_class_check": "No. Four 2-decimal values; |z| = √137/5 is irrational and nothing in the stem implies a class.",
+  "one_sided_check": "Key largest. Error kinds: reported the real part, dropped a factor of |4 − 3i|, taxicab size. The taxicab ratio 15/7 can sit above or below √137/5 depending on the numbers, which cannot be read from the stem. Three distinct kinds.",
+  "interior_parity_check": "Interior options by value 1.28 and 2.14: both 3 significant digits, 2 decimals, nonzero last digit (complexity 5 and 5).",
+  "cheap_bound_check": "Cheapest bound: none cheaper than the modulus itself (|z| = √137/5 is the one-line solution). Sign and size facts (|z| > 0, |z| < |11 − 4i|) remove nothing; 2.14 lies 0.20 below the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Modulus asked, not a quotient in a + bi form (live act 3ea8ed06); three different error kinds below the key."
+  }
+ },
+ {
+  "id": "AM25N-06",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "rotation matrix applied to a point",
+  "subskill": "multiply a 2×2 matrix with trig entries by a column vector",
+  "prompt": "In the standard (x,y) coordinate plane, a point written as a column vector is rotated 35° counterclockwise about the origin by multiplying it on the left by the matrix R with first row (cos 35°, −sin 35°) and second row (sin 35°, cos 35°). To the nearest hundredth, what is the y-coordinate of the image of the point (5, 2) ?",
+  "choices": [
+   "-1.23",
+   "4.51",
+   "-3.95",
+   "4.49"
+  ],
+  "correct_answer": "4.51",
+  "explanation": "R·(5, 2) has second entry (sin 35°)(5) + (cos 35°)(2) ≈ 5(0.5736) + 2(0.8192) ≈ 4.51. \"-1.23\" uses the second column of R (the clockwise rotation); \"-3.95\" evaluates sin 35 and cos 35 in radians; \"4.49\" rounds the trig values to 0.57 and 0.82 first.",
+  "solve": "const d=Math.PI/180;return (5*Math.sin(35*d)+2*Math.cos(35*d)).toFixed(2);",
+  "distractor_solve": {
+   "-1.23": "const d=Math.PI/180;return (-5*Math.sin(35*d)+2*Math.cos(35*d)).toFixed(2);",
+   "-3.95": "return (5*Math.sin(35)+2*Math.cos(35)).toFixed(2);",
+   "4.49": "return (5*0.57+2*0.82).toFixed(2);"
+  },
+  "quantity_asked": "the second entry of R·(5, 2), with R the 35° counterclockwise rotation matrix.",
+  "distractor_kind": {
+   "-1.23": "error path: multiplies the second COLUMN of R by the vector, (−sin 35°)(5) + (cos 35°)(2) = −1.23, which is the clockwise image. (a) limiting case: |image| = |(5, 2)| = 5.39 bounds |y| by 5.39; inside. (b) it is the y-coordinate of the clockwise rotation, an adjacent problem, not an extreme of [−5.39, 5.39]. (c) inside. (d) real: row/column reversed.",
+   "-3.95": "error path: correct product but sin 35 and cos 35 evaluated in radians, giving 5(−0.428) + 2(−0.904) = −3.95. (a) inside [−5.39, 5.39]. (b) not adjacent. (c) inside. (d) real: calculator mode.",
+   "4.49": "error path: rounds sin 35° and cos 35° to 0.57 and 0.82 before multiplying, giving 4.49. (a) inside. (b) not adjacent. (c) 0.02 from the key; no estimate separates it. (d) real: early rounding."
+  },
+  "distractor_meta": {
+   "-1.23": {
+    "direction": "under",
+    "error_kind": "multiplied by the transpose"
+   },
+   "-3.95": {
+    "direction": "under",
+    "error_kind": "evaluated trig in radian mode"
+   },
+   "4.49": {
+    "direction": "under",
+    "error_kind": "rounded the trig values early"
+   }
+  },
+  "bounds": [
+   "-5.39 <= v <= 5.39 (a rotation preserves the distance √29 from the origin)"
+  ],
+  "mechanism": [
+   "rotation matrix",
+   "matrix with sine and cosine entries times a column vector",
+   "image of a point under rotation",
+   "second entry of a matrix-vector product"
+  ],
+  "arith_class_check": "No. Four 2-decimal values; two negative and two positive, so sign isolates no single option; nothing in the stem implies a class.",
+  "one_sided_check": "Key largest. Error kinds: transpose (row/column reversed), radian mode, early rounding. The rounding direction depends on how 0.5736 and 0.8192 round, which the stem does not show; radian-mode values are unpredictable without a calculator. Three distinct kinds.",
+  "interior_parity_check": "Interior options by value -1.23 and 4.49: both 3 significant digits, 2 decimals, nonzero last digit (complexity 5 and 5).",
+  "cheap_bound_check": "Cheapest bound: rotation preserves length, so |y| <= 5.39; the point (5, 2) sits at about 22° and turns to about 57°, so y is about 5.39 sin 57° ~ 4.5. That estimate removes -3.95 and -1.23, but 4.49 lies 0.02 below the key, inside the resolution of any estimate short of the trig values.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Not a 2x2 system; nearest distractor 0.02 below from rounding; the other two errors are independent kinds."
+  }
+ }
+]

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T04:46:46.621Z",
+  "generatedAt": "2026-10-08T05:54:17.996Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -6191,6 +6191,40 @@
           "passed": false,
           "contentSha": "47c66b3210240a4c834b38e4bc5a37b186b8823872e04eb1c08bafa09088dbd6",
           "verdict": "All three graders independently name one cross-item insight: every half-B item turns on \"k need not be an integer\", and every count/sum item offers the integer-k answer as a distractor, so \"never pick the integer-k answer\" strikes one option across the family. Second recipes: aggregate of the intermediate instead of k (B1 496, B9 153), off-by-one endpoint adjacent to the key (B2 11/12, B6 42/43, B5 184/3 vs 187/3, B8 93/5). D: B7 integer condition does no work."
+        }
+      }
+    },
+    {
+      "id": "act-math-v25-kept-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v25",
+      "contentSha": "cc375dd4e8467513ec7feeec36a4021ae858fc8e19f07f824cb77d8cecaa1c1c",
+      "status": "shipped",
+      "note": "50 of 62 authored survive (Algebra 7, Functions 12, N&Q 4, S&P 7, Geometry 11, IES 9) from five Claude authors, commissioned for ACT Math forms 17+18 (deficit 41: Algebra 9, Geometry 8, IES 8, Functions 7, S&P 5, N&Q 4) after act-math-v24 was HELD at stage 4 (kept-set key extremity 15/39 = 38.5%). Bars pre-registered in ACT-MATH-V25-PREREGISTERED.md (commit 2401805f) before authoring: v24 bars, bans and checks kept; extreme keys commissioned at 36/62 = 58.1% with the extremity gate run on the PROJECTED kept set (key-extremity-projection.mjs); graders test the one-sided family on every item (error_directions); no IES stem may announce its trap (rule 11); no single cheap bound on an extreme key (rule 10); Functions a double arm (14). Kept set key at an extreme 26/50 = 52.0%. Form 17 bought (Algebra +7 vs +1 needed); form 18 NOT bought: Algebra 7 of 9 (every other domain met).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "cc375dd4e8467513ec7feeec36a4021ae858fc8e19f07f824cb77d8cecaa1c1c",
+          "verdict": "Merged 62 (sha 180fc8382bd3ee16, after the single stage-0 return): act-math-v18-preflight.sh sandbox 62/62, distractors 186/186, no hub structure, key at an extreme 36/62 = 58.1% (bar 40.0%), 0 composites, stem echo 0, 0 stem duplicates, 0 duplicate option sets; check-key-magnitude on the AUTHORED set interior z -2.09 (REPORTED, not gated, as pre-registered: 58% extreme by design; per side z 1.38 / 1.11). Key position 18/26/18 (band 15-21/24-28/15-21). key-extremity-projection PASS: v24-rate projection 48.9% (band 45-55), equal-rate interior z -1.76 (>= -1.96), author-kept 29/53 = 54.7% PASS, per-side z in +-1.96. (c) mechanical 36 extreme, 0 single-kind. check-interior-niceness 0 parity / 0 KEY-CLEANER / 0 complement / 0 denominator. Arith-class keys lone 2/62 (G-05 multiple of 17, I-08 multiple of 3) vs distractors 10/186, both read: not stem-implied. Dups over all 2,784 live maths rows: Jaccard 0 FLAG / 34 near, math-mechanism-dup 0 FLAG / 39 near, read by hand. Single stage-0 return (6 items): hand keyword search found AM25A-08 ~ act db88e25f (phone battery two drain rates) and AM25G-10 ~ held AM23G-10 (circle center on a chord bisector), neither flagged by a script; in-batch overlaps G-06~G-01, F-07~F-06, N-06~A-02; my IES trap-clause read returned I-02 (one fee clause, two same-direction distractors). Kept 50 (sha cc375dd4e8467513): PREFLIGHT PASS incl. check-key-magnitude GATING (z 0.38 / 0.82 / -1.01, consistent), key-extremity-gate 26/50 = 52.0%, key position 14/24/12, 0 niceness flags."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "cc375dd4e8467513ec7feeec36a4021ae858fc8e19f07f824cb77d8cecaa1c1c",
+          "verdict": "Options-only (act-math-v25-attack-draw.mjs, blind sha 32f9b3e2547a0ca1): 62 candidates + 62 live act/math controls matched 1:1 by domain (act-math-v16..v25 excluded), keys flat within arm (25.8% best-fixed each), three Claude samples (pairwise agreement 80.1% vs 26.8% if independent - one solver sampled three times). Candidate 43/186 = 23.1% (-2.7) vs control 54/186 = 29.0% (+3.2): candidate minus control -5.9 (HOLD bar +10). Unanimous-correct candidate 10/62 = 16.1% vs control 14/62 = 22.6%, -6.5 (HOLD bar +15). Control margin +3.2, far from the +25 invalid line. Descriptive, by key position: interior-key hits candidate 35/78 = 44.9% vs control 42/99 = 42.4%; extreme-key 8/108 = 7.4% vs 9/78 = 11.5% (solvers picked an interior option on 173/186 candidate and 153/177 control picks) - part of the pass rides on the 58% extreme commission; position-matched, the candidate is within +2.5 / -4.1 of the control. Measures the option sets only."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "cc375dd4e8467513ec7feeec36a4021ae858fc8e19f07f824cb77d8cecaa1c1c",
+          "verdict": "Two independent Claude graders on make-grade-render of a copy with every author field stripped (render 1f365cf4698b7538, no unrecognised field, quoted by both at start and end); 124/124 picks on key, 0 second-defensible; error_directions, extreme_single_bound and announced_trap present on all 62 items in both outputs; difficulty agree 47/62. Dropped 12: rule 3 A-03, A-09 (+7b whole-cent parity), F-07 (+4), N-05 (+10), N-06, F-11 (+10); rule 4 A-11 (+10: 43-29 = the stem-forced gap 14); rule 7 A-02 (evenly spaced run 3.17/3.65/4.13); rule 8 A-07 (+10, Vieta), I-08, I-10, I-11; rule 11 none (each clause made one option). Extreme-key items kept 26/36 = 72.2%, interior 24/26 = 92.3% (v24: 15/28, 24/31). Banked: easy 7 / medium 39 / hard 4. Verdicts and the not-confirmed reads in act-math-v25.verdicts.json."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "cc375dd4e8467513ec7feeec36a4021ae858fc8e19f07f824cb77d8cecaa1c1c",
+          "verdict": "Residuals recorded, not acted on: AM25A-10 both graders count 2 survivors via the concavity bound (increase > 36.1), judged not cheaper than the item (needs sqrt 60; the tangent form is calculus); single-grader survivors-2 on F-02, F-05, I-02, G-11 judged as the item's own work; one_sided named and not confirmed on F-10 (the linear shortcut overshoots to 72), G-10, I-05, S-05; G-04 1036.73 ON the slant > height bound (3 survive). The 10 unanimous candidates carry no grader-named shortcut (rule 6: none). Kept-set key extremity 26/50 = 52.0% and magnitude interior z -1.01 - neither undershoot (v24) nor overshoot."
         }
       }
     }

@@ -1,0 +1,840 @@
+[
+ {
+  "id": "AM25F-08",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "trigonometric functions: amplitude, midline, period and solving",
+  "subskill": "build a cosine model from max/min, then solve",
+  "prompt": "The function f is defined by f(x) = a cos(bx) + d, where a and b are positive constants, d is a constant, and x is measured in radians. The graph of y = f(x) has a maximum point at (0, 13), and the next minimum point to the right of it is (6, −5). To the nearest hundredth, what is the least positive value of x for which f(x) = 6 ?",
+  "choices": [
+   "2.79",
+   "2.08",
+   "2.57",
+   "2.71"
+  ],
+  "correct_answer": "2.57",
+  "explanation": "The midline is d = (13 + (−5))/2 = 4 and the amplitude is a = 13 − 4 = 9. A maximum to the next minimum is half a period, so the period is 12 and b = 2π/12 = π/6. Then 9 cos(πx/6) + 4 = 6 gives cos(πx/6) = 2/9, so πx/6 = arccos(2/9) ≈ 1.3467 and x ≈ 1.3467 × 6/π ≈ 2.57. The option \"2.79\" takes the amplitude as the full distance from maximum to minimum, 18, so cos(πx/6) = 2/18. The option \"2.71\" takes the amplitude as the maximum value, 13, while keeping the midline 4, so cos(πx/6) = 2/13. The option \"2.08\" drops the midline altogether and uses the maximum as the amplitude, 13 cos(πx/6) = 6.",
+  "solve": "return (Math.acos(2/9)*6/Math.PI).toFixed(2);",
+  "distractor_solve": {
+   "2.79": "return (Math.acos(2/18)*6/Math.PI).toFixed(2);",
+   "2.71": "return (Math.acos(2/13)*6/Math.PI).toFixed(2);",
+   "2.08": "return (Math.acos(6/13)*6/Math.PI).toFixed(2);"
+  },
+  "quantity_asked": "the least positive x with 9cos(pi x/6) + 4 = 6.",
+  "distractor_kind": {
+   "2.79": "error path: amplitude taken as max − min = 18 with midline 4. (a) limiting case: the only stem-forced interval is 0 < x < 3 (6 is above the midline, so before the quarter period); 2.79 inside. (b) neighbouring setup: not an adjacent problem's answer; the adjacent value x = 3 (f = midline) is not an option. (c) cheapest estimate: cos(πx/6) is between 0 and 1/2 for any reading of the data, so x is in (2, 3); 2.79 strictly inside. (d) real: amplitude/range confusion.",
+   "2.71": "error path: amplitude taken as the maximum value 13, midline kept at 4. (a) inside (0, 3). (b) not an adjacent answer. (c) inside (2, 3). (d) real: \"amplitude = maximum\".",
+   "2.08": "error path: ignores the midline and uses 13 cos(πx/6) = 6. (a) inside (0, 3). (b) not an adjacent answer. (c) cos = 6/13 < 1/2 so still inside (2, 3), strictly. (d) real: forgot the vertical shift."
+  },
+  "distractor_meta": {
+   "2.79": {
+    "direction": "over",
+    "error_kind": "range as amplitude"
+   },
+   "2.71": {
+    "direction": "over",
+    "error_kind": "maximum as amplitude"
+   },
+   "2.08": {
+    "direction": "under",
+    "error_kind": "dropped midline"
+   }
+  },
+  "bounds": [
+   "v > 2 (cos(pi v/6) is below 1/2 for every reading of the data)",
+   "v < 3 (f = 6 is above the midline, so before the first quarter period)"
+  ],
+  "mechanism": [
+   "cosine model from maximum and minimum points",
+   "midline and amplitude from max and min",
+   "half period between max and next min",
+   "least positive solution of a cos(bx) + d = k"
+  ],
+  "arith_class_check": "No. x is not stated to be an integer or a nice value; all four options are 2-decimal values in (2, 3) with distinct decimal parts (.79, .08, .57, .71).",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 2.57 and 2.71: both 2-decimal, one integer digit, nonzero last digit; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Shares the max/min-to-model setup with live act 1df98fdd (which evaluates f); this item solves for x instead. A grader may count that as the same mechanism."
+  }
+ },
+ {
+  "id": "AM25F-09",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sequences: differences forming a geometric sequence",
+  "subskill": "sum a geometric list of differences",
+  "prompt": "In a certain sequence, the 1st term is 40 and the 2nd term is 44. For every n ≥ 2, the difference between the (n + 1)th term and the nth term is 1.6 times the difference between the nth term and the (n − 1)th term. To the nearest hundredth, what is the 8th term of the sequence?",
+  "choices": [
+   "212.29",
+   "218.96",
+   "104.61",
+   "147.37"
+  ],
+  "correct_answer": "212.29",
+  "explanation": "The differences are 4, 4(1.6), 4(1.6)², …; going from the 1st term to the 8th term adds 7 of them. Their sum is 4(1.6⁷ − 1)/(1.6 − 1) = 4(26.8435 − 1)/0.6 ≈ 172.29, so the 8th term is 40 + 172.29 = 212.29. The option \"218.96\" drops the \"− 1\" in the geometric-sum formula, 4(1.6⁷)/0.6. The option \"104.61\" divides by the ratio 1.6 instead of by 1.6 − 1. The option \"147.37\" treats the 8th term as the 1st term plus a single difference 4(1.6⁷), using a geometric \"nth term\" formula on the differences.",
+  "solve": "return (40+4*(1.6**7-1)/0.6).toFixed(2);",
+  "distractor_solve": {
+   "218.96": "return (40+4*1.6**7/0.6).toFixed(2);",
+   "104.61": "return (40+4*(1.6**7-1)/1.6).toFixed(2);",
+   "147.37": "return (40+4*1.6**7).toFixed(2);"
+  },
+  "quantity_asked": "a8 = 40 + (4 + 4(1.6) + ... + 4(1.6)^6).",
+  "distractor_kind": {
+   "218.96": "error path: geometric-sum formula with the − 1 dropped. (a) limiting case: stem-forced bounds are a8 > 40 + 7(4) = 68 and a8 < 40 + 7(4)(1.6^6) ≈ 509.8; inside. (b) neighbouring setup: not a neighbouring term (a7 = 145.18 and a9 = 319.66 are NOT options); inside. (c) cheapest estimate: listing the 7 differences is the work; the one-step bracket (68, 510) contains it strictly. (d) real: formula slip.",
+   "104.61": "error path: divides by r instead of r − 1. (a) inside (68, 510). (b) not a neighbouring term. (c) inside. (d) real: denominator slip.",
+   "147.37": "error path: a1 + d1 r^7, a geometric nth-term formula misapplied to the differences. (a) inside (68, 510). (b) not a neighbouring term (a7 = 145.18 is not an option). (c) inside. (d) real: confusing a term of the difference sequence with the sum of differences."
+  },
+  "distractor_meta": {
+   "218.96": {
+    "direction": "over",
+    "error_kind": "dropped minus one in series sum"
+   },
+   "104.61": {
+    "direction": "under",
+    "error_kind": "divided by ratio not ratio minus one"
+   },
+   "147.37": {
+    "direction": "under",
+    "error_kind": "single difference instead of sum"
+   }
+  },
+  "bounds": [
+   "v > 68 (seven differences each at least 4)",
+   "v < 509.8 (seven differences each at most 4(1.6)^6)"
+  ],
+  "mechanism": [
+   "differences form a geometric sequence",
+   "sum of geometric series of differences",
+   "term equals first term plus sum of differences",
+   "second-order sequence"
+  ],
+  "arith_class_check": "No. Every option is a 2-decimal value (.29, .96, .61, .37); no integer, no shared decimal part.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 147.37 and 212.29: both 3-digit integer part, 2 decimals, nonzero last digit; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Neighbouring terms a7, a9 deliberately excluded; trapezoid-type estimate 288.88 above every option; errors both directions."
+  }
+ },
+ {
+  "id": "AM25F-10",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "quadratic modelling in vertex form",
+  "subskill": "vertex-form parabola from a width at a height",
+  "prompt": "The opening of a tunnel is shaped like a parabola that opens downward. The highest point of the opening is 18 meters above the level ground, and at a height of 13 meters above the ground the opening is 20 meters wide. To the nearest hundredth of a meter, how wide is the opening at ground level?",
+  "choices": [
+   "32.25",
+   "27.69",
+   "37.95",
+   "23.53"
+  ],
+  "correct_answer": "37.95",
+  "explanation": "Put the vertex at (0, 18): y = 18 − kx². At y = 13 the half-width is 10, so 5 = 100k and k = 0.05. At ground level 18 = 0.05x², so x² = 360, x ≈ 18.97, and the width is 2(18.97) ≈ 37.95. Equivalently, the drop from the top grows with the square of the half-width, so the half-width at ground is 10√(18/5). The option \"32.25\" measures the ground drop from the 13-meter level (13 instead of 18), 20√(13/5). The option \"27.69\" scales the width in proportion to the heights, 20(18/13), as if the width were linear in height. The option \"23.53\" sets the parabola up with its vertex at ground level, so the width grows as the square root of height and 20√(18/13) is the width at the top.",
+  "solve": "return (20*Math.sqrt(18/5)).toFixed(2);",
+  "distractor_solve": {
+   "32.25": "return (20*Math.sqrt(13/5)).toFixed(2);",
+   "27.69": "return (20*18/13).toFixed(2);",
+   "23.53": "return (20*Math.sqrt(18/13)).toFixed(2);"
+  },
+  "quantity_asked": "the full width of y = 18 − 0.05x^2 at y = 0, i.e. 2*sqrt(360).",
+  "distractor_kind": {
+   "32.25": "error path: ground drop taken as 13 (from the 13 m level) instead of 18. (a) limiting case: stem-forced bounds are width > 20 (wider at the ground than at 13 m) and width < 72 (the parabola lies under the line from the top through the 13 m point); inside. (b) neighbouring setup: not the answer to an adjacent problem; inside. (c) cheapest estimate: (20, 72); one step finer needs √3.6, which is the work; 32.25 strictly inside. (d) real.",
+   "27.69": "error path: width proportional to height ratio 18/13. (a) inside (20, 72). (b) not adjacent. (c) inside. (d) real: linear scaling.",
+   "23.53": "error path: parabola set up with vertex at the ground, width ∝ √height. (a) inside (20, 72). (b) not adjacent. (c) inside. (d) real: wrong orientation of the vertex."
+  },
+  "distractor_meta": {
+   "32.25": {
+    "direction": "under",
+    "error_kind": "drop measured from wrong level"
+   },
+   "27.69": {
+    "direction": "under",
+    "error_kind": "linear instead of square-root scaling"
+   },
+   "23.53": {
+    "direction": "under",
+    "error_kind": "vertex placed at ground"
+   }
+  },
+  "bounds": [
+   "v > 20 (the opening widens downward from the 13 m level)",
+   "v < 72 (chord from the top through (10, 13) meets the ground at x = 36)"
+  ],
+  "mechanism": [
+   "parabolic arch width at ground",
+   "vertex form y = k - a x^2",
+   "width at a given height",
+   "half-width proportional to square root of drop"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values (.25, .69, .95, .53) between 20 and 72; no integer or radical form.",
+  "one_sided_check": "Key largest. Three different error kinds (wrong reference level, linear scaling, inverted vertex); nothing in the stem says which way a slip moves the width.",
+  "interior_parity_check": "interior options by value 27.69 and 32.25: both 2-decimal, two integer digits, nonzero last digit.",
+  "cheap_bound_check": "Cheapest one-sided bounds: width > 20 and width < 72 (secant). No bound cheaper than computing √3.6 separates 37.95 from 32.25; nearest distractor 32.25 is on the key's side of the cheap lower bound 20 and within one estimate step (√2.6 vs √3.6).",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "All three errors undershoot; a grader may read \"ratio-based slips shrink the width\" as a one-sided family. No cheap bound found between 32.25 and 37.95."
+  }
+ },
+ {
+  "id": "AM25F-11",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "trigonometric functions on the unit circle: reference angles",
+  "subskill": "evaluate with reference-angle identities",
+  "prompt": "For a certain angle θ with 0 < θ < π/2, sin θ = 0.52. To the nearest hundredth, what is the value of sin(π − θ) + cos(π + θ) + tan(2π − θ) ?",
+  "choices": [
+   "0.27",
+   "0.77",
+   "-0.61",
+   "-0.94"
+  ],
+  "correct_answer": "-0.94",
+  "explanation": "On the unit circle, sin(π − θ) = sin θ = 0.52, cos(π + θ) = −cos θ, and tan(2π − θ) = −tan θ. Since cos θ = √(1 − 0.52²) ≈ 0.8542 and tan θ = 0.52/0.8542 ≈ 0.6088, the sum is 0.52 − 0.8542 − 0.6088 ≈ −0.94. The option \"0.77\" takes cos(π + θ) = +cos θ. The option \"0.27\" takes tan(2π − θ) = +tan θ. The option \"−0.61\" replaces sin(π − θ) with cos θ, as if it were sin(π/2 − θ).",
+  "solve": "const s=0.52,c=Math.sqrt(1-s*s),t=s/c;return (s-c-t).toFixed(2);",
+  "distractor_solve": {
+   "0.77": "const s=0.52,c=Math.sqrt(1-s*s),t=s/c;return (s+c-t).toFixed(2);",
+   "0.27": "const s=0.52,c=Math.sqrt(1-s*s),t=s/c;return (s-c+t).toFixed(2);",
+   "-0.61": "const s=0.52,c=Math.sqrt(1-s*s),t=s/c;return (c-c-t).toFixed(2);"
+  },
+  "quantity_asked": "sin(theta) - cos(theta) - tan(theta) for sin(theta) = 0.52 in quadrant I.",
+  "distractor_kind": {
+   "0.77": "error path: cos(π + θ) taken as +cos θ. (a) limiting case: stem-forced range of the expression is (−3, 3) roughly; no bound at 0.77. (b) neighbouring setup: not an adjacent problem's answer. (c) cheapest estimate: the three magnitudes are 0.52, about 0.85 and about 0.61; without the signs (the work) the sum is only bounded by ±1.99; inside. (d) real: quadrant sign slip.",
+   "0.27": "error path: tan(2π − θ) taken as +tan θ. (a) inside. (b) not adjacent. (c) inside ±1.99. (d) real: sign slip.",
+   "-0.61": "error path: sin(π − θ) read as cos θ (co-function confusion), leaving −tan θ. (a) inside. (b) not adjacent. (c) inside. (d) real: confuses π − θ with π/2 − θ."
+  },
+  "distractor_meta": {
+   "0.77": {
+    "direction": "over",
+    "error_kind": "cosine sign in quadrant III"
+   },
+   "0.27": {
+    "direction": "over",
+    "error_kind": "tangent sign in quadrant IV"
+   },
+   "-0.61": {
+    "direction": "over",
+    "error_kind": "co-function confusion"
+   }
+  },
+  "bounds": [
+   "v > -1.99",
+   "v < 1.99 (three terms of magnitude 0.52, about 0.85, about 0.61)"
+  ],
+  "mechanism": [
+   "reference angle identities",
+   "sin(pi - theta) cos(pi + theta) tan(2pi - theta)",
+   "signs of trig functions by quadrant",
+   "cosine from sine with Pythagorean identity"
+  ],
+  "arith_class_check": "No. Two negative and two positive options; all 2-decimal with distinct decimal parts; the stem does not imply the sign of the result without the identities.",
+  "one_sided_check": "Key smallest. Three distractors from three different slips (cosine sign, tangent sign, co-function confusion); which terms are negative is the content being tested, so the direction of a slip is not readable from the stem.",
+  "interior_parity_check": "interior options by value -0.61 and 0.27: both 2-decimal, nonzero last digit, same display length apart from the sign.",
+  "cheap_bound_check": "Cheapest one-sided bound: |sum| ≤ 0.52 + 0.86 + 0.61 ≈ 1.99, which contains every option. The nearest distractor −0.61 differs from the key by sin θ − cos θ, which needs the identity work; no cheaper bound separates −0.94 from −0.61.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Sign slips on negative terms push up, but which terms are negative is the tested content; the co-function slip is a different kind."
+  }
+ },
+ {
+  "id": "AM25F-12",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "trigonometric functions on the unit circle: angle-sum identity",
+  "subskill": "sine of a sum from one sine and one cosine",
+  "prompt": "Angles α and β satisfy 0 < α < π/2 and π/2 < β < π. Also, sin α = 0.45 and cos β = −0.35. To the nearest hundredth, what is the value of sin(α + β) ?",
+  "choices": [
+   "0.36",
+   "0.68",
+   "0.99",
+   "0.11"
+  ],
+  "correct_answer": "0.68",
+  "explanation": "Because α is in Quadrant I, cos α = √(1 − 0.45²) ≈ 0.8930; because β is in Quadrant II, sin β = √(1 − 0.35²) ≈ 0.9367 (positive). Then sin(α + β) = sin α cos β + cos α sin β ≈ 0.45(−0.35) + 0.8930(0.9367) ≈ −0.1575 + 0.8364 ≈ 0.68. The option \"0.99\" drops the negative sign of cos β. The option \"0.11\" uses the pattern sin α sin β + cos α cos β, which belongs to cos(α − β). The option \"0.36\" takes cos α as 1 − sin α = 0.55 instead of using the Pythagorean identity.",
+  "solve": "const sa=0.45,ca=Math.sqrt(1-sa*sa),cb=-0.35,sb=Math.sqrt(1-cb*cb);return (sa*cb+ca*sb).toFixed(2);",
+  "distractor_solve": {
+   "0.99": "const sa=0.45,ca=Math.sqrt(1-sa*sa),cb=0.35,sb=Math.sqrt(1-cb*cb);return (sa*cb+ca*sb).toFixed(2);",
+   "0.11": "const sa=0.45,ca=Math.sqrt(1-sa*sa),cb=-0.35,sb=Math.sqrt(1-cb*cb);return (sa*sb+ca*cb).toFixed(2);",
+   "0.36": "const sa=0.45,ca=1-sa,cb=-0.35,sb=Math.sqrt(1-cb*cb);return (sa*cb+ca*sb).toFixed(2);"
+  },
+  "quantity_asked": "sin(alpha + beta) with sin alpha = 0.45 (QI) and cos beta = -0.35 (QII).",
+  "distractor_kind": {
+   "0.99": "error path: cos β used as +0.35. (a) limiting case: the only stem-forced bound is |sin(α + β)| ≤ 1; 0.99 strictly inside. (b) neighbouring setup: not an adjacent problem's extreme. (c) cheapest estimate: α + β lies between 90° and 270°, so the sign is not free; inside (−1, 1). (d) real: quadrant sign slip.",
+   "0.11": "error path: cos(α − β) formula pattern. (a) inside. (b) not adjacent. (c) inside. (d) real: identity confusion.",
+   "0.36": "error path: cos α = 1 − sin α. (a) inside. (b) not adjacent. (c) inside. (d) real: Pythagorean identity misused."
+  },
+  "distractor_meta": {
+   "0.99": {
+    "direction": "over",
+    "error_kind": "cosine sign in quadrant II"
+   },
+   "0.11": {
+    "direction": "under",
+    "error_kind": "wrong sum formula pattern"
+   },
+   "0.36": {
+    "direction": "under",
+    "error_kind": "cos as one minus sin"
+   }
+  },
+  "bounds": [
+   "v > -1",
+   "v < 1"
+  ],
+  "mechanism": [
+   "sine of a sum identity",
+   "sin(alpha + beta) from sin alpha and cos beta",
+   "quadrant signs of sine and cosine",
+   "Pythagorean identity for the missing ratio"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values in (0, 1) with distinct decimal parts; the key is not a stem number or its complement.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 0.36 and 0.68: both 2-decimal with nonzero last digit.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "No live angle-sum item found; |sin| <= 1 contains all; errors in both directions. Shares the trig-values family with F-11 but a different identity."
+  }
+ },
+ {
+  "id": "AM25F-13",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "quadratic modelling in vertex form",
+  "subskill": "known vertex time, two data points, find maximum",
+  "prompt": "A ball is tossed upward, and its height above the ground, in meters, t seconds after it is released is modeled by a quadratic function of t. The ball is released at a height of 1.5 meters, it is 6.3 meters high 0.5 second after release, and it reaches its maximum height 1.2 seconds after release. According to the model, to the nearest hundredth of a meter, what is the maximum height of the ball?",
+  "choices": [
+   "8.78",
+   "9.84",
+   "7.53",
+   "8.56"
+  ],
+  "correct_answer": "8.78",
+  "explanation": "Write h(t) = a(t − 1.2)² + k. Then h(0) = 1.44a + k = 1.5 and h(0.5) = 0.49a + k = 6.3. Subtracting, 0.95a = −4.8, so a ≈ −5.0526 and k = 1.5 + 5.0526(1.44) ≈ 8.78. The option \"9.84\" squares (0.5 − 1.2) when finding a but forgets to square it when substituting back, k = 6.3 + 5.0526(0.7). The option \"7.53\" writes (0 − 1.2)² as 2.4. The option \"8.56\" ignores the 6.3-meter data and assumes a = −4.9 from free fall, k = 1.5 + 4.9(1.44).",
+  "solve": "const a=(6.3-1.5)/(0.49-1.44);return (1.5-a*1.44).toFixed(2);",
+  "distractor_solve": {
+   "9.84": "const a=(6.3-1.5)/(0.49-1.44);return (6.3-a*0.7).toFixed(2);",
+   "7.53": "const a=(6.3-1.5)/(0.49-2.4);return (1.5-a*2.4).toFixed(2);",
+   "8.56": "return (1.5+4.9*1.44).toFixed(2);"
+  },
+  "quantity_asked": "k in h(t) = a(t - 1.2)^2 + k with h(0) = 1.5 and h(0.5) = 6.3.",
+  "distractor_kind": {
+   "9.84": "error path: unsquared 0.7 in the back-substitution. (a) limiting case: stem-forced bounds k > 6.3 (the ball is still rising at 0.5 s) and k < 13.02 (the secant from t = 0 to t = 0.5 extended to t = 1.2 lies above a concave parabola); inside. (b) neighbouring setup: not an adjacent problem's answer; inside. (c) cheapest estimate: (6.3, 13.02); 9.84 strictly inside. (d) real.",
+   "7.53": "error path: 1.2² written as 2.4. (a) inside (6.3, 13.02). (b) not adjacent. (c) inside. (d) real: squaring slip.",
+   "8.56": "error path: assumed a = −4.9 and used only the release height. (a) inside. (b) it is the answer for a free-fall parabola, not a bound on this one (it would put h(0.5) at 6.16, not 6.3); inside. (c) inside. (d) real: imports physics instead of the data."
+  },
+  "distractor_meta": {
+   "9.84": {
+    "direction": "over",
+    "error_kind": "unsquared back-substitution"
+   },
+   "7.53": {
+    "direction": "under",
+    "error_kind": "squaring slip 1.2 squared as 2.4"
+   },
+   "8.56": {
+    "direction": "under",
+    "error_kind": "assumed g/2 instead of fitting"
+   }
+  },
+  "bounds": [
+   "v > 6.3",
+   "v < 13.02 (secant through the first two data points extended to t = 1.2)"
+  ],
+  "mechanism": [
+   "vertex form with known axis of symmetry",
+   "two data points determine a and k",
+   "maximum height of a tossed ball",
+   "h(t) = a(t - h)^2 + k"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values between 6.3 and 13.02 with distinct decimal parts.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 8.56 and 8.78: both 2-decimal, one integer digit, nonzero last digit.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Linear-extrapolation value 13.02 deliberately excluded (it is the secant bound); errors in both directions; distinct from live vertex-through-point items."
+  }
+ },
+ {
+  "id": "AM25F-14",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "recursive sequences given by a table",
+  "subskill": "find recurrence coefficients, extend two terms",
+  "prompt": "The table below gives the first five terms of a sequence. n | 1 | 2 | 3 | 4 | 5 ; aₙ | 1 | 3 | 7 | 19 | 47. For every n ≥ 1, the terms satisfy aₙ₊₂ = p·aₙ₊₁ + q·aₙ, where p and q are constants. What is the value of a₇ ?",
+  "choices": [
+   "288",
+   "199",
+   "273",
+   "311"
+  ],
+  "correct_answer": "311",
+  "explanation": "From a₃ = 3p + q = 7 and a₄ = 7p + 3q = 19: substituting q = 7 − 3p gives 7p + 21 − 9p = 19, so p = 1 and q = 4 (check: a₅ = 19 + 4(7) = 47). Then a₆ = 47 + 4(19) = 123 and a₇ = 123 + 4(47) = 311. The option \"288\" ignores the rule and extends the last ratio, 47(47/19)², rounded. The option \"199\" uses the wrong index in the last step, a₆ + 4a₄. The option \"273\" fits only a₃ with p = 2 and q = 1 and never checks a₄, giving a₆ = 113 and a₇ = 273.",
+  "solve": "const a=[1,3,7,19,47];const a6=a[4]+4*a[3];return String(a6+4*a[4]);",
+  "distractor_solve": {
+   "199": "const a=[1,3,7,19,47];const a6=a[4]+4*a[3];return String(a6+4*a[3]);",
+   "273": "const a6=2*47+19;return String(2*a6+47);",
+   "288": "return String(Math.round(47*(47/19)**2));"
+  },
+  "quantity_asked": "a7 for the recurrence a(n+2) = a(n+1) + 4a(n) fitted to the table.",
+  "distractor_kind": {
+   "199": "error path: a₆ + q·a₄ (index slip). (a) inside. (b) not a neighbouring term. (c) a bound below 311 like a₇ ≥ 4a₅ + 4a₄ needs p and q, which is the work; no cheaper one. (d) real.",
+   "273": "error path: p, q fitted to one relation only (2, 1). (a) inside. (b) not a neighbouring term. (c) inside. (d) real: under-determined fit not checked.",
+   "288": "error path: geometric extrapolation from the last ratio. (a) limiting case: stem-forced bound a₇ > a₅ = 47 only; inside. (b) neighbouring setup: a₆ = 123 is not an option; inside. (c) cheapest estimate: the ratio estimate itself (about 288 to 300) is a point estimate, not a bound; the key is 8% above it. (d) real: ignores the given rule."
+  },
+  "distractor_meta": {
+   "199": {
+    "direction": "under",
+    "error_kind": "index slip in recurrence"
+   },
+   "273": {
+    "direction": "under",
+    "error_kind": "coefficients fitted to one equation"
+   },
+   "288": {
+    "direction": "under",
+    "error_kind": "ratio extrapolation"
+   }
+  },
+  "bounds": [
+   "v > 47"
+  ],
+  "mechanism": [
+   "second-order linear recurrence from a table",
+   "solve for recurrence coefficients p and q",
+   "extend sequence two terms",
+   "a(n+2) = p a(n+1) + q a(n)"
+  ],
+  "arith_class_check": "No. 311, 199 and 273 are odd and 288 is even; 311 and 199 are both prime; no class isolates the key.",
+  "one_sided_check": "Key largest. Three different error kinds (rule ignored for a ratio, index slip, under-fitted coefficients); whether a slip lands above or below depends on the data, not on anything the stem states.",
+  "interior_parity_check": "interior options by value 273 and 288: both 3-digit integers, neither a multiple of 10.",
+  "cheap_bound_check": "Cheapest one-sided bound from the stem: the ratio estimate 47 × (47/19)² ≈ 288 (a point estimate); a lower bound such as a₇ ≥ 4(a₅ + a₄) = 264 needs p and q first, i.e. the work. Nearest distractor 288 is within 8% of the key, inside the resolution of the ratio estimate (ratios in the table run 2.33 to 2.71).",
+  "self_audit": {
+   "risk": "low",
+   "note": "v24 F-07 was a sum-of-two-previous recurrence with an unknown term; here the coefficients are unknown. Nearest distractor within 8%."
+  }
+ },
+ {
+  "id": "AM25S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "weighted averages of groups",
+  "subskill": "combined mean after one group changes",
+  "prompt": "Three sections of a class took the same test. Section A has 14 students with a mean score of 72, Section B has 22 students with a mean score of 81, and Section C has 23 students with a mean score of 77. After a grading error was corrected, every student in Section B received 3 more points, and no other score changed. To the nearest hundredth, what is the mean score of all the students after the correction?",
+  "choices": [
+   "78.31",
+   "78.42",
+   "79.09",
+   "77.67"
+  ],
+  "correct_answer": "78.42",
+  "explanation": "Before the correction the total is 14(72) + 22(81) + 23(77) = 1,008 + 1,782 + 1,771 = 4,561 for 59 students. The correction adds 22(3) = 66 points, so the new total is 4,627 and the mean is 4,627/59 ≈ 78.42. The option \"77.67\" averages the three corrected section means, (72 + 84 + 77)/3, ignoring the section sizes. The option \"78.31\" adds 3/3 = 1 point to the old mean, as if Section B were one third of the class. The option \"79.09\" adds 3(22/37) to the old mean, comparing Section B with the other two sections instead of with the whole class.",
+  "solve": "return ((14*72+22*81+23*77+22*3)/59).toFixed(2);",
+  "distractor_solve": {
+   "77.67": "return ((72+84+77)/3).toFixed(2);",
+   "78.31": "return ((14*72+22*81+23*77)/59+1).toFixed(2);",
+   "79.09": "return ((14*72+22*81+23*77)/59+3*22/37).toFixed(2);"
+  },
+  "quantity_asked": "the mean of all 59 scores after the 22 Section B scores each rise by 3.",
+  "distractor_kind": {
+   "77.67": "error path: unweighted mean of the corrected section means. (a) limiting case: stem-forced bounds are the old mean 77.31 < v < 80.31 (old mean + 3, as if everyone gained 3); inside. (b) neighbouring setup: the unweighted mean is not a bound on the weighted one here (section sizes are unequal both ways); inside. (c) cheapest estimate: (77.31, 80.31); strictly inside. (d) real: ignores weights.",
+   "78.31": "error path: Section B treated as one third of the class. (a) inside. (b) not a bound. (c) inside. (d) real: wrong weight.",
+   "79.09": "error path: weight 22/37 instead of 22/59. (a) inside. (b) not a bound. (c) inside. (d) real: wrong base for the share."
+  },
+  "distractor_meta": {
+   "77.67": {
+    "direction": "under",
+    "error_kind": "unweighted section means"
+   },
+   "78.31": {
+    "direction": "under",
+    "error_kind": "equal-thirds weight"
+   },
+   "79.09": {
+    "direction": "over",
+    "error_kind": "share of the wrong base"
+   }
+  },
+  "bounds": [
+   "v > 77.31 (the old mean; only increases happened)",
+   "v < 80.31 (old mean + 3, if every student had gained 3)"
+  ],
+  "mechanism": [
+   "weighted mean of three sections",
+   "combined mean after a correction to one group",
+   "section sizes as weights",
+   "total points divided by total students"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values between 77.31 and 80.31 with distinct decimal parts.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 78.31 and 78.42: both 2-decimal, two integer digits, nonzero last digit.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Live section-mean items solve for one group mean; this is a forward weighted mean after a change. Bounds (77.31, 80.31) contain all."
+  }
+ },
+ {
+  "id": "AM25S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "effect of removing data values on standard deviation",
+  "subskill": "sum of squared deviations after removal",
+  "prompt": "A data set consists of 20 values. Its mean is 50, and its standard deviation is 5.2, where the standard deviation is the square root of the mean of the squared deviations from the mean. Two values in the data set, 42 and 58, are removed. To the nearest hundredth, what is the standard deviation of the remaining 18 values, computed the same way?",
+  "choices": [
+   "4.79",
+   "4.66",
+   "4.46",
+   "4.76"
+  ],
+  "correct_answer": "4.79",
+  "explanation": "The sum of the squared deviations of all 20 values is 20(5.2²) = 540.8. Removing 42 and 58 leaves the mean at 50 (they sum to 100) and removes 8² + 8² = 128, leaving 412.8 for 18 values. The new standard deviation is √(412.8/18) ≈ 4.79. The option \"4.76\" treats 5.2 as a sample standard deviation (squared deviations summed to 19 × 5.2²) and divides by 17. The option \"4.66\" divides by 19 instead of 18. The option \"4.46\" subtracts 128/18 from the old variance without rescaling it, √(27.04 − 128/18).",
+  "solve": "return Math.sqrt((20*5.2*5.2-128)/18).toFixed(2);",
+  "distractor_solve": {
+   "4.76": "return Math.sqrt((19*5.2*5.2-128)/17).toFixed(2);",
+   "4.66": "return Math.sqrt((20*5.2*5.2-128)/19).toFixed(2);",
+   "4.46": "return Math.sqrt(5.2*5.2-128/18).toFixed(2);"
+  },
+  "quantity_asked": "sqrt((20*5.2^2 - 2*8^2)/18).",
+  "distractor_kind": {
+   "4.76": "error path: sample-SD convention (n − 1) throughout. (a) limiting case: stem-forced bound v < 5.2 (both removed values lie farther than one SD from the mean); inside. (b) neighbouring setup: the sample-convention answer is not a bound on the population one; inside. (c) cheapest estimate: (0, 5.2); one step finer needs the sum of squares, which is the work. (d) real: calculator s vs sigma.",
+   "4.66": "error path: divides by 19. (a) inside (0, 5.2). (b) not an adjacent problem's extreme. (c) inside. (d) real: off-by-one count.",
+   "4.46": "error path: subtracts the removed share from the old variance without rescaling to 18 values. (a) inside. (b) not adjacent. (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "4.76": {
+    "direction": "under",
+    "error_kind": "sample SD convention"
+   },
+   "4.66": {
+    "direction": "under",
+    "error_kind": "wrong count in denominator"
+   },
+   "4.46": {
+    "direction": "under",
+    "error_kind": "variance not rescaled"
+   }
+  },
+  "bounds": [
+   "v < 5.2 (removed values are more than one SD from the mean)",
+   "v > 0"
+  ],
+  "mechanism": [
+   "standard deviation after removing values",
+   "sum of squared deviations",
+   "population standard deviation",
+   "removing values symmetric about the mean"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values between 4.4 and 4.8 with distinct decimal parts.",
+  "one_sided_check": "Key largest. Three different error kinds (convention, count, rescaling). The stem's one directional fact (SD falls below 5.2) holds for all four options; whether each slip lands above or below 4.79 is not readable from the stem.",
+  "interior_parity_check": "interior options by value 4.66 and 4.76: both 2-decimal, one integer digit, nonzero last digit.",
+  "cheap_bound_check": "Cheapest one-sided bound: v < 5.2, which every option satisfies. No cheap lower bound separates 4.79 from 4.76 (they differ by 0.03, from the n vs n − 1 convention); the nearest distractor is within the resolution of any estimate.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Upper bound 5.2 contains all; key and 4.76 differ only by convention, so no single bound isolates the key."
+  }
+ },
+ {
+  "id": "AM25S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "conditional probability of dependent events",
+  "subskill": "condition on \"at least one\", without replacement",
+  "prompt": "A box contains 12 cards, 5 of which are red and 7 of which are blue. Two cards are drawn at random without replacement. Given that at least one of the two cards drawn is red, what is the probability, to the nearest hundredth, that both cards are red?",
+  "choices": [
+   "0.26",
+   "0.29",
+   "0.22",
+   "0.23"
+  ],
+  "correct_answer": "0.22",
+  "explanation": "There are C(12, 2) = 66 equally likely pairs. Both red: C(5, 2) = 10. No red: C(7, 2) = 21, so at least one red: 66 − 21 = 45. The probability is 10/45 ≈ 0.22. The option \"0.23\" computes P(both red) without replacement, 10/66, but P(at least one red) as if with replacement, 1 − (7/12)². The option \"0.26\" works entirely with replacement, (5/12)² ÷ [1 − (7/12)²]. The option \"0.29\" divides by the probability of exactly one red, 10/35.",
+  "solve": "return (10/45).toFixed(2);",
+  "distractor_solve": {
+   "0.23": "return ((10/66)/(1-(7/12)**2)).toFixed(2);",
+   "0.26": "return (((5/12)**2)/(1-(7/12)**2)).toFixed(2);",
+   "0.29": "return (10/35).toFixed(2);"
+  },
+  "quantity_asked": "P(both red | at least one red) = C(5,2)/(C(12,2) - C(7,2)).",
+  "distractor_kind": {
+   "0.23": "error path: mixed models (numerator without replacement, denominator with). (a) limiting case: the cheapest stem bound is P < P(second red | first red) = 4/11 ≈ 0.36; inside. (b) neighbouring setup: the with-replacement answer is 0.26, not a bound; inside. (c) cheapest estimate: (0, 0.36); 0.23 strictly inside. (d) real.",
+   "0.26": "error path: with replacement throughout. (a) inside (0, 0.36). (b) not a bound. (c) inside. (d) real: ignores \"without replacement\".",
+   "0.29": "error path: conditions on exactly one red. (a) inside (0, 0.36). (b) different conditioning event, not a bound. (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "0.23": {
+    "direction": "over",
+    "error_kind": "mixed replacement models"
+   },
+   "0.26": {
+    "direction": "over",
+    "error_kind": "with replacement"
+   },
+   "0.29": {
+    "direction": "over",
+    "error_kind": "wrong conditioning event"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 0.364 (4/11: at least one red is a weaker condition than the first card red)"
+  ],
+  "mechanism": [
+   "given at least one red probability both red",
+   "conditional probability without replacement",
+   "complement for at least one",
+   "pairs of cards from a box"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values with distinct decimal parts; the key 10/45 = 2/9 shows as 0.22, not a simple-looking decimal.",
+  "one_sided_check": "Key smallest. Three distractors from three different errors (mixed models, with replacement, wrong conditioning event); none is the \"given the first card is red\" value 0.36, and nothing in the stem announces which way each slip pushes.",
+  "interior_parity_check": "interior options by value 0.23 and 0.26: both 2-decimal with nonzero last digit.",
+  "cheap_bound_check": "Cheapest one-sided bound: P < 4/11 ≈ 0.36 (all options below it). Nearest distractor 0.23 is 0.01 above the key, within the resolution of any estimate short of the exact count.",
+  "self_audit": {
+   "risk": "low",
+   "note": "The neighbouring value 0.36 (given first red) is excluded; nearest distractor 0.01 away; three error kinds."
+  }
+ },
+ {
+  "id": "AM25S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "dependent compound events",
+  "subskill": "kth success on a given draw, without replacement",
+  "prompt": "A box contains 10 light bulbs, 4 of which are defective. An inspector tests the bulbs one at a time, in random order, without replacement. To the nearest hundredth, what is the probability that the second defective bulb found is the 4th bulb tested?",
+  "choices": [
+   "0.35",
+   "0.21",
+   "0.29",
+   "0.25"
+  ],
+  "correct_answer": "0.21",
+  "explanation": "The 4th bulb must be defective, and exactly 1 of the first 3 must be defective. P(exactly 1 defective in the first 3) = C(4, 1)C(6, 2)/C(10, 3) = 60/120 = 0.5. Then 3 defective bulbs remain among 7, so the 4th is defective with probability 3/7. The probability is 0.5 × 3/7 ≈ 0.21. The option \"0.25\" uses 3 out of 6 remaining bulbs for the 4th test. The option \"0.29\" counts 4 positions for the first defective bulb instead of 3. The option \"0.35\" treats the tests as independent with probability 0.4 and computes C(4, 2)(0.4)²(0.6)², the chance of exactly 2 defectives in 4 tests.",
+  "solve": "return ((4*15/120)*(3/7)).toFixed(2);",
+  "distractor_solve": {
+   "0.25": "return ((4*15/120)*(3/6)).toFixed(2);",
+   "0.29": "return (4*(4*3*6*5)/(10*9*8*7)).toFixed(2);",
+   "0.35": "return (6*0.4**2*0.6**2).toFixed(2);"
+  },
+  "quantity_asked": "P(exactly one defective in the first three tests and the fourth defective) = 0.5 x 3/7.",
+  "distractor_kind": {
+   "0.25": "error path: 6 bulbs left before the 4th test instead of 7. (a) limiting case: cheapest stem bound P ≤ P(4th bulb defective) = 0.4; inside. (b) neighbouring setup: P(exactly one defective in first 3) = 0.5 is not an option; inside. (c) cheapest estimate: (0, 0.4); strictly inside. (d) real: off-by-one in remaining count.",
+   "0.29": "error path: 4 arrangements instead of 3. (a) inside (0, 0.4). (b) not a bound. (c) inside. (d) real: counted the last position as free.",
+   "0.35": "error path: independent trials, exactly 2 of 4. (a) inside (0, 0.4). (b) the without-replacement superset P(exactly 2 in first 4) = 0.43 is not an option; 0.35 is below it. (c) inside. (d) real: ignores dependence and the order condition."
+  },
+  "distractor_meta": {
+   "0.25": {
+    "direction": "over",
+    "error_kind": "remaining-count off by one"
+   },
+   "0.29": {
+    "direction": "over",
+    "error_kind": "position count"
+   },
+   "0.35": {
+    "direction": "over",
+    "error_kind": "binomial model with wrong event"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 0.4 (the 4th bulb must itself be defective)"
+  ],
+  "mechanism": [
+   "second defective found on fourth test",
+   "negative hypergeometric",
+   "without replacement order of draws",
+   "exactly one in first three then success"
+  ],
+  "arith_class_check": "No. 0.25 is a quarter, but it comes from an error path and is not the key; all four are 2-decimal values with distinct decimal parts.",
+  "one_sided_check": "Key smallest. Three different errors (remaining count, arrangement count, independence with the wrong event). Nothing in the stem announces a single condition whose neglect pushes all of them one way.",
+  "interior_parity_check": "interior options by value 0.25 and 0.29: both 2-decimal, nonzero last digit, equal display complexity.",
+  "cheap_bound_check": "Cheapest one-sided bound: P ≤ 0.4 (the 4th bulb defective), which contains every option. Nearest distractor 0.25 is 0.04 above the key; separating them needs the exact 3/7 vs 3/6 factor, which is the work.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Superset/subset values (0.5, 0.43, 0.55) deliberately excluded; P(4th defective) = 0.4 contains all options."
+  }
+ },
+ {
+  "id": "AM25S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value",
+  "subskill": "expected net winnings with overlapping events",
+  "prompt": "In a game, a player rolls two fair 6-sided dice, each numbered 1 through 6. If the sum of the two numbers is 8 or the two dice show the same number, the player wins $11. If the sum is 5, the player wins $6. Otherwise, the player loses $3.50. To the nearest cent, what is the expected value, in dollars, of the player's net winnings for one game?",
+  "choices": [
+   "1.68",
+   "1.58",
+   "2.93",
+   "1.99"
+  ],
+  "correct_answer": "1.58",
+  "explanation": "Of the 36 equally likely outcomes, 5 have sum 8 and 6 are doubles, and (4, 4) is in both, so 10 outcomes win $11. Four outcomes have sum 5, and the remaining 36 − 10 − 4 = 22 lose $3.50. The expected value is (10 × 11 + 4 × 6 − 22 × 3.5)/36 = 57/36 ≈ 1.58. The option \"1.68\" counts the winning outcomes correctly but removes 11 + 4 = 15 outcomes when counting the losers (21 instead of 22). The option \"1.99\" double-counts (4, 4) as 11 winning outcomes and 21 losing ones. The option \"2.93\" treats the 21 unordered pairs of numbers as equally likely.",
+  "solve": "return ((10*11+4*6-22*3.5)/36).toFixed(2);",
+  "distractor_solve": {
+   "1.68": "return ((10*11+4*6-21*3.5)/36).toFixed(2);",
+   "1.99": "return ((11*11+4*6-21*3.5)/36).toFixed(2);",
+   "2.93": "return ((8*11+2*6-11*3.5)/21).toFixed(2);"
+  },
+  "quantity_asked": "E = (10(11) + 4(6) - 22(3.5))/36.",
+  "distractor_kind": {
+   "1.68": "error path: overlap handled in the win count but not in the loss count. (a) limiting case: cheapest stem bound E < (14 × 11 + 4 × 6)/36 ≈ 4.94 (no losses, generous) and E < (10 × 11 + 4 × 6)/36 ≈ 3.72 once the win count is known; inside. (b) neighbouring setup: the no-loss value 3.72 is not an option; inside. (c) cheapest estimate: (−3.5, 3.72); strictly inside. (d) real: inconsistent inclusion-exclusion.",
+   "1.99": "error path: (4, 4) counted twice. (a) inside. (b) not a bound. (c) inside. (d) real: inclusion-exclusion skipped.",
+   "2.93": "error path: 21 unordered outcomes treated as equally likely. (a) inside (−3.5, 3.72). (b) not a bound. (c) inside. (d) real: sample-space error."
+  },
+  "distractor_meta": {
+   "1.68": {
+    "direction": "over",
+    "error_kind": "overlap removed only from wins"
+   },
+   "1.99": {
+    "direction": "over",
+    "error_kind": "double-counted overlap"
+   },
+   "2.93": {
+    "direction": "over",
+    "error_kind": "unordered outcomes as equally likely"
+   }
+  },
+  "bounds": [
+   "v > -3.5 (every outcome loses)",
+   "v < 3.72 (no outcome loses)"
+  ],
+  "mechanism": [
+   "expected value of a dice game",
+   "sum is 8 or doubles overlap",
+   "inclusion-exclusion in outcome counts",
+   "net winnings with a loss"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values with distinct decimal parts; the key 57/36 is not a round fraction.",
+  "one_sided_check": "Key smallest. Three different errors (inconsistent inclusion-exclusion, full double count, wrong sample space). The stem names no single rule whose neglect drives them; the unordered-sample-space slip can go either way in general.",
+  "interior_parity_check": "interior options by value 1.68 and 1.99: both 2-decimal, one integer digit, nonzero last digit.",
+  "cheap_bound_check": "Cheapest one-sided bound: E < 3.72 (ignore losses), which contains every option. Nearest distractor 1.68 is 0.10 above the key (one loss outcome × 3.5/36), within the resolution of any estimate short of the exact count.",
+  "self_audit": {
+   "risk": "low",
+   "note": "The ignore-loss value 3.72 is excluded (it is the bound); nearest distractor one outcome away."
+  }
+ },
+ {
+  "id": "AM25S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "effect of data changes on the mean",
+  "subskill": "mean after a linear change and a removal",
+  "prompt": "A data set consists of 12 values. The mean of the values is 52, the median is 47, and the greatest value is 94. Each of the 12 values is multiplied by 1.25, and then 6 is subtracted from each result. The greatest of the 12 new values is then removed. To the nearest hundredth, what is the mean of the remaining 11 new values?",
+  "choices": [
+   "53.68",
+   "47.41",
+   "52.73",
+   "54.23"
+  ],
+  "correct_answer": "54.23",
+  "explanation": "The new values have mean 1.25(52) − 6 = 59, so their sum is 12 × 59 = 708. The greatest new value is 1.25(94) − 6 = 111.5. Removing it leaves 708 − 111.5 = 596.5 for 11 values, a mean of about 54.23. The option \"53.68\" removes 1.25(94) = 117.5, forgetting to subtract 6 from the removed value. The option \"52.73\" subtracts 6 before multiplying by 1.25, for the mean and for the removed value. The option \"47.41\" uses the median 47 in place of the mean to find the sum.",
+  "solve": "return ((1.25*52*12-6*12-(1.25*94-6))/11).toFixed(2);",
+  "distractor_solve": {
+   "53.68": "return ((1.25*52*12-6*12-1.25*94)/11).toFixed(2);",
+   "52.73": "return ((1.25*(52-6)*12-1.25*(94-6))/11).toFixed(2);",
+   "47.41": "return ((1.25*47*12-6*12-(1.25*94-6))/11).toFixed(2);"
+  },
+  "quantity_asked": "mean of the 11 values left after transforming all 12 by 1.25x - 6 and removing the largest.",
+  "distractor_kind": {
+   "53.68": "error path: removed value not shifted by −6. (a) limiting case: stem-forced bound v < 59 (removing the largest value lowers the mean); inside. (b) neighbouring setup: the before-removal mean 59 is not an option; inside. (c) cheapest estimate: (0, 59); one step finer is the exact removal, the work. (d) real.",
+   "52.73": "error path: order of operations (subtract then multiply). (a) inside (0, 59). (b) not a bound. (c) inside. (d) real.",
+   "47.41": "error path: median used as if it were the mean. (a) inside. (b) not a bound. (c) inside. (d) real: centre confusion."
+  },
+  "distractor_meta": {
+   "53.68": {
+    "direction": "under",
+    "error_kind": "removed value not shifted"
+   },
+   "52.73": {
+    "direction": "under",
+    "error_kind": "order of operations"
+   },
+   "47.41": {
+    "direction": "under",
+    "error_kind": "median used for mean"
+   }
+  },
+  "bounds": [
+   "v < 59 (mean of all 12 new values; the removed value is the largest)"
+  ],
+  "mechanism": [
+   "linear transformation of data mean",
+   "remove the greatest value then mean",
+   "multiply by 1.25 then subtract 6",
+   "mean versus median confusion"
+  ],
+  "arith_class_check": "No. All four are 2-decimal values with distinct decimal parts; none equals a stem number.",
+  "one_sided_check": "Key largest. Three different error kinds (removed value not shifted, order of operations, median for mean). The stem states no single condition whose neglect produces all three; the order-of-operations slip would push upward if the constant were added.",
+  "interior_parity_check": "interior options by value 52.73 and 53.68: both 2-decimal, two integer digits, nonzero last digit.",
+  "cheap_bound_check": "Cheapest one-sided bound: v < 59. A lower bound would need the removal computed exactly. Nearest distractor 53.68 is 0.55 below the key (6/11); no estimate cheaper than the work separates them.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Live d261434c transforms mean and SD; this adds removal of the transformed maximum. Bound 59 contains all options."
+  }
+ },
+ {
+  "id": "AM25S-07",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "independent compound events",
+  "subskill": "compare two binomial counts",
+  "prompt": "Ana makes each of her shots with probability 0.6, and Ben makes each of his shots with probability 0.28. All shots are independent. Ana and Ben each take exactly 2 shots. To the nearest hundredth, what is the probability that Ana makes more shots than Ben?",
+  "choices": [
+   "0.77",
+   "0.43",
+   "0.58",
+   "0.38"
+  ],
+  "correct_answer": "0.58",
+  "explanation": "Ana makes 0, 1, or 2 shots with probabilities 0.16, 0.48, and 0.36; Ben makes 0, 1, or 2 with probabilities 0.5184, 0.4032, and 0.0784. Ana makes more when she makes 1 and Ben 0, or she makes 2 and Ben 0 or 1: 0.48(0.5184) + 0.36(0.5184 + 0.4032) ≈ 0.2488 + 0.3318 ≈ 0.58. The option \"0.77\" also counts the 1–1 tie as a win for Ana. The option \"0.38\" leaves out the factor 2 in each \"exactly one make\" probability. The option \"0.43\" treats each player as taking a single shot, 0.6(0.72).",
+  "solve": "const A=[0.16,0.48,0.36],B=[0.72*0.72,2*0.28*0.72,0.28*0.28];return (A[1]*B[0]+A[2]*(B[0]+B[1])).toFixed(2);",
+  "distractor_solve": {
+   "0.77": "const A=[0.16,0.48,0.36],B=[0.72*0.72,2*0.28*0.72,0.28*0.28];return (A[1]*B[0]+A[2]*(B[0]+B[1])+A[1]*B[1]).toFixed(2);",
+   "0.38": "return (0.6*0.4*0.72*0.72+0.36*(0.72*0.72+0.28*0.72)).toFixed(2);",
+   "0.43": "return (0.6*0.72).toFixed(2);"
+  },
+  "quantity_asked": "P(Ana makes more of her 2 shots than Ben makes of his 2).",
+  "distractor_kind": {
+   "0.77": "error path: counts the 1–1 tie. (a) limiting case: cheapest stem bounds P ≤ P(Ana makes at least 1) = 0.84 and P ≥ P(Ana makes 2 and Ben at most 1) ≈ 0.33; inside. (b) neighbouring setup: P(Ana at least as many) = 0.91 is not an option; inside. (c) cheapest estimate: (0.33, 0.84); strictly inside. (d) real: \"more\" read as including one tie.",
+   "0.38": "error path: drops the 2 in 2p(1 − p). (a) inside (0.33, 0.84). (b) not a bound. (c) inside. (d) real: forgot the two orders.",
+   "0.43": "error path: one shot each, 0.6 × 0.72. (a) inside (0.33, 0.84). (b) not an adjacent extreme. (c) inside. (d) real: wrong model."
+  },
+  "distractor_meta": {
+   "0.77": {
+    "direction": "over",
+    "error_kind": "counted a tie as a win"
+   },
+   "0.38": {
+    "direction": "under",
+    "error_kind": "dropped arrangement factor"
+   },
+   "0.43": {
+    "direction": "under",
+    "error_kind": "single-trial model"
+   }
+  },
+  "bounds": [
+   "v > 0.33 (Ana makes 2 and Ben at most 1)",
+   "v < 0.84 (Ana makes at least 1)"
+  ],
+  "mechanism": [
+   "compare two binomial counts",
+   "probability one player makes more shots",
+   "independent shots two each",
+   "sum over outcome pairs"
+  ],
+  "arith_class_check": "No. All four are 2-decimal probabilities with distinct decimal parts; none equals 0.6, 0.28, 0.4 or 0.72.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 0.43 and 0.58: both 2-decimal with nonzero last digit.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Sub/superset values (0.33, 0.84, 0.91) excluded; errors in both directions."
+  }
+ }
+]

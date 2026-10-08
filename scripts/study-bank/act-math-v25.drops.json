@@ -1,0 +1,50 @@
+{
+ "AM25A-02": {
+  "domain": "Algebra",
+  "reason": "rule 7 (a): 3.17, 3.65, 4.13 an evenly spaced run (step exactly 0.48) with the key at its end (grader B option_structure; confirmed by hand); 4.13 weak by both"
+ },
+ "AM25A-03": {
+  "domain": "Algebra",
+  "reason": "rule 3: survivors 2 by both; the \"closer to 9.4\" cut at x > 3.1 lies right of the |2x-3| <= 11.6 interval centre 1.5, so length < 5.8 (A) / x > 0 gives length < 7.3 (B): kills 11.5 and 10.4 (confirmed); B also names (c) one-sided"
+ },
+ "AM25A-07": {
+  "domain": "Algebra",
+  "reason": "rule 8 (c) + rule 10: key largest; S sums a square per real root, so every dropped-root error lowers S (both graders, confirmed); Vieta gives 14.25 = sum over all roots without factoring (A: cheaper than the work); 6.25/10.25/14.25 a +4 run"
+ },
+ "AM25A-09": {
+  "domain": "Algebra",
+  "reason": "rule 3 / rule 7 (b): Cal pays 1.5a in whole cents, so a has an even number of cents: kills 29.91 and 21.91 (grader B arith_class, confirmed by hand: 1.5 x 0.91 is not whole cents), survivors 2"
+ },
+ "AM25A-11": {
+  "domain": "Algebra",
+  "reason": "rule 4 + rule 10: 23 and 33 weak by both; 43 - 29 = 14 = the stem-forced Ana-Ben gap, so only 43 has a partner 14 below it (both graders, extreme_single_bound cheaper than the work; confirmed)"
+ },
+ "AM25F-07": {
+  "domain": "Functions",
+  "reason": "rule 3 + rule 4: h = 2^g > 0 and h(3) = 4 give rate < 1.6, killing 19.53 and 7.39 (both graders; A adds h(0.5) in (0,1) -> rate > 1.2 killing 0.99); 19.53 and 7.39 weak by both"
+ },
+ "AM25N-05": {
+  "domain": "Number and Quantity",
+  "reason": "rule 3 + rule 10: key largest; |11 - 4i| > 11 so |z| > 11/5 = 2.2 kills all three distractors (both graders, cheaper than the work; confirmed)"
+ },
+ "AM25N-06": {
+  "domain": "Number and Quantity",
+  "reason": "rule 3: (5, 2) sits at ~22 deg, a 35 deg CCW rotation stays in quadrant I, so y > 0 kills -1.23 and -3.95 (both graders, confirmed); survivors 2"
+ },
+ "AM25F-11": {
+  "domain": "Functions",
+  "reason": "rule 3 + rule 10: theta < 45 deg (sin 0.52 < 0.707), and after the sign identities the value is sin - cos - tan < -cos < -0.707: kills 0.27, 0.77 (both) and -0.61 (B); confirmed"
+ },
+ "AM25I-08": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 8 (c): key largest; the stem announces two reduction clauses (copays do not count toward the deductible; payments limited to an out-of-pocket maximum) and misapplying either, plus the coinsurance-base error, lands below (grader A one_sided + announced_trap; confirmed). Each clause makes one option, so not rule 11"
+ },
+ "AM25I-10": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 8 (c): key smallest; the planted 402 rider-miles and the 42 h 30 min conversion both visibly raise the hourly figure, and the fee-by-division error also lands above (both graders; confirmed)"
+ },
+ "AM25I-11": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 8 (c): key largest; every listed error is an omission from an additive reimbursement (local miles, one partial day, a hotel night), so all push below (grader A; confirmed) - the v23 \"every error forgets a cost\" shape"
+ }
+}

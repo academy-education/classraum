@@ -1,0 +1,684 @@
+[
+ {
+  "id": "AM25A-01",
+  "topic_tag": "polynomial arithmetic with a parameter",
+  "prompt": "In the expression (2x + 7)(x + k) − (x − 4)², k is a constant. When the expression is expanded and like terms are combined, the result has no x term. What is the constant term of the result?",
+  "choices": [
+   "-12.5",
+   "-36.5",
+   "-68.5",
+   "-54.5"
+  ]
+ },
+ {
+  "id": "AM25A-02",
+  "topic_tag": "systems of linear equations with fractional coefficients",
+  "prompt": "The ordered pair (x, y) satisfies both of the equations x/3 + y/4 = 1 and x/2 − y/5 = 1.1. To the nearest hundredth, what is the value of x + y ?",
+  "choices": [
+   "3.17",
+   "3.65",
+   "4.13",
+   "3.57"
+  ]
+ },
+ {
+  "id": "AM25A-03",
+  "topic_tag": "absolute value inequalities",
+  "prompt": "On the real number line, the point with coordinate x is closer to 9.4 than it is to −3.2, and x satisfies |2x − 3| ≤ 11.6. The set of all such values of x is an interval. What is the length of that interval?",
+  "choices": [
+   "5.7",
+   "11.5",
+   "10.4",
+   "4.2"
+  ]
+ },
+ {
+  "id": "AM25A-04",
+  "topic_tag": "radical equations",
+  "prompt": "The positive number x satisfies the equation √(2x + 1) − √x = 1.3. To the nearest hundredth, what is the value of √(2x² + x) ?",
+  "choices": [
+   "39.72",
+   "11.78",
+   "13.74",
+   "15.92"
+  ]
+ },
+ {
+  "id": "AM25A-05",
+  "topic_tag": "literal equations in context",
+  "prompt": "When a sound source moves directly toward a stationary listener at u meters per second, the frequency f′ that the listener hears is given by f′ = f · v/(v − u), where f is the frequency the source emits and v is the speed of sound, in meters per second. The speed of sound depends on air temperature: v = 331.3 + 0.606C, where C is the temperature in degrees Celsius. Fahrenheit and Celsius temperatures are related by F = 1.8C + 32. On a day when the air temperature is 86°F, a horn emitting 440 hertz is heard at 468 hertz by a listener it is approaching. To the nearest hundredth of a meter per second, what is u ?",
+  "choices": [
+   "22.24",
+   "20.91",
+   "19.82",
+   "22.94"
+  ]
+ },
+ {
+  "id": "AM25A-06",
+  "topic_tag": "rational equations in context",
+  "prompt": "A car uses fuel at a rate of 6.2 liters per 100 kilometers on highways and 9.8 liters per 100 kilometers in city driving. On one trip, the car was driven 150 kilometers on highways and x kilometers in the city, and its fuel use for the whole trip averaged 7.5 liters per 100 kilometers. To the nearest hundredth, what is the value of x ?",
+  "choices": [
+   "84.78",
+   "134.01",
+   "54.17",
+   "22.16"
+  ]
+ },
+ {
+  "id": "AM25A-07",
+  "topic_tag": "polynomial factoring by grouping",
+  "prompt": "Let S be the number obtained by squaring each real solution of 2x³ − 5x² − 8x + 20 = 0 and adding the results. What is the value of S ?",
+  "choices": [
+   "6.25",
+   "8.16",
+   "10.25",
+   "14.25"
+  ]
+ },
+ {
+  "id": "AM25A-08",
+  "topic_tag": "literal equations in context",
+  "prompt": "The National Weather Service computes the wind chill W, in degrees Fahrenheit, from the air temperature T, in degrees Fahrenheit, and the wind speed V, in miles per hour, using the formula W = 35.74 + 0.6215T − 35.75V^0.16 + 0.4275T·V^0.16. When the wind speed is 22 miles per hour, the wind chill is 8°F. To the nearest hundredth of a degree, what is the air temperature T ?",
+  "choices": [
+   "46.14",
+   "29.44",
+   "22.57",
+   "23.35"
+  ]
+ },
+ {
+  "id": "AM25A-09",
+  "topic_tag": "linear equations in context",
+  "prompt": "Ana, Ben, and Cal split a restaurant bill of $96.69. Ben paid $8.00 more than Ana, and Cal paid 1.5 times as much as Ana. How many dollars did Ana pay?",
+  "choices": [
+   "25.34",
+   "29.06",
+   "29.91",
+   "21.91"
+  ]
+ },
+ {
+  "id": "AM25A-10",
+  "topic_tag": "radical equations in context",
+  "prompt": "The distance d, in miles, to the horizon for an observer whose eyes are h feet above sea level is approximately d = √(1.5h). An observer's eyes are 40 feet above sea level. To the nearest hundredth of a foot, how many feet higher must the observer's eyes be in order to see 3.5 miles farther to the horizon?",
+  "choices": [
+   "43.63",
+   "44.31",
+   "18.07",
+   "34.96"
+  ]
+ },
+ {
+  "id": "AM25A-11",
+  "topic_tag": "systems of linear equations in context",
+  "prompt": "Ana and Ben each have some stickers. If Ana gives Ben 7 of her stickers, they will have the same number of stickers. If instead Ben gives Ana 5 of his stickers, Ana will have twice as many stickers as Ben. How many stickers does Ana have?",
+  "choices": [
+   "29",
+   "43",
+   "33",
+   "23"
+  ]
+ },
+ {
+  "id": "AM25A-12",
+  "topic_tag": "rational equations in context",
+  "prompt": "A cyclist plans an 80-kilometer ride and wants her average speed for the whole ride to be exactly 23 kilometers per hour. She rides the first 30 kilometers at an average speed of 18.35 kilometers per hour. To the nearest hundredth, what average speed, in kilometers per hour, must she maintain for the remaining 50 kilometers?",
+  "choices": [
+   "27.65",
+   "30.81",
+   "27.12",
+   "25.79"
+  ]
+ },
+ {
+  "id": "AM25F-01",
+  "topic_tag": "exponential decay model from two readings",
+  "prompt": "The concentration of a medication in a patient's blood decreases exponentially over time. A test at 9:00 a.m. measures 90 micrograms per liter, and a test at 12:00 noon the same day measures 60 micrograms per liter. To the nearest hundredth of an hour, what is the half-life of the medication (the time it takes the concentration to fall to half of any given value)?",
+  "choices": [
+   "5.13",
+   "5.19",
+   "4.98",
+   "5.88"
+  ]
+ },
+ {
+  "id": "AM25F-02",
+  "topic_tag": "exponential equation with different bases",
+  "prompt": "What is the solution of the equation 2·5^(2x) = 10·2^(x + 1), rounded to the nearest thousandth?",
+  "choices": [
+   "0.766",
+   "0.637",
+   "0.912",
+   "0.909"
+  ]
+ },
+ {
+  "id": "AM25F-03",
+  "topic_tag": "exponential growth then decay",
+  "prompt": "A town's population increased by 2.8% per year for 7 years. Then the population began to decrease by 1.8% per year. If the decrease continues at this rate, how many years after the decrease began will the population equal its value at the start of the 7 years? Round to the nearest hundredth of a year.",
+  "choices": [
+   "10.49",
+   "10.64",
+   "9.85",
+   "10.84"
+  ]
+ },
+ {
+  "id": "AM25F-04",
+  "topic_tag": "inverse of a logarithmic function",
+  "prompt": "The function f is defined by f(x) = 4 + log₃(2x − 1) for all x > 1/2, and f has an inverse function, f⁻¹. To the nearest hundredth, what is the value of f⁻¹(6.5) ?",
+  "choices": [
+   "8.15",
+   "6.26",
+   "8.29",
+   "5.87"
+  ]
+ },
+ {
+  "id": "AM25F-05",
+  "topic_tag": "transformations of an exponential graph",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = 2^x is stretched vertically by a factor of 6, and the resulting graph is then translated 2 units to the right and 11 units down. To the nearest thousandth, what is the x-coordinate of the point where the final graph crosses the x-axis?",
+  "choices": [
+   "2.877",
+   "5.459",
+   "2.965",
+   "2.874"
+  ]
+ },
+ {
+  "id": "AM25F-06",
+  "topic_tag": "intersection of absolute value graphs",
+  "prompt": "In the standard (x,y) coordinate plane, the graphs of y = 2|x − 4| − 3 and y = 9 − |x| intersect at exactly two points. To the nearest hundredth, what is the distance between these two points?",
+  "choices": [
+   "9.65",
+   "15.08",
+   "9.61",
+   "11.31"
+  ]
+ },
+ {
+  "id": "AM25F-07",
+  "topic_tag": "average rate of change of a composite function",
+  "prompt": "The functions f and g are defined by f(x) = 2^x and g(x) = x² − 2x − 1. To the nearest hundredth, what is the average rate of change of the function h(x) = f(g(x)) from x = 0.5 to x = 3 ?",
+  "choices": [
+   "19.53",
+   "1.48",
+   "0.99",
+   "7.39"
+  ]
+ },
+ {
+  "id": "AM25N-01",
+  "topic_tag": "angle between two vectors",
+  "prompt": "The vectors u = ⟨3, 4⟩ and v = ⟨−2, 5⟩ are drawn from the origin in the standard (x,y) coordinate plane. To the nearest hundredth of a degree, what is the measure of the angle between u and v ?",
+  "choices": [
+   "58.77",
+   "58.67",
+   "66.42",
+   "74.93"
+  ]
+ },
+ {
+  "id": "AM25N-02",
+  "topic_tag": "transition matrix applied twice",
+  "prompt": "Each year, 88% of company A's customers stay with A and 12% switch to company B, while 85% of B's customers stay with B and 15% switch to A. If a column vector lists (A customers, B customers), one year's change is found by multiplying the vector by the matrix T with first row (0.88, 0.15) and second row (0.12, 0.85). This year A has 64 thousand customers and B has 36 thousand. To the nearest hundredth of a thousand, how many customers will A have 2 years from now?",
+  "choices": [
+   "58.19",
+   "59.44",
+   "60.06",
+   "60.26"
+  ]
+ },
+ {
+  "id": "AM25N-03",
+  "topic_tag": "rational exponent in a physical law",
+  "prompt": "Kepler's third law states that for an object orbiting the Sun, T² = a³, where T is the time for one orbit, in Earth years, and a is the object's average distance from the Sun, in astronomical units (AU). An asteroid takes 6.95 Earth years to orbit the Sun once. To the nearest hundredth of an AU, what is the asteroid's average distance from the Sun?",
+  "choices": [
+   "4.63",
+   "3.67",
+   "3.64",
+   "3.82"
+  ]
+ },
+ {
+  "id": "AM25N-04",
+  "topic_tag": "unit conversion with scientific notation",
+  "prompt": "A file of 1.5 terabytes is copied over a network connection that transfers 2.24 gigabits per second. The copy begins after a 45-second verification step, and the total time is the verification step plus the transfer. Use 1 terabyte = 10^12 bytes, 1 gigabit = 10^9 bits, and 1 byte = 8 bits. To the nearest hundredth of a minute, what is the total time?",
+  "choices": [
+   "90.04",
+   "134.29",
+   "90.02",
+   "11.91"
+  ]
+ },
+ {
+  "id": "AM25N-05",
+  "topic_tag": "modulus of a complex number",
+  "prompt": "For i = √(−1), the absolute value |a + bi| of a complex number a + bi is its distance from 0 in the complex plane. The complex number z satisfies (4 + 3i)z = 11 − 4i. To the nearest hundredth, what is |z| ?",
+  "choices": [
+   "0.47",
+   "2.34",
+   "1.28",
+   "2.14"
+  ]
+ },
+ {
+  "id": "AM25N-06",
+  "topic_tag": "rotation matrix applied to a point",
+  "prompt": "In the standard (x,y) coordinate plane, a point written as a column vector is rotated 35° counterclockwise about the origin by multiplying it on the left by the matrix R with first row (cos 35°, −sin 35°) and second row (sin 35°, cos 35°). To the nearest hundredth, what is the y-coordinate of the image of the point (5, 2) ?",
+  "choices": [
+   "-1.23",
+   "4.49",
+   "4.51",
+   "-3.95"
+  ]
+ },
+ {
+  "id": "AM25F-08",
+  "topic_tag": "trigonometric functions: amplitude, midline, period and solving",
+  "prompt": "The function f is defined by f(x) = a cos(bx) + d, where a and b are positive constants, d is a constant, and x is measured in radians. The graph of y = f(x) has a maximum point at (0, 13), and the next minimum point to the right of it is (6, −5). To the nearest hundredth, what is the least positive value of x for which f(x) = 6 ?",
+  "choices": [
+   "2.79",
+   "2.71",
+   "2.08",
+   "2.57"
+  ]
+ },
+ {
+  "id": "AM25F-09",
+  "topic_tag": "sequences: differences forming a geometric sequence",
+  "prompt": "In a certain sequence, the 1st term is 40 and the 2nd term is 44. For every n ≥ 2, the difference between the (n + 1)th term and the nth term is 1.6 times the difference between the nth term and the (n − 1)th term. To the nearest hundredth, what is the 8th term of the sequence?",
+  "choices": [
+   "147.37",
+   "218.96",
+   "104.61",
+   "212.29"
+  ]
+ },
+ {
+  "id": "AM25F-10",
+  "topic_tag": "quadratic modelling in vertex form",
+  "prompt": "The opening of a tunnel is shaped like a parabola that opens downward. The highest point of the opening is 18 meters above the level ground, and at a height of 13 meters above the ground the opening is 20 meters wide. To the nearest hundredth of a meter, how wide is the opening at ground level?",
+  "choices": [
+   "23.53",
+   "27.69",
+   "32.25",
+   "37.95"
+  ]
+ },
+ {
+  "id": "AM25F-11",
+  "topic_tag": "trigonometric functions on the unit circle: reference angles",
+  "prompt": "For a certain angle θ with 0 < θ < π/2, sin θ = 0.52. To the nearest hundredth, what is the value of sin(π − θ) + cos(π + θ) + tan(2π − θ) ?",
+  "choices": [
+   "-0.61",
+   "0.77",
+   "-0.94",
+   "0.27"
+  ]
+ },
+ {
+  "id": "AM25F-12",
+  "topic_tag": "trigonometric functions on the unit circle: angle-sum identity",
+  "prompt": "Angles α and β satisfy 0 < α < π/2 and π/2 < β < π. Also, sin α = 0.45 and cos β = −0.35. To the nearest hundredth, what is the value of sin(α + β) ?",
+  "choices": [
+   "0.68",
+   "0.99",
+   "0.36",
+   "0.11"
+  ]
+ },
+ {
+  "id": "AM25F-13",
+  "topic_tag": "quadratic modelling in vertex form",
+  "prompt": "A ball is tossed upward, and its height above the ground, in meters, t seconds after it is released is modeled by a quadratic function of t. The ball is released at a height of 1.5 meters, it is 6.3 meters high 0.5 second after release, and it reaches its maximum height 1.2 seconds after release. According to the model, to the nearest hundredth of a meter, what is the maximum height of the ball?",
+  "choices": [
+   "8.56",
+   "9.84",
+   "7.53",
+   "8.78"
+  ]
+ },
+ {
+  "id": "AM25F-14",
+  "topic_tag": "recursive sequences given by a table",
+  "prompt": "The table below gives the first five terms of a sequence. n | 1 | 2 | 3 | 4 | 5 ; aₙ | 1 | 3 | 7 | 19 | 47. For every n ≥ 1, the terms satisfy aₙ₊₂ = p·aₙ₊₁ + q·aₙ, where p and q are constants. What is the value of a₇ ?",
+  "choices": [
+   "199",
+   "288",
+   "273",
+   "311"
+  ]
+ },
+ {
+  "id": "AM25S-01",
+  "topic_tag": "weighted averages of groups",
+  "prompt": "Three sections of a class took the same test. Section A has 14 students with a mean score of 72, Section B has 22 students with a mean score of 81, and Section C has 23 students with a mean score of 77. After a grading error was corrected, every student in Section B received 3 more points, and no other score changed. To the nearest hundredth, what is the mean score of all the students after the correction?",
+  "choices": [
+   "78.31",
+   "77.67",
+   "79.09",
+   "78.42"
+  ]
+ },
+ {
+  "id": "AM25S-02",
+  "topic_tag": "effect of removing data values on standard deviation",
+  "prompt": "A data set consists of 20 values. Its mean is 50, and its standard deviation is 5.2, where the standard deviation is the square root of the mean of the squared deviations from the mean. Two values in the data set, 42 and 58, are removed. To the nearest hundredth, what is the standard deviation of the remaining 18 values, computed the same way?",
+  "choices": [
+   "4.46",
+   "4.79",
+   "4.66",
+   "4.76"
+  ]
+ },
+ {
+  "id": "AM25S-03",
+  "topic_tag": "conditional probability of dependent events",
+  "prompt": "A box contains 12 cards, 5 of which are red and 7 of which are blue. Two cards are drawn at random without replacement. Given that at least one of the two cards drawn is red, what is the probability, to the nearest hundredth, that both cards are red?",
+  "choices": [
+   "0.26",
+   "0.23",
+   "0.22",
+   "0.29"
+  ]
+ },
+ {
+  "id": "AM25S-04",
+  "topic_tag": "dependent compound events",
+  "prompt": "A box contains 10 light bulbs, 4 of which are defective. An inspector tests the bulbs one at a time, in random order, without replacement. To the nearest hundredth, what is the probability that the second defective bulb found is the 4th bulb tested?",
+  "choices": [
+   "0.21",
+   "0.35",
+   "0.25",
+   "0.29"
+  ]
+ },
+ {
+  "id": "AM25S-05",
+  "topic_tag": "expected value",
+  "prompt": "In a game, a player rolls two fair 6-sided dice, each numbered 1 through 6. If the sum of the two numbers is 8 or the two dice show the same number, the player wins $11. If the sum is 5, the player wins $6. Otherwise, the player loses $3.50. To the nearest cent, what is the expected value, in dollars, of the player's net winnings for one game?",
+  "choices": [
+   "1.58",
+   "2.93",
+   "1.99",
+   "1.68"
+  ]
+ },
+ {
+  "id": "AM25S-06",
+  "topic_tag": "effect of data changes on the mean",
+  "prompt": "A data set consists of 12 values. The mean of the values is 52, the median is 47, and the greatest value is 94. Each of the 12 values is multiplied by 1.25, and then 6 is subtracted from each result. The greatest of the 12 new values is then removed. To the nearest hundredth, what is the mean of the remaining 11 new values?",
+  "choices": [
+   "54.23",
+   "47.41",
+   "53.68",
+   "52.73"
+  ]
+ },
+ {
+  "id": "AM25S-07",
+  "topic_tag": "independent compound events",
+  "prompt": "Ana makes each of her shots with probability 0.6, and Ben makes each of his shots with probability 0.28. All shots are independent. Ana and Ben each take exactly 2 shots. To the nearest hundredth, what is the probability that Ana makes more shots than Ben?",
+  "choices": [
+   "0.43",
+   "0.58",
+   "0.77",
+   "0.38"
+  ]
+ },
+ {
+  "id": "AM25G-01",
+  "topic_tag": "angle bisector theorem with coordinates",
+  "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(−3, −2), B(−7, −5), and C(9, −11). The bisector of angle BAC intersects side BC at point D. To the nearest hundredth of a coordinate unit, what is the distance from D to the origin?",
+  "choices": [
+   "7.44",
+   "8.06",
+   "10.74",
+   "7.16"
+  ]
+ },
+ {
+  "id": "AM25G-02",
+  "topic_tag": "law of sines in a triangulation problem",
+  "prompt": "Two survey stations, A and B, are 600 meters apart on a straight shoreline. A buoy, C, floats offshore. At station A, the angle between the shoreline (toward B) and the line of sight to the buoy measures 48°. At station B, the angle between the shoreline (toward A) and the line of sight to the buoy measures 55°. To the nearest tenth of a meter, what is the shortest distance from the buoy to the shoreline?",
+  "choices": [
+   "340.1",
+   "365.2",
+   "337.5",
+   "374.9"
+  ]
+ },
+ {
+  "id": "AM25G-03",
+  "topic_tag": "similar right triangles in a ladder-over-fence setup",
+  "prompt": "A vertical fence 2.2 meters tall runs parallel to the vertical wall of a building, 3.5 meters from the wall, on level ground. A straight ladder has its foot on the ground 1.9 meters from the fence, on the side away from the building. The ladder just touches the top of the fence, and its upper end rests against the wall. To the nearest hundredth of a meter, what is the length of the ladder?",
+  "choices": [
+   "8.26",
+   "7.17",
+   "10.03",
+   "6.75"
+  ]
+ },
+ {
+  "id": "AM25G-04",
+  "topic_tag": "lateral surface area of a frustum",
+  "prompt": "A lampshade has the shape of the curved surface of a frustum of a right circular cone, open at both ends. The top opening has a diameter of 14 centimeters, the bottom opening has a diameter of 30 centimeters, and the perpendicular distance between the two openings is 15 centimeters. The lateral surface area of a frustum whose circular ends have radii r and R and whose slant height is s is π(r + R)s. To the nearest hundredth of a square centimeter, what is the lateral surface area of the lampshade?",
+  "choices": [
+   "1036.73",
+   "1174.96",
+   "1466.15",
+   "1515.81"
+  ]
+ },
+ {
+  "id": "AM25G-05",
+  "topic_tag": "area of a triangle inscribed in a rectangle by subtraction",
+  "prompt": "Rectangle ABCD has AB = 24 and BC = 15. Point E lies on side AB so that AE : EB = 1 : 3, and point F lies on side BC so that BF : FC = 2 : 3. What is the area of triangle DEF?",
+  "choices": [
+   "144",
+   "126",
+   "153",
+   "165"
+  ]
+ },
+ {
+  "id": "AM25G-06",
+  "topic_tag": "angles of elevation and depression from one observer",
+  "prompt": "The roof of a building is 40 meters above level ground. A tower stands on the same level ground some distance away. From a point on the edge of the roof, the angle of elevation to the top of the tower measures 28°, and the angle of depression to the base of the tower measures 35°. To the nearest hundredth of a meter, how tall is the tower?",
+  "choices": [
+   "70.37",
+   "66.82",
+   "54.89",
+   "61.27"
+  ]
+ },
+ {
+  "id": "AM25G-07",
+  "topic_tag": "third vertex of an equilateral triangle in the coordinate plane",
+  "prompt": "In the standard (x,y) coordinate plane, points A(−6, −6) and B(4, 1) are two vertices of equilateral triangle ABC, and vertex C lies above line AB. To the nearest hundredth of a coordinate unit, what is the distance from C to the origin?",
+  "choices": [
+   "12.25",
+   "10.97",
+   "9.88",
+   "9.37"
+  ]
+ },
+ {
+  "id": "AM25G-08",
+  "topic_tag": "angle between a lateral edge and the base of a pyramid",
+  "prompt": "A right pyramid has a square base with edges 10 centimeters long, and each of its 4 lateral edges is 13 centimeters long. To the nearest hundredth of a degree, what is the measure of the angle that a lateral edge makes with the base of the pyramid?",
+  "choices": [
+   "49.59",
+   "47.49",
+   "59.49",
+   "57.05"
+  ]
+ },
+ {
+  "id": "AM25G-09",
+  "topic_tag": "tangent segments and arc length",
+  "prompt": "Segments PA and PB are tangent at points A and B, respectively, to a circle with a radius of 9 centimeters, and the measure of angle APB is 40°. A region is bounded by segment PA, segment PB, and the minor arc AB. To the nearest hundredth of a centimeter, what is the perimeter of this region?",
+  "choices": [
+   "74.62",
+   "71.45",
+   "55.74",
+   "84.01"
+  ]
+ },
+ {
+  "id": "AM25G-10",
+  "topic_tag": "angle formed by two secants outside a circle",
+  "prompt": "Points A, B, C, and D lie on a circle in that order. The measure of angle ADB is 17°, the measure of angle BDC is 37°, and the measure of angle CAD is 30°. Line AB and line DC intersect at point P outside the circle, beyond points B and C. What is the measure, in degrees, of angle BPC ?",
+  "choices": [
+   "79",
+   "66",
+   "59",
+   "74"
+  ]
+ },
+ {
+  "id": "AM25G-11",
+  "topic_tag": "composition of a reflection and a dilation",
+  "prompt": "In the standard (x,y) coordinate plane, point P(7, −2) is reflected across the line y = 3. The image is then dilated by a scale factor of 1.5 with the center of dilation at the point (1, 1), producing point Q. To the nearest hundredth of a coordinate unit, what is the distance between P and Q ?",
+  "choices": [
+   "13.83",
+   "9.49",
+   "11.88",
+   "7.92"
+  ]
+ },
+ {
+  "id": "AM25I-01",
+  "topic_tag": "billable weight shipping charges",
+  "prompt": "A shipping company charges for each package according to its billable weight. The billable weight is the greater of the package's actual weight and its dimensional weight, rounded up to the next whole pound. The dimensional weight, in pounds, is (length × width × height) ÷ 139, where all three dimensions are in inches. The charge for a package is $9.45 for the first pound of billable weight plus $1.17 for each additional pound, and each package is billed separately. Box A measures 20 inches by 16 inches by 12 inches and weighs 14.2 pounds. Box B measures 12 inches by 10 inches by 8 inches and weighs 9.6 pounds. What is the total charge, in dollars, to ship both boxes?",
+  "choices": [
+   "61.02",
+   "57.51",
+   "63.36",
+   "60.11"
+  ]
+ },
+ {
+  "id": "AM25I-02",
+  "topic_tag": "multi-step work rates with a mid-job change",
+  "prompt": "A paving crew of 15 workers, all working at the same constant rate, was scheduled to finish a job in 18 workdays. On the original schedule, each workday ran from 7:30 a.m. to 4:00 p.m. with a 30-minute unpaid lunch break, during which no work was done. The crew worked on this schedule for the first 8 workdays. After that, 2 workers left the crew, and the 13 remaining workers switched to workdays running from 7:00 a.m. to 4:30 p.m. with the same 30-minute lunch break. Each worker kept the same working rate. To the nearest hundredth, how many workdays in all did the job take?",
+  "choices": [
+   "18.32",
+   "18.26",
+   "18.86",
+   "19.35"
+  ]
+ },
+ {
+  "id": "AM25I-03",
+  "topic_tag": "multi-step work rates",
+  "prompt": "A transcriptionist is paid $1.50 for each minute of recorded audio she transcribes. One recording is 44 minutes long, and its speakers average 150 words per minute. She works on it in three stages. First, she types the transcript while the recording plays, pausing it as needed; she averages 60 words per minute of typing time, and the recording plays only during her typing time. Second, she proofreads the transcript at 2.5 pages per minute, where each page holds 250 words. Third, she formats the document, which takes 0.35 minute for each minute of audio. To the nearest cent, how much does she earn per hour of work on this recording?",
+  "choices": [
+   "30.56",
+   "26.09",
+   "29.13",
+   "24.90"
+  ]
+ },
+ {
+  "id": "AM25I-04",
+  "topic_tag": "reading a fare structure",
+  "prompt": "A taxi fare is computed as follows: an initial charge of $3.10, which includes the first 1/5 mile of the ride; $0.55 for each additional 1/5 mile or fraction of 1/5 mile; and $0.40 per minute of waiting time, with a fraction of a minute charged in proportion. A ride covers 6.3 miles and includes 7 minutes 30 seconds of waiting time. What is the fare, in dollars?",
+  "choices": [
+   "23.07",
+   "23.15",
+   "22.88",
+   "23.35"
+  ]
+ },
+ {
+  "id": "AM25I-05",
+  "topic_tag": "ratio split of a shared cost",
+  "prompt": "Three roommates share an apartment whose rent is $2,535 per month. Of the rent, $705 covers the shared kitchen and living room and is split equally among the three roommates. The remaining $1,830 is split in proportion to the floor areas of the roommates' bedrooms, where a closet counts as part of the bedroom it opens into. Ari's bedroom is 13.5 feet by 14 feet and has no closet. Bo's bedroom is 12 feet by 11 feet and has a closet with a floor area of 15 square feet. Cy's bedroom is 10.5 feet by 11 feet and has no closet. To the nearest cent, how much rent does Cy pay each month?",
+  "choices": [
+   "719.23",
+   "790.35",
+   "781.46",
+   "703.14"
+  ]
+ },
+ {
+  "id": "AM25I-06",
+  "topic_tag": "proportional reasoning with a fixed charge",
+  "prompt": "A household's monthly natural gas bill is a fixed customer charge of $13.75 plus a charge for each therm of gas used. In January the price was $1.57 per therm, and the household's bill was $287.12. The household's gas use each month is proportional to that month's number of heating degree-days (HDD). January had 1,090 HDD, and February had 830 HDD. In February the price per therm was 7% higher than in January, and the customer charge was unchanged. To the nearest cent, what was the household's February bill?",
+  "choices": [
+   "214.63",
+   "236.48",
+   "231.19",
+   "233.94"
+  ]
+ },
+ {
+  "id": "AM25I-07",
+  "topic_tag": "converting a salary to an hourly rate",
+  "prompt": "Mia earns an annual salary of $61,880, paid for all 52 weeks of the year. Her schedule is 37.5 hours per week, worked as 7.5 hours per day, 5 days per week. Each year she receives 15 paid vacation days and 10 paid holidays, all of which fall on her scheduled workdays and are included in her 52 paid weeks. To the nearest cent, what is Mia's pay per hour that she actually works?",
+  "choices": [
+   "32.70",
+   "35.11",
+   "36.67",
+   "35.36"
+  ]
+ },
+ {
+  "id": "AM25I-08",
+  "topic_tag": "reading a cost-sharing structure",
+  "prompt": "Jun's health plan works as follows each year. Jun pays the full amount of covered charges until his payments toward the deductible total $1,500; after that, Jun pays 20% of covered charges and the plan pays the rest. Separately, Jun pays a $250 copay for each hospital visit, and copays do not count toward the deductible. All of Jun's payments for the year, including copays, are limited to an out-of-pocket maximum of $4,165. So far this year Jun has paid $620 toward his deductible and has made no other payments. He now has one hospital visit with $9,840 in covered charges. How much, in dollars, must Jun pay for this visit?",
+  "choices": [
+   "2922",
+   "2722",
+   "2665",
+   "2798"
+  ]
+ },
+ {
+  "id": "AM25I-09",
+  "topic_tag": "volume of a trapezoidal prism and fill time",
+  "prompt": "A water trough is 10 feet long, and its two ends are identical isosceles trapezoids. Each end is 1.2 feet wide at the bottom, 3.0 feet wide at the top, and 2.25 feet tall; the sides and bottom of the trough are flat. The empty trough is filled by a hose at a constant rate of 7.2 gallons per minute, and 1 cubic foot of water is 7.48 gallons. To the nearest hundredth of a minute, how long does it take for the water in the trough to reach a depth of 1.75 feet?",
+  "choices": [
+   "34.54",
+   "35.58",
+   "28.18",
+   "25.45"
+  ]
+ },
+ {
+  "id": "AM25I-10",
+  "topic_tag": "net earnings rate",
+  "prompt": "During one week, a rideshare driver's riders paid $1,148 in fares. The rideshare company kept 20% of the fares as its fee, and the driver received the rest. Riders also gave the driver $186 in tips, all of which the driver kept. That week the driver's car traveled 640 miles, 402 of them with a rider in the car. The car gets 31 miles per gallon, gasoline cost $3.59 per gallon, and the driver estimates the car's other expenses at $0.11 per mile traveled. The driver was logged in to the app for 42 hours 30 minutes. To the nearest cent, what were the driver's earnings per logged-in hour after gasoline and the car's other expenses?",
+  "choices": [
+   "23.85",
+   "23.49",
+   "22.59",
+   "22.69"
+  ]
+ },
+ {
+  "id": "AM25I-11",
+  "topic_tag": "reading a reimbursement schedule",
+  "prompt": "A company reimburses an employee's business trip as follows: $0.67 per mile driven; a meal allowance of $64 for each full day of travel and 70% of that amount for the day of departure and for the day of return; and the hotel's charges for each night, including tax. Dev left home on Tuesday, April 8, and returned home on Friday, April 11. His hotel charged $139 per night plus a 12% tax. He drove 412 miles to the work site, 412 miles back, and 58 miles locally during the trip. What is Dev's total reimbursement, in dollars?",
+  "choices": [
+   "1230.78",
+   "1119.90",
+   "1275.58",
+   "1236.72"
+  ]
+ },
+ {
+  "id": "AM25I-12",
+  "topic_tag": "comparing two price plans",
+  "prompt": "A scooter-share company offers two ways to pay. Pay-per-ride: $1.15 to unlock a scooter for each ride, plus $0.39 per minute of riding. Monthly pass: $22.99 per month; with the pass there is no unlock fee, the first 15 minutes of each ride are free, and each minute of a ride beyond its first 15 minutes costs $0.27. Last month Theo took 11 rides of 12 minutes each, 6 rides of 24 minutes each, and 5 rides of 37 minutes each. How much less, in dollars, would Theo have paid last month with the monthly pass than with pay-per-ride?",
+  "choices": [
+   "137.82",
+   "118.14",
+   "93.27",
+   "113.67"
+  ]
+ }
+]

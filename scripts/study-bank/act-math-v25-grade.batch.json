@@ -1,0 +1,1366 @@
+[
+ {
+  "id": "AM25A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "polynomial arithmetic with a parameter",
+  "subskill": "expand, force a coefficient to zero, read the constant",
+  "prompt": "In the expression (2x + 7)(x + k) − (x − 4)², k is a constant. When the expression is expanded and like terms are combined, the result has no x term. What is the constant term of the result?",
+  "choices": [
+   "-36.5",
+   "-12.5",
+   "-68.5",
+   "-54.5"
+  ],
+  "correct_answer": "-68.5",
+  "explanation": "(2x + 7)(x + k) = 2x² + (2k + 7)x + 7k and (x − 4)² = x² − 8x + 16, so the expression is x² + (2k + 7 + 8)x + 7k − 16. No x term means 2k + 15 = 0, so k = −7.5, and the constant term is 7(−7.5) − 16 = −68.5. The option \"-54.5\" squares x − 4 as x² − 4x + 16 (middle term not doubled), giving 2k + 11 = 0, k = −5.5. The option \"-36.5\" subtracts the square as −x² + 8x + 16, keeping +16, so k = −7.5 but the constant is −52.5 + 16. The option \"-12.5\" subtracts the square as −x² − 8x − 16, so 2k − 1 = 0, k = 0.5, and 3.5 − 16.",
+  "solve": "const k=-(7+8)/2; return String(7*k-16);",
+  "distractor_solve": {
+   "-54.5": "const k=-(7+4)/2; return String(7*k-16);",
+   "-36.5": "const k=-(7+8)/2; return String(7*k+16);",
+   "-12.5": "const k=-(7-8)/2; return String(7*k-16);"
+  }
+ },
+ {
+  "id": "AM25A-02",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "systems of linear equations with fractional coefficients",
+  "subskill": "clear denominators in each equation, eliminate, add the solutions",
+  "prompt": "The ordered pair (x, y) satisfies both of the equations x/3 + y/4 = 1 and x/2 − y/5 = 1.1. To the nearest hundredth, what is the value of x + y ?",
+  "choices": [
+   "3.17",
+   "3.65",
+   "4.13",
+   "3.57"
+  ],
+  "correct_answer": "3.17",
+  "explanation": "Multiply the first equation by 12: 4x + 3y = 12. Multiply the second by 10: 5x − 2y = 11. Doubling the first and tripling the second gives 8x + 6y = 24 and 15x − 6y = 33, so 23x = 57, x = 57/23 ≈ 2.478, and y = (12 − 4x)/3 = 16/23 ≈ 0.696. So x + y = 73/23 ≈ 3.17. The option \"3.65\" clears the first equation as 3x + 4y = 12 (multiplying each term by its own denominator). The option \"3.57\" clears the second equation as 5x + 2y = 11, losing the minus sign. The option \"4.13\" clears both equations by cross-multiplying denominators: 3x + 4y = 12 and 2x − 5y = 11.",
+  "solve": "const a1=1/3,b1=1/4,c1=1,a2=1/2,b2=-1/5,c2=1.1; const D=a1*b2-a2*b1; const x=(c1*b2-c2*b1)/D, y=(a1*c2-a2*c1)/D; return (x+y).toFixed(2);",
+  "distractor_solve": {
+   "3.65": "const D=3*-2-5*4; const x=(12*-2-11*4)/D, y=(3*11-5*12)/D; return (x+y).toFixed(2);",
+   "3.57": "const D=4*2-5*3; const x=(12*2-11*3)/D, y=(4*11-5*12)/D; return (x+y).toFixed(2);",
+   "4.13": "const D=3*-5-2*4; const x=(12*-5-11*4)/D, y=(3*11-2*12)/D; return (x+y).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25A-03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "absolute value inequalities",
+  "subskill": "translate two absolute-value conditions to intervals and intersect",
+  "prompt": "On the real number line, the point with coordinate x is closer to 9.4 than it is to −3.2, and x satisfies |2x − 3| ≤ 11.6. The set of all such values of x is an interval. What is the length of that interval?",
+  "choices": [
+   "5.7",
+   "11.5",
+   "10.4",
+   "4.2"
+  ],
+  "correct_answer": "4.2",
+  "explanation": "Being closer to 9.4 than to −3.2 means x is to the right of their midpoint, (9.4 + (−3.2))/2 = 3.1, so x > 3.1. The inequality |2x − 3| ≤ 11.6 means −11.6 ≤ 2x − 3 ≤ 11.6, so −8.6 ≤ 2x ≤ 14.6 and −4.3 ≤ x ≤ 7.3. Together, 3.1 < x ≤ 7.3, an interval of length 4.2. The option \"5.7\" halves only the right side, reading the inequality as |x − 3| ≤ 5.8, so x ≤ 8.8. The option \"11.5\" forgets to divide by 2, using x ≤ 14.6. The option \"10.4\" subtracts the endpoints with a sign slip, 7.3 − (−3.1).",
+  "solve": "const m=(9.4+(-3.2))/2; const hi=(3+11.6)/2, lo=(3-11.6)/2; return (hi-Math.max(m,lo)).toFixed(1);",
+  "distractor_solve": {
+   "5.7": "const m=(9.4+(-3.2))/2; return ((3+11.6/2)-m).toFixed(1);",
+   "11.5": "const m=(9.4+(-3.2))/2; return ((3+11.6)-m).toFixed(1);",
+   "10.4": "const m=(9.4+(-3.2))/2; return ((3+11.6)/2+m).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM25A-04",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "radical equations",
+  "subskill": "isolate a radical, square, solve a quadratic in √x, evaluate",
+  "prompt": "The positive number x satisfies the equation √(2x + 1) − √x = 1.3. To the nearest hundredth, what is the value of √(2x² + x) ?",
+  "choices": [
+   "13.74",
+   "11.78",
+   "39.72",
+   "15.92"
+  ],
+  "correct_answer": "11.78",
+  "explanation": "Write √(2x + 1) = √x + 1.3 and square: 2x + 1 = x + 2.6√x + 1.69, so x − 2.6√x − 0.69 = 0. With u = √x > 0, u = (2.6 + √(6.76 + 2.76))/2 ≈ 2.8427 (the other root is negative). Then √(2x + 1) = u + 1.3 ≈ 4.1427 and √(2x² + x) = √x · √(2x + 1) ≈ 2.8427 × 4.1427 ≈ 11.78. The option \"13.74\" squares 1.3 as 2.6, giving u² − 2.6u − 1.6 = 0. The option \"15.92\" moves 1.69 to the left with the wrong sign, giving u² − 2.6u − 2.69 = 0. The option \"39.72\" forgets to divide by 2 in the quadratic formula, u ≈ 5.685.",
+  "solve": "const u=(2.6+Math.sqrt(6.76+4*0.69))/2; return (u*(u+1.3)).toFixed(2);",
+  "distractor_solve": {
+   "13.74": "const u=(2.6+Math.sqrt(6.76+4*1.6))/2; return (u*(u+1.3)).toFixed(2);",
+   "15.92": "const u=(2.6+Math.sqrt(6.76+4*2.69))/2; return (u*(u+1.3)).toFixed(2);",
+   "39.72": "const u=(2.6+Math.sqrt(6.76+4*0.69)); return (u*(u+1.3)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25A-05",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "literal equations in context",
+  "subskill": "convert units, then solve a given formula for a variable in a denominator",
+  "prompt": "When a sound source moves directly toward a stationary listener at u meters per second, the frequency f′ that the listener hears is given by f′ = f · v/(v − u), where f is the frequency the source emits and v is the speed of sound, in meters per second. The speed of sound depends on air temperature: v = 331.3 + 0.606C, where C is the temperature in degrees Celsius. Fahrenheit and Celsius temperatures are related by F = 1.8C + 32. On a day when the air temperature is 86°F, a horn emitting 440 hertz is heard at 468 hertz by a listener it is approaching. To the nearest hundredth of a meter per second, what is u ?",
+  "choices": [
+   "22.24",
+   "20.91",
+   "19.82",
+   "22.94"
+  ],
+  "correct_answer": "20.91",
+  "explanation": "C = (86 − 32)/1.8 = 30, so v = 331.3 + 0.606(30) = 349.48. From f′(v − u) = fv, u = v(1 − f/f′) = 349.48(1 − 440/468) = 349.48 × 28/468 ≈ 20.91. The option \"19.82\" ignores the temperature and uses v = 331.3. The option \"22.94\" substitutes 86 directly for C, so v = 383.416. The option \"22.24\" solves the formula as u = v(f′/f − 1), dividing by the emitted frequency instead of the heard one.",
+  "solve": "const C=(86-32)/1.8; const v=331.3+0.606*C; return (v*(1-440/468)).toFixed(2);",
+  "distractor_solve": {
+   "19.82": "return (331.3*(1-440/468)).toFixed(2);",
+   "22.94": "const v=331.3+0.606*86; return (v*(1-440/468)).toFixed(2);",
+   "22.24": "const C=(86-32)/1.8; const v=331.3+0.606*C; return (v*(468/440-1)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25A-06",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational equations in context",
+  "subskill": "write overall rate as total fuel over total distance and solve",
+  "prompt": "A car uses fuel at a rate of 6.2 liters per 100 kilometers on highways and 9.8 liters per 100 kilometers in city driving. On one trip, the car was driven 150 kilometers on highways and x kilometers in the city, and its fuel use for the whole trip averaged 7.5 liters per 100 kilometers. To the nearest hundredth, what is the value of x ?",
+  "choices": [
+   "22.16",
+   "54.17",
+   "134.01",
+   "84.78"
+  ],
+  "correct_answer": "84.78",
+  "explanation": "Fuel used is 6.2(150/100) + 9.8(x/100) liters over 150 + x kilometers, so (930 + 9.8x)/(150 + x) = 7.5. Then 930 + 9.8x = 1125 + 7.5x, so 2.3x = 195 and x ≈ 84.78. The option \"22.16\" multiplies only the 150 by 7.5, writing 1125 + x = 930 + 9.8x. The option \"54.17\" sets x/150 = 1.3/3.6, using the share of the whole 6.2-to-9.8 gap. The option \"134.01\" converts the rates to kilometers per liter (about 16.13, 10.20 and 13.33) and balances those instead of the fuel amounts.",
+  "solve": "return (150*(7.5-6.2)/(9.8-7.5)).toFixed(2);",
+  "distractor_solve": {
+   "22.16": "return (150*(7.5-6.2)/(9.8-1)).toFixed(2);",
+   "54.17": "return (150*(7.5-6.2)/(9.8-6.2)).toFixed(2);",
+   "134.01": "const h=100/6.2,c=100/9.8,o=100/7.5; return (150*(h-o)/(o-c)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25A-07",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "polynomial factoring by grouping",
+  "subskill": "factor a cubic by grouping, then combine the solutions",
+  "prompt": "Let S be the number obtained by squaring each real solution of 2x³ − 5x² − 8x + 20 = 0 and adding the results. What is the value of S ?",
+  "choices": [
+   "10.25",
+   "6.25",
+   "14.25",
+   "8.16"
+  ],
+  "correct_answer": "14.25",
+  "explanation": "Group: x²(2x − 5) − 4(2x − 5) = (2x − 5)(x² − 4) = (2x − 5)(x − 2)(x + 2). The solutions are 2.5, 2 and −2, and the sum of their squares is 6.25 + 4 + 4 = 14.25. (Equivalently, with sum 2.5 and pairwise-product sum −4, S = 2.5² − 2(−4).) The option \"10.25\" keeps only x = 2 from x² − 4 = 0. The option \"8.16\" solves 2x − 5 = 0 as x = 2/5, so 0.16 + 4 + 4. The option \"6.25\" squares the sum of the solutions, (2.5 + 2 − 2)², instead of adding the squares.",
+  "solve": "const r=[2.5,2,-2]; return String(r.reduce((s,x)=>s+x*x,0));",
+  "distractor_solve": {
+   "10.25": "return String(2.5*2.5+2*2);",
+   "8.16": "return String(0.4*0.4+2*2+2*2);",
+   "6.25": "return String((2.5+2-2)**2);"
+  }
+ },
+ {
+  "id": "AM25A-08",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "literal equations in context",
+  "subskill": "solve a formula for a variable that appears in two terms",
+  "prompt": "The National Weather Service computes the wind chill W, in degrees Fahrenheit, from the air temperature T, in degrees Fahrenheit, and the wind speed V, in miles per hour, using the formula W = 35.74 + 0.6215T − 35.75V^0.16 + 0.4275T·V^0.16. When the wind speed is 22 miles per hour, the wind chill is 8°F. To the nearest hundredth of a degree, what is the air temperature T ?",
+  "choices": [
+   "23.35",
+   "29.44",
+   "46.14",
+   "22.57"
+  ],
+  "correct_answer": "23.35",
+  "explanation": "Let k = 22^0.16 ≈ 1.63977. Then 8 = 35.74 + 0.6215T − 35.75k + 0.4275kT. Collect the T terms: T(0.6215 + 0.4275k) = 8 − 35.74 + 35.75k, so T = (8 − 35.74 + 58.622)/(0.6215 + 0.7010) ≈ 30.882/1.3225 ≈ 23.35. The option \"22.57\" rounds 22^0.16 to 1.6 before solving. The option \"29.44\" factors T out but drops the V^0.16 from its second coefficient, dividing by 0.6215 + 0.4275. The option \"46.14\" reads V^0.16 as 0.16V = 3.52.",
+  "solve": "const k=22**0.16; return ((8-35.74+35.75*k)/(0.6215+0.4275*k)).toFixed(2);",
+  "distractor_solve": {
+   "22.57": "const k=1.6; return ((8-35.74+35.75*k)/(0.6215+0.4275*k)).toFixed(2);",
+   "29.44": "const k=22**0.16; return ((8-35.74+35.75*k)/(0.6215+0.4275)).toFixed(2);",
+   "46.14": "const k=0.16*22; return ((8-35.74+35.75*k)/(0.6215+0.4275*k)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25A-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equations in context",
+  "subskill": "express three shares in one variable and solve",
+  "prompt": "Ana, Ben, and Cal split a restaurant bill of $96.69. Ben paid $8.00 more than Ana, and Cal paid 1.5 times as much as Ana. How many dollars did Ana pay?",
+  "choices": [
+   "29.06",
+   "21.91",
+   "25.34",
+   "29.91"
+  ],
+  "correct_answer": "25.34",
+  "explanation": "If Ana paid a dollars, Ben paid a + 8 and Cal paid 1.5a, so a + (a + 8) + 1.5a = 96.69, 3.5a = 88.69 and a = 25.34. The option \"21.91\" takes Cal's share as 1.5 times Ben's, 1.5(a + 8). The option \"29.91\" makes Ben pay $8.00 less than Ana. The option \"29.06\" reads \"1.5 times as much as Ana\" as a + 1.5.",
+  "solve": "return ((96.69-8)/3.5).toFixed(2);",
+  "distractor_solve": {
+   "21.91": "return ((96.69-8-12)/3.5).toFixed(2);",
+   "29.91": "return ((96.69+8)/3.5).toFixed(2);",
+   "29.06": "return ((96.69-8-1.5)/3).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25A-10",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "radical equations in context",
+  "subskill": "invert a square-root model, compare two heights",
+  "prompt": "The distance d, in miles, to the horizon for an observer whose eyes are h feet above sea level is approximately d = √(1.5h). An observer's eyes are 40 feet above sea level. To the nearest hundredth of a foot, how many feet higher must the observer's eyes be in order to see 3.5 miles farther to the horizon?",
+  "choices": [
+   "18.07",
+   "34.96",
+   "43.63",
+   "44.31"
+  ],
+  "correct_answer": "44.31",
+  "explanation": "At 40 feet, d = √60 ≈ 7.746 miles. Seeing 3.5 miles farther means d = 11.246, which needs h = d²/1.5 ≈ 84.31 feet, an increase of about 44.31 feet. The option \"43.63\" rounds √60 to 7.7 before adding 3.5. The option \"34.96\" uses d = 1.5√h, so d goes from 9.487 to 12.987 and h = (12.987/1.5)². The option \"18.07\" assumes d is proportional to h.",
+  "solve": "const d=Math.sqrt(1.5*40)+3.5; return (d*d/1.5-40).toFixed(2);",
+  "distractor_solve": {
+   "43.63": "const d=7.7+3.5; return (d*d/1.5-40).toFixed(2);",
+   "34.96": "const d=1.5*Math.sqrt(40)+3.5; return ((d/1.5)**2-40).toFixed(2);",
+   "18.07": "const d0=Math.sqrt(60); return (40*(d0+3.5)/d0-40).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25A-11",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "systems of linear equations in context",
+  "subskill": "model two hypothetical transfers as a system",
+  "prompt": "Ana and Ben each have some stickers. If Ana gives Ben 7 of her stickers, they will have the same number of stickers. If instead Ben gives Ana 5 of his stickers, Ana will have twice as many stickers as Ben. How many stickers does Ana have?",
+  "choices": [
+   "43",
+   "29",
+   "23",
+   "33"
+  ],
+  "correct_answer": "43",
+  "explanation": "Let Ana have A and Ben B. Then A − 7 = B + 7, so A = B + 14, and A + 5 = 2(B − 5), so A = 2B − 15. So B + 14 = 2B − 15, B = 29 and A = 43. The option \"29\" writes the first condition as A − 7 = B, forgetting that Ben gains the 7. The option \"33\" writes the second condition as A + 5 = 2B, forgetting that Ben loses the 5. The option \"23\" writes the second condition as A + 5 = 2(B + 5), adding the 5 to Ben's count too.",
+  "solve": "const B=(14+15)/(2-1); return String(B+14);",
+  "distractor_solve": {
+   "23": "const B=(14-5)/(2-1); return String(B+14);",
+   "29": "const B=(7+15)/(2-1); return String(B+7);",
+   "33": "const B=(14+5)/(2-1); return String(B+14);"
+  }
+ },
+ {
+  "id": "AM25A-12",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational equations in context",
+  "subskill": "turn an average-speed target into a time budget for the remaining leg",
+  "prompt": "A cyclist plans an 80-kilometer ride and wants her average speed for the whole ride to be exactly 23 kilometers per hour. She rides the first 30 kilometers at an average speed of 18.35 kilometers per hour. To the nearest hundredth, what average speed, in kilometers per hour, must she maintain for the remaining 50 kilometers?",
+  "choices": [
+   "27.65",
+   "27.12",
+   "25.79",
+   "30.81"
+  ],
+  "correct_answer": "27.12",
+  "explanation": "The whole ride must take 80/23 ≈ 3.4783 hours. The first 30 kilometers took 30/18.35 ≈ 1.6349 hours, leaving about 1.8434 hours for 50 kilometers, so the speed must be 50/1.8434 ≈ 27.12 kilometers per hour. The option \"27.65\" averages the two speeds, (18.35 + v)/2 = 23. The option \"25.79\" weights the speeds by distance, (30 × 18.35 + 50v)/80 = 23. The option \"30.81\" treats the two parts as equal distances and uses the harmonic mean, 2/(1/18.35 + 1/v) = 23.",
+  "solve": "const t=80/23-30/18.35; return (50/t).toFixed(2);",
+  "distractor_solve": {
+   "27.65": "return (2*23-18.35).toFixed(2);",
+   "25.79": "return ((80*23-30*18.35)/50).toFixed(2);",
+   "30.81": "return (1/(2/23-1/18.35)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-01",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential decay model from two readings",
+  "subskill": "half-life from two measurements",
+  "prompt": "The concentration of a medication in a patient's blood decreases exponentially over time. A test at 9:00 a.m. measures 90 micrograms per liter, and a test at 12:00 noon the same day measures 60 micrograms per liter. To the nearest hundredth of an hour, what is the half-life of the medication (the time it takes the concentration to fall to half of any given value)?",
+  "choices": [
+   "4.98",
+   "5.13",
+   "5.19",
+   "5.88"
+  ],
+  "correct_answer": "5.13",
+  "explanation": "Over 3 hours the concentration is multiplied by 60/90 = 2/3, so C(t) = 90(2/3)^(t/3). Half-life h satisfies (2/3)^(h/3) = 1/2, so h = 3 ln 2 / ln(1.5) ≈ 5.13 hours. \"4.98\" rounds the hourly factor 0.8736 to 0.87 before solving; \"5.19\" rounds 2/3 to 0.67; \"5.88\" treats the 33.3% drop as 11.1% per hour compounded.",
+  "solve": "return (3*Math.log(2)/Math.log(90/60)).toFixed(2);",
+  "distractor_solve": {
+   "4.98": "return (Math.log(2)/-Math.log(0.87)).toFixed(2);",
+   "5.19": "return (3*Math.log(2)/-Math.log(0.67)).toFixed(2);",
+   "5.88": "return (Math.log(2)/-Math.log(1-(1/3)/3)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-02",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential equation with different bases",
+  "subskill": "solve exponential equation with logarithms",
+  "prompt": "What is the solution of the equation 2·5^(2x) = 10·2^(x + 1), rounded to the nearest thousandth?",
+  "choices": [
+   "0.766",
+   "0.637",
+   "0.909",
+   "0.912"
+  ],
+  "correct_answer": "0.912",
+  "explanation": "5^(2x) = 25^x and 2^(x + 1) = 2·2^x, so 2·25^x = 20·2^x, which gives (25/2)^x = 10 and x = log 10 / log 12.5 ≈ 0.912. \"0.909\" rounds log 12.5 to 1.10 before dividing; \"0.766\" combines 2·5^(2x) into 10^(2x); \"0.637\" drops the +1 from the exponent 2^(x + 1).",
+  "solve": "return (Math.log(10)/Math.log(12.5)).toFixed(3);",
+  "distractor_solve": {
+   "0.909": "return (1/(Math.round(Math.log10(12.5)*100)/100)).toFixed(3);",
+   "0.766": "return (Math.log(20)/Math.log(50)).toFixed(3);",
+   "0.637": "return (Math.log(5)/Math.log(12.5)).toFixed(3);"
+  }
+ },
+ {
+  "id": "AM25F-03",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential growth then decay",
+  "subskill": "time for decay to undo prior growth",
+  "prompt": "A town's population increased by 2.8% per year for 7 years. Then the population began to decrease by 1.8% per year. If the decrease continues at this rate, how many years after the decrease began will the population equal its value at the start of the 7 years? Round to the nearest hundredth of a year.",
+  "choices": [
+   "10.84",
+   "9.85",
+   "10.64",
+   "10.49"
+  ],
+  "correct_answer": "10.64",
+  "explanation": "After 7 years the population is P·1.028^7. It returns to P when 1.028^7 · 0.982^t = 1, so t = 7 ln 1.028 / (−ln 0.982) ≈ 10.64. \"9.85\" treats the growth as simple (factor 1.196); \"10.49\" rounds 1.028^7 = 1.2133 to 1.21; \"10.84\" models the decrease as dividing by 1.018 each year.",
+  "solve": "return (7*Math.log(1.028)/-Math.log(0.982)).toFixed(2);",
+  "distractor_solve": {
+   "9.85": "return (Math.log(1+7*0.028)/-Math.log(0.982)).toFixed(2);",
+   "10.49": "return (Math.log(1.21)/-Math.log(0.982)).toFixed(2);",
+   "10.84": "return (7*Math.log(1.028)/Math.log(1.018)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-04",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "inverse of a logarithmic function",
+  "subskill": "evaluate an inverse function at a non-integer input",
+  "prompt": "The function f is defined by f(x) = 4 + log₃(2x − 1) for all x > 1/2, and f has an inverse function, f⁻¹. To the nearest hundredth, what is the value of f⁻¹(6.5) ?",
+  "choices": [
+   "8.29",
+   "5.87",
+   "8.15",
+   "6.26"
+  ],
+  "correct_answer": "8.29",
+  "explanation": "f⁻¹(6.5) is the x with 4 + log₃(2x − 1) = 6.5, so log₃(2x − 1) = 2.5, 2x − 1 = 3^2.5 = 9√3 ≈ 15.588 and x ≈ 8.29. \"8.15\" rounds √3 to 1.7; \"6.26\" computes f(6.5) instead; \"5.87\" treats 3^2.5 as 3^2 + 3^0.5.",
+  "solve": "return ((Math.pow(3,2.5)+1)/2).toFixed(2);",
+  "distractor_solve": {
+   "8.15": "return ((9*1.7+1)/2).toFixed(2);",
+   "6.26": "return (4+Math.log(12)/Math.log(3)).toFixed(2);",
+   "5.87": "return ((9+Math.sqrt(3)+1)/2).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-05",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "transformations of an exponential graph",
+  "subskill": "x-intercept after stretch and translations",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = 2^x is stretched vertically by a factor of 6, and the resulting graph is then translated 2 units to the right and 11 units down. To the nearest thousandth, what is the x-coordinate of the point where the final graph crosses the x-axis?",
+  "choices": [
+   "2.965",
+   "2.874",
+   "5.459",
+   "2.877"
+  ],
+  "correct_answer": "2.874",
+  "explanation": "The final graph is y = 6·2^(x − 2) − 11. It crosses the x-axis where 2^(x − 2) = 11/6, so x = 2 + log₂(11/6) ≈ 2.874. \"2.877\" uses log 2 ≈ 0.3; \"2.965\" combines 6·2^(x − 2) into 12^(x − 2); \"5.459\" shifts down before stretching, giving 6(2^(x − 2) − 11).",
+  "solve": "return (2+Math.log2(11/6)).toFixed(3);",
+  "distractor_solve": {
+   "2.877": "return (2+Math.log10(11/6)/0.3).toFixed(3);",
+   "2.965": "return (2+Math.log(11)/Math.log(12)).toFixed(3);",
+   "5.459": "return (2+Math.log2(11)).toFixed(3);"
+  }
+ },
+ {
+  "id": "AM25F-06",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "intersection of absolute value graphs",
+  "subskill": "solve absolute value equation by cases, then distance",
+  "prompt": "In the standard (x,y) coordinate plane, the graphs of y = 2|x − 4| − 3 and y = 9 − |x| intersect at exactly two points. To the nearest hundredth, what is the distance between these two points?",
+  "choices": [
+   "9.65",
+   "11.31",
+   "9.61",
+   "15.08"
+  ],
+  "correct_answer": "9.61",
+  "explanation": "For x ≥ 4: 2x − 11 = 9 − x gives x = 20/3 (point (20/3, 7/3)). For 0 ≤ x < 4: 5 − 2x = 9 − x gives x = −4, not in the case. For x < 0: 5 − 2x = 9 + x gives x = −4/3 (point (−4/3, 23/3)). The distance is √(8² + (16/3)²) ≈ 9.61. \"11.31\" uses y = 9 − x for the left point; \"15.08\" treats 9 − |x| as 9 − x everywhere; \"9.65\" rounds the coordinates to tenths before using the distance formula.",
+  "solve": "return Math.hypot(20/3+4/3, 7/3-23/3).toFixed(2);",
+  "distractor_solve": {
+   "11.31": "return Math.hypot(20/3+4/3, 7/3-31/3).toFixed(2);",
+   "15.08": "return Math.hypot(20/3+4, 7/3-13).toFixed(2);",
+   "9.65": "return Math.hypot(6.7+1.3, 2.3-7.7).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-07",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "average rate of change of a composite function",
+  "subskill": "evaluate f(g(x)) at two inputs, then average rate of change",
+  "prompt": "The functions f and g are defined by f(x) = 2^x and g(x) = x² − 2x − 1. To the nearest hundredth, what is the average rate of change of the function h(x) = f(g(x)) from x = 0.5 to x = 3 ?",
+  "choices": [
+   "0.99",
+   "1.48",
+   "7.39",
+   "19.53"
+  ],
+  "correct_answer": "1.48",
+  "explanation": "g(0.5) = −1.75 and g(3) = 2, so h(0.5) = 2^(−1.75) ≈ 0.297 and h(3) = 2² = 4. The average rate of change is (4 − 0.297)/(3 − 0.5) ≈ 1.48. \"19.53\" composes as g(f(x)); \"0.99\" divides by g(3) − g(0.5) = 3.75 instead of 2.5; \"7.39\" uses the product f(x)·g(x).",
+  "solve": "const f=x=>2**x,g=x=>x*x-2*x-1;return ((f(g(3))-f(g(0.5)))/2.5).toFixed(2);",
+  "distractor_solve": {
+   "19.53": "const f=x=>2**x,g=x=>x*x-2*x-1;return ((g(f(3))-g(f(0.5)))/2.5).toFixed(2);",
+   "0.99": "const f=x=>2**x,g=x=>x*x-2*x-1;return ((f(g(3))-f(g(0.5)))/(g(3)-g(0.5))).toFixed(2);",
+   "7.39": "const f=x=>2**x,g=x=>x*x-2*x-1;return ((f(3)*g(3)-f(0.5)*g(0.5))/2.5).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "angle between two vectors",
+  "subskill": "angle from dot product and magnitudes",
+  "prompt": "The vectors u = ⟨3, 4⟩ and v = ⟨−2, 5⟩ are drawn from the origin in the standard (x,y) coordinate plane. To the nearest hundredth of a degree, what is the measure of the angle between u and v ?",
+  "choices": [
+   "66.42",
+   "58.77",
+   "74.93",
+   "58.67"
+  ],
+  "correct_answer": "58.67",
+  "explanation": "u · v = 3(−2) + 4(5) = 14, |u| = 5 and |v| = √29, so cos θ = 14/(5√29) ≈ 0.5199 and θ ≈ 58.67°. \"58.77\" rounds √29 to 5.4; \"66.42\" takes |v| = 2 + 5; \"74.93\" pairs the x-component of one vector with the y-component of the other.",
+  "solve": "return (Math.acos(14/(5*Math.sqrt(29)))*180/Math.PI).toFixed(2);",
+  "distractor_solve": {
+   "58.77": "return (Math.acos(14/(5*5.4))*180/Math.PI).toFixed(2);",
+   "66.42": "return (Math.acos(14/(5*7))*180/Math.PI).toFixed(2);",
+   "74.93": "return (Math.acos(7/(5*Math.sqrt(29)))*180/Math.PI).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "transition matrix applied twice",
+  "subskill": "apply a 2×2 matrix to a column vector twice",
+  "prompt": "Each year, 88% of company A's customers stay with A and 12% switch to company B, while 85% of B's customers stay with B and 15% switch to A. If a column vector lists (A customers, B customers), one year's change is found by multiplying the vector by the matrix T with first row (0.88, 0.15) and second row (0.12, 0.85). This year A has 64 thousand customers and B has 36 thousand. To the nearest hundredth of a thousand, how many customers will A have 2 years from now?",
+  "choices": [
+   "59.44",
+   "60.06",
+   "60.26",
+   "58.19"
+  ],
+  "correct_answer": "60.06",
+  "explanation": "Year 1: A = 0.88(64) + 0.15(36) = 61.72 and B = 0.12(64) + 0.85(36) = 38.28. Year 2: A = 0.88(61.72) + 0.15(38.28) ≈ 60.06. \"58.19\" uses the transpose of T; \"59.44\" repeats the first year's drop of 2.28; \"60.26\" rounds year 1 to (62, 38).",
+  "solve": "let a=64,b=36;for(let i=0;i<2;i++){[a,b]=[0.88*a+0.15*b,0.12*a+0.85*b];}return a.toFixed(2);",
+  "distractor_solve": {
+   "58.19": "let a=64,b=36;for(let i=0;i<2;i++){[a,b]=[0.88*a+0.12*b,0.15*a+0.85*b];}return a.toFixed(2);",
+   "59.44": "return (64-2*(64-(0.88*64+0.15*36))).toFixed(2);",
+   "60.26": "return (0.88*62+0.15*38).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "rational exponent in a physical law",
+  "subskill": "evaluate T^(2/3) from T² = a³",
+  "prompt": "Kepler's third law states that for an object orbiting the Sun, T² = a³, where T is the time for one orbit, in Earth years, and a is the object's average distance from the Sun, in astronomical units (AU). An asteroid takes 6.95 Earth years to orbit the Sun once. To the nearest hundredth of an AU, what is the asteroid's average distance from the Sun?",
+  "choices": [
+   "3.64",
+   "4.63",
+   "3.67",
+   "3.82"
+  ],
+  "correct_answer": "3.64",
+  "explanation": "From T² = a³, a = T^(2/3) = 6.95^(2/3) ≈ 3.64 AU (check: 3.64³ ≈ 48.3 = 6.95²). \"3.67\" uses the exponent 0.67; \"3.82\" computes 2∛6.95; \"4.63\" computes 6.95 × 2/3.",
+  "solve": "return Math.pow(6.95,2/3).toFixed(2);",
+  "distractor_solve": {
+   "3.67": "return Math.pow(6.95,0.67).toFixed(2);",
+   "3.82": "return (2*Math.cbrt(6.95)).toFixed(2);",
+   "4.63": "return (6.95*2/3).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "unit conversion with scientific notation",
+  "subskill": "bits and bytes rate conversion to time",
+  "prompt": "A file of 1.5 terabytes is copied over a network connection that transfers 2.24 gigabits per second. The copy begins after a 45-second verification step, and the total time is the verification step plus the transfer. Use 1 terabyte = 10^12 bytes, 1 gigabit = 10^9 bits, and 1 byte = 8 bits. To the nearest hundredth of a minute, what is the total time?",
+  "choices": [
+   "134.29",
+   "11.91",
+   "90.04",
+   "90.02"
+  ],
+  "correct_answer": "90.04",
+  "explanation": "The file is 1.5 × 10^12 × 8 = 1.2 × 10^13 bits. At 2.24 × 10^9 bits per second the transfer takes about 5,357.14 seconds; with the 45-second step the total is about 5,402.14 seconds, or 5,402.14/60 ≈ 90.04 minutes. \"11.91\" skips the bytes-to-bits factor of 8; \"90.02\" writes 90 min 2 s as 90.02; \"134.29\" adds 45 minutes instead of 45 seconds.",
+  "solve": "return ((1.5e12*8/2.24e9+45)/60).toFixed(2);",
+  "distractor_solve": {
+   "11.91": "return ((1.5e12/2.24e9+45)/60).toFixed(2);",
+   "90.02": "const s=1.5e12*8/2.24e9+45; return (Math.floor(s/60)+Math.round(s%60)/100).toFixed(2);",
+   "134.29": "return (1.5e12*8/2.24e9/60+45).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25N-05",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "modulus of a complex number",
+  "subskill": "absolute value of z from a product equation",
+  "prompt": "For i = √(−1), the absolute value |a + bi| of a complex number a + bi is its distance from 0 in the complex plane. The complex number z satisfies (4 + 3i)z = 11 − 4i. To the nearest hundredth, what is |z| ?",
+  "choices": [
+   "0.47",
+   "1.28",
+   "2.14",
+   "2.34"
+  ],
+  "correct_answer": "2.34",
+  "explanation": "Taking absolute values, |4 + 3i|·|z| = |11 − 4i|, so |z| = √137/5 ≈ 2.34. (Equivalently z = (11 − 4i)(4 − 3i)/25 = (32 − 49i)/25 and |z| = √(32² + 49²)/25.) \"1.28\" reports Re z = 32/25; \"0.47\" divides |11 − 4i| by 25 instead of 5; \"2.14\" measures size by |a| + |b|.",
+  "solve": "return (Math.hypot(11,-4)/5).toFixed(2);",
+  "distractor_solve": {
+   "1.28": "return ((11*4+(-4)*3)/25).toFixed(2);",
+   "0.47": "return (Math.hypot(11,-4)/25).toFixed(2);",
+   "2.14": "return (15/7).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25N-06",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "rotation matrix applied to a point",
+  "subskill": "multiply a 2×2 matrix with trig entries by a column vector",
+  "prompt": "In the standard (x,y) coordinate plane, a point written as a column vector is rotated 35° counterclockwise about the origin by multiplying it on the left by the matrix R with first row (cos 35°, −sin 35°) and second row (sin 35°, cos 35°). To the nearest hundredth, what is the y-coordinate of the image of the point (5, 2) ?",
+  "choices": [
+   "-1.23",
+   "4.51",
+   "-3.95",
+   "4.49"
+  ],
+  "correct_answer": "4.51",
+  "explanation": "R·(5, 2) has second entry (sin 35°)(5) + (cos 35°)(2) ≈ 5(0.5736) + 2(0.8192) ≈ 4.51. \"-1.23\" uses the second column of R (the clockwise rotation); \"-3.95\" evaluates sin 35 and cos 35 in radians; \"4.49\" rounds the trig values to 0.57 and 0.82 first.",
+  "solve": "const d=Math.PI/180;return (5*Math.sin(35*d)+2*Math.cos(35*d)).toFixed(2);",
+  "distractor_solve": {
+   "-1.23": "const d=Math.PI/180;return (-5*Math.sin(35*d)+2*Math.cos(35*d)).toFixed(2);",
+   "-3.95": "return (5*Math.sin(35)+2*Math.cos(35)).toFixed(2);",
+   "4.49": "return (5*0.57+2*0.82).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-08",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "trigonometric functions: amplitude, midline, period and solving",
+  "subskill": "build a cosine model from max/min, then solve",
+  "prompt": "The function f is defined by f(x) = a cos(bx) + d, where a and b are positive constants, d is a constant, and x is measured in radians. The graph of y = f(x) has a maximum point at (0, 13), and the next minimum point to the right of it is (6, −5). To the nearest hundredth, what is the least positive value of x for which f(x) = 6 ?",
+  "choices": [
+   "2.79",
+   "2.08",
+   "2.57",
+   "2.71"
+  ],
+  "correct_answer": "2.57",
+  "explanation": "The midline is d = (13 + (−5))/2 = 4 and the amplitude is a = 13 − 4 = 9. A maximum to the next minimum is half a period, so the period is 12 and b = 2π/12 = π/6. Then 9 cos(πx/6) + 4 = 6 gives cos(πx/6) = 2/9, so πx/6 = arccos(2/9) ≈ 1.3467 and x ≈ 1.3467 × 6/π ≈ 2.57. The option \"2.79\" takes the amplitude as the full distance from maximum to minimum, 18, so cos(πx/6) = 2/18. The option \"2.71\" takes the amplitude as the maximum value, 13, while keeping the midline 4, so cos(πx/6) = 2/13. The option \"2.08\" drops the midline altogether and uses the maximum as the amplitude, 13 cos(πx/6) = 6.",
+  "solve": "return (Math.acos(2/9)*6/Math.PI).toFixed(2);",
+  "distractor_solve": {
+   "2.79": "return (Math.acos(2/18)*6/Math.PI).toFixed(2);",
+   "2.71": "return (Math.acos(2/13)*6/Math.PI).toFixed(2);",
+   "2.08": "return (Math.acos(6/13)*6/Math.PI).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-09",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "sequences: differences forming a geometric sequence",
+  "subskill": "sum a geometric list of differences",
+  "prompt": "In a certain sequence, the 1st term is 40 and the 2nd term is 44. For every n ≥ 2, the difference between the (n + 1)th term and the nth term is 1.6 times the difference between the nth term and the (n − 1)th term. To the nearest hundredth, what is the 8th term of the sequence?",
+  "choices": [
+   "212.29",
+   "218.96",
+   "104.61",
+   "147.37"
+  ],
+  "correct_answer": "212.29",
+  "explanation": "The differences are 4, 4(1.6), 4(1.6)², …; going from the 1st term to the 8th term adds 7 of them. Their sum is 4(1.6⁷ − 1)/(1.6 − 1) = 4(26.8435 − 1)/0.6 ≈ 172.29, so the 8th term is 40 + 172.29 = 212.29. The option \"218.96\" drops the \"− 1\" in the geometric-sum formula, 4(1.6⁷)/0.6. The option \"104.61\" divides by the ratio 1.6 instead of by 1.6 − 1. The option \"147.37\" treats the 8th term as the 1st term plus a single difference 4(1.6⁷), using a geometric \"nth term\" formula on the differences.",
+  "solve": "return (40+4*(1.6**7-1)/0.6).toFixed(2);",
+  "distractor_solve": {
+   "218.96": "return (40+4*1.6**7/0.6).toFixed(2);",
+   "104.61": "return (40+4*(1.6**7-1)/1.6).toFixed(2);",
+   "147.37": "return (40+4*1.6**7).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-10",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "quadratic modelling in vertex form",
+  "subskill": "vertex-form parabola from a width at a height",
+  "prompt": "The opening of a tunnel is shaped like a parabola that opens downward. The highest point of the opening is 18 meters above the level ground, and at a height of 13 meters above the ground the opening is 20 meters wide. To the nearest hundredth of a meter, how wide is the opening at ground level?",
+  "choices": [
+   "32.25",
+   "27.69",
+   "37.95",
+   "23.53"
+  ],
+  "correct_answer": "37.95",
+  "explanation": "Put the vertex at (0, 18): y = 18 − kx². At y = 13 the half-width is 10, so 5 = 100k and k = 0.05. At ground level 18 = 0.05x², so x² = 360, x ≈ 18.97, and the width is 2(18.97) ≈ 37.95. Equivalently, the drop from the top grows with the square of the half-width, so the half-width at ground is 10√(18/5). The option \"32.25\" measures the ground drop from the 13-meter level (13 instead of 18), 20√(13/5). The option \"27.69\" scales the width in proportion to the heights, 20(18/13), as if the width were linear in height. The option \"23.53\" sets the parabola up with its vertex at ground level, so the width grows as the square root of height and 20√(18/13) is the width at the top.",
+  "solve": "return (20*Math.sqrt(18/5)).toFixed(2);",
+  "distractor_solve": {
+   "32.25": "return (20*Math.sqrt(13/5)).toFixed(2);",
+   "27.69": "return (20*18/13).toFixed(2);",
+   "23.53": "return (20*Math.sqrt(18/13)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-11",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "trigonometric functions on the unit circle: reference angles",
+  "subskill": "evaluate with reference-angle identities",
+  "prompt": "For a certain angle θ with 0 < θ < π/2, sin θ = 0.52. To the nearest hundredth, what is the value of sin(π − θ) + cos(π + θ) + tan(2π − θ) ?",
+  "choices": [
+   "0.27",
+   "0.77",
+   "-0.61",
+   "-0.94"
+  ],
+  "correct_answer": "-0.94",
+  "explanation": "On the unit circle, sin(π − θ) = sin θ = 0.52, cos(π + θ) = −cos θ, and tan(2π − θ) = −tan θ. Since cos θ = √(1 − 0.52²) ≈ 0.8542 and tan θ = 0.52/0.8542 ≈ 0.6088, the sum is 0.52 − 0.8542 − 0.6088 ≈ −0.94. The option \"0.77\" takes cos(π + θ) = +cos θ. The option \"0.27\" takes tan(2π − θ) = +tan θ. The option \"−0.61\" replaces sin(π − θ) with cos θ, as if it were sin(π/2 − θ).",
+  "solve": "const s=0.52,c=Math.sqrt(1-s*s),t=s/c;return (s-c-t).toFixed(2);",
+  "distractor_solve": {
+   "0.77": "const s=0.52,c=Math.sqrt(1-s*s),t=s/c;return (s+c-t).toFixed(2);",
+   "0.27": "const s=0.52,c=Math.sqrt(1-s*s),t=s/c;return (s-c+t).toFixed(2);",
+   "-0.61": "const s=0.52,c=Math.sqrt(1-s*s),t=s/c;return (c-c-t).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-12",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "trigonometric functions on the unit circle: angle-sum identity",
+  "subskill": "sine of a sum from one sine and one cosine",
+  "prompt": "Angles α and β satisfy 0 < α < π/2 and π/2 < β < π. Also, sin α = 0.45 and cos β = −0.35. To the nearest hundredth, what is the value of sin(α + β) ?",
+  "choices": [
+   "0.36",
+   "0.68",
+   "0.99",
+   "0.11"
+  ],
+  "correct_answer": "0.68",
+  "explanation": "Because α is in Quadrant I, cos α = √(1 − 0.45²) ≈ 0.8930; because β is in Quadrant II, sin β = √(1 − 0.35²) ≈ 0.9367 (positive). Then sin(α + β) = sin α cos β + cos α sin β ≈ 0.45(−0.35) + 0.8930(0.9367) ≈ −0.1575 + 0.8364 ≈ 0.68. The option \"0.99\" drops the negative sign of cos β. The option \"0.11\" uses the pattern sin α sin β + cos α cos β, which belongs to cos(α − β). The option \"0.36\" takes cos α as 1 − sin α = 0.55 instead of using the Pythagorean identity.",
+  "solve": "const sa=0.45,ca=Math.sqrt(1-sa*sa),cb=-0.35,sb=Math.sqrt(1-cb*cb);return (sa*cb+ca*sb).toFixed(2);",
+  "distractor_solve": {
+   "0.99": "const sa=0.45,ca=Math.sqrt(1-sa*sa),cb=0.35,sb=Math.sqrt(1-cb*cb);return (sa*cb+ca*sb).toFixed(2);",
+   "0.11": "const sa=0.45,ca=Math.sqrt(1-sa*sa),cb=-0.35,sb=Math.sqrt(1-cb*cb);return (sa*sb+ca*cb).toFixed(2);",
+   "0.36": "const sa=0.45,ca=1-sa,cb=-0.35,sb=Math.sqrt(1-cb*cb);return (sa*cb+ca*sb).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-13",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "quadratic modelling in vertex form",
+  "subskill": "known vertex time, two data points, find maximum",
+  "prompt": "A ball is tossed upward, and its height above the ground, in meters, t seconds after it is released is modeled by a quadratic function of t. The ball is released at a height of 1.5 meters, it is 6.3 meters high 0.5 second after release, and it reaches its maximum height 1.2 seconds after release. According to the model, to the nearest hundredth of a meter, what is the maximum height of the ball?",
+  "choices": [
+   "8.78",
+   "9.84",
+   "7.53",
+   "8.56"
+  ],
+  "correct_answer": "8.78",
+  "explanation": "Write h(t) = a(t − 1.2)² + k. Then h(0) = 1.44a + k = 1.5 and h(0.5) = 0.49a + k = 6.3. Subtracting, 0.95a = −4.8, so a ≈ −5.0526 and k = 1.5 + 5.0526(1.44) ≈ 8.78. The option \"9.84\" squares (0.5 − 1.2) when finding a but forgets to square it when substituting back, k = 6.3 + 5.0526(0.7). The option \"7.53\" writes (0 − 1.2)² as 2.4. The option \"8.56\" ignores the 6.3-meter data and assumes a = −4.9 from free fall, k = 1.5 + 4.9(1.44).",
+  "solve": "const a=(6.3-1.5)/(0.49-1.44);return (1.5-a*1.44).toFixed(2);",
+  "distractor_solve": {
+   "9.84": "const a=(6.3-1.5)/(0.49-1.44);return (6.3-a*0.7).toFixed(2);",
+   "7.53": "const a=(6.3-1.5)/(0.49-2.4);return (1.5-a*2.4).toFixed(2);",
+   "8.56": "return (1.5+4.9*1.44).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25F-14",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "recursive sequences given by a table",
+  "subskill": "find recurrence coefficients, extend two terms",
+  "prompt": "The table below gives the first five terms of a sequence. n | 1 | 2 | 3 | 4 | 5 ; aₙ | 1 | 3 | 7 | 19 | 47. For every n ≥ 1, the terms satisfy aₙ₊₂ = p·aₙ₊₁ + q·aₙ, where p and q are constants. What is the value of a₇ ?",
+  "choices": [
+   "288",
+   "199",
+   "273",
+   "311"
+  ],
+  "correct_answer": "311",
+  "explanation": "From a₃ = 3p + q = 7 and a₄ = 7p + 3q = 19: substituting q = 7 − 3p gives 7p + 21 − 9p = 19, so p = 1 and q = 4 (check: a₅ = 19 + 4(7) = 47). Then a₆ = 47 + 4(19) = 123 and a₇ = 123 + 4(47) = 311. The option \"288\" ignores the rule and extends the last ratio, 47(47/19)², rounded. The option \"199\" uses the wrong index in the last step, a₆ + 4a₄. The option \"273\" fits only a₃ with p = 2 and q = 1 and never checks a₄, giving a₆ = 113 and a₇ = 273.",
+  "solve": "const a=[1,3,7,19,47];const a6=a[4]+4*a[3];return String(a6+4*a[4]);",
+  "distractor_solve": {
+   "199": "const a=[1,3,7,19,47];const a6=a[4]+4*a[3];return String(a6+4*a[3]);",
+   "273": "const a6=2*47+19;return String(2*a6+47);",
+   "288": "return String(Math.round(47*(47/19)**2));"
+  }
+ },
+ {
+  "id": "AM25S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "weighted averages of groups",
+  "subskill": "combined mean after one group changes",
+  "prompt": "Three sections of a class took the same test. Section A has 14 students with a mean score of 72, Section B has 22 students with a mean score of 81, and Section C has 23 students with a mean score of 77. After a grading error was corrected, every student in Section B received 3 more points, and no other score changed. To the nearest hundredth, what is the mean score of all the students after the correction?",
+  "choices": [
+   "78.31",
+   "78.42",
+   "79.09",
+   "77.67"
+  ],
+  "correct_answer": "78.42",
+  "explanation": "Before the correction the total is 14(72) + 22(81) + 23(77) = 1,008 + 1,782 + 1,771 = 4,561 for 59 students. The correction adds 22(3) = 66 points, so the new total is 4,627 and the mean is 4,627/59 ≈ 78.42. The option \"77.67\" averages the three corrected section means, (72 + 84 + 77)/3, ignoring the section sizes. The option \"78.31\" adds 3/3 = 1 point to the old mean, as if Section B were one third of the class. The option \"79.09\" adds 3(22/37) to the old mean, comparing Section B with the other two sections instead of with the whole class.",
+  "solve": "return ((14*72+22*81+23*77+22*3)/59).toFixed(2);",
+  "distractor_solve": {
+   "77.67": "return ((72+84+77)/3).toFixed(2);",
+   "78.31": "return ((14*72+22*81+23*77)/59+1).toFixed(2);",
+   "79.09": "return ((14*72+22*81+23*77)/59+3*22/37).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "effect of removing data values on standard deviation",
+  "subskill": "sum of squared deviations after removal",
+  "prompt": "A data set consists of 20 values. Its mean is 50, and its standard deviation is 5.2, where the standard deviation is the square root of the mean of the squared deviations from the mean. Two values in the data set, 42 and 58, are removed. To the nearest hundredth, what is the standard deviation of the remaining 18 values, computed the same way?",
+  "choices": [
+   "4.79",
+   "4.66",
+   "4.46",
+   "4.76"
+  ],
+  "correct_answer": "4.79",
+  "explanation": "The sum of the squared deviations of all 20 values is 20(5.2²) = 540.8. Removing 42 and 58 leaves the mean at 50 (they sum to 100) and removes 8² + 8² = 128, leaving 412.8 for 18 values. The new standard deviation is √(412.8/18) ≈ 4.79. The option \"4.76\" treats 5.2 as a sample standard deviation (squared deviations summed to 19 × 5.2²) and divides by 17. The option \"4.66\" divides by 19 instead of 18. The option \"4.46\" subtracts 128/18 from the old variance without rescaling it, √(27.04 − 128/18).",
+  "solve": "return Math.sqrt((20*5.2*5.2-128)/18).toFixed(2);",
+  "distractor_solve": {
+   "4.76": "return Math.sqrt((19*5.2*5.2-128)/17).toFixed(2);",
+   "4.66": "return Math.sqrt((20*5.2*5.2-128)/19).toFixed(2);",
+   "4.46": "return Math.sqrt(5.2*5.2-128/18).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "conditional probability of dependent events",
+  "subskill": "condition on \"at least one\", without replacement",
+  "prompt": "A box contains 12 cards, 5 of which are red and 7 of which are blue. Two cards are drawn at random without replacement. Given that at least one of the two cards drawn is red, what is the probability, to the nearest hundredth, that both cards are red?",
+  "choices": [
+   "0.26",
+   "0.29",
+   "0.22",
+   "0.23"
+  ],
+  "correct_answer": "0.22",
+  "explanation": "There are C(12, 2) = 66 equally likely pairs. Both red: C(5, 2) = 10. No red: C(7, 2) = 21, so at least one red: 66 − 21 = 45. The probability is 10/45 ≈ 0.22. The option \"0.23\" computes P(both red) without replacement, 10/66, but P(at least one red) as if with replacement, 1 − (7/12)². The option \"0.26\" works entirely with replacement, (5/12)² ÷ [1 − (7/12)²]. The option \"0.29\" divides by the probability of exactly one red, 10/35.",
+  "solve": "return (10/45).toFixed(2);",
+  "distractor_solve": {
+   "0.23": "return ((10/66)/(1-(7/12)**2)).toFixed(2);",
+   "0.26": "return (((5/12)**2)/(1-(7/12)**2)).toFixed(2);",
+   "0.29": "return (10/35).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "dependent compound events",
+  "subskill": "kth success on a given draw, without replacement",
+  "prompt": "A box contains 10 light bulbs, 4 of which are defective. An inspector tests the bulbs one at a time, in random order, without replacement. To the nearest hundredth, what is the probability that the second defective bulb found is the 4th bulb tested?",
+  "choices": [
+   "0.35",
+   "0.21",
+   "0.29",
+   "0.25"
+  ],
+  "correct_answer": "0.21",
+  "explanation": "The 4th bulb must be defective, and exactly 1 of the first 3 must be defective. P(exactly 1 defective in the first 3) = C(4, 1)C(6, 2)/C(10, 3) = 60/120 = 0.5. Then 3 defective bulbs remain among 7, so the 4th is defective with probability 3/7. The probability is 0.5 × 3/7 ≈ 0.21. The option \"0.25\" uses 3 out of 6 remaining bulbs for the 4th test. The option \"0.29\" counts 4 positions for the first defective bulb instead of 3. The option \"0.35\" treats the tests as independent with probability 0.4 and computes C(4, 2)(0.4)²(0.6)², the chance of exactly 2 defectives in 4 tests.",
+  "solve": "return ((4*15/120)*(3/7)).toFixed(2);",
+  "distractor_solve": {
+   "0.25": "return ((4*15/120)*(3/6)).toFixed(2);",
+   "0.29": "return (4*(4*3*6*5)/(10*9*8*7)).toFixed(2);",
+   "0.35": "return (6*0.4**2*0.6**2).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value",
+  "subskill": "expected net winnings with overlapping events",
+  "prompt": "In a game, a player rolls two fair 6-sided dice, each numbered 1 through 6. If the sum of the two numbers is 8 or the two dice show the same number, the player wins $11. If the sum is 5, the player wins $6. Otherwise, the player loses $3.50. To the nearest cent, what is the expected value, in dollars, of the player's net winnings for one game?",
+  "choices": [
+   "1.68",
+   "1.58",
+   "2.93",
+   "1.99"
+  ],
+  "correct_answer": "1.58",
+  "explanation": "Of the 36 equally likely outcomes, 5 have sum 8 and 6 are doubles, and (4, 4) is in both, so 10 outcomes win $11. Four outcomes have sum 5, and the remaining 36 − 10 − 4 = 22 lose $3.50. The expected value is (10 × 11 + 4 × 6 − 22 × 3.5)/36 = 57/36 ≈ 1.58. The option \"1.68\" counts the winning outcomes correctly but removes 11 + 4 = 15 outcomes when counting the losers (21 instead of 22). The option \"1.99\" double-counts (4, 4) as 11 winning outcomes and 21 losing ones. The option \"2.93\" treats the 21 unordered pairs of numbers as equally likely.",
+  "solve": "return ((10*11+4*6-22*3.5)/36).toFixed(2);",
+  "distractor_solve": {
+   "1.68": "return ((10*11+4*6-21*3.5)/36).toFixed(2);",
+   "1.99": "return ((11*11+4*6-21*3.5)/36).toFixed(2);",
+   "2.93": "return ((8*11+2*6-11*3.5)/21).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "effect of data changes on the mean",
+  "subskill": "mean after a linear change and a removal",
+  "prompt": "A data set consists of 12 values. The mean of the values is 52, the median is 47, and the greatest value is 94. Each of the 12 values is multiplied by 1.25, and then 6 is subtracted from each result. The greatest of the 12 new values is then removed. To the nearest hundredth, what is the mean of the remaining 11 new values?",
+  "choices": [
+   "53.68",
+   "47.41",
+   "52.73",
+   "54.23"
+  ],
+  "correct_answer": "54.23",
+  "explanation": "The new values have mean 1.25(52) − 6 = 59, so their sum is 12 × 59 = 708. The greatest new value is 1.25(94) − 6 = 111.5. Removing it leaves 708 − 111.5 = 596.5 for 11 values, a mean of about 54.23. The option \"53.68\" removes 1.25(94) = 117.5, forgetting to subtract 6 from the removed value. The option \"52.73\" subtracts 6 before multiplying by 1.25, for the mean and for the removed value. The option \"47.41\" uses the median 47 in place of the mean to find the sum.",
+  "solve": "return ((1.25*52*12-6*12-(1.25*94-6))/11).toFixed(2);",
+  "distractor_solve": {
+   "53.68": "return ((1.25*52*12-6*12-1.25*94)/11).toFixed(2);",
+   "52.73": "return ((1.25*(52-6)*12-1.25*(94-6))/11).toFixed(2);",
+   "47.41": "return ((1.25*47*12-6*12-(1.25*94-6))/11).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25S-07",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "independent compound events",
+  "subskill": "compare two binomial counts",
+  "prompt": "Ana makes each of her shots with probability 0.6, and Ben makes each of his shots with probability 0.28. All shots are independent. Ana and Ben each take exactly 2 shots. To the nearest hundredth, what is the probability that Ana makes more shots than Ben?",
+  "choices": [
+   "0.77",
+   "0.43",
+   "0.58",
+   "0.38"
+  ],
+  "correct_answer": "0.58",
+  "explanation": "Ana makes 0, 1, or 2 shots with probabilities 0.16, 0.48, and 0.36; Ben makes 0, 1, or 2 with probabilities 0.5184, 0.4032, and 0.0784. Ana makes more when she makes 1 and Ben 0, or she makes 2 and Ben 0 or 1: 0.48(0.5184) + 0.36(0.5184 + 0.4032) ≈ 0.2488 + 0.3318 ≈ 0.58. The option \"0.77\" also counts the 1–1 tie as a win for Ana. The option \"0.38\" leaves out the factor 2 in each \"exactly one make\" probability. The option \"0.43\" treats each player as taking a single shot, 0.6(0.72).",
+  "solve": "const A=[0.16,0.48,0.36],B=[0.72*0.72,2*0.28*0.72,0.28*0.28];return (A[1]*B[0]+A[2]*(B[0]+B[1])).toFixed(2);",
+  "distractor_solve": {
+   "0.77": "const A=[0.16,0.48,0.36],B=[0.72*0.72,2*0.28*0.72,0.28*0.28];return (A[1]*B[0]+A[2]*(B[0]+B[1])+A[1]*B[1]).toFixed(2);",
+   "0.38": "return (0.6*0.4*0.72*0.72+0.36*(0.72*0.72+0.28*0.72)).toFixed(2);",
+   "0.43": "return (0.6*0.72).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "angle bisector theorem with coordinates",
+  "subskill": "angle bisector divides the opposite side proportionally",
+  "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(−3, −2), B(−7, −5), and C(9, −11). The bisector of angle BAC intersects side BC at point D. To the nearest hundredth of a coordinate unit, what is the distance from D to the origin?",
+  "choices": [
+   "8.06",
+   "10.74",
+   "7.16",
+   "7.44"
+  ],
+  "correct_answer": "7.16",
+  "explanation": "AB = √(4² + 3²) = 5 and AC = √(12² + 9²) = 15. By the angle bisector theorem, BD : DC = AB : AC = 5 : 15 = 1 : 3, so D is 1/4 of the way from B to C: D = (−7 + (1/4)(16), −5 + (1/4)(−6)) = (−3, −6.5). The distance from D to the origin is √(3² + 6.5²) = √51.25 ≈ 7.16. The option \"10.74\" applies the ratio the other way (BD : DC = 3 : 1), giving (5, −9.5). The option \"8.06\" uses the midpoint of BC, (1, −8), as if AD were a median. The option \"7.44\" uses the foot of the altitude from A to BC, about (−4.48, −5.95), as if AD were perpendicular to BC.",
+  "solve": "const A=[-3,-2],B=[-7,-5],C=[9,-11],AB=Math.hypot(B[0]-A[0],B[1]-A[1]),AC=Math.hypot(C[0]-A[0],C[1]-A[1]);const at=(t)=>[B[0]+t*(C[0]-B[0]),B[1]+t*(C[1]-B[1])];const D=at(AB/(AB+AC));return Math.hypot(D[0],D[1]).toFixed(2);",
+  "distractor_solve": {
+   "10.74": "const A=[-3,-2],B=[-7,-5],C=[9,-11],AB=Math.hypot(B[0]-A[0],B[1]-A[1]),AC=Math.hypot(C[0]-A[0],C[1]-A[1]);const at=(t)=>[B[0]+t*(C[0]-B[0]),B[1]+t*(C[1]-B[1])];const D=at(AC/(AB+AC));return Math.hypot(D[0],D[1]).toFixed(2);",
+   "8.06": "const A=[-3,-2],B=[-7,-5],C=[9,-11],AB=Math.hypot(B[0]-A[0],B[1]-A[1]),AC=Math.hypot(C[0]-A[0],C[1]-A[1]);const at=(t)=>[B[0]+t*(C[0]-B[0]),B[1]+t*(C[1]-B[1])];const D=at(0.5);return Math.hypot(D[0],D[1]).toFixed(2);",
+   "7.44": "const A=[-3,-2],B=[-7,-5],C=[9,-11],AB=Math.hypot(B[0]-A[0],B[1]-A[1]),AC=Math.hypot(C[0]-A[0],C[1]-A[1]);const at=(t)=>[B[0]+t*(C[0]-B[0]),B[1]+t*(C[1]-B[1])];const ux=C[0]-B[0],uy=C[1]-B[1],t=((A[0]-B[0])*ux+(A[1]-B[1])*uy)/(ux*ux+uy*uy),D=at(t);return Math.hypot(D[0],D[1]).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "law of sines in a triangulation problem",
+  "subskill": "law of sines then altitude",
+  "prompt": "Two survey stations, A and B, are 600 meters apart on a straight shoreline. A buoy, C, floats offshore. At station A, the angle between the shoreline (toward B) and the line of sight to the buoy measures 48°. At station B, the angle between the shoreline (toward A) and the line of sight to the buoy measures 55°. To the nearest tenth of a meter, what is the shortest distance from the buoy to the shoreline?",
+  "choices": [
+   "340.1",
+   "374.9",
+   "337.5",
+   "365.2"
+  ],
+  "correct_answer": "374.9",
+  "explanation": "In triangle ABC, angle C = 180° − 48° − 55° = 77°. By the law of sines, AC / sin 55° = AB / sin 77°, so AC = 600 sin 55° / sin 77° ≈ 504.4 meters. The shortest distance from C to the shoreline is the altitude from C to line AB, which is AC · sin 48° ≈ 504.4 × 0.7431 ≈ 374.9 meters. The option \"365.2\" treats angle C as a right angle, so AC = 600 sin 55° and the altitude is 600 sin 55° sin 48°. The option \"340.1\" pairs AC with the wrong angle in the law of sines (AC = 600 sin 48° / sin 77°) before multiplying by sin 48°. The option \"337.5\" uses the correct AC but multiplies by cos 48° instead of sin 48°.",
+  "solve": "const R=Math.PI/180;const AC=600*Math.sin(55*R)/Math.sin(77*R);return (AC*Math.sin(48*R)).toFixed(1);",
+  "distractor_solve": {
+   "365.2": "const R=Math.PI/180;return (600*Math.sin(55*R)*Math.sin(48*R)).toFixed(1);",
+   "340.1": "const R=Math.PI/180;const AC=600*Math.sin(48*R)/Math.sin(77*R);return (AC*Math.sin(48*R)).toFixed(1);",
+   "337.5": "const R=Math.PI/180;const AC=600*Math.sin(55*R)/Math.sin(77*R);return (AC*Math.cos(48*R)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM25G-03",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "similar right triangles in a ladder-over-fence setup",
+  "subskill": "similar triangles: ladder over a fence",
+  "prompt": "A vertical fence 2.2 meters tall runs parallel to the vertical wall of a building, 3.5 meters from the wall, on level ground. A straight ladder has its foot on the ground 1.9 meters from the fence, on the side away from the building. The ladder just touches the top of the fence, and its upper end rests against the wall. To the nearest hundredth of a meter, what is the length of the ladder?",
+  "choices": [
+   "8.26",
+   "7.17",
+   "10.03",
+   "6.75"
+  ],
+  "correct_answer": "8.26",
+  "explanation": "The ladder's foot is 1.9 + 3.5 = 5.4 meters from the wall. The ladder rises 2.2 meters over the first 1.9 meters, so by similar triangles it reaches the wall at a height of 2.2 × 5.4 / 1.9 ≈ 6.253 meters. Its length is √(6.253² + 5.4²) ≈ √(39.10 + 29.16) ≈ 8.26 meters. The option \"7.17\" uses the correct height but only the 3.5-meter fence-to-wall distance as the horizontal run. The option \"6.75\" uses only the rise above the fence (2.2 × 3.5 / 1.9 ≈ 4.05) as the wall height, forgetting to add the fence's 2.2 meters. The option \"10.03\" adds the fence height to the full similar-triangle height a second time (6.25 + 2.2).",
+  "solve": "const H=2.2*5.4/1.9;return Math.hypot(H,5.4).toFixed(2);",
+  "distractor_solve": {
+   "7.17": "const H=2.2*5.4/1.9;return Math.hypot(H,3.5).toFixed(2);",
+   "6.75": "const H=2.2*3.5/1.9;return Math.hypot(H,5.4).toFixed(2);",
+   "10.03": "const H=2.2*5.4/1.9+2.2;return Math.hypot(H,5.4).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25G-04",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "lateral surface area of a frustum",
+  "subskill": "frustum lateral area: slant height",
+  "prompt": "A lampshade has the shape of the curved surface of a frustum of a right circular cone, open at both ends. The top opening has a diameter of 14 centimeters, the bottom opening has a diameter of 30 centimeters, and the perpendicular distance between the two openings is 15 centimeters. The lateral surface area of a frustum whose circular ends have radii r and R and whose slant height is s is π(r + R)s. To the nearest hundredth of a square centimeter, what is the lateral surface area of the lampshade?",
+  "choices": [
+   "1466.15",
+   "1036.73",
+   "1174.96",
+   "1515.81"
+  ],
+  "correct_answer": "1174.96",
+  "explanation": "The radii are 7 and 15 centimeters. The slant height is the hypotenuse of a right triangle whose legs are the height, 15, and the difference of the radii, 15 − 7 = 8: s = √(15² + 8²) = 17. The lateral area is π(7 + 15)(17) = 374π ≈ 1174.96 square centimeters. The option \"1036.73\" uses the height 15 in place of the slant height (330π). The option \"1466.15\" finds the slant height from the height and the bottom radius, √(15² + 15²) ≈ 21.21, instead of the difference of the radii. The option \"1515.81\" finds the slant height from the height and the difference of the diameters, √(15² + 16²) ≈ 21.93.",
+  "solve": "const s=Math.hypot(15,(30-14)/2);return (Math.PI*(7+15)*s).toFixed(2);",
+  "distractor_solve": {
+   "1036.73": "return (Math.PI*(7+15)*15).toFixed(2);",
+   "1466.15": "return (Math.PI*(7+15)*Math.hypot(15,15)).toFixed(2);",
+   "1515.81": "return (Math.PI*(7+15)*Math.hypot(15,16)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25G-05",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "area of a triangle inscribed in a rectangle by subtraction",
+  "subskill": "composite area: rectangle minus corner triangles",
+  "prompt": "Rectangle ABCD has AB = 24 and BC = 15. Point E lies on side AB so that AE : EB = 1 : 3, and point F lies on side BC so that BF : FC = 2 : 3. What is the area of triangle DEF?",
+  "choices": [
+   "144",
+   "165",
+   "126",
+   "153"
+  ],
+  "correct_answer": "153",
+  "explanation": "AE = 24 × 1/4 = 6 and EB = 18; BF = 15 × 2/5 = 6 and FC = 9. The rectangle's area is 24 × 15 = 360. Remove the three right triangles at the corners: DAE has legs AD = 15 and AE = 6 (area 45), EBF has legs EB = 18 and BF = 6 (area 54), and FCD has legs FC = 9 and CD = 24 (area 108). The area of triangle DEF is 360 − 45 − 54 − 108 = 153. The option \"144\" reads AE : EB = 1 : 3 as AE = 1/3 of AB (AE = 8). The option \"165\" reads BF : FC = 2 : 3 as BF = 2/3 of BC (BF = 10). The option \"126\" uses AB instead of AD as the second leg of triangle DAE.",
+  "solve": "const L=24,W=15,AE=L/4,BF=W*2/5;return String(L*W-0.5*AE*W-0.5*(L-AE)*BF-0.5*(W-BF)*L);",
+  "distractor_solve": {
+   "126": "const L=24,W=15,AE=L/4,BF=W*2/5;return String(L*W-0.5*AE*L-0.5*(L-AE)*BF-0.5*(W-BF)*L);",
+   "144": "const L=24,W=15,AE=L/3,BF=W*2/5;return String(L*W-0.5*AE*W-0.5*(L-AE)*BF-0.5*(W-BF)*L);",
+   "165": "const L=24,W=15,AE=L/4,BF=W*2/3;return String(L*W-0.5*AE*W-0.5*(L-AE)*BF-0.5*(W-BF)*L);"
+  }
+ },
+ {
+  "id": "AM25G-06",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "angles of elevation and depression from one observer",
+  "subskill": "elevation and depression to one tower",
+  "prompt": "The roof of a building is 40 meters above level ground. A tower stands on the same level ground some distance away. From a point on the edge of the roof, the angle of elevation to the top of the tower measures 28°, and the angle of depression to the base of the tower measures 35°. To the nearest hundredth of a meter, how tall is the tower?",
+  "choices": [
+   "66.82",
+   "70.37",
+   "54.89",
+   "61.27"
+  ],
+  "correct_answer": "70.37",
+  "explanation": "The angle of depression to the base gives the horizontal distance d from the building to the tower: tan 35° = 40/d, so d = 40/tan 35° ≈ 57.13 meters. The part of the tower above roof level is d·tan 28° ≈ 57.13 × 0.5317 ≈ 30.37 meters. The tower's height is 40 + 30.37 = 70.37 meters. The option \"54.89\" finds the horizontal distance as 40·tan 35° ≈ 28.01 instead of 40/tan 35°. The option \"66.82\" uses sin 28° instead of tan 28° for the part above the roof, 57.13 × sin 28° ≈ 26.82. The option \"61.27\" skips the depression angle and uses the roof height, 40, as the horizontal distance: 40 + 40·tan 28°.",
+  "solve": "const R=Math.PI/180,H=40,d=H/Math.tan(35*R);return (H+d*Math.tan(28*R)).toFixed(2);",
+  "distractor_solve": {
+   "54.89": "const R=Math.PI/180,H=40,d=H*Math.tan(35*R);return (H+d*Math.tan(28*R)).toFixed(2);",
+   "66.82": "const R=Math.PI/180,H=40,d=H/Math.tan(35*R);return (H+d*Math.sin(28*R)).toFixed(2);",
+   "61.27": "const R=Math.PI/180,H=40;return (H+H*Math.tan(28*R)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25G-07",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "third vertex of an equilateral triangle in the coordinate plane",
+  "subskill": "equilateral triangle: locating the apex",
+  "prompt": "In the standard (x,y) coordinate plane, points A(−6, −6) and B(4, 1) are two vertices of equilateral triangle ABC, and vertex C lies above line AB. To the nearest hundredth of a coordinate unit, what is the distance from C to the origin?",
+  "choices": [
+   "9.88",
+   "12.25",
+   "9.37",
+   "10.97"
+  ],
+  "correct_answer": "9.37",
+  "explanation": "AB = √(10² + 7²) = √149 ≈ 12.207, and the midpoint of AB is M(−1, −2.5). Vertex C lies on the perpendicular bisector of AB at a distance from M equal to the triangle's height, (√3/2)(12.207) ≈ 10.571. A unit vector perpendicular to AB and pointing up is (−7, 10)/√149, so C ≈ (−1 − 6.062, −2.5 + 8.660) = (−7.062, 6.160), and the distance from C to the origin is √(7.062² + 6.160²) ≈ 9.37. The option \"12.25\" takes the vertex below line AB, (5.062, −11.160). The option \"10.97\" moves the full side length 12.207 from M instead of the height, reaching (−8, 7.5). The option \"9.88\" measures the height from B instead of from the midpoint M, reaching (−2.062, 9.660).",
+  "solve": "const ax=-6,ay=-6,bx=4,by=1,dx=bx-ax,dy=by-ay,s=Math.hypot(dx,dy),mx=(ax+bx)/2,my=(ay+by)/2,nx=-dy/s,ny=dx/s,h=s*Math.sqrt(3)/2;return Math.hypot(mx+h*nx,my+h*ny).toFixed(2);",
+  "distractor_solve": {
+   "12.25": "const ax=-6,ay=-6,bx=4,by=1,dx=bx-ax,dy=by-ay,s=Math.hypot(dx,dy),mx=(ax+bx)/2,my=(ay+by)/2,nx=-dy/s,ny=dx/s,h=s*Math.sqrt(3)/2;return Math.hypot(mx-h*nx,my-h*ny).toFixed(2);",
+   "10.97": "const ax=-6,ay=-6,bx=4,by=1,dx=bx-ax,dy=by-ay,s=Math.hypot(dx,dy),mx=(ax+bx)/2,my=(ay+by)/2,nx=-dy/s,ny=dx/s,h=s*Math.sqrt(3)/2;return Math.hypot(mx+s*nx,my+s*ny).toFixed(2);",
+   "9.88": "const ax=-6,ay=-6,bx=4,by=1,dx=bx-ax,dy=by-ay,s=Math.hypot(dx,dy),mx=(ax+bx)/2,my=(ay+by)/2,nx=-dy/s,ny=dx/s,h=s*Math.sqrt(3)/2;return Math.hypot(bx+h*nx,by+h*ny).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25G-08",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "angle between a lateral edge and the base of a pyramid",
+  "subskill": "right-triangle trig in a square pyramid",
+  "prompt": "A right pyramid has a square base with edges 10 centimeters long, and each of its 4 lateral edges is 13 centimeters long. To the nearest hundredth of a degree, what is the measure of the angle that a lateral edge makes with the base of the pyramid?",
+  "choices": [
+   "59.49",
+   "47.49",
+   "49.59",
+   "57.05"
+  ],
+  "correct_answer": "57.05",
+  "explanation": "The apex is directly above the center of the square base. A lateral edge, the pyramid's height, and the segment from the center of the base to a corner form a right triangle. The center-to-corner distance is half the base diagonal, 10√2 / 2 ≈ 7.071, and the lateral edge 13 is the hypotenuse, so the angle θ satisfies cos θ = 7.071/13 and θ ≈ 57.05°. (Equivalently, the height is √(13² − 7.071²) = √119 ≈ 10.909 and tan θ = 10.909/7.071.) The option \"49.59\" finds the height from the lateral edge and the full base edge, √(13² − 10²) = √69 ≈ 8.307, and then uses tan⁻¹(8.307/7.071). The option \"59.49\" uses the slant height √(13² − 5²) = 12 as if it were the height, tan⁻¹(12/7.071). The option \"47.49\" uses the full base edge 10 as the horizontal leg, tan⁻¹(10.909/10).",
+  "solve": "const d=10*Math.SQRT2/2,h=Math.sqrt(169-d*d);return (Math.atan2(h,d)*180/Math.PI).toFixed(2);",
+  "distractor_solve": {
+   "49.59": "const d=10*Math.SQRT2/2;return (Math.atan2(Math.sqrt(169-100),d)*180/Math.PI).toFixed(2);",
+   "59.49": "const d=10*Math.SQRT2/2;return (Math.atan2(12,d)*180/Math.PI).toFixed(2);",
+   "47.49": "const d=10*Math.SQRT2/2,h=Math.sqrt(169-d*d);return (Math.atan2(h,10)*180/Math.PI).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "tangent segments and arc length",
+  "subskill": "tangents from an external point plus arc",
+  "prompt": "Segments PA and PB are tangent at points A and B, respectively, to a circle with a radius of 9 centimeters, and the measure of angle APB is 40°. A region is bounded by segment PA, segment PB, and the minor arc AB. To the nearest hundredth of a centimeter, what is the perimeter of this region?",
+  "choices": [
+   "71.45",
+   "74.62",
+   "55.74",
+   "84.01"
+  ],
+  "correct_answer": "71.45",
+  "explanation": "Let O be the center. Radii OA and OB are perpendicular to the tangents, so in quadrilateral PAOB the angle AOB = 360° − 90° − 90° − 40° = 140°. The minor arc AB has length 9 × 140° × π/180° ≈ 21.991. In right triangle PAO, angle APO = 20°, so PA = 9 / tan 20° ≈ 24.727, and PB = PA. The perimeter is 2(24.727) + 21.991 ≈ 71.45. The option \"55.74\" uses 40° as the central angle of the arc. The option \"74.62\" uses the distance PO = 9 / sin 20° ≈ 26.31 as the length of each tangent segment. The option \"84.01\" uses the major arc (220°) instead of the minor arc.",
+  "solve": "const R=Math.PI/180;const r=9,PT=r/Math.tan(20*R);return (2*PT+r*140*R).toFixed(2);",
+  "distractor_solve": {
+   "55.74": "const R=Math.PI/180;const r=9,PT=r/Math.tan(20*R);return (2*PT+r*40*R).toFixed(2);",
+   "74.62": "const R=Math.PI/180;const r=9,PT=r/Math.tan(20*R);return (2*r/Math.sin(20*R)+r*140*R).toFixed(2);",
+   "84.01": "const R=Math.PI/180;const r=9,PT=r/Math.tan(20*R);return (2*PT+r*220*R).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM25G-10",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "angle formed by two secants outside a circle",
+  "subskill": "inscribed angles to arcs to exterior angle",
+  "prompt": "Points A, B, C, and D lie on a circle in that order. The measure of angle ADB is 17°, the measure of angle BDC is 37°, and the measure of angle CAD is 30°. Line AB and line DC intersect at point P outside the circle, beyond points B and C. What is the measure, in degrees, of angle BPC ?",
+  "choices": [
+   "66",
+   "79",
+   "59",
+   "74"
+  ],
+  "correct_answer": "59",
+  "explanation": "Each inscribed angle is half its intercepted arc, so arc AB = 34°, arc BC = 74°, and arc CD = 60°, which leaves arc DA = 360° − 34° − 74° − 60° = 192°. An angle formed by two secants that meet outside a circle measures half the difference of the intercepted arcs, here the far arc AD and the near arc BC: (192° − 74°)/2 = 59°. (Equivalently, in triangle APD, angle PAD = angle BAC + angle CAD = 37° + 30° = 67°, because angle BAC and angle BDC intercept the same arc, and angle PDA = 17° + 37° = 54°, so angle P = 180° − 67° − 54° = 59°.) The option \"66\" subtracts arc CD instead of arc BC: (192° − 60°)/2. The option \"79\" subtracts arc AB instead of arc BC: (192° − 34°)/2. The option \"74\" forgets to double angle CAD, taking arc CD as 30°, so arc DA = 222° and (222° − 74°)/2 = 74°.",
+  "solve": "const AB=34,BC=74,CD=60,DA=360-AB-BC-CD;return ((DA-BC)/2)+\"\";",
+  "distractor_solve": {
+   "66": "const AB=34,BC=74,CD=60,DA=360-AB-BC-CD;return ((DA-CD)/2)+\"\";",
+   "74": "const AB=34,BC=74,CD=30,DA=360-AB-BC-CD;return ((DA-BC)/2)+\"\";",
+   "79": "const AB=34,BC=74,CD=60,DA=360-AB-BC-CD;return ((DA-AB)/2)+\"\";"
+  }
+ },
+ {
+  "id": "AM25G-11",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "composition of a reflection and a dilation",
+  "subskill": "reflection then dilation about a point",
+  "prompt": "In the standard (x,y) coordinate plane, point P(7, −2) is reflected across the line y = 3. The image is then dilated by a scale factor of 1.5 with the center of dilation at the point (1, 1), producing point Q. To the nearest hundredth of a coordinate unit, what is the distance between P and Q ?",
+  "choices": [
+   "11.88",
+   "13.83",
+   "7.92",
+   "9.49"
+  ],
+  "correct_answer": "13.83",
+  "explanation": "P is 5 units below the line y = 3, so its reflection is 5 units above it: (7, 8). Dilating (7, 8) about (1, 1) by 1.5 multiplies its displacement (6, 7) from the center by 1.5, giving (9, 10.5), so Q = (1 + 9, 1 + 10.5) = (10, 11.5). Then PQ = √((10 − 7)² + (11.5 + 2)²) = √(9 + 182.25) ≈ 13.83. The option \"11.88\" performs the dilation first and the reflection second, giving (10, 9.5). The option \"9.49\" reflects P to (7, 5) by computing 3 − (−2), then dilates to (10, 7). The option \"7.92\" divides the displacement by 1.5 instead of multiplying, giving (5, 5.67).",
+  "solve": "const Rx=7,Ry=2*3-(-2),Qx=1+1.5*(Rx-1),Qy=1+1.5*(Ry-1);return Math.hypot(Qx-7,Qy+2).toFixed(2);",
+  "distractor_solve": {
+   "11.88": "const Dx=1+1.5*(7-1),Dy=1+1.5*(-2-1),Qx=Dx,Qy=2*3-Dy;return Math.hypot(Qx-7,Qy+2).toFixed(2);",
+   "9.49": "const Rx=7,Ry=3-(-2),Qx=1+1.5*(Rx-1),Qy=1+1.5*(Ry-1);return Math.hypot(Qx-7,Qy+2).toFixed(2);",
+   "7.92": "const Rx=7,Ry=2*3-(-2),Qx=1+(Rx-1)/1.5,Qy=1+(Ry-1)/1.5;return Math.hypot(Qx-7,Qy+2).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-01",
+  "difficulty": "medium",
+  "topic_tag": "billable weight shipping charges",
+  "subskill": "dimensional vs actual weight billing",
+  "prompt": "A shipping company charges for each package according to its billable weight. The billable weight is the greater of the package's actual weight and its dimensional weight, rounded up to the next whole pound. The dimensional weight, in pounds, is (length × width × height) ÷ 139, where all three dimensions are in inches. The charge for a package is $9.45 for the first pound of billable weight plus $1.17 for each additional pound, and each package is billed separately. Box A measures 20 inches by 16 inches by 12 inches and weighs 14.2 pounds. Box B measures 12 inches by 10 inches by 8 inches and weighs 9.6 pounds. What is the total charge, in dollars, to ship both boxes?",
+  "choices": [
+   "60.11",
+   "63.36",
+   "61.02",
+   "57.51"
+  ],
+  "correct_answer": "61.02",
+  "explanation": "Box A: dimensional weight = 3,840 ÷ 139 ≈ 27.63 lb, which is greater than 14.2 lb, so the billable weight is 28 lb and the charge is 9.45 + 27(1.17) = $41.04. Box B: dimensional weight = 960 ÷ 139 ≈ 6.91 lb, which is less than 9.6 lb, so the billable weight is 10 lb and the charge is 9.45 + 9(1.17) = $19.98. Total: $61.02. The option \"60.11\" skips the rounding up (27.63 lb and 9.6 lb billed as they are). The option \"57.51\" bills Box B by its dimensional weight too (7 lb). The option \"63.36\" charges $1.17 for every pound after the $9.45, including the first.",
+  "solve": "const a=Math.ceil(Math.max(14.2,20*16*12/139)), b=Math.ceil(Math.max(9.6,12*10*8/139)); return (9.45+1.17*(a-1)+9.45+1.17*(b-1)).toFixed(2);",
+  "distractor_solve": {
+   "60.11": "const a=Math.max(14.2,20*16*12/139), b=Math.max(9.6,12*10*8/139); return (9.45+1.17*(a-1)+9.45+1.17*(b-1)).toFixed(2);",
+   "57.51": "const a=Math.ceil(20*16*12/139), b=Math.ceil(12*10*8/139); return (9.45+1.17*(a-1)+9.45+1.17*(b-1)).toFixed(2);",
+   "63.36": "const a=Math.ceil(Math.max(14.2,20*16*12/139)), b=Math.ceil(Math.max(9.6,12*10*8/139)); return (9.45+1.17*a+9.45+1.17*b).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-02",
+  "difficulty": "hard",
+  "topic_tag": "multi-step work rates with a mid-job change",
+  "subskill": "worker-hours with crew and workday changes",
+  "prompt": "A paving crew of 15 workers, all working at the same constant rate, was scheduled to finish a job in 18 workdays. On the original schedule, each workday ran from 7:30 a.m. to 4:00 p.m. with a 30-minute unpaid lunch break, during which no work was done. The crew worked on this schedule for the first 8 workdays. After that, 2 workers left the crew, and the 13 remaining workers switched to workdays running from 7:00 a.m. to 4:30 p.m. with the same 30-minute lunch break. Each worker kept the same working rate. To the nearest hundredth, how many workdays in all did the job take?",
+  "choices": [
+   "18.86",
+   "18.26",
+   "19.35",
+   "18.32"
+  ],
+  "correct_answer": "18.26",
+  "explanation": "The original workday has 8.5 - 0.5 = 8 working hours, so the job is 15(18)(8) = 2,160 worker-hours. The first 8 days complete 15(8)(8) = 960 worker-hours, leaving 1,200. The new workday has 9.5 - 0.5 = 9 working hours, so the 13 workers do 13(9) = 117 worker-hours per day and need 1,200 ÷ 117 ≈ 10.256 more days. Total: 8 + 10.256 ≈ 18.26 workdays. The option \"18.32\" leaves out the lunch break on both schedules (8.5-hour and 9.5-hour days). The option \"18.86\" uses 8.5 hours, the average of the old and new working days, for the remaining work. The option \"19.35\" has only 13 workers present from the start, so the first 8 days complete 832 worker-hours instead of 960.",
+  "solve": "const job=15*18*8, rem=job-15*8*8; return (8+rem/(13*9)).toFixed(2);",
+  "distractor_solve": {
+   "18.32": "const job=15*18*8.5, rem=job-15*8*8.5; return (8+rem/(13*9.5)).toFixed(2);",
+   "18.86": "const job=15*18*8, rem=job-15*8*8; return (8+rem/(13*(8+9)/2)).toFixed(2);",
+   "19.35": "const job=15*18*8, rem=job-13*8*8; return (8+rem/(13*9)).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-03",
+  "difficulty": "hard",
+  "topic_tag": "multi-step work rates",
+  "subskill": "time from several rate stages, then pay per hour",
+  "prompt": "A transcriptionist is paid $1.50 for each minute of recorded audio she transcribes. One recording is 44 minutes long, and its speakers average 150 words per minute. She works on it in three stages. First, she types the transcript while the recording plays, pausing it as needed; she averages 60 words per minute of typing time, and the recording plays only during her typing time. Second, she proofreads the transcript at 2.5 pages per minute, where each page holds 250 words. Third, she formats the document, which takes 0.35 minute for each minute of audio. To the nearest cent, how much does she earn per hour of work on this recording?",
+  "choices": [
+   "26.09",
+   "30.56",
+   "24.90",
+   "29.13"
+  ],
+  "correct_answer": "29.13",
+  "explanation": "The recording has 44(150) = 6,600 words. Typing takes 6,600 ÷ 60 = 110 minutes; proofreading 6,600 ÷ 250 = 26.4 pages at 2.5 pages per minute takes 10.56 minutes; formatting takes 0.35(44) = 15.4 minutes. Total 135.96 minutes = 2.266 hours. Pay is 1.50(44) = $66, so 66 ÷ 2.266 ≈ $29.13 per hour. The option \"26.09\" treats 250 words per page as a proofreading rate of 250 words per minute (26.4 minutes). The option \"24.90\" figures formatting at 0.35 minute per minute of typing time (38.5 minutes). The option \"30.56\" reads 135.96 minutes = 2 h 15.96 min as 2.1596 hours.",
+  "solve": "const w=44*150; const t=w/60+(w/250)/2.5+0.35*44; return (66/(t/60)).toFixed(2);",
+  "distractor_solve": {
+   "26.09": "const w=44*150; const t=w/60+w/250+0.35*44; return (66/(t/60)).toFixed(2);",
+   "24.90": "const w=44*150; const t=w/60+(w/250)/2.5+0.35*(w/60); return (66/(t/60)).toFixed(2);",
+   "30.56": "const w=44*150; const t=w/60+(w/250)/2.5+0.35*44; const h=Math.floor(t/60)+(t%60)/100; return (66/h).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-04",
+  "difficulty": "medium",
+  "topic_tag": "reading a fare structure",
+  "subskill": "fare with partial-unit rounding and a time charge",
+  "prompt": "A taxi fare is computed as follows: an initial charge of $3.10, which includes the first 1/5 mile of the ride; $0.55 for each additional 1/5 mile or fraction of 1/5 mile; and $0.40 per minute of waiting time, with a fraction of a minute charged in proportion. A ride covers 6.3 miles and includes 7 minutes 30 seconds of waiting time. What is the fare, in dollars?",
+  "choices": [
+   "23.35",
+   "22.88",
+   "23.15",
+   "23.07"
+  ],
+  "correct_answer": "23.15",
+  "explanation": "6.3 miles is 31.5 fifths of a mile. The first fifth is included in the $3.10, leaving 30.5 fifths, which is charged as 31 units: 31(0.55) = $17.05. Waiting: 7 minutes 30 seconds = 7.5 minutes, and 7.5(0.40) = $3.00. Fare = 3.10 + 17.05 + 3.00 = $23.15. The option \"22.88\" charges the 30.5 fifths without rounding up. The option \"23.07\" reads 7 minutes 30 seconds as 7.30 minutes. The option \"23.35\" rounds the waiting time up to 8 minutes.",
+  "solve": "const u=Math.ceil(6.3*5-1-1e-9); return (3.10+0.55*u+0.40*7.5).toFixed(2);",
+  "distractor_solve": {
+   "22.88": "return (3.10+0.55*(6.3*5-1)+0.40*7.5).toFixed(2);",
+   "23.07": "const u=Math.ceil(6.3*5-1-1e-9); return (3.10+0.55*u+0.40*7.30).toFixed(2);",
+   "23.35": "const u=Math.ceil(6.3*5-1-1e-9); return (3.10+0.55*u+0.40*8).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-05",
+  "difficulty": "hard",
+  "topic_tag": "ratio split of a shared cost",
+  "subskill": "equal part plus area-proportional part with a closet",
+  "prompt": "Three roommates share an apartment whose rent is $2,535 per month. Of the rent, $705 covers the shared kitchen and living room and is split equally among the three roommates. The remaining $1,830 is split in proportion to the floor areas of the roommates' bedrooms, where a closet counts as part of the bedroom it opens into. Ari's bedroom is 13.5 feet by 14 feet and has no closet. Bo's bedroom is 12 feet by 11 feet and has a closet with a floor area of 15 square feet. Cy's bedroom is 10.5 feet by 11 feet and has no closet. To the nearest cent, how much rent does Cy pay each month?",
+  "choices": [
+   "781.46",
+   "719.23",
+   "790.35",
+   "703.14"
+  ],
+  "correct_answer": "703.14",
+  "explanation": "Bedroom areas: Ari 189, Bo 132 + 15 = 147, Cy 115.5 square feet; total 451.5. Cy pays 705/3 = 235 plus 1,830(115.5/451.5) ≈ 468.14, for $703.14. The option \"719.23\" leaves Bo's closet out of the areas (total 436.5). The option \"781.46\" splits the $1,830 by bedroom perimeters (43 of 144 feet). The option \"790.35\" swaps the two rules, splitting the $1,830 equally and the $705 by area.",
+  "solve": "const c=10.5*11, t=13.5*14+12*11+15+c; return (705/3+1830*c/t).toFixed(2);",
+  "distractor_solve": {
+   "719.23": "const c=10.5*11, t=13.5*14+12*11+c; return (705/3+1830*c/t).toFixed(2);",
+   "781.46": "const pc=2*(10.5+11), pt=2*(13.5+14)+2*(12+11)+pc; return (705/3+1830*pc/pt).toFixed(2);",
+   "790.35": "const c=10.5*11, t=13.5*14+12*11+15+c; return (1830/3+705*c/t).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-06",
+  "difficulty": "hard",
+  "topic_tag": "proportional reasoning with a fixed charge",
+  "subskill": "usage proportional to degree-days, fixed fee, price increase",
+  "prompt": "A household's monthly natural gas bill is a fixed customer charge of $13.75 plus a charge for each therm of gas used. In January the price was $1.57 per therm, and the household's bill was $287.12. The household's gas use each month is proportional to that month's number of heating degree-days (HDD). January had 1,090 HDD, and February had 830 HDD. In February the price per therm was 7% higher than in January, and the customer charge was unchanged. To the nearest cent, what was the household's February bill?",
+  "choices": [
+   "231.19",
+   "214.63",
+   "236.48",
+   "233.94"
+  ],
+  "correct_answer": "236.48",
+  "explanation": "January use: (287.12 - 13.75) ÷ 1.57 ≈ 174.12 therms. February use: 174.12(830/1,090) ≈ 132.59 therms. February price: 1.57(1.07) = $1.6799. February bill: 13.75 + 132.59(1.6799) ≈ $236.48. The option \"233.94\" scales the whole January bill, customer charge included, by 830/1,090 and then raises it 7%. The option \"231.19\" adds 7 cents to the price per therm instead of 7%. The option \"214.63\" cuts January's use by 260/830 (the HDD drop as a percent of February's HDD).",
+  "solve": "const th=(287.12-13.75)/1.57*830/1090; return (13.75+th*1.57*1.07).toFixed(2);",
+  "distractor_solve": {
+   "233.94": "return (287.12*830/1090*1.07).toFixed(2);",
+   "231.19": "const th=(287.12-13.75)/1.57*830/1090; return (13.75+th*(1.57+0.07)).toFixed(2);",
+   "214.63": "const th=(287.12-13.75)/1.57*(1-260/830); return (13.75+th*1.57*1.07).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-07",
+  "difficulty": "medium",
+  "topic_tag": "converting a salary to an hourly rate",
+  "subskill": "hours actually worked after paid days off",
+  "prompt": "Mia earns an annual salary of $61,880, paid for all 52 weeks of the year. Her schedule is 37.5 hours per week, worked as 7.5 hours per day, 5 days per week. Each year she receives 15 paid vacation days and 10 paid holidays, all of which fall on her scheduled workdays and are included in her 52 paid weeks. To the nearest cent, what is Mia's pay per hour that she actually works?",
+  "choices": [
+   "36.67",
+   "35.11",
+   "32.70",
+   "35.36"
+  ],
+  "correct_answer": "35.11",
+  "explanation": "Paid hours: 52(37.5) = 1,950. Days off: 25 days × 7.5 hours = 187.5 hours. Hours worked: 1,950 - 187.5 = 1,762.5. Pay per hour worked: 61,880 ÷ 1,762.5 ≈ $35.11. The option \"32.70\" uses a 40-hour week (2,080 - 187.5 hours). The option \"35.36\" counts each day off as 8 hours (1,750 hours worked). The option \"36.67\" first drops 2 weeks for vacation (50 weeks) and then also subtracts all 25 days off.",
+  "solve": "return (61880/(52*37.5-25*7.5)).toFixed(2);",
+  "distractor_solve": {
+   "32.70": "return (61880/(52*40-25*7.5)).toFixed(2);",
+   "35.36": "return (61880/(52*37.5-25*8)).toFixed(2);",
+   "36.67": "return (61880/(50*37.5-25*7.5)).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-08",
+  "difficulty": "hard",
+  "topic_tag": "reading a cost-sharing structure",
+  "subskill": "deductible, coinsurance, copay and out-of-pocket maximum",
+  "prompt": "Jun's health plan works as follows each year. Jun pays the full amount of covered charges until his payments toward the deductible total $1,500; after that, Jun pays 20% of covered charges and the plan pays the rest. Separately, Jun pays a $250 copay for each hospital visit, and copays do not count toward the deductible. All of Jun's payments for the year, including copays, are limited to an out-of-pocket maximum of $4,165. So far this year Jun has paid $620 toward his deductible and has made no other payments. He now has one hospital visit with $9,840 in covered charges. How much, in dollars, must Jun pay for this visit?",
+  "choices": [
+   "2798",
+   "2665",
+   "2922",
+   "2722"
+  ],
+  "correct_answer": "2922",
+  "explanation": "Jun still owes 1,500 - 620 = $880 of deductible, paid in full. The remaining 9,840 - 880 = $8,960 is charged at 20%: $1,792. With the $250 copay, Jun pays 250 + 880 + 1,792 = $2,922, which is under his remaining out-of-pocket room of 4,165 - 620 = $3,545. The option \"2798\" applies the 20% to 9,840 - 1,500 instead of 9,840 - 880. The option \"2722\" counts the copay toward the deductible, leaving only $630 of deductible. The option \"2665\" takes the remaining out-of-pocket room as 4,165 - 1,500 and caps the payment there.",
+  "solve": "const rem=1500-620; const p=250+rem+0.2*(9840-rem); return String(Math.round(Math.min(p,4165-620)));",
+  "distractor_solve": {
+   "2665": "const rem=1500-620; const p=250+rem+0.2*(9840-rem); return String(Math.round(Math.min(p,4165-1500)));",
+   "2722": "const rem=1500-620-250; return String(Math.round(250+rem+0.2*(9840-rem)));",
+   "2798": "const rem=1500-620; return String(Math.round(250+rem+0.2*(9840-1500)));"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-09",
+  "difficulty": "hard",
+  "topic_tag": "volume of a trapezoidal prism and fill time",
+  "subskill": "partial-depth trapezoid volume, cubic feet to gallons, fill rate",
+  "prompt": "A water trough is 10 feet long, and its two ends are identical isosceles trapezoids. Each end is 1.2 feet wide at the bottom, 3.0 feet wide at the top, and 2.25 feet tall; the sides and bottom of the trough are flat. The empty trough is filled by a hose at a constant rate of 7.2 gallons per minute, and 1 cubic foot of water is 7.48 gallons. To the nearest hundredth of a minute, how long does it take for the water in the trough to reach a depth of 1.75 feet?",
+  "choices": [
+   "35.58",
+   "25.45",
+   "34.54",
+   "28.18"
+  ],
+  "correct_answer": "34.54",
+  "explanation": "The width grows linearly from 1.2 ft at the bottom to 3.0 ft at 2.25 ft, so at a depth of 1.75 ft the water surface is 1.2 + 1.8(1.75/2.25) = 2.6 ft wide. The water's cross section is a trapezoid with area (1.2 + 2.6)/2 × 1.75 = 3.325 sq ft, so the volume is 33.25 cubic feet = 248.71 gallons, which takes 248.71 ÷ 7.2 ≈ 34.54 minutes. The option \"25.45\" finds the surface width 1.75 ft down from the top (1.6 ft). The option \"28.18\" adds only half of the 1.8-ft flare (one side). The option \"35.58\" subtracts the empty top part as a rectangle 2.6 ft wide instead of a trapezoid.",
+  "solve": "const w=1.2+1.8*1.75/2.25; return ((1.2+w)/2*1.75*10*7.48/7.2).toFixed(2);",
+  "distractor_solve": {
+   "25.45": "const w=1.2+1.8*0.5/2.25; return ((1.2+w)/2*1.75*10*7.48/7.2).toFixed(2);",
+   "28.18": "const w=1.2+0.9*1.75/2.25; return ((1.2+w)/2*1.75*10*7.48/7.2).toFixed(2);",
+   "35.58": "const w=1.2+1.8*1.75/2.25; return (((1.2+3.0)/2*2.25-w*0.5)*10*7.48/7.2).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-10",
+  "difficulty": "hard",
+  "topic_tag": "net earnings rate",
+  "subskill": "fee, tips, per-mile costs and time to a net hourly rate",
+  "prompt": "During one week, a rideshare driver's riders paid $1,148 in fares. The rideshare company kept 20% of the fares as its fee, and the driver received the rest. Riders also gave the driver $186 in tips, all of which the driver kept. That week the driver's car traveled 640 miles, 402 of them with a rider in the car. The car gets 31 miles per gallon, gasoline cost $3.59 per gallon, and the driver estimates the car's other expenses at $0.11 per mile traveled. The driver was logged in to the app for 42 hours 30 minutes. To the nearest cent, what were the driver's earnings per logged-in hour after gasoline and the car's other expenses?",
+  "choices": [
+   "23.49",
+   "22.69",
+   "23.85",
+   "22.59"
+  ],
+  "correct_answer": "22.59",
+  "explanation": "Income: 0.80(1,148) + 186 = $1,104.40. Gasoline: (640 ÷ 31)(3.59) ≈ $74.12. Other expenses: 0.11(640) = $70.40. Net: 1,104.40 - 74.12 - 70.40 ≈ $959.88. Per hour: 959.88 ÷ 42.5 ≈ $22.59. The option \"22.69\" uses 42.30 hours for 42 hours 30 minutes. The option \"23.49\" removes the fee by dividing the fares by 1.20. The option \"23.85\" charges gasoline and other expenses only for the 402 miles with a rider.",
+  "solve": "const net=1148*0.8+186-640/31*3.59-0.11*640; return (net/42.5).toFixed(2);",
+  "distractor_solve": {
+   "22.69": "const net=1148*0.8+186-640/31*3.59-0.11*640; return (net/42.30).toFixed(2);",
+   "23.49": "const net=1148/1.2+186-640/31*3.59-0.11*640; return (net/42.5).toFixed(2);",
+   "23.85": "const net=1148*0.8+186-402/31*3.59-0.11*402; return (net/42.5).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-11",
+  "difficulty": "medium",
+  "topic_tag": "reading a reimbursement schedule",
+  "subskill": "mileage, full and partial meal days, hotel nights with tax",
+  "prompt": "A company reimburses an employee's business trip as follows: $0.67 per mile driven; a meal allowance of $64 for each full day of travel and 70% of that amount for the day of departure and for the day of return; and the hotel's charges for each night, including tax. Dev left home on Tuesday, April 8, and returned home on Friday, April 11. His hotel charged $139 per night plus a 12% tax. He drove 412 miles to the work site, 412 miles back, and 58 miles locally during the trip. What is Dev's total reimbursement, in dollars?",
+  "choices": [
+   "1230.78",
+   "1275.58",
+   "1119.90",
+   "1236.72"
+  ],
+  "correct_answer": "1275.58",
+  "explanation": "Mileage: 412 + 412 + 58 = 882 miles × 0.67 = $590.94. Meals: April 8 and April 11 are travel days at 0.70(64) = $44.80 each, and April 9 and 10 are full days at $64 each: $217.60. Hotel: nights of April 8, 9, and 10 at 139(1.12) = $155.68 each: $467.04. Total $1,275.58. The option \"1236.72\" leaves out the 58 local miles. The option \"1230.78\" pays 70% of $64 once for the two travel days together instead of for each of them. The option \"1119.90\" pays for only 2 hotel nights.",
+  "solve": "return (0.67*882+2*64+2*0.7*64+3*139*1.12).toFixed(2);",
+  "distractor_solve": {
+   "1236.72": "return (0.67*(412+412)+2*64+2*0.7*64+3*139*1.12).toFixed(2);",
+   "1230.78": "return (0.67*882+2*64+0.7*64+3*139*1.12).toFixed(2);",
+   "1119.90": "return (0.67*882+2*64+2*0.7*64+2*139*1.12).toFixed(2);"
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-12",
+  "difficulty": "medium",
+  "topic_tag": "comparing two price plans",
+  "subskill": "per-ride free minutes, unlock fees and per-minute rates",
+  "prompt": "A scooter-share company offers two ways to pay. Pay-per-ride: $1.15 to unlock a scooter for each ride, plus $0.39 per minute of riding. Monthly pass: $22.99 per month; with the pass there is no unlock fee, the first 15 minutes of each ride are free, and each minute of a ride beyond its first 15 minutes costs $0.27. Last month Theo took 11 rides of 12 minutes each, 6 rides of 24 minutes each, and 5 rides of 37 minutes each. How much less, in dollars, would Theo have paid last month with the monthly pass than with pay-per-ride?",
+  "choices": [
+   "118.14",
+   "93.27",
+   "137.82",
+   "113.67"
+  ],
+  "correct_answer": "137.82",
+  "explanation": "Pay-per-ride: 22 rides × 1.15 = $25.30 plus 461 minutes × 0.39 = $179.79, total $205.09. Pass: the 12-minute rides are free; the others have 6(9) + 5(22) = 164 charged minutes, 164 × 0.27 = $44.28, so the pass costs 22.99 + 44.28 = $67.27. Difference: $137.82. The option \"118.14\" charges the pass minutes at $0.39. The option \"113.67\" charges the unlock fee only once. The option \"93.27\" treats the pass as making only rides of 15 minutes or less free, charging every minute of longer rides.",
+  "solve": "const ppr=22*1.15+0.39*(11*12+6*24+5*37); const pass=22.99+0.27*(6*9+5*22); return (ppr-pass).toFixed(2);",
+  "distractor_solve": {
+   "118.14": "const ppr=22*1.15+0.39*(11*12+6*24+5*37); const pass=22.99+0.39*(6*9+5*22); return (ppr-pass).toFixed(2);",
+   "113.67": "const ppr=1.15+0.39*(11*12+6*24+5*37); const pass=22.99+0.27*(6*9+5*22); return (ppr-pass).toFixed(2);",
+   "93.27": "const ppr=22*1.15+0.39*(11*12+6*24+5*37); const pass=22.99+0.27*(6*24+5*37); return (ppr-pass).toFixed(2);"
+  }
+ }
+]

@@ -1,0 +1,714 @@
+[
+ {
+  "id": "AM25A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "polynomial arithmetic with a parameter",
+  "subskill": "expand, force a coefficient to zero, read the constant",
+  "prompt": "In the expression (2x + 7)(x + k) − (x − 4)², k is a constant. When the expression is expanded and like terms are combined, the result has no x term. What is the constant term of the result?",
+  "choices": [
+   "-36.5",
+   "-12.5",
+   "-68.5",
+   "-54.5"
+  ],
+  "correct_answer": "-68.5",
+  "explanation": "(2x + 7)(x + k) = 2x² + (2k + 7)x + 7k and (x − 4)² = x² − 8x + 16, so the expression is x² + (2k + 7 + 8)x + 7k − 16. No x term means 2k + 15 = 0, so k = −7.5, and the constant term is 7(−7.5) − 16 = −68.5. The option \"-54.5\" squares x − 4 as x² − 4x + 16 (middle term not doubled), giving 2k + 11 = 0, k = −5.5. The option \"-36.5\" subtracts the square as −x² + 8x + 16, keeping +16, so k = −7.5 but the constant is −52.5 + 16. The option \"-12.5\" subtracts the square as −x² − 8x − 16, so 2k − 1 = 0, k = 0.5, and 3.5 − 16.",
+  "solve": "const k=-(7+8)/2; return String(7*k-16);",
+  "distractor_solve": {
+   "-54.5": "const k=-(7+4)/2; return String(7*k-16);",
+   "-36.5": "const k=-(7+8)/2; return String(7*k+16);",
+   "-12.5": "const k=-(7-8)/2; return String(7*k-16);"
+  },
+  "quantity_asked": "the constant term 7k − 16 of the expanded expression, with k fixed by the vanishing x coefficient.",
+  "distractor_kind": {
+   "-54.5": "error path: (x − 4)² = x² − 4x + 16 (cross term not doubled). (a) no stem-forced bound on the constant; nothing to sit on. (b) not an adjacent problem's answer at an extreme; it is a different k. (c) no one-step estimate of a constant term exists short of solving for k. (d) real squaring error.",
+   "-36.5": "error path: −(x − 4)² written −x² + 8x + 16 (minus not carried to the 16). (a) no bound. (b) uses the correct k, wrong constant. (c) no estimate. (d) real sign slip.",
+   "-12.5": "error path: −(x − 4)² written −x² − 8x − 16 (minus not carried to the −8x; double sign). (a) no bound. (b) different k. (c) no estimate. (d) real sign slip on the middle term."
+  },
+  "distractor_meta": {
+   "-54.5": {
+    "direction": "over",
+    "error_kind": "square middle term not doubled"
+   },
+   "-36.5": {
+    "direction": "over",
+    "error_kind": "subtraction not distributed to constant"
+   },
+   "-12.5": {
+    "direction": "over",
+    "error_kind": "sign slip on subtracted middle term"
+   }
+  },
+  "bounds": [
+   "none: the constant term is unconstrained until k is found"
+  ],
+  "mechanism": [
+   "choose parameter so x term vanishes",
+   "expand product minus a square",
+   "constant term after simplification",
+   "coefficient condition then evaluate"
+  ],
+  "arith_class_check": "No. Every option is a negative number ending in .5 (k is a half-integer for every path), so no parity, integrality or divisibility class isolates the key.",
+  "one_sided_check": "Key smallest. The three errors are a squaring error, a dropped minus on the constant and a dropped minus on the middle term; two change k and one changes only the constant, and nothing in the stem says whether a slip raises or lowers 7k − 16 without computing k.",
+  "interior_parity_check": "Interior by value: -54.5 and -36.5; both negative two-digit numbers ending in .5 (display complexity 4 and 4); neither is rounder.",
+  "cheap_bound_check": "No one-sided bound on the constant term is readable from the stem: its sign and size depend on k, which needs the full expansion. The nearest distractor (-54.5) is 14 away, but no estimate short of the work separates them.",
+  "self_audit": {
+   "risk": "low",
+   "note": "No bound exists without solving; three distinct expansion errors; options uniform shape; differences 14, 32, 56 are not stem quantities."
+  }
+ },
+ {
+  "id": "AM25A-02",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "systems of linear equations with fractional coefficients",
+  "subskill": "clear denominators in each equation, eliminate, add the solutions",
+  "prompt": "The ordered pair (x, y) satisfies both of the equations x/3 + y/4 = 1 and x/2 − y/5 = 1.1. To the nearest hundredth, what is the value of x + y ?",
+  "choices": [
+   "3.17",
+   "3.65",
+   "4.13",
+   "3.57"
+  ],
+  "correct_answer": "3.17",
+  "explanation": "Multiply the first equation by 12: 4x + 3y = 12. Multiply the second by 10: 5x − 2y = 11. Doubling the first and tripling the second gives 8x + 6y = 24 and 15x − 6y = 33, so 23x = 57, x = 57/23 ≈ 2.478, and y = (12 − 4x)/3 = 16/23 ≈ 0.696. So x + y = 73/23 ≈ 3.17. The option \"3.65\" clears the first equation as 3x + 4y = 12 (multiplying each term by its own denominator). The option \"3.57\" clears the second equation as 5x + 2y = 11, losing the minus sign. The option \"4.13\" clears both equations by cross-multiplying denominators: 3x + 4y = 12 and 2x − 5y = 11.",
+  "solve": "const a1=1/3,b1=1/4,c1=1,a2=1/2,b2=-1/5,c2=1.1; const D=a1*b2-a2*b1; const x=(c1*b2-c2*b1)/D, y=(a1*c2-a2*c1)/D; return (x+y).toFixed(2);",
+  "distractor_solve": {
+   "3.65": "const D=3*-2-5*4; const x=(12*-2-11*4)/D, y=(3*11-5*12)/D; return (x+y).toFixed(2);",
+   "3.57": "const D=4*2-5*3; const x=(12*2-11*3)/D, y=(4*11-5*12)/D; return (x+y).toFixed(2);",
+   "4.13": "const D=3*-5-2*4; const x=(12*-5-11*4)/D, y=(3*11-2*12)/D; return (x+y).toFixed(2);"
+  },
+  "quantity_asked": "the sum x + y of the unique solution of the system.",
+  "distractor_kind": {
+   "3.65": "error path: first equation cleared as 3x + 4y = 12. (a) no stem-forced bound on x + y (neither variable is stated nonnegative). (b) the exact answer of a neighbouring system, not an extreme of any feasible interval. (c) no one-step estimate of a sum of two solutions exists without solving. (d) real clearing error.",
+   "3.57": "error path: second equation cleared as 5x + 2y = 11 (minus dropped). (a) no bound. (b) neighbouring system. (c) no estimate. (d) real sign slip.",
+   "4.13": "error path: both equations cleared by multiplying each term by the other denominator (3x + 4y = 12, 2x − 5y = 11). (a) no bound. (b) neighbouring system. (c) no estimate. (d) real, systematic clearing error."
+  },
+  "distractor_meta": {
+   "3.65": {
+    "direction": "over",
+    "error_kind": "inverted multiplier in first equation"
+   },
+   "3.57": {
+    "direction": "over",
+    "error_kind": "sign dropped clearing second equation"
+   },
+   "4.13": {
+    "direction": "over",
+    "error_kind": "cross-multiplied denominators in both equations"
+   }
+  },
+  "bounds": [
+   "none: x and y are not constrained in sign, so x + y has no stem-readable bound"
+  ],
+  "mechanism": [
+   "clear fractions in a linear system",
+   "elimination",
+   "sum of the solution coordinates",
+   "fractional coefficients"
+  ],
+  "arith_class_check": "No. The key is 73/23 rounded; all four options are two-decimal values with distinct decimal parts (.17, .65, .13, .57); no class isolates the key.",
+  "one_sided_check": "Key smallest. Errors are of two families (an inverted clearing multiplier, a dropped sign); whether a clearing error raises or lowers x + y depends on the whole system and is not readable from the stem (the inverted-second-equation path, not offered, lowers it).",
+  "interior_parity_check": "Interior by value: 3.57 and 3.65; both one integer digit and two nonzero decimals (complexity 5 and 5); neither is rounder.",
+  "cheap_bound_check": "No cheap one-sided bound: plug-back is impossible for a sum, and x/3 + y/4 = 1 bounds x + y only if x, y ≥ 0, which the stem does not give. The nearest distractor 3.57 is 0.40 above the key, inside the resolution of any estimate short of solving.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Sum ask blocks plug-back; no sign constraint stated; distractors from two error families; option set uniform two-decimal."
+  }
+ },
+ {
+  "id": "AM25A-03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "absolute value inequalities",
+  "subskill": "translate two absolute-value conditions to intervals and intersect",
+  "prompt": "On the real number line, the point with coordinate x is closer to 9.4 than it is to −3.2, and x satisfies |2x − 3| ≤ 11.6. The set of all such values of x is an interval. What is the length of that interval?",
+  "choices": [
+   "5.7",
+   "11.5",
+   "10.4",
+   "4.2"
+  ],
+  "correct_answer": "4.2",
+  "explanation": "Being closer to 9.4 than to −3.2 means x is to the right of their midpoint, (9.4 + (−3.2))/2 = 3.1, so x > 3.1. The inequality |2x − 3| ≤ 11.6 means −11.6 ≤ 2x − 3 ≤ 11.6, so −8.6 ≤ 2x ≤ 14.6 and −4.3 ≤ x ≤ 7.3. Together, 3.1 < x ≤ 7.3, an interval of length 4.2. The option \"5.7\" halves only the right side, reading the inequality as |x − 3| ≤ 5.8, so x ≤ 8.8. The option \"11.5\" forgets to divide by 2, using x ≤ 14.6. The option \"10.4\" subtracts the endpoints with a sign slip, 7.3 − (−3.1).",
+  "solve": "const m=(9.4+(-3.2))/2; const hi=(3+11.6)/2, lo=(3-11.6)/2; return (hi-Math.max(m,lo)).toFixed(1);",
+  "distractor_solve": {
+   "5.7": "const m=(9.4+(-3.2))/2; return ((3+11.6/2)-m).toFixed(1);",
+   "11.5": "const m=(9.4+(-3.2))/2; return ((3+11.6)-m).toFixed(1);",
+   "10.4": "const m=(9.4+(-3.2))/2; return ((3+11.6)/2+m).toFixed(1);"
+  },
+  "quantity_asked": "the length of the interval of x with x > 3.1 and −4.3 ≤ x ≤ 7.3.",
+  "distractor_kind": {
+   "5.7": "error path: |2x − 3| ≤ 11.6 read as |x − 3| ≤ 5.8. (a) the only stem-forced bound on the length is ≤ 11.6 (width of the second set); 5.7 inside. (b) it is the answer to the neighbouring inequality |x − 3| ≤ 5.8, not an extreme. (c) cheapest estimate is the cap 11.6; 5.7 strictly inside. (d) real halving error.",
+   "11.5": "error path: forgot to divide 2x by 2 (x ≤ 14.6). (a) cap 11.6; 11.5 strictly inside (0.1 below, not on it). (b) neighbouring setup with the 2 dropped; not the cap itself. (c) inside the cap. (d) real.",
+   "10.4": "error path: length computed 7.3 + 3.1 (sign slip on the left endpoint). (a) inside the 11.6 cap. (b) not an adjacent problem's extreme. (c) inside. (d) real sign slip."
+  },
+  "distractor_meta": {
+   "5.7": {
+    "direction": "over",
+    "error_kind": "halved only the constant side"
+   },
+   "11.5": {
+    "direction": "over",
+    "error_kind": "forgot to divide by coefficient 2"
+   },
+   "10.4": {
+    "direction": "over",
+    "error_kind": "endpoint sign slip in length"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v ≤ 11.6"
+  ],
+  "mechanism": [
+   "closer to one point than another",
+   "absolute value inequality interval",
+   "intersection of intervals",
+   "length of solution interval"
+  ],
+  "arith_class_check": "No. All four options are one-decimal numbers (4.2, 5.7, 10.4, 11.5) with distinct tenths; no class isolates the key.",
+  "one_sided_check": "Key smallest. The three errors are of different kinds (a halving slip that shifts the right endpoint, a dropped division, an endpoint sign slip); none is predictable as \"too long\" without locating the endpoints, and the natural sign slip on the centre (|2x + 3|, not offered) shortens the interval.",
+  "interior_parity_check": "Interior by value: 5.7 and 10.4; both one-decimal with nonzero tenths (complexity 3 and 4); neither is rounder.",
+  "cheap_bound_check": "Cheapest bound: the length is at most 11.6. All three distractors sit on the key's side of it (below it), so it kills none. No cheap lower bound separates 4.2 from 5.7.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Three over errors; a grader may argue every slip loosens a condition. 4.2 + 10.4 = 14.6 is a working value, not a stem number."
+  }
+ },
+ {
+  "id": "AM25A-04",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "radical equations",
+  "subskill": "isolate a radical, square, solve a quadratic in √x, evaluate",
+  "prompt": "The positive number x satisfies the equation √(2x + 1) − √x = 1.3. To the nearest hundredth, what is the value of √(2x² + x) ?",
+  "choices": [
+   "13.74",
+   "11.78",
+   "39.72",
+   "15.92"
+  ],
+  "correct_answer": "11.78",
+  "explanation": "Write √(2x + 1) = √x + 1.3 and square: 2x + 1 = x + 2.6√x + 1.69, so x − 2.6√x − 0.69 = 0. With u = √x > 0, u = (2.6 + √(6.76 + 2.76))/2 ≈ 2.8427 (the other root is negative). Then √(2x + 1) = u + 1.3 ≈ 4.1427 and √(2x² + x) = √x · √(2x + 1) ≈ 2.8427 × 4.1427 ≈ 11.78. The option \"13.74\" squares 1.3 as 2.6, giving u² − 2.6u − 1.6 = 0. The option \"15.92\" moves 1.69 to the left with the wrong sign, giving u² − 2.6u − 2.69 = 0. The option \"39.72\" forgets to divide by 2 in the quadratic formula, u ≈ 5.685.",
+  "solve": "const u=(2.6+Math.sqrt(6.76+4*0.69))/2; return (u*(u+1.3)).toFixed(2);",
+  "distractor_solve": {
+   "13.74": "const u=(2.6+Math.sqrt(6.76+4*1.6))/2; return (u*(u+1.3)).toFixed(2);",
+   "15.92": "const u=(2.6+Math.sqrt(6.76+4*2.69))/2; return (u*(u+1.3)).toFixed(2);",
+   "39.72": "const u=(2.6+Math.sqrt(6.76+4*0.69)); return (u*(u+1.3)).toFixed(2);"
+  },
+  "quantity_asked": "the product √x · √(2x + 1) for the positive solution x of √(2x + 1) − √x = 1.3.",
+  "distractor_kind": {
+   "13.74": "error path: 1.3² taken as 2.6. (a) only bound is a positive value; inside. (b) it is the answer to the equation with constant 1 − 2.6, not an extreme of a feasible interval. (c) no one-step estimate of √(2x² + x) exists without solving for √x; an option cannot be plugged back without undoing a product. (d) real squaring slip.",
+   "15.92": "error path: 1 − 1.69 written −(1 + 1.69). (a) positive; inside. (b) neighbouring quadratic, not an extreme. (c) no estimate. (d) real sign slip moving a term.",
+   "39.72": "error path: quadratic formula without the division by 2a. (a) positive; inside. (b) not an extreme. (c) no estimate. (d) real formula slip."
+  },
+  "distractor_meta": {
+   "13.74": {
+    "direction": "over",
+    "error_kind": "squared 1.3 as 2.6"
+   },
+   "15.92": {
+    "direction": "over",
+    "error_kind": "sign slip moving constant"
+   },
+   "39.72": {
+    "direction": "over",
+    "error_kind": "quadratic formula missing /2"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "difference of two radicals equals a constant",
+   "square once to a quadratic in √x",
+   "evaluate √(2x² + x) as a product of radicals",
+   "reject negative root"
+  ],
+  "arith_class_check": "No. All options are two-decimal values with distinct decimal parts (.78, .74, .92, .71); no class isolates the key.",
+  "one_sided_check": "Key smallest. Errors come from three different steps (squaring a decimal, moving a term, the formula); a student cannot tell from the stem whether a slip in the constant of a quadratic in √x raises or lowers the final product without solving.",
+  "interior_parity_check": "Interior by value: 13.74 and 15.92; both two integer digits and two nonzero decimals (complexity 6 and 6); neither is rounder.",
+  "cheap_bound_check": "The ask is √x·√(2x + 1), not x, so an option cannot be plugged into the equation directly, and the stem gives no monotone check on it. Cheapest one-sided fact is only \"positive\". The nearest distractor 13.74 is within any estimate's resolution.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Derived ask blocks plug-back and integer bracketing; 39.72 is far but is the common missing-/2 error."
+  }
+ },
+ {
+  "id": "AM25A-05",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "literal equations in context",
+  "subskill": "convert units, then solve a given formula for a variable in a denominator",
+  "prompt": "When a sound source moves directly toward a stationary listener at u meters per second, the frequency f′ that the listener hears is given by f′ = f · v/(v − u), where f is the frequency the source emits and v is the speed of sound, in meters per second. The speed of sound depends on air temperature: v = 331.3 + 0.606C, where C is the temperature in degrees Celsius. Fahrenheit and Celsius temperatures are related by F = 1.8C + 32. On a day when the air temperature is 86°F, a horn emitting 440 hertz is heard at 468 hertz by a listener it is approaching. To the nearest hundredth of a meter per second, what is u ?",
+  "choices": [
+   "22.24",
+   "20.91",
+   "19.82",
+   "22.94"
+  ],
+  "correct_answer": "20.91",
+  "explanation": "C = (86 − 32)/1.8 = 30, so v = 331.3 + 0.606(30) = 349.48. From f′(v − u) = fv, u = v(1 − f/f′) = 349.48(1 − 440/468) = 349.48 × 28/468 ≈ 20.91. The option \"19.82\" ignores the temperature and uses v = 331.3. The option \"22.94\" substitutes 86 directly for C, so v = 383.416. The option \"22.24\" solves the formula as u = v(f′/f − 1), dividing by the emitted frequency instead of the heard one.",
+  "solve": "const C=(86-32)/1.8; const v=331.3+0.606*C; return (v*(1-440/468)).toFixed(2);",
+  "distractor_solve": {
+   "19.82": "return (331.3*(1-440/468)).toFixed(2);",
+   "22.94": "const v=331.3+0.606*86; return (v*(1-440/468)).toFixed(2);",
+   "22.24": "const C=(86-32)/1.8; const v=331.3+0.606*C; return (v*(468/440-1)).toFixed(2);"
+  },
+  "quantity_asked": "the source speed u solving 468 = 440 · v/(v − u) with v = 331.3 + 0.606 · 30.",
+  "distractor_kind": {
+   "19.82": "error path: temperature dropped (v = 331.3). (a) bound u > 0 and u < v; inside. (b) neighbouring setup at 0°C; it is a lower value but not a stem-forced bound because the stem temperature is given, not bounded. (c) cheapest estimate u ≈ v·28/468 with v ≈ 350 gives ~21, not a bracket; inside any reasonable bracket. (d) real omission.",
+   "22.94": "error path: 86 used as Celsius. (a) inside. (b) not an extreme. (c) inside. (d) real unit slip.",
+   "22.24": "error path: u = v(f′/f − 1). (a) inside. (b) not an extreme. (c) inside. (d) real algebra slip in solving for u."
+  },
+  "distractor_meta": {
+   "19.82": {
+    "direction": "under",
+    "error_kind": "ignored temperature"
+   },
+   "22.94": {
+    "direction": "over",
+    "error_kind": "Fahrenheit used as Celsius"
+   },
+   "22.24": {
+    "direction": "over",
+    "error_kind": "divided by emitted frequency"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 349.48"
+  ],
+  "mechanism": [
+   "Doppler formula solve for source speed",
+   "speed of sound from temperature",
+   "Fahrenheit to Celsius conversion",
+   "variable in a denominator"
+  ],
+  "arith_class_check": "No. All options are two-decimal values with distinct decimal parts (.91, .82, .94, .24); no class isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 20.91 and 22.24; both two integer digits and two nonzero decimals (complexity 6 and 6); neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Errors at three different steps in both directions; no bound kills two; option set uniform."
+  }
+ },
+ {
+  "id": "AM25A-06",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational equations in context",
+  "subskill": "write overall rate as total fuel over total distance and solve",
+  "prompt": "A car uses fuel at a rate of 6.2 liters per 100 kilometers on highways and 9.8 liters per 100 kilometers in city driving. On one trip, the car was driven 150 kilometers on highways and x kilometers in the city, and its fuel use for the whole trip averaged 7.5 liters per 100 kilometers. To the nearest hundredth, what is the value of x ?",
+  "choices": [
+   "22.16",
+   "54.17",
+   "134.01",
+   "84.78"
+  ],
+  "correct_answer": "84.78",
+  "explanation": "Fuel used is 6.2(150/100) + 9.8(x/100) liters over 150 + x kilometers, so (930 + 9.8x)/(150 + x) = 7.5. Then 930 + 9.8x = 1125 + 7.5x, so 2.3x = 195 and x ≈ 84.78. The option \"22.16\" multiplies only the 150 by 7.5, writing 1125 + x = 930 + 9.8x. The option \"54.17\" sets x/150 = 1.3/3.6, using the share of the whole 6.2-to-9.8 gap. The option \"134.01\" converts the rates to kilometers per liter (about 16.13, 10.20 and 13.33) and balances those instead of the fuel amounts.",
+  "solve": "return (150*(7.5-6.2)/(9.8-7.5)).toFixed(2);",
+  "distractor_solve": {
+   "22.16": "return (150*(7.5-6.2)/(9.8-1)).toFixed(2);",
+   "54.17": "return (150*(7.5-6.2)/(9.8-6.2)).toFixed(2);",
+   "134.01": "const h=100/6.2,c=100/9.8,o=100/7.5; return (150*(h-o)/(o-c)).toFixed(2);"
+  },
+  "quantity_asked": "the city distance x making total fuel / total distance equal 7.5 L per 100 km.",
+  "distractor_kind": {
+   "22.16": "error path: 7.5 applied to the highway distance only. (a) bounds 0 < x < 150 (7.5 is nearer 6.2 than 9.8, so less city than highway); inside. (b) not an adjacent problem's extreme. (c) inside (0, 150). (d) real distribution error.",
+   "54.17": "error path: city share of the whole rate gap used as the city:highway ratio. (a) inside (0, 150). (b) not an extreme. (c) inside. (d) real ratio slip.",
+   "134.01": "error path: averaged kilometers-per-liter values, which are not additive over distance. (a) inside (0, 150) by 16 km. (b) neighbouring weighting (by fuel), not an extreme. (c) inside. (d) real conceptual error."
+  },
+  "distractor_meta": {
+   "22.16": {
+    "direction": "under",
+    "error_kind": "rate applied to one distance"
+   },
+   "54.17": {
+    "direction": "under",
+    "error_kind": "wrong alligation ratio"
+   },
+   "134.01": {
+    "direction": "over",
+    "error_kind": "averaged km per liter"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 150"
+  ],
+  "mechanism": [
+   "weighted average of fuel rates",
+   "liters per 100 km",
+   "solve for unknown distance",
+   "rational equation total over total"
+  ],
+  "arith_class_check": "No. Options are two-decimal values (22.16, 54.17, 84.78, 134.01) with distinct decimal parts; no class isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 54.17 and 84.78; both two integer digits and two nonzero decimals (complexity 6 and 6); neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "x < 150 kills nothing (134.01 inside); errors two under, one over at different steps."
+  }
+ },
+ {
+  "id": "AM25A-07",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "polynomial factoring by grouping",
+  "subskill": "factor a cubic by grouping, then combine the solutions",
+  "prompt": "Let S be the number obtained by squaring each real solution of 2x³ − 5x² − 8x + 20 = 0 and adding the results. What is the value of S ?",
+  "choices": [
+   "10.25",
+   "6.25",
+   "14.25",
+   "8.16"
+  ],
+  "correct_answer": "14.25",
+  "explanation": "Group: x²(2x − 5) − 4(2x − 5) = (2x − 5)(x² − 4) = (2x − 5)(x − 2)(x + 2). The solutions are 2.5, 2 and −2, and the sum of their squares is 6.25 + 4 + 4 = 14.25. (Equivalently, with sum 2.5 and pairwise-product sum −4, S = 2.5² − 2(−4).) The option \"10.25\" keeps only x = 2 from x² − 4 = 0. The option \"8.16\" solves 2x − 5 = 0 as x = 2/5, so 0.16 + 4 + 4. The option \"6.25\" squares the sum of the solutions, (2.5 + 2 − 2)², instead of adding the squares.",
+  "solve": "const r=[2.5,2,-2]; return String(r.reduce((s,x)=>s+x*x,0));",
+  "distractor_solve": {
+   "10.25": "return String(2.5*2.5+2*2);",
+   "8.16": "return String(0.4*0.4+2*2+2*2);",
+   "6.25": "return String((2.5+2-2)**2);"
+  },
+  "quantity_asked": "the sum of the squares of the three real solutions 2.5, 2 and −2.",
+  "distractor_kind": {
+   "10.25": "error path: only x = 2 kept from x² = 4. (a) the only stem-forced bound is S ≥ 0; inside. (b) the sum for the solution set {2.5, 2}, a neighbouring setup but not an extreme of a feasible interval. (c) no one-step estimate of S exists before the roots are found. (d) real counting error.",
+   "8.16": "error path: 2x − 5 = 0 solved as x = 2/5. (a) ≥ 0; inside. (b) neighbouring linear-factor slip, not an extreme. (c) no estimate. (d) real division slip.",
+   "6.25": "error path: squared the sum (Vieta gives the sum 2.5 at once) instead of summing squares. (a) ≥ 0; inside. (b) it equals 2.5², but S ≥ 2.5² is only known after the roots are found, i.e. after the work. (c) no estimate. (d) real, common identity error."
+  },
+  "distractor_meta": {
+   "10.25": {
+    "direction": "under",
+    "error_kind": "one root of x² = 4 dropped"
+   },
+   "8.16": {
+    "direction": "under",
+    "error_kind": "linear factor root inverted"
+   },
+   "6.25": {
+    "direction": "under",
+    "error_kind": "squared the sum of roots"
+   }
+  },
+  "bounds": [
+   "v ≥ 0"
+  ],
+  "mechanism": [
+   "factor cubic by grouping",
+   "add squares of all real solutions",
+   "difference of squares factor",
+   "Vieta sum and pairwise products"
+  ],
+  "arith_class_check": "No. Options 6.25, 8.16, 10.25, 14.25: three end in .25 and one in .16; the key is not the lone member of any class, and the stem implies no decimal ending.",
+  "one_sided_check": "Key largest. The errors are at three different steps (factoring the linear piece, solving x² = 4, combining the roots); squaring the sum versus summing squares can go either way in general (it depends on the sign of the pairwise sum), so the direction is not readable from the stem.",
+  "interior_parity_check": "Interior by value: 8.16 and 10.25; both two-decimal values with nonzero last digit (complexity 3 and 4); neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound is S ≥ 0; all distractors are above it, on the key's side. Vieta gives the sum 2.5 and pairwise sum −4 quickly, but that IS the item's work and returns the key exactly; no cheaper bound separates 10.25 from 14.25.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Key largest with three distinct slips; 6.25 is the squared-sum identity error, the most natural trap here."
+  }
+ },
+ {
+  "id": "AM25A-08",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "literal equations in context",
+  "subskill": "solve a formula for a variable that appears in two terms",
+  "prompt": "The National Weather Service computes the wind chill W, in degrees Fahrenheit, from the air temperature T, in degrees Fahrenheit, and the wind speed V, in miles per hour, using the formula W = 35.74 + 0.6215T − 35.75V^0.16 + 0.4275T·V^0.16. When the wind speed is 22 miles per hour, the wind chill is 8°F. To the nearest hundredth of a degree, what is the air temperature T ?",
+  "choices": [
+   "23.35",
+   "29.44",
+   "46.14",
+   "22.57"
+  ],
+  "correct_answer": "23.35",
+  "explanation": "Let k = 22^0.16 ≈ 1.63977. Then 8 = 35.74 + 0.6215T − 35.75k + 0.4275kT. Collect the T terms: T(0.6215 + 0.4275k) = 8 − 35.74 + 35.75k, so T = (8 − 35.74 + 58.622)/(0.6215 + 0.7010) ≈ 30.882/1.3225 ≈ 23.35. The option \"22.57\" rounds 22^0.16 to 1.6 before solving. The option \"29.44\" factors T out but drops the V^0.16 from its second coefficient, dividing by 0.6215 + 0.4275. The option \"46.14\" reads V^0.16 as 0.16V = 3.52.",
+  "solve": "const k=22**0.16; return ((8-35.74+35.75*k)/(0.6215+0.4275*k)).toFixed(2);",
+  "distractor_solve": {
+   "22.57": "const k=1.6; return ((8-35.74+35.75*k)/(0.6215+0.4275*k)).toFixed(2);",
+   "29.44": "const k=22**0.16; return ((8-35.74+35.75*k)/(0.6215+0.4275)).toFixed(2);",
+   "46.14": "const k=0.16*22; return ((8-35.74+35.75*k)/(0.6215+0.4275*k)).toFixed(2);"
+  },
+  "quantity_asked": "the temperature T solving 8 = 35.74 + 0.6215T − 35.75·22^0.16 + 0.4275T·22^0.16.",
+  "distractor_kind": {
+   "22.57": "error path: 22^0.16 rounded to 1.6 before solving. (a) the only stem-readable bound is T > W = 8 if a student knows wind chill is below air temperature; inside. (b) a rounding-stage error, not an adjacent problem. (c) no one-step estimate of T exists without evaluating 22^0.16 and collecting terms, which is the work; 22.57 is 0.78 from the key. (d) real early-rounding error.",
+   "29.44": "error path: T factored out with coefficient 0.6215 + 0.4275 (the V^0.16 dropped from the second T term). (a) above 8; inside. (b) not an extreme of any interval. (c) no estimate short of the work. (d) real factoring slip.",
+   "46.14": "error path: V^0.16 read as 0.16 × V. (a) above 8; inside; no stem-forced upper bound on T. (b) not an extreme. (c) no estimate. (d) real notation misreading."
+  },
+  "distractor_meta": {
+   "22.57": {
+    "direction": "under",
+    "error_kind": "early rounding of the power"
+   },
+   "29.44": {
+    "direction": "over",
+    "error_kind": "dropped factor in collected coefficient"
+   },
+   "46.14": {
+    "direction": "over",
+    "error_kind": "power read as product"
+   }
+  },
+  "bounds": [
+   "v > 8"
+  ],
+  "mechanism": [
+   "wind chill formula",
+   "solve formula for variable in two terms",
+   "factor out the variable",
+   "fractional power V^0.16"
+  ],
+  "arith_class_check": "No. All options are two-decimal values with distinct nonzero decimal parts (.57, .35, .44, .14); no class isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 23.35 and 29.44; both two integer digits and two nonzero decimals (complexity 6 and 6); neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Novel context (0 live hits); errors at three different steps, one under and two over; only bound T > 8 kills nothing; plug-back needs 22^0.16, the item's own work."
+  }
+ },
+ {
+  "id": "AM25A-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equations in context",
+  "subskill": "express three shares in one variable and solve",
+  "prompt": "Ana, Ben, and Cal split a restaurant bill of $96.69. Ben paid $8.00 more than Ana, and Cal paid 1.5 times as much as Ana. How many dollars did Ana pay?",
+  "choices": [
+   "29.06",
+   "21.91",
+   "25.34",
+   "29.91"
+  ],
+  "correct_answer": "25.34",
+  "explanation": "If Ana paid a dollars, Ben paid a + 8 and Cal paid 1.5a, so a + (a + 8) + 1.5a = 96.69, 3.5a = 88.69 and a = 25.34. The option \"21.91\" takes Cal's share as 1.5 times Ben's, 1.5(a + 8). The option \"29.91\" makes Ben pay $8.00 less than Ana. The option \"29.06\" reads \"1.5 times as much as Ana\" as a + 1.5.",
+  "solve": "return ((96.69-8)/3.5).toFixed(2);",
+  "distractor_solve": {
+   "21.91": "return ((96.69-8-12)/3.5).toFixed(2);",
+   "29.91": "return ((96.69+8)/3.5).toFixed(2);",
+   "29.06": "return ((96.69-8-1.5)/3).toFixed(2);"
+  },
+  "quantity_asked": "Ana's share a with a + (a + 8) + 1.5a = 96.69.",
+  "distractor_kind": {
+   "21.91": "error path: Cal = 1.5 × Ben. (a) cheap bound a < 96.69/3 ≈ 32.23 (Ana pays the least of the three); inside. (b) neighbouring relation, not an extreme. (c) cheapest estimate is the equal split 32.23, an upper cap; inside. (d) real misreference.",
+   "29.91": "error path: Ben $8 less. (a) below 32.23; inside. (b) not an extreme. (c) inside. (d) real sign error.",
+   "29.06": "error path: \"1.5 times\" read as \"1.5 more\". (a) inside. (b) not an extreme. (c) inside. (d) real translation error."
+  },
+  "distractor_meta": {
+   "21.91": {
+    "direction": "under",
+    "error_kind": "multiplied the wrong person"
+   },
+   "29.91": {
+    "direction": "over",
+    "error_kind": "more read as less"
+   },
+   "29.06": {
+    "direction": "over",
+    "error_kind": "times read as plus"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 32.23"
+  ],
+  "mechanism": [
+   "split a total among three people",
+   "paid more than",
+   "times as much as",
+   "one-variable linear equation word problem"
+  ],
+  "arith_class_check": "No. All options are dollar amounts with nonzero cents (21.91, 25.34, 29.06, 29.91); the key is not singled out by any class the stem implies.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 25.34 and 29.06; both two-digit dollars with nonzero cents (complexity 6 and 6); neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Equal-split cap 32.23 kills nothing; one under, two over at different translation steps. Likely banked medium/easy."
+  }
+ },
+ {
+  "id": "AM25A-10",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "radical equations in context",
+  "subskill": "invert a square-root model, compare two heights",
+  "prompt": "The distance d, in miles, to the horizon for an observer whose eyes are h feet above sea level is approximately d = √(1.5h). An observer's eyes are 40 feet above sea level. To the nearest hundredth of a foot, how many feet higher must the observer's eyes be in order to see 3.5 miles farther to the horizon?",
+  "choices": [
+   "18.07",
+   "34.96",
+   "43.63",
+   "44.31"
+  ],
+  "correct_answer": "44.31",
+  "explanation": "At 40 feet, d = √60 ≈ 7.746 miles. Seeing 3.5 miles farther means d = 11.246, which needs h = d²/1.5 ≈ 84.31 feet, an increase of about 44.31 feet. The option \"43.63\" rounds √60 to 7.7 before adding 3.5. The option \"34.96\" uses d = 1.5√h, so d goes from 9.487 to 12.987 and h = (12.987/1.5)². The option \"18.07\" assumes d is proportional to h.",
+  "solve": "const d=Math.sqrt(1.5*40)+3.5; return (d*d/1.5-40).toFixed(2);",
+  "distractor_solve": {
+   "43.63": "const d=7.7+3.5; return (d*d/1.5-40).toFixed(2);",
+   "34.96": "const d=1.5*Math.sqrt(40)+3.5; return ((d/1.5)**2-40).toFixed(2);",
+   "18.07": "const d0=Math.sqrt(60); return (40*(d0+3.5)/d0-40).toFixed(2);"
+  },
+  "quantity_asked": "the height increase (d0 + 3.5)²/1.5 − 40 with d0 = √60.",
+  "distractor_kind": {
+   "43.63": "error path: rounded √60 to 7.7 too early. (a) stem-forced lower bound: increase > 3.5²/1.5 ≈ 8.17; inside. (b) not an adjacent problem; a rounding-stage error. (c) cheapest estimate of the whole increase is the item's own computation; no bracket separates 43.63 from 44.31. (d) real early-rounding error.",
+   "34.96": "error path: model misread as d = 1.5√h. (a) above 8.17; inside. (b) neighbouring model, not an extreme. (c) inside. (d) real misreading of the radical.",
+   "18.07": "error path: d treated as proportional to h. (a) above 8.17; inside. (b) the linear model, not a stem bound. (c) inside. (d) real modelling error."
+  },
+  "distractor_meta": {
+   "43.63": {
+    "direction": "under",
+    "error_kind": "early rounding"
+   },
+   "34.96": {
+    "direction": "under",
+    "error_kind": "coefficient outside radical"
+   },
+   "18.07": {
+    "direction": "under",
+    "error_kind": "linear instead of square-root model"
+   }
+  },
+  "bounds": [
+   "v > 8.17"
+  ],
+  "mechanism": [
+   "horizon distance square root of height",
+   "invert radical model",
+   "height increase for added distance",
+   "compare two heights"
+  ],
+  "arith_class_check": "No. All options are two-decimal values with distinct decimal parts (.31, .07, .96, .63); no class isolates the key.",
+  "one_sided_check": "Key largest. Errors are of three kinds at three steps (rounding an intermediate, misplacing the coefficient, the wrong model); the stem does not say which way a misplaced 1.5 pushes the result, and early rounding can go either way depending on the digit.",
+  "interior_parity_check": "Interior by value: 34.96 and 43.63; both two integer digits and two nonzero decimals (complexity 6 and 6); neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound is the increase > 3.5²/1.5 ≈ 8.17 (from d0 > 0); all distractors are above it. No cheap bound lies between 43.63 and 44.31: the nearest distractor is 0.68 below the key, inside the resolution of any estimate short of the computation.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "43.63 is a rounding-stage distractor; a grader may call it weak. The other two are distinct modelling errors."
+  }
+ },
+ {
+  "id": "AM25A-11",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "systems of linear equations in context",
+  "subskill": "model two hypothetical transfers as a system",
+  "prompt": "Ana and Ben each have some stickers. If Ana gives Ben 7 of her stickers, they will have the same number of stickers. If instead Ben gives Ana 5 of his stickers, Ana will have twice as many stickers as Ben. How many stickers does Ana have?",
+  "choices": [
+   "43",
+   "29",
+   "23",
+   "33"
+  ],
+  "correct_answer": "43",
+  "explanation": "Let Ana have A and Ben B. Then A − 7 = B + 7, so A = B + 14, and A + 5 = 2(B − 5), so A = 2B − 15. So B + 14 = 2B − 15, B = 29 and A = 43. The option \"29\" writes the first condition as A − 7 = B, forgetting that Ben gains the 7. The option \"33\" writes the second condition as A + 5 = 2B, forgetting that Ben loses the 5. The option \"23\" writes the second condition as A + 5 = 2(B + 5), adding the 5 to Ben's count too.",
+  "solve": "const B=(14+15)/(2-1); return String(B+14);",
+  "distractor_solve": {
+   "23": "const B=(14-5)/(2-1); return String(B+14);",
+   "29": "const B=(7+15)/(2-1); return String(B+7);",
+   "33": "const B=(14+5)/(2-1); return String(B+14);"
+  },
+  "quantity_asked": "Ana's count A with A − 7 = B + 7 and A + 5 = 2(B − 5).",
+  "distractor_kind": {
+   "23": "error path: Ben's count increased in the second scenario. (a) above 19 by 4. (b) not an extreme. (c) no estimate. (d) real sign slip.",
+   "29": "error path: first transfer counted on one side only. (a) stem-forced bound A ≥ 2(7) + 5 = 19 (Ben must have at least 5, and A = B + 14); 29 inside. (b) neighbouring system; it equals the true B, a coincidence of this error path, not an extreme. (c) no one-step estimate of A short of solving. (d) real.",
+   "33": "error path: second transfer counted on one side only. (a) above 19. (b) not an extreme. (c) no estimate. (d) real."
+  },
+  "distractor_meta": {
+   "23": {
+    "direction": "under",
+    "error_kind": "transfer sign reversed"
+   },
+   "29": {
+    "direction": "under",
+    "error_kind": "first transfer one-sided"
+   },
+   "33": {
+    "direction": "under",
+    "error_kind": "second transfer one-sided"
+   }
+  },
+  "bounds": [
+   "v ≥ 19"
+  ],
+  "mechanism": [
+   "hypothetical transfer between two people",
+   "equal after giving",
+   "twice as many after giving",
+   "two-variable system word problem"
+  ],
+  "arith_class_check": "Stem implies A is odd (A + 5 is even); all four options are odd (43, 29, 23, 33), so the class does not isolate the key. A ≥ 19 holds for all.",
+  "one_sided_check": "Key largest. Errors come from different transfers and a sign reversal; whether forgetting one side of a transfer raises or lowers A depends on which scenario it is in and is not readable from the stem without solving.",
+  "interior_parity_check": "Interior by value: 29 and 33; both two-digit odd integers (complexity 2 and 2); neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound is A ≥ 19 (A = B + 14 with B ≥ 5); all distractors are above it, on the key's side. No cheap bound separates 33 from 43 short of solving (plug-back is the item's own work).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Parity class covers all four options; bound 19 kills none; three different transfer errors."
+  }
+ },
+ {
+  "id": "AM25A-12",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational equations in context",
+  "subskill": "turn an average-speed target into a time budget for the remaining leg",
+  "prompt": "A cyclist plans an 80-kilometer ride and wants her average speed for the whole ride to be exactly 23 kilometers per hour. She rides the first 30 kilometers at an average speed of 18.35 kilometers per hour. To the nearest hundredth, what average speed, in kilometers per hour, must she maintain for the remaining 50 kilometers?",
+  "choices": [
+   "27.65",
+   "27.12",
+   "25.79",
+   "30.81"
+  ],
+  "correct_answer": "27.12",
+  "explanation": "The whole ride must take 80/23 ≈ 3.4783 hours. The first 30 kilometers took 30/18.35 ≈ 1.6349 hours, leaving about 1.8434 hours for 50 kilometers, so the speed must be 50/1.8434 ≈ 27.12 kilometers per hour. The option \"27.65\" averages the two speeds, (18.35 + v)/2 = 23. The option \"25.79\" weights the speeds by distance, (30 × 18.35 + 50v)/80 = 23. The option \"30.81\" treats the two parts as equal distances and uses the harmonic mean, 2/(1/18.35 + 1/v) = 23.",
+  "solve": "const t=80/23-30/18.35; return (50/t).toFixed(2);",
+  "distractor_solve": {
+   "27.65": "return (2*23-18.35).toFixed(2);",
+   "25.79": "return ((80*23-30*18.35)/50).toFixed(2);",
+   "30.81": "return (1/(2/23-1/18.35)).toFixed(2);"
+  },
+  "quantity_asked": "the speed v with 30/18.35 + 50/v = 80/23.",
+  "distractor_kind": {
+   "27.65": "error path: arithmetic mean of the two speeds. (a) bound v > 23 (she is behind pace); inside. (b) neighbouring setup (equal times), not an extreme. (c) cheapest estimate is this very average, a point not a bracket; the key differs from it by 0.53. (d) real, classic error.",
+   "25.79": "error path: distance-weighted average of speeds. (a) above 23. (b) not an extreme. (c) inside. (d) real.",
+   "30.81": "error path: harmonic mean with equal legs. (a) above 23. (b) neighbouring setup (equal distances), not a stem-forced bound. (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "27.65": {
+    "direction": "over",
+    "error_kind": "arithmetic mean of speeds"
+   },
+   "25.79": {
+    "direction": "under",
+    "error_kind": "distance-weighted speeds"
+   },
+   "30.81": {
+    "direction": "over",
+    "error_kind": "equal-distance harmonic mean"
+   }
+  },
+  "bounds": [
+   "v > 23"
+  ],
+  "mechanism": [
+   "speed needed for remaining distance",
+   "average speed target",
+   "time budget",
+   "total distance over total time"
+  ],
+  "arith_class_check": "No. Options are two-decimal values with distinct decimal parts (.65, .81, .79, .12); no class isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 27.12 and 27.65; both two integer digits and two nonzero decimals (complexity 6 and 6); neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "v > 23 kills nothing; the three averaging errors give one under and two over; no cheap bracket kills two."
+  }
+ }
+]

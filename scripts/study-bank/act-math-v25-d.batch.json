@@ -1,0 +1,732 @@
+[
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-01",
+  "difficulty": "medium",
+  "topic_tag": "billable weight shipping charges",
+  "subskill": "dimensional vs actual weight billing",
+  "prompt": "A shipping company charges for each package according to its billable weight. The billable weight is the greater of the package's actual weight and its dimensional weight, rounded up to the next whole pound. The dimensional weight, in pounds, is (length × width × height) ÷ 139, where all three dimensions are in inches. The charge for a package is $9.45 for the first pound of billable weight plus $1.17 for each additional pound, and each package is billed separately. Box A measures 20 inches by 16 inches by 12 inches and weighs 14.2 pounds. Box B measures 12 inches by 10 inches by 8 inches and weighs 9.6 pounds. What is the total charge, in dollars, to ship both boxes?",
+  "choices": [
+   "60.11",
+   "63.36",
+   "61.02",
+   "57.51"
+  ],
+  "correct_answer": "61.02",
+  "explanation": "Box A: dimensional weight = 3,840 ÷ 139 ≈ 27.63 lb, which is greater than 14.2 lb, so the billable weight is 28 lb and the charge is 9.45 + 27(1.17) = $41.04. Box B: dimensional weight = 960 ÷ 139 ≈ 6.91 lb, which is less than 9.6 lb, so the billable weight is 10 lb and the charge is 9.45 + 9(1.17) = $19.98. Total: $61.02. The option \"60.11\" skips the rounding up (27.63 lb and 9.6 lb billed as they are). The option \"57.51\" bills Box B by its dimensional weight too (7 lb). The option \"63.36\" charges $1.17 for every pound after the $9.45, including the first.",
+  "solve": "const a=Math.ceil(Math.max(14.2,20*16*12/139)), b=Math.ceil(Math.max(9.6,12*10*8/139)); return (9.45+1.17*(a-1)+9.45+1.17*(b-1)).toFixed(2);",
+  "distractor_solve": {
+   "60.11": "const a=Math.max(14.2,20*16*12/139), b=Math.max(9.6,12*10*8/139); return (9.45+1.17*(a-1)+9.45+1.17*(b-1)).toFixed(2);",
+   "57.51": "const a=Math.ceil(20*16*12/139), b=Math.ceil(12*10*8/139); return (9.45+1.17*(a-1)+9.45+1.17*(b-1)).toFixed(2);",
+   "63.36": "const a=Math.ceil(Math.max(14.2,20*16*12/139)), b=Math.ceil(Math.max(9.6,12*10*8/139)); return (9.45+1.17*a+9.45+1.17*b).toFixed(2);"
+  },
+  "quantity_asked": "the total dollar charge for Box A and Box B, each billed on its own billable weight.",
+  "distractor_kind": {
+   "60.11": "error path: no rounding up of billable weight (bills 27.626 lb and 9.6 lb). (a) no parameter sits at an extreme; the only stem bounds are the per-box charges at 9.45 + 1.17(w-1) with w between actual and ceil; 60.11 inside. (b) adjacent problem \"billable = exact weight\": not an extreme of the feasible set (ignoring the dimensional rule gives 45.81, much lower). (c) cheapest estimate: A about 28 lb, B about 10 lb, total about 9.45*2+1.17*36 = 61; that IS the computation; 60.11 sits inside any coarser bracket. (d) real: ignored \"rounded up\".",
+   "57.51": "error path: uses dimensional weight for both boxes (B billed 7 lb). (a) no limiting value. (b) adjacent \"always dimensional\" rule; not an extreme (ignoring dimensional gives 45.81). (c) inside 45.81..63.36 range of rule readings. (d) real: misapplies \"greater of\".",
+   "63.36": "error path: $1.17 for every pound in addition to $9.45. (a) no. (b) adjacent fee structure; not the ceiling (no stem cap). (c) inside. (d) real: misreads \"first pound plus each additional pound\"."
+  },
+  "distractor_meta": {
+   "60.11": {
+    "direction": "under",
+    "error_kind": "no rounding up"
+   },
+   "57.51": {
+    "direction": "under",
+    "error_kind": "dimensional weight used for both"
+   },
+   "63.36": {
+    "direction": "over",
+    "error_kind": "first pound charged twice"
+   }
+  },
+  "bounds": [
+   "each box: billable weight >= its actual weight",
+   "total > 2 x 9.45"
+  ],
+  "mechanism": [
+   "dimensional weight",
+   "billable weight greater of",
+   "round up to next pound",
+   "first pound plus each additional pound"
+  ],
+  "arith_class_check": "No. Totals are sums of 9.45 and multiples of 1.17 or of non-integers; all four are two-decimal values with distinct cents (.11, .36, .02, .51); no divisibility or parity isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 60.11 and 61.02: both 4-digit, two-decimal, nonzero last digit; neither rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: (1) greater of actual and dimensional - ignoring entirely gives 45.81 (not an option), misapplying as always-dimensional gives 57.51 (under); (2) rounded up - ignoring gives 60.11 (under); (3) first pound then each additional - misreading gives 63.36 (over); (4) billed separately - ignoring gives 52.74 (not an option). One distractor per clause; directions mixed (2 under, 1 over).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Key interior; one distractor per clause, mixed directions; no cheap bound kills any option; dimensional rule decides only Box A."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-02",
+  "difficulty": "hard",
+  "topic_tag": "multi-step work rates with a mid-job change",
+  "subskill": "worker-hours with crew and workday changes",
+  "prompt": "A paving crew of 15 workers, all working at the same constant rate, was scheduled to finish a job in 18 workdays. On the original schedule, each workday ran from 7:30 a.m. to 4:00 p.m. with a 30-minute unpaid lunch break, during which no work was done. The crew worked on this schedule for the first 8 workdays. After that, 2 workers left the crew, and the 13 remaining workers switched to workdays running from 7:00 a.m. to 4:30 p.m. with the same 30-minute lunch break. Each worker kept the same working rate. To the nearest hundredth, how many workdays in all did the job take?",
+  "choices": [
+   "18.86",
+   "18.26",
+   "19.35",
+   "18.32"
+  ],
+  "correct_answer": "18.26",
+  "explanation": "The original workday has 8.5 - 0.5 = 8 working hours, so the job is 15(18)(8) = 2,160 worker-hours. The first 8 days complete 15(8)(8) = 960 worker-hours, leaving 1,200. The new workday has 9.5 - 0.5 = 9 working hours, so the 13 workers do 13(9) = 117 worker-hours per day and need 1,200 ÷ 117 ≈ 10.256 more days. Total: 8 + 10.256 ≈ 18.26 workdays. The option \"18.32\" leaves out the lunch break on both schedules (8.5-hour and 9.5-hour days). The option \"18.86\" uses 8.5 hours, the average of the old and new working days, for the remaining work. The option \"19.35\" has only 13 workers present from the start, so the first 8 days complete 832 worker-hours instead of 960.",
+  "solve": "const job=15*18*8, rem=job-15*8*8; return (8+rem/(13*9)).toFixed(2);",
+  "distractor_solve": {
+   "18.32": "const job=15*18*8.5, rem=job-15*8*8.5; return (8+rem/(13*9.5)).toFixed(2);",
+   "18.86": "const job=15*18*8, rem=job-15*8*8; return (8+rem/(13*(8+9)/2)).toFixed(2);",
+   "19.35": "const job=15*18*8, rem=job-13*8*8; return (8+rem/(13*9)).toFixed(2);"
+  },
+  "quantity_asked": "the total number of workdays (8 on the original schedule plus the days the 13 workers need for the remaining worker-hours).",
+  "distractor_kind": {
+   "18.32": "error path: lunch not subtracted from either schedule (8.5 h and 9.5 h). (a) no parameter extreme. (b) adjacent \"no lunch\" problem; not an extreme of any stem-forced interval. (c) cheapest bounds: the new crew does 117 vs 120 worker-hours a day, so total > 18; ignoring the longer day gives total < 8 + 1200/104 = 19.54; 18.32 strictly inside (18, 19.54). (d) real: dropped the unpaid break.",
+   "18.86": "error path: averaged the old and new working-day lengths (8.5 h). (a) no. (b) adjacent; inside (18, 19.54). (c) inside. (d) real: blended the two schedules.",
+   "19.35": "error path: 13 workers used for the first 8 days. (a) no. (b) adjacent timing; inside (18, 19.54). (c) inside. (d) real: applied the crew change too early."
+  },
+  "distractor_meta": {
+   "18.32": {
+    "direction": "over",
+    "error_kind": "unpaid break not subtracted"
+   },
+   "18.86": {
+    "direction": "over",
+    "error_kind": "averaged day lengths"
+   },
+   "19.35": {
+    "direction": "over",
+    "error_kind": "crew change applied from start"
+   }
+  },
+  "bounds": [
+   "total > 18 (13 x 9 = 117 < 15 x 8 = 120 worker-hours per day after the change)",
+   "total < 8 + 1200/(13 x 8) = 19.54 (the longer day helps)"
+  ],
+  "mechanism": [
+   "crew of workers some leave mid-job",
+   "worker-hours remaining",
+   "workday length changes",
+   "total days to finish a job",
+   "unpaid lunch break clock times"
+  ],
+  "arith_class_check": "No. 8 + 1200/117 is non-terminating; all four options two-decimal with unrelated cents (.86, .26, .35, .32); no stem integrality.",
+  "one_sided_check": "Key smallest. The three distractors come from three different steps (working hours per day, combining the schedules, when the crew change starts). The stem has two changes pushing OPPOSITE ways (fewer workers slows the job, longer days speed it up), and natural errors push DOWN: ignoring the 2 workers leaving gives 16.89, removing the lunch only from the new day gives 17.72, reporting only the days after the change gives 10.26. A student cannot read a direction off the stem.",
+  "interior_parity_check": "interior options by value 18.32 and 18.86: both two-digit two-decimal, nonzero last digits; same shape.",
+  "cheap_bound_check": "Cheapest bounds: total > 18 (117 < 120 worker-hours per day, a one-line comparison) and total < 19.54 (ignore the longer day). All four options lie strictly inside (18, 19.54), so neither separates the key. The nearest distractor 18.32 is 0.06 (0.3%) above the key; separating them needs the exact remaining-time division.",
+  "trap_check": "Clauses: (1) \"2 workers left\" after day 8 - ignoring gives 16.89 (under, not an option); applying from the start gives 19.35 (over). (2) new workday 7:00-4:30 - ignoring gives 19.54 (over, not an option); averaging the schedules gives 18.86 (over). (3) 30-minute unpaid lunch - ignoring on both gives 18.32 (over); ignoring on the new day only gives 17.72 (under, not an option). One option per clause; every clause also has a natural error in the other direction.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; nearest distractor 0.3% above; cheap bracket (18, 19.54) holds all four; two stem changes push opposite ways; under errors exist."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-03",
+  "difficulty": "hard",
+  "topic_tag": "multi-step work rates",
+  "subskill": "time from several rate stages, then pay per hour",
+  "prompt": "A transcriptionist is paid $1.50 for each minute of recorded audio she transcribes. One recording is 44 minutes long, and its speakers average 150 words per minute. She works on it in three stages. First, she types the transcript while the recording plays, pausing it as needed; she averages 60 words per minute of typing time, and the recording plays only during her typing time. Second, she proofreads the transcript at 2.5 pages per minute, where each page holds 250 words. Third, she formats the document, which takes 0.35 minute for each minute of audio. To the nearest cent, how much does she earn per hour of work on this recording?",
+  "choices": [
+   "26.09",
+   "30.56",
+   "24.90",
+   "29.13"
+  ],
+  "correct_answer": "29.13",
+  "explanation": "The recording has 44(150) = 6,600 words. Typing takes 6,600 ÷ 60 = 110 minutes; proofreading 6,600 ÷ 250 = 26.4 pages at 2.5 pages per minute takes 10.56 minutes; formatting takes 0.35(44) = 15.4 minutes. Total 135.96 minutes = 2.266 hours. Pay is 1.50(44) = $66, so 66 ÷ 2.266 ≈ $29.13 per hour. The option \"26.09\" treats 250 words per page as a proofreading rate of 250 words per minute (26.4 minutes). The option \"24.90\" figures formatting at 0.35 minute per minute of typing time (38.5 minutes). The option \"30.56\" reads 135.96 minutes = 2 h 15.96 min as 2.1596 hours.",
+  "solve": "const w=44*150; const t=w/60+(w/250)/2.5+0.35*44; return (66/(t/60)).toFixed(2);",
+  "distractor_solve": {
+   "26.09": "const w=44*150; const t=w/60+w/250+0.35*44; return (66/(t/60)).toFixed(2);",
+   "24.90": "const w=44*150; const t=w/60+(w/250)/2.5+0.35*(w/60); return (66/(t/60)).toFixed(2);",
+   "30.56": "const w=44*150; const t=w/60+(w/250)/2.5+0.35*44; const h=Math.floor(t/60)+(t%60)/100; return (66/h).toFixed(2);"
+  },
+  "quantity_asked": "dollars earned per hour of total working time (typing + proofreading + formatting) on the 44-minute recording.",
+  "distractor_kind": {
+   "26.09": "error path: proofreading time = words / 250. (a) no limiting value. (b) adjacent \"proofreads 250 words per minute\" problem; inside. (c) cheapest bounds: time >= typing + formatting = 125.4 min gives pay <= 31.58; proofreading at 625 words/min is faster than speech, so proof time < 44 min gives pay > 23.38; 26.09 strictly inside (23.38, 31.58). (d) real: unit misread.",
+   "24.90": "error path: formatting per minute of typing time. (a) no. (b) adjacent base; inside. (c) inside (23.38, 31.58). (d) real.",
+   "30.56": "error path: minutes-to-hours read as h.mm. (a) no. (b) not an adjacent problem's extreme. (c) inside (23.38, 31.58). (d) real."
+  },
+  "distractor_meta": {
+   "26.09": {
+    "direction": "under",
+    "error_kind": "page count used as rate"
+   },
+   "24.90": {
+    "direction": "under",
+    "error_kind": "formatting on wrong base"
+   },
+   "30.56": {
+    "direction": "over",
+    "error_kind": "decimal minutes as h.mm"
+   }
+  },
+  "bounds": [
+   "pay per hour <= 66/(125.4/60) = 31.58 (proofreading takes some time)",
+   "pay per hour > 66/(169.4/60) = 23.38 (proofreading at 625 words/min takes under 44 min)"
+  ],
+  "mechanism": [
+   "words per minute typing time",
+   "pages per minute proofreading",
+   "pay per audio minute",
+   "earnings per hour of work"
+  ],
+  "arith_class_check": "No. Pay per hour is 66 divided by a non-round time; all options two-decimal with unrelated cents.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 26.09 and 29.13: both two-digit, two decimals, nonzero last digits; same shape.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"recording plays only during typing time\" - ignoring it (adding 44 min of listening) gives 22.00 (not an option); \"0.35 minute for each minute of audio\" - misapplied to typing time gives 24.90 (under); \"2.5 pages per minute, 250 words per page\" - misread gives 26.09 (under); time conversion error gives 30.56 (over). One per clause; directions mixed.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior; all three distractors sit inside the two cheap bounds (23.38, 31.58); errors at three different stages, mixed directions."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-04",
+  "difficulty": "medium",
+  "topic_tag": "reading a fare structure",
+  "subskill": "fare with partial-unit rounding and a time charge",
+  "prompt": "A taxi fare is computed as follows: an initial charge of $3.10, which includes the first 1/5 mile of the ride; $0.55 for each additional 1/5 mile or fraction of 1/5 mile; and $0.40 per minute of waiting time, with a fraction of a minute charged in proportion. A ride covers 6.3 miles and includes 7 minutes 30 seconds of waiting time. What is the fare, in dollars?",
+  "choices": [
+   "23.35",
+   "22.88",
+   "23.15",
+   "23.07"
+  ],
+  "correct_answer": "23.15",
+  "explanation": "6.3 miles is 31.5 fifths of a mile. The first fifth is included in the $3.10, leaving 30.5 fifths, which is charged as 31 units: 31(0.55) = $17.05. Waiting: 7 minutes 30 seconds = 7.5 minutes, and 7.5(0.40) = $3.00. Fare = 3.10 + 17.05 + 3.00 = $23.15. The option \"22.88\" charges the 30.5 fifths without rounding up. The option \"23.07\" reads 7 minutes 30 seconds as 7.30 minutes. The option \"23.35\" rounds the waiting time up to 8 minutes.",
+  "solve": "const u=Math.ceil(6.3*5-1-1e-9); return (3.10+0.55*u+0.40*7.5).toFixed(2);",
+  "distractor_solve": {
+   "22.88": "return (3.10+0.55*(6.3*5-1)+0.40*7.5).toFixed(2);",
+   "23.07": "const u=Math.ceil(6.3*5-1-1e-9); return (3.10+0.55*u+0.40*7.30).toFixed(2);",
+   "23.35": "const u=Math.ceil(6.3*5-1-1e-9); return (3.10+0.55*u+0.40*8).toFixed(2);"
+  },
+  "quantity_asked": "the total fare in dollars for 6.3 miles and 7 min 30 s of waiting.",
+  "distractor_kind": {
+   "22.88": "error path: no rounding up of the partial fifth. (a) no limiting value. (b) adjacent exact-distance pricing; inside. (c) cheapest bracket: distance charge between 0.55 x 30.5 and 0.55 x 32, waiting between 0.40 x 7 and 0.40 x 8, so fare in (22.68, 23.90); 22.88 strictly inside. (d) real.",
+   "23.07": "error path: 7 min 30 s read as 7.30 min. (a) no. (b) not an adjacent extreme; inside (22.68, 23.90). (c) inside. (d) real.",
+   "23.35": "error path: waiting rounded up to 8 min. (a) no. (b) adjacent per-started-minute rule; inside (22.68, 23.90). (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "22.88": {
+    "direction": "under",
+    "error_kind": "partial unit not rounded up"
+   },
+   "23.07": {
+    "direction": "under",
+    "error_kind": "min:sec read as decimal"
+   },
+   "23.35": {
+    "direction": "over",
+    "error_kind": "waiting time rounded up"
+   }
+  },
+  "bounds": [
+   "fare > 3.10 + 0.55 x 30.5 + 0.40 x 7 = 22.68",
+   "fare < 3.10 + 0.55 x 32 + 0.40 x 8 = 23.90"
+  ],
+  "mechanism": [
+   "taxi fare per fifth of a mile",
+   "fraction of a unit rounded up",
+   "waiting time charge",
+   "initial charge includes first fifth"
+  ],
+  "arith_class_check": "No. Fares are sums of multiples of 0.55 and 0.40 plus 3.10; options have distinct cents (.35, .88, .15, .07); no class isolates the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 23.07 and 23.15: both two-decimal, nonzero last digit; same shape.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"includes the first 1/5 mile\" - ignoring gives 23.70 (over, not an option); \"or fraction of 1/5 mile\" - ignoring gives 22.88 (under); \"fraction of a minute charged in proportion\" - ignoring gives 23.35 (over); the 7.30-minute reading (23.07, under) is a unit slip, not a clause. One distractor per clause; directions mixed.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior; all options inside the cheap bracket (22.68, 23.90); no option pair differs by a stem rate."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-05",
+  "difficulty": "hard",
+  "topic_tag": "ratio split of a shared cost",
+  "subskill": "equal part plus area-proportional part with a closet",
+  "prompt": "Three roommates share an apartment whose rent is $2,535 per month. Of the rent, $705 covers the shared kitchen and living room and is split equally among the three roommates. The remaining $1,830 is split in proportion to the floor areas of the roommates' bedrooms, where a closet counts as part of the bedroom it opens into. Ari's bedroom is 13.5 feet by 14 feet and has no closet. Bo's bedroom is 12 feet by 11 feet and has a closet with a floor area of 15 square feet. Cy's bedroom is 10.5 feet by 11 feet and has no closet. To the nearest cent, how much rent does Cy pay each month?",
+  "choices": [
+   "781.46",
+   "719.23",
+   "790.35",
+   "703.14"
+  ],
+  "correct_answer": "703.14",
+  "explanation": "Bedroom areas: Ari 189, Bo 132 + 15 = 147, Cy 115.5 square feet; total 451.5. Cy pays 705/3 = 235 plus 1,830(115.5/451.5) ≈ 468.14, for $703.14. The option \"719.23\" leaves Bo's closet out of the areas (total 436.5). The option \"781.46\" splits the $1,830 by bedroom perimeters (43 of 144 feet). The option \"790.35\" swaps the two rules, splitting the $1,830 equally and the $705 by area.",
+  "solve": "const c=10.5*11, t=13.5*14+12*11+15+c; return (705/3+1830*c/t).toFixed(2);",
+  "distractor_solve": {
+   "719.23": "const c=10.5*11, t=13.5*14+12*11+c; return (705/3+1830*c/t).toFixed(2);",
+   "781.46": "const pc=2*(10.5+11), pt=2*(13.5+14)+2*(12+11)+pc; return (705/3+1830*pc/pt).toFixed(2);",
+   "790.35": "const c=10.5*11, t=13.5*14+12*11+15+c; return (1830/3+705*c/t).toFixed(2);"
+  },
+  "quantity_asked": "Cy's monthly payment: one third of $705 plus Cy's area share of $1,830.",
+  "distractor_kind": {
+   "719.23": "error path: closet omitted from Bo's area. (a) no limiting value. (b) adjacent \"no closet\" problem; inside (703.14, 845). (c) cheapest bound: Cy has the smallest room, so Cy pays less than an equal third, 845; and more than 235 + 1830 x 115.5/(3 x 189) = 607.8; 719.23 strictly inside. (d) real.",
+   "781.46": "error path: perimeter instead of area. (a) no. (b) adjacent basis; inside (607.8, 845). (c) inside. (d) real.",
+   "790.35": "error path: equal and proportional parts swapped. (a) no. (b) adjacent rule; inside (607.8, 845). (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "719.23": {
+    "direction": "over",
+    "error_kind": "closet left out of area"
+   },
+   "781.46": {
+    "direction": "over",
+    "error_kind": "perimeter used as basis"
+   },
+   "790.35": {
+    "direction": "over",
+    "error_kind": "equal and area parts swapped"
+   }
+  },
+  "bounds": [
+   "Cy pays < 2535/3 = 845 (smallest bedroom)",
+   "Cy pays > 235"
+  ],
+  "mechanism": [
+   "rent split by bedroom floor area",
+   "closet counts toward bedroom",
+   "equal share of common rent",
+   "proportional share plus equal share"
+  ],
+  "arith_class_check": "No. The key is 235 plus a non-terminating fraction of 1830; all options two-decimal with unrelated cents.",
+  "one_sided_check": "Key smallest. The three distractors come from different steps (area composition, choice of basis, which part is split equally); each error's direction depends on the room sizes (for Bo, omitting the closet would LOWER the share; for Ari, the perimeter basis would lower it), and the natural error of splitting all $2,535 by area gives 648.49, below the key. No stem clause predicts one direction.",
+  "interior_parity_check": "interior options by value 719.23 and 781.46: both 3-digit two-decimal, nonzero last digits; same shape.",
+  "cheap_bound_check": "Cheapest bounds: equal third 845 (upper, since Cy's room is smallest) and 607.8 (lower). All options lie inside. The nearest distractor 719.23 is 2.3% above the key and differs only by Bo's 15-square-foot closet; separating them requires computing the area share itself.",
+  "trap_check": "Clauses: \"closet counts as part of the bedroom\" - ignoring gives 719.23 (over); \"$705 split equally / $1,830 by area\" - swapping gives 790.35 (over), applying area to all $2,535 gives 648.49 (under, not an option). Choice of basis (perimeter) is not a stem clause. One distractor per clause.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; distractor directions depend on which room is asked; natural under error exists; equal-third bound 845 sits above every option."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-06",
+  "difficulty": "hard",
+  "topic_tag": "proportional reasoning with a fixed charge",
+  "subskill": "usage proportional to degree-days, fixed fee, price increase",
+  "prompt": "A household's monthly natural gas bill is a fixed customer charge of $13.75 plus a charge for each therm of gas used. In January the price was $1.57 per therm, and the household's bill was $287.12. The household's gas use each month is proportional to that month's number of heating degree-days (HDD). January had 1,090 HDD, and February had 830 HDD. In February the price per therm was 7% higher than in January, and the customer charge was unchanged. To the nearest cent, what was the household's February bill?",
+  "choices": [
+   "231.19",
+   "214.63",
+   "236.48",
+   "233.94"
+  ],
+  "correct_answer": "236.48",
+  "explanation": "January use: (287.12 - 13.75) ÷ 1.57 ≈ 174.12 therms. February use: 174.12(830/1,090) ≈ 132.59 therms. February price: 1.57(1.07) = $1.6799. February bill: 13.75 + 132.59(1.6799) ≈ $236.48. The option \"233.94\" scales the whole January bill, customer charge included, by 830/1,090 and then raises it 7%. The option \"231.19\" adds 7 cents to the price per therm instead of 7%. The option \"214.63\" cuts January's use by 260/830 (the HDD drop as a percent of February's HDD).",
+  "solve": "const th=(287.12-13.75)/1.57*830/1090; return (13.75+th*1.57*1.07).toFixed(2);",
+  "distractor_solve": {
+   "233.94": "return (287.12*830/1090*1.07).toFixed(2);",
+   "231.19": "const th=(287.12-13.75)/1.57*830/1090; return (13.75+th*(1.57+0.07)).toFixed(2);",
+   "214.63": "const th=(287.12-13.75)/1.57*(1-260/830); return (13.75+th*1.57*1.07).toFixed(2);"
+  },
+  "quantity_asked": "February bill = 13.75 + (February therms) x (1.07 x 1.57).",
+  "distractor_kind": {
+   "233.94": "error path: fixed charge scaled with usage. (a) no limiting value. (b) adjacent \"bill proportional to HDD\" problem; not an extreme of a stem-forced interval. (c) cheapest one-step estimate over the whole bill: 287 x 0.76 x 1.07 = 233.4 (this IS the error path) - not a bound in a known direction to a student; the cheapest true bounds are the no-increase bill 221.91 (above only 214.63; see cheap_bound_check) and the 7%-on-everything bill 237.45. (d) real.",
+   "231.19": "error path: 7% read as 7 cents. (a) no. (b) adjacent; inside. (c) inside (214, 237.45). (d) real.",
+   "214.63": "error path: percent decrease on the wrong base. (a) no. (b) adjacent; inside. (c) above the no-change floor 13.75. (d) real."
+  },
+  "distractor_meta": {
+   "233.94": {
+    "direction": "under",
+    "error_kind": "fixed charge scaled"
+   },
+   "231.19": {
+    "direction": "under",
+    "error_kind": "percent read as cents"
+   },
+   "214.63": {
+    "direction": "under",
+    "error_kind": "percent decrease on wrong base"
+   }
+  },
+  "bounds": [
+   "February bill < (13.75 + Feb therm charge at Jan price) x 1.07 = 237.45",
+   "February bill > 13.75"
+  ],
+  "mechanism": [
+   "therms proportional to heating degree-days",
+   "fixed customer charge not scaled",
+   "price per therm increased by percent",
+   "back out usage from a bill"
+  ],
+  "arith_class_check": "No. The key is 13.75 plus a non-terminating product; all options two-decimal with unrelated cents.",
+  "one_sided_check": "Key largest. Distractors come from three different steps (treating the fixed charge, applying the 7% increase, converting the HDD drop). Natural errors push UP as well: applying 7% to the customer charge gives 237.45, and not subtracting the customer charge before finding therms gives 249.69; so the stem does not signal that errors lower the bill.",
+  "interior_parity_check": "interior options by value 231.19 and 233.94: both 3-digit two-decimal, nonzero last digits; same shape.",
+  "cheap_bound_check": "Cheapest one-sided bounds: 7% on the whole bill, 237.45, is an upper bound (all options below it); the no-increase bill 221.91 is a lower bound that needs the therm computation (the item's own work) and kills only 214.63. A rough estimate 287 x 0.76 x 1.07 ~ 233 lands between 231.19 and the key and is not a bound in a known direction. The nearest distractor 233.94 is 2.54 (1.1%) below the key and differs only by how the $13.75 is scaled.",
+  "trap_check": "Clauses: \"customer charge was unchanged\" - ignoring (scaling it with use) gives 233.94 (under); applying 7% to it gives 237.45 (over, not an option); \"7% higher\" - misread as 7 cents gives 231.19 (under). The HDD-ratio error (214.63) is not a clause. One distractor per clause; natural errors exist in both directions.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; three lowering errors from three steps, natural raising errors exist; the only floor below the key (221.91) needs the therm work and leaves 3 survivors."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-07",
+  "difficulty": "medium",
+  "topic_tag": "converting a salary to an hourly rate",
+  "subskill": "hours actually worked after paid days off",
+  "prompt": "Mia earns an annual salary of $61,880, paid for all 52 weeks of the year. Her schedule is 37.5 hours per week, worked as 7.5 hours per day, 5 days per week. Each year she receives 15 paid vacation days and 10 paid holidays, all of which fall on her scheduled workdays and are included in her 52 paid weeks. To the nearest cent, what is Mia's pay per hour that she actually works?",
+  "choices": [
+   "36.67",
+   "35.11",
+   "32.70",
+   "35.36"
+  ],
+  "correct_answer": "35.11",
+  "explanation": "Paid hours: 52(37.5) = 1,950. Days off: 25 days × 7.5 hours = 187.5 hours. Hours worked: 1,950 - 187.5 = 1,762.5. Pay per hour worked: 61,880 ÷ 1,762.5 ≈ $35.11. The option \"32.70\" uses a 40-hour week (2,080 - 187.5 hours). The option \"35.36\" counts each day off as 8 hours (1,750 hours worked). The option \"36.67\" first drops 2 weeks for vacation (50 weeks) and then also subtracts all 25 days off.",
+  "solve": "return (61880/(52*37.5-25*7.5)).toFixed(2);",
+  "distractor_solve": {
+   "32.70": "return (61880/(52*40-25*7.5)).toFixed(2);",
+   "35.36": "return (61880/(52*37.5-25*8)).toFixed(2);",
+   "36.67": "return (61880/(50*37.5-25*7.5)).toFixed(2);"
+  },
+  "quantity_asked": "61,880 divided by the hours actually worked in the year.",
+  "distractor_kind": {
+   "32.70": "error path: 40-hour week. (a) no limiting value. (b) adjacent \"40-hour week\" problem; inside. (c) cheapest bound: rate > 61880/1950 = 31.73 (some paid hours are not worked); no cheap upper bound below 36.67; 32.70 strictly above 31.73. (d) real.",
+   "35.36": "error path: 8-hour days off. (a) no. (b) adjacent; inside. (c) above 31.73. (d) real.",
+   "36.67": "error path: vacation weeks subtracted twice. (a) no. (b) adjacent; inside. (c) above 31.73; no cheap upper bound reaches it. (d) real."
+  },
+  "distractor_meta": {
+   "32.70": {
+    "direction": "under",
+    "error_kind": "40-hour week assumed"
+   },
+   "35.36": {
+    "direction": "over",
+    "error_kind": "day off counted as 8 hours"
+   },
+   "36.67": {
+    "direction": "over",
+    "error_kind": "vacation subtracted twice"
+   }
+  },
+  "bounds": [
+   "rate > 61880/1950 = 31.73"
+  ],
+  "mechanism": [
+   "salary to hourly rate",
+   "paid vacation days and holidays",
+   "hours actually worked",
+   "37.5-hour week"
+  ],
+  "arith_class_check": "No. 61880/1762.5 is non-terminating; all options two-decimal with unrelated cents.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 35.11 and 35.36: both two-digit two-decimal, nonzero last digits; same shape.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"7.5 hours per day\" - ignoring gives 35.36 (over); \"37.5 hours per week\" - replaced by 40 gives 32.70 (under); \"included in her 52 paid weeks\" - ignoring (dropping weeks and days) gives 36.67 (over). One per clause; directions mixed.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior; mixed directions; the only cheap bound (paid-hours rate 31.73) lies below every option."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-08",
+  "difficulty": "hard",
+  "topic_tag": "reading a cost-sharing structure",
+  "subskill": "deductible, coinsurance, copay and out-of-pocket maximum",
+  "prompt": "Jun's health plan works as follows each year. Jun pays the full amount of covered charges until his payments toward the deductible total $1,500; after that, Jun pays 20% of covered charges and the plan pays the rest. Separately, Jun pays a $250 copay for each hospital visit, and copays do not count toward the deductible. All of Jun's payments for the year, including copays, are limited to an out-of-pocket maximum of $4,165. So far this year Jun has paid $620 toward his deductible and has made no other payments. He now has one hospital visit with $9,840 in covered charges. How much, in dollars, must Jun pay for this visit?",
+  "choices": [
+   "2798",
+   "2665",
+   "2922",
+   "2722"
+  ],
+  "correct_answer": "2922",
+  "explanation": "Jun still owes 1,500 - 620 = $880 of deductible, paid in full. The remaining 9,840 - 880 = $8,960 is charged at 20%: $1,792. With the $250 copay, Jun pays 250 + 880 + 1,792 = $2,922, which is under his remaining out-of-pocket room of 4,165 - 620 = $3,545. The option \"2798\" applies the 20% to 9,840 - 1,500 instead of 9,840 - 880. The option \"2722\" counts the copay toward the deductible, leaving only $630 of deductible. The option \"2665\" takes the remaining out-of-pocket room as 4,165 - 1,500 and caps the payment there.",
+  "solve": "const rem=1500-620; const p=250+rem+0.2*(9840-rem); return String(Math.round(Math.min(p,4165-620)));",
+  "distractor_solve": {
+   "2665": "const rem=1500-620; const p=250+rem+0.2*(9840-rem); return String(Math.round(Math.min(p,4165-1500)));",
+   "2722": "const rem=1500-620-250; return String(Math.round(250+rem+0.2*(9840-rem)));",
+   "2798": "const rem=1500-620; return String(Math.round(250+rem+0.2*(9840-1500)));"
+  },
+  "quantity_asked": "Jun's total payment for this visit: copay + remaining deductible + 20% of the rest, subject to the out-of-pocket cap.",
+  "distractor_kind": {
+   "2665": "error path: out-of-pocket room computed from 1,500 instead of 620. (a) no. (b) adjacent; inside (2218, 3545). (c) inside. (d) real.",
+   "2722": "error path: copay counted toward the deductible. (a) no. (b) adjacent; inside (2218, 3545). (c) inside. (d) real.",
+   "2798": "error path: coinsurance base 9,840 - 1,500. (a) no limiting value. (b) adjacent \"full deductible still owed\" base; inside. (c) cheapest bounds: payment >= 250 + 0.2 x 9840 = 2218 (every dollar costs Jun at least 20%), payment <= 3545 (cap); 2798 strictly inside. (d) real."
+  },
+  "distractor_meta": {
+   "2665": {
+    "direction": "under",
+    "error_kind": "out-of-pocket room miscomputed"
+   },
+   "2722": {
+    "direction": "under",
+    "error_kind": "copay counted toward deductible"
+   },
+   "2798": {
+    "direction": "under",
+    "error_kind": "coinsurance base wrong"
+   }
+  },
+  "bounds": [
+   "payment >= 250 + 0.2 x 9840 = 2218",
+   "payment <= 4165 - 620 = 3545"
+  ],
+  "mechanism": [
+   "deductible remaining",
+   "coinsurance percent after deductible",
+   "copay not counted toward deductible",
+   "out-of-pocket maximum"
+  ],
+  "arith_class_check": "No. All four are 4-digit integers (dollar amounts); two odd/even mix (2665 odd, others even) so the key is not a parity singleton; no stated divisibility.",
+  "one_sided_check": "Key largest. Each distractor misreads a DIFFERENT clause (coinsurance base, copay rule, out-of-pocket room). Natural errors also push UP: ignoring the $620 already paid gives 3418, and taking 20% of the whole bill gives 3098; so the stem does not signal that errors lower the payment.",
+  "interior_parity_check": "interior options by value 2722 and 2798: both 4-digit integers, neither a multiple of 10; same shape.",
+  "cheap_bound_check": "Cheapest bounds: 2218 (20% floor plus copay) and 3545 (cap) - all options inside. A bound between 2798 and the key would need the coinsurance computed on the correct base, which is the item's work. Nearest distractor 2798 is 124 (4.2%) below.",
+  "trap_check": "Clauses: (1) deductible remaining 880 - using 1,500 in the coinsurance base gives 2798 (under); ignoring the $620 already paid gives 3418 (over, not an option); (2) copays do not count toward deductible - ignoring gives 2722 (under); (3) out-of-pocket maximum includes earlier payments - misapplying gives 2665 (under). One distractor per clause; clause (1) also has a natural over error.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; each distractor misreads a different clause; natural raising errors (3418, 3098) exist; cheap bracket (2218, 3545) holds all options."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-09",
+  "difficulty": "hard",
+  "topic_tag": "volume of a trapezoidal prism and fill time",
+  "subskill": "partial-depth trapezoid volume, cubic feet to gallons, fill rate",
+  "prompt": "A water trough is 10 feet long, and its two ends are identical isosceles trapezoids. Each end is 1.2 feet wide at the bottom, 3.0 feet wide at the top, and 2.25 feet tall; the sides and bottom of the trough are flat. The empty trough is filled by a hose at a constant rate of 7.2 gallons per minute, and 1 cubic foot of water is 7.48 gallons. To the nearest hundredth of a minute, how long does it take for the water in the trough to reach a depth of 1.75 feet?",
+  "choices": [
+   "35.58",
+   "25.45",
+   "34.54",
+   "28.18"
+  ],
+  "correct_answer": "34.54",
+  "explanation": "The width grows linearly from 1.2 ft at the bottom to 3.0 ft at 2.25 ft, so at a depth of 1.75 ft the water surface is 1.2 + 1.8(1.75/2.25) = 2.6 ft wide. The water's cross section is a trapezoid with area (1.2 + 2.6)/2 × 1.75 = 3.325 sq ft, so the volume is 33.25 cubic feet = 248.71 gallons, which takes 248.71 ÷ 7.2 ≈ 34.54 minutes. The option \"25.45\" finds the surface width 1.75 ft down from the top (1.6 ft). The option \"28.18\" adds only half of the 1.8-ft flare (one side). The option \"35.58\" subtracts the empty top part as a rectangle 2.6 ft wide instead of a trapezoid.",
+  "solve": "const w=1.2+1.8*1.75/2.25; return ((1.2+w)/2*1.75*10*7.48/7.2).toFixed(2);",
+  "distractor_solve": {
+   "25.45": "const w=1.2+1.8*0.5/2.25; return ((1.2+w)/2*1.75*10*7.48/7.2).toFixed(2);",
+   "28.18": "const w=1.2+0.9*1.75/2.25; return ((1.2+w)/2*1.75*10*7.48/7.2).toFixed(2);",
+   "35.58": "const w=1.2+1.8*1.75/2.25; return (((1.2+3.0)/2*2.25-w*0.5)*10*7.48/7.2).toFixed(2);"
+  },
+  "quantity_asked": "minutes to fill the trough to a depth of 1.75 ft at 7.2 gal/min.",
+  "distractor_kind": {
+   "25.45": "error path: width taken 1.75 ft below the top. (a) no limiting value. (b) adjacent problem (depth measured from top); inside. (c) cheapest bounds: rectangle of bottom width 1.2 x 1.75 gives 21.82 (lower); depth fraction of the full trough gives 38.18 (upper, since the trough narrows downward); 25.45 strictly inside (21.82, 38.18). (d) real.",
+   "28.18": "error path: half the flare. (a) no. (b) adjacent; inside (21.82, 38.18). (c) inside. (d) real.",
+   "35.58": "error path: empty part subtracted as a rectangle. (a) no. (b) adjacent; inside (21.82, 38.18). (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "25.45": {
+    "direction": "under",
+    "error_kind": "surface width measured from top"
+   },
+   "28.18": {
+    "direction": "under",
+    "error_kind": "flare on one side only"
+   },
+   "35.58": {
+    "direction": "over",
+    "error_kind": "empty region taken as rectangle"
+   }
+  },
+  "bounds": [
+   "time > 1.2 x 1.75 x 10 x 7.48 / 7.2 = 21.82 (bottom-width rectangle)",
+   "time < (1.75/2.25) x full-trough time = 38.18 (trough narrows downward)"
+  ],
+  "mechanism": [
+   "trapezoidal trough partial depth",
+   "width at depth by linear interpolation",
+   "cubic feet to gallons 7.48",
+   "fill time at gallons per minute"
+  ],
+  "arith_class_check": "No. All options two-decimal with unrelated cents; the stem implies no integrality.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "interior options by value 28.18 and 34.54: both two-digit two-decimal, nonzero last digits; same shape.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "No special-condition clause; errors come from the geometry steps (where the surface width is measured, how the flare is split, how the empty part is subtracted). Directions mixed (2 under, 1 over).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior; every option strictly inside the cheap bracket (21.82, 38.18); no containment value used as a distractor."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-10",
+  "difficulty": "hard",
+  "topic_tag": "net earnings rate",
+  "subskill": "fee, tips, per-mile costs and time to a net hourly rate",
+  "prompt": "During one week, a rideshare driver's riders paid $1,148 in fares. The rideshare company kept 20% of the fares as its fee, and the driver received the rest. Riders also gave the driver $186 in tips, all of which the driver kept. That week the driver's car traveled 640 miles, 402 of them with a rider in the car. The car gets 31 miles per gallon, gasoline cost $3.59 per gallon, and the driver estimates the car's other expenses at $0.11 per mile traveled. The driver was logged in to the app for 42 hours 30 minutes. To the nearest cent, what were the driver's earnings per logged-in hour after gasoline and the car's other expenses?",
+  "choices": [
+   "23.49",
+   "22.69",
+   "23.85",
+   "22.59"
+  ],
+  "correct_answer": "22.59",
+  "explanation": "Income: 0.80(1,148) + 186 = $1,104.40. Gasoline: (640 ÷ 31)(3.59) ≈ $74.12. Other expenses: 0.11(640) = $70.40. Net: 1,104.40 - 74.12 - 70.40 ≈ $959.88. Per hour: 959.88 ÷ 42.5 ≈ $22.59. The option \"22.69\" uses 42.30 hours for 42 hours 30 minutes. The option \"23.49\" removes the fee by dividing the fares by 1.20. The option \"23.85\" charges gasoline and other expenses only for the 402 miles with a rider.",
+  "solve": "const net=1148*0.8+186-640/31*3.59-0.11*640; return (net/42.5).toFixed(2);",
+  "distractor_solve": {
+   "22.69": "const net=1148*0.8+186-640/31*3.59-0.11*640; return (net/42.30).toFixed(2);",
+   "23.49": "const net=1148/1.2+186-640/31*3.59-0.11*640; return (net/42.5).toFixed(2);",
+   "23.85": "const net=1148*0.8+186-402/31*3.59-0.11*402; return (net/42.5).toFixed(2);"
+  },
+  "quantity_asked": "(fares after the 20% fee + tips - gasoline - other expenses for 640 miles) / 42.5 hours.",
+  "distractor_kind": {
+   "22.69": "error path: 42 h 30 min read as 42.30 h. (a) no limiting value. (b) not an adjacent extreme. (c) cheapest bounds: before costs, 1104.40/42.5 = 25.99 (upper); costs under $0.25 per mile give > (1104.40 - 160)/42.5 = 22.22 (lower); 22.69 strictly inside. (d) real.",
+   "23.49": "error path: fee removed by dividing by 1.20. (a) no. (b) adjacent percent operation; inside (22.22, 25.99). (c) inside. (d) real.",
+   "23.85": "error path: costs only on miles with a rider. (a) no. (b) adjacent base; inside (22.22, 25.99). (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "22.69": {
+    "direction": "over",
+    "error_kind": "h:mm read as decimal hours"
+   },
+   "23.49": {
+    "direction": "over",
+    "error_kind": "percent fee removed by division"
+   },
+   "23.85": {
+    "direction": "over",
+    "error_kind": "costs on paid miles only"
+   }
+  },
+  "bounds": [
+   "rate < 1104.40/42.5 = 25.99 (costs are positive)"
+  ],
+  "mechanism": [
+   "net earnings per hour",
+   "platform fee percent of fares",
+   "cost per mile and fuel cost",
+   "hours and minutes to decimal hours"
+  ],
+  "arith_class_check": "No. Net divided by 42.5 is non-terminating; all options two-decimal with unrelated cents.",
+  "one_sided_check": "Key smallest. The three distractors come from three unrelated steps (time conversion, removing a percent, mileage base). Natural errors also push DOWN: taking the 20% fee from the tips too gives 21.71, below the key; so the stem does not signal a direction.",
+  "interior_parity_check": "interior options by value 22.69 and 23.49: both two-digit two-decimal, nonzero last digits; same shape.",
+  "cheap_bound_check": "Cheapest bounds: income before costs per hour, 25.99 (upper, above every option), and costs under $0.25 per mile, 22.22 (lower, below every option). The nearest distractor 22.69 is 0.10 (0.4%) above the key; only the exact time conversion separates them.",
+  "trap_check": "Clauses: \"20% of the fares\" (fee not on tips) - applying it to tips gives 21.71 (under, not an option), removing it by division gives 24.05 (over); \"per mile traveled\" - using rider miles gives 24.42 (over). Time conversion (23.24) is not a clause. At most one option per clause.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; nearest distractor 0.4% away; three distinct steps; natural under error exists; cost-free upper bound 25.99 kills nothing."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-11",
+  "difficulty": "medium",
+  "topic_tag": "reading a reimbursement schedule",
+  "subskill": "mileage, full and partial meal days, hotel nights with tax",
+  "prompt": "A company reimburses an employee's business trip as follows: $0.67 per mile driven; a meal allowance of $64 for each full day of travel and 70% of that amount for the day of departure and for the day of return; and the hotel's charges for each night, including tax. Dev left home on Tuesday, April 8, and returned home on Friday, April 11. His hotel charged $139 per night plus a 12% tax. He drove 412 miles to the work site, 412 miles back, and 58 miles locally during the trip. What is Dev's total reimbursement, in dollars?",
+  "choices": [
+   "1230.78",
+   "1275.58",
+   "1119.90",
+   "1236.72"
+  ],
+  "correct_answer": "1275.58",
+  "explanation": "Mileage: 412 + 412 + 58 = 882 miles × 0.67 = $590.94. Meals: April 8 and April 11 are travel days at 0.70(64) = $44.80 each, and April 9 and 10 are full days at $64 each: $217.60. Hotel: nights of April 8, 9, and 10 at 139(1.12) = $155.68 each: $467.04. Total $1,275.58. The option \"1236.72\" leaves out the 58 local miles. The option \"1230.78\" pays 70% of $64 once for the two travel days together instead of for each of them. The option \"1119.90\" pays for only 2 hotel nights.",
+  "solve": "return (0.67*882+2*64+2*0.7*64+3*139*1.12).toFixed(2);",
+  "distractor_solve": {
+   "1236.72": "return (0.67*(412+412)+2*64+2*0.7*64+3*139*1.12).toFixed(2);",
+   "1230.78": "return (0.67*882+2*64+0.7*64+3*139*1.12).toFixed(2);",
+   "1119.90": "return (0.67*882+2*64+2*0.7*64+2*139*1.12).toFixed(2);"
+  },
+  "quantity_asked": "mileage for 882 miles + meal allowance for April 8-11 + hotel with tax for the nights of April 8, 9, 10.",
+  "distractor_kind": {
+   "1236.72": "error path: local miles left out. (a) no limiting value. (b) adjacent \"highway miles only\" problem; inside. (c) cheapest estimate over the whole total: 882 x 0.67 + 3 x 139 x 1.12 + meals between 4 x 44.80 and 4 x 64 needs the mileage, night count and hotel tax (the item's own work); the only bound cheaper than the work is meals <= 4 x 64, total <= 1313.98, above every option. (d) real.",
+   "1230.78": "error path: the 70% amount paid once for both travel days. (a) no. (b) adjacent reading of the clause; inside. (c) inside (below 1313.98). (d) real.",
+   "1119.90": "error path: 2 hotel nights. (a) no. (b) adjacent count; inside. (c) inside. (d) real."
+  },
+  "distractor_meta": {
+   "1236.72": {
+    "direction": "under",
+    "error_kind": "local miles omitted"
+   },
+   "1230.78": {
+    "direction": "under",
+    "error_kind": "partial-day amount paid once"
+   },
+   "1119.90": {
+    "direction": "under",
+    "error_kind": "hotel nights undercounted"
+   }
+  },
+  "bounds": [
+   "total <= 0.67 x 882 + 4 x 64 + 3 x 155.68 = 1313.98"
+  ],
+  "mechanism": [
+   "per diem meal allowance",
+   "partial day departure and return",
+   "hotel nights with tax",
+   "mileage reimbursement"
+  ],
+  "arith_class_check": "No. Two-decimal totals with distinct cents (.78, .58, .90, .72); no stem integrality or divisibility.",
+  "one_sided_check": "Key largest. Errors come from three different parts (mileage, meal clause, night count). Natural errors also push UP: paying the full rate on the travel days gives 1313.98, counting 4 nights gives 1431.26, and counting the local miles both ways gives 1314.44; so the stem does not signal a direction.",
+  "interior_parity_check": "interior options by value 1230.78 and 1236.72: both 4-digit two-decimal, nonzero last digits; same shape.",
+  "cheap_bound_check": "Cheapest bound read off the stem: meals at most 4 x 64, total <= 1313.98 (upper; above all options). A lower bound with every day at the 70% rate, 1237.18, still requires the mileage total, the night count and the taxed hotel rate, i.e. all of the item's work except one multiplication; it would sit above 1236.72 and 1230.78, so I mark this item at-risk. Nearest distractor 1236.72 is 38.86 (3.0%) below.",
+  "trap_check": "Clauses: \"70% ... for the day of departure and for the day of return\" - ignoring gives 1313.98 (over, not an option), misreading as one combined amount gives 1230.78 (under); \"for each night\" - the night count (1119.90) comes from date arithmetic; the omitted local miles (1236.72) is not a clause. One distractor per clause; natural errors exist in both directions.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key, three lowering errors; an all-70% meal floor (1237.18) is nearly the full work but would sit above two distractors."
+  }
+ },
+ {
+  "domain": "Integrating Essential Skills",
+  "id": "AM25I-12",
+  "difficulty": "medium",
+  "topic_tag": "comparing two price plans",
+  "subskill": "per-ride free minutes, unlock fees and per-minute rates",
+  "prompt": "A scooter-share company offers two ways to pay. Pay-per-ride: $1.15 to unlock a scooter for each ride, plus $0.39 per minute of riding. Monthly pass: $22.99 per month; with the pass there is no unlock fee, the first 15 minutes of each ride are free, and each minute of a ride beyond its first 15 minutes costs $0.27. Last month Theo took 11 rides of 12 minutes each, 6 rides of 24 minutes each, and 5 rides of 37 minutes each. How much less, in dollars, would Theo have paid last month with the monthly pass than with pay-per-ride?",
+  "choices": [
+   "118.14",
+   "93.27",
+   "137.82",
+   "113.67"
+  ],
+  "correct_answer": "137.82",
+  "explanation": "Pay-per-ride: 22 rides × 1.15 = $25.30 plus 461 minutes × 0.39 = $179.79, total $205.09. Pass: the 12-minute rides are free; the others have 6(9) + 5(22) = 164 charged minutes, 164 × 0.27 = $44.28, so the pass costs 22.99 + 44.28 = $67.27. Difference: $137.82. The option \"118.14\" charges the pass minutes at $0.39. The option \"113.67\" charges the unlock fee only once. The option \"93.27\" treats the pass as making only rides of 15 minutes or less free, charging every minute of longer rides.",
+  "solve": "const ppr=22*1.15+0.39*(11*12+6*24+5*37); const pass=22.99+0.27*(6*9+5*22); return (ppr-pass).toFixed(2);",
+  "distractor_solve": {
+   "118.14": "const ppr=22*1.15+0.39*(11*12+6*24+5*37); const pass=22.99+0.39*(6*9+5*22); return (ppr-pass).toFixed(2);",
+   "113.67": "const ppr=1.15+0.39*(11*12+6*24+5*37); const pass=22.99+0.27*(6*9+5*22); return (ppr-pass).toFixed(2);",
+   "93.27": "const ppr=22*1.15+0.39*(11*12+6*24+5*37); const pass=22.99+0.27*(6*24+5*37); return (ppr-pass).toFixed(2);"
+  },
+  "quantity_asked": "pay-per-ride total minus monthly-pass total for the 22 rides.",
+  "distractor_kind": {
+   "118.14": "error path: pass minutes charged at the pay-per-ride rate. (a) no limiting value. (b) adjacent rate; inside. (c) cheapest bounds: savings >= 205.09 - (22.99 + 0.27 x 461) = 57.63 and savings <= 205.09 - 22.99 = 182.10; 118.14 strictly inside. (d) real.",
+   "113.67": "error path: one unlock fee. (a) no. (b) adjacent; inside (57.63, 182.10). (c) inside. (d) real.",
+   "93.27": "error path: rides over 15 minutes charged in full. (a) no parameter extreme. (b) adjacent misreading; it equals the pass cost bound \"at most every minute of the rides longer than 15\", which needs the ride classification (part of the item's work), so I flag the item at-risk. (c) inside (57.63, 182.10). (d) real."
+  },
+  "distractor_meta": {
+   "118.14": {
+    "direction": "under",
+    "error_kind": "wrong per-minute rate on pass"
+   },
+   "113.67": {
+    "direction": "under",
+    "error_kind": "unlock fee charged once"
+   },
+   "93.27": {
+    "direction": "under",
+    "error_kind": "free minutes misread for long rides"
+   }
+  },
+  "bounds": [
+   "savings <= 205.09 - 22.99 = 182.10",
+   "savings >= 205.09 - (22.99 + 0.27 x 461) = 57.63"
+  ],
+  "mechanism": [
+   "monthly pass versus pay per ride",
+   "first 15 minutes of each ride free",
+   "unlock fee per ride",
+   "per-minute rate"
+  ],
+  "arith_class_check": "No. Two-decimal differences with unrelated cents; no stem integrality.",
+  "one_sided_check": "Key largest. Errors come from three different parts (pass rate, unlock fee, free-minute rule). Natural errors push UP too: crediting the unused free minutes of the 12-minute rides gives 146.73, and forgetting the $22.99 pass price gives 160.81; the stem does not signal one direction.",
+  "interior_parity_check": "interior options by value 113.67 and 118.14: both 3-digit two-decimal, nonzero last digits; same shape.",
+  "cheap_bound_check": "Cheapest bounds: 57.63 (lower) and 182.10 (upper) - all options inside. A bound separating the key from 118.14 (14% below) requires counting charged pass minutes per ride, the item's own work. Residual: 93.27 coincides with the coarser bound that charges every minute of the long rides; it is below the key, so it cannot separate the key, but it could be called ON a bound.",
+  "trap_check": "Clauses: \"for each ride\" (unlock) - misread as once gives 113.67 (under); \"first 15 minutes of each ride are free\" - misread for long rides gives 93.27 (under); crediting unused free minutes gives 146.73 (over, not an option). The rate swap (118.14) is not a clause. One distractor per clause.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key; 93.27 equals a coarse pass-cost bound (all long-ride minutes charged); nearest distractor 14% below the key."
+  }
+ }
+]

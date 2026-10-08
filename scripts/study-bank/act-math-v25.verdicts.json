@@ -1,0 +1,271 @@
+{
+ "_note": "act-math-v25 stage 2: two Claude graders on render 1f365cf4698b7538 (author fields stripped, no unrecognised field), both quote it at start and end; 124/124 picks equal the key; 0 second-defensible; error_directions / extreme_single_bound / announced_trap present on all 62 items in both files. Rule 6: the 10 unanimous-correct candidates (AM25F-01, AM25A-08, AM25N-01, AM25S-01, AM25F-03, AM25F-12, AM25I-01, AM25N-04, AM25N-02, AM25F-13) carry no grader-named shortcut, so none drops on rule 6.",
+ "would_keep": {
+  "AM25A-01": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM25A-04": {
+   "domain": "Algebra",
+   "banked_difficulty": "hard"
+  },
+  "AM25A-05": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM25A-06": {
+   "domain": "Algebra",
+   "banked_difficulty": "easy"
+  },
+  "AM25A-08": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM25A-10": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM25A-12": {
+   "domain": "Algebra",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-01": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-02": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-03": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-04": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-05": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-06": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25N-01": {
+   "domain": "Number and Quantity",
+   "banked_difficulty": "easy"
+  },
+  "AM25N-02": {
+   "domain": "Number and Quantity",
+   "banked_difficulty": "medium"
+  },
+  "AM25N-03": {
+   "domain": "Number and Quantity",
+   "banked_difficulty": "easy"
+  },
+  "AM25N-04": {
+   "domain": "Number and Quantity",
+   "banked_difficulty": "easy"
+  },
+  "AM25F-08": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-09": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-10": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-12": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-13": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25F-14": {
+   "domain": "Functions",
+   "banked_difficulty": "medium"
+  },
+  "AM25S-01": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "easy"
+  },
+  "AM25S-02": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "medium"
+  },
+  "AM25S-03": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "medium"
+  },
+  "AM25S-04": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "hard"
+  },
+  "AM25S-05": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "medium"
+  },
+  "AM25S-06": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "medium"
+  },
+  "AM25S-07": {
+   "domain": "Statistics and Probability",
+   "banked_difficulty": "medium"
+  },
+  "AM25G-01": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM25G-02": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM25G-03": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM25G-04": {
+   "domain": "Geometry",
+   "banked_difficulty": "easy"
+  },
+  "AM25G-05": {
+   "domain": "Geometry",
+   "banked_difficulty": "easy"
+  },
+  "AM25G-06": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM25G-07": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM25G-08": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM25G-09": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM25G-10": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM25G-11": {
+   "domain": "Geometry",
+   "banked_difficulty": "medium"
+  },
+  "AM25I-01": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  },
+  "AM25I-02": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  },
+  "AM25I-03": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "hard"
+  },
+  "AM25I-04": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  },
+  "AM25I-05": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  },
+  "AM25I-06": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  },
+  "AM25I-07": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  },
+  "AM25I-09": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "hard"
+  },
+  "AM25I-12": {
+   "domain": "Integrating Essential Skills",
+   "banked_difficulty": "medium"
+  }
+ },
+ "would_drop": {
+  "AM25A-02": {
+   "domain": "Algebra",
+   "reason": "rule 7 (a): 3.17, 3.65, 4.13 an evenly spaced run (step exactly 0.48) with the key at its end (grader B option_structure; confirmed by hand); 4.13 weak by both"
+  },
+  "AM25A-03": {
+   "domain": "Algebra",
+   "reason": "rule 3: survivors 2 by both; the \"closer to 9.4\" cut at x > 3.1 lies right of the |2x-3| <= 11.6 interval centre 1.5, so length < 5.8 (A) / x > 0 gives length < 7.3 (B): kills 11.5 and 10.4 (confirmed); B also names (c) one-sided"
+  },
+  "AM25A-07": {
+   "domain": "Algebra",
+   "reason": "rule 8 (c) + rule 10: key largest; S sums a square per real root, so every dropped-root error lowers S (both graders, confirmed); Vieta gives 14.25 = sum over all roots without factoring (A: cheaper than the work); 6.25/10.25/14.25 a +4 run"
+  },
+  "AM25A-09": {
+   "domain": "Algebra",
+   "reason": "rule 3 / rule 7 (b): Cal pays 1.5a in whole cents, so a has an even number of cents: kills 29.91 and 21.91 (grader B arith_class, confirmed by hand: 1.5 x 0.91 is not whole cents), survivors 2"
+  },
+  "AM25A-11": {
+   "domain": "Algebra",
+   "reason": "rule 4 + rule 10: 23 and 33 weak by both; 43 - 29 = 14 = the stem-forced Ana-Ben gap, so only 43 has a partner 14 below it (both graders, extreme_single_bound cheaper than the work; confirmed)"
+  },
+  "AM25F-07": {
+   "domain": "Functions",
+   "reason": "rule 3 + rule 4: h = 2^g > 0 and h(3) = 4 give rate < 1.6, killing 19.53 and 7.39 (both graders; A adds h(0.5) in (0,1) -> rate > 1.2 killing 0.99); 19.53 and 7.39 weak by both"
+  },
+  "AM25N-05": {
+   "domain": "Number and Quantity",
+   "reason": "rule 3 + rule 10: key largest; |11 - 4i| > 11 so |z| > 11/5 = 2.2 kills all three distractors (both graders, cheaper than the work; confirmed)"
+  },
+  "AM25N-06": {
+   "domain": "Number and Quantity",
+   "reason": "rule 3: (5, 2) sits at ~22 deg, a 35 deg CCW rotation stays in quadrant I, so y > 0 kills -1.23 and -3.95 (both graders, confirmed); survivors 2"
+  },
+  "AM25F-11": {
+   "domain": "Functions",
+   "reason": "rule 3 + rule 10: theta < 45 deg (sin 0.52 < 0.707), and after the sign identities the value is sin - cos - tan < -cos < -0.707: kills 0.27, 0.77 (both) and -0.61 (B); confirmed"
+  },
+  "AM25I-08": {
+   "domain": "Integrating Essential Skills",
+   "reason": "rule 8 (c): key largest; the stem announces two reduction clauses (copays do not count toward the deductible; payments limited to an out-of-pocket maximum) and misapplying either, plus the coinsurance-base error, lands below (grader A one_sided + announced_trap; confirmed). Each clause makes one option, so not rule 11"
+  },
+  "AM25I-10": {
+   "domain": "Integrating Essential Skills",
+   "reason": "rule 8 (c): key smallest; the planted 402 rider-miles and the 42 h 30 min conversion both visibly raise the hourly figure, and the fee-by-division error also lands above (both graders; confirmed)"
+  },
+  "AM25I-11": {
+   "domain": "Integrating Essential Skills",
+   "reason": "rule 8 (c): key largest; every listed error is an omission from an additive reimbursement (local miles, one partial day, a hotel night), so all push below (grader A; confirmed) - the v23 \"every error forgets a cost\" shape"
+  }
+ },
+ "read_not_confirmed": {
+  "AM25A-10": "both graders survivors 2 via concavity/tangent bound (increase > 36.1); NOT confirmed as cheaper than the work: the bound 3.5(d1+d2)/1.5 > 7d1/1.5 needs sqrt(60) and costs about what the exact (11.25^2)/1.5 - 40 costs, and the tangent version is calculus. Kept under rule 3 (\"rejectable only by doing the item's own work\")",
+  "AM25F-02": "A survivors 2 by plugging in x = 0.9 (5^1.8 vs 2^1.9): backsolving, the item's work; B 4. Kept",
+  "AM25F-05": "A survivors 2 via 11/6 < 2^0.9 (needs 2^0.9 = 1.866, i.e. the log the item asks for); B 3. Kept; 5.459 dead on the (2,3) bracket by both",
+  "AM25I-02": "A survivors 2 via 1200/117 < 10.43: needs the 2160/960/1200 worker-hour bookkeeping that is the item. B 4. Kept",
+  "AM25G-11": "B survivors 2 via \"dilation pushes the image farther from P\" (PQ > 10): needs the reflection and a direction argument about the dilation centre; A 4 and A names PQ >= 13.5 only after half the work. Kept",
+  "AM25G-04": "1036.73 is the limiting case ON the slant > height bound (both graders, confirmed dead); 3 survive, so kept under rule 3",
+  "AM25F-10": "one_sided named by both; NOT confirmed: the most natural shortcut (width proportional to drop, 20 x 18/5 = 72) overshoots, so the stem does not show every error undershooting; extreme_single_bound not cheaper than the work (both)",
+  "AM25G-10": "B option_structure/one_sided: 79/66/59 = (192 - arc)/2; NOT confirmed: the arcs are not in the stem (doubling the given angles is the work), and the run is not evenly spaced",
+  "AM25I-05": "B one_sided; NOT confirmed: a natural error the other way exists (area split applied to the whole 2,535 gives 648.49) and the closet clause makes only one option (rule 11 no)",
+  "AM25S-05": "one_sided named by both on the overlap error only; NOT confirmed: the overlap clause makes one option (1.99) and the other two errors are not stem-predictable",
+  "AM25F-14": "A 199 by a growth-ratio extrapolation, B 288 by table parity: both pattern heuristics, neither stem-forced without solving for p, q; each grader 3 survivors. Kept",
+  "AM25A-05/AM25A-08": "B duplicate_note \"substitute into a formula and solve\": read as different mechanisms (Doppler unknown in a denominator after a temperature chain; wind chill with T in two terms factored out). Both kept",
+  "AM25N-04": "A interior_parity: 90.02/90.04 near-twins - same display shape (4 sig. digits, 2 dp), not a niceness asymmetry; no rule 9",
+  "AM25S-07": "A interior_parity: 0.43 + 0.58 = 1.01, not an exact complement; no rule 9"
+ }
+}

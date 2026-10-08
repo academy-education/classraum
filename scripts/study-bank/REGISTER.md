@@ -1637,6 +1637,65 @@ recorded only in a commit message is a finding nobody reads.
 
   **Ships with:** `PREREG-ALG24-2026-10-08.md`, `sat-math-v24-alg{-a,-b,}.batch.json`, `.preflight-dropped.json`, `.dropped.json`, `.held.batch.json`, graders `alg24.ws-{d,e,f}{.stage1,}.json`, `m24alg.verdict.json`, solvers `alg24-oo.solver-{a,b,c}.json` + `alg24-oo.{blind,key}.json` (blind sha d0ef89d9), `write-alg24-ledger.mjs`.
 
+- **2026-10-08** — **`act-math-v25` INSERTED 50 OF 62. ACT MATH 16 -> 17 FORMS (801 items; form-capacity and next-form). FORM 18 NOT BOUGHT: ALGEBRA 7 OF 9 KEPT, SO FORM 18 NEEDS ALGEBRA +2.** Every other form-18 deficit was met: Geometry 11/8, IES 9/8, Functions 12/7, S&P 7/5, N&Q 4/4. Bars pre-registered before authoring: `ACT-MATH-V25-PREREGISTERED.md` (committed alone, 2401805f). It keeps all of v24's bars, bans and checks, interior niceness included, and changes four things after v24's stage-4 hold:
+  - **Extreme keys commissioned at 36/62 = 58.1%.** The extremity gate is run on the PROJECTED kept set, using the new `key-extremity-projection.mjs`. It derives v24's survival from v24's own files (extreme-key 15/28, interior 24/31). The break-test fails v24 at 38.5% and v23 at 40.0%.
+  - **(c) is tested by the graders on every item** through a required `error_directions` field. No IES stem may announce its own trap (rule 11).
+  - **No single cheap bound on an extreme key** (rule 10).
+  - **Functions got a double arm** (14 items, two authors on disjoint sub-topics).
+
+  **Why 58% and not 60%.** The kept set must also pass `check-key-magnitude`, so overshooting fails at stage 4 just as undershooting did. With no differential drop, 60% would have kept about 60% at an extreme, which gives an interior z of about −2.0. On the authored set the magnitude interior z (−2.09) was therefore pre-registered as REPORTED; its per-side z (1.38 / 1.11) was gated through the projection.
+
+  **Stage 0 PASS after the single return.** Merged 62 (sha 180fc8382bd3ee16):
+  - Sandbox 62/62, distractors 186/186, no hub structure.
+  - Key at an extreme 36/62. Key position 18/26/18.
+  - Projection PASS: v24-rate 48.9% (band 45–55); equal-rate interior z −1.76; author-kept 29/53 = 54.7%.
+  - (c) mechanical: 0 single-kind of 36 extreme-key items. Interior niceness: 0 flags.
+  - Arith-class: keys lone in a class 2/62 vs distractors 10/186. Both key lines were read against their stems; neither class is stem-implied.
+
+  **The return (6 items).**
+  - **The hand keyword search found two duplicates that no script flagged.** `AM25A-08` ~ act db88e25f (phone battery, two drain rates). `AM25G-10` ~ the held AM23G-10 (circle centre on a chord's perpendicular bisector).
+  - **Three in-batch overlaps:** G-06 ~ G-01 (side-weighted vertex average), F-07 ~ F-06 (absolute-value cases), N-06 ~ A-02 (2x2 system, then a sum).
+  - **My IES trap-clause read returned `AM25I-02`:** one fee clause produced two distractors in the same direction.
+  - **Fifth batch running** where the keyword search finds what both scripts miss. Author A had grepped the battery row and never read it, because its output stopped at 6 hits.
+  - Final dup scans: Jaccard 0 FLAG / 34 near; mechanism check 0 FLAG / 39 near; all read by hand.
+
+  **Stage 1 PASS:**
+
+      CANDIDATE     43/186 = 23.1%   line 25.8%   margin −2.7
+      LIVE CONTROL  54/186 = 29.0%   line 25.8%   margin +3.2   (62 matched 1:1 by domain, v16–v25 excluded)
+      candidate minus control  −5.9    (HOLD bar +10)
+      unanimous-correct        candidate 10/62 = 16.1%  vs  control 14/62 = 22.6%   −6.5  (HOLD bar +15)
+      pairwise agreement 80.1% vs 26.8% if independent: one solver sampled three times
+  Blind sha 32f9b3e2547a0ca1. **Part of this pass rides on position, and it was pre-registered to be printed.** The solvers picked an interior option on 173 of 186 candidate picks, and the candidate arm has 58% extreme keys. Matched by position, the arms are close: interior-key hits 35/78 = 44.9% vs the control's 42/99 = 42.4%; extreme-key hits 8/108 = 7.4% vs 9/78 = 11.5%.
+
+  **Stage 2** (render 1f365cf4698b7538, author fields stripped, quoted by both graders at start and end). **124/124 picks on key, 0 second-defensible.** The new fields were present on all 62 items in both outputs. Difficulty agreement 47/62. **Kept 50, dropped 12:**
+  - Rule 3, bounds: A-03 (the "closer than" cut makes the length < 5.8), A-09 (whole-cent parity), F-07 (h > 0 and h(3) = 4), N-05 (|11 − 4i| > 11 kills all three), N-06 (stays in quadrant I), F-11 (< −cos θ < −0.707).
+  - Rule 4: A-11 (two distractors weak by both; 43 − 29 = the stem-forced gap of 14).
+  - Rule 7: A-02 (an evenly spaced run 3.17/3.65/4.13 with the key at its end).
+  - Rule 8: A-07 (dropped roots only lower a sum of squares; Vieta gives the key), I-08, I-10, I-11.
+  - Rule 10 also on A-07, A-11, N-05, F-11. Rule 11: none, because each IES clause made at most one option.
+  - **Not confirmed, and kept:** A-10, where both graders gave 2 survivors via a concavity bound that costs as much as the item. Also F-02, F-05, I-02 and G-11 (single-grader survivors-2, each needing the item's own work), and one_sided named but not confirmed on F-10, G-10, I-05 and S-05. Each is recorded in `act-math-v25.verdicts.json`.
+  - Banked difficulty: easy 7 / medium 39 / hard 4.
+
+  **Stage 4 PASS:**
+  - Kept 50 (sha cc375dd4e8467513): preflight PASS with `check-key-magnitude` gating, z 0.38 / 0.82 / −1.01.
+  - **Key at an extreme 26/50 = 52.0%**, position 14/24/12.
+  - The projection was close: it predicted 48.9% at v24's rates, and graders kept extreme-key items at 26/36 = 72.2% and interior at 24/26 = 92.3% (v24: 53.6% and 77.4%). The differential survived (−20 points) but fell less often than in v24.
+  - Inserted with `BANK_FAMILY=act BANK_COHORT=act-math-v25 BANK_BAND=mixed`. `verify-act-draw`: act/math draws 45 of 45.
+
+  **For the next author (v26: Algebra +2 for form 18).**
+  1. **Algebra is the domain that fails,** kept 7 of 12. Five of its drops are option-set tells the author could have seen with the stem in hand: an evenly spaced run, a stem gap read off an option pair, whole-cent parity, a sum of squares that only falls when roots drop, and a containment cut.
+  2. **Three of the four (c) drops were IES additive-total stems.** Reimbursement, earnings net of costs and plan payments push every omission one way. Rule 11 caught none of them, because each clause made one option; the (c) test on every item did.
+  3. The projection's band held. Keep it, and re-derive the rates from v25's files as well as v24's.
+  4. A 2-item Algebra top-up is again the kind of batch the per-batch gates cannot measure (v21/v22). Commission at least 10 Algebra items so key-extremity and magnitude run alone.
+
+  Evidence:
+  - Pre-registration and tools: `ACT-MATH-V25-PREREGISTERED.md`, `key-extremity-projection.mjs`, `act-math-v25-attack-draw.mjs`.
+  - Batches: `act-math-v25{-a,-b1,-b2,-c,-d,}.batch.json`, `act-math-v25.kept.batch.json`, `act-math-v25.drops.json`, `act-math-v25.verdicts.json`, `act-math-v25.qc.json`.
+  - Attack: `act-math-v25-attack.{blind,key,controls,solver-a,solver-b,solver-c}.json`.
+  - Grade: `act-math-v25-grade.{batch,grade,gradekey}.json`, `act-math-v25.grader-{a,b}.json`.
+  - Ledger `act-math-v25-kept-2026-10-08`. `form-capacity`: ACT Math 17 forms (801; Algebra 142 / 8 binding). `next-form`: Algebra +2.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
