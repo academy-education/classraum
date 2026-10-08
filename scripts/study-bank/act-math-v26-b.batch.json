@@ -1,0 +1,842 @@
+[
+ {
+  "id": "AM26N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "powers of i in a weighted sum",
+  "subskill": "group the cycle of i, then modulus",
+  "prompt": "For i = √(−1), let S = 1·i + 2·i² + 3·i³ + 4·i⁴ + ⋯ + 30·i³⁰, the sum of k·iᵏ for k = 1 through 30. The number S can be written as a + bi, where a and b are real numbers. To the nearest hundredth, what is √(a² + b²), the absolute value of S ?",
+  "choices": [
+   "21.21",
+   "21.93",
+   "45.88",
+   "46.49"
+  ],
+  "correct_answer": "21.93",
+  "explanation": "The powers of i repeat with period 4: i, −1, −i, 1. Each block of four consecutive terms, k = 4m + 1 through 4m + 4, contributes (4m + 1)i − (4m + 2) − (4m + 3)i + (4m + 4) = 2 − 2i. Terms 1 through 28 form 7 blocks, so they sum to 14 − 14i. The leftover terms are 29·i²⁹ = 29i and 30·i³⁰ = −30. So S = −16 + 15i and |S| = √(256 + 225) = √481 ≈ 21.93. The option 21.21 treats the 30 terms as 7.5 blocks (15 − 15i). The option 45.88 reduces i²⁹ to −i. The option 46.49 reduces i³⁰ to +1.",
+  "solve": "const pw=k=>[[1,0],[0,1],[-1,0],[0,-1]][k%4];let a=0,b=0;for(let k=1;k<=30;k++){a+=k*pw(k)[0];b+=k*pw(k)[1];}return Math.hypot(a,b).toFixed(2);",
+  "distractor_solve": {
+   "21.21": "return Math.hypot(7.5*2,7.5*2).toFixed(2);",
+   "45.88": "return Math.hypot(-16,-43).toFixed(2);",
+   "46.49": "return Math.hypot(44,15).toFixed(2);"
+  },
+  "quantity_asked": "the absolute value √(a² + b²) of S = Σ k·i^k for k = 1..30, to the nearest hundredth.",
+  "distractor_kind": {
+   "21.21": "error path: each block of 4 consecutive terms adds 2 − 2i, and the 30 terms are treated as 7.5 blocks, giving 15 − 15i. (a) no stem-forced bound on |S| near it. (b) not an intermediate of the correct process (the true block count is 7 plus two leftover terms). (c) no one-step estimate of |S| exists short of the block sum and the two leftovers; 21.21 is strictly inside any range a student could state. (d) real error: scaling the block sum by 30/4.",
+   "45.88": "error path: 7 blocks give 14 − 14i, then i²⁹ is reduced as −i (29 = 4·7 + 1 misread as remainder 3), so S = 14 − 14i − 29i − 30 = −16 − 43i. (a) no bound. (b) a different leftover term, not an intermediate. (c) no estimate separates it. (d) real cycle-reduction slip.",
+   "46.49": "error path: 7 blocks give 14 − 14i, 29·i²⁹ = 29i is right, but i³⁰ is taken as +1 (30 treated as a multiple of 4 after halving), so S = 14 + 15i + 30 = 44 + 15i. (a) no bound. (b) not an intermediate. (c) no estimate. (d) real cycle-reduction slip on the last term."
+  },
+  "distractor_meta": {
+   "21.21": {
+    "direction": "under",
+    "error_kind": "fractional block count"
+   },
+   "45.88": {
+    "direction": "over",
+    "error_kind": "i^29 reduced wrongly"
+   },
+   "46.49": {
+    "direction": "over",
+    "error_kind": "i^30 reduced wrongly"
+   }
+  },
+  "bounds": [
+   "|S| <= 1 + 2 + ... + 30 = 465 (triangle inequality): kills nothing",
+   "no lower bound short of computing the blocks"
+  ],
+  "mechanism": [
+   "weighted sum of powers of i",
+   "cycle of i with period 4",
+   "block sum 2 - 2i",
+   "modulus of a complex sum"
+  ],
+  "arith_class_check": "No. All four are positive two-decimal values; 21.21 = 15√2 and the key = √481 are both irrational square roots, and nothing in the stem makes |S| rational or an integer multiple of √2.",
+  "one_sided_check": "Key interior: one error lands below (21.21) and two above (45.88, 46.49).",
+  "interior_parity_check": "Interior by value: 21.93 and 45.88; both two-digit values with two non-zero decimals; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "No stem bound reaches the options; errors at different steps land on both sides; uniform two-decimal shape; no option pair differs by a stem number."
+  }
+ },
+ {
+  "id": "AM26N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "negative rational exponent in a scaling law",
+  "subskill": "ratio under a power law, invert the exponent",
+  "prompt": "Biologists model the resting heart rate H, in beats per minute, of a mammal with body mass M kilograms by H = 241M^(−1/4). Under this model, the resting heart rate of animal B is 25% lower than the resting heart rate of animal A, whose mass is 5.5 kilograms. To the nearest hundredth of a kilogram, what is the mass of animal B ?",
+  "choices": [
+   "17.38",
+   "5.91",
+   "13.43",
+   "29.33"
+  ],
+  "correct_answer": "17.38",
+  "explanation": "H_B/H_A = (M_B/M_A)^(−1/4). Since H_B is 25% lower, H_B/H_A = 0.75, so M_B/M_A = 0.75^(−4) = (4/3)⁴ = 256/81 ≈ 3.160, and M_B = 5.5·256/81 ≈ 17.38 kg. The option 5.91 applies the exponent −1/4 to 0.75 instead of inverting it. The option 13.43 takes the 25% on the wrong base (ratio 0.8). The option 29.33 replaces the fourth power with multiplication by 4.",
+  "solve": "return (5.5*Math.pow(0.75,-4)).toFixed(2);",
+  "distractor_solve": {
+   "5.91": "return (5.5*Math.pow(0.75,-0.25)).toFixed(2);",
+   "13.43": "return (5.5*Math.pow(1.25,4)).toFixed(2);",
+   "29.33": "return (5.5*4/0.75).toFixed(2);"
+  },
+  "quantity_asked": "the body mass, in kilograms, of animal B, to the nearest hundredth.",
+  "distractor_kind": {
+   "5.91": "error path: writes M_B/M_A = (H_B/H_A)^(−1/4) = 0.75^(−1/4), applying the model exponent to the rate ratio instead of solving for the mass ratio. (a) no bound sits on it; lower rate means heavier, M > 5.5, and 5.91 is strictly above 5.5. (b) not an intermediate. (c) a one-step check that the mass ratio must exceed the rate ratio 1/0.75 (M > 7.33) needs the student to reason about the exponent size, which is the item's concept; 5.91 is the one option it can reach. (d) real inversion error.",
+   "13.43": "error path: reads \"B is 25% lower than A\" as \"A is 25% higher than B\", so H_B/H_A = 1/1.25 = 0.8 and M_B = 5.5·1.25⁴. (a) no bound. (b) not an intermediate. (c) strictly inside any estimate: it is heavier than A, as it must be. (d) real percent-base error.",
+   "29.33": "error path: undoes the exponent −1/4 by dividing by the rate ratio and multiplying by 4: 5.5·4/0.75. (a) no bound. (b) not an intermediate. (c) any cheap cap (0.75⁻⁴ < 2⁴ = 16, so M < 88) leaves it strictly inside. (d) real \"exponent as multiplier\" error."
+  },
+  "distractor_meta": {
+   "5.91": {
+    "direction": "under",
+    "error_kind": "exponent applied, not inverted"
+   },
+   "13.43": {
+    "direction": "under",
+    "error_kind": "percent base reversed"
+   },
+   "29.33": {
+    "direction": "over",
+    "error_kind": "power treated as product"
+   }
+  },
+  "bounds": [
+   "B has the lower heart rate, so M_B > 5.5: kills nothing",
+   "mass ratio exceeds the rate ratio because |exponent| < 1: M_B > 5.5/0.75 = 7.33, kills 5.91 only (needs reasoning about the exponent)",
+   "0.75^(-4) < 2^4: M_B < 88, kills nothing"
+  ],
+  "mechanism": [
+   "power law with exponent -1/4",
+   "percent decrease in a rate",
+   "solve for mass ratio",
+   "heart rate scaling with body mass"
+  ],
+  "arith_class_check": "No. All options are two-decimal values with no shared factor; the key 5.5·256/81 has no integrality or divisibility property the stem announces.",
+  "one_sided_check": "Key interior: two errors below, one above.",
+  "interior_parity_check": "Interior by value: 13.43 and 17.38; both two-digit with two non-zero decimals; same shape.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Cheapest real bound (M > 7.33) kills one; 3 survive. Over-cap 88 leaves 29.33 inside. Distinct error kinds on both sides."
+  }
+ },
+ {
+  "id": "AM26N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "complex numbers in AC circuits",
+  "subskill": "complex product over complex sum, real part",
+  "prompt": "In an alternating-current circuit, the impedance of a component, in ohms, is a complex number a + bi, where a and b are real; its real part a is the resistance. When two components with impedances Z₁ and Z₂ are connected in parallel, their combined impedance is Z = Z₁Z₂/(Z₁ + Z₂). For i = √(−1), a component with Z₁ = 2 + 5i and a component with Z₂ = 6 − 3i are connected in parallel. To the nearest hundredth of an ohm, what is the resistance (the real part) of Z ?",
+  "choices": [
+   "3.38",
+   "2.03",
+   "1.50",
+   "3.88"
+  ],
+  "correct_answer": "3.88",
+  "explanation": "Z₁Z₂ = (2 + 5i)(6 − 3i) = 12 − 6i + 30i − 15i² = 27 + 24i, and Z₁ + Z₂ = 8 + 2i. Multiplying by the conjugate, Z = (27 + 24i)(8 − 2i)/(8² + 2²) = (216 − 54i + 192i + 48)/68 = (264 + 138i)/68. The real part is 264/68 ≈ 3.88 ohms. The option 3.38 divides 27 by 8 without the conjugate. The option 2.03 is the imaginary part 138/68. The option 1.50 combines the resistances 2 and 6 as if they were real resistors in parallel.",
+  "solve": "return (264/68).toFixed(2);",
+  "distractor_solve": {
+   "3.38": "return (27/8).toFixed(2);",
+   "2.03": "return (138/68).toFixed(2);",
+   "1.50": "return (2*6/(2+6)).toFixed(2);"
+  },
+  "quantity_asked": "the real part (resistance) of Z = Z1Z2/(Z1 + Z2), in ohms, to the nearest hundredth.",
+  "distractor_kind": {
+   "3.38": "error path: finds Z₁Z₂ = 27 + 24i and Z₁ + Z₂ = 8 + 2i correctly, then divides real part by real part, 27/8, instead of multiplying by the conjugate. (a) no bound sits on it. (b) not an intermediate of the correct process. (c) the cheap estimate \"the denominator is nearly real, so Re Z ≈ 27/8\" lands ON this option, not between it and the key, so it cannot strike it. (d) real complex-division error.",
+   "2.03": "error path: computes Z = (264 + 138i)/68 correctly and reports the imaginary part (the reactance) instead of the real part. (a) no bound. (b) a sibling component of the answer, not at an extreme of a stated interval. (c) inside 0 < Re Z <= |Z| ≈ 4.38. (d) real part-confusion error.",
+   "1.50": "error path: applies the parallel rule to the resistances only, 2·6/(2 + 6), ignoring the imaginary parts. (a) no bound sits on it. (b) not an intermediate. (c) inside 0 to 4.38. (d) real error: treating complex impedances as real resistors."
+  },
+  "distractor_meta": {
+   "3.38": {
+    "direction": "under",
+    "error_kind": "divided component by component"
+   },
+   "2.03": {
+    "direction": "under",
+    "error_kind": "imaginary part reported"
+   },
+   "1.50": {
+    "direction": "under",
+    "error_kind": "real parts combined alone"
+   }
+  },
+  "bounds": [
+   "Re Z <= |Z| = |Z1||Z2|/|Z1 + Z2| = √29·√45/√68 ≈ 4.38: kills nothing (all four are below it)",
+   "Re Z > 0 here: kills nothing"
+  ],
+  "mechanism": [
+   "complex impedance in parallel",
+   "product over sum of complex numbers",
+   "divide by multiplying by the conjugate",
+   "real part as resistance"
+  ],
+  "arith_class_check": "No. All options are two-decimal values; the key 264/68 = 66/17 has no stem-readable integrality or divisibility; 1.50 is the only round value and it is a distractor.",
+  "one_sided_check": "Key largest. The three errors are at different steps: complex division done componentwise, reporting the wrong part, and ignoring the imaginary parts from the start. The stem gives no reason to expect each to lower the real part; the componentwise quotient could land on either side for other impedances.",
+  "interior_parity_check": "Interior by value: 2.03 and 3.38; same one-digit two-decimal shape, neither ends in 0.",
+  "cheap_bound_check": "Key largest. The only general bound, Re Z <= |Z| ≈ 4.38 (which needs the modulus identity), sits above all four options and kills none. The cheapest one-step estimate of Re Z, treating the nearly real denominator 8 + 2i as 8, gives 27/8 = 3.38, which is a distractor, so the estimate points away from the key. No cheap bound falls between 3.88 and 3.38; 3.38 lies on the key's side of every bound a student can state.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Real part chosen (not |Z|) so the |Z1||Z2|/|Z1+Z2| shortcut that killed v25 N-05 does not reach the key; the obvious estimate lands on a distractor."
+  }
+ },
+ {
+  "id": "AM26N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "arithmetic series from a remainder condition",
+  "subskill": "first and last term, count, series sum",
+  "prompt": "What is the sum of all three-digit positive integers that have a remainder of 2 when divided by 7 ?",
+  "choices": [
+   "70144",
+   "70692",
+   "70785",
+   "71695"
+  ],
+  "correct_answer": "70692",
+  "explanation": "The three-digit integers with remainder 2 on division by 7 are 100 (= 7·14 + 2), 107, …, 996 (= 7·142 + 2). There are 142 − 14 + 1 = 129 terms with average (100 + 996)/2 = 548, so the sum is 129·548 = 70,692. The option 70,144 uses 128 terms. The option 70,785 also includes the two-digit 93. The option 71,695 also includes the four-digit 1003.",
+  "solve": "let s=0;for(let n=100;n<=999;n++) if(n%7===2) s+=n;return String(s);",
+  "distractor_solve": {
+   "70144": "return String(((996-100)/7)*(100+996)/2);",
+   "70785": "return String(70692+93);",
+   "71695": "return String(70692+1003);"
+  },
+  "quantity_asked": "the sum of all integers from 100 to 999 that leave remainder 2 on division by 7.",
+  "distractor_kind": {
+   "70144": "error path: finds the first term 100 and last term 996 correctly but counts the terms as (996 − 100)/7 = 128 instead of 129, then multiplies by the average 548. (a) no bound sits on it. (b) not an intermediate of the correct process. (c) the cheap estimate 900/7 ≈ 129 terms × about 548 ≈ 70,700 cannot separate 70,144 from the key at the resolution a student uses without the exact count. (d) real fence-post error.",
+   "70785": "error path: takes the first term as 7·13 + 2 = 93, so the series runs 93, 100, …, 996 (130 terms), adding 93 to the true sum. (a) no bound. (b) not an intermediate. (c) inside every estimate. (d) real \"smallest term\" error.",
+   "71695": "error path: rounds 999/7 up and takes the last term as 7·143 + 2 = 1003, adding a term beyond the three-digit range. (a) no bound sits on it. (b) not an intermediate. (c) strictly inside a 900/7 × 550 ≈ 70,700 ± 1,000 estimate. (d) real \"largest term\" error."
+  },
+  "distractor_meta": {
+   "70144": {
+    "direction": "under",
+    "error_kind": "term count off by one"
+   },
+   "70785": {
+    "direction": "over",
+    "error_kind": "two-digit first term included"
+   },
+   "71695": {
+    "direction": "over",
+    "error_kind": "four-digit last term included"
+   }
+  },
+  "bounds": [
+   "roughly 900/7 terms of average about 550: about 70,700, a range that contains all four options",
+   "sum is an integer: kills nothing"
+  ],
+  "mechanism": [
+   "sum of terms in a residue class",
+   "arithmetic series first and last term",
+   "count of three-digit numbers with a given remainder",
+   "remainder 2 mod 7"
+  ],
+  "arith_class_check": "All four are integers; key and 70144 are even, 70785 and 71695 odd. The parity of the key needs the count of odd terms (64), which is the item's work, so the class is not stem-readable.",
+  "one_sided_check": "Key interior: one error below, two above.",
+  "interior_parity_check": "Interior by value: 70692 and 70785; both five-digit non-round integers; neither ends in 0.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Off-by-one count below, two endpoint errors above; no option differs from the key by a stem number (93 and 1003 are not printed)."
+  }
+ },
+ {
+  "id": "AM26N-05",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "arithmetic sequence from block sums",
+  "subskill": "block-sum difference gives d, then a term",
+  "prompt": "In an arithmetic sequence, the sum of the first 10 terms is 172.5, and the sum of the 11th through 20th terms is 418.5. To the nearest hundredth, what is the 30th term of the sequence?",
+  "choices": [
+   "79.98",
+   "77.52",
+   "84.22",
+   "88.59"
+  ],
+  "correct_answer": "77.52",
+  "explanation": "Each of the 11th through 20th terms is 10 terms after a matching term in the first block, so it is 10d larger, and the second block sum exceeds the first by 10·10d = 100d. So 100d = 418.5 − 172.5 = 246 and d = 2.46. The first block sum is 10a1 + 45d = 172.5, so 10a1 = 172.5 − 110.7 = 61.8 and a1 = 6.18. The 30th term is a1 + 29d = 6.18 + 71.34 = 77.52. The option 79.98 uses a1 + 30d. The option 84.22 uses 90d = 246. The option 88.59 takes a1 to be the block mean 17.25.",
+  "solve": "const d=(418.5-172.5)/100,a=(172.5-45*d)/10;return (a+29*d).toFixed(2);",
+  "distractor_solve": {
+   "79.98": "const d=246/100,a=(172.5-45*d)/10;return (a+30*d).toFixed(2);",
+   "84.22": "const d=246/90,a=(172.5-45*d)/10;return (a+29*d).toFixed(2);",
+   "88.59": "const d=2.46;return (172.5/10+29*d).toFixed(2);"
+  },
+  "quantity_asked": "the 30th term of the arithmetic sequence, to the nearest hundredth.",
+  "distractor_kind": {
+   "79.98": "error path: finds d = 2.46 and a1 = 6.18 correctly, then writes the 30th term as a1 + 30d instead of a1 + 29d. (a) no bound sits on it. (b) not an intermediate; it is the 31st term. (c) the coarse estimate \"block averages 17.25 and 41.85 rise about 24.6 per 10 terms, so the 30th term is near 41.85 + 1.45·24.6\" is the item's own work; any rougher version (about 75 to 80) contains both 77.52 and 79.98. (d) real fence-post error.",
+   "84.22": "error path: reasons that each of the 11th to 20th terms is 9 steps (not 10) after the matching term of the first block, so 90d = 246 and d = 2.733; then a1 = 4.95 and a30 = 84.22. (a) no bound. (b) not an intermediate. (c) inside every cheap range. (d) real fence-post error on the block offset.",
+   "88.59": "error path: finds d = 2.46 but takes the first term to be the mean of the first 10 terms, 17.25 (which is the 5.5th-term value), and adds 29d. (a) no bound sits on it. (b) uses an intermediate (the block mean) in the wrong role; the result is not itself an intermediate. (c) inside every cheap range. (d) real error locating the mean of a block."
+  },
+  "distractor_meta": {
+   "79.98": {
+    "direction": "over",
+    "error_kind": "term index off by one"
+   },
+   "84.22": {
+    "direction": "over",
+    "error_kind": "block offset counted as 9 steps"
+   },
+   "88.59": {
+    "direction": "over",
+    "error_kind": "block mean taken as first term"
+   }
+  },
+  "bounds": [
+   "second block sum > first, so d > 0 and a30 > every term of the second block > its mean 41.85: kills nothing",
+   "no cheap upper bound"
+  ],
+  "mechanism": [
+   "arithmetic sequence",
+   "sums of consecutive blocks of 10 terms",
+   "block-sum difference equals 100d",
+   "nth term from first term and common difference"
+  ],
+  "arith_class_check": "No. All four are two-decimal values; the key 77.52 has no stem-readable divisibility or integrality.",
+  "one_sided_check": "Key smallest. The three errors are at different steps: the term index, the block offset in finding d, and the role of the block mean in finding a1. Equally natural errors land below (using 55 instead of 45 in the first block sum gives 75.06; reading 418.5 as the sum of the first 20 terms gives 35.26), so the stem does not tell a student that mistakes push the 30th term up.",
+  "interior_parity_check": "Interior by value: 79.98 and 84.22; same two-digit two-decimal shape, neither ends in 0.",
+  "cheap_bound_check": "Key smallest. Cheapest one-sided bound: a30 > mean of the second block, 41.85 (kills nothing). The cheapest one-step estimate over the whole quantity, extending the rise of the block means (about 25 per 10 terms) from position 15.5 to 30 (about +36), gives roughly 78, which cannot separate 77.52 from 79.98, so 79.98 lies on the key's side of it. Separating them needs the exact a1 + 29d.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; nearest distractor exactly d above; three different error steps; natural under-errors exist but are not options, so no stem-readable direction. Not speed/time/rate."
+  }
+ },
+ {
+  "id": "AM26N-06",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "3 x 3 determinant",
+  "subskill": "cofactor expansion with sign pattern",
+  "prompt": "Let M be the 3 × 3 matrix whose rows, from top to bottom, are (−2, −2, −3), (−1, 3, 1), and (1, 6, −3). What is det M, the determinant of M ?",
+  "choices": [
+   "61",
+   "7",
+   "23",
+   "53"
+  ],
+  "correct_answer": "61",
+  "explanation": "Expanding along the first row with signs + − +: the minors are (3)(−3) − (1)(6) = −15, (−1)(−3) − (1)(1) = 2 and (−1)(6) − (3)(1) = −9. So det M = (−2)(−15) − (−2)(2) + (−3)(−9) = 30 + 4 + 27 = 61. The option 53 adds the middle term (sign pattern + + +). The option 7 subtracts the last term (+ − −). The option 23 computes each minor as ad + bc.",
+  "solve": "const A=3*-3-1*6,B=-1*-3-1*1,C=-1*6-3*1;return String(-2*A-(-2)*B+(-3)*C);",
+  "distractor_solve": {
+   "7": "const A=3*-3-1*6,B=-1*-3-1*1,C=-1*6-3*1;return String(-2*A-(-2)*B-(-3)*C);",
+   "23": "return String(-2*(3*-3+1*6)-(-2)*(-1*-3+1*1)+(-3)*(-1*6+3*1));",
+   "53": "const A=3*-3-1*6,B=-1*-3-1*1,C=-1*6-3*1;return String(-2*A+(-2)*B+(-3)*C);"
+  },
+  "quantity_asked": "the determinant of the 3 x 3 matrix M.",
+  "distractor_kind": {
+   "7": "error path: uses the sign pattern + − − , subtracting the third term: 30 + 4 − 27 = 7. (a) no bound. (b) not an intermediate. (c) no estimate. (d) real sign-pattern error on the last term.",
+   "23": "error path: computes each 2 × 2 minor as ad + bc instead of ad − bc, then expands with the correct + − + pattern: (−2)(−3) − (−2)(4) + (−3)(−3) = 23. (a) no bound. (b) not an intermediate. (c) no estimate. (d) real 2 × 2 determinant error.",
+   "53": "error path: expands along the first row with signs + + + instead of + − +, so the middle term is added: (−2)(−15) + (−2)(2) + (−3)(−9) = 53. (a) no bound sits on it. (b) not an intermediate. (c) no one-step estimate of a determinant exists; the Hadamard bound (product of row lengths ≈ 4.12·3.32·6.78 ≈ 93) is far above all options. (d) real sign-pattern error."
+  },
+  "distractor_meta": {
+   "7": {
+    "direction": "under",
+    "error_kind": "last cofactor sign"
+   },
+   "23": {
+    "direction": "under",
+    "error_kind": "minors added not subtracted"
+   },
+   "53": {
+    "direction": "under",
+    "error_kind": "middle cofactor sign"
+   }
+  },
+  "bounds": [
+   "Hadamard: |det M| <= product of row lengths, about 93: kills nothing",
+   "none from signs: the entries are mixed, so the sign of det M is not readable"
+  ],
+  "mechanism": [
+   "3 by 3 determinant",
+   "cofactor expansion along a row",
+   "sign pattern of cofactors",
+   "matrix given row by row"
+  ],
+  "arith_class_check": "No. All four are odd integers; none is singled out as the only multiple, square or prime by anything the stem implies (7, 23, 53 and 61 are all prime, so primality does not isolate the key).",
+  "one_sided_check": "Key largest. The errors are at different steps (middle cofactor sign, last cofactor sign, inner 2 × 2 sign). With mixed-sign entries a student cannot tell from the stem whether a sign slip raises or lowers the determinant; here they all happen to lower it because the three terms 30, 4, 27 are all positive, which is only known after computing them.",
+  "interior_parity_check": "Interior by value: 23 and 53; both two-digit odd integers, neither ends in 0 or 5.",
+  "cheap_bound_check": "Key largest. No one-sided bound on a determinant is readable from the stem: the entries have mixed signs, so the sign is not readable, and the only general bound (Hadamard, about 93) sits above all four options. 53 lies on the key's side of every bound a student can state; separating 53 from 61 needs the full expansion.",
+  "self_audit": {
+   "risk": "low",
+   "note": "No determinant estimate exists short of the expansion; three different sign errors; nearest distractor 8 below; no option pair differs or sums to a stem number."
+  }
+ },
+ {
+  "id": "AM26N-07",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "precision of measurements in a quotient",
+  "subskill": "bounds from rounding, least quotient",
+  "prompt": "The mass of a metal sample is measured as 386 grams, rounded to the nearest gram, and its volume is measured as 41.7 cubic centimeters, rounded to the nearest tenth of a cubic centimeter. The density of the sample is its mass divided by its volume. To the nearest thousandth of a gram per cubic centimeter, what is the least possible actual density of the sample?",
+  "choices": [
+   "9.211",
+   "9.244",
+   "9.256",
+   "9.234"
+  ],
+  "correct_answer": "9.234",
+  "explanation": "The actual mass is between 385.5 and 386.5 grams and the actual volume is between 41.65 and 41.75 cubic centimeters. A quotient is least when the numerator is least and the denominator is greatest, so the least possible density is 385.5/41.75 ≈ 9.234 g/cm³. The option 9.211 uses ±1 g and ±0.1 cm³. The option 9.244 uses ±0.05 for the mass as well. The option 9.256 pairs the least mass with the least volume.",
+  "solve": "return (385.5/41.75).toFixed(3);",
+  "distractor_solve": {
+   "9.211": "return (385/41.8).toFixed(3);",
+   "9.244": "return (385.95/41.75).toFixed(3);",
+   "9.256": "return (385.5/41.65).toFixed(3);"
+  },
+  "quantity_asked": "the least possible actual density (mass / volume) given the two rounded measurements, to the nearest thousandth.",
+  "distractor_kind": {
+   "9.211": "error path: treats \"rounded to the nearest gram\" as ±1 gram and \"nearest tenth\" as ±0.1, so uses 385/41.8. (a) below the true least value; no stem bound reaches it short of the item's own work. (b) not an intermediate. (c) the cheap cap \"least < nominal 386/41.7 = 9.257\" leaves it inside. (d) real precision error.",
+   "9.244": "error path: applies the ±0.05 of the volume measurement to the mass too, so uses 385.95/41.75. (a) no bound sits on it. (b) not an intermediate. (c) strictly below the nominal 9.257. (d) real error in reading the two precisions.",
+   "9.256": "error path: pairs the least mass 385.5 with the least volume 41.65 instead of the greatest volume. (a) strictly below the nominal 9.257, so the bound \"least < nominal\" does not reach it. (b) not an intermediate. (c) inside every cheap estimate. (d) real pairing error in a quotient bound."
+  },
+  "distractor_meta": {
+   "9.211": {
+    "direction": "under",
+    "error_kind": "full unit taken as rounding error"
+   },
+   "9.244": {
+    "direction": "over",
+    "error_kind": "volume precision applied to mass"
+   },
+   "9.256": {
+    "direction": "over",
+    "error_kind": "least mass with least volume"
+   }
+  },
+  "bounds": [
+   "least possible density < nominal 386/41.7 = 9.257: kills nothing (all four are below 9.257)",
+   "no cheap lower bound short of the key itself"
+  ],
+  "mechanism": [
+   "least possible value from rounded measurements",
+   "greatest possible error half a unit",
+   "bounds of a quotient",
+   "density from mass and volume"
+  ],
+  "arith_class_check": "No. All are three-decimal values beginning 9.2; none has a class property.",
+  "one_sided_check": "Key interior: the full-unit error lands below the key, the two pairing / precision errors above it.",
+  "interior_parity_check": "Interior by value: 9.234 and 9.244; same one-digit three-decimal shape, neither ends in 0.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Asking for a least value, so an overshoot error (full unit) is included below the key; the nominal value is not an option; all within 0.05."
+  }
+ },
+ {
+  "id": "AM26N-08",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "vectors: work as a dot product",
+  "subskill": "displacement vector, dot product, path independence",
+  "prompt": "A constant force F = ⟨−11, −2⟩, in newtons, acts on an object as the object moves in the standard (x,y) coordinate plane, where distances are in meters. The object moves from point P(2, −3) to point R(3, −5) and then from R to point Q(−5, 6). The work, in joules, done by a constant force over a displacement d is the dot product F · d. What is the total work, in joules, done by F on the object over the whole trip?",
+  "choices": [
+   "43",
+   "73",
+   "59",
+   "95"
+  ],
+  "correct_answer": "59",
+  "explanation": "The work of a constant force depends only on the total displacement, d = Q − P = ⟨−5 − 2, 6 − (−3)⟩ = ⟨−7, 9⟩. So W = F · d = (−11)(−7) + (−2)(9) = 77 − 18 = 59 joules. Equivalently, the legs give F·⟨1, −2⟩ = −7 and F·⟨−8, 11⟩ = 66, and −7 + 66 = 59. The option 95 takes (−2)(9) as +18. The option 43 dots F with Q's position vector. The option 73 adds the leg works as positive amounts.",
+  "solve": "return String((-11)*(-5-2)+(-2)*(6-(-3)));",
+  "distractor_solve": {
+   "43": "return String((-11)*(-5)+(-2)*6);",
+   "73": "return String(Math.abs((-11)*1+(-2)*(-2))+Math.abs((-11)*(-8)+(-2)*11));",
+   "95": "return String((-11)*(-7)-(-2)*(9));"
+  },
+  "quantity_asked": "the total work F · (Q − P), in joules, over the trip P -> R -> Q.",
+  "distractor_kind": {
+   "43": "error path: takes the dot product of F with the final position vector ⟨−5, 6⟩ instead of the displacement Q − P. (a) no bound. (b) not an intermediate. (c) inside every cheap range. (d) real position-versus-displacement error.",
+   "73": "error path: computes the work on each leg, F·⟨1, −2⟩ = −7 and F·⟨−8, 11⟩ = 66, and adds their absolute values. (a) below the Cauchy cap. (b) built from the two leg works but not itself an intermediate. (c) inside every estimate. (d) real sign error (negative work dropped).",
+   "95": "error path: uses d = Q − P = ⟨−7, 9⟩ but writes the y-product (−2)(9) as +18, getting 77 + 18. (a) strictly below the Cauchy cap |F||d| ≈ 127.5, which is not a cheap bound anyway. (b) not an intermediate. (c) inside every cheap range. (d) real sign error."
+  },
+  "distractor_meta": {
+   "43": {
+    "direction": "under",
+    "error_kind": "endpoint used as displacement"
+   },
+   "73": {
+    "direction": "over",
+    "error_kind": "leg works added as magnitudes"
+   },
+   "95": {
+    "direction": "over",
+    "error_kind": "sign slip in dot product"
+   }
+  },
+  "bounds": [
+   "|W| <= |F||d| = √125·√130 ≈ 127.5: kills nothing (and needs the Cauchy-Schwarz inequality)"
+  ],
+  "mechanism": [
+   "work as a dot product",
+   "force vector and displacement vector",
+   "two-leg path, path independence",
+   "newtons and joules"
+  ],
+  "arith_class_check": "All four are integers: 43, 59, 73 odd and 95 odd; no parity, multiple-of-k or square class isolates the key (43, 59, 73 are all prime).",
+  "one_sided_check": "Key interior: one error below, two above.",
+  "interior_parity_check": "Interior by value: 59 and 73; both two-digit odd non-round integers.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Three distinct errors on both sides; no option differs from the key by a printed number or twice one (73 − 59 = 14 = 2|leg-1 work|; 7 is not printed)."
+  }
+ },
+ {
+  "id": "AM26S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "conditional probability with two independent tests",
+  "subskill": "Bayes with repeated evidence",
+  "prompt": "A screening test for a certain condition gives a positive result for 90% of people who have the condition and for 8% of people who do not have it. In a large population, 4% of the people have the condition. A person chosen at random from this population takes the test twice. Given whether the person has the condition, the two results are independent. Both results are positive. To the nearest thousandth, what is the probability that the person has the condition?",
+  "choices": [
+   "0.841",
+   "0.319",
+   "0.854",
+   "0.992"
+  ],
+  "correct_answer": "0.841",
+  "explanation": "P(condition and two positives) = 0.04·0.9² = 0.0324. P(no condition and two positives) = 0.96·0.08² = 0.006144. So P(condition | two positives) = 0.0324/(0.0324 + 0.006144) ≈ 0.841. The option 0.319 uses one positive result only. The option 0.854 squares the false-positive rate but not the 90%. The option 0.992 ignores the 4% prevalence.",
+  "solve": "return (0.04*0.81/(0.04*0.81+0.96*0.0064)).toFixed(3);",
+  "distractor_solve": {
+   "0.319": "return (0.04*0.9/(0.04*0.9+0.96*0.08)).toFixed(3);",
+   "0.854": "return (0.04*0.9/(0.04*0.9+0.96*0.08*0.08)).toFixed(3);",
+   "0.992": "return (0.81/(0.81+0.0064)).toFixed(3);"
+  },
+  "quantity_asked": "P(has condition | both of two independent tests positive), to the nearest thousandth.",
+  "distractor_kind": {
+   "0.319": "error path: updates on a single positive result only, 0.036/(0.036 + 0.0768). (a) a student who already has this value can bound the two-test answer above it; that is half the work, and it kills only this option. (b) intermediate of a sequential update, which sits below the key. (c) inside 0 to 1. (d) real error: second test ignored.",
+   "0.854": "error path: squares the false-positive rate but uses the sensitivity 0.9 only once, 0.036/(0.036 + 0.96·0.0064). (a) no bound. (b) not an intermediate. (c) inside every estimate. (d) real error applying the independence to one branch only.",
+   "0.992": "error path: compares 0.9² with 0.08² as if the two groups were equally common, ignoring the 4% prevalence. (a) no bound sits on it (< 1). (b) not an intermediate. (c) inside 0 to 1. (d) real base-rate error."
+  },
+  "distractor_meta": {
+   "0.319": {
+    "direction": "under",
+    "error_kind": "one test used"
+   },
+   "0.854": {
+    "direction": "over",
+    "error_kind": "sensitivity not squared"
+   },
+   "0.992": {
+    "direction": "over",
+    "error_kind": "prevalence ignored"
+   }
+  },
+  "bounds": [
+   "probability < 1: kills nothing",
+   "two positives give a larger posterior than one (0.319): kills 0.319 only, and needs the one-test value first"
+  ],
+  "mechanism": [
+   "Bayes theorem with a screening test",
+   "false positive rate",
+   "two independent positive results",
+   "base rate prevalence"
+  ],
+  "arith_class_check": "No. Three-decimal probabilities; no fraction structure singles out the key.",
+  "one_sided_check": "Key interior: one error below, two above.",
+  "interior_parity_check": "Interior by value: 0.841 and 0.854; same three-decimal shape, neither ends in 0.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "One error below, two above, distinct kinds; the one-test bound costs half the work and kills one; 0.841 and 0.854 equally clean."
+  }
+ },
+ {
+  "id": "AM26S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability of a seating arrangement",
+  "subskill": "end seat and non-adjacency, conditional count",
+  "prompt": "Eight people, including Ana, Ben, and Cy, are seated at random in a row of 8 chairs, with every seating equally likely. To the nearest thousandth, what is the probability that Cy sits in one of the two end chairs and Ana and Ben do not sit in chairs next to each other?",
+  "choices": [
+   "0.188",
+   "0.214",
+   "0.179",
+   "0.204"
+  ],
+  "correct_answer": "0.179",
+  "explanation": "P(Cy in an end chair) = 2/8 = 1/4. Then the other 7 people fill 7 consecutive chairs; Ana and Ben are adjacent in 6 adjacent pairs × 2 orders × 5! of the 7! arrangements, so P(adjacent) = 1440/5040 = 2/7 and P(not adjacent) = 5/7. The probability is (1/4)(5/7) = 5/28 ≈ 0.179. The option 0.188 uses P(not adjacent) = 1 − 2/8 from the full row. The option 0.214 counts only one order of Ana and Ben. The option 0.204 uses 2/7 for Cy's end chair.",
+  "solve": "return (5/28).toFixed(3);",
+  "distractor_solve": {
+   "0.188": "return (0.25*(1-2/8)).toFixed(3);",
+   "0.214": "return (0.25*(1-1/7)).toFixed(3);",
+   "0.204": "return ((2/7)*(5/7)).toFixed(3);"
+  },
+  "quantity_asked": "P(Cy in an end chair AND Ana, Ben not adjacent) for a random seating of 8 in a row, to the nearest thousandth.",
+  "distractor_kind": {
+   "0.188": "error path: multiplies P(Cy at an end) = 1/4 by P(Ana and Ben not adjacent in the full row of 8) = 1 − 2/8, as if the events were independent. (a) no bound sits on it. (b) not an intermediate of the correct count. (c) the rough estimate (1/4)(about 0.7 to 0.75) ≈ 0.18 to 0.19 cannot separate it from the key. (d) real independence error.",
+   "0.214": "error path: with Cy at an end, counts adjacent Ana-Ben placements in the remaining 7 chairs as 6·5! out of 7! (one order only), so P(adjacent) = 1/7. (a) no bound. (b) not an intermediate. (c) inside the 0.17 to 0.25 range of any rough estimate. (d) real ordering error.",
+   "0.204": "error path: uses the 7-chair count in both factors, taking P(Cy at an end) as 2/7 instead of 2/8. (a) no bound. (b) not an intermediate. (c) inside every cheap estimate. (d) real denominator error."
+  },
+  "distractor_meta": {
+   "0.188": {
+    "direction": "over",
+    "error_kind": "events treated as independent"
+   },
+   "0.214": {
+    "direction": "over",
+    "error_kind": "pair order not doubled"
+   },
+   "0.204": {
+    "direction": "over",
+    "error_kind": "end probability over 7 chairs"
+   }
+  },
+  "bounds": [
+   "probability <= P(Cy at an end) = 0.25: kills nothing",
+   "rough estimate 0.25 × about 0.7 ≈ 0.175 to 0.19: does not separate 0.179 from 0.188"
+  ],
+  "mechanism": [
+   "random seating in a row",
+   "end seat condition",
+   "two people not adjacent",
+   "conditional counting with arrangements"
+  ],
+  "arith_class_check": "No. Three-decimal values; the exact fractions 5/28, 3/16, 3/14, 10/49 have different denominators, and no shared-denominator pair includes the key.",
+  "one_sided_check": "Key smallest. The three errors are an independence assumption, a missing factor of 2 for order, and a wrong denominator for the end seat. A student cannot tell from the stem that each raises the answer: dropping the order factor and changing the denominator could move either way in general.",
+  "interior_parity_check": "Interior by value: 0.188 and 0.204; same three-decimal shape, neither ends in 0.",
+  "cheap_bound_check": "Key smallest. Cheapest one-sided bound: P <= P(Cy at an end) = 0.25 (kills nothing). The cheapest one-step estimate over the whole probability, 0.25 × (Ana and Ben not adjacent, about 0.7 to 0.75), gives 0.175 to 0.19, which contains both the key and 0.188, so 0.188 lies on the key's side of it. Separating 0.179 from 0.188 needs the exact conditional 5/7.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; nearest distractor 0.009 above, within any estimate; three different error kinds; no cheap bound falls between key and 0.188."
+  }
+ },
+ {
+  "id": "AM26S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value of a count",
+  "subskill": "expected number of empty boxes",
+  "prompt": "Five balls are placed into 4 boxes. Each ball is placed, independently of the other balls, into one of the 4 boxes chosen at random, with each box equally likely. To the nearest thousandth, what is the expected number of boxes that end up empty?",
+  "choices": [
+   "0.237",
+   "0.949",
+   "0.766",
+   "0.938"
+  ],
+  "correct_answer": "0.949",
+  "explanation": "For each box, P(box empty) = (3/4)⁵ = 243/1024. The expected number of empty boxes is the sum of these 4 probabilities: 4·243/1024 = 972/1024 ≈ 0.949. (By cases: 600/1024 with exactly 1 empty, 180/1024 with exactly 2, 4/1024 with exactly 3, and 600 + 360 + 12 = 972.) The option 0.237 is one box's probability. The option 0.766 adds the case probabilities without weighting. The option 0.938 omits the 3-empty case.",
+  "solve": "return (4*Math.pow(3/4,5)).toFixed(3);",
+  "distractor_solve": {
+   "0.237": "return Math.pow(3/4,5).toFixed(3);",
+   "0.766": "return ((600+180+4)/1024).toFixed(3);",
+   "0.938": "return ((600+2*180)/1024).toFixed(3);"
+  },
+  "quantity_asked": "the expected number of empty boxes when 5 balls go independently and uniformly into 4 boxes, to the nearest thousandth.",
+  "distractor_kind": {
+   "0.237": "error path: finds the probability that a particular box is empty, (3/4)⁵, and reports it without multiplying by the 4 boxes. (a) no bound sits on it. (b) an intermediate of the indicator method; it is a quarter of the key, but no option is the double or half of another. (c) inside 0 to 3. (d) real error: one indicator instead of the sum.",
+   "0.766": "error path: finds P(exactly 1 empty) = 600/1024, P(exactly 2 empty) = 180/1024 and P(exactly 3 empty) = 4/1024 and adds them without weighting by the number of empty boxes (this is P(at least one box empty)). (a) E >= P(at least one empty) holds, but using it requires this value, so it is not a cheap bound. (b) a neighbouring quantity. (c) inside 0 to 3. (d) real expectation error.",
+   "0.938": "error path: weights the cases correctly but omits the case of 3 empty boxes (all 5 balls in one box): (600 + 2·180)/1024. (a) no bound. (b) not an intermediate. (c) inside every estimate. (d) real case-omission error."
+  },
+  "distractor_meta": {
+   "0.237": {
+    "direction": "under",
+    "error_kind": "one box only"
+   },
+   "0.766": {
+    "direction": "under",
+    "error_kind": "case probabilities not weighted"
+   },
+   "0.938": {
+    "direction": "under",
+    "error_kind": "three-empty case omitted"
+   }
+  },
+  "bounds": [
+   "0 <= E <= 3 (at most 3 boxes can be empty): kills nothing",
+   "E >= P(at least one empty) = 0.766: true, but computing 0.766 is as costly as the item; would kill 0.237 and put 0.766 on the bound"
+  ],
+  "mechanism": [
+   "expected number of empty boxes",
+   "linearity of expectation with indicators",
+   "balls into boxes at random",
+   "probability a box receives no ball"
+  ],
+  "arith_class_check": "No. Three-decimal values; the exact fractions all have denominator 1024 (key 972/1024, 0.237 = 243/1024, 0.766 = 784/1024, 0.938 = 960/1024), so the shared denominator does not single out the key.",
+  "one_sided_check": "Key largest. The three errors come from two different methods: forgetting to sum over boxes (indicator method), and leaving out the weights or a case (case method). The stem does not say which method a student will use, and nothing in it says that each slip lowers the count.",
+  "interior_parity_check": "Interior by value: 0.766 and 0.938; same three-decimal shape, neither ends in 0.",
+  "cheap_bound_check": "Key largest. Cheapest one-sided bounds: E <= 3 and E >= 0 kill nothing. The cheapest estimate over the whole quantity, 4 × (a box is missed by 5 balls, roughly (3/4)⁵ ≈ 0.24) ≈ 0.95, is the item's own work; any coarser version (0.2 to 0.25 per box, so 0.8 to 1.0) contains both 0.938 and the key, so 0.938 lies on the key's side.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; nearest distractor 0.011 below inside any estimate; the only true lower bound needs P(at least one empty), which is as costly as the item."
+  }
+ },
+ {
+  "id": "AM26S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value of a two-stage game",
+  "subskill": "conditional expectation by branch",
+  "prompt": "In a game, a player rolls a fair 6-sided die numbered 1 through 6. If the number rolled is 1, 2, or 3, the player must roll the die a second time and keep the second number; otherwise, the player keeps the first number. The player then earns a number of points equal to the square of the number kept. To the nearest hundredth, what is the expected number of points the player earns?",
+  "choices": [
+   "20.08",
+   "15.17",
+   "14.58",
+   "20.42"
+  ],
+  "correct_answer": "20.42",
+  "explanation": "With probability 1/2 the first roll is 4, 5 or 6 and is kept; the mean square is (16 + 25 + 36)/3 = 77/3. With probability 1/2 the player rerolls and keeps a fresh roll, whose mean square is (1 + 4 + 9 + 16 + 25 + 36)/6 = 91/6. The expected points are (1/2)(77/3) + (1/2)(91/6) ≈ 12.83 + 7.58 = 20.42. The option 20.08 squares the mean kept value 5. The option 15.17 treats the reroll as again 1, 2 or 3. The option 14.58 uses 3.5 instead of 91/6 for the reroll.",
+  "solve": "return (0.5*77/3+0.5*91/6).toFixed(2);",
+  "distractor_solve": {
+   "20.08": "return (0.5*25+0.5*91/6).toFixed(2);",
+   "15.17": "return (0.5*77/3+0.5*14/3).toFixed(2);",
+   "14.58": "return (0.5*77/3+0.5*3.5).toFixed(2);"
+  },
+  "quantity_asked": "the expected number of points (square of the kept number) under the forced-reroll rule, to the nearest hundredth.",
+  "distractor_kind": {
+   "20.08": "error path: in the \"keep\" branch squares the mean kept value, 5² = 25, instead of averaging 16, 25 and 36 (25.67). (a) no bound sits on it. (b) not an intermediate. (c) the rough estimate (1/2)(about 25) + (1/2)(about 15) ≈ 20 cannot separate it from the key. (d) real mean-of-squares error.",
+   "15.17": "error path: in the reroll branch averages the squares of 1, 2, 3 only (14/3), as if the second roll were again a low number. (a) no bound. (b) not an intermediate. (c) inside 1 to 36. (d) real branch-conditioning error.",
+   "14.58": "error path: in the reroll branch uses the mean roll 3.5 instead of the mean square 91/6. (a) no bound. (b) not an intermediate. (c) inside 1 to 36. (d) real error: points are squares."
+  },
+  "distractor_meta": {
+   "20.08": {
+    "direction": "under",
+    "error_kind": "kept branch squared after averaging"
+   },
+   "15.17": {
+    "direction": "under",
+    "error_kind": "reroll treated as low roll"
+   },
+   "14.58": {
+    "direction": "under",
+    "error_kind": "reroll branch not squared"
+   }
+  },
+  "bounds": [
+   "1 <= points <= 36: kills nothing",
+   "rough estimate (1/2)(about 25) + (1/2)(about 15) ≈ 20: does not separate 20.08 from 20.42"
+  ],
+  "mechanism": [
+   "expected value of a game with a reroll",
+   "square of the number rolled",
+   "conditional expectation by branch",
+   "fair die rolled twice"
+  ],
+  "arith_class_check": "No. Two-decimal values; no integrality or common factor isolates the key.",
+  "one_sided_check": "Key largest. The errors sit in different branches and steps (keep branch, reroll conditioning, reroll squaring). The stem does not reveal a direction for them: a student who mis-conditions the reroll on high numbers would overshoot, and nothing signals that squares were averaged rather than means squared.",
+  "interior_parity_check": "Interior by value: 15.17 and 20.08; same two-digit two-decimal shape, neither ends in 0.",
+  "cheap_bound_check": "Key largest. Cheapest one-sided bounds: 1 <= E <= 36 (kills nothing). The cheapest one-step estimate over the whole quantity, (1/2)(squares of 4 to 6, about 25) + (1/2)(a fresh roll squared, about 15) ≈ 20, contains 20.08 as well as the key. So 20.08 lies on the key's side, and separating the two needs the exact 77/3.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; nearest distractor 0.34 below, inside the cheap estimate; three errors at different branches; no squared-EV option (Jensen family) used twice."
+  }
+ },
+ {
+  "id": "AM26S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "matching problem probability",
+  "subskill": "inclusion-exclusion over fixed points",
+  "prompt": "Five people each bring one gift to a party. The 5 gifts are then handed out at random, one to each person, with every way of handing them out equally likely. To the nearest thousandth, what is the probability that at least one person receives the gift he or she brought?",
+  "choices": [
+   "0.633",
+   "0.667",
+   "0.672",
+   "0.700"
+  ],
+  "correct_answer": "0.633",
+  "explanation": "By inclusion-exclusion, P(at least one match) = 1 − 1/2! + 1/3! − 1/4! + 1/5! = 1 − 0.5 + 0.1667 − 0.0417 + 0.0083 = 0.6333 (equivalently, 120 − 44 = 76 of the 120 handouts have a match). The option 0.667 stops after the 1/3! term. The option 0.672 is 1 − (4/5)⁵, which assumes independence. The option 0.700 adds the 1/4! term.",
+  "solve": "return (1-44/120).toFixed(3);",
+  "distractor_solve": {
+   "0.667": "return (1-1/2+1/6).toFixed(3);",
+   "0.672": "return (1-Math.pow(4/5,5)).toFixed(3);",
+   "0.700": "return (1-1/2+1/6+1/24-1/120).toFixed(3);"
+  },
+  "quantity_asked": "P(at least one of 5 people receives their own gift) in a uniformly random handout, to the nearest thousandth.",
+  "distractor_kind": {
+   "0.667": "error path: applies inclusion-exclusion 1 − 1/2! + 1/3! and stops after the triples, dropping the 4-match and 5-match terms. (a) no bound sits on it. (b) a partial sum of the correct series, but the partial sums alternate above and below, so it is not at an extreme of a stem-stated interval. (c) inside 0 to 1. (d) real truncation error.",
+   "0.672": "error path: treats each person as independently getting the wrong gift with probability 4/5, so P = 1 − (4/5)⁵. (a) no bound. (b) not an intermediate. (c) inside 0 to 1. (d) real independence error.",
+   "0.700": "error path: carries all five inclusion-exclusion terms but adds the 4-match term instead of subtracting it. (a) no bound. (b) not an intermediate. (c) inside 0 to 1. (d) real alternating-sign error."
+  },
+  "distractor_meta": {
+   "0.667": {
+    "direction": "over",
+    "error_kind": "inclusion-exclusion truncated"
+   },
+   "0.672": {
+    "direction": "over",
+    "error_kind": "independence assumed"
+   },
+   "0.700": {
+    "direction": "over",
+    "error_kind": "sign slip in fourth term"
+   }
+  },
+  "bounds": [
+   "P <= 1 and P >= P(person 1 matches) = 0.2: kill nothing",
+   "union bound 5 x 1/5 = 1: kills nothing"
+  ],
+  "mechanism": [
+   "probability at least one person gets own gift",
+   "derangement complement",
+   "inclusion-exclusion with factorials",
+   "random matching of 5 items"
+  ],
+  "arith_class_check": "No. Three-decimal values; 0.667 and 0.700 are \"nicer\" decimals but sit above the key, and the key 76/120 = 19/30 has no stem-readable property.",
+  "one_sided_check": "Key smallest. The errors come from three different steps: stopping the alternating series (whose partial sums alternate above and below), assuming independence, and an alternating-sign slip. A student cannot predict from the stem that each lands above; stopping one term earlier (1 − 1/2 = 0.5) would land below.",
+  "interior_parity_check": "Interior by value: 0.667 and 0.672; same three-decimal shape, neither ends in 0.",
+  "cheap_bound_check": "Key smallest. Cheapest one-sided bounds: 0.2 <= P <= 1 (kill nothing). The cheapest estimate over the whole quantity, the remembered \"about 1 − 1/e ≈ 0.63\", is knowledge rather than a bound; the coarser \"about two thirds\" estimate lands between the key and 0.667, which it cannot separate. 0.667 lies on the key's side of every one-step estimate; separating 0.633 from 0.667 needs the last two series terms.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Students who remember 1 − 1/e ≈ 0.632 pick the key outright; that is knowledge, not an elimination, but a grader may call it a shortcut. Errors otherwise varied."
+  }
+ },
+ {
+  "id": "AM26S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability in a first-to-k series",
+  "subskill": "series length, both teams, last game decisive",
+  "prompt": "Teams A and B play a series of games that ends as soon as one team has won 3 games. Team A wins each game with probability 0.6 and Team B wins each game with probability 0.4; there are no ties, and the results of different games are independent. To the nearest thousandth, what is the probability that the series lasts exactly 4 games?",
+  "choices": [
+   "0.438",
+   "0.499",
+   "0.374",
+   "0.518"
+  ],
+  "correct_answer": "0.374",
+  "explanation": "The series lasts exactly 4 games when the eventual winner wins game 4 and exactly 2 of the first 3. For A: C(3,2)(0.6)²(0.4)·(0.6) = 3(0.216)(0.4) = 0.2592. For B: 3(0.4)³(0.6) = 0.1152. The total is 0.3744 ≈ 0.374. The option 0.438 uses 1 − P(3 games) − P(5 games) with P(3 games) = 0.6³ only. The option 0.499 uses C(4,3) = 4. The option 0.518 doubles A's value for B.",
+  "solve": "return (3*0.6*0.4*(0.36+0.16)).toFixed(3);",
+  "distractor_solve": {
+   "0.438": "return (1-Math.pow(0.6,3)-6*0.36*0.16).toFixed(3);",
+   "0.499": "return (4*0.6*0.4*(0.36+0.16)).toFixed(3);",
+   "0.518": "return (2*3*Math.pow(0.6,3)*0.4).toFixed(3);"
+  },
+  "quantity_asked": "P(the first-to-3-wins series ends after exactly 4 games), to the nearest thousandth.",
+  "distractor_kind": {
+   "0.438": "error path: computes 1 − P(3 games) − P(5 games) but takes P(3 games) as 0.6³ only, forgetting that Team B can also sweep (0.4³). (a) no bound sits on it. (b) not an intermediate. (c) inside 0 to 1 and below the \"at least 4 games\" value 0.72. (d) real omitted-case error.",
+   "0.499": "error path: counts the ways to win 3 of 4 games as C(4,3) = 4 instead of requiring the 4th game to be the winner's third win (C(3,2) = 3). (a) no bound. (b) not an intermediate. (c) inside every estimate. (d) real counting error.",
+   "0.518": "error path: finds P(A wins in exactly 4) = 3(0.6)³(0.4) and doubles it for the two teams, instead of computing 3(0.4)³(0.6) for Team B. (a) no bound. (b) not an intermediate. (c) inside every estimate. (d) real symmetry error."
+  },
+  "distractor_meta": {
+   "0.438": {
+    "direction": "over",
+    "error_kind": "complement missing a sweep"
+   },
+   "0.499": {
+    "direction": "over",
+    "error_kind": "C(4,3) instead of C(3,2)"
+   },
+   "0.518": {
+    "direction": "over",
+    "error_kind": "same team probabilities for both"
+   }
+  },
+  "bounds": [
+   "P(exactly 4) <= P(at least 4 games) = 1 - 0.6^3 - 0.4^3 = 0.72: kills nothing",
+   "P(exactly 4) <= 1 - P(3 games) = 0.72: same"
+  ],
+  "mechanism": [
+   "first team to win 3 games",
+   "series lasts exactly 4 games",
+   "last game decides the series",
+   "binomial with a stopping rule"
+  ],
+  "arith_class_check": "No. Three-decimal probabilities; no fraction structure isolates the key.",
+  "one_sided_check": "Key smallest. The errors are an omitted case in a complement (A or B sweep), a combination-count error, and a symmetry error; they occur at different steps and a student cannot tell from the stem that each overcounts. Undercounting errors (only Team A's wins, 0.259) are equally natural.",
+  "interior_parity_check": "Interior by value: 0.438 and 0.499; same three-decimal shape, neither ends in 0.",
+  "cheap_bound_check": "Key smallest. Cheapest one-sided bound: P <= P(at least 4 games) = 0.72 (kills nothing; 0.72 is not an option). The cheapest one-step estimate, \"the two non-sweep lengths 4 and 5 share 0.72 roughly equally\", gives about 0.36, which lies below all four options and kills none. 0.438 lies on the key's side of every such bound; separating it from 0.374 needs the full count.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; three different error kinds, all overcounts only for these numbers; the equal-split estimate (0.36) sits below every option, so it eliminates nothing."
+  }
+ }
+]

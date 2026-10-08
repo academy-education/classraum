@@ -1,0 +1,725 @@
+[
+ {
+  "id": "AM26I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "rainwater collection, two rainfall rates",
+  "subskill": "volume from depth, piecewise rate, time to fill",
+  "prompt": "Rain that falls on a shed roof drains into a rain barrel that holds 55 gallons. The roof covers a horizontal area of 18 feet by 10 feet, and only 80% of the rain that falls on that area reaches the barrel. During a storm, rain falls at a constant rate of 0.30 inch per hour for the first 30 minutes and then at a constant rate of 1.0 inch per hour until the barrel is full. The barrel is empty when the rain begins, and 1 cubic foot of water is 7.48 gallons. To the nearest tenth of a minute, how many minutes after the rain begins does the barrel become full?",
+  "choices": [
+   "56.6",
+   "61.4",
+   "48.8",
+   "57.8"
+  ],
+  "correct_answer": "57.8",
+  "explanation": "The barrel holds 55 ÷ 7.48 ≈ 7.353 cubic feet. Each inch of rain on 180 square feet delivers 180(1/12)(0.80) = 12 cubic feet to the barrel. In the first 30 minutes, 0.30(0.5) = 0.15 inch falls, delivering 1.8 cubic feet, leaving about 5.553 cubic feet. At 1.0 inch per hour the barrel gains 12 cubic feet per hour, or 0.2 cubic foot per minute, so the rest takes about 27.76 minutes. Total: 30 + 27.76 ≈ 57.8 minutes. The option \"56.6\" fills the whole barrel at the average of the two rates, 0.65 inch per hour. The option \"48.8\" counts the first period as delivering 0.30 inch of rain (the hourly rate) instead of 0.15 inch. The option \"61.4\" treats 30 minutes as 0.30 hour when finding the rain from the first period.",
+  "solve": "const A=18*10,V=55/7.48;const q=r=>A*(r/12)*0.8/60;const v1=q(0.30)*30;return (30+(V-v1)/q(1.0)).toFixed(1);",
+  "distractor_solve": {
+   "56.6": "const A=18*10,V=55/7.48;const q=A*(0.65/12)*0.8/60;return (V/q).toFixed(1);",
+   "48.8": "const A=18*10,V=55/7.48;const q=r=>A*(r/12)*0.8/60;const v1=A*(0.30/12)*0.8;return (30+(V-v1)/q(1.0)).toFixed(1);",
+   "61.4": "const A=18*10,V=55/7.48;const q=r=>A*(r/12)*0.8/60;const v1=q(0.30)*60*0.30;return (30+(V-v1)/q(1.0)).toFixed(1);"
+  },
+  "quantity_asked": "the total time, in minutes from the start of the rain, until 55 gallons have collected in the barrel.",
+  "distractor_kind": {
+   "56.6": "error path: averages the two rainfall rates (0.65 in/h) and fills the whole barrel at that rate. (a) not a parameter extreme; strictly inside (36.8, 66.8). (b) not an adjacent problem's answer at an edge. (c) the cheapest bounds are 36.8 (all at 1.0 in/h) and 66.8 (first-period water ignored); 56.6 is strictly inside. (d) real shortcut error at the rate step.",
+   "48.8": "error path: takes the first 30 minutes as delivering 0.30 inch (the hourly rate) rather than 0.15 inch. (a) no extreme. (b) not the no-loss time (50.4) or any edge value. (c) inside (36.8, 66.8). (d) real time-scaling error at the first-period step.",
+   "61.4": "error path: converts 30 minutes to 0.30 hour when computing first-period rain. (a) no extreme. (b) not the 66.8 upper bound. (c) inside (36.8, 66.8). (d) real decimal-minute conversion error."
+  },
+  "distractor_meta": {
+   "56.6": {
+    "direction": "under",
+    "error_kind": "averaged the two rates"
+   },
+   "48.8": {
+    "direction": "under",
+    "error_kind": "first-period rain not scaled by time"
+   },
+   "61.4": {
+    "direction": "over",
+    "error_kind": "30 minutes read as 0.30 hour"
+   }
+  },
+  "bounds": [
+   "time > 30 (first period delivers only 1.8 of 7.35 cubic feet)",
+   "time > 36.8 (all rain at 1.0 in/h)",
+   "time < 66.8 (first-period water ignored)"
+  ],
+  "mechanism": [
+   "rain on roof area to gallons",
+   "two rainfall rates in sequence",
+   "collection efficiency 80%",
+   "time to fill a barrel"
+  ],
+  "arith_class_check": "No. All four are one-decimal values in the 48-62 range; no integrality or divisibility class isolates 57.8.",
+  "one_sided_check": "key interior (two distractors under, one over).",
+  "interior_parity_check": "Interior by value: 56.6 and 57.8, both two-digit numbers with one decimal; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"only 80% reaches the barrel\" - ignoring gives 50.4 (under, not an option); no option comes from this clause. \"0.30 inch per hour for the first 30 minutes\" - unscaled depth gives 48.8 (under, first-period step); 30 min read as 0.30 h gives 61.4 (over, unit step). Rate step: averaging the two rates gives 56.6 (under). Distractor steps: 56.6 rate-averaging (under), 48.8 first-period time scaling (under), 61.4 minute-to-hour conversion (over). Not an additive total; errors push both ways.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; no clause-omission option; nearest bound values 36.8/66.8 contain all options; 48.8 sits below the no-loss time 50.4 but that bound costs the full work."
+  }
+ },
+ {
+  "id": "AM26I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "real wage with compounded inflation",
+  "subskill": "compound two percent increases, ratio of growth factors",
+  "prompt": "Over a two-year period, Kai's hourly wage rose from $24.80 to $27.90. During the same two years, consumer prices rose 3.4% in the first year and then rose another 6.1% in the second year. Kai's real wage is his hourly wage divided by the level of consumer prices, so it measures how much his wage can buy. To the nearest hundredth of a percent, by what percent did Kai's real wage increase over the two years?",
+  "choices": [
+   "2.74",
+   "2.55",
+   "2.79",
+   "2.48"
+  ],
+  "correct_answer": "2.55",
+  "explanation": "The wage grew by a factor of 27.90 ÷ 24.80 = 1.125. Prices grew by a factor of (1.034)(1.061) ≈ 1.097074. The real wage grew by a factor of 1.125 ÷ 1.097074 ≈ 1.02545, an increase of about 2.55%. The option \"2.74\" adds the two price increases to get 9.5% instead of compounding them (1.125 ÷ 1.095). The option \"2.79\" subtracts the compounded price increase, about 9.71%, from the 12.5% wage increase. The option \"2.48\" measures the change as a percent of the new real wage (1 − 1.097074 ÷ 1.125).",
+  "solve": "const n=27.90/24.80,I=1.034*1.061;return (100*(n/I-1)).toFixed(2);",
+  "distractor_solve": {
+   "2.74": "const n=27.90/24.80;return (100*(n/1.095-1)).toFixed(2);",
+   "2.79": "const n=27.90/24.80,I=1.034*1.061;return (100*((n-1)-(I-1))).toFixed(2);",
+   "2.48": "const n=27.90/24.80,I=1.034*1.061;return (100*(1-I/n)).toFixed(2);"
+  },
+  "quantity_asked": "the percent increase in the real wage (wage divided by price level) from the start to the end of the two years.",
+  "distractor_kind": {
+   "2.74": "error path: adds 3.4% and 6.1% to 9.5% instead of compounding. (a) no parameter extreme. (b) not an intermediate of the correct process. (c) no one-step estimate separates it short of the division. (d) real compounding error.",
+   "2.79": "error path: subtracts the compounded 9.71% from the 12.5% raise. (a) no extreme. (b) it equals the difference of the two percent changes, a quantity the correct work does not produce. (c) no cheap estimate; recognising real < n - i needs the compounded index, which is the work. (d) real subtract-the-percents error.",
+   "2.48": "error path: divides the change by the final real wage. (a) no extreme. (b) not an adjacent answer. (c) no cheap estimate. (d) real wrong-base error."
+  },
+  "distractor_meta": {
+   "2.74": {
+    "direction": "over",
+    "error_kind": "inflation rates added, not compounded"
+   },
+   "2.79": {
+    "direction": "over",
+    "error_kind": "percent changes subtracted"
+   },
+   "2.48": {
+    "direction": "under",
+    "error_kind": "percent of new value (wrong base)"
+   }
+  },
+  "bounds": [
+   "real increase between 0 and 12.5 (nominal increase)"
+  ],
+  "mechanism": [
+   "real wage percent change",
+   "compound two inflation rates",
+   "ratio of growth factors",
+   "deflate a wage by a price index"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents between 2.4 and 2.8; no class isolates the key.",
+  "one_sided_check": "key interior (two over, one under).",
+  "interior_parity_check": "Interior by value: 2.55 and 2.74, both one digit plus two decimals; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"3.4% in the first year and then another 6.1%\" - adding instead of compounding gives 2.74 (over, inflation-index step). \"real wage = wage divided by price level\" - subtracting percent changes gives 2.79 (over, combining step); measuring against the new value gives 2.48 (under, percent-change step). Each distractor from a different step; one under, two over. Not an additive total.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three distinct steps; the n − i inequality that caps 2.79 needs the compounded index, i.e. the work; option gaps 0.07/0.19/0.05 match no stem quantity."
+  }
+ },
+ {
+  "id": "AM26I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "emissions per occupant-mile comparison",
+  "subskill": "normalize by fuel economy and occupancy, percent less",
+  "prompt": "A city compares the carbon dioxide (CO2) emitted per occupant-mile by a commuter car and by a city bus. The car travels 28 miles per gallon of gasoline, and each gallon of gasoline burned emits 8.89 kilograms of CO2. On 70% of the car's commuting trips the driver is alone, and on the other 30% the car carries the driver and one passenger. The bus travels 4.2 miles per gallon of diesel fuel, each gallon of diesel burned emits 10.18 kilograms of CO2, and the bus carries an average of 18 occupants. To the nearest hundredth of a percent, the bus emits what percent less CO2 per occupant-mile than the car?",
+  "choices": [
+   "51.85",
+   "81.37",
+   "44.87",
+   "57.59"
+  ],
+  "correct_answer": "44.87",
+  "explanation": "The car carries an average of 0.70(1) + 0.30(2) = 1.3 occupants, so the car emits 8.89 ÷ 28 ÷ 1.3 ≈ 0.24423 kilogram per occupant-mile. Bus: 10.18 ÷ 4.2 ÷ 18 ≈ 0.13466 kilogram per occupant-mile. The bus emits (0.24423 − 0.13466) ÷ 0.24423 ≈ 0.4487, or 44.87% less. The option \"51.85\" uses the gasoline figure, 8.89 kilograms per gallon, for the bus as well. The option \"57.59\" counts only the driver, using the car's emissions per vehicle-mile. The option \"81.37\" divides the difference by the bus's figure instead of the car's.",
+  "solve": "const occ=0.7*1+0.3*2,car=8.89/28/occ,bus=10.18/4.2/18;return (100*(1-bus/car)).toFixed(2);",
+  "distractor_solve": {
+   "51.85": "const occ=0.7*1+0.3*2,car=8.89/28/occ,bus=8.89/4.2/18;return (100*(1-bus/car)).toFixed(2);",
+   "57.59": "const car=8.89/28,bus=10.18/4.2/18;return (100*(1-bus/car)).toFixed(2);",
+   "81.37": "const occ=0.7*1+0.3*2,car=8.89/28/occ,bus=10.18/4.2/18;return (100*(car-bus)/bus).toFixed(2);"
+  },
+  "quantity_asked": "the percent by which the bus's CO2 per occupant-mile is less than the car's, relative to the car.",
+  "distractor_kind": {
+   "51.85": "error path: uses 8.89 kg per gallon for diesel too. (a) no parameter extreme. (b) not an intermediate value. (c) no cheap estimate: both per-occupant figures must be computed. (d) real wrong-row error in a two-fuel table.",
+   "57.59": "error path: car occupancy taken as 1 (passenger trips ignored). (a) no extreme. (b) needs the same bus computation as the key; not cheaper than the work. (c) inside (0, 100); no estimate separates it. (d) real omitted-normalisation error.",
+   "81.37": "error path: difference divided by the bus value. (a) no extreme. (b) it is the \"percent more\" for the car, an adjacent quantity, but it lies strictly inside the possible range only because the base is the smaller value; it is not on any stem bound. (c) no estimate. (d) real wrong-base error."
+  },
+  "distractor_meta": {
+   "51.85": {
+    "direction": "over",
+    "error_kind": "wrong fuel factor for bus"
+   },
+   "57.59": {
+    "direction": "over",
+    "error_kind": "car occupancy omitted"
+   },
+   "81.37": {
+    "direction": "over",
+    "error_kind": "percent of the smaller value (wrong base)"
+   }
+  },
+  "bounds": [
+   "percent less between 0 and 100"
+  ],
+  "mechanism": [
+   "CO2 per passenger-mile",
+   "miles per gallon and kilograms per gallon",
+   "average occupancy from trip percentages",
+   "percent less car versus bus"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents with no shared class; the key is not the only value in any parity or divisibility class.",
+  "one_sided_check": "Key smallest. The three errors are at three different steps (fuel factor row, occupancy, percent base). The occupancy step has natural errors in the other direction that are not options: swapping the 70%/30% weights gives 1.7 occupants and 27.90, assuming every trip carries a passenger gives 2 occupants and 15.18, and averaging 1 and 2 gives 1.5 occupants and 36.38. A student cannot tell from the stem that the three listed slips raise the answer without computing both rates.",
+  "interior_parity_check": "Interior by value: 51.85 and 57.59, both two digits with two decimals; neither is rounder.",
+  "cheap_bound_check": "Key smallest. Cheapest one-sided bounds from the stem: 0 < percent less < 100, which contain every option. Any estimate needs the occupancy average and both per-occupant figures, which is the item's work, and a rounded estimate (0.24 vs 0.13, about 46%) is not one-sided. No bound cheaper than the work separates 44.87 from 51.85 (7 points); 51.85 lies on the key's side of every one-sided bound.",
+  "trap_check": "Clauses: \"70% ... alone, 30% ... one passenger\" - counting only the driver gives 57.59 (over, occupancy step), while swapped weights (27.90), 2 occupants (15.18) and 1.5 occupants (36.38) go under and are not options; \"10.18 kg per gallon of diesel\" - using the gasoline row gives 51.85 (over, fuel-factor step); \"percent less ... than the car\" - wrong base gives 81.37 (over, percent step). One distractor per clause. Not an additive total.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Extreme key; nearest distractor 7 points away though no cheap bound exists; occupancy step errs both ways, but fuel-row and base errors both raise the value."
+  }
+ },
+ {
+  "id": "AM26I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "average speed from timestamps, percent over limit",
+  "subskill": "elapsed time with borrowing, km/h, percent above",
+  "prompt": "On a highway with a speed limit of 90 kilometers per hour, an average-speed enforcement system records the time at which each car passes two cameras that are 6.8 kilometers apart. One car passed the first camera at 10:14:37 a.m. and the second camera at 10:18:25 a.m. (hours:minutes:seconds). To the nearest tenth of a percent, by what percent did the car's average speed between the two cameras exceed the speed limit?",
+  "choices": [
+   "16.2",
+   "30.3",
+   "7.9",
+   "19.3"
+  ],
+  "correct_answer": "19.3",
+  "explanation": "The elapsed time is 10:18:25 − 10:14:37 = 3 minutes 48 seconds = 228 seconds. The average speed is 6.8 ÷ 228 × 3,600 ≈ 107.37 kilometers per hour, which exceeds 90 by 17.37, or 17.37 ÷ 90 ≈ 19.3%. The option \"7.9\" subtracts the seconds without borrowing (37 − 25 = 12 and 18 − 14 = 4, so 4 minutes 12 seconds). The option \"30.3\" uses 3.48 minutes for 3 minutes 48 seconds. The option \"16.2\" divides the excess by the car's speed instead of the limit.",
+  "solve": "const v=6.8/228*3600;return (100*(v-90)/90).toFixed(1);",
+  "distractor_solve": {
+   "7.9": "const v=6.8/252*3600;return (100*(v-90)/90).toFixed(1);",
+   "30.3": "const v=6.8/3.48*60;return (100*(v-90)/90).toFixed(1);",
+   "16.2": "const v=6.8/228*3600;return (100*(v-90)/v).toFixed(1);"
+  },
+  "quantity_asked": "the percent by which the average speed over the 6.8 km exceeds 90 km/h, relative to 90 km/h.",
+  "distractor_kind": {
+   "7.9": "error path: elapsed time 4 min 12 s from subtracting without borrowing. (a) no extreme. (b) not an intermediate. (c) inside (0, ∞); no estimate. (d) real borrowing error.",
+   "30.3": "error path: 3 min 48 s taken as 3.48 min. (a) no extreme. (b) not an intermediate. (c) no estimate. (d) real decimal-minute error.",
+   "16.2": "error path: excess divided by the car's speed. (a) no extreme. (b) not an edge value. (c) no estimate. (d) real wrong-base error."
+  },
+  "distractor_meta": {
+   "7.9": {
+    "direction": "under",
+    "error_kind": "time subtraction without borrowing"
+   },
+   "30.3": {
+    "direction": "over",
+    "error_kind": "minutes:seconds read as decimal"
+   },
+   "16.2": {
+    "direction": "under",
+    "error_kind": "percent of the car speed (wrong base)"
+   }
+  },
+  "bounds": [
+   "percent over > 0 (the car is fast enough to be asked about)"
+  ],
+  "mechanism": [
+   "average speed camera",
+   "elapsed time from clock readings",
+   "kilometers per hour from seconds",
+   "percent above speed limit"
+  ],
+  "arith_class_check": "No. All four are one-decimal percents; no class isolates 19.3.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 16.2 and 19.3, both two digits with one decimal; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "No special-condition clause. Steps: time subtraction (7.9, under), time unit conversion (30.3, over), percent base (16.2, under). Errors at three steps push both ways. Not an additive total.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key, three steps, both directions; no option sits on a stem-forced bound; gaps 8.3/3.1/11.0 match no stem number."
+  }
+ },
+ {
+  "id": "AM26I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "percent change in cost of a fixed basket",
+  "subskill": "quantity-weighted totals, percent change",
+  "prompt": "A family tracks the monthly cost of a fixed basket of groceries: 3 gallons of milk, 6 dozen eggs, 5 loaves of bread, and 3 pounds of apples. Last year the prices were $3.46 per gallon of milk, $2.76 per dozen eggs, $3.19 per loaf of bread, and $1.24 per pound of apples. This year the prices are $3.91, $3.22, $3.32, and $1.56, respectively. The family buys the same quantities in both years. To the nearest hundredth of a percent, by what percent did the monthly cost of the basket increase?",
+  "choices": [
+   "13.93",
+   "12.27",
+   "14.89",
+   "12.77"
+  ],
+  "correct_answer": "12.27",
+  "explanation": "Last year the basket cost 3(3.46) + 6(2.76) + 5(3.19) + 3(1.24) = 10.38 + 16.56 + 15.95 + 3.72 = $46.61. This year it costs 3(3.91) + 6(3.22) + 5(3.32) + 3(1.56) = 11.73 + 19.32 + 16.60 + 4.68 = $52.33. The increase is 5.72 ÷ 46.61 ≈ 12.27%. The option \"12.77\" ignores the quantities and compares the sums of the four prices ($12.01 versus $10.65). The option \"14.89\" averages the four items' percent increases (13.01%, 16.67%, 4.08%, 25.81%). The option \"13.93\" averages those percent increases weighted by the quantities 3, 6, 5, and 3.",
+  "solve": "const q=[3,6,5,3],a=[3.46,2.76,3.19,1.24],b=[3.91,3.22,3.32,1.56];let c0=0,c1=0;for(let i=0;i<4;i++){c0+=q[i]*a[i];c1+=q[i]*b[i];}return (100*(c1/c0-1)).toFixed(2);",
+  "distractor_solve": {
+   "12.77": "const a=[3.46,2.76,3.19,1.24],b=[3.91,3.22,3.32,1.56];const s0=a.reduce((x,y)=>x+y,0),s1=b.reduce((x,y)=>x+y,0);return (100*(s1/s0-1)).toFixed(2);",
+   "14.89": "const a=[3.46,2.76,3.19,1.24],b=[3.91,3.22,3.32,1.56];let s=0;for(let i=0;i<4;i++)s+=100*(b[i]/a[i]-1);return (s/4).toFixed(2);",
+   "13.93": "const q=[3,6,5,3],a=[3.46,2.76,3.19,1.24],b=[3.91,3.22,3.32,1.56];let s=0,w=0;for(let i=0;i<4;i++){s+=q[i]*100*(b[i]/a[i]-1);w+=q[i];}return (s/w).toFixed(2);"
+  },
+  "quantity_asked": "the percent increase in the total monthly cost of the fixed basket (3 gal milk, 6 dozen eggs, 5 loaves, 3 lb apples) from last year to this year.",
+  "distractor_kind": {
+   "12.77": "error path: compares sums of unit prices, quantities ignored. (a) no extreme. (b) not an intermediate. (c) the cheapest bounds are the smallest and largest item increases, 4.08 and 25.81; strictly inside. (d) real ignored-weights error.",
+   "14.89": "error path: unweighted mean of item percent increases. (a) no extreme. (b) not an intermediate. (c) inside (4.08, 25.81). (d) real averaging-percents error.",
+   "13.93": "error path: mean of item percents weighted by quantity, not by cost. (a) no extreme. (b) not an intermediate. (c) inside (4.08, 25.81). (d) real wrong-weights error."
+  },
+  "distractor_meta": {
+   "12.77": {
+    "direction": "over",
+    "error_kind": "quantities ignored (price sums)"
+   },
+   "14.89": {
+    "direction": "over",
+    "error_kind": "unweighted mean of item percents"
+   },
+   "13.93": {
+    "direction": "over",
+    "error_kind": "percents weighted by quantity"
+   }
+  },
+  "bounds": [
+   "basket increase between the smallest item increase (4.08%) and the largest (25.81%)"
+  ],
+  "mechanism": [
+   "fixed basket price index",
+   "total cost this year over last year",
+   "quantity-weighted cost",
+   "percent increase of a basket"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents between 12 and 15; none is singled out by any class.",
+  "one_sided_check": "Key smallest. The three errors are at different steps (dropping quantities, averaging percents, weighting by count instead of cost) and each one's direction depends on the data: the averaged percents could fall above or below the cost-weighted figure depending on which items are cheap or expensive and which rose most. The base error (dividing by this year's cost, 10.93) goes the other way and is not an option. Nothing in the stem announces a direction.",
+  "interior_parity_check": "Interior by value: 12.77 and 13.93, both two digits with two decimals; neither is rounder.",
+  "cheap_bound_check": "Key smallest. Cheapest bound readable from the stem: the basket increase lies between the item increases 4.08% and 25.81%, which contains all four options. No one-step estimate separates 12.27 from 12.77 (0.50 apart): both totals are needed. The nearest distractor 12.77 lies on the key's side of every cheap bound.",
+  "trap_check": "No special-condition clause (\"same quantities in both years\" is the definition of the basket). Steps: weighting (12.77 quantities dropped, over), averaging method (14.89 unweighted percents, over), weights choice (13.93 count weights, over). Each direction is data-dependent; the wrong-base error (10.93, under) is natural and not an option. Not a net of components: every term is weighted, none omitted.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key with data-dependent error directions; nearest 0.50 above; bounds 4.08/25.81 contain all; no RUN (gaps 0.50/1.16/0.96)."
+  }
+ },
+ {
+  "id": "AM26I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "wind turbine annual energy, homes supplied",
+  "subskill": "power x hours x capacity factor, loss, divide by use",
+  "prompt": "A wind turbine is rated at 2.5 megawatts (MW), where 1 MW = 1,000 kilowatts (kW). Over a year, its capacity factor is 34%, meaning that it produces 34% of the energy it would produce if it ran at its rated power for every hour of the year. Of the energy the turbine produces, 6% is lost in transmission before it reaches customers. An average home uses 10,720 kilowatt-hours (kWh) of energy per year. To the nearest whole number, the energy that reaches customers in one year equals the annual use of how many average homes?",
+  "choices": [
+   "644",
+   "655",
+   "572",
+   "653"
+  ],
+  "correct_answer": "653",
+  "explanation": "A year has 365 × 24 = 8,760 hours. The turbine produces 2,500 × 8,760 × 0.34 = 7,446,000 kWh, and 94% of that, 6,999,240 kWh, reaches customers. Dividing by 10,720 kWh per home gives about 652.9, or 653 homes. The option \"644\" uses a 360-day year (8,640 hours). The option \"572\" subtracts 6 percentage points from the capacity factor (28%) instead of taking 6% of the energy. The option \"655\" divides by 1.06 instead of multiplying by 0.94.",
+  "solve": "const E=2500*8760*0.34*0.94;return String(Math.round(E/10720));",
+  "distractor_solve": {
+   "572": "const E=2500*8760*0.28;return String(Math.round(E/10720));",
+   "644": "const E=2500*8640*0.34*0.94;return String(Math.round(E/10720));",
+   "655": "const E=2500*8760*0.34/1.06;return String(Math.round(E/10720));"
+  },
+  "quantity_asked": "the number of average homes (to the nearest whole number) whose annual use equals the energy that reaches customers in a year.",
+  "distractor_kind": {
+   "572": "error path: 34% − 6% = 28% capacity factor. (a) no extreme. (b) not an intermediate. (c) inside (0, 695). (d) real percentage-point error.",
+   "644": "error path: 360-day year. (a) no extreme. (b) not an intermediate. (c) the cheapest cap is the no-loss value 695; 644 is strictly inside (0, 695). (d) real year-length error.",
+   "655": "error path: loss handled as ÷1.06. (a) no extreme. (b) not an intermediate. (c) strictly below the 695 cap. (d) real reverse-percent error."
+  },
+  "distractor_meta": {
+   "572": {
+    "direction": "under",
+    "error_kind": "loss subtracted from capacity factor"
+   },
+   "644": {
+    "direction": "under",
+    "error_kind": "360-day year"
+   },
+   "655": {
+    "direction": "over",
+    "error_kind": "loss applied by dividing by 1.06"
+   }
+  },
+  "bounds": [
+   "homes < 695 (no transmission loss)"
+  ],
+  "mechanism": [
+   "wind turbine capacity factor",
+   "megawatts to kilowatt-hours per year",
+   "transmission loss percent",
+   "number of homes powered"
+  ],
+  "arith_class_check": "No. Integers 572, 644, 653, 655: two even, two odd, none a multiple of 10; nothing in the stem implies parity or divisibility of a rounded home count.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 644 and 653, both three-digit non-round integers; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"6% is lost in transmission\" - ignoring gives 695 (over, not an option); misapplying as percentage points gives 572 (under); ÷1.06 gives 655 (over). Hours step: 360-day year gives 644 (under). Errors at two steps push both ways; the loss clause yields one under and one over option, none from ignoring it. Not an additive total.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; clause-omission value 695 kept out; parity mixed (two odd, two even); 655 is 2 above the key by a real reverse-percent slip."
+  }
+ },
+ {
+  "id": "AM26I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "song length from beats and tempo",
+  "subskill": "beats from measures, percent tempo change, minutes to seconds",
+  "prompt": "A song begins with 6 measures in 3/4 time (3 beats per measure), followed by 136 measures in 4/4 time (4 beats per measure). It is written to be played at a tempo of 128 beats per minute. A DJ plays the whole song at a tempo 6% faster than written, with the same beats. To the nearest second, how many seconds long is the song when the DJ plays it?",
+  "choices": [
+   "251",
+   "249",
+   "254",
+   "252"
+  ],
+  "correct_answer": "249",
+  "explanation": "The song has 6(3) + 136(4) = 18 + 544 = 562 beats. The DJ's tempo is 128(1.06) = 135.68 beats per minute, so the song lasts 562 ÷ 135.68 ≈ 4.1421 minutes, or about 248.5 seconds, which rounds to 249 seconds. The option \"252\" raises the tempo by 6 beats per minute (to 134) instead of by 6%. The option \"251\" counts all 142 measures as 4 beats each. The option \"254\" rounds the time to 4.14 minutes and reads it as 4 minutes 14 seconds.",
+  "solve": "const beats=6*3+136*4;return String(Math.round(beats/(128*1.06)*60));",
+  "distractor_solve": {
+   "251": "const beats=142*4;return String(Math.round(beats/(128*1.06)*60));",
+   "252": "const beats=6*3+136*4;return String(Math.round(beats/134*60));",
+   "254": "const beats=6*3+136*4;const m=Math.round(beats/(128*1.06)*100)/100;return String(Math.floor(m)*60+Math.round((m-Math.floor(m))*100));"
+  },
+  "quantity_asked": "the length of the whole song, in whole seconds, at a tempo 6% faster than 128 beats per minute.",
+  "distractor_kind": {
+   "251": "error path: 3/4 measures counted as 4 beats. (a) no extreme. (b) not an intermediate. (c) strictly below 263.4. (d) real beat-count error.",
+   "252": "error path: 128 + 6 = 134 bpm. (a) no extreme. (b) not an intermediate. (c) cheapest cap: no speed-up gives 263.4 s; 252 is strictly below it. (d) real percent-as-units error.",
+   "254": "error path: 4.14 minutes read as 4 min 14 s. (a) no extreme. (b) not an intermediate. (c) strictly below 263.4. (d) real decimal-minute display error."
+  },
+  "distractor_meta": {
+   "251": {
+    "direction": "over",
+    "error_kind": "all measures counted as 4 beats"
+   },
+   "252": {
+    "direction": "over",
+    "error_kind": "6% read as 6 beats per minute"
+   },
+   "254": {
+    "direction": "over",
+    "error_kind": "decimal minutes read as seconds"
+   }
+  },
+  "bounds": [
+   "time < 263.4 s (tempo not raised: 562 beats at 128 bpm)"
+  ],
+  "mechanism": [
+   "song length from tempo",
+   "beats per measure time signature",
+   "tempo increased by a percent",
+   "beats per minute to seconds"
+  ],
+  "arith_class_check": "No. Integers 249, 251, 252, 254: two odd, two even, none a multiple of 5; the key shares divisibility by 3 with 252; nothing in the stem implies a class for a rounded time.",
+  "one_sided_check": "Key smallest. Errors come from three different steps (tempo percent, beat count, time display). Natural errors in the other direction exist and are not options: shortening the written-tempo time by 6% gives 248 and leaving out the 6-measure intro gives 241. A student cannot see from the stem which way the listed slips move the time without doing them.",
+  "interior_parity_check": "Interior by value: 251 and 252, both non-round three-digit integers; neither is rounder.",
+  "cheap_bound_check": "Key smallest. Cheapest one-sided bound: the song is shorter than at the written tempo, 562 ÷ 128 min ≈ 263.4 s, which every option satisfies. A one-step estimate (about 560 beats at about 135 bpm ≈ 4.15 min ≈ 249 s) is not a bound in a known direction and cannot separate 249 from 251. The nearest distractor 251 is on the key's side of every cheap bound.",
+  "trap_check": "Clauses: \"3/4 time (3 beats per measure)\" - counting 4 beats gives 251 (over, beat step); \"6% faster\" - +6 bpm gives 252 (over, tempo step), time × 0.94 gives 248 (under, not an option); answer \"to the nearest second\" - 4.14 min read as 4:14 gives 254 (over, display step). One distractor per step; not an additive total.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; three steps; nearest 2 s above; no bound between key and nearest; 254 below the 263.4 cap; parity mixed; GAP 252-249=3 is a coincidence."
+  }
+ },
+ {
+  "id": "AM26I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "annual percentage rate of a short-term loan",
+  "subskill": "days between dates, finance charge rate, annualize",
+  "prompt": "A lender advanced Dana $350 on March 27, and Dana repaid $402 on April 11 of the same year, ending the loan. The term of the loan is the number of days from March 27 to April 11. The lender computes the annual percentage rate (APR) as (finance charge ÷ amount advanced) × (365 ÷ number of days in the term) × 100%, where the finance charge is the amount repaid minus the amount advanced. To the nearest hundredth of a percent, what was the APR of Dana's loan?",
+  "choices": [
+   "338.93",
+   "356.57",
+   "361.52",
+   "314.76"
+  ],
+  "correct_answer": "361.52",
+  "explanation": "March has 31 days, so from March 27 to April 11 is 4 + 11 = 15 days. The finance charge is 402 − 350 = $52. APR = (52 ÷ 350)(365 ÷ 15)(100%) ≈ 0.148571 × 24.333 × 100% ≈ 361.52%. The option \"338.93\" counts both March 27 and April 11, a 16-day term. The option \"356.57\" uses 24 whole terms per year instead of 365 ÷ 15 ≈ 24.33. The option \"314.76\" divides the finance charge by the $402 repaid instead of the $350 advanced.",
+  "solve": "return ((402-350)/350*(365/15)*100).toFixed(2);",
+  "distractor_solve": {
+   "338.93": "return ((402-350)/350*(365/16)*100).toFixed(2);",
+   "356.57": "return ((402-350)/350*Math.floor(365/15)*100).toFixed(2);",
+   "314.76": "return ((402-350)/402*(365/15)*100).toFixed(2);"
+  },
+  "quantity_asked": "the APR, (52 ÷ 350)(365 ÷ term days)(100), with the term the number of days from March 27 to April 11.",
+  "distractor_kind": {
+   "338.93": "error path: inclusive count, 16 days. (a) no extreme. (b) not an intermediate. (c) no cheap bound: the term must be counted. (d) real fencepost error.",
+   "356.57": "error path: 365/15 truncated to 24 terms. (a) no extreme. (b) not an intermediate. (c) no cheap bound. (d) real truncation error.",
+   "314.76": "error path: charge ÷ amount repaid. (a) no extreme. (b) not an intermediate. (c) no cheap bound. (d) real wrong-base error."
+  },
+  "distractor_meta": {
+   "338.93": {
+    "direction": "under",
+    "error_kind": "day count inclusive"
+   },
+   "356.57": {
+    "direction": "under",
+    "error_kind": "terms per year truncated"
+   },
+   "314.76": {
+    "direction": "under",
+    "error_kind": "charge divided by amount repaid"
+   }
+  },
+  "bounds": [
+   "APR > 0"
+  ],
+  "mechanism": [
+   "annual percentage rate payday loan",
+   "days between two dates",
+   "finance charge over amount advanced",
+   "annualize by 365 over term"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents above 300; no class isolates 361.52.",
+  "one_sided_check": "Key largest. The three errors are at three different steps (counting days, annualizing, choosing the base). Natural errors at those steps also go the other way and are not options: taking March as 30 days gives a 14-day term and 387.35, and dividing the charge by the cash after the charge ($298) or rounding 24.33 up to 25 both raise the APR. The stem gives no hint that the listed slips all lower it.",
+  "interior_parity_check": "Interior by value: 338.93 and 356.57, both three digits with two non-zero decimals; neither is rounder.",
+  "cheap_bound_check": "Key largest. Cheapest bound readable from the stem: APR > 0, or a one-step estimate 52/350 ≈ 15% per half month, about 24 half-months a year ≈ 360%, which lies between 356.57 and 361.52 but is not a bound in a known direction (the half-month guess is neither always high nor always low). No cheap bound separates the key from 356.57 (1.4% below); it is on the key's side of every one-sided bound.",
+  "trap_check": "No special-condition clause; the formula is given. Steps: day count (338.93 inclusive, under; 30-day March would give 387.35, over, not an option), annualizing (356.57 truncated, under; rounding up to 25 gives 371.43, over, not an option), base (314.76 repaid, under). One distractor per step; not an additive total.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Extreme key; three steps; natural over errors exist at two of them but all three options are under, so a grader may still read them as one family."
+  }
+ },
+ {
+  "id": "AM26I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "file upload time with unit conversion and overhead",
+  "subskill": "GB to megabits, effective rate, seconds to minutes",
+  "prompt": "Rafael uploads a 4.3-gigabyte (GB) video file over a connection that sends bits at a constant rate of 20 megabits per second (Mbps). For this problem, 1 GB = 1,024 megabytes (MB) and 1 MB = 8 megabits. Of all the bits the connection sends, 10% are network overhead, and only the other 90% carry the file's data. To the nearest hundredth of a minute, how many minutes does the upload take?",
+  "choices": [
+   "32.29",
+   "32.62",
+   "31.85",
+   "32.37"
+  ],
+  "correct_answer": "32.62",
+  "explanation": "The file is 4.3 × 1,024 × 8 = 35,225.6 megabits. The file's data moves at 90% of 20, or 18 megabits per second, so the upload takes 35,225.6 ÷ 18 ≈ 1,956.98 seconds ≈ 32.62 minutes. The option \"31.85\" uses 1 GB = 1,000 MB. The option \"32.29\" increases the file size by 10% (dividing by 20) instead of using 90% of the rate. The option \"32.37\" writes 32 minutes 37 seconds as 32.37 minutes.",
+  "solve": "const bits=4.3*1024*8;return (bits/(20*0.9)/60).toFixed(2);",
+  "distractor_solve": {
+   "31.85": "const bits=4.3*1000*8;return (bits/(20*0.9)/60).toFixed(2);",
+   "32.29": "const bits=4.3*1024*8*1.1;return (bits/20/60).toFixed(2);",
+   "32.37": "const s=4.3*1024*8/(20*0.9);const m=Math.floor(s/60),r=Math.round(s-60*m);return (m+r/100).toFixed(2);"
+  },
+  "quantity_asked": "the upload time in minutes for 4.3 × 1,024 × 8 megabits at 90% of 20 megabits per second.",
+  "distractor_kind": {
+   "31.85": "error path: 1 GB = 1,000 MB. (a) no extreme. (b) not an intermediate. (c) the cheapest bound is the no-overhead time 29.35; 31.85 is strictly above it. (d) real binary/decimal prefix error.",
+   "32.29": "error path: file × 1.10 at full rate. (a) no extreme. (b) not an intermediate. (c) above 29.35. (d) real reverse-percent error.",
+   "32.37": "error path: 32 min 37 s written as 32.37. (a) no extreme. (b) not an intermediate. (c) above 29.35. (d) real minutes:seconds display error."
+  },
+  "distractor_meta": {
+   "31.85": {
+    "direction": "under",
+    "error_kind": "1 GB taken as 1,000 MB"
+   },
+   "32.29": {
+    "direction": "under",
+    "error_kind": "overhead added to file size"
+   },
+   "32.37": {
+    "direction": "under",
+    "error_kind": "min:sec read as decimal minutes"
+   }
+  },
+  "bounds": [
+   "time > 29.35 min (no overhead)"
+  ],
+  "mechanism": [
+   "upload time file size",
+   "gigabytes to megabits",
+   "network overhead percent",
+   "megabits per second"
+  ],
+  "arith_class_check": "No. All four are two-decimal values between 31.8 and 32.7; none is singled out by any class.",
+  "one_sided_check": "Key largest. The errors are at three different steps (unit prefix, overhead model, time display). Natural errors in the other direction exist and are not options: reading \"90% carry data\" as 90% overhead multiplies the time by 9, and dividing by 0.9 twice gives 36.24. Nothing in the stem shows that the listed slips all shorten the time.",
+  "interior_parity_check": "Interior by value: 32.29 and 32.37, both two digits with two non-zero decimals; neither is rounder.",
+  "cheap_bound_check": "Key largest. Cheapest one-sided bound: ignoring overhead gives 29.35 minutes, a lower bound below every option. A one-step estimate (4,400 MB × 8 ÷ 18 ≈ 1,956 s ≈ 32.6 min) needs the full chain and does not separate 32.62 from 32.37 at a cheaper resolution. The nearest distractor 32.37 lies on the key's side of every cheap bound.",
+  "trap_check": "Clauses: \"1 GB = 1,024 MB\" - using 1,000 gives 31.85 (under, unit step); \"only 90% carry the file's data\" - ignoring gives 29.35 (under, not an option), adding 10% to the file gives 32.29 (under, overhead step); \"to the nearest hundredth of a minute\" - min:sec read as decimal gives 32.37 (under, display step). One distractor per step, none from ignoring a clause; not an additive total.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; nearest 0.25 below; three distinct steps (prefix, overhead model, display); no-overhead bound 29.35 below all; over-direction slips exist."
+  }
+ },
+ {
+  "id": "AM26I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "running track lane distance",
+  "subskill": "circumference growth per lane, lane offset count, laps",
+  "prompt": "A running track has two straight sections and two semicircular ends. One lap in lane 1 is 400 meters. Each lane is 1.22 meters wide, so in each lane the semicircular ends of the running path have a radius 1.22 meters greater than in the lane just inside it, while the straight sections are the same length in every lane. To the nearest hundredth of a meter, how far does a runner travel in 4 complete laps of lane 6?",
+  "choices": [
+   "1676.65",
+   "1753.31",
+   "1638.33",
+   "1783.97"
+  ],
+  "correct_answer": "1753.31",
+  "explanation": "Lane 6 is 5 lanes outside lane 1, so the radius of each semicircular end is 5(1.22) = 6.1 meters greater. The two semicircles together form a full circle, so each lap is 2π(6.1) ≈ 38.33 meters longer than in lane 1, or about 438.33 meters. Four laps: 4(438.33) ≈ 1,753.31 meters. The option \"1783.97\" counts 6 lane widths (7.32 meters) for lane 6. The option \"1676.65\" adds the extra length of only one semicircle, π(6.1), per lap. The option \"1638.33\" adds the extra 38.33 meters only once instead of on every lap.",
+  "solve": "return (4*(400+2*Math.PI*5*1.22)).toFixed(2);",
+  "distractor_solve": {
+   "1783.97": "return (4*(400+2*Math.PI*6*1.22)).toFixed(2);",
+   "1676.65": "return (4*(400+Math.PI*5*1.22)).toFixed(2);",
+   "1638.33": "return (4*400+2*Math.PI*5*1.22).toFixed(2);"
+  },
+  "quantity_asked": "the total distance of 4 laps in lane 6, each lap 400 + 2π(5 × 1.22) meters.",
+  "distractor_kind": {
+   "1783.97": "error path: 6 lane widths for lane 6. (a) no extreme. (b) it is the 4-lap distance in lane 7, an adjacent setup, but the stem forces no bound there; the distance has no upper cap short of the work. (c) the cheapest bound is distance > 1,600; strictly inside. (d) real fencepost error.",
+   "1676.65": "error path: one semicircle's extra (π r) per lap. (a) no extreme. (b) not an intermediate. (c) above 1,600. (d) real circle-geometry error.",
+   "1638.33": "error path: extra added once, not per lap. (a) no extreme. (b) it equals 1,600 + one lap's extra, an intermediate sum, but it is not on a stem-forced bound (the lower bound is 1,600). (c) above 1,600. (d) real scaling error."
+  },
+  "distractor_meta": {
+   "1783.97": {
+    "direction": "over",
+    "error_kind": "lane widths counted as lane number"
+   },
+   "1676.65": {
+    "direction": "under",
+    "error_kind": "one semicircle instead of two"
+   },
+   "1638.33": {
+    "direction": "under",
+    "error_kind": "extra length added once"
+   }
+  },
+  "bounds": [
+   "distance > 1,600 (four laps in lane 1)"
+  ],
+  "mechanism": [
+   "running track lanes",
+   "semicircle radius increases by lane width",
+   "extra distance per lap 2 pi r",
+   "laps in an outer lane"
+  ],
+  "arith_class_check": "No. All four are two-decimal lengths between 1,630 and 1,790 with different decimal endings; none is singled out by any class.",
+  "one_sided_check": "key interior (one over, two under).",
+  "interior_parity_check": "Interior by value: 1676.65 and 1753.31, both four digits with two non-zero decimals; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"lane 6\" with \"1.22 meters greater than in the lane just inside\" - counting 6 widths gives 1783.97 (over, lane-offset step); \"two semicircular ends\" - one semicircle gives 1676.65 (under, circle step); \"4 complete laps\" - extra once gives 1638.33 (under, multiplication step). One distractor per step, both directions; not an additive total of listed components.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three steps both directions; all options above the 1,600 bound; no shared decimal endings; gaps 38.32/76.66/30.66 match no stem number."
+  }
+ },
+ {
+  "id": "AM26I-11",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "stair design: risers, treads, stringer length",
+  "subskill": "feet-inches conversion, ceiling count, Pythagorean length",
+  "prompt": "A builder is designing a straight staircase that rises a total of 9 feet 4 inches from one floor to the next. All risers (step heights) must be equal and no more than 7.75 inches, and the builder uses the fewest risers that meet this limit. Each tread (step depth) is 10.5 inches, and the staircase has one fewer tread than it has risers because the top riser leads onto the upper floor. The stringer runs straight from the bottom of the first riser to the top of the last riser, so its length is the hypotenuse of a right triangle whose legs are the total rise and the total depth of all the treads. To the nearest hundredth of an inch, how long is the stringer?",
+  "choices": [
+   "185.29",
+   "176.57",
+   "193.26",
+   "184.81"
+  ],
+  "correct_answer": "184.81",
+  "explanation": "The total rise is 9(12) + 4 = 112 inches. 112 ÷ 7.75 ≈ 14.45, so the fewest risers is 15, and there are 14 treads with a total depth of 14(10.5) = 147 inches. The stringer is √(112² + 147²) = √34,153 ≈ 184.81 inches. The option \"185.29\" reads 9 feet 4 inches as 9.4 feet (112.8 inches). The option \"176.57\" rounds 14.45 down to 14 risers, giving 13 treads. The option \"193.26\" uses as many treads as risers (15).",
+  "solve": "const rise=9*12+4;const n=Math.ceil(rise/7.75);const run=(n-1)*10.5;return Math.sqrt(rise*rise+run*run).toFixed(2);",
+  "distractor_solve": {
+   "185.29": "const rise=9.4*12;const n=Math.ceil(rise/7.75);const run=(n-1)*10.5;return Math.sqrt(rise*rise+run*run).toFixed(2);",
+   "176.57": "const rise=9*12+4;const n=Math.floor(rise/7.75);const run=(n-1)*10.5;return Math.sqrt(rise*rise+run*run).toFixed(2);",
+   "193.26": "const rise=9*12+4;const n=Math.ceil(rise/7.75);const run=n*10.5;return Math.sqrt(rise*rise+run*run).toFixed(2);"
+  },
+  "quantity_asked": "the length √(rise² + run²) with rise 112 in and run equal to (number of risers − 1) × 10.5 in.",
+  "distractor_kind": {
+   "185.29": "error path: 9 ft 4 in = 112.8 in. (a) no extreme. (b) not an intermediate. (c) the stringer exceeds both legs; all options exceed 147. (d) real feet-inches decimal error.",
+   "176.57": "error path: floor(14.45) = 14 risers. (a) not a parameter extreme; it is the count that breaks the 7.75-inch limit, but the length is not on a bound. (b) not an intermediate. (c) above 147. (d) real rounding-direction error.",
+   "193.26": "error path: 15 treads. (a) no extreme. (b) not an intermediate. (c) above 147. (d) real fencepost error."
+  },
+  "distractor_meta": {
+   "185.29": {
+    "direction": "over",
+    "error_kind": "feet-inches read as decimal feet"
+   },
+   "176.57": {
+    "direction": "under",
+    "error_kind": "riser count rounded down"
+   },
+   "193.26": {
+    "direction": "over",
+    "error_kind": "treads equal to risers"
+   }
+  },
+  "bounds": [
+   "stringer > 147 (longer than the run)",
+   "stringer < 112 + 147 = 259"
+  ],
+  "mechanism": [
+   "staircase risers and treads",
+   "fewest risers under a maximum height",
+   "one fewer tread than risers",
+   "stringer length Pythagorean"
+  ],
+  "arith_class_check": "No. All four are two-decimal lengths between 176 and 194; none is singled out by any class.",
+  "one_sided_check": "key interior (two over, one under).",
+  "interior_parity_check": "Interior by value: 184.81 and 185.29, both three digits with two non-zero decimals; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"fewest risers ... no more than 7.75\" - rounding down gives 176.57 (under, count step); \"one fewer tread than risers\" - ignoring gives 193.26 (over, tread step); \"9 feet 4 inches\" - read as 9.4 ft gives 185.29 (over, conversion step). One distractor per clause, both directions; not an additive total.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three steps both directions; all options inside (147, 259); gaps 8.24/0.48/7.97 match no stem number."
+  }
+ },
+ {
+  "id": "AM26I-12",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "distance to lightning from sound delay",
+  "subskill": "Celsius to Fahrenheit, speed formula, frame count to time",
+  "prompt": "The speed of sound in air, in feet per second, is approximately 1,087 + 1.1(F − 32), where F is the air temperature in degrees Fahrenheit. A temperature of C degrees Celsius equals (9/5)C + 32 degrees Fahrenheit. During a storm the air temperature is 40 degrees Celsius. A video recorded at 30 frames per second shows a lightning flash first appearing in frame number 1,046 and its thunder first heard in frame number 1,268; consecutive frames are 1/30 second apart. Assuming the light arrives instantly, how far away was the lightning, to the nearest thousandth of a mile? (1 mile = 5,280 feet)",
+  "choices": [
+   "1.624",
+   "1.585",
+   "1.634",
+   "1.627"
+  ],
+  "correct_answer": "1.634",
+  "explanation": "The temperature is (9/5)(40) + 32 = 104°F, so the speed of sound is 1,087 + 1.1(72) = 1,166.2 feet per second. From frame 1,046 to frame 1,268 is 222 frame intervals, or 222 ÷ 30 = 7.4 seconds. The distance is 1,166.2(7.4) ≈ 8,629.9 feet ≈ 1.634 miles. The option \"1.585\" converts the temperature without adding 32 (72°F), giving a speed of 1,131 feet per second. The option \"1.624\" drops the 1.1 and adds 72 directly (1,159 feet per second). The option \"1.627\" counts only the 221 frames strictly between the two frames.",
+  "solve": "const F=9/5*40+32;const v=1087+1.1*(F-32);const t=(1268-1046)/30;return (v*t/5280).toFixed(3);",
+  "distractor_solve": {
+   "1.585": "const F=9/5*40;const v=1087+1.1*(F-32);const t=(1268-1046)/30;return (v*t/5280).toFixed(3);",
+   "1.624": "const F=9/5*40+32;const v=1087+(F-32);const t=(1268-1046)/30;return (v*t/5280).toFixed(3);",
+   "1.627": "const F=9/5*40+32;const v=1087+1.1*(F-32);const t=(1268-1046-1)/30;return (v*t/5280).toFixed(3);"
+  },
+  "quantity_asked": "the distance in miles traveled by sound at 104°F during the 222 frame intervals (7.4 s).",
+  "distractor_kind": {
+   "1.585": "error path: (9/5)(40) = 72 used as F. (a) no extreme. (b) not an intermediate. (c) the cheapest bound (speed > 1,087 ft/s gives > 1.523 mi) lies below every option. (d) real dropped-constant error.",
+   "1.624": "error path: coefficient 1.1 dropped. (a) no extreme. (b) not an intermediate. (c) above 1.523. (d) real formula-reading error.",
+   "1.627": "error path: 221 frames. (a) no extreme. (b) not an intermediate. (c) above 1.523. (d) real fencepost error."
+  },
+  "distractor_meta": {
+   "1.585": {
+    "direction": "under",
+    "error_kind": "+32 dropped in conversion"
+   },
+   "1.624": {
+    "direction": "under",
+    "error_kind": "coefficient 1.1 dropped"
+   },
+   "1.627": {
+    "direction": "under",
+    "error_kind": "frames counted exclusively"
+   }
+  },
+  "bounds": [
+   "distance > 1,087(7.4)/5,280 ≈ 1.523 (speed above 1,087 ft/s since F > 32)"
+  ],
+  "mechanism": [
+   "speed of sound temperature formula",
+   "lightning distance from thunder delay",
+   "video frames per second to time",
+   "Celsius to Fahrenheit"
+  ],
+  "arith_class_check": "No. All four are three-decimal mileages between 1.58 and 1.64; none is singled out by any class.",
+  "one_sided_check": "Key largest. The errors are at three different steps (temperature conversion, speed formula, frame count). Natural errors in the other direction exist at two of them and are not options: counting 223 frames gives 1.642, and ignoring the − 32 in the formula gives 1.684. Nothing in the stem shows that the listed slips all lower the distance.",
+  "interior_parity_check": "Interior by value: 1.624 and 1.627, both one digit with three non-zero decimals; neither is rounder.",
+  "cheap_bound_check": "Key largest. Cheapest one-sided bound: since F > 32 the speed exceeds 1,087 ft/s, so the distance exceeds 1.523 miles, below every option. A one-step estimate (≈1,170 ft/s × 7.4 s ≈ 8,660 ft ≈ 1.64 mi) needs the converted temperature and frame count and is not one-sided; it does not separate 1.634 from 1.627 (0.4% apart). The nearest distractor lies on the key's side of every cheap bound.",
+  "trap_check": "No special-condition clause. Steps: temperature conversion (1.585 dropped +32, under), formula (1.624 dropped 1.1, under; ignoring − 32 gives 1.684, over, not an option), frame count (1.627 exclusive, under; inclusive 223 gives 1.642, over, not an option). One distractor per step; not an additive total.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; nearest 0.007 below; over-direction slips exist at two steps; 1.624/1.627 are 0.003 apart but come from different steps."
+  }
+ }
+]

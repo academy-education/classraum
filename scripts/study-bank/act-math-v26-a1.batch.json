@@ -1,0 +1,713 @@
+[
+ {
+  "id": "AM26A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "perpendicular and parallel lines, intersection",
+  "subskill": "build a perpendicular and a parallel line, intersect them",
+  "prompt": "In the standard (x,y) coordinate plane, line ℓ passes through the point (5, 6) and is perpendicular to the line 3x − 7y = 2. Line m passes through the point (4, 4) and is parallel to the line 4x − 3y = 9. Lines ℓ and m intersect at point P. To the nearest hundredth, what is the x-coordinate of P ?",
+  "choices": [
+   "5.74",
+   "5.18",
+   "8.33",
+   "5.38"
+  ],
+  "correct_answer": "5.18",
+  "explanation": "The line 3x − 7y = 2 has slope 3/7, so ℓ has slope −7/3: y = 6 − (7/3)(x − 5). The line 4x − 3y = 9 has slope 4/3, so m is y = 4 + (4/3)(x − 4). Setting them equal: 6 − (7/3)x + 35/3 = 4 + (4/3)x − 16/3, so 53/3 + 4/3 = (11/3)x and x = 57/11 ≈ 5.18. The option \"5.38\" gives ℓ the slope −3/7 (the original slope with its sign changed but not inverted). The option \"5.74\" gives ℓ the original slope 3/7 (parallel instead of perpendicular). The option \"8.33\" gives m the slope −4/3 (sign error reading the slope of 4x − 3y = 9).",
+  "solve": "const meet=(s1,P,s2,Q)=>(Q[1]-P[1]+s1*P[0]-s2*Q[0])/(s1-s2); return meet(-7/3,[5,6],4/3,[4,4]).toFixed(2);",
+  "distractor_solve": {
+   "5.38": "const meet=(s1,P,s2,Q)=>(Q[1]-P[1]+s1*P[0]-s2*Q[0])/(s1-s2); return meet(-3/7,[5,6],4/3,[4,4]).toFixed(2);",
+   "5.74": "const meet=(s1,P,s2,Q)=>(Q[1]-P[1]+s1*P[0]-s2*Q[0])/(s1-s2); return meet(3/7,[5,6],4/3,[4,4]).toFixed(2);",
+   "8.33": "const meet=(s1,P,s2,Q)=>(Q[1]-P[1]+s1*P[0]-s2*Q[0])/(s1-s2); return meet(-7/3,[5,6],-4/3,[4,4]).toFixed(2);"
+  },
+  "quantity_asked": "the x-coordinate of the intersection of the perpendicular line through (5, 6) and the parallel line through (4, 4).",
+  "distractor_kind": {
+   "5.38": "error path: perpendicular slope taken as −3/7 (sign flipped, not inverted). (a) no parameter extreme. (b) not an adjacent problem's answer at an extreme; it is interior to the bracket (5, 6) that probing x = 5 and x = 6 gives. (c) the cheapest check, evaluating both lines at x = 5 and x = 6, brackets the answer in (5, 6); 5.38 is strictly inside. (d) real slope error.",
+   "5.74": "error path: ℓ given the original slope 3/7 (parallel instead of perpendicular). (a) none. (b) different line, not an extreme. (c) strictly inside (5, 6). (d) real error.",
+   "8.33": "error path: m given slope −4/3 (sign error reading 4x − 3y = 9). (a) none. (b) different line. (c) outside the (5, 6) bracket, so a probe at x = 5 and x = 6 removes it; the other two distractors survive that probe, which costs as much as solving. (d) real sign error."
+  },
+  "distractor_meta": {
+   "5.38": {
+    "direction": "over",
+    "error_kind": "negated slope not inverted"
+   },
+   "5.74": {
+    "direction": "over",
+    "error_kind": "parallel instead of perpendicular"
+   },
+   "8.33": {
+    "direction": "over",
+    "error_kind": "sign of parallel slope"
+   }
+  },
+  "bounds": [
+   "probing x = 5 and x = 6: ℓ − m changes sign, so 5 < x < 6 (kills 8.33 only; costs as much as solving)"
+  ],
+  "mechanism": [
+   "perpendicular slope negative reciprocal",
+   "parallel line through a point",
+   "intersection of two constructed lines",
+   "standard form to slope"
+  ],
+  "arith_class_check": "No. All four options are two-decimal values from rational x-coordinates (57/11 and three other fractions); no integrality, parity or divisibility property is implied by the stem.",
+  "one_sided_check": "Key smallest. The three errors are three different slope mistakes on two different lines (negated-not-inverted, parallel-for-perpendicular, sign of the parallel slope); whether each moves the intersection right or left depends on where the lines cross, which the stem does not reveal without solving.",
+  "interior_parity_check": "Interior by value: 5.38 and 5.74; both one-digit-integer-part two-decimal values with non-zero final digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: evaluating ℓ and m at x = 5 (ℓ = 6, m = 5.33) and at x = 6 (ℓ = 3.67, m = 6.67) shows 5 < x < 6. That bound is as costly as solving, and 5.38 and 5.74 lie inside it with the key, so no single cheap bound separates the key from all three distractors.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no (5.18/5.38/5.58 absent) / gap no / parity no (all .2f) / one-way-drop no (slope errors, no dropped term) / containment no; probe kills only 8.33."
+  }
+ },
+ {
+  "id": "AM26A-02",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "absolute-value equation with a linear right side",
+  "subskill": "split a sum of absolute values into three regions and check each candidate",
+  "prompt": "What is the sum of all real solutions of the equation |x + 3| + |x − 9| = 1.25x + 5, rounded to the nearest hundredth?",
+  "choices": [
+   "8.98",
+   "14.97",
+   "20.57",
+   "20.27"
+  ],
+  "correct_answer": "20.27",
+  "explanation": "Split at x = −3 and x = 9. For x < −3 the left side is −2x + 6, so −2x + 6 = 1.25x + 5 gives x = 1/3.25 ≈ 0.31, which is not less than −3, so it is rejected. For −3 ≤ x ≤ 9 the left side is 12, so 12 = 1.25x + 5 gives x = 5.6, which is in the region. For x > 9 the left side is 2x − 6, so 0.75x = 11 gives x ≈ 14.67, which is in the region. The sum is 5.6 + 14.67 ≈ 20.27. The option \"20.57\" also keeps the rejected candidate 0.31. The option \"14.97\" treats the left side as ±(2x − 6) (only the two outer cases), adding 0.31 and 14.67 and missing 5.6. The option \"8.98\" moves 1.25x to the wrong side in the right-hand region (3.25x = 11, x ≈ 3.38) and adds it to 5.6 without checking the region.",
+  "solve": "return (5.6+11/0.75).toFixed(2);",
+  "distractor_solve": {
+   "20.57": "return (5.6+11/0.75+1/3.25).toFixed(2);",
+   "14.97": "return (1/3.25+11/0.75).toFixed(2);",
+   "8.98": "return (5.6+11/3.25).toFixed(2);"
+  },
+  "quantity_asked": "the sum of every real x satisfying |x + 3| + |x − 9| = 1.25x + 5.",
+  "distractor_kind": {
+   "20.57": "error path: all three region candidates kept (0.31 not checked against x < −3). (a) no parameter. (b) the sum of all candidates is an adjacent quantity; it is not at an extreme here (key is interior and 20.57 is the largest). (c) the only cheap bound is that each solution needs 1.25x + 5 ≥ 0, i.e. x ≥ −4, which bounds nothing about the sum; 20.57 is not on any bound. (d) real error: no region check.",
+   "14.97": "error path: |x + 3| + |x − 9| treated as ±(2x − 6), solving only the two outer cases. (a) none. (b) adjacent setup, interior value. (c) strictly inside any cheap bound. (d) real error, the common two-case habit.",
+   "8.98": "error path: in the region x > 9, 1.25x moved with the wrong sign (3.25x = 11) and the result not checked. (a) none. (b) not an adjacent answer. (c) above the only cheap lower bound (one solution exceeds 9, all exceed −4, so the sum exceeds 5). (d) real algebra slip."
+  },
+  "distractor_meta": {
+   "20.57": {
+    "direction": "over",
+    "error_kind": "extraneous candidate kept"
+   },
+   "14.97": {
+    "direction": "under",
+    "error_kind": "only two sign cases"
+   },
+   "8.98": {
+    "direction": "under",
+    "error_kind": "transposition sign slip"
+   }
+  },
+  "bounds": [
+   "each solution satisfies 1.25x + 5 ≥ 0, so x ≥ −4 (kills nothing)",
+   "at least one solution exceeds 9 only after solving; sum > 5 kills nothing"
+  ],
+  "mechanism": [
+   "sum of two absolute values equals a linear expression",
+   "three-region casework",
+   "reject extraneous candidate",
+   "sum of solutions"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers from thirds and fractions over 3.25; the stem implies no integrality or parity of the sum.",
+  "one_sided_check": "Key interior: one distractor above (an extra root kept) and two below (a missing root, a slipped root).",
+  "interior_parity_check": "Interior by value: 14.97 and 20.27; both two-digit integer part with two non-zero decimals; same display complexity; neither rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no (8.98/14.97/20.27 steps 5.99, 5.30) / gap no (0.30, 5.30, 11.29 not stem numbers) / parity no / one-way-drop no (errors both ways) / containment no."
+  }
+ },
+ {
+  "id": "AM26A-03",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "literal equation, formula rearrangement with units",
+  "subskill": "solve s = ut + (1/2)at² for a after a unit conversion",
+  "prompt": "A car is traveling at 45 kilometers per hour when it begins to speed up with constant acceleration. During the next 5.2 seconds, it travels 86 meters. For an object with initial speed u meters per second and constant acceleration a meters per second squared, the distance s, in meters, that it travels in t seconds is s = ut + (1/2)at². (1 kilometer = 1,000 meters and 1 hour = 3,600 seconds.) To the nearest hundredth, what is the car's acceleration, in meters per second squared?",
+  "choices": [
+   "3.96",
+   "1.51",
+   "1.55",
+   "8.08"
+  ],
+  "correct_answer": "1.55",
+  "explanation": "45 km/h = 45,000 m ÷ 3,600 s = 12.5 m/s. Solving s = ut + (1/2)at² for a gives a = 2(s − ut)/t² = 2(86 − 12.5 × 5.2)/5.2² = 2(21)/27.04 ≈ 1.55. The option \"1.51\" converts the speed with the rounded factor 0.28 m/s per km/h (u = 12.6). The option \"3.96\" doubles s but not ut, using a = (2s − ut)/t². The option \"8.08\" divides by t instead of t², as if the formula were s = ut + (1/2)at.",
+  "solve": "return (2*(86-12.5*5.2)/5.2**2).toFixed(2);",
+  "distractor_solve": {
+   "1.51": "return (2*(86-45*0.28*5.2)/5.2**2).toFixed(2);",
+   "3.96": "return ((2*86-12.5*5.2)/5.2**2).toFixed(2);",
+   "8.08": "return (2*(86-12.5*5.2)/5.2).toFixed(2);"
+  },
+  "quantity_asked": "the constant acceleration a, in m/s², that makes s = ut + (1/2)at² equal 86 m with u = 45 km/h and t = 5.2 s.",
+  "distractor_kind": {
+   "1.51": "error path: speed converted with the rounded factor 0.28 (u = 12.6 m/s). (a) no parameter extreme. (b) not an adjacent answer. (c) the only cheap bound is a > 0 (86 > 65); 1.51 is far inside it. (d) real premature-rounding error.",
+   "3.96": "error path: 2 applied to s but not to ut, a = (2s − ut)/t². (a) none. (b) none. (c) no cheap upper bound on a exists short of the rearrangement itself. (d) real distribution error.",
+   "8.08": "error path: divided by t instead of t². (a) none. (b) none. (c) inside a > 0. (d) real exponent error."
+  },
+  "distractor_meta": {
+   "1.51": {
+    "direction": "under",
+    "error_kind": "rounded unit conversion"
+   },
+   "3.96": {
+    "direction": "over",
+    "error_kind": "factor 2 not distributed"
+   },
+   "8.08": {
+    "direction": "over",
+    "error_kind": "t not squared"
+   }
+  },
+  "bounds": [
+   "a > 0 because 86 m exceeds the 65 m covered at constant speed (kills nothing)"
+  ],
+  "mechanism": [
+   "convert km/h to m/s",
+   "solve distance formula for acceleration",
+   "s = ut + 1/2 a t^2",
+   "formula rearrangement"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers; nothing in the stem forces a class.",
+  "one_sided_check": "Key interior: one distractor below (rounded conversion), two above (distribution error, exponent error).",
+  "interior_parity_check": "Interior by value: 1.55 and 3.96; both one-digit integer part with two non-zero decimals; same display complexity.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no (0.04, 2.41, 6.53) / parity no / one-way-drop no (both directions) / containment no (only a > 0)."
+  }
+ },
+ {
+  "id": "AM26A-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear models, percent relation between two linear quantities",
+  "subskill": "set one linear model equal to 1.25 times another",
+  "prompt": "Two seedlings are measured each week. Seedling A is 12.5 centimeters tall and grows 1.8 centimeters per week. Seedling B is 6.3 centimeters tall and grows 2.6 centimeters per week. Assuming each seedling keeps growing at its constant rate, after how many weeks, to the nearest hundredth, will seedling B be 25% taller than seedling A ?",
+  "choices": [
+   "26.64",
+   "11.66",
+   "51.83",
+   "17.71"
+  ],
+  "correct_answer": "26.64",
+  "explanation": "After t weeks, A is 12.5 + 1.8t and B is 6.3 + 2.6t. B is 25% taller than A when 6.3 + 2.6t = 1.25(12.5 + 1.8t) = 15.625 + 2.25t, so 0.35t = 9.325 and t ≈ 26.64. The option \"11.66\" applies the 25% only to A's starting height (6.3 + 2.6t = 15.625 + 1.8t). The option \"17.71\" applies the 25% only to A's weekly growth (6.3 + 2.6t = 12.5 + 2.25t). The option \"51.83\" takes the percent of the wrong base, writing A = 0.75B.",
+  "solve": "return ((1.25*12.5-6.3)/(2.6-1.25*1.8)).toFixed(2);",
+  "distractor_solve": {
+   "11.66": "return ((1.25*12.5-6.3)/(2.6-1.8)).toFixed(2);",
+   "17.71": "return ((12.5-6.3)/(2.6-1.25*1.8)).toFixed(2);",
+   "51.83": "return ((12.5-0.75*6.3)/(0.75*2.6-1.8)).toFixed(2);"
+  },
+  "quantity_asked": "the number of weeks t at which 6.3 + 2.6t equals 1.25 times 12.5 + 1.8t.",
+  "distractor_kind": {
+   "11.66": "error path: 1.25 applied to the starting height only. (a) no parameter extreme. (b) not an adjacent answer. (c) the cheapest bound is t > 7.75 (B must first pass A); 11.66 is inside. (d) real distribution error.",
+   "17.71": "error path: 1.25 applied to the growth rate only. (a) none. (b) none. (c) inside t > 7.75. (d) real distribution error.",
+   "51.83": "error path: A = 0.75B (percent of the wrong base). (a) none. (b) none. (c) inside; no cheap upper bound exists because the height ratio tends to 2.6/1.8 > 1.25. (d) real percent-base error."
+  },
+  "distractor_meta": {
+   "11.66": {
+    "direction": "under",
+    "error_kind": "percent on start height only"
+   },
+   "17.71": {
+    "direction": "under",
+    "error_kind": "percent on rate only"
+   },
+   "51.83": {
+    "direction": "over",
+    "error_kind": "percent of wrong base"
+   }
+  },
+  "bounds": [
+   "t > 7.75, when B first equals A (kills nothing)"
+  ],
+  "mechanism": [
+   "two linear growth models",
+   "one quantity 25% greater than another",
+   "percent relation becomes linear equation",
+   "time when ratio reached"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers; weeks need not be whole here.",
+  "one_sided_check": "Key interior: two errors below, one above.",
+  "interior_parity_check": "Interior by value: 17.71 and 26.64; both two-digit integer part with two non-zero decimals; same display complexity.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no (8.93, 14.98, 25.19 not stem numbers) / parity no / one-way-drop no / containment no (t > 7.75 only)."
+  }
+ },
+ {
+  "id": "AM26A-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equation in context with a percent relation",
+  "subskill": "express one yield as 1.2 times the other and solve the total",
+  "prompt": "A farm harvested wheat from two fields. Field A has an area of 14.5 hectares, and field B has an area of 22.3 hectares. Field A produced 20% more wheat per hectare than field B did. Together the two fields produced 196.4 metric tons of wheat. To the nearest hundredth, how many metric tons of wheat per hectare did field B produce?",
+  "choices": [
+   "4.95",
+   "4.86",
+   "5.26",
+   "4.76"
+  ],
+  "correct_answer": "4.95",
+  "explanation": "Let y be field B's yield in metric tons per hectare. Field A's yield is 1.2y, so 14.5(1.2y) + 22.3y = 196.4, that is 39.7y = 196.4 and y ≈ 4.95. The option \"4.76\" attaches the 1.2 to the wrong field's area (14.5y + 22.3(1.2y) = 196.4). The option \"4.86\" reads the relation as B producing 20% less than A (B = 0.8A). The option \"5.26\" reads \"20% more\" as 0.2 metric ton per hectare more (14.5(y + 0.2) + 22.3y = 196.4).",
+  "solve": "return (196.4/(1.2*14.5+22.3)).toFixed(2);",
+  "distractor_solve": {
+   "4.76": "return (196.4/(14.5+1.2*22.3)).toFixed(2);",
+   "4.86": "return (0.8*196.4/(14.5+0.8*22.3)).toFixed(2);",
+   "5.26": "return ((196.4-0.2*14.5)/(14.5+22.3)).toFixed(2);"
+  },
+  "quantity_asked": "field B's yield y, in metric tons per hectare, with 14.5(1.2y) + 22.3y = 196.4.",
+  "distractor_kind": {
+   "4.76": "error path: 1.2 attached to field B's area. (a) no parameter extreme. (b) not adjacent. (c) cheapest bounds: B's yield is below the overall average 196.4/36.8 ≈ 5.34 and above 196.4/(1.2 × 36.8) ≈ 4.45; 4.76 is strictly inside. (d) real setup error.",
+   "4.86": "error path: B = 0.8A (percent of the wrong base). (a) none. (b) none. (c) strictly inside (4.45, 5.34). (d) real percent-base error.",
+   "5.26": "error path: \"20% more\" read as +0.2 t/ha. (a) none. (b) none. (c) strictly inside (4.45, 5.34). (d) real percent-versus-amount error."
+  },
+  "distractor_meta": {
+   "4.76": {
+    "direction": "under",
+    "error_kind": "factor on wrong field"
+   },
+   "4.86": {
+    "direction": "under",
+    "error_kind": "percent of wrong base"
+   },
+   "5.26": {
+    "direction": "over",
+    "error_kind": "percent read as amount"
+   }
+  },
+  "bounds": [
+   "y < 196.4/36.8 ≈ 5.34 (B is below the overall average)",
+   "y > 196.4/(1.2 × 36.8) ≈ 4.45"
+  ],
+  "mechanism": [
+   "one rate 20% more than another",
+   "weighted total from two areas",
+   "yield per hectare",
+   "percent relation in a linear equation"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers in the same range; nothing in the stem forces a class.",
+  "one_sided_check": "Key interior: two errors below, one above.",
+  "interior_parity_check": "Interior by value: 4.86 and 4.95; both one-digit integer part with two non-zero decimals; same display complexity.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no (4.76/4.86/4.96 absent) / gap no / parity no / one-way-drop no / containment no: all options inside the (4.45, 5.34) average bracket."
+  }
+ },
+ {
+  "id": "AM26A-06",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "system of two linear equations in grouped form",
+  "subskill": "solve a system written in x + y and x − y, then recover y",
+  "prompt": "If 3(x + y) − 2(x − y) = 11.6 and (x + y) + 4(x − y) = 9.1, what is the value of y, to the nearest hundredth?",
+  "choices": [
+   "2.87",
+   "6.11",
+   "1.75",
+   "1.96"
+  ],
+  "correct_answer": "1.75",
+  "explanation": "Let u = x + y and v = x − y. Then 3u − 2v = 11.6 and u + 4v = 9.1. From the second, u = 9.1 − 4v, so 27.3 − 12v − 2v = 11.6, v = 15.7/14 ≈ 1.1214 and u ≈ 4.6143. Then y = (u − v)/2 ≈ 1.75 (and x = (u + v)/2 ≈ 2.87). Expanding directly gives x + 5y = 11.6 and 5x − 3y = 9.1 with the same solution. The option \"1.96\" multiplies only the x by 4 in 4(x − y), getting 5x = 9.1. The option \"2.87\" is the value of x, not y. The option \"6.11\" writes −2(x − y) as −2x − 2y, getting x + y = 11.6.",
+  "solve": "const v=(3*9.1-11.6)/14, u=9.1-4*v; return ((u-v)/2).toFixed(2);",
+  "distractor_solve": {
+   "1.96": "const x=9.1/5; return ((11.6-x)/5).toFixed(2);",
+   "2.87": "const v=(3*9.1-11.6)/14, u=9.1-4*v; return ((u+v)/2).toFixed(2);",
+   "6.11": "const y=(5*11.6-9.1)/8; return y.toFixed(2);"
+  },
+  "quantity_asked": "the value of y in the solution (x, y) of the system.",
+  "distractor_kind": {
+   "1.96": "error path: 4(x − y) expanded as 4x − y. (a) no parameter. (b) not adjacent. (c) no cheap one-sided bound on y exists short of solving. (d) real distribution error.",
+   "2.87": "error path: reports x instead of y. (a) none. (b) the answer to the adjacent question \"what is x\"; it is interior here, not at an extreme. (c) no cheap bound separates x from y without solving. (d) real misread of the target.",
+   "6.11": "error path: −2(x − y) expanded as −2x − 2y. (a) none. (b) none. (c) no cheap bound. (d) real sign error."
+  },
+  "distractor_meta": {
+   "1.96": {
+    "direction": "over",
+    "error_kind": "coefficient not distributed"
+   },
+   "2.87": {
+    "direction": "over",
+    "error_kind": "reports the other variable"
+   },
+   "6.11": {
+    "direction": "over",
+    "error_kind": "negative not distributed"
+   }
+  },
+  "bounds": [
+   "none: no stem-forced bound on y without solving"
+  ],
+  "mechanism": [
+   "system in grouped expressions x + y and x − y",
+   "substitute u and v",
+   "recover y from u and v",
+   "distribute through parentheses"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers; the stem forces no class.",
+  "one_sided_check": "Key smallest. The three distractors come from three different mistakes at different steps (a coefficient distribution in the second equation, a sign distribution in the first, and answering for the wrong variable); the stem gives no reason to expect any of them to raise y, and nothing tells a student that y is smaller than x without solving.",
+  "interior_parity_check": "Interior by value: 1.96 and 2.87; both one-digit integer part with two non-zero decimals; neither rounder.",
+  "cheap_bound_check": "There is no cheap one-sided bound: y is not constrained in sign or size by the stem until the system is solved. The nearest distractor, 1.96, is 0.21 above the key, well inside any rough estimate a student could make.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no (1.75/1.96/2.17 absent) / gap no (0.21, 1.12, 4.36) / parity no / one-way-drop no (three different slips) / containment no."
+  }
+ },
+ {
+  "id": "AM26A-07",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "lines, midpoint with an endpoint on a line",
+  "subskill": "double the midpoint to place an endpoint on a given line",
+  "prompt": "In the standard (x,y) coordinate plane, point A lies on the line y = 1.5x + 3, point B lies on the x-axis, and the midpoint of segment AB is (4.5, 1.8). What is the x-coordinate of B ?",
+  "choices": [
+   "5.3",
+   "4.6",
+   "8.1",
+   "8.6"
+  ],
+  "correct_answer": "8.6",
+  "explanation": "Let B = (b, 0). Since (4.5, 1.8) is the midpoint, A = (2(4.5) − b, 2(1.8) − 0) = (9 − b, 3.6). A is on the line, so 3.6 = 1.5(9 − b) + 3, which gives 1.5(9 − b) = 0.6, 9 − b = 0.4, and b = 8.6. The option \"8.1\" solves 3.6 = 1.5x + 3 by multiplying 0.6 by 1.5 instead of dividing (x = 0.9). The option \"5.3\" uses A = (4.5 − b, 1.8), subtracting from the midpoint without doubling it. The option \"4.6\" moves the 3 with the wrong sign (1.5x = 6.6, x = 4.4).",
+  "solve": "const xA=(3.6-3)/1.5; return (9-xA).toFixed(1);",
+  "distractor_solve": {
+   "8.1": "const xA=(3.6-3)*1.5; return (9-xA).toFixed(1);",
+   "5.3": "const xA=(1.8-3)/1.5; return (4.5-xA).toFixed(1);",
+   "4.6": "const xA=(3.6+3)/1.5; return (9-xA).toFixed(1);"
+  },
+  "quantity_asked": "the x-coordinate b of B = (b, 0) such that A = (9 − b, 3.6) lies on y = 1.5x + 3.",
+  "distractor_kind": {
+   "8.1": "error path: multiplied by the slope instead of dividing when solving for A's x-coordinate. (a) no parameter extreme. (b) not adjacent. (c) the cheapest bound is that A is above the x-axis, so on the line x_A > −2 and b = 9 − x_A < 11; 8.1 is inside. (d) real inverse-operation error.",
+   "5.3": "error path: midpoint not doubled, A = (4.5 − b, 1.8). (a) none. (b) none. (c) inside b < 11. (d) real midpoint-formula error.",
+   "4.6": "error path: sign slip solving 3.6 = 1.5x + 3 (1.5x = 6.6). (a) none. (b) none. (c) inside b < 11. (d) real transposition error."
+  },
+  "distractor_meta": {
+   "8.1": {
+    "direction": "under",
+    "error_kind": "multiplied instead of divided"
+   },
+   "5.3": {
+    "direction": "under",
+    "error_kind": "midpoint not doubled"
+   },
+   "4.6": {
+    "direction": "under",
+    "error_kind": "transposition sign slip"
+   }
+  },
+  "bounds": [
+   "A has y = 3.6 > 0, so on y = 1.5x + 3, x_A > −2 and b = 9 − x_A < 11 (an upper bound; kills nothing)"
+  ],
+  "mechanism": [
+   "midpoint formula solved for an endpoint",
+   "endpoint on a given line",
+   "other endpoint on the x-axis",
+   "substitute point into line equation"
+  ],
+  "arith_class_check": "No. All options are one-decimal non-integers; the stem forces no integrality or parity.",
+  "one_sided_check": "Key largest. The three errors are at three different steps (inverting the slope operation, not doubling the midpoint, a sign slip solving the line equation); none is a dropped positive term, and the stem gives no reason a student could see that each lowers b. No reversed-endpoint distractor is used, so no option pair is symmetric about 2(4.5) = 9.",
+  "interior_parity_check": "Interior by value: 5.3 and 8.1; both one-digit integer part with one non-zero decimal; same display complexity.",
+  "cheap_bound_check": "The cheapest one-sided bound is b < 11 (A above the axis puts x_A > −2); it is an UPPER bound, on the same side as all three distractors, so it separates nothing. No cheap lower bound exists; the nearest distractor 8.1 is 0.5 below the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no (4.6/5.3/8.1/8.6) / gap no (diffs 4.0, 3.3, 0.5; sums 13.2, 13.9, 16.7 vs 4.5, 9, 1.8, 3.6, 3, 1.5) / parity no / one-way-drop no / containment no."
+  }
+ },
+ {
+  "id": "AM26A-08",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "system of two linear equations in context, time zones",
+  "subskill": "write elapsed local times as d − D and d + D and solve for d",
+  "prompt": "A nonstop flight leaves city P at 8:55 a.m. local time and lands in city Q at 1:47 p.m. local time on the same day. The return flight leaves city Q at 8:05 a.m. local time and lands in city P at 10:27 p.m. local time on the same day. The two flights take exactly the same amount of time, and the two cities are in different time zones. To the nearest hundredth of an hour, how many hours does each flight take?",
+  "choices": [
+   "9.37",
+   "9.75",
+   "9.62",
+   "9.57"
+  ],
+  "correct_answer": "9.62",
+  "explanation": "Let d be the flight time and let city Q's clock be D behind city P's. The outbound flight's local times differ by 1:47 p.m. − 8:55 a.m. = 4 h 52 min = d − D. The return flight's local times differ by 10:27 p.m. − 8:05 a.m. = 14 h 22 min = d + D. Adding, 2d = 19 h 14 min, so d = 9 h 37 min ≈ 9.62 hours (and D = 4 h 45 min). The option \"9.37\" finds 9 h 37 min but writes it as 9.37 hours. The option \"9.75\" subtracts the minutes the wrong way in 13:47 − 8:55, getting 5 h 08 min, so d = 9 h 45 min. The option \"9.57\" subtracts the clock times as decimals (13.47 − 8.55 = 4.92 and 22.27 − 8.05 = 14.22) and averages them.",
+  "solve": "const L1=(13*60+47)-(8*60+55), L2=(22*60+27)-(8*60+5); return (((L1+L2)/2)/60).toFixed(2);",
+  "distractor_solve": {
+   "9.37": "const L1=(13*60+47)-(8*60+55), L2=(22*60+27)-(8*60+5), d=(L1+L2)/2; return (Math.floor(d/60)+(d%60)/100).toFixed(2);",
+   "9.75": "const b1=(13-8)*60+(55-47), L2=(22*60+27)-(8*60+5); return (((b1+L2)/2)/60).toFixed(2);",
+   "9.57": "const x1=13.47-8.55, x2=22.27-8.05; return ((x1+x2)/2).toFixed(2);"
+  },
+  "quantity_asked": "the common flight time d, in hours, where d − D = 4 h 52 min and d + D = 14 h 22 min.",
+  "distractor_kind": {
+   "9.37": "error path: 9 h 37 min written as 9.37 hours. (a) no parameter extreme. (b) not adjacent. (c) the cheapest bound is that d lies between the two local-clock differences, 4.87 < d < 14.37; 9.37 is strictly inside. (d) real unit-format error.",
+   "9.75": "error path: borrow error, 13:47 − 8:55 taken as 5 h 08 min. (a) none. (b) none. (c) strictly inside (4.87, 14.37). (d) real clock-subtraction error.",
+   "9.57": "error path: clock times subtracted as decimals (4.92 and 14.22) and averaged. (a) none. (b) none. (c) strictly inside (4.87, 14.37). (d) real base-60 error."
+  },
+  "distractor_meta": {
+   "9.37": {
+    "direction": "under",
+    "error_kind": "minutes written as decimal"
+   },
+   "9.75": {
+    "direction": "over",
+    "error_kind": "clock borrow error"
+   },
+   "9.57": {
+    "direction": "under",
+    "error_kind": "times subtracted as decimals"
+   }
+  },
+  "bounds": [
+   "d lies between the two local elapsed times: 4.87 < d < 14.37 (kills nothing; the one-leg differences are not options)"
+  ],
+  "mechanism": [
+   "flight time and time-zone difference as two unknowns",
+   "elapsed local time equals d minus D and d plus D",
+   "add the equations",
+   "clock arithmetic in hours and minutes"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers between 9 and 10; the stem forces no class (9 h 37 min is 9.6167 h).",
+  "one_sided_check": "Key interior: two errors below, one above.",
+  "interior_parity_check": "Interior by value: 9.57 and 9.62; both one-digit integer part with two non-zero decimals; same display complexity.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no (9.37/9.57/9.62/9.75) / gap no (no pair sums or differs to 4.87, 14.37 or 4.75) / parity no / one-way-drop no / containment no: all inside (4.87, 14.37)."
+  }
+ },
+ {
+  "id": "AM26A-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "lines, point moving at constant rates meets a line",
+  "subskill": "substitute linear coordinates in t into a line equation",
+  "prompt": "A robot moves in a straight path in the standard (x,y) coordinate plane. It starts at the point (−3.5, 2), and each second its x-coordinate increases by 1.5 and its y-coordinate increases by 0.7. To the nearest hundredth of a second, how many seconds after it starts does the robot reach the line 2x + 5y = 30 ?",
+  "choices": [
+   "6.69",
+   "5.08",
+   "4.89",
+   "4.15"
+  ],
+  "correct_answer": "4.15",
+  "explanation": "After t seconds the robot is at (−3.5 + 1.5t, 2 + 0.7t). Substituting into the line: 2(−3.5 + 1.5t) + 5(2 + 0.7t) = 30, so −7 + 3t + 10 + 3.5t = 30, 6.5t = 27, and t ≈ 4.15. The option \"4.89\" substitutes the y-expression for x and the x-expression for y (8.9t = 43.5). The option \"5.08\" moves the constant 3 to the right side with the wrong sign (6.5t = 33). The option \"6.69\" reads the starting point as (2, −3.5) (6.5t = 43.5).",
+  "solve": "return ((30-2*(-3.5)-5*2)/(2*1.5+5*0.7)).toFixed(2);",
+  "distractor_solve": {
+   "4.89": "return ((30-2*2-5*(-3.5))/(2*0.7+5*1.5)).toFixed(2);",
+   "5.08": "return ((30+2*(-3.5)+5*2)/(2*1.5+5*0.7)).toFixed(2);",
+   "6.69": "return ((30-2*2-5*(-3.5))/(2*1.5+5*0.7)).toFixed(2);"
+  },
+  "quantity_asked": "the time t at which 2(−3.5 + 1.5t) + 5(2 + 0.7t) = 30.",
+  "distractor_kind": {
+   "4.89": "error path: x(t) and y(t) substituted into the wrong slots. (a) no parameter extreme. (b) not adjacent. (c) cheapest bounds: 2x + 5y starts at 3 and grows by 6.5 per second, and either motion alone gives t < 27/3.5 ≈ 7.71; 4.89 is inside. (d) real substitution error.",
+   "5.08": "error path: constant moved with the wrong sign (6.5t = 30 + 3). (a) none. (b) none. (c) inside t < 7.71. (d) real transposition error.",
+   "6.69": "error path: starting coordinates read as (2, −3.5). (a) none. (b) none. (c) inside t < 7.71. (d) real reading error."
+  },
+  "distractor_meta": {
+   "4.89": {
+    "direction": "over",
+    "error_kind": "coordinates substituted into wrong slots"
+   },
+   "5.08": {
+    "direction": "over",
+    "error_kind": "transposition sign slip"
+   },
+   "6.69": {
+    "direction": "over",
+    "error_kind": "start point coordinates swapped"
+   }
+  },
+  "bounds": [
+   "t < 27/3.5 ≈ 7.71 and t < 27/3 = 9 (each motion alone is slower; kills nothing)",
+   "t > 0"
+  ],
+  "mechanism": [
+   "point moving with constant x and y rates",
+   "parametric coordinates substituted into a line",
+   "time to reach a line",
+   "linear equation in t"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers; time need not be a whole number.",
+  "one_sided_check": "Key smallest. The three errors are a slot swap, a transposition sign slip and a misread start point; each changes a different number, and the stem gives no reason a student could see that each raises t.",
+  "interior_parity_check": "Interior by value: 4.89 and 5.08; both one-digit integer part with two non-zero decimals; same display complexity.",
+  "cheap_bound_check": "The cheapest one-sided bounds are upper bounds (t < 7.71, t < 9), on the distractors' side, so they separate nothing. A lower bound would need the combined rate 6.5, which is the work itself. The nearest distractor 4.89 is 0.74 above the key, inside any rough estimate.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no (4.15/4.89/5.63; 4.15/5.08/6.01 absent) / gap no / parity no / one-way-drop no (three different slips, none a dropped term) / containment no."
+  }
+ },
+ {
+  "id": "AM26A-10",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "linear equation with a parameter, compound inequality",
+  "subskill": "solve for x in terms of k, then turn the range of x into a range of k",
+  "prompt": "In the equation 3(x − k) + 9.5 = 4x + 4k, k is a constant. The solution x of the equation satisfies 0.7 ≤ x ≤ 5.9. To the nearest hundredth, what is the least possible value of k ?",
+  "choices": [
+   "1.26",
+   "0.51",
+   "2.06",
+   "0.72"
+  ],
+  "correct_answer": "0.51",
+  "explanation": "Expanding, 3x − 3k + 9.5 = 4x + 4k, so x = 9.5 − 7k. Then 0.7 ≤ 9.5 − 7k ≤ 5.9 gives −8.8 ≤ −7k ≤ −3.6, and dividing by −7 reverses the inequalities: 3.6/7 ≤ k ≤ 8.8/7. The least value of k is 3.6/7 ≈ 0.51. The option \"1.26\" divides by −7 without reversing the inequalities, so 8.8/7 appears as the lower end. The option \"0.72\" expands 3(x − k) as 3x − k, giving x = 9.5 − 5k and k ≥ 3.6/5. The option \"2.06\" moves 4x to the left side with the wrong sign, getting 7x = 7k − 9.5, so x = k − 9.5/7 and k ≥ 0.7 + 9.5/7.",
+  "solve": "return (3.6/7).toFixed(2);",
+  "distractor_solve": {
+   "1.26": "return (8.8/7).toFixed(2);",
+   "0.72": "return ((9.5-5.9)/5).toFixed(2);",
+   "2.06": "return (0.7+9.5/7).toFixed(2);"
+  },
+  "quantity_asked": "the least k for which the solution x = 9.5 − 7k lies in [0.7, 5.9].",
+  "distractor_kind": {
+   "1.26": "error path: inequality not reversed after dividing by −7. (a) it is the other endpoint of the k-interval (the greatest k), an adjacent answer; it is interior among the options, not at an extreme. (b) adjacent setup, interior. (c) no cheap one-sided bound on k short of solving for x. (d) real inequality-reversal error.",
+   "0.72": "error path: 3(x − k) expanded as 3x − k. (a) none. (b) none. (c) no cheap bound. (d) real distribution error.",
+   "2.06": "error path: 4x moved with the wrong sign (7x = 7k − 9.5). (a) none. (b) none. (c) no cheap bound. (d) real transposition error."
+  },
+  "distractor_meta": {
+   "1.26": {
+    "direction": "over",
+    "error_kind": "inequality not reversed"
+   },
+   "0.72": {
+    "direction": "over",
+    "error_kind": "coefficient not distributed"
+   },
+   "2.06": {
+    "direction": "over",
+    "error_kind": "transposition sign slip"
+   }
+  },
+  "bounds": [
+   "none on k without solving the equation for x first"
+  ],
+  "mechanism": [
+   "solve linear equation containing a parameter",
+   "range of solution gives range of parameter",
+   "divide inequality by a negative",
+   "least value of parameter"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers (sevenths and fifths); the stem forces no class.",
+  "one_sided_check": "Key smallest. The three errors are at three different steps (expanding the parentheses, moving the x term, reversing the inequality); the stem gives no reason a student could see that each raises the least k, and the sign of the coefficient of k is not visible until x is isolated.",
+  "interior_parity_check": "Interior by value: 0.72 and 1.26; both two-decimal values with non-zero final digits and the same display complexity.",
+  "cheap_bound_check": "No cheap one-sided bound on k exists: the stem does not reveal the sign or size of the coefficient of k until the equation is solved, so k could a priori be any real number. The nearest distractor 0.72 is 0.21 above the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no (0.51/0.72/0.93 absent) / gap no (0.21, 0.75, 1.55) / parity no / one-way-drop no (three steps) / containment no."
+  }
+ },
+ {
+  "id": "AM26A-11",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "compound linear inequality, \"or\", complement as an interval",
+  "subskill": "solve each inequality, then measure the gap neither one covers",
+  "prompt": "Consider the two inequalities 4 − 3x > 8.6 and 2.5x − 0.8 ≥ 9.6. The set of all real numbers x that satisfy neither inequality is an interval. To the nearest hundredth, what is the length of that interval?",
+  "choices": [
+   "5.69",
+   "5.05",
+   "4.57",
+   "2.63"
+  ],
+  "correct_answer": "5.69",
+  "explanation": "From 4 − 3x > 8.6, −3x > 4.6, and dividing by −3 reverses the inequality: x < −1.533. From 2.5x − 0.8 ≥ 9.6, 2.5x ≥ 10.4, so x ≥ 4.16. A number satisfies neither inequality when −1.533 ≤ x < 4.16, an interval of length 4.16 + 1.533 ≈ 5.69. The option \"5.05\" subtracts 0.8 instead of adding it (2.5x ≥ 8.8, x ≥ 3.52). The option \"4.57\" divides 9.6 by 2.5 before dealing with the 0.8 (x ≥ 3.84 − 0.8 = 3.04). The option \"2.63\" moves the terms of the first inequality with a sign error, writing 3x < 8.6 − 4 and so x < 1.533, which makes the interval run from 1.533 to 4.16.",
+  "solve": "const L=(4-8.6)/3, U=(9.6+0.8)/2.5; return (U-L).toFixed(2);",
+  "distractor_solve": {
+   "5.05": "const L=(4-8.6)/3, U=(9.6-0.8)/2.5; return (U-L).toFixed(2);",
+   "4.57": "const L=(4-8.6)/3, U=9.6/2.5-0.8; return (U-L).toFixed(2);",
+   "2.63": "const L=(8.6-4)/3, U=(9.6+0.8)/2.5; return (U-L).toFixed(2);"
+  },
+  "quantity_asked": "the length of the interval of x satisfying neither 4 − 3x > 8.6 nor 2.5x − 0.8 ≥ 9.6, i.e. 4.16 − (−4.6/3).",
+  "distractor_kind": {
+   "5.05": "error path: −0.8 moved to the right side with the wrong sign (2.5x ≥ 8.8). (a) no parameter extreme. (b) not an adjacent answer. (c) no cheap one-sided bound on the length short of solving both inequalities; 5.05 is not on any bound. (d) real transposition error.",
+   "4.57": "error path: divided by 2.5 before adding 0.8 (x ≥ 9.6/2.5 − 0.8). (a) none. (b) none. (c) no cheap bound. (d) real order-of-operations error.",
+   "2.63": "error path: first inequality rearranged as 3x < 8.6 − 4 (sign slip moving terms), so its boundary is +1.533 instead of −1.533. (a) none. (b) none. (c) no cheap bound. (d) real transposition sign error."
+  },
+  "distractor_meta": {
+   "5.05": {
+    "direction": "under",
+    "error_kind": "constant moved with wrong sign"
+   },
+   "4.57": {
+    "direction": "under",
+    "error_kind": "divided before adding"
+   },
+   "2.63": {
+    "direction": "under",
+    "error_kind": "sign slip on first boundary"
+   }
+  },
+  "bounds": [
+   "none: the boundaries of both inequalities are unknown until each is solved"
+  ],
+  "mechanism": [
+   "compound inequality joined by or",
+   "numbers satisfying neither inequality",
+   "divide by a negative and reverse",
+   "length of the gap interval"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers (thirds and tenths combined); the stem forces no class.",
+  "one_sided_check": "Key largest. The three errors are in different inequalities and at different steps (a transposition sign on the constant, an order-of-operations slip, a sign slip on the other boundary); none is a dropped term, and the stem gives no reason a student could see that each shortens the gap, since a boundary error could as easily widen it.",
+  "interior_parity_check": "Interior by value: 4.57 and 5.05; both one-digit integer part with two non-zero decimals; same display complexity.",
+  "cheap_bound_check": "No cheap one-sided bound exists: the gap runs from the first boundary to the second, and neither boundary is visible without solving its inequality (the first needs the reversal). The nearest distractor 5.05 is 0.64 below the key; no estimate short of solving both resolves it.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no (2.63/4.57/5.05/5.69) / gap no (0.64, 1.12, 3.06 vs 4, 3, 8.6, 2.5, 0.8, 9.6) / parity no / one-way-drop no / containment no."
+  }
+ },
+ {
+  "id": "AM26A-12",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equation with nested grouping symbols",
+  "subskill": "distribute through nested brackets and solve",
+  "prompt": "What value of x satisfies the equation −3.2 − 3[x − 3(x − 0.8)] = 1.5(x + 3.4), to the nearest hundredth?",
+  "choices": [
+   "1.31",
+   "3.44",
+   "3.07",
+   "2.02"
+  ],
+  "correct_answer": "3.44",
+  "explanation": "Inside the brackets, x − 3(x − 0.8) = x − 3x + 2.4 = −2x + 2.4. Then −3(−2x + 2.4) = 6x − 7.2, so the left side is 6x − 10.4. The right side is 1.5x + 5.1. So 4.5x = 15.5 and x ≈ 3.44. The option \"3.07\" multiplies only x by 1.5 on the right side (1.5x + 3.4). The option \"2.02\" moves −3.2 to the right side with the wrong sign (4.5x = 5.1 − 3.2 + 7.2). The option \"1.31\" does not multiply the 2.4 inside the brackets by −3 (left side 6x − 0.8).",
+  "solve": "return ((5.1+3.2+7.2)/4.5).toFixed(2);",
+  "distractor_solve": {
+   "3.07": "return ((3.4+3.2+7.2)/4.5).toFixed(2);",
+   "2.02": "return ((5.1-3.2+7.2)/4.5).toFixed(2);",
+   "1.31": "return ((5.1+3.2-2.4)/4.5).toFixed(2);"
+  },
+  "quantity_asked": "the solution x of −3.2 − 3[x − 3(x − 0.8)] = 1.5(x + 3.4).",
+  "distractor_kind": {
+   "3.07": "error path: 1.5 not distributed to 3.4. (a) no parameter. (b) not adjacent. (c) no cheap bound on x short of solving. (d) real distribution error.",
+   "2.02": "error path: −3.2 moved with the wrong sign. (a) none. (b) none. (c) no cheap bound. (d) real transposition error.",
+   "1.31": "error path: outer −3 not applied to the inner constant 2.4. (a) none. (b) none. (c) no cheap bound. (d) real distribution error."
+  },
+  "distractor_meta": {
+   "3.07": {
+    "direction": "under",
+    "error_kind": "right-side factor not distributed"
+   },
+   "2.02": {
+    "direction": "under",
+    "error_kind": "transposition sign slip"
+   },
+   "1.31": {
+    "direction": "under",
+    "error_kind": "outer factor not distributed to constant"
+   }
+  },
+  "bounds": [
+   "none: x is unconstrained until the equation is solved"
+  ],
+  "mechanism": [
+   "nested brackets and parentheses",
+   "distribute a negative through brackets",
+   "linear equation with decimals",
+   "collect like terms"
+  ],
+  "arith_class_check": "No. All options are two-decimal non-integers (ninths and forty-fifths); the stem forces no class.",
+  "one_sided_check": "Key largest. The three errors are at three different places (the right-side distribution, the transposition of −3.2, the inner constant inside the brackets); a student cannot tell from the equation that each lowers x, since dropping a factor or flipping a sign can move a solution either way.",
+  "interior_parity_check": "Interior by value: 2.02 and 3.07; both one-digit integer part with two decimals ending in non-zero digits; same display complexity.",
+  "cheap_bound_check": "No cheap one-sided bound exists: the equation gives no sign or size for x until it is solved. The nearest distractor 3.07 is 0.37 below the key; no estimate short of solving resolves it.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "run no / gap no / parity no / one-way-drop no / containment no. Residual: a multi-step linear equation; nesting is new but act 0b6edc49 is the same broad skill."
+  }
+ }
+]

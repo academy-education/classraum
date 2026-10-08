@@ -1,0 +1,713 @@
+[
+ {
+  "id": "AM26A-13",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "nonlinear systems: two parabolas",
+  "subskill": "slope through two curve intersections",
+  "prompt": "In the standard (x,y) coordinate plane, the graphs of y = 4x² − 11x + 2 and y = −3x² + 6x + 9 intersect at exactly two points. To the nearest hundredth, what is the slope of the line that passes through both points of intersection?",
+  "choices": [
+   "3.86",
+   "-0.78",
+   "-1.29",
+   "8.43"
+  ],
+  "correct_answer": "-1.29",
+  "explanation": "Setting the expressions equal gives 4x² − 11x + 2 = −3x² + 6x + 9, so 7x² − 17x − 7 = 0 and the intersection x-coordinates have sum 17/7. Both points lie on y = 4x² − 11x + 2, and for two points on y = ax² + bx + c the slope between them is a(x₁ + x₂) + b, so the slope is 4(17/7) − 11 = −9/7 ≈ −1.29. (Equivalently, 3(first equation) + 4(second) eliminates x²: 7y = −9x + 42.) The option \"-0.78\" is run over rise, (x₁ − x₂)/(y₁ − y₂) = −7/9. The option \"3.86\" comes from moving 6x across without changing its sign (7x² − 5x − 7 = 0, sum 5/7) and then finding the y-values from the second curve: −3(5/7) + 6. The option \"8.43\" comes from dividing by a = 7 instead of 2a = 14 in the quadratic formula, which doubles both x-values (sum 34/7), and then using the first curve: 4(34/7) − 11.",
+  "solve": "const s=17/7;return (4*s-11).toFixed(2);",
+  "distractor_solve": {
+   "-0.78": "const s=17/7;return (1/(4*s-11)).toFixed(2);",
+   "3.86": "const s=5/7;return (-3*s+6).toFixed(2);",
+   "8.43": "const s=34/7;return (4*s-11).toFixed(2);"
+  },
+  "quantity_asked": "the slope of the line through the two intersection points of the two parabolas.",
+  "distractor_kind": {
+   "-0.78": "error path: slope computed as change in x over change in y (reciprocal of the true slope). (a) no stem-forced bound on the slope. (b) not the answer to an adjacent problem. (c) no one-step estimate of a chord slope short of finding the x-sum. (d) real rise/run inversion.",
+   "3.86": "error path: 6x moved across without a sign change (7x² − 5x − 7 = 0), y-values then taken from the second parabola. (a) no bound. (b) different equation, not an adjacent problem. (c) no estimate. (d) real sign slip in combining like terms.",
+   "8.43": "error path: quadratic formula with denominator a instead of 2a, so both x-values double; slope from the first parabola. (a) no bound. (b) not adjacent. (c) no estimate. (d) real formula slip."
+  },
+  "distractor_meta": {
+   "-0.78": {
+    "direction": "over",
+    "error_kind": "rise/run inverted"
+   },
+   "3.86": {
+    "direction": "over",
+    "error_kind": "sign slip combining terms"
+   },
+   "8.43": {
+    "direction": "over",
+    "error_kind": "quadratic formula denominator"
+   }
+  },
+  "bounds": [
+   "none: the chord slope can be any real number until the intersection x-sum is found"
+  ],
+  "mechanism": [
+   "two parabolas intersect",
+   "slope of line through intersection points",
+   "sum of intersection x-coordinates",
+   "eliminate x squared between equations"
+  ],
+  "arith_class_check": "No. All four options are two-decimal values with no integer, sign or divisibility property readable from the stem; the key and two distractors are sevenths in exact form, the third is ninths, which nothing in the stem predicts.",
+  "one_sided_check": "Key smallest. The three errors are of different kinds (rise/run inversion, a combining-terms sign slip followed by the other curve, a formula-denominator slip); whether any of them raises or lowers a slope depends on signs a student only learns by solving, and other natural slips (the same sign slip used on the first curve gives −8.14, a sum-sign slip gives about −20.7) fall below the key.",
+  "interior_parity_check": "Interior by value: -0.78 and 3.86; both two-decimal numbers with three significant digits (display complexity 4 and 5); neither is rounder or a simple fraction.",
+  "cheap_bound_check": "No one-sided bound on the chord slope is readable from the stem (no monotonicity, sign or containment fixes its sign); the nearest distractor -0.78 is 0.51 above the key and can only be separated from it by finding the x-sum.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no (same slip on curve 1 gives −8.14, below) / containment no. No cheap slope bound."
+  }
+ },
+ {
+  "id": "AM26A-14",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "radical equations",
+  "subskill": "cube both sides, cubic terms cancel",
+  "prompt": "For exactly one real number x, the cube root of x³ + 6x² + 3 is equal to x + 2; that is, ∛(x³ + 6x² + 3) = x + 2. To the nearest hundredth, what is x ?",
+  "choices": [
+   "-0.42",
+   "-0.72",
+   "-0.25",
+   "-0.67"
+  ],
+  "correct_answer": "-0.42",
+  "explanation": "Cubing both sides gives x³ + 6x² + 3 = (x + 2)³ = x³ + 6x² + 12x + 8. The x³ and x² terms cancel, leaving 3 = 12x + 8, so 12x = −5 and x = −5/12 ≈ −0.42. Because cubing is reversible, this solution needs no check for extraneous roots. The option \"-0.25\" uses 6 for 2³ (12x + 6 = 3). The option \"-0.67\" drops the constant 3 after cancelling (0 = 12x + 8). The option \"-0.72\" expands (x + 2)³ as x³ + 2x² + 4x + 8, which leaves 4x² − 4x − 5 = 0, and takes its negative root.",
+  "solve": "return (-5/12).toFixed(2);",
+  "distractor_solve": {
+   "-0.25": "return ((3-6)/12).toFixed(2);",
+   "-0.67": "return (-8/12).toFixed(2);",
+   "-0.72": "return ((4-Math.sqrt(16+80))/8).toFixed(2);"
+  },
+  "quantity_asked": "the real solution x of ∛(x³ + 6x² + 3) = x + 2.",
+  "distractor_kind": {
+   "-0.25": "error path: 2³ taken as 6 in the expansion of (x + 2)³. (a) no stem-forced bound (a cube root accepts every real number). (b) not an adjacent problem. (c) integer checks put x between −1 and 0 (at x = −1 the left side ∛8 = 2 exceeds 1; at x = 0, ∛3 < 2); −0.25 is inside. (d) real arithmetic slip in the binomial cube.",
+   "-0.67": "error path: the constant 3 dropped after the cubic and quadratic terms cancel. (a) no bound. (b) not adjacent. (c) inside (−1, 0). (d) real dropped-term error.",
+   "-0.72": "error path: (x + 2)³ expanded with the wrong coefficients, x³ + 2x² + 4x + 8, giving 4x² − 4x − 5 = 0; its negative root. (a) no bound. (b) not adjacent. (c) inside (−1, 0). (d) real binomial-cube coefficient error."
+  },
+  "distractor_meta": {
+   "-0.25": {
+    "direction": "over",
+    "error_kind": "cube of 2 taken as 6"
+   },
+   "-0.67": {
+    "direction": "under",
+    "error_kind": "constant dropped"
+   },
+   "-0.72": {
+    "direction": "under",
+    "error_kind": "binomial cube coefficients"
+   }
+  },
+  "bounds": [
+   "v > -1",
+   "v < 0"
+  ],
+  "mechanism": [
+   "cube both sides of a cube root equation",
+   "binomial cube expansion",
+   "cubic and quadratic terms cancel",
+   "linear equation remains"
+  ],
+  "arith_class_check": "No. All options are negative two-decimal values between −1 and 0; nothing in the stem implies an integer or a sign class that singles out the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: -0.67 and -0.42; both negative two-decimal values with two significant digits; neither rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no (errors both sides) / containment: integer checks give −1 < x < 0, which kills nothing."
+  }
+ },
+ {
+  "id": "AM26A-15",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "exponential equations with a common base",
+  "subskill": "common base leading to a quadratic",
+  "prompt": "The equation (1/4)^x · 2^(x²) = 2 · 32^x has two real solutions. To the nearest hundredth, what is the positive difference between the two solutions?",
+  "choices": [
+   "6.71",
+   "3.61",
+   "5.74",
+   "7.28"
+  ],
+  "correct_answer": "7.28",
+  "explanation": "Write every factor as a power of 2: (1/4)^x = 2^(−2x) and 32^x = 2^(5x), so 2^(x² − 2x) = 2^(1 + 5x). Equating exponents gives x² − 7x − 1 = 0. For x² + Bx + C = 0 the solutions differ by √(B² − 4C), so the difference is √(49 + 4) = √53 ≈ 7.28. The option \"3.61\" writes (1/4)^x as 2^(2x), giving x² − 3x − 1 = 0 and √13. The option \"6.71\" moves the 1 with the wrong sign, giving x² − 7x + 1 = 0 and √45. The option \"5.74\" writes 32^x as 2^(x + 5), giving x² − 3x − 6 = 0 and √33.",
+  "solve": "return Math.sqrt(49+4).toFixed(2);",
+  "distractor_solve": {
+   "3.61": "return Math.sqrt(9+4).toFixed(2);",
+   "6.71": "return Math.sqrt(49-4).toFixed(2);",
+   "5.74": "return Math.sqrt(9+24).toFixed(2);"
+  },
+  "quantity_asked": "the positive difference between the two real solutions of the exponential equation.",
+  "distractor_kind": {
+   "3.61": "error path: (1/4)^x rewritten as 2^(2x) (negative exponent lost). (a) no stem-forced bound on the difference. (b) not an adjacent problem. (c) no estimate without forming the exponent equation. (d) real reciprocal-base slip.",
+   "6.71": "error path: constant moved across with the wrong sign (x² − 7x + 1 = 0). (a) no bound. (b) not adjacent. (c) no estimate. (d) real sign slip.",
+   "5.74": "error path: (2^5)^x written 2^(x+5) (power of a power added). (a) no bound. (b) not adjacent. (c) no estimate. (d) real exponent-rule error."
+  },
+  "distractor_meta": {
+   "3.61": {
+    "direction": "under",
+    "error_kind": "reciprocal base sign"
+   },
+   "6.71": {
+    "direction": "under",
+    "error_kind": "constant sign slip"
+   },
+   "5.74": {
+    "direction": "under",
+    "error_kind": "power of a power added"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "common base 2",
+   "quadratic in the exponent",
+   "difference of the two solutions",
+   "equate exponents"
+  ],
+  "arith_class_check": "No. All options are two-decimal square roots of non-squares; nothing in the stem implies integrality or a rational difference.",
+  "one_sided_check": "Key largest. The three errors are different exponent/algebra slips (lost negative exponent, constant sign, power-of-a-power added); natural slips that overshoot also exist ((1/4)^x as 2^(−4x) gives √85 ≈ 9.22; splitting √(49 + 4) as 7 + 2 gives 9), so the stem does not tell a student that errors shrink the difference.",
+  "interior_parity_check": "Interior by value: 5.74 and 6.71; both two-decimal values with three significant digits; neither rounder.",
+  "cheap_bound_check": "No cheap one-sided bound exists before the exponent equation is formed (that is the item's work). After it, the difference √53 sits between 7 and 8 and the nearest distractor 6.71 = √45 is separated only by evaluating the discriminant, i.e. by finishing the item.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no (over-errors 9.22 and 9 exist, unpicked) / containment no. Three distinct slips; no stem-only bound."
+  }
+ },
+ {
+  "id": "AM26A-16",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratic equations: vertex and symmetry",
+  "subskill": "second zero by symmetry, then coefficient",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = ax² + bx + c, where a, b, and c are constants, passes through the points (0, 9) and (2, 0), and its axis of symmetry is the line x = 3.75. To the nearest hundredth, what is the value of b ?",
+  "choices": [
+   "-5.45",
+   "-6.14",
+   "-9.64",
+   "-6.07"
+  ],
+  "correct_answer": "-6.14",
+  "explanation": "The zero x = 2 is 1.75 to the left of the axis x = 3.75, so the other zero is 1.75 to the right, at x = 5.5. Then y = a(x − 2)(x − 5.5), and (0, 9) gives 9 = a(−2)(−5.5) = 11a, so a = 9/11. Expanding, b = −a(2 + 5.5) = −7.5(9/11) ≈ −6.14. The option \"-6.07\" takes the other zero as 3.75 + 2 = 5.75. The option \"-5.45\" takes it as 2(3.75) + 2 = 9.5. The option \"-9.64\" uses the axis formula without the 2, −b/a = 3.75, so b = −3.75a, together with the two given points (4a + 2b + 9 = 0 gives a = 18/7).",
+  "solve": "const r2=2*3.75-2;const a=9/(2*r2);return (-a*(2+r2)).toFixed(2);",
+  "distractor_solve": {
+   "-6.07": "const r2=3.75+2;const a=9/(2*r2);return (-a*(2+r2)).toFixed(2);",
+   "-5.45": "const r2=2*3.75+2;const a=9/(2*r2);return (-a*(2+r2)).toFixed(2);",
+   "-9.64": "const a=9/(7.5-4);return (-3.75*a).toFixed(2);"
+  },
+  "quantity_asked": "the coefficient b of the quadratic through (0, 9) and (2, 0) with axis x = 3.75.",
+  "distractor_kind": {
+   "-6.07": "error path: other zero placed at axis + given zero (5.75) instead of reflecting. (a) b < −4.5 (tangent slope at x = 0 is below the secant slope −4.5 from (0, 9) to (2, 0) for an upward parabola); -6.07 is strictly below. (b) not an adjacent problem. (c) the secant value −4.5 is the only cheap estimate; -6.07 lies beyond it. (d) real reflection error.",
+   "-5.45": "error path: other zero placed at 2(axis) + given zero (9.5). (a) strictly below −4.5. (b) not adjacent. (c) beyond the secant estimate. (d) real reflection error (added instead of subtracted).",
+   "-9.64": "error path: axis formula without the 2 (−b/a = 3.75), solved with the two given points. (a) strictly below −4.5; no bound bounds b from below. (b) not adjacent. (c) none. (d) real vertex-formula slip."
+  },
+  "distractor_meta": {
+   "-6.07": {
+    "direction": "over",
+    "error_kind": "second zero by adding"
+   },
+   "-5.45": {
+    "direction": "over",
+    "error_kind": "second zero reflected wrong"
+   },
+   "-9.64": {
+    "direction": "under",
+    "error_kind": "axis formula missing 2"
+   }
+  },
+  "bounds": [
+   "v < -4.5"
+  ],
+  "mechanism": [
+   "axis of symmetry gives second zero",
+   "zeros and y-intercept determine parabola",
+   "value of b",
+   "reflection across axis"
+  ],
+  "arith_class_check": "No. All options are negative two-decimal values; the key is −135/22, and nothing in the stem makes b an integer or a simple fraction.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: -6.14 and -6.07; both negative three-significant-digit two-decimal values; neither rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no (errors on both sides) / containment: secant bound b < −4.5 is declared and kills nothing."
+  }
+ },
+ {
+  "id": "AM26A-17",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "quadratic equations in context",
+  "subskill": "sum of two squares, then the quadratic formula",
+  "prompt": "The side lengths of two square tiles differ by 5 centimeters, and the combined area of the two tiles is 400 square centimeters. To the nearest hundredth of a centimeter, what is the side length of the smaller tile?",
+  "choices": [
+   "11.69",
+   "10.96",
+   "11.42",
+   "11.86"
+  ],
+  "correct_answer": "11.42",
+  "explanation": "Let s be the smaller side. Then s² + (s + 5)² = 400, so 2s² + 10s + 25 = 400 and 2s² + 10s − 375 = 0. The positive solution is s = (−10 + √(100 + 3000))/4 ≈ 11.42. The option \"10.96\" divides 2s² + 10s + 25 = 400 by 2 but leaves the 25, giving s² + 5s + 25 = 200. The option \"11.69\" squares 5 as 10, giving 2s² + 10s + 10 = 400. The option \"11.86\" drops the 25 from (s + 5)², giving 2s² + 10s = 400.",
+  "solve": "return ((-10+Math.sqrt(100+8*375))/4).toFixed(2);",
+  "distractor_solve": {
+   "10.96": "return ((-5+Math.sqrt(25+4*175))/2).toFixed(2);",
+   "11.69": "return ((-5+Math.sqrt(25+4*195))/2).toFixed(2);",
+   "11.86": "return ((-5+Math.sqrt(25+4*200))/2).toFixed(2);"
+  },
+  "quantity_asked": "the side length of the smaller square tile, in centimeters.",
+  "distractor_kind": {
+   "10.96": "error path: equation halved except for the constant 25. (a) bounds √200 − 5 = 9.14 < s < √200 = 14.14 (smaller square below the mean area); inside. (b) not adjacent. (c) an integer check at s = 11 (121 + 256 = 377 < 400) puts s above 11, so this is the option a coarse check rejects; the other two survive it. (d) real partial-division slip.",
+   "11.69": "error path: 5² taken as 10. (a) inside (9.14, 14.14). (b) not adjacent. (c) inside the integer bracket (11, 12). (d) real squaring slip.",
+   "11.86": "error path: (s + 5)² expanded without its last term. (a) inside. (b) not adjacent. (c) inside (11, 12). (d) real expansion slip."
+  },
+  "distractor_meta": {
+   "10.96": {
+    "direction": "under",
+    "error_kind": "partial division"
+   },
+   "11.69": {
+    "direction": "over",
+    "error_kind": "5 squared as 10"
+   },
+   "11.86": {
+    "direction": "over",
+    "error_kind": "binomial square missing term"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < Math.sqrt(200)",
+   "v > Math.sqrt(200) - 5"
+  ],
+  "mechanism": [
+   "two squares sides differ",
+   "combined area",
+   "sum of squares quadratic",
+   "smaller side length"
+  ],
+  "arith_class_check": "No. All options are two-decimal values in (10, 12); the side is irrational and nothing implies integrality.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 11.42 and 11.69; both four-digit two-decimal values; neither rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no / containment: 9.14 < s < 14.14 kills nothing; integer check s = 11 kills one."
+  }
+ },
+ {
+  "id": "AM26A-18",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "quadratic equations",
+  "subskill": "quadratic formula, simplify radical and fraction",
+  "prompt": "The solutions of the equation 4x² − 4x − 1 = 0 can be written in the form (a ± √b)/c, where a, b, and c are positive integers and c is as small as possible. What is the value of a + b + c ?",
+  "choices": [
+   "5",
+   "44",
+   "11",
+   "14"
+  ],
+  "correct_answer": "5",
+  "explanation": "By the quadratic formula, x = (4 ± √(16 + 16))/8 = (4 ± √32)/8. Since √32 = 4√2, x = (4 ± 4√2)/8 = (1 ± √2)/2, so a = 1, b = 2, c = 2 and a + b + c = 5. The option \"44\" leaves the formula unsimplified, (4 ± √32)/8. The option \"14\" simplifies the radical but does not reduce the fraction and reads (4 ± 4√2)/8 as a = 4, b = 2, c = 8. The option \"11\" divides the radicand by 4 instead of dividing the radical by 4, writing (1 ± √8)/2.",
+  "solve": "return String(1+2+2);",
+  "distractor_solve": {
+   "11": "return String(1+32/4+2);",
+   "14": "return String(4+2+8);",
+   "44": "return String(4+32+8);"
+  },
+  "quantity_asked": "a + b + c for the solutions written as (a ± √b)/c with the smallest c.",
+  "distractor_kind": {
+   "11": "error path: (4 ± √32)/8 reduced by dividing the radicand 32 by 4 (√8) instead of taking 4 out of the radical. (a) no bound. (b) not adjacent. (c) none. (d) real radical-simplification error.",
+   "14": "error path: radical simplified, fraction not reduced, coefficient 4 on √2 ignored. (a) no bound. (b) not adjacent. (c) none. (d) real reduction error.",
+   "44": "error path: no simplification of the formula output. (a) no stem-forced bound on a + b + c. (b) not an adjacent problem. (c) no estimate short of the formula. (d) real failure to simplify."
+  },
+  "distractor_meta": {
+   "11": {
+    "direction": "over",
+    "error_kind": "radicand divided by 4"
+   },
+   "14": {
+    "direction": "over",
+    "error_kind": "fraction not reduced"
+   },
+   "44": {
+    "direction": "over",
+    "error_kind": "not simplified"
+   }
+  },
+  "bounds": [
+   "v >= 3"
+  ],
+  "mechanism": [
+   "quadratic formula",
+   "simplify radical in solution",
+   "solutions in form a plus or minus root b over c",
+   "sum a plus b plus c"
+  ],
+  "arith_class_check": "No. Options 5, 11, 14, 44: two odd and two even; 11 and 44 share the factor 11; the key is not singled out by a class the stem implies.",
+  "one_sided_check": "Key smallest. The three errors are different simplification failures (none, fraction only, radicand divided); dropping the 2 in 2a gives (1 ± √2)/1 and a sum of 4, below the key, so the stem does not say errors raise the sum.",
+  "interior_parity_check": "Interior by value: 11 and 14; both two-digit integers, neither a multiple of 10; neither rounder.",
+  "cheap_bound_check": "No one-sided bound on a + b + c is readable without the formula (that is the item). The nearest distractor 11 differs from the key only by how the radical is reduced.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no (forgot-2a error gives 4, below) / containment no."
+  }
+ },
+ {
+  "id": "AM26A-19",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "exponent rules",
+  "subskill": "power of a power versus a tower",
+  "prompt": "The expression (8^3)^2 · 8^(2^3) / 16^(3^2) is equal to 2^n. What is the value of n ?",
+  "choices": [
+   "15",
+   "6",
+   "29",
+   "18"
+  ],
+  "correct_answer": "6",
+  "explanation": "(8^3)^2 = 8^6 = 2^18; 8^(2^3) = 8^8 = 2^24; 16^(3^2) = 16^9 = 2^36. So n = 18 + 24 − 36 = 6. The option \"15\" reads (8^3)^2 as the tower 8^(3^2) = 8^9 = 2^27. The option \"18\" reads the tower 16^(3^2) in the denominator as (16^3)^2 = 16^6 = 2^24. The option \"29\" rewrites 16^9 as 2^(4 + 9) = 2^13, adding exponents instead of multiplying.",
+  "solve": "return String(3*3*2+3*2**3-4*3**2);",
+  "distractor_solve": {
+   "15": "return String(3*3**2+3*2**3-4*3**2);",
+   "18": "return String(3*3*2+3*2**3-4*3*2);",
+   "29": "return String(3*3*2+3*2**3-(4+3**2));"
+  },
+  "quantity_asked": "the exponent n with (8^3)^2 · 8^(2^3) / 16^(3^2) = 2^n.",
+  "distractor_kind": {
+   "15": "error path: power of a power in the numerator read as a tower, (8^3)^2 → 8^(3^2). (a) no stem-forced bound on n. (b) not adjacent. (c) no estimate short of the exponent arithmetic. (d) real parenthesis/tower misreading.",
+   "18": "error path: tower in the denominator read as a power of a power, 16^(3^2) → (16^3)^2. (a) no bound. (b) not adjacent. (c) none. (d) real misreading in the other direction.",
+   "29": "error path: 16^9 rewritten 2^(4 + 9), adding instead of multiplying. (a) no bound. (b) not adjacent. (c) none. (d) real exponent-rule error."
+  },
+  "distractor_meta": {
+   "15": {
+    "direction": "over",
+    "error_kind": "numerator power read as tower"
+   },
+   "18": {
+    "direction": "over",
+    "error_kind": "denominator tower read as power"
+   },
+   "29": {
+    "direction": "over",
+    "error_kind": "base change added"
+   }
+  },
+  "bounds": [
+   "none: n is any integer until the exponents are evaluated"
+  ],
+  "mechanism": [
+   "power of a power versus exponent tower",
+   "rewrite bases 8 and 16 as powers of 2",
+   "exponent arithmetic",
+   "value of n"
+  ],
+  "arith_class_check": "No. Options 6, 15, 18, 29: two even and two odd; three multiples of 3 (key among them); nothing in the stem implies a parity or divisibility class for n.",
+  "one_sided_check": "Key smallest. The three errors are a numerator misread (power read as tower), the opposite misread in the denominator, and an add-for-multiply base change; other natural slips fall below the key ((8^3)^2 as 8^5 gives 3; 8^(2^3) read as (8^2)^3 gives 0), so the stem does not tell a student that errors raise n.",
+  "interior_parity_check": "Interior by value: 15 and 18; both two-digit integers, neither a multiple of 10; neither rounder.",
+  "cheap_bound_check": "No one-sided bound on n is readable without evaluating each exponent (that is the item); the nearest distractor 15 differs from the key only through the reading of (8^3)^2.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no (slips giving 3 and 0 lie below) / containment no."
+  }
+ },
+ {
+  "id": "AM26A-20",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "polynomial identities",
+  "subskill": "re-centering a cubic",
+  "prompt": "For all real numbers x, x³ − 8x² + x + 4 = (x − 3)³ + a(x − 3)² + b(x − 3) + c, where a, b, and c are constants. What is the value of b ?",
+  "choices": [
+   "-38",
+   "-21",
+   "-47",
+   "-20"
+  ],
+  "correct_answer": "-20",
+  "explanation": "Substitute x = t + 3, so that x − 3 = t. Then (t + 3)³ = t³ + 9t² + 27t + 27, −8(t + 3)² = −8t² − 48t − 72, and the x term contributes t + 3. The coefficient of t is 27 − 48 + 1 = −20, so b = −20. The option \"-47\" expands (t + 3)³ as t³ + 27, so the cube contributes no t term (0 − 48 + 1). The option \"-38\" uses 3·3·t instead of 3·3²·t in the cube (9 − 48 + 1). The option \"-21\" omits the original x term (27 − 48).",
+  "solve": "return String(3*9+2*(-8)*3+1);",
+  "distractor_solve": {
+   "-47": "return String(0+2*(-8)*3+1);",
+   "-38": "return String(3*3+2*(-8)*3+1);",
+   "-21": "return String(3*9+2*(-8)*3);"
+  },
+  "quantity_asked": "the coefficient b of (x − 3) when the cubic is written in powers of (x − 3).",
+  "distractor_kind": {
+   "-47": "error path: (t + 3)³ expanded as t³ + 27 (middle terms dropped). (a) no stem-forced bound on b. (b) not adjacent. (c) no estimate short of the expansion. (d) real binomial-cube error.",
+   "-38": "error path: middle term of (t + 3)³ written 9t (3·3) instead of 27t (3·3²). (a) no bound. (b) not adjacent. (c) no estimate. (d) real binomial-cube coefficient slip.",
+   "-21": "error path: the x term of the original cubic (coefficient 1) left out when collecting t terms. (a) no bound. (b) not adjacent. (c) no estimate. (d) real omission; it is the near distractor, 1 below the key."
+  },
+  "distractor_meta": {
+   "-47": {
+    "direction": "under",
+    "error_kind": "cube middle terms dropped"
+   },
+   "-38": {
+    "direction": "under",
+    "error_kind": "cube coefficient slip"
+   },
+   "-21": {
+    "direction": "under",
+    "error_kind": "original term omitted"
+   }
+  },
+  "bounds": [
+   "none: b is unconstrained until the substitution is expanded"
+  ],
+  "mechanism": [
+   "rewrite polynomial in powers of x minus 3",
+   "substitute x equals t plus 3",
+   "binomial cube expansion",
+   "coefficient matching"
+  ],
+  "arith_class_check": "No. Options −47, −38, −21, −20: two odd, two even; no common factor or sign property singles out the key.",
+  "one_sided_check": "Key largest. The three errors are a dropped cube middle term, a wrong cube coefficient and an omitted original term; substituting x = t − 3 instead gives 76 and expanding (t + 3)² with an undoubled middle term gives 4, both above the key, so the stem does not tell a student that errors lower b.",
+  "interior_parity_check": "Interior by value: -38 and -21; both negative two-digit integers; neither rounder.",
+  "cheap_bound_check": "Cheapest bound: none from the stem (the size of b depends on the full expansion); the nearest distractor -21 is 1 below the key, within the resolution of any estimate, and differs only by the omitted x term.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop: picked errors all lower b but over-errors (76, 4) exist / containment no. Near distractor −21 one below key."
+  }
+ },
+ {
+  "id": "AM26A-21",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "nonlinear systems: two parabolas",
+  "subskill": "vertex of one graph on another",
+  "prompt": "In the standard (x,y) coordinate plane, the vertex of the parabola y = x² − 6x + c, where c is a constant, lies on the parabola y = −x² + 4x − 1. What is the value of c ?",
+  "choices": [
+   "11",
+   "-13",
+   "2",
+   "-49"
+  ],
+  "correct_answer": "11",
+  "explanation": "The vertex of y = x² − 6x + c has x-coordinate −(−6)/(2·1) = 3 and y-coordinate 9 − 18 + c = c − 9. It lies on y = −x² + 4x − 1, whose value at x = 3 is −9 + 12 − 1 = 2. So c − 9 = 2 and c = 11. The option \"-13\" takes the vertex x-coordinate as −b/a = 6 (then 36 − 36 + c = −36 + 24 − 1). The option \"-49\" takes it as b/(2a) = −3 (then 9 + 18 + c = −9 − 12 − 1). The option \"2\" sets c equal to the vertex's y-coordinate.",
+  "solve": "const O=x=>-x*x+4*x-1, F=x=>x*x-6*x;const h=3;return String(O(h)-F(h));",
+  "distractor_solve": {
+   "2": "const O=x=>-x*x+4*x-1;return String(O(3));",
+   "-13": "const O=x=>-x*x+4*x-1, F=x=>x*x-6*x;const h=6;return String(O(h)-F(h));",
+   "-49": "const O=x=>-x*x+4*x-1, F=x=>x*x-6*x;const h=-3;return String(O(h)-F(h));"
+  },
+  "quantity_asked": "the constant c that puts the vertex of y = x² − 6x + c on y = −x² + 4x − 1.",
+  "distractor_kind": {
+   "2": "error path: c set equal to the vertex's y-coordinate (the value of the second parabola at x = 3), forgetting c − 9. (a) no bound. (b) the y-coordinate of the vertex is an intermediate quantity; c has no stem-forced interval it could sit at the edge of. (c) none. (d) real confusion of c with the vertex value.",
+   "-13": "error path: vertex x-coordinate taken as −b/a = 6. (a) no stem-forced bound on c. (b) not adjacent. (c) no estimate short of locating the vertex. (d) real vertex-formula slip.",
+   "-49": "error path: vertex x-coordinate taken as b/(2a) = −3. (a) no bound. (b) not adjacent. (c) none. (d) real sign error."
+  },
+  "distractor_meta": {
+   "2": {
+    "direction": "under",
+    "error_kind": "c taken as vertex y"
+   },
+   "-13": {
+    "direction": "under",
+    "error_kind": "vertex formula missing 2"
+   },
+   "-49": {
+    "direction": "under",
+    "error_kind": "vertex formula sign"
+   }
+  },
+  "bounds": [
+   "none: c is unconstrained until the vertex is located"
+  ],
+  "mechanism": [
+   "vertex of parabola lies on another parabola",
+   "vertex x from minus b over 2a",
+   "evaluate second parabola at vertex",
+   "solve for constant c"
+  ],
+  "arith_class_check": "No. Options 11, −13, 2, −49: three odd and one even (a distractor); no divisibility property singles out the key.",
+  "one_sided_check": "Key largest. The three errors are two different vertex-formula slips and a confusion of c with the vertex value; writing the vertex y-coordinate with h in place of h² (c + 3 − 18 = 2) gives 17, above the key, so the stem does not tell a student that errors lower c.",
+  "interior_parity_check": "Interior by value: -13 and 2; both small integers; neither rounder in a way that points (neither is a multiple of 10).",
+  "cheap_bound_check": "No cheap one-sided bound on c: its value is fixed only by locating the vertex and evaluating the second parabola there, which is the item. The nearest distractor 2 is 9 below the key, the gap being the h² = 9 term a student drops in that error.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no (h-for-h² error gives 17, above) / containment no."
+  }
+ },
+ {
+  "id": "AM26A-22",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "quadratic equations: vertex",
+  "subskill": "two vertices, then the line through them",
+  "prompt": "In the standard (x,y) coordinate plane, line ℓ passes through the vertex of the parabola y = 3x² − 9x − 4 and through the vertex of the parabola y = −2x² + 4x − 1. What is the y-intercept of line ℓ ?",
+  "choices": [
+   "3.5",
+   "51.5",
+   "24.5",
+   "-8.5"
+  ],
+  "correct_answer": "24.5",
+  "explanation": "The vertex of y = 3x² − 9x − 4 has x = 9/6 = 1.5 and y = 3(2.25) − 13.5 − 4 = −10.75. The vertex of y = −2x² + 4x − 1 has x = −4/(2·(−2)) = 1 and y = −2 + 4 − 1 = 1. The slope of ℓ is (1 − (−10.75))/(1 − 1.5) = −23.5, so its y-intercept is 1 − (−23.5)(1) = 24.5. The option \"3.5\" puts the first vertex at x = −b/a = 3 (the 2 left out of −b/(2a)). The option \"-8.5\" puts the second vertex at x = −1 (sign error in −b/(2a)). The option \"51.5\" computes the first vertex's y-coordinate as c − b²/4 = −4 − 20.25, leaving out the a = 3.",
+  "solve": "const V=(a,b,c,h)=>[h,a*h*h+b*h+c];const A=V(3,-9,-4,1.5),B=V(-2,4,-1,1);const m=(B[1]-A[1])/(B[0]-A[0]);return String(B[1]-m*B[0]);",
+  "distractor_solve": {
+   "3.5": "const V=(a,b,c,h)=>[h,a*h*h+b*h+c];const A=V(3,-9,-4,3),B=V(-2,4,-1,1);const m=(B[1]-A[1])/(B[0]-A[0]);return String(B[1]-m*B[0]);",
+   "-8.5": "const V=(a,b,c,h)=>[h,a*h*h+b*h+c];const A=V(3,-9,-4,1.5),B=V(-2,4,-1,-1);const m=(B[1]-A[1])/(B[0]-A[0]);return String(B[1]-m*B[0]);",
+   "51.5": "const A=[1.5,-4-81/4],B=[1,1];const m=(B[1]-A[1])/(B[0]-A[0]);return String(B[1]-m*B[0]);"
+  },
+  "quantity_asked": "the y-intercept of the line through the vertices of the two parabolas.",
+  "distractor_kind": {
+   "3.5": "error path: first vertex x-coordinate taken as −b/a = 3 (2 dropped from −b/(2a)). (a) no stem-forced bound on the intercept. (b) not an adjacent problem. (c) no estimate short of locating both vertices. (d) real vertex-formula slip.",
+   "-8.5": "error path: second vertex x-coordinate taken as b/(2a) = −1. (a) no bound. (b) not adjacent. (c) none. (d) real sign error.",
+   "51.5": "error path: first vertex y-coordinate taken as c − b²/4 (the a = 3 left out of b²/(4a)). (a) no bound. (b) not adjacent. (c) none. (d) real vertex-value error."
+  },
+  "distractor_meta": {
+   "3.5": {
+    "direction": "under",
+    "error_kind": "vertex formula missing 2"
+   },
+   "-8.5": {
+    "direction": "under",
+    "error_kind": "vertex formula sign"
+   },
+   "51.5": {
+    "direction": "over",
+    "error_kind": "vertex y without a"
+   }
+  },
+  "bounds": [
+   "none: the intercept is unconstrained until both vertices are found"
+  ],
+  "mechanism": [
+   "line through the vertices of two parabolas",
+   "vertex from minus b over 2a",
+   "slope through two points",
+   "y-intercept of line"
+  ],
+  "arith_class_check": "No. All options end in .5; no parity or divisibility class singles out the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 3.5 and 24.5; both values ending in .5; neither rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no (errors on both sides) / containment no."
+  }
+ },
+ {
+  "id": "AM26A-23",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "radical equations",
+  "subskill": "product of square roots",
+  "prompt": "What is the solution of the equation √(x + 4) · √(x − 1) = 8, to the nearest hundredth?",
+  "choices": [
+   "6.12",
+   "6.88",
+   "2.27",
+   "6.39"
+  ],
+  "correct_answer": "6.88",
+  "explanation": "For x ≥ 1, √(x + 4) · √(x − 1) = √((x + 4)(x − 1)), so (x + 4)(x − 1) = 64, x² + 3x − 4 = 64, and x² + 3x − 68 = 0. The positive solution is (−3 + √281)/2 ≈ 6.88; the negative solution makes x − 1 negative and is rejected. The option \"6.12\" expands (x + 4)(x − 1) as x² + 5x − 4. The option \"6.39\" expands it as x² + 3x + 4. The option \"2.27\" does not square the 8, solving x² + 3x − 4 = 8.",
+  "solve": "return ((-3+Math.sqrt(9+4*68))/2).toFixed(2);",
+  "distractor_solve": {
+   "6.12": "return ((-5+Math.sqrt(25+4*68))/2).toFixed(2);",
+   "6.39": "return ((-3+Math.sqrt(9+4*60))/2).toFixed(2);",
+   "2.27": "return ((-3+Math.sqrt(9+4*12))/2).toFixed(2);"
+  },
+  "quantity_asked": "the real solution x of √(x + 4)·√(x − 1) = 8.",
+  "distractor_kind": {
+   "6.12": "error path: −x + 4x combined as 5x. (a) x ≥ 1 kills nothing. (b) not adjacent. (c) an integer check at x = 6 gives √50 ≈ 7.07 < 8, so x > 6; 6.12 lies above it. (d) real combining slip.",
+   "6.39": "error path: 4·(−1) taken as +4. (a) x ≥ 1. (b) not adjacent. (c) above the x = 6 check. (d) real sign slip.",
+   "2.27": "error path: the right side left as 8 instead of 64 after squaring. (a) x ≥ 1 does not reach it. (b) not adjacent. (c) the integer check at x = 6 rejects it; it is the one option a coarse check removes. (d) real squaring omission."
+  },
+  "distractor_meta": {
+   "6.12": {
+    "direction": "under",
+    "error_kind": "combining like terms"
+   },
+   "6.39": {
+    "direction": "under",
+    "error_kind": "constant sign slip"
+   },
+   "2.27": {
+    "direction": "under",
+    "error_kind": "right side not squared"
+   }
+  },
+  "bounds": [
+   "v >= 1"
+  ],
+  "mechanism": [
+   "product of two square roots equals constant",
+   "square both sides",
+   "quadratic formula",
+   "reject negative root"
+  ],
+  "arith_class_check": "No. All options are two-decimal values; the solution is irrational and nothing implies a rational or integer answer.",
+  "one_sided_check": "Key largest. The three errors are a combining slip, a constant sign slip and an unsquared right side; multiplying only first and last terms (x² − 4 = 64) gives 8.25, above the key, so the stem does not tell a student that errors lower x.",
+  "interior_parity_check": "Interior by value: 6.12 and 6.39; both three-significant-digit two-decimal values; neither rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: x ≥ 1 (kills nothing) and integer checks: x = 6 gives √50 < 8 (so x > 6, killing only 2.27) and x = 7 gives √66 > 8 (so x < 7, killing nothing). 6.12 and 6.39 lie on the key's side of every integer check.",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no / parity no / one-way-drop no (FOIL error 8.25 above) / containment: x ≥ 1 inert; integer checks kill 2.27 only."
+  }
+ },
+ {
+  "id": "AM26A-24",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratic equations: sums and products of solutions",
+  "subskill": "rebuild an equation from two partial copies",
+  "prompt": "Ana and Ben each tried to solve the same equation of the form x² + bx + c = 0, where b and c are constants. Ana copied c correctly but copied b incorrectly, and the solutions of the equation she wrote were 5 and −6. Ben copied b correctly but copied c incorrectly, and the solutions of the equation he wrote were 1 and 12. What is the value of c − b for the original equation?",
+  "choices": [
+   "-43",
+   "11",
+   "-31",
+   "-17"
+  ],
+  "correct_answer": "-17",
+  "explanation": "For x² + bx + c = 0, the solutions have product c and sum −b. Ana's c is correct: c = 5(−6) = −30. Ben's b is correct: b = −(1 + 12) = −13. So c − b = −30 − (−13) = −17. The option \"11\" swaps which value each student copied correctly (b = −(5 − 6) = 1 from Ana, c = 1·12 = 12 from Ben). The option \"-43\" takes b = 1 + 12 = 13 (sum of solutions without the sign). The option \"-31\" uses Ana's equation for both values (b = 1, c = −30).",
+  "solve": "const c=5*(-6), b=-(1+12);return String(c-b);",
+  "distractor_solve": {
+   "11": "const b=-(5+(-6)), c=1*12;return String(c-b);",
+   "-43": "const c=5*(-6), b=1+12;return String(c-b);",
+   "-31": "const c=5*(-6), b=-(5+(-6));return String(c-b);"
+  },
+  "quantity_asked": "c − b for the original equation x² + bx + c = 0.",
+  "distractor_kind": {
+   "11": "error path: Ana trusted for b and Ben for c (roles swapped). (a) no stem-forced bound on c − b. (b) the adjacent problem with roles swapped; not at an extreme of any interval. (c) none. (d) real reading error.",
+   "-43": "error path: b taken as the sum of the solutions without the minus sign. (a) no bound. (b) not adjacent. (c) none. (d) real sign error in the sum relation.",
+   "-31": "error path: Ana's equation used for both b and c. (a) no bound. (b) not adjacent. (c) none. (d) real failure to use Ben's correct b."
+  },
+  "distractor_meta": {
+   "11": {
+    "direction": "over",
+    "error_kind": "roles swapped"
+   },
+   "-43": {
+    "direction": "under",
+    "error_kind": "sum sign"
+   },
+   "-31": {
+    "direction": "under",
+    "error_kind": "one copy used"
+   }
+  },
+  "bounds": [
+   "none: c − b is unconstrained until b and c are recovered"
+  ],
+  "mechanism": [
+   "miscopied coefficient",
+   "sum and product of solutions",
+   "recover b from one student and c from another",
+   "value of c minus b"
+  ],
+  "arith_class_check": "No. Options −43, −31, −17, 11 are all odd; no divisibility or sign property singles out the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: -31 and -17; both negative two-digit integers; neither rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "run no / gap no (no difference or sum equals 5, 6, 1, 12 or twice one) / parity no / one-way-drop no / containment no."
+  }
+ }
+]
