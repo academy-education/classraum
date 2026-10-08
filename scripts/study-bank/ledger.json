@@ -6570,6 +6570,51 @@
           "verdict": "21 candidate items unanimous blind. Dropped where with-source independently named a defect: S15A-01, S15B-06 (confirmed eliminations) and S15E-14 (grader-named order-of-magnitude elimination; unanimity is the corroboration). The other 18 unanimous items carry no >= 2 with-source elimination and are kept (pre-registered: unanimity alone never drops)."
         }
       }
+    },
+    {
+      "id": "isee-math-s15-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "isee",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "isee-math-s15",
+      "contentSha": "37f04582f559b883a7e865e9fd8a15613ac36b605bde3f4c7eb53ac868d34490",
+      "status": "shipped",
+      "spec": {
+        "n": 198,
+        "authors": 6,
+        "batchFile": "scripts/study-bank/isee-math-s15.batch.json",
+        "prereg": "scripts/study-bank/isee-math-s15.prereg.md",
+        "method": "six Claude authors x 33 on disjoint strands (A numbers/number theory, B ratio/rate/percent, C algebra, D geometry, E measurement/coordinates/patterns, F data/probability), four-choice, solve + distractor_solve, frozen before attack; options-only attack with a 100-item interleaved live ISEE control; two with-source graders per item (each run as three agents over thirds) on the key-withheld render; per-mechanism duplicate search against all 348 live ISEE math rows"
+      },
+      "note": "Commissioned for ISEE math forms 5 and 6: quant (37) and mathach (47) share bank section math and one student's exposures, so a test consumes 84; 348 live = 4 clean, form 6 needs 504 (+156). The assembler draws ISEE math with no band/level/type quota, so the batch matches the live pool shape. 198 authored (not ~170) for drop-rate margin, reason pre-registered. 165 of 198 inserted under the pre-registered bars; 33 drops: 26 with-source free eliminations killing >= 2 distractors, 5 live ISEE mechanism duplicates, 2 within-batch duplicates (post-freeze, so dropped not repaired); reasons in isee-math-s15.qc-reasons.json. Inserted at BANK_BAND=mixed; difficulty = graders' consensus, or the easier label where they split (57 of 165 splits).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "37f04582f559b883a7e865e9fd8a15613ac36b605bde3f4c7eb53ac868d34490",
+          "verdict": "math-bank-helper verify on the frozen 198: sandbox 198/198, distractors 594/594, symbolic hub 14 structured +0.6, numeric hub 16 structured -25.0 (control 25.0%), key extremity PASS 90/183 = 49.2% (bar 40.0%; kept 165: 74/156 = 47.4%). run-middle: 40 single-run items, key in 0; option-pair-constant: key in 0 of 6 single pairs; key-is-sum: key is the lone sum/product node 0 times; sign-pair: no +- pair in any set; plurality: fires on 3 of 23 scorable, key 0. stem-duplicates 0 of 198 against 775 live ISEE rows; own word-3-shingle scan vs 348 live ISEE math max stem Jaccard 0.45 (IM15F-32 vs a different sock-drawer computation), 0 pairs >= 0.5 (break-tested: planted live copy flagged at 1.00); within batch max 0.39, read by hand."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "37f04582f559b883a7e865e9fd8a15613ac36b605bde3f4c7eb53ac868d34490",
+          "n": 594,
+          "mean": 30.8,
+          "control": 42.0,
+          "margin": -11.2,
+          "verdict": "make-oo-render --control 100 (blind sha c48391a166b3af1f), stems withheld, keys dealt 50/50/49/49 (candidate) and 25/25/25/25 (control), three Claude samples x 298 interleaved items. Candidate 183/594 = 30.8% (own best-fixed-letter line 25.3%), live control 126/300 = 42.0% (line 25.0%): CANDIDATE minus LIVE CONTROL -11.2 (pre-registered pass <= +5.0; control far below the 80% void ceiling). Unanimous-correct rate 37/198 = 18.7% vs control 33/100 = 33.0%. Pairwise agreement 75.6% vs 26.7% independent - one solver sampled three times. 203 of 894 picks labelled mechanism (41.4% correct pooled) vs 691 guess (32.6%)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "37f04582f559b883a7e865e9fd8a15613ac36b605bde3f4c7eb53ac868d34490",
+          "verdict": "Two Claude graders per item on isee-math-s15.grade.json (render sha 6fdf2bb21edfdbc1; split into thirds cda72320 / c9aae8d9 / 1f825c1a, each quoted by its grader at start and end). 396 picks: 395 equal the key; the one other (IM15F-12, grader A pick 57) is a recording slip - its own working computes 64 - 22 = 42, the key. 0 non-exclusive, 0 second-defensible, 0 out of band. 47 items had >= 2 kills named by at least one grader; 26 confirmed by hand and dropped (incl. IM15C-24, plug-back skipping the quadratic, s13 IM13B-14 precedent), 21 not confirmed and kept (the kill was the item's method, a plug-back on a one-step equation, or an unstated whole-number assumption: A-04 A-13 A-15 A-17 A-19 A-20 B-09 C-01 C-10 C-13 C-14 C-23 C-33 D-05 D-25 E-21 E-24 E-29 F-02 F-10 F-11). Duplicates: grader B named IM15B-01 = live [216]; the mechanism search named 2 duplicates + 18 borderline, confirmed 5 live (B-01, B-10, E-02, E-30, F-14) and 2 within-batch (C-32 ~ B-13, D-22 ~ D-15). 33 dropped in all; batch-hold bar was > 56 of 198."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "37f04582f559b883a7e865e9fd8a15613ac36b605bde3f4c7eb53ac868d34490",
+          "verdict": "37 candidate items unanimous blind; 10 of them dropped on a confirmed with-source defect (B-01 C-04 C-24 C-32 E-02 E-08 E-10 E-17 E-18 F-14). 27 kept: with-source names no confirmed >= 2 free elimination on any (pre-registered: unanimity alone never drops, read as in s13/s14). 14 of those 27 carry a single named free kill, recorded not acted on: A-04 (865 units digit), A-13 (14 not a multiple of 3), B-30 (400), B-32 (3 : 8), C-25 (-8), C-27 (6), D-18 (25.2), E-24 (540), E-25 (24), F-01 (2/7), F-08 (69), F-12 (120), F-21 (7/30), F-27 (5/44) - several are sec 1 illegal options (a probability denominator the sample space forbids, a count above C(n,k)) that the brief told authors to exclude."
+        }
+      }
     }
   ],
   "auditedCohorts": [

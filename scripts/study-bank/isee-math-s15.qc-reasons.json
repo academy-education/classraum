@@ -1,0 +1,960 @@
+{
+ "IM15A-01": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15A-02": {
+  "verdict": "drop",
+  "why": "free elimination, both graders, confirmed: unsold = 980 - 3/5 x 980 is a multiple of 7 (28 = 4 x 7) and even - kills 338 (2 x 13^2) and 385 (odd) without the arithmetic"
+ },
+ "IM15A-03": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15A-04": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15A-05": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-06": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15A-07": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-08": {
+  "verdict": "drop",
+  "why": "free elimination, both graders, confirmed: 360:504 = 5:7, so an exact square tiling is a 5m x 7m grid and the count is 35m^2 - 5, 12 and 24 are not tile counts of that floor (sec 1 illegal options)"
+ },
+ "IM15A-09": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM15A-10": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-11": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15A-12": {
+  "verdict": "drop",
+  "why": "free elimination, grader B, confirmed by hand: 23 odd integers in -20..25 (10 negative, 13 positive) so the total is odd - kills 100, 90, 94"
+ },
+ "IM15A-13": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-14": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: each numerator term (1/8, 1/4) exceeds the denominator 1/16, so the quotient exceeds 2 - kills 3/128, 3/4, 1/2"
+ },
+ "IM15A-15": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15A-16": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15A-17": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM15A-18": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15A-19": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15A-20": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-21": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-22": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: units digit 9 - 6 = 3 - kills 4 and 5"
+ },
+ "IM15A-23": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15A-24": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-25": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15A-26": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-27": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-28": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-29": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15A-30": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15A-31": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-32": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15A-33": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM15B-01": {
+  "verdict": "drop",
+  "why": "live duplicate (grader B + mechanism search), confirmed: same percent-increase-from-two-values computation as live [216] (isee, $40 -> $46); only the percentage-point distractor is new"
+ },
+ "IM15B-02": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15B-03": {
+  "verdict": "drop",
+  "why": "free elimination, grader B, confirmed: 120% of n = 90 so n < 90 and 80% of n < 72 - 72 sits ON the bound, 86.4 beyond"
+ },
+ "IM15B-04": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15B-05": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15B-06": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: Ben's 36,000 dollar-months < Ana's 48,000 so Ben gets under half - 1050 (the equal-split limiting case, sec 13b) ON the bound, 1260 beyond"
+ },
+ "IM15B-07": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15B-08": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15B-09": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15B-10": {
+  "verdict": "drop",
+  "why": "live duplicate (mechanism search), confirmed: a = 1.2b, b = 0.75c is the identical factor product 1.2 x 0.75 = 0.9 of live [176] (raise 20% then cut 25%)"
+ },
+ "IM15B-11": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15B-12": {
+  "verdict": "drop",
+  "why": "free elimination, grader B, confirmed: y = kx^2 grows faster than linear, so y(5) > 18 x 5/3 = 30 - 30 (the linear-variation limiting case, sec 13b) ON the bound, 22 below"
+ },
+ "IM15B-13": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15B-14": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15B-15": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15B-16": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15B-17": {
+  "verdict": "drop",
+  "why": "free elimination, grader A, confirmed: Ito's raise is larger, so new Ito : new Diaz > 3:5 and new Ito > 0.6 x 2700 = 1620 - kills 1458, 1500 and 1620 (ON)"
+ },
+ "IM15B-18": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15B-19": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15B-20": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM15B-21": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15B-22": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15B-23": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15B-24": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15B-25": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15B-26": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15B-27": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM15B-28": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM15B-29": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15B-30": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15B-31": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15B-32": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15B-33": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-01": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15C-02": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15C-03": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15C-04": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: degree/constant-term kind check - 3x(2x^2-3) is cubic, 3(2x-3) linear, 3(2x^2-3) has a constant term; key is the kind-singleton (sec 1)"
+ },
+ "IM15C-05": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15C-06": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-07": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15C-08": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-09": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: a - b = 4 > 0 and a + b = 12 force a > 6 - kills 3 and 6 (ON)"
+ },
+ "IM15C-10": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-11": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-12": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: 9a = 36 > 0 so f is smaller at |x| = 2 than at 3, f(-2) < 31 - kills 43 and 59"
+ },
+ "IM15C-13": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15C-14": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15C-15": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15C-16": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15C-17": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15C-18": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-19": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15C-20": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15C-21": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-22": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15C-23": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-24": {
+  "verdict": "drop",
+  "why": "plug-back bypasses the quadratic (grader B; s13 IM13B-14 precedent, sec 13c): n = 24 gives $5 x 24 = $6 x 20 in one check - the prereg exempts plug-back only on a one-step equation"
+ },
+ "IM15C-25": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-26": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: |x + 5| <= 12 forces x <= 7 - kills 9 and 10 without the case work"
+ },
+ "IM15C-27": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15C-28": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15C-29": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15C-30": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15C-31": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: a GCF coefficient cannot exceed 12 - kills 36x^2y^2 and 36x^3y^5 (sec 1 illegal options)"
+ },
+ "IM15C-32": {
+  "verdict": "drop",
+  "why": "within-batch duplicate (mechanism search), confirmed: same as IM15B-13 (substitute a ratio into a quotient of linear combinations); the later id dropped - post-freeze, so dropped not repaired"
+ },
+ "IM15C-33": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-01": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15D-02": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15D-03": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15D-04": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15D-05": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15D-06": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15D-07": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15D-08": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-09": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15D-10": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15D-11": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15D-12": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15D-13": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15D-14": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15D-15": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-16": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15D-17": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15D-18": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-19": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-20": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-21": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15D-22": {
+  "verdict": "drop",
+  "why": "within-batch duplicate (mechanism search), confirmed: isoceles 25-25 triangle split into 7-24-25 halves with area 168, as IM15D-15; the later id dropped - post-freeze, so dropped not repaired"
+ },
+ "IM15D-23": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15D-24": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15D-25": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-26": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM15D-27": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-28": {
+  "verdict": "drop",
+  "why": "free elimination, both graders, confirmed by coordinates (E = (1 + sqrt3/2, 1/2), angle 15): E lies below diagonal AC, so angle BAE < 45 - kills 45 (ON) and 60"
+ },
+ "IM15D-29": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-30": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-31": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15D-32": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "hard"
+ },
+ "IM15D-33": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-01": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15E-02": {
+  "verdict": "drop",
+  "why": "live duplicate (mechanism search), confirmed: slope from two points then x at a given y on the line - live [313] is the same computation with y = 0"
+ },
+ "IM15E-03": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-04": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-05": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: direction read off the stem (x decreases, y increases) with no arithmetic - kills (8, -1), (8, 13), (2, -1); s14 'direction read off the stem' precedent"
+ },
+ "IM15E-06": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-07": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15E-08": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: side strictly between the larger leg 4 and the leg sum 7, area in (16, 49) - kills 12 and 49 (ON) (sec 8a hypotenuse bound)"
+ },
+ "IM15E-09": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: the segment rises, so its perpendicular bisector falls through the midpoint (2, 3); at x = 0 the line is above 3 - kills -3, -1, 2"
+ },
+ "IM15E-10": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: distance strictly between 8 and 14 grid units, time in (100, 175) s - kills 2.5 and 1250 by magnitude, 175 is ON the taxicab bound"
+ },
+ "IM15E-11": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: 7 h 45 min lies between 7.5 and 8 h, so 20 days gives 150-160 h - kills 140.75, 145, 149 (grader B: multiple of 5 kills two)"
+ },
+ "IM15E-12": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: both clock times are multiples of 5 minutes - kills 249 and 273"
+ },
+ "IM15E-13": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-14": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-15": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "easy"
+ },
+ "IM15E-16": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "easy"
+ },
+ "IM15E-17": {
+  "verdict": "drop",
+  "why": "free elimination, grader B, confirmed: 10:17 a.m. is not before 10:00 (sec 1 illegal option) and departures are 365 + 18k minutes after midnight, always odd, so 9:54 (594) is not a departure"
+ },
+ "IM15E-18": {
+  "verdict": "drop",
+  "why": "free elimination, both graders, confirmed: 1000 is a multiple of 5 so the minutes end in 0 or 5 (kills 2:32 p.m.) and not of 60 so they cannot stay :25 (kills 7:25 a.m.)"
+ },
+ "IM15E-19": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: a km/h figure exceeds the m/s figure - kills 1.08, 5, 6.48; all three distractors are one error family (sec 15) and the key is the kind-singleton"
+ },
+ "IM15E-20": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15E-21": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15E-22": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-23": {
+  "verdict": "drop",
+  "why": "free elimination, both graders: 12 x 8 min = 96 min floor kills 1 h 5 min and 1 h 36 min 45 s; 12 x 45 s = 9 whole minutes kills 1 h 41 min 24 s"
+ },
+ "IM15E-24": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "easy"
+ },
+ "IM15E-25": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-26": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-27": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-28": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "medium"
+ },
+ "IM15E-29": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-30": {
+  "verdict": "drop",
+  "why": "live duplicate (mechanism search), confirmed: arithmetic sequence, two terms given, find another - same computation as live [33] (the mechanism of the archived 2026-10-07 pair); grader A also noted 'third position' ambiguity"
+ },
+ "IM15E-31": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-32": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15E-33": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-01": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15F-02": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15F-03": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15F-04": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15F-05": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "easy"
+ },
+ "IM15F-06": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-07": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-08": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "easy"
+ },
+ "IM15F-09": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-10": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "medium"
+ },
+ "IM15F-11": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15F-12": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium",
+  "note": "grader A's pick field reads 57 but its own working computes 64 - 22 = 42 (the key); recording slip, sandbox and hand agree on 42"
+ },
+ "IM15F-13": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-14": {
+  "verdict": "drop",
+  "why": "live duplicate (mechanism search), confirmed: equally spaced consecutive numbers with a given total/mean, find an end - live [118], [189], [249]"
+ },
+ "IM15F-15": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-16": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "medium"
+ },
+ "IM15F-17": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM15F-18": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "hard"
+ },
+ "IM15F-19": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-20": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-21": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-22": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ },
+ "IM15F-23": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-24": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "easy"
+ },
+ "IM15F-25": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-26": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "medium"
+ },
+ "IM15F-27": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "medium"
+ },
+ "IM15F-28": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-29": {
+  "verdict": "keep",
+  "difficulty_a": "hard",
+  "difficulty_b": "medium"
+ },
+ "IM15F-30": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-31": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-32": {
+  "verdict": "keep",
+  "difficulty_a": "medium",
+  "difficulty_b": "medium"
+ },
+ "IM15F-33": {
+  "verdict": "keep",
+  "difficulty_a": "easy",
+  "difficulty_b": "medium"
+ }
+}
