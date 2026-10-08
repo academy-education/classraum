@@ -1,0 +1,348 @@
+[
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R1",
+    "subskill": "Linear functions: difference of two functions bounded on an interval",
+    "prompt": "f(x) = kx - 5\ng(x) = 2x + 1\nThe functions f and g are defined above, where k is a constant. For every x in the interval -3 ≤ x ≤ 4, the difference f(x) - g(x) is at least -8 and at most 6. The values of k that make this true form an interval of real numbers. What is the length of that interval?",
+    "choices": [
+      "1/2",
+      "7/6",
+      "7/4",
+      "14/3"
+    ],
+    "correct_answer": "7/6",
+    "explanation": "Let d(x) = f(x) - g(x) = (k - 2)x - 6. This is linear in x, so on -3 ≤ x ≤ 4 its largest and smallest values occur at the endpoints, and which endpoint gives which depends on the sign of k - 2, which is not known in advance. The safe route is to require both endpoints to satisfy both bounds. At x = 4: d(4) = 4k - 14, and -8 ≤ 4k - 14 ≤ 6 gives 3/2 ≤ k ≤ 5. At x = -3: d(-3) = -3k, and -8 ≤ -3k ≤ 6 gives -2 ≤ k ≤ 8/3. Both must hold, so 3/2 ≤ k ≤ 8/3, which contains k = 2 (the value where d is constant), as it should. The length is 8/3 - 3/2 = 7/6.\nChoice 1/2 comes from assuming d decreases (k < 2), which keeps only 3/2 ≤ k < 2 and loses every k between 2 and 8/3. Choice 7/4 applies the bounds to f(x) alone instead of to f(x) - g(x), which gives -3/4 ≤ k ≤ 1. Choice 14/3 checks only x = -3 and gets -2 ≤ k ≤ 8/3.",
+    "mechanism": [
+      "difference of two linear functions",
+      "both endpoints, both bounds",
+      "sign of k - 2 unknown",
+      "length of k-interval"
+    ],
+    "setup": {
+      "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+      "ii": "two-sided",
+      "iii": "width of the k-range"
+    },
+    "key_position": "interior",
+    "off_by_one_options": [],
+    "solve": "const L=-8,U=6,m=2,c=-5-1;const end=[-3,4];let lo=-Infinity,hi=Infinity;for(const x of end){const a=(L-c)/x+m,b=(U-c)/x+m;lo=Math.max(lo,Math.min(a,b));hi=Math.min(hi,Math.max(a,b))}return hi-lo",
+    "distractor_solve": {
+      "1/2": "const L=-8,U=6,m=2,c=-6;const lo=Math.max((U-c)/(-3)+m,(L-c)/4+m);return m-lo",
+      "7/4": "const L=-8,U=6,c=-5;let lo=-Infinity,hi=Infinity;for(const x of [-3,4]){const a=(L-c)/x,b=(U-c)/x;lo=Math.max(lo,Math.min(a,b));hi=Math.min(hi,Math.max(a,b))}return hi-lo",
+      "14/3": "const L=-8,U=6,m=2,c=-6,x=-3;return Math.abs((U-c)/x-(L-c)/x)"
+    }
+  },
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R2",
+    "subskill": "Linear functions: a line through a fixed point stays below a graph on an interval",
+    "prompt": "The function f is defined by f(x) = 3x + 5. Line ℓ passes through the point (1, 2) and has slope k, where k is a constant. On the interval -2 ≤ x ≤ 5, no point of the graph of f lies below ℓ. What is the sum of the least and greatest possible values of k?",
+    "choices": [
+      "7/2",
+      "4",
+      "51/10",
+      "11/2"
+    ],
+    "correct_answer": "11/2",
+    "explanation": "Line ℓ is y = k(x - 1) + 2. The condition is f(x) - [k(x - 1) + 2] ≥ 0 for -2 ≤ x ≤ 5. That difference is linear in x, so it is enough to check the two endpoints, and both are needed: whether f or ℓ is steeper (k compared with 3) decides which endpoint is the tight one, and both cases are allowed. At x = 5: 20 ≥ 4k + 2, so k ≤ 9/2. At x = -2: -1 ≥ -3k + 2, so 3k ≥ 3 and k ≥ 1. So 1 ≤ k ≤ 9/2, and the sum is 1 + 9/2 = 11/2.\nChoice 7/2 is the difference 9/2 - 1, not the sum. Choice 4 assumes ℓ must be less steep than f, so it caps k at 3 and adds 1 + 3. Choice 51/10 writes ℓ as y = kx + 2, ignoring that it passes through (1, 2), which gives 3/2 ≤ k ≤ 18/5.",
+    "mechanism": [
+      "line through a fixed point with slope k",
+      "graph stays above a line on an interval",
+      "check both endpoints",
+      "sum of extreme k"
+    ],
+    "setup": {
+      "i": "k in the BOUNDING line, f fixed",
+      "ii": "lower only",
+      "iii": "sum of greatest and least k"
+    },
+    "key_position": "largest",
+    "off_by_one_options": [],
+    "solve": "const f=x=>3*x+5,px=1,py=2,a=-2,b=5;const hi=(f(b)-py)/(b-px);const lo=(py-f(a))/(px-a);return lo+hi",
+    "distractor_solve": {
+      "4": "const f=x=>3*x+5,px=1,py=2,a=-2;return (py-f(a))/(px-a)+3",
+      "7/2": "const f=x=>3*x+5,px=1,py=2,a=-2,b=5;return (f(b)-py)/(b-px)-(py-f(a))/(px-a)",
+      "51/10": "const f=x=>3*x+5,py=2,a=-2,b=5;const hi=(f(b)-py)/b;const lo=(py-f(a))/(-a);return lo+hi"
+    }
+  },
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R3",
+    "subskill": "Linear models: difference of two models bounded above over a time window",
+    "prompt": "During a lab run, the readings, in degrees, of two temperature probes t minutes after the run begins are modeled by\nP(t) = 50 + k(t - 4)\nQ(t) = 47 + 2(t - 4)\nwhere k is a constant. Throughout the run, from t = 0 to t = 10, probe P never reads more than 9 degrees above probe Q. If the model for P also holds at t = 14, how many different integers are possible values of P(14)?",
+    "choices": [
+      "3",
+      "11",
+      "16",
+      "26"
+    ],
+    "correct_answer": "26",
+    "explanation": "The condition is P(t) - Q(t) ≤ 9 for 0 ≤ t ≤ 10, where P(t) - Q(t) = 3 + (k - 2)(t - 4). This is linear in t, so it is largest at t = 0 or at t = 10, and which one depends on whether k is above or below 2. Both endpoints must be checked. At t = 0: 3 - 4(k - 2) ≤ 9, so k ≥ 1/2. At t = 10: 3 + 6(k - 2) ≤ 9, so k ≤ 3. So 1/2 ≤ k ≤ 3. Then P(14) = 50 + 10k runs from 55 to 80, inclusive, which contains 80 - 55 + 1 = 26 integers.\nChoice 3 counts the integer values of k (1, 2, and 3) instead of the integer values of P(14). Choice 11 assumes P warms faster than Q (k ≥ 2), so it uses only 2 ≤ k ≤ 3 and P(14) from 70 to 80. Choice 16 assumes k ≤ 2, so it uses only 1/2 ≤ k ≤ 2 and P(14) from 55 to 70.",
+    "mechanism": [
+      "difference of two linear models",
+      "reference time inside the window",
+      "both endpoints checked",
+      "count integer outputs"
+    ],
+    "setup": {
+      "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+      "ii": "upper only",
+      "iii": "number of integers f(t) can equal"
+    },
+    "key_position": "largest",
+    "off_by_one_options": [],
+    "solve": "const D=50-47,m=2,U=9,a=0,b=10,p=4;const lo=m+(U-D)/(a-p),hi=m+(U-D)/(b-p);const P=k=>50+k*(14-p);return Math.floor(P(hi)+1e-9)-Math.ceil(P(lo)-1e-9)+1",
+    "distractor_solve": {
+      "3": "const lo=2+(9-3)/(0-4),hi=2+(9-3)/(10-4);return Math.floor(hi)-Math.ceil(lo)+1",
+      "11": "const hi=2+(9-3)/(10-4);const P=k=>50+10*k;return Math.floor(P(hi))-Math.ceil(P(2))+1",
+      "16": "const lo=2+(9-3)/(0-4);const P=k=>50+10*k;return Math.floor(P(2))-Math.ceil(P(lo))+1"
+    }
+  },
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R4",
+    "subskill": "Linear functions from a table: a combination stays between two parallel lines",
+    "prompt": "The table shows three values of the linear function f.\nx | f(x)\n0 | 7\n2 | 3\n4 | -1\nThe function h is defined by h(x) = f(x) + kx, where k is a constant. For every x with -2 ≤ x ≤ 3, the point (x, h(x)) lies on or between the lines y = x + 1 and y = x + 9. What is the sum of the greatest and least possible values of h(15)?",
+    "choices": [
+      "9",
+      "24",
+      "29",
+      "39"
+    ],
+    "correct_answer": "39",
+    "explanation": "From the table, f(x) = 7 - 2x, so h(x) = (k - 2)x + 7. Lying on or between the lines means 1 ≤ h(x) - x ≤ 9, where h(x) - x = (k - 3)x + 7. This is linear in x, so it is enough to check x = -2 and x = 3, and both are needed because the sign of k - 3 decides which end is high and which is low. At x = 3: 1 ≤ 3k - 2 ≤ 9, so 1 ≤ k ≤ 11/3. At x = -2: 1 ≤ 13 - 2k ≤ 9, so 2 ≤ k ≤ 6. Together, 2 ≤ k ≤ 11/3. Then h(15) = 15k - 23 ranges from 7 to 32, and the sum is 39.\nChoice 9 treats the boundaries as the horizontal lines y = 1 and y = 9, which gives 1 ≤ k ≤ 8/3 and h(15) from -8 to 17. Choice 24 checks only x = 3, giving 1 ≤ k ≤ 11/3 and h(15) from -8 to 32. Choice 29 assumes h(x) - x decreases (k ≤ 3), giving 2 ≤ k ≤ 3 and h(15) from 7 to 22.",
+    "mechanism": [
+      "linear function from a table",
+      "f(x) + kx between two parallel lines",
+      "both endpoints checked",
+      "sum of extreme outputs"
+    ],
+    "setup": {
+      "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+      "ii": "between two fixed lines",
+      "iii": "sum of greatest and least f(t)"
+    },
+    "key_position": "largest",
+    "off_by_one_options": [],
+    "solve": "const f0=7,s=(3-7)/2;const ends=[-2,3];let lo=-Infinity,hi=Infinity;for(const x of ends){const a=(1-f0)/x+1-s,b=(9-f0)/x+1-s;lo=Math.max(lo,Math.min(a,b));hi=Math.min(hi,Math.max(a,b))}const h=k=>f0+(s+k)*15;return h(lo)+h(hi)",
+    "distractor_solve": {
+      "9": "const f0=7,s=-2;let lo=-Infinity,hi=Infinity;for(const x of [-2,3]){const a=(1-f0)/x-s,b=(9-f0)/x-s;lo=Math.max(lo,Math.min(a,b));hi=Math.min(hi,Math.max(a,b))}const h=k=>f0+(s+k)*15;return h(lo)+h(hi)",
+      "24": "const f0=7,s=-2,x=3;const a=(1-f0)/x+1-s,b=(9-f0)/x+1-s;const h=k=>f0+(s+k)*15;return h(a)+h(b)",
+      "29": "const f0=7,s=-2,x=-2;const lo=(9-f0)/x+1-s;const h=k=>f0+(s+k)*15;return h(lo)+h(3)"
+    }
+  },
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R5",
+    "subskill": "Linear models: actual output kept within a band around a planned line",
+    "prompt": "A factory's actual output, in units, in month t is modeled by A(t) = 30t + 266. The factory's plan is modeled by P(t) = 400 + k(t - 5), where k is a constant, the planned change in output per month. For every month t with 0 ≤ t ≤ 9, the actual output must satisfy P(t) - 35 ≤ A(t) ≤ P(t) + 35. If k must be a whole number, how many integer values of k meet this requirement?",
+    "choices": [
+      "8",
+      "14",
+      "17",
+      "23"
+    ],
+    "correct_answer": "8",
+    "explanation": "Write A(t) - P(t) = 30t + 266 - 400 - k(t - 5) = (30 - k)(t - 5) + 16. The requirement is -35 ≤ (30 - k)(t - 5) + 16 ≤ 35 for 0 ≤ t ≤ 9. This is linear in t, so only t = 0 and t = 9 need checking, but both must be checked: whether k is above or below 30 decides which month is closest to each edge of the band. At t = 0: -35 ≤ -5(30 - k) + 16 ≤ 35, so 99/5 ≤ k ≤ 169/5. At t = 9: -35 ≤ 4(30 - k) + 16 ≤ 35, so 101/4 ≤ k ≤ 171/4. Both hold when 101/4 ≤ k ≤ 169/5, so the integer values are 26 through 33: 8 of them.\nChoice 14 checks only t = 0 and counts the integers from 20 to 33. Choice 17 checks only t = 9 and counts the integers from 26 to 42. Choice 23 joins the two endpoint ranges instead of requiring both, counting the integers from 20 to 42.",
+    "mechanism": [
+      "tolerance band around a planned line",
+      "reference month inside the window",
+      "intersection of endpoint conditions",
+      "count integer k"
+    ],
+    "setup": {
+      "i": "k in the BOUNDING line, f fixed",
+      "ii": "two-sided",
+      "iii": "number of integer k"
+    },
+    "key_position": "smallest",
+    "off_by_one_options": [],
+    "solve": "const A=t=>30*t+266,P0=400,p=5,W=35;let lo=-Infinity,hi=Infinity;for(const t of [0,9]){const a=(A(t)-P0-W)/(t-p),b=(A(t)-P0+W)/(t-p);lo=Math.max(lo,Math.min(a,b));hi=Math.min(hi,Math.max(a,b))}return Math.floor(hi+1e-9)-Math.ceil(lo-1e-9)+1",
+    "distractor_solve": {
+      "14": "const A=t=>30*t+266,t=0;const a=(A(t)-435)/(t-5),b=(A(t)-365)/(t-5);return Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1",
+      "17": "const A=t=>30*t+266,t=9;const a=(A(t)-435)/(t-5),b=(A(t)-365)/(t-5);return Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1",
+      "23": "const A=t=>30*t+266;let lo=Infinity,hi=-Infinity;for(const t of [0,9]){const a=(A(t)-435)/(t-5),b=(A(t)-365)/(t-5);lo=Math.min(lo,a,b);hi=Math.max(hi,a,b)}return Math.floor(hi+1e-9)-Math.ceil(lo-1e-9)+1"
+    }
+  },
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R6",
+    "subskill": "Linear functions: a fixed graph between two parallel lines of unknown slope",
+    "prompt": "Line m has equation y = kx and line n has equation y = kx + 10, where k is a constant. The function f is given by f(x) = 2x + 4. For 2 ≤ x ≤ 6, the graph of f lies on or between lines m and n. Point R lies on line n and has x-coordinate 13. How many different integers are possible values of the y-coordinate of R?",
+    "choices": [
+      "22",
+      "40",
+      "48",
+      "66"
+    ],
+    "correct_answer": "22",
+    "explanation": "The condition is 0 ≤ f(x) - kx ≤ 10, where f(x) - kx = (2 - k)x + 4, for 2 ≤ x ≤ 6. This expression is linear in x, so it is enough to check x = 2 and x = 6 against BOTH bounds. Which endpoint is higher depends on whether k is less than or greater than 2, and k = 2 itself is allowed (then the expression is the constant 4), so both cases are live. At x = 2: 0 ≤ 8 - 2k ≤ 10 gives -1 ≤ k ≤ 4. At x = 6: 0 ≤ 16 - 6k ≤ 10 gives 1 ≤ k ≤ 8/3. Together, 1 ≤ k ≤ 8/3. The y-coordinate of R is 13k + 10, which runs from 23 to 44 2/3, so the possible integers are 23 through 44: 22 of them.\nChoice 40 uses the checks that are right only when the graph of f climbs away from m (k < 2), comparing f with m at x = 2 and with n at x = 6, and never imposes k < 2, so it gets 1 ≤ k ≤ 4. Choice 48 does the same for the case k > 2, comparing f with m at x = 6 and with n at x = 2, and gets -1 ≤ k ≤ 8/3. Choice 66 checks only x = 2 and gets -1 ≤ k ≤ 4.",
+    "mechanism": [
+      "band between two parallel lines with slope k",
+      "fixed linear function inside the band",
+      "both slope cases at the far endpoint",
+      "count integer outputs"
+    ],
+    "setup": {
+      "i": "k in the BOUNDING line, f fixed",
+      "ii": "two-sided",
+      "iii": "other: R number of integers the bounding line can equal at a stated x"
+    },
+    "key_position": "smallest",
+    "off_by_one_options": [],
+    "solve": "const f=x=>2*x+4,W=10,X=13;let lo=-Infinity,hi=Infinity;for(const x of [2,6]){const a=(f(x)-W)/x,b=f(x)/x;lo=Math.max(lo,a);hi=Math.min(hi,b)}const y=k=>X*k+W;return Math.floor(y(hi)+1e-9)-Math.ceil(y(lo)-1e-9)+1",
+    "distractor_solve": {
+      "40": "const f=x=>2*x+4,W=10,X=13;const hi=f(2)/2,lo=(f(6)-W)/6;const y=k=>X*k+W;return Math.floor(y(hi)+1e-9)-Math.ceil(y(lo)-1e-9)+1",
+      "48": "const f=x=>2*x+4,W=10,X=13;const hi=f(6)/6,lo=(f(2)-W)/2;const y=k=>X*k+W;return Math.floor(y(hi)+1e-9)-Math.ceil(y(lo)-1e-9)+1",
+      "66": "const f=x=>2*x+4,W=10,X=13;const hi=f(2)/2,lo=(f(2)-W)/2;const y=k=>X*k+W;return Math.floor(y(hi)+1e-9)-Math.ceil(y(lo)-1e-9)+1"
+    }
+  },
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R7",
+    "subskill": "Linear models: one moving object must stay a minimum distance ahead of another",
+    "prompt": "A car and a truck travel in the same direction along a highway. Their distances, in kilometers, from a toll gate t hours after noon are modeled by\nC(t) = 120 + k(t - 2)\nT(t) = 100 + 50(t - 2)\nwhere k is a constant. From t = 0 through t = 8, the car stays at least 2 kilometers ahead of the truck. If the car's model still holds at t = 13, the possible values of C(13) fill an interval. What is the length of that interval?",
+    "choices": [
+      "60",
+      "99",
+      "108",
+      "132"
+    ],
+    "correct_answer": "132",
+    "explanation": "The gap is C(t) - T(t) = 20 + (k - 50)(t - 2), and it must be at least 2 for 0 ≤ t ≤ 8. The gap is linear in t, so its smallest value is at t = 0 or t = 8, depending on whether the car is faster or slower than the truck (k compared with 50). Both endpoints must be checked. At t = 0: 20 - 2(k - 50) ≥ 2, so k ≤ 59. At t = 8: 20 + 6(k - 50) ≥ 2, so k ≥ 47. So 47 ≤ k ≤ 59, an interval of length 12. Since C(13) = 120 + 11k, its possible values form an interval of length 11 × 12 = 132.\nChoice 60 multiplies by 13 - 8 = 5, measuring time from the end of the window instead of from t = 2. Choice 99 assumes the car is at least as fast as the truck (k ≥ 50), so it uses 50 ≤ k ≤ 59. Choice 108 shifts the time twice, using 13 - 2 - 2 = 9 as the multiplier.",
+    "mechanism": [
+      "gap between two linear distance models",
+      "minimum gap over a time window",
+      "reference time inside the window",
+      "spread of a later value"
+    ],
+    "setup": {
+      "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+      "ii": "lower only",
+      "iii": "spread of f(t) for t outside the interval"
+    },
+    "key_position": "largest",
+    "off_by_one_options": [],
+    "solve": "const G=120-100,v=50,p=2,R=2,a=0,b=8,T=13;const hi=v+(R-G)/(a-p),lo=v+(R-G)/(b-p);return (T-p)*(hi-lo)",
+    "distractor_solve": {
+      "60": "const G=20,v=50,p=2,R=2;const hi=v+(R-G)/(0-p),lo=v+(R-G)/(8-p);return (13-8)*(hi-lo)",
+      "99": "const G=20,v=50,p=2,R=2;const hi=v+(R-G)/(0-p);return (13-p)*(hi-v)",
+      "108": "const G=20,v=50,p=2,R=2;const hi=v+(R-G)/(0-p),lo=v+(R-G)/(8-p);return (13-p-p)*(hi-lo)"
+    }
+  },
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R8",
+    "subskill": "Linear functions from two values: a difference bounded on an interval, integer k summed",
+    "prompt": "For the linear function g, g(1) = 7 and g(3) = 11. The function f is defined by f(x) = k(x + 1) + 6, where k is a constant. For all x with 1 ≤ x ≤ 3, it is true that -6 ≤ f(x) - g(x) ≤ 15. What is the sum of all integer values of k for which this is true?",
+    "choices": [
+      "15",
+      "21",
+      "33",
+      "36"
+    ],
+    "correct_answer": "15",
+    "explanation": "From the two values, g has slope (11 - 7)/(3 - 1) = 2 and g(x) = 2x + 5. Then f(x) - g(x) = (k - 2)(x + 1) + 3. This is linear in x, so check x = 1 and x = 3 against both bounds; the sign of k - 2 decides which endpoint is high and which is low, and both signs are possible. At x = 3: -6 ≤ 4(k - 2) + 3 ≤ 15 gives -1/4 ≤ k ≤ 5. At x = 1: -6 ≤ 2(k - 2) + 3 ≤ 15 gives -5/2 ≤ k ≤ 8. Together, -1/4 ≤ k ≤ 5, so the integer values are 0, 1, 2, 3, 4, and 5, with sum 15.\nChoice 21 writes f(x) as kx + 6, which gives -1/3 ≤ k ≤ 20/3 and the integers 0 through 6. Choice 33 checks only x = 1 and sums the integers from -2 to 8. Choice 36 uses the checks that are right only when the difference decreases (the upper bound at x = 1, the lower bound at x = 3) without requiring k < 2, which gives -1/4 ≤ k ≤ 8 and the integers 0 through 8.",
+    "mechanism": [
+      "linear function from two values",
+      "difference of two functions bounded on an interval",
+      "both bounds at both endpoints",
+      "sum of integer k"
+    ],
+    "setup": {
+      "i": "the slope of a combination (f(x) + mx, or f(x) - g(x) with g fixed)",
+      "ii": "two-sided",
+      "iii": "other: R sum of all integer k"
+    },
+    "key_position": "smallest",
+    "off_by_one_options": [],
+    "solve": "const m=(11-7)/(3-1),c=7-m*1;const d=(k,x)=>k*(x+1)+6-(m*x+c);let s=0;for(let k=-50;k<=50;k++){if([1,3].every(x=>d(k,x)>=-6&&d(k,x)<=15))s+=k}return s",
+    "distractor_solve": {
+      "21": "const d=(k,x)=>k*x+6-(2*x+5);let s=0;for(let k=-50;k<=50;k++){if([1,3].every(x=>d(k,x)>=-6&&d(k,x)<=15))s+=k}return s",
+      "33": "const d=(k,x)=>k*(x+1)+6-(2*x+5);let s=0;for(let k=-50;k<=50;k++){const v=d(k,1);if(v>=-6&&v<=15)s+=k}return s",
+      "36": "const d=(k,x)=>k*(x+1)+6-(2*x+5);let s=0;for(let k=-50;k<=50;k++){if(d(k,1)<=15&&d(k,3)>=-6)s+=k}return s"
+    }
+  },
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R9",
+    "subskill": "Systems of linear equations: integer y-coordinate of an intersection in a range",
+    "prompt": "Line p has equation x + y = 9. Line q has equation y = 2x + 2k, for some constant k. Lines p and q meet at point P, and the second coordinate of P is a whole number strictly between 2 and 12. Add together every number k for which this happens. What is the total?",
+    "choices": [
+      "27/2",
+      "45/2",
+      "27",
+      "63"
+    ],
+    "correct_answer": "27/2",
+    "explanation": "Line p is y = -x + 9. Setting 2x + 2k = -x + 9 gives x = (9 - 2k)/3, so the y-coordinate is y = -x + 9 = (18 + 2k)/3. Solving for k gives k = (3y - 18)/2. Nothing requires k to be an integer, so each integer y from 3 through 11 gives its own value of k: -9/2, -3, -3/2, 0, 3/2, 3, 9/2, 6, 15/2. Their sum is (3(3 + 4 + ... + 11) - 18 × 9)/2 = (189 - 162)/2 = 27/2.\nChoice 45/2 also includes y = 12, which is not less than 12. Choice 27 forgets to divide by 2, using k = 3y - 18. Choice 63 adds the y-coordinates 3 through 11 instead of the values of k.",
+    "mechanism": [
+      "intersection of two lines with parameter k",
+      "integer y-coordinate, k not required to be an integer",
+      "range on the coordinate",
+      "sum of all k"
+    ],
+    "setup": {
+      "i": "y-coordinate of intersection",
+      "ii": "range only",
+      "iii": "sum of all values of k"
+    },
+    "key_position": "smallest",
+    "off_by_one_options": [
+      "45/2"
+    ],
+    "nonint_constant": true,
+    "integer_k_answer": "6",
+    "solve": "let s=0;for(let y=-100;y<=100;y++){const k=(3*y-18)/2;const x=(9-2*k)/3;if(Math.abs(2*x+2*k-y)<1e-9&&y>2&&y<12)s+=k}return s",
+    "distractor_solve": {
+      "27": "let s=0;for(let y=-100;y<=100;y++){if(y>2&&y<12)s+=3*y-18}return s",
+      "63": "let s=0;for(let y=-100;y<=100;y++){if(y>2&&y<12)s+=y}return s",
+      "45/2": "let s=0;for(let y=-100;y<=100;y++){if(y>2&&y<=12)s+=(3*y-18)/2}return s"
+    }
+  },
+  {
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "id": "SM25L-R10",
+    "subskill": "Linear functions: a function value that is an integer and lies between k and k + 26",
+    "prompt": "The function f is defined by f(x) = kx + 6, where k is a constant. The value of f(5) is an integer, and f(5) is greater than k but less than k + 26. For how many values of k are both conditions true?",
+    "choices": [
+      "6",
+      "25",
+      "32",
+      "47"
+    ],
+    "correct_answer": "32",
+    "explanation": "The conditions are k < 5k + 6 < k + 26. The left inequality gives 4k > -6, so k > -3/2. The right inequality gives 4k < 20, so k < 5. Nothing requires k to be an integer, so count the integer values f(5) can take: as k runs over -3/2 < k < 5, f(5) = 5k + 6 runs over -3/2 < f(5) < 31. Each integer from -1 through 30 comes from exactly one k, so there are 32 values of k.\nChoice 6 counts only integer k, -1 through 4. Choice 25 treats the bounds as the fixed numbers 0 and 26, counting the integers from 1 to 25. Choice 47 makes a sign error in the right inequality, solving 4k < 26 + 6 to get k < 8 and counting the integers from -1 to 45.",
+    "mechanism": [
+      "function value must be an integer",
+      "value compared with k itself",
+      "k not required to be an integer",
+      "count values of k"
+    ],
+    "setup": {
+      "i": "function value f(t)",
+      "ii": "compared with k itself",
+      "iii": "number of values of k"
+    },
+    "key_position": "interior",
+    "off_by_one_options": [],
+    "nonint_constant": true,
+    "integer_k_answer": "6",
+    "solve": "const t=5,c=6,W=26;const lo=-c/(t-1),hi=(W-c)/(t-1);const a=t*lo+c,b=t*hi+c;return Math.ceil(b-1e-9)-1-(Math.floor(a+1e-9)+1)+1",
+    "distractor_solve": {
+      "6": "const lo=-6/4,hi=(26-6)/4;return Math.ceil(hi-1e-9)-1-(Math.floor(lo+1e-9)+1)+1",
+      "25": "return 26-1-1+1",
+      "47": "const lo=-6/4,hi=(26+6)/4;const a=5*lo+6,b=5*hi+6;return Math.ceil(b-1e-9)-1-(Math.floor(a+1e-9)+1)+1"
+    }
+  }
+]

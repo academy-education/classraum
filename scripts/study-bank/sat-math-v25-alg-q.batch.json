@@ -1,0 +1,376 @@
+[
+  {
+    "id": "SM25L-Q1",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear function: two-sided bound on an interval, k a function value",
+    "prompt": "For a linear function f, f(2) = 6 and f(5) = k, where k is a constant.\nIt is known that 0 ≤ f(x) ≤ 24 for every x in the interval 0 ≤ x ≤ 8.\nThe set of all possible values of k is an interval. What is the length of that interval?",
+    "choices": [
+      "4",
+      "9",
+      "12",
+      "24"
+    ],
+    "correct_answer": "12",
+    "explanation": "Let m be the slope of f. Since f(2) = 6, f(x) = 6 + m(x - 2), and k = f(5) = 6 + 3m.\nA linear function on a closed interval takes its extreme values at the endpoints, but which endpoint is high and which is low depends on the sign of m, which is not given. So both endpoint values must lie in the band, whatever the sign:\nf(0) = 6 - 2m: 0 ≤ 6 - 2m ≤ 24 gives -9 ≤ m ≤ 3.\nf(8) = 6 + 6m: 0 ≤ 6 + 6m ≤ 24 gives -1 ≤ m ≤ 3.\nTogether, -1 ≤ m ≤ 3, so k = 6 + 3m runs from 3 to 15. The length of that interval is 15 - 3 = 12.\nChoice 9 assumes f is increasing (m ≥ 0), which keeps only 6 ≤ k ≤ 15.\nChoice 24 is the length of the range of f(8) = 6 + 6m, which runs from 0 to 24, rather than of k = f(5).\nChoice 4 is the length of the interval of possible slopes, -1 to 3, not of k.",
+    "mechanism": [
+      "linear function extreme at interval endpoints",
+      "sign of slope unknown",
+      "k as a function value converts to slope",
+      "length of parameter interval"
+    ],
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "two-sided",
+      "iii": "width of the k-range"
+    },
+    "key_position": "interior",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,6,[0,8],()=>0,()=>24);return (b-a)*(5-2);",
+    "distractor_solve": {
+      "4": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,6,[0,8],()=>0,()=>24);return b-a;",
+      "9": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,6,[0,8],()=>0,()=>24);return (b-Math.max(a,0))*3;",
+      "24": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,6,[0,8],()=>0,()=>24);return (b-a)*(8-2);"
+    }
+  },
+  {
+    "id": "SM25L-Q2",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Line kept between two lines of different slopes on an interval; sum of extreme k",
+    "prompt": "In the xy-plane, line ℓ passes through the points (-1, k) and (2, 13), where k is a constant.\nFor every x with 0 ≤ x ≤ 8, the point of line ℓ with that x-coordinate is on or above the line y = x - 7 and on or below the line y = -x + 39.\nWhat is the sum of the greatest possible value of k and the least possible value of k?",
+    "choices": [
+      "23",
+      "32",
+      "35",
+      "56"
+    ],
+    "correct_answer": "23",
+    "explanation": "Let m be the slope of ℓ, so y = 13 + m(x - 2) and k = 13 - 3m.\nThe gaps between ℓ and each boundary line are linear in x, so each is smallest at x = 0 or at x = 8; which end matters depends on the sign of m, which is not given. Check ℓ at both ends against both lines:\nAt x = 0: the lines give -7 and 39, and -7 ≤ 13 - 2m ≤ 39 gives -13 ≤ m ≤ 10.\nAt x = 8: the lines give 1 and 31, and 1 ≤ 13 + 6m ≤ 31 gives -2 ≤ m ≤ 3.\nSo -2 ≤ m ≤ 3, and k = 13 - 3m runs from 4 to 19. The sum is 4 + 19 = 23.\nChoice 32 assumes ℓ falls or is horizontal (m ≤ 0), which keeps only 13 ≤ k ≤ 19.\nChoice 35 checks only the end x = 0, which allows -13 ≤ m ≤ 10 and -17 ≤ k ≤ 52.\nChoice 56 checks only the upper line y = -x + 39, which leaves -13 ≤ m ≤ 3 and 4 ≤ k ≤ 52.",
+    "mechanism": [
+      "line kept between two lines of different slopes",
+      "four endpoint checks",
+      "slope sign unknown",
+      "sum of greatest and least parameter"
+    ],
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "between two fixed lines",
+      "iii": "sum of greatest and least k"
+    },
+    "key_position": "smallest",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,13,[0,8],x=>x-7,x=>-x+39);return (13-3*a)+(13-3*b);",
+    "distractor_solve": {
+      "32": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,13,[0,8],x=>x-7,x=>-x+39);return (13-3*a)+(13-3*0);",
+      "35": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,13,[0],x=>x-7,x=>-x+39);return (13-3*a)+(13-3*b);",
+      "56": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,13,[0,8],()=>-Infinity,x=>-x+39);return (13-3*a)+(13-3*b);"
+    }
+  },
+  {
+    "id": "SM25L-Q3",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear temperature model kept inside a band; count of whole-number rates",
+    "prompt": "During a test, the temperature of a sealed chamber, in degrees Celsius, t hours after the test starts is modeled by a linear function T. The temperature 3 hours after the start was 22 degrees, and the temperature 5 hours after the start was k degrees, where k is a constant.\nThe test requires -6 ≤ T(t) ≤ 46 for the whole period 1 ≤ t ≤ 7.\nThe rate of change of T, in degrees per hour, may be positive, negative, or zero. How many integer values are possible for this rate?",
+    "choices": [
+      "8",
+      "14",
+      "27",
+      "40"
+    ],
+    "correct_answer": "14",
+    "explanation": "Let m be the rate of change in degrees per hour. Then T(t) = 22 + m(t - 3), and k = T(5) = 22 + 2m, so each k gives one rate.\nOn 1 ≤ t ≤ 7 a linear T is extreme at t = 1 and t = 7, and the sign of m decides which end is warmer, so test both ends against both limits:\nT(1) = 22 - 2m: -6 ≤ 22 - 2m ≤ 46 gives -12 ≤ m ≤ 14.\nT(7) = 22 + 4m: -6 ≤ 22 + 4m ≤ 46 gives -7 ≤ m ≤ 6.\nSo -7 ≤ m ≤ 6, and the integers -7, -6, ..., 6 number 14.\nChoice 8 assumes the temperature falls or holds steady (m ≤ 0), which keeps only the integers -7 through 0.\nChoice 27 uses only the limits at t = 1, which allow -12 ≤ m ≤ 14.\nChoice 40 counts the integer values of the starting temperature T(0) = 22 - 3m, from 4 to 43, instead of the rates.",
+    "mechanism": [
+      "linear model inside a band over a time interval",
+      "rate sign unknown",
+      "both endpoints against both limits",
+      "count integer rates"
+    ],
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "two-sided",
+      "iii": "other: Q number of integer slopes"
+    },
+    "key_position": "interior",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(3,22,[1,7],()=>-6,()=>46);return ints(a,b);",
+    "distractor_solve": {
+      "8": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(3,22,[1,7],()=>-6,()=>46);return ints(a,Math.min(b,0));",
+      "27": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(3,22,[1],()=>-6,()=>46);return ints(a,b);",
+      "40": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(3,22,[1,7],()=>-6,()=>46);return ints(22-3*a,22-3*b);"
+    }
+  },
+  {
+    "id": "SM25L-Q4",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear function from a table, bounded on an interval; integer values outside it",
+    "prompt": "The table gives two values of a linear function f, where k is a constant.\n\nx | f(x)\n1 | k\n4 | -2\n\nFor all x with -2 ≤ x ≤ 6, the value of f(x) is at least -14 and at most 10.\nHow many different integers could f(11) be equal to?",
+    "choices": [
+      "5",
+      "15",
+      "17",
+      "29"
+    ],
+    "correct_answer": "29",
+    "explanation": "Let m be the slope. From the table, f(x) = -2 + m(x - 4), and k = f(1) = -2 - 3m, so choosing k is the same as choosing m.\nThe bound must hold at both ends of -2 ≤ x ≤ 6, and since the sign of m is not known, each end is checked against both limits:\nf(-2) = -2 - 6m: -14 ≤ -2 - 6m ≤ 10 gives -2 ≤ m ≤ 2.\nf(6) = -2 + 2m: -14 ≤ -2 + 2m ≤ 10 gives -6 ≤ m ≤ 6.\nSo -2 ≤ m ≤ 2. Then f(11) = -2 + 7m takes every value from -16 to 12, and the integers -16, -15, ..., 12 number 29.\nChoice 15 allows only one sign of slope (m from 0 to 2 gives -2 to 12; m from -2 to 0 gives -16 to -2), 15 integers either way.\nChoice 17 counts the integer values of f(0) = -2 - 4m, from -10 to 6, instead of f(11).\nChoice 5 counts only the integer slopes -2, -1, 0, 1, 2, but the slope need not be an integer.",
+    "mechanism": [
+      "linear function from two table values",
+      "two-sided bound on interval endpoints",
+      "slope sign unknown",
+      "count integer outputs at a point beyond the interval"
+    ],
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "two-sided",
+      "iii": "number of integers f(t) can equal"
+    },
+    "key_position": "largest",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(4,-2,[-2,6],()=>-14,()=>10);return ints(-2+7*a,-2+7*b);",
+    "distractor_solve": {
+      "5": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(4,-2,[-2,6],()=>-14,()=>10);return ints(a,b);",
+      "15": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(4,-2,[-2,6],()=>-14,()=>10);return ints(-2+7*Math.max(a,0),-2+7*b);",
+      "17": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(4,-2,[-2,6],()=>-14,()=>10);return ints(-2-4*a,-2-4*b);"
+    }
+  },
+  {
+    "id": "SM25L-Q5",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear function from a table with a floor on an interval; sum of extreme y-intercepts",
+    "prompt": "A linear function g has the values shown, where k is a constant.\n\nx | g(x)\n2 | 29\n5 | k\n\nIt is known that g(x) ≥ 17 for every x with 1 ≤ x ≤ 8.\nWhat is the sum of the greatest and least possible values of the y-intercept of the graph of y = g(x)?",
+    "choices": [
+      "38",
+      "62",
+      "88",
+      "118"
+    ],
+    "correct_answer": "38",
+    "explanation": "Let m be the slope of g, so g(x) = 29 + m(x - 2) and k = g(5) = 29 + 3m; each k gives one slope.\nOn 1 ≤ x ≤ 8 the least value of g is at x = 8 if m < 0 and at x = 1 if m > 0. The sign of m is not given, so the floor must hold at both ends:\ng(1) = 29 - m ≥ 17 gives m ≤ 12.\ng(8) = 29 + 6m ≥ 17 gives m ≥ -2.\nSo -2 ≤ m ≤ 12. The y-intercept is g(0) = 29 - 2m, which runs from 29 - 24 = 5 (at m = 12) to 29 + 4 = 33 (at m = -2). The sum is 5 + 33 = 38.\nChoice 62 assumes g is decreasing or constant (m ≤ 0), which keeps only 29 ≤ g(0) ≤ 33.\nChoice 88 adds the greatest and least values of k = 29 + 3m (23 and 65) instead of the y-intercepts.\nChoice 118 adds the greatest and least values of g(8) = 29 + 6m (17 and 101) instead of g(0).",
+    "mechanism": [
+      "linear function from two table values",
+      "one-sided floor on an interval",
+      "slope sign decides which endpoint binds",
+      "sum of extreme values at a point outside the interval"
+    ],
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "lower only",
+      "iii": "other: Q sum of greatest and least y-intercept"
+    },
+    "key_position": "smallest",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,29,[1,8],()=>17,()=>Infinity);return (29-2*a)+(29-2*b);",
+    "distractor_solve": {
+      "62": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,29,[1,8],()=>17,()=>Infinity);return (29-2*a)+(29-2*Math.min(b,0));",
+      "88": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,29,[1,8],()=>17,()=>Infinity);return (29+3*a)+(29+3*b);",
+      "118": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,29,[1,8],()=>17,()=>Infinity);return (29+6*a)+(29+6*b);"
+    }
+  },
+  {
+    "id": "SM25L-Q6",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Line through two points, bounded on an interval; sum of extreme values beyond it",
+    "prompt": "The graph of y = h(x) is a line containing the points (2, 3) and (-2, k), where k is a constant.\nWhenever 0 ≤ x ≤ 6, the inequality -5 ≤ h(x) ≤ 15 holds.\nWhat is the sum of the greatest and least possible values of h(12)?",
+    "choices": [
+      "16",
+      "18",
+      "26",
+      "36"
+    ],
+    "correct_answer": "16",
+    "explanation": "Let m be the slope of the line, so h(x) = 3 + m(x - 2); the point (-2, k) gives k = 3 - 4m, so each k corresponds to one slope.\nOn 0 ≤ x ≤ 6 the line is extreme at x = 0 and x = 6, and the sign of m (not given) decides which end is higher, so both ends must meet both bounds:\nh(0) = 3 - 2m: -5 ≤ 3 - 2m ≤ 15 gives -6 ≤ m ≤ 4.\nh(6) = 3 + 4m: -5 ≤ 3 + 4m ≤ 15 gives -2 ≤ m ≤ 3.\nSo -2 ≤ m ≤ 3, and h(12) = 3 + 10m runs from -17 to 33. The sum is -17 + 33 = 16.\nChoice 36 assumes the line rises (m ≥ 0), so it takes h(12) from 3 to 33.\nChoice 18 measures the distance to x = 12 from x = 0 instead of from x = 2, computing h(12) = 3 + 12m.\nChoice 26 uses only the lower bound -5 at both ends, which allows -2 ≤ m ≤ 4.",
+    "mechanism": [
+      "line through two points",
+      "two-sided bound on interval endpoints",
+      "slope sign unknown",
+      "sum of extreme values at a point beyond the interval"
+    ],
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "two-sided",
+      "iii": "sum of greatest and least f(t)"
+    },
+    "key_position": "smallest",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,3,[0,6],()=>-5,()=>15);return (3+10*a)+(3+10*b);",
+    "distractor_solve": {
+      "18": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,3,[0,6],()=>-5,()=>15);return (3+12*a)+(3+12*b);",
+      "26": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,3,[0,6],()=>-5,()=>Infinity);return (3+10*a)+(3+10*b);",
+      "36": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(2,3,[0,6],()=>-5,()=>15);return (3+10*Math.max(a,0))+(3+10*b);"
+    }
+  },
+  {
+    "id": "SM25L-Q7",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear planting model between two schedule lines; spread of a later value",
+    "prompt": "A city tree-planting program models the total number of trees planted by the end of month t with a linear function P. When the program began (t = 0), k trees had already been planted, where k is a constant, and P(4) = 190.\nThe program's schedule requires 30t + 10 ≤ P(t) ≤ 30t + 142 for every t with 2 ≤ t ≤ 10.\nWhat is the difference between the greatest and least possible values of P(12)?",
+    "choices": [
+      "22",
+      "96",
+      "132",
+      "176"
+    ],
+    "correct_answer": "176",
+    "explanation": "Let s be the planting rate (trees per month), so P(t) = 190 + s(t - 4) and k = P(0) = 190 - 4s; each k gives one rate.\nThe schedule says 10 ≤ P(t) - 30t ≤ 142. Write r = s - 30, so P(t) - 30t = 70 + r(t - 4). This is linear in t, and whether it rises or falls depends on the sign of r, which is not given. Check both ends of 2 ≤ t ≤ 10 against both limits:\nAt t = 2: 70 - 2r between 10 and 142 gives -36 ≤ r ≤ 30.\nAt t = 10: 70 + 6r between 10 and 142 gives -10 ≤ r ≤ 12.\nSo -10 ≤ r ≤ 12. Then P(12) = 190 + 8s = 430 + 8r runs from 350 to 526, and the difference is 176.\nChoice 96 assumes the program plants at least 30 trees per month (r ≥ 0), so P(12) runs only from 430 to 526.\nChoice 132 finds the spread of P(10), the last month of the schedule, instead of P(12).\nChoice 22 is the spread of the possible planting rates (20 to 42 trees per month), not of P(12).",
+    "mechanism": [
+      "linear model between two parallel schedule lines",
+      "relative rate sign unknown",
+      "initial value as the constant",
+      "spread of a value beyond the required interval"
+    ],
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "between two fixed lines",
+      "iii": "spread of f(t) for t outside the interval"
+    },
+    "key_position": "largest",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(4,190,[2,10],t=>30*t+10,t=>30*t+142);return (190+8*b)-(190+8*a);",
+    "distractor_solve": {
+      "22": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(4,190,[2,10],t=>30*t+10,t=>30*t+142);return b-a;",
+      "96": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(4,190,[2,10],t=>30*t+10,t=>30*t+142);return (190+8*b)-(190+8*Math.max(a,30));",
+      "132": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(4,190,[2,10],t=>30*t+10,t=>30*t+142);return (190+6*b)-(190+6*a);"
+    }
+  },
+  {
+    "id": "SM25L-Q8",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Tank level with unknown constant rate kept inside limits; spread of a mid-period level",
+    "prompt": "At 9:05 a.m. a storage tank held 110 liters of water. From then on, the amount of water changes at a constant rate of k liters per minute, where k is a constant that may be positive, negative, or zero; the same rate also describes the minutes before 9:05.\nSafety rules require the tank to hold at least 60 liters and at most 210 liters at every moment from 9:10 a.m. to 9:30 a.m.\nWhat is the difference between the greatest and least possible amounts of water in the tank at 9:25 a.m.?",
+    "choices": [
+      "6",
+      "30",
+      "80",
+      "120"
+    ],
+    "correct_answer": "120",
+    "explanation": "Let t be the number of minutes after 9:00 a.m. The amount is W(t) = 110 + k(t - 5), so the line turns about the 9:05 reading, which lies before the required period 10 ≤ t ≤ 30.\nOn that period W is extreme at t = 10 and t = 30, and the sign of k decides which end is fuller, so check both ends against both limits:\nW(10) = 110 + 5k: 60 ≤ 110 + 5k ≤ 210 gives -10 ≤ k ≤ 20.\nW(30) = 110 + 25k: 60 ≤ 110 + 25k ≤ 210 gives -2 ≤ k ≤ 4.\nSo -2 ≤ k ≤ 4. At 9:25, W(25) = 110 + 20k runs from 70 to 190, a difference of 120.\nChoice 80 assumes the tank is filling or steady (k ≥ 0), so W(25) runs only from 110 to 190.\nChoice 30 finds the spread at 9:10 a.m., the start of the required period, instead of at 9:25.\nChoice 6 is the length of the interval of possible rates, -2 to 4, not of the amounts.",
+    "mechanism": [
+      "linear model with unknown rate",
+      "pivot reading before the required period",
+      "rate sign unknown",
+      "spread of a value inside the interval"
+    ],
+    "setup": {
+      "i": "slope, pivot point outside the interval",
+      "ii": "two-sided",
+      "iii": "other: Q spread of f(t) for t inside the interval"
+    },
+    "key_position": "largest",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(5,110,[10,30],()=>60,()=>210);return (110+20*b)-(110+20*a);",
+    "distractor_solve": {
+      "6": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(5,110,[10,30],()=>60,()=>210);return b-a;",
+      "30": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(5,110,[10,30],()=>60,()=>210);return (110+5*b)-(110+5*a);",
+      "80": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(5,110,[10,30],()=>60,()=>210);return (110+20*b)-(110+20*Math.max(a,0));"
+    }
+  },
+  {
+    "id": "SM25L-Q9",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Line turning about a point outside the interval, between two parallel lines; mean of extreme slopes",
+    "prompt": "f(x) = 6 + k(x - 8)\n\nIn the function above, k is a constant. On the interval 0 ≤ x ≤ 6, the graph of y = f(x) never goes below the line y = -3x - 10 and never goes above the line y = -3x + 54.\nWhat is the mean of the greatest possible value of k and the least possible value of k?",
+    "choices": [
+      "-2",
+      "-1/2",
+      "1",
+      "11/2"
+    ],
+    "correct_answer": "-2",
+    "explanation": "The condition is -3x - 10 ≤ f(x) ≤ -3x + 54, that is, -10 ≤ f(x) + 3x ≤ 54. The expression f(x) + 3x = 30 + (k + 3)(x - 8) is linear in x with slope k + 3, and whether that slope is positive or negative is not given, so check both ends of the interval against both bounds:\nAt x = 0: 30 - 8(k + 3) between -10 and 54 gives -3 ≤ k + 3 ≤ 5.\nAt x = 6: 30 - 2(k + 3) between -10 and 54 gives -12 ≤ k + 3 ≤ 20.\nSo -3 ≤ k + 3 ≤ 5, that is, -6 ≤ k ≤ 2. The mean of -6 and 2 is -2.\nChoice -1/2 assumes the graph rises relative to the two lines (k + 3 ≥ 0), which keeps only -3 ≤ k ≤ 2.\nChoice 1 checks only x = 6, the end nearer the point (8, 6), which allows -15 ≤ k ≤ 17.\nChoice 11/2 checks x = 0 only against the upper line and x = 6 only against the lower line; that leaves -6 ≤ k ≤ 17.",
+    "mechanism": [
+      "line turning about a point outside the interval",
+      "bounded between two parallel lines",
+      "relative slope sign unknown",
+      "far endpoint binds both bounds"
+    ],
+    "setup": {
+      "i": "slope, pivot point outside the interval",
+      "ii": "between two fixed lines",
+      "iii": "other: Q mean of the greatest and least k"
+    },
+    "key_position": "smallest",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(8,6,[0,6],x=>-3*x-10,x=>-3*x+54);return (a+b)/2;",
+    "distractor_solve": {
+      "1": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(8,6,[6],x=>-3*x-10,x=>-3*x+54);return (a+b)/2;",
+      "-1/2": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(8,6,[0,6],x=>-3*x-10,x=>-3*x+54);return (Math.max(a,-3)+b)/2;",
+      "11/2": "const lo=(30-54)/8-3, hi=(30-(-10))/2-3;return (lo+hi)/2;"
+    }
+  },
+  {
+    "id": "SM25L-Q10",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Line turning about an interior point under an upper cap; integer values at an interior point",
+    "prompt": "f(x) = k(x - 1) + 5\n\nThe constant k is chosen so that f(x) ≤ 23 for all x in the interval -1 ≤ x ≤ 7.\nHow many integers are possible values of f(4)?",
+    "choices": [
+      "10",
+      "13",
+      "28",
+      "37"
+    ],
+    "correct_answer": "37",
+    "explanation": "The graph passes through (1, 5) for every k, and k is its slope. On -1 ≤ x ≤ 7 the largest value of f is at x = 7 if k > 0 and at x = -1 if k < 0, so both ends must satisfy the cap:\nf(7) = 5 + 6k ≤ 23 gives k ≤ 3.\nf(-1) = 5 - 2k ≤ 23 gives k ≥ -9.\nSo -9 ≤ k ≤ 3, and f(4) = 5 + 3k runs from -22 to 14. The integers -22, -21, ..., 14 number 37.\nChoice 10 allows only k ≥ 0, so f(4) runs from 5 to 14.\nChoice 28 allows only k ≤ 0, so f(4) runs from -22 to 5.\nChoice 13 counts the integer values of k, from -9 to 3, instead of the integer values of f(4).",
+    "mechanism": [
+      "line turning about an interior point",
+      "one-sided cap on an interval",
+      "slope sign decides which endpoint binds",
+      "count integer outputs at an interior point"
+    ],
+    "setup": {
+      "i": "slope, pivot point inside the interval",
+      "ii": "upper only",
+      "iii": "other: Q number of integers f(s) can equal, s inside the interval"
+    },
+    "key_position": "largest",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(1,5,[-1,7],()=>-Infinity,()=>23);return ints(5+3*a,5+3*b);",
+    "distractor_solve": {
+      "10": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(1,5,[-1,7],()=>-Infinity,()=>23);return ints(5,5+3*b);",
+      "13": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(1,5,[-1,7],()=>-Infinity,()=>23);return ints(a,b);",
+      "28": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(1,5,[-1,7],()=>-Infinity,()=>23);return ints(5+3*a,5);"
+    }
+  },
+  {
+    "id": "SM25L-Q11",
+    "domain": "Algebra",
+    "difficulty": "hard",
+    "subskill": "Linear height model with a minimum over a time interval; length of the range of rates",
+    "prompt": "A drone moves vertically at a constant rate, so its height above the ground, in meters, t seconds after a timer starts is a linear function H of t. Its height at t = 3 is 98 meters, and its height at t = 6 is k meters, where k is a constant.\nThe drone must be at least 10 meters above the ground at every moment from t = 1 to t = 11.\nThe drone's rate of climb, in meters per second, is negative if it descends. What is the difference between the greatest and least possible values of this rate?",
+    "choices": [
+      "44",
+      "55",
+      "99",
+      "165"
+    ],
+    "correct_answer": "55",
+    "explanation": "Let m be the rate of climb, so H(t) = 98 + m(t - 3), and k = H(6) = 98 + 3m; each k gives one rate.\nOn 1 ≤ t ≤ 11 the lowest height is at t = 1 if the drone climbs (m > 0) and at t = 11 if it descends (m < 0). The sign of m is not given, so the minimum must hold at both ends:\nH(1) = 98 - 2m ≥ 10 gives m ≤ 44.\nH(11) = 98 + 8m ≥ 10 gives m ≥ -11.\nSo -11 ≤ m ≤ 44, and the difference between the greatest and least rates is 44 - (-11) = 55.\nChoice 44 assumes the drone climbs or hovers (m ≥ 0), which keeps only 0 ≤ m ≤ 44.\nChoice 99 measures the time at t = 1 from t = 0 instead of from t = 3, writing H(1) = 98 - m, which allows m up to 88.\nChoice 165 is the difference between the greatest and least possible values of k = 98 + 3m (from 65 to 230), not of the rate.",
+    "mechanism": [
+      "linear height model",
+      "one-sided minimum over a time interval",
+      "rate sign decides which endpoint binds",
+      "length of the range of rates"
+    ],
+    "setup": {
+      "i": "a function value at a stated point",
+      "ii": "lower only",
+      "iii": "other: Q width of the slope range"
+    },
+    "key_position": "interior",
+    "off_by_one_options": [],
+    "solve": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(3,98,[1,11],()=>10,()=>Infinity);return b-a;",
+    "distractor_solve": {
+      "44": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(3,98,[1,11],()=>10,()=>Infinity);return b-Math.max(a,0);",
+      "99": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(3,98,[11],()=>10,()=>Infinity);const hi=(98-10)/1;return hi-a;",
+      "165": "const rng=(q,c,xs,lo,hi)=>{let a=-Infinity,b=Infinity;for(const x of xs){const d=x-q;const m1=(lo(x)-c)/d,m2=(hi(x)-c)/d;a=Math.max(a,Math.min(m1,m2));b=Math.min(b,Math.max(m1,m2));}return [a,b];};const ints=(u,v)=>Math.floor(Math.max(u,v)+1e-9)-Math.ceil(Math.min(u,v)-1e-9)+1;const [a,b]=rng(3,98,[1,11],()=>10,()=>Infinity);return (98+3*b)-(98+3*a);"
+    }
+  }
+]
