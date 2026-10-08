@@ -1,0 +1,1426 @@
+{
+ "L01": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L02": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L03": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L04": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "One option differs in valence/type from the other three.",
+  "heuristic": "odd-valence"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L07": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L08": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L09": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L10": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L11": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L12": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L13": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L14": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L15": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L16": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L17": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L18": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L19": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L20": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L21": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Options mix nouns and verbs; the verb fits a two-sense headword.",
+  "heuristic": "mixed-part-of-speech"
+ },
+ "L22": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L23": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L24": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L25": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L26": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L27": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L28": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L29": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L31": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L32": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L33": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L34": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L35": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L36": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L37": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "One option differs in valence/type from the other three.",
+  "heuristic": "odd-valence"
+ },
+ "L38": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L39": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L40": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L41": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L42": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L43": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L45": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L46": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L47": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L49": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L50": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L51": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L52": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L53": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L55": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L56": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L58": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L59": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L60": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L62": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L63": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L64": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L65": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L67": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L68": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L69": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L70": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L71": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L72": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L73": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L74": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L75": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L76": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L77": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L78": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L79": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L80": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L81": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L82": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L83": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L84": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L85": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L86": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L87": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L88": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L89": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L90": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L91": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L92": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L93": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L94": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L95": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L96": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L97": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L98": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L99": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L100": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L103": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L104": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L105": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L106": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L107": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L108": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L109": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "One option differs in valence/type from the other three.",
+  "heuristic": "odd-valence"
+ },
+ "L110": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L111": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L112": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L113": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L114": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L115": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L116": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L117": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L119": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L121": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L122": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L124": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L125": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L126": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L127": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L128": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L130": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L131": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L132": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L133": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L134": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L136": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L137": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L138": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L139": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L140": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L141": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L142": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L143": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L144": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L145": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L146": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L147": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L148": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L149": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "One option differs in valence/type from the other three.",
+  "heuristic": "odd-valence"
+ },
+ "L150": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L151": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L152": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L153": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L154": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L155": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L156": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L157": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L158": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L159": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L160": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L161": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L162": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L163": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L164": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L165": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L166": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L167": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L168": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L169": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L170": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L171": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L172": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L173": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L174": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L175": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Two options are opposites; headword likely one pole, picked the pole.",
+  "heuristic": "antonym-pair"
+ },
+ "L176": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L177": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ },
+ "L178": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal in the options; arbitrary pick.",
+  "heuristic": "none"
+ }
+}

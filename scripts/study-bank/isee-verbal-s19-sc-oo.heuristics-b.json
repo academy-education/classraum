@@ -1,0 +1,40 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "Pure guess",
+   "picks_decided": 47
+  },
+  {
+   "name": "antonym-pair",
+   "description": "When two options are opposites, pick one of the pair (sentence likely turns on that axis)",
+   "picks_decided": 39
+  },
+  {
+   "name": "pair-coherence",
+   "description": "For two-blank items, pick the pair whose words form a natural or contrastive collocation",
+   "picks_decided": 21
+  },
+  {
+   "name": "odd-one-out",
+   "description": "Pick the option whose sense or polarity differs from the other three",
+   "picks_decided": 16
+  },
+  {
+   "name": "synonym-cluster-elimination",
+   "description": "Two or more near-synonyms cannot be uniquely keyed; pick from the remainder",
+   "picks_decided": 13
+  },
+  {
+   "name": "rare-word",
+   "description": "Pick the most sophisticated/rare word as the likely hard-item key",
+   "picks_decided": 8
+  },
+  {
+   "name": "duplicate-first-word",
+   "description": "When two pairs share a first word, the key is likely one of them; pick the more coherent",
+   "picks_decided": 3
+  }
+ ],
+ "notes": "Options-only; most signal came from antonym pairs and near-synonym clusters. reject_certain only where three options are synonyms."
+}

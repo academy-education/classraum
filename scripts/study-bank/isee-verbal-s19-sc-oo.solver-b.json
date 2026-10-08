@@ -1,0 +1,1178 @@
+{
+ "L01": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pivotal and monumental overlap; incremental is the contrasting odd option",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L02": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "three calm/pleasant temperaments; irascible stands apart",
+  "heuristic": "odd-one-out"
+ },
+ "L03": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "only fear-word among positive or self-satisfied feelings",
+  "heuristic": "odd-one-out"
+ },
+ "L04": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern among unrelated descriptors",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "unrelated verbs; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "illustrious and authoritative overlap; conjectural odd",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "rapacious and tyrannical overlap; retroactive specific",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L08": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "weak preference; refinement/adjustment pair redundant",
+  "heuristic": "pair-coherence"
+ },
+ "L09": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "provident/prodigal pair; prodigal rarer",
+  "heuristic": "antonym-pair"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unwritten vs statutory pair; picked unwritten",
+  "heuristic": "antonym-pair"
+ },
+ "L11": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "glacial and protracted both slow; headlong opposite",
+  "heuristic": "odd-one-out"
+ },
+ "L12": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "halcyon vs bleak; halcyon rarer",
+  "heuristic": "antonym-pair"
+ },
+ "L13": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "three narrow-minded words; charitable stands alone",
+  "heuristic": "odd-one-out"
+ },
+ "L14": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L15": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "comprehensive vs cosmetic; cosmetic picked",
+  "heuristic": "antonym-pair"
+ },
+ "L16": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L17": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "myopic vs prescient pair",
+  "heuristic": "antonym-pair"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "florid and melodramatic overlap; accessible vs insular",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L19": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "diagnostic...register is the only natural collocation",
+  "heuristic": "pair-coherence"
+ },
+ "L20": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "book terms; arbitrary",
+  "heuristic": "none"
+ },
+ "L21": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "lugubrious is rarest",
+  "heuristic": "rare-word"
+ },
+ "L22": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "menacing and nefarious overlap",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L23": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L24": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "chary rarest",
+  "heuristic": "rare-word"
+ },
+ "L25": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "vindicate and uphold overlap; sidestep odd",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L26": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "intricate repeated; contrast pair intricate...clumsy",
+  "heuristic": "duplicate-first-word"
+ },
+ "L27": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "stability...unchanged internally consistent",
+  "heuristic": "pair-coherence"
+ },
+ "L28": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "medical register; palliative picked",
+  "heuristic": "rare-word"
+ },
+ "L29": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "migratory vs sedentary",
+  "heuristic": "antonym-pair"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dependent vs self-sufficient",
+  "heuristic": "antonym-pair"
+ },
+ "L31": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "weak; intricate...haste plausible contrast",
+  "heuristic": "pair-coherence"
+ },
+ "L32": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "insidious vs patent",
+  "heuristic": "antonym-pair"
+ },
+ "L33": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "excoriating vs fawning",
+  "heuristic": "antonym-pair"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "dramatic vs negligible",
+  "heuristic": "antonym-pair"
+ },
+ "L36": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": true,
+  "why": "three synonyms for docile cannot be uniquely keyed",
+  "heuristic": "odd-one-out"
+ },
+ "L37": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no clear pair logic",
+  "heuristic": "pair-coherence"
+ },
+ "L38": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "arable vs arid",
+  "heuristic": "antonym-pair"
+ },
+ "L39": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L41": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "censorious picked",
+  "heuristic": "rare-word"
+ },
+ "L42": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "lavish vs modest",
+  "heuristic": "antonym-pair"
+ },
+ "L43": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "meandered contrasts with hastened/progressed",
+  "heuristic": "odd-one-out"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "safeguarded vs subverted",
+  "heuristic": "antonym-pair"
+ },
+ "L45": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "germinal vs moribund",
+  "heuristic": "antonym-pair"
+ },
+ "L46": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "effaced vs preserved",
+  "heuristic": "antonym-pair"
+ },
+ "L47": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "homage...transforms classic coherent pair",
+  "heuristic": "pair-coherence"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L49": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L50": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "cloudier and darker overlap; brighter opposite",
+  "heuristic": "odd-one-out"
+ },
+ "L51": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "precise...uniform consistent",
+  "heuristic": "pair-coherence"
+ },
+ "L52": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L53": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": true,
+  "why": "three synonyms for agitated; imperturbable alone",
+  "heuristic": "odd-one-out"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "suspect vs sacrosanct",
+  "heuristic": "antonym-pair"
+ },
+ "L55": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "latent vs manifest",
+  "heuristic": "antonym-pair"
+ },
+ "L56": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "labyrinthine vs minimalist",
+  "heuristic": "antonym-pair"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L58": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L59": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L60": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "flagging, desultory, lukewarm weak; consuming intense",
+  "heuristic": "odd-one-out"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "chaste vs baroque",
+  "heuristic": "antonym-pair"
+ },
+ "L62": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L63": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L64": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L65": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "neglected...flood causal; patched/repaired overlap",
+  "heuristic": "pair-coherence"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "cursory vs pedantic",
+  "heuristic": "antonym-pair"
+ },
+ "L67": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L68": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L69": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L70": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "repatriate wrong part of speech; recompense picked",
+  "heuristic": "odd-one-out"
+ },
+ "L71": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "opaque...postponed coherent",
+  "heuristic": "pair-coherence"
+ },
+ "L72": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "all four are contrasts; arbitrary",
+  "heuristic": "pair-coherence"
+ },
+ "L73": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "extravagant vs austere",
+  "heuristic": "antonym-pair"
+ },
+ "L74": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "vassals vs sovereigns",
+  "heuristic": "antonym-pair"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L76": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "weak; distinctive pair picked",
+  "heuristic": "pair-coherence"
+ },
+ "L77": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "modest...concedes coherent",
+  "heuristic": "pair-coherence"
+ },
+ "L78": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L79": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "lucid...summarize coherent",
+  "heuristic": "pair-coherence"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L81": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L82": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two pairs coherent; contrast pair picked",
+  "heuristic": "pair-coherence"
+ },
+ "L83": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "dogged and dedicated overlap",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L84": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "woo vs snub",
+  "heuristic": "antonym-pair"
+ },
+ "L86": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "decadent vs ascetic",
+  "heuristic": "antonym-pair"
+ },
+ "L87": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L88": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L89": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "equivocal picked",
+  "heuristic": "rare-word"
+ },
+ "L90": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "trifling the only mild word",
+  "heuristic": "odd-one-out"
+ },
+ "L91": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "obliging the only cooperative trait",
+  "heuristic": "odd-one-out"
+ },
+ "L92": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "febrile and electrifying overlap",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L93": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "thicket vs clearing",
+  "heuristic": "antonym-pair"
+ },
+ "L94": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L95": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "halfhearted and ambivalent overlap",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L97": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "swell vs stem",
+  "heuristic": "antonym-pair"
+ },
+ "L98": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L99": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "nondescript the only plain word",
+  "heuristic": "odd-one-out"
+ },
+ "L100": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "vitiate vs underpin",
+  "heuristic": "antonym-pair"
+ },
+ "L103": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "nominal and immaterial overlap",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L104": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L105": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L106": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "three hostile words; collegial alone",
+  "heuristic": "odd-one-out"
+ },
+ "L107": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dilatory and languorous overlap; indefatigable opposite",
+  "heuristic": "odd-one-out"
+ },
+ "L108": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "thwart vs underwrite",
+  "heuristic": "antonym-pair"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "sinecures rarest",
+  "heuristic": "rare-word"
+ },
+ "L110": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "short...extend coherent",
+  "heuristic": "pair-coherence"
+ },
+ "L111": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "elliptical and allusive overlap",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L112": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "brevity vs thoroughness",
+  "heuristic": "antonym-pair"
+ },
+ "L113": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "spare vs colorful",
+  "heuristic": "antonym-pair"
+ },
+ "L114": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L115": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "only general-purpose adjective",
+  "heuristic": "odd-one-out"
+ },
+ "L116": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L117": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "daunted repeated; daunted...galvanized contrast",
+  "heuristic": "duplicate-first-word"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "thoroughness vs haste",
+  "heuristic": "antonym-pair"
+ },
+ "L119": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L121": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "calculated vs sincere",
+  "heuristic": "antonym-pair"
+ },
+ "L122": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L123": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "arbitrary among rare words",
+  "heuristic": "rare-word"
+ },
+ "L124": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "rebut vs validate",
+  "heuristic": "antonym-pair"
+ },
+ "L125": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "engrossing vs humdrum",
+  "heuristic": "antonym-pair"
+ },
+ "L126": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "brief...thorough deliberate contrast",
+  "heuristic": "pair-coherence"
+ },
+ "L127": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "popular...unworkable contrast",
+  "heuristic": "pair-coherence"
+ },
+ "L128": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "evenhanded and clement overlap",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "murky repeated; murky...loath coherent",
+  "heuristic": "duplicate-first-word"
+ },
+ "L130": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L131": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "masterful vs inept",
+  "heuristic": "antonym-pair"
+ },
+ "L132": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "lithe vs lumbering",
+  "heuristic": "antonym-pair"
+ },
+ "L133": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "weak; contrast pair picked",
+  "heuristic": "pair-coherence"
+ },
+ "L134": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no clear pattern",
+  "heuristic": "pair-coherence"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "creditable and adequate overlap",
+  "heuristic": "synonym-cluster-elimination"
+ },
+ "L136": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L137": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "indolent vs rigorous",
+  "heuristic": "antonym-pair"
+ },
+ "L138": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L139": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pristine...recover coherent",
+  "heuristic": "pair-coherence"
+ },
+ "L140": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L141": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L142": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L143": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "embellished vs verbatim",
+  "heuristic": "antonym-pair"
+ },
+ "L144": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "growing...afford coherent",
+  "heuristic": "pair-coherence"
+ },
+ "L145": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no pattern",
+  "heuristic": "none"
+ },
+ "L146": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "parochial picked",
+  "heuristic": "rare-word"
+ },
+ "L147": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "heterogeneous vs invariable",
+  "heuristic": "antonym-pair"
+ }
+}

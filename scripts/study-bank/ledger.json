@@ -6725,6 +6725,82 @@
           "verdict": "All three graders: options ascending and the key at an end on 24/32 (\"pick an end\" 75%). E: key smallest on 8 of 12 sum/mean-of-extremes items, largest on 9 of 18 count/difference/length items (\"sum -> lowest, count/width -> highest\" 17/30). D: a one-slope-sign distractor on nearly every item. 30 of 32 share one insight; at most one per form if any ship."
         }
       }
+    },
+    {
+      "id": "isee-verbal-s19-syn-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s19",
+      "contentSha": "976c39283004b0c8059ac79f4edfad55fea94ffdfeba4a37579a9df870e75f05",
+      "status": "shipped",
+      "note": "ISEE Upper synonyms, 34 of 35 inserted (one dropped: IVS19B-17 PROFLIGATE, grader a named shameful second defensible). Two Claude authors (A a-f, B m-z, every word in range), brief adds: every distractor is the plain gloss of a different likely ISEE headword. Pre-registered in isee-verbal-s19.prereg.md (commit f8c0aa01) before authoring; frozen in 5fdeea60 before any solver or grader. Kept file isee-verbal-s19.kept.batch.json is byte-identical to isee-verbal-s19-syn.batch.json; qc isee-verbal-s19.qc.json (= -syn.withsource.json). Banked at median grade 9 easy / 15 medium / 10 hard (BANK_BAND=mixed). The 70 SC of the same commission were HELD at nosource (ledger isee-verbal-s19-sc-2026-10-08).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "976c39283004b0c8059ac79f4edfad55fea94ffdfeba4a37579a9df870e75f05",
+          "verdict": "35 items, 4 distinct single-word lowercase choices, key among them, '[Synonym] HEADWORD', verbalKind()=synonym 35/35, explanation names key 35/35; 0 stem duplicates vs 940 live isee rows; isee-verbal-s19-collisions.mjs 0 problems (no live/s17/s18 word incl. inflections, no cross-author or within-file reuse); key strictly longest 8/35 = 22.9%, shortest 7/35 = 20.0%; stored key slots 9/9/9/8; key-spread ok."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "976c39283004b0c8059ac79f4edfad55fea94ffdfeba4a37579a9df870e75f05",
+          "n": 35,
+          "mean": 23.8,
+          "control": 25.7,
+          "margin": -1.9,
+          "verdict": "Options-only, interleaved with the WHOLE eligible live synonym pool (143, isee-verbal-s4 excluded; s17/s18 drew 30 and read 70.0% / 47.8%), three samples of one Claude solver (pairwise agreement 68.4%). Candidate 25/105 = 23.8% vs letter 25.7% (M -1.9); live 231/429 = 53.8% vs 25.2% (M +28.7). EXCESS -30.6 <= +10 PASS; ceiling not reached (live 53.8% < 85%). Per sample candidate 8/8/9 of 35, live 77/77/77 of 143. Unanimous-correct candidate 4/35 vs live 54/143. By author A 11/54 = 20.4%, B 14/51 = 27.5%. Candidate sits at its letter line, so the comparison is against a floor-at-chance candidate, not a better-than-bank claim on the candidate alone."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "976c39283004b0c8059ac79f4edfad55fea94ffdfeba4a37579a9df870e75f05",
+          "verdict": "Items >= 2 samples certainly rejected the same non-key option: candidate 0/35, live 0/143; bar <= max(live, 5%) PASS. reject_certain was false on every item in every sample (judged per brief), so this is a default, not a discriminating reading."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "976c39283004b0c8059ac79f4edfad55fea94ffdfeba4a37579a9df870e75f05",
+          "verdict": "Three fresh Claude graders, each on its own re-shuffled render (isee-verbal-s19-grade-render.mjs; key/difficulty/explanation withheld): 35/35 on key for all three (bar: FAIL if any grader >10% off key). Drops: IVS19B-17 (grader a: shameful second defensible). Above band 0. Free elimination named once (IVS19A-02 boring/dreary near-synonyms, grader a) but 0 blind samples certainly rejected it, so not a drop. Difficulty a 9/15/11, b 7/17/11, c 10/15/10; medians of kept 9/15/10. Authored hard 8 -> banked hard 8."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "976c39283004b0c8059ac79f4edfad55fea94ffdfeba4a37579a9df870e75f05",
+          "verdict": "Key strictly longest 8/35 = 22.9%, shortest 7/35 = 20.0% (bar <= 35%). check-recycled-distractor NO MEASUREMENT (140 distinct / 140 slots). verify-answer-key-spread ok (quads p=0.96). Antonym-of-key items (>= 2 graders) 4/35 = 11.4% (bar <= 25%); POS outliers 0/35. Solver heuristic: no heuristic named by all three samples decides picks above 70% - 'classic gloss of a likely ISEE headword' (s18's tell, named by b and c) scored 6/28 = 21.4% and 7/25 = 28.0% on candidate picks; a's top named heuristic antonym-pair 1/4. No rarity bar (retired in the s19 prereg)."
+        }
+      }
+    },
+    {
+      "id": "isee-verbal-s19-sc-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s19",
+      "contentSha": "410cdd197f8cb95074cf01cc5f9615ba0d09c29106379d54e53e1c82ab189050",
+      "status": "killed",
+      "note": "HELD at nosource, 0 of 70 inserted. 70 single-blank ISEE SC (49 hard / 21 medium authored) from three Claude authors (C contrast/restatement science/tech/medicine g-p; D cause/purpose history/government/economics/geography q-z; E examples/degree arts/sport/school/work a-l), s18 distractor brief kept plus a new difficulty instruction (hard = in-band key AND an inference clue: reversal, hardly/far from, consequence). Pre-registered in isee-verbal-s19.prereg.md (f8c0aa01); frozen in 5fdeea60. Excess +22.4 vs all live and +27.3 vs single-blank against a whole-pool control; the bar is the bar, no later stage run, no item repaired.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "410cdd197f8cb95074cf01cc5f9615ba0d09c29106379d54e53e1c82ab189050",
+          "verdict": "70 items, 4 distinct single-word choices, one 7-hyphen blank, '[Sentence Completion]' tag, no 'is to', verbalKind 70/70, explanation names key 70/70; 0 stem duplicates vs 940 live isee rows; collision checker 0 problems; key strictly longest 21/70 = 30.0%, shortest 15/70 = 21.4%; stored key slots 18/18/17/17; key-spread ok."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "410cdd197f8cb95074cf01cc5f9615ba0d09c29106379d54e53e1c82ab189050",
+          "n": 70,
+          "mean": 62.9,
+          "control": 25.7,
+          "margin": 37.1,
+          "verdict": "Options-only, interleaved with the WHOLE eligible live hard/medium SC pool (77, isee-verbal-s4 excluded; 61 single-blank), three samples of one Claude solver (pairwise agreement 80.3%). Candidate 132/210 = 62.9% vs letter 25.7% (M +37.1); live all 94/231 = 40.7% vs 26.0% (M +14.7) EXCESS +22.4; live single-blank 69/183 = 37.7% vs 27.9% (M +9.8) EXCESS +27.3; both > +10 -> HOLD. Per sample candidate 46/41/45 of 70, live 30/32/32 of 77. Unanimous-correct candidate 39/70 vs live 22/77. By author C 46/72 = 63.9%, D 34/69 = 49.3%, E 52/69 = 75.4%; authored hard 95/147 = 64.6%, medium 37/63 = 58.7%. The tell, named by all three samples: ANTONYM PAIR (two options are opposites, the key is one pole; 59/76 = 77.6% on candidate picks vs 25/49 = 51.0% on live) and ODD-ONE-OUT / cluster outlier (three near-synonyms, the key differs in polarity; 49/56 = 87.5% on candidate picks). s18's 'most specific word' tell stayed dead (harder/rare-word picks 3/11)."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "410cdd197f8cb95074cf01cc5f9615ba0d09c29106379d54e53e1c82ab189050",
+          "verdict": "Recorded only (the type had already held): candidate 0/70, live 0/77 items with >= 2 samples certainly rejecting the same option; sample b marked reject_certain on 2 items."
+        }
+      }
     }
   ],
   "auditedCohorts": [

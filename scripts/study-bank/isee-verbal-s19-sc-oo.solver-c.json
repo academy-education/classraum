@@ -1,0 +1,1178 @@
+{
+ "L01": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L02": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L03": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L04": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L08": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L09": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L11": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L12": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L13": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L14": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L15": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L16": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L17": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L19": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L20": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L21": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L22": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L23": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L24": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L25": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L26": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "first word repeated across pairs; picked coherent variant",
+  "heuristic": "repeated-word"
+ },
+ "L27": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L28": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "rarest, most test-like word",
+  "heuristic": "hard-word"
+ },
+ "L29": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L31": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L32": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L33": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L36": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L37": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L38": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L39": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L41": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L42": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L43": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L45": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L46": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L47": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L49": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L50": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L51": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L52": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L53": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L55": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L56": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L58": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L59": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L60": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L62": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L63": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L64": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L65": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L67": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L68": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L69": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L70": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L71": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L72": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L73": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L74": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L76": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L77": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L78": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L79": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L81": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L82": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L83": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L84": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L86": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L87": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L88": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L89": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L90": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L91": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L92": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L93": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L94": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L95": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L97": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L99": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L100": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L103": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L104": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L105": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L106": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L107": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L108": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L110": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L111": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L112": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L113": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L114": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L115": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L116": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L117": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "first word repeated across pairs; picked coherent variant",
+  "heuristic": "repeated-word"
+ },
+ "L118": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L119": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L121": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L122": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L124": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L125": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L126": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L127": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L128": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "three options near-synonyms; odd one out likely key",
+  "heuristic": "cluster-outlier"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "first word repeated across pairs; picked coherent variant",
+  "heuristic": "repeated-word"
+ },
+ "L130": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L131": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L132": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L133": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L134": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L135": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "rarest, most test-like word",
+  "heuristic": "hard-word"
+ },
+ "L136": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L137": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L138": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L139": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L140": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L141": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L142": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L143": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ },
+ "L144": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two-blank pair whose halves fit a natural relation",
+  "heuristic": "pair-coherence"
+ },
+ "L145": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L146": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no usable signal; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L147": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "two options are opposites; key likely one pole of the axis",
+  "heuristic": "antonym-pair"
+ }
+}

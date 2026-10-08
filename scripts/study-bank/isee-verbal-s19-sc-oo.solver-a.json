@@ -1,0 +1,1178 @@
+{
+ "L01": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L02": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L03": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L04": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L08": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L09": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L11": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L12": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L13": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L14": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L15": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L16": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L17": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L19": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "pair halves relate most naturally",
+  "heuristic": "coherent-pair"
+ },
+ "L20": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L21": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most specialised word; authors key hard vocabulary",
+  "heuristic": "harder-word"
+ },
+ "L22": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L23": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L24": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L25": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L26": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "word repeated across two options marks the key pair",
+  "heuristic": "shared-word"
+ },
+ "L27": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pair halves relate most naturally",
+  "heuristic": "coherent-pair"
+ },
+ "L28": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L29": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L31": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L32": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L33": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L36": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L37": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L38": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L39": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L41": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L42": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L43": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L45": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L46": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L47": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pair halves relate most naturally",
+  "heuristic": "coherent-pair"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L49": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L50": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L51": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "pair halves relate most naturally",
+  "heuristic": "coherent-pair"
+ },
+ "L52": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L53": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L55": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L56": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L58": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L59": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L60": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L62": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L63": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L64": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L65": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pair halves relate most naturally",
+  "heuristic": "coherent-pair"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L67": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L68": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L69": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L70": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L71": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L72": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L73": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L74": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L76": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L77": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L78": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L79": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L81": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L82": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pair halves relate most naturally",
+  "heuristic": "coherent-pair"
+ },
+ "L83": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L84": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L86": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L87": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L88": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L89": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L90": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L91": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L92": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L93": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L94": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L95": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L97": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L98": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L99": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L100": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L103": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L104": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L105": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L106": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L107": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L108": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most specialised word; authors key hard vocabulary",
+  "heuristic": "harder-word"
+ },
+ "L110": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L111": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L112": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L113": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L114": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L115": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L116": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L117": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "word repeated across two options marks the key pair",
+  "heuristic": "shared-word"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L119": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L121": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L122": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L124": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L125": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L126": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L127": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L128": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "only option differing in sense from the other three",
+  "heuristic": "odd-one-out"
+ },
+ "L129": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "word repeated across two options marks the key pair",
+  "heuristic": "shared-word"
+ },
+ "L130": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L131": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L132": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L133": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pair halves relate most naturally",
+  "heuristic": "coherent-pair"
+ },
+ "L134": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L136": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L137": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L138": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L139": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L140": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L141": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L142": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L143": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ },
+ "L144": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "pair halves relate most naturally",
+  "heuristic": "coherent-pair"
+ },
+ "L145": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L146": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal in options",
+  "heuristic": "none"
+ },
+ "L147": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "one of an antonym pair; pair likely brackets key",
+  "heuristic": "antonym-pair"
+ }
+}

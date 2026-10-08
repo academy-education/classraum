@@ -1,0 +1,35 @@
+{
+ "heuristics": [
+  {
+   "name": "antonym-pair",
+   "description": "two options are opposites; key likely one pole of the axis",
+   "picks_decided": 44
+  },
+  {
+   "name": "cluster-outlier",
+   "description": "three options near-synonyms; odd one out likely key",
+   "picks_decided": 24
+  },
+  {
+   "name": "pair-coherence",
+   "description": "two-blank pair whose halves fit a natural relation",
+   "picks_decided": 14
+  },
+  {
+   "name": "repeated-word",
+   "description": "first word repeated across pairs; picked coherent variant",
+   "picks_decided": 3
+  },
+  {
+   "name": "hard-word",
+   "description": "rarest, most test-like word",
+   "picks_decided": 2
+  },
+  {
+   "name": "none",
+   "description": "no usable signal; arbitrary pick",
+   "picks_decided": 60
+  }
+ ],
+ "notes": "Options-only; no option could be ruled out with certainty without the sentence, so reject_certain is false throughout. Antonym-pair and cluster-outlier are weak structural priors, not semantic evidence."
+}

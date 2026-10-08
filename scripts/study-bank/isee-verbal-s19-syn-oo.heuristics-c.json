@@ -1,0 +1,35 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "Pure guess.",
+   "picks_decided": 38
+  },
+  {
+   "name": "classic-gloss",
+   "description": "Picked the option that is most recognisably the plain-English gloss of a common ISEE Upper headword (e.g. outlaw=prohibit, diligent=industrious). Weak prior, since every option is designed to be such a gloss.",
+   "picks_decided": 101
+  },
+  {
+   "name": "antonym-pair",
+   "description": "When two options are opposites, assumed the key is one of the pair (antonym planted as distractor) and chose the more typical gloss.",
+   "picks_decided": 26
+  },
+  {
+   "name": "polysemy",
+   "description": "Options span two senses of one likely headword (e.g. curb: pavement/gutter vs restrain); picked the tested secondary sense.",
+   "picks_decided": 2
+  },
+  {
+   "name": "near-miss-cluster",
+   "description": "Two options are near-synonyms; assumed one is key and the other a near-miss, picked the more headword-like one.",
+   "picks_decided": 9
+  },
+  {
+   "name": "repeated-distractor",
+   "description": "A filler word (hollow) recurs across items as a distractor; rejected it and chose the strongest remaining gloss.",
+   "picks_decided": 2
+  }
+ ],
+ "notes": "Options-only synonym items give little real signal; every option is a plausible gloss. Most signal picks rest on a weak familiarity prior. No reject could be certain without the headword, so reject_certain is false throughout. Letter distribution was not used."
+}

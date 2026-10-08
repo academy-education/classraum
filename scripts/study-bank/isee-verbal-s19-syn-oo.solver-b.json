@@ -1,0 +1,1426 @@
+{
+ "L01": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "evasive glosses a common hard headword (cagey/elusive)",
+  "heuristic": "classic-gloss"
+ },
+ "L02": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "tentative reads as gloss of provisional",
+  "heuristic": "classic-gloss"
+ },
+ "L03": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "outlaw glosses prohibit/ban",
+  "heuristic": "classic-gloss"
+ },
+ "L04": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "foil in rare sense thwart; test-like",
+  "heuristic": "rarer-sense"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "ponder glosses muse/contemplate",
+  "heuristic": "classic-gloss"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "drag glosses haul/lug",
+  "heuristic": "classic-gloss"
+ },
+ "L08": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "intimidate glosses daunt/cow",
+  "heuristic": "classic-gloss"
+ },
+ "L09": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "brag glosses boast/vaunt",
+  "heuristic": "classic-gloss"
+ },
+ "L10": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "hoard glosses stockpile/amass",
+  "heuristic": "classic-gloss"
+ },
+ "L11": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "dainty glosses delicate",
+  "heuristic": "classic-gloss"
+ },
+ "L12": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "temporary glosses transient/ephemeral",
+  "heuristic": "classic-gloss"
+ },
+ "L13": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "diligent glosses industrious",
+  "heuristic": "classic-gloss"
+ },
+ "L14": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "forfeit glosses relinquish",
+  "heuristic": "classic-gloss"
+ },
+ "L15": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "soak glosses drench/saturate",
+  "heuristic": "classic-gloss"
+ },
+ "L16": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tease glosses taunt",
+  "heuristic": "classic-gloss"
+ },
+ "L17": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "practical glosses pragmatic",
+  "heuristic": "classic-gloss"
+ },
+ "L18": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "waver glosses vacillate",
+  "heuristic": "classic-gloss"
+ },
+ "L19": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "submit glosses acquiesce/capitulate",
+  "heuristic": "classic-gloss"
+ },
+ "L20": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "clarify glosses elucidate",
+  "heuristic": "classic-gloss"
+ },
+ "L21": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "verbs restrain/applaud vs nouns; restrain glosses curb",
+  "heuristic": "pos-majority"
+ },
+ "L22": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "weak; fatigue glosses lethargy",
+  "heuristic": "none"
+ },
+ "L23": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "thorough glosses meticulous",
+  "heuristic": "classic-gloss"
+ },
+ "L24": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "weak; repair glosses mend",
+  "heuristic": "none"
+ },
+ "L25": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L26": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "cautious glosses wary/prudent",
+  "heuristic": "classic-gloss"
+ },
+ "L27": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "astonished glosses astounded",
+  "heuristic": "classic-gloss"
+ },
+ "L28": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "conquer glosses vanquish",
+  "heuristic": "classic-gloss"
+ },
+ "L29": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "puzzled glosses perplexed/baffled",
+  "heuristic": "classic-gloss"
+ },
+ "L30": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "gloomy glosses morose/dismal",
+  "heuristic": "classic-gloss"
+ },
+ "L31": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "trivial glosses frivolous/petty",
+  "heuristic": "classic-gloss"
+ },
+ "L32": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "refrain glosses abstain",
+  "heuristic": "classic-gloss"
+ },
+ "L33": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "unyielding glosses obstinate/adamant",
+  "heuristic": "classic-gloss"
+ },
+ "L34": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "descendant glosses scion",
+  "heuristic": "classic-gloss"
+ },
+ "L35": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "stubborn glosses obstinate",
+  "heuristic": "classic-gloss"
+ },
+ "L36": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "composed glosses serene/poised",
+  "heuristic": "classic-gloss"
+ },
+ "L37": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "esteem glosses revere",
+  "heuristic": "classic-gloss"
+ },
+ "L38": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "peak glosses zenith/pinnacle",
+  "heuristic": "classic-gloss"
+ },
+ "L39": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "amend glosses revise",
+  "heuristic": "classic-gloss"
+ },
+ "L40": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "shrivel glosses wither",
+  "heuristic": "classic-gloss"
+ },
+ "L41": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "satisfy glosses appease/gratify",
+  "heuristic": "classic-gloss"
+ },
+ "L42": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "suppress glosses quell/stifle",
+  "heuristic": "classic-gloss"
+ },
+ "L43": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "postpone glosses defer",
+  "heuristic": "classic-gloss"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "reputation glosses renown",
+  "heuristic": "classic-gloss"
+ },
+ "L45": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "nurture glosses foster",
+  "heuristic": "classic-gloss"
+ },
+ "L46": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "picky glosses finicky/fastidious",
+  "heuristic": "classic-gloss"
+ },
+ "L47": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "discourage glosses deter/dissuade",
+  "heuristic": "classic-gloss"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "guarded glosses wary/reticent",
+  "heuristic": "classic-gloss"
+ },
+ "L49": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L50": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "friendly glosses amiable/affable",
+  "heuristic": "classic-gloss"
+ },
+ "L51": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "weak; prudent vs pious unclear",
+  "heuristic": "none"
+ },
+ "L52": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "thinly scattered glosses sparse",
+  "heuristic": "classic-gloss"
+ },
+ "L53": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "impede glosses hinder",
+  "heuristic": "classic-gloss"
+ },
+ "L54": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "warn glosses admonish",
+  "heuristic": "classic-gloss"
+ },
+ "L55": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "painstaking glosses meticulous",
+  "heuristic": "classic-gloss"
+ },
+ "L56": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "easily felt glosses palpable",
+  "heuristic": "classic-gloss"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cheeky glosses impudent",
+  "heuristic": "classic-gloss"
+ },
+ "L58": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unselfish glosses altruistic",
+  "heuristic": "classic-gloss"
+ },
+ "L59": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "sociable glosses gregarious",
+  "heuristic": "classic-gloss"
+ },
+ "L60": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "beginner glosses novice/neophyte",
+  "heuristic": "classic-gloss"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "arrogant glosses haughty",
+  "heuristic": "classic-gloss"
+ },
+ "L62": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pale glosses wan/pallid",
+  "heuristic": "classic-gloss"
+ },
+ "L63": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "weak; rival glosses adversary",
+  "heuristic": "none"
+ },
+ "L64": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "everyday glosses mundane",
+  "heuristic": "classic-gloss"
+ },
+ "L65": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "thoughtful glosses pensive",
+  "heuristic": "classic-gloss"
+ },
+ "L66": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "blunt glosses candid/brusque",
+  "heuristic": "classic-gloss"
+ },
+ "L67": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "grumpy glosses surly",
+  "heuristic": "classic-gloss"
+ },
+ "L68": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "talkative glosses loquacious",
+  "heuristic": "classic-gloss"
+ },
+ "L69": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "exacting glosses stringent",
+  "heuristic": "classic-gloss"
+ },
+ "L70": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "opponent glosses adversary",
+  "heuristic": "classic-gloss"
+ },
+ "L71": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "greedy glosses avaricious",
+  "heuristic": "classic-gloss"
+ },
+ "L72": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "winding glosses meandering",
+  "heuristic": "classic-gloss"
+ },
+ "L73": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "quick to recover glosses resilient",
+  "heuristic": "classic-gloss"
+ },
+ "L74": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "weak; worth glosses merit",
+  "heuristic": "none"
+ },
+ "L75": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "seize glosses confiscate",
+  "heuristic": "classic-gloss"
+ },
+ "L76": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "moderate glosses temper",
+  "heuristic": "classic-gloss"
+ },
+ "L77": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "flinch glosses recoil/wince",
+  "heuristic": "classic-gloss"
+ },
+ "L78": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "outspoken glosses vocal/candid",
+  "heuristic": "classic-gloss"
+ },
+ "L79": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L80": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "follower glosses disciple",
+  "heuristic": "classic-gloss"
+ },
+ "L81": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "sporadic glosses intermittent",
+  "heuristic": "classic-gloss"
+ },
+ "L82": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "basic glosses rudimentary",
+  "heuristic": "classic-gloss"
+ },
+ "L83": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "terse glosses curt",
+  "heuristic": "classic-gloss"
+ },
+ "L84": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "rash glosses impetuous",
+  "heuristic": "classic-gloss"
+ },
+ "L85": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L86": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "hire glosses employ",
+  "heuristic": "classic-gloss"
+ },
+ "L87": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "sturdy glosses robust",
+  "heuristic": "classic-gloss"
+ },
+ "L88": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "apprehensive is the high-register outlier",
+  "heuristic": "classic-gloss"
+ },
+ "L89": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "secluded glosses isolated",
+  "heuristic": "classic-gloss"
+ },
+ "L90": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "lazy glosses indolent/slothful",
+  "heuristic": "classic-gloss"
+ },
+ "L91": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "block glosses obstruct/thwart",
+  "heuristic": "classic-gloss"
+ },
+ "L92": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "variety glosses diversity",
+  "heuristic": "classic-gloss"
+ },
+ "L93": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "wrath glosses ire",
+  "heuristic": "classic-gloss"
+ },
+ "L94": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "exhaust glosses deplete",
+  "heuristic": "classic-gloss"
+ },
+ "L95": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "sluggish glosses lethargic",
+  "heuristic": "classic-gloss"
+ },
+ "L96": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "yielding glosses pliant",
+  "heuristic": "classic-gloss"
+ },
+ "L97": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "tardy glosses late",
+  "heuristic": "classic-gloss"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "objective glosses impartial",
+  "heuristic": "classic-gloss"
+ },
+ "L99": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unwilling to spend glosses stingy/miserly",
+  "heuristic": "classic-gloss"
+ },
+ "L100": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "weak; solitude glosses seclusion",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "profitable glosses lucrative",
+  "heuristic": "classic-gloss"
+ },
+ "L102": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "scold glosses reprimand/chide",
+  "heuristic": "classic-gloss"
+ },
+ "L103": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "envy glosses covet",
+  "heuristic": "classic-gloss"
+ },
+ "L104": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "weak; sorrowful glosses mournful",
+  "heuristic": "none"
+ },
+ "L105": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "fanatic glosses zealot",
+  "heuristic": "classic-gloss"
+ },
+ "L106": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "earnest glosses sincere",
+  "heuristic": "classic-gloss"
+ },
+ "L107": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "surly is the test-like option",
+  "heuristic": "classic-gloss"
+ },
+ "L108": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "weak; empty glosses vacant",
+  "heuristic": "none"
+ },
+ "L109": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L110": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "modest glosses humble",
+  "heuristic": "classic-gloss"
+ },
+ "L111": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "frank glosses candid",
+  "heuristic": "classic-gloss"
+ },
+ "L112": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "frown glosses scowl",
+  "heuristic": "classic-gloss"
+ },
+ "L113": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "insatiable glosses voracious",
+  "heuristic": "classic-gloss"
+ },
+ "L114": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "solemn glosses somber",
+  "heuristic": "classic-gloss"
+ },
+ "L115": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "crave glosses covet/yearn",
+  "heuristic": "classic-gloss"
+ },
+ "L116": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "prompt glosses punctual",
+  "heuristic": "classic-gloss"
+ },
+ "L117": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "threatening glosses ominous/menacing",
+  "heuristic": "classic-gloss"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "desert glosses forsake/abandon",
+  "heuristic": "classic-gloss"
+ },
+ "L119": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "yearn glosses long/pine",
+  "heuristic": "classic-gloss"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "watchful glosses vigilant",
+  "heuristic": "classic-gloss"
+ },
+ "L121": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "mutter glosses mumble",
+  "heuristic": "classic-gloss"
+ },
+ "L122": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "call glosses summon",
+  "heuristic": "classic-gloss"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "tireless glosses indefatigable",
+  "heuristic": "classic-gloss"
+ },
+ "L124": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "scorn glosses disdain",
+  "heuristic": "classic-gloss"
+ },
+ "L125": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "trickery glosses guile/deceit",
+  "heuristic": "classic-gloss"
+ },
+ "L126": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "showy glosses gaudy/ostentatious",
+  "heuristic": "classic-gloss"
+ },
+ "L127": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "determined glosses resolute",
+  "heuristic": "classic-gloss"
+ },
+ "L128": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "fleeting glosses transient",
+  "heuristic": "classic-gloss"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "support glosses bolster",
+  "heuristic": "classic-gloss"
+ },
+ "L130": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "likelihood glosses probability",
+  "heuristic": "classic-gloss"
+ },
+ "L131": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "boring/dreary near-pair; weak",
+  "heuristic": "none"
+ },
+ "L132": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "damp glosses dank/moist",
+  "heuristic": "classic-gloss"
+ },
+ "L133": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "scanty glosses meager",
+  "heuristic": "classic-gloss"
+ },
+ "L134": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "conform glosses comply",
+  "heuristic": "classic-gloss"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cunning glosses wily",
+  "heuristic": "classic-gloss"
+ },
+ "L136": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "mock glosses deride/ridicule",
+  "heuristic": "classic-gloss"
+ },
+ "L137": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "skillful glosses adept/proficient",
+  "heuristic": "classic-gloss"
+ },
+ "L138": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "thrifty glosses frugal",
+  "heuristic": "classic-gloss"
+ },
+ "L139": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "weak; fight glosses brawl",
+  "heuristic": "none"
+ },
+ "L140": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pledge glosses vow/oath",
+  "heuristic": "classic-gloss"
+ },
+ "L141": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L142": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L143": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "flourish glosses thrive",
+  "heuristic": "classic-gloss"
+ },
+ "L144": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "impending glosses imminent",
+  "heuristic": "classic-gloss"
+ },
+ "L145": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "hasten glosses expedite",
+  "heuristic": "classic-gloss"
+ },
+ "L146": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "hostile glosses belligerent",
+  "heuristic": "classic-gloss"
+ },
+ "L147": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "fluctuate glosses vacillate/oscillate",
+  "heuristic": "classic-gloss"
+ },
+ "L148": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "persistent glosses tenacious",
+  "heuristic": "classic-gloss"
+ },
+ "L149": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "touching glosses poignant",
+  "heuristic": "classic-gloss"
+ },
+ "L150": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L151": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "widespread glosses prevalent/rampant",
+  "heuristic": "classic-gloss"
+ },
+ "L152": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "artful glosses crafty/wily",
+  "heuristic": "classic-gloss"
+ },
+ "L153": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "imitate glosses emulate/mimic",
+  "heuristic": "classic-gloss"
+ },
+ "L154": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "regret glosses remorse",
+  "heuristic": "classic-gloss"
+ },
+ "L155": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "delight glosses glee/elation",
+  "heuristic": "classic-gloss"
+ },
+ "L156": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "strenuous glosses arduous",
+  "heuristic": "classic-gloss"
+ },
+ "L157": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "conceal glosses hide/secrete",
+  "heuristic": "classic-gloss"
+ },
+ "L158": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dodge glosses evade",
+  "heuristic": "classic-gloss"
+ },
+ "L159": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "bewilder glosses baffle/perplex",
+  "heuristic": "classic-gloss"
+ },
+ "L160": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "envious glosses covetous",
+  "heuristic": "classic-gloss"
+ },
+ "L161": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "defy glosses flout",
+  "heuristic": "classic-gloss"
+ },
+ "L162": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "heated glosses vehement",
+  "heuristic": "classic-gloss"
+ },
+ "L163": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "weak; mindful glosses aware",
+  "heuristic": "none"
+ },
+ "L164": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "acquire glosses obtain",
+  "heuristic": "classic-gloss"
+ },
+ "L165": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "sly glosses wily",
+  "heuristic": "classic-gloss"
+ },
+ "L166": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "allow glosses permit",
+  "heuristic": "classic-gloss"
+ },
+ "L167": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "fleeting glosses ephemeral",
+  "heuristic": "classic-gloss"
+ },
+ "L168": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "diminish glosses wane",
+  "heuristic": "classic-gloss"
+ },
+ "L169": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L170": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "contemplate glosses ponder",
+  "heuristic": "classic-gloss"
+ },
+ "L171": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "scarce glosses sparse/meager",
+  "heuristic": "classic-gloss"
+ },
+ "L172": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "lessen glosses alleviate/mitigate",
+  "heuristic": "classic-gloss"
+ },
+ "L173": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "pretend glosses feign",
+  "heuristic": "classic-gloss"
+ },
+ "L174": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L175": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "persuade glosses coax",
+  "heuristic": "classic-gloss"
+ },
+ "L176": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "subside glosses abate",
+  "heuristic": "classic-gloss"
+ },
+ "L177": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "weak; evasive vs petty unclear",
+  "heuristic": "none"
+ },
+ "L178": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "overused glosses trite/hackneyed",
+  "heuristic": "classic-gloss"
+ }
+}

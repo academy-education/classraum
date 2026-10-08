@@ -1,0 +1,25 @@
+{
+ "heuristics": [
+  {
+   "name": "classic-gloss",
+   "description": "Pick the option that is the standard plain gloss of a frequent ISEE Upper headword (e.g. frugal->thrifty, terse->brief)",
+   "picks_decided": 153
+  },
+  {
+   "name": "rarer-sense",
+   "description": "Prefer an option used in a less common sense typical of test vocabulary (foil = thwart)",
+   "picks_decided": 1
+  },
+  {
+   "name": "pos-majority",
+   "description": "Headword POS inferred from option parts of speech; pick among matching POS",
+   "picks_decided": 1
+  },
+  {
+   "name": "none",
+   "description": "Pure guess",
+   "picks_decided": 23
+  }
+ ],
+ "notes": "Options in this set are all plain glosses, so the classic-gloss heuristic is weak: most options in an item are themselves glosses of plausible headwords. Signal picks are where one option matched a very common ISEE headword gloss more strongly than the others. No option could be ruled out with certainty without the headword, so reject_certain is false throughout."
+}

@@ -1,0 +1,35 @@
+{
+ "heuristics": [
+  {
+   "name": "odd-one-out",
+   "description": "pick the option whose sense or polarity differs from the other three",
+   "picks_decided": 29
+  },
+  {
+   "name": "antonym-pair",
+   "description": "when two options are opposites, the key is likely one of them (pick the less ordinary/odd one)",
+   "picks_decided": 42
+  },
+  {
+   "name": "coherent-pair",
+   "description": "two-blank: pick the pair whose halves relate most naturally (same direction or a clean contrast)",
+   "picks_decided": 8
+  },
+  {
+   "name": "shared-word",
+   "description": "two-blank: a word repeated in two options marks the key pair; pick the contrasting variant",
+   "picks_decided": 3
+  },
+  {
+   "name": "harder-word",
+   "description": "pick the most specialised vocabulary word",
+   "picks_decided": 2
+  },
+  {
+   "name": "none",
+   "description": "pure guess",
+   "picks_decided": 63
+  }
+ ],
+ "notes": "Options-only. Most signals are weak structural priors (odd-one-out, antonym pairs); none certain, so reject_certain false throughout. Many single-word sets have no discernible signal."
+}

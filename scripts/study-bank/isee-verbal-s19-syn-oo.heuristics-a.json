@@ -1,0 +1,25 @@
+{
+ "heuristics": [
+  {
+   "name": "antonym-pair",
+   "description": "When two options are clear opposites, assume the distractor brief paired the key with its antonym; pick one pole (usually the more 'headword-gloss-like' one).",
+   "picks_decided": 31
+  },
+  {
+   "name": "odd-valence",
+   "description": "Pick the option whose sentiment or category differs from the other three.",
+   "picks_decided": 4
+  },
+  {
+   "name": "mixed-part-of-speech",
+   "description": "When options mix parts of speech, pick the one consistent with a plausible two-sense headword.",
+   "picks_decided": 1
+  },
+  {
+   "name": "none",
+   "description": "No usable signal; pick made arbitrarily (often by imagining which option is a standard gloss of a common ISEE headword, which does not discriminate since every option is such a gloss).",
+   "picks_decided": 142
+  }
+ ],
+ "notes": "Every option reads as a plain gloss of some plausible ISEE headword, so options rarely discriminate. Antonym pairs were the only recurrent structural cue and are weak: the key could equally be either pole or neither. No reject can be certain without the headword."
+}
