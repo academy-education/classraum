@@ -1,0 +1,646 @@
+[
+ {
+  "id": "S15C-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "product rule with a 'none' choice counted per bagel",
+  "difficulty": "easy",
+  "template": "bagel shop order / number of possible orders / one-or-none choice adds a branch per first choice",
+  "prompt": "A bagel shop sells 5 kinds of bagel and 3 kinds of spread. Each order is one bagel together with either exactly one spread or no spread at all. How many different orders are possible?",
+  "choices": [
+   "16",
+   "23",
+   "20",
+   "35",
+   "18"
+  ],
+  "correct_answer": "20",
+  "explanation": "Each bagel can go with 3 spreads or with no spread, so it has 3 + 1 = 4 choices; 5 x 4 = 20. \"16\" counts the 15 bagel-and-spread orders and then adds a single extra order for \"no spread\" instead of one per bagel. \"18\" adds 3 (one for each spread) to 15. \"23\" adds both 5 and 3 to 15. \"35\" allows up to two spreads (1 + 3 + 3 = 7 choices per bagel, 5 x 7).",
+  "solve": "var bagels=5, spreads=3; return bagels*(spreads+1);",
+  "distractor_solve": {
+   "16": "return 5*3+1;",
+   "18": "return 5*3+3;",
+   "23": "return 5*3+5+3;",
+   "35": "return 5*(1+3+3);"
+  },
+  "interval": "Orders lie between 5 (bagels only) and 5 x 2^3 = 40 (any set of spreads). All five options are strictly inside (5, 40); none sits on either end. Counting must exceed 15 once the no-spread choice is added; all options exceed 15.",
+  "bounds_checked": "part vs whole (more choices cannot reduce the count), supremum of any-subset counting, parity/divisibility by 5 (16, 18, 23 are not multiples of 5 but a grader needs the per-bagel structure to know the total is a multiple of 5 - this is the method)"
+ },
+ {
+  "id": "S15C-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of exactly one success in two draws with replacement",
+  "difficulty": "medium",
+  "template": "two draws with replacement / P(exactly one red) / two orders of one success",
+  "prompt": "A box holds 3 red tokens and 2 blue tokens. One token is drawn at random, its color is noted, and it is put back. A second token is then drawn at random. What is the probability that exactly one of the two tokens drawn is red?",
+  "choices": [
+   "6/25",
+   "3/10",
+   "4/25",
+   "9/25",
+   "12/25"
+  ],
+  "correct_answer": "12/25",
+  "explanation": "P(red then blue) = (3/5)(2/5) = 6/25 and P(blue then red) = (2/5)(3/5) = 6/25, so the answer is 12/25. \"6/25\" counts only one order. \"9/25\" is the chance both are red. \"4/25\" is the chance both are blue. \"3/10\" treats the draw as without replacement and counts one order, (3/5)(2/4).",
+  "solve": "var r=3,b=2,n=r+b; return 2*(r/n)*(b/n);",
+  "distractor_solve": {
+   "4/25": "return (2/5)*(2/5);",
+   "6/25": "return (3/5)*(2/5);",
+   "9/25": "return (3/5)*(3/5);",
+   "3/10": "return (3/5)*(2/4);"
+  },
+  "interval": "With replacement, two draws force a denominator dividing 25; 4/25, 6/25, 9/25 and the key survive it, 3/10 does not (1 kill). Exactly-one is at most 1 - P(both red) - P(both blue) = 12/25, which IS the key, so the bound needs the full computation. No option is 0 or 1.",
+  "bounds_checked": "forced denominator (with replacement -> /25), complement bound, symmetry of the two orders, magnitude"
+ },
+ {
+  "id": "S15C-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting three-digit integers with exactly one digit equal to 7",
+  "difficulty": "hard",
+  "template": "three-digit integers / how many have exactly one 7 / split on the hundreds digit",
+  "prompt": "How many three-digit positive integers have exactly one digit equal to 7?",
+  "choices": [
+   "225",
+   "153",
+   "252",
+   "144",
+   "243"
+  ],
+  "correct_answer": "225",
+  "explanation": "If the hundreds digit is 7, the other two digits are each one of the 9 non-7 digits: 9 x 9 = 81. If the hundreds digit is not 7, it has 8 choices (not 0, not 7), the 7 goes in the tens or units place (2 ways), and the remaining digit has 9 choices: 8 x 2 x 9 = 144. Total 81 + 144 = 225. \"144\" leaves out the numbers that begin with 7. \"153\" puts the 7 only in one of the two lower places (81 + 8 x 9). \"243\" treats all three places alike (3 x 9 x 9), allowing a leading 0. \"252\" counts integers with at least one 7 (900 - 8 x 9 x 9).",
+  "solve": "var c=0; for(var n=100;n<=999;n++){var s=String(n).split('').filter(function(d){return d==='7';}).length; if(s===1)c++;} return c;",
+  "distractor_solve": {
+   "144": "return 8*2*9;",
+   "153": "return 9*9+8*9;",
+   "243": "return 3*9*9;",
+   "252": "return 900-8*9*9;"
+  },
+  "interval": "Count lies between 0 and 900; roughly 3 x (1/10) x (9/10)^2 of 900 = 219, so all options 144-252 are the same magnitude. At-least-one (252) is an upper bound but is not printed and needs its own complement count. No parity or divisibility constraint distinguishes the options.",
+  "bounds_checked": "magnitude estimate, at-least-one vs exactly-one ordering, leading-zero restriction, divisibility"
+ },
+ {
+  "id": "S15C-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "mean equals median with an unknown largest value",
+  "difficulty": "medium",
+  "template": "five-number list with unknown maximum / value of x / set mean equal to sorted median",
+  "prompt": "In the list 9, 2, 12, 5, x, the number x is greater than each of the other four numbers. If the mean of the five numbers is equal to their median, what is the value of x?",
+  "choices": [
+   "29",
+   "17",
+   "32",
+   "26",
+   "24.5"
+  ],
+  "correct_answer": "17",
+  "explanation": "Sorted, the list is 2, 5, 9, 12, x, so the median is 9. The mean must also be 9, so the sum is 45 and x = 45 - (9 + 2 + 12 + 5) = 45 - 28 = 17. \"32\" takes the middle number of the list as written (12) as the median. \"24.5\" averages the two middle known numbers (9 and 12) as though there were an even count. \"26\" divides by 6 instead of 5 (6 x 9 - 28). \"29\" leaves 12 out of the sum (45 - 16).",
+  "solve": "var L=[9,2,12,5]; var s=L.reduce(function(a,b){return a+b;},0); var sorted=L.slice().sort(function(a,b){return a-b;}); var med=sorted[2]; return 5*med - s;",
+  "distractor_solve": {
+   "24.5": "return 5*((9+12)/2) - 28;",
+   "26": "return 6*9 - 28;",
+   "29": "return 5*9 - (9+2+5);",
+   "32": "return 5*12 - 28;"
+  },
+  "interval": "x > 12 is printed; all five options exceed 12, so the printed bound kills none. The mean of 9, 2, 12, 5 alone is 7, but adding a larger x raises it, so there is no free upper bound below 32.",
+  "bounds_checked": "printed inequality on x, average between extremes, monotonicity of the mean in x"
+ },
+ {
+  "id": "S15C-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability three named letters appear in a given relative order",
+  "difficulty": "hard",
+  "template": "random arrangement of five letters / P(three letters in stated left-to-right order) / symmetry over 3! orders",
+  "prompt": "The letters A, B, C, D and E are arranged in a row in a random order, with every arrangement equally likely. What is the probability that A is somewhere to the left of B and B is somewhere to the left of C? (The letters need not be next to each other.)",
+  "choices": [
+   "1/10",
+   "1/4",
+   "1/120",
+   "1/6",
+   "1/3"
+  ],
+  "correct_answer": "1/6",
+  "explanation": "Whatever three places A, B and C occupy, the 3! = 6 orders of those three letters in those places are equally likely, and exactly one is A, B, C from left to right. So the probability is 1/6. \"1/3\" is the chance that A is the leftmost of the three, ignoring the B-C order. \"1/4\" treats 'A left of B' and 'B left of C' as independent halves. \"1/10\" assumes only one choice of the three places works (1 / C(5,3)). \"1/120\" counts only the single arrangement A, B, C, D, E as favourable.",
+  "solve": "var perm=function(a){if(a.length<=1)return [a];var r=[];a.forEach(function(x,i){perm(a.slice(0,i).concat(a.slice(i+1))).forEach(function(p){r.push([x].concat(p));});});return r;}; var all=perm(['A','B','C','D','E']); var g=all.filter(function(p){return p.indexOf('A')<p.indexOf('B')&&p.indexOf('B')<p.indexOf('C');}).length; return g/all.length;",
+  "distractor_solve": {
+   "1/120": "return 1/(5*4*3*2*1);",
+   "1/10": "return 1/10;",
+   "1/4": "return (1/2)*(1/2);",
+   "1/3": "return 1/3;"
+  },
+  "interval": "Denominator must divide 120; all five options do. P(A left of B) = 1/2 is an upper bound; all options are below 1/2. No option is 0 or on that bound.",
+  "bounds_checked": "forced denominator (/120), upper bound by a single pairwise event, magnitude"
+ },
+ {
+  "id": "S15C-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "selections with two people who refuse to serve together",
+  "difficulty": "medium",
+  "template": "choose a 3-person team from 8 / count with a forbidden pair / subtract teams containing both",
+  "prompt": "A 3-person team is to be chosen from a group of 8 students. Two of the students, Kim and Lee, refuse to be on the same team. How many different teams can be chosen?",
+  "choices": [
+   "50",
+   "35",
+   "26",
+   "20",
+   "44"
+  ],
+  "correct_answer": "50",
+  "explanation": "There are C(8,3) = 56 teams in all. Teams containing both Kim and Lee need one more member from the other 6, so there are 6 of them. 56 - 6 = 50. \"20\" counts only teams with neither Kim nor Lee (C(6,3)). \"35\" adds teams with Kim but forgets those with Lee (20 + 15). \"44\" subtracts the forbidden teams twice (56 - 12). \"26\" subtracts the teams with exactly one of the two (56 - 30).",
+  "solve": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(8,3)-C(6,1);",
+  "distractor_solve": {
+   "20": "return 20;",
+   "26": "return 56-2*15;",
+   "35": "return 20+15;",
+   "44": "return 56-2*6;"
+  },
+  "interval": "Count lies strictly below C(8,3) = 56 (not printed, not an option) and at least C(6,3) = 20. 20 sits on that infimum but needs C(6,3) computed, which is half the method; the other three are strictly inside (20, 56).",
+  "bounds_checked": "total-count supremum, neither-case infimum, magnitude"
+ },
+ {
+  "id": "S15C-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three-set Venn: number in exactly two sets from totals and triple overlap",
+  "difficulty": "hard",
+  "template": "three activities, everyone in at least one / how many in exactly two / excess-count identity",
+  "prompt": "Each of the 50 students in a club plays at least one of three games: chess, checkers and go. 30 students play chess, 22 play checkers and 18 play go. Exactly 6 students play all three games. How many students play exactly two of the games?",
+  "choices": [
+   "10",
+   "36",
+   "8",
+   "26",
+   "14"
+  ],
+  "correct_answer": "8",
+  "explanation": "The totals add to 30 + 22 + 18 = 70. A student in exactly two games is counted twice and one in all three is counted three times, so 70 - 50 = 20 = (exactly two) + 2 x (all three). Exactly two = 20 - 12 = 8. \"14\" subtracts the triple once (20 - 6). \"10\" halves 20, ignoring the triple group. \"26\" adds the triple instead (20 + 6). \"36\" is the number who play exactly one game (50 - 8 - 6).",
+  "solve": "var total=50, s=30+22+18, t=6; return (s-total)-2*t;",
+  "distractor_solve": {
+   "10": "return (70-50)/2;",
+   "14": "return (70-50)-6;",
+   "26": "return (70-50)+6;",
+   "36": "return 50-((70-50)-2*6)-6;"
+  },
+  "interval": "Exactly-two lies between 0 and 50 - 6 = 44; every option is inside. The printed numbers give no parity constraint (8, 10, 14, 26, 36 are all even, so parity kills none).",
+  "bounds_checked": "part vs whole (at most 44), parity, total-count identity"
+ },
+ {
+  "id": "S15C-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "geometric probability on a time interval with an arrival and a waiting window",
+  "difficulty": "medium",
+  "template": "train time uniform on 30 minutes / P(rider catches it) / waiting window length over interval length",
+  "prompt": "A train arrives at a station at a random time between 8:00 a.m. and 8:30 a.m., with every moment equally likely. Ana reaches the station at 8:10 a.m. and will wait there for at most 9 minutes. If the train comes before Ana arrives, she misses it. What is the probability that Ana catches the train?",
+  "choices": [
+   "2/3",
+   "19/30",
+   "1/3",
+   "9/20",
+   "3/10"
+  ],
+  "correct_answer": "3/10",
+  "explanation": "Ana catches the train only if it arrives between 8:10 and 8:19, a 9-minute window out of 30 minutes: 9/30 = 3/10. \"9/20\" measures the window against only the 20 minutes after Ana arrives. \"19/30\" counts every arrival up to 8:19, including those before Ana. \"2/3\" is the chance the train comes after Ana arrives (20/30). \"1/3\" is the chance it comes before she arrives (10/30).",
+  "solve": "var span=30, arrive=10, wait=9; var lo=arrive, hi=Math.min(arrive+wait, span); return (hi-lo)/span;",
+  "distractor_solve": {
+   "1/3": "return 10/30;",
+   "9/20": "return 9/(30-10);",
+   "19/30": "return (10+9)/30;",
+   "2/3": "return (30-10)/30;"
+  },
+  "interval": "Probability is length over 30, so any option must be (minutes)/30; 9/20 = 13.5/30 is still a length, so continuous time forces no denominator. The answer is at most 2/3 (train after 8:10); 2/3 sits on that bound but needs the subtraction 30 - 10 that is the method. Others are strictly inside (0, 2/3).",
+  "bounds_checked": "continuous uniform (no forced denominator), supremum from 'after she arrives', magnitude"
+ },
+ {
+  "id": "S15C-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest count in a frequency list that keeps a stated median",
+  "difficulty": "hard",
+  "template": "scores 70/80/90 with counts 6/5/k / greatest k keeping median 80 / odd vs even total positions",
+  "prompt": "On a quiz, 6 students scored 70, 5 students scored 80, and k students scored 90. No other scores were recorded. The median of all the scores is 80. What is the greatest possible value of k?",
+  "choices": [
+   "21",
+   "10",
+   "11",
+   "6",
+   "2"
+  ],
+  "correct_answer": "10",
+  "explanation": "Listed in order, the 80s occupy positions 7 through 11. With N = 11 + k scores, the median must come from those positions. If k = 10, N = 21 and the median is the 11th score, which is 80. If k = 11, N = 22 and the median is the average of the 11th and 12th scores, (80 + 90)/2 = 85. Larger k only moves the middle further into the 90s. So the greatest k is 10. \"11\" allows N = 22 without checking that the 12th score is a 90. \"21\" gives the total number of scores (11 + 10) rather than k. \"6\" assumes the 90s may not outnumber the 70s. \"2\" is the least k that makes the median 80.",
+  "solve": "var best=-1; for(var k=0;k<=40;k++){var L=[];for(var i=0;i<6;i++)L.push(70);for(i=0;i<5;i++)L.push(80);for(i=0;i<k;i++)L.push(90);var n=L.length;var m=n%2?L[(n-1)/2]:(L[n/2-1]+L[n/2])/2;if(m===80)best=k;} return best;",
+  "distractor_solve": {
+   "2": "for(var k=0;k<=40;k++){var n=11+k;var pos=n%2?[(n+1)/2]:[n/2,n/2+1];if(pos.every(function(p){return p>=7&&p<=11;}))return k;}",
+   "6": "return 6;",
+   "11": "return 22-11;",
+   "21": "return 11+10;"
+  },
+  "interval": "Key is not the largest option (11 and 21 lie beyond it in the asked direction). k must be at least 2 for the median to reach 80; 2 sits on that bound but only after the position analysis that is the method. No printed count caps k without the analysis.",
+  "bounds_checked": "greatest-ask extremity (key not max), lower feasibility bound, parity of the total"
+ },
+ {
+  "id": "S15C-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "arrangements of a word with repeated letters, two equal letters not adjacent",
+  "difficulty": "hard",
+  "template": "letters of LETTER / arrangements with the two T's apart / total minus glued block, both repeats divided out",
+  "prompt": "How many different arrangements of the six letters of the word LETTER have the two T's not next to each other?",
+  "choices": [
+   "36",
+   "150",
+   "300",
+   "120",
+   "60"
+  ],
+  "correct_answer": "120",
+  "explanation": "All arrangements: 6!/(2! x 2!) = 180 (two T's, two E's). Arrangements with the T's together: glue TT into one block and arrange TT, L, E, E, R: 5!/2! = 60. So 180 - 60 = 120. \"60\" is the number with the T's together. \"150\" divides the glued count by 2! twice (180 - 30). \"300\" forgets the repeated E's in the total only (360 - 60). \"36\" uses the gap method but places the T's only in the 3 inner gaps between L, E, E, R (12 x C(3,2)).",
+  "solve": "var w='LETTER'.split(''); var seen={}; var rec=function(pre,rest){if(!rest.length){seen[pre]=1;return;}for(var i=0;i<rest.length;i++){if(i>0&&rest[i]===rest[i-1])continue;rec(pre+rest[i],rest.slice(0,i).concat(rest.slice(i+1)));}}; rec('',w.sort()); return Object.keys(seen).filter(function(s){return s.indexOf('TT')<0;}).length;",
+  "distractor_solve": {
+   "36": "return (24/2)*3;",
+   "60": "return 120/2;",
+   "150": "return 180-120/4;",
+   "300": "return 720/2-60;"
+  },
+  "interval": "Count lies below the total 180 (not printed, not an option); 300 exceeds it but the total is the method. All options are multiples of 6, so divisibility kills none.",
+  "bounds_checked": "total-count supremum, divisibility, magnitude"
+ },
+ {
+  "id": "S15C-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "conditional probability restricted to students in exactly one of two sets",
+  "difficulty": "hard",
+  "template": "two languages with overlap and neither / P(Spanish | exactly one language) / exactly-one counts as the denominator",
+  "prompt": "In a class of 50 students, 28 take Spanish, 20 take French, and 8 take both languages. A student who takes exactly one of the two languages is chosen at random. What is the probability that the student takes Spanish?",
+  "choices": [
+   "5/8",
+   "7/12",
+   "7/8",
+   "1/2",
+   "2/5"
+  ],
+  "correct_answer": "5/8",
+  "explanation": "Spanish only: 28 - 8 = 20. French only: 20 - 8 = 12. Exactly one language: 32. Probability = 20/32 = 5/8. \"7/8\" puts all 28 Spanish students over 32. \"7/12\" uses 28/(28 + 20). \"1/2\" divides the 20 Spanish-only students by the 40 who take at least one language. \"2/5\" divides 20 by the whole class of 50.",
+  "solve": "var S=28,F=20,B=8; var so=S-B, fo=F-B; return so/(so+fo);",
+  "distractor_solve": {
+   "2/5": "return (28-8)/50;",
+   "1/2": "return (28-8)/(28+20-8);",
+   "7/12": "return 28/(28+20);",
+   "7/8": "return 28/((28-8)+(20-8));"
+  },
+  "interval": "The conditioning count 32 is not printed; it is the computation. Printed totals 50 and 48 do not force a denominator on the key. All options are strictly between 0 and 1. The Spanish share of the class is 28/50; the key is above it, as are 1/2, 7/12 and 7/8, so that comparison does not isolate the key.",
+  "bounds_checked": "forced denominator (none printed), part vs whole, magnitude vs the printed shares"
+ },
+ {
+  "id": "S15C-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "unknown percentage share from a stated weighted mean",
+  "difficulty": "medium",
+  "template": "item prices with one share unknown / percent at the top price / weighted-mean equation in one share",
+  "prompt": "At a stall, 40% of the items sold cost 4 dollars each. Every other item sold cost either 9 dollars or 14 dollars. The mean price of all the items sold was 8.25 dollars. What percent of the items sold cost 14 dollars?",
+  "choices": [
+   "47.5%",
+   "42.5%",
+   "25%",
+   "12.5%",
+   "35%"
+  ],
+  "correct_answer": "25%",
+  "explanation": "Let x be the share at 14 dollars, so 0.60 - x is the share at 9 dollars. 0.40(4) + 9(0.60 - x) + 14x = 8.25 gives 1.60 + 5.40 + 5x = 8.25, so 5x = 1.25 and x = 0.25, or 25%. \"35%\" is the share at 9 dollars (the unknown assigned to the wrong price). \"42.5%\" ignores the 9-dollar items and mixes only 4 and 14: (8.25 - 4)/(14 - 4). \"47.5%\" drops the 9-dollar term entirely: 1.60 + 14x = 8.25. \"12.5%\" divides 1.25 by 10 (the gap from 4 to 14) instead of by 5.",
+  "solve": "var a=0.40, pa=4, pb=9, pc=14, m=8.25; var x=(m - a*pa - (1-a)*pb)/(pc-pb); return (Math.round(x*1000)/10)+'%';",
+  "distractor_solve": {
+   "12.5%": "return (1.25/10*100)+'%';",
+   "35%": "return (Math.round((0.60-0.25)*1000)/10)+'%';",
+   "42.5%": "return (Math.round((8.25-4)/(14-4)*1000)/10)+'%';",
+   "47.5%": "return (Math.round((8.25-1.6)/14*1000)/10)+'%';"
+  },
+  "interval": "The 14-dollar share is at most 60% (the 40% at 4 dollars is fixed); all options are under 60%. The mean 8.25 lies between 4 and 14, consistent with every option. Showing the share is under 40% needs the balance 0.40 x (9 - 4) > x(14 - 9), which is the item's own equation, so it is the method, not a bound.",
+  "bounds_checked": "part vs whole (at most 60%), average between extremes, balance/lever direction, magnitude"
+ },
+ {
+  "id": "S15C-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting odd numbers formed from digits 1-9 with repetition",
+  "difficulty": "easy",
+  "template": "three-digit numbers from digits 1-9 / how many are odd / restrict the units place, repetition allowed",
+  "prompt": "A three-digit number is formed using only the digits 1 through 9, and digits may be repeated. How many such numbers are odd?",
+  "choices": [
+   "500",
+   "225",
+   "280",
+   "360",
+   "405"
+  ],
+  "correct_answer": "405",
+  "explanation": "The units digit must be one of 1, 3, 5, 7, 9 (5 choices); the hundreds and tens digits may be any of the 9 digits. 9 x 9 x 5 = 405. \"280\" forbids repeated digits (5 x 8 x 7). \"225\" also requires the hundreds digit to be odd (5 x 9 x 5). \"500\" allows the digit 0 in the hundreds and tens places (10 x 10 x 5). \"360\" forbids the tens digit from repeating the hundreds digit (9 x 8 x 5).",
+  "solve": "var c=0; for(var a=1;a<=9;a++)for(var b=1;b<=9;b++)for(var d=1;d<=9;d++)if(d%2===1)c++; return c;",
+  "distractor_solve": {
+   "360": "return 9*8*5;",
+   "500": "return 10*10*5;",
+   "225": "return 5*9*5;",
+   "280": "return 5*8*7;"
+  },
+  "interval": "Total numbers are 9^3 = 729 (not an option); odd ones are a bit over half. 225 is under half of 729 and 500 uses a digit the stem excludes; rejecting either needs the total and the odd share, which is the method.",
+  "bounds_checked": "total-count supremum, share-of-total magnitude, divisibility by 5"
+ },
+ {
+  "id": "S15C-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability at least one of three independent events with different chances",
+  "difficulty": "hard",
+  "template": "three people solving independently / P(at least one solves) / complement of all failing",
+  "prompt": "Ana, Ben and Cal each try to solve a puzzle, working independently. The probabilities that they solve it are 1/2, 1/3 and 1/4, respectively. What is the probability that at least one of them solves the puzzle?",
+  "choices": [
+   "5/8",
+   "3/4",
+   "19/24",
+   "23/24",
+   "11/12"
+  ],
+  "correct_answer": "3/4",
+  "explanation": "The probability that all three fail is (1/2)(2/3)(3/4) = 1/4, so the probability that at least one succeeds is 1 - 1/4 = 3/4. \"23/24\" subtracts the chance that all three SUCCEED, (1/2)(1/3)(1/4). \"5/8\" leaves Ben out: 1 - (1/2)(3/4). \"11/12\" uses Cal's success chance 1/4 in place of his failure chance: 1 - (1/2)(2/3)(1/4). \"19/24\" adds Ana's and Ben's chances and subtracts the all-three product, 1/2 + 1/3 - 1/24.",
+  "solve": "var p=[1/2,1/3,1/4]; var f=1; p.forEach(function(x){f*=1-x;}); return 1-f;",
+  "distractor_solve": {
+   "19/24": "return 1/2+1/3-1/24;",
+   "5/8": "return 1-(1/2)*(3/4);",
+   "11/12": "return 1-(1/2)*(2/3)*(1/4);",
+   "23/24": "return 1-(1/2)*(1/3)*(1/4);"
+  },
+  "interval": "At least one is at least max(1/2,1/3,1/4) = 1/2 and at most 1; all options are in (1/2, 1). Denominators must divide 24; all options do. No option is on either bound.",
+  "bounds_checked": "lower bound by the largest single event, upper bound 1, forced denominator /24"
+ },
+ {
+  "id": "S15C-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting four-digit integers with strictly increasing digits",
+  "difficulty": "hard",
+  "template": "four-digit integers / how many have strictly increasing digits / choose a digit set, one order",
+  "prompt": "How many four-digit positive integers have digits that strictly increase from left to right (for example, 1358)?",
+  "choices": [
+   "504",
+   "3024",
+   "210",
+   "126",
+   "495"
+  ],
+  "correct_answer": "126",
+  "explanation": "A set of four different digits can be written in increasing order in exactly one way, and 0 cannot be used (it would have to come first). So the count is the number of 4-digit sets from 1-9: C(9,4) = 126. \"210\" chooses from all ten digits including 0. \"495\" allows equal neighbouring digits (non-decreasing, C(12,4)). \"504\" divides the 9 x 8 x 7 x 6 ordered choices by 3! instead of 4!. \"3024\" counts ordered choices of four different digits without dividing.",
+  "solve": "var c=0; for(var n=1000;n<=9999;n++){var s=String(n);if(s[0]<s[1]&&s[1]<s[2]&&s[2]<s[3])c++;} return c;",
+  "distractor_solve": {
+   "210": "return (10*9*8*7)/24;",
+   "495": "return (12*11*10*9)/24;",
+   "504": "return (9*8*7*6)/6;",
+   "3024": "return 9*8*7*6;"
+  },
+  "interval": "Count is at most 9000 four-digit integers and at most 3024 with four distinct non-zero leading-digit arrangements; all options are inside (0, 9000). 3024 sits at the distinct-digit count but the student must compute it, which is the method.",
+  "bounds_checked": "total-count supremum, magnitude, divisibility"
+ },
+ {
+  "id": "S15C-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding the original count when values are added and the mean rises",
+  "difficulty": "hard",
+  "template": "list mean 18, two values appended / original number of values / balance of totals",
+  "prompt": "The mean of a list of n numbers is 18. When the numbers 30 and 40 are added to the list, the mean of all the numbers becomes 20. What is the value of n?",
+  "choices": [
+   "15",
+   "17",
+   "33",
+   "35",
+   "25"
+  ],
+  "correct_answer": "15",
+  "explanation": "18n + 70 = 20(n + 2), so 18n + 70 = 20n + 40 and 2n = 30, giving n = 15. \"17\" is the number of values after the two are added. \"25\" increases the count by only 1 (18n + 70 = 20(n + 1)). \"35\" does not increase the count at all (18n + 70 = 20n). \"33\" uses n + 2 on both sides, finding n + 2 = 35.",
+  "solve": "var m1=18, m2=20, add=[30,40]; var s=add[0]+add[1], k=add.length; return (s - m2*k)/(m2-m1);",
+  "distractor_solve": {
+   "17": "return (70-20*2)/(20-18)+2;",
+   "25": "return (70-20)/(20-18);",
+   "33": "return 70/(20-18)-2;",
+   "35": "return 70/(20-18);"
+  },
+  "interval": "n must be a positive integer; all options are. The added values average 35, above both means, so any n is feasible; no printed number caps n. 17 is n + 2 (adjacent-by-two to the key) but 33/35 form the same shape, so the pair pattern does not single out the key.",
+  "bounds_checked": "integrality, feasibility of any n, adjacency/pair shape, monotonicity of the new mean in n"
+ },
+ {
+  "id": "S15C-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "geometric probability on a segment: closer to one point than another",
+  "difficulty": "medium",
+  "template": "point uniform on [0, 20] / P(closer to 4 than to 14) / perpendicular-bisector cut at the midpoint",
+  "prompt": "A number is chosen at random from all the numbers between 0 and 20 on a number line, with every number equally likely. What is the probability that the number is closer to 4 than it is to 14?",
+  "choices": [
+   "9/14",
+   "1/2",
+   "9/20",
+   "3/5",
+   "7/10"
+  ],
+  "correct_answer": "9/20",
+  "explanation": "A number is closer to 4 than to 14 exactly when it is less than their midpoint, 9. The part of the segment below 9 has length 9 out of 20, so the probability is 9/20. \"1/2\" assumes the two regions are equal. \"7/10\" takes everything below 14. \"9/14\" uses 0 to 14 as the whole range. \"3/5\" takes the midpoint of 4 and 20 (12) as the cut-off.",
+  "solve": "var a=4,b=14,L=20; var cut=(a+b)/2; return cut/L;",
+  "distractor_solve": {
+   "1/2": "return 10/20;",
+   "3/5": "return ((4+20)/2)/20;",
+   "9/14": "return ((4+14)/2)/14;",
+   "7/10": "return 14/20;"
+  },
+  "interval": "Continuous uniform on length 20: no forced denominator. Every point below 4 is closer to 4, so P > 4/20 = 1/5; every point above 14 is closer to 14, so P < 14/20 = 7/10. 7/10 sits ON the supremum but that bound needs the closer-to reasoning; the other three are strictly inside (1/5, 7/10).",
+  "bounds_checked": "continuous uniform (no forced denominator), infimum/supremum from the two marked points, symmetry"
+ },
+ {
+  "id": "S15C-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "Venn regions given by relations to the overlap; size of the overlap",
+  "difficulty": "medium",
+  "template": "club with chess/go regions expressed through the overlap / number in both / one equation over four regions",
+  "prompt": "Each member of a club of 64 plays chess, plays go, plays both, or plays neither. Exactly 10 members play neither game. The number who play chess but not go is twice the number who play both, and the number who play go but not chess is 6 more than the number who play both. How many members play both games?",
+  "choices": [
+   "18",
+   "24",
+   "15",
+   "16",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "Let b play both. The four regions are 2b (chess only), b (both), b + 6 (go only) and 10 (neither), so 2b + b + (b + 6) + 10 = 64, 4b = 48 and b = 12. \"24\" is the number who play chess but not go (2b). \"18\" is the number who play go but not chess (b + 6). \"15\" takes go-only as 6 FEWER than both (4b - 6 + 10 = 64). \"16\" counts the overlap only three times, leaving one b out of the total (3b + 6 + 10 = 64).",
+  "solve": "var total=64, neither=10, extra=6; return (total-neither-extra)/4;",
+  "distractor_solve": {
+   "15": "return (64-10+6)/4;",
+   "16": "return (64-10-6)/3;",
+   "18": "return (64-10-6)/4+6;",
+   "24": "return 2*(64-10-6)/4;"
+  },
+  "interval": "The overlap is at most (64 - 10 - 6)/4 = 12 only after the regions are written, which is the method. Printed numbers alone give: both < go-only, both <= chess-only, both <= 54; all options satisfy these. The asked quantity is the unknown itself, so no parity or divisibility structure of the form 3b or 2b + 6 applies to the options.",
+  "bounds_checked": "part vs whole (at most 54), divisibility/parity of the asked expression, integrality"
+ },
+ {
+  "id": "S15C-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of exactly two of one group in a random committee (hypergeometric)",
+  "difficulty": "hard",
+  "template": "random 3-person committee from 4 juniors and 5 seniors / P(exactly 2 seniors) / favourable selections over C(9,3)",
+  "prompt": "A committee of 3 people is chosen at random from a group of 4 juniors and 5 seniors. What is the probability that exactly 2 of the people chosen are seniors?",
+  "choices": [
+   "25/42",
+   "10/21",
+   "10/63",
+   "5/14",
+   "5/42"
+  ],
+  "correct_answer": "10/21",
+  "explanation": "There are C(9,3) = 84 committees. Those with exactly 2 seniors: C(5,2) x C(4,1) = 10 x 4 = 40. Probability = 40/84 = 10/21. \"10/63\" counts one order only, (5/9)(4/8)(4/7). \"5/14\" is the chance of exactly 2 juniors (C(4,2) x 5 = 30, 30/84). \"25/42\" is the chance of at least 2 seniors (50/84). \"5/42\" is the chance all three are seniors (10/84).",
+  "solve": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(5,2)*C(4,1)/C(9,3);",
+  "distractor_solve": {
+   "5/42": "return 10/84;",
+   "10/63": "return (5/9)*(4/8)*(4/7);",
+   "5/14": "return 30/84;",
+   "25/42": "return 50/84;"
+  },
+  "interval": "Denominator must divide 504 (ordered draws) or 84; all options do. All lie strictly in (0, 1). No printed share forces a direction.",
+  "bounds_checked": "forced denominator (/84 or /504), magnitude, complement relations among options"
+ },
+ {
+  "id": "S15C-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "range from two removal means",
+  "difficulty": "hard",
+  "template": "seven numbers with mean 12, largest or smallest removed / range / totals of the remaining six",
+  "prompt": "Seven numbers have a mean of 12. If the largest of the numbers is removed, the mean of the remaining six is 10. If instead the smallest of the numbers is removed, the mean of the remaining six is 13. What is the range of the seven numbers?",
+  "choices": [
+   "14",
+   "24",
+   "21",
+   "18",
+   "30"
+  ],
+  "correct_answer": "18",
+  "explanation": "The total is 7 x 12 = 84. Largest = 84 - 6 x 10 = 24. Smallest = 84 - 6 x 13 = 6. Range = 24 - 6 = 18. \"24\" is the largest number. \"30\" adds the largest and smallest. \"21\" uses 7 in place of 6 for both remaining totals (14 - (-7)). \"14\" uses 7 in place of 6 for the largest only (84 - 70).",
+  "solve": "var n=7,m=12,mA=10,mB=13; var T=n*m; var big=T-(n-1)*mA, small=T-(n-1)*mB; return big-small;",
+  "distractor_solve": {
+   "14": "return 84-7*10;",
+   "21": "return (84-7*10)-(84-7*13);",
+   "24": "return 84-6*10;",
+   "30": "return (84-6*10)+(84-6*13);"
+  },
+  "interval": "Range is positive; the largest is above the mean 12 and the smallest below it. All options are positive and none is forced by a printed number alone.",
+  "bounds_checked": "sign, average between extremes, part vs whole"
+ },
+ {
+  "id": "S15C-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "lattice routes forced through an intermediate corner",
+  "difficulty": "hard",
+  "template": "street-grid walk 5 east and 3 north / routes through a stated corner / multiply the two legs",
+  "prompt": "Maya walks from corner P to corner Q of a street grid. Q is 5 blocks east and 3 blocks north of P, and on every block Maya walks either east or north. Her route must pass through the corner that is 2 blocks east and 2 blocks north of P. How many different routes can she take?",
+  "choices": [
+   "24",
+   "16",
+   "10",
+   "48",
+   "18"
+  ],
+  "correct_answer": "24",
+  "explanation": "From P to the required corner: 2 east and 2 north in some order, C(4,2) = 6 routes. From there to Q: 3 east and 1 north, C(4,1) = 4 routes. Total 6 x 4 = 24. \"10\" adds the two legs. \"18\" takes the second leg as 3 routes (one per east block). \"16\" takes the first leg as 4 routes (2 + 2). \"48\" counts the first leg as 4 x 3 = 12 ordered choices without dividing by 2 (12 x 4).",
+  "solve": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(4,2)*C(4,1);",
+  "distractor_solve": {
+   "10": "return 6+4;",
+   "16": "return 4*4;",
+   "18": "return 6*3;",
+   "48": "return (4*3)*4;"
+  },
+  "interval": "Routes through the corner are at most all routes, C(8,3) = 56 (not printed, not an option). All options are inside (0, 56).",
+  "bounds_checked": "total-count supremum, magnitude"
+ },
+ {
+  "id": "S15C-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability two cards drawn without replacement have an even sum",
+  "difficulty": "medium",
+  "template": "two cards from 1-7 without replacement / P(sum even) / same-parity pairs over all pairs",
+  "prompt": "Seven cards are numbered 1 through 7. Two of the cards are drawn at random at the same time. What is the probability that the sum of the two numbers drawn is even?",
+  "choices": [
+   "25/49",
+   "2/7",
+   "3/7",
+   "6/7",
+   "5/7"
+  ],
+  "correct_answer": "3/7",
+  "explanation": "The sum is even when both numbers are odd or both are even. Odd cards: 4, giving C(4,2) = 6 pairs; even cards: 3, giving C(3,2) = 3 pairs. Total pairs C(7,2) = 21. Probability = 9/21 = 3/7. \"2/7\" counts only the odd-odd pairs. \"5/7\" is the chance that at least one card is even. \"6/7\" counts ordered same-parity pairs (12 + 6 = 18) over the 21 unordered pairs. \"25/49\" draws with replacement, (4/7)^2 + (3/7)^2.",
+  "solve": "var c=0,t=0; for(var a=1;a<=7;a++)for(var b=a+1;b<=7;b++){t++; if((a+b)%2===0)c++;} return c/t;",
+  "distractor_solve": {
+   "2/7": "return 6/21;",
+   "5/7": "return 1-6/21;",
+   "6/7": "return (4*3+3*2)/21;",
+   "25/49": "return (4/7)*(4/7)+(3/7)*(3/7);"
+  },
+  "interval": "Two cards at the same time force a denominator dividing 21 (or 42 ordered); 25/49 does not survive (1 kill). The other four are over 7. All lie in (0, 1).",
+  "bounds_checked": "forced denominator (/21), magnitude, complement relations"
+ },
+ {
+  "id": "S15C-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two-stage probability: a die picks the bag, then a draw",
+  "difficulty": "hard",
+  "template": "die roll chooses one of two bags / P(red) / weight each bag's chance by the die",
+  "prompt": "Bag A holds 3 red marbles and 1 blue marble. Bag B holds 1 red marble and 5 blue marbles. A fair six-sided die is rolled. If it shows 1 or 2, one marble is drawn at random from bag A; otherwise one marble is drawn at random from bag B. What is the probability that the marble drawn is red?",
+  "choices": [
+   "5/9",
+   "13/36",
+   "5/12",
+   "5/18",
+   "11/24"
+  ],
+  "correct_answer": "13/36",
+  "explanation": "P(red) = (2/6)(3/4) + (4/6)(1/6) = 1/4 + 1/9 = 9/36 + 4/36 = 13/36. \"5/12\" forgets to multiply bag B's chance 1/6 by its weight (1/4 + 1/6). \"5/18\" uses 1/6, the chance of one die face, as the chance of reaching bag B (1/4 + (1/6)(1/6)). \"11/24\" weights the two bags equally. \"5/9\" swaps the weights (2/3 for bag A, 1/3 for bag B).",
+  "solve": "var pA=2/6, pB=1-pA, rA=3/4, rB=1/6; return pA*rA+pB*rB;",
+  "distractor_solve": {
+   "5/12": "return (2/6)*(3/4)+1/6;",
+   "5/18": "return (2/6)*(3/4)+(1/6)*(1/6);",
+   "11/24": "return (1/2)*(3/4)+(1/2)*(1/6);",
+   "5/9": "return (2/3)*(3/4)+(1/3)*(1/6);"
+  },
+  "interval": "The answer is a weighted average of 3/4 and 1/6, so it lies strictly between them; all options do. The die and bag sizes force a denominator dividing 36; 11/24 does not survive (1 kill). The other three survive. The bag-A branch alone, 1/4, is a lower bound; 5/18 = 10/36 sits strictly above it.",
+  "bounds_checked": "average between extremes, forced denominator (/36), weight direction"
+ }
+]

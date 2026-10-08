@@ -1,0 +1,842 @@
+[
+ {
+  "id": "S15A-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "length on a scale drawing from a two-number scale",
+  "difficulty": "easy",
+  "template": "scale drawing / drawing length of a real length / proportion with a 2-to-15 scale",
+  "prompt": "On a scale drawing of a house, 2 inches represent 15 feet. The back wall of the house is 45 feet long. How long, in inches, is the back wall on the drawing?",
+  "choices": [
+   "2/3",
+   "5",
+   "6",
+   "72",
+   "337.5"
+  ],
+  "correct_answer": "6",
+  "explanation": "There are 45 / 15 = 3 groups of 15 feet, and each is drawn as 2 inches, so the wall is 3 x 2 = 6 inches long. The option \"2/3\" inverts the proportion, computing 15 x 2 / 45. The option \"72\" changes 45 feet to 540 inches first and then applies the scale to inches. The option \"5\" divides 45 by 15 and then adds the 2 instead of multiplying by it. The option \"337.5\" multiplies by 15 and divides by 2, using the scale upside down.",
+  "solve": "return 45*2/15;",
+  "distractor_solve": {
+   "2/3": "return 15*2/45;",
+   "72": "return 45*12*2/15;",
+   "5": "return 45/15+2;",
+   "337.5": "return 45*15/2;"
+  },
+  "interval": "The drawing length is positive and less than the real length (540 inches); all five options lie in (0, 540), so no option is removed by a bound.",
+  "bounds_checked": "magnitude (drawing shorter than the object), positivity, digit rearrangement, key not a printed number"
+ },
+ {
+  "id": "S15A-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a fraction of a percent of a group, as a count",
+  "difficulty": "easy",
+  "template": "school bus riders / count of a subgroup / percent of a whole then a fraction of that part",
+  "prompt": "A school has 1,200 students. Of these students, 45 percent ride the bus, and one third of the bus riders are in ninth grade. How many ninth graders ride the bus?",
+  "choices": [
+   "15",
+   "81",
+   "140",
+   "162",
+   "180"
+  ],
+  "correct_answer": "180",
+  "explanation": "Bus riders: 45% of 1,200 = 540. One third of 540 is 180. The option \"15\" takes one third of the percent, 45, and reports 15 as a count. The option \"140\" subtracts one third of all the students from the number of bus riders. The option \"162\" rounds one third to 30 percent before taking it of the 540 riders. The option \"81\" finds that the ninth-grade riders are 45/3 = 15 percent of the school but then takes 15 percent of the 540 riders.",
+  "solve": "const r=1200*0.45;return r/3;",
+  "distractor_solve": {
+   "15": "return 45/3;",
+   "140": "return 1200*0.45-1200/3;",
+   "162": "return Math.round(1200*0.45*0.3);",
+   "81": "return 1200*0.45*(0.45/3);"
+  },
+  "interval": "The count is a whole number at most the 540 riders; every option is a whole number below 540, so none is removed. The un-thirded 540 is deliberately not an option.",
+  "bounds_checked": "part not exceeding the whole, whole-number count, limiting case (no limiting value offered), divisibility by 3 (162 is divisible by 3 too)"
+ },
+ {
+  "id": "S15A-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "time for simple interest to reach a target balance",
+  "difficulty": "easy",
+  "template": "savings account / years to reach a balance / simple interest solved for time",
+  "prompt": "Lena deposits $1,500 in an account that pays 4 percent simple interest per year. She makes no other deposits or withdrawals. After how many years will the account hold exactly $1,800?",
+  "choices": [
+   "5",
+   "20",
+   "25",
+   "30",
+   "75"
+  ],
+  "correct_answer": "5",
+  "explanation": "Each year the account earns 4% of $1,500 = $60. It must earn $1,800 - $1,500 = $300, which takes 300 / 60 = 5 years. The option \"20\" stops at the percent growth needed, 20 percent, and reports it as years. The option \"25\" computes the years needed for the money to double at 4 percent. The option \"30\" divides the whole $1,800, not the $300 of interest, by the $60 earned each year. The option \"75\" divides the $300 of interest by the rate number 4 instead of by $60.",
+  "solve": "const i=1800-1500;return i/(1500*0.04);",
+  "distractor_solve": {
+   "20": "return (1800-1500)/1500*100;",
+   "25": "return 100/4;",
+   "30": "return 1800/(1500*0.04);",
+   "75": "return (1800-1500)/4;"
+  },
+  "interval": "The time is positive; no upper bound is forced short of computing. All five survive.",
+  "bounds_checked": "positivity, magnitude, doubling-time recall (25 is the rule-of-thumb value and is wrong here), key not a printed number"
+ },
+ {
+  "id": "S15A-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "one quantity as a percent of another through a chain of two percent relations",
+  "difficulty": "medium",
+  "template": "three unnamed numbers / x as a percent of z / chained percent greater and percent less",
+  "prompt": "The number x is 50 percent greater than the number y, and y is 40 percent less than the number z. The number x is what percent of z?",
+  "choices": [
+   "40",
+   "60",
+   "90",
+   "110",
+   "250"
+  ],
+  "correct_answer": "90",
+  "explanation": "y = 0.6z and x = 1.5y = 1.5(0.6z) = 0.9z, so x is 90 percent of z. The option \"40\" divides 0.6 by 1.5, dividing where it should multiply. The option \"60\" multiplies 1.5 by 0.4, using the 40 percent itself instead of 60 percent. The option \"110\" adds and subtracts the percents: 100 + 50 - 40. The option \"250\" divides 1.5 by 0.6 instead of multiplying.",
+  "solve": "const y=0.6, x=1.5*y;return Math.round(x*100);",
+  "distractor_solve": {
+   "40": "return Math.round(0.6/1.5*100);",
+   "60": "return Math.round(1.5*0.4*100);",
+   "110": "return 100+50-40;",
+   "250": "return Math.round(1.5/0.6*100);"
+  },
+  "interval": "No sign or magnitude is forced: x could be more or less than z until the product is taken. All five survive.",
+  "bounds_checked": "direction of each percent change, monotonicity, additive vs multiplicative combination, symmetry around 100"
+ },
+ {
+  "id": "S15A-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "remaining time when more workers join partway through a job",
+  "difficulty": "medium",
+  "template": "paving crew / days left after a crew grows / worker-days with a mid-job change",
+  "prompt": "A crew of 6 workers, all working at the same rate, can pave a road in 20 days. After the crew has worked for 4 days, 2 more workers who work at the same rate join them. How many more days will it take to finish paving the road?",
+  "choices": [
+   "4",
+   "9.6",
+   "11",
+   "12",
+   "14"
+  ],
+  "correct_answer": "12",
+  "explanation": "The road takes 6 x 20 = 120 worker-days. After 4 days, 24 worker-days are done and 96 remain. With 8 workers that takes 96 / 8 = 12 days. The option \"4\" scales the 16 remaining days by the new workers' share, 2/8, instead of by 6/8. The option \"9.6\" divides the remaining 96 worker-days by 10, adding 4 workers instead of 2. The option \"11\" finds the whole job time for 8 workers, 15 days, and subtracts the 4 days already worked. The option \"14\" assumes each extra worker saves one day from the 16 days the original crew would still need.",
+  "solve": "const total=6*20,left=total-6*4;return left/8;",
+  "distractor_solve": {
+   "4": "return (20-4)*2/8;",
+   "9.6": "return (6*20-6*4)/10;",
+   "11": "return 6*20/8-4;",
+   "14": "return (20-4)-2;"
+  },
+  "interval": "The remaining time is positive and less than 16 days (what the original 6 workers would need). All five options lie in (0, 16); none is removed. The no-new-workers value 16 is not an option.",
+  "bounds_checked": "monotonicity in the number of workers, limiting case (16 days with no new workers, not offered), key equal to a printed number (checked: 12 is not printed), arithmetic run with the key in the middle"
+ },
+ {
+  "id": "S15A-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance behind in a race from a fixed ratio of running speeds",
+  "difficulty": "medium",
+  "template": "two runners / gap at the finish of a longer race / constant speed ratio applied to a new distance",
+  "prompt": "Kai and Lia each run at a constant speed. In the time it takes Kai to run 500 meters, Lia runs 400 meters. They start a 1,500-meter race together. When Kai crosses the finish line, how many meters is Lia behind him?",
+  "choices": [
+   "100",
+   "300",
+   "375",
+   "1200",
+   "1875"
+  ],
+  "correct_answer": "300",
+  "explanation": "Lia runs 4/5 as far as Kai in the same time. When Kai has run 1,500 meters, Lia has run 4/5 x 1,500 = 1,200 meters, so she is 1,500 - 1,200 = 300 meters behind. The option \"100\" uses the 100-meter gap from one 500-meter stretch without scaling it to 1,500 meters. The option \"375\" divides the 100-meter gap by Lia's 400 meters instead of Kai's 500 meters. The option \"1200\" gives Lia's distance run instead of the distance she is behind. The option \"1875\" finds how far Kai would run while Lia runs 1,500 meters.",
+  "solve": "const lia=1500*400/500;return 1500-lia;",
+  "distractor_solve": {
+   "100": "return 500-400;",
+   "375": "return 1500*100/400;",
+   "1200": "return 1500*400/500;",
+   "1875": "return 1500*500/400;"
+  },
+  "interval": "The gap is positive and less than 1,500 meters; 1875 lies above that, so one option is removed by the race length. Three distractors survive.",
+  "bounds_checked": "part not exceeding the whole (gap below 1,500), magnitude, monotonicity in the speed ratio, key equal to a printed number (checked: 300 is not printed)"
+ },
+ {
+  "id": "S15A-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "time for two trains moving toward each other to pass completely, with km/h converted to m/s",
+  "difficulty": "hard",
+  "template": "two trains on parallel tracks / seconds to pass completely / closing speed and summed lengths with unit conversion",
+  "prompt": "Two trains on parallel tracks are moving toward each other. One train is 120 meters long and travels at 45 kilometers per hour; the other is 180 meters long and travels at 63 kilometers per hour. From the moment the fronts of the trains meet, how many seconds pass until the rear ends of the trains pass each other?",
+  "choices": [
+   "2",
+   "6",
+   "10",
+   "24",
+   "60"
+  ],
+  "correct_answer": "10",
+  "explanation": "Moving toward each other, the trains close at 45 + 63 = 108 km/h = 108,000 / 3,600 = 30 meters per second. The rear ends pass when the trains have together covered both lengths, 120 + 180 = 300 meters, which takes 300 / 30 = 10 seconds. The option \"2\" subtracts the train lengths instead of adding them. The option \"6\" uses only the longer train's length. The option \"24\" uses only the slower train's speed instead of the closing speed. The option \"60\" subtracts the speeds, as if the trains moved in the same direction.",
+  "solve": "const v=(45+63)*1000/3600;return (120+180)/v;",
+  "distractor_solve": {
+   "2": "const v=(45+63)*1000/3600;return (180-120)/v;",
+   "6": "const v=(45+63)*1000/3600;return 180/v;",
+   "24": "const v=45*1000/3600;return (120+180)/v;",
+   "60": "const v=(63-45)*1000/3600;return (120+180)/v;"
+  },
+  "interval": "The time is positive; no printed number bounds it without converting units. All five survive.",
+  "bounds_checked": "sign of the closing speed (opposite directions), sum of options equal to the key (2 + 6 = 8, not 10), magnitude, unit conversion factor 3.6"
+ },
+ {
+  "id": "S15A-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "chaining two equal-cost statements to convert one item into another",
+  "difficulty": "medium",
+  "template": "fruit prices / number of plums worth some apples / chained equivalences apples-pears-plums",
+  "prompt": "At a market, 3 apples cost the same as 4 pears, and 2 pears cost the same as 5 plums. How many plums cost the same as 6 apples?",
+  "choices": [
+   "8",
+   "11.25",
+   "15",
+   "16",
+   "20"
+  ],
+  "correct_answer": "20",
+  "explanation": "Six apples cost the same as 6 x 4/3 = 8 pears, and 8 pears cost the same as 8 x 5/2 = 20 plums. The option \"8\" stops after converting the apples to pears. The option \"11.25\" turns the first ratio upside down, using 3/4 pear per apple. The option \"15\" skips the pears and uses the pear-to-plum rate on the apples directly. The option \"16\" multiplies by 2 at the second step instead of by 5/2.",
+  "solve": "const pears=6*4/3;return pears*5/2;",
+  "distractor_solve": {
+   "8": "return 6*4/3;",
+   "11.25": "return 6*(3/4)*(5/2);",
+   "15": "return 6*5/2;",
+   "16": "return 6*(4/3)*2;"
+  },
+  "interval": "Pears are cheaper than apples and plums cheaper than pears, so the count of plums exceeds 6. All five options exceed 6; none is removed by direction. (No option below 6 is offered.)",
+  "bounds_checked": "direction read off each equivalence (cheaper fruit means more of it), magnitude, key extreme on an ask that is not greatest/least, a one-step stop"
+ },
+ {
+  "id": "S15A-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "unknown rate of a second pump from a fill that it joins partway",
+  "difficulty": "hard",
+  "template": "tank filled by two pumps / rate of the second pump / one pump runs alone first, then both",
+  "prompt": "An empty 900-liter tank is filled by pump A, which delivers 30 liters per minute. After pump A has run alone for 10 minutes, pump B is also switched on, and with both pumps running the tank is full 8 minutes later. How many liters per minute does pump B deliver?",
+  "choices": [
+   "20",
+   "36",
+   "45",
+   "50",
+   "75"
+  ],
+  "correct_answer": "45",
+  "explanation": "Pump A runs for all 18 minutes and delivers 30 x 18 = 540 liters. Pump B supplies the other 900 - 540 = 360 liters in 8 minutes, so its rate is 360 / 8 = 45 liters per minute. The option \"20\" treats both pumps as running for all 18 minutes. The option \"36\" divides the 360 liters pump B supplies by the 10 minutes instead of the 8 minutes it ran. The option \"50\" gives the average rate of filling over all 18 minutes. The option \"75\" forgets that pump A keeps running during the last 8 minutes.",
+  "solve": "const left=900-30*10;return (left-30*8)/8;",
+  "distractor_solve": {
+   "20": "return 900/18-30;",
+   "36": "return (900-30*18)/10;",
+   "50": "return 900/18;",
+   "75": "return (900-30*10)/8;"
+  },
+  "interval": "The rate is positive. No other bound is forced without the computation (the both-pumps rate of 75 over the last 8 minutes is itself a step of the method). All five survive.",
+  "bounds_checked": "positivity, magnitude, average lying between extremes, closure (45 + 30 = 75 is the combined rate and is a step, not a free observation)"
+ },
+ {
+  "id": "S15A-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "increase in each person's share when the group sharing a fixed cost shrinks",
+  "difficulty": "medium",
+  "template": "group sharing a bus rental / increase in each share / fixed total over fewer people",
+  "prompt": "Fifteen friends agree to share the $420 cost of renting a bus equally. Three of them drop out, and the other friends share the same $420 cost equally. How much more does each remaining friend pay than under the original plan?",
+  "choices": [
+   "$5.60",
+   "$7.00",
+   "$22.40",
+   "$35.00",
+   "$84.00"
+  ],
+  "correct_answer": "$7.00",
+  "explanation": "Originally each pays 420 / 15 = $28. With 12 people each pays 420 / 12 = $35, which is $35 - $28 = $7.00 more. The option \"$22.40\" lowers the share in proportion to the smaller group, 28 x 12/15. The option \"$5.60\" spreads the dropouts' $84 over all 15 friends instead of the 12 who remain. The option \"$35.00\" gives the new share instead of the increase. The option \"$84.00\" gives the total that the three dropouts would have paid.",
+  "solve": "const a=420/15,b=420/12;return \"$\"+(b-a).toFixed(2);",
+  "distractor_solve": {
+   "$22.40": "return \"$\"+(420/15*12/15).toFixed(2);",
+   "$5.60": "return \"$\"+(3*420/15/15).toFixed(2);",
+   "$35.00": "return \"$\"+(420/12).toFixed(2);",
+   "$84.00": "return \"$\"+(3*420/15).toFixed(2);"
+  },
+  "interval": "The increase is positive. If each paid $84 more, 12 people would pay over $1,300, more than $420, so $84.00 is removable by checking the total; the other three distractors survive.",
+  "bounds_checked": "fixed total (part not exceeding whole), monotonicity (fewer people pay more each), magnitude"
+ },
+ {
+  "id": "S15A-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an unknown rate found by subtracting a known rate from a combined rate",
+  "difficulty": "medium",
+  "template": "escalator / walking time with the escalator off / combined rate minus the escalator rate",
+  "prompt": "Standing still on a moving escalator, Kim rides from the bottom to the top in 60 seconds. Walking up the same escalator while it is moving, she reaches the top in 24 seconds. At her same walking pace, how many seconds would it take her to walk from the bottom to the top if the escalator were switched off?",
+  "choices": [
+   "40",
+   "42",
+   "48",
+   "60",
+   "84"
+  ],
+  "correct_answer": "40",
+  "explanation": "The escalator moves Kim 1/60 of the way each second, and walking on it she covers 1/24 of the way each second, so her walking alone covers 1/24 - 1/60 = 3/120 = 1/40 of the way each second. Walking alone takes 40 seconds. The option \"48\" assumes Kim walks exactly as fast as the escalator moves, so walking alone takes twice 24 seconds. The option \"42\" averages the two times. The option \"60\" gives the walker the escalator's share of the trip, 24/60 of it per 24 seconds. The option \"84\" adds the two times.",
+  "solve": "return 1/(1/24-1/60);",
+  "distractor_solve": {
+   "48": "return 2*24;",
+   "42": "return (60+24)/2;",
+   "60": "return 24/(24/60);",
+   "84": "return 60+24;"
+  },
+  "interval": "Walking alone is slower than walking on the moving escalator, so the time exceeds 24 seconds. All five options exceed 24; none is removed.",
+  "bounds_checked": "monotonicity (removing the escalator lengthens the time), lower bound 24, average between extremes, sum of printed numbers, doubling a printed number"
+ },
+ {
+  "id": "S15A-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a share as a percent of the whole after part of another share is transferred",
+  "difficulty": "medium",
+  "template": "prize shared three ways / new percent of one person / part of one share moved to another",
+  "prompt": "A prize is shared among Ana, Ben and Cal in the ratio 2 : 3 : 5. Cal then gives one quarter of his share to Ana. What percent of the whole prize does Ana now have?",
+  "choices": [
+   "12.5",
+   "25",
+   "32.5",
+   "37.5",
+   "45"
+  ],
+  "correct_answer": "32.5",
+  "explanation": "Ana starts with 2/10 = 20% and Cal with 5/10 = 50%. Cal gives away 50% / 4 = 12.5%, so Ana now has 20% + 12.5% = 32.5%. The option \"12.5\" gives only the amount Cal passes to Ana. The option \"25\" adds a quarter of Ana's own share instead of a quarter of Cal's. The option \"37.5\" gives Cal's new share instead of Ana's. The option \"45\" adds a quarter of the whole prize instead of a quarter of Cal's share.",
+  "solve": "const a=2/10,c=5/10;return (a+c/4)*100;",
+  "distractor_solve": {
+   "12.5": "return 5/10/4*100;",
+   "25": "return 2/10*1.25*100;",
+   "37.5": "return 5/10*0.75*100;",
+   "45": "return (2/10+1/4)*100;"
+  },
+  "interval": "Ana now has more than her original 20%, which removes 12.5; she has less than 20% + 50%. The other three survive.",
+  "bounds_checked": "monotonicity (Ana gains), lower bound 20 percent, part not exceeding whole, arithmetic run (12.5, 25, 37.5 does not contain the key)"
+ },
+ {
+  "id": "S15A-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "comparing fuel use given in liters per 100 km and in km per liter",
+  "difficulty": "hard",
+  "template": "two cars / extra liters used on a trip / converting between L per 100 km and km per L",
+  "prompt": "Car P uses 8 liters of fuel for every 100 kilometers it travels. Car Q travels 15 kilometers on each liter of fuel. On a 750-kilometer trip, how many more liters of fuel does car P use than car Q?",
+  "choices": [
+   "10",
+   "12.5",
+   "43.75",
+   "52.5",
+   "300"
+  ],
+  "correct_answer": "10",
+  "explanation": "Car P uses 8 liters per 100 km, so 7.5 x 8 = 60 liters for 750 km. Car Q uses 750 / 15 = 50 liters. Car P uses 60 - 50 = 10 more liters. The option \"12.5\" converts car P to 12.5 km per liter and stops. The option \"43.75\" reads car P's figure as 8 km per liter. The option \"52.5\" reads car Q's figure as 15 liters per 100 km. The option \"300\" divides 750 by the 2.5 km-per-liter difference in efficiency.",
+  "solve": "const p=750*8/100,q=750/15;return p-q;",
+  "distractor_solve": {
+   "12.5": "return 100/8;",
+   "43.75": "return 750/8-750/15;",
+   "52.5": "return Math.abs(750*8/100-750*15/100);",
+   "300": "return 750/(15-100/8);"
+  },
+  "interval": "The difference is positive and smaller than either car's total; without converting units no bound applies. All five survive.",
+  "bounds_checked": "unit consistency, magnitude, sign of the difference, key equal to a printed number (checked: 10 is not printed)"
+ },
+ {
+  "id": "S15A-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a changed ratio after items move from one group to the other with the total fixed",
+  "difficulty": "hard",
+  "template": "two boxes of pencils / count in the receiving box afterwards / transfer between parts with a fixed total",
+  "prompt": "Box A and box B hold pencils in the ratio 5 : 3. After 12 pencils are moved from box A to box B, the ratio of the number of pencils in box A to the number in box B is 7 : 5. How many pencils are in box B now?",
+  "choices": [
+   "30",
+   "36",
+   "45",
+   "66",
+   "120"
+  ],
+  "correct_answer": "120",
+  "explanation": "Let the boxes hold 5k and 3k. Afterwards (5k - 12) : (3k + 12) = 7 : 5, so 25k - 60 = 21k + 84 and k = 36. Box B now holds 3(36) + 12 = 120 (and box A holds 168; 168 : 120 = 7 : 5). The option \"36\" gives the multiplier k instead of a count of pencils. The option \"45\" forgets to add the 12 pencils to box B. The option \"66\" sets the new difference to 2k - 12 instead of 2k - 24, getting k = 18. The option \"30\" treats the parts of the new ratio as the same size as the old parts, so box B gains 5 - 3 = 2 parts = 12 pencils and holds 5 x 6 = 30.",
+  "solve": "for(let k=1;k<1000;k++){if((5*k-12)*5===(3*k+12)*7)return 3*k+12;}",
+  "distractor_solve": {
+   "36": "for(let k=1;k<1000;k++){if((5*k-12)*5===(3*k+12)*7)return k;}",
+   "45": "for(let k=1;k<1000;k++){if((5*k-12)*5===(3*k)*7)return 3*k;}",
+   "66": "for(let k=1;k<1000;k++){if((2*k-12)*3===4*k)return 3*k+12;}",
+   "30": "const part=12/(5-3);return 5*part;"
+  },
+  "interval": "Box B now holds more than 12. No other bound is forced; all five options exceed 12 and survive.",
+  "bounds_checked": "part of a fixed total, pair of options differing by the moved 12 (none present), sum of two options equal to the key (none; 30 + 36 = 66 is a distractor), magnitude"
+ },
+ {
+  "id": "S15A-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "drain-and-replace with a pure component to raise a concentration",
+  "difficulty": "hard",
+  "template": "container of mixture / liters drained / remove mixture and replace with pure concentrate",
+  "prompt": "A tank holds 40 liters of a mixture that is 25 percent concentrate. Some of the mixture is drained and replaced with the same amount of pure concentrate, so that the tank again holds 40 liters, now 40 percent concentrate. How many liters were drained?",
+  "choices": [
+   "8",
+   "10",
+   "15",
+   "16",
+   "24"
+  ],
+  "correct_answer": "8",
+  "explanation": "At the end there must be 0.40 x 40 = 16 liters of concentrate; there are 10 now, so 6 more are needed. Each liter drained removes 0.25 liter of concentrate and the replacement adds 1 liter, a net gain of 0.75 liter. So 0.75x = 6 and x = 8. The option \"10\" adds pure concentrate without draining anything. The option \"15\" reads the 15-point rise as 15 liters. The option \"16\" gives the total concentrate needed at the end. The option \"24\" divides the 6 liters of concentrate needed by the starting 25 percent instead of by 75 percent.",
+  "solve": "const need=40*0.40-40*0.25;return need/(1-0.25);",
+  "distractor_solve": {
+   "10": "return (40*0.40-40*0.25)/(1-0.40);",
+   "15": "return 40-25;",
+   "16": "return 40*0.40;",
+   "24": "return (40*0.40-40*0.25)/0.25;"
+  },
+  "interval": "Each liter swapped gains less than 1 liter of concentrate, so more than 6 liters must be drained, and fewer than 40. All five options lie in (6, 40); the net-gain value 6 is not offered.",
+  "bounds_checked": "limiting case (6, the net gain ON the lower bound, kept out), part not exceeding whole (below 40), complement pairs summing to 40 (none), magnitude, multiples of the key (16 = 2 x 8 and 24 = 3 x 8 come from different paths)"
+ },
+ {
+  "id": "S15A-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "meeting time of two trains moving toward each other when one starts later",
+  "difficulty": "hard",
+  "template": "two trains from two towns / clock time they pass / head start covered before closing speed applies",
+  "prompt": "Towns P and Q are 330 kilometers apart. A train leaves P at 9:00 a.m. and travels toward Q at 60 kilometers per hour. A second train leaves Q at 10:30 a.m. and travels toward P on a parallel track at 90 kilometers per hour. At what time do the two trains pass each other?",
+  "choices": [
+   "12:06 p.m.",
+   "12:42 p.m.",
+   "1:10 p.m.",
+   "1:42 p.m.",
+   "2:30 p.m."
+  ],
+  "correct_answer": "12:06 p.m.",
+  "explanation": "By 10:30 a.m. the first train has gone 60 x 1.5 = 90 km, leaving 240 km. Then the trains close at 60 + 90 = 150 km/h, taking 240 / 150 = 1.6 hours = 1 hour 36 minutes. They pass at 12:06 p.m. The option \"12:42 p.m.\" starts the whole 330 kilometers at the closing speed from 10:30, ignoring the first train's head start. The option \"1:10 p.m.\" covers the remaining 240 kilometers at the second train's speed alone. The option \"1:42 p.m.\" uses the average of the two speeds, 75, for the remaining 240 kilometers. The option \"2:30 p.m.\" covers the remaining 240 kilometers at the first train's speed alone.",
+  "solve": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};const left=330-60*1.5;return fmt(630+left/150*60);",
+  "distractor_solve": {
+   "12:42 p.m.": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};return fmt(630+330/150*60);",
+   "1:10 p.m.": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};return fmt(630+240/90*60);",
+   "1:42 p.m.": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};return fmt(630+240/75*60);",
+   "2:30 p.m.": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};return fmt(630+240/60*60);"
+  },
+  "interval": "The trains pass after 10:30 a.m. and after 11:12 a.m. (the time if both had left at 9:00), and before 2:30 p.m. is not forced cheaply. All five options are later than 11:12; none is removed. 11:12 itself is not offered.",
+  "bounds_checked": "limiting case (simultaneous start 11:12, not offered), ordering of clock times, decimal-hour conversion, symmetry of single-speed errors (1:10 and 2:30)"
+ },
+ {
+  "id": "S15A-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "total time when two workers alternate one hour at a time",
+  "difficulty": "hard",
+  "template": "two painters taking turns / hours to finish / hour-by-hour alternation with a partial last turn",
+  "prompt": "Working alone, Ana can paint a fence in 6 hours and Ben can paint it in 9 hours. They take turns, one at a time: Ana paints for the first hour, Ben for the second hour, Ana for the third hour, and so on, until the fence is finished. How many hours does it take to paint the fence?",
+  "choices": [
+   "6.6",
+   "7",
+   "7.2",
+   "7.5",
+   "8"
+  ],
+  "correct_answer": "7",
+  "explanation": "In each two-hour pair they paint 1/6 + 1/9 = 5/18. After 6 hours they have painted 15/18 = 5/6. The seventh hour is Ana's, and she paints 1/6 in one hour, finishing exactly at 7 hours. The option \"6.6\" finishes the last sixth of the fence with both painting together. The option \"7.2\" uses the average of the two rates for the whole job. The option \"7.5\" lets Ben paint after the sixth hour instead of Ana. The option \"8\" counts only complete two-hour turns.",
+  "solve": "let done=0,t=0;const r=[1/6,1/9];while(done<1-1e-9){const rate=r[t%2];if(done+rate>=1-1e-9){t+=(1-done)/rate;done=1;}else{done+=rate;t+=1;}}return Math.round(t*1000)/1000;",
+  "distractor_solve": {
+   "6.6": "const pair=1/6+1/9;const after6=3*pair;return 6+(1-after6)/pair;",
+   "7.2": "return 1/((1/6+1/9)/2);",
+   "7.5": "const after6=3*(1/6+1/9);return 6+(1-after6)/(1/9);",
+   "8": "return 2*Math.ceil(1/(1/6+1/9));"
+  },
+  "interval": "The time is between 6 hours (Ana alone) and 9 hours (Ben alone). All five options lie in (6, 9); none is removed.",
+  "bounds_checked": "between the two solo times, monotonicity, average lying between extremes, whole-cycle rounding"
+ },
+ {
+  "id": "S15A-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a profit split with a fee taken first and the rest divided in a ratio, worked backward",
+  "difficulty": "hard",
+  "template": "two partners / second partner's amount / percent fee off the top then ratio split, reversed",
+  "prompt": "Two partners divide a profit as follows. First, Mina receives 10 percent of the profit as a management fee. Then the rest of the profit is split between Mina and Joon in the ratio 2 : 3. Mina receives $2,300 in all. How many dollars does Joon receive?",
+  "choices": [
+   "2484",
+   "2700",
+   "2760",
+   "3000",
+   "3105"
+  ],
+  "correct_answer": "2700",
+  "explanation": "Mina gets 10% of the profit P plus 2/5 of the remaining 90%: 0.10P + 0.36P = 0.46P = 2,300, so P = 5,000. Joon gets 3/5 of 0.90 x 5,000 = 4,500, which is $2,700. The option \"2484\" treats Mina's fraction as 10% + 40% of the whole profit, getting a $4,600 profit. The option \"2760\" treats Mina's fraction as 10% + 40% and gives Joon 60% of that $4,600. The option \"3000\" finds the $5,000 profit but gives Joon 3/5 of all of it, not 3/5 of the remaining 90%. The option \"3105\" takes the fee as 10% of Mina's $2,300 and scales the rest by 3/2.",
+  "solve": "const minaFrac=0.1+0.9*2/5;const P=2300/minaFrac;return Math.round(0.9*P*3/5);",
+  "distractor_solve": {
+   "2484": "const P=2300/(0.1+0.4);return Math.round(0.54*P);",
+   "2760": "const P=2300/(0.1+0.4);return Math.round(0.6*P);",
+   "3000": "const P=2300/(0.1+0.9*0.4);return Math.round(0.6*P);",
+   "3105": "return Math.round(1.5*(2300-0.1*2300));"
+  },
+  "interval": "Mina's ratio part is less than her $2,300 because her total includes the fee, so Joon gets less than 3/2 x 2,300 = 3,450; every option is below 3,450 (the ignore-the-fee value 3,450 is not offered). All five survive.",
+  "bounds_checked": "limiting case (ignore-the-fee 3,450 kept out), upper bound 3,450, comparison of the two partners, magnitude"
+ },
+ {
+  "id": "S15A-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "minutes used under a two-tier per-minute charge, worked back from the bill",
+  "difficulty": "hard",
+  "template": "phone plan bill / minutes used / two-tier rate reversed from a total",
+  "prompt": "A phone plan charges 10 cents per minute for the first 300 minutes used in a month and 6 cents per minute for each minute after the first 300. Last month Dana's bill was $42.00. How many minutes did she use?",
+  "choices": [
+   "450",
+   "500",
+   "525",
+   "540",
+   "600"
+  ],
+  "correct_answer": "500",
+  "explanation": "The first 300 minutes cost 300 x $0.10 = $30. The other $12 buys 12 / 0.06 = 200 minutes at 6 cents, so Dana used 300 + 200 = 500 minutes. The option \"450\" charges the minutes beyond 300 at the average rate of 8 cents. The option \"525\" charges every minute at the average rate of 8 cents. The option \"540\" swaps the two rates. The option \"600\" divides the remaining $12 by the 4-cent difference between the rates.",
+  "solve": "const first=300*0.10;return 300+(42-first)/0.06;",
+  "distractor_solve": {
+   "450": "return 300+(42-300*0.10)/0.08;",
+   "525": "return 42/0.08;",
+   "540": "return 300+(42-300*0.06)/0.10;",
+   "600": "return 300+(42-300*0.10)/(0.10-0.06);"
+  },
+  "interval": "The bill exceeds $30, so more than 300 minutes; it lies between 420 (all at 10 cents) and 700 (all at 6 cents). All five options lie in (420, 700); the single-rate limiting values 420 and 700 are not offered.",
+  "bounds_checked": "limiting cases (single-rate 420 and 700 kept out), lower bound from the first tier, monotonicity in minutes, magnitude"
+ },
+ {
+  "id": "S15A-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "time when one burning candle is twice as long as another of the same starting length",
+  "difficulty": "hard",
+  "template": "two candles of equal length / time until one is twice the other / remaining lengths at different burn rates",
+  "prompt": "Two candles are the same length. One burns down completely in 4 hours and the other in 6 hours, each at a steady rate. Both are lit at the same moment. After how long is the slower-burning candle exactly twice as long as the faster-burning candle?",
+  "choices": [
+   "1 hour 30 minutes",
+   "2 hours",
+   "2 hours 24 minutes",
+   "2 hours 40 minutes",
+   "3 hours"
+  ],
+  "correct_answer": "3 hours",
+  "explanation": "After t hours the faster candle has 1 - t/4 of its length left and the slower has 1 - t/6. Setting 1 - t/6 = 2(1 - t/4) gives 1 - t/6 = 2 - t/2, so t/3 = 1 and t = 3 hours. Check: 1/2 left of one candle and 1/4 of the other. The option \"1 hour 30 minutes\" sets the slower candle's remaining length equal to twice the length the faster candle has burned. The option \"2 hours\" treats the burn times as lengths that burn 1 unit per hour: 6 - t = 2(4 - t). The option \"2 hours 24 minutes\" computes the time for the two candles together to burn one candle's length. The option \"2 hours 40 minutes\" finds when the faster candle is down to one third of its length.",
+  "solve": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};for(let k=1;k<=480;k++){const t=k/60;if(Math.abs((1-t/6)-2*(1-t/4))<1e-9)return fmt(t);}",
+  "distractor_solve": {
+   "1 hour 30 minutes": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};return fmt(1/(1/2+1/6));",
+   "2 hours": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};return fmt((2*4-6)/(2-1));",
+   "2 hours 24 minutes": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};return fmt(1/(1/4+1/6));",
+   "2 hours 40 minutes": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};return fmt(4*(1-1/3));"
+  },
+  "interval": "The time is less than 4 hours (when the faster candle is gone). All five options are under 4 hours; none is removed.",
+  "bounds_checked": "upper bound 4 hours, monotonicity of the length ratio, combined-work recall, time format consistency"
+ },
+ {
+  "id": "S15A-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "concentration after mixing two solutions and then replacing some mixture with water",
+  "difficulty": "hard",
+  "template": "two acid solutions / final percent acid / weighted mix followed by a remove-and-replace dilution",
+  "prompt": "A chemist mixes 30 liters of a 20 percent acid solution with 20 liters of a 45 percent acid solution. She then pours out 10 liters of the mixture and replaces them with 10 liters of water. What percent of the final solution is acid?",
+  "choices": [
+   "20",
+   "22.5",
+   "24",
+   "26",
+   "32.5"
+  ],
+  "correct_answer": "24",
+  "explanation": "The mixture has 0.20(30) + 0.45(20) = 6 + 9 = 15 liters of acid in 50 liters, which is 30%. Pouring out 10 liters removes 3 liters of acid, leaving 12, and adding water brings the volume back to 50, so the acid is 12 / 50 = 24%. The option \"20\" adds the 10 liters of water on top of the 50 liters, as if none were poured out. The option \"22.5\" takes the 10 liters as a quarter of the 40 liters left instead of a fifth of the 50. The option \"26\" averages 20 and 45 without weighting and then dilutes correctly. The option \"32.5\" averages 20 and 45 without weighting and ignores the dilution.",
+  "solve": "const acid=30*0.2+20*0.45,v=50;const c=acid/v;return (c*(v-10))/v*100;",
+  "distractor_solve": {
+   "20": "const acid=30*0.2+20*0.45;return (acid*40/50)/60*100;",
+   "22.5": "const c=(30*0.2+20*0.45)/50;return c*(1-10/40)*100;",
+   "26": "return (20+45)/2*0.8;",
+   "32.5": "return (20+45)/2;"
+  },
+  "interval": "The final percent is below 45 and below the 30% of the mixture before dilution; 32.5 lies above 30 and is removable once the mix is computed. The other three survive.",
+  "bounds_checked": "average lying between extremes, dilution lowers the percent, weighted vs unweighted mean, limiting case (the undiluted 30 kept out)"
+ },
+ {
+  "id": "S15A-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "percent increase over a planned daily rate needed to finish on schedule after falling behind",
+  "difficulty": "hard",
+  "template": "road paving schedule / percent above the planned daily rate / remaining work over remaining time",
+  "prompt": "A crew planned to pave 20 kilometers of road in 40 days, paving the same distance each day. After 15 days, only 6 kilometers have been paved. To finish on schedule, by what percent must the crew's daily distance for the remaining days exceed the originally planned daily distance?",
+  "choices": [
+   "12",
+   "20",
+   "25",
+   "40",
+   "56"
+  ],
+  "correct_answer": "12",
+  "explanation": "The plan was 20 / 40 = 0.5 km per day. 14 km remain for 25 days, which needs 14 / 25 = 0.56 km per day. That is 0.06 / 0.5 = 12% more than planned. The option \"20\" gives the percent by which the crew is behind after 15 days. The option \"25\" compares the planned 7.5 km with the 6 km actually paved. The option \"40\" compares the needed rate with the crew's actual rate so far instead of the planned rate. The option \"56\" reads the needed 0.56 km per day as 56 percent.",
+  "solve": "const plan=20/40,need=(20-6)/25;return Math.round((need/plan-1)*1000)/10;",
+  "distractor_solve": {
+   "20": "return (15*20/40-6)/(15*20/40)*100;",
+   "25": "return ((15*20/40)/6-1)*100;",
+   "40": "return Math.round(((20-6)/25/(6/15)-1)*1000)/10;",
+   "56": "return Math.round((20-6)/25*100);"
+  },
+  "interval": "The increase is positive. No other bound is forced without computing; all five survive.",
+  "bounds_checked": "positivity, which base the percent is taken on (planned vs actual), magnitude, decimal read as percent, key equal to a printed number (checked: 12 is not printed; 20 and 40 are printed and are distractors from named paths)"
+ },
+ {
+  "id": "S15A-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "total time for a job when the rate increases partway through",
+  "difficulty": "hard",
+  "template": "printer upgraded mid-job / total hours / remaining work at a faster rate",
+  "prompt": "A printer working at a steady rate would take 12 hours to print a large job. After it has printed for 3 hours, it is upgraded so that it prints 50 percent faster, and it prints the rest of the job at that new rate. How many hours does the whole job take?",
+  "choices": [
+   "9",
+   "9.6",
+   "9.75",
+   "10",
+   "11"
+  ],
+  "correct_answer": "9",
+  "explanation": "After 3 hours, 9 of the 12 hours of work remain. At 1.5 times the speed that takes 9 / 1.5 = 6 hours, so the whole job takes 3 + 6 = 9 hours. The option \"9.6\" uses an average speed-up of 25 percent for the whole job. The option \"9.75\" takes 50 percent faster to mean each remaining hour shrinks by a quarter. The option \"10\" averages the old and new full-job times, 12 and 8. The option \"11\" adds the 3 hours to the time for the whole job at the new rate.",
+  "solve": "const left=1-3/12;return 3+left*12/1.5;",
+  "distractor_solve": {
+   "9.6": "return 12/1.25;",
+   "9.75": "return 3+9*0.75;",
+   "10": "return (12+12/1.5)/2;",
+   "11": "return 3+12/1.5;"
+  },
+  "interval": "The total lies between 8 hours (fast the whole time) and 12 hours (never upgraded); those limiting values are not offered. All five options lie in (8, 12).",
+  "bounds_checked": "limiting cases (8 and 12 kept out), monotonicity in the speed-up, average between extremes"
+ },
+ {
+  "id": "S15A-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "percent change in a unit price when price rises and quantity falls",
+  "difficulty": "medium",
+  "template": "cereal box / percent change in price per ounce / price up and contents down together",
+  "prompt": "The price of a box of cereal rises by 20 percent. At the same time, the amount of cereal in the box is reduced by 20 percent. By what percent does the price per ounce of the cereal increase?",
+  "choices": [
+   "4",
+   "40",
+   "44",
+   "50",
+   "150"
+  ],
+  "correct_answer": "50",
+  "explanation": "For each old dollar and old ounce, the new price is 1.2 and the new amount 0.8, so the price per ounce is 1.2 / 0.8 = 1.5 times as much: an increase of 50%. The option \"4\" multiplies 1.2 by 0.8 instead of dividing. The option \"40\" adds the two percents. The option \"44\" treats the smaller box as another 20 percent price rise. The option \"150\" gives the new unit price as a percent of the old one.",
+  "solve": "return Math.round((1.2/0.8-1)*100);",
+  "distractor_solve": {
+   "4": "return Math.round(Math.abs(1.2*0.8-1)*100);",
+   "40": "return 20+20;",
+   "44": "return Math.round((1.2*1.2-1)*100);",
+   "150": "return Math.round(1.2/0.8*100);"
+  },
+  "interval": "Both changes raise the unit price, so the increase exceeds 20%; 4 is removable. The other three survive.",
+  "bounds_checked": "direction (both changes raise the unit price), lower bound 20, additive vs multiplicative, ratio vs change"
+ },
+ {
+  "id": "S15A-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance between towns from two meeting points of riders going back and forth",
+  "difficulty": "hard",
+  "template": "two cyclists between two towns / distance between the towns / combined distance at the second meeting is three lengths",
+  "prompt": "Two cyclists start at the same moment, one from town A and one from town B, and ride toward each other along the same road, each at a constant speed. They first pass each other 24 kilometers from A. Each continues to the other town, turns around immediately, and rides back. They pass each other a second time 15 kilometers from B. How many kilometers apart are A and B?",
+  "choices": [
+   "39",
+   "57",
+   "63",
+   "72",
+   "87"
+  ],
+  "correct_answer": "57",
+  "explanation": "At the first meeting the two have together ridden one A-to-B distance, and the cyclist from A has ridden 24 km. At the second meeting they have together ridden three such distances, so the cyclist from A has ridden 3 x 24 = 72 km, which is the whole distance plus 15 km. So the distance is 72 - 15 = 57 km. The option \"39\" adds the two distances from the towns. The option \"63\" assumes the cyclist from A has gone twice, not three times, 24 km by the second meeting, then adds 15. The option \"72\" finds the 72 km the cyclist from A has ridden but forgets to subtract the 15 km back from B. The option \"87\" adds the 15 km instead of subtracting it.",
+  "solve": "return 3*24-15;",
+  "distractor_solve": {
+   "39": "return 24+15;",
+   "63": "return 2*24+15;",
+   "72": "return 3*24;",
+   "87": "return 3*24+15;"
+  },
+  "interval": "The distance exceeds 24 km and 15 km. All five options exceed 24; none is removed.",
+  "bounds_checked": "lower bounds from both meeting points, arithmetic runs (57, 72, 87 has the key at the end; no run has it in the middle), sum of printed numbers (39 offered as a distractor)"
+ },
+ {
+  "id": "S15A-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "weight after drying from the unchanged non-water part",
+  "difficulty": "hard",
+  "template": "fresh fruit drying / weight after drying / dry matter stays fixed while water percent falls",
+  "prompt": "A 60-kilogram load of fresh fruit is 75 percent water by weight. After drying, the fruit is 40 percent water by weight. What is the weight of the dried fruit, in kilograms?",
+  "choices": [
+   "20",
+   "21",
+   "24",
+   "25",
+   "37.5"
+  ],
+  "correct_answer": "25",
+  "explanation": "The dry matter is 25% of 60 = 15 kg and does not change. After drying it is 100% - 40% = 60% of the weight, so the weight is 15 / 0.6 = 25 kg. The option \"21\" adds 40 percent of the dry matter as water. The option \"24\" takes 40 percent of the original 60 kilograms. The option \"20\" divides the dry matter by the original water fraction, 0.75, instead of the new dry fraction. The option \"37.5\" divides the dry matter by the water percent instead of the dry percent.",
+  "solve": "const dry=60*(1-0.75);return dry/(1-0.40);",
+  "distractor_solve": {
+   "21": "const dry=60*0.25;return dry+dry*0.4;",
+   "24": "return 60*0.40;",
+   "20": "const dry=60*0.25;return dry/0.75;",
+   "37.5": "const dry=60*0.25;return dry/0.40;"
+  },
+  "interval": "The dried weight is more than the 15 kg of dry matter and less than 60 kg. All five options lie in (15, 60); the dry-matter value 15 is not offered.",
+  "bounds_checked": "limiting case (15 kg of dry matter kept out), upper bound 60, magnitude, adjacency (24 and 25 differ by 1 and come from different paths)"
+ },
+ {
+  "id": "S15A-27",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number of items needed for a profit from two different per-group prices",
+  "difficulty": "medium",
+  "template": "fruit seller / apples to buy and sell / profit per item from two group prices",
+  "prompt": "A fruit seller buys apples at 3 for $1 and sells all of them at 2 for $1. How many apples must she buy and sell to make a profit of exactly $10?",
+  "choices": [
+   "10",
+   "20",
+   "30",
+   "50",
+   "60"
+  ],
+  "correct_answer": "60",
+  "explanation": "She pays 1/3 dollar for each apple and gets 1/2 dollar for it, a profit of 1/2 - 1/3 = 1/6 dollar per apple. A $10 profit needs 10 / (1/6) = 60 apples. The option \"10\" subtracts the group sizes, 3 - 2 = 1 apple per dollar, and multiplies by 10. The option \"20\" divides the profit by the selling price per apple. The option \"30\" divides the profit by the buying price per apple. The option \"50\" takes $1 of profit for every 3 + 2 = 5 apples.",
+  "solve": "const per=1/2-1/3;return Math.round(10/per);",
+  "distractor_solve": {
+   "10": "return 10*(3-2);",
+   "20": "return 10/(1/2);",
+   "30": "return 10/(1/3);",
+   "50": "return 10*(3+2);"
+  },
+  "interval": "The count is a whole number; every option is. No bound is forced without the per-apple profit. All five survive.",
+  "bounds_checked": "whole-number count, divisibility by 2 and 3 (all options are multiples of 10, so divisibility does not single out the key), magnitude"
+ },
+ {
+  "id": "S15A-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "difference in price per kilogram from package prices in grams",
+  "difficulty": "medium",
+  "template": "two rice brands / price difference per kilogram / unit price from grams to kilograms",
+  "prompt": "Brand A rice is sold in 250-gram bags for $3.00, and brand B rice is sold in 400-gram bags for $4.40. How much less does 1 kilogram of brand B rice cost than 1 kilogram of brand A rice?",
+  "choices": [
+   "$0.10",
+   "$0.25",
+   "$0.40",
+   "$0.50",
+   "$1.00"
+  ],
+  "correct_answer": "$1.00",
+  "explanation": "Brand A costs 3.00 x 4 = $12.00 per kilogram (four 250-gram bags). Brand B costs 4.40 x 2.5 = $11.00 per kilogram. Brand B is $1.00 cheaper per kilogram. The option \"$0.10\" finds the difference per 100 grams and stops. The option \"$0.25\" compares one bag of A with 250 grams of B. The option \"$0.40\" compares one bag of B with 400 grams of A. The option \"$0.50\" finds the difference for half a kilogram, 500 grams, and stops.",
+  "solve": "const a=3/0.25,b=4.4/0.4;return \"$\"+(a-b).toFixed(2);",
+  "distractor_solve": {
+   "$0.10": "return \"$\"+(3/2.5-4.4/4).toFixed(2);",
+   "$0.25": "return \"$\"+(3-4.4*250/400).toFixed(2);",
+   "$0.40": "return \"$\"+(3*400/250-4.4).toFixed(2);",
+   "$0.50": "return \"$\"+(3*2-4.4*500/400).toFixed(2);"
+  },
+  "interval": "The difference is positive and less than either price per kilogram (about $11 to $12). All five options are below $11; none is removed.",
+  "bounds_checked": "part not exceeding whole, unit consistency (grams vs kilograms), arithmetic run (0.10, 0.25, 0.40 does not contain the key), key-is-sum (no two options add to $1.00), halving pair (0.50 is the half-kilogram step of the method)"
+ },
+ {
+  "id": "S15A-29",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "weight of a container found from the weight change when a percent of its contents is removed",
+  "difficulty": "hard",
+  "template": "jar of honey / weight of the empty jar / percent of contents removed equals the weight lost",
+  "prompt": "A jar full of honey weighs 900 grams. After 40 percent of the honey is poured out, the jar and the remaining honey weigh 660 grams. How many grams does the empty jar weigh?",
+  "choices": [
+   "240",
+   "264",
+   "300",
+   "396",
+   "500"
+  ],
+  "correct_answer": "300",
+  "explanation": "The 240 grams lost is 40% of the honey, so the honey weighed 240 / 0.4 = 600 grams. The jar weighs 900 - 600 = 300 grams. The option \"500\" treats the 240 grams lost as 60 percent of the honey instead of 40 percent. The option \"240\" gives the weight of the honey poured out. The option \"264\" takes 40 percent of the second weight. The option \"396\" takes 60 percent of the second weight as the honey left and gives that.",
+  "solve": "const removed=900-660;const honey=removed/0.4;return 900-honey;",
+  "distractor_solve": {
+   "500": "const honey=(900-660)/0.6;return 900-honey;",
+   "240": "return 900-660;",
+   "264": "return 660*0.4;",
+   "396": "return 660*0.6;"
+  },
+  "interval": "The jar weighs more than 0 and less than 660 grams. All five options lie in (0, 660); none is removed.",
+  "bounds_checked": "part not exceeding whole, complement pairs (264 + 396 = 660 is a distractor pair, not the key), arithmetic runs (240, 300, 360 avoided), magnitude"
+ },
+ {
+  "id": "S15A-30",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance from the difference in arrival times at two walking speeds",
+  "difficulty": "hard",
+  "template": "walk to the station / distance from home / time difference between two speeds equals late plus early",
+  "prompt": "Walking from home to the station at 4 kilometers per hour, Ravi arrives 7 minutes after his train has left. Walking at 6 kilometers per hour, he arrives 5 minutes before the train leaves. The train leaves at the same time each day. How many kilometers is it from his home to the station?",
+  "choices": [
+   "0.4",
+   "0.6",
+   "1.44",
+   "2.4",
+   "144"
+  ],
+  "correct_answer": "2.4",
+  "explanation": "The two walks differ by 7 + 5 = 12 minutes = 1/5 hour. So d/4 - d/6 = 1/5, which gives d/12 = 1/5 and d = 2.4 km. The option \"0.4\" uses 7 - 5 = 2 minutes as the difference in times. The option \"0.6\" finds the walking time at 4 km/h in hours instead of the distance. The option \"1.44\" writes 12 minutes as 0.12 hour. The option \"144\" leaves the 12 minutes in minutes instead of changing it to 1/5 hour.",
+  "solve": "const diff=(7+5)/60;return Math.round(diff/(1/4-1/6)*1000)/1000;",
+  "distractor_solve": {
+   "0.4": "return Math.round(((7-5)/60)/(1/4-1/6)*1000)/1000;",
+   "0.6": "const d=(12/60)/(1/4-1/6);return Math.round(d/4*1000)/1000;",
+   "1.44": "return Math.round(0.12/(1/4-1/6)*1000)/1000;",
+   "144": "return Math.round((7+5)/(1/4-1/6));"
+  },
+  "interval": "The distance is positive, and a walk to a station cannot be over a hundred kilometers, so 144 is removable by plausibility. The other three survive.",
+  "bounds_checked": "positivity, magnitude (144 km removable; three survive), sign of the late/early combination (7 + 5, not 7 - 5), unit conversion of minutes, key equal to a printed number (checked)"
+ }
+]

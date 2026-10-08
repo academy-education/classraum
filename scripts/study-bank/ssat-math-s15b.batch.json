@@ -1,0 +1,702 @@
+[
+ {
+  "id": "S15B-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "exterior angle of a triangle equals the sum of the two remote interior angles",
+  "difficulty": "easy",
+  "template": "triangle with one exterior angle and one remote interior angle given / the other remote interior angle / exterior-angle theorem",
+  "prompt": "In triangle PQR, the exterior angle at vertex R measures 128 degrees, and angle P measures 51 degrees. What is the measure, in degrees, of angle Q?",
+  "choices": [
+   "77",
+   "64",
+   "52",
+   "39",
+   "25.5"
+  ],
+  "correct_answer": "77",
+  "explanation": "An exterior angle of a triangle equals the sum of the two interior angles not next to it, so P + Q = 128 and Q = 128 - 51 = 77. The option \"64\" halves the exterior angle, as if P and Q had to be equal. The option \"52\" is 180 - 128, the interior angle at R, not angle Q. The option \"39\" is 90 - 51, from treating the triangle as if R were a right angle. The option \"25.5\" halves angle P.",
+  "solve": "const ext=128,P=51;return ext-P;",
+  "distractor_solve": {
+   "64": "return 128/2;",
+   "52": "return 180-128;",
+   "39": "return 90-51;",
+   "25.5": "return 51/2;"
+  },
+  "interval": "Q is a remote interior angle, so 0 < Q < 128, and Q < 180 - 51 = 129. All five options lie inside (0, 128); no option sits on 128 or 129. Four distractors survive.",
+  "bounds_checked": "part-less-than-exterior-angle bound; angle-sum bound (Q < 129); supplement pairs summing to 180 among options (none); key-is-sum of two options (none)."
+ },
+ {
+  "id": "S15B-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "zigzag between parallel lines: alternate angles add at the vertex",
+  "difficulty": "medium",
+  "template": "point between two parallel lines joined to a point on each / angle at the middle point / sum of two alternate-angle pieces",
+  "prompt": "Lines l and m are parallel, and point P lies between them. Point A is on line l and point B is on line m, and both A and B lie to the left of P. Segment PA makes an acute angle of 35 degrees with line l, and segment PB makes an acute angle of 50 degrees with line m. What is the measure, in degrees, of angle APB?",
+  "choices": [
+   "15",
+   "85",
+   "42.5",
+   "130",
+   "145"
+  ],
+  "correct_answer": "85",
+  "explanation": "Draw the line through P parallel to l and m. It splits angle APB into two parts; by alternate angles the part next to PA is 35 degrees and the part next to PB is 50 degrees, so angle APB = 35 + 50 = 85. The option \"15\" subtracts the two angles. The option \"42.5\" averages them. The option \"130\" is 180 - 50, the supplement of the angle at B, read as the angle at P. The option \"145\" is 180 - 35, the supplement of the angle at A.",
+  "solve": "const a=35,b=50;return a+b;",
+  "distractor_solve": {
+   "15": "return 50-35;",
+   "42.5": "return (35+50)/2;",
+   "130": "return 180-50;",
+   "145": "return 180-35;"
+  },
+  "interval": "Angle APB is an angle at a point between the lines, so 0 < APB < 180. All options inside; none of the options pairs to 180 or 90 with another. Four distractors survive.",
+  "bounds_checked": "range of an angle (0,180); supplement/complement pairs among options; sign of the difference; average-between-extremes."
+ },
+ {
+  "id": "S15B-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "isosceles triangles with integer sides and a fixed perimeter: triangle inequality on the base",
+  "difficulty": "hard",
+  "template": "isosceles triangle with integer sides and fixed odd perimeter / number of different triangles / triangle inequality bounds the leg",
+  "prompt": "An isosceles triangle has a perimeter of 31 centimeters, and the length of each of its sides is a whole number of centimeters. How many different such triangles are possible?",
+  "choices": [
+   "5",
+   "7",
+   "8",
+   "12",
+   "10"
+  ],
+  "correct_answer": "8",
+  "explanation": "Let each equal side be a and the base be 31 - 2a. The base must be positive (a <= 15) and less than the sum of the two equal sides: 31 - 2a < 2a, so a > 7.75. Thus a = 8, 9, ..., 15, which is 8 triangles (31 is odd, so no triangle is equilateral). The option \"5\" requires the base to be shorter than ONE leg (31 - 2a < a, so a >= 11). The option \"7\" reverses the inequality (31 - 2a > 2a, a <= 7). The option \"12\" solves 31 < 4a as a > 31/8 and counts a = 4 to 15. The option \"10\" writes the condition as 31 - 2a < 4a, giving a >= 6.",
+  "solve": "let c=0;for(let a=1;a<=15;a++){const b=31-2*a;if(b>0&&b<2*a)c++;}return c;",
+  "distractor_solve": {
+   "5": "let c=0;for(let a=1;a<=15;a++){const b=31-2*a;if(b>0&&b<a)c++;}return c;",
+   "7": "let c=0;for(let a=1;a<=15;a++){const b=31-2*a;if(b>0&&b>2*a)c++;}return c;",
+   "12": "let c=0;for(let a=1;a<=15;a++){if(a>31/8)c++;}return c;",
+   "10": "let c=0;for(let a=1;a<=15;a++){const b=31-2*a;if(b>0&&b<4*a)c++;}return c;"
+  },
+  "interval": "The leg a can be at most 15 (positive base), so the count is at most 15; no option reaches 15 or 16. Every option lies strictly between 0 and 15. Four distractors survive; the key is neither the largest nor the smallest option.",
+  "bounds_checked": "count ceiling from the positive base (<= 15); limiting case of ignoring the triangle inequality (15, not offered); parity (odd perimeter, no equilateral); arithmetic runs with the key in the middle."
+ },
+ {
+  "id": "S15B-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "similar triangles formed by a lamp post, a person and the shadow",
+  "difficulty": "medium",
+  "template": "lamp post and person on level ground / length of the shadow / similar triangles sharing the shadow tip",
+  "prompt": "A lamp post is 18 feet tall. A person who is 6 feet tall stands on level ground 10 feet from the base of the post. How long, in feet, is the shadow that the lamp casts of the person?",
+  "choices": [
+   "10/3",
+   "20",
+   "30",
+   "5",
+   "2.5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Let the shadow be s. The light ray from the top of the post passes the top of the person and reaches the ground at the shadow tip, so the triangles are similar: 6/s = 18/(s + 10). Then 18s = 6s + 60 and s = 5. The option \"10/3\" scales the 10-foot distance by 6/18, as if the shadow were proportional to the distance from the post. The option \"20\" scales 10 by (18 - 6)/6. The option \"30\" scales 10 by 18/6. The option \"2.5\" adds the heights where they should be subtracted, 6(10)/(18 + 6).",
+  "solve": "const H=18,h=6,d=10;return h*d/(H-h);",
+  "distractor_solve": {
+   "10/3": "return 10*6/18;",
+   "20": "return 10*(18-6)/6;",
+   "30": "return 10*18/6;",
+   "2.5": "return 6*10/(18+6);"
+  },
+  "interval": "The shadow is positive with no upper bound printed in the stem (it grows without limit as the post height approaches the person's). All five options are positive and none is the 10-foot distance itself. Four distractors survive.",
+  "bounds_checked": "positivity; monotonicity in the post height; key-is-difference of two options (removed: the tip distance 15 would have made 20 - 15 = key); arithmetic runs (10/3, 5, 20/3 removed)."
+ },
+ {
+  "id": "S15B-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "surface-area scale factor to volume percent increase for a cube",
+  "difficulty": "hard",
+  "template": "cube surface area increases by a percent / percent increase in volume / square root then cube of the scale factor",
+  "prompt": "Every edge of a cube is lengthened by the same amount, and as a result the total surface area of the cube increases by 125%. By what percent does the volume of the cube increase?",
+  "choices": [
+   "337.5%",
+   "187.5%",
+   "150%",
+   "406.25%",
+   "237.5%"
+  ],
+  "correct_answer": "237.5%",
+  "explanation": "The area grows by a factor of 2.25, so each edge grows by a factor of sqrt(2.25) = 1.5 and the volume by 1.5^3 = 3.375, an increase of 237.5%. The option \"337.5%\" reports the factor 3.375 as the percent increase. The option \"187.5%\" multiplies the 125% by 1.5. The option \"150%\" triples the 50% edge increase. The option \"406.25%\" squares the area factor (2.25^2 = 5.0625) and subtracts 1.",
+  "solve": "const af=1+125/100;const k=Math.sqrt(af);return Math.round((k**3-1)*10000)/100;",
+  "distractor_solve": {
+   "337.5%": "const k=Math.sqrt(2.25);return k**3*100;",
+   "187.5%": "return 125*1.5;",
+   "150%": "return 3*50;",
+   "406.25%": "return (2.25**2-1)*100;"
+  },
+  "interval": "Scaling up, the volume increase exceeds the area increase of 125%, so every option must exceed 125%; all five do (smallest 150%). No option is 125% itself. Four distractors survive.",
+  "bounds_checked": "monotonicity (volume grows faster than area when scaling up); limiting case of equal growth (125%, not offered); factor-versus-increase (100 apart pairs); order of magnitude."
+ },
+ {
+  "id": "S15B-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume of a cylinder from the circumference of its base",
+  "difficulty": "easy",
+  "template": "cylinder given base circumference and height / volume in terms of pi / radius from circumference",
+  "prompt": "The base of a cylinder has a circumference of 10pi centimeters, and the cylinder is 6 centimeters tall. What is the volume of the cylinder, in cubic centimeters?",
+  "choices": [
+   "600π",
+   "150π",
+   "60π",
+   "50π",
+   "25π"
+  ],
+  "correct_answer": "150π",
+  "explanation": "The circumference is 2(pi)r = 10pi, so r = 5 and the volume is pi(5^2)(6) = 150pi. The option \"600pi\" takes 10 as the radius. The option \"60pi\" multiplies the circumference by the height (that is the curved surface area). The option \"50pi\" uses the cone formula with the factor 1/3. The option \"25pi\" is the area of the base alone.",
+  "solve": "const C=10,h=6;const r=C/2;return (r*r*h)+\"π\";",
+  "distractor_solve": {
+   "600π": "return (10*10*6)+\"π\";",
+   "60π": "return (10*6)+\"π\";",
+   "50π": "return (5*5*6/3)+\"π\";",
+   "25π": "return (5*5)+\"π\";"
+  },
+  "interval": "No bound in the stem separates the options: the volume is a positive multiple of pi and the stem prints no other cylinder. All options are positive multiples of pi. Four distractors survive.",
+  "bounds_checked": "unit/dimension (all options in pi units); doubling/halving around the key (none: ratios 4, 2/5, 1/3, 1/6); order of magnitude."
+ },
+ {
+  "id": "S15B-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "space diagonal of a rectangular box, solved for a missing edge",
+  "difficulty": "medium",
+  "template": "box with two edges and the space diagonal given / the third edge / three-dimensional Pythagorean theorem",
+  "prompt": "A rectangular box is 12 inches long and 4 inches wide. The straight-line distance through the inside of the box from one corner to the opposite corner is 13 inches. What is the height of the box, in inches?",
+  "choices": [
+   "5",
+   "√153",
+   "3",
+   "√21",
+   "9"
+  ],
+  "correct_answer": "3",
+  "explanation": "The space diagonal satisfies 12^2 + 4^2 + h^2 = 13^2, so h^2 = 169 - 144 - 16 = 9 and h = 3. The option \"5\" drops the width (sqrt(169 - 144)). The option \"sqrt153\" drops the length (sqrt(169 - 16)). The option \"sqrt21\" forgets to square the width (sqrt(169 - 144 - 4)). The option \"9\" subtracts the width from the diagonal (13 - 4).",
+  "solve": "const d=13,l=12,w=4;return Math.sqrt(d*d-l*l-w*w);",
+  "distractor_solve": {
+   "5": "return Math.sqrt(169-144);",
+   "√153": "return \"√\"+(169-16);",
+   "√21": "return \"√\"+(169-144-4);",
+   "9": "return 13-4;"
+  },
+  "interval": "An edge is shorter than the space diagonal, so 0 < h < 13; all five options (largest sqrt153 = 12.4) lie inside. No option sits on 13. Four distractors survive; the key is the smallest option but no free bound gives a lower limit above 3.",
+  "bounds_checked": "edge-less-than-diagonal bound; triangle-inequality lower bound (h > 13 - sqrt160, about 0.35); radical-versus-integer family; magnitude."
+ },
+ {
+  "id": "S15B-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "altitude to the hypotenuse is the geometric mean of the two segments",
+  "difficulty": "hard",
+  "template": "right triangle with the altitude to the hypotenuse splitting it into two given segments / area of the whole triangle / geometric mean",
+  "prompt": "In right triangle ABC, the right angle is at C. The altitude from C meets the hypotenuse AB at point D, with AD = 4 and DB = 9. What is the area of triangle ABC?",
+  "choices": [
+   "36",
+   "27",
+   "26",
+   "39",
+   "18"
+  ],
+  "correct_answer": "39",
+  "explanation": "The two smaller triangles are similar, so CD/4 = 9/CD and CD^2 = 36, CD = 6. The area is (1/2)(AB)(CD) = (1/2)(13)(6) = 39. The option \"36\" multiplies the two segments. The option \"27\" is the area of triangle CDB alone, (1/2)(9)(6). The option \"26\" takes the altitude to be 4, (1/2)(13)(4). The option \"18\" is (1/2)(4)(9), treating the two segments as legs.",
+  "solve": "const p=4,q=9;const h=Math.sqrt(p*q);return (p+q)*h/2;",
+  "distractor_solve": {
+   "36": "return 4*9;",
+   "27": "return 9*Math.sqrt(36)/2;",
+   "26": "return 13*4/2;",
+   "18": "return 4*9/2;"
+  },
+  "interval": "With hypotenuse 13 the altitude is at most 6.5, so the area is at most 42.25; all five options are below that and none sits on it. Four distractors survive.",
+  "bounds_checked": "maximum-altitude bound (half the hypotenuse, area <= 42.25); part-not-exceeding-whole (sub-triangle areas); key-is-sum of two options (none); arithmetic runs."
+ },
+ {
+  "id": "S15B-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "space diagonal of a cube to its surface area",
+  "difficulty": "hard",
+  "template": "cube with given space diagonal / total surface area / s^2 = d^2/3",
+  "prompt": "The straight-line distance through the inside of a cube from one corner to the opposite corner is 6 centimeters. What is the total surface area of the cube, in square centimeters?",
+  "choices": [
+   "72",
+   "54",
+   "36",
+   "48",
+   "12"
+  ],
+  "correct_answer": "72",
+  "explanation": "For edge s the space diagonal is s(sqrt3), so 3s^2 = 36 and s^2 = 12. The surface area is 6s^2 = 72. The option \"54\" takes the space diagonal to be 2s, so s = 3. The option \"36\" counts only three faces. The option \"48\" counts only four faces (the sides). The option \"12\" is the area of one face.",
+  "solve": "const d=6;const s2=d*d/3;return 6*s2;",
+  "distractor_solve": {
+   "54": "const s=6/2;return 6*s*s;",
+   "36": "return 3*(36/3);",
+   "48": "return 4*(36/3);",
+   "12": "return 36/3;"
+  },
+  "interval": "The edge lies between d/3 = 2 (three edges form a path at least as long as the diagonal) and d/sqrt2 (a face diagonal is shorter than the space diagonal), so the surface area lies strictly between 24 and 108. Four options lie inside; \"12\" (one face) lies below 24 and can be dropped by the edge-path bound. Three distractors survive (54, 36, 48).",
+  "bounds_checked": "edge-path lower bound (3s > d, area > 24, kills 12); face-diagonal upper bound (s sqrt2 < d, area < 108); limiting cases s = d/3 and s = d/sqrt2 not offered; multiples-of-the-face family."
+ },
+ {
+  "id": "S15B-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "base angle of the isosceles triangle cut off by a diagonal of a regular pentagon",
+  "difficulty": "medium",
+  "template": "regular pentagon with one diagonal / angle between a side and the diagonal / interior angle then isosceles base angle",
+  "prompt": "ABCDE is a regular pentagon, and diagonal AC is drawn. What is the measure, in degrees, of angle BAC?",
+  "choices": [
+   "30",
+   "45",
+   "21.6",
+   "18",
+   "36"
+  ],
+  "correct_answer": "36",
+  "explanation": "Each interior angle of a regular pentagon is 540/5 = 108 degrees. Triangle ABC has AB = BC and angle B = 108, so each base angle is (180 - 108)/2 = 36. The option \"30\" uses the regular hexagon's angle, (180 - 120)/2. The option \"45\" uses a square, (180 - 90)/2. The option \"21.6\" divides the interior angle by the number of sides. The option \"18\" subtracts a right angle from the interior angle.",
+  "solve": "const n=5;const I=180*(n-2)/n;return (180-I)/2;",
+  "distractor_solve": {
+   "30": "return (180-120)/2;",
+   "45": "return (180-90)/2;",
+   "21.6": "return 108/5;",
+   "18": "return 108-90;"
+  },
+  "interval": "Angle BAC is a base angle of a triangle whose apex angle is 108, so 0 < BAC < 72 (and < 90 as a base angle). All five options lie below 72; none sits on 72 or 108. Four distractors survive.",
+  "bounds_checked": "base angles under 90; angle-sum bound (< 72 once the apex is known); supplement/complement pairs among options (none sums to 90 or 180); arithmetic and geometric runs (21.6, 36, 60 removed)."
+ },
+ {
+  "id": "S15B-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sliding ladder: two Pythagorean triangles with a fixed hypotenuse",
+  "difficulty": "hard",
+  "template": "ladder against a wall whose top slides down / distance the foot moves / two right triangles with the same hypotenuse",
+  "prompt": "A 25-foot ladder leans against a vertical wall, with its top 24 feet above level ground. The top of the ladder slides 4 feet down the wall, and the foot of the ladder slides directly away from the wall. How many feet does the foot of the ladder move?",
+  "choices": [
+   "4",
+   "1.4",
+   "8",
+   "15",
+   "5"
+  ],
+  "correct_answer": "8",
+  "explanation": "At first the foot is sqrt(25^2 - 24^2) = 7 feet from the wall. After the slide the top is 20 feet up, so the foot is sqrt(25^2 - 20^2) = 15 feet out. It moves 15 - 7 = 8 feet. The option \"4\" assumes the foot moves as far as the top. The option \"1.4\" scales the foot distance by 24/20 (8.4 - 7), as if the ladder kept its shape. The option \"15\" is the foot's new distance from the wall, not the distance it moved. The option \"5\" is 25 - 20.",
+  "solve": "const L=25,t=24,drop=4;const a=Math.sqrt(L*L-t*t),b=Math.sqrt(L*L-(t-drop)**2);return b-a;",
+  "distractor_solve": {
+   "4": "return 4;",
+   "1.4": "return Math.round((7*24/20-7)*10)/10;",
+   "15": "return Math.sqrt(625-400);",
+   "5": "return 25-20;"
+  },
+  "interval": "The foot ends less than 25 feet from the wall and starts 7 feet out (7 is itself a computation, not printed), so the move is under 18; it is positive. All options lie in (0, 18) and none sits on 18. Four distractors survive.",
+  "bounds_checked": "ladder-length ceiling on the foot; positivity; equal-move case (4) inside the interval, not on a bound; key-is-sum and halving/minus-one hubs (removed the start distance 7, which made 8 a hub)."
+ },
+ {
+  "id": "S15B-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "perimeter of a rectangle with semicircles on two sides",
+  "difficulty": "medium",
+  "template": "rectangle with outward semicircles on its short sides / perimeter of the outline using 3.14 / arc lengths replace the covered sides",
+  "prompt": "A garden is shaped like a rectangle measuring 10 meters by 6 meters with a semicircle attached outward along each of the two 6-meter sides, each 6-meter side being a diameter of its semicircle. Using 3.14 for pi, what is the perimeter of the garden, in meters?",
+  "choices": [
+   "50.84",
+   "57.68",
+   "48.26",
+   "38.84",
+   "88.26"
+  ],
+  "correct_answer": "38.84",
+  "explanation": "The outline is the two 10-meter sides plus two semicircular arcs of radius 3. The two arcs make one full circle: 2(3.14)(3) = 18.84. The perimeter is 20 + 18.84 = 38.84. The option \"50.84\" also adds the two 6-meter sides, which are inside the garden. The option \"57.68\" uses a full circle on each side. The option \"48.26\" adds the areas of the two semicircles (9pi = 28.26) instead of their arcs. The option \"88.26\" is the area of the garden, 60 + 28.26.",
+  "solve": "const L=10,W=6,p=3.14;return Math.round((2*L+p*W)*100)/100;",
+  "distractor_solve": {
+   "50.84": "return Math.round((2*10+2*6+3.14*6)*100)/100;",
+   "57.68": "return Math.round((20+2*2*3.14*3)*100)/100;",
+   "48.26": "return Math.round((20+3.14*9)*100)/100;",
+   "88.26": "return Math.round((60+3.14*9)*100)/100;"
+  },
+  "interval": "Each arc is longer than its diameter, so the perimeter exceeds 20 + 12 = 32; all options exceed 32. No upper bound is printed. Four distractors survive.",
+  "bounds_checked": "arc-longer-than-chord lower bound (32); arithmetic runs (38.84, 48.26, 57.68 has the key at an end, not the middle); area-versus-length family; magnitude."
+ },
+ {
+  "id": "S15B-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "percent change in the volume of a cylinder when radius and height change",
+  "difficulty": "hard",
+  "template": "cylinder radius up by one percent and height down by another / percent change in volume / square the radius factor then multiply",
+  "prompt": "The radius of a cylinder is increased by 20 percent, and its height is decreased by 25 percent. The new volume is what percent of the original volume?",
+  "choices": [
+   "108%",
+   "115%",
+   "90%",
+   "119%",
+   "95%"
+  ],
+  "correct_answer": "108%",
+  "explanation": "Volume is proportional to r^2 h, so the new volume is (1.2)^2(0.75) = 1.44(0.75) = 1.08 times the old, which is 108%. The option \"115%\" adds 2(20) - 25 to 100, the linear estimate. The option \"90%\" forgets to square the radius factor, 1.2(0.75) = 0.9. The option \"119%\" subtracts 25 from the 44% growth of the base area. The option \"95%\" adds 20 - 25 to 100.",
+  "solve": "const f=1.2**2*0.75;return Math.round(f*1000)/10;",
+  "distractor_solve": {
+   "115%": "return 100+2*20-25;",
+   "90%": "return Math.round(1.2*0.75*100);",
+   "119%": "return 100+44-25;",
+   "95%": "return 100+20-25;"
+  },
+  "interval": "The stem gives no direction for free: a 20% rise in a squared factor against a 25% fall could land above or below 100%, and options fall on both sides (90, 95 below; 108, 115, 119 above). All lie between 75% and 144% (the height factor alone and the radius factor alone). Four distractors survive; the key is neither extreme.",
+  "bounds_checked": "direction of change (options on both sides of 100%); range between the single-factor values 75% and 144%; linear-estimate trap located inside the range, not on a bound; arithmetic runs."
+ },
+ {
+  "id": "S15B-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal perimeters: square to equilateral triangle, then the triangle area",
+  "difficulty": "medium",
+  "template": "square and equilateral triangle with equal perimeters, square area given / area of the triangle / side from perimeter then s^2 sqrt3 / 4",
+  "prompt": "A square and an equilateral triangle have the same perimeter. The area of the square is 36 square centimeters. What is the area of the triangle, in square centimeters?",
+  "choices": [
+   "9√3",
+   "16√3",
+   "12",
+   "24",
+   "18"
+  ],
+  "correct_answer": "16√3",
+  "explanation": "The square has side 6 and perimeter 24, so the triangle has side 8 and area (8^2)(sqrt3)/4 = 16sqrt3. The option \"9sqrt3\" uses the square's side 6 as the triangle's side. The option \"12\" uses half the square's side as the height, (1/2)(8)(3). The option \"24\" uses the square's side as the height, (1/2)(8)(6). The option \"18\" uses 6 for both base and height.",
+  "solve": "const A=36;const s=4*Math.sqrt(A)/3;return (s*s/4)+\"√3\";",
+  "distractor_solve": {
+   "9√3": "return (6*6/4)+\"√3\";",
+   "12": "return 8*3/2;",
+   "24": "return 8*6/2;",
+   "18": "return 6*6/2;"
+  },
+  "interval": "The height is less than the side 8, so the area is less than 32; with equal perimeters the triangle's area is also less than the square's 36. All five options are under 32. Four distractors survive; the key is the largest option but no free bound sits between 24 and 27.7.",
+  "bounds_checked": "height-less-than-side bound (area < 32); equal-perimeter comparison with the square (< 36); radical family (two options) versus integers; arithmetic run 12, 18, 24 excludes the key; key-is-sum (none)."
+ },
+ {
+  "id": "S15B-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "triangle inscribed with one side a diameter is right-angled",
+  "difficulty": "hard",
+  "template": "triangle with all vertices on a circle and one side a diameter / area of the triangle / right angle opposite the diameter",
+  "prompt": "All three vertices of triangle ABC lie on a circle, and side AB is a diameter of the circle with length 26. Side AC has length 10. What is the area of triangle ABC?",
+  "choices": [
+   "130",
+   "80",
+   "65",
+   "156",
+   "120"
+  ],
+  "correct_answer": "120",
+  "explanation": "An angle inscribed in a semicircle is a right angle, so angle C = 90. Then BC = sqrt(26^2 - 10^2) = 24 and the area is (1/2)(10)(24) = 120. The option \"130\" uses AC as the height to AB, (1/2)(26)(10). The option \"80\" takes BC = 26 - 10 = 16. The option \"65\" uses the radius 13 as the other leg. The option \"156\" uses the radius as the height to the leg 24, (1/2)(24)(13).",
+  "solve": "const d=26,a=10;const b=Math.sqrt(d*d-a*a);return a*b/2;",
+  "distractor_solve": {
+   "130": "return 26*10/2;",
+   "80": "return 10*(26-10)/2;",
+   "65": "return 10*13/2;",
+   "156": "return 24*13/2;"
+  },
+  "interval": "The height to AB is at most the radius 13, so the area is at most (1/2)(26)(13) = 169; all options are below 169 and none sits on it. Four distractors survive.",
+  "bounds_checked": "maximum-height bound (radius, area <= 169); hypotenuse-exceeds-leg; part-of-whole sub-areas; arithmetic runs and key-is-sum (none)."
+ },
+ {
+  "id": "S15B-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal perimeters: regular pentagon to square area",
+  "difficulty": "easy",
+  "template": "regular pentagon with given side and a square of the same perimeter / area of the square / perimeter then side then square",
+  "prompt": "Each side of a regular pentagon measures 4 centimeters. A square has the same perimeter as the pentagon. What is the area of the square, in square centimeters?",
+  "choices": [
+   "16",
+   "100",
+   "36",
+   "25",
+   "20"
+  ],
+  "correct_answer": "25",
+  "explanation": "The pentagon's perimeter is 5(4) = 20, so the square's side is 20/4 = 5 and its area is 25. The option \"16\" squares the pentagon's side. The option \"100\" takes half the perimeter as the side. The option \"36\" counts six sides (perimeter 24, side 6). The option \"20\" is the perimeter, not the area.",
+  "solve": "const n=5,s=4;const side=n*s/4;return side*side;",
+  "distractor_solve": {
+   "16": "return 4*4;",
+   "100": "return (20/2)**2;",
+   "36": "return (6*4/4)**2;",
+   "20": "return 5*4;"
+  },
+  "interval": "Nothing printed in the stem bounds the area from either side beyond positivity. All options positive. Four distractors survive.",
+  "bounds_checked": "positivity; geometric runs (16, 20, 25 has the key at an end); perimeter-versus-area family; key-is-sum (none)."
+ },
+ {
+  "id": "S15B-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "angle between two interior angle bisectors of a triangle",
+  "difficulty": "hard",
+  "template": "triangle with one angle given and the bisectors of the other two angles / angle where the bisectors meet / half the sum of the other two angles",
+  "prompt": "In triangle ABC, angle A measures 50 degrees. The bisectors of angle B and angle C meet at point I inside the triangle. What is the measure, in degrees, of angle BIC?",
+  "choices": [
+   "115",
+   "130",
+   "140",
+   "155",
+   "120"
+  ],
+  "correct_answer": "115",
+  "explanation": "B + C = 180 - 50 = 130, so the halves sum to 65 and angle BIC = 180 - 65 = 115. The option \"130\" forgets to halve B + C before subtracting from 180 the second time (180 - 50). The option \"140\" uses 90 + 50, forgetting to halve angle A. The option \"155\" is 180 - 25, halving angle A instead of B + C. The option \"120\" assumes the bisectors meet at 120 degrees as in an equilateral triangle.",
+  "solve": "const A=50;return 180-(180-A)/2;",
+  "distractor_solve": {
+   "130": "return 180-50;",
+   "140": "return 90+50;",
+   "155": "return 180-50/2;",
+   "120": "return 120;"
+  },
+  "interval": "Angle BIC is inside triangle BIC, so 0 < BIC < 180; all options inside. No option pairs with another to 180. Four distractors survive; the key is the smallest option, but nothing free bounds BIC above 115 without the method.",
+  "bounds_checked": "range of a triangle angle; supplement pairs among options (none); arithmetic runs (120, 130, 140 excludes the key); limiting cases."
+ },
+ {
+  "id": "S15B-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "diagonals of a polygon whose interior-angle sum is given",
+  "difficulty": "medium",
+  "template": "polygon with a given interior-angle sum / total number of diagonals / n from (n - 2)180 then n(n - 3)/2",
+  "prompt": "The sum of the measures of the interior angles of a polygon is 1,440 degrees. How many diagonals does the polygon have?",
+  "choices": [
+   "20",
+   "45",
+   "35",
+   "40",
+   "27"
+  ],
+  "correct_answer": "35",
+  "explanation": "From (n - 2)(180) = 1440, n - 2 = 8 and n = 10. A polygon with n sides has n(n - 3)/2 diagonals, so 10(7)/2 = 35. The option \"20\" forgets to add 2, taking n = 8: 8(5)/2. The option \"45\" counts every segment joining two vertices, 10(9)/2, sides included. The option \"40\" uses n - 2 in place of n - 3: 10(8)/2. The option \"27\" adds 1 instead of 2, taking n = 9: 9(6)/2.",
+  "solve": "const S=1440;const n=S/180+2;return n*(n-3)/2;",
+  "distractor_solve": {
+   "20": "const n=1440/180;return n*(n-3)/2;",
+   "45": "const n=10;return n*(n-1)/2;",
+   "40": "const n=10;return n*(n-2)/2;",
+   "27": "const n=1440/180+1;return n*(n-3)/2;"
+  },
+  "interval": "No printed number caps the count except that diagonals are fewer than all vertex pairs; that cap needs n, which is the method. All options are positive and none sits on a value readable from the stem. Four distractors survive.",
+  "bounds_checked": "all-pairs ceiling (needs n); arithmetic runs (35, 40, 45 has the key at an end); key-is-sum (none); doubling/halving (70 and 17.5 avoided)."
+ },
+ {
+  "id": "S15B-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "surface area of two cubes glued face to face",
+  "difficulty": "hard",
+  "template": "small cube glued to the middle of a face of a larger cube / total surface area of the solid / hidden contact area counted on both cubes",
+  "prompt": "A cube with edges of 3 centimeters is glued to the middle of one face of a cube with edges of 5 centimeters, so that one whole face of the small cube is against the large cube. What is the total surface area of the resulting solid, in square centimeters?",
+  "choices": [
+   "195",
+   "186",
+   "154",
+   "170",
+   "174"
+  ],
+  "correct_answer": "186",
+  "explanation": "Separately the cubes have surface areas 6(25) = 150 and 6(9) = 54, total 204. The 3-by-3 contact square is hidden on both cubes, so subtract 2(9): 204 - 18 = 186. The option \"195\" subtracts the contact area only once. The option \"154\" subtracts a whole 5-by-5 face twice. The option \"170\" subtracts one large face and one small face. The option \"174\" takes the contact area to be 3 x 5 = 15 and subtracts it twice.",
+  "solve": "const a=5,b=3;return 6*a*a+6*b*b-2*b*b;",
+  "distractor_solve": {
+   "195": "return 150+54-9;",
+   "154": "return 150+54-2*25;",
+   "170": "return 150+54-25-9;",
+   "174": "return 150+54-2*15;"
+  },
+  "interval": "The total is below the separate total 204 and above the large cube's exposed 150 - 9 = 141; all options lie in (141, 204) and none sits on 204. Four distractors survive.",
+  "bounds_checked": "sum-of-parts upper bound (204, not offered); exposed-large-cube lower bound (141); arithmetic runs (154, 170, 186 has the key at an end); key-is-difference (none)."
+ },
+ {
+  "id": "S15B-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rhombus area from its side and one diagonal",
+  "difficulty": "medium",
+  "template": "rhombus with given perimeter and one diagonal / area / half-diagonals form a right triangle with the side",
+  "prompt": "A rhombus has a perimeter of 40 centimeters, and one of its diagonals is 12 centimeters long. What is the area of the rhombus, in square centimeters?",
+  "choices": [
+   "60",
+   "72",
+   "80",
+   "64",
+   "96"
+  ],
+  "correct_answer": "96",
+  "explanation": "Each side is 10. The diagonals bisect each other at right angles, so half of the other diagonal is sqrt(10^2 - 6^2) = 8 and that diagonal is 16. The area is (12)(16)/2 = 96. The option \"60\" multiplies the diagonal by the side and halves it. The option \"72\" takes both diagonals to be 12. The option \"80\" multiplies the side by the half-diagonal 8. The option \"64\" squares the half-diagonal 8.",
+  "solve": "const P=40,d1=12;const s=P/4;const h=Math.sqrt(s*s-(d1/2)**2);return d1*2*h/2;",
+  "distractor_solve": {
+   "60": "return 12*10/2;",
+   "72": "return 12*12/2;",
+   "80": "return 10*8;",
+   "64": "return 8*8;"
+  },
+  "interval": "A rhombus with side 10 has area at most 100 (the square), so every option must be at most 100; all five are. None sits on 100. Four distractors survive; the key is the largest option, but the ceiling is 100 and nothing free separates 96 from 80.",
+  "bounds_checked": "maximum-area bound for a fixed side (100); arithmetic runs (64, 72, 80 excludes the key); doubling/halving around the key (none); key-is-sum (none)."
+ },
+ {
+  "id": "S15B-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "open box folded from a sheet with squares cut from the corners",
+  "difficulty": "hard",
+  "template": "rectangular sheet with equal squares cut from each corner and folded / volume of the open box / each dimension loses two cut lengths",
+  "prompt": "A rectangular sheet of cardboard measures 20 centimeters by 12 centimeters. A square 3 centimeters on a side is cut from each of the four corners, and the sides are folded up to form an open box. What is the volume of the box, in cubic centimeters?",
+  "choices": [
+   "252",
+   "306",
+   "378",
+   "459",
+   "360"
+  ],
+  "correct_answer": "252",
+  "explanation": "Each dimension loses 3 cm at both ends, so the base is (20 - 6) by (12 - 6) = 14 by 6, and the height is 3. The volume is 14(6)(3) = 252. The option \"306\" removes only one cut from the length, 17(6)(3). The option \"378\" removes only one cut from the width, 14(9)(3). The option \"459\" removes only one cut from each dimension, 17(9)(3). The option \"360\" removes the cuts from the width only, 20(6)(3).",
+  "solve": "const L=20,W=12,c=3;return (L-2*c)*(W-2*c)*c;",
+  "distractor_solve": {
+   "306": "return (20-3)*(12-6)*3;",
+   "378": "return (20-6)*(12-3)*3;",
+   "459": "return (20-3)*(12-3)*3;",
+   "360": "return 20*(12-6)*3;"
+  },
+  "interval": "The volume is below the uncut 20 x 12 x 3 = 720 and positive; all options lie in (0, 720) and none sits on 720. Four distractors survive; the key is the smallest option, but no free bound reaches above 252.",
+  "bounds_checked": "uncut-sheet upper bound (720, not offered); monotonicity in the cut size; arithmetic runs (252, 306, 360 has the key at an end); key-is-sum and option-times-printed-number (none)."
+ },
+ {
+  "id": "S15B-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "square inscribed at the right angle of a right triangle",
+  "difficulty": "hard",
+  "template": "square sharing the right angle of a right triangle with a corner on the hypotenuse / side of the square / similar triangles give s/a + s/b = 1",
+  "prompt": "A square is drawn inside a right triangle whose legs measure 6 and 4. One corner of the square is at the right angle, two sides of the square lie along the legs, and the opposite corner of the square lies on the hypotenuse. What is the side length of the square?",
+  "choices": [
+   "1.5",
+   "2.5",
+   "3.6",
+   "2.4",
+   "2"
+  ],
+  "correct_answer": "2.4",
+  "explanation": "The small triangle beside the square, with legs 6 - s and s, is similar to the whole triangle, so (6 - s)/s = 6/4. Then 4(6 - s) = 6s, 24 = 10s and s = 2.4. The option \"1.5\" is the ratio of the legs, 6/4. The option \"2.5\" divides the sum of the legs by 4. The option \"3.6\" inverts the ratio in the similar triangle, (6 - s)/s = 4/6. The option \"2\" takes half the shorter leg.",
+  "solve": "const a=6,b=4;return a*b/(a+b);",
+  "distractor_solve": {
+   "1.5": "return 6/4;",
+   "2.5": "return (6+4)/4;",
+   "3.6": "return 6/(1+4/6);",
+   "2": "return 4/2;"
+  },
+  "interval": "The side must be less than the shorter leg 4; all options are below 4 (largest 3.6) and none sits on 4. Four distractors survive.",
+  "bounds_checked": "shorter-leg ceiling (s < 4); arithmetic runs (1.5, 2, 2.5 excludes the key); ratio-of-givens shortcut (6/4 = 1.5 offered as a distractor, not the key); key-is-sum (none)."
+ },
+ {
+  "id": "S15B-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume of a triangular prism with an isosceles end",
+  "difficulty": "medium",
+  "template": "tent-shaped prism with isosceles triangular ends of given sides and given length / volume / height of the end from the Pythagorean theorem",
+  "prompt": "A tent is shaped like a triangular prism 10 feet long. Each triangular end has sides of 5 feet, 5 feet and 8 feet, with the 8-foot side on the ground. What is the volume of the tent, in cubic feet?",
+  "choices": [
+   "150",
+   "120",
+   "160",
+   "125",
+   "100"
+  ],
+  "correct_answer": "120",
+  "explanation": "The height of each end is sqrt(5^2 - 4^2) = 3, so the end has area (1/2)(8)(3) = 12 and the volume is 12(10) = 120. The option \"150\" uses the 5-foot side as the base and forgets the 1/2, 5(3)(10). The option \"160\" uses half the base, 4, as the height. The option \"125\" treats the two 5-foot sides as perpendicular. The option \"100\" pairs the 5-foot side with 4, (1/2)(5)(4)(10).",
+  "solve": "const a=5,b=8,L=10;const h=Math.sqrt(a*a-(b/2)**2);return b*h/2*L;",
+  "distractor_solve": {
+   "150": "return 5*3*10;",
+   "160": "return 8*4/2*10;",
+   "125": "return 5*5/2*10;",
+   "100": "return 5*4/2*10;"
+  },
+  "interval": "The end's height is less than its 5-foot slant side, so the volume is less than (1/2)(8)(5)(10) = 200; all options are below 200 and none sits on it. Four distractors survive.",
+  "bounds_checked": "height-less-than-slant bound (200, not offered); arithmetic runs (100, 125, 150 excludes the key); key-is-difference (none)."
+ },
+ {
+  "id": "S15B-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume of a uniform layer around a box",
+  "difficulty": "hard",
+  "template": "box coated with a layer of uniform thickness that forms a larger box / volume of the layer / outer box minus inner box",
+  "prompt": "A rectangular box measuring 2 centimeters by 3 centimeters by 4 centimeters is completely covered with a layer of clay 1 centimeter thick on every face, so that the clay and the box together form a larger rectangular box. What is the volume of the clay, in cubic centimeters?",
+  "choices": [
+   "88",
+   "56",
+   "96",
+   "72",
+   "312"
+  ],
+  "correct_answer": "96",
+  "explanation": "The larger box measures (2 + 2) by (3 + 2) by (4 + 2) = 4 by 5 by 6, volume 120. The clay is 120 - 24 = 96. The option \"88\" counts the face slabs (52) and edge strips (36) but forgets the 8 corner cubes. The option \"56\" adds 2 to only two of the dimensions, 4(5)(4) - 24. The option \"72\" subtracts the inner box twice, 120 - 48. The option \"312\" adds 2 cm on each side, 6(7)(8) - 24.",
+  "solve": "const a=2,b=3,c=4,t=1;return (a+2*t)*(b+2*t)*(c+2*t)-a*b*c;",
+  "distractor_solve": {
+   "88": "const faces=2*(2*3+3*4+2*4);const edges=4*(2+3+4);return faces+edges;",
+   "56": "return 4*5*4-24;",
+   "72": "return 4*5*6-2*24;",
+   "312": "return 6*7*8-24;"
+  },
+  "interval": "The clay contains the face slabs, total 52, so the volume exceeds 52; all options exceed 52 and none sits on 52. No outer size is printed, so no upper bound is free. Four distractors survive.",
+  "bounds_checked": "face-slab lower bound (52, not offered); limiting case of no corners or edges; arithmetic runs (56, 72, 88 excludes the key; 88, 96, 104 avoided); key-is-sum (none)."
+ },
+ {
+  "id": "S15B-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "isosceles triangle cut by a segment equal to the base",
+  "difficulty": "hard",
+  "template": "isosceles triangle with apex angle given and a point on a leg making a segment equal to the base / angle at the base vertex between the segment and the other leg / two isosceles triangles",
+  "prompt": "In triangle ABC, AB = AC and angle A measures 40 degrees. Point D lies on side AC so that BD = BC. What is the measure, in degrees, of angle ABD?",
+  "choices": [
+   "40",
+   "35",
+   "50",
+   "15",
+   "30"
+  ],
+  "correct_answer": "30",
+  "explanation": "Angles B and C each measure (180 - 40)/2 = 70. In triangle BDC, BD = BC, so angle BDC = angle BCD = 70 and angle DBC = 180 - 140 = 40. Then angle ABD = 70 - 40 = 30. The option \"40\" gives angle DBC instead of ABD. The option \"35\" assumes BD bisects angle B. The option \"50\" assumes BD is perpendicular to AC, 90 - 40. The option \"15\" treats C as the apex of triangle BDC, so its base angles are (180 - 70)/2 = 55 and ABD = 70 - 55.",
+  "solve": "const A=40;const B=(180-A)/2;const DBC=180-2*B;return B-DBC;",
+  "distractor_solve": {
+   "40": "const B=70;return 180-2*B;",
+   "35": "return 70/2;",
+   "50": "return 90-40;",
+   "15": "return 70-(180-70)/2;"
+  },
+  "interval": "Angle ABD is part of angle B = 70, so 0 < ABD < 70; all options lie inside and none sits on 70 or 0. Four distractors survive.",
+  "bounds_checked": "part-of-angle bound (< 70); supplement/complement pairs (40 + 50 = 90 is a non-key pair); arithmetic runs (10, 30, 50 avoided; 30, 35, 40 has the key at an end)."
+ }
+]

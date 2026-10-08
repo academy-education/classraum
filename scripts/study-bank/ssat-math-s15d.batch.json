@@ -1,0 +1,730 @@
+[
+ {
+  "id": "S15D-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "negative and zero exponents evaluated in one expression",
+  "difficulty": "easy",
+  "template": "numeric power expression / its value / negative exponent as reciprocal plus zero exponent",
+  "prompt": "What is the value of (1/2)^(-3) - 2^0 ?",
+  "choices": [
+   "7",
+   "5",
+   "6",
+   "-9",
+   "-7/8"
+  ],
+  "correct_answer": "7",
+  "explanation": "A negative exponent takes the reciprocal: (1/2)^(-3) = 2^3 = 8, and 2^0 = 1, so the value is 8 - 1 = 7. \"5\" treats (1/2)^(-3) as 2 x 3 = 6 and then subtracts 1. \"6\" gets 8 correctly but takes 2^0 to be 2. \"-9\" reads the negative exponent as making the power negative, -8 - 1. \"-7/8\" drops the sign of the exponent, (1/2)^3 - 1 = 1/8 - 1.",
+  "solve": "const p=Math.pow(1/2,-3); const q=Math.pow(2,0); return p-q;",
+  "distractor_solve": {
+   "5": "const p=2*3; return p-1;",
+   "6": "const p=Math.pow(2,3); return p-2;",
+   "-9": "const p=-Math.pow(2,3); return p-1;",
+   "-7/8": "const p=Math.pow(1/2,3); return p-1;"
+  },
+  "interval": "No bound in the stem constrains the value beyond the computation itself; the value is a difference of a power and 1, so any option can be reached by some exponent reading. All four distractors survive.",
+  "bounds_checked": "sign of the result, magnitude of a power of 2, integer-vs-fraction closure, adjacency of 5/6/7 (none decides without knowing 2^3)"
+ },
+ {
+  "id": "S15D-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "translating a verbal equation with 'more than' and 'less than'",
+  "difficulty": "easy",
+  "template": "verbal statement about one number / the number / translate 'more than' and 'less than' into one linear equation",
+  "prompt": "Seven more than 3 times a number is equal to 2 less than 5 times the number. What is the number?",
+  "choices": [
+   "2.5",
+   "4.5",
+   "8.5",
+   "11.5",
+   "-0.625"
+  ],
+  "correct_answer": "4.5",
+  "explanation": "The sentence is 3n + 7 = 5n - 2, so 9 = 2n and n = 4.5. \"2.5\" moves the constants with the wrong sign, 2n = 7 - 2. \"8.5\" reads '2 less than 5 times the number' as 5(n - 2), so 3n + 7 = 5n - 10. \"11.5\" reads 'seven more than 3 times' as 3(n + 7), so 3n + 21 = 5n - 2. \"-0.625\" reads '2 less than 5 times the number' as 2 - 5n, so 8n = -5.",
+  "solve": "const a=3,b=7,c=5,d=2; return (b+d)/(c-a);",
+  "distractor_solve": {
+   "2.5": "return (7-2)/(5-3);",
+   "8.5": "return (7+10)/(5-3);",
+   "11.5": "return (21+2)/(5-3);",
+   "-0.625": "return (2-7)/(3+5);"
+  },
+  "interval": "The stem fixes no sign or range for the number; positive and negative answers are both possible a priori. All four distractors survive.",
+  "bounds_checked": "sign of the unknown, integer/decimal closure, magnitude from the coefficients 3 and 5"
+ },
+ {
+  "id": "S15D-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "substituting a defined variable into a two-variable expression",
+  "difficulty": "easy",
+  "template": "two linked variables with one given / value of a quadratic expression in both / chained substitution with negatives",
+  "prompt": "If x = 2y and y = -3, what is the value of x^2 - xy ?",
+  "choices": [
+   "-2",
+   "-30",
+   "18",
+   "-2.25",
+   "-6"
+  ],
+  "correct_answer": "18",
+  "explanation": "x = 2(-3) = -6, so x^2 - xy = 36 - (-6)(-3) = 36 - 18 = 18. \"-2\" reads 2y as y + 2, so x = -1 and 1 - 3 = -2. \"-30\" treats x^2 as 2x = -12, then -12 - 18. \"-2.25\" reverses the relation to y = 2x, so x = -1.5 and 2.25 - 4.5. \"-6\" treats x^2 as 2 times 6 = 12, then 12 - 18.",
+  "solve": "const y=-3, x=2*y; return x*x-x*y;",
+  "distractor_solve": {
+   "-2": "const y=-3, x=y+2; return x*x-x*y;",
+   "-30": "const y=-3, x=2*y; return 2*x-x*y;",
+   "-2.25": "const y=-3, x=y/2; return x*x-x*y;",
+   "-6": "const y=-3, x=2*y; return 2*Math.abs(x)-x*y;"
+  },
+  "interval": "x^2 >= 0 but xy is positive here (both negative), so the value's sign is not forced without computing; x^2 - xy = x(x - y) with x < 0 and x - y = -3 < 0 is positive, which needs x - y, i.e. the computation. All four distractors survive a cheap sign check.",
+  "bounds_checked": "sign of x^2 - xy from the signs of x and y, magnitude bound x^2 <= 36, closure of options under the asked operation"
+ },
+ {
+  "id": "S15D-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of the integer solutions of an absolute-value inequality",
+  "difficulty": "hard",
+  "template": "absolute-value inequality with non-strict sign / sum of all integer solutions / split into a compound inequality then sum a run of integers",
+  "prompt": "What is the sum of all the integers x that satisfy |2x + 5| <= 9 ?",
+  "choices": [
+   "-20",
+   "-18",
+   "-27",
+   "-25",
+   "0"
+  ],
+  "correct_answer": "-25",
+  "explanation": "|2x + 5| <= 9 means -9 <= 2x + 5 <= 9, so -14 <= 2x <= 4 and -7 <= x <= 2. The integers -7, -6, ..., 2 sum to -25. \"-20\" treats both ends as strict, keeping -6 through 1. \"-18\" drops only the lower endpoint -7. \"-27\" drops only the upper endpoint 2. \"0\" subtracts 5 with the wrong sign in the lower branch, -9 + 5 = -4, giving -2 <= x <= 2.",
+  "solve": "let s=0; for(let x=-50;x<=50;x++){ if(Math.abs(2*x+5)<=9) s+=x; } return s;",
+  "distractor_solve": {
+   "-20": "let s=0; for(let x=-20;x<=20;x++){ if(Math.abs(2*x+5)<9) s+=x; } return s;",
+   "-18": "let s=0; for(let x=-20;x<=20;x++){ if(-9<2*x+5 && 2*x+5<=9) s+=x; } return s;",
+   "-27": "let s=0; for(let x=-20;x<=20;x++){ if(-9<=2*x+5 && 2*x+5<9) s+=x; } return s;",
+   "0": "let s=0; const lo=(-9+5)/2, hi=(9-5)/2; for(let x=-20;x<=20;x++){ if(x>=lo && x<=hi) s+=x; } return s;"
+  },
+  "interval": "The solution interval is centred at x = -2.5, so a solver who sees the centre knows the sum is negative: that kills 0 only. Every other distractor is negative and of the same size; a sum of ten consecutive integers is an odd multiple of 5, but knowing there are ten is the work. Three distractors survive.",
+  "bounds_checked": "sign from the centre of the interval, parity and divisibility of a sum of consecutive integers, endpoint inclusion (limiting cases are strict/non-strict, not on any readable bound)"
+ },
+ {
+  "id": "S15D-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "recovering three numbers from their pairwise sums",
+  "difficulty": "medium",
+  "template": "three unknowns given by their three pairwise sums / the greatest of the three / add all three equations and halve",
+  "prompt": "The numbers a, b and c satisfy a + b = 7, b + c = 19 and a + c = 16. What is the greatest of the three numbers a, b and c?",
+  "choices": [
+   "12",
+   "9.5",
+   "17.5",
+   "8",
+   "14"
+  ],
+  "correct_answer": "14",
+  "explanation": "Adding the three equations gives 2(a + b + c) = 42, so a + b + c = 21. Then c = 21 - 7 = 14, a = 21 - 19 = 2 and b = 21 - 16 = 5, and the greatest is 14. \"12\" stops at (b + c) - (a + b) = c - a. \"9.5\" assumes b = c in b + c = 19. \"17.5\" averages the two sums that contain c. \"8\" assumes a = c in a + c = 16.",
+  "solve": "const s=(7+19+16)/2; return Math.max(s-19, s-16, s-7);",
+  "distractor_solve": {
+   "12": "return 19-7;",
+   "9.5": "return 19/2;",
+   "17.5": "return (19+16)/2;",
+   "8": "return 16/2;"
+  },
+  "interval": "The greatest of three numbers is at least their mean, 21/3 = 7 once the total is known; all options exceed 7. The stem does not say the numbers are positive, so a + c = 16 does not cap c. On the 'greatest' ask, 17.5 lies above the key. All four distractors survive.",
+  "bounds_checked": "greatest >= mean, part vs whole (no positivity given), extreme-option position on a greatest ask"
+ },
+ {
+  "id": "S15D-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "setting up and solving a two-number word problem",
+  "difficulty": "medium",
+  "template": "two unknown numbers related by 'more than twice' and a combined condition / their sum / translate into a substitution system",
+  "prompt": "The larger of two numbers is 4 more than twice the smaller. Three times the larger number minus the smaller number equals 47. What is the sum of the two numbers?",
+  "choices": [
+   "25",
+   "21.8",
+   "18",
+   "19",
+   "11"
+  ],
+  "correct_answer": "25",
+  "explanation": "With L = 2S + 4, 3(2S + 4) - S = 47 gives 5S + 12 = 47, so S = 7, L = 18 and the sum is 25. \"21.8\" reads '4 more than twice the smaller' as 2(S + 4), giving 5S = 23. \"18\" reports the larger number only. \"19\" adds the smaller instead of subtracting it, 3L + S = 47, giving S = 5 and L = 14. \"11\" solves correctly but reports L - S.",
+  "solve": "const S=(47-12)/(6-1), L=2*S+4; return S+L;",
+  "distractor_solve": {
+   "21.8": "const S=(47-24)/5, L=2*(S+4); return Math.round((S+L)*10)/10;",
+   "18": "const S=(47-12)/5; return 2*S+4;",
+   "19": "const S=(47-12)/7, L=2*S+4; return S+L;",
+   "11": "const S=(47-12)/5, L=2*S+4; return L-S;"
+  },
+  "interval": "The stem gives no sign or size limit on either number. The sum exceeds the larger number only if the smaller is positive, which the stem does not state, so 18 is not freely killed. All four distractors survive.",
+  "bounds_checked": "part vs whole (sum vs larger), sign of the smaller number, integer closure"
+ },
+ {
+  "id": "S15D-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a quadratic with a common binomial factor where dividing loses a root",
+  "difficulty": "hard",
+  "template": "product of x and a binomial equal to a multiple of the same binomial / sum of all solutions / factor out the binomial instead of dividing by it",
+  "prompt": "What is the sum of all values of x that satisfy x(x - 3) = 4(x - 3) ?",
+  "choices": [
+   "4",
+   "7",
+   "12",
+   "-1",
+   "1"
+  ],
+  "correct_answer": "7",
+  "explanation": "Move everything to one side: x(x - 3) - 4(x - 3) = 0, so (x - 3)(x - 4) = 0 and x = 3 or x = 4. The sum is 7. \"4\" divides both sides by x - 3 and loses the root x = 3. \"12\" multiplies the two roots instead of adding them. \"-1\" expands to x^2 - 3x = 4x - 12 and moves 4x across without changing its sign, getting x^2 + x + 12 = 0, whose roots add to -1. \"1\" factors x^2 - 7x + 12 with a sign error as (x + 3)(x - 4), taking roots -3 and 4.",
+  "solve": "const roots=[]; for(let x=-50;x<=50;x++){ if(x*(x-3)===4*(x-3)) roots.push(x);} return roots.reduce((a,b)=>a+b,0);",
+  "distractor_solve": {
+   "4": "return (4*3-0)/3;",
+   "12": "return 3*4;",
+   "-1": "const b=-3+4; return -b;",
+   "1": "return -3+4;"
+  },
+  "interval": "x = 3 makes both sides 0, which a solver can see by inspection; that says the sum is 3 + (the other root), and the other root is not constrained in sign or size by anything printed (x(x - 3) can be negative, so no nonnegativity bound applies). All four distractors survive.",
+  "bounds_checked": "visible root by inspection, sign of each side (no square, so no nonnegativity bound), sum vs product, number of roots"
+ },
+ {
+  "id": "S15D-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "product of the solutions of a composed-function equation",
+  "difficulty": "hard",
+  "template": "composition of a linear inside a quadratic set equal to a constant / product of all solutions / composition order then two square-root branches",
+  "prompt": "The functions f and g are defined by f(x) = 2x + 3 and g(x) = x^2 - 1. What is the product of all values of x for which g(f(x)) = 48 ?",
+  "choices": [
+   "-40",
+   "-23.5",
+   "-10",
+   "2",
+   "23"
+  ],
+  "correct_answer": "-10",
+  "explanation": "g(f(x)) = (2x + 3)^2 - 1 = 48, so (2x + 3)^2 = 49 and 2x + 3 = 7 or -7. Then x = 2 or x = -5, with product -10. \"-40\" expands to 4x^2 + 12x - 40 = 0 and takes the constant as the product without dividing by 4. \"-23.5\" composes in the wrong order, f(g(x)) = 2x^2 + 1 = 48, whose roots multiply to -23.5. \"2\" keeps only the positive branch. \"23\" forgets the square root and solves 2x + 3 = 49.",
+  "solve": "const r1=(7-3)/2, r2=(-7-3)/2; return r1*r2;",
+  "distractor_solve": {
+   "-40": "return -40;",
+   "-23.5": "const r=Math.sqrt((48-1)/2); return -r*r;",
+   "2": "return (7-3)/2;",
+   "23": "return (49-3)/2;"
+  },
+  "interval": "A product of two real roots of opposite sign is negative, but the signs are not visible without solving; the two single-root options are positive. No cheap bound separates -10 from -40 or -23.5. All four distractors survive.",
+  "bounds_checked": "sign of a product of roots, magnitude, closure (no option is a sum or difference of two others), composition order"
+ },
+ {
+  "id": "S15D-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "evaluating a piecewise-defined function twice",
+  "difficulty": "medium",
+  "template": "function with two rules split at 0 / value of f(f(a)) / choose the correct rule at each step",
+  "prompt": "A function f is defined by f(x) = x^2 + 3 when x < 0 and f(x) = 3x - 2 when x >= 0. What is the value of f(f(-2)) ?",
+  "choices": [
+   "52",
+   "67",
+   "13",
+   "19",
+   "23"
+  ],
+  "correct_answer": "19",
+  "explanation": "-2 < 0, so f(-2) = 4 + 3 = 7. Then 7 >= 0, so f(7) = 21 - 2 = 19. \"52\" uses the first rule again on 7, 49 + 3. \"67\" uses the second rule on -2, getting -8, then f(-8) = 64 + 3. \"13\" composes the rules symbolically as 3(x^2 + 3) - 2 but forgets to multiply the 3 inside by 3, writing 3x^2 + 3 - 2 = 13 at x = -2. \"23\" finds f(-2) = 7 and then adds 2 instead of subtracting it, 21 + 2.",
+  "solve": "const f=x=> x<0 ? x*x+3 : 3*x-2; return f(f(-2));",
+  "distractor_solve": {
+   "52": "const a=(-2)*(-2)+3; return a*a+3;",
+   "67": "const a=3*(-2)-2; return a*a+3;",
+   "13": "const x=-2; return 3*x*x+3-2;",
+   "23": "const a=(-2)*(-2)+3; return 3*a+2;"
+  },
+  "interval": "For x < 0, f(x) = x^2 + 3 > 3, so f(-2) > 3 and f(f(-2)) = 3f(-2) - 2 > 7. Every option exceeds 7, so this kills none. No upper bound follows without computing f(-2). All four distractors survive.",
+  "bounds_checked": "range of each rule (f > 3 on the negative piece), monotonicity of the second rule, limiting case of one application (kept out of the options)"
+ },
+ {
+  "id": "S15D-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving an equation built from a non-commutative defined operation",
+  "difficulty": "hard",
+  "template": "defined two-variable operation applied in both orders / the unknown / expand each side then solve (one side collapses to a constant)",
+  "prompt": "For all numbers a and b, the operation * is defined by a * b = 2a - 3b + ab. If 3 * x = x * 1, what is the value of x?",
+  "choices": [
+   "-5",
+   "11/5",
+   "-1",
+   "11/7",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "3 * x = 6 - 3x + 3x = 6, and x * 1 = 2x - 3 + x = 3x - 3. So 6 = 3x - 3 and x = 3. \"-5\" reads -3b as -3 + b, so 3 * x = 6 - 3 + x + 3x = 3 + 4x and x * 1 = 2x - 3 + 1 + x = 3x - 2. \"11/5\" reads ab as a + b, so 9 - 2x = 3x - 2. \"-1\" uses +3b instead of -3b, so 6 + 6x = 3x + 3. \"11/7\" swaps the roles on both sides, 5x - 9 = 2 - 2x.",
+  "solve": "const op=(a,b)=>2*a-3*b+a*b; for(let n=-300;n<=300;n++){ const x=n/100; if(Math.abs(op(3,x)-op(x,1))<1e-9) return x; } return null;",
+  "distractor_solve": {
+   "-5": "return (-2-3)/(4-3);",
+   "11/5": "return (9+2)/5;",
+   "-1": "return (3-6)/(6-3);",
+   "11/7": "return (2+9)/7;"
+  },
+  "interval": "No sign or size restriction is stated on x. Plugging an option in is the method (one-step evaluation of the operation), not a bound. All four distractors survive.",
+  "bounds_checked": "sign of x, integer vs fraction closure, symmetry of the operation (it is not commutative, so x = 3 is not forced by symmetry)"
+ },
+ {
+  "id": "S15D-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least number of terms of an arithmetic series to pass a total",
+  "difficulty": "hard",
+  "template": "arithmetic sequence given by its first terms / least number of terms whose sum exceeds a bound / sum formula with an inequality and integer search",
+  "prompt": "The sequence 3, 7, 11, 15, ... continues by adding 4 each time. What is the least number of terms, starting with 3, whose sum is greater than 200?",
+  "choices": [
+   "10",
+   "51",
+   "7",
+   "8",
+   "11"
+  ],
+  "correct_answer": "10",
+  "explanation": "The sum of the first n terms is n(3 + (4n - 1))/2 = n(2n + 1). For n = 9 this is 171 and for n = 10 it is 210, so 10 terms are needed. \"51\" finds when a single TERM passes 200 (4n - 1 > 200). \"7\" uses n(first + last) without halving. \"8\" uses n times the last term. \"11\" drops the n in 2n^2 + n and solves 2n^2 > 200.",
+  "solve": "let n=0,s=0; while(s<=200){ n++; s+=3+4*(n-1);} return n;",
+  "distractor_solve": {
+   "51": "let n=1; while(4*n-1<=200) n++; return n;",
+   "7": "let n=1; while(n*(3+4*n-1)<=200) n++; return n;",
+   "8": "let n=1; while(n*(4*n-1)<=200) n++; return n;",
+   "11": "let n=1; while(2*n*n<=200) n++; return n;"
+  },
+  "interval": "Each term is at least 3, so n >= 1; the sum is at most n times the last term, so n(4n - 1) > 200 forces n >= 8, which excludes 7 only after setting up that bound (that is part of the method). 51 terms obviously sum to far more than 200 (51 x 3 > 150 alone, and the terms grow), which a solver can see by magnitude: one free kill. Least-ask: 7 and 8 lie below the key. Three distractors survive.",
+  "bounds_checked": "magnitude of a long sum, sum <= n x last term, least-ask extreme position, adjacency (no option sits at 9, the last n below the bound)"
+ },
+ {
+  "id": "S15D-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "geometric sequence from its first term and a three-term sum",
+  "difficulty": "hard",
+  "template": "geometric sequence of positive terms with known first term and partial sum / a later term / quadratic in the ratio",
+  "prompt": "A geometric sequence of positive numbers has first term 3, and the sum of its first three terms is 39. What is the fourth term of the sequence?",
+  "choices": [
+   "33",
+   "81",
+   "45",
+   "27",
+   "120"
+  ],
+  "correct_answer": "81",
+  "explanation": "3 + 3r + 3r^2 = 39 gives r^2 + r - 12 = 0, so r = 3 (r = -4 would make terms negative). The fourth term is 3(3^3) = 81. \"33\" treats the sequence as arithmetic, 9 + 3d = 39, d = 10. \"45\" finds 3, 9, 27 and then continues by the last difference, 27 + 18. \"27\" computes r^3 and forgets the first term 3. \"120\" reports the sum of four terms, 39 + 81.",
+  "solve": "for(let r=1;r<=10;r++){ if(3+3*r+3*r*r===39) return 3*r*r*r; } return null;",
+  "distractor_solve": {
+   "33": "const d=(39-9)/3; return 3+3*d;",
+   "45": "const r=3, a3=3*r*r, a2=3*r; return a3+(a3-a2);",
+   "27": "const r=3; return Math.pow(r,3);",
+   "120": "const r=3; return 39+3*Math.pow(r,3);"
+  },
+  "interval": "The terms grow (3 then a sum of 39 forces r > 1), so the fourth term exceeds the third; the third is less than 39 - 3 = 36, but the fourth is not bounded by that. 120 is the four-term sum, larger than 39 + the third term; a solver who reasons 'fourth term < four-term sum' still needs the fourth term. All four distractors survive.",
+  "bounds_checked": "monotonicity of a positive geometric sequence, part vs whole (term vs partial sum), sign of the ratio"
+ },
+ {
+  "id": "S15D-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "arithmetic sequence whose first three terms are expressions in k",
+  "difficulty": "medium",
+  "template": "three consecutive arithmetic terms written in an unknown / a later term / equal differences give k",
+  "prompt": "The first three terms of an arithmetic sequence are k, 2k - 1 and 4k - 8, in that order. What is the 10th term of the sequence?",
+  "choices": [
+   "56",
+   "71",
+   "51",
+   "105",
+   "61"
+  ],
+  "correct_answer": "51",
+  "explanation": "Equal differences: (2k - 1) - k = (4k - 8) - (2k - 1), so k - 1 = 2k - 7 and k = 6. The terms are 6, 11, 16 with difference 5, and the 10th term is 6 + 9(5) = 51. \"56\" uses a1 + 10d. \"71\" simplifies -8 - (-1) as -9, so k - 1 = 2k - 9, k = 8 and d = 7. \"105\" uses the second term 2k - 1 = 11 as the common difference. \"61\" counts nine steps from the third term instead of the first.",
+  "solve": "for(let k=-50;k<=50;k++){ if((2*k-1)-k===(4*k-8)-(2*k-1)){ const d=k-1; return k+9*d; } } return null;",
+  "distractor_solve": {
+   "56": "const k=6, d=k-1; return k+10*d;",
+   "71": "const k=(9-1)/(2-1), d=k-1; return k+9*d;",
+   "105": "const k=6, d=2*k-1; return k+9*d;",
+   "61": "const k=6, d=k-1, a3=4*k-8; return a3+9*d;"
+  },
+  "interval": "The stem does not fix the sign of the difference until k is found, so no direction bound applies; 10th term vs 3rd term needs d. All four distractors survive.",
+  "bounds_checked": "direction of the sequence, off-by-one in the term index, magnitude"
+ },
+ {
+  "id": "S15D-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "word problem with a transfer that changes both quantities",
+  "difficulty": "hard",
+  "template": "two people's counts in a ratio, then a transfer and a new comparison / the original total / set up after-transfer counts for both people",
+  "prompt": "Mia has twice as many stickers as Leo. After Mia gives Leo 12 of her stickers, Leo has 3 more stickers than Mia. How many stickers did Mia and Leo have together at the start?",
+  "choices": [
+   "27",
+   "81",
+   "21",
+   "63",
+   "33"
+  ],
+  "correct_answer": "63",
+  "explanation": "Let Leo start with L, so Mia has 2L. Afterward Leo has L + 12 and Mia has 2L - 12, and L + 12 = (2L - 12) + 3, so L = 21, Mia has 42 and the total is 63. \"27\" forgets that Mia loses the 12, L + 12 = 2L + 3, so L = 9. \"81\" reverses who has 3 more, L + 12 + 3 = 2L - 12, so L = 27. \"21\" reports Leo's starting count. \"33\" reports Leo's count after the gift.",
+  "solve": "for(let L=1;L<=200;L++){ if(L+12===(2*L-12)+3) return L+2*L; } return null;",
+  "distractor_solve": {
+   "27": "const L=(12-3)/(2-1); return 3*L;",
+   "81": "const L=(12+12+3); return 3*L;",
+   "21": "const L=12+12-3; return L;",
+   "33": "const L=12+12-3; return L+12;"
+  },
+  "interval": "The total is unchanged by the transfer, and after it the two counts differ by 3, so the total is odd; it is also 3L, a multiple of 3. Every option is an odd multiple of 3, so neither check removes any. All four distractors survive.",
+  "bounds_checked": "parity of the total, divisibility by 3 from the 2:1 start, part vs whole (one person's count vs the total), conservation of the total"
+ },
+ {
+  "id": "S15D-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "the coefficient that makes a linear system have no solution",
+  "difficulty": "hard",
+  "template": "two linear equations with one unknown coefficient / value giving no solution / proportional coefficients with non-proportional constants",
+  "prompt": "For what value of k does the system of equations 3x + ky = 7 and 9x + 12y = 20 have no solution?",
+  "choices": [
+   "36",
+   "4.2",
+   "12",
+   "2.25",
+   "4"
+  ],
+  "correct_answer": "4",
+  "explanation": "No solution means the left sides are proportional but the right sides are not. 9 is 3 times 3, so 12 must be 3 times k, giving k = 4; then 7 x 3 = 21 is not 20, so the lines are parallel and distinct. \"36\" inverts the ratio, k/12 = 9/3. \"4.2\" matches k/12 to the ratio of the constants 7/20. \"12\" copies the y-coefficient without scaling. \"2.25\" inverts one slope, setting -3/k equal to -12/9.",
+  "solve": "const k=12*3/9; if(7*9/3===20) return null; return k;",
+  "distractor_solve": {
+   "36": "return 12*9/3;",
+   "4.2": "return 12*7/20;",
+   "12": "return 12;",
+   "2.25": "return 3*9/12;"
+  },
+  "interval": "k is not restricted in sign by the stem. The x-coefficients scale by 3; the options that come from a ratio are all positive. A solver who notices 'no solution means parallel' still has to compute the scaling. All four distractors survive.",
+  "bounds_checked": "sign of k, the stem's printed coefficients (12 is printed and is a distractor; the key is not a printed number), ratio inversion"
+ },
+ {
+  "id": "S15D-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least whole number satisfying a linear cost comparison",
+  "difficulty": "medium",
+  "template": "two plans with fixed fee plus per-unit charge / least whole number of units where the higher-fee plan is cheaper / linear inequality then the next whole number",
+  "prompt": "Plan A for a phone costs $20 per month plus $0.05 per minute of calls. Plan B costs $8 per month plus $0.11 per minute. What is the least whole number of minutes in a month for which Plan A costs less than Plan B?",
+  "choices": [
+   "201",
+   "110",
+   "241",
+   "21",
+   "176"
+  ],
+  "correct_answer": "201",
+  "explanation": "Plan A is cheaper when 20 + 0.05m < 8 + 0.11m, i.e. 12 < 0.06m, i.e. m > 200. The least whole number is 201. \"110\" divides the $12 difference by Plan B's rate only. \"241\" divides it by Plan A's rate only. \"21\" subtracts the rates as 0.11 - 0.05 = 0.6. \"176\" adds both fees and both rates, 28/0.16 = 175.",
+  "solve": "for(let m=0;m<10000;m++){ if(20*100+5*m < 8*100+11*m) return m; } return null;",
+  "distractor_solve": {
+   "110": "return Math.floor(12/0.11)+1;",
+   "241": "return Math.round(12/0.05)+1;",
+   "21": "return Math.round(12/0.6)+1;",
+   "176": "return Math.round((20+8)/(0.05+0.11))+1;"
+  },
+  "interval": "Plan A has the higher fee and lower rate, so it is cheaper only for large m; that gives a lower bound only after the break-even is found. The break-even value 200 itself is not an option. On the 'least' ask, 110, 21 and 176 lie below the key. All four distractors survive.",
+  "bounds_checked": "monotonicity in minutes, the limiting case at break-even (kept out of the options), least-ask extreme position, adjacency"
+ },
+ {
+  "id": "S15D-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "difference of squares from a difference and a difference of squares",
+  "difficulty": "medium",
+  "template": "two equations: x - y and x^2 - y^2 / x alone / factor x^2 - y^2 to get x + y then average",
+  "prompt": "If x - y = 3 and x^2 - y^2 = 33, what is the value of x?",
+  "choices": [
+   "11",
+   "7",
+   "16.5",
+   "51",
+   "8"
+  ],
+  "correct_answer": "7",
+  "explanation": "x^2 - y^2 = (x - y)(x + y), so x + y = 33/3 = 11. Adding x + y = 11 and x - y = 3 gives 2x = 14, x = 7. \"11\" reports x + y. \"16.5\" subtracts 3 from 33 to get x + y = 30. \"51\" multiplies to get x + y = 99. \"8\" subtracts the difference from the sum instead of averaging, 11 - 3.",
+  "solve": "const s=33/3, d=3; return (s+d)/2;",
+  "distractor_solve": {
+   "11": "return 33/3;",
+   "16.5": "const s=33-3; return (s+3)/2;",
+   "51": "const s=33*3; return (s+3)/2;",
+   "8": "return 33/3-3;"
+  },
+  "interval": "x - y = 3 > 0 and x^2 - y^2 > 0 do not fix the sign of x without x + y. x is the larger of two numbers whose sum the solver does not yet know. All four distractors survive.",
+  "bounds_checked": "sign of x, x vs x + y (part vs whole only if y > 0, which is not stated), closure under subtraction (11 - 3 = 8 is a distractor, the key is not a sum or difference of two options)"
+ },
+ {
+  "id": "S15D-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "absolute-value equation with one extraneous branch",
+  "difficulty": "hard",
+  "template": "absolute value of a linear expression equal to another linear expression / the solution / solve both branches and reject the one that makes the right side negative",
+  "prompt": "What value of x satisfies |x - 2| = 2x + 5 ?",
+  "choices": [
+   "-7",
+   "-7/3",
+   "-1",
+   "3",
+   "7/3"
+  ],
+  "correct_answer": "-1",
+  "explanation": "If x - 2 = 2x + 5 then x = -7, but then 2x + 5 = -9 is negative, so -7 does not check. If -(x - 2) = 2x + 5 then -x + 2 = 2x + 5, so x = -1, and |-3| = 3 = 2(-1) + 5 checks. \"-7\" keeps the first branch without checking it. \"-7/3\" distributes the minus sign to x only, -x - 2 = 2x + 5. \"3\" drops the sign of 5, solving x - 2 = 2x - 5. \"7/3\" drops the sign of 5 in the second branch, 2 - x = 2x - 5.",
+  "solve": "const c=[(5+2)/(1-2), (2-5)/(2+1)]; return c.find(x=>Math.abs(Math.abs(x-2)-(2*x+5))<1e-9);",
+  "distractor_solve": {
+   "-7": "return (5+2)/(1-2);",
+   "-7/3": "return -7/3;",
+   "3": "return (-5+2)/(1-2);",
+   "7/3": "return (2+5)/3;"
+  },
+  "interval": "The right side must be nonnegative, so x >= -5/2: that kills -7 (one kill; it is the extraneous root, so the bound IS the decision the item tests). -7/3 is about -2.33 and survives it. No upper bound is printed. Three distractors survive.",
+  "bounds_checked": "nonnegativity of an absolute value (x >= -2.5), sign of x, closure of the option set (-7/3 and 7/3 are a distractor pair, the key is not in it)"
+ },
+ {
+  "id": "S15D-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "zero of a linear function known at two points",
+  "difficulty": "medium",
+  "template": "linear function given by two values / input where the output is 0 / slope then intercept then solve",
+  "prompt": "A linear function f has f(2) = 7 and f(6) = 19. For what value of x is f(x) = 0?",
+  "choices": [
+   "-7/3",
+   "-4/3",
+   "-19",
+   "-1/3",
+   "-3"
+  ],
+  "correct_answer": "-1/3",
+  "explanation": "The slope is (19 - 7)/(6 - 2) = 3, and f(2) = 7 gives f(x) = 3x + 1. Then 3x + 1 = 0 at x = -1/3. \"-7/3\" treats 7 as the y-intercept, f(x) = 3x + 7. \"-4/3\" subtracts the slope only once to find the intercept, b = 7 - 3 = 4. \"-19\" inverts the slope to 1/3, giving b = 19/3. \"-3\" finds f(x) = 3x + 1 but solves it as x = -3/1.",
+  "solve": "const m=(19-7)/(6-2), b=7-2*m; return -b/m;",
+  "distractor_solve": {
+   "-7/3": "const m=(19-7)/(6-2); return -7/m;",
+   "-4/3": "const m=(19-7)/(6-2), b=7-m; return -b/m;",
+   "-19": "const m=(6-2)/(19-7), b=7-2*m; return -b/m;",
+   "-3": "const m=(19-7)/(6-2), b=7-2*m; return -m/b;"
+  },
+  "interval": "f increases (19 > 7) and f(2) = 7 > 0, so the zero is below 2: every option is negative, so this kills nothing. A sharper bound needs the slope (the method). All four distractors survive.",
+  "bounds_checked": "direction read off the two printed values (all options already satisfy x < 2), sign of the zero, magnitude from the slope"
+ },
+ {
+  "id": "S15D-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "linear inequality with two fractional terms",
+  "difficulty": "medium",
+  "template": "inequality with a difference of two fractions on one side / the solution set / clear denominators with the LCD including the constant side",
+  "prompt": "Which of the following describes all values of x for which (x - 3)/4 - (x + 1)/6 > 1 ?",
+  "choices": [
+   "x > 19",
+   "x > 12",
+   "x > 17",
+   "x < -21",
+   "x > 23"
+  ],
+  "correct_answer": "x > 23",
+  "explanation": "Multiplying by 12: 3(x - 3) - 2(x + 1) > 12, so x - 11 > 12 and x > 23. \"x > 19\" distributes -2 as -2x + 2, getting x - 7 > 12. \"x > 12\" multiplies the left side by 12 but leaves the right side as 1. \"x > 17\" multiplies the left by 24 but the right by 12, 2x - 22 > 12. \"x < -21\" swaps the multipliers, 2(x - 3) - 3(x + 1) > 12, giving -x - 9 > 12.",
+  "solve": "const c=(12+3*3+2*1)/(3-2); return `x > ${c}`;",
+  "distractor_solve": {
+   "x > 19": "return `x > ${12+7}`;",
+   "x > 12": "return `x > ${1+11}`;",
+   "x > 17": "return `x > ${(12+22)/2}`;",
+   "x < -21": "return `x < ${-(12+9)}`;"
+  },
+  "interval": "The x-coefficient on the left is 1/4 - 1/6 > 0, so the left side increases with x and the solution set has the form x > c: that kills 'x < -21' (one kill). x = 0 is not a solution, consistent with every remaining option. Three distractors survive.",
+  "bounds_checked": "monotonicity of the left side in x (direction of the solution set), plug-back at x = 0, size of the bound"
+ },
+ {
+  "id": "S15D-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding a constant from one value of a shifted square, then evaluating",
+  "difficulty": "medium",
+  "template": "vertex-form quadratic with unknown constant and one known value / the value at another input / solve for the constant then substitute",
+  "prompt": "The function f is defined by f(x) = (x - 3)^2 + k, where k is a constant. If f(1) = 10, what is the value of f(6)?",
+  "choices": [
+   "15",
+   "23",
+   "75",
+   "19",
+   "45"
+  ],
+  "correct_answer": "15",
+  "explanation": "f(1) = (-2)^2 + k = 4 + k = 10, so k = 6 and f(6) = 3^2 + 6 = 15. \"23\" squares -2 as -4, so k = 14. \"75\" uses (x + 3)^2, so 16 + k = 10, k = -6 and f(6) = 81 - 6. \"19\" takes k to be f(1) = 10. \"45\" expands (x - 3)^2 as x^2 - 9, so k = 18 and f(6) = 36 - 9 + 18.",
+  "solve": "const f0=(x,k)=>(x-3)*(x-3)+k; const k=10-(1-3)*(1-3); return f0(6,k);",
+  "distractor_solve": {
+   "23": "const k=10-(-4); return 9+k;",
+   "75": "const k=10-16; return 81+k;",
+   "19": "const k=10; return 9+k;",
+   "45": "const k=10-(1-9); return 36-9+k;"
+  },
+  "interval": "f(6) - f(1) = 9 - 4 = 5 is the method, not a bound. f(x) >= k for every x, and k <= f(1) = 10, so nothing caps f(6) from above freely. All four distractors survive.",
+  "bounds_checked": "minimum value of a square, monotonicity away from the vertex (6 is farther from 3 than 1 is, so f(6) > f(1) = 10: every option exceeds 10, none killed)"
+ },
+ {
+  "id": "S15D-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "identifying a linear function from its composition with itself",
+  "difficulty": "hard",
+  "template": "linear function with positive unknown coefficients and a given self-composition / its value at a new input / match coefficients of f(f(x))",
+  "prompt": "A function f is defined by f(x) = ax + b, where a and b are positive constants. If f(f(x)) = 4x + 9 for all x, what is the value of f(5)?",
+  "choices": [
+   "21.8",
+   "13",
+   "19",
+   "14.5",
+   "29"
+  ],
+  "correct_answer": "13",
+  "explanation": "f(f(x)) = a(ax + b) + b = a^2 x + ab + b. So a^2 = 4, a = 2, and 2b + b = 9, b = 3. Then f(5) = 10 + 3 = 13. \"21.8\" sets a = 4 without the square root, so 5b = 9. \"19\" takes b to be the constant 9. \"14.5\" reads ab + b as ab, so 2b = 9. \"29\" evaluates f(f(5)) = 4(5) + 9.",
+  "solve": "for(let a=1;a<=10;a++){ for(let b=1;b<=20;b++){ if(a*a===4 && a*b+b===9) return a*5+b; } } return null;",
+  "distractor_solve": {
+   "21.8": "const a=4, b=9/(a+1); return a*5+b;",
+   "19": "const a=2, b=9; return a*5+b;",
+   "14.5": "const a=2, b=9/a; return a*5+b;",
+   "29": "return 4*5+9;"
+  },
+  "interval": "a, b > 0 makes f increasing and f(x) > x is not given. f(f(5)) = 29, so f(5) < 29 only if f(x) > x for these values, which needs a and b. No option is negative. All four distractors survive.",
+  "bounds_checked": "positivity of a and b, the stem's printed coefficients 4 and 9 (the key carries neither), monotonicity of an increasing f"
+ },
+ {
+  "id": "S15D-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "length of a segment from one endpoint, the other x-coordinate and the slope",
+  "difficulty": "hard",
+  "template": "segment with one missing coordinate and a given slope / its length / slope gives the rise, then the distance formula",
+  "prompt": "In the coordinate plane, segment AB has endpoints A(1, 2) and B(7, k). If the slope of AB is -2/3, what is the length of AB?",
+  "choices": [
+   "sqrt(117)",
+   "10",
+   "sqrt(52)",
+   "sqrt(20)",
+   "sqrt(72)"
+  ],
+  "correct_answer": "sqrt(52)",
+  "explanation": "The run is 7 - 1 = 6, so the rise is 6(-2/3) = -4 and k = -2. The length is sqrt(6^2 + 4^2) = sqrt(52). \"sqrt(117)\" inverts the slope, using a rise of 9. \"10\" adds the run and rise instead of using the distance formula. \"sqrt(20)\" subtracts the squares. \"sqrt(72)\" takes k equal to the rise -4 instead of 2 + (-4), so the rise becomes 6.",
+  "solve": "const run=7-1, rise=run*(-2/3); return `sqrt(${Math.round(run*run+rise*rise)})`;",
+  "distractor_solve": {
+   "sqrt(117)": "const run=6, rise=run*3/2; return `sqrt(${run*run+rise*rise})`;",
+   "10": "const run=6, rise=run*2/3; return run+rise;",
+   "sqrt(20)": "const run=6, rise=run*2/3; return `sqrt(${run*run-rise*rise})`;",
+   "sqrt(72)": "const run=6, k=run*(-2/3); const rise=Math.abs(k-2); return `sqrt(${run*run+rise*rise})`;"
+  },
+  "interval": "AB is longer than its run 6, which kills sqrt(20) (one kill). The sign of the slope does not change the length. AB is less than run + |rise|, so 10 sits ON that bound, but the rise must be computed first (the method). Three distractors survive.",
+  "bounds_checked": "length > horizontal run, triangle-inequality upper bound (needs the rise), sign of the slope, radical simplification"
+ },
+ {
+  "id": "S15D-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "intersection of two lines each given by two points",
+  "difficulty": "hard",
+  "template": "two lines each described by two points / sum of the intersection's coordinates / build both equations then solve the system",
+  "prompt": "Line p passes through the points (0, 8) and (4, 0). Line q passes through the points (1, -1) and (3, 5). The two lines intersect at the point (a, b). What is the value of a + b?",
+  "choices": [
+   "4",
+   "44",
+   "34/5",
+   "28/5",
+   "12/5"
+  ],
+  "correct_answer": "28/5",
+  "explanation": "Line p has slope -2 and y-intercept 8, so y = 8 - 2x. Line q has slope 6/2 = 3 and passes through (1, -1), so y = 3x - 4. Setting 8 - 2x = 3x - 4 gives x = 12/5, y = 16/5 and a + b = 28/5. \"4\" uses the slope of q upside down, 1/3. \"44\" gives line p slope +2. \"34/5\" finds q's intercept as -1 + 3 = 2. \"12/5\" reports a only.",
+  "solve": "const x=(8+4)/(3+2), y=8-2*x; return x+y;",
+  "distractor_solve": {
+   "4": "const x=(8+4/3)/(2+1/3); return x+(8-2*x);",
+   "44": "const x=(8+4)/(3-2); return x+(3*x-4);",
+   "34/5": "const x=(8-2)/(3+2); return x+(3*x+2);",
+   "12/5": "return 12/5;"
+  },
+  "interval": "On line p, b = 8 - 2a, so a + b = 8 - a; the intersection's x is not bounded without q. Line q rises; p falls; their crossing x lies where 3x - 4 = 8 - 2x, which is the method. All four distractors survive.",
+  "bounds_checked": "direction of each line read off its two points, magnitude, a vs a + b (part vs whole), closure (no option is a sum of two others)"
+ },
+ {
+  "id": "S15D-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "y-intercept of a perpendicular through an endpoint",
+  "difficulty": "hard",
+  "template": "line through two points and a perpendicular through one of them / the perpendicular's y-intercept / negative reciprocal slope then point-slope",
+  "prompt": "Line l passes through the points (2, -1) and (6, 1). Line m is perpendicular to line l and passes through the point (2, -1). At what value of y does line m cross the y-axis?",
+  "choices": [
+   "0",
+   "13",
+   "5",
+   "1.5",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "Line l has slope 2/4 = 1/2, so m has slope -2. Through (2, -1): y + 1 = -2(x - 2), so y = -2x + 3, and the y-intercept is 3. \"0\" negates the slope without inverting it, using -1/2. \"13\" passes m through (6, 1) instead of (2, -1). \"5\" uses the point (2, 1), dropping the sign of -1. \"1.5\" reports where m crosses the x-axis.",
+  "solve": "const sl=(1-(-1))/(6-2), sm=-1/sl; return -1-sm*2;",
+  "distractor_solve": {
+   "0": "const s=-1/2; return -1-s*2;",
+   "13": "const s=-2; return 1-s*6;",
+   "5": "const s=-2; return 1-s*2;",
+   "1.5": "const s=-2, b=-1-s*2; return -b/s;"
+  },
+  "interval": "Line l rises, so m falls; moving left from x = 2 to x = 0 along m raises y above -1, so the y-intercept exceeds -1. Every option is above -1, so the direction bound kills none. No upper bound follows without the slope. All four distractors survive.",
+  "bounds_checked": "direction of m read from the rising line l, which side of -1 the intercept lies on, x- vs y-intercept"
+ },
+ {
+  "id": "S15D-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area enclosed by an absolute-value graph and a horizontal line",
+  "difficulty": "hard",
+  "template": "V-shaped absolute-value graph cut by a horizontal line, described in words / area of the enclosed region / solve both branches for the base, vertex for the height",
+  "prompt": "In the coordinate plane, the graph of y = |x + 1| and the horizontal line y = 5 enclose a region. What is the area of that region, in square units?",
+  "choices": [
+   "50",
+   "20",
+   "25",
+   "16",
+   "10"
+  ],
+  "correct_answer": "25",
+  "explanation": "y = |x + 1| meets y = 5 where x + 1 = 5 or x + 1 = -5, at x = 4 and x = -6, and its vertex is (-1, 0). The region is a triangle with base 10 and height 5, area 25. \"50\" forgets the 1/2. \"20\" solves x + 1 = -5 as x = -4, giving a base of 8. \"16\" treats the graph as y = |x| + 1, with vertex (0, 1), height 4 and base 8. \"10\" measures the base from the y-axis to x = 4.",
+  "solve": "const xr=5-1, xl=-5-1, h=5-0; return (xr-xl)*h/2;",
+  "distractor_solve": {
+   "50": "const w=4-(-6), h=5; return w*h;",
+   "20": "const w=4-(-4), h=5; return w*h/2;",
+   "16": "const w=4-(-4), h=5-1; return w*h/2;",
+   "10": "const w=4-0, h=5; return w*h/2;"
+  },
+  "interval": "The region lies under y = 5 and above y = 0, but its width is not readable without solving |x + 1| = 5. The triangle's area is half its bounding rectangle's, which gives 50 only after the width is found. All four distractors survive.",
+  "bounds_checked": "height bound from y = 5, width bound (needs both branches), half-of-rectangle relation, magnitude"
+ }
+]

@@ -1,0 +1,450 @@
+[
+ {
+  "id": "S15E-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "divisibility by 11 through the alternating digit sum, missing digit",
+  "difficulty": "easy",
+  "template": "four-digit number with one missing digit / the missing digit / alternating-sum test for 11",
+  "prompt": "The four-digit number 7A53, in which A stands for a single digit, is divisible by 11. What digit does A stand for?",
+  "choices": [
+   "9",
+   "0",
+   "3",
+   "7",
+   "1"
+  ],
+  "correct_answer": "9",
+  "explanation": "A number is divisible by 11 when the alternating sum of its digits is a multiple of 11. For 7A53 this is 7 - A + 5 - 3 = 9 - A, which must be 0 for a single digit A, so A = 9 (7953 = 11 x 723). The option \"3\" uses the test for 9: the digit sum 15 + A is 18. The option \"0\" uses the test for 3: the smallest digit making 15 + A a multiple of 3. The option \"7\" makes the ordinary digit sum 15 + A equal to 22, a multiple of 11, instead of the alternating sum. The option \"1\" pairs the digits wrongly, (7 + A) - (5 + 3) = 0.",
+  "solve": "for(let a=0;a<=9;a++){if((7000+100*a+53)%11===0)return a;}return null;",
+  "distractor_solve": {
+   "3": "for(let a=0;a<=9;a++){if((15+a)%9===0)return a;}return null;",
+   "0": "for(let a=0;a<=9;a++){if((15+a)%3===0)return a;}return null;",
+   "7": "for(let a=0;a<=9;a++){if((15+a)%11===0)return a;}return null;",
+   "1": "for(let a=0;a<=9;a++){if((7+a)-(5+3)===0)return a;}return null;"
+  },
+  "interval": "A is a single digit, so every option 0-9 is admissible; no option is excluded by the stem before a divisibility test is applied. All four distractors survive.",
+  "bounds_checked": "digit range 0-9; parity of 7A53 (odd for every A, so no option killed); whether any option makes 7A53 obviously divisible (none without the test); key is the largest option but the stem asks for a digit, not a greatest value"
+ },
+ {
+  "id": "S15E-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest common factor applied to cutting three lengths, counting pieces",
+  "difficulty": "medium",
+  "template": "three lengths cut into equal longest pieces / total number of pieces / GCF of three numbers then quotients",
+  "prompt": "Three ropes are 36 meters, 60 meters, and 150 meters long. All three ropes are cut into pieces that all have the same length, with no rope left over, and the pieces are made as long as possible. How many pieces are there in all?",
+  "choices": [
+   "8",
+   "41",
+   "6",
+   "25",
+   "20"
+  ],
+  "correct_answer": "41",
+  "explanation": "The longest common length is the greatest common factor of 36, 60 and 150, which is 6. The ropes give 36/6 + 60/6 + 150/6 = 6 + 10 + 25 = 41 pieces. The option \"6\" is the piece length, not the number of pieces. The option \"25\" counts only the pieces from the 150-meter rope. The option \"8\" uses the greatest common factor 12 of 36 and 60 and leaves the 150-meter rope out: 3 + 5. The option \"20\" uses 12 for all three ropes and rounds 150/12 = 12.5 down to 12: 3 + 5 + 12.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const L=[36,60,150];const d=g(g(L[0],L[1]),L[2]);return L.reduce((s,x)=>s+x/d,0);",
+  "distractor_solve": {
+   "6": "const g=(a,b)=>b?g(b,a%b):a;return g(g(36,60),150);",
+   "25": "const g=(a,b)=>b?g(b,a%b):a;return 150/g(g(36,60),150);",
+   "8": "const g=(a,b)=>b?g(b,a%b):a;const d=g(36,60);return 36/d+60/d;",
+   "20": "const g=(a,b)=>b?g(b,a%b):a;const d=g(36,60);return 36/d+60/d+Math.floor(150/d);"
+  },
+  "interval": "At least 3 pieces (one per rope) and at most 246 (1-meter pieces); every option lies strictly inside. Longer pieces mean fewer pieces, but the stem gives no length to anchor that, so monotonicity kills nothing. All four distractors survive.",
+  "bounds_checked": "part-of-whole (pieces at least one per rope, at most total length); monotonicity in piece length; divisibility of each length by the candidate count; magnitude"
+ },
+ {
+  "id": "S15E-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal remainders under two divisors, period is the LCM, counting below a bound",
+  "difficulty": "hard",
+  "template": "integers below a bound with equal remainders mod 4 and mod 6 / how many / residues modulo the LCM 12 with remainder below 4",
+  "prompt": "How many positive integers less than 200 leave the same remainder when divided by 4 as when divided by 6?",
+  "choices": [
+   "16",
+   "35",
+   "67",
+   "101",
+   "64"
+  ],
+  "correct_answer": "67",
+  "explanation": "If n leaves remainder r under both 4 and 6, then r is 0, 1, 2 or 3 and n - r is a multiple of both 4 and 6, so of 12. So n leaves remainder 0, 1, 2 or 3 when divided by 12. From 1 to 11 that is 1, 2, 3; each block 12k to 12k + 3 for k = 1 to 16 lies below 200 (the last is 192 to 195), giving 64 more. Total 3 + 64 = 67. The option \"16\" counts only the multiples of 12 (remainder 0). The option \"64\" counts the sixteen full blocks and forgets 1, 2 and 3. The option \"35\" takes the period as 4 x 6 = 24 instead of 12. The option \"101\" lets the common remainder run from 0 to 5, as if the remainder on division by 4 could be 4 or 5.",
+  "solve": "let c=0;for(let n=1;n<200;n++)if(n%4===n%6)c++;return c;",
+  "distractor_solve": {
+   "16": "let c=0;for(let n=1;n<200;n++)if(n%12===0)c++;return c;",
+   "64": "let c=0;for(let n=12;n<200;n++)if(n%12<4)c++;return c;",
+   "35": "let c=0;for(let n=1;n<200;n++)if(n%24<4)c++;return c;",
+   "101": "let c=0;for(let n=1;n<200;n++)if(n%12<6)c++;return c;"
+  },
+  "interval": "The count is at least the 16 multiples of 12 and at most 199. \"16\" is the multiples-of-12 count, a strict subset reached by a wrong procedure but not a printed bound, and the true count cannot be read off any stem number. 35, 64, 101 all lie inside (16, 199). All four distractors survive any free observation.",
+  "bounds_checked": "range (count between 1 and 199); part-of-whole; the multiples-of-12 subset as a lower bound; key = sum/difference of two options (none: 16+35, 64-35 etc. do not give 67); monotonicity (none in the ask)"
+ },
+ {
+  "id": "S15E-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least integer meeting a square condition and a cube condition, exponent residues",
+  "difficulty": "hard",
+  "template": "n/2 is a square and n/3 is a cube / least n / exponents of 2 and 3 satisfying parity and mod-3 conditions together",
+  "prompt": "What is the least positive integer n such that n/2 is a perfect square and n/3 is a perfect cube?",
+  "choices": [
+   "162",
+   "24",
+   "5832",
+   "648",
+   "432"
+  ],
+  "correct_answer": "648",
+  "explanation": "Write n = 2^a x 3^b. For n/2 = 2^(a-1) x 3^b to be a square, a - 1 and b are even. For n/3 = 2^a x 3^(b-1) to be a cube, a and b - 1 are multiples of 3. The least a that is odd and a multiple of 3 is 3; the least b that is even and one more than a multiple of 3 is 4. So n = 2^3 x 3^4 = 648 (n/2 = 324 = 18^2, n/3 = 216 = 6^3). The option \"432\" = 2^4 x 3^3 swaps the conditions, making n/2 the cube and n/3 the square. The option \"162\" = 2 x 3^4 takes a = 1, satisfying the square condition but not the cube condition on the 2. The option \"24\" = 2^3 x 3 takes b = 1, so n/3 = 8 is a cube but n/2 = 12 is not a square. The option \"5832\" = 2^3 x 3^6 takes b = 6, a multiple of both 2 and 3, forgetting that n/3 lowers the exponent of 3 by one.",
+  "solve": "const sq=x=>Number.isInteger(Math.sqrt(x));const cu=x=>{const r=Math.round(Math.cbrt(x));return r*r*r===x;};for(let n=6;;n+=6){if(sq(n/2)&&cu(n/3))return n;}",
+  "distractor_solve": {
+   "432": "const sq=x=>Number.isInteger(Math.sqrt(x));const cu=x=>{const r=Math.round(Math.cbrt(x));return r*r*r===x;};for(let n=6;;n+=6){if(cu(n/2)&&sq(n/3))return n;}",
+   "162": "let a=1;let b=0;while(!(b%2===0&&(b-1)%3===0&&b>0))b++;return 2**a*3**b;",
+   "24": "let a=0;while(!(a%2===1&&a%3===0))a++;return 2**a*3**1;",
+   "5832": "let a=0;while(!(a%2===1&&a%3===0))a++;let b=1;while(!(b%2===0&&b%3===0))b++;return 2**a*3**b;"
+  },
+  "interval": "n must be a multiple of 6: every option is. n/2 square and n/3 cube are checkable on each option, but that is substituting back, which is the item's method (\u00a78a). No stem number bounds n from above; the key is not the least option on this least ask (24 and 162 are smaller). All four distractors survive any free observation.",
+  "bounds_checked": "divisibility by 6 (all options pass); magnitude; least-ask extremity (key interior); key = sum of two options (checked: 216 removed so 216 + 432 cannot form 648); option ratios"
+ },
+ {
+  "id": "S15E-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting integers with a prescribed LCM against a fixed number",
+  "difficulty": "hard",
+  "template": "lcm(n, 18) = 180 / how many n / exponent of each prime in n forced or free",
+  "prompt": "For how many positive integers n is the least common multiple of n and 18 equal to 180?",
+  "choices": [
+   "7",
+   "6",
+   "12",
+   "18",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "180 = 2^2 x 3^2 x 5 and 18 = 2 x 3^2. The LCM takes the larger exponent of each prime, so n must supply 2^2 and 5 itself, and may carry 3^0, 3^1 or 3^2, and nothing else. That gives n = 20, 60 or 180: 3 values. The option \"6\" lets the exponent of 2 in n be 1 or 2, forgetting that 18 supplies only one factor of 2. The option \"7\" counts the divisors of 180 that are greater than 18 (20, 30, 36, 45, 60, 90, 180), as if any larger divisor would do. The option \"12\" counts the divisors of 180 that do not divide 18. The option \"18\" counts all divisors of 180.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;let c=0;for(let n=1;n<=180;n++)if(n*18/g(n,18)===180)c++;return c;",
+  "distractor_solve": {
+   "6": "let c=0;for(let a=1;a<=2;a++)for(let b=0;b<=2;b++)c++;return c;",
+   "7": "let c=0;for(let d=19;d<=180;d++)if(180%d===0)c++;return c;",
+   "12": "let c=0;for(let d=1;d<=180;d++)if(180%d===0&&18%d!==0)c++;return c;",
+   "18": "let c=0;for(let d=1;d<=180;d++)if(180%d===0)c++;return c;"
+  },
+  "interval": "n must divide 180, so the count is at most 18 (the number of divisors of 180, itself not printed) and at least 1 (n = 180 works). Every option is inside [1, 18]; \"18\" equals the divisor count, which a student must compute before it is a bound. All four distractors survive any free observation.",
+  "bounds_checked": "range (1 to divisors of 180); part-of-whole; key is the least option, checked that no cheap lower bound reaches 3 (n = 180 alone gives only 1); key = sum/difference of two options (checked: 18 - 12 = 6, not 3); numeric hub (6 is the hub, not the key)"
+ },
+ {
+  "id": "S15E-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest prime factor of 2^10 - 1 via difference of squares",
+  "difficulty": "hard",
+  "template": "a power of 2 minus 1 / greatest prime factor / difference-of-squares factoring then primality",
+  "prompt": "What is the greatest prime factor of 2^10 - 1?",
+  "choices": [
+   "31",
+   "11",
+   "89",
+   "73",
+   "41"
+  ],
+  "correct_answer": "31",
+  "explanation": "2^10 - 1 = (2^5 - 1)(2^5 + 1) = 31 x 33 = 31 x 3 x 11, so the greatest prime factor is 31. The option \"11\" is the greatest prime factor of 33 alone, after 31 is overlooked. The option \"41\" comes from 2^10 + 1 = 1025 = 5^2 x 41. The option \"73\" comes from 2^9 - 1 = 511 = 7 x 73. The option \"89\" comes from 2^11 - 1 = 2047 = 23 x 89.",
+  "solve": "let n=2**10-1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;",
+  "distractor_solve": {
+   "11": "let n=2**5+1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;",
+   "41": "let n=2**10+1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;",
+   "73": "let n=2**9-1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;",
+   "89": "let n=2**11-1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;"
+  },
+  "interval": "Every option is prime, so primality kills nothing. 2^10 - 1 = 1023 is odd and below 1024, so every option is admissible as a size; units digit: 1023 ends in 3, and a factor's units digit is not constrained enough to remove any option without division. On this greatest ask the key is not the greatest option (89, 73, 41 are larger). All four distractors survive any free observation; only trial division (the method) decides.",
+  "bounds_checked": "primality of each option (all prime); magnitude below 1023; greatest-ask extremity; units-digit and parity compatibility with 1023; divisibility by 3 (digit sum 6, so 3 divides 1023 - kills no option)"
+ },
+ {
+  "id": "S15E-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "place value in a three-digit reversal difference, counting digit triples",
+  "difficulty": "hard",
+  "template": "ABC minus its reversal equals 396 / how many ABC / 99(A - C) with digit ranges and a free middle digit",
+  "prompt": "A three-digit number ABC has hundreds digit A, tens digit B, and units digit C. Reversing its digits gives CBA, which is also a three-digit number. If ABC - CBA = 396, how many different numbers ABC are possible?",
+  "choices": [
+   "6",
+   "50",
+   "45",
+   "60",
+   "54"
+  ],
+  "correct_answer": "50",
+  "explanation": "ABC - CBA = (100A + 10B + C) - (100C + 10B + A) = 99(A - C) = 396, so A - C = 4. Since CBA is a three-digit number, C is at least 1, so (A, C) is (5, 1), (6, 2), (7, 3), (8, 4) or (9, 5): five pairs. B does not appear in the difference, so it can be any of the 10 digits: 5 x 10 = 50. The option \"45\" lets B run only from 1 to 9. The option \"60\" allows C = 0, giving six pairs, though CBA would then not be a three-digit number. The option \"54\" allows C = 0 and also lets B run only from 1 to 9. The option \"6\" allows C = 0 and forgets that B can vary.",
+  "solve": "let c=0;for(let n=100;n<1000;n++){const u=n%10;if(u===0)continue;const r=Number(String(n).split(\"\").reverse().join(\"\"));if(n-r===396)c++;}return c;",
+  "distractor_solve": {
+   "45": "let c=0;for(let a=1;a<=9;a++)for(let b=1;b<=9;b++)for(let u=1;u<=9;u++)if(99*(a-u)===396)c++;return c;",
+   "60": "let c=0;for(let a=1;a<=9;a++)for(let b=0;b<=9;b++)for(let u=0;u<=9;u++)if(99*(a-u)===396)c++;return c;",
+   "54": "let c=0;for(let a=1;a<=9;a++)for(let b=1;b<=9;b++)for(let u=0;u<=9;u++)if(99*(a-u)===396)c++;return c;",
+   "6": "let c=0;for(let a=1;a<=9;a++)for(let u=0;u<=9;u++)if(99*(a-u)===396)c++;return c;"
+  },
+  "interval": "The count is at least 1 and at most 900 (all three-digit numbers); any count must be a multiple of the number of admissible B values only once B is seen to be free (the method). All options lie strictly inside; none is a printed limiting case. All four distractors survive any free observation.",
+  "bounds_checked": "range (1 to 900); divisibility of the count by 10 (requires seeing B is free - the method); key = sum/difference of two options (checked: 6 + 45 = 51, 60 - 6 = 54 is a distractor not the key); option ratios (6 and 60)"
+ },
+ {
+  "id": "S15E-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting divisors of a number that are multiples of a given factor",
+  "difficulty": "medium",
+  "template": "divisors of 720 restricted to multiples of 15 / how many / divide out 15 and count divisors of the quotient",
+  "prompt": "How many positive divisors of 720 are multiples of 15?",
+  "choices": [
+   "4",
+   "15",
+   "10",
+   "48",
+   "8"
+  ],
+  "correct_answer": "10",
+  "explanation": "A divisor of 720 that is a multiple of 15 has the form 15m, where m divides 720/15 = 48 = 2^4 x 3. So the count is the number of divisors of 48, which is (4 + 1)(1 + 1) = 10. The option \"4\" counts the divisors of 15. The option \"15\" counts the divisors that are multiples of 5 (divisors of 144). The option \"48\" counts the multiples of 15 from 15 to 720, not the divisors. The option \"8\" factors 720 as 2^3 x 3^2 x 5 (which is 360), so it counts the divisors of 360/15 = 24.",
+  "solve": "let c=0;for(let d=1;d<=720;d++)if(720%d===0&&d%15===0)c++;return c;",
+  "distractor_solve": {
+   "4": "let c=0;for(let d=1;d<=15;d++)if(15%d===0)c++;return c;",
+   "15": "let c=0;for(let d=1;d<=720;d++)if(720%d===0&&d%5===0)c++;return c;",
+   "48": "return 720/15;",
+   "8": "let c=0;for(let d=1;d<=360;d++)if(360%d===0&&d%15===0)c++;return c;"
+  },
+  "interval": "The count is at least 2 (15 and 720) and at most the number of divisors of 720 (30, not printed). \"48\" exceeds 30, but that needs the divisor count of 720 first, which is the method. All options lie in [2, 48]; none is a printed limiting case. All four distractors survive any free observation.",
+  "bounds_checked": "part-of-whole against the divisor count of 720 (not free); lower bound from the obvious divisors 15 and 720; magnitude; key = sum of two options (4 + 8 = 12, not 10; checked)"
+ },
+ {
+  "id": "S15E-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "largest power of a composite dividing a factorial, binding prime",
+  "difficulty": "hard",
+  "template": "24^k divides 30! / greatest k / Legendre counts of 2 and 3, divide the 2-count by 3, take the minimum",
+  "prompt": "The number 30! is the product of all the integers from 1 to 30. What is the greatest integer k for which 24^k is a factor of 30! ?",
+  "choices": [
+   "14",
+   "26",
+   "13",
+   "8",
+   "10"
+  ],
+  "correct_answer": "8",
+  "explanation": "24 = 2^3 x 3. The number of factors of 2 in 30! is 15 + 7 + 3 + 1 = 26, and of 3 is 10 + 3 + 1 = 14. Each 24 needs three 2s and one 3, so k is limited to 26/3 rounded down = 8 by the 2s and to 14 by the 3s; the smaller is 8. The option \"14\" assumes the larger prime 3 is the limiting one. The option \"26\" uses the count of 2s without dividing by 3. The option \"13\" divides the 2-count by 2, as if 24 contained only 2^2. The option \"10\" counts only the multiples of 3 and treats that as the limit.",
+  "solve": "const v=(n,p)=>{let s=0;for(let q=p;q<=n;q*=p)s+=Math.floor(n/q);return s;};return Math.min(Math.floor(v(30,2)/3),v(30,3));",
+  "distractor_solve": {
+   "14": "const v=(n,p)=>{let s=0;for(let q=p;q<=n;q*=p)s+=Math.floor(n/q);return s;};return v(30,3);",
+   "26": "const v=(n,p)=>{let s=0;for(let q=p;q<=n;q*=p)s+=Math.floor(n/q);return s;};return v(30,2);",
+   "13": "const v=(n,p)=>{let s=0;for(let q=p;q<=n;q*=p)s+=Math.floor(n/q);return s;};return Math.floor(v(30,2)/2);",
+   "10": "return Math.floor(30/3);"
+  },
+  "interval": "k is at least 1 (24 itself is a factor) and every multiple of 24 up to 30 gives only one, so the printed lower bound is 1, far below every option. No option sits on a bound a student can read without counting prime factors. Key is the least option, checked against cheap upper bounds (30/3 = 10 is a ceiling only after seeing 3 is not binding - the method). All four distractors survive any free observation.",
+  "bounds_checked": "range (1 upward); magnitude; key-is-least checked against any cheap cap (none at 8); option relations 13/26 noted (not involving the key); key = sum/difference of two options (checked: none gives 8)"
+ },
+ {
+  "id": "S15E-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "integers with an odd number of divisors are perfect squares",
+  "difficulty": "hard",
+  "template": "integers 1 to 150 with an odd divisor count / how many / divisor pairing so only squares qualify",
+  "prompt": "How many integers from 1 to 150, inclusive, have an odd number of positive divisors?",
+  "choices": [
+   "15",
+   "5",
+   "75",
+   "35",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "Divisors come in pairs d and n/d, and the pair is a single divisor only when d = n/d, that is, when n is a perfect square. So the integers with an odd number of divisors are the perfect squares 1, 4, 9, ..., 144: there are 12. The option \"5\" counts only squares of primes (4, 9, 25, 49, 121), which have exactly three divisors. The option \"15\" also counts the perfect cubes 8, 27 and 125. The option \"35\" counts the primes up to 150. The option \"75\" counts the odd numbers.",
+  "solve": "let c=0;for(let n=1;n<=150;n++){let d=0;for(let k=1;k<=n;k++)if(n%k===0)d++;if(d%2===1)c++;}return c;",
+  "distractor_solve": {
+   "5": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let c=0;for(let p=2;p*p<=150;p++)if(ip(p))c++;return c;",
+   "15": "let c=0;for(let n=1;n<=150;n++){const s=Math.round(Math.sqrt(n)),t=Math.round(Math.cbrt(n));if(s*s===n||t*t*t===n)c++;}return c;",
+   "35": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let c=0;for(let n=1;n<=150;n++)if(ip(n))c++;return c;",
+   "75": "let c=0;for(let n=1;n<=150;n++)if(n%2===1)c++;return c;"
+  },
+  "interval": "The count is between 1 (the number 1 has one divisor) and 150. Every option is inside. \"75\" is the odd-number count, not a printed bound. All four distractors survive any free observation.",
+  "bounds_checked": "range 1-150; part-of-whole; parity (odd divisor count is not the same as odd number - not a free bound); magnitude"
+ },
+ {
+  "id": "S15E-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "set of possible values of gcd(n, n + 12) is the divisors of 12, summed",
+  "difficulty": "hard",
+  "template": "gcd of n and n + 12 over all n / sum of the distinct values / gcd divides the difference and every divisor occurs",
+  "prompt": "As n ranges over all positive integers, the greatest common factor of n and n + 12 takes several different values. What is the sum of all of these different values?",
+  "choices": [
+   "28",
+   "6",
+   "12",
+   "78",
+   "13"
+  ],
+  "correct_answer": "28",
+  "explanation": "Any common factor of n and n + 12 also divides their difference, 12, so the greatest common factor is a divisor of 12. Every divisor d of 12 occurs (take n = d). So the values are 1, 2, 3, 4, 6 and 12, with sum 28. The option \"6\" is how many values there are, not their sum. The option \"12\" gives only the largest value. The option \"13\" assumes the only values are 1 and 12. The option \"78\" assumes every value from 1 to 12 can occur.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const s=new Set();for(let n=1;n<=200;n++)s.add(g(n,n+12));return [...s].reduce((a,b)=>a+b,0);",
+  "distractor_solve": {
+   "6": "const g=(a,b)=>b?g(b,a%b):a;const s=new Set();for(let n=1;n<=200;n++)s.add(g(n,n+12));return s.size;",
+   "12": "const g=(a,b)=>b?g(b,a%b):a;let m=0;for(let n=1;n<=200;n++)m=Math.max(m,g(n,n+12));return m;",
+   "13": "return 1+12;",
+   "78": "let s=0;for(let k=1;k<=12;k++)s+=k;return s;"
+  },
+  "interval": "The sum is at least 1 + 12 = 13 only after seeing that 12 is attained; nothing in the stem caps it below 78 without knowing that the gcd divides 12 (the method). All options are inside [6, 78]; the key is interior (78 is larger). All four distractors survive any free observation.",
+  "bounds_checked": "range; key = sum/difference of two options (checked: 6 + 12 = 18, 12 + 13 = 25, 78 - 6 = 72; none is 28); ladder (no); magnitude"
+ },
+ {
+  "id": "S15E-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "order of operations with negative signs and exponents",
+  "difficulty": "easy",
+  "template": "mixed expression with -a^2, (-b)^3 and a product-quotient / value / exponent before sign, then multiply-divide, then add",
+  "prompt": "What is the value of -3^2 + (-2)^3 - 4(-5)/2 ?",
+  "choices": [
+   "11",
+   "-27",
+   "9",
+   "1.5",
+   "-7"
+  ],
+  "correct_answer": "-7",
+  "explanation": "The exponent is applied before the negative sign in -3^2, so -3^2 = -9. Next (-2)^3 = -8, and 4(-5)/2 = -10, so subtracting it adds 10: -9 - 8 + 10 = -7. The option \"11\" reads -3^2 as (-3)^2 = 9: 9 - 8 + 10. The option \"9\" reads (-2)^3 as 8: -9 + 8 + 10. The option \"-27\" drops the double negative and subtracts 10: -9 - 8 - 10. The option \"1.5\" divides the whole sum by 2: (-9 - 8 + 20)/2.",
+  "solve": "return -(3**2)+(-2)**3-4*(-5)/2;",
+  "distractor_solve": {
+   "11": "return (-3)**2+(-2)**3-4*(-5)/2;",
+   "9": "return -(3**2)+2**3-4*(-5)/2;",
+   "-27": "return -(3**2)+(-2)**3-Math.abs(4*(-5)/2);",
+   "1.5": "return (-(3**2)+(-2)**3-4*(-5))/2;"
+  },
+  "interval": "No bound applies beyond sign: the value could be positive or negative depending on each step, so sign kills nothing; -7 is interior (-27 below it). No key/-key pair (7 and 27 are absent as opposites). All four distractors survive.",
+  "bounds_checked": "sign; magnitude; key/-key pairs (none); integer vs non-integer (1.5 is non-integer; the expression contains a division by 2, so non-integer is admissible)"
+ },
+ {
+  "id": "S15E-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number line point dividing a segment in a given ratio, decimal coordinates",
+  "difficulty": "medium",
+  "template": "two decimal points on a number line / point twice as far from one as from the other / two-thirds of the signed length from P",
+  "prompt": "On a number line, point P is at -2.1 and point Q is at 3.6. Point R lies between P and Q and is twice as far from P as it is from Q. What is the coordinate of R?",
+  "choices": [
+   "1.7",
+   "2.55",
+   "3.1",
+   "2.4",
+   "2.175"
+  ],
+  "correct_answer": "1.7",
+  "explanation": "PQ = 3.6 - (-2.1) = 5.7. R is twice as far from P as from Q, so PR is 2/3 of PQ: PR = 3.8 and R = -2.1 + 3.8 = 1.7. The option \"2.4\" takes 2/3 of the coordinate of Q instead of 2/3 of the distance. The option \"2.55\" weights Q by 2 but divides by 2 instead of 3: (-2.1 + 2 x 3.6)/2. The option \"3.1\" drops the sign of P: (2.1 + 2 x 3.6)/3. The option \"2.175\" places R three quarters of the way from P to Q: -2.1 + 0.75 x 5.7.",
+  "solve": "const P=-2.1,Q=3.6;return Math.round((P+(2/3)*(Q-P))*1000)/1000;",
+  "distractor_solve": {
+   "2.4": "const Q=3.6;return Math.round((2/3)*Q*1000)/1000;",
+   "2.55": "const P=-2.1,Q=3.6;return Math.round((P+2*Q)/2*1000)/1000;",
+   "3.1": "const P=-2.1,Q=3.6;return Math.round((Math.abs(P)+2*Q)/3*1000)/1000;",
+   "2.175": "const P=-2.1,Q=3.6;return Math.round((P+0.75*(Q-P))*1000)/1000;"
+  },
+  "interval": "R is between P and Q and nearer Q, so R lies strictly between the midpoint 0.75 and Q = 3.6. Every option (1.7, 2.175, 2.4, 2.55, 3.1) lies strictly inside (0.75, 3.6); none sits on the midpoint or on Q. The key is the least option; the only cheap lower bound (the midpoint 0.75) is well below it. All four distractors survive.",
+  "bounds_checked": "betweenness (P to Q); nearer-to-Q forces R above the midpoint 0.75; limiting cases (midpoint, endpoints) checked absent; sign; key-is-least against the midpoint bound"
+ },
+ {
+  "id": "S15E-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "scientific notation product and quotient with negative exponents",
+  "difficulty": "medium",
+  "template": "product of two scientific-notation numbers over a third / value in scientific notation / multiply mantissas, add and subtract exponents, renormalise",
+  "prompt": "What is the value of (4.8 x 10^-3)(2.5 x 10^6) divided by (6 x 10^-4), written in scientific notation?",
+  "choices": [
+   "2 x 10^-1",
+   "2 x 10^7",
+   "5 x 10^-8",
+   "1.2 x 10^8",
+   "7.2 x 10^0"
+  ],
+  "correct_answer": "2 x 10^7",
+  "explanation": "(4.8 x 2.5) x 10^(-3 + 6) = 12 x 10^3. Dividing by 6 x 10^-4 gives (12/6) x 10^(3 - (-4)) = 2 x 10^7. The option \"1.2 x 10^8\" divides by 10^-4 but forgets to divide by the 6: 12 x 10^7. The option \"2 x 10^-1\" treats 10^3 divided by 10^-4 as 10^(3 - 4). The option \"5 x 10^-8\" divides the wrong way, (6 x 10^-4)/(12 x 10^3). The option \"7.2 x 10^0\" multiplies by 6 x 10^-4 instead of dividing.",
+  "solve": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(4.8e-3*2.5e6/6e-4);",
+  "distractor_solve": {
+   "1.2 x 10^8": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(4.8e-3*2.5e6/1e-4);",
+   "2 x 10^-1": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(12/6*10**(3-4));",
+   "5 x 10^-8": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(6e-4/(4.8e-3*2.5e6));",
+   "7.2 x 10^0": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(4.8e-3*2.5e6*6e-4);"
+  },
+  "interval": "The quotient is positive, so sign kills nothing; all options are positive. Order of magnitude is the method itself (the exponent bookkeeping). Mantissas 2, 1.2, 5 and 7.2 each come from a different wrong combination of the same three numbers, so reading leading digits needs the product 4.8 x 2.5 and the quotient by 6 first (the method). At least three distractors survive any free observation.",
+  "bounds_checked": "sign; mantissa from leading digits (shared by three options); order of magnitude (method, not free); monotone exponent ladder (exponents -8, -1, 0, 7, 8 carry four different mantissas, not one family); symbolic hub (none)"
+ },
+ {
+  "id": "S15E-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "quotient of two fraction differences plus a fraction",
+  "difficulty": "medium",
+  "template": "difference of fractions divided by difference of fractions, plus a fraction / value / common denominators, divide by multiplying by the reciprocal",
+  "prompt": "What is the value of (5/6 - 1/4) / (2/3 - 1/2) + 3/4 ?",
+  "choices": [
+   "61/72",
+   "7/11",
+   "17/4",
+   "11/4",
+   "29/28"
+  ],
+  "correct_answer": "17/4",
+  "explanation": "5/6 - 1/4 = 10/12 - 3/12 = 7/12, and 2/3 - 1/2 = 1/6. Dividing, (7/12) x 6 = 7/2. Adding, 7/2 + 3/4 = 17/4. The option \"61/72\" multiplies instead of dividing: 7/72 + 3/4. The option \"29/28\" inverts the wrong fraction: (1/6)/(7/12) = 2/7, then 2/7 + 3/4. The option \"7/11\" adds 3/4 to the denominator before dividing: (7/12)/(1/6 + 3/4). The option \"11/4\" subtracts numerators and denominators separately, 5/6 - 1/4 as 4/2 = 2 and 2/3 - 1/2 as 1/1 = 1, giving 2 + 3/4.",
+  "solve": "return (5/6-1/4)/(2/3-1/2)+3/4;",
+  "distractor_solve": {
+   "61/72": "return (5/6-1/4)*(2/3-1/2)+3/4;",
+   "29/28": "return (2/3-1/2)/(5/6-1/4)+3/4;",
+   "7/11": "return (5/6-1/4)/(2/3-1/2+3/4);",
+   "11/4": "return ((5-1)/(6-4))/((2-1)/(3-2))+3/4;"
+  },
+  "interval": "Both differences are positive, so the quotient is positive and the value exceeds 3/4: this kills only 7/11 (0.64). 61/72 (0.85), 29/28 (1.04), 11/4 and 17/4 all exceed 3/4. Key is the largest option; no stem number caps the value below 17/4 without doing the division. Three distractors survive.",
+  "bounds_checked": "sign of each difference; value greater than the added 3/4 (kills one); magnitude; key-is-largest checked against cheap caps (none)"
+ },
+ {
+  "id": "S15E-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rounding a decimal to two different places at once, double-rounding trap",
+  "difficulty": "hard",
+  "template": "a decimal with two rounding conditions / which value is possible / intersect [7.45, 7.55) with [7.5, 8.5) without chained rounding",
+  "prompt": "A positive number N rounds to 7.5 when it is rounded to the nearest tenth, and it rounds to 8 when it is rounded to the nearest whole number. Which of the following could be N?",
+  "choices": [
+   "7.48",
+   "7.55",
+   "7.449",
+   "7.53",
+   "7.59"
+  ],
+  "correct_answer": "7.53",
+  "explanation": "Rounding to the nearest tenth gives 7.5 exactly when 7.45 <= N < 7.55, and rounding to the nearest whole number gives 8 exactly when 7.5 <= N < 8.5. Both hold when 7.5 <= N < 7.55, and of the choices only 7.53 is in that interval. The option \"7.48\" rounds to 7.5 and then rounds that 7.5 up to 8, a double rounding; 7.48 itself rounds to 7. The option \"7.449\" is rounded in a chain, 7.449 to 7.45 to 7.5 to 8, though it rounds to 7.4. The option \"7.55\" treats a 5 in the hundredths place as rounding down to 7.5. The option \"7.59\" truncates to 7.5 instead of rounding.",
+  "solve": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);return t>=7450&&t<7550&&t>=7500&&t<8500;});",
+  "distractor_solve": {
+   "7.48": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);const tenth=Math.round(t/100);return tenth===75&&Math.round(tenth/10)===8&&t<7500;});",
+   "7.449": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);const h=Math.round(t/10);return t<7450&&Math.round(h/10)===75;});",
+   "7.55": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);return t%100===50&&Math.floor(t/100)===75;});",
+   "7.59": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);return Math.floor(t/100)===75&&t>7550;});"
+  },
+  "interval": "Every option rounds to 7 or 8 as a whole number only after rounding is applied, and all lie in [7.4, 7.6], so magnitude kills nothing. Checking an option against both rounding rules is the method. No option sits on a printed bound except 7.55, whose tenths-rounding is exactly what is tested. All four distractors survive any free observation.",
+  "bounds_checked": "magnitude (all within 0.15 of 7.5); interval endpoints 7.45, 7.5, 7.55 (only 7.55 is an endpoint, and its status is the tested skill); arithmetic runs among options (none with key in middle)"
+ }
+]
