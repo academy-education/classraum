@@ -7168,6 +7168,72 @@
           "verdict": "All three graders: \"a plural noun near the blank -> singular key\" (d: A-01, A-03, A-07, B-01, B-03, B-06, B-07; e: 10 of 15 agreement keys singular; f: same list) and \"since / to the present day -> present perfect key\" (A-02, A-07, B-03, B-07). Graders e, f: voice readable from whether an object follows the interrupter (A-01, B-01, B-02, B-03). Grader f: the option with an extra adverb or odd auxiliary never wins (A-07, B-06, B-07). Punctuation keys all differ (comma, semicolon, none, colon) - no mark tell. Majority template pairs (7) resolved by holding; single-grader pairs recorded: B-01~B-03 (e), A-03~B-02 (e), A-05~B-05 (d)."
         }
       }
+    },
+    {
+      "id": "ssat-verbal-s18-syn-kept-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "ssat",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-verbal-s18-syn",
+      "contentSha": "ab9590b779088ee02572bcf25b5f6f4b6eaeeda21f298e6194471ba343a3acf1",
+      "status": "shipped",
+      "note": "72 of 72 SSAT Upper Level synonyms from two independent Claude authors (A headwords A-L, B M-Z; B checked against A), commissioned with the analogy arm to take SSAT verbal from 9 to 11 clean forms (ssat-verbal-replay.ts: the two types bind together; need syn +55 / ana +60). Pre-registered ssat-verbal-s18.prereg.md (399c6b2f) before any item; frozen 6a2e6573 (sha 7f118181) before any solver or grader. New words only: 0 content words shared with any of 547 SSAT verbal rows in any inflection, each word once across both authors. Banked difficulty = easier of two grader labels: 35 easy / 35 medium / 2 hard (graders 27/32/13 and 35/35/2) - easier than commissioned (14/38/20).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ab9590b779088ee02572bcf25b5f6f4b6eaeeda21f298e6194471ba343a3acf1",
+          "verdict": "72 rendered: [Synonym] HEADWORD prompts, 5 distinct single-word choices with the key among them, verbalKind()=synonym 72/72; 0 stem duplicates vs 1,093 live SSAT rows; check A PASS, check B PASS against A (36 other-author items loaded, after the --also loader bug author B found was fixed); stored key slots 16/14/14/14/14."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "ab9590b779088ee02572bcf25b5f6f4b6eaeeda21f298e6194471ba343a3acf1",
+          "verdict": "Options-only, interleaved with 40 live synonyms drawn from the whole eligible pool (233; ssat-verbal-s6 clone sets excluded), three samples of one Claude solver (pairwise agreement 62.8% vs 20.8% independent). Candidate 66/216 = 30.6% vs letter 20.8% (+9.7); live 44/120 = 36.7% vs 20.0% (+16.7). EXCESS -6.9 <= +10 PASS; live arm 36.7% < 85% ceiling, so the bar could fire. Unanimous-correct 18.1% vs live 22.5%. Frozen sha 7f118181.",
+          "n": 72,
+          "mean": 30.6,
+          "control": 20.8,
+          "margin": 9.7
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "ab9590b779088ee02572bcf25b5f6f4b6eaeeda21f298e6194471ba343a3acf1",
+          "verdict": "Items where >=2 samples certainly rejected the same option: candidate 0/72, live 0/40 (bar candidate <= live + 10). Key rejected 25/216 candidate vs 19/120 live."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "ab9590b779088ee02572bcf25b5f6f4b6eaeeda21f298e6194471ba343a3acf1",
+          "verdict": "Two Claude graders on independently shuffled unmarked renders (seeds 20261032/33): 72/72 and 72/72 on key; 0 second defensible; 0 above band (UPBRAID closest call); 0 free eliminations; antonym-option items 0/72 (bar <= 25%). Drop rules break-tested with a planted wrong pick, second defensible and above-band headword (each dropped exactly its item). 0 dropped."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "ab9590b779088ee02572bcf25b5f6f4b6eaeeda21f298e6194471ba343a3acf1",
+          "verdict": "Kept 72 = frozen 72: 360 distinct option words over 360 slots (check-recycled-distractor NO MEASUREMENT), 0 stem duplicates, key strictly longest 5/72 and shortest 4/72 (bar 30%); keys dealt flat at render. Grader 2 notes BERATE/rebuke and UPBRAID/reprimand test one sense (cross-item, not a key tell)."
+        }
+      }
+    },
+    {
+      "id": "ssat-verbal-s18-ana-held-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "ssat",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-verbal-s18-ana",
+      "contentSha": "89e8a5f83e41b7e31fe8742e99b3d76f508052c9002d03860a7a85dcfc1deb4a",
+      "status": "killed",
+      "note": "80 analogies (C stems A-L, D M-Z; balanced incidence: each item five different relation families, each family keyed 4 of its 20 appearances, all noun:noun). HELD at the pre-registered relation-axis family gate: creator/creation keyed items 9/12 options-only (hold at >= 9/12), although the batch-level excess passed (-26.7). Nothing inserted; no grader run; no repair (prereg).",
+      "stages": {
+        "nosource": {
+          "passed": false,
+          "contentSha": "89e8a5f83e41b7e31fe8742e99b3d76f508052c9002d03860a7a85dcfc1deb4a",
+          "verdict": "Candidate 56/240 = 23.3% vs letter 20.0% (+3.3); live 60/120 = 50.0% vs 20.0% (+30.0); E -26.7 PASS; unanimity 6.3% vs 25.0%; elimination 0/80 vs 0/40. FAMILY GATE: creator/creation 9/12 HOLD (next degree 6/12, expert/field 6/12). Diagnostic, not a re-decision: creator/creation option picked 21/60 times when present (instrument 26/60, worker/tool 24/60), right on 9/21 = 42.9% vs ~20% for a pure prior.",
+          "n": 80,
+          "mean": 23.3,
+          "control": 20,
+          "margin": 3.3
+        }
+      }
     }
   ],
   "auditedCohorts": [
