@@ -1,0 +1,247 @@
+[
+ {
+  "id": "SM24V-A01",
+  "domain": "Advanced Math",
+  "subskill": "Equivalent forms: expanding vertex form to read the constant term",
+  "difficulty": "easy",
+  "prompt": "A student rewrites the expression 3(x - 2)^2 - 29 by expanding the square and combining like terms. The result is 3x^2 + bx + c, where b and c are constants. What is the value of c?",
+  "choices": [
+   "-35",
+   "-25",
+   "-17",
+   "7"
+  ],
+  "correct_answer": "-17",
+  "explanation": "Expand the square first: (x - 2)^2 = x^2 - 4x + 4. Then 3(x - 2)^2 = 3x^2 - 12x + 12, so 3(x - 2)^2 - 29 = 3x^2 - 12x + 12 - 29 = 3x^2 - 12x - 17. The constant term is c = -17.\n\nChoice -25 comes from forgetting to multiply the constant 4 by 3: 4 - 29 = -25. Choice -35 comes from using -2 for the constant instead of (-2)^2 = 4: 3(-2) - 29 = -35. Choice 7 comes from multiplying 3 by 2 before squaring: (3 · 2)^2 - 29 = 36 - 29 = 7.",
+  "bounds": [],
+  "mechanism": [
+   "expand vertex form",
+   "constant term = a*h^2 + k",
+   "leading coefficient multiplies the whole square"
+  ],
+  "quantity_asked": "the constant term c of f in standard form",
+  "solve": "const a=3,h=2,k=-29; return a*h*h+k;",
+  "distractor_solve": {
+   "7": "const a=3,h=2,k=-29; return (a*h)*(a*h)+k;",
+   "-35": "const a=3,h=2,k=-29; return a*(-h)+k;",
+   "-25": "const h=2,k=-29; return h*h+k;"
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "coefficient squared with h",
+    "direction": "over"
+   },
+   "-35": {
+    "error_kind": "constant not squared",
+    "direction": "under"
+   },
+   "-25": {
+    "error_kind": "leading coefficient not distributed",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options -25 and -17: both two-digit negative integers; the key is not the cleaner one",
+  "arith_class_check": "no: three of four options are odd negatives; the stem implies no class",
+  "self_audit": {
+   "risk": "low",
+   "note": "one routine expansion; distractors are three distinct expansion slips on both sides of the key"
+  }
+ },
+ {
+  "id": "SM24V-B01",
+  "domain": "Advanced Math",
+  "subskill": "Exponential function: ratio of two outputs, where the coefficient cancels",
+  "difficulty": "easy",
+  "prompt": "A model predicts that the number of users of an app, in thousands, t years after launch is f(t) = 7(4)^t. According to the model, the number of users 3 years after launch is how many times the number of users 1 year after launch?",
+  "choices": [
+   "16",
+   "49",
+   "64",
+   "112"
+  ],
+  "correct_answer": "16",
+  "explanation": "f(3) = 7(4)^3 and f(1) = 7(4)^1. In the quotient the factor 7 cancels, and 4^3/4^1 = 4^(3 - 1) = 4^2 = 16. So f(3)/f(1) = 16.\n\nChoice 112 comes from keeping the 7 after dividing the powers: 7(4)^2 = 112. Choice 64 comes from dividing the exponents instead of subtracting them: 4^(3/1) = 4^3 = 64. Choice 49 comes from switching the roles of 7 and 4, as if f(x) = 4(7)^x: 7^(3 - 1) = 49.",
+  "bounds": [],
+  "mechanism": [
+   "ratio of exponential outputs",
+   "coefficient cancels",
+   "quotient of powers subtract exponents"
+  ],
+  "quantity_asked": "the quotient f(3)/f(1)",
+  "solve": "const a=7,b=4; return (a*b**3)/(a*b**1);",
+  "distractor_solve": {
+   "49": "const a=7; return a**(3-1);",
+   "64": "const b=4; return b**(3/1);",
+   "112": "const a=7,b=4; return a*b**(3-1);"
+  },
+  "distractor_meta": {
+   "49": {
+    "error_kind": "base and coefficient swapped",
+    "direction": "over"
+   },
+   "64": {
+    "error_kind": "exponents divided",
+    "direction": "over"
+   },
+   "112": {
+    "error_kind": "coefficient kept",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "cheapest bound: f is increasing, so the ratio exceeds 1 (all four options do); a second bound, ratio < f(3) = 448, also keeps all four. No cheap bound separates 16 from 49, 64 and 112.",
+  "interior_parity_check": "interior options 49 and 64: both two-digit integers and both perfect squares; key is the smallest, not interior",
+  "arith_class_check": "no: 16, 49 and 64 are all perfect squares; key is not alone in any class the stem implies",
+  "self_audit": {
+   "risk": "low",
+   "note": "one routine step (quotient of powers). Key is S; plug-back does not apply (asked a quotient). Distractors: kept coefficient, divided exponents, swapped base/coefficient."
+  }
+ },
+ {
+  "id": "SM24V-B07",
+  "domain": "Advanced Math",
+  "subskill": "Radical functions: integers in the domain of a sum of two square roots",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = √(34 - 2x) + √(x + 3). How many integers are in the domain of f?",
+  "choices": [
+   "15",
+   "19",
+   "21",
+   "38"
+  ],
+  "correct_answer": "21",
+  "explanation": "Both square roots must be of nonnegative numbers. 34 - 2x >= 0 gives x <= 17, and x + 3 >= 0 gives x >= -3. So the domain is -3 <= x <= 17, and the integers in it are -3, -2, ..., 17. There are 17 - (-3) + 1 = 21 of them.\n\nChoice 19 comes from leaving out both endpoints, -3 and 17, although the square root of 0 is defined. Choice 15 comes from a sign error that gives x >= 3, so the integers counted are 3 through 17. Choice 38 comes from reading 34 - 2x >= 0 as x <= 34, so the integers counted are -3 through 34.",
+  "bounds": [],
+  "mechanism": [
+   "domain of a square root: radicand nonnegative",
+   "intersect two conditions",
+   "count integers in a closed interval"
+  ],
+  "quantity_asked": "the number of integers in the domain of f",
+  "solve": "let n=0; for(let x=-100;x<=100;x++){ if(34-2*x>=0 && x+3>=0) n++; } return n;",
+  "distractor_solve": {
+   "15": "let n=0; for(let x=-100;x<=100;x++){ if(34-2*x>=0 && x-3>=0) n++; } return n;",
+   "19": "let n=0; for(let x=-100;x<=100;x++){ if(34-2*x>0 && x+3>0) n++; } return n;",
+   "38": "let n=0; for(let x=-100;x<=100;x++){ if(34-x>=0 && x+3>=0) n++; } return n;"
+  },
+  "distractor_meta": {
+   "15": {
+    "error_kind": "sign error on the lower bound",
+    "direction": "under"
+   },
+   "19": {
+    "error_kind": "endpoints excluded",
+    "direction": "under"
+   },
+   "38": {
+    "error_kind": "coefficient of x dropped",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior options 19 and 21: both two-digit odd integers; neither is cleaner",
+  "arith_class_check": "no: 15, 19 and 21 are all odd; key is not alone in any class the stem implies",
+  "self_audit": {
+   "risk": "low",
+   "note": "Live domain rows are a composite f(g(x)) (act 1c408a51) and a log; none counts the integers in the domain of a sum of radicals. Key rank 3; a count cannot be plugged back."
+  }
+ },
+ {
+  "id": "SM24V-C01",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial operations: a coefficient of a difference with a scalar multiple",
+  "difficulty": "easy",
+  "prompt": "The polynomials p and q are defined by p(x) = 4x^3 - 3x^2 + 5x - 2 and q(x) = x^3 + 2x^2 - 7x + 6. Subtracting twice q(x) from p(x) produces a cubic polynomial ax^3 + bx^2 + cx + d. Which number is c?",
+  "choices": [
+   "-9",
+   "12",
+   "17",
+   "19"
+  ],
+  "correct_answer": "19",
+  "explanation": "Only the x terms contribute to c. In p(x) the x term is 5x, and in 2q(x) it is 2(-7x) = -14x. Subtracting, 5x - (-14x) = 19x, so c = 19.\n\nChoice 12 comes from subtracting q(x) instead of 2q(x): 5 - (-7) = 12. Choice -9 comes from not distributing the subtraction to the negative term, computing 5 + 2(-7) = -9. Choice 17 comes from doubling p(x) instead of q(x): 2(5) - (-7) = 17.",
+  "bounds": [],
+  "mechanism": [
+   "difference of polynomials with a scalar multiple",
+   "collect one power's coefficients",
+   "distribute the subtraction over a negative coefficient"
+  ],
+  "quantity_asked": "the coefficient c of x in p(x) - 2q(x)",
+  "solve": "const p1=5,q1=-7; return p1-2*q1;",
+  "distractor_solve": {
+   "12": "const p1=5,q1=-7; return p1-q1;",
+   "17": "const p1=5,q1=-7; return 2*p1-q1;",
+   "-9": "const p1=5,q1=-7; return p1+2*q1;"
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "dropped the scalar 2",
+    "direction": "under"
+   },
+   "17": {
+    "error_kind": "scaled the wrong polynomial",
+    "direction": "under"
+   },
+   "-9": {
+    "error_kind": "subtraction not distributed (sign)",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "L key 19. Cheapest bound: subtracting a negative x-coefficient increases it, so c > 5 (p's own coefficient); 12 and 17 are also above 5, on the key's side. A one-step estimate 'about 5 + 7' lands on 12, a distractor, not the key.",
+  "interior_parity_check": "interior options 12 and 17: both two-digit positive integers; the key is not interior",
+  "arith_class_check": "no: 19 shares oddness with 17 and -9; no class is implied by the stem",
+  "self_audit": {
+   "risk": "low",
+   "note": "one routine step; three different slips (dropped scalar, sign, wrong polynomial scaled); no option is a printed stem number; plug-back not applicable (a coefficient)"
+  }
+ },
+ {
+  "id": "SM24V-D01",
+  "domain": "Advanced Math",
+  "subskill": "Rational model in context: evaluating a shifted reciprocal term plus a constant",
+  "difficulty": "easy",
+  "prompt": "A cup of tea is left to cool in a room. Its temperature T, in degrees Celsius, t minutes after it is poured is modeled by T = 120/(t + 3) + 19. According to the model, what is the temperature of the tea 5 minutes after it is poured?",
+  "choices": [
+   "15",
+   "34",
+   "43",
+   "46"
+  ],
+  "correct_answer": "34",
+  "explanation": "Substitute t = 5: T = 120/(5 + 3) + 19 = 120/8 + 19 = 15 + 19 = 34 degrees Celsius. The value 15 is only the fraction 120/8, leaving out the 19 degrees added to it. The value 43 divides 120 by 5 instead of by 5 + 3: 120/5 + 19 = 43. The value 46 divides 120 by 5 and then adds the 3 outside the fraction: 120/5 + 3 + 19 = 46.",
+  "bounds": [],
+  "mechanism": [
+   "evaluate rational model at an input",
+   "denominator t + 3 evaluated as a group",
+   "constant added after the fraction"
+  ],
+  "quantity_asked": "the model's temperature T at t = 5",
+  "solve": "const T=t=>120/(t+3)+19; return T(5);",
+  "distractor_solve": {
+   "15": "return 120/(5+3);",
+   "43": "return 120/5+19;",
+   "46": "return 120/5+3+19;"
+  },
+  "distractor_meta": {
+   "15": {
+    "error_kind": "dropped the added constant",
+    "direction": "under"
+   },
+   "43": {
+    "error_kind": "divided by t, not t + 3",
+    "direction": "over"
+   },
+   "46": {
+    "error_kind": "moved the + 3 outside the denominator",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": null,
+  "interior_parity_check": "interior 34 and 43: both 2-digit integers; key 34 is not cleaner than 43",
+  "arith_class_check": "key 34 is even like 46; no class the stem implies isolates it",
+  "self_audit": {
+   "risk": "low",
+   "note": "one routine evaluation (easy). A reader who knows the tea cannot fall below the room's 19 degrees removes 15 only; 34, 43 and 46 all need the fraction evaluated."
+  }
+ }
+]

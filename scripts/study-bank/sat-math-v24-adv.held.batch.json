@@ -1,0 +1,102 @@
+[
+ {
+  "id": "SM24V-D09",
+  "domain": "Advanced Math",
+  "subskill": "Composition of a linear function with its own inverse after an input shift",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = -2x - 9, with inverse f⁻¹. A new rule h applies f⁻¹ to its input, adds 6, and then applies f, so that h(x) = f(f⁻¹(x) + 6). Compute h(-5).",
+  "choices": [
+   "-17",
+   "-11",
+   "-8",
+   "4"
+  ],
+  "correct_answer": "-17",
+  "explanation": "First, f⁻¹(-5) is the input that f sends to -5: -2x - 9 = -5 gives x = -2. Then h(-5) = f(-2 + 6) = f(4) = -2(4) - 9 = -17. (In general, adding 6 to the input of f changes the output by 6 times the slope -2, so h(x) = x - 12.) The value -11 skips the inverse and computes f(-5 + 6) = f(1) = -11. The value 4 skips the outer f and reports f⁻¹(-5) + 6 = -2 + 6 = 4. The value -8 divides the shift by the slope instead of multiplying: -5 + 6/(-2) = -8.",
+  "bounds": [],
+  "mechanism": [
+   "composition of f with f-inverse",
+   "input shift scaled by slope",
+   "linear inverse evaluation"
+  ],
+  "quantity_asked": "h(-5), where h(x) = f(f-inverse(x) + 6)",
+  "solve": "const f=x=>-2*x-9; const finv=y=>(y+9)/(-2); return f(finv(-5)+6);",
+  "distractor_solve": {
+   "4": "const finv=y=>(y+9)/(-2); return finv(-5)+6;",
+   "-11": "const f=x=>-2*x-9; return f(-5+6);",
+   "-8": "return -5+6/(-2);"
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "outer f skipped",
+    "direction": "over"
+   },
+   "-11": {
+    "error_kind": "inverse skipped (f applied to x + 6)",
+    "direction": "over"
+   },
+   "-8": {
+    "error_kind": "shift divided by the slope instead of multiplied",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: f is decreasing, so raising its input by 6 lowers its output, giving h(-5) < -5. That removes 4 only; -11 and -8 are also below -5, on the key's side, and separating -17 from them requires the slope factor.",
+  "interior_parity_check": "interior -11 and -8: both negative integers of 1-2 digits; key -17 is an extreme",
+  "arith_class_check": "key -17 is odd like -11; negative like -11 and -8; no implied class isolates it",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "the asked value h(-5) is an evaluation, so no plug-back. The decreasing-f bound removes 4 but leaves -11 and -8 beside the key. Risk: a student who knows f(f⁻¹(x)) = x may still not see that the +6 is scaled by the slope, which is the decision; a grader may still find it a routine medium."
+  },
+  "held_reason": "off-blueprint 2 of 3 (D, E: linear function with its inverse = Algebra); EXT-1 by D, E"
+ },
+ {
+  "id": "SM24V-D10",
+  "domain": "Advanced Math",
+  "subskill": "Linear function recovered from two points on the graph of its inverse",
+  "difficulty": "medium",
+  "prompt": "A linear function f has inverse f⁻¹. Plotted in the xy-plane, y = f⁻¹(x) contains (9, 5) and (11, 6). Compute f(25).",
+  "choices": [
+   "13",
+   "19",
+   "37",
+   "49"
+  ],
+  "correct_answer": "49",
+  "explanation": "If the graph of y = f⁻¹(x) passes through (9, 5) and (11, 6), then f⁻¹(9) = 5 and f⁻¹(11) = 6, so f(5) = 9 and f(6) = 11. The graph of f therefore passes through (5, 9) and (6, 11), so its slope is (11 - 9)/(6 - 5) = 2 and f(x) = 9 + 2(x - 5) = 2x - 1. Then f(25) = 2(25) - 1 = 49. The value 13 is f⁻¹(25), found by using the given points as points of f: that line has slope 1/2, and 5 + (1/2)(25 - 9) = 13. The value 37 uses the correct slope 2 but starts from the unswapped point (9, 5): 5 + 2(25 - 9) = 37. The value 19 swaps the point to (5, 9) but keeps the slope 1/2 of the given line: 9 + (1/2)(25 - 5) = 19.",
+  "bounds": [],
+  "mechanism": [
+   "inverse graph points swapped",
+   "linear function from two points",
+   "evaluate f from f-inverse data"
+  ],
+  "quantity_asked": "the value of f(25), where the two given points lie on the graph of f-inverse",
+  "solve": "const P=[[9,5],[11,6]]; const Q=P.map(([a,b])=>[b,a]); const m=(Q[1][1]-Q[0][1])/(Q[1][0]-Q[0][0]); return Q[0][1]+m*(25-Q[0][0]);",
+  "distractor_solve": {
+   "13": "const m=(6-5)/(11-9); return 5+m*(25-9);",
+   "19": "const m=(6-5)/(11-9); return 9+m*(25-5);",
+   "37": "const m=(11-9)/(6-5); return 5+m*(25-9);"
+  },
+  "distractor_meta": {
+   "13": {
+    "error_kind": "used inverse's points as f (computed f-inverse(25))",
+    "direction": "under"
+   },
+   "19": {
+    "error_kind": "swapped point, inverse's slope kept",
+    "direction": "under"
+   },
+   "37": {
+    "error_kind": "right slope, unswapped point",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "Cheapest bound: f is increasing and f(6) = 11 can be read off by swapping one point, so f(25) > 11. All four options exceed 11, so 37 and 19 lie on the key's side; separating 49 from 37 needs the slope of f, which is the reciprocal of the slope of the given line.",
+  "interior_parity_check": "interior 19 and 37: both 2-digit odd integers; key 49 is an extreme",
+  "arith_class_check": "key 49 is odd like all four; a perfect square, but nothing in the stem makes squares relevant; no implied class isolates it",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "the asked value f(25) cannot be plugged back. All three wrong paths fall below the key because each keeps the shallower slope or the unswapped point, but they are three different errors and the cheap bound f(25) > 11 removes none. Risk: a grader may note that the steeper of the two candidate slopes always gives the largest value here."
+  },
+  "held_reason": "off-blueprint 2 of 3 (D, E: linear inverse = Algebra); EXT-1 by D, E"
+ }
+]
