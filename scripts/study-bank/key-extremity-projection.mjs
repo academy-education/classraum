@@ -35,6 +35,18 @@
  *   - author-kept             key-extremity-gate PASS
  *   - authored per side       largest z and smallest z within +-1.96 of live
  * Exit 1 if a merged bar fails, 2 if it cannot read or score its input.
+ *
+ * --profile sat-alg25 (added 2026-10-08 for sat-math-v25-alg, PREREG-ALG25-2026-10-08.md):
+ *   rates     DERIVED from sat-math-v24-alg.batch.json (the 13 frozen) and
+ *             sat-math-v24-alg.held.batch.json (the 7 that survived the gate):
+ *             extreme-key 2/7, interior-key 5/6 (REGISTER A84). Asserted, never typed.
+ *   live      family sat, section math (magnitude z is reported, not barred)
+ *   bars      merged set only: rate projection 45.0-55.0%; projected kept n >= 12;
+ *             authored largest vs smallest within 2 of each other.
+ *             equal-rate share and authored per-side z are REPORTED, not barred:
+ *             commissioning to land at 50% after a 2.9x differential drop puts
+ *             the authored set near 75% extreme by construction, so neither can
+ *             hold, and the prereg records the equal-rate case as the known risk.
  */
 import { readFileSync } from 'node:fs'
 import { createClient } from '@supabase/supabase-js'
@@ -73,43 +85,60 @@ function selftest() {
   if (Math.abs(p.share - 15 / 39) > 1e-9) { bad++; console.error('project FAIL', p) }
   const q = project({ min: 10, max: 10, mid: 20 }, 1, 1)
   if (Math.abs(q.share - 0.5) > 1e-9) { bad++; console.error('equal-rate FAIL', q) }
+  // sat-math-v24-alg itself: 7 extreme / 6 interior frozen, kept 2 / 5 -> must reproduce 2/7 = 28.6%
+  const r = project({ min: 2, max: 5, mid: 6 }, 2 / 7, 5 / 6)
+  if (Math.abs(r.share - 2 / 7) > 1e-9 || Math.abs(r.n - 7) > 1e-9) { bad++; console.error('sat-alg24 project FAIL', r) }
   if (bad) { console.error(`SELFTEST FAILED ${bad}`); process.exit(2) }
-  console.log('selftest 3/3')
+  console.log('selftest 4/4')
 }
 
-const args = process.argv.slice(2)
+const argv = process.argv.slice(2)
+const pi = argv.indexOf('--profile')
+const PROFILE = pi >= 0 ? argv[pi + 1] : 'act-v25'
+const args = argv.filter((a, i) => !(i === pi || (pi >= 0 && i === pi + 1)))
+if (!['act-v25', 'sat-alg25'].includes(PROFILE)) { console.error(`REFUSING: unknown --profile ${PROFILE}`); process.exit(2) }
+const SAT = PROFILE === 'sat-alg25'
 if (args.includes('--selftest')) { selftest(); process.exit(0) }
 selftest()
-if (!args.length) { console.error('usage: key-extremity-projection.mjs <batch.json ...>'); process.exit(2) }
+if (!args.length) { console.error('usage: key-extremity-projection.mjs [--profile act-v25|sat-alg25] <batch.json ...>'); process.exit(2) }
 
-// v24's measured survival by position, derived from its files
-const v24 = JSON.parse(readFileSync(DIR + 'act-math-v24.batch.json', 'utf8'))
-const v24keep = new Set(Object.keys(JSON.parse(readFileSync(DIR + 'act-math-v24.verdicts.json', 'utf8')).would_keep || {}))
-if (v24.length !== 59 || v24keep.size !== 39) { console.error(`REFUSING: v24 files read ${v24.length} items / ${v24keep.size} kept, expected 59 / 39`); process.exit(2) }
+// the measured survival by position, derived from the source batch's files
+let v24, v24keep
+if (SAT) {
+  v24 = JSON.parse(readFileSync(DIR + 'sat-math-v24-alg.batch.json', 'utf8'))
+  v24keep = new Set(JSON.parse(readFileSync(DIR + 'sat-math-v24-alg.held.batch.json', 'utf8')).map(x => x.id))
+  if (v24.length !== 13 || v24keep.size !== 7) { console.error(`REFUSING: sat-math-v24-alg files read ${v24.length} frozen / ${v24keep.size} survived, expected 13 / 7`); process.exit(2) }
+} else {
+  v24 = JSON.parse(readFileSync(DIR + 'act-math-v24.batch.json', 'utf8'))
+  v24keep = new Set(Object.keys(JSON.parse(readFileSync(DIR + 'act-math-v24.verdicts.json', 'utf8')).would_keep || {}))
+  if (v24.length !== 59 || v24keep.size !== 39) { console.error(`REFUSING: v24 files read ${v24.length} items / ${v24keep.size} kept, expected 59 / 39`); process.exit(2) }
+}
 let e0 = 0, e1 = 0, i0 = 0, i1 = 0
 for (const x of v24) {
   const s = scoreItem(x.choices.map(String), String(x.correct_answer)); if (s.skip) continue
   if (s.keyMin || s.keyMax) { e0++; if (v24keep.has(x.id)) e1++ } else { i0++; if (v24keep.has(x.id)) i1++ }
 }
 const KE = e1 / e0, KI = i1 / i0
-console.log(`v24 survival (derived): extreme-key ${e1}/${e0} = ${pct(KE)}, interior-key ${i1}/${i0} = ${pct(KI)}`)
+if (SAT && (e1 !== 2 || e0 !== 7 || i1 !== 5 || i0 !== 6)) { console.error(`REFUSING: sat-math-v24-alg rates derived ${e1}/${e0}, ${i1}/${i0}; A84 measured 2/7, 5/6`); process.exit(2) }
+console.log(`[${PROFILE}] ${SAT ? 'sat-math-v24-alg' : 'act-math-v24'} survival (derived): extreme-key ${e1}/${e0} = ${pct(KE)}, interior-key ${i1}/${i0} = ${pct(KI)}`)
 
-// live act/math rates
+// live maths rates for the profile's family
+const FAM = SAT ? 'sat' : 'act'
 const env = Object.fromEntries(readFileSync(DIR + '../../.env.local', 'utf8').split('\n')
   .filter(l => l.includes('=') && !l.startsWith('#')).map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, { auth: { persistSession: false } })
 const rows = []
 for (let f = 0; ; f += 1000) {
-  const { data, error } = await db.from('study_item_bank').select('id,item').eq('family', 'act').eq('section', 'math')
+  const { data, error } = await db.from('study_item_bank').select('id,item').eq('family', FAM).eq('section', 'math')
     .eq('verified', true).eq('archived', false).order('id').range(f, f + 999)
   if (error) { console.error(error.message); process.exit(2) }
   rows.push(...data); if (data.length < 1000) break
 }
-const { count } = await db.from('study_item_bank').select('id', { count: 'exact', head: true }).eq('family', 'act').eq('section', 'math').eq('verified', true).eq('archived', false)
+const { count } = await db.from('study_item_bank').select('id', { count: 'exact', head: true }).eq('family', FAM).eq('section', 'math').eq('verified', true).eq('archived', false)
 if (!rows.length || rows.length !== count || new Set(rows.map(r => r.id)).size !== count) { console.error(`REFUSING: live read ${rows.length} vs count ${count}`); process.exit(2) }
 const L = position(rows.map(r => r.item).filter(Boolean))
 const pMin = L.min / L.n, pMax = L.max / L.n, pMid = L.mid / L.n
-console.log(`live act/math ${L.n} scorable of ${count}: smallest ${pct(pMin)} / interior ${pct(pMid)} / largest ${pct(pMax)}`)
+console.log(`live ${FAM}/math ${L.n} scorable of ${count}: smallest ${pct(pMin)} / interior ${pct(pMid)} / largest ${pct(pMax)}`)
 
 let failed = false
 const files = args.map(p => ({ p, items: JSON.parse(readFileSync(p, 'utf8')) }))
@@ -132,7 +161,15 @@ for (const { p, items, merged } of sets) {
   console.log(`  v24-rate     kept ~${vr.n.toFixed(1)}, extreme ${pct(vr.share)}  (interior z at that n ${zV.toFixed(2)})`)
   console.log(`  equal-rate   extreme ${pct(er.share)}  (interior z at kept n ${vr.n.toFixed(1)}: ${zE.toFixed(2)})`)
   console.log(`  author-kept  ${kept.length} of ${items.length} (at-risk ${atRisk.length}${atRisk.length ? ': ' + atRisk.map(i => i.id).join(',') : ''})  key-extremity-gate ${g.status.toUpperCase()}  ${g.n ? `${g.ext}/${g.n} = ${pct(g.rate)}` : ''}`)
-  if (merged) {
+  if (merged && SAT) {
+    const fails = []
+    if (!(vr.share >= 0.45 && vr.share <= 0.55)) fails.push(`alg24-rate ${pct(vr.share)} outside [45.0%, 55.0%]`)
+    if (vr.n < 12) fails.push(`projected kept n ${vr.n.toFixed(1)} < 12`)
+    if (Math.abs(t.max - t.min) > 2) fails.push(`authored largest ${t.max} vs smallest ${t.min} differ by more than 2`)
+    console.log(`  (reported, not barred under sat-alg25: equal-rate share ${pct(er.share)}; authored per-side z largest ${zA.max.toFixed(2)} smallest ${zA.min.toFixed(2)})`)
+    console.log(`  PROJECTION ${fails.length ? 'FAIL: ' + fails.join('; ') : 'PASS'}`)
+    if (fails.length) failed = true
+  } else if (merged) {
     const fails = []
     if (!(vr.share >= 0.45 && vr.share <= 0.55)) fails.push(`v24-rate ${pct(vr.share)} outside [45.0%, 55.0%]`)
     if (zE < -1.96) fails.push(`equal-rate interior z ${zE.toFixed(2)} < -1.96 (kept set would fail check-key-magnitude)`)
