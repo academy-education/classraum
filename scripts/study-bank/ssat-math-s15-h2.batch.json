@@ -1,0 +1,1502 @@
+[
+ {
+  "id": "S15A-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a fraction of a percent of a group, as a count",
+  "difficulty": "easy",
+  "prompt": "A school has 1,200 students. Of these students, 45 percent ride the bus, and one third of the bus riders are in ninth grade. How many ninth graders ride the bus?",
+  "choices": [
+   "15",
+   "81",
+   "140",
+   "162",
+   "180"
+  ],
+  "correct_answer": "180",
+  "explanation": "Bus riders: 45% of 1,200 = 540. One third of 540 is 180. The option \"15\" takes one third of the percent, 45, and reports 15 as a count. The option \"140\" subtracts one third of all the students from the number of bus riders. The option \"162\" rounds one third to 30 percent before taking it of the 540 riders. The option \"81\" finds that the ninth-grade riders are 45/3 = 15 percent of the school but then takes 15 percent of the 540 riders.",
+  "solve": "const r=1200*0.45;return r/3;",
+  "distractor_solve": {
+   "15": "return 45/3;",
+   "140": "return 1200*0.45-1200/3;",
+   "162": "return Math.round(1200*0.45*0.3);",
+   "81": "return 1200*0.45*(0.45/3);"
+  }
+ },
+ {
+  "id": "S15A-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "one quantity as a percent of another through a chain of two percent relations",
+  "difficulty": "medium",
+  "prompt": "The number x is 50 percent greater than the number y, and y is 40 percent less than the number z. The number x is what percent of z?",
+  "choices": [
+   "40",
+   "60",
+   "90",
+   "110",
+   "250"
+  ],
+  "correct_answer": "90",
+  "explanation": "y = 0.6z and x = 1.5y = 1.5(0.6z) = 0.9z, so x is 90 percent of z. The option \"40\" divides 0.6 by 1.5, dividing where it should multiply. The option \"60\" multiplies 1.5 by 0.4, using the 40 percent itself instead of 60 percent. The option \"110\" adds and subtracts the percents: 100 + 50 - 40. The option \"250\" divides 1.5 by 0.6 instead of multiplying.",
+  "solve": "const y=0.6, x=1.5*y;return Math.round(x*100);",
+  "distractor_solve": {
+   "40": "return Math.round(0.6/1.5*100);",
+   "60": "return Math.round(1.5*0.4*100);",
+   "110": "return 100+50-40;",
+   "250": "return Math.round(1.5/0.6*100);"
+  }
+ },
+ {
+  "id": "S15A-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance behind in a race from a fixed ratio of running speeds",
+  "difficulty": "medium",
+  "prompt": "Kai and Lia each run at a constant speed. In the time it takes Kai to run 500 meters, Lia runs 400 meters. They start a 1,500-meter race together. When Kai crosses the finish line, how many meters is Lia behind him?",
+  "choices": [
+   "100",
+   "300",
+   "375",
+   "1200",
+   "1875"
+  ],
+  "correct_answer": "300",
+  "explanation": "Lia runs 4/5 as far as Kai in the same time. When Kai has run 1,500 meters, Lia has run 4/5 x 1,500 = 1,200 meters, so she is 1,500 - 1,200 = 300 meters behind. The option \"100\" uses the 100-meter gap from one 500-meter stretch without scaling it to 1,500 meters. The option \"375\" divides the 100-meter gap by Lia's 400 meters instead of Kai's 500 meters. The option \"1200\" gives Lia's distance run instead of the distance she is behind. The option \"1875\" finds how far Kai would run while Lia runs 1,500 meters.",
+  "solve": "const lia=1500*400/500;return 1500-lia;",
+  "distractor_solve": {
+   "100": "return 500-400;",
+   "375": "return 1500*100/400;",
+   "1200": "return 1500*400/500;",
+   "1875": "return 1500*500/400;"
+  }
+ },
+ {
+  "id": "S15A-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "chaining two equal-cost statements to convert one item into another",
+  "difficulty": "medium",
+  "prompt": "At a market, 3 apples cost the same as 4 pears, and 2 pears cost the same as 5 plums. How many plums cost the same as 6 apples?",
+  "choices": [
+   "8",
+   "11.25",
+   "15",
+   "16",
+   "20"
+  ],
+  "correct_answer": "20",
+  "explanation": "Six apples cost the same as 6 x 4/3 = 8 pears, and 8 pears cost the same as 8 x 5/2 = 20 plums. The option \"8\" stops after converting the apples to pears. The option \"11.25\" turns the first ratio upside down, using 3/4 pear per apple. The option \"15\" skips the pears and uses the pear-to-plum rate on the apples directly. The option \"16\" multiplies by 2 at the second step instead of by 5/2.",
+  "solve": "const pears=6*4/3;return pears*5/2;",
+  "distractor_solve": {
+   "8": "return 6*4/3;",
+   "11.25": "return 6*(3/4)*(5/2);",
+   "15": "return 6*5/2;",
+   "16": "return 6*(4/3)*2;"
+  }
+ },
+ {
+  "id": "S15A-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "increase in each person's share when the group sharing a fixed cost shrinks",
+  "difficulty": "medium",
+  "prompt": "Fifteen friends agree to share the $420 cost of renting a bus equally. Three of them drop out, and the other friends share the same $420 cost equally. How much more does each remaining friend pay than under the original plan?",
+  "choices": [
+   "$5.60",
+   "$7.00",
+   "$22.40",
+   "$35.00",
+   "$84.00"
+  ],
+  "correct_answer": "$7.00",
+  "explanation": "Originally each pays 420 / 15 = $28. With 12 people each pays 420 / 12 = $35, which is $35 - $28 = $7.00 more. The option \"$22.40\" lowers the share in proportion to the smaller group, 28 x 12/15. The option \"$5.60\" spreads the dropouts' $84 over all 15 friends instead of the 12 who remain. The option \"$35.00\" gives the new share instead of the increase. The option \"$84.00\" gives the total that the three dropouts would have paid.",
+  "solve": "const a=420/15,b=420/12;return \"$\"+(b-a).toFixed(2);",
+  "distractor_solve": {
+   "$22.40": "return \"$\"+(420/15*12/15).toFixed(2);",
+   "$5.60": "return \"$\"+(3*420/15/15).toFixed(2);",
+   "$35.00": "return \"$\"+(420/12).toFixed(2);",
+   "$84.00": "return \"$\"+(3*420/15).toFixed(2);"
+  }
+ },
+ {
+  "id": "S15A-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a share as a percent of the whole after part of another share is transferred",
+  "difficulty": "medium",
+  "prompt": "A prize is shared among Ana, Ben and Cal in the ratio 2 : 3 : 5. Cal then gives one quarter of his share to Ana. What percent of the whole prize does Ana now have?",
+  "choices": [
+   "12.5",
+   "25",
+   "32.5",
+   "37.5",
+   "45"
+  ],
+  "correct_answer": "32.5",
+  "explanation": "Ana starts with 2/10 = 20% and Cal with 5/10 = 50%. Cal gives away 50% / 4 = 12.5%, so Ana now has 20% + 12.5% = 32.5%. The option \"12.5\" gives only the amount Cal passes to Ana. The option \"25\" adds a quarter of Ana's own share instead of a quarter of Cal's. The option \"37.5\" gives Cal's new share instead of Ana's. The option \"45\" adds a quarter of the whole prize instead of a quarter of Cal's share.",
+  "solve": "const a=2/10,c=5/10;return (a+c/4)*100;",
+  "distractor_solve": {
+   "12.5": "return 5/10/4*100;",
+   "25": "return 2/10*1.25*100;",
+   "37.5": "return 5/10*0.75*100;",
+   "45": "return (2/10+1/4)*100;"
+  }
+ },
+ {
+  "id": "S15A-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a changed ratio after items move from one group to the other with the total fixed",
+  "difficulty": "hard",
+  "prompt": "Box A and box B hold pencils in the ratio 5 : 3. After 12 pencils are moved from box A to box B, the ratio of the number of pencils in box A to the number in box B is 7 : 5. How many pencils are in box B now?",
+  "choices": [
+   "30",
+   "36",
+   "45",
+   "66",
+   "120"
+  ],
+  "correct_answer": "120",
+  "explanation": "Let the boxes hold 5k and 3k. Afterwards (5k - 12) : (3k + 12) = 7 : 5, so 25k - 60 = 21k + 84 and k = 36. Box B now holds 3(36) + 12 = 120 (and box A holds 168; 168 : 120 = 7 : 5). The option \"36\" gives the multiplier k instead of a count of pencils. The option \"45\" forgets to add the 12 pencils to box B. The option \"66\" sets the new difference to 2k - 12 instead of 2k - 24, getting k = 18. The option \"30\" treats the parts of the new ratio as the same size as the old parts, so box B gains 5 - 3 = 2 parts = 12 pencils and holds 5 x 6 = 30.",
+  "solve": "for(let k=1;k<1000;k++){if((5*k-12)*5===(3*k+12)*7)return 3*k+12;}",
+  "distractor_solve": {
+   "36": "for(let k=1;k<1000;k++){if((5*k-12)*5===(3*k+12)*7)return k;}",
+   "45": "for(let k=1;k<1000;k++){if((5*k-12)*5===(3*k)*7)return 3*k;}",
+   "66": "for(let k=1;k<1000;k++){if((2*k-12)*3===4*k)return 3*k+12;}",
+   "30": "const part=12/(5-3);return 5*part;"
+  }
+ },
+ {
+  "id": "S15A-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "meeting time of two trains moving toward each other when one starts later",
+  "difficulty": "hard",
+  "prompt": "Towns P and Q are 330 kilometers apart. A train leaves P at 9:00 a.m. and travels toward Q at 60 kilometers per hour. A second train leaves Q at 10:30 a.m. and travels toward P on a parallel track at 90 kilometers per hour. At what time do the two trains pass each other?",
+  "choices": [
+   "12:06 p.m.",
+   "12:42 p.m.",
+   "1:10 p.m.",
+   "1:42 p.m.",
+   "2:30 p.m."
+  ],
+  "correct_answer": "12:06 p.m.",
+  "explanation": "By 10:30 a.m. the first train has gone 60 x 1.5 = 90 km, leaving 240 km. Then the trains close at 60 + 90 = 150 km/h, taking 240 / 150 = 1.6 hours = 1 hour 36 minutes. They pass at 12:06 p.m. The option \"12:42 p.m.\" starts the whole 330 kilometers at the closing speed from 10:30, ignoring the first train's head start. The option \"1:10 p.m.\" covers the remaining 240 kilometers at the second train's speed alone. The option \"1:42 p.m.\" uses the average of the two speeds, 75, for the remaining 240 kilometers. The option \"2:30 p.m.\" covers the remaining 240 kilometers at the first train's speed alone.",
+  "solve": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};const left=330-60*1.5;return fmt(630+left/150*60);",
+  "distractor_solve": {
+   "12:42 p.m.": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};return fmt(630+330/150*60);",
+   "1:10 p.m.": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};return fmt(630+240/90*60);",
+   "1:42 p.m.": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};return fmt(630+240/75*60);",
+   "2:30 p.m.": "const fmt=m=>{let h=Math.floor(m/60),mm=Math.round(m%60);const ap=h>=12?\"p.m.\":\"a.m.\";let hh=h>12?h-12:h;return hh+\":\"+String(mm).padStart(2,\"0\")+\" \"+ap;};return fmt(630+240/60*60);"
+  }
+ },
+ {
+  "id": "S15A-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a profit split with a fee taken first and the rest divided in a ratio, worked backward",
+  "difficulty": "hard",
+  "prompt": "Two partners divide a profit as follows. First, Mina receives 10 percent of the profit as a management fee. Then the rest of the profit is split between Mina and Joon in the ratio 2 : 3. Mina receives $2,300 in all. How many dollars does Joon receive?",
+  "choices": [
+   "2484",
+   "2700",
+   "2760",
+   "3000",
+   "3105"
+  ],
+  "correct_answer": "2700",
+  "explanation": "Mina gets 10% of the profit P plus 2/5 of the remaining 90%: 0.10P + 0.36P = 0.46P = 2,300, so P = 5,000. Joon gets 3/5 of 0.90 x 5,000 = 4,500, which is $2,700. The option \"2484\" treats Mina's fraction as 10% + 40% of the whole profit, getting a $4,600 profit. The option \"2760\" treats Mina's fraction as 10% + 40% and gives Joon 60% of that $4,600. The option \"3000\" finds the $5,000 profit but gives Joon 3/5 of all of it, not 3/5 of the remaining 90%. The option \"3105\" takes the fee as 10% of Mina's $2,300 and scales the rest by 3/2.",
+  "solve": "const minaFrac=0.1+0.9*2/5;const P=2300/minaFrac;return Math.round(0.9*P*3/5);",
+  "distractor_solve": {
+   "2484": "const P=2300/(0.1+0.4);return Math.round(0.54*P);",
+   "2760": "const P=2300/(0.1+0.4);return Math.round(0.6*P);",
+   "3000": "const P=2300/(0.1+0.9*0.4);return Math.round(0.6*P);",
+   "3105": "return Math.round(1.5*(2300-0.1*2300));"
+  }
+ },
+ {
+  "id": "S15A-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "time when one burning candle is twice as long as another of the same starting length",
+  "difficulty": "hard",
+  "prompt": "Two candles are the same length. One burns down completely in 4 hours and the other in 6 hours, each at a steady rate. Both are lit at the same moment. After how long is the slower-burning candle exactly twice as long as the faster-burning candle?",
+  "choices": [
+   "1 hour 30 minutes",
+   "2 hours",
+   "2 hours 24 minutes",
+   "2 hours 40 minutes",
+   "3 hours"
+  ],
+  "correct_answer": "3 hours",
+  "explanation": "After t hours the faster candle has 1 - t/4 of its length left and the slower has 1 - t/6. Setting 1 - t/6 = 2(1 - t/4) gives 1 - t/6 = 2 - t/2, so t/3 = 1 and t = 3 hours. Check: 1/2 left of one candle and 1/4 of the other. The option \"1 hour 30 minutes\" sets the slower candle's remaining length equal to twice the length the faster candle has burned. The option \"2 hours\" treats the burn times as lengths that burn 1 unit per hour: 6 - t = 2(4 - t). The option \"2 hours 24 minutes\" computes the time for the two candles together to burn one candle's length. The option \"2 hours 40 minutes\" finds when the faster candle is down to one third of its length.",
+  "solve": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};for(let k=1;k<=480;k++){const t=k/60;if(Math.abs((1-t/6)-2*(1-t/4))<1e-9)return fmt(t);}",
+  "distractor_solve": {
+   "1 hour 30 minutes": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};return fmt(1/(1/2+1/6));",
+   "2 hours": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};return fmt((2*4-6)/(2-1));",
+   "2 hours 24 minutes": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};return fmt(1/(1/4+1/6));",
+   "2 hours 40 minutes": "const fmt=t=>{const h=Math.floor(t+1e-9),m=Math.round((t-h)*60);let s=h+(h===1?\" hour\":\" hours\");if(m)s+=\" \"+m+\" minutes\";return s;};return fmt(4*(1-1/3));"
+  }
+ },
+ {
+  "id": "S15A-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "percent increase over a planned daily rate needed to finish on schedule after falling behind",
+  "difficulty": "hard",
+  "prompt": "A crew planned to pave 20 kilometers of road in 40 days, paving the same distance each day. After 15 days, only 6 kilometers have been paved. To finish on schedule, by what percent must the crew's daily distance for the remaining days exceed the originally planned daily distance?",
+  "choices": [
+   "12",
+   "20",
+   "25",
+   "40",
+   "56"
+  ],
+  "correct_answer": "12",
+  "explanation": "The plan was 20 / 40 = 0.5 km per day. 14 km remain for 25 days, which needs 14 / 25 = 0.56 km per day. That is 0.06 / 0.5 = 12% more than planned. The option \"20\" gives the percent by which the crew is behind after 15 days. The option \"25\" compares the planned 7.5 km with the 6 km actually paved. The option \"40\" compares the needed rate with the crew's actual rate so far instead of the planned rate. The option \"56\" reads the needed 0.56 km per day as 56 percent.",
+  "solve": "const plan=20/40,need=(20-6)/25;return Math.round((need/plan-1)*1000)/10;",
+  "distractor_solve": {
+   "20": "return (15*20/40-6)/(15*20/40)*100;",
+   "25": "return ((15*20/40)/6-1)*100;",
+   "40": "return Math.round(((20-6)/25/(6/15)-1)*1000)/10;",
+   "56": "return Math.round((20-6)/25*100);"
+  }
+ },
+ {
+  "id": "S15A-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "percent change in a unit price when price rises and quantity falls",
+  "difficulty": "medium",
+  "prompt": "The price of a box of cereal rises by 20 percent. At the same time, the amount of cereal in the box is reduced by 20 percent. By what percent does the price per ounce of the cereal increase?",
+  "choices": [
+   "4",
+   "40",
+   "44",
+   "50",
+   "150"
+  ],
+  "correct_answer": "50",
+  "explanation": "For each old dollar and old ounce, the new price is 1.2 and the new amount 0.8, so the price per ounce is 1.2 / 0.8 = 1.5 times as much: an increase of 50%. The option \"4\" multiplies 1.2 by 0.8 instead of dividing. The option \"40\" adds the two percents. The option \"44\" treats the smaller box as another 20 percent price rise. The option \"150\" gives the new unit price as a percent of the old one.",
+  "solve": "return Math.round((1.2/0.8-1)*100);",
+  "distractor_solve": {
+   "4": "return Math.round(Math.abs(1.2*0.8-1)*100);",
+   "40": "return 20+20;",
+   "44": "return Math.round((1.2*1.2-1)*100);",
+   "150": "return Math.round(1.2/0.8*100);"
+  }
+ },
+ {
+  "id": "S15A-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "weight after drying from the unchanged non-water part",
+  "difficulty": "hard",
+  "prompt": "A 60-kilogram load of fresh fruit is 75 percent water by weight. After drying, the fruit is 40 percent water by weight. What is the weight of the dried fruit, in kilograms?",
+  "choices": [
+   "20",
+   "21",
+   "24",
+   "25",
+   "37.5"
+  ],
+  "correct_answer": "25",
+  "explanation": "The dry matter is 25% of 60 = 15 kg and does not change. After drying it is 100% - 40% = 60% of the weight, so the weight is 15 / 0.6 = 25 kg. The option \"21\" adds 40 percent of the dry matter as water. The option \"24\" takes 40 percent of the original 60 kilograms. The option \"20\" divides the dry matter by the original water fraction, 0.75, instead of the new dry fraction. The option \"37.5\" divides the dry matter by the water percent instead of the dry percent.",
+  "solve": "const dry=60*(1-0.75);return dry/(1-0.40);",
+  "distractor_solve": {
+   "21": "const dry=60*0.25;return dry+dry*0.4;",
+   "24": "return 60*0.40;",
+   "20": "const dry=60*0.25;return dry/0.75;",
+   "37.5": "const dry=60*0.25;return dry/0.40;"
+  }
+ },
+ {
+  "id": "S15A-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "difference in price per kilogram from package prices in grams",
+  "difficulty": "medium",
+  "prompt": "Brand A rice is sold in 250-gram bags for $3.00, and brand B rice is sold in 400-gram bags for $4.40. How much less does 1 kilogram of brand B rice cost than 1 kilogram of brand A rice?",
+  "choices": [
+   "$0.10",
+   "$0.25",
+   "$0.40",
+   "$0.50",
+   "$1.00"
+  ],
+  "correct_answer": "$1.00",
+  "explanation": "Brand A costs 3.00 x 4 = $12.00 per kilogram (four 250-gram bags). Brand B costs 4.40 x 2.5 = $11.00 per kilogram. Brand B is $1.00 cheaper per kilogram. The option \"$0.10\" finds the difference per 100 grams and stops. The option \"$0.25\" compares one bag of A with 250 grams of B. The option \"$0.40\" compares one bag of B with 400 grams of A. The option \"$0.50\" finds the difference for half a kilogram, 500 grams, and stops.",
+  "solve": "const a=3/0.25,b=4.4/0.4;return \"$\"+(a-b).toFixed(2);",
+  "distractor_solve": {
+   "$0.10": "return \"$\"+(3/2.5-4.4/4).toFixed(2);",
+   "$0.25": "return \"$\"+(3-4.4*250/400).toFixed(2);",
+   "$0.40": "return \"$\"+(3*400/250-4.4).toFixed(2);",
+   "$0.50": "return \"$\"+(3*2-4.4*500/400).toFixed(2);"
+  }
+ },
+ {
+  "id": "S15A-30",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance from the difference in arrival times at two walking speeds",
+  "difficulty": "hard",
+  "prompt": "Walking from home to the station at 4 kilometers per hour, Ravi arrives 7 minutes after his train has left. Walking at 6 kilometers per hour, he arrives 5 minutes before the train leaves. The train leaves at the same time each day. How many kilometers is it from his home to the station?",
+  "choices": [
+   "0.4",
+   "0.6",
+   "1.44",
+   "2.4",
+   "144"
+  ],
+  "correct_answer": "2.4",
+  "explanation": "The two walks differ by 7 + 5 = 12 minutes = 1/5 hour. So d/4 - d/6 = 1/5, which gives d/12 = 1/5 and d = 2.4 km. The option \"0.4\" uses 7 - 5 = 2 minutes as the difference in times. The option \"0.6\" finds the walking time at 4 km/h in hours instead of the distance. The option \"1.44\" writes 12 minutes as 0.12 hour. The option \"144\" leaves the 12 minutes in minutes instead of changing it to 1/5 hour.",
+  "solve": "const diff=(7+5)/60;return Math.round(diff/(1/4-1/6)*1000)/1000;",
+  "distractor_solve": {
+   "0.4": "return Math.round(((7-5)/60)/(1/4-1/6)*1000)/1000;",
+   "0.6": "const d=(12/60)/(1/4-1/6);return Math.round(d/4*1000)/1000;",
+   "1.44": "return Math.round(0.12/(1/4-1/6)*1000)/1000;",
+   "144": "return Math.round((7+5)/(1/4-1/6));"
+  }
+ },
+ {
+  "id": "S15B-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "zigzag between parallel lines: alternate angles add at the vertex",
+  "difficulty": "medium",
+  "prompt": "Lines l and m are parallel, and point P lies between them. Point A is on line l and point B is on line m, and both A and B lie to the left of P. Segment PA makes an acute angle of 35 degrees with line l, and segment PB makes an acute angle of 50 degrees with line m. What is the measure, in degrees, of angle APB?",
+  "choices": [
+   "15",
+   "85",
+   "42.5",
+   "130",
+   "145"
+  ],
+  "correct_answer": "85",
+  "explanation": "Draw the line through P parallel to l and m. It splits angle APB into two parts; by alternate angles the part next to PA is 35 degrees and the part next to PB is 50 degrees, so angle APB = 35 + 50 = 85. The option \"15\" subtracts the two angles. The option \"42.5\" averages them. The option \"130\" is 180 - 50, the supplement of the angle at B, read as the angle at P. The option \"145\" is 180 - 35, the supplement of the angle at A.",
+  "solve": "const a=35,b=50;return a+b;",
+  "distractor_solve": {
+   "15": "return 50-35;",
+   "42.5": "return (35+50)/2;",
+   "130": "return 180-50;",
+   "145": "return 180-35;"
+  }
+ },
+ {
+  "id": "S15B-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "similar triangles formed by a lamp post, a person and the shadow",
+  "difficulty": "medium",
+  "prompt": "A lamp post is 18 feet tall. A person who is 6 feet tall stands on level ground 10 feet from the base of the post. How long, in feet, is the shadow that the lamp casts of the person?",
+  "choices": [
+   "10/3",
+   "20",
+   "30",
+   "5",
+   "2.5"
+  ],
+  "correct_answer": "5",
+  "explanation": "Let the shadow be s. The light ray from the top of the post passes the top of the person and reaches the ground at the shadow tip, so the triangles are similar: 6/s = 18/(s + 10). Then 18s = 6s + 60 and s = 5. The option \"10/3\" scales the 10-foot distance by 6/18, as if the shadow were proportional to the distance from the post. The option \"20\" scales 10 by (18 - 6)/6. The option \"30\" scales 10 by 18/6. The option \"2.5\" adds the heights where they should be subtracted, 6(10)/(18 + 6).",
+  "solve": "const H=18,h=6,d=10;return h*d/(H-h);",
+  "distractor_solve": {
+   "10/3": "return 10*6/18;",
+   "20": "return 10*(18-6)/6;",
+   "30": "return 10*18/6;",
+   "2.5": "return 6*10/(18+6);"
+  }
+ },
+ {
+  "id": "S15B-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume of a cylinder from the circumference of its base",
+  "difficulty": "easy",
+  "prompt": "The base of a cylinder has a circumference of 10pi centimeters, and the cylinder is 6 centimeters tall. What is the volume of the cylinder, in cubic centimeters?",
+  "choices": [
+   "600π",
+   "150π",
+   "60π",
+   "50π",
+   "25π"
+  ],
+  "correct_answer": "150π",
+  "explanation": "The circumference is 2(pi)r = 10pi, so r = 5 and the volume is pi(5^2)(6) = 150pi. The option \"600pi\" takes 10 as the radius. The option \"60pi\" multiplies the circumference by the height (that is the curved surface area). The option \"50pi\" uses the cone formula with the factor 1/3. The option \"25pi\" is the area of the base alone.",
+  "solve": "const C=10,h=6;const r=C/2;return (r*r*h)+\"π\";",
+  "distractor_solve": {
+   "600π": "return (10*10*6)+\"π\";",
+   "60π": "return (10*6)+\"π\";",
+   "50π": "return (5*5*6/3)+\"π\";",
+   "25π": "return (5*5)+\"π\";"
+  }
+ },
+ {
+  "id": "S15B-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "altitude to the hypotenuse is the geometric mean of the two segments",
+  "difficulty": "hard",
+  "prompt": "In right triangle ABC, the right angle is at C. The altitude from C meets the hypotenuse AB at point D, with AD = 4 and DB = 9. What is the area of triangle ABC?",
+  "choices": [
+   "36",
+   "27",
+   "26",
+   "39",
+   "18"
+  ],
+  "correct_answer": "39",
+  "explanation": "The two smaller triangles are similar, so CD/4 = 9/CD and CD^2 = 36, CD = 6. The area is (1/2)(AB)(CD) = (1/2)(13)(6) = 39. The option \"36\" multiplies the two segments. The option \"27\" is the area of triangle CDB alone, (1/2)(9)(6). The option \"26\" takes the altitude to be 4, (1/2)(13)(4). The option \"18\" is (1/2)(4)(9), treating the two segments as legs.",
+  "solve": "const p=4,q=9;const h=Math.sqrt(p*q);return (p+q)*h/2;",
+  "distractor_solve": {
+   "36": "return 4*9;",
+   "27": "return 9*Math.sqrt(36)/2;",
+   "26": "return 13*4/2;",
+   "18": "return 4*9/2;"
+  }
+ },
+ {
+  "id": "S15B-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "base angle of the isosceles triangle cut off by a diagonal of a regular pentagon",
+  "difficulty": "medium",
+  "prompt": "ABCDE is a regular pentagon, and diagonal AC is drawn. What is the measure, in degrees, of angle BAC?",
+  "choices": [
+   "30",
+   "45",
+   "21.6",
+   "18",
+   "36"
+  ],
+  "correct_answer": "36",
+  "explanation": "Each interior angle of a regular pentagon is 540/5 = 108 degrees. Triangle ABC has AB = BC and angle B = 108, so each base angle is (180 - 108)/2 = 36. The option \"30\" uses the regular hexagon's angle, (180 - 120)/2. The option \"45\" uses a square, (180 - 90)/2. The option \"21.6\" divides the interior angle by the number of sides. The option \"18\" subtracts a right angle from the interior angle.",
+  "solve": "const n=5;const I=180*(n-2)/n;return (180-I)/2;",
+  "distractor_solve": {
+   "30": "return (180-120)/2;",
+   "45": "return (180-90)/2;",
+   "21.6": "return 108/5;",
+   "18": "return 108-90;"
+  }
+ },
+ {
+  "id": "S15B-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "perimeter of a rectangle with semicircles on two sides",
+  "difficulty": "medium",
+  "prompt": "A garden is shaped like a rectangle measuring 10 meters by 6 meters with a semicircle attached outward along each of the two 6-meter sides, each 6-meter side being a diameter of its semicircle. Using 3.14 for pi, what is the perimeter of the garden, in meters?",
+  "choices": [
+   "50.84",
+   "57.68",
+   "48.26",
+   "38.84",
+   "88.26"
+  ],
+  "correct_answer": "38.84",
+  "explanation": "The outline is the two 10-meter sides plus two semicircular arcs of radius 3. The two arcs make one full circle: 2(3.14)(3) = 18.84. The perimeter is 20 + 18.84 = 38.84. The option \"50.84\" also adds the two 6-meter sides, which are inside the garden. The option \"57.68\" uses a full circle on each side. The option \"48.26\" adds the areas of the two semicircles (9pi = 28.26) instead of their arcs. The option \"88.26\" is the area of the garden, 60 + 28.26.",
+  "solve": "const L=10,W=6,p=3.14;return Math.round((2*L+p*W)*100)/100;",
+  "distractor_solve": {
+   "50.84": "return Math.round((2*10+2*6+3.14*6)*100)/100;",
+   "57.68": "return Math.round((20+2*2*3.14*3)*100)/100;",
+   "48.26": "return Math.round((20+3.14*9)*100)/100;",
+   "88.26": "return Math.round((60+3.14*9)*100)/100;"
+  }
+ },
+ {
+  "id": "S15B-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal perimeters: square to equilateral triangle, then the triangle area",
+  "difficulty": "medium",
+  "prompt": "A square and an equilateral triangle have the same perimeter. The area of the square is 36 square centimeters. What is the area of the triangle, in square centimeters?",
+  "choices": [
+   "9√3",
+   "16√3",
+   "12",
+   "24",
+   "18"
+  ],
+  "correct_answer": "16√3",
+  "explanation": "The square has side 6 and perimeter 24, so the triangle has side 8 and area (8^2)(sqrt3)/4 = 16sqrt3. The option \"9sqrt3\" uses the square's side 6 as the triangle's side. The option \"12\" uses half the square's side as the height, (1/2)(8)(3). The option \"24\" uses the square's side as the height, (1/2)(8)(6). The option \"18\" uses 6 for both base and height.",
+  "solve": "const A=36;const s=4*Math.sqrt(A)/3;return (s*s/4)+\"√3\";",
+  "distractor_solve": {
+   "9√3": "return (6*6/4)+\"√3\";",
+   "12": "return 8*3/2;",
+   "24": "return 8*6/2;",
+   "18": "return 6*6/2;"
+  }
+ },
+ {
+  "id": "S15B-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal perimeters: regular pentagon to square area",
+  "difficulty": "easy",
+  "prompt": "Each side of a regular pentagon measures 4 centimeters. A square has the same perimeter as the pentagon. What is the area of the square, in square centimeters?",
+  "choices": [
+   "16",
+   "100",
+   "36",
+   "25",
+   "20"
+  ],
+  "correct_answer": "25",
+  "explanation": "The pentagon's perimeter is 5(4) = 20, so the square's side is 20/4 = 5 and its area is 25. The option \"16\" squares the pentagon's side. The option \"100\" takes half the perimeter as the side. The option \"36\" counts six sides (perimeter 24, side 6). The option \"20\" is the perimeter, not the area.",
+  "solve": "const n=5,s=4;const side=n*s/4;return side*side;",
+  "distractor_solve": {
+   "16": "return 4*4;",
+   "100": "return (20/2)**2;",
+   "36": "return (6*4/4)**2;",
+   "20": "return 5*4;"
+  }
+ },
+ {
+  "id": "S15B-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "diagonals of a polygon whose interior-angle sum is given",
+  "difficulty": "medium",
+  "prompt": "The sum of the measures of the interior angles of a polygon is 1,440 degrees. How many diagonals does the polygon have?",
+  "choices": [
+   "20",
+   "45",
+   "35",
+   "40",
+   "27"
+  ],
+  "correct_answer": "35",
+  "explanation": "From (n - 2)(180) = 1440, n - 2 = 8 and n = 10. A polygon with n sides has n(n - 3)/2 diagonals, so 10(7)/2 = 35. The option \"20\" forgets to add 2, taking n = 8: 8(5)/2. The option \"45\" counts every segment joining two vertices, 10(9)/2, sides included. The option \"40\" uses n - 2 in place of n - 3: 10(8)/2. The option \"27\" adds 1 instead of 2, taking n = 9: 9(6)/2.",
+  "solve": "const S=1440;const n=S/180+2;return n*(n-3)/2;",
+  "distractor_solve": {
+   "20": "const n=1440/180;return n*(n-3)/2;",
+   "45": "const n=10;return n*(n-1)/2;",
+   "40": "const n=10;return n*(n-2)/2;",
+   "27": "const n=1440/180+1;return n*(n-3)/2;"
+  }
+ },
+ {
+  "id": "S15B-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rhombus area from its side and one diagonal",
+  "difficulty": "medium",
+  "prompt": "A rhombus has a perimeter of 40 centimeters, and one of its diagonals is 12 centimeters long. What is the area of the rhombus, in square centimeters?",
+  "choices": [
+   "60",
+   "72",
+   "80",
+   "64",
+   "96"
+  ],
+  "correct_answer": "96",
+  "explanation": "Each side is 10. The diagonals bisect each other at right angles, so half of the other diagonal is sqrt(10^2 - 6^2) = 8 and that diagonal is 16. The area is (12)(16)/2 = 96. The option \"60\" multiplies the diagonal by the side and halves it. The option \"72\" takes both diagonals to be 12. The option \"80\" multiplies the side by the half-diagonal 8. The option \"64\" squares the half-diagonal 8.",
+  "solve": "const P=40,d1=12;const s=P/4;const h=Math.sqrt(s*s-(d1/2)**2);return d1*2*h/2;",
+  "distractor_solve": {
+   "60": "return 12*10/2;",
+   "72": "return 12*12/2;",
+   "80": "return 10*8;",
+   "64": "return 8*8;"
+  }
+ },
+ {
+  "id": "S15B-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "square inscribed at the right angle of a right triangle",
+  "difficulty": "hard",
+  "prompt": "A square is drawn inside a right triangle whose legs measure 6 and 4. One corner of the square is at the right angle, two sides of the square lie along the legs, and the opposite corner of the square lies on the hypotenuse. What is the side length of the square?",
+  "choices": [
+   "1.5",
+   "2.5",
+   "3.6",
+   "2.4",
+   "2"
+  ],
+  "correct_answer": "2.4",
+  "explanation": "The small triangle beside the square, with legs 6 - s and s, is similar to the whole triangle, so (6 - s)/s = 6/4. Then 4(6 - s) = 6s, 24 = 10s and s = 2.4. The option \"1.5\" is the ratio of the legs, 6/4. The option \"2.5\" divides the sum of the legs by 4. The option \"3.6\" inverts the ratio in the similar triangle, (6 - s)/s = 4/6. The option \"2\" takes half the shorter leg.",
+  "solve": "const a=6,b=4;return a*b/(a+b);",
+  "distractor_solve": {
+   "1.5": "return 6/4;",
+   "2.5": "return (6+4)/4;",
+   "3.6": "return 6/(1+4/6);",
+   "2": "return 4/2;"
+  }
+ },
+ {
+  "id": "S15B-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume of a uniform layer around a box",
+  "difficulty": "hard",
+  "prompt": "A rectangular box measuring 2 centimeters by 3 centimeters by 4 centimeters is completely covered with a layer of clay 1 centimeter thick on every face, so that the clay and the box together form a larger rectangular box. What is the volume of the clay, in cubic centimeters?",
+  "choices": [
+   "88",
+   "56",
+   "96",
+   "72",
+   "312"
+  ],
+  "correct_answer": "96",
+  "explanation": "The larger box measures (2 + 2) by (3 + 2) by (4 + 2) = 4 by 5 by 6, volume 120. The clay is 120 - 24 = 96. The option \"88\" counts the face slabs (52) and edge strips (36) but forgets the 8 corner cubes. The option \"56\" adds 2 to only two of the dimensions, 4(5)(4) - 24. The option \"72\" subtracts the inner box twice, 120 - 48. The option \"312\" adds 2 cm on each side, 6(7)(8) - 24.",
+  "solve": "const a=2,b=3,c=4,t=1;return (a+2*t)*(b+2*t)*(c+2*t)-a*b*c;",
+  "distractor_solve": {
+   "88": "const faces=2*(2*3+3*4+2*4);const edges=4*(2+3+4);return faces+edges;",
+   "56": "return 4*5*4-24;",
+   "72": "return 4*5*6-2*24;",
+   "312": "return 6*7*8-24;"
+  }
+ },
+ {
+  "id": "S15C-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "product rule with a 'none' choice counted per bagel",
+  "difficulty": "easy",
+  "prompt": "A bagel shop sells 5 kinds of bagel and 3 kinds of spread. Each order is one bagel together with either exactly one spread or no spread at all. How many different orders are possible?",
+  "choices": [
+   "16",
+   "23",
+   "20",
+   "35",
+   "18"
+  ],
+  "correct_answer": "20",
+  "explanation": "Each bagel can go with 3 spreads or with no spread, so it has 3 + 1 = 4 choices; 5 x 4 = 20. \"16\" counts the 15 bagel-and-spread orders and then adds a single extra order for \"no spread\" instead of one per bagel. \"18\" adds 3 (one for each spread) to 15. \"23\" adds both 5 and 3 to 15. \"35\" allows up to two spreads (1 + 3 + 3 = 7 choices per bagel, 5 x 7).",
+  "solve": "var bagels=5, spreads=3; return bagels*(spreads+1);",
+  "distractor_solve": {
+   "16": "return 5*3+1;",
+   "18": "return 5*3+3;",
+   "23": "return 5*3+5+3;",
+   "35": "return 5*(1+3+3);"
+  }
+ },
+ {
+  "id": "S15C-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting three-digit integers with exactly one digit equal to 7",
+  "difficulty": "hard",
+  "prompt": "How many three-digit positive integers have exactly one digit equal to 7?",
+  "choices": [
+   "225",
+   "153",
+   "252",
+   "144",
+   "243"
+  ],
+  "correct_answer": "225",
+  "explanation": "If the hundreds digit is 7, the other two digits are each one of the 9 non-7 digits: 9 x 9 = 81. If the hundreds digit is not 7, it has 8 choices (not 0, not 7), the 7 goes in the tens or units place (2 ways), and the remaining digit has 9 choices: 8 x 2 x 9 = 144. Total 81 + 144 = 225. \"144\" leaves out the numbers that begin with 7. \"153\" puts the 7 only in one of the two lower places (81 + 8 x 9). \"243\" treats all three places alike (3 x 9 x 9), allowing a leading 0. \"252\" counts integers with at least one 7 (900 - 8 x 9 x 9).",
+  "solve": "var c=0; for(var n=100;n<=999;n++){var s=String(n).split('').filter(function(d){return d==='7';}).length; if(s===1)c++;} return c;",
+  "distractor_solve": {
+   "144": "return 8*2*9;",
+   "153": "return 9*9+8*9;",
+   "243": "return 3*9*9;",
+   "252": "return 900-8*9*9;"
+  }
+ },
+ {
+  "id": "S15C-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability three named letters appear in a given relative order",
+  "difficulty": "hard",
+  "prompt": "The letters A, B, C, D and E are arranged in a row in a random order, with every arrangement equally likely. What is the probability that A is somewhere to the left of B and B is somewhere to the left of C? (The letters need not be next to each other.)",
+  "choices": [
+   "1/10",
+   "1/4",
+   "1/120",
+   "1/6",
+   "1/3"
+  ],
+  "correct_answer": "1/6",
+  "explanation": "Whatever three places A, B and C occupy, the 3! = 6 orders of those three letters in those places are equally likely, and exactly one is A, B, C from left to right. So the probability is 1/6. \"1/3\" is the chance that A is the leftmost of the three, ignoring the B-C order. \"1/4\" treats 'A left of B' and 'B left of C' as independent halves. \"1/10\" assumes only one choice of the three places works (1 / C(5,3)). \"1/120\" counts only the single arrangement A, B, C, D, E as favourable.",
+  "solve": "var perm=function(a){if(a.length<=1)return [a];var r=[];a.forEach(function(x,i){perm(a.slice(0,i).concat(a.slice(i+1))).forEach(function(p){r.push([x].concat(p));});});return r;}; var all=perm(['A','B','C','D','E']); var g=all.filter(function(p){return p.indexOf('A')<p.indexOf('B')&&p.indexOf('B')<p.indexOf('C');}).length; return g/all.length;",
+  "distractor_solve": {
+   "1/120": "return 1/(5*4*3*2*1);",
+   "1/10": "return 1/10;",
+   "1/4": "return (1/2)*(1/2);",
+   "1/3": "return 1/3;"
+  }
+ },
+ {
+  "id": "S15C-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three-set Venn: number in exactly two sets from totals and triple overlap",
+  "difficulty": "hard",
+  "prompt": "Each of the 50 students in a club plays at least one of three games: chess, checkers and go. 30 students play chess, 22 play checkers and 18 play go. Exactly 6 students play all three games. How many students play exactly two of the games?",
+  "choices": [
+   "10",
+   "36",
+   "8",
+   "26",
+   "14"
+  ],
+  "correct_answer": "8",
+  "explanation": "The totals add to 30 + 22 + 18 = 70. A student in exactly two games is counted twice and one in all three is counted three times, so 70 - 50 = 20 = (exactly two) + 2 x (all three). Exactly two = 20 - 12 = 8. \"14\" subtracts the triple once (20 - 6). \"10\" halves 20, ignoring the triple group. \"26\" adds the triple instead (20 + 6). \"36\" is the number who play exactly one game (50 - 8 - 6).",
+  "solve": "var total=50, s=30+22+18, t=6; return (s-total)-2*t;",
+  "distractor_solve": {
+   "10": "return (70-50)/2;",
+   "14": "return (70-50)-6;",
+   "26": "return (70-50)+6;",
+   "36": "return 50-((70-50)-2*6)-6;"
+  }
+ },
+ {
+  "id": "S15C-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest count in a frequency list that keeps a stated median",
+  "difficulty": "hard",
+  "prompt": "On a quiz, 6 students scored 70, 5 students scored 80, and k students scored 90. No other scores were recorded. The median of all the scores is 80. What is the greatest possible value of k?",
+  "choices": [
+   "21",
+   "10",
+   "11",
+   "6",
+   "2"
+  ],
+  "correct_answer": "10",
+  "explanation": "Listed in order, the 80s occupy positions 7 through 11. With N = 11 + k scores, the median must come from those positions. If k = 10, N = 21 and the median is the 11th score, which is 80. If k = 11, N = 22 and the median is the average of the 11th and 12th scores, (80 + 90)/2 = 85. Larger k only moves the middle further into the 90s. So the greatest k is 10. \"11\" allows N = 22 without checking that the 12th score is a 90. \"21\" gives the total number of scores (11 + 10) rather than k. \"6\" assumes the 90s may not outnumber the 70s. \"2\" is the least k that makes the median 80.",
+  "solve": "var best=-1; for(var k=0;k<=40;k++){var L=[];for(var i=0;i<6;i++)L.push(70);for(i=0;i<5;i++)L.push(80);for(i=0;i<k;i++)L.push(90);var n=L.length;var m=n%2?L[(n-1)/2]:(L[n/2-1]+L[n/2])/2;if(m===80)best=k;} return best;",
+  "distractor_solve": {
+   "2": "for(var k=0;k<=40;k++){var n=11+k;var pos=n%2?[(n+1)/2]:[n/2,n/2+1];if(pos.every(function(p){return p>=7&&p<=11;}))return k;}",
+   "6": "return 6;",
+   "11": "return 22-11;",
+   "21": "return 11+10;"
+  }
+ },
+ {
+  "id": "S15C-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "conditional probability restricted to students in exactly one of two sets",
+  "difficulty": "hard",
+  "prompt": "In a class of 50 students, 28 take Spanish, 20 take French, and 8 take both languages. A student who takes exactly one of the two languages is chosen at random. What is the probability that the student takes Spanish?",
+  "choices": [
+   "5/8",
+   "7/12",
+   "7/8",
+   "1/2",
+   "2/5"
+  ],
+  "correct_answer": "5/8",
+  "explanation": "Spanish only: 28 - 8 = 20. French only: 20 - 8 = 12. Exactly one language: 32. Probability = 20/32 = 5/8. \"7/8\" puts all 28 Spanish students over 32. \"7/12\" uses 28/(28 + 20). \"1/2\" divides the 20 Spanish-only students by the 40 who take at least one language. \"2/5\" divides 20 by the whole class of 50.",
+  "solve": "var S=28,F=20,B=8; var so=S-B, fo=F-B; return so/(so+fo);",
+  "distractor_solve": {
+   "2/5": "return (28-8)/50;",
+   "1/2": "return (28-8)/(28+20-8);",
+   "7/12": "return 28/(28+20);",
+   "7/8": "return 28/((28-8)+(20-8));"
+  }
+ },
+ {
+  "id": "S15C-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting odd numbers formed from digits 1-9 with repetition",
+  "difficulty": "easy",
+  "prompt": "A three-digit number is formed using only the digits 1 through 9, and digits may be repeated. How many such numbers are odd?",
+  "choices": [
+   "500",
+   "225",
+   "280",
+   "360",
+   "405"
+  ],
+  "correct_answer": "405",
+  "explanation": "The units digit must be one of 1, 3, 5, 7, 9 (5 choices); the hundreds and tens digits may be any of the 9 digits. 9 x 9 x 5 = 405. \"280\" forbids repeated digits (5 x 8 x 7). \"225\" also requires the hundreds digit to be odd (5 x 9 x 5). \"500\" allows the digit 0 in the hundreds and tens places (10 x 10 x 5). \"360\" forbids the tens digit from repeating the hundreds digit (9 x 8 x 5).",
+  "solve": "var c=0; for(var a=1;a<=9;a++)for(var b=1;b<=9;b++)for(var d=1;d<=9;d++)if(d%2===1)c++; return c;",
+  "distractor_solve": {
+   "360": "return 9*8*5;",
+   "500": "return 10*10*5;",
+   "225": "return 5*9*5;",
+   "280": "return 5*8*7;"
+  }
+ },
+ {
+  "id": "S15C-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting four-digit integers with strictly increasing digits",
+  "difficulty": "hard",
+  "prompt": "How many four-digit positive integers have digits that strictly increase from left to right (for example, 1358)?",
+  "choices": [
+   "504",
+   "3024",
+   "210",
+   "126",
+   "495"
+  ],
+  "correct_answer": "126",
+  "explanation": "A set of four different digits can be written in increasing order in exactly one way, and 0 cannot be used (it would have to come first). So the count is the number of 4-digit sets from 1-9: C(9,4) = 126. \"210\" chooses from all ten digits including 0. \"495\" allows equal neighbouring digits (non-decreasing, C(12,4)). \"504\" divides the 9 x 8 x 7 x 6 ordered choices by 3! instead of 4!. \"3024\" counts ordered choices of four different digits without dividing.",
+  "solve": "var c=0; for(var n=1000;n<=9999;n++){var s=String(n);if(s[0]<s[1]&&s[1]<s[2]&&s[2]<s[3])c++;} return c;",
+  "distractor_solve": {
+   "210": "return (10*9*8*7)/24;",
+   "495": "return (12*11*10*9)/24;",
+   "504": "return (9*8*7*6)/6;",
+   "3024": "return 9*8*7*6;"
+  }
+ },
+ {
+  "id": "S15C-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "geometric probability on a segment: closer to one point than another",
+  "difficulty": "medium",
+  "prompt": "A number is chosen at random from all the numbers between 0 and 20 on a number line, with every number equally likely. What is the probability that the number is closer to 4 than it is to 14?",
+  "choices": [
+   "9/14",
+   "1/2",
+   "9/20",
+   "3/5",
+   "7/10"
+  ],
+  "correct_answer": "9/20",
+  "explanation": "A number is closer to 4 than to 14 exactly when it is less than their midpoint, 9. The part of the segment below 9 has length 9 out of 20, so the probability is 9/20. \"1/2\" assumes the two regions are equal. \"7/10\" takes everything below 14. \"9/14\" uses 0 to 14 as the whole range. \"3/5\" takes the midpoint of 4 and 20 (12) as the cut-off.",
+  "solve": "var a=4,b=14,L=20; var cut=(a+b)/2; return cut/L;",
+  "distractor_solve": {
+   "1/2": "return 10/20;",
+   "3/5": "return ((4+20)/2)/20;",
+   "9/14": "return ((4+14)/2)/14;",
+   "7/10": "return 14/20;"
+  }
+ },
+ {
+  "id": "S15C-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of exactly two of one group in a random committee (hypergeometric)",
+  "difficulty": "hard",
+  "prompt": "A committee of 3 people is chosen at random from a group of 4 juniors and 5 seniors. What is the probability that exactly 2 of the people chosen are seniors?",
+  "choices": [
+   "25/42",
+   "10/21",
+   "10/63",
+   "5/14",
+   "5/42"
+  ],
+  "correct_answer": "10/21",
+  "explanation": "There are C(9,3) = 84 committees. Those with exactly 2 seniors: C(5,2) x C(4,1) = 10 x 4 = 40. Probability = 40/84 = 10/21. \"10/63\" counts one order only, (5/9)(4/8)(4/7). \"5/14\" is the chance of exactly 2 juniors (C(4,2) x 5 = 30, 30/84). \"25/42\" is the chance of at least 2 seniors (50/84). \"5/42\" is the chance all three are seniors (10/84).",
+  "solve": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(5,2)*C(4,1)/C(9,3);",
+  "distractor_solve": {
+   "5/42": "return 10/84;",
+   "10/63": "return (5/9)*(4/8)*(4/7);",
+   "5/14": "return 30/84;",
+   "25/42": "return 50/84;"
+  }
+ },
+ {
+  "id": "S15C-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "lattice routes forced through an intermediate corner",
+  "difficulty": "hard",
+  "prompt": "Maya walks from corner P to corner Q of a street grid. Q is 5 blocks east and 3 blocks north of P, and on every block Maya walks either east or north. Her route must pass through the corner that is 2 blocks east and 2 blocks north of P. How many different routes can she take?",
+  "choices": [
+   "24",
+   "16",
+   "10",
+   "48",
+   "18"
+  ],
+  "correct_answer": "24",
+  "explanation": "From P to the required corner: 2 east and 2 north in some order, C(4,2) = 6 routes. From there to Q: 3 east and 1 north, C(4,1) = 4 routes. Total 6 x 4 = 24. \"10\" adds the two legs. \"18\" takes the second leg as 3 routes (one per east block). \"16\" takes the first leg as 4 routes (2 + 2). \"48\" counts the first leg as 4 x 3 = 12 ordered choices without dividing by 2 (12 x 4).",
+  "solve": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(4,2)*C(4,1);",
+  "distractor_solve": {
+   "10": "return 6+4;",
+   "16": "return 4*4;",
+   "18": "return 6*3;",
+   "48": "return (4*3)*4;"
+  }
+ },
+ {
+  "id": "S15C-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two-stage probability: a die picks the bag, then a draw",
+  "difficulty": "hard",
+  "prompt": "Bag A holds 3 red marbles and 1 blue marble. Bag B holds 1 red marble and 5 blue marbles. A fair six-sided die is rolled. If it shows 1 or 2, one marble is drawn at random from bag A; otherwise one marble is drawn at random from bag B. What is the probability that the marble drawn is red?",
+  "choices": [
+   "5/9",
+   "13/36",
+   "5/12",
+   "5/18",
+   "11/24"
+  ],
+  "correct_answer": "13/36",
+  "explanation": "P(red) = (2/6)(3/4) + (4/6)(1/6) = 1/4 + 1/9 = 9/36 + 4/36 = 13/36. \"5/12\" forgets to multiply bag B's chance 1/6 by its weight (1/4 + 1/6). \"5/18\" uses 1/6, the chance of one die face, as the chance of reaching bag B (1/4 + (1/6)(1/6)). \"11/24\" weights the two bags equally. \"5/9\" swaps the weights (2/3 for bag A, 1/3 for bag B).",
+  "solve": "var pA=2/6, pB=1-pA, rA=3/4, rB=1/6; return pA*rA+pB*rB;",
+  "distractor_solve": {
+   "5/12": "return (2/6)*(3/4)+1/6;",
+   "5/18": "return (2/6)*(3/4)+(1/6)*(1/6);",
+   "11/24": "return (1/2)*(3/4)+(1/2)*(1/6);",
+   "5/9": "return (2/3)*(3/4)+(1/3)*(1/6);"
+  }
+ },
+ {
+  "id": "S15D-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "translating a verbal equation with 'more than' and 'less than'",
+  "difficulty": "easy",
+  "prompt": "Seven more than 3 times a number is equal to 2 less than 5 times the number. What is the number?",
+  "choices": [
+   "2.5",
+   "4.5",
+   "8.5",
+   "11.5",
+   "-0.625"
+  ],
+  "correct_answer": "4.5",
+  "explanation": "The sentence is 3n + 7 = 5n - 2, so 9 = 2n and n = 4.5. \"2.5\" moves the constants with the wrong sign, 2n = 7 - 2. \"8.5\" reads '2 less than 5 times the number' as 5(n - 2), so 3n + 7 = 5n - 10. \"11.5\" reads 'seven more than 3 times' as 3(n + 7), so 3n + 21 = 5n - 2. \"-0.625\" reads '2 less than 5 times the number' as 2 - 5n, so 8n = -5.",
+  "solve": "const a=3,b=7,c=5,d=2; return (b+d)/(c-a);",
+  "distractor_solve": {
+   "2.5": "return (7-2)/(5-3);",
+   "8.5": "return (7+10)/(5-3);",
+   "11.5": "return (21+2)/(5-3);",
+   "-0.625": "return (2-7)/(3+5);"
+  }
+ },
+ {
+  "id": "S15D-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of the integer solutions of an absolute-value inequality",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all the integers x that satisfy |2x + 5| <= 9 ?",
+  "choices": [
+   "-20",
+   "-18",
+   "-27",
+   "-25",
+   "0"
+  ],
+  "correct_answer": "-25",
+  "explanation": "|2x + 5| <= 9 means -9 <= 2x + 5 <= 9, so -14 <= 2x <= 4 and -7 <= x <= 2. The integers -7, -6, ..., 2 sum to -25. \"-20\" treats both ends as strict, keeping -6 through 1. \"-18\" drops only the lower endpoint -7. \"-27\" drops only the upper endpoint 2. \"0\" subtracts 5 with the wrong sign in the lower branch, -9 + 5 = -4, giving -2 <= x <= 2.",
+  "solve": "let s=0; for(let x=-50;x<=50;x++){ if(Math.abs(2*x+5)<=9) s+=x; } return s;",
+  "distractor_solve": {
+   "-20": "let s=0; for(let x=-20;x<=20;x++){ if(Math.abs(2*x+5)<9) s+=x; } return s;",
+   "-18": "let s=0; for(let x=-20;x<=20;x++){ if(-9<2*x+5 && 2*x+5<=9) s+=x; } return s;",
+   "-27": "let s=0; for(let x=-20;x<=20;x++){ if(-9<=2*x+5 && 2*x+5<9) s+=x; } return s;",
+   "0": "let s=0; const lo=(-9+5)/2, hi=(9-5)/2; for(let x=-20;x<=20;x++){ if(x>=lo && x<=hi) s+=x; } return s;"
+  }
+ },
+ {
+  "id": "S15D-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "setting up and solving a two-number word problem",
+  "difficulty": "medium",
+  "prompt": "The larger of two numbers is 4 more than twice the smaller. Three times the larger number minus the smaller number equals 47. What is the sum of the two numbers?",
+  "choices": [
+   "25",
+   "21.8",
+   "18",
+   "19",
+   "11"
+  ],
+  "correct_answer": "25",
+  "explanation": "With L = 2S + 4, 3(2S + 4) - S = 47 gives 5S + 12 = 47, so S = 7, L = 18 and the sum is 25. \"21.8\" reads '4 more than twice the smaller' as 2(S + 4), giving 5S = 23. \"18\" reports the larger number only. \"19\" adds the smaller instead of subtracting it, 3L + S = 47, giving S = 5 and L = 14. \"11\" solves correctly but reports L - S.",
+  "solve": "const S=(47-12)/(6-1), L=2*S+4; return S+L;",
+  "distractor_solve": {
+   "21.8": "const S=(47-24)/5, L=2*(S+4); return Math.round((S+L)*10)/10;",
+   "18": "const S=(47-12)/5; return 2*S+4;",
+   "19": "const S=(47-12)/7, L=2*S+4; return S+L;",
+   "11": "const S=(47-12)/5, L=2*S+4; return L-S;"
+  }
+ },
+ {
+  "id": "S15D-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "product of the solutions of a composed-function equation",
+  "difficulty": "hard",
+  "prompt": "The functions f and g are defined by f(x) = 2x + 3 and g(x) = x^2 - 1. What is the product of all values of x for which g(f(x)) = 48 ?",
+  "choices": [
+   "-40",
+   "-23.5",
+   "-10",
+   "2",
+   "23"
+  ],
+  "correct_answer": "-10",
+  "explanation": "g(f(x)) = (2x + 3)^2 - 1 = 48, so (2x + 3)^2 = 49 and 2x + 3 = 7 or -7. Then x = 2 or x = -5, with product -10. \"-40\" expands to 4x^2 + 12x - 40 = 0 and takes the constant as the product without dividing by 4. \"-23.5\" composes in the wrong order, f(g(x)) = 2x^2 + 1 = 48, whose roots multiply to -23.5. \"2\" keeps only the positive branch. \"23\" forgets the square root and solves 2x + 3 = 49.",
+  "solve": "const r1=(7-3)/2, r2=(-7-3)/2; return r1*r2;",
+  "distractor_solve": {
+   "-40": "return -40;",
+   "-23.5": "const r=Math.sqrt((48-1)/2); return -r*r;",
+   "2": "return (7-3)/2;",
+   "23": "return (49-3)/2;"
+  }
+ },
+ {
+  "id": "S15D-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving an equation built from a non-commutative defined operation",
+  "difficulty": "hard",
+  "prompt": "For all numbers a and b, the operation * is defined by a * b = 2a - 3b + ab. If 3 * x = x * 1, what is the value of x?",
+  "choices": [
+   "-5",
+   "11/5",
+   "-1",
+   "11/7",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "3 * x = 6 - 3x + 3x = 6, and x * 1 = 2x - 3 + x = 3x - 3. So 6 = 3x - 3 and x = 3. \"-5\" reads -3b as -3 + b, so 3 * x = 6 - 3 + x + 3x = 3 + 4x and x * 1 = 2x - 3 + 1 + x = 3x - 2. \"11/5\" reads ab as a + b, so 9 - 2x = 3x - 2. \"-1\" uses +3b instead of -3b, so 6 + 6x = 3x + 3. \"11/7\" swaps the roles on both sides, 5x - 9 = 2 - 2x.",
+  "solve": "const op=(a,b)=>2*a-3*b+a*b; for(let n=-300;n<=300;n++){ const x=n/100; if(Math.abs(op(3,x)-op(x,1))<1e-9) return x; } return null;",
+  "distractor_solve": {
+   "-5": "return (-2-3)/(4-3);",
+   "11/5": "return (9+2)/5;",
+   "-1": "return (3-6)/(6-3);",
+   "11/7": "return (2+9)/7;"
+  }
+ },
+ {
+  "id": "S15D-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "geometric sequence from its first term and a three-term sum",
+  "difficulty": "hard",
+  "prompt": "A geometric sequence of positive numbers has first term 3, and the sum of its first three terms is 39. What is the fourth term of the sequence?",
+  "choices": [
+   "33",
+   "81",
+   "45",
+   "27",
+   "120"
+  ],
+  "correct_answer": "81",
+  "explanation": "3 + 3r + 3r^2 = 39 gives r^2 + r - 12 = 0, so r = 3 (r = -4 would make terms negative). The fourth term is 3(3^3) = 81. \"33\" treats the sequence as arithmetic, 9 + 3d = 39, d = 10. \"45\" finds 3, 9, 27 and then continues by the last difference, 27 + 18. \"27\" computes r^3 and forgets the first term 3. \"120\" reports the sum of four terms, 39 + 81.",
+  "solve": "for(let r=1;r<=10;r++){ if(3+3*r+3*r*r===39) return 3*r*r*r; } return null;",
+  "distractor_solve": {
+   "33": "const d=(39-9)/3; return 3+3*d;",
+   "45": "const r=3, a3=3*r*r, a2=3*r; return a3+(a3-a2);",
+   "27": "const r=3; return Math.pow(r,3);",
+   "120": "const r=3; return 39+3*Math.pow(r,3);"
+  }
+ },
+ {
+  "id": "S15D-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "word problem with a transfer that changes both quantities",
+  "difficulty": "hard",
+  "prompt": "Mia has twice as many stickers as Leo. After Mia gives Leo 12 of her stickers, Leo has 3 more stickers than Mia. How many stickers did Mia and Leo have together at the start?",
+  "choices": [
+   "27",
+   "81",
+   "21",
+   "63",
+   "33"
+  ],
+  "correct_answer": "63",
+  "explanation": "Let Leo start with L, so Mia has 2L. Afterward Leo has L + 12 and Mia has 2L - 12, and L + 12 = (2L - 12) + 3, so L = 21, Mia has 42 and the total is 63. \"27\" forgets that Mia loses the 12, L + 12 = 2L + 3, so L = 9. \"81\" reverses who has 3 more, L + 12 + 3 = 2L - 12, so L = 27. \"21\" reports Leo's starting count. \"33\" reports Leo's count after the gift.",
+  "solve": "for(let L=1;L<=200;L++){ if(L+12===(2*L-12)+3) return L+2*L; } return null;",
+  "distractor_solve": {
+   "27": "const L=(12-3)/(2-1); return 3*L;",
+   "81": "const L=(12+12+3); return 3*L;",
+   "21": "const L=12+12-3; return L;",
+   "33": "const L=12+12-3; return L+12;"
+  }
+ },
+ {
+  "id": "S15D-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least whole number satisfying a linear cost comparison",
+  "difficulty": "medium",
+  "prompt": "Plan A for a phone costs $20 per month plus $0.05 per minute of calls. Plan B costs $8 per month plus $0.11 per minute. What is the least whole number of minutes in a month for which Plan A costs less than Plan B?",
+  "choices": [
+   "201",
+   "110",
+   "241",
+   "21",
+   "176"
+  ],
+  "correct_answer": "201",
+  "explanation": "Plan A is cheaper when 20 + 0.05m < 8 + 0.11m, i.e. 12 < 0.06m, i.e. m > 200. The least whole number is 201. \"110\" divides the $12 difference by Plan B's rate only. \"241\" divides it by Plan A's rate only. \"21\" subtracts the rates as 0.11 - 0.05 = 0.6. \"176\" adds both fees and both rates, 28/0.16 = 175.",
+  "solve": "for(let m=0;m<10000;m++){ if(20*100+5*m < 8*100+11*m) return m; } return null;",
+  "distractor_solve": {
+   "110": "return Math.floor(12/0.11)+1;",
+   "241": "return Math.round(12/0.05)+1;",
+   "21": "return Math.round(12/0.6)+1;",
+   "176": "return Math.round((20+8)/(0.05+0.11))+1;"
+  }
+ },
+ {
+  "id": "S15D-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "absolute-value equation with one extraneous branch",
+  "difficulty": "hard",
+  "prompt": "What value of x satisfies |x - 2| = 2x + 5 ?",
+  "choices": [
+   "-7",
+   "-7/3",
+   "-1",
+   "3",
+   "7/3"
+  ],
+  "correct_answer": "-1",
+  "explanation": "If x - 2 = 2x + 5 then x = -7, but then 2x + 5 = -9 is negative, so -7 does not check. If -(x - 2) = 2x + 5 then -x + 2 = 2x + 5, so x = -1, and |-3| = 3 = 2(-1) + 5 checks. \"-7\" keeps the first branch without checking it. \"-7/3\" distributes the minus sign to x only, -x - 2 = 2x + 5. \"3\" drops the sign of 5, solving x - 2 = 2x - 5. \"7/3\" drops the sign of 5 in the second branch, 2 - x = 2x - 5.",
+  "solve": "const c=[(5+2)/(1-2), (2-5)/(2+1)]; return c.find(x=>Math.abs(Math.abs(x-2)-(2*x+5))<1e-9);",
+  "distractor_solve": {
+   "-7": "return (5+2)/(1-2);",
+   "-7/3": "return -7/3;",
+   "3": "return (-5+2)/(1-2);",
+   "7/3": "return (2+5)/3;"
+  }
+ },
+ {
+  "id": "S15D-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "linear inequality with two fractional terms",
+  "difficulty": "medium",
+  "prompt": "Which of the following describes all values of x for which (x - 3)/4 - (x + 1)/6 > 1 ?",
+  "choices": [
+   "x > 19",
+   "x > 12",
+   "x > 17",
+   "x < -21",
+   "x > 23"
+  ],
+  "correct_answer": "x > 23",
+  "explanation": "Multiplying by 12: 3(x - 3) - 2(x + 1) > 12, so x - 11 > 12 and x > 23. \"x > 19\" distributes -2 as -2x + 2, getting x - 7 > 12. \"x > 12\" multiplies the left side by 12 but leaves the right side as 1. \"x > 17\" multiplies the left by 24 but the right by 12, 2x - 22 > 12. \"x < -21\" swaps the multipliers, 2(x - 3) - 3(x + 1) > 12, giving -x - 9 > 12.",
+  "solve": "const c=(12+3*3+2*1)/(3-2); return `x > ${c}`;",
+  "distractor_solve": {
+   "x > 19": "return `x > ${12+7}`;",
+   "x > 12": "return `x > ${1+11}`;",
+   "x > 17": "return `x > ${(12+22)/2}`;",
+   "x < -21": "return `x < ${-(12+9)}`;"
+  }
+ },
+ {
+  "id": "S15D-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "identifying a linear function from its composition with itself",
+  "difficulty": "hard",
+  "prompt": "A function f is defined by f(x) = ax + b, where a and b are positive constants. If f(f(x)) = 4x + 9 for all x, what is the value of f(5)?",
+  "choices": [
+   "21.8",
+   "13",
+   "19",
+   "14.5",
+   "29"
+  ],
+  "correct_answer": "13",
+  "explanation": "f(f(x)) = a(ax + b) + b = a^2 x + ab + b. So a^2 = 4, a = 2, and 2b + b = 9, b = 3. Then f(5) = 10 + 3 = 13. \"21.8\" sets a = 4 without the square root, so 5b = 9. \"19\" takes b to be the constant 9. \"14.5\" reads ab + b as ab, so 2b = 9. \"29\" evaluates f(f(5)) = 4(5) + 9.",
+  "solve": "for(let a=1;a<=10;a++){ for(let b=1;b<=20;b++){ if(a*a===4 && a*b+b===9) return a*5+b; } } return null;",
+  "distractor_solve": {
+   "21.8": "const a=4, b=9/(a+1); return a*5+b;",
+   "19": "const a=2, b=9; return a*5+b;",
+   "14.5": "const a=2, b=9/a; return a*5+b;",
+   "29": "return 4*5+9;"
+  }
+ },
+ {
+  "id": "S15D-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "intersection of two lines each given by two points",
+  "difficulty": "hard",
+  "prompt": "Line p passes through the points (0, 8) and (4, 0). Line q passes through the points (1, -1) and (3, 5). The two lines intersect at the point (a, b). What is the value of a + b?",
+  "choices": [
+   "4",
+   "44",
+   "34/5",
+   "28/5",
+   "12/5"
+  ],
+  "correct_answer": "28/5",
+  "explanation": "Line p has slope -2 and y-intercept 8, so y = 8 - 2x. Line q has slope 6/2 = 3 and passes through (1, -1), so y = 3x - 4. Setting 8 - 2x = 3x - 4 gives x = 12/5, y = 16/5 and a + b = 28/5. \"4\" uses the slope of q upside down, 1/3. \"44\" gives line p slope +2. \"34/5\" finds q's intercept as -1 + 3 = 2. \"12/5\" reports a only.",
+  "solve": "const x=(8+4)/(3+2), y=8-2*x; return x+y;",
+  "distractor_solve": {
+   "4": "const x=(8+4/3)/(2+1/3); return x+(8-2*x);",
+   "44": "const x=(8+4)/(3-2); return x+(3*x-4);",
+   "34/5": "const x=(8-2)/(3+2); return x+(3*x+2);",
+   "12/5": "return 12/5;"
+  }
+ },
+ {
+  "id": "S15D-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area enclosed by an absolute-value graph and a horizontal line",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, the graph of y = |x + 1| and the horizontal line y = 5 enclose a region. What is the area of that region, in square units?",
+  "choices": [
+   "50",
+   "20",
+   "25",
+   "16",
+   "10"
+  ],
+  "correct_answer": "25",
+  "explanation": "y = |x + 1| meets y = 5 where x + 1 = 5 or x + 1 = -5, at x = 4 and x = -6, and its vertex is (-1, 0). The region is a triangle with base 10 and height 5, area 25. \"50\" forgets the 1/2. \"20\" solves x + 1 = -5 as x = -4, giving a base of 8. \"16\" treats the graph as y = |x| + 1, with vertex (0, 1), height 4 and base 8. \"10\" measures the base from the y-axis to x = 4.",
+  "solve": "const xr=5-1, xl=-5-1, h=5-0; return (xr-xl)*h/2;",
+  "distractor_solve": {
+   "50": "const w=4-(-6), h=5; return w*h;",
+   "20": "const w=4-(-4), h=5; return w*h/2;",
+   "16": "const w=4-(-4), h=5-1; return w*h/2;",
+   "10": "const w=4-0, h=5; return w*h/2;"
+  }
+ },
+ {
+  "id": "S15E-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest common factor applied to cutting three lengths, counting pieces",
+  "difficulty": "medium",
+  "prompt": "Three ropes are 36 meters, 60 meters, and 150 meters long. All three ropes are cut into pieces that all have the same length, with no rope left over, and the pieces are made as long as possible. How many pieces are there in all?",
+  "choices": [
+   "8",
+   "41",
+   "6",
+   "25",
+   "20"
+  ],
+  "correct_answer": "41",
+  "explanation": "The longest common length is the greatest common factor of 36, 60 and 150, which is 6. The ropes give 36/6 + 60/6 + 150/6 = 6 + 10 + 25 = 41 pieces. The option \"6\" is the piece length, not the number of pieces. The option \"25\" counts only the pieces from the 150-meter rope. The option \"8\" uses the greatest common factor 12 of 36 and 60 and leaves the 150-meter rope out: 3 + 5. The option \"20\" uses 12 for all three ropes and rounds 150/12 = 12.5 down to 12: 3 + 5 + 12.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const L=[36,60,150];const d=g(g(L[0],L[1]),L[2]);return L.reduce((s,x)=>s+x/d,0);",
+  "distractor_solve": {
+   "6": "const g=(a,b)=>b?g(b,a%b):a;return g(g(36,60),150);",
+   "25": "const g=(a,b)=>b?g(b,a%b):a;return 150/g(g(36,60),150);",
+   "8": "const g=(a,b)=>b?g(b,a%b):a;const d=g(36,60);return 36/d+60/d;",
+   "20": "const g=(a,b)=>b?g(b,a%b):a;const d=g(36,60);return 36/d+60/d+Math.floor(150/d);"
+  }
+ },
+ {
+  "id": "S15E-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least integer meeting a square condition and a cube condition, exponent residues",
+  "difficulty": "hard",
+  "prompt": "What is the least positive integer n such that n/2 is a perfect square and n/3 is a perfect cube?",
+  "choices": [
+   "162",
+   "24",
+   "5832",
+   "648",
+   "432"
+  ],
+  "correct_answer": "648",
+  "explanation": "Write n = 2^a x 3^b. For n/2 = 2^(a-1) x 3^b to be a square, a - 1 and b are even. For n/3 = 2^a x 3^(b-1) to be a cube, a and b - 1 are multiples of 3. The least a that is odd and a multiple of 3 is 3; the least b that is even and one more than a multiple of 3 is 4. So n = 2^3 x 3^4 = 648 (n/2 = 324 = 18^2, n/3 = 216 = 6^3). The option \"432\" = 2^4 x 3^3 swaps the conditions, making n/2 the cube and n/3 the square. The option \"162\" = 2 x 3^4 takes a = 1, satisfying the square condition but not the cube condition on the 2. The option \"24\" = 2^3 x 3 takes b = 1, so n/3 = 8 is a cube but n/2 = 12 is not a square. The option \"5832\" = 2^3 x 3^6 takes b = 6, a multiple of both 2 and 3, forgetting that n/3 lowers the exponent of 3 by one.",
+  "solve": "const sq=x=>Number.isInteger(Math.sqrt(x));const cu=x=>{const r=Math.round(Math.cbrt(x));return r*r*r===x;};for(let n=6;;n+=6){if(sq(n/2)&&cu(n/3))return n;}",
+  "distractor_solve": {
+   "432": "const sq=x=>Number.isInteger(Math.sqrt(x));const cu=x=>{const r=Math.round(Math.cbrt(x));return r*r*r===x;};for(let n=6;;n+=6){if(cu(n/2)&&sq(n/3))return n;}",
+   "162": "let a=1;let b=0;while(!(b%2===0&&(b-1)%3===0&&b>0))b++;return 2**a*3**b;",
+   "24": "let a=0;while(!(a%2===1&&a%3===0))a++;return 2**a*3**1;",
+   "5832": "let a=0;while(!(a%2===1&&a%3===0))a++;let b=1;while(!(b%2===0&&b%3===0))b++;return 2**a*3**b;"
+  }
+ },
+ {
+  "id": "S15E-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest prime factor of 2^10 - 1 via difference of squares",
+  "difficulty": "hard",
+  "prompt": "What is the greatest prime factor of 2^10 - 1?",
+  "choices": [
+   "31",
+   "11",
+   "89",
+   "73",
+   "41"
+  ],
+  "correct_answer": "31",
+  "explanation": "2^10 - 1 = (2^5 - 1)(2^5 + 1) = 31 x 33 = 31 x 3 x 11, so the greatest prime factor is 31. The option \"11\" is the greatest prime factor of 33 alone, after 31 is overlooked. The option \"41\" comes from 2^10 + 1 = 1025 = 5^2 x 41. The option \"73\" comes from 2^9 - 1 = 511 = 7 x 73. The option \"89\" comes from 2^11 - 1 = 2047 = 23 x 89.",
+  "solve": "let n=2**10-1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;",
+  "distractor_solve": {
+   "11": "let n=2**5+1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;",
+   "41": "let n=2**10+1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;",
+   "73": "let n=2**9-1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;",
+   "89": "let n=2**11-1,p=2,best=1;while(n>1){if(n%p===0){best=p;n/=p;}else p++;}return best;"
+  }
+ },
+ {
+  "id": "S15E-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting divisors of a number that are multiples of a given factor",
+  "difficulty": "medium",
+  "prompt": "How many positive divisors of 720 are multiples of 15?",
+  "choices": [
+   "4",
+   "15",
+   "10",
+   "48",
+   "8"
+  ],
+  "correct_answer": "10",
+  "explanation": "A divisor of 720 that is a multiple of 15 has the form 15m, where m divides 720/15 = 48 = 2^4 x 3. So the count is the number of divisors of 48, which is (4 + 1)(1 + 1) = 10. The option \"4\" counts the divisors of 15. The option \"15\" counts the divisors that are multiples of 5 (divisors of 144). The option \"48\" counts the multiples of 15 from 15 to 720, not the divisors. The option \"8\" factors 720 as 2^3 x 3^2 x 5 (which is 360), so it counts the divisors of 360/15 = 24.",
+  "solve": "let c=0;for(let d=1;d<=720;d++)if(720%d===0&&d%15===0)c++;return c;",
+  "distractor_solve": {
+   "4": "let c=0;for(let d=1;d<=15;d++)if(15%d===0)c++;return c;",
+   "15": "let c=0;for(let d=1;d<=720;d++)if(720%d===0&&d%5===0)c++;return c;",
+   "48": "return 720/15;",
+   "8": "let c=0;for(let d=1;d<=360;d++)if(360%d===0&&d%15===0)c++;return c;"
+  }
+ },
+ {
+  "id": "S15E-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "integers with an odd number of divisors are perfect squares",
+  "difficulty": "hard",
+  "prompt": "How many integers from 1 to 150, inclusive, have an odd number of positive divisors?",
+  "choices": [
+   "15",
+   "5",
+   "75",
+   "35",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "Divisors come in pairs d and n/d, and the pair is a single divisor only when d = n/d, that is, when n is a perfect square. So the integers with an odd number of divisors are the perfect squares 1, 4, 9, ..., 144: there are 12. The option \"5\" counts only squares of primes (4, 9, 25, 49, 121), which have exactly three divisors. The option \"15\" also counts the perfect cubes 8, 27 and 125. The option \"35\" counts the primes up to 150. The option \"75\" counts the odd numbers.",
+  "solve": "let c=0;for(let n=1;n<=150;n++){let d=0;for(let k=1;k<=n;k++)if(n%k===0)d++;if(d%2===1)c++;}return c;",
+  "distractor_solve": {
+   "5": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let c=0;for(let p=2;p*p<=150;p++)if(ip(p))c++;return c;",
+   "15": "let c=0;for(let n=1;n<=150;n++){const s=Math.round(Math.sqrt(n)),t=Math.round(Math.cbrt(n));if(s*s===n||t*t*t===n)c++;}return c;",
+   "35": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let c=0;for(let n=1;n<=150;n++)if(ip(n))c++;return c;",
+   "75": "let c=0;for(let n=1;n<=150;n++)if(n%2===1)c++;return c;"
+  }
+ },
+ {
+  "id": "S15E-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "order of operations with negative signs and exponents",
+  "difficulty": "easy",
+  "prompt": "What is the value of -3^2 + (-2)^3 - 4(-5)/2 ?",
+  "choices": [
+   "11",
+   "-27",
+   "9",
+   "1.5",
+   "-7"
+  ],
+  "correct_answer": "-7",
+  "explanation": "The exponent is applied before the negative sign in -3^2, so -3^2 = -9. Next (-2)^3 = -8, and 4(-5)/2 = -10, so subtracting it adds 10: -9 - 8 + 10 = -7. The option \"11\" reads -3^2 as (-3)^2 = 9: 9 - 8 + 10. The option \"9\" reads (-2)^3 as 8: -9 + 8 + 10. The option \"-27\" drops the double negative and subtracts 10: -9 - 8 - 10. The option \"1.5\" divides the whole sum by 2: (-9 - 8 + 20)/2.",
+  "solve": "return -(3**2)+(-2)**3-4*(-5)/2;",
+  "distractor_solve": {
+   "11": "return (-3)**2+(-2)**3-4*(-5)/2;",
+   "9": "return -(3**2)+2**3-4*(-5)/2;",
+   "-27": "return -(3**2)+(-2)**3-Math.abs(4*(-5)/2);",
+   "1.5": "return (-(3**2)+(-2)**3-4*(-5))/2;"
+  }
+ },
+ {
+  "id": "S15E-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "scientific notation product and quotient with negative exponents",
+  "difficulty": "medium",
+  "prompt": "What is the value of (4.8 x 10^-3)(2.5 x 10^6) divided by (6 x 10^-4), written in scientific notation?",
+  "choices": [
+   "2 x 10^-1",
+   "2 x 10^7",
+   "5 x 10^-8",
+   "1.2 x 10^8",
+   "7.2 x 10^0"
+  ],
+  "correct_answer": "2 x 10^7",
+  "explanation": "(4.8 x 2.5) x 10^(-3 + 6) = 12 x 10^3. Dividing by 6 x 10^-4 gives (12/6) x 10^(3 - (-4)) = 2 x 10^7. The option \"1.2 x 10^8\" divides by 10^-4 but forgets to divide by the 6: 12 x 10^7. The option \"2 x 10^-1\" treats 10^3 divided by 10^-4 as 10^(3 - 4). The option \"5 x 10^-8\" divides the wrong way, (6 x 10^-4)/(12 x 10^3). The option \"7.2 x 10^0\" multiplies by 6 x 10^-4 instead of dividing.",
+  "solve": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(4.8e-3*2.5e6/6e-4);",
+  "distractor_solve": {
+   "1.2 x 10^8": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(4.8e-3*2.5e6/1e-4);",
+   "2 x 10^-1": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(12/6*10**(3-4));",
+   "5 x 10^-8": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(6e-4/(4.8e-3*2.5e6));",
+   "7.2 x 10^0": "const f=v=>{const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+\" x 10^\"+e;};return f(4.8e-3*2.5e6*6e-4);"
+  }
+ },
+ {
+  "id": "S15E-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rounding a decimal to two different places at once, double-rounding trap",
+  "difficulty": "hard",
+  "prompt": "A positive number N rounds to 7.5 when it is rounded to the nearest tenth, and it rounds to 8 when it is rounded to the nearest whole number. Which of the following could be N?",
+  "choices": [
+   "7.48",
+   "7.55",
+   "7.449",
+   "7.53",
+   "7.59"
+  ],
+  "correct_answer": "7.53",
+  "explanation": "Rounding to the nearest tenth gives 7.5 exactly when 7.45 <= N < 7.55, and rounding to the nearest whole number gives 8 exactly when 7.5 <= N < 8.5. Both hold when 7.5 <= N < 7.55, and of the choices only 7.53 is in that interval. The option \"7.48\" rounds to 7.5 and then rounds that 7.5 up to 8, a double rounding; 7.48 itself rounds to 7. The option \"7.449\" is rounded in a chain, 7.449 to 7.45 to 7.5 to 8, though it rounds to 7.4. The option \"7.55\" treats a 5 in the hundredths place as rounding down to 7.5. The option \"7.59\" truncates to 7.5 instead of rounding.",
+  "solve": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);return t>=7450&&t<7550&&t>=7500&&t<8500;});",
+  "distractor_solve": {
+   "7.48": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);const tenth=Math.round(t/100);return tenth===75&&Math.round(tenth/10)===8&&t<7500;});",
+   "7.449": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);const h=Math.round(t/10);return t<7450&&Math.round(h/10)===75;});",
+   "7.55": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);return t%100===50&&Math.floor(t/100)===75;});",
+   "7.59": "const c=[\"7.48\",\"7.55\",\"7.449\",\"7.53\",\"7.59\"];return c.find(s=>{const t=Math.round(parseFloat(s)*1000);return Math.floor(t/100)===75&&t>7550;});"
+  }
+ }
+]

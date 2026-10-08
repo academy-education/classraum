@@ -6528,6 +6528,48 @@
           "verdict": "Key longest 4.7% / shortest 15.3%. Semicolon is never the key (0/23 boundary items) - a cross-item tell (\"strike the semicolon\") that the prereg cap (<= 35%) does not catch; recorded for the sitting. All 11 blind misses are PoW."
         }
       }
+    },
+    {
+      "id": "ssat-math-s15-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "ssat",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "ssat-math-s15",
+      "contentSha": "ca8a82a360eda149e28af4c7098fdbf534af0e8f291e3c2d7adde5a9c8a17591",
+      "status": "shipped",
+      "spec": {
+        "n": 120,
+        "authors": 5,
+        "batchFile": "scripts/study-bank/ssat-math-s15.batch.json",
+        "prereg": "scripts/study-bank/ssat-math-s15.prereg.md",
+        "method": "five Claude authors on disjoint topics matched to the live SSAT math topic mix (A ratio/percent/rate 30, B geometry 25, C counting/probability/statistics 23, D algebra 22 + coordinate 4, E number theory 11 + arithmetic 5), five-choice, solve + distractor_solve, cross-author template check, frozen before attack (commit 7e1ef0a9); options-only attack with 40-item interleaved live SSAT control; four with-source graders (two per alternating half of 60) on key-withheld renders"
+      },
+      "note": "Commissioned to buy SSAT math forms 7 and 8: one 50-item block, 302 live = 6 clean, form 8 needs 400 (+98). 120 authored for margin (110 asked; 110 at s14's 82% keep rate buys form 7 only). 103 of 120 inserted under the pre-registered bars; 17 drops: 16 hand-confirmed with-source free eliminations killing >= 2 distractors (S15A-01, A-03, A-04, A-14, A-27, B-06, B-14, B-15, C-01, C-11, C-13, C-23, D-03, E-07, E-11, E-15) and one corroborated drop (S15E-14: unanimous blind plus a grader-named defect); reasons in ssat-math-s15.qc-reasons.json. Inserted at BANK_BAND=mixed; difficulty = graders' consensus, or the easier label where they split (23 of 103 splits). Banked 38 easy / 61 medium / 4 hard against authored 7 / 36 / 60.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ca8a82a360eda149e28af4c7098fdbf534af0e8f291e3c2d7adde5a9c8a17591",
+          "verdict": "math-bank-helper verify on the frozen 120: sandbox 120/120, distractors 480/480, symbolic hub 5 structured -5.0, numeric hub 13 structured -12.3 (control derived 20.0%), key extremity PASS 44/115 = 38.3% (bar 32.0%; kept 103: 38/99 = 38.4%). run-middle: 44 single-run items, key in none; option-pair-constant: key in 0 of 7 single pairs; key-is-sum: key is the lone sum/product node 0 times; plurality fires on 1 of 13 scorable, on a distractor; check-sign-pair four-option only (NOT MEASURED), key/-key pairs checked by script: 0. stem-duplicates 0 of 120 against 990 live SSAT rows; own word-3-shingle scan vs 302 live SSAT math max stem Jaccard 0.44 (S15D-10 vs a live defined-operation row, different mechanism), break-tested by a planted live stem flagged at 1.00. Cross-author template check: 0 collisions."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 360,
+          "mean": 31.9,
+          "control": 34.2,
+          "margin": -2.2,
+          "verdict": "make-oo-render --control 40, stems withheld, keys dealt 24/24/24/24/24 (candidate) and 8/8/8/8/8 (control), three Claude samples x 160 interleaved items. Candidate 115/360 = 31.9% (own best-fixed-letter line 20.0%), live control 41/120 = 34.2% (line 20.0%): CANDIDATE minus LIVE CONTROL -2.2 (pre-registered pass <= +5.0; control far below the 80% void ceiling). Unanimous-correct rate 21/120 = 17.5% vs control 7/40 = 17.5%. Pairwise agreement 65.4% vs 20.0% independent - one solver sampled three times. Per-author subsets vs control (hold bar +20.0): A -8.6, B +11.2, C -13.9, D +4.3, E -5.0."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Four Claude graders on ssat-math-s15-h1.grade.json (sha d540c42a372e81fb) and -h2.grade.json (sha ce7f503e8167cbf9), each sha quoted at start and end. 240/240 picks equal the key, 0 non-exclusive, 0 out of band, 0 live duplicates named. 20 items flagged with >= 2 free kills; 16 confirmed by hand and dropped, 4 not confirmed: S15A-10 (bound needs 420/15, the first step), S15A-24 (needs 1/0.8 = 1.25, the method), S15B-07 (needs the space-diagonal formula), S15E-14 (exponent handling is the tested skill - but dropped under the corroboration clause, see tells). Batch-hold bar > 34 of 120 dropped: 17 dropped. Per-author drops A 5/30, B 3/25, C 4/23, D 1/26, E 4/16 (hold bar > half)."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "21 candidate items unanimous blind. Dropped where with-source independently named a defect: S15A-01, S15B-06 (confirmed eliminations) and S15E-14 (grader-named order-of-magnitude elimination; unanimity is the corroboration). The other 18 unanimous items carry no >= 2 with-source elimination and are kept (pre-registered: unanimity alone never drops)."
+        }
+      }
     }
   ],
   "auditedCohorts": [
