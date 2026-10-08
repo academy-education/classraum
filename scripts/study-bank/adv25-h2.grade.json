@@ -1,0 +1,292 @@
+[
+ {
+  "id": "SM25V-D01",
+  "prompt": "A power function has the form f(x) = ax^n, with a and n positive constants. Doubling any positive input multiplies the output by 8, that is, f(2x) = 8f(x) whenever x > 0. Given that f(3) = 54, compute f(5).",
+  "choices": [
+   "70",
+   "250",
+   "90",
+   "150"
+  ]
+ },
+ {
+  "id": "SM25V-B14",
+  "prompt": "In the equation (x - 1)^(4/3) = 16, the left side means the fourth power of the real cube root of x - 1. Multiplying together every real x that satisfies the equation gives what product?",
+  "choices": [
+   "-15",
+   "9",
+   "2",
+   "-63"
+  ]
+ },
+ {
+  "id": "SM25V-B06",
+  "prompt": "Sample X of one radioactive substance has 4 times the mass of sample Y of another radioactive substance. The half-life of the substance in sample X is 6 hours, and the half-life of the substance in sample Y is 15 hours. Both samples begin decaying at the same time. At the moment the two samples have equal mass, what percent of sample Y's initial mass remains, to the nearest tenth of a percent?",
+  "choices": [
+   "57.4",
+   "39.7",
+   "43.5",
+   "67.3"
+  ]
+ },
+ {
+  "id": "SM25V-C13",
+  "prompt": "Suppose x/(x - 2) = 7. Which number equals (x + 5)/(x - 2)?",
+  "choices": [
+   "21",
+   "12",
+   "16",
+   "22"
+  ]
+ },
+ {
+  "id": "SM25V-C07",
+  "prompt": "The polynomial p is defined by p(x) = (x^2 + 4)^3 - x^2(x^2 + k)^2, where k is a constant. When p(x) is expanded and like terms are combined, p(x) has degree 2. What is the value of p(2)?",
+  "choices": [
+   "112",
+   "496",
+   "-512",
+   "412"
+  ]
+ },
+ {
+  "id": "SM25V-A02",
+  "prompt": "The functions f and g are defined by f(x) = x^2 - 9x + 8 and g(x) = x^2 + kx - 40, where k is a constant. The functions f and g have exactly one zero in common. What is the sum of all possible values of k?",
+  "choices": [
+   "45",
+   "36",
+   "39",
+   "-54"
+  ]
+ },
+ {
+  "id": "SM25V-D08",
+  "prompt": "Constants h and k make g(x) = 6/(x - h) + k. The graph of y = g(x) contains the points (6, 16) and (7, 13), and its vertical asymptote x = h is located to the left of both points. Compute k - h.",
+  "choices": [
+   "5",
+   "15",
+   "11",
+   "17"
+  ]
+ },
+ {
+  "id": "SM25V-A14",
+  "prompt": "In the xy-plane, the graph of y = ax^2 + bx + c, where a, b, and c are constants and a > 0, crosses the y-axis at (0, 64), passes through the point (2, 4), and intersects the x-axis at exactly one point. What is the sum of all possible values of a?",
+  "choices": [
+   "34",
+   "196",
+   "94",
+   "25"
+  ]
+ },
+ {
+  "id": "SM25V-D07",
+  "prompt": "In the xy-plane, the graph of y = 8/(x - 2) + 1 and the line y = -2x + c, where c is a constant, intersect at exactly one point. What is the product of all possible values of c?",
+  "choices": [
+   "-48",
+   "13",
+   "-39",
+   "-15"
+  ]
+ },
+ {
+  "id": "SM25V-C09",
+  "prompt": "The polynomial p is defined by p(x) = (3 - 2x)^3(x^5 + 2)^3. When p(x) is expanded and written in standard form, what is the leading coefficient of p(x)?",
+  "choices": [
+   "-6",
+   "-8",
+   "216",
+   "18"
+  ]
+ },
+ {
+  "id": "SM25V-C11",
+  "prompt": "Let r, s, and t denote the three zeros of 2x^3 - 7x^2 - 14x + 40. Compute the product (r + 1)(s + 1)(t + 1).",
+  "choices": [
+   "-10.5",
+   "6.5",
+   "-15.5",
+   "-22.5"
+  ]
+ },
+ {
+  "id": "SM25V-A15",
+  "prompt": "Three values of the quadratic function f are known: f(-1) = 17, f(0) = 3, and f(1) = -7. What is the minimum value of f?",
+  "choices": [
+   "-15",
+   "-33",
+   "-69",
+   "-27"
+  ]
+ },
+ {
+  "id": "SM25V-C04",
+  "prompt": "Wherever both expressions are defined, (x^2 + ax + 12)/(x^2 + 3x + b) and (x - 3)/(x + 7) take equal values, where a and b are constants. Compute b - a.",
+  "choices": [
+   "-35",
+   "27",
+   "-21",
+   "10"
+  ]
+ },
+ {
+  "id": "SM25V-D14",
+  "prompt": "The period T, in seconds, of a pendulum is modeled by T = k sqrt(L), where L is the length of the pendulum, in centimeters, and k is a constant. A pendulum with a length of 48 centimeters has a period of 1.6 seconds. By how many centimeters must the length of this pendulum be increased so that its period is 3.6 seconds?",
+  "choices": [
+   "243",
+   "168",
+   "60",
+   "195"
+  ]
+ },
+ {
+  "id": "SM25V-A08",
+  "prompt": "For a real number x, the expression x^2 - 6x has the value 7. What value does (x - 3)^4 take?",
+  "choices": [
+   "4",
+   "100",
+   "256",
+   "49"
+  ]
+ },
+ {
+  "id": "SM25V-D06",
+  "prompt": "Seven input-output pairs of a function f are listed in the first table.\nx | f(x)\n-3 | 17\n-2 | 20\n-1 | 15\n0 | 8\n1 | 5\n2 | 12\n3 | 35\nA second function satisfies g(x) = f(x + h) + k for some constants h and k, and four of its input-output pairs are listed in the second table.\nx | g(x)\n1 | 26\n2 | 19\n3 | 16\n4 | 23\nCompute g(0).",
+  "choices": [
+   "31",
+   "3",
+   "9",
+   "29"
+  ]
+ },
+ {
+  "id": "SM25V-B03",
+  "prompt": "The number of bacteria in a culture is multiplied by the same factor each hour. During the second hour the number of bacteria increased by 480, and during the third hour the number increased by 720. How many bacteria were in the culture at the end of the fourth hour?",
+  "choices": [
+   "2600",
+   "2160",
+   "3240",
+   "3120"
+  ]
+ },
+ {
+  "id": "SM25V-D05",
+  "prompt": "Two cubic functions are given: f(x) = x^3 - 6x and g(x) = x^3 - 9x^2 + 21x - 10. Shifting the graph of f horizontally and then vertically produces the graph of g, so that g(x) = f(x - h) + k for every x, where h and k are constants. Compute k - h.",
+  "choices": [
+   "-4",
+   "-13",
+   "-16",
+   "-58"
+  ]
+ },
+ {
+  "id": "SM25V-B04",
+  "prompt": "In the equation x^(2/3) + 2x^(1/3) = 8, x^(1/3) denotes the real cube root of x, which may be negative. Adding together every real number x that satisfies this equation gives what total?",
+  "choices": [
+   "-2",
+   "-8",
+   "-56",
+   "8"
+  ]
+ },
+ {
+  "id": "SM25V-C01",
+  "prompt": "For every x except x = -1/3, dividing the polynomial N(x) by 3x + 1 gives 2x - 3 + 4/(3x + 1). Find the remainder that results from dividing N(x) by x - 2.",
+  "choices": [
+   "11",
+   "5",
+   "39",
+   "7"
+  ]
+ },
+ {
+  "id": "SM25V-C10",
+  "prompt": "The polynomial p is defined by p(x) = (x - a)^2(x - 4), where a is a constant. In the xy-plane, the graph of y = p(x) passes through the point (0, -36) and touches the x-axis, without crossing it, at a point to the left of the y-axis. What is the value of p(5)?",
+  "choices": [
+   "196",
+   "14",
+   "64",
+   "4"
+  ]
+ },
+ {
+  "id": "SM25V-B02",
+  "prompt": "Two positive numbers x and y have square roots whose sum is 8, so sqrt(x) + sqrt(y) = 8, and x exceeds y by 16. What is the product xy?",
+  "choices": [
+   "144",
+   "225",
+   "15",
+   "960"
+  ]
+ },
+ {
+  "id": "SM25V-C08",
+  "prompt": "Suppose x^2 - 6x + 4 divides p(x) = x^4 + ax^2 + b with no remainder, for constants a and b. Compute a + b.",
+  "choices": [
+   "-44",
+   "-12",
+   "60",
+   "-20"
+  ]
+ },
+ {
+  "id": "SM25V-B15",
+  "prompt": "A model has the form f(t) = 80(9)^(t/4)(1/3)^(t/6). Each time t goes up by 1, the output of f grows by p%. Rounded to the nearest tenth, p equals what?",
+  "choices": [
+   "20.1",
+   "9.6",
+   "44.2",
+   "56.5"
+  ]
+ },
+ {
+  "id": "SM25V-A12",
+  "prompt": "A quadratic function f has a zero at x = -3, and the graph of y = f(x) in the xy-plane is symmetric about the line x = 2. If f(0) = -42, what is the value of f(5)?",
+  "choices": [
+   "-50",
+   "-42",
+   "-12",
+   "-32"
+  ]
+ },
+ {
+  "id": "SM25V-A03",
+  "prompt": "The function f is defined by f(x) = 3x^2 + bx - 48, where b is a constant, and the graph of y = f(x) crosses the x-axis at x = 8. What is the least value that f(x) attains?",
+  "choices": [
+   "-93",
+   "-129",
+   "-48",
+   "-75"
+  ]
+ },
+ {
+  "id": "SM25V-B10",
+  "prompt": "A real number x makes the difference 2^x - 2^(-x) equal to 5. Using this fact, find 8^x - 8^(-x).",
+  "choices": [
+   "135",
+   "125",
+   "120",
+   "140"
+  ]
+ },
+ {
+  "id": "SM25V-D04",
+  "prompt": "Every real number x that satisfies |x^2 - 19| = 3x + 9 is listed, and the listed numbers are multiplied together. What product results?",
+  "choices": [
+   "14",
+   "-28",
+   "-10",
+   "280"
+  ]
+ },
+ {
+  "id": "SM25V-A04",
+  "prompt": "The graph of y = x^2 - 10x + 9 in the xy-plane is translated 5 units up. The translated graph crosses the x-axis at x = p and x = q. What is the value of p^2 + q^2?",
+  "choices": [
+   "86",
+   "72",
+   "44",
+   "82"
+  ]
+ }
+]

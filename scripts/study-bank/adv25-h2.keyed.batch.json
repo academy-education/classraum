@@ -1,0 +1,611 @@
+[
+ {
+  "id": "SM25V-D01",
+  "domain": "Advanced Math",
+  "subskill": "Nonlinear function notation: a power function determined by a scaling property",
+  "difficulty": "medium",
+  "prompt": "A power function has the form f(x) = ax^n, with a and n positive constants. Doubling any positive input multiplies the output by 8, that is, f(2x) = 8f(x) whenever x > 0. Given that f(3) = 54, compute f(5).",
+  "choices": [
+   "70",
+   "90",
+   "150",
+   "250"
+  ],
+  "correct_answer": "250",
+  "explanation": "Since f(2x) = a(2x)^n = 2^n(ax^n) = 2^n f(x), the condition f(2x) = 8f(x) means 2^n = 8, so n = 3. Then f(3) = a(3^3) = 27a = 54, so a = 2. Therefore f(5) = 2(5^3) = 250.\n\nChoice 150 comes from taking n = 2, so that f(5) = f(3)(5/3)^2. Choice 90 comes from treating f as proportional to x, so that f(5) = f(3)(5/3). Choice 70 comes from finding f(2) = 2(2^3) = 16 and then assuming f(5) = f(3) + f(2), as if f(3 + 2) were f(3) + f(2).",
+  "solve": "const n=Math.log2(8); const a=54/3**n; return a*5**n;",
+  "distractor_solve": {
+   "70": "const n=Math.log2(8); const a=54/3**n; return 54+a*2**n;",
+   "90": "return 54*(5/3);",
+   "150": "return 54*(5/3)**2;"
+  }
+ },
+ {
+  "id": "SM25V-B14",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: an even power of a cube root gives two solutions",
+  "difficulty": "medium",
+  "prompt": "In the equation (x - 1)^(4/3) = 16, the left side means the fourth power of the real cube root of x - 1. Multiplying together every real x that satisfies the equation gives what product?",
+  "choices": [
+   "-63",
+   "-15",
+   "2",
+   "9"
+  ],
+  "correct_answer": "-63",
+  "explanation": "Let c be the real cube root of x - 1. Then c^4 = 16, so c = 2 or c = -2. Cubing gives x - 1 = 8 or x - 1 = -8, so x = 9 or x = -7. Both satisfy the equation, and the product of the solutions is 9(-7) = -63.\n\nChoice 9 comes from keeping only c = 2 and so only the solution x = 9. Choice -15 comes from treating the 4/3 power as a square: x - 1 = 4 or x - 1 = -4, so x = 5 or x = -3, with product -15. Choice 2 is the sum of the solutions, 9 + (-7), not their product.",
+  "solve": "const v=16; const c=v**(1/4); const x1=1+c**3, x2=1+(-c)**3; return x1*x2;",
+  "distractor_solve": {
+   "2": "const v=16; const c=v**(1/4); return (1+c**3) + (1+(-c)**3);",
+   "9": "const v=16; const c=v**(1/4); return 1+c**3;",
+   "-15": "const v=16; const c=Math.sqrt(v); return (1+c)*(1-c);"
+  }
+ },
+ {
+  "id": "SM25V-B06",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay: two half-lives, time at which the decaying masses are equal",
+  "difficulty": "hard",
+  "prompt": "Sample X of one radioactive substance has 4 times the mass of sample Y of another radioactive substance. The half-life of the substance in sample X is 6 hours, and the half-life of the substance in sample Y is 15 hours. Both samples begin decaying at the same time. At the moment the two samples have equal mass, what percent of sample Y's initial mass remains, to the nearest tenth of a percent?",
+  "choices": [
+   "39.7",
+   "43.5",
+   "57.4",
+   "67.3"
+  ],
+  "correct_answer": "39.7",
+  "explanation": "Let Y start with mass m, so X starts with 4m. After t hours, X has 4m(1/2)^(t/6) and Y has m(1/2)^(t/15). Setting them equal gives 4 = 2^(t/6) / 2^(t/15) = 2^(t/6 - t/15) = 2^(t/10), so t/10 = 2 and t = 20 hours. Then Y has (1/2)^(20/15) = 0.397 of its initial mass, or 39.7%.\n\nChoice 43.5 comes from treating the difference of the half-lives, 15 - 6 = 9 hours, as the time for the ratio of the masses to halve; that gives t = 18 and (1/2)^(18/15) = 0.435. Choice 57.4 comes from waiting only for X to halve twice, t = 12 hours, as if Y did not decay; then (1/2)^(12/15) = 0.574. Choice 67.3 comes from adding the two exponents instead of subtracting them, 2^(t/6 + t/15) = 4, which gives t = 60/7 and (1/2)^(4/7) = 0.673.",
+  "solve": "const k=2, h1=6, h2=15; const t=k/(1/h1-1/h2); return Math.round(100*2**(-t/h2)*10)/10;",
+  "distractor_solve": {
+   "43.5": "const k=2, h1=6, h2=15; const t=k*(h2-h1); return Math.round(100*2**(-t/h2)*10)/10;",
+   "57.4": "const k=2, h1=6, h2=15; const t=k*h1; return Math.round(100*2**(-t/h2)*10)/10;",
+   "67.3": "const k=2, h1=6, h2=15; const t=k/(1/h1+1/h2); return Math.round(100*2**(-t/h2)*10)/10;"
+  }
+ },
+ {
+  "id": "SM25V-C13",
+  "domain": "Advanced Math",
+  "subskill": "Rational expressions: rewriting x/(x - c) as 1 + c/(x - c) to evaluate a related expression",
+  "difficulty": "medium",
+  "prompt": "Suppose x/(x - 2) = 7. Which number equals (x + 5)/(x - 2)?",
+  "choices": [
+   "12",
+   "16",
+   "21",
+   "22"
+  ],
+  "correct_answer": "22",
+  "explanation": "Write x/(x - 2) = ((x - 2) + 2)/(x - 2) = 1 + 2/(x - 2). Since this equals 7, 2/(x - 2) = 6, so 1/(x - 2) = 3. Similarly, (x + 5)/(x - 2) = ((x - 2) + 7)/(x - 2) = 1 + 7/(x - 2) = 1 + 7(3) = 22. (Solving directly also works: x = 7x - 14 gives x = 7/3, and (7/3 + 5)/(7/3 - 2) = (22/3)/(1/3) = 22.)\n\nChoice 12 comes from adding 5 to the given value 7, as if the 5 in the numerator added 5 to the whole fraction. Choice 16 comes from writing x + 5 as (x - 2) + 5 instead of (x - 2) + 7: 1 + 5(3) = 16. Choice 21 is 7/(x - 2) = 21 without the 1 that comes from (x - 2)/(x - 2).",
+  "solve": "const x=14/6; return (x+5)/(x-2);",
+  "distractor_solve": {
+   "12": "const given=7; return given+5;",
+   "16": "const inv=(7-1)/2; return 1+5*inv;",
+   "21": "const inv=(7-1)/2; return 7*inv;"
+  }
+ },
+ {
+  "id": "SM25V-C07",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial operations: a parameter fixed so that the two highest-degree terms cancel",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = (x^2 + 4)^3 - x^2(x^2 + k)^2, where k is a constant. When p(x) is expanded and like terms are combined, p(x) has degree 2. What is the value of p(2)?",
+  "choices": [
+   "-512",
+   "112",
+   "412",
+   "496"
+  ],
+  "correct_answer": "112",
+  "explanation": "Expanding, (x^2 + 4)^3 = x^6 + 12x^4 + 48x^2 + 64 and x^2(x^2 + k)^2 = x^6 + 2kx^4 + k^2x^2. So p(x) = (12 - 2k)x^4 + (48 - k^2)x^2 + 64. For p to have degree 2, the x^4 coefficient must be 0, so 12 - 2k = 0 and k = 6. Then p(x) = 12x^2 + 64, and p(2) = 48 + 64 = 112.\n\nChoice -512 comes from writing the x^4 coefficient of x^2(x^2 + k)^2 as k instead of 2k, which gives k = 12 and p(2) = 512 - 4(16)^2 = -512. Choice 412 comes from finding k = 6 but leaving out the factor x^2 when evaluating: 512 - (4 + 6)^2 = 412. Choice 496 comes from solving 12 - 2k = 0 as k = -6, which gives p(2) = 512 - 4(4 - 6)^2 = 496.",
+  "solve": "const k=12/2; const p=x=>(x*x+4)**3-x*x*(x*x+k)**2; return p(2);",
+  "distractor_solve": {
+   "412": "const k=12/2; const x=2; return (x*x+4)**3-(x*x+k)**2;",
+   "496": "const kWrong=-12/2; const p=x=>(x*x+4)**3-x*x*(x*x+kWrong)**2; return p(2);",
+   "-512": "const kWrong=12; const p=x=>(x*x+4)**3-x*x*(x*x+kWrong)**2; return p(2);"
+  }
+ },
+ {
+  "id": "SM25V-A02",
+  "domain": "Advanced Math",
+  "subskill": "Zeros of quadratics: a zero shared by two quadratic functions",
+  "difficulty": "hard",
+  "prompt": "The functions f and g are defined by f(x) = x^2 - 9x + 8 and g(x) = x^2 + kx - 40, where k is a constant. The functions f and g have exactly one zero in common. What is the sum of all possible values of k?",
+  "choices": [
+   "-54",
+   "36",
+   "39",
+   "45"
+  ],
+  "correct_answer": "36",
+  "explanation": "Since f(x) = (x - 1)(x - 8), the zeros of f are 1 and 8, and the common zero must be one of them. If x = 1 is a zero of g, then 1 + k - 40 = 0, so k = 39; then g(x) = x^2 + 39x - 40 = (x + 40)(x - 1), which shares only the zero 1 with f. If x = 8 is a zero of g, then 64 + 8k - 40 = 0, so k = -3; then g(x) = x^2 - 3x - 40 = (x - 8)(x + 5), which shares only the zero 8 with f. Both values work, so the sum of all possible values of k is 39 + (-3) = 36.\n\nChoice 39 comes from checking only the zero x = 1 and stopping. Choice 45 comes from leaving out the x^2 term of g when substituting each zero, which gives k = 40 for x = 1 and k = 5 for x = 8. Choice -54 comes from treating the constant term of g as +40, which gives k = -41 for x = 1 and k = -13 for x = 8.",
+  "solve": "const zs=[1,8], c=-40; let s=0; for (const r of zs){ const k=-(r*r+c)/r; const other=c/r; if (!zs.includes(other)) s+=k; } return s;",
+  "distractor_solve": {
+   "39": "const r=1, c=-40; return -(r*r+c)/r;",
+   "45": "const zs=[1,8], c=-40; return zs.reduce((s,r)=>s+(-c/r),0);",
+   "-54": "const zs=[1,8], c=40; return zs.reduce((s,r)=>s-(r*r+c)/r,0);"
+  }
+ },
+ {
+  "id": "SM25V-D08",
+  "domain": "Advanced Math",
+  "subskill": "Transformations of a rational graph: recovering the shifts from two points and an asymptote condition",
+  "difficulty": "hard",
+  "prompt": "Constants h and k make g(x) = 6/(x - h) + k. The graph of y = g(x) contains the points (6, 16) and (7, 13), and its vertical asymptote x = h is located to the left of both points. Compute k - h.",
+  "choices": [
+   "5",
+   "11",
+   "15",
+   "17"
+  ],
+  "correct_answer": "5",
+  "explanation": "Substituting the points gives 6/(6 - h) + k = 16 and 6/(7 - h) + k = 13. Subtracting the second equation from the first gives 6/(6 - h) - 6/(7 - h) = 3. Multiplying by (6 - h)(7 - h) gives 6(7 - h) - 6(6 - h) = 3(6 - h)(7 - h), so 6 = 3(h^2 - 13h + 42), h^2 - 13h + 40 = 0, and (h - 5)(h - 8) = 0. The vertical asymptote is the line x = h, and it must lie to the left of both points, so h < 6 and h = 5. Then 6/(6 - 5) + k = 16, so k = 10. Therefore k - h = 10 - 5 = 5.\n\nChoice 11 comes from keeping the other solution, h = 8, which puts the asymptote to the right of both points and gives k = 19. Choice 15 comes from writing g(x) = 6/(x - 5) + 10 and reading h as -5 instead of 5. Choice 17 comes from a sign error when isolating k at (6, 16), which gives k = 16 + 6 = 22.",
+  "solve": "const r=Math.sqrt(169-160); const hs=[(13+r)/2,(13-r)/2]; const h=hs.find(v=>v<6); const k=16-6/(6-h); return k-h;",
+  "distractor_solve": {
+   "11": "const r=Math.sqrt(169-160); const h=(13+r)/2; const k=16-6/(6-h); return k-h;",
+   "15": "const r=Math.sqrt(169-160); const h=(13-r)/2; const k=16-6/(6-h); return k+h;",
+   "17": "const r=Math.sqrt(169-160); const h=(13-r)/2; const k=16+6/(6-h); return k-h;"
+  }
+ },
+ {
+  "id": "SM25V-A14",
+  "domain": "Advanced Math",
+  "subskill": "Discriminant: a parabola tangent to the x-axis through two given points",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = ax^2 + bx + c, where a, b, and c are constants and a > 0, crosses the y-axis at (0, 64), passes through the point (2, 4), and intersects the x-axis at exactly one point. What is the sum of all possible values of a?",
+  "choices": [
+   "25",
+   "34",
+   "94",
+   "196"
+  ],
+  "correct_answer": "34",
+  "explanation": "The y-intercept gives c = 64. The point (2, 4) gives 4a + 2b + 64 = 4, so b = -30 - 2a. The graph meets the x-axis at exactly one point, so the discriminant is 0: b^2 - 4ac = 0, or (-30 - 2a)^2 = 256a. Expanding, 4a^2 + 120a + 900 = 256a, so 4a^2 - 136a + 900 = 0, or a^2 - 34a + 225 = 0. Its solutions are a = 9 and a = 25; both are positive and give valid parabolas, y = 9(x - 8/3)^2 and y = 25(x - 1.6)^2, each passing through (0, 64) and (2, 4). The sum of all possible values of a is 9 + 25 = 34.\n\nChoice 25 comes from finding only the parabola y = 25(x - 1.6)^2 and missing the second one. Choice 94 comes from a sign error in solving for b, using b = -30 + 2a, which leads to a^2 - 94a + 225 = 0. Choice 196 comes from substituting x = 2 into ax^2 as 2a instead of 4a, which gives b = -30 - a and a^2 - 196a + 900 = 0.",
+  "solve": "const c=64, X=2, Y=4; const q=(Y-c)/X; const A=X*X, B=-2*q*X-4*c, C=q*q; const d=Math.sqrt(B*B-4*A*C); const roots=[(-B+d)/(2*A), (-B-d)/(2*A)]; return roots.filter(a=>a>0).reduce((s,a)=>s+a,0);",
+  "distractor_solve": {
+   "25": "const c=64, X=2, Y=4; const q=(Y-c)/X; const A=X*X, B=-2*q*X-4*c, C=q*q; const d=Math.sqrt(B*B-4*A*C); return (-B+d)/(2*A);",
+   "94": "const c=64, X=2, Y=4; const q=(Y-c)/X; const A=X*X, B=2*q*X-4*c; return -B/A;",
+   "196": "const c=64, X=2, Y=4; const q=(Y-c)/X; const A=1, B=-2*q-4*c; return -B/A;"
+  }
+ },
+ {
+  "id": "SM25V-D07",
+  "domain": "Advanced Math",
+  "subskill": "Nonlinear systems: a line tangent to a shifted rational graph",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = 8/(x - 2) + 1 and the line y = -2x + c, where c is a constant, intersect at exactly one point. What is the product of all possible values of c?",
+  "choices": [
+   "-48",
+   "-39",
+   "-15",
+   "13"
+  ],
+  "correct_answer": "-39",
+  "explanation": "At an intersection point, 8/(x - 2) + 1 = -2x + c, so 8/(x - 2) = -2x + c - 1. Multiplying both sides by x - 2 gives 8 = -2x^2 + (c + 3)x - 2c + 2, or 2x^2 - (c + 3)x + 2c + 6 = 0. (No solution of this equation is x = 2, since x = 2 gives 8 - 2c - 6 + 2c + 6 = 8, not 0.) There is exactly one intersection point when this quadratic has exactly one solution, that is, when its discriminant is 0: (c + 3)^2 - 8(2c + 6) = 0, which simplifies to c^2 - 10c - 39 = 0, or (c - 13)(c + 3) = 0. So c = 13 or c = -3. Both work: c = 13 gives the point (4, 5) and c = -3 gives the point (0, -3). The product of the possible values is 13(-3) = -39.\n\nChoice 13 comes from keeping only the positive value of c. Choice -48 comes from leaving out the + 1 in the rational equation, which leads to c^2 - 8c - 48 = 0 and the values 12 and -4. Choice -15 comes from using 4(2c + 6) instead of 4(2)(2c + 6) in the discriminant, which leads to c^2 - 2c - 15 = 0 and the values 5 and -3.",
+  "solve": "const A=1,B=-10,C=-39; const r=Math.sqrt(B*B-4*A*C); const c1=(-B+r)/2, c2=(-B-r)/2; return c1*c2;",
+  "distractor_solve": {
+   "13": "const r=Math.sqrt(100+156); return (10+r)/2;",
+   "-48": "const r=Math.sqrt(64+192); return ((8+r)/2)*((8-r)/2);",
+   "-15": "const r=Math.sqrt(4+60); return ((2+r)/2)*((2-r)/2);"
+  }
+ },
+ {
+  "id": "SM25V-C09",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial operations: the leading coefficient of a product of powers",
+  "difficulty": "easy",
+  "prompt": "The polynomial p is defined by p(x) = (3 - 2x)^3(x^5 + 2)^3. When p(x) is expanded and written in standard form, what is the leading coefficient of p(x)?",
+  "choices": [
+   "-8",
+   "-6",
+   "18",
+   "216"
+  ],
+  "correct_answer": "-8",
+  "explanation": "The leading term of a product is the product of the leading terms of its factors. The leading term of (3 - 2x)^3 is (-2x)^3 = -8x^3, and the leading term of (x^5 + 2)^3 is (x^5)^3 = x^15. So the leading term of p(x) is -8x^18, and the leading coefficient is -8.\n\nChoice -6 comes from multiplying -2 by the exponent 3 instead of cubing it. Choice 18 is the degree of p, not its leading coefficient. Choice 216 is the constant term, (3)^3(2)^3 = 216, not the leading coefficient.",
+  "solve": "const lead1=(-2)**3, lead2=1**3; return lead1*lead2;",
+  "distractor_solve": {
+   "18": "return 1*3+5*3;",
+   "216": "return (3**3)*(2**3);",
+   "-6": "return (-2)*3*(1**3);"
+  }
+ },
+ {
+  "id": "SM25V-C11",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial zeros: the product of the shifted zeros from one value of the polynomial",
+  "difficulty": "medium",
+  "prompt": "Let r, s, and t denote the three zeros of 2x^3 - 7x^2 - 14x + 40. Compute the product (r + 1)(s + 1)(t + 1).",
+  "choices": [
+   "-22.5",
+   "-15.5",
+   "-10.5",
+   "6.5"
+  ],
+  "correct_answer": "-22.5",
+  "explanation": "Because p has leading coefficient 2 and zeros r, s, and t, p(x) = 2(x - r)(x - s)(x - t). Substituting x = -1 gives p(-1) = 2(-1 - r)(-1 - s)(-1 - t) = -2(r + 1)(s + 1)(t + 1). Since p(-1) = -2 - 7 + 14 + 40 = 45, (r + 1)(s + 1)(t + 1) = -45/2 = -22.5. (Factoring confirms it: p(x) = (x - 2)(x - 4)(2x + 5), so the zeros are 2, 4, and -2.5, and (3)(5)(-1.5) = -22.5.)\n\nChoice -10.5 is (r - 1)(s - 1)(t - 1), which comes from substituting x = 1 instead of x = -1. Choice -15.5 comes from expanding the product as rst + (r + s + t) + 1 and leaving out the term rs + st + tr: -20 + 3.5 + 1 = -15.5. Choice 6.5 comes from adding the shifted zeros, (r + 1) + (s + 1) + (t + 1) = 3.5 + 3, instead of multiplying them.",
+  "solve": "const p=x=>2*x**3-7*x**2-14*x+40; return -p(-1)/2;",
+  "distractor_solve": {
+   "-10.5": "const p=x=>2*x**3-7*x**2-14*x+40; return -p(1)/2;",
+   "-15.5": "const S=7/2, P=-40/2; return P+S+1;",
+   "6.5": "const S=7/2; return S+3;"
+  }
+ },
+ {
+  "id": "SM25V-A15",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic functions: build the function from three values, then find its minimum",
+  "difficulty": "medium",
+  "prompt": "Three values of the quadratic function f are known: f(-1) = 17, f(0) = 3, and f(1) = -7. What is the minimum value of f?",
+  "choices": [
+   "-69",
+   "-33",
+   "-27",
+   "-15"
+  ],
+  "correct_answer": "-15",
+  "explanation": "Write f(x) = ax^2 + bx + c. From f(0) = 3, c = 3. Then f(1) = a + b + 3 = -7 and f(-1) = a - b + 3 = 17, so a + b = -10 and a - b = 14. Adding gives 2a = 4, so a = 2, and b = -12. So f(x) = 2x^2 - 12x + 3, whose vertex is at x = -(-12)/(2 * 2) = 3. The minimum value is f(3) = 2(9) - 12(3) + 3 = 18 - 36 + 3 = -15.\n\nChoice -69 comes from taking b = f(1) - f(-1) = -24 without dividing by 2, which puts the vertex at x = 6 and gives f(6) = 72 - 144 + 3 = -69. Choice -33 comes from leaving the leading coefficient out of the vertex value: 3 - (-12)^2/4 = -33. Choice -27 comes from forgetting to square x = 3 when evaluating f(3): 2(3) - 12(3) + 3 = -27.",
+  "solve": "const fm=17, f0=3, f1=-7; const c=f0, a=(f1+fm)/2-c, b=(f1-fm)/2; const h=-b/(2*a); return a*h*h+b*h+c;",
+  "distractor_solve": {
+   "-69": "const fm=17, f0=3, f1=-7; const c=f0, a=(f1+fm)/2-c, b=f1-fm; const h=-b/(2*a); return a*h*h+b*h+c;",
+   "-33": "const fm=17, f0=3, f1=-7; const c=f0, b=(f1-fm)/2; return c-b*b/4;",
+   "-27": "const fm=17, f0=3, f1=-7; const c=f0, a=(f1+fm)/2-c, b=(f1-fm)/2; const h=-b/(2*a); return a*h+b*h+c;"
+  }
+ },
+ {
+  "id": "SM25V-C04",
+  "domain": "Advanced Math",
+  "subskill": "Rational expressions: recovering the cancelled common factor from a simplified form",
+  "difficulty": "medium",
+  "prompt": "Wherever both expressions are defined, (x^2 + ax + 12)/(x^2 + 3x + b) and (x - 3)/(x + 7) take equal values, where a and b are constants. Compute b - a.",
+  "choices": [
+   "-35",
+   "-21",
+   "10",
+   "27"
+  ],
+  "correct_answer": "-21",
+  "explanation": "The simplified form keeps x - 3 in the numerator and x + 7 in the denominator, so the original numerator and denominator must share a common factor x + c that cancelled. Then x^2 + ax + 12 = (x - 3)(x + c), so the constant terms give -3c = 12 and c = -4. The numerator is (x - 3)(x - 4) = x^2 - 7x + 12, so a = -7. The denominator is (x + 7)(x - 4) = x^2 + 3x - 28, which matches the given x-coefficient 3, so b = -28. Therefore b - a = -28 - (-7) = -21.\n\nChoice -35 comes from expanding (x - 3)(x - 4) as x^2 + 7x + 12, which gives a = 7 and b - a = -28 - 7 = -35. Choice 10 comes from finding the denominator's constant by adding 7 and -4 instead of multiplying them, which gives b = 3 and b - a = 3 - (-7) = 10. Choice 27 comes from solving -3c = 12 as c = 4, which gives a = 1 and b = 28, so b - a = 27.",
+  "solve": "const c=-12/3; const a=-3+c; const b=7*c; if(7+c!==3) return 'inconsistent'; return b-a;",
+  "distractor_solve": {
+   "10": "const c=-12/3; const a=-3+c; const bWrong=7+c; return bWrong-a;",
+   "27": "const cWrong=12/3; const a=-3+cWrong; const b=7*cWrong; return b-a;",
+   "-35": "const c=-12/3; const aWrong=-(-3+c); const b=7*c; return b-aWrong;"
+  }
+ },
+ {
+  "id": "SM25V-D14",
+  "domain": "Advanced Math",
+  "subskill": "Nonlinear models: a square-root model scaled to a new output",
+  "difficulty": "medium",
+  "prompt": "The period T, in seconds, of a pendulum is modeled by T = k sqrt(L), where L is the length of the pendulum, in centimeters, and k is a constant. A pendulum with a length of 48 centimeters has a period of 1.6 seconds. By how many centimeters must the length of this pendulum be increased so that its period is 3.6 seconds?",
+  "choices": [
+   "60",
+   "168",
+   "195",
+   "243"
+  ],
+  "correct_answer": "195",
+  "explanation": "Since T = k sqrt(L), the ratio of two periods is the square root of the ratio of the lengths: 3.6/1.6 = sqrt(L/48). So 9/4 = sqrt(L/48), L/48 = 81/16, and L = 48(81/16) = 243 centimeters. The length must increase by 243 - 48 = 195 centimeters.\n\nChoice 243 is the new length, not the increase. Choice 168 comes from multiplying the period ratio 9/4 by 2 instead of squaring it, which gives a new length of 48(9/2) = 216 centimeters. Choice 60 comes from treating the period as proportional to the length itself, which gives a new length of 48(9/4) = 108 centimeters.",
+  "solve": "const L0=48; const r=36/16; return L0*r*r-L0;",
+  "distractor_solve": {
+   "60": "const L0=48; const r=36/16; return L0*r-L0;",
+   "168": "const L0=48; const r=36/16; return L0*2*r-L0;",
+   "243": "const L0=48; const r=36/16; return L0*r*r;"
+  }
+ },
+ {
+  "id": "SM25V-A08",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic equations: completing the square to evaluate a power of the shifted variable",
+  "difficulty": "medium",
+  "prompt": "For a real number x, the expression x^2 - 6x has the value 7. What value does (x - 3)^4 take?",
+  "choices": [
+   "4",
+   "49",
+   "100",
+   "256"
+  ],
+  "correct_answer": "256",
+  "explanation": "Completing the square, x^2 - 6x = (x - 3)^2 - 9. Since x^2 - 6x = 7, (x - 3)^2 - 9 = 7, so (x - 3)^2 = 16. Then (x - 3)^4 = ((x - 3)^2)^2 = 16^2 = 256. (Check: x^2 - 6x - 7 = 0 gives x = 7 or x = -1, and (7 - 3)^4 = (-1 - 3)^4 = 256.)\n\nChoice 4 comes from completing the square with the 9 on the wrong side, (x - 3)^2 = 7 - 9 = -2, and then squaring -2. Choice 49 comes from squaring the given value 7 instead of first finding (x - 3)^2. Choice 100 comes from adding 3, half the coefficient of x, instead of its square 9: (x - 3)^2 = 7 + 3 = 10, and 10^2 = 100.",
+  "solve": "const b=-6, v=7; const h=-b/2; const sq=v+h*h; return sq*sq;",
+  "distractor_solve": {
+   "4": "const b=-6, v=7; const h=-b/2; const sq=v-h*h; return sq*sq;",
+   "49": "const v=7; return v*v;",
+   "100": "const b=-6, v=7; const h=-b/2; const sq=v+h; return sq*sq;"
+  }
+ },
+ {
+  "id": "SM25V-D06",
+  "domain": "Advanced Math",
+  "subskill": "Transformations of a graph given by tables: recovering an unknown shift",
+  "difficulty": "hard",
+  "prompt": "Seven input-output pairs of a function f are listed in the first table.\nx | f(x)\n-3 | 17\n-2 | 20\n-1 | 15\n0 | 8\n1 | 5\n2 | 12\n3 | 35\nA second function satisfies g(x) = f(x + h) + k for some constants h and k, and four of its input-output pairs are listed in the second table.\nx | g(x)\n1 | 26\n2 | 19\n3 | 16\n4 | 23\nCompute g(0).",
+  "choices": [
+   "3",
+   "9",
+   "29",
+   "31"
+  ],
+  "correct_answer": "31",
+  "explanation": "A horizontal shift moves the pattern of outputs, and a vertical shift adds the same amount to every output, so the CHANGES between consecutive outputs of g must match the changes between consecutive outputs of f somewhere in the first table. The changes for g are 19 - 26 = -7, 16 - 19 = -3, and 23 - 16 = 7. For f, the changes are 3, -5, -7, -3, 7, 23, and -7, -3, 7 occurs from x = -1 to x = 2. So g(1), g(2), g(3), g(4) correspond to f(-1), f(0), f(1), f(2), which means g(x) = f(x - 2) + k with h = -2. Then 26 = f(-1) + k = 15 + k, so k = 11. Therefore g(0) = f(-2) + 11 = 20 + 11 = 31.\n\nChoice 3 comes from reversing the direction of the shift, using g(x) = f(x + 2) + k; matching g(1) with f(3) gives k = 26 - 35 = -9, and then g(0) = f(2) - 9. Choice 29 comes from matching rows with the same x-value, as if there were no horizontal shift; then k = g(1) - f(1) = 21 and g(0) = f(0) + 21. Choice 9 comes from finding the correct match but subtracting the vertical shift, f(-2) - 11.",
+  "solve": "const fx={'-3':17,'-2':20,'-1':15,'0':8,'1':5,'2':12,'3':35}; const g=[26,19,16,23]; const xs=[-3,-2,-1,0]; for(const s of xs){ const w=[0,1,2,3].map(i=>fx[s+i]); const k=g[0]-w[0]; if(w.every((v,i)=>v+k===g[i])){ const h=s-1; return fx[0+h]+k; } } return NaN;",
+  "distractor_solve": {
+   "3": "const fx={'-3':17,'-2':20,'-1':15,'0':8,'1':5,'2':12,'3':35}; const k=26-fx[3]; return fx[2]+k;",
+   "9": "const fx={'-3':17,'-2':20,'-1':15,'0':8,'1':5,'2':12,'3':35}; const k=26-fx[-1]; return fx[-2]-k;",
+   "29": "const fx={'-3':17,'-2':20,'-1':15,'0':8,'1':5,'2':12,'3':35}; const k=26-fx[1]; return fx[0]+k;"
+  }
+ },
+ {
+  "id": "SM25V-B03",
+  "domain": "Advanced Math",
+  "subskill": "Exponential growth: growth factor from the ratio of successive increases",
+  "difficulty": "medium",
+  "prompt": "The number of bacteria in a culture is multiplied by the same factor each hour. During the second hour the number of bacteria increased by 480, and during the third hour the number increased by 720. How many bacteria were in the culture at the end of the fourth hour?",
+  "choices": [
+   "2160",
+   "2600",
+   "3120",
+   "3240"
+  ],
+  "correct_answer": "3240",
+  "explanation": "Let the culture start with P bacteria and be multiplied by b each hour. The increase during hour n is P(b)^(n - 1)(b - 1), so each hourly increase is b times the one before: b = 720/480 = 1.5. The increase during the second hour is P(1.5)(0.5) = 0.75P = 480, so P = 640. At the end of the fourth hour there are 640(1.5)^4 = 640(5.0625) = 3240 bacteria.\n\nChoice 2160 is 640(1.5)^3, the number at the end of the third hour. Choice 2600 is 3240 - 640, the total increase over the four hours rather than the number of bacteria. Choice 3120 comes from finding 2160 at the end of the third hour but then assuming the hourly increase grows by the same amount each hour, 720 + 240 = 960, instead of by the same factor.",
+  "solve": "const d2=480, d3=720; const b=d3/d2; const P=d2/(b*(b-1)); return P*b**4;",
+  "distractor_solve": {
+   "2160": "const d2=480, d3=720; const b=d3/d2; const P=d2/(b*(b-1)); return P*b**3;",
+   "2600": "const d2=480, d3=720; const b=d3/d2; const P=d2/(b*(b-1)); return P*b**4 - P;",
+   "3120": "const d2=480, d3=720; const b=d3/d2; const P=d2/(b*(b-1)); return P*b**3 + (d3 + (d3 - d2));"
+  }
+ },
+ {
+  "id": "SM25V-D05",
+  "domain": "Advanced Math",
+  "subskill": "Transformations given by equations: identifying the shifts that carry one cubic onto another",
+  "difficulty": "medium",
+  "prompt": "Two cubic functions are given: f(x) = x^3 - 6x and g(x) = x^3 - 9x^2 + 21x - 10. Shifting the graph of f horizontally and then vertically produces the graph of g, so that g(x) = f(x - h) + k for every x, where h and k are constants. Compute k - h.",
+  "choices": [
+   "-58",
+   "-16",
+   "-13",
+   "-4"
+  ],
+  "correct_answer": "-4",
+  "explanation": "Expanding, f(x - h) + k = (x - h)^3 - 6(x - h) + k = x^3 - 3hx^2 + (3h^2 - 6)x - h^3 + 6h + k. Matching the x^2 terms with g gives -3h = -9, so h = 3; then the x terms agree, since 3(9) - 6 = 21. Matching the constant terms gives -27 + 18 + k = -10, so k = -1. Therefore k - h = -1 - 3 = -4.\n\nChoice -16 comes from matching -3h = -9 with the wrong sign, h = -3, and then finding k from the constant term of f(x + 3), 27 - 18 + k = -10, so k = -19. Choice -13 comes from taking k to be the constant term of g, -10, without accounting for the constant produced by f(x - 3). Choice -58 comes from taking the constant term of (x - 3)^3 as +27 instead of -27, which gives 27 + 18 + k = -10 and k = -55.",
+  "solve": "const p=-6, a2=-9, c0=-10; const h=-a2/3; const k=c0-(-(h**3)-p*h); return k-h;",
+  "distractor_solve": {
+   "-16": "const p=-6, a2=-9, c0=-10; const h=a2/3; const k=c0-(-(h**3)-p*h); return k-h;",
+   "-13": "const a2=-9, c0=-10; const h=-a2/3; return c0-h;",
+   "-58": "const p=-6, a2=-9, c0=-10; const h=-a2/3; const k=c0-((h**3)-p*h); return k-h;"
+  }
+ },
+ {
+  "id": "SM25V-B04",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: equation quadratic in x^(1/3) with a negative cube root",
+  "difficulty": "hard",
+  "prompt": "In the equation x^(2/3) + 2x^(1/3) = 8, x^(1/3) denotes the real cube root of x, which may be negative. Adding together every real number x that satisfies this equation gives what total?",
+  "choices": [
+   "-56",
+   "-8",
+   "-2",
+   "8"
+  ],
+  "correct_answer": "-56",
+  "explanation": "Let u = x^(1/3), so x^(2/3) = u^2 and the equation becomes u^2 + 2u - 8 = 0, or (u + 4)(u - 2) = 0. So u = 2 or u = -4. A cube root can be negative, so both values give a real solution: x = 2^3 = 8 and x = (-4)^3 = -64. The sum of the solutions is 8 + (-64) = -56.\n\nChoice 8 comes from rejecting u = -4, as if a cube root could not be negative, and keeping only x = 8. Choice -8 comes from adding the two values of u first and cubing the total, (2 + (-4))^3, but the sum of two cubes is not the cube of their sum. Choice -2 is the sum of the two values of u, 2 + (-4), without cubing them to get x.",
+  "solve": "const b=2, c=-8; const d=Math.sqrt(b*b-4*c); const u1=(-b+d)/2, u2=(-b-d)/2; return u1**3 + u2**3;",
+  "distractor_solve": {
+   "8": "const b=2, c=-8; const d=Math.sqrt(b*b-4*c); const us=[(-b+d)/2, (-b-d)/2].filter(u=>u>0); return us.reduce((s,u)=>s+u**3,0);",
+   "-2": "const b=2, c=-8; const d=Math.sqrt(b*b-4*c); return (-b+d)/2 + (-b-d)/2;",
+   "-8": "const b=2, c=-8; const d=Math.sqrt(b*b-4*c); const u1=(-b+d)/2, u2=(-b-d)/2; return (u1+u2)**3;"
+  }
+ },
+ {
+  "id": "SM25V-C01",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial division: rebuilding a dividend from its quotient and remainder, then applying the remainder theorem",
+  "difficulty": "medium",
+  "prompt": "For every x except x = -1/3, dividing the polynomial N(x) by 3x + 1 gives 2x - 3 + 4/(3x + 1). Find the remainder that results from dividing N(x) by x - 2.",
+  "choices": [
+   "5",
+   "7",
+   "11",
+   "39"
+  ],
+  "correct_answer": "11",
+  "explanation": "Multiplying both sides by 3x + 1 gives N(x) = (2x - 3)(3x + 1) + 4. By the remainder theorem, the remainder when N(x) is divided by x - 2 is N(2) = (2(2) - 3)(3(2) + 1) + 4 = (1)(7) + 4 = 11.\n\nChoice 5 comes from adding the remainder 4 to the quotient's value 1 without multiplying by the value of 3x + 1. Choice 7 comes from writing N(x) = (2x - 3)(3x + 1) and leaving out the remainder 4. Choice 39 comes from evaluating at x = -2 instead of x = 2: (-7)(-5) + 4 = 39.",
+  "solve": "const q=x=>2*x-3, d=x=>3*x+1, r=4; return q(2)*d(2)+r;",
+  "distractor_solve": {
+   "5": "const q=x=>2*x-3, r=4; return q(2)+r;",
+   "7": "const q=x=>2*x-3, d=x=>3*x+1; return q(2)*d(2);",
+   "39": "const q=x=>2*x-3, d=x=>3*x+1, r=4; return q(-2)*d(-2)+r;"
+  }
+ },
+ {
+  "id": "SM25V-C10",
+  "domain": "Advanced Math",
+  "subskill": "Zeros and multiplicity: an unknown double zero fixed by the y-intercept, with its sign chosen from where the graph touches the axis",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = (x - a)^2(x - 4), where a is a constant. In the xy-plane, the graph of y = p(x) passes through the point (0, -36) and touches the x-axis, without crossing it, at a point to the left of the y-axis. What is the value of p(5)?",
+  "choices": [
+   "4",
+   "14",
+   "64",
+   "196"
+  ],
+  "correct_answer": "64",
+  "explanation": "Substituting x = 0 gives p(0) = (-a)^2(-4) = -4a^2. Setting -4a^2 = -36 gives a^2 = 9, so a = 3 or a = -3. The graph touches the x-axis without crossing it at the zero of even multiplicity, x = a, and that point is to the left of the y-axis, so a < 0 and a = -3. Then p(x) = (x + 3)^2(x - 4), and p(5) = (8)^2(1) = 64.\n\nChoice 4 comes from taking a = 3, the positive square root, which puts the touching point to the right of the y-axis: (5 - 3)^2(1) = 4. Choice 14 comes from treating x - a as if it were not squared: then p(0) = (-a)(-4) = 4a = -36 gives a = -9, and p(5) = (5 + 9)(1) = 14. Choice 196 comes from solving -4a^2 = -36 as a = -9 without taking the square root: (5 + 9)^2(1) = 196.",
+  "solve": "const cands=[Math.sqrt(9),-Math.sqrt(9)]; const a=cands.find(r=>r<0 && (0-r)**2*(0-4)===-36); return (5-a)**2*(5-4);",
+  "distractor_solve": {
+   "4": "const a=Math.sqrt(36/4); return (5-a)**2*(5-4);",
+   "14": "const a=-(36/4); return (5-a)*(5-4);",
+   "196": "const a=-(36/4); return (5-a)**2*(5-4);"
+  }
+ },
+ {
+  "id": "SM25V-B02",
+  "domain": "Advanced Math",
+  "subskill": "Radical expressions: difference of squares with square roots",
+  "difficulty": "medium",
+  "prompt": "Two positive numbers x and y have square roots whose sum is 8, so sqrt(x) + sqrt(y) = 8, and x exceeds y by 16. What is the product xy?",
+  "choices": [
+   "15",
+   "144",
+   "225",
+   "960"
+  ],
+  "correct_answer": "225",
+  "explanation": "Write x - y as a difference of squares: x - y = (sqrt(x) + sqrt(y))(sqrt(x) - sqrt(y)). So 16 = 8(sqrt(x) - sqrt(y)), and sqrt(x) - sqrt(y) = 2. Adding and subtracting the two equations gives sqrt(x) = 5 and sqrt(y) = 3, so x = 25 and y = 9. Then xy = 25(9) = 225.\n\nChoice 15 is the product sqrt(x) times sqrt(y) = 5(3), which is sqrt(xy), not xy. Choice 144 comes from taking sqrt(x) - sqrt(y) = sqrt(16) = 4, which gives sqrt(x) = 6, sqrt(y) = 2, and xy = 36(4). Choice 960 comes from treating sqrt(x) + sqrt(y) = 8 as x + y = 64, which with x - y = 16 gives x = 40, y = 24, and xy = 960.",
+  "solve": "const S=8, D=16; const d=D/S; const rx=(S+d)/2, ry=(S-d)/2; return rx*rx*ry*ry;",
+  "distractor_solve": {
+   "15": "const S=8, D=16; const d=D/S; return ((S+d)/2)*((S-d)/2);",
+   "144": "const S=8, D=16; const d=Math.sqrt(D); const rx=(S+d)/2, ry=(S-d)/2; return rx*rx*ry*ry;",
+   "960": "const S=8, D=16; const sum=S*S; const x=(sum+D)/2, y=(sum-D)/2; return x*y;"
+  }
+ },
+ {
+  "id": "SM25V-C08",
+  "domain": "Advanced Math",
+  "subskill": "Factor theorem with a quadratic factor: an even quartic must also contain the mirrored factor",
+  "difficulty": "hard",
+  "prompt": "Suppose x^2 - 6x + 4 divides p(x) = x^4 + ax^2 + b with no remainder, for constants a and b. Compute a + b.",
+  "choices": [
+   "-44",
+   "-20",
+   "-12",
+   "60"
+  ],
+  "correct_answer": "-12",
+  "explanation": "Because p(x) contains only even powers of x, p(-x) = p(x). So if x^2 - 6x + 4 is a factor, then replacing x with -x shows that x^2 + 6x + 4 is also a factor. These two quadratics share no zero, and their product has degree 4 with leading coefficient 1, so p(x) = (x^2 - 6x + 4)(x^2 + 6x + 4) = (x^2 + 4)^2 - (6x)^2 = x^4 + 8x^2 + 16 - 36x^2 = x^4 - 28x^2 + 16. Therefore a = -28, b = 16, and a + b = -12.\n\nChoice -44 comes from taking b as -16 instead of 16. Choice -20 comes from finding a as the negative of the square of the sum of the zeros of x^2 - 6x + 4, which is -36, instead of the negative of the sum of their squares, -28. Choice 60 comes from treating p(x) as the square of x^2 - 6x + 4 and reading a = 44 and b = 16 from (x^2 - 6x + 4)^2.",
+  "solve": "const r=3+Math.sqrt(5), s=3-Math.sqrt(5); const a=-(r**4-s**4)/(r**2-s**2); const b=-(r**4)-a*r**2; return Math.round(a+b);",
+  "distractor_solve": {
+   "60": "const mul=(a,b)=>{const r=Array(a.length+b.length-1).fill(0);a.forEach((x,i)=>b.forEach((y,j)=>{r[i+j]+=x*y}));return r}; const d=[4,-6,1]; const sq=mul(d,d); return sq[2]+sq[0];",
+   "-44": "const r=3+Math.sqrt(5), s=3-Math.sqrt(5); const a=-(r*r+s*s); const b=-((r*s)**2); return Math.round(a+b);",
+   "-20": "const r=3+Math.sqrt(5), s=3-Math.sqrt(5); const a=-((r+s)**2); const b=(r*s)**2; return Math.round(a+b);"
+  }
+ },
+ {
+  "id": "SM25V-B15",
+  "domain": "Advanced Math",
+  "subskill": "Exponential functions: combining two exponential factors into one growth rate",
+  "difficulty": "medium",
+  "prompt": "A model has the form f(t) = 80(9)^(t/4)(1/3)^(t/6). Each time t goes up by 1, the output of f grows by p%. Rounded to the nearest tenth, p equals what?",
+  "choices": [
+   "9.6",
+   "20.1",
+   "44.2",
+   "56.5"
+  ],
+  "correct_answer": "44.2",
+  "explanation": "Write both factors as powers of 3: 9^(t/4) = 3^(t/2) and (1/3)^(t/6) = 3^(-t/6). Then f(t) = 80(3)^(t/2 - t/6) = 80(3)^(t/3) = 80(3^(1/3))^t. Each time t increases by 1, f is multiplied by 3^(1/3) = 1.4422, an increase of about 44.2%.\n\nChoice 56.5 comes from finding the percent change of each factor separately, +73.2% for 9^(1/4) and -16.7% for (1/3)^(1/6), and adding them instead of multiplying the factors. Choice 20.1 comes from treating both bases as 9 and subtracting the exponents: 9^(1/4 - 1/6) = 9^(1/12) = 1.201. Choice 9.6 comes from multiplying the bases first, 9(1/3) = 3, and then subtracting the exponents: 3^(1/4 - 1/6) = 3^(1/12) = 1.096.",
+  "solve": "const g=Math.pow(9,1/4)*Math.pow(1/3,1/6); return Math.round((g-1)*1000)/10;",
+  "distractor_solve": {
+   "9.6": "const g=Math.pow(9*(1/3), 1/4 - 1/6); return Math.round((g-1)*1000)/10;",
+   "20.1": "const g=Math.pow(9, 1/4 - 1/6); return Math.round((g-1)*1000)/10;",
+   "56.5": "const up=Math.pow(9,1/4)-1, down=Math.pow(1/3,1/6)-1; return Math.round((up+down)*1000)/10;"
+  }
+ },
+ {
+  "id": "SM25V-A12",
+  "domain": "Advanced Math",
+  "subskill": "Axis of symmetry and zeros: the second zero by symmetry",
+  "difficulty": "medium",
+  "prompt": "A quadratic function f has a zero at x = -3, and the graph of y = f(x) in the xy-plane is symmetric about the line x = 2. If f(0) = -42, what is the value of f(5)?",
+  "choices": [
+   "-50",
+   "-42",
+   "-32",
+   "-12"
+  ],
+  "correct_answer": "-32",
+  "explanation": "The zeros of f are symmetric about x = 2. The zero x = -3 is 5 units to the left of 2, so the other zero is 5 units to the right, at x = 7. So f(x) = a(x + 3)(x - 7). Since f(0) = a(3)(-7) = -21a = -42, a = 2. Then f(5) = 2(5 + 3)(5 - 7) = 2(8)(-2) = -32.\n\nChoice -50 is f(2), the value at the vertex, not at x = 5. Choice -42 is f(4), the value at the point symmetric to x = 0, which equals f(0) rather than f(5). Choice -12 comes from treating f as linear between the known points (0, -42) and (7, 0): -42 + 5(42/7) = -12.",
+  "solve": "const z1=-3, ax=2, f0=-42, x=5; const z2=2*ax-z1; const a=f0/((0-z1)*(0-z2)); return a*(x-z1)*(x-z2);",
+  "distractor_solve": {
+   "-50": "const z1=-3, ax=2, f0=-42; const z2=2*ax-z1; const a=f0/((0-z1)*(0-z2)); return a*(ax-z1)*(ax-z2);",
+   "-42": "const z1=-3, ax=2, f0=-42; const z2=2*ax-z1; const a=f0/((0-z1)*(0-z2)); const x=2*ax-0; return a*(x-z1)*(x-z2);",
+   "-12": "const z1=-3, ax=2, f0=-42, x=5; const z2=2*ax-z1; return f0 + x*(0-f0)/(z2-0);"
+  }
+ },
+ {
+  "id": "SM25V-A03",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic functions: minimum value from one known zero",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 3x^2 + bx - 48, where b is a constant, and the graph of y = f(x) crosses the x-axis at x = 8. What is the least value that f(x) attains?",
+  "choices": [
+   "-129",
+   "-93",
+   "-75",
+   "-48"
+  ],
+  "correct_answer": "-75",
+  "explanation": "Since the graph crosses the x-axis at x = 8, f(8) = 0, so 3(64) + 8b - 48 = 0, so 192 + 8b - 48 = 0 and b = -18. Then f(x) = 3x^2 - 18x - 48, whose vertex is at x = -(-18)/(2 * 3) = 3. The minimum value is f(3) = 3(9) - 18(3) - 48 = 27 - 54 - 48 = -75.\n\nChoice -129 comes from leaving out the leading coefficient in the vertex value, computing -48 - (-18)^2/4 = -129 instead of -48 - (-18)^2/(4 * 3). Choice -93 comes from forgetting to square x = 3 when evaluating f(3): 3(3) - 18(3) - 48 = -93. Choice -48 is f(0), the y-intercept of the graph, not its lowest point.",
+  "solve": "const a=3, c=-48, p=8; const b=-(a*p*p+c)/p; const h=-b/(2*a); return a*h*h+b*h+c;",
+  "distractor_solve": {
+   "-129": "const a=3, c=-48, p=8; const b=-(a*p*p+c)/p; return c-b*b/4;",
+   "-93": "const a=3, c=-48, p=8; const b=-(a*p*p+c)/p; const h=-b/(2*a); return a*h+b*h+c;",
+   "-48": "const a=3, c=-48; const x=0; return a*x*x+c;"
+  }
+ },
+ {
+  "id": "SM25V-B10",
+  "domain": "Advanced Math",
+  "subskill": "Exponential expressions: cubing a difference of reciprocal powers",
+  "difficulty": "hard",
+  "prompt": "A real number x makes the difference 2^x - 2^(-x) equal to 5. Using this fact, find 8^x - 8^(-x).",
+  "choices": [
+   "120",
+   "125",
+   "135",
+   "140"
+  ],
+  "correct_answer": "140",
+  "explanation": "Let a = 2^x, so 2^(-x) = 1/a, 8^x = a^3, and 8^(-x) = 1/a^3. Cubing a - 1/a gives (a - 1/a)^3 = a^3 - 3a + 3/a - 1/a^3 = (a^3 - 1/a^3) - 3(a - 1/a). So a^3 - 1/a^3 = (a - 1/a)^3 + 3(a - 1/a) = 5^3 + 3(5) = 125 + 15 = 140.\n\nChoice 125 comes from cubing 5 and treating (a - 1/a)^3 as a^3 - 1/a^3, leaving out the middle terms. Choice 135 comes from multiplying a^2 + 1/a^2 = 5^2 + 2 = 27 by a - 1/a = 5, which gives a^3 - 1/a^3 - (a - 1/a), and not adding back a - 1/a = 5. Choice 120 uses the correct structure, (a^2 + 1/a^2)(a - 1/a) + (a - 1/a), but finds a^2 + 1/a^2 as 5^2 - 2 = 23 instead of 5^2 + 2 = 27: 23(5) + 5 = 120.",
+  "solve": "const d=5; return d**3 + 3*d;",
+  "distractor_solve": {
+   "120": "const d=5; const sq=d**2 - 2; return sq*d + d;",
+   "125": "const d=5; return d**3;",
+   "135": "const d=5; const sq=d**2 + 2; return sq*d;"
+  }
+ },
+ {
+  "id": "SM25V-D04",
+  "domain": "Advanced Math",
+  "subskill": "Absolute-value equations: absolute value of a quadratic equal to a linear expression",
+  "difficulty": "medium",
+  "prompt": "Every real number x that satisfies |x^2 - 19| = 3x + 9 is listed, and the listed numbers are multiplied together. What product results?",
+  "choices": [
+   "-28",
+   "-10",
+   "14",
+   "280"
+  ],
+  "correct_answer": "14",
+  "explanation": "A solution must make the right side nonnegative, so 3x + 9 >= 0, that is, x >= -3. Case 1: x^2 - 19 = 3x + 9, so x^2 - 3x - 28 = 0 and (x - 7)(x + 4) = 0, giving x = 7 or x = -4. Since -4 < -3, x = -4 is rejected; x = 7 checks, since |30| = 30. Case 2: x^2 - 19 = -(3x + 9), so x^2 + 3x - 10 = 0 and (x + 5)(x - 2) = 0, giving x = -5 or x = 2. Since -5 < -3, x = -5 is rejected; x = 2 checks, since |-15| = 15. The solutions are 7 and 2, and their product is 14.\n\nChoice 280 comes from keeping all four roots, 7, -4, -5, and 2, without checking that 3x + 9 is nonnegative. Choice -28 comes from dropping the absolute value bars and solving only x^2 - 19 = 3x + 9, then multiplying both of its roots. Choice -10 comes from solving only the case x^2 - 19 = -(3x + 9) and multiplying both of its roots.",
+  "solve": "const roots=(B,C)=>{const r=Math.sqrt(B*B-4*C);return [(-B+r)/2,(-B-r)/2]}; const xs=[...roots(-3,-28),...roots(3,-10)].filter(x=>3*x+9>=0); return xs.reduce((p,x)=>p*x,1);",
+  "distractor_solve": {
+   "280": "const roots=(B,C)=>{const r=Math.sqrt(B*B-4*C);return [(-B+r)/2,(-B-r)/2]}; return [...roots(-3,-28),...roots(3,-10)].reduce((p,x)=>p*x,1);",
+   "-28": "const r=Math.sqrt(9+112); return ((3+r)/2)*((3-r)/2);",
+   "-10": "const r=Math.sqrt(9+40); return ((-3+r)/2)*((-3-r)/2);"
+  }
+ },
+ {
+  "id": "SM25V-A04",
+  "domain": "Advanced Math",
+  "subskill": "Zeros of a vertically translated parabola: a symmetric expression in the zeros",
+  "difficulty": "medium",
+  "prompt": "The graph of y = x^2 - 10x + 9 in the xy-plane is translated 5 units up. The translated graph crosses the x-axis at x = p and x = q. What is the value of p^2 + q^2?",
+  "choices": [
+   "44",
+   "72",
+   "82",
+   "86"
+  ],
+  "correct_answer": "72",
+  "explanation": "Translating the graph 5 units up adds 5 to every y-value, so the translated graph is y = x^2 - 10x + 14. Its x-intercepts p and q are the solutions of x^2 - 10x + 14 = 0, so p + q = 10 and pq = 14. Then p^2 + q^2 = (p + q)^2 - 2pq = 100 - 28 = 72.\n\nChoice 44 comes from using (p + q)^2 - 4pq = 100 - 56 instead of (p + q)^2 - 2pq. Choice 82 comes from ignoring the translation and using the original x-intercepts 1 and 9: 1 + 81 = 82. Choice 86 comes from subtracting pq only once: 100 - 14 = 86.",
+  "solve": "const b=-10, c=9, up=5; const s=-b, P=c+up; return s*s-2*P;",
+  "distractor_solve": {
+   "44": "const b=-10, c=9, up=5; const s=-b, P=c+up; return s*s-4*P;",
+   "82": "const b=-10, c=9; const d=Math.sqrt(b*b-4*c); const r1=(-b+d)/2, r2=(-b-d)/2; return r1*r1+r2*r2;",
+   "86": "const b=-10, c=9, up=5; const s=-b, P=c+up; return s*s-P;"
+  }
+ }
+]

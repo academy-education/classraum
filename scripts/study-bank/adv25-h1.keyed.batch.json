@@ -1,0 +1,632 @@
+[
+ {
+  "id": "SM25V-C02",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial coefficients: the sum of the even-power coefficients from p(1) and p(-1)",
+  "difficulty": "hard",
+  "prompt": "The polynomial p is defined by p(x) = (x^3 - 2x + 3)^2(x - 2). When p(x) is expanded and written in standard form, what is the sum of the coefficients of all the terms with an even power of x? (The constant term is the coefficient of x^0.)",
+  "choices": [
+   "-26",
+   "-18",
+   "-4",
+   "6"
+  ],
+  "correct_answer": "-26",
+  "explanation": "Let E be the sum of the even-power coefficients and O the sum of the odd-power coefficients. Substituting x = 1 adds every coefficient, so p(1) = E + O. Substituting x = -1 keeps the even-power terms and flips the sign of the odd-power terms, so p(-1) = E - O. Adding, E = (p(1) + p(-1))/2.\n\np(1) = (1 - 2 + 3)^2(1 - 2) = (4)(-1) = -4, and p(-1) = (-1 + 2 + 3)^2(-1 - 2) = (16)(-3) = -48. So E = (-4 + (-48))/2 = -26.\n\nChoice -18 is only the constant term, p(0) = (3)^2(-2) = -18, leaving out the x^2, x^4 and x^6 coefficients. Choice -4 is p(1), the sum of all the coefficients, odd powers included. Choice 6 comes from evaluating x - 2 at x = -1 as 1 instead of -3, which gives p(-1) = 16 and (-4 + 16)/2 = 6.",
+  "solve": "const mul=(a,b)=>{const r=Array(a.length+b.length-1).fill(0);a.forEach((x,i)=>b.forEach((y,j)=>{r[i+j]+=x*y}));return r}; const q=[3,-2,0,1]; const p=mul(mul(q,q),[-2,1]); return p.filter((c,i)=>i%2===0).reduce((s,c)=>s+c,0);",
+  "distractor_solve": {
+   "6": "const q=x=>x**3-2*x+3; const p1=q(1)**2*(1-2); const pm1wrong=q(-1)**2*(1); return (p1+pm1wrong)/2;",
+   "-18": "const q=x=>x**3-2*x+3; return q(0)**2*(0-2);",
+   "-4": "const q=x=>x**3-2*x+3; return q(1)**2*(1-2);"
+  }
+ },
+ {
+  "id": "SM25V-A01",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic equations: solving a squared-binomial equation by square roots",
+  "difficulty": "easy",
+  "prompt": "Every value of x that satisfies (x - 5)^2 = 36 is added together. What total results?",
+  "choices": [
+   "0",
+   "6",
+   "10",
+   "11"
+  ],
+  "correct_answer": "10",
+  "explanation": "Taking square roots, x - 5 = 6 or x - 5 = -6, so x = 11 or x = -1. The sum of the solutions is 11 + (-1) = 10.\n\nChoice 0 comes from expanding (x - 5)^2 as x^2 - 25, which gives x^2 = 61 and two solutions that add to 0. Choice 6 comes from stopping at the square root of 36 instead of solving for x. Choice 11 comes from using only the positive square root, which gives the single solution x = 11.",
+  "solve": "const h=5, k=36; const r=Math.sqrt(k); return (h+r)+(h-r);",
+  "distractor_solve": {
+   "0": "const h=5, k=36; const s=Math.sqrt(k+h*h); return s+(-s);",
+   "6": "const k=36; return Math.sqrt(k);",
+   "11": "const h=5, k=36; return h+Math.sqrt(k);"
+  }
+ },
+ {
+  "id": "SM25V-C06",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial division: the remainder on division by (x - c)^2 from two successive divisions by x - c",
+  "difficulty": "hard",
+  "prompt": "Dividing the polynomial p(x) by x - 3 leaves quotient q(x) and remainder 13, and dividing q(x) by x - 3 leaves remainder -5. On division by (x - 3)^2, p(x) leaves a remainder of the form ax + b, with a and b constant. Find b.",
+  "choices": [
+   "-2",
+   "8",
+   "13",
+   "28"
+  ],
+  "correct_answer": "28",
+  "explanation": "From the first division, p(x) = (x - 3)q(x) + 13. From the second, q(x) = (x - 3)s(x) - 5 for some polynomial s(x). Substituting, p(x) = (x - 3)[(x - 3)s(x) - 5] + 13 = (x - 3)^2 s(x) - 5(x - 3) + 13. The part -5(x - 3) + 13 = -5x + 28 has degree less than 2, so it is the remainder on division by (x - 3)^2. Therefore a = -5 and b = 28.\n\nChoice -2 comes from expanding -5(x - 3) as -5x - 15, which gives -5x - 2. Choice 8 comes from adding the two remainders, 13 + (-5), as if the remainder were a constant. Choice 13 comes from writing the remainder as -5x + 13, using the second remainder as the coefficient of x without multiplying it by x - 3.",
+  "solve": "const mul=(a,b)=>{const r=Array(a.length+b.length-1).fill(0);a.forEach((x,i)=>b.forEach((y,j)=>{r[i+j]+=x*y}));return r}; const add=(a,b)=>{const n=Math.max(a.length,b.length);return Array.from({length:n},(_,i)=>(a[i]||0)+(b[i]||0))}; const s=[1,2,1]; const q=add(mul([-3,1],s),[-5]); const p=add(mul([-3,1],q),[13]); const r=p.slice(); const d=[9,-6,1]; for(let k=r.length-1;k>=2;k--){const c=r[k]/d[2]; for(let j=0;j<3;j++) r[k-2+j]-=c*d[j];} return r[0];",
+  "distractor_solve": {
+   "8": "const r1=13, r2=-5; return r1+r2;",
+   "13": "const r1=13, r2=-5; const a=r2, b=r1; return b;",
+   "-2": "const r1=13, r2=-5; const wrongShiftConst=r2*3; return wrongShiftConst+r1;"
+  }
+ },
+ {
+  "id": "SM25V-A06",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic zeros: building a quadratic whose zeros are shifted",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = 2x^2 - 5x - 4. The quadratic function g has leading coefficient 2, and the zeros of g are each 3 more than the zeros of f. If g(x) = 2x^2 + bx + c, where b and c are constants, what is the value of c?",
+  "choices": [
+   "-1",
+   "17",
+   "29",
+   "37"
+  ],
+  "correct_answer": "29",
+  "explanation": "If r is a zero of f, then r + 3 must be a zero of g, so g(x) = f(x - 3): when x = r + 3, x - 3 = r and f(r) = 0. Then g(x) = 2(x - 3)^2 - 5(x - 3) - 4 = 2x^2 - 12x + 18 - 5x + 15 - 4 = 2x^2 - 17x + 29, so c = 29. (Alternatively, the zeros r and s of f have r + s = 5/2 and rs = -2, so the zeros of g have product (r + 3)(s + 3) = rs + 3(r + s) + 9 = -2 + 7.5 + 9 = 14.5, and c = 2(14.5) = 29.)\n\nChoice -1 comes from shifting in the wrong direction, using f(x + 3), whose constant term is 18 - 15 - 4 = -1. Choice 17 comes from expanding (r + 3)(s + 3) as rs + 3(r + s) + 3, using 3 instead of 3^2 = 9: 2(-2 + 7.5 + 3) = 17. Choice 37 comes from taking the product of the zeros of f as +2 instead of -4/2 = -2: 2(2 + 7.5 + 9) = 37.",
+  "solve": "const a=2,b=-5,c=-4,s=3; return a*s*s - b*s + c;",
+  "distractor_solve": {
+   "17": "const a=2,b=-5,c=-4,s=3; const sum=-b/a, prod=c/a; return a*(prod + s*sum + s);",
+   "37": "const a=2,b=-5,c=-4,s=3; const sum=-b/a, prod=-c/a; return a*(prod + s*sum + s*s);",
+   "-1": "const a=2,b=-5,c=-4,s=3; return a*s*s + b*s + c;"
+  }
+ },
+ {
+  "id": "SM25V-D09",
+  "domain": "Advanced Math",
+  "subskill": "Function notation: using the odd part of a cubic function",
+  "difficulty": "medium",
+  "prompt": "For nonzero constants a and b, let f(x) = ax^3 + bx + 7. Given that f(-2) = 16, find f(2).",
+  "choices": [
+   "-23",
+   "-9",
+   "-2",
+   "16"
+  ],
+  "correct_answer": "-2",
+  "explanation": "Let g(x) = ax^3 + bx, so f(x) = g(x) + 7. Since g(-x) = a(-x)^3 + b(-x) = -g(x), we have g(2) = -g(-2). From f(-2) = 16, g(-2) = 16 - 7 = 9, so g(2) = -9. Therefore f(2) = g(2) + 7 = -9 + 7 = -2.\n\nChoice -9 comes from finding g(2) = -9 and forgetting to add the constant 7 back. Choice 16 comes from assuming f(2) = f(-2), as if f were unchanged when x is replaced by -x. Choice -23 comes from moving the constant to the wrong side when isolating ax^3 + bx, writing ax^3 + bx = 16 + 7 = 23 at x = -2, and then negating it to get -23 without restoring the constant.",
+  "solve": "const c=7, F=16; const g=F-c; return -g+c;",
+  "distractor_solve": {
+   "16": "const F=16; return F;",
+   "-9": "const c=7, F=16; return -(F-c);",
+   "-23": "const c=7, F=16; const g=F+c; return -g;"
+  }
+ },
+ {
+  "id": "SM25V-B07",
+  "domain": "Advanced Math",
+  "subskill": "Exponential functions: growth of a function whose input is rescaled",
+  "difficulty": "hard",
+  "prompt": "The function f is exponential, and its output increases by 21% over every interval of length 2. The function g is defined by g(t) = f(2t). To the nearest tenth of a percent, by what percent does the output of g increase over every interval of length 3?",
+  "choices": [
+   "15.4",
+   "33.1",
+   "77.2",
+   "213.8"
+  ],
+  "correct_answer": "77.2",
+  "explanation": "For any t, g(t + 3)/g(t) = f(2t + 6)/f(2t). An input interval of length 3 for g is an input interval of length 6 for f, which is 3 intervals of length 2. Over each of them f is multiplied by 1.21, so g is multiplied by (1.21)^3 = 1.771561 over every interval of length 3. That is an increase of about 77.2%.\n\nChoice 33.1 comes from ignoring the 2 in f(2t) and finding f's increase over an interval of length 3: (1.21)^(3/2) = 1.331. Choice 15.4 comes from halving the interval instead of doubling it, as if g(t) = f(t/2): (1.21)^(1.5/2) = 1.154. Choice 213.8 comes from applying the 21% six times, (1.21)^6 = 3.138, treating each unit of f's input as a 2-unit interval.",
+  "solve": "const r=0.21; const v=(1+r)**((3*2)/2) - 1; return Math.round(v*1000)/10;",
+  "distractor_solve": {
+   "15.4": "const r=0.21; const v=(1+r)**((3/2)/2) - 1; return Math.round(v*1000)/10;",
+   "33.1": "const r=0.21; const v=(1+r)**(3/2) - 1; return Math.round(v*1000)/10;",
+   "213.8": "const r=0.21; const v=(1+r)**(3*2) - 1; return Math.round(v*1000)/10;"
+  }
+ },
+ {
+  "id": "SM25V-A11",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic functions: secant slope (average rate of change) fixes an input",
+  "difficulty": "medium",
+  "prompt": "For the function f(x) = x^2 + 4x + 10, the slope of the line through the points (3, f(3)) and (k, f(k)) on its graph is 15, where k is a constant. What is f(k)?",
+  "choices": [
+   "8",
+   "58",
+   "75",
+   "106"
+  ],
+  "correct_answer": "106",
+  "explanation": "The slope is (f(k) - f(3))/(k - 3) = ((k^2 + 4k + 10) - (9 + 12 + 10))/(k - 3) = (k^2 + 4k - 21)/(k - 3) = ((k - 3)(k + 7))/(k - 3) = k + 7. Setting k + 7 = 15 gives k = 8, so f(k) = f(8) = 64 + 32 + 10 = 106.\n\nChoice 8 is the value of k, not f(k). Choice 58 comes from computing 8^2 as 2(8) = 16: 16 + 32 + 10 = 58. Choice 75 is the rise f(8) - f(3) = 15(8 - 3) = 75, which leaves out f(3) = 31.",
+  "solve": "const f=x=>x*x+4*x+10; const m=15, p=3; const k=m-(p+4); return f(k);",
+  "distractor_solve": {
+   "8": "const m=15, p=3; return m-(p+4);",
+   "58": "const m=15, p=3; const k=m-(p+4); return 2*k+4*k+10;",
+   "75": "const m=15, p=3; const k=m-(p+4); return m*(k-p);"
+  }
+ },
+ {
+  "id": "SM25V-D15",
+  "domain": "Advanced Math",
+  "subskill": "Composition: a quadratic expression in a square-root function",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = sqrt(x + 10). A second function is built from it: g(x) = (f(x))^2 - 12f(x) + 12. Over all x in its domain, what is the smallest value that g(x) takes?",
+  "choices": [
+   "-24",
+   "-20",
+   "12",
+   "48"
+  ],
+  "correct_answer": "-24",
+  "explanation": "Let u = f(x) = sqrt(x + 10). As x runs over the domain x >= -10, u takes every value u >= 0. Then g(x) = u^2 - 12u + 12 = (u - 6)^2 - 24. The least value occurs at u = 6, which is allowed (it happens when x + 10 = 36, that is, x = 26), so the minimum value of g(x) is -24.\n\nChoice -20 comes from using 6, the u-value of the vertex, as the x-value: g(6) = 16 - 12(4) + 12. Choice 12 comes from evaluating g at the left end of its domain, x = -10, where u = 0. Choice 48 comes from completing the square with the wrong sign, writing u^2 - 12u + 12 as (u - 6)^2 + 36 + 12.",
+  "solve": "const m=6,c=12; return c-m*m;",
+  "distractor_solve": {
+   "12": "const u=Math.sqrt(-10+10); return u*u-12*u+12;",
+   "48": "const m=6,c=12; return c+m*m;",
+   "-20": "const u=Math.sqrt(6+10); return u*u-12*u+12;"
+  }
+ },
+ {
+  "id": "SM25V-B08",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: product and quotient of a cube root and a square root",
+  "difficulty": "medium",
+  "prompt": "For positive numbers a and b, the product of the cube root of a and the square root of b is 6, so a^(1/3) * sqrt(b) = 6, and their quotient is a^(1/3) / sqrt(b) = 3/2. What is a + b?",
+  "choices": [
+   "5",
+   "13",
+   "17",
+   "31"
+  ],
+  "correct_answer": "31",
+  "explanation": "Multiplying the two equations gives (a^(1/3))^2 = 6(3/2) = 9, so a^(1/3) = 3. Dividing the first equation by the second gives (sqrt(b))^2 = 6/(3/2) = 4, so sqrt(b) = 2. Then a = 3^3 = 27 and b = 2^2 = 4, so a + b = 27 + 4 = 31.\n\nChoice 5 is a^(1/3) + sqrt(b) = 3 + 2, found without raising the roots back to powers. Choice 13 comes from squaring both values, a = 3^2 and b = 2^2, as if a^(1/3) were a square root. Choice 17 comes from switching the powers, a = 3^2 = 9 and b = 2^3 = 8.",
+  "solve": "const P=6, Q=1.5; const c=Math.sqrt(P*Q); const r=Math.sqrt(P/Q); return c**3 + r**2;",
+  "distractor_solve": {
+   "5": "const P=6, Q=1.5; return Math.sqrt(P*Q) + Math.sqrt(P/Q);",
+   "13": "const P=6, Q=1.5; return Math.sqrt(P*Q)**2 + Math.sqrt(P/Q)**2;",
+   "17": "const P=6, Q=1.5; return Math.sqrt(P*Q)**2 + Math.sqrt(P/Q)**3;"
+  }
+ },
+ {
+  "id": "SM25V-A07",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic models: height at a given time from the vertex of the model",
+  "difficulty": "medium",
+  "prompt": "A ball is thrown upward from a balcony. Its height above the ground, in feet, t seconds after it is thrown is modeled by h(t) = -16t^2 + bt + c, where b and c are constants. The ball reaches its maximum height of 169 feet when t = 3. What is the height of the ball, in feet, when t = 0.5?",
+  "choices": [
+   "69",
+   "89",
+   "129",
+   "165"
+  ],
+  "correct_answer": "69",
+  "explanation": "The vertex of the graph of h is (3, 169) and the leading coefficient is -16, so h(t) = -16(t - 3)^2 + 169. At t = 0.5, t - 3 = -2.5, so h(0.5) = -16(6.25) + 169 = -100 + 169 = 69 feet.\n\nChoice 89 comes from computing (2.5)^2 as 2(2.5) = 5: 169 - 16(5) = 89. Choice 129 comes from forgetting to square 2.5: 169 - 16(2.5) = 129. Choice 165 comes from substituting t = 0.5 itself instead of its distance from the time of the maximum: 169 - 16(0.5)^2 = 165.",
+  "solve": "const a=-16, m=3, H=169, t=0.5; return a*(t-m)**2 + H;",
+  "distractor_solve": {
+   "89": "const a=-16, m=3, H=169, t=0.5; return a*(2*(m-t)) + H;",
+   "129": "const a=-16, m=3, H=169, t=0.5; return a*(m-t) + H;",
+   "165": "const a=-16, H=169, t=0.5; return a*t*t + H;"
+  }
+ },
+ {
+  "id": "SM25V-D13",
+  "domain": "Advanced Math",
+  "subskill": "Transformations of a tabled even function",
+  "difficulty": "medium",
+  "prompt": "Every real number x satisfies f(-x) = f(x). The table lists f(x) for x = 0 through x = 5.\nx | f(x)\n0 | 5\n1 | 2\n2 | 1\n3 | 6\n4 | 16\n5 | 31\nAnother function is given by g(x) = 2f(x - 1) + 5. Compute g(-3).",
+  "choices": [
+   "-27",
+   "7",
+   "37",
+   "42"
+  ],
+  "correct_answer": "37",
+  "explanation": "By the definition of g, g(-3) = 2f(-3 - 1) + 5 = 2f(-4) + 5. The table does not list x = -4, but f(-x) = f(x), so f(-4) = f(4) = 16. Therefore g(-3) = 2(16) + 5 = 37.\n\nChoice 7 comes from shifting in the wrong direction, using f(-3 + 1) = f(-2) = f(2) = 1, which gives 2(1) + 5. Choice -27 comes from treating f(-4) as -f(4) = -16, which gives 2(-16) + 5. Choice 42 comes from adding 5 before multiplying by 2, which gives 2(16 + 5).",
+  "solve": "const f={0:5,1:2,2:1,3:6,4:16,5:31}; const F=x=>f[Math.abs(x)]; return 2*F(-3-1)+5;",
+  "distractor_solve": {
+   "7": "const f={0:5,1:2,2:1,3:6,4:16,5:31}; const F=x=>f[Math.abs(x)]; return 2*F(-3+1)+5;",
+   "42": "const f={0:5,1:2,2:1,3:6,4:16,5:31}; const F=x=>f[Math.abs(x)]; return 2*(F(-4)+5);",
+   "-27": "const f={0:5,1:2,2:1,3:6,4:16,5:31}; return 2*(-f[4])+5;"
+  }
+ },
+ {
+  "id": "SM25V-A10",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic models: maximum from two equal-height times",
+  "difficulty": "hard",
+  "prompt": "A ball is launched upward from ground level. Its height, in feet, t seconds after launch is modeled by h(t) = -16t^2 + vt, where v is a positive constant. The ball is at a height of 40 feet at two different times, and these two times are 3 seconds apart. What is the maximum height, in feet, that the ball reaches?",
+  "choices": [
+   "76",
+   "88",
+   "112",
+   "184"
+  ],
+  "correct_answer": "76",
+  "explanation": "The graph of h is symmetric about the time of the maximum, so the two times when the height is 40 feet are each 3/2 = 1.5 seconds from that time. Writing h(t) = -16(t - m)^2 + H, where H is the maximum height, gives 40 = -16(1.5)^2 + H = -36 + H, so H = 76 feet. (Check: the solutions of 16t^2 - vt + 40 = 0 differ by 3 when (v/16)^2 - 4(2.5) = 9, so (v/16)^2 = 19; the maximum of -16t^2 + vt is v^2/64 = 256(19)/64 = 76.)\n\nChoice 88 comes from adding 16 times the full 3-second gap without halving or squaring it: 40 + 16(3) = 88. Choice 112 comes from using 32 instead of 16 as the coefficient: 40 + 32(1.5)^2 = 112. Choice 184 comes from using the full 3-second gap instead of half of it: 40 + 16(3)^2 = 184.",
+  "solve": "const H=40, gap=3, a=16; return H + a*(gap/2)**2;",
+  "distractor_solve": {
+   "88": "const H=40, gap=3, a=16; return H + a*gap;",
+   "112": "const H=40, gap=3, a=16; return H + 2*a*(gap/2)**2;",
+   "184": "const H=40, gap=3, a=16; return H + a*gap**2;"
+  }
+ },
+ {
+  "id": "SM25V-A05",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic forms: from vertex and y-intercept to the product of the x-intercepts",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of the quadratic function f has its vertex at (2, -75) and crosses the y-axis at (0, -63). What is the product of the x-coordinates of the x-intercepts of the graph?",
+  "choices": [
+   "-71",
+   "-63",
+   "-25",
+   "-21"
+  ],
+  "correct_answer": "-21",
+  "explanation": "Write f(x) = a(x - 2)^2 - 75. Since f(0) = -63, 4a - 75 = -63, so a = 3. Then f(x) = 3(x - 2)^2 - 75 = 3x^2 - 12x + 12 - 75 = 3x^2 - 12x - 63. The product of the zeros of ax^2 + bx + c is c/a, so the product is -63/3 = -21. (Check: 3(x - 2)^2 = 75 gives x - 2 = 5 or x - 2 = -5, so the x-intercepts are at x = 7 and x = -3, and 7(-3) = -21.)\n\nChoice -71 comes from leaving out the leading coefficient and writing f(x) = (x - 2)^2 - 75 = x^2 - 4x - 71. Choice -63 is the constant term c itself, not divided by a. Choice -25 comes from dividing the vertex's y-coordinate, -75, by a instead of using the constant term.",
+  "solve": "const h=2, k=-75, c=-63; const a=(c-k)/(h*h); return c/a;",
+  "distractor_solve": {
+   "-71": "const h=2, k=-75; return h*h+k;",
+   "-63": "const h=2, k=-75, c=-63; const a=(c-k)/(h*h); return a*h*h+k;",
+   "-25": "const h=2, k=-75, c=-63; const a=(c-k)/(h*h); return k/a;"
+  }
+ },
+ {
+  "id": "SM25V-C14",
+  "domain": "Advanced Math",
+  "subskill": "Remainder theorem applied to an expression built from p(x)",
+  "difficulty": "medium",
+  "prompt": "A polynomial p(x) leaves remainder 7 upon division by x - 2. Which number is the remainder left by [p(x)]^2 + 6x upon division by that same divisor?",
+  "choices": [
+   "26",
+   "37",
+   "55",
+   "61"
+  ],
+  "correct_answer": "61",
+  "explanation": "By the remainder theorem, p(2) = 7. The expression [p(x)]^2 + 6x is also a polynomial, so its remainder on division by x - 2 is its value at x = 2: (7)^2 + 6(2) = 49 + 12 = 61.\n\nChoice 26 comes from doubling the remainder instead of squaring it: 2(7) + 12 = 26. Choice 37 comes from substituting x = -2 in 6x: 49 - 12 = 37. Choice 55 comes from squaring the remainder but adding 6 instead of 6(2): 49 + 6 = 55.",
+  "solve": "const v=7, c=2; return v*v+6*c;",
+  "distractor_solve": {
+   "26": "const v=7, c=2; return 2*v+6*c;",
+   "37": "const v=7, c=2; return v*v+6*(-c);",
+   "55": "const v=7; return v*v+6;"
+  }
+ },
+ {
+  "id": "SM25V-B13",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: factoring a common power from shifted exponents",
+  "difficulty": "medium",
+  "prompt": "Given that 2^(x + 2) - 2^(x - 1) = 126, compute 4^x + 2^x.",
+  "choices": [
+   "812",
+   "1332",
+   "1806",
+   "4032"
+  ],
+  "correct_answer": "1332",
+  "explanation": "Write each term as a multiple of 2^x: 2^(x + 2) = 4(2^x) and 2^(x - 1) = (1/2)(2^x). The equation becomes (4 - 1/2)(2^x) = 126, so (7/2)(2^x) = 126 and 2^x = 36. Then 4^x = (2^x)^2 = 36^2 = 1296, and 4^x + 2^x = 1296 + 36 = 1332.\n\nChoice 812 comes from factoring with the wrong sign, (4 + 1/2)(2^x) = 126, which gives 2^x = 28 and 4^x + 2^x = 784 + 28 = 812. Choice 1806 comes from treating 2^(x - 1) as 2^x, so (4 - 1)(2^x) = 126, 2^x = 42, and 4^x + 2^x = 1764 + 42 = 1806. Choice 4032 comes from treating 2^(x - 1) as 2(2^x), so (4 - 2)(2^x) = 126, 2^x = 63, and 4^x + 2^x = 3969 + 63 = 4032.",
+  "solve": "const c=126; const t=c/(2**2 - 2**-1); return t*t + t;",
+  "distractor_solve": {
+   "812": "const c=126; const t=c/(2**2 + 2**-1); return t*t + t;",
+   "1806": "const c=126; const t=c/(2**2 - 1); return t*t + t;",
+   "4032": "const c=126; const t=c/(2**2 - 2); return t*t + t;"
+  }
+ },
+ {
+  "id": "SM25V-B05",
+  "domain": "Advanced Math",
+  "subskill": "Exponential decay: two doses decaying from different start times",
+  "difficulty": "medium",
+  "prompt": "Each hour, a patient's body eliminates 12% of the amount of a medication in the bloodstream at the start of that hour. The patient receives a 300-milligram dose at 8:00 a.m. and a 500-milligram dose at 10:00 a.m. No medication is in the bloodstream before 8:00 a.m. To the nearest tenth of a milligram, how many milligrams of the medication are in the bloodstream at 1:00 p.m.?",
+  "choices": [
+   "340.7",
+   "422.2",
+   "468.3",
+   "499.1"
+  ],
+  "correct_answer": "499.1",
+  "explanation": "Each hour the amount is multiplied by 1 - 0.12 = 0.88, and each dose decays for the time since it was given. The 300-milligram dose has decayed for 5 hours: 300(0.88)^5 = 158.32. The 500-milligram dose has decayed for 3 hours: 500(0.88)^3 = 340.74. The total at 1:00 p.m. is 158.32 + 340.74 = 499.06, or 499.1 milligrams to the nearest tenth.\n\nChoice 340.7 counts only the 500-milligram dose and leaves out what remains of the first dose. Choice 422.2 treats all 800 milligrams as if they had been given at 8:00 a.m., 800(0.88)^5. Choice 468.3 switches the two decay times, decaying the 300-milligram dose for 3 hours and the 500-milligram dose for 5 hours.",
+  "solve": "const f=1-0.12; const v=300*f**5 + 500*f**3; return Math.round(v*10)/10;",
+  "distractor_solve": {
+   "340.7": "const f=1-0.12; return Math.round(500*f**3*10)/10;",
+   "422.2": "const f=1-0.12; return Math.round((300+500)*f**5*10)/10;",
+   "468.3": "const f=1-0.12; return Math.round((300*f**3 + 500*f**5)*10)/10;"
+  }
+ },
+ {
+  "id": "SM25V-B01",
+  "domain": "Advanced Math",
+  "subskill": "Exponential function: growth factor recovered from an average rate of change",
+  "difficulty": "medium",
+  "prompt": "An exponential function g satisfies g(x) = a(b)^x for positive constants a and b, with g(0) = 4. Over the interval from x = 0 to x = 2, the average rate of change of g is 10. Over the next interval, from x = 2 to x = 4, what is the average rate of change of g?",
+  "choices": [
+   "35",
+   "40",
+   "60",
+   "72"
+  ],
+  "correct_answer": "60",
+  "explanation": "Since the average rate of change from x = 0 to x = 2 is 10, g(2) - g(0) = 2(10) = 20, so g(2) = 4 + 20 = 24. Over each 2-unit interval g is multiplied by b^2 = g(2)/g(0) = 24/4 = 6, so g(4) = 24(6) = 144. The average rate of change from x = 2 to x = 4 is (144 - 24)/(4 - 2) = 120/2 = 60.\n\nChoice 35 is the average rate of change from x = 0 to x = 4, (144 - 4)/4, instead of from x = 2 to x = 4. Choice 40 comes from taking g(2) = 20, the change itself, instead of 4 + 20; that gives a factor of 5, g(4) = 100, and (100 - 20)/2 = 40. Choice 72 comes from dividing g(4) = 144 by 2 without subtracting g(2).",
+  "solve": "const g0=4, r=10; const g2=g0+2*r; const q=g2/g0; const g4=g2*q; return (g4-g2)/2;",
+  "distractor_solve": {
+   "35": "const g0=4, r=10; const g2=g0+2*r; const g4=g2*(g2/g0); return (g4-g0)/4;",
+   "40": "const g0=4, r=10; const g2=2*r; const g4=g2*(g2/g0); return (g4-g2)/2;",
+   "72": "const g0=4, r=10; const g2=g0+2*r; const g4=g2*(g2/g0); return g4/2;"
+  }
+ },
+ {
+  "id": "SM25V-D12",
+  "domain": "Advanced Math",
+  "subskill": "Inverse of an exponential function: points on the graph of the inverse",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = 2^(x - 2) + 3, and let f^-1 denote its inverse. Two points on the graph of y = f^-1(x) in the xy-plane are (35, a) and (b, 5). Compute the product ab.",
+  "choices": [
+   "21",
+   "55",
+   "77",
+   "245"
+  ],
+  "correct_answer": "77",
+  "explanation": "A point (s, t) is on the graph of y = f^-1(x) exactly when (t, s) is on the graph of y = f(x). For (35, a): f(a) = 35, so 2^(a - 2) + 3 = 35, 2^(a - 2) = 32 = 2^5, and a - 2 = 5, so a = 7. For (b, 5): b = f(5) = 2^3 + 3 = 11. Therefore ab = 7(11) = 77.\n\nChoice 55 comes from stopping at a - 2 = 5 and using a = 5. Choice 21 comes from treating the second point as if it were on the graph of f instead of its inverse, solving f(b) = 5 to get 2^(b - 2) = 2 and b = 3. Choice 245 comes from evaluating f(5) as 2^5 + 3 = 35, leaving out the - 2 in the exponent.",
+  "solve": "const a=Math.log2(35-3)+2; const b=2**(5-2)+3; return a*b;",
+  "distractor_solve": {
+   "21": "const a=Math.log2(35-3)+2; const b=Math.log2(5-3)+2; return a*b;",
+   "55": "const a=Math.log2(35-3); const b=2**(5-2)+3; return a*b;",
+   "245": "const a=Math.log2(35-3)+2; const b=2**5+3; return a*b;"
+  }
+ },
+ {
+  "id": "SM25V-D11",
+  "domain": "Advanced Math",
+  "subskill": "Function notation: evaluating a function at an expression built from its own solutions",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = x^2 + x - 7. Exactly two inputs give an output of 13; call the larger input p and the smaller input q. Compute f(p - q).",
+  "choices": [
+   "-7",
+   "-5",
+   "65",
+   "83"
+  ],
+  "correct_answer": "83",
+  "explanation": "Setting f(x) = 13 gives x^2 + x - 20 = 0, or (x + 5)(x - 4) = 0, so p = 4 and q = -5. Then p - q = 4 - (-5) = 9, and f(9) = 81 + 9 - 7 = 83.\n\nChoice 65 comes from subtracting in the wrong order, q - p = -9, and finding f(-9) = 81 - 9 - 7. Choice -5 comes from subtracting the sizes of the solutions, 5 - 4 = 1, instead of the solutions themselves, and finding f(1). Choice -7 comes from adding the solutions instead of subtracting them, p + q = -1, and finding f(-1).",
+  "solve": "const r=Math.sqrt(1+80); const p=(-1+r)/2, q=(-1-r)/2; const f=x=>x*x+x-7; return f(p-q);",
+  "distractor_solve": {
+   "65": "const r=Math.sqrt(1+80); const p=(-1+r)/2, q=(-1-r)/2; const f=x=>x*x+x-7; return f(q-p);",
+   "-5": "const r=Math.sqrt(1+80); const p=(-1+r)/2, q=(-1-r)/2; const f=x=>x*x+x-7; return f(Math.abs(q)-Math.abs(p));",
+   "-7": "const r=Math.sqrt(1+80); const p=(-1+r)/2, q=(-1-r)/2; const f=x=>x*x+x-7; return f(p+q);"
+  }
+ },
+ {
+  "id": "SM25V-B11",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: half exponent and its reciprocal from a given power",
+  "difficulty": "medium",
+  "prompt": "Suppose 3^x = 49. Evaluate the sum 3^(x/2) + 3^(-x/2), giving your answer to two decimal places.",
+  "choices": [
+   "7.14",
+   "24.54",
+   "49.02",
+   "49.14"
+  ],
+  "correct_answer": "7.14",
+  "explanation": "Since 3^(x/2) = (3^x)^(1/2) = sqrt(49) = 7, and 3^(-x/2) = 1/3^(x/2) = 1/7, the sum is 7 + 1/7 = 7.142..., or 7.14 to the nearest hundredth.\n\nChoice 49.02 comes from not halving the exponent: 3^x + 3^(-x) = 49 + 1/49. Choice 24.54 comes from halving 49 instead of taking its square root: 24.5 + 1/24.5. Choice 49.14 comes from finding 3^(-x/2) = 1/7 correctly but taking 3^(x/2) to be 49.",
+  "solve": "const v=49; const h=Math.sqrt(v); return Math.round((h + 1/h)*100)/100;",
+  "distractor_solve": {
+   "24.54": "const v=49; const h=v/2; return Math.round((h + 1/h)*100)/100;",
+   "49.02": "const v=49; return Math.round((v + 1/v)*100)/100;",
+   "49.14": "const v=49; const h=Math.sqrt(v); return Math.round((v + 1/h)*100)/100;"
+  }
+ },
+ {
+  "id": "SM25V-C15",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial operations: the constant term of a product is the product of the factors' values at 0",
+  "difficulty": "medium",
+  "prompt": "Let p(x) = x^2 + 4x - 7. Multiply p(x) by p(x + 3) and expand completely. Which number is the constant term of the result?",
+  "choices": [
+   "-98",
+   "-42",
+   "49",
+   "70"
+  ],
+  "correct_answer": "-98",
+  "explanation": "The constant term of any polynomial is its value at x = 0. So the constant term of p(x)p(x + 3) is p(0)p(0 + 3) = p(0)p(3). Since p(0) = -7 and p(3) = 9 + 12 - 7 = 14, the constant term is (-7)(14) = -98.\n\nChoice -42 comes from computing p(3) as 9 + 4 - 7 = 6, multiplying 4 by 1 instead of by 3, and then (-7)(6) = -42. Choice 49 comes from using the constant term -7 for both factors, as if p(x + 3) had the same constant term as p(x): (-7)(-7) = 49. Choice 70 comes from shifting the wrong way and using p(-3) = 9 - 12 - 7 = -10: (-7)(-10) = 70.",
+  "solve": "const mul=(a,b)=>{const r=Array(a.length+b.length-1).fill(0);a.forEach((x,i)=>b.forEach((y,j)=>{r[i+j]+=x*y}));return r}; const p=[-7,4,1]; const q=[9+12-7, 6+4, 1]; return mul(p,q)[0];",
+  "distractor_solve": {
+   "49": "const p=x=>x*x+4*x-7; return p(0)*p(0);",
+   "70": "const p=x=>x*x+4*x-7; return p(0)*p(-3);",
+   "-42": "const p=x=>x*x+4*x-7; const p3wrong=9+4-7; return p(0)*p3wrong;"
+  }
+ },
+ {
+  "id": "SM25V-D02",
+  "domain": "Advanced Math",
+  "subskill": "Composition: equation f(g(x)) = c with f given by a table and g quadratic",
+  "difficulty": "hard",
+  "prompt": "The table gives selected values of the function f. For every value of x not shown in the table, f(x) is not equal to 4.\nx | f(x)\n-57 | 4\n-49 | 4\n-24 | 4\n0 | 9\n15 | 4\n20 | -3\nThe function g is defined by g(x) = x^2 - 14x. What is the sum of all distinct real solutions to the equation f(g(x)) = 4?",
+  "choices": [
+   "-115",
+   "28",
+   "35",
+   "49"
+  ],
+  "correct_answer": "35",
+  "explanation": "f(g(x)) = 4 exactly when g(x) is an input at which f equals 4, so g(x) = -57, -49, -24, or 15. Since g(x) = x^2 - 14x = (x - 7)^2 - 49, the least value of g is -49. The equation x^2 - 14x = -57 has no real solutions, because -57 is below the minimum. The equation x^2 - 14x = -49 gives (x - 7)^2 = 0, so x = 7. The equation x^2 - 14x + 24 = 0 gives (x - 2)(x - 12) = 0, so x = 2 or x = 12. The equation x^2 - 14x - 15 = 0 gives (x - 15)(x + 1) = 0, so x = 15 or x = -1. The distinct solutions are -1, 2, 7, 12, and 15, and their sum is 35.\n\nChoice 49 comes from adding 14, the sum of the roots of x^2 - 14x + 57 = 0, even though that equation has no real solutions. Choice 28 comes from leaving out the case g(x) = -49, whose single solution is x = 7. Choice -115 comes from solving f(x) = 4 instead of f(g(x)) = 4 and adding the inputs -57, -49, -24, and 15.",
+  "solve": "const cs=[-57,-49,-24,15]; const sols=new Set(); for(const c of cs){ const D=196+4*c; if(D<0) continue; const r=Math.sqrt(D); sols.add((14+r)/2); sols.add((14-r)/2);} return [...sols].reduce((a,b)=>a+b,0);",
+  "distractor_solve": {
+   "28": "const cs=[-57,-24,15]; let s=0; for(const c of cs){ const D=196+4*c; if(D<0) continue; s+=14;} return s;",
+   "49": "const cs=[-57,-49,-24,15]; const sols=new Set(); for(const c of cs){ const D=196+4*c; if(D<0) continue; const r=Math.sqrt(D); sols.add((14+r)/2); sols.add((14-r)/2);} return [...sols].reduce((a,b)=>a+b,0)+14;",
+   "-115": "return [-57,-49,-24,15].reduce((a,b)=>a+b,0);"
+  }
+ },
+ {
+  "id": "SM25V-D10",
+  "domain": "Advanced Math",
+  "subskill": "Composition: where a self-composition of a rational function is undefined",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (5x + 10)/(x - 4). The expression f(f(x)) is undefined for exactly two values of x. What is the product of these two values?",
+  "choices": [
+   "-104",
+   "-56",
+   "-26",
+   "-8"
+  ],
+  "correct_answer": "-104",
+  "explanation": "f(f(x)) is undefined when the inner f(x) is undefined, which happens at x = 4, and when the output f(x) is a value that the outer f cannot accept, which happens when f(x) = 4. Solving (5x + 10)/(x - 4) = 4 gives 5x + 10 = 4x - 16, so x = -26. The two values are 4 and -26, and their product is -104.\n\nChoice -26 comes from finding only the value where f(x) = 4 and forgetting that f(x) itself is undefined at x = 4. Choice -56 comes from multiplying only the x by 4 when clearing the fraction, writing 5x + 10 = 4x - 4, which gives x = -14 and the product 4(-14). Choice -8 comes from solving f(x) = 0 instead of f(x) = 4, which gives x = -2, and multiplying by 4.",
+  "solve": "const a=5,b=10,c=4; const x2=(-c*c-b)/(a-c); return c*x2;",
+  "distractor_solve": {
+   "-26": "const a=5,b=10,c=4; return (-c*c-b)/(a-c);",
+   "-56": "const a=5,b=10,c=4; const x=(-c-b)/(a-c); return c*x;",
+   "-8": "const a=5,b=10,c=4; return c*(-b/a);"
+  }
+ },
+ {
+  "id": "SM25V-C12",
+  "domain": "Advanced Math",
+  "subskill": "Rational functions: the end-behavior value fixes a coefficient, then the function is evaluated",
+  "difficulty": "medium",
+  "prompt": "For a constant a, the function f(x) = (ax^2 + 2x - 31)/(2x^2 - 17) gets closer and closer to 3 as x grows without bound. Find f(3).",
+  "choices": [
+   "-11.5",
+   "2",
+   "17",
+   "29"
+  ],
+  "correct_answer": "29",
+  "explanation": "For large x, f(x) behaves like the ratio of the leading terms, ax^2/(2x^2) = a/2. So a/2 = 3 and a = 6. Then f(3) = (6(9) + 2(3) - 31)/(2(9) - 17) = (54 + 6 - 31)/1 = 29.\n\nChoice 2 comes from taking a = 3, the limiting value itself, as the leading coefficient: (27 + 6 - 31)/1 = 2. Choice -11.5 comes from dividing 3 by 2 to get a = 1.5: (13.5 + 6 - 31)/1 = -11.5. Choice 17 comes from using a = 6 but evaluating at x = -3: (54 - 6 - 31)/1 = 17.",
+  "solve": "const a=3*2; const f=x=>(a*x*x+2*x-31)/(2*x*x-17); return f(3);",
+  "distractor_solve": {
+   "2": "const a=3; const f=x=>(a*x*x+2*x-31)/(2*x*x-17); return f(3);",
+   "17": "const a=3*2; const f=x=>(a*x*x+2*x-31)/(2*x*x-17); return f(-3);",
+   "-11.5": "const a=3/2; const f=x=>(a*x*x+2*x-31)/(2*x*x-17); return f(3);"
+  }
+ },
+ {
+  "id": "SM25V-C03",
+  "domain": "Advanced Math",
+  "subskill": "Zeros and multiplicity: reading which x-intercepts are crossings from the parity of each factor's power",
+  "difficulty": "medium",
+  "prompt": "The polynomial p is defined by p(x) = (x - 3)^2(x + 1)^3(x - 6)^4(2x + 5). In the xy-plane, the graph of y = p(x) crosses the x-axis at some of its x-intercepts and touches the x-axis without crossing it at the others. What is the sum of the x-coordinates of the x-intercepts at which the graph crosses the x-axis?",
+  "choices": [
+   "-3.5",
+   "-2.5",
+   "1.5",
+   "9"
+  ],
+  "correct_answer": "-3.5",
+  "explanation": "A graph crosses the x-axis at a zero whose multiplicity is odd and touches without crossing at a zero whose multiplicity is even. The zeros are x = 3 (multiplicity 2, touches), x = -1 (multiplicity 3, crosses), x = 6 (multiplicity 4, touches), and x = -2.5 from 2x + 5 = 0 (multiplicity 1, crosses). The sum of the crossing x-coordinates is -1 + (-2.5) = -3.5.\n\nChoice -2.5 comes from treating only a multiplicity of 1 as a crossing, which leaves out x = -1 even though its multiplicity 3 is odd. Choice 1.5 comes from taking the zero of 2x + 5 as 2.5 instead of -2.5. Choice 9 is the sum of the touching points, 3 + 6, which mixes up crossing and touching.",
+  "solve": "const z=[[3,2],[-1,3],[6,4],[-5/2,1]]; return z.filter(([r,m])=>m%2===1).reduce((s,[r])=>s+r,0);",
+  "distractor_solve": {
+   "9": "const z=[[3,2],[-1,3],[6,4],[-5/2,1]]; return z.filter(([r,m])=>m%2===0).reduce((s,[r])=>s+r,0);",
+   "-2.5": "const z=[[3,2],[-1,3],[6,4],[-5/2,1]]; return z.filter(([r,m])=>m===1).reduce((s,[r])=>s+r,0);",
+   "1.5": "const z=[[3,2],[-1,3],[6,4],[5/2,1]]; return z.filter(([r,m])=>m%2===1).reduce((s,[r])=>s+r,0);"
+  }
+ },
+ {
+  "id": "SM25V-B12",
+  "domain": "Advanced Math",
+  "subskill": "Radical equations with two radicals: a solution lost by dividing by a radical",
+  "difficulty": "hard",
+  "prompt": "The equation sqrt(2x + 8) - sqrt(x + 2) = 2 involves two square roots. Find the sum of every real number x that makes it true.",
+  "choices": [
+   "-28",
+   "0",
+   "12",
+   "14"
+  ],
+  "correct_answer": "12",
+  "explanation": "Isolate one radical: sqrt(2x + 8) = 2 + sqrt(x + 2). Squaring gives 2x + 8 = 4 + 4sqrt(x + 2) + x + 2, which simplifies to x + 2 = 4sqrt(x + 2). Let u = sqrt(x + 2), so u^2 = 4u and u(u - 4) = 0. So u = 0 or u = 4, giving x = -2 or x = 14. Both check in the original equation: sqrt(4) - sqrt(0) = 2 and sqrt(36) - sqrt(16) = 6 - 4 = 2. The sum of the solutions is -2 + 14 = 12.\n\nChoice 14 comes from dividing both sides of x + 2 = 4sqrt(x + 2) by sqrt(x + 2), which loses the solution x = -2. Choice 0 comes from dropping the radical in x + 2 = 4sqrt(x + 2), as if x + 2 = 4, which gives x = 2 in place of x = 14; then -2 + 2 = 0. Choice -28 is the product of the two solutions, (-2)(14), not their sum.",
+  "solve": "const c=2, d=2; const u=[0, 2*d]; const xs=u.map(v=>v*v-c).filter(x=>Math.abs(Math.sqrt(2*x+8)-Math.sqrt(x+c)-d)<1e-9); return xs.reduce((s,x)=>s+x,0);",
+  "distractor_solve": {
+   "0": "const c=2, d=2; return (0 - c) + (2*d - c);",
+   "14": "const c=2, d=2; const u=2*d; return u*u - c;",
+   "-28": "const c=2, d=2; const xs=[0, 2*d].map(v=>v*v-c); return xs[0]*xs[1];"
+  }
+ },
+ {
+  "id": "SM25V-D03",
+  "domain": "Advanced Math",
+  "subskill": "Nonlinear systems: a parabola and an absolute-value graph",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the parabola y = (x - 7)^2 - 20 crosses the V-shaped graph of y = |x - 7| at exactly two points. Find the product of the x-coordinates of those crossing points.",
+  "choices": [
+   "24",
+   "33",
+   "36",
+   "792"
+  ],
+  "correct_answer": "24",
+  "explanation": "Let u = x - 7. Then u^2 - 20 = |u|. Since u^2 = |u|^2, this is |u|^2 - |u| - 20 = 0, so (|u| - 5)(|u| + 4) = 0. Because |u| cannot be negative, |u| = 5, so u = 5 or u = -5. The x-coordinates are 7 + 5 = 12 and 7 - 5 = 2, and their product is 24.\n\nChoice 36 comes from replacing |x - 7| with x - 7 for every x, which gives u^2 - u - 20 = 0, u = 5 or u = -4, and x-coordinates 12 and 3. Choice 33 comes from factoring |u|^2 - |u| - 20 with the wrong signs, which gives |u| = 4 and x-coordinates 11 and 3. Choice 792 comes from solving both cases u^2 - u - 20 = 0 and u^2 + u - 20 = 0 without rejecting the roots that break each case's condition, which gives four x-coordinates, 12, 3, 2, and 11, and multiplying all of them.",
+  "solve": "const r=(1+Math.sqrt(1+80))/2; return (7+r)*(7-r);",
+  "distractor_solve": {
+   "33": "const r=(-1+Math.sqrt(1+80))/2; return (7+r)*(7-r);",
+   "36": "const D=Math.sqrt(1+80); const u1=(1+D)/2, u2=(1-D)/2; return (7+u1)*(7+u2);",
+   "792": "const D=Math.sqrt(81); const us=[(1+D)/2,(1-D)/2,(-1+D)/2,(-1-D)/2]; return us.reduce((p,u)=>p*(7+u),1);"
+  }
+ },
+ {
+  "id": "SM25V-C05",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial operations: the product p(x)p(-x) as a difference of squares, then its value at x = 2",
+  "difficulty": "medium",
+  "prompt": "Let p(x) = x^2 + kx - 3 for some constant k. Multiplying p(x) by p(-x) and expanding gives a quartic whose x^2 coefficient is -10. Find the product p(2)p(-2).",
+  "choices": [
+   "-63",
+   "-33",
+   "-15",
+   "25"
+  ],
+  "correct_answer": "-15",
+  "explanation": "p(-x) = x^2 - kx - 3, so p(x)p(-x) = [(x^2 - 3) + kx][(x^2 - 3) - kx] = (x^2 - 3)^2 - k^2x^2 = x^4 - (6 + k^2)x^2 + 9. The coefficient of x^2 is -(6 + k^2) = -10, so k^2 = 4. The product p(2)p(-2) is this polynomial evaluated at x = 2: 2^4 - 10(2^2) + 9 = 16 - 40 + 9 = -15. (Either k = 2 or k = -2 gives the same value.)\n\nChoice -63 comes from taking k = 4 instead of k^2 = 4, which gives (1 + 8)(1 - 8) = -63. Choice -33 comes from writing the constant term of the expanded product as -9 instead of (-3)^2 = 9: 16 - 40 - 9 = -33. Choice 25 comes from evaluating p(-2) as if it were p(2), which squares p(2) = 5 for k = 2.",
+  "solve": "const k2=-10*-1-6; const k=Math.sqrt(k2); const p=x=>x*x+k*x-3; return p(2)*p(-2);",
+  "distractor_solve": {
+   "25": "const k=Math.sqrt(-10*-1-6); const p=x=>x*x+k*x-3; return p(2)*p(2);",
+   "-63": "const kWrong=-10*-1-6; const p=x=>x*x+kWrong*x-3; return p(2)*p(-2);",
+   "-33": "const k2=-10*-1-6; const x=2; return x**4-(6+k2)*x**2-9;"
+  }
+ },
+ {
+  "id": "SM25V-B09",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: exponents fixed by product and power rules, then a sum of cubes",
+  "difficulty": "medium",
+  "prompt": "Two positive exponents a and b make both identities (x^a)(x^b) = x^10 and (x^a)^b = x^21 true for every positive x. Compute a^3 + b^3.",
+  "choices": [
+   "100",
+   "160",
+   "316",
+   "370"
+  ],
+  "correct_answer": "370",
+  "explanation": "By the product rule, (x^a)(x^b) = x^(a + b), so a + b = 10. By the power rule, (x^a)^b = x^(ab), so ab = 21. The positive numbers with sum 10 and product 21 are 3 and 7. Therefore a^3 + b^3 = 27 + 343 = 370. (Equivalently, a^3 + b^3 = (a + b)^3 - 3ab(a + b) = 1000 - 630 = 370.)\n\nChoice 100 comes from squaring the sum a + b = 10 instead of cubing a and b. Choice 160 comes from factoring a^3 + b^3 = (a + b)(a^2 - ab + b^2) but replacing a^2 - ab + b^2 with (a - b)^2 = 16, giving 10(16). Choice 316 is 7^3 - 3^3 = 343 - 27, a difference of the cubes instead of their sum.",
+  "solve": "const s=10, p=21; return s**3 - 3*p*s;",
+  "distractor_solve": {
+   "100": "const s=10; return s**2;",
+   "160": "const s=10, p=21; return s*(s*s - 4*p);",
+   "316": "const s=10, p=21; const d=Math.sqrt(s*s-4*p); const a=(s-d)/2, b=(s+d)/2; return b**3 - a**3;"
+  }
+ },
+ {
+  "id": "SM25V-A13",
+  "domain": "Advanced Math",
+  "subskill": "Axis of symmetry: two parabolas sharing a line of symmetry",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = x^2 + bx + 10 and g(x) = 2x^2 - 16x + 5, where b is a constant. In the xy-plane, the graphs of y = f(x) and y = g(x) have the same line of symmetry. What is the distance between the vertices of the two graphs?",
+  "choices": [
+   "21",
+   "33",
+   "53",
+   "85"
+  ],
+  "correct_answer": "21",
+  "explanation": "The line of symmetry of the graph of g is x = -(-16)/(2 * 2) = 4, with vertex g(4) = 2(16) - 16(4) + 5 = 32 - 64 + 5 = -27. The graph of f has the same line of symmetry, so -b/2 = 4 and b = -8; its vertex is at f(4) = 16 - 32 + 10 = -6. Both vertices lie on the line x = 4, so the distance between them is -6 - (-27) = 21.\n\nChoice 85 comes from a sign slip in matching the axes, taking b = 8, which gives f(4) = 16 + 32 + 10 = 58 and a distance of 58 - (-27) = 85. Choice 33 comes from adding the distances of the two vertices from the x-axis, 6 + 27, although both vertices are below the x-axis. Choice 53 comes from leaving the leading coefficient 2 out of the vertex value of g, which gives 5 - (-16)^2/4 = -59 and a distance of 59 - 6 = 53.",
+  "solve": "const ag=2, bg=-16, cg=5, cf=10; const h=-bg/(2*ag); const b=-2*h; const vf=h*h+b*h+cf, vg=ag*h*h+bg*h+cg; return Math.abs(vf-vg);",
+  "distractor_solve": {
+   "33": "const ag=2, bg=-16, cg=5, cf=10; const h=-bg/(2*ag); const b=-2*h; const vf=h*h+b*h+cf, vg=ag*h*h+bg*h+cg; return Math.abs(vf)+Math.abs(vg);",
+   "53": "const ag=2, bg=-16, cg=5, cf=10; const h=-bg/(2*ag); const b=-2*h; const vf=h*h+b*h+cf; const vg=cg-bg*bg/4; return Math.abs(vf-vg);",
+   "85": "const ag=2, bg=-16, cg=5, cf=10; const h=-bg/(2*ag); const b=2*h; const vf=h*h+b*h+cf, vg=ag*h*h+bg*h+cg; return Math.abs(vf-vg);"
+  }
+ }
+]

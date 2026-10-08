@@ -1,0 +1,128 @@
+[
+ {
+  "id": "SM25V-C14",
+  "domain": "Advanced Math",
+  "subskill": "Remainder theorem applied to an expression built from p(x)",
+  "difficulty": "medium",
+  "prompt": "A polynomial p(x) leaves remainder 7 upon division by x - 2. Which number is the remainder left by [p(x)]^2 + 6x upon division by that same divisor?",
+  "choices": [
+   "26",
+   "37",
+   "55",
+   "61"
+  ],
+  "correct_answer": "61",
+  "explanation": "By the remainder theorem, p(2) = 7. The expression [p(x)]^2 + 6x is also a polynomial, so its remainder on division by x - 2 is its value at x = 2: (7)^2 + 6(2) = 49 + 12 = 61.\n\nChoice 26 comes from doubling the remainder instead of squaring it: 2(7) + 12 = 26. Choice 37 comes from substituting x = -2 in 6x: 49 - 12 = 37. Choice 55 comes from squaring the remainder but adding 6 instead of 6(2): 49 + 6 = 55.",
+  "mechanism": [
+   "remainder theorem gives p at the divisor's zero",
+   "the remainder of a polynomial expression in p is that expression at the same input",
+   "square the remainder and add the evaluated linear term"
+  ],
+  "quantity_asked": "the remainder when [p(x)]^2 + 6x is divided by x - 2",
+  "ask_type": "remainder of a composite polynomial expression",
+  "plugback_check": "substitution impossible: p(x) is never printed and the option is a remainder, not an input; no option can be checked by substitution",
+  "shape_check": "the stem hands over p(2) = 7, so the remainder is 49 plus a positive term 6(2); squares are nonnegative, so the remainder is positive and exceeds 49 once 7^2 is taken: 55 and 61 survive, and all four options are positive",
+  "solve": "const v=7, c=2; return v*v+6*c;",
+  "distractor_solve": {
+   "26": "const v=7, c=2; return 2*v+6*c;",
+   "37": "const v=7, c=2; return v*v+6*(-c);",
+   "55": "const v=7; return v*v+6;"
+  },
+  "distractor_meta": {
+   "26": {
+    "error_kind": "doubled instead of squared",
+    "direction": "under"
+   },
+   "37": {
+    "error_kind": "used the opposite zero in the linear term",
+    "direction": "under"
+   },
+   "55": {
+    "error_kind": "did not evaluate the linear term",
+    "direction": "under"
+   }
+  },
+  "cheap_bound_check": "L key 61. The cheapest bound is 'the remainder exceeds 7^2 = 49 because 6x adds a positive amount at x = 2'; that leaves 55 and 61, and 55 lies on the key's side of the bound, so it does not isolate the largest option.",
+  "interior_parity_check": "interior options 37 and 55: both two-digit odd integers, complexity 2 each",
+  "arith_class_check": "37, 55 and 61 are odd and 26 is even; the key shares parity with two distractors; no class singles it out",
+  "dup_search": {
+   "searches": [
+    "[p(x)]|p(x)^2|(p(x))^2",
+    "remainder",
+    "quotient & remainder"
+   ],
+   "hits": 76,
+   "nearest": "the live remainder items (v14 6b810624, sat-adv-v11 148680d8, SADV3-01) evaluate a printed polynomial or fix a coefficient; none applies the remainder theorem to a new polynomial built from an unprinted p(x)"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "the 49 bound leaves two options; the three slips are distinct (double vs square, wrong zero, unevaluated linear term)"
+  },
+  "bounds": [
+   "remainder > 49"
+  ]
+ },
+ {
+  "id": "SM25V-C15",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial operations: the constant term of a product is the product of the factors' values at 0",
+  "difficulty": "medium",
+  "prompt": "Let p(x) = x^2 + 4x - 7. Multiply p(x) by p(x + 3) and expand completely. Which number is the constant term of the result?",
+  "choices": [
+   "-98",
+   "-42",
+   "49",
+   "70"
+  ],
+  "correct_answer": "-98",
+  "explanation": "The constant term of any polynomial is its value at x = 0. So the constant term of p(x)p(x + 3) is p(0)p(0 + 3) = p(0)p(3). Since p(0) = -7 and p(3) = 9 + 12 - 7 = 14, the constant term is (-7)(14) = -98.\n\nChoice -42 comes from computing p(3) as 9 + 4 - 7 = 6, multiplying 4 by 1 instead of by 3, and then (-7)(6) = -42. Choice 49 comes from using the constant term -7 for both factors, as if p(x + 3) had the same constant term as p(x): (-7)(-7) = 49. Choice 70 comes from shifting the wrong way and using p(-3) = 9 - 12 - 7 = -10: (-7)(-10) = 70.",
+  "mechanism": [
+   "constant term equals the value at zero",
+   "shifted polynomial evaluated at zero is the original at the shift",
+   "multiply the two constant terms"
+  ],
+  "quantity_asked": "the constant term of p(x)p(x + 3)",
+  "ask_type": "coefficient of an expanded product",
+  "plugback_check": "substitution impossible: the constant term is not an input to any printed equation",
+  "shape_check": "the stem hands over p(0) = -6 visibly; the sign of p(3) is not handed over. No option violates a stated property; all four survive",
+  "solve": "const mul=(a,b)=>{const r=Array(a.length+b.length-1).fill(0);a.forEach((x,i)=>b.forEach((y,j)=>{r[i+j]+=x*y}));return r}; const p=[-7,4,1]; const q=[9+12-7, 6+4, 1]; return mul(p,q)[0];",
+  "distractor_solve": {
+   "49": "const p=x=>x*x+4*x-7; return p(0)*p(0);",
+   "70": "const p=x=>x*x+4*x-7; return p(0)*p(-3);",
+   "-42": "const p=x=>x*x+4*x-7; const p3wrong=9+4-7; return p(0)*p3wrong;"
+  },
+  "distractor_meta": {
+   "49": {
+    "error_kind": "ignored the shift in the second factor",
+    "direction": "over"
+   },
+   "70": {
+    "error_kind": "shifted the wrong way",
+    "direction": "over"
+   },
+   "-42": {
+    "error_kind": "did not multiply the linear coefficient by the input",
+    "direction": "over"
+   }
+  },
+  "cheap_bound_check": "S key -98. The cheapest bound is the sign: p(0) = -7 is negative, so the constant term is negative whenever p(3) is positive; that leaves -98 and -42, and -42 lies on the key's side, so the sign does not isolate the smallest option.",
+  "interior_parity_check": "interior options -42 and 49: both two-digit integers, complexity 2 each",
+  "arith_class_check": "all four are multiples of 7; -98, -42 and 70 are even and 49 is odd; two negative and two positive; no class singles out the key",
+  "dup_search": {
+   "searches": [
+    "constant term",
+    "product & shift|p(x + d)",
+    "coefficient"
+   ],
+   "hits": 12,
+   "nearest": "SM24V-A01 reads the constant term of an expanded vertex form; ACT f13a9c3e reads a constant after an x-term condition. Neither evaluates a product with a shifted factor at zero"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "medium by two steps (constant term = value at 0, then evaluate both factors); full expansion also works but is longer"
+  },
+  "bounds": [
+   "p(0) = -7"
+  ]
+ }
+]
