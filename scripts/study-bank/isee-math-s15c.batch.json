@@ -1,0 +1,761 @@
+[
+ {
+  "id": "IM15C-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distributing a negative coefficient across a binomial and combining like terms",
+  "difficulty": "easy",
+  "prompt": "Which expression is equivalent to 3(2x - 5) - 4(x - 2)?",
+  "choices": [
+   "2x - 23",
+   "10x - 7",
+   "2x - 7",
+   "10x - 23"
+  ],
+  "correct_answer": "2x - 7",
+  "explanation": "Distribute both coefficients: 3(2x - 5) = 6x - 15 and -4(x - 2) = -4x + 8. Combining, 6x - 4x = 2x and -15 + 8 = -7, so the expression equals 2x - 7. The option \"2x - 23\" multiplies -4 by -2 to get -8 instead of +8. The option \"10x - 7\" multiplies -4 by x to get +4x instead of -4x. The option \"10x - 23\" makes both sign errors.",
+  "solve": "const f=x=>3*(2*x-5)-4*(x-2);const a=f(1)-f(0),b=f(0);return a+'x - '+(-b);",
+  "distractor_solve": {
+   "2x - 23": "const a=6-4,b=-15-8;return a+'x - '+(-b);",
+   "10x - 7": "const a=6+4,b=-15+8;return a+'x - '+(-b);",
+   "10x - 23": "const a=6+4,b=-15-8;return a+'x - '+(-b);"
+  }
+ },
+ {
+  "id": "IM15C-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "writing an expression for a total that combines a per-visit fee and a per-game charge",
+  "difficulty": "easy",
+  "prompt": "A bowling alley charges s dollars for shoe rental on each visit plus g dollars for each game bowled. Mia visits the alley twice. On her first visit she bowls 3 games, and on her second visit she bowls 4 games. Which expression gives the total number of dollars Mia pays for the two visits?",
+  "choices": [
+   "2s + 7g",
+   "s + 7g",
+   "2s + 12g",
+   "s + 12g"
+  ],
+  "correct_answer": "2s + 7g",
+  "explanation": "Shoe rental is paid on each of the 2 visits, giving 2s, and Mia bowls 3 + 4 = 7 games in all, giving 7g. The total is 2s + 7g. The option \"s + 7g\" charges shoe rental only once. The option \"2s + 12g\" multiplies the game counts, 3 x 4 = 12, instead of adding them. The option \"s + 12g\" makes both errors.",
+  "solve": "const v=2,games=3+4;return v+'s + '+games+'g';",
+  "distractor_solve": {
+   "s + 7g": "const v=1,games=3+4;return 's + '+games+'g';",
+   "2s + 12g": "const v=2,games=3*4;return v+'s + '+games+'g';",
+   "s + 12g": "const games=3*4;return 's + '+games+'g';"
+  }
+ },
+ {
+  "id": "IM15C-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "translating a verbal statement with \"less than\" and \"more than\" into a linear equation",
+  "difficulty": "easy",
+  "prompt": "Nine less than five times a number is 12 more than twice the number. What is the number?",
+  "choices": [
+   "11",
+   "19",
+   "26",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Write 5n - 9 = 2n + 12. Then 3n = 21, so n = 7. Check: 5(7) - 9 = 26 and 2(7) + 12 = 26. The option \"11\" reads \"12 more than twice the number\" as 2(n + 12), giving 5n - 9 = 2n + 24. The option \"19\" reads \"nine less than five times a number\" as 5(n - 9), giving 5n - 45 = 2n + 12. The option \"26\" is the common value of the two sides, not the number itself.",
+  "solve": "return (12+9)/(5-2);",
+  "distractor_solve": {
+   "11": "return (2*12+9)/(5-2);",
+   "19": "return (12+5*9)/(5-2);",
+   "26": "const n=(12+9)/(5-2);return 5*n-9;"
+  }
+ },
+ {
+  "id": "IM15C-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "factoring out the greatest common monomial factor of a binomial",
+  "difficulty": "easy",
+  "prompt": "Which expression is equivalent to 6x^2 - 9x?",
+  "choices": [
+   "3x(2x^2 - 3)",
+   "3x(2x - 3)",
+   "3(2x - 3)",
+   "3(2x^2 - 3)"
+  ],
+  "correct_answer": "3x(2x - 3)",
+  "explanation": "Both terms share the factor 3x: 6x^2 = 3x(2x) and 9x = 3x(3), so 6x^2 - 9x = 3x(2x - 3). The option \"3x(2x^2 - 3)\" takes 3x outside but does not remove the x from the first term, so it expands to 6x^3 - 9x. The option \"3(2x - 3)\" loses the x entirely and expands to 6x - 9. The option \"3(2x^2 - 3)\" removes the x from the second term only and expands to 6x^2 - 9.",
+  "solve": "const g='3x';return g+'(2x - 3)';",
+  "distractor_solve": {
+   "3x(2x^2 - 3)": "return '3x(2x^2 - 3)';",
+   "3(2x - 3)": "return '3(2x - 3)';",
+   "3(2x^2 - 3)": "return '3(2x^2 - 3)';"
+  }
+ },
+ {
+  "id": "IM15C-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "evaluating a quadratic function at a number and its opposite and subtracting",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 - 4x + 1. What is the value of f(-3) - f(3)?",
+  "choices": [
+   "0",
+   "6",
+   "24",
+   "20"
+  ],
+  "correct_answer": "24",
+  "explanation": "f(-3) = 9 + 12 + 1 = 22 and f(3) = 9 - 12 + 1 = -2, so f(-3) - f(3) = 22 - (-2) = 24. The option \"0\" substitutes 3 for x in the -4x term both times, as if the sign of the input did not matter there, so the two values match. The option \"6\" evaluates (-3)^2 as -9, giving f(-3) = 4 and 4 - (-2) = 6. The option \"20\" drops the sign of f(3) and subtracts 2 instead of -2.",
+  "solve": "const f=x=>x*x-4*x+1;return f(-3)-f(3);",
+  "distractor_solve": {
+   "0": "const g=x=>x*x-4*Math.abs(x)+1;return g(-3)-g(3);",
+   "6": "const fm3=-(3*3)-4*(-3)+1,f3=9-12+1;return fm3-f3;",
+   "20": "const fm3=9+12+1,f3=Math.abs(9-12+1);return fm3-f3;"
+  }
+ },
+ {
+  "id": "IM15C-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving an equation with a square root on each side by squaring",
+  "difficulty": "medium",
+  "prompt": "If sqrt(x + 7) = 2sqrt(x - 2), what is the value of x?",
+  "choices": [
+   "5",
+   "11",
+   "3",
+   "-1/3"
+  ],
+  "correct_answer": "5",
+  "explanation": "Square both sides: x + 7 = 4(x - 2) = 4x - 8, so 15 = 3x and x = 5. Check: sqrt(12) = 2sqrt(3) on both sides. The option \"11\" squares the radicals but not the 2, solving x + 7 = 2(x - 2). The option \"3\" expands 4(x - 2) as 4x - 2. The option \"-1/3\" moves the -8 across without changing its sign, 7 - 8 = 3x; it also makes x - 2 negative, so the right side is undefined.",
+  "solve": "return (7+8)/(4-1);",
+  "distractor_solve": {
+   "3": "return (7+2)/(4-1);",
+   "11": "return (7+4)/(2-1);",
+   "-1/3": "return (7-8)/(4-1);"
+  }
+ },
+ {
+  "id": "IM15C-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "using the difference of squares to recover a variable from a sum and a difference of squares",
+  "difficulty": "medium",
+  "prompt": "If x^2 - y^2 = 39 and x + y = 13, what is the value of x?",
+  "choices": [
+   "10",
+   "8",
+   "16",
+   "19.5"
+  ],
+  "correct_answer": "8",
+  "explanation": "Since x^2 - y^2 = (x + y)(x - y), we get 13(x - y) = 39, so x - y = 3. Adding x + y = 13 and x - y = 3 gives 2x = 16, so x = 8 (and y = 5). The option \"10\" subtracts x - y from x + y, 13 - 3, which gives 2y, and then does not halve it. The option \"16\" adds 13 + 3 but does not divide by 2. The option \"19.5\" finds x - y by subtracting, 39 - 13 = 26, instead of dividing.",
+  "solve": "const d=39/13;return (13+d)/2;",
+  "distractor_solve": {
+   "10": "const d=39/13;return 13-d;",
+   "16": "const d=39/13;return 13+d;",
+   "19.5": "const d=39-13;return (13+d)/2;"
+  }
+ },
+ {
+  "id": "IM15C-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "inverse-square variation: rescaling a reading when the distance changes",
+  "difficulty": "medium",
+  "prompt": "The brightness reading of a lamp varies inversely as the square of the distance between the lamp and the light meter. The meter reads 18 units when it is 2 meters from the lamp. What does the meter read when it is 6 meters from the lamp?",
+  "choices": [
+   "6",
+   "12",
+   "162",
+   "2"
+  ],
+  "correct_answer": "2",
+  "explanation": "Inverse-square variation means reading x distance^2 is constant: 18 x 2^2 = 72. At 6 meters the reading is 72 / 6^2 = 72 / 36 = 2. The option \"6\" uses plain inverse variation, 18 x 2 / 6. The option \"12\" finds the constant correctly, 72, but divides by 6 instead of 6^2. The option \"162\" multiplies by the square of the distance ratio, treating the variation as direct.",
+  "solve": "const k=18*2*2;return k/(6*6);",
+  "distractor_solve": {
+   "6": "const k=18*2;return k/6;",
+   "12": "const k=18*2*2;return k/6;",
+   "162": "return 18*(6/2)**2;"
+  }
+ },
+ {
+  "id": "IM15C-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "setting up two equations in the exponents from the product and quotient rules",
+  "difficulty": "medium",
+  "prompt": "For all positive values of x, x^a * x^b = x^12 and x^a / x^b = x^4. What is the value of a?",
+  "choices": [
+   "3",
+   "6",
+   "8",
+   "9.6"
+  ],
+  "correct_answer": "8",
+  "explanation": "The product rule gives a + b = 12 and the quotient rule gives a - b = 4. Adding, 2a = 16, so a = 8 (and b = 4). The option \"3\" simply divides 12 by 4. The option \"6\" multiplies the exponents for the product, ab = 12, while subtracting them for the quotient, a - b = 4, which gives a = 6 and b = 2. The option \"9.6\" adds for the product but divides for the quotient, a / b = 4, which gives b = 2.4 and a = 9.6.",
+  "solve": "return (12+4)/2;",
+  "distractor_solve": {
+   "3": "return 12/4;",
+   "6": "for(let a=1;a<20;a++){const b=a-4;if(a*b===12)return a;}",
+   "9.6": "const b=12/(4+1);return 4*b;"
+  }
+ },
+ {
+  "id": "IM15C-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "factoring an expression to evaluate it from a given difference and product",
+  "difficulty": "hard",
+  "prompt": "If x - y = 4 and xy = 21, what is the value of x^2y - xy^2?",
+  "choices": [
+   "84",
+   "210",
+   "316",
+   "336"
+  ],
+  "correct_answer": "84",
+  "explanation": "Factor: x^2y - xy^2 = xy(x - y) = 21 x 4 = 84. (Solving, x = 7 and y = 3, or x = -3 and y = -7, gives the same value.) The option \"210\" computes xy(x + y) = 21 x 10, the sum version of the expression. The option \"316\" computes x^3 - y^3 = 343 - 27, a different expression built from the same two numbers. The option \"336\" multiplies by (x - y)^2, 21 x 16, as if the factored form were xy(x - y)^2.",
+  "solve": "return 21*4;",
+  "distractor_solve": {
+   "210": "const x=7,y=3;return x*y*(x+y);",
+   "316": "const x=7,y=3;return x**3-y**3;",
+   "336": "return 21*4*4;"
+  }
+ },
+ {
+  "id": "IM15C-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding a missing coefficient from a known linear factor of a quadratic",
+  "difficulty": "medium",
+  "prompt": "If x + 3 is a factor of x^2 + kx - 12, what is the value of k?",
+  "choices": [
+   "-9",
+   "-7",
+   "-4",
+   "-1"
+  ],
+  "correct_answer": "-1",
+  "explanation": "The other factor must multiply with x + 3 to give a constant of -12, so it is x - 4. Then (x + 3)(x - 4) = x^2 - x - 12, and k = -1. The option \"-9\" adds the two constants, 3 + (-12). The option \"-7\" substitutes x = -3 but evaluates (-3)^2 as -9, so -9 - 3k - 12 = 0 gives k = -7. The option \"-4\" is the constant of the other factor rather than the coefficient of x.",
+  "solve": "const other=-12/3;return 3+other;",
+  "distractor_solve": {
+   "-9": "return 3-12;",
+   "-7": "const k=(-(3*3)-12)/3;return k;",
+   "-4": "return -12/3;"
+  }
+ },
+ {
+  "id": "IM15C-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding an unknown coefficient of a function from one value and evaluating it at another input",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = ax^2 - 5, where a is a constant. If f(3) = 31, what is the value of f(-2)?",
+  "choices": [
+   "21",
+   "11",
+   "43",
+   "59"
+  ],
+  "correct_answer": "11",
+  "explanation": "From f(3) = 9a - 5 = 31, 9a = 36 and a = 4. Then f(-2) = 4(4) - 5 = 11. The option \"21\" finds a correctly but adds 5 instead of subtracting it. The option \"43\" uses 3a instead of 9a, so a = 12 and f(-2) = 48 - 5. The option \"59\" squares the product ax instead of x alone, (4 x -2)^2 - 5 = 64 - 5.",
+  "solve": "const a=(31+5)/9;return a*4-5;",
+  "distractor_solve": {
+   "21": "const a=(31+5)/9;return a*4+5;",
+   "43": "const a=(31+5)/3;return a*4-5;",
+   "59": "const a=(31+5)/9;return (a*-2)**2-5;"
+  }
+ },
+ {
+  "id": "IM15C-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "translating a verbal statement with fractional parts of a number into an equation",
+  "difficulty": "medium",
+  "prompt": "When 7 is added to half of a number, the result is 1 less than two-thirds of the number. What is the number?",
+  "choices": [
+   "8",
+   "36",
+   "48",
+   "46"
+  ],
+  "correct_answer": "48",
+  "explanation": "Write n/2 + 7 = (2/3)n - 1. Then 8 = (2/3)n - (1/2)n = n/6, so n = 48. Check: 24 + 7 = 31 and 32 - 1 = 31. The option \"8\" subtracts the fractions by subtracting numerators and denominators, (2 - 1)/(3 - 2) = 1, so n = 8. The option \"36\" reads \"1 less than\" as 1 more, n/2 + 7 = (2/3)n + 1, so n/6 = 6. The option \"46\" applies two-thirds to the number decreased by 1, (2/3)(n - 1), so n/6 = 7 + 2/3.",
+  "solve": "return (7+1)/(2/3-1/2);",
+  "distractor_solve": {
+   "8": "return (7+1)/((2-1)/(3-2));",
+   "36": "return (7-1)/(2/3-1/2);",
+   "46": "return (7+2/3)/(2/3-1/2);"
+  }
+ },
+ {
+  "id": "IM15C-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving a formula containing a square root for the quantity under the radical",
+  "difficulty": "medium",
+  "prompt": "For a simple pendulum, the time T, in seconds, for one complete swing is given by T = 2sqrt(L), where L is the length of the pendulum in meters. A pendulum takes 3 seconds for one complete swing. What is its length, in meters?",
+  "choices": [
+   "2.25",
+   "1",
+   "1.5",
+   "18"
+  ],
+  "correct_answer": "2.25",
+  "explanation": "Divide by 2 to get sqrt(L) = 1.5, then square: L = 1.5^2 = 2.25. Check: 2sqrt(2.25) = 2(1.5) = 3. The option \"1\" subtracts the 2 instead of dividing by it, sqrt(L) = 3 - 2. The option \"1.5\" stops at sqrt(L) and does not square. The option \"18\" squares 3 and then multiplies by 2 instead of dividing by 2^2 = 4.",
+  "solve": "return (3/2)**2;",
+  "distractor_solve": {
+   "1": "return (3-2)**2;",
+   "18": "return 2*3**2;",
+   "1.5": "return 3/2;"
+  }
+ },
+ {
+  "id": "IM15C-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "substituting a conversion formula into a stated relationship and solving",
+  "difficulty": "medium",
+  "prompt": "The formula F = (9/5)C + 32 converts a temperature of C degrees Celsius to F degrees Fahrenheit. At one temperature, the Fahrenheit reading is exactly 20 more than the Celsius reading. What is the Celsius reading at that temperature?",
+  "choices": [
+   "-15/2",
+   "-15",
+   "-20/3",
+   "25"
+  ],
+  "correct_answer": "-15",
+  "explanation": "Set F = C + 20: (9/5)C + 32 = C + 20, so (4/5)C = -12 and C = -15. Check: F = -27 + 32 = 5, which is 20 more than -15. The option \"-15/2\" combines (9/5)C - C as (8/5)C. The option \"-20/3\" drops the C on the right side, solving (9/5)C + 32 = 20. The option \"25\" leaves out the 32, solving (4/5)C = 20.",
+  "solve": "return (20-32)/(9/5-1);",
+  "distractor_solve": {
+   "25": "return 20/(9/5-1);",
+   "-15/2": "return (20-32)/(8/5);",
+   "-20/3": "return (20-32)/(9/5);"
+  }
+ },
+ {
+  "id": "IM15C-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "evaluating an expression by rewriting it as a multiple of a given linear expression",
+  "difficulty": "medium",
+  "prompt": "If 2x - 3y = 7, what is the value of 6y - 4x + 5?",
+  "choices": [
+   "-14",
+   "1.5",
+   "-9",
+   "19"
+  ],
+  "correct_answer": "-9",
+  "explanation": "Since 6y - 4x = -2(2x - 3y) = -2(7) = -14, the expression equals -14 + 5 = -9. The option \"-14\" stops before adding 5. The option \"1.5\" divides 7 by -2 instead of multiplying. The option \"19\" treats 6y - 4x as +2(2x - 3y), missing the sign change.",
+  "solve": "return -2*7+5;",
+  "distractor_solve": {
+   "19": "return 2*7+5;",
+   "-14": "return -2*7;",
+   "1.5": "return 7/-2+5;"
+  }
+ },
+ {
+  "id": "IM15C-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving a linear system by substitution and reporting the sum of the coordinates",
+  "difficulty": "medium",
+  "prompt": "The lines 2x + 3y = 20 and y = x - 5 intersect at the point (x, y). What is the value of x + y?",
+  "choices": [
+   "2",
+   "5",
+   "-3",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "Substitute y = x - 5: 2x + 3(x - 5) = 20, so 5x - 15 = 20 and x = 7. Then y = 2 and x + y = 9. The option \"2\" is the value of y alone. The option \"5\" distributes the 3 to x only, writing 3x - 5, so 5x = 25, x = 5 and y = 0. The option \"-3\" writes 3(x - 5) as 3x + 15, so 5x = 5, x = 1 and y = -4.",
+  "solve": "const x=(20+15)/(2+3),y=x-5;return x+y;",
+  "distractor_solve": {
+   "2": "const x=(20+15)/(2+3);return x-5;",
+   "5": "const x=(20+5)/(2+3),y=x-5;return x+y;",
+   "-3": "const x=(20-15)/(2+3),y=x-5;return x+y;"
+  }
+ },
+ {
+  "id": "IM15C-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "expanding a product and a square of binomials so the squared terms cancel",
+  "difficulty": "medium",
+  "prompt": "What value of x satisfies (x - 2)(x + 8) = (x + 2)^2 ?",
+  "choices": [
+   "10",
+   "5",
+   "-6",
+   "-2"
+  ],
+  "correct_answer": "10",
+  "explanation": "Expand: x^2 + 6x - 16 = x^2 + 4x + 4. The x^2 terms cancel, leaving 2x = 20, so x = 10. Check: 8 x 18 = 144 = 12^2. The option \"5\" expands (x + 2)^2 as x^2 + 2x + 4, so 4x = 20. The option \"-6\" expands the product with +16 instead of -16, so 2x = -12. The option \"-2\" expands the product as x^2 - 6x - 16, so -10x = 20.",
+  "solve": "return (16+4)/(6-4);",
+  "distractor_solve": {
+   "5": "return (16+4)/(6-2);",
+   "-6": "return (4-16)/(6-4);",
+   "-2": "return (16+4)/(-6-4);"
+  }
+ },
+ {
+  "id": "IM15C-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "choosing the factor pair of a constant term whose members differ by 1",
+  "difficulty": "hard",
+  "prompt": "The equation x^2 + bx + 20 = 0, where b > 0, has two integer solutions that differ by 1. What is the value of b?",
+  "choices": [
+   "1",
+   "9",
+   "12",
+   "21"
+  ],
+  "correct_answer": "9",
+  "explanation": "The solutions are -p and -q where pq = 20 and p + q = b. The factor pair of 20 that differs by 1 is 4 and 5, so the solutions are -4 and -5 and b = 4 + 5 = 9. The option \"1\" reports the difference of the solutions rather than b. The option \"12\" uses the factor pair 2 and 10, whose solutions differ by 8. The option \"21\" uses the factor pair 1 and 20, whose solutions differ by 19.",
+  "solve": "for(let p=1;p<=20;p++){const q=20/p;if(Number.isInteger(q)&&q-p===1)return p+q;}",
+  "distractor_solve": {
+   "1": "for(let p=1;p<=20;p++){const q=20/p;if(Number.isInteger(q)&&q-p===1)return q-p;}",
+   "12": "return 2+10;",
+   "21": "return 1+20;"
+  }
+ },
+ {
+  "id": "IM15C-20",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "applying a functional rule f(x + 2) = 3f(x) step by step from a starting value",
+  "difficulty": "hard",
+  "prompt": "A function f satisfies f(x + 2) = 3f(x) for every number x, and f(1) = 4. What is the value of f(7)?",
+  "choices": [
+   "12",
+   "324",
+   "2916",
+   "108"
+  ],
+  "correct_answer": "108",
+  "explanation": "Each increase of 2 in the input triples the output: f(3) = 12, f(5) = 36, f(7) = 108. The option \"12\" applies the rule once, which gives f(3), not f(7). The option \"324\" counts four steps (1, 3, 5, 7) instead of three, multiplying by 3 once too often. The option \"2916\" triples for every increase of 1 in the input, six times, instead of for every increase of 2.",
+  "solve": "let v=4;for(let x=1;x<7;x+=2)v*=3;return v;",
+  "distractor_solve": {
+   "12": "let v=4;v*=3;return v;",
+   "324": "let v=4;for(let x=1;x<=7;x+=2)v*=3;return v;",
+   "2916": "let v=4;for(let x=1;x<7;x+=1)v*=3;return v;"
+  }
+ },
+ {
+  "id": "IM15C-21",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "squaring a sum of a number and its reciprocal to find the sum of squares",
+  "difficulty": "hard",
+  "prompt": "If x + 1/x = 5, what is the value of x^2 + 1/x^2 ?",
+  "choices": [
+   "10",
+   "15",
+   "23",
+   "21"
+  ],
+  "correct_answer": "23",
+  "explanation": "Square both sides: x^2 + 2(x)(1/x) + 1/x^2 = 25. The middle term is 2, so x^2 + 1/x^2 = 25 - 2 = 23. The option \"10\" doubles 5 instead of squaring it. The option \"15\" takes the middle term as 2 x 5 = 10. The option \"21\" takes the middle term as 2^2 = 4.",
+  "solve": "return 5*5-2;",
+  "distractor_solve": {
+   "10": "return 2*5;",
+   "15": "return 5*5-2*5;",
+   "21": "return 5*5-2*2;"
+  }
+ },
+ {
+  "id": "IM15C-22",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving an absolute value equation and rejecting the solution that makes the other side negative",
+  "difficulty": "hard",
+  "prompt": "What value of x satisfies |x - 4| = 2x + 1 ?",
+  "choices": [
+   "1",
+   "-5",
+   "5/3",
+   "3"
+  ],
+  "correct_answer": "1",
+  "explanation": "Case x - 4 = 2x + 1 gives x = -5, but then 2x + 1 = -9 is negative and cannot equal an absolute value, so it is rejected. Case -(x - 4) = 2x + 1 gives 4 - x = 2x + 1, so x = 1; check |1 - 4| = 3 = 2(1) + 1. The option \"-5\" keeps the first case without checking it. The option \"5/3\" negates only the 2x in the second case, solving x - 4 = -2x + 1. The option \"3\" treats |x - 4| as |x| + 4 and solves x + 4 = 2x + 1.",
+  "solve": "for(const x of [(-1-4)/(2-1),(4-1)/(2+1)]){if(Math.abs(x-4)===2*x+1)return x;}",
+  "distractor_solve": {
+   "3": "return (4-1)/(2-1);",
+   "-5": "return (-1-4)/(2-1);",
+   "5/3": "return (1+4)/(1+2);"
+  }
+ },
+ {
+  "id": "IM15C-23",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "combining equal powers into a single power of the same base and matching exponents",
+  "difficulty": "hard",
+  "prompt": "If 2^x + 2^x + 2^x + 2^x = 4^5, what is the value of x?",
+  "choices": [
+   "5/2",
+   "8",
+   "3",
+   "10/3"
+  ],
+  "correct_answer": "8",
+  "explanation": "Four equal terms make 4 x 2^x = 2^2 x 2^x = 2^(x + 2). Since 4^5 = 2^10, x + 2 = 10 and x = 8. The option \"5/2\" adds the exponents of the four terms, 2^(4x) = 2^10. The option \"3\" rewrites 4^5 as 2^5 instead of 2^10, so x + 2 = 5. The option \"10/3\" multiplies the coefficient into the base, writing 4 x 2^x as 8^x = 2^(3x).",
+  "solve": "return 2*5-2;",
+  "distractor_solve": {
+   "3": "return 5-2;",
+   "5/2": "return 2*5/4;",
+   "10/3": "return 2*5/3;"
+  }
+ },
+ {
+  "id": "IM15C-24",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a fixed total spent at two prices: a rational equation that leads to a quadratic",
+  "difficulty": "hard",
+  "prompt": "Lea spent $120 on notebooks that all cost the same amount. If each notebook had cost $1 more, the same $120 would have bought 4 fewer notebooks. How many notebooks did Lea buy?",
+  "choices": [
+   "6",
+   "20",
+   "30",
+   "24"
+  ],
+  "correct_answer": "24",
+  "explanation": "If the price is p, then 120/p - 120/(p + 1) = 4, which simplifies to p^2 + p - 30 = 0, or (p + 6)(p - 5) = 0; a price is positive, so p = 5. Lea bought 120 / 5 = 24 notebooks; at $6 each she would have bought 20, which is 4 fewer. The option \"6\" is the higher price, not a number of notebooks. The option \"20\" is the number she would have bought at the higher price. The option \"30\" divides the $120 by the drop of 4.",
+  "solve": "for(let n=5;n<=120;n++){if(Math.abs(120/(n-4)-120/n-1)<1e-9)return n;}",
+  "distractor_solve": {
+   "6": "for(let n=5;n<=120;n++){if(Math.abs(120/(n-4)-120/n-1)<1e-9)return 120/n+1;}",
+   "20": "for(let n=5;n<=120;n++){if(Math.abs(120/(n-4)-120/n-1)<1e-9)return n-4;}",
+   "30": "return 120/4;"
+  }
+ },
+ {
+  "id": "IM15C-25",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "substituting a given quadratic relation into an expression instead of solving for x",
+  "difficulty": "hard",
+  "prompt": "If x^2 = 2x + 15, what is the value of x^2 - 2x + 7 ?",
+  "choices": [
+   "-8",
+   "10",
+   "22",
+   "42"
+  ],
+  "correct_answer": "22",
+  "explanation": "Rearranging, x^2 - 2x = 15, so x^2 - 2x + 7 = 22. (Solving gives x = 5 or x = -3, and both give 22.) The option \"-8\" moves 2x + 15 across with the wrong sign, x^2 - 2x = -15. The option \"10\" factors x^2 - 2x - 15 as (x - 3)(x + 5) and uses x = 3. The option \"42\" uses x = 5 but evaluates x^2 + 2x + 7.",
+  "solve": "return 15+7;",
+  "distractor_solve": {
+   "10": "const x=3;return x*x-2*x+7;",
+   "42": "const x=5;return x*x+2*x+7;",
+   "-8": "return -15+7;"
+  }
+ },
+ {
+  "id": "IM15C-26",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of two absolute values: finding the greatest solution by cases",
+  "difficulty": "hard",
+  "prompt": "What is the greatest value of x that satisfies |x - 3| + |x + 5| = 12 ?",
+  "choices": [
+   "5",
+   "9",
+   "10",
+   "-7"
+  ],
+  "correct_answer": "5",
+  "explanation": "For x at least 3, both expressions are non-negative: (x - 3) + (x + 5) = 2x + 2 = 12, so x = 5. Between -5 and 3 the sum is always 8, and for x at most -5 it gives x = -7, so the greatest solution is 5. The option \"9\" gives each absolute value half of 12, x - 3 = 6. The option \"10\" writes |x + 5| as x - 5, solving 2x - 8 = 12. The option \"-7\" is the least solution, not the greatest.",
+  "solve": "let best=null;for(let x=-50;x<=50;x+=0.5){if(Math.abs(x-3)+Math.abs(x+5)===12)best=x;}return best;",
+  "distractor_solve": {
+   "9": "return 3+12/2;",
+   "10": "return (12+3+5)/2;",
+   "-7": "let lo=null;for(let x=50;x>=-50;x-=0.5){if(Math.abs(x-3)+Math.abs(x+5)===12)lo=x;}return lo;"
+  }
+ },
+ {
+  "id": "IM15C-27",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "working backward through a two-piece cost function by first deciding which piece applies",
+  "difficulty": "hard",
+  "prompt": "A company charges 4 + 1.5w dollars to ship a package that weighs w pounds when w is 10 or less, and 19 + 1.25(w - 10) dollars when w is greater than 10. A package cost $26.50 to ship. How many pounds did it weigh?",
+  "choices": [
+   "6",
+   "16",
+   "15",
+   "21.2"
+  ],
+  "correct_answer": "16",
+  "explanation": "A 10-pound package costs 4 + 15 = $19, so a $26.50 package is over 10 pounds and uses the second rule: 19 + 1.25(w - 10) = 26.5 gives w - 10 = 6 and w = 16. The option \"6\" finds w - 10 and stops. The option \"15\" applies the first rule, (26.5 - 4) / 1.5, which gives a weight over 10 that the first rule does not cover. The option \"21.2\" divides the whole cost by 1.25, ignoring the $19 and the first 10 pounds.",
+  "solve": "return 10+(26.5-19)/1.25;",
+  "distractor_solve": {
+   "6": "return (26.5-19)/1.25;",
+   "15": "return (26.5-4)/1.5;",
+   "21.2": "return 26.5/1.25;"
+  }
+ },
+ {
+  "id": "IM15C-28",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding one coefficient of a product of polynomials without expanding fully",
+  "difficulty": "medium",
+  "prompt": "When (3x - 2)(x^2 + 5x - 4) is multiplied out and like terms are combined, what is the coefficient of x^2 ?",
+  "choices": [
+   "-30",
+   "-22",
+   "-7",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "The x^2 terms come from 3x x 5x = 15x^2 and -2 x x^2 = -2x^2, so the coefficient is 15 - 2 = 13. The option \"-30\" multiplies the three numbers 3, 5 and -2 together. The option \"-22\" collects the x terms instead, 3(-4) + (-2)(5). The option \"-7\" pairs the wrong terms, 3 x 1 + (-2) x 5.",
+  "solve": "return 3*5+(-2)*1;",
+  "distractor_solve": {
+   "-30": "return 3*5*-2;",
+   "-22": "return 3*-4+(-2)*5;",
+   "-7": "return 3*1+(-2)*5;"
+  }
+ },
+ {
+  "id": "IM15C-29",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "using the symmetry of a quadratic function to find a second input with the same output",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = x^2 - 4x. For a number k that is not 6, f(k) = f(6). What is the value of k?",
+  "choices": [
+   "-2",
+   "-10",
+   "-6",
+   "12"
+  ],
+  "correct_answer": "-2",
+  "explanation": "f(6) = 36 - 24 = 12, so k^2 - 4k = 12, which factors as (k - 6)(k + 2) = 0, and k = -2. Equivalently, the graph is symmetric about x = 2, and -2 is as far below 2 as 6 is above it. The option \"-10\" reflects 6 about x = -2 instead of x = 2, a sign error in the axis. The option \"-6\" assumes f(-6) = f(6), as if f were symmetric about 0. The option \"12\" is the value f(6) rather than the input k.",
+  "solve": "const t=6*6-4*6;const r=[(4+Math.sqrt(16+4*t))/2,(4-Math.sqrt(16+4*t))/2];return r.find(v=>v!==6);",
+  "distractor_solve": {
+   "12": "return 6*6-4*6;",
+   "-10": "return 2*(-2)-6;",
+   "-6": "return -6;"
+  }
+ },
+ {
+  "id": "IM15C-30",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "using a known solution to find a parameter and then the other solution of a quadratic",
+  "difficulty": "hard",
+  "prompt": "The equation x^2 - kx + 2k = 0 has x = 3 as one of its solutions. What is the other solution?",
+  "choices": [
+   "4.5",
+   "9",
+   "6",
+   "18"
+  ],
+  "correct_answer": "6",
+  "explanation": "Substituting x = 3: 9 - 3k + 2k = 0, so k = 9. The equation is x^2 - 9x + 18 = 0, which factors as (x - 3)(x - 6) = 0, so the other solution is 6. The option \"4.5\" is k/2, the average of the two solutions, rather than the second solution. The option \"9\" stops at the value of k. The option \"18\" reports the constant term 2k, which is the product of the solutions, not the second solution.",
+  "solve": "const k=9/(3-2);const disc=Math.sqrt(k*k-8*k);const r=[(k+disc)/2,(k-disc)/2];return r.find(v=>Math.abs(v-3)>1e-9);",
+  "distractor_solve": {
+   "9": "return 9/(3-2);",
+   "18": "return 2*9/(3-2);",
+   "4.5": "return 9/(3-2)/2;"
+  }
+ },
+ {
+  "id": "IM15C-31",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest common factor of two monomials with several variables",
+  "difficulty": "medium",
+  "prompt": "What is the greatest common factor of 12x^3y^2 and 18x^2y^5 ?",
+  "choices": [
+   "6x^3y^5",
+   "6x^2y^2",
+   "36x^2y^2",
+   "36x^3y^5"
+  ],
+  "correct_answer": "6x^2y^2",
+  "explanation": "The greatest common factor of 12 and 18 is 6, and each variable takes its smaller exponent: x^2 and y^2. So the GCF is 6x^2y^2. The option \"6x^3y^5\" takes the larger exponent of each variable. The option \"36x^2y^2\" uses the least common multiple of 12 and 18 for the coefficient. The option \"36x^3y^5\" is the least common multiple of the two monomials.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;return g(12,18)+'x^'+Math.min(3,2)+'y^'+Math.min(2,5);",
+  "distractor_solve": {
+   "6x^3y^5": "const g=(a,b)=>b?g(b,a%b):a;return g(12,18)+'x^'+Math.max(3,2)+'y^'+Math.max(2,5);",
+   "36x^2y^2": "return 36+'x^'+Math.min(3,2)+'y^'+Math.min(2,5);",
+   "36x^3y^5": "return 36+'x^'+Math.max(3,2)+'y^'+Math.max(2,5);"
+  }
+ },
+ {
+  "id": "IM15C-32",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "evaluating a rational expression from a linear relation between two variables",
+  "difficulty": "hard",
+  "prompt": "If 3a - 5b = 0 and b is not 0, what is the value of (2a + b)/(a - b) ?",
+  "choices": [
+   "8",
+   "13/8",
+   "13",
+   "13/2"
+  ],
+  "correct_answer": "13/2",
+  "explanation": "From 3a = 5b, a/b = 5/3, so take a = 5 and b = 3 (any multiple gives the same value). Then (2a + b)/(a - b) = 13/2. The option \"8\" doubles the whole sum a + b in the numerator, 2(5 + 3)/2. The option \"13/8\" divides by a + b instead of a - b. The option \"13\" computes the numerator and does not divide by a - b = 2.",
+  "solve": "const b=3,a=5*b/3;return (2*a+b)/(a-b);",
+  "distractor_solve": {
+   "8": "const b=3,a=5;return 2*(a+b)/(a-b);",
+   "13": "const b=3,a=5;return 2*a+b;",
+   "13/8": "const b=3,a=5;return (2*a+b)/(a+b);"
+  }
+ },
+ {
+  "id": "IM15C-33",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "translating a comparison of two pay rates into an equation and reporting the second rate",
+  "difficulty": "medium",
+  "prompt": "Sam earns $6 more per hour than Lee. Sam's pay for 5 hours of work equals Lee's pay for 8 hours of work. What is Sam's hourly pay, in dollars?",
+  "choices": [
+   "16",
+   "8",
+   "10",
+   "30"
+  ],
+  "correct_answer": "16",
+  "explanation": "Let Lee earn l dollars per hour. Then 5(l + 6) = 8l, so 5l + 30 = 8l and l = 10. Sam earns 10 + 6 = 16 dollars per hour. The option \"8\" writes Sam's pay as 5l + 6 instead of 5(l + 6), so 3l = 6, l = 2 and Sam earns 8. The option \"10\" is Lee's hourly pay, not Sam's. The option \"30\" is the extra amount Sam earns in 5 hours, 5 x 6.",
+  "solve": "const l=5*6/(8-5);return l+6;",
+  "distractor_solve": {
+   "8": "const l=6/(8-5);return l+6;",
+   "10": "return 5*6/(8-5);",
+   "30": "return 5*6;"
+  }
+ }
+]

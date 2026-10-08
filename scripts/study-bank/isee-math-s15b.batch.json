@@ -1,0 +1,761 @@
+[
+  {
+    "id": "IM15B-01",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "percent change of a rate, distinguished from a change in percentage points",
+    "difficulty": "easy",
+    "prompt": "The annual interest rate on a savings account rose from 2.4 percent to 3.0 percent. By what percent did the interest rate increase?",
+    "choices": [
+      "0.6",
+      "25",
+      "20",
+      "125"
+    ],
+    "correct_answer": "25",
+    "explanation": "The rate went up by 3.0 - 2.4 = 0.6 percentage points. As a percent of the original rate that is 0.6/2.4 = 0.25, an increase of 25 percent. The option \"20\" divides the 0.6-point change by the NEW rate, 3.0, instead of the original 2.4. The option \"125\" reports the new rate as a percent of the old one (3.0/2.4 = 1.25) instead of the increase. The option \"0.6\" subtracts the rates and reports the change in percentage points, not the percent change.",
+    "solve": "return (3.0-2.4)/2.4*100;",
+    "distractor_solve": {
+      "20": "return (3.0-2.4)/3.0*100;",
+      "125": "return 3.0/2.4*100;",
+      "0.6": "return 3.0-2.4;"
+    }
+  },
+  {
+    "id": "IM15B-02",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "evaluating an inverse variation at a new input",
+    "difficulty": "easy",
+    "prompt": "y varies inversely as x, and y = 20 when x = 3. What is the value of y when x = 5?",
+    "choices": [
+      "12",
+      "7.2",
+      "10",
+      "18"
+    ],
+    "correct_answer": "12",
+    "explanation": "Inverse variation means xy is constant: 3 x 20 = 60. When x = 5, y = 60/5 = 12. The option \"10\" divides 20 by the change in x, 5 - 3 = 2. The option \"18\" lowers y by the same 2 units that x rose, treating inverse variation as an additive trade. The option \"7.2\" scales by the square of 3/5, as if y varied inversely as x^2.",
+    "solve": "const k=20*3;return k/5;",
+    "distractor_solve": {
+      "10": "return 20/(5-3);",
+      "18": "return 20-(5-3);",
+      "7.2": "return 20*(3/5)**2;"
+    }
+  },
+  {
+    "id": "IM15B-03",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "one percent of a number found from a different percent of it",
+    "difficulty": "easy",
+    "prompt": "If 120 percent of a number is 90, what is 80 percent of the number?",
+    "choices": [
+      "72",
+      "75",
+      "86.4",
+      "60"
+    ],
+    "correct_answer": "60",
+    "explanation": "The number is 90/1.2 = 75, and 80 percent of 75 is 60. Equivalently, 80 percent is 2/3 of 120 percent, and 2/3 of 90 is 60. The option \"72\" takes 80 percent of 90 instead of 80 percent of the number. The option \"75\" stops at the number itself, 90/1.2 = 75, without taking 80 percent of it. The option \"86.4\" finds the number by multiplying 90 by 1.2 (108) instead of dividing, then takes 80 percent.",
+    "solve": "const n=90/1.2;return 0.8*n;",
+    "distractor_solve": {
+      "72": "return 0.8*90;",
+      "75": "return 90/1.2;",
+      "86.4": "return 90*1.2*0.8;"
+    }
+  },
+  {
+    "id": "IM15B-04",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "total votes recovered from a winning share and a winning margin",
+    "difficulty": "medium",
+    "prompt": "In an election between two candidates, every voter chose exactly one of them. The winner received 60 percent of the votes and won by 300 votes. How many votes were cast in all?",
+    "choices": [
+      "750",
+      "900",
+      "1500",
+      "1000"
+    ],
+    "correct_answer": "1500",
+    "explanation": "The loser received 40 percent, so the margin is 60 - 40 = 20 percent of the votes. 300 is 20 percent of the total, so the total is 300/0.2 = 1500. The option \"750\" treats the 300-vote margin as the loser's 40 percent. The option \"900\" solves correctly for 1500 votes in all but reports the winner's 60 percent of them. The option \"1000\" takes the 300-vote margin as 30 percent of the votes, half of the winner's 60 percent.",
+    "solve": "return 300/(0.60-0.40);",
+    "distractor_solve": {
+      "750": "return 300/0.40;",
+      "900": "return 0.60*300/(0.60-0.40);",
+      "1000": "return 300/(0.60/2);"
+    }
+  },
+  {
+    "id": "IM15B-05",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "profit per item from a buying rate and a different selling rate",
+    "difficulty": "medium",
+    "prompt": "A vendor buys pens at the rate of 3 pens for $2 and sells all of them at the rate of 2 pens for $3. How many pens must the vendor buy and sell to make a profit of exactly $100?",
+    "choices": [
+      "150",
+      "120",
+      "200",
+      "240"
+    ],
+    "correct_answer": "120",
+    "explanation": "Each pen costs 2/3 dollar and sells for 3/2 dollars, a profit of 3/2 - 2/3 = 5/6 dollar per pen. A profit of $100 needs 100 / (5/6) = 120 pens. The option \"150\" divides the $100 by the cost of one pen, 2/3 dollar, instead of by the profit on one pen. The option \"200\" takes the $3 - $2 = $1 difference as the profit on every 2 pens, or 1/2 dollar per pen. The option \"240\" finds 20 rounds of 6 pens ($5 profit each) but counts 12 pens per round, counting each pen once when bought and again when sold.",
+    "solve": "const cost=2/3,price=3/2;return 100/(price-cost);",
+    "distractor_solve": {
+      "150": "return 100/(2/3);",
+      "200": "return 100/((3-2)/2);",
+      "240": "return (100/5)*12;"
+    }
+  },
+  {
+    "id": "IM15B-06",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "sharing a profit in proportion to amount invested times time invested",
+    "difficulty": "medium",
+    "prompt": "Ana invested $4,000 in a business for 12 months. Ben invested $6,000 in the same business for 6 months. They share a profit of $2,100 in proportion to each person's amount invested multiplied by the number of months it was invested. How many dollars does Ben receive?",
+    "choices": [
+      "900",
+      "700",
+      "1050",
+      "1260"
+    ],
+    "correct_answer": "900",
+    "explanation": "Ana's share weight is 4000 x 12 = 48,000 and Ben's is 6000 x 6 = 36,000, a ratio of 4 : 3. Ben receives 3/7 of $2,100, which is $900. The option \"700\" shares by months alone, 12 : 6. The option \"1050\" splits the profit equally. The option \"1260\" shares by the amounts invested alone, 4000 : 6000.",
+    "solve": "const a=4000*12,b=6000*6;return 2100*b/(a+b);",
+    "distractor_solve": {
+      "700": "return 2100*6/(12+6);",
+      "1050": "return 2100/2;",
+      "1260": "return 2100*6000/(4000+6000);"
+    }
+  },
+  {
+    "id": "IM15B-07",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "ratio change when an amount is moved from one quantity to the other",
+    "difficulty": "hard",
+    "prompt": "Two positive numbers are in the ratio 7 : 3. When 20 is subtracted from the first number and 20 is added to the second number, the ratio of the first to the second becomes 3 : 2. What is the first number?",
+    "choices": [
+      "28",
+      "56",
+      "120",
+      "140"
+    ],
+    "correct_answer": "140",
+    "explanation": "Write the numbers as 7k and 3k. Then (7k - 20)/(3k + 20) = 3/2, so 14k - 40 = 9k + 60, 5k = 100 and k = 20. The first number is 7 x 20 = 140. (Check: 120 : 80 = 3 : 2.) The option \"28\" adds 20 to both numbers instead of moving it: 2(7k + 20) = 3(3k + 20) gives k = 4. The option \"56\" subtracts 20 from the first number but forgets to add 20 to the second: 2(7k - 20) = 3(3k) gives k = 8. The option \"120\" solves correctly for k = 20 but reports the first number after 20 is taken away.",
+    "solve": "for(let k=0.5;k<1000;k+=0.5){if(Math.abs(2*(7*k-20)-3*(3*k+20))<1e-9)return 7*k;}return null;",
+    "distractor_solve": {
+      "28": "const k=20/5;return 7*k;",
+      "56": "const k=40/5;return 7*k;",
+      "120": "const k=20;return 7*k-20;"
+    }
+  },
+  {
+    "id": "IM15B-08",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "marked price that leaves a target profit after a discount",
+    "difficulty": "hard",
+    "prompt": "A shopkeeper pays $60 for a jacket. She wants to choose a marked price so that, after she gives a 20 percent discount off the marked price, she still makes a profit equal to 20 percent of her cost. What marked price, in dollars, should she choose?",
+    "choices": [
+      "84",
+      "86.4",
+      "90",
+      "100"
+    ],
+    "correct_answer": "90",
+    "explanation": "She must receive 60 x 1.2 = $72. The discounted price is 80 percent of the marked price, so the marked price is 72/0.8 = $90. The option \"84\" adds the 20 percent profit and the 20 percent discount to the cost, 60 x 1.40. The option \"100\" subtracts both 20 percents from 1 and divides the cost by the remaining 0.6. The option \"86.4\" finds the $72 selling price, then raises it by 20 percent instead of dividing by 0.8.",
+    "solve": "const sell=60*1.2;return sell/(1-0.2);",
+    "distractor_solve": {
+      "84": "return 60*(1+0.2+0.2);",
+      "100": "return 60/(1-0.2-0.2);",
+      "86.4": "return 60*1.2*1.2;"
+    }
+  },
+  {
+    "id": "IM15B-09",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "percent profit from a short-weight scale at cost price",
+    "difficulty": "medium",
+    "prompt": "A merchant sells rice at exactly what it cost him per kilogram, but his scale is rigged so that whenever it shows 1 kilogram, the customer actually receives only 800 grams. What is the merchant's profit, as a percent of his cost?",
+    "choices": [
+      "20",
+      "25",
+      "80",
+      "125"
+    ],
+    "correct_answer": "25",
+    "explanation": "For each sale he pays for 800 grams and is paid for 1000 grams. His profit is the price of 200 grams on a cost of 800 grams, or 200/800 = 25 percent. The option \"20\" measures the 200 missing grams against the 1000 grams charged for instead of the 800 grams it cost him. The option \"80\" reports the fraction of the claimed weight actually delivered. The option \"125\" reports the ratio of charged weight to delivered weight as the profit percent.",
+    "solve": "const given=800,charged=1000;return (charged-given)/given*100;",
+    "distractor_solve": {
+      "20": "return (1000-800)/1000*100;",
+      "80": "return 800/1000*100;",
+      "125": "return 1000/800*100;"
+    }
+  },
+  {
+    "id": "IM15B-10",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "composing two percent relationships stated as more than and less than",
+    "difficulty": "medium",
+    "prompt": "The number a is 20 percent greater than b, and b is 25 percent less than c. The number a is what percent of c?",
+    "choices": [
+      "90",
+      "95",
+      "96",
+      "160"
+    ],
+    "correct_answer": "90",
+    "explanation": "Take c = 100. Then b = 0.75 x 100 = 75 and a = 1.2 x 75 = 90, so a is 90 percent of c. The option \"95\" adds and subtracts the percents, 100 + 20 - 25. The option \"96\" reads \"b is 25 percent less than c\" as \"c is 25 percent more than b\", so b = c/1.25. The option \"160\" divides by 0.75 instead of multiplying, so b = c/0.75.",
+    "solve": "const c=100,b=0.75*c,a=1.2*b;return a/c*100;",
+    "distractor_solve": {
+      "95": "return 100+20-25;",
+      "96": "return 1.2/1.25*100;",
+      "160": "return 1.2/0.75*100;"
+    }
+  },
+  {
+    "id": "IM15B-11",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "distance from the time saved at a faster speed over the same route",
+    "difficulty": "medium",
+    "prompt": "A cyclist rides the same route twice, once at a steady 12 kilometers per hour and once at a steady 15 kilometers per hour. The faster ride takes 10 minutes less than the slower ride. How many kilometers long is the route?",
+    "choices": [
+      "0.5",
+      "2.5",
+      "60",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "If the route is d km, then d/12 - d/15 = 10/60 hour. Since d/12 - d/15 = d/60, d/60 = 1/6 and d = 10. (Check: 50 minutes against 40 minutes.) The option \"60\" solves d/12 - d/15 = 1 hour, dropping the 10 minutes from the equation. The option \"0.5\" multiplies the 10-minute difference (1/6 hour) by the 3 km/h difference in speed. The option \"2.5\" finds how far the faster ride goes in 10 minutes.",
+    "solve": "return (10/60)/(1/12-1/15);",
+    "distractor_solve": {
+      "60": "return 12*15/(15-12);",
+      "0.5": "return (10/60)*(15-12);",
+      "2.5": "return (10/60)*15;"
+    }
+  },
+  {
+    "id": "IM15B-12",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "direct variation with the square of a quantity",
+    "difficulty": "medium",
+    "prompt": "y varies directly as the square of x, and y = 18 when x = 3. What is the value of y when x = 5?",
+    "choices": [
+      "22",
+      "30",
+      "50",
+      "34"
+    ],
+    "correct_answer": "50",
+    "explanation": "y = kx^2 with 18 = 9k, so k = 2. When x = 5, y = 2 x 25 = 50. The option \"22\" adds the square of the change in x, (5 - 3)^2 = 4, to 18. The option \"30\" scales by 5/3, as if y varied directly as x. The option \"34\" adds the change in x^2, 25 - 9 = 16, to 18 instead of scaling.",
+    "solve": "const k=18/9;return k*25;",
+    "distractor_solve": {
+      "22": "return 18+(5-3)**2;",
+      "30": "return 18*5/3;",
+      "34": "return 18+(25-9);"
+    }
+  },
+  {
+    "id": "IM15B-13",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "value of a ratio expression from a given ratio",
+    "difficulty": "medium",
+    "prompt": "If a/b = 3/4, what is the value of (2a + b)/(a + 3b) ?",
+    "choices": [
+      "10/13",
+      "2/3",
+      "11/13",
+      "5/3"
+    ],
+    "correct_answer": "2/3",
+    "explanation": "Take a = 3 and b = 4. Then (2a + b)/(a + 3b) = (6 + 4)/(3 + 12) = 10/15 = 2/3. The option \"10/13\" multiplies a instead of b by 3 in the denominator: (6 + 4)/(9 + 4). The option \"11/13\" uses a/b = 4/3: (8 + 3)/(4 + 9). The option \"5/3\" adds 3 instead of 3b in the denominator: (6 + 4)/(3 + 3) = 10/6.",
+    "solve": "const a=3,b=4;const n=2*a+b,d=a+3*b;const g=(x,y)=>y?g(y,x%y):x;const h=g(n,d);return (n/h)+\"/\"+(d/h);",
+    "distractor_solve": {
+      "10/13": "const a=3,b=4;const n=2*a+b,d=3*a+b;return n+\"/\"+d;",
+      "11/13": "return \"11/13\";",
+      "5/3": "return \"5/3\";"
+    }
+  },
+  {
+    "id": "IM15B-14",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "new concentration after draining part of a mixture and replacing it with the pure component",
+    "difficulty": "hard",
+    "prompt": "A radiator holds 40 liters of a mixture that is 30 percent antifreeze. A mechanic drains 10 liters of the mixture and replaces it with 10 liters of pure antifreeze. What percent of the new mixture is antifreeze?",
+    "choices": [
+      "47.5",
+      "37.5",
+      "40",
+      "44"
+    ],
+    "correct_answer": "47.5",
+    "explanation": "Draining 10 of the 40 liters leaves 30 liters holding 0.3 x 30 = 9 liters of antifreeze. Adding 10 liters of pure antifreeze gives 19 liters of antifreeze in 40 liters, or 47.5 percent. The option \"40\" adds 10 percentage points for the 10 liters of antifreeze. The option \"44\" adds the 10 liters of antifreeze without draining anything, 22 liters in 50. The option \"37.5\" removes the 7 liters of water in the drained mixture instead of its 3 liters of antifreeze.",
+    "solve": "const left=0.3*(40-10);return (left+10)/40*100;",
+    "distractor_solve": {
+      "40": "return 30+10;",
+      "44": "return (0.3*40+10)/(40+10)*100;",
+      "37.5": "return (0.3*40-0.7*10+10)/40*100;"
+    }
+  },
+  {
+    "id": "IM15B-15",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "speed needed over the remaining time to meet a schedule",
+    "difficulty": "medium",
+    "prompt": "A bus must cover 300 miles in 6 hours. It drives the first 2 hours at an average speed of 45 miles per hour. At what average speed, in miles per hour, must it drive for the rest of the 6 hours to finish exactly on schedule?",
+    "choices": [
+      "55",
+      "63.75",
+      "75",
+      "52.5"
+    ],
+    "correct_answer": "52.5",
+    "explanation": "In 2 hours the bus covers 2 x 45 = 90 miles, leaving 210 miles for the remaining 4 hours: 210/4 = 52.5 miles per hour. The option \"55\" averages the two speeds equally, so (45 + s)/2 = 50, ignoring that the legs last different times. The option \"75\" divides the whole 300 miles by the remaining 4 hours, forgetting the distance already covered. The option \"63.75\" subtracts only one hour of driving, 45 miles, from the 300.",
+    "solve": "return (300-2*45)/(6-2);",
+    "distractor_solve": {
+      "55": "return 2*(300/6)-45;",
+      "75": "return 300/(6-2);",
+      "63.75": "return (300-45)/(6-2);"
+    }
+  },
+  {
+    "id": "IM15B-16",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "worker-days when part of a crew leaves partway through a job",
+    "difficulty": "medium",
+    "prompt": "A crew of 16 workers, all working at the same rate, can finish a job in 15 days. After the crew has worked for 6 days, 4 of the workers leave. How many more days will the remaining workers need to finish the job?",
+    "choices": [
+      "14",
+      "18",
+      "12",
+      "20"
+    ],
+    "correct_answer": "12",
+    "explanation": "The job is 16 x 15 = 240 worker-days. After 6 days, 16 x 6 = 96 are done and 144 remain. With 12 workers that takes 144/12 = 12 more days. The option \"14\" finds the whole job time for 12 workers (20 days) and subtracts the 6 days already worked. The option \"18\" gives the total number of days for the job, 6 + 12, instead of the days still needed. The option \"20\" finds the time for 12 workers to do the whole job, ignoring the work already done.",
+    "solve": "const left=16*(15-6);return left/(16-4);",
+    "distractor_solve": {
+      "14": "return 16*15/12-6;",
+      "18": "return 6+16*(15-6)/12;",
+      "20": "return 16*15/12;"
+    }
+  },
+  {
+    "id": "IM15B-17",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "ratio of two amounts after each grows by a different percent",
+    "difficulty": "medium",
+    "prompt": "The monthly salaries of Ms. Ito and Mr. Diaz are in the ratio 3 : 5. Ms. Ito then gets a 20 percent raise and Mr. Diaz gets an 8 percent raise. Mr. Diaz's new monthly salary is $2,700. What is Ms. Ito's new monthly salary, in dollars?",
+    "choices": [
+      "1458",
+      "1800",
+      "1500",
+      "1620"
+    ],
+    "correct_answer": "1800",
+    "explanation": "Mr. Diaz's old salary was 2700/1.08 = $2,500, so Ms. Ito's old salary was 3/5 of that, $1,500. After her 20 percent raise she earns 1500 x 1.2 = $1,800. The option \"1458\" swaps the raises, taking Mr. Diaz's old salary as 2700/1.2 and giving Ms. Ito the 8 percent raise. The option \"1500\" gives Ms. Ito's salary BEFORE her raise. The option \"1620\" applies the old 3 : 5 ratio to the new salaries.",
+    "solve": "const d=2700/1.08,i=d*3/5;return i*1.2;",
+    "distractor_solve": {
+      "1458": "return 2700/1.2*3/5*1.08;",
+      "1500": "return 2700/1.08*3/5;",
+      "1620": "return 2700*3/5;"
+    }
+  },
+  {
+    "id": "IM15B-18",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "principal recovered from an amount at simple interest",
+    "difficulty": "medium",
+    "prompt": "Some money is invested at 5 percent simple annual interest. After 3 years the investment, including interest, is worth $3,450. How many dollars were originally invested?",
+    "choices": [
+      "3000",
+      "2300",
+      "2932.5",
+      "3277.5"
+    ],
+    "correct_answer": "3000",
+    "explanation": "Simple interest for 3 years at 5 percent adds 15 percent of the principal, so 1.15P = 3450 and P = 3450/1.15 = $3,000. The option \"2300\" misplaces the decimal in 3 x 5 percent, dividing by 1.5 instead of 1.15. The option \"2932.5\" figures the three years of interest on the final $3,450 and subtracts it. The option \"3277.5\" removes only one year of interest, figured on the final amount.",
+    "solve": "return 3450/(1+0.05*3);",
+    "distractor_solve": {
+      "2300": "return 3450/1.5;",
+      "2932.5": "return 3450-3*0.05*3450;",
+      "3277.5": "return 3450*0.95;"
+    }
+  },
+  {
+    "id": "IM15B-19",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "evaluating a joint variation at new inputs",
+    "difficulty": "medium",
+    "prompt": "z varies jointly as x and y, and z = 24 when x = 2 and y = 3. What is the value of z when x = 5 and y = 4?",
+    "choices": [
+      "28",
+      "45",
+      "60",
+      "80"
+    ],
+    "correct_answer": "80",
+    "explanation": "z = kxy with 24 = 6k, so k = 4. When x = 5 and y = 4, z = 4 x 5 x 4 = 80. The option \"28\" adds the changes in x and y to z. The option \"45\" treats z as varying inversely with y. The option \"60\" scales for the change in x but ignores the change in y.",
+    "solve": "const k=24/(2*3);return k*5*4;",
+    "distractor_solve": {
+      "28": "return 24+(5-2)+(4-3);",
+      "45": "return 24*(5/2)*(3/4);",
+      "60": "return 24*5/2;"
+    }
+  },
+  {
+    "id": "IM15B-20",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "time for one runner to first lap another on a circular track",
+    "difficulty": "hard",
+    "prompt": "Two runners start together from the same point on a circular track and run in the same direction at steady speeds. Mia completes a lap every 60 seconds, and Jo completes a lap every 84 seconds. After how many seconds does Mia first pass Jo?",
+    "choices": [
+      "144",
+      "150",
+      "210",
+      "420"
+    ],
+    "correct_answer": "210",
+    "explanation": "Mia gains 1/60 - 1/84 = 1/210 of a lap each second, so she gains a full lap after 210 seconds (3.5 of her laps and 2.5 of Jo's). The option \"144\" adds the two lap times. The option \"150\" finds Jo's 2.5 laps (Mia gains 0.4 lap per Jo-lap) but multiplies by Mia's 60-second lap time. The option \"420\" takes the least common multiple of 60 and 84, when both are next at the start together.",
+    "solve": "return 1/(1/60-1/84);",
+    "distractor_solve": {
+      "144": "return 60+84;",
+      "150": "return (60/(84-60))*60;",
+      "420": "const g=(x,y)=>y?g(y,x%y):x;return 60*84/g(60,84);"
+    }
+  },
+  {
+    "id": "IM15B-21",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "pass mark recovered from two scores stated relative to it",
+    "difficulty": "hard",
+    "prompt": "On a test, a student who scored 40 percent of the maximum possible marks failed by 12 marks, and a student who scored 52 percent of the maximum possible marks passed with 6 marks to spare. How many marks were needed to pass?",
+    "choices": [
+      "32",
+      "72",
+      "48",
+      "69"
+    ],
+    "correct_answer": "72",
+    "explanation": "The two scores differ by 52 - 40 = 12 percent of the maximum, and also by 12 + 6 = 18 marks, so the maximum is 18/0.12 = 150. The pass mark is 0.40 x 150 + 12 = 72 (also 0.52 x 150 - 6 = 72). The option \"32\" takes the 12 percent gap as 12 - 6 = 6 marks, so the maximum is 50. The option \"48\" finds the maximum of 150 but subtracts the 12 marks from 40 percent of it. The option \"69\" takes the pass mark as 46 percent, halfway between the two scores, of the 150 maximum.",
+    "solve": "const M=(12+6)/(0.52-0.40);return 0.40*M+12;",
+    "distractor_solve": {
+      "32": "const M=(12-6)/(0.52-0.40);return 0.40*M+12;",
+      "48": "const M=150;return 0.40*M-12;",
+      "69": "return 0.46*150;"
+    }
+  },
+  {
+    "id": "IM15B-22",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "length of a train from the time to pass a post and to cross a bridge",
+    "difficulty": "hard",
+    "prompt": "A train moving at a constant speed passes a signal post in 12 seconds. At the same speed it takes 40 seconds to cross a bridge 420 meters long, from the moment its front reaches the bridge until its back leaves the bridge. How long is the train, in meters?",
+    "choices": [
+      "180",
+      "294",
+      "315",
+      "600"
+    ],
+    "correct_answer": "180",
+    "explanation": "Passing the post, the train moves its own length L in 12 s. Crossing the bridge it moves L + 420 in 40 s, so the extra 420 m takes 28 s and the speed is 15 m/s. Then L = 15 x 12 = 180 m. The option \"294\" takes the speed as 420/40, ignoring the train's own length, then multiplies by 40 - 12. The option \"315\" subtracts the post time twice, taking the speed as 420/16. The option \"600\" finds the speed of 15 m/s but reports the distance covered while crossing, train plus bridge.",
+    "solve": "const v=420/(40-12);return v*12;",
+    "distractor_solve": {
+      "294": "return (420/40)*(40-12);",
+      "315": "return (420/(40-24))*12;",
+      "600": "const v=420/(40-12);return v*40;"
+    }
+  },
+  {
+    "id": "IM15B-23",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "percent change in unit price when both package size and price change",
+    "difficulty": "hard",
+    "prompt": "A box of cereal used to hold 500 grams and cost $5.00. The box now holds 400 grams and costs $4.40. By what percent did the price per gram increase?",
+    "choices": [
+      "5.6",
+      "8",
+      "13",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "The old price was 500 cents for 500 g, or 1 cent per gram. The new price is 440 cents for 400 g, or 1.1 cents per gram, an increase of 10 percent. The option \"8\" subtracts the 12 percent price cut from the 20 percent size cut. The option \"13\" finds the 25 percent rise per gram from the size change (500/400) but subtracts the 12 percent price cut. The option \"5.6\" treats the 20 percent smaller box as a 20 percent rise in price per gram, 1.2 x 0.88.",
+    "solve": "return ((4.40/400)/(5.00/500)-1)*100;",
+    "distractor_solve": {
+      "8": "return 20-12;",
+      "13": "return 25-12;",
+      "5.6": "return (1.2*0.88-1)*100;"
+    }
+  },
+  {
+    "id": "IM15B-24",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "overall profit percent when part of the stock sells at a discount",
+    "difficulty": "hard",
+    "prompt": "A store marks the price of its stock 40 percent above cost. It sells half of the stock at the marked price and the other half at 20 percent off the marked price. What is the store's overall profit, as a percent of its total cost?",
+    "choices": [
+      "20",
+      "30",
+      "26",
+      "36"
+    ],
+    "correct_answer": "26",
+    "explanation": "Take the cost as $100 per half. Half sells for $140 and half for 140 x 0.8 = $112, a total of $252 on a cost of $200. The profit is $52, or 26 percent. The option \"20\" subtracts the 20 percent discount from the 40 percent markup. The option \"30\" averages a 40 percent profit with a 40 - 20 = 20 percent profit. The option \"36\" takes the average discount of 10 percent off the 40-point markup itself, 40 x 0.9.",
+    "solve": "const m=1.4;return ((m+m*0.8)/2-1)*100;",
+    "distractor_solve": {
+      "20": "return 40-20;",
+      "30": "return (40+(40-20))/2;",
+      "36": "return 40*(1-0.1);"
+    }
+  },
+  {
+    "id": "IM15B-25",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "unknown number from an equation between two percents of different numbers",
+    "difficulty": "medium",
+    "prompt": "Sixty percent of what number is equal to 45 percent of 80?",
+    "choices": [
+      "48",
+      "60",
+      "57.6",
+      "65"
+    ],
+    "correct_answer": "60",
+    "explanation": "45 percent of 80 is 36. If 60 percent of the number is 36, the number is 36/0.60 = 60. The option \"48\" takes 60 percent of 80, swapping the roles of the two percents. The option \"65\" subtracts the 15-point gap between the percents from 80. The option \"57.6\" finds 45 percent of 80 (36) and then adds 60 percent of it instead of dividing by 0.60.",
+    "solve": "return 0.45*80/0.60;",
+    "distractor_solve": {
+      "48": "return 0.60*80;",
+      "65": "return 80-(60-45);",
+      "57.6": "return 0.45*80*1.6;"
+    }
+  },
+  {
+    "id": "IM15B-26",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "selling price that covers spoilage and earns a profit on the whole outlay",
+    "difficulty": "hard",
+    "prompt": "A grocer buys 200 kilograms of tomatoes at $1.80 per kilogram. One fourth of the tomatoes spoil and are thrown away. At what price per kilogram, in dollars, must she sell the rest to make a profit of 20 percent of the total amount she paid?",
+    "choices": [
+      "2.88",
+      "2.61",
+      "2.70",
+      "2.76"
+    ],
+    "correct_answer": "2.88",
+    "explanation": "She paid 200 x 1.80 = $360 and wants 1.2 x 360 = $432. Only 150 kg are left, so she must charge 432/150 = $2.88 per kilogram. The option \"2.61\" adds the 20 percent profit and the 25 percent spoilage to the cost per kilogram. The option \"2.70\" multiplies by 1.25 for the spoiled quarter instead of dividing by 0.75. The option \"2.76\" figures the 20 percent profit only on the $270 cost of the tomatoes actually sold.",
+    "solve": "const paid=200*1.8,target=paid*1.2,sold=200*0.75;return target/sold;",
+    "distractor_solve": {
+      "2.61": "return 1.8*(1+0.2+0.25);",
+      "2.70": "return 1.8*1.2*1.25;",
+      "2.76": "return (360+0.2*270)/150;"
+    }
+  },
+  {
+    "id": "IM15B-27",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "combined time for a mixed crew from two equivalent crews",
+    "difficulty": "hard",
+    "prompt": "A job can be done in 15 days by 4 adults working together, or in 15 days by 6 children working together. All adults work at the same rate and all children work at the same rate. How many days would 2 adults and 6 children working together take to do the job?",
+    "choices": [
+      "9",
+      "11.25",
+      "12",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "One adult does 1/60 of the job per day and one child does 1/90. Together 2/60 + 6/90 = 1/30 + 1/15 = 1/10 of the job per day, so they take 10 days. The option \"9\" converts the crew to 9 child-equivalents (2 adults = 3 children) and reports that count as the number of days. The option \"12\" notes that 2 adults equal 3 children and subtracts 3 days, one for each extra child-equivalent. The option \"11.25\" counts all 8 workers as children, 90 child-days divided by 8.",
+    "solve": "const a=1/(4*15),c=1/(6*15);return 1/(2*a+6*c);",
+    "distractor_solve": {
+      "9": "return 6+2*(6/4);",
+      "12": "return 15-2*(6/4);",
+      "11.25": "return 6*15/8;"
+    }
+  },
+  {
+    "id": "IM15B-28",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "speed ratio from a stride ratio and a step-rate ratio",
+    "difficulty": "hard",
+    "prompt": "Ken and Lia are walking. Ken's stride is 5/4 as long as Lia's, but Lia takes 6 steps in the time Ken takes 5 steps. In the time Ken walks 100 meters, how many meters does Lia walk?",
+    "choices": [
+      "80",
+      "120",
+      "96",
+      "150"
+    ],
+    "correct_answer": "96",
+    "explanation": "Take Lia's stride as 4 units, so Ken's is 5. In the same time Ken covers 5 x 5 = 25 units and Lia covers 6 x 4 = 24 units, so Lia walks 24/25 x 100 = 96 meters. The option \"80\" uses the stride ratio alone. The option \"120\" uses the step-rate ratio alone. The option \"150\" inverts the stride ratio, giving Lia the longer stride.",
+    "solve": "const ken=5*5,lia=6*4;return 100*lia/ken;",
+    "distractor_solve": {
+      "80": "return 100*4/5;",
+      "120": "return 100*6/5;",
+      "150": "return 100*(6/5)*(5/4);"
+    }
+  },
+  {
+    "id": "IM15B-29",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "whole recovered from a fixed amount that shifts one part's percent share",
+    "difficulty": "hard",
+    "prompt": "A fund keeps 30 percent of its total value in bonds. If $18,000 of its other holdings were switched into bonds, with the total value unchanged, bonds would make up 36 percent of the total value. What is the total value of the fund, in thousands of dollars?",
+    "choices": [
+      "50",
+      "300",
+      "90",
+      "240"
+    ],
+    "correct_answer": "300",
+    "explanation": "Switching $18 thousand raises the bond share by 36 - 30 = 6 percentage points of an unchanged total, so 18 is 6 percent of the total: 18/0.06 = 300 thousand dollars. The option \"50\" treats the $18 thousand as 36 percent of the total. The option \"90\" finds the value of the bonds ($18 thousand is a 20 percent rise in that value) and stops there. The option \"240\" subtracts the $18 thousand from the $90 thousand in bonds before dividing by 30 percent.",
+    "solve": "return 18/(0.36-0.30);",
+    "distractor_solve": {
+      "50": "return 18/0.36;",
+      "90": "return 18/(0.36/0.30-1);",
+      "240": "return (18/(0.36/0.30-1)-18)/0.30;"
+    }
+  },
+  {
+    "id": "IM15B-30",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "one quantity as a percent of another from an equation between percents of a sum and a difference",
+    "difficulty": "hard",
+    "prompt": "The numbers x and y are positive, and 30 percent of (x + y) is equal to 50 percent of (x - y). The number y is what percent of x?",
+    "choices": [
+      "25",
+      "10",
+      "60",
+      "400"
+    ],
+    "correct_answer": "25",
+    "explanation": "0.3x + 0.3y = 0.5x - 0.5y gives 0.8y = 0.2x, so y = 0.25x and y is 25 percent of x. The option \"10\" drops the parentheses on the y terms, writing 0.3x + y = 0.5x - y, so 2y = 0.2x. The option \"60\" divides the two percents, 30/50. The option \"400\" solves correctly but reports x as a percent of y.",
+    "solve": "return (0.5-0.3)/(0.5+0.3)*100;",
+    "distractor_solve": {
+      "10": "return (0.5-0.3)/2*100;",
+      "60": "return 30/50*100;",
+      "400": "return (0.5+0.3)/(0.5-0.3)*100;"
+    }
+  },
+  {
+    "id": "IM15B-31",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "original numbers from a sum and a ratio after the same amount is added to each",
+    "difficulty": "medium",
+    "prompt": "Two numbers have a sum of 60. When 10 is added to each number, the ratio of the smaller to the larger becomes 2 : 3. What is the smaller of the two original numbers?",
+    "choices": [
+      "16",
+      "18",
+      "24",
+      "22"
+    ],
+    "correct_answer": "22",
+    "explanation": "After 10 is added to each, the sum is 60 + 20 = 80, split 2 : 3 into 32 and 48. Subtracting 10 from each gives 22 and 38; the smaller is 22. The option \"16\" subtracts the two added 10s from the sum instead of adding them, then forgets to remove 10. The option \"18\" adds 10 to the sum only once, making it 70 instead of 80. The option \"24\" applies the 2 : 3 ratio to the original sum of 60, ignoring the added 10s.",
+    "solve": "const s=60+2*10;return s*2/5-10;",
+    "distractor_solve": {
+      "16": "return (60-2*10)*2/5;",
+      "18": "return (60+10)*2/5-10;",
+      "24": "return 60*2/5;"
+    }
+  },
+  {
+    "id": "IM15B-32",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "equivalent ratio from a mixed number and a decimal",
+    "difficulty": "easy",
+    "prompt": "Which ratio is equivalent to 2 1/4 : 0.6 ?",
+    "choices": [
+      "3 : 1",
+      "3 : 8",
+      "15 : 4",
+      "4 : 1"
+    ],
+    "correct_answer": "15 : 4",
+    "explanation": "2 1/4 : 0.6 = 2.25 : 0.6. Multiplying both terms by 20 gives 45 : 12, which reduces to 15 : 4. The option \"3 : 1\" writes 2 1/4 as 9/4 and 0.6 as 3/5, then compares only the numerators, 9 : 3. The option \"3 : 8\" reads 0.6 as 6, so 2.25 : 6 = 3 : 8. The option \"4 : 1\" reads 2 1/4 as 2.4, so 2.4 : 0.6 = 4 : 1.",
+    "solve": "const a=225,b=60;const g=(x,y)=>y?g(y,x%y):x;const h=g(a,b);return (a/h)+\" : \"+(b/h);",
+    "distractor_solve": {
+      "3 : 1": "return \"3 : 1\";",
+      "3 : 8": "const a=225,b=600;const g=(x,y)=>y?g(y,x%y):x;const h=g(a,b);return (a/h)+\" : \"+(b/h);",
+      "4 : 1": "return \"4 : 1\";"
+    }
+  },
+  {
+    "id": "IM15B-33",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "whole budget recovered from a percent of a percent of it",
+    "difficulty": "medium",
+    "prompt": "A school spends 40 percent of its budget on salaries, and 15 percent of the salary money goes to coaches. The coaches are paid $12,000 in all. What is the school's whole budget, in thousands of dollars?",
+    "choices": [
+      "32",
+      "200",
+      "80",
+      "112"
+    ],
+    "correct_answer": "200",
+    "explanation": "15 percent of 40 percent is 0.15 x 0.40 = 0.06, so the coaches receive 6 percent of the budget. 12/0.06 = 200 thousand dollars. The option \"32\" finds the $80 thousand salary total and then multiplies by 0.40 instead of dividing. The option \"80\" stops at the salary total, $80 thousand. The option \"112\" treats the budget as 40 percent MORE than the salary total, 80 x 1.4.",
+    "solve": "return 12/(0.40*0.15);",
+    "distractor_solve": {
+      "32": "return 12/0.15*0.40;",
+      "80": "return 12/0.15;",
+      "112": "return 12/0.15*1.40;"
+    }
+  }
+]

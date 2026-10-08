@@ -1,0 +1,761 @@
+[
+  {
+    "id": "IM15A-01",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "evaluating a nested custom operation defined by a formula",
+    "difficulty": "medium",
+    "prompt": "For all numbers a and b, the operation # is defined by a # b = ab - a + b. What is the value of (3 # 4) # 2 ?",
+    "choices": [
+      "15",
+      "3",
+      "13",
+      "21"
+    ],
+    "correct_answer": "15",
+    "explanation": "Work inside the parentheses first. 3 # 4 = 3(4) - 3 + 4 = 13. Then 13 # 2 = 13(2) - 13 + 2 = 15. The option \"21\" groups the other way, computing 4 # 2 = 6 first and then 3 # 6 = 21. The option \"13\" stops after 3 # 4. The option \"3\" reads the rule as ab - (a + b), so 3 # 4 = 5 and 5 # 2 = 3.",
+    "solve": "const s=(a,b)=>a*b-a+b;return s(s(3,4),2);",
+    "distractor_solve": {
+      "3": "const s=(a,b)=>a*b-(a+b);return s(s(3,4),2);",
+      "13": "const s=(a,b)=>a*b-a+b;return s(3,4);",
+      "21": "const s=(a,b)=>a*b-a+b;return s(3,s(4,2));"
+    }
+  },
+  {
+    "id": "IM15A-02",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "fraction of a whole found from a rows-by-seats product",
+    "difficulty": "easy",
+    "prompt": "A theater has 28 rows with 35 seats in each row. For Friday's show, 3/5 of the seats were sold. How many seats were NOT sold?",
+    "choices": [
+      "338",
+      "385",
+      "392",
+      "196"
+    ],
+    "correct_answer": "392",
+    "explanation": "The theater has 28 x 35 = 980 seats. The unsold part is 1 - 3/5 = 2/5, and 2/5 of 980 = 392. The option \"196\" finds 1/5 of 980 and stops. The option \"338\" multiplies 28 x 35 as 28 x 30 + 5 = 845 (the 5 was never multiplied by 28) and takes 2/5 of that. The option \"385\" applies 3/5 to the rows, rounds 16.8 to 17 sold rows, and counts 11 unsold rows of 35.",
+    "solve": "const t=28*35;return t-t*3/5;",
+    "distractor_solve": {
+      "196": "return 28*35/5;",
+      "338": "const t=28*30+5;return t*2/5;",
+      "385": "const soldRows=Math.round(28*3/5);return (28-soldRows)*35;"
+    }
+  },
+  {
+    "id": "IM15A-03",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "difference of two cubes evaluated directly",
+    "difficulty": "easy",
+    "prompt": "What is the value of 5^3 - 3^3 ?",
+    "choices": [
+      "116",
+      "98",
+      "8",
+      "68"
+    ],
+    "correct_answer": "98",
+    "explanation": "5^3 = 125 and 3^3 = 27, so 5^3 - 3^3 = 98. The option \"8\" subtracts the bases first and cubes the difference, (5 - 3)^3. The option \"68\" uses the factoring (5 - 3)(5^2 + 3^2) and leaves out the middle term 5 x 3, which should give (5 - 3)(25 + 15 + 9) = 98. The option \"116\" reads 3^3 as 3 x 3 = 9.",
+    "solve": "return 5**3-3**3;",
+    "distractor_solve": {
+      "8": "return (5-3)**3;",
+      "68": "return (5-3)*(5**2+3**2);",
+      "116": "return 5**3-3*3;"
+    }
+  },
+  {
+    "id": "IM15A-04",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "multi-step whole-number arithmetic with subtraction across a zero",
+    "difficulty": "easy",
+    "prompt": "A library had 1,204 books. It gave away 387 books, and then it received 3 boxes with 45 books in each box. How many books does the library have now?",
+    "choices": [
+      "682",
+      "865",
+      "1052",
+      "952"
+    ],
+    "correct_answer": "952",
+    "explanation": "1,204 - 387 = 817, and 3 boxes of 45 add 135 books, so the library has 817 + 135 = 952. The option \"865\" adds 3 + 45 = 48 instead of 3 x 45. The option \"682\" subtracts the new books instead of adding them. The option \"1052\" makes a borrowing error in 1,204 - 387: it borrows across the zero but does not reduce the 2 in the hundreds place, getting 917.",
+    "solve": "return 1204-387+3*45;",
+    "distractor_solve": {
+      "682": "return 1204-387-3*45;",
+      "865": "return 1204-387+(3+45);",
+      "1052": "return 1304-387+3*45;"
+    }
+  },
+  {
+    "id": "IM15A-05",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "multi-step whole-number total with two exceptions",
+    "difficulty": "easy",
+    "prompt": "A train has 15 cars. Every car has 18 rows with 4 seats in each row, except the first car and the last car, which each have 10 rows with 4 seats in each row. How many seats does the train have in all?",
+    "choices": [
+      "976",
+      "1000",
+      "936",
+      "1016"
+    ],
+    "correct_answer": "1016",
+    "explanation": "Thirteen cars have 18 x 4 = 72 seats, giving 936, and the two end cars have 10 x 4 = 40 seats each, giving 80. The total is 1016. The option \"936\" leaves out the two end cars. The option \"1000\" counts all 15 cars at 72 seats (1080) and then subtracts the end cars' 80 seats instead of replacing them. The option \"976\" treats the first and last car as a single short car, adding only one 40.",
+    "solve": "return 13*18*4+2*10*4;",
+    "distractor_solve": {
+      "936": "return 13*18*4;",
+      "976": "return 13*18*4+10*4;",
+      "1000": "return 15*18*4-2*10*4;"
+    }
+  },
+  {
+    "id": "IM15A-06",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "sum of all positive divisors of a whole number",
+    "difficulty": "medium",
+    "prompt": "What is the sum of all the positive divisors of 20?",
+    "choices": [
+      "42",
+      "54",
+      "22",
+      "38"
+    ],
+    "correct_answer": "42",
+    "explanation": "The divisors of 20 are 1, 2, 4, 5, 10 and 20, and their sum is 42. The option \"22\" leaves out 20 itself. The option \"38\" misses the divisor 4. The option \"54\" treats 20 = 2 x 2 x 5 as three different primes and multiplies (1 + 2)(1 + 2)(1 + 5), instead of (1 + 2 + 4)(1 + 5).",
+    "solve": "let s=0;for(let d=1;d<=20;d++)if(20%d===0)s+=d;return s;",
+    "distractor_solve": {
+      "22": "let s=0;for(let d=1;d<20;d++)if(20%d===0)s+=d;return s;",
+      "38": "let s=0;for(let d=1;d<=20;d++)if(20%d===0&&d!==4)s+=d;return s;",
+      "54": "return (1+2)*(1+2)*(1+5);"
+    }
+  },
+  {
+    "id": "IM15A-07",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "units digit of a sum of factorials",
+    "difficulty": "medium",
+    "prompt": "For a positive integer n, n! means the product of all the whole numbers from 1 to n (for example, 4! = 1 x 2 x 3 x 4 = 24). What is the units digit of 1! + 2! + 3! + ... + 50! ?",
+    "choices": [
+      "5",
+      "8",
+      "3",
+      "9"
+    ],
+    "correct_answer": "3",
+    "explanation": "Every factorial from 5! on contains both 2 and 5, so it ends in 0. Only 1! + 2! + 3! + 4! = 1 + 2 + 6 + 24 = 33 affects the units digit, which is 3. The option \"9\" stops after 3!. The option \"5\" adds 1 + 2 + ... + 50 = 1275 instead of the factorials. The option \"8\" multiplies 1!, 2!, 3! and 4! instead of adding them, 1 x 2 x 6 x 24 = 288.",
+    "solve": "let s=0,f=1;for(let n=1;n<=50;n++){f=(f*n)%10;s+=f;}return s%10;",
+    "distractor_solve": {
+      "5": "return (50*51/2)%10;",
+      "8": "return (1*2*6*24)%10;",
+      "9": "return (1+2+6)%10;"
+    }
+  },
+  {
+    "id": "IM15A-08",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "greatest common factor applied to tiling a rectangle, counting the tiles",
+    "difficulty": "medium",
+    "prompt": "A rectangular floor measures 360 centimeters by 504 centimeters. It is to be covered exactly, with no gaps and no cutting, by identical square tiles whose side length is a whole number of centimeters. If the tiles are as large as possible, how many tiles are needed?",
+    "choices": [
+      "12",
+      "35",
+      "24",
+      "5"
+    ],
+    "correct_answer": "35",
+    "explanation": "The largest tile side that divides both lengths is the greatest common factor of 360 and 504, which is 72. The floor is then 360/72 = 5 tiles by 504/72 = 7 tiles, so 5 x 7 = 35 tiles. The option \"5\" counts the tiles along the 360-centimeter side only. The option \"12\" adds the 5 and the 7 instead of multiplying them. The option \"24\" divides the perimeter, 2(360 + 504) = 1728, by the tile side 72, which counts tiles around the edge rather than tiles covering the floor.",
+    "solve": "const g=(a,b)=>b?g(b,a%b):a;const s=g(360,504);return (360/s)*(504/s);",
+    "distractor_solve": {
+      "5": "const g=(a,b)=>b?g(b,a%b):a;return 360/g(360,504);",
+      "12": "const g=(a,b)=>b?g(b,a%b):a;const s=g(360,504);return 360/s+504/s;",
+      "24": "const g=(a,b)=>b?g(b,a%b):a;const s=g(360,504);return 2*(360+504)/s;"
+    }
+  },
+  {
+    "id": "IM15A-09",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "counting fractions with a fixed denominator that have terminating decimals",
+    "difficulty": "hard",
+    "prompt": "Ana writes each of the fractions 1/60, 2/60, 3/60, ..., 59/60 as a decimal. How many of these 59 decimals terminate (come to an end) instead of repeating forever?",
+    "choices": [
+      "40",
+      "19",
+      "20",
+      "27"
+    ],
+    "correct_answer": "19",
+    "explanation": "A fraction in lowest terms terminates exactly when its denominator has no prime factors other than 2 and 5. Since 60 = 2 x 2 x 3 x 5, n/60 terminates exactly when the 3 cancels, that is, when n is a multiple of 3. The multiples of 3 from 3 to 57 number 19. The option \"20\" divides 60 by 3, which also counts 60/60, a fraction not on the list. The option \"40\" counts the numerators that are NOT multiples of 3, reversing the rule. The option \"27\" counts numerators that are multiples of 3 OR of 5, as if cancelling the 5 also helped.",
+    "solve": "const g=(a,b)=>b?g(b,a%b):a;let c=0;for(let n=1;n<=59;n++){let d=60/g(n,60);while(d%2===0)d/=2;while(d%5===0)d/=5;if(d===1)c++;}return c;",
+    "distractor_solve": {
+      "20": "return 60/3;",
+      "27": "let c=0;for(let n=1;n<=59;n++)if(n%3===0||n%5===0)c++;return c;",
+      "40": "let c=0;for(let n=1;n<=59;n++)if(n%3!==0)c++;return c;"
+    }
+  },
+  {
+    "id": "IM15A-10",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "greatest number guaranteed to divide a product of multiples",
+    "difficulty": "medium",
+    "prompt": "Ana chooses a positive multiple of 6, and Ben chooses a positive multiple of 15. They multiply their two numbers together. What is the greatest whole number that must divide their product, no matter which multiples they choose?",
+    "choices": [
+      "3",
+      "30",
+      "900",
+      "90"
+    ],
+    "correct_answer": "90",
+    "explanation": "Ana's number is 6m and Ben's is 15n, so the product is 90mn, which is always a multiple of 90. When they choose 6 and 15 the product is exactly 90, so nothing larger always divides it. The option \"30\" is the least common multiple of 6 and 15, which answers a different question. The option \"3\" is the greatest common factor of 6 and 15. The option \"900\" assumes each number must be a multiple of the least common multiple 30, so the product would be a multiple of 30 x 30.",
+    "solve": "const g=(a,b)=>b?g(b,a%b):a;let r=0;for(let a=6;a<=72;a+=6)for(let b=15;b<=180;b+=15)r=g(r,a*b);return r;",
+    "distractor_solve": {
+      "3": "const g=(a,b)=>b?g(b,a%b):a;return g(6,15);",
+      "30": "return 6*15/3;",
+      "900": "const l=6*15/3;return l*l;"
+    }
+  },
+  {
+    "id": "IM15A-11",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "counting page numbers from a total number of digits printed",
+    "difficulty": "hard",
+    "prompt": "The pages of a book are numbered 1, 2, 3, and so on, through the last page. Printing all the page numbers uses 1,107 digits in all. How many of the pages have three-digit page numbers?",
+    "choices": [
+      "306",
+      "336",
+      "366",
+      "309"
+    ],
+    "correct_answer": "306",
+    "explanation": "Pages 1-9 use 9 digits and pages 10-99 use 90 x 2 = 180 digits, 189 in all. That leaves 1107 - 189 = 918 digits for three-digit pages, which is 918 / 3 = 306 pages. The option \"309\" subtracts the 180 digits of the two-digit pages but forgets the 9 digits of pages 1-9. The option \"336\" subtracts 99, the number of one- and two-digit PAGES, instead of the 189 DIGITS they use. The option \"366\" subtracts only the 9 one-digit pages' digits.",
+    "solve": "let d=0,n=0;while(d<1107){n++;d+=String(n).length;}if(d!==1107)return null;return n-99;",
+    "distractor_solve": {
+      "309": "return (1107-180)/3;",
+      "336": "return (1107-99)/3;",
+      "366": "return (1107-9)/3;"
+    }
+  },
+  {
+    "id": "IM15A-12",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "sum of a run of consecutive integers that crosses zero",
+    "difficulty": "medium",
+    "prompt": "The squares of a game board are numbered with every integer from -20 through 25, one number per square. Lena adds up the numbers on all of the squares. What total does she get?",
+    "choices": [
+      "100",
+      "90",
+      "115",
+      "94"
+    ],
+    "correct_answer": "115",
+    "explanation": "The numbers -20 through 20 cancel in pairs (-20 with 20, -19 with 19, and so on), leaving 21 + 22 + 23 + 24 + 25 = 115. The option \"94\" computes (1 + ... + 25) - (1 + ... + 21) = 325 - 231, subtracting one positive number too many. The option \"90\" stops the leftover numbers at 24. The option \"100\" pairs each negative number with a positive one to make 5 (-20 with 25, down to -1 with 6), which gives 20 pairs, and forgets the numbers 0 through 5 that were never paired.",
+    "solve": "let s=0;for(let k=-20;k<=25;k++)s+=k;return s;",
+    "distractor_solve": {
+      "90": "return 21+22+23+24;",
+      "94": "return 25*26/2-21*22/2;",
+      "100": "let pairs=0;for(let k=-20;k<=-1;k++)pairs++;return pairs*(25-20);"
+    }
+  },
+  {
+    "id": "IM15A-13",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "three consecutive whole numbers recovered from their product",
+    "difficulty": "medium",
+    "prompt": "The ages of three siblings are three consecutive whole numbers, and the product of their three ages is 2,730. What is the sum of their ages?",
+    "choices": [
+      "14",
+      "30",
+      "42",
+      "39"
+    ],
+    "correct_answer": "42",
+    "explanation": "2,730 = 2 x 3 x 5 x 7 x 13 = 13 x 14 x 15, so the ages are 13, 14 and 15 and their sum is 42. The option \"39\" estimates the cube root of 2,730 as about 14 and makes 14 the OLDEST age, using 12 x 13 x 14 = 2,184, which does not match. The option \"14\" reports the middle age instead of the sum. The option \"30\" adds the prime factors 2 + 3 + 5 + 7 + 13.",
+    "solve": "let n=1;while(n*(n+1)*(n+2)<2730)n++;if(n*(n+1)*(n+2)!==2730)return null;return 3*n+3;",
+    "distractor_solve": {
+      "14": "return Math.round(Math.cbrt(2730));",
+      "30": "return 2+3+5+7+13;",
+      "39": "const m=Math.round(Math.cbrt(2730));return (m-2)+(m-1)+m;"
+    }
+  },
+  {
+    "id": "IM15A-14",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "negative integer exponents in a sum and a quotient",
+    "difficulty": "medium",
+    "prompt": "What is the value of (2^(-3) + 2^(-2)) / 2^(-4) ?",
+    "choices": [
+      "3/128",
+      "6",
+      "3/4",
+      "1/2"
+    ],
+    "correct_answer": "6",
+    "explanation": "2^(-3) + 2^(-2) = 1/8 + 1/4 = 3/8, and dividing by 2^(-4) = 1/16 means multiplying by 16, so the value is 6. The option \"1/2\" adds the exponents of the two terms as if they were multiplied, giving 2^(-5) / 2^(-4). The option \"3/128\" multiplies by 2^(-4) instead of dividing. The option \"3/4\" reads each negative exponent as a negative number, (-8 - 4) / (-16).",
+    "solve": "return (2**-3+2**-2)/2**-4;",
+    "distractor_solve": {
+      "1/2": "return 2**(-3+-2)/2**-4;",
+      "3/128": "return (2**-3+2**-2)*2**-4;",
+      "3/4": "return (-8+-4)/(-16);"
+    }
+  },
+  {
+    "id": "IM15A-15",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "parity forces one of two primes with an odd sum to be 2",
+    "difficulty": "medium",
+    "prompt": "Two prime numbers have a sum of 31. What is their product?",
+    "choices": [
+      "221",
+      "62",
+      "87",
+      "58"
+    ],
+    "correct_answer": "58",
+    "explanation": "An odd sum of two primes needs one even prime, and the only even prime is 2, so the primes are 2 and 29 and the product is 58. The option \"62\" pairs 2 with 31, the sum itself. The option \"87\" starts from 3, as if 2 were not prime, and uses 3 and 29, whose sum is 32. The option \"221\" uses the primes 13 and 17, whose sum is 30, not 31.",
+    "solve": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};for(let p=2;p<=15;p++)if(ip(p)&&ip(31-p))return p*(31-p);return null;",
+    "distractor_solve": {
+      "62": "return 2*31;",
+      "87": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};for(let p=3;p<=31;p+=2)if(ip(p)&&ip(32-p))return p*(32-p);return null;",
+      "221": "return 13*17;"
+    }
+  },
+  {
+    "id": "IM15A-16",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "remainder for a new divisor from a quotient-and-remainder statement",
+    "difficulty": "medium",
+    "prompt": "When the positive integer N is divided by 13, the quotient is 25 and the remainder is 9. What is the remainder when N is divided by 11?",
+    "choices": [
+      "4",
+      "3",
+      "6",
+      "9"
+    ],
+    "correct_answer": "4",
+    "explanation": "N = 13 x 25 + 9 = 334, and 334 = 11 x 30 + 4, so the remainder is 4. The option \"9\" keeps the old remainder 9 and ignores the 13 x 25 part. The option \"6\" finds the remainder of 13 x 25 = 325 and drops the 9. The option \"3\" finds the remainder of the quotient 25 instead of N.",
+    "solve": "const N=13*25+9;return N%11;",
+    "distractor_solve": {
+      "3": "return 25%11;",
+      "6": "return (13*25)%11;",
+      "9": "return 9%11;"
+    }
+  },
+  {
+    "id": "IM15A-17",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "sum of the numbers left after removing multiples of 3 and of 5",
+    "difficulty": "hard",
+    "prompt": "Kai writes the integers from 1 to 60. He erases every number that is a multiple of 3 and every number that is a multiple of 5. What is the sum of the numbers that are left?",
+    "choices": [
+      "960",
+      "1020",
+      "1110",
+      "930"
+    ],
+    "correct_answer": "960",
+    "explanation": "The sum 1 + ... + 60 is 60 x 61 / 2 = 1830. The multiples of 3 sum to 3(1 + ... + 20) = 630, the multiples of 5 to 5(1 + ... + 12) = 390, and the multiples of 15, counted in both, to 15(1 + 2 + 3 + 4) = 150. The erased numbers sum to 630 + 390 - 150 = 870, leaving 1830 - 870 = 960. The option \"1020\" forgets to erase 60. The option \"1110\" adds the multiples of 15 back twice (1830 - 1020 + 300). The option \"930\" uses 60 x 60 / 2 = 1800 for the sum of 1 through 60.",
+    "solve": "let s=0;for(let k=1;k<=60;k++)if(k%3&&k%5)s+=k;return s;",
+    "distractor_solve": {
+      "930": "const T=60*60/2,a=3*20*21/2,b=5*12*13/2,c=15*4*5/2;return T-(a+b-c);",
+      "1020": "let s=0;for(let k=1;k<=59;k++)if(k%3&&k%5)s+=k;return s+60;",
+      "1110": "const T=60*61/2,a=3*20*21/2,b=5*12*13/2,c=15*4*5/2;return T-a-b+2*c;"
+    }
+  },
+  {
+    "id": "IM15A-18",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "counting the divisors of a factored number that are multiples of 10",
+    "difficulty": "hard",
+    "prompt": "How many positive divisors of 2^4 x 3^3 x 5 are multiples of 10?",
+    "choices": [
+      "12",
+      "16",
+      "8",
+      "9"
+    ],
+    "correct_answer": "16",
+    "explanation": "A divisor that is a multiple of 10 is 10 times a divisor of 2^3 x 3^3, and 2^3 x 3^3 has (3 + 1)(3 + 1) = 16 divisors. Equivalently, the power of 2 can be 1 to 4 (4 choices), the power of 3 can be 0 to 3 (4 choices), and the 5 must be used. The option \"8\" counts the divisors of 2^3 x 3^3 by adding (3 + 1) + (3 + 1) instead of multiplying. The option \"12\" also requires at least one factor of 3, allowing only 3 choices for it. The option \"9\" counts the divisors of 2^3 x 3^3 by multiplying the exponents 3 x 3 without adding 1 to each.",
+    "solve": "const N=2**4*3**3*5;let c=0;for(let d=1;d<=N;d++)if(N%d===0&&d%10===0)c++;return c;",
+    "distractor_solve": {
+      "8": "return (3+1)+(3+1);",
+      "9": "return 3*3;",
+      "12": "return 4*3*1;"
+    }
+  },
+  {
+    "id": "IM15A-19",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "sum of equal powers rewritten as a single power, then divided",
+    "difficulty": "medium",
+    "prompt": "What is the value of (3^5 + 3^5 + 3^5) / 9^2 ?",
+    "choices": [
+      "27",
+      "729",
+      "40.5",
+      "9"
+    ],
+    "correct_answer": "9",
+    "explanation": "Three copies of 3^5 make 3 x 3^5 = 3^6 = 729, and 9^2 = 81 = 3^4, so the value is 3^2 = 9. The option \"729\" turns 3 x 3^5 into 9^5 by multiplying the bases, then divides by 9^2. The option \"40.5\" reads 9^2 as 9 x 2 = 18. The option \"27\" reads 9^2 as 3^3 = 27.",
+    "solve": "return (3**5+3**5+3**5)/9**2;",
+    "distractor_solve": {
+      "27": "return (3*3**5)/27;",
+      "729": "return 9**5/9**2;",
+      "40.5": "return (3*3**5)/18;"
+    }
+  },
+  {
+    "id": "IM15A-20",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "factoring a product of two primes to find a difference",
+    "difficulty": "medium",
+    "prompt": "The product of the ages of two cousins is 391, and each cousin is more than 1 year old. What is the difference between their ages?",
+    "choices": [
+      "23",
+      "40",
+      "6",
+      "2"
+    ],
+    "correct_answer": "6",
+    "explanation": "The only way to write 391 as a product of two whole numbers greater than 1 is 17 x 23, so the difference is 23 - 17 = 6. The option \"40\" gives the sum of the ages. The option \"23\" gives the older age. The option \"2\" guesses two odd ages on either side of the square root of 391 (about 19.8), 19 and 21, without checking that 19 x 21 = 399.",
+    "solve": "for(let a=2;a*a<=391;a++)if(391%a===0)return 391/a-a;return null;",
+    "distractor_solve": {
+      "2": "return 21-19;",
+      "23": "for(let a=2;a*a<=391;a++)if(391%a===0)return 391/a;return null;",
+      "40": "for(let a=2;a*a<=391;a++)if(391%a===0)return 391/a+a;return null;"
+    }
+  },
+  {
+    "id": "IM15A-21",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "how many squares in a range end in a given units digit",
+    "difficulty": "medium",
+    "prompt": "Jae squares each whole number from 1 to 95. How many of the 95 squares have 6 as their units digit?",
+    "choices": [
+      "23",
+      "2",
+      "9",
+      "19"
+    ],
+    "correct_answer": "19",
+    "explanation": "The units digit of a square depends only on the units digit of the number, and 4 x 4 = 16 and 6 x 6 = 36 are the only cases ending in 6. From 1 to 95 there are 10 numbers ending in 4 (4 through 94) and 9 ending in 6 (6 through 86), so 19 squares. The option \"2\" counts the perfect squares between 1 and 95 that end in 6 (16 and 36) instead of the squares OF the numbers 1 to 95. The option \"23\" assumes the units digits of squares repeat every 4 numbers and takes 95 / 4 rounded down. The option \"9\" counts only numbers ending in 6, forgetting that 4 x 4 = 16 also ends in 6.",
+    "solve": "let c=0;for(let k=1;k<=95;k++)if((k*k)%10===6)c++;return c;",
+    "distractor_solve": {
+      "2": "let c=0;for(let k=1;k<=95;k++)if(Math.sqrt(k)%1===0&&k%10===6)c++;return c;",
+      "9": "let c=0;for(let k=1;k<=95;k++)if(k%10===6)c++;return c;",
+      "23": "return Math.floor(95/4);"
+    }
+  },
+  {
+    "id": "IM15A-22",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "mental arithmetic with a difference of squares around 1000",
+    "difficulty": "hard",
+    "prompt": "What is the value of 999 x 1,001 - 998 x 1,002 ?",
+    "choices": [
+      "4",
+      "5",
+      "3",
+      "2003"
+    ],
+    "correct_answer": "3",
+    "explanation": "999 x 1,001 = (1000 - 1)(1000 + 1) = 1,000,000 - 1 and 998 x 1,002 = (1000 - 2)(1000 + 2) = 1,000,000 - 4, so the difference is -1 - (-4) = 3. The option \"4\" treats 999 x 1,001 as exactly 1,000,000, forgetting its -1. The option \"5\" adds the two squares 1 and 4 instead of subtracting. The option \"2003\" factors the expression as (999 - 998)(1,001 + 1,002), which is not equal to it.",
+    "solve": "return 999*1001-998*1002;",
+    "distractor_solve": {
+      "4": "return 1000**2-(1000**2-4);",
+      "5": "return 1+4;",
+      "2003": "return (999-998)*(1001+1002);"
+    }
+  },
+  {
+    "id": "IM15A-23",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "difference of two sums of 50 terms found by pairing terms",
+    "difficulty": "medium",
+    "prompt": "Let E be the sum of the first 50 positive even integers, 2 + 4 + ... + 100, and let D be the sum of the first 50 positive odd integers, 1 + 3 + ... + 99. What is E - D?",
+    "choices": [
+      "50",
+      "100",
+      "2550",
+      "1"
+    ],
+    "correct_answer": "50",
+    "explanation": "Pair the terms: 2 - 1, 4 - 3, ..., 100 - 99. Each of the 50 pairs differs by 1, so E - D = 50. (Also E = 2550 and D = 50^2 = 2500.) The option \"1\" compares only the last terms, 100 - 99. The option \"100\" finds E = 2550 correctly but uses 50 x 49 = 2450 for D instead of 50 x 50. The option \"2550\" is E itself, with D never subtracted.",
+    "solve": "let e=0,d=0;for(let k=1;k<=50;k++){e+=2*k;d+=2*k-1;}return e-d;",
+    "distractor_solve": {
+      "1": "return 100-99;",
+      "100": "let e=0;for(let k=1;k<=50;k++)e+=2*k;return e-50*49;",
+      "2550": "let e=0;for(let k=1;k<=50;k++)e+=2*k;return e;"
+    }
+  },
+  {
+    "id": "IM15A-24",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "order of operations with a negated power and a negative exponent",
+    "difficulty": "medium",
+    "prompt": "What is the value of -3^2 + (-3)^2 - 27 x 3^(-2) ?",
+    "choices": [
+      "-4.5",
+      "-3",
+      "162",
+      "-21"
+    ],
+    "correct_answer": "-3",
+    "explanation": "-3^2 means -(3^2) = -9, (-3)^2 = 9, and 27 x 3^(-2) = 27/9 = 3, so the value is -9 + 9 - 3 = -3. The option \"162\" reads 3^(-2) as -3 x 2 = -6, so 27 x 3^(-2) becomes -162. The option \"-21\" reads (-3)^2 as -9. The option \"-4.5\" reads 3^(-2) as 1/6, so 27 x 3^(-2) becomes 4.5.",
+    "solve": "return -(3**2)+(-3)**2-27*3**-2;",
+    "distractor_solve": {
+      "162": "return -(3**2)+(-3)**2-27*(-3*2);",
+      "-21": "return -(3**2)-(3**2)-27*3**-2;",
+      "-4.5": "return -(3**2)+(-3)**2-27/6;"
+    }
+  },
+  {
+    "id": "IM15A-25",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "result of evaluating an expression strictly left to right",
+    "difficulty": "medium",
+    "prompt": "A broken calculator ignores the order of operations and always works from left to right, one operation at a time. Lee enters 6 + 4 x 5 - 8 / 2 into it. What number does the calculator show?",
+    "choices": [
+      "9",
+      "21",
+      "22",
+      "46"
+    ],
+    "correct_answer": "21",
+    "explanation": "Left to right: 6 + 4 = 10, 10 x 5 = 50, 50 - 8 = 42, 42 / 2 = 21. The option \"22\" is the correct value with the order of operations, not what this calculator shows. The option \"46\" works left to right but still does the division 8 / 2 first. The option \"9\" does the multiplication first and then works left to right.",
+    "solve": "let v=6;v=v+4;v=v*5;v=v-8;v=v/2;return v;",
+    "distractor_solve": {
+      "9": "return (6+4*5-8)/2;",
+      "22": "return 6+4*5-8/2;",
+      "46": "return (6+4)*5-8/2;"
+    }
+  },
+  {
+    "id": "IM15A-26",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "counting whole numbers below 1000 whose digits are all odd",
+    "difficulty": "hard",
+    "prompt": "How many positive integers less than 1,000 have only odd digits?",
+    "choices": [
+      "155",
+      "125",
+      "130",
+      "85"
+    ],
+    "correct_answer": "155",
+    "explanation": "There are 5 odd digits. One-digit numbers: 5. Two-digit numbers: 5 x 5 = 25. Three-digit numbers: 5 x 5 x 5 = 125. The total is 155. The option \"125\" counts only three-digit numbers. The option \"130\" skips the two-digit numbers. The option \"85\" does not allow a digit to repeat, counting 5, 5 x 4 and 5 x 4 x 3.",
+    "solve": "let c=0;for(let n=1;n<1000;n++)if(/^[13579]+$/.test(String(n)))c++;return c;",
+    "distractor_solve": {
+      "85": "return 5+5*4+5*4*3;",
+      "125": "return 5**3;",
+      "130": "return 5+5**3;"
+    }
+  },
+  {
+    "id": "IM15A-27",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "comparing large powers by rewriting them with a common exponent",
+    "difficulty": "hard",
+    "prompt": "Which of the following numbers is the least?",
+    "choices": [
+      "3^60",
+      "2^100",
+      "5^40",
+      "10^30"
+    ],
+    "correct_answer": "5^40",
+    "explanation": "Write each as a power with exponent 10: 2^100 = (2^10)^10 = 1024^10, 3^60 = (3^6)^10 = 729^10, 5^40 = (5^4)^10 = 625^10, and 10^30 = (10^3)^10 = 1000^10. The least base is 625, so 5^40 is the least. The option \"2^100\" picks the smallest base. The option \"10^30\" picks the smallest exponent. The option \"3^60\" picks the smallest product of base and exponent (180).",
+    "solve": "const v={'2^100':100*Math.log(2),'3^60':60*Math.log(3),'5^40':40*Math.log(5),'10^30':30*Math.log(10)};return Object.keys(v).reduce((a,b)=>v[a]<=v[b]?a:b);",
+    "distractor_solve": {
+      "2^100": "const o=[[2,100],[3,60],[5,40],[10,30]];const m=o.reduce((a,b)=>a[0]<=b[0]?a:b);return m[0]+\"^\"+m[1];",
+      "10^30": "const o=[[2,100],[3,60],[5,40],[10,30]];const m=o.reduce((a,b)=>a[1]<=b[1]?a:b);return m[0]+\"^\"+m[1];",
+      "3^60": "const o=[[2,100],[3,60],[5,40],[10,30]];const m=o.reduce((a,b)=>a[0]*a[1]<=b[0]*b[1]?a:b);return m[0]+\"^\"+m[1];"
+    }
+  },
+  {
+    "id": "IM15A-28",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "remainder of a long sum found from its formula",
+    "difficulty": "hard",
+    "prompt": "What is the remainder when 1 + 2 + 3 + ... + 190 is divided by 13?",
+    "choices": [
+      "2",
+      "6",
+      "8",
+      "10"
+    ],
+    "correct_answer": "10",
+    "explanation": "The sum is 190 x 191 / 2 = 18,145, and 18,145 = 13 x 1,395 + 10, so the remainder is 10. The option \"8\" finds the remainder of the last term, 190, only. The option \"2\" uses n(n - 1)/2 = 190 x 189 / 2 = 17,955, which is the sum only up to 189. The option \"6\" uses 190 x 190 / 2 = 18,050 for the sum.",
+    "solve": "let s=0;for(let k=1;k<=190;k++)s+=k;return s%13;",
+    "distractor_solve": {
+      "2": "return (190*189/2)%13;",
+      "6": "return (190*190/2)%13;",
+      "8": "return 190%13;"
+    }
+  },
+  {
+    "id": "IM15A-29",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "quotient of powers of two applied to file storage",
+    "difficulty": "medium",
+    "prompt": "A computer drive holds 8 gigabytes, and 1 gigabyte is 2^30 bytes. Each photo file is exactly 2^22 bytes. How many photo files can the drive hold?",
+    "choices": [
+      "256",
+      "65536",
+      "2048",
+      "128"
+    ],
+    "correct_answer": "2048",
+    "explanation": "The drive holds 8 x 2^30 = 2^3 x 2^30 = 2^33 bytes, and 2^33 / 2^22 = 2^11 = 2048 files. The option \"256\" finds the files per gigabyte, 2^8, and forgets the 8 gigabytes. The option \"128\" gets 2^30 / 2^22 = 2^8 but evaluates 2^8 as 2 x 8 = 16, then multiplies by 8. The option \"65536\" writes 8 as 2^8 instead of 2^3, giving 2^16.",
+    "solve": "return 8*2**30/2**22;",
+    "distractor_solve": {
+      "128": "return 8*(2*(30-22));",
+      "256": "return 2**30/2**22;",
+      "65536": "return 2**8*2**30/2**22;"
+    }
+  },
+  {
+    "id": "IM15A-30",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "greatest prime factor of a number one less than a power of two",
+    "difficulty": "hard",
+    "prompt": "What is the greatest prime factor of 2^12 - 1 ?",
+    "choices": [
+      "819",
+      "5",
+      "7",
+      "13"
+    ],
+    "correct_answer": "13",
+    "explanation": "2^12 - 1 = 4095 = (2^6 - 1)(2^6 + 1) = 63 x 65 = 3 x 3 x 7 x 5 x 13, so the greatest prime factor is 13. The option \"7\" factors 4095 as 63 x 65 and takes the largest prime factor of 63 only. The option \"5\" divides out the 5 suggested by the final digit and reports it. The option \"819\" divides 4095 by 5 and treats the quotient 819 as prime, but 819 = 9 x 91 = 9 x 7 x 13.",
+    "solve": "let n=2**12-1,p=2,gp=1;while(n>1){if(n%p===0){gp=p;n/=p;}else p++;}return gp;",
+    "distractor_solve": {
+      "5": "const n=2**12-1;return n%10===5?5:null;",
+      "7": "let n=2**6-1,p=2,gp=1;while(n>1){if(n%p===0){gp=p;n/=p;}else p++;}return gp;",
+      "819": "return (2**12-1)/5;"
+    }
+  },
+  {
+    "id": "IM15A-31",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "total of five weights from the sum of all pairwise weighings",
+    "difficulty": "hard",
+    "prompt": "Five boxes are weighed two at a time, and every possible pair of boxes is weighed exactly once. The weights from these 10 weighings add up to 960 kilograms. What is the total weight, in kilograms, of the five boxes?",
+    "choices": [
+      "192",
+      "240",
+      "320",
+      "480"
+    ],
+    "correct_answer": "240",
+    "explanation": "Each box is paired with each of the other 4 boxes, so it appears in exactly 4 weighings, and the 960 kilograms counts every box 4 times. The total is 960 / 4 = 240. The option \"192\" divides by the number of boxes, 5. The option \"320\" assumes each box is weighed only 3 times. The option \"480\" finds the average weighing, 960 / 10 = 96, and multiplies it by the 5 boxes, but each weighing holds two boxes.",
+    "solve": "const boxes=5;let per=0;for(let i=0;i<boxes;i++)for(let j=i+1;j<boxes;j++){if(i===0||j===0)per++;}return 960/per;",
+    "distractor_solve": {
+      "192": "return 960/5;",
+      "320": "return 960/3;",
+      "480": "return 960/10*5;"
+    }
+  },
+  {
+    "id": "IM15A-32",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "inclusion-exclusion with a multiple condition and a digit condition",
+    "difficulty": "hard",
+    "prompt": "Tim has 60 cards numbered 1 through 60. He removes every card whose number is a multiple of 4 or contains the digit 4. How many cards are left?",
+    "choices": [
+      "35",
+      "36",
+      "42",
+      "33"
+    ],
+    "correct_answer": "35",
+    "explanation": "Multiples of 4: 15 cards. Numbers containing the digit 4: 4, 14, 24, 34, 44, 54 and 40 through 49, which is 15 cards (44 counted once). Cards in both lists: 4, 24, 40, 44, 48, which is 5. Removed: 15 + 15 - 5 = 25, so 35 cards are left. The option \"42\" counts only numbers with 4 in the ones place and misses 40 through 49. The option \"33\" counts only 4, 24 and 44 as being in both lists, missing 40 and 48. The option \"36\" misses 54 in the list of numbers containing 4.",
+    "solve": "let c=0;for(let n=1;n<=60;n++)if(!(n%4===0||String(n).includes('4')))c++;return c;",
+    "distractor_solve": {
+      "33": "let m=0,d=0;for(let n=1;n<=60;n++){if(n%4===0)m++;if(String(n).includes('4'))d++;}const both=[4,24,44].length;return 60-(m+d-both);",
+      "36": "let m=0,d=0,b=0;for(let n=1;n<=60;n++){const has=String(n).includes('4')&&n!==54;if(n%4===0)m++;if(has)d++;if(has&&n%4===0)b++;}return 60-(m+d-b);",
+      "42": "let c=0;for(let n=1;n<=60;n++)if(!(n%4===0||n%10===4))c++;return c;"
+    }
+  },
+  {
+    "id": "IM15A-33",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "sum of a telescoping series of unit-fraction differences",
+    "difficulty": "hard",
+    "prompt": "What is the value of 2/(1 x 3) + 2/(3 x 5) + 2/(5 x 7) + ... + 2/(19 x 21) ?",
+    "choices": [
+      "398/399",
+      "18/19",
+      "20/21",
+      "10/11"
+    ],
+    "correct_answer": "20/21",
+    "explanation": "Each term splits as 2/(k(k + 2)) = 1/k - 1/(k + 2), so the sum is (1 - 1/3) + (1/3 - 1/5) + ... + (1/19 - 1/21), and everything cancels except 1 - 1/21 = 20/21. The option \"18/19\" stops one term early, at 2/(17 x 19). The option \"10/11\" applies the rule n/(n + 1), which is the sum of 1/(k(k + 1)), to the 10 terms here. The option \"398/399\" keeps the whole last denominator, 1 - 1/(19 x 21).",
+    "solve": "let s=0;for(let k=1;k<=19;k+=2)s+=2/(k*(k+2));return s;",
+    "distractor_solve": {
+      "18/19": "let s=0;for(let k=1;k<=17;k+=2)s+=2/(k*(k+2));return s;",
+      "10/11": "const n=10;return n/(n+1);",
+      "398/399": "return 1-1/(19*21);"
+    }
+  }
+]

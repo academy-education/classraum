@@ -1,0 +1,761 @@
+[
+ {
+  "id": "IM15E-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "reflecting a point across a vertical line that is not an axis",
+  "difficulty": "easy",
+  "prompt": "In the coordinate plane, the point A(-3, 5) is reflected across the vertical line x = 1. What is the x-coordinate of the image of A?",
+  "choices": [
+   "-1",
+   "5",
+   "3",
+   "9"
+  ],
+  "correct_answer": "5",
+  "explanation": "A is 1 - (-3) = 4 units to the left of the line x = 1, so its image is 4 units to the right of the line: x = 1 + 4 = 5. The option \"3\" reflects A across the y-axis instead of across x = 1. The option \"-1\" adds twice the line's x-value to A's x-coordinate (-3 + 2) instead of computing 2(1) - (-3). The option \"9\" moves A twice its distance past the line, landing 8 units to the right of x = 1 rather than 4.",
+  "solve": "const x=-3,c=1;return 2*c-x;",
+  "distractor_solve": {
+   "3": "return -(-3);",
+   "-1": "return -3+2*1;",
+   "9": "return 1+2*(1-(-3));"
+  }
+ },
+ {
+  "id": "IM15E-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding a missing coordinate that makes three points collinear",
+  "difficulty": "medium",
+  "prompt": "The points (-1, 2), (3, 8), and (k, 20) lie on the same straight line. What is the value of k?",
+  "choices": [
+   "11",
+   "7",
+   "12",
+   "26"
+  ],
+  "correct_answer": "11",
+  "explanation": "The slope through the first two points is (8 - 2)/(3 - (-1)) = 6/4 = 3/2. From (-1, 2) up to y = 20 is a rise of 18, so the run is 18 / (3/2) = 12 and k = -1 + 12 = 11. The option \"12\" is the run alone, forgetting to start from x = -1. The option \"7\" measures the rise of 12 from the point (3, 8) but adds the resulting run of 8 to the x-coordinate of (-1, 2). The option \"26\" multiplies the rise by the slope (18 x 3/2 = 27) instead of dividing, then adds -1.",
+  "solve": "const m=(8-2)/(3-(-1));return -1+(20-2)/m;",
+  "distractor_solve": {
+   "12": "const m=(8-2)/(3-(-1));return (20-2)/m;",
+   "7": "const m=(8-2)/(3-(-1));return -1+(20-8)/m;",
+   "26": "const m=(8-2)/(3-(-1));return -1+(20-2)*m;"
+  }
+ },
+ {
+  "id": "IM15E-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a triangle from the coordinates of its vertices",
+  "difficulty": "hard",
+  "prompt": "A triangle has vertices A(-2, -1), B(6, 3), and C(1, 7). What is the area of the triangle, in square units?",
+  "choices": [
+   "10",
+   "18",
+   "21",
+   "26"
+  ],
+  "correct_answer": "26",
+  "explanation": "Enclose the triangle in the rectangle from x = -2 to 6 and y = -1 to 7, an 8 by 8 square of area 64. Cut away the three right triangles outside ABC: along AB, (8)(4)/2 = 16; along BC, (5)(4)/2 = 10; along CA, (3)(8)/2 = 12. The area is 64 - 16 - 10 - 12 = 26. The option \"10\" forgets to halve the largest corner triangle, subtracting 32 instead of 16. The option \"21\" copies A's y-coordinate as 1 instead of -1. The option \"18\" copies A's x-coordinate as 2 instead of -2.",
+  "solve": "const A=[-2,-1],B=[6,3],C=[1,7];return Math.abs(A[0]*(B[1]-C[1])+B[0]*(C[1]-A[1])+C[0]*(A[1]-B[1]))/2;",
+  "distractor_solve": {
+   "21": "const A=[-2,1],B=[6,3],C=[1,7];return Math.abs(A[0]*(B[1]-C[1])+B[0]*(C[1]-A[1])+C[0]*(A[1]-B[1]))/2;",
+   "18": "const A=[2,-1],B=[6,3],C=[1,7];return Math.abs(A[0]*(B[1]-C[1])+B[0]*(C[1]-A[1])+C[0]*(A[1]-B[1]))/2;",
+   "10": "const box=8*8;return box-(8*4)-(5*4)/2-(3*8)/2;"
+  }
+ },
+ {
+  "id": "IM15E-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rotating a point 90 degrees about a center other than the origin",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, the point P(5, 1) is rotated 90 degrees clockwise about the point C(2, 3). What are the coordinates of the image of P?",
+  "choices": [
+   "(4, 6)",
+   "(-1, 5)",
+   "(0, 0)",
+   "(0, 6)"
+  ],
+  "correct_answer": "(0, 0)",
+  "explanation": "Measured from C, P sits at (5 - 2, 1 - 3) = (3, -2). A 90-degree clockwise turn sends (a, b) to (b, -a), so (3, -2) becomes (-2, -3), and adding C back gives (2 - 2, 3 - 3) = (0, 0). The option \"(4, 6)\" turns counterclockwise, sending (a, b) to (-b, a). The option \"(-1, 5)\" turns 180 degrees, sending (a, b) to (-a, -b). The option \"(0, 6)\" swaps the two components of (3, -2) without changing a sign.",
+  "solve": "const v=[5-2,1-3];const w=[v[1],-v[0]];return '('+(2+w[0])+', '+(3+w[1])+')';",
+  "distractor_solve": {
+   "(4, 6)": "const v=[5-2,1-3];const w=[-v[1],v[0]];return '('+(2+w[0])+', '+(3+w[1])+')';",
+   "(-1, 5)": "const v=[5-2,1-3];const w=[-v[0],-v[1]];return '('+(2+w[0])+', '+(3+w[1])+')';",
+   "(0, 6)": "const v=[5-2,1-3];const w=[v[1],v[0]];return '('+(2+w[0])+', '+(3+w[1])+')';"
+  }
+ },
+ {
+  "id": "IM15E-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "applying a translation found from one point and its image",
+  "difficulty": "easy",
+  "prompt": "A translation moves the point (2, -3) to the point (-1, 4). Where does the same translation move the point (5, 6)?",
+  "choices": [
+   "(8, -1)",
+   "(2, 13)",
+   "(2, -1)",
+   "(8, 13)"
+  ],
+  "correct_answer": "(2, 13)",
+  "explanation": "The translation changes x by -1 - 2 = -3 and y by 4 - (-3) = 7. Applied to (5, 6) it gives (5 - 3, 6 + 7) = (2, 13). The option \"(8, -1)\" applies both shifts in the reverse direction. The option \"(2, -1)\" gets the x-shift right but reverses the y-shift. The option \"(8, 13)\" gets the y-shift right but reverses the x-shift.",
+  "solve": "const dx=-1-2,dy=4-(-3);return '('+(5+dx)+', '+(6+dy)+')';",
+  "distractor_solve": {
+   "(8, -1)": "return '('+(5-(-1-2))+', '+(6-(4-(-3)))+')';",
+   "(2, -1)": "return '('+(5+(-1-2))+', '+(6-(4-(-3)))+')';",
+   "(8, 13)": "return '('+(5-(-1-2))+', '+(6+(4-(-3)))+')';"
+  }
+ },
+ {
+  "id": "IM15E-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the lattice points on a segment",
+  "difficulty": "hard",
+  "prompt": "How many points with integer coordinates lie on the line segment from (-3, 2) to (9, 20), including both endpoints?",
+  "choices": [
+   "7",
+   "4",
+   "5",
+   "19"
+  ],
+  "correct_answer": "7",
+  "explanation": "The segment runs 12 across and 18 up. The greatest common factor of 12 and 18 is 6, so the segment splits into 6 equal steps of (2, 3), each ending on a lattice point: (-3, 2), (-1, 5), (1, 8), (3, 11), (5, 14), (7, 17), (9, 20), which is 7 points. The option \"5\" counts only the points strictly between the endpoints. The option \"4\" uses the common factor 3 instead of the greatest common factor 6, giving 3 steps and 4 points. The option \"19\" counts one point for every integer y-value from 2 to 20, as though the segment were vertical.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;return g(9-(-3),20-2)+1;",
+  "distractor_solve": {
+   "5": "const g=(a,b)=>b?g(b,a%b):a;return g(12,18)-1;",
+   "4": "const cf=3;return cf+1;",
+   "19": "return (20-2)+1;"
+  }
+ },
+ {
+  "id": "IM15E-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "perimeter of an axis-parallel rectangle from two opposite corners",
+  "difficulty": "medium",
+  "prompt": "On a coordinate grid, a fenced yard is a rectangle with sides parallel to the axes. Two opposite corners of the yard are at (-3, 5) and (7, -2), and each grid unit is 1 meter. How many meters of fence go all the way around the yard?",
+  "choices": [
+   "17",
+   "22",
+   "26",
+   "34"
+  ],
+  "correct_answer": "34",
+  "explanation": "The sides are 7 - (-3) = 10 meters and 5 - (-2) = 7 meters, so the perimeter is 2(10 + 7) = 34 meters. The option \"17\" adds one length and one width and stops, which is half the perimeter. The option \"22\" drops the negative sign on -3, making the horizontal side 7 - 3 = 4. The option \"26\" drops the negative sign on -2, making the vertical side 5 - 2 = 3.",
+  "solve": "const w=7-(-3),h=5-(-2);return 2*(w+h);",
+  "distractor_solve": {
+   "17": "return (7-(-3))+(5-(-2));",
+   "22": "return 2*((7-3)+(5-(-2)));",
+   "26": "return 2*((7-(-3))+(5-2));"
+  }
+ },
+ {
+  "id": "IM15E-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a square from two adjacent vertices",
+  "difficulty": "medium",
+  "prompt": "Two adjacent vertices of a square are (1, 2) and (4, 6). What is the area of the square?",
+  "choices": [
+   "12",
+   "20",
+   "25",
+   "49"
+  ],
+  "correct_answer": "25",
+  "explanation": "Adjacent vertices are the ends of one side. That side has length sqrt(3^2 + 4^2) = 5, so the area is 5^2 = 25. The option \"12\" multiplies the horizontal change 3 by the vertical change 4 as if they were the square's sides. The option \"20\" is the perimeter, 4 x 5. The option \"49\" takes the side as 3 + 4 = 7, adding the changes instead of using the distance formula.",
+  "solve": "const s=Math.hypot(4-1,6-2);return s*s;",
+  "distractor_solve": {
+   "12": "return (4-1)*(6-2);",
+   "20": "return 4*Math.hypot(4-1,6-2);",
+   "49": "return ((4-1)+(6-2))**2;"
+  }
+ },
+ {
+  "id": "IM15E-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "y-intercept of the perpendicular bisector of a segment",
+  "difficulty": "hard",
+  "prompt": "Line m is the perpendicular bisector of the segment with endpoints (-2, 1) and (6, 5). At what y-value does line m cross the y-axis?",
+  "choices": [
+   "-3",
+   "7",
+   "-1",
+   "2"
+  ],
+  "correct_answer": "7",
+  "explanation": "The midpoint of the segment is ((-2 + 6)/2, (1 + 5)/2) = (2, 3), and the segment's slope is (5 - 1)/(6 - (-2)) = 1/2, so line m has slope -2. Then y - 3 = -2(x - 2), or y = -2x + 7, which crosses the y-axis at 7. The option \"2\" uses the segment's own slope 1/2 through the midpoint. The option \"-1\" uses the reciprocal 2 without changing its sign. The option \"-3\" uses the correct slope -2 but draws the line through the endpoint (-2, 1) instead of the midpoint.",
+  "solve": "const mx=(-2+6)/2,my=(1+5)/2,s=-(6-(-2))/(5-1);return my-s*mx;",
+  "distractor_solve": {
+   "2": "const mx=2,my=3,s=(5-1)/(6-(-2));return my-s*mx;",
+   "-1": "const mx=2,my=3,s=(6-(-2))/(5-1);return my-s*mx;",
+   "-3": "const s=-(6-(-2))/(5-1);return 1-s*(-2);"
+  }
+ },
+ {
+  "id": "IM15E-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "travel time from a straight-line grid distance and a speed",
+  "difficulty": "medium",
+  "prompt": "On a map grid, each unit represents 50 meters. A drone flies in a straight line from the point (2, -1) to the point (8, 7) at a constant 4 meters per second. How many seconds does the flight take?",
+  "choices": [
+   "125",
+   "2.5",
+   "175",
+   "1250"
+  ],
+  "correct_answer": "125",
+  "explanation": "The grid distance is sqrt(6^2 + 8^2) = 10 units, which is 10 x 50 = 500 meters, and 500 / 4 = 125 seconds. The option \"2.5\" divides the 10 grid units by the speed without converting them to meters. The option \"175\" follows the grid lines, 6 + 8 = 14 units, instead of the straight line. The option \"1250\" uses the squared distance 100 without taking its square root.",
+  "solve": "const d=Math.hypot(8-2,7-(-1))*50;return d/4;",
+  "distractor_solve": {
+   "2.5": "return Math.hypot(6,8)/4;",
+   "175": "return (6+8)*50/4;",
+   "1250": "return ((6**2+8**2))*50/4;"
+  }
+ },
+ {
+  "id": "IM15E-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "total working hours when minutes must be converted to a fraction of an hour",
+  "difficulty": "medium",
+  "prompt": "A machine runs for 7 hours 45 minutes each workday, 5 workdays a week. How many hours does it run in 4 weeks?",
+  "choices": [
+   "140.75",
+   "145",
+   "149",
+   "155"
+  ],
+  "correct_answer": "155",
+  "explanation": "7 hours 45 minutes is 7.75 hours, and 4 weeks hold 4 x 5 = 20 workdays, so the total is 7.75 x 20 = 155 hours. The option \"149\" reads 7 hours 45 minutes as the decimal 7.45. The option \"145\" converts 45 minutes to 0.25 hour instead of 0.75 hour. The option \"140.75\" multiplies the 7 hours by 20 days but adds the 45 minutes only once.",
+  "solve": "return (7+45/60)*5*4;",
+  "distractor_solve": {
+   "149": "return 7.45*5*4;",
+   "145": "return (7+0.25)*5*4;",
+   "140.75": "return 7*5*4+0.75;"
+  }
+ },
+ {
+  "id": "IM15E-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "elapsed time across noon",
+  "difficulty": "medium",
+  "prompt": "A train leaves at 8:50 a.m. and arrives at 1:05 p.m. the same day. How many minutes long is the trip?",
+  "choices": [
+   "249",
+   "273",
+   "255",
+   "285"
+  ],
+  "correct_answer": "255",
+  "explanation": "From 8:50 a.m. to noon is 3 hours 10 minutes, and from noon to 1:05 p.m. is 1 hour 5 minutes, so the trip lasts 4 hours 15 minutes = 4(60) + 15 = 255 minutes. The option \"285\" gets 4 full hours but takes the minutes as 50 - 5 = 45. The option \"249\" writes 4 hours 15 minutes as the decimal 4.15 hours and multiplies by 60. The option \"273\" treats the clock readings as decimals, 13.05 - 8.50 = 4.55 hours, and multiplies by 60.",
+  "solve": "const dep=8*60+50,arr=(1+12)*60+5;return arr-dep;",
+  "distractor_solve": {
+   "285": "return 4*60+(50-5);",
+   "249": "return 4.15*60;",
+   "273": "return (13.05-8.50)*60;"
+  }
+ },
+ {
+  "id": "IM15E-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "local arrival time after a flight across time zones",
+  "difficulty": "medium",
+  "prompt": "A flight leaves Seoul at 10:30 a.m. Seoul time and lasts 13 hours 20 minutes. New York time is 14 hours behind Seoul time. What is the local time in New York when the flight lands?",
+  "choices": [
+   "1:50 p.m.",
+   "9:50 a.m.",
+   "11:50 p.m.",
+   "8:30 p.m."
+  ],
+  "correct_answer": "9:50 a.m.",
+  "explanation": "Landing in Seoul time is 10:30 a.m. + 13 hours 20 minutes = 11:50 p.m. New York is 14 hours behind, so 11:50 p.m. - 14 hours = 9:50 a.m. The option \"1:50 p.m.\" adds the 14-hour difference instead of subtracting it. The option \"11:50 p.m.\" is the landing time in Seoul, with no time-zone change. The option \"8:30 p.m.\" converts the departure time to New York time and forgets to add the flight time.",
+  "solve": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(10*60+30+13*60+20-14*60);",
+  "distractor_solve": {
+   "1:50 p.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(10*60+30+13*60+20+14*60);",
+   "11:50 p.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(10*60+30+13*60+20);",
+   "8:30 p.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(10*60+30-14*60);"
+  }
+ },
+ {
+  "id": "IM15E-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "day of the week a stated date falls on, counting month lengths",
+  "difficulty": "hard",
+  "prompt": "In a certain year, March 3 is a Wednesday. On what day of the week is June 20 of that same year?",
+  "choices": [
+   "Sunday",
+   "Friday",
+   "Saturday",
+   "Monday"
+  ],
+  "correct_answer": "Sunday",
+  "explanation": "From March 3 to June 20 is 28 days (to March 31) + 30 (April) + 31 (May) + 20 (June) = 109 days. Since 109 = 15 x 7 + 4, June 20 is 4 days of the week after Wednesday: Sunday. The option \"Friday\" treats every month as 30 days, counting 27 + 30 + 30 + 20 = 107 days. The option \"Saturday\" counts only 27 days from March 3 to March 31, for 108 days. The option \"Monday\" counts both March 3 and June 20, for 110 days.",
+  "solve": "const D=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];const n=(31-3)+30+31+20;return D[(3+n)%7];",
+  "distractor_solve": {
+   "Friday": "const D=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return D[(3+27+30+30+20)%7];",
+   "Saturday": "const D=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return D[(3+27+30+31+20)%7];",
+   "Monday": "const D=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return D[(3+28+30+31+20+1)%7];"
+  }
+ },
+ {
+  "id": "IM15E-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "reading a clock that gains a fixed amount over a fixed interval",
+  "difficulty": "hard",
+  "prompt": "A clock gains 3 minutes every 4 hours. It is set to the correct time at 8:00 a.m. on Monday. What time does the clock show when the correct time is 8:00 p.m. on Tuesday?",
+  "choices": [
+   "8:18 p.m.",
+   "7:33 p.m.",
+   "9:48 p.m.",
+   "8:27 p.m."
+  ],
+  "correct_answer": "8:27 p.m.",
+  "explanation": "From 8:00 a.m. Monday to 8:00 p.m. Tuesday is 36 hours, which is 36 / 4 = 9 four-hour periods, so the clock has gained 9 x 3 = 27 minutes and shows 8:27 p.m. The option \"8:18 p.m.\" counts only 24 hours (to 8:00 a.m. Tuesday), a gain of 18 minutes. The option \"7:33 p.m.\" subtracts the 27 minutes, treating the clock as losing time. The option \"9:48 p.m.\" reads the rate as 3 minutes gained per hour, 108 minutes in all.",
+  "solve": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};const h=24+12;return fmt(20*60+h/4*3);",
+  "distractor_solve": {
+   "8:18 p.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(20*60+24/4*3);",
+   "7:33 p.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(20*60-36/4*3);",
+   "9:48 p.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(20*60+36*3);"
+  }
+ },
+ {
+  "id": "IM15E-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "angle between the hands of a clock",
+  "difficulty": "hard",
+  "prompt": "What is the measure, in degrees, of the smaller angle between the hour hand and the minute hand of a clock at 4:40?",
+  "choices": [
+   "70",
+   "120",
+   "100",
+   "140"
+  ],
+  "correct_answer": "100",
+  "explanation": "The minute hand is at 40 x 6 = 240 degrees from 12. The hour hand starts at 4 x 30 = 120 degrees and moves 0.5 degree per minute, so it is at 120 + 20 = 140 degrees. The angle between them is 240 - 140 = 100 degrees. The option \"120\" leaves the hour hand on the 4. The option \"70\" uses the formula |30h - 5.5m| with h = 5, the hour the hand is approaching, instead of h = 4. The option \"140\" reports the hour hand's position measured from 12 instead of the angle between the hands.",
+  "solve": "const mh=40*6,hh=4*30+40*0.5;const a=Math.abs(mh-hh);return Math.min(a,360-a);",
+  "distractor_solve": {
+   "120": "return Math.abs(40*6-4*30);",
+   "70": "return Math.abs(5.5*40-30*5);",
+   "140": "return 4*30+40*0.5;"
+  }
+ },
+ {
+  "id": "IM15E-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "the last departure before a deadline in a regular schedule",
+  "difficulty": "medium",
+  "prompt": "Buses leave a station every 18 minutes, starting at 6:05 a.m. What is the departure time of the last bus that leaves before 10:00 a.m.?",
+  "choices": [
+   "9:54 a.m.",
+   "9:59 a.m.",
+   "9:41 a.m.",
+   "10:17 a.m."
+  ],
+  "correct_answer": "9:59 a.m.",
+  "explanation": "From 6:05 a.m. to 10:00 a.m. is 235 minutes, and 235 / 18 = 13 remainder 1, so 13 full intervals fit: 6:05 + 13 x 18 minutes = 6:05 + 3 hours 54 minutes = 9:59 a.m. The option \"9:54 a.m.\" counts the 13 intervals from 6:00 instead of 6:05. The option \"9:41 a.m.\" counts the first bus as one of the 13 and adds only 12 intervals. The option \"10:17 a.m.\" rounds 13.06 intervals up to 14.",
+  "solve": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};const s=6*60+5;const k=Math.floor((10*60-1-s)/18);return fmt(s+k*18);",
+  "distractor_solve": {
+   "9:54 a.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(6*60+Math.floor((10*60-6*60-5)/18)*18);",
+   "9:41 a.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(6*60+5+(Math.floor((10*60-6*60-5)/18)-1)*18);",
+   "10:17 a.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(6*60+5+Math.ceil((10*60-6*60-5)/18)*18);"
+  }
+ },
+ {
+  "id": "IM15E-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "clock time a large number of minutes later",
+  "difficulty": "medium",
+  "prompt": "What time is it 1,000 minutes after 9:25 p.m.?",
+  "choices": [
+   "2:05 p.m.",
+   "4:45 a.m.",
+   "7:25 a.m.",
+   "2:32 p.m."
+  ],
+  "correct_answer": "2:05 p.m.",
+  "explanation": "1,000 minutes is 16 hours 40 minutes (16 x 60 = 960, plus 40). 9:25 p.m. + 16 hours = 1:25 p.m. the next day, and 40 more minutes gives 2:05 p.m. The option \"4:45 a.m.\" goes 16 hours 40 minutes back from 9:25 p.m. instead of forward. The option \"7:25 a.m.\" treats 1,000 minutes as 10 hours. The option \"2:32 p.m.\" reads 1,000 / 60 = 16.67 as 16 hours 67 minutes.",
+  "solve": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(21*60+25+1000);",
+  "distractor_solve": {
+   "4:45 a.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(21*60+25-1000);",
+   "7:25 a.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(21*60+25+10*60);",
+   "2:32 p.m.": "const fmt=(t)=>{t=((t%1440)+1440)%1440;let h=Math.floor(t/60),m=Math.round(t%60);const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(21*60+25+16*60+67);"
+  }
+ },
+ {
+  "id": "IM15E-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "converting a speed from meters per second to kilometers per hour",
+  "difficulty": "easy",
+  "prompt": "An object moves at a constant 18 meters per second. What is its speed in kilometers per hour?",
+  "choices": [
+   "1.08",
+   "5",
+   "6.48",
+   "64.8"
+  ],
+  "correct_answer": "64.8",
+  "explanation": "In one hour there are 3,600 seconds, so the object covers 18 x 3,600 = 64,800 meters = 64.8 kilometers. The option \"5\" divides by 3.6 instead of multiplying. The option \"1.08\" converts to kilometers per minute and stops. The option \"6.48\" takes an hour as 360 seconds instead of 3,600.",
+  "solve": "return 18*3600/1000;",
+  "distractor_solve": {
+   "5": "return 18/3.6;",
+   "1.08": "return 18*60/1000;",
+   "6.48": "return 18*360/1000;"
+  }
+ },
+ {
+  "id": "IM15E-20",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a temperature change converted between Celsius and Fahrenheit",
+  "difficulty": "medium",
+  "prompt": "Temperatures convert by the rule F = (9/5)C + 32. A liquid is heated so that its temperature rises by 45 degrees Celsius. By how many degrees Fahrenheit does its temperature rise?",
+  "choices": [
+   "25",
+   "49",
+   "81",
+   "77"
+  ],
+  "correct_answer": "81",
+  "explanation": "A change in temperature uses only the scale factor, because the +32 cancels when one reading is subtracted from another: the rise is (9/5)(45) = 81 Fahrenheit degrees. The option \"77\" adds 32 to the 45 without scaling. The option \"25\" multiplies by 5/9, converting in the wrong direction. The option \"49\" scales correctly and then subtracts 32 from the change.",
+  "solve": "const c1=10,c2=c1+45;const f=c=>9/5*c+32;return f(c2)-f(c1);",
+  "distractor_solve": {
+   "77": "return 45+32;",
+   "25": "return 45*5/9;",
+   "49": "return 45*9/5-32;"
+  }
+ },
+ {
+  "id": "IM15E-21",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "chained unit conversion with a fractional starting amount",
+  "difficulty": "medium",
+  "prompt": "In a kitchen, 1 cup equals 16 tablespoons and 1 tablespoon equals 3 teaspoons. How many teaspoons are in 3/4 of a cup?",
+  "choices": [
+   "4",
+   "36",
+   "12",
+   "18"
+  ],
+  "correct_answer": "36",
+  "explanation": "3/4 of a cup is (3/4)(16) = 12 tablespoons, and 12 tablespoons is 12 x 3 = 36 teaspoons. The option \"12\" stops at tablespoons. The option \"18\" uses 8 tablespoons per cup. The option \"4\" divides the tablespoons by 3 instead of multiplying.",
+  "solve": "return 3/4*16*3;",
+  "distractor_solve": {
+   "12": "return 3/4*16;",
+   "18": "return 3/4*8*3;",
+   "4": "return 3/4*16/3;"
+  }
+ },
+ {
+  "id": "IM15E-22",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume of water wasted by a dripping tap over a month",
+  "difficulty": "hard",
+  "prompt": "A leaking tap drips once every 1.5 seconds, and 20 drops make 1 milliliter. How many liters of water drip from the tap in 30 days?",
+  "choices": [
+   "86.4",
+   "1.44",
+   "3.6",
+   "80.64"
+  ],
+  "correct_answer": "86.4",
+  "explanation": "30 days is 30 x 24 x 3,600 = 2,592,000 seconds, which is 2,592,000 / 1.5 = 1,728,000 drops, or 1,728,000 / 20 = 86,400 milliliters = 86.4 liters. The option \"3.6\" forgets the 24 hours in a day, treating 30 days as 30 hours. The option \"1.44\" reads the rate as one drop every 1.5 minutes. The option \"80.64\" uses 4 weeks (28 days) for the 30 days.",
+  "solve": "const s=30*24*3600;return s/1.5/20/1000;",
+  "distractor_solve": {
+   "3.6": "return 30*3600/1.5/20/1000;",
+   "1.44": "return 30*24*60/1.5/20/1000;",
+   "80.64": "return 28*24*3600/1.5/20/1000;"
+  }
+ },
+ {
+  "id": "IM15E-23",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finishing time from a pace given in minutes and seconds",
+  "difficulty": "medium",
+  "prompt": "A runner keeps a pace of 8 minutes 45 seconds per kilometer for a 12-kilometer run. How long does the run take?",
+  "choices": [
+   "1 h 36 min 45 s",
+   "1 h 41 min 24 s",
+   "1 h 5 min",
+   "1 h 45 min"
+  ],
+  "correct_answer": "1 h 45 min",
+  "explanation": "8 minutes 45 seconds is 8.75 minutes, and 8.75 x 12 = 105 minutes = 1 hour 45 minutes. The option \"1 h 36 min 45 s\" multiplies the 8 minutes by 12 but adds the 45 seconds only once. The option \"1 h 41 min 24 s\" reads the pace as the decimal 8.45 minutes. The option \"1 h 5 min\" reads 105 minutes as 1 hour 5 minutes, as if an hour had 100 minutes.",
+  "solve": "const dur=(mins)=>{const tot=Math.round(mins*60);const h=Math.floor(tot/3600),m=Math.floor((tot%3600)/60),s=tot%60;return h+' h '+m+' min'+(s?' '+s+' s':'');};return dur((8+45/60)*12);",
+  "distractor_solve": {
+   "1 h 36 min 45 s": "const dur=(mins)=>{const tot=Math.round(mins*60);const h=Math.floor(tot/3600),m=Math.floor((tot%3600)/60),s=tot%60;return h+' h '+m+' min'+(s?' '+s+' s':'');};return dur(8*12+45/60);",
+   "1 h 41 min 24 s": "const dur=(mins)=>{const tot=Math.round(mins*60);const h=Math.floor(tot/3600),m=Math.floor((tot%3600)/60),s=tot%60;return h+' h '+m+' min'+(s?' '+s+' s':'');};return dur(8.45*12);",
+   "1 h 5 min": "return '1 h 5 min';"
+  }
+ },
+ {
+  "id": "IM15E-24",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "mass of water in a partly filled rectangular tank",
+  "difficulty": "medium",
+  "prompt": "A rectangular fish tank is 60 centimeters long, 30 centimeters wide, and 40 centimeters high. It is filled with water to 3/4 of its height. One liter is 1,000 cubic centimeters, and 1 liter of water has a mass of 1 kilogram. What is the mass of the water, in kilograms?",
+  "choices": [
+   "18",
+   "40.5",
+   "54",
+   "540"
+  ],
+  "correct_answer": "54",
+  "explanation": "The water is 3/4 x 40 = 30 centimeters deep, so its volume is 60 x 30 x 30 = 54,000 cubic centimeters = 54 liters, which has a mass of 54 kilograms. The option \"540\" divides by 100 instead of 1,000. The option \"40.5\" applies the 3/4 twice. The option \"18\" finds the empty quarter of the tank instead of the filled three-quarters.",
+  "solve": "const v=60*30*(40*3/4);return v/1000;",
+  "distractor_solve": {
+   "540": "return 60*30*40*3/4/100;",
+   "40.5": "return 60*30*40*3/4*3/4/1000;",
+   "18": "return 60*30*40/4/1000;"
+  }
+ },
+ {
+  "id": "IM15E-25",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least possible perimeter from a side length rounded to the nearest unit",
+  "difficulty": "medium",
+  "prompt": "The side length of a square tile, rounded to the nearest centimeter, is 7 centimeters. What is the least possible perimeter of the tile, in centimeters?",
+  "choices": [
+   "24",
+   "26",
+   "27.5",
+   "27.8"
+  ],
+  "correct_answer": "26",
+  "explanation": "A side that rounds to 7 centimeters can be as short as 6.5 centimeters, so the least possible perimeter is 4 x 6.5 = 26 centimeters. The option \"24\" takes the shortest side as a whole centimeter less, 6 centimeters. The option \"27.5\" subtracts the half-centimeter once from the rounded perimeter of 28 instead of from each of the four sides. The option \"27.8\" treats the measurement as rounded to the nearest tenth, giving a shortest side of 6.95.",
+  "solve": "const lo=7-0.5;return 4*lo;",
+  "distractor_solve": {
+   "24": "return 4*(7-1);",
+   "27.5": "return 4*7-0.5;",
+   "27.8": "return 4*(7-0.05);"
+  }
+ },
+ {
+  "id": "IM15E-26",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "working backward in a sequence where each term is the sum of the two before it",
+  "difficulty": "hard",
+  "prompt": "In a sequence, each term after the second is the sum of the two terms just before it. The 5th term is 17 and the 7th term is 45. What is the 1st term?",
+  "choices": [
+   "1",
+   "-39",
+   "-8",
+   "5"
+  ],
+  "correct_answer": "1",
+  "explanation": "The 6th term is 45 - 17 = 28. Working back: 4th = 28 - 17 = 11, 3rd = 17 - 11 = 6, 2nd = 11 - 6 = 5, 1st = 6 - 5 = 1. (Check: 1, 5, 6, 11, 17, 28, 45.) The option \"5\" stops one step early and reports the 2nd term. The option \"-8\" finds the 6th term by averaging 17 and 45 (as in an arithmetic sequence) and then works back correctly from 31. The option \"-39\" treats the whole sequence as arithmetic with a common difference of 14.",
+  "solve": "const t5=17,t7=45,t6=t7-t5,t4=t6-t5,t3=t5-t4,t2=t4-t3;return t3-t2;",
+  "distractor_solve": {
+   "5": "const t5=17,t7=45,t6=t7-t5,t4=t6-t5,t3=t5-t4,t2=t4-t3;return t2;",
+   "-8": "const t5=17,t7=45,t6=(t5+t7)/2,t4=t6-t5,t3=t5-t4,t2=t4-t3;return t3-t2;",
+   "-39": "const d=(45-17)/2;return 17-4*d;"
+  }
+ },
+ {
+  "id": "IM15E-27",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a figure pattern whose added tiles grow by a constant",
+  "difficulty": "hard",
+  "prompt": "A pattern of figures is made from square tiles. Figure 1 has 1 tile, figure 2 has 5 tiles, figure 3 has 13 tiles, and figure 4 has 25 tiles. Each figure adds 4 more tiles than the previous figure added. How many tiles are in figure 10?",
+  "choices": [
+   "145",
+   "201",
+   "361",
+   "181"
+  ],
+  "correct_answer": "181",
+  "explanation": "The numbers added are 4, 8, 12, ..., so going from figure 1 to figure 10 adds 4(1 + 2 + ... + 9) = 4 x 45 = 180 tiles, and figure 10 has 1 + 180 = 181 tiles. (Equivalently, figure n has n^2 + (n - 1)^2 tiles.) The option \"145\" is figure 9, one figure short. The option \"201\" sums the added amounts 4 through 36 as if there were 10 of them, 10 x (4 + 36)/2 = 200, instead of 9. The option \"361\" writes 1 + 2 + ... + 9 as 9 x 10 = 90, forgetting to halve, and adds 4 x 90 = 360 to the first tile.",
+  "solve": "let t=1;for(let n=2;n<=10;n++)t+=4*(n-1);return t;",
+  "distractor_solve": {
+   "145": "let t=1;for(let n=2;n<=9;n++)t+=4*(n-1);return t;",
+   "201": "return 1+10*(4+36)/2;",
+   "361": "return 1+4*(9*10);"
+  }
+ },
+ {
+  "id": "IM15E-28",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "the digit in a given position of the string of counting numbers",
+  "difficulty": "hard",
+  "prompt": "The counting numbers are written one after another without spaces: 123456789101112131415... What digit is in the 300th position?",
+  "choices": [
+   "1",
+   "3",
+   "6",
+   "9"
+  ],
+  "correct_answer": "6",
+  "explanation": "The numbers 1-9 use 9 digits and 10-99 use 90 x 2 = 180 digits, 189 in all. The 300th digit is the 111th digit of the three-digit numbers, and 111 = 37 x 3, so it is the last digit of the 37th three-digit number, 136: the digit 6. The option \"1\" finds the number 136 but takes its first digit instead of its last. The option \"3\" writes 1-9 as two-digit numbers 01-09, counting 198 digits before 100 and landing on 133. The option \"9\" forgets the one-digit numbers, counting only 180 digits before 100 and landing on 139.",
+  "solve": "let s='';for(let n=1;s.length<300;n++)s+=n;return s[299];",
+  "distractor_solve": {
+   "1": "const r=300-189;const q=Math.floor((r-1)/3);return String(100+q)[0];",
+   "3": "const r=300-198;const q=Math.ceil(r/3)-1;return String(100+q)[2];",
+   "9": "const r=300-180;const q=Math.ceil(r/3)-1;return String(100+q)[2];"
+  }
+ },
+ {
+  "id": "IM15E-29",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the terms two arithmetic sequences share below a bound",
+  "difficulty": "hard",
+  "prompt": "Sequence A is 3, 10, 17, 24, ... (adding 7 each time), and sequence B is 5, 9, 13, 17, ... (adding 4 each time). How many numbers less than 200 appear in both sequences?",
+  "choices": [
+   "8",
+   "7",
+   "17",
+   "27"
+  ],
+  "correct_answer": "7",
+  "explanation": "The first number in both is 17, and after that the shared numbers repeat every 28 (the least common multiple of 7 and 4): 17, 45, 73, 101, 129, 157, 185. The next, 213, is too large, so there are 7. The option \"8\" counts steps of 28 from 3, the first term of A, instead of from the first shared number 17. The option \"17\" steps by 7 + 4 = 11 instead of the least common multiple. The option \"27\" steps by 7, counting every term of A from 17 on.",
+  "solve": "const A=new Set();for(let a=3;a<200;a+=7)A.add(a);let c=0;for(let b=5;b<200;b+=4)if(A.has(b))c++;return c;",
+  "distractor_solve": {
+   "8": "return Math.floor((199-3)/28)+1;",
+   "17": "return Math.floor((199-17)/11)+1;",
+   "27": "return Math.floor((199-17)/7)+1;"
+  }
+ },
+ {
+  "id": "IM15E-30",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a middle term of an arithmetic sequence from its two ends",
+  "difficulty": "easy",
+  "prompt": "In the arithmetic sequence 7, __, __, __, 31, what number belongs in the third position?",
+  "choices": [
+   "19",
+   "22.5",
+   "23",
+   "25"
+  ],
+  "correct_answer": "19",
+  "explanation": "From the 1st term to the 5th term there are 4 equal steps, so the common difference is (31 - 7)/4 = 6, and the third term is 7 + 2(6) = 19. The option \"23\" divides 24 by the 3 blanks instead of the 4 steps, getting a difference of 8. The option \"22.5\" divides the last term 31 by 4 instead of the difference 31 - 7, getting a step of 7.75. The option \"25\" uses the correct difference but finds the fourth term.",
+  "solve": "const d=(31-7)/4;return 7+2*d;",
+  "distractor_solve": {
+   "23": "return 7+2*((31-7)/3);",
+   "22.5": "return 7+2*(31/4);",
+   "25": "return 7+3*((31-7)/4);"
+  }
+ },
+ {
+  "id": "IM15E-31",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a term of an arithmetic sequence from a sum condition and one term",
+  "difficulty": "medium",
+  "prompt": "In an arithmetic sequence, the sum of the 3rd term and the 8th term is 50, and the 5th term is 22. What is the 10th term?",
+  "choices": [
+   "28",
+   "44",
+   "46",
+   "52"
+  ],
+  "correct_answer": "52",
+  "explanation": "Write the terms as a + (n - 1)d. Then (a + 2d) + (a + 7d) = 50 and a + 4d = 22, so 2a + 9d = 50 and 2a + 8d = 44, giving d = 6 and a = -2. The 10th term is -2 + 9(6) = 52. The option \"28\" subtracts the 5th term from the sum, which gives a + 5d, the 6th term, not the 10th. The option \"44\" doubles the 5th term as though the 10th were twice the 5th. The option \"46\" finds d = 6 but counts only 4 steps from the 5th term to the 10th.",
+  "solve": "const d=50-2*22;const a=22-4*d;return a+9*d;",
+  "distractor_solve": {
+   "28": "return 50-22;",
+   "44": "return 2*22;",
+   "46": "const d=50-2*22;return 22+4*d;"
+  }
+ },
+ {
+  "id": "IM15E-32",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "the sum of an alternating sequence whose terms grow by a constant",
+  "difficulty": "medium",
+  "prompt": "The nth term of a sequence is (-1)^n x (2n + 1), so the sequence begins -3, 5, -7, 9, .... What is the sum of the first 25 terms?",
+  "choices": [
+   "-51",
+   "-25",
+   "-27",
+   "75"
+  ],
+  "correct_answer": "-27",
+  "explanation": "Group the terms in pairs: (-3 + 5) + (-7 + 9) + ... gives 2 for each pair, and the first 24 terms make 12 pairs, a total of 24. The 25th term is -(2(25) + 1) = -51, so the sum is 24 - 51 = -27. The option \"-51\" assumes the pairs cancel to zero and keeps only the 25th term. The option \"75\" adds the 25th term as +51, forgetting that odd-numbered terms are negative. The option \"-25\" uses 2n - 1 instead of 2n + 1, so the sequence starts -1, 3, -5, ... and the 25th term is -49.",
+  "solve": "let s=0;for(let n=1;n<=25;n++)s+=(-1)**n*(2*n+1);return s;",
+  "distractor_solve": {
+   "-51": "return (-1)**25*(2*25+1);",
+   "75": "let s=0;for(let n=1;n<=24;n++)s+=(-1)**n*(2*n+1);return s+(2*25+1);",
+   "-25": "let s=0;for(let n=1;n<=25;n++)s+=(-1)**n*(2*n-1);return s;"
+  }
+ },
+ {
+  "id": "IM15E-33",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "the term at a given position when each number n is written n times",
+  "difficulty": "hard",
+  "prompt": "A sequence lists each counting number n exactly n times: 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, .... What is the 100th term of the sequence?",
+  "choices": [
+   "9",
+   "14",
+   "10",
+   "13"
+  ],
+  "correct_answer": "14",
+  "explanation": "The last copy of n sits in position 1 + 2 + ... + n = n(n + 1)/2. Since 13(14)/2 = 91 and 14(15)/2 = 105, positions 92 through 105 all hold 14, so the 100th term is 14. The option \"13\" is the last number whose block ends before position 100, 91. The option \"10\" takes the square root of 100. The option \"9\" solves n(n + 1) = 100 without the factor 1/2, landing between 9 and 10 and taking 9.",
+  "solve": "const s=[];for(let n=1;s.length<100;n++)for(let i=0;i<n;i++)s.push(n);return s[99];",
+  "distractor_solve": {
+   "13": "let n=1;while((n+1)*(n+2)/2<100)n++;return n;",
+   "10": "return Math.round(Math.sqrt(100));",
+   "9": "let n=1;while((n+1)*(n+2)<=100)n++;return n;"
+  }
+ }
+]

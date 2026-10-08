@@ -1,0 +1,761 @@
+[
+  {
+    "id": "IM15D-01",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "vertex angle of an isosceles triangle from one base angle",
+    "difficulty": "easy",
+    "prompt": "In triangle PQR, sides PQ and PR have equal length, and angle Q measures 40 degrees. What is the measure of angle P, in degrees?",
+    "choices": [
+      "100",
+      "40",
+      "50",
+      "70"
+    ],
+    "correct_answer": "100",
+    "explanation": "Because PQ = PR, the angles opposite those sides, angle R and angle Q, are equal, so angle R is also 40 degrees. Then angle P = 180 - 40 - 40 = 100 degrees. The option \"50\" takes the complement of 40 degrees, 90 - 40, as if the triangle were right-angled. The option \"70\" treats the 40-degree angle as the vertex angle and splits the rest, (180 - 40)/2. The option \"40\" takes angle P to be the angle equal to angle Q, instead of angle R.",
+    "solve": "const q=40;return 180-2*q;",
+    "distractor_solve": {
+      "40": "return 40;",
+      "50": "return 90-40;",
+      "70": "return (180-40)/2;"
+    }
+  },
+  {
+    "id": "IM15D-02",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "cube edge from the total length of its 12 edges, then volume",
+    "difficulty": "easy",
+    "prompt": "A wire 72 centimeters long is bent, with no overlap and nothing left over, to form all 12 edges of a cube-shaped frame. What is the volume of the cube, in cubic centimeters?",
+    "choices": [
+      "729",
+      "216",
+      "1728",
+      "5832"
+    ],
+    "correct_answer": "216",
+    "explanation": "A cube has 12 equal edges, so each edge is 72 / 12 = 6 cm and the volume is 6^3 = 216 cubic centimeters. The option \"729\" divides by 8, the number of vertices, giving an edge of 9. The option \"1728\" divides by 6, the number of faces, giving an edge of 12. The option \"5832\" divides by 4, as if the wire formed one square face, giving an edge of 18.",
+    "solve": "const e=72/12;return e**3;",
+    "distractor_solve": {
+      "729": "return (72/8)**3;",
+      "1728": "return (72/6)**3;",
+      "5832": "return (72/4)**3;"
+    }
+  },
+  {
+    "id": "IM15D-03",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "composite area: a wall minus a door and two windows",
+    "difficulty": "easy",
+    "prompt": "A wall is 12 feet wide and 9 feet tall. It has one door that is 3 feet wide and 7 feet tall, and two windows that are each 3 feet wide and 4 feet tall. The door and windows will not be painted. How many square feet of the wall will be painted?",
+    "choices": [
+      "42",
+      "59",
+      "63",
+      "75"
+    ],
+    "correct_answer": "63",
+    "explanation": "The wall is 12 x 9 = 108 square feet. The door is 3 x 7 = 21 and the two windows are 2 x (3 x 4) = 24, so the painted area is 108 - 21 - 24 = 63 square feet. The option \"75\" subtracts only one window. The option \"59\" subtracts the perimeter of each window, 2 x (3 + 4) = 14, instead of its area. The option \"42\" subtracts the door twice, 108 - 42 - 24.",
+    "solve": "return 12*9-3*7-2*3*4;",
+    "distractor_solve": {
+      "42": "return 12*9-2*3*7-2*3*4;",
+      "59": "return 12*9-3*7-2*(2*(3+4));",
+      "75": "return 12*9-3*7-3*4;"
+    }
+  },
+  {
+    "id": "IM15D-04",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "area of a rhombus from its two diagonals",
+    "difficulty": "easy",
+    "prompt": "The diagonals of a rhombus measure 10 centimeters and 24 centimeters. What is the area of the rhombus, in square centimeters?",
+    "choices": [
+      "52",
+      "60",
+      "130",
+      "120"
+    ],
+    "correct_answer": "120",
+    "explanation": "The area of a rhombus is half the product of its diagonals: (10 x 24)/2 = 120 square centimeters. The option \"60\" multiplies the half-diagonals, 5 x 12, which is the area of only two of the four right triangles. The option \"130\" finds the side, sqrt(5^2 + 12^2) = 13, and multiplies it by the 10-centimeter diagonal as if that diagonal were the height. The option \"52\" is the perimeter, 4 x 13.",
+    "solve": "return 10*24/2;",
+    "distractor_solve": {
+      "52": "const s=Math.sqrt(5*5+12*12);return 4*s;",
+      "60": "return (10/2)*(24/2);",
+      "130": "const s=Math.sqrt(5*5+12*12);return s*10;"
+    }
+  },
+  {
+    "id": "IM15D-05",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "volume scale factor for a scale model, with a liter conversion",
+    "difficulty": "medium",
+    "prompt": "A toy company builds a model of a delivery truck in which every length is 1/20 of the matching length on the real truck. The cargo box of the model holds 6 cubic centimeters. How many liters does the cargo box of the real truck hold? (1 liter = 1000 cubic centimeters)",
+    "choices": [
+      "48",
+      "0.12",
+      "2.4",
+      "120"
+    ],
+    "correct_answer": "48",
+    "explanation": "Lengths scale by 20, so volumes scale by 20^3 = 8000. The real cargo box holds 6 x 8000 = 48000 cubic centimeters, which is 48000 / 1000 = 48 liters. The option \"0.12\" scales the volume by 20, the length factor, giving 120 cubic centimeters. The option \"2.4\" scales by 20^2 = 400, the area factor. The option \"120\" scales by 20 and then forgets to convert cubic centimeters to liters.",
+    "solve": "return 6*20**3/1000;",
+    "distractor_solve": {
+      "120": "return 6*20;",
+      "0.12": "return 6*20/1000;",
+      "2.4": "return 6*20**2/1000;"
+    }
+  },
+  {
+    "id": "IM15D-06",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "angle at a point between two parallel lines (sum of alternate angles)",
+    "difficulty": "medium",
+    "prompt": "Lines l and m are parallel, and point P lies between them. Point A is on line l and point B is on line m, and P is to the right of both A and B. The angle between segment AP and the part of line l to the right of A measures 35 degrees. The angle between segment BP and the part of line m to the right of B measures 50 degrees. What is the measure of angle APB, in degrees?",
+    "choices": [
+      "15",
+      "85",
+      "130",
+      "165"
+    ],
+    "correct_answer": "85",
+    "explanation": "Draw the line through P parallel to l and m. The part of angle APB on the side of line l equals 35 degrees (alternate interior angles with line l), and the part on the side of line m equals 50 degrees (alternate interior angles with line m). So angle APB = 35 + 50 = 85 degrees. The option \"15\" subtracts the two angles instead of adding them. The option \"165\" adds 35 degrees to the same-side interior angle at B, 35 + (180 - 50), using the wrong one of the two angles at B. The option \"130\" is the supplement of 50 degrees, the same-side interior angle at B, reported as if it were the angle at P.",
+    "solve": "return 35+50;",
+    "distractor_solve": {
+      "15": "return 50-35;",
+      "130": "return 180-50;",
+      "165": "return 35+(180-50);"
+    }
+  },
+  {
+    "id": "IM15D-07",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "area of an equilateral triangle from its height",
+    "difficulty": "medium",
+    "prompt": "An equilateral triangle has a height of 6 centimeters. What is the area of the triangle, in square centimeters?",
+    "choices": [
+      "18sqrt(3)",
+      "24sqrt(3)",
+      "12sqrt(3)",
+      "36sqrt(3)"
+    ],
+    "correct_answer": "12sqrt(3)",
+    "explanation": "In an equilateral triangle the height is (sqrt(3)/2) times the side, so the side is 6 x 2/sqrt(3) = 4sqrt(3). The area is (1/2)(4sqrt(3))(6) = 12sqrt(3). The option \"24sqrt(3)\" multiplies side by height and forgets the 1/2. The option \"18sqrt(3)\" multiplies the height by sqrt(3) instead of dividing, taking the side as 6sqrt(3), and then uses (1/2) x base x height. The option \"36sqrt(3)\" takes the side as twice the height, 12, and uses (sqrt(3)/4) x 12^2.",
+    "solve": "const h=6;const s=2*h/Math.sqrt(3);const A=s*h/2;return (A/Math.sqrt(3)).toFixed(6).replace(/\\.?0+$/,\"\")+\"sqrt(3)\";",
+    "distractor_solve": {
+      "24sqrt(3)": "const s=2*6/Math.sqrt(3);return Math.round(s*6/Math.sqrt(3))+\"sqrt(3)\";",
+      "18sqrt(3)": "const s=6*Math.sqrt(3);return Math.round(s*6/2/Math.sqrt(3))+\"sqrt(3)\";",
+      "36sqrt(3)": "const s=2*6;return Math.round(s*s/4)+\"sqrt(3)\";"
+    }
+  },
+  {
+    "id": "IM15D-08",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "surface area of cubes glued into a row (hidden faces)",
+    "difficulty": "medium",
+    "prompt": "Three identical cubes, each with edges 3 centimeters long, are glued face to face in a straight row to make one solid. What is the total surface area of the solid, in square centimeters?",
+    "choices": [
+      "81",
+      "108",
+      "153",
+      "126"
+    ],
+    "correct_answer": "126",
+    "explanation": "The solid is a 3 by 3 by 9 box, with surface area 2(3x3 + 3x9 + 3x9) = 2(9 + 27 + 27) = 126 square centimeters. Equivalently, the three cubes have 3 x 54 = 162 square centimeters of faces, and each of the two joints hides two 9-square-centimeter faces: 162 - 36 = 126. The option \"108\" counts only the four long sides, 4 x 27, and leaves out the two square ends. The option \"81\" is the volume, 3 x 3 x 9. The option \"153\" subtracts only one hidden face in total, 162 - 9.",
+    "solve": "const l=9,w=3,h=3;return 2*(l*w+l*h+w*h);",
+    "distractor_solve": {
+      "81": "return 3*3*9;",
+      "108": "return 4*(3*9);",
+      "153": "return 3*6*9-9;"
+    }
+  },
+  {
+    "id": "IM15D-09",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "lateral surface area of a cylinder (label on a can)",
+    "difficulty": "medium",
+    "prompt": "A paper label covers the curved side of a cylindrical can exactly once, with no overlap, and does not cover the top or bottom. The can has a diameter of 7 centimeters and a height of 10 centimeters. Using 22/7 for pi, what is the area of the label, in square centimeters?",
+    "choices": [
+      "220",
+      "110",
+      "258.5",
+      "385"
+    ],
+    "correct_answer": "220",
+    "explanation": "Unrolled, the label is a rectangle whose length is the circumference, (22/7)(7) = 22 cm, and whose width is the height, 10 cm, so its area is 22 x 10 = 220 square centimeters. The option \"110\" uses pi x radius x height, forgetting that the circumference is pi x diameter. The option \"258.5\" adds the area of one circular end, (22/7)(3.5^2) = 38.5. The option \"385\" is the volume of the can, (22/7)(3.5^2)(10).",
+    "solve": "const p=22/7,d=7,h=10;return p*d*h;",
+    "distractor_solve": {
+      "110": "return (22/7)*3.5*10;",
+      "385": "return (22/7)*3.5*3.5*10;",
+      "258.5": "return (22/7)*7*10+(22/7)*3.5*3.5;"
+    }
+  },
+  {
+    "id": "IM15D-10",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "angle between two angle bisectors of a triangle",
+    "difficulty": "hard",
+    "prompt": "In triangle ABC, angle A measures 70 degrees. The bisector of angle B and the bisector of angle C meet at point I inside the triangle. What is the measure of angle BIC, in degrees?",
+    "choices": [
+      "110",
+      "125",
+      "145",
+      "160"
+    ],
+    "correct_answer": "125",
+    "explanation": "Angles B and C sum to 180 - 70 = 110 degrees, so their halves, angle IBC and angle ICB, sum to 55 degrees. In triangle BIC, angle BIC = 180 - 55 = 125 degrees. The option \"160\" misremembers the rule as 90 + angle A instead of 90 + half of angle A. The option \"110\" uses the full angles B + C as if it were the answer. The option \"145\" subtracts half of angle A from 180 instead of half of B + C.",
+    "solve": "const A=70;return 180-(180-A)/2;",
+    "distractor_solve": {
+      "110": "return 180-70;",
+      "145": "return 180-70/2;",
+      "160": "return 90+70;"
+    }
+  },
+  {
+    "id": "IM15D-11",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "number of sides from an interior-angle sum, then diagonals from one vertex",
+    "difficulty": "medium",
+    "prompt": "The interior angles of a convex polygon add up to 1260 degrees. How many diagonals can be drawn from one vertex of this polygon?",
+    "choices": [
+      "7",
+      "9",
+      "6",
+      "27"
+    ],
+    "correct_answer": "6",
+    "explanation": "The interior angles of an n-sided polygon add to (n - 2) x 180, so n - 2 = 1260 / 180 = 7 and n = 9. From one vertex a diagonal can go to every other vertex except itself and its two neighbours, so there are 9 - 3 = 6. The option \"7\" is the number of triangles those diagonals make, n - 2. The option \"9\" is the number of sides. The option \"27\" is the total number of diagonals of the polygon, 9 x 6 / 2.",
+    "solve": "const n=1260/180+2;return n-3;",
+    "distractor_solve": {
+      "7": "return 1260/180;",
+      "9": "return 1260/180+2;",
+      "27": "const n=1260/180+2;return n*(n-3)/2;"
+    }
+  },
+  {
+    "id": "IM15D-12",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "area of a plus-shaped figure from its perimeter (counting exposed edges)",
+    "difficulty": "medium",
+    "prompt": "A plus-sign shape is made from five identical squares: one square in the center and one square attached to each of its four sides. The perimeter of the plus-sign shape is 48 inches. What is the area of the shape, in square inches?",
+    "choices": [
+      "28.8",
+      "45",
+      "64",
+      "80"
+    ],
+    "correct_answer": "80",
+    "explanation": "Each of the four outer squares shows three edges on the outside and the center square shows none, so the perimeter is 12 edges. Each edge is 48 / 12 = 4 inches, and the area is 5 x 4^2 = 80 square inches. The option \"45\" counts 16 edges (four per outer square), giving edges of 3. The option \"28.8\" counts all 20 edges of the five squares, giving edges of 2.4. The option \"64\" uses the right edge of 4 but counts only the four outer squares.",
+    "solve": "const s=48/12;return 5*s*s;",
+    "distractor_solve": {
+      "45": "const s=48/16;return 5*s*s;",
+      "64": "const s=48/12;return 4*s*s;",
+      "28.8": "const s=48/20;return 5*s*s;"
+    }
+  },
+  {
+    "id": "IM15D-13",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "rectangle area from its diagonal and perimeter using (l + w)^2",
+    "difficulty": "hard",
+    "prompt": "A rectangle has a perimeter of 34 centimeters and a diagonal of 13 centimeters. What is the area of the rectangle, in square centimeters?",
+    "choices": [
+      "60",
+      "12",
+      "49",
+      "52"
+    ],
+    "correct_answer": "60",
+    "explanation": "Let the sides be l and w. Then l + w = 17 and l^2 + w^2 = 13^2 = 169. Since (l + w)^2 = l^2 + 2lw + w^2, 289 = 169 + 2lw, so lw = 60 (the sides are 12 and 5). The option \"12\" stops at the longer side instead of multiplying the sides. The option \"49\" subtracts that 120 from 169, which gives (l - w)^2, not lw. The option \"52\" treats the diagonal as a side: sides 13 and 17 - 13 = 4.",
+    "solve": "const s=34/2,d=13;return (s*s-d*d)/2;",
+    "distractor_solve": {
+      "12": "const s=17,d2=169;return (s+Math.sqrt(2*d2-s*s))/2;",
+      "49": "return 169-(17*17-169);",
+      "52": "return 13*(17-13);"
+    }
+  },
+  {
+    "id": "IM15D-14",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "six angles formed by three lines through one point",
+    "difficulty": "medium",
+    "prompt": "Three straight lines pass through the same point, forming six angles around that point. Two of these angles that are next to each other measure 40 degrees and 65 degrees. What is the measure, in degrees, of the largest of the six angles?",
+    "choices": [
+      "115",
+      "75",
+      "140",
+      "150"
+    ],
+    "correct_answer": "75",
+    "explanation": "Each angle is vertical to another, so the six angles are three pairs, and one angle from each pair, taken next to each other, fill a straight line: 40 + 65 + x = 180, so x = 75. The six angles are 40, 65, 75, 40, 65, 75, and the largest is 75. The option \"150\" adds the 75-degree angle to its vertical partner and reports the pair together. The option \"115\" is the supplement of the 65-degree angle, and the option \"140\" is the supplement of the 40-degree angle; each treats two lines as if they were the only lines.",
+    "solve": "return Math.max(40,65,180-40-65);",
+    "distractor_solve": {
+      "115": "return 180-65;",
+      "140": "return 180-40;",
+      "150": "return 2*(180-40-65);"
+    }
+  },
+  {
+    "id": "IM15D-15",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "area of an isosceles triangle from its three sides via the height",
+    "difficulty": "medium",
+    "prompt": "A triangle has sides of length 25, 25, and 48 centimeters. What is its area, in square centimeters?",
+    "choices": [
+      "24",
+      "84",
+      "168",
+      "98"
+    ],
+    "correct_answer": "168",
+    "explanation": "The height to the 48-centimeter base splits it into halves of 24, so the height is sqrt(25^2 - 24^2) = 7 and the area is (1/2)(48)(7) = 168 square centimeters. The option \"24\" finds the height by subtracting, 25 - 24 = 1, instead of using the Pythagorean theorem. The option \"84\" uses half the base, 24, as the base: (1/2)(24)(7). The option \"98\" is the perimeter, 25 + 25 + 48.",
+    "solve": "const h=Math.sqrt(25*25-24*24);return 48*h/2;",
+    "distractor_solve": {
+      "24": "return 48*(25-24)/2;",
+      "84": "const h=Math.sqrt(625-576);return 24*h/2;",
+      "98": "return 25+25+48;"
+    }
+  },
+  {
+    "id": "IM15D-16",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "cone volume when the slant height, not the height, is given",
+    "difficulty": "hard",
+    "prompt": "A right circular cone has a base radius of 6 centimeters and a slant height of 10 centimeters. What is the volume of the cone, in cubic centimeters? (The volume of a cone is (1/3) x pi x r^2 x h.)",
+    "choices": [
+      "16π",
+      "48π",
+      "60π",
+      "96π"
+    ],
+    "correct_answer": "96π",
+    "explanation": "The height, radius and slant height form a right triangle, so h = sqrt(10^2 - 6^2) = 8. The volume is (1/3)(pi)(6^2)(8) = 96π. The option \"48π\" finds the height by subtracting, 10 - 6 = 4. The option \"16π\" uses the right height but forgets to square the radius: (1/3)(pi)(6)(8). The option \"60π\" computes the curved surface area, pi x 6 x 10, instead of the volume.",
+    "solve": "const r=6,l=10;const h=Math.sqrt(l*l-r*r);return (r*r*h/3)+\"π\";",
+    "distractor_solve": {
+      "48π": "return (6*6*(10-6)/3)+\"π\";",
+      "16π": "const h=Math.sqrt(100-36);return (6*h/3)+\"π\";",
+      "60π": "return (6*10)+\"π\";"
+    }
+  },
+  {
+    "id": "IM15D-17",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "square pyramid volume from base edge and slant height of a face",
+    "difficulty": "hard",
+    "prompt": "A solid pyramid has a square base 10 centimeters on each side. Each of its four triangular faces has a height (slant height) of 13 centimeters, measured from the middle of a base edge up to the top point. What is the volume of the pyramid, in cubic centimeters? (The volume of a pyramid is (1/3) x base area x height.)",
+    "choices": [
+      "400",
+      "160",
+      "260",
+      "360"
+    ],
+    "correct_answer": "400",
+    "explanation": "The pyramid's height, half the base edge (5) and the slant height (13) form a right triangle, so the height is sqrt(13^2 - 5^2) = 12. The volume is (1/3)(10 x 10)(12) = 400 cubic centimeters. The option \"260\" is the area of the four triangular faces, 4 x (1/2)(10)(13). The option \"360\" adds the base to that, giving the total surface area. The option \"160\" uses the perimeter of the base, 40, in place of its area: (1/3)(40)(12).",
+    "solve": "const b=10,s=13;const h=Math.sqrt(s*s-(b/2)**2);return b*b*h/3;",
+    "distractor_solve": {
+      "160": "const h=Math.sqrt(169-25);return 40*h/3;",
+      "260": "return 4*(10*13/2);",
+      "360": "return 10*10+4*(10*13/2);"
+    }
+  },
+  {
+    "id": "IM15D-18",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "areas of triangles sharing a height are in the ratio of their bases",
+    "difficulty": "hard",
+    "prompt": "In triangle ABC, point D lies on side BC so that BD = 4 and DC = 10. The area of triangle ABD is 18 square units. What is the area of triangle ABC, in square units?",
+    "choices": [
+      "25.2",
+      "63",
+      "45",
+      "220.5"
+    ],
+    "correct_answer": "63",
+    "explanation": "Triangles ABD and ABC have the same height from A to line BC, so their areas are in the ratio of their bases, BD : BC = 4 : 14. The area of ABC is 18 x 14/4 = 63. The option \"45\" is the area of triangle ADC alone, 18 x 10/4. The option \"25.2\" divides by DC instead of BD: 18 x 14/10. The option \"220.5\" squares the ratio, 18 x (14/4)^2, as if the triangles were similar.",
+    "solve": "const bd=4,dc=10,a=18;return a*(bd+dc)/bd;",
+    "distractor_solve": {
+      "45": "return 18*10/4;",
+      "25.2": "return 18*14/10;",
+      "220.5": "return 18*(14/4)**2;"
+    }
+  },
+  {
+    "id": "IM15D-19",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "vertex angle of an isosceles triangle from an exterior angle at a base vertex",
+    "difficulty": "medium",
+    "prompt": "In triangle ABC, AB = AC. Side BC is extended past C to a point D, and angle ACD measures 115 degrees. What is the measure of angle BAC, in degrees?",
+    "choices": [
+      "25",
+      "57.5",
+      "50",
+      "65"
+    ],
+    "correct_answer": "50",
+    "explanation": "Angle ACB = 180 - 115 = 65 degrees. Because AB = AC, angle ABC = angle ACB = 65 degrees, so angle BAC = 180 - 65 - 65 = 50 degrees. The option \"65\" stops at the base angle. The option \"25\" takes the complement of the base angle, 90 - 65, as if the triangle had a right angle. The option \"57.5\" splits the exterior angle evenly between the two remote interior angles, 115 / 2, as if angle A equalled angle B.",
+    "solve": "const c=180-115;return 180-2*c;",
+    "distractor_solve": {
+      "25": "return 90-(180-115);",
+      "65": "return 180-115;",
+      "57.5": "return 115/2;"
+    }
+  },
+  {
+    "id": "IM15D-20",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "angle between a side and a short diagonal of a regular hexagon",
+    "difficulty": "medium",
+    "prompt": "ABCDEF is a regular hexagon. What is the measure of angle BAC, in degrees?",
+    "choices": [
+      "40",
+      "45",
+      "90",
+      "30"
+    ],
+    "correct_answer": "30",
+    "explanation": "Each interior angle of a regular hexagon is (6 - 2) x 180 / 6 = 120 degrees. Triangle ABC has AB = BC and angle ABC = 120 degrees, so its other two angles are (180 - 120)/2 = 30 degrees each. The option \"40\" assumes the diagonals from A split the 120-degree angle into three equal parts instead of four. The option \"45\" uses the 90-degree corner of a square, (180 - 90)/2. The option \"90\" is angle FAC, which is the 120-degree angle at A minus the 30 degrees of angle BAC.",
+    "solve": "const i=(6-2)*180/6;return (180-i)/2;",
+    "distractor_solve": {
+      "40": "return ((6-2)*180/6)/3;",
+      "45": "return (180-90)/2;",
+      "90": "const i=(6-2)*180/6;return i-(180-i)/2;"
+    }
+  },
+  {
+    "id": "IM15D-21",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "chained isosceles triangles and the exterior angle theorem",
+    "difficulty": "hard",
+    "prompt": "In triangle ABC, point D lies on side BC between B and C so that AB = AD and AD = DC. Angle ACB measures 35 degrees. What is the measure of angle BAC, in degrees?",
+    "choices": [
+      "75",
+      "40",
+      "70",
+      "90"
+    ],
+    "correct_answer": "75",
+    "explanation": "Because AD = DC, angle DAC = angle DCA = 35 degrees, so the exterior angle ADB = 35 + 35 = 70 degrees. Because AB = AD, angle ABD = angle ADB = 70 degrees, so angle BAD = 180 - 70 - 70 = 40 degrees. Then angle BAC = 40 + 35 = 75 degrees. The option \"40\" stops at angle BAD. The option \"70\" reports angle ABC. The option \"90\" pairs the wrong angles in triangle ABD, making angle BAD equal to angle ABD, so angle BAD = (180 - 70)/2 = 55 and 55 + 35 = 90.",
+    "solve": "const c=35;const adb=2*c;const bad=180-2*adb;return bad+c;",
+    "distractor_solve": {
+      "40": "return 180-2*(2*35);",
+      "70": "return 2*35;",
+      "90": "return (180-2*35)/2+35;"
+    }
+  },
+  {
+    "id": "IM15D-22",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "volume of a triangular prism whose isosceles cross-section needs its height",
+    "difficulty": "hard",
+    "prompt": "A solid glass prism is 5 centimeters long. Each end of the prism is an isosceles triangle with a base of 14 centimeters and two equal sides of 25 centimeters. What is the volume of the prism, in cubic centimeters?",
+    "choices": [
+      "280",
+      "840",
+      "630",
+      "656"
+    ],
+    "correct_answer": "840",
+    "explanation": "The height of the end triangle is sqrt(25^2 - 7^2) = 24, so each end has area (1/2)(14)(24) = 168 and the volume is 168 x 5 = 840 cubic centimeters. The option \"630\" finds the triangle's height by subtracting, 25 - 7 = 18. The option \"280\" uses the pyramid formula, (1/3) x 168 x 5. The option \"656\" is the surface area: 2 x 168 + 5 x (25 + 25 + 14).",
+    "solve": "const h=Math.sqrt(25*25-7*7);return 14*h/2*5;",
+    "distractor_solve": {
+      "280": "const h=Math.sqrt(625-49);return 14*h/2*5/3;",
+      "630": "return 14*(25-7)/2*5;",
+      "656": "const h=Math.sqrt(625-49);return 2*(14*h/2)+5*(25+25+14);"
+    }
+  },
+  {
+    "id": "IM15D-23",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "distance from a circle's center to a chord",
+    "difficulty": "medium",
+    "prompt": "A circle has a radius of 13 centimeters. A chord of the circle is 24 centimeters long. How far, in centimeters, is the chord from the center of the circle?",
+    "choices": [
+      "1",
+      "8",
+      "5",
+      "12"
+    ],
+    "correct_answer": "5",
+    "explanation": "The perpendicular from the center bisects the chord, making a right triangle with hypotenuse 13 (a radius) and one leg 12 (half the chord). The other leg, the distance, is sqrt(13^2 - 12^2) = 5. The option \"12\" is half the chord. The option \"1\" subtracts half the chord from the radius, 13 - 12. The option \"8\" is the radius minus the distance, 13 - 5, which is how far the chord is from the edge of the circle.",
+    "solve": "const r=13,c=24;return Math.sqrt(r*r-(c/2)**2);",
+    "distractor_solve": {
+      "1": "return 13-24/2;",
+      "8": "return 13-Math.sqrt(169-144);",
+      "12": "return 24/2;"
+    }
+  },
+  {
+    "id": "IM15D-24",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "volume of a cylinder formed by rolling a rectangular sheet",
+    "difficulty": "hard",
+    "prompt": "A rectangular sheet of metal measures 22 centimeters by 14 centimeters. It is rolled so that the 22-centimeter edges curve around to form the circular rim of an open cylinder, with the ends just meeting, and the cylinder is 14 centimeters tall. Using 22/7 for pi, what is the volume of the cylinder, in cubic centimeters?",
+    "choices": [
+      "308",
+      "343",
+      "2156",
+      "539"
+    ],
+    "correct_answer": "539",
+    "explanation": "The circumference is 22, so 2 x (22/7) x r = 22 and r = 3.5. The volume is (22/7)(3.5^2)(14) = 539 cubic centimeters. The option \"2156\" sets 22 = pi x r, forgetting the 2, so r = 7. The option \"343\" rolls the sheet the other way, with 14 as the circumference and 22 as the height. The option \"308\" is the area of the sheet, 22 x 14, which is the curved surface, not the volume.",
+    "solve": "const p=22/7;const r=22/(2*p);return p*r*r*14;",
+    "distractor_solve": {
+      "308": "return 22*14;",
+      "343": "const p=22/7;const r=14/(2*p);return p*r*r*22;",
+      "2156": "const p=22/7;const r=22/p;return p*r*r*14;"
+    }
+  },
+  {
+    "id": "IM15D-25",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "cube edge from its space diagonal, then surface area",
+    "difficulty": "hard",
+    "prompt": "The diagonal of a cube, running through the inside of the cube from one corner to the opposite corner, is 5sqrt(3) centimeters long. What is the total surface area of the cube, in square centimeters?",
+    "choices": [
+      "150",
+      "125",
+      "225",
+      "450"
+    ],
+    "correct_answer": "150",
+    "explanation": "For a cube with edge e, the space diagonal is sqrt(e^2 + e^2 + e^2) = e sqrt(3), so e = 5 and the surface area is 6 x 5^2 = 150 square centimeters. The option \"125\" is the volume, 5^3. The option \"225\" treats 5sqrt(3) as the diagonal of one face, so e^2 = 75/2 and 6e^2 = 225. The option \"450\" treats 5sqrt(3) as the edge itself: 6 x 75.",
+    "solve": "const d2=25*3;const e2=d2/3;return 6*e2;",
+    "distractor_solve": {
+      "125": "return Math.round(Math.sqrt(75/3)**3);",
+      "225": "return 6*(75/2);",
+      "450": "return 6*75;"
+    }
+  },
+  {
+    "id": "IM15D-26",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "height where two crossing wires meet (similar triangles)",
+    "difficulty": "hard",
+    "prompt": "Two vertical poles stand on level ground 15 meters apart. One pole is 6 meters tall and the other is 12 meters tall. A straight wire runs from the top of each pole to the bottom of the other pole. At what height above the ground, in meters, do the two wires cross?",
+    "choices": [
+      "4.5",
+      "4",
+      "4.8",
+      "5"
+    ],
+    "correct_answer": "4",
+    "explanation": "Let the crossing point be at height y and horizontal distance x from the shorter pole. The wire from the top of the taller pole falls to the base of the shorter pole, so y / x = 12 / 15; the wire from the top of the shorter pole falls to the base of the taller one, so y / (15 - x) = 6 / 15. Adding x = 15y/12 and 15 - x = 15y/6 gives 15 = 15y(1/12 + 1/6), so y = 1/(1/12 + 1/6) = 6 x 12/(6 + 12) = 4 meters, whatever the distance between the poles. The option \"4.5\" assumes the wires cross halfway up the average of the two heights, (6 + 12)/2 / 2. The option \"4.8\" divides the product of the heights by the distance between the poles, 72 / 15. The option \"5\" puts the distance between the poles in place of the taller pole's height in the numerator, 6 x 15/(6 + 12) = 90 / 18.",
+    "solve": "const a=6,b=12;return a*b/(a+b);",
+    "distractor_solve": {
+      "5": "return 6*15/(6+12);",
+      "4.5": "return (6+12)/2/2;",
+      "4.8": "return 6*12/15;"
+    }
+  },
+  {
+    "id": "IM15D-27",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "angles of a kite from the quadrilateral angle sum",
+    "difficulty": "medium",
+    "prompt": "A kite has exactly one pair of equal opposite angles. Its other two angles measure 70 degrees and 130 degrees. What is the measure, in degrees, of each of the two equal angles?",
+    "choices": [
+      "55",
+      "90",
+      "80",
+      "160"
+    ],
+    "correct_answer": "80",
+    "explanation": "The angles of any quadrilateral add to 360 degrees, so the two equal angles add to 360 - 70 - 130 = 160, and each is 80 degrees. The option \"160\" forgets to split the remaining total between the two angles. The option \"55\" uses 180 with the 70-degree angle, (180 - 70)/2, as if the kite were a triangle. The option \"90\" splits 360 evenly among the four angles, as if the kite were a rectangle.",
+    "solve": "return (360-70-130)/2;",
+    "distractor_solve": {
+      "55": "return (180-70)/2;",
+      "90": "return 360/4;",
+      "160": "return 360-70-130;"
+    }
+  },
+  {
+    "id": "IM15D-28",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "angle chasing with a square and an equilateral triangle on a shared side",
+    "difficulty": "hard",
+    "prompt": "ABCD is a square. An equilateral triangle BCE is drawn on side BC, outside the square. What is the measure of angle BAE, in degrees?",
+    "choices": [
+      "30",
+      "45",
+      "60",
+      "15"
+    ],
+    "correct_answer": "15",
+    "explanation": "At B, angle ABE = angle ABC + angle CBE = 90 + 60 = 150 degrees. Since AB = BC = BE, triangle ABE is isosceles, so angle BAE = (180 - 150)/2 = 15 degrees. The option \"30\" is 180 - 150 without splitting it between the two equal angles of triangle ABE. The option \"60\" takes angle BAE to be an angle of the equilateral triangle. The option \"45\" ignores the triangle's 60 degrees and uses (180 - 90)/2.",
+    "solve": "const abe=90+60;return (180-abe)/2;",
+    "distractor_solve": {
+      "30": "return 180-(90+60);",
+      "45": "return (180-90)/2;",
+      "60": "return 180/3;"
+    }
+  },
+  {
+    "id": "IM15D-29",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "surface area of an open-top box",
+    "difficulty": "medium",
+    "prompt": "A box with no lid is 10 inches long, 6 inches wide, and 4 inches tall. Its bottom and four sides are painted on the outside only. How many square inches are painted?",
+    "choices": [
+      "188",
+      "208",
+      "220",
+      "240"
+    ],
+    "correct_answer": "188",
+    "explanation": "The bottom is 10 x 6 = 60. Two sides are 10 x 4 = 40 each and two are 6 x 4 = 24 each, so the painted area is 60 + 80 + 48 = 188 square inches. The option \"208\" takes the bottom to be the 10 by 4 face, 40 + 2(60) + 2(24). The option \"220\" treats all four sides as 10 by 4: 60 + 4 x 40. The option \"240\" is the volume, 10 x 6 x 4.",
+    "solve": "const l=10,w=6,h=4;return l*w+2*l*h+2*w*h;",
+    "distractor_solve": {
+      "208": "return 10*4+2*10*6+2*6*4;",
+      "220": "return 10*6+4*10*4;",
+      "240": "return 10*6*4;"
+    }
+  },
+  {
+    "id": "IM15D-30",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "three-sided fenced rectangle against a wall: dimensions and area",
+    "difficulty": "medium",
+    "prompt": "A farmer uses 60 feet of fencing to make a rectangular pen against the long wall of a barn, so the wall forms one side and the fence forms the other three. The side of the pen parallel to the barn is twice as long as each of the two sides perpendicular to it. What is the area of the pen, in square feet?",
+    "choices": [
+      "200",
+      "450",
+      "288",
+      "400"
+    ],
+    "correct_answer": "450",
+    "explanation": "Let each perpendicular side be w; the side parallel to the barn is 2w. The fence covers w + w + 2w = 4w = 60, so w = 15, the long side is 30, and the area is 15 x 30 = 450 square feet. The option \"200\" fences all four sides, 6w = 60, giving 10 by 20. The option \"288\" fences the long side twice and one short side, 5w = 60, giving 12 by 24. The option \"400\" makes the three fenced sides equal, 20 each, ignoring the condition that the side along the barn is twice as long.",
+    "solve": "const w=60/4;return w*2*w;",
+    "distractor_solve": {
+      "200": "const w=60/6;return w*2*w;",
+      "288": "const w=60/5;return w*2*w;",
+      "400": "return (60/3)*(60/3);"
+    }
+  },
+  {
+    "id": "IM15D-31",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "difference in circumference of two concentric circles",
+    "difficulty": "hard",
+    "prompt": "Two runners each run one lap around a circular track. One runs along a circle of radius 25 meters, and the other runs along a circle with the same center and radius 26 meters. Using 3.14 for pi, how many meters farther does the outer runner run?",
+    "choices": [
+      "1",
+      "3.14",
+      "6.28",
+      "160.14"
+    ],
+    "correct_answer": "6.28",
+    "explanation": "The laps are 2(3.14)(26) = 163.28 and 2(3.14)(25) = 157 meters, a difference of 6.28 meters, which is 2 x 3.14 x (26 - 25) whatever the radii. The option \"3.14\" uses pi x (26 - 25), treating the difference in radius as a difference in diameter. The option \"1\" is the difference in radius. The option \"160.14\" subtracts the areas of the circles, 3.14 x (26^2 - 25^2), instead of their circumferences.",
+    "solve": "const p=3.14;return +(2*p*26-2*p*25).toFixed(2);",
+    "distractor_solve": {
+      "1": "return 26-25;",
+      "3.14": "return 3.14*(26-25);",
+      "160.14": "return +(3.14*(26*26-25*25)).toFixed(2);"
+    }
+  },
+  {
+    "id": "IM15D-32",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "angle between two altitudes of a triangle (quadrilateral angle sum)",
+    "difficulty": "hard",
+    "prompt": "In acute triangle ABC, angle A measures 50 degrees. A segment from B perpendicular to side AC and a segment from C perpendicular to side AB cross at point H. What is the measure of angle BHC, in degrees?",
+    "choices": [
+      "40",
+      "100",
+      "115",
+      "130"
+    ],
+    "correct_answer": "130",
+    "explanation": "Let the feet of the perpendiculars be E on AC and F on AB. Quadrilateral AFHE has right angles at F and E, so angle FHE = 360 - 90 - 90 - 50 = 130 degrees, and angle BHC is vertical to angle FHE, so it is also 130 degrees. The option \"40\" reports angle ABH, 90 - 50, an angle of right triangle ABE. The option \"100\" doubles angle A, the rule for an angle at the center of a circle. The option \"115\" uses the angle-bisector rule, 90 + 50/2.",
+    "solve": "const a=50;return 360-90-90-a;",
+    "distractor_solve": {
+      "40": "return 90-50;",
+      "100": "return 2*50;",
+      "115": "return 90+50/2;"
+    }
+  },
+  {
+    "id": "IM15D-33",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "area of a parallelogram with a 60-degree angle (30-60-90 height)",
+    "difficulty": "medium",
+    "prompt": "A parallelogram has sides of length 8 centimeters and 6 centimeters, and one of its angles measures 60 degrees. What is the area of the parallelogram, in square centimeters?",
+    "choices": [
+      "24sqrt(3)",
+      "9sqrt(3)",
+      "12sqrt(3)",
+      "16sqrt(3)"
+    ],
+    "correct_answer": "24sqrt(3)",
+    "explanation": "Take the 8-centimeter side as the base. The 6-centimeter side, the height and part of the base form a 30-60-90 triangle with the 60-degree angle at the base, so the height is 6 x sqrt(3)/2 = 3sqrt(3). The area is 8 x 3sqrt(3) = 24sqrt(3). The option \"12sqrt(3)\" multiplies by 1/2 as if the figure were a triangle. The option \"16sqrt(3)\" uses the equilateral-triangle formula with side 8, (sqrt(3)/4) x 8^2. The option \"9sqrt(3)\" uses the same formula with side 6, (sqrt(3)/4) x 6^2.",
+    "solve": "const h=6*Math.sqrt(3)/2;const A=8*h;return Math.round(A/Math.sqrt(3))+\"sqrt(3)\";",
+    "distractor_solve": {
+      "12sqrt(3)": "const h=6*Math.sqrt(3)/2;return Math.round(8*h/2/Math.sqrt(3))+\"sqrt(3)\";",
+      "16sqrt(3)": "return (8*8/4)+\"sqrt(3)\";",
+      "9sqrt(3)": "return (6*6/4)+\"sqrt(3)\";"
+    }
+  }
+]

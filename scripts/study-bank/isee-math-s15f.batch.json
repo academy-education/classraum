@@ -1,0 +1,761 @@
+[
+ {
+  "id": "IM15F-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "geometric probability on a number line: length of the favorable interval over the total length",
+  "difficulty": "easy",
+  "prompt": "A point is chosen at random on the number line from 0 to 20. What is the probability that the point is within 3 units of 8?",
+  "choices": [
+   "3/20",
+   "3/10",
+   "2/7",
+   "1/4"
+  ],
+  "correct_answer": "3/10",
+  "explanation": "The favorable points run from 5 to 11, an interval of length 6, out of a total length of 20, so the probability is 6/20 = 3/10. The option \"3/20\" counts only one side of 8 (from 8 to 11), a length of 3. The option \"1/4\" counts the whole numbers strictly within 3 of 8 (6, 7, 8, 9, 10) and divides 5 by 20. The option \"2/7\" divides the length 6 by the 21 whole numbers from 0 to 20 instead of by the length 20.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const lo=8-3,hi=8+3;return fr(hi-lo,20);",
+  "distractor_solve": {
+   "3/20": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(3,20);",
+   "1/4": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};let n=0;for(let x=0;x<=20;x++)if(Math.abs(x-8)<3)n++;return fr(n,20);",
+   "2/7": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(6,21);"
+  }
+ },
+ {
+  "id": "IM15F-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "multiplication principle with a restricted first digit and a restricted last digit, repetition allowed",
+  "difficulty": "easy",
+  "prompt": "A locker code is a three-digit number. Its first digit cannot be 0, its last digit must be odd, and digits may be repeated. How many different locker codes are possible?",
+  "choices": [
+   "360",
+   "225",
+   "250",
+   "450"
+  ],
+  "correct_answer": "450",
+  "explanation": "There are 9 choices for the first digit (1-9), 10 for the middle digit, and 5 odd choices for the last digit: 9 x 10 x 5 = 450. The option \"225\" applies the odd-digit rule to the middle digit as well, using 9 x 5 x 5. The option \"250\" applies the odd-digit rule to the first digit as well, using 5 x 10 x 5. The option \"360\" forbids repeated digits in the middle place, using 9 x 8 x 5.",
+  "solve": "return 9*10*5;",
+  "distractor_solve": {
+   "225": "return 9*5*5;",
+   "250": "return 5*10*5;",
+   "360": "return 9*8*5;"
+  }
+ },
+ {
+  "id": "IM15F-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "effect of multiplying and then shifting every value on the mean",
+  "difficulty": "easy",
+  "prompt": "The mean of a list of five numbers is 12. Each number in the list is multiplied by 3, and then 5 is subtracted from each result. What is the mean of the new list?",
+  "choices": [
+   "31",
+   "36",
+   "41",
+   "35"
+  ],
+  "correct_answer": "31",
+  "explanation": "Multiplying every value by 3 multiplies the mean by 3, giving 36, and subtracting 5 from every value subtracts 5 from the mean: 36 - 5 = 31. The option \"35\" subtracts 5 only once from the new total of 180 instead of from each of the five values, giving 175/5. The option \"36\" multiplies the mean by 3 but forgets to subtract 5. The option \"41\" adds 5 instead of subtracting it.",
+  "solve": "const m=12;return 3*m-5;",
+  "distractor_solve": {
+   "35": "const sum=5*12;return (3*sum-5)/5;",
+   "36": "return 3*12;",
+   "41": "return 3*12+5;"
+  }
+ },
+ {
+  "id": "IM15F-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "trimmed mean: mean after dropping the highest and lowest scores",
+  "difficulty": "easy",
+  "prompt": "Six judges gave a performance the scores 88, 97, 68, 85, 99, and 79. The highest and the lowest scores are dropped, and the mean of the remaining scores is the final score. What is the final score?",
+  "choices": [
+   "86",
+   "86.5",
+   "87.25",
+   "83.4"
+  ],
+  "correct_answer": "87.25",
+  "explanation": "Dropping 99 and 68 leaves 79, 85, 88, and 97, whose sum is 349, so the final score is 349/4 = 87.25. The option \"86\" is the mean of all six scores (516/6), with nothing dropped. The option \"86.5\" is the median of the six scores, (85 + 88)/2. The option \"83.4\" drops only the highest score and averages the other five (417/5).",
+  "solve": "const s=[88,97,68,85,99,79].sort((a,b)=>a-b);const r=s.slice(1,5);return r.reduce((a,b)=>a+b)/r.length;",
+  "distractor_solve": {
+   "86": "const s=[88,97,68,85,99,79];return s.reduce((a,b)=>a+b)/6;",
+   "86.5": "const s=[88,97,68,85,99,79].sort((a,b)=>a-b);return (s[2]+s[3])/2;",
+   "83.4": "const s=[88,97,68,85,99,79].sort((a,b)=>a-b);return s.slice(0,5).reduce((a,b)=>a+b)/5;"
+  }
+ },
+ {
+  "id": "IM15F-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "weighted course average with category weights: solving for the needed final exam score",
+  "difficulty": "medium",
+  "prompt": "In a course, homework counts for 20% of the grade, quizzes count for 30%, and the final exam counts for 50%. Rosa has a homework average of 64 and a quiz average of 74. What score must she earn on the final exam for her course grade to be exactly 78?",
+  "choices": [
+   "94",
+   "88",
+   "86",
+   "96"
+  ],
+  "correct_answer": "86",
+  "explanation": "Homework contributes 0.2 x 64 = 12.8 and quizzes contribute 0.3 x 74 = 22.2, a total of 35. The final must contribute 78 - 35 = 43, so 0.5 x F = 43 and F = 86. The option \"88\" swaps the homework and quiz weights, using 30% for homework and 20% for quizzes. The option \"94\" swaps the quiz and final-exam weights, using 50% for quizzes and 30% for the final. The option \"96\" treats the three averages as equally weighted, solving (64 + 74 + F)/3 = 78.",
+  "solve": "const h=64,q=74,T=78;return Math.round((T-0.2*h-0.3*q)/0.5*1e6)/1e6;",
+  "distractor_solve": {
+   "88": "return Math.round((78-0.3*64-0.2*74)/0.5*1e6)/1e6;",
+   "94": "return Math.round((78-0.2*64-0.5*74)/0.3*1e6)/1e6;",
+   "96": "return 3*78-64-74;"
+  }
+ },
+ {
+  "id": "IM15F-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "arrangements of letters when some letters repeat",
+  "difficulty": "medium",
+  "prompt": "How many different arrangements of all six letters of the word PEPPER are possible?",
+  "choices": [
+   "60",
+   "120",
+   "20",
+   "23"
+  ],
+  "correct_answer": "60",
+  "explanation": "PEPPER has six letters with P appearing 3 times, E appearing 2 times, and R once, so the count is 6!/(3! x 2!) = 720/12 = 60. (Equivalently: choose the 3 places for the P's in C(6,3) = 20 ways, then the 2 places for the E's among the remaining 3 in C(3,2) = 3 ways: 20 x 3 = 60.) The option \"20\" chooses the places for the three P's and stops, never placing the E's and the R. The option \"23\" chooses places for the P's (20 ways) and for the E's (3 ways) but adds the two counts instead of multiplying them. The option \"120\" divides only by 3! for the repeated P and ignores the repeated E.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return fa(6)/(fa(3)*fa(2));",
+  "distractor_solve": {
+   "20": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(6,3);",
+   "23": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(6,3)+C(3,2);",
+   "120": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return fa(6)/fa(3);"
+  }
+ },
+ {
+  "id": "IM15F-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting shortest lattice routes as choosing which moves go north",
+  "difficulty": "medium",
+  "prompt": "A robot moves along the streets of a square grid, one block at a time, going only east or north. It must travel from corner A to corner B, which is 4 blocks east and 3 blocks north of A. How many different routes can the robot take?",
+  "choices": [
+   "21",
+   "12",
+   "70",
+   "35"
+  ],
+  "correct_answer": "35",
+  "explanation": "Every route is a string of 7 moves, 4 east and 3 north, and a route is fixed by choosing which 3 of the 7 moves go north: C(7,3) = 35. The option \"12\" multiplies the 4 blocks east by the 3 blocks north as if they were independent choices. The option \"21\" chooses 2 of the 7 moves instead of 3. The option \"70\" doubles the count for two possible first moves, counting every route twice.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(4+3,3);",
+  "distractor_solve": {
+   "12": "return 4*3;",
+   "21": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(7,2);",
+   "70": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return 2*C(7,3);"
+  }
+ },
+ {
+  "id": "IM15F-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pairs among a group minus the excluded pairs inside a subgroup",
+  "difficulty": "medium",
+  "prompt": "Nine people attend a meeting. Every two people shake hands exactly once, except that the three members of one family do not shake hands with one another. How many handshakes take place?",
+  "choices": [
+   "30",
+   "33",
+   "69",
+   "21"
+  ],
+  "correct_answer": "33",
+  "explanation": "Without the exception there would be C(9,2) = 36 handshakes. The family members skip the C(3,2) = 3 handshakes among themselves, leaving 36 - 3 = 33. The option \"21\" treats the family as one person, counting C(7,2) and losing the handshakes between each family member and the others. The option \"30\" removes the family pairs twice, once for each person in a pair, subtracting 6. The option \"69\" counts ordered pairs, 9 x 8 = 72, without halving, then subtracts 3.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(9,2)-C(3,2);",
+  "distractor_solve": {
+   "21": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(7,2);",
+   "30": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(9,2)-2*C(3,2);",
+   "69": "return 9*8-3;"
+  }
+ },
+ {
+  "id": "IM15F-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting selections that include at least one member of a group by subtracting the selections with none",
+  "difficulty": "hard",
+  "prompt": "A team of 3 students is to be chosen from 5 seniors and 4 juniors. How many different teams include at least one junior?",
+  "choices": [
+   "40",
+   "112",
+   "80",
+   "74"
+  ],
+  "correct_answer": "74",
+  "explanation": "There are C(9,3) = 84 teams in all, and C(5,3) = 10 of them contain only seniors, so 84 - 10 = 74 teams include at least one junior. The option \"40\" counts only the teams with exactly one junior. The option \"80\" subtracts the teams made only of juniors instead of the teams made only of seniors. The option \"112\" picks one junior first and then any 2 of the other 8 students, which counts teams with two or three juniors more than once.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(9,3)-C(5,3);",
+  "distractor_solve": {
+   "40": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return 4*C(5,2);",
+   "80": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(9,3)-C(4,3);",
+   "112": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return 4*C(8,2);"
+  }
+ },
+ {
+  "id": "IM15F-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting digit strings with strictly increasing digits as choosing a set of digits",
+  "difficulty": "hard",
+  "prompt": "How many three-digit positive integers have digits that strictly increase from left to right (for example, 258)?",
+  "choices": [
+   "165",
+   "84",
+   "168",
+   "120"
+  ],
+  "correct_answer": "84",
+  "explanation": "The first digit cannot be 0, and in an increasing number 0 could only be first, so the digits come from 1-9. Each set of 3 different digits from 1-9 gives exactly one increasing number: C(9,3) = 84. The option \"120\" chooses 3 digits from all ten digits 0-9, including sets that would need 0 as the first digit. The option \"165\" counts digits that never decrease, allowing repeated digits such as 225. The option \"168\" counts the 504 numbers with three different nonzero digits and divides by 3 instead of by the 3! = 6 orders of each set.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);let n=0;for(let x=100;x<1000;x++){const a=Math.floor(x/100),b=Math.floor(x/10)%10,c=x%10;if(a<b&&b<c)n++;}return n;",
+  "distractor_solve": {
+   "120": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(10,3);",
+   "165": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(11,3);",
+   "168": "return 9*8*7/3;"
+  }
+ },
+ {
+  "id": "IM15F-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "choosing one officer and then an unordered committee from the remaining members",
+  "difficulty": "medium",
+  "prompt": "A club has 6 members. One member is chosen as president, and then 2 of the other members are chosen to form a planning committee, in no particular order. In how many different ways can this be done?",
+  "choices": [
+   "60",
+   "20",
+   "16",
+   "30"
+  ],
+  "correct_answer": "60",
+  "explanation": "There are 6 choices for president, and then C(5,2) = 10 ways to choose 2 of the remaining 5 members, so 6 x 10 = 60. The option \"16\" adds the 6 president choices to the 10 committee choices instead of multiplying. The option \"20\" chooses 3 of the 6 members without distinguishing the president from the committee. The option \"30\" chooses the president and then only one committee member.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return 6*C(5,2);",
+  "distractor_solve": {
+   "16": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return 6+C(5,2);",
+   "20": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(6,3);",
+   "30": "return 6*5;"
+  }
+ },
+ {
+  "id": "IM15F-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting subsets of a set with at least a given number of elements",
+  "difficulty": "medium",
+  "prompt": "A sandwich shop offers 6 different toppings. A customer may choose any combination of the toppings, but must choose at least 3 different toppings. How many different topping combinations can the customer choose?",
+  "choices": [
+   "57",
+   "35",
+   "42",
+   "120"
+  ],
+  "correct_answer": "42",
+  "explanation": "Count by size: C(6,3) + C(6,4) + C(6,5) + C(6,6) = 20 + 15 + 6 + 1 = 42. (Or: of the 2^6 = 64 combinations, remove the 1 with no topping, the 6 with one, and the 15 with two: 64 - 22 = 42.) The option \"35\" counts the combinations with exactly 3 or exactly 4 toppings and stops there. The option \"57\" removes the combinations with no topping and with one topping but forgets the 15 with exactly two. The option \"120\" counts ordered choices of three toppings, 6 x 5 x 4, as if the order of the toppings mattered and no more than three could be chosen.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);let n=0;for(let k=3;k<=6;k++)n+=C(6,k);return n;",
+  "distractor_solve": {
+   "35": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(6,3)+C(6,4);",
+   "57": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return 2**6-1-6;",
+   "120": "return 6*5*4;"
+  }
+ },
+ {
+  "id": "IM15F-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "addition principle over the types of mixed-color pairs",
+  "difficulty": "medium",
+  "prompt": "A box holds 5 red pens, 3 blue pens, and 2 green pens, all different from one another. In how many ways can two pens of different colors be chosen?",
+  "choices": [
+   "31",
+   "14",
+   "30",
+   "21"
+  ],
+  "correct_answer": "31",
+  "explanation": "A pair of different colors is red-blue (5 x 3 = 15), red-green (5 x 2 = 10), or blue-green (3 x 2 = 6), for a total of 15 + 10 + 6 = 31. The option \"14\" counts the pairs of the SAME color instead. The option \"21\" leaves out the red-green pairs. The option \"30\" multiplies all three color counts together, as if one pen of each color were chosen.",
+  "solve": "const r=5,b=3,g=2;return r*b+r*g+b*g;",
+  "distractor_solve": {
+   "14": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(5,2)+C(3,2)+C(2,2);",
+   "21": "return 5*3+3*2;",
+   "30": "return 5*3*2;"
+  }
+ },
+ {
+  "id": "IM15F-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "mean of equally spaced values sits at the middle term",
+  "difficulty": "medium",
+  "prompt": "The mean of five consecutive multiples of 4 is 36. What is the largest of the five numbers?",
+  "choices": [
+   "40",
+   "44",
+   "52",
+   "38"
+  ],
+  "correct_answer": "44",
+  "explanation": "Five equally spaced numbers have their mean at the middle number, so the numbers are 28, 32, 36, 40, and 44, and the largest is 44. The option \"38\" uses a spacing of 1, as for consecutive integers. The option \"40\" uses a spacing of 2, as for consecutive even numbers. The option \"52\" takes the mean as the smallest number and counts four steps of 4 above it.",
+  "solve": "const m=36,step=4;return m+2*step;",
+  "distractor_solve": {
+   "38": "return 36+2*1;",
+   "40": "return 36+2*2;",
+   "52": "return 36+4*4;"
+  }
+ },
+ {
+  "id": "IM15F-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding a missing frequency from a given median of a frequency table",
+  "difficulty": "medium",
+  "prompt": "A survey asked students how many siblings they have. 5 students said 0, 8 said 1, some number said 2, and 2 said 3. The median of all the answers is 1.5. How many students said 2?",
+  "choices": [
+   "13",
+   "17",
+   "6",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "A median of 1.5 means the two middle answers are 1 and 2, so exactly half the answers are 0 or 1. There are 5 + 8 = 13 such answers, so the 2s and 3s must also number 13: x + 2 = 13 and x = 11. The option \"6\" leaves out the students who said 0, balancing x + 2 against only the 8 students who said 1. The option \"13\" makes the number of 2s alone equal to 13, forgetting the two students who said 3. The option \"17\" uses 1.5 as the mean instead of the median, solving (8 + 2x + 6)/(15 + x) = 1.5.",
+  "solve": "for(let x=0;x<100;x++){const a=[];for(let i=0;i<5;i++)a.push(0);for(let i=0;i<8;i++)a.push(1);for(let i=0;i<x;i++)a.push(2);for(let i=0;i<2;i++)a.push(3);const n=a.length;const med=n%2?a[(n-1)/2]:(a[n/2-1]+a[n/2])/2;if(med===1.5)return x;}",
+  "distractor_solve": {
+   "6": "return 8-2;",
+   "13": "return 5+8;",
+   "17": "for(let x=0;x<100;x++){if((0*5+1*8+2*x+3*2)===1.5*(15+x))return x;}"
+  }
+ },
+ {
+  "id": "IM15F-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three overlapping sets: number in exactly two from the totals and the triple overlap",
+  "difficulty": "hard",
+  "prompt": "Each of 65 campers signed up for at least one of three activities: 40 signed up for archery, 32 for canoeing, and 27 for climbing. Exactly 6 campers signed up for all three. How many campers signed up for exactly two of the activities?",
+  "choices": [
+   "28",
+   "37",
+   "22",
+   "34"
+  ],
+  "correct_answer": "22",
+  "explanation": "The sign-ups total 40 + 32 + 27 = 99. A camper in exactly one activity is counted once, in exactly two twice, and in all three three times, so 99 - 65 = 34 extra counts come from the exactly-two campers (one extra each) and the all-three campers (two extra each): x + 2 x 6 = 34, so x = 22. The option \"28\" removes only one extra count for each all-three camper, which gives the number in AT LEAST two activities. The option \"34\" stops at the 34 extra counts without accounting for the all-three campers. The option \"37\" is the number of campers in exactly ONE activity.",
+  "solve": "const N=65,t=6,S=40+32+27;for(let e2=0;e2<=N;e2++){const e1=N-t-e2;if(e1>=0&&e1+2*e2+3*t===S)return e2;}",
+  "distractor_solve": {
+   "28": "return (40+32+27-65)-6;",
+   "34": "return 40+32+27-65;",
+   "37": "const e2=22;return 65-6-e2;"
+  }
+ },
+ {
+  "id": "IM15F-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "extreme value of one list entry given mean, median, and a unique mode",
+  "difficulty": "hard",
+  "prompt": "A list of five positive integers has a mean of 11, a median of 12, and a unique mode of 14. What is the greatest possible value of the smallest integer in the list?",
+  "choices": [
+   "7",
+   "4",
+   "9",
+   "8"
+  ],
+  "correct_answer": "7",
+  "explanation": "The sum is 5 x 11 = 55 and the middle number is 12. The mode 14 must appear at least twice, and it must be above the median, so the list is a, b, 12, 14, 14 with a + b = 55 - 40 = 15. For 14 to be the unique mode, a and b must be different from each other and from 12, so a < b <= 11, and the greatest a is 7 (with b = 8). The option \"4\" finds the LEAST possible value of the smallest integer (4, with b = 11) instead of the greatest. The option \"8\" splits 15 evenly as 7.5 and rounds up, ignoring that a and b must be different whole numbers with a the smaller. The option \"9\" uses the median 12 as the mean, so a + b = 20, and finds a = 9 with b = 11.",
+  "solve": "let best=0;for(let a=1;a<=30;a++)for(let b=a;b<=30;b++)for(let c=b;c<=30;c++)for(let d=c;d<=40;d++)for(let e=d;e<=60;e++){const L=[a,b,c,d,e];if(a+b+c+d+e!==55||c!==12)continue;const f={};L.forEach(v=>f[v]=(f[v]||0)+1);const mx=Math.max(...Object.values(f));const modes=Object.keys(f).filter(k=>f[k]===mx);if(modes.length===1&&+modes[0]===14&&mx>1)best=Math.max(best,a);}return best;",
+  "distractor_solve": {
+   "4": "for(let a=1;a<=15;a++){const b=15-a;if(a<b&&b<12)return a;}",
+   "8": "return Math.ceil(15/2);",
+   "9": "const s=5*12-12-14-14;for(let a=s;a>=1;a--){const b=s-a;if(a<b&&b<12)return a;}"
+  }
+ },
+ {
+  "id": "IM15F-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "extreme value of one list entry given mean, median, and range",
+  "difficulty": "hard",
+  "prompt": "A list of five positive integers has a mean of 8, a median of 7, and a range of 10. What is the greatest possible value of the second-largest integer in the list?",
+  "choices": [
+   "14",
+   "20",
+   "15",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Write the list in order as a, b, 7, d, e. The sum is 40 and e = a + 10, so 2a + b + d = 23 with a <= b <= 7 and d <= e = a + 10. To make d large, 2a + b should be small, but d <= a + 10 forces 3a + b >= 13. The smallest 2a + b meeting both is 10 (a = 3, b = 4), giving d = 13 and the list 3, 4, 7, 13, 13. The option \"14\" takes a = b = 3, giving d = 14, without checking that d may not exceed e = 13. The option \"15\" ignores the range and takes a = b = 1, so d + e = 31 and d = 15. The option \"20\" takes a = b = 1 and e = 11 from the range, then puts the rest into d = 20, ignoring that d cannot exceed e.",
+  "solve": "let best=0;for(let a=1;a<=7;a++)for(let b=a;b<=7;b++)for(let d=7;d<=40;d++){const e=a+10;if(e<d)continue;if(a+b+7+d+e===40)best=Math.max(best,d);}return best;",
+  "distractor_solve": {
+   "14": "const a=3,b=3;return 23-2*a-b;",
+   "15": "let best=0;for(let a=1;a<=7;a++)for(let b=a;b<=7;b++)for(let d=7;d<=40;d++){const e=40-a-b-7-d;if(e>=d)best=Math.max(best,d);}return best;",
+   "20": "const a=1,b=1,e=a+10;return 40-a-b-7-e;"
+  }
+ },
+ {
+  "id": "IM15F-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that the product of two dice is a perfect square",
+  "difficulty": "medium",
+  "prompt": "Two fair six-sided number cubes, each numbered 1 through 6, are rolled. What is the probability that the product of the two numbers rolled is a perfect square?",
+  "choices": [
+   "5/18",
+   "1/3",
+   "2/9",
+   "7/36"
+  ],
+  "correct_answer": "2/9",
+  "explanation": "The square products are 1 (1,1), 4 (1,4), (4,1), (2,2), 9 (3,3), 16 (4,4), 25 (5,5), and 36 (6,6): 8 of the 36 equally likely outcomes, so 8/36 = 2/9. The option \"5/18\" also counts products that are perfect cubes, adding (2,4) and (4,2) for the product 8. The option \"7/36\" counts (1,4) but misses (4,1), treating the two cubes as unordered for that product only. The option \"1/3\" treats the 18 different products as equally likely and finds 6 squares among them.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};let n=0;for(let a=1;a<=6;a++)for(let b=1;b<=6;b++){const p=a*b;if(Math.round(Math.sqrt(p))**2===p)n++;}return fr(n,36);",
+  "distractor_solve": {
+   "5/18": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};let n=0;for(let a=1;a<=6;a++)for(let b=1;b<=6;b++){const p=a*b;if(Math.round(Math.sqrt(p))**2===p||Math.round(Math.cbrt(p))**3===p)n++;}return fr(n,36);",
+   "7/36": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(7,36);",
+   "1/3": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const s=new Set();for(let a=1;a<=6;a++)for(let b=1;b<=6;b++)s.add(a*b);const sq=[...s].filter(p=>Math.round(Math.sqrt(p))**2===p).length;return fr(sq,s.size);"
+  }
+ },
+ {
+  "id": "IM15F-20",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that two numbers drawn without replacement are consecutive",
+  "difficulty": "medium",
+  "prompt": "Two different numbers are chosen at random from the whole numbers 1 through 8. What is the probability that the two numbers are consecutive (such as 4 and 5)?",
+  "choices": [
+   "2/7",
+   "1/4",
+   "1/8",
+   "1/7"
+  ],
+  "correct_answer": "1/4",
+  "explanation": "There are C(8,2) = 28 equally likely pairs, and the consecutive pairs are 1-2, 2-3, ..., 7-8, which is 7 pairs, so the probability is 7/28 = 1/4. The option \"1/8\" divides the 7 unordered consecutive pairs by the 56 ordered pairs. The option \"2/7\" also counts 8 and 1 as consecutive, as if the numbers were arranged in a circle. The option \"1/7\" counts only the pairs that start on an odd number: 1-2, 3-4, 5-6, 7-8.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);let n=0;for(let a=1;a<=8;a++)for(let b=a+1;b<=8;b++)if(b-a===1)n++;return fr(n,C(8,2));",
+  "distractor_solve": {
+   "1/8": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(7,8*7);",
+   "2/7": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(8,28);",
+   "1/7": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(4,28);"
+  }
+ },
+ {
+  "id": "IM15F-21",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of a product condition when two tickets are drawn without replacement",
+  "difficulty": "medium",
+  "prompt": "A box holds six tickets numbered 1, 2, 3, 4, 5, and 6. Two tickets are drawn at random without replacement. What is the probability that the product of the two numbers is greater than 10?",
+  "choices": [
+   "7/30",
+   "7/15",
+   "2/3",
+   "2/5"
+  ],
+  "correct_answer": "7/15",
+  "explanation": "There are C(6,2) = 15 equally likely pairs. The products greater than 10 come from 2 and 6, 3 and 4, 3 and 5, 3 and 6, 4 and 5, 4 and 6, and 5 and 6: 7 pairs, so the probability is 7/15. The option \"7/30\" divides the 7 unordered pairs by the 30 ordered draws. The option \"2/3\" also counts 4 and 4, 5 and 5, and 6 and 6, which cannot be drawn because there is only one ticket of each number. The option \"2/5\" checks only pairs whose smaller number is at least 3 and misses 2 and 6.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};let n=0,t=0;for(let a=1;a<=6;a++)for(let b=a+1;b<=6;b++){t++;if(a*b>10)n++;}return fr(n,t);",
+  "distractor_solve": {
+   "7/30": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(7,30);",
+   "2/3": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(7+3,15);",
+   "2/5": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};let n=0;for(let a=3;a<=6;a++)for(let b=a+1;b<=6;b++)if(a*b>10)n++;return fr(n,15);"
+  }
+ },
+ {
+  "id": "IM15F-22",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that two people chosen from paired groups form one of the pairs",
+  "difficulty": "medium",
+  "prompt": "Four married couples, 8 people in all, attend a dinner. Two of the 8 people are chosen at random. What is the probability that the two people chosen are married to each other?",
+  "choices": [
+   "1/14",
+   "1/8",
+   "1/7",
+   "1/28"
+  ],
+  "correct_answer": "1/7",
+  "explanation": "There are C(8,2) = 28 equally likely pairs of people and 4 of them are married couples, so the probability is 4/28 = 1/7. (Equivalently, whoever is chosen first, 1 of the remaining 7 people is that person's spouse.) The option \"1/14\" divides the 4 couples by the 56 ordered pairs. The option \"1/8\" gives the spouse a 1 in 8 chance, counting the first person among the people who could be chosen second. The option \"1/28\" is the probability of choosing one particular couple, not any of the four.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return fr(4,C(8,2));",
+  "distractor_solve": {
+   "1/14": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(4,56);",
+   "1/8": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(1,8);",
+   "1/28": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return fr(1,C(8,2));"
+  }
+ },
+ {
+  "id": "IM15F-23",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that a random arrangement of three distinct digits is in increasing order",
+  "difficulty": "hard",
+  "prompt": "A three-digit code is formed from the digits 1, 2, 3, 4, and 5, with no digit used more than once. All such codes are equally likely. What is the probability that a randomly chosen code has its digits in increasing order from left to right?",
+  "choices": [
+   "1/20",
+   "1/3",
+   "1/10",
+   "1/6"
+  ],
+  "correct_answer": "1/6",
+  "explanation": "There are 5 x 4 x 3 = 60 codes. Each set of 3 digits can be ordered in 3! = 6 ways and exactly one of them is increasing, so 10 of the 60 codes qualify: 10/60 = 1/6. The option \"1/3\" counts increasing OR decreasing orders, 2 of the 6 orders of each set. The option \"1/20\" counts only the codes made of three consecutive increasing digits (123, 234, 345). The option \"1/10\" divides 1 by the 10 possible sets of three digits instead of by the 6 orders of one set.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};let n=0,t=0;for(let a=1;a<=5;a++)for(let b=1;b<=5;b++)for(let c=1;c<=5;c++){if(a===b||b===c||a===c)continue;t++;if(a<b&&b<c)n++;}return fr(n,t);",
+  "distractor_solve": {
+   "1/3": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(2,6);",
+   "1/20": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};let n=0;for(let a=1;a<=3;a++)n++;return fr(n,60);",
+   "1/10": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(6,60);"
+  }
+ },
+ {
+  "id": "IM15F-24",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "multiplication principle when each of several distinct objects may go to any recipient",
+  "difficulty": "medium",
+  "prompt": "Three different prizes are to be awarded to students in a class of 5. Each prize goes to one student, and a student may win more than one prize. In how many different ways can the three prizes be awarded?",
+  "choices": [
+   "125",
+   "60",
+   "35",
+   "243"
+  ],
+  "correct_answer": "125",
+  "explanation": "Each of the 3 prizes can go to any of the 5 students, independently of the others, so there are 5 x 5 x 5 = 125 ways. The option \"35\" treats the three prizes as identical, counting only how many prizes each student receives. The option \"60\" does not allow a student to win more than one prize. The option \"243\" raises 3 to the 5th power, as if each student chose one of the 3 prizes, which would let two students hold the same prize.",
+  "solve": "return 5**3;",
+  "distractor_solve": {
+   "35": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};return C(7,3);",
+   "60": "return 5*4*3;",
+   "243": "return 3**5;"
+  }
+ },
+ {
+  "id": "IM15F-25",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that exactly one of two independent events happens",
+  "difficulty": "medium",
+  "prompt": "Ana makes a free throw with probability 0.7, and Ben makes a free throw with probability 0.6. Each takes one shot, and the shots are independent. What is the probability that exactly one of them makes the shot?",
+  "choices": [
+   "0.28",
+   "0.12",
+   "0.46",
+   "0.42"
+  ],
+  "correct_answer": "0.46",
+  "explanation": "Ana makes and Ben misses with probability 0.7 x 0.4 = 0.28; Ana misses and Ben makes with probability 0.3 x 0.6 = 0.18. Exactly one makes it with probability 0.28 + 0.18 = 0.46. The option \"0.42\" is the probability that BOTH make the shot. The option \"0.28\" counts only the case where Ana makes it and Ben misses. The option \"0.12\" is the probability that NEITHER makes the shot.",
+  "solve": "const a=0.7,b=0.6;return Math.round((a*(1-b)+(1-a)*b)*100)/100;",
+  "distractor_solve": {
+   "0.42": "return Math.round(0.7*0.6*100)/100;",
+   "0.28": "return Math.round(0.7*0.4*100)/100;",
+   "0.12": "return Math.round(0.3*0.4*100)/100;"
+  }
+ },
+ {
+  "id": "IM15F-26",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of exactly k successes in n independent trials",
+  "difficulty": "hard",
+  "prompt": "A spinner lands on WIN with probability 1/3 on each spin, and the spins are independent. If the spinner is spun 4 times, what is the probability that it lands on WIN exactly 2 times?",
+  "choices": [
+   "16/81",
+   "8/27",
+   "1/9",
+   "4/81"
+  ],
+  "correct_answer": "8/27",
+  "explanation": "Any one order with 2 wins and 2 losses, such as WWLL, has probability (1/3)^2 x (2/3)^2 = 4/81. There are C(4,2) = 6 such orders, so the probability is 6 x 4/81 = 24/81 = 8/27. The option \"4/81\" finds the probability of one particular order only, forgetting the 6 orders. The option \"1/9\" multiplies only the two winning spins, (1/3)^2, and ignores the two losing spins. The option \"16/81\" is the probability of losing all four spins, (2/3)^4.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return fr(C(4,2)*1*4,81);",
+  "distractor_solve": {
+   "4/81": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(4,81);",
+   "1/9": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(1,9);",
+   "16/81": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(16,81);"
+  }
+ },
+ {
+  "id": "IM15F-27",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that a pair sum is divisible by 4 by counting remainder classes",
+  "difficulty": "hard",
+  "prompt": "Two different integers are chosen at random from 1 through 12. What is the probability that their sum is divisible by 4?",
+  "choices": [
+   "5/22",
+   "4/11",
+   "5/44",
+   "2/11"
+  ],
+  "correct_answer": "5/22",
+  "explanation": "Sort 1-12 by remainder when divided by 4: three numbers each with remainder 0, 1, 2, and 3. The sum is divisible by 4 for two remainder-0 numbers (3 pairs), two remainder-2 numbers (3 pairs), or one remainder-1 and one remainder-3 number (3 x 3 = 9 pairs): 15 of the C(12,2) = 66 pairs, so 15/66 = 5/22. The option \"2/11\" misses the pairs of two numbers with remainder 2 (such as 2 and 6). The option \"4/11\" counts each remainder-1/remainder-3 pair twice, once in each order. The option \"5/44\" divides the 15 unordered pairs by the 132 ordered pairs.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);let n=0;for(let a=1;a<=12;a++)for(let b=a+1;b<=12;b++)if((a+b)%4===0)n++;return fr(n,C(12,2));",
+  "distractor_solve": {
+   "2/11": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(3+9,66);",
+   "4/11": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(3+3+18,66);",
+   "5/44": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(15,132);"
+  }
+ },
+ {
+  "id": "IM15F-28",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that independent choices are all different",
+  "difficulty": "medium",
+  "prompt": "Three friends each pick a whole number from 1 to 4 at random, independently of one another. What is the probability that all three pick different numbers?",
+  "choices": [
+   "9/16",
+   "1/16",
+   "27/64",
+   "3/8"
+  ],
+  "correct_answer": "3/8",
+  "explanation": "There are 4^3 = 64 equally likely outcomes. All different: 4 x 3 x 2 = 24, so the probability is 24/64 = 3/8. The option \"27/64\" multiplies a 3/4 chance of \"no match\" for each of the three pairs of friends, (3/4)^3, as if the pairs were independent. The option \"9/16\" is the probability that exactly two of the friends match. The option \"1/16\" counts the C(4,3) = 4 sets of three different numbers but forgets that each set can be picked by the three friends in 3! = 6 orders.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};let n=0;for(let a=1;a<=4;a++)for(let b=1;b<=4;b++)for(let c=1;c<=4;c++)if(a!==b&&b!==c&&a!==c)n++;return fr(n,64);",
+  "distractor_solve": {
+   "27/64": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(27,64);",
+   "9/16": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};return fr(4*3*3,64);",
+   "1/16": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};return fr(C(4,3),64);"
+  }
+ },
+ {
+  "id": "IM15F-29",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "recovering the extremes of a list from two different removals and the resulting means",
+  "difficulty": "hard",
+  "prompt": "A list of 7 integers has a mean of 10. If the largest number is removed, the mean of the remaining numbers is 8. If instead the smallest number is removed, the mean of the remaining numbers is 11. What is the range of the list?",
+  "choices": [
+   "3",
+   "22",
+   "26",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "The total is 7 x 10 = 70. Without the largest the total is 6 x 8 = 48, so the largest is 70 - 48 = 22. Without the smallest the total is 6 x 11 = 66, so the smallest is 70 - 66 = 4. The range is 22 - 4 = 18. (A list such as 4, 8, 8, 9, 9, 10, 22 fits.) The option \"3\" subtracts the two new means, 11 - 8. The option \"22\" finds the largest number and stops. The option \"26\" adds the largest and smallest numbers instead of subtracting.",
+  "solve": "const S=7*10;const big=S-6*8,small=S-6*11;return big-small;",
+  "distractor_solve": {
+   "3": "return 11-8;",
+   "22": "return 7*10-6*8;",
+   "26": "return (70-48)+(70-66);"
+  }
+ },
+ {
+  "id": "IM15F-30",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting numbers that contain a given digit by subtracting those that avoid it",
+  "difficulty": "hard",
+  "prompt": "How many three-digit positive integers have at least one digit equal to 5?",
+  "choices": [
+   "252",
+   "243",
+   "171",
+   "225"
+  ],
+  "correct_answer": "252",
+  "explanation": "There are 900 three-digit integers. Those with no 5 have 8 choices for the first digit (1-9 except 5) and 9 for each of the other two: 8 x 9 x 9 = 648. So 900 - 648 = 252 contain a 5. The option \"171\" uses 9 choices for the first digit of a 5-free number, forgetting that the first digit cannot be 0. The option \"225\" counts only the numbers with exactly one 5. The option \"243\" counts 81 numbers for each of the three places a 5 could go, using 9 x 9 for every place and ignoring overlaps and the leading-zero rule.",
+  "solve": "let n=0;for(let x=100;x<1000;x++)if(String(x).includes('5'))n++;return n;",
+  "distractor_solve": {
+   "171": "return 900-9*9*9;",
+   "225": "return 1*9*9+8*1*9+8*9*1;",
+   "243": "return 3*81;"
+  }
+ },
+ {
+  "id": "IM15F-31",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "arrangements in a row with two groups alternating",
+  "difficulty": "hard",
+  "prompt": "Four boys and three girls stand in a row for a photo so that no two boys stand next to each other and no two girls stand next to each other. How many different arrangements are possible?",
+  "choices": [
+   "288",
+   "24",
+   "144",
+   "840"
+  ],
+  "correct_answer": "144",
+  "explanation": "With 4 boys and 3 girls alternating, the pattern must be B G B G B G B. The boys fill their 4 places in 4! = 24 ways and the girls fill theirs in 3! = 6 ways: 24 x 6 = 144. The option \"24\" arranges the boys but forgets to arrange the girls. The option \"288\" doubles for a girl-first pattern, which would need 4 girls. The option \"840\" places the 4 boys in any 4 of the 7 spots in order, ignoring the alternating pattern and the girls.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return fa(4)*fa(3);",
+  "distractor_solve": {
+   "24": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return fa(4);",
+   "288": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return 2*fa(4)*fa(3);",
+   "840": "return 7*6*5*4;"
+  }
+ },
+ {
+  "id": "IM15F-32",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "worst-case (pigeonhole) count to guarantee a given number of one color",
+  "difficulty": "hard",
+  "prompt": "A drawer holds 6 red socks, 8 blue socks, and 10 black socks. Socks are taken out one at a time without looking. What is the least number of socks that must be taken out to be certain that at least 2 red socks have been taken?",
+  "choices": [
+   "12",
+   "20",
+   "4",
+   "19"
+  ],
+  "correct_answer": "20",
+  "explanation": "In the worst case every blue and black sock comes out before the red ones: 8 + 10 = 18 socks with no red. Two more socks must then both be red, so 18 + 2 = 20 socks guarantee 2 red ones. The option \"4\" finds the number needed to guarantee a matching pair of ANY color (3 colors + 1). The option \"12\" considers only the black socks as possibly coming out first. The option \"19\" guarantees only one red sock.",
+  "solve": "const r=6,b=8,k=10;return b+k+2;",
+  "distractor_solve": {
+   "4": "return 3+1;",
+   "12": "return 10+2;",
+   "19": "return 8+10+1;"
+  }
+ },
+ {
+  "id": "IM15F-33",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting unordered selections when repetition is allowed",
+  "difficulty": "hard",
+  "prompt": "An ice cream shop has 6 flavors. A cup holds 2 scoops, the two scoops may be the same flavor, and the order of the scoops does not matter. How many different cups are possible?",
+  "choices": [
+   "21",
+   "18",
+   "30",
+   "15"
+  ],
+  "correct_answer": "21",
+  "explanation": "A cup is either two different flavors, C(6,2) = 15 ways, or two scoops of the same flavor, 6 ways, for 15 + 6 = 21. The option \"15\" counts only cups with two different flavors. The option \"18\" halves the 36 ordered pairs of scoops, which wrongly halves the 6 same-flavor cups too. The option \"30\" counts ordered pairs of different flavors and leaves out the same-flavor cups.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);let n=0;for(let a=1;a<=6;a++)for(let b=a;b<=6;b++)n++;return n;",
+  "distractor_solve": {
+   "15": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};const fa=n=>n<=1?1:n*fa(n-1);return C(6,2);",
+   "18": "return 6*6/2;",
+   "30": "return 6*5;"
+  }
+ }
+]
