@@ -2047,6 +2047,69 @@ recorded only in a commit message is a finding nobody reads.
   - Grade: `act-math-v26-grade.{batch,grade,gradekey}.json`, `act-math-v26.grader-{a,b}.json`.
   - Ledger `act-math-v26-kept-2026-10-08`. `form-capacity`: ACT Math 18 forms (853; IES 170 / 9 binding). `next-form`: IES +1.
 
+- **2026-10-09** — **`act-math-v27` HELD AT STAGE 0: 0 OF 47 INSERTED, NOTHING FROZEN, NO SOLVER OR GRADER RUN. ACT MATH STAYS AT 18 FORMS (853 items; form-capacity and next-form re-run after); FORM 19 STILL NEEDS IES +1.** After the single return, one post-return drop (AM27N-01, an interior key) moved the merged set to 14/19/14, and `act-math-v27-projection.mjs` then projected the kept extreme share at v26's survival rates as **55.4%, outside the pre-registered [45.0%, 55.0%]**. That is a set gate failing after the return, which the prereg says holds the batch. Bars pre-registered before authoring: `ACT-MATH-V27-PREREGISTERED.md` (committed alone, b754c8ba).
+
+  **Scope.** Forms 19+20 needed IES 10, Geometry 7, S&P 6, Functions 5, N&Q 2 (Algebra 163 already meets 160). Authored 48 from four Claude authors:
+  - D1: IES 10 (rates and unit conversions).
+  - D2: IES 10 (percents, averages, proportion, applied area/volume).
+  - B: S&P 8 + Functions 7.
+  - C: Geometry 9 + N&Q 4.
+
+  Key position was commissioned 14/20/14 with IES at 7/6/7, from IES's own v24–v26 survival (extreme 6/17 = 35.3%, interior 16/17 = 94.1%; non-IES 63/83 and 56/66). At the target the merged projections were split 47.0%, pooled 52.7% and **v26 54.1%**. That left 0.9 points of headroom at the v26 rate, and the gate needed all of it.
+
+  **Process.** The first two author waves were lost:
+  - Wave 1 (D1, D2, B) stalled on the stream watchdog after about an hour with nothing written.
+  - Wave 2 was killed when my own stream was interrupted.
+  - Wave 3 was briefed to write to disk every 2–3 items and finished. C was launched when D2 finished. Every agent was Claude.
+
+  **Stage 0, round 1 (48).** Every mechanical check passed on every file:
+  - Preflight, sandbox and distractor_solve.
+  - Key position exact per file.
+  - `act-math-v27-ies-directions.mjs` D1–D4: 0 of 20 IES items failed. The single D5 line (AM27I-15, 5.5 vs 5.8) is a percent, so it is a coincidence.
+  - Option-shapes RUN 0 / GAP 0, merge-halves closure 0, interior niceness 0, (c) mechanical 0.
+  
+  Cross-file merges found one shared option value (30.4 in I-14 and S-06); I-14 was returned anyway.
+
+  **The return: 14 of 48 items (29%).**
+  - **The error-direction read ran on all 28 extreme keys in all four files (A88's lesson) and returned 6 (D1 1/7, D2 1/7, B 2/8, C 2/6):**
+    - I-06: two stated enlargements.
+    - I-19: every shortcut overstates a diameter change.
+    - F-03: "the first time t > 0".
+    - S-02: the excluded row visibly raises the share.
+    - G-09: an unhalved dimension lengthens the segment.
+    - N-03: all positive terms.
+  - **The hand keyword search found 7 live or held duplicates. Jaccard flagged 0 of them and math-mechanism-dup 0, a seventh batch running:**
+    - I-12 ~ isee 4bd0a191 (discount still leaving profit as a percent of cost).
+    - I-14 ~ sat c968a8fd (new share after two percent changes).
+    - I-16 ~ act c9f4b0d5 (corrected mean).
+    - F-02 ~ sat 6857b8da (dose accumulation).
+    - S-03 ~ act 7b97b847 (regression line through the means).
+    - N-01 ~ act 7d39df0a (mixed repeating decimal).
+    - G-08 ~ held AM24G-07 (extremal distance along the line of centres).
+  - **One in-batch overlap:** I-08 ~ I-01 (a price, percent, fee, currency chain).
+
+  **After the return.**
+  - The 14 replacements were re-read; the other 34 items were byte-identical to the round-1 copies.
+  - **The replacement AM27N-01, the sum of the entries of a 2x3 by 3x2 product, is matrix multiplication: the whole of live act 339b1ba7 / bb7a96c5. It was DROPPED under rule 5, with no second return** (as v26 returned A-18 for the coefficients of a product). The drop was recorded in my notes before the projections were re-run.
+  - On the merged 47 (sha 7db95c40):
+    - Key position 14/19/14, inside the band.
+    - key-extremity-projection (v25 bars) PASS, 50.5%.
+    - act-math-v26-projection PASS (v24 50.5 / v25 53.6 / pooled 52.9%).
+    - act-math-v27-projection split 48.3%, pooled3 54.0% and **v26 55.4%: FAIL**. The IES subset passed: 46.7% at kept n 10.6.
+  - Held. Nothing was frozen, attacked, graded or inserted, and no override was used.
+
+  **For the next author (v28: still IES +1 for form 19, and the form-20 deficits).**
+  1. **Commission with headroom on EVERY projection rate, not just the binding one.** A post-return drop is a normal event: 1 of 14 replacements in v27, and G-03 in v26. A commission 0.9 points inside a band cannot absorb one interior loss. Aim for at least 2 points inside each band at every rate, or commission one interior item more than the band needs.
+  2. **The v27 IES design passed every stage-0 measure.** It had 20 items, 0 D1–D4 failures, and 2 of 20 returned on the error-direction read (I-06, I-19). It was never graded, so whether both-way setups survive the graders is UNMEASURED. These items are off limits to re-submit: re-submitting held items re-decides a finished batch.
+  3. **The error-direction read on every author's extreme keys found 6 of 28 before the return.** All six were the readable "least/first/positive-terms/stated-enlargement" asks A88 named. Keep it.
+  4. Wave 3's write-every-2–3-items rule is what got items on disk. Keep it in the brief.
+  5. A SAT Algebra insert (sat-math-v27-algfull, 32 rows) landed mid-run: live maths went 3,258 -> 3,290. The held set was not re-searched against those rows.
+
+  Evidence:
+  - Pre-registration and tools: `ACT-MATH-V27-PREREGISTERED.md`, `act-math-v27-projection.mjs`, `act-math-v27-ies-directions.mjs`, `act-math-v27-ies-verify.mjs` (unused), `act-math-v27-attack-draw.mjs` (unused), `act-math-v27-stage0.sh`.
+  - Batches (held, never frozen): `act-math-v27{-d1,-d2,-b,-c}.batch.json`; `-c` still holds the dropped N-01, which is excluded from the merged 47 in `act-math-v27.batch.json`.
+  - Ledger `act-math-v27-held-2026-10-09`. `verify-act-draw`: act/math draws 45 of 45 (unchanged). `form-capacity`: ACT Math 18 forms (853; IES 170 / 9 binding). `next-form`: IES +1.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

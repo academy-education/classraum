@@ -1,0 +1,986 @@
+[
+ {
+  "id": "AM27I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "tourist VAT refund paid by a card that converts currency",
+  "subskill": "tax included in a price, currency conversion",
+  "prompt": "In a certain country, the posted price of a coat is 196.80 euros. This posted price includes a value-added tax (VAT) of 25% of the pre-tax price. A visitor is charged the posted price minus a tourist refund, where the refund is the VAT included in the posted price less a 30% service charge that the refund agency keeps from that VAT. The visitor pays with a card that converts euros to dollars at 1.078 dollars per euro and then adds a fee of 1.5% of the converted dollar amount. To the nearest cent, how many dollars in total does the visitor's card charge for the coat?",
+  "choices": [
+   "187.07",
+   "202.41",
+   "185.19",
+   "177.65"
+  ],
+  "correct_answer": "185.19",
+  "explanation": "The pre-tax price is 196.80 / 1.25 = 157.44 euros, so the VAT included is 196.80 - 157.44 = 39.36 euros. The agency keeps 30% of it, so the refund is 0.70(39.36) = 27.552 euros, and the visitor is charged 196.80 - 27.552 = 169.248 euros. Converted: 169.248(1.078) = 182.449 dollars; with the 1.5% fee: 182.449(1.015) = 185.19 dollars. The option \"177.65\" takes the VAT as 25% of the posted price (49.20 euros) instead of 25% of the pre-tax price. The option \"202.41\" takes the refund as the 30% the agency keeps instead of the 70% it returns. The option \"187.07\" takes the pre-tax price as 75% of the posted price (147.60 euros) and the VAT as 25% of that (36.90 euros).",
+  "solve": "const P=196.80,r=1.078,c=0.015;const vat=P-P/1.25;return ((P-0.70*vat)*r*(1+c)).toFixed(2);",
+  "distractor_solve": {
+   "177.65": "const P=196.80,r=1.078,c=0.015;const vat=P-P/1.25;return ((P-0.70*(0.25*P))*r*(1+c)).toFixed(2);",
+   "202.41": "const P=196.80,r=1.078,c=0.015;const vat=P-P/1.25;return ((P-0.30*vat)*r*(1+c)).toFixed(2);",
+   "187.07": "const P=196.80,r=1.078,c=0.015;const vat=P-P/1.25;const v2=0.25*(0.75*P);return ((P-0.70*v2)*r*(1+c)).toFixed(2);"
+  },
+  "quantity_asked": "the total dollar amount the card charges: (posted price minus 70% of the included VAT) converted at 1.078 dollars per euro, plus a 1.5% fee.",
+  "distractor_kind": {
+   "177.65": "error path: VAT computed as 25% of the posted (tax-included) price, 49.20 euros, instead of the 39.36 euros actually included. (a) not a parameter extreme; strictly inside the bounds (172.27, 215.33). (b) not the full-refund answer 172.27 or the no-refund answer 215.33. (c) one-step estimate 197(1 - 0.2 x 0.7)(1.09) ~ 184 sits between options; every distractor strictly inside (172.27, 215.33). (d) real wrong-base error on a tax-included price.",
+   "202.41": "error path: refund taken as the 30% the agency keeps instead of the 70% it returns. (a) no extreme. (b) not the no-refund total 215.33. (c) inside (172.27, 215.33). (d) real complement slip.",
+   "187.07": "error path: the pre-tax price found by taking 25% off the posted price (147.60) instead of dividing by 1.25 (157.44), then VAT = 25% of 147.60 = 36.90 euros, a smaller refund. (a) no extreme. (b) not an edge value. (c) inside (172.27, 215.33), 1.9 dollars from the key. (d) real wrong-base error (removing a markup as a discount)."
+  },
+  "distractor_meta": {
+   "177.65": {
+    "direction": "under",
+    "error_kind": "VAT on the tax-included price"
+   },
+   "202.41": {
+    "direction": "over",
+    "error_kind": "refund = kept share"
+   },
+   "187.07": {
+    "direction": "over",
+    "error_kind": "markup removed as a 25% discount"
+   }
+  },
+  "bounds": [
+   "charge > 172.27 (refund of the whole included VAT, the largest possible refund)",
+   "charge < 215.33 (no refund at all)"
+  ],
+  "mechanism": [
+   "tax-included price",
+   "VAT refund less a service charge",
+   "euro to dollar conversion",
+   "card fee percent"
+  ],
+  "arith_class_check": "No. All four are two-decimal dollar amounts between 177 and 203; no integrality or divisibility property isolates 185.19.",
+  "one_sided_check": "key interior (one distractor under, two over).",
+  "interior_parity_check": "Interior by value: 185.19 and 187.07, both three-digit amounts with two non-zero decimal places; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"includes a VAT of 25% of the pre-tax price\" - taking 25% of the posted price over-states the VAT and pushes the charge DOWN (177.65); \"less a 30% service charge\" - taking the refund as 30% pushes it UP (202.41); \"adds a fee of 1.5%\" - ignoring it pushes DOWN (182.45, not an option); removing the 25% tax as a 25% discount pushes UP (187.07); the refund itself - ignoring it pushes UP (215.33, not an option). No distractor comes from ignoring a clause; errors push both ways.",
+  "direction_declaration": {
+   "177.65": {
+    "step": "VAT contained in the posted price",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "202.41": {
+    "step": "refund after the agency's share",
+    "error_type": "other: complement slip (kept share used as the refund)",
+    "direction": "over"
+   },
+   "187.07": {
+    "step": "pre-tax price from the posted price",
+    "error_type": "sign slip",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "visitor is charged the posted price minus a refund",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "VAT is 25% of the pre-tax price (included in the posted price)",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "agency keeps 30% of the VAT",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1.078 dollars per euro",
+     "neglect_direction": "none"
+    },
+    {
+     "rule": "1.5% card fee",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one over and one under and two over errors; all options strictly inside the full-refund and no-refund bounds; nearest distractor 1.0% away."
+  }
+ },
+ {
+  "id": "AM27I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "ferry crossing timed from speeds in knots over a route in mixed miles",
+  "subskill": "nautical and statute miles, two-leg travel time",
+  "prompt": "A ferry route is 38.5 statute miles long. The first 2.4 nautical miles of the route are inside a harbor, where the ferry travels at a constant 5 knots; for the rest of the route it travels at a constant 17 knots. A speed of 1 knot is 1 nautical mile per hour, and 1 nautical mile = 1.151 statute miles. To the nearest tenth of a minute, how many minutes does the ferry take to travel the whole route?",
+  "choices": [
+   "142.7",
+   "138.4",
+   "154.9",
+   "139.5"
+  ],
+  "correct_answer": "138.4",
+  "explanation": "The harbor leg is 2.4 nautical miles at 5 nautical miles per hour: 2.4/5 h = 28.8 minutes. In statute miles the harbor leg is 2.4(1.151) = 2.762 miles, so the open-water leg is 38.5 - 2.762 = 35.738 statute miles. At 17 knots = 17(1.151) = 19.567 statute miles per hour, it takes 35.738/19.567 h = 109.59 minutes. Total: about 138.4 minutes. The option \"139.5\" subtracts 2.4 directly from 38.5, mixing nautical and statute miles. The option \"142.7\" converts the harbor distance to 2.762 statute miles but then divides it by 5 knots as if they were the same unit. The option \"154.9\" leaves the open-water speed as 17 statute miles per hour.",
+  "solve": "const D=38.5,h=2.4,vh=5,vo=17,N=1.151;const hl=h/vh*60;return (hl+(D-h*N)/(vo*N)*60).toFixed(1);",
+  "distractor_solve": {
+   "139.5": "const D=38.5,h=2.4,vh=5,vo=17,N=1.151;const hl=h/vh*60;return (hl+(D-h)/(vo*N)*60).toFixed(1);",
+   "142.7": "const D=38.5,h=2.4,vh=5,vo=17,N=1.151;const hl=h/vh*60;return (h*N/vh*60+(D-h*N)/(vo*N)*60).toFixed(1);",
+   "154.9": "const D=38.5,h=2.4,vh=5,vo=17,N=1.151;const hl=h/vh*60;return (hl+(D-h*N)/vo*60).toFixed(1);"
+  },
+  "quantity_asked": "the total travel time in minutes: 2.4 nautical miles at 5 knots plus the remaining 38.5 - 2.4(1.151) statute miles at 17 knots.",
+  "distractor_kind": {
+   "139.5": "error path: 2.4 nautical miles subtracted from 38.5 statute miles without converting, so the open-water leg is 36.1 instead of 35.738 miles. (a) not a parameter extreme. (b) not the no-harbor time 118.1. (c) cheap bounds: time > 118.1 (whole route at 17 knots), time < 401 (whole route at 5 knots); one-step estimate 29 + 36/(17 x 1.15) h ~ 29 + 110 = 139 has a resolution of several minutes, and 139.5 is inside it. (d) real unit-mixing error.",
+   "142.7": "error path: harbor distance converted to statute miles but divided by the speed in knots. (a) no extreme. (b) not an edge. (c) inside (118.1, 401). (d) real mixed-unit rate error.",
+   "154.9": "error path: 17 knots used as 17 statute miles per hour on the open-water leg. (a) not a parameter extreme of the item (the harbor leg and the subtraction still use 1.151). (b) not an edge. (c) inside (118.1, 401). (d) real unit error."
+  },
+  "distractor_meta": {
+   "139.5": {
+    "direction": "over",
+    "error_kind": "nautical subtracted from statute"
+   },
+   "142.7": {
+    "direction": "over",
+    "error_kind": "statute distance over knots"
+   },
+   "154.9": {
+    "direction": "over",
+    "error_kind": "open-water knots read as mph"
+   }
+  },
+  "bounds": [
+   "time > 118.1 (whole route at 17 knots)",
+   "time < 401.4 (whole route at 5 knots)"
+  ],
+  "mechanism": [
+   "knots to statute miles per hour",
+   "harbor length in nautical miles, route in statute miles",
+   "slow harbor leg then open water",
+   "two-leg travel time in minutes"
+  ],
+  "arith_class_check": "No. All four are one-decimal minute counts between 138 and 155; no integrality or divisibility property isolates 138.4.",
+  "one_sided_check": "key smallest; the distractors come from three different errors (a unit-mixed subtraction, a mixed-unit rate on the harbor leg, an unconverted speed on the open leg). The natural error on the other side - ignoring the 5-knot harbor zone and timing the whole route at 17 knots - gives 118.1, below the key.",
+  "interior_parity_check": "Interior by value: 139.5 and 142.7, both three-digit one-decimal values with a non-zero decimal; neither is rounder.",
+  "cheap_bound_check": "Cheapest bounds: time > 118.1 (all at 17 knots) and time < 401.4 (all at 5 knots); all options lie between them. The one-step estimate 29 + 110 ~ 139 has a resolution of a few minutes; 139.5 is 1.1 minutes from the key and 142.7 is 4.3 minutes away, so it separates neither.",
+  "trap_check": "Clauses: \"the first 2.4 nautical miles ... at 5 knots\" - ignoring the harbor zone pushes DOWN (118.1, not an option); subtracting it unconverted pushes UP slightly (139.5); converting it and dividing by knots pushes UP (142.7). \"1 knot = 1 nautical mile per hour; 1 nautical mile = 1.151 statute miles\" - skipping it on the open leg pushes UP (154.9). No distractor comes from ignoring a whole clause.",
+  "direction_declaration": {
+   "139.5": {
+    "step": "length of the open-water leg",
+    "error_type": "other: unit mixing in a subtraction",
+    "direction": "over"
+   },
+   "142.7": {
+    "step": "harbor-leg time",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "154.9": {
+    "step": "open-water speed conversion",
+    "error_type": "other: knot read as mile per hour",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "harbor speed zone",
+    "error_type": "omission",
+    "solve": "const D=38.5,h=2.4,vh=5,vo=17,N=1.151;const hl=h/vh*60;return Number((D/(vo*N)*60).toFixed(1));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "first 2.4 nautical miles at 5 knots (harbor zone)",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 knot = 1 nautical mile per hour, 1 nautical mile = 1.151 statute miles",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Extreme key, three over errors; counter (ignore harbor zone, 118.1) is natural, but a grader may read the conversion slips as one-way."
+  }
+ },
+ {
+  "id": "AM27I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "unit price under a second-item discount versus a bonus-size jar",
+  "subskill": "unit price with promotions",
+  "prompt": "Store A sells a 24-ounce jar of peanut butter for $5.76 and is running a sale: a customer who buys one jar at that price can buy a second jar at 40% off. Store B sells a jar labeled 30 ounces for $7.89, and during a promotion each of its jars contains 15% more peanut butter than the labeled amount, at the same price. A customer buying exactly 2 jars at Store A pays the sale price for the second jar. Based on the cost per ounce, how many cents more per ounce does the peanut butter cost at Store B than at Store A for this customer, to the nearest tenth of a cent?",
+  "choices": [
+   "6.1",
+   "3.2",
+   "2.3",
+   "3.7"
+  ],
+  "correct_answer": "3.7",
+  "explanation": "At Store A, two jars cost 5.76 + 0.60(5.76) = 9.216 dollars for 48 ounces, or 19.20 cents per ounce. At Store B, one jar holds 30(1.15) = 34.5 ounces for 789 cents, or about 22.87 cents per ounce. The difference is about 3.7 cents per ounce. The option \"3.2\" treats 15% more peanut butter as 15% off the price (6.7065 dollars for 30 ounces, 22.36 cents per ounce). The option \"6.1\" charges 40% of the price for the second jar at Store A instead of 60% (16.80 cents per ounce). The option \"2.3\" prices the second jar at Store A as 5.76 / 1.40 dollars, treating 40% off as dividing by 1.40 (20.57 cents per ounce).",
+  "solve": "const pA=5.76,oA=24,d=0.40,pB=7.89,oB=30,b=0.15;const A=(pA+pA*(1-d))/(2*oA);const B=pB/(oB*(1+b));return ((B-A)*100).toFixed(1);",
+  "distractor_solve": {
+   "3.2": "const pA=5.76,oA=24,d=0.40,pB=7.89,oB=30,b=0.15;const A=(pA+pA*(1-d))/(2*oA);const B=pB/(oB*(1+b));return ((pB*(1-b)/oB-A)*100).toFixed(1);",
+   "6.1": "const pA=5.76,oA=24,d=0.40,pB=7.89,oB=30,b=0.15;const A=(pA+pA*(1-d))/(2*oA);const B=pB/(oB*(1+b));return ((B-(pA+pA*d)/(2*oA))*100).toFixed(1);",
+   "2.3": "const pA=5.76,oA=24,d=0.40,pB=7.89,oB=30,b=0.15;const A=(pA+pA*(1-d))/(2*oA);const B=pB/(oB*(1+b));return ((B-(pA+pA/(1+d))/(2*oA))*100).toFixed(1);"
+  },
+  "quantity_asked": "Store B's cost per ounce (789 cents over 34.5 ounces) minus Store A's cost per ounce for two jars with the second at 40% off, in cents.",
+  "distractor_kind": {
+   "3.2": "error path: 15% more product read as 15% off the price, so B's unit price is 22.36 cents instead of 22.87. (a) not a parameter extreme. (b) not an adjacent problem at an edge. (c) cheapest one-step estimates (A ~ 19.2, B ~ 26.3/1.15 ~ 22.9) put the key near 3.7, with 3.2 within half a cent. (d) real wrong-base error (bonus quantity versus price discount).",
+   "6.1": "error path: the second jar at Store A priced at 40% of the regular price instead of 60% (16.80 cents per ounce). (a) not a parameter extreme. (b) not an edge of any bound. (c) strictly inside (-1.1, 8.5), the values for no sale and for 40% off both jars. (d) real complement error on a percent-off.",
+   "2.3": "error path: 40% off the second jar computed as 5.76 / 1.40 = 4.114 dollars instead of 0.60(5.76) = 3.456 dollars. (a) not a parameter extreme. (b) not an edge of any bound. (c) inside the range (-1.1, 8.5) fixed by no sale and 40% off both jars at Store A; a one-step estimate (A ~ 19.2, B ~ 22.9) puts the key near 3.7, with 2.3 and 3.2 inside its resolution of about a cent. (d) real wrong-base error on a percent decrease."
+  },
+  "distractor_meta": {
+   "3.2": {
+    "direction": "under",
+    "error_kind": "bonus quantity read as price discount"
+   },
+   "6.1": {
+    "direction": "over",
+    "error_kind": "paid the discount percent"
+   },
+   "2.3": {
+    "direction": "under",
+    "error_kind": "40% off taken as dividing by 1.40"
+   }
+  },
+  "bounds": [
+   "Store A's unit price lies between 14.40 (40% off both jars) and 24.00 (no sale) cents per ounce, so the difference lies in (-1.1, 8.5)",
+   "Store B's unit price lies below 26.30 cents per ounce (no bonus)"
+  ],
+  "mechanism": [
+   "second jar at 40% off",
+   "15% more product at the same price",
+   "cost per ounce comparison",
+   "difference in cents per ounce"
+  ],
+  "arith_class_check": "No. All four are one-decimal cent values; the key 3.7 is not the only integer, multiple, or terminating form.",
+  "one_sided_check": "key interior (two distractors under, one over).",
+  "interior_parity_check": "Interior by value: 3.2 and 3.7, both one-digit values with one non-zero decimal; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"second jar at 40% off\" - applying it to both jars pushes the difference UP (8.5, not an option); ignoring it pushes DOWN (-1.1, not an option); dividing by 1.40 pushes DOWN (2.3); paying 40% pushes UP (6.1). \"15% more peanut butter ... at the same price\" - ignoring it pushes UP (7.1, not an option); reading it as 15% off pushes DOWN (3.2). No distractor comes from ignoring a clause. Errors push both ways.",
+  "direction_declaration": {
+   "3.2": {
+    "step": "Store B unit price under the bonus",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "6.1": {
+    "step": "Store A second-jar price",
+    "error_type": "other: complement slip (pays 40% instead of 60%)",
+    "direction": "over"
+   },
+   "2.3": {
+    "step": "Store A second-jar price",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "second jar at 40% off at Store A",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "15% more peanut butter at the same price at Store B",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors at Store A push both ways (2.3 under, 6.1 over) and the Store B error under; 3.2 sits half a cent from the key."
+  }
+ },
+ {
+  "id": "AM27I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "swim race time predicted from a short-course pace in yards",
+  "subskill": "pace conversion yards to meters, percent adjustment",
+  "prompt": "A swimmer trains in a 25-yard pool, where her pace is 1 minute 32 seconds per 100 yards. Her coach predicts her time for a 1,500-meter race in a 50-meter pool this way: her time per 100 yards in the race pool will be 2% greater than her training time per 100 yards, she swims the whole race at that pace, and then 3.0 seconds is subtracted from the total for her dive start. Using 1 yard = 0.9144 meter, what is the coach's predicted time for the race, to the nearest second?",
+  "choices": [
+   "1322",
+   "1536",
+   "1284",
+   "1476"
+  ],
+  "correct_answer": "1536",
+  "explanation": "The race is 1500 / 0.9144 = 1640.42 yards, or 16.4042 hundreds of yards. The race pace is 92(1.02) = 93.84 seconds per 100 yards, so the swim takes 16.4042(93.84) = 1539.37 seconds; subtracting 3.0 seconds gives about 1536 seconds. The option \"1476\" makes the race pace 2% faster (92 x 0.98) instead of 2% slower. The option \"1322\" reads the pace 1 minute 32 seconds as 1.32 minutes (79.2 seconds). The option \"1284\" converts the wrong way, multiplying 1,500 by 0.9144 to get 1,371.6 yards.",
+  "solve": "const D=1500,y=0.9144,p=92,s=0.02,dv=3.0;return (D/y/100*p*(1+s)-dv).toFixed(0);",
+  "distractor_solve": {
+   "1284": "const D=1500,y=0.9144,p=92,s=0.02,dv=3.0;return (D*y/100*p*(1+s)-dv).toFixed(0);",
+   "1322": "const D=1500,y=0.9144,p=92,s=0.02,dv=3.0;return (D/y/100*79.2*(1+s)-dv).toFixed(0);",
+   "1476": "const D=1500,y=0.9144,p=92,s=0.02,dv=3.0;return (D/y/100*p*(1-s)-dv).toFixed(0);"
+  },
+  "quantity_asked": "the predicted race time in seconds: 1,500 meters converted to yards, at 2% more than 92 seconds per 100 yards, minus 3.0 seconds.",
+  "distractor_kind": {
+   "1284": "error path: meters converted to yards by multiplying by 0.9144 instead of dividing. (a) no extreme. (b) not an edge. (c) inside. (d) real inverted conversion.",
+   "1322": "error path: 1 minute 32 seconds read as 1.32 minutes = 79.2 seconds per 100 yards. (a) not a parameter extreme. (b) not an edge. (c) inside (0, 1539). (d) real minutes-and-seconds slip on an input (the only min:sec slip in this file).",
+   "1476": "error path: the 2% adjustment applied as a decrease in time (92 x 0.98). (a) not a parameter extreme. (b) not the unadjusted time 1506 or the no-dive time 1539. (c) cheapest one-step estimate over the whole time, 1640 x 0.92 x 1.02 ~ 1540, resolution tens of seconds; 1476 is 60 s from the key and strictly inside the range (1284, 1539). (d) real sign slip on a percent change."
+  },
+  "distractor_meta": {
+   "1284": {
+    "direction": "under",
+    "error_kind": "conversion inverted"
+   },
+   "1322": {
+    "direction": "under",
+    "error_kind": "1:32 read as 1.32 minutes"
+   },
+   "1476": {
+    "direction": "under",
+    "error_kind": "percent adjustment reversed"
+   }
+  },
+  "bounds": [
+   "time < 1539.4 (the predicted swim before the dive-start subtraction)",
+   "time > 0"
+  ],
+  "mechanism": [
+   "pace per 100 yards",
+   "1,500 meters to yards",
+   "2% slower in a long-course pool",
+   "dive start subtracted"
+  ],
+  "arith_class_check": "No. All four are four-digit whole-second values; none is a multiple of 5 or 10 or otherwise singled out.",
+  "one_sided_check": "key largest; distractors come from three different error kinds (a reversed percent, a minutes-and-seconds slip, an inverted conversion). Natural errors on the other side exist: computing the 2% slower pace as 92/0.98 (1540) or forgetting to subtract the dive start (1539) both land above the key.",
+  "interior_parity_check": "Interior by value: 1322 and 1476, both four-digit integers ending in non-zero digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound on the key's side: the time is just under the unadjusted-for-dive value 1539 (an upper bound only 3 s away), which kills nothing because every distractor lies below it as well. The one-step estimate 1640 x 92 x 1.02 ~ 1540 has a resolution of tens of seconds and does not separate 1476 cheaply.",
+  "trap_check": "Clauses: \"2% greater\" - reversing it pushes DOWN (1476), applying it as division by 0.98 pushes UP (1540, not an option); \"1,500-meter race ... 1 yard = 0.9144 meter\" - skipping the conversion pushes DOWN (1405, not an option), inverting it pushes DOWN (1284); \"1 minute 32 seconds\" - reading it as 1.32 minutes pushes DOWN (1322); \"3.0 seconds is subtracted\" - ignoring it pushes UP (1539, not an option). No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "1284": {
+    "step": "meters to yards",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "1322": {
+    "step": "training pace in seconds",
+    "error_type": "other: minutes-and-seconds read as a decimal",
+    "direction": "under"
+   },
+   "1476": {
+    "step": "2% race-pool adjustment",
+    "error_type": "sign slip",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "dive-start subtraction",
+    "error_type": "omission",
+    "solve": "const D=1500,y=0.9144,p=92,s=0.02,dv=3.0;return Number((D/y/100*p*(1+s)).toFixed(0));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "1 yard = 0.9144 meter (race distance in meters, pace in yards)",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "race pace 2% greater than training pace",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "3.0 seconds subtracted for the dive start",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; three different error mechanisms (reversed percent, min:sec slip, inverted conversion); counters (ignore dive, 92/0.98) are natural but move the answer only 3-4 s."
+  }
+ },
+ {
+  "id": "AM27I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "home charging time for an electric car with a tapered charge rate",
+  "subskill": "energy over power, efficiency, two rate segments",
+  "prompt": "An electric car's battery stores 66 kilowatt-hours (kWh) when full and is now at 24% of full. Its home charger draws power from the wall at a constant 7.2 kilowatts (kW) until the battery reaches 80% of full, and then at a constant 2.6 kW until the battery reaches 90% of full, when charging stops. Only 90% of the energy drawn from the wall is stored in the battery. (A charger drawing 1 kW for 1 hour draws 1 kWh.) To the nearest hundredth of an hour, how many hours does the charging take?",
+  "choices": [
+   "8.44",
+   "9.47",
+   "8.24",
+   "8.52"
+  ],
+  "correct_answer": "8.52",
+  "explanation": "From 24% to 80% the battery must store 0.56(66) = 36.96 kWh. It stores 0.90(7.2) = 6.48 kWh per hour, so this takes 36.96 / 6.48 = 5.704 hours. From 80% to 90% it must store 0.10(66) = 6.6 kWh at 0.90(2.6) = 2.34 kWh per hour, which takes 2.821 hours. Total: about 8.52 hours. The option \"8.44\" accounts for the loss by multiplying the stored energy by 1.10 instead of dividing it by 0.90. The option \"8.24\" applies the 90% efficiency to the first segment but not to the slower segment above 80%. The option \"9.47\" applies the 90% efficiency twice, dividing the needed energy by 0.90 and also using only 90% of the charger's power.",
+  "solve": "const C=66,s=0.24,e=0.90,th=0.80,P1=7.2,P2=2.6,ef=0.90;return ((C*(th-s))/(P1*ef)+(C*(e-th))/(P2*ef)).toFixed(2);",
+  "distractor_solve": {
+   "8.44": "const C=66,s=0.24,e=0.90,th=0.80,P1=7.2,P2=2.6,ef=0.90;return (C*(th-s)*1.10/P1+C*(e-th)*1.10/P2).toFixed(2);",
+   "8.24": "const C=66,s=0.24,e=0.90,th=0.80,P1=7.2,P2=2.6,ef=0.90;return ((C*(th-s))/(P1*ef)+(C*(e-th))/P2).toFixed(2);",
+   "9.47": "const C=66,s=0.24,e=0.90,th=0.80,P1=7.2,P2=2.6,ef=0.90;return (((C*(th-s))/(P1*ef)+(C*(e-th))/(P2*ef))/ef).toFixed(2);"
+  },
+  "quantity_asked": "the total charging time in hours: 36.96 kWh stored at 0.90 x 7.2 kWh per hour plus 6.6 kWh stored at 0.90 x 2.6 kWh per hour.",
+  "distractor_kind": {
+   "8.44": "error path: the 10% loss handled by multiplying the needed energy by 1.10 instead of dividing it by 0.90. (a) not a parameter extreme. (b) not an adjacent problem at an edge. (c) the one-step estimate (37/6.5 + 6.6/2.3 ~ 8.5) has a resolution of about 0.2 hour, and 8.44 is inside it. (d) real wrong-base percent error.",
+   "8.24": "error path: the 90% efficiency applied to the 7.2 kW segment but not to the 2.6 kW segment. (a) not a parameter extreme (the efficiency is used, on one segment). (b) not the lossless time 7.67 nor any edge. (c) inside (7.67, 18.62) and within the estimate resolution. (d) real partial-application error.",
+   "9.47": "error path: the efficiency applied twice (needed energy divided by 0.90 and stored power taken as 0.90 of the wall power). (a) not a parameter extreme. (b) not an edge. (c) inside (7.67, 18.62). (d) real double-counting error."
+  },
+  "distractor_meta": {
+   "8.44": {
+    "direction": "under",
+    "error_kind": "loss added as 10% instead of dividing by 0.90"
+   },
+   "8.24": {
+    "direction": "under",
+    "error_kind": "efficiency on one segment only"
+   },
+   "9.47": {
+    "direction": "over",
+    "error_kind": "efficiency applied twice"
+   }
+  },
+  "bounds": [
+   "time > 7.67 (no losses)",
+   "time < 18.62 (the whole 24% to 90% at the slower 2.6 kW rate)"
+  ],
+  "mechanism": [
+   "battery percent to kilowatt-hours",
+   "charging efficiency 90%",
+   "charge rate drops above 80%",
+   "time from energy and power"
+  ],
+  "arith_class_check": "No. All four are two-decimal hour values between 8.2 and 9.5; none is a whole or half number.",
+  "one_sided_check": "key interior (two distractors under, one over).",
+  "interior_parity_check": "Interior by value: 8.44 and 8.52, both one-digit values with two non-zero decimals; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"only 90% of the energy ... is stored\" - ignoring it pushes DOWN (7.67, not an option), applying it as a 10% add-on pushes DOWN slightly (8.44), applying it twice pushes UP (9.47); applying it to the first segment only pushes DOWN (8.24); \"until the battery reaches 80% ... then 2.6 kW\" - ignoring the slower segment pushes DOWN (6.72, not an option); \"now at 24% of full\" - ignoring the starting charge pushes UP (10.97, not an option). No distractor comes from ignoring a clause. Errors push both ways.",
+  "direction_declaration": {
+   "8.44": {
+    "step": "efficiency loss",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "8.24": {
+    "step": "second-segment energy",
+    "error_type": "other: loss applied to one segment only",
+    "direction": "under"
+   },
+   "9.47": {
+    "step": "efficiency loss",
+    "error_type": "other: loss counted twice",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "battery starts at 24% of full",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "7.2 kW until 80%, then 2.6 kW until 90%",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "90% of wall energy is stored",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 kW for 1 hour is 1 kWh",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two under and one over errors on the efficiency clause; nearest distractor 0.08 h; no option on a bound."
+  }
+ },
+ {
+  "id": "AM27I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "aircraft fuel uplift in gallons from a mass requirement",
+  "subskill": "net mass, pounds to kilograms, density, liters to gallons",
+  "prompt": "Before a flight, an airplane must have 6,840 kilograms of fuel in its tanks when it reaches the runway, and taxiing to the runway will burn 245 kilograms of fuel. The fuel already in the tanks has a mass of 1,980 pounds. The fuel truck measures fuel in gallons. The fuel has a density of 0.80 kilogram per liter, 1 kilogram = 2.205 pounds, and 1 gallon = 3.785 liters. To the nearest gallon, how many gallons of fuel must the truck add before the airplane begins taxiing?",
+  "choices": [
+   "1881",
+   "2043",
+   "1308",
+   "1686"
+  ],
+  "correct_answer": "2043",
+  "explanation": "At the gate the tanks must hold 6,840 + 245 = 7,085 kilograms. The fuel already on board is 1,980 / 2.205 = 897.96 kilograms, so 7,085 - 897.96 = 6,187.04 kilograms must be added. That is 6,187.04 / 0.80 = 7,733.80 liters, or 7,733.80 / 3.785 = 2,043 gallons. The option \"1881\" subtracts the 245 kilograms of taxi fuel instead of adding it. The option \"1686\" subtracts 1,980 as though it were kilograms. The option \"1308\" multiplies the mass by 0.80 instead of dividing by it.",
+  "solve": "const R=6840,T=245,B=1980,k=2.205,d=0.8,g=3.785;return ((R+T-B/k)/d/g).toFixed(0);",
+  "distractor_solve": {
+   "1308": "const R=6840,T=245,B=1980,k=2.205,d=0.8,g=3.785;return ((R+T-B/k)*d/g).toFixed(0);",
+   "1686": "const R=6840,T=245,B=1980,k=2.205,d=0.8,g=3.785;return ((R+T-B)/d/g).toFixed(0);",
+   "1881": "const R=6840,T=245,B=1980,k=2.205,d=0.8,g=3.785;return ((R-T-B/k)/d/g).toFixed(0);"
+  },
+  "quantity_asked": "the gallons to add at the gate: (6,840 + 245 - 1,980/2.205) kilograms, divided by 0.80 kilogram per liter, divided by 3.785 liters per gallon.",
+  "distractor_kind": {
+   "1308": "error path: kilograms multiplied by the density 0.80 instead of divided. (a) no extreme. (b) not an edge; inside (0, 2340). (c) inside. (d) real inverted rate.",
+   "1686": "error path: the on-board fuel subtracted as 1,980 kilograms, the pounds not converted. (a) no extreme. (b) not an edge; inside (0, 2340). (c) inside. (d) real unit omission (the Gimli Glider error).",
+   "1881": "error path: the taxi fuel subtracted from the runway requirement instead of added (a sign slip). (a) not a parameter extreme. (b) not the no-taxi value 1962 or the no-on-board value 2340. (c) one-step estimate 6,190/0.8/3.785 ~ 2,040, resolution ~1%; 1881 is strictly inside (0, 2340). (d) real sign slip."
+  },
+  "distractor_meta": {
+   "1308": {
+    "direction": "under",
+    "error_kind": "density inverted"
+   },
+   "1686": {
+    "direction": "under",
+    "error_kind": "pounds used as kilograms"
+   },
+   "1881": {
+    "direction": "under",
+    "error_kind": "taxi fuel subtracted (sign slip)"
+   }
+  },
+  "bounds": [
+   "gallons > 0 (fuel must be added)",
+   "gallons < 2340 (the value if the tanks were empty: 7,085/0.80/3.785)"
+  ],
+  "mechanism": [
+   "fuel required at the runway plus taxi burn",
+   "fuel on board in pounds",
+   "mass to volume by density",
+   "liters to gallons",
+   "fuel to add"
+  ],
+  "arith_class_check": "No. All four are four-digit whole gallon counts between 1300 and 2050; none is a multiple of 10, 25 or 100.",
+  "one_sided_check": "key largest; the distractors come from a sign slip (taxi fuel subtracted), an unconverted unit (pounds as kilograms) and an inverted density. Natural errors on the other side: not subtracting the fuel already on board gives 2340, and multiplying by 3.785 instead of dividing gives 29272; both above the key.",
+  "interior_parity_check": "Interior by value: 1686 and 1881, both four-digit whole numbers with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: less than 2340, the gallons for empty tanks; every option is below it, so it removes nothing. A one-step estimate needs the on-board mass in kilograms first; 1881 is 162 gallons (8%) below the key and on the key's side of every bound.",
+  "trap_check": "Clauses: \"taxiing ... will burn 245 kilograms\" - subtracting it pushes DOWN (1881), ignoring it pushes DOWN (1962, not an option); \"already in the tanks ... 1,980 pounds\" - ignoring it pushes UP (2340, not an option), reading pounds as kilograms pushes DOWN (1686); \"0.80 kilogram per liter\" - multiplying pushes DOWN (1308), ignoring it pushes DOWN (1635, not an option); \"1 gallon = 3.785 liters\" - inverting or ignoring pushes UP (29272, 7734). Only 1686 comes from ignoring a conversion.",
+  "direction_declaration": {
+   "1308": {
+    "step": "kilograms to liters",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "1686": {
+    "step": "converting the on-board fuel from pounds to kilograms",
+    "error_type": "omission",
+    "direction": "under"
+   },
+   "1881": {
+    "step": "adding the taxi burn to the runway requirement",
+    "error_type": "sign slip",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "subtracting the fuel already on board",
+    "error_type": "omission",
+    "solve": "const R=6840,T=245,B=1980,k=2.205,d=0.8,g=3.785;return Number(((R+T)/d/g).toFixed(0));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "taxi burn of 245 kg added to the runway requirement",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "fuel already in the tanks subtracted",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "1 kilogram = 2.205 pounds (on-board fuel)",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "density 0.80 kilogram per liter",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 gallon = 3.785 liters",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; sign slip, unit omission, inverted density all under; counters above: on-board fuel not subtracted (2340) and gallons inverted. Stated rules push both ways."
+  }
+ },
+ {
+  "id": "AM27I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "water needed to build an ice rink when freezing expands and spraying loses water",
+  "subskill": "volume expansion on freezing, percent loss, liters from cubic meters",
+  "prompt": "A crew builds an outdoor ice rink by spraying water onto a flat rectangular surface 30 meters long and 15 meters wide. The finished ice must be 2.6 centimeters thick everywhere. When water freezes, the volume of the ice is 9% greater than the volume of the water that froze. Of the water the crew sprays, 20% runs off or evaporates before it freezes, and all the rest freezes into the rink. (1 cubic meter = 1,000 liters.) To the nearest liter, how many liters of water must the crew spray?",
+  "choices": [
+   "13309",
+   "12881",
+   "13417",
+   "12987"
+  ],
+  "correct_answer": "13417",
+  "explanation": "The ice has volume 30(15)(0.026) = 11.7 cubic meters = 11,700 liters. The water that froze had volume 11,700 / 1.09 = 10,733.9 liters. That is the 80% of the sprayed water that was not lost, so the crew sprays 10,733.9 / 0.80 = 13,417 liters. The option \"13309\" finds the water that froze as 91% of the ice volume (11,700 x 0.91) instead of dividing by 1.09. The option \"12881\" adds 20% to the frozen water (x 1.20) instead of dividing by 0.80. The option \"12987\" combines the two percents by addition, 11,700(1 - 0.09 + 0.20).",
+  "solve": "const L=30,W=15,t=0.026,e=0.09,loss=0.20;const I=L*W*t*1000;return (I/(1+e)/(1-loss)).toFixed(0);",
+  "distractor_solve": {
+   "12881": "const L=30,W=15,t=0.026,e=0.09,loss=0.20;const I=L*W*t*1000;return (I/(1+e)*(1+loss)).toFixed(0);",
+   "12987": "const L=30,W=15,t=0.026,e=0.09,loss=0.20;const I=L*W*t*1000;return (I*(1-e+loss)).toFixed(0);",
+   "13309": "const L=30,W=15,t=0.026,e=0.09,loss=0.20;const I=L*W*t*1000;return (I*(1-e)/(1-loss)).toFixed(0);"
+  },
+  "quantity_asked": "the liters sprayed: 11,700 liters of ice divided by 1.09 (water that froze) and then by 0.80 (the share not lost).",
+  "distractor_kind": {
+   "12881": "error path: the 20% loss handled by adding 20% to the frozen water instead of dividing by 0.80. (a) no extreme. (b) not an edge. (c) inside (10,734, 15,941). (d) real wrong-base percent error.",
+   "12987": "error path: the two percents combined by addition into one factor 1.11. (a) no extreme. (b) not an edge. (c) inside. (d) real error of adding percent changes.",
+   "13309": "error path: the water that froze taken as 9% less than the ice (x 0.91) instead of the ice being 9% more than the water (/ 1.09). (a) not a parameter extreme. (b) not the no-loss value 10,734 or any edge. (c) cheapest one-step estimate: 11,700 x (about 0.92) / 0.8 ~ 13,400, resolution a few hundred liters; 13309 is inside. (d) real wrong-base percent error."
+  },
+  "distractor_meta": {
+   "12881": {
+    "direction": "under",
+    "error_kind": "loss added as 20% of the frozen water"
+   },
+   "12987": {
+    "direction": "under",
+    "error_kind": "percent changes added"
+   },
+   "13309": {
+    "direction": "under",
+    "error_kind": "expansion taken as 9% of the ice"
+   }
+  },
+  "bounds": [
+   "liters > 10,734 (no water lost)",
+   "the answer is not readable as above or below the ice volume 11,700 without computing (expansion lowers it, loss raises it)"
+  ],
+  "mechanism": [
+   "ice 9% more volume than water",
+   "20% of sprayed water lost",
+   "rink slab volume in cubic meters to liters",
+   "water to spray for a target ice thickness"
+  ],
+  "arith_class_check": "No. All four are five-digit whole numbers of liters; none is a multiple of 10 or otherwise singled out.",
+  "one_sided_check": "key largest; the distractors come from three different errors (a wrong base on the expansion, a wrong base on the loss, the percents added). Natural errors on the other side: multiplying by 1.09 (treating the water as 9% MORE than the ice) gives 15,941, and dividing by 0.91 for the expansion gives 16,071, both above the key.",
+  "interior_parity_check": "Interior by value: 12987 and 13309, both five-digit integers ending in non-zero digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: more than the no-loss water 10,734; every option exceeds it. The ice volume 11,700 is not a bound (the two percents push opposite ways). The one-step estimate ~13,400 has a resolution of a few hundred liters and does not separate 13309 from 13417.",
+  "trap_check": "Clauses: \"the volume of the ice is 9% greater than the volume of the water\" - multiplying the ice by 0.91 pushes DOWN (13309), multiplying it by 1.09 pushes UP (15,941, not an option), ignoring it pushes UP (14,625, not an option); \"20% runs off or evaporates\" - multiplying by 1.20 pushes DOWN (12881), ignoring it pushes DOWN (10,734, not an option). Adding the percents pushes DOWN (12987). No distractor comes from ignoring a clause; the two clauses push opposite ways when neglected.",
+  "direction_declaration": {
+   "12881": {
+    "step": "sprayed water from the frozen water",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "12987": {
+    "step": "combining the two percents",
+    "error_type": "other: percent changes added",
+    "direction": "under"
+   },
+   "13309": {
+    "step": "water that froze from the ice volume",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "water that froze from the ice volume",
+    "error_type": "inverted rate",
+    "solve": "const L=30,W=15,t=0.026,e=0.09,loss=0.20;const I=L*W*t*1000;return Number((I*(1+e)/(1-loss)).toFixed(0));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "ice volume is 9% greater than the water that froze",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "20% of the sprayed water is lost",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 cubic meter = 1,000 liters",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; the two stated rules push opposite ways when neglected; counter (x 1.09) natural; nearest distractor 108 L below."
+  }
+ },
+ {
+  "id": "AM27I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "mass of a scaled bronze copy of a wooden sculpture",
+  "subskill": "scale factor cubed, density ratio, pounds to kilograms",
+  "prompt": "A solid wooden sculpture is weighed while standing on its oak base, and the scale reads 1,520 pounds. Weighed without the base, the sculpture is 165 pounds lighter. A foundry will cast a solid bronze copy of the sculpture alone in which every length is 3/8 of the corresponding length of the original. The wood has a density of 0.68 gram per cubic centimeter, and the bronze has a density of 8.8 grams per cubic centimeter. Given that 1 pound = 0.4536 kilogram, what is the mass, to the nearest kilogram, of the bronze copy?",
+  "choices": [
+   "1119",
+   "419",
+   "2039",
+   "522"
+  ],
+  "correct_answer": "419",
+  "explanation": "The sculpture alone is 1,520 - 165 = 1,355 pounds, or 1,355(0.4536) = 614.63 kilograms. Every length is 3/8 of the original, so the volume is (3/8)^3 = 27/512 of the original, and a wooden copy would have mass 614.63(27/512) = 32.41 kilograms. Bronze is 8.8/0.68 times as dense as the wood, so the bronze copy has mass 32.41(8.8/0.68) = 419 kilograms. The option \"522\" adds the 165 pounds instead of subtracting them. The option \"1119\" scales by (3/8)^2, as for an area. The option \"2039\" divides by 0.4536 instead of multiplying.",
+  "solve": "const W=1520,b=165,s=3/8,rw=0.68,rb=8.8,c=0.4536;return (((W-b)*c)*s**3*rb/rw).toFixed(0);",
+  "distractor_solve": {
+   "522": "const W=1520,b=165,s=3/8,rw=0.68,rb=8.8,c=0.4536;return (((W+b)*c)*s**3*rb/rw).toFixed(0);",
+   "1119": "const W=1520,b=165,s=3/8,rw=0.68,rb=8.8,c=0.4536;return (((W-b)*c)*s**2*rb/rw).toFixed(0);",
+   "2039": "const W=1520,b=165,s=3/8,rw=0.68,rb=8.8,c=0.4536;return (((W-b)/c)*s**3*rb/rw).toFixed(0);"
+  },
+  "quantity_asked": "the bronze copy's mass in kilograms: (1,520 - 165) pounds x 0.4536, times (3/8)^3, times 8.8/0.68.",
+  "distractor_kind": {
+   "522": "error path: \"165 pounds lighter\" applied as an addition (a sign slip), sculpture taken as 1,685 pounds. (a) not a parameter extreme. (b) not the with-base value 471 or the wooden-copy value 32. (c) one-step estimate 615 x 0.053 x 12.9 ~ 420, resolution a few percent; 522 is strictly inside (32, 7954). (d) real sign slip.",
+   "1119": "error path: the length ratio squared instead of cubed (area scaling for a mass). (a) no extreme. (b) not an edge. (c) inside (32, 7954). (d) real square-cube error.",
+   "2039": "error path: pounds converted by dividing by 0.4536 instead of multiplying. (a) no extreme. (b) not an edge. (c) inside. (d) real inverted conversion."
+  },
+  "distractor_meta": {
+   "522": {
+    "direction": "over",
+    "error_kind": "lighter read as heavier (sign slip)"
+   },
+   "1119": {
+    "direction": "over",
+    "error_kind": "length ratio squared"
+   },
+   "2039": {
+    "direction": "over",
+    "error_kind": "pound-kilogram conversion inverted"
+   }
+  },
+  "bounds": [
+   "mass > 32.4 (a copy in the same wood; bronze is denser)",
+   "mass < 7,954 (a full-size bronze copy: 614.63 x 8.8/0.68)"
+  ],
+  "mechanism": [
+   "scaled copy every length 3/8",
+   "mass scales as the cube",
+   "wood to bronze density ratio",
+   "weighed with and without a base",
+   "pounds to kilograms"
+  ],
+  "arith_class_check": "No. All four are whole kilogram values (419, 522, 1119, 2039); none is a multiple of 10 or 25, and no option is a fixed multiple of another by a stem number.",
+  "one_sided_check": "key smallest; the distractors come from a sign slip (lighter read as heavier), a squared scale factor and an inverted conversion. Natural errors on the other side: inverting the density ratio (x 0.68/8.8) gives 2.50, and leaving the wood density in place gives 32.41; both below the key.",
+  "interior_parity_check": "Interior by value: 522 and 1119, both whole numbers with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: more than 32.4 (same-wood copy) and less than 7,954 (full-size bronze); every option is inside. The one-step estimate needs the 165-pound subtraction and the cube; 522 is 103 kg (25%) above the key, a resolution no estimate that skips the base step reaches.",
+  "trap_check": "Clauses: \"165 pounds lighter\" - adding pushes UP (522), ignoring it pushes UP (471, not an option); \"every length is 3/8\" - squaring pushes UP (1119), ignoring pushes UP (7,954, not an option); \"0.68 ... 8.8\" densities - inverting pushes DOWN (2.50, not an option), ignoring pushes DOWN (32.41, not an option); \"1 pound = 0.4536 kilogram\" - dividing pushes UP (2039), ignoring pushes UP (925, not an option). No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "522": {
+    "step": "sculpture mass without the base",
+    "error_type": "sign slip",
+    "direction": "over"
+   },
+   "1119": {
+    "step": "scaling the volume by the length ratio",
+    "error_type": "other: length ratio squared, not cubed",
+    "direction": "over"
+   },
+   "2039": {
+    "step": "pounds to kilograms",
+    "error_type": "inverted rate",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "wood to bronze density ratio",
+    "error_type": "inverted rate",
+    "solve": "const W=1520,b=165,s=3/8,rw=0.68,rb=8.8,c=0.4536;return Number((((W-b)*c)*s**3*rw/rb).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "sculpture is 165 pounds lighter without the base",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "every length is 3/8 of the original",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "wood 0.68 g/cm3, bronze 8.8 g/cm3",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 pound = 0.4536 kilogram",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; sign slip, squared scale, inverted conversion all over; counters below: density ratio inverted (2.50) or left out (32.41). The wood-to-bronze rule pushes against the others."
+  }
+ },
+ {
+  "id": "AM27I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "brewed coffee yield after grounds retain water and some water evaporates",
+  "subskill": "ratio by mass, retained amount, percent loss",
+  "prompt": "A cafe brews coffee using 1 gram of ground coffee for every 16 grams of water. For one batch it uses 870 grams of water and the matching amount of ground coffee. During brewing, the wet grounds keep 2.2 grams of water for every gram of ground coffee, and 3% of the 870 grams of water evaporates. All other water ends up as brewed coffee, and after brewing 40 grams of hot water is stirred into the brewed coffee. (Ignore the mass of anything dissolved from the grounds.) To the nearest tenth of a gram, how many grams of coffee does the batch produce, including the added hot water?",
+  "choices": [
+   "768.5",
+   "764.3",
+   "771.3",
+   "767.9"
+  ],
+  "correct_answer": "764.3",
+  "explanation": "The batch uses 870/16 = 54.375 grams of coffee. The grounds keep 2.2(54.375) = 119.625 grams of water, and 0.03(870) = 26.1 grams evaporates. Brewed coffee: 870 - 119.625 - 26.1 = 724.275 grams; with the 40 grams of hot water, 764.3 grams. The option \"767.9\" takes the 3% of the water left after the grounds' share (750.375) instead of 3% of 870. The option \"768.5\" removes the 3% by dividing 750.375 by 1.03. The option \"771.3\" takes the coffee as 1/17 of 870 grams (51.18 grams) instead of 870/16.",
+  "solve": "const W=870,n=16,a=2.2,e=0.03;const c=W/n;const h=40;return (W-a*c-e*W+h).toFixed(1);",
+  "distractor_solve": {
+   "767.9": "const W=870,n=16,a=2.2,e=0.03;const c=W/n;const h=40;return ((W-a*c)*(1-e)+h).toFixed(1);",
+   "768.5": "const W=870,n=16,a=2.2,e=0.03;const c=W/n;const h=40;return ((W-a*c)/(1+e)+h).toFixed(1);",
+   "771.3": "const W=870,n=16,a=2.2,e=0.03;const c=W/n;const h=40;return (W-a*W/(n+1)-e*W+h).toFixed(1);"
+  },
+  "quantity_asked": "the grams of coffee produced: 870 minus the 2.2 x 54.375 grams kept by the grounds minus 3% of 870 grams, plus 40 grams of added water.",
+  "distractor_kind": {
+   "767.9": "error path: the 3% taken of the water left after the grounds' share (750.375) instead of the 870 grams poured. (a) not a parameter extreme. (b) not the no-evaporation value 790.4 or any edge; strictly inside (0, 790.4). (c) one-step estimate 870 - 2.2(54) - 26 + 40 ~ 765, resolution a few grams; 727.9 is inside. (d) real wrong-base percent error.",
+   "768.5": "error path: the 3% removed by dividing by 1.03 (applied to the water left after the grounds' share). (a) no extreme. (b) not an edge. (c) inside. (d) real percent-removal error.",
+   "771.3": "error path: 1 : 16 read as coffee = 1/17 of the water, giving 51.18 g of coffee and less retained water. (a) no extreme. (b) not an edge. (c) inside (0, 790.4). (d) real part-to-whole ratio error."
+  },
+  "distractor_meta": {
+   "767.9": {
+    "direction": "over",
+    "error_kind": "3% of the water after retention"
+   },
+   "768.5": {
+    "direction": "over",
+    "error_kind": "3% removed by dividing by 1.03"
+   },
+   "771.3": {
+    "direction": "over",
+    "error_kind": "ratio part read as part of the whole"
+   }
+  },
+  "bounds": [
+   "total < 790.4 (no evaporation)",
+   "total < 883.9 (no water kept by the grounds)"
+  ],
+  "mechanism": [
+   "coffee to water ratio 1:16",
+   "grounds keep 2.2 g water per g",
+   "3% of the water evaporates",
+   "brewed mass from water poured"
+  ],
+  "arith_class_check": "No. All four are one-decimal gram values between 764 and 772; none is a whole number or a half.",
+  "one_sided_check": "key smallest; the distractors come from three different errors (the evaporation taken on the wrong base, the evaporation removed by division, the brew ratio read as part of the whole). Natural errors on the other side: taking the 3% of the water plus the coffee (870 + 54.375 grams) gives 762.6, and subtracting the 40 grams instead of adding it gives 684.3, both below the key.",
+  "interior_parity_check": "Interior by value: 767.9 and 768.5, both three-digit one-decimal values with non-zero decimals; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: below 790.4 (no evaporation) and below 883.9 (no retention); every option lies below both, so they kill nothing. The one-step estimate ~765 has a resolution of a few grams and does not separate 767.9 or 768.5 from 764.3.",
+  "trap_check": "Clauses: \"3% of the 870 grams of water evaporates\" - taking 3% of a smaller base pushes UP (767.9), dividing by 1.03 pushes UP (768.5), taking it of the water plus coffee pushes DOWN (762.6, not an option), ignoring it pushes UP (790.4, not an option); \"1 gram ... for every 16 grams of water\" - 1/17 pushes UP (771.3); \"keep 2.2 grams of water for every gram\" - ignoring it pushes UP (883.9, not an option); \"40 grams of hot water is stirred in\" - ignoring it pushes DOWN (724.3, not an option). No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "767.9": {
+    "step": "evaporated water",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "768.5": {
+    "step": "evaporated water",
+    "error_type": "other: percent removed by division",
+    "direction": "over"
+   },
+   "771.3": {
+    "step": "coffee mass from the ratio",
+    "error_type": "other: part-to-part read as part-to-whole",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "evaporated water",
+    "error_type": "wrong base",
+    "solve": "const W=870,n=16,a=2.2,e=0.03;const c=W/n;const h=40;return Number((W-a*c-e*(W+c)+h).toFixed(1));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "1 g coffee per 16 g water",
+     "neglect_direction": "none"
+    },
+    {
+     "rule": "grounds keep 2.2 g water per g coffee",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "3% of the 870 g of water evaporates",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "40 g of hot water added after brewing",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Smallest key; options cluster within 7 g; both losses push over when mishandled toward a smaller base - a grader may read the family as one-sided despite the 762.6 counter."
+  }
+ },
+ {
+  "id": "AM27I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "scheduled hours for a pipe-laying job from a crew rate in meters",
+  "subskill": "crew hours from a work rate, length conversion, time adjustments",
+  "prompt": "A crew usually lays drainage pipe at a rate of 47 meters per hour. A new job requires 1,850 yards of pipe. Because the soil on this job is soft, the crew's working time per meter will be 25% less than usual. The contractor schedules the crew's working time for the job plus an additional 17% of that working time for setup and inspection. Using 1 yard = 0.9144 meter, how many hours does the contractor schedule, to the nearest hundredth of an hour?",
+  "choices": [
+   "33.11",
+   "37.77",
+   "31.58",
+   "32.52"
+  ],
+  "correct_answer": "31.58",
+  "explanation": "The job is 1850(0.9144) = 1,691.64 meters. At the usual rate this would take 1,691.64 / 47 = 35.992 hours; with 25% less time per meter it takes 0.75(35.992) = 26.994 hours. Adding 17% gives 1.17(26.994) = 31.58 hours. The option \"32.52\" adds the 17% by dividing by 0.83 instead of multiplying by 1.17. The option \"33.11\" combines the percents by addition, 35.992(1 - 0.25 + 0.17). The option \"37.77\" converts yards to meters by dividing by 0.9144 instead of multiplying.",
+  "solve": "const Y=1850,y=0.9144,R=47,p=0.25,q=0.17;const B=Y*y/R;return (B*(1-p)*(1+q)).toFixed(2);",
+  "distractor_solve": {
+   "32.52": "const Y=1850,y=0.9144,R=47,p=0.25,q=0.17;const B=Y*y/R;return (B*(1-p)/(1-q)).toFixed(2);",
+   "33.11": "const Y=1850,y=0.9144,R=47,p=0.25,q=0.17;const B=Y*y/R;return (B*(1-p+q)).toFixed(2);",
+   "37.77": "const Y=1850,y=0.9144,R=47,p=0.25,q=0.17;const B=Y*y/R;return (Y/y/R*(1-p)*(1+q)).toFixed(2);"
+  },
+  "quantity_asked": "the scheduled hours: 1,850 yards in meters divided by 47 meters per hour, times 0.75, times 1.17.",
+  "distractor_kind": {
+   "32.52": "error path: the 17% added as a division by 0.83 instead of a multiplication by 1.17. (a) not a parameter extreme. (b) not the working time 26.99 or the usual-time value 42.47 or any edge. (c) one-step estimate 1,690/47 ~ 36, x 0.75 ~ 27, x 1.17 ~ 32, resolution about an hour; 32.52 is inside. (d) real wrong-base percent error.",
+   "33.11": "error path: the 25% decrease and the 17% increase combined by adding percents (x 0.92) instead of multiplying (x 0.8775). (a) no extreme. (b) not an edge. (c) strictly inside (26.99, 42.47). (d) real error of adding percent changes.",
+   "37.77": "error path: yards converted to meters by dividing by 0.9144 instead of multiplying. (a) no extreme. (b) not an edge; inside (26.99, 42.47). (c) inside. (d) real inverted conversion."
+  },
+  "distractor_meta": {
+   "32.52": {
+    "direction": "over",
+    "error_kind": "17% added as division by 0.83"
+   },
+   "33.11": {
+    "direction": "over",
+    "error_kind": "percent changes added"
+   },
+   "37.77": {
+    "direction": "over",
+    "error_kind": "yard-meter conversion inverted"
+   }
+  },
+  "bounds": [
+   "hours > 26.99 (no setup time)",
+   "hours < 42.47 (no 25% reduction)"
+  ],
+  "mechanism": [
+   "crew rate in meters per hour",
+   "job length in yards",
+   "25% less time per meter",
+   "17% added for setup and inspection"
+  ],
+  "arith_class_check": "No. All four are two-decimal hour values between 31 and 38; none is a whole or half number.",
+  "one_sided_check": "key smallest; the distractors come from three different errors (a margin used for a markup, percents added, an inverted conversion). Natural error on the other side: leaving out the 17% setup allowance gives 26.99, below the key.",
+  "interior_parity_check": "Interior by value: 32.52 and 33.11, both two-decimal values with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: more than 26.99 (no setup time) and less than 42.47 (no reduction); every option lies between them. The one-step estimate ~32 has a resolution of about an hour, and 32.52 is 0.94 hours above the key.",
+  "trap_check": "Clauses: \"25% less than usual\" - ignoring it pushes UP (42.47, not an option); \"an additional 17% of that working time\" - dividing by 0.83 pushes UP (32.52), ignoring it pushes DOWN (26.99, not an option); the two percents added push UP (33.11); \"1 yard = 0.9144 meter\" - inverting it pushes UP (37.77), ignoring it pushes UP (34.54, not an option). No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "32.52": {
+    "step": "adding 17% for setup",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "33.11": {
+    "step": "combining the two percents",
+    "error_type": "other: percent changes added",
+    "direction": "over"
+   },
+   "37.77": {
+    "step": "yards to meters",
+    "error_type": "inverted rate",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "adding 17% for setup",
+    "error_type": "omission",
+    "solve": "const Y=1850,y=0.9144,R=47,p=0.25,q=0.17;const B=Y*y/R;return Number((B*(1-p)).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "time per meter 25% less than usual",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "additional 17% for setup and inspection",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 yard = 0.9144 meter",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; three different errors at three steps; the 17% clause gives a natural counter below; nearest distractor 0.94 h above."
+  }
+ }
+]

@@ -1,0 +1,943 @@
+[
+ {
+  "id": "AM27I-11",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "beam depth from a joint-variation load rule",
+  "subskill": "joint variation, solve for a squared factor",
+  "prompt": "For wooden beams cut from the same kind of lumber, the greatest load a rectangular beam can safely carry varies directly as the beam's width and as the square of the beam's depth, and varies inversely as the distance between the beam's supports. A beam 4 inches wide and 10 inches deep, resting on supports 12 feet apart, can safely carry 2,400 pounds. A beam that is 3 inches wide will rest on supports 14 feet apart and must safely carry 2,700 pounds. To the nearest tenth of an inch, what is the least depth this beam can have?",
+  "choices": [
+   "11.8",
+   "17.5",
+   "13.2",
+   "11.3"
+  ],
+  "correct_answer": "13.2",
+  "explanation": "Write L = k·w·d²/s. From the first beam, k = 2,400(12)/(4·10²) = 72. For the new beam, 2,700 = 72(3)d²/14, so d² = 2,700(14)/216 = 175 and d ≈ 13.23, or 13.2 inches. The option \"11.3\" multiplies by the span instead of dividing by it (the load treated as varying directly with the distance between supports). The option \"11.8\" sets up the load ratio upside down, scaling by 2,400/2,700 instead of 2,700/2,400. The option \"17.5\" leaves the depth unsquared, scaling 10 inches directly by the combined factor.",
+  "solve": "const k=2400*12/(4*100);return Math.sqrt(2700*14/(k*3)).toFixed(1);",
+  "distractor_solve": {
+   "11.3": "const k=2400/(4*100*12);return Math.sqrt(2700/(k*3*14)).toFixed(1);",
+   "11.8": "return Math.sqrt(100*(2400/2700)*(4/3)*(14/12)).toFixed(1);",
+   "17.5": "const k=2400*12/(4*10);return (2700*14/(k*3)).toFixed(1);"
+  },
+  "quantity_asked": "the least depth, in inches, of a 3-inch-wide beam on supports 14 feet apart that can safely carry 2,700 pounds.",
+  "distractor_kind": {
+   "11.3": "error path: treats the load as varying directly with the span (multiplies by 14/12 in the wrong place), d^2 = 128.6. (a) not a parameter extreme. (b) not an adjacent problem's answer at an edge: the width-ignored depth is 11.5 and the original 10 is the floor. (c) cheapest bound d > 10 (more load, less width, longer span all need more depth); 11.3 is strictly inside. (d) real inverted-variation error.",
+   "11.8": "error path: inverts the load ratio (2,400/2,700), d^2 = 138.3. (a) no extreme. (b) not an edge value. (c) strictly inside (10, 17.5). (d) real ratio-orientation error.",
+   "17.5": "error path: depth not squared, so the depth scales by the whole factor 1.75 instead of its square root. (a) no extreme. (b) not an edge of the interval. (c) strictly above key and inside any cheap estimate (one-step estimate d^2 = 100 x 1.125 x 4/3 x 7/6 is the solve itself). (d) real exponent-omission error."
+  },
+  "distractor_meta": {
+   "11.3": {
+    "direction": "under",
+    "error_kind": "span treated as direct variation"
+   },
+   "11.8": {
+    "direction": "under",
+    "error_kind": "load ratio inverted"
+   },
+   "17.5": {
+    "direction": "over",
+    "error_kind": "depth left unsquared"
+   }
+  },
+  "bounds": [
+   "d > 10 (larger load, narrower beam and longer span each require more depth)"
+  ],
+  "mechanism": [
+   "joint variation beam load",
+   "width times depth squared over span",
+   "solve for depth square root",
+   "least depth to carry a load"
+  ],
+  "arith_class_check": "No. All four are one-decimal values between 11 and 18; the key is the rounded square root of 175, not an integer or a round value.",
+  "one_sided_check": "key interior (two distractors under, one over).",
+  "interior_parity_check": "Interior by value: 11.8 and 13.2, both two-digit numbers with one non-zero decimal; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"directly as the width\" (ignoring it gives 11.5, under, not an option); \"square of the depth\" (ignoring the square gives 17.5, over); \"inversely as the distance between supports\" (read as direct gives 11.3, under). At most one option per clause; the clauses push both ways.",
+  "direction_declaration": {
+   "11.3": {
+    "step": "applying the span relation",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "11.8": {
+    "step": "forming the load ratio",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "17.5": {
+    "step": "undoing the square on depth",
+    "error_type": "other: exponent dropped",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "load varies directly as width",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "load varies as the square of depth",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "load varies inversely as span",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors on three different relations push both ways; d > 10 kills nothing; no option pair forced by the stem."
+  }
+ },
+ {
+  "id": "AM27I-12",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "actual speed after larger tires are fitted to a car whose speedometer counts wheel turns",
+  "subskill": "tire size code, diameter ratio, speedometer error",
+  "prompt": "A tire size is written in the form W/A R D: W is the tire's width in millimeters, the height of the tire's sidewall is A percent of W, and D is the diameter of the wheel rim in inches. The overall diameter of the tire is the rim diameter plus twice the sidewall height (1 inch = 25.4 millimeters). A car's speedometer, which works by counting wheel revolutions, is accurate with the car's original 215/60 R16 tires. The owner replaces them with 225/70 R16 tires and does not adjust the speedometer. When the speedometer reads 60 miles per hour, what is the car's actual speed, to the nearest hundredth of a mile per hour?",
+  "choices": [
+   "63.19",
+   "65.15",
+   "62.79",
+   "64.74"
+  ],
+  "correct_answer": "65.15",
+  "explanation": "The rim is 16(25.4) = 406.4 mm. Original sidewall: 0.60(215) = 129 mm, so the overall diameter is 406.4 + 2(129) = 664.4 mm. New sidewall: 0.70(225) = 157.5 mm, so the diameter is 406.4 + 2(157.5) = 721.4 mm. Each revolution now covers 721.4/664.4 times as far, so the actual speed is 60(721.4/664.4) ≈ 65.15 mph. The option \"64.74\" takes the 57-mm increase as a percent of the NEW diameter (7.90%) and adds that percent to 60. The option \"63.19\" adds only one sidewall height to the rim. The option \"62.79\" scales the speed by the ratio of the tire widths, 225/215.",
+  "solve": "const d1=16*25.4+2*0.60*215, d2=16*25.4+2*0.70*225; return (60*d2/d1).toFixed(2);",
+  "distractor_solve": {
+   "64.74": "const d1=16*25.4+2*0.60*215, d2=16*25.4+2*0.70*225; return (60*(1+(d2-d1)/d2)).toFixed(2);",
+   "63.19": "const d1=16*25.4+0.60*215, d2=16*25.4+0.70*225; return (60*d2/d1).toFixed(2);",
+   "62.79": "return (60*225/215).toFixed(2);"
+  },
+  "quantity_asked": "the car's actual speed, in miles per hour, when the speedometer reads 60.",
+  "distractor_kind": {
+   "64.74": "error path: diameter increase 57 mm taken as a percent of the new diameter (7.90%) and added to 60. (a) not a limiting case. (b) not an adjacent problem's edge. (c) one-step estimate: diameters about 26.2 in and 28.4 in, ratio about 1.085, speed about 65.1; 64.74 is 0.41 below the key and inside (60, 73.26). (d) real wrong-base error.",
+   "63.19": "error path: overall diameter = rim + ONE sidewall (406.4+129 and 406.4+157.5). (a) no extreme. (b) an adjacent setup, but strictly inside (60, 65.15). (c) inside. (d) real misreading of 'twice the sidewall'.",
+   "62.79": "error path: speed scaled by the width ratio 225/215. (a) no. (b) no. (c) inside (60, 73.26). (d) real wrong-quantity (wrong base) error: comparing widths instead of diameters."
+  },
+  "distractor_meta": {
+   "64.74": {
+    "direction": "under",
+    "error_kind": "percent of the new diameter"
+   },
+   "63.19": {
+    "direction": "under",
+    "error_kind": "one sidewall only"
+   },
+   "62.79": {
+    "direction": "under",
+    "error_kind": "ratio of widths"
+   }
+  },
+  "bounds": [
+   "v > 60 (larger tires cover more ground per revolution)",
+   "v < 60 x (157.5/129) = 73.26 (adding the same rim to both sidewall heights shrinks their ratio)"
+  ],
+  "mechanism": [
+   "tire size code to overall diameter",
+   "speedometer error after a tire change",
+   "speed proportional to wheel diameter at fixed revolutions",
+   "millimeter and inch conversion"
+  ],
+  "arith_class_check": "No. All four are two-decimal speeds between 62 and 66 with non-zero hundredths; none integral or round.",
+  "one_sided_check": "key largest; the three options come from a wrong base, a one-sidewall diameter and a width ratio. Natural errors also go OVER: leaving the rim in inches while the sidewalls are in mm (72.48) or scaling by the sidewall ratio (73.26). The stem does not fix the direction of the slips.",
+  "interior_parity_check": "Interior by value: 63.19 and 64.74, both two-digit with two non-zero decimals; neither nicer.",
+  "cheap_bound_check": "Cheapest bound: v > 60 (bigger tire), below all four. One step finer: v < 60 x sidewall ratio = 73.26, above all four. One-step estimate: diameters ~26.2 in and ~28.4 in give ~65.0-65.2, which the nearest distractor 64.74 (0.41 below) also sits near; nothing cheap separates 64.74 from 65.15. Distractors on the key's side of the 60 bound: all three.",
+  "trap_check": "Clauses: sidewall is A% of W (ignored, sidewall = W: 61.43, under, not an option); rim in inches with 1 in = 25.4 mm (ignored: 72.48, over, not an option); diameter is rim + twice sidewall (one sidewall: 63.19, under, the only option from a clause). Not an additive chain.",
+  "direction_declaration": {
+   "64.74": {
+    "step": "turning the diameter change into a speed change",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "63.19": {
+    "step": "overall diameter from rim and sidewall",
+    "error_type": "omission",
+    "direction": "under"
+   },
+   "62.79": {
+    "step": "choosing the quantity that scales the speed",
+    "error_type": "other: ratio of tire widths instead of diameters",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "overall diameter from rim and sidewall",
+    "error_type": "other: rim left in inches while sidewalls are in millimeters",
+    "solve": "return 60*(16+2*0.70*225)/(16+2*0.60*215);",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "sidewall height is A percent of W",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 inch = 25.4 millimeters for the rim",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "overall diameter = rim + twice the sidewall height",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; nearest distractor 0.41 below; counter (rim not converted, 72.48) and sidewall-ratio slip both go over; stated rules split both ways."
+  }
+ },
+ {
+  "id": "AM27I-13",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "capacity error of a cylindrical tank from a mismeasured diameter",
+  "subskill": "percent error under squared scaling",
+  "prompt": "A cylindrical water tank has an actual inside diameter of 2.48 meters and an inside height of 3.10 meters. A technician measures the height correctly but records the inside diameter as 2.55 meters, and then uses these two measurements to compute the tank's capacity. To the nearest hundredth of a percent, by what percent of the tank's actual capacity is the computed capacity too large?",
+  "choices": [
+   "5.41",
+   "2.82",
+   "8.71",
+   "5.72"
+  ],
+  "correct_answer": "5.72",
+  "explanation": "Capacity is πr²h, and only the diameter is wrong, so the computed capacity is (2.55/2.48)² ≈ 1.05725 times the actual capacity. It is too large by about 0.05725, or 5.72% of the actual capacity. The option \"2.82\" is the percent error in the diameter alone, 0.07/2.48, as if capacity changed in proportion to the diameter. The option \"5.41\" divides the excess by the computed capacity instead of the actual capacity. The option \"8.71\" scales the capacity by the cube of the diameter ratio, as if every dimension had grown.",
+  "solve": "const r=2.55/2.48;return ((r*r-1)*100).toFixed(2);",
+  "distractor_solve": {
+   "2.82": "return ((2.55-2.48)/2.48*100).toFixed(2);",
+   "5.41": "const r=2.55/2.48;return ((r*r-1)/(r*r)*100).toFixed(2);",
+   "8.71": "const r=2.55/2.48;return ((r**3-1)*100).toFixed(2);"
+  },
+  "quantity_asked": "the excess of the computed capacity as a percent of the actual capacity.",
+  "distractor_kind": {
+   "2.82": "error path: linear scaling (the diameter's own percent error). (a) not a limiting case. (b) the diameter error is an intermediate quantity and sits below the key, but it is the natural first-instinct answer and is strictly inside (0, 8.71). (c) strictly below key. (d) real scaling error.",
+   "5.41": "error path: excess divided by the computed capacity. (a) no extreme. (b) not an edge value. (c) 0.31 below the key; the doubling estimate 2 x 2.82 = 5.65 separates them only for a student who knows (1+e)^2 > 1+2e, which is the squaring step itself. (d) real wrong-base error.",
+   "8.71": "error path: cubes the ratio as if the whole tank were scaled. (a) no extreme. (b) not an edge value. (c) above the doubling estimate. (d) real dimension-count error."
+  },
+  "distractor_meta": {
+   "2.82": {
+    "direction": "under",
+    "error_kind": "linear scaling of capacity"
+   },
+   "5.41": {
+    "direction": "under",
+    "error_kind": "percent of computed capacity"
+   },
+   "8.71": {
+    "direction": "over",
+    "error_kind": "ratio cubed"
+   }
+  },
+  "bounds": [
+   "error > 0"
+  ],
+  "mechanism": [
+   "cylinder capacity from a mismeasured diameter",
+   "percent error with squared scaling",
+   "error relative to actual value",
+   "height measured correctly"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents with non-zero final digits; none is an integer or round value.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 5.41 and 5.72, both one-digit with two non-zero decimals; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"measures the height correctly\" (ignoring it, i.e. scaling every dimension, gives 8.71, over); \"of the tank's actual capacity\" (using the computed capacity as base gives 5.41, under); squaring for area (dropping it gives 2.82, under). One option per clause; both directions.",
+  "direction_declaration": {
+   "2.82": {
+    "step": "scaling capacity with diameter",
+    "error_type": "other: linear instead of squared scaling",
+    "direction": "under"
+   },
+   "5.41": {
+    "step": "forming the percent",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "8.71": {
+    "step": "scaling capacity with diameter",
+    "error_type": "other: ratio cubed",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "height measured correctly",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "percent of the actual capacity",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Interior key; (1+e)^2 > 1+2e gives 5.65 between 5.41 and the key, but using it is the squaring step itself; 2.82 is the linear first instinct."
+  }
+ },
+ {
+  "id": "AM27I-14",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "annual property tax bill with an assessment ratio, two exemptions and a flat fee",
+  "subskill": "assessment ratio, ordered exemptions, tax rate",
+  "prompt": "In a certain county, a home's assessed value is 85% of its market value. To find the taxable value, a homestead exemption of $24,500 is first subtracted from the assessed value, and then a senior exemption removes 10% of what remains. The annual tax bill is 1.31% of the taxable value plus a flat $78 county service fee. For a home with a market value of $384,600 owned by a senior who qualifies for both exemptions, what is the annual tax bill, to the nearest cent?",
+  "choices": [
+   "3611.32",
+   "3686.74",
+   "3535.75",
+   "3643.41"
+  ],
+  "correct_answer": "3643.41",
+  "explanation": "Assessed value: 0.85(384,600) = $326,910. Subtract the homestead exemption: 326,910 - 24,500 = $302,410. Remove 10%: 0.90(302,410) = $272,169. Tax: 0.0131(272,169) = $3,565.41, and the bill is 3,565.41 + 78 = $3,643.41. The option \"3686.74\" subtracts the $24,500 from the market value before taking 85%. The option \"3611.32\" applies the 10% senior exemption before subtracting the $24,500. The option \"3535.75\" combines the two percents into one, taking 85% - 10% = 75% of the market value before subtracting $24,500.",
+  "solve": "return (0.0131*0.9*(0.85*384600-24500)+78).toFixed(2);",
+  "distractor_solve": {
+   "3686.74": "return (0.0131*0.9*0.85*(384600-24500)+78).toFixed(2);",
+   "3611.32": "return (0.0131*(0.9*0.85*384600-24500)+78).toFixed(2);",
+   "3535.75": "return (0.0131*(0.75*384600-24500)+78).toFixed(2);"
+  },
+  "quantity_asked": "the annual tax bill, in dollars, including the flat fee.",
+  "distractor_kind": {
+   "3686.74": "error path: the homestead exemption subtracted from the market value before the 85% assessment ratio. (a) not a limiting case. (b) not an edge. (c) one-step estimate: 1.31% of 0.9 x 0.85 x 384,600 is about 3,854, minus about 289 for the exemption, plus 78: about 3,643; 3686.74 inside (3,535, 3,932). (d) real wrong-base error.",
+   "3611.32": "error path: senior 10% taken from the full assessed value, then $24,500 subtracted (order reversed). (a) no. (b) not an edge. (c) inside. (d) real order error.",
+   "3535.75": "error path: the two percents combined additively (85% - 10% = 75% of market value). (a) no. (b) not an edge. (c) inside. (d) real additive-percent error."
+  },
+  "distractor_meta": {
+   "3686.74": {
+    "direction": "over",
+    "error_kind": "exemption taken off market value"
+   },
+   "3611.32": {
+    "direction": "under",
+    "error_kind": "exemptions in reverse order"
+   },
+   "3535.75": {
+    "direction": "under",
+    "error_kind": "percents combined additively"
+   }
+  },
+  "bounds": [
+   "78 < v < 0.0131 x 0.85 x 384,600 + 78 = 4,360.79 (no exemption)"
+  ],
+  "mechanism": [
+   "property tax from an assessment ratio",
+   "flat then percent exemption in a stated order",
+   "tax rate on taxable value plus a flat fee",
+   "real estate taxable value"
+  ],
+  "arith_class_check": "No. All four are dollar amounts with non-zero cents, none round.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 3611.32 and 3643.41, both four-digit dollars with non-zero cents; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: 85% assessment ratio (exemption taken off market value instead: 3686.74, over); stated order homestead-then-senior (reversed: 3611.32, under); 10% of what remains (combined with the 85%: 3535.75, under); flat $78 fee (omitted: 3565.41, under, not an option). One distractor per clause.",
+  "direction_declaration": {
+   "3686.74": {
+    "step": "where the homestead exemption is subtracted",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "3611.32": {
+    "step": "order of the two exemptions",
+    "error_type": "other: senior percent applied before the flat exemption",
+    "direction": "under"
+   },
+   "3535.75": {
+    "step": "combining the assessment ratio and the senior percent",
+    "error_type": "other: percents added",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "assessed value is 85% of market value",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "homestead exemption of $24,500",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "senior exemption removes 10% of what remains",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "flat $78 county service fee",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors split over and under; three of four stated rules lower the bill but the fee raises it; distractors one per clause."
+  }
+ },
+ {
+  "id": "AM27I-15",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "third-year percent change needed to reach a target overall change",
+  "subskill": "successive percent change, solve for the missing factor",
+  "prompt": "The number of elk counted in a wildlife refuge increased by 13.5% from 2021 to 2022 and then decreased by 9.2% from 2022 to 2023. The refuge's managers want the 2024 count to be 9% greater than the 2021 count. To the nearest tenth of a percent, by what percent must the count increase from 2023 to 2024?",
+  "choices": [
+   "5.5",
+   "5.8",
+   "4.7",
+   "4.9"
+  ],
+  "correct_answer": "5.8",
+  "explanation": "Let the 2021 count be N. The 2023 count is 1.135(0.908)N ≈ 1.0306N. The target is 1.09N, so the 2023-to-2024 factor is 1.09/1.0306 ≈ 1.0577, an increase of about 5.8%. The option \"4.7\" adds and subtracts the percents, 9 - 13.5 + 9.2. The option \"4.9\" divides by 1.092 for the decrease instead of multiplying by 0.908. The option \"5.5\" divides the needed increase, 0.0594N, by the 2024 target 1.09N instead of by the 2023 count.",
+  "solve": "const g=1.135*0.908;return ((1.09/g-1)*100).toFixed(1);",
+  "distractor_solve": {
+   "4.7": "return (9-13.5+9.2).toFixed(1);",
+   "4.9": "const g=1.135/1.092;return ((1.09/g-1)*100).toFixed(1);",
+   "5.5": "const g=1.135*0.908;return ((1.09-g)/1.09*100).toFixed(1);"
+  },
+  "quantity_asked": "the percent increase from the 2023 count to the 2024 count that makes 2024 9% above 2021.",
+  "distractor_kind": {
+   "4.7": "error path: treats successive percents as additive. (a) not a limiting case. (b) it is the additive estimate, the floor a careful student might quote, but the key is not derivable from it without the products. (c) cheapest one-step estimate: 9 - 13.5 + 9.2 = 4.7 itself; key, 4.9 and 5.5 all lie on the key's side, so the estimate kills nothing beyond itself. (d) real additive-percent error.",
+   "4.9": "error path: divides by 1.092 for a 9.2% decrease. (a) no extreme. (b) not an edge value. (c) inside (4.7, 5.9). (d) real inverted-operation error.",
+   "5.5": "error path: needed increase taken as a percent of the 2024 target. (a) no extreme. (b) not an edge value. (c) inside. (d) real wrong-base error."
+  },
+  "distractor_meta": {
+   "4.7": {
+    "direction": "under",
+    "error_kind": "percents added"
+   },
+   "4.9": {
+    "direction": "under",
+    "error_kind": "decrease applied by division"
+   },
+   "5.5": {
+    "direction": "under",
+    "error_kind": "percent of the target count"
+   }
+  },
+  "bounds": [
+   "increase > 0 (the 2023 count, 1.0306N, is below the 1.09N target)"
+  ],
+  "mechanism": [
+   "successive percent change",
+   "missing third change to reach a target",
+   "increase then decrease then unknown",
+   "percent of the 2023 count"
+  ],
+  "arith_class_check": "No. All four are one-decimal values between 4 and 6; the key is rounded from 5.766, and one distractor (4.7) is the exact one.",
+  "one_sided_check": "key largest; three different error kinds (additive percents, division for a decrease, wrong base). The natural counter errors go over: giving the gap 1.09 - 1.0306 = 5.9 percentage points of the 2021 count (a wrong base the other way), and applying the 13.5% increase as division by 0.875 lowers the 2023 count and raises the answer. The stem does not signal a direction.",
+  "interior_parity_check": "Interior by value: 4.9 and 5.5, both one-digit with one non-zero decimal; neither is nicer.",
+  "cheap_bound_check": "Cheapest bound: the additive estimate 4.7 (a student who knows successive changes compound below the sum treats it as a floor). The key, 6.2 and 6.7 all lie on the key's side of it, so it kills only 4.7. Next: 1.09 - 1.0306 = 5.9 points is an upper bound only after computing 1.0306, which is the work; nothing cheap separates 5.5 from 5.8.",
+  "trap_check": "Clauses: \"increased by 13.5%\" (ignored gives 20.0, over, not an option); \"decreased by 9.2%\" (applied by division gives 4.9, under; ignored gives -4.0, under, not an option); \"9% greater than the 2021 count\" (measured against the target gives 5.5, under; measured as points of the 2021 count gives 5.9, over, not an option). Only 4.7 comes from a whole-method error.",
+  "direction_declaration": {
+   "4.7": {
+    "step": "combining the changes",
+    "error_type": "other: percents added",
+    "direction": "under"
+   },
+   "4.9": {
+    "step": "applying the 9.2% decrease",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "5.5": {
+    "step": "forming the final percent",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "forming the final percent",
+    "error_type": "wrong base",
+    "solve": "return (1.09-1.135*0.908)*100;",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "increase of 13.5% from 2021 to 2022",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "decrease of 9.2% from 2022 to 2023",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "2024 target 9% above 2021",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; the counter error is the same wrong-base slip in the other direction (points of 2021), 0.2 above; additive floor kills only itself."
+  }
+ },
+ {
+  "id": "AM27I-16",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "screen area of two televisions from diagonal size and aspect ratio",
+  "subskill": "rectangle from diagonal and side ratio, percent less",
+  "prompt": "A television's screen size is the length of the diagonal of its rectangular screen, and its aspect ratio is the ratio of the screen's width to its height. Television A has a 65-inch screen with an aspect ratio of 16:9. Television B has a 58-inch screen with an aspect ratio of 4:3. By what percent is the area of Television B's screen less than the area of Television A's screen, to the nearest hundredth of a percent?",
+  "choices": [
+   "11.81",
+   "15.37",
+   "10.56",
+   "10.77"
+  ],
+  "correct_answer": "10.56",
+  "explanation": "For a screen with diagonal d and sides in the ratio a:b, the sides are da/√(a²+b²) and db/√(a²+b²), so the area is d²ab/(a²+b²). A: 65²(144)/337 ≈ 1805.31 square inches. B: 58²(12)/25 = 1614.72 square inches. B is less by (1805.31 - 1614.72)/1805.31 ≈ 0.1056, or 10.56%. The option \"11.81\" divides the difference by B's area instead of A's. The option \"10.77\" uses the ratio of the diagonals, 58/65, as the ratio of the areas. The option \"15.37\" takes each side as a share of the diagonal itself (width 16/25 of 65, height 9/25 of 65; width 4/7 of 58, height 3/7 of 58), as if the sides added up to the diagonal.",
+  "solve": "const A=65*65*144/337, B=58*58*12/25; return ((1-B/A)*100).toFixed(2);",
+  "distractor_solve": {
+   "11.81": "const A=65*65*144/337, B=58*58*12/25; return ((A/B-1)*100).toFixed(2);",
+   "10.77": "return ((1-58/65)*100).toFixed(2);",
+   "15.37": "const A=65*65*144/625, B=58*58*12/49; return ((1-B/A)*100).toFixed(2);"
+  },
+  "quantity_asked": "the percent by which Television B's screen area is less than Television A's screen area.",
+  "distractor_kind": {
+   "11.81": "error path: the area difference taken as a percent of B's area (percent more, not percent less). (a) not a limiting case. (b) not an adjacent problem's edge. (c) cheapest one-step bound: B is taller than A (34.8 in vs 31.9 in), so B's area deficit is below its width deficit, 18.10; 11.81 inside (0, 18.10). (d) real wrong-base error.",
+   "10.77": "error path: area ratio taken as the diagonal ratio 58/65 (no squaring, no aspect). (a) no extreme. (b) not on a bound: the diagonal ratio is neither an upper nor a lower bound here. (c) inside, 0.21 above the key. (d) real linear-for-area error.",
+   "15.37": "error path: sides found as fractions a/(a+b) and b/(a+b) of the diagonal, as if the sides summed to it. (a) no. (b) not an edge. (c) inside (0, 18.10). (d) real misconception about splitting the diagonal in the aspect ratio."
+  },
+  "distractor_meta": {
+   "11.81": {
+    "direction": "over",
+    "error_kind": "percent of B's area"
+   },
+   "10.77": {
+    "direction": "over",
+    "error_kind": "diagonal ratio for area ratio"
+   },
+   "15.37": {
+    "direction": "over",
+    "error_kind": "diagonal split in the aspect ratio"
+   }
+  },
+  "bounds": [
+   "0 < v < 18.10 (B's width is 18.10% less than A's, and B is taller)"
+  ],
+  "mechanism": [
+   "rectangle sides from a diagonal and a side ratio",
+   "television screen area from screen size and aspect ratio",
+   "percent less of two areas",
+   "Pythagorean theorem with a ratio"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents with non-zero hundredths; none integral or round.",
+  "one_sided_check": "key smallest; distractors from a wrong base, a linear-for-area slip and a diagonal-split misconception (three kinds). A natural error goes UNDER: adding the separate width change (-18.10%) and height change (+9.20%) gives 8.89. The stem does not fix the direction of the slips.",
+  "interior_parity_check": "Interior by value: 10.77 and 11.81, both two-digit with two non-zero decimals; neither nicer.",
+  "cheap_bound_check": "Cheapest bound: B's width is 18.10% less than A's but B is taller, so v < 18.10 - above all four, kills nothing. The diagonal ratio 58/65 (10.77) is not a bound: B's squarer shape gives it more area per diagonal, but squaring the diagonal ratio moves the other way, and which wins needs the computation. Nearest distractor 10.77 is 0.21 above the key; nothing cheap separates them. All three distractors lie on the key's side of the 18.10 bound.",
+  "trap_check": "Clauses: screen size is the DIAGONAL (read as width: other answer, not an option); aspect ratio width:height (split along the diagonal: 15.37, over - the only option from this clause); 'less than A's' (percent of B's area: 11.81, over). Not an additive chain.",
+  "direction_declaration": {
+   "11.81": {
+    "step": "forming the percent difference",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "10.77": {
+    "step": "turning lengths into an area comparison",
+    "error_type": "other: diagonal ratio used as the area ratio",
+    "direction": "over"
+   },
+   "15.37": {
+    "step": "finding the sides from the diagonal",
+    "error_type": "other: diagonal split in the aspect ratio",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "combining width and height changes",
+    "error_type": "other: percent changes of width and height added",
+    "solve": "const wa=65*16/Math.sqrt(337), ha=65*9/Math.sqrt(337), wb=58*0.8, hb=58*0.6; return -((wb/wa-1)+(hb/ha-1))*100;",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "screen size is the length of the diagonal",
+     "neglect_direction": "none"
+    },
+    {
+     "rule": "aspect ratio is width to height",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Smallest key; counter (adding the width and height percent changes, 8.89) goes under; a 'percent less' ask makes the wrong-base slip predictably high; nearest distractor 0.21 above."
+  }
+ },
+ {
+  "id": "AM27I-17",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "gas pressure under inverse variation after two volume changes",
+  "subskill": "inverse variation with percent changes",
+  "prompt": "At a constant temperature, the pressure of a gas trapped in a cylinder varies inversely as the volume of the gas. A piston first decreases the volume of the gas by 18%. The piston is then pulled back so that the volume increases by 7% of that decreased volume. To the nearest hundredth of a percent, by what percent is the final pressure greater than the original pressure?",
+  "choices": [
+   "13.41",
+   "9.74",
+   "13.97",
+   "12.36"
+  ],
+  "correct_answer": "13.97",
+  "explanation": "The final volume is 0.82(1.07) = 0.8774 times the original volume. Because pressure varies inversely as volume, the final pressure is 1/0.8774 ≈ 1.1397 times the original pressure, about 13.97% greater. The option \"9.74\" turns each volume change into the opposite pressure change (up 18%, then down 7%). The option \"12.36\" takes the 7% increase from the original volume, so the final volume is 0.89 of it. The option \"13.41\" handles the 18% decrease correctly but turns the 7% volume increase into a 7% pressure decrease.",
+  "solve": "return ((1/(0.82*1.07)-1)*100).toFixed(2);",
+  "distractor_solve": {
+   "9.74": "return ((1.18*0.93-1)*100).toFixed(2);",
+   "12.36": "return ((1/(0.82+0.07)-1)*100).toFixed(2);",
+   "13.41": "return ((0.93/0.82-1)*100).toFixed(2);"
+  },
+  "quantity_asked": "the percent by which the final pressure exceeds the original pressure.",
+  "distractor_kind": {
+   "9.74": "error path: inverse variation read as 'opposite percent change' at both steps. (a) not a limiting case. (b) not an adjacent setup's edge value. (c) cheapest one-step estimate 0.82 x 1.07 ~ 0.88, 1/0.88 ~ 1.136: the interval it supports is roughly (13, 14.5); 9.74 is outside it but the estimate is the work. (d) real misreading of inverse variation.",
+   "12.36": "error path: second change taken as 7% of the original volume. (a) no extreme. (b) not an edge. (c) below the estimate. (d) real wrong-base error.",
+   "13.41": "error path: first step correct, second step turned into a 7% pressure decrease. (a) no extreme. (b) not an edge. (c) 0.56 below the key; the one-step estimate 13.6 sits between them and is nearer 13.41. (d) real partial misreading of inverse variation."
+  },
+  "distractor_meta": {
+   "9.74": {
+    "direction": "under",
+    "error_kind": "opposite percent at both steps"
+   },
+   "12.36": {
+    "direction": "under",
+    "error_kind": "7% of the original volume"
+   },
+   "13.41": {
+    "direction": "under",
+    "error_kind": "opposite percent at the second step"
+   }
+  },
+  "bounds": [
+   "0 < increase (final volume below the original)"
+  ],
+  "mechanism": [
+   "pressure varies inversely as volume",
+   "two successive volume changes",
+   "percent increase of a reciprocal",
+   "piston compresses then expands a gas"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents between 9 and 14 with non-zero hundredths; none is an integer or a round value.",
+  "one_sided_check": "key largest; distractors from two different misreadings and one wrong base. Natural counter errors go over: ignoring the second (expanding) step gives 21.95, and turning the 7% increase into division by 0.93 on pressure gives 31.13; the stem gives no direction.",
+  "interior_parity_check": "Interior by value: 12.36 and 13.41, both two-digit with two non-zero decimals; neither is nicer.",
+  "cheap_bound_check": "Cheapest bound: the obvious one-step estimate 0.82 x 1.07 ~ 0.88 gives an increase of about 13.6%, which lies between 13.41 and 13.97 and nearer the distractor; separating them needs the exact product 0.8774 and its reciprocal, which is the whole calculation. 13.41 (and 12.36) lie on the key's side of every coarser bound (increase > 0, increase < 21.95 with the expansion ignored).",
+  "trap_check": "Clauses: \"varies inversely\" (read as direct gives -12.26, under, not an option); \"decreases the volume by 18%\" (ignored gives -6.54, under, not an option); \"increases by 7% of that decreased volume\" (from the original volume gives 12.36, under; ignored gives 21.95, over, not an option). One option per clause reading.",
+  "direction_declaration": {
+   "9.74": {
+    "step": "converting volume changes to pressure changes",
+    "error_type": "other: opposite percent for inverse variation",
+    "direction": "under"
+   },
+   "12.36": {
+    "step": "applying the 7% increase",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "13.41": {
+    "step": "converting the second volume change",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "applying the 7% increase",
+    "error_type": "omission",
+    "solve": "return (1/0.82-1)*100;",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "pressure varies inversely as volume",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "volume decreased by 18%",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "volume increased by 7% of the decreased volume",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; nearest distractor 0.56 below and the obvious one-step estimate (13.6) favours it; counter error (dropping the expansion) is natural and goes over."
+  }
+ },
+ {
+  "id": "AM27I-18",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "monthly sales from a pay raise under base salary plus threshold commission",
+  "subskill": "commission above a threshold, percent increase in pay",
+  "prompt": "Each month, a salesperson is paid a base salary of $1,850 plus a commission of 4% of the amount by which that month's sales exceed $24,000. In April, the salesperson's sales were $48,700. The salesperson's total pay in May was 12% greater than the total pay in April. What were the salesperson's sales in May, to the nearest dollar?",
+  "choices": [
+   "60094",
+   "57214",
+   "65487",
+   "58375"
+  ],
+  "correct_answer": "57214",
+  "explanation": "April pay is 1,850 + 0.04(48,700 - 24,000) = 1,850 + 988 = $2,838. May pay is 1.12(2,838) = $3,178.56, so the May commission is 3,178.56 - 1,850 = $1,328.56. That is 4% of 1,328.56/0.04 = $33,214 above $24,000, so May sales were $57,214. The option \"58375\" finds May pay as 2,838/0.88, treating April pay as 12% less than May pay. The option \"60094\" ignores the $24,000 threshold and applies the 4% to all sales in both months. The option \"65487\" scales April sales by the ratio of the commissions, 1,328.56/988, as if sales were proportional to commission.",
+  "solve": "const a=1850+0.04*(48700-24000);const m=a*1.12;return (24000+(m-1850)/0.04).toFixed(0);",
+  "distractor_solve": {
+   "58375": "const a=1850+0.04*(48700-24000);const m=a/0.88;return Math.round(24000+(m-1850)/0.04).toFixed(0);",
+   "60094": "const a=1850+0.04*48700;const m=a*1.12;return Math.round((m-1850)/0.04).toFixed(0);",
+   "65487": "const a=1850+0.04*(48700-24000);const m=a*1.12;return Math.round(48700*(m-1850)/(a-1850)).toFixed(0);"
+  },
+  "quantity_asked": "total sales in May, in dollars.",
+  "distractor_kind": {
+   "58375": "error path: May pay found by dividing April pay by 0.88 (12% taken from the May figure). (a) not a limiting case. (b) not an adjacent setup's edge value. (c) cheapest estimate: May sales exceed April's 48,700 (pay rose); all options do. (d) real wrong-base error.",
+   "60094": "error path: commission applied to all sales in both months (threshold ignored). (a) no extreme. (b) not an edge. (c) inside. (d) real omission of the threshold.",
+   "65487": "error path: May sales = April sales x (May commission / April commission), as if total sales were proportional to commission. (a) no extreme. (b) not an edge. (c) inside every one-step estimate. (d) real proportional-reasoning error that ignores the threshold offset."
+  },
+  "distractor_meta": {
+   "58375": {
+    "direction": "over",
+    "error_kind": "12% taken from May pay"
+   },
+   "60094": {
+    "direction": "over",
+    "error_kind": "threshold ignored"
+   },
+   "65487": {
+    "direction": "over",
+    "error_kind": "sales scaled by commission ratio"
+   }
+  },
+  "bounds": [
+   "May sales > 48,700 (pay rose, base is fixed)"
+  ],
+  "mechanism": [
+   "base salary plus commission above a threshold",
+   "percent increase in total pay",
+   "back-solve sales from pay",
+   "commission on the excess over a quota"
+  ],
+  "arith_class_check": "No. All four are five-digit dollar amounts with non-zero units digits; the key is an exact integer, as are 58,375 and 60,094, so exactness does not single it out.",
+  "one_sided_check": "key smallest; distractors from a wrong base, a threshold omission and a proportional-scaling error. The most natural under error is assuming sales rose by the same 12% as pay (54,544); also applying the 12% raise to the commission only (51,664). The stem does not say which way slips move the answer.",
+  "interior_parity_check": "Interior by value: 58,375 and 60,094, both five-digit with non-zero final digits; neither is nicer.",
+  "cheap_bound_check": "Cheapest bound: May sales > April's 48,700, below all four options, kills nothing. One step finer: the commission must rise by 12% of the whole pay (340.56), i.e. sales rise by 340.56/0.04 = 8,514 - that is the solve itself. The same-12% estimate 54,544 lies below the key; every distractor lies on the key's side of it, and the nearest distractor is 1,161 above the key.",
+  "trap_check": "Clauses: \"base salary of $1,850\" (left in the commission gives 103,464, over, not an option); \"amount by which sales exceed $24,000\" (ignored gives 60,094, over; 65,487 also bypasses it by scaling); \"12% greater than April\" (taken from May gives 58,375, over; applied to sales gives 54,544, under, not an option; applied to the commission only gives 51,664, under, not an option). One option from ignoring the threshold clause.",
+  "direction_declaration": {
+   "58375": {
+    "step": "finding May pay",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "60094": {
+    "step": "computing commission",
+    "error_type": "omission",
+    "direction": "over"
+   },
+   "65487": {
+    "step": "converting pay back to sales",
+    "error_type": "other: sales taken proportional to commission",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "converting the pay raise to sales",
+    "error_type": "other: sales assumed to rise by the same 12%",
+    "solve": "return 48700*1.12;",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "base salary $1,850",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "commission only on sales above $24,000",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "May pay 12% greater than April pay",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; the most natural shortcut (sales up 12%) goes under; three over errors of different kinds; nearest distractor 1,161 above."
+  }
+ },
+ {
+  "id": "AM27I-19",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "price per square inch of topped area for two round pizzas with a bare crust",
+  "subskill": "unit price per area, annulus, percent less",
+  "prompt": "A pizzeria sells a large round pizza 16 inches in diameter for $19.49 and a small round pizza 12 inches in diameter for $12.79. On each pizza, a crust 1 inch wide around the edge has no topping, and the rest of the pizza is evenly covered with topping. Measured by price per square inch of topped area, by what percent is the large pizza cheaper than the small pizza, to the nearest hundredth of a percent?",
+  "choices": [
+   "28.62",
+   "22.25",
+   "32.27",
+   "23.81"
+  ],
+  "correct_answer": "22.25",
+  "explanation": "The topped regions are circles of radius 8 - 1 = 7 in and 6 - 1 = 5 in, with areas 49π and 25π square inches. Large: 19.49/(49π) ≈ $0.12661 per square inch; small: 12.79/(25π) ≈ $0.16285 per square inch. The large is cheaper by 1 - 0.12661/0.16285 ≈ 0.2225, or 22.25%. The option \"28.62\" divides the same price difference by the LARGE pizza's price per square inch. The option \"23.81\" finds each crust's area as its outer circumference times 1 inch (16π and 12π), giving topped areas 48π and 24π. The option \"32.27\" removes 2 inches from each radius (the 2-inch reduction in diameter applied to the radius).",
+  "solve": "const L=19.49/(Math.PI*49), S=12.79/(Math.PI*25); return ((1-L/S)*100).toFixed(2);",
+  "distractor_solve": {
+   "28.62": "const L=19.49/(Math.PI*49), S=12.79/(Math.PI*25); return ((S/L-1)*100).toFixed(2);",
+   "23.81": "const L=19.49/(Math.PI*64-Math.PI*16), S=12.79/(Math.PI*36-Math.PI*12); return ((1-L/S)*100).toFixed(2);",
+   "32.27": "const L=19.49/(Math.PI*36), S=12.79/(Math.PI*16); return ((1-L/S)*100).toFixed(2);"
+  },
+  "quantity_asked": "the percent by which the large pizza's price per square inch of topped area is less than the small pizza's.",
+  "distractor_kind": {
+   "28.62": "error path: price difference taken as a percent of the large pizza's unit price (percent more, not percent less). (a) not a limiting case. (b) not an edge of an adjacent problem. (c) one-step estimate: price ratio ~1.52, topped-area ratio 49/25 = 1.96, saving ~22%; 28.62 inside (0, 34.4). (d) real wrong-base error.",
+   "23.81": "error path: crust ring area taken as outer circumference x width (16π, 12π), so topped areas 48π and 24π. (a) no extreme. (b) not on a bound: the approximation's direction is not readable. (c) inside, 1.56 above the key. (d) real strip-area error.",
+   "32.27": "error path: the 2-inch loss of diameter subtracted from the radius (radii 6 and 4). (a) no. (b) not an edge. (c) inside. (d) real radius/diameter confusion."
+  },
+  "distractor_meta": {
+   "28.62": {
+    "direction": "over",
+    "error_kind": "percent of the large pizza's unit price"
+   },
+   "23.81": {
+    "direction": "over",
+    "error_kind": "crust ring as circumference x width"
+   },
+   "32.27": {
+    "direction": "over",
+    "error_kind": "crust width doubled on the radius"
+   }
+  },
+  "bounds": [
+   "v > 14.28 (the crust-free comparison; removing the crust takes a larger share of the small pizza) - kills nothing"
+  ],
+  "mechanism": [
+   "price per square inch of a round pizza",
+   "topped area inside a bare crust ring",
+   "percent less of unit prices",
+   "comparing unit rates by area"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents with non-zero hundredths; none is integral or round.",
+  "one_sided_check": "key smallest; distractors from a wrong base, a strip-area approximation and a radius/diameter confusion (three different kinds). Natural errors also go UNDER: ignoring the crust (14.28) or taking 1 inch off the diameter instead of the radius (18.05). The stem does not fix their direction.",
+  "interior_parity_check": "Interior by value: 23.81 and 28.62, both two-digit with two non-zero decimals; neither nicer.",
+  "cheap_bound_check": "Cheapest bound: the whole-pizza comparison (64π vs 36π) gives 14.28, and removing a 1-inch crust takes a larger share of the small pizza, so v > 14.28 - below all four options, kills nothing. One-step estimate: topped-area ratio 49/25 = 1.96 and price ratio ~1.52 give ~22.4; the nearest distractor 23.81 is 1.56 above the key and nothing cheaper separates them. All three distractors lie on the key's side of the 14.28 bound.",
+  "trap_check": "Clauses: 1-inch crust with no topping (ignored: 14.28, under, not an option; doubled on the radius: 32.27, over - the only option from this clause); 'cheaper by what percent' (percent of the large's unit price: 28.62, over). Not an additive chain.",
+  "direction_declaration": {
+   "28.62": {
+    "step": "forming the percent difference",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "23.81": {
+    "step": "area of the topped region",
+    "error_type": "other: crust ring area as circumference times width",
+    "direction": "over"
+   },
+   "32.27": {
+    "step": "radius of the topped region",
+    "error_type": "other: diameter reduction applied to the radius",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "area of the topped region",
+    "error_type": "omission",
+    "solve": "const L=19.49/(Math.PI*64), S=12.79/(Math.PI*36); return (1-L/S)*100;",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "a 1-inch crust around the edge has no topping",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; counter (crust ignored, 14.28) and the 1-inch-off-diameter slip (18.05) go under; nearest distractor 1.56 above."
+  }
+ },
+ {
+  "id": "AM27I-20",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "stain for three coats with coverage that improves coat by coat",
+  "subskill": "coverage rates, successive percent increases",
+  "prompt": "A rectangular deck measures 20 feet by 22 feet, and its top surface will receive three coats of stain. For the first coat, on bare wood, 1 gallon of stain covers 250 square feet. For the second coat, 1 gallon covers 40% more area than it did on the first coat. For the third coat, 1 gallon covers 20% more area than it did on the second coat. To the nearest hundredth of a gallon, how many gallons of stain are needed for all three coats?",
+  "choices": [
+   "3.88",
+   "4.06",
+   "3.66",
+   "4.02"
+  ],
+  "correct_answer": "4.06",
+  "explanation": "The deck's area is 20(22) = 440 square feet. A gallon covers 250 square feet on the first coat, 1.40(250) = 350 on the second, and 1.20(350) = 420 on the third. The stain needed is 440/250 + 440/350 + 440/420 ≈ 1.760 + 1.257 + 1.048 ≈ 4.06 gallons. The option \"3.88\" averages the three coverage rates (340 square feet per gallon) and uses that rate for all three coats. The option \"3.66\" treats each increase in coverage as the same percent decrease in stain (0.60 and then 0.80 times the previous coat's stain). The option \"4.02\" finds the first two coats correctly but uses 0.80 times the second coat's stain for the third coat instead of dividing by 1.20.",
+  "solve": "const A=20*22;return (A/250+A/350+A/420).toFixed(2);",
+  "distractor_solve": {
+   "3.88": "const A=20*22;return (3*A/340).toFixed(2);",
+   "3.66": "const A=20*22;const s1=A/250;return (s1+s1*0.6+s1*0.6*0.8).toFixed(2);",
+   "4.02": "const A=20*22;return (A/250+A/350+A/350*0.8).toFixed(2);"
+  },
+  "quantity_asked": "the total gallons of stain for three coats on the 440-square-foot deck.",
+  "distractor_kind": {
+   "3.88": "error path: averages the three coverage rates (250, 350, 420) and applies 340 sq ft/gal to every coat. (a) not a limiting case. (b) not an edge: the interval for three coats is (3 x 440/420, 3 x 440/250) = (3.14, 5.28); 3.88 is strictly inside. (c) the rate average is the cheapest one-rate estimate and lands here, below the key. (d) real averaging-of-rates error.",
+   "3.66": "error path: 40% more coverage taken as 40% less stain, then 20% more as 20% less. (a) no extreme. (b) inside (3.14, 5.28). (c) inside. (d) real inverted-percent error at both steps.",
+   "4.02": "error path: first two coats correct, third coat taken as 0.80 of the second coat's stain. (a) no extreme. (b) inside. (c) 0.04 below the key. (d) real inverted-percent error at the last step."
+  },
+  "distractor_meta": {
+   "3.88": {
+    "direction": "under",
+    "error_kind": "coverage rates averaged"
+   },
+   "3.66": {
+    "direction": "under",
+    "error_kind": "more coverage as equal percent less stain, both steps"
+   },
+   "4.02": {
+    "direction": "under",
+    "error_kind": "more coverage as less stain, third coat"
+   }
+  },
+  "bounds": [
+   "3 x 440/420 = 3.14 < total < 3 x 440/250 = 5.28"
+  ],
+  "mechanism": [
+   "three coats with improving coverage rates",
+   "gallons from square feet per gallon",
+   "coverage increases by successive percents",
+   "deck stain"
+  ],
+  "arith_class_check": "No. All four are two-decimal gallon amounts with non-zero hundredths; none is integral or round.",
+  "one_sided_check": "key largest; distractors from averaging the rates and from turning coverage increases into stain decreases at one or both steps. Natural counter errors go over: taking the third coat's 20% from the first-coat rate (300 sq ft/gal) gives 4.48, and adding the percents (third coat at 60% over bare wood, 400 sq ft/gal) gives 4.12. The stem does not tell a student which way slips move the total.",
+  "interior_parity_check": "Interior by value: 3.88 and 4.02, both one-digit with two non-zero decimals; neither is nicer.",
+  "cheap_bound_check": "Cheapest bounds: total between 3.14 (all coats at 420) and 5.28 (all at 250); all four options lie inside. One step finer, a single average rate (340) gives 3.88, on the key's low side; 4.02 lies between that estimate and the key, 0.04 below the key, so no cheap estimate separates 4.02 from 4.06.",
+  "trap_check": "Clauses: \"40% more area than on the first coat\" (as less stain gives part of 3.66; ignored, with the third coat then at 300 sq ft/gal, gives 4.99, over, not an option); \"20% more area than on the second coat\" (as less stain gives 4.02, under; taken from the first-coat rate gives 4.48, over, not an option; percents added gives 4.12, over, not an option). No option from ignoring a clause.",
+  "direction_declaration": {
+   "3.88": {
+    "step": "combining the coverage rates",
+    "error_type": "other: averaged rates",
+    "direction": "under"
+   },
+   "3.66": {
+    "step": "converting coverage gains to stain amounts",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "4.02": {
+    "step": "converting the third-coat gain",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "applying the 20% gain",
+    "error_type": "wrong base",
+    "solve": "return 440/250+440/350+440/300;",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "second coat covers 40% more than the first",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "third coat covers 20% more than the second",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "three coats",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key with a distractor 0.04 below; the over errors (wrong base for the 20%, added percents) are as natural as the unders; no omission option."
+  }
+ }
+]

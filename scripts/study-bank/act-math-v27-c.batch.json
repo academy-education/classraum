@@ -1,0 +1,772 @@
+[
+ {
+  "id": "AM27G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "frustum volume from slant height",
+  "subskill": "frustum height from slant, then volume",
+  "prompt": "The inside of a flowerpot has the shape of a frustum of a right circular cone (a cone whose top has been cut off by a plane parallel to its base). The circular opening at the top has a radius of 21 centimeters, the circular bottom has a radius of 13 centimeters, and the slanted inside wall measures 35 centimeters from the edge of the bottom straight up the wall to the edge of the opening. The volume V of a frustum with height h and radii R and r is V = (1/3)πh(R² + Rr + r²). To the nearest cubic centimeter, what is the volume of the inside of the flowerpot?",
+  "choices": [
+   "28784",
+   "24966",
+   "31507",
+   "25891"
+  ],
+  "correct_answer": "31507",
+  "explanation": "A vertical cross-section through the axis is an isosceles trapezoid. Along the wall, the horizontal run is R - r = 21 - 13 = 8 cm and the slant is 35 cm, so h = √(35² - 8²) = √1161 ≈ 34.07 cm. Then V = (1/3)π(34.07)(21² + 21·13 + 13²) = (1/3)π(34.07)(883) ≈ 31507 cubic centimeters. The option 28784 uses the difference of the diameters, 16, as the horizontal run (h ≈ 31.13). The option 25891 finds the height as for a whole cone, √(35² - 21²) = 28, using the top radius as the horizontal run. The option 24966 subtracts, h = 35 - 8 = 27, instead of using the Pythagorean theorem.",
+  "solve": "const R=21,r=13,h=Math.sqrt(35*35-(R-r)**2);return (Math.PI*h/3*(R*R+R*r+r*r)).toFixed(0);",
+  "distractor_solve": {
+   "24966": "const R=21,r=13,h=35-(R-r);return (Math.PI*h/3*(R*R+R*r+r*r)).toFixed(0);",
+   "25891": "const R=21,r=13,h=Math.sqrt(35*35-R*R);return (Math.PI*h/3*(R*R+R*r+r*r)).toFixed(0);",
+   "28784": "const R=21,r=13,h=Math.sqrt(35*35-(2*(R-r))**2);return (Math.PI*h/3*(R*R+R*r+r*r)).toFixed(0);"
+  },
+  "quantity_asked": "the volume, in cubic centimeters, of the frustum with radii 21 and 13 and slant 35.",
+  "distractor_kind": {
+   "24966": "error path: subtracts the run from the slant (h = 35 - 8 = 27) instead of using the Pythagorean theorem. (a) no extreme. (b) not at an edge. (c) inside (18091, 32364). (d) real right-triangle slip.",
+   "25891": "error path: treats the slant as in a whole cone, h = √(35² - 21²) = 28. (a) no extreme. (b) not at an edge. (c) inside (18091, 32364). (d) real cone-formula carry-over.",
+   "28784": "error path: horizontal run taken as the difference of the diameters (16) instead of the radii (8). (a) not a parameter extreme. (b) not an adjacent problem's answer at an edge. (c) cheapest bounds: cylinder of radius 13 and height 35 (18091) below, frustum with h = slant (32364) above; strictly inside. (d) real radius/diameter error."
+  },
+  "distractor_meta": {
+   "24966": {
+    "direction": "under",
+    "error_kind": "subtracted instead of Pythagoras"
+   },
+   "25891": {
+    "direction": "under",
+    "error_kind": "whole-cone height with top radius"
+   },
+   "28784": {
+    "direction": "under",
+    "error_kind": "diameter difference as run"
+   }
+  },
+  "bounds": [
+   "h < slant 35, so V < 32364 (the value at h = 35)",
+   "V > cylinder of radius 13 and the same height (about 18091)",
+   "V < cylinder of radius 21 and height 35 (about 48490)"
+  ],
+  "mechanism": [
+   "frustum of a cone",
+   "slant height to vertical height",
+   "isosceles trapezoid cross-section",
+   "frustum volume formula given"
+  ],
+  "arith_class_check": "No. All four are five-digit integers from rounding; no divisibility or integrality class isolates 31507.",
+  "one_sided_check": "key largest; distractors from three different height-step errors (diameter difference as run, whole-cone radius as run, subtraction for Pythagoras). Natural errors also go over: halving the radius difference (run 4) gives 32152, and using the slant 35 as the height gives 32364; neither is an option. The stem gives no direction.",
+  "interior_parity_check": "Interior by value: 28784 and 31507, both unrounded five-digit integers; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: h < slant 35, so V < 32364 (key and every distractor below it); V > cylinder of radius 13 at the same height (about 18091; all above). 28784 lies 8.6% below the key on the key side of the cap; no estimate cheaper than computing h separates them.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Key largest; three different height-step errors; natural over-errors (halved run 32152, slant as height 32364) exist; the stem gives no direction."
+  }
+ },
+ {
+  "id": "AM27G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "trapezoid area from bases and base angles",
+  "subskill": "height from two base angles, then area",
+  "prompt": "In trapezoid ABCD, side AB is parallel to side CD, AB = 20 centimeters, CD = 8 centimeters, the measure of ∠DAB is 60°, and the measure of ∠ABC is 45°. To the nearest hundredth of a square centimeter, what is the area of trapezoid ABCD ?",
+  "choices": [
+   "139.18",
+   "102.88",
+   "145.49",
+   "106.51"
+  ],
+  "correct_answer": "106.51",
+  "explanation": "Drop perpendiculars of height h from D and C to AB. The horizontal pieces at the two ends are h/tan 60° and h/tan 45° = h, and together they make up AB − CD = 12. So h(1/√3 + 1) = 12 and h ≈ 7.608 cm. The area is (1/2)(20 + 8)(7.608) ≈ 106.51 square centimeters. The option 139.18 uses cosines for the end pieces, h(cos 60° + cos 45°) = 12. The option 145.49 treats both base angles as 60° (an isosceles trapezoid), so each end piece is 6 and h = 6 tan 60°. The option 102.88 uses the triangle formed by extending the legs but leaves out the division by sin 75°, taking h = 12 sin 60° sin 45°.",
+  "solve": "const r=Math.PI/180;const h=12/(1/Math.tan(60*r)+1);return (14*h).toFixed(2);",
+  "distractor_solve": {
+   "139.18": "const r=Math.PI/180;const h=12/(Math.cos(60*r)+Math.cos(45*r));return (14*h).toFixed(2);",
+   "145.49": "const r=Math.PI/180;const h=6*Math.tan(60*r);return (14*h).toFixed(2);",
+   "102.88": "const r=Math.PI/180;const h=12*Math.sin(60*r)*Math.sin(45*r);return (14*h).toFixed(2);"
+  },
+  "quantity_asked": "the area of the trapezoid with bases 20 and 8 and base angles 60° and 45°.",
+  "distractor_kind": {
+   "139.18": "error path: end pieces written with cosines of the base angles. (a) not a parameter extreme. (b) not an adjacent answer at an edge. (c) cheapest bounds: cot 60° < 1 gives 6 < h < 12, so 84 < area < 168; inside. (d) real trig-ratio error.",
+   "145.49": "error path: assumes both base angles are 60° (isosceles), h = 6 tan 60°. (a) no extreme. (b) neighbouring setup, inside (84, 168). (c) inside. (d) real symmetry assumption.",
+   "102.88": "error path: law of sines in the triangle formed by extending the legs, dropping the division by sin 75°. (a) no extreme. (b) not at an edge. (c) inside (84, 168). (d) real step omission."
+  },
+  "distractor_meta": {
+   "139.18": {
+    "direction": "over",
+    "error_kind": "cosine for end pieces"
+   },
+   "145.49": {
+    "direction": "over",
+    "error_kind": "isosceles assumption"
+   },
+   "102.88": {
+    "direction": "under",
+    "error_kind": "dropped sin 75 divisor"
+   }
+  },
+  "bounds": [
+   "h < 12 (the 45° end piece equals h and is less than 12), area < 168",
+   "h > 6 (cot 60° < 1), area > 84"
+  ],
+  "mechanism": [
+   "trapezoid with two different base angles",
+   "height from end pieces h cot A + h cot B",
+   "trapezoid area"
+  ],
+  "arith_class_check": "No. Two-decimal values; the key is 84(3 − √3); nothing in the stem implies a class.",
+  "one_sided_check": "key interior (one under, two over).",
+  "interior_parity_check": "Interior by value: 106.51 and 139.18, both three digits with two decimals; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; bounds 84 and 168 contain every option; no live trapezoid item uses base angles."
+  }
+ },
+ {
+  "id": "AM27G-03",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "concentric circles, tangent chord, ring area",
+  "subskill": "annulus area from a tangent chord",
+  "prompt": "Two circles have the same center. A chord of the larger circle is tangent to the smaller circle, and the chord is 30 centimeters long. The smaller circle has a radius of 8 centimeters. To the nearest tenth of a square centimeter, what is the area of the region that is inside the larger circle and outside the smaller circle?",
+  "choices": [
+   "505.8",
+   "1460.8",
+   "706.9",
+   "254.5"
+  ],
+  "correct_answer": "706.9",
+  "explanation": "The radius of the smaller circle drawn to the point of tangency is perpendicular to the chord and bisects it, so the larger radius R is the hypotenuse of a right triangle with legs 8 and 15: R² = 8² + 15² = 289. The ring has area π(R² - 8²) = π(289 - 64) = 225π ≈ 706.9 square centimeters. The option 505.8 takes the half-chord, 15, as the larger radius: π(15² - 8²). The option 1460.8 takes the larger radius as 8 + 15 = 23: π(23² - 8²). The option 254.5 squares the difference of the radii, π(17 - 8)², instead of subtracting the two circle areas.",
+  "solve": "const R2=8*8+15*15;return (Math.PI*(R2-64)).toFixed(1);",
+  "distractor_solve": {
+   "505.8": "return (Math.PI*(15*15-64)).toFixed(1);",
+   "1460.8": "return (Math.PI*(23*23-64)).toFixed(1);",
+   "254.5": "const R=Math.sqrt(8*8+15*15);return (Math.PI*(R-8)**2).toFixed(1);"
+  },
+  "quantity_asked": "the area of the ring between the two concentric circles.",
+  "distractor_kind": {
+   "505.8": "error path: the half-chord 15 used as the larger radius. (a) not a parameter extreme. (b) not an adjacent answer at an edge. (c) the ring area has no cheap one-step cap short of finding R; strictly positive and below every value a student can bound. (d) real misidentified radius.",
+   "1460.8": "error path: larger radius taken as 8 + 15 = 23 (adds the legs). (a) no extreme. (b) not at an edge. (c) inside (0, π·23²). (d) real Pythagorean slip.",
+   "254.5": "error path: π(R - r)² instead of π(R² - r²). (a) no extreme. (b) not at an edge. (c) positive, inside. (d) real area-of-ring formula error."
+  },
+  "distractor_meta": {
+   "505.8": {
+    "direction": "under",
+    "error_kind": "half-chord as radius"
+   },
+   "1460.8": {
+    "direction": "over",
+    "error_kind": "added legs for radius"
+   },
+   "254.5": {
+    "direction": "under",
+    "error_kind": "squared radius difference"
+   }
+  },
+  "bounds": [
+   "ring area > 0",
+   "ring area < π R² with R the larger radius (needs R = 17 first)"
+  ],
+  "mechanism": [
+   "concentric circles",
+   "chord tangent to inner circle",
+   "area of ring between circles",
+   "radius perpendicular to tangent bisects chord"
+  ],
+  "arith_class_check": "No. One-decimal values; dividing by π gives 81, 161, 225, 465, and nothing in the stem says the ring area is a perfect-square multiple of π.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 505.8 and 706.9, both three digits with one decimal; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three different radius errors; no arithmetic run (diffs 251.3, 201.1, 753.9)."
+  }
+ },
+ {
+  "id": "AM27G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "chord to the midpoint of an arc",
+  "subskill": "radius and arc height from a chord, then a chord",
+  "prompt": "In a circle, chord AB is 20 centimeters long and is 7 centimeters from the center of the circle. Point C is the midpoint of the minor arc AB. To the nearest hundredth of a centimeter, what is the length of chord AC ?",
+  "choices": [
+   "12.21",
+   "10.44",
+   "15.78",
+   "11.27"
+  ],
+  "correct_answer": "11.27",
+  "explanation": "The perpendicular from the center O to AB bisects AB at M, so the radius is r = √(10² + 7²) = √149 ≈ 12.207. Point C lies on line OM extended beyond M, so MC = r − 7 ≈ 5.207. Triangle AMC has a right angle at M, so AC = √(10² + 5.207²) ≈ √127.11 ≈ 11.27 cm. The option 12.21 uses 7, the distance from the center, as MC. The option 15.78 uses the radius √149 as MC. The option 10.44 takes the half-chord 10 as the radius, so MC = 10 − 7 = 3.",
+  "solve": "const r=Math.sqrt(149);return Math.hypot(10,r-7).toFixed(2);",
+  "distractor_solve": {
+   "12.21": "return Math.hypot(10,7).toFixed(2);",
+   "15.78": "const r=Math.sqrt(149);return Math.hypot(10,r).toFixed(2);",
+   "10.44": "return Math.hypot(10,10-7).toFixed(2);"
+  },
+  "quantity_asked": "the length of chord AC from an endpoint of AB to the midpoint C of the minor arc AB.",
+  "distractor_kind": {
+   "12.21": "error path: takes MC as 7 (the center-to-chord distance) instead of r − 7. (a) not a parameter extreme. (b) equals the radius, an intermediate, strictly inside (10, 20). (c) cheapest bounds: AC > AM = 10 and AC < AB = 20; inside. (d) real segment misidentification.",
+   "15.78": "error path: takes MC as the whole radius. (a) no extreme. (b) not at an edge. (c) inside (10, 20). (d) real segment misidentification.",
+   "10.44": "error path: uses the half-chord 10 as the radius, so MC = 3. (a) no extreme. (b) not at an edge. (c) inside (10, 20). (d) real radius error."
+  },
+  "distractor_meta": {
+   "12.21": {
+    "direction": "over",
+    "error_kind": "distance used as arc height"
+   },
+   "15.78": {
+    "direction": "over",
+    "error_kind": "radius used as arc height"
+   },
+   "10.44": {
+    "direction": "under",
+    "error_kind": "half-chord as radius"
+   }
+  },
+  "bounds": [
+   "AC > AM = 10 (hypotenuse of right triangle AMC)",
+   "AC < AB = 20 (C lies on the minor arc)"
+  ],
+  "mechanism": [
+   "chord to the midpoint of an arc",
+   "arc height (sagitta) from radius and chord distance",
+   "radius from chord length and distance to center"
+  ],
+  "arith_class_check": "No. Two-decimal values (√127.1, √149, √249, √109); nothing in the stem implies a class.",
+  "one_sided_check": "key interior (one under, two over).",
+  "interior_parity_check": "Interior by value: 11.27 and 12.21, both two digits with two decimals; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Interior key; its first step (radius from chord length and distance to center) is the whole of several live SAT chord items (e.g. sat 2e0b32a2); the arc-midpoint chord is the new step."
+  }
+ },
+ {
+  "id": "AM27G-05",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "angle of a triangle from coordinates",
+  "subskill": "angle from vertex coordinates (law of cosines or slopes)",
+  "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(−4, 2), B(7, 5), and C(2, −6). To the nearest tenth of a degree, what is the measure of ∠ACB ?",
+  "choices": [
+   "77.6",
+   "61.3",
+   "80.8",
+   "68.4"
+  ],
+  "correct_answer": "61.3",
+  "explanation": "The sides adjacent to C are CA = √((−6)² + 8²) = 10 and CB = √(5² + 11²) = √146, and the opposite side is AB = √(11² + 3²) = √130. By the law of cosines, cos C = (100 + 146 − 130)/(2·10·√146) = 116/(20√146) ≈ 0.4800, so ∠ACB ≈ 61.3°. (Equivalently, the vectors CA = ⟨−6, 8⟩ and CB = ⟨5, 11⟩ have dot product 58.) The option 68.4 is the angle at A, ∠BAC. The option 80.8 reads A as (−4, −2). The option 77.6 uses the reciprocal of the slope of CB (5/11 instead of 11/5) when measuring the angle between the two lines through C.",
+  "solve": "const u=[-6,8],v=[5,11];return (Math.acos((u[0]*v[0]+u[1]*v[1])/Math.hypot(...u)/Math.hypot(...v))*180/Math.PI).toFixed(1);",
+  "distractor_solve": {
+   "68.4": "const u=[11,3],v=[6,-8];return (Math.acos((u[0]*v[0]+u[1]*v[1])/Math.hypot(...u)/Math.hypot(...v))*180/Math.PI).toFixed(1);",
+   "80.8": "const u=[-6,4],v=[5,11];return (Math.acos((u[0]*v[0]+u[1]*v[1])/Math.hypot(...u)/Math.hypot(...v))*180/Math.PI).toFixed(1);",
+   "77.6": "const D=180/Math.PI;const mCA=8/(-6),mCB=5/11;return Math.abs(Math.atan(mCB)*D-Math.atan(mCA)*D).toFixed(1);"
+  },
+  "quantity_asked": "the measure of angle ACB, at vertex C(2, −6).",
+  "distractor_kind": {
+   "68.4": "error path: computes the angle at A instead of at C. (a) no parameter extreme. (b) neighbouring setup (another angle of the same triangle), interior to (0, 90). (c) AB² = 130 < CA² + CB² = 246, so ∠C is acute; 68.4 < 90 inside. (d) real vertex confusion.",
+   "80.8": "error path: sign slip on A's y-coordinate (A read as (−4, −2)). (a) no extreme. (b) not at an edge. (c) inside (0, 90). (d) real coordinate sign slip.",
+   "77.6": "error path: takes the slope of CB as run over rise (5/11) in the angle-between-lines method. (a) no extreme. (b) not at an edge. (c) inside (0, 90). (d) real slope inversion."
+  },
+  "distractor_meta": {
+   "68.4": {
+    "direction": "over",
+    "error_kind": "wrong vertex angle"
+   },
+   "80.8": {
+    "direction": "over",
+    "error_kind": "coordinate sign slip"
+   },
+   "77.6": {
+    "direction": "over",
+    "error_kind": "reciprocal slope"
+   }
+  },
+  "bounds": [
+   "0 < ∠C < 90 (AB² = 130 < 100 + 146)",
+   "angles of the triangle sum to 180"
+  ],
+  "mechanism": [
+   "angle of a triangle from vertex coordinates",
+   "law of cosines with distance formula",
+   "dot product of side vectors"
+  ],
+  "arith_class_check": "No. One-decimal angle values; none is a special angle.",
+  "one_sided_check": "key smallest; distractors from three different error kinds (wrong vertex, coordinate sign slip, slope inversion). Natural errors also go the other way: the angle at B (50.3) and reading C as (−2, −6) (53.3) are both below the key and are not options; the stem gives no direction.",
+  "interior_parity_check": "Interior by value: 68.4 and 77.6, both two digits with one decimal; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: ∠C is acute (AB² < CA² + CB²), so ∠C < 90, which every option satisfies; and ∠C > 0. No cheap lower bound above 0 separates the key: the 60° comparison needs the full cosine (0.48 vs 0.5). 68.4 and 77.6 lie on the key's side of the 90° cap.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Key smallest; no cheap bound above 0 below 90; counter errors (angle at B 50.3, C sign slip 53.3) sit under the key."
+  }
+ },
+ {
+  "id": "AM27G-06",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "right triangle split by a segment from a vertex",
+  "subskill": "two tangent ratios on a shared leg",
+  "prompt": "In right triangle ABC, the right angle is at C, AC = 13 centimeters, and the measure of ∠BAC is 35°. Point D lies on side BC so that the measure of ∠CAD is 20°. To the nearest hundredth of a centimeter, what is the length of BD ?",
+  "choices": [
+   "5.01",
+   "5.62",
+   "4.37",
+   "4.66"
+  ],
+  "correct_answer": "4.37",
+  "explanation": "In right triangle ACB, BC = 13 tan 35° ≈ 9.103. In right triangle ACD, CD = 13 tan 20° ≈ 4.732. So BD = BC − CD ≈ 4.37 cm. The option 4.66 uses CD = 13 sin 20° (sine for tangent in the smaller triangle). The option 5.62 takes the 20° as ∠BAD, so ∠CAD = 15° and CD = 13 tan 15°. The option 5.01 applies the law of sines in triangle ABD with the angle at B (55°) opposite BD instead of the angle at D: BD = AB sin 15°/sin 55°, with AB = 13/cos 35°.",
+  "solve": "const r=Math.PI/180;return (13*Math.tan(35*r)-13*Math.tan(20*r)).toFixed(2);",
+  "distractor_solve": {
+   "4.66": "const r=Math.PI/180;return (13*Math.tan(35*r)-13*Math.sin(20*r)).toFixed(2);",
+   "5.62": "const r=Math.PI/180;return (13*Math.tan(35*r)-13*Math.tan(15*r)).toFixed(2);",
+   "5.01": "const r=Math.PI/180;return (13/Math.cos(35*r)*Math.sin(15*r)/Math.sin(55*r)).toFixed(2);"
+  },
+  "quantity_asked": "the length of BD, the part of leg BC between B and D.",
+  "distractor_kind": {
+   "4.66": "error path: CD found with sine instead of tangent. (a) not a parameter extreme. (b) not BC (9.10) or CD (4.73). (c) cheapest bounds: 0 < BD < BC ≈ 9.10, and BD > AB sin 15° ≈ 4.11 (distance from B to line AD); strictly inside. (d) real trig-ratio slip.",
+   "5.62": "error path: reads the 20° as ∠BAD, so ∠CAD = 15°. (a) no extreme. (b) neighbouring setup with the angles swapped; inside (4.11, 9.10). (c) inside. (d) real angle misreading.",
+   "5.01": "error path: law of sines in triangle ABD with the wrong angle (55° at B) opposite BD. (a) no extreme. (b) not at an edge. (c) inside (4.11, 9.10). (d) real law-of-sines pairing error."
+  },
+  "distractor_meta": {
+   "4.66": {
+    "direction": "over",
+    "error_kind": "sine for tangent"
+   },
+   "5.62": {
+    "direction": "over",
+    "error_kind": "angle misread as BAD"
+   },
+   "5.01": {
+    "direction": "over",
+    "error_kind": "law of sines wrong angle"
+   }
+  },
+  "bounds": [
+   "0 < BD < BC = 13 tan 35° ≈ 9.10 (D lies on BC)",
+   "BD > AB sin 15° ≈ 4.11 (perpendicular distance from B to line AD)"
+  ],
+  "mechanism": [
+   "right triangle split by a cevian from the acute vertex",
+   "difference of two tangents on a shared leg",
+   "segment of a leg between two angle rays"
+  ],
+  "arith_class_check": "No. Two-decimal values from trig; none is a special value.",
+  "one_sided_check": "key smallest; distractors from three different error kinds at different steps (trig ratio, angle reading, law-of-sines pairing). Natural errors also go under: BD = 13 tan 15° (3.48) and 13(sin 35° − sin 20°) (3.01) are both below the key and are not options; nothing in the stem gives a direction.",
+  "interior_parity_check": "Interior by value: 4.66 and 5.01, both one digit with two decimals; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: BD < BC ≈ 9.10 (every option inside) and BD > AB sin 15° ≈ 4.11 (every option above). The small-angle estimate BD ≈ AB·(15° in radians)·(1/sin 110°) is the work itself. 4.66 lies within 0.29 of the key on the key's side of the 9.10 cap.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Key smallest; bounds 4.11 < BD < 9.10 contain all options; under-the-key errors (3.48, 3.01) exist. Setup differs from live two-observer elevation items."
+  }
+ },
+ {
+  "id": "AM27G-07",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "cylinder surface area from volume",
+  "subskill": "radius from volume, then total surface area",
+  "prompt": "A closed right circular cylinder has a volume of 500 cubic centimeters and a height of 8 centimeters. To the nearest tenth of a square centimeter, what is the total surface area of the cylinder?",
+  "choices": [
+   "286.7",
+   "790.1",
+   "237.1",
+   "349.2"
+  ],
+  "correct_answer": "349.2",
+  "explanation": "From πr²(8) = 500, r² = 500/(8π) ≈ 19.89 and r ≈ 4.460 cm. The total surface area is 2πr² + 2πrh ≈ 2π(19.89) + 2π(4.460)(8) ≈ 125.0 + 224.2 ≈ 349.2 square centimeters. The option 286.7 counts only one circular end. The option 237.1 takes the lateral area as πrh instead of 2πrh. The option 790.1 drops π when solving for the radius (r² = 500/8, r ≈ 7.91).",
+  "solve": "const P=Math.PI,h=8,r=Math.sqrt(500/(P*h));return (2*P*r*r+2*P*r*h).toFixed(1);",
+  "distractor_solve": {
+   "286.7": "const P=Math.PI,h=8,r=Math.sqrt(500/(P*h));return (P*r*r+2*P*r*h).toFixed(1);",
+   "237.1": "const P=Math.PI,h=8,r=Math.sqrt(500/(P*h));return (2*P*r*r+P*r*h).toFixed(1);",
+   "790.1": "const P=Math.PI,h=8,r=Math.sqrt(500/h);return (2*P*r*r+2*P*r*h).toFixed(1);"
+  },
+  "quantity_asked": "the total surface area (both ends plus lateral surface) of the cylinder with volume 500 and height 8.",
+  "distractor_kind": {
+   "286.7": "error path: only one circular end counted. (a) not a parameter extreme. (b) the open-cylinder area is an adjacent problem, but it lies strictly between the lateral area (224.2) and the key. (c) cheapest bracket from 3 < π < 3.2: r² in (19.5, 20.8), total area roughly (343, 356) only after the full computation; no cheaper cap. (d) real omission.",
+   "237.1": "error path: lateral area taken as πrh (cone-style) instead of 2πrh. (a) no extreme. (b) not the lateral area 224.2. (c) inside (224.2, ...). (d) real formula slip.",
+   "790.1": "error path: π dropped when solving πr²h = 500 for r. (a) no extreme. (b) not at an edge. (c) inside. (d) real solving slip."
+  },
+  "distractor_meta": {
+   "286.7": {
+    "direction": "under",
+    "error_kind": "one end omitted"
+   },
+   "237.1": {
+    "direction": "under",
+    "error_kind": "lateral as pi r h"
+   },
+   "790.1": {
+    "direction": "over",
+    "error_kind": "pi dropped solving for r"
+   }
+  },
+  "bounds": [
+   "total area > lateral area 2πrh ≈ 224.2 (needs r)",
+   "r² = 500/(8π)"
+  ],
+  "mechanism": [
+   "cylinder radius from volume and height",
+   "total surface area of a closed cylinder",
+   "two ends plus lateral surface"
+  ],
+  "arith_class_check": "No. One-decimal values; none integral.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 286.7 and 349.2, both three digits with one decimal; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; the radius-from-volume step precedes the surface-area formula, so the item is not the live SA-from-r-and-h item; bracket from 3 < pi < 3.2 is the full computation."
+  }
+ },
+ {
+  "id": "AM27G-08",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "circle tangent to an axis at a given point",
+  "subskill": "center on the perpendicular at the tangency point, equal radii",
+  "prompt": "In the standard (x,y) coordinate plane, a circle is tangent to the x-axis at the point (4, 0) and passes through the point (11, 6). To the nearest hundredth of a coordinate unit, what is the radius of the circle?",
+  "choices": [
+   "9.22",
+   "5.68",
+   "7.08",
+   "6.52"
+  ],
+  "correct_answer": "7.08",
+  "explanation": "A radius drawn to a point of tangency is perpendicular to the tangent line, so the center lies directly above (4, 0): it is (4, r), where r is the radius. The point (11, 6) is r units from the center: (11 − 4)² + (6 − r)² = r², so 49 + 36 − 12r + r² = r², 85 = 12r, and r = 85/12 ≈ 7.08. The option 6.52 expands (6 − r)² as 36 − r², giving 85 = 2r². The option 5.68 reads the point as (6, 11), giving (6 − 4)² + (11 − r)² = r² and r = 125/22. The option 9.22 takes the radius to be the distance from (4, 0) to (11, 6), √85.",
+  "solve": "return (85/12).toFixed(2);",
+  "distractor_solve": {
+   "6.52": "return Math.sqrt(85/2).toFixed(2);",
+   "5.68": "return ((2*2+11*11)/22).toFixed(2);",
+   "9.22": "return Math.sqrt(49+36).toFixed(2);"
+  },
+  "quantity_asked": "the radius r of the circle tangent to the x-axis at (4, 0) through (11, 6).",
+  "distractor_kind": {
+   "6.52": "error path: (6 − r)² expanded as 36 − r² (the square of a difference taken termwise), so 85 = 2r². (a) no parameter extreme. (b) not an adjacent problem's answer at an edge. (c) cheapest bounds: r ≥ 3 (the point's height is at most the diameter) and r ≥ √85/2 ≈ 4.61 (the segment from (4, 0) to (11, 6) is a chord); strictly inside. (d) real binomial-squaring error.",
+   "5.68": "error path: the point's coordinates swapped, (6, 11). (a) no extreme. (b) not at an edge. (c) inside (above 4.61). (d) real coordinate-reading slip.",
+   "9.22": "error path: radius taken as the distance from the tangency point to (11, 6), √85. (a) no extreme. (b) neighbouring quantity (the chord), which bounds r only from below by its half, 4.61; 9.22 is not on any bound. (c) inside. (d) real confusion of the chord with a radius."
+  },
+  "distractor_meta": {
+   "6.52": {
+    "direction": "under",
+    "error_kind": "square of a difference termwise"
+   },
+   "5.68": {
+    "direction": "under",
+    "error_kind": "coordinates swapped"
+   },
+   "9.22": {
+    "direction": "over",
+    "error_kind": "chord taken as radius"
+   }
+  },
+  "bounds": [
+   "r ≥ 3: the point (11, 6) lies inside the strip 0 ≤ y ≤ 2r",
+   "r ≥ √85/2 ≈ 4.61: the segment from (4, 0) to (11, 6) is a chord, at most a diameter"
+  ],
+  "mechanism": [
+   "circle tangent to the x-axis at a given point",
+   "center directly above the point of tangency",
+   "radius from a second point on the circle"
+  ],
+  "arith_class_check": "No. Two-decimal values from 85/12, √42.5, 125/22, √85; none is an integer or a special value.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 6.52 and 7.08, both one digit with two decimals; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "0 live hits for a circle tangent at a given point through a second point; live tangency items fix c in a general-form equation (different). One over, two under."
+  }
+ },
+ {
+  "id": "AM27G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "intersection of the diagonals of a quadrilateral",
+  "subskill": "lines through two points, intersection, distance",
+  "prompt": "In the standard (x,y) coordinate plane, quadrilateral ABCD has vertices A(−5, −2), B(8, −4), C(6, 5), and D(−2, 4). Diagonals AC and BD intersect at point P. To the nearest hundredth of a coordinate unit, what is the distance from A to P ?",
+  "choices": [
+   "8.25",
+   "6.93",
+   "8.95",
+   "7.29"
+  ],
+  "correct_answer": "6.93",
+  "explanation": "Line AC has slope 7/11 and passes through A: y = −2 + (7/11)(x + 5). Line BD has slope (4 − (−4))/(−2 − 8) = −4/5 and passes through B: y = −4 − (4/5)(x − 8). Setting them equal: −2 + (7/11)(x + 5) = −4 − (4/5)(x − 8). Multiplying by 55: −110 + 35x + 175 = −220 − 44x + 352, so 79x = 67 and x = 67/79 ≈ 0.848, y ≈ 1.722. Then AP = √((0.848 + 5)² + (1.722 + 2)²) = √(34.20 + 13.86) ≈ 6.93. The option 8.25 assumes the diagonals bisect each other and uses the midpoint of BD, (3, 0): √68. The option 7.29 uses the average of the four vertices, (1.75, 0.75): √53.125. The option 8.95 takes the slope of BD as −10/8 (run over rise).",
+  "solve": "const x=67/79,y=-2+(7/11)*(x+5);return Math.hypot(x+5,y+2).toFixed(2);",
+  "distractor_solve": {
+   "8.25": "return Math.hypot(3+5,0+2).toFixed(2);",
+   "7.29": "return Math.hypot(1.75+5,0.75+2).toFixed(2);",
+   "8.95": "const m1=7/11,m2=-10/8;const x=(-2-8*m2-5*m1)/(m1-m2);const y=-2+m1*(x+5);return Math.hypot(x+5,y+2).toFixed(2);"
+  },
+  "quantity_asked": "the length AP, where P is the intersection of diagonals AC and BD.",
+  "distractor_kind": {
+   "8.25": "error path: P taken as the midpoint of BD (diagonals assumed to bisect each other, as in a parallelogram). (a) no parameter extreme. (b) neighbouring setup (a parallelogram's centre); strictly inside the cheap bounds. (c) cheapest bounds: AP > 6.56 (the perpendicular distance from A to line BD) and AP < AC ≈ 13.04; inside. (d) real parallelogram-property misapplication.",
+   "7.29": "error path: P taken as the average of the four vertices, (1.75, 0.75). (a) no extreme. (b) not at an edge. (c) inside (6.56, 13.04). (d) real 'centre of the quadrilateral' shortcut.",
+   "8.95": "error path: slope of BD computed as run over rise, −10/8. (a) no extreme. (b) not at an edge. (c) inside (6.56, 13.04). (d) real slope inversion."
+  },
+  "distractor_meta": {
+   "8.25": {
+    "direction": "over",
+    "error_kind": "midpoint of BD"
+   },
+   "7.29": {
+    "direction": "over",
+    "error_kind": "average of vertices"
+   },
+   "8.95": {
+    "direction": "over",
+    "error_kind": "slope inverted"
+   }
+  },
+  "bounds": [
+   "AP > 6.56: AP is at least the perpendicular distance from A to line BD",
+   "AP < AC ≈ 13.04: P lies on diagonal AC"
+  ],
+  "mechanism": [
+   "intersection point of the diagonals of a quadrilateral",
+   "equations of two lines through vertex pairs",
+   "distance from a vertex to the diagonal intersection"
+  ],
+  "arith_class_check": "No. Two-decimal values from 42√170/79, √68, √53.125 and an inverted-slope intersection; none is an integer or a special value.",
+  "one_sided_check": "key smallest; distractors from three error kinds (bisecting-diagonals assumption on BD, average of vertices, inverted slope). Natural errors also go under: the same bisecting assumption on AC gives AC/2 ≈ 6.52, and the perpendicular distance from A to BD is 6.56; neither is an option. The stem does not say whether P is nearer A or C, so no error has a readable direction.",
+  "interior_parity_check": "Interior by value: 7.29 and 8.25, both one digit with two decimals; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: AP > 6.56 (perpendicular distance from A to BD; every option above, the key closest) and AP < AC ≈ 13.04 (every option below). P lies only slightly past the midpoint of AC (AP/AC ≈ 0.53), so a sketch cannot place it; 7.29 lies 0.36 above the key and no estimate separates them.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Key smallest; the bisecting-diagonals error goes under on AC (6.52) and over on BD (8.25), so the misconception itself has no direction. Live: one rectangle-diagonal angle item only."
+  }
+ },
+ {
+  "id": "AM27N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "product of a 2 × 3 and a 3 × 2 matrix",
+  "subskill": "matrix multiplication, order of factors",
+  "prompt": "Matrix A has 2 rows and 3 columns: its first row is (3, 5, −4) and its second row is (3, 2, 2). Matrix B has 3 rows and 2 columns: its rows, from top to bottom, are (−2, 5), (−4, 5), and (−3, 1). The product AB is a 2 × 2 matrix. What is the sum of the 4 entries of AB ?",
+  "choices": [
+   "22",
+   "41",
+   "45",
+   "29"
+  ],
+  "correct_answer": "29",
+  "explanation": "Each entry of AB is a row of A times a column of B. Row 1: 3(−2) + 5(−4) + (−4)(−3) = −6 − 20 + 12 = −14, and 3(5) + 5(5) + (−4)(1) = 15 + 25 − 4 = 36. Row 2: 3(−2) + 2(−4) + 2(−3) = −20, and 3(5) + 2(5) + 2(1) = 27. The sum is −14 + 36 − 20 + 27 = 29. The option 41 is the sum of the 9 entries of BA (the factors multiplied in the wrong order). The option 22 multiplies the sum of the entries of A (11) by the sum of the entries of B (2). The option 45 takes 2(−4) as +8 in entry (2, 1), which becomes −4.",
+  "solve": "const A=[[3,5,-4],[3,2,2]],B=[[-2,5],[-4,5],[-3,1]];let s=0;for(let i=0;i<2;i++)for(let j=0;j<2;j++)for(let k=0;k<3;k++)s+=A[i][k]*B[k][j];return String(s);",
+  "distractor_solve": {
+   "22": "const sa=3+5-4+3+2+2,sb=-2+5-4+5-3+1;return String(sa*sb);",
+   "41": "const A=[[3,5,-4],[3,2,2]],B=[[-2,5],[-4,5],[-3,1]];let s=0;for(let i=0;i<3;i++)for(let j=0;j<3;j++)for(let k=0;k<2;k++)s+=B[i][k]*A[k][j];return String(s);",
+   "45": "const e11=3*-2+5*-4+(-4)*-3,e12=3*5+5*5+(-4)*1,e21=3*-2+8+2*-3,e22=3*5+2*5+2*1;return String(e11+e12+e21+e22);"
+  },
+  "quantity_asked": "the sum of the four entries of the 2 × 2 product AB.",
+  "distractor_kind": {
+   "22": "error path: takes the sum of the entries of a product as (sum of entries of A) × (sum of entries of B) = 11 × 2. (a) no extreme. (b) not an intermediate of the work. (c) inside. (d) real 'sum of products = product of sums' shortcut.",
+   "41": "error path: multiplies in the order BA (a 3 × 3 matrix) and sums its 9 entries. (a) no parameter extreme. (b) neighbouring setup (the other product order); strictly inside the option range, not at an edge of anything the stem forces. (c) no one-step estimate bounds a signed sum of products; inside. (d) real order-of-factors error, the commonest matrix-product slip.",
+   "45": "error path: sign slip 2(−4) = +8 in entry (2, 1), so that entry is −4. (a) no extreme. (b) not an intermediate at an edge. (c) inside. (d) real sign slip on a positive-times-negative product."
+  },
+  "distractor_meta": {
+   "22": {
+    "direction": "under",
+    "error_kind": "product of entry sums"
+   },
+   "41": {
+    "direction": "over",
+    "error_kind": "wrong product order"
+   },
+   "45": {
+    "direction": "over",
+    "error_kind": "sign slip"
+   }
+  },
+  "bounds": [
+   "none forced: the entries mix signs, so no sign or size bound applies to the sum"
+  ],
+  "mechanism": [
+   "product of a 2 by 3 and a 3 by 2 matrix",
+   "sum of the entries of AB",
+   "row times column"
+  ],
+  "arith_class_check": "No. 22, 29, 41, 45; 29 and 41 are both prime, 29, 41, 45 all odd; the stem implies no residue class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 22 and 29, both plain two-digit integers; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Three error kinds, two over and one under. Entry-of-product items are live; this one asks the whole sum of a non-square product, and BA is the main trap."
+  }
+ },
+ {
+  "id": "AM27N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "resultant of two forces",
+  "subskill": "vector sum from magnitudes and directions",
+  "prompt": "Two forces act on an object at the origin of the standard (x,y) coordinate plane. One force has a magnitude of 40 newtons and points in the direction of the positive x-axis. The other force has a magnitude of 65 newtons and points in the direction 125° counterclockwise from the positive x-axis. To the nearest tenth of a newton, what is the magnitude of the resultant force (the vector sum of the two forces)?",
+  "choices": [
+   "65.8",
+   "39.6",
+   "66.6",
+   "53.3"
+  ],
+  "correct_answer": "53.3",
+  "explanation": "The second force has components 65 cos 125° ≈ -37.28 and 65 sin 125° ≈ 53.24. The resultant is ⟨40 - 37.28, 53.24⟩ = ⟨2.72, 53.24⟩, with magnitude √(2.72² + 53.24²) ≈ 53.3 newtons. The option 66.6 leaves out the second force's horizontal component, using ⟨40, 53.24⟩. The option 39.6 writes 125° as 90° + 35° and swaps sine and cosine, giving the second force components -65 cos 35° and 65 sin 35°. The option 65.8 uses the law of cosines on the 55° angle of the force triangle but drops the factor 2: √(40² + 65² - 40·65·cos 55°).",
+  "solve": "const t=125*Math.PI/180;return Math.hypot(40+65*Math.cos(t),65*Math.sin(t)).toFixed(1);",
+  "distractor_solve": {
+   "66.6": "const t=125*Math.PI/180;return Math.hypot(40,65*Math.sin(t)).toFixed(1);",
+   "39.6": "const a=35*Math.PI/180;return Math.hypot(40-65*Math.cos(a),65*Math.sin(a)).toFixed(1);",
+   "65.8": "const a=55*Math.PI/180;return Math.sqrt(40*40+65*65-40*65*Math.cos(a)).toFixed(1);"
+  },
+  "quantity_asked": "the magnitude of the sum of the two force vectors.",
+  "distractor_kind": {
+   "66.6": "error path: second force's horizontal component omitted. (a) not a parameter extreme. (b) not the colinear values 25 or 105. (c) the angle between the forces is obtuse, so 25 < R < √(40² + 65²) ≈ 76.3; strictly inside. (d) real component omission.",
+   "39.6": "error path: sine and cosine swapped after writing 125° = 90° + 35°. (a) no extreme. (b) not at an edge. (c) inside (25, 76.3). (d) real reference-angle error.",
+   "65.8": "error path: law of cosines without the factor 2. (a) no extreme. (b) not at an edge. (c) inside (25, 76.3). (d) real formula slip."
+  },
+  "distractor_meta": {
+   "66.6": {
+    "direction": "over",
+    "error_kind": "component omitted"
+   },
+   "39.6": {
+    "direction": "under",
+    "error_kind": "sine-cosine swap"
+   },
+   "65.8": {
+    "direction": "over",
+    "error_kind": "dropped factor 2"
+   }
+  },
+  "bounds": [
+   "R > 65 - 40 = 25",
+   "R < 40 + 65 = 105",
+   "angle between the forces is obtuse (125°), so R < √(40² + 65²) ≈ 76.3"
+  ],
+  "mechanism": [
+   "resultant of two forces",
+   "vector components from direction angle",
+   "magnitude of a vector sum",
+   "obtuse angle between forces"
+  ],
+  "arith_class_check": "No. One-decimal values; nothing in the stem implies a class.",
+  "one_sided_check": "key interior (one under, two over).",
+  "interior_parity_check": "Interior by value: 53.3 and 65.8, both two digits with one decimal; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; the obtuse-angle cap 76.3 and the 25 floor contain every option; 65.8 and 66.6 are a near pair that does not include the key."
+  }
+ },
+ {
+  "id": "AM27N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "determinant of a matrix combination",
+  "subskill": "scalar multiple and difference of matrices, 2 × 2 determinant",
+  "prompt": "Matrix A has first row (6, 4) and second row (4, 6). Matrix B has first row (−1, 4) and second row (−2, 1). What is the determinant of the matrix 2A − B ?",
+  "choices": [
+   "73",
+   "33",
+   "103",
+   "81"
+  ],
+  "correct_answer": "103",
+  "explanation": "2A has rows (12, 8) and (8, 12). Subtracting B entry by entry gives 2A − B with rows (12 − (−1), 8 − 4) = (13, 4) and (8 − (−2), 12 − 1) = (10, 11). Its determinant is 13(11) − 4(10) = 143 − 40 = 103. The option 73 treats the determinant as if it distributed over subtraction: det(2A) − det(B) = 4(20) − 7 = 73. The option 33 also forgets that doubling every entry of a 2 × 2 matrix multiplies the determinant by 4: 2(20) − 7 = 33. The option 81 takes 12 − (−1) as 11, so the first row is (11, 4) and the determinant is 121 − 40 = 81.",
+  "solve": "const M=[2*6-(-1),2*4-4,2*4-(-2),2*6-1];return String(M[0]*M[3]-M[1]*M[2]);",
+  "distractor_solve": {
+   "33": "const dA=6*6-4*4,dB=-1*1-4*-2;return String(2*dA-dB);",
+   "73": "const dA=6*6-4*4,dB=-1*1-4*-2;return String(4*dA-dB);",
+   "81": "const M=[11,2*4-4,2*4-(-2),2*6-1];return String(M[0]*M[3]-M[1]*M[2]);"
+  },
+  "quantity_asked": "det(2A − B), the determinant of the 2 × 2 matrix 2A − B.",
+  "distractor_kind": {
+   "33": "error path: det(2A − B) taken as 2 det A − det B (determinant treated as linear in the whole matrix). (a) no extreme. (b) not at an edge. (c) inside. (d) real misconception, the scalar not squared.",
+   "73": "error path: det(2A − B) taken as det(2A) − det(B), with det(2A) = 4 det A done correctly. (a) no parameter extreme. (b) neighbouring setup (the difference of the two determinants) — not a bound on the key; inside. (c) no one-step estimate bounds a determinant of a difference; inside. (d) real 'determinant is linear' misconception.",
+   "81": "error path: sign slip 12 − (−1) = 11 in entry (1, 1). (a) no extreme. (b) not an intermediate at an edge. (c) inside. (d) real subtraction-of-a-negative slip."
+  },
+  "distractor_meta": {
+   "33": {
+    "direction": "under",
+    "error_kind": "determinant treated as linear"
+   },
+   "73": {
+    "direction": "under",
+    "error_kind": "determinant split over subtraction"
+   },
+   "81": {
+    "direction": "under",
+    "error_kind": "sign slip"
+   }
+  },
+  "bounds": [
+   "none forced: the entries of 2A − B mix signs, so the stem bounds the determinant on neither side"
+  ],
+  "mechanism": [
+   "determinant of 2A − B",
+   "scalar multiple and difference of 2 by 2 matrices",
+   "ad − bc after combining matrices"
+  ],
+  "arith_class_check": "No. 33, 73, 81, 103 are all odd; 73 and 103 both prime; no class contains the key alone and the stem implies none.",
+  "one_sided_check": "key largest; distractors from three error kinds (determinant split over the difference, determinant treated as linear, a sign slip). Natural errors also go over: ad + bc for 2A − B gives 143 + 40 = 183, and taking 8 − (−2) as 6 gives 143 − 24 = 119; neither is an option. Nothing in the stem says which way a slip moves a determinant.",
+  "interior_parity_check": "Interior by value: 73 and 81, both two-digit odd integers; neither is rounder.",
+  "cheap_bound_check": "No cheap one-sided bound exists: the entries of A and B mix signs, so the size of ad and bc in 2A − B is not fixed without forming the matrix, and forming it is the work. 81 lies 22 below the key and no estimate separates them.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Key largest, counters 183 and 119 go over. Each step is live alone: 3A − 2B entry (35d51f28), det(3A) (d7c66dfd); only the composition and its non-linearity trap are new."
+  }
+ },
+ {
+  "id": "AM27N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "vector projection length",
+  "subskill": "length of the projection of one vector onto another",
+  "prompt": "In the standard (x,y) coordinate plane, u = ⟨7, −2⟩ and v = ⟨3, 5⟩. To the nearest hundredth, what is the length of the vector projection of u onto v ?",
+  "choices": [
+   "0.32",
+   "1.89",
+   "0.26",
+   "1.51"
+  ],
+  "correct_answer": "1.89",
+  "explanation": "The projection of u onto v has length |u · v|/|v|. Here u · v = 7(3) + (−2)(5) = 11 and |v| = √34 ≈ 5.831, so the length is 11/5.831 ≈ 1.89. The option 1.51 divides by |u| = √53 instead, which is the length of the projection of v onto u. The option 0.32 divides by |v|² = 34, which is the scalar multiple of v in the projection, not its length. The option 0.26 divides by |u||v|, which is the cosine of the angle between the vectors.",
+  "solve": "const d=7*3+(-2)*5;return (Math.abs(d)/Math.hypot(3,5)).toFixed(2);",
+  "distractor_solve": {
+   "1.51": "const d=7*3+(-2)*5;return (Math.abs(d)/Math.hypot(7,-2)).toFixed(2);",
+   "0.32": "const d=7*3+(-2)*5;return (Math.abs(d)/34).toFixed(2);",
+   "0.26": "const d=7*3+(-2)*5;return (Math.abs(d)/Math.hypot(7,-2)/Math.hypot(3,5)).toFixed(2);"
+  },
+  "quantity_asked": "the length of proj_v(u), the vector projection of u onto v.",
+  "distractor_kind": {
+   "1.51": "error path: divides the dot product by |u| (projects v onto u). (a) not a parameter extreme. (b) neighbouring problem (projection of v onto u), strictly inside (0, |u|) = (0, 7.28). (c) inside. (d) real direction-of-projection error.",
+   "0.32": "error path: reports (u · v)/|v|², the scalar coefficient of v, as the length. (a) no extreme. (b) not at an edge. (c) inside (0, 7.28). (d) real formula-step confusion.",
+   "0.26": "error path: reports the cosine (u · v)/(|u||v|). (a) no extreme. (b) not at an edge. (c) inside (0, 1) and (0, 7.28). (d) real formula confusion."
+  },
+  "distractor_meta": {
+   "1.51": {
+    "direction": "under",
+    "error_kind": "projected v onto u"
+   },
+   "0.32": {
+    "direction": "under",
+    "error_kind": "coefficient for length"
+   },
+   "0.26": {
+    "direction": "under",
+    "error_kind": "cosine for length"
+   }
+  },
+  "bounds": [
+   "0 <= length <= |u| = √53 ≈ 7.28",
+   "length = |u| cos θ"
+  ],
+  "mechanism": [
+   "vector projection length",
+   "dot product over magnitude",
+   "projection of u onto v"
+  ],
+  "arith_class_check": "No. Two-decimal values; nothing in the stem implies a class.",
+  "one_sided_check": "key largest; the three distractors are three different formula slips. Natural errors also go over: a sign slip in the dot product (21 + 10 = 31) gives 5.32, and pairing components crosswise (7·5 − 2·3 = 29) gives 4.97, both above the key and not options. The stem does not signal a direction.",
+  "interior_parity_check": "Interior by value: 0.32 and 1.51, both two decimals; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: length <= |u| ≈ 7.28 (every option below it); the angle between u (about −16°) and v (about 59°) is about 75°, so a cosine estimate near 0.26 is the full computation, not a shortcut. 1.51 lies on the key's side of the 7.28 cap, 0.38 below the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Key largest; each small option is a named formula confusion (cosine, coefficient); over errors 4.97 and 5.32 exist."
+  }
+ }
+]

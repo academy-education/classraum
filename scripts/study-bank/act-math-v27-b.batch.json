@@ -1,0 +1,896 @@
+[
+ {
+  "id": "AM27F-01",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential growth and decay models set equal",
+  "subskill": "solve a·b^t = c·d^t with logs",
+  "prompt": "A savings account has a balance of $1,400 and earns 4.2% interest compounded once per year. A used car is worth $2,100 and loses 1.8% of its value each year. The balance is modeled by B(t) = 1,400(1.042)^t and the car's value by V(t) = 2,100(0.982)^t, where t is the number of years from now. To the nearest hundredth of a year, for what value of t is B(t) = V(t)?",
+  "choices": [
+   "6.96",
+   "6.84",
+   "7.25",
+   "6.76"
+  ],
+  "correct_answer": "6.84",
+  "explanation": "Set 1,400(1.042)^t = 2,100(0.982)^t, so (1.042/0.982)^t = 1.5 and t = ln 1.5 / ln(1.042/0.982) = 0.405465/0.059306 ≈ 6.84. The option \"6.96\" combines the two rates into one 6% growth factor, t = ln 1.5 / ln 1.06. The option \"6.76\" treats the combined 6% as a continuous rate, t = ln 1.5 / 0.06. The option \"7.25\" uses linear change: the gap of $700 closes by 1,400(0.042) + 2,100(0.018) = $96.60 per year.",
+  "solve": "return (Math.log(1.5)/Math.log(1.042/0.982)).toFixed(2);",
+  "distractor_solve": {
+   "6.96": "return (Math.log(1.5)/Math.log(1.06)).toFixed(2);",
+   "6.76": "return (Math.log(1.5)/0.06).toFixed(2);",
+   "7.25": "return (700/(1400*0.042+2100*0.018)).toFixed(2);"
+  },
+  "quantity_asked": "the time t, in years, at which the two exponential models are equal.",
+  "distractor_kind": {
+   "6.96": "error path: adds 4.2% and 1.8% into a single factor 1.06. (a) not an extreme. (b) neighbouring problem (one quantity growing 6%), strictly inside. (c) cheapest estimate: linear first-year closing gives 7.25 as an over-estimate; 6.96 inside. (d) real rate-combining error.",
+   "6.76": "error path: uses ln 1.5 / 0.06, treating the combined percent as a continuous rate (ln(1+r) replaced by r). (a) not an extreme. (b) not an edge answer. (c) inside the option span. (d) real log-approximation error; moves the answer down.",
+   "7.25": "error path: models both as linear change with first-year amounts. (a) not a bound the stem fixes. (b) the linear model is an adjacent problem; its answer is the largest option, not the key. (c) inside. (d) real model confusion."
+  },
+  "distractor_meta": {
+   "6.96": {
+    "direction": "over",
+    "error_kind": "rates added into one factor"
+   },
+   "6.76": {
+    "direction": "under",
+    "error_kind": "percent treated as continuous rate"
+   },
+   "7.25": {
+    "direction": "over",
+    "error_kind": "linear change instead of compounding"
+   }
+  },
+  "bounds": [
+   "t > 0 since B(0) < V(0) and B increases while V decreases"
+  ],
+  "mechanism": [
+   "exponential growth equals exponential decay",
+   "solve with logarithms",
+   "ratio of growth factors",
+   "compound interest and depreciation"
+  ],
+  "arith_class_check": "No. All four are two-decimal values between 6.7 and 7.3; none is integral.",
+  "one_sided_check": "key interior (one under, two over).",
+  "interior_parity_check": "Interior by value: 6.84 and 6.96, both two-decimal values; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; under-error (continuous-rate approximation) and over-errors (combined factor, linear) on both sides."
+  }
+ },
+ {
+  "id": "AM27F-02",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "logarithmic model (pH) with a constant percent change",
+  "subskill": "log of a power; percent growth inside a log",
+  "prompt": "The pH of a lake is given by pH = −log[H⁺], where [H⁺] is the hydrogen-ion concentration of the lake water, in moles per liter, and log is the base-10 logarithm. At the start of 2013, the lake's pH was 6.56. From the start of 2013 to the start of 2024, the hydrogen-ion concentration increased by 8% each year. Based on this information, what was the lake's pH at the start of 2024, to the nearest hundredth?",
+  "choices": [
+   "5.71",
+   "6.16",
+   "6.19",
+   "5.49"
+  ],
+  "correct_answer": "6.19",
+  "explanation": "From the start of 2013 to the start of 2024 is 11 years, so [H⁺] was multiplied by 1.08^11. Then pH = 6.56 − log(1.08^11) = 6.56 − 11 log(1.08) ≈ 6.56 − 0.368 = 6.19. The option \"6.16\" counts 2013 through 2024 inclusively as 12 years. The option \"5.71\" uses the natural logarithm, ln(1.08), in place of the base-10 logarithm. The option \"5.49\" rewrites log(1.08^11) as log(11 × 1.08).",
+  "solve": "return (6.56 - 11*Math.log10(1.08)).toFixed(2);",
+  "distractor_solve": {
+   "6.16": "return (6.56 - 12*Math.log10(1.08)).toFixed(2);",
+   "5.71": "return (6.56 - 11*Math.log(1.08)).toFixed(2);",
+   "5.49": "return (6.56 - Math.log10(11*1.08)).toFixed(2);"
+  },
+  "quantity_asked": "the lake's pH at the start of 2024, after 11 years of an 8% yearly increase in hydrogen-ion concentration from a pH of 6.56.",
+  "distractor_kind": {
+   "6.16": "error path: inclusive year count, 12 growth years instead of 11 (fencepost). (a) not on any stem-forced bound. (b) the 12-year answer is not an edge of a feasible interval; the pH has no stated floor. (c) the cheapest estimate is log(1.08) ≈ 0.033 per year, about 0.37 in total, so the pH is near 6.19. That estimate has a resolution of about 0.03 and cannot separate one year's step. (d) a real counting error, and it can go either way: the 10-year exclusive count (6.23) lands above the key.",
+   "5.71": "error path: ln(1.08) used for log(1.08), a calculator-key slip. (a) not on a bound. (b) not an adjacent problem's edge. (c) the per-year estimate of 0.033 removes it, but only for a student who already has the base-10 value. (d) a real error.",
+   "5.49": "error path: log(1.08^11) rewritten as log(11 × 1.08), the power rule misapplied. (a) not on a bound. (b) not an edge. (c) inside the span of the options. (d) a real log-property error."
+  },
+  "distractor_meta": {
+   "6.16": {
+    "direction": "under",
+    "error_kind": "inclusive year count (fencepost)"
+   },
+   "5.71": {
+    "direction": "under",
+    "error_kind": "natural log for base-10 log"
+   },
+   "5.49": {
+    "direction": "under",
+    "error_kind": "power rule misapplied: log(a^n) as log(na)"
+   }
+  },
+  "bounds": [
+   "pH falls (hydrogen-ion concentration rises), so pH < 6.56",
+   "no stated lower bound"
+  ],
+  "mechanism": [
+   "pH = -log[H+]",
+   "percent increase in concentration inside a logarithm",
+   "log of a power: n log(1.08)",
+   "year count from start of one year to start of another"
+  ],
+  "arith_class_check": "No. Four two-decimal values between 5.49 and 6.19; no integer, multiple or square singles out 6.19.",
+  "one_sided_check": "Key largest. The three distractors come from three different error kinds: an inclusive count, the wrong log base, and a misapplied log rule. Natural errors also move ABOVE the key: a sign slip (pH rises, 6.93), simple growth 1 + 11(0.08) inside the log (6.29), and the exclusive 10-year count (6.23). The stem does not fix the direction.",
+  "interior_parity_check": "Interior by value: 5.71 and 6.16, both two-decimal values with no trailing zero; neither is nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: each year lowers the pH by log(1.08) ≈ 0.033, so 11 years lower it by about 0.37, to about 6.19. That estimate cannot separate the key from 6.16 (one year's step of 0.033). 6.16 lies on the key's side of every round-number bound (for example pH > 6.56 − 0.5 = 6.06).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Counter-direction errors are natural: a sign slip (6.93), simple growth inside the log (6.29) and the exclusive 10-year count (6.23) all land above the key. 6.16 is one year away."
+  }
+ },
+ {
+  "id": "AM27F-03",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "logistic model with an unknown rate constant",
+  "subskill": "solve a logistic model for k, then for t",
+  "prompt": "A lake is stocked with 50 trout. The number of trout in the lake t months after stocking is modeled by N(t) = 1,200/(1 + 23e^(−kt)), where k is a positive constant. According to the model, there are 275 trout in the lake 6 months after stocking. According to the model, to the nearest hundredth of a month, at what value of t is N(t) = 1,030 ?",
+  "choices": [
+   "15.89",
+   "17.82",
+   "15.41",
+   "26.13"
+  ],
+  "correct_answer": "15.41",
+  "explanation": "From N(6) = 275: 1 + 23e^(−6k) = 1,200/275, so e^(−6k) = (1,200/275 − 1)/23 and k = −ln(0.10145)/6 ≈ 0.3204. From N(t) = 1,030: e^(−kt) = (1,200/1,030 − 1)/23 ≈ 0.0071754, so t = −ln(0.0071754)/k ≈ 15.41. The option \"15.89\" uses 1 − 1,030/1,200 in place of 1,200/1,030 − 1 in the second step. The option \"17.82\" drops the 1 in the first step, using e^(−6k) = (1,200/275)/23. The option \"26.13\" treats the growth from 50 to 275 trout in 6 months as linear.",
+  "solve": "const k=-Math.log((1200/275-1)/23)/6; return (-Math.log((1200/1030-1)/23)/k).toFixed(2);",
+  "distractor_solve": {
+   "15.89": "const k=-Math.log((1200/275-1)/23)/6; return (-Math.log((1-1030/1200)/23)/k).toFixed(2);",
+   "17.82": "const k=-Math.log((1200/275)/23)/6; return (-Math.log((1200/1030-1)/23)/k).toFixed(2);",
+   "26.13": "return (6*(1030-50)/(275-50)).toFixed(2);"
+  },
+  "quantity_asked": "the time t, in months, at which the logistic model, with k fixed by N(6) = 275, gives N(t) = 1,030.",
+  "distractor_kind": {
+   "15.89": "error path: in the second step the ratio is inverted, using 1 − N/1,200 for 1,200/N − 1. (a) not on a bound. (b) not an edge value. (c) N(15) ≈ 1,010 < 1,030 < N(16) ≈ 1,056, so the bracket (15, 16) keeps it. (d) a real algebra error.",
+   "17.82": "error path: in the first step the 1 is dropped (1,200/275 = 23e^(−6k)), which gives a smaller k. (a) not on a bound. (b) not an edge. (c) the cheap bound N(18) > 1,030 gives t < 18 and keeps it. (d) a real error.",
+   "26.13": "error path: linear growth of 225 trout per 6 months from 50 to 1,030. (a) not on a bound. (b) the linear model is an adjacent problem, but nothing in the stem makes it an edge. (c) removed only after k is found and N(18) is evaluated. (d) a common real error on a nonlinear model."
+  },
+  "distractor_meta": {
+   "15.89": {
+    "direction": "over",
+    "error_kind": "inverted ratio in the second step"
+   },
+   "17.82": {
+    "direction": "over",
+    "error_kind": "dropped the 1 when solving for k"
+   },
+   "26.13": {
+    "direction": "over",
+    "error_kind": "linear growth model"
+   }
+  },
+  "bounds": [
+   "t > 6 because 1,030 > 275 and N increases",
+   "N(t) < 1,200 for every t"
+  ],
+  "mechanism": [
+   "logistic model N = K/(1 + A e^(-kt))",
+   "solve for k from one data point",
+   "solve for t with natural logarithms",
+   "carrying capacity 1,200"
+  ],
+  "arith_class_check": "No. Four two-decimal values; no integer, multiple or square singles out 15.41.",
+  "one_sided_check": "Key smallest. The distractors come from three different error kinds: an inverted ratio in step 2, a dropped 1 in step 1, and a linear model. Natural errors also land BELOW the key: dropping the 1 in the second step (9.31), pure exponential growth from 50 at the same early rate (10.65), and dropping the 1 in both steps (10.77). The stem's ask (a single time, with no 'first' or 'least') does not fix the direction.",
+  "interior_parity_check": "Interior by value: 15.89 and 17.82, both two-decimal values with no trailing zero; neither is nicer.",
+  "cheap_bound_check": "Cheapest one-sided bounds once k is found: N(15) ≈ 1,010 < 1,030 < N(16) ≈ 1,056, so 15 < t < 16. That bracket removes 17.82 and 26.13, but 15.89 lies inside it, on the key's side. No bound cheaper than finding k exists, because k is not given.",
+  "self_audit": {
+   "risk": "low",
+   "note": "counter_error: dropping the 1 in the second step gives 9.31, below the key; pure exponential growth gives 10.65. 15.89 shares the bracket (15, 16) with the key."
+  }
+ },
+ {
+  "id": "AM27F-04",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "a function and its inverse",
+  "subskill": "graphs of f and its inverse meet on y = x",
+  "prompt": "The function f is defined by f(x) = 0.5x^2 − 0.4 for x ≥ 0, and f^(−1) is the inverse of f. In the standard (x,y) coordinate plane, the graphs of y = f(x) and y = f^(−1)(x) intersect at exactly one point. To the nearest thousandth, what is the x-coordinate of that point?",
+  "choices": [
+   "2.183",
+   "4.366",
+   "2.612",
+   "2.342"
+  ],
+  "correct_answer": "2.342",
+  "explanation": "Because f is increasing on x ≥ 0, its graph and the graph of its inverse can meet only on the line y = x, so solve f(x) = x: 0.5x^2 − x − 0.4 = 0, or x^2 − 2x − 0.8 = 0. Then x = 1 + √1.8 ≈ 2.342 (the other root is negative, outside the domain). The option \"2.183\" multiplies the equation by 2 but leaves the constant as 0.4, solving x^2 − 2x − 0.4 = 0. The option \"2.612\" applies the quadratic formula to 0.5x^2 − x − 0.4 = 0 but uses b^2 − 4c (dropping a = 0.5 from 4ac), (1 + √2.6)/(2 × 0.5). The option \"4.366\" uses 2x + 0.4 as the inverse (undoing the 0.5 and the 0.4 but not the square) and solves 0.5x^2 − 0.4 = 2x + 0.4.",
+  "solve": "return (1+Math.sqrt(1.8)).toFixed(3);",
+  "distractor_solve": {
+   "2.183": "return (1+Math.sqrt(1.4)).toFixed(3);",
+   "2.612": "return (1+Math.sqrt(2.6)).toFixed(3);",
+   "4.366": "return (2+Math.sqrt(5.6)).toFixed(3);"
+  },
+  "quantity_asked": "the x-coordinate where y = 0.5x^2 − 0.4 (x ≥ 0) meets its inverse.",
+  "distractor_kind": {
+   "2.183": "error path: x^2 − 2x − 0.4 = 0 after multiplying only two of the three terms by 2. (a) not an extreme. (b) not an edge. (c) f(2) − 2 < 0 < f(2.5) − 2.5 brackets the key in (2, 2.5); 2.183 is inside. (d) real equation-scaling slip; moves the answer down.",
+   "2.612": "error path: quadratic formula on 0.5x^2 − x − 0.4 = 0 with discriminant 1 + 4(0.4) instead of 1 + 4(0.5)(0.4). (a) not an extreme. (b) not an edge. (c) inside the integer bracket (2, 3). (d) real quadratic-formula error; moves the answer up.",
+   "4.366": "error path: takes f^(−1)(x) = 2x + 0.4 and solves 0.5x^2 − 0.4 = 2x + 0.4. (a) not an extreme. (b) not an edge. (c) outside (2, 3); removable by evaluating f at 3. (d) real inverse-construction error; moves the answer up."
+  },
+  "distractor_meta": {
+   "2.183": {
+    "direction": "under",
+    "error_kind": "constant not doubled when clearing 0.5"
+   },
+   "2.612": {
+    "direction": "over",
+    "error_kind": "a omitted from 4ac"
+   },
+   "4.366": {
+    "direction": "over",
+    "error_kind": "inverse found without the square root"
+   }
+  },
+  "bounds": [
+   "x > 0 (domain)",
+   "2 < x < 3 since f(2) < 2 and f(3) > 3"
+  ],
+  "mechanism": [
+   "intersection of a function and its inverse",
+   "solve f(x) = x",
+   "line y = x symmetry",
+   "quadratic on a restricted domain"
+  ],
+  "arith_class_check": "No. Four three-decimal irrational values; none is rational.",
+  "one_sided_check": "key interior (one under, two over).",
+  "interior_parity_check": "Interior by value: 2.342 and 2.612, both three-decimal values; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Interior key; the integer bracket (2, 3) removes 4.366 and the half-step bracket (2, 2.5) removes 2.612, leaving 2.183 beside the key."
+  }
+ },
+ {
+  "id": "AM27F-05",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "zeros of a cubic from one known zero",
+  "subskill": "factor theorem, quotient, quadratic formula",
+  "prompt": "The polynomial p(x) = x^3 − 7x^2 − 3x + 26 has x = 2 as one of its zeros. To the nearest thousandth, what is the greatest zero of p?",
+  "choices": [
+   "6.437",
+   "6.791",
+   "6.887",
+   "5.582"
+  ],
+  "correct_answer": "6.887",
+  "explanation": "Dividing p(x) by x − 2 gives x^2 − 5x − 13 with remainder 0. Its zeros are (5 ± √77)/2, and the greater is (5 + 8.7750)/2 ≈ 6.887. The option \"6.791\" divides by x + 2 instead (quotient x^2 − 9x + 15, ignoring the remainder −4), giving (9 + √21)/2. The option \"5.582\" forgets the factor 4 in the discriminant, (5 + √(25 + 13))/2. The option \"6.437\" completes the square incorrectly, writing (x − 2.5)^2 = 13 + 2.5 instead of 13 + 6.25.",
+  "solve": "return ((5+Math.sqrt(77))/2).toFixed(3);",
+  "distractor_solve": {
+   "6.791": "return ((9+Math.sqrt(21))/2).toFixed(3);",
+   "5.582": "return ((5+Math.sqrt(38))/2).toFixed(3);",
+   "6.437": "return (2.5+Math.sqrt(15.5)).toFixed(3);"
+  },
+  "quantity_asked": "the largest real zero of x^3 − 7x^2 − 3x + 26.",
+  "distractor_kind": {
+   "6.791": "error path: synthetic division with −2 instead of 2, remainder ignored. (a) not an extreme. (b) adjacent problem, inside (6, 7). (c) p(6) = −28 < 0 and p(7) = 5 > 0 bracket the zero in (6, 7); 6.791 is inside and 0.096 below the key. (d) real sign error in the factor theorem.",
+   "5.582": "error path: uses b^2 − ac instead of b^2 − 4ac. (a) not an extreme. (b) not an edge. (c) below the bracket (6, 7), which needs two evaluations of p. (d) real quadratic-formula error.",
+   "6.437": "error path: adds 2.5 (half the coefficient) instead of 6.25 (its square) to both sides. (a) not an extreme. (b) not an edge. (c) inside (6, 7). (d) real completing-the-square error."
+  },
+  "distractor_meta": {
+   "6.791": {
+    "direction": "under",
+    "error_kind": "divides by x + 2"
+   },
+   "5.582": {
+    "direction": "under",
+    "error_kind": "discriminant missing factor 4"
+   },
+   "6.437": {
+    "direction": "under",
+    "error_kind": "completing the square slip"
+   }
+  },
+  "bounds": [
+   "6 < zero < 7 (p(6) = −28, p(7) = 5)"
+  ],
+  "mechanism": [
+   "factor theorem",
+   "synthetic division",
+   "quadratic formula",
+   "greatest zero of a cubic"
+  ],
+  "arith_class_check": "No. All four are three-decimal irrational values; none is rational or an integer.",
+  "one_sided_check": "key largest. Three error kinds: wrong sign in the divisor, a discriminant slip, a completing-the-square slip. Natural UPWARD errors exist and are not options: not halving, 5 + √77 = 13.775; halving only the radical, 5 + √77/2 = 9.387; the sign slip −b → (−5 + ...) moves down. The stem does not signal a direction.",
+  "interior_parity_check": "Interior by value: 6.437 and 6.791, both three-decimal values; neither is nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: p(6) < 0 < p(7) puts the zero in (6, 7), which removes only 5.582. 6.791 is 0.096 below the key; separating it needs p evaluated between 6.79 and 6.89 (p(6.8) = −1.5), as fine as solving.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; nearest distractor 0.096 below inside the integer bracket; natural up-errors (not halving) exist and are not options."
+  }
+ },
+ {
+  "id": "AM27F-06",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "transformed square-root function",
+  "subskill": "x-intercept of a stretched and shifted radical",
+  "prompt": "The function g(x) = 2√(0.45x + 0.3) − 3.2 is a transformation of y = √x. To the nearest hundredth, what is the x-intercept of the graph of g in the standard (x,y) coordinate plane?",
+  "choices": [
+   "5.69",
+   "5.02",
+   "6.44",
+   "5.39"
+  ],
+  "correct_answer": "5.02",
+  "explanation": "Set g(x) = 0: 2√(0.45x + 0.3) = 3.2, so √(0.45x + 0.3) = 1.6 and 0.45x + 0.3 = 2.56. Then x = 2.26/0.45 ≈ 5.02. The option \"5.39\" divides 2.56 by 0.45 before subtracting 0.3. The option \"5.69\" drops the 0.3, x = 2.56/0.45. The option \"6.44\" squares 1.6 as 3.2, so 0.45x + 0.3 = 3.2.",
+  "solve": "return ((1.6*1.6-0.3)/0.45).toFixed(2);",
+  "distractor_solve": {
+   "5.39": "return (1.6*1.6/0.45-0.3).toFixed(2);",
+   "5.69": "return (1.6*1.6/0.45).toFixed(2);",
+   "6.44": "return ((3.2-0.3)/0.45).toFixed(2);"
+  },
+  "quantity_asked": "the x-value where 2√(0.45x + 0.3) − 3.2 = 0.",
+  "distractor_kind": {
+   "5.39": "error path: x = 2.56/0.45 − 0.3, undoing the operations in the wrong order. (a) not an extreme. (b) not an edge. (c) the coarse bracket 1 < 1.6 < 2 gives x in (1.56, 8.22) and the half-step bracket 1.5 < 1.6 < 2 gives (4.33, 8.22); inside both. (d) real order-of-operations error.",
+   "5.69": "error path: solves 0.45x = 2.56, dropping the 0.3. (a) not an extreme. (b) not an edge. (c) inside (4.33, 8.22). (d) real step-skipping error.",
+   "6.44": "error path: takes 1.6^2 as 3.2. (a) not an extreme. (b) not an edge. (c) inside (4.33, 8.22). (d) real squaring slip."
+  },
+  "distractor_meta": {
+   "5.39": {
+    "direction": "over",
+    "error_kind": "divides before subtracting"
+   },
+   "5.69": {
+    "direction": "over",
+    "error_kind": "constant inside radical dropped"
+   },
+   "6.44": {
+    "direction": "over",
+    "error_kind": "squares by doubling"
+   }
+  },
+  "bounds": [
+   "x > −2/3 (domain)",
+   "1.5 < 1.6 < 2 gives 4.33 < x < 8.22"
+  ],
+  "mechanism": [
+   "transformed square root function",
+   "x-intercept of a radical function",
+   "undo vertical stretch and shift",
+   "solve radical equation"
+  ],
+  "arith_class_check": "No. Four two-decimal values with no trailing zero; none is an integer.",
+  "one_sided_check": "key smallest. Three error kinds: wrong order of inverse operations, a dropped constant, a squaring slip. Natural DOWNWARD errors exist and are not options: not squaring, (1.6 − 0.3)/0.45 = 2.89; subtracting 2 instead of dividing by 2, (1.2^2 − 0.3)/0.45 = 2.53. The stem does not signal a direction.",
+  "interior_parity_check": "Interior by value: 5.39 and 5.69, both two-decimal values; neither is nicer.",
+  "cheap_bound_check": "Cheapest bounds: 1 < 1.6 < 2 gives x in (1.56, 8.22); one step finer, 1.5 < 1.6 < 2 gives (4.33, 8.22); every option is inside both, and 5.39 is 0.37 above the key. Only a bracket as fine as (1.5, 1.75) removes 6.44.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; all options inside the half-step bracket; 5.69 − 5.39 equals the stem constant 0.3 (two distractors, not the key)."
+  }
+ },
+ {
+  "id": "AM27F-07",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "average rate of change of a piecewise function",
+  "subskill": "evaluate the correct piece at each endpoint",
+  "prompt": "The function f is defined by f(x) = x^2 − 2x + 3 for x < 3 and f(x) = 15 − 3x for x ≥ 3. To the nearest hundredth, what is the average rate of change of f from x = −1.5 to x = 5.2?",
+  "choices": [
+   "-0.43",
+   "1.70",
+   "-1.32",
+   "-0.65"
+  ],
+  "correct_answer": "-1.32",
+  "explanation": "f(−1.5) uses the first piece: 2.25 + 3 + 3 = 8.25. f(5.2) uses the second piece: 15 − 15.6 = −0.6. The average rate of change is (−0.6 − 8.25)/(5.2 − (−1.5)) = −8.85/6.7 ≈ −1.32. The option \"1.70\" evaluates f(5.2) with the first piece, 19.64. The option \"-0.65\" squares −1.5 as −2.25, so f(−1.5) = 3.75. The option \"-0.43\" takes −2(−1.5) as −3, so f(−1.5) = 2.25.",
+  "solve": "const f=x=>x<3?x*x-2*x+3:15-3*x;return ((f(5.2)-f(-1.5))/6.7).toFixed(2);",
+  "distractor_solve": {
+   "1.70": "return ((5.2*5.2-2*5.2+3-8.25)/6.7).toFixed(2);",
+   "-0.65": "return ((15-3*5.2-3.75)/6.7).toFixed(2);",
+   "-0.43": "return ((15-3*5.2-2.25)/6.7).toFixed(2);"
+  },
+  "quantity_asked": "(f(5.2) − f(−1.5))/6.7 for the given piecewise function.",
+  "distractor_kind": {
+   "1.70": "error path: uses x^2 − 2x + 3 at x = 5.2. (a) not an extreme. (b) adjacent problem (one-piece function), largest option. (c) the sign of the answer follows from f(5.2) < f(−1.5), which needs the correct piece. (d) real piece-selection error.",
+   "-0.65": "error path: (−1.5)^2 taken as −2.25. (a) not an extreme. (b) not an edge. (c) inside (−3.0, 1.70). (d) real order-of-operations slip.",
+   "-0.43": "error path: −2(−1.5) taken as −3. (a) not an extreme. (b) not an edge. (c) inside. (d) real sign slip."
+  },
+  "distractor_meta": {
+   "1.70": {
+    "direction": "over",
+    "error_kind": "wrong piece at the right endpoint"
+   },
+   "-0.65": {
+    "direction": "over",
+    "error_kind": "sign error squaring a negative"
+   },
+   "-0.43": {
+    "direction": "over",
+    "error_kind": "sign error on the linear term"
+   }
+  },
+  "bounds": [
+   "f(5.2) = −0.6 < f(−1.5), so the rate is negative"
+  ],
+  "mechanism": [
+   "piecewise-defined function",
+   "average rate of change",
+   "choose the correct piece",
+   "secant slope"
+  ],
+  "arith_class_check": "No. Four two-decimal values; none is an integer.",
+  "one_sided_check": "key smallest. Three error kinds: wrong piece, squaring sign, linear-term sign. Natural DOWNWARD errors exist and are not options: using the second piece at −1.5, f = 19.5, gives −3.00; averaging the two piece rates (−0.5 and −3) gives −1.75; dividing by 5.2 − 1.5 = 3.7 gives −2.39.",
+  "interior_parity_check": "Interior by value: -0.65 and -0.43, both two-decimal negatives; neither is nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: the rate is negative (f(5.2) < f(−1.5)), which removes only 1.70; -0.65 and -0.43 are on the key's side and need f(−1.5) itself.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; two distractors are arithmetic slips at f(−1.5) of different kinds; down-errors (wrong piece at −1.5, averaged rates) exist and are not options."
+  }
+ },
+ {
+  "id": "AM27S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "binomial probability (at least k successes)",
+  "subskill": "binomial: at least 4 of 5",
+  "prompt": "An archer hits the target on each shot with probability 0.71, and the results of different shots are independent. The archer takes 5 shots. To the nearest thousandth, what is the probability that the archer hits the target on AT LEAST 4 of the 5 shots?",
+  "choices": [
+   "0.368",
+   "0.699",
+   "0.475",
+   "0.549"
+  ],
+  "correct_answer": "0.549",
+  "explanation": "P(exactly 4) = C(5,4)(0.71)^4(0.29) = 5(0.25412)(0.29) ≈ 0.36847, and P(exactly 5) = (0.71)^5 ≈ 0.18042. The sum is about 0.549. The option \"0.368\" counts exactly 4 hits only. The option \"0.475\" takes C(5,4) as 4 instead of 5, 4(0.71)^4(0.29) + (0.71)^5. The option \"0.699\" computes 1 − P(exactly 3), treating \"at least 4\" as the complement of \"exactly 3\" and forgetting 0, 1 and 2 hits.",
+  "solve": "const p=0.71,q=1-p;return (5*p**4*q+p**5).toFixed(3);",
+  "distractor_solve": {
+   "0.368": "const p=0.71,q=1-p;return (5*p**4*q).toFixed(3);",
+   "0.475": "const p=0.71,q=1-p;return (4*p**4*q+p**5).toFixed(3);",
+   "0.699": "const p=0.71,q=1-p;return (1-10*p**3*q*q).toFixed(3);"
+  },
+  "quantity_asked": "the probability of 4 or 5 hits in 5 independent shots with hit probability 0.71.",
+  "distractor_kind": {
+   "0.368": "error path: counts exactly 4 hits and drops the 5-hit case. (a) P(at least 4) > P(exactly 4), but that bound costs C(5,4)(0.71)^4(0.29), most of the work. (b) intermediate quantity, strictly inside the option range. (c) cheapest estimate: P(at least 4) <= 1 - P(at most 3) cannot be read without the work; 0.368 inside (0.18, 0.71). (d) real misreading of \"at least\".",
+   "0.475": "error path: uses 4 instead of C(5,4) = 5 arrangements of 4 hits. (a) not an extreme. (b) not an edge. (c) above the cheap subset bound (0.71)^4 = 0.254 and below 0.71; inside. (d) real coefficient error.",
+   "0.699": "error path: 1 - P(exactly 3), forgetting 0, 1, 2 hits in the complement. (a) not a bound. (b) not an adjacent problem answer at an edge. (c) below 0.71 = P(a given shot hits), which is not a bound on the answer. (d) real complement error."
+  },
+  "distractor_meta": {
+   "0.368": {
+    "direction": "under",
+    "error_kind": "exactly 4 only"
+   },
+   "0.475": {
+    "direction": "under",
+    "error_kind": "binomial coefficient miscounted"
+   },
+   "0.699": {
+    "direction": "over",
+    "error_kind": "complement of exactly 3 only"
+   }
+  },
+  "bounds": [
+   "P > (0.71)^4 = 0.254 (first four shots hit)",
+   "P < 0.71"
+  ],
+  "mechanism": [
+   "binomial probability",
+   "at least 4 of 5",
+   "independent shots",
+   "C(5,4)"
+  ],
+  "arith_class_check": "No. All four are three-decimal probabilities between 0.25 and 0.70; no class isolates 0.549.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 0.475 and 0.549, both three-decimal values with no trailing zero; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; no distractor equals p^4 = 0.254 (the cheap subset bound); 0.368 is P(exactly 4), whose bound costs most of the work; no pair sums to 1."
+  }
+ },
+ {
+  "id": "AM27S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability that the second player wins an alternating game",
+  "subskill": "infinite geometric series of rounds",
+  "prompt": "Ana and Ben take turns tossing a beanbag at a target, with Ana tossing first. On each of her tosses Ana hits the target with probability 0.38, and on each of his tosses Ben hits the target with probability 0.22. All tosses are independent. They keep taking turns until one of them hits the target, and the first person to hit the target wins. To the nearest thousandth, what is the probability that Ben wins?",
+  "choices": [
+   "0.367",
+   "0.426",
+   "0.282",
+   "0.264"
+  ],
+  "correct_answer": "0.264",
+  "explanation": "Each full round (Ana then Ben) ends with neither hitting with probability 0.62 × 0.78 = 0.4836. Ben wins in a given round when Ana misses and Ben hits: 0.62 × 0.22 = 0.1364. So P(Ben wins) = 0.1364(1 + 0.4836 + 0.4836² + …) = 0.1364/(1 − 0.4836) ≈ 0.264. The option \"0.426\" leaves out Ana's miss before Ben's toss: 0.22/(1 − 0.4836). The option \"0.367\" splits the win in proportion to the single-toss hit chances: 0.22/(0.38 + 0.22). The option \"0.282\" divides the first term by 0.4836 in place of 1 − 0.4836 when summing the series.",
+  "solve": "const r=0.62*0.78; return (0.62*0.22/(1-r)).toFixed(3);",
+  "distractor_solve": {
+   "0.426": "const r=0.62*0.78; return (0.22/(1-r)).toFixed(3);",
+   "0.367": "return (0.22/(0.38+0.22)).toFixed(3);",
+   "0.282": "const r=0.62*0.78; return (0.62*0.22/r).toFixed(3);"
+  },
+  "quantity_asked": "the probability that Ben makes the first hit when Ana tosses first, with per-toss hit probabilities 0.38 (Ana) and 0.22 (Ben).",
+  "distractor_kind": {
+   "0.426": "error path: Ben's chance per round taken as 0.22, which leaves out Ana's miss first (the same as Ben tossing first). (a) not on a bound. (b) Ben-first is an adjacent problem, but 0.426 lies strictly inside the two-round bounds 0.202 < P < 0.436. (c) inside every one-step estimate. (d) a real error.",
+   "0.367": "error path: the win is split in proportion to the single-toss probabilities, 0.22/(0.38 + 0.22). (a) not on a bound. (b) not an edge. (c) inside the two-round bounds. (d) a real and common shortcut error.",
+   "0.282": "error path: the geometric series a/(1 − r) is evaluated as a/r. (a) not on a bound. (b) not an edge. (c) inside the two-round bounds, and close to the key. (d) a real series-formula error."
+  },
+  "distractor_meta": {
+   "0.426": {
+    "direction": "over",
+    "error_kind": "omitted Ana's miss (wrong first tosser)"
+   },
+   "0.367": {
+    "direction": "over",
+    "error_kind": "ratio of single-toss probabilities"
+   },
+   "0.282": {
+    "direction": "over",
+    "error_kind": "series sum a/r for a/(1 - r)"
+   }
+  },
+  "bounds": [
+   "P(Ben) >= P(Ben wins in round 1 or 2) = 0.1364(1 + 0.4836) = 0.202",
+   "P(Ben) <= 1 - P(Ana wins in round 1 or 2) = 1 - 0.38(1.4836) = 0.436"
+  ],
+  "mechanism": [
+   "alternating turns until the first success",
+   "probability the second player wins",
+   "infinite geometric series of rounds",
+   "first to hit the target wins"
+  ],
+  "arith_class_check": "No. Four three-decimal probabilities; none is a simple fraction of the given values that singles out 0.264.",
+  "one_sided_check": "Key smallest. The distractors come from three error kinds: the wrong first tosser, a proportional split, and a series-formula slip. Natural errors also land BELOW the key: counting only Ben's first toss (0.136), stopping after two rounds (0.202), and the proportional split scaled by Ana's miss, 0.62 × 0.22/0.60 (0.227). The stem does not say which way errors go.",
+  "interior_parity_check": "Interior by value: 0.282 and 0.367, both three-decimal values with no trailing zero; neither is nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: two rounds give 0.202 < P(Ben) < 0.436. All three distractors lie inside that interval, and 0.282 is within 0.02 of the key. The finer comparison (Ben's 0.136 per round against Ana's 0.38) IS the solution, not a shortcut.",
+  "self_audit": {
+   "risk": "low",
+   "note": "counter_error: counting only Ben's first toss gives 0.136, below the key. Distractors 0.282, 0.367 and 0.426 come from three different errors, all inside the two-round bounds."
+  }
+ },
+ {
+  "id": "AM27S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "standard deviation of a small data set",
+  "subskill": "population standard deviation from the definition",
+  "prompt": "The numbers of minutes that 7 commuters waited for a bus were 3, 5, 6, 7, 10, 16, and 23. For a data set, the standard deviation is the square root of the mean of the squared deviations from the mean of the data set. To the nearest hundredth of a minute, what is the standard deviation of these 7 waiting times?",
+  "choices": [
+   "7.12",
+   "5.43",
+   "7.24",
+   "6.59"
+  ],
+  "correct_answer": "6.59",
+  "explanation": "The mean is 70/7 = 10 minutes. The deviations are −7, −5, −4, −3, 0, 6 and 13, and their squares sum to 49 + 25 + 16 + 9 + 0 + 36 + 169 = 304. The standard deviation is √(304/7) ≈ 6.59. The option \"7.12\" divides by 6 instead of 7: √(304/6). The option \"5.43\" averages the absolute deviations, 38/7. The option \"7.24\" measures the deviations from the median, 7, instead of from the mean.",
+  "solve": "const xs=[3,5,6,7,10,16,23]; const m=xs.reduce((a,b)=>a+b)/7; return Math.sqrt(xs.reduce((a,x)=>a+(x-m)**2,0)/7).toFixed(2);",
+  "distractor_solve": {
+   "7.12": "const xs=[3,5,6,7,10,16,23]; const m=xs.reduce((a,b)=>a+b)/7; return Math.sqrt(xs.reduce((a,x)=>a+(x-m)**2,0)/6).toFixed(2);",
+   "5.43": "const xs=[3,5,6,7,10,16,23]; const m=xs.reduce((a,b)=>a+b)/7; return (xs.reduce((a,x)=>a+Math.abs(x-m),0)/7).toFixed(2);",
+   "7.24": "const xs=[3,5,6,7,10,16,23]; return Math.sqrt(xs.reduce((a,x)=>a+(x-7)**2,0)/7).toFixed(2);"
+  },
+  "quantity_asked": "the population standard deviation (divide by 7) of the waiting times 3, 5, 6, 7, 10, 16 and 23 minutes.",
+  "distractor_kind": {
+   "7.12": "error path: divides the sum of squared deviations by n − 1 = 6, the sample formula the stem does not use. (a) not on a bound. (b) the sample SD is an adjacent problem, but it is not an edge of any interval a student can read off the stem. (c) inside the cheap span: SD is less than the largest deviation, 13. (d) a real error.",
+   "5.43": "error path: averages the absolute deviations (no squaring). (a) not on a stem-forced bound a student would compute. (b) not an edge. (c) inside the span. (d) a real error.",
+   "7.24": "error path: deviations measured from the median, 7, instead of the mean, 10. (a) not on a bound. (b) not an edge. (c) inside the span. (d) a real center-confusion error."
+  },
+  "distractor_meta": {
+   "7.12": {
+    "direction": "over",
+    "error_kind": "divides by n - 1"
+   },
+   "5.43": {
+    "direction": "under",
+    "error_kind": "mean absolute deviation"
+   },
+   "7.24": {
+    "direction": "over",
+    "error_kind": "deviations from the median"
+   }
+  },
+  "bounds": [
+   "0 < SD < 13 (the largest deviation from the mean)"
+  ],
+  "mechanism": [
+   "standard deviation of a list from the definition",
+   "mean of squared deviations",
+   "square root of the variance",
+   "population divisor n"
+  ],
+  "arith_class_check": "No. Four two-decimal values; no class singles out 6.59.",
+  "one_sided_check": "key interior (one under, two over).",
+  "interior_parity_check": "Interior by value: 6.59 and 7.12, both two-decimal values with no trailing zero; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key. Three distinct, common SD errors (n − 1, MAD, the median as center). Variance (43.43) was left out so that no option is the square of the key."
+  }
+ },
+ {
+  "id": "AM27S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value with a deductible",
+  "subskill": "expected payout of a piecewise payment rule",
+  "prompt": "A renter's insurance plan has a $750 deductible. For a yearly loss of L dollars, the plan pays nothing if L ≤ 750 and pays 90% of (L − 750) if L > 750. For a certain renter, the yearly loss is $0 with probability 0.78, $600 with probability 0.12, $1,250 with probability 0.07, and $4,700 with probability 0.03. To the nearest cent, what is the expected amount, in dollars, that the plan pays for one year?",
+  "choices": [
+   "202.95",
+   "138.15",
+   "121.95",
+   "130.65"
+  ],
+  "correct_answer": "138.15",
+  "explanation": "Only the $1,250 and $4,700 losses produce a payment: 0.9(1,250 − 750) = 450 and 0.9(4,700 − 750) = 3,555. Expected payment = 0.07(450) + 0.03(3,555) = 31.50 + 106.65 = 138.15. The option \"130.65\" takes 90% of the loss first and then subtracts the deductible: 0.07(1,125 − 750) + 0.03(4,230 − 750). The option \"121.95\" applies 0.9(L − 750) to the $600 loss as well, producing a negative \"payment\" of −135. The option \"202.95\" subtracts the deductible from the expected loss: 0.9(300.50 − 750 × 0.10), so the $600 loss is still counted as paid.",
+  "solve": "const L=[600,1250,4700],P=[0.12,0.07,0.03];let s=0;for(let i=0;i<3;i++)s+=P[i]*0.9*Math.max(L[i]-750,0);return s.toFixed(2);",
+  "distractor_solve": {
+   "130.65": "const L=[600,1250,4700],P=[0.12,0.07,0.03];let s=0;for(let i=0;i<3;i++)s+=P[i]*Math.max(0.9*L[i]-750,0);return s.toFixed(2);",
+   "121.95": "const L=[600,1250,4700],P=[0.12,0.07,0.03];let s=0;for(let i=0;i<3;i++)s+=P[i]*0.9*(L[i]-750);return s.toFixed(2);",
+   "202.95": "const L=[600,1250,4700],P=[0.12,0.07,0.03];let E=0;for(let i=0;i<3;i++)E+=P[i]*L[i];return (0.9*(E-750*0.10)).toFixed(2);"
+  },
+  "quantity_asked": "the expected yearly payment by the plan, in dollars.",
+  "distractor_kind": {
+   "130.65": "error path: takes 90% of the loss and then subtracts $750. (a) not an extreme. (b) adjacent rule (deductible after coinsurance), strictly inside. (c) cheapest bounds: the $4,700 term alone, 106.65, below; 0.9 × expected loss = 270.45 above; inside. (d) real order-of-operations error.",
+   "121.95": "error path: applies 0.9(L − 750) to every nonzero loss, so the $600 loss contributes a negative amount. (a) not an extreme. (b) not an edge value. (c) inside (106.65, 270.45). (d) real misuse of the piecewise rule.",
+   "202.95": "error path: computes 90% of (expected loss − 750 × P(loss > 750)), which still pays on the $600 loss. (a) not a parameter extreme; strictly below the no-deductible value 270.45. (b) not an edge. (c) inside (106.65, 270.45). (d) real error of applying a piecewise rule to an average."
+  },
+  "distractor_meta": {
+   "130.65": {
+    "direction": "under",
+    "error_kind": "percent applied before deductible"
+   },
+   "121.95": {
+    "direction": "under",
+    "error_kind": "negative payment on small loss"
+   },
+   "202.95": {
+    "direction": "over",
+    "error_kind": "deductible taken off the expected loss"
+   }
+  },
+  "bounds": [
+   "payment < 0.9 × expected loss = 270.45 (the deductible only removes money)",
+   "payment > 0.03 × 3,555 = 106.65 (the largest loss alone)"
+  ],
+  "mechanism": [
+   "expected value of a payout",
+   "insurance deductible",
+   "piecewise payment rule",
+   "percent of loss above a threshold"
+  ],
+  "arith_class_check": "No. Four two-decimal dollar amounts with no trailing zero; none is a whole number or a multiple of a stem quantity.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 130.65 and 138.15, both two-decimal amounts ending in 5; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; the no-deductible limiting value 270.45 is not an option; all three distractors lie inside (106.65, 270.45)."
+  }
+ },
+ {
+  "id": "AM27S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "counting with inclusion-exclusion",
+  "subskill": "codes containing two required kinds of digit",
+  "prompt": "A 4-digit access code is formed using only the digits 1 through 9, and digits may be repeated. How many such codes contain at least one 7 AND at least one digit that is a multiple of 3?",
+  "choices": [
+   "2052",
+   "1169",
+   "1794",
+   "1548"
+  ],
+  "correct_answer": "1794",
+  "explanation": "There are 9^4 = 6,561 codes. Codes with no 7: 8^4 = 4,096. Codes with no multiple of 3 (no 3, 6 or 9): 6^4 = 1,296. Codes with neither (digits from 1, 2, 4, 5, 8): 5^4 = 625. By inclusion-exclusion, 6,561 − 4,096 − 1,296 + 625 = 1,794. The option \"1169\" forgets to add back the 625 codes subtracted twice. The option \"1548\" counts only codes with EXACTLY one 7: 4(8^3 − 5^3). The option \"2052\" fixes one position for a 7 and requires a multiple of 3 among the other three positions, 4(9^3 − 6^3), counting codes with two or more 7s more than once.",
+  "solve": "return String(9**4-8**4-6**4+5**4);",
+  "distractor_solve": {
+   "1169": "return String(9**4-8**4-6**4);",
+   "1548": "return String(4*(8**3-5**3));",
+   "2052": "return String(4*(9**3-6**3));"
+  },
+  "quantity_asked": "the number of 4-digit codes from digits 1-9 (repetition allowed) with at least one 7 and at least one of 3, 6, 9.",
+  "distractor_kind": {
+   "1169": "error path: subtracts both complements but does not add back the 625 codes with neither. (a) not an extreme. (b) adjacent computation, smallest option. (c) the one-step superset bound (at least one 7: 2,465) is above every option; no cheap lower bound reaches 1,169. (d) the classic inclusion-exclusion slip.",
+   "1548": "error path: counts codes with exactly one 7 and at least one multiple of 3. (a) it is a subset count, but establishing that bound costs as much as the item. (b) adjacent problem, inside. (c) below the cheap superset bound 2,465. (d) real misreading of \"at least one\".",
+   "2052": "error path: chooses a position for a 7, then requires a multiple of 3 among the other three digits; codes with two or more 7s are counted repeatedly. (a) not an extreme. (b) not an edge. (c) below the one-step superset bound 2,465 (codes with at least one 7). (d) real overcounting error."
+  },
+  "distractor_meta": {
+   "1169": {
+    "direction": "under",
+    "error_kind": "overlap not added back"
+   },
+   "1548": {
+    "direction": "under",
+    "error_kind": "exactly one 7"
+   },
+   "2052": {
+    "direction": "over",
+    "error_kind": "position-fixing overcount"
+   }
+  },
+  "bounds": [
+   "count < 9^4 − 8^4 = 2,465 (codes with at least one 7)",
+   "count < 9^4 − 6^4 = 5,265"
+  ],
+  "mechanism": [
+   "inclusion-exclusion",
+   "at least one of each of two kinds",
+   "complement counting",
+   "codes with repeated digits"
+  ],
+  "arith_class_check": "No. Four 4-digit integers (one odd, three even); no divisibility property readable from the stem singles out 1,794.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 1548 and 1794, both plain 4-digit integers; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; every option is under the one-step superset bound 2,465 (the at-least-one-7 count is not an option)."
+  }
+ },
+ {
+  "id": "AM27S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "estimated mean from grouped data",
+  "subskill": "frequency-weighted class midpoints, unequal widths",
+  "prompt": "The commute times of 27 employees are summarized below.\nAt least 0 but less than 10 minutes: 2 employees\nAt least 10 but less than 20 minutes: 5 employees\nAt least 20 but less than 30 minutes: 9 employees\nAt least 30 but less than 45 minutes: 8 employees\nAt least 45 but less than 75 minutes: 3 employees\nUsing the midpoint of each interval to represent every commute time in that interval, what is the estimated mean commute time, to the nearest tenth of a minute?",
+  "choices": [
+   "28.5",
+   "30.4",
+   "27.4",
+   "29.3"
+  ],
+  "correct_answer": "29.3",
+  "explanation": "The midpoints are 5, 15, 25, 37.5 and 60. The weighted sum is 2(5) + 5(15) + 9(25) + 8(37.5) + 3(60) = 10 + 75 + 225 + 300 + 180 = 790, and 790/27 ≈ 29.3 minutes. The option \"28.5\" averages the five midpoints without weighting by the frequencies. The option \"27.4\" treats every interval as 10 minutes wide, using 35 and 50 as the last two midpoints. The option \"30.4\" divides the weighted sum by 26 (n − 1) instead of 27.",
+  "solve": "return (790/27).toFixed(1);",
+  "distractor_solve": {
+   "28.5": "return ((5+15+25+37.5+60)/5).toFixed(1);",
+   "27.4": "return ((10+75+225+8*35+3*50)/27).toFixed(1);",
+   "30.4": "return (790/26).toFixed(1);"
+  },
+  "quantity_asked": "the frequency-weighted mean of the class midpoints for the 27 commute times.",
+  "distractor_kind": {
+   "28.5": "error path: averages the five midpoints. (a) not a bound. (b) adjacent problem (unweighted mean), inside. (c) inside (5, 60). (d) real weighting error; its direction depends on the data, not on the stem.",
+   "27.4": "error path: uses midpoints 35 and 50 for the two wider intervals, as if every interval were 10 minutes wide. (a) not a bound. (b) not an edge. (c) inside. (d) real misreading of unequal widths.",
+   "30.4": "error path: divides the weighted sum by 26, borrowing the n − 1 of a sample standard deviation. (a) not an extreme. (b) not an edge. (c) inside. (d) real formula confusion; pushes up."
+  },
+  "distractor_meta": {
+   "28.5": {
+    "direction": "under",
+    "error_kind": "frequencies ignored"
+   },
+   "27.4": {
+    "direction": "under",
+    "error_kind": "equal class widths assumed"
+   },
+   "30.4": {
+    "direction": "over",
+    "error_kind": "divides by n − 1"
+   }
+  },
+  "bounds": [
+   "5 < estimate < 60"
+  ],
+  "mechanism": [
+   "grouped frequency table",
+   "class midpoints",
+   "weighted mean",
+   "unequal class widths"
+  ],
+  "arith_class_check": "No. Four one-decimal values, none ending in 0; no class isolates 29.3.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 28.5 and 29.3, both one-decimal values; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; no endpoint-mean (limiting) distractor; the over-error is not a bound."
+  }
+ },
+ {
+  "id": "AM27S-07",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value of a capped number of trials",
+  "subskill": "expected attempts: stop at first success or a cap",
+  "prompt": "Each time Lena attempts a certain puzzle, she solves it with probability 0.43, independently of her other attempts. She keeps attempting the puzzle until she solves it or until she has made 5 attempts, whichever comes first. To the nearest thousandth, what is the expected number of attempts she makes?",
+  "choices": [
+   "2.005",
+   "2.186",
+   "1.729",
+   "1.885"
+  ],
+  "correct_answer": "2.186",
+  "explanation": "Attempt k (k = 1 to 5) is made exactly when the first k − 1 attempts all fail, with probability 0.57^(k−1). The expected number of attempts is 1 + 0.57 + 0.57^2 + 0.57^3 + 0.57^4 ≈ 2.186. Equivalently, sum k(0.43)(0.57)^(k−1) for k = 1 to 4 plus 5(0.57)^4 for the outcomes that reach the fifth attempt. The option \"1.885\" sums k(0.43)(0.57)^(k−1) for k = 1 to 5 and leaves out the outcome in which all 5 attempts fail. The option \"2.005\" divides that sum by the probability of solving within 5 attempts (the mean among players who succeed). The option \"1.729\" uses 0.43 as the probability that an attempt fails, 1 + 0.43 + 0.43^2 + 0.43^3 + 0.43^4.",
+  "solve": "const q=0.57;let s=0;for(let k=0;k<5;k++)s+=q**k;return s.toFixed(3);",
+  "distractor_solve": {
+   "1.885": "const p=0.43,q=0.57;let s=0;for(let k=1;k<=5;k++)s+=k*p*q**(k-1);return s.toFixed(3);",
+   "2.005": "const p=0.43,q=0.57;let s=0;for(let k=1;k<=5;k++)s+=k*p*q**(k-1);return (s/(1-q**5)).toFixed(3);",
+   "1.729": "const p=0.43;let s=0;for(let k=0;k<5;k++)s+=p**k;return s.toFixed(3);"
+  },
+  "quantity_asked": "the expected number of attempts when attempts stop at the first success or after 5 attempts.",
+  "distractor_kind": {
+   "1.885": "error path: weights 1 through 5 by the probability of first success on that attempt and omits the 0.57^5 chance of 5 failures. (a) not an extreme. (b) not an edge value. (c) the cheapest upper bound 1/0.43 = 2.326 (no cap) is above every option; inside. (d) real incomplete-distribution error.",
+   "2.005": "error path: renormalizes over the successful outcomes only. (a) not an extreme. (b) adjacent problem (mean attempts given success), 0.181 below the key. (c) inside (1, 2.326). (d) real conditioning error.",
+   "1.729": "error path: uses 0.43 as the probability of failing. (a) not an extreme. (b) not an edge. (c) inside (1, 2.326). (d) real complement swap."
+  },
+  "distractor_meta": {
+   "1.885": {
+    "direction": "under",
+    "error_kind": "all-fail outcome omitted"
+   },
+   "2.005": {
+    "direction": "under",
+    "error_kind": "conditioned on success"
+   },
+   "1.729": {
+    "direction": "under",
+    "error_kind": "success and failure probabilities swapped"
+   }
+  },
+  "bounds": [
+   "1 < E < 1/0.43 = 2.326 (the uncapped expectation)",
+   "E < 5"
+  ],
+  "mechanism": [
+   "expected value of a stopping time",
+   "geometric distribution with a cap",
+   "first success or maximum attempts",
+   "tail-sum of probabilities"
+  ],
+  "arith_class_check": "No. Four three-decimal values; none is a terminating simple fraction of the stem numbers.",
+  "one_sided_check": "key largest. Three error kinds: an omitted outcome, conditioning on success, and swapping p and 1 − p. Natural UPWARD errors exist and are not options: ignoring the cap, 1/0.43 = 2.326; one term too many, 2.246. The stem does not say which way a slip moves the answer.",
+  "interior_parity_check": "Interior by value: 1.885 and 2.005, both three-decimal values; neither is nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: E < 1/0.43 = 2.326 (the cap only shortens the process); all four options are below it, so it removes nothing. Partial sums 1 + 0.57 + 0.3249 = 1.895 (three terms) lie below the key and put 1.729 and 1.885 below, but using them is the tail-sum method itself; 2.005 lies above that three-term sum and below the four-term sum 2.080, 0.181 below the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key with the uncapped mean 2.326 as the natural over-error, not an option; nearest distractor 0.181 below."
+  }
+ },
+ {
+  "id": "AM27S-08",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "conditional probability with two spinners",
+  "subskill": "condition on a difference, count the reduced space",
+  "prompt": "Spinner A has 6 equal sections numbered 1 through 6, and spinner B has 8 equal sections numbered 1 through 8. Each spinner is spun once, and the results are independent. Given that the two numbers differ by at most 1, what is the probability, to the nearest thousandth, that their sum is at least 10?",
+  "choices": [
+   "0.235",
+   "0.104",
+   "0.294",
+   "0.273"
+  ],
+  "correct_answer": "0.294",
+  "explanation": "Of the 48 equally likely outcomes, the pairs (a, b) with |a − b| ≤ 1 number 2 + 3 + 3 + 3 + 3 + 3 = 17 (a = 1 allows b = 1 or 2; every other a allows a − 1, a, a + 1). Among them the sum is at least 10 for (5, 5), (5, 6), (6, 5), (6, 6) and (6, 7): 5 outcomes. The probability is 5/17 ≈ 0.294. The option \"0.273\" reads \"differ by at most 1\" as \"differ by exactly 1\": 3 of 11. The option \"0.235\" counts only sums greater than 10: 4/17. The option \"0.104\" divides by all 48 outcomes, the joint probability 5/48.",
+  "solve": "let c=0,f=0,s=0,c1=0,f1=0;for(let a=1;a<=6;a++)for(let b=1;b<=8;b++){const g=Math.abs(a-b)<=1;if(g){c++;if(a+b>=10)f++;if(a+b>10)s++;}if(Math.abs(a-b)===1){c1++;if(a+b>=10)f1++;}}return (f/c).toFixed(3);",
+  "distractor_solve": {
+   "0.273": "let c=0,f=0,s=0,c1=0,f1=0;for(let a=1;a<=6;a++)for(let b=1;b<=8;b++){const g=Math.abs(a-b)<=1;if(g){c++;if(a+b>=10)f++;if(a+b>10)s++;}if(Math.abs(a-b)===1){c1++;if(a+b>=10)f1++;}}return (f1/c1).toFixed(3);",
+   "0.235": "let c=0,f=0,s=0,c1=0,f1=0;for(let a=1;a<=6;a++)for(let b=1;b<=8;b++){const g=Math.abs(a-b)<=1;if(g){c++;if(a+b>=10)f++;if(a+b>10)s++;}if(Math.abs(a-b)===1){c1++;if(a+b>=10)f1++;}}return (s/c).toFixed(3);",
+   "0.104": "let c=0,f=0,s=0,c1=0,f1=0;for(let a=1;a<=6;a++)for(let b=1;b<=8;b++){const g=Math.abs(a-b)<=1;if(g){c++;if(a+b>=10)f++;if(a+b>10)s++;}if(Math.abs(a-b)===1){c1++;if(a+b>=10)f1++;}}return (f/48).toFixed(3);"
+  },
+  "quantity_asked": "P(sum ≥ 10 | the two numbers differ by at most 1) for a 6-section and an 8-section spinner.",
+  "distractor_kind": {
+   "0.273": "error path: conditions on |a − b| = 1 (11 outcomes, 3 favourable). (a) not an extreme. (b) adjacent problem, 0.021 below the key. (c) no one-step estimate separates it. (d) real misreading of the condition.",
+   "0.235": "error path: counts sums of 11 or more, 4/17. (a) not an extreme. (b) adjacent problem, inside. (c) inside. (d) real inequality misreading.",
+   "0.104": "error path: divides the 5 favourable outcomes by all 48. (a) not an extreme. (b) the joint probability, smallest option. (c) no cheap bound on the conditional removes it without counting the condition. (d) real denominator error."
+  },
+  "distractor_meta": {
+   "0.273": {
+    "direction": "under",
+    "error_kind": "\"at most 1\" read as \"exactly 1\""
+   },
+   "0.235": {
+    "direction": "under",
+    "error_kind": "\"at least\" read as \"greater than\""
+   },
+   "0.104": {
+    "direction": "under",
+    "error_kind": "joint instead of conditional"
+   }
+  },
+  "bounds": [
+   "0 < P < 1"
+  ],
+  "mechanism": [
+   "conditional probability",
+   "reduced sample space",
+   "numbers differing by at most 1",
+   "two spinners of different sizes"
+  ],
+  "arith_class_check": "No. Four three-decimal values; no terminating-fraction class isolates 0.294 (5/17).",
+  "one_sided_check": "key largest. Three error kinds: condition misread, inequality misread, wrong denominator. Natural UPWARD errors exist and are not options: reversing the condition, P(differ by at most 1 | sum ≥ 10) = 5/15 = 0.333; ignoring the condition, 15/48 = 0.313. The stem does not say which way a slip moves the answer.",
+  "interior_parity_check": "Interior by value: 0.235 and 0.273, both three-decimal values; neither is nicer.",
+  "cheap_bound_check": "No cheap one-sided bound: the conditional probability needs the 17-outcome count; the nearest distractor 0.273 is 0.021 below the key, and the natural over-errors (0.313, 0.333) are not options.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; nearest distractor 0.021 below; reverse-conditional and unconditional values lie above and are not options."
+  }
+ }
+]

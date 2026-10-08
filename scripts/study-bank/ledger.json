@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T15:02:32.711Z",
+  "generatedAt": "2026-10-08T15:07:47.948Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -7085,6 +7085,40 @@
           "passed": true,
           "contentSha": "a84b6a43d16a76d077899117f159ed1d5088c5385b25eb233023865e4fbd972c",
           "verdict": "Recorded, not dropped: C09 short/surplus is a known prep pattern with no live row; C07 -25 = 5 x -5 with a computed multiplier; shared key values across items 17 (C04 A03), 18 (C13 D01), 22 (D05 A06), 24 (A08 B06), -12 (A01 B02), -22 (A07 C08). Survival at the gate by key position: extreme 17/30 = 56.7%, interior 15/20 = 75.0% (A88: 25.0% / 70.0%)."
+        }
+      }
+    },
+    {
+      "id": "act-math-v27-held-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v27",
+      "contentSha": "7db95c40ff7f887e7180f65f780b209e8b567fd876167c6c74dc15c95ff3b039",
+      "status": "held",
+      "note": "48 authored (IES 20 in two disjoint arms, S&P 8, Functions 7, Geometry 9, N&Q 4) by four Claude authors for ACT Math forms 19+20 (form 19 = IES +1; form 20 deficits IES 10, Geometry 7, S&P 6, Functions 5, N&Q 2). Bars pre-registered in ACT-MATH-V27-PREREGISTERED.md (commit b754c8ba) before authoring: all v26 checks; IES both-way error setups with per-distractor direction declarations (act-math-v27-ies-directions.mjs) to be verified by the graders (rule 12); key position from IES own survival (act-math-v27-projection.mjs); error-direction read on every author extreme key and option-shape + merge checks before the return. HELD AT STAGE 0: after the single return (14 of 48) one post-return drop (AM27N-01, rule 5) left 47 at 14/19/14 and act-math-v27-projection read 55.4% at v26 rates, outside [45.0, 55.0]. Nothing frozen or inserted; ACT Math stays 18 forms (853), form 19 needs IES +1.",
+      "stages": {
+        "shape": {
+          "passed": false,
+          "contentSha": "7db95c40ff7f887e7180f65f780b209e8b567fd876167c6c74dc15c95ff3b039",
+          "verdict": "Round 1 (48): act-math-v18-preflight PASS per file (sandbox and distractor_solve all), key position exact per file (D1 4/3/3, D2 3/3/4, B 4/7/4, C 3/7/3), ies-directions D1-D4 0/20 IES, D5 1 (coincidence), option-shapes RUN 0 GAP 0, merge-halves closure 0, interior niceness 0, (c) mechanical 0. Return 14: error-direction read on all 28 extreme keys returned 6 (I-06, I-19, F-03, S-02, G-09, N-03); hand keyword search (dump 3,258 live + 148 held/dropped ACT) found 7 live/held duplicates that Jaccard and math-mechanism-dup did not flag (I-12 ~ isee 4bd0a191, I-14 ~ sat c968a8fd, I-16 ~ act c9f4b0d5, F-02 ~ sat 6857b8da, S-03 ~ act 7b97b847, N-01 ~ act 7d39df0a, G-08 ~ held AM24G-07) and 1 in-batch overlap (I-08 ~ I-01). After the return the replacement N-01 (sum of entries of a matrix product) matched live act 339b1ba7 / bb7a96c5 and was dropped (rule 5, no second return). Merged 47 (sha 7db95c40): key 14/19/14 in band; key-extremity-projection PASS 50.5%; act-math-v26-projection PASS (50.5 / 53.6 / 52.9); act-math-v27-projection split 48.3, pooled3 54.0, v26 55.4% FAIL (band 45-55); IES subset 46.7% at kept n 10.6 PASS; authored magnitude REPORTED (IES 20 interior z -2.16). Set gate failed after the return: HELD."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "7db95c40ff7f887e7180f65f780b209e8b567fd876167c6c74dc15c95ff3b039",
+          "verdict": "Not run: the batch was held at stage 0 (a set gate failed after the single return), so nothing was frozen and no solver or grader saw it."
+        },
+        "withsource": {
+          "passed": false,
+          "contentSha": "7db95c40ff7f887e7180f65f780b209e8b567fd876167c6c74dc15c95ff3b039",
+          "verdict": "Not run: the batch was held at stage 0 (a set gate failed after the single return), so nothing was frozen and no solver or grader saw it."
+        },
+        "tells": {
+          "passed": false,
+          "contentSha": "7db95c40ff7f887e7180f65f780b209e8b567fd876167c6c74dc15c95ff3b039",
+          "verdict": "Recorded, not acted on: cross-item \"percents added\" distractor in four IES items (directions mixed); D2 I-16 and I-19 both \"percent less/cheaper\" with a wrong-base distractor above a smallest key; S-02 and I-08 replacements borderline on the error-direction read. A SAT Algebra insert (32 rows) landed mid-run (live maths 3,258 -> 3,290); the held set was not re-searched against it."
         }
       }
     }
