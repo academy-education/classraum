@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T04:10:13.198Z",
+  "generatedAt": "2026-10-08T04:31:01.585Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -6071,6 +6071,53 @@
           "passed": false,
           "contentSha": "fdedbae6ac6f53963bbf6bf735eff793c96154509e51d78c0b399b4532db2b7b",
           "verdict": "Kept 39 re-run as a set: key-extremity-gate FAIL 15/39 = 38.5% < 40.0% (the inserter would refuse it too); key position 7/24/8; magnitude z -0.19/-0.76/0.81. Pre-registered: a measured gate failing holds the batch, no dropping or editing to pass. HELD. Would-be kept by domain: Algebra 13, Geometry 7, IES 6, Functions 4, S&P 6, N&Q 3 (form 17 would have been met; form 18 not)."
+        }
+      }
+    },
+    {
+      "id": "sat-sec-hard-v16-kept-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "sat",
+      "section": "reading_writing",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "rw-v16-sec-hard",
+      "contentSha": "b226cb155ac5cf23fb67d52e186de858c95cd40cc015299e28bf6e8d0c61715f",
+      "status": "inserted",
+      "note": "Pre-registered d06c14c2 (PREREG-SEC16-2026-10-08.md: v15 bars/control/pipeline; 16 items, 12 agreement/verb-form on distinct assigned constructions; nearest-noun-agrees >=3 of 7 agreement items, inversion/postposed >=2; no date-settled tense; strong-mark key in >=2 of <=4 punctuation items; no ;/. twins; nonfinite key once; pre-freeze cross-author template check) before any item existed. 16 authored by two Claude agents (8 each), frozen bbf67d6c (ae2f629b); pre-freeze template comparison found no collision; no audit/repair round, no repair after freeze. 12 kept: 8 hard / 4 medium by panel median; authors labelled all 16 hard. Dropped: SEC16A-06 (weak 2/3, panel easy; recommend_drop f), SEC16A-07 (median 2 free strikes: double-colon and run-on options), SEC16A-08 (recommend_drop d: every option prints the title's closing comma, pulling toward the comma pair; 1 cold miss, so key votes 2/3), SEC16B-06 (recommend_drop f: too easy, weak by f). All agents Claude.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "b226cb155ac5cf23fb67d52e186de858c95cd40cc015299e28bf6e8d0c61715f",
+          "verdict": "12 items, one ______ blank each; bank-helper check shape OK on all 16 authored. Key letters across 16 A4/B4/C4/D4 (kept 12: A3/B3/C4/D2, shuffled at draw time). Key uniquely longest 4/16. sec-near-dup.mjs on the frozen 16 vs all live SEC rows (paged 382 = exact 382): 0 flagged against live, max passage Jaccard 0.017, 0 skeletons equal to a live hard item, 0 within-batch pairs. Doubled-word drop 0/16. Brief counts on the frozen file: FSS 12/16 (agreement 7, verb form 5), punctuation 4; nearest noun agrees with the key in 4 of 7 agreement items (A-01, A-03, B-02, B-03), inverted/postposed subject 2 (A-02, A-04), opposite-nearest 2 (A-02, B-01); nonfinite key 1 (B-04); date-decided tense 0; strong-mark key 3 of 4 punctuation items (A-07 ;, B-07 :, B-08 dash; A-08 none); ;/. twins 0; colon+dash pairs 0; key the sole strong mark 0. With-source render BLIND=bare asserted (0 subskill strings, 0 header words; labelled render hits 16/16)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "b226cb155ac5cf23fb67d52e186de858c95cd40cc015299e28bf6e8d0c61715f",
+          "verdict": "THREE INDEPENDENT GRADERS (ws-d, ws-e, ws-f), two phases: phase 1 cold snapshotted (sha) before the key file existed; 0 phase-1 fields changed in phase 2 on all three. 16/16 keys key_ok on all three; cold misses 1 (d on A-08, answered C); 0 path errors; 0 majority non-exclusive (d alone on A-08); 0 majority resolving words (1/3 on B-02, B-03, B-06, B-08); 0 majority matches_open_mark (d alone on A-08); 0 doubled_word; 0 off-blueprint. gate-verdict.mjs rules 1-6: 14/16 keep (drops A-06 rule 3, A-07 rule 4); recommend_drop extension drops A-08 (d) and B-06 (f). Panel-median hard kept: A-01, A-02, A-03, A-04, B-01, B-02, B-03, B-08; medium A-05, B-04, B-05, B-07."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "b226cb155ac5cf23fb67d52e186de858c95cd40cc015299e28bf6e8d0c61715f",
+          "verdict": "Options-only attack (make-oo-render --control 24 --control-difficulty hard --exclude rw-v10..rw-v15-sec-hard; pool 30 live hard), 16 candidates interleaved with 24 controls, keys dealt flat, three solver samples, 40/40 answered each. CANDIDATE 43.8% (21/48, letter line 25.0%) vs LIVE CONTROL 63.9% (46/72, letter line 25.0%), margin -20.1, inside the pre-registered +10 bar. Ceiling check: control below 90% and above its letter line +5, so MEASURED. Pairwise agreement 78.3% vs 24.9% independent. Unanimity as batch rate: candidate 4/16 = 25.0%, control 15/24 = 62.5%."
+        },
+        "elimination": {
+          "passed": true,
+          "bar": "paired-control-v1",
+          "candidateRate": 0.0625,
+          "controlRate": 0.0521,
+          "margin": 0.0104,
+          "threshold": 0.2,
+          "n": 16,
+          "controlN": 32,
+          "samples": 3,
+          "contentSha": "b226cb155ac5cf23fb67d52e186de858c95cd40cc015299e28bf6e8d0c61715f",
+          "verdict": "elimination-paired.mjs --batch/--qc (A23 bar), run on ALL 16 authored items (12 survived), difficulty from the full panel median (9 hard / 6 medium / 1 easy), 32 matched live controls, separate files, 3 Claude samples per arm. Candidate 6.3% [6.3, 6.3, 6.3] vs control 5.2% [3.1, 6.3, 6.3] -> margin +1.0, PASS. No key confidently rejected. Only candidate elimination: the double-colon option in SEC16A-07 (dropped)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "b226cb155ac5cf23fb67d52e186de858c95cd40cc015299e28bf6e8d0c61715f",
+          "verdict": "Named by all three graders: where options vary voice, the passive is the key in 4 of 5 (A-03, B-02, B-03, B-06; B-01 active) - 3 of 4 in the kept set; \"would\" wins both would/will items (A-05, B-05). Graders d, e: the comma option never wins the four punctuation items and a strong mark wins 3 (the inverse of v14/v15's semicolon-never tell). Grader f: a past-perfect \"had\" option appears in 8 of 12 verb items and is never the key (6 of the kept). Grader d: \"distrust the nearest noun\" still solves A-02, A-04, B-01, B-03. Template pairs: A-03~B-03 (number x voice, plural passive key, all three graders), B-01~B-02 (e), A-01~A-04 (compound subject, e, f), A-05~B-05 (would) - all kept, recorded, not enforced."
         }
       }
     }

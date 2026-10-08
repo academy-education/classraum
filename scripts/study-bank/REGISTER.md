@@ -1550,6 +1550,42 @@ recorded only in a commit message is a finding nobody reads.
 
   Evidence: `ACT-MATH-V24-PREREGISTERED.md`, `check-interior-niceness.mjs`, `act-math-v24-attack-draw.mjs`, `act-math-v24{-a1,-a2,-b,-c,-d,}.batch.json`, `act-math-v24.kept.batch.json` (would-be, not inserted), `act-math-v24.drops.json`, `act-math-v24.verdicts.json`, `act-math-v24-attack.{blind,key,controls,solver-a,solver-b,solver-c}.json`, `act-math-v24-grade.{batch,grade,gradekey}.json`, `act-math-v24.grader-{a,b}.json`; ledger `act-math-v24-held-2026-10-08`. `verify-act-draw`: act/math draws 45 of 45 (unchanged); `form-capacity`: ACT Math 16 forms; `next-form`: Algebra +1.
 
+- **2026-10-08** — **SEC v16 INSERTED: 12 of 16, 8 HARD / 4 MEDIUM BY PANEL MEDIAN. SEC hard 51 → 59. THE R&W MODULE-2 HARD ROUTE GOES FROM 7 TO 8 FORMS; Craft and Structure now binds (70 / ~8)** (form-capacity "SAT MODULE-2 HARD ROUTE": 8, capped by C&S; `verify-sat-hard-route.ts`: 3 of 3 drawn forms all-hard, 0 repeats, 81 distinct, 1186 live / 276 hard). `rw-v16-sec-hard`, kept sha `b226cb15`, frozen sha `bbf67d6c` (ae2f629b), prereg `d06c14c2` (PREREG-SEC16-2026-10-08.md: v15's bars, control and pipeline; 16 items, 12 agreement/verb form on constructions I assigned one per item; nearest-noun-agrees, inversion, no-date-tense, strong-mark-key, no-;/.-twin and nonfinite-key rules; a pre-freeze cross-author template check), ledger `sat-sec-hard-v16-kept-2026-10-08`. Two Claude authors, 8 each; no audit or repair round, nothing repaired after freeze. Every agent Claude.
+
+      near-dup    sec-near-dup.mjs frozen 16 vs ALL live SEC rows: paged 382 = exact 382; 0 flagged, max passage Jaccard 0.017,
+                  0 skeletons equal to a live hard item, 0 within-batch pairs. Pre-freeze template comparison: 0 cross-author
+                  collisions on the declared triples (so no replacement was used). Authors changed 4 items pre-delivery on
+                  their own near-dup hits (A-04 and B-03 grids collided with live hard 8022ca71 / bfd38b30; B-08 with 5a4fb6b6)
+      pre-flight  doubled-word drop 0/16. Brief counts on the frozen file: FSS 12/16 (agreement 7, verb form 5), punctuation 4;
+                  nearest noun agrees with key 4/7 agreement (A-01 either/or proximity, A-03 relative on nearest noun, B-02
+                  partitive, B-03 floating "each"); inverted/postposed 2 (A-02, A-04); nonfinite key 1 (B-04); date-decided tense 0;
+                  strong-mark key 3/4 (A-07 ;, B-07 :, B-08 dash); ;/. twins 0; key uniquely longest 4/16. All counts met
+      render      BLIND=bare; asserted before any grader read it: 0 subskill strings, 0 header words (the labelled render hits 16/16)
+      nosource    candidate 43.8% (21/48) vs live HARD-band control 63.9% (46/72), margin -20.1 (bar <= +10); MEASURED
+                  pairwise agreement 78.3% vs 24.9% independent; unanimity rate candidate 4/16 = 25.0%, control 15/24 = 62.5%
+      withsource  three graders (ws-d/e/f), phase 1 cold snapshotted (sha) before the key file existed, 0 phase-1 fields changed:
+                  16/16 keys key_ok on all three, 1 cold miss (d, A-08), 0 path errors, 0 majority non-exclusive / resolving /
+                  open-mark, 0 doubled_word, 0 off-blueprint; gate-verdict rules 1-6: 14/16 KEEP
+      drops       SEC16A-06 (parallel verbs): weak 2/3, panel easy, recommend_drop f. SEC16A-07 (semicolons in a series with
+                  internal commas): median 2 free strikes (double-colon and run-on options). SEC16A-08 (restrictive title, no
+                  mark; panel hard): recommend_drop d - every option prints the title's closing comma, so C reads as closing a
+                  comma pair (d's cold miss; key votes 2/3, which also fails Conventions 3/3). SEC16B-06 (passive modal):
+                  recommend_drop f, too easy, weak by f
+      elimination candidate 6.3% vs matched control 5.2% (n=16 vs 32), margin +1.0, PASS (A23), run on all 16 authored; the only
+                  candidate elimination was the double-colon option in A-07 (dropped)
+      panel       hard A-01 (either/or proximity + "ever since" perfect), A-02 (inversion after "Only in the decades since",
+                  head noun 8 words after the blank), A-03 (relative verb on the nearest plural noun, passive perfect), A-04
+                  (expletive "there" + delayed both/and subject), B-01 ("including" interrupter, number x voice), B-02 (two-thirds
+                  of + singular mass noun), B-03 (plural + floating "each", progressive passive), B-08 (dash after a fronted list
+                  resumed by "any one of these"); medium A-05 (counterfactual), B-04 (nonfinite key), B-05 (would after
+                  "assured"), B-07 (colon key); authors labelled all 16 hard (18th demotion, only 4 of 12 kept this time)
+
+  **Hard yield 9/16 before drops, 8/12 banked — the best of v10-v16** (3/26, 4/12, 3/14, 4/12, 5/12, 2/14, 8/16 banked). What moved it: agreement items in which the nearest noun is the true subject or the subject is inverted/postposed were all graded hard (A-01, A-02, A-03, A-04, B-02, B-03); the five verb-form items (conditional, parallelism, nonfinite key, future-in-past, passive modal) yielded no hard item and two drops. Assigning one construction per item also stopped the cross-author template collision that v14 and v15 each shipped. Of the punctuation items, the dash key was graded hard 3/3 and the colon medium.
+
+  **Tells — the v14/v15 tells are broken, and new ones took their place.** (1) All three graders: **where options vary voice, the passive is the key in 4 of 5** (A-03, B-02, B-03, B-06; only B-01 active) — 3 of 4 in the kept set. "Pick the passive when no object follows" now does what "opposite the nearest noun" did. (2) Graders d, e: **the comma never wins the punctuation items and a strong mark wins 3 of 4** — the exact inverse of v14/v15's "semicolon is never the key", from obeying the strong-key quota in a batch of only 4. (3) Grader f: a **"had + participle" option sits in 8 of 12 verb items and is never the key** (6 of the kept). (4) All three: "would" beats "will" in both items that offer the pair. (5) Grader d: "distrust the nearest noun" still solves A-02, A-04, B-01, B-03. Template pairs named and both kept (recorded, nothing enforces one-per-form): **A-03~B-03** (number x voice grid, plural passive key, all three graders), B-01~B-02 (e), A-01~A-04 (compound subject, e, f), A-05~B-05 (would-forms).
+
+  **Next form:** form 9 needs 63 SEC hard (4 more) and 72 C&S hard (2 more); I&I 66 / 7 = 9 and EoI 81 / 5 = 16 already carry it. The next SEC brief should keep the nearest-noun/inversion agreement mix (it produced 6 of the 8 hard items), key the ACTIVE form in about half the number x voice items, key a past-perfect option somewhere, and stop quota-forcing marks in a 4-item punctuation set (the quota itself inverted the tell).
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five
