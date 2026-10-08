@@ -7,6 +7,7 @@
  *   node ssat-verbal-s18-tools.mjs livewords            # (re)dump every SSAT verbal row's words
  *   node ssat-verbal-s18-tools.mjs design               # print / write the seeded slot tables
  *   node ssat-verbal-s18-tools.mjs check <A|B|C|D> <file.json> [--also other.json ...]
+ *   node ssat-verbal-s18-tools.mjs probe <word ...> [--also f ...]   # is a candidate word free?
  *   node ssat-verbal-s18-tools.mjs merge <syn|ana> <out.json> <file1> <file2>
  *
  * READ ONLY against the bank. `check` exits 1 on any rule violation and 2 on
@@ -224,6 +225,20 @@ else if (cmd === 'design') {
   for (const e of errs) console.log('  FAIL ' + e)
   console.log(errs.length ? `  => ${errs.length} problem(s)` : '  => PASS')
   process.exit(errs.length ? 1 : 0)
+} else if (cmd === 'probe') {
+  // probe <word ...> [--also f ...]: which candidate words are live (any inflection) or used by another file
+  const ai = rest.indexOf('--also')
+  const ws = (ai >= 0 ? rest.slice(0, ai) : rest).map(w => w.toLowerCase())
+  if (!ws.length) { console.error('usage: probe <word ...> [--also f ...]'); process.exit(2) }
+  const live = JSON.parse(readFileSync(LIVE, 'utf8')).words
+  const liveRoots = new Map(); for (const w of live) for (const r of roots(w)) if (!liveRoots.has(r)) liveRoots.set(r, w)
+  const other = new Map()
+  if (ai >= 0) for (const f of rest.slice(ai + 1)) for (const it of loadJson(f)) for (const w of itemWords(it)) for (const r of roots(w)) other.set(r, `${w} (${it.id})`)
+  for (const w of ws) {
+    const rs = [...roots(w)]
+    const l = rs.find(r => liveRoots.has(r)), o = rs.find(r => other.has(r))
+    console.log(`${w.padEnd(18)} ${l ? `LIVE ~ ${liveRoots.get(l)}` : o ? `TAKEN ~ ${other.get(o)}` : 'free'}`)
+  }
 } else if (cmd === 'merge') {
   const [type, out, ...files] = rest
   if (!['syn', 'ana'].includes(type) || !out || files.length !== 2) { console.error('usage: merge <syn|ana> <out.json> <f1> <f2>'); process.exit(2) }
