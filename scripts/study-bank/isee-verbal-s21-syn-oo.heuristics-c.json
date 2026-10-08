@@ -1,0 +1,34 @@
+{
+ "heuristics": [
+  {
+   "name": "likeliest-headword",
+   "description": "pick the option most plausibly the synonym of a typical ISEE Upper headword; no option-set signal",
+   "picks_decided": 199
+  },
+  {
+   "name": "near-synonym-pair",
+   "description": "two near-duplicate options; pick one of the pair",
+   "picks_decided": 2
+  },
+  {
+   "name": "phrase-headword-fit",
+   "description": "phrase option that defines a classic headword",
+   "picks_decided": 3
+  },
+  {
+   "name": "antonym-pair",
+   "description": "two antonymous options; pick one of the pair",
+   "picks_decided": 1
+  },
+  {
+   "name": "polysemy-pair",
+   "description": "two options share a sense of one polysemous word; pick the option giving its other sense",
+   "picks_decided": 2
+  },
+  {
+   "name": "none",
+   "description": "no heuristic",
+   "picks_decided": 0
+  }
+ ]
+}

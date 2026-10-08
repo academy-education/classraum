@@ -1,0 +1,24 @@
+{
+ "heuristics": [
+  {
+   "name": "headword-prior",
+   "description": "picked the option that is the most typical plain synonym of a common ISEE-level headword; essentially a guess",
+   "picks_decided": 182
+  },
+  {
+   "name": "antonym-pair",
+   "description": "two options are opposites; key assumed to be one of the pair (antonym distractor alongside key)",
+   "picks_decided": 23
+  },
+  {
+   "name": "polysemy-trap",
+   "description": "distractors look like other senses of one polysemous headword; picked the remaining sense",
+   "picks_decided": 2
+  },
+  {
+   "name": "none",
+   "description": "no heuristic",
+   "picks_decided": 0
+  }
+ ]
+}

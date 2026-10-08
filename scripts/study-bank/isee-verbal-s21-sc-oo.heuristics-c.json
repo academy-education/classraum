@@ -1,0 +1,34 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "no signal; arbitrary",
+   "picks_decided": 47
+  },
+  {
+   "name": "shared-first-word",
+   "description": "repeated first word suggests key family",
+   "picks_decided": 3
+  },
+  {
+   "name": "sophisticated-word",
+   "description": "most test-worthy word in the set",
+   "picks_decided": 95
+  },
+  {
+   "name": "confusable-pair",
+   "description": "confusable lookalike pair, key likely one of them",
+   "picks_decided": 1
+  },
+  {
+   "name": "pair-logic",
+   "description": "blanks form the cleanest logical relation",
+   "picks_decided": 17
+  },
+  {
+   "name": "odd-one-out",
+   "description": "option stands apart from others",
+   "picks_decided": 1
+  }
+ ]
+}

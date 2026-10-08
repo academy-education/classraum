@@ -1,0 +1,24 @@
+{
+ "heuristics": [
+  {
+   "name": "likely-test-headword",
+   "description": "Pick the option that is the most natural synonym of a classic hard ISEE headword (e.g. lack<-dearth, foil<-thwart).",
+   "picks_decided": 162
+  },
+  {
+   "name": "antonym-pair",
+   "description": "Two options are near-opposites; the key is assumed to be one of the pair (distractor built as the key's antonym), preferring the more test-worthy member.",
+   "picks_decided": 24
+  },
+  {
+   "name": "none",
+   "description": "No signal; arbitrary pick.",
+   "picks_decided": 19
+  },
+  {
+   "name": "polysemy-cluster",
+   "description": "Options mix senses/parts of speech of one polysemous headword (e.g. curb, temper); pick the option giving the standard synonym sense.",
+   "picks_decided": 2
+  }
+ ]
+}

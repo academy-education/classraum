@@ -1,0 +1,44 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "No usable signal from the options; arbitrary pick.",
+   "picks_decided": 144
+  },
+  {
+   "name": "antonym-pair",
+   "description": "Two opposite options suggest the key is one of the pair (contrast-designed distractor).",
+   "picks_decided": 6
+  },
+  {
+   "name": "near-synonym-pair",
+   "description": "Two near-synonymous options suggest the key is among them.",
+   "picks_decided": 4
+  },
+  {
+   "name": "repeated-word",
+   "description": "In two-blank items, a word appearing in two options is likely in the key; pick the coherent one of the pair.",
+   "picks_decided": 3
+  },
+  {
+   "name": "internal-consistency",
+   "description": "Two-blank option whose halves cohere semantically better than the others.",
+   "picks_decided": 3
+  },
+  {
+   "name": "contrast-pair",
+   "description": "Two-blank option that forms the cleanest contrast/reversal relation.",
+   "picks_decided": 2
+  },
+  {
+   "name": "look-alike-pair",
+   "description": "Two orthographically confusable options; the key is likely one of them.",
+   "picks_decided": 1
+  },
+  {
+   "name": "odd-one-out",
+   "description": "Option differing in valence/register from a cluster of similar options.",
+   "picks_decided": 1
+  }
+ ]
+}

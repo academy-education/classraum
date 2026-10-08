@@ -1,0 +1,677 @@
+[
+ {
+  "id": "IS21A-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences (earlier simple account vs archive)",
+  "prompt": "[Sentence Completion] Earlier chroniclers had described the treaty as little more than two kings shaking hands. The archive tells a different story: years of secret envoys, rival factions inside each court, and side agreements so ------- that historians are still working out who promised what to whom.",
+  "choices": [
+   "convoluted",
+   "abject",
+   "avaricious",
+   "compulsory"
+  ],
+  "correct_answer": "convoluted",
+  "explanation": "convoluted (intricately complicated, hard to follow): set against the chroniclers' 'two kings shaking hands', and restated by 'still working out who promised what to whom'.",
+  "distractor_rationales": [
+   "abject - wretched, miserable, hopelessly low ('abject poverty'); misery would not make the terms hard to trace.",
+   "compulsory - required by rule ('attendance is compulsory'); being required does not make terms hard to trace.",
+   "avaricious - greedy for wealth ('an avaricious landlord'); describes people, and greed would not explain why the promises are hard to work out."
+  ]
+ },
+ {
+  "id": "IS21A-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause (budget spent, chairman gone -> body ended)",
+  "prompt": "[Sentence Completion] The committee had spent its entire budget on a study nobody read, and its chairman had resigned amid scandal. Rather than appoint a successor, the legislature voted to declare the body -------, and by the end of the month its offices stood empty and its staff had been reassigned.",
+  "choices": [
+   "credible",
+   "defunct",
+   "dogmatic",
+   "bipartisan"
+  ],
+  "correct_answer": "defunct",
+  "explanation": "defunct (no longer existing or operating): the legislature declines to replace the chairman, and the offices 'stood empty' with staff 'reassigned' - the body has ceased to function.",
+  "distractor_rationales": [
+   "credible - believable, trustworthy ('a credible witness'); a body that wasted its budget amid scandal would not be declared trustworthy, and that would not empty its offices.",
+   "bipartisan - supported by both main political parties ('a bipartisan bill'); the committee is being shut down, and cross-party support would not empty its offices.",
+   "dogmatic - rigidly insisting on one's opinions ('a dogmatic critic'); the legislature is ending the committee, not judging its opinions."
+  ]
+ },
+ {
+  "id": "IS21A-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause (audience could not follow)",
+  "prompt": "[Sentence Completion] The physicist's lecture was applauded by the handful of specialists in the hall and lost on nearly everyone else; even the science reporters admitted afterward that they had followed little beyond the title, so ------- were her arguments about the geometry of higher dimensions.",
+  "choices": [
+   "abstruse",
+   "baleful",
+   "caustic",
+   "apt"
+  ],
+  "correct_answer": "abstruse",
+  "explanation": "abstruse (difficult to understand, obscure): only specialists could follow the lecture and even trained reporters 'followed little beyond the title' - the arguments were too obscure for a general audience.",
+  "distractor_rationales": [
+   "apt - suitable, fitting the occasion ('an apt quotation'); fitting arguments would not leave trained reporters following nothing beyond the title.",
+   "caustic - bitingly harsh ('a caustic review'); harshness does not make an argument impossible to follow.",
+   "baleful - menacing, threatening harm ('a baleful glare'); nothing about the lecture is menacing, and menace does not make an argument hard to follow."
+  ]
+ },
+ {
+  "id": "IS21A-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast with a quality not among the options (not subtle) plus cause",
+  "prompt": "[Sentence Completion] The company insisted its new password system was secure, but a student broke into it in one afternoon using nothing more than a list of common words. The flaw, critics said, had never been subtle; it was -------, and the list the student used is published on the internet every year.",
+  "choices": [
+   "blatant",
+   "consummate",
+   "cynical",
+   "concerted"
+  ],
+  "correct_answer": "blatant",
+  "explanation": "blatant (very obvious, glaring): the flaw 'had never been subtle', and anyone could exploit it with a freely published list of common words.",
+  "distractor_rationales": [
+   "concerted - planned and done together ('a concerted effort by the volunteers'); a flaw is not a joint effort.",
+   "cynical - distrustful of others' motives ('a cynical view of politicians'); a weakness in software has no attitude toward anyone.",
+   "consummate - supremely skilled, complete ('a consummate professional'); calling the flaw supremely skilled makes no sense, and the critics are saying how obvious it was."
+  ]
+ },
+ {
+  "id": "IS21A-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause across sentences (population growth outpaces maps)",
+  "prompt": "[Sentence Completion] In 1840 the port held a few hundred fishing families; by 1870, after the railway arrived, its docks employed thousands. Mapmakers of the period complained that they could not keep pace, since every edition of the town plan was out of date before it was printed, so ------- were its new streets.",
+  "choices": [
+   "distinctive",
+   "burgeoning",
+   "capacious",
+   "clamorous"
+  ],
+  "correct_answer": "burgeoning",
+  "explanation": "burgeoning (growing or spreading rapidly): the town grows from hundreds to thousands, and new streets appear so fast that each map is 'out of date before it was printed'.",
+  "distractor_rationales": [
+   "clamorous - loud and noisy ('a clamorous crowd at the gates'); noise would not make a map out of date.",
+   "capacious - roomy, able to hold a lot ('a capacious suitcase'); wide streets do not outdate a map; only new ones do.",
+   "distinctive - characteristic, easy to tell apart ('a distinctive accent'); distinct streets are easier to map, not harder."
+  ]
+ },
+ {
+  "id": "IS21A-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across sentences (contradictory promises)",
+  "prompt": "[Sentence Completion] The minister assured farmers in the north that the dam would never be built, and in the same week promised the southern cities that construction would begin by spring. Once reporters printed the two speeches side by side, even his allies found it hard to defend such ------- conduct.",
+  "choices": [
+   "dispassionate",
+   "doleful",
+   "decisive",
+   "duplicitous"
+  ],
+  "correct_answer": "duplicitous",
+  "explanation": "duplicitous (deceitful, saying different things to different people): he told one audience the dam would never be built and another that it would - two contradictory faces, which is why his allies cannot defend him.",
+  "distractor_rationales": [
+   "decisive - settling things firmly and quickly ('a decisive leader in a crisis'); he committed to nothing, and allies would not struggle to defend decisiveness.",
+   "dispassionate - calm and impartial, free of emotion ('a dispassionate judge'); his fault is contradiction, not coolness, and impartiality needs no defending.",
+   "doleful - sorrowful, mournful ('a doleful song'); his fault is making contradictory promises, not gloom."
+  ]
+ },
+ {
+  "id": "IS21A-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast (credit claimed vs evidence of earlier decline)",
+  "prompt": "[Sentence Completion] Officials were quick to ------- the city's falling crime rate to their new policing strategy, though the same decline had begun two years before the strategy existed and was just as steep in towns that never adopted it.",
+  "choices": [
+   "attune",
+   "ascribe",
+   "consign",
+   "acclimate"
+  ],
+  "correct_answer": "ascribe",
+  "explanation": "ascribe (to credit something to a cause): the officials claim their strategy caused the decline, a claim the 'though' clause undercuts - the decline predates the strategy and appears where it was never used.",
+  "distractor_rationales": [
+   "consign - to hand over or send away for good ('consign the old files to storage'); officials are not sending the crime rate somewhere.",
+   "acclimate - to get used to new surroundings ('acclimate the plants to the cold'); a crime rate is not being accustomed to a strategy.",
+   "attune - to adjust so as to be in harmony with ('attune the program to local needs'); the officials are claiming credit for the decline, not adjusting the crime rate to fit the strategy."
+  ]
+ },
+ {
+  "id": "IS21A-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across sentences (no rule, shifted with mood)",
+  "prompt": "[Sentence Completion] Under the old king a merchant could lose his license for wearing the wrong color to court or for a remark the king half overheard. No written rule governed such decisions, which shifted with the royal mood from one week to the next, and the reformers' first demand was an end to such ------- power.",
+  "choices": [
+   "cardinal",
+   "crass",
+   "arbitrary",
+   "decent"
+  ],
+  "correct_answer": "arbitrary",
+  "explanation": "arbitrary (based on whim rather than rule or reason): 'no written rule governed such decisions', which 'shifted with the royal mood' - power exercised on whim.",
+  "distractor_rationales": [
+   "crass - crude and insensitive, lacking refinement ('a crass joke at a funeral'); the complaint is that the power followed no rule, not that it was tasteless.",
+   "cardinal - of chief importance ('a cardinal rule of the kitchen'); the complaint is about how unpredictably the power was used, not how important it was.",
+   "decent - fair, respectable, morally acceptable ('a decent wage'); stripping merchants of licenses on a whim is not fair dealing, and reformers would not demand an end to fairness."
+  ]
+ },
+ {
+  "id": "IS21A-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across clauses (biographies read like hymns)",
+  "prompt": "[Sentence Completion] Biographies written in the general's lifetime read like hymns, crediting him with every victory and none of the defeats; it took historians a century to replace that ------- portrait with one that admitted his blunders.",
+  "choices": [
+   "arresting",
+   "diminutive",
+   "adulatory",
+   "abstract"
+  ],
+  "correct_answer": "adulatory",
+  "explanation": "adulatory (full of excessive praise): the early biographies 'read like hymns' and credit him with 'every victory and none of the defeats' - flattery that later historians correct by admitting his blunders.",
+  "distractor_rationales": [
+   "arresting - striking, catching attention ('an arresting photograph'); the fault historians corrected was flattery, not how eye-catching the portrait was.",
+   "diminutive - very small ('a diminutive pony'); the problem with the early biographies was flattery, not size.",
+   "abstract - theoretical, not concrete ('an abstract argument about justice'); biographies listing victories are specific, and abstraction is not what admitting blunders would fix."
+  ]
+ },
+ {
+  "id": "IS21A-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast across clauses (sudden onset vs long-standing condition)",
+  "prompt": "[Sentence Completion] The pain came on in the middle of the night, sharp enough to wake him, and had him in the emergency room within the hour. It was this ------- onset, his doctors said, more than the pain's location, that pointed to a burst appendix rather than the ulcer he had lived with for years.",
+  "choices": [
+   "categorical",
+   "boorish",
+   "droll",
+   "acute"
+  ],
+  "correct_answer": "acute",
+  "explanation": "acute (coming on suddenly and severely, as an illness): the pain arrived in one night, sharply, and sent him to hospital within the hour - unlike the ulcer 'he had lived with for years'.",
+  "distractor_rationales": [
+   "categorical - absolute, without exception ('a categorical denial'); an onset of pain is not a statement, and nothing about it is unqualified or absolute.",
+   "droll - amusing in an odd, dry way ('a droll remark'); nothing about a night of sharp pain is amusing.",
+   "boorish - rude and ill-mannered ('a boorish guest'); an onset of pain has no manners."
+  ]
+ },
+ {
+  "id": "IS21A-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause across sentences (reserves fell; hours lost rather than a branch)",
+  "prompt": "[Sentence Completion] When the treasury's reserves fell to their lowest level in decades, every department of the city government lost something. The library lost its Sundays and two weekday evenings, the council having voted to ------- its hours rather than close a branch outright.",
+  "choices": [
+   "codify",
+   "commandeer",
+   "debase",
+   "curtail"
+  ],
+  "correct_answer": "curtail",
+  "explanation": "curtail (to cut short, reduce): money ran out, and the library 'lost its Sundays and two weekday evenings' - its hours were cut back as the lesser alternative to closing a branch.",
+  "distractor_rationales": [
+   "codify - to arrange rules into a written system ('codify the club's customs into bylaws'); writing the hours down would not take Sundays away.",
+   "commandeer - to seize for official or military use ('the army commandeered the hotel'); the council cuts the library's hours, it does not seize them for another use.",
+   "debase - to lower in quality or value ('debase the currency'); the library's hours are cut in number, not made worse in quality, and the sentence describes losing whole days."
+  ]
+ },
+ {
+  "id": "IS21A-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across clauses (leaflets, volunteers, radio vans to every household)",
+  "prompt": "[Sentence Completion] Within a month of the vaccine trial's results, the health ministry had printed leaflets in eleven languages, trained village volunteers, and sent radio vans into the mountains, determined to ------- the findings to every household that might need them.",
+  "choices": [
+   "ascertain",
+   "absolve",
+   "dissemble",
+   "disseminate"
+  ],
+  "correct_answer": "disseminate",
+  "explanation": "disseminate (to spread widely): leaflets in eleven languages, village volunteers and radio vans carry the findings 'to every household' - a campaign to spread information as widely as possible.",
+  "distractor_rationales": [
+   "absolve - to free from blame or guilt ('the inquiry absolved the pilot'); findings carry no guilt to be cleared.",
+   "dissemble - to hide one's true feelings or motives ('he dissembled his anger with a smile'); the ministry is broadcasting the results, not concealing anything.",
+   "ascertain - to find out for certain ('ascertain the cause of the fire'); the trial has already produced the findings; the campaign delivers them to households rather than discovering them."
+  ]
+ },
+ {
+  "id": "IS21B-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in an earlier sentence (loyalty, reliability)",
+  "prompt": "[Sentence Completion] She played fourteen seasons for the same struggling club, turned down a richer offer every summer, and missed one training session in all that time, on the morning her daughter was born. When she retired, the club named its new stand after the most ------- servant in its history.",
+  "choices": [
+   "venturesome",
+   "sordid",
+   "vicarious",
+   "stalwart"
+  ],
+  "correct_answer": "stalwart",
+  "explanation": "stalwart (loyal, dependable, steadfast): the clue is the whole previous sentence - fourteen seasons at one club, refusing richer offers, missing a single session - examples of unwavering loyalty and reliability.",
+  "distractor_rationales": [
+   "venturesome - inclined to take risks ('a venturesome sailor who crossed the Atlantic alone'); she did the opposite of taking chances by staying put, so the examples do not show daring.",
+   "vicarious - experienced through someone else ('the vicarious thrill of watching her son compete'); her career was lived directly, on the pitch, not through others.",
+   "sordid - morally low or squalid ('a sordid bribery scandal'); her record is praised, and nothing in it is shameful."
+  ]
+ },
+ {
+  "id": "IS21B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose across sentences (curb rising prices)",
+  "prompt": "[Sentence Completion] Shoppers grumbled when the central bank raised interest rates for the fourth time in a year, but its governor was unapologetic. Borrowing, she said, had to become painful for a while if the bank hoped to ------- the price rises that had nearly doubled the cost of groceries since spring.",
+  "choices": [
+   "stipulate",
+   "subsume",
+   "stymie",
+   "transgress"
+  ],
+  "correct_answer": "stymie",
+  "explanation": "stymie (block, check, obstruct): the purpose of making borrowing 'painful' is to halt the price rises; the bank wants to obstruct inflation.",
+  "distractor_rationales": [
+   "stipulate - to specify as a condition of an agreement ('the contract stipulates delivery by May'); a bank cannot make price rises a contract term by raising rates, and the aim is to stop them.",
+   "subsume - to include within a larger category ('the old department was subsumed into the ministry'); absorbing price rises into something larger is not what painful borrowing achieves.",
+   "transgress - to break a rule or go beyond a moral limit ('players who transgress the code of conduct'); price rises are not a law the bank could break."
+  ]
+ },
+ {
+  "id": "IS21B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in an earlier sentence (sustained abuse)",
+  "prompt": "[Sentence Completion] Readers who opened Sunday's paper expecting a review of the new production found something else. Across three columns the critic called the play 'an insult to its author', its leading man 'a coat rack with a voice', and its audience 'accomplices'; by the last paragraph the piece had become one long -------.",
+  "choices": [
+   "tirade",
+   "vignette",
+   "synopsis",
+   "upheaval"
+  ],
+  "correct_answer": "tirade",
+  "explanation": "tirade (a long, angry, abusive speech or piece of writing): the previous clauses give the examples - three columns of escalating insults to author, actor and audience - and 'something else' than a review signals sustained invective.",
+  "distractor_rationales": [
+   "synopsis - a brief summary of a plot ('the program printed a synopsis of each act'); the critic summarizes nothing, he insults.",
+   "vignette - a short, evocative descriptive sketch ('a vignette of village life at dawn'); three columns of abuse are neither short nor a quiet sketch.",
+   "upheaval - a violent disturbance or great change ('the upheaval that followed the revolution'); a newspaper piece is written, not a social disruption, and 'one long upheaval' does not describe a stream of insults."
+  ]
+ },
+ {
+  "id": "IS21B-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples after the colon, set against his manner elsewhere",
+  "prompt": "[Sentence Completion] On the factory floor the new foreman was blunt to the point of rudeness, which made his manner upstairs all the more striking. With the owners he was -------: he agreed with every suggestion they made, laughed at jokes he had not quite heard, and repeated their opinions at meetings as though they were his own.",
+  "choices": [
+   "uncanny",
+   "virtuous",
+   "vitriolic",
+   "subservient"
+  ],
+  "correct_answer": "subservient",
+  "explanation": "subservient (excessively eager to obey and please): agreeing with everything, laughing at half-heard jokes and parroting the owners' views are examples of servile deference, contrasted with his bluntness below.",
+  "distractor_rationales": [
+   "vitriolic - bitterly and harshly critical ('a vitriolic letter to the editor'); his rudeness is kept for the floor, while toward the owners he only agrees.",
+   "virtuous - having high moral standards ('a virtuous judge who refused every gift'); parroting the owners' opinions as his own is flattery, not moral goodness.",
+   "uncanny - strange in a way that is hard to explain ('an uncanny resemblance to her grandmother'); flattering the owners is ordinary, not mysterious."
+  ]
+ },
+ {
+  "id": "IS21B-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement in an earlier sentence (unearned, unexpected money)",
+  "prompt": "[Sentence Completion] When the old textile mill sold its riverside land to a developer, each of its four hundred workers received a check worth two years' wages, money none of them had earned, asked for, or dared to count on. Most of them used the ------- to pay off their mortgages.",
+  "choices": [
+   "subterfuge",
+   "solace",
+   "windfall",
+   "ultimatum"
+  ],
+  "correct_answer": "windfall",
+  "explanation": "windfall (an unexpected gain of money): the first sentence paraphrases it without the definition words - a large check 'none of them had earned, asked for, or dared to count on'.",
+  "distractor_rationales": [
+   "solace - comfort in sorrow ('she found solace in her garden after the funeral'); nobody was grieving, and comfort is not money one can pay a mortgage with.",
+   "subterfuge - a deceptive trick used to achieve a goal ('she got backstage by subterfuge'); nothing about the payment is deceptive.",
+   "ultimatum - a final demand backed by a threat ('the landlord issued an ultimatum: pay or leave'); a demand cannot be used to pay off a mortgage."
+  ]
+ },
+ {
+  "id": "IS21B-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose, clue spread across the sentence (pupils mute from dread)",
+  "prompt": "[Sentence Completion] The headmistress kept the old rule that every pupil recite a poem at Monday assembly. She cared little for poetry, she admitted; what she wanted was for the children who sat mute through every lesson to ------- their dread of being heard, and a poem learned by heart was the gentlest way she knew to make them try.",
+  "choices": [
+   "surmount",
+   "straddle",
+   "underscore",
+   "savor"
+  ],
+  "correct_answer": "surmount",
+  "explanation": "surmount (overcome a difficulty): the purpose of the rule is to get silent children past their fear of speaking - 'the gentlest way ... to make them try'.",
+  "distractor_rationales": [
+   "straddle - to sit or stand with a leg on each side, or to take both sides ('the town straddles the border'); a child does not put a leg on each side of dread.",
+   "savor - to enjoy slowly and fully ('she savored every bite'); the headmistress wants the dread gone, not enjoyed.",
+   "underscore - to emphasize ('the report underscores the need for funding'); emphasizing their dread would defeat the purpose of the rule."
+  ]
+ },
+ {
+  "id": "IS21B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree (even among colleagues trained in composure)",
+  "prompt": "[Sentence Completion] Composure is the first thing air-traffic controllers are trained in, yet even among colleagues who had worked through blizzards and engine fires, Reyes was considered -------. On the night the radar failed in 2019 she guided eleven aircraft down by voice alone, and the recordings show she never once spoke faster than usual.",
+  "choices": [
+   "visceral",
+   "supine",
+   "unflappable",
+   "veracious"
+  ],
+  "correct_answer": "unflappable",
+  "explanation": "unflappable (impossible to upset or fluster): 'even among' trained, crisis-hardened colleagues she stood out, and the next sentence shows it - a radar failure handled without her voice ever speeding up.",
+  "distractor_rationales": [
+   "veracious - habitually truthful ('a veracious witness whose account never changed'); honesty is not what the radar failure tested.",
+   "supine - passive, failing to act, or lying face up ('a supine committee that approved every request'); she acted decisively, guiding eleven planes down.",
+   "visceral - felt deep in the body, instinctive ('a visceral fear of heights'); the anecdote is about cool control, not a gut reaction."
+  ]
+ },
+ {
+  "id": "IS21B-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in earlier sentences (energy over polish)",
+  "prompt": "[Sentence Completion] The young pianist's technique was still uneven: she smudged two runs in the opening movement and rushed the slow one. The audience hardly cared. She attacked the final scherzo as if it were a dare, grinning at the hardest passages, and what she lacked in polish she made up for in -------.",
+  "choices": [
+   "verve",
+   "semblance",
+   "veneer",
+   "stigma"
+  ],
+  "correct_answer": "verve",
+  "explanation": "verve (vigor, spirit and enthusiasm): attacking the scherzo 'as if it were a dare' and 'grinning at the hardest passages' are examples of spirited energy, which is what compensates for lack of polish.",
+  "distractor_rationales": [
+   "veneer - a thin attractive surface layer hiding what lies beneath ('a veneer of politeness'); a surface gloss is exactly what she lacked ('polish'), so it cannot make up for it.",
+   "semblance - an outward appearance, often a false one ('a semblance of order'); attacking the music as a dare is real energy, not a mere appearance.",
+   "stigma - a mark of disgrace ('the stigma once attached to divorce'); disgrace cannot make up for a lack of polish."
+  ]
+ },
+ {
+  "id": "IS21B-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast plus example in the following sentence (extreme brevity)",
+  "prompt": "[Sentence Completion] Where other teachers returned essays bleeding with paragraphs of advice, Ms. Hale's comments were notoriously -------. Her students learned to dread a page that came back bearing nothing but a single word in the margin, 'Why?', because it meant an afternoon of rethinking the whole argument.",
+  "choices": [
+   "tangential",
+   "succinct",
+   "topical",
+   "wayward"
+  ],
+  "correct_answer": "succinct",
+  "explanation": "succinct (briefly and clearly expressed): set against 'paragraphs of advice', the next sentence shows a whole page answered by one word that still demands an afternoon of thought - brevity that loses nothing.",
+  "distractor_rationales": [
+   "wayward - unpredictable and hard to control, straying from what is expected ('a wayward son who left school at fifteen'); a one-word comment that sends students back to rethink their argument is controlled and purposeful.",
+   "topical - relating to current events ('a topical joke about the election'); a one-word margin note is not about the news.",
+   "tangential - only slightly connected, digressing ('a tangential remark about the weather'); 'Why?' goes straight to the argument, the opposite of a digression from it."
+  ]
+ },
+ {
+  "id": "IS21B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose across sentences (outdo rivals)",
+  "prompt": "[Sentence Completion] A rival firm had been poaching her best engineers with bigger salaries for two years. Unable to match the money, the founder announced a four-day week instead, hoping to ------- her competitors with an offer they could not easily copy.",
+  "choices": [
+   "swindle",
+   "upstage",
+   "wield",
+   "typify"
+  ],
+  "correct_answer": "upstage",
+  "explanation": "upstage (outshine, steal attention from): unable to match salaries, she seeks an advantage 'they could not easily copy' - an offer that outdoes her rivals.",
+  "distractor_rationales": [
+   "swindle - to cheat someone out of money by fraud ('the dealer swindled tourists with fake antiques'); a four-day week is a genuine offer, not a fraud on her rivals.",
+   "typify - to be a typical example of ('the cottage typifies the local style'); an offer her rivals cannot copy sets her apart rather than making her typical of them.",
+   "wield - to hold and use a weapon, tool or power ('she wielded great influence'); one does not wield competitors."
+  ]
+ },
+ {
+  "id": "IS21B-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in earlier sentences (technically true but misleading)",
+  "prompt": "[Sentence Completion] The furniture chain's posters promised savings of 'up to 70 percent', and the promise was, strictly speaking, true: one discontinued sofa in one branch had been marked down that far. Every other item was reduced by a tenth or less. The regulator ruled that a claim so ------- misled shoppers precisely because it could not be called a lie.",
+  "choices": [
+   "unequivocal",
+   "timorous",
+   "unheeded",
+   "specious"
+  ],
+  "correct_answer": "specious",
+  "explanation": "specious (seemingly true or plausible but actually misleading): the claim is 'strictly speaking, true' yet holds for one sofa only, and it misleads 'precisely because it could not be called a lie'.",
+  "distractor_rationales": [
+   "timorous - showing nervousness or lack of confidence ('a timorous knock at the door'); a bold 70 percent promise is not hesitant, and timidity does not mislead.",
+   "unheeded - ignored, not paid attention to ('her warnings went unheeded'); a claim that misled shoppers was clearly noticed.",
+   "unequivocal - leaving no doubt, unambiguous ('an unequivocal denial'); 'up to 70 percent' is slippery precisely because it hides an ambiguity, so it is not unequivocal."
+  ]
+ },
+ {
+  "id": "IS21B-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in the middle sentence (lively despite age)",
+  "prompt": "[Sentence Completion] The documentary crew had been warned that the choreographer, at eighty-one, tired easily and should be filmed only in the mornings. By the third day they had stopped believing it: she laughed through every interview, led the dancers in songs between takes, and outlasted performers a third her age at the wrap party. 'The most ------- person on the set,' the director wrote in his notes, 'and the oldest.'",
+  "choices": [
+   "vivacious",
+   "valiant",
+   "tenable",
+   "shrill"
+  ],
+  "correct_answer": "vivacious",
+  "explanation": "vivacious (lively and full of high spirits): the middle sentence gives the examples - laughing, leading songs, outlasting much younger dancers - overturning the warning that she tired easily.",
+  "distractor_rationales": [
+   "shrill - high-pitched and piercing, or loudly insistent ('a shrill complaint'); the director's note is admiring, and the examples show high spirits, not a grating voice.",
+   "tenable - able to be defended or maintained ('a tenable argument'); it describes positions and theories, not a person's energy.",
+   "valiant - brave in the face of danger ('a valiant rescue from the burning house'); laughing and singing between takes is liveliness, not courage under danger."
+  ]
+ },
+ {
+  "id": "IS21B-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree with examples in following sentence (courage against setbacks)",
+  "prompt": "[Sentence Completion] Few marathoners have been as ------- as Abebe Bikila. He won Olympic gold in Rome running barefoot over cobblestones, and four years later, with his appendix removed only six weeks before the race, he not only started in Tokyo but won again, by more than four minutes.",
+  "choices": [
+   "undaunted",
+   "vexing",
+   "unscrupulous",
+   "salient"
+  ],
+  "correct_answer": "undaunted",
+  "explanation": "undaunted (not discouraged by difficulty or danger): the next sentence supplies the evidence - running barefoot on cobblestones and racing six weeks after surgery, and winning both times.",
+  "distractor_rationales": [
+   "salient - most noticeable or important ('the salient points of the report'); it describes features and facts, and says nothing about what he overcame.",
+   "vexing - annoying, troublesome ('a vexing delay at the airport'); the examples show his courage, not that he annoyed anyone.",
+   "unscrupulous - without moral principles ('an unscrupulous landlord'); winning barefoot and after surgery shows grit, not dishonesty."
+  ]
+ },
+ {
+  "id": "IS21B-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples in the following sentence (avoiding the work)",
+  "prompt": "[Sentence Completion] Assigned a month of inventory duty, Delgado managed to ------- nearly all of it. He volunteered for every errand that took him across town, discovered a sudden need for long dental appointments, and was so helpful to the shipping department that the stockroom saw him on only three afternoons.",
+  "choices": [
+   "traverse",
+   "unravel",
+   "shirk",
+   "tarnish"
+  ],
+  "correct_answer": "shirk",
+  "explanation": "shirk (avoid a duty or work): the next sentence lists the evasions - errands, dental appointments, helping elsewhere - so that he spent only three afternoons on the assigned job.",
+  "distractor_rationales": [
+   "unravel - to come apart, or to solve something tangled ('the detective unraveled the mystery'); he did not untangle or undo the inventory, he simply avoided it.",
+   "traverse - to travel across ('the caravan traversed the desert'); one does not travel across a month of duty, and he stayed away from it.",
+   "tarnish - to dull or stain, or damage a reputation ('the scandal tarnished his name'); he did not damage the duty, he dodged it."
+  ]
+ },
+ {
+  "id": "IS21B-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose with the clue in the following clause (commanding view)",
+  "prompt": "[Sentence Completion] Nobody chose the bluff above the river for comfort: its wells ran dry every August and the wind never stopped. The garrison was posted there for its -------, since a sentry on the north wall could watch every road into the valley and see a rider coming a full day before he arrived.",
+  "choices": [
+   "unison",
+   "sanction",
+   "upkeep",
+   "vantage"
+  ],
+  "correct_answer": "vantage",
+  "explanation": "vantage (a position giving a commanding view or advantage): the clause after the blank explains the posting - from the wall a sentry sees every road and spots riders a day out.",
+  "distractor_rationales": [
+   "upkeep - the cost or work of maintaining something ('the upkeep of the old manor was ruinous'); dry wells and constant wind make the upkeep a reason against the bluff, and the clause after the blank is about sight.",
+   "unison - simultaneous action or agreement ('the choir sang in unison'); a garrison is not posted somewhere for the place's agreement.",
+   "sanction - official permission or approval ('the council gave its sanction to the plan'); a hill does not grant approval, and the clause explains what a sentry could see."
+  ]
+ }
+]

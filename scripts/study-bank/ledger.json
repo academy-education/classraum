@@ -7234,6 +7234,92 @@
           "margin": 3.3
         }
       }
+    },
+    {
+      "id": "isee-verbal-s21-syn-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s21",
+      "status": "shipped",
+      "contentSha": "f9b9a9cb89d1f52ec61ca2ea626c3e6f7396bc25cd32a0a270a48bfac9e1a128",
+      "note": "ISEE Upper synonyms, 29 of 30 frozen inserted (frozen isee-verbal-s21-syn.batch.json sha 59a9b48e465c2bdfe9c2d841cfed5e4d61b63cd6bae9a619382ca869852fc709, commit 2736413d; kept isee-verbal-s21-syn.kept.batch.json is the byte-exact subset in frozen order; qc isee-verbal-s21-syn.withsource.json). Prereg isee-verbal-s21.prereg.md (commit cccb320f) before any item. Two Claude authors, s19 synonym brief unchanged (every distractor the plain gloss of a different likely ISEE headword): C m-r 15, D e-l 15 (D also told: key the only option sharing the headword initial in <= 2 items). One drop: IVS21C-09 PROMULGATE, headword above band per graders a and b. Banked at median 13 easy / 11 medium / 5 hard (BANK_BAND=mixed). The 40 SC of the same commission: ledger isee-verbal-s21-sc-2026-10-09.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f9b9a9cb89d1f52ec61ca2ea626c3e6f7396bc25cd32a0a270a48bfac9e1a128",
+          "verdict": "30 frozen: 4 distinct single-word lowercase choices, key among them, [Synonym] HEADWORD, verbalKind()=synonym 30/30 (isee-verbal-s21-preflight.ts); stem duplicates 0 vs 1,021 live isee rows; isee-verbal-s19-collisions.mjs --words isee-verbal-s21.live-words.json (2,483 live/s17-s20 words) 0 problems on both author files incl. cross-author; key strictly longest 7/30 = 23.3%, shortest 6/30 = 20.0%; stored key slots 8/8/7/7; key-spread ok. Key the only option sharing the headword initial: 0/30."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "f9b9a9cb89d1f52ec61ca2ea626c3e6f7396bc25cd32a0a270a48bfac9e1a128",
+          "n": 30,
+          "mean": 31.1,
+          "control": 26.7,
+          "margin": 4.4,
+          "verdict": "Options-only, interleaved with the WHOLE eligible live synonym pool (177, isee-verbal-s4 excluded), three samples of one Claude solver (pairwise agreement 79.5%). Candidate 28/90 = 31.1% vs letter 26.7% (M +4.4); live 279/531 = 52.5% vs 25.4% (M +27.1). EXCESS -22.7 <= +10 PASS; ceiling not reached. Per sample candidate 9/9/10 of 30, live 97/90/92 of 177. Unanimous-correct 8/30 vs 71/177. By author C 9/45 = 20.0%, D 19/45 = 42.2%."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "f9b9a9cb89d1f52ec61ca2ea626c3e6f7396bc25cd32a0a270a48bfac9e1a128",
+          "verdict": "Items >= 2 samples certainly rejected the same non-key option: candidate 0/30, live 0/177; bar max(live, 5%) PASS. reject_certain false on every item in every sample: a default, not a discriminating reading."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "f9b9a9cb89d1f52ec61ca2ea626c3e6f7396bc25cd32a0a270a48bfac9e1a128",
+          "verdict": "Three fresh Claude graders, each on its own re-shuffled render (seeds 20261061-63), cold picks on disk first: 30/30 on key each (bar: FAIL if any grader > 10% off). 0 second-defensible, 0 free eliminations, 0 antonym-of-key, 0 POS mismatch. Drop: IVS21C-09 (headword PROMULGATE above band, graders a and b). Difficulty a 11/13/6, b 13/12/5, c 14/10/6; kept medians 13/11/5. Authored hard 8 -> banked 0/2/6; medium 15 -> 6/9/0; easy 7 -> 7/0/0."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "f9b9a9cb89d1f52ec61ca2ea626c3e6f7396bc25cd32a0a270a48bfac9e1a128",
+          "verdict": "Key strictly longest 7/30 = 23.3%, shortest 6/30 = 20.0% (bar <= 35%). check-recycled-distractor NO MEASUREMENT (120/120 distinct). verify-answer-key-spread ok (quads p=0.94). Antonym-of-key items (>= 2 graders) 0/30 (bar <= 25%); POS outliers 0/30. Solver heuristic: all three samples named the likely-ISEE-headword prior; pooled candidate picks 28/85 = 32.9% (a 9/30, b 9/25, c 10/30), under 70%."
+        }
+      }
+    },
+    {
+      "id": "isee-verbal-s21-sc-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s21",
+      "status": "shipped",
+      "contentSha": "f0ffd4e103fecfd311809c30e03058f1bf963f4229a256dbeddc53c59008a02e",
+      "note": "ISEE Upper single-blank SC, 27 of 40 frozen inserted (frozen isee-verbal-s21-sc.batch.json sha 840cf9a6ae30eb9621707c2ac0729a226938923b77796de299ef7ca22d4cb0b6, commit 2736413d; kept isee-verbal-s21-sc.kept.batch.json is the byte-exact subset in frozen order; qc isee-verbal-s21-sc.withsource.json). Prereg isee-verbal-s21.prereg.md (commit cccb320f). Two Claude authors on s20's brief plus: no a/an before a blank (article scan a freeze refusal), medium briefed as hard minus one step, distractors as general-purpose and test-worthy as the key (test_word added to self-check and probe): A a-d 20 (14 hard / 6 medium), B s-z 20 (14 / 6). Blind probe r1 -> one revision round (distractors of named items only) -> r2 recorded (A test_word 9/20 over 35%, recorded as pre-registered). Banked 23 medium / 4 hard (BANK_BAND=mixed).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "f0ffd4e103fecfd311809c30e03058f1bf963f4229a256dbeddc53c59008a02e",
+          "verdict": "40 frozen: 4 distinct single-word lowercase choices, key among them, [Sentence Completion] with one 7-hyphen blank, no \"is to\", verbalKind()=sentence completion 40/40; stem duplicates 0 vs 1,021 live isee rows; collisions 0 (2,483-word list, cross-author); sc-article-scan --batch: a/an + blank 0, split on vowel sound 0; key strictly longest 8/40, shortest 8/40 (20.0% each); stored key slots 10/10/10/10; key-spread ok."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "f0ffd4e103fecfd311809c30e03058f1bf963f4229a256dbeddc53c59008a02e",
+          "n": 40,
+          "mean": 42.5,
+          "control": 25,
+          "margin": 17.5,
+          "verdict": "Options-only against the WHOLE eligible live hard/medium SC pool (124, 108 single-blank, isee-verbal-s4 excluded), three samples of one Claude solver (pairwise agreement 72.2%). Candidate 51/120 = 42.5% vs letter 25.0% (M +17.5); live 186/372 = 50.0% vs 25.0% (M +25.0); single-blank 156/324 = 48.1% vs 25.9% (M +22.2). EXCESS -7.5 (all) / -4.7 (single-blank), both <= +10 PASS; ceiling not reached. Per sample candidate 16/16/19 of 40, live 59/64/63 of 124. Unanimous-correct 13/40 vs 46/124. By author A 26/60 = 43.3%, B 25/60 = 41.7%."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "f0ffd4e103fecfd311809c30e03058f1bf963f4229a256dbeddc53c59008a02e",
+          "verdict": "Candidate 0/40 vs live 0/124 certainly eliminable; PASS. reject_certain false on every item in every sample: a default."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "f0ffd4e103fecfd311809c30e03058f1bf963f4229a256dbeddc53c59008a02e",
+          "verdict": "Three fresh Claude graders, own re-shuffled renders (seeds 20261064-66), cold picks on disk first: 40/40 on key each. Drops 13: median easy 5 (A-01, A-13, A-15, B-09, B-13; all authored medium), >= 2 graders mark a distractor above band 6 (A-06 bilious x3, A-09 abstemious x3, A-10 avuncular x3, A-12 ductile x2, A-18 commodious x3, B-14 sententious x3), key venal above band per 2 graders (B-10), second defensible 1 (B-03 superlative, grader a). Free eliminations named 0; reads_correctly true everywhere. Difficulty a 4/29/7, b 4/30/6, c 9/24/7. Authored hard 28 -> banked 0/22/6; authored medium 12 -> 5/7/0 (s20: 14/21 easy). Kept A 12/20, B 15/20."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "f0ffd4e103fecfd311809c30e03058f1bf963f4229a256dbeddc53c59008a02e",
+          "verdict": "Key strictly longest 8/40 = 20.0%, shortest 8/40 = 20.0% (bar <= 35%). check-recycled-distractor NO MEASUREMENT (160/160 distinct). verify-answer-key-spread ok. Article scan 0 split rows. Solver heuristic: no heuristic named by all three samples (a and b: none/no signal on 38 and 36 candidate picks); sample c alone named the test-word heuristic (\"sophisticated-word\"), 17/36 = 47.2% on candidate picks (s20 pooled 54.2%), under 70%. Key with a unique initial letter among options 1/40."
+        }
+      }
     }
   ],
   "auditedCohorts": [

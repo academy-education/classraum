@@ -1,0 +1,1314 @@
+{
+ "L01": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L02": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "repeated first word suggests key family",
+  "heuristic": "shared-first-word"
+ },
+ "L03": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L04": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L05": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L06": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L07": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "confusable lookalike pair, key likely one of them",
+  "heuristic": "confusable-pair"
+ },
+ "L08": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L09": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L10": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L11": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L12": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L13": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L14": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L15": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L16": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L17": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L18": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L19": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L20": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L21": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "repeated first word suggests key family",
+  "heuristic": "shared-first-word"
+ },
+ "L22": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L23": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L24": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L25": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L26": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L27": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L28": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L29": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L30": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L31": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L32": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L33": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L34": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L35": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L36": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L37": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L38": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L39": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L41": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L42": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L43": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L44": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L45": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L46": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "option stands apart from others",
+  "heuristic": "odd-one-out"
+ },
+ "L47": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L49": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L50": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L51": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L52": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L53": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L55": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L56": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L57": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L58": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L59": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L60": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L61": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L62": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L63": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L64": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L65": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L66": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L67": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L68": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L69": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L70": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L71": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L72": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L73": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L74": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L75": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L76": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L77": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L78": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L79": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L81": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L82": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L83": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L84": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L86": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L87": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L88": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L89": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L90": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L91": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L92": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L93": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L94": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L95": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L96": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L97": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L99": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L100": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L103": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L104": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L105": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L106": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L107": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L108": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L109": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L110": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "repeated first word suggests key family",
+  "heuristic": "shared-first-word"
+ },
+ "L111": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L112": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L113": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L114": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L115": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L116": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L117": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L118": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L119": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L120": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L121": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L122": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L123": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L124": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L125": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L126": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L127": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L128": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L129": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L130": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L131": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L132": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L133": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L134": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L136": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L137": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L138": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L139": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L140": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L141": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "blanks form the cleanest logical relation",
+  "heuristic": "pair-logic"
+ },
+ "L142": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L143": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L144": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L145": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L146": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L147": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L148": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L149": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L150": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L151": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L152": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L153": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L154": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L155": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L156": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L157": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L158": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L159": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L160": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L161": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L162": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L163": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ },
+ "L164": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "most test-worthy word in the set",
+  "heuristic": "sophisticated-word"
+ }
+}

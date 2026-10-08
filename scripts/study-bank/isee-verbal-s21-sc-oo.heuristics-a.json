@@ -1,0 +1,34 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "No discriminating signal in the options; arbitrary pick.",
+   "picks_decided": 142
+  },
+  {
+   "name": "pair-coherence",
+   "description": "Two-blank item: pick the pair whose two words relate most naturally (contrast or cause-effect).",
+   "picks_decided": 16
+  },
+  {
+   "name": "shared-word",
+   "description": "One word repeated across two options marks the key's neighbourhood; pick the coherent one of the two.",
+   "picks_decided": 3
+  },
+  {
+   "name": "odd-one-out",
+   "description": "Option differing in form (non-alliterative) from three look-alike distractors.",
+   "picks_decided": 1
+  },
+  {
+   "name": "confusable-pair",
+   "description": "Two lookalike words present; key presumed to be one of them.",
+   "picks_decided": 1
+  },
+  {
+   "name": "antonym-pair",
+   "description": "Antonym pair present; key presumed to be one of them.",
+   "picks_decided": 1
+  }
+ ]
+}

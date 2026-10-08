@@ -1,0 +1,1658 @@
+{
+ "L01": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dearth-type headword prior",
+  "heuristic": "headword-prior"
+ },
+ "L02": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "ponder/muse headword prior",
+  "heuristic": "headword-prior"
+ },
+ "L03": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pious-type headword prior",
+  "heuristic": "headword-prior"
+ },
+ "L04": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "intimidate-type prior; bully near annoy",
+  "heuristic": "headword-prior"
+ },
+ "L05": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "thwart-type headword prior",
+  "heuristic": "headword-prior"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "flagrant-type headword prior",
+  "heuristic": "headword-prior"
+ },
+ "L07": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "deplete-type headword prior",
+  "heuristic": "headword-prior"
+ },
+ "L08": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "colossal-type headword prior",
+  "heuristic": "headword-prior"
+ },
+ "L09": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "surly as ISEE-style trait",
+  "heuristic": "headword-prior"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "negligent-type headword prior",
+  "heuristic": "headword-prior"
+ },
+ "L11": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "obliterate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L12": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "conceal/announce opposed pair",
+  "heuristic": "antonym-pair"
+ },
+ "L13": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "curt-type headword prior",
+  "heuristic": "headword-prior"
+ },
+ "L14": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "brawl-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L15": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "waver-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L16": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "altruistic-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L17": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "employ-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L18": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "plausible-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L19": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "impudent-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L20": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "wary-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L21": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "ruthless-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L22": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "abstain-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L23": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "impetuous-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L24": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "aloof-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L25": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pine/long-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L26": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "transient-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L27": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "spend/hoard opposed pair",
+  "heuristic": "antonym-pair"
+ },
+ "L28": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "bear/transport guess",
+  "heuristic": "headword-prior"
+ },
+ "L29": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "haul-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L30": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "persuade/discourage pair; deter",
+  "heuristic": "antonym-pair"
+ },
+ "L31": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "seclusion-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L32": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "wily-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L33": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "muddled guess",
+  "heuristic": "headword-prior"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "meek-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "impeccable-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L36": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "abandon-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L37": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "empty/crowded pair; teeming",
+  "heuristic": "antonym-pair"
+ },
+ "L38": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "ire-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L39": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "obstinate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L40": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "petty-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L41": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "thrifty/generous pair; frugal",
+  "heuristic": "antonym-pair"
+ },
+ "L42": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "wither-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L43": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "disparage-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L44": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "ephemeral-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L45": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "envious guess",
+  "heuristic": "headword-prior"
+ },
+ "L46": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "eccentric-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L47": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "exciting vs boring/dreary; tedious",
+  "heuristic": "antonym-pair"
+ },
+ "L48": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "haughty-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L49": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "trite/hackneyed prior",
+  "heuristic": "headword-prior"
+ },
+ "L50": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "vanity-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L51": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "vow-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L52": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "daunt-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L53": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "grumble-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "evade-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L55": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "mumble-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L56": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "fluctuate/stabilize pair",
+  "heuristic": "antonym-pair"
+ },
+ "L57": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "force/allow pair; compel",
+  "heuristic": "antonym-pair"
+ },
+ "L58": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "taunt-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L59": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "savor-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L60": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "implore-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "perpetual-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L62": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "defer-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L63": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "sanctuary-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L64": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "thrive-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L65": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "candid-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L66": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "miserly definition phrase",
+  "heuristic": "headword-prior"
+ },
+ "L67": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "imminent-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L68": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "praise/scorn pair; disdain",
+  "heuristic": "antonym-pair"
+ },
+ "L69": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "temporary/persistent pair; transient",
+  "heuristic": "antonym-pair"
+ },
+ "L70": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "reckless/cautious pair; prudent",
+  "heuristic": "antonym-pair"
+ },
+ "L71": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "adamant-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L72": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "vacillate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L73": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "assist/impede pair; hinder",
+  "heuristic": "antonym-pair"
+ },
+ "L74": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "adage-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L75": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "docile-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L76": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "call/dismiss pair; summon",
+  "heuristic": "antonym-pair"
+ },
+ "L77": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "hypocritical-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L78": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "perplexed-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L79": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "reprimand-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L80": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "doleful guess",
+  "heuristic": "headword-prior"
+ },
+ "L81": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "transient-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L82": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "entice-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L83": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "revere guess",
+  "heuristic": "headword-prior"
+ },
+ "L84": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "poignant-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L85": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "deviate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L86": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dank-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L87": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "incite-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L88": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "mend-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L89": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "predicament-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L90": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "impartial-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L91": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "scarce/plentiful pair; abundant",
+  "heuristic": "antonym-pair"
+ },
+ "L92": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "industrious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L93": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "isolated-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L94": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guile-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L95": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "audacity-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L96": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "nimble-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L97": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "flaw-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L98": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "hasten/postpone pair; expedite",
+  "heuristic": "antonym-pair"
+ },
+ "L99": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "malicious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L100": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "resilient guess",
+  "heuristic": "headword-prior"
+ },
+ "L101": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "sparse definition phrase",
+  "heuristic": "headword-prior"
+ },
+ "L102": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "stubborn/yielding pair; obstinate",
+  "heuristic": "antonym-pair"
+ },
+ "L103": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "serene-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L104": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "irrational guess",
+  "heuristic": "headword-prior"
+ },
+ "L105": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "prohibit-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L106": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "zenith-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L107": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tentative/deliberate pair",
+  "heuristic": "antonym-pair"
+ },
+ "L108": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cantankerous guess",
+  "heuristic": "headword-prior"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "gratify-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L110": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "lessen/worsen pair; mitigate",
+  "heuristic": "antonym-pair"
+ },
+ "L111": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "digress-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L112": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "heated/peaceful pair; tranquil",
+  "heuristic": "antonym-pair"
+ },
+ "L113": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "avaricious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L114": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "hinder-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L115": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "ostentatious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L116": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "palpable definition phrase",
+  "heuristic": "headword-prior"
+ },
+ "L117": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "voracious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "forebear-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L119": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "placid-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "interminable guess",
+  "heuristic": "headword-prior"
+ },
+ "L121": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "ire-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L122": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "novice-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L123": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "loquacious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L124": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "rigorous-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L125": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "resolute-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L126": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "somber-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L127": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "haggle-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L128": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "frail guess",
+  "heuristic": "headword-prior"
+ },
+ "L129": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "haughty-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L130": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "bolster guess",
+  "heuristic": "headword-prior"
+ },
+ "L131": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "meticulous-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L132": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "crafty guess",
+  "heuristic": "headword-prior"
+ },
+ "L133": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "amiable-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L134": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "homage-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "meander-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L136": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "submit/rebel pair; capitulate",
+  "heuristic": "antonym-pair"
+ },
+ "L137": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "squabble-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L138": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "benefactor-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L139": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "despot-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L140": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "intermittent guess",
+  "heuristic": "headword-prior"
+ },
+ "L141": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "lucrative-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L142": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "judicious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L143": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "elucidate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L144": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "retrieve-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L145": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "variety/monotony pair; tedium",
+  "heuristic": "antonym-pair"
+ },
+ "L146": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "remorse-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L147": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "slake-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L148": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "saturate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L149": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "pallid-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L150": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "nouns pavement/gutter trap 'curb'; key restrain",
+  "heuristic": "polysemy-trap"
+ },
+ "L151": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pragmatic-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L152": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "interfere-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L153": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "nonchalant-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L154": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "depose-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L155": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "brink/verge guess",
+  "heuristic": "headword-prior"
+ },
+ "L156": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "coarse-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L157": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "vigilant-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L158": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "relentless guess",
+  "heuristic": "headword-prior"
+ },
+ "L159": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "candid-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L160": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tremble guess",
+  "heuristic": "headword-prior"
+ },
+ "L161": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "astounded-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L162": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "trepidation guess",
+  "heuristic": "headword-prior"
+ },
+ "L163": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "rescind-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L164": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "peril-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L165": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "arduous-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L166": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "placate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L167": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "renown-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L168": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "peevish-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L169": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "opponent/ally pair; adversary",
+  "heuristic": "antonym-pair"
+ },
+ "L170": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pacify-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L171": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "dwindle-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L172": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "rudimentary-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L173": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "covet-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L174": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "quell-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L175": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "ominous-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L176": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "vanquish-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L177": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "belated-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L178": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "insipid-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L179": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "muggy guess",
+  "heuristic": "headword-prior"
+ },
+ "L180": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "deceive-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L181": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "abate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L182": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "lethargic-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L183": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "paragon-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L184": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "notorious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L185": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "mundane guess",
+  "heuristic": "headword-prior"
+ },
+ "L186": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "prevalent-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L187": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "scowl-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L188": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "precarious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L189": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "contemplate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L190": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "coddle-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L191": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "foster-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L192": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "stern-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L193": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "disciple-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L194": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "liberate-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L195": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "evasive guess",
+  "heuristic": "headword-prior"
+ },
+ "L196": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "meandering-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L197": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "obstruct-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L198": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "baffle-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L199": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "dainty guess",
+  "heuristic": "headword-prior"
+ },
+ "L200": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "enrage/provoke trap 'temper'; key moderate",
+  "heuristic": "polysemy-trap"
+ },
+ "L201": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "portent guess",
+  "heuristic": "headword-prior"
+ },
+ "L202": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "meager-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L203": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "fastidious-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L204": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "deride-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L205": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "painstaking/careless pair; meticulous",
+  "heuristic": "antonym-pair"
+ },
+ "L206": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "avid-type prior",
+  "heuristic": "headword-prior"
+ },
+ "L207": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "proliferate guess",
+  "heuristic": "headword-prior"
+ }
+}
