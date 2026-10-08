@@ -6298,6 +6298,236 @@
           "verdict": "Options-only, interleaved with 30 live SC (hard+medium, isee-verbal-s4 excluded; pool 77; 21 single-blank, 9 two-blank), three samples of one Claude solver (pairwise agreement 77.6% vs 25.3%). Candidate 49/120 = 40.8% vs letter 25.0% (+15.8); live all 34/90 = 37.8% vs 26.7% (+11.1), EXCESS +4.7 (pass); live single-blank 20/63 = 31.7% vs 28.6% (+3.2), EXCESS +12.7 > +10 -> HOLD. Ceiling not reached (live 37.8%). Raw-rate difference against the single-blank controls is +9.2; the prereg defines excess over each arm's letter line, so the hold stands. Unanimous-correct candidate 13/40 = 32.5% vs live 6/30 = 20.0%. Named heuristic, all three samples: pick the most specific / distinctive / collocation-fitting word (40/46/52 picks)."
         }
       }
+    },
+    {
+      "id": "act-english-v9-a-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 30,
+        "authors": 1,
+        "method": "bank-act-english v7/v8 brief (act-english-v9.BRIEF.md, v8 text plus a new assignment table); per-passage mix 10 x CSE 5/PoW 3/KoL 2 + 5 x CSE 6/PoW 3/KoL 1 pre-registered in act-english-v9.PREREG.md (10eab515)"
+      },
+      "contentSha": "562bee81044936205e728e31b11dffdb0fd5763207625e1aab52194df30cc435",
+      "status": "qc",
+      "cohort": "act-english-v9",
+      "note": "Passages P1-P3 of the 15-passage act-english-v9 batch (one ledger entry per inserted file). STAGED (BANK_VERIFIED=false): the with-source gate dropped P11 and P12 whole, 20/150 = 13.3% of the batch > the 10% in ACT-ENGLISH-SPOTCHECK-RULE.md rule 3, so v9 falls back to a full 40-item human sitting instead of releasing on the gate. No edit after freeze; no repair. REGISTER section 5, 2026-10-08.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "act-bank-helper check english: structure OK, CSE 16 / PoW 9 / KoL 5. Batch-level prereg bar 1 (act-english-v9-preflight.mjs) over all 150 frozen items: per-passage mix as assigned; make-attack deal A40/B40/C40/D30 (max 26.7%, bar 35%); key uniquely longest 7/150 = 4.7%, uniquely shortest 23/150 = 15.3% (bar 25%); NO CHANGE keyed 30/126 = 23.8% (bar 15-35%); placement A1/B2/C1/D1; Yes/Kept 7/14 = 50.0%; semicolon key 0/23 boundary items."
+        },
+        "duplicates": {
+          "passed": true,
+          "verdict": "act-english-v8-dupscan.mjs (unchanged) vs all 440 non-archived ACT English rows (390 verified, 50 staged; 44 passages), paged: max passage token-Jaccard 0.128 (flag 0.30), no shared title, no within-batch pair >= 0.20. 83 stem flags on 13 items, all transition or essay-purpose items sharing the house stem template about different sentences; read by hand, none a duplicate. Break-test: a planted bank copy flags (PLANT=1)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Prereg bar 4: three independent Claude samples per item (grader-a/b plain, grader-c adversarial; v8 prompts verbatim) over act-en9-h1/h2/h3.ws.md, key unmarked. Picks on key 150/150 in all three samples (450/450). Second-defensible named by ONE sample on P1-Q10 (C) and P12-Q01 (A), never by two. DROPS: P11-Q05 (conclusion, no_source_needed 2 of 3) and P12-Q02 (supporting detail, no_source_needed 3 of 3) -> passages P11 and P12 dropped whole, no repair. P15-Q04 no_source_needed 1 of 3 (kept). Grader-median difficulty easy 104 / medium 43 / hard 3 over 150."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 150,
+          "mean": 92.7,
+          "control": null,
+          "verdict": "SCREEN, NOT A VERDICT (prereg bar 3; the options-only instrument saturates on ACT verbal: v7 model 100% CSE vs co-founder 16.7%, v8 100% vs 29.2%). SPLIT=10, one item per passage per file, a fresh Claude solver per file: 139/150, confident 124/124. Per domain vs the matched live control (actlive-score 2026-09-12): CSE 80/80 = 100.0% vs 68.0% -> +32.0 SCREEN FLAG; PoW 34/45 = 75.6% vs 66.7% -> +8.9 no flag; KoL 25/25 = 100% vs 92.9%, report-only. Flags drop nothing."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Covered by the prereg with-source rule for PoW (no_source_needed >= 2 of 3 drops): 2 of 45 PoW items reached it (P11-Q05, P12-Q02) and their passages were dropped; 0 of the 39 PoW items in kept passages. CSE/KoL decidable inside the quoted sentence by design; single-sentence retrievability 99/105 CSE+KoL by >= 2 samples, recorded, not a drop rule."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key longest 4.7% / shortest 15.3%. Semicolon is never the key (0/23 boundary items) - a cross-item tell (\"strike the semicolon\") that the prereg cap (<= 35%) does not catch; recorded for the sitting. All 11 blind misses are PoW."
+        }
+      }
+    },
+    {
+      "id": "act-english-v9-b-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 30,
+        "authors": 1,
+        "method": "bank-act-english v7/v8 brief (act-english-v9.BRIEF.md, v8 text plus a new assignment table); per-passage mix 10 x CSE 5/PoW 3/KoL 2 + 5 x CSE 6/PoW 3/KoL 1 pre-registered in act-english-v9.PREREG.md (10eab515)"
+      },
+      "contentSha": "c9f58e20e248c6cba8c341d0f28f8a12a42d6f38afada49e3e9fd8d8890d60dc",
+      "status": "qc",
+      "cohort": "act-english-v9",
+      "note": "Passages P4-P6 of the 15-passage act-english-v9 batch (one ledger entry per inserted file). STAGED (BANK_VERIFIED=false): the with-source gate dropped P11 and P12 whole, 20/150 = 13.3% of the batch > the 10% in ACT-ENGLISH-SPOTCHECK-RULE.md rule 3, so v9 falls back to a full 40-item human sitting instead of releasing on the gate. No edit after freeze; no repair. REGISTER section 5, 2026-10-08.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "act-bank-helper check english: structure OK, CSE 16 / PoW 9 / KoL 5. Batch-level prereg bar 1 (act-english-v9-preflight.mjs) over all 150 frozen items: per-passage mix as assigned; make-attack deal A40/B40/C40/D30 (max 26.7%, bar 35%); key uniquely longest 7/150 = 4.7%, uniquely shortest 23/150 = 15.3% (bar 25%); NO CHANGE keyed 30/126 = 23.8% (bar 15-35%); placement A1/B2/C1/D1; Yes/Kept 7/14 = 50.0%; semicolon key 0/23 boundary items."
+        },
+        "duplicates": {
+          "passed": true,
+          "verdict": "act-english-v8-dupscan.mjs (unchanged) vs all 440 non-archived ACT English rows (390 verified, 50 staged; 44 passages), paged: max passage token-Jaccard 0.128 (flag 0.30), no shared title, no within-batch pair >= 0.20. 83 stem flags on 13 items, all transition or essay-purpose items sharing the house stem template about different sentences; read by hand, none a duplicate. Break-test: a planted bank copy flags (PLANT=1)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Prereg bar 4: three independent Claude samples per item (grader-a/b plain, grader-c adversarial; v8 prompts verbatim) over act-en9-h1/h2/h3.ws.md, key unmarked. Picks on key 150/150 in all three samples (450/450). Second-defensible named by ONE sample on P1-Q10 (C) and P12-Q01 (A), never by two. DROPS: P11-Q05 (conclusion, no_source_needed 2 of 3) and P12-Q02 (supporting detail, no_source_needed 3 of 3) -> passages P11 and P12 dropped whole, no repair. P15-Q04 no_source_needed 1 of 3 (kept). Grader-median difficulty easy 104 / medium 43 / hard 3 over 150."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 150,
+          "mean": 92.7,
+          "control": null,
+          "verdict": "SCREEN, NOT A VERDICT (prereg bar 3; the options-only instrument saturates on ACT verbal: v7 model 100% CSE vs co-founder 16.7%, v8 100% vs 29.2%). SPLIT=10, one item per passage per file, a fresh Claude solver per file: 139/150, confident 124/124. Per domain vs the matched live control (actlive-score 2026-09-12): CSE 80/80 = 100.0% vs 68.0% -> +32.0 SCREEN FLAG; PoW 34/45 = 75.6% vs 66.7% -> +8.9 no flag; KoL 25/25 = 100% vs 92.9%, report-only. Flags drop nothing."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Covered by the prereg with-source rule for PoW (no_source_needed >= 2 of 3 drops): 2 of 45 PoW items reached it (P11-Q05, P12-Q02) and their passages were dropped; 0 of the 39 PoW items in kept passages. CSE/KoL decidable inside the quoted sentence by design; single-sentence retrievability 99/105 CSE+KoL by >= 2 samples, recorded, not a drop rule."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key longest 4.7% / shortest 15.3%. Semicolon is never the key (0/23 boundary items) - a cross-item tell (\"strike the semicolon\") that the prereg cap (<= 35%) does not catch; recorded for the sitting. All 11 blind misses are PoW."
+        }
+      }
+    },
+    {
+      "id": "act-english-v9-c-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 30,
+        "authors": 1,
+        "method": "bank-act-english v7/v8 brief (act-english-v9.BRIEF.md, v8 text plus a new assignment table); per-passage mix 10 x CSE 5/PoW 3/KoL 2 + 5 x CSE 6/PoW 3/KoL 1 pre-registered in act-english-v9.PREREG.md (10eab515)"
+      },
+      "contentSha": "0e5370eefc187e19918feb0ddf832622c356913ffbe2c725edcf67b5db8abc3f",
+      "status": "qc",
+      "cohort": "act-english-v9",
+      "note": "Passages P7-P9 of the 15-passage act-english-v9 batch (one ledger entry per inserted file). STAGED (BANK_VERIFIED=false): the with-source gate dropped P11 and P12 whole, 20/150 = 13.3% of the batch > the 10% in ACT-ENGLISH-SPOTCHECK-RULE.md rule 3, so v9 falls back to a full 40-item human sitting instead of releasing on the gate. No edit after freeze; no repair. REGISTER section 5, 2026-10-08.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "act-bank-helper check english: structure OK, CSE 16 / PoW 9 / KoL 5. Batch-level prereg bar 1 (act-english-v9-preflight.mjs) over all 150 frozen items: per-passage mix as assigned; make-attack deal A40/B40/C40/D30 (max 26.7%, bar 35%); key uniquely longest 7/150 = 4.7%, uniquely shortest 23/150 = 15.3% (bar 25%); NO CHANGE keyed 30/126 = 23.8% (bar 15-35%); placement A1/B2/C1/D1; Yes/Kept 7/14 = 50.0%; semicolon key 0/23 boundary items."
+        },
+        "duplicates": {
+          "passed": true,
+          "verdict": "act-english-v8-dupscan.mjs (unchanged) vs all 440 non-archived ACT English rows (390 verified, 50 staged; 44 passages), paged: max passage token-Jaccard 0.128 (flag 0.30), no shared title, no within-batch pair >= 0.20. 83 stem flags on 13 items, all transition or essay-purpose items sharing the house stem template about different sentences; read by hand, none a duplicate. Break-test: a planted bank copy flags (PLANT=1)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Prereg bar 4: three independent Claude samples per item (grader-a/b plain, grader-c adversarial; v8 prompts verbatim) over act-en9-h1/h2/h3.ws.md, key unmarked. Picks on key 150/150 in all three samples (450/450). Second-defensible named by ONE sample on P1-Q10 (C) and P12-Q01 (A), never by two. DROPS: P11-Q05 (conclusion, no_source_needed 2 of 3) and P12-Q02 (supporting detail, no_source_needed 3 of 3) -> passages P11 and P12 dropped whole, no repair. P15-Q04 no_source_needed 1 of 3 (kept). Grader-median difficulty easy 104 / medium 43 / hard 3 over 150."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 150,
+          "mean": 92.7,
+          "control": null,
+          "verdict": "SCREEN, NOT A VERDICT (prereg bar 3; the options-only instrument saturates on ACT verbal: v7 model 100% CSE vs co-founder 16.7%, v8 100% vs 29.2%). SPLIT=10, one item per passage per file, a fresh Claude solver per file: 139/150, confident 124/124. Per domain vs the matched live control (actlive-score 2026-09-12): CSE 80/80 = 100.0% vs 68.0% -> +32.0 SCREEN FLAG; PoW 34/45 = 75.6% vs 66.7% -> +8.9 no flag; KoL 25/25 = 100% vs 92.9%, report-only. Flags drop nothing."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Covered by the prereg with-source rule for PoW (no_source_needed >= 2 of 3 drops): 2 of 45 PoW items reached it (P11-Q05, P12-Q02) and their passages were dropped; 0 of the 39 PoW items in kept passages. CSE/KoL decidable inside the quoted sentence by design; single-sentence retrievability 99/105 CSE+KoL by >= 2 samples, recorded, not a drop rule."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key longest 4.7% / shortest 15.3%. Semicolon is never the key (0/23 boundary items) - a cross-item tell (\"strike the semicolon\") that the prereg cap (<= 35%) does not catch; recorded for the sitting. All 11 blind misses are PoW."
+        }
+      }
+    },
+    {
+      "id": "act-english-v9-d-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 10,
+        "authors": 1,
+        "method": "bank-act-english v7/v8 brief (act-english-v9.BRIEF.md, v8 text plus a new assignment table); per-passage mix 10 x CSE 5/PoW 3/KoL 2 + 5 x CSE 6/PoW 3/KoL 1 pre-registered in act-english-v9.PREREG.md (10eab515)"
+      },
+      "contentSha": "9f691bb9530752adce99dff81e4e04450cb50ef7b2e24fee3a59aee8b06c3e15",
+      "status": "qc",
+      "cohort": "act-english-v9",
+      "note": "Passages P10 (P11 and P12 dropped whole at prereg bar 4) of the 15-passage act-english-v9 batch (one ledger entry per inserted file). STAGED (BANK_VERIFIED=false): the with-source gate dropped P11 and P12 whole, 20/150 = 13.3% of the batch > the 10% in ACT-ENGLISH-SPOTCHECK-RULE.md rule 3, so v9 falls back to a full 40-item human sitting instead of releasing on the gate. No edit after freeze; no repair. REGISTER section 5, 2026-10-08.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "act-bank-helper check english: structure OK, CSE 6 / PoW 3 / KoL 1 (kept subset of the frozen 30-item author file, sha 2eb9fb0f). Batch-level prereg bar 1 (act-english-v9-preflight.mjs) over all 150 frozen items: per-passage mix as assigned; make-attack deal A40/B40/C40/D30 (max 26.7%, bar 35%); key uniquely longest 7/150 = 4.7%, uniquely shortest 23/150 = 15.3% (bar 25%); NO CHANGE keyed 30/126 = 23.8% (bar 15-35%); placement A1/B2/C1/D1; Yes/Kept 7/14 = 50.0%; semicolon key 0/23 boundary items."
+        },
+        "duplicates": {
+          "passed": true,
+          "verdict": "act-english-v8-dupscan.mjs (unchanged) vs all 440 non-archived ACT English rows (390 verified, 50 staged; 44 passages), paged: max passage token-Jaccard 0.128 (flag 0.30), no shared title, no within-batch pair >= 0.20. 83 stem flags on 13 items, all transition or essay-purpose items sharing the house stem template about different sentences; read by hand, none a duplicate. Break-test: a planted bank copy flags (PLANT=1)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Prereg bar 4: three independent Claude samples per item (grader-a/b plain, grader-c adversarial; v8 prompts verbatim) over act-en9-h1/h2/h3.ws.md, key unmarked. Picks on key 150/150 in all three samples (450/450). Second-defensible named by ONE sample on P1-Q10 (C) and P12-Q01 (A), never by two. DROPS: P11-Q05 (conclusion, no_source_needed 2 of 3) and P12-Q02 (supporting detail, no_source_needed 3 of 3) -> passages P11 and P12 dropped whole, no repair. P15-Q04 no_source_needed 1 of 3 (kept). Grader-median difficulty easy 104 / medium 43 / hard 3 over 150."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 150,
+          "mean": 92.7,
+          "control": null,
+          "verdict": "SCREEN, NOT A VERDICT (prereg bar 3; the options-only instrument saturates on ACT verbal: v7 model 100% CSE vs co-founder 16.7%, v8 100% vs 29.2%). SPLIT=10, one item per passage per file, a fresh Claude solver per file: 139/150, confident 124/124. Per domain vs the matched live control (actlive-score 2026-09-12): CSE 80/80 = 100.0% vs 68.0% -> +32.0 SCREEN FLAG; PoW 34/45 = 75.6% vs 66.7% -> +8.9 no flag; KoL 25/25 = 100% vs 92.9%, report-only. Flags drop nothing."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Covered by the prereg with-source rule for PoW (no_source_needed >= 2 of 3 drops): 2 of 45 PoW items reached it (P11-Q05, P12-Q02) and their passages were dropped; 0 of the 39 PoW items in kept passages. CSE/KoL decidable inside the quoted sentence by design; single-sentence retrievability 99/105 CSE+KoL by >= 2 samples, recorded, not a drop rule."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key longest 4.7% / shortest 15.3%. Semicolon is never the key (0/23 boundary items) - a cross-item tell (\"strike the semicolon\") that the prereg cap (<= 35%) does not catch; recorded for the sitting. All 11 blind misses are PoW."
+        }
+      }
+    },
+    {
+      "id": "act-english-v9-e-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "english",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 30,
+        "authors": 1,
+        "method": "bank-act-english v7/v8 brief (act-english-v9.BRIEF.md, v8 text plus a new assignment table); per-passage mix 10 x CSE 5/PoW 3/KoL 2 + 5 x CSE 6/PoW 3/KoL 1 pre-registered in act-english-v9.PREREG.md (10eab515)"
+      },
+      "contentSha": "2ee68c1dd11ec51cb49f8535241b38ea45d14db240be97fd6ff07482322e0d0d",
+      "status": "qc",
+      "cohort": "act-english-v9",
+      "note": "Passages P13-P15 of the 15-passage act-english-v9 batch (one ledger entry per inserted file). STAGED (BANK_VERIFIED=false): the with-source gate dropped P11 and P12 whole, 20/150 = 13.3% of the batch > the 10% in ACT-ENGLISH-SPOTCHECK-RULE.md rule 3, so v9 falls back to a full 40-item human sitting instead of releasing on the gate. No edit after freeze; no repair. REGISTER section 5, 2026-10-08.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "verdict": "act-bank-helper check english: structure OK, CSE 16 / PoW 9 / KoL 5. Batch-level prereg bar 1 (act-english-v9-preflight.mjs) over all 150 frozen items: per-passage mix as assigned; make-attack deal A40/B40/C40/D30 (max 26.7%, bar 35%); key uniquely longest 7/150 = 4.7%, uniquely shortest 23/150 = 15.3% (bar 25%); NO CHANGE keyed 30/126 = 23.8% (bar 15-35%); placement A1/B2/C1/D1; Yes/Kept 7/14 = 50.0%; semicolon key 0/23 boundary items."
+        },
+        "duplicates": {
+          "passed": true,
+          "verdict": "act-english-v8-dupscan.mjs (unchanged) vs all 440 non-archived ACT English rows (390 verified, 50 staged; 44 passages), paged: max passage token-Jaccard 0.128 (flag 0.30), no shared title, no within-batch pair >= 0.20. 83 stem flags on 13 items, all transition or essay-purpose items sharing the house stem template about different sentences; read by hand, none a duplicate. Break-test: a planted bank copy flags (PLANT=1)."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Prereg bar 4: three independent Claude samples per item (grader-a/b plain, grader-c adversarial; v8 prompts verbatim) over act-en9-h1/h2/h3.ws.md, key unmarked. Picks on key 150/150 in all three samples (450/450). Second-defensible named by ONE sample on P1-Q10 (C) and P12-Q01 (A), never by two. DROPS: P11-Q05 (conclusion, no_source_needed 2 of 3) and P12-Q02 (supporting detail, no_source_needed 3 of 3) -> passages P11 and P12 dropped whole, no repair. P15-Q04 no_source_needed 1 of 3 (kept). Grader-median difficulty easy 104 / medium 43 / hard 3 over 150."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 150,
+          "mean": 92.7,
+          "control": null,
+          "verdict": "SCREEN, NOT A VERDICT (prereg bar 3; the options-only instrument saturates on ACT verbal: v7 model 100% CSE vs co-founder 16.7%, v8 100% vs 29.2%). SPLIT=10, one item per passage per file, a fresh Claude solver per file: 139/150, confident 124/124. Per domain vs the matched live control (actlive-score 2026-09-12): CSE 80/80 = 100.0% vs 68.0% -> +32.0 SCREEN FLAG; PoW 34/45 = 75.6% vs 66.7% -> +8.9 no flag; KoL 25/25 = 100% vs 92.9%, report-only. Flags drop nothing."
+        },
+        "elimination": {
+          "passed": true,
+          "verdict": "Covered by the prereg with-source rule for PoW (no_source_needed >= 2 of 3 drops): 2 of 45 PoW items reached it (P11-Q05, P12-Q02) and their passages were dropped; 0 of the 39 PoW items in kept passages. CSE/KoL decidable inside the quoted sentence by design; single-sentence retrievability 99/105 CSE+KoL by >= 2 samples, recorded, not a drop rule."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "Key longest 4.7% / shortest 15.3%. Semicolon is never the key (0/23 boundary items) - a cross-item tell (\"strike the semicolon\") that the prereg cap (<= 35%) does not catch; recorded for the sitting. All 11 blind misses are PoW."
+        }
+      }
     }
   ],
   "auditedCohorts": [
