@@ -1,0 +1,268 @@
+[
+ {
+  "id": "SM24L-A1",
+  "rule": "pre-flight (PREREG-ALG24): check-math-near-dup prompt token-Jaccard >= 0.60 vs live SAT Math row d1477b94 (sat-math-v23-alg A6, the family reference item) -> DROPPED before freeze",
+  "j": 0.8,
+  "item": {
+   "domain": "Algebra",
+   "difficulty": "hard",
+   "bounds": [],
+   "id": "SM24L-A1",
+   "subskill": "Linear function bounded on an interval: width of the k-range",
+   "prompt": "f(x) = kx + 4\n\nIn the function f defined above, k is a constant. For every value of x such that -2 ≤ x ≤ 4, the value of f(x) is at least -3 and at most 7. What is the difference between the greatest possible value of k and the least possible value of k?",
+   "choices": [
+    "9/4",
+    "5/2",
+    "5",
+    "21/4"
+   ],
+   "correct_answer": "9/4",
+   "explanation": "Because f is linear, its least and greatest values for -2 ≤ x ≤ 4 occur at the endpoints x = -2 and x = 4. So the condition holds exactly when f(-2) and f(4) are both between -3 and 7. Since f(-2) = 4 - 2k, the inequality -3 ≤ 4 - 2k ≤ 7 gives -3/2 ≤ k ≤ 7/2. Since f(4) = 4 + 4k, the inequality -3 ≤ 4 + 4k ≤ 7 gives -7/4 ≤ k ≤ 3/4. Both hold when -3/2 ≤ k ≤ 3/4.\n\nThe decision point is which endpoint limits k on each side of k = 0. When k is positive, f is increasing, so its greatest value is f(4), and f(4) ≤ 7 limits k to at most 3/4. When k is negative, f is decreasing, so its greatest value is f(-2), and f(-2) ≤ 7 limits k to at least -3/2. In both cases it is the bound 7 that does the limiting, at a different endpoint each time. The difference is 3/4 - (-3/2) = 9/4.\n\nChoice 5 checks only x = -2, which allows -3/2 ≤ k ≤ 7/2. Choice 5/2 checks only x = 4, which allows -7/4 ≤ k ≤ 3/4. Choice 21/4 treats the bound -3 as the limiting one for both signs, taking k ≤ 7/2 from f(-2) ≥ -3 and k ≥ -7/4 from f(4) ≥ -3.",
+   "mechanism": [
+    "linear on an interval: check both endpoints",
+    "slope sign decides which endpoint binds",
+    "width of the admissible k-range"
+   ],
+   "setup": {
+    "i": "slope, fixed y-intercept",
+    "ii": "two-sided",
+    "iii": "width of k-range"
+   },
+   "key_position": "smallest",
+   "solve": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+4;const r=kr(g,[-2,4],-3,7);return r[1]-r[0];",
+   "distractor_solve": {
+    "5": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+4;const r=kr(g,[-2],-3,7);return r[1]-r[0];",
+    "5/2": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+4;const r=kr(g,[4],-3,7);return r[1]-r[0];",
+    "21/4": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+4;const a=kr(g,[-2],-3,null),b=kr(g,[4],-3,null);return a[1]-b[0];"
+   }
+  }
+ },
+ {
+  "id": "SM24L-A3",
+  "rule": "pre-flight (PREREG-ALG24): check-math-near-dup prompt token-Jaccard >= 0.60 vs live SAT Math row d1477b94 (sat-math-v23-alg A6, the family reference item) -> DROPPED before freeze",
+  "j": 0.833,
+  "item": {
+   "domain": "Algebra",
+   "difficulty": "hard",
+   "bounds": [],
+   "id": "SM24L-A3",
+   "subskill": "Linear function through a fixed point, bounded on an interval: sum of k",
+   "prompt": "f(x) = k(x - 2) + 3\n\nIn the function f defined above, k is a constant. For every value of x with -4 ≤ x ≤ 5, -6 ≤ f(x) ≤ 5. What is the sum of the greatest possible value of k and the least possible value of k?",
+   "choices": [
+    "-7/3",
+    "-3/2",
+    "1/3",
+    "7/6"
+   ],
+   "correct_answer": "1/3",
+   "explanation": "Because f is linear, the condition holds for every x with -4 ≤ x ≤ 5 exactly when it holds at x = -4 and at x = 5. Since f(-4) = 3 - 6k, the inequality -6 ≤ 3 - 6k ≤ 5 gives -1/3 ≤ k ≤ 3/2. Since f(5) = 3 + 3k, the inequality -6 ≤ 3 + 3k ≤ 5 gives -3 ≤ k ≤ 2/3. Both hold when -1/3 ≤ k ≤ 2/3.\n\nThe decision point is which requirement limits k on each side of k = 0. Every graph passes through (2, 3), which is inside the interval. When k is positive, the greatest value is f(5), and f(5) ≤ 5 gives k ≤ 2/3; the requirement f(-4) ≥ -6 is weaker. When k is negative, the greatest value is f(-4), and f(-4) ≤ 5 gives k ≥ -1/3; the requirement f(5) ≥ -6 is weaker. The sum is 2/3 + (-1/3) = 1/3.\n\nChoice 7/6 checks only x = -4, which allows -1/3 ≤ k ≤ 3/2. Choice -7/3 checks only x = 5, which allows -3 ≤ k ≤ 2/3. Choice -3/2 treats the lower bound -6 as the limiting one for both signs, taking k ≤ 3/2 from f(-4) ≥ -6 and k ≥ -3 from f(5) ≥ -6.",
+   "mechanism": [
+    "fixed point inside the interval",
+    "slope sign decides which endpoint and bound bind",
+    "sum of the extreme values of k"
+   ],
+   "setup": {
+    "i": "slope, pivot inside interval",
+    "ii": "two-sided",
+    "iii": "sum of greatest and least k"
+   },
+   "key_position": "interior",
+   "solve": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*(x-2)+3;const r=kr(g,[-4,5],-6,5);return r[0]+r[1];",
+   "distractor_solve": {
+    "7/6": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*(x-2)+3;const r=kr(g,[-4],-6,5);return r[0]+r[1];",
+    "-7/3": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*(x-2)+3;const r=kr(g,[5],-6,5);return r[0]+r[1];",
+    "-3/2": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*(x-2)+3;const a=kr(g,[-4],-6,null),b=kr(g,[5],-6,null);return a[1]+b[0];"
+   }
+  }
+ },
+ {
+  "id": "SM24L-A5",
+  "rule": "pre-flight (PREREG-ALG24): check-math-near-dup prompt token-Jaccard >= 0.60 vs live SAT Math row d1477b94 (sat-math-v23-alg A6, the family reference item) -> DROPPED before freeze",
+  "j": 1.0,
+  "item": {
+   "domain": "Algebra",
+   "difficulty": "hard",
+   "bounds": [],
+   "id": "SM24L-A5",
+   "subskill": "Linear function bounded on an interval away from its fixed point: spread of f(t)",
+   "prompt": "f(x) = kx + 4k + 3\n\nIn the function f defined above, k is a constant. For every value of x with 0 ≤ x ≤ 2, -6 ≤ f(x) ≤ 8. What is the difference between the greatest possible value of f(-6) and the least possible value of f(-6)?",
+   "choices": [
+    "14/3",
+    "11/2",
+    "37/6",
+    "7"
+   ],
+   "correct_answer": "14/3",
+   "explanation": "Write f(x) = 3 + k(x + 4). Because f is linear, the condition holds for 0 ≤ x ≤ 2 exactly when it holds at x = 0 and at x = 2. Since f(0) = 3 + 4k, the inequality -6 ≤ 3 + 4k ≤ 8 gives -9/4 ≤ k ≤ 5/4. Since f(2) = 3 + 6k, the inequality -6 ≤ 3 + 6k ≤ 8 gives -3/2 ≤ k ≤ 5/6. Both hold when -3/2 ≤ k ≤ 5/6.\n\nThe decision point is which bound x = 2 must meet, and that depends on the sign of k. Every graph passes through (-4, 3), to the left of the interval, so x = 2 is where f is farthest from 3. When k is positive, f(2) is the greatest value and must be at most 8, giving k ≤ 5/6. When k is negative, f(2) is the least value and must be at least -6, giving k ≥ -3/2.\n\nSince f(-6) = 3 - 2k, it ranges from 3 - 2(5/6) = 4/3 to 3 - 2(-3/2) = 6. The difference is 6 - 4/3 = 14/3.\n\nChoice 7 checks only x = 0, which allows -9/4 ≤ k ≤ 5/4. Choice 37/6 assumes f is increasing and pairs f(0) ≥ -6 with f(2) ≤ 8, which gives -9/4 ≤ k ≤ 5/6. Choice 11/2 assumes f is decreasing and pairs f(0) ≤ 8 with f(2) ≥ -6, which gives -3/2 ≤ k ≤ 5/4.",
+   "mechanism": [
+    "fixed point outside the interval",
+    "the far endpoint meets a different bound for each slope sign",
+    "spread of f(t) on the other side of the fixed point"
+   ],
+   "setup": {
+    "i": "slope, pivot outside interval",
+    "ii": "two-sided",
+    "iii": "spread of f(t), t outside interval"
+   },
+   "key_position": "smallest",
+   "solve": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+4*k+3;const r=kr(g,[0,2],-6,8);return Math.abs(g(-6,r[1])-g(-6,r[0]));",
+   "distractor_solve": {
+    "7": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+4*k+3;const r=kr(g,[0],-6,8);return Math.abs(g(-6,r[1])-g(-6,r[0]));",
+    "37/6": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+4*k+3;const lo=kr(g,[0],-6,null)[0],hi=kr(g,[2],null,8)[1];return Math.abs(g(-6,hi)-g(-6,lo));",
+    "11/2": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+4*k+3;const hi=kr(g,[0],null,8)[1],lo=kr(g,[2],-6,null)[0];return Math.abs(g(-6,hi)-g(-6,lo));"
+   }
+  }
+ },
+ {
+  "id": "SM24L-A6",
+  "rule": "pre-flight (PREREG-ALG24): check-math-near-dup prompt token-Jaccard >= 0.60 vs live SAT Math row d1477b94 (sat-math-v23-alg A6, the family reference item) -> DROPPED before freeze",
+  "j": 1.0,
+  "item": {
+   "domain": "Algebra",
+   "difficulty": "hard",
+   "bounds": [],
+   "id": "SM24L-A6",
+   "subskill": "Linear function kept between a horizontal and a slanted line: k-range width",
+   "prompt": "f(x) = kx - 2k + 3\n\nIn the function f defined above, k is a constant. For every value of x with 4 ≤ x ≤ 8, -4 ≤ f(x) ≤ x. What is the difference between the greatest possible value of k and the least possible value of k?",
+   "choices": [
+    "5/3",
+    "2",
+    "4",
+    "13/3"
+   ],
+   "correct_answer": "5/3",
+   "explanation": "Both f(x) + 4 and x - f(x) are linear in x, so each is nonnegative for every x with 4 ≤ x ≤ 8 exactly when it is nonnegative at x = 4 and at x = 8. Since f(4) = 2k + 3, the inequality -4 ≤ 2k + 3 ≤ 4 gives -7/2 ≤ k ≤ 1/2. Since f(8) = 6k + 3, the inequality -4 ≤ 6k + 3 ≤ 8 gives -7/6 ≤ k ≤ 5/6. Both hold when -7/6 ≤ k ≤ 1/2, so the difference is 1/2 - (-7/6) = 5/3.\n\nThe decision point is that the two bounds are met at different endpoints. Every graph passes through (2, 3), to the left of the interval. When k is negative, f is decreasing and is closest to the lower bound -4 at x = 8, which gives k ≥ -7/6. When k is positive, the comparison is with the rising line y = x, and x - f(x) = (1 - k)x + 2k - 3 has positive slope when k is less than 1, so f(x) comes closest to x at the near endpoint x = 4, which gives k ≤ 1/2.\n\nChoice 2 checks only x = 8, as if both bounds were met at the endpoint farther from (2, 3); that allows -7/6 ≤ k ≤ 5/6. Choice 4 checks only x = 4, which allows -7/2 ≤ k ≤ 1/2. Choice 13/3 takes each bound at the endpoint where it does not limit k: k ≤ 5/6 from f(8) ≤ 8 and k ≥ -7/2 from f(4) ≥ -4.",
+   "mechanism": [
+    "fixed point outside the interval",
+    "upper bound is the line y = x, so it binds at the near endpoint",
+    "width of the admissible k-range"
+   ],
+   "setup": {
+    "i": "slope, pivot outside interval",
+    "ii": "between two fixed lines",
+    "iii": "width of k-range"
+   },
+   "key_position": "smallest",
+   "solve": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x-2*k+3;const r=kr(g,[4,8],-4,x=>x);return r[1]-r[0];",
+   "distractor_solve": {
+    "2": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x-2*k+3;const r=kr(g,[8],-4,x=>x);return r[1]-r[0];",
+    "4": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x-2*k+3;const r=kr(g,[4],-4,x=>x);return r[1]-r[0];",
+    "13/3": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x-2*k+3;const hi=kr(g,[8],null,x=>x)[1],lo=kr(g,[4],-4,null)[0];return hi-lo;"
+   }
+  }
+ },
+ {
+  "id": "SM24L-A8",
+  "rule": "pre-flight (PREREG-ALG24): check-math-near-dup prompt token-Jaccard >= 0.60 vs live SAT Math row d1477b94 (sat-math-v23-alg A6, the family reference item) -> DROPPED before freeze",
+  "j": 0.684,
+  "item": {
+   "domain": "Algebra",
+   "difficulty": "hard",
+   "bounds": [],
+   "id": "SM24L-A8",
+   "subskill": "Linear function given by two values, capped on an interval: sum of k",
+   "prompt": "g(-1) = k\ng(2) = 2\n\nThe function g is linear, and k is a constant. For every value of x with -2 ≤ x ≤ 4, g(x) ≤ 7. What is the sum of the greatest possible value of k and the least possible value of k?",
+   "choices": [
+    "-7/2",
+    "1/4",
+    "5/4",
+    "31/4"
+   ],
+   "correct_answer": "1/4",
+   "explanation": "Let s be the slope of g. Then s = (2 - k)/(2 - (-1)) = (2 - k)/3, and g(x) = 2 + s(x - 2). Because g is linear, g(x) ≤ 7 for every x with -2 ≤ x ≤ 4 exactly when g(-2) ≤ 7 and g(4) ≤ 7. Since g(4) = 2 + 2s, the inequality 2 + 2s ≤ 7 gives s ≤ 5/2. Since g(-2) = 2 - 4s, the inequality 2 - 4s ≤ 7 gives s ≥ -5/4. So -5/4 ≤ s ≤ 5/2.\n\nThe decision point is that the slope can be negative as well as positive: a positive slope is limited at x = 4, a negative slope at x = -2. Then k = 2 - 3s, so k decreases as s increases. The least value of k is 2 - 3(5/2) = -11/2, from the greatest slope, and the greatest value of k is 2 - 3(-5/4) = 23/4, from the most negative slope. The sum is -11/2 + 23/4 = 1/4.\n\nChoice 31/4 writes the slope as (k - 2)/3, with the sign reversed, so k = 2 + 3s runs from -7/4 to 19/2. Choice 5/4 adds the greatest and least values of the slope, -5/4 + 5/2, instead of the values of k. Choice -7/2 assumes the slope is not negative, so s runs from 0 to 5/2 and k runs from -11/2 to 2.",
+   "mechanism": [
+    "k is a function value, so the slope is (2 - k)/3",
+    "only an upper bound, met at a different endpoint for each slope sign",
+    "k decreases as the slope increases"
+   ],
+   "setup": {
+    "i": "function value at a point",
+    "ii": "upper only",
+    "iii": "sum of greatest and least k"
+   },
+   "key_position": "interior",
+   "solve": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>2+(2-k)/3*(x-2);const r=kr(g,[-2,4],null,7);return r[0]+r[1];",
+   "distractor_solve": {
+    "31/4": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,s)=>2+s*(x-2);const r=kr(g,[-2,4],null,7);return (2+3*r[0])+(2+3*r[1]);",
+    "5/4": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,s)=>2+s*(x-2);const r=kr(g,[-2,4],null,7);return r[0]+r[1];",
+    "-7/2": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,s)=>2+s*(x-2);const r=kr(g,[-2,4],null,7);return (2-3*r[1])+(2-3*0);"
+   }
+  }
+ },
+ {
+  "id": "SM24L-A9",
+  "rule": "pre-flight (PREREG-ALG24): check-math-near-dup prompt token-Jaccard >= 0.60 vs live SAT Math row d1477b94 (sat-math-v23-alg A6, the family reference item) -> DROPPED before freeze",
+  "j": 0.833,
+  "item": {
+   "domain": "Algebra",
+   "difficulty": "hard",
+   "bounds": [],
+   "id": "SM24L-A9",
+   "subskill": "Bound on f(x) - 2x over an interval: sum of greatest and least k",
+   "prompt": "f(x) = kx - 2\n\nIn the function f defined above, k is a constant. For every value of x with -2 ≤ x ≤ 3, -11 ≤ f(x) - 2x ≤ 3. What is the sum of the greatest possible value of k and the least possible value of k?",
+   "choices": [
+    "-5/6",
+    "8/3",
+    "19/6",
+    "6"
+   ],
+   "correct_answer": "19/6",
+   "explanation": "The expression f(x) - 2x = (k - 2)x - 2 is linear in x, so the condition holds for every x with -2 ≤ x ≤ 3 exactly when it holds at x = -2 and at x = 3. At x = -2, the inequality -11 ≤ -2(k - 2) - 2 ≤ 3 gives -5/2 ≤ k - 2 ≤ 9/2, so -1/2 ≤ k ≤ 13/2. At x = 3, the inequality -11 ≤ 3(k - 2) - 2 ≤ 3 gives -3 ≤ k - 2 ≤ 5/3, so -1 ≤ k ≤ 11/3. Both hold when -1/2 ≤ k ≤ 11/3.\n\nThe decision point is that the slope of the bounded expression is k - 2, so the case split is at k = 2, not at k = 0. When k is greater than 2, the expression is greatest at x = 3, which gives k ≤ 11/3. When k is less than 2, the expression is greatest at x = -2, which gives k ≥ -1/2. The sum is 11/3 + (-1/2) = 19/6.\n\nChoice -5/6 drops the -2x and bounds f(x) alone, which gives -5/2 ≤ k ≤ 5/3; these are the limits on k - 2, not on k. Choice 6 checks only x = -2, which allows -1/2 ≤ k ≤ 13/2. Choice 8/3 checks only x = 3, which allows -1 ≤ k ≤ 11/3.",
+   "mechanism": [
+    "bounded expression has slope k - 2",
+    "case split at k = 2, each side binds at a different endpoint",
+    "sum of the extreme values of k"
+   ],
+   "setup": {
+    "i": "slope of a combination",
+    "ii": "two-sided",
+    "iii": "sum of greatest and least k"
+   },
+   "key_position": "interior",
+   "solve": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x-2-2*x;const r=kr(g,[-2,3],-11,3);return r[0]+r[1];",
+   "distractor_solve": {
+    "6": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x-2-2*x;const r=kr(g,[-2],-11,3);return r[0]+r[1];",
+    "-5/6": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x-2;const r=kr(g,[-2,3],-11,3);return r[0]+r[1];",
+    "8/3": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x-2-2*x;const r=kr(g,[3],-11,3);return r[0]+r[1];"
+   }
+  }
+ },
+ {
+  "id": "SM24L-A10",
+  "rule": "pre-flight (PREREG-ALG24): check-math-near-dup prompt token-Jaccard >= 0.60 vs live SAT Math row d1477b94 (sat-math-v23-alg A6, the family reference item) -> DROPPED before freeze",
+  "j": 0.833,
+  "item": {
+   "domain": "Algebra",
+   "difficulty": "hard",
+   "bounds": [],
+   "id": "SM24L-A10",
+   "subskill": "Cap on f(x) + 2x over an interval: sum of extreme values of f(7)",
+   "prompt": "f(x) = kx + 3\n\nIn the function f defined above, k is a constant. For every value of x with -3 ≤ x ≤ 2, f(x) + 2x ≤ 9. What is the sum of the greatest possible value of f(7) and the least possible value of f(7)?",
+   "choices": [
+    "-22",
+    "-15",
+    "-1",
+    "13"
+   ],
+   "correct_answer": "-15",
+   "explanation": "The expression f(x) + 2x = (k + 2)x + 3 is linear in x, so it is at most 9 for every x with -3 ≤ x ≤ 2 exactly when it is at most 9 at x = -3 and at x = 2. At x = 2, 2(k + 2) + 3 ≤ 9 gives k + 2 ≤ 3, so k ≤ 1. At x = -3, -3(k + 2) + 3 ≤ 9 gives k + 2 ≥ -2, so k ≥ -4. So -4 ≤ k ≤ 1.\n\nThe decision point is that the slope of the capped expression is k + 2, not k. When k + 2 is positive, the expression is greatest at x = 2, which caps k at 1. When k + 2 is negative, the expression is greatest at x = -3, which keeps k at least -4. Since f(7) = 7k + 3, its least value is 7(-4) + 3 = -25 and its greatest value is 7(1) + 3 = 10. The sum is -25 + 10 = -15.\n\nChoice 13 drops the 2x and caps f(x) alone, which gives -2 ≤ k ≤ 3, so f(7) runs from -11 to 24. Choice -22 applies the limit k + 2 ≤ 3 from x = 2 in both directions, taking -3 ≤ k + 2 ≤ 3, so -5 ≤ k ≤ 1 and f(7) runs from -32 to 10. Choice -1 assumes k + 2 is positive, so only x = 2 is checked and -2 ≤ k ≤ 1, giving f(7) from -11 to 10.",
+   "mechanism": [
+    "capped expression has slope k + 2",
+    "case split at k = -2, each side binds at a different endpoint",
+    "sum of the extreme values of f(t)"
+   ],
+   "setup": {
+    "i": "slope of a combination",
+    "ii": "upper only",
+    "iii": "other: sum of greatest and least f(t)"
+   },
+   "key_position": "interior",
+   "solve": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+3+2*x;const r=kr(g,[-3,2],null,9);const f=k=>7*k+3;return f(r[0])+f(r[1]);",
+   "distractor_solve": {
+    "13": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+3;const r=kr(g,[-3,2],null,9);const f=k=>7*k+3;return f(r[0])+f(r[1]);",
+    "-22": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+3+2*x;const r=kr(g,[2],null,9);const j=r[1]+2;const f=k=>7*k+3;return f(-j-2)+f(j-2);",
+    "-1": "const kr=(g,xs,L,U)=>{let lo=-Infinity,hi=Infinity;const v=(b,x)=>typeof b==='function'?b(x):b;for(const x of xs){const c0=g(x,0),c1=g(x,1)-c0;if(L!=null){const r=(v(L,x)-c0)/c1;if(c1>0)lo=Math.max(lo,r);else hi=Math.min(hi,r);}if(U!=null){const r=(v(U,x)-c0)/c1;if(c1>0)hi=Math.min(hi,r);else lo=Math.max(lo,r);}}return [lo,hi];};const cnt=(a,b)=>Math.floor(Math.max(a,b)+1e-9)-Math.ceil(Math.min(a,b)-1e-9)+1;const g=(x,k)=>k*x+3+2*x;const r=kr(g,[2],null,9);const f=k=>7*k+3;return f(-2)+f(r[1]);"
+   }
+  }
+ }
+]

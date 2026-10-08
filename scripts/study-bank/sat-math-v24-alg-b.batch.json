@@ -1,0 +1,332 @@
+[
+  {
+    "id": "SM24L-B1",
+    "domain": "Algebra",
+    "subskill": "Linear equation with a constant: sum over non-integer constants",
+    "difficulty": "hard",
+    "prompt": "3(x - k) = 2x + 2k + 40\n\nHere k is a constant, and the solution of this equation is x = s, where s is a positive integer and s + k < 30. What is the sum of all values that k can take?",
+    "choices": [
+      "-744/5",
+      "-145",
+      "-27",
+      "496"
+    ],
+    "correct_answer": "-744/5",
+    "explanation": "Expanding gives 3x - 3k = 2x + 2k + 40, so x = 5k + 40. Solving for k gives k = (x - 40)/5, so each possible solution x comes from exactly one value of k, and k does not have to be an integer. With s = x, the condition s + k < 30 becomes x + (x - 40)/5 = (6x - 40)/5, and (6x - 40)/5 < 30 means 6x < 190, or x < 95/3. So x can be any integer from 1 through 31. The values of k are (1 - 40)/5, (2 - 40)/5, ..., (31 - 40)/5, and their sum is ((1 + 2 + ... + 31) - 31(40))/5 = (496 - 1240)/5 = -744/5. The key step is that k need not be an integer: for example, x = 3 comes from k = -37/5, and 3 + (-37/5) is less than 30.\n\nChoice -27 adds only the integer values of k, -7 through -2, which come from x = 5, 10, ..., 30. Choice -145 applies the bound of 30 to the solution alone, using x = 1 through 29. Choice 496 adds the solutions x instead of the values of k.",
+    "bounds": [],
+    "mechanism": [
+      "solve for k in terms of the integer solution",
+      "second derived quantity bounds the solution",
+      "sum k over every integer solution, not only integer k"
+    ],
+    "setup": {
+      "i": "solution of a one-variable equation",
+      "ii": "range on a second derived quantity",
+      "iii": "sum of all values of k"
+    },
+    "key_position": "smallest",
+    "solve": "let s=0;for(let x=1;x<=1000;x++){const k=(x-40)/5;if(x+k<30)s+=k}return s",
+    "distractor_solve": {
+      "496": "let s=0;for(let x=1;x<=1000;x++){const k=(x-40)/5;if(x+k<30)s+=x}return s",
+      "-27": "let s=0;for(let x=1;x<=1000;x++){const k=(x-40)/5;if(x+k<30&&Number.isInteger(k))s+=k}return s",
+      "-145": "let s=0;for(let x=1;x<30;x++){s+=(x-40)/5}return s"
+    }
+  },
+  {
+    "id": "SM24L-B2",
+    "domain": "Algebra",
+    "subskill": "Intersection of lines with a constant: counting non-integer constants",
+    "difficulty": "hard",
+    "prompt": "y = 3x + 2k\ny = -2x + 23\n\nIn the xy-plane, k is a constant, and the graphs of the two equations above intersect at a point in the first quadrant. The x-coordinate of that point is an integer. For how many values of k is this true?",
+    "choices": [
+      "6",
+      "11",
+      "12",
+      "29"
+    ],
+    "correct_answer": "11",
+    "explanation": "Setting 3x + 2k = -2x + 23 gives 5x = 23 - 2k, so the x-coordinate of the intersection is x = (23 - 2k)/5. Solving for k instead gives k = (23 - 5x)/2, so each x-coordinate comes from exactly one value of k, and k does not have to be an integer. The point lies on y = -2x + 23, so it is in the first quadrant when x > 0 and -2x + 23 > 0, that is, 0 < x < 23/2. The integers in that interval are 1 through 11, which is 11 integers, and each comes from a different value of k. For example, x = 2 comes from k = 13/2, and the point (2, 19) is in the first quadrant.\n\nChoice 6 counts only integer values of k, which occur only when x is odd (x = 1, 3, 5, 7, 9, 11). Choice 12 also counts x = 0, but the point (0, 23) is on the y-axis, not in the first quadrant. Choice 29 counts every integer k from -17 through 11 that puts the point in the first quadrant, without requiring the x-coordinate to be an integer.",
+    "bounds": [],
+    "mechanism": [
+      "intersection x-coordinate in terms of k",
+      "first-quadrant condition bounds x",
+      "count integer x, each from one non-integer k"
+    ],
+    "setup": {
+      "i": "x-coordinate of intersection",
+      "ii": "quadrant / sign condition",
+      "iii": "number of values of k"
+    },
+    "key_position": "interior",
+    "solve": "let c=0;for(let x=-100;x<=100;x++){const y=-2*x+23;if(x>0&&y>0)c++}return c",
+    "distractor_solve": {
+      "6": "let c=0;for(let x=-100;x<=100;x++){const y=-2*x+23,k=(23-5*x)/2;if(x>0&&y>0&&Number.isInteger(k))c++}return c",
+      "12": "let c=0;for(let x=-100;x<=100;x++){const y=-2*x+23;if(x>=0&&y>=0)c++}return c",
+      "29": "let c=0;for(let k=-100;k<=100;k++){const x=(23-2*k)/5,y=-2*x+23;if(x>0&&y>0)c++}return c"
+    }
+  },
+  {
+    "id": "SM24L-B3",
+    "domain": "Algebra",
+    "subskill": "Intersection with a constant: least constant, y-coordinate compared with k",
+    "difficulty": "hard",
+    "prompt": "y = x - 4\ny = -x + 3k - 1\n\nIn the xy-plane, the graphs of the equations above intersect at a point, where k is a constant. The y-coordinate of the point is an integer that is greater than k. What is the least possible value of k?",
+    "choices": [
+      "-7/3",
+      "5",
+      "17/3",
+      "7"
+    ],
+    "correct_answer": "17/3",
+    "explanation": "Setting x - 4 = -x + 3k - 1 gives 2x = 3k + 3, so x = (3k + 3)/2 and y = x - 4 = (3k - 5)/2. Solving y = (3k - 5)/2 for k gives k = (2y + 5)/3, so each integer y-coordinate comes from exactly one value of k, and k need not be an integer. The y-coordinate is greater than k when y > (2y + 5)/3, that is, 3y > 2y + 5, or y > 5. The least integer greater than 5 is 6, and y = 6 gives k = 17/3. Check: when k = 17/3, the y-coordinate is (17 - 5)/2 = 6, and 6 is greater than 17/3. The key step is not requiring k to be an integer.\n\nChoice 7 is the least integer value of k that works; it gives y = 8, but the smaller non-integer value 17/3 also works. Choice 5 uses y = 5, but then the y-coordinate equals k instead of being greater than k. Choice -7/3 applies the conditions to the x-coordinate instead of the y-coordinate: x = (3k + 3)/2 is an integer greater than k when x is at least -2, and x = -2 gives k = -7/3.",
+    "bounds": [],
+    "mechanism": [
+      "intersection y-coordinate in terms of k",
+      "compare the coordinate with k itself",
+      "least k from the least integer coordinate, k not integer"
+    ],
+    "setup": {
+      "i": "y-coordinate of intersection",
+      "ii": "compared with k itself",
+      "iii": "greatest or least value of k"
+    },
+    "key_position": "interior",
+    "solve": "let m=Infinity;for(let y=-100;y<=100;y++){const k=(2*y+5)/3;if(y>k)m=Math.min(m,k)}return m",
+    "distractor_solve": {
+      "5": "let m=Infinity;for(let y=-100;y<=100;y++){const k=(2*y+5)/3;if(y>=k)m=Math.min(m,k)}return m",
+      "7": "let m=Infinity;for(let y=-100;y<=100;y++){const k=(2*y+5)/3;if(y>k&&Number.isInteger(k))m=Math.min(m,k)}return m",
+      "-7/3": "let m=Infinity;for(let x=-100;x<=100;x++){const k=(2*x-3)/3;if(x>k)m=Math.min(m,k)}return m"
+    }
+  },
+  {
+    "id": "SM24L-B4",
+    "domain": "Algebra",
+    "subskill": "Intercept of a line with a constant: counting non-integer constants",
+    "difficulty": "hard",
+    "prompt": "3x - 7y = 5k + 1\n\nIn the xy-plane, the graph of the equation above is a line, where k is a constant and -9 < k < 14. The x-intercept of the line is an integer. How many values of k are possible?",
+    "choices": [
+      "8",
+      "17",
+      "22",
+      "38"
+    ],
+    "correct_answer": "38",
+    "explanation": "At the x-intercept, y = 0, so 3x = 5k + 1 and the x-intercept is (5k + 1)/3. Call the integer x-intercept n. Then 3n = 5k + 1, so k = (3n - 1)/5, and each integer n comes from exactly one value of k; k does not have to be an integer. As k increases from -9 to 14 (endpoints not included), n = (5k + 1)/3 increases from -44/3 to 71/3, that is, from about -14.67 to about 23.67. So n can be any integer from -14 through 23, which is 38 integers, each from a different value of k. For example, n = 0 comes from k = -1/5.\n\nChoice 22 counts the integers k from -8 through 13 without requiring the x-intercept to be an integer. Choice 8 counts only integer values of k that also give an integer x-intercept (k = -8, -5, -2, 1, 4, 7, 10, 13). Choice 17 counts integer values of the y-intercept, -(5k + 1)/7, instead of the x-intercept.",
+    "bounds": [],
+    "mechanism": [
+      "x-intercept in terms of k",
+      "convert the range on k to a range on the intercept",
+      "count integer intercepts, each from one non-integer k"
+    ],
+    "setup": {
+      "i": "intercept of a line with k",
+      "ii": "range only",
+      "iii": "number of values of k"
+    },
+    "key_position": "largest",
+    "solve": "let c=0;for(let n=-300;n<=300;n++){const k=(3*n-1)/5;if(k>-9&&k<14)c++}return c",
+    "distractor_solve": {
+      "8": "let c=0;for(let k=-8;k<=13;k++){if(Number.isInteger((5*k+1)/3))c++}return c",
+      "17": "let c=0;for(let m=-300;m<=300;m++){const k=(-7*m-1)/5;if(k>-9&&k<14)c++}return c",
+      "22": "let c=0;for(let k=-8;k<=13;k++){c++}return c"
+    }
+  },
+  {
+    "id": "SM24L-B5",
+    "domain": "Algebra",
+    "subskill": "Linear function with a constant slope: sum over non-integer constants",
+    "difficulty": "hard",
+    "prompt": "f(x) = kx + 7\n\nThe function f is defined above, where k is a constant. The value of f(3) is an integer greater than or equal to 10, and f(-2) ≥ -6. What is the sum of all possible values of k?",
+    "choices": [
+      "-17/3",
+      "21",
+      "184/3",
+      "187/3"
+    ],
+    "correct_answer": "187/3",
+    "explanation": "f(3) = 3k + 7. Call this integer n, so k = (n - 7)/3. Each integer n comes from exactly one value of k, and k need not be an integer. Then f(-2) = -2k + 7 = -2(n - 7)/3 + 7 = (35 - 2n)/3. The condition f(-2) ≥ -6 means 35 - 2n ≥ -18, so 2n ≤ 53, and since n is an integer, n ≤ 26. Together with n ≥ 10, n can be any integer from 10 through 26, which is 17 values. The sum of the values of k is ((10 + 11 + ... + 26) - 17(7))/3 = (306 - 119)/3 = 187/3. For example, n = 11 comes from k = 4/3, and then f(-2) = 13/3, which is at least -6.\n\nChoice 21 adds only the integer values of k, 1 through 6, which come from n = 10, 13, ..., 25. Choice 184/3 leaves out n = 10, treating \"greater than or equal to 10\" as \"greater than 10.\" Choice -17/3 adds the values of f(-2) instead of the values of k.",
+    "bounds": [],
+    "mechanism": [
+      "function value f(3) in terms of k",
+      "second function value bounds the first",
+      "sum k over every integer f(3), not only integer k"
+    ],
+    "setup": {
+      "i": "function value f(t)",
+      "ii": "range on a second derived quantity",
+      "iii": "sum of all values of k"
+    },
+    "key_position": "largest",
+    "solve": "let s=0;for(let n=-100;n<=100;n++){const k=(n-7)/3;if(n>=10&&-2*k+7>=-6)s+=k}return s",
+    "distractor_solve": {
+      "21": "let s=0;for(let n=-100;n<=100;n++){const k=(n-7)/3;if(n>=10&&-2*k+7>=-6&&Number.isInteger(k))s+=k}return s",
+      "184/3": "let s=0;for(let n=-100;n<=100;n++){const k=(n-7)/3;if(n>10&&-2*k+7>=-6)s+=k}return s",
+      "-17/3": "let s=0;for(let n=-100;n<=100;n++){const k=(n-7)/3;if(n>=10&&-2*k+7>=-6)s+=-2*k+7}return s"
+    }
+  },
+  {
+    "id": "SM24L-B6",
+    "domain": "Algebra",
+    "subskill": "Equation with the constant as the x-coefficient: counting constants",
+    "difficulty": "hard",
+    "prompt": "(k - 3)x = 60\n\nIn the equation above, k is a constant. The equation has a solution, and that solution is an integer from -12 to 30, inclusive. For how many values of k is this true?",
+    "choices": [
+      "19",
+      "40",
+      "42",
+      "43"
+    ],
+    "correct_answer": "42",
+    "explanation": "When k = 3, the equation becomes 0 = 60, which has no solution. For any other k, the solution is x = 60/(k - 3), which is never 0. Solving x = 60/(k - 3) for k gives k = 3 + 60/x, so each nonzero solution x comes from exactly one value of k, and k need not be an integer. So the possible solutions are all the integers from -12 through 30 except 0. There are 43 integers from -12 through 30, so there are 42 possible solutions, each from a different value of k. For example, x = 7 comes from k = 3 + 60/7 = 81/7.\n\nChoice 19 counts only integer values of k, which require x to divide 60 evenly. Choice 43 includes x = 0, which no value of k produces. Choice 40 leaves out the endpoints -12 and 30, which are included.",
+    "bounds": [],
+    "mechanism": [
+      "solve for k in terms of the solution",
+      "solution can never be zero",
+      "count integer solutions, each from one non-integer k"
+    ],
+    "setup": {
+      "i": "solution where k is the x-coefficient",
+      "ii": "range only",
+      "iii": "number of values of k"
+    },
+    "key_position": "interior",
+    "solve": "let c=0;for(let x=-12;x<=30;x++){if(x!==0)c++}return c",
+    "distractor_solve": {
+      "19": "let c=0;for(let x=-12;x<=30;x++){if(x!==0&&Number.isInteger(3+60/x))c++}return c",
+      "40": "let c=0;for(let x=-11;x<=29;x++){if(x!==0)c++}return c",
+      "43": "let c=0;for(let x=-12;x<=30;x++){c++}return c"
+    }
+  },
+  {
+    "id": "SM24L-B7",
+    "domain": "Algebra",
+    "subskill": "Linear equation with a constant: spread of non-integer constants",
+    "difficulty": "hard",
+    "prompt": "4x - k = 2k - x + 8\n\nIn the equation above, k is a constant. The solution to the equation is an integer from -4 to 12, inclusive. What is the difference between the greatest possible value of k and the least possible value of k?",
+    "choices": [
+      "16",
+      "20",
+      "70/3",
+      "80/3"
+    ],
+    "correct_answer": "80/3",
+    "explanation": "Adding x and k to both sides gives 5x = 3k + 8, so k = (5x - 8)/3. Each solution x comes from exactly one value of k, and k need not be an integer, so every integer x from -4 through 12 is possible. Because k = (5x - 8)/3 increases as x increases, the greatest k comes from x = 12 and the least from x = -4: k = 52/3 and k = -28/3. The difference is 52/3 - (-28/3) = 80/3.\n\nChoice 20 uses only integer values of k, which occur when x = -2, 1, 4, 7, 10 and run from -6 to 14. Choice 70/3 uses x = -3 and x = 11, leaving out the endpoints of the inclusive range. Choice 16 is the difference between the greatest and least solutions, 12 - (-4), not between the values of k.",
+    "bounds": [],
+    "mechanism": [
+      "solve for k in terms of the integer solution",
+      "extremes of k at the endpoint solutions",
+      "k not restricted to integers"
+    ],
+    "setup": {
+      "i": "solution of a one-variable equation",
+      "ii": "range only",
+      "iii": "other: difference between greatest and least k"
+    },
+    "key_position": "largest",
+    "solve": "const k=x=>(5*x-8)/3;return k(12)-k(-4)",
+    "distractor_solve": {
+      "16": "return 12-(-4)",
+      "20": "const ks=[];for(let x=-4;x<=12;x++){const k=(5*x-8)/3;if(Number.isInteger(k))ks.push(k)}return Math.max(...ks)-Math.min(...ks)",
+      "70/3": "const k=x=>(5*x-8)/3;return k(11)-k(-3)"
+    }
+  },
+  {
+    "id": "SM24L-B8",
+    "domain": "Algebra",
+    "subskill": "System with a constant: greatest constant giving an integer x",
+    "difficulty": "hard",
+    "prompt": "y = 3x + 1\nx + 2y = 5k\n\nIn the system of equations above, k is a constant. The system has a solution (x, y) in which x is an integer and y is less than 40. What is the greatest possible value of k?",
+    "choices": [
+      "13",
+      "86/5",
+      "93/5",
+      "55"
+    ],
+    "correct_answer": "86/5",
+    "explanation": "Substituting y = 3x + 1 into x + 2y = 5k gives x + 6x + 2 = 5k, so 7x + 2 = 5k and k = (7x + 2)/5. Each integer x gives exactly one value of k, which need not be an integer. The condition y < 40 means 3x + 1 < 40, so x < 13, and the greatest possible integer x is 12. Because k increases as x increases, the greatest k is (7(12) + 2)/5 = 86/5. Check: when k = 86/5, x = (5k - 2)/7 = 12 and y = 37, which is less than 40.\n\nChoice 13 is the greatest integer value of k that works; it comes from x = 9, but non-integer values of k are allowed. Choice 93/5 uses x = 13, but then y = 40, which is not less than 40. Choice 55 applies the bound 40 to x instead of y, using x = 39.",
+    "bounds": [],
+    "mechanism": [
+      "x-coordinate of the solution in terms of k",
+      "second coordinate bounds x",
+      "greatest k from the greatest integer x, k not integer"
+    ],
+    "setup": {
+      "i": "x-coordinate of intersection",
+      "ii": "range on a second derived quantity",
+      "iii": "greatest or least value of k"
+    },
+    "key_position": "interior",
+    "solve": "let m=-Infinity;for(let x=-100;x<=100;x++){const y=3*x+1,k=(x+2*y)/5;if(y<40)m=Math.max(m,k)}return m",
+    "distractor_solve": {
+      "13": "let m=-Infinity;for(let x=-100;x<=100;x++){const y=3*x+1,k=(x+2*y)/5;if(y<40&&Number.isInteger(k))m=Math.max(m,k)}return m",
+      "55": "let m=-Infinity;for(let x=-100;x<=100;x++){const y=3*x+1,k=(x+2*y)/5;if(x<40)m=Math.max(m,k)}return m",
+      "93/5": "let m=-Infinity;for(let x=-100;x<=100;x++){const y=3*x+1,k=(x+2*y)/5;if(y<=40)m=Math.max(m,k)}return m"
+    }
+  },
+  {
+    "id": "SM24L-B9",
+    "domain": "Algebra",
+    "subskill": "Intersection in a quadrant: sum over non-integer constants",
+    "difficulty": "hard",
+    "prompt": "y = 2x + 18\n8x + y = 4k\n\nIn the xy-plane, k is a constant, and the graphs of the two equations above intersect at a point in the second quadrant. The y-coordinate of that point is an integer. What is the sum of all possible values of k?",
+    "choices": [
+      "-459/4",
+      "-153/2",
+      "-22",
+      "153"
+    ],
+    "correct_answer": "-459/4",
+    "explanation": "From y = 2x + 18, x = (y - 18)/2. Substituting into 8x + y = 4k gives 4(y - 18) + y = 4k, so 5y - 72 = 4k and k = (5y - 72)/4. Each integer y-coordinate comes from exactly one value of k, and k need not be an integer. The point is in the second quadrant when x < 0 and y > 0. Since x = (y - 18)/2, x < 0 means y < 18, so y can be any integer from 1 through 17. The sum of the values of k is (5(1 + 2 + ... + 17) - 17(72))/4 = (765 - 1224)/4 = -459/4. For example, y = 1 comes from k = -67/4, and the point (-17/2, 1) is in the second quadrant.\n\nChoice -22 adds only the integer values of k, -13, -8, -3, and 2, which come from y = 4, 8, 12, and 16. Choice -153/2 adds the x-coordinates of the points instead of the values of k. Choice 153 adds the y-coordinates instead of the values of k.",
+    "bounds": [],
+    "mechanism": [
+      "intersection y-coordinate in terms of k",
+      "second-quadrant condition bounds y",
+      "sum k over every integer y, not only integer k"
+    ],
+    "setup": {
+      "i": "y-coordinate of intersection",
+      "ii": "quadrant / sign condition",
+      "iii": "sum of all values of k"
+    },
+    "key_position": "smallest",
+    "solve": "let s=0;for(let y=-100;y<=100;y++){const x=(y-18)/2,k=(8*x+y)/4;if(x<0&&y>0)s+=k}return s",
+    "distractor_solve": {
+      "153": "let s=0;for(let y=-100;y<=100;y++){const x=(y-18)/2;if(x<0&&y>0)s+=y}return s",
+      "-22": "let s=0;for(let y=-100;y<=100;y++){const x=(y-18)/2,k=(8*x+y)/4;if(x<0&&y>0&&Number.isInteger(k))s+=k}return s",
+      "-153/2": "let s=0;for(let y=-100;y<=100;y++){const x=(y-18)/2;if(x<0&&y>0)s+=x}return s"
+    }
+  },
+  {
+    "id": "SM24L-B10",
+    "domain": "Algebra",
+    "subskill": "Intercepts of a line with a constant: mean of non-integer constants",
+    "difficulty": "hard",
+    "prompt": "3x + 4y = 2k + 5\n\nFor a constant k, the graph of this equation in the xy-plane crosses the x-axis at (a, 0), where a is an integer, and crosses the y-axis at (0, b), where 1 < b < 10. Find the mean (average) of every value k can take.",
+    "choices": [
+      "23/4",
+      "15/2",
+      "35/4",
+      "19/2"
+    ],
+    "correct_answer": "35/4",
+    "explanation": "The x-intercept is (2k + 5)/3 and the y-intercept is (2k + 5)/4. Call the integer x-intercept n. Then 2k + 5 = 3n, so k = (3n - 5)/2; each integer n comes from exactly one value of k, and k need not be an integer. The y-intercept is 3n/4, and 1 < 3n/4 < 10 means 4/3 < n < 40/3. So n can be any integer from 2 through 13, which is 12 values. The values of k, (3n - 5)/2, are evenly spaced, so their mean is the value of (3n - 5)/2 at the mean of n, which is 15/2: (3(15/2) - 5)/2 = 35/4. For example, n = 2 comes from k = 1/2, which gives a y-intercept of 3/2.\n\nChoice 19/2 averages only the integer values of k, which occur when n is odd (n = 3, 5, ..., 13). Choice 23/4 applies the bounds 1 and 10 to the x-intercept instead of the y-intercept, using n = 2 through 9. Choice 15/2 is the mean of the x-intercepts, not of the values of k.",
+    "bounds": [],
+    "mechanism": [
+      "x-intercept in terms of k",
+      "y-intercept range bounds the x-intercept",
+      "average k over every integer intercept, k not integer"
+    ],
+    "setup": {
+      "i": "intercept of a line with k",
+      "ii": "range on a second derived quantity",
+      "iii": "other: mean (average) of all values of k"
+    },
+    "key_position": "interior",
+    "solve": "const ks=[];for(let n=-100;n<=100;n++){const k=(3*n-5)/2,yi=(2*k+5)/4;if(yi>1&&yi<10)ks.push(k)}return ks.reduce((a,b)=>a+b,0)/ks.length",
+    "distractor_solve": {
+      "19/2": "const ks=[];for(let n=-100;n<=100;n++){const k=(3*n-5)/2,yi=(2*k+5)/4;if(yi>1&&yi<10&&Number.isInteger(k))ks.push(k)}return ks.reduce((a,b)=>a+b,0)/ks.length",
+      "23/4": "const ks=[];for(let n=2;n<=9;n++){ks.push((3*n-5)/2)}return ks.reduce((a,b)=>a+b,0)/ks.length",
+      "15/2": "const ns=[];for(let n=-100;n<=100;n++){const k=(3*n-5)/2,yi=(2*k+5)/4;if(yi>1&&yi<10)ns.push(n)}return ns.reduce((a,b)=>a+b,0)/ns.length"
+    }
+  }
+]
