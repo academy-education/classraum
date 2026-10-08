@@ -1,0 +1,834 @@
+[
+ {
+  "id": "S16D-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equation in a repeated quadratic expression where one branch has no real solution",
+  "difficulty": "hard",
+  "template": "quartic written in a repeated block / sum of real solutions / substitute, then test each branch for real roots",
+  "mechanism": [
+   "substitute for a repeated expression",
+   "one branch has no real roots",
+   "sum of roots per branch"
+  ],
+  "method": "Replace the repeated expression by a single letter, solve that quadratic, then return to x for each value and notice that one of the resulting quadratics has no real solutions, so only one branch contributes to the sum.",
+  "prompt": "What is the sum of all real numbers x that satisfy (x^2 - 3x)^2 - (x^2 - 3x) - 12 = 0 ?",
+  "choices": [
+   "3",
+   "6",
+   "1",
+   "-4",
+   "-1"
+  ],
+  "correct_answer": "3",
+  "explanation": "Let u = x^2 - 3x. Then u^2 - u - 12 = 0, so (u - 4)(u + 3) = 0 and u = 4 or u = -3. If x^2 - 3x = 4, then (x - 4)(x + 1) = 0, giving x = 4 or x = -1. If x^2 - 3x = -3, then x^2 - 3x + 3 = 0, and since (x - 1.5)^2 + 0.75 > 0 for every x, this has no real solution. The real solutions are 4 and -1, with sum 3. The option \"6\" adds 3 for each branch, as if both quadratics had real roots. The option \"1\" adds the two values of u instead of returning to x. The option \"-4\" gives the product of the real solutions, 4 x (-1), instead of their sum. The option \"-1\" gives only the smallest solution.",
+  "solve": "const us=[4,-3]; let s=0; for(const u of us){ const disc=9+4*u; if(disc>=0){ s+=3; } } return s;",
+  "distractor_solve": {
+   "6": "const us=[4,-3]; return us.length*3;",
+   "1": "return 4+(-3);",
+   "-1": "const u=4; return (3-Math.sqrt(9+4*u))/2;",
+   "-4": "const u=4; return -u;"
+  },
+  "interval": "No bound from the stem: the sum of real solutions can be any real number a priori; the stem prints no sign or size. All five options survive.",
+  "bounds_checked": "sign (none forced), integrality (not forced: real roots of a quartic need not be integers), plug-back of options into the equation (an option is a sum, not a root, so plugging it in decides nothing), key not a printed number",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: a sum of real roots of a quartic can be any real number; 3 arises only because the surviving branch is x^2 - 3x = 4",
+   "odd": "not forced: the stem gives no parity; the sum need not even be an integer a priori",
+   "positive": "not forced: the real solutions are 4 and -1, and nothing in the stem makes their sum positive"
+  }
+ },
+ {
+  "id": "S16D-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "functional equation pairing x with 1 - x",
+  "difficulty": "hard",
+  "template": "f(x) + 2f(1 - x) = 5x + 1 for all x / f(0) / evaluate at a paired point to get a two-unknown system",
+  "mechanism": [
+   "functional equation",
+   "evaluate at paired inputs",
+   "two-unknown linear system"
+  ],
+  "method": "Evaluate the identity at the two inputs that swap with each other under x -> 1 - x, which gives two linear equations in the two unknown function values, then solve that system.",
+  "prompt": "A function f satisfies f(x) + 2f(1 - x) = 5x + 1 for every number x. What is the value of f(0)?",
+  "choices": [
+   "-4/3",
+   "11/3",
+   "3",
+   "7/6",
+   "-11/5"
+  ],
+  "correct_answer": "11/3",
+  "explanation": "At x = 0: f(0) + 2f(1) = 1. At x = 1: f(1) + 2f(0) = 6, so f(1) = 6 - 2f(0). Substituting, f(0) + 12 - 4f(0) = 1, so 3f(0) = 11 and f(0) = 11/3 (and f(1) = -4/3). The option \"-4/3\" is f(1), the other unknown of the system. The option \"3\" uses only the x = 1 equation and assumes f(1) = 0. The option \"7/6\" evaluates at x = 1/2, where 3f(1/2) = 7/2, and reports f(1/2). The option \"-11/5\" substitutes f(1) = 6 + 2f(0) with the sign slipped, giving 5f(0) = -11.",
+  "solve": "const a1=1,b1=2,c1=1, a2=2,b2=1,c2=6; return (c1*b2-b1*c2)/(a1*b2-b1*a2);",
+  "distractor_solve": {
+   "-4/3": "const a=11/3; return 6-2*a;",
+   "3": "const f1=0; return (6-f1)/2;",
+   "7/6": "return (5*0.5+1)/3;",
+   "-11/5": "return (1-12)/5;"
+  },
+  "interval": "Nothing in the stem fixes the sign or size of f(0); f is not given as linear, so no growth argument applies. All five options survive.",
+  "bounds_checked": "sign (not forced), integrality (not forced), plug-back (an option cannot be plugged back without f(1), which is the second unknown), key not a printed number",
+  "forced_form_notes": {
+   "positive": "not forced: f is unknown and nothing in the stem fixes the sign of f(0)",
+   "denominator 3": "not forced: the 3 comes from solving the system (1 - 2 x 2 = -3), not from any printed quantity; f(0) could have any denominator a priori"
+  }
+ },
+ {
+  "id": "S16D-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "power of a power across two exponential equations",
+  "difficulty": "medium",
+  "template": "2^x = 3 and 3^y = 4 / 2^(xy) / rewrite as (2^x)^y and substitute",
+  "mechanism": [
+   "power of a power",
+   "substitute one exponential into another"
+  ],
+  "method": "Write the asked power as the first given power raised to the second exponent, so the first equation turns it into the base of the second equation.",
+  "prompt": "If 2^x = 3 and 3^y = 4, what is the value of 2^(xy) ?",
+  "choices": [
+   "3",
+   "12",
+   "4",
+   "81",
+   "7"
+  ],
+  "correct_answer": "4",
+  "explanation": "2^(xy) = (2^x)^y = 3^y = 4. The option \"3\" stops at 2^x. The option \"12\" multiplies the two given values. The option \"7\" adds them. The option \"81\" computes 3^4, raising the first value to the second.",
+  "solve": "const x=Math.log(3)/Math.log(2), y=Math.log(4)/Math.log(3); return Math.round(Math.pow(2,x*y)*1e9)/1e9;",
+  "distractor_solve": {
+   "3": "return 3;",
+   "12": "return 3*4;",
+   "7": "return 3+4;",
+   "81": "return Math.pow(3,4);"
+  },
+  "interval": "x is between 1 and 2 and y is between 1 and 2, so xy lies between 1 and 4 and 2^(xy) lies between 2 and 16: kills only 81; 3, 4, 7 and 12 survive.",
+  "bounds_checked": "magnitude of xy from the two exponents (kills one option, 81), integrality (not forced), parity, key not a printed number (4 is printed; 3 is printed too, so the printed-number tell does not single out the key)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the stem fixes no divisibility of 2^(xy); x and y are irrational",
+   "multiple of 4": "not forced: as above",
+   "perfect square": "not forced: 4 is a perfect square only because 3^y = 4 is the printed equation; no squaring is implied"
+  }
+ },
+ {
+  "id": "S16D-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "arithmetic sequence whose partial sums at two lengths are equal",
+  "difficulty": "hard",
+  "template": "arithmetic sequence with S10 = S15 and a given first term / a later term / the extra block of terms sums to zero, so its middle term is zero",
+  "mechanism": [
+   "equal partial sums",
+   "block of terms sums to zero",
+   "middle term of a block",
+   "arithmetic sequence"
+  ],
+  "method": "Equal sums at two lengths mean the block of terms between them adds to zero, so that block's middle term is zero; that fixes the common difference, and the asked term follows by stepping from the zero term.",
+  "prompt": "In an arithmetic sequence, the first term is 48, and the sum of the first 10 terms is equal to the sum of the first 15 terms. What is the 20th term of the sequence?",
+  "choices": [
+   "-32",
+   "48",
+   "-76",
+   "-28",
+   "-4"
+  ],
+  "correct_answer": "-28",
+  "explanation": "Since S15 = S10, the 11th through 15th terms add to 0. Five terms of an arithmetic sequence add to 5 times their middle term, so the 13th term is 0: 48 + 12d = 0, d = -4. The 20th term is 48 + 19(-4) = -28 (equivalently 0 + 7(-4)). The option \"-32\" uses 48 + 20d, one step too many. The option \"-4\" reports the common difference instead of the term. The option \"48\" reads the equal sums as the 10th and 15th terms being equal, so d = 0 and every term is 48. The option \"-76\" reports 19d alone, forgetting to add the first term.",
+  "solve": "const a=48; const d=-a/12; return a+19*d;",
+  "distractor_solve": {
+   "-32": "const a=48, d=-4; return a+20*d;",
+   "-4": "return -48/12;",
+   "48": "const a=48, d=0; return a+19*d;",
+   "-76": "const d=-4; return 19*d;"
+  },
+  "interval": "Equal sums force the later terms to be negative (they cancel earlier positive ones), so the 20th term is negative: kills 48 only; -32, -76, -4 and -28 survive. The common difference divides 48 here, and all five options are multiples of 4, so divisibility removes nothing.",
+  "bounds_checked": "sign of late terms (kills one, 48), divisibility by the common difference (all five are multiples of 4), monotonicity, key not printed",
+  "forced_form_notes": {
+   "multiple of 7": "not forced: 28 = 7 x 4 only because the 20th term sits 7 steps after the zero term; nothing in the stem names 7",
+   "multiple of 14": "not forced: same as multiple of 7 - the 7 steps from the 13th to the 20th term are a consequence of the asked term, not a printed quantity"
+  }
+ },
+ {
+  "id": "S16D-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "iterating a self-inverse rational function",
+  "difficulty": "hard",
+  "template": "f(x) = (x + 8)/(x - 1) applied 51 times to 5 / the result / f(f(x)) = x so the iterates alternate",
+  "mechanism": [
+   "self-inverse function",
+   "iterates alternate",
+   "parity of the number of applications"
+  ],
+  "method": "Compute f twice and notice the second application returns the starting value, so the iterates alternate between two values and only the parity of the number of applications matters.",
+  "prompt": "The function f is defined by f(x) = (x + 8)/(x - 1) for x not equal to 1. Starting with the number 5, f is applied 51 times in a row: first f(5) is found, then f of that result, and so on. What is the final result?",
+  "choices": [
+   "5",
+   "4",
+   "1",
+   "4/13",
+   "13/4"
+  ],
+  "correct_answer": "13/4",
+  "explanation": "f(5) = 13/4, and f(13/4) = (13/4 + 8)/(13/4 - 1) = (45/4)/(9/4) = 5. In general f(f(x)) = x, so the values alternate 13/4, 5, 13/4, 5, ... and after an odd number of applications (51) the result is f(5) = 13/4. The option \"5\" gets the parity wrong (as if an even number of steps). The option \"4\" is a fixed point of f (f(4) = 4), chosen by assuming repeated application settles on a fixed point. The option \"1\" assumes the values drift toward 1, the value f approaches for large x. The option \"4/13\" inverts the fraction when computing f(5).",
+  "solve": "const f=x=>(x+8)/(x-1); let v=5; for(let i=0;i<51;i++) v=f(v); return v;",
+  "distractor_solve": {
+   "5": "const f=x=>(x+8)/(x-1); let v=5; for(let i=0;i<50;i++) v=f(v); return Math.round(v*1e9)/1e9;",
+   "4": "for(let x=2;x<20;x++){ if((x+8)/(x-1)===x) return x; }",
+   "1": "return 1;",
+   "4/13": "return (5-1)/(5+8);"
+  },
+  "interval": "All iterates are positive when starting from 5 (f maps x > 1 to values > 1), which kills 4/13 only; 5, 4, 1 and 13/4 survive (1 is excluded from the domain only for the input, and a solver who does not iterate cannot tell). No integrality is forced.",
+  "bounds_checked": "sign and range of f on x > 1 (kills one, 4/13), integrality (not forced), plug-back of options (checking whether f(option) is an option does not single out the key: f(5) = 13/4 and f(13/4) = 5 both land in the set), key not printed"
+ },
+ {
+  "id": "S16D-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two inputs with equal quadratic values placed symmetrically about the axis",
+  "difficulty": "medium",
+  "template": "f(x) = x^2 - 6x + 1 with f(a) = f(a + 4) / a / equal values of a quadratic sit symmetrically about its axis",
+  "mechanism": [
+   "equal values of a quadratic",
+   "symmetry about the axis",
+   "midpoint of the two inputs"
+  ],
+  "method": "Two different inputs give the same value of a quadratic only when they are placed symmetrically about its axis, so their midpoint is the axis; or expand and cancel the squared terms.",
+  "prompt": "The function f is defined by f(x) = x^2 - 6x + 1. For what value of a is f(a) equal to f(a + 4) ?",
+  "choices": [
+   "1",
+   "3",
+   "-1/2",
+   "-5",
+   "5"
+  ],
+  "correct_answer": "1",
+  "explanation": "The graph of f is symmetric about x = 3 (since x^2 - 6x + 1 = (x - 3)^2 - 8), so two different inputs with equal outputs have midpoint 3: (a + a + 4)/2 = 3, a = 1. Check: f(1) = -4 and f(5) = -4. Expanding instead: (a + 4)^2 - 6(a + 4) + 1 = a^2 - 6a + 1 gives 8a + 16 - 24 = 0, a = 1. The option \"3\" takes a to be the axis itself. The option \"-1/2\" sets the sum 2a + 4, instead of the midpoint, equal to 3. The option \"-5\" slips a sign distributing -6, writing -6(a + 4) as -6a + 24, so 8a + 40 = 0. The option \"5\" moves 16 to the wrong side, 8a = 24 + 16.",
+  "solve": "const f=x=>x*x-6*x+1; for(let k=-200;k<=200;k++){ const a=k/4; if(Math.abs(f(a)-f(a+4))<1e-9) return a; }",
+  "distractor_solve": {
+   "3": "return 6/2;",
+   "-1/2": "return (3-4)/2;",
+   "-5": "return -(16+24)/8;",
+   "5": "return (24+16)/8;"
+  },
+  "interval": "No bound from the stem fixes the sign or size of a without using the axis (which is the solution). Plugging an option in requires evaluating f twice, which is solving, not a free elimination.",
+  "bounds_checked": "sign (not forced), integrality (not forced), plug-back (checking f(a) = f(a + 4) for an option is the computation itself), key not printed",
+  "forced_form_notes": {
+   "positive": "not forced: a could be any real number; the stem does not fix its sign"
+  }
+ },
+ {
+  "id": "S16D-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest value of a product of two variables on open intervals",
+  "difficulty": "hard",
+  "template": "-6 < x < 2 and -3 < y < 5 / greatest integer value of xy / two negatives give the largest product, open bound excluded",
+  "mechanism": [
+   "product of interval endpoints",
+   "two negatives give a positive product",
+   "strict inequality excludes the bound"
+  ],
+  "method": "Check every pairing of interval endpoints, see that the product of the two negative ends exceeds the product of the two positive ends, and take the greatest integer strictly below that unattained bound.",
+  "prompt": "The numbers x and y satisfy -6 < x < 2 and -3 < y < 5. What is the greatest integer that could be the value of xy?",
+  "choices": [
+   "9",
+   "17",
+   "10",
+   "18",
+   "29"
+  ],
+  "correct_answer": "17",
+  "explanation": "The product xy is largest when x and y are both near their negative ends: as x approaches -6 and y approaches -3, xy approaches 18, while the positive ends give at most 2 x 5 = 10. Because the inequalities are strict, xy can be any value just below 18 but never 18 itself, so the greatest integer value is 17 (for example x = -5.8, y = -2.95 gives 17.11, and choosing x and y closer to the ends gives exactly 17 by continuity). The option \"10\" uses only the positive ends, and \"9\" does the same while correctly excluding the bound. The option \"18\" finds the right bound but forgets that it cannot be reached. The option \"29\" takes the size of the mixed product (-6)(5) = -30 as if it were positive and steps one below it.",
+  "solve": "const xs=[-6,2], ys=[-3,5]; let m=-Infinity; for(const a of xs) for(const b of ys) m=Math.max(m,a*b); return Number.isInteger(m)? m-1 : Math.floor(m);",
+  "distractor_solve": {
+   "9": "return 2*5-1;",
+   "10": "return 2*5;",
+   "18": "return (-6)*(-3);",
+   "29": "return Math.abs(-6*5)-1;"
+  },
+  "interval": "xy ranges over (-30, 18). Every option except 29 lies inside that range, so a correct range kills only 29 (and 18 as the excluded bound, which is the skill tested); 9 and 10 are attainable values, so a solver who only checks feasibility cannot separate them from 17 - the ask for the GREATEST integer is what decides.",
+  "bounds_checked": "range of the product from endpoints (kills 29 and the bound 18 - both are the skill being tested), sign, integrality (all integers, forced), adjacency (two adjacent pairs, 9/10 and 17/18, so 'one below a pair' does not single out the key), key not the extreme option in the asked direction",
+  "forced_form_notes": {
+   "odd": "not forced: the greatest integer below the bound is odd only because the bound 18 is even; the stem forces no parity"
+  }
+ },
+ {
+  "id": "S16D-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of one row of a triangular arrangement of consecutive integers",
+  "difficulty": "hard",
+  "template": "consecutive integers in rows of 1, 2, 3, ... / sum of row 20 / count integers before the row with a triangular number",
+  "mechanism": [
+   "triangular-number count of earlier rows",
+   "first and last entry of a row",
+   "sum of consecutive integers"
+  ],
+  "method": "Count how many integers fill the earlier rows with the triangular-number formula to locate the first and last entries of the row, then add the row as a run of consecutive integers.",
+  "prompt": "The positive integers are written in rows: row 1 is 1; row 2 is 2, 3; row 3 is 4, 5, 6; and so on, with each row containing one more integer than the row before it and the integers continuing in order. What is the sum of the integers in row 20?",
+  "choices": [
+   "3990",
+   "4200",
+   "4010",
+   "3800",
+   "4020"
+  ],
+  "correct_answer": "4010",
+  "explanation": "Rows 1 through 19 hold 1 + 2 + ... + 19 = 190 integers, so row 20 runs from 191 to 210. Its sum is 20 x (191 + 210)/2 = 10 x 401 = 4010. The option \"3990\" starts the row at 190 instead of 191 (190 through 209). The option \"4200\" multiplies the last entry 210 by 20. The option \"3800\" counts only 19 integers in the row, adding 191 through 209. The option \"4020\" averages 191 with 211, the first entry of row 21, before multiplying by 20.",
+  "solve": "const before=19*20/2; const first=before+1, last=before+20; return 20*(first+last)/2;",
+  "distractor_solve": {
+   "3990": "const first=190, last=209; return 20*(first+last)/2;",
+   "4200": "return 20*210;",
+   "4020": "return 20*(191+211)/2;",
+   "3800": "const first=191, last=209; return 19*(first+last)/2;"
+  },
+  "interval": "The row holds 20 integers, each between 191 and 210, so the sum lies between 3820 and 4200 inclusive; 3800 lies just below that range, so a solver who has already located the row can kill it (one kill); 3990, 4010, 4020 and 4200 survive, 4200 ON the upper end by a wrong procedure. The sum of 20 consecutive integers is 10 times an odd number, so it is a multiple of 10: all five options are.",
+  "bounds_checked": "range from the row's entries (kills one, 3800, only after the row is located), multiple of 10 (all five share it), parity, key not printed"
+ },
+ {
+  "id": "S16D-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting coefficients for which a quadratic has integer roots",
+  "difficulty": "hard",
+  "template": "x^2 + bx + 36 = 0 with integer roots / number of integer b / factor pairs of the constant including negative pairs and the repeated root",
+  "mechanism": [
+   "product and sum of roots",
+   "factor pairs including negative pairs",
+   "repeated root counted once"
+  ],
+  "method": "The roots multiply to the constant and add to the negative of b, so each unordered factor pair of the constant, taken with both signs, gives one value of b; the negative pairs are the case the stem does not announce.",
+  "prompt": "The equation x^2 + bx + 36 = 0, where b is an integer, has two solutions that are both integers (the two solutions are allowed to be equal). How many different values of b are possible?",
+  "choices": [
+   "5",
+   "18",
+   "8",
+   "10",
+   "4"
+  ],
+  "correct_answer": "10",
+  "explanation": "If the integer roots are r and s, then rs = 36 and b = -(r + s). The unordered positive pairs are (1, 36), (2, 18), (3, 12), (4, 9), (6, 6), giving r + s = 37, 20, 15, 13, 12. The negative pairs (-1, -36), ... give the opposite sums. So b is one of plus or minus 37, 20, 15, 13, 12: 10 values. The option \"5\" uses only the positive pairs. The option \"4\" uses only positive pairs with unequal roots. The option \"8\" uses both signs but leaves out the equal-root pair (6, 6). The option \"18\" counts ordered pairs of roots with both signs (9 ordered positive pairs, doubled), treating (2, 18) and (18, 2) as giving different b.",
+  "solve": "const bs=new Set(); for(let r=-36;r<=36;r++){ if(r!==0 && 36%r===0){ const s=36/r; bs.add(-(r+s)); } } return bs.size;",
+  "distractor_solve": {
+   "5": "let c=0; for(let r=1;r*r<=36;r++) if(36%r===0) c++; return c;",
+   "4": "let c=0; for(let r=1;r*r<36;r++) if(36%r===0) c++; return c;",
+   "8": "let c=0; for(let r=1;r*r<36;r++) if(36%r===0) c++; return 2*c;",
+   "18": "let c=0; for(let r=1;r<=36;r++) if(36%r===0) c++; return 2*c;"
+  },
+  "interval": "Values of b come in opposite pairs and b cannot be 0 (the roots have the same sign since their product is positive), so the count is even: this kills 5 only; 18, 8 and 4 are even and survive. The count is at most the number of signed divisors of 36 (18), which 18 meets ON the bound by the ordered-pair error.",
+  "bounds_checked": "parity from the +/- symmetry (kills one, 5), upper bound by divisor count (none above), integrality (count, forced: all integers), key not printed",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: the count is 2 x (number of unordered factor pairs of 36) = 2 x 5; nothing in the stem implies divisibility by 5",
+   "multiple of 10": "not forced: as above; the stem forces only an even count (and three distractors are even)"
+  }
+ },
+ {
+  "id": "S16D-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of reciprocal squares from a given sum and product",
+  "difficulty": "hard",
+  "template": "a + b = 10 and ab = 20 / 1/a^2 + 1/b^2 / combine over (ab)^2 and get a^2 + b^2 from the square of the sum",
+  "mechanism": [
+   "combine reciprocals over a common denominator",
+   "sum of squares from square of the sum",
+   "avoid solving for irrational values"
+  ],
+  "method": "Combine the reciprocal squares over the square of the product, then get the sum of squares from the square of the sum minus twice the product, so the irrational individual values are never needed.",
+  "prompt": "The numbers a and b satisfy a + b = 10 and ab = 20. What is the value of 1/a^2 + 1/b^2 ?",
+  "choices": [
+   "1/4",
+   "1/5",
+   "7/20",
+   "1/2",
+   "3/20"
+  ],
+  "correct_answer": "3/20",
+  "explanation": "1/a^2 + 1/b^2 = (a^2 + b^2)/(ab)^2. Since a^2 + b^2 = (a + b)^2 - 2ab = 100 - 40 = 60 and (ab)^2 = 400, the value is 60/400 = 3/20. The option \"1/4\" squares the sum of the reciprocals, (1/a + 1/b)^2 = (10/20)^2. The option \"1/5\" subtracts ab instead of 2ab, using 80/400. The option \"7/20\" adds 2ab instead of subtracting it, using 140/400. The option \"1/2\" stops at 1/a + 1/b = 10/20.",
+  "solve": "const s=10,p=20; return (s*s-2*p)/(p*p);",
+  "distractor_solve": {
+   "1/4": "const s=10,p=20; return Math.pow(s/p,2);",
+   "1/5": "const s=10,p=20; return (s*s-p)/(p*p);",
+   "7/20": "const s=10,p=20; return (s*s+2*p)/(p*p);",
+   "1/2": "const s=10,p=20; return s/p;"
+  },
+  "interval": "a and b are positive (positive sum and product); they are 5 - sqrt(5) and 5 + sqrt(5), and a solver who finds and estimates them has solved the item. Without that, the only cheap bound is 1/a^2 + 1/b^2 < (1/a + 1/b)^2 = 1/4 (both positive), which kills 1/4, 7/20 and 1/2 - but it needs 1/a + 1/b = 1/2 first, which is half the solution, and it does not separate 1/5 from the key.",
+  "bounds_checked": "sign (all positive), the square-of-sum bound (kills 1/4, 7/20 and 1/2 only after 1/a + 1/b is found; 1/5 survives with the key), denominator 20 (all five expressible over 20), key not printed",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S16D-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "identity element of a defined operation",
+  "difficulty": "medium",
+  "template": "a diamond b = ab - 3a - 3b + 12 / the number e with a diamond e = a for every a / match for all a, or plug a convenient a",
+  "mechanism": [
+   "defined operation",
+   "identity element",
+   "holds for every a"
+  ],
+  "method": "Write the condition that combining any a with the unknown number returns a, and use that it must hold for every a (for instance at a convenient a) to solve for the unknown.",
+  "prompt": "For all numbers a and b, the operation diamond is defined by a diamond b = ab - 3a - 3b + 12. There is a number e such that a diamond e = a for every number a. What is the value of e?",
+  "choices": [
+   "4",
+   "3",
+   "0",
+   "11/3",
+   "-5"
+  ],
+  "correct_answer": "4",
+  "explanation": "a diamond e = ae - 3a - 3e + 12 = a for every a. At a = 0 this gives -3e + 12 = 0, so e = 4; check: a diamond 4 = 4a - 3a - 12 + 12 = a for every a. (Equivalently a diamond b = (a - 3)(b - 3) + 3.) The option \"3\" reads the shift 3 off the factored form as the identity. The option \"-5\" tests a = 1 and slips a sign: 1 diamond e = -2e + 9 = 1 is rewritten as -2e - 9 = 1. The option \"0\" assumes the identity of ordinary addition. The option \"11/3\" sets 0 diamond e equal to 1 instead of 0: -3e + 12 = 1.",
+  "solve": "for(let k=-200;k<=200;k++){ const e=k/10; let ok=true; for(const a of [0,1,2,-5]){ if(Math.abs(a*e-3*a-3*e+12-a)>1e-9) ok=false; } if(ok) return e; }",
+  "distractor_solve": {
+   "3": "return 3;",
+   "0": "return 0;",
+   "11/3": "return (12-1)/3;",
+   "-5": "return (1+9)/(-2);"
+  },
+  "interval": "No bound from the stem: e can be any number. Every option can be tested by plugging into the definition, which is the solution itself, not a free elimination.",
+  "bounds_checked": "sign, integrality (not forced), plug-back (testing an option IS the method; no cheaper observation removes any), key not printed",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: e is any real number a priori; the stem implies no divisibility",
+   "multiple of 4": "not forced: as above",
+   "perfect square": "not forced: as above",
+   "integer": "not forced: e could be any real number",
+   "positive": "not forced: e could be any real number; nothing in the stem fixes its sign"
+  }
+ },
+ {
+  "id": "S16D-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "linear system in the reciprocals of the unknowns",
+  "difficulty": "medium",
+  "template": "2/x + 3/y = 2 and 4/x - 3/y = 1 / x + y / treat 1/x and 1/y as the unknowns, eliminate, then invert back",
+  "mechanism": [
+   "system linear in reciprocals",
+   "eliminate a reciprocal term",
+   "invert back to the variables"
+  ],
+  "method": "Treat the reciprocals as the unknowns so the system is linear, eliminate one by adding the equations, then invert each reciprocal back before combining the variables.",
+  "prompt": "The nonzero numbers x and y satisfy 2/x + 3/y = 2 and 4/x - 3/y = 1. What is the value of x + y ?",
+  "choices": [
+   "5/6",
+   "5",
+   "2",
+   "1/3",
+   "7/2"
+  ],
+  "correct_answer": "5",
+  "explanation": "Adding the equations gives 6/x = 3, so 1/x = 1/2 and x = 2. Then 3/y = 2 - 1 = 1, so 1/y = 1/3 and y = 3. So x + y = 5. The option \"5/6\" adds the reciprocals 1/2 + 1/3 without inverting them back. The option \"2\" stops at x. The option \"1/3\" reports 1/y instead of x + y. The option \"7/2\" inverts y back but not x, adding 1/2 + 3.",
+  "solve": "const u=3/6; const v=(2-2*u)/3; return 1/u+1/v;",
+  "distractor_solve": {
+   "5/6": "const u=3/6; const v=(2-2*u)/3; return u+v;",
+   "2": "const u=3/6; return 1/u;",
+   "1/3": "const u=3/6; return (2-2*u)/3;",
+   "7/2": "const u=3/6; const v=(2-2*u)/3; return u+1/v;"
+  },
+  "interval": "No bound from the stem fixes the size of x + y without solving: x and y could be any nonzero numbers a priori. Plugging an option in is not possible (an option is a sum, not a pair). All five options survive.",
+  "bounds_checked": "sign (all positive, none forced), integrality (not forced), plug-back (options are sums, so they cannot be substituted), key not printed",
+  "forced_form_notes": {
+   "integer": "not forced: x and y are any nonzero reals a priori; x + y is whole only because 1/x = 1/2 and 1/y = 1/3 come out as unit fractions",
+   "odd": "not forced: as above",
+   "multiple of 5": "not forced: as above"
+  }
+ },
+ {
+  "id": "S16D-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sign of a variable forced by an absolute-value sum",
+  "difficulty": "hard",
+  "template": "|x| + x = 10 and |y| - y = 12 / x + y / each expression is zero on one side of 0, which fixes each sign",
+  "mechanism": [
+   "absolute value case split",
+   "expression vanishes for one sign",
+   "sign forced by a nonzero value"
+  ],
+  "method": "Notice that |x| + x is zero for every non-positive x and |y| - y is zero for every non-negative y, so the nonzero right-hand sides force x positive and y negative, after which each equation is linear.",
+  "prompt": "The numbers x and y satisfy |x| + x = 10 and |y| - y = 12. What is the value of x + y?",
+  "choices": [
+   "11",
+   "-2",
+   "-1",
+   "-7",
+   "4"
+  ],
+  "correct_answer": "-1",
+  "explanation": "If x were 0 or negative, |x| + x would be 0, not 10; so x > 0 and 2x = 10, x = 5. If y were 0 or positive, |y| - y would be 0, not 12; so y < 0 and |y| - y = -2y = 12, y = -6. Then x + y = -1. The option \"11\" takes y = 6, dropping its sign. The option \"-2\" treats |x| + x as just x and |y| - y as just -y, giving x = 10 and y = -12. The option \"-7\" halves the first equation correctly but not the second (x = 5, y = -12). The option \"4\" halves the second but not the first (x = 10, y = -6).",
+  "solve": "let x=null,y=null; for(let k=-400;k<=400;k++){ const v=k/20; if(Math.abs(Math.abs(v)+v-10)<1e-9) x=v; if(Math.abs(Math.abs(v)-v-12)<1e-9) y=v; } return x+y;",
+  "distractor_solve": {
+   "11": "return 5+6;",
+   "-2": "return 10+(-12);",
+   "-7": "return 5+(-12);",
+   "4": "return 10+(-6);"
+  },
+  "interval": "No bound fixes the sign or size of x + y without first finding the sign of each variable (which is the item). All five options survive any cheap observation.",
+  "bounds_checked": "sign (not forced on the sum without solving), parity, integrality (not forced), key not printed",
+  "forced_form_notes": {
+   "negative": "not forced: x is positive and y negative, so the sign of x + y depends on their sizes; the stem does not fix it without solving",
+   "odd": "not forced: the stem does not force an integer, let alone an odd one"
+  }
+ },
+ {
+  "id": "S16D-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "unknown second term of a Fibonacci-type sequence",
+  "difficulty": "hard",
+  "template": "sequence 3, x, ... where each term is the sum of the two before / x from the sixth term 41 / carry the unknown and see the Fibonacci coefficients",
+  "mechanism": [
+   "sum of the two previous terms",
+   "carry an unknown through a recursion",
+   "coefficients follow the same rule"
+  ],
+  "method": "Carry the unknown second term through the recursion as an expression, noticing both the constant and the coefficient grow by the same add-the-previous-two rule, then set the sixth expression equal to the given value.",
+  "prompt": "A sequence begins with the numbers 3 and x, in that order, and each term after the second is the sum of the two terms just before it. The sixth term of the sequence is 41. What is the value of x?",
+  "choices": [
+   "38/5",
+   "35/3",
+   "4",
+   "32/5",
+   "13/4"
+  ],
+  "correct_answer": "32/5",
+  "explanation": "The terms are 3, x, 3 + x, 3 + 2x, 6 + 3x, 9 + 5x. So 9 + 5x = 41, 5x = 32, x = 32/5. The option \"38/5\" writes the sixth term as 3 + 5x, keeping the constant 3 from the first term. The option \"35/3\" sets the fifth term 6 + 3x equal to 41. The option \"4\" uses the coefficient 8 of the next term with the constant 9: 9 + 8x = 41. The option \"13/4\" sets the seventh term 15 + 8x equal to 41.",
+  "solve": "let a=[3,0],b=[0,1]; for(let i=2;i<6;i++){ a.push(a[i-1]+a[i-2]); b.push(b[i-1]+b[i-2]); } return (41-a[5])/b[5];",
+  "distractor_solve": {
+   "38/5": "return (41-3)/5;",
+   "35/3": "return (41-6)/3;",
+   "4": "return (41-9)/8;",
+   "13/4": "return (41-15)/8;"
+  },
+  "interval": "The sixth term is a sum built from 3 and positive multiples of x, so x is positive and less than 41/5: kills 35/3 only; 38/5, 4, 13/4 and 32/5 survive. Integrality is not forced (nothing says x is a whole number).",
+  "bounds_checked": "sign and the upper bound x < 41/5 from 9 + 5x = 41 with positive terms (kills one, 35/3), integrality (not forced), denominators, key not printed",
+  "forced_form_notes": {
+   "denominator 5": "not forced: the 5 is the coefficient of x in the sixth term, which a solver finds only by carrying the recursion; the stem prints no 5"
+  }
+ },
+ {
+  "id": "S16D-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "consecutive even integers whose product is a multiple of their sum",
+  "difficulty": "hard",
+  "template": "three consecutive positive even integers, product = 20 x sum / largest / centre on the middle so the sum is 3n and n cancels",
+  "mechanism": [
+   "centre consecutive integers on the middle one",
+   "cancel the common factor",
+   "difference of squares"
+  ],
+  "method": "Write the three even integers around the middle one so the product is the middle times (middle squared minus 4) and the sum is three times the middle; dividing out the middle leaves a one-step equation for its square.",
+  "prompt": "Three consecutive even positive integers have a product that is 20 times their sum. What is the largest of the three integers?",
+  "choices": [
+   "8",
+   "60",
+   "64",
+   "6",
+   "10"
+  ],
+  "correct_answer": "10",
+  "explanation": "Write the integers as n - 2, n, n + 2. Their product is n(n^2 - 4) and their sum is 3n, so n(n^2 - 4) = 60n, n^2 - 4 = 60, n^2 = 64, n = 8. The integers are 6, 8, 10 (product 480 = 20 x 24), and the largest is 10. The option \"8\" is the middle integer. The option \"6\" is the smallest. The option \"60\" stops at n^2 - 4. The option \"64\" stops at n^2.",
+  "solve": "for(let a=2;a<200;a+=2){ if(a*(a+2)*(a+4)===20*(3*a+6)) return a+4; }",
+  "distractor_solve": {
+   "8": "return Math.sqrt(20*3+4);",
+   "6": "return Math.sqrt(20*3+4)-2;",
+   "60": "return 20*3;",
+   "64": "return 20*3+4;"
+  },
+  "interval": "The integers are even and positive, so every option should be even and positive: all five are. The product of three integers each near n is about n^3 and the sum about 3n, so n^2 is about 60 and the largest integer is roughly 10: a solver who estimates this kills 60 and 64 - but that estimate is the solution itself (n^2 - 4 = 60).",
+  "bounds_checked": "parity (all even, forced), sign (all positive), magnitude (only after solving), key not printed",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: the largest even integer is 10 by solving n^2 = 64; no divisibility by 5 follows from the stem (the 20 multiplies the sum, not an integer)",
+   "multiple of 10": "not forced: as above"
+  }
+ },
+ {
+  "id": "S16D-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "function defined by a step rule whose increments are the odd numbers",
+  "difficulty": "hard",
+  "template": "f(x + 1) = f(x) + 2x + 1 with f(0) = 3 / f(10) / the added amounts are 1, 3, 5, ... whose sum is a perfect square",
+  "mechanism": [
+   "recursive step rule for a function",
+   "increments form the odd numbers",
+   "sum of the first n odd numbers is n^2"
+  ],
+  "method": "Apply the step rule from 0 up to 10 and notice that the amounts added are the first ten odd numbers, whose total is a perfect square, so the function is the square plus its starting value.",
+  "prompt": "A function f satisfies f(0) = 3 and f(x + 1) = f(x) + 2x + 1 for every number x. What is the value of f(10)?",
+  "choices": [
+   "103",
+   "100",
+   "93",
+   "13",
+   "24"
+  ],
+  "correct_answer": "103",
+  "explanation": "Going from f(0) to f(10) adds 2x + 1 for x = 0, 1, ..., 9, that is 1 + 3 + 5 + ... + 19, the first ten odd numbers, which add to 10^2 = 100. So f(10) = 3 + 100 = 103 (in fact f(x) = x^2 + 3). The option \"100\" leaves out the starting value f(0) = 3. The option \"93\" adds only the 2x parts, 0 + 2 + ... + 18 = 90, forgetting the +1 in each step. The option \"13\" treats f as linear, using the first step's increase of 1 for all ten steps. The option \"24\" makes a single jump, adding 2(10) + 1 = 21 to f(0).",
+  "solve": "let f=3; for(let x=0;x<10;x++) f=f+2*x+1; return f;",
+  "distractor_solve": {
+   "100": "let s=0; for(let x=0;x<10;x++) s+=2*x+1; return s;",
+   "93": "let f=3; for(let x=0;x<10;x++) f+=2*x; return f;",
+   "13": "const step=2*0+1; return 3+10*step;",
+   "24": "return 3+(2*10+1);"
+  },
+  "interval": "Each step adds 2x + 1 >= 1 for x >= 0, so f(10) is at least 3 + 10 = 13 (13 sits ON that bound by the linear error) and the increments grow, so f(10) exceeds 13: kills only 13, which is the named error. 100, 93, 24 and 103 survive.",
+  "bounds_checked": "lower bound from positive increments (kills one, 13, which sits on the bound), parity (not forced without solving), integrality (all integers), key not printed",
+  "forced_form_notes": {
+   "odd": "not forced: f(10) = 103 is odd only because f(0) = 3 is odd and the ten odd increments add to an even total; seeing that IS the solution, not a free observation",
+   "positive": "not forced beyond what every option already shares"
+  }
+ },
+ {
+  "id": "S16D-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "linear function that commutes with a given linear function",
+  "difficulty": "hard",
+  "template": "f(x) = 2x + 3, g linear, f(g(x)) = g(f(x)) for all x, g(0) = 6 / g(1) / slopes always match, so compare constant terms",
+  "mechanism": [
+   "composition of linear functions",
+   "compare constant terms",
+   "identity holds for every x"
+  ],
+  "method": "Compose both ways, see that the x-terms agree automatically so the condition is only that the constant terms agree, which links the slope of g to its intercept.",
+  "prompt": "The function f is defined by f(x) = 2x + 3. A function g is defined by g(x) = ax + b, where a and b are constants. For every number x, f(g(x)) = g(f(x)). If g(0) = 6, what is the value of g(1)?",
+  "choices": [
+   "7",
+   "9",
+   "21",
+   "3",
+   "33"
+  ],
+  "correct_answer": "9",
+  "explanation": "f(g(x)) = 2(ax + b) + 3 = 2ax + 2b + 3, and g(f(x)) = a(2x + 3) + b = 2ax + 3a + b. The x-terms always agree, so the condition is 2b + 3 = 3a + b, that is b + 3 = 3a. With b = g(0) = 6, a = 3, so g(x) = 3x + 6 and g(1) = 9. The option \"7\" slips a sign when solving 2b + 3 = 3a + b, getting b - 3 = 3a, so a = 1 and g(1) = 7. The option \"3\" reports the slope a instead of g(1). The option \"21\" reports f(g(1)) = 2(9) + 3. The option \"33\" applies g twice, g(g(1)) = g(9) = 33.",
+  "solve": "const b=6; const a=(b+3)/3; return a*1+b;",
+  "distractor_solve": {
+   "7": "const b=6; const a=(b-3)/3; return a+b;",
+   "3": "const b=6; return (b+3)/3;",
+   "21": "const g1=9; return 2*g1+3;",
+   "33": "const g=x=>3*x+6; return g(g(1));"
+  },
+  "interval": "No bound from the stem: a is unknown, so g(1) = a + 6 has no forced sign or size. 3 is below 6 only if a is negative, which nothing rules out without solving. All five options survive.",
+  "bounds_checked": "sign of the slope (not forced), parity (all five odd), multiple of 3 (key and three distractors share it), integrality (not forced), key not printed",
+  "forced_form_notes": {
+   "multiple of 9": "not forced: g(1) = a + 6 with a found by solving; the stem implies no divisibility by 9 (multiple of 3 is shared by three distractors)",
+   "perfect square": "not forced: as above"
+  }
+ },
+ {
+  "id": "S16D-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of terms of a rising-and-falling repeating pattern",
+  "difficulty": "hard",
+  "template": "1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, ... / sum of first 101 terms / the repeating block has 6 terms, not 7",
+  "mechanism": [
+   "repeating block of a pattern",
+   "turning point not repeated",
+   "full blocks plus a remainder"
+  ],
+  "method": "Identify the repeating block correctly, noticing the 1 at each turn is shared so the block has six terms rather than seven, then count full blocks and add the leftover terms.",
+  "prompt": "The sequence 1, 2, 3, 4, 3, 2, 1, 2, 3, 4, 3, 2, 1, 2, ... rises from 1 to 4, falls back to 1, rises to 4 again, and so on. What is the sum of the first 101 terms?",
+  "choices": [
+   "230",
+   "240",
+   "253",
+   "255",
+   "250"
+  ],
+  "correct_answer": "253",
+  "explanation": "The block 1, 2, 3, 4, 3, 2 repeats (the next 1 starts the next block), so the period is 6 and each block sums to 15. Since 101 = 16 x 6 + 5, the first 96 terms sum to 16 x 15 = 240, and terms 97 to 101 are 1, 2, 3, 4, 3, adding 13. The total is 253. The option \"230\" takes the block to be 1, 2, 3, 4, 3, 2, 1 (seven terms, sum 16): 14 blocks give 224, and terms 99 to 101 add 1 + 2 + 3. The option \"240\" ignores the five leftover terms. The option \"250\" adds only four leftover terms, 1 + 2 + 3 + 4. The option \"255\" rounds up to 17 full blocks.",
+  "solve": "const s=[1,2,3,4,3,2]; let t=0; for(let i=0;i<101;i++) t+=s[i%6]; return t;",
+  "distractor_solve": {
+   "230": "const s=[1,2,3,4,3,2,1]; let t=0; for(let i=0;i<101;i++) t+=s[i%7]; return t;",
+   "240": "return Math.floor(101/6)*15;",
+   "250": "return Math.floor(101/6)*15+1+2+3+4;",
+   "255": "return Math.ceil(101/6)*15;"
+  },
+  "interval": "Every term is between 1 and 4 and the average over a block is 2.5, so the sum is about 2.5 x 101 = 252.5: all five options lie within 25 of it, and 250, 253 and 255 are all close; the estimate alone does not decide the key. The sum is at most 4 x 101 and at least 101, no kill.",
+  "bounds_checked": "average-times-count estimate (does not separate 250, 253, 255), integrality (all integers), parity, key not printed",
+  "forced_form_notes": {
+   "odd": "not forced: the parity of the sum depends on the leftover terms, which a solver finds only by locating the period",
+   "multiple of 11": "not forced: 253 = 11 x 23 by arithmetic; nothing in the stem implies 11",
+   "multiple of 23": "not forced"
+  }
+ },
+ {
+  "id": "S16D-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum with every third term subtracted, grouped in threes",
+  "difficulty": "hard",
+  "template": "1 + 2 - 3 + 4 + 5 - 6 + ... + 97 + 98 - 99 / value / group each block of three so each group is 3 less than a multiple of 3",
+  "mechanism": [
+   "group terms in blocks of three",
+   "each group sum is linear in the block number",
+   "arithmetic series of group sums"
+  ],
+  "method": "Group the terms in consecutive blocks of three so each block contributes a simple linear amount, then add those block amounts as an arithmetic series (or, equivalently, subtract twice the multiples of three from the plain total).",
+  "prompt": "In the sum 1 + 2 - 3 + 4 + 5 - 6 + 7 + 8 - 9 + ... + 97 + 98 - 99, every multiple of 3 is subtracted and every other number is added. What is the value of the sum?",
+  "choices": [
+   "1650",
+   "4950",
+   "3267",
+   "1584",
+   "1716"
+  ],
+  "correct_answer": "1584",
+  "explanation": "Group the terms in threes: (3k - 2) + (3k - 1) - 3k = 3k - 3 for k = 1, 2, ..., 33. The groups give 0, 3, 6, ..., 96, which add to 3(0 + 1 + ... + 32) = 3 x 528 = 1584. (Equivalently, 1 + 2 + ... + 99 = 4950, and the multiples of 3 add to 1683; adding them and then removing them twice gives 4950 - 2 x 1683 = 1584.) The option \"4950\" adds every term. The option \"3267\" subtracts the multiples of 3 only once instead of twice. The option \"1650\" puts the minus sign on the middle term of each group, (3k - 2) - (3k - 1) + 3k = 3k - 1. The option \"1716\" puts the minus sign on the first term of each group, -(3k - 2) + (3k - 1) + 3k = 3k + 1.",
+  "solve": "let s=0; for(let n=1;n<=99;n++) s+= (n%3===0)? -n : n; return s;",
+  "distractor_solve": {
+   "4950": "let s=0; for(let n=1;n<=99;n++) s+=n; return s;",
+   "3267": "let a=0,m=0; for(let n=1;n<=99;n++){ a+=n; if(n%3===0) m+=n; } return a-m;",
+   "1650": "let s=0; for(let k=1;k<=33;k++) s+=3*k-1; return s;",
+   "1716": "let s=0; for(let k=1;k<=33;k++) s+=3*k+1; return s;"
+  },
+  "interval": "The sum is less than the plain total 4950 (kills 4950, which is the named error) and positive; every group contributes a multiple of 3, so the sum is a multiple of 3 - all five options are. 3267, 1650, 1716 and 1584 survive the size bound.",
+  "bounds_checked": "upper bound by the unsigned total (kills one, 4950), multiple of 3 (forced; all five share it), parity (key and three distractors even), key not printed",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: the sum is 3 x 528; divisibility by 4 comes from 528, not from the stem",
+   "multiple of 8": "not forced: as above",
+   "multiple of 11": "not forced: as above",
+   "multiple of 12": "not forced: the stem forces a multiple of 3 (all five options share it); the extra factor 4 is arithmetic",
+   "multiple of 9": "not forced: as above",
+   "multiple of 6": "not forced: as above"
+  }
+ },
+ {
+  "id": "S16D-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "working backward through two spend-a-fraction-plus-a-constant steps",
+  "difficulty": "hard",
+  "template": "spend half plus 3, then one third of the rest plus 2, 10 left / starting amount / undo the steps in reverse order, adding the constant back before scaling",
+  "mechanism": [
+   "work backward",
+   "inverse operations in reverse order",
+   "fraction of the remainder"
+  ],
+  "method": "Undo the two spending steps in reverse order, and within each step add the fixed amount back before scaling up the remaining fraction, since the fraction was taken from the amount before the fixed amount was spent.",
+  "prompt": "Mina spent half of her money plus 3 dollars at a bookstore. She then spent one third of the money she had left plus 2 dollars at a cafe. After that she had 10 dollars left. How many dollars did Mina have at the start?",
+  "choices": [
+   "30",
+   "18",
+   "37",
+   "36",
+   "42"
+  ],
+  "correct_answer": "42",
+  "explanation": "Before the cafe she had r dollars with r - (r/3 + 2) = 10, so (2/3)r = 12 and r = 18. Before the bookstore she had m dollars with m - (m/2 + 3) = 18, so m/2 = 21 and m = 42. Check: 42 - 24 = 18, then 18 - 8 = 10. The option \"30\" ignores both fixed amounts, scaling 10 by 3/2 and then by 2. The option \"18\" stops after undoing the cafe step. The option \"37\" scales first and adds the fixed amount afterwards: 10 x 3/2 + 2 = 17, then 17 x 2 + 3 = 37. The option \"36\" undoes the cafe step correctly but forgets to add back the 3 dollars at the bookstore: 18 x 2.",
+  "solve": "const r=(10+2)*3/2; return (r+3)*2;",
+  "distractor_solve": {
+   "30": "return 10*3/2*2;",
+   "18": "return (10+2)*3/2;",
+   "37": "return (10*3/2+2)*2+3;",
+   "36": "return (10+2)*3/2*2;"
+  },
+  "interval": "She ends with 10 after spending at least 3 + 2 dollars and two positive fractions, so the start exceeds 15: kills nothing (all five exceed 15). The start must be more than twice the amount before the cafe, but that amount is unknown without solving.",
+  "bounds_checked": "lower bound from the fixed amounts (no kill), parity (key and three distractors even), multiple of 6 (key and three distractors), integrality (not forced: money need not be whole dollars), key not printed",
+  "forced_form_notes": {
+   "multiple of 7": "not forced: 42 = 2 x 21 by solving; the stem prints no 7",
+   "multiple of 14": "not forced: as above",
+   "multiple of 21": "not forced: as above"
+  }
+ },
+ {
+  "id": "S16D-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "page number added twice to a sum of consecutive integers",
+  "difficulty": "hard",
+  "template": "pages 1 to n summed with one page counted twice, total 1000 / the repeated page / the true sum is the triangular number just below the total and the excess is at most n",
+  "mechanism": [
+   "sum of 1 to n",
+   "largest triangular number below the total",
+   "excess must not exceed n"
+  ],
+  "method": "The correct total is a triangular number less than the reported total, and the excess is one page number, which cannot exceed the number of pages, so the right triangular number is the largest one below the total.",
+  "prompt": "The pages of a book are numbered 1, 2, 3, ..., n. When the page numbers were added, one page number was mistakenly added twice, and the result was 1000. Which page number was added twice?",
+  "choices": [
+   "10",
+   "35",
+   "44",
+   "990",
+   "45"
+  ],
+  "correct_answer": "10",
+  "explanation": "The correct sum is n(n + 1)/2, and 1000 exceeds it by the repeated page number p, with 1 <= p <= n. For n = 44 the correct sum is 990, so p = 10, which is at most 44. For n = 43 the sum is 946 and p would be 54 > 43, impossible; for n = 45 the sum 1035 already exceeds 1000. So p = 10. The option \"35\" uses n = 45 and treats the error as a missing page, 1035 - 1000. The option \"44\" reports the number of pages. The option \"45\" reports the number of pages from the first sum that passes 1000. The option \"990\" reports the correct sum instead of the repeated page.",
+  "solve": "for(let n=1;n<100;n++){ const p=1000-n*(n+1)/2; if(p>=1 && p<=n) return p; }",
+  "distractor_solve": {
+   "35": "let n=1; while(n*(n+1)/2<=1000) n++; return n*(n+1)/2-1000;",
+   "44": "for(let n=1;n<100;n++){ const p=1000-n*(n+1)/2; if(p>=1 && p<=n) return n; }",
+   "45": "let n=1; while(n*(n+1)/2<=1000) n++; return n;",
+   "990": "for(let n=1;n<100;n++){ const p=1000-n*(n+1)/2; if(p>=1 && p<=n) return n*(n+1)/2; }"
+  },
+  "interval": "A page counted twice adds at most n, and n(n + 1)/2 < 1000 gives n < 45, so p < 45: kills 990 (one kill); 35, 44 and 45 are at or below that bound only loosely (45 sits ON it) and survive a solver who has not located n.",
+  "bounds_checked": "p at most n with n below 45 (kills one, 990; 45 on the bound by a wrong procedure), integrality (forced; all integers), key not printed",
+  "forced_form_notes": {
+   "multiple of 10": "not forced: p = 1000 - 990 by solving; the stem's 1000 forces nothing about p mod 10",
+   "multiple of 5": "not forced: as above",
+   "multiple of 2": "not forced: as above"
+  }
+ },
+ {
+  "id": "S16D-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "product of two unknowns from two mixed-power products",
+  "difficulty": "hard",
+  "template": "x^2 y = 50 and x y^2 = 20, x and y positive / xy / multiply the equations to get (xy)^3",
+  "mechanism": [
+   "multiply the two equations",
+   "product raised to a power",
+   "cube root of a product"
+  ],
+  "method": "Multiplying the two equations makes each unknown appear to the same power, so the product of the unknowns, cubed, equals the product of the right-hand sides, and a cube root finishes it without finding either unknown first.",
+  "prompt": "The positive numbers x and y satisfy x^2 y = 50 and x y^2 = 20. What is the value of xy ?",
+  "choices": [
+   "1000",
+   "10",
+   "70",
+   "35",
+   "50"
+  ],
+  "correct_answer": "10",
+  "explanation": "Multiplying the equations gives x^3 y^3 = 50 x 20 = 1000, so (xy)^3 = 1000 and xy = 10. (Check: dividing gives x/y = 5/2, so x = 5 and y = 2: 25 x 2 = 50 and 5 x 4 = 20.) The option \"1000\" stops at (xy)^3. The option \"50\" reads the first equation x^2 y = 50 as if it gave xy directly. The option \"70\" adds the equations and reads x^2 y + x y^2 as xy. The option \"35\" averages the two right-hand sides.",
+  "solve": "return Math.round(Math.cbrt(50*20)*1e9)/1e9;",
+  "distractor_solve": {
+   "1000": "return 50*20;",
+   "50": "return 50;",
+   "70": "return 50+20;",
+   "35": "return (50+20)/2;"
+  },
+  "interval": "xy = 50/x = 20/y, so xy is less than 50 only if x > 1, which nothing printed fixes; without combining the equations no option is excluded cheaply. 1000 is excluded only by a solver who has formed (xy)^3, which is the method. All five survive a free observation.",
+  "bounds_checked": "sign (all positive, forced by positive x, y), even / multiple of 10 (key and three distractors share them), multiple of 5 (all five), key not printed",
+  "forced_form_notes": {}
+ }
+]

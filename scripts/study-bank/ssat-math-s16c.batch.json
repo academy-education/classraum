@@ -1,0 +1,942 @@
+[
+ {
+  "id": "S16C-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "identical objects shared with a minimum per person",
+  "difficulty": "hard",
+  "template": "identical pencils to three people / number of distributions / pre-allot the minimum, then share the remainder",
+  "mechanism": [
+   "identical objects into distinct boxes",
+   "minimum per box removed first",
+   "casework on the leftover"
+  ],
+  "method": "Hand every person the required minimum first, then count the ways to share the few identical pencils that remain, remembering the pencils are identical so only the amounts matter.",
+  "prompt": "Ten identical pencils are to be given out to Ava, Ben and Cara so that each of them receives at least 2 pencils and all ten pencils are given out. In how many different ways can this be done? (Two ways are different if at least one person receives a different number of pencils.)",
+  "choices": [
+   "21",
+   "3",
+   "15",
+   "36",
+   "12"
+  ],
+  "correct_answer": "15",
+  "explanation": "Give each person 2 pencils first; 4 identical pencils remain to be shared among 3 people with no restriction. The amounts (a, b, c) with a + b + c = 4 are: (4,0,0) in 3 orders, (3,1,0) in 6 orders, (2,2,0) in 3 orders and (2,1,1) in 3 orders, for 3 + 6 + 3 + 3 = 15. The option \"3\" shares the 4 leftover pencils so that each person gets at least one more. The option \"12\" multiplies the 4 leftover pencils by the 3 people. The option \"21\" removes only 2 pencils in total before requiring at least 1 each (8 pencils, at least 1 each). The option \"36\" ignores the minimum of 2 and counts the ways in which each person gets at least 1.",
+  "solve": "var c=0; for(var a=2;a<=10;a++)for(var b=2;b<=10;b++){var d=10-a-b; if(d>=2)c++;} return c;",
+  "distractor_solve": {
+   "3": "var c=0; for(var a=1;a<=4;a++)for(var b=1;b<=4;b++){var d=4-a-b; if(d>=1)c++;} return c;",
+   "12": "return (10-3*2)*3;",
+   "21": "var c=0; for(var a=1;a<=8;a++)for(var b=1;b<=8;b++){var d=8-a-b; if(d>=1)c++;} return c;",
+   "36": "var c=0; for(var a=1;a<=10;a++)for(var b=1;b<=10;b++){var d=10-a-b; if(d>=1)c++;} return c;"
+  },
+  "interval": "The count is a positive whole number. It is at most the number of ways with at least 1 each, but that number (36) is itself the work of the item; no option is removed without counting. 3, 12, 15, 21 and 36 all lie in the feasible range of a small count.",
+  "bounds_checked": "integrality, positivity, relaxation of the minimum (requires the count), multiple of 3 shared, parity, key not a printed number",
+  "forced_form_notes": {
+   "odd": "not forced: the count of distributions has no parity fixed by the stem; 3 and 21 are odd and 12 and 36 even.",
+   "multiple of 5": "not forced: nothing in the stem makes the number of distributions a multiple of 5; the 10 pencils fix a sum, not the count."
+  }
+ },
+ {
+  "id": "S16C-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that the greatest of several dice equals a value",
+  "difficulty": "hard",
+  "template": "three dice / P(greatest number is exactly 4) / at-most-4 minus at-most-3",
+  "mechanism": [
+   "maximum equals k as difference of two at-most events",
+   "independent dice",
+   "complement inside a restricted set"
+  ],
+  "method": "Count the rolls with every die at most 4 and remove the rolls with every die at most 3, since the greatest is exactly 4 precisely when all are at most 4 but not all are at most 3.",
+  "prompt": "Three fair six-sided dice, each numbered 1 through 6, are rolled. What is the probability that the greatest of the three numbers showing is exactly 4?",
+  "choices": [
+   "37/216",
+   "1/6",
+   "2/9",
+   "61/216",
+   "7/24"
+  ],
+  "correct_answer": "37/216",
+  "explanation": "The greatest number is exactly 4 when every die shows at most 4 but not every die shows at most 3: (4^3 - 3^3)/216 = (64 - 27)/216 = 37/216. The option \"2/9\" picks the die that shows 4 (3 ways) and lets the other two show anything up to 4 (16 ways), 48/216, counting rolls with two or three 4s more than once. The option \"1/6\" removes the rolls with two 4s once each (48 - 12 = 36) but forgets to add back the roll with three 4s. The option \"61/216\" is off by one, using (5^3 - 4^3)/216. The option \"7/24\" subtracts only the single roll 4, 4, 4 from the 64 rolls with every die at most 4, 63/216.",
+  "solve": "var c=0; for(var a=1;a<=6;a++)for(var b=1;b<=6;b++)for(var d=1;d<=6;d++){if(Math.max(a,b,d)===4)c++;} return c/216;",
+  "distractor_solve": {
+   "2/9": "return 3*4*4/216;",
+   "1/6": "return (3*16-3*4)/216;",
+   "61/216": "return (Math.pow(5,3)-Math.pow(4,3))/216;",
+   "7/24": "return (Math.pow(4,3)-1)/216;"
+  },
+  "interval": "216 equally likely rolls force a denominator dividing 216; all five options (216, 6, 9, 216, 24) do. The probability is below P(all at most 4) = 64/216; every option (36, 37, 48, 61, 63 over 216) is below it, none on it. It exceeds the single roll 4,4,4 (1/216); all options do.",
+  "bounds_checked": "denominator dividing 216, upper bound P(all at most 4), lower bound one roll, monotone ladder (none: four different error paths), key/complement pairs (none)",
+  "forced_form_notes": {
+   "denominator 216": "not forced: 216 equally likely rolls force a reduced denominator that DIVIDES 216, and every option's denominator (6, 9, 24, 216) divides 216."
+  }
+ },
+ {
+  "id": "S16C-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "value replaced in a list from the change in its mean",
+  "difficulty": "medium",
+  "template": "six numbers, one replaced / the replaced value / change in mean times count is change in sum",
+  "mechanism": [
+   "mean times count gives sum",
+   "replacement changes the sum by new minus old"
+  ],
+  "method": "Turn the rise in the mean into a rise in the total, which equals the new number minus the number it replaced.",
+  "prompt": "The mean of six numbers is 15. One of the six numbers is replaced by 31, and the mean of the six numbers becomes 17. What number was replaced?",
+  "choices": [
+   "14",
+   "29",
+   "43",
+   "12",
+   "19"
+  ],
+  "correct_answer": "19",
+  "explanation": "The total rose from 6 x 15 = 90 to 6 x 17 = 102, an increase of 12. The new number exceeds the old one by 12, so the old number was 31 - 12 = 19. The option \"12\" is the increase in the total itself. The option \"43\" adds the increase to 31 instead of subtracting it. The option \"14\" subtracts the new mean from 31. The option \"29\" subtracts only the 2-point change in the mean from 31.",
+  "solve": "var n=6,m1=15,m2=17,newv=31; return newv-(n*m2-n*m1);",
+  "distractor_solve": {
+   "12": "return 6*17-6*15;",
+   "43": "return 31+(6*17-6*15);",
+   "14": "return 31-17;",
+   "29": "return 31-(17-15);"
+  },
+  "interval": "The mean rose, so the replaced number is less than 31; this removes 43 only. The replaced number is otherwise unbounded; 12, 14, 19 and 29 all survive.",
+  "bounds_checked": "direction of the change (old < 31), sign, integrality (not forced), parity, key not a printed number",
+  "forced_form_notes": {
+   "odd": "not forced: the replaced number is 31 minus a change in the total; the stem does not fix its parity (12 and 14 are even, 29 and 43 odd).",
+   "integer": "not forced: the numbers in the list need not be whole numbers; every option happens to be one."
+  }
+ },
+ {
+  "id": "S16C-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "four-digit numbers with a repeated digit by complement",
+  "difficulty": "hard",
+  "template": "four-digit numbers / count with at least one repeated digit / complement of all-distinct with a leading-digit restriction",
+  "mechanism": [
+   "complementary counting",
+   "all-distinct digits with no leading zero",
+   "at least one versus none"
+  ],
+  "method": "Count the four-digit numbers whose digits are all different, taking care that the first digit cannot be zero, and subtract that from the total number of four-digit numbers.",
+  "prompt": "How many four-digit positive integers have at least two digits that are the same? (For example, 1213 and 5005 are counted, but 1234 is not.)",
+  "choices": [
+   "3960",
+   "4464",
+   "2439",
+   "4131",
+   "3888"
+  ],
+  "correct_answer": "4464",
+  "explanation": "There are 9000 four-digit integers (1000 through 9999). Those with four different digits number 9 x 9 x 8 x 7 = 4536 (first digit 1-9, then any of the 9 unused digits including 0, then 8, then 7). So 9000 - 4536 = 4464 have a repeated digit. The option \"3960\" uses 10 x 9 x 8 x 7 = 5040 all-different strings, letting 0 lead. The option \"2439\" counts only numbers with two EQUAL NEIGHBORING digits, subtracting the 9^4 = 6561 numbers in which each digit differs from the one before it. The option \"3888\" counts only the numbers in which exactly one digit appears twice and the other two digits differ. The option \"4131\" adds the numbers with two different pairs (such as 5005) but still leaves out those with a digit three or four times.",
+  "solve": "var c=0; for(var n=1000;n<=9999;n++){var s=String(n).split(''); var u={}; s.forEach(function(d){u[d]=1;}); if(Object.keys(u).length<4)c++;} return c;",
+  "distractor_solve": {
+   "3960": "return 9000-10*9*8*7;",
+   "2439": "var c=0; for(var n=1000;n<=9999;n++){var s=String(n); if(s[0]===s[1]||s[1]===s[2]||s[2]===s[3])c++;} return c;",
+   "3888": "var cnt=function(f){var c=0; for(var n=1000;n<=9999;n++){var s=String(n).split(''); var m={}; s.forEach(function(x){m[x]=(m[x]||0)+1;}); var v=Object.keys(m).map(function(k){return m[k];}).sort().join(','); if(f(v))c++;} return c;}; return cnt(function(v){return v==='1,1,2';});",
+   "4131": "var cnt=function(f){var c=0; for(var n=1000;n<=9999;n++){var s=String(n).split(''); var m={}; s.forEach(function(x){m[x]=(m[x]||0)+1;}); var v=Object.keys(m).map(function(k){return m[k];}).sort().join(','); if(f(v))c++;} return c;}; return cnt(function(v){return v==='1,1,2'||v==='2,2';});"
+  },
+  "interval": "The count lies between 0 and 9000; all five options do. Each distractor is a sub-count or a mis-total, and none sits on a stem-readable bound; the complement 4536 is not an option. Units digits and parity are not forced by the stem.",
+  "bounds_checked": "part not exceeding the whole (9000), complement pair (4536 absent), parity, units digit, digit rearrangements (none), key the largest option but no stem-readable bound reaches it",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the count is 9000 minus the all-different count; the stem fixes no factor of 2 in it, and the odd-valued distractors (2439, 4131) come from other sub-counts.",
+   "multiple of 4": "not forced: the count is 9000 minus the all-different count; the stem fixes no factor of 4 in it, and the odd-valued distractors (2439, 4131) come from other sub-counts.",
+   "multiple of 6": "not forced: the count is 9000 minus the all-different count; the stem fixes no factor of 6 in it, and the odd-valued distractors (2439, 4131) come from other sub-counts.",
+   "multiple of 8": "not forced: the count is 9000 minus the all-different count; the stem fixes no factor of 8 in it, and the odd-valued distractors (2439, 4131) come from other sub-counts.",
+   "multiple of 12": "not forced: the count is 9000 minus the all-different count; the stem fixes no factor of 12 in it, and the odd-valued distractors (2439, 4131) come from other sub-counts."
+  }
+ },
+ {
+  "id": "S16C-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least possible size of a triple overlap",
+  "difficulty": "hard",
+  "template": "three overlapping groups in a survey / least possible number in all three / count the people missing from each group",
+  "mechanism": [
+   "three-set overlap lower bound",
+   "complements of each set",
+   "people outside at least one set"
+  ],
+  "method": "Count the people who are missing from each group; at most that many people can miss at least one group, so everyone else must be in all three.",
+  "prompt": "In a survey of 100 people, 85 said they like apples, 75 said they like bananas and 60 said they like cherries. What is the least possible number of the people surveyed who like all three fruits?",
+  "choices": [
+   "35",
+   "15",
+   "45",
+   "20",
+   "80"
+  ],
+  "correct_answer": "20",
+  "explanation": "15 people do not like apples, 25 do not like bananas and 40 do not like cherries. At most 15 + 25 + 40 = 80 people fail to like at least one fruit, so at least 100 - 80 = 20 like all three, and 20 is reached when the three groups of non-likers do not overlap. The option \"35\" is the least overlap of just bananas and cherries (75 + 60 - 100). The option \"45\" is the least overlap of apples and cherries (85 + 60 - 100), treating a pair as if it were the triple. The option \"15\" counts the people who do not like apples, the smallest group missing a fruit. The option \"80\" is the greatest number who can miss at least one fruit, given as the answer.",
+  "solve": "var N=100, s=[85,75,60]; var best=N; for(var t=0;t<=60;t++){ var miss=0; s.forEach(function(x){miss+=N-x;}); if(N-t<=miss){best=t;break;} } return best;",
+  "distractor_solve": {
+   "35": "return 75+60-100;",
+   "45": "return 85+60-100;",
+   "15": "return 100-85;",
+   "80": "return (100-85)+(100-75)+(100-60);"
+  },
+  "interval": "The number is between 0 and 60 (the smallest group). 80 exceeds 60 and dies on that bound (one kill); 15, 35 and 45 lie strictly inside and survive. No option is on 0 or 60.",
+  "bounds_checked": "part not exceeding the smallest group (60: kills 80), nonnegativity, key not the extreme on a least ask (15 lies below), arithmetic runs (none with the key in the middle), derivational hub (no option is double, half or one off the key)",
+  "forced_form_notes": {
+   "multiple of 10": "not forced: the group sizes are arbitrary survey counts; nothing makes the triple overlap a multiple of 10 (15, 35, 45 are multiples of 5 only).",
+   "multiple of 4": "not forced: nothing in the stem makes the overlap a multiple of 4.",
+   "multiple of 2": "not forced: the overlap is 100 minus a sum of complements; the stem fixes no parity.",
+   "multiple of 20": "not forced: nothing in the stem fixes this factor."
+  }
+ },
+ {
+  "id": "S16C-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability one player reaches a smaller win target first in a series",
+  "difficulty": "hard",
+  "template": "series of independent games, unequal win targets / P(the player needing fewer wins takes the series) / extend the series to its full length",
+  "mechanism": [
+   "series that stops early",
+   "imagine every possible game is played",
+   "at least k successes in a fixed number of trials"
+  ],
+  "method": "Notice that the series can last at most four games and that playing all four would never change the winner, so the series is won exactly when that player wins at least two of four independent games.",
+  "prompt": "Ana and Ben play a series of games. In each game Ana wins with probability 1/3 and Ben wins with probability 2/3, there are no ties, and the games are independent. The series ends as soon as Ana has won 2 games or Ben has won 3 games. What is the probability that Ana wins the series?",
+  "choices": [
+   "11/27",
+   "8/27",
+   "1/3",
+   "29/81",
+   "7/27"
+  ],
+  "correct_answer": "11/27",
+  "explanation": "At most 4 games are needed, and if all 4 were played the winner would not change: Ana wins the series exactly when she wins at least 2 of 4 games. P(0 wins) = (2/3)^4 = 16/81 and P(1 win) = 4 x (1/3)(2/3)^3 = 32/81, so P = 1 - 48/81 = 33/81 = 11/27. (Directly: WW 9/81, two orders of a 3-game win 12/81, three orders of a 4-game win 12/81.) The option \"7/27\" stops at 3 games, needing 2 wins out of 3 and forgetting the 4-game series. The option \"29/81\" counts only two of the three orders in which Ana wins in 4 games. The option \"1/3\" counts only one order of a 3-game win (9/81 + 6/81 + 12/81 = 27/81). The option \"8/27\" counts exactly 2 wins in 4 games, 6 x (1/9)(4/9).",
+  "solve": "var c=0; var rec=function(a,b,p){ if(a===2){c+=p;return;} if(b===3) return; rec(a+1,b,p/3); rec(a,b+1,p*2/3); }; rec(0,0,1); return c;",
+  "distractor_solve": {
+   "7/27": "return 1-Math.pow(2/3,3)-3*(1/3)*Math.pow(2/3,2);",
+   "29/81": "return 1/9+2*(2/3)*(1/9)+2*(1/3)*(4/9)*(1/3);",
+   "1/3": "return 1/9+(2/3)*(1/9)+3*(1/3)*(4/9)*(1/3);",
+   "8/27": "return 6*(1/9)*(4/9);"
+  },
+  "interval": "Every series outcome has probability a multiple of 1/81 (at most 4 games at 1/3 and 2/3), so the answer has a denominator dividing 81; all options (27, 27, 3, 81, 27) do. The probability is at least P(Ana wins the first two) = 1/9 and at most 1 - P(Ben wins the first three) = 19/27; every option lies strictly inside. Ana is weaker per game but needs fewer wins, so no direction relative to 1/3 or 1/2 is readable without the computation; options lie on both sides of 1/3.",
+  "bounds_checked": "denominator dividing 81, lower bound 1/9 (absent), upper bound 19/27 (absent), naive per-game value 1/3 (a named error, not a bound), arithmetic runs with the key in the middle (none), key-is-sum, complement pair (16/27 absent)",
+  "forced_form_notes": {
+   "denominator 27": "not forced: four games at probabilities 1/3 and 2/3 force only a denominator dividing 81; every option's denominator (27, 27, 3, 81, 27) divides 81."
+  }
+ },
+ {
+  "id": "S16C-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "triangles from points on two parallel lines",
+  "difficulty": "hard",
+  "template": "points on two parallel lines / number of triangles / two from one line and one from the other",
+  "mechanism": [
+   "collinear triples form no triangle",
+   "casework on which line holds two vertices",
+   "selection without order"
+  ],
+  "method": "See that three points on the same line make no triangle, so every triangle takes two vertices from one line and one from the other; count the two cases and add.",
+  "prompt": "Five points are marked on line l, and four points are marked on a different line m that is parallel to l. How many triangles have all three of their vertices among these nine points?",
+  "choices": [
+   "64",
+   "40",
+   "70",
+   "36",
+   "60"
+  ],
+  "correct_answer": "70",
+  "explanation": "Three points on one line make no triangle, so a triangle uses two points of one line and one of the other. Two from l and one from m: 10 x 4 = 40. Two from m and one from l: 6 x 5 = 30. Total 70. The option \"40\" counts only the triangles with two vertices on l, the line with more points. The option \"64\" multiplies both pair counts by 4 (10 x 4 + 6 x 4). The option \"60\" multiplies the pair counts, C(5,2) x C(4,2), which counts quadrilaterals. The option \"36\" counts pairs of points, C(9,2).",
+  "solve": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(5,2)*4+C(4,2)*5;",
+  "distractor_solve": {
+   "64": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(5,2)*4+C(4,2)*4;",
+   "60": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(5,2)*C(4,2);",
+   "36": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(9,2);",
+   "40": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(5,2)*4;"
+  },
+  "interval": "The count is below C(9,3) = 84, the number of all triples; every option is below 84 and none is on it. The count exceeds either case alone; the larger case, 40, is an option, but seeing that the count exceeds it requires splitting into the two cases, which is the method. The smaller case, 30, is absent, so the key is not a sum of two options.",
+  "bounds_checked": "part below the whole (84 triples), key-is-sum (30 absent), parity (all even), integrality, key is the largest option but no stem-readable bound separates it from 64",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: the count is 4 x C(5,2) + 5 x C(4,2); the stem fixes no factor of 5 in the total (64, 74, 36 are not multiples of 5).",
+   "multiple of 7": "not forced: nothing in the stem makes the count a multiple of 7.",
+   "multiple of 10": "not forced: nothing in the stem makes the count a multiple of 10."
+  }
+ },
+ {
+  "id": "S16C-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability two dice differ by at least a given amount",
+  "difficulty": "medium",
+  "template": "two dice / P(numbers differ by at least 2) / complement through doubles and neighbors",
+  "mechanism": [
+   "ordered outcomes of two dice",
+   "complement of a small event",
+   "both orders of a pair"
+  ],
+  "method": "Count the ordered rolls whose numbers are equal or differ by one, remembering that each neighboring pair can occur in either order, and take the complement.",
+  "prompt": "Two fair six-sided dice, each numbered 1 through 6, are rolled. What is the probability that the two numbers showing differ by at least 2?",
+  "choices": [
+   "13/18",
+   "1/3",
+   "25/36",
+   "1/2",
+   "5/9"
+  ],
+  "correct_answer": "5/9",
+  "explanation": "Of the 36 ordered rolls, 6 are doubles and 10 differ by exactly 1 (5 neighboring pairs, each in two orders). So 36 - 16 = 20 differ by at least 2, and 20/36 = 5/9. The option \"25/36\" counts each neighboring pair only once (36 - 6 - 5). The option \"13/18\" removes the 10 neighbor rolls but forgets the 6 doubles (26/36). The option \"1/3\" counts only differences of 3 or more (12/36). The option \"1/2\" leaves out the two rolls (1, 6) and (6, 1) that differ by 5 (18/36).",
+  "solve": "var c=0; for(var a=1;a<=6;a++)for(var b=1;b<=6;b++){if(Math.abs(a-b)>=2)c++;} return c/36;",
+  "distractor_solve": {
+   "25/36": "return (36-6-5)/36;",
+   "13/18": "return (36-10)/36;",
+   "1/3": "var c=0; for(var a=1;a<=6;a++)for(var b=1;b<=6;b++){if(Math.abs(a-b)>=3)c++;} return c/36;",
+   "1/2": "var c=0; for(var a=1;a<=6;a++)for(var b=1;b<=6;b++){var d=Math.abs(a-b); if(d>=2&&d<5)c++;} return c/36;"
+  },
+  "interval": "36 equally likely rolls force a denominator dividing 36; all five options (18, 3, 36, 2, 9) divide 36. The probability is below P(not a double) = 5/6, which is not an option; all options are below it. No key/complement pair (4/9 is absent).",
+  "bounds_checked": "denominator dividing 36, upper bound 5/6 (not doubles), complement pairs, doubling/halving around the key (10/36 and 40/36 absent), key-is-sum",
+  "forced_form_notes": {
+   "denominator 9": "not forced: 36 equally likely rolls force only a denominator dividing 36; every option's denominator (18, 3, 36, 2, 9) divides 36."
+  }
+ },
+ {
+  "id": "S16C-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "choosing distinct officers and an unordered committee",
+  "difficulty": "medium",
+  "template": "club members / ways to fill two distinct offices and a two-person committee / ordered roles then an unordered pair from the rest",
+  "mechanism": [
+   "ordered selection for distinct roles",
+   "unordered selection for a committee",
+   "no person in two posts"
+  ],
+  "method": "Fill the two distinct offices in order, then choose the unordered committee from the members who are left.",
+  "prompt": "A club has 9 members. It will choose a president, a treasurer and a 2-person planning committee. The president and the treasurer must be different people, and neither of them may serve on the committee. In how many different ways can these choices be made?",
+  "choices": [
+   "2592",
+   "1512",
+   "126",
+   "2016",
+   "504"
+  ],
+  "correct_answer": "1512",
+  "explanation": "The president can be chosen 9 ways and the treasurer 8 ways, 72 in all. The committee is an unordered pair from the 7 remaining members: C(7,2) = 21. Total 72 x 21 = 1512. The option \"2592\" chooses the committee from all 9 members (72 x 36). The option \"2016\" chooses the committee from 8 members, removing only the president (72 x 28). The option \"504\" fills the committee with one person (9 x 8 x 7). The option \"126\" only chooses 4 people, C(9,4), without assigning the roles.",
+  "solve": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return 9*8*C(7,2);",
+  "distractor_solve": {
+   "2592": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return 9*8*C(9,2);",
+   "2016": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return 9*8*C(8,2);",
+   "504": "return 9*8*7;",
+   "126": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(9,4);"
+  },
+  "interval": "The two ordered offices give 72 ways, so the count is a multiple of 72 whenever the committee count is whole; 504, 2016 and 2592 are multiples of 72 as is the key, and only 126 is not. No upper bound is readable without the committee count. Doubling/halving: 756 and 3024 are absent.",
+  "bounds_checked": "forced multiple of 72 (shared by three distractors), doubling/halving around the key, magnitude, integrality",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S16C-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "splitting a group into unlabeled pairs",
+  "difficulty": "hard",
+  "template": "eight students / ways to form four unnamed teams of two / ordered team count divided by the orderings of the teams",
+  "mechanism": [
+   "unlabeled groups",
+   "dividing out the order of identical-size groups",
+   "pairing the first remaining person"
+  ],
+  "method": "Either pair off the lowest-numbered remaining student each time, or count named teams and divide by the number of ways to order the four teams, since the teams carry no names.",
+  "prompt": "Eight students are to be split into four teams of two students each. The teams are not named or numbered. In how many different ways can the eight students be split into teams?",
+  "choices": [
+   "630",
+   "2520",
+   "420",
+   "105",
+   "315"
+  ],
+  "correct_answer": "105",
+  "explanation": "Take any student; there are 7 choices of partner. From the 6 left, take any student; 5 choices of partner. Then 3 choices, then 1: 7 x 5 x 3 x 1 = 105. Equivalently, C(8,2) x C(6,2) x C(4,2) x C(2,2) = 2520 counts the four teams in order, and each split is counted 4! = 24 times. The option \"2520\" does not divide at all. The option \"630\" divides by 4, the number of teams, instead of 4!. The option \"420\" divides by 3!. The option \"315\" divides by 2 x 2 x 2, thinking the order WITHIN pairs was counted.",
+  "solve": "var f=function(arr){if(arr.length===0)return 1; var c=0; for(var i=1;i<arr.length;i++){var rest=arr.slice(1,i).concat(arr.slice(i+1)); c+=f(rest);} return c;}; return f([1,2,3,4,5,6,7,8]);",
+  "distractor_solve": {
+   "2520": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(8,2)*C(6,2)*C(4,2)*C(2,2);",
+   "630": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(8,2)*C(6,2)*C(4,2)/4;",
+   "420": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(8,2)*C(6,2)*C(4,2)/6;",
+   "315": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(8,2)*C(6,2)*C(4,2)/8;"
+  },
+  "interval": "The count is at least 1 and at most the 2520 ordered team lists; every option lies in (1, 2520], and 2520 itself is the no-division error, not a bound printed in the stem. No parity is forced: 105 and 315 are odd, 420, 630 and 2520 even.",
+  "bounds_checked": "magnitude, integrality, parity (two odd options), the ordered count as an upper bound (needs the method), doubling/halving around the key (52.5 and 210 absent)",
+  "forced_form_notes": {
+   "odd": "not forced: the stem does not fix the parity of the number of splits; 315 is odd and 420, 630, 2520 are even.",
+   "multiple of 7": "not forced: nothing in the stem makes the count a multiple of 7; every option happens to be.",
+   "multiple of 5": "not forced: nothing in the stem makes the count a multiple of 5; every option happens to be.",
+   "multiple of 3": "not forced: every option is a multiple of 3; listed in case the battery reads it."
+  }
+ },
+ {
+  "id": "S16C-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability a sum of two chosen integers is a multiple of 3",
+  "difficulty": "hard",
+  "template": "two different integers from 1 to 11 / P(sum divisible by 3) / sort by remainder on division by 3",
+  "mechanism": [
+   "remainder classes mod 3",
+   "pairs from unequal classes",
+   "unordered selection without replacement"
+  ],
+  "method": "Sort the numbers by their remainder on division by 3 and see that the sum is a multiple of 3 only when both remainders are 0 or the remainders are 1 and 2.",
+  "prompt": "Two different integers are chosen at random from the integers 1 through 11, inclusive, with every pair equally likely. What is the probability that the sum of the two integers is divisible by 3?",
+  "choices": [
+   "3/11",
+   "32/55",
+   "16/55",
+   "12/55",
+   "19/55"
+  ],
+  "correct_answer": "19/55",
+  "explanation": "There are C(11,2) = 55 pairs. Remainder 0: 3, 6, 9 (3 numbers); remainder 1: 1, 4, 7, 10 (4); remainder 2: 2, 5, 8, 11 (4). The sum is a multiple of 3 when both have remainder 0 (C(3,2) = 3 pairs) or one has remainder 1 and the other 2 (4 x 4 = 16 pairs): 19/55. The option \"12/55\" counts pairs with the same NONZERO remainder (6 + 6), as if equal remainders made a multiple of 3. The option \"16/55\" counts only the remainder-1-with-remainder-2 pairs. The option \"3/11\" counts pairs with the SAME remainder (3 + 6 + 6 = 15). The option \"32/55\" counts each remainder-1/remainder-2 pair in both orders (32) over the 55 unordered pairs and leaves out the multiples of 3.",
+  "solve": "var c=0,t=0; for(var a=1;a<=11;a++)for(var b=a+1;b<=11;b++){t++; if((a+b)%3===0)c++;} return c/t;",
+  "distractor_solve": {
+   "16/55": "return (4*4)/55;",
+   "3/11": "return (3+6+6)/55;",
+   "32/55": "return (2*4*4)/55;",
+   "12/55": "return (6+6)/55;"
+  },
+  "interval": "55 equally likely pairs force a denominator dividing 55; all options (11, 55, 55, 55, 55) do. No bound from the stem places the probability without the remainder count; options lie both below and above 1/3.",
+  "bounds_checked": "denominator dividing 55, complement pair (36/55 absent), naive one-third guess (absent), key-is-sum (3/55 absent), arithmetic runs with the key in the middle (none)",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S16C-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "orders of 1-step and 2-step strides up a staircase",
+  "difficulty": "hard",
+  "template": "staircase climbed in strides of 1 or 2 / number of stride orders / casework on the number of 2-strides",
+  "mechanism": [
+   "casework on the number of double strides",
+   "arranging two kinds of strides in a sequence",
+   "fewer strides when more doubles"
+  ],
+  "method": "Split by how many 2-step strides are used; each choice fixes the total number of strides, and the 2-step strides can be placed anywhere among them.",
+  "prompt": "Kim climbs a staircase of 8 steps. With each stride she climbs either 1 step or 2 steps. In how many different orders of strides can she climb from the bottom to the top? (For example, 2, 2, 2, 1, 1 and 1, 2, 2, 2, 1 are different orders.)",
+  "choices": [
+   "163",
+   "34",
+   "5",
+   "128",
+   "32"
+  ],
+  "correct_answer": "34",
+  "explanation": "With k strides of 2 there are 8 - 2k strides of 1, so 8 - k strides in all, and the 2s can be placed in C(8 - k, k) ways: k = 0: 1; k = 1: 7; k = 2: 15; k = 3: 10; k = 4: 1. Total 34. The option \"163\" places the 2s among 8 positions every time, C(8, k). The option \"32\" leaves out the all-1 and all-2 climbs. The option \"128\" treats each of the 7 gaps between steps as a free yes/no choice, 2^7. The option \"5\" counts only how many 2-strides are used (0 to 4).",
+  "solve": "var f=function(n){if(n<0)return 0; if(n===0)return 1; return f(n-1)+f(n-2);}; return f(8);",
+  "distractor_solve": {
+   "163": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; var s=0; for(var k=0;k<=4;k++)s+=C(8,k); return s;",
+   "32": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; var s=0; for(var k=1;k<=3;k++)s+=C(8-k,k); return s;",
+   "128": "return Math.pow(2,7);",
+   "5": "return 4+1;"
+  },
+  "interval": "The count is a positive whole number; it is at least the 5 cases and at most 2^8 = 256 yes/no choices per step; every option lies strictly inside (5 is the case count, but reaching it requires the casework; it is not a bound printed in the stem).",
+  "bounds_checked": "integrality, magnitude, parity (not forced), doubling around the key (17 and 68 absent), key not a printed number",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the count is a sum of binomial terms; nothing in the stem makes it even (5 and 163 are odd).",
+   "multiple of 17": "not forced: nothing in the stem fixes a factor of the count."
+  }
+ },
+ {
+  "id": "S16C-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability a random group contains no married couple",
+  "difficulty": "hard",
+  "template": "four couples / P(three chosen people include no couple) / choose three couples, then one member of each",
+  "mechanism": [
+   "choose which couples are represented",
+   "one member from each chosen couple",
+   "favorable over all selections"
+  ],
+  "method": "A group with no couple uses three different couples, so choose the three couples and then one of the two people in each.",
+  "prompt": "Four married couples attend a meeting. Three of the eight people are chosen at random to give a short speech. What is the probability that no two of the three people chosen are married to each other?",
+  "choices": [
+   "1/7",
+   "1/2",
+   "1/14",
+   "4/7",
+   "5/7"
+  ],
+  "correct_answer": "4/7",
+  "explanation": "There are C(8,3) = 56 groups. A group with no couple uses three of the four couples (C(4,3) = 4 ways) and one person from each (2 x 2 x 2 = 8 ways): 32 groups, so 32/56 = 4/7. The option \"1/14\" chooses the three couples but forgets to pick a member of each (4/56). The option \"1/7\" multiplies by 2 only once (8/56). The option \"1/2\" removes the groups containing a couple as 4 x 7 = 28, taking the third person from 7 instead of 6. The option \"5/7\" multiplies 6/7 by 5/6, making the third person avoid only one partner.",
+  "solve": "var c=0,t=0; for(var a=0;a<8;a++)for(var b=a+1;b<8;b++)for(var d=b+1;d<8;d++){t++; var cp=[Math.floor(a/2),Math.floor(b/2),Math.floor(d/2)]; if(cp[0]!==cp[1]&&cp[1]!==cp[2]&&cp[0]!==cp[2])c++;} return c/t;",
+  "distractor_solve": {
+   "1/14": "return 4/56;",
+   "1/7": "return (4*2)/56;",
+   "1/2": "return (56-4*7)/56;",
+   "5/7": "return (6/7)*(5/6);"
+  },
+  "interval": "56 equally likely groups force a denominator dividing 56; all options (7, 2, 14, 7, 7) do. The probability is at most P(the second person is not the first's spouse) = 6/7, which is not an option; every option is below it. Complement 3/7 is absent.",
+  "bounds_checked": "denominator dividing 56, upper bound 6/7 (absent, all below), complement pair, doubling around the key (2/7 and 8/7 absent), key-is-sum",
+  "forced_form_notes": {
+   "denominator 7": "not forced: 56 equally likely groups force only a denominator dividing 56; every option's denominator (7, 2, 14, 7, 7) divides 56."
+  }
+ },
+ {
+  "id": "S16C-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of the values shared by two overlapping groups from their means",
+  "difficulty": "hard",
+  "template": "ten numbers with mean, first six and last six means / sum of the fifth and sixth / the shared values are counted twice",
+  "mechanism": [
+   "mean times count gives total",
+   "two overlapping blocks",
+   "double-counted middle terms"
+  ],
+  "method": "Add the totals of the first six and the last six; the two numbers in both blocks are counted twice, so the excess over the total of all ten is their sum.",
+  "prompt": "The mean of a list of ten numbers is 15. The mean of the first six numbers in the list is 12, and the mean of the last six numbers in the list is 20. What is the sum of the fifth and sixth numbers in the list?",
+  "choices": [
+   "42",
+   "24",
+   "40",
+   "30",
+   "32"
+  ],
+  "correct_answer": "42",
+  "explanation": "The first six total 72, the last six total 120, and all ten total 150. The fifth and sixth numbers belong to both blocks, so 72 + 120 = 150 + (fifth + sixth), giving 42. The option \"24\" assumes the first four numbers also average 12 (72 - 48). The option \"40\" assumes the last four also average 20 (120 - 80). The option \"32\" doubles the average of the two block means, 2 x 16. The option \"30\" doubles the overall mean, 2 x 15.",
+  "solve": "var n=10,m=15,a=12,b=20,k=6; return k*a+k*b-n*m;",
+  "distractor_solve": {
+   "24": "return 6*12-4*12;",
+   "40": "return 6*20-4*20;",
+   "32": "return 2*(12+20)/2;",
+   "30": "return 2*15;"
+  },
+  "interval": "The two numbers can be any real numbers, so nothing bounds their sum from the stem without the double-count; every option is feasible a priori. The block totals 72 and 120 and the total 150 are not options.",
+  "bounds_checked": "magnitude, sign, parity (all even, not forced), averages between extremes (the pair's sum is not an average, so no between-the-means bound applies), key-is-sum, printed totals as options",
+  "forced_form_notes": {
+   "multiple of 6": "not forced: the fifth and sixth numbers are arbitrary reals; nothing makes their sum a multiple of 6 (32 and 40 are not).",
+   "multiple of 3": "not forced: as above, the stem fixes no factor of the sum.",
+   "multiple of 7": "not forced: the stem fixes no factor of the sum.",
+   "multiple of 21": "not forced: the stem fixes no factor of the sum."
+  }
+ },
+ {
+  "id": "S16C-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of more heads than tails by symmetry",
+  "difficulty": "hard",
+  "template": "six coin tosses / P(more heads than tails) / remove the tie, split the rest evenly",
+  "mechanism": [
+   "symmetry between heads and tails",
+   "tie removed before halving",
+   "binomial count of the tie"
+  ],
+  "method": "See that more-heads and more-tails are equally likely, so the answer is half of what is left after removing the outcomes with exactly three of each.",
+  "prompt": "A fair coin is tossed 6 times. What is the probability that the number of heads is greater than the number of tails?",
+  "choices": [
+   "3/16",
+   "15/64",
+   "11/32",
+   "3/32",
+   "5/16"
+  ],
+  "correct_answer": "11/32",
+  "explanation": "Exactly 3 heads (a tie) happens in C(6,3) = 20 of the 64 sequences. The other 44 split evenly between more heads and more tails, so 22/64 = 11/32. The option \"5/16\" is the probability of the tie itself, 20/64. The option \"3/16\" subtracts the whole tie from 1/2 instead of half of it (32 - 20 = 12). The option \"15/64\" counts only exactly 4 heads. The option \"3/32\" counts only exactly 5 heads (6/64).",
+  "solve": "var c=0; for(var m=0;m<64;m++){var h=0; for(var i=0;i<6;i++) if(m&(1<<i)) h++; if(h>3)c++;} return c/64;",
+  "distractor_solve": {
+   "5/16": "return 20/64;",
+   "3/16": "return (32-20)/64;",
+   "15/64": "return 15/64;",
+   "3/32": "return 6/64;"
+  },
+  "interval": "64 equally likely sequences force a denominator dividing 64; all options (16, 64, 32, 32, 16) do. Ties are possible, so the probability is below 1/2; 1/2 is absent and every option is below it. Nothing else bounds it without the tie count.",
+  "bounds_checked": "denominator dividing 64, symmetric bound below 1/2 (absent), key-is-sum (15/64 + 6/64 = 21/64, not the key), complement pairs (21/32 absent), doubling around the key (11/64 and 11/16 absent)",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S16C-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "fraction of one group that is also in another, from overlapping percents",
+  "difficulty": "hard",
+  "template": "club percents for two games and neither / fraction of chess players who also play go / overlap from the neither group, then divide by the chess group",
+  "mechanism": [
+   "two-set overlap from a neither count",
+   "fraction of a subgroup",
+   "choose the right denominator"
+  ],
+  "method": "Find the overlap from the percent who play at least one game, then compare it with the chess players only, not with the whole club.",
+  "prompt": "In a club, 60 percent of the members play chess, 50 percent play go, and 15 percent play neither game. What fraction of the members who play chess also play go?",
+  "choices": [
+   "5/22",
+   "5/12",
+   "1/5",
+   "1/4",
+   "5/17"
+  ],
+  "correct_answer": "5/12",
+  "explanation": "85 percent play at least one game, so 60 + 50 - 85 = 25 percent play both. Of the 60 percent who play chess, 25/60 = 5/12 also play go. The option \"1/4\" is the both-games share of the whole club. The option \"5/17\" compares the overlap with the 85 percent who play at least one game. The option \"1/5\" ignores the members who play neither, taking the overlap as 60 + 50 - 100 = 10 percent, and then divides by the go players. The option \"5/22\" divides the overlap by 60 + 50 = 110.",
+  "solve": "var c=60,g=50,n=15; var both=c+g-(100-n); return both/c;",
+  "distractor_solve": {
+   "1/4": "return (60+50-85)/100;",
+   "5/17": "return (60+50-85)/85;",
+   "5/22": "return (60+50-85)/110;",
+   "1/5": "return (60+50-100)/50;"
+  },
+  "interval": "The fraction lies between 0 and 1, and for chess players it is at least (60 + 50 - 100)/60 = 1/6 for any club; that value is not an option and every option is above it. It is at most 50/60 = 5/6 (absent). No option sits on a bound.",
+  "bounds_checked": "part of a whole (between 0 and 1), any-club lower bound 1/6 (absent), upper bound 5/6 (absent), complement pair (7/12 absent), doubling around the key (5/24 and 5/6 absent)",
+  "forced_form_notes": {
+   "denominator 12": "not forced: the answer is a percent of the club divided by the 60 percent who play chess, so any denominator dividing 60 can arise from these numbers, and the distractors divide by other groups (110, 85, 100, 50) as the named errors do; no denominator is fixed by the stem."
+  }
+ },
+ {
+  "id": "S16C-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "identical objects in a row with no two of one kind adjacent",
+  "difficulty": "hard",
+  "template": "identical red and blue flags in a row / arrangements with no two blue adjacent / place the reds, choose gaps for the blues",
+  "mechanism": [
+   "gaps between placed objects",
+   "at most one per gap",
+   "identical objects so unordered choice"
+  ],
+  "method": "Hang the red flags first; the blue flags must go into different gaps between or beside the reds, so choose which gaps get a blue flag.",
+  "prompt": "Six identical red flags and four identical blue flags are to be hung in a row. How many different arrangements have no two blue flags next to each other?",
+  "choices": [
+   "126",
+   "5",
+   "84",
+   "35",
+   "28"
+  ],
+  "correct_answer": "35",
+  "explanation": "Place the 6 red flags in a row; they leave 7 gaps (5 between them and one at each end). The 4 blue flags must go into 4 different gaps: C(7,4) = 35. The option \"5\" uses only the 5 gaps between red flags, C(5,4). The option \"28\" multiplies the 7 gaps by the 4 blue flags. The option \"84\" counts the arrangements with a chosen blue pair glued together as one flag, C(9,3), and gives that as the answer. The option \"126\" subtracts that 84 once from all C(10,4) = 210 arrangements, which removes some arrangements too often and misses the overlaps.",
+  "solve": "var c=0; for(var m=0;m<1024;m++){var b=0; for(var i=0;i<10;i++) if(m&(1<<i)) b++; if(b!==4) continue; if((m&(m>>1))===0) c++;} return c;",
+  "distractor_solve": {
+   "5": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(5,4);",
+   "28": "return 7*4;",
+   "84": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(9,3);",
+   "126": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(10,4)-C(9,3);"
+  },
+  "interval": "The count is below C(10,4) = 210 (all arrangements), which is not an option; every option is below it. It is positive. No other bound is readable from the stem; the options span 5 to 126.",
+  "bounds_checked": "part below the whole (210), integrality, monotone ladder of C(n,4) (only C(5,4) and C(7,4) present, no ladder), parity, pair summing to the whole (84 + 126 = 210, both distractors)",
+  "forced_form_notes": {
+   "odd": "not forced: the count of arrangements has no parity fixed by the stem; 5 is odd and 28, 84, 126 even.",
+   "multiple of 5": "not forced: nothing in the stem makes the count a multiple of 5.",
+   "multiple of 35": "not forced: nothing in the stem fixes this factor."
+  }
+ },
+ {
+  "id": "S16C-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "correcting a mean after two misrecorded values",
+  "difficulty": "medium",
+  "template": "class mean with two recording errors / corrected mean / net change in the total over the count",
+  "mechanism": [
+   "mean times count gives total",
+   "net correction of the total",
+   "signed changes"
+  ],
+  "method": "Find the net change to the total from both corrections, with their signs, and spread it over the whole class.",
+  "prompt": "The mean score of the 25 students in a class was reported as 72. Later the teacher found two recording errors: one score was recorded as 47 but should have been 87, and another was recorded as 91 but should have been 61. What is the correct mean score of the class?",
+  "choices": [
+   "72.4",
+   "73.6",
+   "73.2",
+   "77",
+   "74.8"
+  ],
+  "correct_answer": "72.4",
+  "explanation": "The first correction raises the total by 87 - 47 = 40 and the second lowers it by 91 - 61 = 30, a net rise of 10. The mean rises by 10/25 = 0.4, to 72.4. The option \"73.6\" makes only the first correction (40/25 = 1.6). The option \"74.8\" adds both changes as rises, 70/25 = 2.8. The option \"73.2\" makes only the second correction and with the wrong sign, a rise of 30/25 = 1.2. The option \"77\" spreads the net 10 points over the 2 corrected scores instead of the 25 students.",
+  "solve": "var n=25,m=72; var d=(87-47)+(61-91); return m+d/n;",
+  "distractor_solve": {
+   "73.6": "return 72+(87-47)/25;",
+   "74.8": "return 72+((87-47)+(91-61))/25;",
+   "73.2": "return 72+(91-61)/25;",
+   "77": "return 72+((87-47)+(61-91))/2;"
+  },
+  "interval": "The net correction is +10, so the mean rises; every option is above 72 and 72 itself is absent. No other bound separates the options without computing the net change; the key is the smallest option, but seeing that the two corrections nearly cancel is the computation the item asks for.",
+  "bounds_checked": "direction of change (all options above 72), size of change, decimal form shared by four options, doubling around the key",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S16C-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability a sum of three chosen integers is even",
+  "difficulty": "hard",
+  "template": "three different integers from 1 to 9 / P(sum is even) / parity of the sum set by the number of odd addends",
+  "mechanism": [
+   "parity of a sum from the count of odd terms",
+   "casework on how many odd numbers are chosen",
+   "unequal numbers of odd and even integers"
+  ],
+  "method": "See that the sum is even exactly when an even number of the chosen integers are odd, so count the choices with no odd numbers and with exactly two odd numbers.",
+  "prompt": "Three different integers are chosen at random from the integers 1 through 9, inclusive, with every group of three equally likely. What is the probability that the sum of the three integers is even?",
+  "choices": [
+   "1/2",
+   "1/21",
+   "11/21",
+   "9/14",
+   "25/42"
+  ],
+  "correct_answer": "11/21",
+  "explanation": "There are C(9,3) = 84 groups. The integers 1-9 include 5 odd and 4 even numbers. The sum is even when the group has no odd numbers, C(4,3) = 4 groups, or exactly two odd numbers and one even, C(5,2) x 4 = 40 groups: 44/84 = 11/21. The option \"1/21\" counts only the groups of three even numbers (4/84), forgetting that two odd numbers also add to an even number. The option \"25/42\" counts three ODD numbers instead of three even ones (10 + 40 = 50). The option \"9/14\" adds the three-odd groups to the correct count (4 + 40 + 10 = 54). The option \"1/2\" assumes even and odd sums are equally likely, which fails because there are more odd numbers than even ones.",
+  "solve": "var c=0,t=0; for(var a=1;a<=9;a++)for(var b=a+1;b<=9;b++)for(var d=b+1;d<=9;d++){t++; if((a+b+d)%2===0)c++;} return c/t;",
+  "distractor_solve": {
+   "25/42": "return (10+40)/84;",
+   "9/14": "return (4+40+10)/84;",
+   "1/2": "return 1/2;",
+   "1/21": "return 4/84;"
+  },
+  "interval": "84 equally likely groups force a denominator dividing 84; all options (2, 21, 21, 14, 42) do. No symmetry fixes the answer at 1/2, because odd and even integers are not equally many; options lie on both sides of 1/2. No option is on a bound.",
+  "bounds_checked": "denominator dividing 84, the naive one-half (a named error, not a bound), complement pair (10/21 absent), key-is-sum (1/21 + 10/21 with 10/21 absent), arithmetic runs with the key in the middle (none)",
+  "forced_form_notes": {
+   "denominator 21": "not forced: 84 equally likely groups force only a denominator dividing 84; every option's denominator (2, 21, 21, 14, 42) divides 84."
+  }
+ },
+ {
+  "id": "S16C-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least score on one test that keeps a target mean reachable",
+  "difficulty": "hard",
+  "template": "mean of first tests, two tests left, cap per test / least score on the next test that keeps the goal reachable / assume the best on the last test",
+  "mechanism": [
+   "required total from a target mean",
+   "cap on the last test",
+   "least value by maximizing the other"
+  ],
+  "method": "Work out the total the last two tests must reach, then make the fifth score as low as possible by giving the sixth test the greatest score allowed.",
+  "prompt": "Jo's mean score on her first 4 tests is 83. She has 2 tests left, and each test is scored from 0 to 100. She wants her mean score on all 6 tests to be at least 85. What is the lowest score she can get on the fifth test and still be able to reach her goal?",
+  "choices": [
+   "89",
+   "70",
+   "93",
+   "87",
+   "78"
+  ],
+  "correct_answer": "78",
+  "explanation": "The 6 tests must total at least 6 x 85 = 510, and the first 4 total 4 x 83 = 332, so the last two must total at least 178. The sixth score is at most 100, so the fifth must be at least 178 - 100 = 78. The option \"89\" splits 178 evenly between the two tests, which is not the lowest. The option \"93\" ignores the sixth test, needing 5 x 85 - 332. The option \"87\" adds the 2-point shortfall per test to 85 once. The option \"70\" ignores the first four tests, 2 x 85 - 100.",
+  "solve": "var need=6*85-4*83; for(var t=0;t<=100;t++){ if(t+100>=need) return t; } return null;",
+  "distractor_solve": {
+   "89": "return (6*85-4*83)/2;",
+   "93": "return 5*85-4*83;",
+   "87": "return 85+(85-83);",
+   "70": "return 2*85-100;"
+  },
+  "interval": "The score lies between 0 and 100; all options do. It lies below the even split 89 only once one sees the sixth test can carry more, which is the method. On a least ask the key is not the least option (70 lies below it). The key is not a printed number.",
+  "bounds_checked": "cap of 100 per test, least ask with a smaller option present (70), even-split value as a distractor, integrality",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: a test score can be any whole number from 0 to 100; the stem fixes no factor of it.",
+   "multiple of 3": "not forced: as above.",
+   "multiple of 6": "not forced: as above."
+  }
+ },
+ {
+  "id": "S16C-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability of exactly one of two independent events",
+  "difficulty": "medium",
+  "template": "rain chances on two days / P(rain on exactly one day) / add the two one-day-only cases",
+  "mechanism": [
+   "independent events",
+   "exactly one as two disjoint cases",
+   "complement of each event"
+  ],
+  "method": "Add the chance of rain only on Saturday to the chance of rain only on Sunday, using the no-rain chance of the other day in each case.",
+  "prompt": "The probability of rain on Saturday is 40 percent and the probability of rain on Sunday is 30 percent, and rain on one day does not affect rain on the other. What is the probability that it rains on exactly one of the two days?",
+  "choices": [
+   "12%",
+   "35%",
+   "28%",
+   "46%",
+   "42%"
+  ],
+  "correct_answer": "46%",
+  "explanation": "Rain Saturday only: 0.40 x 0.70 = 0.28. Rain Sunday only: 0.60 x 0.30 = 0.18. Exactly one day: 0.28 + 0.18 = 0.46 = 46%. The option \"28%\" counts only rain on Saturday and not Sunday. The option \"12%\" is rain on both days. The option \"42%\" is rain on neither day. The option \"35%\" averages the two chances.",
+  "solve": "var a=0.40,b=0.30; return (Math.round((a*(1-b)+(1-a)*b)*1000)/10)+'%';",
+  "distractor_solve": {
+   "28%": "return (Math.round(0.40*0.70*1000)/10)+'%';",
+   "12%": "return (Math.round(0.40*0.30*1000)/10)+'%';",
+   "42%": "return (Math.round(0.60*0.70*1000)/10)+'%';",
+   "35%": "return (Math.round((0.40+0.30)/2*1000)/10)+'%';"
+  },
+  "interval": "The probability is at most P(Saturday) + P(Sunday) = 70%, which is absent; all options are below it. It is at least |40 - 30| = 10% only by a further argument; all options are above 10%. Complement 54% is absent; at-least-one 58% is absent.",
+  "bounds_checked": "sum of the two chances as an upper bound (absent), complement pair (54% absent), key-is-sum (28% + 18% with 18% absent), percent form shared by all",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S16C-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that at least two of three people share a birth month",
+  "difficulty": "hard",
+  "template": "three people's birth months / P(at least two share a month) / complement of all different",
+  "mechanism": [
+   "complement of all different",
+   "sequential choices that avoid earlier months",
+   "pairwise events are not independent"
+  ],
+  "method": "Find the chance that all three months are different, each person avoiding every month already taken, and subtract it from 1.",
+  "prompt": "Three people are chosen at random. Assume that each person is equally likely to have been born in any of the 12 months and that their birth months are independent. What is the probability that at least two of the three people were born in the same month?",
+  "choices": [
+   "1/12",
+   "397/1728",
+   "23/144",
+   "11/48",
+   "17/72"
+  ],
+  "correct_answer": "17/72",
+  "explanation": "All three months are different with probability (11/12)(10/12) = 110/144, so at least two share with probability 1 - 110/144 = 34/144 = 17/72. The option \"11/48\" counts EXACTLY two sharing, 3 x (1/12)(11/12) = 33/144, leaving out all three in one month. The option \"397/1728\" treats the three pairs as independent, 1 - (11/12)^3. The option \"23/144\" has the third person avoid only the second person's month, 1 - (11/12)(11/12). The option \"1/12\" is the chance that one particular pair matches.",
+  "solve": "var c=0; for(var a=0;a<12;a++)for(var b=0;b<12;b++)for(var d=0;d<12;d++){if(a===b||b===d||a===d)c++;} return c/1728;",
+  "distractor_solve": {
+   "11/48": "return 3*(1/12)*(11/12);",
+   "397/1728": "return 1-Math.pow(11/12,3);",
+   "23/144": "return 1-(11/12)*(11/12);",
+   "1/12": "return 1/12;"
+  },
+  "interval": "1728 equally likely month triples force a denominator dividing 1728; all options (12, 1728, 144, 48, 72) do. The probability is at most the sum over three pairs, 3/12 = 1/4, which is absent; every option is below it. It is at least the chance of one given pair matching, 1/12, which is an option ON that bound (one kill); 397/1728, 23/144 and 11/48 lie strictly between.",
+  "bounds_checked": "denominator dividing 1728, union upper bound 1/4 (absent), single-pair lower bound 1/12 (option on it: one kill), key-is-sum (11/48 + 1/144 with 1/144 absent), complement pair (55/72 absent)",
+  "forced_form_notes": {
+   "denominator 72": "not forced: 1728 equally likely month triples force only a denominator dividing 1728; every option's denominator (12, 1728, 144, 48, 72) divides 1728."
+  }
+ },
+ {
+  "id": "S16C-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability a search for two defective items ends at a given step",
+  "difficulty": "hard",
+  "template": "6 bulbs with 2 defective tested in random order / P(exactly 4 tests needed) / positions of the two defectives, the later one at 4",
+  "mechanism": [
+   "positions of the special items",
+   "last special item at a given place",
+   "stopping rule"
+  ],
+  "method": "See that testing stops at the fourth bulb exactly when the later of the two defective positions is 4, so count the position pairs whose larger member is 4.",
+  "prompt": "A box holds 6 light bulbs, and exactly 2 of them are defective. The bulbs are tested one at a time, in a random order, until both defective bulbs have been found. What is the probability that exactly 4 bulbs are tested?",
+  "choices": [
+   "1/3",
+   "1/6",
+   "1/5",
+   "1/15",
+   "4/15"
+  ],
+  "correct_answer": "1/5",
+  "explanation": "The two defective bulbs occupy 2 of the 6 places in the testing order, C(6,2) = 15 equally likely pairs. Exactly 4 tests are needed when the later defective is fourth: pairs (1,4), (2,4), (3,4), so 3/15 = 1/5. The option \"1/15\" counts only the order good, good, defective, defective, the defectives in places 3 and 4. The option \"4/15\" lets the first defective sit in any of 4 places, counting the fourth place twice. The option \"1/6\" assumes the second defective is equally likely to be found at any of the 6 places. The option \"1/3\" is only the chance that the fourth bulb is defective.",
+  "solve": "var c=0,t=0; for(var a=1;a<=6;a++)for(var b=a+1;b<=6;b++){t++; if(b===4)c++;} return c/t;",
+  "distractor_solve": {
+   "1/15": "return (4/6)*(3/5)*(2/4)*(1/3);",
+   "4/15": "return 4*(4/6)*(3/5)*(2/4)*(1/3);",
+   "1/3": "return 2/6;",
+   "1/6": "return 1/6;"
+  },
+  "interval": "15 equally likely position pairs (or 30 ordered draws) force a denominator dividing 30; all options (3, 6, 5, 15, 15) do. The probability is below P(both defectives among the first 4) = 6/15 = 2/5, which is absent; every option is below it. No option is double or half the key.",
+  "bounds_checked": "denominator dividing 30, upper bound 2/5 (absent), doubling/halving around the key (1/10 and 2/5 absent), key-is-sum (1/15 + 2/15 with 2/15 absent), complement pair (4/5 absent)",
+  "forced_form_notes": {
+   "denominator 5": "not forced: 15 position pairs (or 30 ordered draws) force only a denominator dividing 30; every option's denominator (3, 6, 5, 15, 15) divides 30."
+  }
+ },
+ {
+  "id": "S16C-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "committees where two people are both in or both out",
+  "difficulty": "hard",
+  "template": "committee from a group with a linked pair / number of committees / two cases, both on or both off",
+  "mechanism": [
+   "casework on a linked pair",
+   "both included versus both excluded",
+   "unordered selection of the rest"
+  ],
+  "method": "Split into the committees containing both of the pair, where only one more member is chosen, and those containing neither, where all three come from the others.",
+  "prompt": "A 3-person committee is to be chosen from a group of 8 people that includes Ann and Bob. Ann and Bob insist that either both of them are on the committee or neither of them is. How many different committees are possible?",
+  "choices": [
+   "41",
+   "26",
+   "21",
+   "30",
+   "20"
+  ],
+  "correct_answer": "26",
+  "explanation": "Both on: the third member is one of the other 6, 6 committees. Neither on: choose 3 of the other 6, C(6,3) = 20 committees. Total 26. The option \"20\" counts only the committees without Ann and Bob. The option \"21\" treats Ann and Bob as one person and chooses 2 from 7, C(7,2). The option \"30\" counts the committees with exactly one of them, 2 x C(6,2), the ones that must be excluded. The option \"41\" removes from all C(8,3) = 56 committees only the 15 that have Ann without Bob.",
+  "solve": "var c=0; for(var a=0;a<8;a++)for(var b=a+1;b<8;b++)for(var d=b+1;d<8;d++){var hasA=(a===0||b===0||d===0), hasB=(a===1||b===1||d===1); if(hasA===hasB)c++;} return c;",
+  "distractor_solve": {
+   "20": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(6,3);",
+   "21": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(7,2);",
+   "30": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return 2*C(6,2);",
+   "41": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(8,3)-C(6,2);"
+  },
+  "interval": "The count is below C(8,3) = 56 (absent); every option is below it. It is at least the number of committees without Ann and Bob, 20, which is an option ON that bound but reaching 20 requires the neither case of the method. 21, 30 and 41 lie strictly inside.",
+  "bounds_checked": "part below the whole (56 absent), the neither case as a lower bound (20 on it, requires casework), key-is-sum (6 + 20 with 6 absent), pair to the whole (26 + 30 = 56: key and the exactly-one count; see note)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the count is 6 + C(6,3); nothing in the stem fixes its parity (21 and 41 are odd)."
+  }
+ },
+ {
+  "id": "S16C-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distinct objects into distinct boxes with none empty",
+  "difficulty": "hard",
+  "template": "four different books into three different boxes, none empty / number of ways / one box gets two books",
+  "mechanism": [
+   "no empty box forces a 2-1-1 split",
+   "choose the pair, then arrange three groups",
+   "distinct objects and distinct boxes"
+  ],
+  "method": "Notice that with no box empty one box must hold exactly two books, so choose which two books share a box and then assign the three groups to the three boxes.",
+  "prompt": "Four different books are to be placed into three different boxes so that no box is left empty. In how many different ways can this be done? (The order of the books inside a box does not matter.)",
+  "choices": [
+   "36",
+   "24",
+   "30",
+   "33",
+   "54"
+  ],
+  "correct_answer": "36",
+  "explanation": "Some box gets two books and the others one each. Choose the two books that share a box, C(4,2) = 6 ways, and then assign the three groups (the pair and the two single books) to the three boxes, 3! = 6 ways: 36. The option \"33\" removes from the 3^4 = 81 placements the 3 x 2^4 = 48 that leave a given box empty, but forgets to add back the 3 placements counted twice (all books in one box). The option \"30\" subtracts those 3 placements instead of adding them back. The option \"24\" puts one book in each box, 4 x 3 x 2, and never places the fourth book. The option \"54\" chooses the pair (6) and its box (3) and then lets the next book go into any of the 3 boxes, forcing the last.",
+  "solve": "var c=0; for(var a=0;a<3;a++)for(var b=0;b<3;b++)for(var d=0;d<3;d++)for(var e=0;e<3;e++){var s={}; s[a]=1;s[b]=1;s[d]=1;s[e]=1; if(Object.keys(s).length===3)c++;} return c;",
+  "distractor_solve": {
+   "33": "return Math.pow(3,4)-3*Math.pow(2,4);",
+   "24": "return 4*3*2;",
+   "30": "return Math.pow(3,4)-3*Math.pow(2,4)-3;",
+   "54": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(4,2)*3*3;"
+  },
+  "interval": "The count is below the 3^4 = 81 unrestricted placements (absent); every option is below it. Relabeling the three different boxes permutes the placements, so the count is a multiple of 6; 24, 30 and 54 are multiples of 6 like the key, and only 33 is not (one kill). No cheap lower bound separates the rest.",
+  "bounds_checked": "part below the whole (81 absent), forced multiple of 6 (shared by three distractors), integrality, key-is-sum (none), doubling/halving around the key (18 and 72 absent), derivational hub (none)",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: only a factor of 6 (the box relabelings) is forced; nothing fixes a factor of 4 (30 and 54 are not multiples of 4).",
+   "multiple of 9": "not forced: only a factor of 6 is forced by relabeling the boxes.",
+   "multiple of 12": "not forced: only a factor of 6 is forced by relabeling the boxes.",
+   "multiple of 18": "not forced: only a factor of 6 is forced.",
+   "perfect square": "not forced: nothing in the stem makes the count a square."
+  }
+ }
+]

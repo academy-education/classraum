@@ -1,0 +1,1165 @@
+[
+ {
+  "id": "S16A-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area cost with a square-unit conversion",
+  "difficulty": "medium",
+  "template": "rectangular floor in feet, price per square yard / total cost / square-unit conversion factor 9",
+  "mechanism": [
+   "square unit conversion",
+   "area times unit price",
+   "feet to yards squared"
+  ],
+  "method": "Convert the floor area from square feet to square yards using the square of the length factor, then multiply by the price per square yard.",
+  "prompt": "A rectangular floor measures 12 feet by 15 feet. Carpet costs $18 per square yard. How many dollars does it cost to carpet the whole floor? (1 yard = 3 feet)",
+  "choices": [
+   "540",
+   "324",
+   "360",
+   "162",
+   "1080"
+  ],
+  "correct_answer": "360",
+  "explanation": "The floor is 12/3 = 4 yards by 15/3 = 5 yards, so its area is 20 square yards (equivalently 180 square feet / 9). The cost is 20 x 18 = 360 dollars. The option \"1080\" divides the 180 square feet by 3 instead of 9, as if a square yard were 3 square feet. The option \"540\" divides 180 by 6, treating a square yard as 2 x 3 square feet. The option \"324\" uses the perimeter, 54 feet = 18 yards, instead of the area. The option \"162\" adds the two side lengths, 27 feet = 9 yards, instead of multiplying them.",
+  "solve": "return (12*15/9)*18;",
+  "distractor_solve": {
+   "1080": "return (12*15/3)*18;",
+   "540": "return (12*15/6)*18;",
+   "324": "return (2*(12+15)/3)*18;",
+   "162": "return ((12+15)/3)*18;"
+  },
+  "interval": "The cost is positive and less than 180 x 18 = 3240 (a square yard is larger than a square foot); every option lies in (0, 3240). Each option is a whole number of square-yard-priced units, a multiple of 18. No option is removed by a bound.",
+  "bounds_checked": "upper bound from the unconverted area, positivity, divisibility by the unit price 18, doubling pairs (162/324 and 540/1080 do not involve the key), arithmetic runs",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: the cost is (area in square yards) x 18, so the stem forces only a multiple of 18, which every option has; divisibility by 5, 8 or 10 comes from the particular 12 x 15 floor, not from anything a solver can read before computing the area.",
+   "multiple of 8": "not forced: the cost is (area in square yards) x 18, so the stem forces only a multiple of 18, which every option has; divisibility by 5, 8 or 10 comes from the particular 12 x 15 floor, not from anything a solver can read before computing the area.",
+   "multiple of 10": "not forced: the cost is (area in square yards) x 18, so the stem forces only a multiple of 18, which every option has; divisibility by 5, 8 or 10 comes from the particular 12 x 15 floor, not from anything a solver can read before computing the area."
+  }
+ },
+ {
+  "id": "S16A-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "percent profit from two different bulk rates",
+  "difficulty": "medium",
+  "template": "buy at m for $a, sell at n for $b / profit as a percent of cost / per-unit cost and price",
+  "mechanism": [
+   "per-unit cost from a bulk rate",
+   "percent profit on cost",
+   "common unit before comparing"
+  ],
+  "method": "Convert both bulk rates to a price per single item, then express the profit per item as a percent of the cost per item.",
+  "prompt": "A fruit seller buys oranges at 3 for $2 and sells them at 4 for $3. What is the seller's profit, as a percent of the cost?",
+  "choices": [
+   "12 1/2%",
+   "11 1/9%",
+   "33 1/3%",
+   "8 1/3%",
+   "50%"
+  ],
+  "correct_answer": "12 1/2%",
+  "explanation": "Each orange costs 2/3 dollar and sells for 3/4 dollar, so the profit on each is 3/4 - 2/3 = 1/12 dollar. As a percent of the cost: (1/12) / (2/3) = 1/8 = 12 1/2%. The option \"8 1/3%\" reports the profit of 1/12 dollar (8 1/3 cents) per orange as a percent, never dividing by the cost. The option \"11 1/9%\" divides the profit by the selling price 3/4 instead of the cost. The option \"33 1/3%\" compares the counts, (4 - 3)/3. The option \"50%\" compares the dollar amounts, (3 - 2)/2.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};const p=3*3-2*4, q=12; /* profit 1/12 per orange */ const pc=[p*3*100, q*2]; return mix(pc[0],pc[1])+\"%\";",
+  "distractor_solve": {
+   "8 1/3%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};return mix(100,12)+\"%\";",
+   "11 1/9%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};return mix(100*4,12*3)+\"%\";",
+   "33 1/3%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};return mix((4-3)*100,3)+\"%\";",
+   "50%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};return mix((3-2)*100,2)+\"%\";"
+  },
+  "interval": "The selling price per orange (0.75) exceeds the cost (0.667), so the profit is positive; it is less than 100% since the price is less than double the cost. All five options lie in (0%, 100%); none is removed.",
+  "bounds_checked": "sign of the profit, profit below 100%, key not a printed number, no option equal to 100% plus another option, denominators of the fractional options",
+  "forced_form_notes": {
+   "denominator 2": "not forced: a percent profit from two bulk rates can have any denominator; the distractors come from wrong bases (profit per orange, selling price, counts, dollar amounts) and their denominators (3, 9, 1) are as natural as 2."
+  }
+ },
+ {
+  "id": "S16A-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "percent change of a tax when the rate changes by percentage points",
+  "difficulty": "medium",
+  "template": "tax rate rises a to b percentage points / percent increase in the tax / percent change versus percentage-point change",
+  "mechanism": [
+   "percentage points versus percent",
+   "percent change of a quantity",
+   "base is the old value"
+  ],
+  "method": "Compute the tax before and after (or compare the two rates directly) and divide the change by the old amount, not by the new one and not as a difference of rates.",
+  "prompt": "The sales tax rate in a town rose from 8 percent to 10 percent. By what percent did the sales tax on a $200 purchase increase?",
+  "choices": [
+   "2%",
+   "4%",
+   "20%",
+   "1.25%",
+   "25%"
+  ],
+  "correct_answer": "25%",
+  "explanation": "The tax was 8% of $200 = $16 and became 10% of $200 = $20. The increase is $4, and 4/16 = 25%. The option \"2%\" reports the change in the rate, 2 percentage points, as the percent increase. The option \"4%\" reports the $4 increase as 4 percent. The option \"20%\" divides the $4 increase by the new tax of $20. The option \"1.25%\" divides the new rate by the old, 10/8 = 1.25, and writes the ratio as a percent.",
+  "solve": "const a=0.08*200, b=0.10*200; return Math.round((b-a)/a*100)+\"%\";",
+  "distractor_solve": {
+   "2%": "return Math.round((10-8))+\"%\";",
+   "4%": "return Math.round(0.10*200-0.08*200)+\"%\";",
+   "20%": "return Math.round((0.10*200-0.08*200)/(0.10*200)*100)+\"%\";",
+   "1.25%": "return (10/8)+\"%\";"
+  },
+  "interval": "The tax rises from 16 to 20 dollars, an increase of more than 0% and less than 100%; every option lies in that range. The $200 does not bound anything, and no bound separates 25% from 20%. No option is removed.",
+  "bounds_checked": "sign, below doubling, no option equal to 100% plus the key, a printed number reused as an option (2 = 10 - 8 is a computed difference, not printed)",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: the percent increase of a tax can be any number; 25 being odd, a perfect square or a multiple of 5 is a property of 16 -> 20, invisible until the tax is computed.",
+   "odd": "not forced: the percent increase of a tax can be any number; 25 being odd, a perfect square or a multiple of 5 is a property of 16 -> 20, invisible until the tax is computed.",
+   "perfect square": "not forced: the percent increase of a tax can be any number; 25 being odd, a perfect square or a multiple of 5 is a property of 16 -> 20, invisible until the tax is computed."
+  }
+ },
+ {
+  "id": "S16A-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "loss on a round-trip currency exchange at two rates",
+  "difficulty": "medium",
+  "template": "dollars to euros at one rate and back at another / dollars lost / chained conversion factors",
+  "mechanism": [
+   "chained exchange rates",
+   "multiply conversion factors",
+   "net loss in original currency"
+  ],
+  "method": "Apply the two exchange rates one after the other to find the dollars returned, then subtract from the starting amount.",
+  "prompt": "A traveler changes $400 into euros at a rate of 0.90 euro per dollar. Later she changes all of those euros back into dollars at a rate of 1.05 dollars per euro. How many dollars has she lost overall?",
+  "choices": [
+   "20",
+   "22",
+   "18",
+   "40",
+   "5.5"
+  ],
+  "correct_answer": "22",
+  "explanation": "She gets 400 x 0.90 = 360 euros and then 360 x 1.05 = 378 dollars, so she has lost 400 - 378 = 22 dollars. The option \"40\" counts only the first exchange (400 - 360) and ignores the gain from the better rate on the way back. The option \"20\" subtracts the rates as percents, 10% - 5% = 5% of $400. The option \"18\" takes 5% of the 360 euros and calls it the loss. The option \"5.5\" reports the percent lost, 22/400 = 5.5%, instead of the dollars.",
+  "solve": "return 400 - 400*0.90*1.05;",
+  "distractor_solve": {
+   "40": "return 400 - 400*0.90;",
+   "20": "return 400*(0.10-0.05);",
+   "18": "return 360*0.05;",
+   "5.5": "return (400 - 400*0.90*1.05)/400*100;"
+  },
+  "interval": "The loss is positive (0.90 x 1.05 < 1) and less than 40 (the second exchange gains back some value); 40 sits on that bound, and 5.5, 18 and 20 lie inside (0, 40), so three distractors survive.",
+  "bounds_checked": "sign of the loss, upper bound from the first exchange alone (on-bound option 40 counted as dead), arithmetic run 18/20/22 has the key at the end, units (dollars versus percent)",
+  "forced_form_notes": {
+   "multiple of 11": "not forced: the loss is 400 x (1 - 0.90 x 1.05); nothing in the stem makes it a multiple of 11."
+  }
+ },
+ {
+  "id": "S16A-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "original amount from two successive percents of a remainder",
+  "difficulty": "medium",
+  "template": "spend p% then q% of the remainder, amount left given / starting amount / undo two percents by division",
+  "mechanism": [
+   "percent of a remainder",
+   "work backward by division",
+   "fraction kept is a product"
+  ],
+  "method": "The amount left is the start times the fraction kept after each purchase, so divide the amount left by the product of the two kept fractions.",
+  "prompt": "Mara spent 40 percent of her money on a jacket. She then spent 25 percent of the money she had left on a scarf. After that she had $180. How many dollars did she have at the start?",
+  "choices": [
+   "315",
+   "375",
+   "336",
+   "400",
+   "300"
+  ],
+  "correct_answer": "400",
+  "explanation": "After the jacket she kept 60% of her money, and after the scarf she kept 75% of that, so $180 is 0.60 x 0.75 = 0.45 of the start: 180 / 0.45 = 400. (Check: jacket 160, leaving 240; scarf 60, leaving 180.) The option \"315\" undoes each purchase by adding the percent back, 180 x 1.40 x 1.25. The option \"336\" adds back the 40% but correctly divides by 0.75 for the scarf. The option \"375\" correctly divides by 0.60 for the jacket but adds back 25% for the scarf. The option \"300\" undoes only the jacket, 180 / 0.60, and forgets the scarf.",
+  "solve": "return 180/(0.60*0.75);",
+  "distractor_solve": {
+   "315": "return 180*1.40*1.25;",
+   "336": "return 180*1.40/0.75;",
+   "375": "return 180/0.60*1.25;",
+   "300": "return 180/0.60;"
+  },
+  "interval": "She kept more than 180/0.60 = 300 worth before the scarf only if the scarf cost something, so the start exceeds 300; she spent less than 40% + 25% = 65% of the start, so the start is below 180/0.35 = 514.3. The option 300 sits on the lower bound and is dead; 315, 336 and 375 lie strictly inside (300, 514.3), so three survive. The upper bound does not separate the key from them.",
+  "bounds_checked": "chain-of-percents lower bound (one step undone) and upper bound (percents added as if of the same base), integrality of dollar options, on-bound option counted dead",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the starting amount is money, and cents are allowed (the 315 path gives a $47.25 scarf); nothing makes it even, a multiple of 4, 8 or 10, or a perfect square.",
+   "multiple of 4": "not forced: the starting amount is money, and cents are allowed (the 315 path gives a $47.25 scarf); nothing makes it even, a multiple of 4, 8 or 10, or a perfect square.",
+   "multiple of 8": "not forced: the starting amount is money, and cents are allowed (the 315 path gives a $47.25 scarf); nothing makes it even, a multiple of 4, 8 or 10, or a perfect square.",
+   "multiple of 10": "not forced: the starting amount is money, and cents are allowed (the 315 path gives a $47.25 scarf); nothing makes it even, a multiple of 4, 8 or 10, or a perfect square.",
+   "perfect square": "not forced: the starting amount is money, and cents are allowed (the 315 path gives a $47.25 scarf); nothing makes it even, a multiple of 4, 8 or 10, or a perfect square."
+  }
+ },
+ {
+  "id": "S16A-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "speed needed on a second leg to reach a target average over time",
+  "difficulty": "medium",
+  "template": "first leg time and speed, second leg time, target average / second-leg speed / total distance from average times total time",
+  "mechanism": [
+   "average speed as total distance over total time",
+   "time-weighted average",
+   "required total minus done"
+  ],
+  "method": "Turn the target average into a total distance for the whole time, subtract the distance already driven, and divide by the remaining time.",
+  "prompt": "Kai drove for 2 hours at an average speed of 45 miles per hour. At what average speed, in miles per hour, must he drive for the next 3 hours so that his average speed for the whole 5 hours is 54 miles per hour?",
+  "choices": [
+   "67.5",
+   "60",
+   "75",
+   "63",
+   "90"
+  ],
+  "correct_answer": "60",
+  "explanation": "For a 54 mph average over 5 hours he must cover 54 x 5 = 270 miles. He has driven 2 x 45 = 90, leaving 180 miles in 3 hours: 180/3 = 60 mph. The option \"63\" weights the two legs equally, 2 x 54 - 45. The option \"67.5\" weights the legs the wrong way round, 54 + 9 x 3/2. The option \"90\" divides the whole 270 miles by the 3 hours and forgets the 90 miles already driven. The option \"75\" subtracts 45 instead of the 90 miles already driven, (270 - 45)/3.",
+  "solve": "return (54*5 - 45*2)/3;",
+  "distractor_solve": {
+   "63": "return 2*54 - 45;",
+   "67.5": "return 54 + (54-45)*3/2;",
+   "90": "return 54*5/3;",
+   "75": "return (54*5 - 45)/3;"
+  },
+  "interval": "The second-leg speed must exceed the 54 mph target because the first leg was slower; all five options exceed 54. Nothing bounds it above except physical plausibility, and 90 is plausible. No option is removed.",
+  "bounds_checked": "side of the target (above 54), weighted-average side, arithmetic runs (none with the key in the middle), doubling, integrality (speed need not be whole)",
+  "forced_form_notes": {
+   "integer": "not forced: an average speed need not be a whole number; the distractor 67.5 comes from weighting the 9 mph shortfall by 3/2, and nothing in the stem makes the speed whole.",
+   "multiple of 2": "not forced: the required speed is (270 - 90)/3; nothing in the stem makes a speed even or a multiple of 4, 5, 6, 10 or 12.",
+   "multiple of 4": "not forced: the required speed is (270 - 90)/3; nothing in the stem makes a speed even or a multiple of 4, 5, 6, 10 or 12.",
+   "multiple of 5": "not forced: the required speed is (270 - 90)/3; nothing in the stem makes a speed even or a multiple of 4, 5, 6, 10 or 12.",
+   "multiple of 6": "not forced: the required speed is (270 - 90)/3; nothing in the stem makes a speed even or a multiple of 4, 5, 6, 10 or 12.",
+   "multiple of 10": "not forced: the required speed is (270 - 90)/3; nothing in the stem makes a speed even or a multiple of 4, 5, 6, 10 or 12.",
+   "multiple of 12": "not forced: the required speed is (270 - 90)/3; nothing in the stem makes a speed even or a multiple of 4, 5, 6, 10 or 12."
+  }
+ },
+ {
+  "id": "S16A-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "percent comparison after both prices change by different percents",
+  "difficulty": "hard",
+  "template": "A is p% more than B, then B rises q% and A rises r% / how much more A is now, as a percent / ratio of multipliers against the new base",
+  "mechanism": [
+   "re-base a percent comparison",
+   "ratio of multipliers",
+   "percent more measured against the new value"
+  ],
+  "method": "Write both prices as multiples of the coat's original price, apply each price's own increase, and compare the jacket to the coat's NEW price rather than adding and subtracting the three percents.",
+  "prompt": "The price of a jacket is 50 percent higher than the price of a coat. Then the price of the coat rises by 20 percent and the price of the jacket rises by 10 percent. The price of the jacket is now what percent higher than the price of the coat?",
+  "choices": [
+   "41 2/3%",
+   "30%",
+   "27 3/11%",
+   "40%",
+   "37 1/2%"
+  ],
+  "correct_answer": "37 1/2%",
+  "explanation": "Let the coat cost 1. The jacket costs 1.5, and after the rises the coat costs 1.2 and the jacket 1.5 x 1.1 = 1.65. The jacket is higher by 0.45/1.2 = 3/8 = 37 1/2%. The option \"40%\" adds and subtracts the percents, 50 + 10 - 20. The option \"41 2/3%\" divides the old 50% by 1.2, allowing for the coat's rise but not the jacket's. The option \"27 3/11%\" divides the 0.45 gap by the jacket's new price 1.65 instead of the coat's. The option \"30%\" divides the 0.45 gap by the jacket's old price 1.5.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};/* hundredths of the old coat price: jacket 150*1.1 = 165, coat 120 */ return mix((165-120)*100,120)+\"%\";",
+  "distractor_solve": {
+   "40%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};return mix(50+10-20,1)+\"%\";",
+   "41 2/3%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};return mix(50*10,12)+\"%\";",
+   "27 3/11%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};return mix((165-120)*100,165)+\"%\";",
+   "30%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};return mix((165-120)*100,150)+\"%\";"
+  },
+  "interval": "Ignoring the jacket's own rise gives 1.5/1.2, i.e. 25% higher, and the jacket did rise, so the answer exceeds 25%. The new gap is 0.45 of the old coat price spread over a coat price of 1.2, so the answer is below 45% (and below the original 50%). All four distractors, 27 3/11%, 30%, 40% and 41 2/3%, lie strictly inside (25%, 45%); none sits on a bound, and none is decided without computing the new prices.",
+  "bounds_checked": "lower bound from ignoring the jacket's rise (25%, not offered), upper bound from the gap over the old coat price (45%, not offered) and the original 50%, arithmetic and geometric runs (none with the key in the middle: 30/37.5/45 and 35/37.5/40 are not both present), no option equal to 100% plus another, denominators",
+  "forced_form_notes": {
+   "denominator 2": "not forced: the stem gives 50%, 20% and 10%, which do not force a half-percent answer; the wrong-base paths give elevenths and thirds (27 3/11, 41 2/3) as naturally as the key gives a half."
+  }
+ },
+ {
+  "id": "S16A-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "one worker's time from three pair times",
+  "difficulty": "hard",
+  "template": "three workers, three pair completion times / one worker alone / sum all pair rates then halve",
+  "mechanism": [
+   "add all three pair rates",
+   "halve to get the group rate",
+   "subtract the other pair"
+  ],
+  "method": "Adding the three pair rates counts each person twice, so half the sum is the rate of all three together; subtract the rate of the pair that excludes the person asked about.",
+  "prompt": "Working together, Ana and Ben can paint a fence in 30 hours, Ben and Cal can paint it in 20 hours, and Ana and Cal can paint it in 15 hours. Each person always works at his or her own steady rate. How many hours would Ana take to paint the fence working alone?",
+  "choices": [
+   "40",
+   "130/3",
+   "120",
+   "60",
+   "25"
+  ],
+  "correct_answer": "40",
+  "explanation": "In fence-per-hour, Ana + Ben = 1/30, Ben + Cal = 1/20, Ana + Cal = 1/15. Adding counts each person twice: 2(A + B + C) = 1/30 + 1/20 + 1/15 = 9/60, so A + B + C = 3/40. Ana = 3/40 - 1/20 = 1/40, so 40 hours. The option \"120\" subtracts the Ana-and-Cal rate instead, which gives Ben (1/120). The option \"60\" assumes Ana and Ben work equally fast, doubling their 30 hours. The option \"130/3\" doubles the average of the three pair times. The option \"25\" adds and subtracts times as if they were rates: 30 + 15 - 20.",
+  "solve": "const s=(1/30+1/20+1/15)/2; return 1/(s-1/20);",
+  "distractor_solve": {
+   "120": "const s=(1/30+1/20+1/15)/2; return 1/(s-1/15);",
+   "60": "return 2*30;",
+   "130/3": "return 2*(30+20+15)/3;",
+   "25": "return 30+15-20;"
+  },
+  "interval": "Ana alone is slower than Ana with anyone, so her time exceeds both 30 and 15 hours; that removes \"25\". The other three distractors (60, 120, 130/3) all exceed 30 and survive.",
+  "bounds_checked": "alone time above each pair time containing that person, part-whole of rates, doubling (60 is not double or half of 40; 120 is triple), key not the extreme option, integrality",
+  "forced_form_notes": {
+   "multiple of 8": "not forced: an alone-time is any positive number; nothing in the stem makes it a multiple of 8.",
+   "multiple of 4": "not forced: nothing in the pair times forces a multiple of 4; 60 and 120 share it by coincidence of the error paths.",
+   "multiple of 2": "not forced: an alone-time is any positive number; nothing in the pair times forces an even number or a multiple of 10.",
+   "multiple of 10": "not forced: an alone-time is any positive number; nothing in the pair times forces an even number or a multiple of 10."
+  }
+ },
+ {
+  "id": "S16A-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "concentration after repeated remove-and-replace with water",
+  "difficulty": "hard",
+  "template": "pure juice, remove k liters and replace with water three times / percent juice / constant multiplier per round",
+  "mechanism": [
+   "repeated replacement",
+   "same fraction kept each round",
+   "multiplicative not subtractive"
+  ],
+  "method": "Each round keeps the same fraction of whatever juice is in the jug, so the juice left is the starting amount times that fraction raised to the number of rounds, not a fixed amount subtracted each time.",
+  "prompt": "A jug holds 10 liters of pure apple juice. Two liters are poured out and replaced with 2 liters of water, and the jug is stirred. This is done two more times, three times in all. What percent of the liquid in the jug is now apple juice?",
+  "choices": [
+   "64%",
+   "52%",
+   "40%",
+   "51.2%",
+   "48%"
+  ],
+  "correct_answer": "51.2%",
+  "explanation": "Each pour removes 2 of the 10 liters of a well-mixed drink, so it keeps 8/10 of the juice present. After three rounds the juice is 10 x 0.8^3 = 5.12 liters of 10, which is 51.2%. The option \"40%\" subtracts 2 liters of juice every time (10 - 6 = 4). The option \"48%\" removes 2 liters of juice the first time and then uses the first mixture's 80% strength for both later pours (10 - 2 - 1.6 - 1.6 = 4.8). The option \"64%\" stops after two rounds, reading \"two more times\" as two times in all. The option \"52%\" subtracts 16 percentage points (20% of 80%) for each of the three pours.",
+  "solve": "return Math.round(10*Math.pow(0.8,3)/10*10000)/100+\"%\";",
+  "distractor_solve": {
+   "40%": "return Math.round((10-3*2)/10*10000)/100+\"%\";",
+   "48%": "return Math.round((10-2-2*0.8-2*0.8)/10*10000)/100+\"%\";",
+   "64%": "return Math.round(10*Math.pow(0.8,2)/10*10000)/100+\"%\";",
+   "52%": "return Math.round((100-3*16)*100)/100+\"%\";"
+  },
+  "interval": "Each later pour removes less than 2 liters of juice, so more than 4 liters remain: the answer exceeds 40%, which removes \"40%\" (on the bound). It is below 80% (after one pour). \"48%\", \"52%\" and \"64%\" lie strictly inside (40%, 80%), so three survive.",
+  "bounds_checked": "linear-removal lower bound (on-bound option counted dead), one-round upper bound, complement pairs (no option equals 100% minus another), arithmetic and geometric runs (the two-, three- and four-round values would form a geometric ladder around the key, so the four-round value is not offered)"
+ },
+ {
+  "id": "S16A-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "chase with different leap lengths and leap rates",
+  "difficulty": "hard",
+  "template": "dog chases rabbit, leaps per time and leap lengths in two ratios / dog leaps to catch / convert to a common distance unit per common time",
+  "mechanism": [
+   "common unit of distance",
+   "gain per round of leaps",
+   "head start divided by gain"
+  ],
+  "method": "Measure every distance in rabbit-leaps and every time in rounds of three dog leaps; the dog gains a fixed fraction of a rabbit-leap each round, so divide the head start by that gain and convert rounds back to dog leaps.",
+  "prompt": "A dog is chasing a rabbit that is 60 of the rabbit's leaps ahead of it. In the time the dog takes 3 leaps, the rabbit takes 4 leaps. Two of the dog's leaps cover the same distance as 3 of the rabbit's leaps. Both keep these paces. How many leaps must the dog take to catch the rabbit?",
+  "choices": [
+   "420",
+   "120",
+   "360",
+   "540",
+   "480"
+  ],
+  "correct_answer": "360",
+  "explanation": "One dog leap is 3/2 rabbit-leaps. In each round the dog takes 3 leaps (4.5 rabbit-leaps of distance) while the rabbit takes 4, so the dog gains 0.5 rabbit-leap per round. To close 60 rabbit-leaps takes 60/0.5 = 120 rounds = 360 dog leaps. The option \"120\" reports the number of rounds instead of the dog's leaps. The option \"480\" reports the rabbit's leaps in that time (120 x 4). The option \"540\" reports the distance the dog covers measured in rabbit-leaps (360 x 1.5). The option \"420\" adds the 60-leap head start on to the dog's count.",
+  "solve": "const dogLeap=3/2, gain=3*dogLeap-4; return 3*(60/gain);",
+  "distractor_solve": {
+   "120": "const gain=3*1.5-4; return 60/gain;",
+   "480": "const gain=3*1.5-4; return 4*(60/gain);",
+   "540": "const gain=3*1.5-4; return 1.5*3*(60/gain);",
+   "420": "const gain=3*1.5-4; return 3*(60/gain)+60;"
+  },
+  "interval": "The dog must cover more than the 60 rabbit-leap head start, i.e. more than 40 of its own leaps; all options exceed 40. Every option is a multiple of 3 (whole rounds), and of 60. No option is removed by a bound.",
+  "bounds_checked": "head-start lower bound, divisibility by 3 leaps per round (all five options share it), arithmetic run 360/420/480/540 with the key at the end, doubling (none around the key)",
+  "forced_form_notes": {
+   "multiple of 8": "not forced: the stem forces whole rounds of 3 dog leaps (every option is a multiple of 3) but nothing makes the count a multiple of 8 or 9.",
+   "multiple of 9": "not forced: the stem forces whole rounds of 3 dog leaps (every option is a multiple of 3) but nothing makes the count a multiple of 8 or 9."
+  }
+ },
+ {
+  "id": "S16A-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "amount transferred back after mixing two cups",
+  "difficulty": "hard",
+  "template": "pour x from cup P into cup Q, mix, pour x back / milk now in P / concentration of the returned portion",
+  "mechanism": [
+   "concentration of a mixed portion",
+   "returned portion is not pure",
+   "conservation between cups"
+  ],
+  "method": "The portion poured back carries milk in the proportion milk has in the mixed cup, so take that fraction of the returned volume (equivalently, the milk in P equals the tea left in Q).",
+  "prompt": "Cup P holds 100 milliliters of tea and cup Q holds 100 milliliters of milk. Twenty milliliters of tea are poured from P into Q, and Q is stirred well. Then 20 milliliters of the mixture in Q are poured back into P. How many milliliters of milk are now in cup P?",
+  "choices": [
+   "50/3",
+   "40/3",
+   "25/3",
+   "10/3",
+   "10"
+  ],
+  "correct_answer": "50/3",
+  "explanation": "After the first pour, Q holds 120 mL, of which 100 mL is milk, so milk is 5/6 of Q. The 20 mL poured back contains 20 x 5/6 = 50/3 mL of milk. The option \"25/3\" divides by both cups together, 20 x 100/240. The option \"10/3\" computes the tea in the returned portion (20 x 1/6) instead of the milk. The option \"10\" assumes the returned portion is half milk and half tea. The option \"40/3\" takes the milk in Q as 100 - 20 = 80 mL out of 120.",
+  "solve": "return 20*100/120;",
+  "distractor_solve": {
+   "25/3": "return 20*100/240;",
+   "10/3": "return 20*20/120;",
+   "10": "return 20/2;",
+   "40/3": "return 20*(100-20)/120;"
+  },
+  "interval": "The returned 20 mL contains some tea, so the milk in P is strictly less than 20 mL; every option lies strictly inside (0, 20), so all four distractors survive. Amounts are multiples of 1/6 mL here, and 10 and 25/3 are also such multiples, so no denominator argument applies.",
+  "bounds_checked": "upper bound 20 (no option on it), positivity, denominator from the 120 mL mixture (sixths; every option is a multiple of 1/6), key/related pairs (10/3 and 50/3 are not a sign or complement pair)",
+  "forced_form_notes": {
+   "denominator 3": "not forced: the stem forces only multiples of 1/6 mL (the 20 mL comes from a 120 mL mixture); 10 and 25/3 are multiples of 1/6, so a solver cannot discard them by denominator."
+  }
+ },
+ {
+  "id": "S16A-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "job time when work comes in cycles of running and resting",
+  "difficulty": "hard",
+  "template": "pump needs T hours of running, runs 50 min then rests 10 min / clock time to finish / last cycle is partial",
+  "mechanism": [
+   "work in repeating cycles",
+   "finishes partway through a cycle",
+   "no rest after the last stretch"
+  ],
+  "method": "Count how many full run-and-rest cycles fit before the work is nearly done, then add only the running minutes still needed in the final cycle, instead of scaling the time by the fraction of each hour spent running.",
+  "prompt": "Running without a break, a pump would empty a pond in exactly 6 hours. Instead, the pump runs for 50 minutes, rests for 10 minutes, runs for 50 minutes, rests for 10 minutes, and so on, always pumping at the same rate while it runs. Starting with a full pond and the pump just switched on, how long does it take to empty the pond?",
+  "choices": [
+   "7 hours 0 minutes",
+   "8 hours 0 minutes",
+   "7 hours 10 minutes",
+   "7 hours 12 minutes",
+   "7 hours 50 minutes"
+  ],
+  "correct_answer": "7 hours 10 minutes",
+  "explanation": "The pond needs 360 minutes of running. Seven full cycles (7 hours) give 7 x 50 = 350 minutes of running, so 10 more minutes of running are needed at the start of the eighth cycle: 7 hours 10 minutes. The option \"7 hours 12 minutes\" divides 6 hours by 5/6, as if pumping were spread evenly through each hour. The option \"7 hours\" adds one 10-minute rest for each of the 6 hours of running. The option \"7 hours 50 minutes\" finishes with a full 50-minute run in the eighth cycle. The option \"8 hours\" counts eight full hours because eight cycles are started.",
+  "solve": "const need=360; let t=0,run=0; while(need-run>50){run+=50;t+=60;} t+=need-run; const h=Math.floor(t/60),m=t%60; return h+\" hours \"+m+\" minutes\";",
+  "distractor_solve": {
+   "7 hours 12 minutes": "const t=Math.round(360/(50/60)); return Math.floor(t/60)+\" hours \"+(t%60)+\" minutes\";",
+   "7 hours 0 minutes": "const t=360+6*10; return Math.floor(t/60)+\" hours \"+(t%60)+\" minutes\";",
+   "7 hours 50 minutes": "const t=7*60+50; return Math.floor(t/60)+\" hours \"+(t%60)+\" minutes\";",
+   "8 hours 0 minutes": "const t=8*60; return Math.floor(t/60)+\" hours \"+(t%60)+\" minutes\";"
+  },
+  "interval": "The time exceeds 6 hours (rests are added) and is at most 6 hours plus one rest per started hour; every option lies in (6 h, 8 h]. \"8 hours 0 minutes\" is a natural count of started cycles, not a bound a solver can read free. No option is removed.",
+  "bounds_checked": "lower bound 6 hours (no option on it), monotonicity in rest time, arithmetic runs in minutes (420, 430, 432, 470, 480: no three-term run with the key in the middle), key not extreme"
+ },
+ {
+  "id": "S16A-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "stopping time per hour from moving and overall average speeds",
+  "difficulty": "hard",
+  "template": "average speed without stops and with stops / minutes stopped per hour / distance lost converted at the moving speed",
+  "mechanism": [
+   "ratio of two average speeds",
+   "time to cover the lost distance at full speed",
+   "fraction of each hour moving"
+  ],
+  "method": "In one hour the bus covers only the with-stops distance, which at the moving speed takes a fraction of the hour; the rest of the hour is the stopping time (equivalently, the lost distance is converted to time at the MOVING speed).",
+  "prompt": "Without stops, a bus travels at an average speed of 75 kilometers per hour. Including the time it spends at stops, its average speed is 60 kilometers per hour. On average, how many minutes per hour does the bus spend stopped?",
+  "choices": [
+   "20",
+   "15",
+   "48",
+   "25",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "In one hour, including stops, the bus covers 60 km. Moving at 75 km/h, 60 km takes 60/75 of an hour = 48 minutes, so it is stopped for 12 minutes each hour. The option \"15\" treats the 15 km/h difference as 15 minutes, which is the time to cover the lost 15 km at 60 km/h rather than at the moving speed of 75. The option \"48\" reports the minutes spent moving. The option \"20\" computes 15/75 = 0.2 hour and reads 0.2 hour as 20 minutes. The option \"25\" computes 15/60 = 0.25 hour and reads it as 25 minutes.",
+  "solve": "return 60 - 60*60/75;",
+  "distractor_solve": {
+   "15": "return (75-60)/60*60;",
+   "48": "return 60*60/75;",
+   "20": "return Math.round((75-60)/75*100);",
+   "25": "return Math.round((75-60)/60*100);"
+  },
+  "interval": "The stopped time per hour is between 0 and 60 minutes; every option lies inside. Nothing printed bounds it nearer than that. No option is removed.",
+  "bounds_checked": "part not exceeding the whole hour, key not equal to the printed difference 15 (75 - 60 = 15 is offered as a distractor, not the key), arithmetic run 15/20/25 does not contain the key, decimal-hour misreadings",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: minutes stopped per hour can be any number between 0 and 60; divisibility of 12 by 2, 3, 4, 6 or 12 is not readable from the stem.",
+   "multiple of 3": "not forced: minutes stopped per hour can be any number between 0 and 60; divisibility of 12 by 2, 3, 4, 6 or 12 is not readable from the stem.",
+   "multiple of 4": "not forced: minutes stopped per hour can be any number between 0 and 60; divisibility of 12 by 2, 3, 4, 6 or 12 is not readable from the stem.",
+   "multiple of 6": "not forced: minutes stopped per hour can be any number between 0 and 60; divisibility of 12 by 2, 3, 4, 6 or 12 is not readable from the stem.",
+   "multiple of 12": "not forced: minutes stopped per hour can be any number between 0 and 60; divisibility of 12 by 2, 3, 4, 6 or 12 is not readable from the stem."
+  }
+ },
+ {
+  "id": "S16A-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "speed from a midpoint meeting with staggered starts",
+  "difficulty": "hard",
+  "template": "two trains from opposite stations, later start and faster, meet at the midpoint at a given time / slower train speed / equal distances with different times",
+  "mechanism": [
+   "equal distances at the midpoint",
+   "travel times from clock times",
+   "speed difference given"
+  ],
+  "method": "Meeting halfway means the two trains covered equal distances, so set the slower train's speed times its longer time equal to the faster speed times its shorter time, reading each time from the clock.",
+  "prompt": "Train A leaves station P at 9:00 a.m. and travels toward station Q. Train B leaves station Q at 9:40 a.m. and travels toward P on a parallel track, at a speed 20 kilometers per hour greater than train A's. Each train keeps a constant speed. The trains pass each other at 12:00 noon, exactly halfway between P and Q. What is train A's speed, in kilometers per hour?",
+  "choices": [
+   "40",
+   "70",
+   "55",
+   "160",
+   "90"
+  ],
+  "correct_answer": "70",
+  "explanation": "Train A travels 3 hours and train B travels 2 hours 20 minutes = 7/3 hours, and they cover equal distances: 3v = (7/3)(v + 20), so 9v = 7v + 140 and v = 70 km/h. The option \"90\" gives train B's speed. The option \"55\" writes 2 hours 20 minutes as 2.2 hours: 3v = 2.2(v + 20). The option \"40\" counts train B's time as 2 hours, from 10:00: 3v = 2(v + 20). The option \"160\" misreads 9:40 to noon as 2 hours 40 minutes: 3v = (8/3)(v + 20).",
+  "solve": "return (7/3*20)/(3-7/3);",
+  "distractor_solve": {
+   "90": "return (7/3*20)/(3-7/3)+20;",
+   "55": "return (2.2*20)/(3-2.2);",
+   "40": "return (2*20)/(3-2);",
+   "160": "return (8/3*20)/(3-8/3);"
+  },
+  "interval": "Any positive speed is possible; the stem bounds nothing except positivity. All options are positive. No option is removed.",
+  "bounds_checked": "positivity, arithmetic run 40/55/70 has the key at the end, doubling and halving (none around the key), key not extreme",
+  "forced_form_notes": {
+   "multiple of 7": "not forced: the speed solves 3v = (7/3)(v + 20); nothing in the stem makes it a multiple of 7 before solving."
+  }
+ },
+ {
+  "id": "S16A-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "how long the second machine ran when the first ran the whole time",
+  "difficulty": "hard",
+  "template": "printer A starts a job alone, printer B joins later, both finish at a known time / minutes B ran / A works the whole time, B does the remainder",
+  "mechanism": [
+   "one worker runs the whole time",
+   "remainder done by the latecomer",
+   "pages divided by rate"
+  ],
+  "method": "Printer A ran for the whole time, so its output is known at once; the pages it did not print were printed by B, and dividing those by B's rate gives B's running time.",
+  "prompt": "Printer A prints 50 pages per minute and printer B prints 30 pages per minute. A 1,200-page job is started on printer A alone. Some time later, printer B also starts printing pages of the same job, and both printers keep printing until the job is finished, 18 minutes after printer A started. For how many minutes did printer B print?",
+  "choices": [
+   "3.75",
+   "6",
+   "3",
+   "10",
+   "8"
+  ],
+  "correct_answer": "10",
+  "explanation": "Printer A printed for all 18 minutes: 18 x 50 = 900 pages. The other 300 pages were printed by B at 30 pages per minute, taking 10 minutes. The option \"8\" reports how long A printed alone (18 - 10). The option \"3\" subtracts the 15 minutes the two printers would need together from 18. The option \"6\" divides B's 300 pages by A's rate of 50. The option \"3.75\" divides B's 300 pages by the combined rate of 80.",
+  "solve": "return (1200 - 18*50)/30;",
+  "distractor_solve": {
+   "8": "return 18 - (1200 - 18*50)/30;",
+   "3": "return 18 - 1200/(50+30);",
+   "6": "return (1200 - 18*50)/50;",
+   "3.75": "return (1200 - 18*50)/(50+30);"
+  },
+  "interval": "B printed for some time between 0 and 18 minutes; if both had printed all 18 minutes they would have printed 1,440 pages, more than 1,200, so B ran less than 18. Every option lies strictly inside (0, 18). No option is removed.",
+  "bounds_checked": "upper bound 18 minutes, lower bound 0, the together-time 15 (not offered), arithmetic runs (6/8/10 has the key at the end), integrality (minutes need not be whole)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: B's running time is (1200 - 900)/30 and need not be a whole number of minutes (the 3.75 path is a natural one); nothing makes it even or a multiple of 5 or 10.",
+   "multiple of 5": "not forced: B's running time is (1200 - 900)/30 and need not be a whole number of minutes (the 3.75 path is a natural one); nothing makes it even or a multiple of 5 or 10.",
+   "multiple of 10": "not forced: B's running time is (1200 - 900)/30 and need not be a whole number of minutes (the 3.75 path is a natural one); nothing makes it even or a multiple of 5 or 10."
+  }
+ },
+ {
+  "id": "S16A-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "train length from passing two walkers going opposite ways",
+  "difficulty": "hard",
+  "template": "train passes a walker going its way and a walker coming toward it, two passing times / train length / relative speeds with the same length",
+  "mechanism": [
+   "relative speed same direction and opposite direction",
+   "length is the same in both passes",
+   "solve for speed then length"
+  ],
+  "method": "The train's length is covered at the train's speed minus the walking speed in one pass and plus it in the other, so equate the two expressions for the length to find the speed, then the length.",
+  "prompt": "A train moving at a constant speed passes a man walking beside the track in the same direction as the train in 15 seconds, and passes a woman walking beside the track toward the train in 12 seconds. (Each pass lasts from when the front of the train reaches the person until the back of the train passes the person.) Each person walks at 1 meter per second. How many meters long is the train?",
+  "choices": [
+   "135",
+   "120",
+   "108",
+   "150",
+   "121.5"
+  ],
+  "correct_answer": "120",
+  "explanation": "If the train's speed is v meters per second, its length is 15(v - 1) and also 12(v + 1). So 15v - 15 = 12v + 12, v = 9, and the length is 15 x 8 = 120 m. The option \"135\" multiplies the train's speed by 15 seconds, ignoring the man's walking. The option \"108\" multiplies the speed by 12 seconds, ignoring the woman's walking. The option \"121.5\" multiplies the speed by the average time, 13.5 seconds. The option \"150\" adds the walking speed in the same-direction pass, 15 x (9 + 1).",
+  "solve": "const v=(15+12)/(15-12); return 15*(v-1);",
+  "distractor_solve": {
+   "135": "const v=(15+12)/(15-12); return 15*v;",
+   "108": "const v=(15+12)/(15-12); return 12*v;",
+   "121.5": "const v=(15+12)/(15-12); return v*(15+12)/2;",
+   "150": "const v=(15+12)/(15-12); return 15*(v+1);"
+  },
+  "interval": "The length is positive; nothing printed bounds it. All options are positive. No option is removed.",
+  "bounds_checked": "positivity, arithmetic runs (108/121.5/135 does not contain the key; 120/135/150 has the key at the end), product of the printed times (180) not offered, integrality",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the train's speed and length come from 15(v - 1) = 12(v + 1) and need not be whole; nothing in the stem makes the length even or a multiple of 4, 5, 6, 8, 10 or 12.",
+   "multiple of 4": "not forced: the train's speed and length come from 15(v - 1) = 12(v + 1) and need not be whole; nothing in the stem makes the length even or a multiple of 4, 5, 6, 8, 10 or 12.",
+   "multiple of 5": "not forced: the train's speed and length come from 15(v - 1) = 12(v + 1) and need not be whole; nothing in the stem makes the length even or a multiple of 4, 5, 6, 8, 10 or 12.",
+   "multiple of 6": "not forced: the train's speed and length come from 15(v - 1) = 12(v + 1) and need not be whole; nothing in the stem makes the length even or a multiple of 4, 5, 6, 8, 10 or 12.",
+   "multiple of 8": "not forced: the train's speed and length come from 15(v - 1) = 12(v + 1) and need not be whole; nothing in the stem makes the length even or a multiple of 4, 5, 6, 8, 10 or 12.",
+   "multiple of 10": "not forced: the train's speed and length come from 15(v - 1) = 12(v + 1) and need not be whole; nothing in the stem makes the length even or a multiple of 4, 5, 6, 8, 10 or 12.",
+   "multiple of 12": "not forced: the train's speed and length come from 15(v - 1) = 12(v + 1) and need not be whole; nothing in the stem makes the length even or a multiple of 4, 5, 6, 8, 10 or 12."
+  }
+ },
+ {
+  "id": "S16A-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "alone time of the faster pipe from a time difference and a together time",
+  "difficulty": "hard",
+  "template": "pipe A is d hours faster than B alone, together time T / A alone / rate equation that becomes a quadratic",
+  "mechanism": [
+   "add the two rates",
+   "unknown time in two denominators",
+   "quadratic with one positive root"
+  ],
+  "method": "Write the two alone-rates in terms of A's unknown time and set their sum equal to the together rate; clearing denominators gives a quadratic whose positive root is A's time.",
+  "prompt": "Working alone, pipe A fills a tank 5 hours faster than pipe B does working alone. With both pipes open, the tank fills in 6 hours. How many hours does pipe A take to fill the tank working alone?",
+  "choices": [
+   "15",
+   "9.5",
+   "8.5",
+   "7",
+   "10"
+  ],
+  "correct_answer": "10",
+  "explanation": "If A takes t hours, B takes t + 5, and 1/t + 1/(t + 5) = 1/6. Clearing denominators: 6(2t + 5) = t(t + 5), so t^2 - 7t - 30 = 0, (t - 10)(t + 3) = 0, and t = 10 (B takes 15). The option \"15\" gives pipe B's time. The option \"9.5\" starts from two equal pipes at 12 hours each and gives A 2.5 hours less. The option \"8.5\" adds half the 5-hour gap to the 6 hours. The option \"7\" subtracts 5 from the equal-pipe time of 12.",
+  "solve": "const b=-7,c=-30; return (-b+Math.sqrt(b*b-4*c))/2;",
+  "distractor_solve": {
+   "15": "const b=-7,c=-30; return (-b+Math.sqrt(b*b-4*c))/2+5;",
+   "9.5": "return 2*6 - 5/2;",
+   "8.5": "return 6 + 5/2;",
+   "7": "return 2*6 - 5;"
+  },
+  "interval": "A alone takes longer than both together (more than 6 hours) and, being the faster pipe, less than 12 hours (two equal pipes would each take 12). The option 15 lies outside (6, 12) and is dead; 7, 8.5 and 9.5 lie strictly inside, so three survive.",
+  "bounds_checked": "alone time above the together time, faster pipe below twice the together time (15 dead), arithmetic runs (7/8.5/10 has the key at the end), key/related sums (sum of roots 7 offered as the key is not)",
+  "forced_form_notes": {
+   "integer": "not forced: an alone-time from a rate equation need not be a whole number (the half-hour paths 8.5 and 9.5 are natural), and nothing makes it even or a multiple of 5 or 10.",
+   "multiple of 2": "not forced: an alone-time from a rate equation need not be a whole number (the half-hour paths 8.5 and 9.5 are natural), and nothing makes it even or a multiple of 5 or 10.",
+   "multiple of 5": "not forced: an alone-time from a rate equation need not be a whole number (the half-hour paths 8.5 and 9.5 are natural), and nothing makes it even or a multiple of 5 or 10.",
+   "multiple of 10": "not forced: an alone-time from a rate equation need not be a whole number (the half-hour paths 8.5 and 9.5 are natural), and nothing makes it even or a multiple of 5 or 10."
+  }
+ },
+ {
+  "id": "S16A-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "meeting time from the times each takes to finish after meeting",
+  "difficulty": "hard",
+  "template": "two cars toward each other, after passing they need a and b more hours / time until they passed / each car's later leg is the other's earlier leg",
+  "mechanism": [
+   "distance before meeting equals the other car's distance after",
+   "ratio of speeds from two expressions",
+   "meeting time is a geometric mean"
+  ],
+  "method": "The stretch one car drives after the meeting is exactly the stretch the other drove before it, which gives two expressions for the speed ratio; equating them shows the meeting time squared equals the product of the two after-times.",
+  "prompt": "Two cars leave towns P and Q at the same moment and drive toward each other on the same road, each at its own constant speed. After they pass each other, the car from P needs 4 more hours to reach Q, and the car from Q needs 9 more hours to reach P. How many hours after they started did the cars pass each other?",
+  "choices": [
+   "6.5",
+   "36",
+   "6",
+   "13",
+   "7.2"
+  ],
+  "correct_answer": "6",
+  "explanation": "Let them pass after t hours, with speeds p and q. The car from P drives after the meeting what the car from Q drove before it: 4p = tq. Likewise 9q = tp. So p/q = t/4 = 9/t, giving t^2 = 36 and t = 6. The option \"6.5\" averages 4 and 9. The option \"13\" adds them. The option \"36\" multiplies them and forgets the square root. The option \"7.2\" divides their product by their difference.",
+  "solve": "return Math.sqrt(4*9);",
+  "distractor_solve": {
+   "6.5": "return (4+9)/2;",
+   "36": "return 4*9;",
+   "13": "return 4+9;",
+   "7.2": "return 4*9/(9-4);"
+  },
+  "interval": "Nothing printed bounds the meeting time beyond positivity: a solver cannot place it between 4 and 9 without the speed relation, which is the method. All options are positive. No option is removed.",
+  "bounds_checked": "positivity, whether \"between 4 and 9\" is free (it needs the speed ratio; not counted), arithmetic and geometric runs (36/13, 6, 13 would be a geometric run around the key, so the product-over-sum value is not offered), doubling (6.5/13 does not involve the key); key is the smallest option and no printed number bounds it from below",
+  "forced_form_notes": {
+   "integer": "not forced: the meeting time is the square root of 4 x 9 and could be irrational for other after-times; nothing in the stem makes it a whole number or a multiple of 2, 3 or 6.",
+   "multiple of 2": "not forced: the meeting time is the square root of 4 x 9 and could be irrational for other after-times; nothing in the stem makes it a whole number or a multiple of 2, 3 or 6.",
+   "multiple of 3": "not forced: the meeting time is the square root of 4 x 9 and could be irrational for other after-times; nothing in the stem makes it a whole number or a multiple of 2, 3 or 6.",
+   "multiple of 6": "not forced: the meeting time is the square root of 4 x 9 and could be irrational for other after-times; nothing in the stem makes it a whole number or a multiple of 2, 3 or 6."
+  }
+ },
+ {
+  "id": "S16A-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "fair share of a shared fare when riders leave at different points",
+  "difficulty": "hard",
+  "template": "three riders share a taxi, two get off early, cost of each stretch split among riders present / longest rider's share / stretch-by-stretch division",
+  "mechanism": [
+   "split each stretch among riders present",
+   "cost proportional to stretch length",
+   "sum a rider's pieces"
+  ],
+  "method": "Cut the trip at the drop-off points, price each stretch by its length, divide each stretch's cost equally among the riders in the taxi for it, and add up the pieces for the rider asked about, rather than splitting by distance ridden.",
+  "prompt": "Three friends share a taxi. Ana rides the whole 30-kilometer trip, Ben gets out after 18 kilometers, and Cho gets out after 6 kilometers. The fare is $90 for the whole trip, and the cost of each stretch is proportional to its length. The friends agree that the cost of each stretch is shared equally by the friends in the taxi during that stretch. How many dollars does Ana pay?",
+  "choices": [
+   "60",
+   "66",
+   "84",
+   "63",
+   "50"
+  ],
+  "correct_answer": "60",
+  "explanation": "The fare is $3 per kilometer. The first 6 km cost $18, shared by three: $6 each. The next 12 km cost $36, shared by Ana and Ben: $18 each. The last 12 km cost $36, all Ana's. Ana pays 6 + 18 + 36 = $60 (Ben $24, Cho $6). The option \"50\" splits the fare in proportion to distance ridden, 90 x 30/54. The option \"63\" gives Ana the last stretch and half of the first 18 km, 36 + 54/2. The option \"66\" subtracts only Ben's share, 90 - 24. The option \"84\" subtracts only Cho's share, 90 - 6.",
+  "solve": "const r=90/30; return r*6/3 + r*12/2 + r*12;",
+  "distractor_solve": {
+   "50": "return 90*30/(30+18+6);",
+   "63": "const r=90/30; return r*12 + r*18/2;",
+   "66": "const r=90/30; return 90 - (r*6/3 + r*12/2);",
+   "84": "const r=90/30; return 90 - r*6/3;"
+  },
+  "interval": "Ana pays at least the last stretch she rides alone ($36) and less than the whole $90; every option lies in (36, 90). No option is removed.",
+  "bounds_checked": "lower bound from Ana's solo stretch, upper bound the whole fare, arithmetic runs (60/63/66 has the key at the end), key not extreme, divisibility by the $3 rate (all options multiples of 1 dollar; the stem forces nothing finer)",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: Ana pays $3 per kilometer shared among the riders present; her total need not be a multiple of 4, 5, 6, 10 or 12, and every option is a whole number of dollars.",
+   "multiple of 5": "not forced: Ana pays $3 per kilometer shared among the riders present; her total need not be a multiple of 4, 5, 6, 10 or 12, and every option is a whole number of dollars.",
+   "multiple of 6": "not forced: Ana pays $3 per kilometer shared among the riders present; her total need not be a multiple of 4, 5, 6, 10 or 12, and every option is a whole number of dollars.",
+   "multiple of 10": "not forced: Ana pays $3 per kilometer shared among the riders present; her total need not be a multiple of 4, 5, 6, 10 or 12, and every option is a whole number of dollars.",
+   "multiple of 12": "not forced: Ana pays $3 per kilometer shared among the riders present; her total need not be a multiple of 4, 5, 6, 10 or 12, and every option is a whole number of dollars."
+  }
+ },
+ {
+  "id": "S16A-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "percent given away to equalize two amounts",
+  "difficulty": "hard",
+  "template": "A has p% more than B, A gives some to B so they are equal / gift as a percent of A's original / half the difference against A's base",
+  "mechanism": [
+   "transfer half the difference",
+   "express in units of the smaller amount",
+   "percent of the giver's original"
+  ],
+  "method": "Equalizing needs only half the gap to move, and the percent must then be measured against Ana's original amount, not Ben's.",
+  "prompt": "Ana has 50 percent more money than Ben. Ana gives some of her money to Ben, and then they have equal amounts. What percent of her original money did Ana give to Ben?",
+  "choices": [
+   "10%",
+   "20%",
+   "50%",
+   "16 2/3%",
+   "25%"
+  ],
+  "correct_answer": "16 2/3%",
+  "explanation": "Let Ben have 100; Ana has 150. Equal shares are 125 each, so Ana gives 25, which is 25/150 = 1/6 = 16 2/3% of her money. The option \"25%\" measures the 25 against Ben's 100. The option \"20%\" measures it against the final 125. The option \"10%\" measures it against their combined 250. The option \"50%\" has Ana give the whole difference of 50, measured against Ben's money.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};const a=150,b=100,give=(a-b)/2; return mix(give*100,a)+\"%\";",
+  "distractor_solve": {
+   "25%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};const give=(150-100)/2; return mix(give*100,100)+\"%\";",
+   "20%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};const give=(150-100)/2; return mix(give*100,125)+\"%\";",
+   "10%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};const give=(150-100)/2; return mix(give*100,250)+\"%\";",
+   "50%": "const g=(a,b)=>b?g(b,a%b):a;const mix=(p,q)=>{const s=g(p,q);p/=s;q/=s;const w=Math.floor(p/q),r=p-w*q;return r?(w?w+' '+r+'/'+q:r+'/'+q):String(w);};return mix((150-100)*100,100)+\"%\";"
+  },
+  "interval": "The gift is positive and less than one third of Ana's money (giving a third, 50 of 150, would leave her with less than Ben); 50% lies above that and is dead. 10%, 20% and 25% lie strictly inside (0%, 33 1/3%), so three survive.",
+  "bounds_checked": "positivity, the gift below the whole difference (50% dead), doubling (33 1/3% deliberately not offered), denominators (key in thirds)",
+  "forced_form_notes": {
+   "denominator 3": "not forced: \"50 percent more\" does not make the answer a third-denominator percent by itself; the usual wrong bases (Ben, the final amount, the total) give whole percents, and a solver cannot discard them by form."
+  }
+ },
+ {
+  "id": "S16A-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two speeds from meeting and lapping intervals on a circular track",
+  "difficulty": "hard",
+  "template": "two runners on a loop, meeting interval running opposite ways and lapping interval running the same way / faster speed / sum and difference of speeds",
+  "mechanism": [
+   "opposite directions close one lap at the sum of speeds",
+   "same direction gains one lap at the difference",
+   "half the sum plus half the difference"
+  ],
+  "method": "Running opposite ways they close one lap at the sum of their speeds and running the same way the faster gains one lap at the difference, so the two intervals give the sum and the difference; the faster speed is their average.",
+  "prompt": "Two runners run around a 600-meter circular track, each at a constant speed. When they start together and run in opposite directions, they meet every 3 minutes. When they start together and run in the same direction, the faster runner passes the slower one every 12 minutes. What is the faster runner's speed, in meters per minute?",
+  "choices": [
+   "160",
+   "200",
+   "175",
+   "150",
+   "125"
+  ],
+  "correct_answer": "125",
+  "explanation": "Opposite directions: together they cover one 600 m lap every 3 minutes, so the speeds add to 200 m/min. Same direction: the faster gains 600 m every 12 minutes, so the speeds differ by 50 m/min. The faster speed is (200 + 50)/2 = 125 m/min (the slower is 75). The option \"200\" takes one lap per 3 minutes as the faster runner's own speed. The option \"150\" subtracts the difference from the sum without halving. The option \"175\" subtracts half the difference from the sum. The option \"160\" splits the 200 in the ratio of the two times, 200 x 12/15.",
+  "solve": "const s=600/3, d=600/12; return (s+d)/2;",
+  "distractor_solve": {
+   "200": "return 600/3;",
+   "150": "const s=600/3, d=600/12; return s-d;",
+   "175": "const s=600/3, d=600/12; return s-d/2;",
+   "160": "const s=600/3; return s*12/(3+12);"
+  },
+  "interval": "The faster speed is more than half the sum (100) and less than the sum (200); 200 sits on that bound and is dead. 150, 160 and 175 lie strictly inside (100, 200), so three survive. The lower bound 100 does not single out the key.",
+  "bounds_checked": "faster speed between half the sum and the sum (on-bound 200 counted dead), arithmetic runs (125/150/175 has the key at the end), doubling (none around the key), slower speed 75 deliberately not offered",
+  "forced_form_notes": {
+   "odd": "not forced: the faster speed is (200 + 50)/2; nothing in the stem makes it odd or a perfect cube.",
+   "perfect cube": "not forced: the faster speed is (200 + 50)/2; nothing in the stem makes it odd or a perfect cube."
+  }
+ },
+ {
+  "id": "S16A-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "shipping charge with a rounded-up per-half-kilogram rate",
+  "difficulty": "hard",
+  "template": "base charge for the first kilogram plus a charge per additional half kilogram or part / cost for a given weight / round the extra weight up to whole half-kilograms",
+  "mechanism": [
+   "subtract the base weight first",
+   "count partial units as whole",
+   "base plus unit charge"
+  ],
+  "method": "Take off the first kilogram covered by the base charge, express the rest in half-kilograms, round UP because any part of a half-kilogram is charged in full, and add.",
+  "prompt": "A courier charges $5.00 to ship a package that weighs up to 1 kilogram, plus $2.00 for each additional half kilogram or part of a half kilogram. How many dollars does it cost to ship a package that weighs 3.2 kilograms?",
+  "choices": [
+   "15.00",
+   "13.80",
+   "17.00",
+   "19.00",
+   "21.00"
+  ],
+  "correct_answer": "15.00",
+  "explanation": "Beyond the first kilogram there are 2.2 kg = 4.4 half-kilograms; the partial one is charged in full, so 5 half-kilogram charges: 5.00 + 5 x 2.00 = 15.00. The option \"13.80\" charges for exactly 4.4 half-kilograms, as if part units were prorated. The option \"17.00\" rounds 3.2 kg down to 3 kg and charges $2 for every half-kilogram of it, 5 + 6 x 2. The option \"19.00\" forgets that the first kilogram is covered and charges for all of 3.2 kg, rounded up to 7 half-kilograms. The option \"21.00\" rounds the whole weight up to 4 kg and charges $2 for every half-kilogram of it on top of the base, 5 + 8 x 2.",
+  "solve": "return (5 + 2*Math.ceil((3.2-1)/0.5 - 1e-9)).toFixed(2);",
+  "distractor_solve": {
+   "13.80": "return (5 + 2*((3.2-1)/0.5)).toFixed(2);",
+   "21.00": "return (5 + 2*(Math.ceil(3.2)/0.5)).toFixed(2);",
+   "17.00": "return (5 + 2*(Math.floor(3.2)/0.5)).toFixed(2);",
+   "19.00": "return (5 + 2*Math.ceil(3.2/0.5)).toFixed(2);"
+  },
+  "interval": "Rounding up can only raise the charge, so the cost is strictly more than the prorated 13.80; \"13.80\" sits on that bound and is dead. 17.00, 19.00 and 21.00 survive; no printed bound separates 15.00 from them without counting the half-kilogram units, which is the method.",
+  "bounds_checked": "prorated lower bound (on-bound 13.80 counted dead), whole-weight upper bound, arithmetic run 15/17/19/21 (key at the end, not the middle), parity (every whole-unit charge is odd: 15, 17, 19, 21 all odd; only the prorated 13.80 is not a whole number)",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the stem forces a charge of 5 + 2k dollars (an odd whole number), and 17, 19 and 21 have that form; divisibility by 3 or 5 is not forced.",
+   "multiple of 5": "not forced: the stem forces a charge of 5 + 2k dollars (an odd whole number), and 17, 19 and 21 have that form; divisibility by 3 or 5 is not forced."
+  }
+ },
+ {
+  "id": "S16A-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "usual travel time from a fractional speed and the delay it causes",
+  "difficulty": "hard",
+  "template": "walks at a fraction of usual speed and arrives some minutes late / usual time / time scales by the reciprocal of the speed fraction",
+  "mechanism": [
+   "time inversely proportional to speed",
+   "extra time as a fraction of the usual time",
+   "reciprocal of 3/4"
+  ],
+  "method": "At 3/4 of the speed the same walk takes 4/3 of the usual time, so the delay is one third of the usual time.",
+  "prompt": "Walking at 3/4 of her usual speed, Mia reaches school 12 minutes later than usual. How many minutes does her usual walk to school take?",
+  "choices": [
+   "48",
+   "60",
+   "36",
+   "16",
+   "9"
+  ],
+  "correct_answer": "36",
+  "explanation": "The distance is the same, so the time is multiplied by 4/3. The extra 1/3 of the usual time is 12 minutes, so the usual time is 36 minutes (the slow walk takes 48). The option \"48\" treats the delay as 1/4 of the usual time, reading \"3/4 of the speed\" as \"1/4 more time\", and so actually gives the slow walk's time. The option \"60\" adds the 12-minute delay to that 48. The option \"16\" multiplies 12 by 4/3. The option \"9\" multiplies 12 by 3/4.",
+  "solve": "return 12/(4/3 - 1);",
+  "distractor_solve": {
+   "48": "return 12/(1 - 3/4);",
+   "60": "return 12/(1 - 3/4) + 12;",
+   "16": "return 12*4/3;",
+   "9": "return 12*3/4;"
+  },
+  "interval": "The usual time is positive; a solver cannot bound it by the printed 12 without the speed-time relation, which is the method. All options are positive. No option is removed.",
+  "bounds_checked": "positivity, arithmetic run 36/48/60 has the key at the end, doubling and halving (none around 36), key not extreme, printed numbers not offered",
+  "forced_form_notes": {
+   "multiple of 6": "not forced: the usual time is 12 / (1/3); nothing in the stem makes it a multiple of 6, 9 or 12 or a perfect square before the speed-time relation is used.",
+   "multiple of 9": "not forced: the usual time is 12 / (1/3); nothing in the stem makes it a multiple of 6, 9 or 12 or a perfect square before the speed-time relation is used.",
+   "multiple of 12": "not forced: the usual time is 12 / (1/3); nothing in the stem makes it a multiple of 6, 9 or 12 or a perfect square before the speed-time relation is used.",
+   "perfect square": "not forced: the usual time is 12 / (1/3); nothing in the stem makes it a multiple of 6, 9 or 12 or a perfect square before the speed-time relation is used."
+  }
+ },
+ {
+  "id": "S16A-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finishing day when the crew grows by one worker each day",
+  "difficulty": "hard",
+  "template": "one worker on day 1, one more joins each day, job of N worker-days / day the job is finished / running total of a growing crew",
+  "mechanism": [
+   "work as a running total",
+   "triangular sums of a growing crew",
+   "job finishes during a day, not at its end"
+  ],
+  "method": "Add the worker-days day by day (1, then 1 + 2, then 1 + 2 + 3, ...) and find the first day on which the running total reaches the job size; the job ends partway through that day.",
+  "prompt": "One worker alone would need 50 days to finish a job. On the first day, one worker works on the job; on the second day a second worker joins, on the third day a third worker joins, and so on, with one more worker joining each day. All the workers work at the same steady rate. On which day is the job finished?",
+  "choices": [
+   "25",
+   "6",
+   "8",
+   "10",
+   "9"
+  ],
+  "correct_answer": "10",
+  "explanation": "The job is 50 worker-days. After n days the work done is 1 + 2 + ... + n = n(n + 1)/2. After 9 days it is 45, short of 50; on day 10 the ten workers do the last 5 worker-days, so the job is finished on day 10. The option \"9\" stops at the last day whose total (45) is below the job, counting only completed days. The option \"8\" takes the work after n days as n^2 and solves n^2 >= 50. The option \"6\" doubles the crew each day: 1 + 2 + 4 + 8 + 16 + 32 first passes 50 on day 6. The option \"25\" assumes an average crew of 2 workers, 50/2.",
+  "solve": "let n=0,t=0; while(t<50){n++;t+=n;} return n;",
+  "distractor_solve": {
+   "9": "let n=0,t=0; while(t+n+1<50){n++;t+=n;} return n;",
+   "8": "let n=0; while(n*n<50) n++; return n;",
+   "6": "let n=0,t=0,c=1; while(t<50){n++;t+=c;c*=2;} return n;",
+   "25": "return 50/2;"
+  },
+  "interval": "The day is a whole number between 1 and 50, and since the crew is at least as large as on day 1 every day after, it is at most 50; every option is a whole number in [1, 50]. No option is removed.",
+  "bounds_checked": "integrality of a day count (all options whole), range [1, 50], arithmetic run 8/9/10 has the key at the end, key not extreme",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the stem forces a whole-number day (every option is whole); nothing makes the day even or a multiple of 5 or 10.",
+   "multiple of 5": "not forced: the stem forces a whole-number day (every option is whole); nothing makes the day even or a multiple of 5 or 10.",
+   "multiple of 10": "not forced: the stem forces a whole-number day (every option is whole); nothing makes the day even or a multiple of 5 or 10."
+  }
+ },
+ {
+  "id": "S16A-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pay shared by work done when one worker starts earlier",
+  "difficulty": "hard",
+  "template": "A starts a job alone, B joins after a day, pay split by work done / A's pay / work done equals rate times own working time",
+  "mechanism": [
+   "find when the job ends",
+   "each worker's work is rate times own time",
+   "pay in proportion to work"
+  ],
+  "method": "First find how long the two worked together after the solo start, then compute each worker's share of the job as rate times that worker's own working time, and split the pay in that proportion.",
+  "prompt": "Working alone, Ana can build a fence in 6 days and Ben can build it in 9 days. Ana works alone for the first day; then Ben joins her, and they work together until the fence is finished. They are paid $450 for the fence and share it in proportion to the amount of work each did. How many dollars does Ana receive?",
+  "choices": [
+   "225",
+   "300",
+   "345",
+   "270",
+   "262.5"
+  ],
+  "correct_answer": "300",
+  "explanation": "After Ana's first day, 5/6 of the fence is left. Together they build 1/6 + 1/9 = 5/18 per day, so they need 3 more days. Ana worked 4 days and built 4/6 = 2/3 of the fence; Ben built 3/9 = 1/3. Ana receives 2/3 of $450 = $300. The option \"270\" ignores the solo day and splits the pay in the ratio of their rates, 3 : 2. The option \"262.5\" gives Ana her solo day's sixth and then splits the rest of the pay equally. The option \"345\" adds Ana's solo-day pay ($75) to a 3 : 2 share of the whole $450. The option \"225\" splits the pay equally.",
+  "solve": "const t=(5/6)/(1/6+1/9); return 450*((1+t)/6);",
+  "distractor_solve": {
+   "270": "return 450*(1/6)/(1/6+1/9);",
+   "262.5": "return 450/6 + (450-450/6)/2;",
+   "345": "return 450/6 + 450*(1/6)/(1/6+1/9);",
+   "225": "return 450/2;"
+  },
+  "interval": "Ana is the faster worker and also worked longer, so she gets more than half: more than 225, which removes \"225\" (on the bound). She gets less than the whole 450. 262.5, 270 and 345 lie strictly inside (225, 450), so three survive.",
+  "bounds_checked": "more than half for the faster and longer worker (on-bound 225 counted dead), part not exceeding the whole, key not extreme, integrality (dollar shares need not be whole)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: Ana's dollars are a fraction of $450 set by work done and need not be whole (262.5 is a natural path); nothing makes them even or a multiple of 4, 6, 10 or 12.",
+   "multiple of 4": "not forced: Ana's dollars are a fraction of $450 set by work done and need not be whole (262.5 is a natural path); nothing makes them even or a multiple of 4, 6, 10 or 12.",
+   "multiple of 6": "not forced: Ana's dollars are a fraction of $450 set by work done and need not be whole (262.5 is a natural path); nothing makes them even or a multiple of 4, 6, 10 or 12.",
+   "multiple of 10": "not forced: Ana's dollars are a fraction of $450 set by work done and need not be whole (262.5 is a natural path); nothing makes them even or a multiple of 4, 6, 10 or 12.",
+   "multiple of 12": "not forced: Ana's dollars are a fraction of $450 set by work done and need not be whole (262.5 is a natural path); nothing makes them even or a multiple of 4, 6, 10 or 12."
+  }
+ },
+ {
+  "id": "S16A-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number of guests for a target average cost with a fixed fee",
+  "difficulty": "hard",
+  "template": "fixed fee plus per-guest price, two party totals / guests for a given average cost per guest / fee spread over the guests",
+  "mechanism": [
+   "fixed fee plus unit price",
+   "average cost per unit falls as units rise",
+   "fee divided by the excess of the average over the unit price"
+  ],
+  "method": "Find the fee and the per-guest price from the two totals, then notice that the average cost per guest is the per-guest price plus the fee shared out, so the fee must be spread at exactly the excess of the target average over the per-guest price.",
+  "prompt": "A caterer charges a fixed fee plus the same price for each guest. A party for 40 guests costs $1,100 and a party for 60 guests costs $1,500. For how many guests would the average cost per guest be exactly $22?",
+  "choices": [
+   "15",
+   "90",
+   "110",
+   "150",
+   "100"
+  ],
+  "correct_answer": "150",
+  "explanation": "The 20 extra guests add $400, so each guest costs $20 and the fee is 1100 - 40 x 20 = $300. The average per guest is 20 + 300/g, which equals 22 when 300/g = 2, so g = 150. (Check: 300 + 150 x 20 = 3300 = 150 x 22.) The option \"100\" uses the 60-guest average of $25 in place of the $20 per-guest price, 300/(25 - 22). The option \"110\" finds the fee by charging $22 per guest at the 40-guest party, (1100 - 40 x 22)/2. The option \"90\" does the same with the 60-guest party, (1500 - 60 x 22)/2. The option \"15\" divides the fee by the per-guest price, 300/20.",
+  "solve": "const r=(1500-1100)/(60-40), fee=1100-40*r; return fee/(22-r);",
+  "distractor_solve": {
+   "100": "const r=(1500-1100)/(60-40), fee=1100-40*r; return fee/(1500/60-22);",
+   "110": "return (1100-40*22)/2;",
+   "90": "return (1500-60*22)/2;",
+   "15": "const r=(1500-1100)/(60-40), fee=1100-40*r; return fee/r;"
+  },
+  "interval": "The average cost per guest falls as guests are added: $27.50 at 40 guests and $25 at 60. A $22 average therefore needs more than 60 guests, which removes \"15\". 90, 100 and 110 all exceed 60 and survive; the falling average does not separate them from 150 without the fee, which is the method.",
+  "bounds_checked": "monotonicity of the average in the number of guests (15 dead), integrality of a guest count (all whole), arithmetic runs (90/100/110 does not contain the key), pairs summing to a constant (none with the key), doubling (75 deliberately not offered)",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the guest count is fee/(average - unit price); nothing in the stem makes it a multiple of 3.",
+   "multiple of 6": "not forced: the guest count is the $300 fee divided by $2; nothing in the stem makes it a multiple of 6 before the fee is found."
+  }
+ },
+ {
+  "id": "S16A-27",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "one pipe's time from a together time and a sequential fill",
+  "difficulty": "hard",
+  "template": "both pipes fill in T; A alone for a minutes then B alone for b minutes also fills / A alone / rewrite the sequential fill against the together fill",
+  "mechanism": [
+   "two equations in two rates",
+   "compare against the together fill",
+   "trade minutes of one pipe for the other"
+  ],
+  "method": "Compare the sequential fill with the together fill: replacing part of it by minutes with both pipes open shows how many minutes of B equal a given number of minutes of A, which fixes the ratio of the rates.",
+  "prompt": "With both of its inlet pipes open, an empty tank fills in 12 minutes. One day pipe A was open alone for the first 10 minutes, and then pipe B alone filled the rest of the tank in 15 more minutes. How many minutes would pipe A alone take to fill the empty tank?",
+  "choices": [
+   "20",
+   "24",
+   "25",
+   "36",
+   "30"
+  ],
+  "correct_answer": "20",
+  "explanation": "Let the rates be a and b tanks per minute: 12a + 12b = 1 and 10a + 15b = 1. Subtracting, 2a = 3b, so b = (2/3)a; then 12(a + (2/3)a) = 20a = 1, so a = 1/20 and A alone takes 20 minutes (B takes 30). The option \"30\" gives pipe B's time (or swaps the pipes). The option \"24\" assumes the pipes are equally fast, doubling 12. The option \"25\" adds the 10 and 15 minutes. The option \"36\" scales 12 by 15/(15 - 10).",
+  "solve": "const a=(1-15/12)/(10-15); return 1/a;",
+  "distractor_solve": {
+   "30": "const a=(1-15/12)/(10-15); const b=1/12-a; return 1/b;",
+   "24": "return 2*12;",
+   "25": "return 10+15;",
+   "36": "return 12*15/(15-10);"
+  },
+  "interval": "Pipe A alone takes longer than both pipes together (more than 12 minutes); every option exceeds 12. Nothing printed says which pipe is faster, so no upper bound applies. No option is removed.",
+  "bounds_checked": "alone time above the together time, which pipe is faster (not stated, so 24 is not on a bound), arithmetic runs (20/25/30 has the key at the end; 24/30/36 does not contain it), key not a printed number",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: an alone-time from two rate equations is any positive number; nothing in the stem makes it a multiple of 4, 5 or 10.",
+   "multiple of 5": "not forced: an alone-time from two rate equations is any positive number; nothing in the stem makes it a multiple of 4, 5 or 10.",
+   "multiple of 10": "not forced: an alone-time from two rate equations is any positive number; nothing in the stem makes it a multiple of 4, 5 or 10."
+  }
+ },
+ {
+  "id": "S16A-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "shares from \"one part as a fraction of the other parts\"",
+  "difficulty": "hard",
+  "template": "total shared by three, A gets a fraction of B and C together, B gets a fraction of A and C together / C's share / fraction of the rest converts to fraction of the whole",
+  "mechanism": [
+   "fraction of the others to fraction of the total",
+   "p/q of the rest is p/(p+q) of the whole",
+   "remainder for the third"
+  ],
+  "method": "If one share is p/q of everyone else's, it is p/(p + q) of the whole; convert both conditions this way and give the remainder to the third partner.",
+  "prompt": "Three partners share $1,260. Partner A receives one third as much as partners B and C together, and partner B receives two sevenths as much as partners A and C together. How many dollars does partner C receive?",
+  "choices": [
+   "560",
+   "585",
+   "480",
+   "945",
+   "665"
+  ],
+  "correct_answer": "665",
+  "explanation": "A gets 1/3 of the others' total, so A is 1 part to their 3: one quarter of $1,260 = $315. B gets 2/7 of the others' total, so B is 2 parts to their 7: two ninths of $1,260 = $280. C receives 1260 - 315 - 280 = $665. The option \"560\" takes A as one third of the whole ($420). The option \"585\" takes B as two sevenths of the whole ($360). The option \"480\" makes both of those errors. The option \"945\" subtracts A's share and forgets B's.",
+  "solve": "return 1260 - 1260/4 - 1260*2/9;",
+  "distractor_solve": {
+   "560": "return 1260 - 1260/3 - 1260*2/9;",
+   "585": "return 1260 - 1260/4 - 1260*2/7;",
+   "480": "return 1260 - 1260/3 - 1260*2/7;",
+   "945": "return 1260 - 1260/4;"
+  },
+  "interval": "C receives less than the whole $1,260; any further bound needs A's or B's share, which is the method. All options lie in (0, 1260). No option is removed.",
+  "bounds_checked": "part not exceeding whole, multiples of 5 (all options share it, every share here is a multiple of 5), key not extreme, sum of two other options not equal to the key",
+  "forced_form_notes": {
+   "multiple of 7": "not forced: the shares are 1/4 and 2/9 of 1,260, and nothing in the stem makes C's share a multiple of 7; 560 and 945 are multiples of 7 only because 1,260 is.",
+   "odd": "not forced: an even total split by these fractions can leave an odd or even remainder; parity is not readable from the stem."
+  }
+ },
+ {
+  "id": "S16A-29",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "visible steps on a moving escalator from two walking paces",
+  "difficulty": "hard",
+  "template": "walk up a moving escalator at two step rates, steps taken each time / visible steps / steps walked plus steps carried by the escalator",
+  "mechanism": [
+   "steps walked plus steps carried",
+   "time from steps taken and pace",
+   "unknown escalator rate from two trials"
+  ],
+  "method": "In each trip the visible steps equal the steps she takes plus the steps the escalator carries during that trip, and the trip time comes from her pace; two trips give two expressions for the same count, which fixes the escalator's rate.",
+  "prompt": "An escalator moves upward at a constant speed. Walking up it at 1 step per second, Lena reaches the top after taking 20 steps. Walking up it at 2 steps per second, she reaches the top after taking 32 steps. How many steps are visible on the escalator when it is stopped?",
+  "choices": [
+   "48",
+   "80",
+   "60",
+   "64",
+   "52"
+  ],
+  "correct_answer": "80",
+  "explanation": "Let the escalator carry e steps per second. The first trip takes 20 seconds and the second 16 seconds. The visible steps are 20 + 20e = 32 + 16e, so 4e = 12, e = 3, and there are 20 + 60 = 80 steps. The option \"60\" counts only the steps carried by the escalator on the first trip (20 x 3). The option \"48\" counts only the steps carried on the second trip (16 x 3). The option \"52\" adds the two step counts. The option \"64\" doubles the 32 steps of the faster trip.",
+  "solve": "const e=(32-20)/(20-16); return 20+20*e;",
+  "distractor_solve": {
+   "60": "const e=(32-20)/(20-16); return 20*e;",
+   "48": "const e=(32-20)/(20-16); return 16*e;",
+   "52": "return 20+32;",
+   "64": "return 2*32;"
+  },
+  "interval": "The visible steps exceed the 32 steps she takes on the second trip; all options exceed 32. Nothing printed gives an upper bound. Every option is a whole number and a multiple of 4. No option is removed.",
+  "bounds_checked": "lower bound 32, integrality of a step count (all whole), divisibility by 4 (all five options share it), doubling (64 is double 32, not of the key), arithmetic runs (none with the key in the middle)",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: the escalator's rate need not be a whole number of steps per second, so the count need not be a multiple of 5, 8 or 10; every option is a whole number and a multiple of 4.",
+   "multiple of 8": "not forced: the escalator's rate need not be a whole number of steps per second, so the count need not be a multiple of 5, 8 or 10; every option is a whole number and a multiple of 4.",
+   "multiple of 10": "not forced: the escalator's rate need not be a whole number of steps per second, so the count need not be a multiple of 5, 8 or 10; every option is a whole number and a multiple of 4."
+  }
+ },
+ {
+  "id": "S16A-30",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "fair payment for food supplied to two others",
+  "difficulty": "hard",
+  "template": "two people bring a and b loaves, share equally with two others who pay / one supplier's fair payment / pay for what was given away, not what was brought",
+  "mechanism": [
+   "equal shares eaten",
+   "contribution to the people who paid",
+   "split payment by amount supplied"
+  ],
+  "method": "Each of the four eats an equal quarter of all the loaves, so each supplier gave the payers only the amount brought minus the amount eaten; the payment is split in proportion to those amounts given, not to the amounts brought.",
+  "prompt": "Ali brings 5 loaves of bread and Bo brings 7 loaves. They share all 12 loaves equally with Cy and Dee, who brought none. Cy and Dee together pay $24 for the bread they ate, and Ali and Bo divide the $24 fairly, in proportion to how much of Cy's and Dee's bread each of them supplied. How many dollars does Ali get?",
+  "choices": [
+   "4",
+   "2",
+   "8",
+   "5",
+   "10"
+  ],
+  "correct_answer": "8",
+  "explanation": "Each of the four people eats 12/4 = 3 loaves. Ali supplied the payers with 5 - 3 = 2 loaves and Bo with 7 - 3 = 4 loaves, a ratio of 1 : 2, so Ali gets 1/3 of $24 = $8 (Bo gets $16). The option \"10\" splits the $24 in the ratio 5 : 7 of loaves brought. The option \"5\" splits only Cy's $12 in the ratio 5 : 7. The option \"4\" prices each of the 12 loaves at $2 and pays Ali for his 2 loaves supplied. The option \"2\" forgets Dee, so each person eats 4 loaves and Ali supplies only 1, and then prices that loaf at $24/12.",
+  "solve": "const eat=12/4, a=5-eat, b=7-eat; return 24*a/(a+b);",
+  "distractor_solve": {
+   "10": "return 24*5/12;",
+   "5": "return 12*5/12;",
+   "4": "const eat=12/4; return (24/12)*(5-eat);",
+   "2": "const eat=12/3; return (24/12)*(5-eat);"
+  },
+  "interval": "Ali brought fewer loaves and ate as much as Bo, so he supplied less and gets less than half of $24: below 12. He supplied something (5 > 3), so more than 0. All four distractors, 2, 4, 5 and 10, lie strictly inside (0, 12); the equal split 12 and Bo's 16 are not offered. If a solver also argues that Ali gets less than his loaf-count share (10), three distractors (2, 4, 5) still survive.",
+  "bounds_checked": "less than half for the smaller supplier (equal split not offered), positivity, loaf-count share as a possible bound (10; three survive it), arithmetic and geometric runs (2/5/8 and 2/4/8 have the key at the end; 6 is not offered, so no run has 8 in the middle), key not extreme",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: Ali's dollars are a fraction of $24 set by loaves supplied; nothing in the stem makes them a multiple of 4.",
+   "multiple of 8": "not forced: nothing in the stem makes Ali's share a multiple of 8.",
+   "perfect cube": "not forced: nothing in the stem makes Ali's share a perfect cube."
+  }
+ }
+]

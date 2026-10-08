@@ -1,0 +1,1185 @@
+[
+ {
+  "id": "S16B-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "obtuse triangles with a whole-number third side, both possible longest sides",
+  "difficulty": "hard",
+  "template": "two sides and an integer third side / count of obtuse triangles / case split on which side is longest",
+  "mechanism": [
+   "obtuse triangle count",
+   "longest side case split",
+   "converse of the Pythagorean theorem",
+   "triangle inequality range"
+  ],
+  "method": "List the third sides allowed by the triangle inequality, then split into the case where the unknown side is longest and the case where the given longer side is longest, applying the obtuse test to each case.",
+  "prompt": "A triangle has two sides of lengths 10 and 13, and the length of its third side is a whole number. For how many different lengths of the third side is the triangle obtuse?",
+  "choices": [
+   "7",
+   "8",
+   "11",
+   "12",
+   "6"
+  ],
+  "correct_answer": "11",
+  "explanation": "The third side x satisfies 13 - 10 < x < 13 + 10, so x is one of 4, 5, ..., 22. Case 1, x is the longest side: the triangle is obtuse when x^2 > 10^2 + 13^2 = 269, so x >= 17, giving 17, 18, 19, 20, 21, 22 (6 values). Case 2, 13 is the longest side: obtuse when 13^2 > 10^2 + x^2, so x^2 < 69 and x <= 8, giving 4, 5, 6, 7, 8 (5 values). Neither 269 nor 69 is a perfect square, so no triangle is right. Total 6 + 5 = 11. The option \"6\" counts only the case in which the third side is longest. The option \"7\" also counts only that case and lets x = 23, where the triangle would be flat. The option \"8\" counts the acute triangles (x = 9 through 16) instead of the obtuse ones. The option \"12\" counts both cases but lets x = 23.",
+  "solve": "let c=0; for(let x=1;x<23;x++){ if(x<=3) continue; const s=[10,13,x].sort((a,b)=>a-b); if(s[2]*s[2]>s[0]*s[0]+s[1]*s[1]) c++; } return c;",
+  "distractor_solve": {
+   "6": "let c=0; for(let x=4;x<23;x++){ if(x>13 && x*x>100+169) c++; } return c;",
+   "7": "let c=0; for(let x=4;x<=23;x++){ if(x>13 && x*x>100+169) c++; } return c;",
+   "8": "let c=0; for(let x=4;x<23;x++){ const s=[10,13,x].sort((a,b)=>a-b); if(s[2]*s[2]<s[0]*s[0]+s[1]*s[1]) c++; } return c;",
+   "12": "let c=0; for(let x=4;x<=23;x++){ if(x>13 && x*x>269) c++; if(x<=13 && 169>100+x*x) c++; } return c;"
+  },
+  "interval": "The count is a whole number between 0 and 19 (the number of triangles allowed by the triangle inequality); all five options lie strictly inside that range, so no option sits on the part-not-exceeding-whole bound. No parity or divisibility of the count is forced by the stem.",
+  "bounds_checked": "part not exceeding whole (19 possible triangles), integrality of a count, limiting case on the bound (all 19 triangles is not an option), parity, run/sum shapes among options",
+  "forced_form_notes": {
+   "multiple of 11": "not forced: the count is how many whole x in 4..22 pass the obtuse test in two separate ranges; nothing in the stem makes it a multiple of 11 (other side pairs give 7, 9, 12).",
+   "odd": "not forced: the count is the sum of two independent range lengths (6 + 5); the stem fixes no parity."
+  }
+ },
+ {
+  "id": "S16B-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "areas of the four triangles cut by the diagonals of a trapezoid",
+  "difficulty": "hard",
+  "template": "trapezoid with two bases and the area of the small diagonal triangle / total area / side triangles equal and found from shared heights",
+  "mechanism": [
+   "trapezoid diagonals",
+   "four triangles from intersecting diagonals",
+   "similar triangles area ratio",
+   "triangles sharing a height"
+  ],
+  "method": "Use the similarity of the two base triangles to get the large one, then see that each side triangle shares a height with the small triangle so its area follows from the ratio in which the diagonal is cut, and that the two side triangles are equal.",
+  "prompt": "In trapezoid ABCD, side AB is parallel to side CD, AB = 4 and CD = 10. The diagonals AC and BD meet at point E. The area of triangle ABE is 8 square units. What is the area of trapezoid ABCD, in square units?",
+  "choices": [
+   "68",
+   "74",
+   "58",
+   "116",
+   "98"
+  ],
+  "correct_answer": "98",
+  "explanation": "Triangles ABE and CDE are similar with ratio AB : CD = 4 : 10 = 2 : 5, so the area of CDE is 8 x (5/2)^2 = 50, and E divides each diagonal in the ratio 2 : 5. Triangle ADE has the same height from A as triangle ABE, with base DE where DE : EB = 5 : 2, so its area is 8 x 5/2 = 20; the same argument gives triangle BCE area 20. Total 8 + 50 + 20 + 20 = 98. The option \"58\" adds only the two base triangles. The option \"68\" scales the large base triangle by the side ratio 5/2 instead of its square, getting 20, and uses 20 for each side triangle. The option \"74\" takes each side triangle equal to the small triangle. The option \"116\" takes each side triangle as the average (8 + 50)/2 = 29 of the two base triangles instead of using the shared height.",
+  "solve": "const a=4,b=10,t=8; const k=b/a; const big=t*k*k; const side=t*k; return t+big+2*side;",
+  "distractor_solve": {
+   "58": "const a=4,b=10,t=8; return t + t*(b/a)*(b/a);",
+   "68": "const a=4,b=10,t=8; const lin=t*(b/a); return t + lin + 2*lin;",
+   "74": "const a=4,b=10,t=8; return t + t*(b/a)*(b/a) + 2*t;",
+   "116": "const a=4,b=10,t=8; const big=t*(b/a)*(b/a); return t + big + 2*((t+big)/2);"
+  },
+  "interval": "The total exceeds the given 8 and nothing in the stem caps it; every option is above 8. No option equals a printed number or a single-step image of one (32, 20 scaled-only, 8 x 4).",
+  "bounds_checked": "positivity and part-of-whole (total > 8), monotonicity in the base ratio, printed coefficient echoes, run/sum shapes, divisibility of the total",
+  "forced_form_notes": {
+   "multiple of 7": "not forced: the total is 8 x (1 + 10/4)^2, so the factor 7 comes from 4 + 10 only after the shared-height step; no printed number is a multiple of 7 and nothing visible in the stem forces it."
+  }
+ },
+ {
+  "id": "S16B-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "radius of the circle inscribed in an isosceles triangle",
+  "difficulty": "hard",
+  "template": "isosceles triangle with three sides / inradius / area equals radius times half the perimeter",
+  "mechanism": [
+   "inscribed circle radius",
+   "area split into three triangles from the incenter",
+   "isosceles triangle height"
+  ],
+  "method": "Find the area from the height to the base, then see that joining the center of the circle to the three vertices splits the triangle into three triangles whose heights are all the radius, so the area equals the radius times half the perimeter.",
+  "prompt": "A triangle has sides of lengths 13, 13 and 10. A circle is drawn inside the triangle so that it touches all three sides. What is the radius of the circle?",
+  "choices": [
+   "10/3",
+   "4",
+   "60/13",
+   "2",
+   "3"
+  ],
+  "correct_answer": "10/3",
+  "explanation": "The height to the side of length 10 splits it into halves of 5, so the height is sqrt(13^2 - 5^2) = 12 and the area is (1/2)(10)(12) = 60. Joining the center of the circle to the three vertices splits the triangle into three triangles whose heights are all equal to the radius r, so 60 = (1/2)r(13 + 13 + 10) = 18r and r = 60/18 = 10/3. The option \"4\" takes the radius as one third of the height, which is true only for an equilateral triangle. The option \"60/13\" divides the area by one of the equal sides. The option \"2\" applies the right-triangle shortcut (leg + leg - hypotenuse)/2 to the half triangle with sides 5, 12, 13, which gives the circle of that half, not of the whole triangle. The option \"3\" divides the area by twice the base.",
+  "solve": "const a=13,b=13,c=10; const h=Math.sqrt(a*a-(c/2)**2); const A=c*h/2; const s=(a+b+c)/2; const r=A/s; const den=3; return Math.round(r*den)+\"/\"+den;",
+  "distractor_solve": {
+   "4": "const h=Math.sqrt(169-25); return h/3;",
+   "60/13": "const h=Math.sqrt(169-25); const A=10*h/2; return A+\"/13\";",
+   "2": "return (5+12-13)/2;",
+   "3": "const h=Math.sqrt(169-25); const A=10*h/2; return A/(2*10);"
+  },
+  "interval": "The diameter of the circle is less than the height 12 and less than the base 10, so r < 5; every option lies in (0, 5), none on the bound r = 5 or r = 6.",
+  "bounds_checked": "diameter below the height and below the shortest side, positivity, form of the key (thirds) against the distractors, run shapes"
+ },
+ {
+  "id": "S16B-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "fold a rectangle so that opposite corners meet: where the crease meets a side",
+  "difficulty": "hard",
+  "template": "rectangle folded corner to opposite corner / distance from the folded corner to the crease on a long side / crease point equidistant from the two corners",
+  "mechanism": [
+   "paper folding",
+   "crease is the perpendicular bisector",
+   "equidistant point on a side",
+   "Pythagorean equation in one unknown"
+  ],
+  "method": "See that every point of the crease is the same distance from the two corners that meet, so the point where the crease crosses a long side is equidistant from them, and set up one Pythagorean equation for its distance.",
+  "prompt": "A rectangular sheet of paper is 16 inches long and 12 inches wide. It is folded once so that one corner lands exactly on the opposite corner. The crease crosses each 16-inch side. On the 16-inch side that contains the corner that was moved, how far, in inches, is the crease from that corner?",
+  "choices": [
+   "14",
+   "40/3",
+   "10",
+   "12.5",
+   "9"
+  ],
+  "correct_answer": "12.5",
+  "explanation": "Call the moved corner A and the corner it lands on C, and let the crease meet the 16-inch side through A at P, x inches from A. The crease is the set of points equally far from A and C, so PA = PC. P is 16 - x from the other end of that side, and C is 12 above that end, so x^2 = (16 - x)^2 + 12^2, which gives 32x = 400 and x = 12.5. The option \"10\" is half the diagonal, the distance from A to the center, not to the side. The option \"14\" averages the length and width. The option \"40/3\" uses similar triangles with the ratio of the sides upside down, (diagonal/2) x 16/12. The option \"9\" uses 12^2/16, the wrong similar-triangle ratio.",
+  "solve": "const L=16,W=12; return (L*L+W*W)/(2*L);",
+  "distractor_solve": {
+   "10": "const L=16,W=12; return Math.sqrt(L*L+W*W)/2;",
+   "14": "const L=16,W=12; return (L+W)/2;",
+   "40/3": "const L=16,W=12; const d=Math.sqrt(L*L+W*W); return Math.round(d*L/(2*W)*3)+\"/3\";",
+   "9": "const L=16,W=12; return W*W/L;"
+  },
+  "interval": "P is closer to the far end of the side than to A (PA = PC > the 12-inch drop), so 8 < x < 16; every option lies strictly inside (8, 16).",
+  "bounds_checked": "part not exceeding the side (x < 16), equidistance forcing x > 8, half-diagonal limiting value, run/sum shapes, form of the key (decimal) against the options"
+ },
+ {
+  "id": "S16B-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume left after cutting the corners off a cube at edge midpoints",
+  "difficulty": "medium",
+  "template": "cube with every corner cut through edge midpoints / remaining volume / each corner piece is a pyramid on a right-triangle base",
+  "mechanism": [
+   "cube corners cut off",
+   "triangular pyramid volume",
+   "volume by subtraction"
+  ],
+  "method": "See that each cut-off corner is a pyramid whose base is a right triangle with legs half an edge and whose height is half an edge, find one, multiply by eight and subtract.",
+  "prompt": "Each of the 8 corners of a solid cube with edges 6 centimeters long is cut off by a single flat cut through the midpoints of the three edges that meet at that corner. What is the volume, in cubic centimeters, of the solid that remains?",
+  "choices": [
+   "108",
+   "180",
+   "189",
+   "144",
+   "198"
+  ],
+  "correct_answer": "180",
+  "explanation": "The cube has volume 6^3 = 216. Each corner piece is a pyramid whose base is a right triangle with legs 3 and 3 (area 4.5) and whose height is 3, so its volume is (1/3)(4.5)(3) = 4.5. Eight corners remove 36, leaving 216 - 36 = 180. The option \"108\" leaves out the 1/3 in the pyramid volume. The option \"144\" uses a square base of area 9 for each corner piece. The option \"189\" removes only six corners, one per face. The option \"198\" removes only the four corners of one face.",
+  "solve": "const e=6,h=e/2; const piece=(1/3)*(h*h/2)*h; return e**3-8*piece;",
+  "distractor_solve": {
+   "108": "const e=6,h=e/2; return e**3-8*((h*h/2)*h);",
+   "144": "const e=6,h=e/2; return e**3-8*((1/3)*(h*h)*h);",
+   "189": "const e=6,h=e/2; return e**3-6*((1/3)*(h*h/2)*h);",
+   "198": "const e=6,h=e/2; return e**3-4*((1/3)*(h*h/2)*h);"
+  },
+  "interval": "The remaining volume is less than 216 and more than half of it (each corner piece is small); every option lies in (108, 216), with 108 itself coming from a named error rather than a bound.",
+  "bounds_checked": "part not exceeding whole (< 216), count of corners (8), divisibility of the removed amount, run shapes",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: 216 minus 8 equal corner pieces of unknown size; the removed total need not be a multiple of 4 (each piece is 4.5).",
+   "multiple of 5": "not forced: 216 is not a multiple of 5 and the removed amount comes from the pyramid formula; no printed 5.",
+   "multiple of 10": "not forced: same reason as multiple of 5; nothing printed is a multiple of 5 or 10.",
+   "multiple of 12": "not forced: 216 is a multiple of 12 but the removed amount (8 x 4.5 = 36) is fixed only by the method; 216 - 8v need not be."
+  }
+ },
+ {
+  "id": "S16B-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two touching circles resting on one line: radius from the gap between the touching points",
+  "difficulty": "hard",
+  "template": "two externally tangent circles tangent to one line / unknown radius from the distance between the tangent points / right trapezoid of centers",
+  "mechanism": [
+   "tangent circles on a line",
+   "radius perpendicular to tangent",
+   "right trapezoid of the centers",
+   "Pythagorean equation"
+  ],
+  "method": "Join the two centers and drop the radii to the line, which makes a right trapezoid; the segment joining the centers is the sum of the radii and the vertical gap is their difference, so one Pythagorean equation gives the radius.",
+  "prompt": "Two circles rest on the same straight line, each touching the line at one point, and the two circles touch each other at one point. The smaller circle has radius 4. The points where the circles touch the line are 12 units apart. What is the radius of the larger circle?",
+  "choices": [
+   "9",
+   "16",
+   "12",
+   "36",
+   "20"
+  ],
+  "correct_answer": "9",
+  "explanation": "Let R be the larger radius. The centers are R + 4 apart (the circles touch), and both radii to the line are perpendicular to it, so the centers differ in height by R - 4 and are 12 apart horizontally. Then (R + 4)^2 = 12^2 + (R - 4)^2, so 16R = 144 and R = 9. The option \"36\" uses 12^2 = 4R, dropping the 4 in 16R. The option \"16\" uses R instead of R - 4 for the height difference: (R + 4)^2 = 144 + R^2. The option \"20\" uses R instead of R + 4 for the distance between centers: R^2 = 144 + (R - 4)^2. The option \"12\" takes the larger radius equal to the gap between the touching points.",
+  "solve": "const r=4,L=12; return L*L/(4*r);",
+  "distractor_solve": {
+   "36": "const r=4,L=12; return L*L/r;",
+   "16": "const r=4,L=12; return (L*L-r*r)/(2*r);",
+   "20": "const r=4,L=12; return (L*L+r*r)/(2*r);",
+   "12": "const r=4,L=12; return L;"
+  },
+  "interval": "The larger radius exceeds 4 (it is the larger circle); every option exceeds 4. No upper bound is readable from the stem; the key is the smallest option, but nothing in the stem caps the radius from below except 4.",
+  "bounds_checked": "larger exceeds smaller (R > 4), magnitude from the gap, printed-number echoes (12, 4), run/sum and square shapes",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: R = 12^2/(4 x 4); the radius can be any positive real for other gaps.",
+   "multiple of 9": "not forced: same, R comes from 144/16 by the method.",
+   "odd": "not forced: a radius has no parity; the printed numbers 4 and 12 are even.",
+   "perfect square": "not forced: a radius need not be a perfect square; 9 is incidental."
+  }
+ },
+ {
+  "id": "S16B-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "square standing on the diameter of a semicircle",
+  "difficulty": "hard",
+  "template": "square with one side on the diameter of a semicircle and two vertices on the arc / area of the square / radius to a top vertex from the center",
+  "mechanism": [
+   "square inscribed in a semicircle",
+   "center at the midpoint of the base side",
+   "Pythagorean equation"
+  ],
+  "method": "See that the center of the semicircle is the midpoint of the side lying on the diameter, so the radius to a top vertex is the hypotenuse of a right triangle with legs half the side and the whole side.",
+  "prompt": "A square is drawn inside a semicircle of radius 10 so that one side of the square lies along the diameter and the other two vertices of the square lie on the curved part of the semicircle. What is the area of the square?",
+  "choices": [
+   "50",
+   "75",
+   "200/3",
+   "80",
+   "400/9"
+  ],
+  "correct_answer": "80",
+  "explanation": "By symmetry the center of the semicircle is the midpoint of the side on the diameter. If the side is s, a top vertex is s/2 to the side of the center and s up, so (s/2)^2 + s^2 = 10^2, which gives (5/4)s^2 = 100 and s^2 = 80. The option \"400/9\" adds lengths instead of squares: s/2 + s = 10. The option \"50\" puts the center at a corner of the square, so the diagonal is the radius. The option \"200/3\" squares s/2 as s^2/2. The option \"75\" takes half the side to be half the radius.",
+  "solve": "const r=10; return 4*r*r/5;",
+  "distractor_solve": {
+   "400/9": "const r=10; const s=r/1.5; return Math.round(s*s*9)+\"/9\";",
+   "50": "const r=10; return r*r/2;",
+   "200/3": "const r=10; return Math.round(r*r/1.5*3)+\"/3\";",
+   "75": "const r=10; return r*r-(r/2)**2;"
+  },
+  "interval": "A top vertex is on the arc, so the side is less than the radius and the area is less than 100; every option is below 100. The area is positive and nothing else bounds it from below.",
+  "bounds_checked": "side less than radius (area < 100), area less than the semicircle, positivity, form of the key against fractional options, run shapes",
+  "forced_form_notes": {
+   "integer": "not forced: the area is 4r^2/5 = 80 for r = 10, which happens to be whole; other options are fractions from named arithmetic slips, and no printed fact says the area is whole.",
+   "multiple of 2": "not forced: the area of a square is not required to be even; the stem prints only the radius 10.",
+   "multiple of 4": "not forced: as above, 4r^2/5 is not visibly a multiple of 4 without the method.",
+   "multiple of 5": "not forced: nothing in the stem makes the area a multiple of 5.",
+   "multiple of 8": "not forced: as above.",
+   "multiple of 10": "not forced: as above; r = 10 is printed but r^2/2 = 50 and r^2 - 25 = 75 are equally built from it."
+  }
+ },
+ {
+  "id": "S16B-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "overlap of two squares when a vertex of one is at the center of the other",
+  "difficulty": "hard",
+  "template": "small square and larger square with its vertex at the small center, turned / area of the overlap / overlap is a quarter of the small square at every angle",
+  "mechanism": [
+   "overlapping squares",
+   "rotation invariance",
+   "congruent triangles swap",
+   "quarter of a square"
+  ],
+  "method": "Draw the two segments from the center of the smaller square to the midpoints of two of its sides; the turned overlap gains one triangle and loses a congruent one, so the overlap is always a quarter of the smaller square whatever the angle.",
+  "prompt": "Square P has sides 10 centimeters long and square Q has sides 14 centimeters long. Square Q is placed so that one of its vertices is at the center of square P, and it is turned about that vertex to a position in which no side of Q is parallel to a side of P. What is the area, in square centimeters, of the region that lies inside both squares?",
+  "choices": [
+   "36",
+   "25",
+   "49",
+   "35",
+   "17.5"
+  ],
+  "correct_answer": "25",
+  "explanation": "Look at square P with center O. In the unturned position the overlap is the corner square of P with sides 5, area 25. Turning Q about O moves one side of the overlap clockwise: it adds a triangle on one side of P and removes a triangle on the adjacent side, and the two triangles are congruent (same angle at O, same distance 5 from O to the side). So the overlap is 100/4 = 25 at every angle. The option \"49\" takes a quarter of the larger square. The option \"35\" takes a quarter of the product of the two sides. The option \"36\" takes a quarter of the square on the average side. The option \"17.5\" takes half of (10/2)(14/2).",
+  "solve": "const p=10,q=14; return p*p/4;",
+  "distractor_solve": {
+   "49": "const p=10,q=14; return q*q/4;",
+   "35": "const p=10,q=14; return p*q/4;",
+   "36": "const p=10,q=14; return ((p+q)/2)**2/4;",
+   "17.5": "const p=10,q=14; return (p/2)*(q/2)/2;"
+  },
+  "interval": "The overlap lies inside P, so it is less than 100; every option is below 100. Nothing in the stem gives a bound that separates the options.",
+  "bounds_checked": "part not exceeding whole (< 100 and < 196), printed numbers squared, monotonicity in the larger square (the key does not depend on it), run/sum shapes",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: the overlap is (side of P)^2/4 = 100/4; seeing that it is a quarter of P is the method itself.",
+   "odd": "not forced: an area has no parity; the printed sides 10 and 14 are even.",
+   "perfect square": "not forced: 25 = 5^2 only because P's side is even; the stem does not say the overlap is a square."
+  }
+ },
+ {
+  "id": "S16B-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "radius of the circle inscribed in a rhombus from its diagonals",
+  "difficulty": "hard",
+  "template": "rhombus with two diagonals and a circle touching all four sides / radius / the radius is the height to the hypotenuse of a quarter triangle",
+  "mechanism": [
+   "circle inscribed in a rhombus",
+   "diagonals bisect at right angles",
+   "height to the hypotenuse of a right triangle"
+  ],
+  "method": "The diagonals cut the rhombus into four right triangles meeting at the center of the circle; the radius is the distance from that center to a side, which is the height to the hypotenuse of one right triangle, found from its area two ways.",
+  "prompt": "A rhombus has diagonals 30 centimeters and 40 centimeters long. A circle is drawn inside the rhombus so that it touches all four sides. What is the radius of the circle, in centimeters?",
+  "choices": [
+   "10",
+   "7.5",
+   "12.5",
+   "60/7",
+   "12"
+  ],
+  "correct_answer": "12",
+  "explanation": "The diagonals bisect each other at right angles, so the rhombus is four right triangles with legs 15 and 20 and hypotenuse 25 (a side). The center of the circle is where the diagonals cross, and the radius is the distance from there to a side: the height to the hypotenuse of one right triangle. Its area is (1/2)(15)(20) = 150 = (1/2)(25)r, so r = 12. The option \"12.5\" takes half the side. The option \"60/7\" divides 15 x 20 by 15 + 20 instead of by the hypotenuse. The option \"10\" divides 15 x 20 by the diagonal 30. The option \"7.5\" divides 15 x 20 by the diagonal 40.",
+  "solve": "const p=30,q=40; const a=p/2,b=q/2; const s=Math.sqrt(a*a+b*b); return a*b/s;",
+  "distractor_solve": {
+   "12.5": "const p=30,q=40; const a=p/2,b=q/2; return Math.sqrt(a*a+b*b)/2;",
+   "60/7": "const p=30,q=40; const a=p/2,b=q/2; return (a*b/(a+b)*7)+\"/7\";",
+   "10": "const p=30,q=40; const a=p/2,b=q/2; return a*b/p;",
+   "7.5": "const p=30,q=40; const a=p/2,b=q/2; return a*b/q;"
+  },
+  "interval": "The radius is less than the shorter half-diagonal 15 (the side is farther from the center than... the foot of the perpendicular is the nearest point of the side, and the vertex at distance 15 is on the side); every option is below 15. The half-diagonals 15 and 20, the side 25, and the rhombus height 24 are not options.",
+  "bounds_checked": "below the shorter half-diagonal (r < 15), positivity, doubling around the key (24, 6 absent), run shapes (7.5, 10, 12.5 has 10 in the middle, not the key)",
+  "forced_form_notes": {
+   "integer": "not forced: the radius is 15 x 20 / 25, which happens to be whole; any of the slip routes give non-integers equally plausibly, and the stem forces no integrality.",
+   "multiple of 2": "not forced: a radius has no parity.",
+   "multiple of 3": "not forced: nothing printed makes the radius a multiple of 3.",
+   "multiple of 4": "not forced: as above.",
+   "multiple of 6": "not forced: as above.",
+   "multiple of 12": "not forced: as above."
+  }
+ },
+ {
+  "id": "S16B-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a sector from its radius and its perimeter",
+  "difficulty": "hard",
+  "template": "sector with given radius and given perimeter / area / area equals half the arc times the radius, no angle needed",
+  "mechanism": [
+   "sector area",
+   "arc length from the perimeter",
+   "fraction of the circle, pi cancels"
+  ],
+  "method": "Subtract the two radii from the perimeter to get the arc, then see that the sector is the same fraction of the circle as the arc is of the circumference, so its area is half the arc times the radius and pi never appears.",
+  "prompt": "A sector of a circle (the region bounded by two radii and the arc between them) has radius 6 centimeters. The perimeter of the sector, which is the two radii plus the arc, is 20 centimeters. What is the area of the sector, in square centimeters?",
+  "choices": [
+   "32",
+   "60",
+   "24",
+   "30",
+   "42"
+  ],
+  "correct_answer": "24",
+  "explanation": "The arc is 20 - 6 - 6 = 8. The sector is the fraction 8/(2 x pi x 6) of the whole circle, so its area is 8/(12 pi) x 36 pi = 24, which is the same as (1/2) x arc x radius = (1/2)(8)(6). The option \"60\" uses the whole perimeter 20 as the arc. The option \"42\" subtracts only one radius. The option \"30\" takes the arc as half the perimeter. The option \"32\" uses the arc in place of the radius as well, (1/2)(8)(8).",
+  "solve": "const r=6,P=20; const arc=P-2*r; return arc*r/2;",
+  "distractor_solve": {
+   "60": "const r=6,P=20; return P*r/2;",
+   "42": "const r=6,P=20; return (P-r)*r/2;",
+   "30": "const r=6,P=20; return (P/2)*r/2;",
+   "32": "const r=6,P=20; const arc=P-2*r; return arc*arc/2;"
+  },
+  "interval": "The sector lies inside the circle of area 36 pi (about 113) and its arc 8 is less than half the circumference; every option is positive and below 113. No printed number squared or doubled is an option except through a named path.",
+  "bounds_checked": "part not exceeding the circle, arc shorter than the circumference, positivity, doubling/halving around the key (48 and 12 excluded), run shapes",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: the area is (1/2) x arc x radius with the arc 20 - 12 = 8 found by the method; nothing printed forces a multiple of 4.",
+   "multiple of 8": "not forced: as above.",
+   "multiple of 12": "not forced: as above; the radius 6 is printed, but (1/2) x arc x 6 is a multiple of 3, not visibly of 12."
+  }
+ },
+ {
+  "id": "S16B-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "height of an equilateral triangle from the distances of an inside point to its sides",
+  "difficulty": "hard",
+  "template": "point inside an equilateral triangle with three distances to the sides / height / area split into three triangles",
+  "mechanism": [
+   "equilateral triangle",
+   "distances from an interior point to the sides",
+   "area split into three triangles with a common base length"
+  ],
+  "method": "Join the point to the three vertices; the three small triangles all have the same base (a side of the triangle), so adding their areas shows the three distances add up to the height.",
+  "prompt": "Point P lies inside an equilateral triangle. The perpendicular distances from P to the three sides of the triangle are 2, 3 and 6 centimeters. What is the height of the triangle, in centimeters?",
+  "choices": [
+   "16.5",
+   "7",
+   "9",
+   "12",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "Let the side be s and the height h. Joining P to the three vertices splits the triangle into three triangles with bases s and heights 2, 3 and 6, so (1/2)s(2) + (1/2)s(3) + (1/2)s(6) = (1/2)s h, which gives h = 2 + 3 + 6 = 11. The option \"7\" combines the distances like the sides of a right triangle, sqrt(4 + 9 + 36). The option \"9\" adds only the two largest distances. The option \"12\" doubles the largest distance. The option \"16.5\" multiplies the sum by 3/2, as if P were the center and the distances were two thirds of the height.",
+  "solve": "const d=[2,3,6]; return d.reduce((a,b)=>a+b,0);",
+  "distractor_solve": {
+   "7": "const d=[2,3,6]; return Math.sqrt(d.reduce((a,b)=>a+b*b,0));",
+   "9": "return 3+6;",
+   "12": "return 2*Math.max(2,3,6);",
+   "16.5": "const d=[2,3,6]; return 1.5*d.reduce((a,b)=>a+b,0);"
+  },
+  "interval": "The height exceeds each distance (P is inside), so h > 6; every option exceeds 6.",
+  "bounds_checked": "height exceeds every distance (> 6), positivity, plus-one/doubling hubs around the key, run shapes",
+  "forced_form_notes": {
+   "multiple of 11": "not forced: the height is the sum of the printed distances, 2 + 3 + 6; seeing that it is the sum is the method.",
+   "odd": "not forced: a length has no parity."
+  }
+ },
+ {
+  "id": "S16B-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "height of an isosceles trapezoid that has an inscribed circle",
+  "difficulty": "hard",
+  "template": "isosceles trapezoid with two bases and a circle touching all four sides / height / equal tangent lengths make the legs sum to the bases",
+  "mechanism": [
+   "trapezoid with an inscribed circle",
+   "equal tangent segments",
+   "legs equal half the sum of the bases",
+   "Pythagorean height"
+  ],
+  "method": "Use equal tangent segments from each vertex to see that the two legs together equal the two bases together, so each leg is half the sum of the bases, then find the height from the leg and half the difference of the bases.",
+  "prompt": "An isosceles trapezoid has parallel sides of lengths 8 and 18, and a circle can be drawn inside it that touches all four of its sides. What is the height of the trapezoid?",
+  "choices": [
+   "10",
+   "12",
+   "√69",
+   "5",
+   "8"
+  ],
+  "correct_answer": "12",
+  "explanation": "From each vertex the two tangent segments to the circle are equal, so the two legs together equal the two bases together: each leg is (8 + 18)/2 = 13. Dropping perpendiculars from the ends of the shorter base cuts off (18 - 8)/2 = 5 at each end of the longer base, so the height is sqrt(13^2 - 5^2) = 12. The option \"5\" is the cut-off length, not the height. The option \"10\" is the difference of the bases. The option \"8\" subtracts lengths instead of squares, 13 - 5. The option \"√69\" uses the whole difference 10 instead of half of it as the horizontal leg, sqrt(169 - 100).",
+  "solve": "const a=8,b=18; const leg=(a+b)/2; const half=(b-a)/2; return Math.sqrt(leg*leg-half*half);",
+  "distractor_solve": {
+   "5": "const a=8,b=18; return (b-a)/2;",
+   "10": "const a=8,b=18; return b-a;",
+   "8": "const a=8,b=18; return (a+b)/2-(b-a)/2;",
+   "√69": "const a=8,b=18; const leg=(a+b)/2; return \"√\"+(leg*leg-(b-a)**2);"
+  },
+  "interval": "The height is positive; the leg (13) bounds it above but the leg is the method, not a printed number, and no option equals 13 or the average base. Every option is below 13.",
+  "bounds_checked": "height below the leg (13 not an option), positivity, printed-number echo (8), form (radical among integers), run shapes",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: a height has no parity; it is sqrt(13^2 - 5^2) by the method.",
+   "multiple of 3": "not forced: as above.",
+   "multiple of 4": "not forced: as above.",
+   "multiple of 6": "not forced: as above.",
+   "multiple of 12": "not forced: as above."
+  }
+ },
+ {
+  "id": "S16B-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest distance between points on two separate circles",
+  "difficulty": "medium",
+  "template": "two circles with given radii and center distance / greatest distance between a point on each / both radii added along the line of centers",
+  "mechanism": [
+   "distance between two circles",
+   "farthest points on the line of centers",
+   "add both radii"
+  ],
+  "method": "The farthest pair of points lies on the line through the two centers, on the far side of each circle, so add both radii to the distance between the centers.",
+  "prompt": "Two circles have radii 3 and 4, and their centers are 13 units apart. A point P is on the first circle and a point Q is on the second circle. What is the greatest possible length of segment PQ?",
+  "choices": [
+   "17",
+   "6",
+   "20",
+   "16",
+   "27"
+  ],
+  "correct_answer": "20",
+  "explanation": "For any P and Q, PQ is at most (P to the first center) + (distance between centers) + (second center to Q) = 3 + 13 + 4 = 20, and this is reached when P and Q are the far ends of the line through the centers. The option \"6\" is the least distance, 13 - 3 - 4. The option \"16\" adds only the radius 3. The option \"17\" adds only the radius 4. The option \"27\" adds both diameters instead of both radii.",
+  "solve": "const r1=3,r2=4,d=13; return d+r1+r2;",
+  "distractor_solve": {
+   "6": "const r1=3,r2=4,d=13; return d-r1-r2;",
+   "16": "const r1=3,r2=4,d=13; return d+r1;",
+   "17": "const r1=3,r2=4,d=13; return d+r2;",
+   "27": "const r1=3,r2=4,d=13; return d+2*r1+2*r2;"
+  },
+  "interval": "The greatest distance is at least the center distance 13 (13 itself is not an option); 6 is below it. The ask is \"greatest\" and 27 exceeds the key, so the key is not the extreme in the asked direction.",
+  "bounds_checked": "center distance floor (13), greatest-ask extreme rule, integrality, key-is-sum shapes (26 - 6 = 20 avoided), run shapes",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the greatest distance 13 + 3 + 4 is a sum of printed numbers of mixed parity; nothing forces evenness.",
+   "multiple of 4": "not forced: as above.",
+   "multiple of 5": "not forced: as above.",
+   "multiple of 10": "not forced: as above."
+  }
+ },
+ {
+  "id": "S16B-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "perimeter of one slice of a round pizza from the area of a slice",
+  "difficulty": "medium",
+  "template": "circle cut into equal sectors with the area of one sector given / perimeter of one sector / radius from the sector area, then two radii plus an eighth of the circumference",
+  "mechanism": [
+   "sector perimeter",
+   "radius from a sector area",
+   "fraction of the circumference"
+  ],
+  "method": "Multiply the slice area by the number of slices to get the whole area and so the radius; then a slice is two radii plus one eighth of the circumference.",
+  "prompt": "A round pizza is cut into 8 equal slices by cuts through its center. Each slice has an area of 8π square inches. What is the perimeter, in inches, of one slice (the two straight edges and the curved crust edge)?",
+  "choices": [
+   "16 + 2π",
+   "8 + 4π",
+   "16 + 4π",
+   "32 + 4π",
+   "8 + 2π"
+  ],
+  "correct_answer": "16 + 2π",
+  "explanation": "The whole pizza has area 8 x 8 pi = 64 pi, so the radius is 8. The two straight edges total 16, and the crust is 1/8 of the circumference 16 pi, which is 2 pi. The perimeter is 16 + 2 pi. The option \"8 + 2π\" counts only one straight edge. The option \"16 + 4π\" uses 2 pi x 16, with the diameter in place of the radius, for the circumference. The option \"8 + 4π\" counts one straight edge and uses the diameter in the circumference. The option \"32 + 4π\" takes the radius to be 16, the diameter, throughout.",
+  "solve": "const n=8,A=8; const r=Math.sqrt(A*n); return (2*r)+\" + \"+(2*r/n)+\"π\";",
+  "distractor_solve": {
+   "8 + 2π": "const n=8,A=8; const r=Math.sqrt(A*n); return r+\" + \"+(2*r/n)+\"π\";",
+   "16 + 4π": "const n=8,A=8; const r=Math.sqrt(A*n); return (2*r)+\" + \"+(4*r/n)+\"π\";",
+   "8 + 4π": "const n=8,A=8; const r=Math.sqrt(A*n); return r+\" + \"+(4*r/n)+\"π\";",
+   "32 + 4π": "const n=8,A=8; const r=2*Math.sqrt(A*n); return (2*r)+\" + \"+(2*r/n)+\"π\";"
+  },
+  "interval": "No length is printed: the radius 8 comes only from the area step, so neither the straight part nor the arc coefficient can be read off the stem. All five options carry pi and are positive.",
+  "bounds_checked": "printed coefficients (none: the stem prints only 8 slices and 8 pi), form (all a + b pi), plurality of components (constants 16/8/16/8/32, coefficients 2/2/4/4/4), symbolic hub (16 + 4π, not the key, is one edit from three options)"
+ },
+ {
+  "id": "S16B-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "angle between the altitude and the angle bisector from one vertex",
+  "difficulty": "hard",
+  "template": "triangle with one angle and the angle between the altitude and bisector from that vertex / the larger other angle / that angle is half the difference of the other two",
+  "mechanism": [
+   "altitude and angle bisector",
+   "angle chase in right triangles",
+   "half the difference of the base angles"
+  ],
+  "method": "Chase angles from the vertex: the altitude makes 90 minus one base angle with one side and the bisector makes half the vertex angle, so the angle between them is half the difference of the other two angles; combine that with their sum.",
+  "prompt": "In triangle ABC, angle A measures 64 degrees and angle B is larger than angle C. The altitude from A to side BC and the bisector of angle A make an angle of 12 degrees with each other. What is the measure of angle B, in degrees?",
+  "choices": [
+   "92",
+   "82",
+   "78",
+   "70",
+   "64"
+  ],
+  "correct_answer": "70",
+  "explanation": "The altitude from A makes an angle of 90 - B with side AB, and the bisector makes A/2 = 32 with AB. Since B > C, the altitude lies between AB and the bisector, so 32 - (90 - B) = 12, which is (B - C)/2 = 12, so B - C = 24. With B + C = 180 - 64 = 116, B = (116 + 24)/2 = 70. The option \"64\" adds only half of 12 to the even split 58. The option \"78\" treats 12 as the angle between the altitude and side AB, so B = 90 - 12. The option \"82\" adds the whole difference 24 to the even split 58 instead of half of it. The option \"92\" subtracts the difference from the sum without halving, 116 - 24.",
+  "solve": "const A=64,t=12; const sum=180-A; const diff=2*t; return (sum+diff)/2;",
+  "distractor_solve": {
+   "64": "const A=64,t=12; return (180-A)/2 + t/2;",
+   "78": "const t=12; return 90-t;",
+   "82": "const A=64,t=12; return (180-A)/2 + 2*t;",
+   "92": "const A=64,t=12; return (180-A) - 2*t;"
+  },
+  "interval": "B is the larger of two angles summing to 116, so 58 < B < 116; every option lies strictly inside (58, 116). The smaller angle 46 and the even split 58 are not options.",
+  "bounds_checked": "larger of two angles (58 < B < 116), angle sum, run shapes (58, 70, 82 avoided since 58 absent; 64, 78, 92 has 78 in the middle, not the key), pair sums to 90/180",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: an angle measure is any value with B + C = 116 and B - C = 24; nothing forces a multiple of 5.",
+   "multiple of 7": "not forced: as above.",
+   "multiple of 10": "not forced: as above; the printed angles 64 and 12 are not multiples of 5."
+  }
+ },
+ {
+  "id": "S16B-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a ring from a chord of the outer circle tangent to the inner circle",
+  "difficulty": "hard",
+  "template": "two circles with one center and a chord of the larger tangent to the smaller / area between the circles / the difference of the squared radii is the half-chord squared",
+  "mechanism": [
+   "concentric circles",
+   "chord tangent to the inner circle",
+   "radius perpendicular to the tangent",
+   "ring area without either radius"
+  ],
+  "method": "Join the center to the point of tangency and to one end of the chord: the right triangle shows the outer radius squared minus the inner radius squared equals half the chord squared, which is all the ring area needs.",
+  "prompt": "Two circles have the same center. A chord of the larger circle is 12 units long and touches the smaller circle at exactly one point. What is the area of the region inside the larger circle and outside the smaller circle?",
+  "choices": [
+   "144π",
+   "36π",
+   "12π",
+   "27π",
+   "6π"
+  ],
+  "correct_answer": "36π",
+  "explanation": "Let R and r be the radii. The radius to the point of tangency is perpendicular to the chord and bisects it, so R^2 = r^2 + 6^2 and R^2 - r^2 = 36. The ring has area pi R^2 - pi r^2 = 36 pi. The option \"144π\" uses the whole chord instead of half of it. The option \"12π\" multiplies the chord by pi. The option \"6π\" multiplies half the chord by pi. The option \"27π\" subtracts the square of half the half-chord, pi(6^2 - 3^2).",
+  "solve": "const c=12; const h=c/2; return (h*h)+\"π\";",
+  "distractor_solve": {
+   "144π": "const c=12; return (c*c)+\"π\";",
+   "12π": "const c=12; return c+\"π\";",
+   "6π": "const c=12; return (c/2)+\"π\";",
+   "27π": "const c=12; const h=c/2; return (h*h-(h/2)**2)+\"π\";"
+  },
+  "interval": "The ring area is positive; no radius is given, so no option is capped by a printed circle. All five carry pi.",
+  "bounds_checked": "form (all pi), coefficient divisibility, part of a circle with no printed radius, run/sum shapes (12 + 24 = 36 avoided)",
+  "forced_form_notes": {
+   "multiple of 4 (pi-coefficient)": "not forced: the coefficient is (half the chord)^2 = 6^2; recognising that it is the half-chord squared is the method, and the distractors 6, 12, 27, 144 come from the same printed 12.",
+   "multiple of 9 (pi-coefficient)": "not forced: as above.",
+   "multiple of 12 (pi-coefficient)": "not forced: as above; 12 is printed, but 12 pi and 144 pi are built from it as directly as 36 pi."
+  }
+ },
+ {
+  "id": "S16B-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "lawn left after two crossing paths",
+  "difficulty": "medium",
+  "template": "rectangle with two perpendicular straight paths of equal width across it / remaining area / slide the paths to the edges",
+  "mechanism": [
+   "crossing paths",
+   "overlap counted once",
+   "slide strips to the edge"
+  ],
+  "method": "Slide the two paths to the edges of the rectangle; the remaining lawn is a rectangle whose sides are each reduced by one path width.",
+  "prompt": "A rectangular lawn measures 20 meters by 30 meters. Two straight paths, each 2 meters wide, cross the lawn: one runs the full length parallel to the 30-meter sides, and the other runs the full width parallel to the 20-meter sides. What is the area, in square meters, of the lawn that is not covered by the paths?",
+  "choices": [
+   "504",
+   "500",
+   "496",
+   "416",
+   "540"
+  ],
+  "correct_answer": "504",
+  "explanation": "The paths cover 2 x 30 + 2 x 20 = 100 square meters, but the 2 x 2 square where they cross is counted twice, so they cover 96 and the lawn left is 600 - 96 = 504. Equivalently, slide the paths to the edges: the lawn is 18 by 28 = 504. The option \"500\" forgets that the crossing square was counted twice. The option \"496\" subtracts the crossing square instead of adding it back. The option \"416\" reduces each side by twice the path width. The option \"540\" removes only one path.",
+  "solve": "const a=20,b=30,w=2; return (a-w)*(b-w);",
+  "distractor_solve": {
+   "500": "const a=20,b=30,w=2; return a*b-(w*b+w*a);",
+   "496": "const a=20,b=30,w=2; return a*b-(w*b+w*a)-w*w;",
+   "416": "const a=20,b=30,w=2; return (a-2*w)*(b-2*w);",
+   "540": "const a=20,b=30,w=2; return a*b-w*b;"
+  },
+  "interval": "The lawn is less than 600 and more than 600 - 100; 416 is below 500 but comes from a named error, and every option is below 600.",
+  "bounds_checked": "part not exceeding whole, overlap direction (500 vs 504 vs 496), divisibility of the remaining area, run shapes (496, 500, 504 has the key at its end)",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the lawn is (20 - 2)(30 - 2) by the method; 600 - 96 is not visibly a multiple of 3 from the stem.",
+   "multiple of 6": "not forced: as above.",
+   "multiple of 7": "not forced: as above; no printed number is a multiple of 7.",
+   "multiple of 8": "not forced: as above.",
+   "multiple of 9": "not forced: as above.",
+   "multiple of 12": "not forced: as above."
+  }
+ },
+ {
+  "id": "S16B-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "surface area of a cube with a square tunnel through it",
+  "difficulty": "medium",
+  "template": "cube with a square hole cut straight through from face to opposite face / total surface area / openings removed, tunnel walls added",
+  "mechanism": [
+   "surface area",
+   "hole through a solid",
+   "inner walls added, openings removed"
+  ],
+  "method": "Start from the cube surface, remove the two square openings, and add the four rectangular walls of the tunnel, each as long as the cube.",
+  "prompt": "A solid cube has edges 6 centimeters long. A square hole with sides 2 centimeters long is cut straight through the cube, from the center of one face to the center of the opposite face, with its sides parallel to the edges of the cube. What is the total surface area, in square centimeters, of the solid that remains, including the inside of the hole?",
+  "choices": [
+   "208",
+   "264",
+   "232",
+   "200",
+   "256"
+  ],
+  "correct_answer": "256",
+  "explanation": "The cube has surface area 6 x 36 = 216. The two openings remove 2 x 4 = 8, and the tunnel adds four walls, each 2 by 6, totalling 48. The total is 216 - 8 + 48 = 256. The option \"208\" removes the openings but forgets the tunnel walls. The option \"264\" adds the walls but does not remove the openings. The option \"232\" adds only two walls. The option \"200\" removes four openings and adds no walls.",
+  "solve": "const e=6,h=2; return 6*e*e - 2*h*h + 4*h*e;",
+  "distractor_solve": {
+   "208": "const e=6,h=2; return 6*e*e - 2*h*h;",
+   "264": "const e=6,h=2; return 6*e*e + 4*h*e;",
+   "232": "const e=6,h=2; return 6*e*e - 2*h*h + 2*h*e;",
+   "200": "const e=6,h=2; return 6*e*e - 4*h*h;"
+  },
+  "interval": "The answer is not bounded by 216 in either direction from the stem alone (the hole removes some area and adds other area); options lie on both sides of 216.",
+  "bounds_checked": "comparison with the uncut cube (both directions), divisibility, run shapes (208, 232, 256 has the key at its end)",
+  "forced_form_notes": {
+   "perfect square": "not forced: 216 - 8 + 48 = 256 is a perfect square by coincidence; a surface area has no reason to be a square."
+  }
+ },
+ {
+  "id": "S16B-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area a tethered goat can reach around a square barn",
+  "difficulty": "hard",
+  "template": "rope tied at an outside corner of a square barn, rope longer than a side / reachable area / three-quarter circle plus two quarter circles around the corners",
+  "mechanism": [
+   "tethered animal region",
+   "rope wrapping around a corner",
+   "three-quarter circle plus quarter circles"
+  ],
+  "method": "The rope sweeps three quarters of a full circle outside the barn, and when it reaches either adjacent wall it bends around the next corner with only the leftover length, sweeping a quarter circle on each side.",
+  "prompt": "A goat is tied with a 16-meter rope to one outside corner of a barn whose floor is a square 12 meters on each side. The goat cannot go inside the barn, and the rope can bend around the corners of the barn. What is the area, in square meters, of the ground outside the barn that the goat can reach?",
+  "choices": [
+   "208π",
+   "224π",
+   "200π",
+   "194π",
+   "196π"
+  ],
+  "correct_answer": "200π",
+  "explanation": "Outside the corner the rope sweeps three quarters of a circle of radius 16: (3/4) x 256 pi = 192 pi. Along each of the two walls that meet at the corner, the rope reaches the next corner with 16 - 12 = 4 meters left and sweeps a quarter circle of radius 4 behind the barn: 2 x (1/4) x 16 pi = 8 pi. Total 200 pi. The option \"196π\" bends the rope around only one corner. The option \"194π\" uses the radius 4 instead of 4^2 in the two quarter circles. The option \"208π\" sweeps a semicircle instead of a quarter circle at each of the two corners. The option \"224π\" sweeps a full circle of radius 4 at each of the two corners.",
+  "solve": "const L=16,s=12; const big=0.75*L*L; const small=2*0.25*(L-s)**2; return (big+small)+\"π\";",
+  "distractor_solve": {
+   "196π": "const L=16,s=12; return (0.75*L*L+0.25*(L-s)**2)+\"π\";",
+   "194π": "const L=16,s=12; return (0.75*L*L+2*0.25*(L-s))+\"π\";",
+   "208π": "const L=16,s=12; return (0.75*L*L+2*0.5*(L-s)**2)+\"π\";",
+   "224π": "const L=16,s=12; return (0.75*L*L+2*(L-s)**2)+\"π\";"
+  },
+  "interval": "The region contains the three-quarter circle (192 pi) and lies inside the full circle of radius 16 (256 pi); every option lies strictly inside (192 pi, 256 pi). The no-wrap value 192 pi, which sits on the floor, is not an option.",
+  "bounds_checked": "full-circle ceiling (256 pi), three-quarter-circle floor (192 pi, not an option), form (all pi), coefficient divisibility, run shapes",
+  "forced_form_notes": {
+   "multiple of 5 (pi-coefficient)": "not forced: the coefficient is (3/4)(16^2) + 2(1/4)(4^2) = 192 + 8; nothing printed (16, 12) forces a multiple of 5.",
+   "multiple of 8 (pi-coefficient)": "not forced: 192 is a multiple of 8 but the corner terms are fixed only by the method; distractors 196, 194 come from the same 192.",
+   "multiple of 10 (pi-coefficient)": "not forced: as for multiple of 5."
+  }
+ },
+ {
+  "id": "S16B-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest number of cubes that fit in a box with sides that are not multiples of the cube",
+  "difficulty": "medium",
+  "template": "box with odd inside dimensions and cubes of edge 2 aligned with it / greatest count / floor in each direction, not volume division",
+  "mechanism": [
+   "packing cubes in a box",
+   "floor in each dimension",
+   "volume division overcounts"
+  ],
+  "method": "With the cubes lined up with the box, count how many fit along each edge separately, rounding down each time, and multiply; dividing the volumes counts cubes that would have to be cut.",
+  "prompt": "Solid cubes with edges 2 inches long are packed, without being cut, into a closed rectangular box whose inside measures 5 inches by 7 inches by 9 inches. Every cube must have its edges parallel to the edges of the box. What is the greatest number of cubes that can fit in the box?",
+  "choices": [
+   "32",
+   "36",
+   "30",
+   "24",
+   "39"
+  ],
+  "correct_answer": "24",
+  "explanation": "Along the 5-inch edge 2 cubes fit, along the 7-inch edge 3 fit, and along the 9-inch edge 4 fit, so 2 x 3 x 4 = 24 cubes fit. The option \"39\" divides the volumes, 315/8, and drops the fraction. The option \"36\" rounds 5/2 up to 3. The option \"32\" rounds 7/2 up to 4. The option \"30\" rounds 9/2 up to 5.",
+  "solve": "const c=2,d=[5,7,9]; return d.reduce((p,x)=>p*Math.floor(x/c),1);",
+  "distractor_solve": {
+   "39": "return Math.floor(5*7*9/8);",
+   "36": "return Math.ceil(5/2)*Math.floor(7/2)*Math.floor(9/2);",
+   "32": "return Math.floor(5/2)*Math.ceil(7/2)*Math.floor(9/2);",
+   "30": "return Math.floor(5/2)*Math.floor(7/2)*Math.ceil(9/2);"
+  },
+  "interval": "The count is at most 315/8, so at most 39; all options are at most 39 and 39 itself is not excluded by that bound. The ask is \"greatest\" and the key is the smallest option, so the key is not the extreme in the asked direction.",
+  "bounds_checked": "volume ceiling (39), greatest-ask extreme rule, integrality, divisibility, run shapes (24, 30, 36 has the key at its end)",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: the count is floor(5/2) x floor(7/2) x floor(9/2); the stem fixes no divisibility of the product, and every distractor is the same product with one factor rounded the other way.",
+   "multiple of 6": "not forced: as above.",
+   "multiple of 8": "not forced: as above.",
+   "multiple of 12": "not forced: as above."
+  }
+ },
+ {
+  "id": "S16B-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "circle through two corners of a square and tangent to the opposite side",
+  "difficulty": "hard",
+  "template": "square with a circle through two adjacent corners touching the opposite side / radius / center on the midline, one Pythagorean equation",
+  "mechanism": [
+   "circle through two vertices of a square",
+   "tangent to the opposite side",
+   "center on the perpendicular bisector",
+   "Pythagorean equation in r"
+  ],
+  "method": "Put the center on the line of symmetry; it is r above the touched side, so its distance to a corner uses a horizontal leg of half the side and a vertical leg of the side minus r.",
+  "prompt": "A square has sides 8 units long. A circle passes through two corners of the square that are at the ends of one side, and it touches the opposite side of the square at exactly one point. What is the radius of the circle?",
+  "choices": [
+   "4√2",
+   "8",
+   "4√5",
+   "5",
+   "2√5"
+  ],
+  "correct_answer": "5",
+  "explanation": "By symmetry the center lies on the line through the midpoints of the touched side and the opposite side, r above the touched side, so it is 8 - r below the side through the two corners and 4 to the side of each corner. Then r^2 = 4^2 + (8 - r)^2, so 16r = 80 and r = 5. The option \"8\" uses the whole side 8 instead of half of it as the horizontal leg. The option \"2√5\" halves the distance sqrt(4^2 + 8^2) from the point of tangency to a corner, as if that distance were a diameter. The option \"4√5\" takes the center at the point of tangency, sqrt(4^2 + 8^2). The option \"4√2\" uses the circle through all four corners.",
+  "solve": "const s=8; return (s*s/4+s*s)/(2*s);",
+  "distractor_solve": {
+   "8": "const s=8; return (s*s+s*s)/(2*s);",
+   "2√5": "const s=8; const v=s*s/4+s*s; return (Math.sqrt(v/5)/2)+\"√5\";",
+   "4√5": "const s=8; const v=s*s/4+s*s; return Math.sqrt(v/5)+\"√5\";",
+   "4√2": "const s=8; return (s/2)+\"√2\";"
+  },
+  "interval": "The circle passes through two points 8 apart, so r >= 4; every option exceeds 4 (the smallest, 2√5, is about 4.47). No upper bound is free from the stem. The doubled value 10 is not an option.",
+  "bounds_checked": "chord forces r >= 4, form (integers and radicals), run shapes, key not the circumscribed-circle value",
+  "forced_form_notes": {
+   "positive": "not forced (parser artefact): every option is a positive length; the three radical options are read as 'positive (sqrt-coefficient)' by the script, so they do not count as sharing plain 'positive'.",
+   "integer": "not forced: the radius is (4^2 + 8^2)/16 = 5, whole by coincidence; nothing in the stem says the radius is whole, and three options carry radicals from named wrong centers.",
+   "multiple of 5": "not forced: as above.",
+   "odd": "not forced: a radius has no parity."
+  }
+ },
+ {
+  "id": "S16B-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a right triangle from one leg and the median to the hypotenuse",
+  "difficulty": "hard",
+  "template": "right triangle with one leg and the median to the hypotenuse / area / the median to the hypotenuse is half the hypotenuse",
+  "mechanism": [
+   "median to the hypotenuse",
+   "midpoint of the hypotenuse is equidistant from the vertices",
+   "Pythagorean leg"
+  ],
+  "method": "See that the midpoint of the hypotenuse is equally far from all three vertices, so the hypotenuse is twice the median; then find the other leg and the area.",
+  "prompt": "In a right triangle, one leg is 5 centimeters long and the median from the right angle to the hypotenuse is 6.5 centimeters long. What is the area of the triangle, in square centimeters?",
+  "choices": [
+   "16.25",
+   "25",
+   "30",
+   "28.75",
+   "20"
+  ],
+  "correct_answer": "30",
+  "explanation": "The midpoint of the hypotenuse is the center of the circle through all three vertices, so the median to the hypotenuse is half the hypotenuse: the hypotenuse is 13. The other leg is sqrt(13^2 - 5^2) = 12 and the area is (1/2)(5)(12) = 30. The option \"16.25\" uses the median as the other leg. The option \"20\" subtracts lengths, 13 - 5 = 8, for the other leg. The option \"25\" doubles the given leg because the hypotenuse is double the median. The option \"28.75\" adds the median and the leg, 11.5, for the other leg.",
+  "solve": "const a=5,m=6.5; const c=2*m; const b=Math.sqrt(c*c-a*a); return a*b/2;",
+  "distractor_solve": {
+   "16.25": "const a=5,m=6.5; return a*m/2;",
+   "20": "const a=5,m=6.5; return a*(2*m-a)/2;",
+   "25": "const a=5,m=6.5; return a*(a*2*m/m)/2;",
+   "28.75": "const a=5,m=6.5; return a*(m+a)/2;"
+  },
+  "interval": "The other leg is less than the hypotenuse 13, so the area is less than (1/2)(5)(13) = 32.5; every option is below 32.5. The key is the largest option, but the 32.5 ceiling needs the hypotenuse, which is the step being tested.",
+  "bounds_checked": "other leg below the hypotenuse (area < 32.5), positivity, run shapes (20, 25, 30 has the key at its end)",
+  "forced_form_notes": {
+   "integer": "not forced: the area is (1/2)(5)(12); the other leg 12 is found by the method, and nothing printed (5, 6.5) forces a whole area.",
+   "multiple of 2": "not forced: as above.",
+   "multiple of 3": "not forced: as above; no printed number is a multiple of 3.",
+   "multiple of 5": "not forced: the leg 5 is printed, so (1/2)(5)(b) is a multiple of 2.5 for every option route, which all four distractors respect (16.25, 20, 25, 28.75).",
+   "multiple of 6": "not forced: as above.",
+   "multiple of 10": "not forced: as above."
+  }
+ },
+ {
+  "id": "S16B-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of the triangle joining points one third of the way along each side",
+  "difficulty": "hard",
+  "template": "triangle with a point one third along each side, taken in the same turning direction / fraction of the area / each corner triangle is the product of the two side fractions",
+  "mechanism": [
+   "triangle inside a triangle",
+   "corner triangle area from two side fractions",
+   "area by subtraction"
+  ],
+  "method": "Each corner triangle shares an angle with the big triangle, so its area is the big area times the product of the two side fractions that meet at that angle; subtract the three corners.",
+  "prompt": "In triangle ABC, point D is on side AB with AD equal to one third of AB, point E is on side BC with BE equal to one third of BC, and point F is on side CA with CF equal to one third of CA. What fraction of the area of triangle ABC is the area of triangle DEF?",
+  "choices": [
+   "1/3",
+   "1/2",
+   "5/9",
+   "7/9",
+   "3/4"
+  ],
+  "correct_answer": "1/3",
+  "explanation": "At corner B, triangle DBE has DB = (2/3)AB and BE = (1/3)BC with the same angle B, so its area is (2/3)(1/3) = 2/9 of triangle ABC. The same holds at A and C. So DEF has area 1 - 3(2/9) = 1/3 of ABC. The option \"1/2\" takes each corner as (1/2)(1/3) = 1/6 of the whole. The option \"5/9\" subtracts (2/3)^2 as if DEF were a scaled copy of ABC. The option \"7/9\" subtracts only one corner triangle. The option \"3/4\" takes each corner as 1/12.",
+  "solve": "const f=1/3; const corner=f*(1-f); const rest=1-3*corner; return \"1/\"+Math.round(1/rest);",
+  "distractor_solve": {
+   "1/2": "const f=1/3; const rest=1-3*(f/2); return \"1/\"+Math.round(1/rest);",
+   "5/9": "const f=1/3; return Math.round((1-(1-f)**2)*9)+\"/9\";",
+   "7/9": "const f=1/3; return Math.round((1-f*(1-f))*9)+\"/9\";",
+   "3/4": "const f=1/3; const rest=1-3*(f/4); return Math.round(rest*4)+\"/4\";"
+  },
+  "interval": "The fraction is between 0 and 1; every option lies in (0, 1). No midpoint case (1/4) is an option.",
+  "bounds_checked": "part of whole, form (ninths and simple fractions), run/sum shapes (4/9 with 7/9 avoided), key-is-difference shapes",
+  "forced_form_notes": {
+   "denominator 3": "not forced: the fraction is 1 - 3 x (1/3)(2/3); the thirds in the stem give ninths, and the distractors 5/9 and 7/9 are ninths, while 1/2 and 3/4 come from named slips; the key reducing to 1/3 is a result, not a printed form."
+  }
+ },
+ {
+  "id": "S16B-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of an isosceles trapezoid whose diagonals are perpendicular",
+  "difficulty": "hard",
+  "template": "isosceles trapezoid with two bases and perpendicular diagonals / area / the height equals half the sum of the bases",
+  "mechanism": [
+   "isosceles trapezoid",
+   "perpendicular diagonals",
+   "isosceles right triangles on the bases",
+   "height equals the midline"
+  ],
+  "method": "The perpendicular diagonals of an isosceles trapezoid cut off isosceles right triangles on each base, so the height splits into half of each base; the height is the average of the bases and the area is the height squared.",
+  "prompt": "An isosceles trapezoid has parallel sides 8 and 14 units long, and its two diagonals are perpendicular to each other. What is the area of the trapezoid?",
+  "choices": [
+   "112",
+   "121",
+   "88",
+   "66",
+   "77"
+  ],
+  "correct_answer": "121",
+  "explanation": "Let the diagonals meet at E. By symmetry E is on the axis of the trapezoid, and since the diagonals are perpendicular and equal, the triangles on the two bases are isosceles right triangles. The height of each from E is half its base: 4 and 7. So the height of the trapezoid is 11 and the area is (1/2)(8 + 14)(11) = 121. The option \"77\" uses the correct height 11 but multiplies it by half the longer base only, (1/2)(14)(11). The option \"66\" uses the difference of the bases, 6, as the height. The option \"88\" uses the shorter base, 8, as the height. The option \"112\" multiplies the bases.",
+  "solve": "const a=8,b=14; const h=a/2+b/2; return (a+b)/2*h;",
+  "distractor_solve": {
+   "77": "const a=8,b=14; const h=a/2+b/2; return b/2*h;",
+   "66": "const a=8,b=14; return (a+b)/2*(b-a);",
+   "88": "const a=8,b=14; return (a+b)/2*a;",
+   "112": "const a=8,b=14; return a*b;"
+  },
+  "interval": "The area is positive and no printed length bounds the height (the legs are not given); every option is positive. The key is the largest option; the height bound would need the method.",
+  "bounds_checked": "positivity, printed-number products (112 named), parity and multiples of 11 across the options, pair sums to 180 (avoided by the chosen bases), run shapes",
+  "forced_form_notes": {
+   "odd": "not forced: the area is h^2 with h = (8 + 14)/2 = 11 found by the method; an area has no parity, and one distractor (77) is odd.",
+   "perfect square": "not forced: that the area equals the height squared is the method itself; the stem prints only 8 and 14."
+  }
+ },
+ {
+  "id": "S16B-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance travelled by the center of a wheel rolled around a square",
+  "difficulty": "hard",
+  "template": "wheel rolled once around the outside of a square / path length of its center / straight parts equal the sides, corner arcs make one full circle",
+  "mechanism": [
+   "rolling around a polygon",
+   "path of the center",
+   "corner arcs sum to one circle"
+  ],
+  "method": "Along each side the center moves exactly the side length, and at each corner it swings through a quarter circle of the wheel radius; the four quarter circles together make one full circle.",
+  "prompt": "A wheel of radius 2 centimeters rolls without slipping around the outside of a square whose sides are 10 centimeters long, always touching the square, until it returns to its starting position. How many centimeters does the center of the wheel travel?",
+  "choices": [
+   "56 + 8π",
+   "56 + 2π",
+   "48 + 8π",
+   "40 + 16π",
+   "40 + 4π"
+  ],
+  "correct_answer": "40 + 4π",
+  "explanation": "Along each side the center moves parallel to it, 2 cm away, for exactly 10 cm: 40 in all. At each corner the center turns through a quarter circle of radius 2 about the corner; four quarter circles make one circle of circumference 2 pi x 2 = 4 pi. Total 40 + 4 pi. The option \"48 + 8π\" lengthens each straight part by the radius, 12 instead of 10, and takes the radius of the corner arcs as the diameter 4. The option \"40 + 16π\" uses pi r^2 = 4 pi, an area, for each of the four corners. The option \"56 + 2π\" lengthens each straight part by the diameter, 14 instead of 10, and uses pi r for the full turn. The option \"56 + 8π\" lengthens each straight part by the diameter and takes the arc radius as 4.",
+  "solve": "const s=10,r=2; return (4*s)+\" + \"+(2*r)+\"π\";",
+  "distractor_solve": {
+   "48 + 8π": "const s=10,r=2; return (4*(s+r))+\" + \"+(4*r)+\"π\";",
+   "40 + 16π": "const s=10,r=2; return (4*s)+\" + \"+(4*r*r)+\"π\";",
+   "56 + 2π": "const s=10,r=2; return (4*(s+2*r))+\" + \"+r+\"π\";",
+   "56 + 8π": "const s=10,r=2; return (4*(s+2*r))+\" + \"+(4*r)+\"π\";"
+  },
+  "interval": "The path is longer than the perimeter 40 of the square; every option exceeds 40. All five carry pi.",
+  "bounds_checked": "longer than the square perimeter, form (all a + b pi), plurality of components (constants 40/40/48/56/56, coefficients 4/16/8/2/8), symbolic hub (56 + 8π, not the key, is one edit from two options), run shapes"
+ },
+ {
+  "id": "S16B-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "how many regular polygons have whole-number interior angles",
+  "difficulty": "hard",
+  "template": "regular polygons with whole-degree interior angles / count of possible numbers of sides / exterior angle 360/n must be whole, count divisors",
+  "mechanism": [
+   "regular polygon angles",
+   "exterior angle 360 over n",
+   "divisors of 360",
+   "excluding n below 3"
+  ],
+  "method": "Turn the condition on the interior angle into one on the exterior angle, which is 360/n, so n must divide 360; count the divisors and remove those too small to be a polygon.",
+  "prompt": "For how many whole numbers n is the measure of each interior angle of a regular polygon with n sides a whole number of degrees?",
+  "choices": [
+   "22",
+   "16",
+   "18",
+   "23",
+   "24"
+  ],
+  "correct_answer": "22",
+  "explanation": "Each exterior angle is 360/n and the interior angle is 180 - 360/n, so the interior angle is whole exactly when n divides 360. Since 360 = 2^3 x 3^2 x 5, it has 4 x 3 x 2 = 24 divisors; removing n = 1 and n = 2, which are not polygons, leaves 22. The option \"24\" counts every divisor of 360. The option \"23\" removes only n = 1. The option \"18\" counts the divisors of 180. The option \"16\" counts the divisors of 180 and removes 1 and 2.",
+  "solve": "let c=0; for(let n=3;n<=360;n++){ if((180*(n-2))%n===0) c++; } return c;",
+  "distractor_solve": {
+   "24": "let c=0; for(let n=1;n<=360;n++){ if(360%n===0) c++; } return c;",
+   "23": "let c=0; for(let n=2;n<=360;n++){ if(360%n===0) c++; } return c;",
+   "18": "let c=0; for(let n=1;n<=180;n++){ if(180%n===0) c++; } return c;",
+   "16": "let c=0; for(let n=3;n<=180;n++){ if(180%n===0) c++; } return c;"
+  },
+  "interval": "The count is a whole number at most 358; nothing cheap bounds it near the options. Every option is a whole number.",
+  "bounds_checked": "integrality, divisibility, plus-one hubs (22, 23, 24 is a run with the key at its end), run shapes",
+  "forced_form_notes": {
+   "multiple of 11": "not forced: the count is (number of divisors of 360) - 2 = 24 - 2; nothing in the stem forces a multiple of 11."
+  }
+ },
+ {
+  "id": "S16B-27",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "circle tangent to both axes through a given point",
+  "difficulty": "hard",
+  "template": "circle touching both coordinate axes and passing through a point / greatest possible radius / center at (r, r) gives a quadratic with two roots",
+  "mechanism": [
+   "circle tangent to both axes",
+   "center at (r, r)",
+   "distance equation in r",
+   "two circles, unannounced"
+  ],
+  "method": "A circle touching both axes in the first quadrant has its center at (r, r); setting the distance from the center to the given point equal to r gives a quadratic with two roots, so there are two circles and the larger root is wanted.",
+  "prompt": "In the coordinate plane, a circle touches both the x-axis and the y-axis and passes through the point (2, 9). What is the greatest possible radius of the circle?",
+  "choices": [
+   "9",
+   "11",
+   "85/4",
+   "5",
+   "17"
+  ],
+  "correct_answer": "17",
+  "explanation": "The point (2, 9) is in the first quadrant, so the circle is too, and touching both axes puts its center at (r, r). Then (r - 2)^2 + (r - 9)^2 = r^2, which simplifies to r^2 - 22r + 85 = 0, so (r - 5)(r - 17) = 0. Both circles exist, and the greater radius is 17. The option \"5\" is the smaller root, found by trying small values and stopping. The option \"9\" takes the radius as the larger coordinate of the point. The option \"11\" takes half the sum of the roots as if there were only one circle with r = 22/2. The option \"85/4\" puts the center on the x-axis at (r, 0), so (2 - r)^2 + 81 = r^2.",
+  "solve": "const x=2,y=9; const b=2*(x+y), c=x*x+y*y; const d=Math.sqrt(b*b-4*c); return (b+d)/2;",
+  "distractor_solve": {
+   "5": "const x=2,y=9; const b=2*(x+y), c=x*x+y*y; return (b-Math.sqrt(b*b-4*c))/2;",
+   "9": "const x=2,y=9; return Math.max(x,y);",
+   "11": "const x=2,y=9; return (x+y);",
+   "85/4": "const x=2,y=9; return (x*x+y*y)+\"/\"+(2*x);"
+  },
+  "interval": "The circle passes through (2, 9) and touches the x-axis, so its diameter is at least 9 and r >= 4.5; every option exceeds 4.5. The ask is \"greatest\" and 85/4 = 21.25 exceeds the key, so the key is not the extreme in the asked direction. The sum 22 and product 85 of the roots are not options.",
+  "bounds_checked": "diameter at least the height of the point (r >= 4.5), greatest-ask extreme rule, integrality, key-is-sum/product shapes (5 + 17 = 22 absent), run shapes (5, 11, 17 has the key at its end)"
+ },
+ {
+  "id": "S16B-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "the other vertices of a square from two opposite vertices",
+  "difficulty": "hard",
+  "template": "two opposite vertices of a square / another vertex / rotate the half-diagonal a quarter turn about the center",
+  "mechanism": [
+   "square from a diagonal",
+   "center as the midpoint of the diagonal",
+   "quarter turn of the half-diagonal"
+  ],
+  "method": "The other two vertices are the center plus or minus the half-diagonal turned a quarter turn, so find the midpoint, take the offset to one given vertex, swap its parts and change one sign.",
+  "prompt": "In the coordinate plane, the points (-1, 1) and (7, 5) are opposite vertices of a square. Which of the following is another vertex of the square?",
+  "choices": [
+   "(2, 5)",
+   "(4, 1)",
+   "(6, -3)",
+   "(1, 7)",
+   "(-1, 11)"
+  ],
+  "correct_answer": "(1, 7)",
+  "explanation": "The center is the midpoint (3, 3). The offset from the center to (7, 5) is (4, 2); a quarter turn gives (-2, 4), so the other vertices are (3, 3) + (-2, 4) = (1, 7) and (3, 3) - (-2, 4) = (5, -1). Check: (1, 7) is sqrt(40) from both given points, and those two segments are perpendicular. The option \"(2, 5)\" turns only a quarter of the diagonal, (2, 1), instead of half of it. The option \"(4, 1)\" turns that quarter-diagonal the other way. The option \"(6, -3)\" turns three quarters of the diagonal, (6, 3), the other way. The option \"(-1, 11)\" turns the whole diagonal (8, 4) instead of half of it.",
+  "solve": "const A=[-1,1],C=[7,5]; const M=[(A[0]+C[0])/2,(A[1]+C[1])/2]; const v=[C[0]-M[0],C[1]-M[1]]; return \"(\"+(M[0]-v[1])+\", \"+(M[1]+v[0])+\")\";",
+  "distractor_solve": {
+   "(2, 5)": "const A=[-1,1],C=[7,5]; const M=[(A[0]+C[0])/2,(A[1]+C[1])/2]; const v=[(C[0]-A[0])/4,(C[1]-A[1])/4]; return \"(\"+(M[0]-v[1])+\", \"+(M[1]+v[0])+\")\";",
+   "(4, 1)": "const A=[-1,1],C=[7,5]; const M=[(A[0]+C[0])/2,(A[1]+C[1])/2]; const v=[(C[0]-A[0])/4,(C[1]-A[1])/4]; return \"(\"+(M[0]+v[1])+\", \"+(M[1]-v[0])+\")\";",
+   "(6, -3)": "const A=[-1,1],C=[7,5]; const M=[(A[0]+C[0])/2,(A[1]+C[1])/2]; const v=[3*(C[0]-A[0])/4,3*(C[1]-A[1])/4]; return \"(\"+(M[0]+v[1])+\", \"+(M[1]-v[0])+\")\";",
+   "(-1, 11)": "const A=[-1,1],C=[7,5]; const M=[(A[0]+C[0])/2,(A[1]+C[1])/2]; const v=[C[0]-A[0],C[1]-A[1]]; return \"(\"+(M[0]-v[1])+\", \"+(M[1]+v[0])+\")\";"
+  },
+  "interval": "Each other vertex is equally far from the two given points (it lies on the perpendicular bisector of the diagonal, through (3, 3) with slope -2), and every one of the five options lies on that bisector, so equidistance removes none. A vertex is a side length sqrt(40) from each given point, less than the diagonal sqrt(80): (2, 5), (4, 1) and (6, -3) are at distance sqrt(25), sqrt(25) and sqrt(65), all below sqrt(80), while (-1, 11) is at sqrt(100), beyond the diagonal, so that check removes one distractor and leaves three.",
+  "bounds_checked": "equidistance from the two given vertices (removes none), distance below the diagonal (removes 1 of 4), coordinate runs around the key (none), plurality of components, symbolic one-edit structure"
+ },
+ {
+  "id": "S16B-29",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rotate a point a quarter turn about another point",
+  "difficulty": "hard",
+  "template": "point rotated 90 degrees counterclockwise about a center that is not the origin / image coordinates / translate, rotate the offset, translate back",
+  "mechanism": [
+   "rotation about a point",
+   "quarter turn of an offset vector",
+   "translate to the origin and back"
+  ],
+  "method": "Find the offset of the point from the center, turn that offset a quarter turn counterclockwise by swapping its parts and negating the new first part, and add it back to the center.",
+  "prompt": "In the coordinate plane, point P is (7, 3). Point P is rotated 90 degrees counterclockwise about the point C(2, 1). What are the coordinates of the image of P?",
+  "choices": [
+   "(-3, -1)",
+   "(0, 6)",
+   "(4, -4)",
+   "(7, -1)",
+   "(0, -4)"
+  ],
+  "correct_answer": "(0, 6)",
+  "explanation": "The offset from C to P is (7 - 2, 3 - 1) = (5, 2). A quarter turn counterclockwise sends (a, b) to (-b, a), so the offset becomes (-2, 5), and the image is C + (-2, 5) = (0, 6). The option \"(4, -4)\" turns clockwise instead, (2, -5). The option \"(-3, -1)\" turns 180 degrees, (-5, -2). The option \"(0, -4)\" swaps the parts and negates both, (-2, -5). The option \"(7, -1)\" negates the second part without swapping, (5, -2), which reflects instead of rotating.",
+  "solve": "const P=[7,3],C=[2,1]; const v=[P[0]-C[0],P[1]-C[1]]; const w=[-v[1],v[0]]; return \"(\"+(C[0]+w[0])+\", \"+(C[1]+w[1])+\")\";",
+  "distractor_solve": {
+   "(4, -4)": "const P=[7,3],C=[2,1]; const v=[P[0]-C[0],P[1]-C[1]]; return \"(\"+(C[0]+v[1])+\", \"+(C[1]-v[0])+\")\";",
+   "(-3, -1)": "const P=[7,3],C=[2,1]; const v=[P[0]-C[0],P[1]-C[1]]; return \"(\"+(C[0]-v[0])+\", \"+(C[1]-v[1])+\")\";",
+   "(0, -4)": "const P=[7,3],C=[2,1]; const v=[P[0]-C[0],P[1]-C[1]]; return \"(\"+(C[0]-v[1])+\", \"+(C[1]-v[0])+\")\";",
+   "(7, -1)": "const P=[7,3],C=[2,1]; const v=[P[0]-C[0],P[1]-C[1]]; return \"(\"+(C[0]+v[0])+\", \"+(C[1]-v[1])+\")\";"
+  },
+  "interval": "The image is as far from C as P is (sqrt(29)), and every one of the five options is at distance sqrt(29) from C, so the distance invariant removes none. A quarter turn counterclockwise of an offset pointing right and slightly up must point up and slightly left; that direction check is the rotation itself.",
+  "bounds_checked": "distance from the center preserved (removes none), quadrant/sign of the offset, plurality of components (no position has a unique mode), symbolic one-edit structure (key not a hub)"
+ },
+ {
+  "id": "S16B-30",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of the part of a square between two parallel lines",
+  "difficulty": "hard",
+  "template": "square on the grid cut by two parallel lines y = x - a and y = x + b / area between them inside the square / subtract the two corner triangles",
+  "mechanism": [
+   "region between two lines",
+   "area by complement",
+   "right isosceles corner triangles"
+  ],
+  "method": "Instead of computing the slanted region directly, find the two right isosceles triangles cut off at opposite corners and subtract them from the square.",
+  "prompt": "In the coordinate plane, R is the set of points (x, y) with 0 <= x <= 6 and 0 <= y <= 6 that satisfy both y >= x - 2 and y <= x + 3. What is the area of R?",
+  "choices": [
+   "28",
+   "31.5",
+   "23.5",
+   "20",
+   "11"
+  ],
+  "correct_answer": "23.5",
+  "explanation": "The square has area 36. The line y = x - 2 cuts off the lower-right corner triangle with vertices (2, 0), (6, 0), (6, 4), legs 4 and 4, area 8. The line y = x + 3 cuts off the upper-left corner triangle with vertices (0, 3), (0, 6), (3, 6), legs 3 and 3, area 4.5. R has area 36 - 8 - 4.5 = 23.5. The option \"11\" leaves out the 1/2 in both triangle areas. The option \"20\" uses legs of 4 for both triangles. The option \"28\" removes only the lower corner. The option \"31.5\" removes only the upper corner.",
+  "solve": "const s=6,a=2,b=3; return s*s-(s-a)**2/2-(s-b)**2/2;",
+  "distractor_solve": {
+   "11": "const s=6,a=2,b=3; return s*s-(s-a)**2-(s-b)**2;",
+   "20": "const s=6,a=2; return s*s-2*(s-a)**2/2;",
+   "28": "const s=6,a=2; return s*s-(s-a)**2/2;",
+   "31.5": "const s=6,b=3; return s*s-(s-b)**2/2;"
+  },
+  "interval": "The area is less than 36; every option is below 36 and above 0. No option equals 36 or a single printed number.",
+  "bounds_checked": "part not exceeding whole, positivity, run shapes, decimal form of the key against integer options"
+ },
+ {
+  "id": "S16B-31",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance from the origin to a line, by area",
+  "difficulty": "hard",
+  "template": "line with both intercepts positive / perpendicular distance from the origin / twice the triangle area divided by the hypotenuse",
+  "mechanism": [
+   "distance from a point to a line",
+   "intercepts make a right triangle",
+   "area computed two ways"
+  ],
+  "method": "The line and the axes make a right triangle; its area from the two legs equals half the hypotenuse times the distance from the origin, so the distance is twice the area divided by the hypotenuse.",
+  "prompt": "In the coordinate plane, what is the shortest distance from the origin to the line 3x + 4y = 24?",
+  "choices": [
+   "4.8",
+   "24/7",
+   "3",
+   "4",
+   "2"
+  ],
+  "correct_answer": "4.8",
+  "explanation": "The line meets the axes at (8, 0) and (0, 6). These and the origin form a right triangle with legs 8 and 6, area (1/2)(8)(6) = 24, and hypotenuse sqrt(8^2 + 6^2) = 10. The distance d from the origin to the line is the height to the hypotenuse: (1/2)(10)d = 24, so d = 4.8. The option \"2\" divides 24 by the product 3 x 4. The option \"3\" divides the area 24 by the x-intercept 8. The option \"24/7\" divides 24 by 3 + 4. The option \"4\" divides the area 24 by the y-intercept 6.",
+  "solve": "const a=3,b=4,c=24; const X=c/a,Y=c/b; const hyp=Math.sqrt(X*X+Y*Y); return X*Y/hyp;",
+  "distractor_solve": {
+   "2": "const a=3,b=4,c=24; return c/(a*b);",
+   "3": "const a=3,b=4,c=24; const X=c/a,Y=c/b; return (X*Y/2)/X;",
+   "24/7": "const a=3,b=4,c=24; return c+\"/\"+(a+b);",
+   "4": "const a=3,b=4,c=24; const X=c/a,Y=c/b; return (X*Y/2)/Y;"
+  },
+  "interval": "The distance is less than each intercept (6 and 8), because the foot of the perpendicular is the closest point of the line; every option is below 6 and positive. The intercepts themselves and the hypotenuse are not options.",
+  "bounds_checked": "below each intercept (d < 6), positivity, printed-number echoes (6, 8, 24 absent), doubling around the key (2.4, 9.6 absent), run shapes"
+ }
+]

@@ -1,0 +1,643 @@
+[
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-01",
+  "subskill": "product of all divisors by pairing each divisor with its cofactor",
+  "difficulty": "hard",
+  "template": "all divisors of a stated integer multiplied together / the exponent k in n^k / pair each divisor d with n/d",
+  "mechanism": [
+   "product of all divisors",
+   "pair d with n/d",
+   "half the divisor count"
+  ],
+  "method": "Count the divisors from the prime factorization, then pair each divisor with its cofactor so every pair multiplies to the number itself, giving half as many factors of the number as there are divisors.",
+  "prompt": "When all of the positive divisors of 432, including 1 and 432, are multiplied together, the product can be written as 432^k. What is the value of k?",
+  "choices": [
+   "10",
+   "7",
+   "18",
+   "12",
+   "20"
+  ],
+  "correct_answer": "10",
+  "explanation": "432 = 2^4 x 3^3, so it has (4 + 1)(3 + 1) = 20 positive divisors. They pair off as d and 432/d (no divisor pairs with itself, since 432 is not a perfect square), and each pair multiplies to 432. Ten pairs give 432^10, so k = 10. The option \"20\" uses the number of divisors without pairing them. The option \"18\" sets aside 1 and 432 and counts each of the other 18 divisors as one factor of 432, without pairing. The option \"12\" multiplies the exponents 4 x 3. The option \"7\" adds the exponents 4 + 3, as if k were the number of prime factors.",
+  "solve": "let d=0;for(let x=1;x<=432;x++)if(432%x===0)d++;return d/2;",
+  "distractor_solve": {
+   "20": "let d=0;for(let x=1;x<=432;x++)if(432%x===0)d++;return d;",
+   "18": "let d=0;for(let x=1;x<=432;x++)if(432%x===0)d++;return d-2;",
+   "12": "return 4*3;",
+   "7": "return 4+3;"
+  },
+  "interval": "k lies between 1 and the divisor count 20 (each divisor is at most 432 and at least 1, and 1 contributes nothing). 20 sits on that upper bound but is reached by the natural no-pairing error, and it is not printed in the stem. 7, 12, 18 lie strictly inside. No sign, parity or digit property of k is readable from the stem without counting and pairing.",
+  "bounds_checked": "range (k between 1 and the divisor count); upper bound reached by the no-pairing error; parity of k (not forced: 432^k for any k); key as sum or difference of two options (20-12=8, 18-7=11, 12-7=5: none give 10; 20/2 = 10 is the halving the method itself performs)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: k is half the divisor count 20; the stem gives only 432, and nothing in it makes k even before the divisors are counted and paired.",
+   "multiple of 5": "not forced: the 5 comes from the exponent 4 + 1 in the divisor count, which is the work the item asks for.",
+   "multiple of 10": "not forced: same as multiple of 5; k = 10 only after counting 20 divisors and pairing them."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-02",
+  "subskill": "remainder on division by 99 of a number formed by writing two-digit numbers side by side",
+  "difficulty": "hard",
+  "template": "two-digit whole numbers written in order with no spaces / remainder on division by 99 / each block of two digits is worth 1 modulo 99 because 100 leaves remainder 1",
+  "mechanism": [
+   "concatenated two-digit blocks",
+   "100 leaves remainder 1 on division by 99",
+   "remainder of the block sum"
+  ],
+  "method": "See that each shift by two places multiplies by 100, which leaves remainder 1 on division by 99, so the long number has the same remainder as the sum of its two-digit blocks; sum the arithmetic series and reduce.",
+  "prompt": "The number N is formed by writing the whole numbers from 10 to 50 in order with no spaces, so N = 101112131415...484950. What is the remainder when N is divided by 99?",
+  "choices": [
+   "30",
+   "42",
+   "6",
+   "87",
+   "9"
+  ],
+  "correct_answer": "42",
+  "explanation": "Moving a block two places to the left multiplies it by 100, and 100 = 99 + 1 leaves remainder 1 on division by 99. So N leaves the same remainder as the sum of its two-digit blocks: 10 + 11 + ... + 50 = 41 x 60 / 2 = 1230. And 1230 = 12 x 99 + 42, so the remainder is 42. The option \"6\" reduces 1230 by 9 instead of by 99. The option \"87\" adds the single digits of N (their sum is 285) instead of the two-digit blocks, and 285 = 2 x 99 + 87. The option \"30\" alternates the signs of the blocks (50 - 49 + 48 - ... + 10), which is the rule for division by 101, where 100 leaves remainder -1. The option \"9\" divides the block sum 1230 by 11 instead of by 99 (1230 = 111 x 11 + 9).",
+  "solve": "let s='';for(let n=10;n<=50;n++)s+=String(n);return Number(BigInt(s)%99n);",
+  "distractor_solve": {
+   "6": "let t=0;for(let n=10;n<=50;n++)t+=n;return t%9;",
+   "87": "let s='';for(let n=10;n<=50;n++)s+=String(n);let t=0;for(const c of s)t+=Number(c);return t%99;",
+   "30": "let t=0,sg=1;for(let n=50;n>=10;n--){t+=sg*n;sg=-sg;}return ((t%99)+99)%99;",
+   "9": "let t=0;for(let n=10;n<=50;n++)t+=n;return t%11;"
+  },
+  "interval": "The remainder lies in 0..98; all options do. N is even and a multiple of 5 (it ends in 0), but 99 is odd and prime to 5, so neither the parity nor a factor 5 of the remainder is forced. A digit-sum argument makes N a multiple of 3, and 3 divides 99, so the remainder must be a multiple of 3: all four distractors (30, 6, 87, 9) are multiples of 3. N modulo 9 equals its digit sum modulo 9 (6); 6 and 87 share that, 30 and 9 do not, but finding the digit sum of an 82-digit number is not a free observation.",
+  "bounds_checked": "range 0..98; parity and factor 5 (not inherited through 99); multiple of 3 (forced by the digit sum, shared by all four distractors); residue mod 9 (needs the full digit sum); key as sum/difference of options (none)",
+  "forced_form_notes": {
+   "multiple of 7": "not forced: 7 does not divide 99, so nothing about N passes a factor 7 to the remainder.",
+   "multiple of 2": "not forced: N is even, but 99 is odd, so the parity of N says nothing about the parity of the remainder (30 and 6 are even, 87 and 9 odd).",
+   "multiple of 6": "not forced: the factor 3 is forced and all four distractors carry it; the factor 2 is not, because 99 is odd.",
+   "multiple of 14": "not forced: neither 2 nor 7 divides 99, so neither passes to the remainder.",
+   "multiple of 21": "not forced: the factor 3 is forced and shared by all four distractors; the factor 7 is not, since 7 does not divide 99."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-03",
+  "subskill": "least multiplier that makes a product a perfect square",
+  "difficulty": "medium",
+  "template": "a stated integer times an unknown k / least k making the product a perfect square / supply the primes with odd exponents",
+  "mechanism": [
+   "perfect square exponents even",
+   "least multiplier",
+   "prime factorization"
+  ],
+  "method": "Factor the number into primes and multiply by exactly one more copy of each prime whose exponent is odd.",
+  "prompt": "What is the least positive integer k for which 540k is a perfect square?",
+  "choices": [
+   "3",
+   "5",
+   "15",
+   "60",
+   "135"
+  ],
+  "correct_answer": "15",
+  "explanation": "540 = 2^2 x 3^3 x 5. The exponent of 2 is already even; the exponents of 3 and 5 are odd, so k must supply one 3 and one 5: k = 15, and 540 x 15 = 8100 = 90^2. The option \"3\" fixes only the 3 (540 x 3 = 1620 is not a square). The option \"5\" fixes only the 5 (2700 is not a square). The option \"60\" divides 540 by its square factor 9 and forgets the square factor 4. The option \"135\" divides 540 by its square factor 4 and forgets the square factor 9.",
+  "solve": "for(let k=1;;k++){const r=Math.round(Math.sqrt(540*k));if(r*r===540*k)return k;}",
+  "distractor_solve": {
+   "3": "return 3;",
+   "5": "return 5;",
+   "60": "return 540/9;",
+   "135": "return 540/4;"
+  },
+  "interval": "k is a positive integer. 60 and 135 also make 540k a square only if they carry 15 times a square: 60 = 15 x 4 and 135 = 15 x 9 do make 540k a square, but they are not least; 3 and 5 do not make a square. On a least ask the key 15 is neither the smallest nor the largest option.",
+  "bounds_checked": "least ask (key not the extreme option); sign; plug-back of each option (the work itself); key as sum/difference of options (none)",
+  "forced_form_notes": {
+   "multiple of 15": "not forced: that k must carry both 3 and 5 is the factorization the item asks for; the stem prints only 540."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-04",
+  "subskill": "integer quotient of two linear expressions by splitting off a whole part",
+  "difficulty": "hard",
+  "template": "a quotient (n + 40)/(n + 4) over positive integers n / how many n make it an integer / rewrite as 1 + 36/(n + 4) and keep divisors of 36 above 4",
+  "mechanism": [
+   "split off the whole part",
+   "denominator must divide a constant",
+   "lower bound on the divisor"
+  ],
+  "method": "Rewrite the quotient as one plus a constant over the denominator, so the denominator must be a divisor of that constant, then keep only the divisors the positive range of n allows.",
+  "prompt": "For how many positive integers n is (n + 40)/(n + 4) an integer?",
+  "choices": [
+   "9",
+   "6",
+   "18",
+   "5",
+   "8"
+  ],
+  "correct_answer": "5",
+  "explanation": "(n + 40)/(n + 4) = 1 + 36/(n + 4), so it is an integer exactly when n + 4 divides 36. Since n is positive, n + 4 is at least 5, and the divisors of 36 that are at least 5 are 6, 9, 12, 18 and 36, giving n = 2, 5, 8, 14, 32: five values. The option \"9\" counts every positive divisor of 36, forgetting that n + 4 > 4. The option \"6\" allows n + 4 = 4, which needs n = 0, not a positive integer. The option \"18\" also counts negative divisors of 36. The option \"8\" counts the divisors of 40, as if n + 4 had to divide 40.",
+  "solve": "let c=0;for(let n=1;n<=1000;n++)if((n+40)%(n+4)===0)c++;return c;",
+  "distractor_solve": {
+   "9": "let c=0;for(let d=1;d<=36;d++)if(36%d===0)c++;return c;",
+   "6": "let c=0;for(let n=0;n<=1000;n++)if((n+40)%(n+4)===0)c++;return c;",
+   "18": "let c=0;for(let d=1;d<=36;d++)if(36%d===0)c++;return 2*c;",
+   "8": "let c=0;for(let d=1;d<=40;d++)if(40%d===0)c++;return c;"
+  },
+  "interval": "The count is a whole number at least 1 (n = 32 works by inspection only after the rewrite). For large n the quotient lies strictly between 1 and 2, so only finitely many n work, but no option is excluded by that. All five options are positive integers; 18 is reached only by allowing negative divisors and is not ruled out by a free bound. Parity of the count is not forced.",
+  "bounds_checked": "range (finite, positive); integrality (all options integers); parity (not forced); key as sum/difference of options (none); key not printed in the stem",
+  "forced_form_notes": {
+   "odd": "not forced: the count is the number of divisors of 36 above 4; nothing in the stem fixes its parity (36 has an odd number of divisors, but dropping 1, 2, 3, 4 removes four).",
+   "multiple of 5": "not forced: the count 5 comes from listing divisors of 36 that exceed 4; the 40 and 4 in the stem do not make it a multiple of 5."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-05",
+  "subskill": "pairs with a given greatest common factor and sum, reduced to coprime parts",
+  "difficulty": "hard",
+  "template": "two integers with a stated GCF and stated sum / how many pairs / divide out the GCF and count parts coprime to the reduced sum",
+  "mechanism": [
+   "divide out the greatest common factor",
+   "coprime parts",
+   "count residues coprime to the reduced sum"
+  ],
+  "method": "Write both numbers as the common factor times coprime parts whose sum is the reduced total, then see that the parts are coprime exactly when the smaller part shares no prime with that reduced total, and count those below half of it.",
+  "prompt": "Two positive integers a and b, with a < b, have a sum of 168, and the greatest common factor of a and b is 4. How many such pairs (a, b) are there?",
+  "choices": [
+   "10",
+   "7",
+   "9",
+   "20",
+   "6"
+  ],
+  "correct_answer": "6",
+  "explanation": "Write a = 4x and b = 4y. Then x + y = 42, x < y, and x and y have no common factor greater than 1. Any common factor of x and y divides 42, so the condition is that x shares no prime with 42 = 2 x 3 x 7. Among x = 1 to 20, the values that are odd, not multiples of 3 and not multiples of 7 are 1, 5, 11, 13, 17, 19: six pairs, such as (4, 164) and (20, 148). The option \"20\" counts every x from 1 to 20, ignoring the GCF condition. The option \"10\" only requires x to be odd. The option \"7\" removes the multiples of 2 and 3 but keeps x = 7. The option \"9\" removes the multiples of 2 and 7 but keeps 3, 9 and 15.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;let c=0;for(let a=1;a<84;a++){const b=168-a;if(a<b&&g(a,b)===4)c++;}return c;",
+  "distractor_solve": {
+   "20": "let c=0;for(let x=1;x<21;x++)c++;return c;",
+   "10": "let c=0;for(let x=1;x<21;x++)if(x%2===1)c++;return c;",
+   "7": "let c=0;for(let x=1;x<21;x++)if(x%2===1&&x%3!==0)c++;return c;",
+   "9": "let c=0;for(let x=1;x<21;x++)if(x%2===1&&x%7!==0)c++;return c;"
+  },
+  "interval": "a is a multiple of 4 below 84, so the count is at most 20 (x = 1 to 20); 20 sits on that bound, reached by ignoring the GCF condition. The other options lie inside (0, 20). No parity or divisibility of the count is readable from the stem.",
+  "bounds_checked": "range (at most 20 multiples of 4 below 84); upper bound reached only by the ignore-GCF error; parity (not forced); key as sum/difference of options (none: 10-7=3, 9-7=2, 20-10=10); doubling around the key (12 deliberately not used)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the count of x from 1 to 20 sharing no prime with 42 has no parity readable from the stem; it is found only by listing.",
+   "multiple of 3": "not forced: the count is found by removing multiples of 2, 3 and 7 from 1..20; no factor of the count follows from 168 or 4.",
+   "multiple of 6": "not forced: as for multiple of 2 and multiple of 3."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-06",
+  "subskill": "two primes whose squares differ by a given number, via factoring a difference of squares",
+  "difficulty": "hard",
+  "template": "primes p > q with p^2 - q^2 equal to a stated even number / greatest possible p / factor as (p - q)(p + q) with both factors even",
+  "mechanism": [
+   "difference of squares factored",
+   "both factors even for odd primes",
+   "test each factor pair for primes"
+  ],
+  "method": "Factor the difference of squares into the difference and the sum of the primes, see that both factors must be even because both primes are odd, and test each even factor pair for a prime solution.",
+  "prompt": "The numbers p and q are prime numbers, and p^2 - q^2 = 72. What is the greatest possible value of p?",
+  "choices": [
+   "19",
+   "11",
+   "17",
+   "7",
+   "37"
+  ],
+  "correct_answer": "19",
+  "explanation": "p^2 - q^2 = (p - q)(p + q) = 72. If q = 2 then p^2 = 76, which is not a square, so p and q are both odd and p - q and p + q are both even. The even factor pairs of 72 are 2 x 36, 4 x 18 and 6 x 12, giving (p, q) = (19, 17), (11, 7) and (9, 3); 9 is not prime. So p is 19 or 11, and the greatest is 19. The option \"17\" reports q from the pair (19, 17). The option \"11\" is the other valid p, the one a solver finds first when starting from the middle factor pair. The option \"7\" reports q from the pair (11, 7). The option \"37\" treats 72 as the sum p + q with p - q = 2.",
+  "solve": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let best=0;for(let p=2;p<200;p++)for(let q=2;q<p;q++)if(ip(p)&&ip(q)&&p*p-q*q===72)best=Math.max(best,p);return best;",
+  "distractor_solve": {
+   "17": "const ip=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true;};let best=0,bq=0;for(let p=2;p<200;p++)for(let q=2;q<p;q++)if(ip(p)&&ip(q)&&p*p-q*q===72&&p>best){best=p;bq=q;}return bq;",
+   "11": "return (4+18)/2;",
+   "7": "return (18-4)/2;",
+   "37": "return (72+2)/2;"
+  },
+  "interval": "p^2 > 72 forces p >= 11 among primes, which kills 7 only. Every option is an odd prime, so primality and parity kill nothing. 37 is excluded only by the factoring argument (p + q at most 36), which is the item's idea, or by checking that 37^2 - 72 = 1297 is not a square. On a greatest ask the key 19 is not the largest option.",
+  "bounds_checked": "lower bound p^2 > 72 (kills 7 only); primality and parity of every option (all odd primes); greatest ask (key not the largest option); plug-back of each option (the work)",
+  "forced_form_notes": {}
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-07",
+  "subskill": "divisibility of n^3 - n by 5 through its three consecutive factors",
+  "difficulty": "hard",
+  "template": "integers in a range / how many make n^3 - n a multiple of 5 / factor as (n - 1)n(n + 1) and need one factor divisible by 5",
+  "mechanism": [
+   "factor into three consecutive integers",
+   "one of the three must carry the prime",
+   "three residues out of five"
+  ],
+  "method": "Factor the cubic into the product of three consecutive integers, see that a prime five divides it only when one of the three is a multiple of five, so three residues out of every five work, then count them in the range with care at the end.",
+  "prompt": "For how many integers n from 1 to 98, inclusive, is n^3 - n divisible by 5?",
+  "choices": [
+   "39",
+   "58",
+   "98",
+   "38",
+   "60"
+  ],
+  "correct_answer": "58",
+  "explanation": "n^3 - n = (n - 1)n(n + 1), a product of three consecutive integers. Since 5 is prime, it divides the product exactly when it divides one of n - 1, n, n + 1, that is, when n leaves remainder 1, 0 or 4 on division by 5. From 1 to 98 there are 20 values with remainder 1 (1 to 96), 19 multiples of 5 (5 to 95) and 19 values with remainder 4 (4 to 94): 58 in all. The option \"98\" assumes n^3 - n is always divisible by 5, carrying over the fact that it is always divisible by 6. The option \"60\" counts three out of every five numbers as if the range ran to 100. The option \"39\" uses only the factors n - 1 and n (remainders 1 and 0). The option \"38\" uses only n and n + 1 (remainders 0 and 4).",
+  "solve": "let c=0;for(let n=1;n<=98;n++)if((n*n*n-n)%5===0)c++;return c;",
+  "distractor_solve": {
+   "98": "return 98;",
+   "60": "let c=0;for(let n=1;n<=100;n++)if((n*n*n-n)%5===0)c++;return c;",
+   "39": "let c=0;for(let n=1;n<=98;n++)if(n%5===0||n%5===1)c++;return c;",
+   "38": "let c=0;for(let n=1;n<=98;n++)if(n%5===0||n%5===4)c++;return c;"
+  },
+  "interval": "The count lies between the 19 multiples of 5 (n itself divisible by 5) and 98. 98 sits on the upper bound and is reached only by assuming divisibility always holds; 39, 38 and 60 lie strictly inside. 60 exceeds 3/5 of 98 = 58.8 slightly, but seeing that needs the three-residue fact, which is the item's idea.",
+  "bounds_checked": "range (at least the multiples of 5, at most 98); upper bound reached by the always-divisible error; proportion 3/5 (needs the factoring); parity; key as sum/difference of options (98-39=59, 60-38=22, none give 58)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the count is 20 + 19 + 19 from the range 1 to 98; nothing in the stem fixes its parity (three distractors 38, 60, 98 are even anyway).",
+   "multiple of 29": "not forced: 58 = 2 x 29 is an accident of the range."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-08",
+  "subskill": "three-digit multiples of 9 with all even digits: the digit sum must be exactly 18",
+  "difficulty": "hard",
+  "template": "three-digit numbers whose digits are all even / how many are divisible by 9 / digit sum even, at most 24 and a multiple of 9, so exactly 18",
+  "mechanism": [
+   "divisibility by 9 through the digit sum",
+   "even digits force an even digit sum",
+   "count arrangements of digit multisets"
+  ],
+  "method": "Use the digit-sum test for 9, see that even digits force the sum to be an even multiple of 9 no larger than the maximum possible, so it is exactly 18, then count the digit choices with that sum, minding repeated digits.",
+  "prompt": "Each digit of a three-digit number is even (0, 2, 4, 6 or 8), and the number is divisible by 9. How many such three-digit numbers are there?",
+  "choices": [
+   "18",
+   "12",
+   "10",
+   "30",
+   "11"
+  ],
+  "correct_answer": "10",
+  "explanation": "A number is divisible by 9 exactly when its digit sum is. With even digits the sum is even and at most 8 + 8 + 8 = 24, and it is positive, so it must be 18. The digit sets with sum 18 using even digits (first digit not 0) are {2, 8, 8}, {4, 6, 8} and {6, 6, 6}. They give 3, 6 and 1 numbers: 288, 828, 882; 468, 486, 648, 684, 846, 864; 666. Total 10. The option \"12\" gives the set {6, 6, 6} three arrangements, as if its digits were different, like {2, 8, 8}. The option \"18\" gives every set 6 arrangements, ignoring repeated digits. The option \"30\" counts solutions of the digit equation without the limit that each digit is at most 8. The option \"11\" takes one ninth of the 100 three-digit numbers with all even digits.",
+  "solve": "let c=0;for(let n=100;n<1000;n++){const s=String(n);if([...s].every(ch=>Number(ch)%2===0)&&n%9===0)c++;}return c;",
+  "distractor_solve": {
+   "12": "let c=0;const sets=[[2,8,8],[4,6,8],[6,6,6]];for(const t of sets){const distinct=new Set(t).size;c+=distinct===3?6:3;}return c;",
+   "18": "const seen=new Set();for(let n=100;n<1000;n++){const s=String(n);if([...s].every(ch=>Number(ch)%2===0)&&n%9===0)seen.add([...s].sort().join(''));}return seen.size*6;",
+   "30": "let c=0;for(let a=1;a<=4;a++)for(let b=0;b<=9-a;b++)c++;return c;",
+   "11": "return Math.round((4*5*5)/9);"
+  },
+  "interval": "There are 4 x 5 x 5 = 100 three-digit numbers with all even digits, so the count is at most 100; about one ninth (11) is only an estimate, and the true count is not forced near it. The count is a whole number; all options are. 10, 11, 12, 18, 30 all lie inside (0, 100); no parity or divisibility of the count is readable from the stem.",
+  "bounds_checked": "range (at most 100 all-even three-digit numbers); proportion estimate one ninth (not a bound); digit-sum ceiling 24 (the item's idea); parity of the count; key as sum/difference of options (none)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the count is 3 + 6 + 1 from three digit sets; no parity follows from the stem.",
+   "multiple of 5": "not forced: the count comes from listing arrangements; the stem's digits and the 9 do not make it a multiple of 5.",
+   "multiple of 10": "not forced: as for multiples of 2 and 5."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-09",
+  "subskill": "remainder of a long repdigit on division by 37 using 111 = 3 x 37",
+  "difficulty": "hard",
+  "template": "a number written with a hundred copies of one digit / remainder on division by 37 / blocks of three equal digits are multiples of 37 because 111 = 3 x 37",
+  "mechanism": [
+   "111 is a multiple of 37",
+   "group the digits in threes",
+   "leftover digits after whole blocks"
+  ],
+  "method": "See that three equal digits form a multiple of 111, which is a multiple of 37, so every complete block of three digits contributes nothing and only the leftover digits matter.",
+  "prompt": "The number N is written using the digit 7 exactly 100 times and no other digits, so N = 777...7. What is the remainder when N is divided by 37?",
+  "choices": [
+   "0",
+   "33",
+   "34",
+   "7",
+   "3"
+  ],
+  "correct_answer": "7",
+  "explanation": "111 = 3 x 37, so 777 = 7 x 111 = 21 x 37 is a multiple of 37, and so is any block 777 followed by zeros. Split N into 33 blocks of 777 (99 digits, each block shifted by a power of 1000) and one leftover 7 in the leading place: N = 7 x 10^99 + 777...7 (99 sevens). The 99-digit part is a multiple of 37. And 10^99 = 1000^33, and 1000 = 27 x 37 + 1, so 7 x 10^99 leaves the same remainder as 7. The remainder is 7. The option \"0\" treats 100 as a multiple of 3, as if the blocks of 777 used every digit. The option \"3\" takes two sevens left over, 77 = 2 x 37 + 3. The option \"34\" treats each digit as worth its face value, as for division by 9: 7 x 100 = 700 = 18 x 37 + 34. The option \"33\" reports the number of complete blocks.",
+  "solve": "const N=BigInt('7'.repeat(100));return Number(N%37n);",
+  "distractor_solve": {
+   "0": "const N=BigInt('7'.repeat(99));return Number(N%37n);",
+   "3": "return 77%37;",
+   "34": "return (7*100)%37;",
+   "33": "return Math.floor(100/3);"
+  },
+  "interval": "The remainder lies in 0..36; all options do. N is odd and a multiple of 7, but 37 is odd and prime to 7, so neither parity nor a factor 7 passes to the remainder. No digit-sum or last-digit test applies to 37.",
+  "bounds_checked": "range 0..36; parity and factor 7 (not inherited through 37); key as sum/difference of options (none: 3+33=36, 34-33=1, 33-3=30); key not the extreme option",
+  "forced_form_notes": {
+   "odd": "not forced: N is odd, but 37 is odd, so the parity of N does not fix the parity of the remainder.",
+   "multiple of 7": "not forced: N is a multiple of 7, but 7 does not divide 37, so the remainder need not be a multiple of 7."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-10",
+  "subskill": "four-digit palindromes divisible by 7 through 1001 = 7 x 11 x 13",
+  "difficulty": "hard",
+  "template": "four-digit palindromes abba / how many are divisible by 7 / abba = 1001a + 110b, 1001 is a multiple of 7, so only the 110b part decides",
+  "mechanism": [
+   "palindrome as 1001a + 110b",
+   "1001 = 7 x 11 x 13",
+   "condition falls on the inner digit only"
+  ],
+  "method": "Write the palindrome by place value as a multiple of 1001 plus a multiple of 110, see that 1001 is a multiple of 7 so the outer digit is free, and find which inner digits make the remaining part a multiple of 7.",
+  "prompt": "A palindrome is a number that reads the same forward and backward, such as 3443. How many four-digit palindromes are divisible by 7?",
+  "choices": [
+   "2",
+   "12",
+   "90",
+   "20",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "A four-digit palindrome abba equals 1000a + 100b + 10b + a = 1001a + 110b. Since 1001 = 7 x 143, the part 1001a is always a multiple of 7, so abba is divisible by 7 exactly when 110b is. 110 = 15 x 7 + 5 is not a multiple of 7, so b itself must be: b = 0 or b = 7. The first digit a can be any of 1 to 9, giving 9 x 2 = 18 palindromes (for example 1001 and 2772). The option \"90\" counts every four-digit palindrome, as if 1001 being a multiple of 7 settled it. The option \"12\" takes one seventh of the 90 palindromes, rounded down. The option \"20\" lets the first digit be 0. The option \"2\" also requires the first digit to be a multiple of 7.",
+  "solve": "let c=0;for(let a=1;a<=9;a++)for(let b=0;b<=9;b++){const n=1001*a+110*b;if(n%7===0)c++;}return c;",
+  "distractor_solve": {
+   "90": "let c=0;for(let a=1;a<=9;a++)for(let b=0;b<=9;b++)c++;return c;",
+   "12": "return Math.floor(90/7);",
+   "20": "let c=0;for(let a=0;a<=9;a++)for(let b=0;b<=9;b++){const n=1001*a+110*b;if(n%7===0)c++;}return c;",
+   "2": "let c=0;for(let a=1;a<=9;a++)for(let b=0;b<=9;b++){if(a%7===0&&b%7===0)c++;}return c;"
+  },
+  "interval": "There are 9 x 10 = 90 four-digit palindromes, so the count is at most 90; 90 sits on that bound and is reached by the all-divisible error. Roughly one in seven (12 or 13) is only an estimate, not a bound. 2, 12, 20 lie inside. All options are even, so parity decides nothing.",
+  "bounds_checked": "range (at most 90 palindromes); estimate one seventh (not a bound); parity (all options even); key as sum/difference of options (20-2=18: two distractors, not a printed number; noted, see below); key not printed in the stem",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the count is 9 first digits times 2 inner digits; that the first digit is free is the item's idea, and the stem gives no reason the count is a multiple of 3 before it.",
+   "multiple of 6": "not forced: as for multiple of 3; evenness is shared by all four distractors.",
+   "multiple of 9": "not forced: the factor 9 (free first digit) appears only after seeing that 1001 is a multiple of 7."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-11",
+  "subskill": "ways to write a number as a sum of consecutive positive integers, by run length",
+  "difficulty": "hard",
+  "template": "a stated odd number / how many ways as a sum of two or more consecutive positive integers / each odd divisor fixes one run",
+  "mechanism": [
+   "run length times middle value",
+   "odd divisors give the runs",
+   "exclude the one-term run"
+  ],
+  "method": "See that a run of consecutive integers equals its length times its middle value, so each workable length is tied to an odd divisor of the number, then discard the one-term run and any run that would reach zero.",
+  "prompt": "The number 45 can be written as a sum of two or more consecutive positive integers in several ways; one way is 22 + 23. How many ways are there in all, including 22 + 23?",
+  "choices": [
+   "5",
+   "6",
+   "3",
+   "2",
+   "9"
+  ],
+  "correct_answer": "5",
+  "explanation": "A run of k consecutive integers equals k times its middle value. For odd k the middle value is a whole number, so k must divide 45: k = 3 (14 + 15 + 16), k = 5 (7 + ... + 11), k = 9 (1 + ... + 9); k = 15 would need middle value 3 and reach negative numbers. For even k the middle value is a half-integer, so 2 x 45 / k must be odd: k = 2 (22 + 23), k = 6 (5 + ... + 10); k = 10 would start at 0. That is 5 ways, one for each odd divisor of 45 other than 1. The option \"6\" also counts 45 on its own. The option \"3\" counts only the runs with an odd number of terms. The option \"2\" counts only the runs with an even number of terms. The option \"9\" assumes every length from 1 to 9 works, because 1 + 2 + ... + 9 = 45.",
+  "solve": "let c=0;for(let a=1;a<45;a++){let s=0;for(let b=a;s<45;b++){s+=b;if(s===45&&b>a)c++;}}return c;",
+  "distractor_solve": {
+   "6": "let c=0;for(let a=1;a<=45;a++){let s=0;for(let b=a;s<45;b++){s+=b;if(s===45)c++;}}return c;",
+   "3": "let c=0;for(let a=1;a<45;a++){let s=0;for(let b=a;s<45;b++){s+=b;if(s===45&&b>a&&(b-a+1)%2===1)c++;}}return c;",
+   "2": "let c=0;for(let a=1;a<45;a++){let s=0;for(let b=a;s<45;b++){s+=b;if(s===45&&b>a&&(b-a+1)%2===0)c++;}}return c;",
+   "9": "let c=0;for(let k=1;k<=9;k++)c++;return c;"
+  },
+  "interval": "Since 1 + 2 + ... + 9 = 45, no run has more than 9 terms, so the count is at most 8 (lengths 2 to 9); 9 lies above that bound only if the one-term run is also counted, which the stem excludes, and it is reached by assuming every length from 1 to 9 works. The example 22 + 23 shows the count is at least 1. 2, 3, 5, 6 all lie inside. Parity of the count is not forced.",
+  "bounds_checked": "range (at least 1 from the example, at most 8 lengths); upper bound reached by the every-length error; parity; key as sum/difference of options (2+3=5: two distractors whose sum is the key, since odd-length plus even-length runs is the whole count; recorded as a risk); key not printed",
+  "forced_form_notes": {
+   "odd": "not forced: the count is the number of odd divisors of 45 minus one; nothing in the stem fixes its parity before that is seen.",
+   "multiple of 5": "not forced: the 5 in 45 = 9 x 5 is not the count; the count is the number of odd divisors less one."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-12",
+  "subskill": "dividing two repeating decimals by converting each to a fraction",
+  "difficulty": "medium",
+  "template": "one repeating decimal divided by another / the exact quotient / convert repeating blocks over 9 and 99",
+  "mechanism": [
+   "repeating block over nines",
+   "0.0606... is 6/99",
+   "quotient of fractions"
+  ],
+  "method": "Convert each repeating decimal to a fraction by placing its repeating block over the matching number of nines, then divide the fractions.",
+  "prompt": "What is the value of 0.666... divided by 0.060606... ? (In 0.666... the digit 6 repeats forever; in 0.060606... the block 06 repeats forever.)",
+  "choices": [
+   "10",
+   "11",
+   "4/99",
+   "100/9",
+   "99/10"
+  ],
+  "correct_answer": "11",
+  "explanation": "0.666... = 6/9 = 2/3, and 0.060606... = 6/99 = 2/33. So the quotient is (2/3) / (2/33) = 33/3 = 11. The option \"10\" reads the second number as 0.0666..., which is one tenth of the first. The option \"100/9\" treats the second number as the terminating decimal 0.06. The option \"99/10\" treats the first number as the terminating decimal 0.6. The option \"4/99\" multiplies the two fractions instead of dividing: (2/3)(2/33) = 4/99.",
+  "solve": "return (6/9)/(6/99);",
+  "distractor_solve": {
+   "10": "return (6/9)/((6/9)/10);",
+   "100/9": "return (6/9)/0.06;",
+   "99/10": "return 0.6/(6/99);",
+   "4/99": "return (6/9)*(6/99);"
+  },
+  "interval": "The quotient is positive and roughly 0.667 / 0.0606, near 11; 10, 99/10 = 9.9, 11 and 100/9 = 11.1 are all close, so a rough decimal estimate does not separate them without carrying several digits. 4/99 is the product, not the quotient, and is killed by magnitude (one distractor).",
+  "bounds_checked": "magnitude (only 1/11 is far off); sign; integrality (not forced by the stem); key as sum/difference of options (none)",
+  "forced_form_notes": {
+   "integer": "not forced: nothing in the stem makes the quotient of two repeating decimals a whole number; it is 11 only after converting both.",
+   "odd": "not forced: as for integer.",
+   "denominator 1": "not forced: as for integer.",
+   "multiple of 11": "not forced: the 11 comes from 99/9 after converting both decimals; the stem's digits 6 and 06 do not make the quotient a multiple of 11."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-13",
+  "subskill": "choosing a decimal that lies strictly between two fractions",
+  "difficulty": "medium",
+  "template": "two fractions with different denominators / which decimal lies strictly between them / convert both, including a repeating decimal, and compare digit by digit",
+  "mechanism": [
+   "fraction to decimal",
+   "repeating decimal 0.6363...",
+   "strict comparison near the endpoints"
+  ],
+  "method": "Convert both fractions to decimals, carrying the repeating one far enough to compare, and test each option against both endpoints strictly.",
+  "prompt": "Which of the following numbers lies between 5/8 and 7/11 on the number line?",
+  "choices": [
+   "0.6",
+   "0.65",
+   "0.63",
+   "0.637",
+   "0.624"
+  ],
+  "correct_answer": "0.63",
+  "explanation": "5/8 = 0.625 and 7/11 = 0.636363..., so the number must be greater than 0.625 and less than 0.6363... . Only 0.63 qualifies. The option \"0.637\" rounds 7/11 up to 0.64, which lets 0.637 in, though 0.637 > 0.6363... . The option \"0.624\" reads 5/8 as 0.62, which lets 0.624 in, though 0.624 < 0.625. The option \"0.65\" treats 7/11 as about 0.7. The option \"0.6\" treats 5/8 as 0.58, writing 5/8 as 5 divided by 8 with a slip (0.58 instead of 0.625).",
+  "solve": "const c=['0.6','0.65','0.63','0.637','0.624'];return c.find(s=>{const v=parseFloat(s);return v>5/8&&v<7/11;});",
+  "distractor_solve": {
+   "0.637": "const c=['0.6','0.65','0.63','0.637','0.624'];return c.find(s=>{const v=parseFloat(s);return v>5/8&&v<0.64&&v>0.636;});",
+   "0.624": "const c=['0.6','0.65','0.63','0.637','0.624'];return c.find(s=>{const v=parseFloat(s);return v>0.62&&v<0.625;});",
+   "0.65": "const c=['0.6','0.65','0.63','0.637','0.624'];return c.find(s=>{const v=parseFloat(s);return v>0.64&&v<0.7;});",
+   "0.6": "const c=['0.6','0.65','0.63','0.637','0.624'];return c.find(s=>{const v=parseFloat(s);return v>0.58&&v<0.625;});"
+  },
+  "interval": "The feasible interval is (0.625, 0.6363...). 0.624 and 0.637 sit just outside its two ends and are rejected only by carrying each fraction to three places; 0.6 and 0.65 lie farther out. Both fractions are a little under two thirds, so a rough estimate leaves all five options plausible.",
+  "bounds_checked": "both endpoints carried to three decimal places; magnitude (all options between 0.6 and 0.65); key not an extreme option; key as sum/difference of options (none)",
+  "forced_form_notes": {
+   "denominator 100": "not forced: the stem asks which number lies in an interval; nothing makes the answer a two-place decimal."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-14",
+  "subskill": "square root of a number in scientific notation with an odd exponent",
+  "difficulty": "hard",
+  "template": "a number in scientific notation with an odd power of ten / its square root in scientific notation / move one factor of ten into the coefficient so the exponent is even",
+  "mechanism": [
+   "make the exponent even before rooting",
+   "64 x 10^10",
+   "square root of a power of ten"
+  ],
+  "method": "See that an odd power of ten has no whole-number square root, so move one factor of ten into the coefficient to get a perfect-square coefficient over an even exponent, then root each part.",
+  "prompt": "What is the square root of 6.4 x 10^11, written in scientific notation?",
+  "choices": [
+   "3.2 x 10^5",
+   "2.53 x 10^5",
+   "6.4 x 10^5",
+   "8 x 10^5",
+   "1.01 x 10^6"
+  ],
+  "correct_answer": "8 x 10^5",
+  "explanation": "6.4 x 10^11 = 64 x 10^10. The square root of 64 is 8 and the square root of 10^10 is 10^5, so the square root is 8 x 10^5. Check: (8 x 10^5)^2 = 64 x 10^10 = 6.4 x 10^11. The option \"3.2 x 10^5\" halves the coefficient and halves the exponent, rounding 5.5 down. The option \"2.53 x 10^5\" takes the square root of 6.4 (about 2.53) and of 10^10 only, dropping the leftover factor of 10 under the root. The option \"6.4 x 10^5\" halves the exponent and leaves the coefficient alone. The option \"1.01 x 10^6\" takes half of 6.4 as its square root (3.2) and multiplies by the square root of 10 (about 3.16), giving about 10.1 x 10^5.",
+  "solve": "const v=Math.sqrt(6.4e11);const e=Math.floor(Math.log10(v)+1e-9);const m=Math.round(v/10**e*100)/100;return m+' x 10^'+e;",
+  "distractor_solve": {
+   "3.2 x 10^5": "return (6.4/2)+' x 10^'+Math.floor(11/2);",
+   "2.53 x 10^5": "return Math.sqrt(6.4).toFixed(2)+' x 10^'+Math.floor(11/2);",
+   "6.4 x 10^5": "return 6.4+' x 10^'+Math.floor(11/2);",
+   "1.01 x 10^6": "const v=3.2*Math.sqrt(10)*1e5;const e=Math.floor(Math.log10(v)+1e-9);return (Math.round(v/10**e*100)/100).toFixed(2)+' x 10^'+e;"
+  },
+  "interval": "The square root of 10^11 is about 3.2 x 10^5, and the square root of 6.4 is between 2 and 3, so the answer is between about 6 x 10^5 and 10^6. Reading the exponent alone gives 10^5 or 10^6 for every option, so the order of magnitude does not decide it; 2.53 and 3.2 x 10^5 are reached by dropping the leftover square root of 10, and 6.4 x 10^5 and 1.01 x 10^6 lie near the key, so squaring each option is the work.",
+  "bounds_checked": "order of magnitude from the exponent (all options 10^5 to 10^6); squaring an option (the work); coefficient between 1 and 10 (all options in scientific notation); key not printed",
+  "forced_form_notes": {}
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-15",
+  "subskill": "order of operations with fractions: division and multiplication left to right before subtraction",
+  "difficulty": "medium",
+  "template": "a fraction minus a chain of fraction division and multiplication / its value / do the division and multiplication from left to right before the subtraction",
+  "mechanism": [
+   "multiplication and division before subtraction",
+   "left to right within division and multiplication",
+   "dividing by a fraction"
+  ],
+  "method": "Evaluate the division and multiplication chain from left to right first, dividing by a fraction as multiplying by its reciprocal, and subtract last.",
+  "prompt": "What is the value of 3/4 - 1/2 \u00f7 2/3 \u00d7 1/4 ?",
+  "choices": [
+   "3/32",
+   "5/12",
+   "0",
+   "-9/4",
+   "9/16"
+  ],
+  "correct_answer": "9/16",
+  "explanation": "Division and multiplication come before subtraction and are done from left to right: 1/2 \u00f7 2/3 = 1/2 x 3/2 = 3/4, and 3/4 x 1/4 = 3/16. Then 3/4 - 3/16 = 12/16 - 3/16 = 9/16. The option \"3/32\" works strictly left to right, subtracting first: (3/4 - 1/2) \u00f7 2/3 x 1/4. The option \"-9/4\" multiplies 2/3 x 1/4 = 1/6 before dividing, so 1/2 \u00f7 1/6 = 3 and 3/4 - 3 = -9/4. The option \"5/12\" divides by flipping the first fraction instead of the second: 2 x 2/3 = 4/3, then 4/3 x 1/4 = 1/3 and 3/4 - 1/3 = 5/12. The option \"0\" subtracts 3/4 - 3/4 after the division and only then multiplies by 1/4.",
+  "solve": "return 3/4-(1/2)/(2/3)*(1/4);",
+  "distractor_solve": {
+   "3/32": "return ((3/4-1/2)/(2/3))*(1/4);",
+   "-9/4": "return 3/4-(1/2)/((2/3)*(1/4));",
+   "5/12": "return 3/4-(2*(2/3))*(1/4);",
+   "0": "return (3/4-(1/2)/(2/3))*(1/4);"
+  },
+  "interval": "The value is 3/4 minus a positive amount, so it is below 3/4; every option is. Whether the subtracted amount exceeds 3/4 depends on the order of operations, which is the skill tested, so the sign is not free. On this value ask the key is the largest option.",
+  "bounds_checked": "upper bound 3/4 (all options below it); sign (depends on the order of operations, the skill tested); denominator (not forced); key as sum/difference of options (none)",
+  "forced_form_notes": {
+   "positive": "not forced: the expression is 3/4 minus a chain whose size depends on the order of operations, which is what the item tests; -9/4 and 0 come from two ordering errors.",
+   "denominator 16": "not forced: 16 appears only after the division and multiplication are done in the right order; the stem's denominators are 4, 2, 3 and 4."
+  }
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-16",
+  "subskill": "greatest integer guaranteed to divide the product of five consecutive odd integers",
+  "difficulty": "hard",
+  "template": "five consecutive odd positive integers / greatest integer dividing every such product / which primes and prime powers are guaranteed in every window",
+  "mechanism": [
+   "guaranteed prime factors of consecutive odd integers",
+   "a multiple of 5 in every window of five odd numbers",
+   "a factor present in one case is not guaranteed"
+  ],
+  "method": "Ask which prime powers must appear in every window of five consecutive odd numbers, seeing that a multiple of 5 and of 3 always appear but a second factor of 3 or a factor of 7 can be missed, and check a window that avoids them.",
+  "prompt": "What is the greatest integer that divides the product of ANY five consecutive odd positive integers, such as 7, 9, 11, 13 and 15?",
+  "choices": [
+   "15",
+   "45",
+   "105",
+   "315",
+   "945"
+  ],
+  "correct_answer": "15",
+  "explanation": "Five consecutive odd numbers leave all five different remainders on division by 5, so one is a multiple of 5. They also cover every remainder on division by 3, so at least one is a multiple of 3. Nothing more is guaranteed: the window 11, 13, 15, 17, 19 has product 11 x 13 x 15 x 17 x 19, with only one factor 3, one factor 5, and no factor 7. Every product is odd, so no factor 2 either. The greatest guaranteed divisor is 3 x 5 = 15. The option \"945\" is the product of the first window, 1 x 3 x 5 x 7 x 9, taken as if it divided every product. The option \"315\" = 9 x 5 x 7 expects two factors of 3 and a factor 7 in every window, as in 1 to 9 and in 7 to 15. The option \"105\" = 3 x 5 x 7 expects a multiple of 7 in every window. The option \"45\" = 9 x 5 expects two factors of 3 in every window.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;let r=0;for(let s=1;s<200;s+=2){let p=1;for(let i=0;i<5;i++)p*=s+2*i;r=g(r,p);}return r;",
+  "distractor_solve": {
+   "945": "return 1*3*5*7*9;",
+   "315": "return 9*5*7;",
+   "105": "return 3*5*7;",
+   "45": "return 9*5;"
+  },
+  "interval": "Every option is odd and a multiple of 15, so parity and the guaranteed factors 3 and 5 kill nothing. The printed window 7, 9, 11, 13, 15 has product 135135 = 3^3 x 5 x 7 x 11 x 13, which every option divides, so the example kills nothing. Rejecting 945, 315, 105 and 45 needs a second window chosen to avoid 7 or a second 3 (for example 11 to 19), which is the case split the item tests. On a greatest ask the key is the smallest option, not the extreme in the asked direction.",
+  "bounds_checked": "parity (all odd); guaranteed factors 3 and 5 (all options carry both); the printed example window (all options divide its product); greatest ask (key not the largest option); key as sum/difference of options (none)",
+  "forced_form_notes": {}
+ },
+ {
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "id": "S16E-17",
+  "subskill": "sum of two repeating decimals with reversed blocks depends only on the digit sum",
+  "difficulty": "hard",
+  "template": "0.abab... + 0.baba... over nonzero digits a, b / how many different values / the sum is 11(a + b)/99 = (a + b)/9",
+  "mechanism": [
+   "repeating block over 99",
+   "sum of a two-digit number and its reversal is 11(a + b)",
+   "count distinct digit sums"
+  ],
+  "method": "Convert each repeating decimal to its block over 99, see that a two-digit block plus its reversal is eleven times the digit sum so the total is the digit sum over 9, and count the possible digit sums.",
+  "prompt": "The digits a and b are each one of 1, 2, ..., 9 (they may be equal). The repeating decimal 0.abab... has the block ab repeating forever, and 0.baba... has the block ba repeating forever. How many different values can the sum 0.abab... + 0.baba... have?",
+  "choices": [
+   "19",
+   "17",
+   "36",
+   "45",
+   "81"
+  ],
+  "correct_answer": "17",
+  "explanation": "0.abab... = (10a + b)/99 and 0.baba... = (10b + a)/99, so the sum is (11a + 11b)/99 = (a + b)/9. It depends only on a + b, which can be any whole number from 2 to 18: 17 different values. The option \"81\" counts the 9 x 9 ordered choices of (a, b), as if each gave its own value. The option \"45\" counts unordered pairs (a and b may be equal). The option \"36\" counts unordered pairs of different digits. The option \"19\" lets a and b be 0, so the digit sum runs from 0 to 18.",
+  "solve": "const s=new Set();for(let a=1;a<=9;a++)for(let b=1;b<=9;b++)s.add(((10*a+b)+(10*b+a))/99);return s.size;",
+  "distractor_solve": {
+   "81": "let c=0;for(let a=1;a<=9;a++)for(let b=1;b<=9;b++)c++;return c;",
+   "45": "let c=0;for(let a=1;a<=9;a++)for(let b=a;b<=9;b++)c++;return c;",
+   "36": "let c=0;for(let a=1;a<=9;a++)for(let b=a+1;b<=9;b++)c++;return c;",
+   "19": "const s=new Set();for(let a=0;a<=9;a++)for(let b=0;b<=9;b++)s.add(((10*a+b)+(10*b+a))/99);return s.size;"
+  },
+  "interval": "The count is at most 81 ordered choices and at most 45 once a and b are swapped (the sum is symmetric in a and b, which a solver can see from the stem): that kills 81 by symmetry, leaving 17, 19, 36, 45. 45 sits on that symmetric bound. All options are odd, so parity decides nothing.",
+  "bounds_checked": "symmetry in a and b (count at most 45; kills 81); parity (all odd); key as sum/difference of options (36-19=17: two distractors whose difference is the key; recorded as a risk); key not printed in the stem",
+  "forced_form_notes": {}
+ }
+]
