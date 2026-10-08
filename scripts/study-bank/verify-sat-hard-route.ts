@@ -18,6 +18,15 @@
  *
  * ASSEMBLE_MODULE=<path> swaps in another assemble.ts (e.g. a copy of the
  * pre-fix file) for a before/after comparison under the same shim.
+ *
+ * DOMAIN = THE ROW COLUMN (2026-10-09). The per-domain line used to come
+ * from each served question's jsonb `item.domain`. The assembler groups by
+ * the ROW `domain`, and on 120 live v2 R&W rows the two disagree (the
+ * 2026-09-12 refiling moved the column and left the jsonb), so the printout
+ * misreported 8 of 10 hard-route forms — "form 9 is short in I&I" was this.
+ * Ids now come from the stamp `q.bankItemId` (or `t.itemIds`), the domain
+ * from the row, and each form's tally must equal the assembler's own
+ * `t.composition`; any mismatch exits non-zero.
  */
 import { dbAdmin } from '@/lib/supabase-admin'
 import { readBankPaged } from '@/lib/study/bank-read'
@@ -65,40 +74,73 @@ async function main() {
   const studentId = 'verify-sat-hard-route-simulated'
   const n = SAT_MODULE_CONFIG[section].moduleSize
 
-  const bank = await readBankPaged<{ id: string; difficulty: string; item: { prompt: string; passage?: string | null; choices?: unknown[] } }>(
+  const bank = await readBankPaged<{ id: string; domain: string | null; difficulty: string }>(
     (withCount) => dbAdmin.from('study_item_bank')
-      .select('id, difficulty, item', withCount ? { count: 'exact' } : undefined)
+      .select('id, domain, difficulty', withCount ? { count: 'exact' } : undefined)
       .eq('family', 'sat').eq('section', section).eq('verified', true).eq('archived', false),
     `sat/${section}`,
   )
   const hardInBank = bank.filter(r => r.difficulty === 'hard').length
   console.log(`bank sat/${section}: ${bank.length} live rows, ${hardInBank} hard  (assembler: ${mod})`)
   const diff = new Map(bank.map(r => [r.id, r.difficulty]))
-  // SEC items share one stem, so the key is stem + passage + choices, not the stem alone.
-  const keyOf = (q: { prompt: string; passage?: string | null; choices?: unknown[] }) => `${q.prompt}|${q.passage ?? ''}|${[...(q.choices ?? [])].map(String).sort().join('|')}`
-  const idByKey = new Map(bank.map(r => [keyOf(r.item), r.id]))
+  const rowDomain = new Map(bank.map(r => [r.id, r.domain ?? '?']))
 
   const seenIds = new Set<string>()
   let unmapped = 0
   let cleanForms = 0
+  let compositionMismatches = 0
   for (let form = 1; form <= forms; form++) {
     const sid = randomUUID()
     const t = await assembleFromBank({ section, count: n, difficulties: ['hard'], studentId, family: 'sat' }, sid)
-    const ids = t.questions.map(q => idByKey.get(keyOf(q as { prompt: string; passage?: string | null; choices?: unknown[] })) ?? '?')
+    // The served id: the assembler's stamp on the question, else the parallel
+    // itemIds list (same order — both come from the one shuffled draw). If
+    // both exist they must agree, or the id itself is not trustworthy.
+    const ids = t.questions.map((q, i) => {
+      const stamped = (q as { bankItemId?: string | null }).bankItemId ?? null
+      const listed = t.itemIds?.[i] ?? null
+      if (stamped && listed && stamped !== listed) {
+        console.error(`REFUSING: form ${form} item ${i}: bankItemId ${stamped} != itemIds[${i}] ${listed}`)
+        process.exit(1)
+      }
+      const id = stamped ?? listed
+      return id && rowDomain.has(id) ? id : '?'
+    })
     unmapped += ids.filter(id => id === '?').length
     const repeats = ids.filter(id => seenIds.has(id)).length
     const bands: Record<string, number> = {}
     const byDom: Record<string, Record<string, number>> = {}
-    for (let i = 0; i < ids.length; i++) { const id = ids[i]!; const d = diff.get(id) ?? '?'; bands[d] = (bands[d] ?? 0) + 1; const dom = (t.questions[i] as { domain?: string | null }).domain ?? '?'; (byDom[dom] ??= {})[d] = (byDom[dom][d] ?? 0) + 1 }
+    const domTotals: Record<string, number> = {}
+    for (const id of ids) {
+      const d = diff.get(id) ?? '?'
+      bands[d] = (bands[d] ?? 0) + 1
+      const dom = rowDomain.get(id) ?? '?'
+      ;(byDom[dom] ??= {})[d] = (byDom[dom][d] ?? 0) + 1
+      domTotals[dom] = (domTotals[dom] ?? 0) + 1
+    }
     const allHard = (bands.hard ?? 0) === ids.length
     if (allHard && repeats === 0 && ids.length === n) cleanForms++
     console.log(`form ${form}: ${t.questions.length}/${n} items  bands ${JSON.stringify(bands)}  repeats ${repeats}${allHard && repeats === 0 ? '  ALL-HARD' : ''}`)
     console.log('   per domain', JSON.stringify(byDom))
+    // The tally must equal the assembler's own composition, domain by domain,
+    // in both directions — a printout that drifts from the draw is the defect.
+    const comp = t.composition ?? {}
+    const doms = new Set([...Object.keys(comp), ...Object.keys(domTotals)])
+    const diffs = [...doms].filter(d => (comp[d] ?? 0) !== (domTotals[d] ?? 0))
+      .map(d => `${d}: tally ${domTotals[d] ?? 0} vs composition ${comp[d] ?? 0}`)
+    if (Object.keys(comp).length === 0 || diffs.length > 0) {
+      compositionMismatches++
+      console.error(`   MISMATCH vs t.composition ${JSON.stringify(comp)}: ${diffs.join('; ') || 'composition is empty'}`)
+    }
     ids.forEach(id => seenIds.add(id))
   }
   console.log(`all-hard, repeat-free, full forms: ${cleanForms} of ${forms}   distinct items served ${seenIds.size}   ledger ${ledger.size}`)
+  console.log(`per-domain tally equals t.composition: ${forms - compositionMismatches} of ${forms} forms`)
   if (unmapped > 0) {
     console.error(`REFUSING: ${unmapped} served items did not map back to a bank row — the band/repeat counts above are not measurements`)
+    process.exit(1)
+  }
+  if (compositionMismatches > 0) {
+    console.error(`FAIL: ${compositionMismatches} of ${forms} forms printed a per-domain tally that differs from the assembler's composition`)
     process.exit(1)
   }
 }
