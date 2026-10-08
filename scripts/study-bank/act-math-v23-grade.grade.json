@@ -1,0 +1,607 @@
+[
+ {
+  "id": "AM23A-01",
+  "topic_tag": "exponent expressions (powers of monomials)",
+  "prompt": "When the expression (6a³b)²(2ab²)³ is simplified and written in the form k·a^m·b^n, where k, m, and n are constants, what is the value of k ?",
+  "choices": [
+   "44",
+   "864",
+   "72",
+   "288"
+  ]
+ },
+ {
+  "id": "AM23A-02",
+  "topic_tag": "rational expressions (solving a rational relation for the other variable)",
+  "prompt": "For every real number y for which the expression is defined, x = (6y + 1)/(4y − 5). Which of the following values can x NEVER equal?",
+  "choices": [
+   "5/4",
+   "3/2",
+   "2/3",
+   "-1/5"
+  ]
+ },
+ {
+  "id": "AM23A-03",
+  "topic_tag": "quadratic equations (relationships between roots and coefficients)",
+  "prompt": "The solutions of x² − 7x + 3 = 0 are r and s. The equation x² + bx + c = 0, where b and c are constants, has solutions r + 3 and s + 3. What is the value of b + c ?",
+  "choices": [
+   "20",
+   "11",
+   "-10",
+   "46"
+  ]
+ },
+ {
+  "id": "AM23A-04",
+  "topic_tag": "literal equations with radicals (pendulum period formula)",
+  "prompt": "The period T, in seconds, of a simple pendulum with length L meters is given by T = 2π√(L/g), where g = 9.8 meters per second squared. A pendulum has a period of 2.0 seconds. To the nearest tenth of a centimeter, by how many centimeters must its length be increased so that its period becomes 2.2 seconds?",
+  "choices": [
+   "131.0",
+   "120.1",
+   "31.2",
+   "20.9"
+  ]
+ },
+ {
+  "id": "AM23A-05",
+  "topic_tag": "systems of linear equations in context (investment split at two simple-interest rates)",
+  "prompt": "Marisol invested a total of $18,000 in two accounts. One account pays 7% simple annual interest, and the other pays 4% simple annual interest. At the end of one year, the interest earned by the 7% account was $369 more than the interest earned by the 4% account. How many dollars did Marisol invest in the 7% account?",
+  "choices": [
+   "9900",
+   "12300",
+   "15557.14",
+   "14809.09"
+  ]
+ },
+ {
+  "id": "AM23A-06",
+  "topic_tag": "rational expressions (subtracting fractions with binomial denominators)",
+  "prompt": "For all x ≠ 2 and x ≠ −5, 3/(x − 2) − 2/(x + 5) = (x + k)/((x − 2)(x + 5)), where k is a constant. What is the value of k ?",
+  "choices": [
+   "9",
+   "-16",
+   "19",
+   "11"
+  ]
+ },
+ {
+  "id": "AM23A-07",
+  "topic_tag": "systems of linear equations in context (prices before and after percent changes)",
+  "prompt": "Last year at a farm stand, 3 apples and 2 pears cost a total of $4.10. This year the price of an apple is 20% higher than last year and the price of a pear is 10% lower than last year, and 3 apples and 2 pears cost a total of $4.41. What is this year's price, in dollars, of one apple?",
+  "choices": [
+   "0.51",
+   "1.00",
+   "0.80",
+   "0.96"
+  ]
+ },
+ {
+  "id": "AM23A-08",
+  "topic_tag": "rational equations (nested fractions)",
+  "prompt": "What value of x satisfies the equation 1 + 9/(2 + 5/x) = 7 ?",
+  "choices": [
+   "-10",
+   "10/3",
+   "-5/2",
+   "-15/4"
+  ]
+ },
+ {
+  "id": "AM23A-09",
+  "topic_tag": "quadratic expressions (completing the square to evaluate a power)",
+  "prompt": "If x² + 6x = 7, what is the value of (x + 3)⁴ ?",
+  "choices": [
+   "49",
+   "256",
+   "82",
+   "10000"
+  ]
+ },
+ {
+  "id": "AM23A-10",
+  "topic_tag": "quadratics (product of solutions and minimum value)",
+  "prompt": "The product of the two solutions of the equation 2x² − 8x + c = 0, where c is a constant, is 3. What is the minimum value of y = 2x² − 8x + c ?",
+  "choices": [
+   "-2",
+   "-5",
+   "-22/3",
+   "-10"
+  ]
+ },
+ {
+  "id": "AM23A-11",
+  "topic_tag": "exponent expressions (factoring a common power from sums and differences)",
+  "prompt": "For every integer n, the expression (2^(n+5) − 2^(n+1)) / (2^(n+1) + 2^n) has the same value. What is that value?",
+  "choices": [
+   "10",
+   "15",
+   "5/2",
+   "8"
+  ]
+ },
+ {
+  "id": "AM23A-12",
+  "topic_tag": "linear equations in context (two-bracket tax, solving for income)",
+  "prompt": "In a certain country, income tax is 10% of the first $10,000 of a person's income plus 15% of the portion of the income above $10,000. Dana paid $4,250 in income tax. To the nearest dollar, what was Dana's income?",
+  "choices": [
+   "37500",
+   "38333",
+   "31667",
+   "34000"
+  ]
+ },
+ {
+  "id": "AM23A-13",
+  "topic_tag": "radical expressions (denesting a square root)",
+  "prompt": "The number √(14 + 6√5) can be written as √m + √n, where m and n are positive integers and m > n. To the nearest hundredth, what is the value of √m − √n ?",
+  "choices": [
+   "0.58",
+   "2.00",
+   "0.76",
+   "4.00"
+  ]
+ },
+ {
+  "id": "AM23A-14",
+  "topic_tag": "absolute value equations (recovering parameters from the solutions)",
+  "prompt": "The equation |ax − 12| = b, where a and b are positive constants, has exactly two solutions, x = −1 and x = 7. What is the value of a + b ?",
+  "choices": [
+   "20",
+   "8",
+   "36",
+   "15"
+  ]
+ },
+ {
+  "id": "AM23F-01",
+  "topic_tag": "exponential models (decay toward a nonzero level)",
+  "prompt": "A cup of tea at 90°C is set down in a room that stays at 20°C. The difference between the temperature of the tea and the temperature of the room decreases by the same percent every minute. Eight minutes after the tea is set down, its temperature is 62°C. To the nearest tenth of a degree, what is the temperature of the tea, in °C, 20 minutes after it is set down?",
+  "choices": [
+   "39.5",
+   "35.4",
+   "45.2",
+   "52.5"
+  ]
+ },
+ {
+  "id": "AM23F-02",
+  "topic_tag": "inverse functions (graph intercepts)",
+  "prompt": "The function f is defined by f(x) = 3·2^(x − 1) − 4, and f has an inverse function, f⁻¹. In the standard (x,y) coordinate plane, what is the x-coordinate of the point where the graph of y = f⁻¹(x) crosses the x-axis?",
+  "choices": [
+   "1.42",
+   "-0.4",
+   "-2.5",
+   "2.33"
+  ]
+ },
+ {
+  "id": "AM23F-03",
+  "topic_tag": "average rate of change (solving for an endpoint)",
+  "prompt": "The function f is defined by f(x) = 2x² − 3x + 1. For a certain number k greater than 1, the average rate of change of f from x = 1 to x = k is 33. What is the value of k ?",
+  "choices": [
+   "14",
+   "17",
+   "35",
+   "18.85"
+  ]
+ },
+ {
+  "id": "AM23F-04",
+  "topic_tag": "quadratic models (symmetry of a parabola)",
+  "prompt": "The height h, in feet, of a ball t seconds after it is thrown is given by h(t) = −16t² + bt + c, where b and c are constants. The ball is 48 feet above the ground 1 second after it is thrown and again 4 seconds after it is thrown. What is the maximum height, in feet, that the ball reaches?",
+  "choices": [
+   "66",
+   "52",
+   "72",
+   "84"
+  ]
+ },
+ {
+  "id": "AM23F-05",
+  "topic_tag": "sequences (arithmetic and geometric compared)",
+  "prompt": "An arithmetic sequence and a geometric sequence each have a first term of 4 and a third term of 64. Every term of the geometric sequence is positive. What is the second term of the arithmetic sequence minus the second term of the geometric sequence?",
+  "choices": [
+   "8",
+   "26",
+   "18",
+   "23.92"
+  ]
+ },
+ {
+  "id": "AM23F-06",
+  "topic_tag": "inverse of a piecewise function",
+  "prompt": "The function f is defined by f(x) = 2x + 9 for x < 3 and f(x) = x² + 7 for x ≥ 3. The function f has an inverse, f⁻¹. What is the value of f⁻¹(56) + f⁻¹(3) ?",
+  "choices": [
+   "-10",
+   "-5",
+   "4",
+   "4.48"
+  ]
+ },
+ {
+  "id": "AM23F-07",
+  "topic_tag": "trigonometric identities (double angle with quadrant)",
+  "prompt": "For an angle θ with 180° < θ < 270°, tan θ = 7/24. What is the value of sin(2θ) ?",
+  "choices": [
+   "14/25",
+   "527/625",
+   "336/625",
+   "7/12"
+  ]
+ },
+ {
+  "id": "AM23F-08",
+  "topic_tag": "exponential functions (properties of exponents)",
+  "prompt": "The function f is defined by f(x) = 2^x. For certain numbers a and b, f(a) = 5 and f(b) = 3. What is the value of f(2a − b) ?",
+  "choices": [
+   "22",
+   "8.33",
+   "16",
+   "7"
+  ]
+ },
+ {
+  "id": "AM23F-09",
+  "topic_tag": "quadratic models (minimising a distance function)",
+  "prompt": "At noon, ship A is 30 kilometers due north of a port and is sailing due south toward the port at 12 kilometers per hour. At the same moment, ship B leaves the port sailing due east at 20 kilometers per hour. Both ships keep these speeds and directions. To the nearest tenth of a kilometer, what is the least distance between the two ships?",
+  "choices": [
+   "10.5",
+   "15.4",
+   "25.7",
+   "22.1"
+  ]
+ },
+ {
+  "id": "AM23S-01",
+  "topic_tag": "probability (counting unordered pairs)",
+  "prompt": "Two different integers are chosen at random from the integers 1 through 10, inclusive, with every pair of different integers equally likely to be chosen. What is the probability that the two integers differ by at least 3 ?",
+  "choices": [
+   "5/9",
+   "28/45",
+   "3/5",
+   "7/15"
+  ]
+ },
+ {
+  "id": "AM23S-02",
+  "topic_tag": "geometric probability on a number line",
+  "prompt": "A real number x is chosen at random from the interval −2 ≤ x ≤ 10, with every number in the interval equally likely. What is the probability that x² − 9x + 18 < 0 ?",
+  "choices": [
+   "1/4",
+   "2/3",
+   "3/4",
+   "3/10"
+  ]
+ },
+ {
+  "id": "AM23S-03",
+  "topic_tag": "independence in a two-way table",
+  "prompt": "Each student in a club was asked whether they play a musical instrument and whether they are on a sports team. Of the students, 50 play an instrument but are not on a team, 60 are on a team but do not play an instrument, 40 do neither, and x do both. For what value of x are the events \"plays an instrument\" and \"is on a team\" independent?",
+  "choices": [
+   "75",
+   "48",
+   "30",
+   "20"
+  ]
+ },
+ {
+  "id": "AM23S-04",
+  "topic_tag": "probability (counting outcomes of two dice with a condition)",
+  "prompt": "Two fair 6-sided dice, each numbered 1 through 6, are rolled. The number on the first die is b, and the number on the second die is c. What is the probability that the equation x² + bx + c = 0 has at least one real solution?",
+  "choices": [
+   "17/36",
+   "29/36",
+   "2/3",
+   "19/36"
+  ]
+ },
+ {
+  "id": "AM23S-05",
+  "topic_tag": "probability (forming numbers from digits)",
+  "prompt": "Two different digits are chosen at random from the digits 1, 2, 3, 4, 5, and 6 and are used, in the order chosen, as the tens digit and the units digit of a two-digit number. Every ordered choice of two different digits is equally likely. What is the probability that the two-digit number is divisible by 4 ?",
+  "choices": [
+   "7/15",
+   "1/4",
+   "4/15",
+   "1/6"
+  ]
+ },
+ {
+  "id": "AM23S-06",
+  "topic_tag": "probability (non-uniform outcomes)",
+  "prompt": "A 6-sided die numbered 1 through 6 is weighted so that the probability of rolling each number is proportional to that number. (For example, a 6 is 3 times as likely as a 2.) The die is rolled once. What is the probability that the number rolled is a prime number?",
+  "choices": [
+   "8/21",
+   "2/3",
+   "1/2",
+   "10/21"
+  ]
+ },
+ {
+  "id": "AM23G-01",
+  "topic_tag": "reflection of a point across a slanted line through the origin",
+  "prompt": "In the standard (x,y) coordinate plane, point P(7, 1) is reflected across the line y = 2x. What is the y-coordinate of the image of P ?",
+  "choices": [
+   "5",
+   "6.2",
+   "3.6",
+   "-3.4"
+  ]
+ },
+ {
+  "id": "AM23G-02",
+  "topic_tag": "common chord of two intersecting circles",
+  "prompt": "In the standard (x,y) coordinate plane, the circles x² + y² = 25 and (x − 7)² + y² = 16 intersect at two points. What is the distance between these two points, to the nearest hundredth?",
+  "choices": [
+   "3.87",
+   "5.60",
+   "6.00",
+   "5.29"
+  ]
+ },
+ {
+  "id": "AM23G-03",
+  "topic_tag": "similar triangles from a congruent angle pair (antiparallel segment)",
+  "prompt": "In triangle ABC, AB = 15, AC = 12, and BC = 13. Point D lies on side AB so that AD = 5, and point E lies on side AC so that angle ADE is congruent to angle ACB. To the nearest hundredth, what is the length of segment DE ?",
+  "choices": [
+   "8.67",
+   "6.77",
+   "6.50",
+   "5.42"
+  ]
+ },
+ {
+  "id": "AM23G-04",
+  "topic_tag": "sphere inscribed in a right circular cone",
+  "prompt": "A solid right circular cone has a base radius of 6 centimeters and a height of 8 centimeters. A sphere is placed inside the cone so that it touches the base of the cone and touches the curved surface of the cone all the way around. To the nearest tenth of a cubic centimeter, what is the volume of the sphere?",
+  "choices": [
+   "79.4",
+   "14.1",
+   "113.1",
+   "33.5"
+  ]
+ },
+ {
+  "id": "AM23G-05",
+  "topic_tag": "orthocenter of a triangle in the coordinate plane",
+  "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(0, 0), B(12, 0), and C(5, 8). The three altitudes of the triangle intersect at a single point. What is the y-coordinate of that point?",
+  "choices": [
+   "40/7",
+   "29/16",
+   "8/3",
+   "35/8"
+  ]
+ },
+ {
+  "id": "AM23G-06",
+  "topic_tag": "tangent line to a circle at a given point",
+  "prompt": "In the standard (x,y) coordinate plane, the point (5, 3) lies on the circle (x − 2)² + (y + 1)² = 25. What is the y-intercept of the line tangent to the circle at (5, 3) ?",
+  "choices": [
+   "11.33",
+   "6.75",
+   "9.67",
+   "20.50"
+  ]
+ },
+ {
+  "id": "AM23G-07",
+  "topic_tag": "belt around two pulleys of different sizes",
+  "prompt": "Two circular pulleys lie in the same plane. One pulley has a radius of 6 centimeters, the other has a radius of 2 centimeters, and their centers are 8 centimeters apart. A tight belt goes around the outside of both pulleys without crossing itself, so the belt consists of two straight segments, each tangent to both pulleys, and two arcs, one on each pulley. To the nearest hundredth of a centimeter, what is the total length of the belt?",
+  "choices": [
+   "39.90",
+   "43.18",
+   "47.37",
+   "41.08"
+  ]
+ },
+ {
+  "id": "AM23G-08",
+  "topic_tag": "foci of an ellipse given in non-standard form",
+  "prompt": "In the standard (x,y) coordinate plane, the ellipse with equation 4x² + 9y² = 72 has its foci on the x-axis. For an ellipse x²/a² + y²/b² = 1 with a > b > 0, the foci are at (c, 0) and (−c, 0), where c² = a² − b². To the nearest hundredth, what is the distance between the foci of this ellipse?",
+  "choices": [
+   "4.47",
+   "6.32",
+   "5.66",
+   "2.83"
+  ]
+ },
+ {
+  "id": "AM23G-09",
+  "topic_tag": "triangle formed by a circle's center and a chord cut by a line",
+  "prompt": "In the standard (x,y) coordinate plane, the line 3x + 4y = 10 intersects the circle x² + y² = 25 at points A and B. Point O is the origin. To the nearest hundredth, what is the area of triangle OAB ?",
+  "choices": [
+   "12.37",
+   "9.59",
+   "6.85",
+   "9.17"
+  ]
+ },
+ {
+  "id": "AM23G-10",
+  "topic_tag": "circle through three given points",
+  "prompt": "In the standard (x,y) coordinate plane, a circle passes through the points (0, 0), (10, 0), and (4, 2). To the nearest hundredth, what is the radius of the circle?",
+  "choices": [
+   "5.15",
+   "8.60",
+   "11.18",
+   "7.07"
+  ]
+ },
+ {
+  "id": "AM23G-11",
+  "topic_tag": "solid of revolution: right triangle rotated about its hypotenuse",
+  "prompt": "A right triangle has legs of lengths 9 centimeters and 12 centimeters. The triangle is rotated 360° about its hypotenuse, forming a solid made of two right circular cones joined at their bases. To the nearest cubic centimeter, what is the volume of the solid?",
+  "choices": [
+   "814",
+   "884",
+   "458",
+   "521"
+  ]
+ },
+ {
+  "id": "AM23I-01",
+  "topic_tag": "time-of-use electricity pricing across a rate boundary",
+  "prompt": "A pool heat pump draws a constant 5.4 kilowatts (kW) of power while it runs, so each hour of running uses 5.4 kilowatt-hours (kWh) of energy. One evening the heat pump is switched on at 7:30 p.m. and runs without stopping until it has used a total of 37.8 kWh. The utility charges $0.36 per kWh for energy used from 4:00 p.m. to 9:00 p.m. and $0.12 per kWh for energy used at all other times. What is the cost of the energy the heat pump used that evening, in dollars?",
+  "choices": [
+   "9.07",
+   "7.45",
+   "6.48",
+   "11.66"
+  ]
+ },
+ {
+  "id": "AM23I-02",
+  "topic_tag": "net pay with a pre-tax deduction that reduces only one tax",
+  "prompt": "Priya's gross pay for one pay period is $2,360. From it, 5% of her gross pay is put into a retirement plan. The retirement contribution is subtracted from her gross pay BEFORE income tax is figured, so income tax is 12% of (gross pay minus the retirement contribution). Payroll tax, however, is 7.65% of her full gross pay. Her take-home pay is her gross pay minus the retirement contribution, the income tax, and the payroll tax. To the nearest cent, what is her take-home pay for the period, in dollars?",
+  "choices": [
+   "1792.42",
+   "1787.29",
+   "1801.45",
+   "1814.08"
+  ]
+ },
+ {
+  "id": "AM23I-03",
+  "topic_tag": "stopping distance: a linear reaction part plus a quadratic braking part",
+  "prompt": "A driver's total stopping distance is the reaction distance plus the braking distance. The reaction distance is the distance the car travels at its full speed during the driver's 1.2-second reaction time. The braking distance is proportional to the square of the car's speed. At a speed of 30 miles per hour, which is 44 feet per second, the car's braking distance is 45 feet. What is the car's total stopping distance, in feet, at a speed of 60 miles per hour?",
+  "choices": [
+   "301.2",
+   "285.6",
+   "232.8",
+   "252.0"
+  ]
+ },
+ {
+  "id": "AM23I-04",
+  "topic_tag": "toll-by-plate surcharge versus an electronic transponder",
+  "prompt": "A toll road charges drivers who have an electronic transponder $0.14 per mile. Drivers without a transponder are billed by license plate: their per-mile rate is 35% higher than the transponder rate, and each monthly bill also includes a flat $2.50 administrative fee, which is not increased by the 35%. In March, Dana, who has no transponder, made 18 trips of 23 miles each on the toll road and received one bill. How much more did Dana pay for March than she would have paid with a transponder, to the nearest cent?",
+  "choices": [
+   "65.29",
+   "33.71",
+   "22.79",
+   "23.66"
+  ]
+ },
+ {
+  "id": "AM23I-05",
+  "topic_tag": "prorated subscription upgrade in the middle of a billing cycle",
+  "prompt": "A software company bills on a 30-day cycle, and its Basic plan costs $18 per cycle and its Pro plan costs $45 per cycle. A customer who had already paid for a full cycle of Basic switches to Pro at the start of day 13 of the cycle, after using Basic for 12 full days. The company credits the customer for the Basic days not used and charges for Pro for the remaining days of the cycle, each at the plan's daily rate (its cycle price divided by 30). How much does the customer pay when switching, in dollars?",
+  "choices": [
+   "10.80",
+   "9.00",
+   "16.20",
+   "15.30"
+  ]
+ },
+ {
+  "id": "AM23I-06",
+  "topic_tag": "ticket order total with per-ticket, per-order and partly taxed fees",
+  "prompt": "Jordan buys 4 concert tickets with a face value of $74 each. The ticket site adds a service fee of 18% of the face value on each ticket and a facility charge of $4.25 on each ticket, plus one order fee of $7.50 for the whole order. Sales tax of 7% is charged on the face values and the service fees only. To the nearest cent, what is the total cost of Jordan's order, in dollars?",
+  "choices": [
+   "401.50",
+   "385.48",
+   "420.73",
+   "398.23"
+  ]
+ },
+ {
+  "id": "AM23I-07",
+  "topic_tag": "consultant invoice with per-session rounding, a percent fee and a prepaid retainer",
+  "prompt": "A consultant bills $96 per hour. Each work session is billed separately and is rounded UP to the next quarter hour (a session that is already a whole number of quarter hours is not changed). This month her sessions for one client lasted 2 hours 10 minutes, 1 hour 35 minutes, 3 hours 50 minutes, and 45 minutes. She adds a technology fee of 3.5% of the labor charge, and then subtracts the $250 retainer the client paid in advance. How much does the client still owe for the month, in dollars?",
+  "choices": [
+   "610.65",
+   "619.40",
+   "585.81",
+   "594.56"
+  ]
+ },
+ {
+  "id": "AM23I-08",
+  "topic_tag": "converting a temperature change between Fahrenheit and Celsius for a heating rate",
+  "prompt": "An oven heats at a constant rate of 12 degrees Celsius per minute. It starts at a room temperature of 50 degrees Fahrenheit and must reach 400 degrees Fahrenheit. A Fahrenheit temperature F corresponds to the Celsius temperature C = (5/9)(F − 32). To the nearest hundredth of a minute, how long does the oven take to heat up?",
+  "choices": [
+   "12.87",
+   "16.20",
+   "13.54",
+   "14.72"
+  ]
+ },
+ {
+  "id": "AM23I-09",
+  "topic_tag": "total race time from paces, a speed, and transition times in minutes and seconds",
+  "prompt": "In a triathlon, Mina swims 1.5 kilometers at a pace of 2 minutes 10 seconds per 100 meters, spends 2 minutes 25 seconds in the first transition, bikes 40 kilometers at an average speed of 32 kilometers per hour, spends 1 minute 15 seconds in the second transition, and runs 10 kilometers at a pace of 5 minutes 15 seconds per kilometer. To the nearest hundredth of a minute, what is her total time for the race?",
+  "choices": [
+   "163.67",
+   "161.40",
+   "136.67",
+   "173.67"
+  ]
+ },
+ {
+  "id": "AM23I-10",
+  "topic_tag": "electric-vehicle range with a cold-weather penalty and a constant heater load",
+  "prompt": "An electric car has a 75-kilowatt-hour (kWh) battery that is 82% charged. The driver will drive until the battery is 20% charged. In mild weather the car uses 0.27 kWh per mile for driving, but on this cold day it uses 30% more energy per mile for driving. In addition, the cabin heater uses a constant 2.4 kilowatts, meaning 2.4 kWh for every hour it runs, and it runs the whole time. The car averages 48 miles per hour. To the nearest hundredth of a mile, how far can the car be driven?",
+  "choices": [
+   "122.69",
+   "101.72",
+   "111.78",
+   "115.96"
+  ]
+ },
+ {
+  "id": "AM23N-01",
+  "topic_tag": "complex numbers as points: modulus conditions",
+  "prompt": "For i = √(−1), the absolute value of a complex number a + bi, where a and b are real numbers, is |a + bi| = √(a² + b²). The complex number z = a + bi, where a and b are real numbers and b > 0, satisfies both |z| = |z − 6| and |z − 2i| = 5. What is the value of |z| ?",
+  "choices": [
+   "√33",
+   "√13",
+   "3√5",
+   "√29"
+  ]
+ },
+ {
+  "id": "AM23N-02",
+  "topic_tag": "matrix times a column vector, then a determinant",
+  "prompt": "The matrix A has first row (a, 2) and second row (4, b), where a and b are constants. When A is multiplied by the column vector with entries 1 (top) and 2 (bottom), the product is the column vector with entries 7 (top) and 2 (bottom). What is the determinant of A ?",
+  "choices": [
+   "-18",
+   "5",
+   "-8",
+   "-11"
+  ]
+ },
+ {
+  "id": "AM23N-03",
+  "topic_tag": "radicals as rational exponents",
+  "prompt": "For x > 0, the expression (∛(x²) · √(x⁵)) / (x · ∜x) is equal to x^k for some rational number k. What is the value of k ?",
+  "choices": [
+   "23/12",
+   "35/12",
+   "11/4",
+   "29/12"
+  ]
+ },
+ {
+  "id": "AM23N-04",
+  "topic_tag": "solving a system of vector equations, then a magnitude",
+  "prompt": "Vectors u and v in the plane satisfy u + v = ⟨7, 1⟩ and u − 2v = ⟨−2, 7⟩. What is the magnitude of the vector u − v ?",
+  "choices": [
+   "√26",
+   "√290",
+   "√178",
+   "√2"
+  ]
+ },
+ {
+  "id": "AM23N-05",
+  "topic_tag": "applying a matrix twice to a vector",
+  "prompt": "Let M = [[2, −1], [1, 1]], a 2 × 2 matrix written row by row, and let w = ⟨3, 1⟩, written as a column. Applying M to w and then applying M again to the result gives the vector M²w, where M² = M·M. What is the length (magnitude) of M²w ?",
+  "choices": [
+   "2√41",
+   "3√13",
+   "√185",
+   "15"
+  ]
+ }
+]

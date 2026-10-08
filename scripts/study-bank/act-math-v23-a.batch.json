@@ -1,0 +1,749 @@
+[
+ {
+  "id": "AM23A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "exponent expressions (powers of monomials)",
+  "subskill": "applying (cx^p)^n = c^n x^(pn) to each factor and multiplying the coefficients of a product of monomial powers",
+  "prompt": "When the expression (6a³b)²(2ab²)³ is simplified and written in the form k·a^m·b^n, where k, m, and n are constants, what is the value of k ?",
+  "choices": [
+   "44",
+   "72",
+   "288",
+   "864"
+  ],
+  "correct_answer": "288",
+  "explanation": "A power of a product raises every factor to that power: (6a³b)² = 6²a⁶b² = 36a⁶b² and (2ab²)³ = 2³a³b⁶ = 8a³b⁶. Multiplying, the coefficient is 36 · 8 = 288 (and the expression is 288a⁹b⁸). The option \"72\" multiplies each coefficient by its exponent instead of raising it to that power, 6 · 2 = 12 and 2 · 3 = 6. The option \"864\" attaches each exponent to the other coefficient, 6³ · 2² = 216 · 4. The option \"44\" adds the powered coefficients, 36 + 8, instead of multiplying them.",
+  "solve": "return String(6**2*2**3);",
+  "distractor_solve": {
+   "44": "return String(6**2+2**3);",
+   "72": "return String((6*2)*(2*3));",
+   "864": "return String(6**3*2**2);"
+  },
+  "quantity_asked": "the coefficient k = 6² × 2³ of the simplified product.",
+  "distractor_kind": {
+   "44": "error path: adds 6² and 2³ instead of multiplying. (a) no. (b) no. (c) only k > 0 forced; inside. (d) real: adding coefficients when monomials are multiplied.",
+   "72": "error path: exponent used as a multiplier on each coefficient, (6·2)(2·3). (a) limiting case: none. (b) neighbouring setup: not an adjacent problem. (c) cheapest estimate: k is a product of positive powers, so k > 0; no stem-forced upper bound short of computing it; inside. (d) real: confusing c^n with n·c.",
+   "864": "error path: exponents attached to the wrong coefficients, 6³·2². (a) no. (b) it is the answer to (6ab²)³(2a³b)², a different expression, not a bound. (c) only k > 0 forced; inside. (d) real: misreading which power applies to which factor."
+  },
+  "distractor_meta": {
+   "44": {
+    "direction": "under",
+    "error_kind": "coefficients added"
+   },
+   "72": {
+    "direction": "under",
+    "error_kind": "exponent as multiplier"
+   },
+   "864": {
+    "direction": "over",
+    "error_kind": "exponents on wrong coefficient"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "power of a monomial",
+   "coefficient of simplified product",
+   "exponent rules",
+   "k a^m b^n form"
+  ],
+  "arith_class_check": "No. The stem makes k a multiple of 6² = 36 and of 2³ = 8, hence of 72, but 72 and 864 are multiples of 72 as well, so that class leaves three options (only the distractor 44 falls out of it); no even spacing (44, 72, 288, 864) and composedFrom finds no relation.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-02",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational expressions (solving a rational relation for the other variable)",
+  "subskill": "rearranging x = (6y + 1)/(4y − 5) to y = (5x + 1)/(4x − 6) and identifying the value of x that no y produces",
+  "prompt": "For every real number y for which the expression is defined, x = (6y + 1)/(4y − 5). Which of the following values can x NEVER equal?",
+  "choices": [
+   "-1/5",
+   "2/3",
+   "5/4",
+   "3/2"
+  ],
+  "correct_answer": "3/2",
+  "explanation": "Solve for y. Multiplying, x(4y − 5) = 6y + 1, so 4xy − 6y = 5x + 1 and y(4x − 6) = 5x + 1. If 4x − 6 ≠ 0, then y = (5x + 1)/(4x − 6) is a valid value of y, so x is attained. If x = 3/2, the equation becomes 0 = 17/2, which is impossible, so x can never equal 3/2. Each other option is attained: x = −1/5 at y = 0, x = 2/3 at y = −13/10, and x = 5/4 at y = −29/4. The option \"5/4\" is the value y cannot take (the excluded input), not an excluded output. The option \"−1/5\" is the value of x when y = 0. The option \"2/3\" inverts the ratio of the y-coefficients, 4/6 instead of 6/4.",
+  "solve": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(6/4);",
+  "distractor_solve": {
+   "-1/5": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr((6*0+1)/(4*0-5));",
+   "2/3": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(4/6);",
+   "5/4": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(5/4);"
+  },
+  "quantity_asked": "the single real value of x that is not produced by any admissible y, namely the x for which y(4x − 6) = 5x + 1 has no solution.",
+  "distractor_kind": {
+   "-1/5": "error path: confuses \"no y gives this x\" with \"y = 0\", and reports x at y = 0. (a) limiting case: y = 0 is not an extreme of anything here. (b) neighbouring setup: the answer to \"the x-intercept-like value\", not a bound. (c) cheapest estimate: no interval is stem-forced on x (the relation takes every real value but one), so nothing to sit on. (d) real: zero-of-input confusion.",
+   "2/3": "error path: takes the ratio of y-coefficients upside down, 4/6. (a) no. (b) no. (c) no stem-forced interval. (d) real: the horizontal-asymptote ratio is leading coefficient of the numerator over that of the denominator; inverting it is common.",
+   "5/4": "error path: reports the excluded value of y (where 4y − 5 = 0) instead of the excluded value of x. (a) no. (b) it is the answer to the adjacent question \"which y is not allowed\", but that is not an extreme of any feasible interval for x. (c) no stem-forced interval. (d) real: domain/range swap."
+  },
+  "distractor_meta": {
+   "-1/5": {
+    "direction": "under",
+    "error_kind": "value at y = 0"
+   },
+   "2/3": {
+    "direction": "under",
+    "error_kind": "inverted coefficient ratio"
+   },
+   "5/4": {
+    "direction": "under",
+    "error_kind": "domain/range swap"
+   }
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "mechanism": [
+   "solve rational equation for other variable",
+   "excluded value of x",
+   "range of a rational expression",
+   "cross-multiply and isolate y"
+  ],
+  "arith_class_check": "No. The stem implies no divisibility, parity or integrality; all four options are non-integer fractions. The key 3/2 is not the only member of any class the stem names (5/4 and 2/3 are also proper/improper fractions; 3/2 and 5/4 both exceed 1).",
+  "one_sided_check": "Key is the largest option, but no: the three errors are of three kinds (zero-of-input, inverted ratio, domain/range swap) and nothing in the stem says the natural slips land below the true value; a student who has not solved cannot rank them, and the options are of mixed sign."
+ },
+ {
+  "id": "AM23A-03",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratic equations (relationships between roots and coefficients)",
+  "subskill": "building a quadratic whose roots are each 3 more than the roots of a given quadratic, using the sum and product of roots",
+  "prompt": "The solutions of x² − 7x + 3 = 0 are r and s. The equation x² + bx + c = 0, where b and c are constants, has solutions r + 3 and s + 3. What is the value of b + c ?",
+  "choices": [
+   "-10",
+   "11",
+   "20",
+   "46"
+  ],
+  "correct_answer": "20",
+  "explanation": "From the first equation, r + s = 7 and rs = 3. The new solutions have sum (r + 3) + (s + 3) = 7 + 6 = 13, so b = −13, and product (r + 3)(s + 3) = rs + 3(r + s) + 9 = 3 + 21 + 9 = 33, so c = 33. Then b + c = 20. (Equivalently, the new equation is (x − 3)² − 7(x − 3) + 3 = x² − 13x + 33.) The option \"11\" omits the 9 in the product (c = 24). The option \"46\" uses b = +13, the sum of the new solutions, instead of b = −13. The option \"−10\" shifts the roots the wrong way, using r − 3 and s − 3 (b = −1, c = −9).",
+  "solve": "const S=7,P=3;const b=-(S+6),c=P+3*S+9;return String(b+c);",
+  "distractor_solve": {
+   "11": "const S=7,P=3;const b=-(S+6),c=P+3*S;return String(b+c);",
+   "46": "const S=7,P=3;const b=(S+6),c=P+3*S+9;return String(b+c);",
+   "-10": "const S=7,P=3;const b=-(S-6),c=P-3*S+9;return String(b+c);"
+  },
+  "quantity_asked": "b + c, where b = −(sum of new roots) = −13 and c = product of new roots = 33.",
+  "distractor_kind": {
+   "11": "error path: expands (r + 3)(s + 3) as rs + 3(r + s), dropping the 9. (a) no. (b) no. (c) no forced interval. (d) real: incomplete FOIL.",
+   "46": "error path: sets b equal to the sum of the solutions, +13, instead of its opposite. (a) no. (b) no. (c) no forced interval. (d) real: the sign in b = −(r + s) is the classic Vieta slip.",
+   "-10": "error path: substitutes x + 3 for x (roots shift down by 3): b = −1, c = −9. (a) limiting case: none. (b) neighbouring setup: the exact answer to \"roots each 3 less\", which is not an extreme of any feasible interval (b + c has no stem-forced range). (c) cheapest estimate: no interval on b + c is forced; nothing to sit on. (d) real: the direction of a horizontal shift is the classic sign slip."
+  },
+  "distractor_meta": {
+   "11": {
+    "direction": "under",
+    "error_kind": "dropped constant term"
+   },
+   "46": {
+    "direction": "over",
+    "error_kind": "sign of b from sum of roots"
+   },
+   "-10": {
+    "direction": "under",
+    "error_kind": "shift in wrong direction"
+   }
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "mechanism": [
+   "sum and product of roots",
+   "roots shifted by 3",
+   "Vieta transformation",
+   "new quadratic from old roots"
+  ],
+  "arith_class_check": "No. b + c carries no divisibility or parity the stem implies. Options −10, 11, 20, 46: −10, 20 and 46 are even, so the key is not a lone even; −10 and 20 are both multiples of 10; no even spacing (gaps 21, 9, 26) and composedFrom finds no relation.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "literal equations with radicals (pendulum period formula)",
+  "subskill": "solving T = 2π√(L/g) for L, L = gT²/(4π²), evaluating at two periods and subtracting, with a unit conversion to centimeters",
+  "prompt": "The period T, in seconds, of a simple pendulum with length L meters is given by T = 2π√(L/g), where g = 9.8 meters per second squared. A pendulum has a period of 2.0 seconds. To the nearest tenth of a centimeter, by how many centimeters must its length be increased so that its period becomes 2.2 seconds?",
+  "choices": [
+   "20.9",
+   "31.2",
+   "120.1",
+   "131.0"
+  ],
+  "correct_answer": "20.9",
+  "explanation": "Solving for L: √(L/g) = T/(2π), so L = gT²/(4π²). For T = 2.0, L = 9.8(4)/(4π²) ≈ 0.9929 m; for T = 2.2, L = 9.8(4.84)/(4π²) ≈ 1.2014 m. The increase is about 0.2085 m = 20.9 cm. The option \"31.2\" forgets to square at all, using L = gT/(2π), so the increase is 9.8(0.2)/(2π) m. The option \"131.0\" squares T but not 2π, using L = gT²/(2π). The option \"120.1\" is the new length, 120.1 cm, rather than the increase.",
+  "solve": "const g=9.8;const L=t=>g*t*t/(4*Math.PI**2);return ((L(2.2)-L(2.0))*100).toFixed(1);",
+  "distractor_solve": {
+   "31.2": "const g=9.8;const L=t=>g*t/(2*Math.PI);return ((L(2.2)-L(2.0))*100).toFixed(1);",
+   "131.0": "const g=9.8;const L=t=>g*t*t/(2*Math.PI);return ((L(2.2)-L(2.0))*100).toFixed(1);",
+   "120.1": "const g=9.8;const L=t=>g*t*t/(4*Math.PI**2);return (L(2.2)*100).toFixed(1);"
+  },
+  "quantity_asked": "the increase in length, 100·(g·2.2²/(4π²) − g·2.0²/(4π²)) centimeters.",
+  "distractor_kind": {
+   "31.2": "error path: isolates L without squaring, L = gT/(2π). (a) limiting case: none. (b) neighbouring setup: not the answer to an adjacent pendulum question. (c) cheapest one-step estimate over the whole increase: the increase is (1.21 − 1)·L₁ = 0.21·L₁, and L₁ is unknown until the formula is solved, so the only stem-forced bound is increase > 0; 31.2 is inside. (d) real: forgetting to square when clearing a square root.",
+   "131.0": "error path: squares T but divides by 2π instead of (2π)². (a) no. (b) no. (c) only increase > 0 is forced; inside. (d) real: squaring only part of T/(2π).",
+   "120.1": "error path: reports the new length L₂ instead of L₂ − L₁. (a) no. (b) it is the answer to \"what is the new length\", but the new length is not a bound a student can compute without solving. (c) only increase > 0 is forced; inside. (d) real: answering an intermediate quantity."
+  },
+  "distractor_meta": {
+   "31.2": {
+    "direction": "over",
+    "error_kind": "did not square"
+   },
+   "131.0": {
+    "direction": "over",
+    "error_kind": "squared T only"
+   },
+   "120.1": {
+    "direction": "over",
+    "error_kind": "answered new length"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "pendulum period formula",
+   "solve for L under a square root",
+   "literal equation with radical",
+   "change in length from two periods"
+  ],
+  "arith_class_check": "No. A length increase carries no divisibility or integrality; all four options are one-decimal values, none is an integer, and they are not one number through a grid of factors (31.2/20.9, 131.0/20.9, 120.1/20.9 are 1.49, 6.27, 5.75).",
+  "one_sided_check": "Key is the smallest option, but no: the three errors are of three kinds (never squared, half-squared, wrong quantity reported), and nothing in the stem lets a student who has not solved know that the slips overshoot; the size of L₁ is not readable from the stem."
+ },
+ {
+  "id": "AM23A-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "systems of linear equations in context (investment split at two simple-interest rates)",
+  "subskill": "writing 0.07x − 0.04(18000 − x) = 369 for the amount x in the higher-rate account and solving",
+  "prompt": "Marisol invested a total of $18,000 in two accounts. One account pays 7% simple annual interest, and the other pays 4% simple annual interest. At the end of one year, the interest earned by the 7% account was $369 more than the interest earned by the 4% account. How many dollars did Marisol invest in the 7% account?",
+  "choices": [
+   "9900",
+   "12300",
+   "14809.09",
+   "15557.14"
+  ],
+  "correct_answer": "9900",
+  "explanation": "Let x be the amount in the 7% account, so 18,000 − x is in the 4% account. Then 0.07x − 0.04(18,000 − x) = 369, so 0.11x − 720 = 369, 0.11x = 1,089, and x = 9,900. Check: 0.07(9,900) = 693 and 0.04(8,100) = 324, a difference of 369. The option \"12300\" treats both accounts as holding x, 0.07x − 0.04x = 369. The option \"14809.09\" attaches the rates to the wrong accounts, 0.04x − 0.07(18,000 − x) = 369. The option \"15557.14\" subtracts 4% of the whole $18,000 instead of 4% of the remainder, 0.07x − 0.04(18,000) = 369.",
+  "solve": "const T=18000,D=369;return String(Math.round((D+0.04*T)/0.11*100)/100);",
+  "distractor_solve": {
+   "12300": "const D=369;return String(Math.round(D/0.03*100)/100);",
+   "14809.09": "const T=18000,D=369;return ((D+0.07*T)/0.11).toFixed(2);",
+   "15557.14": "const T=18000,D=369;return ((D+0.04*T)/0.07).toFixed(2);"
+  },
+  "quantity_asked": "the amount x in the 7% account, where 0.07x − 0.04(18000 − x) = 369.",
+  "distractor_kind": {
+   "12300": "error path: ignores that the two amounts sum to 18,000 and uses x for both, 0.03x = 369. (a) limiting case: not an extreme of x. (b) neighbouring setup: it is the answer to \"equal principals\" only in a different problem, not a bound. (c) cheapest one-step estimate: the 7% interest must exceed the 4% interest, so 0.07x > 0.04(18000 − x), x > 6545.5, and x < 18000; interval (6545.5, 18000); 12300 strictly inside. (d) real: losing the link between the two unknowns.",
+   "14809.09": "error path: rates attached to the wrong accounts, 0.04x − 0.07(18000 − x) = 369. (a) no. (b) it is the amount at 4% in the mirrored problem, not an extreme of the feasible interval. (c) interval (6545.5, 18000); strictly inside. (d) real: misassigning which rate goes with which unknown.",
+   "15557.14": "error path: subtracts 4% of the whole 18,000, 0.07x − 720 = 369. (a) no. (b) no. (c) interval (6545.5, 18000); strictly inside. (d) real: applying a rate to the total instead of to the remainder."
+  },
+  "distractor_meta": {
+   "12300": {
+    "direction": "over",
+    "error_kind": "dropped total constraint"
+   },
+   "14809.09": {
+    "direction": "over",
+    "error_kind": "rates swapped"
+   },
+   "15557.14": {
+    "direction": "over",
+    "error_kind": "rate on whole instead of remainder"
+   }
+  },
+  "bounds": [
+   "v > 18000*4/11",
+   "v < 18000"
+  ],
+  "mechanism": [
+   "investment split two accounts",
+   "simple interest difference",
+   "system of linear equations",
+   "amount at higher rate"
+  ],
+  "arith_class_check": "No. A dollar amount carries no stem-implied divisibility; the key 9900 is an integer as is 12300, and the other two have cents, so the key is not a lone integer or lone multiple of 100.",
+  "one_sided_check": "Key is the smallest option, but no: the errors are three different kinds (dropped constraint, swapped rates, rate on the whole), and the stem gives no reason a student who has not solved could read that every slip enlarges x; the swapped-rate error, for instance, reverses which account is large."
+ },
+ {
+  "id": "AM23A-06",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "rational expressions (subtracting fractions with binomial denominators)",
+  "subskill": "rewriting 3/(x − 2) − 2/(x + 5) over the common denominator (x − 2)(x + 5) and simplifying the numerator 3(x + 5) − 2(x − 2)",
+  "prompt": "For all x ≠ 2 and x ≠ −5, 3/(x − 2) − 2/(x + 5) = (x + k)/((x − 2)(x + 5)), where k is a constant. What is the value of k ?",
+  "choices": [
+   "-16",
+   "9",
+   "11",
+   "19"
+  ],
+  "correct_answer": "19",
+  "explanation": "Over the common denominator (x − 2)(x + 5), the numerator is 3(x + 5) − 2(x − 2) = 3x + 15 − 2x + 4 = x + 19, so k = 19. The option \"11\" distributes the subtraction incorrectly, writing −2(x − 2) as −2x − 4. The option \"−16\" multiplies each numerator by its own denominator instead of the other one, 3(x − 2) − 2(x + 5) = x − 16. The option \"9\" writes 3(x + 5) as 3x + 5, distributing the 3 to x only.",
+  "solve": "const a=3,b=2,p=2,q=5;return String(a*q+b*p);",
+  "distractor_solve": {
+   "9": "const a=3,b=2,p=2,q=5;return String(q+b*p);",
+   "11": "const a=3,b=2,p=2,q=5;return String(a*q-b*p);",
+   "-16": "const a=3,b=2,p=2,q=5;return String(-a*p-b*q);"
+  },
+  "quantity_asked": "the constant term k of the combined numerator 3(x + 5) − 2(x − 2).",
+  "distractor_kind": {
+   "9": "error path: 3(x + 5) written as 3x + 5. (a) no. (b) no. (c) no forced interval. (d) real: incomplete distribution.",
+   "11": "error path: −2(x − 2) expanded as −2x − 4. (a) limiting case: none. (b) neighbouring setup: not an adjacent problem with a bounding answer. (c) cheapest estimate: the stem forces no interval on k; nothing to sit on. (d) real: sign error distributing a negative.",
+   "-16": "error path: cross-multiplies the wrong way, 3(x − 2) − 2(x + 5). (a) no. (b) no. (c) no forced interval. (d) real: multiplying each numerator by its own denominator when building the common denominator."
+  },
+  "distractor_meta": {
+   "9": {
+    "direction": "under",
+    "error_kind": "incomplete distribution"
+   },
+   "11": {
+    "direction": "under",
+    "error_kind": "sign error distributing negative"
+   },
+   "-16": {
+    "direction": "under",
+    "error_kind": "numerators times own denominators"
+   }
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "mechanism": [
+   "subtract rational expressions",
+   "common denominator (x − 2)(x + 5)",
+   "numerator constant k",
+   "combine fractions"
+  ],
+  "arith_class_check": "No. k carries no stem-implied divisibility or parity; options −16, 9, 11, 19 (three odd, one even distractor), no even spacing (gaps 25, 2, 8), and composedFrom finds no relation among them.",
+  "one_sided_check": "Key is the largest option, but no: the three errors are three different kinds (negative distribution, wrong cross-multiplication, incomplete distribution), and the stem gives a student who has not solved no reason to expect every slip to lower k; one error even changes its sign."
+ },
+ {
+  "id": "AM23A-07",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "systems of linear equations in context (prices before and after percent changes)",
+  "subskill": "writing 3a + 2p = 4.10 and 3(1.2a) + 2(0.9p) = 4.41, solving by elimination, and applying the 20% increase to the solved price",
+  "prompt": "Last year at a farm stand, 3 apples and 2 pears cost a total of $4.10. This year the price of an apple is 20% higher than last year and the price of a pear is 10% lower than last year, and 3 apples and 2 pears cost a total of $4.41. What is this year's price, in dollars, of one apple?",
+  "choices": [
+   "0.51",
+   "0.80",
+   "0.96",
+   "1.00"
+  ],
+  "correct_answer": "0.96",
+  "explanation": "Let a and p be last year's prices. Then 3a + 2p = 4.10 and 3(1.2a) + 2(0.9p) = 4.41, that is, 3.6a + 1.8p = 4.41. Multiplying the first equation by 0.9 gives 2.7a + 1.8p = 3.69; subtracting, 0.9a = 0.72, so a = 0.80. This year's apple price is 1.2(0.80) = 0.96. The option \"0.80\" is last year's price. The option \"1.00\" adds 20 cents instead of 20%. The option \"0.51\" attaches the changes to the wrong fruit (apples down 10%, pears up 20%), which gives a ≈ 0.567 and this year's apple price 0.9(0.567) = 0.51.",
+  "solve": "const a=(4.41-0.9*4.10)/(3.6-2.7);return (1.2*a).toFixed(2);",
+  "distractor_solve": {
+   "0.80": "const a=(4.41-0.9*4.10)/(3.6-2.7);return a.toFixed(2);",
+   "1.00": "const a=(4.41-0.9*4.10)/(3.6-2.7);return (a+0.20).toFixed(2);",
+   "0.51": "const a=(1.2*4.10-4.41)/(3.6-2.7);return (0.9*a).toFixed(2);"
+  },
+  "quantity_asked": "this year's apple price 1.2a, where 3a + 2p = 4.10 and 3.6a + 1.8p = 4.41.",
+  "distractor_kind": {
+   "0.80": "error path: stops at last year's price a. (a) limiting case: none. (b) neighbouring setup: answer to \"last year's price\"; not an extreme of the feasible interval. (c) cheapest one-step estimate: 3(1.2a) < 4.41 gives this year's apple price < 1.47, and > 0; interval (0, 1.47); 0.80 strictly inside. (d) real: answering the intermediate unknown.",
+   "1.00": "error path: increases a by 20 cents instead of 20 percent. (a) no. (b) no. (c) interval (0, 1.47); strictly inside. (d) real: percent read as cents.",
+   "0.51": "error path: swaps which fruit rose and which fell, solving 2.7a + 2.4p = 4.41 with 3a + 2p = 4.10, then applies the swapped −10% to apples. (a) no. (b) it is the answer to the mirrored problem, not a bound. (c) interval (0, 1.47); strictly inside. (d) real: misassigning the two percent changes."
+  },
+  "distractor_meta": {
+   "0.80": {
+    "direction": "under",
+    "error_kind": "answered last year price"
+   },
+   "1.00": {
+    "direction": "over",
+    "error_kind": "percent as cents"
+   },
+   "0.51": {
+    "direction": "under",
+    "error_kind": "percent changes swapped"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 4.41/3"
+  ],
+  "mechanism": [
+   "last year this year prices",
+   "percent increase and decrease",
+   "system of two linear equations",
+   "elimination"
+  ],
+  "arith_class_check": "No. A price carries no stem-implied divisibility; options are 0.51, 0.80, 0.96, 1.00, not evenly spaced and not one quantity through a grid of factors (0.96 = 1.2 × 0.80 relates key to one distractor only).",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-08",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "rational equations (nested fractions)",
+  "subskill": "solving 1 + 9/(2 + 5/x) = 7 by isolating the inner fraction step by step, taking reciprocals in the right order",
+  "prompt": "What value of x satisfies the equation 1 + 9/(2 + 5/x) = 7 ?",
+  "choices": [
+   "-10",
+   "-15/4",
+   "-5/2",
+   "10/3"
+  ],
+  "correct_answer": "-10",
+  "explanation": "Subtract 1: 9/(2 + 5/x) = 6, so 2 + 5/x = 9/6 = 3/2. Subtract 2: 5/x = −1/2, so x = −10. Check: 2 + 5/(−10) = 3/2, 9/(3/2) = 6, and 1 + 6 = 7. The option \"−15/4\" solves 9/(2 + 5/x) = 6 as 2 + 5/x = 6/9 (the reciprocal taken the wrong way). The option \"10/3\" forgets to subtract 2, setting 5/x = 3/2. The option \"−5/2\" inverts the last step, reading 5/x = −1/2 as x/5 = −1/2.",
+  "solve": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const D=9/6;return fr(5/(D-2));",
+  "distractor_solve": {
+   "-15/4": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const D=6/9;return fr(5/(D-2));",
+   "10/3": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const D=9/6;return fr(5/D);",
+   "-5/2": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const D=9/6;return fr(5*(D-2));"
+  },
+  "quantity_asked": "the x with 5/x = 9/6 − 2.",
+  "distractor_kind": {
+   "-15/4": "error path: inverts the wrong fraction at the second step, 2 + 5/x = 6/9. (a) limiting case: none. (b) neighbouring setup: not the answer to an adjacent problem that bounds x. (c) cheapest estimate: the stem forces only x ≠ 0 (and 2 + 5/x ≠ 0); no interval; nothing to sit on. (d) real: reciprocal taken upside down.",
+   "10/3": "error path: skips subtracting 2, so 5/x = 3/2. (a) no. (b) no. (c) only x ≠ 0 forced. (d) real: dropping a step when unwinding nested operations.",
+   "-5/2": "error path: inverts the final step, x/5 = −1/2. (a) no. (b) no. (c) only x ≠ 0 forced. (d) real: solving 5/x = c as x = 5c."
+  },
+  "distractor_meta": {
+   "-15/4": {
+    "direction": "over",
+    "error_kind": "reciprocal upside down"
+   },
+   "10/3": {
+    "direction": "over",
+    "error_kind": "skipped subtraction"
+   },
+   "-5/2": {
+    "direction": "over",
+    "error_kind": "inverted final step"
+   }
+  },
+  "bounds": [
+   "v !== 0"
+  ],
+  "mechanism": [
+   "nested fraction equation",
+   "complex fraction",
+   "reciprocal of both sides",
+   "unwinding operations"
+  ],
+  "arith_class_check": "No. The stem implies no divisibility or integrality on x. The key −10 is the only integer, which is an arithmetic-class singleton not implied by the stem: nothing in \"1 + 9/(2 + 5/x) = 7\" says x is an integer, and the other three options are the fractions a student actually produces by those slips.",
+  "one_sided_check": "Key is the smallest option, but no: the three errors are three different kinds (inverted reciprocal mid-way, skipped step, inverted last step), and nothing in the stem lets a student who has not solved know that they all move x upward; one of them even flips the sign of x."
+ },
+ {
+  "id": "AM23A-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "quadratic expressions (completing the square to evaluate a power)",
+  "subskill": "recognizing x² + 6x + 9 = (x + 3)² so that x² + 6x = 7 gives (x + 3)² = 16 and (x + 3)⁴ = 256",
+  "prompt": "If x² + 6x = 7, what is the value of (x + 3)⁴ ?",
+  "choices": [
+   "49",
+   "82",
+   "256",
+   "10000"
+  ],
+  "correct_answer": "256",
+  "explanation": "Add 9 to both sides: x² + 6x + 9 = 16, so (x + 3)² = 16 and (x + 3)⁴ = 16² = 256. (Both solutions, x = 1 and x = −7, give (x + 3)⁴ = 256.) The option \"49\" forgets to add 9, taking (x + 3)² = 7. The option \"10000\" factors x² + 6x − 7 with the signs reversed, (x − 7)(x + 1), and uses x = 7, so (7 + 3)⁴ = 10,000. The option \"82\" uses x = 1 but expands (x + 3)⁴ as x⁴ + 3⁴ = 1 + 81.",
+  "solve": "const sq=7+9;return String(sq*sq);",
+  "distractor_solve": {
+   "49": "const sq=7;return String(sq*sq);",
+   "82": "const x=1;return String(x**4+3**4);",
+   "10000": "const x=7;return String((x+3)**4);"
+  },
+  "quantity_asked": "(x + 3)⁴ = ((x² + 6x) + 9)² with x² + 6x = 7.",
+  "distractor_kind": {
+   "49": "error path: completes the square without adding 9, (x + 3)² = 7. (a) limiting case: none. (b) neighbouring setup: not an extreme of a feasible interval; the only stem-forced bound is a fourth power ≥ 0. (c) cheapest estimate: ≥ 0; inside. (d) real: forgetting the constant when completing the square.",
+   "82": "error path: correct root x = 1 but (x + 3)⁴ expanded as x⁴ + 3⁴. (a) no. (b) no. (c) ≥ 0; inside. (d) real: \"freshman's dream\" expansion of a power of a sum.",
+   "10000": "error path: sign-reversed factoring gives x = 7, then (10)⁴. (a) no. (b) no. (c) ≥ 0; inside. (d) real: sign error factoring x² + 6x − 7."
+  },
+  "distractor_meta": {
+   "49": {
+    "direction": "under",
+    "error_kind": "completed square without +9"
+   },
+   "82": {
+    "direction": "under",
+    "error_kind": "power of sum expanded termwise"
+   },
+   "10000": {
+    "direction": "over",
+    "error_kind": "sign-reversed factoring"
+   }
+  },
+  "bounds": [
+   "v >= 0"
+  ],
+  "mechanism": [
+   "completing the square",
+   "evaluate fourth power",
+   "x² + 6x = 7",
+   "(x + 3)⁴"
+  ],
+  "arith_class_check": "No. The stem implies no divisibility class on (x + 3)⁴. 49, 256 and 10000 are all perfect squares and 82 is not, so the key is not a lone square; 256 and 10000 are both even, so it is not a lone even.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-10",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratics (product of solutions and minimum value)",
+  "subskill": "using product of solutions c/a = 3 to find c, then finding the minimum of y = 2x² − 8x + c at x = −b/(2a)",
+  "prompt": "The product of the two solutions of the equation 2x² − 8x + c = 0, where c is a constant, is 3. What is the minimum value of y = 2x² − 8x + c ?",
+  "choices": [
+   "-10",
+   "-22/3",
+   "-5",
+   "-2"
+  ],
+  "correct_answer": "-2",
+  "explanation": "For ax² + bx + c = 0 the product of the solutions is c/a, so c/2 = 3 and c = 6. The minimum of y = 2x² − 8x + 6 occurs at x = −(−8)/(2·2) = 2, where y = 8 − 16 + 6 = −2. The option \"−5\" takes the product to be c itself (c = 3). The option \"−10\" uses the vertex value c − b²/(2a) = 6 − 64/4 instead of c − b²/(4a) = 6 − 64/8. The option \"−22/3\" inverts the product formula, a/c = 3, so c = 2/3 and the minimum is 2/3 − 8.",
+  "solve": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const a=2,b=-8,c=3*a;return fr(c-b*b/(4*a));",
+  "distractor_solve": {
+   "-5": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const a=2,b=-8,c=3;return fr(c-b*b/(4*a));",
+   "-10": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const a=2,b=-8,c=3*a;return fr(c-b*b/(2*a));",
+   "-22/3": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const a=2,b=-8,c=a/3;return fr(c-b*b/(4*a));"
+  },
+  "quantity_asked": "the minimum value c − b²/(4a) of y = 2x² − 8x + c, with c = 2 × 3 = 6.",
+  "distractor_kind": {
+   "-5": "error path: product of solutions taken as c rather than c/a, so c = 3. (a) limiting case: none. (b) neighbouring setup: the answer for a monic-style reading; not an extreme of a feasible interval. (c) cheapest estimate: once c is known, y(0) = c = 6 caps the minimum below 6; all four options are below 6; no lower bound is forced; inside. (d) real: forgetting to divide by the leading coefficient.",
+   "-10": "error path: vertex value computed as c − b²/(2a). (a) no. (b) no. (c) below the cap 6; inside. (d) real: confusing −b/(2a) with the b²/(4a) term.",
+   "-22/3": "error path: product formula inverted, a/c = 3, c = 2/3. (a) no. (b) no. (c) below 6; inside. (d) real: inverting c/a."
+  },
+  "distractor_meta": {
+   "-5": {
+    "direction": "under",
+    "error_kind": "product = c"
+   },
+   "-10": {
+    "direction": "under",
+    "error_kind": "vertex term b²/(2a)"
+   },
+   "-22/3": {
+    "direction": "under",
+    "error_kind": "product formula inverted"
+   }
+  },
+  "bounds": [
+   "v < 6"
+  ],
+  "mechanism": [
+   "product of solutions c/a",
+   "minimum value of quadratic",
+   "vertex x = −b/(2a)",
+   "two-step quadratic"
+  ],
+  "arith_class_check": "No. The minimum carries no stem-implied divisibility. Options −10, −5, −2 are integers and −22/3 is not, so the key is not a lone integer; −10 and −2 are both even.",
+  "one_sided_check": "Key is the largest option, but no: the three errors are three different kinds (dropped leading coefficient, wrong vertex term, inverted product), and nothing in the stem tells a student who has not solved that each one lowers the minimum; the dropped-coefficient error changes c in the opposite direction from the inverted-product error."
+ },
+ {
+  "id": "AM23A-11",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "exponent expressions (factoring a common power from sums and differences)",
+  "subskill": "rewriting 2^(n+5) − 2^(n+1) and 2^(n+1) + 2^n as multiples of 2^n and simplifying the quotient to a constant",
+  "prompt": "For every integer n, the expression (2^(n+5) − 2^(n+1)) / (2^(n+1) + 2^n) has the same value. What is that value?",
+  "choices": [
+   "5/2",
+   "8",
+   "10",
+   "15"
+  ],
+  "correct_answer": "10",
+  "explanation": "Factor 2^n from every term: 2^(n+5) − 2^(n+1) = 2^n(32 − 2) = 30·2^n and 2^(n+1) + 2^n = 2^n(2 + 1) = 3·2^n. The quotient is 30/3 = 10. The option \"15\" treats 2^0 as 0 after factoring, so the denominator becomes 2 and the value 30/2. The option \"8\" treats a difference or sum of powers as a quotient, 2^((n+5)−(n+1)) / 2^((n+1)−n) = 16/2. The option \"5/2\" factors 2^(n+1) from the numerator and 2^n from the denominator, getting 15·2^(n+1) over 3·2^n, and then simplifies 2^(n+1)/2^n to 1/2 instead of 2.",
+  "solve": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr((32-2)/(2+1));",
+  "distractor_solve": {
+   "8": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(2**((5)-(1))/2**((1)-(0)));",
+   "15": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr((32-2)/(2+0));",
+   "5/2": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(15*(1/2)/3);"
+  },
+  "quantity_asked": "the constant (2^(n+5) − 2^(n+1))/(2^(n+1) + 2^n) = (32 − 2)/(2 + 1).",
+  "distractor_kind": {
+   "8": "error path: treats 2^(n+5) − 2^(n+1) as 2^((n+5)−(n+1)) and the denominator likewise, 16/2. (a) no. (b) no. (c) interval (0, 16); strictly inside. (d) real: subtracting exponents for a difference of powers.",
+   "15": "error path: after factoring 2^n, evaluates 2^0 as 0. (a) limiting case: none. (b) neighbouring setup: not an adjacent problem. (c) cheapest estimate: every term is positive, the numerator is less than 2^(n+5) and the denominator exceeds 2^(n+1), so the value is between 0 and 16; interval (0, 16); 15 strictly inside. (d) real: the 2^0 = 0 misconception.",
+   "5/2": "error path: mismatched factoring, 15·2^(n+1)/(3·2^n), then 2^(n+1)/2^n read as 1/2. (a) no. (b) no. (c) interval (0, 16); strictly inside. (d) real: inverting a quotient of powers."
+  },
+  "distractor_meta": {
+   "8": {
+    "direction": "under",
+    "error_kind": "difference of powers as quotient"
+   },
+   "15": {
+    "direction": "over",
+    "error_kind": "2^0 taken as 0"
+   },
+   "5/2": {
+    "direction": "under",
+    "error_kind": "quotient of powers inverted"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 16"
+  ],
+  "mechanism": [
+   "factor common power of 2",
+   "sum and difference of powers",
+   "expression independent of n",
+   "exponent rules"
+  ],
+  "arith_class_check": "No. The value carries no stem-implied divisibility. 8, 10 and 15 are integers and 5/2 is not, so the key is not a lone integer; 10 is not a sum, product, midpoint, double, harmonic or geometric mean of two other options (checked with composedFrom); no even spacing (2.5, 8, 10, 15).",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-12",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equations in context (two-bracket tax, solving for income)",
+  "subskill": "writing 0.10(10,000) + 0.15(I − 10,000) = 4,250 for an income above the first bracket and solving for I",
+  "prompt": "In a certain country, income tax is 10% of the first $10,000 of a person's income plus 15% of the portion of the income above $10,000. Dana paid $4,250 in income tax. To the nearest dollar, what was Dana's income?",
+  "choices": [
+   "31667",
+   "34000",
+   "37500",
+   "38333"
+  ],
+  "correct_answer": "31667",
+  "explanation": "The first $10,000 is taxed $1,000, so the tax on the portion above $10,000 is 4,250 − 1,000 = 3,250. That portion is 3,250/0.15 ≈ 21,666.67, so the income is about 10,000 + 21,666.67 = 31,666.67, or $31,667. The option \"34000\" divides by the average rate 12.5%. The option \"37500\" swaps the rates, taxing the first $10,000 at 15% and the rest at 10%. The option \"38333\" forgets to subtract the $1,000 already paid on the first bracket but still adds the $10,000 back, 4,250/0.15 + 10,000.",
+  "solve": "return String(Math.round((4250-0.10*10000)/0.15+10000));",
+  "distractor_solve": {
+   "34000": "return String(Math.round(4250/0.125));",
+   "37500": "return String(Math.round((4250-0.15*10000)/0.10+10000));",
+   "38333": "return String(Math.round(4250/0.15+10000));"
+  },
+  "quantity_asked": "the income I with 1000 + 0.15(I − 10000) = 4250.",
+  "distractor_kind": {
+   "34000": "error path: divides the whole tax by the average of the two rates, 12.5%. (a) limiting case: none. (b) neighbouring setup: not an adjacent problem. (c) cheapest one-step estimate over the whole income: if all income were taxed at 15% the income would be 28,333, and if all at 10% it would be 42,500; the true income lies strictly between; interval (28333, 42500); 34000 strictly inside. (d) real: averaging bracket rates.",
+   "37500": "error path: attaches 15% to the first bracket and 10% to the rest. (a) no. (b) it is the answer to the mirrored schedule, not an endpoint of the interval. (c) interval (28333, 42500); strictly inside. (d) real: misreading which rate goes with which portion.",
+   "38333": "error path: 4250/0.15 + 10000, never removing the first bracket's $1,000. (a) no. (b) no. (c) interval (28333, 42500); strictly inside. (d) real: half-applying the bracket structure."
+  },
+  "distractor_meta": {
+   "34000": {
+    "direction": "over",
+    "error_kind": "average rate"
+   },
+   "37500": {
+    "direction": "over",
+    "error_kind": "bracket rates swapped"
+   },
+   "38333": {
+    "direction": "over",
+    "error_kind": "first-bracket tax not removed"
+   }
+  },
+  "bounds": [
+   "v > 4250/0.15",
+   "v < 4250/0.10"
+  ],
+  "mechanism": [
+   "tax brackets",
+   "marginal rate above threshold",
+   "solve for income from tax",
+   "piecewise linear in context"
+  ],
+  "arith_class_check": "No. An income in whole dollars carries no stem-implied divisibility; 34000 and 37500 are round and 31667 and 38333 are not, so the key is not the lone non-round value; no even spacing (31667, 34000, 37500, 38333).",
+  "one_sided_check": "Key is the smallest option, but no: the three errors are three different kinds (averaged rates, swapped rates, half-applied bracket), and the stem gives no readable reason that each slip overstates income; the stem-forced interval (28333, 42500) holds all four options."
+ },
+ {
+  "id": "AM23A-13",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "radical expressions (denesting a square root)",
+  "subskill": "matching (√m + √n)² = m + n + 2√(mn) to 14 + 6√5 to get m + n = 14 and mn = 45, then evaluating √m − √n",
+  "prompt": "The number √(14 + 6√5) can be written as √m + √n, where m and n are positive integers and m > n. To the nearest hundredth, what is the value of √m − √n ?",
+  "choices": [
+   "0.58",
+   "0.76",
+   "2.00",
+   "4.00"
+  ],
+  "correct_answer": "0.76",
+  "explanation": "Squaring, (√m + √n)² = m + n + 2√(mn) = 14 + 6√5, so m + n = 14 and √(mn) = 3√5, that is, mn = 45. Then m = 9 and n = 5, and √m − √n = 3 − √5 ≈ 0.76. (Also (√m − √n)(√m + √n) = m − n = 4, and √m + √n = 3 + √5.) The option \"4.00\" is m − n. The option \"2.00\" uses √m − √n = √(m − n), which is false. The option \"0.58\" is 14 − 6√5, which is (√m − √n)², with the square root never taken.",
+  "solve": "return (3-Math.sqrt(5)).toFixed(2);",
+  "distractor_solve": {
+   "4.00": "return (9-5).toFixed(2);",
+   "2.00": "return Math.sqrt(9-5).toFixed(2);",
+   "0.58": "return (14-6*Math.sqrt(5)).toFixed(2);"
+  },
+  "quantity_asked": "√m − √n = 3 − √5 where m + n = 14 and mn = 45.",
+  "distractor_kind": {
+   "4.00": "error path: reports m − n. (a) limiting case: none. (b) neighbouring setup: the answer to \"m − n\", not an extreme. (c) cheapest one-step estimate: 0 < √m − √n < √m + √n = √(14 + 6√5) ≈ 5.24; interval (0, 5.24); 4.00 strictly inside. (d) real: answering the integer difference instead of the radical difference.",
+   "2.00": "error path: √m − √n taken as √(m − n). (a) no. (b) no. (c) interval (0, 5.24); strictly inside. (d) real: distributing a square root over a difference.",
+   "0.58": "error path: computes 14 − 6√5 = (√m − √n)² and does not take the root. (a) no. (b) no. (c) interval (0, 5.24); strictly inside. (d) real: stopping at the square."
+  },
+  "distractor_meta": {
+   "4.00": {
+    "direction": "over",
+    "error_kind": "answered m − n"
+   },
+   "2.00": {
+    "direction": "over",
+    "error_kind": "root of a difference"
+   },
+   "0.58": {
+    "direction": "under",
+    "error_kind": "forgot square root"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < Math.sqrt(14+6*Math.sqrt(5))"
+  ],
+  "mechanism": [
+   "denesting square root",
+   "(√m + √n)² expansion",
+   "sum and product m + n and mn",
+   "√m − √n"
+  ],
+  "arith_class_check": "No. The stem says m and n are integers, but the quantity asked, √m − √n, is not implied to be an integer or to lie in any class; 2.00 and 4.00 are integers and 0.58 and 0.76 are not, so the key is not a lone member of integer or non-integer.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-14",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "absolute value equations (recovering parameters from the solutions)",
+  "subskill": "using that the solutions of |ax − 12| = b are symmetric about 12/a with half-distance b/a to find a and b",
+  "prompt": "The equation |ax − 12| = b, where a and b are positive constants, has exactly two solutions, x = −1 and x = 7. What is the value of a + b ?",
+  "choices": [
+   "8",
+   "15",
+   "20",
+   "36"
+  ],
+  "correct_answer": "20",
+  "explanation": "The two solutions satisfy ax − 12 = b and ax − 12 = −b, so they are symmetric about x = 12/a and lie a distance b/a from it. The midpoint of −1 and 7 is 3, so 12/a = 3 and a = 4. The half-distance is 4, so b/a = 4 and b = 16. Then a + b = 20. Check: |4x − 12| = 16 gives x = 7 or x = −1. The option \"8\" takes b to be the half-distance 4 itself, forgetting to multiply by a. The option \"36\" multiplies a by the full distance 8 instead of the half-distance. The option \"15\" takes a to be the midpoint 3, as in the form |x − a|, and then b = 3 × 4 = 12.",
+  "solve": "const p=-1,q=7;const m=(p+q)/2,h=(q-p)/2;const a=12/m,b=a*h;return String(a+b);",
+  "distractor_solve": {
+   "8": "const p=-1,q=7;const m=(p+q)/2,h=(q-p)/2;const a=12/m,b=h;return String(a+b);",
+   "15": "const p=-1,q=7;const m=(p+q)/2,h=(q-p)/2;const a=m,b=a*h;return String(a+b);",
+   "36": "const p=-1,q=7;const m=(p+q)/2;const a=12/m,b=a*(q-p);return String(a+b);"
+  },
+  "quantity_asked": "a + b with 12/a = 3 (midpoint) and b/a = 4 (half-distance), so a = 4, b = 16.",
+  "distractor_kind": {
+   "8": "error path: b set equal to the half-distance, not a times it. (a) limiting case: none. (b) neighbouring setup: it is a + b for |x − ...| scaled wrongly, not an extreme of any forced interval. (c) cheapest estimate: only a > 0 and b > 0 are forced, so a + b > 0; no upper bound without solving; inside. (d) real: dropping the coefficient when converting the solution spread to b.",
+   "15": "error path: reads a as the midpoint (the |x − a| template), a = 3, then b = 3 × 4. (a) no. (b) no. (c) only > 0 forced; inside. (d) real: applying the |x − c| = r template to |ax − 12| = b.",
+   "36": "error path: b = a × (full distance 8). (a) no. (b) no. (c) only > 0 forced; inside. (d) real: full width used for half-width."
+  },
+  "distractor_meta": {
+   "8": {
+    "direction": "under",
+    "error_kind": "half-width not scaled by a"
+   },
+   "15": {
+    "direction": "under",
+    "error_kind": "midpoint taken as coefficient"
+   },
+   "36": {
+    "direction": "over",
+    "error_kind": "full width for half-width"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "absolute value equation with parameters",
+   "solutions symmetric about center",
+   "midpoint and half-distance",
+   "recover a and b from solutions"
+  ],
+  "arith_class_check": "No. The stem implies no divisibility on a + b; options 8, 20, 36 are multiples of 4 and 15 is not, so the key is not a lone member; no even spacing (8, 15, 20, 36); 20 is not a sum, midpoint or double of two options.",
+  "one_sided_check": "key interior"
+ }
+]

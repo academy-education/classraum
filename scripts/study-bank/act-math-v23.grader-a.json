@@ -1,0 +1,1642 @@
+{
+ "_render_sha": "d659bd2947c2ea3f",
+ "AM23A-01": {
+  "pick": "288",
+  "work": "36a^6b^2 * 8a^3b^6 = 288a^9b^8.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "k = 6^2*2^3 must be divisible by 36 (and by 8)",
+    "kills": [
+     "44"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "44"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits exponent rules; easy for enhanced ACT"
+ },
+ "AM23A-02": {
+  "pick": "3/2",
+  "work": "x=(6y+1)/(4y-5) has horizontal asymptote 6/4; solving y=(5x+1)/(4x-6) fails only at x=3/2.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "y=0 gives x=-1/5, so -1/5 is attained",
+    "kills": [
+     "-1/5"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "5/4",
+   "what": "the excluded y value (denominator zero), not an excluded x",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": "plug y=0 removes -1/5; 2/3 is the reciprocal of the key",
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits rational functions"
+ },
+ "AM23A-03": {
+  "pick": "20",
+  "work": "r+s=7, rs=3; new sum 13, new product rs+3(r+s)+9=33; b=-13, c=33, b+c=20.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "Vieta mechanism also in AM23A-10",
+  "domain_fit": "fits"
+ },
+ "AM23A-04": {
+  "pick": "20.9",
+  "work": "L=gT^2/(4pi^2): L1=0.9929 m, L2=1.2015 m; difference 20.85 cm.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "increase < new length L2; L2 itself is the 120.1 option",
+    "kills": [
+     "120.1",
+     "131.0"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "g/pi^2 ~ 1 so L1 ~ 1 m (seconds pendulum); T ratio 1.1 -> L ratio 1.21 -> increase ~21% of ~1 m",
+   "interval": "~19-22 cm",
+   "kills": [
+    "131.0",
+    "120.1",
+    "31.2"
+   ]
+  },
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "120.1",
+   "what": "new length L2 in cm, not the increase",
+   "bound_kills": true
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is smallest; stem makes clear the increase is a fraction of a ~1 m length, and the reporting errors (new length, wrong units) all push larger",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits modeling/literal equations"
+ },
+ "AM23A-05": {
+  "pick": "9900",
+  "work": ".07x-.04(18000-x)=369 -> .11x=1089 -> x=9900.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "equal split gives difference 630-360=270<369, so x>9000",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": "two round options and two non-round decimals; key is one of the round ones",
+  "one_sided": "key is smallest; not tellable from stem",
+  "free_elimination": "backsolving 9900 (693 vs 324) is one quick check; the two cent-valued options 15557.14 and 14809.09 look non-round in an all-round-number context",
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "15557.14",
+   "14809.09"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23A-06": {
+  "pick": "19",
+  "work": "3(x+5)-2(x-2)=x+19.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; sign error -2*(-2) -> -4 gives 11, pushes down, but not visible without doing the work",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23A-07": {
+  "pick": "0.96",
+  "work": "3a+2p=4.10, 3.6a+1.8p=4.41 -> 0.9a=0.72 -> a=0.80; this year 1.2*0.80=0.96.",
+  "second_defensible": null,
+  "stem_issue": "this year's pear price is 0.9*0.85=$0.765, not whole cents - unrealistic",
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "0.80",
+   "what": "last year's apple price",
+   "bound_kills": false
+  },
+  "arith_class": "this year's apple price = 1.2 x (last year's whole-cent price), i.e. a multiple of $0.012; 0.96 is the only option (0.51->42.5c, 1.00->83.3c, 0.80->66.7c)",
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits linear systems in context"
+ },
+ "AM23A-08": {
+  "pick": "-10",
+  "work": "9/(2+5/x)=6 -> 2+5/x=3/2 -> 5/x=-1/2 -> x=-10.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "x=-5/2 makes 2+5/x=0 (expression undefined)",
+    "kills": [
+     "-5/2"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": "backsolving each option is about as cheap as solving",
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "-5/2"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23A-09": {
+  "pick": "256",
+  "work": "(x+3)^2=7+9=16, so (x+3)^4=256.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": "49=7^2 and 10000=(7+3)^4 are both built from the 7 on the right side",
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "82"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23A-10": {
+  "pick": "-2",
+  "work": "c/2=3 -> c=6; vertex x=2: 8-16+6=-2.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "two real solutions -> minimum < 0",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest (least negative); not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "Vieta product, shares mechanism with AM23A-03",
+  "domain_fit": "fits"
+ },
+ "AM23A-11": {
+  "pick": "10",
+  "work": "2^n(32-2)/(2^n(2+1))=30/3=10.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": "substituting n=0 gives the answer directly; that is essentially the item",
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23A-12": {
+  "pick": "31667",
+  "work": "1000+.15(I-10000)=4250 -> I-10000=21666.67 -> I=31666.67.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "all-at-15% gives 28333, all-at-10% gives 42500",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "38333",
+   "what": "4250/.15+10000, ignoring first-bracket tax",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is smallest; forgetting the $1000 from the first bracket inflates income, but a student cannot see the direction without setting up",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23A-13": {
+  "pick": "0.76",
+  "work": "m+n=14, mn=45 -> m=9, n=5; 3-sqrt5=0.764.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "0 < sqrt m - sqrt n < sqrt m + sqrt n ~ 5.24",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "4.00"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23A-14": {
+  "pick": "20",
+  "work": "solutions (12+-b)/a; sum 24/a=6 -> a=4; difference 2b/a=8 -> b=16.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23F-01": {
+  "pick": "39.5",
+  "work": "difference 70 -> 42 in 8 min (ratio 0.6); at 20 min 70*0.6^2.5=19.52; 39.5 C.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "16 min: 20+70*0.36=45.2; 24 min: 20+70*0.216=35.1",
+   "interval": "(35.1, 45.2)",
+   "kills": [
+    "45.2",
+    "52.5"
+   ]
+  },
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "45.2",
+   "what": "exact temperature at 16 minutes (two whole 8-min periods), sitting ON the upper edge",
+   "bound_kills": true
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": "35.4 is 90*(62/90)^2.5 (decay of temperature toward 0); survives the bracket",
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits exponential modeling"
+ },
+ "AM23F-02": {
+  "pick": "-2.5",
+  "work": "f^-1 crosses x-axis at x=f(0)=1.5-4=-2.5.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "x-intercept of f^-1 is in range of f, i.e. > -4",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1.42",
+   "what": "x-intercept of f itself (1+log2(4/3))",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "2.33",
+   "-0.4"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23F-03": {
+  "pick": "17",
+  "work": "f(k)-f(1)=(k-1)(2k-1); rate=2k-1=33 -> k=17.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "18.85"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23F-04": {
+  "pick": "84",
+  "work": "axis t=2.5; h=-16(t-1)(t-4)+48; h(2.5)=36+48=84.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "maximum > 48",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; nothing in the stem says errors undershoot",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23F-05": {
+  "pick": "18",
+  "work": "arithmetic 4,34,64; geometric 4,16,64; 34-16=18.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "23.92"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23F-06": {
+  "pick": "4",
+  "work": "x^2+7=56 -> x=7 (x>=3); 2x+9=3 -> x=-3; 7-3=4.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "-10",
+   "what": "takes x=-7 root",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "4.48"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": "inverse-function reading, cf. AM23F-02",
+  "domain_fit": "fits"
+ },
+ "AM23F-07": {
+  "pick": "336/625",
+  "work": "QIII: sin=-7/25, cos=-24/25; sin2theta=2(-7/25)(-24/25)=336/625.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "sin2theta = 2tan/(1+tan^2) < 2tan = 7/12",
+    "kills": [
+     "7/12"
+    ]
+   },
+   {
+    "bound": "|sin2theta|=2|sin||cos| < 2|sin| = 14/25",
+    "kills": [
+     "14/25"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "calculator: theta-180 = arctan(7/24) ~ 16.3 deg, sin(32.5 deg) ~ 0.537",
+   "interval": "~0.53-0.54",
+   "kills": [
+    "14/25",
+    "527/625",
+    "7/12"
+   ]
+  },
+  "survivors": 2,
+  "limiting_case": {
+   "option": "7/12",
+   "what": "2tan theta, the small-angle limit of sin 2theta, ON the bound",
+   "bound_kills": true
+  },
+  "neighbouring_setup": {
+   "option": "527/625",
+   "what": "cos 2theta",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": "shared denominator pair 527/625 and 336/625 (the /625 double-angle form) vs two /25,/12 options",
+  "one_sided": null,
+  "free_elimination": "calculator evaluates the item directly",
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits trig"
+ },
+ "AM23F-08": {
+  "pick": "8.33",
+  "work": "f(2a-b)=f(a)^2/f(b)=25/3.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": "22=25-3, 7=2*5-3: distractors built from 5 and 3 by add/subtract patterns",
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23F-09": {
+  "pick": "25.7",
+  "work": "d^2=(20t)^2+(30-12t)^2=544t^2-720t+900; min 900-720^2/2176=661.76; d=25.72.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "d <= 30 (noon distance)",
+    "kills": []
+   },
+   {
+    "bound": "d >= max(20t, 30-12t) >= 18.75 (equal at t=15/16)",
+    "kills": [
+     "10.5",
+     "15.4"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "t=0.5: (10,24) -> 26; t=1: (20,18) -> 26.9",
+   "interval": "min just under ~26",
+   "kills": []
+  },
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; any sampled time gives ~26-27 and the two cheap bounds leave only 22.1 and 25.7",
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [
+   "10.5",
+   "15.4"
+  ],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23S-01": {
+  "pick": "28/45",
+  "work": "45 pairs; differ by 1: 9, by 2: 8; 45-17=28.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "7/15",
+   "what": "differ by at least 4 (21/45)",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": "all reduce to /45 (25,27,28,21)",
+  "one_sided": "key is largest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23S-02": {
+  "pick": "1/4",
+  "work": "(x-3)(x-6)<0 -> 3<x<6, length 3 of 12.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "3/4",
+   "what": "complement",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23S-03": {
+  "pick": "75",
+  "work": "independence: x*40=50*60 -> x=75.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23S-04": {
+  "pick": "19/36",
+  "work": "b^2>=4c: b=2:1, 3:2, 4:4, 5:6, 6:6 -> 19.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "17/36",
+   "what": "strict inequality (two distinct real roots)",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23S-05": {
+  "pick": "4/15",
+  "work": "30 ordered pairs; 12,16,24,32,36,52,56,64 -> 8/30.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1/4",
+   "what": "with repetition allowed (9/36, includes 44)",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "digit/counting probability, cf. AM23S-01",
+  "domain_fit": "fits"
+ },
+ "AM23S-06": {
+  "pick": "10/21",
+  "work": "weights 1..6 sum 21; primes 2+3+5=10.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1/2",
+   "what": "unweighted die",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": "shared denominator pair 8/21 and 10/21",
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "2/3"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23G-01": {
+  "pick": "6.2",
+  "work": "reflection across y=2x: (x,y)->((-3x+4y)/5,(4x+3y)/5); (7,1)->(-3.4,6.2).",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "|image|=sqrt50~7.07 so |y|<=7.07; image lies above y=2x",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "-3.4",
+   "what": "x-coordinate of the image",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23G-02": {
+  "pick": "5.60",
+  "work": "subtract: x=29/7; y^2=25-841/49=7.837; chord 2*2.799=5.60.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "chord <= smaller diameter 8",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "half-chord by Pythagoras also in AM23G-09",
+  "domain_fit": "fits"
+ },
+ "AM23G-03": {
+  "pick": "5.42",
+  "work": "angle A shared, angle ADE=angle ACB -> ADE~ACB; DE/CB=AD/AC=5/12; DE=65/12=5.42.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "triangle ADE is the small triangle at A; either plausible ratio (5/15 or 5/12) is < 1/2, so DE < 13/2",
+    "kills": [
+     "6.50",
+     "6.77",
+     "8.67"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "ratio <= 5/12 < 0.5 -> DE < 6.5",
+   "interval": "(0, 6.5)",
+   "kills": [
+    "6.50",
+    "6.77",
+    "8.67"
+   ]
+  },
+  "survivors": 1,
+  "limiting_case": {
+   "option": "6.50",
+   "what": "DE at ratio exactly 1/2, ON the bound",
+   "bound_kills": true
+  },
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is smallest; ADE is visibly the small corner triangle (AD=5 of 15) so every distractor >= 13/2 is too big for any correspondence",
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [
+   "8.67",
+   "6.77",
+   "6.50"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits similarity"
+ },
+ "AM23G-04": {
+  "pick": "113.1",
+  "work": "cross-section 12-10-10 triangle: area 48, s=16, r=3; V=36pi=113.1.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "r < h/2=4 so V < 268",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23G-05": {
+  "pick": "35/8",
+  "work": "altitude from C: x=5; altitude from A perpendicular to BC (slope -8/7): y=7x/8 -> 35/8.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "acute triangle -> orthocenter inside, 0<y<8",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "8/3",
+   "what": "centroid y",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23G-06": {
+  "pick": "6.75",
+  "work": "radius slope 4/3, tangent slope -3/4; y=3-0.75(x-5) -> intercept 6.75.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "tangent at upper-right point has negative slope -> intercept > 3",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "9.67",
+   "what": "line through (5,3) with slope -4/3",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is smallest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "circle-line, cf. AM23G-10",
+  "domain_fit": "fits"
+ },
+ "AM23G-07": {
+  "pick": "43.18",
+  "work": "tangent sqrt(64-16)=6.93 x2; sin phi=1/2, arcs 240 deg on R=6 (8pi), 120 deg on r=2 (4pi/3); total 43.18.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "belt > half of each circumference + 2 tangents = 25.13+13.86 = 38.99",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "41.08",
+   "what": "close to naive half-circumferences + 2 center distances (41.13)",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23G-08": {
+  "pick": "6.32",
+  "work": "x^2/18+y^2/8=1; c^2=10; 2c=6.32.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "2c < 2a = 8.49",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "2.83",
+   "what": "sqrt8 = b, not the focal distance",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": "options sqrt8, sqrt20, sqrt32, sqrt40 - built from 8/18 by sums/differences; key not singled out",
+  "one_sided": "key is largest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23G-09": {
+  "pick": "9.17",
+  "work": "distance from O to line 10/5=2; half chord sqrt21; area 2*sqrt21=9.17.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "area <= r^2/2 = 12.5",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "half-chord mechanism shared with AM23G-02",
+  "domain_fit": "fits"
+ },
+ "AM23G-10": {
+  "pick": "7.07",
+  "work": "center (5,k): 25+k^2=16+(k-2)^2... -> k=-5; r=sqrt50.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "r >= 5 (chord of 10)",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23G-11": {
+  "pick": "814",
+  "work": "hypotenuse 15, altitude 7.2; V=(1/3)pi(7.2^2)(15)=259.2pi=814.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "less than rotating about either leg (1018, 1357)",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23I-01": {
+  "pick": "6.48",
+  "work": "37.8/5.4=7 h, 7:30pm-2:30am; peak 1.5 h=8.1 kWh*0.36=2.916; 29.7*0.12=3.564; total 6.48.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "between all-off-peak 4.54 and all-peak 13.61",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is smallest; only 1.5 of 7 hours are peak, and miscounting peak hours pushes the cost up - partly visible from the stem",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits integrating skills"
+ },
+ "AM23I-02": {
+  "pick": "1792.42",
+  "work": "ret 118; income tax .12*2242=269.04; payroll .0765*2360=180.54; 2360-118-269.04-180.54.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1801.45",
+   "what": "payroll tax on reduced pay",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "percent fee chains also AM23I-04, AM23I-06",
+  "domain_fit": "fits"
+ },
+ "AM23I-03": {
+  "pick": "285.6",
+  "work": "braking 4*45=180; reaction 88*1.2=105.6; total 285.6.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "between 2x and 4x the 30-mph total (195.6, 391.2)",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "232.8",
+   "what": "reaction at 44 ft/s",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23I-04": {
+  "pick": "22.79",
+  "work": "414 mi; transponder 57.96; plate .189*414+2.50=80.746; difference 22.79.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "35% of ~58 ~ 20.3, plus 2.50",
+   "interval": "~22-23.5",
+   "kills": [
+    "65.29",
+    "33.71"
+   ]
+  },
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "23.66",
+   "what": "35% applied to the fee too",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "65.29"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23I-05": {
+  "pick": "16.20",
+  "work": "credit 18*0.60=10.80; Pro 18*1.50=27; pay 16.20.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "10.80",
+   "what": "the credit",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23I-06": {
+  "pick": "398.23",
+  "work": "per ticket (74+13.32)*1.07+4.25=97.68; x4=390.73; +7.50=398.23.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23I-07": {
+  "pick": "619.40",
+  "work": "rounded: 2.25+1.75+4+0.75=8.75 h; 840*1.035=869.40; -250=619.40.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "610.65",
+   "what": "fee applied after subtracting retainer",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; stem says round UP, so every rounding slip (not rounding a session, nearest-quarter) and applying the fee after the retainer all lower the total - 'pick the largest' wins",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23I-08": {
+  "pick": "16.20",
+  "work": "350 F change = 194.44 C change; /12 = 16.20 min.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "12.87",
+   "what": "(204.44-50)/12, mixing scales",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23I-09": {
+  "pick": "163.67",
+  "work": "swim 32.5, T1 2.417, bike 75, T2 1.25, run 52.5 = 163.67 min.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23I-10": {
+  "pick": "115.96",
+  "work": "usable 46.5 kWh; 0.351+2.4/48=0.401 kWh/mi; 115.96 mi.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23N-01": {
+  "pick": "3√5",
+  "work": "a=3; 9+(b-2)^2=25 -> b=6 (b>0); |z|=sqrt45.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "√13",
+   "what": "the b=-2 solution excluded by b>0",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is largest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits complex numbers"
+ },
+ "AM23N-02": {
+  "pick": "-11",
+  "work": "a+4=7 -> a=3; 4+2b=2 -> b=-1; det=-3-8=-11.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "5",
+   "what": "ab+8",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": "matrix-vector, cf. AM23N-05",
+  "domain_fit": "fits"
+ },
+ "AM23N-03": {
+  "pick": "23/12",
+  "work": "2/3+5/2-1-1/4=23/12.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": "all over 12 (23,29,33,35); no single pattern singles out the key",
+  "one_sided": "key is smallest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23N-04": {
+  "pick": "√26",
+  "work": "3v=(9,-6) -> v=(3,-2), u=(4,3); u-v=(1,5).",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM23N-05": {
+  "pick": "3√13",
+  "work": "Mw=(5,4); M(5,4)=(6,9); |(6,9)|=sqrt117.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than solving",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "2√41",
+   "what": "2*Mw",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "one_sided": "key is smallest; not tellable",
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "_render_sha_end": "d659bd2947c2ea3f"
+}

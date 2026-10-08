@@ -1,0 +1,804 @@
+[
+ {
+  "id": "AM23I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "time-of-use electricity pricing across a rate boundary",
+  "subskill": "splitting a constant-power run into the part inside a peak-price window and the part outside it, converting hours of running to kilowatt-hours, and pricing each part at its own rate",
+  "prompt": "A pool heat pump draws a constant 5.4 kilowatts (kW) of power while it runs, so each hour of running uses 5.4 kilowatt-hours (kWh) of energy. One evening the heat pump is switched on at 7:30 p.m. and runs without stopping until it has used a total of 37.8 kWh. The utility charges $0.36 per kWh for energy used from 4:00 p.m. to 9:00 p.m. and $0.12 per kWh for energy used at all other times. What is the cost of the energy the heat pump used that evening, in dollars?",
+  "choices": [
+   "9.07",
+   "6.48",
+   "11.66",
+   "7.45"
+  ],
+  "correct_answer": "6.48",
+  "explanation": "The heat pump runs 37.8 / 5.4 = 7 hours, from 7:30 p.m. to 2:30 a.m. Only 7:30 p.m. to 9:00 p.m., 1.5 hours, falls in the $0.36 period: 1.5 × 5.4 = 8.1 kWh, costing 8.1 × 0.36 = $2.916. The other 37.8 − 8.1 = 29.7 kWh cost 29.7 × 0.12 = $3.564. The total is 2.916 + 3.564 = $6.48. The option \"7.45\" prices the 8.1 peak kWh at $0.36 but then also prices all 37.8 kWh at $0.12, counting the peak energy twice. The option \"9.07\" averages the two rates, (0.36 + 0.12)/2 = $0.24, and applies it to all 37.8 kWh. The option \"11.66\" swaps the rates, charging $0.12 for the 8.1 peak kWh and $0.36 for the 29.7 off-peak kWh.",
+  "solve": "const h=37.8/5.4; const peakH=1.5; const pk=peakH*5.4; const off=37.8-pk; return (pk*0.36+off*0.12).toFixed(2);",
+  "distractor_solve": {
+   "7.45": "const pk=1.5*5.4; return (pk*0.36+37.8*0.12).toFixed(2);",
+   "9.07": "return (37.8*(0.36+0.12)/2).toFixed(2);",
+   "11.66": "const pk=1.5*5.4; return (pk*0.12+(37.8-pk)*0.36).toFixed(2);"
+  },
+  "quantity_asked": "the total cost of all 37.8 kWh: 1.5 h x 5.4 kW at $0.36 plus the remaining 29.7 kWh at $0.12.",
+  "distractor_kind": {
+   "7.45": "double count: peak kWh priced at $0.36 and again inside 37.8 x $0.12. (a) limiting case: not all-off-peak (4.54) nor all-peak (13.61). (b) neighbouring setup: no adjacent problem has it as an extreme. (c) cheapest one-step bound over the whole cost: every kWh costs between $0.12 and $0.36, so cost in (4.536, 13.608); one step finer, the peak share is at most 1.5 h of the 7 h, still a bracket only after computing the split, which is the item; 7.45 strictly inside (4.536, 13.608). (d) real: forgetting to remove the peak energy from the off-peak total.",
+   "9.07": "averaged rate $0.24 on all energy. (a) not an extreme. (b) it is the answer if half the energy were peak, which is not an endpoint of the feasible interval. (c) interval (4.536, 13.608); 9.07 strictly inside. (d) real: averaging two rates without weighting by the amounts.",
+   "11.66": "rates swapped between the two periods. (a) no. (b) no. (c) interval (4.536, 13.608); 11.66 strictly inside. (d) real: attaching the peak price to the larger block."
+  },
+  "distractor_meta": {
+   "7.45": {
+    "direction": "over",
+    "error_kind": "double count"
+   },
+   "9.07": {
+    "direction": "over",
+    "error_kind": "unweighted average of rates"
+   },
+   "11.66": {
+    "direction": "over",
+    "error_kind": "rates swapped"
+   }
+  },
+  "bounds": [
+   "v > 37.8*0.12",
+   "v < 37.8*0.36"
+  ],
+  "mechanism": [
+   "time-of-use electricity",
+   "peak and off-peak rate",
+   "kilowatt-hours across a rate boundary",
+   "heat pump running cost"
+  ],
+  "arith_class_check": "No. The stem implies only that the cost is a sum of multiples of 0.36 and 0.12 cents-level amounts; every option has two decimals and none is singled out by integrality or divisibility (6.48, 7.45, 9.07, 11.66 share no class the key alone belongs to).",
+  "one_sided_check": "Key is the smallest. The three errors are of three kinds (double count, unweighted average, swapped rates); nothing in the stem says the natural slips all raise the cost, and a solver cannot tell the peak share is small without computing that the run ends at 2:30 a.m."
+ },
+ {
+  "id": "AM23I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "net pay with a pre-tax deduction that reduces only one tax",
+  "subskill": "applying a pre-tax retirement contribution to the income-tax base but not to the payroll-tax base, then subtracting every deduction from gross pay",
+  "prompt": "Priya's gross pay for one pay period is $2,360. From it, 5% of her gross pay is put into a retirement plan. The retirement contribution is subtracted from her gross pay BEFORE income tax is figured, so income tax is 12% of (gross pay minus the retirement contribution). Payroll tax, however, is 7.65% of her full gross pay. Her take-home pay is her gross pay minus the retirement contribution, the income tax, and the payroll tax. To the nearest cent, what is her take-home pay for the period, in dollars?",
+  "choices": [
+   "1801.45",
+   "1787.29",
+   "1814.08",
+   "1792.42"
+  ],
+  "correct_answer": "1792.42",
+  "explanation": "The retirement contribution is 0.05 × 2,360 = $118.00. Income tax is 0.12 × (2,360 − 118) = 0.12 × 2,242 = $269.04. Payroll tax is 0.0765 × 2,360 = $180.54. Take-home pay is 2,360 − 118 − 269.04 − 180.54 = $1,792.42. The option \"1787.29\" reverses which tax the contribution reduces: income tax on the full $2,360 ($283.20) and payroll tax on $2,242 ($171.51). The option \"1801.45\" lets the contribution reduce both taxes, figuring payroll tax on $2,242 as well. The option \"1814.08\" also subtracts the payroll tax before figuring income tax, 0.12 × (2,242 − 180.54) = $247.38.",
+  "solve": "const g=2360, r=0.05*g; const it=0.12*(g-r); const pt=0.0765*g; return (Math.round((g-r-it-pt)*100+1e-6)/100).toFixed(2);",
+  "distractor_solve": {
+   "1787.29": "const g=2360, r=0.05*g; return (g-r-0.12*g-0.0765*(g-r)).toFixed(2);",
+   "1801.45": "const g=2360, r=0.05*g; return (g-r-0.12*(g-r)-0.0765*(g-r)).toFixed(2);",
+   "1814.08": "const g=2360, r=0.05*g; const pt=0.0765*g; return (g-r-0.12*(g-r-pt)-pt).toFixed(2);"
+  },
+  "quantity_asked": "take-home pay = 2360 - 118 - 0.12(2242) - 0.0765(2360).",
+  "distractor_kind": {
+   "1787.29": "swapped bases: pre-tax reduction applied to payroll tax instead of income tax. (a) limiting case: the no-pre-tax-benefit value 2360(1 - 0.05 - 0.12 - 0.0765) = 1778.73 is a floor; 1787.29 is above it. (b) neighbouring setup: the answer if the plan were pre-tax for payroll tax only; not an endpoint of any stem-forced interval. (c) cheapest one-step bound over the whole take-home pay: the contribution lowers income tax by at most 0.12 x 118 = 14.16 relative to the floor, so pay in [1778.73, 1792.89] if only income tax were reduced; but a solver who does not know which tax is reduced has only (1778.73, 2360 - 118) and 1787.29 is strictly inside the finer one too. (d) real: confusing the two payroll deductions.",
+   "1801.45": "contribution reduces both taxes. (a) no. (b) neighbouring setup (plan pre-tax for both): it exceeds the key, but no stem-forced bound sits at 1801.45 that a solver can reach without computing both taxes; (c) interval (1778.73, 2242); strictly inside. (d) real: assuming a pre-tax deduction is pre-tax for everything.",
+   "1814.08": "payroll tax subtracted from the income-tax base. (a) no. (b) no. (c) interval (1778.73, 2242); strictly inside. (d) real: treating payroll tax as deductible from taxable income."
+  },
+  "distractor_meta": {
+   "1787.29": {
+    "direction": "under",
+    "error_kind": "deduction applied to wrong tax"
+   },
+   "1801.45": {
+    "direction": "over",
+    "error_kind": "deduction applied to both taxes"
+   },
+   "1814.08": {
+    "direction": "over",
+    "error_kind": "tax base reduced by other tax"
+   }
+  },
+  "bounds": [
+   "v > 2360*(1-0.05-0.12-0.0765)",
+   "v < 2360*0.95"
+  ],
+  "mechanism": [
+   "net pay",
+   "pre-tax retirement contribution",
+   "income tax and payroll tax",
+   "take-home pay deductions"
+  ],
+  "arith_class_check": "No. Money to the cent; the options are four non-integer two-decimal values with no shared or lone divisibility, and the gaps (5.13, 9.03, 12.63) are not an arithmetic run.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "stopping distance: a linear reaction part plus a quadratic braking part",
+  "subskill": "scaling a speed-proportional distance and a speed-squared distance separately when speed doubles, with a mph to feet-per-second conversion for the reaction distance",
+  "prompt": "A driver's total stopping distance is the reaction distance plus the braking distance. The reaction distance is the distance the car travels at its full speed during the driver's 1.2-second reaction time. The braking distance is proportional to the square of the car's speed. At a speed of 30 miles per hour, which is 44 feet per second, the car's braking distance is 45 feet. What is the car's total stopping distance, in feet, at a speed of 60 miles per hour?",
+  "choices": [
+   "301.2",
+   "252.0",
+   "285.6",
+   "232.8"
+  ],
+  "correct_answer": "285.6",
+  "explanation": "At 60 miles per hour the car travels 2 × 44 = 88 feet per second, so the reaction distance is 88 × 1.2 = 105.6 feet. Doubling the speed multiplies the braking distance by 2² = 4: 4 × 45 = 180 feet. The total is 105.6 + 180 = 285.6 feet. The option \"232.8\" quadruples the braking distance but keeps the 30-mile-per-hour reaction distance, 44 × 1.2 = 52.8 feet, as though reaction distance did not depend on speed. The option \"252.0\" multiplies 60 by 1.2 without converting miles per hour to feet per second, using a reaction distance of 72 feet. The option \"301.2\" swaps the two scalings, multiplying the reaction distance by 4 and the braking distance by 2: 4 × 52.8 + 2 × 45.",
+  "solve": "const v1=44, v2=88; return (v2*1.2+45*(v2/v1)**2).toFixed(1);",
+  "distractor_solve": {
+   "232.8": "return (44*1.2+45*4).toFixed(1);",
+   "252.0": "return (60*1.2+45*4).toFixed(1);",
+   "301.2": "return (4*44*1.2+2*45).toFixed(1);"
+  },
+  "quantity_asked": "the whole stopping distance at 60 mph: 88 x 1.2 + 45 x (60/30)^2.",
+  "distractor_kind": {
+   "232.8": "reaction distance not scaled with speed. (a) limiting case: not a parameter extreme. (b) neighbouring setup: the answer for a fixed reaction distance; not an endpoint. (c) cheapest one-step bound over the whole distance: the total at 30 mph is 52.8 + 45 = 97.8; doubling speed doubles one part and quadruples the other, so the total at 60 is strictly between 2 x 97.8 = 195.6 and 4 x 97.8 = 391.2; 232.8 strictly inside. (d) real.",
+   "252.0": "mph used as feet per second in the reaction distance. (a) no. (b) no. (c) (195.6, 391.2); strictly inside. (d) real: unit slip.",
+   "301.2": "linear and quadratic scalings swapped. (a) no. (b) no. (c) (195.6, 391.2); strictly inside. (d) real: confusing which part grows with the square of speed."
+  },
+  "distractor_meta": {
+   "232.8": {
+    "direction": "under",
+    "error_kind": "reaction part not scaled"
+   },
+   "252.0": {
+    "direction": "under",
+    "error_kind": "unit not converted"
+   },
+   "301.2": {
+    "direction": "over",
+    "error_kind": "scalings swapped"
+   }
+  },
+  "bounds": [
+   "v > 2*(44*1.2+45)",
+   "v < 4*(44*1.2+45)"
+  ],
+  "mechanism": [
+   "stopping distance",
+   "reaction distance and braking distance",
+   "braking proportional to square of speed",
+   "miles per hour to feet per second"
+  ],
+  "arith_class_check": "No. Four one-decimal values (232.8, 252.0, 285.6, 301.2); the lone whole number is 252.0, a distractor; the stem implies no divisibility.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "toll-by-plate surcharge versus an electronic transponder",
+  "subskill": "totaling miles over many trips, applying a percent surcharge to a per-mile rate but not to a flat billing fee, and finding the difference between two plans",
+  "prompt": "A toll road charges drivers who have an electronic transponder $0.14 per mile. Drivers without a transponder are billed by license plate: their per-mile rate is 35% higher than the transponder rate, and each monthly bill also includes a flat $2.50 administrative fee, which is not increased by the 35%. In March, Dana, who has no transponder, made 18 trips of 23 miles each on the toll road and received one bill. How much more did Dana pay for March than she would have paid with a transponder, to the nearest cent?",
+  "choices": [
+   "33.71",
+   "22.79",
+   "65.29",
+   "23.66"
+  ],
+  "correct_answer": "22.79",
+  "explanation": "Dana drove 18 × 23 = 414 miles. With a transponder the tolls would be 414 × 0.14 = $57.96. By plate, the rate is 0.14 × 1.35 = $0.189 per mile, so the tolls are 414 × 0.189 = $78.246, plus the $2.50 fee, for $80.746. The difference is 80.746 − 57.96 = $22.786 ≈ $22.79. The option \"23.66\" applies the 35% to the administrative fee as well: 1.35 × (57.96 + 2.50) − 57.96. The option \"33.71\" reads the transponder rate as 35% LESS than the plate rate, so it finds the plate tolls as 57.96 / 0.65 = $89.17 before adding the fee. The option \"65.29\" charges the $2.50 fee on each of the 18 trips instead of once on the monthly bill: 0.35 × 57.96 + 18 × 2.50.",
+  "solve": "const t=18*23*0.14; return (t*1.35+2.5-t).toFixed(2);",
+  "distractor_solve": {
+   "23.66": "const t=18*23*0.14; return ((t+2.5)*1.35-t).toFixed(2);",
+   "33.71": "const t=18*23*0.14; return (t/0.65+2.5-t).toFixed(2);",
+   "65.29": "const t=18*23*0.14; return (t*1.35+18*2.5-t).toFixed(2);"
+  },
+  "quantity_asked": "the whole extra amount for March: (414 x 0.14 x 1.35 + 2.50) - 414 x 0.14.",
+  "distractor_kind": {
+   "23.66": "35% applied to the flat fee too. (a) limiting case: none. (b) neighbouring setup: the answer if the fee were also surcharged; not an endpoint of a stem-forced interval. (c) cheapest one-step bound over the whole difference: the surcharge part is 35% of a toll total near 414 x 0.14 = 57.96, so about 20.29, plus the 2.50 fee; the exact sum IS this step, so the stem-forced bracket is (2.50, 0.35 x 57.96 + 18 x 2.50 = 65.29], and anything above 2.50 is legal before the computation; 23.66 strictly inside (2.50, 66). (d) real: surcharging a fee the stem exempts.",
+   "33.71": "percent base reversed (transponder as 35% below plate). (a) no. (b) no. (c) (2.50, 66); strictly inside. (d) real: the \"35% more vs 35% less\" base confusion.",
+   "65.29": "flat monthly fee charged per trip. (a) no. (b) it is the answer if each trip produced its own bill - the stem says one bill; the stem-forced bracket does not end at 65.29 because the number of bills is a reading, not a parameter extreme. (c) (2.50, 66); strictly inside. (d) real: per-trip vs per-bill confusion."
+  },
+  "distractor_meta": {
+   "23.66": {
+    "direction": "over",
+    "error_kind": "surcharge on exempt fee"
+   },
+   "33.71": {
+    "direction": "over",
+    "error_kind": "percent base reversed"
+   },
+   "65.29": {
+    "direction": "over",
+    "error_kind": "per-bill fee charged per trip"
+   }
+  },
+  "bounds": [
+   "v > 2.5"
+  ],
+  "mechanism": [
+   "toll by plate surcharge",
+   "electronic transponder rate",
+   "per mile toll",
+   "monthly administrative fee"
+  ],
+  "arith_class_check": "No. Money to the cent; four two-decimal non-integers; no stem-implied divisibility; the key is in no class alone.",
+  "one_sided_check": "Key is the smallest. The three errors are three kinds (surcharging an exempt fee, reversing the percent base, per-trip vs per-bill fee); the stem gives no readable reason that every slip raises the difference - forgetting the fee, or applying 35% only once per trip, would lower it - so a solver cannot pick the smallest without computing."
+ },
+ {
+  "id": "AM23I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "prorated subscription upgrade in the middle of a billing cycle",
+  "subskill": "counting the days left in a cycle, crediting the unused part of the old plan, and charging the same days at the new plan's daily rate",
+  "prompt": "A software company bills on a 30-day cycle, and its Basic plan costs $18 per cycle and its Pro plan costs $45 per cycle. A customer who had already paid for a full cycle of Basic switches to Pro at the start of day 13 of the cycle, after using Basic for 12 full days. The company credits the customer for the Basic days not used and charges for Pro for the remaining days of the cycle, each at the plan's daily rate (its cycle price divided by 30). How much does the customer pay when switching, in dollars?",
+  "choices": [
+   "15.30",
+   "9.00",
+   "16.20",
+   "10.80"
+  ],
+  "correct_answer": "16.20",
+  "explanation": "Days 13 through 30 are 30 − 12 = 18 days. Pro for those days costs 18 × 45/30 = $27.00, and the unused Basic days are credited 18 × 18/30 = $10.80. The customer pays 27.00 − 10.80 = $16.20. The option \"15.30\" counts the remaining days as 30 − 13 = 17. The option \"9.00\" credits the whole $18 Basic payment instead of only the unused days: 27.00 − 18.00. The option \"10.80\" charges the $27 difference between the plans for the 12 days already USED, 27 × 12/30, rather than for the 18 days remaining.",
+  "solve": "const d=30-12; return (d*45/30-d*18/30).toFixed(2);",
+  "distractor_solve": {
+   "15.30": "const d=30-13; return (d*(45-18)/30).toFixed(2);",
+   "9.00": "const d=30-12; return (d*45/30-18).toFixed(2);",
+   "10.80": "return (12*(45-18)/30).toFixed(2);"
+  },
+  "quantity_asked": "the switching charge, 18 days of Pro minus 18 days of Basic: 18 x (45 - 18)/30.",
+  "distractor_kind": {
+   "15.30": "off-by-one day count (17). (a) limiting case: none. (b) neighbouring setup: switching at the start of day 14; not an endpoint. (c) cheapest bound over the whole charge: it is between 0 and the full-cycle difference 27; one step finer, more than half the cycle remains so the charge exceeds 13.50; 15.30 strictly inside (13.50, 27). (d) real: inclusive-day counting slip.",
+   "9.00": "credits the whole Basic cycle. (a) no. (b) no. (c) 9.00 is below the half-cycle floor 13.50 only if the solver already knows the credit is per unused day - that floor is the item's own work (it assumes the correct credit rule), so the stem-forced bracket is (0, 27); strictly inside. (d) real: crediting the full payment rather than the unused portion.",
+   "10.80": "difference charged for days used. (a) no. (b) it is the charge for switching at the start of day 19, not an endpoint. (c) (0, 27) stem-forced; strictly inside. (d) real: prorating the wrong part of the cycle."
+  },
+  "distractor_meta": {
+   "15.30": {
+    "direction": "under",
+    "error_kind": "off-by-one day count"
+   },
+   "9.00": {
+    "direction": "under",
+    "error_kind": "full credit instead of prorated"
+   },
+   "10.80": {
+    "direction": "under",
+    "error_kind": "prorates the used days"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 45-18"
+  ],
+  "mechanism": [
+   "prorated subscription",
+   "mid-cycle plan upgrade",
+   "credit for unused days",
+   "daily rate billing cycle"
+  ],
+  "arith_class_check": "Every option is a multiple of 0.90 (the daily price difference 27/30): 9.00, 10.80, 15.30, 16.20 = 10, 12, 17, 18 days; the stem-implied class contains all four, so it singles out nothing.",
+  "one_sided_check": "Key is the largest. The three errors are three kinds (day count, credit rule, wrong portion prorated); nothing in the stem says the natural slips lower the charge - counting the days as 30 - 11 = 19, or forgetting the credit, would raise it - and the solver must do the proration to know which way any slip goes."
+ },
+ {
+  "id": "AM23I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "ticket order total with per-ticket, per-order and partly taxed fees",
+  "subskill": "applying a percent fee per ticket, flat per-ticket and per-order fees, and a sales tax that applies only to some of the charges",
+  "prompt": "Jordan buys 4 concert tickets with a face value of $74 each. The ticket site adds a service fee of 18% of the face value on each ticket and a facility charge of $4.25 on each ticket, plus one order fee of $7.50 for the whole order. Sales tax of 7% is charged on the face values and the service fees only. To the nearest cent, what is the total cost of Jordan's order, in dollars?",
+  "choices": [
+   "401.50",
+   "385.48",
+   "398.23",
+   "420.73"
+  ],
+  "correct_answer": "398.23",
+  "explanation": "The face values total 4 × 74 = $296. The service fees are 0.18 × 296 = $53.28, the facility charges are 4 × 4.25 = $17.00, and the order fee is $7.50, so before tax the order is 296 + 53.28 + 17 + 7.50 = $373.78. Tax applies to 296 + 53.28 = $349.28: 0.07 × 349.28 = $24.4496. The total is 373.78 + 24.45 ≈ $398.23. The option \"420.73\" charges the $7.50 order fee on each of the 4 tickets instead of once for the order. The option \"401.50\" figures the service fee on the face value plus the facility charge, 0.18 × (296 + 17) = $56.34, and taxes that larger fee. The option \"385.48\" charges the $4.25 facility charge once for the order instead of once per ticket.",
+  "solve": "const f=4*74, s=0.18*f, fac=4*4.25, o=7.5; return (f+s+fac+o+0.07*(f+s)).toFixed(2);",
+  "distractor_solve": {
+   "420.73": "const f=4*74, s=0.18*f, fac=4*4.25, o=4*7.5; return (f+s+fac+o+0.07*(f+s)).toFixed(2);",
+   "401.50": "const f=4*74, fac=4*4.25, o=7.5; const s=0.18*(f+fac); return (f+s+fac+o+0.07*(f+s)).toFixed(2);",
+   "385.48": "const f=4*74, s=0.18*f, fac=4.25, o=7.5; return (f+s+fac+o+0.07*(f+s)).toFixed(2);"
+  },
+  "quantity_asked": "the whole order total: 296 + 53.28 + 17 + 7.50 + 0.07(296 + 53.28).",
+  "distractor_kind": {
+   "420.73": "per-order fee charged per ticket. (a) limiting case: none. (b) neighbouring setup: the answer if the order fee were per ticket; not an endpoint of a stem-forced interval. (c) cheapest one-step bound over the whole total: face plus service is 296 x 1.18 = 349.28, and the other charges plus tax add at most about 10% more, so the total is in (349.28, 349.28 x 1.07 + 4 x (4.25 + 7.50) = 420.73]... that upper figure is this error itself, so it is not used as a bound; the stem-forced bracket is (349.28, 1.07 x 349.28 + 4 x 4.25 + 4 x 7.50 + 7.50 = 428.23); 420.73 strictly inside. (d) real: per-order vs per-ticket confusion.",
+   "401.50": "percent fee on the wrong base. (a) no. (b) no. (c) (349.28, 428.23); strictly inside. (d) real: computing a percentage fee on the running subtotal.",
+   "385.48": "per-ticket charge applied once. (a) no. (b) no. (c) (349.28, 428.23); strictly inside. (d) real: per-ticket vs per-order confusion."
+  },
+  "distractor_meta": {
+   "420.73": {
+    "direction": "over",
+    "error_kind": "per-order fee charged per ticket"
+   },
+   "401.50": {
+    "direction": "over",
+    "error_kind": "percent fee on wrong base"
+   },
+   "385.48": {
+    "direction": "under",
+    "error_kind": "per-ticket charge applied once"
+   }
+  },
+  "bounds": [
+   "v > 296*1.18",
+   "v < 1.07*296*1.18+4*4.25+4*7.5+7.5"
+  ],
+  "mechanism": [
+   "ticket service fee",
+   "facility charge per ticket",
+   "order fee",
+   "sales tax on part of the charges"
+  ],
+  "arith_class_check": "No. Four two-decimal non-integers; no stem-implied divisibility; the key is not alone in any class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "consultant invoice with per-session rounding, a percent fee and a prepaid retainer",
+  "subskill": "rounding each work session up to the next quarter hour separately, totaling billable hours, adding a percent fee on labor, and subtracting a prepaid amount last",
+  "prompt": "A consultant bills $96 per hour. Each work session is billed separately and is rounded UP to the next quarter hour (a session that is already a whole number of quarter hours is not changed). This month her sessions for one client lasted 2 hours 10 minutes, 1 hour 35 minutes, 3 hours 50 minutes, and 45 minutes. She adds a technology fee of 3.5% of the labor charge, and then subtracts the $250 retainer the client paid in advance. How much does the client still owe for the month, in dollars?",
+  "choices": [
+   "594.56",
+   "619.40",
+   "585.81",
+   "610.65"
+  ],
+  "correct_answer": "619.40",
+  "explanation": "Rounded up to quarter hours, the sessions are 2 h 15 min, 1 h 45 min, 4 h 0 min, and 45 min: 2.25 + 1.75 + 4 + 0.75 = 8.75 billable hours, so the labor charge is 8.75 × 96 = $840.00. The fee is 0.035 × 840 = $29.40, giving $869.40, and subtracting the $250 retainer leaves $619.40. The option \"594.56\" adds the actual times first (8 h 20 min) and rounds the total once, to 8.5 hours: 1.035 × 816 − 250. The option \"610.65\" subtracts the retainer before adding the fee: 1.035 × (840 − 250). The option \"585.81\" makes both slips: 1.035 × (816 − 250).",
+  "solve": "const h=[2+10/60,1+35/60,3+50/60,45/60].map(x=>Math.ceil(x*4-1e-9)/4).reduce((a,b)=>a+b,0); return (h*96*1.035-250).toFixed(2);",
+  "distractor_solve": {
+   "594.56": "const t=2+10/60+1+35/60+3+50/60+45/60; const h=Math.ceil(t*4-1e-9)/4; return (h*96*1.035-250).toFixed(2);",
+   "610.65": "const h=[2+10/60,1+35/60,3+50/60,45/60].map(x=>Math.ceil(x*4-1e-9)/4).reduce((a,b)=>a+b,0); return ((h*96-250)*1.035).toFixed(2);",
+   "585.81": "const t=2+10/60+1+35/60+3+50/60+45/60; const h=Math.ceil(t*4-1e-9)/4; return ((h*96-250)*1.035).toFixed(2);"
+  },
+  "quantity_asked": "the whole amount still owed: 1.035 x 96 x (2.25 + 1.75 + 4 + 0.75) - 250.",
+  "distractor_kind": {
+   "594.56": "rounds the total once instead of each session. (a) limiting case: the no-rounding value 1.035 x 96 x 25/3 - 250 = 578.00 is a floor; 594.56 is above it. (b) neighbouring setup: the answer under a round-the-month-once rule; it is below the key, but the stem-forced floor is 578.00, not 594.56 - that sum-of-ceilings comparison needs the four per-session roundings, which is the item. (c) cheapest one-step bound over the whole amount: billed hours are between the actual 8 h 20 min and 8 h 20 min + 4 x 14 min, so owed in [578.00, 670.98]; one step finer is the per-session rounding itself; 594.56 strictly inside. (d) real: rounding at the wrong level.",
+   "610.65": "retainer subtracted before the percent fee. (a) no. (b) no. (c) [578.00, 670.98]; strictly inside. (d) real: order of operations with a percent and a flat amount.",
+   "585.81": "both slips. (a) no. (b) no. (c) [578.00, 670.98]; strictly inside (585.81 > 578.00). (d) real."
+  },
+  "distractor_meta": {
+   "594.56": {
+    "direction": "under",
+    "error_kind": "rounding at the wrong level"
+   },
+   "610.65": {
+    "direction": "under",
+    "error_kind": "fee and retainer order"
+   },
+   "585.81": {
+    "direction": "under",
+    "error_kind": "both slips combined"
+   }
+  },
+  "bounds": [
+   "v > 96*1.035*25/3-250",
+   "v < 96*1.035*(25/3+56/60)-250"
+  ],
+  "mechanism": [
+   "consultant invoice",
+   "rounded up to the next quarter hour",
+   "billable hours per session",
+   "prepaid retainer and percent fee"
+  ],
+  "arith_class_check": "No. Money to the cent; four two-decimal non-integers; 619.40 and 594.56 are both multiples of 0.01 only; the stem implies no divisibility (the labor is a multiple of 24 but the fee and retainer break any class).",
+  "one_sided_check": "Key is the largest. Errors of two kinds plus their combination (rounding level, fee/retainer order); the stem gives no readable reason that slips lower the bill - rounding each session to the NEAREST quarter hour would also lower it, but rounding to the next half hour or forgetting to subtract the retainer would raise it - so picking the largest is not something a non-solver can justify from the stem alone."
+ },
+ {
+  "id": "AM23I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "converting a temperature change between Fahrenheit and Celsius for a heating rate",
+  "subskill": "converting two Fahrenheit readings to Celsius (or a Fahrenheit difference by the factor 5/9 alone) and dividing the Celsius rise by a rate in degrees Celsius per minute",
+  "prompt": "An oven heats at a constant rate of 12 degrees Celsius per minute. It starts at a room temperature of 50 degrees Fahrenheit and must reach 400 degrees Fahrenheit. A Fahrenheit temperature F corresponds to the Celsius temperature C = (5/9)(F − 32). To the nearest hundredth of a minute, how long does the oven take to heat up?",
+  "choices": [
+   "12.87",
+   "14.72",
+   "16.20",
+   "13.54"
+  ],
+  "correct_answer": "16.20",
+  "explanation": "In Celsius the oven starts at (5/9)(50 − 32) = 10°C and must reach (5/9)(400 − 32) ≈ 204.44°C, a rise of about 194.44 degrees Celsius. (Equivalently, the 350-degree Fahrenheit rise is (5/9)(350) ≈ 194.44 Celsius degrees; a temperature DIFFERENCE converts by the factor 5/9 alone.) At 12 degrees per minute this takes 194.44 / 12 ≈ 16.20 minutes. The option \"12.87\" converts 400°F to 204.44°C but subtracts the starting 50 without converting it. The option \"14.72\" subtracts 32 from the Fahrenheit difference before scaling it: (5/9)(400 − 50 − 32). The option \"13.54\" divides the 350-degree difference by 1.8 and then also subtracts 32.",
+  "solve": "const c=(f)=>5/9*(f-32); return ((c(400)-c(50))/12).toFixed(2);",
+  "distractor_solve": {
+   "12.87": "return ((5/9*(400-32)-50)/12).toFixed(2);",
+   "14.72": "return (5/9*(400-50-32)/12).toFixed(2);",
+   "13.54": "return ((350/1.8-32)/12).toFixed(2);"
+  },
+  "quantity_asked": "the whole heating time, (Celsius rise)/12 = (5/9)(400 - 50)/12 minutes.",
+  "distractor_kind": {
+   "12.87": "start temperature left in Fahrenheit. (a) limiting case: none (not the start-at-0°C value 17.04). (b) neighbouring setup: the time if the oven started at 50°C, not an endpoint. (c) cheapest one-step bound over the whole time: the Celsius rise is less than the Fahrenheit rise, so t < 350/12 = 29.17; and it is more than half of it (5/9 > 1/2), so t > 14.58 - that finer bound needs the factor 5/9 for a difference, which is exactly the item's point; the stem-forced bracket without it is (0, 29.17); 12.87 strictly inside. (d) real.",
+   "14.72": "subtracts 32 from a difference. (a) no. (b) no. (c) (0, 29.17); strictly inside. (d) real: treating a temperature change like a temperature reading.",
+   "13.54": "difference divided by 1.8 then 32 subtracted. (a) no. (b) no. (c) (0, 29.17); strictly inside. (d) real: applying the offset after scaling."
+  },
+  "distractor_meta": {
+   "12.87": {
+    "direction": "under",
+    "error_kind": "one reading not converted"
+   },
+   "14.72": {
+    "direction": "under",
+    "error_kind": "offset applied to a difference"
+   },
+   "13.54": {
+    "direction": "under",
+    "error_kind": "offset applied after scaling"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 350/12"
+  ],
+  "mechanism": [
+   "Fahrenheit to Celsius",
+   "temperature difference conversion",
+   "oven heating rate",
+   "degrees per minute"
+  ],
+  "arith_class_check": "No. Four two-decimal non-integers; no implied divisibility; the key is not alone in any class.",
+  "one_sided_check": "Key is the largest. Errors of three kinds (unconverted reading, offset on a difference before scaling, offset after scaling); the stem offers no readable reason that slips shrink the time - converting with 9/5 instead of 5/9, or forgetting to convert at all, would lengthen it - so picking the largest is not a strategy a non-solver can justify."
+ },
+ {
+  "id": "AM23I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "total race time from paces, a speed, and transition times in minutes and seconds",
+  "subskill": "converting paces given in minutes:seconds, a speed in kilometers per hour, and mm:ss transition times into minutes and adding them",
+  "prompt": "In a triathlon, Mina swims 1.5 kilometers at a pace of 2 minutes 10 seconds per 100 meters, spends 2 minutes 25 seconds in the first transition, bikes 40 kilometers at an average speed of 32 kilometers per hour, spends 1 minute 15 seconds in the second transition, and runs 10 kilometers at a pace of 5 minutes 15 seconds per kilometer. To the nearest hundredth of a minute, what is her total time for the race?",
+  "choices": [
+   "163.67",
+   "173.67",
+   "136.67",
+   "161.40"
+  ],
+  "correct_answer": "163.67",
+  "explanation": "Swim: 1,500 m is 15 hundred-meter lengths at 2 min 10 s = 2 1/6 min each, so 15 × 13/6 = 32.5 min. First transition: 2 min 25 s ≈ 2.4167 min. Bike: 40 / 32 = 1.25 h = 75 min. Second transition: 1 min 15 s = 1.25 min. Run: 10 × 5.25 = 52.5 min. Total: 32.5 + 2.4167 + 75 + 1.25 + 52.5 ≈ 163.67 minutes. The option \"161.40\" reads every minutes-and-seconds time as a decimal (2:10 as 2.10, 2:25 as 2.25, 1:15 as 1.15, 5:15 as 5.15). The option \"173.67\" converts 1.25 hours to 1 hour 25 minutes, 85 minutes. The option \"136.67\" divides the speed by the distance, 32 / 40 = 0.8 h = 48 minutes for the bike.",
+  "solve": "const t=15*(2+10/60)+(2+25/60)+40/32*60+(1+15/60)+10*(5+15/60); return t.toFixed(2);",
+  "distractor_solve": {
+   "161.40": "const t=15*2.10+2.25+40/32*60+1.15+10*5.15; return t.toFixed(2);",
+   "173.67": "const t=15*(2+10/60)+(2+25/60)+85+(1+15/60)+10*(5+15/60); return t.toFixed(2);",
+   "136.67": "const t=15*(2+10/60)+(2+25/60)+32/40*60+(1+15/60)+10*(5+15/60); return t.toFixed(2);"
+  },
+  "quantity_asked": "the whole race time in minutes: swim + T1 + bike + T2 + run.",
+  "distractor_kind": {
+   "161.40": "mm:ss read as decimal minutes. (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest one-step bound over the whole time: swim 15 x 2-and-a-bit (30 to 33), bike 75, run 50 to 55, transitions 3 to 4: total in (158, 167); 161.40 strictly inside. (d) real: the commonest time-notation slip.",
+   "173.67": "hours-to-minutes misconversion of 1.25 h. (a) no. (b) no. (c) the bracket (158, 167) assumes the bike is 75 min, which is the converted value the error gets wrong - the bike time is part of the work; with only \"bike between 1 and 1.5 h\" the stem-forced bracket is (143, 182); strictly inside. (d) real.",
+   "136.67": "speed divided by distance. (a) no. (b) no. (c) with the bike leg uncomputed, (143, 182) contains 136.67? NO - 136.67 < 143. Stated honestly: the cheap \"bike between 1 and 1.5 h\" step is itself the bike computation (40/32), so the stem-forced bracket without it is (swim + run + transitions, ...) = (86, inf); 136.67 inside. (d) real: inverting a rate."
+  },
+  "distractor_meta": {
+   "161.40": {
+    "direction": "under",
+    "error_kind": "mm:ss read as decimal"
+   },
+   "173.67": {
+    "direction": "over",
+    "error_kind": "hours-to-minutes misconversion"
+   },
+   "136.67": {
+    "direction": "under",
+    "error_kind": "inverted rate"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "triathlon total time",
+   "pace per 100 meters",
+   "minutes and seconds conversion",
+   "speed in kilometers per hour"
+  ],
+  "arith_class_check": "No. Times to the hundredth; three options end in .67 (any total with whole-minute pieces plus 1.25 h and 2:25 lands there) and 161.40 does not, so the key is in the majority class, not alone.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "electric-vehicle range with a cold-weather penalty and a constant heater load",
+  "subskill": "finding usable battery energy between two charge levels, raising the driving consumption by a percent, converting a heater's power to energy per mile at a given speed, and dividing",
+  "prompt": "An electric car has a 75-kilowatt-hour (kWh) battery that is 82% charged. The driver will drive until the battery is 20% charged. In mild weather the car uses 0.27 kWh per mile for driving, but on this cold day it uses 30% more energy per mile for driving. In addition, the cabin heater uses a constant 2.4 kilowatts, meaning 2.4 kWh for every hour it runs, and it runs the whole time. The car averages 48 miles per hour. To the nearest hundredth of a mile, how far can the car be driven?",
+  "choices": [
+   "111.78",
+   "122.69",
+   "101.72",
+   "115.96"
+  ],
+  "correct_answer": "115.96",
+  "explanation": "The usable energy is (0.82 − 0.20) × 75 = 46.5 kWh. Driving uses 1.30 × 0.27 = 0.351 kWh per mile. At 48 miles per hour, each mile takes 1/48 hour, so the heater uses 2.4/48 = 0.05 kWh per mile. Altogether the car uses 0.401 kWh per mile, so it can go 46.5 / 0.401 ≈ 115.96 miles. The option \"111.78\" applies the 30% increase to the heater's energy as well: 1.30 × (0.27 + 0.05) = 0.416. The option \"101.72\" finds the range with the heater in mild weather, 46.5 / 0.32 ≈ 145.31 miles, and then cuts the RANGE by 30%, which is not the same as using 30% more energy per mile. The option \"122.69\" takes the 20% reserve as 20% of the current charge rather than of the battery, using 0.82 × 0.80 × 75 = 49.2 kWh.",
+  "solve": "const e=(0.82-0.20)*75; return (e/(0.27*1.3+2.4/48)).toFixed(2);",
+  "distractor_solve": {
+   "111.78": "const e=(0.82-0.20)*75; return (e/((0.27+2.4/48)*1.3)).toFixed(2);",
+   "101.72": "const e=(0.82-0.20)*75; return (e/(0.27+2.4/48)*0.7).toFixed(2);",
+   "122.69": "const e=0.82*0.8*75; return (e/(0.27*1.3+2.4/48)).toFixed(2);"
+  },
+  "quantity_asked": "the whole driving range, 46.5 kWh / (0.351 + 0.05) kWh per mile.",
+  "distractor_kind": {
+   "111.78": "penalty applied to the heater too. (a) limiting case: not the no-heater range 132.48 nor the mild-no-heater 172.22. (b) neighbouring setup: the range if the heater also drew 30% more; not an endpoint. (c) cheapest one-step bound over the whole range: consumption is more than the cold driving rate 0.351 (heater adds), so range < 46.5/0.351 = 132.48; and the heater adds at most a few hundredths, so a one-step-finer floor needs the 0.05 itself, which is the item; a looser floor from \"consumption < 0.5 kWh/mi\" gives range > 93; bracket (93, 132.48); 111.78 strictly inside. (d) real.",
+   "101.72": "range cut by 30% instead of energy per mile raised by 30%. (a) no. (b) no. (c) (93, 132.48); strictly inside. (d) real: percent more consumption read as percent less range.",
+   "122.69": "reserve taken as 20% of the current charge. (a) no. (b) no. (c) (93, 132.48) uses the correct 46.5; with the reserve rule in doubt the stem-forced ceiling is 0.82 x 75 / 0.351 = 175.21; 122.69 strictly inside either. (d) real: percent of the wrong whole."
+  },
+  "distractor_meta": {
+   "111.78": {
+    "direction": "under",
+    "error_kind": "percent applied to too much"
+   },
+   "101.72": {
+    "direction": "under",
+    "error_kind": "percent more consumption read as percent less range"
+   },
+   "122.69": {
+    "direction": "over",
+    "error_kind": "percent of the wrong whole"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 0.82*75/(0.27*1.3)"
+  ],
+  "mechanism": [
+   "electric vehicle range",
+   "cold weather consumption penalty",
+   "heater power at average speed",
+   "kWh per mile"
+  ],
+  "arith_class_check": "No. Four two-decimal non-integers; no implied divisibility; the key is not alone in any class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "complex numbers as points: modulus conditions",
+  "subskill": "reading |z - w| as the distance between z and w in the complex plane, so |z| = |z - 6| fixes the real part, then solving a circle condition and taking the modulus",
+  "prompt": "For i = √(−1), the absolute value of a complex number a + bi, where a and b are real numbers, is |a + bi| = √(a² + b²). The complex number z = a + bi, where a and b are real numbers and b > 0, satisfies both |z| = |z − 6| and |z − 2i| = 5. What is the value of |z| ?",
+  "choices": [
+   "√13",
+   "3√5",
+   "√29",
+   "√33"
+  ],
+  "correct_answer": "3√5",
+  "explanation": "The condition |z| = |z − 6| says a² + b² = (a − 6)² + b², so 0 = −12a + 36 and a = 3. Then |z − 2i| = |3 + (b − 2)i| = 5 gives 9 + (b − 2)² = 25, so (b − 2)² = 16 and b = 6 or b = −2. Since b > 0, b = 6, and |z| = √(3² + 6²) = √45 = 3√5. The option \"√13\" uses the other root, b = −2: √(9 + 4). The option \"√29\" expands |z − 2i|² as a² + b² − 4 instead of a² + (b − 2)², treating (b − 2)² as b² − 4, so it gets |z|² = 25 + 4 = 29. The option \"√33\" reads |z − 2i| as |z − 2|: (3 − 2)² + b² = 25 gives b² = 24 and |z| = √(9 + 24).",
+  "solve": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const a=3; const b=2+Math.sqrt(25-a*a); return r(Math.round(a*a+b*b));",
+  "distractor_solve": {
+   "√13": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const a=3; const b=2-Math.sqrt(25-a*a); return r(Math.round(a*a+b*b));",
+   "√29": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};return r(25+4);",
+   "√33": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const a=3; const b2=25-(a-2)*(a-2); return r(Math.round(a*a+b2));"
+  },
+  "quantity_asked": "the modulus |z| = sqrt(a^2 + b^2) of the one point with a = 3, b = 6.",
+  "distractor_kind": {
+   "√13": "wrong root of the circle equation. (a) limiting case: it is the root excluded by b > 0, not a parameter extreme. (b) neighbouring setup: the answer with b < 0; it is the near point of the circle-line intersection, not an endpoint of the feasible interval for |z|. (c) cheapest one-step bound over the whole modulus: z lies on the circle of radius 5 about 2i, so 3 = 5 - 2 <= |z| <= 5 + 2 = 7; one step finer, a = 3 forces |z| >= 3 already; √13 = 3.61 strictly inside (3, 7). (d) real: ignoring the sign condition.",
+   "√29": "squared a difference as a difference of squares, (b - 2)^2 -> b^2 - 4. (a) no. (b) no. (c) √29 = 5.39, strictly inside (3, 7). (d) real: the (x - y)^2 = x^2 - y^2 slip.",
+   "√33": "|z - 2i| read as |z - 2|. (a) no. (b) no. (c) √33 = 5.74, strictly inside (3, 7). (d) real: confusing the imaginary unit with a real shift."
+  },
+  "distractor_meta": {
+   "√13": {
+    "direction": "under",
+    "error_kind": "wrong root"
+   },
+   "√29": {
+    "direction": "under",
+    "error_kind": "binomial square slip"
+   },
+   "√33": {
+    "direction": "under",
+    "error_kind": "real shift for imaginary"
+   }
+  },
+  "bounds": [
+   "v >= 3",
+   "v <= 7"
+  ],
+  "mechanism": [
+   "complex modulus",
+   "distance in the complex plane",
+   "perpendicular bisector real part",
+   "circle condition |z - 2i| = 5"
+  ],
+  "arith_class_check": "No. The options are √13, 3√5, √29, √33, all irrational; 3√5 is the only one written with a coefficient because √45 simplifies that way by convention, and the stem implies nothing about the form of |z|.",
+  "one_sided_check": "Key is the largest. Errors of three kinds (wrong root, binomial-square slip, real shift for an imaginary one); the stem gives no readable reason that slips shrink |z| - the other root is excluded by b > 0 but a solver cannot tell which root is the farther one from the origin without solving, and |z - 2| vs |z - 2i| has no stem-readable direction."
+ },
+ {
+  "id": "AM23N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "matrix times a column vector, then a determinant",
+  "subskill": "multiplying a 2 x 2 matrix by a column vector to set up equations for unknown entries, solving them, and computing ad - bc",
+  "prompt": "The matrix A has first row (a, 2) and second row (4, b), where a and b are constants. When A is multiplied by the column vector with entries 1 (top) and 2 (bottom), the product is the column vector with entries 7 (top) and 2 (bottom). What is the determinant of A ?",
+  "choices": [
+   "-8",
+   "5",
+   "-18",
+   "-11"
+  ],
+  "correct_answer": "-11",
+  "explanation": "The product A·(1, 2) has top entry a(1) + 2(2) = a + 4 and bottom entry 4(1) + b(2) = 4 + 2b. Setting a + 4 = 7 and 4 + 2b = 2 gives a = 3 and b = −1. Then det A = ab − (2)(4) = 3(−1) − 8 = −11. The option \"-8\" multiplies in the other order, treating (1, 2) as a row vector on the left: (1, 2)·A = (a + 8, 2 + 2b) = (7, 2) gives a = −1 and b = 0, and det = 0 − 8. The option \"-18\" forgets to multiply by the vector's entry 2, writing a + 2 = 7 and 4 + b = 2, so a = 5, b = −2, and det = −10 − 8. The option \"5\" finds a = 3 and b = −1 correctly but adds instead of subtracting in the determinant: ab + 8 = 5.",
+  "solve": "const a=7-2*2, b=(2-4)/2; return String(a*b-2*4);",
+  "distractor_solve": {
+   "5": "const a=7-2*2, b=(2-4)/2; return String(a*b+2*4);",
+   "-8": "const a=7-8, b=(2-2)/2; return String(a*b-2*4);",
+   "-18": "const a=7-2, b=2-4; return String(a*b-2*4);"
+  },
+  "quantity_asked": "det A = ab - 8 with a = 3, b = -1.",
+  "distractor_kind": {
+   "5": "determinant sign slip ad + bc. (a) no. (b) no. (c) (-inf, inf); inside. (d) real: the commonest determinant slip.",
+   "-8": "multiplication order (row vector on the left). (a) limiting case: none. (b) neighbouring setup: the answer to vA = w; there is no stem-forced bound between it and the key. (c) cheapest bound over the whole determinant: none beyond the stem's linear equations; interval (-inf, inf); strictly inside. (d) real: order of matrix multiplication.",
+   "-18": "dropped the vector entry when multiplying. (a) no. (b) no. (c) (-inf, inf); inside. (d) real."
+  },
+  "distractor_meta": {
+   "5": {
+    "direction": "over",
+    "error_kind": "determinant sign"
+   },
+   "-8": {
+    "direction": "over",
+    "error_kind": "multiplication order"
+   },
+   "-18": {
+    "direction": "under",
+    "error_kind": "dropped factor in product"
+   }
+  },
+  "bounds": [],
+  "mechanism": [
+   "matrix times column vector",
+   "unknown matrix entries",
+   "determinant ad - bc",
+   "2 x 2 matrix equations"
+  ],
+  "arith_class_check": "No. Options -18, -11, -8, 5: three negatives and one positive (a distractor); two odd (-11, 5) and two even (-18, -8), so parity splits 2-2; the stem implies no divisibility, and no option repeats a number printed in the stem.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "radicals as rational exponents",
+  "subskill": "rewriting cube roots, square roots and fourth roots as rational exponents, combining products by adding and quotients by subtracting exponents",
+  "prompt": "For x > 0, the expression (∛(x²) · √(x⁵)) / (x · ∜x) is equal to x^k for some rational number k. What is the value of k ?",
+  "choices": [
+   "23/12",
+   "11/4",
+   "35/12",
+   "29/12"
+  ],
+  "correct_answer": "23/12",
+  "explanation": "Write each radical as a power: ∛(x²) = x^(2/3), √(x⁵) = x^(5/2), and ∜x = x^(1/4). The numerator is x^(2/3 + 5/2) = x^(19/6), and the denominator is x^(1 + 1/4) = x^(5/4). Dividing subtracts exponents: 19/6 − 5/4 = 38/12 − 15/12 = 23/12. The option \"29/12\" adds the 1/4 instead of subtracting it: 2/3 + 5/2 − 1 + 1/4. The option \"11/4\" reads the index and the power the wrong way round, writing ∛(x²) as x^(3/2): 3/2 + 5/2 − 5/4 = 11/4. The option \"35/12\" drops the factor x from the denominator: 2/3 + 5/2 − 1/4.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=8+30-12-3, d=12; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "29/12": "const g=(a,b)=>b?g(b,a%b):a; const n=8+30-12+3, d=12; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "11/4": "const g=(a,b)=>b?g(b,a%b):a; const n=18+30-15, d=12; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "35/12": "const g=(a,b)=>b?g(b,a%b):a; const n=8+30-3, d=12; const k=g(n,d); return (n/k)+'/'+(d/k);"
+  },
+  "quantity_asked": "the exponent k = 2/3 + 5/2 - 1 - 1/4.",
+  "distractor_kind": {
+   "29/12": "sign slip on the quotient exponent. (a) limiting case: none. (b) neighbouring setup: the exponent with ∜x in the numerator; no bound. (c) cheapest bound over the whole exponent: numerator exponent between 3 and 3.5, denominator between 1 and 1.5, so k in (1.5, 2.5) - one step finer is the exact sum; 29/12 = 2.42 strictly inside. (d) real.",
+   "11/4": "radical index and power swapped. (a) no. (b) no. (c) the (1.5, 2.5) bracket presumes the conversions are right, which is the item; stem-forced bracket from \"every radical is a positive power\" is (0, inf); 2.75 inside. (d) real: the commonest radical-to-exponent slip.",
+   "35/12": "dropped factor in the denominator. (a) no. (b) no. (c) (0, inf); 2.92 inside. (d) real."
+  },
+  "distractor_meta": {
+   "29/12": {
+    "direction": "over",
+    "error_kind": "quotient exponent sign"
+   },
+   "11/4": {
+    "direction": "over",
+    "error_kind": "index and power swapped"
+   },
+   "35/12": {
+    "direction": "over",
+    "error_kind": "dropped factor"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "rational exponents",
+   "radicals to exponents",
+   "cube root fourth root",
+   "x to the k simplify"
+  ],
+  "arith_class_check": "No. Options 23/12, 29/12, 35/12 share the denominator 12 and 11/4 = 33/12; numerators 23, 29, 33, 35 are all odd; the key is in no class alone (23 and 29 are both prime).",
+  "one_sided_check": "Key is the smallest. Errors of three kinds (quotient sign, index/power swap, dropped factor); the stem gives no readable reason that slips enlarge k - an index/power swap on √(x⁵) would shrink it, and adding rather than subtracting the denominator exponent is not predictable from the stem."
+ },
+ {
+  "id": "AM23N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "solving a system of vector equations, then a magnitude",
+  "subskill": "eliminating one vector between two linear vector equations, solving component-wise, and finding the magnitude of a difference",
+  "prompt": "Vectors u and v in the plane satisfy u + v = ⟨7, 1⟩ and u − 2v = ⟨−2, 7⟩. What is the magnitude of the vector u − v ?",
+  "choices": [
+   "√26",
+   "√178",
+   "√2",
+   "√290"
+  ],
+  "correct_answer": "√26",
+  "explanation": "Subtracting the second equation from the first gives (u + v) − (u − 2v) = 3v = ⟨7 − (−2), 1 − 7⟩ = ⟨9, −6⟩, so v = ⟨3, −2⟩ and u = ⟨7, 1⟩ − ⟨3, −2⟩ = ⟨4, 3⟩. Then u − v = ⟨4 − 3, 3 − (−2)⟩ = ⟨1, 5⟩, with magnitude √(1 + 25) = √26. The option \"√178\" subtracts the equations in the other order and still calls the result 3v, getting v = ⟨−3, 2⟩, u = ⟨10, −1⟩, and u − v = ⟨13, −3⟩. The option \"√290\" forgets to divide by 3, using v = ⟨9, −6⟩ and u = ⟨−2, 7⟩, so u − v = ⟨−11, 13⟩. The option \"√2\" finds u and v correctly but writes 3 − (−2) as 1, getting u − v = ⟨1, 1⟩.",
+  "solve": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const v=[(7+2)/3,(1-7)/3]; const u=[7-v[0],1-v[1]]; const w=[u[0]-v[0],u[1]-v[1]]; return r(w[0]**2+w[1]**2);",
+  "distractor_solve": {
+   "√178": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const v=[(-2-7)/3,(7-1)/3]; const u=[7-v[0],1-v[1]]; const w=[u[0]-v[0],u[1]-v[1]]; return r(w[0]**2+w[1]**2);",
+   "√290": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const v=[7+2,1-7]; const u=[7-v[0],1-v[1]]; const w=[u[0]-v[0],u[1]-v[1]]; return r(w[0]**2+w[1]**2);",
+   "√2": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const v=[3,-2]; const u=[4,3]; const w=[u[0]-v[0],u[1]+v[1]]; return r(w[0]**2+w[1]**2);"
+  },
+  "quantity_asked": "the magnitude |u - v| with u = <4, 3>, v = <3, -2>.",
+  "distractor_kind": {
+   "√178": "subtraction order slip (v sign-reversed). (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest bound over the whole magnitude: u - v = (1/3)(u+v) + (2/3)(u-2v) is the item's own elimination; without it no stem-forced bracket exists beyond |u - v| >= 0; strictly inside. (d) real.",
+   "√290": "forgot to divide by 3. (a) no. (b) no. (c) no bracket; inside. (d) real.",
+   "√2": "sign slip in the final subtraction. (a) no. (b) no. (c) no bracket; inside. (d) real: subtracting a negative component."
+  },
+  "distractor_meta": {
+   "√178": {
+    "direction": "over",
+    "error_kind": "subtraction order"
+   },
+   "√290": {
+    "direction": "over",
+    "error_kind": "forgot to divide"
+   },
+   "√2": {
+    "direction": "under",
+    "error_kind": "sign slip"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "vector equations system",
+   "solve for u and v",
+   "magnitude of u - v",
+   "component form vectors"
+  ],
+  "arith_class_check": "No. Radicands 26, 178, 2, 290 are all even and all squarefree; none is a perfect square; the key is in no class alone.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23N-05",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "applying a matrix twice to a vector",
+  "subskill": "computing A²v as A(Av) (or by squaring A properly), then the magnitude of the resulting vector",
+  "prompt": "Let M = [[2, −1], [1, 1]], a 2 × 2 matrix written row by row, and let w = ⟨3, 1⟩, written as a column. Applying M to w and then applying M again to the result gives the vector M²w, where M² = M·M. What is the length (magnitude) of M²w ?",
+  "choices": [
+   "√185",
+   "15",
+   "3√13",
+   "2√41"
+  ],
+  "correct_answer": "3√13",
+  "explanation": "First Mw = (2·3 + (−1)·1, 1·3 + 1·1) = (5, 4). Then M²w = M(Mw) = (2·5 + (−1)·4, 1·5 + 1·4) = (6, 9), with length √(36 + 81) = √117 = 3√13. The option \"2√41\" treats M² as 2M, doubling Mw = (5, 4) to (10, 8): √164 = 2√41. The option \"√185\" squares each entry of M instead of multiplying M by itself, using rows (4, 1) and (1, 1): (13, 4). The option \"15\" uses the rows of M as its columns (the transpose), getting (7, −2) and then (12, −9), with length 15.",
+  "solve": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const A=[[2,-1],[1,1]]; const m=(M,x)=>[M[0][0]*x[0]+M[0][1]*x[1],M[1][0]*x[0]+M[1][1]*x[1]]; const w=m(A,m(A,[3,1])); return r(w[0]**2+w[1]**2);",
+  "distractor_solve": {
+   "15": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const T=[[2,1],[-1,1]]; const m=(M,x)=>[M[0][0]*x[0]+M[0][1]*x[1],M[1][0]*x[0]+M[1][1]*x[1]]; const w=m(T,m(T,[3,1])); return r(w[0]**2+w[1]**2);",
+   "2√41": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const A=[[2,-1],[1,1]]; const m=(M,x)=>[M[0][0]*x[0]+M[0][1]*x[1],M[1][0]*x[0]+M[1][1]*x[1]]; const w=m(A,[3,1]).map(c=>2*c); return r(w[0]**2+w[1]**2);",
+   "√185": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const S=[[4,1],[1,1]]; const m=(M,x)=>[M[0][0]*x[0]+M[0][1]*x[1],M[1][0]*x[0]+M[1][1]*x[1]]; const w=m(S,[3,1]); return r(w[0]**2+w[1]**2);"
+  },
+  "quantity_asked": "the magnitude of A(Av) = (6, 9).",
+  "distractor_kind": {
+   "15": "transpose used. (a) no. (b) no. (c) (0, inf); inside. (d) real: row/column confusion.",
+   "2√41": "M squared read as 2M. (a) limiting case: none. (b) neighbouring setup: |2Mw|; not an endpoint of any stem-forced interval (the stem gives no bound on how M scales length). (c) cheapest bound over the whole magnitude: none short of computing; (0, inf); inside. (d) real: confusing a matrix square with doubling.",
+   "√185": "entrywise square of A. (a) no. (b) no. (c) (0, inf); inside. (d) real: the commonest matrix-power slip."
+  },
+  "distractor_meta": {
+   "15": {
+    "direction": "over",
+    "error_kind": "transpose"
+   },
+   "2√41": {
+    "direction": "over",
+    "error_kind": "square read as double"
+   },
+   "√185": {
+    "direction": "over",
+    "error_kind": "entrywise square"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "matrix squared times vector",
+   "A squared v",
+   "magnitude of a vector",
+   "2 x 2 matrix product"
+  ],
+  "arith_class_check": "Lone integer is 15, a distractor; the key 3√13 is one of three irrationals, and two options (3√13, 2√41) carry a coefficient; the stem implies nothing about integrality or form of a length.",
+  "one_sided_check": "Key is the smallest. Errors of three kinds (square read as double, entrywise square, transpose); the stem gives no readable reason that slips lengthen the vector - applying M only once would shorten it - so the smallest is not a non-solver strategy."
+ }
+]

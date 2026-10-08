@@ -5879,6 +5879,35 @@
           "verdict": "Run for the record (render sha 69796ca5b6468130 of a copy with bounds, distractor_kind, quantity_asked, mechanism, arith_class_check stripped; no unrecognised field; quoted by both). 12 of 12 picks equal the key, 0 second-defensible. Would-be verdicts (not acted on - the batch is held): AM22A-01 pass; AM22A-03 pass (grader A greatest-heuristic residual); AM22A-04 pass; AM22A-02 drop (95/100/105 weak by both, arithmetic progression with key at an end); AM22A-05 drop (survivors 1: compound > simple gives P < 12000/2.3 = 5217.4; one-sided error family, key the minimum); AM22A-06 drop (65.0 and 120.5 weak by both). See act-math-v22.verdicts.json."
         }
       }
+    },
+    {
+      "id": "act-math-v23-held-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v23",
+      "contentSha": "b835fe09c98ca9d0d17a82ab9ea16a3629e6acd79c028305cd93c09fa16f0598",
+      "status": "held",
+      "note": "55 items (Algebra 14, Geometry 11, IES 10, Functions 9, S&P 6, N&Q 5) from four Claude authors, sized to the form-17 + form-18 deficit (41: Algebra 9, Geometry 8, IES 8, Functions 7, S&P 5, N&Q 4) plus 34%, bars pre-registered in ACT-MATH-V23-PREREGISTERED.md (commit bb28de28) before authoring: v20 pipeline and bars, v21/v22 (a)/(b) bans, new (c) one-sided error family ban and rule 8, per-batch key-position band measured alone. HELD at stage 1 on the pre-registered unanimous-correct bar; nothing inserted; ACT Math stays 16 forms.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "b835fe09c98ca9d0d17a82ab9ea16a3629e6acd79c028305cd93c09fa16f0598",
+          "verdict": "act-math-v18-preflight.sh PASS on the merged 55 (sha b835fe09c98ca9d0) and on each author file (314a56dd, cc7a2760, b3da7e18, 8c1d3261): sandbox 55/55, distractors 165/165, numeric hub none, symbolic -25.0; key at an extreme 27/55 = 49.1% (bar 40.0%; per file 7/14, 7/15, 5/11, 8/15); magnitude z 0.56/-0.00/-0.46; 0 composites, stem echo 0/53, 0 stem duplicates, 0 duplicate option sets. Key position by value (key-rank-position.mjs; live act/math 22.5/55.8/21.7 of 711): 13/28/14 = 23.6/50.9/25.5%, inside the pre-registered band. (c) mechanical check: 27 extreme-key items, all with 3 distinct error_kinds. Arith-class reading list: keys lone 13/52 vs distractors 46/156 (controls 25/52 vs 91/156), none stem-implied. Dup checks over all 2,765 live maths rows: Jaccard 24 flags / 59 near, math-mechanism-dup 0 FLAG / 32 near, all read as different; hand keyword search found AM23A-12 = sat a0dae3a7 and AM23F-08 = sat 7d3066a6 (rule 5), neither flagged by a script."
+        },
+        "nosource": {
+          "passed": false,
+          "contentSha": "b835fe09c98ca9d0d17a82ab9ea16a3629e6acd79c028305cd93c09fa16f0598",
+          "verdict": "Options-only (act-math-v23-attack-draw.mjs, blind sha 112e7b55b70f3aac): 55 candidates + 55 live act/math controls matched 1:1 by domain (v16-v23 excluded), keys flat within arm (25.5% best-fixed each), three Claude samples (pairwise agreement 81.2% vs 25.8% if independent - one solver sampled three times). Candidate 70/165 = 42.4% (+17.0) vs control 56/165 = 33.9% (+8.5): candidate minus control +8.5, under the +10 bar. Unanimous-correct candidate 20/55 = 36.4% vs control 11/55 = 20.0%: +16.4, HOLD bar +15 FIRES. Descriptive: interior-pick prior expects 25.5% candidate vs 30.0% control (key-position tell neutralised); the gap rode on which interior option (interior-key hits 56/84 vs 47/96)."
+        },
+        "withsource": {
+          "passed": null,
+          "contentSha": "b835fe09c98ca9d0d17a82ab9ea16a3629e6acd79c028305cd93c09fa16f0598",
+          "verdict": "Run for the record (render sha d659bd2947c2ea3f of a copy with bounds, distractor_kind, quantity_asked, mechanism, arith_class_check, one_sided_check, distractor_meta stripped; no unrecognised field; quoted by both). 110 of 110 picks equal the key, 0 second-defensible. Would-be verdicts (not acted on - the batch is held): 37 of 55 pass (Algebra 6, Functions 5, S&P 4, Geometry 10, IES 7, N&Q 5 - form 17 met, form 18 not); 18 drop: rule 3 A-04, A-08, F-01, F-07, F-09, G-03, I-04, I-06; rule 4 A-05; rule 5 A-12, F-08; rule 6 A-01, A-02, A-09, S-04, S-06; rule 7 A-07, I-07; rule 8 A-04, F-09, I-07. See act-math-v23.verdicts.json."
+        }
+      }
     }
   ],
   "auditedCohorts": [

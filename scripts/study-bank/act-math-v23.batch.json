@@ -1,0 +1,2949 @@
+[
+ {
+  "id": "AM23A-01",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "exponent expressions (powers of monomials)",
+  "subskill": "applying (cx^p)^n = c^n x^(pn) to each factor and multiplying the coefficients of a product of monomial powers",
+  "prompt": "When the expression (6a³b)²(2ab²)³ is simplified and written in the form k·a^m·b^n, where k, m, and n are constants, what is the value of k ?",
+  "choices": [
+   "44",
+   "72",
+   "288",
+   "864"
+  ],
+  "correct_answer": "288",
+  "explanation": "A power of a product raises every factor to that power: (6a³b)² = 6²a⁶b² = 36a⁶b² and (2ab²)³ = 2³a³b⁶ = 8a³b⁶. Multiplying, the coefficient is 36 · 8 = 288 (and the expression is 288a⁹b⁸). The option \"72\" multiplies each coefficient by its exponent instead of raising it to that power, 6 · 2 = 12 and 2 · 3 = 6. The option \"864\" attaches each exponent to the other coefficient, 6³ · 2² = 216 · 4. The option \"44\" adds the powered coefficients, 36 + 8, instead of multiplying them.",
+  "solve": "return String(6**2*2**3);",
+  "distractor_solve": {
+   "44": "return String(6**2+2**3);",
+   "72": "return String((6*2)*(2*3));",
+   "864": "return String(6**3*2**2);"
+  },
+  "quantity_asked": "the coefficient k = 6² × 2³ of the simplified product.",
+  "distractor_kind": {
+   "44": "error path: adds 6² and 2³ instead of multiplying. (a) no. (b) no. (c) only k > 0 forced; inside. (d) real: adding coefficients when monomials are multiplied.",
+   "72": "error path: exponent used as a multiplier on each coefficient, (6·2)(2·3). (a) limiting case: none. (b) neighbouring setup: not an adjacent problem. (c) cheapest estimate: k is a product of positive powers, so k > 0; no stem-forced upper bound short of computing it; inside. (d) real: confusing c^n with n·c.",
+   "864": "error path: exponents attached to the wrong coefficients, 6³·2². (a) no. (b) it is the answer to (6ab²)³(2a³b)², a different expression, not a bound. (c) only k > 0 forced; inside. (d) real: misreading which power applies to which factor."
+  },
+  "distractor_meta": {
+   "44": {
+    "direction": "under",
+    "error_kind": "coefficients added"
+   },
+   "72": {
+    "direction": "under",
+    "error_kind": "exponent as multiplier"
+   },
+   "864": {
+    "direction": "over",
+    "error_kind": "exponents on wrong coefficient"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "power of a monomial",
+   "coefficient of simplified product",
+   "exponent rules",
+   "k a^m b^n form"
+  ],
+  "arith_class_check": "No. The stem makes k a multiple of 6² = 36 and of 2³ = 8, hence of 72, but 72 and 864 are multiples of 72 as well, so that class leaves three options (only the distractor 44 falls out of it); no even spacing (44, 72, 288, 864) and composedFrom finds no relation.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-02",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "rational expressions (solving a rational relation for the other variable)",
+  "subskill": "rearranging x = (6y + 1)/(4y − 5) to y = (5x + 1)/(4x − 6) and identifying the value of x that no y produces",
+  "prompt": "For every real number y for which the expression is defined, x = (6y + 1)/(4y − 5). Which of the following values can x NEVER equal?",
+  "choices": [
+   "-1/5",
+   "2/3",
+   "5/4",
+   "3/2"
+  ],
+  "correct_answer": "3/2",
+  "explanation": "Solve for y. Multiplying, x(4y − 5) = 6y + 1, so 4xy − 6y = 5x + 1 and y(4x − 6) = 5x + 1. If 4x − 6 ≠ 0, then y = (5x + 1)/(4x − 6) is a valid value of y, so x is attained. If x = 3/2, the equation becomes 0 = 17/2, which is impossible, so x can never equal 3/2. Each other option is attained: x = −1/5 at y = 0, x = 2/3 at y = −13/10, and x = 5/4 at y = −29/4. The option \"5/4\" is the value y cannot take (the excluded input), not an excluded output. The option \"−1/5\" is the value of x when y = 0. The option \"2/3\" inverts the ratio of the y-coefficients, 4/6 instead of 6/4.",
+  "solve": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(6/4);",
+  "distractor_solve": {
+   "-1/5": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr((6*0+1)/(4*0-5));",
+   "2/3": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(4/6);",
+   "5/4": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(5/4);"
+  },
+  "quantity_asked": "the single real value of x that is not produced by any admissible y, namely the x for which y(4x − 6) = 5x + 1 has no solution.",
+  "distractor_kind": {
+   "-1/5": "error path: confuses \"no y gives this x\" with \"y = 0\", and reports x at y = 0. (a) limiting case: y = 0 is not an extreme of anything here. (b) neighbouring setup: the answer to \"the x-intercept-like value\", not a bound. (c) cheapest estimate: no interval is stem-forced on x (the relation takes every real value but one), so nothing to sit on. (d) real: zero-of-input confusion.",
+   "2/3": "error path: takes the ratio of y-coefficients upside down, 4/6. (a) no. (b) no. (c) no stem-forced interval. (d) real: the horizontal-asymptote ratio is leading coefficient of the numerator over that of the denominator; inverting it is common.",
+   "5/4": "error path: reports the excluded value of y (where 4y − 5 = 0) instead of the excluded value of x. (a) no. (b) it is the answer to the adjacent question \"which y is not allowed\", but that is not an extreme of any feasible interval for x. (c) no stem-forced interval. (d) real: domain/range swap."
+  },
+  "distractor_meta": {
+   "-1/5": {
+    "direction": "under",
+    "error_kind": "value at y = 0"
+   },
+   "2/3": {
+    "direction": "under",
+    "error_kind": "inverted coefficient ratio"
+   },
+   "5/4": {
+    "direction": "under",
+    "error_kind": "domain/range swap"
+   }
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "mechanism": [
+   "solve rational equation for other variable",
+   "excluded value of x",
+   "range of a rational expression",
+   "cross-multiply and isolate y"
+  ],
+  "arith_class_check": "No. The stem implies no divisibility, parity or integrality; all four options are non-integer fractions. The key 3/2 is not the only member of any class the stem names (5/4 and 2/3 are also proper/improper fractions; 3/2 and 5/4 both exceed 1).",
+  "one_sided_check": "Key is the largest option, but no: the three errors are of three kinds (zero-of-input, inverted ratio, domain/range swap) and nothing in the stem says the natural slips land below the true value; a student who has not solved cannot rank them, and the options are of mixed sign."
+ },
+ {
+  "id": "AM23A-03",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratic equations (relationships between roots and coefficients)",
+  "subskill": "building a quadratic whose roots are each 3 more than the roots of a given quadratic, using the sum and product of roots",
+  "prompt": "The solutions of x² − 7x + 3 = 0 are r and s. The equation x² + bx + c = 0, where b and c are constants, has solutions r + 3 and s + 3. What is the value of b + c ?",
+  "choices": [
+   "-10",
+   "11",
+   "20",
+   "46"
+  ],
+  "correct_answer": "20",
+  "explanation": "From the first equation, r + s = 7 and rs = 3. The new solutions have sum (r + 3) + (s + 3) = 7 + 6 = 13, so b = −13, and product (r + 3)(s + 3) = rs + 3(r + s) + 9 = 3 + 21 + 9 = 33, so c = 33. Then b + c = 20. (Equivalently, the new equation is (x − 3)² − 7(x − 3) + 3 = x² − 13x + 33.) The option \"11\" omits the 9 in the product (c = 24). The option \"46\" uses b = +13, the sum of the new solutions, instead of b = −13. The option \"−10\" shifts the roots the wrong way, using r − 3 and s − 3 (b = −1, c = −9).",
+  "solve": "const S=7,P=3;const b=-(S+6),c=P+3*S+9;return String(b+c);",
+  "distractor_solve": {
+   "11": "const S=7,P=3;const b=-(S+6),c=P+3*S;return String(b+c);",
+   "46": "const S=7,P=3;const b=(S+6),c=P+3*S+9;return String(b+c);",
+   "-10": "const S=7,P=3;const b=-(S-6),c=P-3*S+9;return String(b+c);"
+  },
+  "quantity_asked": "b + c, where b = −(sum of new roots) = −13 and c = product of new roots = 33.",
+  "distractor_kind": {
+   "11": "error path: expands (r + 3)(s + 3) as rs + 3(r + s), dropping the 9. (a) no. (b) no. (c) no forced interval. (d) real: incomplete FOIL.",
+   "46": "error path: sets b equal to the sum of the solutions, +13, instead of its opposite. (a) no. (b) no. (c) no forced interval. (d) real: the sign in b = −(r + s) is the classic Vieta slip.",
+   "-10": "error path: substitutes x + 3 for x (roots shift down by 3): b = −1, c = −9. (a) limiting case: none. (b) neighbouring setup: the exact answer to \"roots each 3 less\", which is not an extreme of any feasible interval (b + c has no stem-forced range). (c) cheapest estimate: no interval on b + c is forced; nothing to sit on. (d) real: the direction of a horizontal shift is the classic sign slip."
+  },
+  "distractor_meta": {
+   "11": {
+    "direction": "under",
+    "error_kind": "dropped constant term"
+   },
+   "46": {
+    "direction": "over",
+    "error_kind": "sign of b from sum of roots"
+   },
+   "-10": {
+    "direction": "under",
+    "error_kind": "shift in wrong direction"
+   }
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "mechanism": [
+   "sum and product of roots",
+   "roots shifted by 3",
+   "Vieta transformation",
+   "new quadratic from old roots"
+  ],
+  "arith_class_check": "No. b + c carries no divisibility or parity the stem implies. Options −10, 11, 20, 46: −10, 20 and 46 are even, so the key is not a lone even; −10 and 20 are both multiples of 10; no even spacing (gaps 21, 9, 26) and composedFrom finds no relation.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-04",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "literal equations with radicals (pendulum period formula)",
+  "subskill": "solving T = 2π√(L/g) for L, L = gT²/(4π²), evaluating at two periods and subtracting, with a unit conversion to centimeters",
+  "prompt": "The period T, in seconds, of a simple pendulum with length L meters is given by T = 2π√(L/g), where g = 9.8 meters per second squared. A pendulum has a period of 2.0 seconds. To the nearest tenth of a centimeter, by how many centimeters must its length be increased so that its period becomes 2.2 seconds?",
+  "choices": [
+   "20.9",
+   "31.2",
+   "120.1",
+   "131.0"
+  ],
+  "correct_answer": "20.9",
+  "explanation": "Solving for L: √(L/g) = T/(2π), so L = gT²/(4π²). For T = 2.0, L = 9.8(4)/(4π²) ≈ 0.9929 m; for T = 2.2, L = 9.8(4.84)/(4π²) ≈ 1.2014 m. The increase is about 0.2085 m = 20.9 cm. The option \"31.2\" forgets to square at all, using L = gT/(2π), so the increase is 9.8(0.2)/(2π) m. The option \"131.0\" squares T but not 2π, using L = gT²/(2π). The option \"120.1\" is the new length, 120.1 cm, rather than the increase.",
+  "solve": "const g=9.8;const L=t=>g*t*t/(4*Math.PI**2);return ((L(2.2)-L(2.0))*100).toFixed(1);",
+  "distractor_solve": {
+   "31.2": "const g=9.8;const L=t=>g*t/(2*Math.PI);return ((L(2.2)-L(2.0))*100).toFixed(1);",
+   "131.0": "const g=9.8;const L=t=>g*t*t/(2*Math.PI);return ((L(2.2)-L(2.0))*100).toFixed(1);",
+   "120.1": "const g=9.8;const L=t=>g*t*t/(4*Math.PI**2);return (L(2.2)*100).toFixed(1);"
+  },
+  "quantity_asked": "the increase in length, 100·(g·2.2²/(4π²) − g·2.0²/(4π²)) centimeters.",
+  "distractor_kind": {
+   "31.2": "error path: isolates L without squaring, L = gT/(2π). (a) limiting case: none. (b) neighbouring setup: not the answer to an adjacent pendulum question. (c) cheapest one-step estimate over the whole increase: the increase is (1.21 − 1)·L₁ = 0.21·L₁, and L₁ is unknown until the formula is solved, so the only stem-forced bound is increase > 0; 31.2 is inside. (d) real: forgetting to square when clearing a square root.",
+   "131.0": "error path: squares T but divides by 2π instead of (2π)². (a) no. (b) no. (c) only increase > 0 is forced; inside. (d) real: squaring only part of T/(2π).",
+   "120.1": "error path: reports the new length L₂ instead of L₂ − L₁. (a) no. (b) it is the answer to \"what is the new length\", but the new length is not a bound a student can compute without solving. (c) only increase > 0 is forced; inside. (d) real: answering an intermediate quantity."
+  },
+  "distractor_meta": {
+   "31.2": {
+    "direction": "over",
+    "error_kind": "did not square"
+   },
+   "131.0": {
+    "direction": "over",
+    "error_kind": "squared T only"
+   },
+   "120.1": {
+    "direction": "over",
+    "error_kind": "answered new length"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "pendulum period formula",
+   "solve for L under a square root",
+   "literal equation with radical",
+   "change in length from two periods"
+  ],
+  "arith_class_check": "No. A length increase carries no divisibility or integrality; all four options are one-decimal values, none is an integer, and they are not one number through a grid of factors (31.2/20.9, 131.0/20.9, 120.1/20.9 are 1.49, 6.27, 5.75).",
+  "one_sided_check": "Key is the smallest option, but no: the three errors are of three kinds (never squared, half-squared, wrong quantity reported), and nothing in the stem lets a student who has not solved know that the slips overshoot; the size of L₁ is not readable from the stem."
+ },
+ {
+  "id": "AM23A-05",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "systems of linear equations in context (investment split at two simple-interest rates)",
+  "subskill": "writing 0.07x − 0.04(18000 − x) = 369 for the amount x in the higher-rate account and solving",
+  "prompt": "Marisol invested a total of $18,000 in two accounts. One account pays 7% simple annual interest, and the other pays 4% simple annual interest. At the end of one year, the interest earned by the 7% account was $369 more than the interest earned by the 4% account. How many dollars did Marisol invest in the 7% account?",
+  "choices": [
+   "9900",
+   "12300",
+   "14809.09",
+   "15557.14"
+  ],
+  "correct_answer": "9900",
+  "explanation": "Let x be the amount in the 7% account, so 18,000 − x is in the 4% account. Then 0.07x − 0.04(18,000 − x) = 369, so 0.11x − 720 = 369, 0.11x = 1,089, and x = 9,900. Check: 0.07(9,900) = 693 and 0.04(8,100) = 324, a difference of 369. The option \"12300\" treats both accounts as holding x, 0.07x − 0.04x = 369. The option \"14809.09\" attaches the rates to the wrong accounts, 0.04x − 0.07(18,000 − x) = 369. The option \"15557.14\" subtracts 4% of the whole $18,000 instead of 4% of the remainder, 0.07x − 0.04(18,000) = 369.",
+  "solve": "const T=18000,D=369;return String(Math.round((D+0.04*T)/0.11*100)/100);",
+  "distractor_solve": {
+   "12300": "const D=369;return String(Math.round(D/0.03*100)/100);",
+   "14809.09": "const T=18000,D=369;return ((D+0.07*T)/0.11).toFixed(2);",
+   "15557.14": "const T=18000,D=369;return ((D+0.04*T)/0.07).toFixed(2);"
+  },
+  "quantity_asked": "the amount x in the 7% account, where 0.07x − 0.04(18000 − x) = 369.",
+  "distractor_kind": {
+   "12300": "error path: ignores that the two amounts sum to 18,000 and uses x for both, 0.03x = 369. (a) limiting case: not an extreme of x. (b) neighbouring setup: it is the answer to \"equal principals\" only in a different problem, not a bound. (c) cheapest one-step estimate: the 7% interest must exceed the 4% interest, so 0.07x > 0.04(18000 − x), x > 6545.5, and x < 18000; interval (6545.5, 18000); 12300 strictly inside. (d) real: losing the link between the two unknowns.",
+   "14809.09": "error path: rates attached to the wrong accounts, 0.04x − 0.07(18000 − x) = 369. (a) no. (b) it is the amount at 4% in the mirrored problem, not an extreme of the feasible interval. (c) interval (6545.5, 18000); strictly inside. (d) real: misassigning which rate goes with which unknown.",
+   "15557.14": "error path: subtracts 4% of the whole 18,000, 0.07x − 720 = 369. (a) no. (b) no. (c) interval (6545.5, 18000); strictly inside. (d) real: applying a rate to the total instead of to the remainder."
+  },
+  "distractor_meta": {
+   "12300": {
+    "direction": "over",
+    "error_kind": "dropped total constraint"
+   },
+   "14809.09": {
+    "direction": "over",
+    "error_kind": "rates swapped"
+   },
+   "15557.14": {
+    "direction": "over",
+    "error_kind": "rate on whole instead of remainder"
+   }
+  },
+  "bounds": [
+   "v > 18000*4/11",
+   "v < 18000"
+  ],
+  "mechanism": [
+   "investment split two accounts",
+   "simple interest difference",
+   "system of linear equations",
+   "amount at higher rate"
+  ],
+  "arith_class_check": "No. A dollar amount carries no stem-implied divisibility; the key 9900 is an integer as is 12300, and the other two have cents, so the key is not a lone integer or lone multiple of 100.",
+  "one_sided_check": "Key is the smallest option, but no: the errors are three different kinds (dropped constraint, swapped rates, rate on the whole), and the stem gives no reason a student who has not solved could read that every slip enlarges x; the swapped-rate error, for instance, reverses which account is large."
+ },
+ {
+  "id": "AM23A-06",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "rational expressions (subtracting fractions with binomial denominators)",
+  "subskill": "rewriting 3/(x − 2) − 2/(x + 5) over the common denominator (x − 2)(x + 5) and simplifying the numerator 3(x + 5) − 2(x − 2)",
+  "prompt": "For all x ≠ 2 and x ≠ −5, 3/(x − 2) − 2/(x + 5) = (x + k)/((x − 2)(x + 5)), where k is a constant. What is the value of k ?",
+  "choices": [
+   "-16",
+   "9",
+   "11",
+   "19"
+  ],
+  "correct_answer": "19",
+  "explanation": "Over the common denominator (x − 2)(x + 5), the numerator is 3(x + 5) − 2(x − 2) = 3x + 15 − 2x + 4 = x + 19, so k = 19. The option \"11\" distributes the subtraction incorrectly, writing −2(x − 2) as −2x − 4. The option \"−16\" multiplies each numerator by its own denominator instead of the other one, 3(x − 2) − 2(x + 5) = x − 16. The option \"9\" writes 3(x + 5) as 3x + 5, distributing the 3 to x only.",
+  "solve": "const a=3,b=2,p=2,q=5;return String(a*q+b*p);",
+  "distractor_solve": {
+   "9": "const a=3,b=2,p=2,q=5;return String(q+b*p);",
+   "11": "const a=3,b=2,p=2,q=5;return String(a*q-b*p);",
+   "-16": "const a=3,b=2,p=2,q=5;return String(-a*p-b*q);"
+  },
+  "quantity_asked": "the constant term k of the combined numerator 3(x + 5) − 2(x − 2).",
+  "distractor_kind": {
+   "9": "error path: 3(x + 5) written as 3x + 5. (a) no. (b) no. (c) no forced interval. (d) real: incomplete distribution.",
+   "11": "error path: −2(x − 2) expanded as −2x − 4. (a) limiting case: none. (b) neighbouring setup: not an adjacent problem with a bounding answer. (c) cheapest estimate: the stem forces no interval on k; nothing to sit on. (d) real: sign error distributing a negative.",
+   "-16": "error path: cross-multiplies the wrong way, 3(x − 2) − 2(x + 5). (a) no. (b) no. (c) no forced interval. (d) real: multiplying each numerator by its own denominator when building the common denominator."
+  },
+  "distractor_meta": {
+   "9": {
+    "direction": "under",
+    "error_kind": "incomplete distribution"
+   },
+   "11": {
+    "direction": "under",
+    "error_kind": "sign error distributing negative"
+   },
+   "-16": {
+    "direction": "under",
+    "error_kind": "numerators times own denominators"
+   }
+  },
+  "bounds": [
+   "Number.isFinite(v)"
+  ],
+  "mechanism": [
+   "subtract rational expressions",
+   "common denominator (x − 2)(x + 5)",
+   "numerator constant k",
+   "combine fractions"
+  ],
+  "arith_class_check": "No. k carries no stem-implied divisibility or parity; options −16, 9, 11, 19 (three odd, one even distractor), no even spacing (gaps 25, 2, 8), and composedFrom finds no relation among them.",
+  "one_sided_check": "Key is the largest option, but no: the three errors are three different kinds (negative distribution, wrong cross-multiplication, incomplete distribution), and the stem gives a student who has not solved no reason to expect every slip to lower k; one error even changes its sign."
+ },
+ {
+  "id": "AM23A-07",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "systems of linear equations in context (prices before and after percent changes)",
+  "subskill": "writing 3a + 2p = 4.10 and 3(1.2a) + 2(0.9p) = 4.41, solving by elimination, and applying the 20% increase to the solved price",
+  "prompt": "Last year at a farm stand, 3 apples and 2 pears cost a total of $4.10. This year the price of an apple is 20% higher than last year and the price of a pear is 10% lower than last year, and 3 apples and 2 pears cost a total of $4.41. What is this year's price, in dollars, of one apple?",
+  "choices": [
+   "0.51",
+   "0.80",
+   "0.96",
+   "1.00"
+  ],
+  "correct_answer": "0.96",
+  "explanation": "Let a and p be last year's prices. Then 3a + 2p = 4.10 and 3(1.2a) + 2(0.9p) = 4.41, that is, 3.6a + 1.8p = 4.41. Multiplying the first equation by 0.9 gives 2.7a + 1.8p = 3.69; subtracting, 0.9a = 0.72, so a = 0.80. This year's apple price is 1.2(0.80) = 0.96. The option \"0.80\" is last year's price. The option \"1.00\" adds 20 cents instead of 20%. The option \"0.51\" attaches the changes to the wrong fruit (apples down 10%, pears up 20%), which gives a ≈ 0.567 and this year's apple price 0.9(0.567) = 0.51.",
+  "solve": "const a=(4.41-0.9*4.10)/(3.6-2.7);return (1.2*a).toFixed(2);",
+  "distractor_solve": {
+   "0.80": "const a=(4.41-0.9*4.10)/(3.6-2.7);return a.toFixed(2);",
+   "1.00": "const a=(4.41-0.9*4.10)/(3.6-2.7);return (a+0.20).toFixed(2);",
+   "0.51": "const a=(1.2*4.10-4.41)/(3.6-2.7);return (0.9*a).toFixed(2);"
+  },
+  "quantity_asked": "this year's apple price 1.2a, where 3a + 2p = 4.10 and 3.6a + 1.8p = 4.41.",
+  "distractor_kind": {
+   "0.80": "error path: stops at last year's price a. (a) limiting case: none. (b) neighbouring setup: answer to \"last year's price\"; not an extreme of the feasible interval. (c) cheapest one-step estimate: 3(1.2a) < 4.41 gives this year's apple price < 1.47, and > 0; interval (0, 1.47); 0.80 strictly inside. (d) real: answering the intermediate unknown.",
+   "1.00": "error path: increases a by 20 cents instead of 20 percent. (a) no. (b) no. (c) interval (0, 1.47); strictly inside. (d) real: percent read as cents.",
+   "0.51": "error path: swaps which fruit rose and which fell, solving 2.7a + 2.4p = 4.41 with 3a + 2p = 4.10, then applies the swapped −10% to apples. (a) no. (b) it is the answer to the mirrored problem, not a bound. (c) interval (0, 1.47); strictly inside. (d) real: misassigning the two percent changes."
+  },
+  "distractor_meta": {
+   "0.80": {
+    "direction": "under",
+    "error_kind": "answered last year price"
+   },
+   "1.00": {
+    "direction": "over",
+    "error_kind": "percent as cents"
+   },
+   "0.51": {
+    "direction": "under",
+    "error_kind": "percent changes swapped"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 4.41/3"
+  ],
+  "mechanism": [
+   "last year this year prices",
+   "percent increase and decrease",
+   "system of two linear equations",
+   "elimination"
+  ],
+  "arith_class_check": "No. A price carries no stem-implied divisibility; options are 0.51, 0.80, 0.96, 1.00, not evenly spaced and not one quantity through a grid of factors (0.96 = 1.2 × 0.80 relates key to one distractor only).",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-08",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "rational equations (nested fractions)",
+  "subskill": "solving 1 + 9/(2 + 5/x) = 7 by isolating the inner fraction step by step, taking reciprocals in the right order",
+  "prompt": "What value of x satisfies the equation 1 + 9/(2 + 5/x) = 7 ?",
+  "choices": [
+   "-10",
+   "-15/4",
+   "-5/2",
+   "10/3"
+  ],
+  "correct_answer": "-10",
+  "explanation": "Subtract 1: 9/(2 + 5/x) = 6, so 2 + 5/x = 9/6 = 3/2. Subtract 2: 5/x = −1/2, so x = −10. Check: 2 + 5/(−10) = 3/2, 9/(3/2) = 6, and 1 + 6 = 7. The option \"−15/4\" solves 9/(2 + 5/x) = 6 as 2 + 5/x = 6/9 (the reciprocal taken the wrong way). The option \"10/3\" forgets to subtract 2, setting 5/x = 3/2. The option \"−5/2\" inverts the last step, reading 5/x = −1/2 as x/5 = −1/2.",
+  "solve": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const D=9/6;return fr(5/(D-2));",
+  "distractor_solve": {
+   "-15/4": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const D=6/9;return fr(5/(D-2));",
+   "10/3": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const D=9/6;return fr(5/D);",
+   "-5/2": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const D=9/6;return fr(5*(D-2));"
+  },
+  "quantity_asked": "the x with 5/x = 9/6 − 2.",
+  "distractor_kind": {
+   "-15/4": "error path: inverts the wrong fraction at the second step, 2 + 5/x = 6/9. (a) limiting case: none. (b) neighbouring setup: not the answer to an adjacent problem that bounds x. (c) cheapest estimate: the stem forces only x ≠ 0 (and 2 + 5/x ≠ 0); no interval; nothing to sit on. (d) real: reciprocal taken upside down.",
+   "10/3": "error path: skips subtracting 2, so 5/x = 3/2. (a) no. (b) no. (c) only x ≠ 0 forced. (d) real: dropping a step when unwinding nested operations.",
+   "-5/2": "error path: inverts the final step, x/5 = −1/2. (a) no. (b) no. (c) only x ≠ 0 forced. (d) real: solving 5/x = c as x = 5c."
+  },
+  "distractor_meta": {
+   "-15/4": {
+    "direction": "over",
+    "error_kind": "reciprocal upside down"
+   },
+   "10/3": {
+    "direction": "over",
+    "error_kind": "skipped subtraction"
+   },
+   "-5/2": {
+    "direction": "over",
+    "error_kind": "inverted final step"
+   }
+  },
+  "bounds": [
+   "v !== 0"
+  ],
+  "mechanism": [
+   "nested fraction equation",
+   "complex fraction",
+   "reciprocal of both sides",
+   "unwinding operations"
+  ],
+  "arith_class_check": "No. The stem implies no divisibility or integrality on x. The key −10 is the only integer, which is an arithmetic-class singleton not implied by the stem: nothing in \"1 + 9/(2 + 5/x) = 7\" says x is an integer, and the other three options are the fractions a student actually produces by those slips.",
+  "one_sided_check": "Key is the smallest option, but no: the three errors are three different kinds (inverted reciprocal mid-way, skipped step, inverted last step), and nothing in the stem lets a student who has not solved know that they all move x upward; one of them even flips the sign of x."
+ },
+ {
+  "id": "AM23A-09",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "quadratic expressions (completing the square to evaluate a power)",
+  "subskill": "recognizing x² + 6x + 9 = (x + 3)² so that x² + 6x = 7 gives (x + 3)² = 16 and (x + 3)⁴ = 256",
+  "prompt": "If x² + 6x = 7, what is the value of (x + 3)⁴ ?",
+  "choices": [
+   "49",
+   "82",
+   "256",
+   "10000"
+  ],
+  "correct_answer": "256",
+  "explanation": "Add 9 to both sides: x² + 6x + 9 = 16, so (x + 3)² = 16 and (x + 3)⁴ = 16² = 256. (Both solutions, x = 1 and x = −7, give (x + 3)⁴ = 256.) The option \"49\" forgets to add 9, taking (x + 3)² = 7. The option \"10000\" factors x² + 6x − 7 with the signs reversed, (x − 7)(x + 1), and uses x = 7, so (7 + 3)⁴ = 10,000. The option \"82\" uses x = 1 but expands (x + 3)⁴ as x⁴ + 3⁴ = 1 + 81.",
+  "solve": "const sq=7+9;return String(sq*sq);",
+  "distractor_solve": {
+   "49": "const sq=7;return String(sq*sq);",
+   "82": "const x=1;return String(x**4+3**4);",
+   "10000": "const x=7;return String((x+3)**4);"
+  },
+  "quantity_asked": "(x + 3)⁴ = ((x² + 6x) + 9)² with x² + 6x = 7.",
+  "distractor_kind": {
+   "49": "error path: completes the square without adding 9, (x + 3)² = 7. (a) limiting case: none. (b) neighbouring setup: not an extreme of a feasible interval; the only stem-forced bound is a fourth power ≥ 0. (c) cheapest estimate: ≥ 0; inside. (d) real: forgetting the constant when completing the square.",
+   "82": "error path: correct root x = 1 but (x + 3)⁴ expanded as x⁴ + 3⁴. (a) no. (b) no. (c) ≥ 0; inside. (d) real: \"freshman's dream\" expansion of a power of a sum.",
+   "10000": "error path: sign-reversed factoring gives x = 7, then (10)⁴. (a) no. (b) no. (c) ≥ 0; inside. (d) real: sign error factoring x² + 6x − 7."
+  },
+  "distractor_meta": {
+   "49": {
+    "direction": "under",
+    "error_kind": "completed square without +9"
+   },
+   "82": {
+    "direction": "under",
+    "error_kind": "power of sum expanded termwise"
+   },
+   "10000": {
+    "direction": "over",
+    "error_kind": "sign-reversed factoring"
+   }
+  },
+  "bounds": [
+   "v >= 0"
+  ],
+  "mechanism": [
+   "completing the square",
+   "evaluate fourth power",
+   "x² + 6x = 7",
+   "(x + 3)⁴"
+  ],
+  "arith_class_check": "No. The stem implies no divisibility class on (x + 3)⁴. 49, 256 and 10000 are all perfect squares and 82 is not, so the key is not a lone square; 256 and 10000 are both even, so it is not a lone even.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-10",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "quadratics (product of solutions and minimum value)",
+  "subskill": "using product of solutions c/a = 3 to find c, then finding the minimum of y = 2x² − 8x + c at x = −b/(2a)",
+  "prompt": "The product of the two solutions of the equation 2x² − 8x + c = 0, where c is a constant, is 3. What is the minimum value of y = 2x² − 8x + c ?",
+  "choices": [
+   "-10",
+   "-22/3",
+   "-5",
+   "-2"
+  ],
+  "correct_answer": "-2",
+  "explanation": "For ax² + bx + c = 0 the product of the solutions is c/a, so c/2 = 3 and c = 6. The minimum of y = 2x² − 8x + 6 occurs at x = −(−8)/(2·2) = 2, where y = 8 − 16 + 6 = −2. The option \"−5\" takes the product to be c itself (c = 3). The option \"−10\" uses the vertex value c − b²/(2a) = 6 − 64/4 instead of c − b²/(4a) = 6 − 64/8. The option \"−22/3\" inverts the product formula, a/c = 3, so c = 2/3 and the minimum is 2/3 − 8.",
+  "solve": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const a=2,b=-8,c=3*a;return fr(c-b*b/(4*a));",
+  "distractor_solve": {
+   "-5": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const a=2,b=-8,c=3;return fr(c-b*b/(4*a));",
+   "-10": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const a=2,b=-8,c=3*a;return fr(c-b*b/(2*a));",
+   "-22/3": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};const a=2,b=-8,c=a/3;return fr(c-b*b/(4*a));"
+  },
+  "quantity_asked": "the minimum value c − b²/(4a) of y = 2x² − 8x + c, with c = 2 × 3 = 6.",
+  "distractor_kind": {
+   "-5": "error path: product of solutions taken as c rather than c/a, so c = 3. (a) limiting case: none. (b) neighbouring setup: the answer for a monic-style reading; not an extreme of a feasible interval. (c) cheapest estimate: once c is known, y(0) = c = 6 caps the minimum below 6; all four options are below 6; no lower bound is forced; inside. (d) real: forgetting to divide by the leading coefficient.",
+   "-10": "error path: vertex value computed as c − b²/(2a). (a) no. (b) no. (c) below the cap 6; inside. (d) real: confusing −b/(2a) with the b²/(4a) term.",
+   "-22/3": "error path: product formula inverted, a/c = 3, c = 2/3. (a) no. (b) no. (c) below 6; inside. (d) real: inverting c/a."
+  },
+  "distractor_meta": {
+   "-5": {
+    "direction": "under",
+    "error_kind": "product = c"
+   },
+   "-10": {
+    "direction": "under",
+    "error_kind": "vertex term b²/(2a)"
+   },
+   "-22/3": {
+    "direction": "under",
+    "error_kind": "product formula inverted"
+   }
+  },
+  "bounds": [
+   "v < 6"
+  ],
+  "mechanism": [
+   "product of solutions c/a",
+   "minimum value of quadratic",
+   "vertex x = −b/(2a)",
+   "two-step quadratic"
+  ],
+  "arith_class_check": "No. The minimum carries no stem-implied divisibility. Options −10, −5, −2 are integers and −22/3 is not, so the key is not a lone integer; −10 and −2 are both even.",
+  "one_sided_check": "Key is the largest option, but no: the three errors are three different kinds (dropped leading coefficient, wrong vertex term, inverted product), and nothing in the stem tells a student who has not solved that each one lowers the minimum; the dropped-coefficient error changes c in the opposite direction from the inverted-product error."
+ },
+ {
+  "id": "AM23A-11",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "exponent expressions (factoring a common power from sums and differences)",
+  "subskill": "rewriting 2^(n+5) − 2^(n+1) and 2^(n+1) + 2^n as multiples of 2^n and simplifying the quotient to a constant",
+  "prompt": "For every integer n, the expression (2^(n+5) − 2^(n+1)) / (2^(n+1) + 2^n) has the same value. What is that value?",
+  "choices": [
+   "5/2",
+   "8",
+   "10",
+   "15"
+  ],
+  "correct_answer": "10",
+  "explanation": "Factor 2^n from every term: 2^(n+5) − 2^(n+1) = 2^n(32 − 2) = 30·2^n and 2^(n+1) + 2^n = 2^n(2 + 1) = 3·2^n. The quotient is 30/3 = 10. The option \"15\" treats 2^0 as 0 after factoring, so the denominator becomes 2 and the value 30/2. The option \"8\" treats a difference or sum of powers as a quotient, 2^((n+5)−(n+1)) / 2^((n+1)−n) = 16/2. The option \"5/2\" factors 2^(n+1) from the numerator and 2^n from the denominator, getting 15·2^(n+1) over 3·2^n, and then simplifies 2^(n+1)/2^n to 1/2 instead of 2.",
+  "solve": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr((32-2)/(2+1));",
+  "distractor_solve": {
+   "8": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(2**((5)-(1))/2**((1)-(0)));",
+   "15": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr((32-2)/(2+0));",
+   "5/2": "const fr=(v)=>{for(let d=1;d<=60;d++){const n=Math.round(v*d);if(Math.abs(n/d-v)<1e-9)return d===1?String(n):n+'/'+d;}return String(v);};return fr(15*(1/2)/3);"
+  },
+  "quantity_asked": "the constant (2^(n+5) − 2^(n+1))/(2^(n+1) + 2^n) = (32 − 2)/(2 + 1).",
+  "distractor_kind": {
+   "8": "error path: treats 2^(n+5) − 2^(n+1) as 2^((n+5)−(n+1)) and the denominator likewise, 16/2. (a) no. (b) no. (c) interval (0, 16); strictly inside. (d) real: subtracting exponents for a difference of powers.",
+   "15": "error path: after factoring 2^n, evaluates 2^0 as 0. (a) limiting case: none. (b) neighbouring setup: not an adjacent problem. (c) cheapest estimate: every term is positive, the numerator is less than 2^(n+5) and the denominator exceeds 2^(n+1), so the value is between 0 and 16; interval (0, 16); 15 strictly inside. (d) real: the 2^0 = 0 misconception.",
+   "5/2": "error path: mismatched factoring, 15·2^(n+1)/(3·2^n), then 2^(n+1)/2^n read as 1/2. (a) no. (b) no. (c) interval (0, 16); strictly inside. (d) real: inverting a quotient of powers."
+  },
+  "distractor_meta": {
+   "8": {
+    "direction": "under",
+    "error_kind": "difference of powers as quotient"
+   },
+   "15": {
+    "direction": "over",
+    "error_kind": "2^0 taken as 0"
+   },
+   "5/2": {
+    "direction": "under",
+    "error_kind": "quotient of powers inverted"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 16"
+  ],
+  "mechanism": [
+   "factor common power of 2",
+   "sum and difference of powers",
+   "expression independent of n",
+   "exponent rules"
+  ],
+  "arith_class_check": "No. The value carries no stem-implied divisibility. 8, 10 and 15 are integers and 5/2 is not, so the key is not a lone integer; 10 is not a sum, product, midpoint, double, harmonic or geometric mean of two other options (checked with composedFrom); no even spacing (2.5, 8, 10, 15).",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-12",
+  "domain": "Algebra",
+  "difficulty": "medium",
+  "topic_tag": "linear equations in context (two-bracket tax, solving for income)",
+  "subskill": "writing 0.10(10,000) + 0.15(I − 10,000) = 4,250 for an income above the first bracket and solving for I",
+  "prompt": "In a certain country, income tax is 10% of the first $10,000 of a person's income plus 15% of the portion of the income above $10,000. Dana paid $4,250 in income tax. To the nearest dollar, what was Dana's income?",
+  "choices": [
+   "31667",
+   "34000",
+   "37500",
+   "38333"
+  ],
+  "correct_answer": "31667",
+  "explanation": "The first $10,000 is taxed $1,000, so the tax on the portion above $10,000 is 4,250 − 1,000 = 3,250. That portion is 3,250/0.15 ≈ 21,666.67, so the income is about 10,000 + 21,666.67 = 31,666.67, or $31,667. The option \"34000\" divides by the average rate 12.5%. The option \"37500\" swaps the rates, taxing the first $10,000 at 15% and the rest at 10%. The option \"38333\" forgets to subtract the $1,000 already paid on the first bracket but still adds the $10,000 back, 4,250/0.15 + 10,000.",
+  "solve": "return String(Math.round((4250-0.10*10000)/0.15+10000));",
+  "distractor_solve": {
+   "34000": "return String(Math.round(4250/0.125));",
+   "37500": "return String(Math.round((4250-0.15*10000)/0.10+10000));",
+   "38333": "return String(Math.round(4250/0.15+10000));"
+  },
+  "quantity_asked": "the income I with 1000 + 0.15(I − 10000) = 4250.",
+  "distractor_kind": {
+   "34000": "error path: divides the whole tax by the average of the two rates, 12.5%. (a) limiting case: none. (b) neighbouring setup: not an adjacent problem. (c) cheapest one-step estimate over the whole income: if all income were taxed at 15% the income would be 28,333, and if all at 10% it would be 42,500; the true income lies strictly between; interval (28333, 42500); 34000 strictly inside. (d) real: averaging bracket rates.",
+   "37500": "error path: attaches 15% to the first bracket and 10% to the rest. (a) no. (b) it is the answer to the mirrored schedule, not an endpoint of the interval. (c) interval (28333, 42500); strictly inside. (d) real: misreading which rate goes with which portion.",
+   "38333": "error path: 4250/0.15 + 10000, never removing the first bracket's $1,000. (a) no. (b) no. (c) interval (28333, 42500); strictly inside. (d) real: half-applying the bracket structure."
+  },
+  "distractor_meta": {
+   "34000": {
+    "direction": "over",
+    "error_kind": "average rate"
+   },
+   "37500": {
+    "direction": "over",
+    "error_kind": "bracket rates swapped"
+   },
+   "38333": {
+    "direction": "over",
+    "error_kind": "first-bracket tax not removed"
+   }
+  },
+  "bounds": [
+   "v > 4250/0.15",
+   "v < 4250/0.10"
+  ],
+  "mechanism": [
+   "tax brackets",
+   "marginal rate above threshold",
+   "solve for income from tax",
+   "piecewise linear in context"
+  ],
+  "arith_class_check": "No. An income in whole dollars carries no stem-implied divisibility; 34000 and 37500 are round and 31667 and 38333 are not, so the key is not the lone non-round value; no even spacing (31667, 34000, 37500, 38333).",
+  "one_sided_check": "Key is the smallest option, but no: the three errors are three different kinds (averaged rates, swapped rates, half-applied bracket), and the stem gives no readable reason that each slip overstates income; the stem-forced interval (28333, 42500) holds all four options."
+ },
+ {
+  "id": "AM23A-13",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "radical expressions (denesting a square root)",
+  "subskill": "matching (√m + √n)² = m + n + 2√(mn) to 14 + 6√5 to get m + n = 14 and mn = 45, then evaluating √m − √n",
+  "prompt": "The number √(14 + 6√5) can be written as √m + √n, where m and n are positive integers and m > n. To the nearest hundredth, what is the value of √m − √n ?",
+  "choices": [
+   "0.58",
+   "0.76",
+   "2.00",
+   "4.00"
+  ],
+  "correct_answer": "0.76",
+  "explanation": "Squaring, (√m + √n)² = m + n + 2√(mn) = 14 + 6√5, so m + n = 14 and √(mn) = 3√5, that is, mn = 45. Then m = 9 and n = 5, and √m − √n = 3 − √5 ≈ 0.76. (Also (√m − √n)(√m + √n) = m − n = 4, and √m + √n = 3 + √5.) The option \"4.00\" is m − n. The option \"2.00\" uses √m − √n = √(m − n), which is false. The option \"0.58\" is 14 − 6√5, which is (√m − √n)², with the square root never taken.",
+  "solve": "return (3-Math.sqrt(5)).toFixed(2);",
+  "distractor_solve": {
+   "4.00": "return (9-5).toFixed(2);",
+   "2.00": "return Math.sqrt(9-5).toFixed(2);",
+   "0.58": "return (14-6*Math.sqrt(5)).toFixed(2);"
+  },
+  "quantity_asked": "√m − √n = 3 − √5 where m + n = 14 and mn = 45.",
+  "distractor_kind": {
+   "4.00": "error path: reports m − n. (a) limiting case: none. (b) neighbouring setup: the answer to \"m − n\", not an extreme. (c) cheapest one-step estimate: 0 < √m − √n < √m + √n = √(14 + 6√5) ≈ 5.24; interval (0, 5.24); 4.00 strictly inside. (d) real: answering the integer difference instead of the radical difference.",
+   "2.00": "error path: √m − √n taken as √(m − n). (a) no. (b) no. (c) interval (0, 5.24); strictly inside. (d) real: distributing a square root over a difference.",
+   "0.58": "error path: computes 14 − 6√5 = (√m − √n)² and does not take the root. (a) no. (b) no. (c) interval (0, 5.24); strictly inside. (d) real: stopping at the square."
+  },
+  "distractor_meta": {
+   "4.00": {
+    "direction": "over",
+    "error_kind": "answered m − n"
+   },
+   "2.00": {
+    "direction": "over",
+    "error_kind": "root of a difference"
+   },
+   "0.58": {
+    "direction": "under",
+    "error_kind": "forgot square root"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < Math.sqrt(14+6*Math.sqrt(5))"
+  ],
+  "mechanism": [
+   "denesting square root",
+   "(√m + √n)² expansion",
+   "sum and product m + n and mn",
+   "√m − √n"
+  ],
+  "arith_class_check": "No. The stem says m and n are integers, but the quantity asked, √m − √n, is not implied to be an integer or to lie in any class; 2.00 and 4.00 are integers and 0.58 and 0.76 are not, so the key is not a lone member of integer or non-integer.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23A-14",
+  "domain": "Algebra",
+  "difficulty": "hard",
+  "topic_tag": "absolute value equations (recovering parameters from the solutions)",
+  "subskill": "using that the solutions of |ax − 12| = b are symmetric about 12/a with half-distance b/a to find a and b",
+  "prompt": "The equation |ax − 12| = b, where a and b are positive constants, has exactly two solutions, x = −1 and x = 7. What is the value of a + b ?",
+  "choices": [
+   "8",
+   "15",
+   "20",
+   "36"
+  ],
+  "correct_answer": "20",
+  "explanation": "The two solutions satisfy ax − 12 = b and ax − 12 = −b, so they are symmetric about x = 12/a and lie a distance b/a from it. The midpoint of −1 and 7 is 3, so 12/a = 3 and a = 4. The half-distance is 4, so b/a = 4 and b = 16. Then a + b = 20. Check: |4x − 12| = 16 gives x = 7 or x = −1. The option \"8\" takes b to be the half-distance 4 itself, forgetting to multiply by a. The option \"36\" multiplies a by the full distance 8 instead of the half-distance. The option \"15\" takes a to be the midpoint 3, as in the form |x − a|, and then b = 3 × 4 = 12.",
+  "solve": "const p=-1,q=7;const m=(p+q)/2,h=(q-p)/2;const a=12/m,b=a*h;return String(a+b);",
+  "distractor_solve": {
+   "8": "const p=-1,q=7;const m=(p+q)/2,h=(q-p)/2;const a=12/m,b=h;return String(a+b);",
+   "15": "const p=-1,q=7;const m=(p+q)/2,h=(q-p)/2;const a=m,b=a*h;return String(a+b);",
+   "36": "const p=-1,q=7;const m=(p+q)/2;const a=12/m,b=a*(q-p);return String(a+b);"
+  },
+  "quantity_asked": "a + b with 12/a = 3 (midpoint) and b/a = 4 (half-distance), so a = 4, b = 16.",
+  "distractor_kind": {
+   "8": "error path: b set equal to the half-distance, not a times it. (a) limiting case: none. (b) neighbouring setup: it is a + b for |x − ...| scaled wrongly, not an extreme of any forced interval. (c) cheapest estimate: only a > 0 and b > 0 are forced, so a + b > 0; no upper bound without solving; inside. (d) real: dropping the coefficient when converting the solution spread to b.",
+   "15": "error path: reads a as the midpoint (the |x − a| template), a = 3, then b = 3 × 4. (a) no. (b) no. (c) only > 0 forced; inside. (d) real: applying the |x − c| = r template to |ax − 12| = b.",
+   "36": "error path: b = a × (full distance 8). (a) no. (b) no. (c) only > 0 forced; inside. (d) real: full width used for half-width."
+  },
+  "distractor_meta": {
+   "8": {
+    "direction": "under",
+    "error_kind": "half-width not scaled by a"
+   },
+   "15": {
+    "direction": "under",
+    "error_kind": "midpoint taken as coefficient"
+   },
+   "36": {
+    "direction": "over",
+    "error_kind": "full width for half-width"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "absolute value equation with parameters",
+   "solutions symmetric about center",
+   "midpoint and half-distance",
+   "recover a and b from solutions"
+  ],
+  "arith_class_check": "No. The stem implies no divisibility on a + b; options 8, 20, 36 are multiples of 4 and 15 is not, so the key is not a lone member; no even spacing (8, 15, 20, 36); 20 is not a sum, midpoint or double of two options.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23F-01",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential models (decay toward a nonzero level)",
+  "subskill": "modelling cooling where the DIFFERENCE from room temperature, not the temperature itself, shrinks by a constant factor; using a fractional number of periods",
+  "prompt": "A cup of tea at 90°C is set down in a room that stays at 20°C. The difference between the temperature of the tea and the temperature of the room decreases by the same percent every minute. Eight minutes after the tea is set down, its temperature is 62°C. To the nearest tenth of a degree, what is the temperature of the tea, in °C, 20 minutes after it is set down?",
+  "choices": [
+   "45.2",
+   "35.4",
+   "52.5",
+   "39.5"
+  ],
+  "correct_answer": "39.5",
+  "explanation": "The difference from room temperature starts at 90 − 20 = 70 degrees and is 62 − 20 = 42 degrees after 8 minutes, so it is multiplied by 42/70 = 0.6 every 8 minutes. Twenty minutes is 20/8 = 2.5 of those periods, so the difference is 70(0.6)^2.5 ≈ 19.52 degrees and the temperature is 20 + 19.52 ≈ 39.5°C. The option \"35.4\" applies the factor to the temperature itself, 90(62/90)^2.5, ignoring the room. The option \"45.2\" counts only whole 8-minute periods, 20 + 70(0.6)^2. The option \"52.5\" counts periods only from the 8-minute reading, (20 − 8)/8 = 1.5, but starts from the original difference: 20 + 70(0.6)^1.5.",
+  "solve": "return (20+70*Math.pow(42/70,20/8)).toFixed(1);",
+  "distractor_solve": {
+   "35.4": "return (90*Math.pow(62/90,20/8)).toFixed(1);",
+   "45.2": "return (20+70*Math.pow(42/70,Math.floor(20/8))).toFixed(1);",
+   "52.5": "return (20+70*Math.pow(42/70,(20-8)/8)).toFixed(1);"
+  },
+  "quantity_asked": "the tea temperature at t = 20 minutes, T(20) = 20 + 70 x 0.6^(20/8).",
+  "distractor_kind": {
+   "35.4": "error path: factor applied to the whole temperature (room ignored). (a) limiting case: not a parameter extreme; room temperature 20 and the 8-minute reading 62 are the stem bounds, 35.5 strictly inside. (b) neighbouring setup: exact answer to a room at 0°C, which is not an extreme of the feasible interval (20, 62). (c) cheapest one-step estimate over the whole quantity: the tea keeps cooling toward 20 and is already 62 at 8 minutes, so 20 < T(20) < 62; one step finer, the gap after 16 minutes is 70(0.6)^2 = 25.2 and after 24 minutes 70(0.6)^3 = 15.1, so T(20) is in (35.1, 45.2) only once the 0.6 factor is found, which is the item; strictly inside (20, 62). (d) real: the standard Newton-cooling error of decaying the temperature rather than the excess.",
+   "45.2": "error path: whole periods only (floor of 2.5). (a) no. (b) neighbouring setup: it is the exact value at t = 16, which is a bound only after the 0.6 factor is found (item work); strictly inside the stem interval (20, 62). (c) interval (20, 62); inside. (d) real: treating a fractional exponent as an integer count of periods.",
+   "52.5": "error path: elapsed time measured from the 8-minute reading but decay started from the initial difference. (a) no. (b) no adjacent problem has 52.5 as its answer. (c) interval (20, 62); inside. (d) real: mixing two reference times."
+  },
+  "distractor_meta": {
+   "35.4": {
+    "direction": "under",
+    "error_kind": "decays temperature not excess"
+   },
+   "45.2": {
+    "direction": "over",
+    "error_kind": "integer periods only"
+   },
+   "52.5": {
+    "direction": "over",
+    "error_kind": "wrong reference time"
+   }
+  },
+  "bounds": [
+   "v > 20",
+   "v < 62"
+  ],
+  "mechanism": [
+   "cooling toward room temperature",
+   "difference decreases by same percent",
+   "fractional number of periods",
+   "exponential decay of excess temperature"
+  ],
+  "arith_class_check": "No. Temperatures to a tenth carry no divisibility or parity; all four options are one-decimal non-integers and the set is not one stem number through a grid of factors (three different procedural errors).",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23F-02",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "inverse functions (graph intercepts)",
+  "subskill": "the x-intercept of the graph of an inverse function is the y-intercept of the original function, so it is f(0)",
+  "prompt": "The function f is defined by f(x) = 3·2^(x − 1) − 4, and f has an inverse function, f⁻¹. In the standard (x,y) coordinate plane, what is the x-coordinate of the point where the graph of y = f⁻¹(x) crosses the x-axis?",
+  "choices": [
+   "1.42",
+   "-2.5",
+   "2.33",
+   "-0.4"
+  ],
+  "correct_answer": "-2.5",
+  "explanation": "The graph of f⁻¹ is the reflection of the graph of f across the line y = x, so the point where f⁻¹ crosses the x-axis, (a, 0), corresponds to the point (0, a) on the graph of f. Thus a = f(0) = 3·2^(−1) − 4 = 1.5 − 4 = −2.5. Check: f⁻¹(x) = 1 + log₂((x + 4)/3), and f⁻¹(−2.5) = 1 + log₂(0.5) = 0. The option \"1.42\" is where f crosses the x-axis, 1 + log₂(4/3) ≈ 1.42, which is where f⁻¹ crosses the y-axis. The option \"2.33\" undoes the constant, the factor 3, and the shift, (0 + 4)/3 + 1, but never undoes the exponential. The option \"−0.4\" treats f⁻¹ as the reciprocal 1/f and reports 1/f(0).",
+  "solve": "const f=x=>3*Math.pow(2,x-1)-4; return String(f(0));",
+  "distractor_solve": {
+   "1.42": "return (1+Math.log2(4/3)).toFixed(2);",
+   "2.33": "return ((0+4)/3+1).toFixed(2);",
+   "-0.4": "const f=x=>3*Math.pow(2,x-1)-4; return String(1/f(0));"
+  },
+  "quantity_asked": "the x-intercept of the graph of f^-1, which equals f(0) = 3(2^-1) - 4.",
+  "distractor_kind": {
+   "1.42": "error path: x- and y-intercepts swapped (the x-intercept of f reported). (a) limiting case: none; the only stem-forced bound is the domain of f^-1, x > -4 (the range of f), and 1.42 is inside. (b) neighbouring setup: it is the exact answer to \"where does f^-1 cross the y-axis\", which is not an extreme of (-4, infinity). (c) cheapest one-step estimate: the inverse is defined only for x > -4, interval (-4, infinity); inside. (d) real: confusing which intercept reflects to which.",
+   "2.33": "error path: inverts only the linear parts. (a) no. (b) no. (c) inside (-4, infinity). (d) real: partial inversion.",
+   "-0.4": "error path: f^-1 read as 1/f. (a) no. (b) no. (c) inside (-4, infinity). (d) real: the notation misconception f^-1 = 1/f."
+  },
+  "distractor_meta": {
+   "1.42": {
+    "direction": "over",
+    "error_kind": "intercepts swapped"
+   },
+   "2.33": {
+    "direction": "over",
+    "error_kind": "partial inversion"
+   },
+   "-0.4": {
+    "direction": "over",
+    "error_kind": "inverse read as reciprocal"
+   }
+  },
+  "bounds": [
+   "v > -4"
+  ],
+  "mechanism": [
+   "inverse function graph intercept",
+   "reflection across y = x",
+   "x-intercept of inverse equals f(0)",
+   "exponential function inverse"
+  ],
+  "arith_class_check": "No. All four options are non-integers (-2.5, -0.4, 1.42, 2.33); the key is the only negative half-integer but no such class is stem-implied, and two options are negative.",
+  "one_sided_check": "Key smallest. No: the three errors are different kinds (intercept swap, partial inversion, reciprocal misconception) and nothing in the stem says an error makes the intercept larger; the stem gives no sign information at all beyond x > -4."
+ },
+ {
+  "id": "AM23F-03",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "average rate of change (solving for an endpoint)",
+  "subskill": "for a quadratic ax^2 + bx + c the average rate of change from p to q is a(p + q) + b; set it equal to a value and solve for the unknown endpoint",
+  "prompt": "The function f is defined by f(x) = 2x² − 3x + 1. For a certain number k greater than 1, the average rate of change of f from x = 1 to x = k is 33. What is the value of k ?",
+  "choices": [
+   "17",
+   "35",
+   "14",
+   "18.85"
+  ],
+  "correct_answer": "17",
+  "explanation": "The average rate of change is (f(k) − f(1))/(k − 1). Since f(1) = 0, this is (2k² − 3k + 1)/(k − 1) = (2k − 1)(k − 1)/(k − 1) = 2k − 1. Setting 2k − 1 = 33 gives k = 17. The option \"14\" uses the wrong sign on the linear coefficient, 2(1 + k) + 3 = 33. The option \"35\" drops the leading coefficient, (1 + k) − 3 = 33. The option \"18.85\" divides by k + 1 instead of k − 1, solving 2k² − 3k + 1 = 33(k + 1).",
+  "solve": "const f=x=>2*x*x-3*x+1; for(let k=2;k<100;k++){ if((f(k)-f(1))/(k-1)===33) return String(k);} return \"none\";",
+  "distractor_solve": {
+   "14": "return String((33-3-2)/2);",
+   "35": "return String(33+3-1);",
+   "18.85": "const r=(36+Math.sqrt(36*36+4*2*32))/(2*2); return r.toFixed(2);"
+  },
+  "quantity_asked": "the endpoint k > 1 for which (f(k) - f(1))/(k - 1) = 33.",
+  "distractor_kind": {
+   "14": "error path: sign slip on the linear coefficient in a(p+q)+b. (a) limiting case: the only stem-forced bound is k > 1; 14 inside. (b) neighbouring setup: it is the exact answer for f(x) = 2x^2 + 3x + 1, not an extreme of (1, infinity). (c) cheapest one-step estimate: f(k) grows like 2k^2 so (f(k)-f(1))/(k-1) is roughly 2k, giving k near 16-18; one step finer this needs the exact factorisation, which is the item; 14 is inside (1, infinity) and no cheap bound reaches it. (d) real: sign slip.",
+   "35": "error path: leading coefficient dropped. (a) no. (b) exact answer for x^2 - 3x + 1, not an extreme. (c) inside (1, infinity). (d) real.",
+   "18.85": "error path: divides by k + 1. (a) no. (b) no. (c) inside (1, infinity). (d) real: interval length mistaken as k + 1."
+  },
+  "distractor_meta": {
+   "14": {
+    "direction": "under",
+    "error_kind": "sign slip on linear coefficient"
+   },
+   "35": {
+    "direction": "over",
+    "error_kind": "dropped leading coefficient"
+   },
+   "18.85": {
+    "direction": "over",
+    "error_kind": "wrong interval length"
+   }
+  },
+  "bounds": [
+   "v > 1"
+  ],
+  "mechanism": [
+   "average rate of change solve for endpoint",
+   "difference quotient of a quadratic",
+   "secant slope equals given value",
+   "unknown upper endpoint"
+  ],
+  "arith_class_check": "No. k is not stated to be an integer; options 14, 17, 35 are integers and 18.85 is not; 17 and 35 are odd, 14 even; the key is the only multiple of 17, a vacuous class nothing in the stem implies.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23F-04",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "quadratic models (symmetry of a parabola)",
+  "subskill": "two times with equal height are symmetric about the vertex; write h(t) = -16(t - t1)(t - t2) + H and evaluate at the midpoint",
+  "prompt": "The height h, in feet, of a ball t seconds after it is thrown is given by h(t) = −16t² + bt + c, where b and c are constants. The ball is 48 feet above the ground 1 second after it is thrown and again 4 seconds after it is thrown. What is the maximum height, in feet, that the ball reaches?",
+  "choices": [
+   "72",
+   "52",
+   "84",
+   "66"
+  ],
+  "correct_answer": "84",
+  "explanation": "Because h(1) = h(4) = 48, the function h(t) − 48 has zeros at t = 1 and t = 4, so h(t) = −16(t − 1)(t − 4) + 48. The maximum occurs midway, at t = 2.5: h(2.5) = −16(1.5)(−1.5) + 48 = 36 + 48 = 84. (Equivalently b = 80 and c = −16.) The option \"72\" multiplies 16 by the half-gap 1.5 without squaring it. The option \"66\" uses half of 16, 48 + 8(1.5)². The option \"52\" assumes c = 48, uses only h(1) = 48 to get b = 16, and takes the vertex of −16t² + 16t + 48, which is at t = 0.5.",
+  "solve": "const h=t=>-16*(t-1)*(t-4)+48; return String(h(2.5));",
+  "distractor_solve": {
+   "52": "const b=48+16-48; const tv=b/32; return String(-16*tv*tv+b*tv+48);",
+   "66": "return String(48+8*1.5*1.5);",
+   "72": "return String(48+16*1.5);"
+  },
+  "quantity_asked": "the maximum value of h, which is h(2.5) where h(t) = -16(t-1)(t-4) + 48.",
+  "distractor_kind": {
+   "52": "error path: takes c as the given height 48 and ignores h(4). (a) no. (b) no adjacent problem. (c) inside (48, infinity). (d) real: reading the given height as the constant term.",
+   "66": "error path: uses 8 (half of 16) as the coefficient. (a) no. (b) no. (c) inside (48, infinity). (d) real: confusing -16t^2 with (1/2)gt^2 and halving again.",
+   "72": "error path: half-gap not squared. (a) limiting case: the stem forces max > 48 (the ball is at 48 at two different times, so it is higher in between); 72 inside. (b) neighbouring setup: no adjacent problem gives 72. (c) cheapest one-step estimate over the whole quantity: max > 48; there is no cheap upper bound without the 16(1.5)^2 computation, which is the item; strictly inside (48, infinity). (d) real."
+  },
+  "distractor_meta": {
+   "52": {
+    "direction": "under",
+    "error_kind": "misidentified constant term"
+   },
+   "66": {
+    "direction": "under",
+    "error_kind": "coefficient halved"
+   },
+   "72": {
+    "direction": "under",
+    "error_kind": "gap not squared"
+   }
+  },
+  "bounds": [
+   "v > 48"
+  ],
+  "mechanism": [
+   "equal heights at two times",
+   "vertex midway between symmetric times",
+   "projectile maximum height",
+   "factored form shifted up"
+  ],
+  "arith_class_check": "No. Heights carry no divisibility; options 52, 66, 72, 84 are all even integers, none uniquely a square or multiple of anything stem-implied (84, 72, 66 multiples of 6; 52 not; 72 and 84 multiples of 12; no class isolates the key).",
+  "one_sided_check": "Key largest. No: the three errors are of three kinds (unsquared gap, halved coefficient, misread constant term) and the stem gives no reason a student could see that every error lowers the peak; the only stem bound, max > 48, holds for all four options."
+ },
+ {
+  "id": "AM23F-05",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "sequences (arithmetic and geometric compared)",
+  "subskill": "the middle term of three consecutive arithmetic terms is their arithmetic mean and of geometric terms (positive) their geometric mean; count steps correctly",
+  "prompt": "An arithmetic sequence and a geometric sequence each have a first term of 4 and a third term of 64. Every term of the geometric sequence is positive. What is the second term of the arithmetic sequence minus the second term of the geometric sequence?",
+  "choices": [
+   "23.92",
+   "8",
+   "26",
+   "18"
+  ],
+  "correct_answer": "18",
+  "explanation": "In the arithmetic sequence, 64 = 4 + 2d, so d = 30 and the second term is 34. In the geometric sequence, 64 = 4r², so r² = 16 and, since the terms are positive, r = 4; the second term is 16. The difference is 34 − 16 = 18. The option \"8\" counts three steps from the first term to the third in the arithmetic sequence (d = 20, second term 24). The option \"23.92\" makes the same step-count error in the geometric sequence (r³ = 16, second term 4·16^(1/3) ≈ 10.08). The option \"26\" takes the geometric second term as √64 = 8 instead of √(4·64).",
+  "solve": "const a2=4+(64-4)/2; const g2=4*Math.sqrt(64/4); return String(a2-g2);",
+  "distractor_solve": {
+   "8": "const a2=4+(64-4)/3; const g2=4*Math.sqrt(64/4); return String(a2-g2);",
+   "26": "const a2=4+(64-4)/2; const g2=Math.sqrt(64); return String(a2-g2);",
+   "23.92": "const a2=4+(64-4)/2; const g2=4*Math.cbrt(64/4); return (a2-g2).toFixed(2);"
+  },
+  "quantity_asked": "a2 - g2 where a2 = 34 is the arithmetic second term and g2 = 16 the geometric second term.",
+  "distractor_kind": {
+   "8": "error path: three steps counted in the arithmetic sequence. (a) limiting case: none. (b) neighbouring setup: exact answer if 27 were the 4th arithmetic term; not an extreme. (c) cheapest one-step estimate: both second terms lie between 4 and 64 and the arithmetic one is the larger (AM >= GM for positive terms), so 0 < v < 60; inside. (d) real: off-by-one in term index.",
+   "26": "error path: geometric middle term taken as the square root of the third term alone. (a) no. (b) no. (c) inside (0, 60). (d) real: geometric mean of one term.",
+   "23.92": "error path: three steps counted in the geometric sequence. (a) no. (b) exact answer if 27 were the 4th geometric term; inside. (c) inside (0, 60). (d) real."
+  },
+  "distractor_meta": {
+   "8": {
+    "direction": "under",
+    "error_kind": "arithmetic step count"
+   },
+   "26": {
+    "direction": "over",
+    "error_kind": "wrong geometric mean"
+   },
+   "23.92": {
+    "direction": "over",
+    "error_kind": "geometric step count"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 60"
+  ],
+  "mechanism": [
+   "arithmetic and geometric sequence same terms",
+   "second term difference",
+   "arithmetic mean versus geometric mean",
+   "common ratio from first and third terms"
+  ],
+  "arith_class_check": "No. The stem implies no integrality of the difference; 8, 18 and 26 are even integers and 23.92 is not; the key is the only multiple of 3 and of 9, but the stem numbers 4 and 64 carry no factor of 3, so that class is not stem-implied.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23F-06",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "inverse of a piecewise function",
+  "subskill": "evaluate an inverse of a piecewise-defined one-to-one function by first deciding which piece produces the output, then rejecting the root outside that piece",
+  "prompt": "The function f is defined by f(x) = 2x + 9 for x < 3 and f(x) = x² + 7 for x ≥ 3. The function f has an inverse, f⁻¹. What is the value of f⁻¹(56) + f⁻¹(3) ?",
+  "choices": [
+   "-5",
+   "4.48",
+   "4",
+   "-10"
+  ],
+  "correct_answer": "4",
+  "explanation": "The piece 2x + 9 for x < 3 produces the outputs less than 15, and the piece x² + 7 for x ≥ 3 produces the outputs 16 and greater. Since 56 ≥ 16, solve x² + 7 = 56 with x ≥ 3: x = 7. Since 3 < 15, solve 2x + 9 = 3: x = −3. The sum is 7 + (−3) = 4. The option \"−10\" takes the negative root, −7, which is not in the piece x ≥ 3. The option \"−5\" inverts the linear piece incorrectly as (3 − 9)·2 = −12 instead of (3 − 9)/2. The option \"4.48\" forgets to subtract 7 before taking the square root, √56 ≈ 7.48.",
+  "solve": "return String(Math.sqrt(56-7)+(3-9)/2);",
+  "distractor_solve": {
+   "-10": "return String(-Math.sqrt(56-7)+(3-9)/2);",
+   "-5": "return String(Math.sqrt(56-7)+(3-9)*2);",
+   "4.48": "return (Math.sqrt(56)+(3-9)/2).toFixed(2);"
+  },
+  "quantity_asked": "f^-1(56) + f^-1(3) = 7 + (-3).",
+  "distractor_kind": {
+   "-10": "error path: wrong root of x^2 = 49. (a) limiting case: none. (b) neighbouring setup: no adjacent problem. (c) cheapest one-step estimate over the whole sum: f^-1(56) = 7 is one step and f^-1(3) < 3 (3 is below the second piece range), so v < 10; there is no cheap lower bound because f^-1(3) can be any number below 3 until the linear piece is solved (item work). Interval (-infinity, 10); inside. (d) real: ignoring the piece domain.",
+   "-5": "error path: multiplies by 2 instead of dividing when inverting 2x + 9. (a) no. (b) no. (c) inside (-infinity, 10). (d) real.",
+   "4.48": "error path: square root of 56 without subtracting 7. (a) no. (b) no. (c) inside (-infinity, 10). (d) real."
+  },
+  "distractor_meta": {
+   "-10": {
+    "direction": "under",
+    "error_kind": "root outside piece domain"
+   },
+   "-5": {
+    "direction": "under",
+    "error_kind": "linear inverse slip"
+   },
+   "4.48": {
+    "direction": "over",
+    "error_kind": "forgot to subtract constant"
+   }
+  },
+  "bounds": [
+   "v < 10"
+  ],
+  "mechanism": [
+   "inverse of piecewise function",
+   "which piece produces the output",
+   "reject root outside domain",
+   "sum of two inverse values"
+  ],
+  "arith_class_check": "No. The stem implies no integrality; -10, -5, 4 are integers and 4.48 is not; the key is the only positive integer and only multiple of 4, neither implied by the stem; the key is not alone in any class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23F-07",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "trigonometric identities (double angle with quadrant)",
+  "subskill": "from tan of a third-quadrant angle, find sin and cos with correct signs, then sin 2θ = 2 sin θ cos θ",
+  "prompt": "For an angle θ with 180° < θ < 270°, tan θ = 7/24. What is the value of sin(2θ) ?",
+  "choices": [
+   "14/25",
+   "527/625",
+   "336/625",
+   "7/12"
+  ],
+  "correct_answer": "336/625",
+  "explanation": "A right triangle with legs 7 and 24 has hypotenuse 25. In the third quadrant both sine and cosine are negative, so sin θ = −7/25 and cos θ = −24/25. Then sin 2θ = 2 sin θ cos θ = 2(−7/25)(−24/25) = 336/625. The option \"14/25\" doubles the sine (2 sin θ, sign dropped) instead of using the double-angle identity. The option \"527/625\" is cos 2θ = cos²θ − sin²θ. The option \"7/12\" doubles the tangent, 2 tan θ = 14/24.",
+  "solve": "const s=-7/25,c=-24/25; const v=2*s*c; return Math.round(v*625)+\"/625\";",
+  "distractor_solve": {
+   "14/25": "return Math.round(Math.abs(2*(-7/25))*25)+\"/25\";",
+   "527/625": "const s=-7/25,c=-24/25; return Math.round((c*c-s*s)*625)+\"/625\";",
+   "7/12": "const t=7/24; const v=2*t; return Math.round(v*12)+\"/12\";"
+  },
+  "quantity_asked": "sin(2 theta) = 2 sin(theta) cos(theta) with sin = -7/25, cos = -24/25.",
+  "distractor_kind": {
+   "14/25": "error path: 2 sin theta in place of sin 2 theta. (a) limiting case: none. (b) neighbouring setup: no. (c) cheapest one-step estimate: 2 theta is between 360 and 540 degrees, and theta is just past 180 (tan small), so 2 theta is a little past 360: sin 2 theta is positive and below 1; interval (0, 1); 14/25 = 0.56 inside. (d) real.",
+   "527/625": "error path: cos 2 theta computed. (a) no. (b) adjacent problem \"find cos 2 theta\"; not an extreme of (0, 1). (c) inside (0, 1). (d) real: wrong double-angle identity.",
+   "7/12": "error path: 2 tan theta in place of sin 2 theta. (a) no. (b) no. (c) 7/12 = 0.583 inside (0, 1). (d) real: doubling the given ratio."
+  },
+  "distractor_meta": {
+   "14/25": {
+    "direction": "over",
+    "error_kind": "doubled the sine"
+   },
+   "527/625": {
+    "direction": "over",
+    "error_kind": "cosine double angle"
+   },
+   "7/12": {
+    "direction": "over",
+    "error_kind": "doubled the tangent"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 1"
+  ],
+  "mechanism": [
+   "sin 2 theta double angle",
+   "third quadrant signs",
+   "tangent given find sine and cosine",
+   "7-24-25 triangle"
+  ],
+  "arith_class_check": "No. All options are proper fractions; two share denominator 625 (key and cos 2 theta), one has 25 and one 12, so the key is not the unique member of a denominator class; no integrality is implied.",
+  "one_sided_check": "Key smallest. No: the errors are a wrong identity (cos 2 theta) and two different doubled functions (2 sin, 2 tan); nothing in the stem tells a student which way each lands, and a sign-slip on the quadrant (not offered) would land on the other side."
+ },
+ {
+  "id": "AM23F-08",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "exponential functions (properties of exponents)",
+  "subskill": "rewrite f(2a - b) for f(x) = 2^x as f(a)^2 / f(b) instead of treating f as linear",
+  "prompt": "The function f is defined by f(x) = 2^x. For certain numbers a and b, f(a) = 5 and f(b) = 3. What is the value of f(2a − b) ?",
+  "choices": [
+   "22",
+   "16",
+   "7",
+   "8.33"
+  ],
+  "correct_answer": "8.33",
+  "explanation": "f(2a − b) = 2^(2a − b) = (2^a)²/2^b = 5²/3 = 25/3 ≈ 8.33. The option \"7\" treats f as linear, 2f(a) − f(b) = 2·5 − 3. The option \"22\" squares correctly but subtracts instead of dividing, 5² − 3. The option \"16\" subtracts the squares, 5² − 3².",
+  "solve": "const fa=5,fb=3; return (fa*fa/fb).toFixed(2);",
+  "distractor_solve": {
+   "7": "const fa=5,fb=3; return String(2*fa-fb);",
+   "16": "const fa=5,fb=3; return String(fa*fa-fb*fb);",
+   "22": "const fa=5,fb=3; return String(fa*fa-fb);"
+  },
+  "quantity_asked": "f(2a - b) = 2^(2a - b) = 25/3.",
+  "distractor_kind": {
+   "7": "error path: linear treatment of f. (a) limiting case: none. (b) neighbouring setup: answer for f(x) = mx (linear), not an extreme. (c) cheapest one-step estimate over the whole quantity: 4 < 5 < 8 gives 2 < a < 3, and 2 < 3 < 4 gives 1 < b < 2, so 2 < 2a - b < 5 and 4 < v < 32; 7 inside. (d) real: distributing f over a combination of inputs.",
+   "16": "error path: difference of squares. (a) no. (b) no. (c) inside (4, 32). (d) real.",
+   "22": "error path: square then subtract. (a) no. (b) no. (c) inside (4, 32). (d) real: subtracting exponents read as subtracting values."
+  },
+  "distractor_meta": {
+   "7": {
+    "direction": "under",
+    "error_kind": "f treated as linear"
+   },
+   "16": {
+    "direction": "over",
+    "error_kind": "difference of squares"
+   },
+   "22": {
+    "direction": "over",
+    "error_kind": "subtracts instead of divides"
+   }
+  },
+  "bounds": [
+   "v > 4",
+   "v < 32"
+  ],
+  "mechanism": [
+   "exponential function value from known values",
+   "f(2a - b) equals f(a) squared over f(b)",
+   "properties of exponents",
+   "given f(a) and f(b)"
+  ],
+  "arith_class_check": "No. The key 8.33 is the only non-integer, but nothing in the stem implies an integer value (a and b are irrational); 7, 16, 22 share no class excluding 8.33 that the stem implies.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23F-09",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "quadratic models (minimising a distance function)",
+  "subskill": "write the squared distance between two moving objects as a quadratic in t, find its vertex, and take the square root of the minimum",
+  "prompt": "At noon, ship A is 30 kilometers due north of a port and is sailing due south toward the port at 12 kilometers per hour. At the same moment, ship B leaves the port sailing due east at 20 kilometers per hour. Both ships keep these speeds and directions. To the nearest tenth of a kilometer, what is the least distance between the two ships?",
+  "choices": [
+   "22.1",
+   "15.4",
+   "25.7",
+   "10.5"
+  ],
+  "correct_answer": "25.7",
+  "explanation": "Put the port at the origin. After t hours ship A is at (0, 30 − 12t) and ship B is at (20t, 0), so the squared distance is d² = (30 − 12t)² + (20t)² = 544t² − 720t + 900. This quadratic is least at t = 720/(2·544) ≈ 0.662 hour, where d² ≈ 661.8, so the least distance is about 25.7 km. The option \"15.4\" swaps the speeds (A at 20, B at 12), giving d² = 544t² − 1,200t + 900. The option \"10.5\" forgets to square B's displacement, using (30 − 12t)² + 20t². The option \"22.1\" finds t ≈ 0.662 correctly but reports only ship A's distance from the port, 30 − 12(0.662).",
+  "solve": "const q=t=>(30-12*t)**2+(20*t)**2; const t=720/(2*544); return Math.sqrt(q(t)).toFixed(1);",
+  "distractor_solve": {
+   "15.4": "const q=t=>(30-20*t)**2+(12*t)**2; const t=1200/(2*544); return Math.sqrt(q(t)).toFixed(1);",
+   "10.5": "const q=t=>(30-12*t)**2+20*t*t; const t=720/(2*164); return Math.sqrt(q(t)).toFixed(1);",
+   "22.1": "const t=720/(2*544); return (30-12*t).toFixed(1);"
+  },
+  "quantity_asked": "the minimum over t >= 0 of sqrt((30 - 12t)^2 + (20t)^2), attained at t = 720/1088 = 0.662.",
+  "distractor_kind": {
+   "15.4": "error path: speeds swapped between the ships. (a) limiting case: the stem forces 0 < v <= 30 (the distance at noon); 15.4 inside. (b) neighbouring setup: exact answer if A sailed at 20 and B at 12, not an extreme. (c) cheapest one-step estimate over the whole quantity: d(0) = 30, d(1) = sqrt(18^2 + 20^2) = 26.9 and d(0.5) = sqrt(24^2 + 10^2) = 26, so v <= 26; no cheap lower bound short of the vertex (item work); interval (0, 26); inside. (d) real: misassigning the two rates.",
+   "10.5": "error path: B's displacement not squared. (a) no. (b) no. (c) inside (0, 26). (d) real: squaring slip.",
+   "22.1": "error path: one coordinate of the separation reported. (a) no. (b) it is A's distance to the port at the right moment, not a bound that is cheaper than the item. (c) inside (0, 26). (d) real: dropping a component of the distance."
+  },
+  "distractor_meta": {
+   "15.4": {
+    "direction": "under",
+    "error_kind": "speeds swapped"
+   },
+   "10.5": {
+    "direction": "under",
+    "error_kind": "term not squared"
+   },
+   "22.1": {
+    "direction": "under",
+    "error_kind": "one component only"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 26"
+  ],
+  "mechanism": [
+   "two ships moving at right angles",
+   "least distance between moving objects",
+   "squared distance quadratic in time",
+   "vertex of distance function"
+  ],
+  "arith_class_check": "No. Distances to a tenth carry no divisibility; all four options are one-decimal non-integers; no class isolates the key.",
+  "one_sided_check": "Key largest. No: swapped speeds, an unsquared term and a dropped component are three different errors, and the stem gives no reason they should all undershoot; if anything a \"least distance\" stem invites picking the SMALLEST option (any wrong time gives a larger distance), which here loses."
+ },
+ {
+  "id": "AM23S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability (counting unordered pairs)",
+  "subskill": "count unordered pairs from 1 through 10 whose difference is at least 3 by subtracting the pairs with difference 1 or 2 from C(10,2)",
+  "prompt": "Two different integers are chosen at random from the integers 1 through 10, inclusive, with every pair of different integers equally likely to be chosen. What is the probability that the two integers differ by at least 3 ?",
+  "choices": [
+   "7/15",
+   "3/5",
+   "5/9",
+   "28/45"
+  ],
+  "correct_answer": "28/45",
+  "explanation": "There are C(10,2) = 45 equally likely pairs. Pairs that differ by 1: (1,2) through (9,10), 9 pairs. Pairs that differ by 2: (1,3) through (8,10), 8 pairs. So 45 − 9 − 8 = 28 pairs differ by at least 3, and the probability is 28/45. The option \"7/15\" = 21/45 counts only pairs that differ by more than 3, also removing the 7 pairs that differ by exactly 3. The option \"3/5\" = 27/45 counts 9 pairs that differ by 2. The option \"5/9\" treats every first number like the middle number 5, which has 5 of the other 9 numbers at least 3 away (1, 2, 8, 9, 10), ignoring that numbers near the ends have more.",
+  "solve": "let n=0; for(let a=1;a<=10;a++)for(let b=a+1;b<=10;b++) if(b-a>=3)n++; return n+\"/45\";",
+  "distractor_solve": {
+   "7/15": "let n=0; for(let a=1;a<=10;a++)for(let b=a+1;b<=10;b++) if(b-a>3)n++; const g=(x,y)=>y?g(y,x%y):x; const d=g(n,45); return (n/d)+\"/\"+(45/d);",
+   "3/5": "const n=45-9-9; return (n/9)+\"/\"+(45/9);",
+   "5/9": "let m=0; for(let b=1;b<=10;b++) if(b!==5&&Math.abs(b-5)>=3)m++; const g=(x,y)=>y?g(y,x%y):x; const d=g(m,9); return (m/d)+\"/\"+(9/d);"
+  },
+  "quantity_asked": "P(|a - b| >= 3) for an unordered pair of different integers from 1-10 = 28/45.",
+  "distractor_kind": {
+   "7/15": "error path: \"at least 3\" read as \"more than 3\". (a) limiting case: none. (b) neighbouring setup: answer to \"differ by at least 4\", a subset of the event, so it is below the key; but computing it is the same difference-count as the item (pairs at distance 1, 2 and 3 all have to be counted), so it is not a cheaper bound. (c) cheapest one-step estimate: the 9 pairs that differ by 1 are excluded, so v <= 36/45 = 0.8; and the pairs (1, x) with x >= 4 alone give v >= 7/45; interval (7/45, 4/5); inside. (d) real.",
+   "3/5": "error path: off-by-one in counting difference-2 pairs. (a) no. (b) no. (c) inside (7/45, 4/5). (d) real.",
+   "5/9": "error path: one typical (middle) first number generalised to all. (a) no. (b) no. (c) 5/9 = 0.556 inside (7/45, 4/5). (d) real: assuming every first choice has the same number of far partners."
+  },
+  "distractor_meta": {
+   "7/15": {
+    "direction": "under",
+    "error_kind": "inclusive read as strict"
+   },
+   "3/5": {
+    "direction": "under",
+    "error_kind": "off-by-one count"
+   },
+   "5/9": {
+    "direction": "under",
+    "error_kind": "typical case generalised"
+   }
+  },
+  "bounds": [
+   "v > 7/45",
+   "v < 4/5"
+  ],
+  "mechanism": [
+   "two different integers chosen at random",
+   "differ by at least 3",
+   "count pairs by difference",
+   "unordered pairs C(10,2)"
+  ],
+  "arith_class_check": "No. As 45ths the options are 21, 25, 27, 28 (7/15, 5/9, 3/5, 28/45); 28/45 is the only unreduced form only because 28 and 45 are coprime; parity: 25, 27, 21 odd numerators vs 28 even, but no parity is implied by the stem; the key is not alone in a denominator class.",
+  "one_sided_check": "Key largest. No: a strict-for-inclusive misreading, an off-by-one count and a typical-case generalisation are different kinds, and nothing in the stem says errors undershoot (an off-by-one in the other direction, counting 7 difference-2 pairs, would overshoot)."
+ },
+ {
+  "id": "AM23S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "geometric probability on a number line",
+  "subskill": "solve a quadratic inequality to get the favourable interval, then divide its length by the length of the whole sampling interval",
+  "prompt": "A real number x is chosen at random from the interval −2 ≤ x ≤ 10, with every number in the interval equally likely. What is the probability that x² − 9x + 18 < 0 ?",
+  "choices": [
+   "3/4",
+   "1/4",
+   "2/3",
+   "3/10"
+  ],
+  "correct_answer": "1/4",
+  "explanation": "x² − 9x + 18 = (x − 3)(x − 6), which is negative exactly when 3 < x < 6, an interval of length 3. The whole interval has length 10 − (−2) = 12, so the probability is 3/12 = 1/4. The option \"3/4\" is the probability that the expression is positive (the inequality reversed). The option \"3/10\" divides by 10, the right endpoint, instead of the length 12. The option \"2/3\" keeps only the condition x < 6, giving −2 ≤ x < 6, length 8.",
+  "solve": "const L=10-(-2); const fav=6-3; const g=(a,b)=>b?g(b,a%b):a; const d=g(fav,L); return (fav/d)+\"/\"+(L/d);",
+  "distractor_solve": {
+   "3/4": "const L=12; const fav=L-3; const g=(a,b)=>b?g(b,a%b):a; const d=g(fav,L); return (fav/d)+\"/\"+(L/d);",
+   "3/10": "return (6-3)+\"/\"+10;",
+   "2/3": "const L=12; const fav=6-(-2); const g=(a,b)=>b?g(b,a%b):a; const d=g(fav,L); return (fav/d)+\"/\"+(L/d);"
+  },
+  "quantity_asked": "length of {x in [-2, 10] : (x-3)(x-6) < 0} divided by 12 = 3/12.",
+  "distractor_kind": {
+   "3/4": "error path: inequality direction reversed. (a) limiting case: none. (b) neighbouring setup: answer to \"> 0\"; not a bound on the key. (c) cheapest one-step estimate: the expression is positive at both endpoints (x = -2 gives 40, x = 10 gives 28) so the favourable set is a proper sub-interval: 0 < v < 1; inside. (d) real.",
+   "3/10": "error path: denominator 10. (a) no. (b) the exact answer on [0, 10]; computing it needs the roots (item work); inside (0, 1). (c) inside. (d) real.",
+   "2/3": "error path: only one side of the inequality kept. (a) no. (b) no. (c) inside (0, 1). (d) real."
+  },
+  "distractor_meta": {
+   "3/4": {
+    "direction": "over",
+    "error_kind": "inequality reversed"
+   },
+   "3/10": {
+    "direction": "over",
+    "error_kind": "wrong interval length"
+   },
+   "2/3": {
+    "direction": "over",
+    "error_kind": "one-sided solution set"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 1"
+  ],
+  "mechanism": [
+   "real number chosen at random from an interval",
+   "quadratic inequality",
+   "length ratio probability",
+   "factor x^2 - 9x + 18"
+  ],
+  "arith_class_check": "No. Four proper fractions with denominators 4, 4, 3, 10; the key shares denominator 4 with 3/4; no class isolates it.",
+  "one_sided_check": "Key smallest. No: reversed inequality, wrong total length and a one-sided solution set are different kinds; reversing the inequality lands above only because the favourable interval is short, which a student learns by solving; nothing in the stem signals that errors overshoot."
+ },
+ {
+  "id": "AM23S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "independence in a two-way table",
+  "subskill": "events are independent when the conditional proportion is the same in both rows; solve for the missing cell, remembering the unknown is part of its own row total",
+  "prompt": "Each student in a club was asked whether they play a musical instrument and whether they are on a sports team. Of the students, 50 play an instrument but are not on a team, 60 are on a team but do not play an instrument, 40 do neither, and x do both. For what value of x are the events \"plays an instrument\" and \"is on a team\" independent?",
+  "choices": [
+   "30",
+   "75",
+   "20",
+   "48"
+  ],
+  "correct_answer": "75",
+  "explanation": "The events are independent exactly when the proportion on a team is the same among instrument players as among non-players. Among the 60 + 40 = 100 non-players, 60/100 = 3/5 are on a team. So x/(x + 50) = 3/5, which gives 5x = 3x + 150 and x = 75. Check: with 225 students, P(instrument) = 125/225 = 5/9, P(team) = 135/225 = 3/5, and P(both) = 75/225 = 1/3 = (5/9)(3/5). The option \"30\" forgets that x belongs to the instrument row total, x/50 = 60/100. The option \"48\" sets up the proportion with the cells crossed, x/60 = 40/50. The option \"20\" uses P(both) = P(instrument)·P(team) but leaves x out of every total, 50·60/150.",
+  "solve": "const r=50,c=60,n=40; return String(r*c/n);",
+  "distractor_solve": {
+   "20": "const r=50,c=60,n=40; return String(r*c/(r+c+n));",
+   "30": "const r=50,c=60,n=40; return String(r*c/(c+n));",
+   "48": "const r=50,c=60,n=40; return String(n*c/r);"
+  },
+  "quantity_asked": "the count x of students in both categories that makes x/(x + 50) = 60/100.",
+  "distractor_kind": {
+   "20": "error path: product rule with totals that omit x. (a) no. (b) no. (c) inside. (d) real: forgetting that the unknown cell is in the marginal totals.",
+   "30": "error path: row total omits the unknown (x/50 instead of x/(x+50)). (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest one-step estimate: x is a positive count; the non-player row gives the 3/5 team rate, and turning that into x is the item; no cheap bound beyond x > 0; inside. (d) real.",
+   "48": "error path: proportion set up with crossed cells. (a) no. (b) no. (c) inside (0, infinity). (d) real: cross-multiplying the wrong pair of cells."
+  },
+  "distractor_meta": {
+   "20": {
+    "direction": "under",
+    "error_kind": "marginals omit unknown"
+   },
+   "30": {
+    "direction": "under",
+    "error_kind": "row total omits unknown"
+   },
+   "48": {
+    "direction": "under",
+    "error_kind": "crossed proportion"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "independent events two-way table",
+   "missing cell for independence",
+   "conditional proportion equal across rows",
+   "P(A and B) = P(A)P(B)"
+  ],
+  "arith_class_check": "No. All four options are integers (counts, the only stem-implied class); 75 is odd and 20, 30, 48 even, but parity is not implied by the stem (x = 76 or 74 are just as possible a priori); multiples of 5: 20, 30, 75; multiples of 3: 30, 48, 75; no stem-implied class isolates the key.",
+  "one_sided_check": "Key largest. No: forgetting x in its row total, crossing the proportion and omitting x from the marginals are three different errors; a student who has not solved it cannot tell from the stem which way any of them moves x."
+ },
+ {
+  "id": "AM23S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "probability (counting outcomes of two dice with a condition)",
+  "subskill": "count ordered die pairs (b, c) satisfying the discriminant condition b^2 >= 4c, including the equality case",
+  "prompt": "Two fair 6-sided dice, each numbered 1 through 6, are rolled. The number on the first die is b, and the number on the second die is c. What is the probability that the equation x² + bx + c = 0 has at least one real solution?",
+  "choices": [
+   "2/3",
+   "19/36",
+   "29/36",
+   "17/36"
+  ],
+  "correct_answer": "19/36",
+  "explanation": "The equation has a real solution when its discriminant b² − 4c ≥ 0, that is, c ≤ b²/4. For b = 1: none. b = 2: c = 1 (1 outcome). b = 3: c ≤ 2.25, so c = 1, 2 (2). b = 4: c ≤ 4 (4). b = 5: c ≤ 6.25, all 6. b = 6: all 6. Total 1 + 2 + 4 + 6 + 6 = 19 of 36 outcomes. The option \"17/36\" requires b² − 4c > 0, losing the equal-root cases (2, 1) and (4, 4). The option \"2/3\" uses b² ≥ 2c, and the option \"29/36\" uses b² ≥ c (dropping the 4).",
+  "solve": "let n=0; for(let b=1;b<=6;b++)for(let c=1;c<=6;c++) if(b*b-4*c>=0)n++; return n+\"/36\";",
+  "distractor_solve": {
+   "17/36": "let n=0; for(let b=1;b<=6;b++)for(let c=1;c<=6;c++) if(b*b-4*c>0)n++; return n+\"/36\";",
+   "2/3": "let n=0; for(let b=1;b<=6;b++)for(let c=1;c<=6;c++) if(b*b-2*c>=0)n++; const g=(a,d)=>d?g(d,a%d):a; const d=g(n,36); return (n/d)+\"/\"+(36/d);",
+   "29/36": "let n=0; for(let b=1;b<=6;b++)for(let c=1;c<=6;c++) if(b*b-c>=0)n++; return n+\"/36\";"
+  },
+  "quantity_asked": "P(b^2 - 4c >= 0) over the 36 equally likely ordered pairs = 19/36.",
+  "distractor_kind": {
+   "17/36": "error path: strict inequality (equal roots excluded). (a) limiting case: none. (b) neighbouring setup: answer to \"two distinct real solutions\"; computing it is the same enumeration as the item, so it is not a cheaper bound. (c) cheapest one-step estimate: b >= 5 always works (25 > 24), so v >= 12/36, and b = 1 never works, so v <= 30/36; interval (1/3, 5/6); inside. (d) real.",
+   "2/3": "error path: 2c in place of 4c. (a) no. (b) no. (c) inside (1/3, 5/6). (d) real.",
+   "29/36": "error path: the 4 dropped. (a) no. (b) no. (c) 29/36 = 0.806 inside (1/3, 5/6 = 0.833). (d) real."
+  },
+  "distractor_meta": {
+   "17/36": {
+    "direction": "under",
+    "error_kind": "strict inequality"
+   },
+   "2/3": {
+    "direction": "over",
+    "error_kind": "wrong discriminant coefficient"
+   },
+   "29/36": {
+    "direction": "over",
+    "error_kind": "dropped factor 4"
+   }
+  },
+  "bounds": [
+   "v > 1/3",
+   "v < 5/6"
+  ],
+  "mechanism": [
+   "dice determine quadratic coefficients",
+   "discriminant at least zero",
+   "count ordered outcomes",
+   "real solution probability"
+  ],
+  "arith_class_check": "No. Three options over 36 and one reduced (2/3 = 24/36); the key 19/36 is one of three with denominator 36; no class isolates it.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "probability (forming numbers from digits)",
+  "subskill": "a two-digit number is divisible by 4 when the number formed by its last two digits is; list the ordered digit pairs without repetition",
+  "prompt": "Two different digits are chosen at random from the digits 1, 2, 3, 4, 5, and 6 and are used, in the order chosen, as the tens digit and the units digit of a two-digit number. Every ordered choice of two different digits is equally likely. What is the probability that the two-digit number is divisible by 4 ?",
+  "choices": [
+   "1/4",
+   "7/15",
+   "1/6",
+   "4/15"
+  ],
+  "correct_answer": "4/15",
+  "explanation": "There are 6 · 5 = 30 equally likely ordered choices. The two-digit multiples of 4 that use two different digits from 1 through 6 are 12, 16, 24, 32, 36, 52, 56, and 64: 8 numbers. The probability is 8/30 = 4/15. The option \"1/6\" uses the false rule that the units digit must be 4 (14, 24, 34, 54, 64: 5 of 30). The option \"1/4\" allows a repeated digit, adding 44 and using 36 outcomes (9/36). The option \"7/15\" counts every multiple of 4 from 12 to 64 (14 of them), forgetting that 20, 28, 40, 44, 48, and 60 use a digit that is not available or is repeated.",
+  "solve": "let n=0,t=0; for(let a=1;a<=6;a++)for(let b=1;b<=6;b++){ if(a===b)continue; t++; if((10*a+b)%4===0)n++;} const g=(x,y)=>y?g(y,x%y):x; const d=g(n,t); return (n/d)+\"/\"+(t/d);",
+  "distractor_solve": {
+   "1/6": "let n=0,t=0; for(let a=1;a<=6;a++)for(let b=1;b<=6;b++){ if(a===b)continue; t++; if(b===4)n++;} const g=(x,y)=>y?g(y,x%y):x; const d=g(n,t); return (n/d)+\"/\"+(t/d);",
+   "1/4": "let n=0,t=0; for(let a=1;a<=6;a++)for(let b=1;b<=6;b++){ t++; if((10*a+b)%4===0)n++;} const g=(x,y)=>y?g(y,x%y):x; const d=g(n,t); return (n/d)+\"/\"+(t/d);",
+   "7/15": "let n=0; for(let m=12;m<=65;m++) if(m%4===0)n++; const g=(x,y)=>y?g(y,x%y):x; const d=g(n,30); return (n/d)+\"/\"+(30/d);"
+  },
+  "quantity_asked": "P(10a + b divisible by 4) over the 30 ordered pairs of different digits from 1-6 = 8/30.",
+  "distractor_kind": {
+   "1/6": "error path: wrong divisibility rule (units digit 4). (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest one-step estimate: a multiple of 4 must end in an even digit, and half the ordered pairs do, so v <= 1/2; interval (0, 1/2); inside. (d) real: the divisibility-by-4 misconception.",
+   "1/4": "error path: repetition allowed (44 included, 36 outcomes). (a) no. (b) the answer to a different sample space; not a bound. (c) inside (0, 1/2). (d) real.",
+   "7/15": "error path: digit restrictions ignored (all multiples of 4 from 12 to 64). (a) no. (b) neighbouring setup: answer if any two-digit number from 12 to 65 were possible; not a bound because 30 is still used as the denominator. (c) 7/15 = 0.467 is inside (0, 1/2), the even-units cap. (d) real: forgetting the available digits."
+  },
+  "distractor_meta": {
+   "1/6": {
+    "direction": "under",
+    "error_kind": "wrong divisibility rule"
+   },
+   "1/4": {
+    "direction": "under",
+    "error_kind": "repetition allowed"
+   },
+   "7/15": {
+    "direction": "over",
+    "error_kind": "digit restriction ignored"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 1/2"
+  ],
+  "mechanism": [
+   "two-digit number from chosen digits",
+   "divisible by 4",
+   "digits without repetition",
+   "ordered selection probability"
+  ],
+  "arith_class_check": "No. Denominators 4, 15, 6, 15; the key shares 15 with 7/15; no class isolates it.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "probability (non-uniform outcomes)",
+  "subskill": "when outcome probabilities are proportional to the face value, normalise by the sum of the faces and add the weights of the favourable faces",
+  "prompt": "A 6-sided die numbered 1 through 6 is weighted so that the probability of rolling each number is proportional to that number. (For example, a 6 is 3 times as likely as a 2.) The die is rolled once. What is the probability that the number rolled is a prime number?",
+  "choices": [
+   "1/2",
+   "8/21",
+   "2/3",
+   "10/21"
+  ],
+  "correct_answer": "10/21",
+  "explanation": "The probability of rolling k is k/(1 + 2 + 3 + 4 + 5 + 6) = k/21. The primes on the die are 2, 3, and 5, so the probability is (2 + 3 + 5)/21 = 10/21. The option \"8/21\" leaves out 2, treating every prime as odd. The option \"1/2\" ignores the weighting (3 primes out of 6 faces). The option \"2/3\" divides by 1 + 2 + 3 + 4 + 5 = 15, leaving 6 out of the total.",
+  "solve": "const tot=21; return (2+3+5)+\"/\"+tot;",
+  "distractor_solve": {
+   "8/21": "return (3+5)+\"/21\";",
+   "1/2": "return \"1/2\";",
+   "2/3": "const n=2+3+5, t=1+2+3+4+5; const g=(x,y)=>y?g(y,x%y):x; const d=g(n,t); return (n/d)+\"/\"+(t/d);"
+  },
+  "quantity_asked": "P(prime) = (2 + 3 + 5)/21 for a die with P(k) = k/21.",
+  "distractor_kind": {
+   "8/21": "error path: 2 not counted as prime. (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest one-step estimate: primes {2,3,5} against non-primes {1,4,6}; pairing 2<4, 3>1, 5<6 gives no cheap ordering against 1/2, and P(prime) is between P(5)=5/21 and 1; interval (5/21, 1); inside. (d) real: the \"2 is not prime\" misconception.",
+   "1/2": "error path: weighting ignored. (a) limiting case: it is the uniform-die value; the weighted value is not forced above or below it without adding the weights (10 vs 11), which is the item. (b) no. (c) inside (5/21, 1). (d) real.",
+   "2/3": "error path: 6 left out of the normalising total. (a) no. (b) no. (c) inside (5/21, 1). (d) real."
+  },
+  "distractor_meta": {
+   "8/21": {
+    "direction": "under",
+    "error_kind": "2 treated as not prime"
+   },
+   "1/2": {
+    "direction": "over",
+    "error_kind": "weighting ignored"
+   },
+   "2/3": {
+    "direction": "over",
+    "error_kind": "wrong normalising total"
+   }
+  },
+  "bounds": [
+   "v > 5/21",
+   "v < 1"
+  ],
+  "mechanism": [
+   "weighted die probability proportional to number",
+   "normalise by sum of faces",
+   "prime numbers on a die",
+   "non-uniform probability"
+  ],
+  "arith_class_check": "No. Denominators 21, 21, 2, 3; the key shares 21 with 8/21; no class isolates it.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "reflection of a point across a slanted line through the origin",
+  "subskill": "reflecting a point across the line y = 2x by finding the foot of the perpendicular from the point to the line and doubling the displacement to it",
+  "prompt": "In the standard (x,y) coordinate plane, point P(7, 1) is reflected across the line y = 2x. What is the y-coordinate of the image of P ?",
+  "choices": [
+   "5",
+   "6.2",
+   "3.6",
+   "-3.4"
+  ],
+  "correct_answer": "6.2",
+  "explanation": "The perpendicular from P to y = 2x has slope −1/2: y − 1 = −(1/2)(x − 7). Setting 2x = 1 − (1/2)(x − 7) gives 2.5x = 4.5, so x = 1.8 and the foot of the perpendicular is F(1.8, 3.6). F is the midpoint of P and its image P′, so P′ = 2F − P = (3.6 − 7, 7.2 − 1) = (−3.4, 6.2). The y-coordinate is 6.2. The option \"3.6\" stops at the foot of the perpendicular instead of going the same distance past it. The option \"-3.4\" is the x-coordinate of the image, reported in place of the y-coordinate. The option \"5\" uses the reflection formula y′ = (2mx + (m² − 1)y)/(1 + m²) with the sign of the (m² − 1)y term reversed: (28 − 3)/5 = 5 instead of (28 + 3)/5.",
+  "solve": "const t=(7*1+1*2)/5; const Fy=2*t; return (2*Fy-1).toFixed(1);",
+  "distractor_solve": {
+   "5": "const m=2; return String((2*m*7-(m*m-1)*1)/(1+m*m));",
+   "3.6": "const t=(7*1+1*2)/5; return (2*t).toFixed(1);",
+   "-3.4": "const t=(7*1+1*2)/5; return (2*t-7).toFixed(1);"
+  },
+  "quantity_asked": "the y-coordinate of P′ = 2F − P, where F(1.8, 3.6) is the foot of the perpendicular from P(7, 1) to y = 2x.",
+  "distractor_kind": {
+   "5": "sign error in the reflection formula. (a) no. (b) no adjacent problem has 5 as an extreme. (c) interval (−6.32, 7.07); 5 strictly inside. (d) real: misremembering the sign of the (m² − 1) term.",
+   "3.6": "stops at the foot of the perpendicular. (a) limiting case: no parameter extreme; it is not P itself (y = 1) or a point on an axis. (b) neighbouring setup: it is the answer to \"the foot of the perpendicular\", which lies on the segment PP′; the stem-forced interval below does not have it as an endpoint. (c) cheapest one-step bound over the whole quantity: a reflection across a line through the origin keeps distance from O, so |OP′| = √50 and |y′| < 7.07; one step finer, P′ is on the side y > 2x, and the arc of the circle x² + y² = 50 on that side has y in (−6.32, 7.07). Interval (−6.32, 7.07); 3.6 strictly inside. (d) real: the most common reflection error, finding the midpoint and reporting it.",
+   "-3.4": "x-coordinate of the image reported. (a) no. (b) neighbouring setup: the answer to \"the x-coordinate of the image\", not an interval edge. (c) interval (−6.32, 7.07); −3.4 strictly inside. (d) real: reading off the wrong coordinate of a correctly found image."
+  },
+  "distractor_meta": {
+   "5": {
+    "direction": "under",
+    "error_kind": "formula sign error"
+   },
+   "3.6": {
+    "direction": "under",
+    "error_kind": "stopped at foot of perpendicular"
+   },
+   "-3.4": {
+    "direction": "under",
+    "error_kind": "wrong coordinate reported"
+   }
+  },
+  "bounds": [
+   "v < Math.sqrt(50)",
+   "v > -2*Math.sqrt(10)"
+  ],
+  "mechanism": [
+   "reflection across y = 2x",
+   "reflect point across slanted line",
+   "foot of perpendicular",
+   "image of a point under reflection"
+  ],
+  "arith_class_check": "No. A y-coordinate after a reflection carries no integrality or divisibility the stem implies. One option is an integer (5, a distractor), one is negative (−3.4, a distractor) and two are positive one-decimal values (3.6, 6.2); the key is not the lone member of any class.",
+  "one_sided_check": "Key is the largest. The errors are of three kinds (stopping at the foot, reporting the other coordinate, a formula sign slip); nothing in the stem says the slips lower the y-coordinate, and the stem-forced bound (|y| < 7.07 from |OP′| = |OP|) sits above every option without pointing at the key."
+ },
+ {
+  "id": "AM23G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "common chord of two intersecting circles",
+  "subskill": "subtracting the equations of two circles to find the line through their intersection points, then using one circle to find the half-chord",
+  "prompt": "In the standard (x,y) coordinate plane, the circles x² + y² = 25 and (x − 7)² + y² = 16 intersect at two points. What is the distance between these two points, to the nearest hundredth?",
+  "choices": [
+   "5.29",
+   "6.00",
+   "5.60",
+   "3.87"
+  ],
+  "correct_answer": "5.60",
+  "explanation": "Subtracting the second equation from the first: x² − (x − 7)² = 25 − 16, so 14x − 49 = 9 and x = 58/14 = 29/7. Both intersection points have this x-coordinate, and from x² + y² = 25, y² = 25 − 841/49 = 384/49, so y = ±√384/7 ≈ ±2.799. The distance between the points is 2(2.799) ≈ 5.60. The option \"6.00\" assumes the chord is at x = 4, halfway across the overlap from x = 3 to x = 5, and uses the first circle: 2√(25 − 16). The option \"5.29\" makes the same x = 4 assumption but uses the second circle: 2√(16 − 9). The option \"3.87\" puts the chord halfway between the centers, x = 3.5, and uses the second circle: 2√(16 − 12.25).",
+  "solve": "const x=(49+25-16)/14; return (2*Math.sqrt(25-x*x)).toFixed(2);",
+  "distractor_solve": {
+   "6.00": "return (2*Math.sqrt(25-4*4)).toFixed(2);",
+   "5.29": "return (2*Math.sqrt(16-(7-4)*(7-4))).toFixed(2);",
+   "3.87": "return (2*Math.sqrt(16-3.5*3.5)).toFixed(2);"
+  },
+  "quantity_asked": "the full length of the common chord, 2√(25 − x²) with x = 29/7.",
+  "distractor_kind": {
+   "6.00": "chord placed at the middle of the overlap (x = 4), first circle. (a) limiting case: no parameter extreme. (b) neighbouring setup: the answer if the chord bisected the overlap; it is not an endpoint of the interval below. (c) cheapest one-step bound over the whole length: the intersection points lie in the overlap, so 3 < x < 5; from the second circle the half-chord is √(16 − (7 − x)²) with 2 < 7 − x < 4, so the chord is in (0, 2√12) = (0, 6.93). 6.00 strictly inside. (d) real: assuming symmetry of the overlap.",
+   "5.29": "same x = 4 assumption, second circle. (a) no. (b) no. (c) interval (0, 6.93); 5.29 strictly inside. (d) real: the x = 4 assumption with the other circle, which gives a different value because the assumption is false.",
+   "3.87": "chord placed midway between the centers (x = 3.5), second circle. (a) no. (b) no adjacent problem has it as an extreme. (c) interval (0, 6.93); 3.87 strictly inside. (d) real: assuming the common chord bisects the segment joining the centers, true only for equal radii."
+  },
+  "distractor_meta": {
+   "6.00": {
+    "direction": "over",
+    "error_kind": "chord at overlap midpoint"
+   },
+   "5.29": {
+    "direction": "under",
+    "error_kind": "chord at overlap midpoint, other circle"
+   },
+   "3.87": {
+    "direction": "under",
+    "error_kind": "chord at midpoint of centers"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 2*Math.sqrt(12)"
+  ],
+  "mechanism": [
+   "common chord of two circles",
+   "two circles intersect",
+   "subtract circle equations",
+   "distance between intersection points of circles"
+  ],
+  "arith_class_check": "No. The stem gives integer radii but the chord length is irrational; the only integer-valued option is 6.00, a distractor, and the key is not singled out by any simple class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-03",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "similar triangles from a congruent angle pair (antiparallel segment)",
+  "subskill": "identifying the correspondence in triangles ADE and ACB that share angle A and have angle ADE congruent to angle ACB, and using the ratio AD/AC",
+  "prompt": "In triangle ABC, AB = 15, AC = 12, and BC = 13. Point D lies on side AB so that AD = 5, and point E lies on side AC so that angle ADE is congruent to angle ACB. To the nearest hundredth, what is the length of segment DE ?",
+  "choices": [
+   "6.50",
+   "5.42",
+   "8.67",
+   "6.77"
+  ],
+  "correct_answer": "5.42",
+  "explanation": "Triangles ADE and ACB share angle A, and angle ADE ≅ angle ACB, so triangle ADE ~ triangle ACB with A ↔ A, D ↔ C, E ↔ B. Then DE/CB = AD/AC, so DE = 13 · 5/12 ≈ 5.42. (Also AE/AB = 5/12, so AE = 6.25, which does lie on side AC.) The option \"6.50\" uses the part-to-part ratio AD/DB = 5/10 instead of AD/AC: 13 · 1/2. The option \"6.77\" first finds AE = 6.25 correctly and then pairs it with the wrong side, DE = 13 · 6.25/12. The option \"8.67\" scales BC by DB/AB = 10/15.",
+  "solve": "return (13*5/12).toFixed(2);",
+  "distractor_solve": {
+   "6.50": "return (13*5/10).toFixed(2);",
+   "6.77": "const AE=5*15/12; return (13*AE/12).toFixed(2);",
+   "8.67": "return (13*10/15).toFixed(2);"
+  },
+  "quantity_asked": "DE = BC · AD/AC from triangle ADE ~ triangle ACB.",
+  "distractor_kind": {
+   "6.50": "part-to-part ratio. (a) limiting case: no parameter extreme. (b) neighbouring setup: not the answer to an adjacent problem at an interval edge. (c) cheapest one-step bound over the whole length: E is on segment AC, so DE is at most the larger of DA = 5 and DC; DC² = 25 + 144 − 2·5·12·cos A with cos A = (225 + 144 − 169)/360 = 5/9, so DC ≈ 10.11; and DE is at least the distance from D to line AC, 5 sin A ≈ 4.16. Interval (4.16, 10.11); 6.50 strictly inside. (d) real: using AD:DB in place of AD:AC.",
+   "6.77": "correct AE, wrong pairing. (a) no. (b) no. (c) interval (4.16, 10.11); 6.77 strictly inside. (d) real: matching sides in the order the letters are written rather than by the angle correspondence.",
+   "8.67": "scales by DB/AB. (a) no. (b) no. (c) interval (4.16, 10.11); 8.67 strictly inside. (d) real: using the remaining part of the side as the scale factor."
+  },
+  "distractor_meta": {
+   "6.50": {
+    "direction": "over",
+    "error_kind": "part-to-part ratio"
+   },
+   "6.77": {
+    "direction": "over",
+    "error_kind": "wrong side correspondence"
+   },
+   "8.67": {
+    "direction": "over",
+    "error_kind": "complement segment as scale factor"
+   }
+  },
+  "bounds": [
+   "v > 5*Math.sqrt(1-25/81)",
+   "v < Math.sqrt(169-600/9)"
+  ],
+  "mechanism": [
+   "similar triangles with congruent angle",
+   "antiparallel segment",
+   "angle ADE congruent to angle ACB",
+   "triangle similarity correspondence"
+  ],
+  "arith_class_check": "No. The stem implies only a ratio of given lengths; all four options are two-decimal non-integers and the key is not the unique member of any divisibility or integrality class.",
+  "one_sided_check": "Key is the smallest. The three errors are of three kinds (part-to-part ratio, wrong correspondence after a correct step, wrong complementary segment); nothing in the stem says a slip must lengthen DE, and the most familiar slip on this figure, treating DE as parallel to BC (13·5/15 = 4.33), would have shortened it."
+ },
+ {
+  "id": "AM23G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "sphere inscribed in a right circular cone",
+  "subskill": "reducing the sphere in a cone to the circle inscribed in the cone's isosceles cross-section and finding that radius from the cross-section's area and semiperimeter",
+  "prompt": "A solid right circular cone has a base radius of 6 centimeters and a height of 8 centimeters. A sphere is placed inside the cone so that it touches the base of the cone and touches the curved surface of the cone all the way around. To the nearest tenth of a cubic centimeter, what is the volume of the sphere?",
+  "choices": [
+   "79.4",
+   "14.1",
+   "113.1",
+   "33.5"
+  ],
+  "correct_answer": "113.1",
+  "explanation": "A vertical cross-section through the axis is an isosceles triangle with base 12 and equal sides √(6² + 8²) = 10, and the sphere's cross-section is the circle inscribed in that triangle. The triangle's area is (1/2)(12)(8) = 48 and its semiperimeter is (10 + 10 + 12)/2 = 16, so the inscribed radius is 48/16 = 3. The sphere's volume is (4/3)π(3³) = 36π ≈ 113.1. The option \"14.1\" divides the area by the full perimeter, 32, giving radius 1.5. The option \"33.5\" uses the right triangle formed by the axis, a base radius, and the slant edge (legs 6 and 8, hypotenuse 10) and takes its inscribed radius, (6 + 8 − 10)/2 = 2. The option \"79.4\" puts the sphere's center at the centroid of the cross-section, 8/3 above the base, so radius 8/3.",
+  "solve": "const r=48/16; return (4/3*Math.PI*r**3).toFixed(1);",
+  "distractor_solve": {
+   "14.1": "const r=48/32; return (4/3*Math.PI*r**3).toFixed(1);",
+   "33.5": "const r=(6+8-10)/2; return (4/3*Math.PI*r**3).toFixed(1);",
+   "79.4": "const r=8/3; return (4/3*Math.PI*r**3).toFixed(1);"
+  },
+  "quantity_asked": "the sphere volume (4/3)πρ³, where ρ = 3 is the inradius of the 10-10-12 cross-section.",
+  "distractor_kind": {
+   "14.1": "perimeter in place of semiperimeter. (a) limiting case: no parameter extreme. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole volume: the sphere fits between the base and the apex level, so its diameter is less than the height, ρ < 4 and V < (4/3)π(64) = 268.1; one step finer, the sphere is inside the cone, V < (1/3)π(36)(8) = 301.6, so the binding cap is 268.1; V > 0. Interval (0, 268.1); 14.1 strictly inside. (d) real: r = A/s with the perimeter used for s.",
+   "33.5": "inradius of the half cross-section (6-8-10 right triangle). (a) no. (b) neighbouring setup: the circle inscribed in the half-triangle is a different, smaller circle; it is not at an interval edge. (c) interval (0, 268.1); 33.5 strictly inside. (d) real: using the right triangle the student draws first.",
+   "79.4": "center at the centroid of the cross-section. (a) no. (b) no. (c) interval (0, 268.1); 79.4 strictly inside. (d) real: confusing the incenter with the centroid."
+  },
+  "distractor_meta": {
+   "14.1": {
+    "direction": "under",
+    "error_kind": "perimeter for semiperimeter"
+   },
+   "33.5": {
+    "direction": "under",
+    "error_kind": "wrong triangle (half cross-section)"
+   },
+   "79.4": {
+    "direction": "under",
+    "error_kind": "centroid for incenter"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 4/3*Math.PI*64",
+   "v < Math.PI*36*8/3"
+  ],
+  "mechanism": [
+   "sphere inscribed in a cone",
+   "sphere inside a cone touching base and curved surface",
+   "inscribed circle of cone cross-section",
+   "volume of sphere in cone"
+  ],
+  "arith_class_check": "No. The stem implies no integrality; all four volumes are one-decimal non-integers (π multiples) and the key is not the lone member of a simple class.",
+  "one_sided_check": "Key is the largest. The three errors are of three kinds (perimeter for semiperimeter, wrong triangle, centroid for incenter); the stem gives no reason a student could read that every slip shrinks the sphere, and the caps the stem does force (ρ < 4, V < 268) sit far above the key, so they do not single it out."
+ },
+ {
+  "id": "AM23G-05",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "orthocenter of a triangle in the coordinate plane",
+  "subskill": "writing the equations of two altitudes using negative reciprocal slopes and intersecting them",
+  "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(0, 0), B(12, 0), and C(5, 8). The three altitudes of the triangle intersect at a single point. What is the y-coordinate of that point?",
+  "choices": [
+   "8/3",
+   "40/7",
+   "35/8",
+   "29/16"
+  ],
+  "correct_answer": "35/8",
+  "explanation": "The altitude from C is perpendicular to AB, which is horizontal, so it is the vertical line x = 5. Side BC has slope (8 − 0)/(5 − 12) = −8/7, so the altitude from A has slope 7/8 and equation y = (7/8)x. At x = 5, y = 35/8. (Check with the altitude from B: AC has slope 8/5, so that altitude is y = −(5/8)(x − 12), which also gives 35/8 at x = 5.) The option \"8/3\" is the y-coordinate of the centroid, (0 + 0 + 8)/3. The option \"29/16\" is the y-coordinate of the circumcenter, where the perpendicular bisectors meet: x = 6 and y − 4 = −(5/8)(x − 2.5). The option \"40/7\" negates the slope of BC without taking the reciprocal, using 8/7 for the altitude from A: (8/7)(5).",
+  "solve": "const m=-1/((8-0)/(5-12)); const y=m*5; const d=8; return (Math.round(y*d))+\"/\"+d;",
+  "distractor_solve": {
+   "8/3": "return (0+0+8)+\"/3\";",
+   "29/16": "const y=4-(5/8)*(6-2.5); return Math.round(y*16)+\"/16\";",
+   "40/7": "const y=(8/7)*5; return Math.round(y*7)+\"/7\";"
+  },
+  "quantity_asked": "the y-coordinate of the orthocenter: the altitude from A, y = (7/8)x, evaluated on the altitude from C, x = 5.",
+  "distractor_kind": {
+   "8/3": "centroid. (a) limiting case: no parameter extreme. (b) neighbouring setup: the centroid is a different center; it is not an endpoint of the interval below. (c) cheapest one-step bound over the whole quantity: every angle is acute (dot products at A, B, C are 60, 84, 29), so the orthocenter is inside the triangle; on x = 5 the triangle spans 0 < y < 8. Interval (0, 8); 8/3 ≈ 2.67 strictly inside. (d) real: confusing the intersection of altitudes with that of medians.",
+   "29/16": "circumcenter. (a) no. (b) neighbouring setup: another center, interior to (0, 8). (c) interval (0, 8); 1.81 strictly inside. (d) real: confusing altitudes with perpendicular bisectors.",
+   "40/7": "negated slope, not reciprocal. (a) no. (b) no. (c) interval (0, 8); 5.71 strictly inside. (d) real: the classic perpendicular-slope slip."
+  },
+  "distractor_meta": {
+   "8/3": {
+    "direction": "under",
+    "error_kind": "centroid for orthocenter"
+   },
+   "29/16": {
+    "direction": "under",
+    "error_kind": "circumcenter for orthocenter"
+   },
+   "40/7": {
+    "direction": "over",
+    "error_kind": "perpendicular slope not reciprocated"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 8"
+  ],
+  "mechanism": [
+   "orthocenter",
+   "altitudes of a triangle intersect",
+   "altitude slope negative reciprocal",
+   "triangle with vertices in coordinate plane"
+  ],
+  "arith_class_check": "No. All four options are fractions with different denominators (3, 7, 8, 16); none is an integer and the stem implies no denominator, so the key is not the lone member of a class the stem points to.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-06",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "tangent line to a circle at a given point",
+  "subskill": "finding the radius slope from the center to the point of tangency, taking the negative reciprocal, and writing the tangent line to read its y-intercept",
+  "prompt": "In the standard (x,y) coordinate plane, the point (5, 3) lies on the circle (x − 2)² + (y + 1)² = 25. What is the y-intercept of the line tangent to the circle at (5, 3) ?",
+  "choices": [
+   "9.67",
+   "20.50",
+   "6.75",
+   "11.33"
+  ],
+  "correct_answer": "6.75",
+  "explanation": "The center is (2, −1). The radius to (5, 3) has slope (3 − (−1))/(5 − 2) = 4/3, and the tangent is perpendicular to it, so its slope is −3/4. The tangent is y − 3 = −(3/4)(x − 5); at x = 0, y = 3 + 15/4 = 6.75. The option \"9.67\" uses −4/3, negating the radius slope without taking the reciprocal: 3 + 20/3. The option \"11.33\" measures the radius from the origin instead of the center: slope 3/5, tangent slope −5/3, intercept 3 + 25/3. The option \"20.50\" reads the center as (−2, 1), with the signs flipped: radius slope 2/7, tangent slope −7/2, intercept 3 + 35/2.",
+  "solve": "const m=-1/((3+1)/(5-2)); return (3-m*5).toFixed(2);",
+  "distractor_solve": {
+   "9.67": "const m=-((3+1)/(5-2)); return (3-m*5).toFixed(2);",
+   "11.33": "const m=-1/(3/5); return (3-m*5).toFixed(2);",
+   "20.50": "const m=-1/((3-1)/(5+2)); return (3-m*5).toFixed(2);"
+  },
+  "quantity_asked": "the y-intercept 3 + (3/4)(5) of the tangent line y − 3 = −(3/4)(x − 5).",
+  "distractor_kind": {
+   "9.67": "negated, not reciprocated. (a) limiting case: no parameter extreme. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole quantity: (5, 3) is up and to the right of the center, so the tangent there slopes down, and its y-intercept exceeds 3; there is no upper cap from the stem. Interval (3, ∞); 9.67 strictly inside. (d) real: the perpendicular-slope slip.",
+   "11.33": "radius drawn from the origin. (a) no. (b) neighbouring setup: the tangent at (5, 3) to a circle centered at O; not an edge. (c) interval (3, ∞); 11.33 strictly inside. (d) real: treating every circle as centered at the origin.",
+   "20.50": "center read with flipped signs, (−2, 1). (a) no. (b) no. (c) interval (3, ∞); 20.50 strictly inside. (d) real: misreading (x − h)² + (y − k)² signs."
+  },
+  "distractor_meta": {
+   "9.67": {
+    "direction": "over",
+    "error_kind": "perpendicular slope not reciprocated"
+   },
+   "11.33": {
+    "direction": "over",
+    "error_kind": "center taken as origin"
+   },
+   "20.50": {
+    "direction": "over",
+    "error_kind": "center sign misread"
+   }
+  },
+  "bounds": [
+   "v > 3"
+  ],
+  "mechanism": [
+   "tangent line to a circle at a point",
+   "y-intercept of tangent line",
+   "radius perpendicular to tangent",
+   "circle equation center"
+  ],
+  "arith_class_check": "No. The stem implies no integrality; all four options are two-decimal values (6.75, 9.67, 11.33, 20.50) and the key is not singled out by a class the stem suggests.",
+  "one_sided_check": "Key is the smallest. The three errors come from two kinds (slope rule; wrong center, twice in different ways); the stem does not reveal that the slips steepen the tangent, and the only stem-forced bound (intercept > 3) sits below every option, so it gives no reason to prefer the smallest."
+ },
+ {
+  "id": "AM23G-07",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "belt around two pulleys of different sizes",
+  "subskill": "finding the length of a common external tangent, the angle it makes with the line of centers, and the unequal arcs of contact on each pulley",
+  "prompt": "Two circular pulleys lie in the same plane. One pulley has a radius of 6 centimeters, the other has a radius of 2 centimeters, and their centers are 8 centimeters apart. A tight belt goes around the outside of both pulleys without crossing itself, so the belt consists of two straight segments, each tangent to both pulleys, and two arcs, one on each pulley. To the nearest hundredth of a centimeter, what is the total length of the belt?",
+  "choices": [
+   "47.37",
+   "39.90",
+   "43.18",
+   "41.08"
+  ],
+  "correct_answer": "43.18",
+  "explanation": "Each straight segment is a common external tangent. Its length is √(8² − (6 − 2)²) = √48 ≈ 6.928, so the two segments total ≈ 13.856. The line of centers makes an angle α with each segment where sin α = (6 − 2)/8 = 1/2, so α = 30°. The belt touches the larger pulley along 180° + 2α = 240° and the smaller along 180° − 2α = 120°. The arcs are 6 · (4π/3) ≈ 25.133 and 2 · (2π/3) ≈ 4.189. Total ≈ 13.856 + 25.133 + 4.189 = 43.18. The option \"39.90\" computes each straight segment as √(8² − 6²), using the large radius instead of the difference of the radii. The option \"41.08\" adds only α, not 2α, to the larger arc (210° and 150°). The option \"47.37\" finds α from cos α = 4/8 instead of sin α = 4/8, so α = 60° and the arcs are 300° and 60°.",
+  "solve": "const t=Math.sqrt(64-16); const a=Math.asin(4/8); return (2*t+6*(Math.PI+2*a)+2*(Math.PI-2*a)).toFixed(2);",
+  "distractor_solve": {
+   "39.90": "const t=Math.sqrt(64-36); const a=Math.asin(4/8); return (2*t+6*(Math.PI+2*a)+2*(Math.PI-2*a)).toFixed(2);",
+   "41.08": "const t=Math.sqrt(64-16); const a=Math.asin(4/8); return (2*t+6*(Math.PI+a)+2*(Math.PI-a)).toFixed(2);",
+   "47.37": "const t=Math.sqrt(64-16); const a=Math.acos(4/8); return (2*t+6*(Math.PI+2*a)+2*(Math.PI-2*a)).toFixed(2);"
+  },
+  "quantity_asked": "the whole belt: two tangent segments of √48 plus a 240° arc of radius 6 plus a 120° arc of radius 2.",
+  "distractor_kind": {
+   "39.90": "tangent length from √(d² − R²). (a) limiting case: not a pulley circumference (37.70) nor the stadium perimeter (53.70). (b) neighbouring setup: the equal-wrap value 2√48 + π(6 + 2) = 38.99 is NOT an option; 39.90 is above it. (c) cheapest one-step bound over the whole length: the belt encloses the larger pulley, so L > 2π·6 = 37.70; the belt lies inside the stadium of radius 6 around the segment joining the centers, so L < 2·8 + 2π·6 = 53.70. Interval (37.70, 53.70); 39.90 strictly inside. (d) real: using the radius instead of the difference of radii in the tangent right triangle.",
+   "41.08": "arcs 180° ± α. (a) no. (b) no. (c) interval (37.70, 53.70); 41.08 strictly inside. (d) real: each straight segment tilts the contact point by α, and there are two of them; using one is a common slip.",
+   "47.37": "α from cos instead of sin. (a) no. (b) no. (c) interval (37.70, 53.70); 47.37 strictly inside. (d) real: the leg 4 is opposite α in the right triangle whose hypotenuse is the 8-cm center line; using cos puts it adjacent."
+  },
+  "distractor_meta": {
+   "39.90": {
+    "direction": "under",
+    "error_kind": "tangent length from wrong right triangle"
+   },
+   "41.08": {
+    "direction": "under",
+    "error_kind": "contact angle 180 + alpha"
+   },
+   "47.37": {
+    "direction": "over",
+    "error_kind": "cos for sin in contact angle"
+   }
+  },
+  "bounds": [
+   "v > 2*Math.PI*6",
+   "v < 2*8+2*Math.PI*6"
+  ],
+  "mechanism": [
+   "belt around two pulleys",
+   "common external tangent length",
+   "arc of contact",
+   "pulleys different radii belt length"
+  ],
+  "arith_class_check": "No. A belt length is a sum of a radical and π terms; all four options are two-decimal non-integers and the key belongs to no class the stem implies.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-08",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "foci of an ellipse given in non-standard form",
+  "subskill": "dividing an ellipse equation through by its constant to read a² and b², then using c² = a² − b² for the distance between the foci",
+  "prompt": "In the standard (x,y) coordinate plane, the ellipse with equation 4x² + 9y² = 72 has its foci on the x-axis. For an ellipse x²/a² + y²/b² = 1 with a > b > 0, the foci are at (c, 0) and (−c, 0), where c² = a² − b². To the nearest hundredth, what is the distance between the foci of this ellipse?",
+  "choices": [
+   "4.47",
+   "6.32",
+   "2.83",
+   "5.66"
+  ],
+  "correct_answer": "6.32",
+  "explanation": "Dividing by 72 gives x²/18 + y²/8 = 1, so a² = 18 and b² = 8. Then c² = 18 − 8 = 10, c = √10, and the distance between the foci is 2c = 2√10 ≈ 6.32. The option \"4.47\" reads the coefficients 9 and 4 as a² and b² without dividing: c = √5, 2c ≈ 4.47. The option \"2.83\" subtracts the semi-axes instead of their squares: c = √18 − √8 = √2, 2c ≈ 2.83. The option \"5.66\" is the length of the minor axis, 2b = 2√8.",
+  "solve": "const a2=72/4, b2=72/9; return (2*Math.sqrt(a2-b2)).toFixed(2);",
+  "distractor_solve": {
+   "4.47": "return (2*Math.sqrt(9-4)).toFixed(2);",
+   "2.83": "return (2*(Math.sqrt(18)-Math.sqrt(8))).toFixed(2);",
+   "5.66": "return (2*Math.sqrt(72/9)).toFixed(2);"
+  },
+  "quantity_asked": "the distance 2c between the foci, where c² = 72/4 − 72/9.",
+  "distractor_kind": {
+   "4.47": "coefficients read as a² and b². (a) limiting case: no parameter extreme. (b) neighbouring setup: the answer for x²/9 + y²/4 = 1; not an interval endpoint. (c) cheapest one-step bound over the whole distance: the foci lie inside the ellipse on the major axis, so 2c < 2a = 2√18 = 8.49; 2c > 0. Interval (0, 8.49); 4.47 strictly inside. (d) real: skipping the division to standard form.",
+   "2.83": "c = a − b. (a) no. (b) no. (c) interval (0, 8.49); 2.83 strictly inside. (d) real: treating c² = a² − b² as c = a − b.",
+   "5.66": "minor axis. (a) no. (b) neighbouring setup: the minor axis 2b, an adjacent quantity, is inside (0, 8.49) and not at an edge. (c) interval (0, 8.49); 5.66 strictly inside. (d) real: reporting the wrong ellipse segment."
+  },
+  "distractor_meta": {
+   "4.47": {
+    "direction": "under",
+    "error_kind": "no division to standard form"
+   },
+   "2.83": {
+    "direction": "under",
+    "error_kind": "c = a - b"
+   },
+   "5.66": {
+    "direction": "under",
+    "error_kind": "minor axis reported"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 2*Math.sqrt(18)"
+  ],
+  "mechanism": [
+   "foci of an ellipse",
+   "distance between foci",
+   "ellipse non-standard form",
+   "c squared equals a squared minus b squared"
+  ],
+  "arith_class_check": "No. All four options are two-decimal irrational values (2√5, 2√10, 2√2, 4√2); the key is not the only member of any simple class, and the stem implies no integrality.",
+  "one_sided_check": "Key is the largest. The errors are of three kinds (no division, subtracting roots, wrong segment); the stem does not reveal that the slips give shorter lengths, and the stem-forced cap 8.49 is above every option so it does not point at the key."
+ },
+ {
+  "id": "AM23G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "triangle formed by a circle's center and a chord cut by a line",
+  "subskill": "finding the distance from the center to a line, the half-chord from the Pythagorean theorem, and the area of the triangle with the center as apex",
+  "prompt": "In the standard (x,y) coordinate plane, the line 3x + 4y = 10 intersects the circle x² + y² = 25 at points A and B. Point O is the origin. To the nearest hundredth, what is the area of triangle OAB ?",
+  "choices": [
+   "12.37",
+   "9.17",
+   "6.85",
+   "9.59"
+  ],
+  "correct_answer": "9.17",
+  "explanation": "The distance from O to the line 3x + 4y − 10 = 0 is |−10|/√(3² + 4²) = 10/5 = 2. This is the height of triangle OAB from O. Half of chord AB is √(25 − 2²) = √21 ≈ 4.583, so AB ≈ 9.165, and the area is (1/2)(9.165)(2) ≈ 9.17. The option \"9.59\" uses 25 − 2 instead of 25 − 2² for the half-chord. The option \"6.85\" divides by 3 + 4 instead of √(3² + 4²) for the distance, getting 10/7. The option \"12.37\" divides by √(3 + 4), getting 10/√7.",
+  "solve": "const d=10/Math.sqrt(9+16); const h=Math.sqrt(25-d*d); return (d*h).toFixed(2);",
+  "distractor_solve": {
+   "9.59": "const d=10/Math.sqrt(9+16); const h=Math.sqrt(25-d); return (d*h).toFixed(2);",
+   "6.85": "const d=10/7; const h=Math.sqrt(25-d*d); return (d*h).toFixed(2);",
+   "12.37": "const d=10/Math.sqrt(7); const h=Math.sqrt(25-d*d); return (d*h).toFixed(2);"
+  },
+  "quantity_asked": "the area (1/2)·AB·d = d·√(25 − d²) with d = 2.",
+  "distractor_kind": {
+   "9.59": "distance not squared in the half-chord. (a) limiting case: no parameter extreme. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole area: OA = OB = 5, so the area is (1/2)(25) sin(AOB) ≤ 12.5; area > 0. Interval (0, 12.5); 9.59 strictly inside. (d) real: dropping the square in r² − d².",
+   "6.85": "distance normalised by a + b. (a) no. (b) no. (c) interval (0, 12.5); 6.85 strictly inside. (d) real: misremembering the point-to-line denominator.",
+   "12.37": "distance normalised by √(a + b). (a) no. (b) neighbouring setup: the right-angle case 12.5 is the cap and is not an option; 12.37 is below it. (c) interval (0, 12.5); 12.37 strictly inside. (d) real: forgetting to square the coefficients under the root."
+  },
+  "distractor_meta": {
+   "9.59": {
+    "direction": "over",
+    "error_kind": "distance not squared"
+   },
+   "6.85": {
+    "direction": "under",
+    "error_kind": "point-line denominator a+b"
+   },
+   "12.37": {
+    "direction": "over",
+    "error_kind": "point-line denominator sqrt(a+b)"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 12.5"
+  ],
+  "mechanism": [
+   "area of triangle formed by center and chord",
+   "line intersects circle at two points",
+   "distance from center to line",
+   "chord cut by a line on a circle"
+  ],
+  "arith_class_check": "No. All four options are two-decimal non-integers; the stem implies no integrality and the key is not singled out by any simple class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-10",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "circle through three given points",
+  "subskill": "locating the center on the perpendicular bisector of a horizontal chord and fixing it by equal distance to the third point",
+  "prompt": "In the standard (x,y) coordinate plane, a circle passes through the points (0, 0), (10, 0), and (4, 2). To the nearest hundredth, what is the radius of the circle?",
+  "choices": [
+   "8.60",
+   "5.15",
+   "11.18",
+   "7.07"
+  ],
+  "correct_answer": "7.07",
+  "explanation": "The center is equidistant from (0, 0) and (10, 0), so it lies on x = 5; call it (5, k). Equal distances to (0, 0) and (4, 2): 25 + k² = (5 − 4)² + (k − 2)² = 1 + k² − 4k + 4, so 4k = −20 and k = −5. The radius is √(25 + 25) = √50 ≈ 7.07. The option \"5.15\" writes 4² instead of (5 − 4)² for the horizontal distance to (4, 2): 25 + k² = 16 + (k − 2)² gives k = −1.25. The option \"8.60\" uses the perpendicular bisector of the segment from (0, 0) to (4, 2) with slope +2 instead of −2, putting the center at (5, 7). The option \"11.18\" draws that bisector with slope −2 through (0, 0) instead of through the midpoint (2, 1), putting the center at (5, −10).",
+  "solve": "const k=(1+4-25)/4; return Math.sqrt(25+k*k).toFixed(2);",
+  "distractor_solve": {
+   "5.15": "const k=(16+4-25)/4; return Math.sqrt(25+k*k).toFixed(2);",
+   "8.60": "const k=1+2*(5-2); return Math.sqrt(25+k*k).toFixed(2);",
+   "11.18": "const k=-2*5; return Math.sqrt(25+k*k).toFixed(2);"
+  },
+  "quantity_asked": "the radius √(5² + k²) with center (5, k), k = −5.",
+  "distractor_kind": {
+   "5.15": "coordinate used for a distance. (a) limiting case: not the half-chord 5. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole radius: the segment from (0, 0) to (10, 0) is a chord and the angle at (4, 2) is obtuse, so it is not a diameter and r > 5; no upper cap from the stem. Interval (5, ∞); 5.15 strictly inside. (d) real: using a coordinate where a difference belongs.",
+   "8.60": "perpendicular slope sign error. (a) no. (b) no. (c) interval (5, ∞); 8.60 strictly inside. (d) real: reciprocal without the negative.",
+   "11.18": "bisector through an endpoint, not the midpoint. (a) no. (b) no. (c) interval (5, ∞); 11.18 strictly inside. (d) real: dropping the midpoint from the perpendicular bisector."
+  },
+  "distractor_meta": {
+   "5.15": {
+    "direction": "under",
+    "error_kind": "coordinate for distance"
+   },
+   "8.60": {
+    "direction": "over",
+    "error_kind": "perpendicular slope sign"
+   },
+   "11.18": {
+    "direction": "over",
+    "error_kind": "bisector through endpoint"
+   }
+  },
+  "bounds": [
+   "v > 5"
+  ],
+  "mechanism": [
+   "circle through three points",
+   "circumcenter coordinates",
+   "perpendicular bisector of chord",
+   "radius of circle through given points"
+  ],
+  "arith_class_check": "No. All four options are two-decimal non-integers; the stem implies no integrality, and the key (√50) is not the lone member of any class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-11",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "solid of revolution: right triangle rotated about its hypotenuse",
+  "subskill": "recognising the double cone, using the altitude to the hypotenuse as the common radius and the hypotenuse as the total height",
+  "prompt": "A right triangle has legs of lengths 9 centimeters and 12 centimeters. The triangle is rotated 360° about its hypotenuse, forming a solid made of two right circular cones joined at their bases. To the nearest cubic centimeter, what is the volume of the solid?",
+  "choices": [
+   "521",
+   "884",
+   "814",
+   "458"
+  ],
+  "correct_answer": "814",
+  "explanation": "The hypotenuse is √(81 + 144) = 15. The common base radius of the two cones is the altitude to the hypotenuse, (9)(12)/15 = 7.2. The two cone heights are the segments of the hypotenuse, which add to 15, so the total volume is (1/3)π(7.2²)(15) = 259.2π ≈ 814. The option \"458\" uses the shorter hypotenuse segment, 81/15 = 5.4, as the radius. The option \"521\" finds only the larger cone, height 144/15 = 9.6. The option \"884\" uses half the hypotenuse, 7.5 (the median), as the radius.",
+  "solve": "const c=15; const r=9*12/c; return String(Math.round(Math.PI*r*r*c/3));",
+  "distractor_solve": {
+   "458": "const r=81/15; return String(Math.round(Math.PI*r*r*15/3));",
+   "521": "const r=7.2; return String(Math.round(Math.PI*r*r*(144/15)/3));",
+   "884": "const r=7.5; return String(Math.round(Math.PI*r*r*15/3));"
+  },
+  "quantity_asked": "the volume of both cones together, (1/3)π(7.2)²(15).",
+  "distractor_kind": {
+   "458": "hypotenuse segment used as radius. (a) limiting case: no parameter extreme. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole volume: the double cone has radius equal to the altitude, which is less than the shorter leg 9, and total height 15, so V < (1/3)π(81)(15) = 1272; one step finer, the solid lies inside the cone made by rotating about the 12-cm leg, (1/3)π(81)(12) = 1018. Interval (0, 1018); 458 strictly inside. (d) real: confusing the segment of the hypotenuse with the altitude.",
+   "521": "one cone only. (a) no. (b) no. (c) interval (0, 1018); 521 strictly inside. (d) real: stopping after one of the two cones.",
+   "884": "median used as radius. (a) no. (b) no. (c) interval (0, 1018); 884 strictly inside. (d) real: taking the segment from the right angle to the midpoint of the hypotenuse as the radius."
+  },
+  "distractor_meta": {
+   "458": {
+    "direction": "under",
+    "error_kind": "hypotenuse segment as radius"
+   },
+   "521": {
+    "direction": "under",
+    "error_kind": "one cone only"
+   },
+   "884": {
+    "direction": "over",
+    "error_kind": "median as radius"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < Math.PI*81*12/3"
+  ],
+  "mechanism": [
+   "right triangle rotated about hypotenuse",
+   "double cone volume",
+   "solid of revolution",
+   "altitude to hypotenuse as radius"
+  ],
+  "arith_class_check": "No. The options are four integers produced by rounding (458, 521, 814, 884); none is singled out by parity, divisibility or squareness the stem implies.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "time-of-use electricity pricing across a rate boundary",
+  "subskill": "splitting a constant-power run into the part inside a peak-price window and the part outside it, converting hours of running to kilowatt-hours, and pricing each part at its own rate",
+  "prompt": "A pool heat pump draws a constant 5.4 kilowatts (kW) of power while it runs, so each hour of running uses 5.4 kilowatt-hours (kWh) of energy. One evening the heat pump is switched on at 7:30 p.m. and runs without stopping until it has used a total of 37.8 kWh. The utility charges $0.36 per kWh for energy used from 4:00 p.m. to 9:00 p.m. and $0.12 per kWh for energy used at all other times. What is the cost of the energy the heat pump used that evening, in dollars?",
+  "choices": [
+   "9.07",
+   "6.48",
+   "11.66",
+   "7.45"
+  ],
+  "correct_answer": "6.48",
+  "explanation": "The heat pump runs 37.8 / 5.4 = 7 hours, from 7:30 p.m. to 2:30 a.m. Only 7:30 p.m. to 9:00 p.m., 1.5 hours, falls in the $0.36 period: 1.5 × 5.4 = 8.1 kWh, costing 8.1 × 0.36 = $2.916. The other 37.8 − 8.1 = 29.7 kWh cost 29.7 × 0.12 = $3.564. The total is 2.916 + 3.564 = $6.48. The option \"7.45\" prices the 8.1 peak kWh at $0.36 but then also prices all 37.8 kWh at $0.12, counting the peak energy twice. The option \"9.07\" averages the two rates, (0.36 + 0.12)/2 = $0.24, and applies it to all 37.8 kWh. The option \"11.66\" swaps the rates, charging $0.12 for the 8.1 peak kWh and $0.36 for the 29.7 off-peak kWh.",
+  "solve": "const h=37.8/5.4; const peakH=1.5; const pk=peakH*5.4; const off=37.8-pk; return (pk*0.36+off*0.12).toFixed(2);",
+  "distractor_solve": {
+   "7.45": "const pk=1.5*5.4; return (pk*0.36+37.8*0.12).toFixed(2);",
+   "9.07": "return (37.8*(0.36+0.12)/2).toFixed(2);",
+   "11.66": "const pk=1.5*5.4; return (pk*0.12+(37.8-pk)*0.36).toFixed(2);"
+  },
+  "quantity_asked": "the total cost of all 37.8 kWh: 1.5 h x 5.4 kW at $0.36 plus the remaining 29.7 kWh at $0.12.",
+  "distractor_kind": {
+   "7.45": "double count: peak kWh priced at $0.36 and again inside 37.8 x $0.12. (a) limiting case: not all-off-peak (4.54) nor all-peak (13.61). (b) neighbouring setup: no adjacent problem has it as an extreme. (c) cheapest one-step bound over the whole cost: every kWh costs between $0.12 and $0.36, so cost in (4.536, 13.608); one step finer, the peak share is at most 1.5 h of the 7 h, still a bracket only after computing the split, which is the item; 7.45 strictly inside (4.536, 13.608). (d) real: forgetting to remove the peak energy from the off-peak total.",
+   "9.07": "averaged rate $0.24 on all energy. (a) not an extreme. (b) it is the answer if half the energy were peak, which is not an endpoint of the feasible interval. (c) interval (4.536, 13.608); 9.07 strictly inside. (d) real: averaging two rates without weighting by the amounts.",
+   "11.66": "rates swapped between the two periods. (a) no. (b) no. (c) interval (4.536, 13.608); 11.66 strictly inside. (d) real: attaching the peak price to the larger block."
+  },
+  "distractor_meta": {
+   "7.45": {
+    "direction": "over",
+    "error_kind": "double count"
+   },
+   "9.07": {
+    "direction": "over",
+    "error_kind": "unweighted average of rates"
+   },
+   "11.66": {
+    "direction": "over",
+    "error_kind": "rates swapped"
+   }
+  },
+  "bounds": [
+   "v > 37.8*0.12",
+   "v < 37.8*0.36"
+  ],
+  "mechanism": [
+   "time-of-use electricity",
+   "peak and off-peak rate",
+   "kilowatt-hours across a rate boundary",
+   "heat pump running cost"
+  ],
+  "arith_class_check": "No. The stem implies only that the cost is a sum of multiples of 0.36 and 0.12 cents-level amounts; every option has two decimals and none is singled out by integrality or divisibility (6.48, 7.45, 9.07, 11.66 share no class the key alone belongs to).",
+  "one_sided_check": "Key is the smallest. The three errors are of three kinds (double count, unweighted average, swapped rates); nothing in the stem says the natural slips all raise the cost, and a solver cannot tell the peak share is small without computing that the run ends at 2:30 a.m."
+ },
+ {
+  "id": "AM23I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "net pay with a pre-tax deduction that reduces only one tax",
+  "subskill": "applying a pre-tax retirement contribution to the income-tax base but not to the payroll-tax base, then subtracting every deduction from gross pay",
+  "prompt": "Priya's gross pay for one pay period is $2,360. From it, 5% of her gross pay is put into a retirement plan. The retirement contribution is subtracted from her gross pay BEFORE income tax is figured, so income tax is 12% of (gross pay minus the retirement contribution). Payroll tax, however, is 7.65% of her full gross pay. Her take-home pay is her gross pay minus the retirement contribution, the income tax, and the payroll tax. To the nearest cent, what is her take-home pay for the period, in dollars?",
+  "choices": [
+   "1801.45",
+   "1787.29",
+   "1814.08",
+   "1792.42"
+  ],
+  "correct_answer": "1792.42",
+  "explanation": "The retirement contribution is 0.05 × 2,360 = $118.00. Income tax is 0.12 × (2,360 − 118) = 0.12 × 2,242 = $269.04. Payroll tax is 0.0765 × 2,360 = $180.54. Take-home pay is 2,360 − 118 − 269.04 − 180.54 = $1,792.42. The option \"1787.29\" reverses which tax the contribution reduces: income tax on the full $2,360 ($283.20) and payroll tax on $2,242 ($171.51). The option \"1801.45\" lets the contribution reduce both taxes, figuring payroll tax on $2,242 as well. The option \"1814.08\" also subtracts the payroll tax before figuring income tax, 0.12 × (2,242 − 180.54) = $247.38.",
+  "solve": "const g=2360, r=0.05*g; const it=0.12*(g-r); const pt=0.0765*g; return (Math.round((g-r-it-pt)*100+1e-6)/100).toFixed(2);",
+  "distractor_solve": {
+   "1787.29": "const g=2360, r=0.05*g; return (g-r-0.12*g-0.0765*(g-r)).toFixed(2);",
+   "1801.45": "const g=2360, r=0.05*g; return (g-r-0.12*(g-r)-0.0765*(g-r)).toFixed(2);",
+   "1814.08": "const g=2360, r=0.05*g; const pt=0.0765*g; return (g-r-0.12*(g-r-pt)-pt).toFixed(2);"
+  },
+  "quantity_asked": "take-home pay = 2360 - 118 - 0.12(2242) - 0.0765(2360).",
+  "distractor_kind": {
+   "1787.29": "swapped bases: pre-tax reduction applied to payroll tax instead of income tax. (a) limiting case: the no-pre-tax-benefit value 2360(1 - 0.05 - 0.12 - 0.0765) = 1778.73 is a floor; 1787.29 is above it. (b) neighbouring setup: the answer if the plan were pre-tax for payroll tax only; not an endpoint of any stem-forced interval. (c) cheapest one-step bound over the whole take-home pay: the contribution lowers income tax by at most 0.12 x 118 = 14.16 relative to the floor, so pay in [1778.73, 1792.89] if only income tax were reduced; but a solver who does not know which tax is reduced has only (1778.73, 2360 - 118) and 1787.29 is strictly inside the finer one too. (d) real: confusing the two payroll deductions.",
+   "1801.45": "contribution reduces both taxes. (a) no. (b) neighbouring setup (plan pre-tax for both): it exceeds the key, but no stem-forced bound sits at 1801.45 that a solver can reach without computing both taxes; (c) interval (1778.73, 2242); strictly inside. (d) real: assuming a pre-tax deduction is pre-tax for everything.",
+   "1814.08": "payroll tax subtracted from the income-tax base. (a) no. (b) no. (c) interval (1778.73, 2242); strictly inside. (d) real: treating payroll tax as deductible from taxable income."
+  },
+  "distractor_meta": {
+   "1787.29": {
+    "direction": "under",
+    "error_kind": "deduction applied to wrong tax"
+   },
+   "1801.45": {
+    "direction": "over",
+    "error_kind": "deduction applied to both taxes"
+   },
+   "1814.08": {
+    "direction": "over",
+    "error_kind": "tax base reduced by other tax"
+   }
+  },
+  "bounds": [
+   "v > 2360*(1-0.05-0.12-0.0765)",
+   "v < 2360*0.95"
+  ],
+  "mechanism": [
+   "net pay",
+   "pre-tax retirement contribution",
+   "income tax and payroll tax",
+   "take-home pay deductions"
+  ],
+  "arith_class_check": "No. Money to the cent; the options are four non-integer two-decimal values with no shared or lone divisibility, and the gaps (5.13, 9.03, 12.63) are not an arithmetic run.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "stopping distance: a linear reaction part plus a quadratic braking part",
+  "subskill": "scaling a speed-proportional distance and a speed-squared distance separately when speed doubles, with a mph to feet-per-second conversion for the reaction distance",
+  "prompt": "A driver's total stopping distance is the reaction distance plus the braking distance. The reaction distance is the distance the car travels at its full speed during the driver's 1.2-second reaction time. The braking distance is proportional to the square of the car's speed. At a speed of 30 miles per hour, which is 44 feet per second, the car's braking distance is 45 feet. What is the car's total stopping distance, in feet, at a speed of 60 miles per hour?",
+  "choices": [
+   "301.2",
+   "252.0",
+   "285.6",
+   "232.8"
+  ],
+  "correct_answer": "285.6",
+  "explanation": "At 60 miles per hour the car travels 2 × 44 = 88 feet per second, so the reaction distance is 88 × 1.2 = 105.6 feet. Doubling the speed multiplies the braking distance by 2² = 4: 4 × 45 = 180 feet. The total is 105.6 + 180 = 285.6 feet. The option \"232.8\" quadruples the braking distance but keeps the 30-mile-per-hour reaction distance, 44 × 1.2 = 52.8 feet, as though reaction distance did not depend on speed. The option \"252.0\" multiplies 60 by 1.2 without converting miles per hour to feet per second, using a reaction distance of 72 feet. The option \"301.2\" swaps the two scalings, multiplying the reaction distance by 4 and the braking distance by 2: 4 × 52.8 + 2 × 45.",
+  "solve": "const v1=44, v2=88; return (v2*1.2+45*(v2/v1)**2).toFixed(1);",
+  "distractor_solve": {
+   "232.8": "return (44*1.2+45*4).toFixed(1);",
+   "252.0": "return (60*1.2+45*4).toFixed(1);",
+   "301.2": "return (4*44*1.2+2*45).toFixed(1);"
+  },
+  "quantity_asked": "the whole stopping distance at 60 mph: 88 x 1.2 + 45 x (60/30)^2.",
+  "distractor_kind": {
+   "232.8": "reaction distance not scaled with speed. (a) limiting case: not a parameter extreme. (b) neighbouring setup: the answer for a fixed reaction distance; not an endpoint. (c) cheapest one-step bound over the whole distance: the total at 30 mph is 52.8 + 45 = 97.8; doubling speed doubles one part and quadruples the other, so the total at 60 is strictly between 2 x 97.8 = 195.6 and 4 x 97.8 = 391.2; 232.8 strictly inside. (d) real.",
+   "252.0": "mph used as feet per second in the reaction distance. (a) no. (b) no. (c) (195.6, 391.2); strictly inside. (d) real: unit slip.",
+   "301.2": "linear and quadratic scalings swapped. (a) no. (b) no. (c) (195.6, 391.2); strictly inside. (d) real: confusing which part grows with the square of speed."
+  },
+  "distractor_meta": {
+   "232.8": {
+    "direction": "under",
+    "error_kind": "reaction part not scaled"
+   },
+   "252.0": {
+    "direction": "under",
+    "error_kind": "unit not converted"
+   },
+   "301.2": {
+    "direction": "over",
+    "error_kind": "scalings swapped"
+   }
+  },
+  "bounds": [
+   "v > 2*(44*1.2+45)",
+   "v < 4*(44*1.2+45)"
+  ],
+  "mechanism": [
+   "stopping distance",
+   "reaction distance and braking distance",
+   "braking proportional to square of speed",
+   "miles per hour to feet per second"
+  ],
+  "arith_class_check": "No. Four one-decimal values (232.8, 252.0, 285.6, 301.2); the lone whole number is 252.0, a distractor; the stem implies no divisibility.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "toll-by-plate surcharge versus an electronic transponder",
+  "subskill": "totaling miles over many trips, applying a percent surcharge to a per-mile rate but not to a flat billing fee, and finding the difference between two plans",
+  "prompt": "A toll road charges drivers who have an electronic transponder $0.14 per mile. Drivers without a transponder are billed by license plate: their per-mile rate is 35% higher than the transponder rate, and each monthly bill also includes a flat $2.50 administrative fee, which is not increased by the 35%. In March, Dana, who has no transponder, made 18 trips of 23 miles each on the toll road and received one bill. How much more did Dana pay for March than she would have paid with a transponder, to the nearest cent?",
+  "choices": [
+   "33.71",
+   "22.79",
+   "65.29",
+   "23.66"
+  ],
+  "correct_answer": "22.79",
+  "explanation": "Dana drove 18 × 23 = 414 miles. With a transponder the tolls would be 414 × 0.14 = $57.96. By plate, the rate is 0.14 × 1.35 = $0.189 per mile, so the tolls are 414 × 0.189 = $78.246, plus the $2.50 fee, for $80.746. The difference is 80.746 − 57.96 = $22.786 ≈ $22.79. The option \"23.66\" applies the 35% to the administrative fee as well: 1.35 × (57.96 + 2.50) − 57.96. The option \"33.71\" reads the transponder rate as 35% LESS than the plate rate, so it finds the plate tolls as 57.96 / 0.65 = $89.17 before adding the fee. The option \"65.29\" charges the $2.50 fee on each of the 18 trips instead of once on the monthly bill: 0.35 × 57.96 + 18 × 2.50.",
+  "solve": "const t=18*23*0.14; return (t*1.35+2.5-t).toFixed(2);",
+  "distractor_solve": {
+   "23.66": "const t=18*23*0.14; return ((t+2.5)*1.35-t).toFixed(2);",
+   "33.71": "const t=18*23*0.14; return (t/0.65+2.5-t).toFixed(2);",
+   "65.29": "const t=18*23*0.14; return (t*1.35+18*2.5-t).toFixed(2);"
+  },
+  "quantity_asked": "the whole extra amount for March: (414 x 0.14 x 1.35 + 2.50) - 414 x 0.14.",
+  "distractor_kind": {
+   "23.66": "35% applied to the flat fee too. (a) limiting case: none. (b) neighbouring setup: the answer if the fee were also surcharged; not an endpoint of a stem-forced interval. (c) cheapest one-step bound over the whole difference: the surcharge part is 35% of a toll total near 414 x 0.14 = 57.96, so about 20.29, plus the 2.50 fee; the exact sum IS this step, so the stem-forced bracket is (2.50, 0.35 x 57.96 + 18 x 2.50 = 65.29], and anything above 2.50 is legal before the computation; 23.66 strictly inside (2.50, 66). (d) real: surcharging a fee the stem exempts.",
+   "33.71": "percent base reversed (transponder as 35% below plate). (a) no. (b) no. (c) (2.50, 66); strictly inside. (d) real: the \"35% more vs 35% less\" base confusion.",
+   "65.29": "flat monthly fee charged per trip. (a) no. (b) it is the answer if each trip produced its own bill - the stem says one bill; the stem-forced bracket does not end at 65.29 because the number of bills is a reading, not a parameter extreme. (c) (2.50, 66); strictly inside. (d) real: per-trip vs per-bill confusion."
+  },
+  "distractor_meta": {
+   "23.66": {
+    "direction": "over",
+    "error_kind": "surcharge on exempt fee"
+   },
+   "33.71": {
+    "direction": "over",
+    "error_kind": "percent base reversed"
+   },
+   "65.29": {
+    "direction": "over",
+    "error_kind": "per-bill fee charged per trip"
+   }
+  },
+  "bounds": [
+   "v > 2.5"
+  ],
+  "mechanism": [
+   "toll by plate surcharge",
+   "electronic transponder rate",
+   "per mile toll",
+   "monthly administrative fee"
+  ],
+  "arith_class_check": "No. Money to the cent; four two-decimal non-integers; no stem-implied divisibility; the key is in no class alone.",
+  "one_sided_check": "Key is the smallest. The three errors are three kinds (surcharging an exempt fee, reversing the percent base, per-trip vs per-bill fee); the stem gives no readable reason that every slip raises the difference - forgetting the fee, or applying 35% only once per trip, would lower it - so a solver cannot pick the smallest without computing."
+ },
+ {
+  "id": "AM23I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "prorated subscription upgrade in the middle of a billing cycle",
+  "subskill": "counting the days left in a cycle, crediting the unused part of the old plan, and charging the same days at the new plan's daily rate",
+  "prompt": "A software company bills on a 30-day cycle, and its Basic plan costs $18 per cycle and its Pro plan costs $45 per cycle. A customer who had already paid for a full cycle of Basic switches to Pro at the start of day 13 of the cycle, after using Basic for 12 full days. The company credits the customer for the Basic days not used and charges for Pro for the remaining days of the cycle, each at the plan's daily rate (its cycle price divided by 30). How much does the customer pay when switching, in dollars?",
+  "choices": [
+   "15.30",
+   "9.00",
+   "16.20",
+   "10.80"
+  ],
+  "correct_answer": "16.20",
+  "explanation": "Days 13 through 30 are 30 − 12 = 18 days. Pro for those days costs 18 × 45/30 = $27.00, and the unused Basic days are credited 18 × 18/30 = $10.80. The customer pays 27.00 − 10.80 = $16.20. The option \"15.30\" counts the remaining days as 30 − 13 = 17. The option \"9.00\" credits the whole $18 Basic payment instead of only the unused days: 27.00 − 18.00. The option \"10.80\" charges the $27 difference between the plans for the 12 days already USED, 27 × 12/30, rather than for the 18 days remaining.",
+  "solve": "const d=30-12; return (d*45/30-d*18/30).toFixed(2);",
+  "distractor_solve": {
+   "15.30": "const d=30-13; return (d*(45-18)/30).toFixed(2);",
+   "9.00": "const d=30-12; return (d*45/30-18).toFixed(2);",
+   "10.80": "return (12*(45-18)/30).toFixed(2);"
+  },
+  "quantity_asked": "the switching charge, 18 days of Pro minus 18 days of Basic: 18 x (45 - 18)/30.",
+  "distractor_kind": {
+   "15.30": "off-by-one day count (17). (a) limiting case: none. (b) neighbouring setup: switching at the start of day 14; not an endpoint. (c) cheapest bound over the whole charge: it is between 0 and the full-cycle difference 27; one step finer, more than half the cycle remains so the charge exceeds 13.50; 15.30 strictly inside (13.50, 27). (d) real: inclusive-day counting slip.",
+   "9.00": "credits the whole Basic cycle. (a) no. (b) no. (c) 9.00 is below the half-cycle floor 13.50 only if the solver already knows the credit is per unused day - that floor is the item's own work (it assumes the correct credit rule), so the stem-forced bracket is (0, 27); strictly inside. (d) real: crediting the full payment rather than the unused portion.",
+   "10.80": "difference charged for days used. (a) no. (b) it is the charge for switching at the start of day 19, not an endpoint. (c) (0, 27) stem-forced; strictly inside. (d) real: prorating the wrong part of the cycle."
+  },
+  "distractor_meta": {
+   "15.30": {
+    "direction": "under",
+    "error_kind": "off-by-one day count"
+   },
+   "9.00": {
+    "direction": "under",
+    "error_kind": "full credit instead of prorated"
+   },
+   "10.80": {
+    "direction": "under",
+    "error_kind": "prorates the used days"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 45-18"
+  ],
+  "mechanism": [
+   "prorated subscription",
+   "mid-cycle plan upgrade",
+   "credit for unused days",
+   "daily rate billing cycle"
+  ],
+  "arith_class_check": "Every option is a multiple of 0.90 (the daily price difference 27/30): 9.00, 10.80, 15.30, 16.20 = 10, 12, 17, 18 days; the stem-implied class contains all four, so it singles out nothing.",
+  "one_sided_check": "Key is the largest. The three errors are three kinds (day count, credit rule, wrong portion prorated); nothing in the stem says the natural slips lower the charge - counting the days as 30 - 11 = 19, or forgetting the credit, would raise it - and the solver must do the proration to know which way any slip goes."
+ },
+ {
+  "id": "AM23I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "ticket order total with per-ticket, per-order and partly taxed fees",
+  "subskill": "applying a percent fee per ticket, flat per-ticket and per-order fees, and a sales tax that applies only to some of the charges",
+  "prompt": "Jordan buys 4 concert tickets with a face value of $74 each. The ticket site adds a service fee of 18% of the face value on each ticket and a facility charge of $4.25 on each ticket, plus one order fee of $7.50 for the whole order. Sales tax of 7% is charged on the face values and the service fees only. To the nearest cent, what is the total cost of Jordan's order, in dollars?",
+  "choices": [
+   "401.50",
+   "385.48",
+   "398.23",
+   "420.73"
+  ],
+  "correct_answer": "398.23",
+  "explanation": "The face values total 4 × 74 = $296. The service fees are 0.18 × 296 = $53.28, the facility charges are 4 × 4.25 = $17.00, and the order fee is $7.50, so before tax the order is 296 + 53.28 + 17 + 7.50 = $373.78. Tax applies to 296 + 53.28 = $349.28: 0.07 × 349.28 = $24.4496. The total is 373.78 + 24.45 ≈ $398.23. The option \"420.73\" charges the $7.50 order fee on each of the 4 tickets instead of once for the order. The option \"401.50\" figures the service fee on the face value plus the facility charge, 0.18 × (296 + 17) = $56.34, and taxes that larger fee. The option \"385.48\" charges the $4.25 facility charge once for the order instead of once per ticket.",
+  "solve": "const f=4*74, s=0.18*f, fac=4*4.25, o=7.5; return (f+s+fac+o+0.07*(f+s)).toFixed(2);",
+  "distractor_solve": {
+   "420.73": "const f=4*74, s=0.18*f, fac=4*4.25, o=4*7.5; return (f+s+fac+o+0.07*(f+s)).toFixed(2);",
+   "401.50": "const f=4*74, fac=4*4.25, o=7.5; const s=0.18*(f+fac); return (f+s+fac+o+0.07*(f+s)).toFixed(2);",
+   "385.48": "const f=4*74, s=0.18*f, fac=4.25, o=7.5; return (f+s+fac+o+0.07*(f+s)).toFixed(2);"
+  },
+  "quantity_asked": "the whole order total: 296 + 53.28 + 17 + 7.50 + 0.07(296 + 53.28).",
+  "distractor_kind": {
+   "420.73": "per-order fee charged per ticket. (a) limiting case: none. (b) neighbouring setup: the answer if the order fee were per ticket; not an endpoint of a stem-forced interval. (c) cheapest one-step bound over the whole total: face plus service is 296 x 1.18 = 349.28, and the other charges plus tax add at most about 10% more, so the total is in (349.28, 349.28 x 1.07 + 4 x (4.25 + 7.50) = 420.73]... that upper figure is this error itself, so it is not used as a bound; the stem-forced bracket is (349.28, 1.07 x 349.28 + 4 x 4.25 + 4 x 7.50 + 7.50 = 428.23); 420.73 strictly inside. (d) real: per-order vs per-ticket confusion.",
+   "401.50": "percent fee on the wrong base. (a) no. (b) no. (c) (349.28, 428.23); strictly inside. (d) real: computing a percentage fee on the running subtotal.",
+   "385.48": "per-ticket charge applied once. (a) no. (b) no. (c) (349.28, 428.23); strictly inside. (d) real: per-ticket vs per-order confusion."
+  },
+  "distractor_meta": {
+   "420.73": {
+    "direction": "over",
+    "error_kind": "per-order fee charged per ticket"
+   },
+   "401.50": {
+    "direction": "over",
+    "error_kind": "percent fee on wrong base"
+   },
+   "385.48": {
+    "direction": "under",
+    "error_kind": "per-ticket charge applied once"
+   }
+  },
+  "bounds": [
+   "v > 296*1.18",
+   "v < 1.07*296*1.18+4*4.25+4*7.5+7.5"
+  ],
+  "mechanism": [
+   "ticket service fee",
+   "facility charge per ticket",
+   "order fee",
+   "sales tax on part of the charges"
+  ],
+  "arith_class_check": "No. Four two-decimal non-integers; no stem-implied divisibility; the key is not alone in any class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23I-07",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "consultant invoice with per-session rounding, a percent fee and a prepaid retainer",
+  "subskill": "rounding each work session up to the next quarter hour separately, totaling billable hours, adding a percent fee on labor, and subtracting a prepaid amount last",
+  "prompt": "A consultant bills $96 per hour. Each work session is billed separately and is rounded UP to the next quarter hour (a session that is already a whole number of quarter hours is not changed). This month her sessions for one client lasted 2 hours 10 minutes, 1 hour 35 minutes, 3 hours 50 minutes, and 45 minutes. She adds a technology fee of 3.5% of the labor charge, and then subtracts the $250 retainer the client paid in advance. How much does the client still owe for the month, in dollars?",
+  "choices": [
+   "594.56",
+   "619.40",
+   "585.81",
+   "610.65"
+  ],
+  "correct_answer": "619.40",
+  "explanation": "Rounded up to quarter hours, the sessions are 2 h 15 min, 1 h 45 min, 4 h 0 min, and 45 min: 2.25 + 1.75 + 4 + 0.75 = 8.75 billable hours, so the labor charge is 8.75 × 96 = $840.00. The fee is 0.035 × 840 = $29.40, giving $869.40, and subtracting the $250 retainer leaves $619.40. The option \"594.56\" adds the actual times first (8 h 20 min) and rounds the total once, to 8.5 hours: 1.035 × 816 − 250. The option \"610.65\" subtracts the retainer before adding the fee: 1.035 × (840 − 250). The option \"585.81\" makes both slips: 1.035 × (816 − 250).",
+  "solve": "const h=[2+10/60,1+35/60,3+50/60,45/60].map(x=>Math.ceil(x*4-1e-9)/4).reduce((a,b)=>a+b,0); return (h*96*1.035-250).toFixed(2);",
+  "distractor_solve": {
+   "594.56": "const t=2+10/60+1+35/60+3+50/60+45/60; const h=Math.ceil(t*4-1e-9)/4; return (h*96*1.035-250).toFixed(2);",
+   "610.65": "const h=[2+10/60,1+35/60,3+50/60,45/60].map(x=>Math.ceil(x*4-1e-9)/4).reduce((a,b)=>a+b,0); return ((h*96-250)*1.035).toFixed(2);",
+   "585.81": "const t=2+10/60+1+35/60+3+50/60+45/60; const h=Math.ceil(t*4-1e-9)/4; return ((h*96-250)*1.035).toFixed(2);"
+  },
+  "quantity_asked": "the whole amount still owed: 1.035 x 96 x (2.25 + 1.75 + 4 + 0.75) - 250.",
+  "distractor_kind": {
+   "594.56": "rounds the total once instead of each session. (a) limiting case: the no-rounding value 1.035 x 96 x 25/3 - 250 = 578.00 is a floor; 594.56 is above it. (b) neighbouring setup: the answer under a round-the-month-once rule; it is below the key, but the stem-forced floor is 578.00, not 594.56 - that sum-of-ceilings comparison needs the four per-session roundings, which is the item. (c) cheapest one-step bound over the whole amount: billed hours are between the actual 8 h 20 min and 8 h 20 min + 4 x 14 min, so owed in [578.00, 670.98]; one step finer is the per-session rounding itself; 594.56 strictly inside. (d) real: rounding at the wrong level.",
+   "610.65": "retainer subtracted before the percent fee. (a) no. (b) no. (c) [578.00, 670.98]; strictly inside. (d) real: order of operations with a percent and a flat amount.",
+   "585.81": "both slips. (a) no. (b) no. (c) [578.00, 670.98]; strictly inside (585.81 > 578.00). (d) real."
+  },
+  "distractor_meta": {
+   "594.56": {
+    "direction": "under",
+    "error_kind": "rounding at the wrong level"
+   },
+   "610.65": {
+    "direction": "under",
+    "error_kind": "fee and retainer order"
+   },
+   "585.81": {
+    "direction": "under",
+    "error_kind": "both slips combined"
+   }
+  },
+  "bounds": [
+   "v > 96*1.035*25/3-250",
+   "v < 96*1.035*(25/3+56/60)-250"
+  ],
+  "mechanism": [
+   "consultant invoice",
+   "rounded up to the next quarter hour",
+   "billable hours per session",
+   "prepaid retainer and percent fee"
+  ],
+  "arith_class_check": "No. Money to the cent; four two-decimal non-integers; 619.40 and 594.56 are both multiples of 0.01 only; the stem implies no divisibility (the labor is a multiple of 24 but the fee and retainer break any class).",
+  "one_sided_check": "Key is the largest. Errors of two kinds plus their combination (rounding level, fee/retainer order); the stem gives no readable reason that slips lower the bill - rounding each session to the NEAREST quarter hour would also lower it, but rounding to the next half hour or forgetting to subtract the retainer would raise it - so picking the largest is not something a non-solver can justify from the stem alone."
+ },
+ {
+  "id": "AM23I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "converting a temperature change between Fahrenheit and Celsius for a heating rate",
+  "subskill": "converting two Fahrenheit readings to Celsius (or a Fahrenheit difference by the factor 5/9 alone) and dividing the Celsius rise by a rate in degrees Celsius per minute",
+  "prompt": "An oven heats at a constant rate of 12 degrees Celsius per minute. It starts at a room temperature of 50 degrees Fahrenheit and must reach 400 degrees Fahrenheit. A Fahrenheit temperature F corresponds to the Celsius temperature C = (5/9)(F − 32). To the nearest hundredth of a minute, how long does the oven take to heat up?",
+  "choices": [
+   "12.87",
+   "14.72",
+   "16.20",
+   "13.54"
+  ],
+  "correct_answer": "16.20",
+  "explanation": "In Celsius the oven starts at (5/9)(50 − 32) = 10°C and must reach (5/9)(400 − 32) ≈ 204.44°C, a rise of about 194.44 degrees Celsius. (Equivalently, the 350-degree Fahrenheit rise is (5/9)(350) ≈ 194.44 Celsius degrees; a temperature DIFFERENCE converts by the factor 5/9 alone.) At 12 degrees per minute this takes 194.44 / 12 ≈ 16.20 minutes. The option \"12.87\" converts 400°F to 204.44°C but subtracts the starting 50 without converting it. The option \"14.72\" subtracts 32 from the Fahrenheit difference before scaling it: (5/9)(400 − 50 − 32). The option \"13.54\" divides the 350-degree difference by 1.8 and then also subtracts 32.",
+  "solve": "const c=(f)=>5/9*(f-32); return ((c(400)-c(50))/12).toFixed(2);",
+  "distractor_solve": {
+   "12.87": "return ((5/9*(400-32)-50)/12).toFixed(2);",
+   "14.72": "return (5/9*(400-50-32)/12).toFixed(2);",
+   "13.54": "return ((350/1.8-32)/12).toFixed(2);"
+  },
+  "quantity_asked": "the whole heating time, (Celsius rise)/12 = (5/9)(400 - 50)/12 minutes.",
+  "distractor_kind": {
+   "12.87": "start temperature left in Fahrenheit. (a) limiting case: none (not the start-at-0°C value 17.04). (b) neighbouring setup: the time if the oven started at 50°C, not an endpoint. (c) cheapest one-step bound over the whole time: the Celsius rise is less than the Fahrenheit rise, so t < 350/12 = 29.17; and it is more than half of it (5/9 > 1/2), so t > 14.58 - that finer bound needs the factor 5/9 for a difference, which is exactly the item's point; the stem-forced bracket without it is (0, 29.17); 12.87 strictly inside. (d) real.",
+   "14.72": "subtracts 32 from a difference. (a) no. (b) no. (c) (0, 29.17); strictly inside. (d) real: treating a temperature change like a temperature reading.",
+   "13.54": "difference divided by 1.8 then 32 subtracted. (a) no. (b) no. (c) (0, 29.17); strictly inside. (d) real: applying the offset after scaling."
+  },
+  "distractor_meta": {
+   "12.87": {
+    "direction": "under",
+    "error_kind": "one reading not converted"
+   },
+   "14.72": {
+    "direction": "under",
+    "error_kind": "offset applied to a difference"
+   },
+   "13.54": {
+    "direction": "under",
+    "error_kind": "offset applied after scaling"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 350/12"
+  ],
+  "mechanism": [
+   "Fahrenheit to Celsius",
+   "temperature difference conversion",
+   "oven heating rate",
+   "degrees per minute"
+  ],
+  "arith_class_check": "No. Four two-decimal non-integers; no implied divisibility; the key is not alone in any class.",
+  "one_sided_check": "Key is the largest. Errors of three kinds (unconverted reading, offset on a difference before scaling, offset after scaling); the stem offers no readable reason that slips shrink the time - converting with 9/5 instead of 5/9, or forgetting to convert at all, would lengthen it - so picking the largest is not a strategy a non-solver can justify."
+ },
+ {
+  "id": "AM23I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "total race time from paces, a speed, and transition times in minutes and seconds",
+  "subskill": "converting paces given in minutes:seconds, a speed in kilometers per hour, and mm:ss transition times into minutes and adding them",
+  "prompt": "In a triathlon, Mina swims 1.5 kilometers at a pace of 2 minutes 10 seconds per 100 meters, spends 2 minutes 25 seconds in the first transition, bikes 40 kilometers at an average speed of 32 kilometers per hour, spends 1 minute 15 seconds in the second transition, and runs 10 kilometers at a pace of 5 minutes 15 seconds per kilometer. To the nearest hundredth of a minute, what is her total time for the race?",
+  "choices": [
+   "163.67",
+   "173.67",
+   "136.67",
+   "161.40"
+  ],
+  "correct_answer": "163.67",
+  "explanation": "Swim: 1,500 m is 15 hundred-meter lengths at 2 min 10 s = 2 1/6 min each, so 15 × 13/6 = 32.5 min. First transition: 2 min 25 s ≈ 2.4167 min. Bike: 40 / 32 = 1.25 h = 75 min. Second transition: 1 min 15 s = 1.25 min. Run: 10 × 5.25 = 52.5 min. Total: 32.5 + 2.4167 + 75 + 1.25 + 52.5 ≈ 163.67 minutes. The option \"161.40\" reads every minutes-and-seconds time as a decimal (2:10 as 2.10, 2:25 as 2.25, 1:15 as 1.15, 5:15 as 5.15). The option \"173.67\" converts 1.25 hours to 1 hour 25 minutes, 85 minutes. The option \"136.67\" divides the speed by the distance, 32 / 40 = 0.8 h = 48 minutes for the bike.",
+  "solve": "const t=15*(2+10/60)+(2+25/60)+40/32*60+(1+15/60)+10*(5+15/60); return t.toFixed(2);",
+  "distractor_solve": {
+   "161.40": "const t=15*2.10+2.25+40/32*60+1.15+10*5.15; return t.toFixed(2);",
+   "173.67": "const t=15*(2+10/60)+(2+25/60)+85+(1+15/60)+10*(5+15/60); return t.toFixed(2);",
+   "136.67": "const t=15*(2+10/60)+(2+25/60)+32/40*60+(1+15/60)+10*(5+15/60); return t.toFixed(2);"
+  },
+  "quantity_asked": "the whole race time in minutes: swim + T1 + bike + T2 + run.",
+  "distractor_kind": {
+   "161.40": "mm:ss read as decimal minutes. (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest one-step bound over the whole time: swim 15 x 2-and-a-bit (30 to 33), bike 75, run 50 to 55, transitions 3 to 4: total in (158, 167); 161.40 strictly inside. (d) real: the commonest time-notation slip.",
+   "173.67": "hours-to-minutes misconversion of 1.25 h. (a) no. (b) no. (c) the bracket (158, 167) assumes the bike is 75 min, which is the converted value the error gets wrong - the bike time is part of the work; with only \"bike between 1 and 1.5 h\" the stem-forced bracket is (143, 182); strictly inside. (d) real.",
+   "136.67": "speed divided by distance. (a) no. (b) no. (c) with the bike leg uncomputed, (143, 182) contains 136.67? NO - 136.67 < 143. Stated honestly: the cheap \"bike between 1 and 1.5 h\" step is itself the bike computation (40/32), so the stem-forced bracket without it is (swim + run + transitions, ...) = (86, inf); 136.67 inside. (d) real: inverting a rate."
+  },
+  "distractor_meta": {
+   "161.40": {
+    "direction": "under",
+    "error_kind": "mm:ss read as decimal"
+   },
+   "173.67": {
+    "direction": "over",
+    "error_kind": "hours-to-minutes misconversion"
+   },
+   "136.67": {
+    "direction": "under",
+    "error_kind": "inverted rate"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "triathlon total time",
+   "pace per 100 meters",
+   "minutes and seconds conversion",
+   "speed in kilometers per hour"
+  ],
+  "arith_class_check": "No. Times to the hundredth; three options end in .67 (any total with whole-minute pieces plus 1.25 h and 2:25 lands there) and 161.40 does not, so the key is in the majority class, not alone.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "electric-vehicle range with a cold-weather penalty and a constant heater load",
+  "subskill": "finding usable battery energy between two charge levels, raising the driving consumption by a percent, converting a heater's power to energy per mile at a given speed, and dividing",
+  "prompt": "An electric car has a 75-kilowatt-hour (kWh) battery that is 82% charged. The driver will drive until the battery is 20% charged. In mild weather the car uses 0.27 kWh per mile for driving, but on this cold day it uses 30% more energy per mile for driving. In addition, the cabin heater uses a constant 2.4 kilowatts, meaning 2.4 kWh for every hour it runs, and it runs the whole time. The car averages 48 miles per hour. To the nearest hundredth of a mile, how far can the car be driven?",
+  "choices": [
+   "111.78",
+   "122.69",
+   "101.72",
+   "115.96"
+  ],
+  "correct_answer": "115.96",
+  "explanation": "The usable energy is (0.82 − 0.20) × 75 = 46.5 kWh. Driving uses 1.30 × 0.27 = 0.351 kWh per mile. At 48 miles per hour, each mile takes 1/48 hour, so the heater uses 2.4/48 = 0.05 kWh per mile. Altogether the car uses 0.401 kWh per mile, so it can go 46.5 / 0.401 ≈ 115.96 miles. The option \"111.78\" applies the 30% increase to the heater's energy as well: 1.30 × (0.27 + 0.05) = 0.416. The option \"101.72\" finds the range with the heater in mild weather, 46.5 / 0.32 ≈ 145.31 miles, and then cuts the RANGE by 30%, which is not the same as using 30% more energy per mile. The option \"122.69\" takes the 20% reserve as 20% of the current charge rather than of the battery, using 0.82 × 0.80 × 75 = 49.2 kWh.",
+  "solve": "const e=(0.82-0.20)*75; return (e/(0.27*1.3+2.4/48)).toFixed(2);",
+  "distractor_solve": {
+   "111.78": "const e=(0.82-0.20)*75; return (e/((0.27+2.4/48)*1.3)).toFixed(2);",
+   "101.72": "const e=(0.82-0.20)*75; return (e/(0.27+2.4/48)*0.7).toFixed(2);",
+   "122.69": "const e=0.82*0.8*75; return (e/(0.27*1.3+2.4/48)).toFixed(2);"
+  },
+  "quantity_asked": "the whole driving range, 46.5 kWh / (0.351 + 0.05) kWh per mile.",
+  "distractor_kind": {
+   "111.78": "penalty applied to the heater too. (a) limiting case: not the no-heater range 132.48 nor the mild-no-heater 172.22. (b) neighbouring setup: the range if the heater also drew 30% more; not an endpoint. (c) cheapest one-step bound over the whole range: consumption is more than the cold driving rate 0.351 (heater adds), so range < 46.5/0.351 = 132.48; and the heater adds at most a few hundredths, so a one-step-finer floor needs the 0.05 itself, which is the item; a looser floor from \"consumption < 0.5 kWh/mi\" gives range > 93; bracket (93, 132.48); 111.78 strictly inside. (d) real.",
+   "101.72": "range cut by 30% instead of energy per mile raised by 30%. (a) no. (b) no. (c) (93, 132.48); strictly inside. (d) real: percent more consumption read as percent less range.",
+   "122.69": "reserve taken as 20% of the current charge. (a) no. (b) no. (c) (93, 132.48) uses the correct 46.5; with the reserve rule in doubt the stem-forced ceiling is 0.82 x 75 / 0.351 = 175.21; 122.69 strictly inside either. (d) real: percent of the wrong whole."
+  },
+  "distractor_meta": {
+   "111.78": {
+    "direction": "under",
+    "error_kind": "percent applied to too much"
+   },
+   "101.72": {
+    "direction": "under",
+    "error_kind": "percent more consumption read as percent less range"
+   },
+   "122.69": {
+    "direction": "over",
+    "error_kind": "percent of the wrong whole"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 0.82*75/(0.27*1.3)"
+  ],
+  "mechanism": [
+   "electric vehicle range",
+   "cold weather consumption penalty",
+   "heater power at average speed",
+   "kWh per mile"
+  ],
+  "arith_class_check": "No. Four two-decimal non-integers; no implied divisibility; the key is not alone in any class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "complex numbers as points: modulus conditions",
+  "subskill": "reading |z - w| as the distance between z and w in the complex plane, so |z| = |z - 6| fixes the real part, then solving a circle condition and taking the modulus",
+  "prompt": "For i = √(−1), the absolute value of a complex number a + bi, where a and b are real numbers, is |a + bi| = √(a² + b²). The complex number z = a + bi, where a and b are real numbers and b > 0, satisfies both |z| = |z − 6| and |z − 2i| = 5. What is the value of |z| ?",
+  "choices": [
+   "√13",
+   "3√5",
+   "√29",
+   "√33"
+  ],
+  "correct_answer": "3√5",
+  "explanation": "The condition |z| = |z − 6| says a² + b² = (a − 6)² + b², so 0 = −12a + 36 and a = 3. Then |z − 2i| = |3 + (b − 2)i| = 5 gives 9 + (b − 2)² = 25, so (b − 2)² = 16 and b = 6 or b = −2. Since b > 0, b = 6, and |z| = √(3² + 6²) = √45 = 3√5. The option \"√13\" uses the other root, b = −2: √(9 + 4). The option \"√29\" expands |z − 2i|² as a² + b² − 4 instead of a² + (b − 2)², treating (b − 2)² as b² − 4, so it gets |z|² = 25 + 4 = 29. The option \"√33\" reads |z − 2i| as |z − 2|: (3 − 2)² + b² = 25 gives b² = 24 and |z| = √(9 + 24).",
+  "solve": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const a=3; const b=2+Math.sqrt(25-a*a); return r(Math.round(a*a+b*b));",
+  "distractor_solve": {
+   "√13": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const a=3; const b=2-Math.sqrt(25-a*a); return r(Math.round(a*a+b*b));",
+   "√29": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};return r(25+4);",
+   "√33": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const a=3; const b2=25-(a-2)*(a-2); return r(Math.round(a*a+b2));"
+  },
+  "quantity_asked": "the modulus |z| = sqrt(a^2 + b^2) of the one point with a = 3, b = 6.",
+  "distractor_kind": {
+   "√13": "wrong root of the circle equation. (a) limiting case: it is the root excluded by b > 0, not a parameter extreme. (b) neighbouring setup: the answer with b < 0; it is the near point of the circle-line intersection, not an endpoint of the feasible interval for |z|. (c) cheapest one-step bound over the whole modulus: z lies on the circle of radius 5 about 2i, so 3 = 5 - 2 <= |z| <= 5 + 2 = 7; one step finer, a = 3 forces |z| >= 3 already; √13 = 3.61 strictly inside (3, 7). (d) real: ignoring the sign condition.",
+   "√29": "squared a difference as a difference of squares, (b - 2)^2 -> b^2 - 4. (a) no. (b) no. (c) √29 = 5.39, strictly inside (3, 7). (d) real: the (x - y)^2 = x^2 - y^2 slip.",
+   "√33": "|z - 2i| read as |z - 2|. (a) no. (b) no. (c) √33 = 5.74, strictly inside (3, 7). (d) real: confusing the imaginary unit with a real shift."
+  },
+  "distractor_meta": {
+   "√13": {
+    "direction": "under",
+    "error_kind": "wrong root"
+   },
+   "√29": {
+    "direction": "under",
+    "error_kind": "binomial square slip"
+   },
+   "√33": {
+    "direction": "under",
+    "error_kind": "real shift for imaginary"
+   }
+  },
+  "bounds": [
+   "v >= 3",
+   "v <= 7"
+  ],
+  "mechanism": [
+   "complex modulus",
+   "distance in the complex plane",
+   "perpendicular bisector real part",
+   "circle condition |z - 2i| = 5"
+  ],
+  "arith_class_check": "No. The options are √13, 3√5, √29, √33, all irrational; 3√5 is the only one written with a coefficient because √45 simplifies that way by convention, and the stem implies nothing about the form of |z|.",
+  "one_sided_check": "Key is the largest. Errors of three kinds (wrong root, binomial-square slip, real shift for an imaginary one); the stem gives no readable reason that slips shrink |z| - the other root is excluded by b > 0 but a solver cannot tell which root is the farther one from the origin without solving, and |z - 2| vs |z - 2i| has no stem-readable direction."
+ },
+ {
+  "id": "AM23N-02",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "matrix times a column vector, then a determinant",
+  "subskill": "multiplying a 2 x 2 matrix by a column vector to set up equations for unknown entries, solving them, and computing ad - bc",
+  "prompt": "The matrix A has first row (a, 2) and second row (4, b), where a and b are constants. When A is multiplied by the column vector with entries 1 (top) and 2 (bottom), the product is the column vector with entries 7 (top) and 2 (bottom). What is the determinant of A ?",
+  "choices": [
+   "-8",
+   "5",
+   "-18",
+   "-11"
+  ],
+  "correct_answer": "-11",
+  "explanation": "The product A·(1, 2) has top entry a(1) + 2(2) = a + 4 and bottom entry 4(1) + b(2) = 4 + 2b. Setting a + 4 = 7 and 4 + 2b = 2 gives a = 3 and b = −1. Then det A = ab − (2)(4) = 3(−1) − 8 = −11. The option \"-8\" multiplies in the other order, treating (1, 2) as a row vector on the left: (1, 2)·A = (a + 8, 2 + 2b) = (7, 2) gives a = −1 and b = 0, and det = 0 − 8. The option \"-18\" forgets to multiply by the vector's entry 2, writing a + 2 = 7 and 4 + b = 2, so a = 5, b = −2, and det = −10 − 8. The option \"5\" finds a = 3 and b = −1 correctly but adds instead of subtracting in the determinant: ab + 8 = 5.",
+  "solve": "const a=7-2*2, b=(2-4)/2; return String(a*b-2*4);",
+  "distractor_solve": {
+   "5": "const a=7-2*2, b=(2-4)/2; return String(a*b+2*4);",
+   "-8": "const a=7-8, b=(2-2)/2; return String(a*b-2*4);",
+   "-18": "const a=7-2, b=2-4; return String(a*b-2*4);"
+  },
+  "quantity_asked": "det A = ab - 8 with a = 3, b = -1.",
+  "distractor_kind": {
+   "5": "determinant sign slip ad + bc. (a) no. (b) no. (c) (-inf, inf); inside. (d) real: the commonest determinant slip.",
+   "-8": "multiplication order (row vector on the left). (a) limiting case: none. (b) neighbouring setup: the answer to vA = w; there is no stem-forced bound between it and the key. (c) cheapest bound over the whole determinant: none beyond the stem's linear equations; interval (-inf, inf); strictly inside. (d) real: order of matrix multiplication.",
+   "-18": "dropped the vector entry when multiplying. (a) no. (b) no. (c) (-inf, inf); inside. (d) real."
+  },
+  "distractor_meta": {
+   "5": {
+    "direction": "over",
+    "error_kind": "determinant sign"
+   },
+   "-8": {
+    "direction": "over",
+    "error_kind": "multiplication order"
+   },
+   "-18": {
+    "direction": "under",
+    "error_kind": "dropped factor in product"
+   }
+  },
+  "bounds": [],
+  "mechanism": [
+   "matrix times column vector",
+   "unknown matrix entries",
+   "determinant ad - bc",
+   "2 x 2 matrix equations"
+  ],
+  "arith_class_check": "No. Options -18, -11, -8, 5: three negatives and one positive (a distractor); two odd (-11, 5) and two even (-18, -8), so parity splits 2-2; the stem implies no divisibility, and no option repeats a number printed in the stem.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "radicals as rational exponents",
+  "subskill": "rewriting cube roots, square roots and fourth roots as rational exponents, combining products by adding and quotients by subtracting exponents",
+  "prompt": "For x > 0, the expression (∛(x²) · √(x⁵)) / (x · ∜x) is equal to x^k for some rational number k. What is the value of k ?",
+  "choices": [
+   "23/12",
+   "11/4",
+   "35/12",
+   "29/12"
+  ],
+  "correct_answer": "23/12",
+  "explanation": "Write each radical as a power: ∛(x²) = x^(2/3), √(x⁵) = x^(5/2), and ∜x = x^(1/4). The numerator is x^(2/3 + 5/2) = x^(19/6), and the denominator is x^(1 + 1/4) = x^(5/4). Dividing subtracts exponents: 19/6 − 5/4 = 38/12 − 15/12 = 23/12. The option \"29/12\" adds the 1/4 instead of subtracting it: 2/3 + 5/2 − 1 + 1/4. The option \"11/4\" reads the index and the power the wrong way round, writing ∛(x²) as x^(3/2): 3/2 + 5/2 − 5/4 = 11/4. The option \"35/12\" drops the factor x from the denominator: 2/3 + 5/2 − 1/4.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const n=8+30-12-3, d=12; const k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "29/12": "const g=(a,b)=>b?g(b,a%b):a; const n=8+30-12+3, d=12; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "11/4": "const g=(a,b)=>b?g(b,a%b):a; const n=18+30-15, d=12; const k=g(n,d); return (n/k)+'/'+(d/k);",
+   "35/12": "const g=(a,b)=>b?g(b,a%b):a; const n=8+30-3, d=12; const k=g(n,d); return (n/k)+'/'+(d/k);"
+  },
+  "quantity_asked": "the exponent k = 2/3 + 5/2 - 1 - 1/4.",
+  "distractor_kind": {
+   "29/12": "sign slip on the quotient exponent. (a) limiting case: none. (b) neighbouring setup: the exponent with ∜x in the numerator; no bound. (c) cheapest bound over the whole exponent: numerator exponent between 3 and 3.5, denominator between 1 and 1.5, so k in (1.5, 2.5) - one step finer is the exact sum; 29/12 = 2.42 strictly inside. (d) real.",
+   "11/4": "radical index and power swapped. (a) no. (b) no. (c) the (1.5, 2.5) bracket presumes the conversions are right, which is the item; stem-forced bracket from \"every radical is a positive power\" is (0, inf); 2.75 inside. (d) real: the commonest radical-to-exponent slip.",
+   "35/12": "dropped factor in the denominator. (a) no. (b) no. (c) (0, inf); 2.92 inside. (d) real."
+  },
+  "distractor_meta": {
+   "29/12": {
+    "direction": "over",
+    "error_kind": "quotient exponent sign"
+   },
+   "11/4": {
+    "direction": "over",
+    "error_kind": "index and power swapped"
+   },
+   "35/12": {
+    "direction": "over",
+    "error_kind": "dropped factor"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "rational exponents",
+   "radicals to exponents",
+   "cube root fourth root",
+   "x to the k simplify"
+  ],
+  "arith_class_check": "No. Options 23/12, 29/12, 35/12 share the denominator 12 and 11/4 = 33/12; numerators 23, 29, 33, 35 are all odd; the key is in no class alone (23 and 29 are both prime).",
+  "one_sided_check": "Key is the smallest. Errors of three kinds (quotient sign, index/power swap, dropped factor); the stem gives no readable reason that slips enlarge k - an index/power swap on √(x⁵) would shrink it, and adding rather than subtracting the denominator exponent is not predictable from the stem."
+ },
+ {
+  "id": "AM23N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "solving a system of vector equations, then a magnitude",
+  "subskill": "eliminating one vector between two linear vector equations, solving component-wise, and finding the magnitude of a difference",
+  "prompt": "Vectors u and v in the plane satisfy u + v = ⟨7, 1⟩ and u − 2v = ⟨−2, 7⟩. What is the magnitude of the vector u − v ?",
+  "choices": [
+   "√26",
+   "√178",
+   "√2",
+   "√290"
+  ],
+  "correct_answer": "√26",
+  "explanation": "Subtracting the second equation from the first gives (u + v) − (u − 2v) = 3v = ⟨7 − (−2), 1 − 7⟩ = ⟨9, −6⟩, so v = ⟨3, −2⟩ and u = ⟨7, 1⟩ − ⟨3, −2⟩ = ⟨4, 3⟩. Then u − v = ⟨4 − 3, 3 − (−2)⟩ = ⟨1, 5⟩, with magnitude √(1 + 25) = √26. The option \"√178\" subtracts the equations in the other order and still calls the result 3v, getting v = ⟨−3, 2⟩, u = ⟨10, −1⟩, and u − v = ⟨13, −3⟩. The option \"√290\" forgets to divide by 3, using v = ⟨9, −6⟩ and u = ⟨−2, 7⟩, so u − v = ⟨−11, 13⟩. The option \"√2\" finds u and v correctly but writes 3 − (−2) as 1, getting u − v = ⟨1, 1⟩.",
+  "solve": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const v=[(7+2)/3,(1-7)/3]; const u=[7-v[0],1-v[1]]; const w=[u[0]-v[0],u[1]-v[1]]; return r(w[0]**2+w[1]**2);",
+  "distractor_solve": {
+   "√178": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const v=[(-2-7)/3,(7-1)/3]; const u=[7-v[0],1-v[1]]; const w=[u[0]-v[0],u[1]-v[1]]; return r(w[0]**2+w[1]**2);",
+   "√290": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const v=[7+2,1-7]; const u=[7-v[0],1-v[1]]; const w=[u[0]-v[0],u[1]-v[1]]; return r(w[0]**2+w[1]**2);",
+   "√2": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const v=[3,-2]; const u=[4,3]; const w=[u[0]-v[0],u[1]+v[1]]; return r(w[0]**2+w[1]**2);"
+  },
+  "quantity_asked": "the magnitude |u - v| with u = <4, 3>, v = <3, -2>.",
+  "distractor_kind": {
+   "√178": "subtraction order slip (v sign-reversed). (a) limiting case: none. (b) neighbouring setup: none. (c) cheapest bound over the whole magnitude: u - v = (1/3)(u+v) + (2/3)(u-2v) is the item's own elimination; without it no stem-forced bracket exists beyond |u - v| >= 0; strictly inside. (d) real.",
+   "√290": "forgot to divide by 3. (a) no. (b) no. (c) no bracket; inside. (d) real.",
+   "√2": "sign slip in the final subtraction. (a) no. (b) no. (c) no bracket; inside. (d) real: subtracting a negative component."
+  },
+  "distractor_meta": {
+   "√178": {
+    "direction": "over",
+    "error_kind": "subtraction order"
+   },
+   "√290": {
+    "direction": "over",
+    "error_kind": "forgot to divide"
+   },
+   "√2": {
+    "direction": "under",
+    "error_kind": "sign slip"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "vector equations system",
+   "solve for u and v",
+   "magnitude of u - v",
+   "component form vectors"
+  ],
+  "arith_class_check": "No. Radicands 26, 178, 2, 290 are all even and all squarefree; none is a perfect square; the key is in no class alone.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23N-05",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "applying a matrix twice to a vector",
+  "subskill": "computing A²v as A(Av) (or by squaring A properly), then the magnitude of the resulting vector",
+  "prompt": "Let M = [[2, −1], [1, 1]], a 2 × 2 matrix written row by row, and let w = ⟨3, 1⟩, written as a column. Applying M to w and then applying M again to the result gives the vector M²w, where M² = M·M. What is the length (magnitude) of M²w ?",
+  "choices": [
+   "√185",
+   "15",
+   "3√13",
+   "2√41"
+  ],
+  "correct_answer": "3√13",
+  "explanation": "First Mw = (2·3 + (−1)·1, 1·3 + 1·1) = (5, 4). Then M²w = M(Mw) = (2·5 + (−1)·4, 1·5 + 1·4) = (6, 9), with length √(36 + 81) = √117 = 3√13. The option \"2√41\" treats M² as 2M, doubling Mw = (5, 4) to (10, 8): √164 = 2√41. The option \"√185\" squares each entry of M instead of multiplying M by itself, using rows (4, 1) and (1, 1): (13, 4). The option \"15\" uses the rows of M as its columns (the transpose), getting (7, −2) and then (12, −9), with length 15.",
+  "solve": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const A=[[2,-1],[1,1]]; const m=(M,x)=>[M[0][0]*x[0]+M[0][1]*x[1],M[1][0]*x[0]+M[1][1]*x[1]]; const w=m(A,m(A,[3,1])); return r(w[0]**2+w[1]**2);",
+  "distractor_solve": {
+   "15": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const T=[[2,1],[-1,1]]; const m=(M,x)=>[M[0][0]*x[0]+M[0][1]*x[1],M[1][0]*x[0]+M[1][1]*x[1]]; const w=m(T,m(T,[3,1])); return r(w[0]**2+w[1]**2);",
+   "2√41": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const A=[[2,-1],[1,1]]; const m=(M,x)=>[M[0][0]*x[0]+M[0][1]*x[1],M[1][0]*x[0]+M[1][1]*x[1]]; const w=m(A,[3,1]).map(c=>2*c); return r(w[0]**2+w[1]**2);",
+   "√185": "const r=(n)=>{let k=1,m=n;for(let i=2;i*i<=m;i++){while(m%(i*i)===0){m/=i*i;k*=i;}}return m===1?String(k):(k===1?'':k)+'√'+m;};const S=[[4,1],[1,1]]; const m=(M,x)=>[M[0][0]*x[0]+M[0][1]*x[1],M[1][0]*x[0]+M[1][1]*x[1]]; const w=m(S,[3,1]); return r(w[0]**2+w[1]**2);"
+  },
+  "quantity_asked": "the magnitude of A(Av) = (6, 9).",
+  "distractor_kind": {
+   "15": "transpose used. (a) no. (b) no. (c) (0, inf); inside. (d) real: row/column confusion.",
+   "2√41": "M squared read as 2M. (a) limiting case: none. (b) neighbouring setup: |2Mw|; not an endpoint of any stem-forced interval (the stem gives no bound on how M scales length). (c) cheapest bound over the whole magnitude: none short of computing; (0, inf); inside. (d) real: confusing a matrix square with doubling.",
+   "√185": "entrywise square of A. (a) no. (b) no. (c) (0, inf); inside. (d) real: the commonest matrix-power slip."
+  },
+  "distractor_meta": {
+   "15": {
+    "direction": "over",
+    "error_kind": "transpose"
+   },
+   "2√41": {
+    "direction": "over",
+    "error_kind": "square read as double"
+   },
+   "√185": {
+    "direction": "over",
+    "error_kind": "entrywise square"
+   }
+  },
+  "bounds": [
+   "v > 0"
+  ],
+  "mechanism": [
+   "matrix squared times vector",
+   "A squared v",
+   "magnitude of a vector",
+   "2 x 2 matrix product"
+  ],
+  "arith_class_check": "Lone integer is 15, a distractor; the key 3√13 is one of three irrationals, and two options (3√13, 2√41) carry a coefficient; the stem implies nothing about integrality or form of a length.",
+  "one_sided_check": "Key is the smallest. Errors of three kinds (square read as double, entrywise square, transpose); the stem gives no readable reason that slips lengthen the vector - applying M only once would shorten it - so the smallest is not a non-solver strategy."
+ }
+]

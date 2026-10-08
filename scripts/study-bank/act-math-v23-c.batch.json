@@ -1,0 +1,595 @@
+[
+ {
+  "id": "AM23G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "reflection of a point across a slanted line through the origin",
+  "subskill": "reflecting a point across the line y = 2x by finding the foot of the perpendicular from the point to the line and doubling the displacement to it",
+  "prompt": "In the standard (x,y) coordinate plane, point P(7, 1) is reflected across the line y = 2x. What is the y-coordinate of the image of P ?",
+  "choices": [
+   "5",
+   "6.2",
+   "3.6",
+   "-3.4"
+  ],
+  "correct_answer": "6.2",
+  "explanation": "The perpendicular from P to y = 2x has slope −1/2: y − 1 = −(1/2)(x − 7). Setting 2x = 1 − (1/2)(x − 7) gives 2.5x = 4.5, so x = 1.8 and the foot of the perpendicular is F(1.8, 3.6). F is the midpoint of P and its image P′, so P′ = 2F − P = (3.6 − 7, 7.2 − 1) = (−3.4, 6.2). The y-coordinate is 6.2. The option \"3.6\" stops at the foot of the perpendicular instead of going the same distance past it. The option \"-3.4\" is the x-coordinate of the image, reported in place of the y-coordinate. The option \"5\" uses the reflection formula y′ = (2mx + (m² − 1)y)/(1 + m²) with the sign of the (m² − 1)y term reversed: (28 − 3)/5 = 5 instead of (28 + 3)/5.",
+  "solve": "const t=(7*1+1*2)/5; const Fy=2*t; return (2*Fy-1).toFixed(1);",
+  "distractor_solve": {
+   "5": "const m=2; return String((2*m*7-(m*m-1)*1)/(1+m*m));",
+   "3.6": "const t=(7*1+1*2)/5; return (2*t).toFixed(1);",
+   "-3.4": "const t=(7*1+1*2)/5; return (2*t-7).toFixed(1);"
+  },
+  "quantity_asked": "the y-coordinate of P′ = 2F − P, where F(1.8, 3.6) is the foot of the perpendicular from P(7, 1) to y = 2x.",
+  "distractor_kind": {
+   "5": "sign error in the reflection formula. (a) no. (b) no adjacent problem has 5 as an extreme. (c) interval (−6.32, 7.07); 5 strictly inside. (d) real: misremembering the sign of the (m² − 1) term.",
+   "3.6": "stops at the foot of the perpendicular. (a) limiting case: no parameter extreme; it is not P itself (y = 1) or a point on an axis. (b) neighbouring setup: it is the answer to \"the foot of the perpendicular\", which lies on the segment PP′; the stem-forced interval below does not have it as an endpoint. (c) cheapest one-step bound over the whole quantity: a reflection across a line through the origin keeps distance from O, so |OP′| = √50 and |y′| < 7.07; one step finer, P′ is on the side y > 2x, and the arc of the circle x² + y² = 50 on that side has y in (−6.32, 7.07). Interval (−6.32, 7.07); 3.6 strictly inside. (d) real: the most common reflection error, finding the midpoint and reporting it.",
+   "-3.4": "x-coordinate of the image reported. (a) no. (b) neighbouring setup: the answer to \"the x-coordinate of the image\", not an interval edge. (c) interval (−6.32, 7.07); −3.4 strictly inside. (d) real: reading off the wrong coordinate of a correctly found image."
+  },
+  "distractor_meta": {
+   "5": {
+    "direction": "under",
+    "error_kind": "formula sign error"
+   },
+   "3.6": {
+    "direction": "under",
+    "error_kind": "stopped at foot of perpendicular"
+   },
+   "-3.4": {
+    "direction": "under",
+    "error_kind": "wrong coordinate reported"
+   }
+  },
+  "bounds": [
+   "v < Math.sqrt(50)",
+   "v > -2*Math.sqrt(10)"
+  ],
+  "mechanism": [
+   "reflection across y = 2x",
+   "reflect point across slanted line",
+   "foot of perpendicular",
+   "image of a point under reflection"
+  ],
+  "arith_class_check": "No. A y-coordinate after a reflection carries no integrality or divisibility the stem implies. One option is an integer (5, a distractor), one is negative (−3.4, a distractor) and two are positive one-decimal values (3.6, 6.2); the key is not the lone member of any class.",
+  "one_sided_check": "Key is the largest. The errors are of three kinds (stopping at the foot, reporting the other coordinate, a formula sign slip); nothing in the stem says the slips lower the y-coordinate, and the stem-forced bound (|y| < 7.07 from |OP′| = |OP|) sits above every option without pointing at the key."
+ },
+ {
+  "id": "AM23G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "common chord of two intersecting circles",
+  "subskill": "subtracting the equations of two circles to find the line through their intersection points, then using one circle to find the half-chord",
+  "prompt": "In the standard (x,y) coordinate plane, the circles x² + y² = 25 and (x − 7)² + y² = 16 intersect at two points. What is the distance between these two points, to the nearest hundredth?",
+  "choices": [
+   "5.29",
+   "6.00",
+   "5.60",
+   "3.87"
+  ],
+  "correct_answer": "5.60",
+  "explanation": "Subtracting the second equation from the first: x² − (x − 7)² = 25 − 16, so 14x − 49 = 9 and x = 58/14 = 29/7. Both intersection points have this x-coordinate, and from x² + y² = 25, y² = 25 − 841/49 = 384/49, so y = ±√384/7 ≈ ±2.799. The distance between the points is 2(2.799) ≈ 5.60. The option \"6.00\" assumes the chord is at x = 4, halfway across the overlap from x = 3 to x = 5, and uses the first circle: 2√(25 − 16). The option \"5.29\" makes the same x = 4 assumption but uses the second circle: 2√(16 − 9). The option \"3.87\" puts the chord halfway between the centers, x = 3.5, and uses the second circle: 2√(16 − 12.25).",
+  "solve": "const x=(49+25-16)/14; return (2*Math.sqrt(25-x*x)).toFixed(2);",
+  "distractor_solve": {
+   "6.00": "return (2*Math.sqrt(25-4*4)).toFixed(2);",
+   "5.29": "return (2*Math.sqrt(16-(7-4)*(7-4))).toFixed(2);",
+   "3.87": "return (2*Math.sqrt(16-3.5*3.5)).toFixed(2);"
+  },
+  "quantity_asked": "the full length of the common chord, 2√(25 − x²) with x = 29/7.",
+  "distractor_kind": {
+   "6.00": "chord placed at the middle of the overlap (x = 4), first circle. (a) limiting case: no parameter extreme. (b) neighbouring setup: the answer if the chord bisected the overlap; it is not an endpoint of the interval below. (c) cheapest one-step bound over the whole length: the intersection points lie in the overlap, so 3 < x < 5; from the second circle the half-chord is √(16 − (7 − x)²) with 2 < 7 − x < 4, so the chord is in (0, 2√12) = (0, 6.93). 6.00 strictly inside. (d) real: assuming symmetry of the overlap.",
+   "5.29": "same x = 4 assumption, second circle. (a) no. (b) no. (c) interval (0, 6.93); 5.29 strictly inside. (d) real: the x = 4 assumption with the other circle, which gives a different value because the assumption is false.",
+   "3.87": "chord placed midway between the centers (x = 3.5), second circle. (a) no. (b) no adjacent problem has it as an extreme. (c) interval (0, 6.93); 3.87 strictly inside. (d) real: assuming the common chord bisects the segment joining the centers, true only for equal radii."
+  },
+  "distractor_meta": {
+   "6.00": {
+    "direction": "over",
+    "error_kind": "chord at overlap midpoint"
+   },
+   "5.29": {
+    "direction": "under",
+    "error_kind": "chord at overlap midpoint, other circle"
+   },
+   "3.87": {
+    "direction": "under",
+    "error_kind": "chord at midpoint of centers"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 2*Math.sqrt(12)"
+  ],
+  "mechanism": [
+   "common chord of two circles",
+   "two circles intersect",
+   "subtract circle equations",
+   "distance between intersection points of circles"
+  ],
+  "arith_class_check": "No. The stem gives integer radii but the chord length is irrational; the only integer-valued option is 6.00, a distractor, and the key is not singled out by any simple class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-03",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "similar triangles from a congruent angle pair (antiparallel segment)",
+  "subskill": "identifying the correspondence in triangles ADE and ACB that share angle A and have angle ADE congruent to angle ACB, and using the ratio AD/AC",
+  "prompt": "In triangle ABC, AB = 15, AC = 12, and BC = 13. Point D lies on side AB so that AD = 5, and point E lies on side AC so that angle ADE is congruent to angle ACB. To the nearest hundredth, what is the length of segment DE ?",
+  "choices": [
+   "6.50",
+   "5.42",
+   "8.67",
+   "6.77"
+  ],
+  "correct_answer": "5.42",
+  "explanation": "Triangles ADE and ACB share angle A, and angle ADE ≅ angle ACB, so triangle ADE ~ triangle ACB with A ↔ A, D ↔ C, E ↔ B. Then DE/CB = AD/AC, so DE = 13 · 5/12 ≈ 5.42. (Also AE/AB = 5/12, so AE = 6.25, which does lie on side AC.) The option \"6.50\" uses the part-to-part ratio AD/DB = 5/10 instead of AD/AC: 13 · 1/2. The option \"6.77\" first finds AE = 6.25 correctly and then pairs it with the wrong side, DE = 13 · 6.25/12. The option \"8.67\" scales BC by DB/AB = 10/15.",
+  "solve": "return (13*5/12).toFixed(2);",
+  "distractor_solve": {
+   "6.50": "return (13*5/10).toFixed(2);",
+   "6.77": "const AE=5*15/12; return (13*AE/12).toFixed(2);",
+   "8.67": "return (13*10/15).toFixed(2);"
+  },
+  "quantity_asked": "DE = BC · AD/AC from triangle ADE ~ triangle ACB.",
+  "distractor_kind": {
+   "6.50": "part-to-part ratio. (a) limiting case: no parameter extreme. (b) neighbouring setup: not the answer to an adjacent problem at an interval edge. (c) cheapest one-step bound over the whole length: E is on segment AC, so DE is at most the larger of DA = 5 and DC; DC² = 25 + 144 − 2·5·12·cos A with cos A = (225 + 144 − 169)/360 = 5/9, so DC ≈ 10.11; and DE is at least the distance from D to line AC, 5 sin A ≈ 4.16. Interval (4.16, 10.11); 6.50 strictly inside. (d) real: using AD:DB in place of AD:AC.",
+   "6.77": "correct AE, wrong pairing. (a) no. (b) no. (c) interval (4.16, 10.11); 6.77 strictly inside. (d) real: matching sides in the order the letters are written rather than by the angle correspondence.",
+   "8.67": "scales by DB/AB. (a) no. (b) no. (c) interval (4.16, 10.11); 8.67 strictly inside. (d) real: using the remaining part of the side as the scale factor."
+  },
+  "distractor_meta": {
+   "6.50": {
+    "direction": "over",
+    "error_kind": "part-to-part ratio"
+   },
+   "6.77": {
+    "direction": "over",
+    "error_kind": "wrong side correspondence"
+   },
+   "8.67": {
+    "direction": "over",
+    "error_kind": "complement segment as scale factor"
+   }
+  },
+  "bounds": [
+   "v > 5*Math.sqrt(1-25/81)",
+   "v < Math.sqrt(169-600/9)"
+  ],
+  "mechanism": [
+   "similar triangles with congruent angle",
+   "antiparallel segment",
+   "angle ADE congruent to angle ACB",
+   "triangle similarity correspondence"
+  ],
+  "arith_class_check": "No. The stem implies only a ratio of given lengths; all four options are two-decimal non-integers and the key is not the unique member of any divisibility or integrality class.",
+  "one_sided_check": "Key is the smallest. The three errors are of three kinds (part-to-part ratio, wrong correspondence after a correct step, wrong complementary segment); nothing in the stem says a slip must lengthen DE, and the most familiar slip on this figure, treating DE as parallel to BC (13·5/15 = 4.33), would have shortened it."
+ },
+ {
+  "id": "AM23G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "sphere inscribed in a right circular cone",
+  "subskill": "reducing the sphere in a cone to the circle inscribed in the cone's isosceles cross-section and finding that radius from the cross-section's area and semiperimeter",
+  "prompt": "A solid right circular cone has a base radius of 6 centimeters and a height of 8 centimeters. A sphere is placed inside the cone so that it touches the base of the cone and touches the curved surface of the cone all the way around. To the nearest tenth of a cubic centimeter, what is the volume of the sphere?",
+  "choices": [
+   "79.4",
+   "14.1",
+   "113.1",
+   "33.5"
+  ],
+  "correct_answer": "113.1",
+  "explanation": "A vertical cross-section through the axis is an isosceles triangle with base 12 and equal sides √(6² + 8²) = 10, and the sphere's cross-section is the circle inscribed in that triangle. The triangle's area is (1/2)(12)(8) = 48 and its semiperimeter is (10 + 10 + 12)/2 = 16, so the inscribed radius is 48/16 = 3. The sphere's volume is (4/3)π(3³) = 36π ≈ 113.1. The option \"14.1\" divides the area by the full perimeter, 32, giving radius 1.5. The option \"33.5\" uses the right triangle formed by the axis, a base radius, and the slant edge (legs 6 and 8, hypotenuse 10) and takes its inscribed radius, (6 + 8 − 10)/2 = 2. The option \"79.4\" puts the sphere's center at the centroid of the cross-section, 8/3 above the base, so radius 8/3.",
+  "solve": "const r=48/16; return (4/3*Math.PI*r**3).toFixed(1);",
+  "distractor_solve": {
+   "14.1": "const r=48/32; return (4/3*Math.PI*r**3).toFixed(1);",
+   "33.5": "const r=(6+8-10)/2; return (4/3*Math.PI*r**3).toFixed(1);",
+   "79.4": "const r=8/3; return (4/3*Math.PI*r**3).toFixed(1);"
+  },
+  "quantity_asked": "the sphere volume (4/3)πρ³, where ρ = 3 is the inradius of the 10-10-12 cross-section.",
+  "distractor_kind": {
+   "14.1": "perimeter in place of semiperimeter. (a) limiting case: no parameter extreme. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole volume: the sphere fits between the base and the apex level, so its diameter is less than the height, ρ < 4 and V < (4/3)π(64) = 268.1; one step finer, the sphere is inside the cone, V < (1/3)π(36)(8) = 301.6, so the binding cap is 268.1; V > 0. Interval (0, 268.1); 14.1 strictly inside. (d) real: r = A/s with the perimeter used for s.",
+   "33.5": "inradius of the half cross-section (6-8-10 right triangle). (a) no. (b) neighbouring setup: the circle inscribed in the half-triangle is a different, smaller circle; it is not at an interval edge. (c) interval (0, 268.1); 33.5 strictly inside. (d) real: using the right triangle the student draws first.",
+   "79.4": "center at the centroid of the cross-section. (a) no. (b) no. (c) interval (0, 268.1); 79.4 strictly inside. (d) real: confusing the incenter with the centroid."
+  },
+  "distractor_meta": {
+   "14.1": {
+    "direction": "under",
+    "error_kind": "perimeter for semiperimeter"
+   },
+   "33.5": {
+    "direction": "under",
+    "error_kind": "wrong triangle (half cross-section)"
+   },
+   "79.4": {
+    "direction": "under",
+    "error_kind": "centroid for incenter"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 4/3*Math.PI*64",
+   "v < Math.PI*36*8/3"
+  ],
+  "mechanism": [
+   "sphere inscribed in a cone",
+   "sphere inside a cone touching base and curved surface",
+   "inscribed circle of cone cross-section",
+   "volume of sphere in cone"
+  ],
+  "arith_class_check": "No. The stem implies no integrality; all four volumes are one-decimal non-integers (π multiples) and the key is not the lone member of a simple class.",
+  "one_sided_check": "Key is the largest. The three errors are of three kinds (perimeter for semiperimeter, wrong triangle, centroid for incenter); the stem gives no reason a student could read that every slip shrinks the sphere, and the caps the stem does force (ρ < 4, V < 268) sit far above the key, so they do not single it out."
+ },
+ {
+  "id": "AM23G-05",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "orthocenter of a triangle in the coordinate plane",
+  "subskill": "writing the equations of two altitudes using negative reciprocal slopes and intersecting them",
+  "prompt": "In the standard (x,y) coordinate plane, triangle ABC has vertices A(0, 0), B(12, 0), and C(5, 8). The three altitudes of the triangle intersect at a single point. What is the y-coordinate of that point?",
+  "choices": [
+   "8/3",
+   "40/7",
+   "35/8",
+   "29/16"
+  ],
+  "correct_answer": "35/8",
+  "explanation": "The altitude from C is perpendicular to AB, which is horizontal, so it is the vertical line x = 5. Side BC has slope (8 − 0)/(5 − 12) = −8/7, so the altitude from A has slope 7/8 and equation y = (7/8)x. At x = 5, y = 35/8. (Check with the altitude from B: AC has slope 8/5, so that altitude is y = −(5/8)(x − 12), which also gives 35/8 at x = 5.) The option \"8/3\" is the y-coordinate of the centroid, (0 + 0 + 8)/3. The option \"29/16\" is the y-coordinate of the circumcenter, where the perpendicular bisectors meet: x = 6 and y − 4 = −(5/8)(x − 2.5). The option \"40/7\" negates the slope of BC without taking the reciprocal, using 8/7 for the altitude from A: (8/7)(5).",
+  "solve": "const m=-1/((8-0)/(5-12)); const y=m*5; const d=8; return (Math.round(y*d))+\"/\"+d;",
+  "distractor_solve": {
+   "8/3": "return (0+0+8)+\"/3\";",
+   "29/16": "const y=4-(5/8)*(6-2.5); return Math.round(y*16)+\"/16\";",
+   "40/7": "const y=(8/7)*5; return Math.round(y*7)+\"/7\";"
+  },
+  "quantity_asked": "the y-coordinate of the orthocenter: the altitude from A, y = (7/8)x, evaluated on the altitude from C, x = 5.",
+  "distractor_kind": {
+   "8/3": "centroid. (a) limiting case: no parameter extreme. (b) neighbouring setup: the centroid is a different center; it is not an endpoint of the interval below. (c) cheapest one-step bound over the whole quantity: every angle is acute (dot products at A, B, C are 60, 84, 29), so the orthocenter is inside the triangle; on x = 5 the triangle spans 0 < y < 8. Interval (0, 8); 8/3 ≈ 2.67 strictly inside. (d) real: confusing the intersection of altitudes with that of medians.",
+   "29/16": "circumcenter. (a) no. (b) neighbouring setup: another center, interior to (0, 8). (c) interval (0, 8); 1.81 strictly inside. (d) real: confusing altitudes with perpendicular bisectors.",
+   "40/7": "negated slope, not reciprocal. (a) no. (b) no. (c) interval (0, 8); 5.71 strictly inside. (d) real: the classic perpendicular-slope slip."
+  },
+  "distractor_meta": {
+   "8/3": {
+    "direction": "under",
+    "error_kind": "centroid for orthocenter"
+   },
+   "29/16": {
+    "direction": "under",
+    "error_kind": "circumcenter for orthocenter"
+   },
+   "40/7": {
+    "direction": "over",
+    "error_kind": "perpendicular slope not reciprocated"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 8"
+  ],
+  "mechanism": [
+   "orthocenter",
+   "altitudes of a triangle intersect",
+   "altitude slope negative reciprocal",
+   "triangle with vertices in coordinate plane"
+  ],
+  "arith_class_check": "No. All four options are fractions with different denominators (3, 7, 8, 16); none is an integer and the stem implies no denominator, so the key is not the lone member of a class the stem points to.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-06",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "tangent line to a circle at a given point",
+  "subskill": "finding the radius slope from the center to the point of tangency, taking the negative reciprocal, and writing the tangent line to read its y-intercept",
+  "prompt": "In the standard (x,y) coordinate plane, the point (5, 3) lies on the circle (x − 2)² + (y + 1)² = 25. What is the y-intercept of the line tangent to the circle at (5, 3) ?",
+  "choices": [
+   "9.67",
+   "20.50",
+   "6.75",
+   "11.33"
+  ],
+  "correct_answer": "6.75",
+  "explanation": "The center is (2, −1). The radius to (5, 3) has slope (3 − (−1))/(5 − 2) = 4/3, and the tangent is perpendicular to it, so its slope is −3/4. The tangent is y − 3 = −(3/4)(x − 5); at x = 0, y = 3 + 15/4 = 6.75. The option \"9.67\" uses −4/3, negating the radius slope without taking the reciprocal: 3 + 20/3. The option \"11.33\" measures the radius from the origin instead of the center: slope 3/5, tangent slope −5/3, intercept 3 + 25/3. The option \"20.50\" reads the center as (−2, 1), with the signs flipped: radius slope 2/7, tangent slope −7/2, intercept 3 + 35/2.",
+  "solve": "const m=-1/((3+1)/(5-2)); return (3-m*5).toFixed(2);",
+  "distractor_solve": {
+   "9.67": "const m=-((3+1)/(5-2)); return (3-m*5).toFixed(2);",
+   "11.33": "const m=-1/(3/5); return (3-m*5).toFixed(2);",
+   "20.50": "const m=-1/((3-1)/(5+2)); return (3-m*5).toFixed(2);"
+  },
+  "quantity_asked": "the y-intercept 3 + (3/4)(5) of the tangent line y − 3 = −(3/4)(x − 5).",
+  "distractor_kind": {
+   "9.67": "negated, not reciprocated. (a) limiting case: no parameter extreme. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole quantity: (5, 3) is up and to the right of the center, so the tangent there slopes down, and its y-intercept exceeds 3; there is no upper cap from the stem. Interval (3, ∞); 9.67 strictly inside. (d) real: the perpendicular-slope slip.",
+   "11.33": "radius drawn from the origin. (a) no. (b) neighbouring setup: the tangent at (5, 3) to a circle centered at O; not an edge. (c) interval (3, ∞); 11.33 strictly inside. (d) real: treating every circle as centered at the origin.",
+   "20.50": "center read with flipped signs, (−2, 1). (a) no. (b) no. (c) interval (3, ∞); 20.50 strictly inside. (d) real: misreading (x − h)² + (y − k)² signs."
+  },
+  "distractor_meta": {
+   "9.67": {
+    "direction": "over",
+    "error_kind": "perpendicular slope not reciprocated"
+   },
+   "11.33": {
+    "direction": "over",
+    "error_kind": "center taken as origin"
+   },
+   "20.50": {
+    "direction": "over",
+    "error_kind": "center sign misread"
+   }
+  },
+  "bounds": [
+   "v > 3"
+  ],
+  "mechanism": [
+   "tangent line to a circle at a point",
+   "y-intercept of tangent line",
+   "radius perpendicular to tangent",
+   "circle equation center"
+  ],
+  "arith_class_check": "No. The stem implies no integrality; all four options are two-decimal values (6.75, 9.67, 11.33, 20.50) and the key is not singled out by a class the stem suggests.",
+  "one_sided_check": "Key is the smallest. The three errors come from two kinds (slope rule; wrong center, twice in different ways); the stem does not reveal that the slips steepen the tangent, and the only stem-forced bound (intercept > 3) sits below every option, so it gives no reason to prefer the smallest."
+ },
+ {
+  "id": "AM23G-07",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "belt around two pulleys of different sizes",
+  "subskill": "finding the length of a common external tangent, the angle it makes with the line of centers, and the unequal arcs of contact on each pulley",
+  "prompt": "Two circular pulleys lie in the same plane. One pulley has a radius of 6 centimeters, the other has a radius of 2 centimeters, and their centers are 8 centimeters apart. A tight belt goes around the outside of both pulleys without crossing itself, so the belt consists of two straight segments, each tangent to both pulleys, and two arcs, one on each pulley. To the nearest hundredth of a centimeter, what is the total length of the belt?",
+  "choices": [
+   "47.37",
+   "39.90",
+   "43.18",
+   "41.08"
+  ],
+  "correct_answer": "43.18",
+  "explanation": "Each straight segment is a common external tangent. Its length is √(8² − (6 − 2)²) = √48 ≈ 6.928, so the two segments total ≈ 13.856. The line of centers makes an angle α with each segment where sin α = (6 − 2)/8 = 1/2, so α = 30°. The belt touches the larger pulley along 180° + 2α = 240° and the smaller along 180° − 2α = 120°. The arcs are 6 · (4π/3) ≈ 25.133 and 2 · (2π/3) ≈ 4.189. Total ≈ 13.856 + 25.133 + 4.189 = 43.18. The option \"39.90\" computes each straight segment as √(8² − 6²), using the large radius instead of the difference of the radii. The option \"41.08\" adds only α, not 2α, to the larger arc (210° and 150°). The option \"47.37\" finds α from cos α = 4/8 instead of sin α = 4/8, so α = 60° and the arcs are 300° and 60°.",
+  "solve": "const t=Math.sqrt(64-16); const a=Math.asin(4/8); return (2*t+6*(Math.PI+2*a)+2*(Math.PI-2*a)).toFixed(2);",
+  "distractor_solve": {
+   "39.90": "const t=Math.sqrt(64-36); const a=Math.asin(4/8); return (2*t+6*(Math.PI+2*a)+2*(Math.PI-2*a)).toFixed(2);",
+   "41.08": "const t=Math.sqrt(64-16); const a=Math.asin(4/8); return (2*t+6*(Math.PI+a)+2*(Math.PI-a)).toFixed(2);",
+   "47.37": "const t=Math.sqrt(64-16); const a=Math.acos(4/8); return (2*t+6*(Math.PI+2*a)+2*(Math.PI-2*a)).toFixed(2);"
+  },
+  "quantity_asked": "the whole belt: two tangent segments of √48 plus a 240° arc of radius 6 plus a 120° arc of radius 2.",
+  "distractor_kind": {
+   "39.90": "tangent length from √(d² − R²). (a) limiting case: not a pulley circumference (37.70) nor the stadium perimeter (53.70). (b) neighbouring setup: the equal-wrap value 2√48 + π(6 + 2) = 38.99 is NOT an option; 39.90 is above it. (c) cheapest one-step bound over the whole length: the belt encloses the larger pulley, so L > 2π·6 = 37.70; the belt lies inside the stadium of radius 6 around the segment joining the centers, so L < 2·8 + 2π·6 = 53.70. Interval (37.70, 53.70); 39.90 strictly inside. (d) real: using the radius instead of the difference of radii in the tangent right triangle.",
+   "41.08": "arcs 180° ± α. (a) no. (b) no. (c) interval (37.70, 53.70); 41.08 strictly inside. (d) real: each straight segment tilts the contact point by α, and there are two of them; using one is a common slip.",
+   "47.37": "α from cos instead of sin. (a) no. (b) no. (c) interval (37.70, 53.70); 47.37 strictly inside. (d) real: the leg 4 is opposite α in the right triangle whose hypotenuse is the 8-cm center line; using cos puts it adjacent."
+  },
+  "distractor_meta": {
+   "39.90": {
+    "direction": "under",
+    "error_kind": "tangent length from wrong right triangle"
+   },
+   "41.08": {
+    "direction": "under",
+    "error_kind": "contact angle 180 + alpha"
+   },
+   "47.37": {
+    "direction": "over",
+    "error_kind": "cos for sin in contact angle"
+   }
+  },
+  "bounds": [
+   "v > 2*Math.PI*6",
+   "v < 2*8+2*Math.PI*6"
+  ],
+  "mechanism": [
+   "belt around two pulleys",
+   "common external tangent length",
+   "arc of contact",
+   "pulleys different radii belt length"
+  ],
+  "arith_class_check": "No. A belt length is a sum of a radical and π terms; all four options are two-decimal non-integers and the key belongs to no class the stem implies.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-08",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "foci of an ellipse given in non-standard form",
+  "subskill": "dividing an ellipse equation through by its constant to read a² and b², then using c² = a² − b² for the distance between the foci",
+  "prompt": "In the standard (x,y) coordinate plane, the ellipse with equation 4x² + 9y² = 72 has its foci on the x-axis. For an ellipse x²/a² + y²/b² = 1 with a > b > 0, the foci are at (c, 0) and (−c, 0), where c² = a² − b². To the nearest hundredth, what is the distance between the foci of this ellipse?",
+  "choices": [
+   "4.47",
+   "6.32",
+   "2.83",
+   "5.66"
+  ],
+  "correct_answer": "6.32",
+  "explanation": "Dividing by 72 gives x²/18 + y²/8 = 1, so a² = 18 and b² = 8. Then c² = 18 − 8 = 10, c = √10, and the distance between the foci is 2c = 2√10 ≈ 6.32. The option \"4.47\" reads the coefficients 9 and 4 as a² and b² without dividing: c = √5, 2c ≈ 4.47. The option \"2.83\" subtracts the semi-axes instead of their squares: c = √18 − √8 = √2, 2c ≈ 2.83. The option \"5.66\" is the length of the minor axis, 2b = 2√8.",
+  "solve": "const a2=72/4, b2=72/9; return (2*Math.sqrt(a2-b2)).toFixed(2);",
+  "distractor_solve": {
+   "4.47": "return (2*Math.sqrt(9-4)).toFixed(2);",
+   "2.83": "return (2*(Math.sqrt(18)-Math.sqrt(8))).toFixed(2);",
+   "5.66": "return (2*Math.sqrt(72/9)).toFixed(2);"
+  },
+  "quantity_asked": "the distance 2c between the foci, where c² = 72/4 − 72/9.",
+  "distractor_kind": {
+   "4.47": "coefficients read as a² and b². (a) limiting case: no parameter extreme. (b) neighbouring setup: the answer for x²/9 + y²/4 = 1; not an interval endpoint. (c) cheapest one-step bound over the whole distance: the foci lie inside the ellipse on the major axis, so 2c < 2a = 2√18 = 8.49; 2c > 0. Interval (0, 8.49); 4.47 strictly inside. (d) real: skipping the division to standard form.",
+   "2.83": "c = a − b. (a) no. (b) no. (c) interval (0, 8.49); 2.83 strictly inside. (d) real: treating c² = a² − b² as c = a − b.",
+   "5.66": "minor axis. (a) no. (b) neighbouring setup: the minor axis 2b, an adjacent quantity, is inside (0, 8.49) and not at an edge. (c) interval (0, 8.49); 5.66 strictly inside. (d) real: reporting the wrong ellipse segment."
+  },
+  "distractor_meta": {
+   "4.47": {
+    "direction": "under",
+    "error_kind": "no division to standard form"
+   },
+   "2.83": {
+    "direction": "under",
+    "error_kind": "c = a - b"
+   },
+   "5.66": {
+    "direction": "under",
+    "error_kind": "minor axis reported"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 2*Math.sqrt(18)"
+  ],
+  "mechanism": [
+   "foci of an ellipse",
+   "distance between foci",
+   "ellipse non-standard form",
+   "c squared equals a squared minus b squared"
+  ],
+  "arith_class_check": "No. All four options are two-decimal irrational values (2√5, 2√10, 2√2, 4√2); the key is not the only member of any simple class, and the stem implies no integrality.",
+  "one_sided_check": "Key is the largest. The errors are of three kinds (no division, subtracting roots, wrong segment); the stem does not reveal that the slips give shorter lengths, and the stem-forced cap 8.49 is above every option so it does not point at the key."
+ },
+ {
+  "id": "AM23G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "triangle formed by a circle's center and a chord cut by a line",
+  "subskill": "finding the distance from the center to a line, the half-chord from the Pythagorean theorem, and the area of the triangle with the center as apex",
+  "prompt": "In the standard (x,y) coordinate plane, the line 3x + 4y = 10 intersects the circle x² + y² = 25 at points A and B. Point O is the origin. To the nearest hundredth, what is the area of triangle OAB ?",
+  "choices": [
+   "12.37",
+   "9.17",
+   "6.85",
+   "9.59"
+  ],
+  "correct_answer": "9.17",
+  "explanation": "The distance from O to the line 3x + 4y − 10 = 0 is |−10|/√(3² + 4²) = 10/5 = 2. This is the height of triangle OAB from O. Half of chord AB is √(25 − 2²) = √21 ≈ 4.583, so AB ≈ 9.165, and the area is (1/2)(9.165)(2) ≈ 9.17. The option \"9.59\" uses 25 − 2 instead of 25 − 2² for the half-chord. The option \"6.85\" divides by 3 + 4 instead of √(3² + 4²) for the distance, getting 10/7. The option \"12.37\" divides by √(3 + 4), getting 10/√7.",
+  "solve": "const d=10/Math.sqrt(9+16); const h=Math.sqrt(25-d*d); return (d*h).toFixed(2);",
+  "distractor_solve": {
+   "9.59": "const d=10/Math.sqrt(9+16); const h=Math.sqrt(25-d); return (d*h).toFixed(2);",
+   "6.85": "const d=10/7; const h=Math.sqrt(25-d*d); return (d*h).toFixed(2);",
+   "12.37": "const d=10/Math.sqrt(7); const h=Math.sqrt(25-d*d); return (d*h).toFixed(2);"
+  },
+  "quantity_asked": "the area (1/2)·AB·d = d·√(25 − d²) with d = 2.",
+  "distractor_kind": {
+   "9.59": "distance not squared in the half-chord. (a) limiting case: no parameter extreme. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole area: OA = OB = 5, so the area is (1/2)(25) sin(AOB) ≤ 12.5; area > 0. Interval (0, 12.5); 9.59 strictly inside. (d) real: dropping the square in r² − d².",
+   "6.85": "distance normalised by a + b. (a) no. (b) no. (c) interval (0, 12.5); 6.85 strictly inside. (d) real: misremembering the point-to-line denominator.",
+   "12.37": "distance normalised by √(a + b). (a) no. (b) neighbouring setup: the right-angle case 12.5 is the cap and is not an option; 12.37 is below it. (c) interval (0, 12.5); 12.37 strictly inside. (d) real: forgetting to square the coefficients under the root."
+  },
+  "distractor_meta": {
+   "9.59": {
+    "direction": "over",
+    "error_kind": "distance not squared"
+   },
+   "6.85": {
+    "direction": "under",
+    "error_kind": "point-line denominator a+b"
+   },
+   "12.37": {
+    "direction": "over",
+    "error_kind": "point-line denominator sqrt(a+b)"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 12.5"
+  ],
+  "mechanism": [
+   "area of triangle formed by center and chord",
+   "line intersects circle at two points",
+   "distance from center to line",
+   "chord cut by a line on a circle"
+  ],
+  "arith_class_check": "No. All four options are two-decimal non-integers; the stem implies no integrality and the key is not singled out by any simple class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-10",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "circle through three given points",
+  "subskill": "locating the center on the perpendicular bisector of a horizontal chord and fixing it by equal distance to the third point",
+  "prompt": "In the standard (x,y) coordinate plane, a circle passes through the points (0, 0), (10, 0), and (4, 2). To the nearest hundredth, what is the radius of the circle?",
+  "choices": [
+   "8.60",
+   "5.15",
+   "11.18",
+   "7.07"
+  ],
+  "correct_answer": "7.07",
+  "explanation": "The center is equidistant from (0, 0) and (10, 0), so it lies on x = 5; call it (5, k). Equal distances to (0, 0) and (4, 2): 25 + k² = (5 − 4)² + (k − 2)² = 1 + k² − 4k + 4, so 4k = −20 and k = −5. The radius is √(25 + 25) = √50 ≈ 7.07. The option \"5.15\" writes 4² instead of (5 − 4)² for the horizontal distance to (4, 2): 25 + k² = 16 + (k − 2)² gives k = −1.25. The option \"8.60\" uses the perpendicular bisector of the segment from (0, 0) to (4, 2) with slope +2 instead of −2, putting the center at (5, 7). The option \"11.18\" draws that bisector with slope −2 through (0, 0) instead of through the midpoint (2, 1), putting the center at (5, −10).",
+  "solve": "const k=(1+4-25)/4; return Math.sqrt(25+k*k).toFixed(2);",
+  "distractor_solve": {
+   "5.15": "const k=(16+4-25)/4; return Math.sqrt(25+k*k).toFixed(2);",
+   "8.60": "const k=1+2*(5-2); return Math.sqrt(25+k*k).toFixed(2);",
+   "11.18": "const k=-2*5; return Math.sqrt(25+k*k).toFixed(2);"
+  },
+  "quantity_asked": "the radius √(5² + k²) with center (5, k), k = −5.",
+  "distractor_kind": {
+   "5.15": "coordinate used for a distance. (a) limiting case: not the half-chord 5. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole radius: the segment from (0, 0) to (10, 0) is a chord and the angle at (4, 2) is obtuse, so it is not a diameter and r > 5; no upper cap from the stem. Interval (5, ∞); 5.15 strictly inside. (d) real: using a coordinate where a difference belongs.",
+   "8.60": "perpendicular slope sign error. (a) no. (b) no. (c) interval (5, ∞); 8.60 strictly inside. (d) real: reciprocal without the negative.",
+   "11.18": "bisector through an endpoint, not the midpoint. (a) no. (b) no. (c) interval (5, ∞); 11.18 strictly inside. (d) real: dropping the midpoint from the perpendicular bisector."
+  },
+  "distractor_meta": {
+   "5.15": {
+    "direction": "under",
+    "error_kind": "coordinate for distance"
+   },
+   "8.60": {
+    "direction": "over",
+    "error_kind": "perpendicular slope sign"
+   },
+   "11.18": {
+    "direction": "over",
+    "error_kind": "bisector through endpoint"
+   }
+  },
+  "bounds": [
+   "v > 5"
+  ],
+  "mechanism": [
+   "circle through three points",
+   "circumcenter coordinates",
+   "perpendicular bisector of chord",
+   "radius of circle through given points"
+  ],
+  "arith_class_check": "No. All four options are two-decimal non-integers; the stem implies no integrality, and the key (√50) is not the lone member of any class.",
+  "one_sided_check": "key interior"
+ },
+ {
+  "id": "AM23G-11",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "solid of revolution: right triangle rotated about its hypotenuse",
+  "subskill": "recognising the double cone, using the altitude to the hypotenuse as the common radius and the hypotenuse as the total height",
+  "prompt": "A right triangle has legs of lengths 9 centimeters and 12 centimeters. The triangle is rotated 360° about its hypotenuse, forming a solid made of two right circular cones joined at their bases. To the nearest cubic centimeter, what is the volume of the solid?",
+  "choices": [
+   "521",
+   "884",
+   "814",
+   "458"
+  ],
+  "correct_answer": "814",
+  "explanation": "The hypotenuse is √(81 + 144) = 15. The common base radius of the two cones is the altitude to the hypotenuse, (9)(12)/15 = 7.2. The two cone heights are the segments of the hypotenuse, which add to 15, so the total volume is (1/3)π(7.2²)(15) = 259.2π ≈ 814. The option \"458\" uses the shorter hypotenuse segment, 81/15 = 5.4, as the radius. The option \"521\" finds only the larger cone, height 144/15 = 9.6. The option \"884\" uses half the hypotenuse, 7.5 (the median), as the radius.",
+  "solve": "const c=15; const r=9*12/c; return String(Math.round(Math.PI*r*r*c/3));",
+  "distractor_solve": {
+   "458": "const r=81/15; return String(Math.round(Math.PI*r*r*15/3));",
+   "521": "const r=7.2; return String(Math.round(Math.PI*r*r*(144/15)/3));",
+   "884": "const r=7.5; return String(Math.round(Math.PI*r*r*15/3));"
+  },
+  "quantity_asked": "the volume of both cones together, (1/3)π(7.2)²(15).",
+  "distractor_kind": {
+   "458": "hypotenuse segment used as radius. (a) limiting case: no parameter extreme. (b) neighbouring setup: not an interval endpoint. (c) cheapest one-step bound over the whole volume: the double cone has radius equal to the altitude, which is less than the shorter leg 9, and total height 15, so V < (1/3)π(81)(15) = 1272; one step finer, the solid lies inside the cone made by rotating about the 12-cm leg, (1/3)π(81)(12) = 1018. Interval (0, 1018); 458 strictly inside. (d) real: confusing the segment of the hypotenuse with the altitude.",
+   "521": "one cone only. (a) no. (b) no. (c) interval (0, 1018); 521 strictly inside. (d) real: stopping after one of the two cones.",
+   "884": "median used as radius. (a) no. (b) no. (c) interval (0, 1018); 884 strictly inside. (d) real: taking the segment from the right angle to the midpoint of the hypotenuse as the radius."
+  },
+  "distractor_meta": {
+   "458": {
+    "direction": "under",
+    "error_kind": "hypotenuse segment as radius"
+   },
+   "521": {
+    "direction": "under",
+    "error_kind": "one cone only"
+   },
+   "884": {
+    "direction": "over",
+    "error_kind": "median as radius"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < Math.PI*81*12/3"
+  ],
+  "mechanism": [
+   "right triangle rotated about hypotenuse",
+   "double cone volume",
+   "solid of revolution",
+   "altitude to hypotenuse as radius"
+  ],
+  "arith_class_check": "No. The options are four integers produced by rounding (458, 521, 814, 884); none is singled out by parity, divisibility or squareness the stem implies.",
+  "one_sided_check": "key interior"
+ }
+]
