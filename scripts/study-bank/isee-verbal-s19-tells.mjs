@@ -17,7 +17,7 @@
 import { readFileSync, existsSync } from 'node:fs'
 const type = process.argv[2]
 if (!['syn', 'sc'].includes(type)) { console.error('usage: <syn|sc>'); process.exit(2) }
-const D = 'scripts/study-bank', tag = `isee-verbal-s19-${type}`
+const D = 'scripts/study-bank', tag = (process.argv[3] ?? `isee-verbal-s19-${type}`)  // optional tag: s20 passes isee-verbal-s20-sc
 const batch = JSON.parse(readFileSync(`${D}/${tag}.batch.json`, 'utf8'))
 const n = batch.length
 let longest = 0, shortest = 0

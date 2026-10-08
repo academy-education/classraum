@@ -27,7 +27,9 @@
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 
 const DIR = 'scripts/study-bank'
-const WORDS = `${DIR}/isee-verbal-s19.live-words.json`
+// --words <file> picks another list (s20: isee-verbal-s20.live-words.json); default is s19's.
+const _wi = process.argv.indexOf('--words')
+const WORDS = _wi >= 0 ? process.argv[_wi + 1] : `${DIR}/isee-verbal-s19.live-words.json`
 const STOP = new Set(['a', 'an', 'the', 'of', 'to', 'and', 'or', 'by', 'in', 'on', 'for', 'with', 'at', 'as', 'is', 'be', 'it', 'its', 'not', 'no', 'one', 'out', 'up', 'from', 'into', 'that', 'this'])
 
 export const tokens = s => String(s ?? '').toLowerCase().replace(/[^a-z\s-]/g, ' ').split(/[\s-]+/).filter(w => w.length >= 3 && !STOP.has(w))
@@ -110,7 +112,7 @@ function check(path, range, againstPaths) {
   }
   for (const w of mine) for (const f of forbidden) {
     const why = collide(w.word, f)
-    if (why) { problems.push(`${w.id}: FORBIDDEN ${w.role} '${w.word}' vs live/s17/s18 '${f}' (${why})`); break }
+    if (why) { problems.push(`${w.id}: FORBIDDEN ${w.role} '${w.word}' vs forbidden '${f}' (${why})`); break }
   }
   // within the file: no word (or inflection) used twice anywhere
   for (let i = 0; i < mine.length; i++) for (let j = i + 1; j < mine.length; j++) {
@@ -128,7 +130,7 @@ function check(path, range, againstPaths) {
     }
   }
   const nWords = mine.length
-  console.log(`${path}: ${batch.length} items, ${nWords} words checked against ${forbidden.length} live/s17/s18 words${range ? `, range ${range}` : ''}${againstPaths.length ? `, against ${againstPaths.length} other s19 file(s)` : ''}`)
+  console.log(`${path}: ${batch.length} items, ${nWords} words checked against ${forbidden.length} forbidden words (${WORDS.replace(/^.*\//, '')})${range ? `, range ${range}` : ''}${againstPaths.length ? `, against ${againstPaths.length} other s19 file(s)` : ''}`)
   if (problems.length) { for (const p of problems) console.log(`  ${p}`); console.log(`  ${problems.length} problem(s)`); process.exit(1) }
   console.log('  0 problems')
 }
@@ -154,7 +156,13 @@ async function build() {
     for (const c of r.item?.choices ?? []) for (const t of tokens(c)) set.add(t)
   }
   const nLive = set.size
-  const prior = ['isee-verbal-s17-syn', 'isee-verbal-s17-sc', 'isee-verbal-s18-syn', 'isee-verbal-s18-sc', 'isee-verbal-s18a', 'isee-verbal-s18b', 'isee-verbal-s18c', 'isee-verbal-s18d', 'isee-verbal-s18e']
+  // --prior a,b,c replaces the default s17/s18 tag list (s20 adds the s19 files);
+  // --out <file> writes somewhere other than the s19 list.
+  const pi = process.argv.indexOf('--prior')
+  const prior = pi >= 0 ? process.argv[pi + 1].split(',').filter(Boolean)
+    : ['isee-verbal-s17-syn', 'isee-verbal-s17-sc', 'isee-verbal-s18-syn', 'isee-verbal-s18-sc', 'isee-verbal-s18a', 'isee-verbal-s18b', 'isee-verbal-s18c', 'isee-verbal-s18d', 'isee-verbal-s18e']
+  const oi = process.argv.indexOf('--out')
+  const OUT = oi >= 0 ? process.argv[oi + 1] : WORDS
   let nPrior = 0
   for (const f of prior) {
     const b = JSON.parse(readFileSync(`${DIR}/${f}.batch.json`, 'utf8'))
@@ -162,11 +170,11 @@ async function build() {
     for (const it of b) for (const w of itemWords(it)) for (const t of tokens(w.word)) set.add(t)
   }
   const words = [...set].sort()
-  writeFileSync(WORDS, JSON.stringify({
-    note: `Every headword and option word of the ${rows.length} non-archived live ISEE verbal rows (read ${new Date().toISOString().slice(0, 10)}), plus every word of isee-verbal-s17 (syn + held SC) and isee-verbal-s18 (frozen syn + SC and the five author files). No s19 headword, key or option word may equal one of these or be an inflection of one (isee-verbal-s19-collisions.mjs).`,
+  writeFileSync(OUT, JSON.stringify({
+    note: `Every headword and option word of the ${rows.length} non-archived live ISEE verbal rows (read ${new Date().toISOString().slice(0, 10)}), plus every word of ${prior.join(', ')}. No new headword, key or option word may equal one of these or be an inflection of one (isee-verbal-s19-collisions.mjs).`,
     live_rows: rows.length, live_words: nLive, prior_items: nPrior, words,
   }, null, 1) + '\n')
-  console.log(`wrote ${WORDS}: ${words.length} words (${nLive} from ${rows.length} live rows; +${words.length - nLive} from ${nPrior} s17/s18 items)`)
+  console.log(`wrote ${OUT}: ${words.length} words (${nLive} from ${rows.length} live rows; +${words.length - nLive} from ${nPrior} prior items in ${prior.length} files)`)
 }
 
 function selftest() {
@@ -186,7 +194,7 @@ const args = process.argv.slice(2)
 if (args.includes('--selftest')) selftest()
 else if (args.includes('--build')) await build()
 else {
-  const path = args.find(a => !a.startsWith('--') && args[args.indexOf(a) - 1] !== '--range' && args[args.indexOf(a) - 1] !== '--against')
+  const path = args.find(a => !a.startsWith('--') && !['--range', '--against', '--words'].includes(args[args.indexOf(a) - 1]))
   if (!path) { console.error('usage: isee-verbal-s19-collisions.mjs <file.batch.json> [--range a-l] [--against f1,f2] | --build | --selftest'); process.exit(2) }
   const ri = args.indexOf('--range'); const ai = args.indexOf('--against')
   check(path, ri >= 0 ? args[ri + 1] : null, ai >= 0 ? args[ai + 1].split(',').filter(Boolean) : [])

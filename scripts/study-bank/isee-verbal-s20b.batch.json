@@ -1,0 +1,991 @@
+[
+ {
+  "id": "IS20B-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause, clue in a later clause (lost wages, upkeep paid by the parish)",
+  "prompt": "[Sentence Completion] Because the Poor Law of 1601 made every parish pay for the upkeep of its own ------- residents, villages sometimes hurried families who had lost their wages across the parish line before winter set in.",
+  "choices": [
+   "heretical",
+   "honeyed",
+   "indigent",
+   "maritime"
+  ],
+  "correct_answer": "indigent",
+  "explanation": "\"indigent\" (poor, needy) is forced by the parish paying for their \"upkeep\" and the families having \"lost their wages.\"",
+  "distractor_rationales": [
+   "maritime — maritime describes people or law of the sea; nothing here concerns the coast, and the parish pays upkeep because of poverty, not seafaring. It fits \"the ------- provinces depended on fishing and shipbuilding.\"",
+   "heretical — heretical residents would be punished or expelled by the church, not supported at the parish's expense; it fits \"the bishop condemned the ------- sermon.\"",
+   "honeyed — honeyed means sweet or flattering in speech; it says nothing about need. It fits \"the courtier's ------- compliments hid his ambitions.\""
+  ],
+  "rarity_order": [
+   "indigent",
+   "heretical",
+   "honeyed",
+   "maritime"
+  ],
+  "polarity": {
+   "indigent": "-",
+   "maritime": "0",
+   "heretical": "-",
+   "honeyed": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "heretical",
+   "odd_one_out": "honeyed",
+   "most_specific": "heretical"
+  }
+ },
+ {
+  "id": "IS20B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "result clause and example in a separate clause (second courthouse, a month over one barrel)",
+  "prompt": "[Sentence Completion] The merchants of the trading town had grown so ------- that the council finally built a second courthouse; a quarrel over one spoiled barrel of herring could occupy the judges for a month.",
+  "choices": [
+   "litigious",
+   "munificent",
+   "intrepid",
+   "iconoclastic"
+  ],
+  "correct_answer": "litigious",
+  "explanation": "\"litigious\" (quick to sue) is forced by the need for a second courthouse and a month of court time over one barrel.",
+  "distractor_rationales": [
+   "munificent — munificent merchants would be lavishly generous, which might fund a courthouse but would not fill it with lawsuits. It fits \"a ------- donor paid for the new library.\"",
+   "intrepid — intrepid means fearless; courage does not crowd a court. It fits \"the ------- traders crossed the desert without guides.\"",
+   "iconoclastic — iconoclastic means attacking cherished beliefs; it does not explain endless lawsuits. It fits \"her ------- essays mocked the town's founding myths.\""
+  ],
+  "rarity_order": [
+   "munificent",
+   "litigious",
+   "iconoclastic",
+   "intrepid"
+  ],
+  "polarity": {
+   "litigious": "-",
+   "munificent": "+",
+   "intrepid": "+",
+   "iconoclastic": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "munificent",
+   "odd_one_out": "litigious",
+   "most_specific": "iconoclastic"
+  }
+ },
+ {
+  "id": "IS20B-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose clue in the stem vocabulary (control the cinnamon trade rather than rule)",
+  "prompt": "[Sentence Completion] The Dutch built their forts along the coast of Ceylon less to govern the island than to control what left its harbors; in their own ledgers the purpose of the colony was plainly -------, measured in bales of cinnamon shipped to Amsterdam.",
+  "choices": [
+   "monastic",
+   "gallant",
+   "neurotic",
+   "mercantile"
+  ],
+  "correct_answer": "mercantile",
+  "explanation": "\"mercantile\" (concerned with trade and profit) is forced by \"control what left its harbors,\" \"ledgers\" and \"bales of cinnamon shipped.\"",
+  "distractor_rationales": [
+   "monastic — monastic describes a religious, secluded life; ledgers of cinnamon point to trade, not devotion. It fits \"the ------- community rose before dawn to pray.\"",
+   "gallant — gallant means brave or chivalrous; a purpose counted in bales is commercial, not heroic. It fits \"the ------- officer gave up his seat in the lifeboat.\"",
+   "neurotic — neurotic means anxious and obsessive; a purpose recorded in ledgers and bales is commercial, not a state of nerves. It fits \"his ------- habit of checking the locks ten times.\""
+  ],
+  "rarity_order": [
+   "mercantile",
+   "monastic",
+   "neurotic",
+   "gallant"
+  ],
+  "polarity": {
+   "mercantile": "0",
+   "monastic": "0",
+   "gallant": "+",
+   "neurotic": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "gallant",
+   "odd_one_out": "gallant",
+   "most_specific": "neurotic"
+  }
+ },
+ {
+  "id": "IS20B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose clue resolved by the result in a later clause (nine days instead of forty)",
+  "prompt": "[Sentence Completion] The new canal was dug across the isthmus to ------- the long voyage around the cape; once it opened, grain barges reached the capital in nine days instead of forty.",
+  "choices": [
+   "inoculate",
+   "obviate",
+   "indict",
+   "garner"
+  ],
+  "correct_answer": "obviate",
+  "explanation": "\"obviate\" (make unnecessary) is forced: after the canal the barges no longer go around the cape, arriving in \"nine days instead of forty.\"",
+  "distractor_rationales": [
+   "indict — indict means to charge formally with a crime; a voyage cannot be charged. It fits \"the grand jury voted to ------- the treasurer for fraud.\"",
+   "garner — garner means to gather or earn; the canal removes the voyage rather than collecting it. It fits \"the plan was meant to ------- support from the farm states.\"",
+   "inoculate — inoculate means to vaccinate against disease; a voyage cannot be vaccinated, and the canal removes it. It fits \"the doctor arrived to ------- the village children against smallpox.\""
+  ],
+  "rarity_order": [
+   "obviate",
+   "inoculate",
+   "indict",
+   "garner"
+  ],
+  "polarity": {
+   "obviate": "0",
+   "indict": "-",
+   "garner": "+",
+   "inoculate": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "indict",
+   "odd_one_out": "indict",
+   "most_specific": "obviate"
+  }
+ },
+ {
+  "id": "IS20B-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "subtle restatement across clauses (called bandits, farmers with borrowed rifles, now taxing towns)",
+  "prompt": "[Sentence Completion] The government in the capital still called them bandits, but by 1911 the ------- forces that had begun as a few hundred farmers with borrowed rifles were collecting taxes in the valley towns themselves.",
+  "choices": [
+   "oracular",
+   "guerrilla",
+   "genteel",
+   "inclement"
+  ],
+  "correct_answer": "guerrilla",
+  "explanation": "\"guerrilla\" (irregular fighters opposing a government) is forced by \"called them bandits\" and \"farmers with borrowed rifles\" now rivaling the state.",
+  "distractor_rationales": [
+   "genteel — genteel means refined and polite in manner; armed farmers called bandits are not described by their manners. It fits \"the ------- tearoom where ladies met on Sundays.\"",
+   "inclement — inclement describes harsh, stormy weather; it does not describe a band of armed farmers. It fits \"the climbers turned back in ------- weather.\"",
+   "oracular — oracular means prophetic or cryptic; nothing about the fighters is mysterious prophecy. It fits \"the old judge's ------- pronouncements puzzled the lawyers.\""
+  ],
+  "rarity_order": [
+   "oracular",
+   "inclement",
+   "guerrilla",
+   "genteel"
+  ],
+  "polarity": {
+   "guerrilla": "0",
+   "genteel": "+",
+   "inclement": "-",
+   "oracular": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "inclement",
+   "odd_one_out": "genteel",
+   "most_specific": "oracular"
+  }
+ },
+ {
+  "id": "IS20B-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "subtle restatement in the stem (set the rules of ocean trade as it pleased)",
+  "prompt": "[Sentence Completion] For nearly a century after its last rival fleet was sunk, Britain could set the rules of ocean trade largely as it pleased, and smaller nations shipped goods on its terms; historians describe its position in that era as ------- .",
+  "choices": [
+   "lachrymose",
+   "idyllic",
+   "immaculate",
+   "hegemonic"
+  ],
+  "correct_answer": "hegemonic",
+  "explanation": "\"hegemonic\" (dominant over others) is forced by setting the rules \"as it pleased\" while smaller nations shipped \"on its terms.\"",
+  "distractor_rationales": [
+   "lachrymose — lachrymose means tearful; a dominant naval power is not mournful. It fits \"the widow's ------- letters to her sister.\"",
+   "idyllic — idyllic means peacefully charming; control over other nations is power, not a pastoral calm. It fits \"their ------- summers on the lake.\"",
+   "immaculate — immaculate means spotless; dominance says nothing about cleanliness or flawlessness. It fits \"the cadets kept their uniforms ------- .\""
+  ],
+  "rarity_order": [
+   "lachrymose",
+   "hegemonic",
+   "immaculate",
+   "idyllic"
+  ],
+  "polarity": {
+   "hegemonic": "0",
+   "lachrymose": "-",
+   "idyllic": "+",
+   "immaculate": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "hegemonic",
+   "odd_one_out": "lachrymose",
+   "most_specific": "hegemonic"
+  }
+ },
+ {
+  "id": "IS20B-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause in an earlier clause (coastline handed away, exports cross foreign land)",
+  "prompt": "[Sentence Completion] Ever since the war of 1879 handed its only coastline to a neighbor, Bolivia's tin has reached the Pacific by rail across foreign territory before sailing from a Chilean port; a ------- nation, it still keeps a navy that patrols Lake Titicaca.",
+  "choices": [
+   "landlocked",
+   "outmoded",
+   "kindred",
+   "monolingual"
+  ],
+  "correct_answer": "landlocked",
+  "explanation": "\"landlocked\" (without a seacoast) is forced by \"handed its only coastline to a neighbor\" and exports crossing \"foreign territory\" to reach a port.",
+  "distractor_rationales": [
+   "outmoded — outmoded means out of date; the clue is the lost coastline, not old-fashioned ways. It fits \"the ------- telegraph office closed for good.\"",
+   "kindred — kindred means related or alike; nothing compares Bolivia with another nation. It fits \"the two poets were ------- spirits.\"",
+   "monolingual — monolingual means speaking one language; the sentence is about sea access, not language. It fits \"the ------- villagers needed an interpreter.\""
+  ],
+  "rarity_order": [
+   "monolingual",
+   "outmoded",
+   "kindred",
+   "landlocked"
+  ],
+  "polarity": {
+   "landlocked": "0",
+   "outmoded": "-",
+   "kindred": "+",
+   "monolingual": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "outmoded",
+   "odd_one_out": "kindred",
+   "most_specific": "monolingual"
+  }
+ },
+ {
+  "id": "IS20B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause in a separate clause (could not pay in coin, warrants sold to buy food)",
+  "prompt": "[Sentence Completion] The young republic could not pay its soldiers in coin and handed them land warrants instead, which many sold to speculators for a fraction of their worth just to buy food; the treasury was ------- and the men were desperate.",
+  "choices": [
+   "hubristic",
+   "germane",
+   "impecunious",
+   "magisterial"
+  ],
+  "correct_answer": "impecunious",
+  "explanation": "\"impecunious\" (having no money) is forced by \"could not pay its soldiers in coin.\"",
+  "distractor_rationales": [
+   "magisterial — magisterial means commanding or authoritative; a treasury that cannot pay its soldiers commands nothing. It fits \"the chief justice's ------- opinion settled the matter.\"",
+   "hubristic — hubristic means arrogantly overconfident; the problem is empty coffers, not pride. It fits \"the ------- general marched into winter without supplies.\"",
+   "germane — germane means relevant to the point; it does not describe a treasury's condition. It fits \"the judge ruled the letter ------- to the case.\""
+  ],
+  "rarity_order": [
+   "impecunious",
+   "hubristic",
+   "magisterial",
+   "germane"
+  ],
+  "polarity": {
+   "impecunious": "-",
+   "magisterial": "0",
+   "hubristic": "-",
+   "germane": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "hubristic",
+   "odd_one_out": "germane",
+   "most_specific": "impecunious"
+  }
+ },
+ {
+  "id": "IS20B-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause in earlier clauses (unpaid, half rations, voyage extended)",
+  "prompt": "[Sentence Completion] The crew had not been paid in eight months and had been on half rations since the Azores; when the captain announced the voyage would be extended another year, the mood belowdecks turned ------- .",
+  "choices": [
+   "gluttonous",
+   "neighborly",
+   "geriatric",
+   "mutinous"
+  ],
+  "correct_answer": "mutinous",
+  "explanation": "\"mutinous\" (ready to rebel against the captain) is forced by months without pay, half rations and an extended voyage.",
+  "distractor_rationales": [
+   "gluttonous — gluttonous means greedy for food; men on half rations cannot be overeating. It fits \"the ------- guests emptied every platter.\"",
+   "neighborly — neighborly means friendly and helpful; unpaid, hungry men told of another year do not turn warm. It fits \"the ------- farmers helped raise the new barn.\"",
+   "geriatric — geriatric relates to old age; the crew's mood is not about being elderly. It fits \"the ------- ward of the hospital.\""
+  ],
+  "rarity_order": [
+   "geriatric",
+   "mutinous",
+   "gluttonous",
+   "neighborly"
+  ],
+  "polarity": {
+   "mutinous": "-",
+   "gluttonous": "-",
+   "neighborly": "+",
+   "geriatric": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "gluttonous",
+   "odd_one_out": "neighborly",
+   "most_specific": "geriatric"
+  }
+ },
+ {
+  "id": "IS20B-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose clue (so that neither party could accuse it of tilting)",
+  "prompt": "[Sentence Completion] So that neither party could accuse it of tilting the result, the state handed the drawing of its voting maps to a ------- commission of retired judges chosen by lot.",
+  "choices": [
+   "monochrome",
+   "nonpartisan",
+   "heavenly",
+   "immodest"
+  ],
+  "correct_answer": "nonpartisan",
+  "explanation": "\"nonpartisan\" (not aligned with any party) is forced by \"so that neither party could accuse it of tilting the result.\"",
+  "distractor_rationales": [
+   "heavenly — heavenly means divine or delightful; it does not answer a fear of party bias. It fits \"the bakery's ------- smell drifted down the street.\"",
+   "immodest — immodest means boastful or indecent; a commission meant to be trusted would not be chosen for that. It fits \"his ------- account of his own heroism.\"",
+   "monochrome — monochrome means in one color; it says nothing about fairness. It fits \"the gallery hung a ------- photograph of the harbor.\""
+  ],
+  "rarity_order": [
+   "monochrome",
+   "immodest",
+   "nonpartisan",
+   "heavenly"
+  ],
+  "polarity": {
+   "nonpartisan": "0",
+   "heavenly": "+",
+   "immodest": "-",
+   "monochrome": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "nonpartisan",
+   "odd_one_out": "immodest",
+   "most_specific": "nonpartisan"
+  }
+ },
+ {
+  "id": "IS20B-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement in an earlier clause (six straight elections, controlled contracts)",
+  "prompt": "[Sentence Completion] The mayor had won six straight elections and controlled every city contract worth having, so when a schoolteacher with no money and no party backing beat the ------- by forty votes, the result made the national papers.",
+  "choices": [
+   "hypocrite",
+   "luminary",
+   "incumbent",
+   "harbinger"
+  ],
+  "correct_answer": "incumbent",
+  "explanation": "\"incumbent\" (the current officeholder) is forced by the mayor having \"won six straight elections\" and still holding office.",
+  "distractor_rationales": [
+   "harbinger — harbinger is a sign of something coming; the mayor is the established officeholder, not a forerunner. It fits \"the first robin is a ------- of spring.\"",
+   "hypocrite — hypocrite would need a clue that the mayor preached one thing and did another; none is given. It fits \"the preacher who gambled on Sundays was called a ------- .\"",
+   "luminary — luminary means a celebrated figure in a field; the clue is his long hold on office, not fame. It fits \"a ------- of modern physics gave the lecture.\""
+  ],
+  "rarity_order": [
+   "harbinger",
+   "incumbent",
+   "luminary",
+   "hypocrite"
+  ],
+  "polarity": {
+   "incumbent": "0",
+   "harbinger": "0",
+   "hypocrite": "-",
+   "luminary": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "hypocrite",
+   "odd_one_out": "hypocrite",
+   "most_specific": "harbinger"
+  }
+ },
+ {
+  "id": "IS20B-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause and result across clauses (empty treasury, bricked windows to avoid paying)",
+  "prompt": "[Sentence Completion] The long war had emptied the treasury, so Parliament voted to ------- a duty on every pane of window glass in the kingdom, and householders bricked up their windows rather than pay it.",
+  "choices": [
+   "levy",
+   "knead",
+   "hector",
+   "imbibe"
+  ],
+  "correct_answer": "levy",
+  "explanation": "\"levy\" (impose and collect a tax) is forced by the \"emptied\" treasury and householders refusing to \"pay it.\"",
+  "distractor_rationales": [
+   "knead — knead means to work dough with the hands; it has nothing to do with taxation. It fits \"the baker began to ------- the bread at four.\"",
+   "hector — hector means to bully or badger a person; a duty on glass is imposed, not bullied. It fits \"the foreman would ------- the apprentices all day.\"",
+   "imbibe — imbibe means to drink or absorb; Parliament does not drink a duty, and householders would not brick up windows against it. It fits \"the travelers stopped to ------- at every inn.\""
+  ],
+  "rarity_order": [
+   "hector",
+   "imbibe",
+   "levy",
+   "knead"
+  ],
+  "polarity": {
+   "levy": "0",
+   "knead": "0",
+   "hector": "-",
+   "imbibe": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "hector",
+   "odd_one_out": "hector",
+   "most_specific": "hector"
+  }
+ },
+ {
+  "id": "IS20B-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "subtle restatement (chose to lose the cargo rather than the ship; bales floating behind)",
+  "prompt": "[Sentence Completion] With water rising in the hold off Cape Hatteras, the captain chose to lose the cargo rather than the ship: he ordered the crew to ------- the cotton, and by dawn four hundred bales were bobbing in the current behind them.",
+  "choices": [
+   "marinate",
+   "jettison",
+   "hoodwink",
+   "lacquer"
+  ],
+  "correct_answer": "jettison",
+  "explanation": "\"jettison\" (throw overboard to lighten a ship) is forced by \"lose the cargo rather than the ship\" and the bales \"bobbing in the current.\"",
+  "distractor_rationales": [
+   "hoodwink — hoodwink means to trick; you trick people, not cotton bales. It fits \"the forger tried to ------- the bank's inspectors.\"",
+   "lacquer — lacquer means to coat with a glossy finish; varnished bales would not end up in the sea. It fits \"craftsmen ------- the boxes in seven coats.\"",
+   "marinate — marinate means to soak food in seasoning; it does not throw cargo overboard. It fits \"the cook let the fish ------- overnight.\""
+  ],
+  "rarity_order": [
+   "jettison",
+   "lacquer",
+   "hoodwink",
+   "marinate"
+  ],
+  "polarity": {
+   "jettison": "0",
+   "hoodwink": "-",
+   "lacquer": "0",
+   "marinate": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "hoodwink",
+   "odd_one_out": "hoodwink",
+   "most_specific": "jettison"
+  }
+ },
+ {
+  "id": "IS20B-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause in earlier clauses (promised swift victory, fled abandoning cannon and wounded)",
+  "prompt": "[Sentence Completion] The general had promised the emperor a swift victory; instead his army slipped back across the river at night, leaving its cannon and its wounded behind, and he returned to the capital to an ------- dismissal.",
+  "choices": [
+   "mellifluous",
+   "horticultural",
+   "mendacious",
+   "ignominious"
+  ],
+  "correct_answer": "ignominious",
+  "explanation": "\"ignominious\" (shameful, disgraceful) is forced by the broken promise and a night retreat \"leaving its cannon and its wounded behind.\"",
+  "distractor_rationales": [
+   "mellifluous — mellifluous means sweet-sounding; a disgraced general would not be dismissed with pleasant music. It fits \"the cellist's ------- tone filled the hall.\"",
+   "horticultural — horticultural relates to gardening; it cannot describe a dismissal. It fits \"the ------- society judged the roses.\"",
+   "mendacious — mendacious means lying; it describes a person or a statement, and the dismissal follows defeat, not a lie. It fits \"the spy's ------- report misled the ministry.\""
+  ],
+  "rarity_order": [
+   "mellifluous",
+   "ignominious",
+   "mendacious",
+   "horticultural"
+  ],
+  "polarity": {
+   "ignominious": "-",
+   "mellifluous": "+",
+   "horticultural": "0",
+   "mendacious": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "mellifluous",
+   "odd_one_out": "horticultural",
+   "most_specific": "mellifluous"
+  }
+ },
+ {
+  "id": "IS20B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement by description in a separate clause (fought while the silver lasted)",
+  "prompt": "[Sentence Completion] The prince could not trust his own nobles, so he hired Swiss pikemen by the season; they fought well while the silver lasted and marched home the week it ran out, ------- to the last.",
+  "choices": [
+   "humane",
+   "jaded",
+   "mercenary",
+   "hirsute"
+  ],
+  "correct_answer": "mercenary",
+  "explanation": "\"mercenary\" (serving only for pay) is forced by \"hired... by the season\" and fighting only \"while the silver lasted.\"",
+  "distractor_rationales": [
+   "hirsute — hirsute means hairy; whether the pikemen had beards does not explain leaving when pay stopped. It fits \"the ------- trapper had not shaved all winter.\"",
+   "humane — humane means kind and merciful; marching off when the money ends shows loyalty to pay, not compassion. It fits \"the warden's ------- treatment of prisoners.\"",
+   "jaded — jaded means worn out or cynical from overexposure; the clue is pay, not weariness. It fits \"the ------- critic had seen a thousand openings.\""
+  ],
+  "rarity_order": [
+   "hirsute",
+   "mercenary",
+   "jaded",
+   "humane"
+  ],
+  "polarity": {
+   "mercenary": "-",
+   "hirsute": "0",
+   "humane": "+",
+   "jaded": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "humane",
+   "odd_one_out": "humane",
+   "most_specific": "hirsute"
+  }
+ },
+ {
+  "id": "IS20B-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement in stem vocabulary (would not be collected; exceed the Constitution)",
+  "prompt": "[Sentence Completion] In 1832 South Carolina's legislature announced that the federal tariff would simply not be collected at Charleston, on the theory that a state could ------- within its borders any act of Congress it judged to exceed the Constitution.",
+  "choices": [
+   "nullify",
+   "immortalize",
+   "mesmerize",
+   "harangue"
+  ],
+  "correct_answer": "nullify",
+  "explanation": "\"nullify\" (declare void and without force) is forced by the tariff that \"would simply not be collected\" because the act was judged unconstitutional.",
+  "distractor_rationales": [
+   "immortalize — immortalize means to make famous forever; a state refusing to collect a tariff is not glorifying it. It fits \"the poem would ------- the fallen sailors.\"",
+   "mesmerize — mesmerize means to hold spellbound; a legislature cannot entrance an act of Congress. It fits \"the magician could ------- a crowd of children.\"",
+   "harangue — harangue means to lecture loudly and at length; a legislature can harangue people, but a speech does not stop a tax being collected. It fits \"the sergeant would ------- the recruits for an hour.\""
+  ],
+  "rarity_order": [
+   "harangue",
+   "nullify",
+   "mesmerize",
+   "immortalize"
+  ],
+  "polarity": {
+   "nullify": "0",
+   "immortalize": "+",
+   "mesmerize": "0",
+   "harangue": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "immortalize",
+   "odd_one_out": "immortalize",
+   "most_specific": "harangue"
+  }
+ },
+ {
+  "id": "IS20B-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast within a purpose sentence (goal vs. methods that drew complaints)",
+  "prompt": "[Sentence Completion] The relief committee's aim, to see that no family in the flooded county went hungry, was ------- ; its methods, which fed only those willing to walk eleven miles to the depot, drew bitter complaints.",
+  "choices": [
+   "nautical",
+   "malarial",
+   "jocular",
+   "laudable"
+  ],
+  "correct_answer": "laudable",
+  "explanation": "\"laudable\" (worthy of praise) is forced by the aim \"that no family... went hungry,\" set against methods that \"drew bitter complaints.\"",
+  "distractor_rationales": [
+   "nautical — nautical relates to ships and sailing; a flood relief aim is not seafaring. It fits \"the museum's ------- charts of the harbor.\"",
+   "malarial — malarial describes a place or fever tied to malaria; an aim cannot carry disease, and the contrast needs a praised aim. It fits \"the ------- swamps along the coast.\"",
+   "jocular — jocular means joking; feeding the hungry is not a joke. It fits \"the host's ------- toast made everyone laugh.\""
+  ],
+  "rarity_order": [
+   "malarial",
+   "jocular",
+   "laudable",
+   "nautical"
+  ],
+  "polarity": {
+   "laudable": "+",
+   "nautical": "0",
+   "malarial": "-",
+   "jocular": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "malarial",
+   "odd_one_out": "malarial",
+   "most_specific": "malarial"
+  }
+ },
+ {
+  "id": "IS20B-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement by description (each spring a few yards; every defense failed)",
+  "prompt": "[Sentence Completion] Each spring the river shifted a few more yards toward the town, taking the orchards one row at a time; levees, dikes and prayers all failed, and by 1890 the residents had accepted that its advance was ------- .",
+  "choices": [
+   "multilingual",
+   "malodorous",
+   "inexorable",
+   "hilarious"
+  ],
+  "correct_answer": "inexorable",
+  "explanation": "\"inexorable\" (impossible to stop) is forced by \"levees, dikes and prayers all failed\" and the residents having \"accepted\" it.",
+  "distractor_rationales": [
+   "hilarious — hilarious means very funny; losing orchards row by row is not comic. It fits \"the clown's ------- act.\"",
+   "multilingual — multilingual means using several languages; a river's advance has no language. It fits \"the port's ------- dockworkers.\"",
+   "malodorous — malodorous means foul-smelling; nothing about smell is given, and it would not explain why defenses failed. It fits \"the ------- tannery by the creek.\""
+  ],
+  "rarity_order": [
+   "inexorable",
+   "malodorous",
+   "multilingual",
+   "hilarious"
+  ],
+  "polarity": {
+   "inexorable": "0",
+   "hilarious": "+",
+   "multilingual": "0",
+   "malodorous": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "inexorable",
+   "odd_one_out": "hilarious",
+   "most_specific": "malodorous"
+  }
+ },
+ {
+  "id": "IS20B-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement in a later clause (forty families, seats passed father to son)",
+  "prompt": "[Sentence Completion] Although the city styled itself a republic, only the forty families who owned the silk mills could sit on its council, and their seats passed from father to son; in practice its government was ------- .",
+  "choices": [
+   "oligarchic",
+   "hydraulic",
+   "irksome",
+   "nuptial"
+  ],
+  "correct_answer": "oligarchic",
+  "explanation": "\"oligarchic\" (ruled by a small group) is forced by \"only the forty families... could sit on its council.\"",
+  "distractor_rationales": [
+   "hydraulic — hydraulic relates to water pressure and machinery; a council's makeup is not mechanical. It fits \"the mill's ------- press.\"",
+   "irksome — irksome means annoying; rule by forty families is a structure, and annoyance does not name it. It fits \"the ------- delays at the border crossing.\"",
+   "nuptial — nuptial relates to weddings; seats passing to sons is inheritance, not marriage. It fits \"the couple's ------- feast lasted three days.\""
+  ],
+  "rarity_order": [
+   "nuptial",
+   "oligarchic",
+   "hydraulic",
+   "irksome"
+  ],
+  "polarity": {
+   "oligarchic": "-",
+   "hydraulic": "0",
+   "irksome": "-",
+   "nuptial": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "nuptial",
+   "odd_one_out": "nuptial",
+   "most_specific": "oligarchic"
+  }
+ },
+ {
+  "id": "IS20B-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "clue distance (nine workers in 1848, smokestacks thirty years later)",
+  "prompt": "[Sentence Completion] In 1848 the town's single cotton mill employed nine people, and few visitors guessed that the ------- industry would within thirty years fill the valley with smokestacks and draw workers from three countries.",
+  "choices": [
+   "invidious",
+   "incipient",
+   "ostensible",
+   "gratifying"
+  ],
+  "correct_answer": "incipient",
+  "explanation": "\"incipient\" (just beginning) is forced by a single mill with \"nine people\" that would grow \"within thirty years.\"",
+  "distractor_rationales": [
+   "ostensible — ostensible means apparent but perhaps not real; the industry was real and simply small. It fits \"his ------- reason for the visit was business.\"",
+   "gratifying — gratifying means pleasing; the point is how small the industry was, not that it pleased anyone. It fits \"the ------- applause after the recital.\"",
+   "invidious — invidious means likely to cause resentment or unfair; nothing shows the mill offending anyone, and the clue is its small size. It fits \"the ------- comparison between the two sisters.\""
+  ],
+  "rarity_order": [
+   "invidious",
+   "incipient",
+   "ostensible",
+   "gratifying"
+  ],
+  "polarity": {
+   "incipient": "0",
+   "ostensible": "0",
+   "gratifying": "+",
+   "invidious": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "incipient",
+   "odd_one_out": "gratifying",
+   "most_specific": "invidious"
+  }
+ },
+ {
+  "id": "IS20B-21",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause (no spring within a day's walk)",
+  "prompt": "[Sentence Completion] The plateau's soil was rich, but no spring rose within a day's walk of it, so although armies crossed it often, almost no one before the aqueduct was built had found it ------- .",
+  "choices": [
+   "iniquitous",
+   "loquacious",
+   "habitable",
+   "openhearted"
+  ],
+  "correct_answer": "habitable",
+  "explanation": "\"habitable\" (fit to live in) is forced by \"no spring\" nearby, which the aqueduct later solved.",
+  "distractor_rationales": [
+   "openhearted — openhearted describes a carefree person or mood; land is not carefree, and the clue is water. It fits \"the ------- banter at the picnic.\"",
+   "iniquitous — iniquitous means grossly unjust or wicked; a dry plateau is not wicked, and the aqueduct fixed water, not injustice. It fits \"the ------- tax fell hardest on the poor.\"",
+   "loquacious — loquacious means talkative; a plateau does not speak. It fits \"the ------- barber knew every rumor in town.\""
+  ],
+  "rarity_order": [
+   "iniquitous",
+   "loquacious",
+   "openhearted",
+   "habitable"
+  ],
+  "polarity": {
+   "habitable": "+",
+   "openhearted": "+",
+   "iniquitous": "-",
+   "loquacious": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "iniquitous",
+   "odd_one_out": "iniquitous",
+   "most_specific": "iniquitous"
+  }
+ },
+ {
+  "id": "IS20B-22",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause and example (printing banknotes, bread price doubling)",
+  "prompt": "[Sentence Completion] When the government paid its war debts simply by printing more banknotes, the price of a loaf of bread doubled in a month and doubled again the next, and economists still cite the episode as a textbook ------- spiral.",
+  "choices": [
+   "matrimonial",
+   "inflationary",
+   "hypnotic",
+   "galactic"
+  ],
+  "correct_answer": "inflationary",
+  "explanation": "\"inflationary\" (marked by rising prices) is forced by \"printing more banknotes\" and bread prices doubling.",
+  "distractor_rationales": [
+   "hypnotic — a hypnotic spiral is a swirling pattern that entrances; it has nothing to do with prices. It fits \"the ------- rhythm of the drums.\"",
+   "galactic — a galactic spiral is a shape of stars; the episode is about money. It fits \"the ------- core is hidden by dust.\"",
+   "matrimonial — matrimonial relates to marriage; it cannot describe rising prices. It fits \"the ------- vows were read in two languages.\""
+  ],
+  "rarity_order": [
+   "matrimonial",
+   "galactic",
+   "hypnotic",
+   "inflationary"
+  ],
+  "polarity": {
+   "inflationary": "-",
+   "hypnotic": "0",
+   "galactic": "0",
+   "matrimonial": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "galactic",
+   "odd_one_out": "inflationary",
+   "most_specific": "galactic"
+  }
+ },
+ {
+  "id": "IS20B-23",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose clue (requisitioning trains to carry reservists to the frontier)",
+  "prompt": "[Sentence Completion] When the telegram declaring war arrived, the ministry had less than a week to ------- two hundred thousand reservists, requisitioning every train in the country to carry them to the frontier.",
+  "choices": [
+   "lubricate",
+   "ostracize",
+   "glamorize",
+   "mobilize"
+  ],
+  "correct_answer": "mobilize",
+  "explanation": "\"mobilize\" (assemble and ready for war) is forced by \"declaring war\" and trains requisitioned \"to carry them to the frontier.\"",
+  "distractor_rationales": [
+   "lubricate — lubricate means to oil machinery; reservists are gathered, not greased. It fits \"the mechanic had to ------- the gears every week.\"",
+   "ostracize — ostracize means to exclude from a group; the ministry is gathering the reservists, not shunning them. It fits \"the club voted to ------- the cheat.\"",
+   "glamorize — glamorize means to make something seem glamorous; the ministry is moving men to the frontier, not dressing up war. It fits \"the film tended to ------- life at sea.\""
+  ],
+  "rarity_order": [
+   "ostracize",
+   "glamorize",
+   "lubricate",
+   "mobilize"
+  ],
+  "polarity": {
+   "mobilize": "0",
+   "lubricate": "0",
+   "ostracize": "-",
+   "glamorize": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "ostracize",
+   "odd_one_out": "ostracize",
+   "most_specific": "glamorize"
+  }
+ }
+]

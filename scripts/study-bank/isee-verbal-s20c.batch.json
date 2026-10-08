@@ -1,0 +1,991 @@
+[
+ {
+  "id": "IS20C-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (clue in prior sentence)",
+  "prompt": "[Sentence Completion] Mr. Okafor reread every galley twice, checked each hyphen against the house style sheet, and stayed past closing whenever a single page was in doubt; in forty years at the press he never once let a proof go out unexamined. His apprentices, who found such ------- labor tiring merely to watch, learned more from him than from any manual.",
+  "choices": [
+   "resplendent",
+   "sedulous",
+   "ribald",
+   "sonorous"
+  ],
+  "correct_answer": "sedulous",
+  "explanation": "sedulous (persistently careful and diligent): the whole first sentence is a list of examples of painstaking, unbroken effort, and 'tiring merely to watch' confirms the degree.",
+  "distractor_rationales": [
+   "resplendent - dazzlingly splendid; fits a gilded throne room or a costume, not repetitive proofreading.",
+   "ribald - coarsely humorous; fits a tavern song or bawdy comedy, nothing in the labor described is crude.",
+   "sonorous - deep and resonant in sound; fits an organ or a bass voice, and the labor here is silent checking."
+  ],
+  "rarity_order": [
+   "sedulous",
+   "ribald",
+   "resplendent",
+   "sonorous"
+  ],
+  "polarity": {
+   "sedulous": "+",
+   "resplendent": "+",
+   "ribald": "-",
+   "sonorous": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "resplendent",
+   "odd_one_out": "ribald",
+   "most_specific": "sedulous"
+  }
+ },
+ {
+  "id": "IS20C-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of range",
+  "prompt": "[Sentence Completion] Critics never managed to file the actress under a single type. In one season she played a murderous queen, a giggling schoolgirl, and a weary old fisherman, and audiences who saw all three productions sometimes failed to recognize her. Her ------- talent kept casting directors guessing about what she would attempt next.",
+  "choices": [
+   "sprightly",
+   "rotund",
+   "protean",
+   "querulous"
+  ],
+  "correct_answer": "protean",
+  "explanation": "protean (able to take many forms): the queen, the schoolgirl and the fisherman, and audiences failing to recognize her, are examples of a talent that changes shape entirely.",
+  "distractor_rationales": [
+   "sprightly - lively and brisk; fits an energetic elderly dancer, but the clue is about range of roles, not liveliness.",
+   "rotund - plump and round; fits a description of a character's figure, and says nothing about versatility.",
+   "querulous - habitually complaining; fits a grumbling patient, and nothing here describes complaint."
+  ],
+  "rarity_order": [
+   "protean",
+   "querulous",
+   "sprightly",
+   "rotund"
+  ],
+  "polarity": {
+   "protean": "+",
+   "sprightly": "+",
+   "rotund": "0",
+   "querulous": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "sprightly",
+   "odd_one_out": "rotund",
+   "most_specific": "querulous"
+  }
+ },
+ {
+  "id": "IS20C-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples of degree",
+  "prompt": "[Sentence Completion] The usually restless fourth graders sat without fidgeting through the entire puppet show, eyes fixed on the stage and mouths slightly open; not one of them asked to leave for a drink of water. The puppeteer said afterward that she had rarely played to so ------- an audience.",
+  "choices": [
+   "sinewy",
+   "rapt",
+   "slovenly",
+   "punchy"
+  ],
+  "correct_answer": "rapt",
+  "explanation": "rapt (completely absorbed): fixed eyes, open mouths, no fidgeting and no one leaving are examples of total absorption.",
+  "distractor_rationales": [
+   "sinewy - lean and muscular; fits a rock climber's arms, not a seated audience of children.",
+   "slovenly - messy and careless; fits an unkempt room or sloppy work, and these children are described only by their attention.",
+   "punchy - forceful and lively; fits a short slogan or a headline, not people watching quietly."
+  ],
+  "rarity_order": [
+   "sinewy",
+   "slovenly",
+   "rapt",
+   "punchy"
+  ],
+  "polarity": {
+   "rapt": "+",
+   "sinewy": "0",
+   "slovenly": "-",
+   "punchy": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "punchy",
+   "odd_one_out": "slovenly",
+   "most_specific": "sinewy"
+  }
+ },
+ {
+  "id": "IS20C-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (clue in prior sentences)",
+  "prompt": "[Sentence Completion] The seminar's reading list began with Ptolemy's star catalog and ended with a monograph on medieval Armenian bookbinding, and the professor assumed every student already read Latin. Even the graduate assistants admitted they had never heard of half the sources. The department finally decided the course was simply too ------- for a first-year program.",
+  "choices": [
+   "raffish",
+   "tuneful",
+   "scrawny",
+   "recondite"
+  ],
+  "correct_answer": "recondite",
+  "explanation": "recondite (dealing with obscure, little-known knowledge): the obscure sources that even graduate assistants had never heard of are the examples that force it.",
+  "distractor_rationales": [
+   "raffish - unconventional in a slightly disreputable, flashy way; fits a gambler's hat, not a reading list.",
+   "tuneful - melodious; fits a folk song, and the course is described by its sources, not by music.",
+   "scrawny - thin and bony; fits a stray cat, never a syllabus."
+  ],
+  "rarity_order": [
+   "recondite",
+   "raffish",
+   "scrawny",
+   "tuneful"
+  ],
+  "polarity": {
+   "recondite": "0",
+   "raffish": "0",
+   "tuneful": "+",
+   "scrawny": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "scrawny",
+   "odd_one_out": "tuneful",
+   "most_specific": "recondite"
+  }
+ },
+ {
+  "id": "IS20C-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "descriptive detail",
+  "prompt": "[Sentence Completion] After twenty winters on the touring circuit, the company's velvet curtain had grown so worn that stage lights glowed through it in places, and patrons in the front row could count its individual strands. The manager kept promising a new one, but the old ------- curtain rose every night.",
+  "choices": [
+   "vocal",
+   "propitious",
+   "threadbare",
+   "unassuming"
+  ],
+  "correct_answer": "threadbare",
+  "explanation": "threadbare (worn thin so the threads show): lights glowing through it and countable strands after twenty winters describe a fabric worn to its threads.",
+  "distractor_rationales": [
+   "vocal - outspoken; fits a protester or a critic, not a piece of fabric.",
+   "propitious - favorable, promising good luck; fits weather on launch day, and the curtain's condition is the opposite of a good sign.",
+   "unassuming - modest, not showy; fits a quiet star who avoids attention, but the clue is wear, not modesty."
+  ],
+  "rarity_order": [
+   "propitious",
+   "threadbare",
+   "unassuming",
+   "vocal"
+  ],
+  "polarity": {
+   "threadbare": "-",
+   "vocal": "0",
+   "propitious": "+",
+   "unassuming": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "unassuming",
+   "odd_one_out": "threadbare",
+   "most_specific": "propitious"
+  }
+ },
+ {
+  "id": "IS20C-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (subtle restatement)",
+  "prompt": "[Sentence Completion] The painter ignored the battles and coronations that filled the academy's galleries. Her canvases show a woman peeling potatoes, a boy lacing his boots, a clerk yawning over a ledger: scenes so ------- that early reviewers wondered why anyone would bother to frame them.",
+  "choices": [
+   "sapient",
+   "refractory",
+   "tawny",
+   "quotidian"
+  ],
+  "correct_answer": "quotidian",
+  "explanation": "quotidian (ordinary, of everyday life): peeling potatoes, lacing boots and yawning over a ledger are examples of daily routine, and reviewers doubting they deserved framing confirms how ordinary they are.",
+  "distractor_rationales": [
+   "sapient - wise; fits a sage or a council of elders, and the scenes are not described as wise.",
+   "refractory - stubbornly resistant to control; fits a mule or a disease that resists treatment, not painted scenes.",
+   "tawny - orange-brown; fits a lion's coat, and nothing in the sentence concerns color."
+  ],
+  "rarity_order": [
+   "quotidian",
+   "refractory",
+   "sapient",
+   "tawny"
+  ],
+  "polarity": {
+   "quotidian": "0",
+   "sapient": "+",
+   "refractory": "-",
+   "tawny": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "sapient",
+   "odd_one_out": "tawny",
+   "most_specific": "quotidian"
+  }
+ },
+ {
+  "id": "IS20C-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples with degree comparison",
+  "prompt": "[Sentence Completion] The comedy troupe's new revue relied almost entirely on whoopee cushions, rhyming insults about the director's haircut, and a ten-minute sketch in which two grown men fought over a lollipop. The drama teacher, who had hoped for political satire, said the humor was too ------- even for the sixth graders in the front row.",
+  "choices": [
+   "squeamish",
+   "puerile",
+   "unheralded",
+   "tantalizing"
+  ],
+  "correct_answer": "puerile",
+  "explanation": "puerile (childishly silly): whoopee cushions, haircut insults and grown men fighting over a lollipop are examples of childish humor, and 'too ... even for the sixth graders' marks the degree.",
+  "distractor_rationales": [
+   "squeamish - easily disgusted; fits a student who faints at a dissection, and the humor described is silly, not something easily upset.",
+   "unheralded - not announced or praised in advance; fits an unknown winner, and the revue's publicity is never mentioned.",
+   "tantalizing - tempting but out of reach; fits a smell from a kitchen, and the teacher is disappointed, not tempted."
+  ],
+  "rarity_order": [
+   "puerile",
+   "unheralded",
+   "squeamish",
+   "tantalizing"
+  ],
+  "polarity": {
+   "puerile": "-",
+   "squeamish": "-",
+   "unheralded": "0",
+   "tantalizing": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "tantalizing",
+   "odd_one_out": "unheralded",
+   "most_specific": "puerile"
+  }
+ },
+ {
+  "id": "IS20C-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "example (quoted instance)",
+  "prompt": "[Sentence Completion] The translation was accurate word for word, yet no one in the cast could speak its lines aloud without sounding like a legal contract; a simple hello had become \"I extend to you my salutations upon the occasion of your arrival.\" The director spent the first week of rehearsal rewriting the ------- dialogue into something actors could actually say.",
+  "choices": [
+   "rangy",
+   "seasoned",
+   "stilted",
+   "vociferous"
+  ],
+  "correct_answer": "stilted",
+  "explanation": "stilted (stiff, formal and unnatural): the legal-contract tone and the inflated greeting are examples of language too stiff for natural speech.",
+  "distractor_rationales": [
+   "rangy - tall and long-limbed; fits a basketball forward, not lines of a script.",
+   "seasoned - experienced; fits a veteran actor, but the dialogue is being criticized, not praised for experience.",
+   "vociferous - loud and insistent; fits protesters or a crowd, and the problem with these lines is formality, not volume."
+  ],
+  "rarity_order": [
+   "vociferous",
+   "stilted",
+   "rangy",
+   "seasoned"
+  ],
+  "polarity": {
+   "stilted": "-",
+   "rangy": "0",
+   "seasoned": "+",
+   "vociferous": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "seasoned",
+   "odd_one_out": "rangy",
+   "most_specific": "vociferous"
+  }
+ },
+ {
+  "id": "IS20C-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples with degree (age contrast)",
+  "prompt": "[Sentence Completion] At eighty-one, the retired coach still demonstrated every drill himself, bounding over the low hurdles ahead of his teenage runners and hopping up onto the bleachers to call out their times. Visitors who expected a frail old man were surprised to find him so -------.",
+  "choices": [
+   "tepid",
+   "uppity",
+   "suave",
+   "spry"
+  ],
+  "correct_answer": "spry",
+  "explanation": "spry (active and nimble, especially when old): bounding over hurdles and hopping onto bleachers at eighty-one are examples of nimble vigor, set against 'frail'.",
+  "distractor_rationales": [
+   "tepid - lukewarm or unenthusiastic; fits weak applause, and this coach is the opposite of halfhearted, but the clue is physical agility.",
+   "uppity - self-important; fits a newly promoted clerk who looks down on others, and nothing here concerns arrogance.",
+   "suave - smoothly charming; fits a host at a gala, and the clue is about athletic movement, not manners."
+  ],
+  "rarity_order": [
+   "suave",
+   "uppity",
+   "tepid",
+   "spry"
+  ],
+  "polarity": {
+   "spry": "+",
+   "tepid": "-",
+   "uppity": "-",
+   "suave": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "tepid",
+   "odd_one_out": "uppity",
+   "most_specific": "suave"
+  }
+ },
+ {
+  "id": "IS20C-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "example (quoted comment), clue in prior sentence",
+  "prompt": "[Sentence Completion] Ms. Adeyemi's margin notes rarely ran longer than a line, but each went straight to the weakest point of the essay: \"Your second paragraph assumes what your first was meant to prove.\" Students dreaded her ------- comments in September and, by spring, were quoting them to one another as models.",
+  "choices": [
+   "unwieldy",
+   "trenchant",
+   "sartorial",
+   "redolent"
+  ],
+  "correct_answer": "trenchant",
+  "explanation": "trenchant (sharply incisive): brief notes that go 'straight to the weakest point', illustrated by the quoted comment, describe criticism that cuts precisely.",
+  "distractor_rationales": [
+   "unwieldy - awkwardly large and hard to handle; fits a cello case on a bus, and these notes are only a line long.",
+   "sartorial - relating to clothing and tailoring; fits a review of a designer's suits, not essay comments.",
+   "redolent - strongly suggestive or fragrant; fits a kitchen redolent of garlic, and the comments are praised for precision, not for evoking anything."
+  ],
+  "rarity_order": [
+   "redolent",
+   "sartorial",
+   "trenchant",
+   "unwieldy"
+  ],
+  "polarity": {
+   "trenchant": "+",
+   "unwieldy": "-",
+   "sartorial": "0",
+   "redolent": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "redolent",
+   "odd_one_out": "unwieldy",
+   "most_specific": "sartorial"
+  }
+ },
+ {
+  "id": "IS20C-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of degree",
+  "prompt": "[Sentence Completion] By her fifteenth birthday the swimmer had broken national records in four different strokes, and coaches who timed her in practice assumed at first that their stopwatches were broken. Scouts from three countries came to watch what one of them called a ------- talent.",
+  "choices": [
+   "rickety",
+   "prodigious",
+   "unseemly",
+   "salutary"
+  ],
+  "correct_answer": "prodigious",
+  "explanation": "prodigious (remarkably great in extent or degree): national records in four strokes at fifteen and times so fast coaches doubted their stopwatches are examples of extraordinary ability.",
+  "distractor_rationales": [
+   "rickety - shaky and likely to collapse; fits an old ladder or a wooden pier, not a record-breaking swimmer.",
+   "unseemly - improper or in poor taste; fits rude behavior at a funeral, and nothing in her conduct is improper.",
+   "salutary - beneficial, though often unwelcome; fits a hard lesson that improves someone, and the clue measures how great her ability is."
+  ],
+  "rarity_order": [
+   "salutary",
+   "prodigious",
+   "unseemly",
+   "rickety"
+  ],
+  "polarity": {
+   "prodigious": "+",
+   "rickety": "-",
+   "unseemly": "-",
+   "salutary": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "unseemly",
+   "odd_one_out": "rickety",
+   "most_specific": "salutary"
+  }
+ },
+ {
+  "id": "IS20C-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples of effort despite disadvantage",
+  "prompt": "[Sentence Completion] Outsized by every opponent and missing two starters all season, the little school's basketball team still dove for every loose ball, fought for every rebound, and somehow won eleven games. Even rival coaches admired such a ------- squad.",
+  "choices": [
+   "seminal",
+   "scrappy",
+   "unctuous",
+   "rarefied"
+  ],
+  "correct_answer": "scrappy",
+  "explanation": "scrappy (determined and full of fight despite being small or outmatched): diving for loose balls and fighting for rebounds while outsized are examples of fighting spirit.",
+  "distractor_rationales": [
+   "seminal - highly influential on later work; fits a groundbreaking novel or experiment, not a small high-school team.",
+   "unctuous - excessively flattering in an oily way; fits a salesman who over-praises customers, and the team is admired, not ingratiating.",
+   "rarefied - elevated, exclusive, or thin like high-altitude air; fits elite academic circles, and this team is an underdog."
+  ],
+  "rarity_order": [
+   "rarefied",
+   "unctuous",
+   "seminal",
+   "scrappy"
+  ],
+  "polarity": {
+   "scrappy": "+",
+   "seminal": "+",
+   "unctuous": "-",
+   "rarefied": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "seminal",
+   "odd_one_out": "unctuous",
+   "most_specific": "unctuous"
+  }
+ },
+ {
+  "id": "IS20C-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of behavior (clue in prior sentence)",
+  "prompt": "[Sentence Completion] The new conductor rarely addressed the orchestra directly; he sent instructions through the concertmaster, sighed audibly at the second violins' questions, and once remarked that the hall's acoustics were \"adequate, for amateurs.\" Musicians who had played there for thirty years found his ------- manner hard to forgive.",
+  "choices": [
+   "polyglot",
+   "rawboned",
+   "supercilious",
+   "turbid"
+  ],
+  "correct_answer": "supercilious",
+  "explanation": "supercilious (behaving as though one is superior to others): refusing to address the players, sighing at questions and dismissing the hall as fit 'for amateurs' are examples of disdainful condescension.",
+  "distractor_rationales": [
+   "polyglot - knowing many languages; fits a translator or an international diplomat, and the conductor's languages are never mentioned.",
+   "rawboned - gaunt and bony; fits a description of a farmer's frame, not a manner.",
+   "turbid - cloudy or muddled; fits a muddy river or confused prose, and his manner is clear in its contempt, not muddled."
+  ],
+  "rarity_order": [
+   "supercilious",
+   "rawboned",
+   "turbid",
+   "polyglot"
+  ],
+  "polarity": {
+   "supercilious": "-",
+   "polyglot": "+",
+   "rawboned": "0",
+   "turbid": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "polyglot",
+   "odd_one_out": "polyglot",
+   "most_specific": "supercilious"
+  }
+ },
+ {
+  "id": "IS20C-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples of degree",
+  "prompt": "[Sentence Completion] Though the documentary ran nearly three hours, not one person in the packed theater checked a phone, and when the lights came up several viewers stayed in their seats as though hoping there was more. The director had never expected so long a film to prove so -------.",
+  "choices": [
+   "sundry",
+   "sophomoric",
+   "riveting",
+   "seraphic"
+  ],
+  "correct_answer": "riveting",
+  "explanation": "riveting (holding attention completely): no one checking a phone for three hours and viewers staying seated hoping for more are examples of total engagement.",
+  "distractor_rationales": [
+   "sundry - of various kinds; fits a drawer of sundry tools, and a single film is not 'various'.",
+   "sophomoric - immature and overconfident; fits a self-important student essay, and the audience's response shows no such flaw.",
+   "seraphic - angelically serene; fits a sleeping infant's face, and the film is praised for gripping, not serene, quality."
+  ],
+  "rarity_order": [
+   "seraphic",
+   "sundry",
+   "sophomoric",
+   "riveting"
+  ],
+  "polarity": {
+   "riveting": "+",
+   "sundry": "0",
+   "sophomoric": "-",
+   "seraphic": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "seraphic",
+   "odd_one_out": "sundry",
+   "most_specific": "sophomoric"
+  }
+ },
+ {
+  "id": "IS20C-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "example narrative (clue across sentences)",
+  "prompt": "[Sentence Completion] The striker had an open teammate beside her and an empty net ahead. Instead of passing, she flicked the ball over her own head, juggled it twice on her knee, and only then shot, wide, after which she turned to the stands and bowed. Her coach benched her for the second half, saying a team down by a goal had no use for such ------- play.",
+  "choices": [
+   "piquant",
+   "sallow",
+   "preening",
+   "taxonomic"
+  ],
+  "correct_answer": "preening",
+  "explanation": "preening (showing off, admiring oneself): the needless tricks performed for the crowd and the bow after a missed shot are examples of self-display rather than teamwork.",
+  "distractor_rationales": [
+   "piquant - pleasantly sharp or stimulating; fits a sauce or a witty remark, and the coach is condemning the play, not savoring it.",
+   "sallow - of a sickly yellowish complexion; fits a patient's face, not a style of play.",
+   "taxonomic - relating to classification of organisms; fits a biology key, not a soccer match."
+  ],
+  "rarity_order": [
+   "taxonomic",
+   "piquant",
+   "preening",
+   "sallow"
+  ],
+  "polarity": {
+   "preening": "-",
+   "piquant": "+",
+   "sallow": "-",
+   "taxonomic": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "piquant",
+   "odd_one_out": "taxonomic",
+   "most_specific": "taxonomic"
+  }
+ },
+ {
+  "id": "IS20C-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of degree under contrast with others",
+  "prompt": "[Sentence Completion] Through the final ten miles of the marathon, as other runners slowed to a shuffle or stopped to stretch cramping calves, she held exactly the pace she had set at the starting line, mile after mile. Commentators marveled at her ------- pace.",
+  "choices": [
+   "spurned",
+   "tonal",
+   "unflagging",
+   "svelte"
+  ],
+  "correct_answer": "unflagging",
+  "explanation": "unflagging (never tiring or slowing): holding the same pace for ten miles while others slowed or stopped is the example of tireless effort.",
+  "distractor_rationales": [
+   "spurned - rejected with contempt; fits a refused offer or a rejected suitor, not a running pace.",
+   "tonal - relating to musical tone or key; fits a composition, not a marathon.",
+   "svelte - slender and elegant; fits a runner's figure, but the blank modifies her pace, and the clue is endurance."
+  ],
+  "rarity_order": [
+   "svelte",
+   "unflagging",
+   "tonal",
+   "spurned"
+  ],
+  "polarity": {
+   "unflagging": "+",
+   "spurned": "-",
+   "tonal": "0",
+   "svelte": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "spurned",
+   "odd_one_out": "tonal",
+   "most_specific": "svelte"
+  }
+ },
+ {
+  "id": "IS20C-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (clue in earlier sentence)",
+  "prompt": "[Sentence Completion] The two hosts never seemed to script their exchanges: she would needle him about his ties, he would answer with a pun on her hometown, and she would top the pun before the studio audience had finished laughing. Viewers tuned in less for the celebrity guests than for this nightly -------.",
+  "choices": [
+   "tutelage",
+   "repartee",
+   "umbrage",
+   "pittance"
+  ],
+  "correct_answer": "repartee",
+  "explanation": "repartee (quick, witty back-and-forth conversation): the needling, the answering pun and the topping of the pun are the examples of rapid witty exchange.",
+  "distractor_rationales": [
+   "tutelage - instruction or guardianship; fits an apprentice learning under a master, not two hosts trading jokes.",
+   "umbrage - offense or resentment; fits an official who takes umbrage at criticism, and the teasing here is enjoyed, not resented.",
+   "pittance - a very small amount of money; fits a meager wage, and nothing concerns payment."
+  ],
+  "rarity_order": [
+   "umbrage",
+   "repartee",
+   "tutelage",
+   "pittance"
+  ],
+  "polarity": {
+   "repartee": "+",
+   "tutelage": "0",
+   "umbrage": "-",
+   "pittance": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "umbrage",
+   "odd_one_out": "pittance",
+   "most_specific": "umbrage"
+  }
+ },
+ {
+  "id": "IS20C-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "effects as examples",
+  "prompt": "[Sentence Completion] When the captain finished speaking in the locker room, the players were on their feet, pounding the lockers and chanting the school's name; several said later that they had never wanted to win a game more. It was the most ------- speech of her four years on the team.",
+  "choices": [
+   "wheezing",
+   "velvety",
+   "synoptic",
+   "rousing"
+  ],
+  "correct_answer": "rousing",
+  "explanation": "rousing (stirring people to excitement and action): players on their feet, pounding lockers, chanting and never wanting to win more show the speech's stirring effect.",
+  "distractor_rationales": [
+   "wheezing - breathing with a whistling sound; fits an asthmatic runner, and nothing suggests the captain struggled to breathe.",
+   "velvety - smooth and soft; fits a singer's low voice or a fabric, and the clue is the speech's effect on the players, not its texture.",
+   "synoptic - giving a general summary; fits an overview chart, and the speech is remembered for inspiring, not summarizing."
+  ],
+  "rarity_order": [
+   "synoptic",
+   "velvety",
+   "wheezing",
+   "rousing"
+  ],
+  "polarity": {
+   "rousing": "+",
+   "wheezing": "-",
+   "velvety": "+",
+   "synoptic": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "wheezing",
+   "odd_one_out": "synoptic",
+   "most_specific": "synoptic"
+  }
+ },
+ {
+  "id": "IS20C-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of behavior",
+  "prompt": "[Sentence Completion] Within his first three games the young hockey player had been sent to the penalty box for shoving two opposing captains, had disputed nearly every whistle, and once spent an entire timeout shouting at his own goalie. Teammates joked that his ------- temperament would one day earn him a penalty in the locker room.",
+  "choices": [
+   "plangent",
+   "pellucid",
+   "pugnacious",
+   "shopworn"
+  ],
+  "correct_answer": "pugnacious",
+  "explanation": "pugnacious (eager to quarrel or fight): shoving captains, disputing whistles and shouting at his own goalie are examples of a combative temperament.",
+  "distractor_rationales": [
+   "plangent - loud and mournful in sound; fits a church bell or a lament, not a temperament.",
+   "pellucid - transparently clear; fits mountain water or very clear prose, and the player's behavior is described, not its clarity.",
+   "shopworn - worn out from overuse or display; fits an old excuse or a faded display item, not a new player's character."
+  ],
+  "rarity_order": [
+   "plangent",
+   "pellucid",
+   "pugnacious",
+   "shopworn"
+  ],
+  "polarity": {
+   "pugnacious": "-",
+   "plangent": "0",
+   "pellucid": "+",
+   "shopworn": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "pellucid",
+   "odd_one_out": "pellucid",
+   "most_specific": "plangent"
+  }
+ },
+ {
+  "id": "IS20C-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples followed by restatement in a later sentence",
+  "prompt": "[Sentence Completion] The committee took eleven months to produce its report, and every chapter marched through the meetings in the order they had occurred, minutes and all, before arriving on page 300 at a recommendation everyone had expected from the start. Its prose was as ------- as its conclusion: correct, unadorned, and forgotten by the following week.",
+  "choices": [
+   "puckish",
+   "serrated",
+   "pedestrian",
+   "stocky"
+  ],
+  "correct_answer": "pedestrian",
+  "explanation": "pedestrian (dull and lacking imagination): the plodding chronological chapters, the expected recommendation and 'correct, unadorned, and forgotten' describe prose with no distinction.",
+  "distractor_rationales": [
+   "puckish - playful and mischievous; fits a prankster's grin, and nothing in this report is playful.",
+   "serrated - having a saw-toothed edge; fits a bread knife, not prose.",
+   "stocky - short and sturdily built; fits a wrestler, not a style of writing."
+  ],
+  "rarity_order": [
+   "puckish",
+   "serrated",
+   "pedestrian",
+   "stocky"
+  ],
+  "polarity": {
+   "pedestrian": "-",
+   "puckish": "+",
+   "serrated": "0",
+   "stocky": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "puckish",
+   "odd_one_out": "stocky",
+   "most_specific": "puckish"
+  }
+ },
+ {
+  "id": "IS20C-21",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples (quoted instances)",
+  "prompt": "[Sentence Completion] The coach's halftime advice never ran longer than a single sentence (\"Guard the baseline,\" or \"Make them shoot from outside\"), yet players remembered those few words for years after they graduated. Few speeches have been as ------- as hers.",
+  "choices": [
+   "tremulous",
+   "pithy",
+   "quizzical",
+   "wrenching"
+  ],
+  "correct_answer": "pithy",
+  "explanation": "pithy (brief but full of meaning): advice never longer than one sentence, yet remembered for years, combines brevity with force.",
+  "distractor_rationales": [
+   "tremulous - shaking or timid; fits a nervous first-time speaker's voice, and these commands are confident.",
+   "quizzical - puzzled or questioning; fits a raised eyebrow, and the advice consists of firm instructions, not questions.",
+   "wrenching - deeply painful or distressing; fits a farewell scene or a tragic ending, and these short commands are practical, not emotional."
+  ],
+  "rarity_order": [
+   "tremulous",
+   "quizzical",
+   "pithy",
+   "wrenching"
+  ],
+  "polarity": {
+   "tremulous": "-",
+   "pithy": "+",
+   "quizzical": "0",
+   "wrenching": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "wrenching",
+   "odd_one_out": "quizzical",
+   "most_specific": "tremulous"
+  }
+ },
+ {
+  "id": "IS20C-22",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (subtle restatement)",
+  "prompt": "[Sentence Completion] No one had ever shown her how to hold a brush: she mixed her colors on a chipped dinner plate, never learned the names of the techniques she used, and was astonished when a gallery owner described her work as \"confidently Impressionist.\" Critics who saw her first show called it the work of a ------- but remarkable eye.",
+  "choices": [
+   "scabrous",
+   "tangy",
+   "portentous",
+   "untutored"
+  ],
+  "correct_answer": "untutored",
+  "explanation": "untutored (without formal instruction): never being shown how to hold a brush and not knowing the names of her own techniques are examples of having had no training.",
+  "distractor_rationales": [
+   "scabrous - rough and scaly, or indecent; fits a lizard's skin or a crude joke, not a painter's eye.",
+   "tangy - sharp and pleasantly sour in taste; fits a lemonade or a sauce, and nothing in the sentence concerns flavor.",
+   "portentous - ominous or pompously solemn; fits a warning sign, and the critics are praising an untrained but gifted eye."
+  ],
+  "rarity_order": [
+   "scabrous",
+   "portentous",
+   "untutored",
+   "tangy"
+  ],
+  "polarity": {
+   "scabrous": "-",
+   "tangy": "+",
+   "portentous": "0",
+   "untutored": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "tangy",
+   "odd_one_out": "tangy",
+   "most_specific": "scabrous"
+  }
+ },
+ {
+  "id": "IS20C-23",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of degree (clue in prior sentence)",
+  "prompt": "[Sentence Completion] At the academy, students rose at six to a bell, marched to breakfast in rows, and were given exactly four minutes to change classrooms; even the order in which they could borrow library books was fixed by a printed schedule. Graduates said the ------- days left them unsure what to do with a free afternoon.",
+  "choices": [
+   "toothsome",
+   "sanctimonious",
+   "regimented",
+   "windswept"
+  ],
+  "correct_answer": "regimented",
+  "explanation": "regimented (strictly organized and controlled): the wake-up bell, marching in rows, four-minute passing periods and a schedule even for library books are examples of rigid control.",
+  "distractor_rationales": [
+   "toothsome - tasty or appealing; fits a pastry, not a school day.",
+   "sanctimonious - making a show of moral superiority; fits a preachy speaker, and the days are described by their schedule, not by moralizing.",
+   "windswept - exposed to strong winds; fits a hilltop or a beach, not a timetable."
+  ],
+  "rarity_order": [
+   "sanctimonious",
+   "regimented",
+   "toothsome",
+   "windswept"
+  ],
+  "polarity": {
+   "regimented": "-",
+   "toothsome": "+",
+   "sanctimonious": "-",
+   "windswept": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "toothsome",
+   "odd_one_out": "windswept",
+   "most_specific": "sanctimonious"
+  }
+ }
+]

@@ -1,0 +1,1752 @@
+[
+ {
+  "id": "IS20A-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across sentences",
+  "prompt": "[Sentence Completion] For years the clinic's staff treated the new blood-pressure monitor as an oracle. After it misread three patients in one week, they began to speak of it more modestly: a ------- instrument, still valuable, but never to be trusted without a second reading.",
+  "choices": [
+   "cantankerous",
+   "copious",
+   "fallible",
+   "aesthetic"
+  ],
+  "correct_answer": "fallible",
+  "explanation": "fallible (capable of being wrong): the clue sits a sentence away from the blank - the machine 'misread three patients' and is 'never to be trusted without a second reading', a restatement of liability to error.",
+  "distractor_rationales": [
+   "cantankerous - describes a bad-tempered person ('the cantankerous old caretaker'); an instrument that misreads is not ill-tempered.",
+   "copious - means plentiful ('copious notes'); nothing in the sentence concerns quantity, and 'a copious instrument' says nothing about misreading.",
+   "aesthetic - concerns beauty or appearance ('an aesthetic redesign of the casing'); the complaint is about accuracy, not looks."
+  ]
+ },
+ {
+  "id": "IS20A-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast with a described opposite (not in options)",
+  "prompt": "[Sentence Completion] Under the microscope the quartz sample showed neat, endlessly repeating lattices. The window glass beside it revealed no such order at all; its atoms were frozen in a jumble so ------- that no two regions of the slide looked alike.",
+  "choices": [
+   "amorphous",
+   "auspicious",
+   "egregious",
+   "cerebral"
+  ],
+  "correct_answer": "amorphous",
+  "explanation": "amorphous (without definite form or structure): the glass is set against the quartz's 'neat, endlessly repeating lattices' and shows 'no such order at all', 'no two regions alike'.",
+  "distractor_rationales": [
+   "cerebral - means intellectual rather than emotional ('a cerebral chess player'); atoms in glass are not thoughtful.",
+   "egregious - means shockingly bad ('an egregious error in the report'); the sentence describes structure, not a blunder.",
+   "auspicious - means promising, a good omen ('an auspicious start to the season'); a jumble of atoms is not a sign of good fortune."
+  ]
+ },
+ {
+  "id": "IS20A-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement (consequence)",
+  "prompt": "[Sentence Completion] Because the cleaning fluid is so -------, technicians store it in thick glass jugs rather than steel drums, which it would slowly eat through within a few months.",
+  "choices": [
+   "altruistic",
+   "effervescent",
+   "colloquial",
+   "corrosive"
+  ],
+  "correct_answer": "corrosive",
+  "explanation": "corrosive (gradually destroying metal or other material): the fluid 'would slowly eat through' steel drums, so it must be kept in glass.",
+  "distractor_rationales": [
+   "altruistic - describes unselfish concern for others ('an altruistic donor'); a fluid has no motives.",
+   "effervescent - means bubbly or fizzing ('effervescent mineral water'); bubbles would not explain why steel is unsafe.",
+   "colloquial - describes informal everyday speech ('a colloquial expression'); it has nothing to do with a chemical."
+  ]
+ },
+ {
+  "id": "IS20A-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences (expectation reversed)",
+  "prompt": "[Sentence Completion] The engineers had expected heat from the processor to build up inside the sealed metal case. Instead, thanks to the rows of copper fins along its back, the warmth was able to ------- almost as quickly as the chip produced it.",
+  "choices": [
+   "abet",
+   "dissipate",
+   "convalesce",
+   "embolden"
+  ],
+  "correct_answer": "dissipate",
+  "explanation": "dissipate (to scatter and disappear): the expected outcome was that heat would 'build up'; 'instead' the fins let it leave 'almost as quickly as the chip produced it'.",
+  "distractor_rationales": [
+   "embolden - means to make someone braver ('praise emboldened the shy student'); it needs a person as its object.",
+   "abet - means to help someone do wrong ('abet a thief'); heat cannot be an accomplice.",
+   "convalesce - means to recover gradually after illness ('convalesce at home after surgery'); warmth does not get well."
+  ]
+ },
+ {
+  "id": "IS20A-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast (calculation vs observation)",
+  "prompt": "[Sentence Completion] The theory was elegant and widely admired, yet for decades it rested on calculation alone. Only when the probe began sending back actual readings from the planet's surface did the idea finally gain ------- support.",
+  "choices": [
+   "agrarian",
+   "enigmatic",
+   "empirical",
+   "cacophonous"
+  ],
+  "correct_answer": "empirical",
+  "explanation": "empirical (based on observation or measurement): the theory had rested 'on calculation alone' until the probe sent 'actual readings', i.e. observed data.",
+  "distractor_rationales": [
+   "enigmatic - means mysterious, hard to interpret ('an enigmatic smile'); readings that finally support a theory make it less mysterious, not more.",
+   "agrarian - concerns farming and land ('an agrarian economy'); there is no farming in a planetary probe.",
+   "cacophonous - means harshly noisy ('a cacophonous traffic jam'); support for a theory is not loud."
+  ]
+ },
+ {
+  "id": "IS20A-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast (appearance vs fact), clue in an earlier clause",
+  "prompt": "[Sentence Completion] On the map the two forest reserves look like a single park, but a six-lane highway runs between them, so the biologists tracking the wolves cannot treat the two habitats as -------.",
+  "choices": [
+   "dynamic",
+   "contiguous",
+   "avid",
+   "ambient"
+  ],
+  "correct_answer": "contiguous",
+  "explanation": "contiguous (sharing a border, touching without a break): they 'look like a single park', but the highway 'runs between them', so they are not continuous.",
+  "distractor_rationales": [
+   "dynamic - means constantly changing or energetic ('a dynamic economy'); a highway does not stop a forest from changing.",
+   "avid - describes an eager person ('an avid reader'); habitats are not enthusiastic.",
+   "ambient - describes the surrounding conditions of a place ('ambient noise', 'ambient temperature'); the highway's effect is a gap between the forests, not their surroundings."
+  ]
+ },
+ {
+  "id": "IS20A-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "distant restatement",
+  "prompt": "[Sentence Completion] Tourists photograph the small green lizard by the harbor without a second thought. The biologists who study it are far less casual: search every other coast and island on the planet and you will not find a single one, which is why they guard this ------- species so jealously.",
+  "choices": [
+   "circuitous",
+   "adroit",
+   "anachronistic",
+   "endemic"
+  ],
+  "correct_answer": "endemic",
+  "explanation": "endemic (native to and found only in one place): the clue is a sentence away - 'search every other coast and island on the planet and you will not find a single one'.",
+  "distractor_rationales": [
+   "anachronistic - means out of its proper time ('an anachronistic wristwatch in a Roman painting'); the lizard's rarity is about place, not period.",
+   "circuitous - means roundabout, indirect ('a circuitous route'); a species is not a winding path.",
+   "adroit - means skillful and clever ('an adroit negotiator'); the biologists guard it because it lives nowhere else, not because it is skillful."
+  ]
+ },
+ {
+  "id": "IS20A-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement (purpose)",
+  "prompt": "[Sentence Completion] The hospital could not afford to hire more full-time nurses, so during flu season it chose to ------- its small staff with trained volunteers who covered the night shifts.",
+  "choices": [
+   "disinherit",
+   "augment",
+   "consecrate",
+   "browbeat"
+  ],
+  "correct_answer": "augment",
+  "explanation": "augment (to make larger by adding to): the hospital could not hire more nurses, so it adds volunteers to its 'small staff'.",
+  "distractor_rationales": [
+   "disinherit - means to cut someone out of a will ('disinherit a wayward son'); a hospital short of nurses does not strip its staff of an inheritance.",
+   "consecrate - means to declare sacred in a religious ceremony ('consecrate a new chapel'); there is no ceremony, and volunteers do not make a staff holy.",
+   "browbeat - means to bully with stern words ('browbeat a witness'); bullying the staff would not cover night shifts."
+  ]
+ },
+ {
+  "id": "IS20A-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement across sentences (doubt then confirmation)",
+  "prompt": "[Sentence Completion] When the first study appeared, few researchers believed its findings. Two later experiments, run independently on different continents, did much to ------- them, and the result is now printed in introductory textbooks.",
+  "choices": [
+   "bisect",
+   "buttress",
+   "encroach",
+   "aerate"
+  ],
+  "correct_answer": "buttress",
+  "explanation": "buttress (to support or strengthen): independent experiments turned doubted findings into textbook material, so they supported them.",
+  "distractor_rationales": [
+   "aerate - means to let air into ('aerate the lawn'); findings are not soil.",
+   "bisect - means to cut into two equal parts ('bisect an angle'); experiments do not halve findings.",
+   "encroach - means to intrude gradually on another's territory ('suburbs encroach on farmland'); it does not take findings as an object and would not make them textbook material."
+  ]
+ },
+ {
+  "id": "IS20A-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast with loss (restatement of survival)",
+  "prompt": "[Sentence Completion] The physician is known to have written dozens of letters describing the cholera outbreak, but historians of medicine must make do with four; the rest burned with the family's house, and only those four are still -------.",
+  "choices": [
+   "extant",
+   "charismatic",
+   "acerbic",
+   "apocryphal"
+  ],
+  "correct_answer": "extant",
+  "explanation": "extant (still in existence): the rest 'burned with the family's house', so the four are the ones that survive.",
+  "distractor_rationales": [
+   "apocryphal - means of doubtful authenticity ('an apocryphal story about the founder'); the contrast is with letters destroyed, not with letters faked.",
+   "acerbic - means sharp and biting in tone ('an acerbic reviewer'); the fire tells us nothing about tone.",
+   "charismatic - describes a person with magnetic charm ('a charismatic coach'); letters cannot charm, and the fire concerns survival, not appeal."
+  ]
+ },
+ {
+  "id": "IS20A-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement (no plan, chance event)",
+  "prompt": "[Sentence Completion] Penicillin was not the product of a careful plan. Fleming left a culture dish uncovered before a holiday, and the mold that drifted in through the window made his carelessness one of the most ------- lapses in the history of medicine.",
+  "choices": [
+   "articulate",
+   "dissonant",
+   "cumulative",
+   "fortuitous"
+  ],
+  "correct_answer": "fortuitous",
+  "explanation": "fortuitous (happening by lucky chance): 'not the product of a careful plan', a dish left uncovered, a mold that 'drifted in' - a lucky accident.",
+  "distractor_rationales": [
+   "articulate - means expressing oneself clearly ('an articulate speaker'); a lapse is not eloquent.",
+   "cumulative - means building up by successive additions ('cumulative damage'); a single uncovered dish is one event, not a sum.",
+   "dissonant - means harsh-sounding or clashing ('a dissonant chord'); nothing here is musical or in conflict."
+  ]
+ },
+ {
+  "id": "IS20A-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement (consequence)",
+  "prompt": "[Sentence Completion] A full-strength dose of the cough syrup could harm a toddler, so the pharmacist must first ------- it, and what the child finally swallows is mostly water.",
+  "choices": [
+   "denigrate",
+   "dilute",
+   "fumigate",
+   "assuage"
+  ],
+  "correct_answer": "dilute",
+  "explanation": "dilute (to weaken by adding liquid): the dose is too strong at full strength and what the child swallows 'is mostly water'.",
+  "distractor_rationales": [
+   "assuage - means to soothe or ease a feeling ('assuage a parent's guilt'); one assuages feelings, not a syrup.",
+   "fumigate - means to disinfect with smoke or gas ('fumigate a house for termites'); gas would not turn a syrup into water.",
+   "denigrate - means to criticize unfairly, belittle ('denigrate a rival's work'); belittling a medicine does not weaken it."
+  ]
+ },
+ {
+  "id": "IS20A-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast (most people vs her)",
+  "prompt": "[Sentence Completion] Most people her age need glasses to read a menu, yet the ninety-year-old botanist can still name a tiny moss from across the greenhouse, and her eye doctor marvels at her visual -------.",
+  "choices": [
+   "ballast",
+   "acuity",
+   "apex",
+   "dichotomy"
+  ],
+  "correct_answer": "acuity",
+  "explanation": "acuity (sharpness, keenness): unlike most people her age she can identify 'a tiny moss from across the greenhouse' - sharp sight.",
+  "distractor_rationales": [
+   "ballast - is weight carried to steady a ship ('sandbags used as ballast'); it is not a quality of eyesight.",
+   "dichotomy - is a division into two opposed parts ('the dichotomy between theory and practice'); her eyesight is not split in two.",
+   "apex - is the highest point of something ('the apex of the pyramid'); 'visual apex' is not a thing a doctor measures."
+  ]
+ },
+ {
+  "id": "IS20A-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast (not outright, but partly)",
+  "prompt": "[Sentence Completion] The vault's thick concrete walls do not stop the radio signal outright. What they do is ------- it, so that a phone carried inside shows a single bar instead of five.",
+  "choices": [
+   "embalm",
+   "attenuate",
+   "excommunicate",
+   "bequeath"
+  ],
+  "correct_answer": "attenuate",
+  "explanation": "attenuate (to weaken, reduce in strength): the walls 'do not stop the signal outright', but one bar instead of five shows it is weakened.",
+  "distractor_rationales": [
+   "excommunicate - means to expel someone from a church ('the bishop excommunicated the heretic'); walls do not expel a signal from a congregation.",
+   "bequeath - means to leave property in a will ('bequeath a house to a niece'); concrete does not hand a signal down.",
+   "embalm - means to preserve a body with chemicals ('the Egyptians embalmed their pharaohs'); concrete does not preserve a radio signal, and the clue is about weakening, not preserving."
+  ]
+ },
+ {
+  "id": "IS20A-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences (testimony vs trial)",
+  "prompt": "[Sentence Completion] Dozens of patients swore the herbal tea had cured their migraines, but the review board was unmoved. Testimonials from satisfied customers, it noted, however numerous and heartfelt, are ------- evidence and cannot substitute for a controlled trial.",
+  "choices": [
+   "cranky",
+   "concentric",
+   "ethereal",
+   "anecdotal"
+  ],
+  "correct_answer": "anecdotal",
+  "explanation": "anecdotal (based on personal accounts rather than systematic study): the board sets 'testimonials from satisfied customers' against 'a controlled trial'.",
+  "distractor_rationales": [
+   "ethereal - means delicately light, heavenly ('the ethereal voice of the soprano'); evidence is not otherworldly.",
+   "concentric - means sharing the same center ('concentric circles on a target'); evidence has no geometry.",
+   "cranky - means irritable ('a cranky toddler'); the testimonials are heartfelt, not bad-tempered, and evidence has no mood."
+  ]
+ },
+ {
+  "id": "IS20A-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement (no longer infects anyone)",
+  "prompt": "[Sentence Completion] Thanks to a worldwide vaccination campaign, smallpox no longer infects anyone anywhere; it remains the only human disease that medicine has managed to ------- entirely.",
+  "choices": [
+   "eradicate",
+   "embezzle",
+   "coalesce",
+   "deduce"
+  ],
+  "correct_answer": "eradicate",
+  "explanation": "eradicate (to destroy completely, wipe out): smallpox 'no longer infects anyone anywhere'.",
+  "distractor_rationales": [
+   "embezzle - means to steal money entrusted to one ('embezzle company funds'); a disease is not stolen.",
+   "coalesce - means to come together into one ('the droplets coalesced'); it does not take an object, and vaccination did not merge smallpox.",
+   "deduce - means to reach a conclusion by reasoning ('deduce the culprit from the clues'); reasoning about a disease would not stop it infecting people."
+  ]
+ },
+ {
+  "id": "IS20A-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement (only specialists can follow)",
+  "prompt": "[Sentence Completion] Outside a circle of a few hundred specialists, almost no one can follow the journal's articles; even chemists from neighboring fields complain that the material is hopelessly -------.",
+  "choices": [
+   "benevolent",
+   "feral",
+   "esoteric",
+   "fluid"
+  ],
+  "correct_answer": "esoteric",
+  "explanation": "esoteric (understood only by a small group with special knowledge): 'outside a circle of a few hundred specialists, almost no one can follow' it.",
+  "distractor_rationales": [
+   "fluid - means flowing, or easily changing ('a fluid situation'); the complaint is about obscurity, not changeability.",
+   "benevolent - means kindly and well-meaning ('a benevolent donor'); chemists would not complain that writing is kind.",
+   "feral - describes a domestic animal gone wild ('feral cats'); articles are not animals."
+  ]
+ },
+ {
+  "id": "IS20A-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences (prediction vs outcome)",
+  "prompt": "[Sentence Completion] Critics predicted that the first heart transplants would ------- widespread distrust of surgeons. Instead, the public greeted the operations with an outpouring of admiration.",
+  "choices": [
+   "engender",
+   "debunk",
+   "exonerate",
+   "excavate"
+  ],
+  "correct_answer": "engender",
+  "explanation": "engender (to cause, give rise to): critics predicted distrust would result; 'instead' admiration resulted, so the prediction was that the operations would produce distrust.",
+  "distractor_rationales": [
+   "excavate - means to dig out ('excavate a Roman villa'); one does not dig up distrust.",
+   "debunk - means to expose as false ('debunk a myth'); a prediction that operations would expose distrust as false does not contrast with admiration.",
+   "exonerate - means to clear of blame ('the evidence exonerated the suspect'); it takes a person as object, not a feeling."
+  ]
+ },
+ {
+  "id": "IS20A-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast with a described opposite (not in options)",
+  "prompt": "[Sentence Completion] A laser's beam stays narrow across great distances. The old oil lamp in the lab did nothing of the kind: its light was so ------- that it reached every corner of the room while brightening none of them much.",
+  "choices": [
+   "acrid",
+   "dapper",
+   "fallow",
+   "diffuse"
+  ],
+  "correct_answer": "diffuse",
+  "explanation": "diffuse (spread out, not concentrated): set against a beam that 'stays narrow', the lamp's light 'reached every corner' but brightened 'none of them much'.",
+  "distractor_rationales": [
+   "dapper - describes a neatly dressed man ('a dapper gentleman in a bow tie'); light is not well-dressed.",
+   "acrid - means sharp and bitter to smell or taste ('acrid smoke'); the sentence is about how light spreads, not smell.",
+   "fallow - describes farmland left unplanted ('a field left fallow for a year'); light is not a field."
+  ]
+ },
+ {
+  "id": "IS20A-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences (season)",
+  "prompt": "[Sentence Completion] Hikers who cross the desert in July see only bare rock and sand and assume nothing grows there. Return in April, after the winter rains, and poppies and lupines ------- on every slope.",
+  "choices": [
+   "befriend",
+   "dissent",
+   "abound",
+   "detonate"
+  ],
+  "correct_answer": "abound",
+  "explanation": "abound (to exist in great numbers): in contrast to July, when 'nothing grows there', flowers appear 'on every slope' in April.",
+  "distractor_rationales": [
+   "befriend - means to become a friend to someone ('befriend a new classmate'); it needs an object, and flowers make no friends.",
+   "detonate - means to explode ('the bomb detonated'); poppies do not explode.",
+   "dissent - means to disagree openly ('two judges dissented'); flowers hold no opinions."
+  ]
+ },
+ {
+  "id": "IS20A-21",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement (purpose of protective gear)",
+  "prompt": "[Sentence Completion] In the clean room, researchers wear gloves, masks, and gowns, not so much to protect themselves as to avoid leaving skin cells and hair behind, which would ------- the samples.",
+  "choices": [
+   "aggravate",
+   "calibrate",
+   "christen",
+   "contaminate"
+  ],
+  "correct_answer": "contaminate",
+  "explanation": "contaminate (to make impure by contact): stray 'skin cells and hair' left behind would spoil the samples, which the gear prevents.",
+  "distractor_rationales": [
+   "christen - means to name ceremonially ('christen a ship'); hair does not name samples.",
+   "aggravate - means to make a problem or injury worse ('aggravate a knee injury'); samples are not an injury.",
+   "calibrate - means to adjust an instrument against a standard ('calibrate a scale'); stray hair adjusts nothing."
+  ]
+ },
+ {
+  "id": "IS20A-22",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "distant restatement (it worked)",
+  "prompt": "[Sentence Completion] The drug's chemistry was unremarkable and its side effects were mild. What finally persuaded the regulators was simpler: in trial after trial, patients who took it recovered faster than those who did not. Above all else, it was -------.",
+  "choices": [
+   "diaphanous",
+   "dexterous",
+   "efficacious",
+   "derisive"
+  ],
+  "correct_answer": "efficacious",
+  "explanation": "efficacious (producing the intended result, effective): patients 'who took it recovered faster than those who did not'.",
+  "distractor_rationales": [
+   "dexterous - means skillful with the hands ('a dexterous surgeon'); a drug has no hands.",
+   "derisive - means mocking ('derisive laughter'); a medicine does not mock.",
+   "diaphanous - means delicate and see-through ('a diaphanous curtain'); the regulators cared about results, not transparency of the pill."
+  ]
+ },
+ {
+  "id": "IS20A-23",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement (small exposures add up)",
+  "prompt": "[Sentence Completion] No single shift spent breathing the solvent will harm a factory worker, yet doctors warn that its effects quietly ------- over the decades, until a lifetime of small exposures amounts to real damage.",
+  "choices": [
+   "accrue",
+   "decipher",
+   "bask",
+   "abdicate"
+  ],
+  "correct_answer": "accrue",
+  "explanation": "accrue (to accumulate over time): 'no single shift' harms, but a 'lifetime of small exposures amounts to real damage'.",
+  "distractor_rationales": [
+   "bask - means to lie in warmth and enjoy it ('bask in the sun'); effects of a poison do not relax.",
+   "decipher - means to decode ('decipher a faded inscription'); effects do not decode anything, and it needs an object.",
+   "abdicate - means to give up a throne or duty ('the king abdicated'); effects hold no office."
+  ]
+ },
+ {
+  "id": "IS20A-24",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "restatement (consequence)",
+  "prompt": "[Sentence Completion] The earliest trials of the artificial heart were ------- with danger; of the first patients to receive one, few survived longer than a few weeks.",
+  "choices": [
+   "adorned",
+   "concurrent",
+   "deficient",
+   "fraught"
+  ],
+  "correct_answer": "fraught",
+  "explanation": "fraught (filled with something undesirable): 'few survived longer than a few weeks', so the trials were full of danger.",
+  "distractor_rationales": [
+   "adorned - means decorated ('a hall adorned with banners'); danger is not a decoration.",
+   "deficient - means lacking ('a diet deficient in iron'); it takes 'in', and the trials did not lack danger.",
+   "concurrent - means happening at the same time ('concurrent sessions'); 'concurrent with danger' says nothing about patients dying."
+  ]
+ },
+ {
+  "id": "IS20B-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause, clue in a later clause (lost wages, upkeep paid by the parish)",
+  "prompt": "[Sentence Completion] Because the Poor Law of 1601 made every parish pay for the upkeep of its own ------- residents, villages sometimes hurried families who had lost their wages across the parish line before winter set in.",
+  "choices": [
+   "heretical",
+   "indigent",
+   "honeyed",
+   "maritime"
+  ],
+  "correct_answer": "indigent",
+  "explanation": "\"indigent\" (poor, needy) is forced by the parish paying for their \"upkeep\" and the families having \"lost their wages.\"",
+  "distractor_rationales": [
+   "maritime — maritime describes people or law of the sea; nothing here concerns the coast, and the parish pays upkeep because of poverty, not seafaring. It fits \"the ------- provinces depended on fishing and shipbuilding.\"",
+   "heretical — heretical residents would be punished or expelled by the church, not supported at the parish's expense; it fits \"the bishop condemned the ------- sermon.\"",
+   "honeyed — honeyed means sweet or flattering in speech; it says nothing about need. It fits \"the courtier's ------- compliments hid his ambitions.\""
+  ]
+ },
+ {
+  "id": "IS20B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "result clause and example in a separate clause (second courthouse, a month over one barrel)",
+  "prompt": "[Sentence Completion] The merchants of the trading town had grown so ------- that the council finally built a second courthouse; a quarrel over one spoiled barrel of herring could occupy the judges for a month.",
+  "choices": [
+   "iconoclastic",
+   "litigious",
+   "munificent",
+   "intrepid"
+  ],
+  "correct_answer": "litigious",
+  "explanation": "\"litigious\" (quick to sue) is forced by the need for a second courthouse and a month of court time over one barrel.",
+  "distractor_rationales": [
+   "munificent — munificent merchants would be lavishly generous, which might fund a courthouse but would not fill it with lawsuits. It fits \"a ------- donor paid for the new library.\"",
+   "intrepid — intrepid means fearless; courage does not crowd a court. It fits \"the ------- traders crossed the desert without guides.\"",
+   "iconoclastic — iconoclastic means attacking cherished beliefs; it does not explain endless lawsuits. It fits \"her ------- essays mocked the town's founding myths.\""
+  ]
+ },
+ {
+  "id": "IS20B-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose clue in the stem vocabulary (control the cinnamon trade rather than rule)",
+  "prompt": "[Sentence Completion] The Dutch built their forts along the coast of Ceylon less to govern the island than to control what left its harbors; in their own ledgers the purpose of the colony was plainly -------, measured in bales of cinnamon shipped to Amsterdam.",
+  "choices": [
+   "gallant",
+   "monastic",
+   "neurotic",
+   "mercantile"
+  ],
+  "correct_answer": "mercantile",
+  "explanation": "\"mercantile\" (concerned with trade and profit) is forced by \"control what left its harbors,\" \"ledgers\" and \"bales of cinnamon shipped.\"",
+  "distractor_rationales": [
+   "monastic — monastic describes a religious, secluded life; ledgers of cinnamon point to trade, not devotion. It fits \"the ------- community rose before dawn to pray.\"",
+   "gallant — gallant means brave or chivalrous; a purpose counted in bales is commercial, not heroic. It fits \"the ------- officer gave up his seat in the lifeboat.\"",
+   "neurotic — neurotic means anxious and obsessive; a purpose recorded in ledgers and bales is commercial, not a state of nerves. It fits \"his ------- habit of checking the locks ten times.\""
+  ]
+ },
+ {
+  "id": "IS20B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose clue resolved by the result in a later clause (nine days instead of forty)",
+  "prompt": "[Sentence Completion] The new canal was dug across the isthmus to ------- the long voyage around the cape; once it opened, grain barges reached the capital in nine days instead of forty.",
+  "choices": [
+   "inoculate",
+   "indict",
+   "obviate",
+   "garner"
+  ],
+  "correct_answer": "obviate",
+  "explanation": "\"obviate\" (make unnecessary) is forced: after the canal the barges no longer go around the cape, arriving in \"nine days instead of forty.\"",
+  "distractor_rationales": [
+   "indict — indict means to charge formally with a crime; a voyage cannot be charged. It fits \"the grand jury voted to ------- the treasurer for fraud.\"",
+   "garner — garner means to gather or earn; the canal removes the voyage rather than collecting it. It fits \"the plan was meant to ------- support from the farm states.\"",
+   "inoculate — inoculate means to vaccinate against disease; a voyage cannot be vaccinated, and the canal removes it. It fits \"the doctor arrived to ------- the village children against smallpox.\""
+  ]
+ },
+ {
+  "id": "IS20B-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "subtle restatement across clauses (called bandits, farmers with borrowed rifles, now taxing towns)",
+  "prompt": "[Sentence Completion] The government in the capital still called them bandits, but by 1911 the ------- forces that had begun as a few hundred farmers with borrowed rifles were collecting taxes in the valley towns themselves.",
+  "choices": [
+   "oracular",
+   "guerrilla",
+   "inclement",
+   "genteel"
+  ],
+  "correct_answer": "guerrilla",
+  "explanation": "\"guerrilla\" (irregular fighters opposing a government) is forced by \"called them bandits\" and \"farmers with borrowed rifles\" now rivaling the state.",
+  "distractor_rationales": [
+   "genteel — genteel means refined and polite in manner; armed farmers called bandits are not described by their manners. It fits \"the ------- tearoom where ladies met on Sundays.\"",
+   "inclement — inclement describes harsh, stormy weather; it does not describe a band of armed farmers. It fits \"the climbers turned back in ------- weather.\"",
+   "oracular — oracular means prophetic or cryptic; nothing about the fighters is mysterious prophecy. It fits \"the old judge's ------- pronouncements puzzled the lawyers.\""
+  ]
+ },
+ {
+  "id": "IS20B-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "subtle restatement in the stem (set the rules of ocean trade as it pleased)",
+  "prompt": "[Sentence Completion] For nearly a century after its last rival fleet was sunk, Britain could set the rules of ocean trade largely as it pleased, and smaller nations shipped goods on its terms; historians describe its position in that era as ------- .",
+  "choices": [
+   "hegemonic",
+   "idyllic",
+   "lachrymose",
+   "immaculate"
+  ],
+  "correct_answer": "hegemonic",
+  "explanation": "\"hegemonic\" (dominant over others) is forced by setting the rules \"as it pleased\" while smaller nations shipped \"on its terms.\"",
+  "distractor_rationales": [
+   "lachrymose — lachrymose means tearful; a dominant naval power is not mournful. It fits \"the widow's ------- letters to her sister.\"",
+   "idyllic — idyllic means peacefully charming; control over other nations is power, not a pastoral calm. It fits \"their ------- summers on the lake.\"",
+   "immaculate — immaculate means spotless; dominance says nothing about cleanliness or flawlessness. It fits \"the cadets kept their uniforms ------- .\""
+  ]
+ },
+ {
+  "id": "IS20B-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause in an earlier clause (coastline handed away, exports cross foreign land)",
+  "prompt": "[Sentence Completion] Ever since the war of 1879 handed its only coastline to a neighbor, Bolivia's tin has reached the Pacific by rail across foreign territory before sailing from a Chilean port; a ------- nation, it still keeps a navy that patrols Lake Titicaca.",
+  "choices": [
+   "monolingual",
+   "landlocked",
+   "outmoded",
+   "kindred"
+  ],
+  "correct_answer": "landlocked",
+  "explanation": "\"landlocked\" (without a seacoast) is forced by \"handed its only coastline to a neighbor\" and exports crossing \"foreign territory\" to reach a port.",
+  "distractor_rationales": [
+   "outmoded — outmoded means out of date; the clue is the lost coastline, not old-fashioned ways. It fits \"the ------- telegraph office closed for good.\"",
+   "kindred — kindred means related or alike; nothing compares Bolivia with another nation. It fits \"the two poets were ------- spirits.\"",
+   "monolingual — monolingual means speaking one language; the sentence is about sea access, not language. It fits \"the ------- villagers needed an interpreter.\""
+  ]
+ },
+ {
+  "id": "IS20B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause in a separate clause (could not pay in coin, warrants sold to buy food)",
+  "prompt": "[Sentence Completion] The young republic could not pay its soldiers in coin and handed them land warrants instead, which many sold to speculators for a fraction of their worth just to buy food; the treasury was ------- and the men were desperate.",
+  "choices": [
+   "impecunious",
+   "germane",
+   "magisterial",
+   "hubristic"
+  ],
+  "correct_answer": "impecunious",
+  "explanation": "\"impecunious\" (having no money) is forced by \"could not pay its soldiers in coin.\"",
+  "distractor_rationales": [
+   "magisterial — magisterial means commanding or authoritative; a treasury that cannot pay its soldiers commands nothing. It fits \"the chief justice's ------- opinion settled the matter.\"",
+   "hubristic — hubristic means arrogantly overconfident; the problem is empty coffers, not pride. It fits \"the ------- general marched into winter without supplies.\"",
+   "germane — germane means relevant to the point; it does not describe a treasury's condition. It fits \"the judge ruled the letter ------- to the case.\""
+  ]
+ },
+ {
+  "id": "IS20B-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause in earlier clauses (unpaid, half rations, voyage extended)",
+  "prompt": "[Sentence Completion] The crew had not been paid in eight months and had been on half rations since the Azores; when the captain announced the voyage would be extended another year, the mood belowdecks turned ------- .",
+  "choices": [
+   "mutinous",
+   "geriatric",
+   "gluttonous",
+   "neighborly"
+  ],
+  "correct_answer": "mutinous",
+  "explanation": "\"mutinous\" (ready to rebel against the captain) is forced by months without pay, half rations and an extended voyage.",
+  "distractor_rationales": [
+   "gluttonous — gluttonous means greedy for food; men on half rations cannot be overeating. It fits \"the ------- guests emptied every platter.\"",
+   "neighborly — neighborly means friendly and helpful; unpaid, hungry men told of another year do not turn warm. It fits \"the ------- farmers helped raise the new barn.\"",
+   "geriatric — geriatric relates to old age; the crew's mood is not about being elderly. It fits \"the ------- ward of the hospital.\""
+  ]
+ },
+ {
+  "id": "IS20B-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose clue (so that neither party could accuse it of tilting)",
+  "prompt": "[Sentence Completion] So that neither party could accuse it of tilting the result, the state handed the drawing of its voting maps to a ------- commission of retired judges chosen by lot.",
+  "choices": [
+   "monochrome",
+   "nonpartisan",
+   "immodest",
+   "heavenly"
+  ],
+  "correct_answer": "nonpartisan",
+  "explanation": "\"nonpartisan\" (not aligned with any party) is forced by \"so that neither party could accuse it of tilting the result.\"",
+  "distractor_rationales": [
+   "heavenly — heavenly means divine or delightful; it does not answer a fear of party bias. It fits \"the bakery's ------- smell drifted down the street.\"",
+   "immodest — immodest means boastful or indecent; a commission meant to be trusted would not be chosen for that. It fits \"his ------- account of his own heroism.\"",
+   "monochrome — monochrome means in one color; it says nothing about fairness. It fits \"the gallery hung a ------- photograph of the harbor.\""
+  ]
+ },
+ {
+  "id": "IS20B-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement in an earlier clause (six straight elections, controlled contracts)",
+  "prompt": "[Sentence Completion] The mayor had won six straight elections and controlled every city contract worth having, so when a schoolteacher with no money and no party backing beat the ------- by forty votes, the result made the national papers.",
+  "choices": [
+   "harbinger",
+   "luminary",
+   "hypocrite",
+   "incumbent"
+  ],
+  "correct_answer": "incumbent",
+  "explanation": "\"incumbent\" (the current officeholder) is forced by the mayor having \"won six straight elections\" and still holding office.",
+  "distractor_rationales": [
+   "harbinger — harbinger is a sign of something coming; the mayor is the established officeholder, not a forerunner. It fits \"the first robin is a ------- of spring.\"",
+   "hypocrite — hypocrite would need a clue that the mayor preached one thing and did another; none is given. It fits \"the preacher who gambled on Sundays was called a ------- .\"",
+   "luminary — luminary means a celebrated figure in a field; the clue is his long hold on office, not fame. It fits \"a ------- of modern physics gave the lecture.\""
+  ]
+ },
+ {
+  "id": "IS20B-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause and result across clauses (empty treasury, bricked windows to avoid paying)",
+  "prompt": "[Sentence Completion] The long war had emptied the treasury, so Parliament voted to ------- a duty on every pane of window glass in the kingdom, and householders bricked up their windows rather than pay it.",
+  "choices": [
+   "levy",
+   "hector",
+   "imbibe",
+   "knead"
+  ],
+  "correct_answer": "levy",
+  "explanation": "\"levy\" (impose and collect a tax) is forced by the \"emptied\" treasury and householders refusing to \"pay it.\"",
+  "distractor_rationales": [
+   "knead — knead means to work dough with the hands; it has nothing to do with taxation. It fits \"the baker began to ------- the bread at four.\"",
+   "hector — hector means to bully or badger a person; a duty on glass is imposed, not bullied. It fits \"the foreman would ------- the apprentices all day.\"",
+   "imbibe — imbibe means to drink or absorb; Parliament does not drink a duty, and householders would not brick up windows against it. It fits \"the travelers stopped to ------- at every inn.\""
+  ]
+ },
+ {
+  "id": "IS20B-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "subtle restatement (chose to lose the cargo rather than the ship; bales floating behind)",
+  "prompt": "[Sentence Completion] With water rising in the hold off Cape Hatteras, the captain chose to lose the cargo rather than the ship: he ordered the crew to ------- the cotton, and by dawn four hundred bales were bobbing in the current behind them.",
+  "choices": [
+   "lacquer",
+   "marinate",
+   "hoodwink",
+   "jettison"
+  ],
+  "correct_answer": "jettison",
+  "explanation": "\"jettison\" (throw overboard to lighten a ship) is forced by \"lose the cargo rather than the ship\" and the bales \"bobbing in the current.\"",
+  "distractor_rationales": [
+   "hoodwink — hoodwink means to trick; you trick people, not cotton bales. It fits \"the forger tried to ------- the bank's inspectors.\"",
+   "lacquer — lacquer means to coat with a glossy finish; varnished bales would not end up in the sea. It fits \"craftsmen ------- the boxes in seven coats.\"",
+   "marinate — marinate means to soak food in seasoning; it does not throw cargo overboard. It fits \"the cook let the fish ------- overnight.\""
+  ]
+ },
+ {
+  "id": "IS20B-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause in earlier clauses (promised swift victory, fled abandoning cannon and wounded)",
+  "prompt": "[Sentence Completion] The general had promised the emperor a swift victory; instead his army slipped back across the river at night, leaving its cannon and its wounded behind, and he returned to the capital to an ------- dismissal.",
+  "choices": [
+   "horticultural",
+   "ignominious",
+   "mellifluous",
+   "mendacious"
+  ],
+  "correct_answer": "ignominious",
+  "explanation": "\"ignominious\" (shameful, disgraceful) is forced by the broken promise and a night retreat \"leaving its cannon and its wounded behind.\"",
+  "distractor_rationales": [
+   "mellifluous — mellifluous means sweet-sounding; a disgraced general would not be dismissed with pleasant music. It fits \"the cellist's ------- tone filled the hall.\"",
+   "horticultural — horticultural relates to gardening; it cannot describe a dismissal. It fits \"the ------- society judged the roses.\"",
+   "mendacious — mendacious means lying; it describes a person or a statement, and the dismissal follows defeat, not a lie. It fits \"the spy's ------- report misled the ministry.\""
+  ]
+ },
+ {
+  "id": "IS20B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement by description in a separate clause (fought while the silver lasted)",
+  "prompt": "[Sentence Completion] The prince could not trust his own nobles, so he hired Swiss pikemen by the season; they fought well while the silver lasted and marched home the week it ran out, ------- to the last.",
+  "choices": [
+   "mercenary",
+   "hirsute",
+   "jaded",
+   "humane"
+  ],
+  "correct_answer": "mercenary",
+  "explanation": "\"mercenary\" (serving only for pay) is forced by \"hired... by the season\" and fighting only \"while the silver lasted.\"",
+  "distractor_rationales": [
+   "hirsute — hirsute means hairy; whether the pikemen had beards does not explain leaving when pay stopped. It fits \"the ------- trapper had not shaved all winter.\"",
+   "humane — humane means kind and merciful; marching off when the money ends shows loyalty to pay, not compassion. It fits \"the warden's ------- treatment of prisoners.\"",
+   "jaded — jaded means worn out or cynical from overexposure; the clue is pay, not weariness. It fits \"the ------- critic had seen a thousand openings.\""
+  ]
+ },
+ {
+  "id": "IS20B-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement in stem vocabulary (would not be collected; exceed the Constitution)",
+  "prompt": "[Sentence Completion] In 1832 South Carolina's legislature announced that the federal tariff would simply not be collected at Charleston, on the theory that a state could ------- within its borders any act of Congress it judged to exceed the Constitution.",
+  "choices": [
+   "harangue",
+   "nullify",
+   "immortalize",
+   "mesmerize"
+  ],
+  "correct_answer": "nullify",
+  "explanation": "\"nullify\" (declare void and without force) is forced by the tariff that \"would simply not be collected\" because the act was judged unconstitutional.",
+  "distractor_rationales": [
+   "immortalize — immortalize means to make famous forever; a state refusing to collect a tariff is not glorifying it. It fits \"the poem would ------- the fallen sailors.\"",
+   "mesmerize — mesmerize means to hold spellbound; a legislature cannot entrance an act of Congress. It fits \"the magician could ------- a crowd of children.\"",
+   "harangue — harangue means to lecture loudly and at length; a legislature can harangue people, but a speech does not stop a tax being collected. It fits \"the sergeant would ------- the recruits for an hour.\""
+  ]
+ },
+ {
+  "id": "IS20B-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast within a purpose sentence (goal vs. methods that drew complaints)",
+  "prompt": "[Sentence Completion] The relief committee's aim, to see that no family in the flooded county went hungry, was ------- ; its methods, which fed only those willing to walk eleven miles to the depot, drew bitter complaints.",
+  "choices": [
+   "malarial",
+   "nautical",
+   "laudable",
+   "jocular"
+  ],
+  "correct_answer": "laudable",
+  "explanation": "\"laudable\" (worthy of praise) is forced by the aim \"that no family... went hungry,\" set against methods that \"drew bitter complaints.\"",
+  "distractor_rationales": [
+   "nautical — nautical relates to ships and sailing; a flood relief aim is not seafaring. It fits \"the museum's ------- charts of the harbor.\"",
+   "malarial — malarial describes a place or fever tied to malaria; an aim cannot carry disease, and the contrast needs a praised aim. It fits \"the ------- swamps along the coast.\"",
+   "jocular — jocular means joking; feeding the hungry is not a joke. It fits \"the host's ------- toast made everyone laugh.\""
+  ]
+ },
+ {
+  "id": "IS20B-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement by description (each spring a few yards; every defense failed)",
+  "prompt": "[Sentence Completion] Each spring the river shifted a few more yards toward the town, taking the orchards one row at a time; levees, dikes and prayers all failed, and by 1890 the residents had accepted that its advance was ------- .",
+  "choices": [
+   "malodorous",
+   "hilarious",
+   "inexorable",
+   "multilingual"
+  ],
+  "correct_answer": "inexorable",
+  "explanation": "\"inexorable\" (impossible to stop) is forced by \"levees, dikes and prayers all failed\" and the residents having \"accepted\" it.",
+  "distractor_rationales": [
+   "hilarious — hilarious means very funny; losing orchards row by row is not comic. It fits \"the clown's ------- act.\"",
+   "multilingual — multilingual means using several languages; a river's advance has no language. It fits \"the port's ------- dockworkers.\"",
+   "malodorous — malodorous means foul-smelling; nothing about smell is given, and it would not explain why defenses failed. It fits \"the ------- tannery by the creek.\""
+  ]
+ },
+ {
+  "id": "IS20B-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "restatement in a later clause (forty families, seats passed father to son)",
+  "prompt": "[Sentence Completion] Although the city styled itself a republic, only the forty families who owned the silk mills could sit on its council, and their seats passed from father to son; in practice its government was ------- .",
+  "choices": [
+   "oligarchic",
+   "nuptial",
+   "hydraulic",
+   "irksome"
+  ],
+  "correct_answer": "oligarchic",
+  "explanation": "\"oligarchic\" (ruled by a small group) is forced by \"only the forty families... could sit on its council.\"",
+  "distractor_rationales": [
+   "hydraulic — hydraulic relates to water pressure and machinery; a council's makeup is not mechanical. It fits \"the mill's ------- press.\"",
+   "irksome — irksome means annoying; rule by forty families is a structure, and annoyance does not name it. It fits \"the ------- delays at the border crossing.\"",
+   "nuptial — nuptial relates to weddings; seats passing to sons is inheritance, not marriage. It fits \"the couple's ------- feast lasted three days.\""
+  ]
+ },
+ {
+  "id": "IS20B-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "clue distance (nine workers in 1848, smokestacks thirty years later)",
+  "prompt": "[Sentence Completion] In 1848 the town's single cotton mill employed nine people, and few visitors guessed that the ------- industry would within thirty years fill the valley with smokestacks and draw workers from three countries.",
+  "choices": [
+   "invidious",
+   "incipient",
+   "gratifying",
+   "ostensible"
+  ],
+  "correct_answer": "incipient",
+  "explanation": "\"incipient\" (just beginning) is forced by a single mill with \"nine people\" that would grow \"within thirty years.\"",
+  "distractor_rationales": [
+   "ostensible — ostensible means apparent but perhaps not real; the industry was real and simply small. It fits \"his ------- reason for the visit was business.\"",
+   "gratifying — gratifying means pleasing; the point is how small the industry was, not that it pleased anyone. It fits \"the ------- applause after the recital.\"",
+   "invidious — invidious means likely to cause resentment or unfair; nothing shows the mill offending anyone, and the clue is its small size. It fits \"the ------- comparison between the two sisters.\""
+  ]
+ },
+ {
+  "id": "IS20B-21",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause (no spring within a day's walk)",
+  "prompt": "[Sentence Completion] The plateau's soil was rich, but no spring rose within a day's walk of it, so although armies crossed it often, almost no one before the aqueduct was built had found it ------- .",
+  "choices": [
+   "loquacious",
+   "habitable",
+   "iniquitous",
+   "openhearted"
+  ],
+  "correct_answer": "habitable",
+  "explanation": "\"habitable\" (fit to live in) is forced by \"no spring\" nearby, which the aqueduct later solved.",
+  "distractor_rationales": [
+   "openhearted — openhearted describes a carefree person or mood; land is not carefree, and the clue is water. It fits \"the ------- banter at the picnic.\"",
+   "iniquitous — iniquitous means grossly unjust or wicked; a dry plateau is not wicked, and the aqueduct fixed water, not injustice. It fits \"the ------- tax fell hardest on the poor.\"",
+   "loquacious — loquacious means talkative; a plateau does not speak. It fits \"the ------- barber knew every rumor in town.\""
+  ]
+ },
+ {
+  "id": "IS20B-22",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "cause and example (printing banknotes, bread price doubling)",
+  "prompt": "[Sentence Completion] When the government paid its war debts simply by printing more banknotes, the price of a loaf of bread doubled in a month and doubled again the next, and economists still cite the episode as a textbook ------- spiral.",
+  "choices": [
+   "galactic",
+   "hypnotic",
+   "matrimonial",
+   "inflationary"
+  ],
+  "correct_answer": "inflationary",
+  "explanation": "\"inflationary\" (marked by rising prices) is forced by \"printing more banknotes\" and bread prices doubling.",
+  "distractor_rationales": [
+   "hypnotic — a hypnotic spiral is a swirling pattern that entrances; it has nothing to do with prices. It fits \"the ------- rhythm of the drums.\"",
+   "galactic — a galactic spiral is a shape of stars; the episode is about money. It fits \"the ------- core is hidden by dust.\"",
+   "matrimonial — matrimonial relates to marriage; it cannot describe rising prices. It fits \"the ------- vows were read in two languages.\""
+  ]
+ },
+ {
+  "id": "IS20B-23",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose clue (requisitioning trains to carry reservists to the frontier)",
+  "prompt": "[Sentence Completion] When the telegram declaring war arrived, the ministry had less than a week to ------- two hundred thousand reservists, requisitioning every train in the country to carry them to the frontier.",
+  "choices": [
+   "ostracize",
+   "glamorize",
+   "mobilize",
+   "lubricate"
+  ],
+  "correct_answer": "mobilize",
+  "explanation": "\"mobilize\" (assemble and ready for war) is forced by \"declaring war\" and trains requisitioned \"to carry them to the frontier.\"",
+  "distractor_rationales": [
+   "lubricate — lubricate means to oil machinery; reservists are gathered, not greased. It fits \"the mechanic had to ------- the gears every week.\"",
+   "ostracize — ostracize means to exclude from a group; the ministry is gathering the reservists, not shunning them. It fits \"the club voted to ------- the cheat.\"",
+   "glamorize — glamorize means to make something seem glamorous; the ministry is moving men to the frontier, not dressing up war. It fits \"the film tended to ------- life at sea.\""
+  ]
+ },
+ {
+  "id": "IS20C-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (clue in prior sentence)",
+  "prompt": "[Sentence Completion] Mr. Okafor reread every galley twice, checked each hyphen against the house style sheet, and stayed past closing whenever a single page was in doubt; in forty years at the press he never once let a proof go out unexamined. His apprentices, who found such ------- labor tiring merely to watch, learned more from him than from any manual.",
+  "choices": [
+   "ribald",
+   "resplendent",
+   "sonorous",
+   "sedulous"
+  ],
+  "correct_answer": "sedulous",
+  "explanation": "sedulous (persistently careful and diligent): the whole first sentence is a list of examples of painstaking, unbroken effort, and 'tiring merely to watch' confirms the degree.",
+  "distractor_rationales": [
+   "resplendent - dazzlingly splendid; fits a gilded throne room or a costume, not repetitive proofreading.",
+   "ribald - coarsely humorous; fits a tavern song or bawdy comedy, nothing in the labor described is crude.",
+   "sonorous - deep and resonant in sound; fits an organ or a bass voice, and the labor here is silent checking."
+  ]
+ },
+ {
+  "id": "IS20C-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of range",
+  "prompt": "[Sentence Completion] Critics never managed to file the actress under a single type. In one season she played a murderous queen, a giggling schoolgirl, and a weary old fisherman, and audiences who saw all three productions sometimes failed to recognize her. Her ------- talent kept casting directors guessing about what she would attempt next.",
+  "choices": [
+   "rotund",
+   "protean",
+   "sprightly",
+   "querulous"
+  ],
+  "correct_answer": "protean",
+  "explanation": "protean (able to take many forms): the queen, the schoolgirl and the fisherman, and audiences failing to recognize her, are examples of a talent that changes shape entirely.",
+  "distractor_rationales": [
+   "sprightly - lively and brisk; fits an energetic elderly dancer, but the clue is about range of roles, not liveliness.",
+   "rotund - plump and round; fits a description of a character's figure, and says nothing about versatility.",
+   "querulous - habitually complaining; fits a grumbling patient, and nothing here describes complaint."
+  ]
+ },
+ {
+  "id": "IS20C-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples of degree",
+  "prompt": "[Sentence Completion] The usually restless fourth graders sat without fidgeting through the entire puppet show, eyes fixed on the stage and mouths slightly open; not one of them asked to leave for a drink of water. The puppeteer said afterward that she had rarely played to so ------- an audience.",
+  "choices": [
+   "punchy",
+   "sinewy",
+   "rapt",
+   "slovenly"
+  ],
+  "correct_answer": "rapt",
+  "explanation": "rapt (completely absorbed): fixed eyes, open mouths, no fidgeting and no one leaving are examples of total absorption.",
+  "distractor_rationales": [
+   "sinewy - lean and muscular; fits a rock climber's arms, not a seated audience of children.",
+   "slovenly - messy and careless; fits an unkempt room or sloppy work, and these children are described only by their attention.",
+   "punchy - forceful and lively; fits a short slogan or a headline, not people watching quietly."
+  ]
+ },
+ {
+  "id": "IS20C-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (clue in prior sentences)",
+  "prompt": "[Sentence Completion] The seminar's reading list began with Ptolemy's star catalog and ended with a monograph on medieval Armenian bookbinding, and the professor assumed every student already read Latin. Even the graduate assistants admitted they had never heard of half the sources. The department finally decided the course was simply too ------- for a first-year program.",
+  "choices": [
+   "recondite",
+   "tuneful",
+   "scrawny",
+   "raffish"
+  ],
+  "correct_answer": "recondite",
+  "explanation": "recondite (dealing with obscure, little-known knowledge): the obscure sources that even graduate assistants had never heard of are the examples that force it.",
+  "distractor_rationales": [
+   "raffish - unconventional in a slightly disreputable, flashy way; fits a gambler's hat, not a reading list.",
+   "tuneful - melodious; fits a folk song, and the course is described by its sources, not by music.",
+   "scrawny - thin and bony; fits a stray cat, never a syllabus."
+  ]
+ },
+ {
+  "id": "IS20C-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "descriptive detail",
+  "prompt": "[Sentence Completion] After twenty winters on the touring circuit, the company's velvet curtain had grown so worn that stage lights glowed through it in places, and patrons in the front row could count its individual strands. The manager kept promising a new one, but the old ------- curtain rose every night.",
+  "choices": [
+   "unassuming",
+   "vocal",
+   "threadbare",
+   "propitious"
+  ],
+  "correct_answer": "threadbare",
+  "explanation": "threadbare (worn thin so the threads show): lights glowing through it and countable strands after twenty winters describe a fabric worn to its threads.",
+  "distractor_rationales": [
+   "vocal - outspoken; fits a protester or a critic, not a piece of fabric.",
+   "propitious - favorable, promising good luck; fits weather on launch day, and the curtain's condition is the opposite of a good sign.",
+   "unassuming - modest, not showy; fits a quiet star who avoids attention, but the clue is wear, not modesty."
+  ]
+ },
+ {
+  "id": "IS20C-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (subtle restatement)",
+  "prompt": "[Sentence Completion] The painter ignored the battles and coronations that filled the academy's galleries. Her canvases show a woman peeling potatoes, a boy lacing his boots, a clerk yawning over a ledger: scenes so ------- that early reviewers wondered why anyone would bother to frame them.",
+  "choices": [
+   "refractory",
+   "sapient",
+   "tawny",
+   "quotidian"
+  ],
+  "correct_answer": "quotidian",
+  "explanation": "quotidian (ordinary, of everyday life): peeling potatoes, lacing boots and yawning over a ledger are examples of daily routine, and reviewers doubting they deserved framing confirms how ordinary they are.",
+  "distractor_rationales": [
+   "sapient - wise; fits a sage or a council of elders, and the scenes are not described as wise.",
+   "refractory - stubbornly resistant to control; fits a mule or a disease that resists treatment, not painted scenes.",
+   "tawny - orange-brown; fits a lion's coat, and nothing in the sentence concerns color."
+  ]
+ },
+ {
+  "id": "IS20C-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples with degree comparison",
+  "prompt": "[Sentence Completion] The comedy troupe's new revue relied almost entirely on whoopee cushions, rhyming insults about the director's haircut, and a ten-minute sketch in which two grown men fought over a lollipop. The drama teacher, who had hoped for political satire, said the humor was too ------- even for the sixth graders in the front row.",
+  "choices": [
+   "puerile",
+   "squeamish",
+   "unheralded",
+   "tantalizing"
+  ],
+  "correct_answer": "puerile",
+  "explanation": "puerile (childishly silly): whoopee cushions, haircut insults and grown men fighting over a lollipop are examples of childish humor, and 'too ... even for the sixth graders' marks the degree.",
+  "distractor_rationales": [
+   "squeamish - easily disgusted; fits a student who faints at a dissection, and the humor described is silly, not something easily upset.",
+   "unheralded - not announced or praised in advance; fits an unknown winner, and the revue's publicity is never mentioned.",
+   "tantalizing - tempting but out of reach; fits a smell from a kitchen, and the teacher is disappointed, not tempted."
+  ]
+ },
+ {
+  "id": "IS20C-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "example (quoted instance)",
+  "prompt": "[Sentence Completion] The translation was accurate word for word, yet no one in the cast could speak its lines aloud without sounding like a legal contract; a simple hello had become \"I extend to you my salutations upon the occasion of your arrival.\" The director spent the first week of rehearsal rewriting the ------- dialogue into something actors could actually say.",
+  "choices": [
+   "vociferous",
+   "rangy",
+   "seasoned",
+   "stilted"
+  ],
+  "correct_answer": "stilted",
+  "explanation": "stilted (stiff, formal and unnatural): the legal-contract tone and the inflated greeting are examples of language too stiff for natural speech.",
+  "distractor_rationales": [
+   "rangy - tall and long-limbed; fits a basketball forward, not lines of a script.",
+   "seasoned - experienced; fits a veteran actor, but the dialogue is being criticized, not praised for experience.",
+   "vociferous - loud and insistent; fits protesters or a crowd, and the problem with these lines is formality, not volume."
+  ]
+ },
+ {
+  "id": "IS20C-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples with degree (age contrast)",
+  "prompt": "[Sentence Completion] At eighty-one, the retired coach still demonstrated every drill himself, bounding over the low hurdles ahead of his teenage runners and hopping up onto the bleachers to call out their times. Visitors who expected a frail old man were surprised to find him so -------.",
+  "choices": [
+   "suave",
+   "uppity",
+   "spry",
+   "tepid"
+  ],
+  "correct_answer": "spry",
+  "explanation": "spry (active and nimble, especially when old): bounding over hurdles and hopping onto bleachers at eighty-one are examples of nimble vigor, set against 'frail'.",
+  "distractor_rationales": [
+   "tepid - lukewarm or unenthusiastic; fits weak applause, and this coach is the opposite of halfhearted, but the clue is physical agility.",
+   "uppity - self-important; fits a newly promoted clerk who looks down on others, and nothing here concerns arrogance.",
+   "suave - smoothly charming; fits a host at a gala, and the clue is about athletic movement, not manners."
+  ]
+ },
+ {
+  "id": "IS20C-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "example (quoted comment), clue in prior sentence",
+  "prompt": "[Sentence Completion] Ms. Adeyemi's margin notes rarely ran longer than a line, but each went straight to the weakest point of the essay: \"Your second paragraph assumes what your first was meant to prove.\" Students dreaded her ------- comments in September and, by spring, were quoting them to one another as models.",
+  "choices": [
+   "redolent",
+   "unwieldy",
+   "trenchant",
+   "sartorial"
+  ],
+  "correct_answer": "trenchant",
+  "explanation": "trenchant (sharply incisive): brief notes that go 'straight to the weakest point', illustrated by the quoted comment, describe criticism that cuts precisely.",
+  "distractor_rationales": [
+   "unwieldy - awkwardly large and hard to handle; fits a cello case on a bus, and these notes are only a line long.",
+   "sartorial - relating to clothing and tailoring; fits a review of a designer's suits, not essay comments.",
+   "redolent - strongly suggestive or fragrant; fits a kitchen redolent of garlic, and the comments are praised for precision, not for evoking anything."
+  ]
+ },
+ {
+  "id": "IS20C-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of degree",
+  "prompt": "[Sentence Completion] By her fifteenth birthday the swimmer had broken national records in four different strokes, and coaches who timed her in practice assumed at first that their stopwatches were broken. Scouts from three countries came to watch what one of them called a ------- talent.",
+  "choices": [
+   "salutary",
+   "rickety",
+   "unseemly",
+   "prodigious"
+  ],
+  "correct_answer": "prodigious",
+  "explanation": "prodigious (remarkably great in extent or degree): national records in four strokes at fifteen and times so fast coaches doubted their stopwatches are examples of extraordinary ability.",
+  "distractor_rationales": [
+   "rickety - shaky and likely to collapse; fits an old ladder or a wooden pier, not a record-breaking swimmer.",
+   "unseemly - improper or in poor taste; fits rude behavior at a funeral, and nothing in her conduct is improper.",
+   "salutary - beneficial, though often unwelcome; fits a hard lesson that improves someone, and the clue measures how great her ability is."
+  ]
+ },
+ {
+  "id": "IS20C-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples of effort despite disadvantage",
+  "prompt": "[Sentence Completion] Outsized by every opponent and missing two starters all season, the little school's basketball team still dove for every loose ball, fought for every rebound, and somehow won eleven games. Even rival coaches admired such a ------- squad.",
+  "choices": [
+   "unctuous",
+   "rarefied",
+   "scrappy",
+   "seminal"
+  ],
+  "correct_answer": "scrappy",
+  "explanation": "scrappy (determined and full of fight despite being small or outmatched): diving for loose balls and fighting for rebounds while outsized are examples of fighting spirit.",
+  "distractor_rationales": [
+   "seminal - highly influential on later work; fits a groundbreaking novel or experiment, not a small high-school team.",
+   "unctuous - excessively flattering in an oily way; fits a salesman who over-praises customers, and the team is admired, not ingratiating.",
+   "rarefied - elevated, exclusive, or thin like high-altitude air; fits elite academic circles, and this team is an underdog."
+  ]
+ },
+ {
+  "id": "IS20C-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of behavior (clue in prior sentence)",
+  "prompt": "[Sentence Completion] The new conductor rarely addressed the orchestra directly; he sent instructions through the concertmaster, sighed audibly at the second violins' questions, and once remarked that the hall's acoustics were \"adequate, for amateurs.\" Musicians who had played there for thirty years found his ------- manner hard to forgive.",
+  "choices": [
+   "supercilious",
+   "turbid",
+   "polyglot",
+   "rawboned"
+  ],
+  "correct_answer": "supercilious",
+  "explanation": "supercilious (behaving as though one is superior to others): refusing to address the players, sighing at questions and dismissing the hall as fit 'for amateurs' are examples of disdainful condescension.",
+  "distractor_rationales": [
+   "polyglot - knowing many languages; fits a translator or an international diplomat, and the conductor's languages are never mentioned.",
+   "rawboned - gaunt and bony; fits a description of a farmer's frame, not a manner.",
+   "turbid - cloudy or muddled; fits a muddy river or confused prose, and his manner is clear in its contempt, not muddled."
+  ]
+ },
+ {
+  "id": "IS20C-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples of degree",
+  "prompt": "[Sentence Completion] Though the documentary ran nearly three hours, not one person in the packed theater checked a phone, and when the lights came up several viewers stayed in their seats as though hoping there was more. The director had never expected so long a film to prove so -------.",
+  "choices": [
+   "riveting",
+   "seraphic",
+   "sundry",
+   "sophomoric"
+  ],
+  "correct_answer": "riveting",
+  "explanation": "riveting (holding attention completely): no one checking a phone for three hours and viewers staying seated hoping for more are examples of total engagement.",
+  "distractor_rationales": [
+   "sundry - of various kinds; fits a drawer of sundry tools, and a single film is not 'various'.",
+   "sophomoric - immature and overconfident; fits a self-important student essay, and the audience's response shows no such flaw.",
+   "seraphic - angelically serene; fits a sleeping infant's face, and the film is praised for gripping, not serene, quality."
+  ]
+ },
+ {
+  "id": "IS20C-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "example narrative (clue across sentences)",
+  "prompt": "[Sentence Completion] The striker had an open teammate beside her and an empty net ahead. Instead of passing, she flicked the ball over her own head, juggled it twice on her knee, and only then shot, wide, after which she turned to the stands and bowed. Her coach benched her for the second half, saying a team down by a goal had no use for such ------- play.",
+  "choices": [
+   "sallow",
+   "preening",
+   "piquant",
+   "taxonomic"
+  ],
+  "correct_answer": "preening",
+  "explanation": "preening (showing off, admiring oneself): the needless tricks performed for the crowd and the bow after a missed shot are examples of self-display rather than teamwork.",
+  "distractor_rationales": [
+   "piquant - pleasantly sharp or stimulating; fits a sauce or a witty remark, and the coach is condemning the play, not savoring it.",
+   "sallow - of a sickly yellowish complexion; fits a patient's face, not a style of play.",
+   "taxonomic - relating to classification of organisms; fits a biology key, not a soccer match."
+  ]
+ },
+ {
+  "id": "IS20C-16",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of degree under contrast with others",
+  "prompt": "[Sentence Completion] Through the final ten miles of the marathon, as other runners slowed to a shuffle or stopped to stretch cramping calves, she held exactly the pace she had set at the starting line, mile after mile. Commentators marveled at her ------- pace.",
+  "choices": [
+   "unflagging",
+   "spurned",
+   "tonal",
+   "svelte"
+  ],
+  "correct_answer": "unflagging",
+  "explanation": "unflagging (never tiring or slowing): holding the same pace for ten miles while others slowed or stopped is the example of tireless effort.",
+  "distractor_rationales": [
+   "spurned - rejected with contempt; fits a refused offer or a rejected suitor, not a running pace.",
+   "tonal - relating to musical tone or key; fits a composition, not a marathon.",
+   "svelte - slender and elegant; fits a runner's figure, but the blank modifies her pace, and the clue is endurance."
+  ]
+ },
+ {
+  "id": "IS20C-17",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (clue in earlier sentence)",
+  "prompt": "[Sentence Completion] The two hosts never seemed to script their exchanges: she would needle him about his ties, he would answer with a pun on her hometown, and she would top the pun before the studio audience had finished laughing. Viewers tuned in less for the celebrity guests than for this nightly -------.",
+  "choices": [
+   "repartee",
+   "pittance",
+   "tutelage",
+   "umbrage"
+  ],
+  "correct_answer": "repartee",
+  "explanation": "repartee (quick, witty back-and-forth conversation): the needling, the answering pun and the topping of the pun are the examples of rapid witty exchange.",
+  "distractor_rationales": [
+   "tutelage - instruction or guardianship; fits an apprentice learning under a master, not two hosts trading jokes.",
+   "umbrage - offense or resentment; fits an official who takes umbrage at criticism, and the teasing here is enjoyed, not resented.",
+   "pittance - a very small amount of money; fits a meager wage, and nothing concerns payment."
+  ]
+ },
+ {
+  "id": "IS20C-18",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "effects as examples",
+  "prompt": "[Sentence Completion] When the captain finished speaking in the locker room, the players were on their feet, pounding the lockers and chanting the school's name; several said later that they had never wanted to win a game more. It was the most ------- speech of her four years on the team.",
+  "choices": [
+   "wheezing",
+   "velvety",
+   "synoptic",
+   "rousing"
+  ],
+  "correct_answer": "rousing",
+  "explanation": "rousing (stirring people to excitement and action): players on their feet, pounding lockers, chanting and never wanting to win more show the speech's stirring effect.",
+  "distractor_rationales": [
+   "wheezing - breathing with a whistling sound; fits an asthmatic runner, and nothing suggests the captain struggled to breathe.",
+   "velvety - smooth and soft; fits a singer's low voice or a fabric, and the clue is the speech's effect on the players, not its texture.",
+   "synoptic - giving a general summary; fits an overview chart, and the speech is remembered for inspiring, not summarizing."
+  ]
+ },
+ {
+  "id": "IS20C-19",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of behavior",
+  "prompt": "[Sentence Completion] Within his first three games the young hockey player had been sent to the penalty box for shoving two opposing captains, had disputed nearly every whistle, and once spent an entire timeout shouting at his own goalie. Teammates joked that his ------- temperament would one day earn him a penalty in the locker room.",
+  "choices": [
+   "pugnacious",
+   "plangent",
+   "pellucid",
+   "shopworn"
+  ],
+  "correct_answer": "pugnacious",
+  "explanation": "pugnacious (eager to quarrel or fight): shoving captains, disputing whistles and shouting at his own goalie are examples of a combative temperament.",
+  "distractor_rationales": [
+   "plangent - loud and mournful in sound; fits a church bell or a lament, not a temperament.",
+   "pellucid - transparently clear; fits mountain water or very clear prose, and the player's behavior is described, not its clarity.",
+   "shopworn - worn out from overuse or display; fits an old excuse or a faded display item, not a new player's character."
+  ]
+ },
+ {
+  "id": "IS20C-20",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples followed by restatement in a later sentence",
+  "prompt": "[Sentence Completion] The committee took eleven months to produce its report, and every chapter marched through the meetings in the order they had occurred, minutes and all, before arriving on page 300 at a recommendation everyone had expected from the start. Its prose was as ------- as its conclusion: correct, unadorned, and forgotten by the following week.",
+  "choices": [
+   "serrated",
+   "stocky",
+   "pedestrian",
+   "puckish"
+  ],
+  "correct_answer": "pedestrian",
+  "explanation": "pedestrian (dull and lacking imagination): the plodding chronological chapters, the expected recommendation and 'correct, unadorned, and forgotten' describe prose with no distinction.",
+  "distractor_rationales": [
+   "puckish - playful and mischievous; fits a prankster's grin, and nothing in this report is playful.",
+   "serrated - having a saw-toothed edge; fits a bread knife, not prose.",
+   "stocky - short and sturdily built; fits a wrestler, not a style of writing."
+  ]
+ },
+ {
+  "id": "IS20C-21",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "examples (quoted instances)",
+  "prompt": "[Sentence Completion] The coach's halftime advice never ran longer than a single sentence (\"Guard the baseline,\" or \"Make them shoot from outside\"), yet players remembered those few words for years after they graduated. Few speeches have been as ------- as hers.",
+  "choices": [
+   "tremulous",
+   "wrenching",
+   "quizzical",
+   "pithy"
+  ],
+  "correct_answer": "pithy",
+  "explanation": "pithy (brief but full of meaning): advice never longer than one sentence, yet remembered for years, combines brevity with force.",
+  "distractor_rationales": [
+   "tremulous - shaking or timid; fits a nervous first-time speaker's voice, and these commands are confident.",
+   "quizzical - puzzled or questioning; fits a raised eyebrow, and the advice consists of firm instructions, not questions.",
+   "wrenching - deeply painful or distressing; fits a farewell scene or a tragic ending, and these short commands are practical, not emotional."
+  ]
+ },
+ {
+  "id": "IS20C-22",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples (subtle restatement)",
+  "prompt": "[Sentence Completion] No one had ever shown her how to hold a brush: she mixed her colors on a chipped dinner plate, never learned the names of the techniques she used, and was astonished when a gallery owner described her work as \"confidently Impressionist.\" Critics who saw her first show called it the work of a ------- but remarkable eye.",
+  "choices": [
+   "tangy",
+   "scabrous",
+   "untutored",
+   "portentous"
+  ],
+  "correct_answer": "untutored",
+  "explanation": "untutored (without formal instruction): never being shown how to hold a brush and not knowing the names of her own techniques are examples of having had no training.",
+  "distractor_rationales": [
+   "scabrous - rough and scaly, or indecent; fits a lizard's skin or a crude joke, not a painter's eye.",
+   "tangy - sharp and pleasantly sour in taste; fits a lemonade or a sauce, and nothing in the sentence concerns flavor.",
+   "portentous - ominous or pompously solemn; fits a warning sign, and the critics are praising an untrained but gifted eye."
+  ]
+ },
+ {
+  "id": "IS20C-23",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples of degree (clue in prior sentence)",
+  "prompt": "[Sentence Completion] At the academy, students rose at six to a bell, marched to breakfast in rows, and were given exactly four minutes to change classrooms; even the order in which they could borrow library books was fixed by a printed schedule. Graduates said the ------- days left them unsure what to do with a free afternoon.",
+  "choices": [
+   "windswept",
+   "toothsome",
+   "regimented",
+   "sanctimonious"
+  ],
+  "correct_answer": "regimented",
+  "explanation": "regimented (strictly organized and controlled): the wake-up bell, marching in rows, four-minute passing periods and a schedule even for library books are examples of rigid control.",
+  "distractor_rationales": [
+   "toothsome - tasty or appealing; fits a pastry, not a school day.",
+   "sanctimonious - making a show of moral superiority; fits a preachy speaker, and the days are described by their schedule, not by moralizing.",
+   "windswept - exposed to strong winds; fits a hilltop or a beach, not a timetable."
+  ]
+ }
+]
