@@ -1,0 +1,684 @@
+[
+ {
+  "id": "AM26A-01",
+  "topic_tag": "perpendicular and parallel lines, intersection",
+  "prompt": "In the standard (x,y) coordinate plane, line ℓ passes through the point (5, 6) and is perpendicular to the line 3x − 7y = 2. Line m passes through the point (4, 4) and is parallel to the line 4x − 3y = 9. Lines ℓ and m intersect at point P. To the nearest hundredth, what is the x-coordinate of P ?",
+  "choices": [
+   "5.18",
+   "5.38",
+   "5.74",
+   "8.33"
+  ]
+ },
+ {
+  "id": "AM26A-02",
+  "topic_tag": "absolute-value equation with a linear right side",
+  "prompt": "What is the sum of all real solutions of the equation |x + 3| + |x − 9| = 1.25x + 5, rounded to the nearest hundredth?",
+  "choices": [
+   "8.98",
+   "14.97",
+   "20.57",
+   "20.27"
+  ]
+ },
+ {
+  "id": "AM26A-03",
+  "topic_tag": "literal equation, formula rearrangement with units",
+  "prompt": "A car is traveling at 45 kilometers per hour when it begins to speed up with constant acceleration. During the next 5.2 seconds, it travels 86 meters. For an object with initial speed u meters per second and constant acceleration a meters per second squared, the distance s, in meters, that it travels in t seconds is s = ut + (1/2)at². (1 kilometer = 1,000 meters and 1 hour = 3,600 seconds.) To the nearest hundredth, what is the car's acceleration, in meters per second squared?",
+  "choices": [
+   "8.08",
+   "3.96",
+   "1.51",
+   "1.55"
+  ]
+ },
+ {
+  "id": "AM26A-04",
+  "topic_tag": "linear models, percent relation between two linear quantities",
+  "prompt": "Two seedlings are measured each week. Seedling A is 12.5 centimeters tall and grows 1.8 centimeters per week. Seedling B is 6.3 centimeters tall and grows 2.6 centimeters per week. Assuming each seedling keeps growing at its constant rate, after how many weeks, to the nearest hundredth, will seedling B be 25% taller than seedling A ?",
+  "choices": [
+   "17.71",
+   "51.83",
+   "26.64",
+   "11.66"
+  ]
+ },
+ {
+  "id": "AM26A-05",
+  "topic_tag": "linear equation in context with a percent relation",
+  "prompt": "A farm harvested wheat from two fields. Field A has an area of 14.5 hectares, and field B has an area of 22.3 hectares. Field A produced 20% more wheat per hectare than field B did. Together the two fields produced 196.4 metric tons of wheat. To the nearest hundredth, how many metric tons of wheat per hectare did field B produce?",
+  "choices": [
+   "4.95",
+   "5.26",
+   "4.76",
+   "4.86"
+  ]
+ },
+ {
+  "id": "AM26A-06",
+  "topic_tag": "system of two linear equations in grouped form",
+  "prompt": "If 3(x + y) − 2(x − y) = 11.6 and (x + y) + 4(x − y) = 9.1, what is the value of y, to the nearest hundredth?",
+  "choices": [
+   "6.11",
+   "2.87",
+   "1.75",
+   "1.96"
+  ]
+ },
+ {
+  "id": "AM26A-07",
+  "topic_tag": "lines, midpoint with an endpoint on a line",
+  "prompt": "In the standard (x,y) coordinate plane, point A lies on the line y = 1.5x + 3, point B lies on the x-axis, and the midpoint of segment AB is (4.5, 1.8). What is the x-coordinate of B ?",
+  "choices": [
+   "8.6",
+   "4.6",
+   "8.1",
+   "5.3"
+  ]
+ },
+ {
+  "id": "AM26A-08",
+  "topic_tag": "system of two linear equations in context, time zones",
+  "prompt": "A nonstop flight leaves city P at 8:55 a.m. local time and lands in city Q at 1:47 p.m. local time on the same day. The return flight leaves city Q at 8:05 a.m. local time and lands in city P at 10:27 p.m. local time on the same day. The two flights take exactly the same amount of time, and the two cities are in different time zones. To the nearest hundredth of an hour, how many hours does each flight take?",
+  "choices": [
+   "9.75",
+   "9.62",
+   "9.37",
+   "9.57"
+  ]
+ },
+ {
+  "id": "AM26A-09",
+  "topic_tag": "lines, point moving at constant rates meets a line",
+  "prompt": "A robot moves in a straight path in the standard (x,y) coordinate plane. It starts at the point (−3.5, 2), and each second its x-coordinate increases by 1.5 and its y-coordinate increases by 0.7. To the nearest hundredth of a second, how many seconds after it starts does the robot reach the line 2x + 5y = 30 ?",
+  "choices": [
+   "4.15",
+   "6.69",
+   "4.89",
+   "5.08"
+  ]
+ },
+ {
+  "id": "AM26A-10",
+  "topic_tag": "linear equation with a parameter, compound inequality",
+  "prompt": "In the equation 3(x − k) + 9.5 = 4x + 4k, k is a constant. The solution x of the equation satisfies 0.7 ≤ x ≤ 5.9. To the nearest hundredth, what is the least possible value of k ?",
+  "choices": [
+   "0.72",
+   "2.06",
+   "0.51",
+   "1.26"
+  ]
+ },
+ {
+  "id": "AM26A-11",
+  "topic_tag": "compound linear inequality, \"or\", complement as an interval",
+  "prompt": "Consider the two inequalities 4 − 3x > 8.6 and 2.5x − 0.8 ≥ 9.6. The set of all real numbers x that satisfy neither inequality is an interval. To the nearest hundredth, what is the length of that interval?",
+  "choices": [
+   "5.05",
+   "2.63",
+   "4.57",
+   "5.69"
+  ]
+ },
+ {
+  "id": "AM26A-12",
+  "topic_tag": "linear equation with nested grouping symbols",
+  "prompt": "What value of x satisfies the equation −3.2 − 3[x − 3(x − 0.8)] = 1.5(x + 3.4), to the nearest hundredth?",
+  "choices": [
+   "2.02",
+   "3.07",
+   "3.44",
+   "1.31"
+  ]
+ },
+ {
+  "id": "AM26A-13",
+  "topic_tag": "nonlinear systems: two parabolas",
+  "prompt": "In the standard (x,y) coordinate plane, the graphs of y = 4x² − 11x + 2 and y = −3x² + 6x + 9 intersect at exactly two points. To the nearest hundredth, what is the slope of the line that passes through both points of intersection?",
+  "choices": [
+   "-1.29",
+   "3.86",
+   "8.43",
+   "-0.78"
+  ]
+ },
+ {
+  "id": "AM26A-14",
+  "topic_tag": "radical equations",
+  "prompt": "For exactly one real number x, the cube root of x³ + 6x² + 3 is equal to x + 2; that is, ∛(x³ + 6x² + 3) = x + 2. To the nearest hundredth, what is x ?",
+  "choices": [
+   "-0.25",
+   "-0.67",
+   "-0.72",
+   "-0.42"
+  ]
+ },
+ {
+  "id": "AM26A-15",
+  "topic_tag": "exponential equations with a common base",
+  "prompt": "The equation (1/4)^x · 2^(x²) = 2 · 32^x has two real solutions. To the nearest hundredth, what is the positive difference between the two solutions?",
+  "choices": [
+   "5.74",
+   "3.61",
+   "7.28",
+   "6.71"
+  ]
+ },
+ {
+  "id": "AM26A-16",
+  "topic_tag": "quadratic equations: vertex and symmetry",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = ax² + bx + c, where a, b, and c are constants, passes through the points (0, 9) and (2, 0), and its axis of symmetry is the line x = 3.75. To the nearest hundredth, what is the value of b ?",
+  "choices": [
+   "-9.64",
+   "-6.07",
+   "-6.14",
+   "-5.45"
+  ]
+ },
+ {
+  "id": "AM26A-17",
+  "topic_tag": "quadratic equations in context",
+  "prompt": "The side lengths of two square tiles differ by 5 centimeters, and the combined area of the two tiles is 400 square centimeters. To the nearest hundredth of a centimeter, what is the side length of the smaller tile?",
+  "choices": [
+   "10.96",
+   "11.69",
+   "11.86",
+   "11.42"
+  ]
+ },
+ {
+  "id": "AM26A-18",
+  "topic_tag": "quadratic equations",
+  "prompt": "The solutions of the equation 4x² − 4x − 1 = 0 can be written in the form (a ± √b)/c, where a, b, and c are positive integers and c is as small as possible. What is the value of a + b + c ?",
+  "choices": [
+   "11",
+   "5",
+   "14",
+   "44"
+  ]
+ },
+ {
+  "id": "AM26A-19",
+  "topic_tag": "exponent rules",
+  "prompt": "The expression (8^3)^2 · 8^(2^3) / 16^(3^2) is equal to 2^n. What is the value of n ?",
+  "choices": [
+   "18",
+   "6",
+   "29",
+   "15"
+  ]
+ },
+ {
+  "id": "AM26A-20",
+  "topic_tag": "polynomial identities",
+  "prompt": "For all real numbers x, x³ − 8x² + x + 4 = (x − 3)³ + a(x − 3)² + b(x − 3) + c, where a, b, and c are constants. What is the value of b ?",
+  "choices": [
+   "-21",
+   "-47",
+   "-20",
+   "-38"
+  ]
+ },
+ {
+  "id": "AM26A-21",
+  "topic_tag": "nonlinear systems: two parabolas",
+  "prompt": "In the standard (x,y) coordinate plane, the vertex of the parabola y = x² − 6x + c, where c is a constant, lies on the parabola y = −x² + 4x − 1. What is the value of c ?",
+  "choices": [
+   "2",
+   "11",
+   "-49",
+   "-13"
+  ]
+ },
+ {
+  "id": "AM26A-22",
+  "topic_tag": "quadratic equations: vertex",
+  "prompt": "In the standard (x,y) coordinate plane, line ℓ passes through the vertex of the parabola y = 3x² − 9x − 4 and through the vertex of the parabola y = −2x² + 4x − 1. What is the y-intercept of line ℓ ?",
+  "choices": [
+   "-8.5",
+   "3.5",
+   "51.5",
+   "24.5"
+  ]
+ },
+ {
+  "id": "AM26A-23",
+  "topic_tag": "radical equations",
+  "prompt": "What is the solution of the equation √(x + 4) · √(x − 1) = 8, to the nearest hundredth?",
+  "choices": [
+   "6.12",
+   "6.39",
+   "6.88",
+   "2.27"
+  ]
+ },
+ {
+  "id": "AM26A-24",
+  "topic_tag": "quadratic equations: sums and products of solutions",
+  "prompt": "Ana and Ben each tried to solve the same equation of the form x² + bx + c = 0, where b and c are constants. Ana copied c correctly but copied b incorrectly, and the solutions of the equation she wrote were 5 and −6. Ben copied b correctly but copied c incorrectly, and the solutions of the equation he wrote were 1 and 12. What is the value of c − b for the original equation?",
+  "choices": [
+   "-43",
+   "-31",
+   "11",
+   "-17"
+  ]
+ },
+ {
+  "id": "AM26N-01",
+  "topic_tag": "powers of i in a weighted sum",
+  "prompt": "For i = √(−1), let S = 1·i + 2·i² + 3·i³ + 4·i⁴ + ⋯ + 30·i³⁰, the sum of k·iᵏ for k = 1 through 30. The number S can be written as a + bi, where a and b are real numbers. To the nearest hundredth, what is √(a² + b²), the absolute value of S ?",
+  "choices": [
+   "45.88",
+   "21.93",
+   "46.49",
+   "21.21"
+  ]
+ },
+ {
+  "id": "AM26N-02",
+  "topic_tag": "negative rational exponent in a scaling law",
+  "prompt": "Biologists model the resting heart rate H, in beats per minute, of a mammal with body mass M kilograms by H = 241M^(−1/4). Under this model, the resting heart rate of animal B is 25% lower than the resting heart rate of animal A, whose mass is 5.5 kilograms. To the nearest hundredth of a kilogram, what is the mass of animal B ?",
+  "choices": [
+   "29.33",
+   "13.43",
+   "17.38",
+   "5.91"
+  ]
+ },
+ {
+  "id": "AM26N-03",
+  "topic_tag": "complex numbers in AC circuits",
+  "prompt": "In an alternating-current circuit, the impedance of a component, in ohms, is a complex number a + bi, where a and b are real; its real part a is the resistance. When two components with impedances Z₁ and Z₂ are connected in parallel, their combined impedance is Z = Z₁Z₂/(Z₁ + Z₂). For i = √(−1), a component with Z₁ = 2 + 5i and a component with Z₂ = 6 − 3i are connected in parallel. To the nearest hundredth of an ohm, what is the resistance (the real part) of Z ?",
+  "choices": [
+   "3.38",
+   "2.03",
+   "3.88",
+   "1.50"
+  ]
+ },
+ {
+  "id": "AM26N-04",
+  "topic_tag": "arithmetic series from a remainder condition",
+  "prompt": "What is the sum of all three-digit positive integers that have a remainder of 2 when divided by 7 ?",
+  "choices": [
+   "70144",
+   "70785",
+   "71695",
+   "70692"
+  ]
+ },
+ {
+  "id": "AM26N-05",
+  "topic_tag": "arithmetic sequence from block sums",
+  "prompt": "In an arithmetic sequence, the sum of the first 10 terms is 172.5, and the sum of the 11th through 20th terms is 418.5. To the nearest hundredth, what is the 30th term of the sequence?",
+  "choices": [
+   "79.98",
+   "77.52",
+   "88.59",
+   "84.22"
+  ]
+ },
+ {
+  "id": "AM26N-06",
+  "topic_tag": "3 x 3 determinant",
+  "prompt": "Let M be the 3 × 3 matrix whose rows, from top to bottom, are (−2, −2, −3), (−1, 3, 1), and (1, 6, −3). What is det M, the determinant of M ?",
+  "choices": [
+   "23",
+   "61",
+   "53",
+   "7"
+  ]
+ },
+ {
+  "id": "AM26N-07",
+  "topic_tag": "precision of measurements in a quotient",
+  "prompt": "The mass of a metal sample is measured as 386 grams, rounded to the nearest gram, and its volume is measured as 41.7 cubic centimeters, rounded to the nearest tenth of a cubic centimeter. The density of the sample is its mass divided by its volume. To the nearest thousandth of a gram per cubic centimeter, what is the least possible actual density of the sample?",
+  "choices": [
+   "9.234",
+   "9.256",
+   "9.211",
+   "9.244"
+  ]
+ },
+ {
+  "id": "AM26N-08",
+  "topic_tag": "vectors: work as a dot product",
+  "prompt": "A constant force F = ⟨−11, −2⟩, in newtons, acts on an object as the object moves in the standard (x,y) coordinate plane, where distances are in meters. The object moves from point P(2, −3) to point R(3, −5) and then from R to point Q(−5, 6). The work, in joules, done by a constant force over a displacement d is the dot product F · d. What is the total work, in joules, done by F on the object over the whole trip?",
+  "choices": [
+   "43",
+   "95",
+   "73",
+   "59"
+  ]
+ },
+ {
+  "id": "AM26S-01",
+  "topic_tag": "conditional probability with two independent tests",
+  "prompt": "A screening test for a certain condition gives a positive result for 90% of people who have the condition and for 8% of people who do not have it. In a large population, 4% of the people have the condition. A person chosen at random from this population takes the test twice. Given whether the person has the condition, the two results are independent. Both results are positive. To the nearest thousandth, what is the probability that the person has the condition?",
+  "choices": [
+   "0.319",
+   "0.992",
+   "0.841",
+   "0.854"
+  ]
+ },
+ {
+  "id": "AM26S-02",
+  "topic_tag": "probability of a seating arrangement",
+  "prompt": "Eight people, including Ana, Ben, and Cy, are seated at random in a row of 8 chairs, with every seating equally likely. To the nearest thousandth, what is the probability that Cy sits in one of the two end chairs and Ana and Ben do not sit in chairs next to each other?",
+  "choices": [
+   "0.214",
+   "0.204",
+   "0.179",
+   "0.188"
+  ]
+ },
+ {
+  "id": "AM26S-03",
+  "topic_tag": "expected value of a count",
+  "prompt": "Five balls are placed into 4 boxes. Each ball is placed, independently of the other balls, into one of the 4 boxes chosen at random, with each box equally likely. To the nearest thousandth, what is the expected number of boxes that end up empty?",
+  "choices": [
+   "0.237",
+   "0.949",
+   "0.766",
+   "0.938"
+  ]
+ },
+ {
+  "id": "AM26S-04",
+  "topic_tag": "expected value of a two-stage game",
+  "prompt": "In a game, a player rolls a fair 6-sided die numbered 1 through 6. If the number rolled is 1, 2, or 3, the player must roll the die a second time and keep the second number; otherwise, the player keeps the first number. The player then earns a number of points equal to the square of the number kept. To the nearest hundredth, what is the expected number of points the player earns?",
+  "choices": [
+   "20.42",
+   "15.17",
+   "14.58",
+   "20.08"
+  ]
+ },
+ {
+  "id": "AM26S-05",
+  "topic_tag": "matching problem probability",
+  "prompt": "Five people each bring one gift to a party. The 5 gifts are then handed out at random, one to each person, with every way of handing them out equally likely. To the nearest thousandth, what is the probability that at least one person receives the gift he or she brought?",
+  "choices": [
+   "0.672",
+   "0.633",
+   "0.700",
+   "0.667"
+  ]
+ },
+ {
+  "id": "AM26S-06",
+  "topic_tag": "probability in a first-to-k series",
+  "prompt": "Teams A and B play a series of games that ends as soon as one team has won 3 games. Team A wins each game with probability 0.6 and Team B wins each game with probability 0.4; there are no ties, and the results of different games are independent. To the nearest thousandth, what is the probability that the series lasts exactly 4 games?",
+  "choices": [
+   "0.518",
+   "0.499",
+   "0.374",
+   "0.438"
+  ]
+ },
+ {
+  "id": "AM26G-01",
+  "topic_tag": "law of cosines applied twice in a quadrilateral",
+  "prompt": "In quadrilateral ABCD, AB = 7 meters, BC = 12 meters, the measure of angle ABC is 75°, CD = 9 meters, and the measure of angle ACD is 52°. Points B and D lie on opposite sides of diagonal AC. To the nearest hundredth of a meter, what is the length of AD ? (Note: For any triangle with sides a, b, and c, where C is the angle opposite side c, c² = a² + b² − 2ab cos C.)",
+  "choices": [
+   "9.75",
+   "9.59",
+   "7.09",
+   "7.55"
+  ]
+ },
+ {
+  "id": "AM26G-02",
+  "topic_tag": "perpendicular chords and the radius of a circle",
+  "prompt": "Chords AB and CD of a circle are perpendicular and intersect at point P inside the circle. AP = 5 inches, PB = 8 inches, and CP = 4 inches. To the nearest hundredth of an inch, what is the radius of the circle?",
+  "choices": [
+   "7.76",
+   "7.62",
+   "8.85",
+   "7.16"
+  ]
+ },
+ {
+  "id": "AM26G-04",
+  "topic_tag": "area of a region between two arcs (annular sector)",
+  "prompt": "A windshield wiper arm is 50 centimeters long from its pivot to its tip. The rubber blade is attached along the outer 35 centimeters of the arm, so the blade runs from 15 centimeters to 50 centimeters from the pivot. The arm rotates back and forth through an angle of 118°. To the nearest square centimeter, what is the area of the region of the windshield that the blade wipes?",
+  "choices": [
+   "2343",
+   "2559",
+   "2475",
+   "1313"
+  ]
+ },
+ {
+  "id": "AM26G-05",
+  "topic_tag": "triangle inscribed in a circle from its arcs",
+  "prompt": "Points P, Q, and R lie on a circle with a radius of 8 meters. The three minor arcs PQ, QR, and RP measure 80°, 130°, and 150°, respectively. To the nearest hundredth of a square meter, what is the area of triangle PQR ?",
+  "choices": [
+   "67.58",
+   "72.03",
+   "80.48",
+   "51.08"
+  ]
+ },
+ {
+  "id": "AM26G-06",
+  "topic_tag": "inscribed and circumscribed circles of a right triangle",
+  "prompt": "In the standard (x,y) coordinate plane, a right triangle has vertices (0, 0), (10, 0), and (0, 6). To the nearest hundredth of a coordinate unit, what is the distance between the center of the circle inscribed in the triangle and the center of the circle circumscribed about the triangle?",
+  "choices": [
+   "2.95",
+   "3.07",
+   "3.66",
+   "4.36"
+  ]
+ },
+ {
+  "id": "AM26G-07",
+  "topic_tag": "dividing a triangle into equal areas with a vertical line",
+  "prompt": "In the standard (x,y) coordinate plane, a triangle has vertices (0, 0), (11, 0), and (3, 6). The vertical line x = c divides the triangle into two regions of equal area. To the nearest hundredth, what is the value of c ?",
+  "choices": [
+   "3.22",
+   "3.85",
+   "4.06",
+   "4.37"
+  ]
+ },
+ {
+  "id": "AM26F-01",
+  "topic_tag": "exponential growth and decay acting together",
+  "prompt": "A culture of 1,840 bacteria grows exponentially and, with nothing else acting on it, would double every 3 hours. An antibiotic is added at the start; acting alone, it would reduce the number of bacteria exponentially by 22% every 4 hours. The two effects act together, so their growth and decay factors multiply. To the nearest whole number, how many bacteria are there 7 hours after the start?",
+  "choices": [
+   "4765",
+   "6003",
+   "5741",
+   "5193"
+  ]
+ },
+ {
+  "id": "AM26F-02",
+  "topic_tag": "sum of two exponential decay functions",
+  "prompt": "A sample contains 30 grams of substance A, which has a half-life of 4 hours, and 120 grams of substance B, which has a half-life of 16 hours. Each substance decays exponentially and independently of the other. To the nearest hundredth of a gram, what is the total mass of A and B remaining 9 hours later?",
+  "choices": [
+   "87.56",
+   "86.25",
+   "71.54",
+   "80.38"
+  ]
+ },
+ {
+  "id": "AM26F-03",
+  "topic_tag": "rational function model with a parameter",
+  "prompt": "A typing student's speed, in words per minute, after t weeks of practice is modeled by the function W(t) = 70t/(t + k), where k is a positive constant. After 3 weeks of practice, the student types 40 words per minute. According to the model, after how many weeks of practice, to the nearest hundredth, will the student type 59 words per minute?",
+  "choices": [
+   "28.16",
+   "12.07",
+   "14.32",
+   "21.45"
+  ]
+ },
+ {
+  "id": "AM26F-04",
+  "topic_tag": "piecewise linear function from a table",
+  "prompt": "A cyclist's speed v, in meters per second, t seconds after starting is given at four times in the table below. Between consecutive times listed, the speed changes at a constant rate (so v is a linear function of t on each interval). t (seconds) | 0 | 4 | 10 | 15 ; v (meters per second) | 0 | 12 | 12 | 3. To the nearest tenth of a meter, how far does the cyclist travel from t = 2 to t = 13 ?",
+  "choices": [
+   "106.5",
+   "117.9",
+   "112.5",
+   "120.6"
+  ]
+ },
+ {
+  "id": "AM26F-05",
+  "topic_tag": "sinusoidal function from circular motion",
+  "prompt": "A wheel with a radius of 0.8 meter turns counterclockwise at a constant 4 revolutions per second about an axle that is 2.0 meters above the floor. A reflector on the rim is level with the axle and to its right at time t = 0. To the nearest hundredth of a meter, how high above the floor is the reflector at t = 0.29 second?",
+  "choices": [
+   "2.73",
+   "2.35",
+   "2.43",
+   "2.68"
+  ]
+ },
+ {
+  "id": "AM26F-06",
+  "topic_tag": "logarithmic model (sound level) with an inverse-square law",
+  "prompt": "The sound level L, in decibels, of a sound with intensity I is L = 10 log(I/I₀), where I₀ is a fixed reference intensity. The intensity of the sound from a machine is inversely proportional to the square of the distance from the machine, and the intensities of two machines running at the same time add. Machine A produces 82 decibels at a distance of 2 meters, and machine B produces 85 decibels at a distance of 3 meters. A worker stands 6 meters from machine A and 4 meters from machine B. To the nearest hundredth of a decibel, what sound level does the worker hear when both machines run?",
+  "choices": [
+   "85.13",
+   "83.33",
+   "84.62",
+   "82.91"
+  ]
+ },
+ {
+  "id": "AM26I-01",
+  "topic_tag": "rainwater collection, two rainfall rates",
+  "prompt": "Rain that falls on a shed roof drains into a rain barrel that holds 55 gallons. The roof covers a horizontal area of 18 feet by 10 feet, and only 80% of the rain that falls on that area reaches the barrel. During a storm, rain falls at a constant rate of 0.30 inch per hour for the first 30 minutes and then at a constant rate of 1.0 inch per hour until the barrel is full. The barrel is empty when the rain begins, and 1 cubic foot of water is 7.48 gallons. To the nearest tenth of a minute, how many minutes after the rain begins does the barrel become full?",
+  "choices": [
+   "48.8",
+   "56.6",
+   "61.4",
+   "57.8"
+  ]
+ },
+ {
+  "id": "AM26I-02",
+  "topic_tag": "real wage with compounded inflation",
+  "prompt": "Over a two-year period, Kai's hourly wage rose from $24.80 to $27.90. During the same two years, consumer prices rose 3.4% in the first year and then rose another 6.1% in the second year. Kai's real wage is his hourly wage divided by the level of consumer prices, so it measures how much his wage can buy. To the nearest hundredth of a percent, by what percent did Kai's real wage increase over the two years?",
+  "choices": [
+   "2.74",
+   "2.55",
+   "2.48",
+   "2.79"
+  ]
+ },
+ {
+  "id": "AM26I-03",
+  "topic_tag": "emissions per occupant-mile comparison",
+  "prompt": "A city compares the carbon dioxide (CO2) emitted per occupant-mile by a commuter car and by a city bus. The car travels 28 miles per gallon of gasoline, and each gallon of gasoline burned emits 8.89 kilograms of CO2. On 70% of the car's commuting trips the driver is alone, and on the other 30% the car carries the driver and one passenger. The bus travels 4.2 miles per gallon of diesel fuel, each gallon of diesel burned emits 10.18 kilograms of CO2, and the bus carries an average of 18 occupants. To the nearest hundredth of a percent, the bus emits what percent less CO2 per occupant-mile than the car?",
+  "choices": [
+   "57.59",
+   "81.37",
+   "51.85",
+   "44.87"
+  ]
+ },
+ {
+  "id": "AM26I-04",
+  "topic_tag": "average speed from timestamps, percent over limit",
+  "prompt": "On a highway with a speed limit of 90 kilometers per hour, an average-speed enforcement system records the time at which each car passes two cameras that are 6.8 kilometers apart. One car passed the first camera at 10:14:37 a.m. and the second camera at 10:18:25 a.m. (hours:minutes:seconds). To the nearest tenth of a percent, by what percent did the car's average speed between the two cameras exceed the speed limit?",
+  "choices": [
+   "19.3",
+   "16.2",
+   "30.3",
+   "7.9"
+  ]
+ },
+ {
+  "id": "AM26I-05",
+  "topic_tag": "percent change in cost of a fixed basket",
+  "prompt": "A family tracks the monthly cost of a fixed basket of groceries: 3 gallons of milk, 6 dozen eggs, 5 loaves of bread, and 3 pounds of apples. Last year the prices were $3.46 per gallon of milk, $2.76 per dozen eggs, $3.19 per loaf of bread, and $1.24 per pound of apples. This year the prices are $3.91, $3.22, $3.32, and $1.56, respectively. The family buys the same quantities in both years. To the nearest hundredth of a percent, by what percent did the monthly cost of the basket increase?",
+  "choices": [
+   "14.89",
+   "12.27",
+   "13.93",
+   "12.77"
+  ]
+ },
+ {
+  "id": "AM26I-06",
+  "topic_tag": "wind turbine annual energy, homes supplied",
+  "prompt": "A wind turbine is rated at 2.5 megawatts (MW), where 1 MW = 1,000 kilowatts (kW). Over a year, its capacity factor is 34%, meaning that it produces 34% of the energy it would produce if it ran at its rated power for every hour of the year. Of the energy the turbine produces, 6% is lost in transmission before it reaches customers. An average home uses 10,720 kilowatt-hours (kWh) of energy per year. To the nearest whole number, the energy that reaches customers in one year equals the annual use of how many average homes?",
+  "choices": [
+   "653",
+   "572",
+   "655",
+   "644"
+  ]
+ },
+ {
+  "id": "AM26I-07",
+  "topic_tag": "song length from beats and tempo",
+  "prompt": "A song begins with 6 measures in 3/4 time (3 beats per measure), followed by 136 measures in 4/4 time (4 beats per measure). It is written to be played at a tempo of 128 beats per minute. A DJ plays the whole song at a tempo 6% faster than written, with the same beats. To the nearest second, how many seconds long is the song when the DJ plays it?",
+  "choices": [
+   "251",
+   "254",
+   "249",
+   "252"
+  ]
+ },
+ {
+  "id": "AM26I-08",
+  "topic_tag": "annual percentage rate of a short-term loan",
+  "prompt": "A lender advanced Dana $350 on March 27, and Dana repaid $402 on April 11 of the same year, ending the loan. The term of the loan is the number of days from March 27 to April 11. The lender computes the annual percentage rate (APR) as (finance charge ÷ amount advanced) × (365 ÷ number of days in the term) × 100%, where the finance charge is the amount repaid minus the amount advanced. To the nearest hundredth of a percent, what was the APR of Dana's loan?",
+  "choices": [
+   "361.52",
+   "338.93",
+   "314.76",
+   "356.57"
+  ]
+ },
+ {
+  "id": "AM26I-09",
+  "topic_tag": "file upload time with unit conversion and overhead",
+  "prompt": "Rafael uploads a 4.3-gigabyte (GB) video file over a connection that sends bits at a constant rate of 20 megabits per second (Mbps). For this problem, 1 GB = 1,024 megabytes (MB) and 1 MB = 8 megabits. Of all the bits the connection sends, 10% are network overhead, and only the other 90% carry the file's data. To the nearest hundredth of a minute, how many minutes does the upload take?",
+  "choices": [
+   "32.62",
+   "31.85",
+   "32.37",
+   "32.29"
+  ]
+ },
+ {
+  "id": "AM26I-10",
+  "topic_tag": "running track lane distance",
+  "prompt": "A running track has two straight sections and two semicircular ends. One lap in lane 1 is 400 meters. Each lane is 1.22 meters wide, so in each lane the semicircular ends of the running path have a radius 1.22 meters greater than in the lane just inside it, while the straight sections are the same length in every lane. To the nearest hundredth of a meter, how far does a runner travel in 4 complete laps of lane 6?",
+  "choices": [
+   "1753.31",
+   "1676.65",
+   "1783.97",
+   "1638.33"
+  ]
+ },
+ {
+  "id": "AM26I-11",
+  "topic_tag": "stair design: risers, treads, stringer length",
+  "prompt": "A builder is designing a straight staircase that rises a total of 9 feet 4 inches from one floor to the next. All risers (step heights) must be equal and no more than 7.75 inches, and the builder uses the fewest risers that meet this limit. Each tread (step depth) is 10.5 inches, and the staircase has one fewer tread than it has risers because the top riser leads onto the upper floor. The stringer runs straight from the bottom of the first riser to the top of the last riser, so its length is the hypotenuse of a right triangle whose legs are the total rise and the total depth of all the treads. To the nearest hundredth of an inch, how long is the stringer?",
+  "choices": [
+   "185.29",
+   "193.26",
+   "184.81",
+   "176.57"
+  ]
+ },
+ {
+  "id": "AM26I-12",
+  "topic_tag": "distance to lightning from sound delay",
+  "prompt": "The speed of sound in air, in feet per second, is approximately 1,087 + 1.1(F − 32), where F is the air temperature in degrees Fahrenheit. A temperature of C degrees Celsius equals (9/5)C + 32 degrees Fahrenheit. During a storm the air temperature is 40 degrees Celsius. A video recorded at 30 frames per second shows a lightning flash first appearing in frame number 1,046 and its thunder first heard in frame number 1,268; consecutive frames are 1/30 second apart. Assuming the light arrives instantly, how far away was the lightning, to the nearest thousandth of a mile? (1 mile = 5,280 feet)",
+  "choices": [
+   "1.627",
+   "1.634",
+   "1.624",
+   "1.585"
+  ]
+ }
+]

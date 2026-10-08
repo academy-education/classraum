@@ -1912,6 +1912,77 @@ recorded only in a commit message is a finding nobody reads.
 
   **Ships with:** `PREREG-ALG26-2026-10-08.md`, `alg26-preflight.mjs` (selftest 12/12; break-tested on v25: R7 59.4%), `alg26-order.mjs` (seed 20261026), `alg26-reference-triples.json` (66), `key-extremity-projection.mjs` (`--profile sat-alg26`), `alg26-verdict.mjs` (rule 7 counts a pair if either row names the other), `sat-math-v26-alg{-a,-b,-c,-d,,.meta,.kept}.batch.json`/`.json`, `.dropped.json`, graders `alg26.ws-{d,e,f}{.stage1,}.json`, `m26alg.verdict.json`, `m26alg.qc.json`, solvers `alg26-oo.solver-{a,b,c}.json` + `alg26-oo.{blind,key}.json` (blind sha 61272ff4), `write-alg26-ledger.mjs`. Claude agents only. No new env var.
 
+- **2026-10-08** — **`act-math-v26` INSERTED 52 OF 62 FROZEN (63 authored). ACT MATH 17 -> 18 FORMS (853 items; form-capacity and next-form). FORM 19 NOT BOUGHT: IES 7 OF 8 KEPT, SO FORM 19 NEEDS IES +1.** Every other form-19 deficit was met: Algebra 21/10, N&Q 8/5, Geometry 6/5, Functions 6/3, S&P 4/4. Bars pre-registered before authoring: `ACT-MATH-V26-PREREGISTERED.md` (committed alone, 97eb4f27). It keeps all of v25's bars and checks, including `key-extremity-projection.mjs`, rules 10 and 11 and `error_directions` on every item, and adds five things:
+  - **The hand keyword duplicate search runs BEFORE FREEZE.** The v26 helper prints every hit up to 40 (v25's stopped at 6) over the 3,165 live maths rows plus 137 held/dropped ACT rows.
+  - **Survival re-derived from v24 AND v25.** `act-math-v26-projection.mjs` gates the kept extreme share at the v24, v25 and pooled rates, each in [45, 55]. Break-test: it fails v24 and v23 at all three rates and a synthetic 74% overshoot, and passes v25.
+  - **Algebra gated on its own.** 24 items in two disjoint arms (A1 linear, A2 nonlinear), so the gates measure Algebra alone at stage 0 and stage 4.
+  - **RUN through the key is a mechanical return** (`act-math-v26-option-shapes.mjs`; GAP pairs are a reading list). On v25 it marks A-02, A-07 and A-11, three of v25's 12 drops.
+  - **IES additive-total ban.**
+
+  **Scope.** `form-capacity` 17 forms (801; Algebra 142 / 8 binding); form 18 = Algebra +2. Forms 18+19 need: Algebra 10, IES 8, N&Q 5, Geometry 5, S&P 4, Functions 3. Authored 63, five Claude authors, launched two or three at a time:
+  - A1: Algebra 12.
+  - A2: Algebra 12.
+  - B: N&Q 8 + S&P 6.
+  - C: Geometry 7 + Functions 6.
+  - D: IES 12.
+  
+  Key position commissioned 18/27/18 (57.1% extreme). The first author wave was killed by an API session limit before writing anything and was relaunched.
+
+  **Stage 0, round 1 (merged 63).** All mechanical checks passed. Key position 18/27/18; projections v24 48.0 / v25 51.1 / pooled 50.4%. Option shapes: RUN 0. Interior niceness: 0 flags.
+
+  **The return (6 items).** The hand keyword search found **four live duplicates that no script flagged, a sixth batch running:**
+  - `AM26A-14` boat round trip ~ act 4dfb9cfe, sat dd8525be, 204411b1, e077084e.
+  - `AM26A-22` sliding ladder ~ act e3ec2642, ssat e4ff3033.
+  - `AM26A-18` coefficients of a product of trinomials ~ act 04563c96 (Jaccard flagged this one too).
+  - `AM26G-03` area from three sides ~ act 6a5bf715 (a 13-14-15 plot).
+  
+  It also found two in-batch overlaps: A-11 ~ A-06 (bare 2x2 systems) and N-05 ~ I-04 (average speed from m:s). Author A2 reported that the first dump missed 38 rows (`sat-math-v24-adv`, inserted mid-session), so the dump was re-pulled and the hand search was re-run against it.
+
+  **After the return.** The replacement G-03 (two tangent circles on a line, trapezoid minus sectors) has the same configuration as the held `AM23G-07` (two-pulley belt), and its tangent-length step is the whole of act 4197bc84. It was **dropped, with no second return**, which left 62. On the 62 (sha 336b9a8e2b612ffe):
+  - Preflight PASS, except `check-key-magnitude` on the authored set: interior z −2.01, REPORTED as pre-registered (per side 1.04 / 1.35).
+  - Key position 18/26/18; Algebra 7/10/7.
+  - Both projections PASS, merged and Algebra.
+  - Dups: Jaccard 13 FLAG / 47 near, mechanism 7 FLAG / 48 near, all read.
+  
+  **Frozen 7c50be68.**
+
+  **Stage 1 PASS:**
+
+      CANDIDATE     37/186 = 19.9%   line 25.8%   margin −5.9
+      LIVE CONTROL  58/186 = 31.2%   line 25.8%   margin +5.4   (62 matched 1:1 by domain, v16–v26 excluded)
+      candidate minus control  −11.3   (HOLD bar +10)
+      unanimous-correct        candidate 3/62 = 4.8%  vs  control 8/62 = 12.9%   −8.1  (HOLD bar +15)
+      pairwise agreement 56.2% vs 26.6% if independent: one solver sampled three times
+      Algebra arm (descriptive)  14/72 = 19.4% vs 23/72 = 31.9%; unanimous 1/24 vs 3/24
+  Blind sha ed46f3805e148177. **As in v25, the pass rides on position.** The solvers picked an interior option on 182 of 186 candidate picks. Position-matched, the arms are level: interior-key hits 36/78 = 46.2% vs 44/96 = 45.8%.
+
+  **Stage 2** (render 1bd6eb0e00d4a920, quoted by both graders at start and end). **124/124 picks on key.** The new fields were present on all 62 items in both outputs. Difficulty agreement 44/62. **Kept 52, dropped 10:**
+  - Rule 3 / 10: A-23 (one multiplication at 6.39 puts all three below a key on an increasing product), S-05 (the Bonferroni 2/3 bound, plus 1 − 1/e recall), S-04 (E > 91/6 puts 15.17 ON).
+  - Rule 8: A-18 (+10, "c as small as possible" makes every unreduced form larger), I-03, I-07, I-08 (+10, every error enlarges a denominator), I-09 (+10).
+  - Rule 9 / 7: A-08 (9.37 = key 9.62 h read as 9 h 37 min).
+  - Rule 2: I-06 (grader B: the stem never fixes the hours in a year; a 366-day year gives 655, an option).
+  - Not confirmed, and kept: A-15, F-02, I-12, F-06, S-02 (in `act-math-v26.verdicts.json`).
+  - Banked difficulty: easy 12 / medium 32 / hard 8.
+
+  **Stage 4 PASS:**
+  - Kept 52 (sha 62ad9febcf9e645b): preflight PASS with `check-key-magnitude` gating, z 0.87 / 0.60 / −1.23. Key at an extreme 28/52 = 53.8%, position 14/24/14.
+  - **Algebra kept alone, 21:** key-extremity 12/21 = 57.1%, magnitude z 0.73 / 0.56 / −1.08, both PASS. This is the first batch whose Algebra was measured on its own.
+  - Survival: extreme-key 28/36 = 77.8%, interior 24/26 = 92.3% (v25: 72.2 / 92.3; v24: 53.6 / 77.4). The projection's band held for a second batch.
+  - Inserted with `BANK_FAMILY=act BANK_COHORT=act-math-v26 BANK_BAND=mixed`. `verify-act-draw`: act/math draws 45 of 45.
+
+  **For the next author (v27: IES +1 for form 19).**
+  1. **IES is now the domain that fails.** It kept 7 of 12. The additive-total ban held (0 additive stems were authored), but four IES items still dropped on rule 8. These were conversion chains where each stated rule (1,024 MB/GB, the 90% data share, inclusive days, the 3/4 measures) moves the answer one readable way. Errors at different steps are not enough: the graders ask whether a student can READ the direction off the stem, and "a bigger denominator lowers it" is readable.
+  2. **Display slips of the key are a tell.** A minutes-as-decimal distractor is fine when it comes from an intermediate (I-01, I-04). It is a pointer when it is the KEY re-read (A-08 9.37/9.62, I-09 32.37/32.62). Four of D's 12 items used one, which is a cross-item pattern from one brief.
+  3. **A 1-item IES top-up cannot be measured by the per-batch gates** (n < 10). Commission at least 10 IES, or fold IES into a larger batch.
+  4. The hand keyword search found what both scripts missed for the sixth batch running. **Re-pull the dump** whenever another session inserts mid-run.
+
+  Evidence:
+  - Pre-registration and tools: `ACT-MATH-V26-PREREGISTERED.md`, `act-math-v26-projection.mjs`, `act-math-v26-option-shapes.mjs`, `act-math-v26-attack-draw.mjs`.
+  - Batches: `act-math-v26{-a1,-a2,-b,-c,-d,}.batch.json` (frozen; `-c` still holds the dropped G-03, which is excluded from the merged 62), `act-math-v26.kept.batch.json`, `act-math-v26.drops.json`, `act-math-v26.verdicts.json`, `act-math-v26.qc.json`.
+  - Attack: `act-math-v26-attack.{blind,key,controls,solver-a,solver-b,solver-c}.json`.
+  - Grade: `act-math-v26-grade.{batch,grade,gradekey}.json`, `act-math-v26.grader-{a,b}.json`.
+  - Ledger `act-math-v26-kept-2026-10-08`. `form-capacity`: ACT Math 18 forms (853; IES 170 / 9 binding). `next-form`: IES +1.
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

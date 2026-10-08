@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T09:00:02.755Z",
+  "generatedAt": "2026-10-08T10:12:02.048Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -6983,6 +6983,40 @@
           "passed": false,
           "contentSha": "31c91b0e96862cd206e84c34fd69fb502d03a6d7805d566dfd1d358f5dfaeea4",
           "verdict": "The dominant drop class: on 15 of 28 extreme-key items the graders found a one-sided error family readable from the stem (omitted step / widened bound / greatest-under-cap stems: every natural slip lands on one side). Linear Algebra error paths are directional far more often than Advanced Math ones were; commissioning 58% extreme keys pushed authors into them."
+        }
+      }
+    },
+    {
+      "id": "act-math-v26-kept-2026-10-08",
+      "createdAt": "2026-10-08",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v26",
+      "contentSha": "62ad9febcf9e645b5d1bdf0d628178c38e7d5d8be59afa86e68ec10973e9da5f",
+      "status": "shipped",
+      "note": "52 of 62 frozen survive (Algebra 21, N&Q 8, S&P 4, Geometry 6, Functions 6, IES 7) from five Claude authors, commissioned for ACT Math forms 18+19 (form 18 = Algebra +2; form 19 deficits Algebra 10, IES 8, N&Q 5, Geometry 5, S&P 4, Functions 3) with Algebra at 24 in two disjoint arms so the per-batch gates measure Algebra alone. Bars pre-registered in ACT-MATH-V26-PREREGISTERED.md (commit 97eb4f27) before authoring: all v25 bars kept (key-extremity-projection.mjs, rules 10 and 11, error_directions on every item); new: hand keyword dup search BEFORE freeze, survival re-derived from v24+v25 (act-math-v26-projection.mjs), Algebra gated alone, RUN-through-key return (act-math-v26-option-shapes.mjs), IES additive-total ban. Frozen 7c50be68 (62 items). Kept key at an extreme 28/52 = 53.8%; Algebra alone 12/21 = 57.1%.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "62ad9febcf9e645b5d1bdf0d628178c38e7d5d8be59afa86e68ec10973e9da5f",
+          "verdict": "Stage 0 on the merged 63, then 62 after the single return (sha 336b9a8e2b612ffe): act-math-v18-preflight.sh sandbox 62/62, distractors 186/186, no hub, key-extremity 36/62 = 58.1%, 0 composites/echo/stem dups/option-set dups; check-key-magnitude on the AUTHORED set interior z -2.01 REPORTED as pre-registered (per side 1.04 / 1.35). Key position 18/26/18 (band 15-21/24-30/15-21); Algebra 24 at 7/10/7 (band 5-9/8-12/5-9). key-extremity-projection (v25 bars) PASS; act-math-v26-projection PASS merged (v24 48.0-48.9 / v25 51.1-52.0 / pooled 50.4-51.3%, equal-rate z >= -1.79) and Algebra 24 (49.2 / 52.3 / 51.6%). (c) mechanical 36 extreme 0 single-kind; niceness 0 flags; option-shapes RUN 0, GAP 2 read as coincidences (I-06, I-07). Arith-class keys lone 6/62 vs distractors 24/186, none stem-implied. Dups over 3,165 live rows: Jaccard 13 FLAG / 47 near, mechanism 7 FLAG / 48 near, all read. Hand keyword search (v26 helper, every hit printed to 40) before freeze found 5 live/held duplicates no script flagged in round 1 (A-14 boat round trip ~ act 4dfb9cfe etc; A-22 sliding ladder ~ act e3ec2642, ssat e4ff3033; A-18 product coefficients ~ act 04563c96; G-03 area from three sides ~ act 6a5bf715) + 2 in-batch overlaps (A-11~A-06, N-05~I-04): single return of 6; the returned G-03 then matched held AM23G-07 (two-pulley external tangent) and was dropped, no second return. Kept 52 (sha 62ad9febcf9e645b): PREFLIGHT PASS with magnitude GATING z 0.87 / 0.60 / -1.23; key-extremity 28/52 = 53.8%, position 14/24/14; Algebra kept alone 21: key-extremity 12/21 = 57.1%, magnitude z 0.73 / 0.56 / -1.08, PASS."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "62ad9febcf9e645b5d1bdf0d628178c38e7d5d8be59afa86e68ec10973e9da5f",
+          "verdict": "Options-only (act-math-v26-attack-draw.mjs, blind sha ed46f3805e148177): 62 candidates + 62 live act/math controls matched 1:1 by domain (act-math-v16..v26 excluded), keys flat within arm (25.8%), three Claude samples (pairwise agreement 56.2% vs 26.6% if independent - one solver sampled three times). Candidate 37/186 = 19.9% (-5.9) vs control 58/186 = 31.2% (+5.4): candidate minus control -11.3 (HOLD bar +10). Unanimous-correct candidate 3/62 = 4.8% vs control 8/62 = 12.9%, -8.1 (HOLD bar +15). Control margin +5.4, far from +25. Descriptive: interior-key hits 36/78 = 46.2% vs control 44/96 = 45.8%; extreme-key 1/108 = 0.9% vs 6/60 = 10.0% (interior picked on 182/186 candidate picks) - the pass rides on position as in v25; Algebra arm 14/72 = 19.4% vs 23/72 = 31.9%, unanimous 1/24 vs 3/24. Measures the option sets only."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "62ad9febcf9e645b5d1bdf0d628178c38e7d5d8be59afa86e68ec10973e9da5f",
+          "verdict": "Two independent Claude graders on make-grade-render of a copy with every author field stripped (render 1bd6eb0e00d4a920, no unrecognised field, quoted at start and end by both); 124/124 picks on key; error_directions, extreme_single_bound, announced_trap on all 62 in both outputs; difficulty agree 44/62. Dropped 10: rule 3/10 A-23 (one product at 6.39 kills all three), S-05 (Bonferroni 2/3 + 1-1/e), S-04 (E > 91/6); rule 8 A-18 (+10, \"c as small as possible\"), I-03, I-07, I-08 (+10), I-09 (+10); rule 9/7 A-08 (9.37 = key 9 h 37 min as decimal); rule 2 I-06 (leap-year 655, grader B). Extreme-key items kept 28/36 = 77.8%, interior 24/26 = 92.3%. Banked: easy 12 / medium 32 / hard 8."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "62ad9febcf9e645b5d1bdf0d628178c38e7d5d8be59afa86e68ec10973e9da5f",
+          "verdict": "Residuals recorded in act-math-v26.verdicts.json, not acted on: A-15 opposite-sign-roots bound (needs the quadratic; not cheaper), F-02 B > 80 bound (needs log2 1.5), one_sided named once and not confirmed on I-12, F-06, S-02; B near-pair notes on A-02, A-03, A-16, N-01, I-11 (no key transform). IES lost 5 of 12, four to rule 8 (the additive-total ban held - 0 additive stems - but conversion-chain stems where each stated rule shrinks or grows the answer still read one-way). Cross-item: min:sec display slips used as distractors in I-01, I-04, I-07, I-09 (I-09 key-derived; dropped)."
         }
       }
     }

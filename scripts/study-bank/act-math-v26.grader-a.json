@@ -1,0 +1,3026 @@
+{
+ "_render_sha": "1bd6eb0e00d4a920",
+ "AM26A-01": {
+  "pick": "5.18",
+  "work": "l slope -7/3 through (5,6); m slope 4/3 through (4,4); 11x/3=19 -> x=57/11=5.18.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "5.38": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "5.74": {
+    "error": "using slope 3/7 (parallel) for l",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "8.33": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-02": {
+  "pick": "20.27",
+  "work": "Middle region 12=1.25x+5 -> 5.6; right region 2x-6=1.25x+5 -> 14.67; left region gives 0.31, not < -3 (extraneous). Sum 20.27.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "8.98": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "14.97": {
+    "error": "one valid root plus the extraneous one (14.67+0.31)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "20.57": {
+    "error": "keeping extraneous x=0.31",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-03": {
+  "pick": "1.55",
+  "work": "u=45 km/h=12.5 m/s; 86=12.5(5.2)+13.52a -> a=21/13.52=1.553.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "8.08": {
+    "error": "dropping or mishandling the ut term / unit conversion",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "3.96": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "1.51": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-04": {
+  "pick": "26.64",
+  "work": "6.3+2.6t=1.25(12.5+1.8t) -> 0.35t=9.325 -> t=26.64.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "17.71": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "51.83": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "11.66": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-05": {
+  "pick": "4.95",
+  "work": "b(1.2*14.5+22.3)=196.4 -> 39.7b=196.4 -> b=4.947.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "5.26": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "4.76": {
+    "error": "applying the 20% to field B area (14.5+1.2*22.3)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "4.86": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-06": {
+  "pick": "1.75",
+  "work": "s=x+y, d=x-y: 3s-2d=11.6, s+4d=9.1 -> s=4.614, d=1.121; y=(s-d)/2=1.746.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "6.11": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "2.87": {
+    "error": "reporting x instead of y",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "1.96": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-07": {
+  "pick": "8.6",
+  "work": "A=(9-b,3.6) on line: 3.6=1.5(9-b)+3 -> 9-b=0.4 -> b=8.6.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "4.6": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "8.1": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "5.3": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "A_y=3.6>3 (intercept) gives A_x>0 so b<9 - kills nothing; no single bound separates 8.6 from 8.1",
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-08": {
+  "pick": "9.62",
+  "work": "T+z=4h52m, T-z=14h22m (or vice versa); T=(4.867+14.367)/2=9.617.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "9.75": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "9.37": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "9.57": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-09": {
+  "pick": "4.15",
+  "work": "x=-3.5+1.5t, y=2+0.7t; 2x+5y=3+6.5t=30 -> t=27/6.5=4.154.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "6.69": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "4.89": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "5.08": {
+    "error": "sign slip on constant: 33/6.5",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "evaluate 2x+5y at t=4.5 (32.25>30) -> t<4.5",
+   "cheaper_than_the_work": false,
+   "kills": [
+    "4.89",
+    "5.08",
+    "6.69"
+   ]
+  },
+  "announced_trap": null,
+  "free_elimination": "plugging t=4.5 (32.25>30) kills three, but costs as much as the linear solve",
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-10": {
+  "pick": "0.51",
+  "work": "x=9.5-7k (decreasing in k); x<=5.9 gives k>=3.6/7=0.514; x>=0.7 gives k<=1.257. Least k=0.51.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "1.26",
+   "what": "greatest possible k (other end of the feasible interval)",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.72": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "2.06": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "1.26": {
+    "error": "using the other endpoint (greatest k)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-11": {
+  "pick": "5.69",
+  "work": "Neither: x>=-1.533 and x<4.16; length 4.16+1.533=5.693.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "lower endpoint is negative and upper is 10.4/2.5=4.16, so length >4.16",
+    "kills": [
+     "2.63"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "5.05": {
+    "error": "using 8.8/2.5=3.52 for the upper endpoint (3.52+1.53)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "2.63": {
+    "error": "subtracting endpoints 4.16-1.533",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "4.57": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-12": {
+  "pick": "3.44",
+  "work": "-3.2-3(-2x+2.4)=6x-10.4=1.5x+5.1 -> 4.5x=15.5 -> 3.444.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "2.02": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "3.07": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "1.31": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-13": {
+  "pick": "-1.29",
+  "work": "Subtract: 7x^2-17x-7=0; substitute x^2=(17x+7)/7 into first: y=(68/7-11)x+6 -> slope -9/7=-1.286.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "3.86": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "8.43": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "-0.78": {
+    "error": "reciprocal-type slip (-7/9)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-14": {
+  "pick": "-0.42",
+  "work": "Cube: x^3+6x^2+3=x^3+6x^2+12x+8 -> 12x=-5 -> -0.417.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "-0.25": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "-0.67": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "-0.72": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-15": {
+  "pick": "7.28",
+  "work": "2^(x^2-2x)=2^(1+5x): x^2-7x-1=0; difference sqrt(53)=7.28.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": "all four are sqrt of integers (13,33,45,53) - discriminant family; does not single out the key by itself",
+  "error_directions": {
+   "5.74": {
+    "error": "sqrt(33): wrong combination of exponents",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "3.61": {
+    "error": "sqrt(13)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "6.71": {
+    "error": "sqrt(45): constant sign slip (x^2-7x+1)",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-16": {
+  "pick": "-6.14",
+  "work": "c=9; b=-7.5a; 4a+2b+9=0 -> -11a=-9 -> a=9/11, b=-6.136.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "-9.64": {
+    "error": "sign/arith slip giving a=9/7",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "-6.07": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "-5.45": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-17": {
+  "pick": "11.42",
+  "work": "s^2+(s+5)^2=400 -> 2s^2+10s-375=0 -> s=11.419.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "10.96": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "11.69": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "11.86": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-18": {
+  "pick": "5",
+  "work": "x=(4+-sqrt32)/8=(1+-sqrt2)/2: a=1,b=2,c=2 -> 5.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "11": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "14": {
+    "error": "partially simplified (2+-sqrt8)/4",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "44": {
+    "error": "unsimplified (4+-sqrt32)/8",
+    "direction": "above",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "key is smallest; the stem demands the most-reduced form (c minimal), and every unreduced form has larger a, b, c, so all natural errors push the sum up",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "reducing the form can only lower a+b+c; pick the smallest",
+   "cheaper_than_the_work": true,
+   "kills": [
+    "11",
+    "14",
+    "44"
+   ]
+  },
+  "announced_trap": {
+   "clause": "c is as small as possible",
+   "options": [
+    "44",
+    "14"
+   ]
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-19": {
+  "pick": "6",
+  "work": "8^6*8^8/16^9 = 2^18*2^24/2^36 = 2^6.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "18": {
+    "error": "16^(3^2) read as 16^6",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "29": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "15": {
+    "error": "(8^3)^2 read as 8^9",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-20": {
+  "pick": "-20",
+  "work": "Taylor at 3: c=f(3)=-38, b=f'(3)=27-48+1=-20, a=1.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "-21": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "-47": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "-38": {
+    "error": "reporting c",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-21": {
+  "pick": "11",
+  "work": "Vertex (3,c-9); second parabola at 3: -9+12-1=2; c-9=2 -> 11.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "2": {
+    "error": "reporting vertex y",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "-49": {
+    "error": "vertex x taken as -3",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "-13": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-22": {
+  "pick": "24.5",
+  "work": "Vertices (1.5,-10.75),(1,1); slope -23.5; intercept 1+23.5=24.5.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "-8.5": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "3.5": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "51.5": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-23": {
+  "pick": "6.88",
+  "work": "(x+4)(x-1)=64 -> x^2+3x-68=0 -> x=6.88 (x>=1).",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "AM-GM: sqrt(x+4)sqrt(x-1)<=x+1.5, so x+1.5>8, x>6.5",
+    "kills": [
+     "2.27",
+     "6.12",
+     "6.39"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "(x+4)(x-1) at x=6.5 is 57.75<64, product increasing, so x>6.5",
+   "interval": "(6.5, 7)",
+   "kills": [
+    "2.27",
+    "6.12",
+    "6.39"
+   ]
+  },
+  "survivors": 1,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "6.12": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "6.39": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "2.27": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "x>6.5 from (x+4)(x-1)=57.75<64 at 6.5, or AM-GM x+1.5>8",
+   "cheaper_than_the_work": true,
+   "kills": [
+    "2.27",
+    "6.12",
+    "6.39"
+   ]
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26A-24": {
+  "pick": "-17",
+  "work": "Ana: c=-30; Ben: b=-13; c-b=-17.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "-43": {
+    "error": "c+b",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "-31": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "11": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26N-01": {
+  "pick": "21.93",
+  "work": "S=-16+15i (pairs); |S|=sqrt(481)=21.93.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "45.88": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "46.49": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "21.21": {
+    "error": "sum through k=29/31-type off-by-one (15sqrt2)",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26N-02": {
+  "pick": "17.38",
+  "work": "H_B=0.75H_A -> M_B=5.5(4/3)^4=17.38.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "29.33": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "13.43": {
+    "error": "5.5*1.25^4 (25% as 1.25)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "5.91": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26N-03": {
+  "pick": "3.88",
+  "work": "Z1Z2=27+24i, Z1+Z2=8+2i; Z=(264+138i)/68 -> real 3.88.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "3.38": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "2.03": {
+    "error": "imaginary part",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "1.50": {
+    "error": "real parts only: 12/8",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26N-04": {
+  "pick": "70692",
+  "work": "Terms 100..996 step 7: 129 terms, sum 129*548=70692.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": "sum of 129 terms each =2 mod 7 is =6 mod 7 and divisible by 129; only 70692 is (70144=4, 70785=1, 71695=1 mod 7)",
+  "option_structure": null,
+  "error_directions": {
+   "70144": {
+    "error": "one term short / endpoint error",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "70785": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "71695": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": "parity (odd count x even mean) kills 70785 and 71695, and residue 6 mod 7 kills 70144 too, but needs the count of terms (most of the work)",
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26N-05": {
+  "pick": "77.52",
+  "work": "100d=246 -> d=2.46, a=6.18; a30=6.18+29*2.46=77.52.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": {
+   "option": "79.98",
+   "what": "a+30d (off-by-one term index)",
+   "bound_kills": false
+  },
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "79.98": {
+    "error": "31st term (a+30d)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "88.59": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "84.22": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26N-06": {
+  "pick": "61",
+  "work": "Cofactor expansion: -2(-9-6)+2(3-1)-3(-6-3)=30+4+27=61.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "23": {
+    "error": "sign slip in one cofactor",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "53": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "7": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26N-07": {
+  "pick": "9.234",
+  "work": "Least: 385.5/41.75=9.2335.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "least <= 385.5/41.7=9.2446 (one-variable change)",
+    "kills": [
+     "9.256"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "9.256": {
+    "error": "min mass over min volume (385.5/41.65)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "9.211": {
+    "error": "volume tolerance overstated",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "9.244": {
+    "error": "only mass at its minimum (385.5/41.7)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26N-08": {
+  "pick": "59",
+  "work": "Work path-independent: F.(Q-P)=(-11)(-7)+(-2)(9)=59.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "43": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "95": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "73": {
+    "error": "adding absolute values of leg works",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26S-01": {
+  "pick": "0.841",
+  "work": "0.04*0.81/(0.04*0.81+0.96*0.0064)=0.841.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "two positives raise the posterior above the one-test posterior 0.319",
+    "kills": [
+     "0.319"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.319": {
+    "error": "one test only",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "0.992": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.854": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26S-02": {
+  "pick": "0.179",
+  "work": "P(Cy end)=1/4; then 7 seats in a row, A,B adjacent 6/21 -> (1/4)(15/21)=0.1786.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.214": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.204": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.188": {
+    "error": "treating not-adjacent as 3/4 (8-seat row) independently",
+    "direction": "above",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "key smallest; the error of ignoring Cy removing a seat (8-seat adjacency rate) pushes up, but a student cannot easily tell the direction from the stem",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "P<=P(Cy at end)=0.25 kills nothing",
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26S-03": {
+  "pick": "0.949",
+  "work": "4*(3/4)^5=0.949 by linearity.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "expected count = 4 x per-box probability, not the per-box probability",
+    "kills": [
+     "0.237"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.237": {
+    "error": "probability one box empty",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "0.766": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "0.938": {
+    "error": "rounded 3/4 power (15/16)",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26S-04": {
+  "pick": "20.42",
+  "work": "0.5*E[X^2]+ (16+25+36)/6 = 7.583+12.833=20.42.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "re-rolling only low numbers cannot lower the expectation, so E>91/6=15.17",
+    "kills": [
+     "14.58",
+     "15.17"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "15.17": {
+    "error": "single roll E[X^2]",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "14.58": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "20.08": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "E>15.17 kills two; 20.08 needs the work",
+   "cheaper_than_the_work": false,
+   "kills": [
+    "14.58",
+    "15.17"
+   ]
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26S-05": {
+  "pick": "0.633",
+  "work": "Derangements of 5 = 44; 1-44/120=0.6333.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "Bonferroni: P<=1-1/2+1/6=0.667",
+    "kills": [
+     "0.667",
+     "0.672",
+     "0.700"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "1-1/e=0.632 (well-known matching limit)",
+   "interval": "(0.62,0.64)",
+   "kills": [
+    "0.667",
+    "0.672",
+    "0.700"
+   ]
+  },
+  "survivors": 1,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.672": {
+    "error": "independence 1-(4/5)^5",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "0.700": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.667": {
+    "error": "inclusion-exclusion truncated at 3 terms",
+    "direction": "above",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "key smallest; both independence approximation and truncated inclusion-exclusion overstate, and the known 1-1/e answer points straight at 0.633",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "P<=1-1/2+1/6=2/3 (Bonferroni) or 1-1/e",
+   "cheaper_than_the_work": true,
+   "kills": [
+    "0.667",
+    "0.672",
+    "0.700"
+   ]
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26S-06": {
+  "pick": "0.374",
+  "work": "3p^3q+3q^3p=0.2592+0.1152=0.3744.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.518": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.499": {
+    "error": "4 orderings each (ignoring last game must be the clincher)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.438": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": {
+   "clause": "ends as soon as one team has won 3 games",
+   "options": [
+    "0.499"
+   ]
+  },
+  "free_elimination": "P(exactly 4) <= P(some team wins exactly 3 of first 4)=0.499 kills 0.499 (ON) and 0.518, but costs about the work",
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26G-01": {
+  "pick": "9.75",
+  "work": "AC^2=193-168cos75 -> AC=12.23; AD^2=AC^2+81-2(9)AC cos52 -> 9.75.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "9.59": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "7.09": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "7.55": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26G-02": {
+  "pick": "7.16",
+  "work": "PD=40/4=10; 4R^2=25+64+16+100 -> R=sqrt(205)/2=7.16.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "R>=CD/2=7 and >=AB/2=6.5",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "7.76": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "7.62": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "8.85": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26G-04": {
+  "pick": "2343",
+  "work": "(118/360)pi(50^2-15^2)=2342.7.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "area < full-radius sector (118/360)pi*50^2=2574",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "2559": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "2475": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "1313": {
+    "error": "blade length squared (35^2) based sector",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26G-05": {
+  "pick": "72.03",
+  "work": "Central angles 80,130,150: (1/2)64(sin80+sin130+sin150)=72.03.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "67.58": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "80.48": {
+    "error": "using inscribed (half) angles as central",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "51.08": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26G-06": {
+  "pick": "2.95",
+  "work": "r=(6+10-sqrt136)/2=2.169; incenter (r,r); circumcenter (5,3); distance 2.95.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "3.07": {
+    "error": "incenter to origin",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "3.66": {
+    "error": "circumcenter distance from origin minus r",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "4.36": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26G-07": {
+  "pick": "4.37",
+  "work": "Left of x=3 area 9<16.5; right piece (3/8)(11-c)^2=16.5 -> c=11-sqrt44=4.37.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "area left of x=3 is 9 < 16.5, so c>3",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "3.22": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "3.85": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "4.06": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26F-01": {
+  "pick": "6003",
+  "work": "1840*2^(7/3)*0.78^(7/4)=6003.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "4765": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "5741": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "5193": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26F-02": {
+  "pick": "87.56",
+  "work": "30*2^(-9/4)+120*2^(-9/16)=6.31+81.25=87.56.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "B alone >120/2^0.5625>120/1.5=80, and A>30/8=3.75",
+    "kills": [
+     "71.54",
+     "80.38"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "86.25": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "71.54": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "80.38": {
+    "error": "pooled 150 g with averaged half-life 10 h",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "B>80 and A>3.75 gives >83.75; 86.25 needs work",
+   "cheaper_than_the_work": false,
+   "kills": [
+    "71.54",
+    "80.38"
+   ]
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26F-03": {
+  "pick": "12.07",
+  "work": "40=210/(3+k) -> k=2.25; 59(t+2.25)=70t -> t=12.07.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "28.16": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "14.32": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "21.45": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26F-04": {
+  "pick": "117.9",
+  "work": "Area under v: 2->4 (6+12)/2*2=18; 4->10 72; 10->13 (12+6.6)/2*3=27.9; total 117.9.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "106.5": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "112.5": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "120.6": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26F-05": {
+  "pick": "2.68",
+  "work": "h=2+0.8 sin(2pi*4*0.29)=2+0.8 sin(417.6 deg)=2.68.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "2.73": {
+    "error": "angle 1.16 treated as radians of revolutions mix",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "2.35": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "2.43": {
+    "error": "cosine instead of sine",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26F-06": {
+  "pick": "82.91",
+  "work": "I_A ~10^8.2/9, I_B ~10^8.5*9/16; L=10log(sum)=82.91.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "L >= louder single source at the worker (B: 82.50) and <= 82.50+3.01",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "85.13": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "83.33": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "84.62": {
+    "error": "inverse (not squared) distance",
+    "direction": "above",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "key smallest; dropping the square in the inverse-square law (or under-attenuating) pushes up, and distances exceed the reference ones so attenuation errors push up; partly readable from the stem",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-01": {
+  "pick": "57.8",
+  "work": "Gallons per inch=180/12*7.48*0.8=89.76; first 30 min 0.15 in -> 13.46 gal; remaining 41.54/89.76 h=27.8 min; total 57.8.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "48.8": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "56.6": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "61.4": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-02": {
+  "pick": "2.55",
+  "work": "27.90/24.80/(1.034*1.061)-1=2.55%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "2.74": {
+    "error": "adding inflation 9.5%",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "2.48": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "2.79": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-03": {
+  "pick": "44.87",
+  "work": "Car: 8.89/28/1.3=0.2442 kg; bus 10.18/4.2/18=0.1347; 1-0.1347/0.2442=44.87%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "57.59": {
+    "error": "ignoring the 30% passenger trips",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "81.37": {
+    "error": "(car-bus)/bus",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "51.85": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-04": {
+  "pick": "19.3",
+  "work": "228 s; 6.8/(228/3600)=107.37 km/h; 19.3% over.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "16.2": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "30.3": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "7.9": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-05": {
+  "pick": "12.27",
+  "work": "Last 46.61, now 52.33; 12.27%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "14.89": {
+    "error": "average of item percent changes",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "13.93": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "12.77": {
+    "error": "unweighted sum of unit prices",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-06": {
+  "pick": "653",
+  "work": "2500*8760*0.34*0.94/10720=652.9.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "572": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "655": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "644": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "weak",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-07": {
+  "pick": "249",
+  "work": "Beats 18+544=562; 562/(128*1.06) min=248.5 s -> 249 (248.53 rounds to 249).",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "251": {
+    "error": "counting 3/4 measures as 4 beats",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "254": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "252": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "key smallest; but direction of errors not clearly predictable without solving",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": {
+   "clause": "6 measures in 3/4 time (3 beats per measure)",
+   "options": [
+    "251"
+   ]
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-08": {
+  "pick": "361.52",
+  "work": "Days 15 (4 in March + 11); (52/350)(365/15)=361.52%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "338.93": {
+    "error": "16 days (inclusive count)",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "314.76": {
+    "error": "dividing by amount repaid 402",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "356.57": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "key largest; inclusive day-count and dividing by the larger repaid amount both lower the APR - a student wary of fencepost/denominator traps can tell these errors push down",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-09": {
+  "pick": "32.62",
+  "work": "4.3*8192 Mb/(18 Mbps)=1956.98 s=32.62 min.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "31.85": {
+    "error": "1 GB=1000 MB",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "32.37": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "32.29": {
+    "error": "multiplying by 1.1 instead of dividing by 0.9",
+    "direction": "below",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "key largest; both stem-announced conventions (1024 MB per GB, 90% payload) push the time UP relative to the common shortcuts (1000, x1.1), so the shortcuts land below; 1/0.9>1.1 is known",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "/0.9 exceeds x1.1 and 1024>1000: true time exceeds every shortcut value",
+   "cheaper_than_the_work": false,
+   "kills": [
+    "31.85",
+    "32.29"
+   ]
+  },
+  "announced_trap": {
+   "clause": "1 GB = 1,024 MB; only the other 90% carry the data",
+   "options": [
+    "31.85",
+    "32.29"
+   ]
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-10": {
+  "pick": "1753.31",
+  "work": "Lane 6 radius +5(1.22); per lap +2pi(6.1)=38.33; 4 laps 1753.31.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "1676.65": {
+    "error": "pi instead of 2pi per lap",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "1783.97": {
+    "error": "6 lane widths instead of 5",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "1638.33": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-11": {
+  "pick": "184.81",
+  "work": "112 in /7.75=14.45 -> 15 risers; 14 treads=147 in; sqrt(112^2+147^2)=184.81.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "185.29": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "193.26": {
+    "error": "15 treads",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "176.57": {
+    "error": "14 risers (rounding down) -> 13 treads",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "AM26I-12": {
+  "pick": "1.634",
+  "work": "F=104, v=1166.2 ft/s; 222 frames=7.4 s; 8629.9 ft=1.634 mi.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "none cheaper than the computation",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "1.627": {
+    "error": "221 frames (fencepost)",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "1.624": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "1.585": {
+    "error": "using 40 as F",
+    "direction": "below",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "key largest; using the Celsius value directly in the Fahrenheit formula lowers the speed (predictable: 40<104); fencepost errors also go down",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": {
+   "clause": "temperature given in Celsius with conversion to F",
+   "options": [
+    "1.585"
+   ]
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits tagged ACT domain"
+ },
+ "_render_sha_end": "1bd6eb0e00d4a920"
+}
