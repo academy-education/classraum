@@ -1,0 +1,570 @@
+[
+ {
+  "id": "SM29F-Q01",
+  "domain": "Advanced Math",
+  "subskill": "Exponential model with a constant term: solving for time",
+  "difficulty": "medium",
+  "prompt": "The number of members of an online community t weeks after it launched is modeled by N(t) = 400(1.5)^(t/4) - 90. According to the model, how many weeks after the launch does the community have 1,700 members? Round your answer to the nearest tenth.",
+  "choices": [
+   "12.8",
+   "13.7",
+   "14.3",
+   "14.8"
+  ],
+  "correct_answer": "14.8",
+  "explanation": "Set N(t) = 1,700: 400(1.5)^(t/4) - 90 = 1,700.\n\nAdd 90 to both sides: 400(1.5)^(t/4) = 1,790.\nDivide by 400: (1.5)^(t/4) = 4.475.\n\nTaking logarithms (or graphing y = (1.5)^(x/4) and y = 4.475): t/4 = log 4.475 / log 1.5, which is about 3.696, so t is about 14.78.\n\nTo the nearest tenth, the community has 1,700 members about 14.8 weeks after the launch.\n\n(Check: N(12) = 400(3.375) - 90 = 1,260 and N(16) = 400(5.0625) - 90 = 1,935, so the answer lies between 12 and 16 weeks.)",
+  "solve": "return Math.round(4*Math.log(1790/400)/Math.log(1.5)*10)/10;",
+  "distractor_solve": {
+   "12.8": "return Math.round(4*Math.log(1790/490)/Math.log(1.5)*10)/10;",
+   "13.7": "return Math.round(4*Math.log(1610/400)/Math.log(1.5)*10)/10;",
+   "14.3": "return Math.round(4*Math.log(1700/400)/Math.log(1.5)*10)/10;"
+  },
+  "mechanism": [
+   "undo the constant term: 400(1.5)^(t/4) = 1,790",
+   "isolate the power: (1.5)^(t/4) = 4.475",
+   "solve the exponent with a logarithm or a graph and multiply by 4"
+  ],
+  "quantity_asked": "the number of weeks until the model reaches 1,700 members",
+  "ask_type": "value-of-input",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(400*Math.pow(1.5, v/4) - 90 - 1700) < 10;",
+   "why": "A student can test an option t by evaluating N(t) and comparing it with 1,700. In ascending order the key is the fourth and last option tried."
+  },
+  "distractor_meta": {
+   "12.8": {
+    "error_kind": "wrong_operation",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adds the 90 to the coefficient as well as to the target, solving 490(1.5)^(t/4) = 1,790; whether the two extra 90s move the time up or down is not visible until the ratio is formed."
+   },
+   "13.7": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Moves the 90 with the wrong sign, solving 400(1.5)^(t/4) = 1,610; the stem does not show which side of the key that lands on without solving."
+   },
+   "14.3": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Leaves out the constant term and solves 400(1.5)^(t/4) = 1,700; the stem gives no comparison of the two targets once the 400 is divided out."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return Math.round((1700+90-400)/50*10)/10;",
+   "direction": "above",
+   "why": "Treating the growth as linear, 50% of 400 = 200 members per 4 weeks (50 a week), gives 400 + 50t - 90 = 1,700 and t = 27.8, above the key (not an option)."
+  },
+  "far_distractor": {
+   "option": "12.8",
+   "natural_side": "above",
+   "why": "Putting the 90 in twice, into the coefficient as well as into the target, is an over-count that students expect to push the answer up. Here the extra 90 in the coefficient sits in the divisor of the growth the model must achieve (1,790/490 instead of 1,790/400), so less growth is needed and the time lands below the key."
+  },
+  "cheap_bound_check": "Cheapest bounds: N(12) = 1,260 < 1,700 < N(16) = 1,935 (whole periods of 4 weeks), so 12 < t < 16; this strikes none of the options. All three distractors lie on the key side of every whole-period bound.",
+  "shape_check": "Properties handed over: the time is positive (all four); N is increasing, so the time lies between the whole-period values 12 and 16 weeks (all four survive); answers are to the nearest tenth (all four shown to one decimal). 12.8, 13.7, 14.3 and 14.8 survive together.",
+  "interior_parity_check": "Extreme key (largest); the two middle values 13.7 and 14.3 are both shown to one decimal place.",
+  "arith_class_check": "All four are shown to one decimal and none is a whole number. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "\\)\\^\\(?[a-z]/\\d\\)? ?[-−] ?\\d",
+    "\\^\\(x ?- ?\\d\\) ?\\+ ?\\d|\\^x ?[-−+] ?\\d+ ?=|\\)\\^t ?[-−] ?\\d",
+    "temperature&\\^|cool",
+    "\\^\\(t/\\d|\\^\\(t ?/ ?\\d"
+   ],
+   "hits_read": 26,
+   "nearest": "SADV6A-02 (f(x) = 2^(x - 6) + 448 = 576) undoes a constant to reach an exact power of 2; 0bbf5e1b (A = 80(0.5)^(t/6), time to 12 mg) solves a scaled exponent with no constant term; SM24V-B02 and SM28F-Q02 are cooling models evaluated at a time. Here a growth model with a subtracted constant and a scaled exponent is solved for a time that falls between whole periods."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the three distractors are a dropped constant, the constant moved with the wrong sign, and the constant added twice; the last is an over-count that lands below because it enlarges the coefficient, so the errors cannot be sorted by \"left something out\" without forming the ratios. The whole-period bound 12 < t < 16 strikes none. Plug-back works (evaluate N(t)) but the key is the fourth option in ascending order. PAIR/DSUM: printed numbers 400, 1.5, 4, 90, 1700; key-option differences 2.0, 1.1 and 0.5 and ratios 1.16, 1.08 and 1.03 avoid them, their neighbours and their sums."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-Q02",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: output at the average of two inputs",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = 4^x. For the real numbers a and b, f(a) = 3 and f(b) = 15. To the nearest hundredth, what is the value of f((a + b)/2) ?",
+  "choices": [
+   "4.24",
+   "5.61",
+   "6.71",
+   "9.00"
+  ],
+  "correct_answer": "6.71",
+  "explanation": "f((a + b)/2) = 4^((a + b)/2) = (4^(a + b))^(1/2) = (4^a · 4^b)^(1/2).\n\nSince 4^a = f(a) = 3 and 4^b = f(b) = 15, this is (3 · 15)^(1/2) = √45, which is about 6.708.\n\nTo the nearest hundredth, f((a + b)/2) = 6.71.\n\n(Averaging the inputs of an exponential function gives the geometric mean of the outputs, not their average.)",
+  "solve": "const a=Math.log(3)/Math.log(4), b=Math.log(15)/Math.log(4); return Math.round(Math.pow(4,(a+b)/2)*100)/100;",
+  "distractor_solve": {
+   "4.24": "return Math.round(Math.sqrt(3+15)*100)/100;",
+   "5.61": "return Math.round((Math.sqrt(3)+Math.sqrt(15))*100)/100;",
+   "9.00": "return Math.round(((3+15)/2)*100)/100;"
+  },
+  "mechanism": [
+   "4^((a + b)/2) = (4^a · 4^b)^(1/2)",
+   "substitute the two outputs and take the square root"
+  ],
+  "quantity_asked": "the value of f at the average of the two inputs a and b",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a value of f at an input that is never given; to test it a student would need a and b, which is the work itself. The key is also the third value in ascending order."
+  },
+  "distractor_meta": {
+   "4.24": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Takes the square root of f(a) + f(b) instead of f(a) · f(b); the stem does not show whether the sum or the product of 3 and 15 is larger under a root without working it."
+   },
+   "5.61": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Splits f over the sum, f(a/2) + f(b/2) = √3 + √15; the stem gives no sign of how that sum compares with the true value."
+   },
+   "9.00": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Averages the outputs 3 and 15 instead of evaluating f at the average input; that the average of outputs exceeds the output at the average is a convexity fact the stem does not state."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: f is increasing and positive, so f((a + b)/2) lies strictly between f(a) = 3 and f(b) = 15; all four options (4.24, 5.61, 6.71, 9.00) lie in that interval. Rounded to the nearest hundredth: all four are shown to two decimals. All four survive every property together.",
+  "interior_parity_check": "The two middle values are 5.61 and 6.71: both two-decimal numbers with three significant digits; neither is cleaner.",
+  "arith_class_check": "All four options are positive two-decimal values between 3 and 15; 9.00 is the only whole value and it is a distractor. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "f\\(\\(a ?\\+ ?b\\)|\\(a ?\\+ ?b\\)/2|f\\(a\\) ?= ?.*f\\(b\\)",
+    "\\^a = |\\^a=&\\^b",
+    "\\^\\((-|−)?\\d/\\d\\) ?="
+   ],
+   "hits_read": 15,
+   "nearest": "31891202 (3^a = 5 and 3^b = 45, find b - a) and 7d3066a6 (2^a = 5, 2^b = 3, find 2^(a + 2b)) combine outputs at integer combinations of the inputs; here the input is the AVERAGE (a + b)/2, so the step is a square root of a product of outputs (a geometric mean), and the key is irrational."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might average 3 and 15 (9.00) or note the answer lies between 3 and 15, which all four options satisfy. Without a and b no option can be substituted. PAIR/DSUM: printed numbers 4, 3, 15, 2; no key-option difference, sum or ratio equals one of them or a sum of two (differences 2.47, 1.10, 2.29). The geometric mean is not the cleaner middle value."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-Q03",
+  "domain": "Advanced Math",
+  "subskill": "Radical equations: constants from the squared equation",
+  "difficulty": "medium",
+  "prompt": "When the equation √(2x + a) = x - b, where a and b are positive constants, is solved by squaring both sides, the resulting quadratic equation has the solutions x = 5 and x = 23. What is a - b ?",
+  "choices": [
+   "41",
+   "67",
+   "95",
+   "271"
+  ],
+  "correct_answer": "41",
+  "explanation": "Squaring both sides gives 2x + a = (x - b)^2 = x^2 - 2bx + b^2, so x^2 - (2b + 2)x + (b^2 - a) = 0.\n\nA quadratic with leading coefficient 1 and solutions 5 and 23 is x^2 - 28x + 115 = 0. Matching coefficients:\n2b + 2 = 28, so b = 13,\nb^2 - a = 115, so 169 - a = 115 and a = 54.\n\nTherefore a - b = 54 - 13 = 41.\n\n(The original equation is √(2x + 54) = x - 13. Only x = 23 satisfies it: √100 = 10 = 23 - 13. The value x = 5 is extraneous, because √64 = 8 is not equal to 5 - 13 = -8.)",
+  "solve": "const s=5+23, p=5*23; const b=(s-2)/2; const a=b*b-p; return a-b;",
+  "distractor_solve": {
+   "67": "const s=5+23, p=5*23; const b=s/2; const a=b*b-p; return a-b;",
+   "95": "const s=5+23, p=5*23; const b=(s+2)/2; const a=b*b-p; return a-b;",
+   "271": "const s=5+23, p=5*23; const b=(s-2)/2; const a=b*b+p; return a-b;"
+  },
+  "mechanism": [
+   "square both sides: 2x + a = (x - b)^2",
+   "write the quadratic from its solutions 5 and 23",
+   "match the x-coefficient and the constant term for b and a"
+  ],
+  "quantity_asked": "the difference a - b of the two constants in the radical equation",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a difference of two unknown constants; it cannot be put into the equation, and checking it would require first finding a and b separately, which is the solution itself."
+  },
+  "distractor_meta": {
+   "67": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaves the 2x from the left side out of the x-term, so 2b = 28 and b = 14, a = 81; b is subtracted in a - b, and the stem does not show that a grows faster than b."
+   },
+   "95": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moves the 2x with the wrong sign, getting 2b - 2 = 28, so b = 15 and a = 110; the stem does not show which way that moves a - b."
+   },
+   "271": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Sets a - b^2 = 115 instead of b^2 - a = 115, so a = 284; the stem does not show the sign of b^2 - a."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const s=5+23, p=5*23; const b=(s-2)/2; const a=b*b-p; return b-a;",
+   "direction": "below",
+   "why": "Finding a and b correctly but reporting b - a gives -41, below the key (not an option)."
+  },
+  "far_distractor": {
+   "option": "67",
+   "natural_side": "below",
+   "why": "Dropping a term normally makes a result too small, and here b, which is subtracted in a - b, gets larger, which also looks like it should lower the answer. But the dropped 2x entered the x-coefficient with a minus sign, so b rises by only 1 (13 to 14) while a = b^2 - 115 rises by 27 (54 to 81), and a - b lands above the key."
+  },
+  "cheap_bound_check": "Cheapest bound: a and b are positive, and the valid solution must be at least b while the other is extraneous, so 5 < b <= 23; this bounds b, not a - b, and strikes none of the options without the coefficient match (a = b^2 - 115). No single stem bound strikes two options.",
+  "shape_check": "Properties handed over: a > 0 and b > 0; nothing fixes the sign of a - b, and every option is a positive odd integer, as a - b is here. 41, 67, 95 and 271 survive together.",
+  "interior_parity_check": "Extreme key (smallest); the two middle values 67 and 95 are both odd two-digit integers; no two options sum to 90, 100, 180 or 360.",
+  "arith_class_check": "All four options are odd integers; none is a multiple of 5 or 10 except 95, a distractor. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "squar(ing|es) both|squared both|resulting quadratic",
+    "sqrt|√&solutions x =|has solutions",
+    "\\(x ?\\+ ?a\\)&x ?- ?b|sqrt\\(x ?\\+ ?[a-z]\\)|√\\(x ?\\+ ?[a-z]\\)",
+    "value of a/b|a/b ?\\?|b - a|b − a",
+    "extraneous"
+   ],
+   "hits_read": 14,
+   "nearest": "AM-H-12 gives the squared quadratic of a fully printed radical equation and asks which roots survive; f4608175 (√(3x) = x - 6, sum of solutions) solves forward; b33e0f95 (b - a from equal rational expressions) is not a radical. Here the radical equation has unknown constants and the solutions of the squared equation are given, so the work runs backward: match coefficients to recover a and b."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the three distractors come from a dropped term and two different sign slips; the dropped term (67) raises b, which is subtracted, so a student who reads errors by their effect on b would sign it below, yet it lands above because a grows as b^2. No stem bound beyond 5 < b <= 23 is cheap, and that bound needs the coefficient match to say anything about a - b. The ask is a - b, a derived quantity: no option can be checked against the stem in one routine step. PAIR/DSUM: printed numbers 2, 5, 23 (sums 7, 25, 28); key-option differences 26, 54, 230 and ratios 1.63, 2.32, 6.61 avoid them and their neighbours."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-Q04",
+  "domain": "Advanced Math",
+  "subskill": "Exponential growth written with a negative exponent",
+  "difficulty": "medium",
+  "prompt": "The number of members of an online group t years after it was formed is modeled by f(t) = 400(0.64)^(-t/2). According to the model, by what percent does the number of members increase each year?",
+  "choices": [
+   "18",
+   "20",
+   "25",
+   "125"
+  ],
+  "correct_answer": "25",
+  "explanation": "Rewrite the base so the exponent is t:\n(0.64)^(-t/2) = ((0.64)^(-1/2))^t.\n\n(0.64)^(1/2) = 0.8, so (0.64)^(-1/2) = 1/0.8 = 1.25.\n\nSo f(t) = 400(1.25)^t: each year the number of members is multiplied by 1.25, which is an increase of 25 percent.\n\n(The negative exponent turns the factor 0.64, which is less than 1, into a factor greater than 1, so the model shows growth.)",
+  "solve": "return Math.round((Math.pow(0.64,-1/2)-1)*100*1e6)/1e6;",
+  "distractor_solve": {
+   "18": "return Math.round(((1-0.64)/2)*100*1e6)/1e6;",
+   "20": "return Math.round((1-Math.pow(0.64,1/2))*100*1e6)/1e6;",
+   "125": "return Math.round(Math.pow(0.64,-1/2)*100*1e6)/1e6;"
+  },
+  "mechanism": [
+   "rewrite (0.64)^(-t/2) as ((0.64)^(-1/2))^t",
+   "evaluate (0.64)^(-1/2) = 1.25",
+   "convert the yearly factor to a percent increase"
+  ],
+  "quantity_asked": "the yearly percent increase of the model",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(Math.pow(1+v/100,2) - 1/0.64) < 1e-9;",
+   "why": "A student can test a percent p by checking whether (1 + p/100)^2 equals 1/0.64 = 1.5625. In ascending order the key is the third option tried, so substitution reaches it no sooner than the third try."
+  },
+  "distractor_meta": {
+   "18": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reads 0.64 as a 36% change every 2 years and splits it evenly, 36/2 = 18; the stem does not show how an even split compares with the compounded yearly rate."
+   },
+   "20": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Takes the square root correctly (0.8) but ignores the negative sign, reading a 20% yearly change; the stem does not show whether undoing a 20% decrease is more or less than 20%."
+   },
+   "125": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finds the yearly factor 1.25 and reports it as 125 percent, the new size as a percent of the old rather than the increase; the stem does not separate the two readings."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: the model is increasing (negative exponent on a base below 1), so the answer is a positive percent; all four options are positive. Nothing says the percent is a whole number. 18, 20, 25 and 125 all survive together.",
+  "interior_parity_check": "The two middle values are 20 and 25: both two-digit whole numbers; 20 is the rounder, so the key is not the cleaner one.",
+  "arith_class_check": "All four are whole numbers; 18 and 20 are even, 25 and 125 odd; 20 and 125 are multiples of 5 with 25. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "\\(0\\.\\d+\\)\\^\\(-|\\^\\(-t|0\\.\\d+\\)\\^\\(−",
+    "\\^\\(-1/2\\)|\\^\\(−1/2\\)|\\^\\(-3/2\\)",
+    "\\^\\(t/\\d|\\^\\(t ?/ ?\\d",
+    "remain&percent&every"
+   ],
+   "hits_read": 19,
+   "nearest": "AM4-03 rewrites 340(1.44)^(t/2) as 340(1.2)^t and sat-adv-h3 asks the half-hour percent from 1.44 per hour: both take a root of a growth factor already above 1. Here the printed factor 0.64 is below 1 and the exponent is negative, so the step is a reciprocal root, and the model that looks like decay is growth."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student who sees 0.64 may assume decay and look for 36 or 20; the ask says increase, and 20 is offered as that misreading. Plug-back: (1 + p/100)^2 against 1.5625 is one routine check, but ascending order reaches 25 on the third try. PAIR/DSUM: printed numbers 400, 0.64 and 2; key-option differences 7, 5 and 100 and ratios 1.39, 1.25 and 5 avoid them and their neighbours (100 and 5 are not printed; the printed 2 gives neighbours 3 only)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-Q05",
+  "domain": "Advanced Math",
+  "subskill": "Exponential model: doubling time from a scaled exponent",
+  "difficulty": "medium",
+  "prompt": "The value, in dollars, of a collection t years after it was appraised is modeled by V(t) = 400(1.21)^(t/3.5). According to the model, how many years after the appraisal will the value of the collection be double its appraised value? Round your answer to the nearest tenth.",
+  "choices": [
+   "5.8",
+   "11.9",
+   "12.6",
+   "12.7"
+  ],
+  "correct_answer": "12.7",
+  "explanation": "The appraised value is V(0) = 400, so the value doubles when 400(1.21)^(t/3.5) = 800, that is, (1.21)^(t/3.5) = 2.\n\nTaking logarithms (or graphing y = (1.21)^(x/3.5) and y = 2): t/3.5 = log 2 / log 1.21, which is about 3.636, so t is about 12.727.\n\nTo the nearest tenth, the value doubles about 12.7 years after the appraisal.\n\n(Check: three 3.5-year periods give 1.21^3, about 1.77, and four give about 2.14, so the answer lies between 10.5 and 14 years.)",
+  "solve": "return Math.round(3.5*Math.log(2)/Math.log(1.21)*10)/10;",
+  "distractor_solve": {
+   "5.8": "return Math.round(3.5*(2/1.21)*10)/10;",
+   "12.6": "const n=3; const f0=Math.pow(1.21,n), f1=Math.pow(1.21,n+1); return Math.round((3.5*n+3.5*(2-f0)/(f1-f0))*10)/10;",
+   "11.9": "return Math.round(Math.log(2)/Math.log(1+0.21/3.5)*10)/10;"
+  },
+  "mechanism": [
+   "set (1.21)^(t/3.5) = 2 (the 400 cancels)",
+   "solve the exponent with a logarithm or a graph",
+   "multiply the number of 3.5-year periods by 3.5"
+  ],
+  "quantity_asked": "the number of years until the value doubles",
+  "ask_type": "value-of-input",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(Math.pow(1.21, v/3.5) - 2) < 0.008;",
+   "why": "A student can test an option t by checking whether (1.21)^(t/3.5) is about 2 (12.7 gives about 1.997; 12.6 gives about 1.986). In ascending order the key is the fourth and last option tried."
+  },
+  "distractor_meta": {
+   "5.8": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats the exponent as a multiplier, (t/3.5)(1.21) = 2; the stem gives no way to compare that with the true solution without solving both."
+   },
+   "12.6": {
+    "error_kind": "other",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds that the value is 1.21^3 (about 1.77) times as large after 10.5 years and 1.21^4 (about 2.14) after 14 years, then interpolates linearly between them; whether a straight-line estimate on a curving graph falls before or after the true time is not shown in the stem."
+   },
+   "11.9": {
+    "error_kind": "inverted_rate",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Splits the 21% evenly into 6% a year and compounds that yearly, which overstates the yearly rate; whether a faster rate moves a doubling time up or down is not printed in the stem."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "return Math.round(3.5*(1/0.21)*10)/10;",
+   "direction": "above",
+   "why": "Treating the growth as linear, 21% of 400 every 3.5 years, takes 100/21 periods, about 16.7 years, above the key (not an option)."
+  },
+  "far_distractor": {
+   "option": "11.9",
+   "natural_side": "above",
+   "why": "Splitting 21% evenly into 6% a year ignores the compounding inside each 3.5-year period, so it overstates the yearly growth: an overcount that would land above the key if the question asked for a rate or a value. Here the question asks for a time, and a faster yearly rate reaches double sooner, so the overcount lands below the key."
+  },
+  "cheap_bound_check": "Cheapest bound: 1.21^3 is about 1.77 < 2 and 1.21^4 is about 2.14 > 2, so doubling takes between 3 and 4 periods, 10.5 to 14 years; this strikes only 5.8 and leaves 11.9 and 12.6 on the key side. No single stem bound strikes two options.",
+  "shape_check": "Properties handed over: the time is positive (all four); growth is 21% per 3.5 years, so doubling takes more than one period, more than 3.5 years (all four survive); answers are to the nearest tenth (all four shown to one decimal). 5.8, 11.9, 12.6 and 12.7 survive together.",
+  "interior_parity_check": "Extreme key (largest); the two middle values 11.9 and 12.6 are both shown to one decimal place.",
+  "arith_class_check": "All four are shown to one decimal and none is a whole number. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "doubl",
+    "to double|twice (as|its)|double its",
+    "\\^\\(t/\\d|\\^\\(t ?/ ?\\d",
+    "half-life&grams"
+   ],
+   "hits_read": 65,
+   "nearest": "0bbf5e1b (A = 80(0.5)^(t/6), hours until 12 mg remain) solves a scaled-exponent model for a printed target; the doubling items (db51ae85, ADV6-09, AM3-08) use base 2, so the time is a whole number of periods. Here the base is 1.21 with a 3.5-year exponent scale and the target is relative (double), so the 400 cancels and the answer falls between whole periods."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: a student who expects every error to fall short would pick the largest, but 11.9 comes from an overstated rate, which a student would expect to overshoot; it falls short only because the ask is a time. The cheap whole-period bound 10.5 < t < 14 strikes only 5.8; 11.9 and 12.6 survive it. Plug-back works (1.21^(t/3.5) against 2) but the key is the fourth option in ascending order. PAIR/DSUM: printed numbers 400, 1.21 and 3.5; key-option differences 6.9, 0.8 and 0.1 and ratios 2.19, 1.07 and 1.01 avoid them, their neighbours and their sums. 12.6 is the linear-interpolation estimate (12.649) and the key is 12.727; they round apart, so the key is not disputed by rounding."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-Q06",
+  "domain": "Advanced Math",
+  "subskill": "Equations quadratic in 2^x: intersections of exponential graphs",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graphs of y = 4^x and y = k(2^x) - 16, where k is a constant, intersect at two points whose x-coordinates differ by 2. What is the sum of the y-coordinates of the two intersection points?",
+  "choices": [
+   "10",
+   "36",
+   "68",
+   "257"
+  ],
+  "correct_answer": "68",
+  "explanation": "Let u = 2^x, so 4^x = u^2. At an intersection, u^2 = ku - 16, that is, u^2 - ku + 16 = 0. The two intersection points correspond to the two solutions u1 and u2 of this equation, and u1 · u2 = 16.\n\nIf the x-coordinates are x1 and x2 = x1 + 2, then u2 = 2^(x1 + 2) = 4 · 2^(x1) = 4u1.\n\nSo u1 · 4u1 = 16, giving u1^2 = 4 and u1 = 2 (u = 2^x must be positive). Then u2 = 8, and k = u1 + u2 = 10.\n\nThe points have x-coordinates 1 and 3, and their y-coordinates are 4^1 = 4 and 4^3 = 64 (each y is u^2).\n\nThe sum of the y-coordinates is 4 + 64 = 68.",
+  "solve": "const u1=Math.sqrt(16/4), u2=4*u1; return u1*u1+u2*u2;",
+  "distractor_solve": {
+   "10": "const u1=Math.sqrt(16/4), u2=4*u1; return u1+u2;",
+   "36": "const u1=-1+Math.sqrt(17), u2=u1+2; return Math.round((u1*u1+u2*u2)*1e9)/1e9;",
+   "257": "const u1=Math.sqrt(16/16), u2=16*u1; return u1*u1+u2*u2;"
+  },
+  "mechanism": [
+   "substitute u = 2^x to get u^2 - ku + 16 = 0",
+   "turn the x-difference 2 into the ratio u2 = 4u1",
+   "use the product 16 to find u1 and u2, then y = u^2 and add"
+  ],
+  "quantity_asked": "the sum of the y-coordinates of the two intersection points",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a sum of two y-coordinates; it cannot be substituted into either equation, and checking it needs k and both points, which is the solution. The key is also the third value in ascending order."
+  },
+  "distractor_meta": {
+   "10": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adds the values of 2^x (2 + 8, which is k) instead of the y-values 4^x; the stem does not show the y-values are the squares."
+   },
+   "36": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Applies the difference 2 to the values of 2^x (u2 - u1 = 2) instead of to the exponents; the resulting u-values are irrational and the stem gives no hint whether their squares sum to more or less."
+   },
+   "257": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reads an x-difference of 2 as a factor of 4^2 = 16 (using the base of the first graph) instead of 2^2 = 4; the stem prints both bases and does not single either out."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: y = 4^x is positive, so both y-coordinates and their sum are positive (all four survive); nothing says the sum is an integer, though all four are. The larger point is at least 16 times the smaller only under the wrong base; the stem fixes no size. 10, 36, 68 and 257 survive together.",
+  "interior_parity_check": "The two middle values are 36 and 68: both two-digit even integers; 36 is a perfect square, so the key 68 is not the cleaner one.",
+  "arith_class_check": "Even: 10, 36, 68; odd: 257. Multiples of 4: 36 and 68. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "intersect&(4|9|2|3)\\^x",
+    "9\\^x&3\\^x",
+    "x-coordinates differ|differ by",
+    "4\\^x|9\\^x|2\\^\\(2x\\)|3\\^\\(2x\\)"
+   ],
+   "hits_read": 26,
+   "nearest": "SM24V-B12 (9^x - 4(3^(x + 1)) + 20 = 0, compute 3^(x2 - x1)) goes from a printed equation to the ratio of the two values of 3^x; the \"roots differ by d\" items (SM14A-16, 878a8fa3, SM21A-A5) are quadratics in x. Here the exponent difference is given, k is unknown, and the step is the reverse: difference 2 in x becomes the ratio 4 in u, the product 16 fixes u, and the ask is the y-values u^2 of graph intersections."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might try k = 10 from a guessed u = 2 and 8, but nothing in the stem suggests those values without the ratio step; 10 is offered as the sum of the u-values. No option can be substituted. Desmos needs a slider on k and a reading of two x-intercepts of a difference, not a routine graph-and-read. PAIR/DSUM: printed numbers 4, 2, 16; key-option differences 58, 32 and 189 (32 is 2 x 16, a (read) line: it is the difference of two unrelated routes, 68 from the ratio 4 and 36 from u2 - u1 = 2) and ratios 6.8, 1.89, 3.78."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-Q07",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: chaining two exponential equations",
+  "difficulty": "medium",
+  "prompt": "For constants a and b, 7^a = 25 and 343^b = 625. What number is the quotient a/b equal to?",
+  "choices": [
+   "1.5",
+   "1.81",
+   "1.96",
+   "3"
+  ],
+  "correct_answer": "1.5",
+  "explanation": "Write both sides of the second equation with the bases of the first.\n\n343 = 7^3, so 343^b = 7^(3b).\n625 = 25^2, and 25 = 7^a, so 625 = (7^a)^2 = 7^(2a).\n\nSo 7^(3b) = 7^(2a), which gives 3b = 2a, and a/b = 3/2 = 1.5.\n\n(Check with a calculator: a = log 25 / log 7, about 1.654, and b = log 625 / log 343, about 1.103; their quotient is 1.5.)",
+  "solve": "const a=Math.log(25)/Math.log(7), b=Math.log(625)/Math.log(343); return Math.round(a/b*1e9)/1e9;",
+  "distractor_solve": {
+   "3": "const a=Math.log(25)/Math.log(7), b=Math.log(25)/Math.log(343); return Math.round(a/b*1e9)/1e9;",
+   "1.81": "const a=Math.log(25)/Math.log(7); return Math.round(3/a*100)/100;",
+   "1.96": "return Math.round((25/7)/(625/343)*100)/100;"
+  },
+  "mechanism": [
+   "write 343 as 7^3, so 343^b = 7^(3b)",
+   "write 625 as 25^2 = (7^a)^2 = 7^(2a)",
+   "equate exponents 3b = 2a and form a/b"
+  ],
+  "quantity_asked": "the quotient a/b of the two exponents",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a ratio of two exponents that are each defined by a separate equation; neither equation contains a/b, so an option cannot be substituted. Checking it needs a and b (logarithms) or the base change, which is the solution."
+  },
+  "distractor_meta": {
+   "3": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaves out that 625 is 25^2 and treats 343^b as equal to 25, so 3b = a; the stem does not show which way the missing square moves a/b."
+   },
+   "1.81": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Writes (7^a)^2 as 7^(a^2), so 3b = a^2 and a/b = 3/a; whether that exceeds 1.5 depends on the size of a, which the stem does not give."
+   },
+   "1.96": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Solves each equation by dividing instead of by exponents, a = 25/7 and b = 625/343; the stem does not show how those quotients compare with the true exponents."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return 0.5;",
+   "direction": "below",
+   "why": "Leaving out that 343 is 7^3 instead (treating 343^b as 7^b) gives b = 2a and a/b = 1/2, below the key (not an option)."
+  },
+  "far_distractor": {
+   "option": "3",
+   "natural_side": "below",
+   "why": "Leaving out a factor normally makes a result too small, but the dropped square belongs to 625, which fixes b, and b is the divisor in a/b: without it 7^(3b) = 7^a gives b half as large, so the quotient doubles and lands above the key. Dropping the other power (343 = 7^3) would land below, and the stem does not say which one a student will drop."
+  },
+  "cheap_bound_check": "Cheapest bounds: 7 < 25 < 49 gives 1 < a < 2, and 343 < 625 < 343^1.5 (about 6353) gives 1 < b < 1.5, so 2/3 < a/b < 2; this strikes only 3. A sharper bound (7^1.5 is about 18.5, so a > 1.5, giving a/b > 1) strikes none. 1.81 and 1.96 stay on the key side of every cheap bound.",
+  "shape_check": "Properties handed over: a > 0 and b > 0 (25 > 1, 625 > 1), so a/b > 0 (all four survive); nothing says a/b is an integer. 1.5, 1.81, 1.96 and 3 survive together.",
+  "interior_parity_check": "Extreme key (smallest); the two middle values 1.81 and 1.96 are both shown to two decimal places.",
+  "arith_class_check": "One integer (3), one value to one decimal (the key 1.5) and two to two decimals; the stem implies no rounding or integrality, so the key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "\\^a = |\\^a=&\\^b",
+    "value of ab|value of a ?b|a·b|a \\* b",
+    "value of a/b|a/b ?\\?|b - a|b − a",
+    "\\^\\(x ?\\+ ?y\\)|\\^\\(x ?- ?y\\)"
+   ],
+   "hits_read": 45,
+   "nearest": "31891202 (3^a = 5 and 3^b = 45, find b - a) and 7d3066a6 (2^a = 5 and 2^b = 3, find 2^(a + 2b)) use one base for both equations. Here the two equations have different bases, 7 and 343, and the step is to rewrite 343 = 7^3 and 625 = (7^a)^2 so the two exponents can be compared."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the errors are a mis-applied power rule, solving by division, and a dropped square; dropping a power can move a/b either way depending on which equation it is dropped from, so the direction of 3 is not readable from the stem. The cheap bounds 1 < a < 2 and 1 < b < 1.5 strike only 3. No option can be checked against the stem in one routine step: neither equation contains a/b. PAIR/DSUM: printed numbers 7, 25, 343, 625; key-option differences 0.31, 0.46, 1.5 and ratios 1.21, 1.31, 2 avoid them, their neighbours and their pairwise sums."
+  },
+  "bounds": []
+ }
+]

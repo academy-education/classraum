@@ -1,0 +1,360 @@
+{
+ "SM29F-P01": {
+  "read": "S key -87. PLUG (author: borderline): checking an option needs the shared axis x = -3 and f(2) = -37 first, after which the check 50 + v = -37 IS the solution; no shortcut over solving -> pass. FAR -62 (drops the 2): lands above because 25 is subtracted from f(2); not signable without vertex form -> pass. BOUND g vertex <= -37 strikes none. Dup: 68ff1d77 shares the axis transfer but has one unknown and asks the vertex distance; here a common point and two unknowns, ask the vertex value -> different chain.",
+  "decision": "pass"
+ },
+ "SM29F-P02": {
+  "read": "Interior key 65. Options 15 and 225 sum to the printed 240 (225 = 240 - 15): a complement pair joined by a printed number marks both as products of one wrong path, leaving 65 vs 190.",
+  "decision": "pass",
+  "finding": "15 + 225 = 240 (printed): complement pair among the distractors; replace one with a distractor from a different wrong path that is not 240 minus another option.",
+  "after_return": "15 replaced by 40 (proportional scaling); options 40 / 65 / 190 / 225, no pair sums to a printed number, no closure. Passes."
+ },
+ "SM29F-P03": {
+  "read": "L key 88 (hard). FAR -20 (ignores b > 0, other root): not signable without both vertices -> pass; but the bound f(1) >= k > -11 strikes -20 for free (one strike only; 13 swaps and 38 omits remain, not all-omits). Dup d0852d57 asks greatest b on y = x; different chain.",
+  "decision": "pass",
+  "risk": "far distractor free-strikable by one bound"
+ },
+ "SM29F-P04": {
+  "read": "Interior key 77, parameter ask declared substitutable, key at try 3 ascending, verify separates. Distractors from distinct paths.",
+  "decision": "pass"
+ },
+ "SM29F-P05": {
+  "read": "S key -151. FAR -132 (stops before adding f(4) = -19): side needs the sign of f(4) -> pass. BOUND f(k) < -19 strikes none. PLUG not substitutable (an option gives a fractional k). Reworded off a 0.60 near-dup per author.",
+  "decision": "pass"
+ },
+ "SM29F-A01": {
+  "read": "Interior key 171. The distractor 114 is the intermediate distance d, and the key is 114 x 60/40 by the stem's own country-road rate; a student who suspects 114 is the distance finds 171 among the options and confirms 114 km + 66 km at 90 km/h (44 min) + 15 min = 230 min in one routine check. The intermediate-to-key link hands over the key.",
+  "decision": "pass",
+  "finding": "114 (the distance) and the key 171 are linked by the stem's 40 km/h rate (171 = 114 x 1.5): an intermediate distractor from which the key follows in one step. Replace 114 with a distractor not linked to the key by a printed rate.",
+  "after_return": "New numbers, interior key 244; no leg distance or time among the options (124 / 220 / 244 / 276 from stop and decimal-hour slips). Key not the cleaner middle value. Passes."
+ },
+ "SM29F-A02": {
+  "read": "Interior key 97 (hard). Threshold decision is the real step; options form two 5-apart pairs (82/87, 97/102) with no key-singling structure; 102 > 100 remains a legal discounted total. pass.",
+  "decision": "pass"
+ },
+ "SM29F-A03": {
+  "read": "Interior key 462. The distractor 500 is the dollars d, and the key is 0.94(500) - 8 by the stem's booth formula; trying 500 as the dollars gives 462 at the booth and 450 at the bank, a 12-euro gap, so the pair confirms the key in one routine step.",
+  "decision": "pass",
+  "finding": "500 (the dollars) maps to the key 462 by the stem's booth formula 0.94d - 8: an intermediate distractor from which the key follows in one step. Replace 500.",
+  "after_return": "Options 39 / 86 / 462 / 642; dollars, bank amount and fee-free booth amount kept out. Passes."
+ },
+ "SM29F-A04": {
+  "read": "S key 64 (hard). FAR 214 (drops Ana's $50): side fixed by the equal-shares condition, not readable -> pass. 88 is the share; reaching the key from it needs T from Ana's rule and then T - 176 without a check of Ben's share - two steps and no confirmation, accepted. BOUND positivity strikes none. PLUG not substitutable.",
+  "decision": "pass",
+  "risk": "share 88 is an intermediate"
+ },
+ "SM29F-A05": {
+  "read": "L key 54. FAR 50 (15 inches for 1.5 feet): the 7/10 decides the side, not readable -> pass. Senses omits/swaps/swaps. PLUG substitutable, key at try 4. BOUND positivity only.",
+  "decision": "pass"
+ },
+ "SM29F-A06": {
+  "read": "S key 1.9. Cheap bound: the 20-pound weight must supply 270 - 168 = 102; at 7 feet it would give 140 > 102, so it sits inside the 24-pound weight and the separation is under 7. That strikes 7.3 and 14.9 (two free strikes, rule 4 territory) and leaves 1.9 vs 6.5. The author's own BOUND line names this bound but calls it a guess; it is one comparison.",
+  "decision": "drop before freeze (still failing after its return: CLOSURE)",
+  "finding": "one comparison (20 x 7 = 140 > 102) puts the new weight inside the 24-pound weight, so every option of 7 or more is struck: 7.3 and 14.9 go free. Rebuild so no cheap placement bound strikes two.",
+  "after_return": "Pre-flight on the full A file after the return: merge-halves CLOSURE 4.4 = 1.2 + 3.2 (an option the sum of the key and another option). A gating check failing after the item's one return.",
+  "risk": "2.5 rescales to the key in two steps"
+ },
+ "SM29F-B01": {
+  "read": "L key 17.4. FAR 2.6 (sum for difference): opposite-sign intercepts not readable -> pass. BOUND perpendiculars through a point 6 above the axis meet it >= 12 apart: strikes 2.6 only; 12.6 and 14.5 (both swaps) remain.",
+  "decision": "pass",
+  "risk": "far distractor struck by the 2 x 6 bound"
+ },
+ "SM29F-B02": {
+  "read": "S key -3.75. FAR -2.25 (drops the -6 term) lands above because the intercept is negative: not readable -> pass. Sign bound strikes none. The three distractors cluster at -2.5/-2.4/-2.25 with the key apart; no strike follows from it.",
+  "decision": "pass",
+  "risk": "key is the outlier of a clustered set"
+ },
+ "SM29F-B03": {
+  "read": "Interior key 19 (hard). Swapped pair forces slope -1: a real decision point. Distractors from distinct paths. pass.",
+  "decision": "pass"
+ },
+ "SM29F-B04": {
+  "read": "L key 19.8. The author's own cheap bound (the asked 3,300 m span exceeds the printed 1,400 m span, so the answer exceeds 8.4) strikes 7.2 and 5.4: two free strikes (rule 4).",
+  "decision": "pass",
+  "finding": "span bound (> 8.4 degrees) strikes 7.2 and 5.4 without solving; at most one option may fall to a cheap stem bound.",
+  "note": "return carried B04 alone (B01-B03, B05-B11 passed).",
+  "after_return": "New ask, L key 50.5 (g(-5) = f(-10)). FAR 46 (2f(x) for f(2x), an extra intercept that is -4.5): sign computed from the slope -> honest. Bound g(-5) > 1 strikes none. Full B file pre-flight PASS."
+ },
+ "SM29F-B05": {
+  "read": "Interior key -4.5. PLUG substitutable at try 3 after the reflection insight. pass.",
+  "decision": "pass"
+ },
+ "SM29F-B06": {
+  "read": "Interior key 1.2; pivot is the line's own x-intercept. Interior pair 1.2 / 2.8 same form. pass.",
+  "decision": "pass"
+ },
+ "SM29F-C01": {
+  "read": "S key 14. FAR 18 (= a, drops a negative b): sign of b only from solving -> pass. 18 is the intermediate a, but reaching the key from it needs b from one line and a check on the other: a two-step solve, accepted (as A04). PLUG not substitutable. BOUND positivity assumption strikes 26 only.",
+  "decision": "pass",
+  "risk": "18 is an intermediate"
+ },
+ "SM29F-C02": {
+  "read": "Interior key 1.65. The distractor 1.15 is the muffin price, and the pair (1.65, 1.15) satisfies the printed 4c + m = 7.75 and the $2.00 billing difference directly: a student who suspects one option is the other item gets a full plug-back confirmation of the key from the option set. Bound c < 1.9375 strikes 1.95.",
+  "decision": "pass",
+  "finding": "1.15 (the muffin price) and the key confirm each other in the printed 4c + m = 7.75 (one step): an intermediate distractor from which the key follows. Replace 1.15; with 1.95 also struck by the c < 1.94 bound, a second free strike is close.",
+  "after_return": "Renumbered, interior key 1.55; the muffin price 0.80 is not an option; cap c < 2.08 strikes none. Passes."
+ },
+ "SM29F-C03": {
+  "read": "S key 6. FAR 35 (drops a and b on the right): not readable -> pass. Product does not fix a, b, so no plug-back. No bound. pass.",
+  "decision": "pass"
+ },
+ "SM29F-C04": {
+  "read": "L key 8 (hard). k-elimination to the swept line; FAR -32 (undivided constant, negative y-coefficient) -> pass. No bound. pass.",
+  "decision": "pass"
+ },
+ "SM29F-C05": {
+  "read": "L key 5.05. The distractor 1.55 is the drink price d, and the key is 11.25 - 4(1.55) by Ben's printed purchase: one step from option to key. FAR 3.85 (ignores the discount) is sound.",
+  "decision": "pass",
+  "finding": "1.55 (the drink price) gives the key in one step through Ben's printed s + 4d = 11.25: an intermediate distractor. Replace 1.55.",
+  "after_return": "1.55 replaced by 1.90 (Ben's counts interchanged); no option is the drink price. Passes. Full C file pre-flight PASS."
+ },
+ "SM29F-C06": {
+  "read": "L key 39. FAR 11 (sum for difference, negative x of B) -> pass. No bound. pass.",
+  "decision": "pass"
+ },
+ "SM29F-S01": {
+  "read": "L key 29. FAR 22 (new dogs from day 1, an over-count that shortens the time) -> pass. Bounds 21 < T < 33 strike none; the sharper > 22 bound needs 330/15 and strikes 22 only. PLUG substitutable, key at try 4.",
+  "decision": "pass",
+  "read2": "Re-read on the author's own flag: FAR 22 (new dogs counted from day 1) is signed below on recognition (more eaters, the food runs out sooner), and 26 (the 15-dog rate over the longer first period) is signed below the same way; with 27 a linear cut, every distractor on this largest key reads as 'food used faster -> fewer days'. One-sided family; the FAR declaration is not honest.",
+  "finding": "on the largest key 29, 22 and 26 are both signed below on recognition (more dog-days used early), so the far declaration is a near-side error and the set reads one-sided.",
+  "after_return": "New mechanism, L key 5.6 (rational model rising then falling). FAR 4.9 (delay counted twice, t = 9 past the unprinted peak at sqrt 29) honest. Bound > 2 strikes 1.8 only. Passes."
+ },
+ "SM29F-S02": {
+  "read": "Interior key 13. Order of transformations is the step; distractors from distinct paths. pass.",
+  "decision": "pass"
+ },
+ "SM29F-S03": {
+  "read": "L key 288. The author's own bound: lowering the price raises sales above 120 and the margin is $2.00, so profit > 240, which strikes 200 and 216 without solving (two free strikes, rule 4), leaving 280 vs 288.",
+  "decision": "pass",
+  "finding": "sales rise when the price falls, so profit > 120 x 2.00 = 240: one cheap bound strikes 200 and 216. At most one option may fall to a cheap stem bound.",
+  "after_return": "New mechanism, L key 8.5 (inverse of a rational f, a from a point on g). FAR 7.4 (inverse applied twice; g decreasing for y > 6 depends on a) honest. Bound > 3 strikes 2.5 only. Passes."
+ },
+ "SM29F-S04": {
+  "read": "S key -35. FAR -20 (drops the -3 asymptote, multiplied by positive h) -> pass. Sign bound strikes none. PLUG not substitutable.",
+  "decision": "pass"
+ },
+ "SM29F-S05": {
+  "read": "Interior key 38 (hard). k from the location of the composite minimum; distractors distinct. pass.",
+  "decision": "pass"
+ },
+ "SM29F-S06": {
+  "read": "S key -24 (hard). FAR -13 (= f(4), drops a positive k) -> pass; reaching the key from -13 needs k, the whole insight. BOUND <= 1 strikes 56 only.",
+  "decision": "pass"
+ },
+ "SM29F-Q01": {
+  "read": "L key 21193. Bound c > 18,000 strikes 15288; every remaining distractor is an approximation of dividing by 0.96^4 that understates it (simple add-back 20880, 1.04^4 21057), and a student who knows the exact back-projection beats both approximations picks the largest: one-sided family. The FAR 21057 is a near-side error a student signs correctly (1.04 < 1/0.96).",
+  "decision": "drop before freeze (still failing after its return: stage-0 read (a)/(b))",
+  "finding": "one-sided: 15288 struck by c > 18,000, and the other two distractors are both under-approximations of the exact back-projection, so the largest option wins without computing. Needs a distractor whose side is genuinely not readable.",
+  "after_return": "New item, L key 14.8, options 12.8 / 13.7 / 14.3 / 14.8, all inside 12 < t < 16. Every distractor mishandles the one constant 90 (dropped: target 1,700 < 1,790; wrong sign: 1,610; also in the coefficient: 1,790/490), and each is signed below once recognised (a smaller target or a larger coefficient needs less growth). The FAR 12.8 is a near-side error a student signs correctly. Still the A91 one-sided pattern on a largest key after the return."
+ },
+ "SM29F-Q02": {
+  "read": "Interior key 6.71. Geometric mean of outputs; 9.00 (arithmetic mean) is struck by AM-GM for a student who knows it, one strike. Interior pair 5.61 / 6.71 same form. pass.",
+  "decision": "pass"
+ },
+ "SM29F-Q03": {
+  "read": "S key 56. FAR 366 (drops the 2 in 2b + 1 = 21): a student who recognises that slip sees b + 1 = 21 gives b = 20 > 10 and signs it above, on the near side, without computing a; the author flags this as the weakest FAR. The FAR declaration is not honest (prereg stage-0 read (b)).",
+  "decision": "pass",
+  "finding": "far_distractor 366 is a near-side error a student signs correctly (b doubles); needs a real distractor whose natural side is below the key but which lands above.",
+  "after_return": "New S key 41 (a - b). FAR 67 (drops the 2x): b rises by 1 but a = b^2 - 115 rises by 27, so a - b rises - not signable without computing. Positivity strikes none. Passes."
+ },
+ "SM29F-Q04": {
+  "read": "Interior key 25; substitutable at try 3. 125 is the growth factor as a percent (a standard reading); 125 - 25 = 100 is not a printed number. pass.",
+  "decision": "pass",
+  "risk": "25/125 percent-vs-factor pair"
+ },
+ "SM29F-Q05": {
+  "read": "L key 12.7. The explanation's equation prints 400(1.21)^(t/4) = 800 (t/4 for t/3.5): a student-facing error. And the author's bound 1.21^3 < 2 < 1.21^4 (one calculator step) puts t between 10.5 and 14, striking 5.8 and 10.5: two strikes.",
+  "decision": "drop before freeze (still failing after its return: stage-0 read (a)/(b))",
+  "finding": "explanation typo t/4 for t/3.5; and the whole-period bound (1.21^3 = 1.77 < 2) strikes 5.8 and 10.5, two free strikes.",
+  "after_return": "Typo fixed; 10.5 replaced by the interpolation estimate 12.6. Now 5.8 falls to the 10.5 < t < 14 bound, 11.9 (an overstated rate reaches double sooner) and 12.6 (linear interpolation on a convex curve overstates the value, so double comes sooner) are both signed below by a student who knows those facts, and the key is the largest. The FAR 11.9 is a near-side error a student signs correctly. Still failing."
+ },
+ "SM29F-Q06": {
+  "read": "Interior key 68 (hard). u = 2^x with u2 = 4u1 and u1u2 = 16: a real decision. pass.",
+  "decision": "pass"
+ },
+ "SM29F-Q07": {
+  "read": "S key 1.5. The author's own bound 1 < a < 2 and 0 < b < 1 gives 0 < ab < 2, striking 2.08 and 3: two free strikes, leaving 1.5 vs 1.94.",
+  "decision": "pass",
+  "finding": "0 < ab < 2 from 5 < 12 < 25 and 125 < 144 strikes 2.08 and 3 without solving.",
+  "after_return": "New S key 1.5 (a/b, 7^a = 25, 343^b = 625). Bounds 2/3 < a/b < 2 strike 3 only. FAR 3 (drops 625 = 25^2, b halves, a/b doubles): needs b as the divisor; the mirror slip (343 = 7^3) lands below. Passes."
+ },
+ "SM29F-D01": {
+  "read": "L key 14.5 (hard). FAR 4.5 (other endpoint): which endpoint binds needs the simplified net y-coefficient (+5) -> pass. Constant-slip distractors 10, 13. BOUND none before simplifying.",
+  "decision": "pass",
+  "preflight": "check-key-is-composition and merge-halves CLOSURE: key 14.5 = 4.5 + 10 (the key is the sum of two distractors). Gating.",
+  "finding": "closure on the key: 14.5 = 4.5 + 10. Replace a distractor so no option is a sum/difference/average/product of two others.",
+  "after_return": "New numbers, L key 23.5, options 3.5/13/16/23.5: no closure (composition 0). FAR 13 (other endpoint, net y-coefficient +3) honest. y = 8 bound strikes 3.5 only. Passes."
+ },
+ "SM29F-D02": {
+  "read": "Interior key 21; substitutable at try 3 ascending. 25 (blanks as wrong) above. pass.",
+  "decision": "drop before freeze (live duplicate at re-dump)",
+  "redump": "live duplicate isee 60af7d, inserted by isee-math-s17 during authoring and found at the pre-freeze re-dump"
+ },
+ "SM29F-D03": {
+  "read": "S key 19.2. FAR 24 (drops the -3x, divides by 12 not 15): a student who recognises the slip signs it above at once (a smaller divisor gives a larger change); no computation beyond the recognition decides the side, so the far declaration is not honest (read (b)). Bound < 36 strikes 67.5.",
+  "decision": "pass",
+  "finding": "far_distractor 24 is a near-side error signed on recognition (smaller divisor -> larger quotient); needs a real distractor whose side depends on a computed sign or size.",
+  "after_return": "New S key 13.5. FAR 14.4 drops both -3x (divisor, raises) and -y (multiplier, lowers): side set by 2/5 vs 3/8, computed - honest. Bound < 36 strikes 96 only. Passes."
+ },
+ "SM29F-D04": {
+  "read": "S key 3.75. FAR 4 (divides by 3 not 4, but k readjusts to -6 under the length condition): side needs the readjusted k -> pass. No bound.",
+  "decision": "pass"
+ },
+ "SM29F-D05": {
+  "read": "Interior key 26 (greatest a + 3b with linked ranges); descending try 3, not substitutable. 109c9105 uses independent ranges; different chain. pass.",
+  "decision": "pass"
+ },
+ "SM29F-D06": {
+  "read": "L key 41. Test-wise bound: the machine contributes, so each volunteer adds less than Monday's average 165/15 = 11, giving v > 395/11 = 35.9 - strikes 29 and 34, and 36 (the leave-out-the-machine value) sits on that bound itself, leaving 41. One average-rate comparison does it.",
+  "decision": "pass",
+  "finding": "average-rate bound (each volunteer < 11 meals) strikes 29 and 34 and lands exactly on 36: two free strikes and the key exposed.",
+  "after_return": "New mechanism, L key 3.25 (boundary at k = 10 after c from the k = 3 set). FAR 1.5 (k + 2): side depends on the negative given boundary through c - honest. No bound. Passes."
+ },
+ "SM29F-D07": {
+  "read": "Interior key 4.32 (greatest pace). The author's own shape note: the first 3 km were slower than the 5.25 average, so the rest must be faster than 5.25 - strikes 5.25 and 7.2 without solving.",
+  "decision": "pass",
+  "finding": "average-pace bound (p < 42/8 = 5.25) strikes 5.25 and 7.2: two free strikes.",
+  "after_return": "Interior key 4.8 with a 3-minute stop; every option under the 5.5 average, so that bound strikes nothing. Descending try 3. Passes."
+ },
+ "SM29F-R01": {
+  "read": "Interior key 16 (greatest integer x); descending try 3, substitutable and verify separates. pass.",
+  "decision": "pass"
+ },
+ "SM29F-R02": {
+  "read": "Interior key 31 (p(-1) with exponent parity). 45 = p(1). pass.",
+  "decision": "pass"
+ },
+ "SM29F-R03": {
+  "read": "S key -36. FAR -1 (ignores a integer, other branch): which branch is more negative needs both computed -> pass. Sign bound strikes none. 2a453c92 shares the opening (factor, substitute zeros) but asks the sum of k values; here the integer condition picks a branch and the ask is the unshared product - accepted as a different chain.",
+  "decision": "pass",
+  "risk": "opening shared with 2a453c92"
+ },
+ "SM29F-R04": {
+  "read": "L key 11. FAR 1 (keeps d = -10 in the sum): sign of p(-2) not printed (p's constant is +2) -> pass. No bound.",
+  "decision": "pass"
+ },
+ "SM29F-R05": {
+  "read": "L key 55. FAR -17 (ignores k < 3, keeps k = 5): p(4) = (4 - k)(12 + k) negative for k = 5, not readable -> pass. No bound.",
+  "decision": "pass"
+ },
+ "SM29F-R06": {
+  "read": "S key 44 (hard). FAR 125 (accepts the triple-zero branch): side needs both branches -> pass. No bound.",
+  "decision": "pass"
+ },
+ "SM29F-A07": {
+  "read": "S key 3.3. FAR 4.5 (ignores the shared section: b smaller but 1.6 never subtracted): net needs both effects written out -> pass (author's caveat noted). Bound b < 6.15 strikes 5.8 only. PLUG not substitutable (model run backwards).",
+  "decision": "pass",
+  "risk": "FAR side is fixed by structure once both effects are written"
+ },
+ "SM29F-A08": {
+  "read": "Interior key 31 (x + k with x tied to k). Distinct from SM28F-A08 (two equations). pass.",
+  "decision": "pass"
+ },
+ "SM29F-A09": {
+  "read": "L key 1160. FAR 1060 (decimal hours): opposing effects through four times -> pass. Proportional bound strikes 740 only (fixed warm-up). Substitutable, key at try 4.",
+  "decision": "pass"
+ },
+ "SM29F-A10": {
+  "read": "Interior key 206. Average bound (> 186) strikes 166 only. Substitutable at try 3 after four steps. pass.",
+  "decision": "pass"
+ },
+ "SM29F-A11": {
+  "read": "L key 45. FAR 41 (counts shuttles not intervals: shorter interval, one extra step back) opposing effects -> pass. No bound. (read) PAIR 45 - 33 = 12 = 2 x 6: 12 is the solved interval, not readable from the stem. pass.",
+  "decision": "pass"
+ },
+ "SM29F-B07": {
+  "read": "S key -5.5. FAR -4 (undivided midpoint, shallower): side depends on the computed sums against A -> pass. Angle bound strikes -1.6 only.",
+  "decision": "pass"
+ },
+ "SM29F-B08": {
+  "read": "L key 16.1. FAR 10.9 (sum for difference; l negative at x = 3 though its intercept is positive) -> pass. Diverging-gap bound strikes 6.5 only. Shares the add-instead-of-subtract FAR trick with B01 (different mechanism).",
+  "decision": "pass",
+  "risk": "FAR trick repeated with B01"
+ },
+ "SM29F-B09": {
+  "read": "S key 4.5. FAR 8 (proportional; negative intercept though both printed profits positive) -> pass. Bound < 8.5 strikes none.",
+  "decision": "pass"
+ },
+ "SM29F-B10": {
+  "read": "Interior key 2.5. Bound < 3 strikes 3.6 only. pass.",
+  "decision": "pass"
+ },
+ "SM29F-B11": {
+  "read": "S key -13.8 (hard). FAR -6.6 (drops b = -9; smaller slope at negative input) -> pass. No bound (k may be negative).",
+  "decision": "pass"
+ },
+ "SM29F-C07": {
+  "read": "L key 17. FAR 3 (a + b with b = -7 negative) -> pass. Positivity strikes -18 only.",
+  "decision": "pass"
+ },
+ "SM29F-C08": {
+  "read": "Interior key 43. Move-count bound 30.5 to 61 strikes 70 only. pass.",
+  "decision": "pass"
+ },
+ "SM29F-C09": {
+  "read": "Interior key 22. (read) lines: 22 - (-12) = 34 = 2 x 17 and 38 - 22 = 16 = 2 x 8 (twice a printed number, not one operation with a printed number); -12 drops the 17 and 38 multiplies by 2 not 3 - the coincidences follow from the averages, and neither turns an option into the key without the system. Accepted.",
+  "decision": "pass",
+  "risk": "two twice-printed differences"
+ },
+ "SM29F-C10": {
+  "read": "Interior key -35 (hard). Combining right sides 1:2. pass.",
+  "decision": "pass"
+ },
+ "SM29F-C11": {
+  "read": "S key -15. FAR -9 (drops n = -6, negative) -> pass. PLUG not substitutable (needs m, n). (read) PAIR 6 = 2 x 3 lines: 6 is the solved |n|, not readable. No bound.",
+  "decision": "pass"
+ },
+ "SM29F-P06": {
+  "read": "L key 2240. FAR 2160 (drops the fixed cost; lower break-even moves from 16 to 12, farther from the revenue peak 15) -> pass. Revenue cap 2250 strikes none; the key is the option nearest the cap (author flag).",
+  "decision": "pass",
+  "risk": "key nearest the revenue cap"
+ },
+ "SM29F-P07": {
+  "read": "Interior key 29 (hard). Chord midpoint gives the slope via the root sum. 7 equals the slope by coincidence but is the parabola height at x = 3; no one-step link to 29. pass.",
+  "decision": "pass"
+ },
+ "SM29F-P08": {
+  "read": "Interior key 416. Sheet bound < 432 strikes 448 only. pass.",
+  "decision": "pass"
+ },
+ "SM29F-P09": {
+  "read": "L key 93. FAR 51 (axis doubled to 28, lamp past the peak) -> pass. 85 and 69 (drop of 16 or 32 instead of 8) are signed below once recognised, but 51 is not, so the set is not one-sided. Peak bound 101 strikes none.",
+  "decision": "pass"
+ },
+ "SM29F-P10": {
+  "read": "S key -48. FAR -15 (stops at the u-values; shifting back makes the product more negative) -> pass. No bound.",
+  "decision": "pass"
+ },
+ "SM29F-S07": {
+  "read": "S key -44. FAR 76 (rejected k = -23 makes both solutions negative) -> pass. Negativity bound strikes 76 only.",
+  "decision": "drop before freeze (prior duplicate, coordinator hand search)",
+  "handsearch": "duplicate of prior SM24V-D04 (|2x - k| = 14 with k > 0 and x = -6 a solution; the other solution): same givens and chain, the product is one trailing multiplication"
+ },
+ "SM29F-S08": {
+  "read": "Interior key 17 (undo g = 2f(x + 3) - 11 from a table of g). Near 990e3a50 (recovers h, k by matching two tables, then g(0)) - different chain. pass.",
+  "decision": "pass"
+ },
+ "SM29F-S09": {
+  "read": "L key 31. FAR 7 (extra application of g moves the input toward f's vertex) -> pass. No bound strikes.",
+  "decision": "pass"
+ },
+ "SM29F-S10": {
+  "read": "Interior key 18. Resembles the v25 three-point a|x - h| + k item (author flag) but the givens (vertex + one point) and ask (intercept distance) differ. pass.",
+  "decision": "pass",
+  "risk": "family resemblance to a v25 abs-graph item"
+ },
+ "SM29F-S11": {
+  "read": "S key -15. FAR 25 (drops bx with b = 8 > 0 at a negative input) -> pass. No bound.",
+  "decision": "pass"
+ },
+ "SM29F-S12": {
+  "read": "Interior key 24 (ab at the intersection of two rational graphs). pass.",
+  "decision": "pass"
+ },
+ "_mutation": {
+  "note": "math-bank-helper verify on sat-math-v29-full-b with SM29F-B05's key swapped to a distractor: exit 1 (refused); with one SM29F-B10 distractor_solve body replaced by 'return 999;': exit 1 (refused)."
+ },
+ "_redump": {
+  "note": "Pre-freeze re-dump: 3,553 live maths rows at the authoring dump -> 3,781 now (228 new: isee-math-s17 93, ssat-math-s17 95, act-math-v28 40; 0 removed). All 228 new prompts read against the 72 candidates. One duplicate: isee 60af7d (quiz scoring, +4 / -1 / blank 0, a score, the greatest number correct) vs SM29F-D02 (quiz scoring, +5 / -3 / blank 0, a score bound, the least number correct): same penalty-score chain to an extreme whole count. Read and kept, recorded: 08c00e (f(a+1) - f(a) = 15 for a quadratic, then f(a)) vs P05 (average rate over [4, k] = -22 with k unknown gives a quadratic in k) - the decision differs; 0fcf79 (clock strikes, gaps not strikes) vs A11 (two numbered shuttles, intervals back to the first) - fencepost idea only; 7d1c0b (|x - 3| = 2|x + 1|, product) vs S07 (k from one solution, then product) - different chain. math-mechanism-dup over the 3,781-row table: 0 FLAG, 19 near, each read (no duplicate)."
+ }
+}

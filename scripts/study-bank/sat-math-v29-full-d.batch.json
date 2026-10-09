@@ -1,0 +1,561 @@
+[
+ {
+  "id": "SM29F-D01",
+  "domain": "Algebra",
+  "subskill": "Two-variable inequality holding for every y in a range",
+  "difficulty": "hard",
+  "prompt": "6x - 4(2y + 5) ≥ 4x - 11y + 30\n\nA number x has the following property: for every value of y with 1 ≤ y ≤ 8, the point (x, y) satisfies the inequality above. The numbers x with this property are exactly the numbers with x ≥ c, where c is a constant. What is the value of c?",
+  "choices": [
+   "3.5",
+   "13",
+   "16",
+   "23.5"
+  ],
+  "correct_answer": "23.5",
+  "explanation": "Simplify the inequality. Distributing gives 6x - 8y - 20 ≥ 4x - 11y + 30. Adding 11y and 20 to both sides and subtracting 4x from both sides gives 2x + 3y ≥ 50, so x ≥ (50 - 3y)/2. Although y first appears as -8y, after simplifying y has a positive coefficient, so the right side, (50 - 3y)/2, is largest when y is smallest. For x to work for every y from 1 to 8, x must be at least the largest of these values, which occurs at y = 1: (50 - 3)/2 = 47/2 = 23.5. Any x ≥ 23.5 satisfies 2x + 3y ≥ 50 for every y in the range, and any smaller x fails at y = 1. Therefore c = 23.5.",
+  "solve": "const y1 = 1; const C = 30 + 20; const b = -8 + 11; const a = 6 - 4; return (C - b * y1) / a;",
+  "distractor_solve": {
+   "13": "const y2 = 8; const C = 30 + 20; const b = -8 + 11; const a = 6 - 4; return (C - b * y2) / a;",
+   "16": "const y1 = 1; const C = 30 + 5; const b = -8 + 11; const a = 6 - 4; return (C - b * y1) / a;",
+   "3.5": "const y1 = 1; const C = 30 - 20; const b = -8 + 11; const a = 6 - 4; return (C - b * y1) / a;"
+  },
+  "mechanism": [
+   "simplify to find the net coefficient of y",
+   "choose the binding endpoint of the y-range",
+   "solve for the bound on x"
+  ],
+  "quantity_asked": "the constant c such that the x-values satisfying the inequality for every y in [1, 8] are exactly x ≥ c",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return 2 * v + 3 >= 50 - 1e-9 && 2 * v + 24 >= 50 - 1e-9;",
+   "why": "A student can test an option x by simplifying and checking the inequality at both ends of the y-range; only 23.5 passes at y = 1. In ascending order that is the fourth try, and the check itself needs the full simplification and the endpoint idea."
+  },
+  "distractor_meta": {
+   "13": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Uses the endpoint y = 8 instead of y = 1, reading -8y as a negative coefficient so that the larger y looks like the demanding case; the sign of the net coefficient (+3) is only visible after simplifying."
+   },
+   "16": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Multiplies only 2y by -4 and writes -8y - 5, so the constant becomes 30 + 5 = 35; its side relative to c depends on where the constant ends up after rearranging."
+   },
+   "3.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Distributes -4(2y + 5) as -8y + 20, so the constant becomes 30 - 20 = 10; nothing in the stem shows which way this moves c without carrying out the algebra."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return (50 + 19 * 8) / 2;",
+   "direction": "above",
+   "why": "Combines -8y and -11y as -19y instead of moving -11y across (-8y + 11y = 3y); then x ≥ (50 + 19y)/2, the worst case is y = 8, and the bound 101 lands far above the key."
+  },
+  "far_distractor": {
+   "option": "13",
+   "natural_side": "above",
+   "why": "Picking the larger endpoint y = 8 is the 'use the biggest input' error, and a student who makes it does so because -8y looks like it makes larger y more demanding, so they expect it to push the bound on x UP. Here, after the -11y on the right moves across, the net coefficient of y is +3, so y = 8 is the least demanding endpoint and its bound, 13, lands below the key."
+  },
+  "cheap_bound_check": "No bound is readable before simplifying. After simplifying, the cheapest one-sided bound is the requirement at the other endpoint, y = 8: x ≥ 13. It strikes only 3.5; 13, 16 and the key 23.5 survive, so 13 and 16 sit on the key's side of it.",
+  "shape_check": "The stem gives no sign, integrality or cap for c (a real boundary); all four options are positive and survive. At least 13, 16 and 23.5 survive the y = 8 requirement together.",
+  "interior_parity_check": "Middle values 13 and 16: both two-digit integers of the same form; the key 23.5 is a decimal and is not the cleaner value.",
+  "arith_class_check": "Two halves (3.5, 23.5) and two integers (13, 16): the key shares its class with 3.5; no parity, sign or roundness class isolates it. No option is a sum, difference, average, double or product of two others (checked: 3.5 + 13 = 16.5, 16 - 13 = 3, (3.5 + 23.5)/2 = 13.5).",
+  "dup_search": {
+   "queries": [
+    "for every (value of )?y|for all (values of )?y|every y",
+    "worst|regardless|no matter",
+    "for every value of x|for every x|for all x&≤|≥|at least|at most",
+    "inequalit|at least|at most (prior list read in full)"
+   ],
+   "hits_read": 38,
+   "nearest": "SM23L-A6 / SM24L-A1 / SM26L-A7 (f(x) = kx + b bounded for every x in an interval, solved for a slope k). Different chain: here the coefficients are fixed, the unknown is the other variable x, and the decision is which endpoint of y binds once a disguised net coefficient is found; no slope parameter, no two-sided band."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: the stem shows y as -8y on the left and -11y on the right, and the side of each error depends on the simplified form 2x + 3y ≥ 50. The far_distractor 13 is the endpoint error a student makes precisely because they believe larger y raises the bound, so they would not sign it as the low option without solving. The one cheap bound after simplifying (x ≥ 13 from y = 8) strikes only 3.5. Plug-back: possible but needs simplification and both endpoints, and reaches the key at try 4 ascending. Return fix: the old set had 14.5 = 4.5 + 10; this set has no closure among any options."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-D02",
+  "domain": "Algebra",
+  "subskill": "Inequality from a scoring rule with a penalty",
+  "difficulty": "medium",
+  "prompt": "A quiz has 50 questions. Each correct answer earns 5 points, each incorrect answer subtracts 3 points, and each unanswered question earns 0 points. Jae answered 40 of the questions and left the rest unanswered, and his score was at least 44 points. What is the least number of questions Jae could have answered correctly?",
+  "choices": [
+   "9",
+   "14",
+   "21",
+   "25"
+  ],
+  "correct_answer": "21",
+  "explanation": "Let c be the number of questions Jae answered correctly. He answered 40 questions, so 40 - c of them were incorrect, and his score was 5c - 3(40 - c) = 8c - 120. The condition 8c - 120 ≥ 44 gives 8c ≥ 164, so c ≥ 20.5. Since c is a whole number, the least possible value is 21. Check: 21 correct and 19 incorrect give 105 - 57 = 48 points, while 20 correct and 20 incorrect give 100 - 60 = 40 points.",
+  "solve": "return Math.ceil((44 + 3 * 40) / (5 + 3));",
+  "distractor_solve": {
+   "9": "return Math.ceil(44 / 5);",
+   "14": "return Math.ceil((44 + 40) / (5 + 1));",
+   "25": "return Math.ceil((44 + 3 * 50) / (5 + 3));"
+  },
+  "mechanism": [
+   "express incorrect answers as answered minus correct",
+   "set up the score inequality with the penalty",
+   "solve and round up to a whole number"
+  ],
+  "quantity_asked": "the least number of correct answers consistent with a score of at least 40",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const s = c => 5 * c - 3 * (40 - c); return s(v) >= 44 && s(v - 1) < 44;",
+   "why": "A student can test an option c by computing 5c - 3(40 - c) and checking it is at least 44 while c - 1 falls short. In ascending order 9 and 14 fail and the key 21 is the third try."
+  },
+  "distractor_meta": {
+   "9": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Ignores the penalty for incorrect answers and solves 5c ≥ 44, so c ≥ 8.8, or 9."
+   },
+   "14": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracts 1 point per incorrect answer instead of 3, writing 5c - (40 - c) ≥ 44, so c ≥ 14."
+   },
+   "25": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Counts the 10 unanswered questions as incorrect, using 50 - c instead of 40 - c, so the penalty is too large: 8c - 150 ≥ 44 gives c ≥ 24.25, or 25."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The answer is a whole number from 0 to 40 (the questions answered). All four options are whole numbers in that range and survive. 21 and 25 both pass the score check (48 and 80 points); only minimality separates them.",
+  "interior_parity_check": "Middle values 14 and 21: both two-digit integers of the same complexity; the key 21 is not the cleaner one.",
+  "arith_class_check": "Parity: 9, 21 and 25 are odd, 14 is even; the key shares its class. No sign, integrality or roundness class isolates it.",
+  "dup_search": {
+   "queries": [
+    "incorrect|wrong answer&point",
+    "correct&points?&subtract|deduct|lose|loses|penalt|minus"
+   ],
+   "hits_read": 2,
+   "nearest": "SM27F-A13 (prior; contest with a 2-point penalty and blanks, solved as an EQUATION for a changed score). Here the score is a lower bound, the unknown is the least whole number of correct answers, and incorrect = answered - correct must be built from the 38 answered, not the 50 total."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might plug options in ascending order: 9 and 14 fail and 21 is the third try, as the slot requires. Distractors fall on both sides of the key (two below, one above). (read) DPAIR 25 - 21 = 4 = 3 + 1: not stem-readable - nothing in the stem suggests adding 4 correct answers, and 25 comes from charging the 10 blanks as wrong; a student who saw the pair could not tell which member is the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-D03",
+  "domain": "Algebra",
+  "subskill": "How the boundary of a two-variable inequality shifts",
+  "difficulty": "medium",
+  "prompt": "5(x - 3) + 2y ≤ 61 - 3x - y\n\nFor each fixed number y, the values of x that satisfy the inequality above are exactly the values with x ≤ M, where M depends on y. When y increases by 36, by how much does M decrease?",
+  "choices": [
+   "13.5",
+   "14.4",
+   "21.6",
+   "96"
+  ],
+  "correct_answer": "13.5",
+  "explanation": "Distributing gives 5x - 15 + 2y ≤ 61 - 3x - y. Adding 3x, y and 15 to both sides gives 8x + 3y ≤ 76, so x ≤ (76 - 3y)/8. Therefore M = (76 - 3y)/8 = 9.5 - (3/8)y, and M decreases by 3/8 for each increase of 1 in y. When y increases by 36, M decreases by (3/8)(36) = 13.5.",
+  "solve": "const a = 5 + 3, b = 2 + 1; return b * 36 / a;",
+  "distractor_solve": {
+   "96": "const a = 5 + 3, b = 2 + 1; return a * 36 / b;",
+   "14.4": "const a = 5, b = 2; return b * 36 / a;",
+   "21.6": "const a = 5, b = 2 + 1; return b * 36 / a;"
+  },
+  "mechanism": [
+   "collect the x terms and the y terms on one side",
+   "write the boundary M as a linear function of y",
+   "multiply its rate of change by the change in y"
+  ],
+  "quantity_asked": "the decrease in the boundary M of the solution set x ≤ M when y increases by 36",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": false,
+   "why": "The option is a change in the boundary, not a value of x or y; to test it a student must find M as a function of y (or compute M at two values of y), which is the whole solution - there is no printed condition to substitute an option into."
+  },
+  "distractor_meta": {
+   "96": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Inverts the rate, multiplying the change in y by 8/3 instead of 3/8."
+   },
+   "14.4": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moves neither the -3x nor the -y from the right side and uses the left-side coefficients alone, 2/5 instead of 3/8. Leaving out -3x shrinks the divisor (pushes the answer up) while leaving out -y shrinks the multiplier (pushes it down); which wins depends on comparing 2/5 with 3/8, which has to be computed."
+   },
+   "21.6": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Collects the y terms (3y) but leaves the -3x on the right, dividing by 5 instead of 8."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return 2 * 36 / 8;",
+   "direction": "below",
+   "why": "Collects the x terms (8x) but forgets to move the -y, using 2/8 as the rate: 9, below the key."
+  },
+  "far_distractor": {
+   "option": "14.4",
+   "natural_side": "below",
+   "why": "Leaving terms unmoved is a dropped-step error, which ordinarily makes an answer smaller, and one of the two dropped terms (-y) does lower it. The other dropped term (-3x) belongs in the divisor and raises it. The net side depends on a computed comparison, 2/5 = 0.4 against 3/8 = 0.375, so it lands just ABOVE the key; recognising the slip does not reveal the side."
+  },
+  "cheap_bound_check": "The cheapest bound readable from the stem is that M changes by less than y does once terms are collected (8 > 3), i.e. less than 36; it strikes only 96. The decrease is positive, which strikes nothing. 14.4 and 21.6 sit on the key's side of every bound short of solving.",
+  "shape_check": "The decrease is a positive real number (not necessarily an integer). All four options are positive and survive; 13.5, 14.4 and 21.6 survive the 'less than 36' bound together.",
+  "interior_parity_check": "Middle values 14.4 and 21.6: both one-decimal numbers of the same complexity; the key 13.5 is not interior.",
+  "arith_class_check": "Three decimals (13.5, 14.4, 21.6) and one integer (96, a distractor): the key is not alone in a class. No option is a sum, difference, average, double or product of two others.",
+  "dup_search": {
+   "queries": [
+    "increases by&decrease|change&≤|≥|inequalit|at most|at least",
+    "by how (much|many)&inequalit|at most|at least|≤|≥|allowed|limit",
+    "for every (value of )?y|for all (values of )?y|every y"
+   ],
+   "hits_read": 6,
+   "nearest": "fee7c982 / SM26L-D3 (how much the greatest profit increases when a budget rises) - an integer optimization whose optimum moves; here no optimization: the boundary of a one-variable solution set is a linear function of y, and the ask is its rate of change times the change in y. Within this batch, SM29F-D01 also starts from a two-variable inequality with distribution, but asks which END of a y-range binds; here there is no range, and the ask is the rate at which the boundary moves times a change in y."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: the far_distractor 14.4 drops two terms with opposite effects (one in the divisor, one in the multiplier), so its side is set by 0.4 against 0.375, which must be computed; 21.6 and 96 change the divisor or invert the rate. The one cheap bound (less than 36) strikes only 96. Plug-back: the option is a change in M; no routine substitution checks it. Return fix: the old far_distractor (a single dropped divisor term) was signable on sight; this one is not."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-D04",
+  "domain": "Algebra",
+  "subskill": "System of inequalities with a parameter; interval length given",
+  "difficulty": "medium",
+  "prompt": "3(x - k) ≤ 30 - x\n-14 - 3x < x + k\n\nThe number k is chosen so that the numbers x making both inequalities above true fill an interval 6 units long. That interval runs from a, which is not included, to b, which is included. Find b.",
+  "choices": [
+   "3.75",
+   "4",
+   "5",
+   "10.5"
+  ],
+  "correct_answer": "3.75",
+  "explanation": "First inequality: 3x - 3k ≤ 30 - x gives 4x ≤ 30 + 3k, so x ≤ (30 + 3k)/4. Second inequality: -14 - 3x < x + k gives -4x < k + 14, and dividing by -4 reverses the inequality: x > -(k + 14)/4. So b = (30 + 3k)/4 and a = -(k + 14)/4. Then b - a = (30 + 3k + k + 14)/4 = (44 + 4k)/4 = 11 + k. Setting 11 + k = 6 gives k = -5, so b = (30 - 15)/4 = 15/4 = 3.75. (Check: a = -9/4 = -2.25, and 3.75 - (-2.25) = 6.)",
+  "solve": "const k = (6 * 4 - 30 - 14) / (3 + 1); return (30 + 3 * k) / 4;",
+  "distractor_solve": {
+   "4": "const k = (6 - 30 / 3 - 14 / 4) / (3 / 3 + 1 / 4); return (30 + 3 * k) / 3;",
+   "5": "const k = (6 * 4 - 30 - 14) / (1 + 1); return (30 + k) / 4;",
+   "10.5": "const k = (6 * 4 - 30 + 14) / (3 - 1); return (30 + 3 * k) / 4;"
+  },
+  "mechanism": [
+   "solve each inequality for x in terms of k (one division reverses the sign)",
+   "express the interval length in k and solve for k",
+   "substitute back for the right endpoint"
+  ],
+  "quantity_asked": "the right endpoint b of the solution interval a < x ≤ b, given b - a = 6",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": false,
+   "why": "The option is an endpoint, not k. To test it a student must recover k from b = (30 + 3k)/4, then compute a from the second inequality and check b - a = 6 - three steps that require having solved both inequalities in terms of k already, not one substitution into a printed condition."
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Does not move the -x from the right side of the first inequality, so b = (30 + 3k)/3; the length condition then gives k = -6 and b = 4."
+   },
+   "5": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Distributes the 3 only to x, writing 3x - k, so b = (30 + k)/4; the length condition then gives k = -10 and b = 5. Which way this moves b depends on how k shifts, which only the algebra shows."
+   },
+   "10.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Divides -4x < k + 14 by -4 and gets x > (k + 14)/4 (sign slip on the right side), so the length becomes (16 + 2k)/4, k = 4 and b = 10.5."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const k = -5; return -(k + 14) / 4;",
+   "direction": "below",
+   "why": "Solves correctly but reports the left endpoint a = -2.25 instead of b."
+  },
+  "far_distractor": {
+   "option": "4",
+   "natural_side": "below",
+   "why": "Leaving a term out is a dropped-step error, which ordinarily makes a result smaller. The dropped -x belongs in the DIVISOR of b (4x, not 3x), so leaving it out divides by 3 instead of 4 and, even after k readjusts to -6 to keep the length 6, b comes out larger: 4, above the key."
+  },
+  "cheap_bound_check": "No one-sided bound on b is readable from the stem: b depends on k, and k is fixed only by the length condition. The length 6 gives b > a but says nothing about b alone; no bound strikes even one distractor without solving.",
+  "shape_check": "b is a real number; the stem gives no sign, integrality or cap. All four options are positive and survive; 4 and 5 (and the key) survive every property together.",
+  "interior_parity_check": "Middle values 4 and 5: both one-digit integers; the key 3.75 is not interior.",
+  "arith_class_check": "Two decimals (3.75, 10.5) and two integers (4, 5): the key shares its class; no parity or sign class isolates it.",
+  "dup_search": {
+   "queries": [
+    "interval of length|length of the interval|length of that interval|length of this interval",
+    "both inequalities|both of the inequalities|each of the inequalities|satisf(y|ies) both",
+    "system of inequalities&constant&solution set"
+   ],
+   "hits_read": 34,
+   "nearest": "SM28F-D04 (live; system kx + 3 ≤ 21, (k - 8)x + d ≥ 0 whose solution set is given as -3 ≤ x ≤ 6, solved for d): both endpoints are printed there. Here neither endpoint is given - only the LENGTH of the interval - so both endpoints must be written in terms of k, the length condition solved for k, and the endpoint recovered. SM18L-A4 (|3x - c| ≤ 6 with a given midpoint) is an absolute-value interval."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: each slip changes how k enters b or a, the length condition then moves k, and the net effect on b only appears after solving. The far_distractor 4 is a dropped term that a student would expect to shrink b; it lands above because the term belongs in b's divisor. No cheap bound on b exists without k. Plug-back: the option is an endpoint, and checking it needs k, then a, then the length - not one routine step - but the key is at try 1, so this is the line to read. No PAIR/DSUM lines on the harness."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-D05",
+  "domain": "Algebra",
+  "subskill": "Extreme of a linear expression under linked inequalities",
+  "difficulty": "medium",
+  "prompt": "The numbers a and b satisfy both of the inequalities below.\n\n2 ≤ a ≤ 9\n3 ≤ a + b ≤ 10\n\nWhat is the greatest possible value of a + 3b?",
+  "choices": [
+   "12",
+   "26",
+   "33",
+   "48"
+  ],
+  "correct_answer": "26",
+  "explanation": "Write the expression in terms of the two quantities that are bounded: a + 3b = 3(a + b) - 2a. This is greatest when a + b is as large as possible and a is as small as possible. Both can happen at once: a = 2 and a + b = 10 give b = 8, which satisfies both inequalities. Then a + 3b = 3(10) - 2(2) = 26. No pair can do better, because 3(a + b) is at most 30 and 2a is at least 4.",
+  "solve": "const a1 = 2, s2 = 10; return 3 * s2 - 2 * a1;",
+  "distractor_solve": {
+   "12": "const a2 = 9, s2 = 10; const b = s2 - a2; return a2 + 3 * b;",
+   "33": "const a1 = 2, a2 = 9, s2 = 10; const bmax = s2 - a1; return a2 + 3 * bmax;",
+   "48": "const a2 = 9, s2 = 10; return 3 * s2 + 2 * a2;"
+  },
+  "mechanism": [
+   "rewrite the target in terms of the bounded quantities a and a + b",
+   "choose the extreme of each bounded quantity",
+   "check both extremes can occur together"
+  ],
+  "quantity_asked": "the greatest possible value of a + 3b",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a claimed maximum; checking it means showing some pair (a, b) reaches it and none exceeds it, which is the whole problem, not a substitution into a printed condition. In descending order the key is the third value anyway."
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "partial_answer",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Maximizes a first (a = 9) and then takes the largest b that fits (b = 1), the natural greedy order; whether that is too big or too small is not readable from the stem."
+   },
+   "33": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treats b as an independent variable with its own range (from 3 - 9 to 10 - 2, so b at most 8) and then takes a = 9 and b = 8 together, leaving out the link a + b ≤ 10; the stem does not show whether that overshoots or undershoots without computing the true maximum."
+   },
+   "48": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Rewrites a + 3b as 3(a + b) + 2a instead of 3(a + b) - 2a and then takes a = 9 and a + b = 10."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over no integrality or sign; a + 3b can be any real value in a range. All four options are positive integers and survive; the cap 3(a + b) ≤ 30 is not a cap on a + 3b, so it strikes nothing without the rewrite.",
+  "interior_parity_check": "Middle values 26 and 33: both two-digit integers of the same form; the key 26 is not the cleaner one.",
+  "arith_class_check": "Parity: 12, 26 and 48 are even, 33 is odd, so the key is not alone; no sign, integrality or roundness class isolates it.",
+  "dup_search": {
+   "queries": [
+    "≤ ?[a-z] ?\\+ ?[a-z] ?≤|<= ?[a-z] ?\\+ ?[a-z] ?<=|[a-z] \\+ [a-z] is (at least|at most|between)",
+    "greatest possible value of [a-z] ?[-+] ?[0-9]?[a-z]|least possible value of [a-z] ?[-+] ?[0-9]?[a-z]",
+    "[0-9] ?(≤|<=|<) ?[a-z] ?(≤|<=|<) ?[0-9].*[0-9] ?(≤|<=|<) ?[a-z] ?(≤|<=|<) ?[0-9]"
+   ],
+   "hits_read": 16,
+   "nearest": "109c9105 (live, sat-alg-unit-0919: greatest 3x - 2y from |x - 5| <= 3 and |y + 2| <= 1) and ALG-H5-21 (greatest a - b from two absolute-value ranges): in both the variables are INDEPENDENT, so taking each extreme separately is the correct method. Here the second inequality bounds a + b, the extremes are linked, and taking them separately is exactly the distractor 33; the solution needs the rewrite a + 3b = 3(a + b) - 2a."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might take the extremes of a and b separately (33) or maximize a first (12); both are offered and fall on opposite sides of the key. The key is interior, at try 3 in the descending order a greatest-ask suggests, and an option cannot be checked by substitution. No PAIR/DSUM lines on the harness; differences 7, 14 and 22 are not printed numbers or sums of two."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-D06",
+  "domain": "Algebra",
+  "subskill": "Inequality with a coefficient parameter: boundary at a new k",
+  "difficulty": "medium",
+  "prompt": "kx + c ≥ 2x + 4k\n\nIn the inequality above, k and c are constants. When k = 3, the solution set of the inequality is all x with x ≥ -2. If c stays the same and k is changed to 10, the solution set becomes all x with x ≥ d. What is d?",
+  "choices": [
+   "1.5",
+   "2.2",
+   "2.6",
+   "3.25"
+  ],
+  "correct_answer": "3.25",
+  "explanation": "Rewrite the inequality as (k - 2)x ≥ 4k - c. When k = 3 this is x ≥ 12 - c, and the solution set is x ≥ -2, so 12 - c = -2 and c = 14. When k = 10 the inequality becomes 8x ≥ 40 - 14 = 26, so x ≥ 26/8 = 3.25. Therefore d = 3.25.",
+  "solve": "const c = 4 * 3 - (-2) * (3 - 2); return (4 * 10 - c) / (10 - 2);",
+  "distractor_solve": {
+   "2.2": "const c = 4 * 3 - (-2) * 3; return (4 * 10 - c) / 10;",
+   "2.6": "const c = 4 * 3 - (-2) * (3 - 2); return (4 * 10 - c) / 10;",
+   "1.5": "const c = 4 * 3 - (-2) * (3 + 2); return (4 * 10 - c) / (10 + 2);"
+  },
+  "mechanism": [
+   "collect x terms so the coefficient is k - 2",
+   "use the solution set at k = 3 to find c",
+   "solve the inequality again at k = 10"
+  ],
+  "quantity_asked": "the boundary d of the solution set x ≥ d when k = 10, after c is found from the k = 3 solution set",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(8 * v - 26) < 1e-9;",
+   "why": "After finding c = 14 a student can test an option d by checking 8d = 40 - 14; in ascending order the key is the fourth try."
+  },
+  "distractor_meta": {
+   "2.2": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Never moves the 2x, treating the coefficient of x as k: 3x ≥ 12 - c gives c = 18, then 10x ≥ 22 gives 2.2. The wrong coefficient changes both c and the final divisor, so its side is not visible without computing."
+   },
+   "2.6": {
+    "error_kind": "wrong_operation",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds c = 14 correctly but divides 26 by k = 10 instead of k - 2 = 8 at the second step."
+   },
+   "1.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writes the coefficient as k + 2 instead of k - 2: 5x ≥ 12 - c with x ≥ -2 gives c = 22, then 12x ≥ 18 gives 1.5."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return (4 * 10) / (10 - 2);",
+   "direction": "above",
+   "why": "Forgets to subtract c at k = 10 and solves 8x ≥ 40, getting 5, above the key."
+  },
+  "far_distractor": {
+   "option": "1.5",
+   "natural_side": "above",
+   "why": "Writing k + 2 for k - 2 puts an extra 2 into the coefficient, an added-amount error that ordinarily inflates a result. Here that coefficient is a divisor at k = 10, and at k = 3 it also changes the value of c found from x ≥ -2 (c = 22, not 14); because the given boundary -2 is negative, the larger divisor at k = 3 makes c LARGER, which shrinks the numerator at k = 10, so the result falls to 1.5, below the key. The side depends on the sign of the given boundary and on c, which must be computed."
+  },
+  "cheap_bound_check": "No one-sided bound on d is readable from the stem: d depends on c, which is fixed only by the k = 3 solution set, and nothing says whether the boundary rises or falls as k changes. No bound strikes even one option without solving.",
+  "shape_check": "d is a real boundary; the stem gives no sign, integrality or cap. All four options are positive and survive; 2.2, 2.6 and 3.25 survive every property together.",
+  "interior_parity_check": "Middle values 2.2 and 2.6: both one-decimal numbers of the same complexity; the key 3.25 is not interior.",
+  "arith_class_check": "All four are non-integers; the key's two-decimal form is not a class the stem implies; no parity or sign class isolates it. No option is a sum, difference, average, double or product of two others.",
+  "dup_search": {
+   "queries": [
+    "when (k|a|c) ?= ?-?[0-9]&solution|inequalit|≥|≤",
+    "solution set&constant&solution set.*solution set",
+    "inequalit|at least|at most (prior list read in full)"
+   ],
+   "hits_read": 129,
+   "nearest": "SM28F-D05 (live; for a certain k the FIRST inequality is true exactly when x ≤ 7, and for that same k the SECOND inequality gives x < c): one parameter carried from one inequality to another. Here there is one inequality with two constants: the coefficient parameter k is CHANGED, the hidden constant c is carried over from a known solution set at k = 3, and the new boundary at k = 10 is asked. SALG2-06 / AL-H-20 find a single constant from a solution set and stop."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: each slip changes both the c recovered from the k = 3 data and the divisor at k = 10, and the net side depends on the negative given boundary -2 and the computed c. The far_distractor 1.5 is an added amount whose side is set by that computation, not by recognising the slip. No cheap bound exists on d. Plug-back needs c first and reaches the key at try 4. Return fix: the old capacity item had a per-volunteer-average bound that struck two options; this item has no context relaxation to bound it."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-D07",
+  "domain": "Algebra",
+  "subskill": "Inequality for a required pace over the remaining distance",
+  "difficulty": "medium",
+  "prompt": "Ana is running an 8-kilometer race and wants her total time, including any stops, to be at most 44 minutes. She ran the first 2 kilometers at a constant pace of 6.1 minutes per kilometer and then stopped for 3 minutes at a water station. If she runs the remaining distance at a constant pace of p minutes per kilometer, what is the greatest possible value of p?",
+  "choices": [
+   "3.6",
+   "4.8",
+   "4.9",
+   "5.3"
+  ],
+  "correct_answer": "4.8",
+  "explanation": "The first 2 kilometers took 2(6.1) = 12.2 minutes, and the stop took 3 minutes, so 15.2 minutes are used before the rest of the race. The remaining distance is 8 - 2 = 6 kilometers, which takes 6p minutes. Her total time must be at most 44 minutes, so 12.2 + 3 + 6p ≤ 44. Then 6p ≤ 28.8, and p ≤ 4.8. The greatest possible value of p is 4.8.",
+  "solve": "const used = 2 * 6.1 + 3; return (44 - used) / (8 - 2);",
+  "distractor_solve": {
+   "3.6": "const used = 2 * 6.1 + 3; return (44 - used) / 8;",
+   "5.3": "const used = 2 * 6.1; return (44 - used) / (8 - 2);",
+   "4.9": "return 2 * (44 / 8) - 6.1;"
+  },
+  "mechanism": [
+   "time already used from pace times distance plus the stop",
+   "remaining distance",
+   "solve the time inequality for the pace"
+  ],
+  "quantity_asked": "the greatest pace p (minutes per kilometer) for the last 6 kilometers that keeps the total time, including a 3-minute stop, at most 44 minutes",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const t = 2 * 6.1 + 3 + 6 * v; return Math.abs(t - 44) < 1e-9;",
+   "why": "A student can test an option p by computing 12.2 + 3 + 6p and seeing whether it is exactly 44 minutes (the greatest allowed pace makes the total equal to the limit). In the descending order a 'greatest' ask suggests, 5.3 and 4.9 overshoot (45 and 44.6 minutes) and the key is the third try."
+  },
+  "distractor_meta": {
+   "3.6": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Divides the 28.8 minutes left by the whole 8 kilometers instead of the 6 that remain."
+   },
+   "5.3": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Forgets the 3-minute stop, so 31.8 minutes appear to be left for the 6 kilometers."
+   },
+   "4.9": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Takes the required overall pace 44/8 = 5.5 and averages paces instead of times: (6.1 + p)/2 = 5.5, ignoring the distances and the stop."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "p is a positive pace. The test-wise bound 'the remaining pace must beat the overall 44/8 = 5.5 because the start was slower' strikes no option (all four are below 5.5). A bound 'p is less than the pace ignoring the stop' needs the first-leg time first and strikes only 5.3. 3.6, 4.8 and 4.9 survive every property together.",
+  "interior_parity_check": "Middle values 4.8 and 4.9: both one-decimal numbers of the same complexity; the key is not the cleaner one.",
+  "arith_class_check": "All four are one-decimal numbers; the key is not alone in any class. No option is a sum, difference, average, double or product of two others.",
+  "dup_search": {
+   "queries": [
+    "pace|minutes per (kilometer|mile)|per lap",
+    "remaining&at least|at most|no more|less than|under&minutes|hours",
+    "stop|water station&minutes&at most|at least"
+   ],
+   "hits_read": 16,
+   "nearest": "4c5f8ba1 (ISEE: time for 800 m at a fixed race pace) is a direct proportion with no inequality and no split race; no live or prior item sets a time budget over a race already partly run and solves for the required pace."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student who argues the remaining pace must beat the overall 5.5 average strikes nothing: all four options are under 5.5. The only other bound (less than the pace ignoring the stop) needs the first-leg time and strikes just 5.3. Plug-back reaches the key at try 3 in descending order. Distractors fall on both sides (one below, two above). Return fix: the old set had two options above the overall average, struck free."
+  },
+  "bounds": []
+ }
+]

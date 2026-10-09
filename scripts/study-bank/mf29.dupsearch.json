@@ -1,0 +1,478 @@
+{
+ "_note": "Coordinator hand keyword search per item over the PRE-FREEZE re-dump (3,781 live rows + 1,296 prior Algebra / Advanced Math batch items) with mf29-kw.mjs; every hit listed was read. Authors recorded their own 2-4 searches per item in dup_search.",
+ "SM29F-A01": {
+  "query": "rest stop|stops? for [0-9]+ minutes&per hour",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-A02": {
+  "query": "subtract.{0,20}\\$[0-9]+|\\$[0-9]+ (off|discount)&more than \\$",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-A03": {
+  "query": "euro|exchange rate",
+  "hits": 4,
+  "ids": [
+   "10a7a9a0-bc4 live act/act-math-v13-ies",
+   "7276e66a-2b2 live sat/math-v3",
+   "90c83a76-4a5 live ssat/ssat-math-s16",
+   "ff761ac8-0e6 live act/act-unit-0918"
+  ]
+ },
+ "SM29F-A04": {
+  "query": "plus one-fifth|one-fifth of (the|what)",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-A05": {
+  "query": "board&(cut|feet)&inches",
+  "hits": 3,
+  "ids": [
+   "3331922b-30d live act/act-math-v28",
+   "598b4163-763 live isee/isee-math-s16",
+   "SM16L-09 prior sat-math-v16-alg.batch.json"
+  ]
+ },
+ "SM29F-A07": {
+  "query": "trail&(share|common)",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-A08": {
+  "query": "solution&less than [0-9]+ times",
+  "hits": 2,
+  "ids": [
+   "e8f9af26-5cc live sat/sat-math-v28-full",
+   "SM28F-A08 prior sat-math-v28-full-a.batch.json"
+  ],
+  "hand_read": "e8f9af26 / SM28F-A08 tie two equations; kept."
+ },
+ "SM29F-A09": {
+  "query": "warm-?up",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-A10": {
+  "query": "ribbon|bow",
+  "hits": 4,
+  "ids": [
+   "086b8d27-a01 live act/act-math-v2-alg",
+   "41ebd65c-1ef live act/act-math-v4gi",
+   "565f34ad-4b2 live isee/isee-math-s7",
+   "7a086d32-c77 live isee/isee-math-s15"
+  ]
+ },
+ "SM29F-A11": {
+  "query": "(6th|sixth)&(14th|fourteenth)|leaves at equal",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-B01": {
+  "query": "perpendicular&x-intercept",
+  "hits": 1,
+  "ids": [
+   "5b128a55-f8f live sat/v2"
+  ]
+ },
+ "SM29F-B02": {
+  "query": "x-axis at point A|meets the y-axis at",
+  "hits": 1,
+  "ids": [
+   "4bba4ba1-414 live isee/isee-math-s4"
+  ]
+ },
+ "SM29F-B03": {
+  "query": "f\\(p\\) = q|f\\(q\\) = p",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-B04": {
+  "query": "g\\(x\\) = f\\(2x\\)",
+  "hits": 1,
+  "ids": [
+   "SM26F-B11 prior sat-math-v26-algfull-b.batch.json"
+  ]
+ },
+ "SM29F-B05": {
+  "query": "reflect&y = x&line",
+  "hits": 2,
+  "ids": [
+   "2683f170-c77 live isee/isee-math-s16",
+   "b65d483c-e85 live isee/isee-math-s16"
+  ]
+ },
+ "SM29F-B06": {
+  "query": "turned 90|rotat&about",
+  "hits": 5,
+  "ids": [
+   "2013538d-efa live act/act-math-v18",
+   "299a8943-417 live act/act-math-v10-mix",
+   "394776b4-08d live ssat/ssat-math-s16",
+   "464c6bb7-cc9 live act/act-math-v20",
+   "8a5d2f67-2ef live isee/isee-math-s15"
+  ]
+ },
+ "SM29F-B07": {
+  "query": "midpoint of (side )?BC&slope",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-B08": {
+  "query": "units above line",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-B09": {
+  "query": "open .{0,20}hours on Sunday|profit&hours",
+  "hits": 2,
+  "ids": [
+   "7fa09e5c-8ed live sat/sat-math-v27-algfull",
+   "SM27F-C03 prior sat-math-v27-algfull-c.batch.json"
+  ]
+ },
+ "SM29F-B10": {
+  "query": "miscalibrated|scale reads",
+  "hits": 1,
+  "ids": [
+   "8884a0ea-ef2 live sat/math-v3"
+  ]
+ },
+ "SM29F-B11": {
+  "query": "f\\(2k\\)",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C01": {
+  "query": "\\(b, a\\)",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C02": {
+  "query": "rang up|mistakenly",
+  "hits": 1,
+  "ids": [
+   "a38b9766-80a live ssat/ssat-math-s16"
+  ]
+ },
+ "SM29F-C03": {
+  "query": "solution is \\(a, b\\)|x = a and y = b",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C04": {
+  "query": "as k (takes|varies)|every one of these solutions",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C05": {
+  "query": "meal deal",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C06": {
+  "query": "point A&point B&line l intersects",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C07": {
+  "query": "no matter which number|for every x&a\\(",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C08": {
+  "query": "jump&slide",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C09": {
+  "query": "average&x, 2y",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C10": {
+  "query": "System III|three systems",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-C11": {
+  "query": "opposite roles|slope n and y-intercept m",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-D01": {
+  "query": "for every value of y",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-D03": {
+  "query": "when y increases by",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-D04": {
+  "query": "interval&6 units long|units long&inequalit",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-D05": {
+  "query": "a \\+ 3b|greatest possible value of a",
+  "hits": 5,
+  "ids": [
+   "2be608d1-537 live isee/isee-math-s16",
+   "2eac63e5-3b6 live isee/isee-math-s15",
+   "4ef05271-df3 live sat/sat-alg-h5",
+   "e941be98-11e live sat/v2",
+   "ALG-H5-21 prior sat-alg-h5.batch.json"
+  ]
+ },
+ "SM29F-D06": {
+  "query": "solution set&k is changed|when k = 3",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-D07": {
+  "query": "pace&minutes per kilometer",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-P01": {
+  "query": "same axis of symmetry",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-P02": {
+  "query": "stopping distance",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-P03": {
+  "query": "vertex&lies on the line",
+  "hits": 1,
+  "ids": [
+   "SADV5A-10 prior sat-adv-0919c-a.batch.json"
+  ],
+  "hand_read": "SADV5A-10 has a fixed axis and asks k; kept."
+ },
+ "SM29F-P04": {
+  "query": "launch speed|least whole-number value of v",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-P05": {
+  "query": "average of -?[0-9]+ per unit|average rate&f\\(k\\)",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-P06": {
+  "query": "break(s)? even",
+  "hits": 1,
+  "ids": [
+   "4d5500cf-6a5 live sat/math-v3"
+  ]
+ },
+ "SM29F-P07": {
+  "query": "midpoint&(parabola|chord|PQ)",
+  "hits": 2,
+  "ids": [
+   "6fe55472-3f7 live ssat/ssat-math-s17",
+   "9513dc73-887 live act/act-math-v6-geo"
+  ]
+ },
+ "SM29F-P08": {
+  "query": "open-top box|corners&folded",
+  "hits": 1,
+  "ids": [
+   "4cbed9b3-fe9 live ssat/ssat-math-s15"
+  ]
+ },
+ "SM29F-P09": {
+  "query": "fountain|lamp post",
+  "hits": 4,
+  "ids": [
+   "0a4537c6-b92 live act/act-math-v12-mix",
+   "17ec9718-c4c live act/act-math-v18",
+   "1d4b395e-5a3 live ssat/ssat-math-s15",
+   "d02eaf16-4a9 live sat/math-v3"
+  ]
+ },
+ "SM29F-P10": {
+  "query": "\\(x - 3\\)\\^2 \\+ 14",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-Q02": {
+  "query": "\\(a \\+ b\\)/2",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-Q03": {
+  "query": "squaring both sides&solutions",
+  "hits": 2,
+  "ids": [
+   "f4608175-6d9 live sat/sat-math-v16-adv",
+   "SM16A-07 prior sat-math-v16-adv.kept.batch.json"
+  ],
+  "hand_read": "f4608175 solves a printed radical equation forward; kept."
+ },
+ "SM29F-Q04": {
+  "query": "\\(0\\.64\\)|negative exponent",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-Q06": {
+  "query": "4\\^x&2\\^x",
+  "hits": 6,
+  "ids": [
+   "5bd12c74-552 live sat/sat-math-v25-adv",
+   "8fd77a0f-c54 live sat/v2",
+   "SADV3-10 prior sat-adv-0919b.batch.json",
+   "SADV5B-06 prior sat-adv-0919c-b.batch.json",
+   "SM24V-B11 prior sat-math-v24-adv-b.batch.json",
+   "SM25V-B13 prior sat-math-v25-adv-b.batch.json"
+  ],
+  "hand_read": "SM24V-B11 / SADV3-10 / SADV5B-06 solve 4^x - k2^x + c = 0 forward or for k; here the x-gap fixes u2 = 4u1 and the ask is the y-sum; kept."
+ },
+ "SM29F-Q07": {
+  "query": "343|7\\^a",
+  "hits": 6,
+  "ids": [
+   "17ec9718-c4c live act/act-math-v18",
+   "2d0ae3d3-c6e live act/act-math-v1",
+   "78ca5260-800 live act/act-math-v19",
+   "7cfc4bb9-3ca live isee/isee-math-s15",
+   "892a42b4-76c live sat/v2",
+   "9c5c5495-4fd live act/act-math-v26"
+  ]
+ },
+ "SM29F-R01": {
+  "query": "\\(4x \\+ 31\\)|integer value&/\\(x",
+  "hits": 1,
+  "ids": [
+   "48333061-741 live act/act-math-v8-fn"
+  ],
+  "hand_read": "48333061 counts integer x with 12/(x - 4) an integer; here the division rewrite comes first and the ask is the greatest x; kept."
+ },
+ "SM29F-R02": {
+  "query": "x\\^50|x\\^21",
+  "hits": 1,
+  "ids": [
+   "SM25V-B09 prior sat-math-v25-adv-b.batch.json"
+  ]
+ },
+ "SM29F-R03": {
+  "query": "zero in common|common zero",
+  "hits": 2,
+  "ids": [
+   "2a453c92-318 live sat/sat-math-v25-adv",
+   "SM25V-A02 prior sat-math-v25-adv-a.batch.json"
+  ]
+ },
+ "SM29F-R04": {
+  "query": "p\\(x - 2\\)|q\\(x\\) = p\\(x",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-R05": {
+  "query": "x - k divides|divides&no remainder",
+  "hits": 2,
+  "ids": [
+   "b28be5f8-153 live sat/sat-math-v25-adv",
+   "SM25V-C08 prior sat-math-v25-adv-c.batch.json"
+  ]
+ },
+ "SM29F-R06": {
+  "query": "tangent to the x-axis",
+  "hits": 2,
+  "ids": [
+   "47c950d2-c1f live sat/v2",
+   "8727b1d3-4c6 live sat/v2"
+  ]
+ },
+ "SM29F-S01": {
+  "query": "medication|concentration&t\\^2",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-S02": {
+  "query": "translat&reflect&x-axis",
+  "hits": 1,
+  "ids": [
+   "1f4b0427-1eb live isee/isee-math-s10"
+  ]
+ },
+ "SM29F-S03": {
+  "query": "inverse function of f|g is the inverse",
+  "hits": 8,
+  "ids": [
+   "41202e47-820 live sat/sat-adv-0919d",
+   "ce787788-dea live sat/sat-form24",
+   "SADV6A-08 prior sat-adv-0919d-a.batch.json",
+   "SADV6B-07 prior sat-adv-0919d-b.batch.json",
+   "SADV7D-10 prior sat-adv-0919e-d.batch.json",
+   "SM14A-06 prior sat-math-v14-adv.batch.json",
+   "SM16A-10 prior sat-math-v16-adv.batch.json",
+   "SM24V-D13 prior sat-math-v24-adv-d.batch.json"
+  ],
+  "hand_read": "41202e47 / SADV6A-08 evaluate the inverse of a fully known rational f; here a must be recovered from a point on the inverse first - different givens, kept."
+ },
+ "SM29F-S04": {
+  "query": "asymptote&translat",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-S05": {
+  "query": "f\\(g\\(x\\)\\)&smallest value",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-S06": {
+  "query": "f\\(\\|x\\|\\)|exactly three real",
+  "hits": 1,
+  "ids": [
+   "SM18A-B6 prior sat-math-v18-adv-b.batch.json"
+  ],
+  "hand_read": "SM18A-B6 (|(x+3)(x-11)| = k three solutions, vertex height) - here f(|x|) even, k = f(0); kept."
+ },
+ "SM29F-S07": {
+  "query": "\\|2x - k\\|",
+  "hits": 1,
+  "ids": [
+   "SM24V-D04 prior sat-math-v24-adv-d.batch.json"
+  ],
+  "hand_read": "DUPLICATE of prior SM24V-D04 (|2x - k| = 14, k > 0, x = -6 a solution, the other solution): same givens and chain; the product is one trailing multiplication. Dropped before freeze."
+ },
+ "SM29F-S08": {
+  "query": "2f\\(x \\+ 3\\)",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-S09": {
+  "query": "f\\(g\\(x\\)\\)&zero",
+  "hits": 0,
+  "ids": []
+ },
+ "SM29F-S10": {
+  "query": "a\\|x - h\\| \\+ k",
+  "hits": 2,
+  "ids": [
+   "2be5111d-b5c live sat/sat-math-v24-adv",
+   "SM24V-D02 prior sat-math-v24-adv-d.batch.json"
+  ],
+  "hand_read": "2be5111d recovers h from a symmetric pair and asks the y-intercept; here vertex + point, asks intercept distance; kept."
+ },
+ "SM29F-S11": {
+  "query": "f\\(f\\(1\\)\\)",
+  "hits": 2,
+  "ids": [
+   "29f9f068-552 live sat/v2",
+   "46a3076b-c52 live act/act-math-v4-fn"
+  ],
+  "hand_read": "29f9f068 is a linear f(f(1)) for a constant; here piecewise with a domain decision; kept."
+ },
+ "SM29F-S12": {
+  "query": "30/\\(x \\+ 3\\)|common value",
+  "hits": 0,
+  "ids": []
+ }
+}

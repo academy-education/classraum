@@ -1,0 +1,904 @@
+[
+ {
+  "id": "SM29F-A01",
+  "domain": "Algebra",
+  "subskill": "Two-speed trip with a stop: split distance, then a leg time",
+  "difficulty": "medium",
+  "prompt": "A car travels 360 kilometers from town A to town B. It drives at a constant speed of 75 kilometers per hour on a highway from town A to a rest stop, stays at the rest stop for 30 minutes, and then drives at a constant speed of 50 kilometers per hour on a country road for the rest of the way to town B. The whole trip, including the time at the rest stop, takes 5 hours 40 minutes. How many minutes after leaving town A does the car arrive at the rest stop?",
+  "choices": [
+   "124",
+   "220",
+   "244",
+   "276"
+  ],
+  "correct_answer": "244",
+  "explanation": "Let d be the distance, in kilometers, from town A to the rest stop. The country-road part is 360 - d kilometers. The driving time is the whole trip minus the stop: 5 hours 40 minutes - 30 minutes = 5 hours 10 minutes = 31/6 hours.\nSo d/75 + (360 - d)/50 = 31/6. Multiplying both sides by 150 gives 2d + 3(360 - d) = 775, so 1,080 - d = 775 and d = 305.\nThe highway part takes 305/75 hours = 244 minutes.\nCheck: the country-road part is 55 kilometers, which takes 55/50 hour = 66 minutes, and 244 + 30 + 66 = 340 minutes = 5 hours 40 minutes.\n\nChoice 276 comes from reading 5 hours 40 minutes as 5.40 hours.\nChoice 220 comes from reading the 30-minute stop as 0.30 hour.\nChoice 124 comes from adding the 30-minute stop to the trip time instead of subtracting it, so that 6 hours 10 minutes is spent driving: 2d + 3(360 - d) = 925 gives d = 155, and 155/75 hours = 124 minutes.",
+  "solve": "const D=360,v1=75,v2=50,s=30,T=340; const t=(T-s)/60; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;",
+  "distractor_solve": {
+   "124": "const D=360,v1=75,v2=50,s=30,T=340; const t=(T+s)/60; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;",
+   "220": "const D=360,v1=75,v2=50,T=340; const t=T/60-0.30; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;",
+   "276": "const D=360,v1=75,v2=50,s=30; const t=5.40-s/60; const d=(t-D/v2)/(1/v1-1/v2); return Math.round(60*d/v1*1e9)/1e9;"
+  },
+  "mechanism": [
+   "subtract the stop from the total time to get driving time",
+   "write distance/speed for two legs with an unknown split and solve the linear equation",
+   "convert the first leg's distance into minutes"
+  ],
+  "quantity_asked": "the number of minutes from leaving town A to arriving at the rest stop",
+  "ask_type": "derived-time",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const d=75*v/60; const total=v+30+60*(360-d)/50; return Math.abs(total-340)<1e-9;",
+   "why": "From an option a student can find the highway distance (75 x minutes / 60), the country-road time and the total, and compare with 340 minutes - three steps. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "124": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the stop to the trip time instead of subtracting it gives an hour more of driving than there is; a student would expect more driving time to lengthen the first leg, but here it all goes to the slow road and the fast leg shrinks - a side that only the two speeds decide."
+   },
+   "220": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the 30-minute stop as 0.30 hour leaves 12 extra minutes of driving; how that is split between the 75 and 50 km/h legs, and so which way the first leg moves, comes only from solving."
+   },
+   "276": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading 5 hours 40 minutes as 5.40 hours removes 16 minutes of driving; because the slow leg must shrink faster, the fast first leg grows - a side that comes from the two speeds, not from the stem."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a positive number of minutes, less than the 340-minute trip, and the first leg cannot exceed 360/75 hours = 288 minutes. All four options are positive and under 288; all four survive together.",
+  "interior_parity_check": "The middle values 220 and 244 are both three-digit even integers; the key 244 is not the cleaner one (220 ends in 0).",
+  "arith_class_check": "Even: all four. Multiples of 4: all four. Multiples of 10: 220 only. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "(train|bus|car|cyclist)&per hour&then&total (time|trip)",
+    "rest of the (way|trip|distance)|remaining distance|remainder of the (trip|way|distance)",
+    "station&per hour",
+    "rest stop|stops for|including the stop",
+    "per hour&(whole|entire|total) (trip|journey)",
+    "per hour&for the rest"
+   ],
+   "hits_read": 13,
+   "nearest": "SM27F-D13 (cycling then walking in a 4-hour trip, an inequality on the time split for a distance) and 67f8dd66 (bus with a 10-minute stop and an average speed, asks the distance): neither has an unknown split point between two speeds with a stop subtracted from a fixed total, and neither converts the solved distance into a leg time. ALG-H3-15 gives the first leg's time directly."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Pattern 1 (return): no option is the highway distance (305 km), the country-road distance (55 km) or its time (66 min), so no option leads to the key through a printed speed or the 340-minute total. A test-wise student might try 360/average speed; it is not an option. Plug-back takes three steps and reaches the key on the third ascending try. No cheap bound strikes any option (all are under 288). Interior key, so no FAR or BOUND."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A02",
+  "domain": "Algebra",
+  "subskill": "Unit price behind a threshold discount, then a new purchase",
+  "difficulty": "hard",
+  "prompt": "At a hardware store, every box of screws has the same price. Whenever the total price of a purchase is more than $100, the store subtracts $20 from that total. Lena bought 12 boxes of screws and paid $136. At the same prices, how much, in dollars, would a customer pay for 9 boxes of screws?",
+  "choices": [
+   "82",
+   "87",
+   "97",
+   "102"
+  ],
+  "correct_answer": "97",
+  "explanation": "Let p be the price of one box, in dollars. Lena paid $136. If the store had not subtracted $20, her total would be the $136 she paid, which is more than $100, so the $20 would have been subtracted after all. So the $20 was subtracted, and 12p - 20 = 136.\nThen 12p = 156 and p = 13.\nNine boxes cost 9(13) = 117 dollars before any discount. Because 117 is more than 100, the store subtracts $20, and the customer pays 117 - 20 = 97 dollars.\n\nChoice 82 comes from treating $136 as the total before the discount: p = 136/12, so 9 boxes total 102 dollars, and subtracting $20 gives 82.\nChoice 87 comes from subtracting the $20 from what Lena paid instead of adding it back: 12p = 116, so 9 boxes total 87 dollars, which is not more than $100.\nChoice 102 comes from scaling what Lena paid in proportion to the number of boxes: 136 x 9/12 = 102.",
+  "solve": "const T=100,c=20,n=12,P=136,m=9; const p=(P+c)/n; const tot=m*p; return Math.round((tot>T?tot-c:tot)*1e9)/1e9;",
+  "distractor_solve": {
+   "82": "const T=100,c=20,n=12,P=136,m=9; const p=P/n; const tot=m*p; return Math.round((tot>T?tot-c:tot)*1e9)/1e9;",
+   "87": "const T=100,c=20,n=12,P=136,m=9; const p=(P-c)/n; const tot=m*p; return Math.round((tot>T?tot-c:tot)*1e9)/1e9;",
+   "102": "const n=12,P=136,m=9; return Math.round(P*m/n*1e9)/1e9;"
+  },
+  "mechanism": [
+   "decide that the paid amount is already discounted (the undiscounted reading contradicts the rule)",
+   "solve n p - c = paid for the unit price",
+   "price a new purchase and re-apply the threshold rule"
+  ],
+  "quantity_asked": "the amount paid for 9 boxes of screws, in dollars",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const ps=[]; if (v+20>100) ps.push((v+20)/9); if (v<=100) ps.push(v/9); return ps.some(p=>{const t=12*p; const paid=t>100?t-20:t; return Math.abs(paid-136)<1e-9;});",
+   "why": "Working back from an option means first deciding whether the $20 was subtracted from the 9-box total (for any option between 80 and 100 both readings are possible), then finding the unit price and re-pricing 12 boxes under the rule - the same case analysis as solving. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "82": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Missing that $136 is already discounted lowers the unit price, but the 9-box total then still crosses $100 and loses $20, so it lands below; with a purchase that stayed under $100 the same slip would land on either side of the key depending on the numbers. The stem does not show which."
+   },
+   "87": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the $20 a second time lowers the unit price, but it also drops the 9-box total under $100 so no discount is taken; the two effects pull opposite ways and only the numbers decide the side."
+   },
+   "102": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Scaling the paid amount by 9/12 shrinks the $20 discount along with the total instead of keeping it whole, which lands above here; the stem does not say whether the proportional answer is above or below the rule-based one."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the amount is positive; 9 boxes cost less than 12 boxes, so the answer is below 136; an amount over 100 must have had 20 removed. All four options are positive and under 136; 102 is over 100 and could be a discounted total (122 - 20), the others under 100 could be either. All four survive together.",
+  "interior_parity_check": "The middle values 87 and 97 are both two-digit odd integers; the key 97 is not the cleaner one.",
+  "arith_class_check": "Even: 82 and 102; odd: 87 and 97. Multiples of 3: 87 and 102. The stem implies no class (the unit price is not said to be whole), and the key is alone in none the stem implies.",
+  "dup_search": {
+   "queries": [
+    "(over|above|more than|at least) .?[0-9]+ (dollars|before)&(off|discount|subtracted|deducted)",
+    "coupon",
+    "discount&each&total",
+    "more than .?[0-9]+&subtract",
+    "whenever&(total|purchase)",
+    "first [0-9]+ (hours|items|pounds)&each (additional|hour after)"
+   ],
+   "hits_read": 18,
+   "nearest": "1e65102a (SSAT: a 25% reduction then a $9 coupon, recover the original price) and 80dad503 (coupon then tax, recover the list price): both apply a fixed amount unconditionally and ask for the original price. Here the $20 applies only above a threshold, the paid amount must be recognised as discounted, and the rule is applied again to a different purchase. The tiered-rate items (parking, shipping, overtime) change the rate past a threshold, not a one-time subtraction."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might scale 136 by 9/12 (102) or assume the 9-box purchase gets no discount; both are options. Two decision points: whether $136 is discounted, and whether 117 is over $100. Plug-back reaches the key at try 3 and needs the same case analysis as solving. No PAIR/DSUM gating; the one (read) line is answered after the check. (read) DPAIR difference 97 - 87 = 10 = 9 + 1: not stem-readable - the 10 comes from 9 x (40/12) - 20, and nothing in the stem adds 1 to the 9 boxes; a student holding 87 has no route to 97 by adding 10."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A03",
+  "domain": "Algebra",
+  "subskill": "Better rate minus a flat fee vs plain rate, from the gap",
+  "difficulty": "medium",
+  "prompt": "At an airport booth, U.S. dollars are exchanged for euros at a rate of 0.94 euro per dollar, and then a flat fee of 8 euros is subtracted from the euros. At a bank, dollars are exchanged at a rate of 0.90 euro per dollar with no fee. Kai exchanged some dollars at the booth and received 12 more euros than he would have received for the same dollars at the bank. How many euros did Kai receive at the booth?",
+  "choices": [
+   "39",
+   "86",
+   "462",
+   "642"
+  ],
+  "correct_answer": "462",
+  "explanation": "Let d be the number of dollars Kai exchanged. At the booth he received 0.94d - 8 euros; at the bank he would have received 0.90d euros.\nSo (0.94d - 8) - 0.90d = 12, which gives 0.04d - 8 = 12, 0.04d = 20 and d = 500.\nAt the booth Kai received 0.94(500) - 8 = 462 euros. (Check: at the bank he would have received 0.90(500) = 450 euros, 12 fewer.)\n\nChoice 642 comes from subtracting the 8-euro fee twice: 0.04d - 16 = 12 gives d = 700, and 0.94(700) - 16 = 642.\nChoice 39 comes from writing the rate difference 0.94 - 0.90 as 0.4: 0.4d = 20 gives d = 50, and 0.94(50) - 8 = 39.\nChoice 86 comes from adding the fee instead of subtracting it: 0.04d + 8 = 12 gives d = 100, and 0.94(100) - 8 = 86.",
+  "solve": "const r1=0.94,f=8,r2=0.90,g=12; const d=(g+f)/(r1-r2); return Math.round((r1*d-f)*1e9)/1e9;",
+  "distractor_solve": {
+   "39": "const r1=0.94,f=8,g=12; const d=(g+f)/0.4; return Math.round((r1*d-f)*1e9)/1e9;",
+   "86": "const r1=0.94,f=8,r2=0.90,g=12; const d=(g-f)/(r1-r2); return Math.round((r1*d-f)*1e9)/1e9;",
+   "642": "const r1=0.94,f=8,r2=0.90,g=12; const d=(g+2*f)/(r1-r2); return Math.round((r1*d-2*f)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "write each venue's euros as a linear expression in the dollars exchanged",
+   "set the difference equal to the stated gap and solve for the dollars",
+   "evaluate the booth's expression at that amount"
+  ],
+  "quantity_asked": "the number of euros Kai received at the booth",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const d=(v+8)/0.94; return Math.abs(v-0.90*d-12)<1e-9;",
+   "why": "From an option a student can recover the dollars ((option + 8)/0.94), price them at the bank and compare the gap with 12 - two steps with a division by 0.94. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "39": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writing 0.94 - 0.90 as 0.4 instead of 0.04 is a decimal-place slip; it shrinks the dollars tenfold, and a student who knows the slip still has to see that the booth amount follows the dollars down rather than being held up by the fee."
+   },
+   "86": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the fee instead of subtracting it changes both the dollars solved for and the euros computed from them, in opposite directions; the stem does not show which effect wins."
+   },
+   "642": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking the 8-euro fee off twice raises the dollars needed to make up the gap but also takes 8 more euros off the booth amount; the two effects pull opposite ways and only the numbers decide the side."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a positive number of euros; the booth amount is 12 more than a bank amount, so it is more than 12; no integer requirement. All four options are positive and above 12; all four survive together.",
+  "interior_parity_check": "The middle values 86 and 462 are both even integers (two and three digits); the key 462 is not the cleaner one.",
+  "arith_class_check": "Odd: 39; even: 86, 462, 642. Multiples of 3: 39, 462, 642. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "exchange|euros|yen| won\\b|pesos",
+    "(fee|commission)&per (dollar|euro)",
+    "plan&(more|less) than plan",
+    "(company|plan|option) a&(company|plan|option) b&(more|less) than"
+   ],
+   "hits_read": 26,
+   "nearest": "7276e66a (a kiosk with an unknown flat fee and unknown rate, found from two customers - a system). Here the rates and fee are given and the unknown is the amount, fixed by a stated gap between two venues, and the ask is the booth amount, not the amount exchanged. The two-plan items (phone, gym, studio) are inequalities for a break-even count; none uses a nonzero stated gap or asks for one plan's value at the solution."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1 (return): neither the dollars exchanged (500) nor the bank amount (450) nor the fee-free booth amount (470) is an option, so no option reaches the key through a printed rate or the fee. The distractors come from a decimal slip on the rate difference, the fee added instead of subtracted, and the fee taken twice. Plug-back is two steps with a division by 0.94 and reaches the key at try 3. Interior key, so no FAR or BOUND."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A04",
+  "domain": "Algebra",
+  "subskill": "Sequential shares (fixed amount + fraction of rest), equal",
+  "difficulty": "hard",
+  "prompt": "A sum of prize money is shared as follows. First, Ana receives $50 plus one-fifth of the money that is left after the $50 is taken out. Next, Ben receives $72 plus one-fifth of the money that is then left after the $72 is taken out. Ana and Ben receive the same amount of money. How many dollars of the prize money are left after Ana and Ben have received their shares?",
+  "choices": [
+   "64",
+   "88",
+   "214",
+   "280"
+  ],
+  "correct_answer": "64",
+  "explanation": "Let T be the prize money, in dollars. Ana receives 50 + (T - 50)/5 = (T + 200)/5.\nThe money left after Ana is T - (T + 200)/5 = (4T - 200)/5. Ben receives 72 plus one-fifth of what is left after his $72 is taken out: 72 + ((4T - 200)/5 - 72)/5 = (4T + 1240)/25.\nThe shares are equal: (T + 200)/5 = (4T + 1240)/25, so 5T + 1000 = 4T + 1240 and T = 240.\nEach receives (240 + 200)/5 = 88 dollars (check Ben: 240 - 88 = 152 left, 152 - 72 = 80, and 72 + 80/5 = 88). The money left is 240 - 88 - 88 = 64 dollars.\n\nChoice 88 is the amount each of Ana and Ben receives, not the amount left.\nChoice 214 comes from forgetting to take Ana's $50 out when finding what is left after her (taking it as T - (T - 50)/5): the equal-shares equation then gives T = 490 and shares of 138, leaving 490 - 276 = 214.\nChoice 280 comes from giving Ben one-fifth of everything left after Ana and then adding the $72, instead of taking the $72 out first: the equation then gives T = 600 and shares of 160, leaving 600 - 320 = 280.",
+  "solve": "const a=50,b=72,q=5; const A=T=>a+(T-a)/q, B=T=>{const R=T-A(T);return b+(R-b)/q}; const f=T=>A(T)-B(T); const T=-f(0)/(f(1)-f(0)); return Math.round((T-A(T)-B(T))*1e9)/1e9;",
+  "distractor_solve": {
+   "88": "const a=50,b=72,q=5; const A=T=>a+(T-a)/q, B=T=>{const R=T-A(T);return b+(R-b)/q}; const f=T=>A(T)-B(T); const T=-f(0)/(f(1)-f(0)); return Math.round(A(T)*1e9)/1e9;",
+   "214": "const a=50,b=72,q=5; const A=T=>a+(T-a)/q, B=T=>{const R=T-(T-a)/q;return b+(R-b)/q}; const f=T=>A(T)-B(T); const T=-f(0)/(f(1)-f(0)); return Math.round((T-A(T)-B(T))*1e9)/1e9;",
+   "280": "const a=50,b=72,q=5; const A=T=>a+(T-a)/q, B=T=>{const R=T-A(T);return b+R/q}; const f=T=>A(T)-B(T); const T=-f(0)/(f(1)-f(0)); return Math.round((T-A(T)-B(T))*1e9)/1e9;"
+  },
+  "mechanism": [
+   "write each share as a fixed amount plus a fraction of a remainder that depends on the earlier share",
+   "set the two shares equal and solve the linear equation for the total",
+   "subtract both shares from the total"
+  ],
+  "quantity_asked": "the dollars left after Ana and Ben have received their shares",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is the money left over, not the total or a share: to check one, a student must rebuild the total from it (left = T - 2 x share, with the share itself depending on T), then compute both shares and compare them - the same modelling as solving. There is no printed equation to substitute an option into."
+  },
+  "distractor_meta": {
+   "88": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Giving the share instead of the money left: whether a share is more or less than what is left depends on the fractions and fixed amounts; with other numbers the leftover is the larger, so the side is not readable."
+   },
+   "214": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Forgetting Ana's $50 when finding what is left after her makes Ben's share look larger, which forces a larger total for the shares to match; the leftover then rises, but only working the equation shows it."
+   },
+   "280": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking one-fifth before removing the $72 changes Ben's share and therefore the total that balances the shares; whether the leftover rises or falls is fixed only by solving."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const a=50,b=72,q=5; const A=T=>a+(T-a)/q; const T=240; const R=T-A(T); return (R-b)/q;",
+   "direction": "below",
+   "why": "Answering with Ben's one-fifth portion, (152 - 72)/5 = 16 dollars, instead of the money left lands below the key."
+  },
+  "far_distractor": {
+   "option": "214",
+   "natural_side": "below",
+   "why": "Leaving out a subtraction (Ana's $50 when finding what remains after her) is a dropped term, which a student would expect to give a smaller answer. Here it inflates what Ben's fifth is taken from, so his share is too large for any total until the total grows - the equal-shares condition then needs T = 490 - and the leftover grows with it to 214. The direction comes from the equality, not from anything readable in the stem."
+  },
+  "cheap_bound_check": "The cheapest bounds are that the leftover is positive and that each share is at least $72 (Ben's fixed amount, and the shares are equal). The leftover is not bounded by the shares (it can be larger or smaller), so no bound strikes 88, 214 or 280; all three sit on the key's side of positivity.",
+  "shape_check": "The stem hands over: a nonnegative amount of money; no integer requirement. All four options are positive; all four survive together.",
+  "interior_parity_check": "The middle values 88 and 214 are both whole numbers (two and three digits); the key is not interior.",
+  "arith_class_check": "Even: all four. Multiples of 8: 64, 88, 280. The stem implies no class and the key is alone in none (64 is a square, but the stem implies no square class).",
+  "dup_search": {
+   "queries": [
+    "half of (her|his|the|its|what)&(plus|more)",
+    "plus (one|1)[ -/](third|fourth|fifth|3|4|5)",
+    "(third|fourth|fifth) of (the|what) (remaining|remains|rest|is left)",
+    "received (the same|equal) amounts?|equal shares",
+    "one-fifth|one fifth|1/5&(left|remain|rest)",
+    "prize&(shared|divided|split)",
+    "(receives|gets) .?[0-9]+ (dollars )?plus"
+   ],
+   "hits_read": 3,
+   "nearest": "34a420d4 (SSAT: Mina spends half plus $3, then a third of the rest plus $2, and has $10 left; asks the start) works BACKWARDS from a known remainder. Here nothing is known but the equality of two shares, each a fixed amount plus a fraction of a remainder that depends on the earlier share; the total comes from setting them equal, and the ask is the leftover. dc1f657b is a ratio share."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the share-versus-leftover swap, the dropped $25 and the order slip each move the leftover only through the equal-shares equation, and the share 88 is a legal leftover value. Does the far_distractor really read as a far-side error? Yes - a forgotten subtraction looks like it should lower the answer, and it raises it. Does any one bound from the stem strike all three? No; positivity and 'shares at least $72' do not bound the leftover. Could a student check an option against the stem in one routine step? No: the leftover does not give the total without the share, which depends on the total, so checking is the full model."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A05",
+  "domain": "Algebra",
+  "subskill": "Unknown whole from a fraction relation with mixed units",
+  "difficulty": "medium",
+  "prompt": "A carpenter has a board. She cuts off a piece that is 1.5 feet long. The remaining piece of the board is 9 inches longer than 7/10 of the original length of the board. How many inches longer is the remaining piece than the piece she cut off?",
+  "choices": [
+   "24",
+   "32",
+   "50",
+   "54"
+  ],
+  "correct_answer": "54",
+  "explanation": "Work in inches. The piece cut off is 1.5 feet = 1.5(12) = 18 inches. Let x be the original length of the board, in inches. The remaining piece is x - 18 inches, so x - 18 = (7/10)x + 9.\nThen (3/10)x = 27, so x = 90. The remaining piece is 90 - 18 = 72 inches.\nThe remaining piece is 72 - 18 = 54 inches longer than the piece cut off.\nCheck: 7/10 of 90 is 63, and 63 + 9 = 72.\n\nChoice 50 comes from converting 1.5 feet to 15 inches: then (3/10)x = 24, x = 80, the remaining piece is 65 inches, and 65 - 15 = 50.\nChoice 32 comes from using 1.5 as a number of inches without converting: (3/10)x = 10.5, x = 35, and (35 - 1.5) - 1.5 = 32.\nChoice 24 comes from leaving out the 9 inches: (3/10)x = 18, x = 60, and (60 - 18) - 18 = 24.",
+  "solve": "const c=1.5*12,d=9,f=7/10; const x=(c+d)/(1-f); return Math.round((x-2*c)*1e9)/1e9;",
+  "distractor_solve": {
+   "24": "const c=1.5*12,f=7/10; const x=c/(1-f); return Math.round((x-2*c)*1e9)/1e9;",
+   "32": "const c=1.5,d=9,f=7/10; const x=(c+d)/(1-f); return Math.round((x-2*c)*1e9)/1e9;",
+   "50": "const c=15,d=9,f=7/10; const x=(c+d)/(1-f); return Math.round((x-2*c)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "convert the cut piece from feet to inches",
+   "set the remaining length equal to a fraction of the unknown whole plus a constant and solve",
+   "subtract the cut piece from the remaining piece"
+  ],
+  "quantity_asked": "how many inches longer the remaining piece is than the piece cut off",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const x=v+36; const rem=x-18; return Math.abs(rem-(0.7*x+9))<1e-9;",
+   "why": "From an option a student can rebuild the remaining piece (option + 18) and the board (option + 36) and test the 7/10 relation - two steps. The key is the largest option, so in ascending order it is the fourth try."
+  },
+  "distractor_meta": {
+   "24": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the 9 inches shrinks the board, and the answer subtracts a fixed 36 inches from it; the stem gives no way to see the result's side without solving."
+   },
+   "32": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Not converting 1.5 feet makes the cut piece tiny, which by itself would make 'remaining minus cut' larger; the board shrinks even more because the cut enters x - c = (7/10)x + 9, and only solving shows which effect wins."
+   },
+   "50": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading 1.5 feet as 15 inches shortens the cut piece by 3 inches; the asked difference subtracts the cut twice (+6) but the solved board loses 3 / (3/10) = 10 inches, so the net is -4. With a fraction under 1/2 the same slip lands above the key."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const c=18,d=9,f=7/10; const x=(c+d)/(1-f); return x-c;",
+   "direction": "above",
+   "why": "Answering with the length of the remaining piece (72 inches) instead of how much longer it is than the cut piece lands above the key."
+  },
+  "far_distractor": {
+   "option": "50",
+   "natural_side": "above",
+   "why": "Under-converting the cut piece (1.5 feet as 15 inches instead of 18) makes the cut shorter, and in 'remaining minus cut' a shorter cut ordinarily makes the difference larger. Here the cut also sets the board's length through x - c = (7/10)x + 9: 3 inches less cut means 3 / (3/10) = 10 inches less board, which outweighs the 6 inches gained, so the slip lands 4 below the key. The fraction 7/10 decides this and a student cannot see it without solving."
+  },
+  "cheap_bound_check": "The cheapest bound readable from the stem is that the answer is positive (the remaining piece is called longer); all four options pass it. No printed number caps the difference below 54: the board length is unknown, so 50 stays on the key's side of any bound a student can read without solving.",
+  "shape_check": "The stem hands over: a positive length in inches, no integer requirement. All four options are positive; all four survive together.",
+  "interior_parity_check": "The middle values 32 and 50 are both two-digit even integers; the key is not interior.",
+  "arith_class_check": "Even: all four. Multiples of 3: 24 and 54. Multiples of 9: 54 only, but the stem implies no multiple-of-9 class (the answer is x - 36 with x unknown). Multiples of 6: 24, 54. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "inches&feet&(cut|removed|trimmed|cuts)",
+    "board&(cut|cuts|saw)",
+    "feet&inches&longer than",
+    "of the original length|original length",
+    "cut into (two|three|3|2) pieces"
+   ],
+   "hits_read": 9,
+   "nearest": "SM16L-09 (a 92-inch board cut into two pieces, one 8 inches shorter than 3 times the other): the total is given and the pieces are related to each other. Here the total is unknown, the cut is given in feet, the remainder is tied to a fraction of the whole, and the ask is a difference that subtracts the cut twice. SM27F-A04 (wire into a square and a hexagon) has a given total as well."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the two unit slips shorten the cut, which a student would expect to raise 'remaining minus cut', but they lower it here because the board shrinks more; dropping the 9 inches is the only near-side-readable slip. Does the far_distractor really read as a far-side error? Yes - a too-short cut piece looks like it should make the remaining piece more longer than the cut. Does any one bound from the stem strike all three? No; positivity is the only cheap bound and all four pass. Plug-back is two steps and reaches the key last in ascending order."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A06",
+  "domain": "Algebra",
+  "subskill": "Balance condition: place a third weight, then a separation",
+  "difficulty": "medium",
+  "prompt": "A long plank rests on a support at its center. Weights placed on the plank keep it level exactly when, for the weights on the left side, the sum of (weight x distance from the support) equals that sum for the weights on the right side. A 20-pound weight is placed 4 feet to the left of the support, and a 35-pound weight is placed 6 feet to the right of the support. A 25-pound weight is then placed on the plank so that the plank is level. How many feet apart are the 25-pound weight and the 20-pound weight?",
+  "choices": [
+   "1.2",
+   "2.5",
+   "3.2",
+   "4.4"
+  ],
+  "correct_answer": "1.2",
+  "explanation": "On the left, the 20-pound weight gives 20(4) = 80. On the right, the 35-pound weight gives 35(6) = 210. The right side is larger, so the 25-pound weight must go on the left. Let d be its distance, in feet, from the support. Then 80 + 25d = 210, so 25d = 130 and d = 5.2.\nBoth weights are on the left, 5.2 feet and 4 feet from the support, so they are 5.2 - 4 = 1.2 feet apart.\n\nChoice 4.4 comes from leaving out the 20-pound weight: 25d = 210 gives d = 8.4, and 8.4 - 4 = 4.4.\nChoice 3.2 comes from pairing each weight with the other weight's distance: 20(6) = 120 and 35(4) = 140, so the 25-pound weight would go 20/25 = 0.8 foot to the left, and 4 - 0.8 = 3.2.\nChoice 2.5 comes from dividing by the wrong weight: 20d = 130 gives d = 6.5, and 6.5 - 4 = 2.5.",
+  "solve": "const mA=20,a=4,mB=35,b=6,mC=25; const d=(mB*b-mA*a)/mC; return Math.round(Math.abs(d-a)*1e9)/1e9;",
+  "distractor_solve": {
+   "2.5": "const mA=20,a=4,mB=35,b=6,mC=25; const d=(mB*b-mA*a)/mA; return Math.round(Math.abs(d-a)*1e9)/1e9;",
+   "3.2": "const mA=20,a=4,mB=35,b=6,mC=25; const d=(mB*a-mA*b)/mC; return Math.round(Math.abs(a-d)*1e9)/1e9;",
+   "4.4": "const mA=20,a=4,mB=35,b=6,mC=25; const d=mB*b/mC; return Math.round(Math.abs(d-a)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "compute each side's weight-times-distance sum and decide the side of the new weight",
+   "solve the linear balance equation for its distance",
+   "turn two distances from the support into a separation"
+  ],
+  "quantity_asked": "the distance between the 25-pound weight and the 20-pound weight, in feet",
+  "ask_type": "derived-distance",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a separation, not a position: 1.2 feet from the 20-pound weight could mean 5.2 or 2.8 feet from the support, and the side of the support must be decided too, so each option needs two cases set up and tested against 80 + 25d = 210. A student cannot check an option in one step without doing the balance work."
+  },
+  "distractor_meta": {
+   "2.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dividing the 130 by the 20-pound weight instead of the 25-pound weight puts the new weight farther out; whether the separation grows or shrinks depends on which side of the 20-pound weight it ends up, which needs the numbers."
+   },
+   "3.2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Swapping the two distances changes how much the new weight must supply, and here moves it inside the 20-pound weight instead of beyond it; nothing in the stem shows which side it lands on."
+   },
+   "4.4": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the 20-pound weight moves the new weight out to 8.4 feet; the separation grows only because the true position (5.2) is already beyond the 20-pound weight, which a student learns only by comparing 25 x 4 with 130."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const mA=20,a=4,mB=35,b=6,mC=25; const d=mB*b/(mA+mC); return Math.abs(d-a);",
+   "direction": "below",
+   "why": "Treating both left weights as if they sat together at the new weight's spot, 45d = 210, gives d = 4.67 and a separation of about 0.67 foot, below the key."
+  },
+  "far_distractor": {
+   "option": "4.4",
+   "natural_side": "below",
+   "why": "Leaving out a weight is a dropped term, and a student expecting a dropped term to shrink the answer would look for it below the key. Here the dropped 80 is what the new weight no longer has to cancel, so it moves out from 5.2 to 8.4 feet. Whether that makes the separation from the 20-pound weight larger or smaller depends on whether the true position is inside or beyond the 20-pound weight at 4 feet: had the new weight belonged inside (say at 2.5 feet), moving out could have brought it closer. Only computing 130/25 = 5.2 shows it is beyond."
+  },
+  "cheap_bound_check": "Cheapest bounds: the new weight goes on the left (210 > 80) - strikes nothing, since every option is a positive separation. It sits beyond the 20-pound weight (25 x 4 = 100 < 130) - strikes nothing, for the same reason. Alone it would need 210/25 = 8.4 feet, so the separation is under 8.4 - 4 = 4.4 - this strikes 4.4 only. No single bound strikes two options.",
+  "shape_check": "The stem hands over: a positive distance in feet; no length is given, so no cap. All four options are positive; all four survive together.",
+  "interior_parity_check": "The middle values 2.5 and 3.2 are both one-decimal numbers below 5; the key is not interior.",
+  "arith_class_check": "All four are one-decimal numbers; none is a whole number. The stem implies no class, and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "fulcrum|seesaw|lever|balance beam",
+    "pan balance|balance&weights?",
+    "(weight|pounds?)&(left|right) of&(support|center)",
+    "pivot|distance from the (pivot|support|center)"
+   ],
+   "hits_read": 14,
+   "nearest": "93023ba0 / SM27F-C12 (sat-math-v27-algfull, sub-topic C): the same mass-times-distance balance rule, but two unknown crate masses found from two balanced arrangements - a system of two equations - then a third arrangement. Here every weight is known, the single unknown is the new weight's position from ONE linear equation, its side must be decided first (270 > 168), and the ask converts two positions into a separation. SM28F-A07 (pan balance) has no distances. The other hits are circle chords and a wiper arm."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Return fix: in the first version one comparison put the new weight inside the 24-pound weight and capped the separation, striking two options. Here the new weight sits BEYOND the 20-pound weight, so the inside/beyond comparison caps nothing; the only cap (the new weight alone at 8.4 feet) strikes 4.4 alone. Covering the work, could a student strike all three? No: 2.5 and 3.2 survive every cheap bound. Does the far_distractor read as a far-side error? A dropped weight looks like it should shrink the answer; its side here depends on the new weight being beyond the 20-pound weight, which needs 130/25. Pattern 1: no option is the position (5.2) or a torque. Could a student check an option in one routine step? No: a separation leaves two positions and the side to test."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A07",
+  "domain": "Algebra",
+  "subskill": "Two lengths with a shared section counted once",
+  "difficulty": "medium",
+  "prompt": "Two hiking trails, A and B, share one common section that is 1.6 kilometers long; apart from that section, the trails do not overlap. Trail A is 5 kilometers longer than three times the length of trail B. Together the two trails cover 23 kilometers of path, with the shared section counted only once. How many kilometers of trail B are not shared with trail A?",
+  "choices": [
+   "3.3",
+   "3.7",
+   "4.5",
+   "5.8"
+  ],
+  "correct_answer": "3.3",
+  "explanation": "Let b be the length of trail B, in kilometers. Trail A is 3b + 5. Adding the two lengths counts the shared section twice, so (3b + 5) + b - 1.6 = 23.\nThen 4b + 3.4 = 23, 4b = 19.6 and b = 4.9. Trail A is 3(4.9) + 5 = 19.7 kilometers. (Check: 19.7 + 4.9 - 1.6 = 23.)\nThe part of trail B not shared with trail A is 4.9 - 1.6 = 3.3 kilometers.\n\nChoice 4.5 comes from ignoring the shared section throughout: 4b + 5 = 23 gives b = 4.5, and with no shared section to remove, all of it is reported as unshared.\nChoice 3.7 comes from subtracting the shared section twice: 4b + 5 - 3.2 = 23 gives b = 5.3, and 5.3 - 1.6 = 3.7.\nChoice 5.8 comes from reading 5 kilometers longer as 5 kilometers shorter: 4b - 5 - 1.6 = 23 gives b = 7.4, and 7.4 - 1.6 = 5.8.",
+  "solve": "const k=3,c=5,s=1.6,T=23; const B=(T+s-c)/(k+1); return Math.round((B-s)*1e9)/1e9;",
+  "distractor_solve": {
+   "3.7": "const k=3,c=5,s=1.6,T=23; const B=(T+2*s-c)/(k+1); return Math.round((B-s)*1e9)/1e9;",
+   "4.5": "const k=3,c=5,T=23; const B=(T-c)/(k+1); return Math.round(B*1e9)/1e9;",
+   "5.8": "const k=3,c=5,s=1.6,T=23; const B=(T+s+c)/(k+1); return Math.round((B-s)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "write one length in terms of the other",
+   "add the lengths and remove the doubly counted shared section, then solve",
+   "subtract the shared section from the solved length"
+  ],
+  "quantity_asked": "the length, in kilometers, of trail B that is not shared with trail A",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is the unshared part of B, not a printed quantity: to test it a student must rebuild trail B (add 1.6), then trail A (3 times plus 5), then apply the counted-once rule to compare with 23 - the whole model run backwards, not one substitution into a printed equation."
+  },
+  "distractor_meta": {
+   "3.7": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the shared section twice lowers the total a student attributes to the trails and so raises b; whether that survives the final subtraction depends on the sizes, and the stem does not show it."
+   },
+   "4.5": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the shared section makes b smaller but also skips subtracting 1.6 at the end; the two effects pull opposite ways and only their sizes decide the side."
+   },
+   "5.8": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading \"5 kilometers longer\" as shorter makes trail A shorter for a given b, so b must grow to fill the 23 kilometers; the size of the shift is set by the factor 4 and is not visible before solving."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const k=3,c=5,s=1.6,T=23; const B=(T-c)/(k+1); return B-s;",
+   "direction": "below",
+   "why": "Ignoring the shared section when combining the lengths (b = 4.5) but still subtracting it at the end gives 4.5 - 1.6 = 2.9, below the key."
+  },
+  "far_distractor": {
+   "option": "4.5",
+   "natural_side": "below",
+   "why": "Leaving the shared section out is a dropped term, and dropping it from the total equation makes trail B come out SHORTER (4.5 instead of 4.9), so a student who spots the slip would look for it below the key. But the same student also never subtracts the 1.6 from B at the end, which adds 1.6 back; the net is +1.6 - 0.4 = +1.2, because in the solve the dropped 1.6 is spread over 4 lengths of B while at the end it is removed whole. Seeing which effect wins needs that algebra written out."
+  },
+  "cheap_bound_check": "Cheapest bounds: the answer is positive (all pass). Using only \"A is more than three times B\" with the counted-once total gives b < (23 + 1.6)/4 = 6.15, so the unshared part is under 4.55 - this strikes 5.8 only; 3.7 and 4.5 stay on the key's side of it, and no other bound readable from the stem strikes any option.",
+  "shape_check": "The stem hands over: a positive length in kilometers, less than 23 - 1.6 = 21.4; no integer requirement. All four options are positive and in range; all four survive together.",
+  "interior_parity_check": "The middle values 3.7 and 4.5 are both one-decimal numbers below 5; the key is not interior.",
+  "arith_class_check": "All four are one-decimal numbers; none is a whole number. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "share|shared|in common&(section|stretch|kilometers|meters)&(trail|route|path|road)",
+    "belong to both|in both|both (clubs|teams|groups)",
+    "(more|less) than (twice|three times)&(trail|route|path|road)",
+    "overlap"
+   ],
+   "hits_read": 8,
+   "nearest": "7d288601 / 21edcff2 (counting people in both of two groups, a Venn count) - the counted-once correction appears there as an inclusion-exclusion on counts with all numbers given. Here the correction sits inside a linear equation with an unknown length tied to the other by 'three times plus 1.5', and the ask is a derived unshared part. No live item models overlapping routes."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1: neither trail's full length (4.9 or 19.7) is an option, so no option is one printed step from 3.3. Pattern 2: the 'A more than three times B' bound (unshared part under 4.55) strikes 5.8 alone; positivity strikes nothing. Pattern 3: the far distractor 4.5 shrinks b and then skips the final subtraction; its side comes from comparing 1.6/4 with 1.6, which needs the setup written out. Covering the work, could a student strike all three? No: 3.7 and 4.5 are ordinary small lengths on the key's side of every cheap bound. Could a student check an option in one routine step? No: the unshared part has to be rebuilt into both trails and the counted-once rule before anything printed can be compared."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A08",
+  "domain": "Algebra",
+  "subskill": "Solution in terms of a parameter, tied to the parameter",
+  "difficulty": "medium",
+  "prompt": "For a certain constant k, the solution x of 3(x + k) - 14 = x + 9k turns out to be 5 less than 5 times k. What is the sum of x and k?",
+  "choices": [
+   "4",
+   "11",
+   "31",
+   "52"
+  ],
+  "correct_answer": "31",
+  "explanation": "Solve for x in terms of k: 3x + 3k - 14 = x + 9k, so 2x = 6k + 14 and x = 3k + 7.\nThe solution is also 5 less than 5 times k, so 3k + 7 = 5k - 5. Then 2k = 12, k = 6, and x = 3(6) + 7 = 25.\n(Check: 3(25 + 6) - 14 = 79 and 25 + 9(6) = 79; and 5(6) - 5 = 25.)\nSo x + k = 25 + 6 = 31.\n\nChoice 52 comes from dividing only the k-term by 2: x = 3k + 14, so 3k + 14 = 5k - 5, k = 9.5, x = 42.5, and x + k = 52.\nChoice 11 comes from reading 5 less than 5 times k as 5k + 5: 3k + 7 = 5k + 5 gives k = 1, x = 10, and x + k = 11.\nChoice 4 comes from a sign error when collecting the k-terms, 2x = -6k + 14: then -3k + 7 = 5k - 5 gives k = 1.5, x = 2.5, and x + k = 4.",
+  "solve": "const A=3,B=7,m=5,n=5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;",
+  "distractor_solve": {
+   "4": "const A=-3,B=7,m=5,n=5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;",
+   "11": "const A=3,B=7,m=5,n=-5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;",
+   "52": "const A=3,B=14,m=5,n=5; const k=(B+n)/(m-A); const x=A*k+B; return Math.round((x+k)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "solve the linear equation for x in terms of the constant",
+   "set that expression equal to the stated linear relation in k and solve for k",
+   "evaluate x + k"
+  ],
+  "quantity_asked": "the sum x + k",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const k=(v-7)/4; const x=3*k+7; return Math.abs(x-(5*k-5))<1e-9;",
+   "why": "An option is x + k, not x or k. To check one a student must first solve the equation for x in terms of k (x = 3k + 7), turn the option into k ((option - 7)/4) and then test the relation - three steps, the first of which is the solving itself. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "4": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A sign error on the k-terms changes the slope of x in k; where the two lines in k then meet, and so x + k, can be larger or smaller depending on the numbers."
+   },
+   "11": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading '5 less than' as +5 shifts the relation line up by 10; whether the meeting point moves to a smaller or larger k depends on which line is steeper, which is not visible before solving."
+   },
+   "52": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaving the constant undivided raises x for every k; where it meets 5k - 5 then depends on the slopes, which the stem does not show without the work."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over no sign, integer or range property for x + k (k is any constant). All four options are legal values; all four survive together.",
+  "interior_parity_check": "The middle values 11 and 31 are both two-digit odd integers; the key 31 is not the cleaner one.",
+  "arith_class_check": "Odd: 11 and 31; even: 4 and 52. Primes: 11 and 31. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "solution&(less|more) than (twice|[0-9]+ times|three times|five times) (the value of )?k",
+    "solution is .{0,30}(times|more than|less than) .{0,10}\\b[a-z]\\b",
+    "value of x \\+ k|x \\+ k\\?",
+    "(is|has) (a|the) solution (of|to)?&constant&(what is the|value of)",
+    "solution is x = |x = -?[0-9]+ is (a|the) solution"
+   ],
+   "hits_read": 60,
+   "nearest": "SM28F-A08 (two equations sharing k; the solution of the first is 1 less than twice the solution of the second; asks a solution). Here there is one equation, its solution is tied to the constant itself, the solver must write x in terms of k and meet a second line in k, and the ask is x + k. The stated-value items (x = 3 is a solution, find c) give the solution outright; none gives a relation between the solution and the constant."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1: neither x (25) nor k (6) is an option, so no option is one step from the key. Pattern 2: the stem gives no bound on x + k. A test-wise student might try each option as x + k, but without x = 3k + 7 there is nothing to test it against; plug-back reaches the key at try 3."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A09",
+  "domain": "Algebra",
+  "subskill": "Rate behind a fixed idle start, then a longer run",
+  "difficulty": "medium",
+  "prompt": "A machine makes rolls at a constant rate, except that every run begins with a warm-up period of 40 minutes during which it makes no rolls. One run lasted 1 hour 20 minutes in all, including the warm-up, and the machine made 320 rolls. How many rolls will the machine make in a run that lasts 3 hours 5 minutes in all, including the warm-up?",
+  "choices": [
+   "740",
+   "920",
+   "1060",
+   "1160"
+  ],
+  "correct_answer": "1160",
+  "explanation": "Let r be the number of rolls made per minute after the warm-up. The first run lasted 80 minutes, so the machine made rolls for 80 - 40 = 40 minutes: 40r = 320, and r = 8.\nThe new run lasts 3 hours 5 minutes = 185 minutes, so the machine makes rolls for 185 - 40 = 145 minutes and makes 8(145) = 1,160 rolls.\n\nChoice 1,060 comes from writing the times as decimal hours with the minutes after the point (1 hour 20 minutes as 1.20 hours, 40 minutes as 0.40 hour, 3 hours 5 minutes as 3.05 hours): r = 320/0.80 = 400 per hour, and 400(2.65) = 1,060.\nChoice 920 comes from writing only the warm-up that way (0.40 hour) while converting the run times correctly: r = 320/(4/3 - 0.40), about 342.9 per hour, and r(37/12 - 0.40) = 920.\nChoice 740 comes from ignoring the warm-up and scaling: 320 x 185/80 = 740.",
+  "solve": "const S=40,T=80,N=320,W=185; const r=N/(T-S); return Math.round(r*(W-S)*1e9)/1e9;",
+  "distractor_solve": {
+   "740": "const T=80,N=320,W=185; return Math.round(N*W/T*1e9)/1e9;",
+   "920": "const N=320; const r=N/(80/60-0.40); return Math.round(r*(185/60-0.40)*1e9)/1e9;",
+   "1060": "const N=320; const r=N/(1.20-0.40); return Math.round(r*(3.05-0.40)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "convert hours and minutes to one unit",
+   "remove the fixed idle period and solve for the production rate",
+   "apply the rate to the productive part of a longer run"
+  ],
+  "quantity_asked": "the number of rolls made in a 3-hour-5-minute run",
+  "ask_type": "derived-count",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const r=v/145; return Math.abs(40*r-320)<1e-9;",
+   "why": "From an option a student can divide by the 145 productive minutes and test the first run - two steps once the times are converted. The key is the largest option, so in ascending order it is the fourth try."
+  },
+  "distractor_meta": {
+   "740": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the warm-up spreads the 320 rolls over the whole 80 minutes (a lower rate) but also counts the new run's warm-up as productive; the two pull opposite ways, and only the sizes decide."
+   },
+   "920": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writing the 40-minute warm-up as 0.40 hour (24 minutes) lengthens BOTH productive periods; the rate falls and the new productive time grows, so the side depends on the numbers."
+   },
+   "1060": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writing every time with the minutes after the decimal point changes the first run's productive time from 40 to 48 minutes and the new one's from 145 to 159 minutes; whether 159/48 of 320 is above or below 145/40 of 320 is a computation, not something read off the stem."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const S=40,T=80,N=320,W=185; const r=N/(T-S); return r*W;",
+   "direction": "above",
+   "why": "Subtracting the warm-up in the first run but forgetting it in the new run, 8 x 185 = 1,480 rolls, lands above the key."
+  },
+  "far_distractor": {
+   "option": "1060",
+   "natural_side": "above",
+   "why": "Reading the times as decimal hours (1 hour 20 minutes as 1.20) makes every run look shorter, which a student would expect to mean a higher rate and more rolls - above the key. But the same slip shrinks the 40-minute warm-up to 24 minutes, so the first run's productive time actually grows from 40 to 48 minutes (lower rate) while the new run's grows from 145 to 159; the net, 320 x 159/48 = 1,060, is below 1,160. Which way it nets out depends on the four times, not on anything visible."
+  },
+  "cheap_bound_check": "Cheapest bounds: the new run makes more than 320 rolls (it is longer) - all four pass; and, because the warm-up is a fixed cost, more than the proportional 320 x 185/80 = 740 - that bound strikes 740 only (it sits exactly on it); 920 and 1,060 are on the key's side of it. No single bound strikes two options.",
+  "shape_check": "The stem hands over: a whole-number count, more than 320. All four options are whole numbers above 320; all four survive together.",
+  "interior_parity_check": "The middle values 920 and 1,060 are both whole numbers ending in 0 (three and four digits); the key is not interior.",
+  "arith_class_check": "All four are multiples of 20. Multiples of 40: 920, 1,160 (and 1,060 is not). The stem implies no class (rolls need not come in groups) and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "warm-up|warms up|warm up|start-up|setup time|set-up time",
+    "makes nothing|produces nothing|does not (produce|print|make)",
+    "(joins|joined|is turned on|starts) .{0,40}(later|after)&per (minute|hour)",
+    "kilometers per hour&(hours?) and [0-9]+ minutes"
+   ],
+   "hits_read": 1,
+   "nearest": "SM19L-B6 (print shop with a setup fee, tiered page price, and a printer that warms up 3 minutes then prints 26 pages per minute, inside a time limit): the warm-up and rate are given and feed an inequality. Here the rate is unknown and is found from one run by removing a fixed idle period, then applied to a longer run."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1: the rate (8 per minute) and productive times (40, 145) are not options; no option becomes 1,160 through one printed step. Pattern 2: the proportional bound strikes 740 only; '> 320' strikes nothing. Pattern 3: the decimal-hours slip (1,060) shortens the runs and the warm-up together, and its side depends on the four times - a student who spots the slip cannot sign it without computing. Covering the work, could a student strike all three? No: 740 sits on the proportional bound, but 920 and 1,060 are both above it. Plug-back reaches the key last in ascending order."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A10",
+  "domain": "Algebra",
+  "subskill": "Total usage of two linked item sizes, then one item's usage",
+  "difficulty": "medium",
+  "prompt": "At a gift shop, each box is tied with a ribbon whose length, in centimeters, is 4 times the width of the box plus 30 centimeters for the bow. One morning a clerk tied 5 small boxes, all the same width, and 3 large boxes, all the same width. Each large box is 80 millimeters wider than each small box. The clerk used ribbon from a spool that held 1,600 centimeters, and 112 centimeters of ribbon were left on the spool. How many centimeters long is the ribbon for one large box?",
+  "choices": [
+   "166",
+   "191",
+   "206",
+   "386"
+  ],
+  "correct_answer": "206",
+  "explanation": "The difference in width is 80 millimeters = 8 centimeters. Let w be the width, in centimeters, of a small box. A small box uses 4w + 30 centimeters of ribbon and a large box uses 4(w + 8) + 30 = 4w + 62 centimeters.\nThe clerk used 1,600 - 112 = 1,488 centimeters, so 5(4w + 30) + 3(4w + 62) = 1,488.\nThen 20w + 150 + 12w + 186 = 1,488, so 32w = 1,152 and w = 36.\nThe ribbon for one large box is 4(36) + 62 = 206 centimeters. (Check: a small box uses 174, and 5(174) + 3(206) = 870 + 618 = 1,488.)\n\nChoice 386 comes from using 80 as a number of centimeters without converting: 5(4w + 30) + 3(4(w + 80) + 30) = 1,488 gives 32w = 288, w = 9, and 4(89) + 30 = 386.\nChoice 191 comes from adding the 8 centimeters to the ribbon length instead of to the box width: 5R + 3(R + 8) = 1,488 gives R = 183, and 183 + 8 = 191.\nChoice 166 comes from making each large box 8 centimeters narrower instead of wider: 5(4w + 30) + 3(4(w - 8) + 30) = 1,488 gives w = 42, and 4(34) + 30 = 166.",
+  "solve": "const ns=5,nl=3,g=8,b=30,S=1600,r=112; const n=ns+nl; const w=(S-r-n*b-nl*4*g)/(4*n); return Math.round((4*(w+g)+b)*1e9)/1e9;",
+  "distractor_solve": {
+   "166": "const ns=5,nl=3,g=8,b=30,S=1600,r=112; const n=ns+nl; const w=(S-r-n*b+nl*4*g)/(4*n); return Math.round((4*(w-g)+b)*1e9)/1e9;",
+   "191": "const ns=5,nl=3,g=8,b=30,S=1600,r=112; const n=ns+nl; const R=(S-r-nl*g)/n; return Math.round((R+g)*1e9)/1e9;",
+   "386": "const ns=5,nl=3,g=80,b=30,S=1600,r=112; const n=ns+nl; const w=(S-r-n*b-nl*4*g)/(4*n); return Math.round((4*(w+g)+b)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "convert the width difference from millimeters to centimeters",
+   "express each size's ribbon in the small width and set the total (spool minus leftover) equal to the sum, then solve",
+   "evaluate the large box's expression"
+  ],
+  "quantity_asked": "the length of ribbon, in centimeters, for one large box",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const w=(v-30)/4-8; const small=4*w+30; return Math.abs(5*small+3*v-1488)<1e-9;",
+   "why": "From an option a student can work back to the large width ((option - 30)/4), the small width (minus 8), the small ribbon, and then test the 1,488-centimeter total - four steps. In ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "166": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Making the large boxes narrower lowers the large ribbon for a given width but raises the solved small width; only the numbers decide which wins."
+   },
+   "191": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the 8 to the ribbon instead of the width undercounts the large ribbon by 24 for a given width but lets the shared length absorb the difference; the net side is not visible without solving."
+   },
+   "386": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Not converting 80 millimeters makes the large boxes far wider, which lengthens their ribbon but forces the small width down to keep the 1,488-centimeter total; the large ribbon still comes out longer here (each extra centimeter of width difference adds 2.5 to it), but that rate comes only from the setup."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: positive lengths; a large ribbon is longer than a small one, so it is more than the average 1,488/8 = 186; three large ribbons fit in 1,488, so it is under 496. The average bound strikes 166 only; 191, 206 and 386 survive it, and all four survive every other property together.",
+  "interior_parity_check": "The middle values 191 and 206 are both three-digit integers; the key 206 is not the cleaner one.",
+  "arith_class_check": "Even: 166, 206, 386; odd: 191. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "ribbon",
+    "spool|roll&(left|remain)",
+    "wider than&(each|every)",
+    "(small|large) (boxes|packages|gifts)&(each|every)",
+    "cut into (two|three|3|2) pieces",
+    "millimeters&centimeters&(cut|piece)"
+   ],
+   "hits_read": 9,
+   "nearest": "e8cee5ac (large and small care packages, an inequality system on volunteer-hours) and SM27F-A04 / 434235c0 (a wire of given length cut for a square and a hexagon whose sides differ by 5). The wire item splits a given total between two pieces; here nine items of two linked sizes each use a linear function of width, the total is spool minus leftover, and the ask is one item's usage. No ribbon-per-item item exists."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1 (an option one printed step from the key): the small-box ribbon (174) and the widths (36, 44) are not options; no option turns into 206 through a printed number (206 - 191 = 15, 386 - 206 = 180, 206 - 166 = 40 = half of 80, but a student holding 166 has no reason to add half the printed 80 - 166 is a large-box ribbon from a narrower-box equation). Pattern 2: the only cheap bounds are large ribbon above the 186 average (strikes 166 alone) and below 496 (strikes nothing). Plug-back takes four steps and reaches the key at try 3."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-A11",
+  "domain": "Algebra",
+  "subskill": "Equal intervals from two numbered departures, back to the first",
+  "difficulty": "medium",
+  "prompt": "Every morning, shuttles leave a station at equal time intervals. The 6th shuttle of the morning leaves at 7:45 a.m., and the 14th shuttle leaves at 9:21 a.m. How many minutes after 6:00 a.m. does the 1st shuttle of the morning leave?",
+  "choices": [
+   "20",
+   "33",
+   "41",
+   "45"
+  ],
+  "correct_answer": "45",
+  "explanation": "Let d be the interval, in minutes. From the 6th shuttle to the 14th there are 14 - 6 = 8 intervals, and the time between them is 7:45 a.m. to 9:21 a.m. = 96 minutes, so 8d = 96 and d = 12.\nFrom the 1st shuttle to the 6th there are 5 intervals, or 60 minutes, so the 1st shuttle leaves at 7:45 - 60 minutes = 6:45 a.m., which is 45 minutes after 6:00 a.m.\n(Check: 6:45 + 13(12) minutes = 6:45 + 156 minutes = 9:21.)\n\nChoice 41 comes from counting shuttles instead of intervals in both places: 9 intervals give d = 96/9, and stepping back 6 of them from 7:45 gives 7:45 - 64 minutes = 6:41.\nChoice 33 comes from finding d = 12 correctly but stepping back 6 intervals instead of 5: 7:45 - 72 minutes = 6:33.\nChoice 20 comes from subtracting the clock times as decimals, 9.21 - 7.45 = 1.76, and reading that as 1 hour 76 minutes = 136 minutes: d = 17, and 7:45 - 85 minutes = 6:20.",
+  "solve": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i); return Math.round((t6-(i-1)*d)*1e9)/1e9;",
+  "distractor_solve": {
+   "20": "const t6=105,i=6,j=14; const D=136; const d=D/(j-i); return Math.round((t6-(i-1)*d)*1e9)/1e9;",
+   "33": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i); return Math.round((t6-i*d)*1e9)/1e9;",
+   "41": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i+1); return Math.round((t6-i*d)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "turn two clock times into an elapsed number of minutes",
+   "count the intervals between two numbered departures and solve for the interval",
+   "step back the right number of intervals to the first departure"
+  ],
+  "quantity_asked": "the number of minutes after 6:00 a.m. that the 1st shuttle leaves",
+  "ask_type": "derived-time",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const d=(105-v)/5; return Math.abs(v+13*d-201)<1e-9;",
+   "why": "From an option a student can find the interval ((7:45 - option)/5) and check that 13 intervals reach 9:21 - two steps, with the interval counts themselves the thing being tested. The key is the largest option, so in ascending order it is the fourth try."
+  },
+  "distractor_meta": {
+   "20": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the times as decimals is wrong by 40 minutes for every hour 'borrowed'; whether it inflates or shrinks the elapsed time depends on whether the minutes need borrowing, which is not what a student reads from the stem."
+   },
+   "33": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Stepping back one interval too many moves the time earlier; with the counts reversed (stepping forward from the 1st) the same slip would land later, so its side depends on the direction of the count asked."
+   },
+   "41": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting shuttles instead of intervals makes the interval too short (96/9) but also steps back too many of them (6); the two effects oppose, and which wins depends on the numbers 6 and 14."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const t6=105,t14=201,i=6,j=14; const d=(t14-t6)/(j-i); return t6-(i-2)*d;",
+   "direction": "above",
+   "why": "Stepping back only 4 intervals from the 6th shuttle, 7:45 - 48 minutes = 6:57 (57 minutes after 6:00), lands above the key."
+  },
+  "far_distractor": {
+   "option": "41",
+   "natural_side": "above",
+   "why": "Counting shuttles instead of intervals divides the 96 minutes into 9 parts, a shorter interval, which a student would expect to put the first shuttle LATER - above the key. But the same counting habit steps back 6 intervals instead of 5, and 6 x 96/9 = 64 minutes is more than 5 x 12 = 60, so it lands 4 minutes earlier. With the 6th and 10th shuttles instead, the same slip gives 6 x D/5 against the correct 5 x D/4, which is less, so it would land later; the side comes from the arithmetic on 6 and 14, not from the stem."
+  },
+  "cheap_bound_check": "Cheapest bound: the 1st shuttle leaves before the 6th, so the answer is under 105 minutes - all four pass. Nothing printed bounds it below (6:00 is only a reference), so no single bound strikes any option.",
+  "shape_check": "The stem hands over: a nonnegative number of minutes, under 105; no integer requirement beyond that. All four options are whole numbers in range; all four survive together.",
+  "interior_parity_check": "The middle values 33 and 41 are both two-digit odd integers; the key is not interior.",
+  "arith_class_check": "Odd: 33, 41, 45; even: 20. Multiples of 5: 20, 45. Multiples of 3: 33, 45. The stem implies no class and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "(bus|train|ferry|shuttle)e?s? (leaves?|depart)&(every|equal intervals|same number of minutes)",
+    "(first|1st)&(9th|tenth|10th|ninth|last) (bus|train|ferry|shuttle)",
+    "row&more (seats|chairs|bricks|cans)",
+    "each (row|layer|level) (after|above)"
+   ],
+   "hits_read": 4,
+   "nearest": "2b58daaa (three buses returning every 12, 18 and 30 minutes, a least common multiple) and 395f559d (theater rows growing by 3, a sum). Neither recovers an equal interval from two numbered events; here the interval comes from 8d = 96 and is then used to step back to the first departure."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Pattern 1: the interval (12) and the 96-minute span are not options; 45 - 33 = 12 is the interval, which is not printed, and a student holding 33 has no printed step to 45. Pattern 2: the only cheap bound (before 7:45) strikes nothing. Pattern 3: the shuttle-for-interval slip (41) shortens the interval and lengthens the step-back at once; its side depends on 6 and 14. Covering the work, a student cannot strike all three: they come from three different counting and clock slips and none is marked. (read) PAIR 45 - 33 = 12 = 2 x printed 6: 12 is the interval, and that it equals twice the 6 in \"6th shuttle\" is a coincidence of these numbers; nothing in the stem invites doubling the shuttle number, and a student who doubles it has no reason to add it to 33."
+  },
+  "bounds": []
+ }
+]

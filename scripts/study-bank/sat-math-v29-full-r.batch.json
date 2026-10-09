@@ -1,0 +1,493 @@
+[
+ {
+  "id": "SM29F-R01",
+  "domain": "Advanced Math",
+  "subskill": "rational expression as a + b/(x - c); integer outputs",
+  "difficulty": "medium",
+  "prompt": "Some integer inputs x make the expression (4x + 31)/(x + 3), where x is not -3, come out to an integer value as well. Among all such integers x, which is the greatest?",
+  "choices": [
+   "-2",
+   "16",
+   "25",
+   "40"
+  ],
+  "correct_answer": "16",
+  "explanation": "Rewrite the numerator as a multiple of x + 3 plus a remainder: 4x + 31 = 4(x + 3) + 19, so the expression equals 4 + 19/(x + 3). For an integer x, the value is an integer exactly when x + 3 divides 19, so x + 3 is 1, -1, 19, or -19, giving x = -2, -4, 16, or -22. The greatest of these is 16 (check: (64 + 31)/19 = 95/19 = 5).",
+  "solve": "let best=null; for(let x=-200;x<=200;x++){ if(x===-3) continue; const v=(4*x+31)/(x+3); if(Number.isInteger(v)) best=x; } return best;",
+  "distractor_solve": {
+   "25": "const r=31-3; return r-3;",
+   "40": "const r=31+4*3; return r-3;",
+   "-2": "return 1-3;"
+  },
+  "mechanism": [
+   "divide to a + b/(x - c) form",
+   "remainder must be divisible by x + 3",
+   "largest divisor of the remainder"
+  ],
+  "quantity_asked": "the greatest integer x for which (4x + 31)/(x + 3) is an integer",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const ok=(x)=>x!==-3&&Number.isInteger((4*x+31)/(x+3)); if(!ok(v)) return false; for(let x=v+1;x<=1000;x++){ if(ok(x)) return false; } return true;",
+   "why": "A student can substitute an option and test whether the expression is an integer. The ask is for a greatest value, so the natural order is descending: 40 gives 191/43 and 25 gives 131/28, neither an integer, and the key 16 is reached only on the third try. The option -2 also gives an integer (23) but is not the greatest such x, so an ascending tester stops wrongly at -2."
+  },
+  "distractor_meta": {
+   "25": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Forgets to multiply the 3 by the leading coefficient 4 when rewriting the numerator, taking the remainder as 31 - 3 = 28 and then x + 3 = 28. The size of the slip depends on the coefficient and is not visible before dividing."
+   },
+   "40": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Writes 4x + 31 = 4(x + 3) + (31 + 12), adding the 12 instead of subtracting it, so the remainder becomes 43 and x + 3 = 43. Nothing in the stem shows which way the sign slip moves the remainder until the division is done."
+   },
+   "-2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Maximizes the value of the expression instead of the input x: the greatest integer value comes from x + 3 = 1, so x = -2. Confusing input with output does not reveal a side until the divisors are listed."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: x is an integer (all four options are), x is not -3 (all four survive). No sign or size cap is given; x may be negative or positive. All four options survive every property together.",
+  "interior_parity_check": "Middle values 16 and 25: both two-digit positive integers (both perfect squares, one even one odd); neither is rounder. The key is not the cleaner one.",
+  "arith_class_check": "Options -2, 16, 25, 40: two even and two odd; one negative; all integers; none a multiple of 19. The key is not alone in any class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "is an integer&/\\(x|integer value",
+    "/\\(x|/ ?\\(\\d?x|rational|undefined",
+    "polynomial|x\\^3|x\\^4|remainder|multiplicity",
+    "divided by&x -"
+   ],
+   "hits_read": 210,
+   "nearest": "SM16A-15 / 80bcf860 rewrite a linear-over-linear expression as a + b/(x - c) and ask for the constants; this item uses the remainder as a divisibility condition on integer inputs and asks for an input, a different chain. 919f49f7 solves f(a) = 5 for a rational f (one linear equation). SM28F-R06 counts integer b by a discriminant, not divisibility."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise route: plug options in descending order and test integrality; the key is reached on try 3 after two non-integers, and -2 also passes the integer test so an ascending tester stops wrongly. Interior key. (read) lines: 25 - 16 = 9, 40 - 16 = 24, 16 - (-2) = 18; printed numbers 4, 31, 3 give sums 7, 34, 35, none of these. Ratio 16 / -2 = -8 is not one step from a printed number."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-R02",
+  "domain": "Advanced Math",
+  "subskill": "remainder theorem with high powers (parity of exponents)",
+  "difficulty": "medium",
+  "prompt": "Long division of 9x^50 + 7x^21 - 4x^4 + 33 by the binomial x + 1 would leave a constant remainder. What number is that remainder?",
+  "choices": [
+   "21",
+   "31",
+   "39",
+   "45"
+  ],
+  "correct_answer": "31",
+  "explanation": "By the remainder theorem, dividing a polynomial p(x) by x + 1 = x - (-1) leaves the remainder p(-1). An even power of -1 is 1 and an odd power of -1 is -1, so p(-1) = 9(1) + 7(-1) - 4(1) + 33 = 9 - 7 - 4 + 33 = 31.",
+  "solve": "const p=(x)=>9*x**50+7*x**21-4*x**4+33; return p(-1);",
+  "distractor_solve": {
+   "21": "return 9*(-1)+7*(-1)-4*(-1)+33;",
+   "39": "return 9*1+7*(-1)+4*1+33;",
+   "45": "const p=(x)=>9*x**50+7*x**21-4*x**4+33; return p(1);"
+  },
+  "mechanism": [
+   "remainder theorem: divisor x + 1 means evaluate at -1",
+   "parity of exponents decides the sign of each power of -1"
+  ],
+  "quantity_asked": "the remainder when 9x^50 + 7x^21 - 4x^4 + 33 is divided by x + 1",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "The remainder is not a solution of any printed condition; there is nothing to substitute an option into. A student must evaluate p(-1)."
+  },
+  "distractor_meta": {
+   "21": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats every power of -1 as -1, ignoring the parity of the exponents, so the two even-power terms flip sign too. The net direction depends on the relative sizes of 9 and 4 against 7 and is not visible without evaluating."
+   },
+   "39": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Gets the powers of -1 right but drops the minus sign in front of the 4x^4 term when substituting, writing +4 instead of -4. A dropped subtraction sign could move the result either way depending on the term's own sign at -1."
+   },
+   "45": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reads the divisor x + 1 as x - 1 and evaluates at 1, the sum of the coefficients. Whether that lands above or below the value at -1 depends on the sign of the odd-power coefficient, which must be worked through."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem says the remainder is a constant; all four options are constants. The coefficients are integers, so the remainder is an integer: all four options are integers. No sign or size property is handed over. All four survive together.",
+  "interior_parity_check": "Middle values 31 and 39: both two-digit odd integers with no trailing zero, equal display complexity. The key is not the cleaner one.",
+  "arith_class_check": "Options 21, 31, 39, 45 are all odd positive two-digit integers; no parity, sign, integrality or multiple-of-k class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "x\\^\\(?[1-9][0-9]",
+    "x\\^[2-9][0-9]|x\\^1[0-9]",
+    "remainder",
+    "divided by&x -"
+   ],
+   "hits_read": 260,
+   "nearest": "6b810624 / SM14A-04 and ADV5-02 evaluate a cubic at a negative input for a remainder with no exponent-parity decision; 90b7cb16 / 6192993b find a parameter from one remainder then compute a second. No live or prior item uses high exponents where the parity of the powers of -1 is the deciding step."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Test-wise route: none by substitution; a student who skips the sign of the divisor gets 45, one who ignores parity gets 21, one who drops the minus sign on the x^4 term gets 39. Interior key. Could a student check an option against the stem in one routine step? No: the ask is an evaluated remainder, not a solution of a printed condition. (read) lines: differences 31 - 21 = 10, 39 - 31 = 8 (twice the printed 4), 45 - 31 = 14 (twice the printed 7) each come from one term entering with the wrong sign, which is the error itself; none tells a student which option carries the correct signs without evaluating. Also 31 - 21 = 10 = 9 + 1 and 39 - 31 = 8 = 7 + 1 are coincidences of the coefficients; adding one to a printed coefficient is not a step any solution path takes."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-R03",
+  "domain": "Advanced Math",
+  "subskill": "shared zero of two quadratics; integer-parameter decision",
+  "difficulty": "medium",
+  "prompt": "The polynomials x^2 + ax - 6 and x^2 + 14x + 24, where a is an integer, have exactly one zero in common. What is the product of the two zeros, one from each polynomial, that are not shared?",
+  "choices": [
+   "-36",
+   "-9",
+   "-4",
+   "-1"
+  ],
+  "correct_answer": "-36",
+  "explanation": "Factor the second polynomial: x^2 + 14x + 24 = (x + 2)(x + 12), so its zeros are -2 and -12, and the shared zero is one of these. If it is -12, then 144 - 12a - 6 = 0 and a = 11.5, which is not an integer. If it is -2, then 4 - 2a - 6 = 0 and a = -1, an integer. So the first polynomial is x^2 - x - 6 = (x - 3)(x + 2), with zeros 3 and -2. The shared zero is -2, the unshared zeros are 3 and -12, and their product is (3)(-12) = -36.",
+  "solve": "const sec=[-2,-12]; for(const c of sec){ const a=-(c*c-6)/c; if(Number.isInteger(a)){ const other1=-6/c; const other2=sec.find(z=>z!==c); return other1*other2; } } return null;",
+  "distractor_solve": {
+   "-1": "const c=-12; const other1=-6/c; return other1*(-2);",
+   "-9": "const c=-2; const other1=-6/c; return other1+(-12);",
+   "-4": "const c=-2; const other1=c/(-6); return other1*(-12);"
+  },
+  "mechanism": [
+   "factor the known quadratic for candidate shared zeros",
+   "factor theorem on the other quadratic gives a for each candidate",
+   "integer condition picks the shared zero",
+   "product of the unshared zeros"
+  ],
+  "quantity_asked": "the product of the two unshared zeros",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "The asked product is not a solution of any printed equation and cannot be tested by substituting it into either polynomial; a student must find the shared zero and both polynomials' factorizations."
+  },
+  "distractor_meta": {
+   "-1": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Ignores the condition that a is an integer and takes -12 as the shared zero (a = 11.5), so the first polynomial's other zero is -6/(-12) = 0.5 and the product is 0.5 x (-2). Which candidate gives the more negative product depends on which root is divided into -6, not visible before both are computed."
+   },
+   "-9": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finds the correct unshared zeros 3 and -12 but adds them instead of multiplying. With one positive and one negative zero, the order of the sum and the product is not readable from the stem."
+   },
+   "-4": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses the product of the first polynomial's zeros upside down: takes the other zero as (shared zero)/(-6) = 1/3 instead of -6/(shared zero) = 3, then multiplies by -12. An inversion can move a value up or down depending on its size, which is unknown until computed."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "return (-6)*24;",
+   "direction": "below",
+   "why": "Multiplies the product of the first polynomial's zeros (-6) by the product of the second's (24), counting the shared zero twice: -144, far below the key."
+  },
+  "far_distractor": {
+   "option": "-1",
+   "natural_side": "below",
+   "why": "Dropping a stated constraint (a is an integer) ordinarily admits a value past the key, which on a smallest key means below. Here the discarded branch makes -12 the shared zero, so -6 is divided by -12 instead of by -2 and the remaining factor is -2 instead of -12; the magnitude collapses from 36 to 1 and the wrong branch lands ABOVE the key. Which branch is more negative depends on the ratio of the two candidate roots, seen only after computing both."
+  },
+  "cheap_bound_check": "Cheapest bound: the unshared product equals (-6/c)(24/c) = -144/c^2 for the shared zero c, so it is negative. All four options are negative, so the bound strikes none; the two candidates -144/4 = -36 and -144/144 = -1 are both options and only the integer condition chooses between them.",
+  "shape_check": "Properties handed over: a is an integer; exactly one common zero. The product is a real number; the derived sign (negative) holds for all four options. All four survive every property together.",
+  "interior_parity_check": "S slot (key smallest). Middle values -9 and -4 are both one-digit negative integers; not applicable to the key.",
+  "arith_class_check": "Options -36, -9, -4, -1: all negative integers and all negatives of perfect squares, two even and two odd. The key is not alone in any sign, parity, integrality or square class. It is the only two-digit option, a magnitude property the stem does not imply.",
+  "dup_search": {
+   "queries": [
+    "common factor|share a|both polynomials|factor of both",
+    "polynomial|x\\^3|x\\^4|remainder|multiplicity",
+    "divided by&x -",
+    "/\\(x|/ ?\\(\\d?x|rational|undefined",
+    "in common|common zero|common root|shared zero"
+   ],
+   "hits_read": 375,
+   "nearest": "2a453c92 / SM25V-A02 (live): two quadratics with exactly one zero in common, sum of BOTH possible k values. The first two steps overlap (factor the known quadratic, substitute each zero into the other). This item differs in the decision and the ask: an integer condition rejects one branch, and the asked quantity needs the other polynomial refactored to find its second zero, then a product across the two polynomials. A student who has solved 2a453c92 still has to make the rejection and finish the factoring. Other hits (SADV2-08, AM2-13, 5c1410b5) give zeros to find constants, a different chain."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the sign bound -144/c^2 < 0 keeps all four, and the two candidate values -36 and -1 both appear, so the integer test on a is required. Does the far_distractor read as a far-side error? -1 is the dropped-constraint branch; whether it lands above or below -36 depends on dividing -6 by -12 versus -2, which a student does not see without computing both. Does any one bound strike all three? No. Could a student check an option against the stem in one routine step? No: a product of unshared zeros cannot be substituted into either polynomial. (read) lines: -36 / -9 = 4 = 24/6 (two printed numbers) is a coincidence: no path multiplies an option by 24/6, and -9 comes from adding the correct unshared zeros. Other -36 and -1 are the two candidate branches, -9 and -4 come from the correct branch with a wrong operation or an inversion; 36 = 6 x 6 and 24 + 12 relations are coincidences of the factorization, not one-step operations a student can apply to an option."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-R04",
+  "domain": "Advanced Math",
+  "subskill": "coefficients of a shifted polynomial via values at 1 and 0",
+  "difficulty": "medium",
+  "prompt": "Let p(x) = x^3 - 2x^2 - 2x + 2, and let q(x) = p(x - 2). Multiplying out q(x) gives a cubic x^3 + bx^2 + cx + d, where b, c, and d are constants. What is 1 + b + c?",
+  "choices": [
+   "-3",
+   "1",
+   "7",
+   "11"
+  ],
+  "correct_answer": "11",
+  "explanation": "For any polynomial, substituting x = 1 gives the sum of all of its coefficients and substituting x = 0 gives its constant term. So 1 + b + c = q(1) - q(0) = p(-1) - p(-2). Here p(-1) = -1 - 2 + 2 + 2 = 1 and p(-2) = -8 - 8 + 4 + 2 = -10, so 1 + b + c = 1 - (-10) = 11. (Check by expanding: q(x) = x^3 - 8x^2 + 18x - 10, and 1 - 8 + 18 = 11.)",
+  "solve": "const p=(x)=>x**3-2*x**2-2*x+2; const q=(x)=>p(x-2); return q(1)-q(0);",
+  "distractor_solve": {
+   "1": "const p=(x)=>x**3-2*x**2-2*x+2; const q=(x)=>p(x-2); return q(1);",
+   "7": "const p=(x)=>x**3-2*x**2-2*x+2; const q=(x)=>p(x+2); return q(1)-q(0);",
+   "-3": "const p=(x)=>x**3-2*x**2-2*x+2; return p(1)-p(0);"
+  },
+  "mechanism": [
+   "sum of coefficients equals the value at 1",
+   "constant term equals the value at 0",
+   "shift q(x) = p(x - 2) moves the inputs to -1 and -2"
+  ],
+  "quantity_asked": "1 + b + c, the sum of the coefficients of the x^3, x^2 and x terms of q(x) = p(x - 2)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "The asked sum is a property of the expanded polynomial, not a solution of an equation; no option can be substituted into anything printed. A student must evaluate or expand q."
+  },
+  "distractor_meta": {
+   "1": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Uses the shortcut q(1) = p(-1) for the sum of coefficients but keeps the constant term d in it. Including an extra term would raise the sum if that term were positive; its sign, d = q(0) = p(-2) = -10, is not visible until p(-2) is evaluated, and p's own constant is +2."
+   },
+   "7": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Shifts the wrong way, treating q(x) = p(x - 2) as p(x + 2) and computing p(3) - p(2) = 5 - (-2). Which direction of shift gives the larger coefficient sum depends on the cubic's values, not on anything printed."
+   },
+   "-3": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Forgets the shift and works with p itself: p(1) - p(0) = -1 - 2. The effect of dropping the shift on the coefficient sum can go either way and is not readable from the stem."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const c=[1,6,12,8]; return c[0]+(c[1]-2)+(c[2]+8-2);",
+   "direction": "above",
+   "why": "Expands (x - 2)^3 as x^3 + 6x^2 + 12x + 8 (the sign pattern of (x + 2)^3) while expanding the other terms correctly, giving x^3 + 4x^2 + 18x + 6 and 1 + b + c = 23, above the key."
+  },
+  "far_distractor": {
+   "option": "1",
+   "natural_side": "above",
+   "why": "Leaving an extra term in a sum (here the constant d, by using q(1) for 'the sum of the coefficients') ordinarily makes the result too large, past a largest key. Here the extra term is d = q(0) = p(-2) = -10, a negative constant, so including it pulls the result BELOW the key. Its sign appears only after evaluating p at -2; the printed constant of p is +2 and suggests the opposite."
+  },
+  "cheap_bound_check": "The cheapest readable quantity is q(1) = p(-1) = 1, the sum of all of q's coefficients; 1 + b + c differs from it by d = q(0) = p(-2), whose sign is not printed (p's own constant is +2). No one-sided bound follows from the stem, so no option is struck; 1, -3 and 7 all remain on the key's side.",
+  "shape_check": "Properties handed over: q is a cubic with integer coefficients (so the sum is an integer, all four options survive); leading coefficient 1 contributes 1 to the sum (no bound on the total). No sign or size property is given. All four survive together.",
+  "interior_parity_check": "L slot (key largest). Middle values 1 and 7 are both one-digit odd integers.",
+  "arith_class_check": "Options -3, 1, 7, 11: all odd integers, one negative; the key is not alone in parity, sign, roundness or integrality.",
+  "dup_search": {
+   "queries": [
+    "sum of the coefficients|coefficients of",
+    "constant term",
+    "p\\(x \\+ 1\\)|p\\(x - 1\\)|f\\(x \\+ 1\\) - f",
+    "polynomial|x\\^3|x\\^4|remainder|multiplicity"
+   ],
+   "hits_read": 230,
+   "nearest": "9bb73a60 / SADV5C-06 ask the sum of all coefficients of an expanded product (value at 1); eb469940 asks the sum of even-power coefficients ((p(1) + p(-1))/2). Neither involves a shift, and neither removes the constant term via the value at 0. SM15A-11 shifts a cubic but asks for the sum of zeros."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: forgetting the shift and shifting the wrong way have no predictable direction, and keeping the constant term would be an overshoot unless the constant is negative, which is visible only after computing p(-2). Does the far_distractor read as a far-side error? Yes: 'I left the constant in' reads as too big, and it lands below only because d = -10; p's printed constant is +2, which points the other way. Does any one bound strike all three? No bound is readable. Could a student check an option in one routine step? No, nothing is substitutable. (read) lines: 11 - 7 = 4 (twice the printed 2, or 3 + 1) is a coincidence of the two shift directions; nothing in the stem says the wrong-way shift falls 4 short, so a student cannot move from 7 to 11 without solving."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-R05",
+  "domain": "Advanced Math",
+  "subskill": "factor theorem with the parameter as the zero; remainder",
+  "difficulty": "medium",
+  "prompt": "For a constant k that is less than 3, the binomial x - k divides the cubic x^3 - kx^2 + (k - 4)x - 5 with no remainder. What remainder is left when that same cubic is divided by x - 4?",
+  "choices": [
+   "-33",
+   "-17",
+   "23",
+   "55"
+  ],
+  "correct_answer": "55",
+  "explanation": "Call the cubic p(x). Since x - k divides p(x), p(k) = 0: k^3 - k(k^2) + (k - 4)k - 5 = k^2 - 4k - 5 = 0, so (k - 5)(k + 1) = 0 and k = 5 or k = -1. Because k is less than 3, k = -1, and p(x) = x^3 + x^2 - 5x - 5. By the remainder theorem, the remainder when p(x) is divided by x - 4 is p(4) = 64 + 16 - 20 - 5 = 55.",
+  "solve": "const k=[5,-1].filter(v=>v<3)[0]; const p=(x)=>x**3-k*x**2+(k-4)*x-5; return p(4);",
+  "distractor_solve": {
+   "23": "const k=-1; return 64+k*16+(k-4)*4-5;",
+   "-17": "const k=5; const p=(x)=>x**3-k*x**2+(k-4)*x-5; return p(4);",
+   "-33": "const k=-1; const p=(x)=>x**3-k*x**2+(k-4)*x-5; return p(-4);"
+  },
+  "mechanism": [
+   "factor theorem p(k) = 0 with k in the coefficients (cubic terms cancel)",
+   "quadratic in k, choose the root under the cap",
+   "remainder theorem at x = 3"
+  ],
+  "quantity_asked": "the remainder when the cubic is divided by x - 4",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "The remainder is not a solution of a printed condition; an option cannot be substituted to test it. A student must find k and then evaluate p(3)."
+  },
+  "distractor_meta": {
+   "23": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Substitutes k = -1 into -kx^2 as -16 instead of +16 (dropping the double negative), so p(4) is computed as 64 - 16 - 20 - 5. The sign of the mishandled term is not readable before substituting."
+   },
+   "-17": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Ignores the cap 'k is less than 3' and keeps the extra root k = 5, so p(4) = 64 - 80 + 4 - 5. Admitting a larger k than the cap allows looks like it should raise the result; whether it does depends on how p(4) depends on k, visible only after substituting."
+   },
+   "-33": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reads the divisor x - 4 as x + 4 and evaluates p(-4) with the correct k = -1. The value of a cubic at -4 versus 4 is not ordered by anything printed."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const k=-1; return 64-k*16-4*4-5;",
+   "direction": "above",
+   "why": "Uses k = -1 but treats the coefficient (k - 4) as just -4, dropping the k inside it: 64 + 16 - 16 - 5 = 59, above the key."
+  },
+  "far_distractor": {
+   "option": "-17",
+   "natural_side": "above",
+   "why": "Ignoring a cap normally lets in a larger value and pushes the answer past a largest key. Here the ignored cap admits k = 5, and the remainder is p(4) = (4 - k)(16 + k - 4) = (4 - k)(12 + k), which is negative for k = 5, so the larger k lands far BELOW the key. That dependence appears only after p(4) is written in terms of k; nothing in the stem shows that a bigger k gives a smaller remainder."
+  },
+  "cheap_bound_check": "Cheapest readable bound: none on the remainder directly. After factoring, p(4) = (4 - k)(12 + k), whose sign depends on k; the cap k < 3 only gives p(4) > 0 once that factored form is computed, and even then 23 stays on the key's side. No one bound strikes all three.",
+  "shape_check": "Properties handed over: k is a constant below 3; x - k is a factor; the remainder is a constant (an integer once k is found to be an integer). All four options are integers. All four survive together.",
+  "interior_parity_check": "L slot (key largest). Middle values -17 and 23 are both two-digit integers.",
+  "arith_class_check": "Options -33, -17, 23, 55: all odd integers, two negative and two positive. The key is not alone in parity, sign or integrality. It is the only multiple of 5, a class the stem does not imply.",
+  "dup_search": {
+   "queries": [
+    "x - k is a factor|x - a is a factor|x - b is a factor|\\(x - k\\)",
+    "x \\+ k is a factor|\\(x \\+ k\\)",
+    "polynomial|x\\^3|x\\^4|remainder|multiplicity",
+    "divided by&x -"
+   ],
+   "hits_read": 230,
+   "nearest": "9b757288 / SM16A-02 and b8660a98 use a fixed factor (x - 3, x - 2) to find a coefficient and then evaluate or take a second remainder; 6192993b finds a from one remainder then a second remainder. Here the factor's zero is the parameter itself, so the cubic terms cancel, a quadratic in k appears and a cap chooses its root; no live or prior item has the parameter as the zero."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: two distractors are sign slips with no readable direction, and the cap-ignoring distractor would naively be expected to overshoot. Does the far_distractor read as a far-side error? Yes: 'I used the k the cap forbids, which is bigger' suggests a bigger answer; it lands below only because p(4) = (4 - k)(12 + k), found by computing. Does any one bound strike all three? No: even the factored-form bound p(4) > 0 leaves 23 on the key's side. Could a student check an option in one routine step? No, nothing is substitutable. (read) line: 55 / -33 = -5/3 (two printed numbers) is a coincidence of p(4) = 5 x 11 and p(-4) = -3 x 11 sharing the factor 11; no step scales an option by 5/3."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-R06",
+  "domain": "Advanced Math",
+  "subskill": "double zero from coefficients; reject a triple zero (crosses)",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graph of y = x^3 + 6x^2 + bx + 8, where b is a constant, is tangent to the x-axis at one point and crosses the x-axis at a different point. What is the y-coordinate of the point on the graph whose x-coordinate is 3?",
+  "choices": [
+   "44",
+   "68",
+   "125",
+   "134"
+  ],
+  "correct_answer": "44",
+  "explanation": "Let p(x) = x^3 + 6x^2 + bx + 8. Where the graph is tangent to the x-axis at (r, 0), r is a repeated zero, so p(x) = (x - r)^2(x - s), where s is the zero at which the graph crosses. Matching the x^2 coefficient gives -(2r + s) = 6, so s = -6 - 2r. Matching the constant term gives -r^2 s = 8, so r^2(6 + 2r) = 8, which simplifies to r^3 + 3r^2 - 4 = 0, or (r - 1)(r + 2)^2 = 0. If r = -2, then s = -2 as well and p(x) = (x + 2)^3, whose graph has only one x-intercept, so there is no different crossing point; this case is rejected. Therefore r = 1 and s = -8, so p(x) = (x - 1)^2(x + 8) (and b = -15). The y-coordinate at x = 3 is p(3) = (2)^2(11) = 44.",
+  "solve": "for(let r=-10;r<=10;r++){ const s=-6-2*r; if(-r*r*s!==8) continue; if(s===r) continue; const p=(x)=>(x-r)**2*(x-s); return p(3); } return null;",
+  "distractor_solve": {
+   "68": "const r=1, s=-8; const b=r*r+r*s; return 27+6*9+b*3+8;",
+   "125": "const p=(x)=>(x+2)**3; return p(3);",
+   "134": "const b=15; return 27+6*9+b*3+8;"
+  },
+  "mechanism": [
+   "touch without crossing means a zero of even multiplicity: (x - r)^2(x - s)",
+   "match x^2 and constant coefficients, cubic in r",
+   "reject the triple-zero root because the graph crosses there",
+   "evaluate p(3)"
+  ],
+  "quantity_asked": "the y-coordinate of the graph at x = 3, that is p(3)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "p(3) is not a solution of any printed condition, and b is unknown, so an option cannot be checked by substitution; a student must determine p first."
+  },
+  "distractor_meta": {
+   "68": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Expands (x - r)^2(x - s) but writes the x-coefficient as r^2 + rs instead of r^2 + 2rs, dropping a factor of 2, so b = -7. The sign of the dropped piece depends on r and s, which the stem does not give."
+   },
+   "125": {
+    "error_kind": "other",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Accepts the repeated root r = -2 of the cubic in r, giving (x + 2)^3 (b = 12), whose graph is indeed tangent to the x-axis at -2 (an inflection) but has no different crossing point; the student skips that check. Which of the two candidate polynomials is larger at x = 3 is not visible until both are evaluated."
+   },
+   "134": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finds the correct factorization but takes b = +15 instead of -15 when expanding (x - 1)^2(x + 8), then evaluates the expanded form. The sign of b is not readable from the stem."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const p=(x)=>(x-1)**2*(x-8); return p(3);",
+   "direction": "below",
+   "why": "Finds r = 1 but takes the third zero as +8 instead of -8, using (x - 1)^2(x - 8): p(3) = 4 x (-5) = -20, below the key."
+  },
+  "far_distractor": {
+   "option": "125",
+   "natural_side": "below",
+   "why": "Skipping a required check (here, that the tangent zero is not also the only zero, a triple zero) is the early-stop kind of error that ordinarily lets through a value beyond the key, below a smallest key. Here the unchecked branch is (x + 2)^3, whose value at 3 is 5^3 = 125, ABOVE the key 44 = 2^2 x 11. Which branch gives the larger value at 3 depends on where the zeros fall, known only after solving r^3 + 3r^2 - 4 = 0."
+  },
+  "cheap_bound_check": "Cheapest readable bound: p(3) = 27 + 54 + 3b + 8 = 89 + 3b, and the stem gives no sign or size for b, so no one-sided bound follows. If a student assumes b is an integer, p(3) leaves remainder 2 on division by 3, which all four options do; nothing is struck. All three distractors stay on the key's side.",
+  "shape_check": "Properties handed over: b is a constant; a tangent point and a different crossing point (so two distinct x-intercepts); a monic cubic. The value at 3 is a real number with no stated sign or bound; all four options are positive integers congruent to 2 mod 3 (as 89 + 3b is for integer b). All four survive every property together.",
+  "interior_parity_check": "S slot (key smallest). Middle values 68 and 125 are two- and three-digit integers; not applicable to the key.",
+  "arith_class_check": "Options 44, 68, 125, 134: three even and one odd (125, a distractor), all positive integers, all 2 mod 3. The key is not alone in parity, sign, integrality or residue. 125 is the only cube; the key is not singled out.",
+  "dup_search": {
+   "queries": [
+    "multiplicity",
+    "touches&x\\^3 -|tangent to the x-axis",
+    "polynomial|x\\^3|x\\^4|remainder|multiplicity",
+    "x\\^3 - [0-9]+x \\+ k|x\\^3 \\+ kx|x\\^3 - kx"
+   ],
+   "hits_read": 240,
+   "nearest": "dfd9b921 / SAM11-06 give the double zero (3) and ask for a; SM15A-12 gives divisibility by (x - 4)^2; 5c5aa031 / SM25V-C10 give p = (x - a)^2(x - 4) in factored form and a point. Here neither zero is given, the factored form must be built from the x^2 and constant coefficients, and the resulting cubic in r has a repeated root that must be rejected because a triple zero crosses; no live or prior item has that decision."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the sign slip and the dropped factor of 2 have no readable direction (b's sign is not given), and the triple-zero branch's value at 3 versus the double-zero branch's is not visible without solving. Does the far_distractor read as a far-side error? It is the skipped-check error; it lands above only because (x + 2)^3 at 3 exceeds (x - 1)^2(x + 8) at 3, found by computing. Does any one bound strike all three? No: p(3) = 89 + 3b has no bound without b, and all options share the residue 2 mod 3. Could a student check an option in one routine step? No: b is unknown, so p(3) cannot be tested by substitution. Desmos: a slider on b shows tangency at b = -15 and a flat inflection on the axis at b = 12; a student who stops at the b = 12 picture (tangent to the axis) lands on 125, so the decision is not bypassed by graphing alone. The ask is phrased as a y-coordinate so that it is not read as asking for b."
+  },
+  "bounds": []
+ }
+]

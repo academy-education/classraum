@@ -1,0 +1,890 @@
+[
+ {
+  "id": "SM29F-B01",
+  "domain": "Algebra",
+  "subskill": "Perpendicular lines through a point: x-intercepts",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, lines l and m are perpendicular and intersect at the point (-5, 6). Line l has slope -2/5. What is the distance between the x-intercept of line l and the x-intercept of line m?",
+  "choices": [
+   "2.6",
+   "12.6",
+   "14.5",
+   "17.4"
+  ],
+  "correct_answer": "17.4",
+  "explanation": "Line m is perpendicular to line l, so its slope is the negative reciprocal of -2/5, which is 5/2. Line l: y - 6 = (-2/5)(x + 5). Setting y = 0 gives -6 = (-2/5)(x + 5), so x + 5 = 15 and x = 10. Line m: y - 6 = (5/2)(x + 5). Setting y = 0 gives -6 = (5/2)(x + 5), so x + 5 = -2.4 and x = -7.4. The distance between the x-intercepts is 10 - (-7.4) = 17.4.",
+  "solve": "const sl = -2/5, sm = -1/sl; const xl = -5 - 6/sl, xm = -5 - 6/sm; return Math.round(Math.abs(xl - xm)*1000)/1000;",
+  "distractor_solve": {
+   "2.6": "const sl = -2/5, sm = -1/sl; const xl = -5 - 6/sl, xm = -5 - 6/sm; return Math.round(Math.abs(xl + xm)*1000)/1000;",
+   "12.6": "const sl = -2/5, sm = -5/2; const xl = -5 - 6/sl, xm = -5 - 6/sm; return Math.round(Math.abs(xl - xm)*1000)/1000;",
+   "14.5": "const sl = -2/5, sm = -1/sl; const yl = 6 + sl*(0 + 5), ym = 6 + sm*(0 + 5); return Math.round(Math.abs(yl - ym)*1000)/1000;"
+  },
+  "mechanism": [
+   "negative reciprocal slope",
+   "x-intercept of each line through a common point",
+   "distance along the x-axis"
+  ],
+  "quantity_asked": "the distance between the x-intercepts of the two perpendicular lines",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "The ask is a distance between two points that must each be found; no printed equation or condition takes a distance as input, so an option cannot be substituted into the stem and checked in one step."
+  },
+  "distractor_meta": {
+   "2.6": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the two x-intercepts (10 + (-7.4)) instead of subtracting them; whether the sum is larger or smaller than the distance depends on the intercepts' signs, which the stem does not show."
+   },
+   "12.6": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking the reciprocal but keeping the sign (slope -5/2 for m) moves m's x-intercept to -2.6; the stem gives no way to see which side of l's intercept that lands on."
+   },
+   "14.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finding the distance between the y-intercepts (4 and 18.5) instead of the x-intercepts; nothing printed compares the vertical and horizontal spreads."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const sl = -2/5, sm = 2/5; const xl = -5 - 6/sl, xm = -5 - 6/sm; return Math.abs(xl - xm);",
+   "direction": "above",
+   "why": "Negating the slope without taking the reciprocal (slope 2/5 for m) puts m's x-intercept at -20 and gives a distance of 30, above the key."
+  },
+  "far_distractor": {
+   "option": "2.6",
+   "natural_side": "above",
+   "why": "Adding two lengths instead of subtracting ordinarily gives MORE than their difference, but here l's intercept (10) and m's intercept (-7.4) have opposite signs, so the sum 10 + (-7.4) is far below the distance; which intercept is negative is not readable until both are computed from the slope and the point."
+  },
+  "cheap_bound_check": "Cheapest bound: the distance is positive and exceeds each intercept's horizontal offset from the point; the sharpest a strong student could read is that two perpendicular lines through a point 6 above the x-axis cut it at least 2 x 6 = 12 apart. That bound strikes only 2.6; 12.6 and 14.5 sit on the key's side of it.",
+  "shape_check": "Properties handed over: a distance is positive (all four survive); no integer requirement (all four are one-place decimals); no cap. All four survive every property.",
+  "interior_parity_check": "Middle values 12.6 and 14.5: both one-place decimals of three significant digits; the key 17.4 is the same form, not cleaner.",
+  "arith_class_check": "All four are positive one-place decimals; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "perpendicular",
+    "perpendicular&x-intercept|x-axis",
+    "distance between&intercept",
+    "x-intercepts&perpendicular|slopes"
+   ],
+   "hits_read": 50,
+   "nearest": "5b128a55 (v2): the x-intercept of ONE perpendicular line through a printed y-intercept. Here two lines share a non-axis point, both x-intercepts are needed, and the ask is their separation, so the chain is reciprocal slope, two intercepts from one point, then a difference across the origin."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: two are sign/variable swaps and the sum error lands below only because the intercepts straddle the origin, which needs both computed. The far distractor 2.6 reads as an overshoot error (sum > difference) and lands far below; a student who recognised the error would still have to find that the intercepts have opposite signs. No single stem bound strikes all three: the strongest, distance >= 2 x 6 = 12, leaves 12.6 and 14.5. Plug-back: a distance cannot be checked against the stem in one step. (read) PAIR ratio key/14.5 = 6/5: 17.4 = 1.2 x 14.5 is a coincidence of the x- and y-intercept spreads (horizontal 15 + 2.4 against vertical 12.5 + 2); no step multiplies by 6/5, and a student holding 14.5 has no reason to scale it by the printed 6 over 5."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B02",
+  "domain": "Algebra",
+  "subskill": "Slope of a line through intercepts of two lines",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the equation y - 3 = -3(x + 5) defines a line that meets the x-axis at point A. The equation y + 9 = -3(x + 2) defines a second line, which meets the y-axis at point B. What is the slope of segment AB?",
+  "choices": [
+   "-3.75",
+   "-2.5",
+   "-2.4",
+   "-2.25"
+  ],
+  "correct_answer": "-3.75",
+  "explanation": "Point A is on the first graph with y = 0: 0 - 3 = -3(x + 5), so x + 5 = 1 and x = -4. A is (-4, 0). Point B is on the second graph with x = 0: y + 9 = -3(0 + 2) = -6, so y = -15. B is (0, -15). The slope of the line through A and B is (-15 - 0)/(0 - (-4)) = -15/4 = -3.75.",
+  "solve": "const a = -5 + (0 - 3) / (-3); const b = -9 + (-3) * (0 + 2); return (b - 0) / (0 - a);",
+  "distractor_solve": {
+   "-2.5": "const a = -5 - (0 - 3) / (-3); const b = -9 + (-3) * (0 + 2); return (b - 0) / (0 - a);",
+   "-2.25": "const a = -5 + (0 - 3) / (-3); const b = -9; return (b - 0) / (0 - a);",
+   "-2.4": "const ly = 3 + (-3) * (0 + 5); const mx = -2 + (0 + 9) / (-3); return (0 - ly) / (mx - 0);"
+  },
+  "mechanism": [
+   "x-intercept from point-slope form",
+   "y-intercept from point-slope form",
+   "slope through two axis points"
+  ],
+  "quantity_asked": "the slope of segment AB, A the x-intercept of the first line and B the y-intercept of the second",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": false,
+   "why": "The ask is a slope built from two intercepts; no printed equation or condition takes a slope value as input, so an option cannot be substituted into the stem and checked. A student must find both points first."
+  },
+  "distractor_meta": {
+   "-2.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking (0 - 3)/(-3) as -1 instead of 1 puts A at (-6, 0) instead of (-4, 0); the stem gives no sign or size of A, so whether the slip moves the slope up or down is not readable."
+   },
+   "-2.25": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading the -9 in y + 9 as the y-intercept drops the -3(0 + 2) = -6 term; whether dropping it raises or lowers the slope depends on the signs of that term and of A, neither printed."
+   },
+   "-2.4": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Using the y-intercept of the first graph (0, -12) and the x-intercept of the second (-5, 0) swaps which axis point comes from which graph; its side depends on all four intercepts."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const a = -5 + 3; const b = -9 + (-3) * (0 + 2); return (b - 0) / (0 - a);",
+   "direction": "below",
+   "why": "Setting y = 0 and writing x + 5 = 3 (ignoring the factor -3 and its sign) puts A at (-2, 0) and gives slope -15/2 = -7.5, below the key."
+  },
+  "far_distractor": {
+   "option": "-2.25",
+   "natural_side": "below",
+   "why": "Dropping a term is an early-stop error that ordinarily gives a smaller result, but the dropped -6 belongs to a negative y-intercept that is divided by a positive run of 4, so leaving it out shrinks the size of a negative slope and lands it above the key at -9/4; that both intercepts are negative is not visible until both are computed."
+  },
+  "cheap_bound_check": "The cheapest bound is the sign of the slope, which needs the signs of both intercepts (not printed). All four options are negative, so the sign strikes none; a slope has no cap or integer floor.",
+  "shape_check": "Properties handed over: none restrict a slope (no sign, integer or cap is given; the line through A and B is not vertical). All four options survive.",
+  "interior_parity_check": "Middle values -2.5 and -2.4: both one-place negative decimals of the same size; the key -3.75 is extreme and is a two-place decimal, not the cleaner value.",
+  "arith_class_check": "All four are negative non-integer terminating decimals; the key is not alone in any parity, sign, integrality or roundness class.",
+  "dup_search": {
+   "queries": [
+    "through the x-intercept|passes through the y-intercept|contains the x-intercept",
+    "x-intercept of line&y-intercept of line&slope",
+    "y [-+] [0-9]+ = -?[0-9]+\\(x&line",
+    "perpendicular"
+   ],
+   "hits_read": 47,
+   "nearest": "b4b2a42b (sat-alg-unit): slope through a printed point and the x-intercept of a standard-form line. Here neither point is printed: one comes from setting y = 0 in one point-slope equation and the other from setting x = 0 in a second, so the chain is two intercept extractions of different kinds before the slope."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, the stem gives no sign or size of A or B, so a student cannot tell which way the errors go; all four options are negative, so no sign bound strikes any, and there is no cap. The far distractor -2.25 comes from reading -9 as the intercept, an early stop; a student who recognised it would need the sign of the dropped -6 and of A to place it, which is the work. Plug-back: a slope cannot be checked against the stem in one step. (read) PAIR ratio key/-2.5 = 3/2 and key/-2.25 = 5/3, ratios of printed numbers: both only appear as -15/4 against -15/6 and -9/4 after both points are known, and in decimal display they show no structure. (read) the sum of key and -2.25 is -6 = 2 x 3 and 5 + 1: a sum of two options is not something a student forms, and -6 is the dropped term only after B is found."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B03",
+  "domain": "Algebra",
+  "subskill": "Slope forced by a swapped pair of values",
+  "difficulty": "hard",
+  "prompt": "For a linear function f, there are two different numbers p and q for which f(p) = q and f(q) = p. Also, f(-3) + 2f(9) = 36. What is the value of f(-2)?",
+  "choices": [
+   "5",
+   "9",
+   "19",
+   "23"
+  ],
+  "correct_answer": "19",
+  "explanation": "The graph of y = f(x) contains the points (p, q) and (q, p). Since p and q are different, the slope is (p - q)/(q - p) = -1. So f(x) = -x + c for some constant c. Then f(-3) = 3 + c and f(9) = -9 + c, so (3 + c) + 2(-9 + c) = 36, which gives 3c - 15 = 36 and c = 17. Therefore f(x) = -x + 17, and f(-2) = 2 + 17 = 19.",
+  "solve": "const c = (36 - 3 + 2*9) / 3; return -(-2) + c;",
+  "distractor_solve": {
+   "5": "const c = (36 + 3 - 2*9) / 3; return (-2) + c;",
+   "9": "const c = (36 + 3 - 2*9) / 3; return -(-2) + c;",
+   "23": "const c = (36 - 3 + 9) / 2; return -(-2) + c;"
+  },
+  "mechanism": [
+   "two swapped points force slope -1",
+   "intercept from a weighted sum of outputs",
+   "evaluate the function"
+  ],
+  "quantity_asked": "the value of f(-2)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a value of f at -2; checking it would need f itself, and the stem gives f only through the unknown pair p, q and one weighted sum, so no option can be substituted into a printed condition and confirmed in one step."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading the points (p, q) and (q, p) as giving slope +1 makes f(x) = x + 7; the stem gives no sign of f(-2) under either slope, so the side is not readable."
+   },
+   "9": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "With f(x) = -x + c, substituting f(-3) as c - 3 and f(9) as c + 9 flips both signs, gives c = 7, and f(-2) = 9; whether that intercept is larger or smaller depends on the printed inputs' signs and weights together."
+   },
+   "23": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the coefficient 2 on f(9) gives 2c - 6 = 36 and c = 21; since f(9) = c - 9 can be either sign, nothing says whether losing the factor raises or lowers c."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: f is linear and its outputs are any real numbers; no sign, integer or cap applies to f(-2). All four options survive. The swapped pair forces slope -1, which does not by itself place f(-2).",
+  "interior_parity_check": "Middle values 9 and 19: both positive integers, one and two digits (complexity within one); the key 19 is not the cleaner value.",
+  "arith_class_check": "All four options (5, 9, 19, 23) are odd positive integers; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "f\\(([a-z])\\) = ([a-z])&linear",
+    "f\\(p\\)|f\\(a\\) = b|f\\(r\\) = s",
+    "swap|interchang&linear|line",
+    "f\\(x [-+] [0-9]+\\)&linear",
+    "f\\([0-9]+x [-+]"
+   ],
+   "hits_read": 18,
+   "nearest": "e26c893e / SM26L-B8 (table with a constant c and a 'solution for every k' condition) and the f(x + 4) = f(x) + 14 family: those fix the slope from a printed shift. Here the slope is forced only by recognising that two unknown points (p, q) and (q, p) lie on the line, so it is -1 whatever p and q are; no live or prior item uses that."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might try to find p and q, which is impossible; the decision point is seeing that the pair forces slope -1, and Desmos cannot bypass it because p and q are never given. Options 5 and 9 both come from c = 7; a student who notices two options sharing an intercept still has to know which slope is right. (read) PAIR lines: the difference between 23 and the key is 4 = 2 x 2, which is c = 21 against c = 17 and not a printed step a student could apply. Plug-back is impossible without f. (read) DPAIR key - 9 = 10 = 9 + 1 and 23 - key = 4 = 3 + 1: neither is a step in any path (9 comes from c = 7 with the right slope, 23 from c = 21), and a student holding 9 or 23 has no reason to add printed-number-plus-one to it; the options are not joined by a stem operation."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B04",
+  "domain": "Algebra",
+  "subskill": "Linear function evaluated at a doubled input",
+  "difficulty": "medium",
+  "prompt": "A linear function f takes the value 1 at x = -1 and the value -21 at x = 3. A second function g doubles each input before applying f, so that g(x) = f(2x) for every x. Find g(-5).",
+  "choices": [
+   "9.25",
+   "12",
+   "46",
+   "50.5"
+  ],
+  "correct_answer": "50.5",
+  "explanation": "The slope of f is (-21 - 1)/(3 - (-1)) = -22/4 = -5.5, so f(x) = 1 - 5.5(x + 1) = -5.5x - 4.5. Then g(-5) = f(2(-5)) = f(-10) = -5.5(-10) - 4.5 = 55 - 4.5 = 50.5.",
+  "solve": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(f(2 * -5) * 1000) / 1000;",
+  "distractor_solve": {
+   "12": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(f(-5 + 2) * 1000) / 1000;",
+   "46": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(2 * f(-5) * 1000) / 1000;",
+   "9.25": "const m = (-21 - 1) / (3 - -1); const f = x => 1 + m * (x - -1); return Math.round(f(-5 / 2) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "slope and intercept from two values",
+   "compose with a doubled input",
+   "evaluate"
+  ],
+  "quantity_asked": "the value of g(-5), where g(x) = f(2x)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is an output of g; checking it requires f's slope and intercept from the two printed values and then f(-10), which is the solution. No printed condition takes g(-5) as input."
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding 2 to the input instead of multiplying by 2 (f(-3)); whether that input lies on the key's side depends on the computed slope."
+   },
+   "46": {
+    "error_kind": "wrong_variable",
+    "error_sense": "adds",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reading g(x) = f(2x) as 2f(x) doubles the output f(-5) = 23 instead of the input, which counts f's intercept twice; whether that extra intercept raises or lowers the result depends on its sign, which must be computed (both printed values have opposite signs)."
+   },
+   "9.25": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Halving the input instead of doubling it (f(-2.5)); its side depends on the slope's sign and on where -2.5 and -10 sit relative to the data."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const m = (-21 - 1) / (3 - 1); const f = x => 1 + m * (x - -1); return Math.round(f(2 * -5) * 1000) / 1000;",
+   "direction": "above",
+   "why": "Taking the run from -1 to 3 as 3 - 1 = 2 gives slope -11 and g(-5) = f(-10) = 1 + 99 = 100, above the key."
+  },
+  "far_distractor": {
+   "option": "46",
+   "natural_side": "above",
+   "why": "Doubling the output instead of the input puts in an EXTRA copy of f's intercept, an error that overshoots whenever the intercept is positive; here the intercept is -4.5, found only from the slope -5.5 and f(-1) = 1, so 2f(-5) = 2(23) = 46 falls 4.5 short of f(-10) = 50.5. Nothing printed shows the intercept's sign: one printed value is positive and the other negative."
+  },
+  "cheap_bound_check": "Cheapest bound: f decreases (f(3) < f(-1)), and -10 is left of -1, so g(-5) = f(-10) > f(-1) = 1. All three distractors (9.25, 12, 46) exceed 1, so it strikes none. A tighter bound needs the slope.",
+  "shape_check": "Properties handed over: f is decreasing, so g(-5) = f(-10) > 1; no integer or cap applies. All four options survive every property together.",
+  "interior_parity_check": "Middle values 12 and 46: both two-digit positive integers; the key 50.5 is extreme and is a one-place decimal like 9.25 is a two-place one, so it is not the cleaner value.",
+  "arith_class_check": "Two integers (12, 46) and two decimals (9.25, 50.5); all positive; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "g\\(x\\) = f\\(2x\\)|h\\(x\\) = f\\(2x\\)|f\\(2x\\)&linear",
+    "2f\\(x\\)&f\\(2x\\)",
+    "f\\([2-9]x\\)|g\\([2-9]x\\)|h\\([2-9]x\\)"
+   ],
+   "hits_read": 13,
+   "nearest": "SM26F-B11 (prior): g(x) = f(2x) - 2f(x) is GIVEN as a value to fix f. Here g is just the doubled-input composition, f comes from two printed values, and the f(2x)-versus-2f(x) confusion is a distractor rather than the given; 3a86b5ff (ACT) asks only the slope of f(3x)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: the far distractor 46 (2f(-5)) adds an extra intercept and would overshoot if the intercept were positive; it is -4.5, which takes the slope to find. The halved and shifted inputs land wherever the slope puts them. The cheapest bound (f(-10) > 1, since f decreases) strikes none of the three. No option is an intermediate leading to the key through a printed number in one step: the slope -5.5, the intercept -4.5 and f(-5) = 23 are not options, and from 46 the key needs the unprinted intercept. Plug-back: an output of g cannot be checked against the stem."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B05",
+  "domain": "Algebra",
+  "subskill": "Reflection of a line across y = x",
+  "difficulty": "medium",
+  "prompt": "A line in the xy-plane contains (-2, 1) and (3, -5). When this line is reflected across the graph of y = x, the image is a second line, which contains the point (4, t). What is the value of t?",
+  "choices": [
+   "-6.2",
+   "-5.6",
+   "-4.5",
+   "3.4"
+  ],
+  "correct_answer": "-4.5",
+  "explanation": "Reflecting across the line y = x swaps the coordinates of every point, so (4, t) is on the image line exactly when (t, 4) is on the original line. The slope of the original line is (-5 - 1)/(3 - (-2)) = -6/5 = -1.2, so the original line is y = 1 - 1.2(x + 2). Setting y = 4 gives 4 = 1 - 1.2(t + 2), so t + 2 = -2.5 and t = -4.5.",
+  "solve": "const s = (-5 - 1) / (3 + 2); return Math.round((-2 + (4 - 1) / s) * 1000) / 1000;",
+  "distractor_solve": {
+   "-6.2": "const s = (-5 - 1) / (3 + 2); return Math.round((1 + s * (4 + 2)) * 1000) / 1000;",
+   "3.4": "const s = (-5 - 1) / (3 + 2); return Math.round((1 + s * (-4 + 2)) * 1000) / 1000;",
+   "-5.6": "const s = (-5 - 1) / (3 + 2); return Math.round((-2 + s * (4 - 1)) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "slope from two points",
+   "reflection across y = x swaps coordinates",
+   "solve the original line for the swapped input"
+  ],
+  "quantity_asked": "the y-coordinate t of the point on the reflected line with x-coordinate 4",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const l = x => 1 - 1.2 * (x + 2); return Math.abs(l(v) - 4) < 1e-9;",
+   "why": "After finding line l and recognising that (4, t) on m means (t, 4) on l, a student can test an option v by checking whether l(v) = 4. That takes the slope and the reflection rule first; in ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "-6.2": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the reflection and evaluating line l at x = 4; nothing in the stem compares l(4) with the input l sends to 4."
+   },
+   "3.4": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reflecting across the y-axis instead of y = x (taking t = l(-4)); its side depends on the slope's sign and size, which must be computed."
+   },
+   "-5.6": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Swapping the point (-2, 1) to (1, -2) but keeping slope -1.2 for line m instead of its reciprocal; whether multiplying instead of dividing by 1.2 moves t up or down depends on the sign of 4 - 1, read only after the setup."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: t is any real number (no sign, integer or cap applies); line m has a nonzero finite slope. All four options survive.",
+  "interior_parity_check": "Middle values -5.6 and -4.5: both negative one-place decimals of two significant digits; the key is not the cleaner one.",
+  "arith_class_check": "Three negatives and one positive (3.4, a distractor); all one-place decimals; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "reflect&line y = x|y = x",
+    "inverse&f\\(x\\) = -?[0-9/]+x [-+]",
+    "f\\^-1|f\\^\\(-1\\)|inverse function&linear",
+    "rotat&line"
+   ],
+   "hits_read": 6,
+   "nearest": "SM27F-B12 (prior): line through two points reflected across the y-axis, then evaluated. Here the reflection is across y = x, so the coordinates swap and the student must solve the original line for an input rather than evaluate at a negated input; b65d483c (ISEE) reflects a single point, not a line."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student could try the options in l after finding l, which needs the slope and the swap rule, and reaches the key third in ascending order. The lone positive option 3.4 is a distractor, so a sign class does not single out the key. 3.4 is the y-axis reflection that SM27F-B12 used; a student who has seen that item and picks it is wrong here."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B06",
+  "domain": "Algebra",
+  "subskill": "Line rotated 90 degrees about its x-intercept",
+  "difficulty": "medium",
+  "prompt": "A line in the xy-plane contains (5, 5) and (7, 10). It is turned 90 degrees about its own x-intercept, and the image is a new line. Where does the new line cross the y-axis? Give the y-coordinate of that point.",
+  "choices": [
+   "-7.5",
+   "1.2",
+   "2.8",
+   "3"
+  ],
+  "correct_answer": "1.2",
+  "explanation": "The slope of the original line is (10 - 5)/(7 - 5) = 5/2. Setting y = 0 in y - 5 = (5/2)(x - 5) gives x - 5 = -2, so the original line crosses the x-axis at (3, 0). A 90-degree rotation about (3, 0) turns the original line into the line through (3, 0) perpendicular to it, so the new line has slope -2/5 and equation y = (-2/5)(x - 3). At x = 0, y = 6/5 = 1.2.",
+  "solve": "const m = (10 - 5) / (7 - 5); const a = 5 - 5 / m; return Math.round((-1 / m) * (0 - a) * 1000) / 1000;",
+  "distractor_solve": {
+   "3": "const m = (10 - 5) / (7 - 5); return Math.round((5 - 5 / m) * 1000) / 1000;",
+   "-7.5": "const m = (10 - 5) / (7 - 5); return Math.round((5 - m * 5) * 1000) / 1000;",
+   "2.8": "const m = (10 - 5) / (7 - 5); const a = 5 + 5 / m; return Math.round((-1 / m) * (0 - a) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "slope from two points",
+   "x-intercept as the pivot",
+   "perpendicular line through the pivot",
+   "y-intercept of the image"
+  ],
+  "quantity_asked": "the y-coordinate of the y-intercept of the rotated line k",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is the y-intercept of a line that exists only after the pivot and the perpendicular slope are found; no printed equation or condition takes it as input, so it cannot be checked against the stem in one step."
+  },
+  "distractor_meta": {
+   "3": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Rotating about the origin instead sends l's x-intercept (3, 0) to (0, 3); whether that lands above or below the true intercept depends on the slope, which must be computed."
+   },
+   "-7.5": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Rotating about the y-intercept of line l instead of the x-intercept leaves the y-intercept fixed at -7.5; the stem does not show where l crosses either axis."
+   },
+   "2.8": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Solving 0 - 5 = (5/2)(x - 5) as x - 5 = +2 puts the pivot at (7, 0); the side of the resulting intercept depends on the perpendicular slope's sign."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: a y-intercept can be any real number; line k is neither vertical nor horizontal since l has a nonzero slope. All four options survive.",
+  "interior_parity_check": "Middle values 1.2 and 2.8: both one-place decimals of two significant digits; the key is not the cleaner one (the integer 3 is a distractor, outside the middle pair).",
+  "arith_class_check": "Values -7.5, 1.2, 2.8, 3: one negative and one integer, both distractors; the key shares its form (one-place decimal) with 2.8 and -7.5, so it is alone in no parity, sign, integrality or roundness class.",
+  "dup_search": {
+   "queries": [
+    "rotat&line",
+    "perpendicular&x-intercept|x-axis",
+    "perpendicular",
+    "reflect&line y = x|y = x"
+   ],
+   "hits_read": 52,
+   "nearest": "3d7b763b / 5b128a55: a perpendicular through a PRINTED point, then an intercept. Here the pivot is not printed: it is l's own x-intercept, found from two points, and the student must recognise that a 90-degree rotation about a point on the line gives the perpendicular through that point."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Lower-interior key: a test-wise student cannot substitute an option into the stem, since the y-intercept of k is defined only by the rotation; checking one means doing the problem. The integer 3 might look clean, but it is a distractor (the origin-pivot error). Wrong-pivot errors (-7.5 and 3) and the pivot sign slip (2.8) fall on both sides of the key. (read) DPAIR the sum of the key and 2.8 is 4 = 5 - 1: a sum of two options is not something a student forms, and 4 is not a step of any path (the pivots are 3 and 7)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B07",
+  "domain": "Algebra",
+  "subskill": "Slope of a line through a computed midpoint",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, triangle ABC has vertices A(-1, 10), B(-4, 7), and C(6, -9). Point M is the midpoint of side BC. What is the slope of the line through A and M?",
+  "choices": [
+   "-5.5",
+   "-4",
+   "-3",
+   "-1.6"
+  ],
+  "correct_answer": "-5.5",
+  "explanation": "The midpoint of BC is M = ((-4 + 6)/2, (7 + (-9))/2) = (1, -1). The slope of the line through A(-1, 10) and M(1, -1) is (-1 - 10)/(1 - (-1)) = -11/2 = -5.5.",
+  "solve": "const mx = (-4 + 6) / 2, my = (7 + -9) / 2; return (my - 10) / (mx - -1);",
+  "distractor_solve": {
+   "-3": "const mx = (6 - -4) / 2, my = (-9 - 7) / 2; return (my - 10) / (mx - -1);",
+   "-1.6": "return (-9 - 7) / (6 - -4);",
+   "-4": "const mx = -4 + 6, my = 7 + -9; return (my - 10) / (mx - -1);"
+  },
+  "mechanism": [
+   "midpoint of a side",
+   "slope through a vertex and the midpoint"
+  ],
+  "quantity_asked": "the slope of the line through A and the midpoint of BC",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a slope; no printed equation or condition takes a slope as input, so the only way to test one is to find M and compute the slope, which is the solution."
+  },
+  "distractor_meta": {
+   "-3": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Halving the DIFFERENCES of B and C's coordinates instead of their sums gives the point (5, -8); where that point sits relative to M depends on all four coordinates."
+   },
+   "-1.6": {
+    "error_kind": "wrong_variable",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reporting the slope of side BC instead of the line through A and M; nothing in the stem compares the two lines' steepness."
+   },
+   "-4": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adding the coordinates of B and C but not dividing by 2 uses the point (2, -2); whether doubling the midpoint makes the slope steeper or shallower depends on where M lies relative to A."
+   }
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "const mx = (-4 + 6) / 2, my = -9; return (my - 10) / (mx - -1);",
+   "direction": "below",
+   "why": "Averaging only the x-coordinates and taking C's y-coordinate as the midpoint's (M = (1, -9)) gives slope -19/2 = -9.5, below the key."
+  },
+  "far_distractor": {
+   "option": "-4",
+   "natural_side": "below",
+   "why": "Skipping the division by 2 is an early stop that ordinarily leaves a result short of the key, but the undivided point (2, -2) sits farther to the RIGHT of A than M does (run 3 instead of 2) while the rise grows only from -11 to -12, so the slope -4 is shallower and lands above the key; whether doubling the midpoint steepens or flattens the line depends on the computed sums 2 and -2 against A's coordinates."
+  },
+  "cheap_bound_check": "Cheapest bound: AM lies inside angle BAC, so its slope is not between the slopes of AB (1) and AC (-19/7, about -2.7); with B left of A and C right of A that means slope <= -2.7 or >= 1. That strikes only -1.6; -3 and -4 sit on the key's side. All four options are negative, so no sign bound strikes any.",
+  "shape_check": "Properties handed over: AM is not vertical (M has x-coordinate 1, A has -1); its slope is a rational number outside (-2.7, 1) by the angle bound. Key, -4 and -3 survive every property together.",
+  "interior_parity_check": "Middle values -4 and -3: both negative one-digit integers; the key -5.5 is extreme and is a one-place decimal, like the distractor -1.6.",
+  "arith_class_check": "Two integers (-4, -3) and two one-place decimals (-5.5, -1.6); all negative; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "midpoint&slope",
+    "midpoint&intercept",
+    "through the x-intercept|passes through the y-intercept|contains the x-intercept"
+   ],
+   "hits_read": 4,
+   "nearest": "e17fb2dd (sat-form24): perpendicular bisector of a segment through its midpoint, asked for a y-intercept. Here no perpendicular is involved: the midpoint of one side joins the opposite vertex, and the ask is that line's slope."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: the half-difference point, the side slope and the undoubled midpoint each land wherever the coordinates put them. The far distractor -4 (no division by 2) would undershoot only if the doubled point steepened the line; here it flattens it, which takes the midpoint to see. The angle bound strikes only -1.6. No option is an intermediate: M itself is not an option, and no option yields the key through a printed equation. Plug-back: a slope cannot be checked against the stem."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B08",
+  "domain": "Algebra",
+  "subskill": "Vertical gap between two lines at a given x",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l has equation 8x + 5y = 11 and line m has equation -3x + 2y = 18. At x = 3, how many units above line l is line m?",
+  "choices": [
+   "6.5",
+   "7.1",
+   "10.9",
+   "16.1"
+  ],
+  "correct_answer": "16.1",
+  "explanation": "At x = 3, line l gives 24 + 5y = 11, so y = -13/5 = -2.6. Line m gives -9 + 2y = 18, so y = 27/2 = 13.5. Line m is 13.5 - (-2.6) = 16.1 units above line l at x = 3.",
+  "solve": "const yl = (11 - 8*3) / 5, ym = (18 + 3*3) / 2; return Math.round((ym - yl) * 1000) / 1000;",
+  "distractor_solve": {
+   "10.9": "const yl = (11 - 8*3) / 5, ym = (18 + 3*3) / 2; return Math.round((ym + yl) * 1000) / 1000;",
+   "6.5": "const yl = (11 + 8*3) / 5, ym = (18 + 3*3) / 2; return Math.round((ym - yl) * 1000) / 1000;",
+   "7.1": "const yl = (11 - 8*3) / 5, ym = (18 - 3*3) / 2; return Math.round((ym - yl) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "evaluate each standard-form line at x = 3",
+   "vertical gap as a difference of y-values"
+  ],
+  "quantity_asked": "the vertical distance from line l up to line m at x = 3",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a distance between two lines at x = 3; checking it requires both lines' y-values at x = 3, which is the solution. No printed condition takes the distance as input."
+  },
+  "distractor_meta": {
+   "10.9": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the two y-values (13.5 + (-2.6)) instead of subtracting; whether the sum exceeds the difference depends on the sign of line l's y-value at x = 3, which is not printed."
+   },
+   "6.5": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Solving 8x + 5y = 11 as y = (11 + 8x)/5 flips l's slope and gives y = 7 at x = 3; which way that moves the gap depends on both lines' values."
+   },
+   "7.1": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Solving -3x + 2y = 18 as y = (18 - 3x)/2 flips m's slope and gives y = 4.5 at x = 3; the stem gives no way to see the effect without both values."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const yl = (-11 - 8*3) / 5, ym = (18 + 3*3) / 2; return Math.round((ym - yl) * 1000) / 1000;",
+   "direction": "above",
+   "why": "Moving 11 to the wrong side for line l (5y = -11 - 24) gives y = -7 and a gap of 20.5, above the key."
+  },
+  "far_distractor": {
+   "option": "10.9",
+   "natural_side": "above",
+   "why": "Adding two y-values instead of subtracting ordinarily gives MORE than the gap between them, but line l's y-value at x = 3 is -2.6, below the x-axis, so 13.5 + (-2.6) is less than 13.5 - (-2.6); line l's y-intercept is positive (11/5), so that it is negative at x = 3 is found only by the substitution."
+  },
+  "cheap_bound_check": "Cheapest bound: at x = 0 the gap is 9 - 2.2 = 6.8 and the lines diverge to the right (slopes 1.5 and -1.6), so the gap at x = 3 exceeds 6.8. That strikes only 6.5; 7.1 and 10.9 sit on the key's side. Gap > 0 strikes nothing.",
+  "shape_check": "Properties handed over: m is above l at x = 3 (stated), so the gap is positive; no integer or cap applies. All four options are positive one-place decimals and survive; by the bound above, 7.1, 10.9 and 16.1 survive together.",
+  "interior_parity_check": "Middle values 7.1 and 10.9: both one-place decimals; the key 16.1 is the same form.",
+  "arith_class_check": "All four are positive one-place decimals; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "how far above|units above|vertically above|directly above&line",
+    "moved horizontally|moved vertically",
+    "perpendicular"
+   ],
+   "hits_read": 45,
+   "nearest": "SM28F-B05 (prior): the HORIZONTAL segment between two parallel lines cut by a horizontal line. Here the lines are not parallel, the gap is vertical at a printed x, and one line is below the x-axis there."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the errors go: the add-instead-of-subtract error would overshoot if both lines were above the axis at x = 3, and l's positive y-intercept suggests it is; it is not, which only the substitution shows. The cheapest bound (gap at x = 0 is 6.8, lines diverge) strikes only 6.5. No option is an intermediate leading to the key through a printed equation: neither y-value (-2.6, 13.5) is an option. The key and 10.9 average to 13.5, m's y-value, which is computed and not printed. Plug-back: a distance cannot be checked against the stem. (read) DPAIR key - 7.1 = 9 = 8 + 1: the 9 is the product 3 x 3 from m's x-term at x = 3 (the amount the slope slip removes, doubled then halved), not a printed number plus one, and a student holding 7.1 has no reason to add 9."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B09",
+  "domain": "Algebra",
+  "subskill": "Linear model in context: extrapolate below the data",
+  "difficulty": "medium",
+  "prompt": "A store models its weekly profit P, in hundreds of dollars, as a linear function of the number of hours n that it is open on Sundays. The model gives P = 8.5 when n = 6 and P = 16.5 when n = 10. According to the model, what profit, in hundreds of dollars, does the store make in a week when it is open 4 hours on Sunday?",
+  "choices": [
+   "4.5",
+   "5.3",
+   "7.5",
+   "8"
+  ],
+  "correct_answer": "4.5",
+  "explanation": "The rate of change of P is (16.5 - 8.5)/(10 - 6) = 8/4 = 2 hundred dollars per hour. Going from 6 hours down to 4 hours is a change of -2 hours, so P changes by 2(-2) = -4. The profit at 4 hours is 8.5 - 4 = 4.5 hundred dollars.",
+  "solve": "const m = (16.5 - 8.5) / (10 - 6); return Math.round((8.5 + m * (4 - 6)) * 1000) / 1000;",
+  "distractor_solve": {
+   "8": "const m = (16.5 - 8.5) / (10 - 6); return Math.round((m * 4) * 1000) / 1000;",
+   "5.3": "const m = (16.5 - 8.5) / (10 - 6 + 1); return Math.round((8.5 + m * (4 - 6)) * 1000) / 1000;",
+   "7.5": "const m = (16.5 - 8.5) / (10 - 6); return Math.round((8.5 - (6 - 4) / m) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "rate of change from two model values",
+   "extrapolate below the data range",
+   "intercept sign decides the proportional shortcut"
+  ],
+  "quantity_asked": "the modeled weekly profit, in hundreds of dollars, at 4 Sunday hours",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is a model output at n = 4; checking it requires the rate of change and the line through the two printed values, which is the solution. No printed condition takes the profit at 4 hours as input."
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating P as proportional to n (2 x 4) leaves out the model's intercept; whether leaving it out raises or lowers the answer depends on the intercept's sign, which is not printed (both printed profits are positive)."
+   },
+   "5.3": {
+    "error_kind": "other",
+    "error_sense": "adds",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Counting the hours from 6 to 10 inclusively (5 instead of 4) shrinks the rate to 1.6; the effect on the answer depends on the direction of the extrapolation and the rate, which must be computed together."
+   },
+   "7.5": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Using hours per hundred dollars (1/2 = 0.5) as the rate gives a change of only 1; whether the inverted rate is larger or smaller than the true one depends on the computed rate."
+   }
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "const m = (16.5 - 8.5) / (10 - 6); return Math.round((8.5 - m * 6) * 1000) / 1000;",
+   "direction": "below",
+   "why": "Stepping all the way back to n = 0 (the intercept) instead of to n = 4 gives -3.5, below the key."
+  },
+  "far_distractor": {
+   "option": "8",
+   "natural_side": "below",
+   "why": "Leaving out a term is an early-stop error that ordinarily falls short, but the term left out is the intercept, -3.5, NEGATIVE although both printed profits are positive; it is negative only because the computed rate (2 per hour) carries the line below zero before n = 0, so dropping it gives 2 x 4 = 8, above the key. A student who recognised the proportional error would still need the intercept's sign to place it."
+  },
+  "cheap_bound_check": "Cheapest bound: profit rises with hours (16.5 > 8.5), so the profit at 4 hours is below 8.5. All three distractors (5.3, 7.5, 8) are below 8.5, so it strikes none; a lower bound needs the rate.",
+  "shape_check": "Properties handed over: the model is increasing, so P(4) < 8.5; no sign, integer or cap otherwise. All four options survive every property together.",
+  "interior_parity_check": "Middle values 5.3 and 7.5: both one-place decimals of two significant digits; the key 4.5 is the same form.",
+  "arith_class_check": "Three one-place decimals and one integer (8, a distractor); all positive; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "profit&linear&hours",
+    "temperature&altitude|elevation|height",
+    "starting (with|in|after) week|beginning (with|in) week|after week [0-9]+&rate|increase"
+   ],
+   "hits_read": 5,
+   "nearest": "Generic two-point linear models (e.g. SM28F-B09 spring length) solve for an input or interpolate; here the input is below the data range and the model's intercept is negative although every printed value is positive, so a proportional shortcut overshoots."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work: the far distractor 8 (proportional, intercept dropped) would undershoot if the intercept were positive, as the positive printed profits suggest; it is -3.5. The fencepost error 5.3 and the inverted rate 7.5 each land wherever the computed rate puts them. No cheap bound strikes any option: P(4) < 8.5 leaves all three. Intermediate check: the rate 2 is not an option, and 8 = 2 x 4 does not give the key through a printed number (it needs the unprinted intercept). Plug-back: an output at n = 4 cannot be checked against the stem. (read) PAIR/DPAIR lines on 7.5: the key and 7.5 are 8.5 - 4 and 8.5 - 1 (the true change over 2 hours against the inverted-rate change); their sum 12 = 2 x 6, ratio 6/10 and difference 3 = 4 - 1 are by-products of those two changes, and no option yields the key by one operation with a printed number a student would apply."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B10",
+  "domain": "Algebra",
+  "subskill": "Rate of change in context: change in input from change in output",
+  "difficulty": "medium",
+  "prompt": "The reading R on a miscalibrated bathroom scale is a linear function of a person's true weight w, both in kilograms. For a true weight of 15 kilograms the scale reads 20 kilograms, and for a true weight of 40 kilograms it reads 50 kilograms. Over one month, a person's reading on this scale went up by 3 kilograms. By how many kilograms did the person's true weight go up?",
+  "choices": [
+   "2.25",
+   "2.4",
+   "2.5",
+   "3.6"
+  ],
+  "correct_answer": "2.5",
+  "explanation": "The rate of change of the reading with respect to true weight is (50 - 20)/(40 - 15) = 30/25 = 1.2 kilograms of reading per kilogram of true weight. A change of 3 kilograms in the reading therefore corresponds to a change of 3/1.2 = 2.5 kilograms in true weight.",
+  "solve": "const s = (50 - 20) / (40 - 15); return Math.round((3 / s) * 1000) / 1000;",
+  "distractor_solve": {
+   "3.6": "const s = (50 - 20) / (40 - 15); return Math.round((3 * s) * 1000) / 1000;",
+   "2.25": "return Math.round((3 * 15 / 20) * 1000) / 1000;",
+   "2.4": "return Math.round((3 * 40 / 50) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "rate of change from two readings",
+   "convert a change in output to a change in input"
+  ],
+  "quantity_asked": "the change in true weight that matches a 3-kilogram change in the reading",
+  "ask_type": "rate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(v * (50 - 20) / (40 - 15) - 3) < 1e-9;",
+   "why": "After finding the rate 1.2, a student can test an option v by checking whether 1.2v = 3. That needs the rate first; in ascending order the key is the third option tried."
+  },
+  "distractor_meta": {
+   "3.6": {
+    "error_kind": "inverted_rate",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Multiplying the reading change by the rate instead of dividing; whether that is larger or smaller depends on whether the computed rate exceeds 1."
+   },
+   "2.25": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Leaving out the scale's offset and treating the reading as proportional to true weight, with the ratio 20/15 from the first pair as the rate; whether dropping the offset raises or lowers the answer depends on the sign of the computed intercept."
+   },
+   "2.4": {
+    "error_kind": "wrong_base",
+    "error_sense": "swaps",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating the scale as proportional and using the ratio 50/40 from the second pair; like 2.25 it ignores the offset, and the stem does not show which way that moves the answer."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: the reading rises faster than the true weight (30 against 25), so the true change is less than 3 (strikes only 3.6); the change is positive. Key, 2.25 and 2.4 survive every property together.",
+  "interior_parity_check": "Middle values 2.4 and 2.5: both one-place decimals of two significant digits; the key is not the cleaner of the two.",
+  "arith_class_check": "All four are positive non-integer decimals (2.25 two places, the rest one); the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "reading&linear&increase|increases by",
+    "corresponds to&change|increase&scale",
+    "temperature&altitude|elevation|height"
+   ],
+   "hits_read": 5,
+   "nearest": "SM26F-B02 / SM28F-B07 (prior): a miscalibrated gauge or two thermometers, asked for the reading where both scales agree (a fixed point). Here the ask is a CHANGE in the input for a given change in the output, so the intercept drops out and only the rate matters; the proportional (ratio) distractors fail precisely because they ignore the offset."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Upper-interior key: a student who finds the rate can check options by multiplying by 1.2, and in ascending order reaches the key on the third try. The cheapest bound (the reading rises faster, so the answer is under 3) strikes only 3.6. No option is an intermediate: the rate 1.2 is not an option, and none of 2.25, 2.4 or 3.6 gives the key through a printed number in one step. The two proportional distractors sit close to the key, so the key is not singled out by spacing."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM29F-B11",
+  "domain": "Algebra",
+  "subskill": "Linear function from outputs at unknown inputs",
+  "difficulty": "hard",
+  "prompt": "For some number k other than zero, the outputs of a linear function f at the three inputs k, 2k, and 3k + 5 are -6, -3, and 6, respectively. Compute f(-4).",
+  "choices": [
+   "-13.8",
+   "-10.6",
+   "-6.6",
+   "-4.2"
+  ],
+  "correct_answer": "-13.8",
+  "explanation": "Write f(x) = mx + b. Then mk + b = -6 and 2mk + b = -3. Subtracting gives mk = 3, and then b = -6 - 3 = -9. The third condition is m(3k + 5) + b = 6, that is, 3mk + 5m + b = 6. Substituting mk = 3 and b = -9 gives 9 + 5m - 9 = 6, so m = 1.2. Therefore f(x) = 1.2x - 9 and f(-4) = -4.8 - 9 = -13.8.",
+  "solve": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 3*d) / 5; return Math.round((m*(-4) + b) * 1000) / 1000;",
+  "distractor_solve": {
+   "-10.6": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 3*d) / 15; return Math.round((m*(-4) + b) * 1000) / 1000;",
+   "-4.2": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 3*d) / 5; return Math.round((b - m*(-4)) * 1000) / 1000;",
+   "-6.6": "const d = -3 - (-6); const b = -6 - d; const m = (6 - 3*d) / 5; return Math.round((m*(-4) + b) * 1000) / 1000;"
+  },
+  "mechanism": [
+   "eliminate the unknown input spacing (mk)",
+   "intercept from two outputs",
+   "slope from the third condition",
+   "evaluate"
+  ],
+  "quantity_asked": "the value of f(-4)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "An option is an output at -4; checking it needs the slope and intercept, which come only from eliminating the unknown k across all three conditions, so no option can be substituted into a printed condition and confirmed in one step."
+  },
+  "distractor_meta": {
+   "-10.6": {
+    "error_kind": "wrong_operation",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treating the input 3k + 5 as 3(k + 5) makes the third condition 9 + 15m - 9 = 6 and m = 0.4; whether a smaller slope raises or lowers f(-4) depends on the signs of m and of the input, found only after solving."
+   },
+   "-4.2": {
+    "error_kind": "sign_slip",
+    "error_sense": "swaps",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Evaluating as b - 4m instead of b + m(-4); its side depends on the sign of the computed slope, which the stem does not show (k may be negative)."
+   },
+   "-6.6": {
+    "error_kind": "omission",
+    "error_sense": "omits",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Leaving b out of the third condition (3mk + 5m = 6) gives m = -0.6; whether that moves f(-4) up or down depends on the sign of b, which is computed as 2f(k) - f(2k), not printed."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const d = -3 - (-6); const b = -6 - d; const m = (6 - b - 2*d) / 5; return Math.round((m*(-4) + b) * 1000) / 1000;",
+   "direction": "below",
+   "why": "Writing the third condition with 2mk in place of 3mk (copying the coefficient from f(2k)) gives 6 + 5m - 9 = 6, m = 1.8, and f(-4) = -16.2, below the key."
+  },
+  "far_distractor": {
+   "option": "-6.6",
+   "natural_side": "below",
+   "why": "Dropping a term is an early-stop error that ordinarily gives a smaller result, but the dropped term is the intercept b = -9, a NEGATIVE number found only from 2f(k) - f(2k); leaving it out of 3mk + 5m + b = 6 makes the slope smaller (m = -0.6 instead of 1.2), and at the negative input -4 a smaller slope gives a LARGER output, so -6.6 lands above the key. Both the sign of b and the sign of the slope have to be computed to place it."
+  },
+  "cheap_bound_check": "No cheap one-sided bound: k may be positive or negative, so f(k) = -6 < f(2k) = -3 does not fix the slope's sign, and nothing printed bounds f(-4). All three distractors stay on the key's side of every bound a student could read without solving.",
+  "shape_check": "Properties handed over: f(-4) is any real number; no sign, integer or cap applies. All four options survive.",
+  "interior_parity_check": "Middle values -10.6 and -6.6: both negative one-place decimals of two to three significant digits; the key -13.8 is the same form, not cleaner.",
+  "arith_class_check": "All four are negative one-place decimals; the key is not alone in parity, sign, integrality or roundness.",
+  "dup_search": {
+   "queries": [
+    "f\\(2k\\)|f\\(k\\)|f\\(3k",
+    "f\\(x [-+] [0-9]+\\)&linear",
+    "f\\([0-9]+x [-+]",
+    "f\\(([a-z])\\) = ([a-z])&linear"
+   ],
+   "hits_read": 21,
+   "nearest": "84246d75 / 07230a9c: a linear f with a printed input shift (f(x + 4) = f(x) + 14). Here the input spacing k is unknown and is never solved for directly: the student must eliminate mk between f(k) and f(2k), read the intercept, and only then use the third condition for the slope."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Decision point: the inputs k, 2k, 3k + 5 are unknown, and the routine move (find k) stalls until the student treats mk as one unknown; Desmos cannot plot this without that step. Covering the work, a student cannot tell which way the errors go: each distractor's side depends on the computed signs of b (-9) and m (1.2) together with the negative input. The far distractor -6.6 (b dropped) would undershoot in a positive-intercept problem and here lands above. No cheap bound: the slope's sign is not readable because k may be negative. Plug-back: an output at -4 cannot be checked without f."
+  },
+  "bounds": []
+ }
+]
