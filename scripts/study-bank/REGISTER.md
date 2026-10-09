@@ -190,6 +190,23 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-09** — **TOEFL FORM DEPTH MEASURED: LISTENING IS THE ONLY SECTION UNDER 8, AT 5 CLEAN SITTINGS ON THE LOWER PATH, BOUND BY ANNOUNCEMENT SET SHAPE. `announcement-v5` (15 two-question sets) WAS AUTHORED TO MOVE IT 5 -> 8 AND IS HELD AT G4: G1 PASSED (+3.3), G2 DROPPED 9 OF 15 SETS. NOTHING GRADED, NOTHING INSERTED; LIVE STAYS 5.** Pre-registered alone in `9d6c33e4` (`PREREG-ANNOUNCEMENT-V5-2026-10-09.md`), frozen in `9b069682` (sha `669cacce`) before any solver. Ledger `announcement-v5-2026-10-09`. Every agent Claude.
+
+        toefl-form-depth.ts (live, TRIALS=3), clean sittings min[max]:
+                     lower/easy  lower/medium  upper/medium  upper/hard
+        reading          14          14            23          20[21]   daily_life (lower), academic_passage (upper)
+        listening         5           5            11          11       announcement; conversation ties at upper/hard
+        writing          16          16            16          16       arrange_words
+        speaking         18          18            18          18       speaking_repeat
+
+  **Sizing** (`toefl-depth-work/depth-inject.ts`, fake sets injected into the live pool, real assembler; baseline reproduces 5/5/11/11): 6 three-sets -> 7; 6 / 8 / 10 / 12 two-sets -> 8 / 9 / 10 / 11 (then Choose a Response binds at 11); difficulty label irrelevant. Live Announcement is 20x4 / 9x3 / 7x2 and a 6-quota is 4+2 or 3+3, so each two-set unlocks a stranded four-set. **6 kept two-sets = +3 forms.**
+
+  **Method:** conv-hard-v2 transplanted to one speaker (dl-fresh flat prior + form symmetry + authored atypical and revised facts + disjoint name pools + R1-R5), question kinds / key-length ranks / grid-key direction assigned per set. G0 clean (key uniquely longest 8/30, shortest 8/30; joins clean). **G1 no-passage, SPLIT=2, three Haiku samples: 27/90 = 30.0% vs letter control 26.7%, +3.3 (bar +15), PASS**; the same samples read the 7 live two-sets at 35/42 = 83.3%, so on this run the instrument separated the candidates from the shipped bank. Unanimity 17/30 vs 11/14.
+
+  **G2 is where it stopped, and the clause that stopped it was mine and wrong.** I registered "a KEY certain-rejected by any sample drops its set" on top of conv-hard-v2's distractor rule. In an atypical-fact design the key is by construction the option priors reject (AN5-14-2: all three samples certain-rejected "the loading dock at 6:30 a.m." for the car park at 8:15). 7 of the 9 drops are that clause; the distractor rule alone drops 2 (AN5-09, AN5-10). **Not re-decided** (CLAUDE.md: a rule found after the number is for the next batch). The Haiku samples also certain-rejected loosely: 33 options on 28 of 90 item-reads, 10 of them keys, so this elimination signal is noisy both ways.
+
+  **For the next Announcement batch:** same briefs, G2 = distractor certain-reject by >= 2 of 3 only, key rejects reported; fresh sets. Also measured: no co-founder sitting was drawable today (`ssat-wv6-cofounder-2026-10-07` open, `act-english-v9` B16 queued), and the listening inserter now takes `BANK_VERIFIED=false` (`237cbf96`) for the staged route the prereg chose. → `ANNOUNCEMENT-V5-RESULT.md`, `announcement-v5.batch.json`, `toefl-depth-work/ann5/`, `ann5-f{1,2}.*`, `ann5ctrl-f{1,2}.*`, `ann5-ws.{md,key.json}` (unused)
+
 - **2026-10-09** — **ISEE MATH 6 → 7 CLEAN FORMS: `isee-math-s16` INSERTED 103 OF 111 FROZEN (114 AUTHORED). isee/math 513 → 616 (form 7 needed 588; form 8 needs 672, +56).** Pre-registered alone in `784a73a6` (`isee-math-s16.prereg.md`), frozen in `de81f3eb` (sha `901bcdbd`) before any solver or grader. Ledger `isee-math-s16-2026-10-09`.
 
         before    ISEE math 513 / 84 per test = 6 clean (form 7 needs 588)

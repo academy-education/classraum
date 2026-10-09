@@ -7531,6 +7531,56 @@
           "verdict": "Two Claude graders on independently shuffled renders (seeds 20261110/11): 74/75 and 74/75 on key (both miss SVA19-16). Per-item drops 27: 24 both graders no tempting distractor, 3 second-defensible/invalid (SVA19-16, -40, -75); 0 above band, 0 free identification. Kept 48/75. DIFFICULTY GATE HOLD: banked (easier label) 22 easy / 23 medium / 3 hard, easy 22/48 = 45.8% > 40%. Graders 28/34/13 and 32/38/5 overall; each alone on the kept set 17/48 and 18/48 easy (diagnostic, not a re-decision)."
         }
       }
+    },
+    {
+      "id": "announcement-v5-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "toefl",
+      "section": "listening",
+      "task": "announcement",
+      "family": "mc_hidden_source",
+      "spec": {
+        "n": 30,
+        "sets": 15,
+        "authors": 5,
+        "method": "conv-hard-v2 method transplanted to single-speaker announcements (dl-fresh flat prior + form symmetry + authored atypical/revised facts + disjoint name pools + R1-R5), two-question sets commissioned per PREREG-ANNOUNCEMENT-V5-2026-10-09.md (9d6c33e4); Opus authors"
+      },
+      "contentSha": "669cacce8b98554b0bc4df52bd3c699bbfc65559f0722a7cf9d4ffefc3ac0497",
+      "status": "qc",
+      "cohort": null,
+      "note": "HELD at G4, not inserted, not graded. G1 passed (+3.3); G2 dropped 9 of 15 sets (limit 6), 7 of them under a key-certain-rejected-by-any-sample clause that is mis-specified for an atypical-fact design (the key is by construction the option priors reject). Not re-decided: the corrected rule (distractor certain-reject >= 2 of 3 only, as conv-hard-v2) applies to the next batch. ANNOUNCEMENT-V5-RESULT.md; REGISTER section 5, 2026-10-09.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "669cacce8b98554b0bc4df52bd3c699bbfc65559f0722a7cf9d4ffefc3ac0497",
+          "verdict": "ann5-preflight.mjs (self-test 6 plants): 30 items / 15 sets, 90-170 words, keys on commissioned length ranks, key uniquely longest 8/30 and shortest 8/30, Jaccard < 0.5 vs 121 live Announcement passages, no name reused across sets; check-batch-joins clean over 30."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "669cacce8b98554b0bc4df52bd3c699bbfc65559f0722a7cf9d4ffefc3ac0497",
+          "n": 30,
+          "mean": 30,
+          "control": 26.7,
+          "margin": 3.3,
+          "unanimousRate": 56.7,
+          "liveControl": {
+            "n": 14,
+            "mean": 83.3,
+            "unanimousRate": 78.6,
+            "note": "7 live Announcement two-sets, same render and same solver agents; reported only"
+          },
+          "verdict": "SPLIT=2 make-attack, three Claude Haiku samples per file: 27/90 picks. PASS (<= +15). Solved 3/3: AN5-02-2, -06-1, -11-1, -13-1, -15-2."
+        },
+        "elimination": {
+          "passed": false,
+          "contentSha": "669cacce8b98554b0bc4df52bd3c699bbfc65559f0722a7cf9d4ffefc3ac0497",
+          "verdict": "Registered rule: option certain-rejected by >= 2 of 3 samples, or the KEY certain-rejected by any sample, drops the set. Distractor drops AN5-09, AN5-10; key drops AN5-01, -02, -05, -06, -08, -11, -14 (AN5-14-2 by all three). 9 of 15 > 6 -> G4 HOLD. Samples marked 33 certain-rejects on 28 of 90 item-reads, 10 on the key: noisy, not at the 10-to-1 standard."
+        },
+        "withsource": {
+          "passed": false,
+          "verdict": "Not run: the batch stopped at G4 (stop at the first failure). Render ann5-ws.md / ann5-ws.key.json prepared, unused."
+        }
+      }
     }
   ],
   "auditedCohorts": [

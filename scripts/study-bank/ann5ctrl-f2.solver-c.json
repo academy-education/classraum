@@ -1,0 +1,10 @@
+{
+  "1": {"pick": "D", "basis": "confident", "certain_reject": [], "why": "Official office storage with deadline is institutional procedure for valuables"},
+  "2": {"pick": "A", "basis": "confident", "certain_reject": [], "why": "Confirmation email link + 24hr advance is formal ticket change procedure"},
+  "3": {"pick": "C", "basis": "confident", "certain_reject": ["B"], "why": "Announcements emphasize partial impact; complete shutdown would cause panic"},
+  "4": {"pick": "B", "basis": "confident", "certain_reject": ["D"], "why": "Reduced frequency + shuttle buses is realistic transit disruption; full cancellation less likely announced"},
+  "5": {"pick": "C", "basis": "confident", "certain_reject": [], "why": "Specific elevator + gallery location details suggest announced accessibility guidance"},
+  "6": {"pick": "A", "basis": "confident", "certain_reject": [], "why": "Photography restrictions most common gallery rule; children not typically explicitly banned"},
+  "7": {"pick": "C", "basis": "confident", "certain_reject": ["B", "D"], "why": "Fire drill participation required; consequence is potential lateness, not exemption"},
+  "_heuristics": "Official institutional procedures (office storage, email confirmation, specific accessibility) - 4 picks; Logical constraints (partial > complete disruption, photography > children bans, drill participation) - 3 picks"
+}

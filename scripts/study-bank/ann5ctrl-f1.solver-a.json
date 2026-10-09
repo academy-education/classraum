@@ -1,0 +1,45 @@
+{
+  "1": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Advance staff notification is standard accessibility procedure; only 15-minute advance typical"
+  },
+  "2": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Capacity management is primary institutional reason for timed entry; sales-focus (A) contradicts 'ensure safe experience'"
+  },
+  "3": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Advance warning of temporary service loss allows resident preparation; permanent change (A) tone is wrong"
+  },
+  "4": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Scheduled safety inspection with procedures is standard resident announcement content"
+  },
+  "5": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Check-in at temporary desk is standard ticketed-entry procedure for visitors"
+  },
+  "6": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Fire safety requires waiting for assistance; elevators (B) are explicitly contraindicated in evacuation"
+  },
+  "7": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Advance email contact (3 days) is institutional standard for group bookings and planning"
+  },
+  "_heuristics": "fire-safety-standard-practice (1), institutional-capacity-management (1), advance-warning-preparation (1), accessibility-advance-notification (1), ticketed-entry-desk-checkin (1), advance-group-contact (1), evacuation-never-elevators (1)"
+}

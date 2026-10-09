@@ -1,0 +1,93 @@
+{
+  "1": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Evening availability ('after 8 p.m.') directly addresses 'out every evening' need"
+  },
+  "2": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Evening audition time (7:30 p.m.) more typical for student event than 4 p.m."
+  },
+  "3": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Old equipment (20 years) explains uneven output; statement frames consequence for this week"
+  },
+  "4": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Cramped space naturally motivates 'arrive early for seat'; practical consequence of smallness"
+  },
+  "5": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Extension 7114 likely primary number; 'first' suggests direct phone action over portals/desk"
+  },
+  "6": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Mid-week Wednesday is typical for make-up; 10:30 a.m. standard class time"
+  },
+  "7": {
+    "pick": "A",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Evening time (6 p.m.) typical for yoga; no strong tie between day/time"
+  },
+  "8": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Office hours 10 a.m.–4 p.m. standard; pre-order lookup uses order number not card"
+  },
+  "9": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "8:15 a.m. realistic for student transport; 6:30 a.m. too early for broad student service"
+  },
+  "10": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Specific counter in named room (127) most concrete for document pickup; typical service setup"
+  },
+  "11": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "No computers → direct consequence is 'bring own laptops'; clear logistical requirement"
+  },
+  "12": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Monday training start reasonable; 4 p.m. typical time slot (no strong tell)"
+  },
+  "13": {
+    "pick": "A",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "11 a.m. reasonable briefing time; Wednesday slight preference, no strong tie"
+  },
+  "14": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Friday end-of-week typical for tasting event; dining hall appropriate formal venue"
+  },
+  "15": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Email sent early → some info became wrong (wrong start date); logical consequence"
+  },
+  "_heuristics": "Office hours defaults (10–4): 2 picks. End-of-week events (Friday): 2 picks. Equipment age→quality variation: 1 pick. Direct consequence of stated fact (cramped, no computers, early email): 3 picks. Real-world availability (evening pickup): 1 pick. Standard info lookup (order number not card, phone not portal): 2 picks. Certain rejects on implausible times (6:30 a.m. bus, disregard all email): 2. Guess tier on pure scheduling (yoga day, briefing day, make-up day, DJ training): 4 picks."
+}

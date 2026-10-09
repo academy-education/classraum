@@ -1,0 +1,10 @@
+{
+  "1": {"pick": "A", "basis": "confident", "certain_reject": [], "why": "Accessibility accommodations typically require advance staff notification"},
+  "2": {"pick": "B", "basis": "confident", "certain_reject": [], "why": "Timed-entry tickets manage capacity limits—standard museum/venue practice"},
+  "3": {"pick": "D", "basis": "confident", "certain_reject": [], "why": "Advance warning of temporary service loss is the primary purpose of facilities announcements"},
+  "4": {"pick": "C", "basis": "confident", "certain_reject": [], "why": "Scheduled safety inspection is typical residential hall administrative announcement"},
+  "5": {"pick": "C", "basis": "guess", "certain_reject": [], "why": "Presenting tickets in main lobby is standard procedure for online-ticketed visitors"},
+  "6": {"pick": "A", "basis": "confident", "certain_reject": ["B"], "why": "During fire drill, wait for assistance—elevators never used in evacuation"},
+  "7": {"pick": "B", "basis": "confident", "certain_reject": [], "why": "Group visit advance notice (3 days email) is standard institutional requirement"},
+  "_heuristics": "Institutional safety/accessibility conventions (5 items); standard procedures explicitly rejected (elevators in fire drill); capacity/logistics defaults (2 items)"
+}

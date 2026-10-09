@@ -1,0 +1,93 @@
+{
+  "1": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "Club office packet is most institutional; self-selection (C) contradicts audition structure"
+  },
+  "2": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Email communication (C) is standard advance prep; others are during-session actions"
+  },
+  "3": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "Deadline contrast is natural for 'different story'; pause (C) is too negative for announcement tone"
+  },
+  "4": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Meal plan charging explains the requirement; 'though' signals a practical caveat"
+  },
+  "5": {
+    "pick": "D",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Four working days is institutional middle-ground for administrative processing"
+  },
+  "6": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Ground-floor lounge is temporary alternate location; easier access than numbered rooms"
+  },
+  "7": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Tuesday at 11 a.m. is typical for workshop scheduling; morning time standard"
+  },
+  "8": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Wednesday morning more professional for career prep than Monday afternoon walk-in"
+  },
+  "9": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Friday pickup after 2pm natural for end-of-week glazed ceramics collection"
+  },
+  "10": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "Busy lobby comment naturally leads to booking-ahead encouragement; building move (C) is too drastic"
+  },
+  "11": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Library circle is central, accessible location for temporary route during repaving"
+  },
+  "12": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Schedule continuity is safest inference; others require explicit announcement"
+  },
+  "13": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Alternative assignment most accommodating; purchase requirement (B) excludes students"
+  },
+  "14": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Modern institutions default to online forms; more efficient than in-person or phone"
+  },
+  "15": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "New equipment mentioned to explain quality improvement in broadcasts"
+  },
+  "_heuristics": "institutional-default-selection (6), advance-notification-preference (2), modern-channel-preference-online-over-inperson (2), temporal-middle-ground-for-delays (1), central-location-preference (1), safety-prioritizes-waiting (1), professional-scheduling (1), tone-avoids-extreme-negatives (1)"
+}

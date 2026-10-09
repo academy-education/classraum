@@ -1,0 +1,45 @@
+{
+  "1": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Notify staff 15 min in advance is standard accessibility protocol"
+  },
+  "2": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Capacity management is the primary reason venues use timed-entry"
+  },
+  "3": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Advance warning of temporary loss lets residents prepare"
+  },
+  "4": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Named speaker + safety procedures = typical admin announcement"
+  },
+  "5": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Check-in at temporary desk with 'temporary' signaling event-specific setup"
+  },
+  "6": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Inform coordinator by Tuesday is pre-event coordination, not during-drill response"
+  },
+  "7": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Email at least 3 days in advance is structured group-services protocol"
+  },
+  "_heuristics": "standard protocols (accessibility, capacity, group procedures): 3 confident; advance preparation vs reactive framing: 3 confident; event-specific language ('temporary', 'scheduled'): 2 confident; all 7 confident"
+}

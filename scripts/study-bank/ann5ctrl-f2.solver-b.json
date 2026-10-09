@@ -1,0 +1,45 @@
+{
+  "1": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Specific time deadline (8:30 a.m.) and official procedure (front office) most concrete"
+  },
+  "2": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Confirmation email + 24-hour advance notice most official procedure; standard for reservations"
+  },
+  "3": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Maintenance typically affects certain areas, not full building; partial impact most likely inference"
+  },
+  "4": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Complex service change (reduced frequency + shuttle buses) realistic; full cancellation implausible"
+  },
+  "5": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Specific routing (east elevator to Gallery F) exact detail pattern of real announcements"
+  },
+  "6": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Photography restrictions very common gallery policy; only listed thing plausibly prohibited"
+  },
+  "7": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Late arrival is realistic consequence of time lost in drill; skipping drill not permitted option"
+  },
+  "_heuristics": "Official procedures with specific details (time, channel, routing): 4 picks (front office 8:30, email 24-hr, east elevator, photo ban). Real-world plausibility (partial not total, consequence not exemption): 2 picks. Certain rejects on implausible options (full cancellation, skip drill): 2. Guess tier on inference without announcement audio: 1 pick."
+}

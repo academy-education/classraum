@@ -1,0 +1,93 @@
+{
+  "1": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "Packet from club office is concrete/typical for organized distribution"
+  },
+  "2": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Send email to reserve is the proactive advance action; other options are reactive"
+  },
+  "3": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "'Different story' signals a contrast/deadline difference"
+  },
+  "4": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "'Though' signals an unexpected requirement; turned away fits caveat better"
+  },
+  "5": {
+    "pick": "A",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "3 working days is typical admin processing timeframe"
+  },
+  "6": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "Ground-floor lounge is typical temporary 2-week location for pickup"
+  },
+  "7": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Tuesday 11 a.m. is standard mid-morning timing for workshops"
+  },
+  "8": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Calling ahead structures limited availability; online is open-ended"
+  },
+  "9": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Friday allows several days for glazing/drying after announcement"
+  },
+  "10": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Congestion statement justifies structural change (relocation)"
+  },
+  "11": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Circle in front of library is central/obvious vs isolated lots"
+  },
+  "12": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Timing stays constant even if other attributes change"
+  },
+  "13": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Borrow is immediate solution vs buying/viewing platform/assignment"
+  },
+  "14": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Online form is modern standard administrative procedure"
+  },
+  "15": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Brand-new equipment triggers retraining requirement for returning users"
+  },
+  "_heuristics": "location/timing specificity (7 confident), typical procedures/requirements (6 confident), proactive vs reactive framing (2 confident), announcement justification patterns (3 confident); 14 confident, 1 guess"
+}

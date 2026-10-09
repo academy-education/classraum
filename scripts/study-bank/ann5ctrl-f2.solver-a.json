@@ -1,0 +1,10 @@
+{
+  "1": {"pick": "D", "basis": "confident", "certain_reject": ["A", "B"], "why": "Official procedure for valuables = store in front office with time deadline"},
+  "2": {"pick": "A", "basis": "confident", "certain_reject": ["C", "D"], "why": "Modern systems use email links for changes; advance notice (24hr) is standard"},
+  "3": {"pick": "C", "basis": "guess", "certain_reject": ["B"], "why": "Partial building impact typical; complete shutdown less common than localized maintenance"},
+  "4": {"pick": "B", "basis": "confident", "certain_reject": ["A", "D"], "why": "Reduced frequency + shuttle buses is standard transit disruption pattern"},
+  "5": {"pick": "D", "basis": "confident", "certain_reject": ["B"], "why": "Entrance assistance is standard accessibility accommodation for mobility needs"},
+  "6": {"pick": "A", "basis": "confident", "certain_reject": [], "why": "Photography is universally prohibited in museums/galleries"},
+  "7": {"pick": "C", "basis": "confident", "certain_reject": ["B", "D"], "why": "Logical consequence: fire drill delays consecutive class attendance"},
+  "_heuristics": "Official institutional procedures and constraints (items 1, 2, 4, 5); universal standards (photography restriction in galleries); logical consequences and cause-effect reasoning (6 of 7 items confident); recognition of typical disruption/accommodation patterns vs outlier options"
+}
