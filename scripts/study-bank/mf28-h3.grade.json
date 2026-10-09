@@ -1,0 +1,182 @@
+[
+ {
+  "id": "SM28F-A10",
+  "prompt": "Five photos of equal width are hung in a row on a wall that is 300 centimeters wide. There is a 15-centimeter space between each pair of neighboring photos and a 60-centimeter space between each end of the wall and the nearest photo. The photos are taken down, and 4 of them are rehung in a row on the same wall so that the 5 spaces (the 3 spaces between neighboring photos and the 2 spaces at the ends of the wall) are all equal. What is the width, in centimeters, of each of these spaces?",
+  "choices": [
+   "36",
+   "21.6",
+   "28",
+   "40.8"
+  ]
+ },
+ {
+  "id": "SM28F-Q02",
+  "prompt": "A metal part is removed from an oven and left to cool in a room. The temperature of the part, in degrees Fahrenheit, t minutes after it is removed is modeled by T(t) = 72 + k(1/2)^(t/8), where k is a constant. According to the model, the temperature of the part is 92 degrees Fahrenheit 24 minutes after it is removed. What was the temperature of the part, in degrees Fahrenheit, at the moment it was removed from the oven?",
+  "choices": [
+   "232",
+   "152",
+   "132",
+   "97"
+  ]
+ },
+ {
+  "id": "SM28F-A02",
+  "prompt": "Lina gives her friends these instructions.\n\nPick any number. Add 8 to it. Multiply the sum by a. Subtract 10 from the product. Divide the result by 2. Finally, subtract 4 times the number you picked.\n\nIn the instructions, a is a constant. Lina chose a so that the final result is the same number no matter which number is picked. What is that final result?",
+  "choices": [
+   "11",
+   "8",
+   "27",
+   "-1"
+  ]
+ },
+ {
+  "id": "SM28F-P05",
+  "prompt": "For a quadratic function f, the outputs at x = -3 and at x = 13 are equal, and the output at x = 8 is 48 more than the output at x = 4. How much greater is the output at x = 12 than the output at x = 7?",
+  "choices": [
+   "216",
+   "270",
+   "95",
+   "150"
+  ]
+ },
+ {
+  "id": "SM28F-Q04",
+  "prompt": "Real numbers x and y satisfy both of the following equations.\n5^(x + y) = 72\n5^(x - y) = 8\nBased on these two equations, what is the sum of the two numbers 5^x and 5^y ?",
+  "choices": [
+   "33",
+   "40",
+   "27",
+   "72"
+  ]
+ },
+ {
+  "id": "SM28F-B01",
+  "prompt": "In the xy-plane, line l has equation 2x + y = -10, and point P has coordinates (5, 10). Point Q lies on line l, and no other point on line l is closer to P than Q is. What is the x-coordinate of Q?",
+  "choices": [
+   "-7",
+   "-15",
+   "-10",
+   "-2.5"
+  ]
+ },
+ {
+  "id": "SM28F-A07",
+  "prompt": "On a pan balance, the left pan holds 2 identical bags of rice and a 500-gram weight, and the right pan holds 6 identical bags of beans and a 100-gram weight. Each bag of beans weighs 60 grams less than each bag of rice, and the balance is level. What is the total weight, in grams, on the left pan?",
+  "choices": [
+   "730",
+   "520",
+   "880",
+   "620"
+  ]
+ },
+ {
+  "id": "SM28F-R05",
+  "prompt": "Some polynomial q makes p(x) = (x^2 - 4x + 3)q(x) + x^2 + x + 1 true for all x. Let r(x) be the remainder left over after p(x) is divided by x^2 - 4x + 3. Find r(7).",
+  "choices": [
+   "-17",
+   "33",
+   "-9",
+   "13"
+  ]
+ },
+ {
+  "id": "SM28F-B04",
+  "prompt": "x | 3f(x) + x\n-1 | 14\n3 | -6\n\nEach row of the table above pairs an input x with the value of the expression 3f(x) + x, where f is a linear function. Evaluate f(12).",
+  "choices": [
+   "-60",
+   "-51",
+   "-13",
+   "-21"
+  ]
+ },
+ {
+  "id": "SM28F-P06",
+  "prompt": "A company estimates that its weekly profit P, in dollars, from selling a lamp at a price of x dollars is given by P(x) = -6x^2 + 300x - 2250. The company currently sells the lamp for 21 dollars. If the company changes the price to the value of x that maximizes P(x), by how many dollars will its weekly profit increase?",
+  "choices": [
+   "42",
+   "25",
+   "24",
+   "96"
+  ]
+ },
+ {
+  "id": "SM28F-B02",
+  "prompt": "A linear function f satisfies both of these identities, each holding for every real number x:\nf(x) + f(4 - x) = 6\nf(4x) = 4f(x) + 6\nEvaluate f(-5).",
+  "choices": [
+   "-14.5",
+   "-12.75",
+   "-8.25",
+   "-0.5"
+  ]
+ },
+ {
+  "id": "SM28F-B09",
+  "prompt": "The length of a spring is a linear function of the mass hanging from it. When a 60-gram mass hangs from the spring, the spring is 14.4 centimeters long, and when a 110-gram mass hangs from it, the spring is 17.6 centimeters long. According to this model, what mass, in grams, would make the spring twice as long as it is with no mass hanging from it?",
+  "choices": [
+   "165",
+   "115",
+   "132",
+   "88"
+  ]
+ },
+ {
+  "id": "SM28F-D04",
+  "prompt": "kx + 3 ≤ 21\n(k - 8)x + d ≥ 0\n\nIn the system of inequalities above, k and d are constants. The solution set of the system is all real numbers x such that -3 ≤ x ≤ 6. What is the value of d?",
+  "choices": [
+   "-15",
+   "84",
+   "36",
+   "30"
+  ]
+ },
+ {
+  "id": "SM28F-C04",
+  "prompt": "Two numbers a and b are fixed. Substituting x = 1 and y = 3 into ax + by gives 21, and substituting x = 3 and y = -1 into ax + by gives 23. What number results from substituting x = 5 and y = 2 into ax + by?",
+  "choices": [
+   "44",
+   "69",
+   "38",
+   "53"
+  ]
+ },
+ {
+  "id": "SM28F-C07",
+  "prompt": "In a board game, every gold token is worth the same number of points, and every silver token is worth the same number of points. A player holding 4 gold tokens and 12 silver tokens has 52 points in all, and a player holding 5 gold tokens and 10 silver tokens has 55 points in all. How many silver tokens are worth the same number of points as 6 gold tokens?",
+  "choices": [
+   "42",
+   "21",
+   "8",
+   "4.5"
+  ]
+ },
+ {
+  "id": "SM28F-D07",
+  "prompt": "Rosa is 57 years old, and her grandson is g years old, where g is a whole number. In 10 years, Rosa's age will be at least twice her grandson's age at that time. Four years ago, Rosa's age was more than 4 times her grandson's age at that time. What is the greatest possible value of g ?",
+  "choices": [
+   "33",
+   "17",
+   "9",
+   "23"
+  ]
+ },
+ {
+  "id": "SM28F-B08",
+  "prompt": "In the xy-plane, line l passes through the point (3, -10). Along line l, for every increase of 6 in x, y decreases by 3. What is the sum of the x-coordinate of the x-intercept of line l and the y-coordinate of the y-intercept of line l?",
+  "choices": [
+   "11.5",
+   "-17",
+   "-25.5",
+   "-6"
+  ]
+ },
+ {
+  "id": "SM28F-B07",
+  "prompt": "Two thermometers, A and B, use different temperature scales, and the reading on thermometer B is a linear function of the reading on thermometer A. When thermometer A reads 4 degrees, thermometer B reads 31 degrees, and when thermometer A reads 19 degrees, thermometer B reads 37 degrees. At what reading of thermometer A will the two thermometers show the same reading?",
+  "choices": [
+   "49",
+   "21",
+   "-73.5",
+   "39"
+  ]
+ }
+]

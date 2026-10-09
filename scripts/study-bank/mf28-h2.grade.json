@@ -1,0 +1,202 @@
+[
+ {
+  "id": "SM28F-R06",
+  "prompt": "The function f is defined by f(x) = (x + 1)/(x^2 + bx + 49), where b is an integer. If f(x) is defined for every real number x, how many different values of b are possible?",
+  "choices": [
+   "27",
+   "19",
+   "15",
+   "195"
+  ]
+ },
+ {
+  "id": "SM28F-R01",
+  "prompt": "The product (x^2 + ax + 8)(x^2 + bx + 9), in which a and b are constants, equals x^4 + 8x^3 + cx^2 + 65x + 72 for every real number x. What is c?",
+  "choices": [
+   "24",
+   "25",
+   "10",
+   "7"
+  ]
+ },
+ {
+  "id": "SM28F-R02",
+  "prompt": "For constants a and b, the cubic p(x) = x^3 + ax^2 + bx - 9 takes equal values at x = 2 and at x = -2, and p(-1) = -11. What is p(3)?",
+  "choices": [
+   "-69",
+   "9",
+   "-93",
+   "-39"
+  ]
+ },
+ {
+  "id": "SM28F-Q03",
+  "prompt": "The rate Q, in liters per second, at which water flows over the crest of a small dam is modeled by Q = c(h)^(3/2), where h is the depth, in centimeters, of the water above the crest and c is a constant. When the depth is 9 centimeters, the flow rate is 54 liters per second. According to the model, by how many centimeters must the depth increase from 9 centimeters for the flow rate to reach 100 liters per second? Round your answer to the nearest hundredth.",
+  "choices": [
+   "12.54",
+   "3.25",
+   "2.05",
+   "4.57"
+  ]
+ },
+ {
+  "id": "SM28F-C02",
+  "prompt": "A glass jar is partly filled with water. When the jar is 3/4 full of water, the jar and the water together weigh 1,140 grams. When the jar is 1/3 full of water, the jar and the water together weigh 640 grams. What is the total weight, in grams, of the jar and the water when the jar is completely full of water?",
+  "choices": [
+   "1425",
+   "1390",
+   "1440",
+   "1200"
+  ]
+ },
+ {
+  "id": "SM28F-S03",
+  "prompt": "Let h(x) = (x - 3)^2 + 2. Restricting h to inputs x <= 3 gives a one-to-one function f, and g undoes f: g(f(x)) = x whenever x <= 3. Compute g(h(10)).",
+  "choices": [
+   "-46",
+   "-4",
+   "10",
+   "-10"
+  ]
+ },
+ {
+  "id": "SM28F-Q01",
+  "prompt": "In a laboratory, the mass of sample X, in milligrams, t hours after an experiment begins is modeled by X(t) = 6,000(0.95)^t. The mass of sample Y, in milligrams, t hours after the experiment begins is modeled by Y(t) = 375(1.9)^t. According to the models, at the time when the two samples have equal mass, what is that mass, to the nearest milligram?",
+  "choices": [
+   "5415",
+   "2850",
+   "3981",
+   "4887"
+  ]
+ },
+ {
+  "id": "SM28F-D03",
+  "prompt": "7x + 30 ≥ 3(x + 2)\n87 - 5x > c\n\nIn the second inequality above, c is a constant. The values of x that do not satisfy the first inequality are exactly the values of x that satisfy the second inequality. What is the value of c?",
+  "choices": [
+   "117",
+   "42",
+   "93",
+   "99"
+  ]
+ },
+ {
+  "id": "SM28F-B05",
+  "prompt": "In the xy-plane, line l has equation 5x - 2y = -18 and line m has equation 15x - 6y = 84. A horizontal line intersects line l at point P and line m at point Q. What is the length of segment PQ?",
+  "choices": [
+   "3.6",
+   "20.4",
+   "9.2",
+   "2"
+  ]
+ },
+ {
+  "id": "SM28F-D01",
+  "prompt": "f(x) = 3x - 11\n\nFor the function f defined above, the output at input 3n + 3 must stay below 60 more than twice the output at input n, that is, f(3n + 3) < 2f(n) + 60. If n is an integer, what is the greatest possible value of n ?",
+  "choices": [
+   "13",
+   "22",
+   "8",
+   "19"
+  ]
+ },
+ {
+  "id": "SM28F-B06",
+  "prompt": "The functions f and g are linear, and f(2) = g(2) = 27. In the xy-plane, the y-coordinate of the y-intercept of the graph of y = f(x) is 4 times the slope of that graph, and the slope of the graph of y = g(x) is 4 times the y-coordinate of the y-intercept of that graph. What is f(5) - g(5)?",
+  "choices": [
+   "40.5",
+   "15",
+   "-8",
+   "-22.5"
+  ]
+ },
+ {
+  "id": "SM28F-D02",
+  "prompt": "Two newsletters launched on the same day. Newsletter P had 1,440 subscribers 4 months after launch and 1,680 subscribers 8 months after launch, and its number of subscribers has increased at a constant rate since launch. Newsletter Q had 2,750 subscribers at launch and has lost 40 subscribers per month since launch. Assume both trends continue. Let t be the least whole number of months after launch for which newsletter P has more subscribers than newsletter Q. How many subscribers does newsletter P have t months after launch?",
+  "choices": [
+   "2110",
+   "2160",
+   "1950",
+   "2280"
+  ]
+ },
+ {
+  "id": "SM28F-A09",
+  "prompt": "2(kx - 3) - 3x = 13x + 4\n2(kx - 3) - 3x = kx + 45\n\nThe constant k is chosen so that no real number x makes the first equation true. Using this same k, what real number x makes the second equation true?",
+  "choices": [
+   "9.6",
+   "7.8",
+   "10.2",
+   "25.5"
+  ]
+ },
+ {
+  "id": "SM28F-C09",
+  "prompt": "A paint store mixes two shades of paint from blue paint and white paint. Each batch of the shade Sky uses 1 liter of blue paint and 3 liters of white paint. Each batch of the shade Mist uses 5 liters of blue paint and 1 liter of white paint. One day the store made only whole batches of these two shades and used exactly 77 liters of blue paint and exactly 49 liters of white paint. How many batches of Mist did the store make that day?",
+  "choices": [
+   "5",
+   "13",
+   "12",
+   "2"
+  ]
+ },
+ {
+  "id": "SM28F-S06",
+  "prompt": "For every real number x, the function f satisfies f(x) = f(6 - x). The equation f(x) = 0 has exactly two real solutions, and one of them is x = -4. The function g is defined by g(x) = f(2x + 2). What is the product of the solutions to the equation g(x) = 0?",
+  "choices": [
+   "-40",
+   "-132",
+   "-12",
+   "-21"
+  ]
+ },
+ {
+  "id": "SM28F-A01",
+  "prompt": "The length of a rectangular garden bed is 1 foot more than twice its width. The bed is redesigned: its length is decreased by 4 feet and its width is tripled. The perimeter of the redesigned bed is 28 feet greater than the perimeter of the original bed. What is the area, in square feet, of the original bed?",
+  "choices": [
+   "136",
+   "528",
+   "55",
+   "171"
+  ]
+ },
+ {
+  "id": "SM28F-A06",
+  "prompt": "Ana and Ben painted a fence. Ana painted at a constant rate of 11 square meters per hour, and Ben painted at a constant rate of 9 square meters per hour. Ana worked 6 hours longer than Ben, and together they painted 206 square meters. Ben used paint from cans that each cover 4 square meters, opening a new can only after the previous one was empty. How many cans did Ben open?",
+  "choices": [
+   "23",
+   "21",
+   "16",
+   "18"
+  ]
+ },
+ {
+  "id": "SM28F-S02",
+  "prompt": "A quantity P is inversely proportional to a quantity r, so P = k/r for some constant k. Raising r from 7 to 10 lowers P by 18. According to this relationship, what is P when r = 15?",
+  "choices": [
+   "28",
+   "12",
+   "84",
+   "3.6"
+  ]
+ },
+ {
+  "id": "SM28F-Q06",
+  "prompt": "A function f has the form f(x) = a(b)^x, where a and b are positive constants, and the constant a is less than 40. The outputs of f satisfy two conditions: f(0) + f(2) = 75, and f(1) = 36. Using these conditions, what is the value of f(3)?",
+  "choices": [
+   "42.25",
+   "64",
+   "48",
+   "60"
+  ]
+ },
+ {
+  "id": "SM28F-C10",
+  "prompt": "A vendor at a farmers' market estimates that when the price of a jar of jam is p dollars, shoppers will buy 100 - 5p jars per week, and she is willing to supply 15p - 40 jars per week. At the price for which the number of jars shoppers will buy equals the number of jars she is willing to supply, how many jars is that per week?",
+  "choices": [
+   "7",
+   "65",
+   "30",
+   "85"
+  ]
+ }
+]

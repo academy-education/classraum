@@ -1,0 +1,422 @@
+[
+ {
+  "id": "SM28F-C03",
+  "domain": "Algebra",
+  "subskill": "System from fractions of two groups and a combined total",
+  "difficulty": "medium",
+  "prompt": "A club has 112 members, and each member is either a junior or a senior. For a field trip, 1/4 of the juniors and 3/8 of the seniors went, a total of 37 members. How many of the seniors did not go on the field trip?",
+  "choices": [
+   "25",
+   "27",
+   "40",
+   "45"
+  ],
+  "correct_answer": "45",
+  "explanation": "Let j be the number of juniors and s the number of seniors. Then j + s = 112 and (1/4)j + (3/8)s = 37.\nMultiplying the second equation by 8 gives 2j + 3s = 296. Subtracting 2 times the first equation, 2j + 2s = 224, gives s = 72, so j = 40.\nOf the 72 seniors, 3/8 went, which is 27, so 72 - 27 = 45 seniors did not go.\n\nChoice 25 comes from attaching 3/8 to the juniors and 1/4 to the seniors when writing the equation: (3/8)j + (1/4)s = 37 with j + s = 112 gives s = 40, and then 5/8 of 40 is 25.\nChoice 27 is the number of seniors who went, not the number who did not go.\nChoice 40 is the number of juniors: it solves the system for the wrong group and stops there.",
+  "solve": "const N=112,M=37,p=1/4,q=3/8; const s=(M-p*N)/(q-p); return (1-q)*s;",
+  "distractor_solve": {
+   "25": "const N=112,M=37,p=1/4,q=3/8; const s=(M-q*N)/(p-q); return (1-q)*s;",
+   "27": "const N=112,M=37,p=1/4,q=3/8; const s=(M-p*N)/(q-p); return q*s;",
+   "40": "const N=112,M=37,p=1/4,q=3/8; const s=(M-p*N)/(q-p); return N-s;"
+  }
+ },
+ {
+  "id": "SM28F-Q05",
+  "domain": "Advanced Math",
+  "subskill": "Equations quadratic in 3^x: a non-monic quadratic",
+  "difficulty": "medium",
+  "prompt": "Two different real numbers, a and b, each satisfy the equation 3(9^x) - 10(3^x) + 3 = 0. Combining both solutions, what is the value of the sum 9^a + 9^b ?",
+  "choices": [
+   "1",
+   "10/3",
+   "82/9",
+   "18"
+  ],
+  "correct_answer": "82/9",
+  "explanation": "Since 9^x = (3^x)^2, let u = 3^x. The equation becomes 3u^2 - 10u + 3 = 0, which factors as (3u - 1)(u - 3) = 0, so u = 1/3 or u = 3.\n\n3^x = 3 gives x = 1, and 3^x = 1/3 gives x = -1. So the solutions are 1 and -1.\n\nThen 9^1 + 9^(-1) = 9 + 1/9 = 82/9.\n\n(Equivalently, 9^a + 9^b is the sum of the squares of the two values of u: 3^2 + (1/3)^2 = 82/9.)\n\nChoice 10/3 adds the values of 3^x instead of 9^x. Choice 1 treats 9^a + 9^b as 9^(a + b) = 9^0. Choice 18 drops the negative sign of the solution x = -1 and adds 9 + 9.",
+  "solve": "const D=Math.sqrt(100-36); const u1=(10+D)/6, u2=(10-D)/6; return u1*u1+u2*u2;",
+  "distractor_solve": {
+   "1": "const D=Math.sqrt(100-36); const u1=(10+D)/6, u2=(10-D)/6; const a=Math.log(u1)/Math.log(3), b=Math.log(u2)/Math.log(3); return Math.round(Math.pow(9,a+b)*1e9)/1e9;",
+   "18": "const D=Math.sqrt(100-36); const u1=(10+D)/6, u2=(10-D)/6; const a=Math.log(u1)/Math.log(3), b=Math.log(u2)/Math.log(3); return Math.round((Math.pow(9,Math.abs(a))+Math.pow(9,Math.abs(b)))*1e9)/1e9;",
+   "10/3": "const D=Math.sqrt(100-36); const u1=(10+D)/6, u2=(10-D)/6; return u1+u2;"
+  }
+ },
+ {
+  "id": "SM28F-R03",
+  "domain": "Advanced Math",
+  "subskill": "Factor theorem fixes a coefficient; evaluate the quotient",
+  "difficulty": "medium",
+  "prompt": "For a constant a, the cubic x^3 + ax^2 - 2x + 24 can be written as the product (x - 2)q(x), where q is a quadratic. What is q(-3)?",
+  "choices": [
+   "12",
+   "28",
+   "42",
+   "52"
+  ],
+  "correct_answer": "12",
+  "explanation": "Because (x - 2)q(x) equals the cubic for all x, the cubic must be 0 at x = 2: 8 + 4a - 4 + 24 = 0, so 4a = -28 and a = -7. The cubic is x^3 - 7x^2 - 2x + 24. At x = -3 it equals -27 - 63 + 6 + 24 = -60, and x - 2 equals -5 there, so q(-3) = -60/(-5) = 12. (Dividing out gives the same result: x^3 - 7x^2 - 2x + 24 = (x - 2)(x^2 - 5x - 12), and 9 + 15 - 12 = 12.)",
+  "solve": "const a = -(8 - 4 + 24)/4; const p = x => x**3 + a*x*x - 2*x + 24; return String(p(-3)/(-3 - 2))",
+  "distractor_solve": {
+   "28": "const a = -7; const x = -3; return String(x*x + a*x - 2)",
+   "42": "const a = -(-8 + 4 + 24)/4; const c1 = a - 2, c0 = -2 - 2*c1; const x = -3; return String(x*x + c1*x + c0)",
+   "52": "const a = -7; const c1 = a - 2, c0 = -2 - 2*c1; const x = -3; return String(x*x + c1*x + c0)"
+  }
+ },
+ {
+  "id": "SM28F-D06",
+  "domain": "Algebra",
+  "subskill": "Length of time two linear conditions hold together",
+  "difficulty": "medium",
+  "prompt": "In a greenhouse, t minutes after a heater is switched on, the air temperature is 6 + 0.4t degrees Celsius and the relative humidity is 72 - 0.75t percent. Seedlings can be moved into the greenhouse only while the temperature is 16 degrees Celsius or higher and the humidity is 33 percent or higher. For how many minutes are both of these requirements met?",
+  "choices": [
+   "48",
+   "27",
+   "77",
+   "71"
+  ],
+  "correct_answer": "27",
+  "explanation": "The temperature requirement is 6 + 0.4t ≥ 16. Subtracting 6 gives 0.4t ≥ 10, so t ≥ 25. The humidity requirement is 72 - 0.75t ≥ 33. Subtracting 72 gives -0.75t ≥ -39, and dividing by -0.75 reverses the sign: t ≤ 52. Both requirements are met exactly when 25 ≤ t ≤ 52, which is a period of 52 - 25 = 27 minutes.",
+  "solve": "const t1 = (16 - 6) / 0.4; const t2 = (72 - 33) / 0.75; return Math.round((t2 - t1) * 1e9) / 1e9;",
+  "distractor_solve": {
+   "48": "const t1 = (16 - 6) * 0.4; const t2 = (72 - 33) / 0.75; return Math.round((t2 - t1) * 1e9) / 1e9;",
+   "71": "const t1 = (16 - 6) / 0.4; const t2 = 72 / 0.75; return Math.round((t2 - t1) * 1e9) / 1e9;",
+   "77": "const t1 = (16 - 6) / 0.4; const t2 = (72 - 33) / 0.75; return Math.round((t2 + t1) * 1e9) / 1e9;"
+  }
+ },
+ {
+  "id": "SM28F-C05",
+  "domain": "Algebra",
+  "subskill": "System from two seating arrangements, then a third arrangement",
+  "difficulty": "medium",
+  "prompt": "A group of people is being seated at a banquet, where all the tables are the same size. If 5 people sit at each table, 18 people have no seat. If instead 8 people sit at each table, 3 of the tables are left empty and every other table is full. How many more people would have to join the group so that exactly 7 people could sit at every table?",
+  "choices": [
+   "10",
+   "11",
+   "14",
+   "16"
+  ],
+  "correct_answer": "10",
+  "explanation": "Let n be the number of tables and p the number of people.\nWith 5 people at each table, 18 people are left over, so p = 5n + 18.\nWith 8 people at each table, only n - 3 tables are used and they are full, so p = 8(n - 3) = 8n - 24.\nSetting the two expressions equal gives 5n + 18 = 8n - 24, so 3n = 42 and n = 14. Then p = 5(14) + 18 = 88.\nSeating exactly 7 people at each of the 14 tables takes 7(14) = 98 people, so 98 - 88 = 10 more people must join.\n\nChoice 11 comes from keeping the 3 tables empty: seating 7 people at each of the other 11 tables takes 77 people, and 88 - 77 = 11.\nChoice 14 is the number of tables, not the number of people needed.\nChoice 16 comes from leaving out the 18 people who have no seat: 5n = 8(n - 3) gives n = 8 and p = 40, and 7(8) - 40 = 16.",
+  "solve": "const a=5,s=18,b=8,e=3,c=7; const n=(s+b*e)/(b-a); const p=a*n+s; return c*n-p;",
+  "distractor_solve": {
+   "11": "const a=5,s=18,b=8,e=3,c=7; const n=(s+b*e)/(b-a); const p=a*n+s; return p-c*(n-e);",
+   "14": "const a=5,s=18,b=8,e=3,c=7; const n=(s+b*e)/(b-a); return n;",
+   "16": "const a=5,s=18,b=8,e=3,c=7; const n=(b*e)/(b-a); const p=a*n; return c*n-p;"
+  }
+ },
+ {
+  "id": "SM28F-C08",
+  "domain": "Algebra",
+  "subskill": "Recover two constants from two miscopied systems, then solve",
+  "difficulty": "hard",
+  "prompt": "3x + 2y = c\n2x - y = d\n\nIn the system of equations above, c and d are constants. Mina copied the system with the correct value of d but an incorrect value of c, and the solution of the system she wrote was (13, 12). Jun copied the system with the correct value of c but an incorrect value of d, and the solution of the system he wrote was (5, 17). If (x, y) is the solution of the original system, what is the value of x + y?",
+  "choices": [
+   "19",
+   "20",
+   "28",
+   "35"
+  ],
+  "correct_answer": "19",
+  "explanation": "Mina's only error was in c, so her second equation, 2x - y = d, is the original one, and her solution satisfies it: d = 2(13) - 12 = 14.\nJun's only error was in d, so his first equation, 3x + 2y = c, is the original one, and his solution satisfies it: c = 3(5) + 2(17) = 49.\nThe original system is 3x + 2y = 49 and 2x - y = 14. Multiplying the second equation by 2 gives 4x - 2y = 28; adding it to the first gives 7x = 77, so x = 11, and then y = 2(11) - 14 = 8. Therefore x + y = 19.\n\nChoice 28 comes from using each student's solution in the equation that student copied incorrectly: c = 3(13) + 2(12) = 63 and d = 2(5) - 17 = -7, which give x = 7, y = 21 and x + y = 28.\nChoice 20 comes from multiplying 2x - y = 14 by 2 on the left side only: 4x - 2y = 14 added to 3x + 2y = 49 gives 7x = 63, so x = 9, y = 11 and x + y = 20.\nChoice 35 comes from rewriting 2x - y = 14 as y = 14 - 2x: then 3x + 2(14 - 2x) = 49 gives x = -21, y = 56 and x + y = 35.",
+  "solve": "const p=3,q=2,r=2,s=-1,M=[13,12],J=[5,17]; const d=r*M[0]+s*M[1], c=p*J[0]+q*J[1]; const D=p*s-q*r; const x=(c*s-q*d)/D, y=(p*d-c*r)/D; return x+y;",
+  "distractor_solve": {
+   "20": "const p=3,q=2,r=2,s=-1,M=[13,12],J=[5,17]; const d=r*M[0]+s*M[1], c=p*J[0]+q*J[1]; const x=(c+d)/(p+2*r); const y=(c-p*x)/q; return x+y;",
+   "28": "const p=3,q=2,r=2,s=-1,M=[13,12],J=[5,17]; const c=p*M[0]+q*M[1], d=r*J[0]+s*J[1]; const D=p*s-q*r; const x=(c*s-q*d)/D, y=(p*d-c*r)/D; return x+y;",
+   "35": "const p=3,q=2,r=2,s=-1,M=[13,12],J=[5,17]; const d=r*M[0]+s*M[1], c=p*J[0]+q*J[1]; const x=(c-q*d)/(p-q*r); const y=d-r*x; return x+y;"
+  }
+ },
+ {
+  "id": "SM28F-B03",
+  "domain": "Algebra",
+  "subskill": "Intercepts of a standard-form line with a constant",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, the graph of 5x + 11y = k, where k is a constant, is a line. The x-coordinate of its x-intercept is 12 greater than the y-coordinate of its y-intercept. What is the value of k?",
+  "choices": [
+   "41.25",
+   "60",
+   "72",
+   "110"
+  ],
+  "correct_answer": "110",
+  "explanation": "The x-intercept is found by setting y = 0: 5x = k, so x = k/5. The y-intercept is found by setting x = 0: 11y = k, so y = k/11. The condition says k/5 - k/11 = 12. With a common denominator of 55, (11k - 5k)/55 = 12, so 6k/55 = 12 and 6k = 660, giving k = 110. Check: the intercepts are 110/5 = 22 and 110/11 = 10, and 22 - 10 = 12.",
+  "solve": "const a=5,b=11,d=12; return d*a*b/(b-a);",
+  "distractor_solve": {
+   "60": "const a=5,d=12; return d*a;",
+   "72": "const a=5,b=11,d=12; return d*(b-a);",
+   "41.25": "const a=5,b=11,d=12; return d*a*b/(a+b);"
+  }
+ },
+ {
+  "id": "SM28F-A03",
+  "domain": "Algebra",
+  "subskill": "Same volume at two rates with a time gap, then whole containers",
+  "difficulty": "medium",
+  "prompt": "Hose A fills an empty cistern at a constant rate of 12 gallons per minute. Hose B fills the same empty cistern at a constant rate of 15 gallons per minute and takes 20 minutes less than hose A to fill it. All the water in the full cistern is then poured into barrels that each hold 35 gallons. How many barrels can be filled completely?",
+  "choices": [
+   "34",
+   "41",
+   "42",
+   "51"
+  ],
+  "correct_answer": "34",
+  "explanation": "Let t be the number of minutes hose A takes to fill the cistern. Hose B takes t - 20 minutes, and both fill the same volume, so 12t = 15(t - 20).\nThen 12t = 15t - 300, so 3t = 300 and t = 100. The cistern holds 12(100) = 1,200 gallons.\n1,200 / 35 = 34 2/7, so 34 barrels can be filled completely (34 x 35 = 1,190 gallons, with 10 gallons left over).\n\nChoice 41 comes from taking 100 minutes as hose B's time, so hose A's time is 120 minutes and the volume is 12(120) = 1,440 gallons; 1,440 / 35 = 41.1.\nChoice 42 comes from pairing hose B's rate with hose A's time: 15(100) = 1,500 gallons; 1,500 / 35 = 42.9.\nChoice 51 comes from adding the 20 minutes to hose B's time instead of subtracting it: 15(100 + 20) = 1,800 gallons; 1,800 / 35 = 51.4.",
+  "solve": "const ra=12,rb=15,s=20,b=35; const t=rb*s/(rb-ra); return Math.floor(ra*t/b);",
+  "distractor_solve": {
+   "41": "const ra=12,rb=15,s=20,b=35; const t=rb*s/(rb-ra); return Math.floor(ra*(t+s)/b);",
+   "42": "const ra=12,rb=15,s=20,b=35; const t=rb*s/(rb-ra); return Math.floor(rb*t/b);",
+   "51": "const ra=12,rb=15,s=20,b=35; const t=rb*s/(rb-ra); return Math.floor(rb*(t+s)/b);"
+  }
+ },
+ {
+  "id": "SM28F-R04",
+  "domain": "Advanced Math",
+  "subskill": "Parameter that makes the remainder by a quadratic constant",
+  "difficulty": "hard",
+  "prompt": "For one particular constant k, dividing x^3 - 4x^2 + kx - 1 by x^2 + 2x - 3 leaves a remainder that is a single number, with no x-term. What is that number?",
+  "choices": [
+   "-19",
+   "-11",
+   "-7",
+   "-1"
+  ],
+  "correct_answer": "-19",
+  "explanation": "Let p(x) = x^3 - 4x^2 + kx - 1. Since x^2 + 2x - 3 = (x - 1)(x + 3), write p(x) = (x - 1)(x + 3)q(x) + r(x), where the remainder r(x) has degree less than 2. At x = 1 and x = -3 the first term is 0, so p(1) = r(1) and p(-3) = r(-3). The remainder is a constant, so r(1) = r(-3), which means p(1) = p(-3). Now p(1) = 1 - 4 + k - 1 = k - 4 and p(-3) = -27 - 36 - 3k - 1 = -64 - 3k. Setting them equal gives 4k = -60, so k = -15, and the remainder is p(1) = -15 - 4 = -19. (Long division gives the same result: the remainder is (k + 15)x - 19, which is constant only when k = -15, leaving -19.)",
+  "solve": "for (let k = -100; k <= 100; k++) { const p = x => x**3 - 4*x*x + k*x - 1; if (p(1) === p(-3)) return String(p(1)) } return \"none\"",
+  "distractor_solve": {
+   "-7": "for (let k = -100; k <= 100; k++) { const p = x => x**3 - 4*x*x + k*x - 1; if (p(-1) === p(3)) return String(p(-1)) } return \"none\"",
+   "-1": "return String(-1)",
+   "-11": "const kk = (-28 - 0) / 4; const p = x => x**3 - 4*x*x + kk*x - 1; return String(p(1))"
+  }
+ },
+ {
+  "id": "SM28F-S01",
+  "domain": "Advanced Math",
+  "subskill": "Composition: recovering a linear inner function from f(g(x))",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = x^2 + 8x - 9. A function g of the form g(x) = ax + b, where a is positive, satisfies f(g(x)) = 9x^2 - 18x - 16 for every real x. What is g(10)?",
+  "choices": [
+   "23",
+   "27",
+   "29",
+   "85"
+  ],
+  "correct_answer": "23",
+  "explanation": "Substitute g(x) = ax + b into f: f(g(x)) = (ax + b)^2 + 8(ax + b) - 9 = a^2x^2 + (2ab + 8a)x + (b^2 + 8b - 9). Match coefficients with 9x^2 - 18x - 16. From the x^2 terms, a^2 = 9, and since a is positive, a = 3. From the x terms, 2(3)b + 8(3) = -18, so 6b + 24 = -18 and b = -7. Check the constant term: (-7)^2 + 8(-7) - 9 = 49 - 56 - 9 = -16, which matches. So g(x) = 3x - 7, and g(10) = 30 - 7 = 23.\n\nChoice 27 comes from dropping the 8a part of the x-coefficient, so that 6b = -18 and b = -3. Choice 29 comes from finding b from the constant term alone: b^2 + 8b - 9 = -16 gives b = -1 or b = -7, and b = -1 is the wrong one (it does not match the x-coefficient). Choice 85 comes from taking a = 9, the leading coefficient itself, instead of its square root, which gives 18b + 72 = -18, b = -5, and g(10) = 90 - 5.",
+  "solve": "const p=8, B=-18, A=9, c=10; const a=Math.sqrt(A); const b=(B-p*a)/(2*a); return a*c+b;",
+  "distractor_solve": {
+   "27": "const B=-18, A=9, c=10; const a=Math.sqrt(A); const b=B/(2*a); return a*c+b;",
+   "29": "const p=8, q=-9, C=-16, B=-18, A=9, c=10; const a=Math.sqrt(A); const bTrue=(B-p*a)/(2*a); const disc=Math.sqrt(p*p-4*(q-C)); const roots=[(-p+disc)/2,(-p-disc)/2]; const b=roots.find(r=>Math.abs(r-bTrue)>1e-9); return a*c+b;",
+   "85": "const p=8, B=-18, A=9, c=10; const a=A; const b=(B-p*a)/(2*a); return a*c+b;"
+  }
+ },
+ {
+  "id": "SM28F-D05",
+  "domain": "Algebra",
+  "subskill": "Constant from one solution set, then solve another",
+  "difficulty": "medium",
+  "prompt": "2(x - 7) + k ≥ 8x + 1\n-18 - 3x > k\n\nFor a certain number k, the first inequality above is true exactly when x ≤ 7. For that same number k, the second inequality is true exactly when x < c. What is c?",
+  "choices": [
+   "3",
+   "-25",
+   "57",
+   "-13"
+  ],
+  "correct_answer": "-25",
+  "explanation": "Solve the first inequality in terms of k. Distributing gives 2x - 14 + k ≥ 8x + 1. Subtracting 8x from both sides and subtracting k - 14 from both sides gives -6x ≥ 15 - k. Dividing both sides by -6 reverses the inequality sign: x ≤ (k - 15)/6. This solution set is x ≤ 7, so (k - 15)/6 = 7, which gives k - 15 = 42 and k = 57. The second inequality is then -18 - 3x > 57. Adding 18 to both sides gives -3x > 75, and dividing both sides by -3 reverses the sign: x < -25. Therefore c = -25.",
+  "solve": "const k = 15 + 6 * 7; return (-18 - k) / 3;",
+  "distractor_solve": {
+   "3": "const k = 15 - 6 * 7; return (-18 - k) / 3;",
+   "57": "const k = 15 + 6 * 7; return k;",
+   "-13": "const k = 15 + 6 * 7; return -(k - 18) / 3;"
+  }
+ },
+ {
+  "id": "SM28F-S05",
+  "domain": "Advanced Math",
+  "subskill": "Rational model in context: average cost at two levels",
+  "difficulty": "medium",
+  "prompt": "A ceramics studio models its average cost per mug, in dollars, when it makes n mugs in a month by A(n) = (2,520 + 2n)/n. In March the studio's average cost per mug was $10, and in April it was $7. According to the model, how many more mugs did the studio make in April than in March?",
+  "choices": [
+   "70",
+   "108",
+   "135",
+   "189"
+  ],
+  "correct_answer": "189",
+  "explanation": "In March, (2,520 + 2n)/n = 10, so 2,520 + 2n = 10n, 8n = 2,520 and n = 315. In April, (2,520 + 2n)/n = 7, so 2,520 + 2n = 7n, 5n = 2,520 and n = 504. The studio made 504 - 315 = 189 more mugs in April.\n\nChoice 135 comes from treating the average cost as inversely proportional to n (ignoring the 2 dollars per mug), so that April's count is 315 x 10/7 = 450, which is 135 more. Choice 108 comes from dropping the 2n term, so that n = 2,520/10 = 252 and n = 2,520/7 = 360. Choice 70 comes from moving the 2n term to the wrong side, 2,520 = (A + 2)n, so that n = 2,520/12 = 210 and n = 2,520/9 = 280.",
+  "solve": "const F=2520, v=2, A1=10, A2=7; const n1=F/(A1-v), n2=F/(A2-v); return n2-n1;",
+  "distractor_solve": {
+   "70": "const F=2520, v=2, A1=10, A2=7; return F/(A2+v)-F/(A1+v);",
+   "108": "const F=2520, A1=10, A2=7; return F/A2-F/A1;",
+   "135": "const F=2520, v=2, A1=10, A2=7; const n1=F/(A1-v); return n1*A1/A2-n1;"
+  }
+ },
+ {
+  "id": "SM28F-C06",
+  "domain": "Algebra",
+  "subskill": "System from two transfers between two people, then a third transfer",
+  "difficulty": "medium",
+  "prompt": "Ana and Ben each have a collection of trading cards. If Ana gave Ben 8 of her cards, the two of them would have the same number of cards. If instead Ben gave Ana 14 of his cards, Ana would have twice as many cards as Ben. How many of her cards would Ana have to give Ben so that Ben would have 3 times as many cards as Ana?",
+  "choices": [
+   "31",
+   "34",
+   "41",
+   "74"
+  ],
+  "correct_answer": "41",
+  "explanation": "Let a and b be the numbers of cards Ana and Ben have now.\nIf Ana gives Ben 8 cards, a - 8 = b + 8, so a = b + 16.\nIf Ben gives Ana 14 cards, a + 14 = 2(b - 14) = 2b - 28.\nSubstituting a = b + 16 gives b + 30 = 2b - 28, so b = 58 and a = 74.\nIf Ana gives Ben t cards, Ben has 58 + t and Ana has 74 - t, so 58 + t = 3(74 - t) = 222 - 3t. Then 4t = 164 and t = 41. (Check: Ana would have 33 cards and Ben 99.)\n\nChoice 31 comes from writing the first condition as a - 8 = b, forgetting that Ben gains the 8 cards Ana loses: then a = b + 8, a + 14 = 2b - 28 gives b = 50 and a = 58, and 50 + t = 3(58 - t) gives t = 31.\nChoice 34 comes from writing the second condition as a + 14 = 2b - 14, multiplying only b by 2: then b = 44 and a = 60, and 44 + t = 3(60 - t) gives t = 34.\nChoice 74 is the number of cards Ana has now, not the number she gives away.",
+  "solve": "const g=8,h=14,r=2,k=3; const D=2*g; const b=(D+h+r*h)/(r-1); const a=b+D; return (k*a-b)/(k+1);",
+  "distractor_solve": {
+   "31": "const g=8,h=14,r=2,k=3; const D=g; const b=(D+h+r*h)/(r-1); const a=b+D; return (k*a-b)/(k+1);",
+   "34": "const g=8,h=14,r=2,k=3; const D=2*g; const b=(D+2*h)/(r-1); const a=b+D; return (k*a-b)/(k+1);",
+   "74": "const g=8,h=14,r=2,k=3; const D=2*g; const b=(D+h+r*h)/(r-1); const a=b+D; return a;"
+  }
+ },
+ {
+  "id": "SM28F-P03",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic models in context: two models at equal height",
+  "difficulty": "medium",
+  "prompt": "Two model rockets are launched straight upward at the same moment from platforms of different heights. The height, in feet, of rocket A t seconds after launch is given by -16t^2 + 120t + 38, and the height, in feet, of rocket B t seconds after launch is given by -16t^2 + 104t + 62. While both rockets are in flight, there is exactly one time at which they are at the same height. What is that height, in feet?",
+  "choices": [
+   "163",
+   "170",
+   "182",
+   "218"
+  ],
+  "correct_answer": "182",
+  "explanation": "The rockets are at the same height when -16t^2 + 120t + 38 = -16t^2 + 104t + 62. The -16t^2 terms cancel, leaving 120t + 38 = 104t + 62, so 16t = 24 and t = 1.5. At t = 1.5, rocket A's height is -16(1.5)^2 + 120(1.5) + 38 = -36 + 180 + 38 = 182 feet. (Rocket B's height is -36 + 156 + 62 = 182 feet as well.)\n\nChoice 218 drops the -16t^2 term when evaluating the height, as it was dropped when solving for t. Choice 170 squares 1.5 as 3 instead of 2.25. Choice 163 moves 38 to the other side without changing its sign, getting 16t = 100 and t = 6.25, and then evaluates rocket A's height there.",
+  "solve": "const bA=120,cA=38,bB=104,cB=62; const t=(cB-cA)/(bA-bB); return -16*t*t+bA*t+cA;",
+  "distractor_solve": {
+   "163": "const bA=120,cA=38,bB=104,cB=62; const t=(cB+cA)/(bA-bB); return -16*t*t+bA*t+cA;",
+   "170": "const bA=120,cA=38,bB=104,cB=62; const t=(cB-cA)/(bA-bB); return -16*(2*t)+bA*t+cA;",
+   "218": "const bA=120,cA=38,bB=104,cB=62; const t=(cB-cA)/(bA-bB); return bA*t+cA;"
+  }
+ },
+ {
+  "id": "SM28F-A08",
+  "domain": "Algebra",
+  "subskill": "Two equations sharing a constant, solutions linked by a relation",
+  "difficulty": "hard",
+  "prompt": "6x - 2k = 4x + 6\n4x + k = 38\n\nIn the two equations above, k is the same constant. The solution to the first equation is 1 less than 2 times the solution to the second equation. What is the solution to the first equation?",
+  "choices": [
+   "5",
+   "10",
+   "13",
+   "33"
+  ],
+  "correct_answer": "13",
+  "explanation": "Solve each equation for x in terms of k.\nFirst equation: 6x - 4x = 6 + 2k, so 2x = 6 + 2k and x = 3 + k.\nSecond equation: 4x = 38 - k, so x = (38 - k)/4.\nThe first solution is 1 less than 2 times the second: 3 + k = 2(38 - k)/4 - 1 = (38 - k)/2 - 1.\nMultiply by 2: 6 + 2k = 38 - k - 2, so 3k = 30 and k = 10.\nThe solution to the first equation is 3 + 10 = 13. (Check: the second equation gives x = 28/4 = 7, and 2(7) - 1 = 13.)\n\nChoice 5 comes from applying the relation the other way round, making the second solution 1 less than 2 times the first: (38 - k)/4 = 2(3 + k) - 1 gives k = 2 and a first solution of 5.\nChoice 10 is the value of k, not the solution to the first equation.\nChoice 33 comes from moving -2k to the right side without changing its sign, so x = 3 - k: then 3 - k = (38 - k)/2 - 1 gives k = -30 and x = 33.",
+  "solve": "const c1=6,D=2,r=4,c2=38,m=2,g=1; const k=(m*c2/r-g-c1/D)/(2/D+m/r); return c1/D+2*k/D;",
+  "distractor_solve": {
+   "5": "const c1=6,D=2,r=4,c2=38,m=2,g=1; const k=(c2/r-m*c1/D+g)/(m*2/D+1/r); return Math.round((c1/D+2*k/D)*1e9)/1e9;",
+   "10": "const c1=6,D=2,r=4,c2=38,m=2,g=1; return Math.round((m*c2/r-g-c1/D)/(2/D+m/r)*1e9)/1e9;",
+   "33": "const c1=6,D=2,r=4,c2=38,m=2,g=1; const k=(m*c2/r-g-c1/D)/(-2/D+m/r); return Math.round((c1/D-2*k/D)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM28F-S04",
+  "domain": "Advanced Math",
+  "subskill": "Composition: a constant fixed by f(g(-2)) = g(f(-2)), then f(f(0))",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = x^2 + k, where k is a constant, and let g(x) = 3x + 1. The two compositions of f and g give the same output at x = -2, that is, f(g(-2)) = g(f(-2)). What is f(f(0))?",
+  "choices": [
+   "42",
+   "56",
+   "156",
+   "342"
+  ],
+  "correct_answer": "42",
+  "explanation": "First find k. Since g(-2) = 3(-2) + 1 = -5, f(g(-2)) = f(-5) = 25 + k. Since f(-2) = 4 + k, g(f(-2)) = 3(4 + k) + 1 = 13 + 3k. Setting these equal gives 25 + k = 13 + 3k, so 2k = 12 and k = 6. Then f(0) = 0 + 6 = 6, and f(f(0)) = f(6) = 36 + 6 = 42.\n\nChoice 156 comes from stopping at 2k = 12 and using k = 12, so that f(f(0)) = f(12) = 144 + 12. Choice 56 comes from a sign slip in g(f(-2)), writing 3(4 + k) - 1 = 11 + 3k, which gives k = 7 and f(7) = 49 + 7. Choice 342 comes from using x = 2 instead of x = -2: g(2) = 7, so 49 + k = 13 + 3k, k = 18 and f(18) = 324 + 18.",
+  "solve": "const m=3, n=1, p=-2; const k=((m*p+n)**2-(m*p*p+n))/(m-1); const f=x=>x*x+k; return f(f(0));",
+  "distractor_solve": {
+   "56": "const m=3, n=1, p=-2; const k=((m*p+n)**2-(m*p*p-n))/(m-1); const f=x=>x*x+k; return f(f(0));",
+   "156": "const m=3, n=1, p=-2; const k=((m*p+n)**2-(m*p*p+n)); const f=x=>x*x+k; return f(f(0));",
+   "342": "const m=3, n=1, p=2; const k=((m*p+n)**2-(m*p*p+n))/(m-1); const f=x=>x*x+k; return f(f(0));"
+  }
+ },
+ {
+  "id": "SM28F-A04",
+  "domain": "Algebra",
+  "subskill": "One unknown price from a linked-price purchase, then a new order",
+  "difficulty": "medium",
+  "prompt": "At a market stall, a bag of coffee beans costs 3 dollars more than twice the price of a box of tea. A customer pays 123 dollars for 5 bags of coffee beans and 2 boxes of tea. At these prices, what is the total cost, in dollars, of 4 bags of coffee beans and 1 box of tea?",
+  "choices": [
+   "57",
+   "81",
+   "93",
+   "102"
+  ],
+  "correct_answer": "93",
+  "explanation": "Let t be the price of a box of tea, in dollars. A bag of coffee beans costs 2t + 3.\nThe purchase gives 5(2t + 3) + 2t = 123, so 10t + 15 + 2t = 123, 12t = 108, and t = 9. A bag of coffee beans costs 2(9) + 3 = 21 dollars.\nThen 4 bags of coffee beans and 1 box of tea cost 4(21) + 9 = 84 + 9 = 93 dollars.\n\nChoice 57 comes from swapping the quantities in the new order: 1 bag of coffee beans and 4 boxes of tea cost 21 + 4(9) = 57.\nChoice 81 comes from reversing the price relationship, so that a box of tea costs 3 more than twice a bag of coffee beans: 5c + 2(2c + 3) = 123 gives c = 13 and tea at 29, and the new order costs 4(13) + 29 = 81.\nChoice 102 comes from multiplying only the 2t by 5 and not the 3: 10t + 3 + 2t = 123 gives t = 10 and coffee at 23, and the new order costs 4(23) + 10 = 102.",
+  "solve": "const m=2,c=3,a=5,b=2,T=123,u=4,v=1; const t=(T-a*c)/(a*m+b); const L=m*t+c; return u*L+v*t;",
+  "distractor_solve": {
+   "57": "const m=2,c=3,a=5,b=2,T=123,u=4,v=1; const t=(T-a*c)/(a*m+b); const L=m*t+c; return v*L+u*t;",
+   "81": "const m=2,c=3,a=5,b=2,T=123,u=4,v=1; const L=(T-b*c)/(a+b*m); const t=m*L+c; return u*L+v*t;",
+   "102": "const m=2,c=3,a=5,b=2,T=123,u=4,v=1; const t=(T-c)/(a*m+b); const L=m*t+c; return u*L+v*t;"
+  }
+ },
+ {
+  "id": "SM28F-P02",
+  "domain": "Advanced Math",
+  "subskill": "Quadratics: factored form with a parameter, depth of the vertex",
+  "difficulty": "medium",
+  "prompt": "For a positive constant k, the parabola y = (x + k)(x - 9k) has its lowest point 400 units below the x-axis. At what value of y does this parabola cross the y-axis?",
+  "choices": [
+   "-2304",
+   "-225",
+   "-144",
+   "-36"
+  ],
+  "correct_answer": "-144",
+  "explanation": "The parabola crosses the x-axis at x = -k and x = 9k, so its axis of symmetry is halfway between them, at x = (-k + 9k)/2 = 4k. The lowest point is the vertex, with y-value (4k + k)(4k - 9k) = (5k)(-5k) = -25k^2. Since this point is 400 units below the x-axis, -25k^2 = -400, so k^2 = 16. The parabola crosses the y-axis where x = 0: y = (0 + k)(0 - 9k) = -9k^2 = -9(16) = -144.\n\nChoice -225 comes from taking the x-intercepts as k and 9k, which puts the vertex at x = 5k and gives -16k^2 = -400, so k^2 = 25. Choice -36 comes from using the full distance between the x-intercepts, 10k, instead of half of it, giving -100k^2 = -400. Choice -2304 comes from reading k^2 = 16 as k = 16, so that y = -9(256).",
+  "solve": "const p=9, D=400; const mid=(-1+p)/2; const depth=(mid+1)*(p-mid); const k2=D/depth; return -p*k2;",
+  "distractor_solve": {
+   "-225": "const p=9, D=400; const mid=(1+p)/2; const depth=(mid-1)*(p-mid); const k2=D/depth; return -p*k2;",
+   "-36": "const p=9, D=400; const gap=p+1; const k2=D/(gap*gap); return -p*k2;",
+   "-2304": "const p=9, D=400; const mid=(-1+p)/2; const depth=(mid+1)*(p-mid); const k=D/depth; return -p*k*k;"
+  }
+ },
+ {
+  "id": "SM28F-P04",
+  "domain": "Advanced Math",
+  "subskill": "Quadratics: two parabolas meeting at exactly one point",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graphs of y = x^2 - 4x + 3 and y = -x^2 + 16x + k, where k is a constant, intersect at exactly one point. What is the y-coordinate of that point?",
+  "choices": [
+   "8",
+   "35",
+   "63",
+   "108"
+  ],
+  "correct_answer": "8",
+  "explanation": "At an intersection point, x^2 - 4x + 3 = -x^2 + 16x + k, which is equivalent to 2x^2 - 20x + (3 - k) = 0. The graphs meet at exactly one point when this quadratic equation has exactly one solution, and that solution is then x = 20/(2(2)) = 5, the x-coordinate of the vertex of y = 2x^2 - 20x + (3 - k). (Checking: the discriminant is 400 - 8(3 - k), which is 0 when k = -47, and then 2x^2 - 20x + 50 = 2(x - 5)^2.) The y-coordinate of the point is 5^2 - 4(5) + 3 = 8. On the other graph, -25 + 80 - 47 = 8 as well.\n\nChoice 63 comes from writing the combined equation as x^2 - 20x + (3 - k) = 0, which gives x = 10. Choice 35 assumes the graphs meet at the vertex of y = -x^2 + 16x + k, x = 8. Choice 108 comes from a sign error in the discriminant condition that gives k = 53 and then evaluating -x^2 + 16x + 53 at x = 5.",
+  "solve": "const b1=-4,c1=3,b2=16; const A=2, x0=(b2-b1)/(2*A); return x0*x0+b1*x0+c1;",
+  "distractor_solve": {
+   "35": "const b1=-4,c1=3,b2=16; const x=b2/2; return x*x+b1*x+c1;",
+   "63": "const b1=-4,c1=3,b2=16; const x=(b2-b1)/2; return x*x+b1*x+c1;",
+   "108": "const b1=-4,c1=3,b2=16; const A=2, x0=(b2-b1)/(2*A); const T=(b1-b2)*(b1-b2)/(4*A); const k=c1+T; return -x0*x0+b2*x0+k;"
+  }
+ },
+ {
+  "id": "SM28F-C01",
+  "domain": "Algebra",
+  "subskill": "System from relative speeds (toward / same direction)",
+  "difficulty": "medium",
+  "prompt": "Two cars start at the same time from towns that are 240 kilometers apart and drive toward each other, each at its own constant speed. They meet 2.5 hours later. On another day, the same two cars, driving at the same speeds as before, start at the same time from the same place and drive in the same direction. After 3 hours, the faster car is 48 kilometers ahead of the slower car. How many more minutes does the slower car take than the faster car to drive 84 kilometers?",
+  "choices": [
+   "36",
+   "126",
+   "140",
+   "315"
+  ],
+  "correct_answer": "36",
+  "explanation": "Let f and s be the speeds, in kilometers per hour, of the faster and slower car.\nDriving toward each other, the cars close the 240-kilometer gap in 2.5 hours, so f + s = 240/2.5 = 96.\nDriving in the same direction, the faster car gains 48 kilometers in 3 hours, so f - s = 48/3 = 16.\nAdding the equations gives 2f = 112, so f = 56 and s = 40.\nThe slower car takes 84/40 = 2.1 hours = 126 minutes to drive 84 kilometers, and the faster car takes 84/56 = 1.5 hours = 90 minutes. The difference is 126 - 90 = 36 minutes.\n\nChoice 126 is the slower car's time alone, without subtracting the faster car's time.\nChoice 140 comes from using 48 itself as the difference of the speeds: f + s = 96 and f - s = 48 give f = 72 and s = 24, and 84/24 - 84/72 hours is 210 - 70 = 140 minutes.\nChoice 315 comes from dividing 84 by the difference of the speeds, 84/16 = 5.25 hours = 315 minutes, as if the difference of the times were the time to cover 84 kilometers at the difference of the speeds.",
+  "solve": "const D=240,t1=2.5,G=48,t2=3,X=84; const S=D/t1, d=G/t2; const f=(S+d)/2, s=(S-d)/2; return Math.round((X/s-X/f)*60*1e6)/1e6;",
+  "distractor_solve": {
+   "126": "const D=240,t1=2.5,G=48,t2=3,X=84; const S=D/t1, d=G/t2; const s=(S-d)/2; return Math.round(X/s*60*1e6)/1e6;",
+   "140": "const D=240,t1=2.5,G=48,t2=3,X=84; const S=D/t1, d=G; const f=(S+d)/2, s=(S-d)/2; return Math.round((X/s-X/f)*60*1e6)/1e6;",
+   "315": "const D=240,t1=2.5,G=48,t2=3,X=84; const S=D/t1, d=G/t2; const f=(S+d)/2, s=(S-d)/2; return Math.round(X/(f-s)*60*1e6)/1e6;"
+  }
+ }
+]

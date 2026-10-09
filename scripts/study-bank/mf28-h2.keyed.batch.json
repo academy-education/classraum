@@ -1,0 +1,422 @@
+[
+ {
+  "id": "SM28F-R06",
+  "domain": "Advanced Math",
+  "subskill": "Rational function with no excluded values: count parameters",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (x + 1)/(x^2 + bx + 49), where b is an integer. If f(x) is defined for every real number x, how many different values of b are possible?",
+  "choices": [
+   "15",
+   "19",
+   "27",
+   "195"
+  ],
+  "correct_answer": "27",
+  "explanation": "f(x) is undefined exactly where the denominator x^2 + bx + 49 equals 0. For f to be defined for every real x, the denominator can have no real zeros, so its discriminant must be negative: b^2 - 4(1)(49) < 0, that is, b^2 < 196, so -14 < b < 14. (At b = 14 or b = -14 the denominator is (x + 7)^2 or (x - 7)^2, which is 0 at one value of x, so those are excluded.) The integers strictly between -14 and 14 are -13, -12, ..., 13, which is 27 values.",
+  "solve": "let n = 0; for (let b = -500; b <= 500; b++) if (b*b - 4*49 < 0) n++; return String(n)",
+  "distractor_solve": {
+   "15": "let n = 0; for (let b = -500; b <= 500; b++) if (b*b < 4 + 49) n++; return String(n)",
+   "19": "let n = 0; for (let b = -500; b <= 500; b++) if (b*b < 2*49) n++; return String(n)",
+   "195": "let n = 0; for (let b = -500; b <= 500; b++) if (Math.abs(b) < 196/2) n++; return String(n)"
+  }
+ },
+ {
+  "id": "SM28F-R01",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial identity: match two coefficients, then a third",
+  "difficulty": "medium",
+  "prompt": "The product (x^2 + ax + 8)(x^2 + bx + 9), in which a and b are constants, equals x^4 + 8x^3 + cx^2 + 65x + 72 for every real number x. What is c?",
+  "choices": [
+   "7",
+   "10",
+   "24",
+   "25"
+  ],
+  "correct_answer": "24",
+  "explanation": "Expand the product. The x^3 terms come from x^2(bx) + (ax)(x^2), so a + b = 8. The x terms come from (ax)(9) + 8(bx), so 9a + 8b = 65. Substituting b = 8 - a gives 9a + 64 - 8a = 65, so a = 1 and b = 7. The x^2 terms come from x^2(9) + (ax)(bx) + 8(x^2), so c = 9 + ab + 8 = 17 + (1)(7) = 24.",
+  "solve": "for (let a = -20; a <= 20; a++) { const b = 8 - a; if (9*a + 8*b === 65) return String(9 + 8 + a*b) } return \"none\"",
+  "distractor_solve": {
+   "7": "const a = 1, b = 7; return String(a*b)",
+   "10": "const a = 1, b = 7; return String(9 + 8 - a*b)",
+   "25": "return String(9 + 8 + 8)"
+  }
+ },
+ {
+  "id": "SM28F-R02",
+  "domain": "Advanced Math",
+  "subskill": "Equal values at x and -x fix the odd-power coefficient",
+  "difficulty": "medium",
+  "prompt": "For constants a and b, the cubic p(x) = x^3 + ax^2 + bx - 9 takes equal values at x = 2 and at x = -2, and p(-1) = -11. What is p(3)?",
+  "choices": [
+   "-93",
+   "-69",
+   "-39",
+   "9"
+  ],
+  "correct_answer": "-39",
+  "explanation": "Compute p(2) - p(-2). The even-power terms ax^2 and -9 are the same at 2 and -2, so they cancel: p(2) - p(-2) = (8 + 2b) - (-8 - 2b) = 16 + 4b. Since p(2) = p(-2), 16 + 4b = 0 and b = -4. Then p(-1) = -1 + a - b - 9 = -1 + a + 4 - 9 = a - 6. Setting a - 6 = -11 gives a = -5. So p(x) = x^3 - 5x^2 - 4x - 9, and p(3) = 27 - 45 - 12 - 9 = -39.",
+  "solve": "const C = -9; const b = -(2**3)/2; const a = -11 - (-1 - b + C); const p = x => x**3 + a*x*x + b*x + C; return String(p(3))",
+  "distractor_solve": {
+   "9": "const C = -9; const b = 0; const a = -11 - (-1 - b + C); return String(27 + 9*a + 3*b + C)",
+   "-69": "const C = -9, b = -4, a = -5; const x = -3; return String(x**3 + a*x*x + b*x + C)",
+   "-93": "const C = -9, b = -4, a = -5; return String(-(3**3) + 9*a + 3*b + C)"
+  }
+ },
+ {
+  "id": "SM28F-Q03",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: calibrating and inverting a power model",
+  "difficulty": "medium",
+  "prompt": "The rate Q, in liters per second, at which water flows over the crest of a small dam is modeled by Q = c(h)^(3/2), where h is the depth, in centimeters, of the water above the crest and c is a constant. When the depth is 9 centimeters, the flow rate is 54 liters per second. According to the model, by how many centimeters must the depth increase from 9 centimeters for the flow rate to reach 100 liters per second? Round your answer to the nearest hundredth.",
+  "choices": [
+   "2.05",
+   "3.25",
+   "4.57",
+   "12.54"
+  ],
+  "correct_answer": "4.57",
+  "explanation": "First find c. Since 9^(3/2) = (sqrt(9))^3 = 27, the condition 54 = c(27) gives c = 2.\n\nFor a flow rate of 100: 100 = 2h^(3/2), so h^(3/2) = 50 and h = 50^(2/3), which is about 13.572 centimeters.\n\nThe depth must increase by about 13.572 - 9 = 4.572, or 4.57 centimeters.\n\nChoice 12.54 skips finding c and solves h^(3/2) = 100. Choice 3.25 scales the depth by the square root of 100/54 instead of by (100/54)^(2/3). Choice 2.05 scales the depth by the cube root of 100/54, undoing only the cube in h^(3/2).",
+  "solve": "const c=54/Math.pow(9,1.5); const h=Math.pow(100/c,2/3); return Math.round((h-9)*100)/100;",
+  "distractor_solve": {
+   "2.05": "return Math.round((9*Math.pow(100/54,1/3)-9)*100)/100;",
+   "3.25": "return Math.round((9*Math.sqrt(100/54)-9)*100)/100;",
+   "12.54": "return Math.round((Math.pow(100,2/3)-9)*100)/100;"
+  }
+ },
+ {
+  "id": "SM28F-C02",
+  "domain": "Algebra",
+  "subskill": "System from two fill levels of a container (fixed + proportional)",
+  "difficulty": "medium",
+  "prompt": "A glass jar is partly filled with water. When the jar is 3/4 full of water, the jar and the water together weigh 1,140 grams. When the jar is 1/3 full of water, the jar and the water together weigh 640 grams. What is the total weight, in grams, of the jar and the water when the jar is completely full of water?",
+  "choices": [
+   "1200",
+   "1390",
+   "1425",
+   "1440"
+  ],
+  "correct_answer": "1440",
+  "explanation": "Let j be the weight of the empty jar and w the weight of the water in a full jar, both in grams. Then j + (3/4)w = 1,140 and j + (1/3)w = 640.\nSubtracting the second equation from the first gives (3/4 - 1/3)w = 500, that is, (5/12)w = 500, so w = 1,200.\nThen j = 640 - (1/3)(1,200) = 640 - 400 = 240.\nThe full jar and its water weigh j + w = 240 + 1,200 = 1,440 grams.\n\nChoice 1200 is the weight of the water alone in a full jar; it leaves out the jar.\nChoice 1390 comes from subtracting the fractions as (3 - 1)/4 = 1/2: then w = 1,000, j = 1,140 - 750 = 390, and j + w = 1,390.\nChoice 1425 comes from adding one quarter of the 3/4-full weight, 1,140/4 = 285, to 1,140, instead of one quarter of the water capacity.",
+  "solve": "const A=1140,B=640,p=3/4,q=1/3; const w=(A-B)/(p-q); const j=A-p*w; return j+w;",
+  "distractor_solve": {
+   "1200": "const A=1140,B=640,p=3/4,q=1/3; const w=(A-B)/(p-q); return w;",
+   "1390": "const A=1140,B=640,p=3/4,q=1/3; const w=(A-B)/((3-1)/4); const j=A-p*w; return j+w;",
+   "1425": "const A=1140,B=640,p=3/4,q=1/3; return A+A/4;"
+  }
+ },
+ {
+  "id": "SM28F-S03",
+  "domain": "Advanced Math",
+  "subskill": "Inverse of a restricted quadratic applied outside the domain",
+  "difficulty": "medium",
+  "prompt": "Let h(x) = (x - 3)^2 + 2. Restricting h to inputs x <= 3 gives a one-to-one function f, and g undoes f: g(f(x)) = x whenever x <= 3. Compute g(h(10)).",
+  "choices": [
+   "-46",
+   "-10",
+   "-4",
+   "10"
+  ],
+  "correct_answer": "-4",
+  "explanation": "First, h(10) = (10 - 3)^2 + 2 = 49 + 2 = 51. Next, g(51) is the number x with x <= 3 and f(x) = 51, that is, (x - 3)^2 + 2 = 51. Then (x - 3)^2 = 49, so x - 3 = 7 or x - 3 = -7, giving x = 10 or x = -4. Only x = -4 satisfies x <= 3, so g(h(10)) = -4. (Because 10 is not in the domain of f, g does not undo h at 10.)\n\nChoice 10 comes from assuming g(h(10)) = 10, as if g undid h for every input. Choice -10 comes from knowing the answer must be at most 3 and simply changing the sign of 10, instead of reflecting across x = 3. Choice -46 comes from skipping the square root: (x - 3)^2 = 49 treated as x - 3 = -49.",
+  "solve": "const a=3, b=2, t=10; const H=(t-a)**2+b; return a-Math.sqrt(H-b);",
+  "distractor_solve": {
+   "10": "const t=10; return t;",
+   "-10": "const t=10; return -t;",
+   "-46": "const a=3, b=2, t=10; const H=(t-a)**2+b; return a-(H-b);"
+  }
+ },
+ {
+  "id": "SM28F-Q01",
+  "domain": "Advanced Math",
+  "subskill": "Exponential models: when a decaying and a growing model meet",
+  "difficulty": "medium",
+  "prompt": "In a laboratory, the mass of sample X, in milligrams, t hours after an experiment begins is modeled by X(t) = 6,000(0.95)^t. The mass of sample Y, in milligrams, t hours after the experiment begins is modeled by Y(t) = 375(1.9)^t. According to the models, at the time when the two samples have equal mass, what is that mass, to the nearest milligram?",
+  "choices": [
+   "2850",
+   "3981",
+   "4887",
+   "5415"
+  ],
+  "correct_answer": "4887",
+  "explanation": "The masses are equal when 6,000(0.95)^t = 375(1.9)^t. Dividing both sides by 375(0.95)^t gives 6,000/375 = (1.9/0.95)^t, which is 16 = 2^t, so t = 4.\n\nThe common mass is X(4) = 6,000(0.95)^4 = 6,000(0.81450625) = 4,887.0375, or about 4,887 milligrams. As a check, Y(4) = 375(1.9)^4 = 375(13.0321) = 4,887.0375.\n\nChoice 3981 solves 2^t = 16 as 2t = 16, so t = 8, and gives X(8). Choice 5415 solves 2^t = 16 as if it were 4^t = 16, so t = 2, and gives X(2). Choice 2850 finds t = 4 but computes Y(4) as 375(1.9)(4), multiplying by the exponent instead of using it as a power.",
+  "solve": "const t=Math.log(6000/375)/Math.log(1.9/0.95); return String(Math.round(6000*Math.pow(0.95,t)));",
+  "distractor_solve": {
+   "2850": "const t=Math.log(6000/375)/Math.log(1.9/0.95); return String(Math.round(375*1.9*t));",
+   "3981": "const t=(6000/375)/(1.9/0.95); return String(Math.round(6000*Math.pow(0.95,t)));",
+   "5415": "const t=Math.log(6000/375)/Math.log(2*(1.9/0.95)); return String(Math.round(6000*Math.pow(0.95,t)));"
+  }
+ },
+ {
+  "id": "SM28F-D03",
+  "domain": "Algebra",
+  "subskill": "Complement of one solution set as another",
+  "difficulty": "medium",
+  "prompt": "7x + 30 ≥ 3(x + 2)\n87 - 5x > c\n\nIn the second inequality above, c is a constant. The values of x that do not satisfy the first inequality are exactly the values of x that satisfy the second inequality. What is the value of c?",
+  "choices": [
+   "93",
+   "99",
+   "117",
+   "42"
+  ],
+  "correct_answer": "117",
+  "explanation": "Solve the first inequality. Distributing gives 7x + 30 ≥ 3x + 6. Subtracting 3x and 30 from both sides gives 4x ≥ -24, so x ≥ -6. The values of x that do not satisfy the first inequality are therefore the values with x < -6. Now solve the second inequality for x. Subtracting 87 from both sides gives -5x > c - 87. Dividing both sides by -5 reverses the inequality sign: x < (87 - c)/5. For this to describe exactly the values x < -6, the boundary must be -6: (87 - c)/5 = -6, so 87 - c = -30 and c = 117.",
+  "solve": "const m = (3 * 2 - 30) / (7 - 3); return 87 - 5 * m;",
+  "distractor_solve": {
+   "42": "const m = (3 * 2 + 30) / (7 - 3); return 87 - 5 * m;",
+   "93": "const m = (3 * 2 - 30) / (7 - 3); return 87 - m;",
+   "99": "const m = (3 * 2 - 30) / (7 + 3); return 87 - 5 * m;"
+  }
+ },
+ {
+  "id": "SM28F-B05",
+  "domain": "Algebra",
+  "subskill": "Horizontal gap between two parallel lines",
+  "difficulty": "medium",
+  "prompt": "In the xy-plane, line l has equation 5x - 2y = -18 and line m has equation 15x - 6y = 84. A horizontal line intersects line l at point P and line m at point Q. What is the length of segment PQ?",
+  "choices": [
+   "2",
+   "3.6",
+   "9.2",
+   "20.4"
+  ],
+  "correct_answer": "9.2",
+  "explanation": "Dividing the equation of line m by 3 gives 5x - 2y = 28, so lines l and m are parallel (both have slope 5/2) and a horizontal line meets each of them once. On the horizontal line y = k, point P satisfies 5x - 2k = -18, so x = (2k - 18)/5, and point Q satisfies 5x - 2k = 28, so x = (2k + 28)/5. Since P and Q have the same y-coordinate, PQ is the difference of the x-coordinates: (2k + 28)/5 - (2k - 18)/5 = 46/5 = 9.2. This does not depend on k; for example, on the x-axis P = (-3.6, 0) and Q = (5.6, 0), which are 9.2 units apart.",
+  "solve": "const c1=-18, c2=84/3, a=5; return Math.round(Math.abs(c2-c1)/a*1e9)/1e9;",
+  "distractor_solve": {
+   "2": "const c1=-18, c2=84/3, a=5; return Math.round(Math.abs(c1+c2)/a*1e9)/1e9;",
+   "20.4": "const c1=-18, a=5; return Math.round(Math.abs(84-c1)/a*1e9)/1e9;",
+   "3.6": "const c1=-18, a=5; return Math.round(Math.abs(c1/a)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM28F-D01",
+  "domain": "Algebra",
+  "subskill": "Inequality between two outputs of a linear function",
+  "difficulty": "medium",
+  "prompt": "f(x) = 3x - 11\n\nFor the function f defined above, the output at input 3n + 3 must stay below 60 more than twice the output at input n, that is, f(3n + 3) < 2f(n) + 60. If n is an integer, what is the greatest possible value of n ?",
+  "choices": [
+   "19",
+   "8",
+   "22",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "First write each side in terms of n. Since f(x) = 3x - 11, f(3n + 3) = 3(3n + 3) - 11 = 9n + 9 - 11 = 9n - 2. Also f(n) = 3n - 11, so 2f(n) + 60 = 6n - 22 + 60 = 6n + 38. The inequality becomes 9n - 2 < 6n + 38. Subtracting 6n from both sides and adding 2 to both sides gives 3n < 40, so n < 40/3, which is about 13.33. The greatest integer less than 40/3 is 13. (Check: for n = 13, f(42) = 115 and 2f(13) + 60 = 116, and 115 < 116; for n = 14, f(45) = 124 and 2f(14) + 60 = 122, and 124 is not less than 122.)",
+  "solve": "const f = x => 3 * x - 11; let n = 100; while (!(f(3 * n + 3) < 2 * f(n) + 60)) n--; return n;",
+  "distractor_solve": {
+   "8": "const f = x => 3 * x - 11; let n = 100; while (!(f(3 * n + 3) < f(n) + 60)) n--; return n;",
+   "19": "let n = 100; while (!(9 * n - 9 - 11 < 2 * (3 * n - 11) + 60)) n--; return n;",
+   "22": "const f = x => 3 * x - 11; let n = 100; while (!(3 * f(n) + 3 < 2 * f(n) + 60)) n--; return n;"
+  }
+ },
+ {
+  "id": "SM28F-B06",
+  "domain": "Algebra",
+  "subskill": "Two lines through one point with mirrored slope-intercept relations",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are linear, and f(2) = g(2) = 27. In the xy-plane, the y-coordinate of the y-intercept of the graph of y = f(x) is 4 times the slope of that graph, and the slope of the graph of y = g(x) is 4 times the y-coordinate of the y-intercept of that graph. What is f(5) - g(5)?",
+  "choices": [
+   "-22.5",
+   "-8",
+   "15",
+   "40.5"
+  ],
+  "correct_answer": "-22.5",
+  "explanation": "Write f(x) = mx + b with b = 4m. Since f(2) = 27, 2m + 4m = 6m = 27, so m = 4.5 and b = 18: f(x) = 4.5x + 18. Write g(x) = nx + c with n = 4c. Since g(2) = 27, 2(4c) + c = 9c = 27, so c = 3 and n = 12: g(x) = 12x + 3. Then f(5) = 22.5 + 18 = 40.5 and g(5) = 60 + 3 = 63, so f(5) - g(5) = 40.5 - 63 = -22.5.",
+  "solve": "const P=27,p=2,c=4,r=5; const m=P/(p+c), b=c*m; const k=P/(c*p+1), n=c*k; return (m*r+b)-(n*r+k);",
+  "distractor_solve": {
+   "15": "const P=27,p=2,c=4; const m=P/(p+c), b=c*m; const k=P/(c*p+1); return b-k;",
+   "-8": "const P=27,p=2,c=4,r=5; const m=(P-c)/(p+1), b=m+c; const k=(P-c*p)/(p+1), n=k+c; return Math.round(((m*r+b)-(n*r+k))*1e9)/1e9;",
+   "40.5": "const P=27,p=2,c=4,r=5; const m=P/(p+c), b=c*m; return m*r+b;"
+  }
+ },
+ {
+  "id": "SM28F-D02",
+  "domain": "Algebra",
+  "subskill": "Linear inequality comparing two linear models",
+  "difficulty": "medium",
+  "prompt": "Two newsletters launched on the same day. Newsletter P had 1,440 subscribers 4 months after launch and 1,680 subscribers 8 months after launch, and its number of subscribers has increased at a constant rate since launch. Newsletter Q had 2,750 subscribers at launch and has lost 40 subscribers per month since launch. Assume both trends continue. Let t be the least whole number of months after launch for which newsletter P has more subscribers than newsletter Q. How many subscribers does newsletter P have t months after launch?",
+  "choices": [
+   "1950",
+   "2110",
+   "2160",
+   "2280"
+  ],
+  "correct_answer": "2160",
+  "explanation": "Newsletter P gains (1,680 - 1,440)/(8 - 4) = 240/4 = 60 subscribers per month. Going back 4 months from 1,440 gives 1,440 - 4(60) = 1,200 subscribers at launch, so P has 1,200 + 60m subscribers m months after launch. Newsletter Q has 2,750 - 40m subscribers m months after launch. P has more subscribers than Q when 1,200 + 60m > 2,750 - 40m, that is, 100m > 1,550, or m > 15.5. The least whole number of months is t = 16. At that time newsletter P has 1,200 + 60(16) = 1,200 + 960 = 2,160 subscribers. (Check: Q then has 2,750 - 640 = 2,110, which is fewer; at 15 months P has 2,100 and Q has 2,150.)",
+  "solve": "const r = (1680 - 1440) / (8 - 4); const P0 = 1440 - 4 * r; let t = 0; while (!(P0 + r * t > 2750 - 40 * t)) t++; return P0 + r * t;",
+  "distractor_solve": {
+   "1950": "const r = (1680 - 1440) / 8; const P0 = 1440 - 4 * r; let t = 0; while (!(P0 + r * t > 2750 - 40 * t)) t++; return P0 + r * t;",
+   "2110": "const r = (1680 - 1440) / (8 - 4); const P0 = 1440 - 4 * r; let t = 0; while (!(P0 + r * t > 2750 - 40 * t)) t++; return 2750 - 40 * t;",
+   "2280": "const r = (1680 - 1440) / (8 - 4); const P0 = 1440; let t = 0; while (!(P0 + r * t > 2750 - 40 * t)) t++; return P0 + r * t;"
+  }
+ },
+ {
+  "id": "SM28F-A09",
+  "domain": "Algebra",
+  "subskill": "Parameter from a no-solution condition, then a second equation",
+  "difficulty": "medium",
+  "prompt": "2(kx - 3) - 3x = 13x + 4\n2(kx - 3) - 3x = kx + 45\n\nThe constant k is chosen so that no real number x makes the first equation true. Using this same k, what real number x makes the second equation true?",
+  "choices": [
+   "7.8",
+   "9.6",
+   "10.2",
+   "25.5"
+  ],
+  "correct_answer": "10.2",
+  "explanation": "The left side is 2kx - 6 - 3x = (2k - 3)x - 6. No x satisfies a linear equation when the x-coefficients on the two sides are equal and the constants differ, so 2k - 3 = 13 and k = 8 (the constants -6 and 4 differ).\nWith k = 8 the second equation is 16x - 6 - 3x = 8x + 45, so 13x - 6 = 8x + 45, 5x = 51 and x = 10.2.\n\nChoice 7.8 comes from moving -6 to the right side as -6 instead of +6: 5x = 45 - 6 = 39 gives x = 7.8.\nChoice 9.6 comes from distributing the 2 only to kx, writing 2kx - 3: 13x - 3 = 8x + 45 gives x = 9.6.\nChoice 25.5 comes from moving -3x to the right side without changing its sign when finding k: 2k = 13 - 3 gives k = 5, and then 7x - 6 = 5x + 45 gives x = 25.5.",
+  "solve": "const a=2,b=3,c=3,d=13,f=45; const k=(d+c)/a; return Math.round((f+a*b)/(a*k-c-k)*1e9)/1e9;",
+  "distractor_solve": {
+   "7.8": "const a=2,b=3,c=3,d=13,f=45; const k=(d+c)/a; return Math.round((f-a*b)/(a*k-c-k)*1e9)/1e9;",
+   "9.6": "const a=2,b=3,c=3,d=13,f=45; const k=(d+c)/a; return Math.round((f+b)/(a*k-c-k)*1e9)/1e9;",
+   "25.5": "const a=2,b=3,c=3,d=13,f=45; const k=(d-c)/a; return Math.round((f+a*b)/(a*k-c-k)*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM28F-C09",
+  "domain": "Algebra",
+  "subskill": "System from two shared resources (two recipes, two totals)",
+  "difficulty": "medium",
+  "prompt": "A paint store mixes two shades of paint from blue paint and white paint. Each batch of the shade Sky uses 1 liter of blue paint and 3 liters of white paint. Each batch of the shade Mist uses 5 liters of blue paint and 1 liter of white paint. One day the store made only whole batches of these two shades and used exactly 77 liters of blue paint and exactly 49 liters of white paint. How many batches of Mist did the store make that day?",
+  "choices": [
+   "2",
+   "5",
+   "12",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Let s be the number of Sky batches and m the number of Mist batches.\nBlue paint: s + 5m = 77. White paint: 3s + m = 49.\nFrom the first equation, s = 77 - 5m. Substituting into the second gives 3(77 - 5m) + m = 49, so 231 - 14m = 49, 14m = 182 and m = 13. (Then s = 12; check: 12 + 65 = 77 and 36 + 13 = 49.)\n\nChoice 12 is the number of Sky batches, not Mist batches.\nChoice 5 comes from matching the totals to the wrong colors, s + 5m = 49 and 3s + m = 77, which gives m = 5.\nChoice 2 comes from eliminating s by multiplying the blue equation by 3 on the left side only: 3s + 15m = 77 minus 3s + m = 49 gives 14m = 28 and m = 2.",
+  "solve": "const p1=1,p2=3,q1=5,q2=1,BL=77,WH=49; const D=p1*q2-q1*p2; return (p1*WH-p2*BL)/D;",
+  "distractor_solve": {
+   "2": "const p1=1,p2=3,q1=5,q2=1,BL=77,WH=49; return (BL-p1*WH)/(p2*q1-p1*q2);",
+   "5": "const p1=1,p2=3,q1=5,q2=1,BL=77,WH=49; const D=p1*q2-q1*p2; return (p1*BL-p2*WH)/D;",
+   "12": "const p1=1,p2=3,q1=5,q2=1,BL=77,WH=49; const D=p1*q2-q1*p2; const m=(p1*WH-p2*BL)/D; return (BL-q1*m)/p1;"
+  }
+ },
+ {
+  "id": "SM28F-S06",
+  "domain": "Advanced Math",
+  "subskill": "Symmetry of an abstract function, then zeros of a transformed input",
+  "difficulty": "hard",
+  "prompt": "For every real number x, the function f satisfies f(x) = f(6 - x). The equation f(x) = 0 has exactly two real solutions, and one of them is x = -4. The function g is defined by g(x) = f(2x + 2). What is the product of the solutions to the equation g(x) = 0?",
+  "choices": [
+   "-132",
+   "-40",
+   "-21",
+   "-12"
+  ],
+  "correct_answer": "-12",
+  "explanation": "Since f(x) = f(6 - x) for every x, whenever f(r) = 0 we also have f(6 - r) = 0. With r = -4, f(6 - (-4)) = f(10) = 0. Because -4 and 10 are different and f(x) = 0 has exactly two solutions, they are -4 and 10. Now g(x) = 0 exactly when f(2x + 2) = 0, that is, when 2x + 2 = -4 or 2x + 2 = 10. These give x = -3 and x = 4, so the product of the solutions is (-3)(4) = -12.\n\nChoice -40 is the product of the solutions of f(x) = 0, not g(x) = 0. Choice -21 comes from reading f(x) = f(6 - x) as a reflection across x = 6, which makes the second solution 16 and gives 2x + 2 = 16, x = 7. Choice -132 comes from substituting each solution of f into 2x + 2 instead of solving 2x + 2 = r, which gives 2(-4) + 2 = -6 and 2(10) + 2 = 22.",
+  "solve": "const r=-4, s=6, m=2, c=2; const r2=s-r; const x1=(r-c)/m, x2=(r2-c)/m; return x1*x2;",
+  "distractor_solve": {
+   "-40": "const r=-4, s=6; const r2=s-r; return r*r2;",
+   "-21": "const r=-4, s=6, m=2, c=2; const axis=s; const r2=2*axis-r; return ((r-c)/m)*((r2-c)/m);",
+   "-132": "const r=-4, s=6, m=2, c=2; const r2=s-r; return (m*r+c)*(m*r2+c);"
+  }
+ },
+ {
+  "id": "SM28F-A01",
+  "domain": "Algebra",
+  "subskill": "Linear equation from a change in a rectangle's perimeter",
+  "difficulty": "medium",
+  "prompt": "The length of a rectangular garden bed is 1 foot more than twice its width. The bed is redesigned: its length is decreased by 4 feet and its width is tripled. The perimeter of the redesigned bed is 28 feet greater than the perimeter of the original bed. What is the area, in square feet, of the original bed?",
+  "choices": [
+   "55",
+   "136",
+   "171",
+   "528"
+  ],
+  "correct_answer": "171",
+  "explanation": "Let w be the original width in feet. The original length is 2w + 1, so the original perimeter is 2(w + 2w + 1) = 6w + 2.\nThe redesigned bed has length 2w + 1 - 4 = 2w - 3 and width 3w, so its perimeter is 2(2w - 3 + 3w) = 10w - 6.\nThe redesigned perimeter is 28 feet greater: 10w - 6 = 6w + 2 + 28, so 4w = 36 and w = 9.\nThe original bed is 9 feet wide and 2(9) + 1 = 19 feet long, so its area is 9 x 19 = 171 square feet.\n\nChoice 55 comes from increasing the length by 4 instead of decreasing it: 10w + 10 = 6w + 30 gives w = 5 and an area of 5 x 11.\nChoice 136 comes from subtracting the 4 feet from the redesigned perimeter instead of from the length: 2(5w + 1) - 4 = 6w + 30 gives w = 8 and an area of 8 x 17.\nChoice 528 comes from using length + width in place of the perimeter: (5w - 3) - (3w + 1) = 28 gives w = 16 and an area of 16 x 33.",
+  "solve": "const q=1,a=4,m=3,inc=28; const w=(inc+2*a)/(2*(m-1)); return w*(2*w+q);",
+  "distractor_solve": {
+   "55": "const q=1,a=4,m=3,inc=28; const w=(inc-2*a)/(2*(m-1)); return w*(2*w+q);",
+   "136": "const q=1,a=4,m=3,inc=28; const w=(inc+a)/(2*(m-1)); return w*(2*w+q);",
+   "528": "const q=1,a=4,m=3,inc=28; const w=(inc+a)/(m-1); return w*(2*w+q);"
+  }
+ },
+ {
+  "id": "SM28F-A06",
+  "domain": "Algebra",
+  "subskill": "Two workers at different rates and unequal hours, then cans used",
+  "difficulty": "medium",
+  "prompt": "Ana and Ben painted a fence. Ana painted at a constant rate of 11 square meters per hour, and Ben painted at a constant rate of 9 square meters per hour. Ana worked 6 hours longer than Ben, and together they painted 206 square meters. Ben used paint from cans that each cover 4 square meters, opening a new can only after the previous one was empty. How many cans did Ben open?",
+  "choices": [
+   "16",
+   "18",
+   "21",
+   "23"
+  ],
+  "correct_answer": "16",
+  "explanation": "Let b be the number of hours Ben worked. Ana worked b + 6 hours, so 11(b + 6) + 9b = 206.\nThen 20b + 66 = 206, so 20b = 140 and b = 7. Ben painted 9(7) = 63 square meters.\n63 / 4 = 15.75, so 15 cans were not enough: Ben opened 16 cans (the 16th only partly used).\n\nChoice 18 comes from attaching the 6 extra hours to Ben's term: 11b + 9(b + 6) = 206 gives b = 7.6, and Ben's area is taken as 9(7.6) = 68.4, which needs 18 cans.\nChoice 21 comes from switching the two rates: 9(b + 6) + 11b = 206 gives b = 7.6, and Ben's area is then 11(7.6) = 83.6, which needs 21 cans.\nChoice 23 comes from writing 11(b + 6) as 11b + 6: 20b + 6 = 206 gives b = 10, an area of 90 and 23 cans.",
+  "solve": "const p=11,q=9,h=6,T=206,c=4; const b=(T-p*h)/(p+q); return Math.ceil(q*b/c);",
+  "distractor_solve": {
+   "18": "const p=11,q=9,h=6,T=206,c=4; const b=(T-q*h)/(p+q); return Math.ceil(q*b/c);",
+   "21": "const p=11,q=9,h=6,T=206,c=4; const b=(T-q*h)/(p+q); return Math.ceil(p*b/c);",
+   "23": "const p=11,q=9,h=6,T=206,c=4; const b=(T-h)/(p+q); return Math.ceil(q*b/c);"
+  }
+ },
+ {
+  "id": "SM28F-S02",
+  "domain": "Advanced Math",
+  "subskill": "Inverse variation: constant from a change in y, then a new value",
+  "difficulty": "medium",
+  "prompt": "A quantity P is inversely proportional to a quantity r, so P = k/r for some constant k. Raising r from 7 to 10 lowers P by 18. According to this relationship, what is P when r = 15?",
+  "choices": [
+   "3.6",
+   "12",
+   "28",
+   "84"
+  ],
+  "correct_answer": "28",
+  "explanation": "Since P = k/r, the drop from r = 7 to r = 10 is k/7 - k/10 = 18. The left side is k(10 - 7)/70 = 3k/70, so 3k/70 = 18 and k = 420. When r = 15, P = 420/15 = 28.\n\nChoice 84 comes from writing k/7 - k/10 as k/70 (forgetting the factor 10 - 7 = 3), which gives k = 1,260 and P = 84. Choice 12 comes from treating the relationship as linear: P falls 18 over 3 units of r, or 6 per unit, so from P = 420/10 = 42 at r = 10 it would fall 30 more by r = 15. Choice 3.6 comes from replacing 1/7 - 1/10 with 1/(10 - 7) = 1/3, so that k/3 = 18, k = 54 and P = 54/15.",
+  "solve": "const x1=7, x2=10, d=18, x3=15; const k=d*x1*x2/(x2-x1); return k/x3;",
+  "distractor_solve": {
+   "12": "const x1=7, x2=10, d=18, x3=15; const k=d*x1*x2/(x2-x1); const y2=k/x2; return y2-d*(x3-x2)/(x2-x1);",
+   "84": "const x1=7, x2=10, d=18, x3=15; const k=d*x1*x2; return k/x3;",
+   "3.6": "const x1=7, x2=10, d=18, x3=15; const k=d*(x2-x1); return k/x3;"
+  }
+ },
+ {
+  "id": "SM28F-Q06",
+  "domain": "Advanced Math",
+  "subskill": "Exponential functions: a quadratic in the base from two conditions",
+  "difficulty": "hard",
+  "prompt": "A function f has the form f(x) = a(b)^x, where a and b are positive constants, and the constant a is less than 40. The outputs of f satisfy two conditions: f(0) + f(2) = 75, and f(1) = 36. Using these conditions, what is the value of f(3)?",
+  "choices": [
+   "42.25",
+   "48",
+   "60",
+   "64"
+  ],
+  "correct_answer": "64",
+  "explanation": "The conditions say a + ab^2 = 75 and ab = 36. Dividing the first equation by the second gives (1 + b^2)/b = 75/36 = 25/12, so 12 + 12b^2 = 25b, or 12b^2 - 25b + 12 = 0. This factors as (3b - 4)(4b - 3) = 0, so b = 4/3 or b = 3/4.\n\nBoth bases fit the two conditions, so the condition a < 40 decides. If b = 3/4, then a = 36/(3/4) = 48, which is not less than 40. If b = 4/3, then a = 36/(4/3) = 27, which is. So a = 27 and b = 4/3 (check: 27 + 27(16/9) = 27 + 48 = 75).\n\nThen f(3) = 27(4/3)^3 = 27(64/27) = 64.\n\nChoice 48 is f(2), one step short. Choice 60 continues the change from f(1) = 36 to f(2) = 48 as if it were constant. Choice 42.25 cancels (1 + b^2)/b to 1 + b, so b = 25/12 - 1 = 13/12 and f(3) = f(1)b^2 = 36(169/144) = 42.25.",
+  "solve": "const r=(25+Math.sqrt(625-576))/24; const bs=[r,(25-Math.sqrt(625-576))/24]; const b=bs.find(x=>36/x<40); const a=36/b; return Math.round(a*b**3*1e9)/1e9;",
+  "distractor_solve": {
+   "48": "const b=(25+Math.sqrt(625-576))/24; const a=36/b; return Math.round(a*b*b*1e9)/1e9;",
+   "60": "const b=(25+Math.sqrt(625-576))/24; const a=36/b; const f2=a*b*b; return Math.round((f2+(f2-36))*1e9)/1e9;",
+   "42.25": "const b=75/36-1; return Math.round(36*b*b*1e9)/1e9;"
+  }
+ },
+ {
+  "id": "SM28F-C10",
+  "domain": "Algebra",
+  "subskill": "Equilibrium of two linear models (demand = supply)",
+  "difficulty": "medium",
+  "prompt": "A vendor at a farmers' market estimates that when the price of a jar of jam is p dollars, shoppers will buy 100 - 5p jars per week, and she is willing to supply 15p - 40 jars per week. At the price for which the number of jars shoppers will buy equals the number of jars she is willing to supply, how many jars is that per week?",
+  "choices": [
+   "7",
+   "30",
+   "65",
+   "85"
+  ],
+  "correct_answer": "65",
+  "explanation": "Let q be the number of jars per week. The two models give the system q = 100 - 5p and q = 15p - 40.\nSetting them equal: 100 - 5p = 15p - 40, so 140 = 20p and p = 7.\nThen q = 100 - 5(7) = 65 (and 15(7) - 40 = 65 as well), so the number is 65 jars per week.\n\nChoice 7 is the price, in dollars, not the number of jars.\nChoice 30 comes from collecting the p-terms as 15p - 5p = 10p instead of 15p + 5p = 20p: then 140 = 10p, p = 14, and 100 - 5(14) = 30.\nChoice 85 comes from moving the 40 with the wrong sign, 100 - 40 = 20p: then p = 3 and 100 - 5(3) = 85.",
+  "solve": "const A=100,B=5,C=15,E=40; const p=(A+E)/(B+C); return A-B*p;",
+  "distractor_solve": {
+   "7": "const A=100,B=5,C=15,E=40; return (A+E)/(B+C);",
+   "30": "const A=100,B=5,C=15,E=40; const p=(A+E)/(C-B); return A-B*p;",
+   "85": "const A=100,B=5,C=15,E=40; const p=(A-E)/(B+C); return A-B*p;"
+  }
+ }
+]

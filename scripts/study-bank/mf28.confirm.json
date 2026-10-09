@@ -1,0 +1,126 @@
+{
+ "_note": "Every single-grader flag mf28-verdict.mjs left open, decided by hand from the stage-2 files (2026-10-10). true = confirmed (drops), false = rejected, with the reason.",
+ "SM28F-C03": {
+  "r7": false,
+  "r8": false,
+  "_why": "r7: 27 is the lone non-multiple of 5, one distractor only; r8: E's own error_directions say the stem does not predict the side"
+ },
+ "SM28F-Q05": {
+  "r7pair": false,
+  "_why": "82/9 = (10/3)^2 - 2 is two operations and 10/3 is not printed"
+ },
+ "SM28F-C08": {
+  "r7": false,
+  "r7pair": false,
+  "r11live": false,
+  "_why": "no class tell; 19/20 differ by 1 (meaningless); D names a genre (\"copied one constant wrong\"), no live row - hand search found none"
+ },
+ "SM28F-A03": {
+  "r7pair": false,
+  "_why": "41/42 floor/ceil of one wrong volume; not joined to the key by a printed number"
+ },
+ "SM28F-R04": {
+  "r5": false,
+  "r7pair": false,
+  "_why": "r5: the -11 path is declared (drop the -4x^2 terms on both sides of p(1) = p(-3): 4k = -28, k = -7, p(1) = -11) and the solve body computes exactly that; D and F found it coherent. r7pair: 18 not printed"
+ },
+ "SM28F-D05": {
+  "r7pair": false,
+  "_why": "-25 = (-18 - 57)/3, two operations"
+ },
+ "SM28F-S05": {
+  "r8": true,
+  "_why": "CONFIRMED: key largest; all three distractors below (graders' error_directions); 108 and 135 both ignore the $2 per mug, and n = 2520/(A - 2) shrinks to 2520/A whenever that cost is dropped, so the side of the natural shortcut is readable from the stem; 70 (sign slip on the same term) also below. The A88 one-sided cause"
+ },
+ "SM28F-C06": {
+  "r7pair": false,
+  "_why": "33 not printed"
+ },
+ "SM28F-P03": {
+  "r7pair": false,
+  "_why": "36 not printed"
+ },
+ "SM28F-A08": {
+  "r7pair": false,
+  "_why": "3 = 6/2, not printed"
+ },
+ "SM28F-A04": {
+  "r7pair": false,
+  "_why": "9 not printed"
+ },
+ "SM28F-P02": {
+  "r7pair": false,
+  "_why": "16 not printed"
+ },
+ "SM28F-P04": {
+  "r7": false,
+  "_why": "no tell (grader says none)"
+ },
+ "SM28F-C01": {
+  "r7pair": false,
+  "_why": "90 not printed"
+ },
+ "SM28F-C02": {
+  "r11live": true,
+  "_why": "CONFIRMED: D and E both call it the classic jar-and-water linear system, and the hand search had found live ssat b205095c (full jar and a fraction of it weighed -> water per fraction -> jar): the same chain; asking jar + full water instead of the jar is one addition. Same standard as A08's stage-0 return"
+ },
+ "SM28F-S03": {
+  "r7pair": false,
+  "_why": "-10 is the printed input negated, not paired with the key"
+ },
+ "SM28F-A01": {
+  "r7": false,
+  "_why": "F itself says none: all options factor as w(2w + 1)"
+ },
+ "SM28F-A06": {
+  "r5": true,
+  "r8": false,
+  "_why": "r5 CONFIRMED (D, F): the 18 path attaches the 6 hours to Ben (11b + 9(b + 6) = 206, b = 7.6) and then takes Ben's area as 9b, dropping the hours it just attached; the stated error gives 31 cans, not 18. r8 not needed"
+ },
+ "SM28F-S02": {
+  "r7pair": false,
+  "_why": "3 = 10 - 7 is a DIFFERENCE of printed numbers, outside the registered DPAIR set (n +/- 1, sum of two); D and F: the pair does not say which member is the key"
+ },
+ "SM28F-Q06": {
+  "r7": false,
+  "_why": "\"only perfect cube\" - weak, D says so; no class the stem implies"
+ },
+ "SM28F-P05": {
+  "r7": false,
+  "_why": "95 is the lone non-multiple of 6 and is a distractor"
+ },
+ "SM28F-Q04": {
+  "r7pair": false,
+  "r8": false,
+  "_why": "r7pair distractor-only; r8 (D only, \"partially predictable\"): the only stem bound, 5^x + 5^y >= 2 sqrt(72) ~ 17, keeps all four; E and F read the directions as not predictable"
+ },
+ "SM28F-B04": {
+  "r7pair": false,
+  "_why": "two operations"
+ },
+ "SM28F-P06": {
+  "r7pair": false,
+  "_why": "4 = 25 - 21, 25 not printed"
+ },
+ "SM28F-B02": {
+  "r11:SM28F-B04": false,
+  "_why": "B02 matches coefficients of two identities; B04 transforms a table of 3f(x) + x: different chains"
+ },
+ "SM28F-C04": {
+  "r7pair": false,
+  "_why": "44 = 21 + 23 is distractor-only"
+ },
+ "SM28F-C07": {
+  "r11:SM28F-A07": false,
+  "r11:SM28F-C04": false,
+  "r7": false,
+  "r7pair": false,
+  "_why": "E alone: C04 (values of ax + by -> a third value) and C07 (two point totals -> exchange rate 6g/s) share only \"solve a 2x2 system\", which is the sub-topic, not a template; 4.5 strikes one; 2 not printed"
+ },
+ "SM28F-B07": {
+  "r11:SM28F-B09": false,
+  "r8": false,
+  "r11live": false,
+  "_why": "B07 asks the fixed point of a two-point linear map, B09 the input for twice the intercept: different conditions; r8 (D): only -73.5 is struck by the \"above 19\" bound, 21 and 39 survive and D calls them slips; no live Celsius/Fahrenheit-crossing row (search 0)"
+ }
+}
