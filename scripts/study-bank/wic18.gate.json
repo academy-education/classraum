@@ -1,0 +1,739 @@
+{
+ "WIC18A-01": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18A-02": {
+  "verdict": "DROP",
+  "why": [
+   "distractor \"bellwether\" above ceiling per 2"
+  ],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   2,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18A-03": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18A-04": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "medium"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18A-05": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [3,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   3,
+   2,
+   2
+  ],
+  "kfos": 3
+ },
+ "WIC18A-06": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18A-07": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   1
+  ],
+  "kfos": 1
+ },
+ "WIC18A-08": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18A-09": {
+  "verdict": "DROP",
+  "why": [
+   "1 key disputed/cold miss by 1/3",
+   "2 non-exclusive 3/3",
+   "4 median struck 2 [2,2,1]",
+   "5 path wrong per 1",
+   "recommend_drop per 1"
+  ],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   2,
+   2,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18A-10": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 2
+ },
+ "WIC18B-01": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   2,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18B-02": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "hard",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18B-03": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 2
+ },
+ "WIC18B-04": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18B-05": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18B-06": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "hard"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18B-07": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18B-08": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18B-09": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,2,1]",
+   "6 resolving word through/through"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   2,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18B-10": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18C-01": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18C-02": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18C-03": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18C-04": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "hard",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "hard",
+   "hard"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18C-05": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "hard",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18C-06": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18C-07": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [3,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   3,
+   2,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18C-08": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18C-09": {
+  "verdict": "DROP",
+  "why": [
+   "3 distractors weak by majority",
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 1
+ },
+ "WIC18C-10": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18D-01": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18D-02": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18D-03": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,2,2]"
+  ],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18D-04": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18D-05": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,1,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   2,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18D-06": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "medium"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18D-07": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18D-08": {
+  "verdict": "DROP",
+  "why": [
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   2
+  ],
+  "kfos": 0
+ },
+ "WIC18D-09": {
+  "verdict": "KEEP",
+  "why": [],
+  "difficulty": "medium",
+  "rule8_capped": false,
+  "grades": [
+   "medium",
+   "medium",
+   "medium"
+  ],
+  "struck": [
+   1,
+   1,
+   1
+  ],
+  "kfos": 0
+ },
+ "WIC18D-10": {
+  "verdict": "DROP",
+  "why": [
+   "4 median struck 2 [2,2,2]",
+   "panel median easy"
+  ],
+  "difficulty": "easy",
+  "rule8_capped": false,
+  "grades": [
+   "easy",
+   "easy",
+   "easy"
+  ],
+  "struck": [
+   2,
+   2,
+   2
+  ],
+  "kfos": 1
+ }
+}

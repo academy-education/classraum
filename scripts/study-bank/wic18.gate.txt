@@ -1,0 +1,45 @@
+grader d: cold 39/40 on key (miss WIC18A-09)
+grader e: cold 40/40 on key
+grader f: cold 40/40 on key
+DROP WIC18A-01 [mmm] -> medium  4 median struck 2 [2,1,2]
+DROP WIC18A-02 [hhh] -> hard  distractor "bellwether" above ceiling per 2
+DROP WIC18A-03 [mmm] -> medium  4 median struck 2 [2,1,2]
+DROP WIC18A-04 [eem] -> easy  3 distractors weak by majority | 4 median struck 2 [2,2,2] | panel median easy
+DROP WIC18A-05 [eee] -> easy  3 distractors weak by majority | 4 median struck 2 [3,2,2] | panel median easy
+KEEP WIC18A-06 [mmm] -> medium  
+KEEP WIC18A-07 [mmm] -> medium  
+KEEP WIC18A-08 [mmm] -> medium  
+DROP WIC18A-09 [hhh] -> hard  1 key disputed/cold miss by 1/3 | 2 non-exclusive 3/3 | 4 median struck 2 [2,2,1] | 5 path wrong per 1 | recommend_drop per 1
+DROP WIC18A-10 [eee] -> easy  3 distractors weak by majority | 4 median struck 2 [2,2,2] | panel median easy
+KEEP WIC18B-01 [hhh] -> hard  
+KEEP WIC18B-02 [hhm] -> hard  
+DROP WIC18B-03 [mee] -> easy  4 median struck 2 [2,2,2] | panel median easy
+DROP WIC18B-04 [mmm] -> medium  4 median struck 2 [2,1,2]
+KEEP WIC18B-05 [hmm] -> medium  
+KEEP WIC18B-06 [mmh] -> medium  
+KEEP WIC18B-07 [mmm] -> medium  
+DROP WIC18B-08 [mmm] -> medium  4 median struck 2 [2,1,2]
+DROP WIC18B-09 [emm] -> medium  4 median struck 2 [2,2,1] | 6 resolving word through/through
+KEEP WIC18B-10 [mmm] -> medium  
+KEEP WIC18C-01 [hmm] -> medium  
+KEEP WIC18C-02 [hhh] -> hard  
+DROP WIC18C-03 [mmm] -> medium  4 median struck 2 [2,1,2]
+KEEP WIC18C-04 [mhh] -> hard  
+KEEP WIC18C-05 [hmm] -> medium  
+KEEP WIC18C-06 [mmm] -> medium  
+DROP WIC18C-07 [eee] -> easy  3 distractors weak by majority | 4 median struck 2 [3,2,2] | panel median easy
+KEEP WIC18C-08 [mmm] -> medium  
+DROP WIC18C-09 [eee] -> easy  3 distractors weak by majority | 4 median struck 2 [2,2,2] | panel median easy
+KEEP WIC18C-10 [mmm] -> medium  
+KEEP WIC18D-01 [mmm] -> medium  
+KEEP WIC18D-02 [emm] -> medium  
+DROP WIC18D-03 [mmm] -> medium  4 median struck 2 [2,2,2]
+KEEP WIC18D-04 [mmm] -> medium  
+DROP WIC18D-05 [eee] -> easy  4 median struck 2 [2,1,2] | panel median easy
+DROP WIC18D-06 [eem] -> easy  4 median struck 2 [2,2,2] | panel median easy
+KEEP WIC18D-07 [mmm] -> medium  
+DROP WIC18D-08 [eem] -> easy  panel median easy
+KEEP WIC18D-09 [mmm] -> medium  
+DROP WIC18D-10 [eee] -> easy  4 median struck 2 [2,2,2] | panel median easy
+
+kept 21 of 40, held 0, dropped 19; banked difficulty {"medium":17,"hard":4}
