@@ -1,0 +1,1418 @@
+[
+ {
+  "id": "IM17A-01",
+  "family": "isee",
+  "section": "math",
+  "prompt": "When 1,000 is divided by the positive integer d, the remainder is 13. How many different values of d are possible?",
+  "choices": [
+   "10",
+   "4",
+   "5",
+   "8"
+  ]
+ },
+ {
+  "id": "IM17A-02",
+  "family": "isee",
+  "section": "math",
+  "prompt": "For how many positive integers n does the decimal form of 1/n terminate with exactly 4 digits after the decimal point? (For example, 1/8 = 0.125 terminates with exactly 3 digits after the decimal point.)",
+  "choices": [
+   "16",
+   "9",
+   "10",
+   "24"
+  ]
+ },
+ {
+  "id": "IM17A-03",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Consider all fractions of the form k/24, where k is a positive integer, that are greater than 1/3 and less than 3/4. How many of these fractions are already in lowest terms?",
+  "choices": [
+   "8",
+   "3",
+   "5",
+   "6"
+  ]
+ },
+ {
+  "id": "IM17A-04",
+  "family": "isee",
+  "section": "math",
+  "prompt": "How many four-digit positive integers have only even digits (0, 2, 4, 6, 8) and are divisible by 4?",
+  "choices": [
+   "200",
+   "300",
+   "160",
+   "180"
+  ]
+ },
+ {
+  "id": "IM17A-05",
+  "family": "isee",
+  "section": "math",
+  "prompt": "What is the value of (2^31 + 2^29) / (2^30 - 2^28) ?",
+  "choices": [
+   "10/3",
+   "4",
+   "16/3",
+   "5/2"
+  ]
+ },
+ {
+  "id": "IM17A-06",
+  "family": "isee",
+  "section": "math",
+  "prompt": "How many positive factors of 120 are NOT factors of 84?",
+  "choices": [
+   "8",
+   "10",
+   "4",
+   "1"
+  ]
+ },
+ {
+  "id": "IM17A-07",
+  "family": "isee",
+  "section": "math",
+  "prompt": "For all numbers a and b, the operation * is defined by a * b = a + b + ab. The operation is carried out from left to right in the expression 1 * 2 * 3 * 4 * 5 * 6, so that 1 * 2 is found first, that result * 3 is found next, and so on. What is the value of the expression?",
+  "choices": [
+   "741",
+   "1800",
+   "6139",
+   "5039"
+  ]
+ },
+ {
+  "id": "IM17A-08",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The least common multiple of a positive integer n and 18 is 180. What is the sum of all the possible values of n?",
+  "choices": [
+   "200",
+   "240",
+   "260",
+   "780"
+  ]
+ },
+ {
+  "id": "IM17A-09",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The decimal 0.2454545... has a 2 in the tenths place, followed by the block 45 repeating forever. When this decimal is written as a fraction in lowest terms, what is the numerator?",
+  "choices": [
+   "27",
+   "49",
+   "245",
+   "136"
+  ]
+ },
+ {
+  "id": "IM17A-10",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The number 1,000,000 is written as the product of two positive whole numbers, and neither of the two numbers has a 0 anywhere among its digits. What is the sum of the two numbers?",
+  "choices": [
+   "78,253",
+   "62,516",
+   "15,689",
+   "3,157"
+  ]
+ },
+ {
+  "id": "IM17A-11",
+  "family": "isee",
+  "section": "math",
+  "prompt": "What is the value of the expression below, written as a fraction?\n2 + 1/(3 + 1/(4 + 1/5))",
+  "choices": [
+   "30/13",
+   "77/36",
+   "157/68",
+   "38/17"
+  ]
+ },
+ {
+  "id": "IM17A-12",
+  "family": "isee",
+  "section": "math",
+  "prompt": "N is the least positive integer such that N/2 is a perfect square and N/3 is a perfect cube. How many positive factors does N have?",
+  "choices": [
+   "20",
+   "8",
+   "15",
+   "16"
+  ]
+ },
+ {
+  "id": "IM17A-13",
+  "family": "isee",
+  "section": "math",
+  "prompt": "How many of the perfect squares from 1 through 2,000, inclusive, are multiples of 12?",
+  "choices": [
+   "22",
+   "29",
+   "14",
+   "7"
+  ]
+ },
+ {
+  "id": "IM17A-14",
+  "family": "isee",
+  "section": "math",
+  "prompt": "One pair of parentheses is to be inserted into the expression below so that the parentheses enclose two or more of the numbers. The operations are then carried out in the usual order (work inside the parentheses first, then multiplication before addition and subtraction).\n8 - 2 x 3 + 4 x 5 - 1\nWhat is the greatest value that can result?",
+  "choices": [
+   "29",
+   "57",
+   "109",
+   "37"
+  ]
+ },
+ {
+  "id": "IM17A-15",
+  "family": "isee",
+  "section": "math",
+  "prompt": "What is the sum of all positive integers n for which 2^n < 1,000,000 < 3^n ?",
+  "choices": [
+   "124",
+   "132",
+   "96",
+   "112"
+  ]
+ },
+ {
+  "id": "IM17A-16",
+  "family": "isee",
+  "section": "math",
+  "prompt": "How many two-digit prime numbers are still prime when their two digits are written in reverse order? (For example, 13 counts, because 31 is also prime.)",
+  "choices": [
+   "12",
+   "9",
+   "8",
+   "5"
+  ]
+ },
+ {
+  "id": "IM17A-17",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The positive integers a and b satisfy a < b and 1/a + 1/b = 1/12. What is the sum of all the possible values of a?",
+  "choices": [
+   "33",
+   "117",
+   "141",
+   "42"
+  ]
+ },
+ {
+  "id": "IM17A-18",
+  "family": "isee",
+  "section": "math",
+  "prompt": "As n runs through all the positive integers, what is the greatest possible value of the greatest common factor of 7n + 1 and 5n + 6 ?",
+  "choices": [
+   "37",
+   "23",
+   "41",
+   "47"
+  ]
+ },
+ {
+  "id": "IM17A-19",
+  "family": "isee",
+  "section": "math",
+  "prompt": "How many two-digit whole numbers are equal to the sum of their two digits plus the product of their two digits?",
+  "choices": [
+   "18",
+   "1",
+   "9",
+   "10"
+  ]
+ },
+ {
+  "id": "IM17A-20",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Some of the whole numbers from 1 through 20 are to be chosen so that no chosen number is exactly twice another chosen number. What is the greatest number of whole numbers that can be chosen?",
+  "choices": [
+   "14",
+   "16",
+   "17",
+   "15"
+  ]
+ },
+ {
+  "id": "IM17B-01",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Ana and Ben start at the same moment from opposite ends of a straight 700-meter path and jog toward each other, each at a steady speed. Ana starts at the west end and Ben at the east end. They first pass each other 250 meters from the west end. Each jogger turns around immediately on reaching the far end of the path and keeps jogging at the same speed. How many meters from the west end are they when they pass each other for the second time?",
+  "choices": [
+   "650",
+   "500",
+   "525",
+   "450"
+  ]
+ },
+ {
+  "id": "IM17B-02",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Two cyclists ride around a circular track, each at a steady speed. The faster cyclist rides at 12 meters per second. When the two ride in opposite directions, they pass each other every 30 seconds. When they ride in the same direction, the faster cyclist passes the slower one every 2 1/2 minutes. What is the length of the track, in meters?",
+  "choices": [
+   "720",
+   "600",
+   "1440",
+   "900"
+  ]
+ },
+ {
+  "id": "IM17B-03",
+  "family": "isee",
+  "section": "math",
+  "prompt": "All T-shirts at a store have the same regular price. During a sale, a customer who buys three T-shirts at the regular price can buy a fourth T-shirt for 40 percent off its regular price. For a customer who buys exactly four T-shirts this way, the sale is the same as taking what percent off the regular price of each of the four T-shirts?",
+  "choices": [
+   "13 1/3%",
+   "11 1/9%",
+   "10%",
+   "15%"
+  ]
+ },
+ {
+  "id": "IM17B-04",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Working alone, Kim can build a fence in 6 days, and Lee can build the same fence in 9 days. They build one such fence by taking turns: Kim works alone on the first day, Lee works alone on the second day, Kim on the third day, and so on, each working at the usual rate for a full day on his or her turn until the fence is finished. How many days does it take to build the fence?",
+  "choices": [
+   "8",
+   "7.2",
+   "6.6",
+   "7"
+  ]
+ },
+ {
+  "id": "IM17B-05",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A trail runs from a parking lot across flat ground and then straight up a hill to a lookout at the top. Nadia hikes from the parking lot to the lookout and back along the same trail without stopping. She walks 4 kilometers per hour on flat ground, 3 kilometers per hour uphill, and 6 kilometers per hour downhill. The whole round trip takes her 5 hours. How many kilometers does she walk in all?",
+  "choices": [
+   "17 1/2",
+   "21 2/3",
+   "20",
+   "21 1/4"
+  ]
+ },
+ {
+  "id": "IM17B-06",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Car A travels 40 miles on each gallon of gasoline, and Car B travels 25 miles on each gallon. Car A costs $3,000 more to buy than Car B. Gasoline costs $4 per gallon. How many miles must Car A be driven before the money it saves on gasoline, compared with Car B driven the same distance, equals the extra $3,000?",
+  "choices": [
+   "200,000",
+   "45,000",
+   "50,000",
+   "30,000"
+  ]
+ },
+ {
+  "id": "IM17B-07",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A taxi charges $3 for each kilometer driven. Three friends start a ride together. Ana gets out after 2 kilometers, Ben gets out after 10 kilometers, and Cal rides to the end of the trip, 18 kilometers from the start. They agree that the cost of each stretch of the ride is split equally among the friends who are in the taxi during that stretch. How many dollars does Cal pay?",
+  "choices": [
+   "32.4",
+   "39",
+   "34",
+   "38"
+  ]
+ },
+ {
+  "id": "IM17B-08",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A tank holds 64 liters of pure orange juice. Sam drains 16 liters of the liquid from the tank and refills the tank with 16 liters of water, then stirs it well. He does this a second time, and then a third time, each time draining 16 liters of the well-stirred mixture and adding 16 liters of water. How many liters of orange juice are drained from the tank during the third draining?",
+  "choices": [
+   "12 1/3",
+   "9",
+   "6.75",
+   "8"
+  ]
+ },
+ {
+  "id": "IM17B-09",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Ana and Ben each run at a steady speed. In the time it takes Ana to run 100 meters, Ben runs 80 meters. They run a 300-meter race on a straight track, and Ben is given a head start: he starts 50 meters along the track, so he runs only 250 meters. Both start running at the same moment. When Ana reaches the finish line, how many meters is Ben from the finish line?",
+  "choices": [
+   "20",
+   "12.5",
+   "25",
+   "10"
+  ]
+ },
+ {
+  "id": "IM17B-10",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Three hoses, A, B, and C, each fill a pool at a steady rate. Hoses A and B running together fill the empty pool in 18 minutes. Hoses A and C running together fill it in 20 minutes. Hoses B and C running together fill it in 45 minutes. How many minutes would hose C alone take to fill the empty pool?",
+  "choices": [
+   "120",
+   "72",
+   "47",
+   "60"
+  ]
+ },
+ {
+  "id": "IM17B-11",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Ana starts a small business by investing $4,000. Six months later, Ben joins the business by investing $6,000. Neither adds or withdraws money after that. At the end of the business's first full year, the profit of $4,200 is shared in proportion to (amount invested) x (number of months the money was invested). How many dollars of the profit does Ana receive?",
+  "choices": [
+   "1,050",
+   "1,680",
+   "2,800",
+   "2,400"
+  ]
+ },
+ {
+  "id": "IM17B-12",
+  "family": "isee",
+  "section": "math",
+  "prompt": "An escalator moves upward at a steady speed. Kai walks up the moving escalator from the bottom to the top. When he steps up at a rate of 1 step per second, he takes 20 steps to reach the top. On another trip, when he steps up at a rate of 2 steps per second, he takes 32 steps to reach the top. If the escalator were not moving, how many steps would Kai take to walk from the bottom to the top?",
+  "choices": [
+   "44",
+   "80",
+   "92",
+   "64"
+  ]
+ },
+ {
+  "id": "IM17B-13",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Last year, 30 percent of the members of a hiking club were under 18 years old. This year, the number of members under 18 is 60 percent greater than it was last year, and the total number of members is 20 percent greater than it was last year. What percent of this year's members are under 18?",
+  "choices": [
+   "42%",
+   "40%",
+   "38.4%",
+   "36%"
+  ]
+ },
+ {
+  "id": "IM17B-14",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Rosa and Tom stand 12 kilometers apart on a straight trail and start walking toward each other at the same moment, Rosa at a steady 5 kilometers per hour and Tom at a steady 3 kilometers per hour. At that same moment, Rosa's dog starts running from Rosa toward Tom at a steady 12 kilometers per hour. Each time the dog reaches one walker, it immediately turns around and runs back toward the other, at the same speed, until Rosa and Tom meet. What is the total distance, in kilometers, that the dog runs?",
+  "choices": [
+   "18",
+   "19.2",
+   "28.8",
+   "36"
+  ]
+ },
+ {
+  "id": "IM17B-15",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A store lowers the price of rice by 20 percent. After the price cut, $300 buys 5 kilograms more rice than $300 bought before the cut. What was the price of the rice, in dollars per kilogram, before the cut?",
+  "choices": [
+   "10",
+   "12",
+   "15",
+   "14.4"
+  ]
+ },
+ {
+  "id": "IM17B-17",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Every evening Mr. Diaz's train reaches the station at 6:00 p.m. His driver leaves home at the same time every evening, drives at the same steady speed, reaches the station at exactly 6:00 p.m., picks him up at once, and drives him straight home along the same road. One evening Mr. Diaz's train reaches the station at 4:30 p.m., and he immediately starts walking home along that road. The driver leaves home at the usual time and drives at the usual speed, meets Mr. Diaz on the road, picks him up at once, turns around, and drives him home. They arrive home 24 minutes earlier than usual. For how many minutes did Mr. Diaz walk?",
+  "choices": [
+   "66",
+   "24",
+   "45",
+   "78"
+  ]
+ },
+ {
+  "id": "IM17B-18",
+  "family": "isee",
+  "section": "math",
+  "prompt": "At a store, the price of a jacket is 20 percent more than the price of a sweater, and the price of the sweater is 25 percent less than the price of a coat. The coat costs $18 more than the jacket. What is the price of the jacket, in dollars?",
+  "choices": [
+   "342",
+   "432",
+   "162",
+   "54"
+  ]
+ },
+ {
+  "id": "IM17B-19",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A beetle is at the bottom of a well that is 50 feet deep. Each day it climbs up 12 feet, and each night it slides back down 9 feet. It starts climbing on the morning of day 1. On which day does the beetle first reach the top of the well?",
+  "choices": [
+   "13",
+   "14",
+   "17",
+   "16"
+  ]
+ },
+ {
+  "id": "IM17B-20",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The same amount of money is deposited in two accounts. Account P pays 10 percent simple annual interest. Account Q pays 10 percent annual interest, compounded once a year. Nothing else is added to or withdrawn from either account. At the end of 3 years, Account Q holds $93 more than Account P. How many dollars were deposited in each account?",
+  "choices": [
+   "4,650",
+   "9,300",
+   "3,100",
+   "3,000"
+  ]
+ },
+ {
+  "id": "IM17C-01",
+  "family": "isee",
+  "section": "math",
+  "prompt": "When (x^2 + x - 3)^3 is multiplied out and like terms are combined, the result can be written as a6x^6 + a5x^5 + a4x^4 + a3x^3 + a2x^2 + a1x + a0, where a0, a1, ..., a6 are constants. What is the value of a0 + a2 + a4 + a6 ?",
+  "choices": [
+   "-28",
+   "-26",
+   "-1",
+   "-14"
+  ]
+ },
+ {
+  "id": "IM17C-02",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The numbers x and y satisfy both of the equations below.\n|x| + x + y = 10\nx + |y| - y = 15\nWhat is the value of x + y ?",
+  "choices": [
+   "9",
+   "3",
+   "25",
+   "-5"
+  ]
+ },
+ {
+  "id": "IM17C-03",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The functions f and g are defined by f(x) = x^2 - 3x and g(x) = 2x + k, where k is a positive constant. If f(g(1)) = 10, what is the value of g(4) ?",
+  "choices": [
+   "20",
+   "11",
+   "22",
+   "13"
+  ]
+ },
+ {
+  "id": "IM17C-04",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A function f satisfies f(x) + 2f(1 - x) = 3x for every number x. What is the value of f(2) ?",
+  "choices": [
+   "0",
+   "16",
+   "-4",
+   "2"
+  ]
+ },
+ {
+  "id": "IM17C-05",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Consider the integers x with -4 <= x <= 12. What is the sum of all such integers that satisfy x^3 + 45x < 14x^2 ?",
+  "choices": [
+   "11",
+   "21",
+   "62",
+   "43"
+  ]
+ },
+ {
+  "id": "IM17C-06",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The function f is defined by f(x) = x^2 - 2x. The number a satisfies f(a + 1) - f(a) = 15. What is the value of f(a) ?",
+  "choices": [
+   "48",
+   "224",
+   "63",
+   "24"
+  ]
+ },
+ {
+  "id": "IM17C-07",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A quiz has 25 questions. Each correct answer earns 4 points, each wrong answer loses 1 point, and a question left blank earns 0 points. Rosa's score on the quiz was 33 points. What is the greatest number of questions Rosa could have answered correctly?",
+  "choices": [
+   "14",
+   "11",
+   "12",
+   "9"
+  ]
+ },
+ {
+  "id": "IM17C-08",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The numbers x and y satisfy both of the equations below.\n9^x * 27^y = 3^26\n25^x / 5^y = 5^10\nWhat is the value of xy ?",
+  "choices": [
+   "90",
+   "72",
+   "28",
+   "8"
+  ]
+ },
+ {
+  "id": "IM17C-09",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The equation |x - 3| = 2|x + 1| has exactly two solutions. What is the product of the two solutions?",
+  "choices": [
+   "-14/3",
+   "-25/3",
+   "-5/3",
+   "-7"
+  ]
+ },
+ {
+  "id": "IM17C-10",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In the system of equations below, k is a constant.\nx + y = k\n3x - y = 26\nFor how many integers k from 1 through 50 does the system have a solution in which x and y are both positive integers?",
+  "choices": [
+   "6",
+   "11",
+   "10",
+   "13"
+  ]
+ },
+ {
+  "id": "IM17C-11",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The lines y = 2x + k and y = -x + 11, where k is a constant, cross at a point whose x-coordinate is 3 more than its y-coordinate. What is the value of k ?",
+  "choices": [
+   "-1",
+   "2",
+   "-10",
+   "18"
+  ]
+ },
+ {
+  "id": "IM17C-12",
+  "family": "isee",
+  "section": "math",
+  "prompt": "What is the sum of all the integers n for which 2n^2 - 11n - 40 is a prime number?",
+  "choices": [
+   "6",
+   "9",
+   "2",
+   "7"
+  ]
+ },
+ {
+  "id": "IM17C-13",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The two solutions of the equation 2x^2 - 7x - 15 = 0 are r and s, where r > s. What is the value of r - 2s ?",
+  "choices": [
+   "8",
+   "11",
+   "16",
+   "23/2"
+  ]
+ },
+ {
+  "id": "IM17C-14",
+  "family": "isee",
+  "section": "math",
+  "prompt": "How many integers x satisfy the inequality ||x - 4| - 7| <= 3 ?",
+  "choices": [
+   "20",
+   "4",
+   "12",
+   "14"
+  ]
+ },
+ {
+  "id": "IM17C-15",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The equation x^2 - 7x + 5 = 0 has two solutions. The equation x^2 + bx + c = 0, where b and c are constants, has as its two solutions the solutions of the first equation, each increased by 3. What is the value of b + c ?",
+  "choices": [
+   "48",
+   "22",
+   "-8",
+   "1"
+  ]
+ },
+ {
+  "id": "IM17C-16",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The function f is defined as follows.\nf(x) = x^2 - 8x + 10 when x >= 2\nf(x) = -3x - 9 when x < 2\nWhat is the sum of all the numbers x for which f(x) = 3 ?",
+  "choices": [
+   "4",
+   "8",
+   "1",
+   "3"
+  ]
+ },
+ {
+  "id": "IM17C-17",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The function f is defined by f(x) = (x + 1)/(1 - x). A list of numbers begins with 3, and each number after the first is f of the number before it. What is the sum of the first 50 numbers in the list?",
+  "choices": [
+   "85/6",
+   "15",
+   "14",
+   "44/3"
+  ]
+ },
+ {
+  "id": "IM17C-18",
+  "family": "isee",
+  "section": "math",
+  "prompt": "What is the sum of all the real numbers x that satisfy (x^2 - 5x + 5)^(x + 1) = 1 ?",
+  "choices": [
+   "8",
+   "7",
+   "4",
+   "5"
+  ]
+ },
+ {
+  "id": "IM17C-19",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The positive number x satisfies x^(3/4) = 27. What is the value of x^(1/2) ?",
+  "choices": [
+   "24",
+   "6",
+   "18",
+   "9"
+  ]
+ },
+ {
+  "id": "IM17C-20",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A theater charges the same price for every ticket to a show. If the price were $2 higher, 40 fewer tickets would be sold and the total ticket revenue would be unchanged. If the price were $1 lower, 30 more tickets would be sold and the total ticket revenue would again be unchanged. What is the total ticket revenue, in dollars?",
+  "choices": [
+   "480",
+   "980",
+   "180",
+   "1260"
+  ]
+ },
+ {
+  "id": "IM17D-01",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Two flat mirrors lie along rays OA and OB, which meet at point O to form an angle of 50 degrees, and both mirrors face into that 50-degree opening. A beam of light inside the opening travels parallel to OB, in the direction from B toward O. It strikes mirror OA at point P, bounces to strike mirror OB at point Q, and bounces again to strike mirror OA at point R. Each time the beam bounces, it makes equal angles with the mirror before and after the bounce. What is the measure, in degrees, of the acute angle between the beam and mirror OA at point R?",
+  "choices": [
+   "30",
+   "80",
+   "20",
+   "40"
+  ]
+ },
+ {
+  "id": "IM17D-02",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A triangle has a perimeter of 15 centimeters, and each of its three sides is a whole number of centimeters. How many such triangles are possible, if triangles that are congruent to each other are counted only once?",
+  "choices": [
+   "10",
+   "12",
+   "7",
+   "3"
+  ]
+ },
+ {
+  "id": "IM17D-03",
+  "family": "isee",
+  "section": "math",
+  "prompt": "ABCDEFGHI is a regular polygon with nine sides. Side AB is extended beyond B, and side DC is extended beyond C, until the two extensions meet at point P outside the polygon. What is the measure of angle BPC, in degrees?",
+  "choices": [
+   "140",
+   "40",
+   "100",
+   "20"
+  ]
+ },
+ {
+  "id": "IM17D-04",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A triangle has sides of length 17 centimeters, 25 centimeters, and 28 centimeters. What is the length, in centimeters, of the altitude drawn to the 28-centimeter side?",
+  "choices": [
+   "8",
+   "6",
+   "12",
+   "15"
+  ]
+ },
+ {
+  "id": "IM17D-05",
+  "family": "isee",
+  "section": "math",
+  "prompt": "ABCD is a rectangle, with its corners labeled in order around it. Point P is inside the rectangle. The distance from P to A is 3 centimeters, the distance from P to B is 4 centimeters, and the distance from P to C is 5 centimeters. What is the distance from P to D, in centimeters?",
+  "choices": [
+   "sqrt(41)",
+   "5",
+   "sqrt(34)",
+   "3sqrt(2)"
+  ]
+ },
+ {
+  "id": "IM17D-06",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A tree 32 feet tall snaps at a point partway up its trunk. The bottom part stays standing straight up, and the top part, still attached at the break, falls so that its tip touches the level ground 16 feet from the base of the trunk. How long, in feet, is the top part that fell?",
+  "choices": [
+   "20",
+   "24",
+   "16sqrt(3)",
+   "16sqrt(2)"
+  ]
+ },
+ {
+  "id": "IM17D-07",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Two circles have the same center. A chord of the larger circle is 16 centimeters long and touches the smaller circle at exactly one point. What is the area, in square centimeters, of the ring-shaped region that is inside the larger circle but outside the smaller circle?",
+  "choices": [
+   "192π",
+   "256π",
+   "64π",
+   "100π"
+  ]
+ },
+ {
+  "id": "IM17D-08",
+  "family": "isee",
+  "section": "math",
+  "prompt": "An isosceles trapezoid has parallel sides of length 8 centimeters and 18 centimeters. A circle can be drawn inside the trapezoid so that it touches all four sides. What is the area of the trapezoid, in square centimeters?",
+  "choices": [
+   "104",
+   "78",
+   "156",
+   "65"
+  ]
+ },
+ {
+  "id": "IM17D-09",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The three vertices of a triangle lie on a circle and divide the circle into three arcs, none of which contains a vertex in its interior. The lengths of the three arcs are in the ratio 3 : 4 : 5. What is the measure, in degrees, of the largest angle of the triangle?",
+  "choices": [
+   "150",
+   "75",
+   "120",
+   "90"
+  ]
+ },
+ {
+  "id": "IM17D-10",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A triangle has sides of length 10, 10, and 12 centimeters. A circle passes through all three vertices of the triangle. What is the area of the circle, in square centimeters?",
+  "choices": [
+   "1156π/25",
+   "388π/9",
+   "50π",
+   "625π/16"
+  ]
+ },
+ {
+  "id": "IM17D-11",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Lines l and m are parallel. Point A lies on line l, and points B and C lie on line m. In triangle ABC, AB = AC. The acute angle between line l and segment AB is 50 degrees. What is the measure of angle BAC, in degrees?",
+  "choices": [
+   "80",
+   "65",
+   "40",
+   "130"
+  ]
+ },
+ {
+  "id": "IM17D-12",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Two circles, with radii 9 centimeters and 1 centimeter, touch each other at exactly one point, and neither circle is inside the other. A straight line touches each circle at exactly one point, at P on the larger circle and at Q on the smaller circle, and does not pass between the circles. What is the length of segment PQ, in centimeters?",
+  "choices": [
+   "8",
+   "3sqrt(11)",
+   "sqrt(19)",
+   "6"
+  ]
+ },
+ {
+  "id": "IM17D-13",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A closed rectangular box has a square base with sides 8 inches long. The number of cubic inches in its volume is equal to the number of square inches in its total surface area. What is the height of the box, in inches?",
+  "choices": [
+   "4",
+   "16/3",
+   "5/2",
+   "2"
+  ]
+ },
+ {
+  "id": "IM17D-14",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Triangle ABC has an area of 60 square centimeters. Point D lies on side BC so that BD : DC = 2 : 3. Point E is the midpoint of segment AD. What is the area of triangle BEC, in square centimeters?",
+  "choices": [
+   "30",
+   "20",
+   "15",
+   "36"
+  ]
+ },
+ {
+  "id": "IM17D-15",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A solid wooden cube has edges 6 centimeters long. A square hole, 2 centimeters by 2 centimeters, is cut straight through the center of the cube from the middle of one face to the middle of the opposite face, with the sides of the hole parallel to the edges of the cube. What is the total surface area of the solid that remains, including the walls inside the hole, in square centimeters?",
+  "choices": [
+   "224",
+   "208",
+   "256",
+   "232"
+  ]
+ },
+ {
+  "id": "IM17D-16",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A right triangle has legs of length 3 centimeters and 4 centimeters and a hypotenuse of length 5 centimeters. The triangle is spun all the way around the line containing its 4-centimeter leg, and it sweeps out a solid cone. What is the volume of the cone, in cubic centimeters?",
+  "choices": [
+   "12π",
+   "16π",
+   "15π",
+   "18π"
+  ]
+ },
+ {
+  "id": "IM17D-17",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A right triangle has a perimeter of 60 centimeters and an area of 120 square centimeters. What is the length, in centimeters, of the altitude drawn from the right angle to the hypotenuse?",
+  "choices": [
+   "120/11",
+   "48/5",
+   "60/7",
+   "120/13"
+  ]
+ },
+ {
+  "id": "IM17D-18",
+  "family": "isee",
+  "section": "math",
+  "prompt": "An equilateral triangle is drawn so that all three of its vertices lie on a circle of radius 6 centimeters. What is the area of the triangle, in square centimeters?",
+  "choices": [
+   "81sqrt(3)/4",
+   "18sqrt(3)",
+   "27sqrt(3)",
+   "12sqrt(3)"
+  ]
+ },
+ {
+  "id": "IM17D-19",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In a circle, chords AB and CD cross at point P inside the circle. AP = 6 centimeters, PB = 8 centimeters, and CP = 4 centimeters. What is the length of chord CD, in centimeters?",
+  "choices": [
+   "16",
+   "14",
+   "10",
+   "7"
+  ]
+ },
+ {
+  "id": "IM17D-20",
+  "family": "isee",
+  "section": "math",
+  "prompt": "For how many whole numbers n is the measure of each interior angle of a regular polygon with n sides a whole number of degrees?",
+  "choices": [
+   "10",
+   "22",
+   "16",
+   "24"
+  ]
+ },
+ {
+  "id": "IM17E-01",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In the coordinate plane, a triangle has vertices at (0, 0), (12, 0), and (0, 8). How many points with integer coordinates lie strictly inside the triangle (not on any of its sides)?",
+  "choices": [
+   "36",
+   "40",
+   "39",
+   "37"
+  ]
+ },
+ {
+  "id": "IM17E-02",
+  "family": "isee",
+  "section": "math",
+  "prompt": "An equilateral triangle with sides 10 units long is divided into small equilateral triangles with sides 1 unit long by drawing lines parallel to its three sides. Every side of every small triangle is a 1-unit segment. How many different 1-unit segments are there in the whole figure?",
+  "choices": [
+   "210",
+   "198",
+   "180",
+   "165"
+  ]
+ },
+ {
+  "id": "IM17E-03",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Starting from 1, the counting numbers are listed in order, but every number that is a perfect square or a perfect cube is left out. The list begins 2, 3, 5, 6, 7, 10, 11, .... What is the 100th number in the list?",
+  "choices": [
+   "112",
+   "111",
+   "116",
+   "114"
+  ]
+ },
+ {
+  "id": "IM17E-04",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In the coordinate plane, a triangle has vertices at (0, 0), (8, 0), and (0, 6). Point P lies inside the triangle and is the same distance from each of the three sides of the triangle. What is that distance?",
+  "choices": [
+   "2",
+   "12/5",
+   "1",
+   "8/3"
+  ]
+ },
+ {
+  "id": "IM17E-05",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A rectangle 4 units wide and 6 units long is divided into 24 unit squares by grid lines drawn parallel to its sides. How many squares of all sizes can be found in the figure, if each square's sides must lie along the grid lines?",
+  "choices": [
+   "33",
+   "47",
+   "32",
+   "50"
+  ]
+ },
+ {
+  "id": "IM17E-06",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A clock strikes once for each hour, so at 6 o'clock it strikes 6 times, with equal gaps between strikes. At 6 o'clock it takes 15 seconds from the first strike to the last. A second clock strikes the same way, except that each of its gaps is 1 second shorter than the first clock's gaps. How many seconds does the second clock take from its first strike to its last strike at 12 o'clock?",
+  "choices": [
+   "27.5",
+   "22",
+   "33",
+   "24"
+  ]
+ },
+ {
+  "id": "IM17E-07",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A town's streets form a square grid, and each intersection is named by coordinates (x, y), with blocks 1 unit long. Five friends live at the intersections (1, 2), (2, 9), (4, 1), (11, 8), and (12, 5). They want to meet at one intersection so that the total distance the five of them walk along the streets is as small as possible. Each friend walks along the streets by a shortest route. What is the least possible total walking distance, in blocks?",
+  "choices": [
+   "34",
+   "36",
+   "40",
+   "20"
+  ]
+ },
+ {
+  "id": "IM17E-08",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A robot starts at the origin of the coordinate plane. On its kth move it travels k units, and after each move it turns 90 degrees to the left. Its first moves are 1 unit east, 2 units north, 3 units west, 4 units south, 5 units east, and so on. After its 14th move, what is the straight-line distance, in units, from the robot to the origin?",
+  "choices": [
+   "sqrt(41)",
+   "sqrt(365)",
+   "sqrt(113)",
+   "sqrt(85)"
+  ]
+ },
+ {
+  "id": "IM17E-09",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In the coordinate plane, triangle ABC has vertices A(-6, -4), B(6, 5), and C(2, -2). Point M is the midpoint of side AB, and point N is the midpoint of side AC. What is the slope of line MN?",
+  "choices": [
+   "11/20",
+   "7/4",
+   "3/4",
+   "1/4"
+  ]
+ },
+ {
+  "id": "IM17E-10",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In the coordinate plane, triangle T has vertices at (0, 0), (8, 0), and (0, 8). Triangle T is reflected across the vertical line x = 2 to give triangle T'. What is the area of the region that lies inside both T and T'?",
+  "choices": [
+   "22",
+   "16",
+   "12",
+   "20"
+  ]
+ },
+ {
+  "id": "IM17E-11",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In the coordinate plane, point P lies on the segment from A(-4, 1) to B(11, 7), and P is twice as far from A as it is from B. What is the sum of the coordinates of P?",
+  "choices": [
+   "11",
+   "12.75",
+   "16.5",
+   "12"
+  ]
+ },
+ {
+  "id": "IM17E-12",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A digital clock shows times from 1:00 through 12:59 and writes the hour with no leading zero, so it shows 9:05, not 09:05. When the colon is ignored, the display for 4:14 reads the same forward and backward. How many different times from 1:00 through 12:59 have a display that reads the same forward and backward when the colon is ignored?",
+  "choices": [
+   "48",
+   "57",
+   "55",
+   "54"
+  ]
+ },
+ {
+  "id": "IM17E-13",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A satellite passes over a tracking station once every 1 hour 36 minutes. Its first pass of the week is at 10:48 p.m. on Monday. On what day and at what time is its 20th pass?",
+  "choices": [
+   "Wednesday, 6:48 a.m.",
+   "Tuesday, 5:12 p.m.",
+   "Wednesday, 5:12 a.m.",
+   "Tuesday, 6:24 p.m."
+  ]
+ },
+ {
+  "id": "IM17E-14",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A line with negative slope passes through the point (3, 4). The line and the positive x- and y-axes form a triangle with an area of 25 square units. There are two such lines. What is the least possible y-intercept of such a line?",
+  "choices": [
+   "10",
+   "20/3",
+   "5",
+   "15/2"
+  ]
+ },
+ {
+  "id": "IM17E-15",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A car's odometer is faulty: it never shows the digit 4. Whenever the next reading would contain a 4, it skips ahead to the next reading that has no 4, so after 3 it shows 5, after 39 it shows 50, and after 399 it shows 500. Each reading it shows stands for one more mile driven. The odometer read 0 when the car was new, and it now reads 2052. How many miles has the car actually been driven?",
+  "choices": [
+   "1496",
+   "1637",
+   "1437",
+   "1505"
+  ]
+ },
+ {
+  "id": "IM17E-16",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In the coordinate plane, triangle ABC has vertices A(-2, 7) and B(8, 1). The three medians of the triangle meet at the point G(3, 6). What is the sum of the x-coordinate and the y-coordinate of vertex C?",
+  "choices": [
+   "4",
+   "13",
+   "20",
+   "10"
+  ]
+ },
+ {
+  "id": "IM17E-17",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In the coordinate plane, three of the four vertices of a parallelogram are A(1, 2), B(4, 6), and C(9, 2). The fourth vertex could be at any one of three different points. What is the greatest distance between two of these three possible points?",
+  "choices": [
+   "2sqrt(41)",
+   "16",
+   "2sqrt(17)",
+   "18"
+  ]
+ },
+ {
+  "id": "IM17E-18",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A frog sits at the origin of the coordinate plane. Each jump moves it exactly 1 unit up, down, left, or right. How many different points could the frog be at after exactly 4 jumps?",
+  "choices": [
+   "21",
+   "37",
+   "41",
+   "25"
+  ]
+ },
+ {
+  "id": "IM17E-19",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A machine beeps for the first time at 8:07 a.m. It beeps for the second time 1 minute after the first beep, for the third time 2 minutes after the second beep, for the fourth time 3 minutes after the third beep, and so on, with each wait 1 minute longer than the wait before it. At what time does the machine beep for the 30th time?",
+  "choices": [
+   "3:32 p.m.",
+   "3:37 p.m.",
+   "2:53 p.m.",
+   "3:22 p.m."
+  ]
+ },
+ {
+  "id": "IM17E-20",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In the coordinate plane, the lines 3x + 4y = 12 and 3x + 4y = 47 are parallel. What is the shortest distance between the two lines?",
+  "choices": [
+   "35/12",
+   "5",
+   "12/5",
+   "7"
+  ]
+ },
+ {
+  "id": "IM17F-01",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Six different points are marked on line l, and four different points are marked on line m, which is parallel to line l. How many different triangles have all three of their corners among these ten points?",
+  "choices": [
+   "64",
+   "110",
+   "96",
+   "99"
+  ]
+ },
+ {
+  "id": "IM17F-02",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A drawer holds 5 pairs of socks, and the two socks of each pair are the same color, a different color for every pair. Without looking, Mia takes 4 of the 10 socks at the same time. What is the probability that no two of the 4 socks she takes are the same color?",
+  "choices": [
+   "8/21",
+   "4/15",
+   "4/7",
+   "1/3"
+  ]
+ },
+ {
+  "id": "IM17F-03",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A circle graph shows the favorite sports of 240 students, and each student chose exactly one sport. The sector for soccer has a central angle of 105 degrees. Twenty-four fewer students chose basketball than chose soccer. What is the central angle, in degrees, of the sector for basketball?",
+  "choices": [
+   "94.5",
+   "81",
+   "69",
+   "36"
+  ]
+ },
+ {
+  "id": "IM17F-04",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Ten cards are numbered 1 through 10. Two of the cards are drawn at random at the same time. What is the probability that the product of the two numbers drawn is a multiple of 6?",
+  "choices": [
+   "17/45",
+   "2/9",
+   "14/45",
+   "1/3"
+  ]
+ },
+ {
+  "id": "IM17F-05",
+  "family": "isee",
+  "section": "math",
+  "prompt": "In a class of 21 students, no two students have the same height. The median height is 150 centimeters. The next shorter student is 147 centimeters tall, and the next taller student is 158 centimeters tall. Three new students join the class, with heights of 139 centimeters, 153 centimeters, and 171 centimeters. What is the median height, in centimeters, of the 24 students?",
+  "choices": [
+   "154",
+   "151.5",
+   "153",
+   "155.5"
+  ]
+ },
+ {
+  "id": "IM17F-06",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The five letters of the word LEVEL are written on five cards, one letter on each card. The cards are shuffled and laid face up in a row. What is the probability that the letters, read from left to right, form an arrangement that reads the same forward and backward, as LEVEL does?",
+  "choices": [
+   "1/6",
+   "1/60",
+   "1/15",
+   "1/10"
+  ]
+ },
+ {
+  "id": "IM17F-07",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A survey of the 18 families on one street found that 6 families have exactly 1 child, 3 families have exactly 2 children, 6 families have exactly 3 children, and 3 families have exactly 4 children. One child is chosen at random from all of the children in these 18 families. What is the probability that the chosen child has exactly 2 siblings (brothers or sisters)?",
+  "choices": [
+   "1/3",
+   "1/7",
+   "1/6",
+   "3/7"
+  ]
+ },
+ {
+  "id": "IM17F-08",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A fair coin is flipped 6 times, and the result of each flip, heads or tails, is recorded in order. What is the probability that the recorded results never show heads on two flips in a row?",
+  "choices": [
+   "13/64",
+   "21/64",
+   "17/64",
+   "5/16"
+  ]
+ },
+ {
+  "id": "IM17F-09",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A list contains each of the whole numbers from 1 through 50 once. Then each multiple of 3 from 3 through 30 is written into the list a second time, so that the list has 60 numbers. What is the median of the 60 numbers in the list?",
+  "choices": [
+   "23.5",
+   "21",
+   "23",
+   "20.5"
+  ]
+ },
+ {
+  "id": "IM17F-10",
+  "family": "isee",
+  "section": "math",
+  "prompt": "The streets of a town form a grid of square blocks. Lena walks from her home to the library, which is 5 blocks east and 3 blocks north of her home, always walking either east or north along the streets, one block at a time. The intersection that is 2 blocks east and 1 block north of her home is closed, so she cannot walk through it. How many different routes can Lena take?",
+  "choices": [
+   "26",
+   "46",
+   "38",
+   "43"
+  ]
+ },
+ {
+  "id": "IM17F-11",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A soccer league has 12 teams, split into two divisions of 6 teams each. During the season, each team plays every other team in its own division exactly twice and plays every team in the other division exactly once. How many games are played in the season?",
+  "choices": [
+   "126",
+   "96",
+   "156",
+   "132"
+  ]
+ },
+ {
+  "id": "IM17F-12",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A regular polygon has 12 sides. Three of its 12 vertices are chosen at random, and every set of three vertices is equally likely to be chosen. What is the probability that the three chosen vertices are the corners of a right triangle?",
+  "choices": [
+   "1/11",
+   "6/11",
+   "3/11",
+   "18/55"
+  ]
+ },
+ {
+  "id": "IM17F-14",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Eight people, including Ann, Bo, and Cy, are to be seated around a round table with 8 identical chairs. Two seatings count as the same if every person has the same person on the left and the same person on the right in both. Ann and Bo must sit next to each other, and Cy must not sit next to Ann. How many different seatings are possible?",
+  "choices": [
+   "1200",
+   "600",
+   "960",
+   "1320"
+  ]
+ },
+ {
+  "id": "IM17F-15",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Six different books are to be given out to three children, Ana, Ben, and Cy. Every book goes to exactly one of the children, and each child must receive at least one book. In how many different ways can the books be given out?",
+  "choices": [
+   "420",
+   "540",
+   "726",
+   "450"
+  ]
+ },
+ {
+  "id": "IM17F-16",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A circular target has a radius of 6 inches. It is painted in three parts that share the same center: a bull's-eye of radius 2 inches, a middle ring covering all points from 2 inches to 5 inches from the center, and an outer ring covering all points from 5 inches to 6 inches from the center. A dart hits the target at a random point, and every point on the target is equally likely to be hit. What is the probability that the dart lands in the middle ring?",
+  "choices": [
+   "1/2",
+   "1/3",
+   "7/12",
+   "11/36"
+  ]
+ },
+ {
+  "id": "IM17F-17",
+  "family": "isee",
+  "section": "math",
+  "prompt": "At a middle school, 25 percent of the students are in grade 6, 35 percent are in grade 7, and 40 percent are in grade 8. In the school band, there are 12 percent of the grade 6 students, 20 percent of the grade 7 students, and 30 percent of the grade 8 students. One member of the band is chosen at random. What is the probability that this band member is in grade 8?",
+  "choices": [
+   "12/19",
+   "15/31",
+   "5/6",
+   "6/11"
+  ]
+ },
+ {
+  "id": "IM17F-18",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A list contains the five numbers 1, 4, 13, 18, and x, where x can be any number. The mean of the five numbers is equal to their median. What is the sum of all the possible values of x?",
+  "choices": [
+   "9",
+   "29",
+   "22",
+   "54"
+  ]
+ },
+ {
+  "id": "IM17F-19",
+  "family": "isee",
+  "section": "math",
+  "prompt": "A club has 5 women and 4 men. A committee of 4 members is chosen at random from the 9, and every group of 4 is equally likely to be chosen. What is the probability that the committee has more women than men?",
+  "choices": [
+   "5/14",
+   "20/63",
+   "5/42",
+   "1/6"
+  ]
+ },
+ {
+  "id": "IM17F-20",
+  "family": "isee",
+  "section": "math",
+  "prompt": "Ana and Ben play a game in which they take turns, with Ana going first. On each of her turns, Ana rolls a fair six-sided number cube, numbered 1 through 6, and she wins the game if it shows a 6. On each of his turns, Ben flips a fair coin, and he wins the game if it lands heads. They keep taking turns until one of them wins. What is the probability that Ana wins the game?",
+  "choices": [
+   "1/4",
+   "2/5",
+   "2/7",
+   "1/3"
+  ]
+ }
+]

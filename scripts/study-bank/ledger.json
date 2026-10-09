@@ -7888,6 +7888,51 @@
           "verdict": "Gate 4 on the kept 23: 115 distinct option strings over 115 slots (check-recycled-distractor NO MEASUREMENT), key strictly longest 0/23 and shortest 0/23 (bar 30%); keys dealt flat at render. Reported, not gated: stored key slots A4/B8/C3/D3/E5 (B 34.8%; the draw shuffles choices at serve time); family key rate on the kept set is no longer balanced (symbol/symbolized keyed 5 of 8 kept appearances, antonyms 0/8, worker/workplace 0/9) because survival depended on word level, not family."
         }
       }
+    },
+    {
+      "id": "isee-math-s17-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "isee",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "isee-math-s17",
+      "contentSha": "0ae371529b1602e885547ea37a30577f2a7b1b9ca1634eb53e28ea86629930b9",
+      "status": "shipped",
+      "spec": {
+        "n": 118,
+        "authors": 6,
+        "batchFile": "scripts/study-bank/isee-math-s17.batch.json",
+        "prereg": "scripts/study-bank/isee-math-s17.prereg.md",
+        "method": "six Claude strands x 20, one file per item over 18 author runs of 5-7 (plus relaunches after API limits), commissioned 0E/7M/13H with dealt key slots and per-item forced lists; pre-freeze M1 method search (half 1 4/4 plants, half 2 re-run), 28 confirmed duplicates returned once, round-2 search dropped 2 (120 -> 118); options-only attack with a 100-item interleaved live control; two ANCHORED graders per item (bank) and two UNANCHORED graders per item (attribution), each as two agents over halves"
+      },
+      "note": "Commissioned for ISEE math forms 8-9 (616 live = 7 clean; form 8 needs 672, form 9 756). 93 of 118 frozen inserted; 25 dropped at B4 (10 confirmed free eliminations killing >= 2, 15 confirmed out of band); 22 of them by the anchored pair alone (hold bar > 33). Banked (anchored pair, easier label on 29 splits) 5 easy / 51 medium / 37 hard; unanchored pair on the same 93: 17 / 58 / 18. Reasons in isee-math-s17.qc-reasons.json.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "0ae371529b1602e885547ea37a30577f2a7b1b9ca1634eb53e28ea86629930b9",
+          "verdict": "math-bank-helper verify on the frozen 118: sandbox 118/118, distractors 354/354, symbolic hub 7 structured +2.4, numeric hub 9 structured -13.9, key extremity PASS 50/110 = 45.5% (bar 40.0%; strands 45.0/47.4/40.0/50.0/43.8/47.4). run-middle / option-pair-constant / key-is-sum / plurality: key in 0; no key/-key pair. stem-duplicates 0 vs 1311 live isee rows; word-3-shingle vs 616 live ISEE math max 0.86 (F-04 vs 92f40ce7, same cards, multiple of 6 vs even: different method), within 0.31; break-test planted live stem flagged at 1.00. Pre-freeze M1: half 1 named 4/4 plants; half 2 named 2/4 and was re-run with a sharper addendum (not a clean break-test: its examples mirrored the plants). 28 confirmed duplicates returned once (26 live, 2 within batch); round 2 on the replacements confirmed 2 (F-13, B-16), dropped before freeze."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "0ae371529b1602e885547ea37a30577f2a7b1b9ca1634eb53e28ea86629930b9",
+          "n": 354,
+          "mean": 28.0,
+          "control": 37.7,
+          "margin": -9.7,
+          "verdict": "make-oo-render --control 100 (blind sha af0cf3ab3e2fbe82), keys dealt 30/30/29/29 candidate and 25x4 control, three Claude samples x 218 interleaved. Candidate 99/354 = 28.0% (line 25.4%), live control 113/300 = 37.7% (line 25.0%): CANDIDATE minus LIVE CONTROL -9.7 (pass <= +5.0; control far below the 80% void ceiling). Unanimous-correct 23/118 = 19.5% vs control 27/100 = 27.0%. Pairwise agreement 73.7% vs 25.6% independent - one solver sampled three times."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "0ae371529b1602e885547ea37a30577f2a7b1b9ca1634eb53e28ea86629930b9",
+          "verdict": "Four Claude graders per item on isee-math-s17.grade.json (render sha c93f745bafc3e137; halves 08c2e272 / 9743198d quoted by every grader): anchored A-a, A-b (the 18 s16 anchors, banking) and unanchored U-a, U-b (attribution only). 472 picks: 472 equal the key; 0 non-exclusive, 0 second-defensible, 0 live duplicates named. 25 dropped: confirmed free eliminations killing >= 2 on A-03, A-07, A-11, A-13, B-02, B-10, C-03, D-06, E-13, E-14 (B-10, C-03, D-06 named only by the unanchored pair); confirmed out of band on A-12, A-17, A-18, A-20, C-01, C-04, C-12, C-18, D-05, D-08, E-15, F-08, F-14, F-15, F-20 (contest techniques). Anchored-pair drops 22 of 120 (hold > 33). Not confirmed: A-04 (grader arithmetic), A-06, B-11, E-19 (the kill is the method); single-grader band flags on B-01, B-17, C-02, D-01, D-10, D-12, D-17, D-19, E-02, E-03, E-07, E-20 and E-01 (elementary route exists)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "0ae371529b1602e885547ea37a30577f2a7b1b9ca1634eb53e28ea86629930b9",
+          "verdict": "23 candidate items unanimous blind; 8 dropped on a confirmed with-source defect (A-07, A-11, A-17, A-18, C-04, E-14, F-15, F-20). 15 kept with no confirmed with-source defect. Unanimity rate 19.5% vs live 27.0%."
+        }
+      }
     }
   ],
   "auditedCohorts": [
