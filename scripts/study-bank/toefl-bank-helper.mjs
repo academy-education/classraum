@@ -39,6 +39,8 @@ const LETTERS = ['A', 'B', 'C', 'D']
 const norm = s => (s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
 const tagOf = p => basename(p, extname(p))
 const COHORT = process.env.BANK_COHORT || 'v3-claude'
+// insert-listening only: BANK_VERIFIED=false inserts verified=false (staged).
+const STAGED = process.env.BANK_VERIFIED === 'false'
 
 // Listening dedup: transcript + prompt + choices. Writing dedup: the scenario
 // passage (prompt is a fixed instruction string, so it doesn't discriminate).
@@ -320,13 +322,15 @@ async function insertListening(keepPath, files) {
       task: it.listeningTask ?? it.readingTask,
       topic_tag: it.listeningTask ?? it.readingTask,
       word_count: it.passage ? it.passage.split(/\s+/).filter(Boolean).length : null,
-      verified: true, archived: false, source: 'hand', cohort: COHORT,
+      // BANK_VERIFIED=false stages the cohort (row exists, assembler ignores
+      // it) until a human sitting releases it — the ACT inserter's contract.
+      verified: STAGED ? false : true, archived: false, source: 'hand', cohort: COHORT,
       verify_meta: { method: 'claude-authored+claude-blind-grade', passage_needed: true },
     })
     if (error) { console.log(`ERR ${id}: ${error.message}`); continue }
     seen.add(content_hash); inserted++
   }
-  console.log(`\nListening: inserted ${inserted}, rejected ${rejected}`)
+  console.log(`\nListening: inserted ${inserted}${STAGED ? ' STAGED (verified=false)' : ''}, rejected ${rejected}`)
 }
 
 /**
