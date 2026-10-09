@@ -1,0 +1,34 @@
+{
+ "heuristics": [
+  {
+   "name": "antonym-pair",
+   "description": "Two options are opposites; picked the member that better fits a likely headword",
+   "picks_decided": 29
+  },
+  {
+   "name": "test-vocab-sense",
+   "description": "One option is the plain gloss of a typical ISEE headword",
+   "picks_decided": 8
+  },
+  {
+   "name": "none",
+   "description": "No signal; arbitrary pick",
+   "picks_decided": 190
+  },
+  {
+   "name": "odd-one-out",
+   "description": "One option differs in kind from the other three",
+   "picks_decided": 1
+  },
+  {
+   "name": "near-pair",
+   "description": "Two options overlap in meaning; picked the more central one",
+   "picks_decided": 2
+  },
+  {
+   "name": "homonym-trap",
+   "description": "Two options evoke a homonym whose other sense is a third option",
+   "picks_decided": 1
+  }
+ ]
+}

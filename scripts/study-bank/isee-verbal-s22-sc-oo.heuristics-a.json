@@ -1,0 +1,29 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "no signal from options; picked the most SC-typical word",
+   "picks_decided": 184
+  },
+  {
+   "name": "coherent-pair",
+   "description": "two-blank option whose halves are semantically coherent",
+   "picks_decided": 7
+  },
+  {
+   "name": "duplicate-word-contrast",
+   "description": "a word repeated across two options; picked the contrastive partner",
+   "picks_decided": 3
+  },
+  {
+   "name": "contrast-pair",
+   "description": "two-blank option forming a clear contrast",
+   "picks_decided": 1
+  },
+  {
+   "name": "sentence-cliche",
+   "description": "one option fits a common sentence pattern",
+   "picks_decided": 1
+  }
+ ]
+}

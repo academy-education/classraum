@@ -1,0 +1,802 @@
+[
+ {
+  "id": "IS22A-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast ('far from noble statesmanship') plus a restatement one sentence back (delegations secretly coordinating with supposed rivals)",
+  "prompt": "[Sentence Completion] Historians long celebrated the treaty as a hard-won triumph of diplomacy. The archival letters tell a less flattering story: each delegation had privately arranged with its supposed rivals how the disputed provinces would be divided weeks before the public talks even opened. Far from noble statesmanship, the agreement was the product of -------.",
+  "choices": [
+   "amnesty",
+   "collusion",
+   "aptitude",
+   "apathy"
+  ],
+  "correct_answer": "collusion",
+  "explanation": "collusion (secret cooperation for an improper purpose): the delegations privately arranged the outcome with their supposed rivals before the talks, and the contrast 'far from noble' requires a word for this hidden, discreditable cooperation.",
+  "distractor_rationales": [
+   "amnesty - an official pardon for a group ('amnesty for political prisoners'); fails because no one was being pardoned, and the delegations' secret prior arrangement is what made the agreement far from noble",
+   "apathy - lack of interest ('voter apathy'); fails because the delegations were actively scheming, not indifferent",
+   "aptitude - natural skill ('an aptitude for languages'); fails because skill would be admirable, and the sentence says the result was far from noble"
+  ]
+ },
+ {
+  "id": "IS22A-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast ('not considered scientific doubt but') plus a cause clause after the blank (saw no reason to scrutinize a habit that never inconvenienced them); 'senior' two sentences back rules out youth",
+  "prompt": "[Sentence Completion] The senior physicians of the Vienna clinic never disputed that Semmelweis's ward recorded fewer deaths; what they would not entertain was the suggestion that their own unwashed hands were to blame. Their rejection of his findings, historians now argue, reflected not considered scientific doubt but the ------- attitude of men who saw no reason to scrutinize a habit that had never once inconvenienced them.",
+  "choices": [
+   "cosmopolitan",
+   "cavalier",
+   "amateurish",
+   "bureaucratic"
+  ],
+  "correct_answer": "cavalier",
+  "explanation": "cavalier (offhandedly dismissive of something that deserves serious attention): the doctors brushed aside evidence about patients' deaths simply because the habit cost them nothing, which is careless disregard rather than reasoned doubt.",
+  "distractor_rationales": [
+   "amateurish - unskilled, like a beginner ('an amateurish paint job'); fails because these were senior, established physicians",
+   "cosmopolitan - worldly, at home in many cultures ('a cosmopolitan city'); fails because nothing in the passage concerns worldliness, and the physicians' attitude was a narrow self-interested dismissal",
+   "bureaucratic - bound by rules and procedure ('bureaucratic paperwork'); fails because nothing in the passage concerns rules or official procedure, only their indifference"
+  ]
+ },
+ {
+  "id": "IS22A-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast with the headline claim ('trumpeted ... however') plus a restatement after the dash showing the footnote limits the claim",
+  "prompt": "[Sentence Completion] The company's press release trumpeted its new face-recognition software as correct in ninety-nine cases out of a hundred. Buried in a footnote, however, was the ------- that the figure had been measured only on well-lit studio portraits of adults, hardly the grainy nighttime footage that the firm's security cameras would actually be recording.",
+  "choices": [
+   "allegation",
+   "blessing",
+   "caveat",
+   "corollary"
+  ],
+  "correct_answer": "caveat",
+  "explanation": "caveat (a warning that limits or qualifies a claim): the footnote restricts the 99% figure to ideal photographs, which undercuts the headline for the real use the firm intends.",
+  "distractor_rationales": [
+   "blessing - approval or a welcome benefit ('gave the plan her blessing'); fails because the footnote undercuts the product rather than approving it",
+   "allegation - an unproven accusation made against someone ('an allegation of fraud'); fails because the company wrote the footnote itself and accuses no one",
+   "corollary - a result that follows naturally from something already established ('a corollary of the theorem'); fails because the testing condition is a limit placed on the claim, not a consequence that follows from it"
+  ]
+ },
+ {
+  "id": "IS22A-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession ('granted ... striking, but ... far from') with the restatement a clause and a sentence later ('proved nothing' / 'the matter was settled')",
+  "prompt": "[Sentence Completion] Geologists in the 1920s granted that the jigsaw fit of the Atlantic coastlines was striking, but they regarded it as far from -------: a coincidence of shape, they argued, proved nothing by itself. Only when seafloor surveys in the 1960s revealed new rock spreading outward from the mid-ocean ridges did most of them accept that the matter was settled.",
+  "choices": [
+   "accidental",
+   "apparent",
+   "beneficial",
+   "conclusive"
+  ],
+  "correct_answer": "conclusive",
+  "explanation": "conclusive (settling a question beyond doubt): the geologists saw the fit but held that a mere resemblance 'proved nothing'; only the later seafloor evidence 'settled' the matter, so the fit was striking yet not decisive.",
+  "distractor_rationales": [
+   "apparent - easily seen ('an apparent mistake'); fails because they granted the fit was striking, so it was plainly visible to them",
+   "accidental - happening by chance ('an accidental discovery'); fails because the doubters called the fit a coincidence, so they thought it WAS accidental, not far from it",
+   "beneficial - helpful or advantageous ('beneficial rainfall'); fails because the dispute is about proof, not about whether the fit did anyone good"
+  ]
+ },
+ {
+  "id": "IS22A-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "contrast with the first sentence (the well-understood first week) plus a restatement after the colon (apparently recovered patients with symptoms lingering for months)",
+  "prompt": "[Sentence Completion] Doctors understood well what the virus did during the feverish first week of infection. What baffled them for years was its -------: patients who had apparently recovered completely kept reporting exhaustion and memory lapses that lingered for months.",
+  "choices": [
+   "culprit",
+   "aftermath",
+   "criterion",
+   "asset"
+  ],
+  "correct_answer": "aftermath",
+  "explanation": "aftermath (the consequences that follow an event, usually unpleasant): the sentence contrasts the illness itself with what came once patients seemed recovered, the lingering exhaustion and memory lapses.",
+  "distractor_rationales": [
+   "criterion - a standard used to judge something ('the criteria for admission'); fails because the colon describes lingering symptoms, not a standard of judgment",
+   "culprit - the one responsible for a wrong ('police caught the culprit'); fails because the virus is itself the cause, and the colon describes effects, not who is to blame",
+   "asset - something valuable or useful ('her calm was an asset'); fails because exhaustion and memory lapses are harms, not advantages"
+  ]
+ },
+ {
+  "id": "IS22A-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause and effect: an unexpected result (eels swimming against the predicted current) and its consequence after the blank (a season spent checking whether the tags had malfunctioned)",
+  "prompt": "[Sentence Completion] The model predicted that the young eels, once released, would drift with the warm current toward the coast. Instead the tagged animals swam steadily against it, toward a stretch of open ocean nobody had thought to watch, a result that ------- the researchers so thoroughly that they spent the following season checking whether their tags had malfunctioned.",
+  "choices": [
+   "accredited",
+   "compensated",
+   "confounded",
+   "alienated"
+  ],
+  "correct_answer": "confounded",
+  "explanation": "confounded (baffled, threw into confusion by contradicting expectations): the eels did the opposite of what the model predicted, and the researchers were so puzzled that they suspected their own equipment.",
+  "distractor_rationales": [
+   "compensated - repaid someone for a loss or effort ('compensated for overtime'); fails because a surprising result repays no one, and the researchers' response is doubt, not satisfaction",
+   "accredited - officially recognized as meeting a standard ('an accredited university'); fails because a surprising result certifies no one, and it left the researchers doubting their own equipment",
+   "alienated - made someone feel unwelcome or turned them away ('rude remarks alienated customers'); fails because the researchers did not withdraw from the work but spent another season on it"
+  ]
+ },
+ {
+  "id": "IS22A-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast ('expected gratitude ... What they got instead') plus a restatement listing the hostile reaction (packed meetings, warning pamphlets, a referendum reversing the measure) before the blank",
+  "prompt": "[Sentence Completion] When the city added fluoride to its water supply in 1951, officials expected gratitude for the sharp drop in children's cavities. What they got instead were packed council meetings, pamphlets warning of government poisoning, and a referendum that reversed the measure within two years, the kind of ------- that public-health campaigns have provoked ever since vaccination was first made compulsory.",
+  "choices": [
+   "backlash",
+   "alibi",
+   "anticlimax",
+   "benchmark"
+  ],
+  "correct_answer": "backlash",
+  "explanation": "backlash (a strong, hostile public reaction against a change): instead of thanks, the measure drew angry meetings, scare pamphlets and a vote that undid it, the organized resistance health campaigns 'provoke'.",
+  "distractor_rationales": [
+   "anticlimax - a disappointing letdown after a buildup ('the finale was an anticlimax'); fails because the public did not merely fail to be impressed but actively organized and reversed the measure",
+   "benchmark - a standard against which others are measured ('a benchmark for safety'); fails because the meetings, pamphlets and referendum set no standard, and campaigns do not 'provoke' benchmarks",
+   "alibi - proof that an accused person was elsewhere ('a solid alibi'); fails because no one is accused of a crime, and the passage describes public resistance to the measure"
+  ]
+ },
+ {
+  "id": "IS22A-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast with the first sentence (hackers blamed, but no outside intrusion found) plus a restatement after the colon listing managers' mistakes",
+  "prompt": "[Sentence Completion] Early reports blamed hackers for the hospital's records outage, but investigators found no trace of any outside intrusion. The new system had instead been ------- from the start: managers skipped the staff training, launched it during the busiest week of flu season, and dismissed the nurses' first complaints about vanishing files as teething trouble.",
+  "choices": [
+   "certified",
+   "bankrolled",
+   "assailed",
+   "bungled"
+  ],
+  "correct_answer": "bungled",
+  "explanation": "bungled (handled clumsily and badly): the outage came not from an attack but from a string of avoidable management errors, untrained staff, terrible timing and ignored warnings.",
+  "distractor_rationales": [
+   "assailed - attacked violently or with criticism ('assailed by critics'); fails because investigators found no outside intrusion, and the colon lists the managers' own mistakes",
+   "certified - officially approved as meeting a standard ('a certified teacher'); fails because the colon lists a series of errors, not an approval",
+   "bankrolled - paid for or financed ('a project bankrolled by investors'); fails because the colon lists mistakes in how the system was run, not who paid for it"
+  ]
+ },
+ {
+  "id": "IS22A-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause a sentence back (legs with no weight to bear for months, 'nothing has injured them') plus the contrast 'does not rest so much as' at the blank",
+  "prompt": "[Sentence Completion] Astronauts returning from half a year in orbit are often carried from the capsule on stretchers. Nothing has injured them; their legs have simply had no weight to bear for months, and muscle that is spared all work does not rest so much as -------.",
+  "choices": [
+   "circulate",
+   "atrophy",
+   "aspire",
+   "assimilate"
+  ],
+  "correct_answer": "atrophy",
+  "explanation": "atrophy (waste away from lack of use): with no weight to bear, the unused leg muscles weaken so badly that healthy, uninjured astronauts cannot walk; the contrast says idleness does not refresh the muscle but wears it away.",
+  "distractor_rationales": [
+   "assimilate - become absorbed into a larger group or system ('newcomers assimilate into a culture'); fails because nothing is being absorbed, and the astronauts' weakness shows the muscle was lost",
+   "aspire - hope or aim to achieve something ('aspire to be a doctor'); fails because muscle has no ambitions, and the passage describes a physical loss",
+   "circulate - move around continuously ('blood circulates'); fails because the contrast with resting must explain why the astronauts cannot stand, and circulating would not weaken them"
+  ]
+ },
+ {
+  "id": "IS22A-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "cause and effect: the monks openly displayed a forgery and invited the king's lawyers to inspect it; the effect after the blank (no one questioned a document its keepers plainly did not fear exposing)",
+  "prompt": "[Sentence Completion] Rather than hiding the forged charter, the monks set it on the altar and invited the king's own lawyers to examine it. The gesture was so ------- that for three centuries nobody thought to question a document its keepers so plainly did not fear exposing.",
+  "choices": [
+   "brazen",
+   "crude",
+   "abrupt",
+   "chaotic"
+  ],
+  "correct_answer": "brazen",
+  "explanation": "brazen (shamelessly bold): the monks flaunted a forgery before the very lawyers who could expose it, and that open, unembarrassed confidence is what convinced everyone the document must be genuine.",
+  "distractor_rationales": [
+   "abrupt - sudden and unexpected ('an abrupt halt'); fails because the effect depends on the monks' open confidence, not on the gesture's suddenness",
+   "chaotic - wildly disordered and confused ('a chaotic classroom'); fails because setting the charter on the altar and inviting the lawyers was a calm, deliberate act, and disorder would not have quieted suspicion",
+   "crude - rough and unsophisticated ('a crude sketch'); fails because a clumsy gesture would invite suspicion, while this one silenced doubt for three centuries"
+  ]
+ },
+ {
+  "id": "IS22A-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast ('less the root of ... than its') with the decisive restatement a full sentence later (the grievances would have boiled over anyway; the drought only changed when)",
+  "prompt": "[Sentence Completion] The drought of 1788 was less the root of the revolt than its -------. Without the failed harvest, most scholars agree, the peasants' grievances over taxes would eventually have boiled over anyway; the drought simply meant that it happened that summer rather than a decade later.",
+  "choices": [
+   "consensus",
+   "culmination",
+   "analogy",
+   "catalyst"
+  ],
+  "correct_answer": "catalyst",
+  "explanation": "catalyst (something that speeds up or sets off a change already likely to happen): the grievances, not the drought, were the real cause; the drought only hastened a revolt that would have come anyway.",
+  "distractor_rationales": [
+   "analogy - a comparison showing likeness between things ('an analogy between the heart and a pump'); fails because the drought was an actual event in the revolt's history, not a comparison to it",
+   "consensus - general agreement among a group ('the committee reached a consensus'); fails because a failed harvest is not an agreement; 'most scholars agree' describes historians, not the drought",
+   "culmination - the final, highest point of a process ('the culmination of years of work'); fails because the drought came before the revolt and set it off, rather than being its climax or end"
+  ]
+ },
+ {
+  "id": "IS22A-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast ('could not simply be found; it had to be') with the cause a sentence back (businessmen saw little use for the device) and the restatement after the blank (a slow campaign of demonstrations, loans and directories)",
+  "prompt": "[Sentence Completion] Bell's company learned in 1877 that businessmen saw little use for a device that left no written record of what had been agreed. Demand for the telephone, in other words, could not simply be found; it had to be -------, patiently, through free public demonstrations, instruments lent to doctors and grocers, and printed directories listing everyone who could already be reached.",
+  "choices": [
+   "conveyed",
+   "boycotted",
+   "cultivated",
+   "amplified"
+  ],
+  "correct_answer": "cultivated",
+  "explanation": "cultivated (developed gradually through deliberate effort): since businessmen did not yet want the telephone, the company had to grow demand from almost nothing by a patient campaign of demonstrations, loans and directories.",
+  "distractor_rationales": [
+   "amplified - made larger or louder ('amplified the sound'); fails because the first sentence shows there was little demand to enlarge; it had to be built up from nothing",
+   "boycotted - refused to buy or deal with as a protest ('boycotted the store'); fails because the company was trying to create demand, not refuse it",
+   "conveyed - carried or communicated ('conveyed her thanks'); fails because the problem was that demand did not exist yet, so there was nothing to pass along"
+  ]
+ },
+ {
+  "id": "IS22B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree: modest earlier works contrasted with the scale of the new symphony; the final clause says the spectacle outgrew the music it served",
+  "prompt": "[Sentence Completion] The critic had praised the young composer's early chamber pieces for their restraint. Her review of the new symphony, with its three choirs, a cannon fired on stage, and a running time of nearly four hours, was cooler: the staging, she wrote, had become ------- to the score it was meant to serve, until the audience left talking about the cannon and could not hum a single theme.",
+  "choices": [
+   "heartfelt",
+   "disproportionate",
+   "fragmentary",
+   "impromptu"
+  ],
+  "correct_answer": "disproportionate",
+  "explanation": "disproportionate (out of scale with something else): the choirs, cannon and four-hour length overwhelmed the music, so the staging was far too large relative to the score, as the audience remembering only the cannon shows.",
+  "distractor_rationales": [
+   "impromptu - unplanned, improvised ('an impromptu speech'); a cannon and three choirs are elaborately planned, and the complaint is about scale, not spontaneity",
+   "heartfelt - sincere ('a heartfelt apology'); the review is critical, and sincerity is not something that drowns out a score",
+   "fragmentary - incomplete, in pieces ('fragmentary records'); a four-hour work with everything added is the opposite problem from missing parts, and the clue is about excess"
+  ]
+ },
+ {
+  "id": "IS22B-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose: the coach was hired to restore discipline; the clue is the opening clause and the mild-joke detail, two sentences from the blank",
+  "prompt": "[Sentence Completion] The club hired its new coach specifically to tighten up a squad that had grown used to skipped drills and late arrivals. By midseason, however, players were once again wandering in after warm-ups, and the only consequence anyone could remember was a mild joke at the next practice. The man brought in to restore order had proved every bit as ------- as the one he replaced.",
+  "choices": [
+   "incoherent",
+   "easygoing",
+   "idealistic",
+   "egotistical"
+  ],
+  "correct_answer": "easygoing",
+  "explanation": "easygoing (relaxed, unwilling to be strict): he was hired to be strict, yet lateness returned and drew only a joke, so like his predecessor he was too relaxed to enforce discipline.",
+  "distractor_rationales": [
+   "idealistic - guided by lofty ideals ('an idealistic young volunteer'); nothing in the sentence concerns his principles or hopes, only his failure to enforce rules",
+   "egotistical - self-centered, vain ('an egotistical star'); vanity would not explain letting players arrive late with no consequence",
+   "incoherent - unclear, hard to follow ('an incoherent speech'); his jokes and instructions are not described as confusing, and confusion is not the predecessor's failing either"
+  ]
+ },
+ {
+  "id": "IS22B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples plus a restatement: three listed passages that are true and charming yet could be cut with no loss to the argument",
+  "prompt": "[Sentence Completion] Ms. Ortiz returned the essays with the same comment beside three passages: the paragraph on the writer's childhood pets, a brief history of the printing press, and a closing quotation from a film. Each, she conceded, was accurate and even charming, but cutting all three would have left the argument exactly as strong as before, and that, she wrote, was the problem: the material was -------.",
+  "choices": [
+   "extraneous",
+   "inflammatory",
+   "elementary",
+   "fallacious"
+  ],
+  "correct_answer": "extraneous",
+  "explanation": "extraneous (not belonging to the matter at hand): if removing the passages leaves the argument just as strong, they contribute nothing to it, though they are accurate and charming.",
+  "distractor_rationales": [
+   "elementary - basic, simple ('elementary arithmetic'); the passages are not faulted for being simple, and a basic point can still support an argument",
+   "fallacious - based on faulty reasoning ('a fallacious argument'); she concedes each passage is accurate, which rules out an error in logic or fact",
+   "inflammatory - likely to provoke anger ('inflammatory remarks'); pets, a printing-press history and a film quotation are described as charming, not provocative"
+  ]
+ },
+ {
+  "id": "IS22B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose: the designer's aim (call up smells and memories) two sentences before the blank; the bare set rules out vivid detail",
+  "prompt": "[Sentence Completion] The designer had no interest in building a real kitchen on stage; she wanted the audience to smell bread that was not there and to think of their grandmothers' houses. Three mismatched chairs, an empty window frame and the sound of a kettle were all she allowed herself. The critics who complained that the set was bare had missed what it was for: it was meant to be -------, not complete.",
+  "choices": [
+   "iconic",
+   "evocative",
+   "graphic",
+   "functional"
+  ],
+  "correct_answer": "evocative",
+  "explanation": "evocative (bringing memories or feelings to mind): the designer's stated aim was for a few objects to make viewers smell absent bread and recall their grandmothers' houses.",
+  "distractor_rationales": [
+   "functional - practical, built to be used ('functional furniture'); her aim was memory and feeling, not usefulness, and a practical set would not need to call up absent bread",
+   "iconic - widely recognized as a symbol ('an iconic landmark'); three mismatched chairs are chosen to stir personal memories, not to be famous or instantly recognized",
+   "graphic - vividly detailed ('a graphic description'); the set is deliberately bare, so it is the opposite of richly detailed"
+  ]
+ },
+ {
+  "id": "IS22B-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples: three stock quotes, then the restatement that they could have been read word for word after last week's win",
+  "prompt": "[Sentence Completion] Fans hoping to learn why the team had collapsed in the final ten minutes got nothing useful from the captain. \"Credit to the other side,\" she said, then \"We'll regroup,\" and finally \"It's a long season.\" Every one of those answers could have been read out, word for word, after the previous week's win, and that was exactly what made them so -------.",
+  "choices": [
+   "dejected",
+   "emphatic",
+   "ironic",
+   "generic"
+  ],
+  "correct_answer": "generic",
+  "explanation": "generic (not specific to any particular case): the captain's lines would fit a win as well as this loss, so they said nothing about why this game collapsed.",
+  "distractor_rationales": [
+   "dejected - sad and dispirited ('a dejected fan'); the complaint is that the answers fit any game, which says nothing about her mood",
+   "emphatic - forceful, stressed strongly ('an emphatic denial'); the point is their emptiness, not their force, and the fans got nothing useful from them",
+   "ironic - meaning the opposite of what is said ('an ironic remark'); she means her stock phrases plainly, and fitting a win equally well makes them empty, not ironic"
+  ]
+ },
+ {
+  "id": "IS22B-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "degree: 'a few' studies requested versus all 212 found, translated and logged; 'left nothing out' restates the key two sentences from the blank",
+  "prompt": "[Sentence Completion] Asked to summarize \"a few\" studies on homework and sleep, Jae tracked down every one published since 1990, all 212 of them, translated several from German himself, and logged each in a forty-page appendix. The report drew no conclusion of its own; it simply left nothing out. His teacher, who had expected a page and a half, returned it with a note that was half praise and half alarm, calling it the most ------- piece of work she had ever been handed.",
+  "choices": [
+   "disdainful",
+   "encyclopedic",
+   "incisive",
+   "fanciful"
+  ],
+  "correct_answer": "encyclopedic",
+  "explanation": "encyclopedic (covering a subject completely, with every item included): Jae found all 212 studies where a few were asked for and the report 'left nothing out', so its defining quality was completeness.",
+  "distractor_rationales": [
+   "incisive - sharp and penetrating in analysis ('an incisive critique'); the report drew no conclusion of its own, so it offered no sharp analysis, only completeness",
+   "disdainful - showing scorn or contempt ('a disdainful glance'); the report drew no conclusion and took no attitude toward anything, it simply logged every study",
+   "fanciful - imaginative, not based on fact ('a fanciful tale'); a log of published studies is purely factual"
+  ]
+ },
+ {
+  "id": "IS22B-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples: the quoted specialist phrases and the 'ages six and up' audience; the concession sentence rules out inaccuracy, irrelevance and tone",
+  "prompt": "[Sentence Completion] The orchestra's family concert was advertised for ages six and up, but the program notes had been commissioned from a distinguished musicologist, who wrote in dry, careful prose about \"motivic transformation\" and \"the dissolution of tonal hierarchy.\" Every sentence was accurate, and every one concerned a piece on that afternoon's program. The trouble was that for nearly everyone holding the booklet, parents included, the notes were -------.",
+  "choices": [
+   "inane",
+   "irrelevant",
+   "inaccessible",
+   "gushing"
+  ],
+  "correct_answer": "inaccessible",
+  "explanation": "inaccessible (hard to understand or make use of): specialist phrases written for scholars could not be followed by children or most parents, even though every sentence was accurate and on topic.",
+  "distractor_rationales": [
+   "inane - silly, senseless ('an inane joke'); the notes were careful and accurate, written by a distinguished scholar",
+   "gushing - overly enthusiastic ('a gushing review'); the prose is described as dry and careful",
+   "irrelevant - unrelated to the matter at hand ('an irrelevant detail'); every sentence concerned a piece on the program"
+  ]
+ },
+ {
+  "id": "IS22B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "examples against an expectation: the manager braced for fury finds silence, no proposals, no complaints and a light workload; the key must name what is 'harder to fix than fury'",
+  "prompt": "[Sentence Completion] The new manager arrived braced for anger. After three rounds of layoffs, she assumed the remaining staff would shout in meetings and send long, furious emails. Instead the meetings were silent: no one proposed anything, no one complained even about the oddly light workload, and everyone left at five sharp without a word. What she faced was harder to fix than fury, a team that was thoroughly -------.",
+  "choices": [
+   "intemperate",
+   "hysterical",
+   "harried",
+   "dispirited"
+  ],
+  "correct_answer": "dispirited",
+  "explanation": "dispirited (having lost enthusiasm and hope): after the layoffs the staff no longer proposed, complained or engaged at all, a silent loss of heart the manager finds harder to fix than anger.",
+  "distractor_rationales": [
+   "harried - rushed and harassed by too much to do ('a harried waiter'); the workload was oddly light and everyone left at five sharp",
+   "intemperate - lacking self-control, given to outbursts ('intemperate language'); that is the shouting and fury she expected and did not find",
+   "hysterical - wildly emotional, out of control ('hysterical screaming'); the meetings were silent and everyone left without a word"
+  ]
+ },
+ {
+  "id": "IS22C-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison: the blank is the opposite term of 'restrained', and the overrun pastures two sentences earlier define it",
+  "prompt": "[Sentence Completion] Ranchers who had shrugged at the native thistle - slow to spread, and cropped short each spring by the deer - were caught off guard by its imported cousin. The deer would not touch it, and by the third summer the fields where it had first been noticed were no longer worth calling pastures. Its growth, in short, had been as ------- as the native plant's was restrained.",
+  "choices": [
+   "perverse",
+   "plaintive",
+   "rampant",
+   "superstitious"
+  ],
+  "correct_answer": "rampant",
+  "explanation": "rampant (spreading unchecked): the comparison asks for the opposite of 'restrained', and the uneaten thistle overrunning the pastures within three summers is growth that nothing held back.",
+  "distractor_rationales": [
+   "perverse - stubbornly contrary to what is expected or right ('a perverse refusal'); the passage describes how fast and far the plant spread, not a contrariness set against 'restrained'",
+   "plaintive - sounding sad and mournful ('a plaintive cry'); describes a voice or tune, not the spread of a weed",
+   "superstitious - believing in luck, omens or magic ('a superstitious sailor'); describes a person's beliefs, not how fast and far a weed spread over the pastures"
+  ]
+ },
+ {
+  "id": "IS22C-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession/contrast: the planned itinerary is described only by its details a sentence earlier (velvet ropes, Latin-quoting guides, wine discussed longer than drunk)",
+  "prompt": "[Sentence Completion] Marguerite had packed for the trip her guidebook promised: velvet-roped galleries, guides who dropped Latin into every sentence, dinners at which the wine was discussed longer than it was drunk. What she got instead was a fortnight of noodle stalls and night buses, and, to her own surprise, she did not once miss the ------- itinerary she had dressed for.",
+  "choices": [
+   "squalid",
+   "rushed",
+   "snooty",
+   "provincial"
+  ],
+  "correct_answer": "snooty",
+  "explanation": "snooty (snobbishly superior, looking down on plainer tastes): the planned trip is all display of refinement - roped galleries, Latin tags, wine talked about more than tasted - which is what she found she did not miss.",
+  "distractor_rationales": [
+   "rushed - done too quickly ('a rushed visit'); nothing in the planned galleries and long dinners suggests haste",
+   "squalid - dirty and wretched ('squalid lodgings'); velvet ropes and wine dinners are the reverse of squalor, and the noodle stalls are what she actually got",
+   "provincial - narrow and small-town in outlook ('provincial tastes'); Latin-quoting guides and wine connoisseurship are the opposite of a provincial itinerary"
+  ]
+ },
+ {
+  "id": "IS22C-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence: 1932 reviewers' dismissal versus readers now who own listening speakers; 'less dated than' sets the contrast",
+  "prompt": "[Sentence Completion] Reviewers in 1932 laughed off the novel's household machines that recorded every word spoken near them, calling them the author's least convincing invention. Readers who keep a listening speaker on the kitchen counter tend to find that the joke has worn thin; to them the book seems less dated than -------.",
+  "choices": [
+   "reputable",
+   "pastoral",
+   "prophetic",
+   "rhetorical"
+  ],
+  "correct_answer": "prophetic",
+  "explanation": "prophetic (accurately foretelling the future): an invention mocked as unconvincing in 1932 now sits on readers' counters, so the book reads not as old-fashioned but as having foreseen what came.",
+  "distractor_rationales": [
+   "pastoral - concerned with idyllic country life ('a pastoral poem'); a novel about recording machines in the home is not rural, and the contrast is about time, not setting",
+   "rhetorical - concerned with persuasive or showy language ('a rhetorical flourish'); the passage is about whether the novel's predictions came true, not its style",
+   "reputable - well regarded, trustworthy ('a reputable firm'); the point is that events caught up with the book, not that it gained standing, and 'reputable' is no contrast to 'dated'"
+  ]
+ },
+ {
+  "id": "IS22C-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: eleven years of silence names the thing; 'shallower than feared' and the dinner a clause later show it closing",
+  "prompt": "[Sentence Completion] Though the two sisters had not exchanged a word in eleven years, the ------- between them proved shallower than either had feared: an hour into their father's birthday dinner they were finishing each other's sentences and arguing, cheerfully, over who had broken the porch swing in 1998.",
+  "choices": [
+   "rift",
+   "quandary",
+   "pretext",
+   "surfeit"
+  ],
+  "correct_answer": "rift",
+  "explanation": "rift (a break in a relationship): eleven years of silence is an estrangement, and 'shallower than feared' plus their easy talk at dinner shows the break was easily closed.",
+  "distractor_rationales": [
+   "quandary - a state of uncertainty about what to do ('in a quandary over the offer'); a dilemma is one person's, not something that lies between two sisters and is measured as shallow",
+   "pretext - a false reason given to hide the real one ('a pretext for leaving early'); nothing in the sentence involves an excuse, and a pretext cannot be shallow or deep between people",
+   "surfeit - an excessive amount ('a surfeit of sweets'); the sisters' trouble was a silence, a lack of contact, not an excess of anything"
+  ]
+ },
+ {
+  "id": "IS22C-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: the guidebook's 'gravel and the odd lizard' is overturned; the color running to the horizon and every frame looking alike, a clause after the blank, define it",
+  "prompt": "[Sentence Completion] Although the guidebook warned that the desert in April would offer little to look at beyond gravel and the odd lizard, it had not reckoned on the one wet winter in twenty. For an hour we drove through gold and violet that ran all the way to the horizon, the bloom so ------- that we stopped taking photographs, since any frame looked much like every other.",
+  "choices": [
+   "profuse",
+   "reclusive",
+   "secular",
+   "staid"
+  ],
+  "correct_answer": "profuse",
+  "explanation": "profuse (abundant, pouring out in great quantity): flowers covering everything to the horizon, so thick that every photograph looks the same, are a bloom of overwhelming abundance - the reverse of the bare gravel the guidebook promised.",
+  "distractor_rationales": [
+   "staid - sedate, dull and respectable ('a staid old club'); a sudden blaze of gold and violet after a rare wet winter is anything but sedate, and dullness would not explain why every frame looked alike",
+   "secular - not connected with religion ('secular music'); a field of wildflowers is neither religious nor non-religious, and the word says nothing about color reaching the horizon or why every frame looked alike",
+   "reclusive - avoiding the company of others, withdrawn ('a reclusive author'); a bloom stretching to the horizon is the opposite of hidden away"
+  ]
+ },
+ {
+  "id": "IS22C-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison: the laureate's own fifty years of reticence set against the boy's eleven pages, corrections and proposal; 'verse more than his manners' marks it as a fault of manners",
+  "prompt": "[Sentence Completion] The young poet's first letter to the laureate ran to eleven pages, corrected the older man's meter in two places, and closed by proposing that the two of them write a collection together. The laureate, who had waited until he was fifty before showing his own poems to anyone, replied in a single line: he admired the boy's verse a great deal more than his manners, and had found the letter -------.",
+  "choices": [
+   "perceptive",
+   "presumptuous",
+   "remiss",
+   "philanthropic"
+  ],
+  "correct_answer": "presumptuous",
+  "explanation": "presumptuous (overstepping, taking liberties one has no standing for): a beginner correcting a laureate's meter and proposing to co-write a book, judged by a man who waited until fifty to show anyone his work, is a failure of manners by overreaching.",
+  "distractor_rationales": [
+   "remiss - careless about a duty, negligent ('remiss in replying'); an eleven-page letter that checks the older poet's meter is overdone, not neglectful",
+   "perceptive - quick to notice and understand ('a perceptive critic'); praise for insight would belong with the verse he admired, not with the manners he faults",
+   "philanthropic - generous in giving to good causes ('a philanthropic foundation'); the letter gives nothing away - it corrects the laureate and asks him for a joint collection, which is the opposite of charity, and the reply faults its manners"
+  ]
+ },
+ {
+  "id": "IS22C-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence: a silent first year, then a wet October over a broken motor, then spring talk so constant the mother cannot break in",
+  "prompt": "[Sentence Completion] For the first year after the wedding, Theo answered his stepfather in single words and ate dinner with his eyes on his plate. It was not a lecture or a present that changed things but a broken outboard motor, which the two of them spent a wet October taking apart on the garage floor; by spring their ------- was such that his mother complained she could hardly get a word in at the table.",
+  "choices": [
+   "perspective",
+   "rapport",
+   "stalemate",
+   "prowess"
+  ],
+  "correct_answer": "rapport",
+  "explanation": "rapport (a close, easy understanding between people): after a silent year, a shared project leads to conversation so constant the mother cannot join it - the two have built an easy closeness.",
+  "distractor_rationales": [
+   "perspective - a particular way of viewing things ('a fresh perspective'); a point of view is not something that grows between two people until a third cannot get a word in - the change is in how the two get along",
+   "stalemate - a deadlock in which neither side can advance ('talks ended in stalemate'); the silent first year was the deadlock, and the passage says the motor broke it",
+   "prowess - outstanding skill at something ('prowess as a mechanic'); skill at repairing motors would not explain why the mother cannot get a word in - the change is in how the two get along"
+  ]
+ },
+ {
+  "id": "IS22C-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: 'Though... without so much as a headache' sets up the reversal; 'at the rail' and the nephew 'undisturbed' after his pastries show she was the one overcome",
+  "prompt": "[Sentence Completion] Though she had crossed three continents without so much as a headache, and liked to tell the family that anyone who came home from a trip unwell had only their own carelessness to blame, on the ferry to the island Ingrid at last -------, and spent the crossing at the rail while her nephew, who had eaten two fried pastries at the dock, read his comic undisturbed.",
+  "choices": [
+   "scoffed",
+   "procrastinated",
+   "reminisced",
+   "succumbed"
+  ],
+  "correct_answer": "succumbed",
+  "explanation": "succumbed (gave way, was overcome, here by seasickness): the concession sets her lifelong immunity against the ferry, where she spends the crossing at the rail while the nephew she might have blamed stays well - she finally gave in to illness.",
+  "distractor_rationales": [
+   "scoffed - spoke with mocking contempt ('scoffed at the idea'); scoffing is what she did before the trip, and the 'Though' clause sets up a reversal of her boasting, not more of it",
+   "procrastinated - put off doing something that needed doing ('procrastinated on her homework'); she has no task to delay, and putting something off would not keep her at the rail for the whole crossing",
+   "reminisced - talked or thought fondly about the past ('reminisced about school days'); fond memories are no reversal of her proud health record, and the 'Though' clause demands that she, not her nephew, be the one undone"
+  ]
+ },
+ {
+  "id": "IS22C-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence: a plain account given twice, then on the stand poor light, fear, and no certainty, one step at a time; the blank is what she does to her own story",
+  "prompt": "[Sentence Completion] On the night of the robbery the clerk told police she had seen the man's face plainly under the streetlight, and she repeated it, almost word for word, to a grand jury. Eight months later, on the stand, she allowed first that the light had been poor, then that she had been frightened, and finally that she could not be sure the man had come into the shop at all; the prosecutor, whose case had rested on her, could only sit and watch her ------- the story she had told, one detail at a time.",
+  "choices": [
+   "recant",
+   "reproach",
+   "shun",
+   "paraphrase"
+  ],
+  "correct_answer": "recant",
+  "explanation": "recant (to take back a statement one made earlier): each admission on the stand withdraws part of the account she had given police and the grand jury, until nothing of it is left for the prosecutor to rely on.",
+  "distractor_rationales": [
+   "paraphrase - to restate in different words ('paraphrase the poem'); she is not putting the same account into new words - each admission takes part of it back",
+   "shun - to deliberately avoid ('shunned by his neighbors'); she does not avoid the story, she talks about it on the stand and undoes it",
+   "reproach - to scold or express disappointment in someone ('reproached him for lying'); one reproaches a person, and she never blames anyone - she only withdraws what she said"
+  ]
+ },
+ {
+  "id": "IS22C-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: his former refusal to fly and white-knuckled first trip are set against sleeping through the worst storm a pilot had seen; the blank is what he has run out of",
+  "prompt": "[Sentence Completion] Though Rafael had once refused to set foot on a plane, and on his first trip abroad had gripped both armrests from takeoff to landing, the job that sent him across the Pacific every other month left him with so few ------- about it that he slept soundly through a storm the pilot later called the roughest of her career.",
+  "choices": [
+   "retorts",
+   "protocols",
+   "statutes",
+   "qualms"
+  ],
+  "correct_answer": "qualms",
+  "explanation": "qualms (uneasy feelings or doubts about something): his old refusal and armrest-gripping were misgivings about flying, and sleeping through the worst storm a pilot had known shows that frequent flights have worn those misgivings away.",
+  "distractor_rationales": [
+   "statutes - written laws ('a statute against littering'); laws about flying have nothing to do with a once-terrified flyer sleeping through a storm",
+   "retorts - sharp, quick replies ('a witty retort'); nothing in the passage is an exchange of words, and running out of replies has nothing to do with his calm in the storm",
+   "protocols - official rules for how something must be done ('safety protocols'); having few procedures about flying has nothing to do with a once-terrified flyer sleeping through a storm"
+  ]
+ },
+ {
+  "id": "IS22C-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison: the first novel's 900 pages of wandering digressions against the second's tight, in-order story; 'relieved' makes the first book's fault one of wandering",
+  "prompt": "[Sentence Completion] Okafor's first novel ran to nine hundred pages and kept leaving its story behind: whole chapters went to the history of the narrator's grandfather's bicycle shop, to a recipe for plum dumplings, to a dream that lasted forty pages. Her second, written after a year editing a small-town newspaper, tells its story in two hundred pages and never once looks away from it, and the reviewers who had found the first book ------- were relieved to call the second the work of a grown writer.",
+  "choices": [
+   "pessimistic",
+   "prudish",
+   "sprawling",
+   "studious"
+  ],
+  "correct_answer": "sprawling",
+  "explanation": "sprawling (spread out in an untidy, unchecked way): a nine-hundred-page book that keeps abandoning its story for a bicycle shop, a recipe and a forty-page dream spreads in every direction, and the reviewers' relief at a short, focused second book shows that this shapelessness was what they disliked.",
+  "distractor_rationales": [
+   "studious - devoted to study and learning ('a studious pupil'); recipes and dreams are not scholarship, and a learned book would give reviewers no reason to be relieved by a shorter one",
+   "prudish - easily shocked by anything improper ('too prudish to laugh'); nothing about the digressions concerns modesty or propriety",
+   "pessimistic - expecting the worst ('a pessimistic forecast'); nothing in the digressions is gloomy, and the reviewers' complaint, judged by their relief at a shorter, focused book, is about the first book's wandering shape"
+  ]
+ },
+ {
+  "id": "IS22C-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence: forty years of one dish, a 'just this once' substitute, cousins asking for it by name; the clause after the blank (the old dish appears only when Ruth is there) defines it",
+  "prompt": "[Sentence Completion] For forty years the family's Thanksgiving had centered on Grandma Ruth's oyster stuffing. The year she broke her hip, her granddaughter made a cornbread stuffing instead, 'just this once'; the next November two cousins asked for it by name, and by the third the newcomer had quietly ------- the old recipe, which now comes out of the oven only when Ruth herself is at the table.",
+  "choices": [
+   "superseded",
+   "plagiarized",
+   "revoked",
+   "rehabilitated"
+  ],
+  "correct_answer": "superseded",
+  "explanation": "superseded (took the place of): the cornbread dish moves from a one-time stand-in to the regular choice, and the oyster stuffing survives only as a courtesy to Ruth - the new recipe has taken over the old one's place.",
+  "distractor_rationales": [
+   "plagiarized - copied someone else's work and passed it off as one's own ('plagiarized an essay'); the cornbread is a different dish, not a copy of the oyster stuffing, and the point is that it has replaced it",
+   "rehabilitated - restored to good condition or standing ('rehabilitated the old theater'); the old recipe has been pushed aside, not restored",
+   "revoked - officially cancelled ('revoked his license'); a dish has no authority to cancel anything, and the oyster stuffing is still made when Ruth comes"
+  ]
+ }
+]

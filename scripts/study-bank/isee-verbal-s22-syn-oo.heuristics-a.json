@@ -1,0 +1,24 @@
+{
+ "heuristics": [
+  {
+   "name": "antonym-pair",
+   "description": "options contain an antonym pair; key likely one of them",
+   "picks_decided": 28
+  },
+  {
+   "name": "none",
+   "description": "no signal; picked most plausible ISEE-level headword gloss",
+   "picks_decided": 201
+  },
+  {
+   "name": "semantic-field-trap",
+   "description": "two options share a field with a likely headword sense; picked the true sense",
+   "picks_decided": 1
+  },
+  {
+   "name": "near-synonym-elimination",
+   "description": "two near-synonyms cannot both be wrong-only; picked the outlier",
+   "picks_decided": 1
+  }
+ ]
+}

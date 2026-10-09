@@ -1,0 +1,34 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "no option-only signal; arbitrary pick",
+   "picks_decided": 188
+  },
+  {
+   "name": "register-odd",
+   "description": "one option differs in register from the rest",
+   "picks_decided": 1
+  },
+  {
+   "name": "pair-coherence",
+   "description": "only two-blank pair that is internally consistent",
+   "picks_decided": 2
+  },
+  {
+   "name": "repeated-element",
+   "description": "a word repeated across options marks the answer pair",
+   "picks_decided": 2
+  },
+  {
+   "name": "contrast-pair",
+   "description": "classic concessive pairing",
+   "picks_decided": 1
+  },
+  {
+   "name": "odd-one-out",
+   "description": "one pair differs in valence pattern from the other three",
+   "picks_decided": 2
+  }
+ ]
+}

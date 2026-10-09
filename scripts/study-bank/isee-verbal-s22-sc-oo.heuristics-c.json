@@ -1,0 +1,34 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "no option-set signal; arbitrary pick",
+   "picks_decided": 167
+  },
+  {
+   "name": "two-blank coherence",
+   "description": "picked the two-blank pair whose words fit together naturally",
+   "picks_decided": 15
+  },
+  {
+   "name": "odd register",
+   "description": "one option differs in register from the rest",
+   "picks_decided": 1
+  },
+  {
+   "name": "antonym pair",
+   "description": "two options are antonyms; picked one side of the pair",
+   "picks_decided": 9
+  },
+  {
+   "name": "shared-word pair",
+   "description": "a word repeats across two options; picked the one forming the more idiomatic pair",
+   "picks_decided": 3
+  },
+  {
+   "name": "near-synonym pair",
+   "description": "two options near-synonyms; picked one of them",
+   "picks_decided": 1
+  }
+ ]
+}

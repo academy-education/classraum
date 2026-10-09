@@ -1,0 +1,613 @@
+{
+ "IS22A-01": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "medium",
+  "drop_reasons": []
+ },
+ "IS22A-02": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "hard",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "hard",
+   "b": "hard",
+   "c": "hard"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22A-03": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "hard",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22A-04": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22A-05": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "medium",
+   "c": "easy"
+  },
+  "authored": "hard",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22A-06": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "easy"
+  },
+  "authored": "medium",
+  "drop_reasons": []
+ },
+ "IS22A-07": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "easy",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": [
+   "grader c: key-completed sentence does not read correctly"
+  ]
+ },
+ "IS22A-08": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22A-09": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22A-10": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "authored": "hard",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22A-11": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22A-12": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "hard"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22A-13": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "hard",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22A-14": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22A-15": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "hard",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22B-01": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "authored": "medium",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22B-02": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "hard",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22B-03": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22B-04": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22B-05": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "authored": "hard",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22B-06": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "medium",
+   "c": "easy"
+  },
+  "authored": "medium",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22B-07": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "medium",
+   "c": "easy"
+  },
+  "authored": "hard",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22B-08": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "hard",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22B-09": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "authored": "hard",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22B-10": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22B-11": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22B-12": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "authored": "hard",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22B-13": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22B-14": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22B-15": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-01": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "authored": "medium",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22C-02": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-03": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-04": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-05": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-06": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "authored": "medium",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22C-07": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "hard",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "hard",
+   "c": "hard"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-08": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-09": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-10": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-11": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "hard"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-12": {
+  "keep": false,
+  "key_votes": 3,
+  "difficulty": "easy",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "easy",
+   "b": "easy",
+   "c": "easy"
+  },
+  "authored": "hard",
+  "drop_reasons": [
+   "median easy"
+  ]
+ },
+ "IS22C-13": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-14": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "medium"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ },
+ "IS22C-15": {
+  "keep": true,
+  "key_votes": 3,
+  "difficulty": "medium",
+  "exclusivity": "exclusive",
+  "graders": {
+   "a": "medium",
+   "b": "medium",
+   "c": "hard"
+  },
+  "authored": "hard",
+  "drop_reasons": []
+ }
+}

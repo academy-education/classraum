@@ -1,0 +1,29 @@
+{
+ "heuristics": [
+  {
+   "name": "antonym-pair",
+   "description": "two options are opposites; headword likely one pole",
+   "picks_decided": 17
+  },
+  {
+   "name": "common-target-synonym",
+   "description": "option is the usual gloss of a typical ISEE headword (weak prior)",
+   "picks_decided": 155
+  },
+  {
+   "name": "none",
+   "description": "no signal; arbitrary",
+   "picks_decided": 54
+  },
+  {
+   "name": "odd-form",
+   "description": "option phrasing looks like a dictionary gloss",
+   "picks_decided": 4
+  },
+  {
+   "name": "homonym-trap",
+   "description": "distractors match another sense of the key word",
+   "picks_decided": 1
+  }
+ ]
+}

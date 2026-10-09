@@ -1,0 +1,1850 @@
+{
+ "L01": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Scattered vs crowded form a pair; sparse-type headword likely",
+  "heuristic": "antonym-pair"
+ },
+ "L02": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Heated vs peaceful pair; peaceful fits tranquil-type headword",
+  "heuristic": "antonym-pair"
+ },
+ "L03": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Fleeting matches a typical headword like ephemeral",
+  "heuristic": "test-vocab-sense"
+ },
+ "L04": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; pamper picked arbitrarily",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Guarded fits common headword wary",
+  "heuristic": "test-vocab-sense"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No real signal among unrelated verbs",
+  "heuristic": "none"
+ },
+ "L07": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Unrelated traits; arbitrary pick",
+  "heuristic": "none"
+ },
+ "L08": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Belittle vs esteem pair; belittle fits disparage",
+  "heuristic": "antonym-pair"
+ },
+ "L09": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; composed arbitrary",
+  "heuristic": "none"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Theme is the only abstract noun",
+  "heuristic": "odd-one-out"
+ },
+ "L11": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal among short adjectives",
+  "heuristic": "none"
+ },
+ "L12": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Lowly fits humble-type headword",
+  "heuristic": "test-vocab-sense"
+ },
+ "L13": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; sporadic arbitrary",
+  "heuristic": "none"
+ },
+ "L14": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; solemn arbitrary",
+  "heuristic": "none"
+ },
+ "L15": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; gigantic arbitrary",
+  "heuristic": "none"
+ },
+ "L16": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Weak; nearness could be proximity",
+  "heuristic": "none"
+ },
+ "L17": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Desert fits abandon-type headword",
+  "heuristic": "test-vocab-sense"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Dodge fits evade-type headword",
+  "heuristic": "test-vocab-sense"
+ },
+ "L19": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Cunning fits wily or crafty",
+  "heuristic": "test-vocab-sense"
+ },
+ "L20": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Tardy vs hurried pair",
+  "heuristic": "antonym-pair"
+ },
+ "L21": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Tolerate vs reject pair",
+  "heuristic": "antonym-pair"
+ },
+ "L22": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; trouble arbitrary",
+  "heuristic": "none"
+ },
+ "L23": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Overlook and forgive overlap; forgive more central",
+  "heuristic": "near-pair"
+ },
+ "L24": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Whole vs torn pair; whole fits intact",
+  "heuristic": "antonym-pair"
+ },
+ "L25": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Worsen vs lessen pair; lessen fits diminish",
+  "heuristic": "antonym-pair"
+ },
+ "L26": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; discerning arbitrary",
+  "heuristic": "none"
+ },
+ "L27": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal among plain verbs",
+  "heuristic": "none"
+ },
+ "L28": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Cheeky vs gracious pair",
+  "heuristic": "antonym-pair"
+ },
+ "L29": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; diligent arbitrary",
+  "heuristic": "none"
+ },
+ "L30": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Plentiful vs scarce pair; plentiful fits abundant",
+  "heuristic": "antonym-pair"
+ },
+ "L31": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; earnest arbitrary",
+  "heuristic": "none"
+ },
+ "L32": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Sober and thoughtful overlap; arbitrary",
+  "heuristic": "none"
+ },
+ "L33": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Lingo might be jargon; weak",
+  "heuristic": "none"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Generous vs thrifty pair; thrifty fits frugal",
+  "heuristic": "antonym-pair"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Moderate opposes enrage; provoke near enrage",
+  "heuristic": "antonym-pair"
+ },
+ "L36": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; subside arbitrary",
+  "heuristic": "none"
+ },
+ "L37": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Pavement/gutter suggest curb; curb as verb means restrain",
+  "heuristic": "homonym-trap"
+ },
+ "L38": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Relentless and perpetual overlap",
+  "heuristic": "near-pair"
+ },
+ "L39": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Beginner fits novice",
+  "heuristic": "test-vocab-sense"
+ },
+ "L40": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal among plain verbs",
+  "heuristic": "none"
+ },
+ "L41": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Overused fits trite or hackneyed",
+  "heuristic": "test-vocab-sense"
+ },
+ "L42": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; diminish arbitrary",
+  "heuristic": "none"
+ },
+ "L43": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; sturdy arbitrary",
+  "heuristic": "none"
+ },
+ "L44": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; expel arbitrary",
+  "heuristic": "none"
+ },
+ "L45": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Flinch fits wince; weak",
+  "heuristic": "none"
+ },
+ "L46": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; pacify arbitrary",
+  "heuristic": "none"
+ },
+ "L47": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; intimidate arbitrary",
+  "heuristic": "none"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; reputation arbitrary",
+  "heuristic": "none"
+ },
+ "L49": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; conceal arbitrary",
+  "heuristic": "none"
+ },
+ "L50": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; melancholy arbitrary",
+  "heuristic": "none"
+ },
+ "L51": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; patron arbitrary",
+  "heuristic": "none"
+ },
+ "L52": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Lazy, careless overlap; arbitrary",
+  "heuristic": "none"
+ },
+ "L53": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; grumpy arbitrary",
+  "heuristic": "none"
+ },
+ "L54": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Plight fits predicament; weak",
+  "heuristic": "none"
+ },
+ "L55": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; devout arbitrary",
+  "heuristic": "none"
+ },
+ "L56": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; sluggish arbitrary",
+  "heuristic": "none"
+ },
+ "L57": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; notion arbitrary",
+  "heuristic": "none"
+ },
+ "L58": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Force vs allow pair; force fits compel",
+  "heuristic": "antonym-pair"
+ },
+ "L59": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; amend arbitrary",
+  "heuristic": "none"
+ },
+ "L60": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Apprehensive looks like test word; weak",
+  "heuristic": "none"
+ },
+ "L61": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; restless arbitrary",
+  "heuristic": "none"
+ },
+ "L62": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; selfish arbitrary",
+  "heuristic": "none"
+ },
+ "L63": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Agile and graceful overlap; arbitrary",
+  "heuristic": "none"
+ },
+ "L64": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Unwilling to spend vs openhanded pair; fits stingy",
+  "heuristic": "antonym-pair"
+ },
+ "L65": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Postpone vs hasten pair",
+  "heuristic": "antonym-pair"
+ },
+ "L66": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Stubborn vs yielding; yielding near obedient",
+  "heuristic": "antonym-pair"
+ },
+ "L67": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; thorough arbitrary",
+  "heuristic": "none"
+ },
+ "L68": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; stumble arbitrary",
+  "heuristic": "none"
+ },
+ "L69": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; ponder arbitrary",
+  "heuristic": "none"
+ },
+ "L70": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; secluded arbitrary",
+  "heuristic": "none"
+ },
+ "L71": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; yank arbitrary",
+  "heuristic": "none"
+ },
+ "L72": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; spiteful arbitrary",
+  "heuristic": "none"
+ },
+ "L73": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; overdue arbitrary",
+  "heuristic": "none"
+ },
+ "L74": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Obstacle near nuisance; arbitrary",
+  "heuristic": "none"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Assist vs impede pair",
+  "heuristic": "antonym-pair"
+ },
+ "L76": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; carry arbitrary",
+  "heuristic": "none"
+ },
+ "L77": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; exile arbitrary",
+  "heuristic": "none"
+ },
+ "L78": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Edge near front; arbitrary",
+  "heuristic": "none"
+ },
+ "L79": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Reckless vs cautious pair",
+  "heuristic": "antonym-pair"
+ },
+ "L80": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Ally vs opponent; opponent fits adversary",
+  "heuristic": "antonym-pair"
+ },
+ "L81": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Scorn vs praise pair",
+  "heuristic": "antonym-pair"
+ },
+ "L82": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; harden arbitrary",
+  "heuristic": "none"
+ },
+ "L83": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; dawdle arbitrary",
+  "heuristic": "none"
+ },
+ "L84": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; waver arbitrary",
+  "heuristic": "none"
+ },
+ "L85": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; necessary arbitrary",
+  "heuristic": "none"
+ },
+ "L86": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; relish arbitrary",
+  "heuristic": "none"
+ },
+ "L87": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; stark arbitrary",
+  "heuristic": "none"
+ },
+ "L88": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; evasive arbitrary",
+  "heuristic": "none"
+ },
+ "L89": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Danger vs comfort; danger fits peril",
+  "heuristic": "antonym-pair"
+ },
+ "L90": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Emphasize near clarify; arbitrary",
+  "heuristic": "none"
+ },
+ "L91": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; bewilder arbitrary",
+  "heuristic": "none"
+ },
+ "L92": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; pledge arbitrary",
+  "heuristic": "none"
+ },
+ "L93": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; moody arbitrary",
+  "heuristic": "none"
+ },
+ "L94": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Stabilize vs fluctuate pair",
+  "heuristic": "antonym-pair"
+ },
+ "L95": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; insincere arbitrary",
+  "heuristic": "none"
+ },
+ "L96": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; trivial arbitrary",
+  "heuristic": "none"
+ },
+ "L97": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Deliberate vs tentative pair",
+  "heuristic": "antonym-pair"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Stray vs conform pair weakly; arbitrary",
+  "heuristic": "none"
+ },
+ "L99": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; loner arbitrary",
+  "heuristic": "none"
+ },
+ "L100": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; jerk arbitrary",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; enormous arbitrary",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; beg arbitrary",
+  "heuristic": "none"
+ },
+ "L103": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; witness arbitrary",
+  "heuristic": "none"
+ },
+ "L104": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Dainty vs bulky pair",
+  "heuristic": "antonym-pair"
+ },
+ "L105": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Terse looks like test word; weak",
+  "heuristic": "none"
+ },
+ "L106": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; peak arbitrary",
+  "heuristic": "none"
+ },
+ "L107": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; fault arbitrary",
+  "heuristic": "none"
+ },
+ "L108": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; main arbitrary",
+  "heuristic": "none"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Mighty near massive; touching arbitrary",
+  "heuristic": "none"
+ },
+ "L110": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; crooked arbitrary",
+  "heuristic": "none"
+ },
+ "L111": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; unconcerned arbitrary",
+  "heuristic": "none"
+ },
+ "L112": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; frown arbitrary",
+  "heuristic": "none"
+ },
+ "L113": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; native arbitrary",
+  "heuristic": "none"
+ },
+ "L114": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; lineage arbitrary",
+  "heuristic": "none"
+ },
+ "L115": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; omen arbitrary",
+  "heuristic": "none"
+ },
+ "L116": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; merciless arbitrary",
+  "heuristic": "none"
+ },
+ "L117": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Considerate vs blunt weakly; arbitrary",
+  "heuristic": "none"
+ },
+ "L118": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; yearn arbitrary",
+  "heuristic": "none"
+ },
+ "L119": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; muddled arbitrary",
+  "heuristic": "none"
+ },
+ "L120": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; widespread arbitrary",
+  "heuristic": "none"
+ },
+ "L121": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Suppress opposes announce; weak",
+  "heuristic": "none"
+ },
+ "L122": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; wordy arbitrary",
+  "heuristic": "none"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; trudge arbitrary",
+  "heuristic": "none"
+ },
+ "L124": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; lanky arbitrary",
+  "heuristic": "none"
+ },
+ "L125": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; refrain arbitrary",
+  "heuristic": "none"
+ },
+ "L126": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; tease arbitrary",
+  "heuristic": "none"
+ },
+ "L127": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; restore arbitrary",
+  "heuristic": "none"
+ },
+ "L128": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; fetch arbitrary",
+  "heuristic": "none"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; examine arbitrary",
+  "heuristic": "none"
+ },
+ "L130": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; dread arbitrary",
+  "heuristic": "none"
+ },
+ "L131": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Easily felt might be palpable; weak",
+  "heuristic": "none"
+ },
+ "L132": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; eerie arbitrary",
+  "heuristic": "none"
+ },
+ "L133": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; drag arbitrary",
+  "heuristic": "none"
+ },
+ "L134": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Practical vs sentimental weakly; arbitrary",
+  "heuristic": "none"
+ },
+ "L135": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; eternal arbitrary",
+  "heuristic": "none"
+ },
+ "L136": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; gist arbitrary",
+  "heuristic": "none"
+ },
+ "L137": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; pry arbitrary",
+  "heuristic": "none"
+ },
+ "L138": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Divide vs add pair; acquire arbitrary",
+  "heuristic": "none"
+ },
+ "L139": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; scanty arbitrary",
+  "heuristic": "none"
+ },
+ "L140": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; token arbitrary",
+  "heuristic": "none"
+ },
+ "L141": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; toil arbitrary",
+  "heuristic": "none"
+ },
+ "L142": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; lure arbitrary",
+  "heuristic": "none"
+ },
+ "L143": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; wager arbitrary",
+  "heuristic": "none"
+ },
+ "L144": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; hesitate arbitrary",
+  "heuristic": "none"
+ },
+ "L145": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; temporary arbitrary",
+  "heuristic": "none"
+ },
+ "L146": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; feast arbitrary",
+  "heuristic": "none"
+ },
+ "L147": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; dictator arbitrary",
+  "heuristic": "none"
+ },
+ "L148": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; arrogant arbitrary",
+  "heuristic": "none"
+ },
+ "L149": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Boring near dreary; arbitrary",
+  "heuristic": "none"
+ },
+ "L150": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Tempt vs resist pair; arbitrary",
+  "heuristic": "none"
+ },
+ "L151": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Repair near replace; arbitrary",
+  "heuristic": "none"
+ },
+ "L152": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; notch arbitrary",
+  "heuristic": "none"
+ },
+ "L153": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; astonished arbitrary",
+  "heuristic": "none"
+ },
+ "L154": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; collapse arbitrary",
+  "heuristic": "none"
+ },
+ "L155": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; irritable arbitrary",
+  "heuristic": "none"
+ },
+ "L156": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; rash arbitrary",
+  "heuristic": "none"
+ },
+ "L157": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Hoard vs spend pair",
+  "heuristic": "antonym-pair"
+ },
+ "L158": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; outlaw arbitrary",
+  "heuristic": "none"
+ },
+ "L159": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; helpless arbitrary",
+  "heuristic": "none"
+ },
+ "L160": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; hamper arbitrary",
+  "heuristic": "none"
+ },
+ "L161": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; jumbled arbitrary",
+  "heuristic": "none"
+ },
+ "L162": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "All un- words; unyielding arbitrary",
+  "heuristic": "none"
+ },
+ "L163": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; complain arbitrary",
+  "heuristic": "none"
+ },
+ "L164": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; hostile arbitrary",
+  "heuristic": "none"
+ },
+ "L165": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Secretive vs frank; frank fits candid",
+  "heuristic": "antonym-pair"
+ },
+ "L166": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; quench arbitrary",
+  "heuristic": "none"
+ },
+ "L167": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; solitude arbitrary",
+  "heuristic": "none"
+ },
+ "L168": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; seize arbitrary",
+  "heuristic": "none"
+ },
+ "L169": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; slender arbitrary",
+  "heuristic": "none"
+ },
+ "L170": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; unsteady arbitrary",
+  "heuristic": "none"
+ },
+ "L171": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; dunce arbitrary",
+  "heuristic": "none"
+ },
+ "L172": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; flourish arbitrary",
+  "heuristic": "none"
+ },
+ "L173": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Painstaking vs careless pair",
+  "heuristic": "antonym-pair"
+ },
+ "L174": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; imitate arbitrary",
+  "heuristic": "none"
+ },
+ "L175": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; shrivel arbitrary",
+  "heuristic": "none"
+ },
+ "L176": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; peculiar arbitrary",
+  "heuristic": "none"
+ },
+ "L177": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; artful arbitrary",
+  "heuristic": "none"
+ },
+ "L178": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Persistent vs temporary weakly; arbitrary",
+  "heuristic": "none"
+ },
+ "L179": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; strict arbitrary",
+  "heuristic": "none"
+ },
+ "L180": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; conceit arbitrary",
+  "heuristic": "none"
+ },
+ "L181": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; traitor arbitrary",
+  "heuristic": "none"
+ },
+ "L182": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; unselfish arbitrary",
+  "heuristic": "none"
+ },
+ "L183": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; unqualified arbitrary",
+  "heuristic": "none"
+ },
+ "L184": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; trickery arbitrary",
+  "heuristic": "none"
+ },
+ "L185": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Quick to recover may be resilient; weak",
+  "heuristic": "none"
+ },
+ "L186": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Disgust vs fascinate pair; arbitrary",
+  "heuristic": "none"
+ },
+ "L187": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; unfriendly arbitrary",
+  "heuristic": "none"
+ },
+ "L188": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; shabby arbitrary",
+  "heuristic": "none"
+ },
+ "L189": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; shake arbitrary",
+  "heuristic": "none"
+ },
+ "L190": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Monotony vs variety pair; arbitrary",
+  "heuristic": "none"
+ },
+ "L191": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; marsh arbitrary",
+  "heuristic": "none"
+ },
+ "L192": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; objective arbitrary",
+  "heuristic": "none"
+ },
+ "L193": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; restrain arbitrary",
+  "heuristic": "none"
+ },
+ "L194": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; soothe arbitrary",
+  "heuristic": "none"
+ },
+ "L195": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; exacting arbitrary",
+  "heuristic": "none"
+ },
+ "L196": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; modest arbitrary",
+  "heuristic": "none"
+ },
+ "L197": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; wrap arbitrary",
+  "heuristic": "none"
+ },
+ "L198": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Uproar near wrath; arbitrary",
+  "heuristic": "none"
+ },
+ "L199": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; discourage arbitrary",
+  "heuristic": "none"
+ },
+ "L200": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; impending arbitrary",
+  "heuristic": "none"
+ },
+ "L201": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Win near conquer; arbitrary",
+  "heuristic": "none"
+ },
+ "L202": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; apprehensive arbitrary",
+  "heuristic": "none"
+ },
+ "L203": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; dull arbitrary",
+  "heuristic": "none"
+ },
+ "L204": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; firm arbitrary",
+  "heuristic": "none"
+ },
+ "L205": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; meddle arbitrary",
+  "heuristic": "none"
+ },
+ "L206": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; fleeting arbitrary",
+  "heuristic": "none"
+ },
+ "L207": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; dismiss arbitrary",
+  "heuristic": "none"
+ },
+ "L208": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Discourage vs persuade pair; arbitrary",
+  "heuristic": "none"
+ },
+ "L209": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Empty vs crowded pair",
+  "heuristic": "antonym-pair"
+ },
+ "L210": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; basic arbitrary",
+  "heuristic": "none"
+ },
+ "L211": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Spotless near shiny; arbitrary",
+  "heuristic": "none"
+ },
+ "L212": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; tilt arbitrary",
+  "heuristic": "none"
+ },
+ "L213": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "Submit vs rebel pair",
+  "heuristic": "antonym-pair"
+ },
+ "L214": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; skillful arbitrary",
+  "heuristic": "none"
+ },
+ "L215": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; block arbitrary",
+  "heuristic": "none"
+ },
+ "L216": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; picky arbitrary",
+  "heuristic": "none"
+ },
+ "L217": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; fixed arbitrary",
+  "heuristic": "none"
+ },
+ "L218": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "Scold vs encourage pair",
+  "heuristic": "antonym-pair"
+ },
+ "L219": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; mock arbitrary",
+  "heuristic": "none"
+ },
+ "L220": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; unyielding arbitrary",
+  "heuristic": "none"
+ },
+ "L221": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "Bully near annoy; arbitrary",
+  "heuristic": "none"
+ },
+ "L222": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; surly arbitrary",
+  "heuristic": "none"
+ },
+ "L223": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; honorable arbitrary",
+  "heuristic": "none"
+ },
+ "L224": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "Outrage vs tribute weakly; arbitrary",
+  "heuristic": "none"
+ },
+ "L225": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; delight arbitrary",
+  "heuristic": "none"
+ },
+ "L226": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; mutter arbitrary",
+  "heuristic": "none"
+ },
+ "L227": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "No signal; sly arbitrary",
+  "heuristic": "none"
+ },
+ "L228": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; nonsense arbitrary",
+  "heuristic": "none"
+ },
+ "L229": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "No signal; threatening arbitrary",
+  "heuristic": "none"
+ },
+ "L230": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "No signal; solitary arbitrary",
+  "heuristic": "none"
+ },
+ "L231": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "No signal; boldness arbitrary",
+  "heuristic": "none"
+ }
+}

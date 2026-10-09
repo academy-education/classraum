@@ -1,0 +1,1850 @@
+{
+ "L01": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "thinly scattered vs crowded together opposites; sparse is a classic target",
+  "heuristic": "antonym-pair"
+ },
+ "L02": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "peaceful fits common tranquil/serene headwords",
+  "heuristic": "common-target-synonym"
+ },
+ "L03": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "fleeting matches ephemeral, a typical headword",
+  "heuristic": "common-target-synonym"
+ },
+ "L04": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; defy picked arbitrarily",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guarded fits wary/reticent",
+  "heuristic": "common-target-synonym"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; oppose arbitrary",
+  "heuristic": "none"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; deceitful arbitrary",
+  "heuristic": "none"
+ },
+ "L08": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "belittle fits disparage",
+  "heuristic": "common-target-synonym"
+ },
+ "L09": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "composed fits serene/poised",
+  "heuristic": "common-target-synonym"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "theme fits motif",
+  "heuristic": "common-target-synonym"
+ },
+ "L11": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; keen arbitrary",
+  "heuristic": "none"
+ },
+ "L12": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; lowly for humble",
+  "heuristic": "none"
+ },
+ "L13": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "sporadic fits intermittent",
+  "heuristic": "common-target-synonym"
+ },
+ "L14": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; solemn arbitrary",
+  "heuristic": "none"
+ },
+ "L15": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "flawless fits impeccable",
+  "heuristic": "common-target-synonym"
+ },
+ "L16": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "nearness is an unusual derived noun, like proximity gloss",
+  "heuristic": "odd-form"
+ },
+ "L17": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "desert as abandon; weak",
+  "heuristic": "none"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dodge fits evade",
+  "heuristic": "common-target-synonym"
+ },
+ "L19": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cunning fits wily/shrewd",
+  "heuristic": "common-target-synonym"
+ },
+ "L20": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; clumsy arbitrary",
+  "heuristic": "none"
+ },
+ "L21": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; tolerate arbitrary",
+  "heuristic": "none"
+ },
+ "L22": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; trouble arbitrary",
+  "heuristic": "none"
+ },
+ "L23": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; forgive arbitrary",
+  "heuristic": "none"
+ },
+ "L24": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "whole fits intact",
+  "heuristic": "common-target-synonym"
+ },
+ "L25": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "worsen/lessen opposite pair; lessen fits diminish",
+  "heuristic": "antonym-pair"
+ },
+ "L26": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "discerning is a typical gloss",
+  "heuristic": "common-target-synonym"
+ },
+ "L27": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; stop arbitrary",
+  "heuristic": "none"
+ },
+ "L28": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cheeky fits impudent",
+  "heuristic": "common-target-synonym"
+ },
+ "L29": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "diligent fits industrious",
+  "heuristic": "common-target-synonym"
+ },
+ "L30": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "plentiful/scarce opposite pair; abundant",
+  "heuristic": "antonym-pair"
+ },
+ "L31": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "earnest fits sincere",
+  "heuristic": "common-target-synonym"
+ },
+ "L32": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; thoughtful arbitrary",
+  "heuristic": "none"
+ },
+ "L33": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "oddity fits anomaly",
+  "heuristic": "common-target-synonym"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "generous/thrifty opposites; frugal",
+  "heuristic": "antonym-pair"
+ },
+ "L35": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "moderate/provoke opposite; enrage sibling",
+  "heuristic": "antonym-pair"
+ },
+ "L36": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "subside fits abate",
+  "heuristic": "common-target-synonym"
+ },
+ "L37": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "pavement/gutter are curb traps; curb means restrain",
+  "heuristic": "homonym-trap"
+ },
+ "L38": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "relentless/perpetual pair; arbitrary between",
+  "heuristic": "none"
+ },
+ "L39": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "beginner fits novice",
+  "heuristic": "common-target-synonym"
+ },
+ "L40": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; yell arbitrary",
+  "heuristic": "none"
+ },
+ "L41": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "overused fits trite/hackneyed",
+  "heuristic": "common-target-synonym"
+ },
+ "L42": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "diminish is a common gloss",
+  "heuristic": "common-target-synonym"
+ },
+ "L43": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; sturdy arbitrary",
+  "heuristic": "none"
+ },
+ "L44": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "expel fits banish",
+  "heuristic": "common-target-synonym"
+ },
+ "L45": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "bicker fits quarrel/squabble",
+  "heuristic": "common-target-synonym"
+ },
+ "L46": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; pacify arbitrary",
+  "heuristic": "none"
+ },
+ "L47": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "intimidate fits daunt/cow",
+  "heuristic": "common-target-synonym"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; reputation arbitrary",
+  "heuristic": "none"
+ },
+ "L49": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; conceal arbitrary",
+  "heuristic": "none"
+ },
+ "L50": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; melancholy arbitrary",
+  "heuristic": "none"
+ },
+ "L51": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "model fits paragon",
+  "heuristic": "common-target-synonym"
+ },
+ "L52": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "careless fits negligent",
+  "heuristic": "common-target-synonym"
+ },
+ "L53": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; grumpy arbitrary",
+  "heuristic": "none"
+ },
+ "L54": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "plight fits predicament",
+  "heuristic": "common-target-synonym"
+ },
+ "L55": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "sociable fits gregarious",
+  "heuristic": "common-target-synonym"
+ },
+ "L56": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "sluggish fits lethargic",
+  "heuristic": "common-target-synonym"
+ },
+ "L57": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "notion fits concept",
+  "heuristic": "common-target-synonym"
+ },
+ "L58": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "force/allow opposite; compel",
+  "heuristic": "antonym-pair"
+ },
+ "L59": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "amend fits revise",
+  "heuristic": "common-target-synonym"
+ },
+ "L60": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "watchful fits vigilant",
+  "heuristic": "common-target-synonym"
+ },
+ "L61": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "trusting fits gullible/naive",
+  "heuristic": "common-target-synonym"
+ },
+ "L62": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "friendly fits amiable",
+  "heuristic": "common-target-synonym"
+ },
+ "L63": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "agile fits nimble",
+  "heuristic": "common-target-synonym"
+ },
+ "L64": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "unwilling to spend glosses stingy; save vs spend axis",
+  "heuristic": "odd-form"
+ },
+ "L65": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "postpone fits defer",
+  "heuristic": "common-target-synonym"
+ },
+ "L66": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; stubborn arbitrary",
+  "heuristic": "none"
+ },
+ "L67": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "thorough fits meticulous",
+  "heuristic": "common-target-synonym"
+ },
+ "L68": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "bargain fits haggle",
+  "heuristic": "common-target-synonym"
+ },
+ "L69": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "ponder fits muse/contemplate",
+  "heuristic": "common-target-synonym"
+ },
+ "L70": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "secluded fits isolated",
+  "heuristic": "common-target-synonym"
+ },
+ "L71": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; yank arbitrary",
+  "heuristic": "none"
+ },
+ "L72": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "spiteful fits malicious",
+  "heuristic": "common-target-synonym"
+ },
+ "L73": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; overdue arbitrary",
+  "heuristic": "none"
+ },
+ "L74": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "obstacle fits impediment",
+  "heuristic": "common-target-synonym"
+ },
+ "L75": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "assist/impede opposite; hinder",
+  "heuristic": "antonym-pair"
+ },
+ "L76": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; carry arbitrary",
+  "heuristic": "none"
+ },
+ "L77": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "ancestor fits forebear",
+  "heuristic": "common-target-synonym"
+ },
+ "L78": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "edge/front pair; edge arbitrary",
+  "heuristic": "none"
+ },
+ "L79": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "cautious fits prudent",
+  "heuristic": "common-target-synonym"
+ },
+ "L80": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "ally/opponent opposite; adversary",
+  "heuristic": "antonym-pair"
+ },
+ "L81": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "scorn/praise opposite; contempt",
+  "heuristic": "antonym-pair"
+ },
+ "L82": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "soak fits drench",
+  "heuristic": "common-target-synonym"
+ },
+ "L83": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; dawdle arbitrary",
+  "heuristic": "none"
+ },
+ "L84": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "waver fits vacillate",
+  "heuristic": "common-target-synonym"
+ },
+ "L85": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "necessary fits essential",
+  "heuristic": "common-target-synonym"
+ },
+ "L86": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "relish fits savor",
+  "heuristic": "common-target-synonym"
+ },
+ "L87": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "bland fits insipid",
+  "heuristic": "common-target-synonym"
+ },
+ "L88": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; evasive arbitrary",
+  "heuristic": "none"
+ },
+ "L89": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "danger fits peril",
+  "heuristic": "common-target-synonym"
+ },
+ "L90": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "clarify fits elucidate",
+  "heuristic": "common-target-synonym"
+ },
+ "L91": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "bewilder fits baffle",
+  "heuristic": "common-target-synonym"
+ },
+ "L92": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pledge fits vow",
+  "heuristic": "common-target-synonym"
+ },
+ "L93": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; moody arbitrary",
+  "heuristic": "none"
+ },
+ "L94": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "stabilize/fluctuate opposite pair",
+  "heuristic": "antonym-pair"
+ },
+ "L95": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "hidden fits covert/latent",
+  "heuristic": "common-target-synonym"
+ },
+ "L96": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "trivial fits trifling",
+  "heuristic": "common-target-synonym"
+ },
+ "L97": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "tentative fits provisional",
+  "heuristic": "common-target-synonym"
+ },
+ "L98": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal; stray arbitrary",
+  "heuristic": "none"
+ },
+ "L99": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "loner fits recluse",
+  "heuristic": "common-target-synonym"
+ },
+ "L100": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; lead arbitrary",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; enormous arbitrary",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; beg arbitrary",
+  "heuristic": "none"
+ },
+ "L103": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; rival arbitrary",
+  "heuristic": "none"
+ },
+ "L104": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dainty/bulky opposite; delicate",
+  "heuristic": "antonym-pair"
+ },
+ "L105": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "terse fits curt",
+  "heuristic": "common-target-synonym"
+ },
+ "L106": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "peak fits summit/pinnacle",
+  "heuristic": "common-target-synonym"
+ },
+ "L107": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "fault fits flaw",
+  "heuristic": "common-target-synonym"
+ },
+ "L108": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; main arbitrary",
+  "heuristic": "none"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "touching fits poignant",
+  "heuristic": "common-target-synonym"
+ },
+ "L110": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; crooked arbitrary",
+  "heuristic": "none"
+ },
+ "L111": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unconcerned fits indifferent",
+  "heuristic": "common-target-synonym"
+ },
+ "L112": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "frown fits scowl",
+  "heuristic": "common-target-synonym"
+ },
+ "L113": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "native fits indigenous",
+  "heuristic": "common-target-synonym"
+ },
+ "L114": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "lineage fits ancestry",
+  "heuristic": "common-target-synonym"
+ },
+ "L115": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "omen fits portent",
+  "heuristic": "common-target-synonym"
+ },
+ "L116": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "merciless fits ruthless",
+  "heuristic": "common-target-synonym"
+ },
+ "L117": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "blunt fits candid",
+  "heuristic": "common-target-synonym"
+ },
+ "L118": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "yearn fits long/pine",
+  "heuristic": "common-target-synonym"
+ },
+ "L119": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "muddled fits confused",
+  "heuristic": "common-target-synonym"
+ },
+ "L120": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "widespread fits prevalent",
+  "heuristic": "common-target-synonym"
+ },
+ "L121": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "suppress/provoke opposite; quell",
+  "heuristic": "antonym-pair"
+ },
+ "L122": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "wordy fits verbose",
+  "heuristic": "common-target-synonym"
+ },
+ "L123": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "trudge fits plod",
+  "heuristic": "common-target-synonym"
+ },
+ "L124": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; lanky arbitrary",
+  "heuristic": "none"
+ },
+ "L125": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "refrain fits abstain",
+  "heuristic": "common-target-synonym"
+ },
+ "L126": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "tease fits taunt",
+  "heuristic": "common-target-synonym"
+ },
+ "L127": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "restore fits renovate",
+  "heuristic": "common-target-synonym"
+ },
+ "L128": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "fetch fits retrieve",
+  "heuristic": "common-target-synonym"
+ },
+ "L129": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "examine fits scrutinize",
+  "heuristic": "common-target-synonym"
+ },
+ "L130": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; dread arbitrary",
+  "heuristic": "none"
+ },
+ "L131": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "easily felt glosses palpable/tangible",
+  "heuristic": "odd-form"
+ },
+ "L132": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "eerie fits uncanny",
+  "heuristic": "common-target-synonym"
+ },
+ "L133": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "drag fits haul",
+  "heuristic": "common-target-synonym"
+ },
+ "L134": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "practical fits pragmatic",
+  "heuristic": "common-target-synonym"
+ },
+ "L135": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "eternal fits everlasting",
+  "heuristic": "common-target-synonym"
+ },
+ "L136": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "gist fits essence",
+  "heuristic": "common-target-synonym"
+ },
+ "L137": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "ramble fits digress",
+  "heuristic": "common-target-synonym"
+ },
+ "L138": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "acquire fits obtain",
+  "heuristic": "common-target-synonym"
+ },
+ "L139": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "scanty fits meager",
+  "heuristic": "common-target-synonym"
+ },
+ "L140": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "token fits symbol/memento",
+  "heuristic": "common-target-synonym"
+ },
+ "L141": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "toil fits labor",
+  "heuristic": "common-target-synonym"
+ },
+ "L142": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "lure fits entice",
+  "heuristic": "common-target-synonym"
+ },
+ "L143": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; wager arbitrary",
+  "heuristic": "none"
+ },
+ "L144": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "weaken fits undermine",
+  "heuristic": "common-target-synonym"
+ },
+ "L145": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "temporary fits transient",
+  "heuristic": "common-target-synonym"
+ },
+ "L146": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "feast fits banquet",
+  "heuristic": "common-target-synonym"
+ },
+ "L147": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "dictator fits tyrant",
+  "heuristic": "common-target-synonym"
+ },
+ "L148": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "arrogant fits haughty",
+  "heuristic": "common-target-synonym"
+ },
+ "L149": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "boring/dreary pair; arbitrary between",
+  "heuristic": "none"
+ },
+ "L150": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "nurture fits foster",
+  "heuristic": "common-target-synonym"
+ },
+ "L151": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "repair fits mend",
+  "heuristic": "common-target-synonym"
+ },
+ "L152": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; mound arbitrary",
+  "heuristic": "none"
+ },
+ "L153": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "astonished fits amazed",
+  "heuristic": "common-target-synonym"
+ },
+ "L154": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "disappear fits vanish",
+  "heuristic": "common-target-synonym"
+ },
+ "L155": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "irritable fits cranky/testy",
+  "heuristic": "common-target-synonym"
+ },
+ "L156": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "rash fits impetuous",
+  "heuristic": "common-target-synonym"
+ },
+ "L157": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "hoard/spend opposite; stockpile",
+  "heuristic": "antonym-pair"
+ },
+ "L158": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "outlaw fits prohibit",
+  "heuristic": "common-target-synonym"
+ },
+ "L159": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "joyful fits elated",
+  "heuristic": "common-target-synonym"
+ },
+ "L160": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "hamper fits hinder",
+  "heuristic": "common-target-synonym"
+ },
+ "L161": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "lively fits vivacious",
+  "heuristic": "common-target-synonym"
+ },
+ "L162": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "unyielding fits adamant",
+  "heuristic": "common-target-synonym"
+ },
+ "L163": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "brag fits boast",
+  "heuristic": "common-target-synonym"
+ },
+ "L164": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "hostile fits belligerent",
+  "heuristic": "common-target-synonym"
+ },
+ "L165": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "frank fits candid",
+  "heuristic": "common-target-synonym"
+ },
+ "L166": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "revive fits rejuvenate",
+  "heuristic": "common-target-synonym"
+ },
+ "L167": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "solitude fits isolation",
+  "heuristic": "common-target-synonym"
+ },
+ "L168": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; notice arbitrary",
+  "heuristic": "none"
+ },
+ "L169": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; slender arbitrary",
+  "heuristic": "none"
+ },
+ "L170": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unsteady fits precarious",
+  "heuristic": "common-target-synonym"
+ },
+ "L171": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "follower fits disciple",
+  "heuristic": "common-target-synonym"
+ },
+ "L172": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "flourish fits thrive",
+  "heuristic": "common-target-synonym"
+ },
+ "L173": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "painstaking/careless opposite; meticulous",
+  "heuristic": "antonym-pair"
+ },
+ "L174": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "imitate fits mimic",
+  "heuristic": "common-target-synonym"
+ },
+ "L175": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "shrivel fits wither",
+  "heuristic": "common-target-synonym"
+ },
+ "L176": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "peculiar fits odd",
+  "heuristic": "common-target-synonym"
+ },
+ "L177": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "artful fits crafty",
+  "heuristic": "common-target-synonym"
+ },
+ "L178": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "persistent fits tenacious",
+  "heuristic": "common-target-synonym"
+ },
+ "L179": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "strict fits stern",
+  "heuristic": "common-target-synonym"
+ },
+ "L180": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; fondness arbitrary",
+  "heuristic": "none"
+ },
+ "L181": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "traitor fits turncoat",
+  "heuristic": "common-target-synonym"
+ },
+ "L182": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unselfish fits altruistic",
+  "heuristic": "common-target-synonym"
+ },
+ "L183": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "greedy fits avaricious",
+  "heuristic": "common-target-synonym"
+ },
+ "L184": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "trickery fits deceit",
+  "heuristic": "common-target-synonym"
+ },
+ "L185": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "quick to recover glosses resilient",
+  "heuristic": "odd-form"
+ },
+ "L186": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "fascinate fits captivate",
+  "heuristic": "common-target-synonym"
+ },
+ "L187": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unfriendly fits aloof",
+  "heuristic": "common-target-synonym"
+ },
+ "L188": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "showy fits gaudy",
+  "heuristic": "common-target-synonym"
+ },
+ "L189": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; shake arbitrary",
+  "heuristic": "none"
+ },
+ "L190": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "monotony/variety opposite; diversity",
+  "heuristic": "antonym-pair"
+ },
+ "L191": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; marsh arbitrary",
+  "heuristic": "none"
+ },
+ "L192": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "believable fits plausible",
+  "heuristic": "common-target-synonym"
+ },
+ "L193": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "reinforce fits bolster",
+  "heuristic": "common-target-synonym"
+ },
+ "L194": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "soothe fits appease",
+  "heuristic": "common-target-synonym"
+ },
+ "L195": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "exacting fits demanding",
+  "heuristic": "common-target-synonym"
+ },
+ "L196": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "modest fits humble",
+  "heuristic": "common-target-synonym"
+ },
+ "L197": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; tie arbitrary",
+  "heuristic": "none"
+ },
+ "L198": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "uproar fits commotion",
+  "heuristic": "common-target-synonym"
+ },
+ "L199": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "discourage fits deter",
+  "heuristic": "common-target-synonym"
+ },
+ "L200": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "impending fits imminent",
+  "heuristic": "common-target-synonym"
+ },
+ "L201": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "win/conquer pair; conquer arbitrary",
+  "heuristic": "none"
+ },
+ "L202": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "disrespectful fits insolent",
+  "heuristic": "common-target-synonym"
+ },
+ "L203": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; dull arbitrary",
+  "heuristic": "none"
+ },
+ "L204": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "rough fits coarse",
+  "heuristic": "common-target-synonym"
+ },
+ "L205": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "meddle fits interfere",
+  "heuristic": "common-target-synonym"
+ },
+ "L206": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "fleeting fits transient",
+  "heuristic": "common-target-synonym"
+ },
+ "L207": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; dismiss arbitrary",
+  "heuristic": "none"
+ },
+ "L208": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "irritate fits vex",
+  "heuristic": "common-target-synonym"
+ },
+ "L209": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "empty/crowded opposite; teeming",
+  "heuristic": "antonym-pair"
+ },
+ "L210": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "basic fits fundamental",
+  "heuristic": "common-target-synonym"
+ },
+ "L211": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "spotless fits immaculate",
+  "heuristic": "common-target-synonym"
+ },
+ "L212": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; urge arbitrary",
+  "heuristic": "none"
+ },
+ "L213": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "submit/rebel opposite; yield",
+  "heuristic": "antonym-pair"
+ },
+ "L214": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "skillful fits adept",
+  "heuristic": "common-target-synonym"
+ },
+ "L215": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "block fits obstruct",
+  "heuristic": "common-target-synonym"
+ },
+ "L216": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "picky fits finicky",
+  "heuristic": "common-target-synonym"
+ },
+ "L217": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal; fixed arbitrary",
+  "heuristic": "none"
+ },
+ "L218": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "scold fits reprimand",
+  "heuristic": "common-target-synonym"
+ },
+ "L219": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "mock fits ridicule",
+  "heuristic": "common-target-synonym"
+ },
+ "L220": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "unyielding fits steadfast",
+  "heuristic": "common-target-synonym"
+ },
+ "L221": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal; alter arbitrary",
+  "heuristic": "none"
+ },
+ "L222": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "surly fits sullen",
+  "heuristic": "common-target-synonym"
+ },
+ "L223": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "profitable fits lucrative",
+  "heuristic": "common-target-synonym"
+ },
+ "L224": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tribute fits homage",
+  "heuristic": "common-target-synonym"
+ },
+ "L225": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "anger fits ire",
+  "heuristic": "common-target-synonym"
+ },
+ "L226": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "mutter fits mumble",
+  "heuristic": "common-target-synonym"
+ },
+ "L227": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "merry fits jovial",
+  "heuristic": "common-target-synonym"
+ },
+ "L228": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "nonsense fits drivel",
+  "heuristic": "common-target-synonym"
+ },
+ "L229": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "threatening fits ominous",
+  "heuristic": "common-target-synonym"
+ },
+ "L230": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "determined fits resolute",
+  "heuristic": "common-target-synonym"
+ },
+ "L231": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; honesty arbitrary",
+  "heuristic": "none"
+ }
+}

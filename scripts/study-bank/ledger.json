@@ -7320,6 +7320,134 @@
           "verdict": "Key strictly longest 8/40 = 20.0%, shortest 8/40 = 20.0% (bar <= 35%). check-recycled-distractor NO MEASUREMENT (160/160 distinct). verify-answer-key-spread ok. Article scan 0 split rows. Solver heuristic: no heuristic named by all three samples (a and b: none/no signal on 38 and 36 candidate picks); sample c alone named the test-word heuristic (\"sophisticated-word\"), 17/36 = 47.2% on candidate picks (s20 pooled 54.2%), under 70%. Key with a unique initial letter among options 1/40."
         }
       }
+    },
+    {
+      "id": "isee-verbal-s22-syn-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s22",
+      "status": "shipped",
+      "contentSha": "577bffcebbd6867a6833abb913c2821ec21c7967e38eb93aed901a5534f2da2b",
+      "note": "ISEE Upper synonyms, 25 of 25 frozen inserted (frozen isee-verbal-s22-syn.batch.json sha 577bffcebbd6867a6833abb913c2821ec21c7967e38eb93aed901a5534f2da2b, commit a6517c3e; kept isee-verbal-s22-syn.kept.batch.json is byte-identical to it - nothing dropped; qc isee-verbal-s22-syn.withsource.json). Prereg isee-verbal-s22.prereg.md (commit 96361baf) before any item. Two Claude authors, s19 synonym brief + the s22 rarity ceiling + first-letter rule: D j-o 13, E t-z 12. Banked at median 10 easy / 13 medium / 2 hard (BANK_BAND=mixed). The 45 SC of the same commission: ledger isee-verbal-s22-sc-2026-10-09.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "577bffcebbd6867a6833abb913c2821ec21c7967e38eb93aed901a5534f2da2b",
+          "verdict": "25 frozen: 4 distinct single-word lowercase choices, key among them, [Synonym] HEADWORD, verbalKind()=synonym 25/25 (isee-verbal-s21-preflight.ts); stem duplicates 0 vs 1,077 live isee rows; isee-verbal-s19-collisions.mjs --words isee-verbal-s22.live-words.json (2,793 live/s17-s21 words) 0 problems on both author files, ranges disjoint; key strictly longest 4/25 = 16.0%, shortest 6/25 = 24.0%; stored key slots 7/6/6/6; key-spread ok; first-letter (key the only option sharing the headword initial) D 0/13, E 0/12; denylist 0."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "577bffcebbd6867a6833abb913c2821ec21c7967e38eb93aed901a5534f2da2b",
+          "n": 25,
+          "mean": 16,
+          "control": 28,
+          "margin": -12,
+          "verdict": "Options-only, interleaved with the WHOLE eligible live synonym pool (206, isee-verbal-s4 excluded), three samples of one Claude solver (pairwise agreement 71.1%). Candidate 12/75 = 16.0% vs letter 28.0% (M -12.0); live 267/618 = 43.2% vs 25.2% (M +18.0). EXCESS -30.0 <= +10 PASS; ceiling not reached; candidate below its letter line. Unanimous-correct 1/25 vs 65/206. By author D 8/39 = 20.5%, E 4/36 = 11.1%."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "577bffcebbd6867a6833abb913c2821ec21c7967e38eb93aed901a5534f2da2b",
+          "verdict": "Items >= 2 samples certainly rejected the same non-key option: candidate 0/25, live 0/206; bar max(live, 5%) PASS. reject_certain false on every item in every sample: a default, not a discriminating reading."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "577bffcebbd6867a6833abb913c2821ec21c7967e38eb93aed901a5534f2da2b",
+          "verdict": "Three fresh Claude graders, own re-shuffled renders (seeds 20261161-63), cold picks on disk first (25/25 on key each): 25/25 on key each (bar: FAIL if any grader > 10% off). Parsed by isee-verbal-s22-withsource.mjs (field shapes checked; 0 refusals). 0 second-defensible, 0 above band, 0 free eliminations, 0 drops. Difficulty a 12/13/0, b 9/11/5, c 11/11/3; medians 10/13/2. Authored hard 8 -> banked 0/7/1; medium 11 -> 4/6/1; easy 6 -> 6/0/0."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "577bffcebbd6867a6833abb913c2821ec21c7967e38eb93aed901a5534f2da2b",
+          "verdict": "Key strictly longest 4/25 = 16.0%, shortest 6/25 = 24.0% (bar <= 35%). check-recycled-distractor NO MEASUREMENT (100/100 distinct). verify-answer-key-spread ok (quads p=0.75). Antonym-of-key items (>= 2 graders) 1/25 = 4.0% (IVS22E-07 TATTERED/whole; bar <= 25%); POS outliers 0/25. Solver heuristic: no heuristic named by all three samples on candidate picks (a: none 24/25, b: none 23/25, c: none 12 + common-target-synonym 13)."
+        }
+      }
+    },
+    {
+      "id": "isee-verbal-s22-sc-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "isee",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "isee-verbal-s22",
+      "status": "shipped",
+      "contentSha": "ad42e337db997884cf5f60255270ec02e7c0cb5ad8318795a3efb97acc05a2ad",
+      "note": "ISEE Upper single-blank SC, 32 of 45 frozen inserted (frozen isee-verbal-s22-sc.batch.json sha 672eafde4ed97ffb51ee9974436fe80708b55a75e77e8d905771f059459df903, commit a6517c3e; kept isee-verbal-s22-sc.kept.batch.json is the byte-exact subset in frozen order; qc isee-verbal-s22-sc.withsource.json). Prereg isee-verbal-s22.prereg.md (commit 96361baf). Three Claude authors on s21's brief plus a named rarity ceiling (20-word above-band denylist), every forced pick < 35% per author, mostly hard: A a-c, B d-i, C p-s, 13 hard / 2 medium each. Probe r1 -> one revision round (19 named items, distractors only) -> r2 recorded (test_word 3/4/3 of 15; calibration plants: 7/7 planted above-band words flagged). Banked 30 medium / 2 hard (BANK_BAND=mixed). IS22B-02 kept by rule although grader a named a stem-side elimination of all three distractors (\"become ------- to\"); one grader only, so neither drop rule fires.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "ad42e337db997884cf5f60255270ec02e7c0cb5ad8318795a3efb97acc05a2ad",
+          "verdict": "45 frozen: 4 distinct single-word lowercase choices, key among them, [Sentence Completion] with one 7-hyphen blank, no \"is to\", verbalKind()=sentence completion 45/45; stem duplicates 0 vs 1,077 live isee rows; collisions 0 (2,793-word list, ranges disjoint); sc-article-scan --batch: a/an + blank 0; key strictly longest 8/45 = 17.8%, shortest 7/45 = 15.6%; stored key slots 12/11/11/11; key-spread ok; denylist 0."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "ad42e337db997884cf5f60255270ec02e7c0cb5ad8318795a3efb97acc05a2ad",
+          "n": 45,
+          "mean": 48.9,
+          "control": 26.7,
+          "margin": 22.2,
+          "verdict": "Options-only against the WHOLE eligible live hard/medium SC pool (151, 135 single-blank, isee-verbal-s4 excluded), three samples of one Claude solver (pairwise agreement 59.0%). Candidate 66/135 = 48.9% vs letter 26.7% (M +22.2); live 193/453 = 42.6% vs 25.2% (M +17.4); single-blank 177/405 = 43.7% vs 27.4% (M +16.3). EXCESS +4.8 (all) / +5.9 (single-blank), both <= +10 PASS (inside the stated noise band); ceiling not reached. Unanimous-correct 11/45 = 24.4% vs 32/151 = 21.2%. By author A 28/45 = 62.2%, B 16/45 = 35.6%, C 22/45 = 48.9%."
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "ad42e337db997884cf5f60255270ec02e7c0cb5ad8318795a3efb97acc05a2ad",
+          "verdict": "Candidate 0/45 vs live 0/151 certainly eliminable; PASS. reject_certain false on every item in every sample: a default (sample a also assigned its reject letter mechanically)."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "ad42e337db997884cf5f60255270ec02e7c0cb5ad8318795a3efb97acc05a2ad",
+          "verdict": "Three fresh Claude graders, own re-shuffled renders (seeds 20261164-66), cold picks on disk first (45/45 on key each): 45/45 on key each. Parsed by isee-verbal-s22-withsource.mjs (0 refusals). Drops 13: median easy 12 (A-05, A-10, B-01, B-05, B-06, B-07, B-09, B-11, B-12, C-01, C-06, C-12), key-completed sentence does not read correctly 1 (A-07, grader c). ABOVE BAND: 0 words marked by any grader (s21: 6 drops). Free eliminations named 4 options on 2 items by grader a only (B-02 x3, A-12 aspire): no drop rule fires. Difficulty a 16/28/1, b 10/28/7, c 12/28/5. Authored hard 39 -> banked 8/29/2; authored medium 6 -> 4/2/0. Kept A 12/15, B 8/15, C 12/15."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "ad42e337db997884cf5f60255270ec02e7c0cb5ad8318795a3efb97acc05a2ad",
+          "verdict": "Key strictly longest 8/45 = 17.8%, shortest 7/45 = 15.6% (bar <= 35%). check-recycled-distractor NO MEASUREMENT (180/180 distinct). verify-answer-key-spread ok. Article scan 0 split rows. Solver heuristic: every candidate pick in all three samples was labelled \"none\" (a 23/45, b 23/45, c 20/45 correct) - no named heuristic, so the 70% rule cannot fire; the test-word heuristic was named by no sample (s21 one sample 47.2%, s20 all three 54.2%)."
+        }
+      }
+    },
+    {
+      "id": "ssat-math-s16-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "ssat",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "ssat-math-s16",
+      "contentSha": "78587fbbd7404c5741e439a1e937c385e937cd3480dae27520a5256e157f2e0c",
+      "status": "shipped",
+      "spec": {
+        "n": 125,
+        "authors": 5,
+        "batchFile": "scripts/study-bank/ssat-math-s16.batch.json",
+        "prereg": "scripts/study-bank/ssat-math-s16.prereg.md",
+        "method": "five Claude authors on disjoint topics at the live SSAT math mix (A ratio/rate/percent 30, B geometry 26 + coordinate 5, C counting/probability/statistics 25, D algebra 22, E number theory 11 + arithmetic 6), authored 0 easy / 25 medium / 100 hard against s15's difficulty drift, five-choice, solve + distractor_solve; check-forced-form (option-value forced-divisibility check, every declared note read against its stem) and a solution-method duplicate search (math-mechanism-dup + cross-author template/method compare + hand keyword search of live SSAT) before the freeze; one return per author; frozen before attack (commit 0979b00c); options-only attack with a 40-item interleaved live SSAT control; four with-source graders (two per alternating half of 63/62) on key-withheld renders"
+      },
+      "note": "Commissioned for SSAT math forms 9 and 10: 405 live = 8 clean, form 10 needs 500 (+95). 115 of 125 inserted under the pre-registered bars; 10 drops: 6 hand-confirmed with-source free eliminations killing >= 2 distractors (S16A-11, A-12, A-17, A-25, D-08, D-11), 1 confirmed second defensible answer (S16C-23), 3 corroborated drops (S16A-08, A-09, E-10: unanimous blind plus a grader-named elimination); reasons in ssat-math-s16.qc-reasons.json. Inserted at BANK_BAND=mixed; difficulty = graders' consensus, or the easier label on a split (17 of 115 splits). Banked 20 easy / 68 medium / 27 hard against authored 0 / 24 / 91 among the kept.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "78587fbbd7404c5741e439a1e937c385e937cd3480dae27520a5256e157f2e0c",
+          "verdict": "math-bank-helper verify on the frozen 125: sandbox 125/125, distractors 500/500 (mutation refused), symbolic hub 6 structured -7.5, numeric hub 19 structured -18.7, key extremity PASS 46/121 = 38.0% (bar 32.0%; kept 115: 44/112 = 39.3%). run-middle, option-pair-constant, key-is-sum, plurality land on the key 0 times; key/-key pairs 0 (script). stem-duplicates 0 of 125 against 1,165 live SSAT rows; word-3-shingle scan vs 405 live SSAT math max stem Jaccard 0.56 (S16C-08 vs 2be2ca8f, shared dice frame, different event), 4 pairs >= 0.35 read: none the same problem; break-tested by a planted live stem flagged at 1.00. check-forced-form: 0 OPEN, 255 DECLARED notes read against the stems (self-test flags all six s15 forced-structure drops). Method duplicate search: math-mechanism-dup 10 FLAGs over 3,290 live maths rows (S16A-18, A-21; read: different methods), cross-author template/method pairs >= 0.35: 0; four same-method returns (C-06 ~ live cea16045, D-12 ~ live d9090ca9, D-22 ~ live 9ceb3fdf, E-16 ~ E-12 within author) re-authored before the freeze."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 375,
+          "mean": 23.5,
+          "control": 26.7,
+          "margin": -3.2,
+          "verdict": "make-oo-render --control 40, stems withheld, keys dealt 25 per slot (candidate) and 8 per slot (control), three Claude samples x 165 interleaved items. Candidate 88/375 = 23.5% (own best-fixed-letter line 20.0%), live control 32/120 = 26.7% (line 20.0%): CANDIDATE minus LIVE CONTROL -3.2 (pre-registered pass <= +5.0; control far below the 80% void ceiling). Unanimous-correct rate 16/125 = 12.8% vs control 5/40 = 12.5%. Pairwise agreement 63.0% vs 20.1% independent - one solver sampled three times. Per-author subsets vs control (hold bar +20.0): A -1.1, B -10.5, C -5.3, D +5.2, E -1.2."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Four Claude graders on ssat-math-s16-h1.grade.json (sha b99621f3eb3a81b7) and -h2.grade.json (sha 127af52a41b0d24e), each sha quoted at start and end. 250/250 picks equal the key, 0 out of band, 0 live duplicates named; non-exclusive 1 item (S16C-23, both h2 graders: 4/15 defensible under 'until both are found') - dropped. Items flagged with >= 2 free kills: 8; 6 confirmed by hand and dropped (A-11, A-12, A-17, A-25, D-08, D-11), 2 not confirmed: S16B-29 (the quadrant of a 90-degree turn is the rotation method itself), S16B-04 (the bound needs the item's own equidistance step). Batch-hold bar > 35 of 125 dropped: 10 dropped. Per-author drops A 6/30, B 0/31, C 1/25, D 2/22, E 1/17 (hold bar > half). Grader difficulty labels: h1-a 9/43/11, h1-b 14/38/11, h2-a 6/33/23, h2-b 5/31/26 easy/medium/hard."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "16 candidate items unanimous blind. Dropped where with-source independently named an elimination: S16A-08, S16A-09, S16E-10 (corroboration clause). The other 13 unanimous items carry no with-source elimination and are kept (pre-registered: unanimity alone never drops)."
+        }
+      }
     }
   ],
   "auditedCohorts": [
