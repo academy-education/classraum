@@ -1,0 +1,57 @@
+{
+ "meta": {
+  "set": "AN6-01",
+  "atypical_fact": "Exhibition work is dropped off upstairs in Room 336 (the print studio), not at the gallery itself; wall labels are written by staff and posted only after anonymous judging ends on Friday.",
+  "revised_fact": "Drop-off was announced for Monday afternoon -> moved to Wednesday morning (the gallery ground floor, the usual drop-off point, is also replaced by Room 336).",
+  "q1_kind": "P",
+  "q2_kind": "D",
+  "self_check": [
+   "Flat prior (P): four purposes all about labels/drop-off logistics; each is a reasonable reason to mention who writes labels. (D): four day/half-day combinations, none favoured without the transcript.",
+   "Form symmetry: all P options are 'To indicate that ...' + one clause of 55-61 chars, no hedges or absolutes; all D options 'On <day> <half-day>'.",
+   "Key length rank: P key 60 chars among 55/57/60/61 = rank 3; D key 'On Wednesday morning' 20 among 17/19/20/22 = rank 3; ratios 1.11 and 1.29.",
+   "Stems name a referent only: P quotes the line; D asks when artists should bring their pieces, no narration of the change.",
+   "No lexical echo: P key words (labels, posted, judging, ends) not in stem; D key (Wednesday, morning) not in stem.",
+   "Sibling leak: P options never mention a day or time; D options never mention labels, jurors or judging; 'drop-off will take less time' does not imply any day.",
+   "Line alone ('You won't be writing those yourselves') most naturally supports 'staff will print the labels in one style' and 'drop-off will take less time'; only the following sentences (anonymous judging, labels go up Friday) give the key.",
+   "D gridKey latest: Wednesday and morning are the values the speaker settles on last; Monday afternoon (original announcement) is a distractor; Wednesday afternoon attaches the printmaking class time to drop-off.",
+   "Default value as distractor: the originally announced 'Monday afternoon' is a D option.",
+   "Not world knowledge: nothing about how galleries work picks the anonymity reason or the day."
+  ]
+ },
+ "items": [
+  {
+   "id": "AN6-01-1",
+   "type": "multiple_choice",
+   "passage": "Transcript: Good afternoon, artists. This is Oriana Feldt from the campus gallery with an update on the spring student exhibition. In past years, you've dropped your work off at the gallery itself, on the ground floor of the Ostler Building. This year the gallery floor is being refinished, so please bring your pieces upstairs to Room 336, the print studio. Drop-off was announced for Monday afternoon, but the floor crew needs the building that whole day, so drop-off has moved to Wednesday. And because the studio has a printmaking class on Wednesday afternoons, drop-off will be that morning instead. Now, several of you have asked about wall labels. You won't be writing those yourselves. The jurors are judging the show without knowing whose work is whose, so no names go on the walls until judging finishes on Friday. Our student assistants will put the labels up then. If a piece won't fit through the studio door, call me at extension 2316.",
+   "passageGroupId": "AN6-01",
+   "prompt": "[Announcement — Campus art gallery] Why does the speaker say, \"You won't be writing those yourselves\"?",
+   "choices": [
+    "To indicate that the labels will be posted once judging ends",
+    "To indicate that the staff will print the labels in one style",
+    "To indicate that drop-off will take less time than before",
+    "To indicate that the jurors will add the artists' names"
+   ],
+   "correct_answer": "To indicate that the labels will be posted once judging ends",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "Right after the line the speaker says \"The jurors are judging the show without knowing whose work is whose, so no names go on the walls until judging finishes on Friday. Our student assistants will put the labels up then.\" The line introduces the fact that labels go up only after judging. \"To indicate that the staff will print the labels in one style\" is a reading of the line alone; nothing is said about a style. \"To indicate that drop-off will take less time than before\" is also a reading of the line alone; the speaker never connects labels to the length of drop-off. \"To indicate that the jurors will add the artists' names\" is wrong because the jurors judge without names and the student assistants put the labels up."
+  },
+  {
+   "id": "AN6-01-2",
+   "type": "multiple_choice",
+   "passage": "Transcript: Good afternoon, artists. This is Oriana Feldt from the campus gallery with an update on the spring student exhibition. In past years, you've dropped your work off at the gallery itself, on the ground floor of the Ostler Building. This year the gallery floor is being refinished, so please bring your pieces upstairs to Room 336, the print studio. Drop-off was announced for Monday afternoon, but the floor crew needs the building that whole day, so drop-off has moved to Wednesday. And because the studio has a printmaking class on Wednesday afternoons, drop-off will be that morning instead. Now, several of you have asked about wall labels. You won't be writing those yourselves. The jurors are judging the show without knowing whose work is whose, so no names go on the walls until judging finishes on Friday. Our student assistants will put the labels up then. If a piece won't fit through the studio door, call me at extension 2316.",
+   "passageGroupId": "AN6-01",
+   "prompt": "[Announcement — Campus art gallery] When should artists bring their pieces for the exhibition?",
+   "choices": [
+    "On Monday morning",
+    "On Monday afternoon",
+    "On Wednesday morning",
+    "On Wednesday afternoon"
+   ],
+   "correct_answer": "On Wednesday morning",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says drop-off \"has moved to Wednesday\" and, \"because the studio has a printmaking class on Wednesday afternoons, drop-off will be that morning instead.\" \"On Monday afternoon\" is the originally announced time that was cancelled because the floor crew needs the building that day. \"On Monday morning\" is wrong for the same reason: the crew needs the building \"that whole day\". \"On Wednesday afternoon\" is when the printmaking class uses the studio, not drop-off time."
+  }
+ ]
+}

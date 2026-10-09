@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "set": "AN6-11",
+    "atypical_fact": "New members start impromptu rounds this week, although the society normally saves them until the spring term; the president will judge them himself.",
+    "revised_fact": "All members usually practise together on Thursdays at 7 p.m. in Room 365 -> this week new members meet on Tuesday at 7 p.m. in Room 451, and the tournament squad keeps Thursday in Room 365 but starts at 6:30 p.m.",
+    "q1_kind": "D",
+    "q2_kind": "P",
+    "self_check": [
+      "Commission: q1 D key rank 1 (17 chars among 17/18/20/21), q2 P key rank 2 (57 among 55/57/58/60), gridKey earlier: the key's Tuesday and 7 p.m. are given in the new-member part; the last day and time mentioned are the squad's Thursday and 6:30 p.m.",
+      "Ratio: q1 21/17 = 1.24; q2 60/55 = 1.09.",
+      "D grid: Tuesday/Thursday x 7 p.m./6:30 p.m.; each element in exactly two options; three combinations are said in the transcript for some group (usual, new members, squad) and the fourth recombines them.",
+      "Default value present as distractor: 'Thursday at 7 p.m.' is the usual joint practice.",
+      "P line alone ('But several of you are already better than I was') most naturally reads as encouragement or praise, or as a hint to join the tournament squad - all three are distractors. Only the surrounding sentences (impromptu rounds normally wait until spring; 'So on Tuesday we'll try three') reveal it justifies an early harder format.",
+      "Form symmetry: all P options are 'To <verb> ... new members ...', same register, no hedges or absolutes; all D options are '<day> at <time>'.",
+      "Stem echo: P key shares no content word with the stem; 'new members' is in all four options. D key shares nothing with its stem.",
+      "Sibling leak: D options are days/times only; P options never mention a day, time or room, and 'try a harder format early' does not fix when new members meet.",
+      "World knowledge: no general fact about debate clubs selects Tuesday 7 p.m. or the format explanation.",
+      "Names/rooms from pool D only: Rafferty Nwosu, Pemberly House, Rooms 365 and 451."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN6-11-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, Rafferty Nwosu here from the debate society. Normally all of us practise together on Thursdays at 7 p.m. in Room 365 of Pemberly House. With the regional tournament next weekend, this week will be different. New members, your session moves to Tuesday, still at 7 p.m., and you'll be in Room 451. We usually save impromptu rounds, where you get the motion as you walk in, until the spring term, because they're tough. But several of you are already better than I was. So on Tuesday we'll try three impromptu rounds, and I'll judge them myself. The tournament squad keeps Thursday in Room 365, but please arrive at 6:30 p.m. so we can fit in a full mock round before the building closes. If you can't attend your own session, email me rather than joining the other one.",
+      "passageGroupId": "AN6-11",
+      "prompt": "[Announcement — Debate society] When is the next practice session for new members?",
+      "choices": ["Tuesday at 7 p.m.", "Thursday at 7 p.m.", "Tuesday at 6:30 p.m.", "Thursday at 6:30 p.m."],
+      "correct_answer": "Tuesday at 7 p.m.",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker tells new members, \"your session moves to Tuesday, still at 7 p.m.\" \"Thursday at 7 p.m.\" is the usual joint practice that changes this week. \"Thursday at 6:30 p.m.\" is the time given to the tournament squad (\"keeps Thursday ... please arrive at 6:30 p.m.\"), not to new members. \"Tuesday at 6:30 p.m.\" attaches the squad's earlier start to the new members' day; the new-member time stays at 7 p.m."
+    },
+    {
+      "id": "AN6-11-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, Rafferty Nwosu here from the debate society. Normally all of us practise together on Thursdays at 7 p.m. in Room 365 of Pemberly House. With the regional tournament next weekend, this week will be different. New members, your session moves to Tuesday, still at 7 p.m., and you'll be in Room 451. We usually save impromptu rounds, where you get the motion as you walk in, until the spring term, because they're tough. But several of you are already better than I was. So on Tuesday we'll try three impromptu rounds, and I'll judge them myself. The tournament squad keeps Thursday in Room 365, but please arrive at 6:30 p.m. so we can fit in a full mock round before the building closes. If you can't attend your own session, email me rather than joining the other one.",
+      "passageGroupId": "AN6-11",
+      "prompt": "[Announcement — Debate society] Why does the speaker say, \"But several of you are already better than I was\"?",
+      "choices": ["To explain why new members will try a harder format early", "To reassure new members who feel nervous about debating", "To suggest that some new members join the tournament squad", "To praise new members for how they did at last month's event"],
+      "correct_answer": "To explain why new members will try a harder format early",
+      "difficulty": "hard",
+      "listeningTask": "announcement",
+      "explanation": "The line comes between \"We usually save impromptu rounds ... until the spring term, because they're tough\" and \"So on Tuesday we'll try three impromptu rounds\": it gives the reason new members will try the tough format ahead of schedule. \"To reassure new members who feel nervous about debating\" is how the line might sound on its own, but nobody's nerves are mentioned. \"To suggest that some new members join the tournament squad\" is wrong because the squad is treated as a separate group and new members are told not to join the other session. \"To praise new members for how they did at last month's event\" is wrong because no past event is mentioned."
+    }
+  ]
+}

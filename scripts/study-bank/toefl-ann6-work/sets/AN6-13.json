@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "set": "AN6-13",
+    "atypical_fact": "Free tote bags go to shoppers who show receipts from two different stalls at the information table, not to the first fifty shoppers; the market is indoors in a pavilion rather than on a lawn.",
+    "revised_fact": "Volunteer sign-in moves from the usual ten thirty to ten (except the herb sellers' team, which keeps ten thirty); tote bags: first fifty shoppers through the gate -> receipts from two different stalls.",
+    "q1_kind": "I",
+    "q2_kind": "R",
+    "self_check": [
+      "Flat prior Q1: four concrete ways to earn a giveaway (early arrival, one receipt, a receipt from one named vendor group, two receipts); the default 'first fifty through the gate' is a distractor.",
+      "Flat prior Q2: four morning clock times in identical numeric form, all plausible volunteer call times; 10:30 is the usual time, 9:30 the pavilion opening, 11:00 market opening.",
+      "Form symmetry: Q1 options are all imperative verb phrases naming an action plus a place/condition; Q2 options are all 'At HH:MM a.m.'.",
+      "Key length rank: Q1 key 64 chars, others 58/60/55 -> rank 4; Q2 key 13 chars, one option 12 -> rank 2; ratios 1.16 and 1.08.",
+      "Stems name a referent only: 'a shopper ... free tote bag' and 'the volunteers setting up the indoor stalls'; neither narrates a change.",
+      "No lexical echo: Q1 key shares no content word with its stem (tote/bag/free/shopper absent from key); Q2 key has no content word.",
+      "No sibling leak: Q1 options contain no times; Q2 options contain no giveaway, receipt or place content; neither stem restates the other.",
+      "Not world knowledge: nothing in general campus practice decides which promotion rule or which call time applies.",
+      "One defensible answer: transcript states receipts from two stalls at the information table, and volunteers other than the herb team come at ten."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN6-13-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good morning, this is Cosima Haddad from the sustainability office with a note about Wednesday's farmers' market. The lawn by the main library is being reseeded, so this week the stalls move indoors to Sablewood Pavilion, which opens to us at nine thirty. Shopping hours stay the same, eleven to three. Volunteers usually sign in at ten thirty, but carrying tables inside takes longer, so please come at ten this week. The one exception is the herb sellers' team: their carts stay out on the pavilion's back terrace, so those volunteers can keep the usual time. The free tote bags work differently, too. Normally the first fifty shoppers through the gate get one. This week, a tote goes to anyone who shows receipts from two different stalls at the information table, until they run out. Volunteer questions go to extension 9423.",
+      "passageGroupId": "AN6-13",
+      "prompt": "[Announcement — Campus farmers' market] What should a shopper do to get a free tote bag?",
+      "choices": [
+        "Show receipts from two different stalls at the information table",
+        "Be among the first fifty shoppers to come through the gate",
+        "Show a receipt from the herb sellers out on the back terrace",
+        "Show one receipt of any amount at the information table"
+      ],
+      "correct_answer": "Show receipts from two different stalls at the information table",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, 'This week, a tote goes to anyone who shows receipts from two different stalls at the information table.' 'Be among the first fifty shoppers to come through the gate' is the usual arrangement ('Normally the first fifty shoppers through the gate get one'), which does not apply this week. 'Show a receipt from the herb sellers out on the back terrace' attaches the herb sellers' location to the tote rule; the terrace is only where their carts stay. 'Show one receipt of any amount at the information table' has the right place but the wrong condition: two receipts from different stalls are required."
+    },
+    {
+      "id": "AN6-13-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good morning, this is Cosima Haddad from the sustainability office with a note about Wednesday's farmers' market. The lawn by the main library is being reseeded, so this week the stalls move indoors to Sablewood Pavilion, which opens to us at nine thirty. Shopping hours stay the same, eleven to three. Volunteers usually sign in at ten thirty, but carrying tables inside takes longer, so please come at ten this week. The one exception is the herb sellers' team: their carts stay out on the pavilion's back terrace, so those volunteers can keep the usual time. The free tote bags work differently, too. Normally the first fifty shoppers through the gate get one. This week, a tote goes to anyone who shows receipts from two different stalls at the information table, until they run out. Volunteer questions go to extension 9423.",
+      "passageGroupId": "AN6-13",
+      "prompt": "[Announcement — Campus farmers' market] When should the volunteers setting up the indoor stalls arrive this week?",
+      "choices": [
+        "At 9:30 a.m.",
+        "At 10:00 a.m.",
+        "At 10:30 a.m.",
+        "At 11:00 a.m."
+      ],
+      "correct_answer": "At 10:00 a.m.",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says volunteers 'usually sign in at ten thirty, but carrying tables inside takes longer, so please come at ten this week.' 'At 10:30 a.m.' is the usual time, which this week applies only to the herb sellers' team outside on the terrace. 'At 9:30 a.m.' is when the pavilion 'opens to us', not the volunteers' call time. 'At 11:00 a.m.' is when shopping hours begin."
+    }
+  ]
+}

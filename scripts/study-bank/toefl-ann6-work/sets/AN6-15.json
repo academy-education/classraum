@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "set": "AN6-15",
+    "atypical_fact": "Lap swimming moves into the diving pool, and beginner swim classes do not swim at all but have a dry-land water-safety lesson in a classroom (Room 125).",
+    "revised_fact": "Lap swimming usually six to eight in the competition pool -> seven to nine in the diving pool for the week of the filter repair.",
+    "q1_kind": "R",
+    "q2_kind": "D",
+    "self_check": [
+      "R: options include the usual arrangement ('usual in-water lesson as planned'), another group's arrangement (the varsity team's 'city's public pool'), a real detail attached to the wrong group (Room 456 is the changing area / fitness room), and the key the transcript assigns to beginner classes.",
+      "D grid: six-to-eight/seven-to-nine x competition/diving pool; each value in exactly two options; key = the last-mentioned hours and the last-mentioned pool (gridKey latest); the usual 'six to eight in the competition pool' is a distractor.",
+      "Flat prior: four concrete class arrangements, each plausible for a pool closure week; four two-hour morning windows in two named pools.",
+      "Form symmetry: Q1 options all 'Have ... lesson/session ...' verb phrases of equal specificity; Q2 options all 'From X to Y in the Z pool'.",
+      "Key length rank: Q1 key 47 chars vs 43/43/43 -> rank 4; Q2 key 37 chars vs 36/41/42 -> rank 2; ratios 1.09 and 1.17.",
+      "Stems name a referent only: 'the beginner swim classes' and 'lap swimming', both 'next week'.",
+      "No lexical echo: Q1 key shares no content word with its stem ('water-safety' is not 'swim'); Q2 key 'diving pool' / 'seven to nine' does not echo the stem, and 'pool' is in every option.",
+      "No sibling leak: Q1 options name no pool hours and do not say which pool lap swimmers use; Q2 options say nothing about classes, rooms or the team.",
+      "One defensible answer: transcript assigns beginners to Room 125 for a dry-land water-safety lesson and lap swimming to the diving pool from seven to nine."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN6-15-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good afternoon, this is Joaquin Lindgren at the aquatics centre with changes for next week. The competition pool will be drained all next week for a filter repair. Open lap swimming normally runs there from six to eight in the morning. Next week, lap swimming moves to the diving pool, and because the divers train there first thing, the hours will be seven to nine. Beginner swim classes can't use the diving pool, since it's far too deep, so they'll meet in Room 125 for a dry-land water-safety lesson. The varsity swim team will practise at the city's public pool. Lap swimmers, the competition-pool locker rooms are closed as well, so please change in Room 456, beside the diving pool, where the fitness sessions are usually held. Questions? Call extension 9437.",
+      "passageGroupId": "AN6-15",
+      "prompt": "[Announcement — Aquatics centre] What will the beginner swim classes do next week?",
+      "choices": [
+        "Have a dry-land water-safety lesson in Room 125",
+        "Have their usual in-water lesson as planned",
+        "Have their lesson at the city's public pool",
+        "Have a dry-land fitness session in Room 456"
+      ],
+      "correct_answer": "Have a dry-land water-safety lesson in Room 125",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says beginner classes 'can't use the diving pool, since it's far too deep, so they'll meet in Room 125 for a dry-land water-safety lesson.' 'Have their usual in-water lesson as planned' is the normal arrangement, which does not apply because the competition pool is drained and the diving pool is too deep. 'Have their lesson at the city's public pool' is the varsity swim team's arrangement, not the beginners'. 'Have a dry-land fitness session in Room 456' takes the room where lap swimmers change and fitness sessions are usually held."
+    },
+    {
+      "id": "AN6-15-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good afternoon, this is Joaquin Lindgren at the aquatics centre with changes for next week. The competition pool will be drained all next week for a filter repair. Open lap swimming normally runs there from six to eight in the morning. Next week, lap swimming moves to the diving pool, and because the divers train there first thing, the hours will be seven to nine. Beginner swim classes can't use the diving pool, since it's far too deep, so they'll meet in Room 125 for a dry-land water-safety lesson. The varsity swim team will practise at the city's public pool. Lap swimmers, the competition-pool locker rooms are closed as well, so please change in Room 456, beside the diving pool, where the fitness sessions are usually held. Questions? Call extension 9437.",
+      "passageGroupId": "AN6-15",
+      "prompt": "[Announcement — Aquatics centre] When and where will lap swimming take place next week?",
+      "choices": [
+        "From six to eight in the diving pool",
+        "From seven to nine in the diving pool",
+        "From six to eight in the competition pool",
+        "From seven to nine in the competition pool"
+      ],
+      "correct_answer": "From seven to nine in the diving pool",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, 'Next week, lap swimming moves to the diving pool, and because the divers train there first thing, the hours will be seven to nine.' 'From six to eight in the competition pool' is the usual arrangement ('normally runs there from six to eight'), but that pool is drained all week. 'From six to eight in the diving pool' keeps the old hours, which the divers' early training rules out. 'From seven to nine in the competition pool' has the new hours in the pool that is closed for the filter repair."
+    }
+  ]
+}

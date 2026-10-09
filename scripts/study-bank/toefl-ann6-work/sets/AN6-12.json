@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "set": "AN6-12",
+    "atypical_fact": "Old phones and other electronics are to be kept in students' own rooms until a single end-of-term pickup, because the recycler now charges per visit; there is no drop-off point in the meantime.",
+    "revised_fact": "Compost has always gone out on Monday mornings with everything else -> it is now collected on Wednesday mornings; mixed recycling stays on Monday but moves to the afternoon; the grey electronics bin outside the dining hall has been removed.",
+    "q1_kind": "I",
+    "q2_kind": "D",
+    "self_check": [
+      "Commission: q1 I key rank 2 (47 among 43/47/51/52), q2 D key rank 3 (17 among 14/16/17/19), gridKey earlier: Wednesday is the compost day given first; the last day and time mentioned are mixed recycling's Monday and afternoon.",
+      "Ratio: q1 52/43 = 1.21; q2 19/14 = 1.36.",
+      "I: the stem-alone answer (the usual drop-off bin, or the official front-desk tub) is a distractor; the key follows only from 'we'll book a single pickup at the end of term. Until then, please keep old devices in your room.'",
+      "Every I distractor attaches a real transcript detail to the wrong thing: the removed grey bin (old default), the yellow tub (batteries only), the mail room (cartridges only).",
+      "D grid: Monday/Wednesday x morning/afternoon; each element in exactly two options; Monday morning is the old default (distractor), Monday afternoon is mixed recycling's new slot.",
+      "Form symmetry: all I options are '<verb> it <place/time phrase>', imperative, same specificity, no hedges or absolutes; D options are '<day> <part of day>'.",
+      "Stem echo: I key (keep, room, end, term) shares no content word with its stem; D key shares none with its stem.",
+      "Sibling leak: I options name places and 'end of term' only, never a weekday or part of day; D options are times only and say nothing about electronics.",
+      "World knowledge: real-world practice would favour a drop-off bin or front desk, which are distractors; nothing general picks Wednesday morning for compost.",
+      "Names/ext from pool D only: Ilse Marchetti, ext. 3196; no pool rooms or buildings left, so locations are generic (dining hall, mail room, front desk)."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN6-12-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, this is Ilse Marchetti from the campus recycling programme, with two changes for this term. First, collection times at the residence halls. Compost, which has always gone out on Monday mornings along with everything else, will now be collected on Wednesday mornings, because our new compost hauler only serves this part of town midweek. Mixed recycling stays on Mondays, but the truck will come in the afternoon, so please put those bins out after lunch. Second, old electronics. You may be used to leaving phones and cables in the grey bin outside the dining hall. That bin has been removed. The electronics recycler now charges us per visit, so we'll book a single pickup at the end of term. Until then, please keep old devices in your room. Batteries are different: they still go in the yellow tub at your hall's front desk, and used printer cartridges still go to the campus mail room. Questions? Call extension 3196.",
+      "passageGroupId": "AN6-12",
+      "prompt": "[Announcement — Campus recycling programme] What should a student who has an old phone to recycle do?",
+      "choices": ["Keep it in their own room until the end of term", "Leave it in the grey bin by the dining hall", "Drop it in the yellow tub at their hall's front desk", "Take it to the mail room along with used cartridges"],
+      "correct_answer": "Keep it in their own room until the end of term",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says the recycler will make \"a single pickup at the end of term. Until then, please keep old devices in your room.\" \"Leave it in the grey bin by the dining hall\" describes the old arrangement, but \"That bin has been removed.\" \"Drop it in the yellow tub at their hall's front desk\" applies only to batteries (\"Batteries are different\"). \"Take it to the mail room along with used cartridges\" applies only to printer cartridges, not phones."
+    },
+    {
+      "id": "AN6-12-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, this is Ilse Marchetti from the campus recycling programme, with two changes for this term. First, collection times at the residence halls. Compost, which has always gone out on Monday mornings along with everything else, will now be collected on Wednesday mornings, because our new compost hauler only serves this part of town midweek. Mixed recycling stays on Mondays, but the truck will come in the afternoon, so please put those bins out after lunch. Second, old electronics. You may be used to leaving phones and cables in the grey bin outside the dining hall. That bin has been removed. The electronics recycler now charges us per visit, so we'll book a single pickup at the end of term. Until then, please keep old devices in your room. Batteries are different: they still go in the yellow tub at your hall's front desk, and used printer cartridges still go to the campus mail room. Questions? Call extension 3196.",
+      "passageGroupId": "AN6-12",
+      "prompt": "[Announcement — Campus recycling programme] When will compost be collected from the residence halls?",
+      "choices": ["Monday morning", "Wednesday morning", "Monday afternoon", "Wednesday afternoon"],
+      "correct_answer": "Wednesday morning",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says compost \"will now be collected on Wednesday mornings.\" \"Monday morning\" is when compost \"has always gone out\", the arrangement that is changing. \"Monday afternoon\" is the new time for mixed recycling (\"stays on Mondays, but the truck will come in the afternoon\"), not compost. \"Wednesday afternoon\" combines the compost day with the mixed-recycling time of day and is never given."
+    }
+  ]
+}

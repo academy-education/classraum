@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "set": "AN6-04",
+    "atypical_fact": "International students' orientation groups meet their leaders inside the room where their early-arrival sessions are held (Room 109, Dunmore Annex), once the final session ends, rather than in a lobby or outside a building.",
+    "revised_fact": "Groups used to meet in the lobby of the students' residence hall -> this year most groups meet outside the building of their academic program (international groups excepted); the leaders' briefing was planned for the orientation office -> moved to Room 347 because the office holds only about forty.",
+    "q1_kind": "R", "q2_kind": "P",
+    "self_check": [
+      "Flat prior (Q1): four meeting places, each a plausible spot to meet a new-student group; none is the unique sensible answer.",
+      "Flat prior (Q2): all four options are 'To explain why ...' readings a capacity remark could support; two (come early, capped at forty) are what the line alone most naturally suggests.",
+      "Form symmetry: Q1 options are all place + qualifying clause of similar length; Q2 options share one frame; no absolutes, no hedges.",
+      "Key length rank: Q1 key 61 chars, longest (rank 4); Q2 key 33 chars, shortest (rank 1); ratios 1.09 and 1.24.",
+      "Default as distractor: the usual residence-hall lobby is a Q1 distractor; the other-group arrangement (outside the program building) is also a distractor.",
+      "Stems name a referent only: 'the international students' groups'; the quoted line.",
+      "No lexical echo: Q1 key shares no content word with its stem; Q2 key shares none with its stem ('forty' appears only in a distractor).",
+      "No sibling leak: Q1 options say nothing about the briefing; Q2 options say nothing about where any group meets.",
+      "Not world knowledge: nothing in general campus practice says international groups meet in a session room in Dunmore Annex, or why a briefing room matters.",
+      "One defensible answer: transcript states 'their groups will meet right there in that room, once the last of those sessions ends' and 'so we'll all be in Room 347 instead'."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN6-04-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, orientation leaders, this is Leilani Brightwater from the orientation office with some changes for move-in week. In past years, you met your group of new students in the lobby of the residence hall where they were living. This year, groups are organized by academic program, so most of you will meet your group outside the building where that program is based. The international students are different. They arrive two days early for their own sessions in Room 109 of Dunmore Annex, and their groups will meet right there in that room, once the last of those sessions ends. Your assignment sheet lists the program, not the hall, so read it before Monday. One more thing. The leaders' briefing was going to be in the orientation office. That room only holds about forty people, and there are sixty of us this year, so we'll all be in Room 347 instead, Monday at ten.",
+      "passageGroupId": "AN6-04",
+      "prompt": "[Announcement — Student orientation team] Where will the international students' groups meet?",
+      "choices": [
+        "In Room 109 of Dunmore Annex, after their final early session",
+        "In the lobby of the residence hall where they are living",
+        "Outside the building where their academic program is based",
+        "In the orientation office, before their early sessions begin"
+      ],
+      "correct_answer": "In Room 109 of Dunmore Annex, after their final early session",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says the international students have early sessions 'in Room 109 of Dunmore Annex, and their groups will meet right there in that room, once the last of those sessions ends.' 'In the lobby of the residence hall where they are living' is how groups met 'in past years'. 'Outside the building where their academic program is based' is this year's arrangement for most groups, but 'The international students are different.' 'In the orientation office, before their early sessions begin' attaches the office, where the leaders' briefing was originally planned, to the wrong thing, and the meeting is after the sessions, not before."
+    },
+    {
+      "id": "AN6-04-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, orientation leaders, this is Leilani Brightwater from the orientation office with some changes for move-in week. In past years, you met your group of new students in the lobby of the residence hall where they were living. This year, groups are organized by academic program, so most of you will meet your group outside the building where that program is based. The international students are different. They arrive two days early for their own sessions in Room 109 of Dunmore Annex, and their groups will meet right there in that room, once the last of those sessions ends. Your assignment sheet lists the program, not the hall, so read it before Monday. One more thing. The leaders' briefing was going to be in the orientation office. That room only holds about forty people, and there are sixty of us this year, so we'll all be in Room 347 instead, Monday at ten.",
+      "passageGroupId": "AN6-04",
+      "prompt": "[Announcement — Student orientation team] Why does the speaker say, \"That room only holds about forty people\"?",
+      "choices": [
+        "To explain why the briefing moved",
+        "To explain why the briefing runs twice",
+        "To explain why leaders should come early",
+        "To explain why groups are capped at forty"
+      ],
+      "correct_answer": "To explain why the briefing moved",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The line follows 'The leaders' briefing was going to be in the orientation office' and is followed by 'there are sixty of us this year, so we'll all be in Room 347 instead': the capacity is the reason for the change of room. 'To explain why the briefing runs twice' is wrong because the speaker says 'we'll all be in Room 347', one session. 'To explain why leaders should come early' is a reading the line alone allows, but the speaker solves the space problem by moving rooms and never mentions arriving early. 'To explain why groups are capped at forty' misattaches the number: forty is the old room's capacity, not a group size."
+    }
+  ]
+}

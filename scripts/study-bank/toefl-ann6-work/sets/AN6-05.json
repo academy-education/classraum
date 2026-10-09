@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "set": "AN6-05",
+    "atypical_fact": "While the hub works out of a carpeted classroom (Room 224, Calloway Hall), bikes may not come inside: a rider with a flat removes the wheel at the side-door rack and carries only the wheel in.",
+    "revised_fact": "Repairs are normally done with the bike in the hub's garage -> this month the mechanics are in Room 224 and take wheels, not bikes. The clinic was to move from Wednesday 12:30 to Monday 4:30 -> it stays Wednesday 12:30; only the new-rider safety check moves to Monday 4:30.",
+    "q1_kind": "I", "q2_kind": "D",
+    "self_check": [
+      "Flat prior (Q1): four concrete repair procedures, each with a real location from the transcript; the conventional ones (leave it at the hub counter, book a repair slot) are distractors.",
+      "Flat prior (Q2): four day/time combinations, none favoured without the transcript.",
+      "Grid (Q2): Wednesday/Monday x 12:30/4:30, each element in exactly two options; gridKey 'earlier' — the key is the originally stated slot, restored after the planned move, while the last-mentioned slot belongs to the safety check.",
+      "Form symmetry: Q1 options are all imperative verb + place + second action, 57-61 chars; Q2 options are day + time.",
+      "Key length rank: Q1 key 61 chars, longest (rank 4), ratio 1.07; Q2 key 18 chars, longest (rank 4), ratio 1.29.",
+      "Default as distractor: the usual garage/counter arrangement is a Q1 distractor; the other service's slot (Monday 4:30) is a Q2 distractor.",
+      "Stems name a referent only: 'a student with a flat tyre'; 'the repair clinic'.",
+      "No lexical echo: neither key shares a content word with its stem.",
+      "No sibling leak: Q1 options mention the clinic without any day or time; Q2 options mention no procedure or location.",
+      "Not world knowledge: carrying a lone wheel into a classroom is not what a cyclist would assume; the clinic day is arbitrary.",
+      "One defensible answer: 'take the wheel off at the rack by the side door and carry just the wheel in'; 'the room is free on Wednesdays after all, so the clinic stays put'."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN6-05-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hello, riders, this is Thaddeus Kowalczyk at the campus bicycle hub. While the hub's garage is being repaved this month, our mechanics are working out of Room 224 in Calloway Hall. It's a carpeted classroom, so bikes can't come inside. If you've got a flat, take the wheel off at the rack by the side door and carry just the wheel in. We'll swap the tube while you wait. Anything bigger, like brakes or gears, gets booked into our weekly repair clinic. The clinic normally runs Wednesday at twelve-thirty, and we'd planned to shift it to Monday at four-thirty while we're in the classroom. Well, it turns out the room is free on Wednesdays after all, so the clinic stays put. What does move to Monday at four-thirty is the free safety check for new riders. To book either one, call extension 2741.",
+      "passageGroupId": "AN6-05",
+      "prompt": "[Announcement — Campus bicycle hub] What should a student with a flat tyre do?",
+      "choices": [
+        "Take the wheel off by the side-door rack and carry it indoors",
+        "Wheel the bike to the hub garage and leave it at the counter",
+        "Book the bike into the weekly clinic and drop it off then",
+        "Wheel the bike into Room 224 and wait while it is repaired"
+      ],
+      "correct_answer": "Take the wheel off by the side-door rack and carry it indoors",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, 'If you've got a flat, take the wheel off at the rack by the side door and carry just the wheel in.' 'Wheel the bike to the hub garage and leave it at the counter' is wrong because 'the hub's garage is being repaved this month'. 'Book the bike into the weekly clinic and drop it off then' is for 'Anything bigger, like brakes or gears', not a flat. 'Wheel the bike into Room 224 and wait while it is repaired' uses the real room and the real 'while you wait', but 'bikes can't come inside'."
+    },
+    {
+      "id": "AN6-05-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hello, riders, this is Thaddeus Kowalczyk at the campus bicycle hub. While the hub's garage is being repaved this month, our mechanics are working out of Room 224 in Calloway Hall. It's a carpeted classroom, so bikes can't come inside. If you've got a flat, take the wheel off at the rack by the side door and carry just the wheel in. We'll swap the tube while you wait. Anything bigger, like brakes or gears, gets booked into our weekly repair clinic. The clinic normally runs Wednesday at twelve-thirty, and we'd planned to shift it to Monday at four-thirty while we're in the classroom. Well, it turns out the room is free on Wednesdays after all, so the clinic stays put. What does move to Monday at four-thirty is the free safety check for new riders. To book either one, call extension 2741.",
+      "passageGroupId": "AN6-05",
+      "prompt": "[Announcement — Campus bicycle hub] When does the repair clinic take place?",
+      "choices": [
+        "Wednesday at 12:30",
+        "Wednesday at 4:30",
+        "Monday at 12:30",
+        "Monday at 4:30"
+      ],
+      "correct_answer": "Wednesday at 12:30",
+      "difficulty": "hard",
+      "listeningTask": "announcement",
+      "explanation": "The clinic 'normally runs Wednesday at twelve-thirty'; the planned move to Monday was cancelled because 'the room is free on Wednesdays after all, so the clinic stays put.' 'Monday at 4:30' is the slot the clinic was going to move to and the slot now used by 'the free safety check for new riders', not the clinic. 'Wednesday at 4:30' and 'Monday at 12:30' pair the right day or time with the wrong one; neither combination is ever stated."
+    }
+  ]
+}

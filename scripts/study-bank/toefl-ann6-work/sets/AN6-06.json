@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "set": "AN6-06",
+    "atypical_fact": "During jury week, percussionists lose their own studio (Room 438, used for the juries) and practise in the rehearsal hall after six in the evening with no booking at all; students with a jury book grand-piano rooms in person at the front desk, not online.",
+    "revised_fact": "Practice rooms are normally booked on the online calendar in two-hour blocks -> during jury week, students with a jury book at the music building front desk in ninety-minute blocks, and everyone else stays online but in one-hour blocks.",
+    "q1_kind": "R", "q2_kind": "I",
+    "self_check": [
+      "Flat prior (Q1): two booking channels x three block lengths, all ordinary for practice rooms; the usual arrangement (online, two hours) and the other students' arrangement (online, one hour) are distractors.",
+      "Flat prior (Q2): four evening-practice plans for a percussionist, three of which are the prudent 'book something' answer; the key is the one the transcript licenses.",
+      "Form symmetry: Q1 options are all channel + block length, 47-57 chars; Q2 options are all short verb phrase + place + time, 34-37 chars; no hedges or absolutes.",
+      "Key length rank: Q1 key 57 chars, longest (rank 4), ratio 1.21; Q2 key 34 chars, shortest (rank 1), ratio 1.09.",
+      "Stems name a referent only: 'students with a jury performance'; 'a percussion student who wants to practise on Tuesday evening'.",
+      "No lexical echo: Q1 key shares no content word with its stem; Q2 key shares none ('evening' appears only in a distractor).",
+      "No sibling leak: Q1 options do not mention percussion, Room 438 or the rehearsal hall; Q2 options do not mention the front desk, the online calendar or block lengths.",
+      "Not world knowledge: no general rule says jury students book at a desk or that percussionists practise unbooked in a rehearsal hall.",
+      "One defensible answer: 'you book those at the front desk of the music building, in ninety-minute blocks'; 'you can practise in the rehearsal hall any time after six ... There's no booking for that; just show up.'"
+    ]
+  },
+  "items": [
+    {
+      "id": "AN6-06-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good morning, this is Anouk Ferreira, coordinator for the music practice rooms. Normally you book practice rooms through the online calendar, in two-hour blocks. Jury week starts Monday, and that changes for a while. If you have a jury performance, you get first claim on the rooms with grand pianos, and you book those at the front desk of the music building, in ninety-minute blocks. Everyone else keeps using the online calendar, but blocks drop to one hour, so more people get a turn. Percussionists, your studio, Room 438, is being used for the juries themselves all week. Instead, you can practise in the rehearsal hall any time after six in the evening. There's no booking for that; just show up. If anything's unclear, call me at extension 2759.",
+      "passageGroupId": "AN6-06",
+      "prompt": "[Announcement — Music practice rooms] During jury week, how do students with a jury performance book a piano room?",
+      "choices": [
+        "At the music building front desk, in ninety-minute blocks",
+        "Through the online calendar, in two-hour blocks",
+        "Through the online calendar, in one-hour blocks",
+        "At the music building front desk, in two-hour blocks"
+      ],
+      "correct_answer": "At the music building front desk, in ninety-minute blocks",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker tells students with a jury performance, 'you book those at the front desk of the music building, in ninety-minute blocks.' 'Through the online calendar, in two-hour blocks' is the normal arrangement, which 'changes' during jury week. 'Through the online calendar, in one-hour blocks' applies to 'Everyone else'. 'At the music building front desk, in two-hour blocks' has the right place but the old block length."
+    },
+    {
+      "id": "AN6-06-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good morning, this is Anouk Ferreira, coordinator for the music practice rooms. Normally you book practice rooms through the online calendar, in two-hour blocks. Jury week starts Monday, and that changes for a while. If you have a jury performance, you get first claim on the rooms with grand pianos, and you book those at the front desk of the music building, in ninety-minute blocks. Everyone else keeps using the online calendar, but blocks drop to one hour, so more people get a turn. Percussionists, your studio, Room 438, is being used for the juries themselves all week. Instead, you can practise in the rehearsal hall any time after six in the evening. There's no booking for that; just show up. If anything's unclear, call me at extension 2759.",
+      "passageGroupId": "AN6-06",
+      "prompt": "[Announcement — Music practice rooms] What should a percussion student who wants to practise on Tuesday evening of jury week do?",
+      "choices": [
+        "Go to the rehearsal hall after six",
+        "Book the rehearsal hall for after six",
+        "Book Room 438 for an evening session",
+        "Use the percussion studio before six"
+      ],
+      "correct_answer": "Go to the rehearsal hall after six",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "Percussionists 'can practise in the rehearsal hall any time after six in the evening. There's no booking for that; just show up.' 'Book the rehearsal hall for after six' has the right place and time but contradicts 'There's no booking for that'. 'Book Room 438 for an evening session' and 'Use the percussion studio before six' both rely on the percussion studio, which 'is being used for the juries themselves all week'."
+    }
+  ]
+}

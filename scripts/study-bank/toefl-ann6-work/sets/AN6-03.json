@@ -1,0 +1,56 @@
+{
+ "meta": {
+  "set": "AN6-03",
+  "atypical_fact": "This week students get seedling heights from noon shelf photos (with a ruler in the frame) posted to the section page, because the growth-chamber doors cannot be opened; they do not measure in person.",
+  "revised_fact": "Usually students water their own trays in the greenhouse whenever it is open -> this week the trays are in Room 103's growth chambers and must not be watered at all.",
+  "q1_kind": "I",
+  "q2_kind": "P",
+  "self_check": [
+   "Flat prior (I): four ways to obtain the heights; the stem-alone prudent answers (measure in the room where the trays are, measure in the greenhouse, measure later) are all distractors, and the key is a specific arrangement only the transcript gives.",
+   "Form symmetry (I): every option is a verb phrase telling the student how to get the heights, 29-40 chars, no hedges; (P): every option is 'To <verb> ...' about the warmth, 47-61 chars, no hedges or absolutes.",
+   "Key length rank: I key 29 among 29/37/39/40 = rank 1; P key 51 among 47/51/57/61 = rank 2; ratios 1.38 and 1.30.",
+   "Stems name a referent only: I asks what a student should do to record this week's seedling heights; P quotes the line.",
+   "No lexical echo: I key words (read, noon, photos) not in stem; P key words (prepare, jump, growth, data) not in stem.",
+   "Line alone ('the basement runs warmer') supports all four readings: a comfort warning, a need for more water, a reason for the move, and faster growth; the context rules out the first three (no-water instruction, misting repair as the reason) and makes the data-jump point.",
+   "Sibling leak: P options say nothing about photos, cameras or how heights are obtained; I options do not mention temperature, watering or growth rate. The P key implies height data exists, which all four I options already presuppose.",
+   "Default value as distractor: measuring in person (in the greenhouse / Room 103) is the usual practice and appears twice in I; 'need more frequent watering' reflects the usual self-watering routine in P.",
+   "One defensible answer: doors can't be opened (rules out Room 103), greenhouse locked until the following Monday while the report is due Friday (rules out the greenhouse and waiting)."
+  ]
+ },
+ "items": [
+  {
+   "id": "AN6-03-1",
+   "type": "multiple_choice",
+   "passage": "Transcript: Attention students in the plant biology lab sections. This is Yuna Sorensen, the greenhouse manager. Starting Monday, the greenhouse misting system is being replaced, so the greenhouse will be locked until the following Monday. Your seedling trays have already been moved to Room 103, the growth chamber room in the basement. Normally you water your own trays whenever the greenhouse is open, but this week, please don't water them at all. The chambers hold the soil at a set moisture level, and extra water would rot the roots. And yes, the basement runs warmer than the greenhouse. Your seedlings will probably grow faster this week, so a sudden jump in your height data isn't a measuring mistake, and you shouldn't throw it out. You'll still need those heights for the report due Friday, but the chamber doors can't be opened during the week. Instead, a camera photographs every shelf at noon, with a ruler in the frame, and the pictures go up on your section's page each afternoon.",
+   "passageGroupId": "AN6-03",
+   "prompt": "[Announcement — Biology greenhouse] What should a student do to record this week's seedling heights?",
+   "choices": [
+    "Read them off the noon photos",
+    "Measure them in Room 103 each afternoon",
+    "Measure them when the greenhouse reopens",
+    "Measure them in the greenhouse at noon"
+   ],
+   "correct_answer": "Read them off the noon photos",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says \"the chamber doors can't be opened during the week. Instead, a camera photographs every shelf at noon, with a ruler in the frame, and the pictures go up on your section's page.\" \"Measure them in Room 103 each afternoon\" is wrong because the chamber doors cannot be opened; the afternoon is only when the photos are posted. \"Measure them when the greenhouse reopens\" is wrong because the greenhouse is locked \"until the following Monday\" and the heights are needed \"for the report due Friday\". \"Measure them in the greenhouse at noon\" is wrong because the greenhouse is locked and the trays have been moved to Room 103; noon is when the camera takes the pictures."
+  },
+  {
+   "id": "AN6-03-2",
+   "type": "multiple_choice",
+   "passage": "Transcript: Attention students in the plant biology lab sections. This is Yuna Sorensen, the greenhouse manager. Starting Monday, the greenhouse misting system is being replaced, so the greenhouse will be locked until the following Monday. Your seedling trays have already been moved to Room 103, the growth chamber room in the basement. Normally you water your own trays whenever the greenhouse is open, but this week, please don't water them at all. The chambers hold the soil at a set moisture level, and extra water would rot the roots. And yes, the basement runs warmer than the greenhouse. Your seedlings will probably grow faster this week, so a sudden jump in your height data isn't a measuring mistake, and you shouldn't throw it out. You'll still need those heights for the report due Friday, but the chamber doors can't be opened during the week. Instead, a camera photographs every shelf at noon, with a ruler in the frame, and the pictures go up on your section's page each afternoon.",
+   "passageGroupId": "AN6-03",
+   "prompt": "[Announcement — Biology greenhouse] Why does the speaker say, \"And yes, the basement runs warmer than the greenhouse.\"?",
+   "choices": [
+    "To prepare students for a jump in their growth data",
+    "To explain why the trays were moved out of the greenhouse",
+    "To explain why the seedlings will need more frequent watering",
+    "To warn students about the heat in the basement"
+   ],
+   "correct_answer": "To prepare students for a jump in their growth data",
+   "difficulty": "hard",
+   "listeningTask": "announcement",
+   "explanation": "Right after the line the speaker says \"Your seedlings will probably grow faster this week, so a sudden jump in your height data isn't a measuring mistake, and you shouldn't throw it out.\" \"To explain why the trays were moved out of the greenhouse\" is wrong because the move is explained by the misting system being replaced. \"To explain why the seedlings will need more frequent watering\" is contradicted by \"please don't water them at all.\" \"To warn students about the heat in the basement\" is a reading of the line alone; the speaker says nothing about students' comfort, and the doors can't even be opened."
+  }
+ ]
+}

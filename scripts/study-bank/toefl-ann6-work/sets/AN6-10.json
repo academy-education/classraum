@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "set": "AN6-10",
+    "atypical_fact": "Students are asked NOT to bring their chargers with a laptop for repair, because the new diagnostic test runs on battery power only and a plugged-in charger forces it to restart.",
+    "revised_fact": "Repaired laptops usually come back on Thursday from noon at the counter in Room 121 -> this month the first repaired laptops are ready on Friday from 10 a.m., handed back in Room 243; Thursday at noon becomes the drop-off deadline.",
+    "q1_kind": "D",
+    "q2_kind": "P",
+    "self_check": [
+      "Commission: q1 D key rank 3 (19 chars among 16/18/19/21), q2 P key rank 3 (58 among 54/55/58/61), gridKey latest: Friday and 10 a.m. are the last-mentioned day and time; Thursday and noon are said earlier (usual return, drop-off deadline).",
+      "Ratio: q1 21/16 = 1.31; q2 61/54 = 1.13.",
+      "D grid: Thursday/Friday x from noon/from 10 a.m.; each element in exactly two options; every element is said in the transcript, attached to a different event.",
+      "Default value present as distractor: 'Thursday from noon' is the usual return time.",
+      "P line alone ('So please leave your charger at home') most naturally reads as chargers getting lost or cluttering the desk, or the desk having its own; those three are the distractors. Only the preceding sentences (battery-only test restarted when chargers were plugged in) give the key.",
+      "Form symmetry: every P option is 'Because <chargers clause> have/has ...', same register, no hedges or absolutes; every D option is '<day> from <time>'.",
+      "Stems name a referent only; no key content word is shared with its stem unless a distractor shares it too ('chargers' is in all four P options).",
+      "Sibling leak: D options are days and times only; P options are about chargers only; neither set states or excludes the other's key, and neither stem restates the other.",
+      "World knowledge: nothing about how help desks normally work picks Friday 10 a.m. or the battery-test reason over missing/cluttered/loaned chargers.",
+      "Names/rooms/ext from pool D only: Wilhelmina Tsao, Ashgrove Centre, Rooms 121 and 243, ext. 3184."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN6-10-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, this is Wilhelmina Tsao at the IT help desk in Ashgrove Centre, with an update on this month's laptop repair drive. Normally, a laptop you hand in on Monday comes back to you on Thursday from noon, at our counter in Room 121. This month works differently. You still drop your laptop off at Room 121, but Thursday at noon is now the deadline for drop-offs, and repaired machines will be handed back upstairs in Room 243, with the first ones ready on Friday from 10 a.m. One request. Our new diagnostic software measures how long your battery lasts, and that test only works on battery power. Last week several students plugged their chargers in while they waited at the counter, and we had to start their tests over. So please leave your charger at home. If you have any questions, call extension 3184.",
+      "passageGroupId": "AN6-10",
+      "prompt": "[Announcement — IT help desk] When will the first repaired laptops be ready to collect?",
+      "choices": ["Friday from 10 a.m.", "Friday from noon", "Thursday from noon", "Thursday from 10 a.m."],
+      "correct_answer": "Friday from 10 a.m.",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says repaired machines will be handed back upstairs \"with the first ones ready on Friday from 10 a.m.\" \"Thursday from noon\" is the usual return time (\"comes back to you on Thursday from noon\"), and Thursday at noon is now the drop-off deadline, not a collection time. \"Thursday from 10 a.m.\" pairs the deadline day with the new collection hour, and \"Friday from noon\" pairs the new day with the old hour; neither is ever given as a collection time."
+    },
+    {
+      "id": "AN6-10-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, this is Wilhelmina Tsao at the IT help desk in Ashgrove Centre, with an update on this month's laptop repair drive. Normally, a laptop you hand in on Monday comes back to you on Thursday from noon, at our counter in Room 121. This month works differently. You still drop your laptop off at Room 121, but Thursday at noon is now the deadline for drop-offs, and repaired machines will be handed back upstairs in Room 243, with the first ones ready on Friday from 10 a.m. One request. Our new diagnostic software measures how long your battery lasts, and that test only works on battery power. Last week several students plugged their chargers in while they waited at the counter, and we had to start their tests over. So please leave your charger at home. If you have any questions, call extension 3184.",
+      "passageGroupId": "AN6-10",
+      "prompt": "[Announcement — IT help desk] Why does the speaker say, \"So please leave your charger at home\"?",
+      "choices": ["Because plugged-in chargers have spoiled the battery tests", "Because chargers left at the counter have gone missing", "Because loose chargers have been cluttering the counter", "Because the help desk lends out spare chargers during repairs"],
+      "correct_answer": "Because plugged-in chargers have spoiled the battery tests",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "Just before the line, the speaker explains that the diagnostic test \"only works on battery power\" and that when students \"plugged their chargers in while they waited at the counter\" the help desk \"had to start their tests over\" - so the request prevents plugged-in chargers from spoiling the battery tests. \"Because chargers left at the counter have gone missing\" and \"Because loose chargers have been cluttering the counter\" are readings the line could carry on its own, but the speaker never mentions lost chargers or clutter. \"Because the help desk lends out spare chargers during repairs\" is never said; the help desk offers no chargers."
+    }
+  ]
+}

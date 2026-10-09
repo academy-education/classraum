@@ -1,0 +1,57 @@
+{
+ "meta": {
+  "set": "AN6-02",
+  "atypical_fact": "Undergraduate appointments are cut to thirty minutes and drafts must be emailed to the tutor the night before instead of brought to the session, while graduate thesis writers get longer sessions on a different schedule and room.",
+  "revised_fact": "Appointment length, usually fifty minutes -> thirty minutes for undergraduates (eighty for graduate thesis writers); graduate sessions move from Monday-Friday evenings in Room 219 to Monday-Thursday afternoons in Room 442.",
+  "q1_kind": "D",
+  "q2_kind": "R",
+  "self_check": [
+   "Flat prior (D): four day-range x time-of-day combinations, each a normal tutoring schedule. (R): four session lengths of 20-80 minutes, all plausible for a writing centre.",
+   "Form symmetry: D options all '<day range>, <time of day>'; R options all '<number> minutes per session'.",
+   "Key length rank: D key 'Monday to Friday, evenings' 26 among 26/28/28/30 = rank 1 (uniquely shortest); R key 'Thirty minutes per session' 26 among 25/26/26/26 = rank 2; ratios 1.15 and 1.04.",
+   "gridKey earlier: the D key is the schedule stated first (the usual one); the later-mentioned Monday-Thursday afternoons belong only to graduate thesis writers.",
+   "R: options include the usual length (fifty) and the other group's length (eighty); the key (thirty) is the one assigned to undergraduates.",
+   "Stems name a referent only (undergraduate sessions / appointments); neither narrates the change.",
+   "No lexical echo: D key words (Monday, Friday, evenings) and R key words (thirty, minutes, session) do not appear in their stems.",
+   "Sibling leak: D options carry only days and times, R options only lengths; neither rules out the other's key. The D key being the unchanged schedule is not implied by R's options, which all describe a length.",
+   "Default value as distractor: 'Fifty minutes per session' (R).",
+   "Not world knowledge: no general rule decides whether undergraduates keep their schedule or how long a busy-period session is."
+  ]
+ },
+ "items": [
+  {
+   "id": "AN6-02-1",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi everyone, this is Caspian Mbeki, director of the writing centre. With thesis deadlines coming up, we're making some changes for the next two weeks. As you know, tutoring normally runs Monday to Friday evenings in Room 219 of Wrenfield Hall, and every appointment lasts fifty minutes. For these two weeks, graduate students working on theses will meet tutors Monday to Thursday afternoons in Room 442, and their sessions are being extended to eighty minutes so a tutor can read a full chapter. Undergraduates, your days, hours and room stay exactly as they are. But to fit everyone in, your appointments will be cut to thirty minutes. That isn't much time, so please email your draft to your tutor the night before instead of bringing it with you. If you have questions, call the front desk at extension 2328.",
+   "passageGroupId": "AN6-02",
+   "prompt": "[Announcement — Writing centre] When will undergraduate tutoring take place during the next two weeks?",
+   "choices": [
+    "Monday to Friday, evenings",
+    "Monday to Friday, afternoons",
+    "Monday to Thursday, evenings",
+    "Monday to Thursday, afternoons"
+   ],
+   "correct_answer": "Monday to Friday, evenings",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says tutoring \"normally runs Monday to Friday evenings\" and then tells undergraduates \"your days, hours and room stay exactly as they are.\" \"Monday to Thursday, afternoons\" is the new schedule for graduate students working on theses, not for undergraduates. \"Monday to Friday, afternoons\" and \"Monday to Thursday, evenings\" each mix one part of the undergraduate schedule with one part of the graduate schedule."
+  },
+  {
+   "id": "AN6-02-2",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi everyone, this is Caspian Mbeki, director of the writing centre. With thesis deadlines coming up, we're making some changes for the next two weeks. As you know, tutoring normally runs Monday to Friday evenings in Room 219 of Wrenfield Hall, and every appointment lasts fifty minutes. For these two weeks, graduate students working on theses will meet tutors Monday to Thursday afternoons in Room 442, and their sessions are being extended to eighty minutes so a tutor can read a full chapter. Undergraduates, your days, hours and room stay exactly as they are. But to fit everyone in, your appointments will be cut to thirty minutes. That isn't much time, so please email your draft to your tutor the night before instead of bringing it with you. If you have questions, call the front desk at extension 2328.",
+   "passageGroupId": "AN6-02",
+   "prompt": "[Announcement — Writing centre] How long will each undergraduate appointment last during the next two weeks?",
+   "choices": [
+    "Thirty minutes per session",
+    "Fifty minutes per session",
+    "Eighty minutes per session",
+    "Twenty minutes per session"
+   ],
+   "correct_answer": "Thirty minutes per session",
+   "difficulty": "easy",
+   "listeningTask": "announcement",
+   "explanation": "The speaker tells undergraduates \"your appointments will be cut to thirty minutes.\" \"Fifty minutes per session\" is the usual length (\"every appointment lasts fifty minutes\"), which does not apply during these two weeks. \"Eighty minutes per session\" is the extended length for graduate students working on theses. \"Twenty minutes per session\" is never mentioned."
+  }
+ ]
+}

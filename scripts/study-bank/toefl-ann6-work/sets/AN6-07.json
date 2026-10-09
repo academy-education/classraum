@@ -1,0 +1,57 @@
+{
+ "meta": {
+  "set": "AN6-07",
+  "atypical_fact": "An unstamped poster is left up and counted against the candidate's ten-poster limit instead of being removed; stamping happens in Room 115 of Larchmont Hall, not the committee office.",
+  "revised_fact": "Unstamped posters: removed by volunteers -> left up and counted as one of the ten. Stamping: committee office Room 238 -> Room 115, Larchmont Hall.",
+  "q1_kind": "P",
+  "q2_kind": "I",
+  "self_check": [
+   "P: the line \"Bring a few extra copies\" alone most naturally suggests spares to replace torn-down posters or to swap/hand out; only the next sentence (one of every design kept on file) gives the key.",
+   "P: three distractors are readings the line alone supports (replacing torn posters, swapping fresh posters, handing some out); the ballot-box one attaches a real detail (Room 238 holds ballot boxes) to the wrong thing.",
+   "I: the typical/default consequence (volunteers take it down) is a distractor; the key follows only from \"counts as one of your ten\". Warning and later stamping are explicitly ruled out.",
+   "Flat prior: Q1 four purposes all starting \"To let ... \"; Q2 four consequences of an unstamped poster, each a normal campus policy.",
+   "Form symmetry: same \"To let X verb ...\" and \"It ...\" shapes, no absolutes, no hedges, similar length (ratios 1.15 and 1.07).",
+   "Key length ranks: Q1 key rank 3, Q2 key rank 1, per commission.",
+   "Lexical echo: Q1 stem content words (bring, extra, copies) absent from key; Q2 stem (unstamped, poster, found, campaign) absent from key.",
+   "Sibling leak: Q1 options are about why extra copies are brought; Q2 options about the fate of an unstamped poster. Neither set mentions the other's key (record on file / counted against the limit); Q2 stem does not restate Q1.",
+   "Not world knowledge: no rule of thumb picks counting-against-the-limit or the record-keeping purpose.",
+   "Names/rooms from author C pool only: Nadia Quispe, Rooms 238 and 115, Larchmont Hall, ext. 3052."
+  ]
+ },
+ "items": [
+  {
+   "id": "AN6-07-1",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi everyone, this is Nadia Quispe from the student elections committee. Campaigning for the council election opens Monday, so here is what you need to know about posters. Each candidate gets ten, and each one still needs our stamp before it goes up. Stamping usually happens at our office in Room 238, but that room is holding ballot boxes this month, so come to Room 115 in Larchmont Hall instead, Tuesday or Thursday afternoon. Bring a few extra copies. We keep one of every design on file, in case anyone complains later about what a poster said. Now, unstamped posters. In past years, our volunteers simply took them down. This year we are leaving them up, but each one we find counts as one of your ten, whether you put it up or a friend did. There is no warning first, and no stamping it afterward. Questions? Call extension 3052.",
+   "passageGroupId": "AN6-07",
+   "prompt": "[Announcement — Student elections committee] Why does the speaker say, \"Bring a few extra copies\"?",
+   "choices": [
+    "To let the committee keep a record of each design",
+    "To let volunteers replace any torn-down posters",
+    "To let candidates swap in new posters each week",
+    "To let the committee hand some out at the ballot boxes"
+   ],
+   "correct_answer": "To let the committee keep a record of each design",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "Right after the line the speaker says, \"We keep one of every design on file, in case anyone complains later about what a poster said,\" so the extra copies are for the committee's record. \"To let volunteers replace any torn-down posters\" is wrong: the speaker never mentions replacing damaged posters, and volunteers take posters down only in the past-years description. \"To let candidates swap in new posters each week\" is wrong: nothing is said about weekly swaps; each candidate simply has ten. \"To let the committee hand some out at the ballot boxes\" is wrong: the ballot boxes are only why Room 238 is unavailable."
+  },
+  {
+   "id": "AN6-07-2",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi everyone, this is Nadia Quispe from the student elections committee. Campaigning for the council election opens Monday, so here is what you need to know about posters. Each candidate gets ten, and each one still needs our stamp before it goes up. Stamping usually happens at our office in Room 238, but that room is holding ballot boxes this month, so come to Room 115 in Larchmont Hall instead, Tuesday or Thursday afternoon. Bring a few extra copies. We keep one of every design on file, in case anyone complains later about what a poster said. Now, unstamped posters. In past years, our volunteers simply took them down. This year we are leaving them up, but each one we find counts as one of your ten, whether you put it up or a friend did. There is no warning first, and no stamping it afterward. Questions? Call extension 3052.",
+   "passageGroupId": "AN6-07",
+   "prompt": "[Announcement — Student elections committee] What can be inferred about an unstamped poster found during this campaign?",
+   "choices": [
+    "It counts toward the candidate's limit of ten",
+    "It is taken down by the committee's volunteers",
+    "It brings the candidate a written warning first",
+    "It can be brought to Room 115 for stamping later"
+   ],
+   "correct_answer": "It counts toward the candidate's limit of ten",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says, \"This year we are leaving them up, but each one we find counts as one of your ten.\" \"It is taken down by the committee's volunteers\" describes past years: \"In past years, our volunteers simply took them down.\" \"It brings the candidate a written warning first\" is contradicted by \"There is no warning first.\" \"It can be brought to Room 115 for stamping later\" is contradicted by \"no stamping it afterward\"; Room 115 is only where posters are stamped before they go up."
+  }
+ ]
+}

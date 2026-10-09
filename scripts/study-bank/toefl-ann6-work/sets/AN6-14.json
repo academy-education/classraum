@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "set": "AN6-14",
+    "atypical_fact": "Because the building's front doors lock after six, the organiser will stand inside them to let members in (late arrivals text her); the side door is off-limits because it sets off an alarm.",
+    "revised_fact": "Screening usually Thursday at seven in Room 252 -> Friday at seven in Room 373, after an interim plan of Thursday at nine.",
+    "q1_kind": "D",
+    "q2_kind": "P",
+    "self_check": [
+      "D grid: Thursday/Friday x seven/nine; each value in exactly two options; key Friday at seven = the last-mentioned day and last-mentioned time (gridKey latest). Usual 'Thursday at seven' and the detour 'Thursday at nine' are both distractors.",
+      "Flat prior Q1: four weekday-evening start times, all plausible for a club screening.",
+      "P line: 'The building's front doors lock automatically after six.' read alone most naturally suggests a warning about latecomers or arriving early (both distractors) or using another door (distractor); only the next sentence shows it explains why she will wait at the entrance.",
+      "Form symmetry Q2: all four are 'To <verb> ...' infinitive purposes of similar length and register; no hedges or absolutes.",
+      "Key length rank: Q1 key 18 chars vs 17/19/20 -> rank 2; Q2 key 44 chars, shortest -> rank 1; ratios 1.18 and 1.27.",
+      "Stems name a referent only: 'this week's screening' and a quoted line.",
+      "No lexical echo: Q1 key shares no content word with the stem; Q2 key ('entrance') does not repeat 'doors', 'lock', 'building' or 'six' from the quoted line.",
+      "No sibling leak: Q1 options contain no doors, entrances or rooms; Q2 options contain no day or time; the quoted line's 'after six' does not decide seven versus nine.",
+      "One defensible answer: transcript says 'the final plan is Friday at seven' and 'I'll be standing just inside them ... to let everyone in'; each Q2 distractor is contradicted (late members text her; screening is after six; side door sets off an alarm)."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN6-14-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, film society members, it's Tamsin Okafor. Our screenings are usually Thursday at seven in Room 252 of Northcote Hall, but the projector in 252 is out for repair this week, so we're borrowing Room 373 upstairs. Room 373 is booked on Thursday until eight thirty, so at first we planned a late start, Thursday at nine. Then our guest, the director of the documentary, told us she can only come on Friday, so the final plan is Friday at seven, in 373. One more thing. The building's front doors lock automatically after six. So I'll be standing just inside them from a quarter to seven to let everyone in, and if you're running late, text me and I'll come back down. Please don't try the side door; it sets off an alarm.",
+      "passageGroupId": "AN6-14",
+      "prompt": "[Announcement — Film society] When will this week's screening begin?",
+      "choices": [
+        "On Thursday at seven",
+        "On Thursday at nine",
+        "On Friday at seven",
+        "On Friday at nine"
+      ],
+      "correct_answer": "On Friday at seven",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, 'the final plan is Friday at seven, in 373.' 'On Thursday at seven' is the usual schedule ('Our screenings are usually Thursday at seven'). 'On Thursday at nine' was the first plan ('at first we planned a late start, Thursday at nine'), replaced when the guest director could only come on Friday. 'On Friday at nine' combines the final day with the abandoned late start time."
+    },
+    {
+      "id": "AN6-14-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, film society members, it's Tamsin Okafor. Our screenings are usually Thursday at seven in Room 252 of Northcote Hall, but the projector in 252 is out for repair this week, so we're borrowing Room 373 upstairs. Room 373 is booked on Thursday until eight thirty, so at first we planned a late start, Thursday at nine. Then our guest, the director of the documentary, told us she can only come on Friday, so the final plan is Friday at seven, in 373. One more thing. The building's front doors lock automatically after six. So I'll be standing just inside them from a quarter to seven to let everyone in, and if you're running late, text me and I'll come back down. Please don't try the side door; it sets off an alarm.",
+      "passageGroupId": "AN6-14",
+      "prompt": "[Announcement — Film society] Why does the speaker say, \"The building's front doors lock automatically after six\"?",
+      "choices": [
+        "To explain why she will wait at the entrance",
+        "To warn members that late arrivals will not be let in",
+        "To ask members to arrive before the building is locked",
+        "To explain why members should use the side door instead"
+      ],
+      "correct_answer": "To explain why she will wait at the entrance",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "Right after the line the speaker says, 'So I'll be standing just inside them from a quarter to seven to let everyone in.' The locked doors are the reason she will wait there. 'To warn members that late arrivals will not be let in' is contradicted: 'if you're running late, text me and I'll come back down.' 'To ask members to arrive before the building is locked' does not fit, since the screening starts after six and she will let people in. 'To explain why members should use the side door instead' is contradicted: 'Please don't try the side door; it sets off an alarm.'"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+ "meta": {
+  "set": "AN6-08",
+  "atypical_fact": "On eclipse night, students not in an astronomy course observe on the lawn behind the building from seven to ten, and phone-screen filters are handed out in advance (Wednesday, Room 359) rather than at the door.",
+  "revised_fact": "Friday viewing: dome, eight to eleven, open to anyone -> course students in the dome nine to midnight; everyone else on the lawn seven to ten.",
+  "q1_kind": "R",
+  "q2_kind": "I",
+  "self_check": [
+   "R: options are the usual arrangement (dome, eight to eleven), the course-students arrangement (dome, nine to midnight), the asked-about group's arrangement (lawn, seven to ten, key) and a crossed one (lawn, nine to midnight).",
+   "R: the most-shared elements (dome x2, nine to midnight x2) point a pattern-guesser at a distractor, not the key.",
+   "I: the default a student would assume (filter at the door on the night, i.e. Friday) is a distractor; the key follows only from \"Wednesday afternoon in Room 359, not at the door on the night\".",
+   "I: options are a 2x2 of place (Room 359 / the door) x day (Wednesday / Friday); each element appears twice.",
+   "Flat prior: four location-time pairs and four pick-up arrangements, none implausible.",
+   "Form symmetry: identical grammatical frames; ratios 1.14 and 1.12; no absolutes or hedges.",
+   "Key length ranks: Q1 key rank 1, Q2 key rank 4, per commission.",
+   "Lexical echo: Q1 stem (students, outside, astronomy, courses, observe, eclipse) shares nothing with key; Q2 stem (student, photograph, eclipse, phone) shares nothing with key.",
+   "Sibling leak: Q1 options name dome/lawn and time windows; Q2 options name Room 359/the door and Wednesday/Friday. Neither states or excludes the other's key; Q2 stem does not mention which group or location.",
+   "Not world knowledge: when and where filters are handed out, and who uses the lawn, are arbitrary facts of this announcement.",
+   "Names/rooms from author C pool only: Ezra Halvorsen, Kestrel Building, Room 359, ext. 3067."
+  ]
+ },
+ "items": [
+  {
+   "id": "AN6-08-1",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi, this is Ezra Halvorsen at the campus observatory. Our open viewing nights normally run Fridays from eight to eleven, in the dome on the roof of the Kestrel Building, and anyone can just show up. Next Friday is the lunar eclipse, so that night works differently. Students in an astronomy course get the dome, from nine to midnight, and they need to sign up by Thursday. Everyone else is still welcome, but you will be on the lawn behind the building with the club's portable telescopes, from seven to ten. If you plan to take photos with your phone, you will need a red filter over the screen so you do not ruin everyone's night vision. We have forty, and we are handing them out Wednesday afternoon in Room 359, not at the door on the night. If it is cloudy, both sessions are off and we will livestream instead. Questions go to extension 3067.",
+   "passageGroupId": "AN6-08",
+   "prompt": "[Announcement — Astronomy observatory] Where and when will students outside astronomy courses observe the eclipse?",
+   "choices": [
+    "On the lawn from seven to ten",
+    "In the dome from eight to eleven",
+    "In the dome from nine to midnight",
+    "On the lawn from nine to midnight"
+   ],
+   "correct_answer": "On the lawn from seven to ten",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says, \"Everyone else is still welcome, but you will be on the lawn behind the building ... from seven to ten.\" \"In the dome from eight to eleven\" is the normal Friday arrangement, which does not apply on eclipse night. \"In the dome from nine to midnight\" is the arrangement for \"Students in an astronomy course.\" \"On the lawn from nine to midnight\" pairs the right place with the course students' time window."
+  },
+  {
+   "id": "AN6-08-2",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi, this is Ezra Halvorsen at the campus observatory. Our open viewing nights normally run Fridays from eight to eleven, in the dome on the roof of the Kestrel Building, and anyone can just show up. Next Friday is the lunar eclipse, so that night works differently. Students in an astronomy course get the dome, from nine to midnight, and they need to sign up by Thursday. Everyone else is still welcome, but you will be on the lawn behind the building with the club's portable telescopes, from seven to ten. If you plan to take photos with your phone, you will need a red filter over the screen so you do not ruin everyone's night vision. We have forty, and we are handing them out Wednesday afternoon in Room 359, not at the door on the night. If it is cloudy, both sessions are off and we will livestream instead. Questions go to extension 3067.",
+   "passageGroupId": "AN6-08",
+   "prompt": "[Announcement — Astronomy observatory] What should a student who wants to photograph the eclipse with a phone do?",
+   "choices": [
+    "Collect a red filter from Room 359 on Wednesday",
+    "Collect a red filter from Room 359 on Friday",
+    "Collect a red filter at the door on Wednesday",
+    "Collect a red filter at the door on Friday"
+   ],
+   "correct_answer": "Collect a red filter from Room 359 on Wednesday",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says the filters are handed out \"Wednesday afternoon in Room 359, not at the door on the night.\" \"Collect a red filter at the door on Friday\" is exactly what the speaker rules out: the eclipse night is Friday. \"Collect a red filter from Room 359 on Friday\" has the right room but the eclipse night rather than Wednesday. \"Collect a red filter at the door on Wednesday\" has the right day but the door, which the speaker excludes."
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+{
+ "meta": {
+  "set": "AN6-09",
+  "atypical_fact": "Beginners meet in the noisy cafeteria at Monday lunch on purpose, because noise hides mistakes; advanced members meet in the downstairs lounge rather than the usual Room 446.",
+  "revised_fact": "Whole club Tuesday evenings upstairs in Room 446 -> beginners Monday lunchtimes in the cafeteria; intermediate/advanced Tuesday evenings in the downstairs lounge.",
+  "q1_kind": "P",
+  "q2_kind": "R",
+  "self_check": [
+   "P: \"Yes, it is noisy.\" alone most naturally reads as a concession or apology for a bad venue, or a warning about hearing; only the following sentences (\"That is actually why we picked it ... nobody notices your mistakes\") give the key.",
+   "P: at least three options are readings the line alone supports (apology, warning about hearing, request to keep voices down).",
+   "R: options include the usual arrangement (Tuesday evenings upstairs in Room 446), the beginners' arrangement (Monday lunchtimes in the cafeteria), the asked-about group's arrangement (key) and a crossed one (Monday lunchtimes in the downstairs lounge).",
+   "Flat prior: four purposes of a remark, each normal for a club announcement; four day/place pairs.",
+   "Form symmetry: all P options \"To verb ... \"; all R options \"<day> <time> in <place>\"; ratios 1.11 and 1.24; no absolutes or hedges.",
+   "Key length ranks: Q1 key rank 3, Q2 key rank 3, per commission.",
+   "Lexical echo: Q1 stem quotes \"Yes, it is noisy\"; the key avoids noise/noisy and says \"venue\", which a distractor also uses; Q2 stem (advanced, members, meet, term) shares nothing with key.",
+   "Sibling leak: P options do not name a place, day or group arrangement except \"beginners\"; R asks about advanced members, and no P option states where advanced members meet. R options do not say why any venue was chosen.",
+   "Not world knowledge: which day/place each level uses is arbitrary.",
+   "Names/rooms from author C pool only: Bastien Oyelaran, Room 446 (no building names used)."
+  ]
+ },
+ "items": [
+  {
+   "id": "AN6-09-1",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hello, this is Bastien Oyelaran from the language exchange club, and welcome back. Normally the whole club meets Tuesday evenings upstairs in Room 446, and we pair each of you with a partner who speaks the language you are learning. This term we have so many new beginners that we are splitting up. Beginners will meet Monday lunchtimes in the cafeteria. Yes, it is noisy. That is actually why we picked it. When everyone around you is talking, nobody notices your mistakes, and new learners speak up more. Intermediate and advanced members keep Tuesday evenings, but in the downstairs lounge, because Room 446 is booked for exams until midterms. Returning members can keep last term's partner if you tell us by Friday; otherwise you will be rematched. And the Korean and Portuguese tables are full, so if you want either one, add your name to the waiting list at a Monday session. See you there.",
+   "passageGroupId": "AN6-09",
+   "prompt": "[Announcement — Language exchange club] Why does the speaker say, \"Yes, it is noisy\"?",
+   "choices": [
+    "To present the venue as a benefit for beginners",
+    "To apologize to beginners for a crowded venue",
+    "To warn members that partners may be hard to hear",
+    "To ask members to keep their own voices down"
+   ],
+   "correct_answer": "To present the venue as a benefit for beginners",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker follows the line with \"That is actually why we picked it. When everyone around you is talking, nobody notices your mistakes, and new learners speak up more,\" so the noisy venue is presented as an advantage for beginners. \"To apologize to beginners for a crowded venue\" is wrong: the speaker chose the cafeteria deliberately and does not apologize. \"To warn members that partners may be hard to hear\" is wrong: the speaker never suggests hearing will be a problem. \"To ask members to keep their own voices down\" is wrong: the speaker wants new learners to \"speak up more.\""
+  },
+  {
+   "id": "AN6-09-2",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hello, this is Bastien Oyelaran from the language exchange club, and welcome back. Normally the whole club meets Tuesday evenings upstairs in Room 446, and we pair each of you with a partner who speaks the language you are learning. This term we have so many new beginners that we are splitting up. Beginners will meet Monday lunchtimes in the cafeteria. Yes, it is noisy. That is actually why we picked it. When everyone around you is talking, nobody notices your mistakes, and new learners speak up more. Intermediate and advanced members keep Tuesday evenings, but in the downstairs lounge, because Room 446 is booked for exams until midterms. Returning members can keep last term's partner if you tell us by Friday; otherwise you will be rematched. And the Korean and Portuguese tables are full, so if you want either one, add your name to the waiting list at a Monday session. See you there.",
+   "passageGroupId": "AN6-09",
+   "prompt": "[Announcement — Language exchange club] When and where will advanced members meet this term?",
+   "choices": [
+    "Tuesday evenings in the downstairs lounge",
+    "Tuesday evenings upstairs in Room 446",
+    "Monday lunchtimes in the cafeteria",
+    "Monday lunchtimes in the downstairs lounge"
+   ],
+   "correct_answer": "Tuesday evenings in the downstairs lounge",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says, \"Intermediate and advanced members keep Tuesday evenings, but in the downstairs lounge, because Room 446 is booked for exams.\" \"Tuesday evenings upstairs in Room 446\" is the club's normal arrangement, which changes this term. \"Monday lunchtimes in the cafeteria\" is the beginners' arrangement. \"Monday lunchtimes in the downstairs lounge\" pairs the right place with the beginners' time."
+  }
+ ]
+}
