@@ -1,0 +1,2732 @@
+[
+ {
+  "id": "SVA19-01",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] family crest is to lineage as",
+  "choices": [
+   "scythe is to mortality",
+   "forgery is to authenticity",
+   "candymaker is to toffee",
+   "woodcutter is to hatchet",
+   "pedal is to tricycle"
+  ],
+  "correct_answer": "scythe is to mortality",
+  "stem_relation": "symbol/symbolized",
+  "option_relations": [
+   "symbol/symbolized",
+   "lack",
+   "creator/creation",
+   "worker/tool",
+   "part/whole"
+  ],
+  "explanation": "Relation: symbol/symbolized. Just as a family crest is the conventional symbol of a lineage, a scythe is the conventional symbol of mortality (the Grim Reaper’s scythe stands for death).",
+  "distractor_rationales": {
+   "forgery is to authenticity": "relation it instantiates instead: lack (a forgery is characterised by having no authenticity), not symbol/symbolized",
+   "candymaker is to toffee": "relation it instantiates instead: creator/creation (a candymaker makes toffee), not symbol/symbolized",
+   "woodcutter is to hatchet": "relation it instantiates instead: worker/tool (a woodcutter works with a hatchet), not symbol/symbolized",
+   "pedal is to tricycle": "relation it instantiates instead: part/whole (a pedal is part of a tricycle), not symbol/symbolized"
+  },
+  "near_miss": {
+   "option": "forgery is to authenticity",
+   "why": "Read loosely as 'a concrete thing paired with the abstract quality it is bound up with', forgery/authenticity fits as well as family crest/lineage. Precisely, a family crest is a conventional emblem that STANDS FOR a lineage, while a forgery is defined by NOT having authenticity (bearer : what it lacks); nothing about a forgery represents authenticity."
+  }
+ },
+ {
+  "id": "SVA19-02",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] scheme is to plot as",
+  "choices": [
+   "static is to shock",
+   "percussion is to xylophone",
+   "wrecking ball is to demolition",
+   "revelry is to merriment",
+   "dumpster is to garbage"
+  ],
+  "correct_answer": "revelry is to merriment",
+  "stem_relation": "synonyms",
+  "option_relations": [
+   "cause/effect",
+   "category/instance",
+   "tool/function",
+   "synonyms",
+   "container/contents"
+  ],
+  "explanation": "Relation: synonyms. Just as a scheme and a plot both mean a secret plan, revelry and merriment both mean lively, festive fun.",
+  "distractor_rationales": {
+   "static is to shock": "relation it instantiates instead: cause/effect (static electricity causes a shock), not synonyms",
+   "percussion is to xylophone": "relation it instantiates instead: category/instance (a xylophone is a kind of percussion instrument), not synonyms",
+   "wrecking ball is to demolition": "relation it instantiates instead: tool/function (a wrecking ball is used for demolition), not synonyms",
+   "dumpster is to garbage": "relation it instantiates instead: container/contents (a dumpster holds garbage), not synonyms"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-03",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] recession is to depression as",
+  "choices": [
+   "diligence is to laziness",
+   "pasta is to linguine",
+   "sarcophagus is to mummy",
+   "misdemeanor is to felony",
+   "translator is to subtitles"
+  ],
+  "correct_answer": "misdemeanor is to felony",
+  "stem_relation": "degree",
+  "option_relations": [
+   "antonyms",
+   "category/instance",
+   "container/contents",
+   "degree",
+   "creator/creation"
+  ],
+  "explanation": "Relation: degree. Just as a recession is a milder economic downturn and a depression a far more severe one, a misdemeanor is a lesser crime and a felony a far more serious one.",
+  "distractor_rationales": {
+   "diligence is to laziness": "relation it instantiates instead: antonyms (diligence and laziness are opposites), not degree",
+   "pasta is to linguine": "relation it instantiates instead: category/instance (linguine is a kind of pasta), not degree",
+   "sarcophagus is to mummy": "relation it instantiates instead: container/contents (a sarcophagus holds a mummy), not degree",
+   "translator is to subtitles": "relation it instantiates instead: creator/creation (a translator produces subtitles), not degree"
+  },
+  "near_miss": {
+   "option": "diligence is to laziness",
+   "why": "Read loosely as 'two points on one scale', diligence/laziness looks like recession/depression: both pairs name two positions of a single quality. Precisely, a depression is a MORE SEVERE recession (same direction, greater degree), whereas diligence and laziness sit at OPPOSITE ends of the scale of effort, so the pair is antonyms, not degree."
+  }
+ },
+ {
+  "id": "SVA19-04",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] storeroom is to supplies as",
+  "choices": [
+   "distiller is to brandy",
+   "debit is to credit",
+   "anarchy is to government",
+   "hearse is to coffin",
+   "groundskeeper is to lawnmower"
+  ],
+  "correct_answer": "hearse is to coffin",
+  "stem_relation": "container/contents",
+  "option_relations": [
+   "creator/creation",
+   "antonyms",
+   "lack",
+   "container/contents",
+   "worker/tool"
+  ],
+  "explanation": "Relation: container/contents. Just as a storeroom holds supplies, a hearse holds a coffin.",
+  "distractor_rationales": {
+   "distiller is to brandy": "relation it instantiates instead: creator/creation (a distiller makes brandy), not container/contents",
+   "debit is to credit": "relation it instantiates instead: antonyms (a debit and a credit are opposite entries), not container/contents",
+   "anarchy is to government": "relation it instantiates instead: lack (anarchy is characterised by having no government), not container/contents",
+   "groundskeeper is to lawnmower": "relation it instantiates instead: worker/tool (a groundskeeper works with a lawnmower), not container/contents"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-05",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] affluence is to penury as",
+  "choices": [
+   "optimist is to pessimist",
+   "marsupial is to wombat",
+   "gluttony is to heartburn",
+   "oilcan is to lubricating",
+   "parchment is to sheepskin"
+  ],
+  "correct_answer": "optimist is to pessimist",
+  "stem_relation": "antonyms",
+  "option_relations": [
+   "antonyms",
+   "category/instance",
+   "cause/effect",
+   "tool/function",
+   "object/material"
+  ],
+  "explanation": "Relation: antonyms. Just as affluence (great wealth) is the opposite of penury (extreme poverty), an optimist is the opposite of a pessimist.",
+  "distractor_rationales": {
+   "marsupial is to wombat": "relation it instantiates instead: category/instance (a wombat is a kind of marsupial), not antonyms",
+   "gluttony is to heartburn": "relation it instantiates instead: cause/effect (gluttony (overeating) causes heartburn), not antonyms",
+   "oilcan is to lubricating": "relation it instantiates instead: tool/function (an oilcan is used for lubricating machinery), not antonyms",
+   "parchment is to sheepskin": "relation it instantiates instead: object/material (parchment is made of sheepskin), not antonyms"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-06",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] rainbow is to hope as",
+  "choices": [
+   "calamity is to disaster",
+   "aquifer is to groundwater",
+   "sprocket is to bike",
+   "green is to jealousy",
+   "innkeeper is to tavern"
+  ],
+  "correct_answer": "green is to jealousy",
+  "stem_relation": "symbol/symbolized",
+  "option_relations": [
+   "synonyms",
+   "container/contents",
+   "part/whole",
+   "symbol/symbolized",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: symbol/symbolized. Just as a rainbow is the conventional symbol of hope, the colour green is the conventional symbol of jealousy (the green-eyed monster).",
+  "distractor_rationales": {
+   "calamity is to disaster": "relation it instantiates instead: synonyms (calamity and disaster mean the same thing), not symbol/symbolized",
+   "aquifer is to groundwater": "relation it instantiates instead: container/contents (an aquifer holds groundwater), not symbol/symbolized",
+   "sprocket is to bike": "relation it instantiates instead: part/whole (a sprocket is part of a bike), not symbol/symbolized",
+   "innkeeper is to tavern": "relation it instantiates instead: worker/workplace (an innkeeper works in a tavern), not symbol/symbolized"
+  },
+  "near_miss": {
+   "option": "calamity is to disaster",
+   "why": "Read loosely as 'the first word means the second', calamity/disaster fits: a reader who takes 'rainbow is to hope' as 'a rainbow means hope' will accept a pair of words with the same meaning. Precisely, a rainbow is a conventional image that STANDS FOR hope; the word 'rainbow' does not mean the same thing as 'hope', whereas calamity and disaster are simply synonyms."
+  }
+ },
+ {
+  "id": "SVA19-07",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] wrangler is to lariat as",
+  "choices": [
+   "woodcarver is to gouge",
+   "bangle is to ivory",
+   "projectionist is to booth",
+   "hubcap is to automobile",
+   "spat is to tiff"
+  ],
+  "correct_answer": "woodcarver is to gouge",
+  "stem_relation": "worker/tool",
+  "option_relations": [
+   "worker/tool",
+   "object/material",
+   "worker/workplace",
+   "part/whole",
+   "synonyms"
+  ],
+  "explanation": "Relation: worker/tool. Just as a wrangler works with a lariat as a tool to rope cattle, a woodcarver works with a gouge as a tool to cut wood.",
+  "distractor_rationales": {
+   "bangle is to ivory": "relation it instantiates instead: object/material (the bangle is carved from ivory), not worker/tool",
+   "projectionist is to booth": "relation it instantiates instead: worker/workplace (a projectionist works in the projection booth), not worker/tool",
+   "hubcap is to automobile": "relation it instantiates instead: part/whole (a hubcap is a part of an automobile), not worker/tool",
+   "spat is to tiff": "relation it instantiates instead: synonyms (a spat and a tiff are both small quarrels), not worker/tool"
+  },
+  "near_miss": {
+   "option": "projectionist is to booth",
+   "why": "Read loosely, the stem is 'a worker and a thing bound up with the job', which a projectionist and the booth also satisfy. Precisely, a lariat is the tool a wrangler handles to do the work; a booth is the place where a projectionist works, not an instrument the projectionist wields."
+  }
+ },
+ {
+  "id": "SVA19-08",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] rancor is to animosity as",
+  "choices": [
+   "dampness is to corrosion",
+   "curtsy is to homage",
+   "fraud is to swindle",
+   "awl is to piercing",
+   "gill is to mackerel"
+  ],
+  "correct_answer": "fraud is to swindle",
+  "stem_relation": "synonyms",
+  "option_relations": [
+   "cause/effect",
+   "symbol/symbolized",
+   "synonyms",
+   "tool/function",
+   "part/whole"
+  ],
+  "explanation": "Relation: synonyms. Just as rancor and animosity both mean deep-seated ill will, fraud and swindle both mean a deception practised to cheat someone.",
+  "distractor_rationales": {
+   "dampness is to corrosion": "relation it instantiates instead: cause/effect (lasting dampness causes metal to corrode), not synonyms",
+   "curtsy is to homage": "relation it instantiates instead: symbol/symbolized (a curtsy is a conventional sign of homage), not synonyms",
+   "awl is to piercing": "relation it instantiates instead: tool/function (an awl is used for piercing leather or wood), not synonyms",
+   "gill is to mackerel": "relation it instantiates instead: part/whole (a gill is a part of a mackerel), not synonyms"
+  },
+  "near_miss": {
+   "option": "curtsy is to homage",
+   "why": "Read loosely, the stem is 'x amounts to y', and a curtsy does amount to an act of homage. Precisely, rancor and animosity are two words for the same thing; a curtsy is a conventional gesture that stands for homage, a sign of it rather than another name for it."
+  }
+ },
+ {
+  "id": "SVA19-09",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] top is to bottom as",
+  "choices": [
+   "cereal is to oats",
+   "toolbox is to screwdrivers",
+   "query is to question",
+   "stretching is to hiking",
+   "health is to sickness"
+  ],
+  "correct_answer": "health is to sickness",
+  "stem_relation": "antonyms",
+  "option_relations": [
+   "category/instance",
+   "container/contents",
+   "synonyms",
+   "preparation/act",
+   "antonyms"
+  ],
+  "explanation": "Relation: antonyms. Just as top is the opposite of bottom, health is the opposite of sickness.",
+  "distractor_rationales": {
+   "cereal is to oats": "relation it instantiates instead: category/instance (oats are a kind of cereal grain), not antonyms",
+   "toolbox is to screwdrivers": "relation it instantiates instead: container/contents (a toolbox holds screwdrivers), not antonyms",
+   "query is to question": "relation it instantiates instead: synonyms (a query is a question), not antonyms",
+   "stretching is to hiking": "relation it instantiates instead: preparation/act (stretching is done to prepare for hiking), not antonyms"
+  },
+  "near_miss": {
+   "option": "query is to question",
+   "why": "Read loosely, the stem is 'two plain words that belong together as a matched pair', and query and question are such a pair. Precisely, top and bottom are opposites; query and question mean the same thing."
+  }
+ },
+ {
+  "id": "SVA19-10",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] pout is to tantrum as",
+  "choices": [
+   "tuning is to serenade",
+   "ghostwriter is to memoir",
+   "binoculars is to viewing",
+   "mountaineer is to piton",
+   "complaint is to outcry"
+  ],
+  "correct_answer": "complaint is to outcry",
+  "stem_relation": "degree",
+  "option_relations": [
+   "preparation/act",
+   "creator/creation",
+   "tool/function",
+   "worker/tool",
+   "degree"
+  ],
+  "explanation": "Relation: degree. Just as a pout is a mild show of displeasure and a tantrum an extreme one, a complaint is a mild expression of protest and an outcry a loud, widespread one.",
+  "distractor_rationales": {
+   "tuning is to serenade": "relation it instantiates instead: preparation/act (an instrument is tuned to prepare for playing a serenade; a careless reader may take the stem as 'the small thing that comes first'), not degree",
+   "ghostwriter is to memoir": "relation it instantiates instead: creator/creation (a ghostwriter writes a memoir for someone else), not degree",
+   "binoculars is to viewing": "relation it instantiates instead: tool/function (binoculars are used for viewing distant things), not degree",
+   "mountaineer is to piton": "relation it instantiates instead: worker/tool (a mountaineer works with a piton as a tool), not degree"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-11",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] vegan is to meat as",
+  "choices": [
+   "railing is to balcony",
+   "exile is to homeland",
+   "pittance is to bonanza",
+   "farrier is to rasp",
+   "locker is to jerseys"
+  ],
+  "correct_answer": "exile is to homeland",
+  "stem_relation": "lack",
+  "option_relations": [
+   "part/whole",
+   "lack",
+   "degree",
+   "worker/tool",
+   "container/contents"
+  ],
+  "explanation": "Relation: lack. Just as a vegan is characterised by having no meat, an exile is characterised by having no homeland to live in.",
+  "distractor_rationales": {
+   "railing is to balcony": "relation it instantiates instead: part/whole (a railing is a part of a balcony), not lack",
+   "pittance is to bonanza": "relation it instantiates instead: degree (a pittance is a tiny sum, a bonanza a huge one), not lack",
+   "farrier is to rasp": "relation it instantiates instead: worker/tool (a farrier works with a rasp to trim hooves), not lack",
+   "locker is to jerseys": "relation it instantiates instead: container/contents (a locker holds jerseys), not lack"
+  },
+  "near_miss": {
+   "option": "pittance is to bonanza",
+   "why": "Read loosely, the stem is 'x comes up short on y', and a pittance does fall far short of a bonanza. Precisely, a vegan is defined by having no meat at all; a pittance is not a person or thing without a bonanza but a small amount of what a bonanza is a huge amount of, a lesser degree on the same scale."
+  }
+ },
+ {
+  "id": "SVA19-12",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] deck is to teak as",
+  "choices": [
+   "typhoon is to landslide",
+   "pouch is to tobacco",
+   "squatter is to title",
+   "petticoat is to muslin",
+   "taxiing is to takeoff"
+  ],
+  "correct_answer": "petticoat is to muslin",
+  "stem_relation": "object/material",
+  "option_relations": [
+   "cause/effect",
+   "container/contents",
+   "lack",
+   "object/material",
+   "preparation/act"
+  ],
+  "explanation": "Relation: object/material. Just as a deck is built of teak, a petticoat is sewn from muslin.",
+  "distractor_rationales": {
+   "typhoon is to landslide": "relation it instantiates instead: cause/effect (a typhoon's heavy rain can cause a landslide), not object/material",
+   "pouch is to tobacco": "relation it instantiates instead: container/contents (a pouch holds tobacco), not object/material",
+   "squatter is to title": "relation it instantiates instead: lack (a squatter occupies land without holding legal title to it), not object/material",
+   "taxiing is to takeoff": "relation it instantiates instead: preparation/act (a plane taxis to the runway to prepare for takeoff), not object/material"
+  },
+  "near_miss": {
+   "option": "pouch is to tobacco",
+   "why": "Read loosely, the stem is 'an object and the stuff that goes with it', the way people say a teak deck or a tobacco pouch. Precisely, the deck is made of teak; the pouch is not made of tobacco but holds it."
+  }
+ },
+ {
+  "id": "SVA19-13",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] tirade is to harangue as",
+  "choices": [
+   "mirth is to gaiety",
+   "tureen is to chowder",
+   "halo is to sainthood",
+   "milliner is to fedora",
+   "bailiff is to tribunal"
+  ],
+  "correct_answer": "mirth is to gaiety",
+  "stem_relation": "synonyms",
+  "option_relations": [
+   "synonyms",
+   "container/contents",
+   "symbol/symbolized",
+   "creator/creation",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: synonyms. Just as a tirade is a harangue (both a long, angry speech), mirth is gaiety (both cheerful high spirits).",
+  "distractor_rationales": {
+   "tureen is to chowder": "relation it instantiates instead: container/contents (a tureen is a deep serving dish that holds chowder), not synonyms",
+   "halo is to sainthood": "relation it instantiates instead: symbol/symbolized (a halo in a painting stands for sainthood), not synonyms",
+   "milliner is to fedora": "relation it instantiates instead: creator/creation (a milliner makes hats such as a fedora), not synonyms",
+   "bailiff is to tribunal": "relation it instantiates instead: worker/workplace (a bailiff keeps order in a court or tribunal), not synonyms"
+  },
+  "near_miss": {
+   "option": "halo is to sainthood",
+   "why": "Read loosely as 'the first word means the second', a halo seems to 'mean' sainthood. But a halo is a painted ring of light that conventionally stands for sainthood; it is a symbol of it, not a word with the same meaning. A tirade and a harangue are two words for the same thing, a long angry speech."
+  }
+ },
+ {
+  "id": "SVA19-14",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] scroll is to papyrus as",
+  "choices": [
+   "surge is to outage",
+   "kilt is to tartan",
+   "gemstone is to agate",
+   "emptiness is to fullness",
+   "scrimmage is to playoffs"
+  ],
+  "correct_answer": "kilt is to tartan",
+  "stem_relation": "object/material",
+  "option_relations": [
+   "cause/effect",
+   "object/material",
+   "category/instance",
+   "antonyms",
+   "preparation/act"
+  ],
+  "explanation": "Relation: object/material. Just as a scroll is made of papyrus, a kilt is made of tartan, the patterned wool cloth.",
+  "distractor_rationales": {
+   "surge is to outage": "relation it instantiates instead: cause/effect (a power surge can cause an outage), not object/material",
+   "gemstone is to agate": "relation it instantiates instead: category/instance (agate is a kind of gemstone), not object/material",
+   "emptiness is to fullness": "relation it instantiates instead: antonyms (emptiness and fullness are opposites), not object/material",
+   "scrimmage is to playoffs": "relation it instantiates instead: preparation/act (a team plays a scrimmage to get ready for the playoffs), not object/material"
+  },
+  "near_miss": {
+   "option": "gemstone is to agate",
+   "why": "Read loosely as 'a thing and the substance it is', agate looks like the stuff a gemstone is made of, just as papyrus is the stuff of a scroll. But agate is one kind of gemstone (category and member), whereas a scroll is not a kind of papyrus; it is an object made out of papyrus."
+  }
+ },
+ {
+  "id": "SVA19-15",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] songwriter is to melody as",
+  "choices": [
+   "caver is to headlamp",
+   "dislike is to loathing",
+   "punchline is to laughter",
+   "columnist is to article",
+   "tie is to victor"
+  ],
+  "correct_answer": "columnist is to article",
+  "stem_relation": "creator/creation",
+  "option_relations": [
+   "worker/tool",
+   "degree",
+   "cause/effect",
+   "creator/creation",
+   "lack"
+  ],
+  "explanation": "Relation: creator/creation. Just as a songwriter writes a melody, a columnist writes an article.",
+  "distractor_rationales": {
+   "caver is to headlamp": "relation it instantiates instead: worker/tool (a caver works with a headlamp to see underground), not creator/creation",
+   "dislike is to loathing": "relation it instantiates instead: degree (dislike is a milder form of loathing), not creator/creation",
+   "punchline is to laughter": "relation it instantiates instead: cause/effect (a punchline causes laughter), not creator/creation",
+   "tie is to victor": "relation it instantiates instead: lack (a tie, or drawn game, is a result with no victor), not creator/creation"
+  },
+  "near_miss": {
+   "option": "caver is to headlamp",
+   "why": "Read loosely as 'a person and the thing tied to what they do', a caver and a headlamp fit as well as a songwriter and a melody. But a songwriter produces a melody, while a caver only uses a headlamp as a tool; the caver does not make it."
+  }
+ },
+ {
+  "id": "SVA19-16",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] void is to matter as",
+  "choices": [
+   "cramming is to midterm",
+   "destitution is to opulence",
+   "buoy is to styrofoam",
+   "roadwork is to detour",
+   "skeleton is to flesh"
+  ],
+  "correct_answer": "skeleton is to flesh",
+  "stem_relation": "lack",
+  "option_relations": [
+   "preparation/act",
+   "antonyms",
+   "object/material",
+   "cause/effect",
+   "lack"
+  ],
+  "explanation": "Relation: lack. Just as a void is characterised by having no matter, a skeleton is characterised by having no flesh.",
+  "distractor_rationales": {
+   "cramming is to midterm": "relation it instantiates instead: preparation/act (students cram to prepare for a midterm), not lack",
+   "destitution is to opulence": "relation it instantiates instead: antonyms (destitution, extreme poverty, is the opposite of opulence, great wealth), not lack",
+   "buoy is to styrofoam": "relation it instantiates instead: object/material (a buoy can be made of styrofoam), not lack",
+   "roadwork is to detour": "relation it instantiates instead: cause/effect (roadwork causes a detour), not lack"
+  },
+  "near_miss": {
+   "option": "destitution is to opulence",
+   "why": "Read loosely as 'the first is the absence of the second', destitution seems to be an absence of opulence. But the two are opposite ends of one scale (antonyms): opulence is not the thing destitution is missing, it is its contrary. A void is a thing defined by having no matter, just as a skeleton is a body with no flesh."
+  }
+ },
+ {
+  "id": "SVA19-17",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] raptor is to condor as",
+  "choices": [
+   "legume is to chickpea",
+   "sculptress is to figurine",
+   "cameo is to onyx",
+   "totem is to clan",
+   "pharmacist is to dispensary"
+  ],
+  "correct_answer": "legume is to chickpea",
+  "stem_relation": "category/instance",
+  "option_relations": [
+   "category/instance",
+   "creator/creation",
+   "object/material",
+   "symbol/symbolized",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: category/instance. Just as a condor is one kind of raptor (bird of prey), a chickpea is one kind of legume.",
+  "distractor_rationales": {
+   "sculptress is to figurine": "relation it instantiates instead: creator/creation (a sculptress makes a figurine), not category/instance",
+   "cameo is to onyx": "relation it instantiates instead: object/material (a cameo can be carved from onyx), not category/instance",
+   "totem is to clan": "relation it instantiates instead: symbol/symbolized (a totem is an emblem that stands for a clan), not category/instance",
+   "pharmacist is to dispensary": "relation it instantiates instead: worker/workplace (a pharmacist works in a dispensary), not category/instance"
+  },
+  "near_miss": {
+   "option": "cameo is to onyx",
+   "why": "Read loosely as 'a general thing and a specific kind of it', onyx can look like the specific stuff a cameo comes in. But a cameo is a carved object made out of onyx (object and material); onyx is not a kind of cameo, whereas a condor is one kind of raptor."
+  }
+ },
+ {
+  "id": "SVA19-18",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] stevedore is to dock as",
+  "choices": [
+   "fib is to falsehood",
+   "prospector is to pickaxe",
+   "barista is to cafe",
+   "reed is to bassoon",
+   "vagrant is to abode"
+  ],
+  "correct_answer": "barista is to cafe",
+  "stem_relation": "worker/workplace",
+  "option_relations": [
+   "synonyms",
+   "worker/tool",
+   "worker/workplace",
+   "part/whole",
+   "lack"
+  ],
+  "explanation": "Relation: worker/workplace. Just as a stevedore loads and unloads ships at a dock, a barista makes drinks at a cafe.",
+  "distractor_rationales": {
+   "fib is to falsehood": "relation it instantiates instead: synonyms (a fib is a falsehood, a small lie), not worker/workplace",
+   "prospector is to pickaxe": "relation it instantiates instead: worker/tool (a prospector digs with a pickaxe), not worker/workplace",
+   "reed is to bassoon": "relation it instantiates instead: part/whole (the reed is part of a bassoon), not worker/workplace",
+   "vagrant is to abode": "relation it instantiates instead: lack (a vagrant is a person with no fixed abode), not worker/workplace"
+  },
+  "near_miss": {
+   "option": "prospector is to pickaxe",
+   "why": "Read loosely as 'a worker and something tied to the job', a prospector and a pickaxe fit as well as a stevedore and a dock. But a dock is the place where a stevedore works, while a pickaxe is a tool a prospector works with, not where he works."
+  }
+ },
+ {
+  "id": "SVA19-19",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] pothole is to blowout as",
+  "choices": [
+   "teammate is to opponent",
+   "village is to megacity",
+   "virus is to nausea",
+   "tooth is to zipper",
+   "rotisserie is to roasting"
+  ],
+  "correct_answer": "virus is to nausea",
+  "stem_relation": "cause/effect",
+  "option_relations": [
+   "antonyms",
+   "degree",
+   "cause/effect",
+   "part/whole",
+   "tool/function"
+  ],
+  "explanation": "Relation: cause/effect. Just as a pothole can cause a blowout, a virus can cause nausea.",
+  "distractor_rationales": {
+   "teammate is to opponent": "relation it instantiates instead: antonyms (a teammate plays on your side, an opponent against you), not cause/effect",
+   "village is to megacity": "relation it instantiates instead: degree (a village is a small settlement, a megacity an enormous one), not cause/effect",
+   "tooth is to zipper": "relation it instantiates instead: part/whole (a tooth is one part of a zipper), not cause/effect",
+   "rotisserie is to roasting": "relation it instantiates instead: tool/function (a rotisserie is used for roasting), not cause/effect"
+  },
+  "near_miss": {
+   "option": "rotisserie is to roasting",
+   "why": "A loose reading takes the stem as 'the first thing leads to the second', and a rotisserie does lead to roasted meat. But a pothole brings about a blowout as an unintended result; a rotisserie is a device someone uses on purpose to perform the action of roasting. That is tool/function, not cause/effect."
+  }
+ },
+ {
+  "id": "SVA19-20",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] herdsman is to goad as",
+  "choices": [
+   "frugality is to wastefulness",
+   "concussion is to amnesia",
+   "cornucopia is to bounty",
+   "guitarist is to plectrum",
+   "siphon is to draining"
+  ],
+  "correct_answer": "guitarist is to plectrum",
+  "stem_relation": "worker/tool",
+  "option_relations": [
+   "antonyms",
+   "cause/effect",
+   "symbol/symbolized",
+   "worker/tool",
+   "tool/function"
+  ],
+  "explanation": "Relation: worker/tool. Just as a herdsman works with a goad (a pointed stick for driving cattle), a guitarist works with a plectrum (a pick for plucking the strings).",
+  "distractor_rationales": {
+   "frugality is to wastefulness": "relation it instantiates instead: antonyms (frugality is careful thrift, wastefulness its opposite), not worker/tool",
+   "concussion is to amnesia": "relation it instantiates instead: cause/effect (a concussion can cause amnesia), not worker/tool",
+   "cornucopia is to bounty": "relation it instantiates instead: symbol/symbolized (the horn of plenty is a conventional symbol of bounty), not worker/tool",
+   "siphon is to draining": "relation it instantiates instead: tool/function (a siphon is used for draining a liquid); it pairs a tool with its action, with no worker in it, not worker/tool"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-21",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] larder is to foodstuffs as",
+  "choices": [
+   "weariness is to exhaustion",
+   "knapsack is to gear",
+   "pocket is to overcoat",
+   "zeal is to ardor",
+   "splint is to bracing"
+  ],
+  "correct_answer": "knapsack is to gear",
+  "stem_relation": "container/contents",
+  "option_relations": [
+   "degree",
+   "container/contents",
+   "part/whole",
+   "synonyms",
+   "tool/function"
+  ],
+  "explanation": "Relation: container/contents. Just as a larder holds foodstuffs, a knapsack holds gear.",
+  "distractor_rationales": {
+   "weariness is to exhaustion": "relation it instantiates instead: degree (weariness is a milder form of exhaustion), not container/contents",
+   "pocket is to overcoat": "relation it instantiates instead: part/whole (a pocket is part of an overcoat), not container/contents",
+   "zeal is to ardor": "relation it instantiates instead: synonyms (both mean eager enthusiasm), not container/contents",
+   "splint is to bracing": "relation it instantiates instead: tool/function (a splint is used for bracing an injured limb), not container/contents"
+  },
+  "near_miss": {
+   "option": "pocket is to overcoat",
+   "why": "A loose reading takes the stem as 'a storage space and what goes with it', and a pocket is itself a small storage space. But the stem pairs a larder with the foodstuffs it holds; the pocket's pair is the overcoat it is sewn into, a part and its whole. A pocket does not hold an overcoat, so the precise container/contents relation rejects it."
+  }
+ },
+ {
+  "id": "SVA19-22",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] sommelier is to corkscrew as",
+  "choices": [
+   "sliver is to chunk",
+   "wreath is to remembrance",
+   "farmhand is to pitchfork",
+   "stylist is to salon",
+   "icepick is to chipping"
+  ],
+  "correct_answer": "farmhand is to pitchfork",
+  "stem_relation": "worker/tool",
+  "option_relations": [
+   "degree",
+   "symbol/symbolized",
+   "worker/tool",
+   "worker/workplace",
+   "tool/function"
+  ],
+  "explanation": "Relation: worker/tool. Just as a sommelier works with a corkscrew to open wine, a farmhand works with a pitchfork to move hay.",
+  "distractor_rationales": {
+   "sliver is to chunk": "relation it instantiates instead: degree (a sliver is a thin, small piece; a chunk a thick, large one), not worker/tool",
+   "wreath is to remembrance": "relation it instantiates instead: symbol/symbolized (a laid wreath is a conventional symbol of remembrance), not worker/tool",
+   "stylist is to salon": "relation it instantiates instead: worker/workplace (a stylist works in a salon), not worker/tool",
+   "icepick is to chipping": "relation it instantiates instead: tool/function (an icepick is used for chipping ice); it names a tool and its action, with no worker, not worker/tool"
+  },
+  "near_miss": {
+   "option": "stylist is to salon",
+   "why": "A loose reading takes the stem as 'a worker and something tied to the job', and a salon is tied to a stylist's job. But a sommelier handles a corkscrew in the hand to do the work; a salon is the place where a stylist works, not an implement the stylist uses. That is worker/workplace, not worker/tool."
+  }
+ },
+ {
+  "id": "SVA19-23",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] peacock is to pride as",
+  "choices": [
+   "white is to purity",
+   "bigot is to tolerance",
+   "coder is to app",
+   "masking is to spraying",
+   "embalmer is to mortuary"
+  ],
+  "correct_answer": "white is to purity",
+  "stem_relation": "symbol/symbolized",
+  "option_relations": [
+   "symbol/symbolized",
+   "lack",
+   "creator/creation",
+   "preparation/act",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: symbol/symbolized. Just as the peacock is a conventional symbol of pride, the color white is a conventional symbol of purity.",
+  "distractor_rationales": {
+   "bigot is to tolerance": "relation it instantiates instead: lack (a bigot is characterised by having no tolerance), not symbol/symbolized",
+   "coder is to app": "relation it instantiates instead: creator/creation (a coder makes an app), not symbol/symbolized",
+   "masking is to spraying": "relation it instantiates instead: preparation/act (surfaces are masked off to prepare for spraying paint), not symbol/symbolized",
+   "embalmer is to mortuary": "relation it instantiates instead: worker/workplace (an embalmer works in a mortuary), not symbol/symbolized"
+  },
+  "near_miss": {
+   "option": "bigot is to tolerance",
+   "why": "A loose reading takes the stem as 'something linked to a quality', and a bigot is constantly linked to the idea of tolerance. But a peacock stands for pride by convention; a bigot is defined by having NO tolerance. That is lack (bearer : what it lacks), the opposite of standing for the quality."
+  }
+ },
+ {
+  "id": "SVA19-24",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] bough is to sycamore as",
+  "choices": [
+   "heroism is to cowardice",
+   "heel is to stocking",
+   "slab is to cement",
+   "teetotaler is to alcohol",
+   "cashier is to register"
+  ],
+  "correct_answer": "heel is to stocking",
+  "stem_relation": "part/whole",
+  "option_relations": [
+   "antonyms",
+   "part/whole",
+   "object/material",
+   "lack",
+   "worker/tool"
+  ],
+  "explanation": "Relation: part/whole. Just as a bough is a part of a sycamore, a heel is a part of a stocking.",
+  "distractor_rationales": {
+   "heroism is to cowardice": "relation it instantiates instead: antonyms (heroism is bravery, cowardice its opposite), not part/whole",
+   "slab is to cement": "relation it instantiates instead: object/material (a slab is made of cement), not part/whole",
+   "teetotaler is to alcohol": "relation it instantiates instead: lack (a teetotaler is characterised by drinking no alcohol), not part/whole",
+   "cashier is to register": "relation it instantiates instead: worker/tool (a cashier works with a register), not part/whole"
+  },
+  "near_miss": {
+   "option": "slab is to cement",
+   "why": "A loose reading takes the stem as 'a piece of something larger', and a slab is a piece of cement. But a bough is one part of the whole tree it grows on; a slab is an object made out of cement, which is a material, not a whole the slab belongs to. That is object/material, not part/whole."
+  }
+ },
+ {
+  "id": "SVA19-25",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] bandolier is to ammunition as",
+  "choices": [
+   "silversmith is to flatware",
+   "terrarium is to ferns",
+   "glovebox is to dashboard",
+   "purple is to nobility",
+   "dean is to campus"
+  ],
+  "correct_answer": "terrarium is to ferns",
+  "stem_relation": "container/contents",
+  "option_relations": [
+   "creator/creation",
+   "container/contents",
+   "part/whole",
+   "symbol/symbolized",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: container/contents. Just as a bandolier is a belt that holds ammunition, a terrarium is a glass enclosure that holds ferns.",
+  "distractor_rationales": {
+   "silversmith is to flatware": "relation it instantiates instead: creator/creation (a silversmith makes flatware), not container/contents",
+   "glovebox is to dashboard": "relation it instantiates instead: part/whole (a glovebox is a built-in part of the dashboard), not container/contents",
+   "purple is to nobility": "relation it instantiates instead: symbol/symbolized (purple is a traditional symbol of nobility), not container/contents",
+   "dean is to campus": "relation it instantiates instead: worker/workplace (a dean works on a college campus), not container/contents"
+  },
+  "near_miss": {
+   "option": "glovebox is to dashboard",
+   "why": "A loose reader takes the stem as 'a holder and the thing it goes with' and accepts glovebox : dashboard, because a glovebox is itself a small storage compartment. Precisely, a bandolier holds ammunition as its contents, whereas a glovebox does not hold the dashboard; it is one built-in part of it."
+  }
+ },
+ {
+  "id": "SVA19-26",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] enmity is to goodwill as",
+  "choices": [
+   "transparency is to secrecy",
+   "fist is to solidarity",
+   "seasoning is to nutmeg",
+   "memorization is to recitation",
+   "calculator is to computing"
+  ],
+  "correct_answer": "transparency is to secrecy",
+  "stem_relation": "antonyms",
+  "option_relations": [
+   "antonyms",
+   "symbol/symbolized",
+   "category/instance",
+   "preparation/act",
+   "tool/function"
+  ],
+  "explanation": "Relation: antonyms. Just as enmity is the opposite of goodwill, transparency is the opposite of secrecy.",
+  "distractor_rationales": {
+   "fist is to solidarity": "relation it instantiates instead: symbol/symbolized (a raised fist is a conventional symbol of solidarity), not antonyms",
+   "seasoning is to nutmeg": "relation it instantiates instead: category/instance (nutmeg is one kind of seasoning), not antonyms",
+   "memorization is to recitation": "relation it instantiates instead: preparation/act (memorization is done to prepare for a recitation), not antonyms",
+   "calculator is to computing": "relation it instantiates instead: tool/function (a calculator is used for computing), not antonyms"
+  },
+  "near_miss": {
+   "option": "fist is to solidarity",
+   "why": "A loose reader takes the stem as 'a hostile word set against a friendly one' and accepts fist : solidarity, since a fist looks aggressive and solidarity is a warm, cooperative idea. Precisely, enmity and goodwill are opposites, while a raised fist stands for solidarity; the two are linked by symbolism, not opposed in meaning."
+  }
+ },
+ {
+  "id": "SVA19-27",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] studying is to exam as",
+  "choices": [
+   "shellfish is to lobster",
+   "blizzard is to snowdrift",
+   "veil is to chiffon",
+   "ribbon is to awareness",
+   "warmup is to marathon"
+  ],
+  "correct_answer": "warmup is to marathon",
+  "stem_relation": "preparation/act",
+  "option_relations": [
+   "category/instance",
+   "cause/effect",
+   "object/material",
+   "symbol/symbolized",
+   "preparation/act"
+  ],
+  "explanation": "Relation: preparation/act. Just as studying is done to prepare for an exam, a warmup is done to prepare for a marathon.",
+  "distractor_rationales": {
+   "shellfish is to lobster": "relation it instantiates instead: category/instance (a lobster is one kind of shellfish), not preparation/act",
+   "blizzard is to snowdrift": "relation it instantiates instead: cause/effect (a blizzard causes snowdrifts), not preparation/act",
+   "veil is to chiffon": "relation it instantiates instead: object/material (a veil is made of chiffon), not preparation/act",
+   "ribbon is to awareness": "relation it instantiates instead: symbol/symbolized (a looped ribbon is a conventional symbol of awareness for a cause), not preparation/act"
+  },
+  "near_miss": {
+   "option": "blizzard is to snowdrift",
+   "why": "A loose reader takes the stem as 'one thing comes first and the other follows' and accepts blizzard : snowdrift, since the snowdrift comes after the blizzard. Precisely, studying is something a person does on purpose to get ready for an exam; a blizzard does not prepare for a snowdrift, it causes one."
+  }
+ },
+ {
+  "id": "SVA19-28",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] wetsuit is to neoprene as",
+  "choices": [
+   "shoebox is to cardboard",
+   "aversion is to hatred",
+   "outcast is to acceptance",
+   "dicing is to frying",
+   "highlighter is to marking"
+  ],
+  "correct_answer": "shoebox is to cardboard",
+  "stem_relation": "object/material",
+  "option_relations": [
+   "object/material",
+   "degree",
+   "lack",
+   "preparation/act",
+   "tool/function"
+  ],
+  "explanation": "Relation: object/material. Just as a wetsuit is made of neoprene, a shoebox is made of cardboard.",
+  "distractor_rationales": {
+   "aversion is to hatred": "relation it instantiates instead: degree (aversion is a milder degree of hatred), not object/material",
+   "outcast is to acceptance": "relation it instantiates instead: lack (an outcast is one who lacks acceptance), not object/material",
+   "dicing is to frying": "relation it instantiates instead: preparation/act (vegetables are diced to prepare them for frying), not object/material",
+   "highlighter is to marking": "relation it instantiates instead: tool/function (a highlighter is used for marking text), not object/material"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-29",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] humidifier is to moistening as",
+  "choices": [
+   "defroster is to thawing",
+   "obedience is to defiance",
+   "woodshed is to firewood",
+   "bathrobe is to terrycloth",
+   "lotus is to rebirth"
+  ],
+  "correct_answer": "defroster is to thawing",
+  "stem_relation": "tool/function",
+  "option_relations": [
+   "tool/function",
+   "antonyms",
+   "container/contents",
+   "object/material",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: tool/function. Just as a humidifier is used for moistening the air, a defroster is used for thawing an icy windshield.",
+  "distractor_rationales": {
+   "obedience is to defiance": "relation it instantiates instead: antonyms (obedience is the opposite of defiance), not tool/function",
+   "woodshed is to firewood": "relation it instantiates instead: container/contents (a woodshed holds firewood), not tool/function",
+   "bathrobe is to terrycloth": "relation it instantiates instead: object/material (a bathrobe is made of terrycloth), not tool/function",
+   "lotus is to rebirth": "relation it instantiates instead: symbol/symbolized (the lotus is a traditional symbol of rebirth), not tool/function"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-30",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] teacher is to schoolhouse as",
+  "choices": [
+   "lavishness is to stinginess",
+   "bartender is to shaker",
+   "flurry is to snowstorm",
+   "lawmaker is to capitol",
+   "drywall is to gypsum"
+  ],
+  "correct_answer": "lawmaker is to capitol",
+  "stem_relation": "worker/workplace",
+  "option_relations": [
+   "antonyms",
+   "worker/tool",
+   "degree",
+   "worker/workplace",
+   "object/material"
+  ],
+  "explanation": "Relation: worker/workplace. Just as a teacher works in a schoolhouse, a lawmaker works in the capitol.",
+  "distractor_rationales": {
+   "lavishness is to stinginess": "relation it instantiates instead: antonyms (lavishness is the opposite of stinginess), not worker/workplace",
+   "bartender is to shaker": "relation it instantiates instead: worker/tool (a bartender works with a shaker as a tool), not worker/workplace",
+   "flurry is to snowstorm": "relation it instantiates instead: degree (a flurry is a lesser degree of a snowstorm), not worker/workplace",
+   "drywall is to gypsum": "relation it instantiates instead: object/material (drywall is made of gypsum), not worker/workplace"
+  },
+  "near_miss": {
+   "option": "bartender is to shaker",
+   "why": "A loose reader takes the stem as 'a worker and a thing tied to the job' and accepts bartender : shaker. Precisely, a schoolhouse is the place where a teacher works, while a shaker is a tool a bartender works with, not the place where the bartender works."
+  }
+ },
+ {
+  "id": "SVA19-31",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] chest is to treasure as",
+  "choices": [
+   "canister is to coffee",
+   "cell is to honeycomb",
+   "sniffle is to sob",
+   "brink is to verge",
+   "tinsmith is to snips"
+  ],
+  "correct_answer": "canister is to coffee",
+  "stem_relation": "container/contents",
+  "option_relations": [
+   "container/contents",
+   "part/whole",
+   "degree",
+   "synonyms",
+   "worker/tool"
+  ],
+  "explanation": "Relation: container/contents. Just as a chest is used to hold treasure, a canister is used to hold coffee.",
+  "distractor_rationales": {
+   "cell is to honeycomb": "relation it instantiates instead: part/whole (a cell is one of the many units that make up a honeycomb), not container/contents",
+   "sniffle is to sob": "relation it instantiates instead: degree (a sniffle is a much milder form of crying than a sob), not container/contents",
+   "brink is to verge": "relation it instantiates instead: synonyms (both mean the very edge of something), not container/contents",
+   "tinsmith is to snips": "relation it instantiates instead: worker/tool (a tinsmith cuts sheet metal with snips), not container/contents"
+  },
+  "near_miss": {
+   "option": "cell is to honeycomb",
+   "why": "A loose reading takes the stem as 'a hollow thing that stores something', and a honeycomb cell does store honey; but in the pair the cell is one part of the honeycomb, not a container that holds the honeycomb the way a chest holds treasure."
+  }
+ },
+ {
+  "id": "SVA19-32",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] pinning is to hemming as",
+  "choices": [
+   "chemist is to laboratory",
+   "scouting is to attacking",
+   "pestle is to grinding",
+   "wariness is to paranoia",
+   "chandler is to tapers"
+  ],
+  "correct_answer": "scouting is to attacking",
+  "stem_relation": "preparation/act",
+  "option_relations": [
+   "worker/workplace",
+   "preparation/act",
+   "tool/function",
+   "degree",
+   "creator/creation"
+  ],
+  "explanation": "Relation: preparation/act. Just as fabric is pinned in place to prepare for hemming it, an area is scouted to prepare for attacking it.",
+  "distractor_rationales": {
+   "chemist is to laboratory": "relation it instantiates instead: worker/workplace (a chemist works in a laboratory), not preparation/act",
+   "pestle is to grinding": "relation it instantiates instead: tool/function (a pestle is used for grinding), not preparation/act",
+   "wariness is to paranoia": "relation it instantiates instead: degree (paranoia is an extreme, unreasonable form of wariness), not preparation/act",
+   "chandler is to tapers": "relation it instantiates instead: creator/creation (a chandler makes candles such as tapers), not preparation/act"
+  },
+  "near_miss": {
+   "option": "pestle is to grinding",
+   "why": "A loose reading takes the stem as 'x is what you need in order to do y', and a pestle is needed for grinding; but pinning is an earlier step done to get ready for hemming, while a pestle is the object that does the grinding itself, so the pair is tool/function, not preparation/act."
+  }
+ },
+ {
+  "id": "SVA19-33",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] matador is to bullring as",
+  "choices": [
+   "bunker is to coal",
+   "diadem is to royalty",
+   "gist is to essence",
+   "dockworker is to wharf",
+   "manicurist is to file"
+  ],
+  "correct_answer": "dockworker is to wharf",
+  "stem_relation": "worker/workplace",
+  "option_relations": [
+   "container/contents",
+   "symbol/symbolized",
+   "synonyms",
+   "worker/workplace",
+   "worker/tool"
+  ],
+  "explanation": "Relation: worker/workplace. Just as a matador works in a bullring, a dockworker works on a wharf.",
+  "distractor_rationales": {
+   "bunker is to coal": "relation it instantiates instead: container/contents (a coal bunker is a large bin that stores coal), not worker/workplace",
+   "diadem is to royalty": "relation it instantiates instead: symbol/symbolized (a diadem, a jewelled crown, stands for royalty), not worker/workplace",
+   "gist is to essence": "relation it instantiates instead: synonyms (both mean the central point of something), not worker/workplace",
+   "manicurist is to file": "relation it instantiates instead: worker/tool (a manicurist shapes nails with a file), not worker/workplace"
+  },
+  "near_miss": {
+   "option": "manicurist is to file",
+   "why": "A loose reading takes the stem as 'a worker and something tied to the job', which a manicurist and a nail file also are; but a bullring is the place where a matador works, while a file is an implement a manicurist works with, so the pair is worker/tool, not worker/workplace."
+  }
+ },
+ {
+  "id": "SVA19-34",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] shrub is to azalea as",
+  "choices": [
+   "bacteria is to spoilage",
+   "sterilizing is to operating",
+   "orb is to kingship",
+   "trait is to attribute",
+   "warship is to frigate"
+  ],
+  "correct_answer": "warship is to frigate",
+  "stem_relation": "category/instance",
+  "option_relations": [
+   "cause/effect",
+   "preparation/act",
+   "symbol/symbolized",
+   "synonyms",
+   "category/instance"
+  ],
+  "explanation": "Relation: category/instance. Just as an azalea is one kind of shrub, a frigate is one kind of warship.",
+  "distractor_rationales": {
+   "bacteria is to spoilage": "relation it instantiates instead: cause/effect (bacteria cause food to spoil), not category/instance",
+   "sterilizing is to operating": "relation it instantiates instead: preparation/act (instruments are sterilized to prepare for operating), not category/instance",
+   "orb is to kingship": "relation it instantiates instead: symbol/symbolized (the jewelled orb a monarch holds stands for kingship); a careless reader takes it as 'one royal item within the larger idea of kingship', but an orb is not a kind of kingship, not category/instance",
+   "trait is to attribute": "relation it instantiates instead: synonyms (both mean a distinguishing quality), not category/instance"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-35",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] yeast is to fermentation as",
+  "choices": [
+   "headgear is to turban",
+   "parasite is to malaria",
+   "invertebrate is to backbone",
+   "hacienda is to adobe",
+   "saddling is to mounting"
+  ],
+  "correct_answer": "parasite is to malaria",
+  "stem_relation": "cause/effect",
+  "option_relations": [
+   "category/instance",
+   "cause/effect",
+   "lack",
+   "object/material",
+   "preparation/act"
+  ],
+  "explanation": "Relation: cause/effect. Just as yeast causes fermentation, a parasite causes malaria.",
+  "distractor_rationales": {
+   "headgear is to turban": "relation it instantiates instead: category/instance (a turban is one kind of headgear), not cause/effect",
+   "invertebrate is to backbone": "relation it instantiates instead: lack (an invertebrate is an animal without a backbone), not cause/effect",
+   "hacienda is to adobe": "relation it instantiates instead: object/material (a hacienda is a house typically built of adobe brick), not cause/effect",
+   "saddling is to mounting": "relation it instantiates instead: preparation/act (a horse is saddled to get it ready for mounting), not cause/effect"
+  },
+  "near_miss": {
+   "option": "saddling is to mounting",
+   "why": "A loose reading takes the stem as 'x comes first and y follows', and saddling a horse does come before mounting it; but yeast actually brings about fermentation, while saddling only gets the horse ready and does not make anyone mount, so the pair is preparation/act, not cause/effect."
+  }
+ },
+ {
+  "id": "SVA19-36",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] ascetic is to luxury as",
+  "choices": [
+   "cabinetmaker is to bureau",
+   "placebo is to medication",
+   "crock is to earthenware",
+   "lily is to innocence",
+   "deckhand is to swab"
+  ],
+  "correct_answer": "placebo is to medication",
+  "stem_relation": "lack",
+  "option_relations": [
+   "creator/creation",
+   "lack",
+   "object/material",
+   "symbol/symbolized",
+   "worker/tool"
+  ],
+  "explanation": "Relation: lack. Just as an ascetic lives without luxury, a placebo is a pill that contains no actual medication.",
+  "distractor_rationales": {
+   "cabinetmaker is to bureau": "relation it instantiates instead: creator/creation (a cabinetmaker builds furniture such as a bureau), not lack",
+   "crock is to earthenware": "relation it instantiates instead: object/material (a crock is a pot made of earthenware), not lack",
+   "lily is to innocence": "relation it instantiates instead: symbol/symbolized (the white lily is a traditional emblem of innocence), not lack",
+   "deckhand is to swab": "relation it instantiates instead: worker/tool (a deckhand cleans the deck with a swab), not lack"
+  },
+  "near_miss": {
+   "option": "lily is to innocence",
+   "why": "A loose reading takes the stem as 'x is defined by its tie to the idea y', and a lily is closely tied to innocence; but an ascetic is marked by having NO luxury, while a lily does not lack innocence, it stands for it, so the pair is symbol/symbolized, not lack."
+  }
+ },
+ {
+  "id": "SVA19-37",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] obstetrician is to forceps as",
+  "choices": [
+   "lethargy is to vitality",
+   "waterfowl is to mallard",
+   "ellipsis is to omission",
+   "glassmaker is to blowpipe",
+   "typesetter is to printshop"
+  ],
+  "correct_answer": "glassmaker is to blowpipe",
+  "stem_relation": "worker/tool",
+  "option_relations": [
+   "antonyms",
+   "category/instance",
+   "symbol/symbolized",
+   "worker/tool",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: worker/tool. Just as an obstetrician uses forceps as a tool in delivering babies, a glassmaker uses a blowpipe as a tool in shaping molten glass.",
+  "distractor_rationales": {
+   "lethargy is to vitality": "relation it instantiates instead: antonyms (lethargy, a lack of energy, is the opposite of vitality), not worker/tool",
+   "waterfowl is to mallard": "relation it instantiates instead: category/instance (a mallard is a kind of waterfowl), not worker/tool",
+   "ellipsis is to omission": "relation it instantiates instead: symbol/symbolized (an ellipsis is the conventional mark showing that words were omitted), not worker/tool",
+   "typesetter is to printshop": "relation it instantiates instead: worker/workplace (a typesetter works in a printshop; the printshop is where the work happens, not an implement held to do it), not worker/tool"
+  },
+  "near_miss": {
+   "option": "typesetter is to printshop",
+   "why": "A loose reading of the stem as 'a professional and a thing that goes with the job' accepts a typesetter and his printshop. Precisely, forceps are an implement the obstetrician handles to do the work; a printshop is the place where the typesetter works, not a tool, so the relation is worker/workplace."
+  }
+ },
+ {
+  "id": "SVA19-38",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] nave is to basilica as",
+  "choices": [
+   "evergreen is to spruce",
+   "eyelet is to sneaker",
+   "jaunt is to odyssey",
+   "wasteland is to vegetation",
+   "croupier is to casino"
+  ],
+  "correct_answer": "eyelet is to sneaker",
+  "stem_relation": "part/whole",
+  "option_relations": [
+   "category/instance",
+   "part/whole",
+   "degree",
+   "lack",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: part/whole. Just as the nave is a part of a basilica, an eyelet is a part of a sneaker.",
+  "distractor_rationales": {
+   "evergreen is to spruce": "relation it instantiates instead: category/instance (a spruce is one kind of evergreen), not part/whole",
+   "jaunt is to odyssey": "relation it instantiates instead: degree (a jaunt is a short pleasure trip, an odyssey a long, eventful journey), not part/whole",
+   "wasteland is to vegetation": "relation it instantiates instead: lack (a wasteland is characterised by having no vegetation), not part/whole",
+   "croupier is to casino": "relation it instantiates instead: worker/workplace (a croupier works at a casino), not part/whole"
+  },
+  "near_miss": {
+   "option": "evergreen is to spruce",
+   "why": "A loose reading of the stem as 'one thing is included in the other' accepts evergreen and spruce, since a spruce belongs among the evergreens. Precisely, a nave is a physical section of a basilica (part of a whole), while a spruce is not a piece of an evergreen but a kind of one, and the larger term comes first: category/instance."
+  }
+ },
+ {
+  "id": "SVA19-39",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] hubbub is to bedlam as",
+  "choices": [
+   "seabird is to pelican",
+   "doormat is to jute",
+   "gaffe is to debacle",
+   "caret is to insertion",
+   "abacus is to computation"
+  ],
+  "correct_answer": "gaffe is to debacle",
+  "stem_relation": "degree",
+  "option_relations": [
+   "category/instance",
+   "object/material",
+   "degree",
+   "symbol/symbolized",
+   "tool/function"
+  ],
+  "explanation": "Relation: degree. Just as a hubbub is a lesser degree of bedlam (noisy confusion, mild to extreme), a gaffe is a lesser degree of a debacle (a failure, minor to complete).",
+  "distractor_rationales": {
+   "seabird is to pelican": "relation it instantiates instead: category/instance (a pelican is a kind of seabird), not degree",
+   "doormat is to jute": "relation it instantiates instead: object/material (a doormat can be made of jute), not degree",
+   "caret is to insertion": "relation it instantiates instead: symbol/symbolized (a caret is the proofreading mark that stands for an insertion), not degree",
+   "abacus is to computation": "relation it instantiates instead: tool/function (an abacus is used for computation), not degree"
+  },
+  "near_miss": {
+   "option": "caret is to insertion",
+   "why": "A loose reading of the stem as 'the first word points toward the second' accepts caret and insertion, since a caret signals that an insertion belongs there. Precisely, bedlam is a greater degree of the same thing as hubbub (noisy confusion); a caret is not a smaller insertion but a conventional mark standing for one: symbol/symbolized."
+  }
+ },
+ {
+  "id": "SVA19-40",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] albino is to pigment as",
+  "choices": [
+   "blight is to wilting",
+   "smattering is to fluency",
+   "technician is to multimeter",
+   "zookeeper is to menagerie",
+   "monotone is to variation"
+  ],
+  "correct_answer": "monotone is to variation",
+  "stem_relation": "lack",
+  "option_relations": [
+   "cause/effect",
+   "degree",
+   "worker/tool",
+   "worker/workplace",
+   "lack"
+  ],
+  "explanation": "Relation: lack. Just as an albino is characterised by having no pigment, a monotone is characterised by having no variation.",
+  "distractor_rationales": {
+   "blight is to wilting": "relation it instantiates instead: cause/effect (blight causes plants to wilt), not lack",
+   "smattering is to fluency": "relation it instantiates instead: degree (a smattering of a language is a slight degree of what fluency is in full), not lack",
+   "technician is to multimeter": "relation it instantiates instead: worker/tool (a technician works with a multimeter), not lack",
+   "zookeeper is to menagerie": "relation it instantiates instead: worker/workplace (a zookeeper works in a menagerie), not lack"
+  },
+  "near_miss": {
+   "option": "smattering is to fluency",
+   "why": "A loose reading of the stem as 'the first has little of the second' accepts smattering and fluency, since a smattering is far short of fluency. Precisely, an albino has NO pigment at all; a smattering is not the absence of fluency but a lesser degree of the same command of a language: degree, not lack."
+  }
+ },
+ {
+  "id": "SVA19-41",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] riveter is to shipyard as",
+  "choices": [
+   "nicotine is to addiction",
+   "jab is to wallop",
+   "harnessing is to sledding",
+   "waiter is to bistro",
+   "clamor is to racket"
+  ],
+  "correct_answer": "waiter is to bistro",
+  "stem_relation": "worker/workplace",
+  "option_relations": [
+   "cause/effect",
+   "degree",
+   "preparation/act",
+   "worker/workplace",
+   "synonyms"
+  ],
+  "explanation": "Relation: worker/workplace. Just as a riveter works in a shipyard, a waiter works in a bistro.",
+  "distractor_rationales": {
+   "nicotine is to addiction": "relation it instantiates instead: cause/effect (nicotine causes addiction), not worker/workplace",
+   "jab is to wallop": "relation it instantiates instead: degree (a jab is a light quick blow, a wallop a heavy one), not worker/workplace",
+   "harnessing is to sledding": "relation it instantiates instead: preparation/act (the dogs are harnessed to prepare for sledding), not worker/workplace",
+   "clamor is to racket": "relation it instantiates instead: synonyms (clamor and racket both mean loud noise), not worker/workplace"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-42",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] spackling is to wallpapering as",
+  "choices": [
+   "countdown is to blastoff",
+   "excess is to deficit",
+   "perfumer is to cologne",
+   "veneration is to idolatry",
+   "sheepshearer is to clippers"
+  ],
+  "correct_answer": "countdown is to blastoff",
+  "stem_relation": "preparation/act",
+  "option_relations": [
+   "preparation/act",
+   "antonyms",
+   "creator/creation",
+   "degree",
+   "worker/tool"
+  ],
+  "explanation": "Relation: preparation/act. Just as spackling a wall is done to prepare it for wallpapering, a countdown is carried out to prepare for blastoff.",
+  "distractor_rationales": {
+   "excess is to deficit": "relation it instantiates instead: antonyms (an excess is too much, a deficit too little), not preparation/act",
+   "perfumer is to cologne": "relation it instantiates instead: creator/creation (a perfumer makes cologne), not preparation/act",
+   "veneration is to idolatry": "relation it instantiates instead: degree (veneration is deep respect, idolatry the extreme of worship), not preparation/act",
+   "sheepshearer is to clippers": "relation it instantiates instead: worker/tool (a sheepshearer works with clippers), not preparation/act"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-43",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] overgrazing is to desertification as",
+  "choices": [
+   "influx is to exodus",
+   "anesthesia is to sensation",
+   "carbonation is to fizz",
+   "loupe is to magnification",
+   "quarryman is to sledgehammer"
+  ],
+  "correct_answer": "carbonation is to fizz",
+  "stem_relation": "cause/effect",
+  "option_relations": [
+   "antonyms",
+   "lack",
+   "cause/effect",
+   "tool/function",
+   "worker/tool"
+  ],
+  "explanation": "Relation: cause/effect. Just as overgrazing causes desertification, carbonation causes fizz.",
+  "distractor_rationales": {
+   "influx is to exodus": "relation it instantiates instead: antonyms (a flowing in versus a mass departure), not cause/effect",
+   "anesthesia is to sensation": "relation it instantiates instead: lack (anesthesia is the state of having no sensation), not cause/effect",
+   "loupe is to magnification": "relation it instantiates instead: tool/function (a jeweler's loupe is used for magnification), not cause/effect",
+   "quarryman is to sledgehammer": "relation it instantiates instead: worker/tool (a quarryman works with a sledgehammer), not cause/effect"
+  },
+  "near_miss": {
+   "option": "loupe is to magnification",
+   "why": "Read loosely as 'the first thing brings about the second', a loupe seems to produce magnification the way overgrazing produces desertification. But a loupe is a tool someone picks up in order to magnify; magnification is the job it is used for, not a result that follows from a process. That is tool/function, not cause/effect."
+  }
+ },
+ {
+  "id": "SVA19-44",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] tycoon is to magnate as",
+  "choices": [
+   "matrimony is to wedlock",
+   "deafness is to hearing",
+   "hardwood is to mahogany",
+   "prow is to schooner",
+   "reconnaissance is to ambush"
+  ],
+  "correct_answer": "matrimony is to wedlock",
+  "stem_relation": "synonyms",
+  "option_relations": [
+   "synonyms",
+   "lack",
+   "category/instance",
+   "part/whole",
+   "preparation/act"
+  ],
+  "explanation": "Relation: synonyms. Just as a tycoon and a magnate are the same thing (a wealthy, powerful businessperson), matrimony and wedlock both mean marriage.",
+  "distractor_rationales": {
+   "deafness is to hearing": "relation it instantiates instead: lack (deafness is the absence of hearing), not synonyms",
+   "hardwood is to mahogany": "relation it instantiates instead: category/instance (mahogany is a kind of hardwood), not synonyms",
+   "prow is to schooner": "relation it instantiates instead: part/whole (the prow is the front part of a schooner), not synonyms",
+   "reconnaissance is to ambush": "relation it instantiates instead: preparation/act (scouting the ground is done to prepare for an ambush), not synonyms"
+  },
+  "near_miss": {
+   "option": "deafness is to hearing",
+   "why": "Read loosely as 'two words about the very same idea', deafness and hearing seem as closely bound as tycoon and magnate. But tycoon and magnate mean the same thing, while deafness is the condition of having NO hearing; the second word names what the first is missing. That is lack, not synonyms."
+  }
+ },
+ {
+  "id": "SVA19-45",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] briefcase is to dossiers as",
+  "choices": [
+   "swordsmith is to cutlass",
+   "pillbox is to tablets",
+   "gondola is to airship",
+   "turmoil is to upheaval",
+   "glazier is to glasscutter"
+  ],
+  "correct_answer": "pillbox is to tablets",
+  "stem_relation": "container/contents",
+  "option_relations": [
+   "creator/creation",
+   "container/contents",
+   "part/whole",
+   "synonyms",
+   "worker/tool"
+  ],
+  "explanation": "Relation: container/contents. Just as a briefcase holds dossiers, a pillbox holds tablets.",
+  "distractor_rationales": {
+   "swordsmith is to cutlass": "relation it instantiates instead: creator/creation (a swordsmith forges the cutlass), not container/contents",
+   "gondola is to airship": "relation it instantiates instead: part/whole (the gondola is the cabin that forms part of an airship), not container/contents",
+   "turmoil is to upheaval": "relation it instantiates instead: synonyms (both mean great disorder), not container/contents",
+   "glazier is to glasscutter": "relation it instantiates instead: worker/tool (a glazier works with a glasscutter to cut panes), not container/contents"
+  },
+  "near_miss": {
+   "option": "gondola is to airship",
+   "why": "Read loosely as 'a compartment and the thing it goes with', a gondola (the cabin slung under an airship) seems to match a briefcase and its dossiers. But a briefcase holds the dossiers, while the gondola does not hold the airship; it is one piece of the airship. That is part/whole, not container/contents."
+  }
+ },
+ {
+  "id": "SVA19-46",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] lacemaker is to bobbin as",
+  "choices": [
+   "clemency is to severity",
+   "coffer is to doubloons",
+   "printmaker is to lithograph",
+   "lintel is to doorway",
+   "alchemist is to crucible"
+  ],
+  "correct_answer": "alchemist is to crucible",
+  "stem_relation": "worker/tool",
+  "option_relations": [
+   "antonyms",
+   "container/contents",
+   "creator/creation",
+   "part/whole",
+   "worker/tool"
+  ],
+  "explanation": "Relation: worker/tool. Just as a lacemaker works with a bobbin to handle thread, an alchemist works with a crucible to heat and melt substances.",
+  "distractor_rationales": {
+   "clemency is to severity": "relation it instantiates instead: antonyms (mercy versus harshness), not worker/tool",
+   "coffer is to doubloons": "relation it instantiates instead: container/contents (a coffer holds gold coins such as doubloons), not worker/tool",
+   "printmaker is to lithograph": "relation it instantiates instead: creator/creation (a printmaker produces the lithograph), not worker/tool",
+   "lintel is to doorway": "relation it instantiates instead: part/whole (the lintel is the beam across the top of a doorway), not worker/tool"
+  },
+  "near_miss": {
+   "option": "printmaker is to lithograph",
+   "why": "Read loosely as 'a craftsman and an object from his trade', a printmaker and a lithograph seem to match a lacemaker and a bobbin. But a lacemaker works WITH bobbins as tools to wind and cross the threads, while a printmaker MAKES the lithograph; the lithograph is the product, not the instrument. That is creator/creation, not worker/tool."
+  }
+ },
+ {
+  "id": "SVA19-47",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] chimney is to farmhouse as",
+  "choices": [
+   "combustion is to soot",
+   "admiration is to adulation",
+   "addressing is to mailing",
+   "mouthpiece is to bugle",
+   "snooze is to nap"
+  ],
+  "correct_answer": "mouthpiece is to bugle",
+  "stem_relation": "part/whole",
+  "option_relations": [
+   "cause/effect",
+   "degree",
+   "preparation/act",
+   "part/whole",
+   "synonyms"
+  ],
+  "explanation": "Relation: part/whole. Just as a chimney is a part of a farmhouse, a mouthpiece is a part of a bugle.",
+  "distractor_rationales": {
+   "combustion is to soot": "relation it instantiates instead: cause/effect (burning produces soot), not part/whole",
+   "admiration is to adulation": "relation it instantiates instead: degree (adulation is admiration carried to an extreme), not part/whole",
+   "addressing is to mailing": "relation it instantiates instead: preparation/act (an envelope is addressed to get it ready for mailing; addressing is a step done beforehand, not a physical piece of anything), not part/whole",
+   "snooze is to nap": "relation it instantiates instead: synonyms (both mean a short, light sleep), not part/whole"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-48",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] guacamole is to avocado as",
+  "choices": [
+   "arrowhead is to flint",
+   "manger is to hay",
+   "ancestor is to descendant",
+   "stenographer is to transcript",
+   "phoenix is to immortality"
+  ],
+  "correct_answer": "arrowhead is to flint",
+  "stem_relation": "object/material",
+  "option_relations": [
+   "object/material",
+   "container/contents",
+   "antonyms",
+   "creator/creation",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: object/material. Just as guacamole is made of avocado, an arrowhead is made of flint.",
+  "distractor_rationales": {
+   "manger is to hay": "relation it instantiates instead: container/contents (a manger holds hay; it is not made of it), not object/material",
+   "ancestor is to descendant": "relation it instantiates instead: antonyms (one comes before in a family line, the other after), not object/material",
+   "phoenix is to immortality": "relation it instantiates instead: symbol/symbolized (the phoenix is a traditional symbol of immortality), not object/material",
+   "stenographer is to transcript": "relation it instantiates instead: creator/creation (a court stenographer produces the transcript), not object/material"
+  },
+  "near_miss": {
+   "option": "manger is to hay",
+   "why": "Read loosely as 'a thing and the stuff that goes with it', a manger full of hay seems to match guacamole and its avocado. But guacamole is made of avocado, while a manger is only a trough that holds hay; it is built of wood or stone, not hay. That is container/contents, not object/material."
+  }
+ },
+ {
+  "id": "SVA19-49",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] crustacean is to shrimp as",
+  "choices": [
+   "fright is to goosebumps",
+   "pullover is to cashmere",
+   "mist is to fog",
+   "incubator is to hatching",
+   "cheese is to gouda"
+  ],
+  "correct_answer": "cheese is to gouda",
+  "stem_relation": "category/instance",
+  "option_relations": [
+   "cause/effect",
+   "object/material",
+   "degree",
+   "tool/function",
+   "category/instance"
+  ],
+  "explanation": "Relation: category/instance. Just as a shrimp is one kind of crustacean, gouda is one kind of cheese.",
+  "distractor_rationales": {
+   "fright is to goosebumps": "relation it instantiates instead: cause/effect (a fright causes goosebumps), not category/instance",
+   "pullover is to cashmere": "relation it instantiates instead: object/material (a pullover can be made of cashmere), not category/instance",
+   "mist is to fog": "relation it instantiates instead: degree (mist is a thinner, lighter fog), not category/instance",
+   "incubator is to hatching": "relation it instantiates instead: tool/function (an incubator is used for hatching eggs), not category/instance"
+  },
+  "near_miss": {
+   "option": "pullover is to cashmere",
+   "why": "Read loosely as 'a general thing and a particular kind of it' (a cashmere pullover is one particular kind of pullover), pullover/cashmere seems to fit like crustacean/shrimp. Precisely, a shrimp IS a crustacean (a member of the category), whereas cashmere is not a pullover at all; it is the wool a pullover can be made of (object : material)."
+  }
+ },
+ {
+  "id": "SVA19-50",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] allergen is to congestion as",
+  "choices": [
+   "humidor is to cigars",
+   "obstacle is to impediment",
+   "bullet is to lead",
+   "throne is to power",
+   "vibration is to rattling"
+  ],
+  "correct_answer": "vibration is to rattling",
+  "stem_relation": "cause/effect",
+  "option_relations": [
+   "container/contents",
+   "synonyms",
+   "object/material",
+   "symbol/symbolized",
+   "cause/effect"
+  ],
+  "explanation": "Relation: cause/effect. Just as an allergen causes congestion in the nose, vibration causes rattling in a machine or car.",
+  "distractor_rationales": {
+   "humidor is to cigars": "relation it instantiates instead: container/contents (a humidor is a box that holds cigars), not cause/effect",
+   "obstacle is to impediment": "relation it instantiates instead: synonyms (both mean something that blocks progress), not cause/effect",
+   "bullet is to lead": "relation it instantiates instead: object/material (a bullet is made of lead), not cause/effect",
+   "throne is to power": "relation it instantiates instead: symbol/symbolized (a monarch's throne stands for royal power), not cause/effect"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-51",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] boatbuilder is to canoe as",
+  "choices": [
+   "gunsmith is to musket",
+   "dribble is to gush",
+   "journalist is to typewriter",
+   "cage is to finch",
+   "cross is to faith"
+  ],
+  "correct_answer": "gunsmith is to musket",
+  "stem_relation": "creator/creation",
+  "option_relations": [
+   "creator/creation",
+   "degree",
+   "worker/tool",
+   "container/contents",
+   "symbol/symbolized"
+  ],
+  "explanation": "Relation: creator/creation. Just as a boatbuilder makes a canoe, a gunsmith makes a musket.",
+  "distractor_rationales": {
+   "dribble is to gush": "relation it instantiates instead: degree (a dribble is a much weaker flow than a gush), not creator/creation",
+   "journalist is to typewriter": "relation it instantiates instead: worker/tool (a journalist writes with a typewriter), not creator/creation",
+   "cage is to finch": "relation it instantiates instead: container/contents (a cage holds a pet finch), not creator/creation",
+   "cross is to faith": "relation it instantiates instead: symbol/symbolized (a cross stands for Christian faith), not creator/creation"
+  },
+  "near_miss": {
+   "option": "journalist is to typewriter",
+   "why": "Read loosely as 'a craftsperson and the object tied to the craft', a journalist and a typewriter seem to fit, but a boatbuilder actually makes the canoe; a journalist does not make the typewriter, only works with it as a tool."
+  }
+ },
+ {
+  "id": "SVA19-52",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] lout is to civility as",
+  "choices": [
+   "ringmaster is to circus",
+   "portfolio is to drawings",
+   "klutz is to coordination",
+   "leotard is to spandex",
+   "hairdresser is to curlers"
+  ],
+  "correct_answer": "klutz is to coordination",
+  "stem_relation": "lack",
+  "option_relations": [
+   "worker/workplace",
+   "container/contents",
+   "lack",
+   "object/material",
+   "worker/tool"
+  ],
+  "explanation": "Relation: lack. Just as a lout is a person defined by having no civility, a klutz is a person defined by having no coordination.",
+  "distractor_rationales": {
+   "ringmaster is to circus": "relation it instantiates instead: worker/workplace (a ringmaster works at the circus), not lack",
+   "portfolio is to drawings": "relation it instantiates instead: container/contents (an artist's portfolio holds drawings), not lack",
+   "leotard is to spandex": "relation it instantiates instead: object/material (a leotard is made of spandex), not lack",
+   "hairdresser is to curlers": "relation it instantiates instead: worker/tool (a hairdresser styles hair with curlers), not lack"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-53",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] washboard is to laundering as",
+  "choices": [
+   "preheating is to searing",
+   "camaraderie is to fellowship",
+   "lever is to prying",
+   "gas is to helium",
+   "pleasure is to elation"
+  ],
+  "correct_answer": "lever is to prying",
+  "stem_relation": "tool/function",
+  "option_relations": [
+   "preparation/act",
+   "synonyms",
+   "tool/function",
+   "category/instance",
+   "degree"
+  ],
+  "explanation": "Relation: tool/function. Just as a washboard is a tool used for laundering clothes, a lever is a tool used for prying.",
+  "distractor_rationales": {
+   "preheating is to searing": "relation it instantiates instead: preparation/act (a pan is preheated to prepare for searing meat), not tool/function",
+   "camaraderie is to fellowship": "relation it instantiates instead: synonyms (both mean friendly companionship within a group), not tool/function",
+   "pleasure is to elation": "relation it instantiates instead: degree (elation is a far stronger form of pleasure), not tool/function",
+   "gas is to helium": "relation it instantiates instead: category/instance (helium is one kind of gas), not tool/function"
+  },
+  "near_miss": {
+   "option": "preheating is to searing",
+   "why": "Read loosely as 'the first is for the second', preheating seems to fit, since it serves the searing. But a washboard is an implement whose use is laundering; preheating is not a tool used to do searing, it is a step done beforehand to prepare the pan for it."
+  }
+ },
+ {
+  "id": "SVA19-54",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] ankh is to life as",
+  "choices": [
+   "blade is to fan",
+   "wigwam is to bark",
+   "shackles is to slavery",
+   "puppeteer is to marionette",
+   "vicar is to parish"
+  ],
+  "correct_answer": "shackles is to slavery",
+  "stem_relation": "symbol/symbolized",
+  "option_relations": [
+   "part/whole",
+   "object/material",
+   "symbol/symbolized",
+   "worker/tool",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: symbol/symbolized. Just as the ancient Egyptian ankh is a conventional symbol of life, shackles are a conventional symbol of slavery.",
+  "distractor_rationales": {
+   "blade is to fan": "relation it instantiates instead: part/whole (a blade is one part of a fan), not symbol/symbolized",
+   "wigwam is to bark": "relation it instantiates instead: object/material (a wigwam is built of bark), not symbol/symbolized",
+   "puppeteer is to marionette": "relation it instantiates instead: worker/tool (a puppeteer works the marionette by its strings), not symbol/symbolized",
+   "vicar is to parish": "relation it instantiates instead: worker/workplace (a vicar serves in a parish), not symbol/symbolized"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-55",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] crevice is to chasm as",
+  "choices": [
+   "speechwriter is to oration",
+   "dud is to detonation",
+   "anxiety is to hysteria",
+   "twine is to hemp",
+   "gamekeeper is to estate"
+  ],
+  "correct_answer": "anxiety is to hysteria",
+  "stem_relation": "degree",
+  "option_relations": [
+   "creator/creation",
+   "lack",
+   "degree",
+   "object/material",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: degree. Just as a crevice is a narrow crack and a chasm is a huge, deep opening, anxiety is a milder form of fear and hysteria is its extreme, uncontrolled form.",
+  "distractor_rationales": {
+   "speechwriter is to oration": "relation it instantiates instead: creator/creation (a speechwriter writes an oration), not degree",
+   "dud is to detonation": "relation it instantiates instead: lack (a dud is a shell or firework that fails to go off: it has no detonation), not degree",
+   "twine is to hemp": "relation it instantiates instead: object/material (twine is made of hemp fiber), not degree",
+   "gamekeeper is to estate": "relation it instantiates instead: worker/workplace (a gamekeeper works on an estate), not degree"
+  },
+  "near_miss": {
+   "option": "dud is to detonation",
+   "why": "Read loosely as 'a weak, small version of something big and forceful', a dud seems to stand to a detonation as a crevice to a chasm. But a crevice is a lesser amount of the same thing a chasm is (both are openings in rock); a dud has no detonation at all, so the relation is lack, not lesser degree."
+  }
+ },
+ {
+  "id": "SVA19-56",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] mathematician is to proof as",
+  "choices": [
+   "palette is to mixing",
+   "designer is to website",
+   "rabbi is to synagogue",
+   "birth is to death",
+   "crouching is to jumping"
+  ],
+  "correct_answer": "designer is to website",
+  "stem_relation": "creator/creation",
+  "option_relations": [
+   "tool/function",
+   "creator/creation",
+   "worker/workplace",
+   "antonyms",
+   "preparation/act"
+  ],
+  "explanation": "Relation: creator/creation. Just as a mathematician produces a proof, a designer produces a website.",
+  "distractor_rationales": {
+   "palette is to mixing": "relation it instantiates instead: tool/function (a palette is used for mixing paints), not creator/creation",
+   "rabbi is to synagogue": "relation it instantiates instead: worker/workplace (a rabbi works in a synagogue), not creator/creation",
+   "birth is to death": "relation it instantiates instead: antonyms (birth and death are opposites), not creator/creation",
+   "crouching is to jumping": "relation it instantiates instead: preparation/act (one crouches to get ready to jump), not creator/creation"
+  },
+  "near_miss": {
+   "option": "rabbi is to synagogue",
+   "why": "Read loosely as 'a person and the thing their job revolves around', a rabbi and a synagogue look like a mathematician and a proof. But a mathematician produces a proof; a rabbi does not make the synagogue, the rabbi works in it, so the relation is worker/workplace, not creator/creation."
+  }
+ },
+ {
+  "id": "SVA19-57",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] breeder is to hybrid as",
+  "choices": [
+   "hue is to magenta",
+   "sexton is to churchyard",
+   "slicker is to oilskin",
+   "copywriter is to slogan",
+   "twitch is to convulsion"
+  ],
+  "correct_answer": "copywriter is to slogan",
+  "stem_relation": "creator/creation",
+  "option_relations": [
+   "category/instance",
+   "worker/workplace",
+   "object/material",
+   "creator/creation",
+   "degree"
+  ],
+  "explanation": "Relation: creator/creation. Just as a breeder produces a hybrid by crossing two varieties, a copywriter produces a slogan.",
+  "distractor_rationales": {
+   "hue is to magenta": "relation it instantiates instead: category/instance (magenta is a hue), not creator/creation",
+   "sexton is to churchyard": "relation it instantiates instead: worker/workplace (a sexton works in a churchyard), not creator/creation",
+   "slicker is to oilskin": "relation it instantiates instead: object/material (a slicker is a raincoat made of oilskin), not creator/creation",
+   "twitch is to convulsion": "relation it instantiates instead: degree (a twitch is a slight involuntary movement, a convulsion a violent one), not creator/creation"
+  },
+  "near_miss": {
+   "option": "sexton is to churchyard",
+   "why": "Read loosely as 'a person and the thing they spend their working days tending', a sexton and a churchyard look like a breeder and a hybrid. But a breeder brings a hybrid into being; a sexton does not create the churchyard, he works in and looks after it, so the relation is worker/workplace, not creator/creation."
+  }
+ },
+ {
+  "id": "SVA19-58",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] jack is to raising as",
+  "choices": [
+   "bivalve is to clam",
+   "feint is to thrust",
+   "filament is to bulb",
+   "clarity is to lucidity",
+   "wedge is to splitting"
+  ],
+  "correct_answer": "wedge is to splitting",
+  "stem_relation": "tool/function",
+  "option_relations": [
+   "category/instance",
+   "preparation/act",
+   "part/whole",
+   "synonyms",
+   "tool/function"
+  ],
+  "explanation": "Relation: tool/function. Just as a jack is a tool used for raising a car, a wedge is a tool used for splitting wood.",
+  "distractor_rationales": {
+   "bivalve is to clam": "relation it instantiates instead: category/instance (a clam is a bivalve), not tool/function",
+   "feint is to thrust": "relation it instantiates instead: preparation/act (a fencer feints to set up the thrust), not tool/function",
+   "filament is to bulb": "relation it instantiates instead: part/whole (a filament is part of a light bulb), not tool/function",
+   "clarity is to lucidity": "relation it instantiates instead: synonyms (clarity and lucidity both mean clearness), not tool/function"
+  },
+  "near_miss": {
+   "option": "feint is to thrust",
+   "why": "Read loosely as 'the first is a means of bringing about the second', a feint looks like a fencer's instrument for a thrust, as a jack is for raising. But a jack is a tool whose own job is raising; a feint is not a tool at all but a deceptive move made first to set up the thrust, so the relation is preparation/act, not tool/function."
+  }
+ },
+ {
+  "id": "SVA19-59",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] pincer is to crab as",
+  "choices": [
+   "mobilization is to invasion",
+   "sash is to satin",
+   "glue is to bonding",
+   "start is to finish",
+   "tread is to staircase"
+  ],
+  "correct_answer": "tread is to staircase",
+  "stem_relation": "part/whole",
+  "option_relations": [
+   "preparation/act",
+   "object/material",
+   "tool/function",
+   "antonyms",
+   "part/whole"
+  ],
+  "explanation": "Relation: part/whole. Just as a pincer is one part of a crab, a tread (the flat surface you step on) is one part of a staircase.",
+  "distractor_rationales": {
+   "mobilization is to invasion": "relation it instantiates instead: preparation/act (an army mobilizes to prepare for an invasion), not part/whole",
+   "sash is to satin": "relation it instantiates instead: object/material (a sash is made of satin), not part/whole",
+   "glue is to bonding": "relation it instantiates instead: tool/function (glue is used for bonding things together), not part/whole",
+   "start is to finish": "relation it instantiates instead: antonyms (start and finish are opposites), not part/whole"
+  },
+  "near_miss": {
+   "option": "sash is to satin",
+   "why": "Read loosely as 'one is what the other is built out of', satin and a sash look like a pincer and a crab. But a pincer is one piece of the crab, a part of a larger whole; satin is not a piece of the sash but the material the whole sash is made of, so the relation is object/material, not part/whole."
+  }
+ },
+ {
+  "id": "SVA19-60",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] shampooing is to haircut as",
+  "choices": [
+   "keepsake is to memento",
+   "spinning is to dizziness",
+   "dovecote is to pigeons",
+   "consent is to refusal",
+   "limbering is to hurdling"
+  ],
+  "correct_answer": "limbering is to hurdling",
+  "stem_relation": "preparation/act",
+  "option_relations": [
+   "synonyms",
+   "cause/effect",
+   "container/contents",
+   "antonyms",
+   "preparation/act"
+  ],
+  "explanation": "Relation: preparation/act. Just as a barber shampoos hair to prepare it for a haircut, an athlete limbers up to prepare for hurdling.",
+  "distractor_rationales": {
+   "keepsake is to memento": "relation it instantiates instead: synonyms (a keepsake and a memento are both objects kept in memory of something), not preparation/act",
+   "spinning is to dizziness": "relation it instantiates instead: cause/effect (spinning causes dizziness), not preparation/act",
+   "dovecote is to pigeons": "relation it instantiates instead: container/contents (a dovecote houses pigeons), not preparation/act",
+   "consent is to refusal": "relation it instantiates instead: antonyms (consent and refusal are opposites), not preparation/act"
+  },
+  "near_miss": {
+   "option": "spinning is to dizziness",
+   "why": "Read loosely as 'the first thing comes before and leads to the second', spinning and dizziness look like shampooing and a haircut. But shampooing is done on purpose to get the hair ready to be cut; spinning is not done to get ready for dizziness, it simply produces it as a result, so the relation is cause/effect, not preparation/act."
+  }
+ },
+ {
+  "id": "SVA19-61",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] poker is to stoking as",
+  "choices": [
+   "megaphone is to amplifying",
+   "sty is to swine",
+   "prototype is to manufacturing",
+   "gibberish is to sense",
+   "valve is to tuba"
+  ],
+  "correct_answer": "megaphone is to amplifying",
+  "stem_relation": "tool/function",
+  "option_relations": [
+   "tool/function",
+   "container/contents",
+   "preparation/act",
+   "lack",
+   "part/whole"
+  ],
+  "explanation": "Relation: tool/function. Just as a poker is a tool used for stoking a fire, a megaphone is a tool used for amplifying a voice.",
+  "distractor_rationales": {
+   "sty is to swine": "relation it instantiates instead: container/contents (a sty holds swine), not tool/function",
+   "prototype is to manufacturing": "relation it instantiates instead: preparation/act (a prototype is built and tested to prepare for manufacturing), not tool/function",
+   "gibberish is to sense": "relation it instantiates instead: lack (gibberish is speech or writing that has no sense), not tool/function",
+   "valve is to tuba": "relation it instantiates instead: part/whole (a valve is part of a tuba), not tool/function"
+  },
+  "near_miss": {
+   "option": "prototype is to manufacturing",
+   "why": "Read loosely as 'the first is something you need in order to carry out the second', a prototype looks like it serves manufacturing the way a poker serves stoking. But a poker is a tool whose own job is stoking a fire; a prototype is not a tool for manufacturing but a trial model built beforehand to get ready for it, so the relation is preparation/act, not tool/function."
+  }
+ },
+ {
+  "id": "SVA19-62",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] lap is to race as",
+  "choices": [
+   "sauce is to pesto",
+   "quake is to aftershock",
+   "veracity is to truth",
+   "foghorn is to warning",
+   "footnote is to thesis"
+  ],
+  "correct_answer": "footnote is to thesis",
+  "stem_relation": "part/whole",
+  "option_relations": [
+   "category/instance",
+   "cause/effect",
+   "synonyms",
+   "tool/function",
+   "part/whole"
+  ],
+  "explanation": "Relation: part/whole. Just as a lap is one part of a race, a footnote is one part of a thesis.",
+  "distractor_rationales": {
+   "sauce is to pesto": "relation it instantiates instead: category/instance (pesto is a kind of sauce), not part/whole",
+   "quake is to aftershock": "relation it instantiates instead: cause/effect (a quake causes an aftershock), not part/whole",
+   "veracity is to truth": "relation it instantiates instead: synonyms (veracity and truth mean the same), not part/whole",
+   "foghorn is to warning": "relation it instantiates instead: tool/function (a foghorn is used for warning ships), not part/whole"
+  },
+  "near_miss": {
+   "option": "sauce is to pesto",
+   "why": "Read loosely as 'one is included in the other', sauce and pesto look like lap and race. But a lap is a piece that a race is built from, while pesto is not a piece of sauce; it is one kind of sauce, a member of the category."
+  }
+ },
+ {
+  "id": "SVA19-63",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] jailer is to dungeon as",
+  "choices": [
+   "unity is to strife",
+   "bard is to epic",
+   "pacifist is to violence",
+   "primate is to chimpanzee",
+   "salesman is to showroom"
+  ],
+  "correct_answer": "salesman is to showroom",
+  "stem_relation": "worker/workplace",
+  "option_relations": [
+   "antonyms",
+   "creator/creation",
+   "lack",
+   "category/instance",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: worker/workplace. Just as a jailer works in a dungeon, a salesman works in a showroom.",
+  "distractor_rationales": {
+   "unity is to strife": "relation it instantiates instead: antonyms (unity is the opposite of strife), not worker/workplace",
+   "bard is to epic": "relation it instantiates instead: creator/creation (a bard composes an epic), not worker/workplace",
+   "pacifist is to violence": "relation it instantiates instead: lack (a pacifist is characterised by having no violence), not worker/workplace",
+   "primate is to chimpanzee": "relation it instantiates instead: category/instance (a chimpanzee is a kind of primate), not worker/workplace"
+  },
+  "near_miss": {
+   "option": "bard is to epic",
+   "why": "Read loosely as 'a person and the thing tied to their job', a bard and an epic look like a jailer and a dungeon. But a dungeon is the place where a jailer works, while an epic is something a bard composes, not a place the bard works in."
+  }
+ },
+ {
+  "id": "SVA19-64",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] filter is to purification as",
+  "choices": [
+   "interest is to fascination",
+   "lotion is to moisturizing",
+   "plaque is to gingivitis",
+   "arachnid is to tick",
+   "paragraph is to dissertation"
+  ],
+  "correct_answer": "lotion is to moisturizing",
+  "stem_relation": "tool/function",
+  "option_relations": [
+   "degree",
+   "tool/function",
+   "cause/effect",
+   "category/instance",
+   "part/whole"
+  ],
+  "explanation": "Relation: tool/function. Just as a filter is used for purification, lotion is used for moisturizing.",
+  "distractor_rationales": {
+   "interest is to fascination": "relation it instantiates instead: degree (fascination is a much stronger interest), not tool/function",
+   "plaque is to gingivitis": "relation it instantiates instead: cause/effect (plaque causes gingivitis), not tool/function",
+   "arachnid is to tick": "relation it instantiates instead: category/instance (a tick is a kind of arachnid), not tool/function",
+   "paragraph is to dissertation": "relation it instantiates instead: part/whole (a paragraph is one part of a dissertation), not tool/function"
+  },
+  "near_miss": {
+   "option": "plaque is to gingivitis",
+   "why": "Read loosely as 'the first thing brings about the second', plaque and gingivitis look like filter and purification. But a filter is something a person uses on purpose to purify, while plaque is not a tool anyone uses; it simply causes gingivitis as an unwanted effect."
+  }
+ },
+ {
+  "id": "SVA19-65",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] push is to pull as",
+  "choices": [
+   "sport is to rugby",
+   "smile is to grin",
+   "cup is to tea",
+   "plus is to minus",
+   "hairbrush is to grooming"
+  ],
+  "correct_answer": "plus is to minus",
+  "stem_relation": "antonyms",
+  "option_relations": [
+   "category/instance",
+   "synonyms",
+   "container/contents",
+   "antonyms",
+   "tool/function"
+  ],
+  "explanation": "Relation: antonyms. Just as push is the opposite of pull, a plus is the opposite of a minus.",
+  "distractor_rationales": {
+   "sport is to rugby": "relation it instantiates instead: category/instance (rugby is a kind of sport), not antonyms",
+   "smile is to grin": "relation it instantiates instead: synonyms (a smile and a grin mean nearly the same), not antonyms",
+   "cup is to tea": "relation it instantiates instead: container/contents (a cup holds tea), not antonyms",
+   "hairbrush is to grooming": "relation it instantiates instead: tool/function (a hairbrush is used for grooming), not antonyms"
+  },
+  "near_miss": {
+   "option": "smile is to grin",
+   "why": "Read loosely as 'two closely linked words of the same kind', smile and grin look like push and pull. But push and pull are opposites, while a smile and a grin mean nearly the same thing."
+  }
+ },
+ {
+  "id": "SVA19-66",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] reef is to coral as",
+  "choices": [
+   "logo is to company",
+   "gutter is to rainwater",
+   "toothpick is to wood",
+   "brewmaster is to lager",
+   "beautician is to hairdryer"
+  ],
+  "correct_answer": "toothpick is to wood",
+  "stem_relation": "object/material",
+  "option_relations": [
+   "symbol/symbolized",
+   "container/contents",
+   "object/material",
+   "creator/creation",
+   "worker/tool"
+  ],
+  "explanation": "Relation: object/material. Just as a reef is made of coral, a toothpick is made of wood.",
+  "distractor_rationales": {
+   "logo is to company": "relation it instantiates instead: symbol/symbolized (a logo stands for a company), not object/material",
+   "gutter is to rainwater": "relation it instantiates instead: container/contents (a gutter holds rainwater), not object/material",
+   "brewmaster is to lager": "relation it instantiates instead: creator/creation (a brewmaster makes lager), not object/material",
+   "beautician is to hairdryer": "relation it instantiates instead: worker/tool (a beautician works with a hairdryer), not object/material"
+  },
+  "near_miss": {
+   "option": "gutter is to rainwater",
+   "why": "Read loosely as 'a thing and the substance found in it', gutter and rainwater look like reef and coral. But a reef is made of coral, while a gutter is made of metal or plastic and only carries rainwater; it holds the water rather than being built from it."
+  }
+ },
+ {
+  "id": "SVA19-67",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] bootcamp is to combat as",
+  "choices": [
+   "centrifuge is to separation",
+   "debater is to rebuttal",
+   "audacity is to nerve",
+   "pennant is to championship",
+   "sorting is to recycling"
+  ],
+  "correct_answer": "sorting is to recycling",
+  "stem_relation": "preparation/act",
+  "option_relations": [
+   "tool/function",
+   "creator/creation",
+   "synonyms",
+   "symbol/symbolized",
+   "preparation/act"
+  ],
+  "explanation": "Relation: preparation/act. Just as bootcamp is done to prepare soldiers for combat, sorting is done to prepare waste for recycling.",
+  "distractor_rationales": {
+   "centrifuge is to separation": "relation it instantiates instead: tool/function (a centrifuge is used for separation), not preparation/act",
+   "debater is to rebuttal": "relation it instantiates instead: creator/creation (a debater composes a rebuttal), not preparation/act",
+   "audacity is to nerve": "relation it instantiates instead: synonyms (audacity and nerve both mean boldness), not preparation/act",
+   "pennant is to championship": "relation it instantiates instead: symbol/symbolized (a pennant stands for a championship), not preparation/act"
+  },
+  "near_miss": {
+   "option": "centrifuge is to separation",
+   "why": "Read loosely as 'the first is the means of achieving the second', centrifuge and separation look like bootcamp and combat. But bootcamp is an earlier stage of training done to get ready for combat, while a centrifuge is a machine that itself performs the separation; it is the instrument of the act, not a preparation for it."
+  }
+ },
+ {
+  "id": "SVA19-68",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] disease is to cholera as",
+  "choices": [
+   "acclaim is to derision",
+   "mollusk is to mussel",
+   "tube is to toothpaste",
+   "embroiderer is to monogram",
+   "gall is to cheek"
+  ],
+  "correct_answer": "mollusk is to mussel",
+  "stem_relation": "category/instance",
+  "option_relations": [
+   "antonyms",
+   "category/instance",
+   "container/contents",
+   "creator/creation",
+   "synonyms"
+  ],
+  "explanation": "Relation: category/instance. Just as cholera is a kind of disease, a mussel is a kind of mollusk.",
+  "distractor_rationales": {
+   "acclaim is to derision": "relation it instantiates instead: antonyms (acclaim is praise, derision is ridicule), not category/instance",
+   "tube is to toothpaste": "relation it instantiates instead: container/contents (a tube holds toothpaste), not category/instance",
+   "embroiderer is to monogram": "relation it instantiates instead: creator/creation (an embroiderer stitches a monogram), not category/instance",
+   "gall is to cheek": "relation it instantiates instead: synonyms (gall and cheek both mean impudent boldness), not category/instance"
+  },
+  "near_miss": {
+   "option": "tube is to toothpaste",
+   "why": "Read loosely as 'the second is found inside the first', tube and toothpaste look like disease and cholera. But cholera is one kind of disease, a member of that category, while toothpaste is not a kind of tube; it is simply what the tube holds."
+  }
+ },
+ {
+  "id": "SVA19-69",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] boon is to bane as",
+  "choices": [
+   "hatmaker is to bonnet",
+   "hothead is to calmness",
+   "inhalation is to exhalation",
+   "inspection is to liftoff",
+   "prosecutor is to courthouse"
+  ],
+  "correct_answer": "inhalation is to exhalation",
+  "stem_relation": "antonyms",
+  "option_relations": [
+   "creator/creation",
+   "lack",
+   "antonyms",
+   "preparation/act",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: antonyms. Just as a boon (a blessing) is the opposite of a bane (a curse), inhalation (breathing in) is the opposite of exhalation (breathing out).",
+  "distractor_rationales": {
+   "hatmaker is to bonnet": "relation it instantiates instead: creator/creation (a hatmaker makes a bonnet), not antonyms",
+   "hothead is to calmness": "relation it instantiates instead: lack (a hothead is someone without calmness), not antonyms",
+   "inspection is to liftoff": "relation it instantiates instead: preparation/act (a preflight inspection is done to prepare for liftoff), not antonyms",
+   "prosecutor is to courthouse": "relation it instantiates instead: worker/workplace (a prosecutor works in a courthouse), not antonyms"
+  },
+  "near_miss": {
+   "option": "hothead is to calmness",
+   "why": "Read loosely as 'the two words are at opposite poles', a hothead and calmness look like opposites, since 'hot' temper sits against calm. But a hothead is a person characterised by having no calmness (bearer : what it lacks), not a word that means the reverse of calmness; the stem pairs two words of opposite meaning (a blessing and a curse), so the precise relation rejects it."
+  }
+ },
+ {
+  "id": "SVA19-70",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "easy",
+  "prompt": "[Analogy] mole is to molehill as",
+  "choices": [
+   "bullwhip is to rawhide",
+   "procrastinator is to punctuality",
+   "lyricist is to jingle",
+   "scuff is to gash",
+   "banister is to stairway"
+  ],
+  "correct_answer": "lyricist is to jingle",
+  "stem_relation": "creator/creation",
+  "option_relations": [
+   "object/material",
+   "lack",
+   "creator/creation",
+   "degree",
+   "part/whole"
+  ],
+  "explanation": "Relation: creator/creation. Just as a mole makes a molehill, a lyricist writes a jingle.",
+  "distractor_rationales": {
+   "bullwhip is to rawhide": "relation it instantiates instead: object/material (a bullwhip is made of rawhide), not creator/creation",
+   "procrastinator is to punctuality": "relation it instantiates instead: lack (a procrastinator is someone without punctuality), not creator/creation",
+   "scuff is to gash": "relation it instantiates instead: degree (a scuff is a slight mark, a gash a deep wound), not creator/creation",
+   "banister is to stairway": "relation it instantiates instead: part/whole (a banister is part of a stairway), not creator/creation"
+  },
+  "near_miss": null
+ },
+ {
+  "id": "SVA19-71",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] watermark is to genuineness as",
+  "choices": [
+   "vanguard is to rearguard",
+   "arson is to destruction",
+   "breadbasket is to muffins",
+   "sackcloth is to penitence",
+   "fingerboard is to cello"
+  ],
+  "correct_answer": "sackcloth is to penitence",
+  "stem_relation": "symbol/symbolized",
+  "option_relations": [
+   "antonyms",
+   "cause/effect",
+   "container/contents",
+   "symbol/symbolized",
+   "part/whole"
+  ],
+  "explanation": "Relation: symbol/symbolized. Just as a watermark on a banknote is a conventional sign of its genuineness, sackcloth (worn with ashes) is a conventional sign of penitence.",
+  "distractor_rationales": {
+   "vanguard is to rearguard": "relation it instantiates instead: antonyms (the front and the rear of an army), not symbol/symbolized",
+   "arson is to destruction": "relation it instantiates instead: cause/effect (arson causes destruction), not symbol/symbolized",
+   "breadbasket is to muffins": "relation it instantiates instead: container/contents (a breadbasket holds muffins), not symbol/symbolized",
+   "fingerboard is to cello": "relation it instantiates instead: part/whole (a fingerboard is part of a cello), not symbol/symbolized"
+  },
+  "near_miss": {
+   "option": "vanguard is to rearguard",
+   "why": "Read loosely as 'the two words are tied together by a fixed meaning', vanguard and rearguard look as bound to each other as a watermark is to genuineness. But they are opposites (the front and the rear of an army), whereas the stem pairs a visible mark with the quality it conventionally signals; nothing in a vanguard stands for a rearguard, so the precise relation rejects it."
+  }
+ },
+ {
+  "id": "SVA19-72",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "hard",
+  "prompt": "[Analogy] pachyderm is to rhinoceros as",
+  "choices": [
+   "slob is to tidiness",
+   "nobleman is to baron",
+   "soap is to tallow",
+   "ploughman is to plough",
+   "barkeep is to saloon"
+  ],
+  "correct_answer": "nobleman is to baron",
+  "stem_relation": "category/instance",
+  "option_relations": [
+   "lack",
+   "category/instance",
+   "object/material",
+   "worker/tool",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: category/instance. Just as a rhinoceros is one kind of pachyderm, a baron is one rank (kind) of nobleman.",
+  "distractor_rationales": {
+   "slob is to tidiness": "relation it instantiates instead: lack (a slob is someone without tidiness), not category/instance",
+   "soap is to tallow": "relation it instantiates instead: object/material (soap is traditionally made from tallow), not category/instance",
+   "ploughman is to plough": "relation it instantiates instead: worker/tool (a ploughman works with a plough), not category/instance",
+   "barkeep is to saloon": "relation it instantiates instead: worker/workplace (a barkeep works in a saloon), not category/instance"
+  },
+  "near_miss": {
+   "option": "soap is to tallow",
+   "why": "Read loosely as 'the second word is what the first one is', soap 'is' tallow just as a rhinoceros is a pachyderm. But tallow is only the fat that soap is traditionally made from, not a member of a class the first word names; in the stem the first word is a class (thick-skinned mammals) and the second one member of it, so the precise relation rejects it."
+  }
+ },
+ {
+  "id": "SVA19-73",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] overspending is to insolvency as",
+  "choices": [
+   "pushover is to assertiveness",
+   "haven is to sanctuary",
+   "contamination is to outbreak",
+   "wheelbarrow is to hauling",
+   "longshoreman is to dockyard"
+  ],
+  "correct_answer": "contamination is to outbreak",
+  "stem_relation": "cause/effect",
+  "option_relations": [
+   "lack",
+   "synonyms",
+   "cause/effect",
+   "tool/function",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: cause/effect. Just as overspending leads to insolvency, contamination (of food or water) leads to an outbreak of disease.",
+  "distractor_rationales": {
+   "pushover is to assertiveness": "relation it instantiates instead: lack (a pushover is someone without assertiveness), not cause/effect",
+   "haven is to sanctuary": "relation it instantiates instead: synonyms (both mean a place of safety), not cause/effect",
+   "wheelbarrow is to hauling": "relation it instantiates instead: tool/function (a wheelbarrow is used for hauling), not cause/effect",
+   "longshoreman is to dockyard": "relation it instantiates instead: worker/workplace (a longshoreman works at a dockyard), not cause/effect"
+  },
+  "near_miss": {
+   "option": "wheelbarrow is to hauling",
+   "why": "Read loosely as 'the first thing brings about the second', a wheelbarrow seems to bring about hauling the way overspending brings about insolvency. But hauling is the job a person uses the wheelbarrow for (tool : function), not a result the wheelbarrow itself produces; in the stem the first event causes the second to happen, so the precise relation rejects it."
+  }
+ },
+ {
+  "id": "SVA19-74",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] satisfaction is to ecstasy as",
+  "choices": [
+   "brand is to ownership",
+   "glimpse is to scrutiny",
+   "polygon is to octagon",
+   "overindulgence is to obesity",
+   "porthole is to steamship"
+  ],
+  "correct_answer": "glimpse is to scrutiny",
+  "stem_relation": "degree",
+  "option_relations": [
+   "symbol/symbolized",
+   "degree",
+   "category/instance",
+   "cause/effect",
+   "part/whole"
+  ],
+  "explanation": "Relation: degree. Just as satisfaction is a milder degree of ecstasy, a glimpse (a brief look) is a lesser degree of scrutiny (close, sustained looking).",
+  "distractor_rationales": {
+   "brand is to ownership": "relation it instantiates instead: symbol/symbolized (a brand on livestock signifies ownership), not degree",
+   "polygon is to octagon": "relation it instantiates instead: category/instance (an octagon is one kind of polygon), not degree",
+   "overindulgence is to obesity": "relation it instantiates instead: cause/effect (overindulgence leads to obesity), not degree",
+   "porthole is to steamship": "relation it instantiates instead: part/whole (a porthole is part of a steamship), not degree"
+  },
+  "near_miss": {
+   "option": "brand is to ownership",
+   "why": "Read loosely as 'the first word is an outward sign of the second', a brand on cattle seems to relate to ownership the way satisfaction relates to ecstasy (a mild version announcing a strong one). But a brand is a conventional mark that stands for ownership, not a weaker amount of the same thing; the stem places two feelings of one kind on a scale of intensity, so the precise relation rejects it."
+  }
+ },
+ {
+  "id": "SVA19-75",
+  "family": "ssat",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "analogy",
+  "subskill": "analogy",
+  "difficulty": "medium",
+  "prompt": "[Analogy] maxim is to adage as",
+  "choices": [
+   "disuse is to atrophy",
+   "boor is to refinement",
+   "ruse is to stratagem",
+   "review is to examination",
+   "druggist is to drugstore"
+  ],
+  "correct_answer": "ruse is to stratagem",
+  "stem_relation": "synonyms",
+  "option_relations": [
+   "cause/effect",
+   "lack",
+   "synonyms",
+   "preparation/act",
+   "worker/workplace"
+  ],
+  "explanation": "Relation: synonyms. Just as a maxim and an adage both mean a short saying that states a general truth, a ruse and a stratagem both mean a trick or scheme to deceive.",
+  "distractor_rationales": {
+   "disuse is to atrophy": "relation it instantiates instead: cause/effect (disuse of a muscle causes it to atrophy), not synonyms",
+   "boor is to refinement": "relation it instantiates instead: lack (a boor is someone without refinement), not synonyms",
+   "review is to examination": "relation it instantiates instead: preparation/act (review is done to prepare for an examination), not synonyms",
+   "druggist is to drugstore": "relation it instantiates instead: worker/workplace (a druggist works in a drugstore), not synonyms"
+  },
+  "near_miss": {
+   "option": "boor is to refinement",
+   "why": "Read loosely as 'the two words belong to the same idea', boor and refinement both concern manners and seem to go together the way maxim and adage do. But a boor is a person characterised by having no refinement (bearer : what it lacks), so the words point in opposite directions; the stem pairs two words with the same meaning (a short wise saying), so the precise relation rejects it."
+  }
+ }
+]
