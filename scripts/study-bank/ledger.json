@@ -7493,6 +7493,44 @@
           "verdict": "18 candidate items unanimous blind; 4 dropped on a confirmed with-source defect (A-09, A-12, D-03, E-06). 14 kept: no confirmed >= 2 free elimination; single named kills recorded, not acted on: A-15 (45), E-05 (13), E-15 (324), D-12 (6). Unanimity rate 16.2% vs live 25.0%."
         }
       }
+    },
+    {
+      "id": "ssat-verbal-s19-ana-held-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "ssat",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-verbal-s19-ana",
+      "contentSha": "b09ce9178ae0fc18678fa0b1460af4935673ff97ab1b8e022abbd0066750ff6b",
+      "status": "killed",
+      "note": "75 SSAT Upper Level analogies (12 Claude author runs, one file per item) on the s18 analogy design: five different relation families per item from 15, each family present 25 / keyed 5 (20.0%), 2+2+1 cluster layout with a same-cluster near-miss sibling in 60. Pre-registered ssat-verbal-s19.prereg.md (cad126b5) with a precision family gate replacing s18's keyed-hit rule and two new with-source rules (both graders no tempting distractor -> drop; banked easy <= 40% of kept). Frozen 37ac29e7. Passed options-only (E -39.0), elimination and the precision gate; HELD at the with-source difficulty gate: banked easy 22/48 = 45.8% > 40%. Nothing inserted; no repair (prereg).",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "b09ce9178ae0fc18678fa0b1460af4935673ff97ab1b8e022abbd0066750ff6b",
+          "verdict": "check-all PASS 75/75 design slots (key slots 15 each, key strictly longest 2/75 / shortest 2/75, every family keyed 5/25, 375 distinct option strings, 0 live words of 3,766, 0 of 480 held s18 pairs); stem-duplicates 0 vs 1,280 live SSAT rows; recycled-distractor NO MEASUREMENT; verbalKind analogy 75/75."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "b09ce9178ae0fc18678fa0b1460af4935673ff97ab1b8e022abbd0066750ff6b",
+          "verdict": "Options-only interleaved with 40 live analogies from 233 eligible (s6 excluded), three samples of one Claude solver (pairwise agreement 54.5%). Candidate 36/225 = 16.0% vs letter 20.0% (-4.0); live 66/120 = 55.0% vs 20.0% (+35.0); E -39.0 PASS (score-oo agrees), live under the 85% ceiling. Precision family gate PASS (worker/tool 6/11 = 54.5%, p 0.026 vs 0.05/15 = 0.0033; degree keyed-hit 12/15 but precision 12/59 = 20.3% vs base 20.0%, p 0.59). Deviation: SVA19-70's key was exposed to all three samples through a commit message; none picked it; without it E -39.1, same verdicts.",
+          "n": 75,
+          "mean": 16,
+          "control": 20,
+          "margin": -4
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "b09ce9178ae0fc18678fa0b1460af4935673ff97ab1b8e022abbd0066750ff6b",
+          "verdict": "Items where >=2 samples certainly rejected the same option: 0/75 vs 0/40 (no sample marked any rejection certain: passes, discriminates nothing)."
+        },
+        "withsource": {
+          "passed": false,
+          "contentSha": "b09ce9178ae0fc18678fa0b1460af4935673ff97ab1b8e022abbd0066750ff6b",
+          "verdict": "Two Claude graders on independently shuffled renders (seeds 20261110/11): 74/75 and 74/75 on key (both miss SVA19-16). Per-item drops 27: 24 both graders no tempting distractor, 3 second-defensible/invalid (SVA19-16, -40, -75); 0 above band, 0 free identification. Kept 48/75. DIFFICULTY GATE HOLD: banked (easier label) 22 easy / 23 medium / 3 hard, easy 22/48 = 45.8% > 40%. Graders 28/34/13 and 32/38/5 overall; each alone on the kept set 17/48 and 18/48 easy (diagnostic, not a re-decision)."
+        }
+      }
     }
   ],
   "auditedCohorts": [
