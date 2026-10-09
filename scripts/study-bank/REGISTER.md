@@ -190,6 +190,19 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-09** — **`announcement-v6` STAGED 28 OF 30 (14 two-question sets, cohort `announcement-v6`, verified=false). LIVE lower-path Listening stays 5; PROJECTED ON RELEASE 5 -> 11 (lower/easy) / 12 (lower/medium), where Choose a Response becomes the binding task.** Pre-registered alone in `dd7f1cfa` (`PREREG-ANNOUNCEMENT-V6-2026-10-09.md`), G2 scorer break-tested on v5 files in `bd45a437`, frozen in `101736c2` (sha `bda8a6b7`) before any solver. Ledger `announcement-v6-2026-10-09`. Every agent Claude (Opus authors, Haiku solvers, Opus/Sonnet/Sonnet graders).
+
+  **One change from v5: G2 is conv-hard-v2's distractor-only rule.** v5's "key certain-rejected by any sample drops the set" is removed for this family: the atypical-fact design makes the key the option priors reject, so a blind key-reject is the design working, not a leak. Break-test on v5's frozen files: reproduces 27/90 (+3.3) and drops exactly AN5-09, AN5-10; a planted 2-sample distractor reject drops, a 1-sample one and a 3-sample KEY reject do not; bad input exits 2. v5 itself is not re-decided.
+
+        G0  clean (key uniquely longest 7/30, shortest 8/30; Jaccard < 0.5 vs 121 live + 30 v5)
+        G1  no-passage 32/90 = 35.6% vs letter 26.7%, +8.9 (bar +15) PASS; live two-sets 30/42 = 71.4% (reported)
+        G2  1 set dropped: AN6-06 ("before six" vs an "evening" stem, rejected 3/3); key rejects on 9 items reported
+            (under v5's clause 8 more sets would have dropped -> HOLD again)
+        G3  90/90 grader picks on key; 0 drops (AN6-11-2 second answer refuted by a quoted line)
+        G4  1 of 15 <= 6 PASS;  G5 kept easy 6 / medium 17 / hard 5
+
+  **Cross-item, recorded not gated:** grader-c names "the key is the post-change arrangement" at 24/30 and "why-items key the rationale in the next sentence" 8/8. Both need the transcript, so they are not no-source rules (conv-hard-v2 precedent, 17/17 last-mentioned); they do mean a listener who tracks only the final change scores well. The co-founder sitting is the measure. **Depth** (`toefl-form-depth.ts`, TRIALS=3): live 5/5/11/11 unchanged; with the staged cohort loaded (`depth-inject.ts`, new `STAGED_COHORT`) 11/12/16/11. **Sitting not drawn:** `ssat-wv6-cofounder-2026-10-07` is open (12/12 unseen), act-english-v9 queued; v6 draws next with the v5 release rule (<= 8/20 release, >= 12/20 archive). → `ANNOUNCEMENT-V6-RESULT.md`, `announcement-v6.{batch,graded,keep}.json`, `toefl-ann6-work/`
+
 - **2026-10-09** — **TOEFL FORM DEPTH MEASURED: LISTENING IS THE ONLY SECTION UNDER 8, AT 5 CLEAN SITTINGS ON THE LOWER PATH, BOUND BY ANNOUNCEMENT SET SHAPE. `announcement-v5` (15 two-question sets) WAS AUTHORED TO MOVE IT 5 -> 8 AND IS HELD AT G4: G1 PASSED (+3.3), G2 DROPPED 9 OF 15 SETS. NOTHING GRADED, NOTHING INSERTED; LIVE STAYS 5.** Pre-registered alone in `9d6c33e4` (`PREREG-ANNOUNCEMENT-V5-2026-10-09.md`), frozen in `9b069682` (sha `669cacce`) before any solver. Ledger `announcement-v5-2026-10-09`. Every agent Claude.
 
         toefl-form-depth.ts (live, TRIALS=3), clean sittings min[max]:

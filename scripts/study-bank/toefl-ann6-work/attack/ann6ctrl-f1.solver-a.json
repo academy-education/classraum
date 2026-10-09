@@ -1,0 +1,45 @@
+{
+  "1": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Online tickets typically grant direct access to exhibit; 'go directly' mirrors typical online-ticket language. Waiting for escort contradicts self-service intent."
+  },
+  "2": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Explicit hotline number for accessibility requests is standard institutional procedure. D is contradictory (separate ticket yet monthly passes invalid)."
+  },
+  "3": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["A", "B"],
+    "why": "3-day advance email is standard group-booking requirement language. Same-day options (call, buy on arrival) are too late for ten+ people."
+  },
+  "4": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Natural consequence: drill delays may make students late to next class. D (must skip) contradicts fire-drill policy that requires participation."
+  },
+  "5": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Self-service link for advance change (24hr minimum) is standard modern ticketing. B forces new purchase, contradicting change-time intent."
+  },
+  "6": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["C", "D"],
+    "why": "Front office secure storage before deadline (8:30 a.m.) is institutional procedure. Hiding and roommate watch are unreliable and non-institutional."
+  },
+  "7": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Partial-building impact is most conservative inference. Full shutdown (B) and water-quality outcome (A) are too specific without context."
+  },
+  "_heuristics": "Institutional procedure language and specificity (6 picks); rejection of contradictory option pairs (D in items 2, 4; B in item 5); timeline tells—advance requirements, same-day impossibility (3 picks); direct vs. circuitous instruction framing (2 picks). Confident: 6 (items 1–6). Guess: 1 (item 7). Source: plausible best-practice tells + elimination of mutually contradictory or extreme options."
+}

@@ -1,0 +1,45 @@
+{
+  "1": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Advance warning for preparation is the primary function of announcements about service disruptions."
+  },
+  "2": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Timed-entry tickets are standard for capacity management; A contradicts (timed entry restricts walk-ups)."
+  },
+  "3": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Scheduled safety inspection is a typical formal announcement; fire drills (D) also plausible but inspection more official."
+  },
+  "4": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "Waiting for assistance is standard fire drill procedure; elevators are never used (safety hazard)."
+  },
+  "5": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Reduced frequency + shuttle buses is the standard transit disruption pattern; matches typical service change announcements."
+  },
+  "6": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": ["B"],
+    "why": "Specific elevator routing is a typical mobility accommodation; B is a general advisory, not specific to mobility needs."
+  },
+  "7": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["A", "C"],
+    "why": "Photography restrictions are standard in galleries; guided tours and ticket purchases are encouraged activities."
+  },
+  "_heuristics": "Real-world institutional practices (announcement purposes, venue capacity/safety, transit disruption patterns, accessibility accommodations, photo policies), logical consistency of options with practical procedures, pattern matching to typical official communications."
+}

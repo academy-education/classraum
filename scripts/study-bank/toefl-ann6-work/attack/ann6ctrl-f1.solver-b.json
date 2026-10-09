@@ -1,0 +1,45 @@
+{
+  "1": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Online ticketholders bypass check-in; direct routing to exhibit location is standard"
+  },
+  "2": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Accessible services need advance coordination; 24-hour hotline enables proper arrangement"
+  },
+  "3": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Large group reservations require advance notice; 3-day email notice is institutional standard"
+  },
+  "4": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["B", "D"],
+    "why": "Fire drills are mandatory; late arrival to next class is logical consequence of extended drill"
+  },
+  "5": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Confirmation email links for self-service changes is standard; 24-hour advance requirement typical"
+  },
+  "6": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "Official front-office storage before 8:30 a.m. is institutional inspection procedure"
+  },
+  "7": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Maintenance work typically affects targeted sections; partial building scope is reasonable inference"
+  },
+  "_heuristics": "Online ticket procedures bypass check-in; advance notification required for accessibility/group services; official channels (hotlines, email links) for special requests; mandatory safety procedures drive consequences; institutional storage procedures for inspections; maintenance scope typically partial. Tells used: direct routing for prepaid access, advance notice requirements, official contact channels, consequences of mandatory procedures, institutional deadlines, work scope inference. 6 confident picks via procedural defaults and institutional norms; 1 guess on inference without passage context."
+}

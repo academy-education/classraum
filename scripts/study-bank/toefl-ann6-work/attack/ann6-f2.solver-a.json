@@ -1,0 +1,93 @@
+{
+  "1": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "\"You won't be writing those\" → jurors adding names matches the tell of someone else doing the labeling"
+  },
+  "2": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "The speaker explains the lock rule as background for her own positioning (waiting at entrance)"
+  },
+  "3": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Monday is standard start-of-week collection day; afternoon is typical for facilities work"
+  },
+  "4": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "\"Yes, it is noisy\" acknowledges a fact; natural consequence is partners hard to hear"
+  },
+  "5": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Specific room number (109) and temporal anchor (after final session) carry the density of announced detail"
+  },
+  "6": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "10:00 a.m. is round; volunteer setup typically starts on the hour"
+  },
+  "7": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Question specifies \"evening\"; must book after 6 (studio option limits to before 6)"
+  },
+  "8": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "\"Several of you are already better\" is reassurance for nervous beginners, not explanation of a harder format"
+  },
+  "9": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Wednesday mid-week slot is typical; 12:30 is lunch-adjacent, common clinic time"
+  },
+  "10": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": ["D"],
+    "why": "Question signals a change (\"next week\" unusual); water-safety lesson is a specific alternative to usual"
+  },
+  "11": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Lawn is typical for astronomy observation; 9-midnight spans peak eclipse hours"
+  },
+  "12": {
+    "pick": "A",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "First batch repairs ready earliest (Thursday); 10 a.m. precedes noon (typical AM completion)"
+  },
+  "13": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "\"Noon photos\" is offered as a data source; suggests readings are already captured and available"
+  },
+  "14": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "M-Th (4 days) is standard for temporary schedule; evenings suit tutoring (post-class availability)"
+  },
+  "15": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "\"Extra copies\" are replacements for damage; torn-down posters need replenishment, not record-keeping"
+  },
+  "_heuristics": "Direct consequence from quoted phrase (4→1, 8→1, 4→1 certain_rejects: 4, 8, 7, 15). Specificity markers signal announced detail (5→1). Temporal tells (day of week convention for waste/tutoring: 3, 14; start-of-week repair: 12; lunch-time clinic: 9). Question scope signals change from baseline (10). Evening requirement eliminates before-6 options (7). Logical necessity for extras (15). Outdoor/landmark visibility (11). Repeated phrases flag natural flow (2, 13)."
+}

@@ -1,0 +1,45 @@
+{
+  "1": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "advance warning and prepare signal forward-looking institutional announcement, not apology for past event"
+  },
+  "2": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "manage capacity limits is the standard institutional reason for timed-entry tickets in museums"
+  },
+  "3": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "scheduled safety inspection plus related procedures covers both event and resident responsibilities, more comprehensive"
+  },
+  "4": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "elevator use violates fire safety protocol; pre-notification by Tuesday allows coordinators to prepare assistance"
+  },
+  "5": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "reduced frequency with shuttle buses is standard for partial disruption; complete cancellation is atypical for announcement"
+  },
+  "6": {
+    "pick": "D",
+    "basis": "guess",
+    "certain_reject": ["B"],
+    "why": "wait for assistance at main entrance matches standard accessibility-accommodation language; advising avoidance is not accommodation"
+  },
+  "7": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "taking photographs is common museum restriction; stating ticket-sales location is not a not-allowed rule"
+  },
+  "_heuristics": "Institutional norms: timed entries manage capacity, fire safety forbids elevators, accommodations offer assistance. Temporal cues: advance warning signals future events. Logical elimination: complete cancellation atypical, accommodation-by-avoidance contradictory. Comprehensive option coverage (B1, B3) preferred. Common institutional restrictions (D7) over stated procedures. Decided 4 confident (items 1,2,4,5,7) + 2 guess (items 3,6); certain rejections on 1,4,5,7."
+}

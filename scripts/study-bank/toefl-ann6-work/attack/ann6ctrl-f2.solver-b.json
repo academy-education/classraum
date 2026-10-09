@@ -1,0 +1,45 @@
+{
+  "1": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Advance warning + prepare = typical announcement framing for known future disruptions, not past events (A/B) or permanent changes (D)"
+  },
+  "2": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Capacity management + safety are the standard, universally-given reasons for timed-entry systems. Other options are less fundamental or sidestep the policy rationale."
+  },
+  "3": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Scheduled + procedures signals formal institutional announcement structure. Named announcers (Ms. Franklin) typically address compliance-level topics, not ad-hoc requests (C) or reminders (D)."
+  },
+  "4": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["C"],
+    "why": "Elevators are never used in fire evacuation (ironclad safety rule, C is out). B (wait for assistance) is standard procedure for people needing mobility help during a drill."
+  },
+  "5": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Service disruption announcements always mention alternatives (shuttle buses) + frequency reduction together. Full cancellation (C) is extreme; limiting to two stations (B) is less common than partial-route workarounds."
+  },
+  "6": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Waiting for assistance at main entrance is standard accessibility accommodation procedure. A requires initiative; C assumes specific renovation; B discourages visiting."
+  },
+  "7": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Guided tours are things galleries OFFER and encourage, not forbid. Restricting tours as an announced policy makes no operational sense; photography (D) and children (B) bans are real, C is logistical (not a gallery restriction)."
+  },
+  "_heuristics": "Advance warning framing (1), standard institutional reasoning (2,3), safety rules override (4), realistic service-disruption patterns (5), accessibility procedures (6), venue policy vs logistical mismatch (7). Confidence level: 7/7 picks based on structural tells, no pure guesses."
+}

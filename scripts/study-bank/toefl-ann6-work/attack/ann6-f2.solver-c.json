@@ -1,0 +1,18 @@
+{
+  "1": {"pick": "D", "basis": "confident", "certain_reject": [], "why": "Staff printing in one style directly explains why students won't write labels themselves"},
+  "2": {"pick": "B", "basis": "guess", "certain_reject": [], "why": "Automatically locking doors provides context for why speaker will wait at entrance"},
+  "3": {"pick": "B", "basis": "guess", "certain_reject": [], "why": "Monday afternoon is typical timing for campus collection schedules"},
+  "4": {"pick": "B", "basis": "confident", "certain_reject": [], "why": "Acknowledging noise allows reframing venue as beneficial for beginners despite crowding"},
+  "5": {"pick": "C", "basis": "guess", "certain_reject": ["A"], "why": "Room 109 Dunmore Annex contains specific identifiable details typical of actual location"},
+  "6": {"pick": "C", "basis": "guess", "certain_reject": [], "why": "10:00 a.m. is a standard round-number volunteer start time"},
+  "7": {"pick": "C", "basis": "guess", "certain_reject": ["B"], "why": "Specific practice room (438) makes sense for percussion evening practice during jury week"},
+  "8": {"pick": "C", "basis": "confident", "certain_reject": [], "why": "Comparing speaker's past ability to current members' skill reassures nervous beginners"},
+  "9": {"pick": "D", "basis": "guess", "certain_reject": [], "why": "Wednesday 4:30pm typical for clinic scheduling after classes complete"},
+  "10": {"pick": "C", "basis": "guess", "certain_reject": [], "why": "Water-safety lesson in Room 125 is plausible alternative if pool unavailable this week"},
+  "11": {"pick": "B", "basis": "guess", "certain_reject": [], "why": "Outdoor lawn location typical for eclipse viewing; 9pm-midnight reasonable observation window"},
+  "12": {"pick": "B", "basis": "guess", "certain_reject": [], "why": "Friday noon is typical completion time for repair service turnaround"},
+  "13": {"pick": "B", "basis": "confident", "certain_reject": ["C"], "why": "Reading noon photos allows recording this week's heights if greenhouse closed; option C refers to future reopening"},
+  "14": {"pick": "C", "basis": "guess", "certain_reject": [], "why": "Monday-Thursday evenings balances student availability with staff scheduling constraints"},
+  "15": {"pick": "C", "basis": "confident", "certain_reject": ["D"], "why": "Extra copies enable replacement of damaged/removed posters; record-keeping needs only one copy"},
+  "_heuristics": "Confident picks (8): direct logical cause-effect (1,4,8,15), elimination of future/inappropriate options (13). Guesses (7): time/scheduling patterns (3,6,9,12,14), location specificity (5,7,11,10). Primary tells: specific room numbers as markers (5,7), time-of-day patterns for services (3,6,9,12,14), direct word-to-meaning alignment (1,4,8,15), consequence logic (13)."
+}

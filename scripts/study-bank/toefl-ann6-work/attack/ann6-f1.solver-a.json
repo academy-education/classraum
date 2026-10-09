@@ -1,0 +1,98 @@
+{
+  "1": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Room 359 is specific (not vague 'door'); Wednesday earlier for planning"
+  },
+  "2": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Tuesday is first meeting pattern; 7 p.m. is rounder time than 6:30"
+  },
+  "3": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Clutter is the simplest direct reason to ask students to leave chargers home"
+  },
+  "4": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [
+      "C",
+      "B"
+    ],
+    "why": "Room capacity directly explains why groups are capped at 40"
+  },
+  "5": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Two receipts from different stalls suggests cross-vendor promotion intent"
+  },
+  "6": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Unstamped poster violates rules; enforcement removes violations"
+  },
+  "7": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Monday morning is earliest for exhibition setup events"
+  },
+  "8": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Temperature observation explains why trays were moved to warmer location"
+  },
+  "9": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "30 minutes is standard undergraduate appointment length"
+  },
+  "10": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Lap swimming in competition pool (not diving); 6-8 is typical evening slot"
+  },
+  "11": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [
+      "B"
+    ],
+    "why": "Yellow tub is standard recycling color; front desk location is specific"
+  },
+  "12": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Thursday evening is typical campus event timing"
+  },
+  "13": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Drop-off at hub garage counter is standard bike repair service procedure"
+  },
+  "14": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Tuesday evening in dedicated room is typical for club meetings"
+  },
+  "15": {
+    "pick": "D",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Online self-service is modern; two-hour blocks standard for performance prep"
+  },
+  "_heuristics": "Early timing (days/times) for planning and setup events (2×): items 1,7. Standard durations/times (3×): items 9,10,12. Location specificity over vague descriptions (2×): items 1,11. Cause-effect logic: temperature→moved (item 8), room size→cap (item 4). Violation enforcement (item 6). Procedural directness (item 13). Rounder numbers (item 2). Color coding for function (item 11). Cross-vendor logic (item 5). Modern/practical patterns (items 14,15)"
+}

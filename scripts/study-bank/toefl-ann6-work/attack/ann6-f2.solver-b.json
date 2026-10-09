@@ -1,0 +1,93 @@
+{
+  "1": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": ["B"],
+    "why": "Quote about not writing suggests others do it; C (jurors add names) and D (staff print) both fit; C more specific"
+  },
+  "2": {
+    "pick": "C",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Stating lock time helps members plan arrival; C directly frames the consequence"
+  },
+  "3": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Monday afternoon is typical collection schedule; no content available"
+  },
+  "4": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Acknowledging noise affirms venue as workable for beginners, not a warning or apology"
+  },
+  "5": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Specific room number and building name (Dunmore Annex, Room 109) indicate a confirmed meeting place"
+  },
+  "6": {
+    "pick": "A",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "10:30 a.m. is typical compromise arrival time for volunteer setup"
+  },
+  "7": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["B", "C"],
+    "why": "Tuesday evening practice needs after-six access; booking rehearsal hall ensures availability"
+  },
+  "8": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Complimenting newcomers naturally reassures nervous debaters; not about past performance or formats"
+  },
+  "9": {
+    "pick": "A",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Monday start of week and 12:30 noon are typical for clinic scheduling"
+  },
+  "10": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Water-safety fundamentals (dry-land) precede in-water lessons; beginner protocol not pool diversion"
+  },
+  "11": {
+    "pick": "D",
+    "basis": "guess",
+    "certain_reject": ["A"],
+    "why": "Eclipse lasts ~3 hours not 11; outdoor lawn more accessible for non-course students; 7-10pm realistic window"
+  },
+  "12": {
+    "pick": "A",
+    "basis": "guess",
+    "certain_reject": [],
+    "why": "Thursday earlier than Friday, 10am earlier than noon; both favor first batch readiness"
+  },
+  "13": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["A", "D"],
+    "why": "Reading pre-taken noon photos is efficient and consistent vs manual measuring variability"
+  },
+  "14": {
+    "pick": "B",
+    "basis": "guess",
+    "certain_reject": ["A"],
+    "why": "Monday-Thursday afternoons typical for undergraduate tutoring; covers workday without evening strain"
+  },
+  "15": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": [],
+    "why": "Extra copies hedge against torn-down posters during campaign; contingency protection"
+  },
+  "_heuristics": "Specificity (room/building names): 1 confident pick (item 5). Semantic fit with quoted statement: 3 confident picks (items 4, 8, 15). Logical efficiency/protocol: 2 confident picks (items 10, 13). Logical necessity (booking for evening): 1 confident pick (item 7). Timing/schedule defaults: 5 guesses (items 3, 6, 9, 12, 14). Certain rejects via context mismatch: 5 items (1, 7, 10, 11, 14). Total: 7 confident, 8 guess."
+}

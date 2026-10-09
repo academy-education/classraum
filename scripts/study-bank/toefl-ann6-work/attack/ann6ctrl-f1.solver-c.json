@@ -1,0 +1,45 @@
+{
+  "1": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Word 'temporary' indicates special procedure for online ticket holders, not standard routing"
+  },
+  "2": {
+    "pick": "B",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Accessibility services require advance staff notification; 15-minute notice is standard procedure"
+  },
+  "3": {
+    "pick": "D",
+    "basis": "confident",
+    "certain_reject": ["B"],
+    "why": "Group bookings require significant advance coordination; email + 3-day window is professional standard"
+  },
+  "4": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Realistic schedule consequence; fire drills are mandatory, so skipping is not an option"
+  },
+  "5": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["D"],
+    "why": "Self-service email link 24+ hours ahead is standard venue practice for advance ticket changes"
+  },
+  "6": {
+    "pick": "A",
+    "basis": "confident",
+    "certain_reject": ["C", "D"],
+    "why": "Front office is official supervised storage for residential inspections when resident is absent"
+  },
+  "7": {
+    "pick": "C",
+    "basis": "confident",
+    "certain_reject": ["A"],
+    "why": "Maintenance affects specific building sections; complete shutdowns and permanent improvements are unlikely"
+  },
+  "_heuristics": "Temporary procedures for visitor services; advance-notice requirements for accessibility and group services; realistic scheduling consequences; official storage procedures for inspections; typical scope limits of maintenance work"
+}
