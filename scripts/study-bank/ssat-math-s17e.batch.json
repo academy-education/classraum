@@ -1,0 +1,991 @@
+[
+ {
+  "id": "S17E-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "divisor-count increments read as the other prime's exponent",
+  "difficulty": "hard",
+  "template": "n = 2^a 3^b with the divisor-count increase on multiplying by 2 and by 3 given / number of divisors of 12n / each increase counts the choices for the OTHER prime",
+  "mechanism": [
+   "number of divisors from exponents",
+   "raising one exponent adds one row of divisors",
+   "cross-reading increments as the other exponent"
+  ],
+  "method": "Write n as a power of 2 times a power of 3 and see that multiplying by 2 adds one new layer of divisors whose size is the number of choices for the power of 3 (and vice versa), so each given increase reveals the OTHER prime's exponent; then count the divisors of 12n from its exponents.",
+  "prompt": "The only prime factors of the positive integer n are 2 and 3. Multiplying n by 2 gives a number that has exactly 3 more positive divisors than n has, and multiplying n by 3 gives a number that has exactly 6 more positive divisors than n has. How many positive divisors does 12n have?",
+  "choices": [
+   "35",
+   "30",
+   "48",
+   "24",
+   "32"
+  ],
+  "correct_answer": "32",
+  "explanation": "Write n = 2^a x 3^b, so n has (a+1)(b+1) divisors. Multiplying by 2 gives (a+2)(b+1) divisors, an increase of b+1; so b+1 = 3 and b = 2. Multiplying by 3 gives (a+1)(b+2), an increase of a+1; so a+1 = 6 and a = 5. Then n = 2^5 x 3^2 = 288 and 12n = 2^7 x 3^3, which has (7+1)(3+1) = 32 divisors. The option \"35\" swaps the roles, taking the increase from multiplying by 2 to fix the exponent of 2 (a = 2, b = 5, so 12n = 2^4 x 3^6 with 5 x 7 divisors). The option \"48\" swaps the roles and also forgets to subtract 1 (a = 3, b = 6, giving 6 x 8). The option \"30\" treats the increases as fixed amounts: n has 18 divisors, and 12 = 2 x 2 x 3 is read as adding 3 + 3 + 6. The option \"24\" multiplies n by 4 but forgets the factor 3 in 12, counting the divisors of 2^7 x 3^2.",
+  "solve": "var best=null; for(var a=0;a<12;a++){for(var b=0;b<12;b++){var d=(a+1)*(b+1); if((a+2)*(b+1)-d===3 && (a+1)*(b+2)-d===6){best=(a+3)*(b+2);}}} return best;",
+  "distractor_solve": {
+   "35": "var a=3-1, b=6-1; return (a+3)*(b+2);",
+   "48": "var a=3, b=6; return (a+3)*(b+2);",
+   "30": "var a=6-1, b=3-1; var dn=(a+1)*(b+1); return dn+3+3+6;",
+   "24": "var a=6-1, b=3-1; return (a+3)*(b+1);"
+  },
+  "interval": "The answer is a whole-number divisor count. 12n is a multiple of 6n, 3n and 2n, so it has more divisors than any of them, but the stem gives only the increases (3 and 6), not d(n), so no numeric lower bound is readable without finding the exponents; all five options are above 6 + 3. No upper bound is forced. The increases 3 and 6 invite the additive reading (30), which lands inside the range, not on a bound. No share, probability denominator, sign, or printed coefficient applies. Every option is a product of two whole numbers of the form (a+3)(b+2) for some a, b (35 = 5x7, 30 = 6x5 or 5x6, 48 = 6x8, 24 = 8x3 or 6x4, 32 = 8x4), so no option is ruled out by that shape.",
+  "bounds_checked": "integrality of a count, monotonicity (12n has more divisors than n, 2n, 3n), additive reading of the increases, product shape (a+3)(b+2), parity, divisibility by 4 and 8, key extremity, runs and doubling among options",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: the count is (a+3)(b+2) for exponents the stem fixes only through the solve; the same stem with increases 2 and 4 would give a = 3, b = 1 and 6 x 3 = 18 divisors, not a multiple of 4.",
+   "multiple of 8": "not forced: (a+3)(b+2) carries a factor 8 only because a = 5 and b = 2 here; nothing in the stem makes a divisor count a multiple of 8 before the exponents are found.",
+   "even multiple of 8": "not forced: same reason; the quotient 32/8 = 4 comes from the particular exponents, not from any structure the stem states."
+  }
+ },
+ {
+  "id": "S17E-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "divisors of a number that have a given number of divisors, exponent cap",
+  "difficulty": "hard",
+  "template": "N = 2^10 x 3^10 x 5^10 / how many divisors of N have exactly 18 divisors / ordered exponent patterns for 18 with the cap of 10",
+  "mechanism": [
+   "divisor count as a product of (exponent + 1)",
+   "ordered assignment of exponents to primes",
+   "exponent cap removes a pattern"
+  ],
+  "method": "Write a divisor as 2^a 3^b 5^c with each exponent at most 10, turn the condition into (a+1)(b+1)(c+1) = 18, list the ways to split 18 into ordered factors, and notice that the one-prime pattern needs an exponent larger than N allows while each remaining pattern can be placed on the primes in several orders.",
+  "prompt": "Let N = 2^10 x 3^10 x 5^10. How many of the positive divisors of N have exactly 18 positive divisors?",
+  "choices": [
+   "15",
+   "18",
+   "9",
+   "21",
+   "4"
+  ],
+  "correct_answer": "15",
+  "explanation": "A divisor of N is 2^a x 3^b x 5^c with 0 <= a, b, c <= 10, and it has (a+1)(b+1)(c+1) divisors. Write 18 as an ordered product of three factors, each at least 1: the factor sets are {18, 1, 1}, {9, 2, 1}, {6, 3, 1} and {3, 3, 2}. {18, 1, 1} needs an exponent of 17, which is more than 10, so it is impossible. {9, 2, 1} (exponents 8, 1, 0) can be placed on the three primes in 6 orders, {6, 3, 1} (exponents 5, 2, 0) in 6 orders, and {3, 3, 2} (exponents 2, 2, 1) in 3 orders. Total 6 + 6 + 3 = 15. The option \"18\" forgets the cap and also counts the 3 divisors 2^17, 3^17, 5^17. The option \"9\" chooses which primes appear but not which exponent goes to which prime, counting each pattern 3 times. The option \"21\" forgets the cap and also counts the pattern 2, 2, 1 in 6 orders, as if its two equal exponents were different. The option \"4\" counts the four factor patterns of 18 instead of the divisors.",
+  "solve": "var c=0; for(var a=0;a<=10;a++){for(var b=0;b<=10;b++){for(var e=0;e<=10;e++){if((a+1)*(b+1)*(e+1)===18)c++;}}} return c;",
+  "distractor_solve": {
+   "18": "var c=0; for(var a=0;a<=17;a++){for(var b=0;b<=17;b++){for(var e=0;e<=17;e++){if((a+1)*(b+1)*(e+1)===18)c++;}}} return c;",
+   "9": "var pats=[[8,1,0],[5,2,0],[2,2,1]]; return pats.length*3;",
+   "21": "var pats=[[17,0,0],[8,1,0],[5,2,0],[2,2,1]]; var ways=[3,6,6,6]; var s=0; for(var i=0;i<pats.length;i++)s+=ways[i]; return s;",
+   "4": "var pats=[[17,0,0],[8,1,0],[5,2,0],[2,2,1]]; return pats.length;"
+  },
+  "interval": "A count between 0 and the 11^3 = 1331 divisors of N; all options are inside. N treats the three primes alike, so the qualifying divisors come in groups of 3 or 6 under swapping primes (no divisor has a = b = c, since (a+1)^3 = 18 is impossible): the count is a multiple of 3. That symmetry kills only \"4\"; 15, 18, 9 and 21 are all multiples of 3, so three distractors survive it. A solver who writes down one example such as 2^8 x 3 sees at least 6 divisors of that shape, which again removes only \"4\". The cap of 10 is printed in the stem but the key is not on any bound: \"18\" (no cap) sits above the key by a wrong procedure, not on a readable limit.",
+  "bounds_checked": "range of a count (0 to 1331), symmetry of N in its three primes (multiple of 3, counted orbit sizes), one-example lower bound, exponent cap printed in the stem, parity, runs (15, 18, 21 has the key at an end), key extremity",
+  "forced_form_notes": {
+   "odd": "not forced: the stem's symmetry forces only a multiple of 3 (orbits of size 3 or 6, shared by 15, 18, 9, 21); whether the count is odd depends on how many patterns have two equal exponents, which is the method itself.",
+   "odd multiple of 3": "not forced: count/3 = (number of patterns with two equal exponents) + 2 x (patterns with all different exponents), whose parity is found only by listing the patterns; three distractors (18, 9, 21) are multiples of 3 as the symmetry requires.",
+   "multiple of 5": "not forced: nothing about 18 divisors or the cap of 10 involves 5; the 15 is 6 + 6 + 3 from the pattern list.",
+   "odd multiple of 5": "not forced: as for multiple of 5; no factor 5 is implied by the stem."
+  }
+ },
+ {
+  "id": "S17E-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "quotient is an integer exactly when the divisor divides the remainder",
+  "difficulty": "hard",
+  "template": "(n^2 + 47)/(n + 5) for positive integers n / how many n make it an integer / divide out the quadratic so n + 5 must divide a constant",
+  "mechanism": [
+   "divide a quadratic by a linear expression",
+   "divisor must divide the constant remainder",
+   "count divisors above a floor"
+  ],
+  "method": "Rewrite the numerator as a multiple of the denominator plus a constant, so the fraction is an integer exactly when n + 5 divides that constant, then count the divisors of the constant that n + 5 can equal when n is a positive integer.",
+  "prompt": "For how many positive integers n is (n^2 + 47)/(n + 5) an integer?",
+  "choices": [
+   "12",
+   "8",
+   "2",
+   "24",
+   "7"
+  ],
+  "correct_answer": "8",
+  "explanation": "Since (n + 5)(n - 5) = n^2 - 25, we have n^2 + 47 = (n + 5)(n - 5) + 72. So (n^2 + 47)/(n + 5) = n - 5 + 72/(n + 5), which is an integer exactly when n + 5 divides 72. The divisors of 72 are 1, 2, 3, 4, 6, 8, 9, 12, 18, 24, 36, 72, and because n is a positive integer, n + 5 is at least 6. That leaves 6, 8, 9, 12, 18, 24, 36, 72, giving n = 1, 3, 4, 7, 13, 19, 31, 67: 8 values. (Check n = 1: 48/6 = 8.) The option \"12\" counts every divisor of 72, forgetting that n + 5 >= 6. The option \"7\" uses n + 5 > 6 and so drops n = 1. The option \"2\" makes a sign slip in the remainder, 47 - 25 = 22, and counts the divisors 11 and 22 of 22 that are at least 6. The option \"24\" counts the negative divisors of 72 as well, as if n could be any integer.",
+  "solve": "var c=0; for(var n=1;n<=1000;n++){ if((n*n+47)%(n+5)===0) c++; } return c;",
+  "distractor_solve": {
+   "12": "var r=47+25, c=0; for(var d=1; d<=r; d++){ if(r%d===0) c++; } return c;",
+   "7": "var r=47+25, c=0; for(var d=1; d<=r; d++){ if(r%d===0 && d>6) c++; } return c;",
+   "2": "var r=47-25, c=0; for(var d=1; d<=r; d++){ if(r%d===0 && d>=6) c++; } return c;",
+   "24": "var r=47+25, c=0; for(var d=1; d<=r; d++){ if(r%d===0) c+=2; } return c;"
+  },
+  "interval": "A count of positive integers; the stem fixes no upper limit on n, so no part-of-whole bound applies until the remainder 72 is found (that is the method). Each option is a plausible count: none is ON a readable bound. Plug-back is not available as a shortcut because the options are counts, not values of n. No parity or divisibility is forced on the count by the stem. The key 8 is neither the largest nor the smallest option.",
+  "bounds_checked": "integrality of a count, part not exceeding whole (no whole is printed), plug-back of options (not possible: options are counts), parity, divisibility by 4 and 8, key extremity, runs and doubling (12/24 do not involve the key), adjacency 7/8 (an off-by-one on the floor, a real error)",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: the count is the number of divisors of 72 that are at least 6, known only after dividing out; the stem fixes no factor of 4 in it.",
+   "multiple of 8": "not forced: as above; 8 is a count of divisors, with no divisibility the stem can impose.",
+   "odd multiple of 8": "not forced: as above.",
+   "perfect cube": "not forced: a count of qualifying n has no reason to be a cube; 8 being 2^3 is accidental."
+  }
+ },
+ {
+  "id": "S17E-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least common multiple of 1..n grows exactly at prime powers",
+  "difficulty": "hard",
+  "template": "L(n) = lcm(1, 2, ..., n) for n up to 50 / how many n raise L / L changes exactly when n is a power of a single prime",
+  "mechanism": [
+   "lcm as the highest power of each prime",
+   "new factor only at a prime power",
+   "count prime powers in a range"
+  ],
+  "method": "See that the least common multiple of 1 through n keeps the highest power of each prime up to n, so adding n changes it exactly when n is itself a power of a single prime (a new prime or a higher power of an old one); then count the primes and the higher prime powers up to 50.",
+  "prompt": "For each whole number n, let L(n) be the least common multiple of all the whole numbers from 1 through n. For example, L(1) = 1, L(2) = 2 and L(3) = 6. For how many whole numbers n from 2 to 50, inclusive, is L(n) greater than L(n - 1)?",
+  "choices": [
+   "21",
+   "34",
+   "23",
+   "19",
+   "24"
+  ],
+  "correct_answer": "23",
+  "explanation": "L(n) is the product of the highest power of each prime that is at most n. Going from n - 1 to n changes L only if n brings a prime power that was not there before, and that happens exactly when n itself is a power of one prime: if n has two different prime factors, n = ab with a and b smaller and sharing no factor, both already divide L(n - 1), so n does too. So count the prime powers from 2 to 50: the 15 primes 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, and the higher powers 4, 8, 16, 32, 9, 27, 25, 49 (8 of them). Total 15 + 8 = 23. The option \"19\" counts the primes and only the squares of primes (4, 9, 25, 49), missing 8, 16, 27 and 32. The option \"21\" counts the primes and every perfect square above 1 (4, 9, 16, 25, 36, 49), wrongly including 36 and missing 8, 27, 32. The option \"24\" counts the primes and every perfect power (4, 8, 9, 16, 25, 27, 32, 36, 49), wrongly including 36 = 6^2. The option \"34\" counts the composite numbers from 2 to 50 instead of the prime powers.",
+  "solve": "var vp=function(m,p){var e=0;while(m%p===0){m=m/p;e++;}return e;}; var best={}; var c=0; for(var n=2;n<=50;n++){ var m=n, grew=false; for(var p=2;p<=m;p++){ if(m%p===0){ var e=vp(m,p); while(m%p===0) m=m/p; if(!(best[p]>=e)){ grew=true; best[p]=e; } } } if(grew) c++; } return c;",
+  "distractor_solve": {
+   "19": "var isP=function(m){if(m<2)return false;for(var d=2;d*d<=m;d++)if(m%d===0)return false;return true;}; var c=0; for(var n=2;n<=50;n++){ var r=Math.round(Math.sqrt(n)); if(isP(n) || (r*r===n && isP(r))) c++; } return c;",
+   "21": "var isP=function(m){if(m<2)return false;for(var d=2;d*d<=m;d++)if(m%d===0)return false;return true;}; var c=0; for(var n=2;n<=50;n++){ var r=Math.round(Math.sqrt(n)); if(isP(n) || r*r===n) c++; } return c;",
+   "24": "var isP=function(m){if(m<2)return false;for(var d=2;d*d<=m;d++)if(m%d===0)return false;return true;}; var pw={}; for(var b=2;b<=7;b++){ for(var v=b*b; v<=50; v*=b) pw[v]=1; } var c=0; for(var n=2;n<=50;n++){ if(isP(n) || pw[n]) c++; } return c;",
+   "34": "var isP=function(m){if(m<2)return false;for(var d=2;d*d<=m;d++)if(m%d===0)return false;return true;}; var c=0; for(var n=2;n<=50;n++){ if(!isP(n)) c++; } return c;"
+  },
+  "interval": "A count of n among the 49 values 2..50. Free lower bound: L grows at every prime (a new prime factor appears), so the count is at least the 15 primes up to 50; every option is strictly above 15 (the primes-only count is deliberately not an option, since it would sit ON that bound). Free upper bound: L does not grow at n = 6 (6 divides L(5) = 60), so the count is at most 48; every option is strictly below. The worked examples stop at L(3), so the stem does not show a composite prime power changing L. No parity or divisibility of the count is forced. The key 23 is neither the largest nor the smallest option; 23 + 26 = 49 would be a complement pair, so 26 (the count of n where L stays the same) is not an option.",
+  "bounds_checked": "lower bound from primes (15, not an option), upper bound from one non-changing n, part not exceeding whole (49), complement pair (avoided), parity, runs (19, 21, 23 has the key at an end, not the middle), key extremity",
+  "forced_form_notes": {
+   "odd": "not forced: the count of prime powers from 2 to 50 has no parity the stem fixes; the only free bounds are at least 15 (primes) and at most 48, and every option lies strictly between them."
+  }
+ },
+ {
+  "id": "S17E-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "parity of the sum of divisors: odd part a perfect square",
+  "difficulty": "hard",
+  "template": "n from 1 to 200 / how many have an odd sum of divisors / only odd divisors affect parity, and their count is odd exactly when the odd part is a square",
+  "mechanism": [
+   "even divisors do not change parity",
+   "count of odd divisors is odd only for a square odd part",
+   "square or twice a square"
+  ],
+  "method": "Notice that the even divisors cannot change the parity of the sum, so the sum is odd exactly when n has an odd number of odd divisors, which happens exactly when the odd part of n is a perfect square, that is, when n is a perfect square or twice a perfect square; then count both kinds up to 200.",
+  "prompt": "For how many whole numbers n from 1 to 200, inclusive, is the sum of all the positive divisors of n an odd number? (For example, the positive divisors of 6 are 1, 2, 3 and 6, and their sum, 12, is even.)",
+  "choices": [
+   "14",
+   "32",
+   "12",
+   "24",
+   "18"
+  ],
+  "correct_answer": "24",
+  "explanation": "Even divisors add an even amount, so the sum of the divisors of n is odd exactly when n has an odd number of odd divisors. The odd divisors of n are the divisors of its odd part m (n = 2^k x m with m odd), and m has an odd number of divisors exactly when m is a perfect square. So n = 2^k x (odd square): if k is even, n is a perfect square; if k is odd, n is twice a perfect square. From 1 to 200 there are 14 perfect squares (1^2 to 14^2) and 10 numbers of the form 2j^2 (j = 1 to 10, up to 200), and no number is both. Total 14 + 10 = 24. The option \"14\" counts only the perfect squares, confusing an odd SUM of divisors with an odd NUMBER of divisors. The option \"18\" counts the perfect squares and adds the powers of 2 that are not squares (2, 8, 32, 128), missing numbers such as 18 and 50. The option \"12\" insists that the square part be odd, counting only odd squares (7 of them) and twice odd squares (5 of them). The option \"32\" adds the squares (14), the twice-squares (10) and the powers of 2 (8) as three separate families, counting the powers of 2 twice.",
+  "solve": "var c=0; for(var n=1;n<=200;n++){ var s=0; for(var d=1;d<=n;d++){ if(n%d===0) s+=d; } if(s%2===1) c++; } return c;",
+  "distractor_solve": {
+   "14": "var c=0; for(var j=1;j*j<=200;j++) c++; return c;",
+   "18": "var c=0; for(var n=1;n<=200;n++){ var r=Math.round(Math.sqrt(n)); var p2=(n&(n-1))===0; if(r*r===n || p2) c++; } return c;",
+   "12": "var c=0; for(var j=1;j*j<=200;j+=2) c++; for(var j=1;2*j*j<=200;j+=2) c++; return c;",
+   "32": "var a=0,b=0,p=0; for(var j=1;j*j<=200;j++) a++; for(var j=1;2*j*j<=200;j++) b++; for(var v=1;v<=200;v*=2) p++; return a+b+p;"
+  },
+  "interval": "A count among 200 numbers; every option is far inside 0..200, and none is ON a limit the stem prints. Small cases a solver might try (1, 2, 4, 8, 9 give odd sums; 3, 5, 6, 7 even) point toward the method rather than eliminating options: squares (14), squares plus powers of 2 (18) and squares plus twice-squares (24) all stay consistent with the first few cases. No share, probability denominator or sign applies. No parity or divisibility of the count is forced by the stem. The key is neither the largest nor the smallest option.",
+  "bounds_checked": "part not exceeding whole (200), small-case testing (which options survive the first ten n), parity, divisibility by 3, 4 and 8, runs (12, 14 / 14, 18 do not centre on the key), key extremity",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the count is (squares up to 200) + (twice-squares up to 200) = 14 + 10, found only by the method; the stem fixes no factor of 3.",
+   "multiple of 4": "not forced: as above; no factor of 4 is implied by '1 to 200'.",
+   "multiple of 6": "not forced: as above.",
+   "multiple of 8": "not forced: as above.",
+   "odd multiple of 8": "not forced: as above.",
+   "multiple of 12": "not forced: as above.",
+   "even multiple of 12": "not forced: as above."
+  }
+ },
+ {
+  "id": "S17E-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pairs with a given least common multiple, prime by prime",
+  "difficulty": "hard",
+  "template": "pairs a < b with lcm(a, b) = 144 / how many pairs / per prime, the larger exponent must equal the exponent in 144, then remove a = b and halve",
+  "mechanism": [
+   "lcm takes the larger exponent of each prime",
+   "count exponent pairs whose maximum is fixed",
+   "ordered to unordered: remove the equal pair, halve"
+  ],
+  "method": "Treat each prime separately: the pair of exponents must have its larger member equal to the exponent in 144, which leaves an odd number of exponent pairs per prime; multiply across primes to count ordered pairs, then remove the single pair with a = b and halve.",
+  "prompt": "How many pairs of positive integers (a, b) with a < b have a least common multiple of 144?",
+  "choices": [
+   "45",
+   "16",
+   "30",
+   "40",
+   "22"
+  ],
+  "correct_answer": "22",
+  "explanation": "144 = 2^4 x 3^2, and a and b must both be divisors of 144. Write a = 2^x 3^y and b = 2^u 3^v. The lcm is 144 exactly when the larger of x and u is 4 and the larger of y and v is 2. For the prime 2 the pairs (x, u) with larger member 4 number 5 x 5 - 4 x 4 = 9; for the prime 3, 3 x 3 - 2 x 2 = 5. So there are 9 x 5 = 45 ordered pairs (a, b). Exactly one of them has a = b, namely (144, 144); the other 44 split into 22 pairs with a < b. The option \"45\" counts ordered pairs and ignores the condition a < b. The option \"16\" demands that exactly one of the two numbers carry the full power of each prime (2 x 4 = 8 choices for 2, 2 x 2 = 4 for 3, then halves 32). The option \"30\" counts 'a has the full power or b has the full power' as 2 x 5 = 10 and 2 x 3 = 6 choices, counting the case where both have it twice, and halves 60. The option \"40\" starts from all 15 x 15 = 225 ordered pairs of divisors and removes only the 12 x 12 = 144 pairs whose lcm divides 72, forgetting the pairs whose lcm divides 48, then removes the equal pair and halves.",
+  "solve": "var g=function(x,y){while(y){var t=x%y;x=y;y=t;}return x;}; var c=0; for(var a=1;a<=144;a++){ for(var b=a+1;b<=144;b++){ if(a*b/g(a,b)===144) c++; } } return c;",
+  "distractor_solve": {
+   "45": "var g=function(x,y){while(y){var t=x%y;x=y;y=t;}return x;}; var c=0; for(var a=1;a<=144;a++){ for(var b=1;b<=144;b++){ if(a*b/g(a,b)===144) c++; } } return c;",
+   "16": "var e2=4, e3=2; return (2*e2)*(2*e3)/2;",
+   "30": "var e2=4, e3=2; return (2*(e2+1))*(2*(e3+1))/2;",
+   "40": "var all=(4+1)*(2+1), sub=(3+1)*(2+1); return (all*all - sub*sub - 1)/2;"
+  },
+  "interval": "A count of pairs. Free lower bound: every divisor d of 144 below 144 pairs with 144 itself (14 pairs), and at least the coprime pair (9, 16) has neither number equal to 144, so the count is at least 15; every option is strictly above 15 (16 is above it, and reaching 16 or more requires listing pairs, which is the method). Free upper bound: both numbers are divisors of 144, so at most C(15, 2) = 105 pairs; every option is far below it and 105 is not an option. Ordered-versus-unordered: a solver who finds the ordered count 45 still has to see that exactly one ordered pair has a = b; 45 itself is the ignore-a<b error, not a bound. No parity or divisibility of the count is forced by the stem. The key 22 is neither the largest nor the smallest option.",
+  "bounds_checked": "lower bound from pairs containing 144 (14) plus one coprime pair, upper bound from pairs of distinct divisors (105), ordered vs unordered relation (45 vs 22), parity, divisibility by 2 and 11, doubling and halving around the key (none: 44 is absent), key extremity",
+  "forced_form_notes": {
+   "odd multiple of 2": "not forced: the ORDERED count is forced odd (a product of the odd numbers 2e+1, or by the symmetry with one fixed pair), but the asked count is (ordered - 1)/2, whose parity the stem does not fix; three distractors are even anyway (16, 30, 40).",
+   "multiple of 11": "not forced: 22 = (9 x 5 - 1)/2 for this particular 144; nothing in the stem implies a factor of 11.",
+   "even multiple of 11": "not forced: as for multiple of 11."
+  }
+ },
+ {
+  "id": "S17E-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of remainders of squares: the remainder of k^2 repeats with the remainder of k",
+  "difficulty": "hard",
+  "template": "r(k) = remainder of k^2 on division by 7, k = 1..100 / sum of all r(k) / the remainders repeat in blocks of 7; count complete blocks and the leftover",
+  "mechanism": [
+   "remainder of k^2 depends only on the remainder of k",
+   "remainders repeat in blocks of seven",
+   "complete blocks plus a leftover tail"
+  ],
+  "method": "See that the remainder of a square on division by 7 depends only on the remainder of the number itself, so the list of remainders repeats in blocks of seven; add one block, multiply by the number of complete blocks, and add the leftover terms matched to their correct place in the block.",
+  "prompt": "For each whole number k from 1 to 100, let r(k) be the remainder when k^2 is divided by 7. For example, r(3) = 2, because 3^2 = 9 = 7 + 2. What is the value of r(1) + r(2) + r(3) + ... + r(100)?",
+  "choices": [
+   "201",
+   "297",
+   "233",
+   "210",
+   "300"
+  ],
+  "correct_answer": "201",
+  "explanation": "If k = 7q + s, then k^2 = 7(7q^2 + 2qs) + s^2, so k^2 leaves the same remainder as s^2: the remainders repeat every 7 numbers. For k = 1, 2, ..., 7 they are 1, 4, 2, 2, 4, 1, 0, which add to 14. The numbers 1 to 98 form 14 complete blocks, giving 14 x 14 = 196. The leftover numbers are 99 = 98 + 1 and 100 = 98 + 2, with remainders r(1) = 1 and r(2) = 4. Total 196 + 1 + 4 = 201. The option \"297\" adds the remainders of k itself instead of k^2 (14 blocks of 1 + 2 + ... + 6 = 21, plus 1 + 2), forgetting to square. The option \"233\" lists r(1) to r(6) = 1, 4, 2, 2, 4, 1, sees the mirror pattern and assumes the block has length 6, missing r(7) = 0: 16 blocks of 14 for 1 to 96, plus 1 + 4 + 2 + 2 for 97 to 100. The option \"210\" rounds 100/7 up to 15 and counts 15 full blocks. The option \"300\" assumes the remainders 0 to 6 occur equally often, so each averages 3, and multiplies by 100.",
+  "solve": "var s=0; for(var k=1;k<=100;k++){ s+=(k*k)%7; } return s;",
+  "distractor_solve": {
+   "297": "var s=0; for(var k=1;k<=100;k++){ s+=k%7; } return s;",
+   "233": "var cyc=[], blk=0; for(var k=1;k<=6;k++){ cyc.push((k*k)%7); blk+=(k*k)%7; } var full=Math.floor(100/6), left=100-6*full, s=full*blk; for(var j=0;j<left;j++){ s+=cyc[j]; } return s;",
+   "210": "var blk=0; for(var k=1;k<=7;k++){ blk+=(k*k)%7; } return Math.ceil(100/7)*blk;",
+   "300": "var avg=(0+1+2+3+4+5+6)/7; return 100*avg;"
+  },
+  "interval": "A sum of 100 remainders, each between 0 and 6, so the sum lies in [0, 600]; every option is inside. The tighter bound 'a square leaves only 0, 1, 2 or 4 on division by 7' (sum <= 400) needs the residue work that is the method, and every option is under 400. No free lower bound reaches any option: the 14 multiples of 7 contribute 0, and the complete-block total 196 is known only after finding the block of 7. Obvious estimate: 100 x (average remainder 3) = 300, which is itself a distractor (the equal-spread error); it is not a bound, since square remainders are not spread evenly, so it kills nothing - the key and 210, 233 lie below it and 297 just below it. No parity, divisibility or digit property of the total is fixed by the stem. The key is the smallest option; no free observation bounds the sum from above below 210, so the other four are rejected only by doing the block count.",
+  "bounds_checked": "range of each remainder (0..6) and of square remainders (0,1,2,4), equal-spread average estimate (300, an option, not a bound), contribution of multiples of 7, complete-block total, parity, divisibility by 3 and 7, doubling/halving around the key (none), runs (sorted 201, 210, 233, 297, 300: no arithmetic run with the key in the middle), key extremity (smallest - for the letter-wide extremity rate)",
+  "forced_form_notes": {
+   "odd": "not forced: the parity of the total depends on how many k give an odd remainder (1 for k = +-1 mod 7), which is the counting the item asks for; 297 and 233 are odd too.",
+   "multiple of 3": "not forced: nothing in the stem makes the sum a multiple of 3; 201 = 3 x 67 is incidental. 297, 210 and 300 are multiples of 3 as well.",
+   "odd multiple of 3": "not forced: as for odd and for multiple of 3; 297 is an odd multiple of 3 too.",
+   "multiple of 67": "not forced: 67 is incidental to 201 and appears nowhere in the stem."
+  }
+ },
+ {
+  "id": "S17E-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "whole-number solutions of a linear equation in two unknowns under an extra inequality",
+  "difficulty": "medium",
+  "template": "3x + 5y = 200 tickets, y >= 1, x > y / number of possible y / the total forces y to leave remainder 1 on division by 3; x > y turns into y < 25; count the residue class below the bound",
+  "mechanism": [
+   "an exact total in two prices: whole-number solutions",
+   "the remainder on division by 3 fixes which counts are possible",
+   "the comparison condition becomes an upper bound on one unknown"
+  ],
+  "method": "Write the total as an equation in the two numbers of tickets, use divisibility by the child price to see that only every third number of adults is possible, turn the condition that children outnumber adults into an upper bound on the number of adults, and count the allowed values below it.",
+  "prompt": "At a museum, a child's ticket costs $3 and an adult's ticket costs $5. A group of children and adults paid exactly $200 for their tickets. The group included at least one adult, and it had more children than adults. How many different numbers of adults could the group have had?",
+  "choices": [
+   "13",
+   "8",
+   "24",
+   "4",
+   "9"
+  ],
+  "correct_answer": "8",
+  "explanation": "Let x be the number of children and y the number of adults: 3x + 5y = 200. Then 200 - 5y must be a multiple of 3. Since 200 leaves remainder 2 on division by 3 and 5y leaves the same remainder as 2y, y must leave remainder 1: y = 1, 4, 7, 10, ... More children than adults means (200 - 5y)/3 > y, that is 200 > 8y, so y < 25. The allowed values are 1, 4, 7, 10, 13, 16, 19, 22: 8 numbers of adults. The option \"13\" drops the condition that children outnumber adults and counts every y from 1 to 37 in the list (each leaves at least one child). The option \"9\" reads \"more children than adults\" as \"at least as many\", which also lets in y = 25, x = 25. The option \"4\" reverses the comparison and counts the groups with more adults than children (y = 28, 31, 34, 37). The option \"24\" turns the comparison into y < 25 but forgets that the $200 must split into whole tickets, counting every y from 1 to 24.",
+  "solve": "var c=0; for(var y=1;5*y<200;y++){ var r=200-5*y; if(r%3===0 && r/3>y) c++; } return c;",
+  "distractor_solve": {
+   "13": "var c=0; for(var y=1;5*y<200;y++){ var r=200-5*y; if(r%3===0 && r/3>=1) c++; } return c;",
+   "9": "var c=0; for(var y=1;5*y<200;y++){ var r=200-5*y; if(r%3===0 && r/3>=y) c++; } return c;",
+   "4": "var c=0; for(var y=1;5*y<200;y++){ var r=200-5*y; if(r%3===0 && r/3>=1 && r/3<y) c++; } return c;",
+   "24": "var c=0; for(var y=1;8*y<200;y++){ c++; } return c;"
+  },
+  "interval": "Bounds the stem forces: y >= 1; 5y < 200, so y <= 39; children outnumber adults, so 8y < 200 and y <= 24. A count of y-values under 24 is at most 24, so every option survives the bound (24 sits ON it and is rejected only by the divisibility step, which is the method). Roughly one value in three survives divisibility (24/3 = 8 would be the estimate, but reading that estimate requires the residue step). Parity: not fixed by the stem. No probability, no share: no obvious share applies. The four distractors (13, 9, 4, 24) are each produced by a named misreading or omission, and none is killed by a sign, parity, digit or magnitude observation.",
+  "bounds_checked": "upper bound on y from the comparison (y <= 24; 24 on it, needs the divisibility step), the total bound (y <= 39), parity (not forced), residue class of y (method), key extremity (8 is interior: 4 below; 9, 13, 24 above), runs (sorted 4, 8, 9, 13, 24: no three-term arithmetic run has 8 in the middle), doubling/halving around the key (4 and 16: 16 absent, 4 present but produced by the reversed comparison; noted)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the answer is a count of values of y (1, 4, 7, ... below 25); nothing in the stem fixes its parity - with a total of $170 instead of $200 the same conditions give y = 1, 4, ..., 19, an odd count of 7; the even key is incidental.",
+   "multiple of 4": "not forced: the answer is a count of values of y (1, 4, 7, ... below 25); nothing in the stem fixes that count's divisibility by 4; incidental to the numbers 200, 3, 5.",
+   "multiple of 8": "not forced: the answer is a count of values of y (1, 4, 7, ... below 25); nothing in the stem fixes that count's divisibility by 8; incidental to the numbers 200, 3, 5.",
+   "odd multiple of 8": "not forced: as for multiple of 8; the stem says nothing about divisibility of the count.",
+   "perfect cube": "not forced: a count of residue-class values below a bound has no reason to be a cube; 8 is incidental."
+  }
+ },
+ {
+  "id": "S17E-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "add-the-digit-sum sequence: each step doubles the remainder mod 9",
+  "difficulty": "hard",
+  "template": "a1 = 1, next term = term + its digit sum / remainder of the 61st term on division by 9 / digit sum has the same remainder as the number, so the remainder doubles each step; powers of 2 mod 9 repeat every 6",
+  "mechanism": [
+   "a number and its digit sum leave the same remainder on division by 9",
+   "so each step doubles the remainder",
+   "remainders of powers of 2 repeat with period 6"
+  ],
+  "method": "Notice that a number and the sum of its digits leave the same remainder on division by 9, so adding the digit sum doubles the remainder at every step; the remainders are then the powers of 2 reduced by 9, which repeat every six terms, so only the position of the term within that cycle matters.",
+  "prompt": "A sequence starts with 1, and each term after the first is found by adding the sum of the digits of the previous term to the previous term. The sequence begins 1, 2, 4, 8, 16, 23, 28, 38, 49, 62, ... What is the remainder when the 61st term of the sequence is divided by 9?",
+  "choices": [
+   "2",
+   "5",
+   "1",
+   "7",
+   "6"
+  ],
+  "correct_answer": "1",
+  "explanation": "A whole number and the sum of its digits leave the same remainder when divided by 9. So if a term leaves remainder r, the next term (term + digit sum) leaves the remainder of r + r = 2r. Starting from 1, the nth term leaves the same remainder as 2^(n-1). Powers of 2 leave remainders 1, 2, 4, 8, 7, 5 on division by 9 and then repeat (2^6 = 64 = 63 + 1). The 61st term matches 2^60, and 60 = 6 x 10, so it is in the same place as 2^0 = 1: remainder 1. (Check: the 61st term is 658 = 9 x 73 + 1.) The option \"2\" matches the nth term with 2^n instead of 2^(n-1), and 2^61 leaves remainder 2. The option \"5\" slips the other way and uses 2^59. The option \"7\" uses the units-digit habit of a cycle of length 4: 60 is a multiple of 4, so it treats 2^60 like 2^4 = 16, remainder 7. The option \"6\" reports the units digit of 2^60 (the cycle 2, 4, 8, 6) as though it were the remainder on division by 9.",
+  "solve": "var a=1; for(var i=2;i<=61;i++){ var s=0, t=a; while(t>0){ s+=t%10; t=Math.floor(t/10); } a+=s; } return a%9;",
+  "distractor_solve": {
+   "2": "var p=1; for(var i=0;i<61;i++){ p=(p*2)%9; } return p;",
+   "5": "var p=1; for(var i=0;i<59;i++){ p=(p*2)%9; } return p;",
+   "7": "var e=60%4; if(e===0) e=4; var p=1; for(var i=0;i<e;i++){ p*=2; } return p%9;",
+   "6": "var p=1; for(var i=0;i<60;i++){ p=(p*2)%10; } return p;"
+  },
+  "interval": "A remainder on division by 9, so 0 to 8; every option is in range. The listed terms never leave remainder 0, 3 or 6, but that is only visible once the doubling is seen (the method); 6 is the one option it would remove, so three of four survive even if it is counted as free. Growth of the terms says nothing about the remainder. Writing out terms is possible but takes the 61 steps the item is built around. The key 1 is the smallest option; nothing in the stem bounds the remainder from below, so the others are rejected only by locating the term in the cycle.",
+  "bounds_checked": "range of a remainder (0..8), remainders 0/3/6 impossible (kills 6 at most), parity of the remainder (not forced), position in a cycle of 6 vs 4, index n vs n-1 vs n-2, key extremity (smallest - for the letter-wide extremity rate), runs (sorted 1, 2, 5, 6, 7: no run with the key in the middle)",
+  "forced_form_notes": {
+   "odd": "not forced: the remainder of a term can be odd or even depending on its place in the cycle 1, 2, 4, 8, 7, 5; nothing in the stem fixes its parity, and 5 and 7 are odd too."
+  }
+ },
+ {
+  "id": "S17E-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest remainder on division by the digit sum: remainder below divisor bounds the search",
+  "difficulty": "hard",
+  "template": "two-digit n divided by its digit sum / greatest possible remainder / remainder < digit sum, so only digit sums 16-18 can beat 14; check those few numbers",
+  "mechanism": [
+   "a remainder is less than its divisor",
+   "only large digit sums can give a large remainder",
+   "finite check of the few numbers with digit sum 16, 17, 18"
+  ],
+  "method": "Use the fact that a remainder is always less than the divisor to see that a remainder of 15 or more needs a digit sum of at least 16, check the handful of two-digit numbers with digit sum 16, 17 or 18, and note that every smaller digit sum caps the remainder at 14.",
+  "prompt": "A two-digit whole number is divided by the sum of its own two digits. For example, 47 divided by 4 + 7 = 11 gives a quotient of 4 and a remainder of 3. What is the greatest possible remainder?",
+  "choices": [
+   "13",
+   "9",
+   "16",
+   "15",
+   "12"
+  ],
+  "correct_answer": "15",
+  "explanation": "The remainder is always less than the divisor, the digit sum s. If s is 15 or less, the remainder is at most 14. So look at s = 16, 17, 18. s = 18: only 99, and 99 = 5 x 18 + 9, remainder 9. s = 17: 89 = 5 x 17 + 4 and 98 = 5 x 17 + 13, remainders 4 and 13. s = 16: 79 = 4 x 16 + 15, 88 = 5 x 16 + 8, 97 = 6 x 16 + 1, remainders 15, 8, 1. The greatest is 15, from 79. The option \"16\" assumes the bound 'remainder at most 16 when the digit sum is 17' is actually reached, without checking 89 and 98. The option \"13\" stops after the digit sums 18 and 17 (best: 98), or after checking 99 down to 95, and never reaches 79. The option \"9\" tries only the largest digit sum, 99 divided by 18. The option \"12\" searches only numbers with digit sum 15 or less, on the belief that a large digit sum gives too small a quotient to leave a large remainder; the best there is 12 (87 = 5 x 15 + 12).",
+  "solve": "var best=0; for(var n=10;n<=99;n++){ var s=Math.floor(n/10)+n%10; if(n%s>best) best=n%s; } return best;",
+  "distractor_solve": {
+   "16": "var best=0; for(var n=10;n<=99;n++){ var s=Math.floor(n/10)+n%10; if(s===17 && s-1>best) best=s-1; } return best;",
+   "13": "var best=0; for(var n=10;n<=99;n++){ var s=Math.floor(n/10)+n%10; if(s>=17 && n%s>best) best=n%s; } return best;",
+   "9": "return 99%18;",
+   "12": "var best=0; for(var n=10;n<=99;n++){ var s=Math.floor(n/10)+n%10; if(s<=15 && n%s>best) best=n%s; } return best;"
+  },
+  "interval": "Free upper bound: the digit sum is at most 18, so the remainder is at most 17; 17 is not an option and every option is strictly below it. Free lower bound: the stem's own example gives 3, and any quick trial (99 gives 9) gives a floor below every option except 9, which a trial of 99 reaches exactly - so 9 is reachable but not the greatest; it is eliminated only by finding a bigger remainder, which is the search. The value 16 (above the key) needs digit sum 17 or 18 and is ruled out only by checking 89, 98 and 99, which is the method. 13 and 12 are actual remainders, ruled out only by finding 79. Greatest ask: the key is not the largest option (16 is above it).",
+  "bounds_checked": "remainder < divisor <= 18 (bound 17, not an option), stem example and single trials as lower bounds, greatest-ask extremity (16 above the key), parity, adjacency (13/12 pair and 15/16 pair), runs (sorted 9, 12, 13, 15, 16: no arithmetic run with the key in the middle)",
+  "forced_form_notes": {
+   "odd": "not forced: a remainder can be odd or even; nothing in the stem fixes its parity (13 and 9 are odd too).",
+   "multiple of 3": "not forced: remainders on division by the digit sum have no divisibility the stem fixes; 9 and 12 are multiples of 3 as well.",
+   "odd multiple of 3": "not forced: as for odd and multiple of 3; 9 is an odd multiple of 3 too.",
+   "multiple of 5": "not forced: 15 being a multiple of 5 is incidental; no digit sum or remainder in the stem involves 5.",
+   "odd multiple of 5": "not forced: as for multiple of 5."
+  }
+ },
+ {
+  "id": "S17E-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "which numbers are a difference of two squares: remainder on division by 4, plus the positive-integer edge cases",
+  "difficulty": "hard",
+  "template": "n = a^2 - b^2 with a, b positive integers, n = 1..100 / how many n / (a-b)(a+b) has two factors of the same parity, so n is odd or a multiple of 4; b > 0 then removes 1 and 4",
+  "mechanism": [
+   "factor a^2 - b^2 as (a - b)(a + b)",
+   "the two factors have the same parity, so n is not 2 more than a multiple of 4",
+   "b >= 1 removes the representations that need b = 0"
+  ],
+  "method": "Factor the difference as (a - b)(a + b) and notice the two factors are both odd or both even, so a number two more than a multiple of 4 is impossible while every other number works with a suitable factor pair; then catch the unannounced case split that b must be positive, which removes exactly the numbers whose only factor pair forces b = 0.",
+  "prompt": "How many of the integers 1, 2, 3, ..., 100 can be written in the form a^2 - b^2, where a and b are positive integers?",
+  "choices": [
+   "75",
+   "50",
+   "61",
+   "65",
+   "73"
+  ],
+  "correct_answer": "73",
+  "explanation": "a^2 - b^2 = (a - b)(a + b), and a - b and a + b differ by 2b, an even number, so they are both odd or both even. Both odd: n is odd. Both even: n is a multiple of 4. So no n that leaves remainder 2 on division by 4 works (25 such numbers from 1 to 100), leaving 75. Conversely, an odd n = 1 x n gives a = (n + 1)/2, b = (n - 1)/2, which is positive when n >= 3; n = 1 would need b = 0, and it has no other factor pair. A multiple of 4, n = 2 x (n/2), gives a = n/4 + 1, b = n/4 - 1, positive when n >= 8; n = 4 = 2 x 2 would need b = 0, and it has no other same-parity pair. So 1 and 4 also fail: 75 - 2 = 73. The option \"75\" ignores that b must be positive. The option \"50\" counts only the odd numbers, forgetting the multiples of 4 (and keeping 1). The option \"65\" believes a perfect square can only be written as itself minus 0^2, so it removes all ten perfect squares from the 75 (but 9 = 5^2 - 4^2, 16 = 5^2 - 3^2, and so on). The option \"61\" tries only pairs of odd numbers for even differences, whose squares differ by a multiple of 8, so it adds the 12 multiples of 8 from 8 to 96 to the 49 odd numbers from 3 to 99.",
+  "solve": "var c=0; for(var n=1;n<=100;n++){ var ok=false; for(var b=1;b<=100 && !ok;b++){ for(var a=b+1;a<=101;a++){ var d=a*a-b*b; if(d===n){ ok=true; break; } if(d>n) break; } } if(ok) c++; } return c;",
+  "distractor_solve": {
+   "75": "var c=0; for(var n=1;n<=100;n++){ if(n%4!==2) c++; } return c;",
+   "50": "var c=0; for(var n=1;n<=100;n++){ if(n%2===1) c++; } return c;",
+   "65": "var c=0; for(var n=1;n<=100;n++){ var r=Math.round(Math.sqrt(n)); if(n%4!==2 && r*r!==n) c++; } return c;",
+   "61": "var c=0; for(var n=3;n<=100;n++){ if(n%2===1 || n%8===0) c++; } return c;"
+  },
+  "interval": "A count of integers from 1 to 100, so 0 to 100. Free: the smallest possible a^2 - b^2 with positive a > b is 2^2 - 1^2 = 3, so 1 and 2 fail and at most 98 work; every option is below. The 'not 2 more than a multiple of 4' count (at most 75) needs the same-parity-factors argument, which is the method; 75 sits on it and is the no-edge-case count, ruled out only by the b > 0 check, the second half of the method. Obvious share: half of 100 (50, the odd numbers). Showing the answer exceeds 50 needs both that every odd number from 3 up works and that several multiples of 4 work, i.e. most of the method; if a grader treats it as free it kills 50 only, and 61, 65 and 75 (three of four) sit strictly on the key's side of it. No option sits on the free bound 98. The key is neither the largest nor the smallest option.",
+  "bounds_checked": "range of a count (0..100), smallest positive difference (3), remainder-mod-4 count (method, 75), half of 100 / odd numbers (50), positive-b edge cases (1 and 4), perfect squares, parity (three distractors odd like the key), multiples of 5 (key is not one; three distractors are - not a property the key needs), runs (sorted 50, 61, 65, 73, 75: no arithmetic run with the key in the middle), adjacency, key extremity",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S17E-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least n with 1 + ... + n a multiple of 72: the halving demands 16, and the prime powers may split between n and n + 1",
+  "difficulty": "hard",
+  "template": "1 + 2 + ... + n = n(n+1)/2 a multiple of 72 / least n / n(n+1) must be a multiple of 144 = 16 x 9; consecutive numbers share no factor, so 16 and 9 each sit wholly in n or in n + 1; try both placements",
+  "mechanism": [
+   "sum of 1..n is n(n+1)/2",
+   "the halving raises the needed power of 2 from 8 to 16",
+   "n and n + 1 share no factor, so each prime power lies wholly in one of them"
+  ],
+  "method": "Write the sum as n(n+1)/2, see that the halving means n(n+1) needs a factor 16 x 9, and that because n and n + 1 share no factor the 16 and the 9 must each lie entirely in one of the two; compare the least n for each of the four placements.",
+  "prompt": "What is the least positive integer n for which the sum 1 + 2 + 3 + ... + n is a multiple of 72?",
+  "choices": [
+   "63",
+   "35",
+   "47",
+   "15",
+   "8"
+  ],
+  "correct_answer": "63",
+  "explanation": "1 + 2 + ... + n = n(n+1)/2, and this is a multiple of 72 exactly when n(n+1) is a multiple of 144 = 16 x 9. Since n and n + 1 have no common factor, the 16 must divide one of them entirely and the 9 must divide one of them entirely. Both in n: n is a multiple of 144. Both in n + 1: n = 143. 16 in n and 9 in n + 1: n = 80 (n + 1 = 81). 9 in n and 16 in n + 1: n = 63 (n + 1 = 64). The least is 63: 63 x 64 / 2 = 2016 = 72 x 28. The option \"8\" forgets the halving and asks for n(n+1) to be a multiple of 72: 8 x 9 = 72, but the sum 1 + ... + 8 = 36 is not a multiple of 72. The option \"15\" puts the needed 16 into n + 1 and forgets the 9: 15 x 16 / 2 = 120. The option \"35\" halves 72 and sets n + 1 = 36: 35 x 36 / 2 = 630, not a multiple of 72. The option \"47\" puts 16 into n + 1 = 48 and accepts the single factor 3 in 48 in place of 9: 47 x 48 / 2 = 1128 = 72 x 15 2/3.",
+  "solve": "for(var n=1;n<10000;n++){ if((n*(n+1)/2)%72===0) return n; } return -1;",
+  "distractor_solve": {
+   "8": "for(var n=1;n<10000;n++){ if((n*(n+1))%72===0) return n; } return -1;",
+   "15": "return 16 - 1;",
+   "35": "return 72/2 - 1;",
+   "47": "for(var n=1;n<10000;n++){ if((n+1)%16===0 && (n+1)%3===0) return n; } return -1;"
+  },
+  "interval": "Free lower bound: the sum must be at least 72, so n >= 12 (1 + ... + 11 = 66). This kills 8 for free; 15, 35 and 47 (three of four) are above it. 15, 35 and 47 are invalid and are rejected only by computing their sums and testing divisibility by 72 (plug-in work) or by the factor-16 argument, which is the method. Least ask: the key is the largest option, never the smallest. The mod-9 test (n or n + 1 a multiple of 9) does not kill 35 (36) or 8 (9); it kills 15 and 47, but seeing that 9 must sit wholly in n or n + 1 is half of the method, not a free observation. Parity: the answer may be odd or even (80 also works), so parity decides nothing.",
+  "bounds_checked": "sum >= 72 lower bound (n >= 12, kills 8), least-ask extremity (key is not the smallest option), mod-9 placement (method), mod-16 placement (method), parity, valid-but-larger values (80, 143 - not options), doubling/halving around the key (none), runs (sorted 8, 15, 35, 47, 63: no arithmetic run with the key in the middle)",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the 9 may sit in n + 1 instead of n (n = 80 and n = 143 also make the sum a multiple of 72), so n itself need not be a multiple of 3; 15 is a multiple of 3 as well.",
+   "odd multiple of 3": "not forced: as for multiple of 3; parity of n is not fixed either (80 works).",
+   "multiple of 7": "not forced: 7 is incidental to 63 and appears nowhere in the stem; 35 is a multiple of 7 too.",
+   "odd multiple of 7": "not forced: as for multiple of 7.",
+   "multiple of 9": "not forced: the 9 may divide n + 1 instead of n (n = 80, n = 143), so n need not be a multiple of 9.",
+   "odd multiple of 9": "not forced: as for multiple of 9.",
+   "multiple of 21": "not forced: incidental to 63, as for 3 and 7.",
+   "odd multiple of 21": "not forced: as for multiple of 21.",
+   "multiple of 63": "not forced: incidental."
+  }
+ },
+ {
+  "id": "S17E-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number minus its digit sum: the units digit cancels, so values depend on the first two digits only",
+  "difficulty": "hard",
+  "template": "N three-digit, D(N) = N minus the sum of its digits / number of different values of D(N) / units digit cancels, D = 99a + 9b, distinct for distinct (a, b)",
+  "mechanism": [
+   "number minus its digit sum",
+   "units digit cancels out",
+   "count distinct values, not numbers"
+  ],
+  "method": "Write the number in place-value form and subtract the digit sum to see that the units digit cancels, leaving 99 times the hundreds digit plus 9 times the tens digit, then check that different hundreds-and-tens pairs always give different values, so the count is the number of such pairs.",
+  "prompt": "For each three-digit positive integer N, subtract the sum of the digits of N from N itself. For example, for N = 247 the result is 247 - (2 + 4 + 7) = 234. As N runs through all the three-digit positive integers from 100 to 999, how many different results are obtained?",
+  "choices": [
+   "98",
+   "90",
+   "900",
+   "81",
+   "108"
+  ],
+  "correct_answer": "90",
+  "explanation": "Write N = 100a + 10b + c with a from 1 to 9 and b, c from 0 to 9. Then N - (a + b + c) = 99a + 9b = 9(11a + b). The units digit c has cancelled, so the result depends only on a and b. Since b is at most 9, which is less than 11, different pairs (a, b) give different values of 11a + b. So the number of different results equals the number of pairs: 9 x 10 = 90. The option \"98\" notices that every result is a multiple of 9, finds the least result 99 (N = 100 to 109) and the greatest 972 (N = 990 to 999), and counts all multiples of 9 from 99 to 972: 108 - 11 + 1 = 98, without checking that values such as 9 x 21 = 189 are never reached. The option \"900\" assumes each three-digit number gives its own result. The option \"81\" counts only tens digits 1 to 9, forgetting that the tens digit may be 0. The option \"108\" also notices the multiple of 9 but counts every multiple of 9 up to the greatest result 972, from 9 x 1 to 9 x 108, forgetting that the least result is 99.",
+  "solve": "var seen={}; var n=0; for(var N=100;N<=999;N++){ var s=Math.floor(N/100)+Math.floor(N/10)%10+N%10; var v=N-s; if(!seen[v]){ seen[v]=1; n++; } } return n;",
+  "distractor_solve": {
+   "98": "var lo=99, hi=99*9+9*9; return hi/9 - lo/9 + 1;",
+   "900": "return 999-100+1;",
+   "81": "var seen={}; var n=0; for(var a=1;a<=9;a++){ for(var b=1;b<=9;b++){ var v=99*a+9*b; if(!seen[v]){ seen[v]=1; n++; } } } return n;",
+   "108": "var hi=99*9+9*9; return hi/9;"
+  },
+  "interval": "The count is a whole number between 1 and 900 (the number of three-digit integers). 900 sits ON that upper bound; it is rejected only by seeing that different N can give the same result, which is the cancelling of the units digit (the method), not a free observation - nothing in the stem says two numbers collide. The other four lie strictly inside. A student who notices 'the result is a multiple of 9' and bounds it between 99 and 972 gets at most 98 values; that bound is itself distractor 98, it kills 108 and 900, and it leaves 98, 90 and 81 alive - and it is not free, since it needs the place-value rewrite 99a + 9b that is the first step of the method. No parity or divisibility of the count is forced: it is a count of (hundreds, tens) pairs. Doubling/halving around 90: none (45, 180 absent). Sorted 81, 90, 98, 108, 900: gaps 9, 8, 10, 792, so no arithmetic run; ratios 90/81 = 1.11, 98/90 = 1.09, so no geometric run with the key in the middle. Key is neither the largest nor the smallest option.",
+  "bounds_checked": "count range 1..900 (900 on the bound, needs the collision idea), multiple-of-9 range bound 99..972 (= distractor 98, needs the place-value rewrite), parity, units digit, divisibility by 9/10, doubling/halving around the key, arithmetic and geometric runs, key extremity (interior)",
+  "forced_form_notes": {
+   "odd multiple of 2": "not forced: the stem asks how many DIFFERENT results occur, a count of values; nothing in it fixes that count's divisibility before the collisions are understood. That the count factors as 9 x 10 comes from the answer (9 hundreds digits x 10 tens digits), not from the stem. 98 and 108 are even like the key.",
+   "multiple of 5": "not forced: the stem asks how many DIFFERENT results occur, a count of values; nothing in it fixes that count's divisibility before the collisions are understood. That the count factors as 9 x 10 comes from the answer (9 hundreds digits x 10 tens digits), not from the stem. 900 is a multiple of 5 too.",
+   "multiple of 6": "not forced: the stem asks how many DIFFERENT results occur, a count of values; nothing in it fixes that count's divisibility before the collisions are understood. That the count factors as 9 x 10 comes from the answer (9 hundreds digits x 10 tens digits), not from the stem. 900 and 108 are multiples of 6 too.",
+   "odd multiple of 6": "not forced: the stem asks how many DIFFERENT results occur, a count of values; nothing in it fixes that count's divisibility before the collisions are understood. That the count factors as 9 x 10 comes from the answer (9 hundreds digits x 10 tens digits), not from the stem. 90 = 6 x 15 is incidental; 900 and 108 are multiples of 6.",
+   "even multiple of 9": "not forced: the stem asks how many DIFFERENT results occur, a count of values; nothing in it fixes that count's divisibility before the collisions are understood. That the count factors as 9 x 10 comes from the answer (9 hundreds digits x 10 tens digits), not from the stem. the results are multiples of 9, but the COUNT of results is not forced to be; 900 and 108 are even multiples of 9 too, 81 an odd one.",
+   "multiple of 10": "not forced: the stem asks how many DIFFERENT results occur, a count of values; nothing in it fixes that count's divisibility before the collisions are understood. That the count factors as 9 x 10 comes from the answer (9 hundreds digits x 10 tens digits), not from the stem. 900 is a multiple of 10 too.",
+   "odd multiple of 10": "not forced: the stem asks how many DIFFERENT results occur, a count of values; nothing in it fixes that count's divisibility before the collisions are understood. That the count factors as 9 x 10 comes from the answer (9 hundreds digits x 10 tens digits), not from the stem. 90 = 10 x 9 is incidental; 900 is a multiple of 10 too."
+  }
+ },
+ {
+  "id": "S17E-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "smallest multiple written with only 1s and 0s: split the divisor into a digit-sum part and a trailing-digits part",
+  "difficulty": "hard",
+  "template": "smallest positive multiple of 1125 using only digits 1 and 0 / number of digits / 1125 = 9 x 125: nine 1s for the 9, three trailing 0s for the 125",
+  "mechanism": [
+   "split the divisor into coprime factors with digit tests",
+   "divisibility by 125 depends on the last three digits",
+   "divisibility by 9 depends on the digit sum"
+  ],
+  "method": "Factor the divisor into a power of 3 and a power of 5 that share no factor, see that the power of 5 is settled by the last three digits alone, which with only 1s and 0s forces them all to be 0, and that the power of 3 is settled by the digit sum, which forces the number of 1s, then put the 1s first.",
+  "prompt": "N is the smallest positive integer that is divisible by 1125 and is written using only the digits 1 and 0 (each digit of N is either 1 or 0). How many digits does N have?",
+  "choices": [
+   "9",
+   "6",
+   "12",
+   "10",
+   "11"
+  ],
+  "correct_answer": "12",
+  "explanation": "1125 = 9 x 125, and 9 and 125 share no factor, so N must be divisible by both. Divisibility by 125 depends only on the last three digits, which must form 000, 125, 250, 375, 500, 625, 750 or 875; with only 1s and 0s that leaves 000. Divisibility by 9 needs the digit sum, which is the number of 1s, to be a multiple of 9, so N has at least nine 1s. The smallest such number is 111111111000 (nine 1s, then three 0s), which has 12 digits. The option \"9\" ignores the factor 125 and stops at 111111111. The option \"6\" uses the divisibility-by-3 test (digit sum a multiple of 3) for the factor 9, giving 111000. The option \"10\" treats divisibility by 125 like divisibility by 5 or 10 and adds only one 0. The option \"11\" applies the divisibility-by-25 test (last two digits) to 125 and adds two 0s.",
+  "solve": "var d=1125, k3=1, t=d; while(t%3===0){ t/=3; k3*=3; } var k5=d/k3; var z=0, p=1; while(p%k5!==0){ p*=10; z++; } var ones=(k3===9)?9:3; return ones+z;",
+  "distractor_solve": {
+   "9": "var ones=9; return ones;",
+   "6": "var ones=3, zeros=3; return ones+zeros;",
+   "10": "var ones=9, zeros=1; return ones+zeros;",
+   "11": "var ones=9, zeros=2; return ones+zeros;"
+  },
+  "interval": "The ask is the digit count of the SMALLEST such number; the key 12 is the largest option, which is the opposite direction from the ask (fewest digits), so the §13j extreme-in-the-asked-direction rule is not engaged. Free lower bound: N >= 1125 gives at least 4 digits, which every option passes. No free upper bound reaches 12: showing that 111111111000 works and nothing shorter does IS the method (the 125 forces three trailing zeros and the 9 forces nine 1s). Each smaller option corresponds to a number (111111111, 111000, 1111111110, 11111111100) that a student would have to test against 1125, and testing it needs the same two digit tests; nothing in the stem singles out the key. Parity of the count is not forced. Sorted 6, 9, 10, 11, 12: the key is at the top end of the 9-10-11-12 run, not in the middle of an arithmetic run; no doubling/halving pair with the key (6 is half of 12, and 6 is a distractor: the 3-for-9 error gives 3 ones + 3 zeros, not a halving of the key - recorded so a reader sees it).",
+  "bounds_checked": "magnitude lower bound (N >= 1125, 4 digits), which options a free plug-in kills (none: each needs both digit tests), parity, divisibility of the count, arithmetic runs, doubling/halving (6 and 12 noted), key extremity (largest, opposite to the asked direction; intended for the letter's two extreme keys)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the digit count is (number of 1s) + (number of 0s); the stem fixes neither, and finding them (nine and three) is the problem. 6 and 10 are even too; 9 and 11 are the natural nine-1s errors.",
+   "multiple of 3": "not forced: the digit count is (number of 1s) + (number of 0s); the stem fixes neither, and finding them (nine and three) is the problem. 9 and 6 are multiples of 3 too.",
+   "multiple of 4": "not forced: the digit count is (number of 1s) + (number of 0s); the stem fixes neither, and finding them (nine and three) is the problem. 12 = 4 x 3 is incidental to 9 + 3.",
+   "odd multiple of 4": "not forced: the digit count is (number of 1s) + (number of 0s); the stem fixes neither, and finding them (nine and three) is the problem. incidental, as for multiple of 4.",
+   "multiple of 6": "not forced: the digit count is (number of 1s) + (number of 0s); the stem fixes neither, and finding them (nine and three) is the problem. 6 is a multiple of 6 too.",
+   "multiple of 12": "not forced: the digit count is (number of 1s) + (number of 0s); the stem fixes neither, and finding them (nine and three) is the problem. 12 is the sum 9 + 3; nothing in the stem makes the count a multiple of 12.",
+   "odd multiple of 12": "not forced: the digit count is (number of 1s) + (number of 0s); the stem fixes neither, and finding them (nine and three) is the problem. incidental, as for multiple of 12."
+  }
+ },
+ {
+  "id": "S17E-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number equal to a multiple of its digit sum: place-value equation, then a digit-bounded case split",
+  "difficulty": "hard",
+  "template": "three-digit N = 19 x (sum of its digits) / how many such N / 100a + 10b + c = 19(a + b + c) reduces to b + 2c = 9a; count digit solutions with b, c from 0 to 9",
+  "mechanism": [
+   "place-value equation with the digit sum",
+   "reduce to b + 2c = 9a",
+   "digit bounds cut each case"
+  ],
+  "method": "Write the number in place-value form and set it equal to 19 times the digit sum, simplify to a small linear relation among the digits, and then count the digit solutions case by case on the hundreds digit, using that each digit is at most 9 to cut each case short.",
+  "prompt": "How many three-digit positive integers are exactly 19 times the sum of their own digits? (For example, 190 is one of them, because 1 + 9 + 0 = 10 and 19 x 10 = 190.)",
+  "choices": [
+   "5",
+   "12",
+   "15",
+   "11",
+   "9"
+  ],
+  "correct_answer": "11",
+  "explanation": "Write the number as 100a + 10b + c (a = hundreds, b = tens, c = units). Then 100a + 10b + c = 19a + 19b + 19c, so 81a = 9b + 18c, that is b + 2c = 9a. Since b + 2c is at most 9 + 18 = 27, a is 1, 2 or 3. a = 1: b + 2c = 9 gives c = 0, 1, 2, 3, 4 (b = 9, 7, 5, 3, 1): 5 numbers. a = 2: b + 2c = 18 needs b = 18 - 2c at most 9, so c = 5, 6, 7, 8, 9 (b = 8, 6, 4, 2, 0): 5 numbers. a = 3: b + 2c = 27 forces c = 9, b = 9: the number 399. Total 5 + 5 + 1 = 11. The option \"5\" stops after the hundreds digit 1. The option \"12\" lets the tens digit be 10 in the case a = 2 (c = 4, b = 10). The option \"15\" assumes each of the three hundreds digits gives 5 numbers, as the first case did. The option \"9\" leaves out every number with a 0 digit (190 and 209), as if digits had to be nonzero.",
+  "solve": "var n=0; for(var N=100;N<=999;N++){ var s=Math.floor(N/100)+Math.floor(N/10)%10+N%10; if(N===19*s) n++; } return n;",
+  "distractor_solve": {
+   "5": "var n=0; var a=1; for(var c=0;c<=9;c++){ var b=9*a-2*c; if(b>=0&&b<=9) n++; } return n;",
+   "12": "var n=0; for(var a=1;a<=9;a++){ for(var c=0;c<=9;c++){ var b=9*a-2*c; if(b>=0&&(b<=9||(a===2&&b===10))) n++; } } return n;",
+   "15": "var first=0; for(var c=0;c<=9;c++){ var b=9-2*c; if(b>=0&&b<=9) first++; } var cases=0; for(var a=1;a<=9;a++){ if(9*a<=27) cases++; } return cases*first;",
+   "9": "var n=0; for(var N=100;N<=999;N++){ var a=Math.floor(N/100), b=Math.floor(N/10)%10, c=N%10; if(b===0||c===0) continue; if(N===19*(a+b+c)) n++; } return n;"
+  },
+  "interval": "A count between 1 (the example 190) and the number of three-digit multiples of 19 (47). Every option is inside; none sits on a bound. Free magnitude: N = 19 x S with S at most 27 gives N at most 513, so the candidates are 19 x 6 up to 19 x 27, which is 22 multiples of 19 from 114 to 513 - every option is under 22, so this bound kills nothing; testing 22 multiples one by one IS a brute-force route but it is the long way, not a free elimination. Parity: the count is not forced odd or even; the key and three distractors (5, 15, 9) are odd. No option is singled out by the example (190 belongs to the a = 1 case, which every error path includes). Sorted 5, 9, 11, 12, 15: the only three-term arithmetic run is 9, 12, 15, whose middle is 12, not the key; no geometric run; no doubling/halving pair with 11. Key is neither the largest nor the smallest.",
+  "bounds_checked": "count range (1 from the example, 47 multiples of 19, 22 candidates from the digit-sum ceiling 27), parity, brute-force-by-multiples route (long, not free), arithmetic and geometric runs, doubling/halving, key extremity (interior)",
+  "forced_form_notes": {
+   "multiple of 11": "not forced: the key is a count of solutions (5 + 5 + 1); 11 appears nowhere in the stem (the multiplier is 19), and nothing makes the count a multiple of 11.",
+   "odd multiple of 11": "not forced: the key is a count of solutions (5 + 5 + 1); 11 appears nowhere in the stem (the multiplier is 19), and nothing makes the count a multiple of 11."
+  }
+ },
+ {
+  "id": "S17E-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number plus its reversal: carries fix the digit sums, and the solution set is closed under reversal",
+  "difficulty": "hard",
+  "template": "three-digit N (units digit not 0) with N + reverse(N) = 1252 / sum of all such N / N + R = 101(a + c) + 20b fixes a + c = 12, b = 2; the set is closed under reversal, so the sum is (count x 1252) / 2",
+  "mechanism": [
+   "number plus its reversal",
+   "carries decide the outer-digit sum",
+   "solution set closed under reversal"
+  ],
+  "method": "Add the number and its reversal column by column and use the carries (or the place-value form) to see that the outer digits must add to one fixed value and the middle digit is fixed, then notice that the reversal of every solution is again a solution, so the solutions pair up and their total is half the count times the given sum.",
+  "prompt": "For a three-digit positive integer N whose units digit is not 0, let R be the three-digit number formed by writing the digits of N in reverse order. (For example, if N = 418, then R = 814.) Consider every such N for which N + R = 1252. What is the sum of all these values of N?",
+  "choices": [
+   "9386",
+   "3756",
+   "4732",
+   "2504",
+   "4382"
+  ],
+  "correct_answer": "4382",
+  "explanation": "Write N = 100a + 10b + c, so R = 100c + 10b + a and N + R = 101(a + c) + 20b = 1252. The units column gives a + c ending in 2, so a + c = 2 or 12; a + c = 2 would leave 20b = 1050, impossible, so a + c = 12 and 20b = 1252 - 1212 = 40, b = 2. (Column check: 12 in the units writes 2 and carries 1; the tens give 2b + 1 = 5 with no carry; the hundreds give 12, so 1252.) The pairs with a + c = 12 and both digits from 1 to 9 are a = 3, 4, 5, 6, 7, 8, 9, so N is 329, 428, 527, 626, 725, 824, 923: seven numbers. The reversal of each is also on the list, so the list added to itself in reverse order is 7 copies of 1252, and the sum is 7 x 1252 / 2 = 4382. The option \"3756\" leaves out 626, treating a number equal to its own reversal as not counting: 6 x 626. The option \"2504\" counts unordered digit pairs {3, 9}, {4, 8}, {5, 7}, {6, 6} as four numbers: 4 x 626. The option \"9386\" ignores the carry consistency: from the tens column it also accepts b = 7 (2b + 1 = 15), then reads a + c = 11 from the hundreds, adding the eight numbers 279, 378, ..., 972 (sum 5004) to the seven true ones. The option \"4732\" keeps a + c = 12 but reads the tens column as 2b + 1 = 15, so b = 7, and adds 379, 478, ..., 973 (whose N + R is 1352, not 1252).",
+  "solve": "var t=0; for(var N=100;N<=999;N++){ if(N%10===0) continue; var R=Number(String(N).split('').reverse().join('')); if(N+R===1252) t+=N; } return t;",
+  "distractor_solve": {
+   "3756": "var t=0; for(var N=100;N<=999;N++){ if(N%10===0) continue; var R=Number(String(N).split('').reverse().join('')); if(N+R===1252 && N!==R) t+=N; } return t;",
+   "2504": "var pairs=0; for(var a=1;a<=9;a++){ var c=12-a; if(c>=a && c<=9) pairs++; } return pairs*1252/2;",
+   "9386": "var t=0; for(var N=100;N<=999;N++){ if(N%10===0) continue; var a=Math.floor(N/100), b=Math.floor(N/10)%10, c=N%10; if((b===2&&a+c===12)||(b===7&&a+c===11)) t+=N; } return t;",
+   "4732": "var t=0; for(var a=1;a<=9;a++){ var c=12-a; if(c>=1&&c<=9) t+=100*a+10*7+c; } return t;"
+  },
+  "interval": "Each solution is a three-digit number with a + c = 12, so it lies between 300 and 1000; the sum is (count) x (something in that range). Without the count nothing bounds the sum. Once the count 7 is known (that is most of the method), 7 x 300 = 2100 and 7 x 1000 = 7000 bound the sum: 9386 falls outside, 3756, 4732 and 2504 distractors stay inside - so this bound needs the count and is not free. Parity: N + R = 1252 does not fix the parity of the sum of the N's; the key and all four distractors are even. Units digit of the sum: fixed only by knowing the set. Divisibility: the key is 7 x 626; 3756 and 2504 are multiples of 626 too (626 = 1252/2 is the pair average every route that uses the pairing produces). Doubling/halving: 2 x 4382 = 8764 and 4382/2 = 2191 are NOT options (the 'forgot to halve' error was deliberately left out). Sorted 2504, 3756, 4382, 4732, 9386: gaps 1252, 626, 350, 4654 - no arithmetic or geometric run with the key in the middle. The key is interior.",
+  "bounds_checked": "magnitude of each solution (300..1000) and of the sum given the count, parity, units digit, multiples of 626, doubling/halving (8764, 2191 absent), arithmetic and geometric runs, key extremity (interior)",
+  "forced_form_notes": {
+   "odd multiple of 2": "not forced: the stem fixes N + R = 1252 for each solution, not the parity of half the total; the total is (count) x 626, and whether that is 2 x odd depends on the count being odd (7), which is what the item asks you to find. A wrong count (6 or 4 numbers) gives 4 x odd or 8 x odd naturally.",
+   "multiple of 7": "not forced: the factor 7 is the number of solutions, which the stem does not give; 7 appears nowhere in the stem. Distractors built on other counts (6, 4, 15 numbers) carry their own counts, as they must.",
+   "even multiple of 7": "not forced: as for multiple of 7; the 7 is the unknown count."
+  }
+ },
+ {
+  "id": "S17E-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "digit sum of a doubled number: every digit 5 or more makes a carry that costs 9",
+  "difficulty": "hard",
+  "template": "N has a stated multiset of digits in unknown order / digit sum of 2N / S(2N) = 2S(N) - 9 x (number of digits 5 or more), independent of the order",
+  "mechanism": [
+   "digit sum after doubling",
+   "each carry lowers the digit sum by 9",
+   "carries come exactly from digits 5 to 9"
+  ],
+  "method": "See that doubling a digit of 5 or more writes ten less in that place and carries 1 to the next place, a net loss of 9, while smaller digits just double, so the digit sum of 2N is twice the digit sum of N minus 9 for each digit that is 5 or more, whatever the order of the digits.",
+  "prompt": "A positive integer N has exactly 15 digits: four 9s, three 7s, two 5s and six 2s, arranged in some order. What is the sum of the digits of 2N?",
+  "choices": [
+   "77",
+   "95",
+   "149",
+   "86",
+   "122"
+  ],
+  "correct_answer": "77",
+  "explanation": "Double N place by place. A digit d from 0 to 4 becomes 2d with no carry. A digit d from 5 to 9 becomes 2d - 10 in its place and sends a carry of 1 to the next place; since 2d + 1 is at most 19, a carry never causes a second carry. So each digit that is 5 or more changes the digit sum by -10 + 1 = -9 compared with plain doubling, and the order of the digits does not matter. Here the digit sum of N is 4 x 9 + 3 x 7 + 2 x 5 + 6 x 2 = 79, and 4 + 3 + 2 = 9 digits are 5 or more, so the digit sum of 2N is 2 x 79 - 9 x 9 = 158 - 81 = 77. The option \"95\" treats only the digits greater than 5 as carrying, missing the two 5s (5 x 2 = 10 carries too): 158 - 9 x 7. The option \"149\" subtracts 9 only once, as if the carries together cost 9. The option \"86\" finds the digit sum of each doubled digit (18 -> 9, 14 -> 5, 10 -> 1, 4 -> 4), which already includes each carried 1, and then adds the nine carries again: 77 + 9. The option \"122\" counts only the 9s as producing a carry: 158 - 9 x 4.",
+  "solve": "var ds={9:4,7:3,5:2,2:6}; var s=0, k=0; for(var d in ds){ s+=Number(d)*ds[d]; if(Number(d)>=5) k+=ds[d]; } var digs=[]; for(var d in ds){ for(var i=0;i<ds[d];i++) digs.push(Number(d)); } var carry=0, t=0; for(var j=0;j<digs.length;j++){ var v=2*digs[j]+carry; t+=v%10; carry=Math.floor(v/10); } t+=carry; return t;",
+  "distractor_solve": {
+   "95": "var ds={9:4,7:3,5:2,2:6}; var s=0, k=0; for(var d in ds){ s+=Number(d)*ds[d]; if(Number(d)>5) k+=ds[d]; } return 2*s-9*k;",
+   "149": "var ds={9:4,7:3,5:2,2:6}; var s=0; for(var d in ds){ s+=Number(d)*ds[d]; } return 2*s-9;",
+   "86": "var ds={9:4,7:3,5:2,2:6}; var t=0, k=0; for(var d in ds){ var v=2*Number(d); var dsum=Math.floor(v/10)+v%10; t+=dsum*ds[d]; if(v>=10) k+=ds[d]; } return t+k;",
+   "122": "var ds={9:4,7:3,5:2,2:6}; var s=0; for(var d in ds){ s+=Number(d)*ds[d]; } return 2*s-9*ds[9];"
+  },
+  "interval": "The stem fixes the digit sum of N (79) but not the order. Free bound: carries only lower the digit sum, so S(2N) <= 158; every option is under 158 (158 itself, the no-carry answer, was deliberately left out so no option sits on that bound). No free lower bound reaches 77: the floor 2 x 79 - 9 x 15 = 23 (every digit carrying) is far below every option, and the true number of carrying digits (9) is the method. Remainder on division by 9: 2N leaves the same remainder as 2 x 79 = 158, i.e. 5, and ALL five options leave remainder 5 (each wrong path subtracts a multiple of 9 from 158), so the casting-out-nines check kills nothing. Parity: not forced; 95 and 149 are odd like the key, 86 and 122 even. The key is the smallest option; the ask is a value, not a greatest/least, so §13j does not apply, and no free bound reaches it (see above). Sorted 77, 86, 95, 122, 149: 77, 86, 95 is an arithmetic run with the key at its END, not its middle (86 is the middle). No doubling/halving pair with 77.",
+  "bounds_checked": "no-carry upper bound 158 (not an option), all-carry floor 23, remainder mod 9 (all five options share 5), parity, arithmetic run (key at an end), doubling/halving, key extremity (smallest - one of this run's two intended extreme keys; no free bound reaches it)",
+  "forced_form_notes": {
+   "multiple of 7": "not forced: 77 = 7 x 11 is incidental (158 - 81); nothing in the stem makes the digit sum of 2N a multiple of 7.",
+   "odd multiple of 7": "not forced: as for multiple of 7, incidental.",
+   "multiple of 11": "not forced: incidental, as for multiple of 7; 11 appears nowhere in the stem.",
+   "odd multiple of 11": "not forced: incidental, as for multiple of 11.",
+   "odd": "not forced by anything readable off the stem: the digit sum of 2N is 158 - 9k, so its parity is the parity of k, the number of carrying digits - and finding k (digits 5 or more, 9 of them) is the method itself. A student who does not know the carry rule has no parity fact; 95 and 149 are odd as well."
+  }
+ },
+ {
+  "id": "S17E-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "digit sum equal to digit product: case split by number of digits, with 1s as the only way to keep the product small",
+  "difficulty": "hard",
+  "template": "positive integers below 10000 / how many have digit sum = digit product / split by digit count: one-digit all, two-digit (a-1)(b-1) = 1, three-digit {1,2,3}, four-digit {1,1,2,4}, then count arrangements with repeats",
+  "mechanism": [
+   "digit sum equals digit product",
+   "case split by number of digits",
+   "ones keep the product small",
+   "arrangements of digits with repeats"
+  ],
+  "method": "Split by the number of digits and notice that a zero digit is impossible and that, beyond one digit, the product outgrows the sum unless most of the digits are 1s, so each case has at most one digit multiset (found by a small factoring such as (a - 1)(b - 1) = 1), and then count the distinct arrangements of each multiset, minding repeated digits.",
+  "prompt": "For how many positive integers less than 10,000 is the sum of the digits equal to the product of the digits? (For example, 22 is one of them, because 2 + 2 = 2 x 2.)",
+  "choices": [
+   "22",
+   "28",
+   "16",
+   "10",
+   "19"
+  ],
+  "correct_answer": "28",
+  "explanation": "A 0 digit makes the product 0 but the sum positive, so every digit is from 1 to 9. One digit: every number 1 to 9 works (sum and product are the digit itself): 9 numbers. Two digits: a + b = ab means (a - 1)(b - 1) = 1, so a = b = 2: only 22. Three digits {a, b, c}: if no digit is 1 the product is at least 2 x 2 x 2 = 8 > 6 and grows faster than the sum - checking, only {1, 2, 3} works (1 + 2 + 3 = 6 = 1 x 2 x 3); it has 3! = 6 arrangements. Four digits: the multiset {1, 1, 2, 4} works (8 = 8) and no other does (for example {1, 1, 2, 3} gives 7 and 6, {1, 1, 3, 3} gives 8 and 9, {1, 2, 2, 2} gives 7 and 8); with the two 1s alike it has 4!/2 = 12 arrangements. Total 9 + 1 + 6 + 12 = 28. The option \"22\" counts the four-digit arrangements as 3! = 6, treating 1, 1, 2, 4 as three objects. The option \"19\" leaves out the nine one-digit numbers. The option \"16\" assumes that no four-digit number can work because the product grows too fast, stopping at 9 + 1 + 6. The option \"10\" makes the same assumption already at three digits: 9 + 1.",
+  "solve": "var n=0; for(var x=1;x<10000;x++){ var s=0, p=1, t=x; while(t>0){ var d=t%10; s+=d; p*=d; t=Math.floor(t/10); } if(s===p) n++; } return n;",
+  "distractor_solve": {
+   "22": "var one=9, two=1, three=6; var four=3*2*1; return one+two+three+four;",
+   "19": "var n=0; for(var x=10;x<10000;x++){ var s=0, p=1, t=x; while(t>0){ var d=t%10; s+=d; p*=d; t=Math.floor(t/10); } if(s===p) n++; } return n;",
+   "16": "var n=0; for(var x=1;x<1000;x++){ var s=0, p=1, t=x; while(t>0){ var d=t%10; s+=d; p*=d; t=Math.floor(t/10); } if(s===p) n++; } return n;",
+   "10": "var n=0; for(var x=1;x<100;x++){ var s=0, p=1, t=x; while(t>0){ var d=t%10; s+=d; p*=d; t=Math.floor(t/10); } if(s===p) n++; } return n;"
+  },
+  "interval": "A count from 1 (the example 22) to 9999. The nine one-digit numbers plus 22 give a free floor of 10, which is distractor 10 sitting ON that floor - but it is only a floor if a student is sure single digits count, and the four larger options all clear it, so it kills nothing but nothing points to the key either. No free upper bound: the four-digit case (12 numbers) is the largest contribution and is found only by the multiset search, so no observation caps the count at or below 28 or singles it out. The key is the largest option; the ask is 'how many', not a greatest/least, so §13j does not apply, and the only way to reject the smaller counts is to find the missed cases. Parity: not forced; 22, 16, 10 are even like the key. Sorted 10, 16, 19, 22, 28: arithmetic runs 16-19-22 and 10-19-28 both have 19 in the middle, not the key; no geometric run; no doubling/halving pair with 28 (14, 56 absent).",
+  "bounds_checked": "count floor from the one-digit numbers and the example (10, a distractor, kills nothing), no free ceiling, parity, multiples of 4 and 7, arithmetic and geometric runs, doubling/halving, key extremity (largest - one of this run's two intended extreme keys; no free bound reaches it)",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: the key is a count, 9 + 1 + 6 + 12; nothing in the stem makes it a multiple of 4 - 28 = 4 x 7 is incidental to the case totals.",
+   "odd multiple of 4": "not forced: the key is a count, 9 + 1 + 6 + 12; nothing in the stem makes it a multiple of 4 - 28 = 4 x 7 is incidental to the case totals.",
+   "multiple of 7": "not forced: the key is a count, 9 + 1 + 6 + 12; nothing in the stem makes it a multiple of 7 - 28 = 7 x 4 is incidental to the case totals.",
+   "even multiple of 7": "not forced: the key is a count, 9 + 1 + 6 + 12; nothing in the stem makes it a multiple of 7 - 28 = 7 x 4 is incidental to the case totals."
+  }
+ },
+ {
+  "id": "S17E-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest prime factor of a sum of factorials: factor out the smaller factorial",
+  "difficulty": "medium",
+  "template": "10! + 12! / greatest prime factor / factor out 10! to leave 10! x (1 + 11 x 12) = 10! x 133 = 10! x 7 x 19",
+  "mechanism": [
+   "factor the smaller factorial out of a sum of factorials",
+   "the leftover bracket 1 + 11 x 12 carries the new prime",
+   "the primes of 10! are all at most 7"
+  ],
+  "method": "Factor the smaller factorial out of the sum so the expression becomes that factorial times a small bracket, then factor the bracket and compare its primes with the primes up to 10.",
+  "prompt": "What is the greatest prime factor of 10! + 12! ? (Here n! means the product of all the whole numbers from 1 to n; for example, 4! = 1 x 2 x 3 x 4 = 24.)",
+  "choices": [
+   "13",
+   "131",
+   "19",
+   "7",
+   "23"
+  ],
+  "correct_answer": "19",
+  "explanation": "12! = 10! x 11 x 12 = 10! x 132, so 10! + 12! = 10! x (1 + 132) = 10! x 133 = 10! x 7 x 19. The primes in 10! are 2, 3, 5 and 7, so the prime factors of the sum are 2, 3, 5, 7 and 19, and the greatest is 19. The option \"7\" takes the greatest prime of 10! and forgets the bracket. The option \"13\" factors the sum as 10! x (1 + 12), dropping the factor 11 of 12!/10!. The option \"23\" adds 11 and 12 instead of multiplying them inside the bracket. The option \"131\" makes the bracket 132 - 1 (a sign slip, as if the sum were 12! - 10!) and then reads 131, which is prime, as the answer.",
+  "solve": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; var x=f(10)+f(12), best=1; for(var p=2;p*p<=x;p++){while(x%p===0){best=p;x/=p;}} if(x>1)best=Math.max(best,x); return String(best);",
+  "distractor_solve": {
+   "7": "var best=1; for(var p=2;p<=10;p++){var isP=true;for(var q=2;q*q<=p;q++)if(p%q===0)isP=false; if(isP)best=p;} return String(best);",
+   "13": "return String(1 + 12);",
+   "23": "return String(11 + 12);",
+   "131": "return String(11*12 - 1);"
+  },
+  "interval": "Greatest ask: the key 19 is not the greatest option (23 and 131 are larger). Free observations: 7 divides both 10! and 12!, so 7 divides the sum, but that only says the answer is at least 7 (kills nothing). 11 would be killed for free (11 divides 12! but not 10!), which is why 11 is not an option. 13 and 23 do not divide either factorial, and 131 is far above 12, so none of them is decided without factoring the bracket; testing them on the 9-digit sum is long division, not an observation. Parity: every option is an odd prime. Size: the sum is about 4.8 x 10^8, which bounds nothing among these. Three or more of 13, 23, 131, 7 survive every free bound (7 is a true factor, removed only by finding a larger one).",
+  "bounds_checked": "greatest-ask extremity (key not the largest option), primes dividing both terms (7), primes dividing one term only (11, deliberately not an option), primality of every option, parity, magnitude, runs (sorted 7, 13, 19, 23, 131: 15 and 25 absent, no arithmetic run with 19 in the middle), doubling/halving around the key (none)",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S17E-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "fractions n/360 that reduce to denominator 30: re-frame as the numerators k/30 already in lowest terms",
+  "difficulty": "hard",
+  "template": "1/360 .. 359/360 reduced / how many have denominator 30 / n/360 = k/30 in lowest terms means n = 12k with k sharing no factor with 30; count k from 1 to 29 coprime to 30",
+  "mechanism": [
+   "a reduced denominator of 30 means the greatest common factor of n and 360 is 12",
+   "re-frame as the fractions k/30 with k from 1 to 29 already in lowest terms",
+   "remove the k sharing a factor 2, 3 or 5 with 30"
+  ],
+  "method": "See that a fraction n/360 reduces to denominator 30 exactly when it equals some k/30 that is already in lowest terms, so the question is just how many numerators from 1 to 29 share no factor with 30; remove the multiples of 2, 3 and 5 together, not one prime at a time.",
+  "prompt": "Each of the 359 fractions 1/360, 2/360, 3/360, ..., 359/360 is written in lowest terms. How many of them then have a denominator of 30?",
+  "choices": [
+   "15",
+   "10",
+   "12",
+   "8",
+   "14"
+  ],
+  "correct_answer": "8",
+  "explanation": "n/360 in lowest terms has denominator 30 exactly when n/360 = k/30 with k/30 in lowest terms, that is n = 12k where k is between 1 and 29 and shares no factor with 30 = 2 x 3 x 5. Those k are 1, 7, 11, 13, 17, 19, 23, 29, so there are 8 such fractions (12/360 = 1/30, 84/360 = 7/30, ..., 348/360 = 29/30). The option \"15\" removes only the even numerators k (the factor 2) and keeps every odd k from 1 to 29. The option \"10\" removes the k divisible by 2 or by 3 but forgets the factor 5 (keeps 5 and 25). The option \"12\" removes the k divisible by 2 or by 5 but forgets the factor 3 (keeps 3, 9, 21, 27). The option \"14\" keeps the odd k and removes only the k divisible by 15 as a whole, treating 3 and 5 as one factor.",
+  "solve": "var g=function(a,b){return b?g(b,a%b):a;}; var c=0; for(var n=1;n<360;n++){ if(360/g(n,360)===30) c++; } return String(c);",
+  "distractor_solve": {
+   "10": "var c=0; for(var k=1;k<30;k++){ if(k%2!==0 && k%3!==0) c++; } return String(c);",
+   "12": "var c=0; for(var k=1;k<30;k++){ if(k%2!==0 && k%5!==0) c++; } return String(c);",
+   "14": "var c=0; for(var k=1;k<30;k++){ if(k%2!==0 && k%15!==0) c++; } return String(c);",
+   "15": "var c=0; for(var k=1;k<30;k++){ if(k%2!==0) c++; } return String(c);"
+  },
+  "interval": "Upper bounds a student can read off: only multiples of 12 can reduce to a denominator of 30, so the count is at most 29; an even multiplier k would leave a factor 2 in common, so k is odd and the count is at most 15. 15 sits ON that bound (it keeps every odd k) and is the one option a student can reject by also removing a single odd k such as 3; 8, 10, 12, 14 lie strictly inside. Parity: the numerators k and 30 - k are in lowest terms together, so the count is even; this kills 15 again and nothing else (8, 10, 12, 14 are even). So one kill, three of four distractors survive. Lower bound: k = 1 and the primes 7..29 give at least 8, which is the method itself (listing them); no option lies below 8, and nothing cheap shows the count is exactly 8 rather than 10, 12 or 14 - that needs removing the multiples of 2, 3 and 5 together. No share or ratio in the stem.",
+  "bounds_checked": "count at most 29 (multiples of 12), at most 15 (odd k; 15 on it), parity by the k / 30 - k pairing (kills 15 only), listing lower bound (method), extremity (key 8 is the smallest option; the only cheap lower bounds are 1 and 'at least the primes', and listing the eight numerators is the method), runs (sorted 8, 10, 12, 14, 15: the key STARTS the run 8-10-12-14, never a middle; 6 absent), doubling/halving around the key (4 and 16 absent)",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: the count is the number of numerators from 1 to 29 sharing no factor with 30; nothing in the stem forces a factor 4 (the same question for denominator 18 gives 6, for denominator 10 gives 4, for 12 gives 4, for 36 gives 12). Only evenness is forced (k and 30 - k pair up), and 10, 12, 14 share it.",
+   "multiple of 8": "not forced: as for multiple of 4; 8 is incidental to 30 = 2 x 3 x 5 (the count is 1 x 2 x 4).",
+   "odd multiple of 8": "not forced: as for multiple of 8.",
+   "perfect cube": "not forced: incidental; no power structure in the stem."
+  }
+ },
+ {
+  "id": "S17E-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "n! divisible by n^2 exactly when n divides (n-1)!: primes fail, and so does the single composite 4",
+  "difficulty": "hard",
+  "template": "n from 2 to 100 / count n with n^2 dividing n! / cancel one n: n must divide (n-1)!; a prime never does; a composite ab (a < b) or p^2 (p and 2p both below p^2) always does, except 4",
+  "mechanism": [
+   "cancel one factor n so the condition becomes n divides (n - 1)!",
+   "a prime n never divides (n - 1)!",
+   "a composite n does, by finding two different smaller factors, with the one exception 4 = 2 x 2"
+  ],
+  "method": "Cancel one factor of n so the question becomes whether n divides the product of the numbers below it; see that a prime never does, that a composite does because its factors can be found as two different numbers below it (for a square of an odd prime p, use p and 2p), and catch the one composite where this breaks, 4.",
+  "prompt": "For how many integers n from 2 to 100, inclusive, is n! divisible by n^2 ? (Here n! means 1 x 2 x 3 x ... x n; for example, 6! = 720, and 720 is divisible by 6^2 = 36.)",
+  "choices": [
+   "74",
+   "64",
+   "70",
+   "59",
+   "73"
+  ],
+  "correct_answer": "73",
+  "explanation": "n! = n x (n - 1)!, so n^2 divides n! exactly when n divides (n - 1)!. If n is prime, none of 1, 2, ..., n - 1 has the factor n, so it fails (25 primes from 2 to 97). If n is composite, write n = ab with 1 < a < b < n: both a and b appear among 1, ..., n - 1, so n divides (n - 1)!. If n = p^2 for an odd prime p, the numbers p and 2p are both less than p^2, so p^2 divides (n - 1)! again. The only failure among composites is 4 = 2 x 2: 3! = 6 is not divisible by 4 (and 4! = 24 is not divisible by 16). There are 99 - 25 = 74 composites from 2 to 100, so the count is 74 - 1 = 73. The option \"74\" counts every composite and misses the exception 4. The option \"70\" also rejects 9, 25 and 49, believing the square of a prime always needs the prime twice below it. The option \"64\" rejects every composite power of a prime (4, 8, 9, 16, 25, 27, 32, 49, 64, 81). The option \"59\" rejects 4 and every number that is twice an odd prime (6, 10, 14, ..., 94), believing 2p needs p twice.",
+  "solve": "var c=0; for(var n=2;n<=100;n++){ var need=n*n, m=need; for(var i=2;i<=n && m>1;i++){ var a=i, b=m; while(b){var t=a%b;a=b;b=t;} m=m/a; } if(m===1) c++; } return String(c);",
+  "distractor_solve": {
+   "74": "var c=0; for(var n=2;n<=100;n++){var p=true;for(var q=2;q*q<=n;q++)if(n%q===0)p=false; if(!p)c++;} return String(c);",
+   "70": "var isP=function(x){if(x<2)return false;for(var q=2;q*q<=x;q++)if(x%q===0)return false;return true;}; var c=0; for(var n=2;n<=100;n++){ if(isP(n)) continue; var r=Math.round(Math.sqrt(n)); if(r*r===n && isP(r)) continue; c++; } return String(c);",
+   "64": "var isP=function(x){if(x<2)return false;for(var q=2;q*q<=x;q++)if(x%q===0)return false;return true;}; var c=0; for(var n=2;n<=100;n++){ if(isP(n)) continue; var q=2; while(n%q!==0)q++; var m=n; while(m%q===0)m/=q; if(m===1) continue; c++; } return String(c);",
+   "59": "var isP=function(x){if(x<2)return false;for(var q=2;q*q<=x;q++)if(x%q===0)return false;return true;}; var c=0; for(var n=2;n<=100;n++){ if(isP(n) || n===4) continue; if(n%2===0 && isP(n/2) && n/2>2) continue; c++; } return String(c);"
+  },
+  "interval": "Free bounds: primes fail at once (only one factor p in p!), so the count is at most 99 - 25 = 74; that bound is the method's first half, and 74 sits ON it, so a student who also tries n = 4 (24 is not divisible by 16) rejects 74 - one kill, leaving 73, 70, 64, 59. Testing small cases (6, 8, 9, 10, 12 all work: 720/36, 40320/64, 362880/81, ...) is plug-in work and shows only that some composites work; deciding 70 (prime squares 9, 25, 49), 64 (all prime powers) and 59 (twice a prime) needs the cancellation argument (n divides (n - 1)!) for those families, which is the method. Parity of the count is not fixed by the stem. No share, ratio or average in the stem.",
+  "bounds_checked": "upper bound from primes (at most 74; 74 on it, killed only with the n = 4 check), small-case plug-ins (n = 4, 6, 8, 9 - work, not observation), parity (not forced), extremity (key 73 is second largest; 74 above), runs (sorted 59, 64, 70, 73, 74: no three-term arithmetic run with 73 in the middle; 72 absent), doubling/halving (none), key/-key (none)",
+  "forced_form_notes": {
+   "odd": "not forced: the count is (composites from 2 to 100) minus the exceptions; nothing in the stem fixes its parity (from 2 to 99 the same rule gives 72, from 2 to 101 it gives 73). 59 shares oddness; 74, 70, 64 come from error paths that change the count by an even number or by none."
+  }
+ },
+ {
+  "id": "S17E-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "closing a pair of numbers under positive differences: the board fills with every multiple of the greatest common factor",
+  "difficulty": "hard",
+  "template": "board starts 91, 143; repeatedly write a new positive difference / count the numbers at the end / differences of multiples of 13 stay multiples of 13 (invariant), and the subtraction chain reaches 13 itself, after which 143 - 13, 143 - 26, ... fill every multiple of 13 up to 143",
+  "mechanism": [
+   "differences of multiples of the greatest common factor stay multiples of it (invariant)",
+   "repeated subtraction (the Euclidean chain) produces the greatest common factor itself",
+   "once the common factor is present, subtracting it from the largest number fills every multiple"
+  ],
+  "method": "Notice that every number ever written is a multiple of the greatest common factor of the two starting numbers, and that the subtraction process reaches that common factor itself, after which subtracting it again and again from the largest number fills in every multiple of it up to the largest number, so the final count is the larger number divided by the common factor.",
+  "prompt": "A board shows the two numbers 91 and 143. A move consists of choosing two different numbers on the board and writing their positive difference on the board, as long as that difference is not already on the board. Moves are made, in any order, until no move is possible. How many numbers are on the board at the end?",
+  "choices": [
+   "11",
+   "6",
+   "10",
+   "9",
+   "7"
+  ],
+  "correct_answer": "11",
+  "explanation": "91 = 7 x 13 and 143 = 11 x 13. The difference of two multiples of 13 is a multiple of 13, and no difference can exceed the largest number, 143, so every number on the board is one of the 11 multiples 13, 26, ..., 143. All of them do appear, whatever the order: the subtraction chain 143 - 91 = 52, 91 - 52 = 39, 52 - 39 = 13 puts 13 on the board, and then 143 - 13 = 130, 130 - 13 = 117, ..., 26 - 13 = 13 produce every multiple of 13 below 143. So the final board is 13, 26, 39, ..., 143: 11 numbers. The option \"6\" follows one subtraction chain only (143, 91, 52, 39, 13, 26) and stops. The option \"9\" counts only the numbers that were written, leaving out the two starting numbers. The option \"7\" counts the multiples of 13 only up to the smaller starting number, 91. The option \"10\" counts the numbers produced by subtracting 13 again and again from 143 (130, 117, ..., 13) and forgets 143 itself.",
+  "solve": "var B=[91,143], changed=true; while(changed){ changed=false; for(var i=0;i<B.length;i++) for(var j=0;j<B.length;j++){ var d=B[i]-B[j]; if(d>0 && B.indexOf(d)<0){ B.push(d); changed=true; } } } return String(B.length);",
+  "distractor_solve": {
+   "6": "var B=[143,91], a=143, b=91; while(true){ var d=a-b; if(B.indexOf(d)>=0) break; B.push(d); var s=[b,d].sort(function(x,y){return y-x;}); a=s[0]; b=s[1]; } return String(B.length);",
+   "9": "var g=function(a,b){return b?g(b,a%b):a;}; return String(143/g(91,143) - 2);",
+   "7": "var g=function(a,b){return b?g(b,a%b):a;}; return String(91/g(91,143));",
+   "10": "var g=function(a,b){return b?g(b,a%b):a;}; var d=g(91,143), c=0; for(var x=143-d;x>=d;x-=d) c++; return String(c);"
+  },
+  "interval": "Free bounds: no difference can exceed 143 and none can be 0 (the two numbers must differ). A student who sees that 91 and 143 share the factor 13 gets at most 11 numbers (the multiples of 13 up to 143); seeing the common factor 13 is half the method, since 91 = 7 x 13 and 143 = 11 x 13 are not obvious multiples, and the bound kills no option (all are at most 11). The other half - that every multiple of 13 really does appear - is what separates 11 from 6, 7, 9, 10. Lower bound: simulating the subtraction chain gives at least 6 numbers; noticing that 143 - 13 = 130 is still missing (which kills 6) is continuing the simulation, i.e. solving by brute force, not a free observation. 7, 9 and 10 sit strictly between and are rejected only by finishing the process or by the fill-in argument. Parity is not fixed by the stem. No share or ratio in the stem.",
+  "bounds_checked": "upper bound from the largest number (143) and from the common-factor invariant (at most 11, kills none), lower bound from one chain (6, survives without further work), parity (not forced; 7 and 9 share the key's oddness, 6 and 10 do not), extremity (key 11 is the largest option; the only bound that reaches it is the common-factor invariant, which is half the method, and it does not show the bound is attained), runs (sorted 6, 7, 9, 10, 11: 9-10-11 and 7-9-11 have the key at the END; 12 and 13 absent), sums (no two options add to 11), doubling/halving around the key (5.5 and 22 absent), key/-key (none)",
+  "forced_form_notes": {
+   "multiple of 11": "not forced: 11 is 143/13, the larger starting number divided by the common factor; the count is that quotient, not a multiple of 11 (starting from 91 and 156 the board ends with 12 numbers). The stem forces no divisibility of the count.",
+   "odd multiple of 11": "not forced: as for multiple of 11.",
+   "odd": "not forced: the count is the larger starting number divided by the common factor (143/13 = 11); the stem fixes no parity (91 and 156 would give 12). 7 and 9 share oddness; 6 and 10 come from error paths that do not preserve it."
+  }
+ },
+ {
+  "id": "S17E-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "largest pairwise coprime set from 1 to 30: each number above 1 uses up its own prime, and 1 is free",
+  "difficulty": "hard",
+  "template": "choose from 1..30 with no two sharing a factor > 1 / greatest possible count / give each chosen number above 1 one of its primes; two chosen numbers cannot share a prime, so at most one per prime up to 30 (10 primes), plus the number 1, which shares nothing",
+  "mechanism": [
+   "two chosen numbers may not share any prime factor",
+   "assign each chosen number above 1 one of its primes, all different, so at most 10",
+   "the number 1 has no prime factor and can always be added"
+  ],
+  "method": "Give each chosen number other than 1 one of its prime factors and see that no prime can be used twice, so there are at most as many such numbers as primes up to 30; the primes themselves reach that bound, and the number 1, which shares no factor with anything, adds one more.",
+  "prompt": "Some of the integers 1, 2, 3, ..., 30 are to be chosen so that no two of the chosen integers have a common factor greater than 1. What is the greatest number of integers that can be chosen?",
+  "choices": [
+   "15",
+   "11",
+   "9",
+   "8",
+   "10"
+  ],
+  "correct_answer": "11",
+  "explanation": "Each chosen integer greater than 1 has at least one prime factor, and since no two chosen integers share a factor greater than 1, no prime can divide two of them. Pick one prime factor of each chosen integer above 1: these primes are all different and all at most 30, and there are only 10 primes up to 30 (2, 3, 5, 7, 11, 13, 17, 19, 23, 29). So at most 10 chosen integers exceed 1, and 1 itself (which has no prime factor) may also be chosen: at most 11. The set {1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29} reaches 11. The option \"10\" chooses the primes and forgets that 1 can be added. The option \"9\" chooses greedily from the top (30, 29, 23, 19, 17, 13, 11, 7, 1), where 30 uses up 2, 3 and 5 at once. The option \"8\" counts the integers from 1 to 30 that share no factor with 30. The option \"15\" chooses all the odd integers, overlooking that 3 and 9 (for example) share the factor 3.",
+  "solve": "var primes=0; for(var n=2;n<=30;n++){var p=true;for(var q=2;q*q<=n;q++)if(n%q===0)p=false; if(p)primes++;} return String(primes + 1);",
+  "distractor_solve": {
+   "10": "var primes=0; for(var n=2;n<=30;n++){var p=true;for(var q=2;q*q<=n;q++)if(n%q===0)p=false; if(p)primes++;} return String(primes);",
+   "9": "var g=function(a,b){return b?g(b,a%b):a;}; var S=[]; for(var n=30;n>=1;n--){ var ok=true; for(var i=0;i<S.length;i++) if(g(S[i],n)>1) ok=false; if(ok) S.push(n); } return String(S.length);",
+   "8": "var g=function(a,b){return b?g(b,a%b):a;}; var c=0; for(var n=1;n<=30;n++) if(g(n,30)===1) c++; return String(c);",
+   "15": "var c=0; for(var n=1;n<=30;n++) if(n%2===1) c++; return String(c);"
+  },
+  "interval": "Greatest ask: the key 11 is not the greatest option (15 is). Free bound: at most one even integer can be chosen, so the count is at most 1 + 15 = 16 (kills nothing; 16 is not an option). A further step kills 15: fifteen choices would need at least 14 of the 15 odd integers, which always keeps two of 3, 9, 15, 21, 27 - one kill, leaving 8, 9, 10. Lower bounds by construction: the primes give 10 and the primes with 1 give 11; finding 11 is the method, and 8, 9, 10 are each beaten only by exhibiting a larger set or by the one-prime-each bound. Parity is not fixed by the stem. No share or ratio in the stem.",
+  "bounds_checked": "one-even bound (16, kills nothing), fourteen-odds argument (kills 15), constructions (primes 10, primes with 1 = 11), greatest-ask extremity (key not the largest option), parity (not forced), runs (sorted 8, 9, 10, 11, 15: the key ENDS the run 8-9-10-11; 12 absent, so it is never a middle), doubling/halving around the key (5.5 and 22 absent), key/-key (none)",
+  "forced_form_notes": {
+   "multiple of 11": "not forced: 11 is 1 + the number of primes up to 30; the stem forces no divisibility (up to 20 the answer is 9, up to 40 it is 13).",
+   "odd multiple of 11": "not forced: as for multiple of 11.",
+   "odd": "not forced: 1 + (number of primes up to 30) has no parity the stem fixes (up to 10 it is 5, up to 12 it is 6). 15 and 9 share oddness anyway."
+  }
+ },
+ {
+  "id": "S17E-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "power of 2 dividing 5^16 - 1: split by difference of squares into brackets, and count the 2s in each bracket",
+  "difficulty": "hard",
+  "template": "5^16 - 1 / greatest k with 2^k a factor / 5^16 - 1 = (5 - 1)(5 + 1)(5^2 + 1)(5^4 + 1)(5^8 + 1); 5 - 1 = 4 gives two 2s, and each other bracket 5^m + 1 is 2 times an odd number because every power of 5 is 1 more than a multiple of 4",
+  "mechanism": [
+   "split 5^16 - 1 by difference of squares into five brackets",
+   "5 - 1 = 4 carries two factors of 2",
+   "each bracket 5^m + 1 is exactly 2 times an odd number"
+  ],
+  "method": "Factor the expression repeatedly as a difference of squares into a chain of brackets, and see that the first bracket carries two factors of 2 while every other bracket, a power of 5 plus 1, carries exactly one because every power of 5 is 1 more than a multiple of 4; then add the 2s.",
+  "prompt": "What is the greatest integer k for which 2^k is a factor of 5^16 - 1 ?",
+  "choices": [
+   "5",
+   "16",
+   "6",
+   "8",
+   "32"
+  ],
+  "correct_answer": "6",
+  "explanation": "5^16 - 1 = (5^8 - 1)(5^8 + 1) = (5^4 - 1)(5^4 + 1)(5^8 + 1) = ... = (5 - 1)(5 + 1)(5^2 + 1)(5^4 + 1)(5^8 + 1). Here 5 - 1 = 4 = 2^2. Every power of 5 is 1 more than a multiple of 4, so 5 + 1, 5^2 + 1 = 26, 5^4 + 1 = 626 and 5^8 + 1 = 390626 are each 2 more than a multiple of 4: exactly one factor of 2 apiece (6 = 2 x 3, 26 = 2 x 13, 626 = 2 x 313, 390626 = 2 x 195313). Total: 2 + 1 + 1 + 1 + 1 = 6. Check: 5^4 - 1 = 624 = 2^4 x 39 and 5^8 - 1 = 390624 = 2^5 x 12207, and each squaring step adds one more 2. The option \"5\" gives each of the five brackets one factor of 2, missing that 5 - 1 = 4 has two. The option \"8\" multiplies the two 2s of 5 - 1 by the four 2s of the exponent 16 instead of adding. The option \"16\" counts one factor of 2 for each of the 16 copies of 5. The option \"32\" treats 5^16 - 1 as (5 - 1)^16 = 4^16 = 2^32.",
+  "solve": "var r=1, M=1<<20; for(var i=0;i<16;i++) r=(r*5)%M; var v=(r-1+M)%M, k=0; while(v%2===0 && k<20){ v/=2; k++; } return String(k);",
+  "distractor_solve": {
+   "5": "var brackets=0, m=16; while(m>=1){ brackets++; m/=2; } return String(brackets);",
+   "8": "var a=0, x=5-1; while(x%2===0){x/=2;a++;} var b=0, y=16; while(y%2===0){y/=2;b++;} return String(a*b);",
+   "16": "var copies=0, base=5, e=16; for(var i=0;i<e;i++) copies++; return String(copies);",
+   "32": "var a=0, x=5-1; while(x%2===0){x/=2;a++;} return String(a*16);"
+  },
+  "interval": "Free bounds: 5^16 - 1 is divisible by 5^2 - 1 = 24, so k >= 3, and by 5^4 - 1 = 624 = 16 x 39, so k >= 4: every option is at least 5, so neither kills anything. Upper bound from size: 5^16 - 1 is about 1.5 x 10^11, below 2^38, so k <= 37: kills nothing (32 < 37; 2^32 is about 4.3 x 10^9, smaller than 5^16 - 1). Rejecting 8, 16 or 32 needs the odd-part count of the brackets (or 5^16 mod 128), which is the method; 5 is rejected only by noticing that 5 - 1 = 4 carries two 2s. Parity/divisibility of k is not fixed by the stem. No share or ratio.",
+  "bounds_checked": "lower bounds from 24 and 624 (k >= 4, kills none), upper bound from magnitude (k <= 37, kills none), extremity (key 6 second smallest; 5 below), runs (sorted 5, 6, 8, 16, 32: 4 and 7 absent, so no arithmetic run has 6 in the middle; 8-16-32 is a doubling chain not touching the key), doubling/halving around the key (3 and 12 absent), key/-key (none)",
+  "forced_form_notes": {
+   "odd multiple of 2": "not forced: the exponent k is a count of factors of 2 (2 from 5 - 1, plus one per further bracket); nothing in the stem fixes it modulo 4 (5^8 - 1 gives 5, 5^4 - 1 gives 4). 8, 16, 32 share the key's evenness.",
+   "multiple of 3": "not forced: incidental; 5^8 - 1 gives k = 5 and 5^32 - 1 gives 7, so no factor 3 is forced.",
+   "multiple of 6": "not forced: as for multiple of 3.",
+   "odd multiple of 6": "not forced: as for multiple of 3."
+  }
+ },
+ {
+  "id": "S17E-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal remainders with the remainder unknown: the divisor must divide every difference",
+  "difficulty": "hard",
+  "template": "251, 323, 443 leave equal remainders on division by n / greatest n / equal remainders means n divides 323 - 251 = 72 and 443 - 323 = 120, so the greatest n is gcd(72, 120) = 24",
+  "mechanism": [
+   "equal remainders: the remainder cancels in a difference",
+   "the divisor divides every pairwise difference",
+   "greatest common factor of the differences"
+  ],
+  "method": "See that when two numbers leave the same remainder on division by n, the remainder cancels in their difference, so n must divide every difference, and conversely any common factor of the differences works; the greatest n is the greatest common factor of the differences, not of the numbers.",
+  "prompt": "When each of the numbers 251, 323 and 443 is divided by the positive integer n, the three remainders are equal. What is the greatest possible value of n?",
+  "choices": [
+   "72",
+   "11",
+   "192",
+   "24",
+   "120"
+  ],
+  "correct_answer": "24",
+  "explanation": "If 251 and 323 leave the same remainder r on division by n, then 251 = an + r and 323 = bn + r, so 323 - 251 = 72 = (b - a)n: n divides 72. In the same way n divides 443 - 323 = 120 (and 443 - 251 = 192). So n divides the greatest common factor of 72 and 120, which is 24; and n = 24 works: 251 = 10 x 24 + 11, 323 = 13 x 24 + 11, 443 = 18 x 24 + 11. The greatest n is 24. The option \"72\" uses only the first difference, 323 - 251; 443 leaves remainder 11 on division by 72 but 323 leaves 35. The option \"120\" uses only the difference 443 - 323. The option \"192\" uses only the largest difference, 443 - 251. The option \"11\" reports the common remainder instead of the divisor.",
+  "solve": "var a=251,b=323,c=443; function g(x,y){ while(y){ var t=x%y; x=y; y=t; } return x; } return String(g(b-a,c-b));",
+  "distractor_solve": {
+   "72": "var a=251,b=323; return String(b-a);",
+   "120": "var b=323,c=443; return String(c-b);",
+   "192": "var a=251,c=443; return String(c-a);",
+   "11": "var a=251,b=323,c=443; function g(x,y){ while(y){ var t=x%y; x=y; y=t; } return x; } return String(a % g(b-a,c-b));"
+  },
+  "interval": "Free bounds: n is a positive integer; nothing in the stem bounds n from above except through the differences, which is the method (n divides 72, so n <= 72, kills 120 and 192 only once the idea is seen). Without the idea, rejecting 72, 120 or 192 needs three long divisions per option (a plug-check, i.e. doing the work), and rejecting 11 needs 251 and 323 divided by 11 (remainders 9 and 4). Parity/factor structure: the stem forces nothing about n's parity or factors; 72, 120, 192 share every factor of 24 anyway. Magnitude: no option is larger than the numbers. No share or ratio.",
+  "bounds_checked": "upper bound from the differences (method, not free), the numbers themselves (n need not be below them: all options are), parity and factor structure (not forced; 3 of 4 share them anyway), key extremity on a greatest ask (24 is not the largest option: 72, 120, 192 above; 11 below), runs (sorted 11, 24, 72, 120, 192: 24, 72, 120 is an arithmetic run with the key at the END, not in the middle), doubling/halving around the key (12 and 48 absent), key/-key (none)",
+  "forced_form_notes": {
+   "odd multiple of 8": "not forced: the stem forces only that n divides the differences (72, 120, 192); whether n/8 is odd is incidental to the chosen numbers (251, 299, 395 would give differences 48 and 96 and n = 48 = 8 x 6). The distractors 72, 120, 192 are all multiples of 8 and of 24, so the structure the stem does force (a divisor of a difference) is shared by three of four."
+  }
+ }
+]

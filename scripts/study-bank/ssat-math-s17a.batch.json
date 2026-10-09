@@ -1,0 +1,410 @@
+[
+ {
+  "id": "S17A-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "mixture fixed by two hypothetical additions of the same volume",
+  "difficulty": "hard",
+  "template": "unknown acid mixture; adding 5 L water vs adding 5 L acid gives two percents / original percent / both new mixtures have the same volume, so the gap is 5 L's share",
+  "mechanism": [
+   "two hypothetical mixtures of equal volume",
+   "gap between percents equals the swapped 5 liters' share",
+   "recover volume, then acid, then original percent"
+  ],
+  "method": "Notice that the two hypothetical mixtures have exactly the same total volume and differ only in whether the added liters are water or acid, so the gap between their percents is the added liters' share of that common volume; that fixes the volume, then the acid in it, then the original percent.",
+  "prompt": "A tank holds a mixture of acid and water. If 5 liters of water were added to the mixture, the result would be 18 percent acid. If instead 5 liters of pure acid were added to the original mixture, the result would be 38 percent acid. What percent of the original mixture is acid?",
+  "choices": [
+   "22.5",
+   "25.6",
+   "21.6",
+   "30.4",
+   "24"
+  ],
+  "correct_answer": "22.5",
+  "explanation": "Either way the new mixture has the original volume plus 5 liters, call it T. The two results differ only in that 5 liters of acid replace 5 liters of water, so the acid amounts differ by 5 liters and 38% - 18% = 20% of T is 5 liters: T = 25 liters. The original volume is 25 - 5 = 20 liters, and its acid is 18% of 25 = 4.5 liters (adding water does not change the acid). Check: (4.5 + 5)/25 = 38%. So the original is 4.5/20 = 22.5% acid. The option \"21.6\" takes the 20-point gap as 5 liters' share of the ORIGINAL volume (25 liters), so it adds water to make 30 liters with 18% of 30 = 5.4 liters of acid and reports 5.4/25. The option \"25.6\" makes the same 25-liter misreading but works from the acid case: 38% of 30 = 11.4, minus the 5 added, is 6.4 liters, and 6.4/25 = 25.6%. The option \"24\" finds the 20-liter volume correctly but treats adding 5 liters to 20 (a 25% increase in volume) as a 25% DECREASE in concentration, solving 0.75c = 18 instead of c x 20/25 = 18. The option \"30.4\" scales the acid case's 38% back by 20/25 as if the extra 5 liters had been water, forgetting that they were acid.",
+  "solve": "var add=5,lo=18,hi=38; var T=100*add/(hi-lo); var V=T-add; var acid=lo*T/100; return acid*100/V;",
+  "distractor_solve": {
+   "21.6": "var add=5,lo=18,hi=38; var V=100*add/(hi-lo); var acid=lo*(V+add)/100; return acid*100/V;",
+   "25.6": "var add=5,lo=18,hi=38; var V=100*add/(hi-lo); var acid=hi*(V+add)/100-add; return acid*100/V;",
+   "24": "var add=5,lo=18,hi=38; var V=100*add/(hi-lo)-add; return lo/(1-add/V);",
+   "30.4": "var add=5,lo=18,hi=38; var V=100*add/(hi-lo)-add; return hi*V/(V+add);"
+  },
+  "interval": "Free bounds: adding water lowers the percent and adding acid raises it, so the answer is strictly between 18 and 38; all five options are (lowest 21.6, highest 30.4), none ON either end. No volume is printed for the original, so the answer is not bounded further without the method (the original could be any volume; e.g. a 10-liter mixture at 27% gives 18% after 5 liters of water). Obvious-share lines: (1) the water-case value 18: answer ABOVE; all four distractors above, strictly. (2) the acid-case value 38: answer BELOW; all four below, strictly. (3) the simple average of 18 and 38, 28: answer BELOW (22.5); 21.6, 25.6 and 24 are below it strictly, 30.4 above; 28 itself is not an option. (4) the gap 20 points: not a value the answer can be compared with directly (a percent of a different volume); no option is 20. (5) the added 5 liters: not comparable with a percent; no option is 5. Neither the key nor any distractor is forced to be a whole number: the stem's two percents give the original percent as 18T/(T-5) for T = 500/(38-18), which is a whole number only by accident of the numbers chosen.",
+  "bounds_checked": "between before/after values (18 and 38), simple-average share (28), monotonicity of adding water vs acid, limiting cases on the bounds (no option at 18, 38, 28, 20 or 5), integrality, run and pair shapes among options",
+  "forced_form_notes": {
+   "denominator 2": "not forced: the original percent is 18T/(T-5) with T = 500/(38-18); nothing in the stem makes it a multiple of 1/2 (the same stem with 17% and 37% gives 21.25, with 20% and 40% gives 25), and no volume of the original is printed."
+  }
+ },
+ {
+  "id": "S17A-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "group percent changes with a known total change, recover the mix",
+  "difficulty": "hard",
+  "template": "two groups change by +50% and -25%, total changes by +20% / this year's fraction in one group / total change is the weighted average of the group changes",
+  "mechanism": [
+   "total percent change as a weighted average",
+   "distances from the total change give the group ratio",
+   "recompute the share after the changes"
+  ],
+  "method": "See that the total's percent change is the average of the two groups' percent changes weighted by last year's group sizes, so the distances of the two group changes from the total change give last year's ratio in reverse; then apply each group's change and divide by the new total, not the old one.",
+  "prompt": "Last year a chess club had only junior members and senior members. This year the number of junior members is 50 percent greater than last year, the number of senior members is 25 percent less than last year, and the total number of members is 20 percent greater than last year. What fraction of this year's members are juniors?",
+  "choices": [
+   "4/5",
+   "3/4",
+   "4/7",
+   "9/13",
+   "3/5"
+  ],
+  "correct_answer": "3/4",
+  "explanation": "Let last year's numbers be j juniors and s seniors. The changes add up to the total change: 0.5j - 0.25s = 0.2(j + s), so 0.3j = 0.45s and j : s = 3 : 2 (the junior change is 30 points from the total change and the senior change 45 points, and the weights are in the reverse ratio). Take 3 and 2: this year there are 4.5 juniors and 1.5 seniors per that scale, total 6, which is indeed 20% more than 5. The fraction is 4.5/6 = 3/4. The option \"3/5\" is last year's junior fraction, reported before applying the changes. The option \"4/5\" weights the two groups by their own percent changes (j : s = 50 : 25 = 2 : 1), giving 3 juniors and 0.75 seniors this year, and 3/3.75 = 4/5. The option \"9/13\" applies the 50% increase to the juniors but forgets the seniors' 25% decrease, dividing 4.5 by 4.5 + 2. The option \"4/7\" puts the weights the wrong way round (j : s = 2 : 3), giving 3 juniors and 2.25 seniors this year, and 3/5.25 = 4/7.",
+  "solve": "var up=0.5,down=0.25,tot=0.2; var j=down+tot, s=up-tot; return (j*(1+up))/((j+s)*(1+tot));",
+  "distractor_solve": {
+   "3/5": "var up=0.5,down=0.25,tot=0.2; var j=down+tot, s=up-tot; return j/(j+s);",
+   "9/13": "var up=0.5,down=0.25,tot=0.2; var j=down+tot, s=up-tot; return j*(1+up)/(j*(1+up)+s);",
+   "4/7": "var up=0.5,down=0.25,tot=0.2; var j=up-tot, s=down+tot; return j*(1+up)/(j*(1+up)+s*(1-down));",
+   "4/5": "var up=0.5,down=0.25,tot=0.2; var j=up, s=down; return j*(1+up)/(j*(1+up)+s*(1-down));"
+  },
+  "interval": "A fraction strictly between 0 and 1; all five options are. Obvious-share lines: (1) equal split 1/2: answer ABOVE (3/4); all four distractors above 1/2 strictly (smallest 4/7 = 0.571; largest 4/5); 1/2 is not an option. (2) last year's junior fraction: NOT given by the stem (it is the first half of the work); juniors grew faster than the total, so this year's fraction is 1.5/1.2 = 1.25 times last year's, which every option satisfies for some last-year fraction below 4/5 (options /1.25 = 0.64, 0.60, 0.457, 0.554, 0.48), so the observation kills nothing. (3) the whole, 1: answer below; all below. (4) the printed rates 1/2, 1/4 and 1/5: the key 3/4 is not one of them and no distractor is 1/2, 1/4 or 1/5. (5) Seniors' fraction this year is 1 minus the answer; no option is the complement of another (1/5, 1/4, 3/7, 4/13, 2/5 absent). No denominator is forced: the club's actual size is never given, so the fraction need not have any particular denominator.",
+  "bounds_checked": "range 0-1, equal-split share (1/2), growth direction of the junior share (needs last year's share, not given), complement pairs, monotone ladders, denominator forcing, run/sum shapes",
+  "forced_form_notes": {
+   "denominator 4": "not forced: the stem never gives the club's size, only percent changes, so this year's junior fraction can have any denominator (e.g. +40% / -20% / +20% gives 7/9); a club of 5k members last year gives 6k this year, so the counts fix no denominator of 4."
+  }
+ },
+ {
+  "id": "S17A-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal fuel savings from two efficiency gains",
+  "difficulty": "medium",
+  "template": "two cars' km/L raised, same trip, equal liters saved / second car's old km/L / fuel used is distance divided by efficiency, so savings are differences of reciprocals",
+  "mechanism": [
+   "fuel used = distance / efficiency",
+   "equal liters saved, not equal km/L gained",
+   "work back from the new fuel use"
+  ],
+  "method": "Convert each efficiency into liters used on the trip (distance divided by kilometers per liter), find the first car's saving in liters, add that saving to the second car's new fuel use to get its old fuel use, and convert back; an equal saving does not mean an equal gain in kilometers per liter or an equal percent gain.",
+  "prompt": "Car P's fuel efficiency was improved from 10 kilometers per liter to 12 kilometers per liter. Car Q's fuel efficiency was also improved, to 30 kilometers per liter. On a 720-kilometer trip, the improvement saves car Q exactly as many liters of fuel as the improvement saves car P. What was car Q's fuel efficiency, in kilometers per liter, before it was improved?",
+  "choices": [
+   "24",
+   "28",
+   "20",
+   "60",
+   "25"
+  ],
+  "correct_answer": "20",
+  "explanation": "On 720 km, car P used 720/10 = 72 liters before and 720/12 = 60 liters after, a saving of 12 liters. Car Q now uses 720/30 = 24 liters, so before the improvement it used 24 + 12 = 36 liters, and its efficiency was 720/36 = 20 kilometers per liter. The option 28 gives car Q the same gain of 2 kilometers per liter as car P (30 - 2). The option 25 gives car Q the same 20 percent gain as car P (30 / 1.2). The option 24 takes 20 percent off the new 30 instead of dividing by 1.2 (30 x 0.8). The option 60 takes car Q's old fuel use to be just the 12 liters saved, forgetting the 24 liters it still uses (720 / 12).",
+  "solve": "var D=720,a=10,b=12,c=30; var saved=D/a-D/b; return D/(D/c+saved);",
+  "distractor_solve": {
+   "28": "var a=10,b=12,c=30; return c-(b-a);",
+   "25": "var a=10,b=12,c=30; return c/(b/a);",
+   "24": "var a=10,b=12,c=30; return c*(1-(b-a)/a);",
+   "60": "var D=720,a=10,b=12; return D/(D/a-D/b);"
+  },
+  "interval": "Free bounds: car Q was improved TO 30, so its old efficiency is below 30; 60 is above it and dies for free (the one distractor allowed to), and 20, 24, 25, 28 are below it, strictly. No lower bound is printed for car Q (a much less efficient car would save far more fuel, but the stem does not say how much less efficient Q was, so nothing printed puts the answer above car P's numbers without the computation). Obvious-share lines: (1) car Q's after value, 30: answer BELOW; 24, 25, 28 below, strictly; 60 above (the free elimination). (2) car P's before and after values, 10 and 12, and their simple average 11: answer ABOVE; all four distractors (24, 25, 28, 60) above 12, strictly; no option is 10, 11 or 12. (3) the 'same improvement' values a solver reaches for, equal gain 28 and equal percent 25: the answer is BELOW both, which is the idea of the item (an already-efficient car needs a bigger gain to save the same liters), not a free observation; 24 is below 25 strictly, 24 and 25 below 28 strictly; neither value is the key. (4) the trip length 720 and the liters 72, 60, 24, 36, 12: not comparable with an efficiency; 24 and 60 appear as options only through the named errors. The key is the smallest option; the cheap bounds (below 30, above 12) leave 20, 24, 25, 28, so no single cheap bound decides it. Sorted 20, 24, 25, 28, 60: no arithmetic run, no option double or half the key.",
+  "bounds_checked": "upper bound from 'improved to 30', absence of a printed lower bound, equal-gain and equal-percent values, car P's printed values, key smallest with no cheap bound isolating it, run and doubling shapes, units mixing (liters vs km/L)",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: the old efficiency is 1/(1/30 + 1/10 - 1/12); nothing in the stem makes it a multiple of 5 (with car Q improved to 20 instead of 30 the same stem gives 15, with car P from 8 to 10 and Q to 24 it gives 15, with P 9 to 12 and Q to 36 it gives 18).",
+   "multiple of 10": "not forced: same formula; car P from 9 to 12 and Q to 36 gives 18, car Q to 20 gives 15.",
+   "even multiple of 10": "not forced: same formula; car Q to 20 gives 15 and P from 9 to 12 with Q to 36 gives 18, neither a multiple of 10.",
+   "odd multiple of 4": "not forced: same formula; car P from 9 to 12 with Q to 36 gives 18, and car Q to 20 gives 15, neither a multiple of 4."
+  }
+ },
+ {
+  "id": "S17A-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "echo heard from a moving ship",
+  "difficulty": "hard",
+  "template": "ship approaching a cliff sounds its horn, echo heard t seconds later / distance to the cliff at the horn / the sound's out-and-back path is shortened by the ship's own travel",
+  "mechanism": [
+   "echo round trip",
+   "the listener moves while the sound travels",
+   "sound path = twice the distance minus the ship's travel"
+  ],
+  "method": "See that the ship does not stay where the horn sounded: the echo meets it after it has closed some distance, so the sound's total path is twice the starting distance MINUS the distance the ship covered in that time, not twice the starting distance.",
+  "prompt": "A ship sails straight toward a vertical cliff at a steady 10 meters per second. At one moment it sounds its horn, and the echo from the cliff is heard on the ship exactly 6 seconds later. Sound travels at 340 meters per second. How many meters from the cliff was the ship at the moment it sounded its horn?",
+  "choices": [
+   "1080",
+   "2040",
+   "990",
+   "1050",
+   "1980"
+  ],
+  "correct_answer": "1050",
+  "explanation": "Let the ship be d meters from the cliff when the horn sounds. In 6 seconds the ship moves 10 x 6 = 60 meters closer, so the sound goes d meters out to the cliff and d - 60 meters back to the ship. Its total path is 340 x 6 = 2040 meters, so 2d - 60 = 2040 and d = 1050. (Equivalently, the sound and the ship together close 2d at 340 + 10 meters per second: 350 x 6 / 2 = 1050.) The option 990 is the ship's distance from the cliff when the echo is heard, 1050 - 60, not when the horn sounded. The option 1080 adds the ship's whole 60 meters to the still-ship answer 1020, instead of sharing it between the two legs of the sound's path. The option 2040 treats the 6 seconds as the time for the sound to go one way: 340 x 6. The option 1980 makes the same one-way reading and then subtracts the ship's 60 meters: 340 x 6 - 60.",
+  "solve": "var vs=340,v=10,t=6; return (vs*t+v*t)/2;",
+  "distractor_solve": {
+   "990": "var vs=340,v=10,t=6; return (vs*t+v*t)/2-v*t;",
+   "1080": "var vs=340,v=10,t=6; return vs*t/2+v*t;",
+   "2040": "var vs=340,v=10,t=6; return vs*t;",
+   "1980": "var vs=340,v=10,t=6; return vs*t-v*t;"
+  },
+  "interval": "Obvious-share lines: (1) half the sound's path, 340 x 6 / 2 = 1020 (the answer if the ship stood still): the ship is approaching, so the out leg is longer than the back leg and the answer is ABOVE 1020; distractors 1080, 1980, 2040 are above it, strictly, and 990 is below; no option is 1020. (2) the whole sound path, 2040: the answer is BELOW it; 990, 1080 and 1980 are below it strictly, 2040 is ON it. (3) before and after: the distance when the horn sounded is greater than the distance when the echo is heard (the ship is closer then); 990 is the after value, 1050 the before value, and nothing printed fixes either without the path equation. (4) the ship's travel, 60: the answer exceeds 1020 by exactly half of it, which is the idea, and 1080 (all of it) is the competing reading. No printed bound puts the answer in a window that excludes 1080: 'above 1020' leaves 1050, 1080, 1980, 2040. Sorted 990, 1050, 1080, 1980, 2040: key second, no arithmetic run through the key (990, 1050, 1110 has no 1110; 1020 is not an option), no option double or half the key (2100 would be; it is not an option).",
+  "bounds_checked": "still-ship half path (lower), whole sound path (upper), before versus after distance, ship's travel added whole versus split, one-way misreading, run and doubling shapes",
+  "forced_form_notes": {
+   "odd multiple of 2": "not forced: the distance is (340 + 10) x t / 2 = 175t meters for an echo time of t seconds; t = 4 gives 700 = 2 x 350, an even multiple of 2, and t = 5 gives 875, odd. The stem prints 6 seconds, but nothing in the set-up forces the parity of the quotient.",
+   "odd multiple of 6": "not forced: the distance is (340 + 10) x t / 2 = 175t meters for an echo time of t seconds; 1050 is a multiple of 6 only because t = 6, and t = 12 gives 2100 = 6 x 350, an even multiple.",
+   "multiple of 7": "not forced in any visible way: 7 enters only through 350 = 340 + 10, the closing speed of sound and ship, which the solver has to build; no printed number is a multiple of 7, and the distractors come from the named errors (1020 + 60, 340 x 6, 340 x 6 - 60, 1050 - 60).",
+   "even multiple of 7": "not forced: same reason as 'multiple of 7'; 7 is hidden in 340 + 10 and no printed number carries it.",
+   "odd multiple of 10": "not forced: the distance is (340 + 10) x t / 2 = 175t meters for an echo time of t seconds; t = 4 gives 700 = 10 x 70, an even multiple of 10, and t = 2 gives 350, not a multiple of 10."
+  }
+ },
+ {
+  "id": "S17A-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "profit stated on selling price, sale cut on price, profit asked on cost",
+  "difficulty": "hard",
+  "template": "profit is 25% of selling price; prices cut 10% / sale profit as a fraction of cost / three different bases (old price, sale price, cost) must be kept apart",
+  "mechanism": [
+   "profit share of price converted to a share of cost",
+   "a cut on price comes entirely out of profit",
+   "choose the base the question asks for"
+  ],
+  "method": "Measure everything in units of the old selling price: the cost is a fixed three quarters of it, the cut is taken from the price and so comes wholly out of the profit, and only then divide the remaining profit by the cost rather than by either price.",
+  "prompt": "A store sets the selling price of every item so that its profit on the item is 25 percent of the selling price. During a sale, the store lowers every selling price by 10 percent. During the sale, the store's profit on an item is what fraction of what the store paid for the item?",
+  "choices": [
+   "7/30",
+   "1/6",
+   "3/10",
+   "2/9",
+   "1/5"
+  ],
+  "correct_answer": "1/5",
+  "explanation": "Take an old selling price of 100. The profit is 25, so the store paid 75. The sale price is 90, so the profit is 90 - 75 = 15, and 15/75 = 1/5. The option \"1/6\" divides the sale profit by the sale price (15/90) instead of by the cost. The option \"2/9\" also lowers the cost by 10% along with the price, dividing 15 by 67.5. The option \"7/30\" converts the old profit to a fraction of cost correctly (25/75 = 1/3) and then subtracts the 10% as if it were a cut of 10% of the cost (1/3 - 1/10). The option \"3/10\" also starts from 1/3 but reduces the profit itself by 10% (9/10 of 1/3), as if the sale cut the profit rather than the price.",
+  "solve": "var p=0.25,c=0.1; var S=100, cost=S*(1-p); var profit=S*(1-c)-cost; return profit/cost;",
+  "distractor_solve": {
+   "1/6": "var p=0.25,c=0.1; var S=100, cost=S*(1-p); var sale=S*(1-c); return (sale-cost)/sale;",
+   "2/9": "var p=0.25,c=0.1; var S=100, cost=S*(1-p); var sale=S*(1-c); return (sale-cost)/(cost*(1-c));",
+   "7/30": "var p=0.25,c=0.1; return p/(1-p)-c;",
+   "3/10": "var p=0.25,c=0.1; return p/(1-p)*(1-c);"
+  },
+  "interval": "Free bounds: the cost does not change and the price falls, so the sale profit is a smaller fraction of cost than before, i.e. below 25/75 = 1/3 once the 25%-of-price profit is converted to cost (a solver who misses the conversion has 1/4 as the 'before' figure instead); the price falls by only 10 points while the profit is 25 points, so the profit stays positive. Obvious-share lines: (1) the before value on cost, 1/3: answer BELOW (1/5); all four distractors below, strictly (largest 3/10). (2) the before value as printed, 1/4 of price: answer BELOW; 7/30, 2/9 and 1/6 below strictly, 3/10 above; 1/4 is not an option. (3) the cut, 1/10: answer ABOVE; all four above, strictly. (4) the sale profit as a share of the sale price, 15/90 = 1/6: the answer is above it because the cost is smaller than the sale price; 7/30, 3/10 and 2/9 are above it strictly; 1/6 is itself the distractor for dividing by the wrong base, and reaching this bound needs the sale profit, which is the method. (5) the profit 'points' 25 - 10 = 15 as a fraction of the old price, 3/20: answer above (cost < old price); all four above; 3/20 is not an option. No denominator is forced: no actual price is given.",
+  "bounds_checked": "direction of change (price cut lowers profit share), before values on both bases (1/3 and 1/4), the cut (1/10), wrong-base values (1/6, 3/20), positivity, complement pairs, run and pair shapes",
+  "forced_form_notes": {
+   "denominator 5": "not forced: no price or cost is given; the answer is (25-10)/75 only after the cost is found to be 3/4 of the price, and other printed percents give other denominators (e.g. a 20% profit share and a 5% cut give 3/16)."
+  }
+ },
+ {
+  "id": "S17A-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "relative motion on a current: object dropped, noticed later, chased back",
+  "difficulty": "hard",
+  "template": "rower drops a floating object upstream, turns back after a delay / distance downstream where she reaches it / the water's frame makes the chase as long as the delay",
+  "mechanism": [
+   "relative motion in a current",
+   "frame of the moving water",
+   "chase time equals separation time"
+  ],
+  "method": "See that relative to the water the hat is at rest and the rower's speed is the same both ways, so the chase back takes exactly as long as she rowed away; the hat then drifts with the current for twice that time.",
+  "prompt": "A river flows at a steady 3 kilometers per hour. A rower who rows at 12 kilometers per hour in still water is rowing upstream, and she keeps the same rowing effort throughout. As she passes under a bridge, her hat falls into the water and floats downstream with the current. She notices 30 minutes later, immediately turns around, and rows downstream until she reaches her hat. How many kilometers downstream of the bridge is the hat when she reaches it? (Ignore the time taken to turn around.)",
+  "choices": [
+   "3",
+   "2.7",
+   "3.375",
+   "2.4",
+   "2.625"
+  ],
+  "correct_answer": "3",
+  "explanation": "Relative to the water the hat is still and the rower moves at 12 km/h both ways, so she takes as long to get back to the hat (30 minutes) as she spent rowing away. The hat drifts for 30 + 30 = 60 minutes at 3 km/h, so it is 3 km below the bridge. (On the ground: she is 9 x 0.5 = 4.5 km above the bridge and the hat 1.5 km below, a gap of 6 km closing at 15 - 3 = 12 km/h, which takes 0.5 h.) The option 2.7 uses her downstream ground speed 15 as the closing speed, forgetting the hat also moves: 6/15 = 0.4 h, drift 3 x 0.9. The option 3.375 forgets the current slows her going upstream (6 km up, gap 7.5, 7.5/12 h). The option 2.625 measures the gap to the bridge (4.5 km) instead of to the hat, chases at 12 km/h, then lets the hat drift for the whole 0.5 + 0.375 h. The option 2.4 measures the gap to the bridge and chases at 15 km/h (0.3 h), then drifts the hat for 0.8 h.",
+  "solve": "var c=3,r=12,t=0.5; var up=(r-c)*t, hat0=c*t; var T=(up+hat0)/((r+c)-c); return c*(t+T);",
+  "distractor_solve": {
+   "2.7": "var c=3,r=12,t=0.5; var up=(r-c)*t, hat0=c*t; var T=(up+hat0)/(r+c); return c*(t+T);",
+   "3.375": "var c=3,r=12,t=0.5; var up=r*t, hat0=c*t; var T=(up+hat0)/r; return c*(t+T);",
+   "2.625": "var c=3,r=12,t=0.5; var up=(r-c)*t; var T=up/r; return c*(t+T);",
+   "2.4": "var c=3,r=12,t=0.5; var up=(r-c)*t; var T=up/(r+c); return c*(t+T);"
+  },
+  "interval": "The hat is below the bridge by its drift over the whole time it floats, which is more than the 30 minutes before she turns. Obvious-share lines: (1) drift during the first 30 minutes, 1.5 km: the answer is above it; all four distractors (2.4, 2.625, 2.7, 3.375) are above it, strictly. (2) the distance she rows upstream, 4.5 km: the answer is below it; all four distractors are below it, strictly. (3) her still-water distance in 30 minutes, 6 km: the answer is below it; all four distractors below, strictly. (4) one hour of current, the drift if the whole outing took an hour, 3 km: this IS the key and is only reachable by seeing the chase lasts 30 minutes; 3.375 is above it and the other three below, so no single side is free. Total-distance and speed-ratio bounds (12/15, 9/12) do not single out any option. No option is on any of these bounds except the key on line 4.",
+  "bounds_checked": "drift before turning (lower), distance rowed upstream (upper), still-water distance (upper), one-hour drift, monotonicity in the closing speed, sign/direction (all downstream), integrality, run and doubling shapes among options",
+  "forced_form_notes": {
+   "integer": "not forced: the answer is a distance equal to the current speed times twice the delay; with a 40-minute delay or a 2.5 km/h current the same stem gives 4 or 2.5, and nothing makes a distance in kilometers whole.",
+   "odd": "not forced: same reason; a 40-minute delay gives 4.",
+   "multiple of 3": "not forced: 3 is the current's speed, but the answer is that speed times a time in hours (1 here); a 40-minute delay gives 4, a 20-minute delay 2.",
+   "odd multiple of 3": "not forced: the answer is the current speed times twice the delay in hours; a 40-minute delay gives 4, a 20-minute delay 2, so neither divisibility by 3 nor the parity of the quotient is fixed by the stem."
+  }
+ },
+ {
+  "id": "S17A-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "walker in a tunnel, train arriving at either end at the same moment as him",
+  "difficulty": "hard",
+  "template": "walker part-way through a tunnel, train behind / train speed as a multiple of his / mirror the backward run forward",
+  "mechanism": [
+   "relative motion",
+   "mirror the two scenarios",
+   "same elapsed time, two runs"
+  ],
+  "method": "See that in the time he would take to run back to the entrance he could instead run the same distance forward, so when the train reaches the entrance he is that far past his starting point, and the train then covers the whole tunnel while he covers only what is left.",
+  "prompt": "Mo is walking through a straight railway tunnel. When he is 3/8 of the way through it, he hears a train approaching the entrance he came in by. He works out that if he immediately runs back toward that entrance at his top speed, he and the train will reach the entrance at the same moment, and that if he immediately runs forward at the same top speed, he and the train will reach the far exit at the same moment. The train moves at a constant speed. The train's speed is how many times Mo's top running speed?",
+  "choices": [
+   "8/3",
+   "4",
+   "8/5",
+   "3",
+   "5/3"
+  ],
+  "correct_answer": "4",
+  "explanation": "Running back, Mo covers 3/8 of the tunnel in exactly the time the train takes to reach the entrance. Running forward instead, in that same time he covers 3/8 forward, reaching 3/8 + 3/8 = 3/4 of the way, just as the train enters. From then on the train runs the whole tunnel while Mo runs the last 1/4, and they finish together, so the train is 1 / (1/4) = 4 times as fast. The option 8/3 has the train cover the whole tunnel while Mo runs only his 3/8 back to the entrance (as if the train were already at the entrance). The option 8/5 has the train cover the whole tunnel while Mo runs his whole 5/8 forward, forgetting the train must first reach the entrance. The option 3 treats the last stretch as if Mo and the train were closing on each other, adding their speeds, so (speed + 1) x 1/4 = 1. The option 5/3 compares Mo's two runs, 5/8 to 3/8.",
+  "solve": "var p=3/8; var ahead=p+p; var left=1-ahead; return 1/left;",
+  "distractor_solve": {
+   "8/3": "var p=3/8; return 1/p;",
+   "8/5": "var p=3/8; return 1/(1-p);",
+   "5/3": "var p=3/8; return (1-p)/p;",
+   "3": "var p=3/8; var left=1-2*p; return 1/left-1;"
+  },
+  "interval": "The train must be faster than Mo (it catches him from behind at the exit), so the answer exceeds 1; all five options exceed 1. Obvious-share lines: (1) equal speeds, ratio 1: the answer is above it; all four distractors (8/5, 5/3, 8/3, 3) are above it, strictly. (2) the ratio of his two runs, 5/8 : 3/8 = 5/3: not a bound the stem forces (nothing ties the train's speed to his two distances without the mirroring step); the key is above it, as are 8/3 and 3, with 8/5 below and 5/3 on it. (3) whole tunnel over each of his runs, 8/3 and 8/5: these are the wrong models, not forced bounds. No upper bound is forced by the stem: a starting point closer to the middle of the tunnel gives any large ratio (at 0.45 of the way it is 10), so the key being the largest option is not reachable by a cheap bound; nothing printed caps the ratio at 4. Sorted, 8/5, 5/3, 8/3, 3, 4: no arithmetic run (gaps 1/15, 1, 1/3, 1).",
+  "bounds_checked": "speed ratio above 1, ratio of the two runs, whole-tunnel over each run, no upper bound (key largest), integrality, run and doubling shapes",
+  "forced_form_notes": {
+   "integer": "not forced: the ratio is 1/(1 - 2p) for a starting fraction p; at 2/5 of the way it is 5, at 1/3 it is 3, at 0.45 it is 10, at 5/16 it is 8/3, so nothing in the stem makes it whole.",
+   "multiple of 4": "not forced: same formula; 3/8 gives 4 only because 1 - 3/4 = 1/4, and 2/5 or 1/3 give 5 or 3.",
+   "multiple of 2": "not forced: same formula; 2/5 of the way gives 5, 1/3 gives 3.",
+   "even": "not forced: same formula; 2/5 of the way gives 5.",
+   "perfect square": "not forced: same formula; 2/5 gives 5, 1/3 gives 3.",
+   "even multiple of 2": "not forced: same formula; 2/5 gives 5.",
+   "odd multiple of 4": "not forced: the ratio is 1/(1 - 2p) for the starting fraction p; 2/5 gives 5, 1/3 gives 3, 7/16 gives 8, so the stem fixes neither a factor 4 nor its quotient's parity."
+  }
+ },
+ {
+  "id": "S17A-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "unit rate with a forced pause after each fixed block of output",
+  "difficulty": "medium",
+  "template": "printer at a steady rate that stops after every fixed block / total time for a job not a multiple of the block / count the pauses that come before the end",
+  "mechanism": [
+   "unit rate",
+   "work rate with interruptions",
+   "count of pauses",
+   "partial final block"
+  ],
+  "method": "Find the printing time from the rate, then count only the pauses that are completed before the job ends, which is the number of whole blocks finished before the last page, and add their time.",
+  "prompt": "A printer prints 20 pages per minute. Each time it has printed another 80 pages of a job, it stops for 3 minutes to cool down and then continues printing at the same rate. Starting from the first page, how many minutes does the printer take to print a 520-page job?",
+  "choices": [
+   "47",
+   "68",
+   "44",
+   "45.5",
+   "46"
+  ],
+  "correct_answer": "44",
+  "explanation": "Printing takes 520 / 20 = 26 minutes. The printer stops after pages 80, 160, 240, 320, 400 and 480, which is 6 stops, all before the job ends (the next would be after page 560). The stops take 6 x 3 = 18 minutes, so the job takes 26 + 18 = 44 minutes. The option 47 counts a stop for every started block of 80 pages, 7 stops. The option 45.5 charges 3 minutes for every 80 pages as a rate, 6.5 stops. The option 46 times the job as 7 whole blocks of 80 pages (560 pages, 28 minutes) with 6 stops between them. The option 68 counts the 6 stops but charges each one as the 3-minute stop plus the 4 minutes of printing its block, adding those printing minutes on top of the 26 already counted.",
+  "solve": "var r=20,b=80,s=3,n=520; var stops=Math.floor((n-1)/b); return n/r+stops*s;",
+  "distractor_solve": {
+   "47": "var r=20,b=80,s=3,n=520; return n/r+Math.ceil(n/b)*s;",
+   "45.5": "var r=20,b=80,s=3,n=520; return n/r+(n/b)*s;",
+   "68": "var r=20,b=80,s=3,n=520; var stops=Math.floor((n-1)/b); return n/r+stops*(s+b/r);",
+   "46": "var r=20,b=80,s=3,n=520; var blocks=Math.ceil(n/b); return blocks*b/r+(blocks-1)*s;"
+  },
+  "interval": "Obvious-share lines: (1) printing time with no stops, 26 minutes: the answer is above it; all four distractors (45.5, 46, 47, 68) are above it, strictly. (2) the stop count the stem prints no number for: the 6 stops are found only by listing the stops before page 520, which is the solve; no printed number gives a lower bound above 26, so the key being the smallest option is not reachable by a cheap bound. (3) time per block including its stop, 7 minutes per 80 pages, prorated to 45.5, and one stop per started block, 47: these are wrong models, not bounds the stem forces; the key is below both. The time is not forced to be a whole number of minutes by the stem (a 510-page job gives 43.5), so the one non-integer option is not excluded by integrality. Sorted, 44, 45.5, 46, 47, 68: no arithmetic run (gaps 1.5, 0.5, 1, 21).",
+  "bounds_checked": "no-stop printing time (lower), stop count, prorated block time, stops per started block, integrality of minutes, parity, run and doubling shapes, key smallest with no cheap bound",
+  "forced_form_notes": {
+   "even": "not forced: the time is n/20 + 3 x (number of stops); a 500-page job gives 43 and a 510-page job 43.5, so the stem fixes no parity.",
+   "multiple of 4": "not forced: same formula; a 500-page job gives 43.",
+   "multiple of 11": "not forced: same formula; a 500-page job gives 43, a 540-page job 45.",
+   "multiple of 2": "not forced: same formula; a 500-page job gives 43.",
+   "even multiple of 2": "not forced: same formula; a 500-page job gives 43.",
+   "even multiple of 11": "not forced: same formula; a 540-page job gives 45.",
+   "odd multiple of 4": "not forced: same formula; a 500-page job gives 43, a 540-page job 45."
+  }
+ },
+ {
+  "id": "S17A-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "total distance of a dog running between two approaching walkers",
+  "difficulty": "hard",
+  "template": "two people approach each other; a dog runs back and forth between them until they meet / dog's total distance / the dog runs for exactly the time until they meet",
+  "mechanism": [
+   "total time, not the sum of the legs",
+   "closing speed gives the meeting time",
+   "distance = dog's speed x that time"
+  ],
+  "method": "See that the zigzag does not need to be followed leg by leg: the dog runs at one steady speed for exactly as long as the two people take to meet, so its total distance is its speed times the meeting time found from their combined speed.",
+  "prompt": "Ana and Ben are 18 kilometers apart on a straight trail. At the same moment they start toward each other, Ana jogging at 5 kilometers per hour and Ben walking at 4 kilometers per hour. Also at that moment, Ana's dog starts running from Ana toward Ben at 20 kilometers per hour. Each time the dog reaches one of them, it turns around at once and runs back toward the other, always at 20 kilometers per hour, until Ana and Ben meet. How many kilometers does the dog run in all?",
+  "choices": [
+   "48",
+   "24",
+   "72",
+   "40",
+   "30"
+  ],
+  "correct_answer": "40",
+  "explanation": "Ana and Ben close the 18 kilometers at 5 + 4 = 9 kilometers per hour, so they meet after 18 / 9 = 2 hours. The dog runs at 20 kilometers per hour for all of those 2 hours, so it runs 40 kilometers. (Leg by leg the dog runs 15, then 9, then 6, ... kilometers, which add up to 40 only in the limit.) The option 24 stops after the dog's first trip to Ben and back to Ana, 15 + 9. The option 30 stops after three legs, 15 + 9 + 6 (it is also what the dog's speed relative to Ana, 20 - 5, gives over the 2 hours). The option 48 adds Ben's speed to the dog's, (20 + 4) x 2. The option 72 uses the time Ana alone would need to cover the 18 kilometers, 18 / 5 = 3.6 hours, times 20.",
+  "solve": "var G=18,a=5,b=4,d=20; return d*G/(a+b);",
+  "distractor_solve": {
+   "24": "var G=18,a=5,b=4,d=20; var t1=G/(d+b); var g1=G-(a+b)*t1; var t2=g1/(d+a); return d*(t1+t2);",
+   "30": "var G=18,a=5,b=4,d=20; var t1=G/(d+b); var g1=G-(a+b)*t1; var t2=g1/(d+a); var g2=g1-(a+b)*t2; var t3=g2/(d+b); return d*(t1+t2+t3);",
+   "48": "var G=18,a=5,b=4,d=20; return (d+b)*G/(a+b);",
+   "72": "var G=18,a=5,b=4,d=20; return d*G/a;"
+  },
+  "interval": "Obvious-share lines: (1) the gap, 18 km (the whole): the dog is faster than the two people together, so it runs more than the gap; the answer is ABOVE 18 and all four distractors (24, 30, 48, 72) are above it, strictly. (2) each person alone: Ana covers 10 km and Ben 8 km before they meet: answer ABOVE both; all four distractors above, strictly. (3) each person alone covering the whole gap: Ana would need 3.6 hours, Ben 4.5 hours, so the meeting comes sooner and the dog runs less than 20 x 3.6 = 72 and less than 20 x 4.5 = 90: answer BELOW 72; 24, 30, 48 are below it strictly, 72 is ON it; all four are below 90. (4) the dog's first leg, 15 km: not printed; the leg-by-leg partial sums 24 and 30 sit below the key, as every partial sum must, but a solver who has not seen the total-time idea does not know where the sum stops. Sorted 24, 30, 40, 48, 72: key interior, no arithmetic run through the key (30, 40, 50 has no 50; 24, 40, 56 has no 56), no option double or half the key (20, 80 absent).",
+  "bounds_checked": "the gap (whole), each person's own distance, each person alone covering the gap (upper), partial sums of the legs, run and doubling shapes, integrality",
+  "forced_form_notes": {
+   "multiple of 5": "not forced: the dog's distance is 20 x 18 / (5 + 4); other printed speeds give other values (Ben at 3 km/h gives 45, Ana at 4 and Ben at 4 gives 45, Ana at 7 and Ben at 5 gives 30, gap 16 gives 320/9). Nothing makes it a multiple of 5 except the chosen numbers.",
+   "multiple of 10": "not forced: same; Ben at 3 km/h gives 45, Ana at 4 and Ben at 4 gives 45.",
+   "even multiple of 10": "not forced: same; Ben at 3 km/h gives 45, Ana at 7 and Ben at 5 gives 30 = 10 x 3, an odd multiple.",
+   "odd multiple of 8": "not forced: the dog's distance is 20 x 18 / (5 + 4); Ben at 3 km/h gives 45 and Ana at 7 with Ben at 5 gives 30, neither a multiple of 8."
+  }
+ },
+ {
+  "id": "S17A-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "same sum shared under two ratios, a member with unchanged parts",
+  "difficulty": "hard",
+  "template": "one sum, sharing ratio changed before payout / share of a member whose number of parts did not change / compare fractions of the whole, not parts",
+  "mechanism": [
+   "proportional sharing",
+   "same parts, different part totals",
+   "fraction-of-whole difference fixes the sum"
+  ],
+  "method": "See that a member keeping the same number of parts does not keep the same amount, because the part total changed; the drop in Cara's FRACTION of the whole fixes the sum, and Ben's share is his new fraction of it.",
+  "prompt": "A sum of money was going to be shared among Ana, Ben and Cara in the ratio 1 : 3 : 4. Before it was paid out, the plan was changed, and the whole sum was shared among them in the ratio 2 : 3 : 4 instead. As a result, Cara received $12 less than she would have received under the first plan. How many dollars did Ben receive?",
+  "choices": [
+   "81",
+   "288",
+   "96",
+   "108",
+   "72"
+  ],
+  "correct_answer": "72",
+  "explanation": "Cara's fraction of the sum fell from 4/8 to 4/9, a drop of 4/8 - 4/9 = 1/18 of the sum, so the sum is 18 x 12 = 216 dollars. Ben received 3/9 of it, 72 dollars. (Ben kept 3 parts, but the parts got smaller: under the first plan he would have had 3/8 of 216 = 81.) The option 81 is Ben's share under the first plan, as if keeping 3 parts meant keeping the same amount. The option 96 takes the $12 drop as 3/8 - 3/9 = 1/24 of the sum (Ben's ratio term in place of Cara's), so the sum is 288, and gives Ben 3/9 of that. The option 108 uses the same wrong sum, 288, with Ben's first-plan fraction 3/8. The option 288 drops Cara's 4 and takes 12 as 1/8 - 1/9 = 1/72 of the sum, 864, then gives Ben 3/9 of it.",
+  "solve": "var o=[1,3,4],n=[2,3,4],L=12; var so=o[0]+o[1]+o[2], sn=n[0]+n[1]+n[2]; var T=L/(o[2]/so-n[2]/sn); return T*n[1]/sn;",
+  "distractor_solve": {
+   "81": "var o=[1,3,4],n=[2,3,4],L=12; var so=8,sn=9; var T=L/(o[2]/so-n[2]/sn); return T*o[1]/so;",
+   "96": "var o=[1,3,4],n=[2,3,4],L=12; var so=8,sn=9; var T=L/(o[1]/so-n[1]/sn); return T*n[1]/sn;",
+   "108": "var o=[1,3,4],n=[2,3,4],L=12; var so=8,sn=9; var T=L/(o[1]/so-n[1]/sn); return T*o[1]/so;",
+   "288": "var o=[1,3,4],n=[2,3,4],L=12; var so=8,sn=9; var T=L/(1/so-1/sn); return T*n[1]/sn;"
+  },
+  "interval": "Obvious-share lines: (1) Cara's drop, 12: Ben's share is above it; all four distractors (81, 96, 108, 288) are above it, strictly. (2) Ben's share under the first plan (the before value): the answer is below it, because his 3 parts are now 3 of 9 instead of 3 of 8; but that value is not printed and needs the sum, which is the whole problem, so it gives no free elimination; once found (81), 96, 108 and 288 are above it and the key below. (3) an equal split, one third of the sum: Ben's new share IS one third (3 of 9 parts); the sum is not printed, so this is not a bound on any option. (4) Ana gains and Cara loses, Ben's fraction falls: direction only, no number until the sum is found. No printed number bounds the share from above, so the key being the smallest option is not reachable by a cheap bound; the sum scales with Cara's drop (a $10 drop gives Ben 60, a $20 drop 120). Sorted, 72, 81, 96, 108, 288: no arithmetic run.",
+  "bounds_checked": "Cara's printed drop (lower), before-value of Ben's share, equal split, direction of each member's change, scaling with the drop, divisibility of the share, run and doubling shapes, key smallest with no cheap bound",
+  "forced_form_notes": {
+   "multiple of 8": "not forced: Ben's share is 6 times Cara's drop, and the 6 comes only from solving the two ratios; the stem prints 12 and the ratios, and a $10 drop gives 60, a $15 drop 90.",
+   "multiple of 24": "not forced: same reason; a $10 drop gives 60.",
+   "multiple of 36": "not forced: same reason; a $10 drop gives 60.",
+   "multiple of 72": "not forced: same reason; a $10 drop gives 60.",
+   "multiple of 18": "not forced: same reason; a $10 drop gives 60.",
+   "multiple of 4": "not forced: same reason; a $15 drop gives 90.",
+   "multiple of 6": "not forced: same reason; the factor 6 is the answer to the problem, not something printed; a reader who had it would already have solved the item.",
+   "even multiple of 9": "not forced: same reason; a $15 drop gives 90 = 9 x 10, a $10 drop 60.",
+   "even multiple of 12": "not forced: same reason; a $10 drop gives 60.",
+   "even multiple of 8": "not forced: same reason; a $10 drop gives 60.",
+   "even multiple of 4": "not forced: same reason; a $15 drop gives 90.",
+   "even multiple of 6": "not forced: same reason; a $15 drop gives 90.",
+   "odd multiple of 8": "not forced: Ben's share is 6 times Cara's drop, a factor found only by solving; a $10 drop gives 60, a $16 drop 96 = 8 x 12."
+  }
+ }
+]

@@ -1,0 +1,366 @@
+[
+ {
+  "id": "S17D-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "defined operation factored into a product, with a negative factor pair that still gives positive inputs",
+  "difficulty": "hard",
+  "template": "a # b = ab - 8a - 8b set equal to a constant / number of ordered pairs of positive integers / complete the product (a - 8)(b - 8), then count signed factor pairs that keep a and b positive",
+  "mechanism": [
+   "defined operation rewritten as a product",
+   "adding a constant to complete (a - 8)(b - 8)",
+   "signed factor pairs",
+   "positivity check on negative factors"
+  ],
+  "method": "Add the constant that turns the operation into a product of two shifted factors, list the factor pairs of the resulting number, and see that the negative factor pairs are not automatically excluded: each must be checked against the requirement that both inputs be positive.",
+  "prompt": "For all numbers a and b, the operation # is defined by a # b = ab - 8a - 8b. How many ordered pairs (a, b) of positive integers satisfy a # b = -48 ?",
+  "choices": [
+   "10",
+   "5",
+   "20",
+   "6",
+   "8"
+  ],
+  "correct_answer": "6",
+  "explanation": "Adding 64 to both sides gives ab - 8a - 8b + 64 = 16, that is, (a - 8)(b - 8) = 16. Since a and b are positive integers, a - 8 and b - 8 are integers that are at least -7. Positive factor pairs: (1, 16), (2, 8), (4, 4), (8, 2), (16, 1), giving (9, 24), (10, 16), (12, 12), (16, 10), (24, 9): 5 pairs. Negative factor pairs: (-1, -16), (-16, -1), (-2, -8) and (-8, -2) each need a factor below -7 (the last two would make a or b equal to 0), so they fail; (-4, -4) gives (4, 4), and 4 # 4 = 16 - 32 - 32 = -48 works. Total 5 + 1 = 6. The option \"5\" counts only the positive factor pairs. The option \"10\" counts every signed factor pair of 16 without checking that a and b stay positive. The option \"8\" allows a or b to be 0, keeping (6, 0) and (0, 6) from the pairs (-2, -8) and (-8, -2); the same 8 comes from moving 64 to the wrong side and solving (a - 8)(b - 8) = -48 - 64 = -112. The option \"20\" makes that sign slip and then also counts every signed factor pair of 112 without checking positivity.",
+  "solve": "let c=0; for(let a=1;a<400;a++){ for(let b=1;b<400;b++){ if(a*b-8*a-8*b===-48) c++; } } return c;",
+  "distractor_solve": {
+   "5": "const N=-48+64; let c=0; for(let x=1;x<=N;x++){ if(N%x===0) c++; } return c;",
+   "10": "const N=-48+64; let c=0; for(let x=1;x<=N;x++){ if(N%x===0) c+=2; } return c;",
+   "8": "let c=0; for(let a=0;a<400;a++){ for(let b=0;b<400;b++){ if(a*b-8*a-8*b===-48) c++; } } return c;",
+   "20": "const N=Math.abs(-48-64); let c=0; for(let x=1;x<=N;x++){ if(N%x===0) c+=2; } return c;"
+  },
+  "interval": "The answer is a count of ordered pairs, a whole number. Without the factorization the stem gives no numeric bound: there is no total to be a part of and no share. Symmetry (a # b = b # a) pairs (a, b) with (b, a), but the stem does not fix parity, because solutions with a = b exist here ((4, 4) and (12, 12)) and finding them needs the quadratic a^2 - 16a + 48 = 0; so parity kills nothing for free (and 5 is the only odd option anyway). Once (a - 8)(b - 8) = 16 is found (the method), the count lies between 5 (positive pairs only) and 10 (every signed pair); 5 and 10 sit on those ends, but reaching that interval is the item's first idea and deciding inside it is the second (the positivity check), so neither end is readable from the stem. No sign, probability denominator, printed coefficient or plug-back applies to a count of pairs. The key is not the extreme of the factored interval, and no option is a sum of two others.",
+  "bounds_checked": "integrality and parity of a count (symmetry of the operation, diagonal solutions), part not exceeding whole, limiting cases at both ends of the factored interval, key/-key, doubling around the key, sums of two options, runs among options",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the count is 5 positive pairs plus the negative pairs of 16 with both factors at least -7; nothing in the stem makes it a multiple of 3 (with -44 in place of -48 the factored number is 20 and the count is 6 + 2 = 8).",
+   "multiple of 6": "not forced: same reason as multiple of 3 (with -44 the count is 8).",
+   "odd multiple of 2": "not forced: whether half the count is odd depends on how many negative pairs survive and on diagonal solutions; with -44 the count is 8 = 2 x 4.",
+   "odd multiple of 3": "not forced: same reason as multiple of 3.",
+   "odd multiple of 6": "not forced: same reason as multiple of 3."
+  }
+ },
+ {
+  "id": "S17D-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "alternating functional rule turned into a two-step rule by subtracting neighbouring cases",
+  "difficulty": "hard",
+  "template": "f(x) + f(x + 1) = x^2 with f(0) given / f(100) / subtract the rule at x from the rule at x + 1 to get a two-step increment, then sum an arithmetic series",
+  "mechanism": [
+   "functional equation linking neighbours",
+   "subtracting consecutive instances",
+   "two-step telescoping",
+   "arithmetic series sum"
+  ],
+  "method": "See that the rule only links each value to its neighbour with an alternating sign, so subtract the rule at x from the rule at x + 1 to get a rule that jumps two places with an increment linear in x, then add those increments from the given value up to the asked one (equivalently, unwind the rule and pair the alternating squares as differences of squares).",
+  "prompt": "A function f is defined for every integer x, and f(x) + f(x + 1) = x^2 for every integer x. If f(0) = 1, what is the value of f(100) ?",
+  "choices": [
+   "4950",
+   "5051",
+   "4901",
+   "4949",
+   "4951"
+  ],
+  "correct_answer": "4951",
+  "explanation": "Write the rule at x + 1: f(x + 1) + f(x + 2) = (x + 1)^2. Subtracting the rule at x gives f(x + 2) - f(x) = (x + 1)^2 - x^2 = 2x + 1. So f(100) = f(0) + (1 + 5 + 9 + ... + 197), adding 2x + 1 for x = 0, 2, 4, ..., 98. That is 50 terms with average (1 + 197)/2 = 99, so the sum is 4950 and f(100) = 1 + 4950 = 4951. (Equivalently f(100) = 99^2 - 98^2 + 97^2 - ... + 1^2 - 0^2 + f(0) = 4950 + 1.) The option \"4950\" drops the starting value f(0). The option \"4949\" unwinds the rule but ends with - f(0) instead of + f(0). The option \"4901\" adds 2x instead of 2x + 1 at each jump, losing the 50 ones. The option \"5051\" adds 2x + 1 over the odd values x = 1, 3, ..., 99 instead of the even ones.",
+  "solve": "let f=1; for(let x=0;x<100;x++){ f=x*x-f; } return f;",
+  "distractor_solve": {
+   "4950": "let s=0; for(let x=0;x<=98;x+=2){ s+=2*x+1; } return s;",
+   "4949": "let s=0; for(let x=0;x<=98;x+=2){ s+=2*x+1; } return s-1;",
+   "4901": "let s=1; for(let x=0;x<=98;x+=2){ s+=2*x; } return s;",
+   "5051": "let s=1; for(let x=1;x<=99;x+=2){ s+=2*x+1; } return s;"
+  },
+  "interval": "Obvious shares: f(99) + f(100) = 99^2 = 9801 and f(100) + f(101) = 100^2 = 10000, so an equal-split guess puts f(100) near 4900.5 or near 5000; neither is a bound, because nothing in the stem says f increases (f(1) = -1 < f(0) and f(2) = f(3) = 2). The key lies between them, above 4900.5 and below 5000; distractors 4950, 4901 and 4949 lie strictly on the key's side of both shares, 5051 lies above 5000. Parity: tracking f mod 2 from f(0) = 1 gives period 4 (odd, odd, even, even), so f(100) is odd; 5051, 4901 and 4949 are odd (3 of 4 survive), 4950 dies. No sign question (all options positive and the shares make f(100) positive), no printed coefficient the key must carry, no plug-back: x = 0 and x = 1 give only f(1) and f(2).",
+  "bounds_checked": "equal-split shares of f(99) + f(100) and f(100) + f(101), monotonicity (not given, and false for small x), parity via the rule mod 2, units digit (would need 100 steps), magnitude from x^2/2, runs and adjacency among options, key/-key",
+  "forced_form_notes": {
+   "odd": "forced, and shared: 5051, 4901 and 4949 are odd (3 of 4)."
+  }
+ },
+ {
+  "id": "S17D-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "function that turns products into sums: f(1) = 0 and the value at a reciprocal",
+  "difficulty": "hard",
+  "template": "f(xy) = f(x) + f(y) with f(8) and f(12) given / f(1/6) / split inputs into factors, find f(1) = 0, and use f(1/x) = -f(x)",
+  "mechanism": [
+   "functional equation f(xy) = f(x) + f(y)",
+   "splitting an input into factors",
+   "f(1) = 0 from x = y = 1",
+   "value at a reciprocal is the negative"
+  ],
+  "method": "Read the rule as turning a product of inputs into a sum of outputs, so the value at 2 comes from 8 = 2 x 2 x 2 and the value at 6 from 12 = 2 x 6; then see that putting x = y = 1 forces f(1) = 0, so f(6) + f(1/6) = f(1) = 0 and the asked value is the negative of f(6).",
+  "prompt": "A function f is defined for all positive numbers, and f(xy) = f(x) + f(y) for all positive numbers x and y. If f(8) = 9 and f(12) = 10, what is the value of f(1/6) ?",
+  "choices": [
+   "-7",
+   "-12",
+   "-5",
+   "-17/2",
+   "-6"
+  ],
+  "correct_answer": "-7",
+  "explanation": "Since 8 = 2 x 2 x 2, f(8) = 3f(2), so f(2) = 3. Since 12 = 2 x 6, f(12) = f(2) + f(6), so f(6) = 10 - 3 = 7. Putting x = y = 1 gives f(1) = 2f(1), so f(1) = 0. Then f(6) + f(1/6) = f(6 x 1/6) = f(1) = 0, so f(1/6) = -7. The option \"-12\" multiplies instead of adding, taking f(6) = f(2) x f(3) = 3 x 4. The option \"-5\" treats f like a multiple of its input, taking f(6) = f(12)/2. The option \"-17/2\" takes f(4) = f(8)/2 = 9/2 (because 4 = 8/2), so f(3) = 10 - 9/2 = 11/2 and f(6) = 3 + 11/2. The option \"-6\" takes f(6) = f(8) - f(2) = 6, as if subtracting outputs matched subtracting inputs (8 - 2 = 6).",
+  "solve": "const f8=9, f12=10; const f2=f8/3; const f6=f12-f2; const f1=0; return f1-f6;",
+  "distractor_solve": {
+   "-12": "const f8=9, f12=10; const f2=f8/3; const f3=f12-2*f2; return -(f2*f3);",
+   "-5": "const f12=10; return -(f12/2);",
+   "-17/2": "const f8=9, f12=10; const f2=f8/3; const f4=f8/2; const f3=f12-f4; return -(f2+f3);",
+   "-6": "const f8=9; const f2=f8/3; return -(f8-f2);"
+  },
+  "interval": "The stem gives no monotonicity (f is not said to increase), no total and no share, so no numeric bound on f(1/6) is readable before f(1) = 0 is found. Sign: once f(1) = 0 is seen, f(1/6) = -f(6) and the sign depends on f(6); a solver who merely assumes f increases (since f(8) < f(12)) would get f(1/6) < f(1) = 0, and every option is negative, so that guess kills nothing. Integrality is not forced (f(2) = f(8)/3 is a whole number only because 9 is a multiple of 3); three of the four distractors are integers anyway. No plug-back is possible: the unknown is a single function value, and choosing a convenient f (a multiple of a logarithm) cannot match both f(8) = 9 and f(12) = 10.",
+  "bounds_checked": "sign from a guessed monotonicity, integrality, magnitude relative to the given values, special-case functions (one-parameter guesses cannot fit both data), runs and doubling around the key, key/-key",
+  "forced_form_notes": {
+   "odd": "not forced: f(1/6) = -(f(12) - f(8)/3); with f(8) = 9 and f(12) = 11 it would be -8, so the stem does not fix parity.",
+   "multiple of 7": "not forced: the 7 is f(12) - f(8)/3 = 10 - 3 for these particular values; nothing in the stem makes the answer a multiple of 7.",
+   "odd multiple of 7": "not forced: same reason as multiple of 7."
+  }
+ },
+ {
+  "id": "S17D-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "geometric sequence of integers with a fractional ratio: the denominator cubed must divide the first term",
+  "difficulty": "hard",
+  "template": "increasing four-term geometric sequence of positive integers, first term 64, last term under 1000 / number of possible ratios / ratio p/q in lowest terms needs q^3 dividing 64",
+  "mechanism": [
+   "geometric sequence with a non-integer ratio",
+   "ratio written in lowest terms p/q",
+   "q^3 must divide the first term",
+   "bounding p by the last-term limit"
+  ],
+  "method": "See that the common ratio need not be a whole number: writing it as a fraction in lowest terms, the fourth term carries the denominator cubed, so that cube must divide the first term, which limits the denominator to a few values; for each one, bound the numerator using the limit on the last term.",
+  "prompt": "A sequence of four positive integers is geometric (each term after the first equals the term before it multiplied by the same number r) and increasing. Its first term is 64, and its last term is less than 1000. How many different values of r are possible?",
+  "choices": [
+   "6",
+   "5",
+   "12",
+   "11",
+   "8"
+  ],
+  "correct_answer": "5",
+  "explanation": "Write r = p/q in lowest terms with p > q. The terms are 64, 64p/q, 64p^2/q^2 and 64p^3/q^3. Since p^3 and q^3 share no factor, the last term is a whole number only if q^3 divides 64, so q is 1, 2 or 4 (and then every term is a whole number). The last term is 64p^3/q^3 < 1000. q = 1: p^3 < 1000/64, so p = 2 only (r = 3 gives 1728). q = 2: p odd with p^3 < 125, so p = 3 (64, 96, 144, 216). q = 4: p odd with p^3 < 1000, so p = 5, 7, 9 (last terms 125, 343, 729). Total 1 + 1 + 3 = 5 ratios: 2, 3/2, 5/4, 7/4, 9/4. The option \"6\" also allows r = 5/2, whose last term is exactly 1000, which is not less than 1000. The option \"8\" does not reduce the fractions, counting 4/2, 6/4 and 8/4 again beside 2 and 3/2. The option \"11\" checks only that the third term is a whole number (q^2 dividing 64), which also admits q = 8 with p = 9, 11, 13, 15, 17, 19. The option \"12\" makes both of the last two slips: it checks only the third term (admitting q = 8) and also accepts a last term equal to 1000 (r = 5/2).",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; let c=0; for(let q=1;q<=64;q++){ for(let p=q+1;p<400;p++){ if(g(p,q)!==1) continue; if(64%(q*q*q)!==0) continue; if(64*p*p*p<1000*q*q*q) c++; } } return c;",
+  "distractor_solve": {
+   "6": "const g=(a,b)=>b?g(b,a%b):a; let c=0; for(let q=1;q<=64;q++){ for(let p=q+1;p<400;p++){ if(g(p,q)!==1) continue; if(64%(q*q*q)!==0) continue; if(64*p*p*p<=1000*q*q*q) c++; } } return c;",
+   "8": "let c=0; for(const q of [1,2,4]){ for(let p=q+1;p<400;p++){ if(64*p*p*p<1000*q*q*q) c++; } } return c;",
+   "11": "const g=(a,b)=>b?g(b,a%b):a; let c=0; for(let q=1;q<=64;q++){ for(let p=q+1;p<400;p++){ if(g(p,q)!==1) continue; if(64%(q*q)!==0) continue; if(64*p*p*p<1000*q*q*q) c++; } } return c;",
+   "12": "const g=(a,b)=>b?g(b,a%b):a; let c=0; for(let q=1;q<=64;q++){ for(let p=q+1;p<400;p++){ if(g(p,q)!==1) continue; if(64%(q*q)!==0) continue; if(64*p*p*p<=1000*q*q*q) c++; } } return c;"
+  },
+  "interval": "The answer is a count of ratios, a whole number at least 1 (r = 2 gives 64, 128, 256, 512, read off at once; r = 3 gives 1728, too big). Finding r = 3/2 as well makes it at least 2, and r = 5/4 (64, 80, 100, 125) at least 3; every option is at least 5, so these easy finds kill nothing, and none reaches the key. No upper bound is readable without the q^3 condition: the ratio is below (1000/64)^(1/3), about 2.5, but the number of fractions between 1 and 2.5 is unbounded until the denominator is restricted. Parity and divisibility of the count are not forced. The boundary case r = 5/2 (last term exactly 1000) enters two distractors through a wrong reading of \"less than\"; it is not a value sitting on a bound of the answer. The key is the smallest option; the free lower bounds (1, 2 or 3 from ratios found by trial) stop short of it.",
+  "bounds_checked": "integrality of a count, lower bounds from ratios found by trial (2, 3/2, 5/4), upper bound from the last-term limit, boundary (strict vs non-strict) reading, parity, runs and sums among options, key extremity against the free lower bounds",
+  "forced_form_notes": {
+   "odd": "not forced: the count is how many reduced fractions p/q with q^3 dividing 64 keep 64(p/q)^3 below the limit; with a limit of 1001 it would be 6. One distractor (11) is odd as well.",
+   "multiple of 5": "not forced: same reason; the 5 is 1 + 1 + 3 for this first term and limit (with a limit of 1001 it is 6).",
+   "odd multiple of 5": "not forced: same reason as multiple of 5."
+  }
+ },
+ {
+  "id": "S17D-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a term of a sequence from a formula for its partial sums",
+  "difficulty": "medium",
+  "template": "sum of the first n terms given as n^2 + 3n / the 20th term / term = difference of two consecutive partial sums",
+  "mechanism": [
+   "partial-sum formula",
+   "term as a difference of consecutive sums",
+   "sequence terms from S(n) - S(n - 1)"
+  ],
+  "method": "Read the formula as giving running totals, not terms, so the asked term is the total through that term minus the total through the term before it.",
+  "prompt": "For every positive integer n, the sum of the first n terms of a certain sequence is n^2 + 3n. What is the 20th term of the sequence?",
+  "choices": [
+   "44",
+   "118",
+   "42",
+   "82",
+   "61"
+  ],
+  "correct_answer": "42",
+  "explanation": "The 20th term is the sum of the first 20 terms minus the sum of the first 19: (400 + 60) - (361 + 57) = 460 - 418 = 42. (In general the nth term is 2n + 2.) The option \"44\" subtracts the wrong pair of sums, the first 20 from the first 21: (441 + 63) - 460 = 44. The option \"82\" subtracts the sum of the first 18 terms (324 + 54 = 378), which gives the 19th and 20th terms together. The option \"118\" takes the first term 4 correctly but reads the second term as the sum of the first two, 10, so it uses a common difference of 6: 4 + 19 x 6. The option \"61\" takes the common difference from the 3n part, using 4 + 19 x 3.",
+  "solve": "const S=n=>n*n+3*n; return S(20)-S(19);",
+  "distractor_solve": {
+   "44": "const S=n=>n*n+3*n; return S(21)-S(20);",
+   "82": "const S=n=>n*n+3*n; return S(20)-S(18);",
+   "118": "const S=n=>n*n+3*n; const a1=S(1); const d=S(2)-a1; return a1+19*d;",
+   "61": "const S=n=>n*n+3*n; const a1=S(1); return a1+19*3;"
+  },
+  "interval": "Obvious shares: the sum of the first 20 terms is 460, so the plain average of a term is 460/20 = 23; the key 42 is above it and all four distractors (44, 118, 82, 61) are strictly above it too. The whole, 460, is not an option. Before and after: the sums through 19 and 20 terms are 418 and 460; no option is either. Parity: n^2 + 3n = n(n + 3) is always even, so every term is even; 44, 118 and 82 are even (3 of 4 survive), 61 dies. Sign: every option is positive. No upper bound below 118 is readable without the difference of sums. The key is the smallest option; the only free lower bound (the average 23) does not reach it.",
+  "bounds_checked": "plain average share (sum / count), part not exceeding whole, before and after totals, parity forced by n(n + 3), sign, key extremity against the free lower bound, doubling around the key, runs among options",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the nth term is 2n + 2, a multiple of 3 only when n + 1 is; the 19th term, 40, is not.",
+   "multiple of 6": "not forced: same reason as multiple of 3.",
+   "multiple of 7": "not forced: 42 = 2 x 21 is a multiple of 7 only because n + 1 = 21 here; the 19th term, 40, is not.",
+   "multiple of 14": "not forced: same reason as multiple of 7.",
+   "multiple of 21": "not forced: same reason as multiple of 7.",
+   "odd multiple of 2": "not forced: the stem forces every term to be even (n(n + 3) is even), but whether half of it is odd depends on n; the 19th term, 40 = 2 x 20, is an even multiple of 2. Two distractors (82, 118) share it anyway.",
+   "odd multiple of 6": "not forced: same reason as multiple of 3.",
+   "odd multiple of 14": "not forced: same reason as multiple of 7.",
+   "even multiple of 7": "not forced: 42 = 7 x 6 only because the 20th term is 2 x 21; the 13th term, 28 = 7 x 4, and the 6th, 14 = 7 x 2, show the quotient's parity is not fixed, and most terms are not multiples of 7 at all."
+  }
+ },
+ {
+  "id": "S17D-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "swapped-role nonlinear system: subtract and factor out x - y",
+  "difficulty": "hard",
+  "template": "x^2 + 5y = 24 and y^2 + 5x = 24 with x not equal to y / x^2 + y^2 / subtract the equations so x - y factors out, then add them",
+  "mechanism": [
+   "system with the roles of x and y swapped",
+   "subtracting equations to expose a factor x - y",
+   "using x not equal to y to cancel that factor",
+   "adding the equations once the sum is known"
+  ],
+  "method": "See that subtracting the two equations leaves a difference of squares and a multiple of x - y, so x - y factors out and the condition that x and y differ forces their sum; then adding the two equations gives the sum of squares in terms of that sum, with no need to find x or y.",
+  "prompt": "The numbers x and y satisfy x^2 + 5y = 24 and y^2 + 5x = 24, and x is not equal to y. What is the value of x^2 + y^2 ?",
+  "choices": [
+   "48",
+   "73",
+   "18",
+   "23",
+   "25"
+  ],
+  "correct_answer": "23",
+  "explanation": "Subtract the second equation from the first: x^2 - y^2 - 5x + 5y = 0, so (x - y)(x + y) - 5(x - y) = 0, that is (x - y)(x + y - 5) = 0. Since x is not equal to y, x + y = 5. Adding the two equations gives x^2 + y^2 + 5(x + y) = 48, so x^2 + y^2 = 48 - 25 = 23. (Check: xy = (25 - 23)/2 = 1, and t^2 - 5t + 1 = 0 has two different real roots, so such x and y exist.) The option \"48\" adds the equations and stops, never removing the 5(x + y) term. The option \"73\" factors with the wrong sign, taking x + y = -5, so it adds 25 instead of subtracting it. The option \"18\" ignores the condition that x and y differ and solves the case x = y: x^2 + 5x - 24 = 0 gives x = 3, and 3^2 + 3^2 = 18. The option \"25\" finds x + y = 5 and reports (x + y)^2 as if it were x^2 + y^2, forgetting the 2xy term.",
+  "solve": "const c=5,k=24; const s=c; /* (x-y)(x+y-c)=0, x!=y */ const xy=(s*s-(2*k-c*s))/2; const d=Math.sqrt(s*s-4*xy); const x=(s+d)/2, y=(s-d)/2; if(Math.abs(x*x+c*y-k)>1e-9||Math.abs(y*y+c*x-k)>1e-9||Math.abs(x-y)<1e-9) return 'BAD'; return Math.round(x*x+y*y);",
+  "distractor_solve": {
+   "48": "const c=5,k=24; return 2*k;",
+   "73": "const c=5,k=24; const s=-c; return 2*k-c*s;",
+   "18": "const c=5,k=24; const x=(-c+Math.sqrt(c*c+4*k))/2; return 2*x*x;",
+   "25": "const c=5; const s=c; return s*s;"
+  },
+  "interval": "Bounds the stem forces: from x^2 = 24 - 5y >= 0 and y^2 = 24 - 5x >= 0, x <= 4.8 and y <= 4.8, which bounds x + y above by 9.6 and so x^2 + y^2 = 48 - 5(x + y) below by 0 only; nothing bounds it above without the method (x = y = -8 solves the system with sum of squares 128), so all five options are reachable by size. Sign: all options positive, as x^2 + y^2 must be. Plug-backs: x = 0 gives y = 24/5 and then y^2 = 24 fails, x = 1 gives y = 23/5 and fails; small integer trials (x, y) = (4, 8/5), (2, 4), ... fail, and the true x, y are (5 +/- sqrt(21))/2, irrational, so no integer guess reaches the key. Symmetry: the obvious symmetric guess x = y is excluded by the stem; it yields 18 (x = y = 3) or 128 (x = y = -8), and only 18 is an option, so that heuristic removes at most one distractor. Parity, multiples, units digit: x and y are irrational, so no divisibility of the answer is forced. Shares: the sum of the two equations' right sides (48) is an option and the key is below it, with 18, 23, 25 below and 73 above: not a forced bound, since 5(x + y) can be negative.",
+  "bounds_checked": "nonnegativity of x^2 and y^2 (x, y <= 4.8), magnitude without the method, sign, plug-back at x = 0 and x = 1, small-integer trials, the symmetric x = y guess, parity and divisibility, units digit, runs and adjacency among options, key/-key",
+  "forced_form_notes": {
+   "odd": "not forced: x and y are the irrational numbers (5 +/- sqrt(21))/2, so the stem forces no parity on x^2 + y^2; a solver cannot know it is a whole number, let alone odd, without solving."
+  }
+ },
+ {
+  "id": "S17D-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "power equal to 1: three unannounced cases (base 1, exponent 0, base -1 with even exponent)",
+  "difficulty": "hard",
+  "template": "(quadratic)^(quadratic) = 1 / sum of all real solutions / split into base 1, exponent 0 with nonzero base, base -1 with even exponent",
+  "mechanism": [
+   "a power equals 1 in three distinct ways",
+   "base -1 needs an even exponent",
+   "exponent 0 needs a nonzero base",
+   "sum of the roots of the base-equals-1 quadratic"
+  ],
+  "method": "See that a power can equal 1 in three separate ways the stem does not announce - the base is 1, the exponent is 0 with a nonzero base, or the base is -1 with an even exponent - then solve each case, check the side condition in the last two, and add the surviving solutions, using the sum of roots where the roots are not whole numbers.",
+  "prompt": "What is the sum of all real numbers x for which (x^2 - 7x + 9)^(x^2 - 10x + 24) = 1 ?",
+  "choices": [
+   "12",
+   "24",
+   "9",
+   "17",
+   "19"
+  ],
+  "correct_answer": "19",
+  "explanation": "Write B = x^2 - 7x + 9 and E = x^2 - 10x + 24 = (x - 4)(x - 6). Case 1, B = 1: x^2 - 7x + 8 = 0, two real roots (7 +/- sqrt(17))/2 whose sum is 7; 1 to any power is 1. Case 2, E = 0 with B not 0: x = 4 (B = -3) and x = 6 (B = 3) both work, since any nonzero number to the power 0 is 1. Case 3, B = -1: x^2 - 7x + 10 = 0, so x = 2 or x = 5. At x = 2, E = 8 is even and (-1)^8 = 1, so x = 2 works; at x = 5, E = -1 is odd and (-1)^(-1) = -1, so x = 5 fails. For any other x the base is neither 1 nor -1 and the exponent is not 0, so the power is not 1. The solutions are (7 + sqrt(17))/2, (7 - sqrt(17))/2, 4, 6 and 2, with sum 7 + 4 + 6 + 2 = 19. The option \"24\" keeps x = 5 without checking that the exponent is even. The option \"12\" is the sum of the whole-number solutions 2, 4 and 6 found by trying integers, missing the base-equals-1 case whose roots are irrational. The option \"17\" misses the base -1 case (7 + 4 + 6). The option \"9\" misses the exponent-0 case (7 + 2).",
+  "solve": "const B=x=>x*x-7*x+9, E=x=>x*x-10*x+24; const qr=(a,b,c)=>{const d=b*b-4*a*c; if(d<0) return []; return [(-b+Math.sqrt(d))/(2*a),(-b-Math.sqrt(d))/(2*a)];}; const sols=[]; const add=x=>{ if(!sols.some(s=>Math.abs(s-x)<1e-9)) sols.push(x); }; qr(1,-7,8).forEach(add); qr(1,-10,24).forEach(x=>{ if(Math.abs(B(x))>1e-9) add(x); }); qr(1,-7,10).forEach(x=>{ const e=Math.round(E(x)); if(Math.abs(E(x)-e)<1e-9 && e%2===0) add(x); }); sols.forEach(x=>{ const b=B(x),e=E(x); const v=Math.abs(b-1)<1e-9?1:(Math.abs(e)<1e-9?1:Math.pow(b,Math.round(e))); if(Math.abs(v-1)>1e-9) throw new Error('bad'); }); return Math.round(sols.reduce((p,q)=>p+q,0));",
+  "distractor_solve": {
+   "24": "const qr=(a,b,c)=>{const d=Math.sqrt(b*b-4*a*c); return [(-b+d)/(2*a),(-b-d)/(2*a)];}; const s=[...qr(1,-7,8),...qr(1,-10,24),...qr(1,-7,10)]; return Math.round(s.reduce((p,q)=>p+q,0));",
+   "12": "let s=0; for(let x=-20;x<=20;x++){ const b=x*x-7*x+9, e=x*x-10*x+24; if(b===1 || (e===0&&b!==0) || (b===-1&&e%2===0)) s+=x; } return s;",
+   "17": "const qr=(a,b,c)=>{const d=Math.sqrt(b*b-4*a*c); return [(-b+d)/(2*a),(-b-d)/(2*a)];}; const s=[...qr(1,-7,8),...qr(1,-10,24)]; return Math.round(s.reduce((p,q)=>p+q,0));",
+   "9": "const qr=(a,b,c)=>{const d=Math.sqrt(b*b-4*a*c); return [(-b+d)/(2*a),(-b-d)/(2*a)];}; const E=x=>x*x-10*x+24; const s=[...qr(1,-7,8),...qr(1,-7,10).filter(x=>Math.round(E(x))%2===0)]; return Math.round(s.reduce((p,q)=>p+q,0));"
+  },
+  "interval": "Bounds: the solutions are not announced, so nothing bounds their sum before the cases are found; all options are positive and the solutions found by any route are positive, so sign kills nothing. Plug-backs: x = 0 gives 9^24 and x = 1 gives 3^15, neither 1, so neither singles out an option. Integer trial (the cheap route): trying whole numbers finds 2, 4 and 6 (x = 5 gives -1, x = 3 gives (-3)^3) and the sum 12, which is a distractor, not the key; the base-1 roots are irrational and no trial finds them. The coefficient 7 is printed in the base, but the key 19 is not 7 plus any single printed coefficient (7 + 10 = 17, the sum of the two printed x-coefficients, is a distractor: it is what a solver gets by adding the root sums of the base-1 and exponent-0 quadratics and missing the base -1 case). Parity, multiples: a sum of roots that include irrational numbers forces no divisibility; key 19 odd, 17 and 9 odd. Runs: sorted 9, 12, 17, 19, 24, no arithmetic run, key interior.",
+  "bounds_checked": "sign, plug-back at x = 0 and x = 1, integer trial and the sum it yields, printed coefficients and their sums, parity and divisibility, runs and adjacency, key/-key, extreme option",
+  "forced_form_notes": {
+   "odd": "not forced: the solution set contains the irrational roots of x^2 - 7x + 8 = 0, so the stem forces no parity on the sum before it is solved; 17 and 9 are odd as well."
+  }
+ },
+ {
+  "id": "S17D-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "ratio of sum to difference from a homogeneous quadratic relation, by squaring the asked ratio",
+  "difficulty": "hard",
+  "template": "x^2 + y^2 = 4xy with x > y > 0 / (x + y)/(x - y) / square the asked ratio so both squares become multiples of xy",
+  "mechanism": [
+   "homogeneous relation between x and y",
+   "squaring the asked quantity",
+   "(x + y)^2 and (x - y)^2 as multiples of xy",
+   "sign of the root from x > y > 0"
+  ],
+  "method": "Instead of solving for x and y, see that the square of the asked ratio has numerator and denominator that the given relation turns into multiples of the same product xy, so the product cancels; then take the positive root because x > y > 0.",
+  "prompt": "The positive numbers x and y satisfy x > y and x^2 + y^2 = 4xy. What is the value of (x + y)/(x - y) ?",
+  "choices": [
+   "sqrt(3)",
+   "3",
+   "sqrt(6)/2",
+   "2 + sqrt(3)",
+   "sqrt(15)/3"
+  ],
+  "correct_answer": "sqrt(3)",
+  "explanation": "Square the asked ratio: (x + y)^2 = x^2 + y^2 + 2xy = 4xy + 2xy = 6xy and (x - y)^2 = x^2 + y^2 - 2xy = 4xy - 2xy = 2xy. So ((x + y)/(x - y))^2 = 6xy/(2xy) = 3, and since x > y > 0 the ratio is positive: sqrt(3). (Directly: x/y = t satisfies t^2 - 4t + 1 = 0, so t = 2 + sqrt(3), and (t + 1)/(t - 1) = (3 + sqrt(3))/(1 + sqrt(3)) = sqrt(3).) The option \"3\" stops at the square and forgets the square root. The option \"sqrt(6)/2\" adds 2xy in the numerator but forgets to subtract it in the denominator, taking (x - y)^2 = 4xy, so sqrt(6/4). The option \"sqrt(15)/3\" uses xy instead of 2xy in both squares, getting sqrt(5xy/(3xy)) = sqrt(5/3). The option \"2 + sqrt(3)\" solves for x/y and reports that ratio instead of the asked one.",
+  "solve": "const k=4; const t=(k+Math.sqrt(k*k-4))/2; const x=t,y=1; if(Math.abs(x*x+y*y-k*x*y)>1e-9) return 'BAD'; const r=(x+y)/(x-y); const sq=Math.round(r*r); if(Math.abs(Math.sqrt(sq)-r)>1e-9) return 'NOT ROOT'; return 'sqrt('+sq+')';",
+  "distractor_solve": {
+   "3": "const k=4; const t=(k+Math.sqrt(k*k-4))/2; const r=(t+1)/(t-1); return Math.round(r*r);",
+   "sqrt(6)/2": "const k=4; const v=Math.sqrt((k+2)/k); if(Math.abs(v-Math.sqrt(6)/2)>1e-9) return 'BAD'; return 'sqrt(6)/2';",
+   "sqrt(15)/3": "const k=4; const v=Math.sqrt((k+1)/(k-1)); if(Math.abs(v-Math.sqrt(15)/3)>1e-9) return 'BAD'; return 'sqrt(15)/3';",
+   "2 + sqrt(3)": "const k=4; const t=(k+Math.sqrt(k*k-4))/2; if(Math.abs(t-(2+Math.sqrt(3)))>1e-9) return 'BAD'; return '2 + sqrt(3)';"
+  },
+  "interval": "Bounds the stem forces: x > y > 0 makes (x + y)/(x - y) greater than 1; every option is greater than 1 (smallest sqrt(6)/2 = 1.22), so the bound kills nothing. No upper bound comes free: (x + y)/(x - y) can be any number above 1 for some x > y > 0, and only the relation fixes it. Sign: positive, all options positive; there is no -sqrt(3) option (the x < y branch). Form: the key is a radical; 3 of the 4 distractors carry a radical (sqrt(6)/2, sqrt(15)/3, 2 + sqrt(3)). Plug-back: no free parameter is left (the relation fixes x/y), and x = 1 forces y = 2 - sqrt(3), not a convenient value; trying y = 1, x = 4 or other whole numbers fails x^2 + y^2 = 4xy (it needs t^2 - 4t + 1 = 0, irrational roots). Comparison with x/y: the asked ratio is below x/y here, but that is not forced in general (it holds only when x/y > 1 + sqrt(2)), so it is not a free bound. Ordering: values 1.73, 3, 1.22, 3.73, 1.29 - key interior, not a monotone ladder.",
+  "bounds_checked": "lower bound 1 from x > y > 0, absence of an upper bound, sign and the excluded negative root, radical form shared by distractors, plug-back of convenient values, comparison with x/y, key extremity, ordering of options, key/-key",
+  "forced_form_notes": {
+   "radical": "shared: 3 of 4 distractors carry a radical (sqrt(6)/2, sqrt(15)/3, 2 + sqrt(3)).",
+   "carries sqrt(3)": "not forced: the stem is a relation with whole-number coefficients (x^2 + y^2 = 4xy) and asks a ratio; which radical, if any, the ratio carries appears only after solving (sqrt(3) arises from 6xy/2xy = 3). Without that step sqrt(6)/2 and sqrt(15)/3 are equally possible forms, and 2 + sqrt(3) carries sqrt(3) too (the checker reads its sqrt(3)-coefficient as part of a sum), so 3 of 4 distractors carry a radical.",
+   "positive (sqrt(3)-coefficient)": "not a stem property: it restates that the key is 1 x sqrt(3). The stem forces only that the ratio exceeds 1 (x > y > 0), which every option satisfies.",
+   "integer (sqrt(3)-coefficient)": "not a stem property: an artifact of the key being exactly sqrt(3); the stem forces no form on a radical's coefficient, and three distractors carry radicals with coefficients 1/2, 1/3 and 1.",
+   "odd (sqrt(3)-coefficient)": "not a stem property: an artifact of the key's coefficient being 1; the stem forces no parity on any coefficient."
+  }
+ },
+ {
+  "id": "S17D-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "hidden reciprocal system: xy/(x + y) is the reciprocal of 1/x + 1/y",
+  "difficulty": "hard",
+  "template": "xy/(x + y), xz/(x + z), yz/(y + z) given, mixed signs / x + y + z / flip each equation into pairwise sums of reciprocals, then add all three",
+  "mechanism": [
+   "reciprocal of xy/(x + y) is 1/x + 1/y",
+   "substitution that makes a nonlinear system linear",
+   "pairwise sums of three unknowns",
+   "subtracting the right pair from the total"
+  ],
+  "method": "See that each left side is the reciprocal of a sum of two reciprocals, so flipping every equation turns the nonlinear system into three pairwise sums of 1/x, 1/y and 1/z; adding them gives twice the total of the reciprocals, and subtracting the right pair gives each reciprocal in turn, which then has to be flipped back.",
+  "prompt": "The nonzero numbers x, y and z satisfy xy/(x + y) = 2, xz/(x + z) = -6 and yz/(y + z) = -3. What is the value of x + y + z ?",
+  "choices": [
+   "11",
+   "7",
+   "-7/2",
+   "1",
+   "0"
+  ],
+  "correct_answer": "7",
+  "explanation": "Flip each equation: (x + y)/(xy) = 1/x + 1/y, so 1/x + 1/y = 1/2, 1/x + 1/z = -1/6 and 1/y + 1/z = -1/3. Adding, 2(1/x + 1/y + 1/z) = 1/2 - 1/6 - 1/3 = 0, so 1/x + 1/y + 1/z = 0. Then 1/z = 0 - 1/2 = -1/2, 1/y = 0 - (-1/6) = 1/6 and 1/x = 0 - (-1/3) = 1/3, so x = 3, y = 6, z = -2 (check: 18/9 = 2, -6/1 = -6, -12/4 = -3) and x + y + z = 7. The option \"11\" subtracts in the wrong order for z, taking 1/z = 1/2 - 0, so z = 2. The option \"1\" makes the same slip for x, taking 1/x = -1/3 - 0, so x = -3. The option \"0\" finds that 1/x + 1/y + 1/z = 0 and assumes that x + y + z is then 0 as well. The option \"-7/2\" treats the left sides as if they were x + y, x + z and y + z, adding the three given values and halving.",
+  "solve": "const p=[2,-6,-3]; /* xy/(x+y), xz/(x+z), yz/(y+z) */ const ab=1/p[0], ac=1/p[1], bc=1/p[2]; const S=(ab+ac+bc)/2; const a=S-bc, b=S-ac, c=S-ab; const x=1/a,y=1/b,z=1/c; const ok=[x*y/(x+y)-p[0], x*z/(x+z)-p[1], y*z/(y+z)-p[2]].every(v=>Math.abs(v)<1e-9); if(!ok) return 'BAD'; return Math.round((x+y+z)*1e9)/1e9;",
+  "distractor_solve": {
+   "11": "const p=[2,-6,-3]; const ab=1/p[0], ac=1/p[1], bc=1/p[2]; const S=(ab+ac+bc)/2; const a=S-bc, b=S-ac, c=ab-S; return Math.round((1/a+1/b+1/c)*1e9)/1e9;",
+   "1": "const p=[2,-6,-3]; const ab=1/p[0], ac=1/p[1], bc=1/p[2]; const S=(ab+ac+bc)/2; const a=bc-S, b=S-ac, c=S-ab; return Math.round((1/a+1/b+1/c)*1e9)/1e9;",
+   "0": "const p=[2,-6,-3]; const S=(1/p[0]+1/p[1]+1/p[2])/2; return Math.round(S*1e9)/1e9;",
+   "-7/2": "const p=[2,-6,-3]; const v=(p[0]+p[1]+p[2])/2; if(Math.abs(v+3.5)>1e-9) return 'BAD'; return '-7/2';"
+  },
+  "interval": "Bounds the stem forces: none on the size of x + y + z. The left sides have mixed signs, so x, y and z are not all positive and the shortcut 'xy/(x + y) is less than both x and y' does not apply (it would give a wrong bound here, since z = -2). Sign: from xy/(x + y) = 2 > 0 and the two negative values one can see that z differs in sign from at least one of x, y, but not the sign of the sum; options span -7/2 to 11. Plug-backs: no free parameter (the reciprocal system has a unique solution); x = 1 or y = 1 makes the first equation give y = -2 or x = -2, and then the other two equations fail, so no convenient value is a solution. Integer trial is possible in principle (x = 3, y = 6 satisfy the first equation), but the first equation alone has many integer pairs (4, 4), (3, 6), (6, 3), (1, -2), ... and each must be pushed through the other two; that is solving, not a free kill. Integrality: not forced (reciprocal sums); key 7 an integer, as are 11, 1 and 0 (3 of 4). Order: values 11, 7, -3.5, 1, 0 - key interior, no arithmetic run around it (sorted -3.5, 0, 1, 7, 11).",
+  "bounds_checked": "magnitude, the positive-only 'less than each' bound (invalid here), sign of the sum, plug-back at 1, integer trials on the first equation, integrality, parity, runs and adjacency, key/-key (no -7 option), doubling or halving around the key (no 7/2 or 14)",
+  "forced_form_notes": {
+   "odd": "not forced: x, y and z come from reciprocals of sums of fractions, so the stem forces no whole-number value, let alone an odd one; 11 and 1 are odd as well (2 of 4).",
+   "positive": "not forced: the given values have mixed signs (2, -6, -3) and z is negative, so the sign of x + y + z cannot be read from the stem without solving; 11 and 1 are positive (2 of 4).",
+   "multiple of 7": "not forced: x, y and z come from reciprocals of sums of fractions (1/2, -1/6, -1/3), so the stem forces no whole-number value for x + y + z and no divisor; nothing in the stem is a multiple of 7 (the given values are 2, -6, -3).",
+   "odd multiple of 7": "not forced: as for multiple of 7 - the stem forces neither integrality nor any divisor of the sum; 7 is simply 3 + 6 - 2."
+  }
+ }
+]

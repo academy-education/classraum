@@ -28,6 +28,8 @@
  *   multiple of d       d = 2..12, on the integer value or on the coefficient
  *                       of a single pi / sqrt(r) term
  *   odd                 key odd
+ *   odd multiple of d   d = 2..12: key / d is odd (S16D-08, added 2026-10-09)
+ *   even multiple of d  d = 7..12: key / d is even (d <= 6 is "multiple of 2d")
  *   denominator q       key a reduced fraction p/q, distractors must be
  *                       expressible over q (x*q integral)
  *   positive / negative sign of the key
@@ -99,7 +101,17 @@ const props = o => {
   if (isInt(o)) {
     const n = Math.abs(o.num)
     P.set('integer' + tag, true)
-    if (n !== 0) for (let d = 2; d <= 12; d++) if (n % d === 0) P.set(`multiple of ${d}${tag}`, true)
+    if (n !== 0) for (let d = 2; d <= 12; d++) if (n % d === 0) {
+      P.set(`multiple of ${d}${tag}`, true)
+      /* Parity of the QUOTIENT (added 2026-10-09, ssat-math-s17). S16D-08: the
+       * sum of 20 consecutive integers is 10 x (first + last) with first + last
+       * odd, so the key 4010 is an ODD multiple of 10, and 4200, 3800, 4020 are
+       * even multiples: three free kills, invisible to "multiple of 10" (shared
+       * 4/4). "even multiple of d" is listed only for d >= 7, since for d <= 6
+       * it is already "multiple of 2d". */
+      if ((n / d) % 2 === 1) P.set(`odd multiple of ${d}${tag}`, true)
+      else if (d >= 7) P.set(`even multiple of ${d}${tag}`, true)
+    }
     if (n % 2 === 1) P.set('odd' + tag, true)
     if (!tag && n > 1 && Number.isInteger(Math.sqrt(n))) P.set('perfect square', true)
     if (!tag && n > 1 && Number.isInteger(Math.round(Math.cbrt(n))) && Math.round(Math.cbrt(n)) ** 3 === n) P.set('perfect cube', true)
@@ -160,6 +172,24 @@ if (selftest) {
   const still = fd.filter(d => shares('multiple of 6', d)).length >= 3 && props(fk).has('multiple of 6')
   console.log(`selftest A-27 with 4 multiples of 6 among distractors -> not flagged on that property: ${still ? 'ok' : 'FAIL'}`); if (!still) bad++
   if (scorable < 100) { console.log(`selftest FAIL: only ${scorable} scorable on s15`); bad++ }
+  // S16D-08 (2026-10-09): the odd-multiple-of-10 form the battery used to miss.
+  const s16 = JSON.parse(readFileSync(new URL('./ssat-math-s16.batch.json', import.meta.url), 'utf8'))
+  const d08 = s16.find(x => x.id === 'S16D-08')
+  if (!d08 || d08.correct_answer !== '4010') { console.log('selftest FAIL: S16D-08 not found with key 4010 in ssat-math-s16.batch.json'); bad++ }
+  else {
+    const share = (it, p) => it.choices.filter(c => c !== it.correct_answer).map(parse).filter(d => shares(p, d)).length
+    const hasKey = (it, p) => props(parse(it.correct_answer)).has(p)
+    const hit = hasKey(d08, 'odd multiple of 10') && share(d08, 'odd multiple of 10') < 3
+    console.log(`selftest S16D-08 flags "odd multiple of 10" (shared by ${share(d08, 'odd multiple of 10')}/4): ${hit ? 'ok' : 'FAIL'}`); if (!hit) bad++
+    const plain = share(d08, 'multiple of 10')
+    console.log(`selftest S16D-08 "multiple of 10" alone shared by ${plain}/4 (the old battery's blind spot): ${plain >= 3 ? 'ok' : 'FAIL'}`); if (plain < 3) bad++
+    const fixedD = { ...d08, choices: ['3990', '4210', '4010', '3810', '4030'] }
+    const quiet = share(fixedD, 'odd multiple of 10') >= 3
+    console.log(`selftest S16D-08 with 4 odd multiples of 10 -> not flagged on that property: ${quiet ? 'ok' : 'FAIL'}`); if (!quiet) bad++
+    const evenKey = { correct_answer: '4200', choices: ['4200', '4010', '3990', '4030', '3810'] }
+    const ev = hasKey(evenKey, 'even multiple of 10') && share(evenKey, 'even multiple of 10') < 3
+    console.log(`selftest key 4200 among odd multiples of 10 flags "even multiple of 10": ${ev ? 'ok' : 'FAIL'}`); if (!ev) bad++
+  }
   console.log(bad ? `${bad} selftest failure(s)` : 'selftest clean'); process.exit(bad ? 1 : 0)
 }
 process.exit(open ? 1 : 0)

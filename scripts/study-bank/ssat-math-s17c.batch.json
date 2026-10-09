@@ -1,0 +1,1116 @@
+[
+ {
+  "id": "S17C-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "round-table seating, a named person avoids two others",
+  "difficulty": "hard",
+  "template": "seven people at random around a round table / P(Ann sits next to neither of two named people) / only Ann's two neighbour seats matter",
+  "mechanism": [
+   "fix one person's seat",
+   "only the two neighbouring seats matter",
+   "favourable neighbour pairs over all neighbour pairs"
+  ],
+  "method": "Fix Ann's seat and see that the whole seating matters only through the unordered pair of people in her two neighbouring seats, which is equally likely to be any pair of the other six, so count the pairs that avoid both named people.",
+  "prompt": "Seven people, including Ann, Bea and Cal, sit down at random in the seven equally spaced chairs around a round table, one person to a chair, with every seating equally likely. What is the probability that Ann sits next to neither Bea nor Cal?",
+  "choices": [
+   "7/15",
+   "4/9",
+   "2/5",
+   "8/15",
+   "4/15"
+  ],
+  "correct_answer": "2/5",
+  "explanation": "Wherever Ann sits, the two chairs beside her hold a pair of the other six people, and every one of the C(6,2) = 15 pairs is equally likely. The pairs that contain neither Bea nor Cal are the C(4,2) = 6 pairs from the other four people, so the probability is 6/15 = 2/5. (Equivalently (4/6)(3/5) = 2/5.) The option \"4/9\" multiplies 4/6 by 4/6, treating the two neighbour chairs as independent. The option \"8/15\" multiplies 4/6 by 4/5, removing the first neighbour from the people left but still counting four acceptable people for the second chair. The option \"7/15\" works 1 - 1/3 - 1/3 + 2/15, adding back the overlap (both Bea and Cal beside Ann) as 2/15 instead of 1/15 by counting each of the two pairs of chairs twice. The option \"4/15\" works 1 - 1/3 - 1/3 - 1/15, subtracting the overlap instead of adding it back.",
+  "solve": "var perm=function(a){if(a.length<=1)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));var ps=perm(rest);for(var j=0;j<ps.length;j++)r.push([a[i]].concat(ps[j]));}return r;}; var P=perm([0,1,2,3,4,5,6]),g=0; for(var k=0;k<P.length;k++){var p=P[k],i=p.indexOf(0),l=p[(i+6)%7],r=p[(i+1)%7]; if(l!==1&&l!==2&&r!==1&&r!==2)g++;} return g/P.length;",
+  "distractor_solve": {
+   "4/9": "return (4/6)*(4/6);",
+   "8/15": "return (4/6)*(4/5);",
+   "7/15": "return 1-2/6-2/6+2/15;",
+   "4/15": "return 1-2/6-2/6-1/15;"
+  },
+  "interval": "A probability between 0 and 1; all five options are. Fixing Ann leaves 6! = 720 equally likely seatings, so the denominator divides 720: 15, 9 and 5 all do (no option has a denominator of 7). Upper bound: at most P(Bea is not beside Ann) = 4/6 = 2/3; every option is below it and 2/3 is absent. Lower bound 1 - 1/3 - 1/3 = 1/3 needs P(beside Ann) = 1/3, which is half the method; it would remove only 4/15. No option is 1/2 or 2/3, and no option is a complement of the key (3/5 absent).",
+  "bounds_checked": "range 0-1, denominator dividing 720 (fix Ann), denominator 7 from the seven chairs (no option carries it), upper bound 2/3 from one named person alone, Bonferroni lower bound 1/3 (needs the method; kills one), complement pair, key-is-sum",
+  "forced_form_notes": {
+   "denominator 5": "not forced: the stem's equally likely seatings force only a denominator dividing 720 (6! with Ann fixed) or 5040; 5, 15 and 9 all divide 720, and 7/15, 8/15, 4/15 are the same family (fifteenths) as the key's 6/15, written in lowest terms."
+  }
+ },
+ {
+  "id": "S17C-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pairs of groups where one group lies inside the other",
+  "difficulty": "hard",
+  "template": "5 members, Monday group must lie inside Tuesday group / number of (Monday, Tuesday) records / each member has exactly three possible histories",
+  "mechanism": [
+   "re-frame a pair of nested groups member by member",
+   "three allowed histories per member",
+   "multiply over members"
+  ],
+  "method": "Instead of choosing the two groups one after the other, look at one member at a time and see that the rule leaves each member exactly three possible histories (neither day, Tuesday only, both days), chosen independently, so the count is three multiplied by itself once per member.",
+  "prompt": "A club has 5 members. On Monday some of the members attend a meeting, and on Tuesday some of the members attend a meeting; on either day the group that attends may be any of the members, including none of them or all of them. Every member who attends on Monday also attends on Tuesday. An attendance record lists which members attended on Monday and which members attended on Tuesday. How many different attendance records are possible?",
+  "choices": [
+   "512",
+   "125",
+   "112",
+   "243",
+   "211"
+  ],
+  "correct_answer": "243",
+  "explanation": "Look at one member at a time. The rule forbids only one history, attending Monday but not Tuesday, so each member has exactly 3 possible histories: neither day, Tuesday only, or both days. The 5 members choose independently, so there are 3^5 = 243 records. (Check by cases: a Tuesday group of k members can be chosen in C(5,k) ways and then holds 2^k possible Monday groups; 1 + 10 + 40 + 80 + 80 + 32 = 243.) The option \"512\" takes half of all 32 x 32 = 1024 pairs of groups, assuming that in half of all pairs Monday's group sits inside Tuesday's. The option \"125\" computes 5^3 instead of 3^5. The option \"112\" counts, for each Tuesday group of k members, only k + 1 Monday groups (one for each possible size) instead of 2^k groups, giving 32 + 80. The option \"211\" leaves out the 32 records in which the same members attend on both days, reading the rule as if Tuesday's group had to be larger.",
+  "solve": "var c=0;for(var m=0;m<32;m++)for(var t=0;t<32;t++){if((m&~t)===0)c++;}return c;",
+  "distractor_solve": {
+   "512": "return (32*32)/2;",
+   "125": "return Math.pow(5,3);",
+   "112": "var s=0;var C=[1,5,10,10,5,1];for(var k=0;k<=5;k++)s+=C[k]*(k+1);return s;",
+   "211": "var c=0;for(var m=0;m<32;m++)for(var t=0;t<32;t++){if((m&~t)===0)c++;}return c-32;"
+  },
+  "interval": "A whole-number count. Lower bounds read off the stem: the 32 records with nobody on Monday and the 32 records with the same group on both days overlap in one record, so at least 63 records exist, and plainly more (one member on Monday, two on Tuesday); every option is above 63. Upper bound: at most 32 x 32 = 1024 pairs of groups, strictly fewer because some pairs break the rule; every option is strictly below 1024. A symmetry bound (records with Monday inside Tuesday and records with Tuesday inside Monday are equally many and share the 32 equal pairs) gives 2N - 32 <= 1024, so N <= 528, and strictly less because some pairs are not nested; every option is below 528, none on it. No option is the bare 1024, 63 or 32.",
+  "bounds_checked": "lower bound from two easy families of records, the 1024 all-pairs bound, the nested-pairs symmetry bound, parity, multiples of 3, perfect powers, key-is-sum, doubling and halving around the key",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the stem's only numbers are 5 members and 2 days, and nothing a solver can read off it before finding the three-histories-per-member idea (the method) makes the count divisible by 3; counted by Tuesday group the cases are 1, 10, 40, 80, 80, 32, none of which hints at 3.",
+   "odd multiple of 3": "not forced: the stem's only numbers are 5 members and 2 days, and nothing a solver can read off it before finding the three-histories-per-member idea (the method) makes the count divisible by 3; counted by Tuesday group the cases are 1, 10, 40, 80, 80, 32, none of which hints at 3.",
+   "multiple of 9": "not forced: as for 'multiple of 3' - the stem's numbers are 5 and 2, and divisibility by 9 is visible only once the count is written as 3^5, which is the method.",
+   "odd multiple of 9": "not forced: as for 'multiple of 9'; the stem fixes no factor of 9 and no parity.",
+   "odd": "not forced: the stem gives no parity; the records pair up in no obvious way (the symmetry between Monday and Tuesday is broken by the rule), and 125 and 211 are odd while 112 and 512 are even."
+  }
+ },
+ {
+  "id": "S17C-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "four-digit numbers using exactly two different digits",
+  "difficulty": "hard",
+  "template": "four-digit integers / how many use exactly two different digits / the digit 0 can be the second digit but never the leading one",
+  "mechanism": [
+   "choose the leading digit first",
+   "the other digit may be 0",
+   "remaining places from two digits, not all the leading one"
+  ],
+  "method": "Build from the leading digit, which cannot be 0, and see that the second digit may be 0 because it never leads; the other three places are then filled from the two digits in every way except all copies of the leading digit (equivalently, split the digit pairs by whether they contain 0).",
+  "prompt": "How many four-digit positive integers are written using exactly two different digits? (For example, 3133 and 2552 are counted, but 5555 and 1231 are not.)",
+  "choices": [
+   "630",
+   "486",
+   "639",
+   "576",
+   "567"
+  ],
+  "correct_answer": "567",
+  "explanation": "Choose the leading digit d (1 to 9: 9 ways) and the other digit e, which may be any of the 9 remaining digits including 0, because e never has to lead. Each of the last three places is d or e, in 2^3 = 8 ways, but not all three d (then e would not be used): 7 ways. Total 9 x 9 x 7 = 567. (Check by pairs: the 36 pairs without 0 give 2^4 - 2 = 14 numbers each, 504; the 9 pairs {0, y} must lead with y and give 2^3 - 1 = 7 each, 63; 504 + 63 = 567.) The option \"630\" gives every one of the 45 pairs 14 numbers, letting 0 lead. The option \"576\" gives each pair {0, y} 8 numbers, forgetting to remove yyyy. The option \"639\" gives each pair {0, y} 2^4 - 1 = 15 numbers, removing only 0000. The option \"486\" uses 2^3 - 2 = 6 for the last three places, also throwing out the numbers whose last three digits are all e, such as 3111.",
+  "solve": "var c=0; for(var n=1000;n<10000;n++){var s=String(n),seen={},k=0; for(var i=0;i<4;i++){if(!seen[s[i]]){seen[s[i]]=1;k++;}} if(k===2)c++;} return c;",
+  "distractor_solve": {
+   "630": "return 45*(16-2);",
+   "576": "return 36*14+9*8;",
+   "639": "return 36*14+9*15;",
+   "486": "return 9*9*(8-2);"
+  },
+  "interval": "A positive whole number below 9000 (all four-digit numbers); every option is far below it. The count is at least the 36 x 14 = 504 numbers from pairs of nonzero digits, but that needs the method; every option is above 504 anyway. All five options are multiples of 9. Parity, size and digit patterns are not fixed by the stem. No option is a printed number.",
+  "bounds_checked": "integrality, whole (9000), the zero-free pairs as a lower bound (504; every option above it), multiple of 9 (all five), parity, doubling around the key, arithmetic runs through the key (486, 567, 648 and 504, 567, 630 both have a missing member), key-is-sum",
+  "forced_form_notes": {
+   "odd": "not forced: the count of four-digit numbers with two distinct digits has no parity fixed by the stem; 639 is odd, 486, 576, 630 even.",
+   "odd multiple of 3": "not forced: all options are multiples of 9 (so of 3); the quotient's parity is not fixed by the stem.",
+   "odd multiple of 9": "not forced: all five options are multiples of 9; nothing in the stem fixes the parity of the quotient.",
+   "multiple of 7": "not forced: the 7 comes from 2^3 - 1 inside the method; the stem prints no 7 and fixes no factor 7 (630 also has it).",
+   "odd multiple of 7": "not forced: no factor 7 is fixed by the stem (see multiple of 7)."
+  }
+ },
+ {
+  "id": "S17C-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "line-up avoiding two separate adjacencies",
+  "difficulty": "hard",
+  "template": "six people in a row / orders with two named pairs each kept apart / complementary count with the overlap added back",
+  "mechanism": [
+   "count the forbidden orders instead",
+   "glue each forbidden pair into a block",
+   "add back the orders where both pairs are together"
+  ],
+  "method": "Count the orders that break a rule by gluing each forbidden pair into one block, and see that subtracting both counts removes the orders where both pairs stand together twice, so those must be counted (both blocks glued at once) and added back.",
+  "prompt": "Six friends, including Amy, Ben, Cara and Dan, line up in a row for a photograph. Amy refuses to stand next to Ben, and Cara refuses to stand next to Dan. In how many different orders can the six friends line up?",
+  "choices": [
+   "336",
+   "288",
+   "432",
+   "264",
+   "320"
+  ],
+  "correct_answer": "336",
+  "explanation": "There are 6! = 720 orders. Orders with Amy next to Ben: glue them into one block, 5! x 2 = 240; likewise 240 with Cara next to Dan. Orders with both pairs together: two blocks and two other people, 4! x 2 x 2 = 96. Orders breaking at least one rule: 240 + 240 - 96 = 384, so 720 - 384 = 336 keep both rules. The option \"288\" counts the both-together orders as 4! x 2 = 48, giving only one of the two blocks its two orders. The option \"264\" counts them as 4! = 24, giving neither block its two orders. The option \"432\" adds the 96 back twice (720 - 480 + 192). The option \"320\" multiplies 720 by 2/3 and 2/3, treating the two rules as independent.",
+  "solve": "var perm=function(a){if(a.length<=1)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));var ps=perm(rest);for(var j=0;j<ps.length;j++)r.push([a[i]].concat(ps[j]));}return r;}; var P=perm([0,1,2,3,4,5]),c=0; for(var k=0;k<P.length;k++){var p=P[k]; if(Math.abs(p.indexOf(0)-p.indexOf(1))>1&&Math.abs(p.indexOf(2)-p.indexOf(3))>1)c++;} return c;",
+  "distractor_solve": {
+   "288": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; return f(6)-2*2*f(5)+2*f(4);",
+   "264": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; return f(6)-2*2*f(5)+f(4);",
+   "432": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; return f(6)-2*2*f(5)+2*(4*f(4));",
+   "320": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; return f(6)*(2/3)*(2/3);"
+  },
+  "interval": "A whole number below 6! = 720. Keeping just one rule leaves 720 - 240 = 480, an upper bound; removing both 240s without adding back gives 240, a lower bound; both need the glued-block count, which is the method, and every option lies strictly between 240 and 480 anyway (264, 288, 320, 336, 432), none ON either bound. Swapping Amy with Ben, Cara with Dan, the two other friends, or the pair Amy-Ben with the pair Cara-Dan maps good orders to good orders with no order fixed, so a solver who sees it knows the count is a multiple of 16: 288, 320 and 432 share that with the key (264 does not; one kill at most, and the symmetry argument is not free). No option is 720/2 = 360 or a printed number.",
+  "bounds_checked": "whole 720, one-rule upper bound 480 and no-overlap lower bound 240 (all options strictly inside, none on a bound), multiple of 16 by symmetry (3 of 4 share), parity (all even), arithmetic runs through the key (240 and 432 / 288 and 384 / 312 / 352 - no run has the key in the middle), doubling around the key, key-is-sum",
+  "forced_form_notes": {
+   "multiple of 7": "not forced: the stem fixes no factor 7; the symmetry the stem does force (multiple of 16) is shared by 288, 320, 432.",
+   "even multiple of 7": "not forced: no factor 7 is fixed by the stem."
+  }
+ },
+ {
+  "id": "S17C-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "on/off strings with an exact number of runs",
+  "difficulty": "hard",
+  "template": "eight lamps on or off in a row / settings with exactly two runs of lit lamps / each setting is fixed by where the runs start and stop",
+  "mechanism": [
+   "a run is fixed by its first lamp and the place just after it",
+   "choose four switch points",
+   "the row's two ends act as extra places"
+  ],
+  "method": "See that a setting with two runs is decided entirely by four places - where each run starts and the place just after each run ends - and that these are four different places chosen in order from the nine places at, between or after the lamps, so the count is a single choice of four places.",
+  "prompt": "Eight lamps stand in a row, and each lamp is either on or off. A run is a stretch of one or more neighboring lamps that are all on and that cannot be made longer, because each end of the stretch is next to a lamp that is off or is at the end of the row. (For example, on, on, off, on, off, off, on, on has 3 runs.) In how many different settings of the eight lamps are there exactly 2 runs?",
+  "choices": [
+   "70",
+   "126",
+   "35",
+   "219",
+   "21"
+  ],
+  "correct_answer": "126",
+  "explanation": "Number the places before lamp 1, between neighbouring lamps, and after lamp 8 as 0 to 8 (nine places). A setting with two runs is fixed by the place where run 1 starts, the place where it stops, the place where run 2 starts and the place where it stops, and these are four different places in increasing order (a run has at least one lamp, and at least one off lamp separates the runs). Every choice of four of the nine places gives exactly one such setting, so the count is C(9,4) = 126. The option \"35\" chooses the four places only from the 7 places between lamps, C(7,4), so it counts only the settings whose first and last lamps are both off. The option \"70\" chooses from 8 places, C(8,4), forgetting that the second run may reach the end of the row. The option \"21\" assumes the first lamp and the last lamp are both on, so only the two inner places (where run 1 stops and run 2 starts) are chosen, from the 7 places between lamps: C(7,2). The option \"219\" counts the settings with at least 2 runs: 256 - 1 - 36.",
+  "solve": "var c=0; for(var m=0;m<256;m++){var runs=0,prev=0; for(var i=0;i<8;i++){var b=(m>>i)&1; if(b===1&&prev===0)runs++; prev=b;} if(runs===2)c++;} return c;",
+  "distractor_solve": {
+   "35": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(7,4);",
+   "70": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(8,4);",
+   "219": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return 256-1-C(9,2);",
+   "21": "var C=function(n,k){var r=1;for(var i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return C(7,2);"
+  },
+  "interval": "A positive whole number at most 2^8 = 256 (all settings); every option is below 256 and 256 is not printed in the stem. The settings with exactly one run (36) and none (1) are not options. No bound below 256 is readable without counting; the settings with both end lamps off (35) are a subset, so 35 is a lower bound, but it needs the very switch-point count the item tests. 219 is above the key, so the key is neither the largest nor the smallest option. The settings with both end lamps on (21) are another subset, so 21 is also below the key, again only after the switch-point count. The C(n,4) values present (35, 70, 126) stop at the key; C(10,4) = 210 is absent, so there is no ladder with the key as a middle rung.",
+  "bounds_checked": "integrality, whole 256, subsets (both ends off, both ends on) as lower bounds (need the method), parity, multiple of 7 (3 of 4 share), monotone C(n,4) ladder (key is the top rung present, no rung beyond), doubling around the key (63 and 252 absent), key-is-sum (no two options add or subtract to the key: 70+56 avoided)",
+  "forced_form_notes": {
+   "multiple of 2": "not forced: the stem fixes no parity for the number of settings; reversing the row pairs settings but leaves the palindromic ones single, so parity is not readable. 21, 35 and 219 are odd, 70 even.",
+   "odd multiple of 2": "not forced: same as multiple of 2: no parity or factor 2 is fixed by the stem.",
+   "multiple of 3": "not forced: nothing in eight on/off lamps makes the count a multiple of 3; 21 and 219 are, 35 and 70 are not.",
+   "multiple of 6": "not forced: neither factor 2 nor factor 3 is fixed by the stem (see those notes).",
+   "odd multiple of 6": "not forced: neither factor 2 nor factor 3 is fixed by the stem.",
+   "even multiple of 7": "not forced: no factor 7 or parity is fixed by the stem; 7 divides 21, 35 and 70 only because they are binomial counts of wrong procedures, as the key is.",
+   "multiple of 9": "not forced: nothing in the stem gives a factor 9; the 8 lamps and 2 runs fix no divisibility of the count.",
+   "even multiple of 9": "not forced: no factor 9 is fixed by the stem."
+  }
+ },
+ {
+  "id": "S17C-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "four-digit numbers whose digits alternate odd and even",
+  "difficulty": "medium",
+  "template": "four-digit integers / how many alternate odd and even digits / first digit then 5 choices for each later digit",
+  "mechanism": [
+   "first digit cannot be 0",
+   "each later digit has the opposite parity",
+   "multiply choices place by place"
+  ],
+  "method": "Choose the leading digit (any nonzero digit), then see that each later digit must have the opposite parity to the one before it, which always leaves exactly five choices, so multiply place by place.",
+  "prompt": "In some four-digit positive integers, the digits alternate between odd and even from left to right, such as 3816 and 2105. How many four-digit positive integers have this property?",
+  "choices": [
+   "1250",
+   "625",
+   "1125",
+   "800",
+   "1025"
+  ],
+  "correct_answer": "1125",
+  "explanation": "The first digit can be any of 1 to 9: 9 ways. Each later digit must have the opposite parity from the digit before it; there are always exactly 5 such digits (1, 3, 5, 7, 9 or 0, 2, 4, 6, 8). Total 9 x 5 x 5 x 5 = 1125. (By cases: odd first 5 x 5 x 5 x 5 = 625, even first 4 x 5 x 5 x 5 = 500.) The option \"1250\" lets the first digit be 0 (10 x 125). The option \"625\" counts only the numbers that start with an odd digit. The option \"800\" never uses the digit 0 anywhere, so odd and even places have 5 and 4 choices: 5 x 4 x 5 x 4 + 4 x 5 x 4 x 5. The option \"1025\" forgets 0 only in the even-first case (625 + 4 x 5 x 4 x 5).",
+  "solve": "var c=0; for(var n=1000;n<10000;n++){var s=String(n),ok=true; for(var i=1;i<4;i++){if((+s[i])%2===(+s[i-1])%2)ok=false;} if(ok)c++;} return c;",
+  "distractor_solve": {
+   "1250": "return 10*5*5*5;",
+   "625": "return 5*5*5*5;",
+   "800": "return 5*4*5*4+4*5*4*5;",
+   "1025": "return 5*5*5*5+4*5*4*5;"
+  },
+  "interval": "A whole number below 9000. The numbers starting with an odd digit (625) are a subset, so the count exceeds 625 once that case is counted - 625 itself is a distractor ON that bound only after the method's first case, and 800, 1025, 1250 all sit above it. Letting 0 lead (1250) is an upper bound, also only after the count; 1250 is ON it. Neither bound is readable from the stem without doing the place-by-place count. The options do not contain both cases (500 is absent), so the key is not the sum of two options. All five options are multiples of 25.",
+  "bounds_checked": "integrality, whole 9000, the odd-first case and the leading-zero count as bounds (both need the method's count), parity, multiple of 25 (all five), multiple of 125, key-is-sum (500 left out), doubling around the key (2250, 562.5 absent)",
+  "forced_form_notes": {
+   "odd": "not forced: the count of four-digit numbers has no parity fixed by the stem; 625 and 1025 are odd, 800 and 1250 even.",
+   "odd multiple of 5": "not forced: all five options are multiples of 25 (so of 5); the parity of the quotient is not fixed by the stem.",
+   "multiple of 3": "not forced: the stem gives no factor 3; the 9 choices of a leading digit are the method's first step, not a stem fact.",
+   "odd multiple of 3": "not forced: no factor 3 is fixed by the stem.",
+   "multiple of 9": "not forced: no factor 9 is fixed by the stem (the 9 leading-digit choices are part of the method; 1250 lets 0 lead and 625/800/1025 split cases).",
+   "odd multiple of 9": "not forced: no factor 9 is fixed by the stem."
+  }
+ },
+ {
+  "id": "S17C-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two-sided cards, condition on the side showing",
+  "difficulty": "hard",
+  "template": "eight two-sided cards (red/red, blue/blue, red/blue) / P(hidden side red | showing side red) / count equally likely faces, not cards",
+  "mechanism": [
+   "condition on what is seen",
+   "count equally likely faces, not cards",
+   "a red/red card shows red twice as often"
+  ],
+  "method": "See that the equally likely outcomes are the card FACES that can land face up, not the cards, so restrict to the red faces and count how many of them have red on the back.",
+  "prompt": "A box holds 8 cards. Each card is colored on both sides: 4 cards are red on both sides, 1 card is blue on both sides, and 3 cards are red on one side and blue on the other. One card is taken from the box at random and laid flat on a table, with each of its two sides equally likely to be the side facing up. The side facing up is red. What is the probability that the other side of this card is also red?",
+  "choices": [
+   "11/16",
+   "2/3",
+   "5/8",
+   "8/11",
+   "4/7"
+  ],
+  "correct_answer": "8/11",
+  "explanation": "Each of the 16 card sides is equally likely to be the one facing up. The red sides are the 8 sides of the red/red cards and the 3 red sides of the mixed cards, 11 in all, and every one of them is equally likely given that red is showing. The back is red for the 8 sides that belong to red/red cards, so the probability is 8/11. The option \"4/7\" counts cards instead of sides: 7 cards have a red side and 4 of them are red/red, missing that a red/red card shows red twice as often. The option \"11/16\" is the chance that the side facing up is red, not the asked conditional chance. The option \"5/8\" takes 1 minus the share of mixed cards among all 8 cards (1 - 3/8), ignoring what is showing. The option \"2/3\" treats the hidden side as a random one of the other 15 sides, 10 of which are red (10/15), instead of the back of the same card.",
+  "solve": "var cards=[];for(var i=0;i<4;i++)cards.push(['R','R']);cards.push(['B','B']);for(var j=0;j<3;j++)cards.push(['R','B']);var red=0,both=0;for(var c=0;c<cards.length;c++){for(var s=0;s<2;s++){if(cards[c][s]==='R'){red++;if(cards[c][1-s]==='R')both++;}}}return both/red;",
+  "distractor_solve": {
+   "4/7": "var rr=4,bb=1,rb=3;return rr/(rr+rb);",
+   "11/16": "var rr=4,bb=1,rb=3;return (2*rr+rb)/(2*(rr+bb+rb));",
+   "5/8": "var rr=4,bb=1,rb=3;return 1-rb/(rr+bb+rb);",
+   "2/3": "var rr=4,bb=1,rb=3;var faces=2*(rr+bb+rb),redFaces=2*rr+rb;return (redFaces-1)/(faces-1);"
+  },
+  "interval": "A probability strictly between 0 and 1. Prior share of red/red cards 4/8 = 1/2: seeing red can only raise it, so the key is above 1/2; every option is above 1/2 (1/2 is absent). Share of red/red among cards that have a red side, 4/7: the key is above it (red/red cards show red more often), which is the method itself; 4/7 is the one option ON that value, every other distractor (5/8, 2/3, 11/16) is above it. No bound read off the stem caps the answer below 1 short of the method, so the key being the largest option is not decided by any free observation. The 16 sides make sixteenths natural (11/16) but the conditional denominator 11 comes only from counting red sides, which is the method. No option is the complement 3/11; no option is 1/2 or 3/4.",
+  "bounds_checked": "range 0-1, prior share 1/2 (seeing red raises it), card-count share 4/7 among cards with a red side, sixteen-sides denominator, complement 3/11, key-is-sum, card count vs side count",
+  "forced_form_notes": {
+   "denominator 11": "not forced: the stem gives 8 cards and 16 sides, so the only denominators readable off it are 8 and 16 (11/16 and 5/8 use them); 11 is the number of red sides, which is the count the item tests (conditioning on faces, not cards). 4/7 and 2/3 are the card-count and wrong-side errors."
+  }
+ },
+ {
+  "id": "S17C-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three dice, condition on the total",
+  "difficulty": "hard",
+  "template": "three fair dice with a known total of 9 / P(at least one die shows 6 | total 9) / count ordered rolls with the 6-cap",
+  "mechanism": [
+   "condition on the total",
+   "ordered rolls, not sets of numbers",
+   "no die can exceed 6"
+  ],
+  "method": "Restrict to the equally likely ORDERED rolls with total 9, counting them by sharing the total among three dice while noticing that a die cannot show more than 6, and then count the ordered rolls that contain a 6.",
+  "prompt": "Three fair six-sided dice, each numbered 1 through 6, are rolled. The sum of the three numbers showing is 9. Given this, what is the probability that at least one of the three dice shows a 6?",
+  "choices": [
+   "1/6",
+   "3/14",
+   "2/25",
+   "2/9",
+   "6/25"
+  ],
+  "correct_answer": "6/25",
+  "explanation": "The rolls of three dice are ordered and equally likely. Rolls with total 9: sharing 9 among three dice that each show at least 1 gives C(8,2) = 28 ordered rolls, but 3 of these have a die showing 7 (7, 1, 1 in some order), which a die cannot show, so 25 rolls remain. A roll with a 6 has the other two dice adding to 3, which is 1 and 2 in either order: 2 rolls for each of the 3 positions of the 6, so 6 rolls (two 6s are impossible). The probability is 6/25. The option \"1/6\" counts sets of numbers instead of ordered rolls: of the 6 sets {6,2,1}, {5,3,1}, {5,2,2}, {4,4,1}, {4,3,2}, {3,3,3}, one contains a 6. The option \"3/14\" forgets the 6-cap and divides by all 28 ways of sharing 9. The option \"2/9\" removes only one of the three rolls with a 7 (27 rolls). The option \"2/25\" answers for one named die only (the first die shows 6 in 2 of the 25 rolls), forgetting the 6 can be on any of the three dice.",
+  "solve": "var all=0,g=0;for(var a=1;a<=6;a++)for(var b=1;b<=6;b++)for(var c=1;c<=6;c++){if(a+b+c===9){all++;if(a===6||b===6||c===6)g++;}}return g/all;",
+  "distractor_solve": {
+   "1/6": "var sets=0,six=0;for(var a=1;a<=6;a++)for(var b=a;b<=6;b++)for(var c=b;c<=6;c++){if(a+b+c===9){sets++;if(c===6)six++;}}return six/sets;",
+   "3/14": "var all=0,g=0;for(var a=1;a<=7;a++)for(var b=1;b<=7;b++)for(var c=1;c<=7;c++){if(a+b+c===9){all++;if(a===6||b===6||c===6)g++;}}return g/all;",
+   "2/9": "var all=0,g=0;for(var a=1;a<=7;a++)for(var b=1;b<=7;b++)for(var c=1;c<=7;c++){if(a+b+c===9){all++;if(a===6||b===6||c===6)g++;}}return g/(all-1);",
+   "2/25": "var all=0,g=0;for(var a=1;a<=6;a++)for(var b=1;b<=6;b++)for(var c=1;c<=6;c++){if(a+b+c===9){all++;if(a===6)g++;}}return g/all;"
+  },
+  "interval": "A probability strictly between 0 and 1; all options are. The unconditional chance of at least one 6 (91/216) is not an option. The chance that one named die shows 6 unconditionally, 1/6, is not a bound on the conditional answer (the condition can push it either way); 3/14, 2/9 and the key sit above 1/6, 2/25 below it. No forced denominator: the number of rolls with total 9 is what the item asks the solver to count (25 is not readable from the stem). The key being the largest option is not decided by a free bound: no upper bound below 1 follows from the stem without counting. No option is 1/2 or a complement of the key (19/25 absent).",
+  "bounds_checked": "range 0-1, unconditional value 91/216 (absent) and the low-total direction, single-die share 1/6, one named die vs any die, forced denominator (none: the conditional count is the method), complement, key-is-sum",
+  "forced_form_notes": {
+   "denominator 25": "not forced: 25 is the number of ordered rolls of three dice with total 9, which the solver must count (with the 6-cap) - it is the method, not a stem number. The stem fixes only 216 outcomes before conditioning; 1/6, 3/14 and 2/9 are the set-count, no-cap and one-overflow errors over their own (wrong) totals."
+  }
+ },
+ {
+  "id": "S17C-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two random arrival times with unequal waits",
+  "difficulty": "hard",
+  "template": "two people arrive at random times in one hour, each waits a different time / P(they meet) / the pair of arrival times is a random point of a square",
+  "mechanism": [
+   "two independent uniform times as a point in a square",
+   "meeting region is the square minus two corner triangles",
+   "unequal waits give unequal triangles"
+  ],
+  "method": "See that the two arrival times together are one random point in a square, so the probability is an area: the pairs that fail to meet fill two corner triangles, one for each person arriving first, and with unequal waits the two triangles have different sizes.",
+  "prompt": "Ana and Ben plan to meet at a library. Each of them arrives at a random time between 3:00 p.m. and 4:00 p.m., with every moment in that hour equally likely, and the two arrival times are independent of each other. If Ana arrives first, she waits 10 minutes for Ben and then leaves. If Ben arrives first, he waits 40 minutes for Ana and then leaves. (Either of them may wait past 4:00 p.m.) What is the probability that Ana and Ben meet?",
+  "choices": [
+   "43/72",
+   "13/18",
+   "2/3",
+   "55/72",
+   "47/72"
+  ],
+  "correct_answer": "43/72",
+  "explanation": "Measure each arrival in minutes after 3:00, x for Ana and y for Ben, so (x, y) is a random point of a 60-by-60 square. They miss each other when Ana is first and Ben comes more than 10 minutes later (y - x > 10), a corner triangle with legs 50, area 1250; or when Ben is first and Ana comes more than 40 minutes later (x - y > 40), a corner triangle with legs 20, area 200. The probability of missing is (1250 + 200)/3600 = 29/72, so the probability of meeting is 43/72. The option \"13/18\" treats the two waits as independent chances 10/60 and 40/60 and computes 1 - (5/6)(1/3). The option \"2/3\" takes only the chance that Ana arrives within Ben's 40-minute wait, 40/60, ignoring Ana's own wait and the ends of the hour. The option \"47/72\" subtracts only the triangle in which Ana is first and Ben is too late, forgetting the case in which Ben is first and Ana is too late. The option \"55/72\" takes the legs of the two corner triangles to be the waiting times, 10 and 40, instead of 60 minus the waiting times.",
+  "solve": "var T=60,a=10,b=40;var miss=((T-a)*(T-a)+(T-b)*(T-b))/2;return 1-miss/(T*T);",
+  "distractor_solve": {
+   "13/18": "var T=60,a=10,b=40;return 1-(1-a/T)*(1-b/T);",
+   "2/3": "var T=60,a=10,b=40;return b/T;",
+   "47/72": "var T=60,a=10,b=40;return 1-((T-a)*(T-a)/2)/(T*T);",
+   "55/72": "var T=60,a=10,b=40;return 1-(a*a/2+b*b/2)/(T*T);"
+  },
+  "interval": "A probability strictly between 0 and 1. Monotonicity in the waits: the answer lies strictly between the case where both wait 10 minutes (1 - (5/6)^2 = 11/36) and the case where both wait 40 minutes (1 - (1/3)^2 = 8/9); all five options are strictly inside (11/36, 8/9), none on either end. Edge bound: ignoring the ends of the hour, Ben would have to arrive within a 50-minute window around Ana's time, 50/60 = 5/6, and the ends of the hour strictly cut that down; all options are strictly below 5/6. Obvious share 1/2 (equally likely to meet or not): the key 43/72 is above it, and all four distractors (13/18, 2/3, 55/72, 47/72) are strictly above it. Denominator: the corner triangles have legs that are multiples of 10 minutes in a 60-minute square, so the answer has a denominator dividing 72; all five options (72, 18, 3, 72, 72) do. The key is the smallest option; no bound read off the stem sits between it and the others (the nearest bound below, 11/36, is far under all five), so its position decides nothing.",
+  "bounds_checked": "range 0-1, monotonicity in each waiting time (both-10 and both-40 cases), the 50-minute window upper bound, the equal-split 1/2 share, denominator dividing 72, run and ladder shape, doubling and halving around the key",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S17C-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "random hand-back, nobody gets their own",
+  "difficulty": "hard",
+  "template": "four gifts handed back at random / P(no one gets their own gift) / case on who gets the first person's gift and whether it is a swap",
+  "mechanism": [
+   "without replacement assignment",
+   "case split: swap back or not",
+   "the choices are not independent"
+  ],
+  "method": "Choose who receives the first friend's gift, then split into the case where that person's gift goes back to the first friend (a swap, leaving two who must swap) and the case where it does not, noticing that the friends' events are linked so the chances cannot simply be multiplied.",
+  "prompt": "Four friends each bring a different gift to a party. The four gifts are mixed up and handed back at random, one gift to each friend, with every way of handing them back equally likely. What is the probability that no friend gets back the gift he or she brought?",
+  "choices": [
+   "1/3",
+   "3/8",
+   "7/24",
+   "1/4",
+   "81/256"
+  ],
+  "correct_answer": "3/8",
+  "explanation": "There are 4! = 24 equally likely ways. Say friend A's gift goes to one of the other three, B. If B's gift goes back to A, the remaining two must swap: 1 way. If B's gift goes to one of the other two, every remaining gift is then forced: 2 ways. So 3 x (1 + 2) = 9 ways, and the probability is 9/24 = 3/8. (Inclusion-exclusion agrees: 1 - 1 + 1/2 - 1/6 + 1/24 = 3/8.) The option \"81/256\" multiplies (3/4)^4, treating the four friends as independent. The option \"1/4\" multiplies 3/4 x 2/3 x 1/2, as if each friend in turn avoided their own gift from those left. The option \"1/3\" stops inclusion-exclusion before the last term (1 - 1 + 1/2 - 1/6). The option \"7/24\" subtracts the last (all-four) term instead of adding it (1 - 1 + 1/2 - 1/6 - 1/24).",
+  "solve": "var perm=function(a){if(a.length<=1)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));var ps=perm(rest);for(var j=0;j<ps.length;j++)r.push([a[i]].concat(ps[j]));}return r;};var P=perm([0,1,2,3]),g=0;for(var k=0;k<P.length;k++){var ok=true;for(var i=0;i<4;i++)if(P[k][i]===i)ok=false;if(ok)g++;}return g/P.length;",
+  "distractor_solve": {
+   "81/256": "return Math.pow(3/4,4);",
+   "1/4": "return (3/4)*(2/3)*(1/2);",
+   "1/3": "return 1-1+1/2-1/6;",
+   "7/24": "return 1-1+1/2-1/6-1/24;"
+  },
+  "interval": "A probability strictly between 0 and 1. Upper bound: at most P(friend A does not get her own gift) = 3/4; every option is below it, and 3/4 is absent. Equal split 1/2: the key is below it, and all four distractors are below it; 1/2 is absent. 24 equally likely ways force a denominator dividing 24: 1/3, 1/4 and 7/24 share it, 81/256 does not (one distractor). The independent value (3/4)^4 is not a bound on the true answer without the method, and no stem-readable bound sits between the key and the other options, so the key being the largest option is not free.",
+  "bounds_checked": "range 0-1, one friend alone 3/4, equal split 1/2, denominator dividing 4! = 24, independence value, complement 5/8 (absent), key-is-sum",
+  "forced_form_notes": {
+   "denominator 8": "not forced: the stem forces a denominator dividing 4! = 24 (equally likely hand-backs); 1/3, 1/4 and 7/24 all divide 24 like the key's 9/24, which reduces to eighths. Nothing in the stem picks out 8."
+  }
+ },
+ {
+  "id": "S17C-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pick a die at random, then roll it twice",
+  "difficulty": "hard",
+  "template": "one of two dice chosen by a coin, then rolled twice / P(the two rolls match) / the two rolls share the die, so condition on the die first",
+  "mechanism": [
+   "two-stage experiment",
+   "condition on the first stage",
+   "the rolls are linked through the shared die"
+  ],
+  "method": "See that both rolls use the SAME chosen die, so the rolls are not independent overall; find the chance of a match for each die separately and average those two chances, rather than blending the dice into one average die first.",
+  "prompt": "Die A is an ordinary fair six-sided die numbered 1 through 6. Die B is a fair six-sided die whose faces are numbered 1, 1, 1, 1, 2, 2. A fair coin is tossed to choose one of the two dice, and the chosen die is then rolled twice. What is the probability that the two rolls show the same number?",
+  "choices": [
+   "19/72",
+   "1/3",
+   "13/36",
+   "7/24",
+   "11/36"
+  ],
+  "correct_answer": "13/36",
+  "explanation": "Condition on the die. With die A the second roll matches the first with probability 1/6. With die B the rolls match if both are 1 or both are 2: (4/6)^2 + (2/6)^2 = 16/36 + 4/36 = 5/9. Each die is chosen half the time, so the answer is (1/2)(1/6) + (1/2)(5/9) = 3/36 + 10/36 = 13/36. The option \"19/72\" blends the two dice into one average die (1 with chance 5/12, 2 with chance 1/4, 3 to 6 with chance 1/12 each) and squares those chances, treating the two rolls as if each could use a different die. The option \"7/24\" uses 1/36 for die A, the chance of one particular double, instead of 1/6. The option \"1/3\" takes die B's chance of a match as 1/2 because it shows only two different numbers. The option \"11/36\" counts only a pair of 1s as a match for die B ((4/6)^2 = 4/9), forgetting a pair of 2s.",
+  "solve": "var A=[1,2,3,4,5,6],B=[1,1,1,1,2,2],dice=[A,B],tot=0;for(var d=0;d<2;d++){var D=dice[d],m=0;for(var i=0;i<6;i++)for(var j=0;j<6;j++)if(D[i]===D[j])m++;tot+=0.5*m/36;}return tot;",
+  "distractor_solve": {
+   "19/72": "var A=[1,2,3,4,5,6],B=[1,1,1,1,2,2],p={};for(var i=0;i<6;i++){p[A[i]]=(p[A[i]]||0)+1/12;p[B[i]]=(p[B[i]]||0)+1/12;}var s=0;for(var k in p)s+=p[k]*p[k];return s;",
+   "7/24": "return 0.5*(1/36)+0.5*((4/6)*(4/6)+(2/6)*(2/6));",
+   "1/3": "return 0.5*(1/6)+0.5*(1/2);",
+   "11/36": "return 0.5*(1/6)+0.5*((4/6)*(4/6));"
+  },
+  "interval": "Die A alone gives a match chance of 1/6 and die B alone 5/9; the answer is an average of the two, so it lies strictly between 1/6 and 5/9 (and that averaging is the method). All five options lie strictly between 1/6 and 5/9; neither 1/6 nor 5/9 is an option, and the midpoint of the two dice's values is only known once die B's 5/9 is computed. Equal split 1/2: key below; all four distractors below. Equally likely outcomes (coin x 36 rolls) force a denominator dividing 72: 72, 3, 24 and 36 all divide 72 (4 of 4). No option is a complement of the key (23/36 absent).",
+  "bounds_checked": "each die alone (1/6 and 5/9) as the two obvious shares, the average lying between them, equal split 1/2, denominator dividing 2 x 36 = 72, complement, key-is-sum",
+  "forced_form_notes": {
+   "denominator 36": "not forced: the stem forces a denominator dividing 72 (coin x 36 ordered rolls); 19/72, 1/3 and 7/24 all divide 72, as does the key's 26/72. 36 is just the reduced form."
+  }
+ },
+ {
+  "id": "S17C-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "draw without replacement until a colour repeats",
+  "difficulty": "hard",
+  "template": "9 marbles, 3 of each of 3 colours, drawn until two share a colour / P(exactly four draws) / pigeonhole: four draws always end it, so it is the first three all different",
+  "mechanism": [
+   "without replacement",
+   "pigeonhole: the fourth draw always repeats a colour",
+   "rewrite the event as the first three all different"
+  ],
+  "method": "Notice that with only three colours the fourth draw must repeat a colour, so making exactly four draws is the same event as the first three marbles all being different colours, which is then a without-replacement product.",
+  "prompt": "A bag holds 9 marbles: 3 red, 3 blue and 3 green. Lena draws marbles from the bag one at a time, at random and without putting any back, and she stops as soon as two of the marbles she has drawn are the same color. What is the probability that Lena makes exactly 4 draws?",
+  "choices": [
+   "3/7",
+   "2/9",
+   "5/28",
+   "9/28",
+   "3/56"
+  ],
+  "correct_answer": "9/28",
+  "explanation": "With three colors, the fourth marble always matches one of three different colors already drawn, so Lena never needs a fifth draw, and she makes exactly 4 draws exactly when her first 3 marbles are all different colors. The first marble is anything; the second must be one of the 6 marbles of the other two colors out of 8; the third must be one of the 3 marbles of the remaining color out of 7. So (6/8)(3/7) = 18/56 = 9/28. The option \"3/7\" is the chance she stops on the third draw, (6/8)(4/7). The option \"2/9\" treats the draws as if the marbles were put back, (2/3)(1/3). The option \"5/28\" works 1 - 1/4 - 4/7, using 4/7 as the chance of stopping on the third draw without requiring the first two to differ. The option \"3/56\" divides the 27 ways to pick one marble of each color by the 504 ordered draws of three marbles, mixing an unordered count with an ordered one.",
+  "solve": "var col=[0,0,0,1,1,1,2,2,2],c4=0,tot=0;var rec=function(left,drawn){var seen={};for(var i=0;i<drawn.length;i++){if(seen[drawn[i]]){return drawn.length;}seen[drawn[i]]=1;}return -1;};for(var a=0;a<9;a++)for(var b=0;b<9;b++)for(var c=0;c<9;c++)for(var d=0;d<9;d++){if(a===b||a===c||a===d||b===c||b===d||c===d)continue;tot++;var seq=[col[a],col[b],col[c],col[d]],n=-1;for(var k=2;k<=4;k++){var r=rec(null,seq.slice(0,k));if(r>0){n=k;break;}}if(n===4)c4++;}return c4/tot;",
+  "distractor_solve": {
+   "3/7": "return (6/8)*(4/7);",
+   "2/9": "return (2/3)*(1/3);",
+   "5/28": "return 1-2/8-4/7;",
+   "3/56": "return (3*3*3)/(9*8*7);"
+  },
+  "interval": "A probability strictly between 0 and 1. Upper bound: she needs more than 2 draws only if the first two differ, 6/8 = 3/4; every option is below 3/4 and 3/4 is absent. The stopping draw can only be 2, 3 or 4 (equal split 1/3 each): the key 9/28 is below 1/3, and 2/9, 5/28, 3/56 are below 1/3 (3 of 4); 1/3 is absent. Ordered draws of four from 9 force a denominator dividing 9x8x7x6 = 3024: 7, 9, 28 and 56 all divide it (4 of 4). The chance of stopping on the second draw, 1/4, is absent.",
+  "bounds_checked": "range 0-1, not-stopped-after-two 3/4, three possible stopping draws (equal split 1/3), denominator dividing 9x8x7x6, with-replacement comparison, complement, key-is-sum",
+  "forced_form_notes": {
+   "denominator 28": "not forced: the stem forces a denominator dividing 9x8x7x6 = 3024 (ordered draws); 3/7, 2/9, 5/28 and 3/56 all divide it. 28 = 4 x 7 arises only from the product (6/8)(3/7), which is the method."
+  }
+ },
+ {
+  "id": "S17C-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "median of five integers recovered from their ten pairwise sums",
+  "difficulty": "hard",
+  "template": "the ten pairwise sums of five different integers are listed / the median of the five integers / every integer is in four sums, and only the extreme sums have a known make-up",
+  "mechanism": [
+   "each number appears in four of the ten pair sums",
+   "the smallest sum is the two smallest numbers, the largest sum the two largest",
+   "middle number = total minus the two extreme pairs"
+  ],
+  "method": "See that each integer appears in exactly four of the ten sums, so a quarter of the sums' total is the total of the five integers, and that only the smallest sum (the two smallest integers) and the largest sum (the two largest) are known for certain, so removing those two pairs from the total leaves the middle integer.",
+  "prompt": "Five different integers are added in pairs in every possible way, giving ten sums. The ten sums are 33, 36, 51, 55, 66, 70, 73, 85, 88 and 103. What is the median of the five integers?",
+  "choices": [
+   "34",
+   "27",
+   "35",
+   "33",
+   "29"
+  ],
+  "correct_answer": "29",
+  "explanation": "Call the integers a < b < c < d < e; the median is c. Each integer is paired with each of the other four, so it appears in exactly 4 of the 10 sums, and the ten sums add to 4(a + b + c + d + e). The sums add to 660, so a + b + c + d + e = 165. The smallest sum must be a + b = 33 and the largest must be d + e = 103, so c = 165 - 33 - 103 = 29. (The integers are 7, 26, 29, 44 and 59.) The option \"27\" assumes the third-smallest sum, 51, is b + c and solves (a + c) + (b + c) - (a + b) = 36 + 51 - 33 = 2c; in fact 51 is a + d. The option \"35\" assumes the third-largest sum, 85, is c + d and solves (c + d) + (c + e) - (d + e) = 85 + 88 - 103 = 2c; in fact 85 is b + e. The option \"33\" is the mean of the five integers, 165/5, not the median. The option \"34\" is half of the median of the ten sums, (66 + 70)/2 = 68, halved.",
+  "solve": "var s=[33,36,51,55,66,70,73,85,88,103];var t=0;for(var i=0;i<s.length;i++)t+=s[i];var tot=t/4;var mn=Math.min.apply(null,s),mx=Math.max.apply(null,s);var c=tot-mn-mx;var found=null;for(var a=-60;a<60;a++){var b=mn-a;if(b<=a)continue;var cc=c;if(cc<=b)continue;for(var d=cc+1;d<120;d++){var e=mx-d;if(e<=d)continue;var arr=[a,b,cc,d,e],ps=[];for(var x=0;x<5;x++)for(var y=x+1;y<5;y++)ps.push(arr[x]+arr[y]);ps.sort(function(p,q){return p-q});if(ps.join()===s.join())found=cc;}}return found;",
+  "distractor_solve": {
+   "27": "var s=[33,36,51,55,66,70,73,85,88,103];return (s[1]+s[2]-s[0])/2;",
+   "35": "var s=[33,36,51,55,66,70,73,85,88,103];return (s[7]+s[8]-s[9])/2;",
+   "33": "var s=[33,36,51,55,66,70,73,85,88,103];var t=0;for(var i=0;i<10;i++)t+=s[i];return t/4/5;",
+   "34": "var s=[33,36,51,55,66,70,73,85,88,103];return (s[4]+s[5])/2/2;"
+  },
+  "interval": "The integers need not be positive. a + b = 33 with a < b gives a <= 16; the second-smallest sum is always a + c = 36, so c >= 20. d + e = 103 with d < e gives e >= 52; the second-largest sum is always c + e = 88, so c <= 36. Feasible median: 20 <= c <= 36, and all five options (27, 29, 33, 34, 35) lie strictly inside, none on 20 or 36. The median lies between the smallest and largest integers, a weaker bound that also keeps all five. The mean of the five integers, 33, is an option but nothing in the stem orders the mean against the median (here the median is below it; the set is skewed by 59). Parity: the stem forces no parity on c (pair sums of mixed parity occur); key 29 is odd and 27, 35, 33 are odd (3 of 4). Key 29 is prime and carries no divisibility by 2..12.",
+  "bounds_checked": "range of c from the two extreme sums and the second-smallest / second-largest sums (a + c and c + e are always in those places), median between the extremes, mean-versus-median (not forced), parity of the pair sums, divisibility of the key, closure under the asked operation, adjacency of the key to an option",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S17C-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two combined means fix the size ratios; the third combination follows",
+  "difficulty": "hard",
+  "template": "three boxes with known means and two known combined means / the mean of the third combination / each combined mean fixes a size ratio (inverse distances), chain the two ratios through the shared box",
+  "mechanism": [
+   "weighted average of two groups",
+   "a combined mean fixes the ratio of group sizes by inverse distances",
+   "chain two ratios through the shared group"
+  ],
+  "method": "Read each given combined mean as a ratio of box sizes (the sizes are in inverse proportion to each box's distance from the combined mean), link the two ratios through the box they share to get the sizes of the other two boxes relative to each other, then take that weighted average.",
+  "prompt": "Three boxes hold apples. The mean mass of the apples in box P is 155 grams, in box Q is 188 grams, and in box R is 160 grams. When the apples in boxes P and Q are put together, their mean mass is 166 grams. When the apples in boxes P and R are put together, their mean mass is 158 grams. What is the mean mass, in grams, of the apples in boxes Q and R put together?",
+  "choices": [
+   "167",
+   "181",
+   "163",
+   "172",
+   "169"
+  ],
+  "correct_answer": "167",
+  "explanation": "Let the boxes hold p, q and r apples. From P and Q: 155p + 188q = 166(p + q), so 22q = 11p and p = 2q. From P and R: 155p + 160r = 158(p + r), so 2r = 3p and r = 3p/2 = 3q. So q : r = 1 : 3, and the mean for Q and R is (188 x 1 + 160 x 3)/4 = 668/4 = 167 grams. The option \"181\" uses q : r = 3 : 1, putting each box's weight on the wrong side (the lever rule reversed). The option \"172\" reverses only the P-and-R ratio (r = 2p/3), giving q : r = 3 : 4. The option \"163\" is the mean of all three boxes together, (310 + 188 + 480)/6. The option \"169\" adds the two changes from P's mean, 166 + 158 - 155, as if they combined directly.",
+  "solve": "var P=155,Q=188,R=160,PQ=166,PR=158;var qp=(PQ-P)/(Q-PQ);var rp=(PR-P)/(R-PR);return (qp*Q+rp*R)/(qp+rp);",
+  "distractor_solve": {
+   "181": "var P=155,Q=188,R=160,PQ=166,PR=158;var qp=(PQ-P)/(Q-PQ);var rp=(PR-P)/(R-PR);return (rp*Q+qp*R)/(qp+rp);",
+   "172": "var P=155,Q=188,R=160,PQ=166,PR=158;var qp=(PQ-P)/(Q-PQ);var rp=(R-PR)/(PR-P);return (qp*Q+rp*R)/(qp+rp);",
+   "163": "return (2*155+1*188+3*160)/6;",
+   "169": "return 166+158-155;"
+  },
+  "interval": "Each member alone: the Q-and-R mean lies strictly between R's 160 and Q's 188; all five options are inside. Simple (equal-size) average of Q and R, 174: the key is below it (R has more apples); the distractors 172, 169 and 163 are strictly below 174 (3 of 4), 181 above. The given combined means as shares: versus P and Q's 166, the key 167 is above, and 181, 172, 169 are strictly above (3 of 4), 163 below; versus P and R's 158, every option is above. P's own mean 155: every option above. No option sits on any of 155, 158, 160, 166, 174 or 188. Monotone comparisons: against P-and-Q (166), Q-and-R replaces P by R, which has a higher mean (160 vs 155) but also more apples weighting toward a value below Q's 188, so the direction is not readable without the ratios; against P-and-R (158), Q lies above R while P lies below it, so Q-and-R > 160 > 158, which every option already satisfies. Form: no integrality or parity is forced; key 167 is odd and prime, and 181, 163 and 169 are odd (3 of 4).",
+  "bounds_checked": "between each member's mean, equal-size average, the two given combined means and box P's mean as shares, monotone replacement arguments, overall mean of all three, parity and divisibility of the key",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S17C-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rectangles formed by the lines of a grid",
+  "difficulty": "medium",
+  "template": "4-by-6 grid of unit squares / number of rectangles of every size / a rectangle is two horizontal lines and two vertical lines",
+  "mechanism": [
+   "a rectangle is fixed by two horizontal and two vertical grid lines",
+   "count lines, not squares",
+   "multiply the two choices"
+  ],
+  "method": "Count the grid lines in each direction (one more than the number of rows or columns), choose two of the horizontal lines and two of the vertical lines for the sides, and multiply the two counts.",
+  "prompt": "A large rectangle is divided into 24 equal small squares arranged in 4 rows and 6 columns, by lines drawn parallel to its sides. How many rectangles of any size, including squares and including the large rectangle itself, have all four of their sides lying along these lines (the drawn lines or the sides of the large rectangle)?",
+  "choices": [
+   "90",
+   "210",
+   "150",
+   "300",
+   "126"
+  ],
+  "correct_answer": "210",
+  "explanation": "There are 5 horizontal lines (4 rows need 5 lines, counting the top and bottom sides) and 7 vertical lines. Every rectangle is fixed by choosing its top and bottom from the 5 horizontal lines, C(5,2) = 10 ways, and its left and right sides from the 7 vertical lines, C(7,2) = 21 ways, so there are 10 x 21 = 210 rectangles. The option \"90\" uses the numbers of rows and columns instead of lines, C(4,2) x C(6,2) = 6 x 15. The option \"126\" uses the 4 rows in one direction but the 7 vertical lines in the other, C(4,2) x C(7,2). The option \"150\" uses the 5 horizontal lines in one direction but the 6 columns instead of the 7 vertical lines in the other, C(5,2) x C(6,2). The option \"300\" counts unordered pairs of small squares (allowing a square to be paired with itself) as opposite corners, C(24,2) + 24, which counts a rectangle more than once.",
+  "solve": "var R=4,K=6;function C2(n){return n*(n-1)/2;}return C2(R+1)*C2(K+1);",
+  "distractor_solve": {
+   "90": "var R=4,K=6;function C2(n){return n*(n-1)/2;}return C2(R)*C2(K);",
+   "126": "var R=4,K=6;function C2(n){return n*(n-1)/2;}return C2(R)*C2(K+1);",
+   "150": "var R=4,K=6;function C2(n){return n*(n-1)/2;}return C2(R+1)*C2(K);",
+   "300": "var R=4,K=6;function C2(n){return n*(n-1)/2;}var s=R*K;return C2(s)+s;"
+  },
+  "interval": "A whole-number count. Lower bound: the 24 unit squares and the 15 two-by-two squares are rectangles too, and the 1-by-2 and 2-by-1 pieces add 20 + 18 more, so the count exceeds 77 after a partial tally; every option is above that. Upper bound: at most C(12,4) = 495 ways to choose four of the lines, strictly fewer rectangles; every option is strictly below 495 and none sits on it. The rows-and-columns count 90 and the mixed counts 126 and 150 are wrong procedures, not bounds: none of them can be read off the stem as a limit without first deciding that a rectangle is two lines in each direction, which is the method. The 24 unit squares and the 50 squares of all sizes, which would sit ON the obvious lower bounds, are not options.",
+  "bounds_checked": "unit-square and all-squares lower bounds, partial tally by sizes, four-lines upper bound, parity, multiples of 3, 5, 7 and 10, key-is-sum, doubling and halving around the key",
+  "forced_form_notes": {
+   "multiple of 7": "not forced: the stem states 4 rows and 6 columns (24 squares); 7 enters only as the number of vertical lines, 6 + 1, and C(7,2) = 21 appears only after the solver has decided that a rectangle is two lines in each direction, which is the method. 126 shares the factor 7.",
+   "even multiple of 7": "not forced: the stem states 4 rows and 6 columns (24 squares); 7 enters only as the number of vertical lines, 6 + 1, and C(7,2) = 21 appears only after the solver has decided that a rectangle is two lines in each direction, which is the method. 126 shares the factor 7.",
+   "odd multiple of 10": "not forced: the stem's numbers 4, 6 and 24 force neither a factor of 10 nor the parity of the quotient; 90 and 150 are also odd multiples of 10 and 300 is an even one."
+  }
+ },
+ {
+  "id": "S17C-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "mean group size recovered from members' reports of their own group's size",
+  "difficulty": "hard",
+  "template": "each member reports the size of his or her own group / the mean number of members per group / the reports of size s come in blocks of s, so the group count is reports divided by size",
+  "mechanism": [
+   "member-weighted versus group-weighted average",
+   "number of groups of a size = members reporting it / that size",
+   "mean = total members / total groups"
+  ],
+  "method": "Notice that the answers are given once per member, not once per group, so the members who give the same answer must be divided into groups of exactly that size; count the groups of each size that way, then divide the total number of members by the total number of groups.",
+  "prompt": "At a summer camp, every camper belongs to exactly one activity group. Each camper was asked how many campers, counting himself or herself, are in his or her own group, and every answer was correct. 35 campers answered 7, 75 campers answered 25, and 80 campers answered 40. What is the average (arithmetic mean) number of campers per group?",
+  "choices": [
+   "25",
+   "16",
+   "19",
+   "28",
+   "24"
+  ],
+  "correct_answer": "19",
+  "explanation": "The 35 campers who answered 7 are in groups of 7, so there are 35/7 = 5 such groups. Likewise there are 75/25 = 3 groups of 25 and 80/40 = 2 groups of 40. That is 35 + 75 + 80 = 190 campers in 5 + 3 + 2 = 10 groups, so the mean is 190/10 = 19 campers per group. The option \"28\" is the mean of the 190 campers' answers, (35 x 7 + 75 x 25 + 80 x 40)/190 = 5320/190; it counts a group of 40 forty times and a group of 7 only seven times. The option \"24\" is the average of the three sizes 7, 25 and 40, as if there were one group of each size. The option \"25\" is the middle answer of the 190 campers (the 95th and 96th answers in order are both 25). The option \"16\" is the median of the ten group sizes 7, 7, 7, 7, 7, 25, 25, 25, 40, 40, which is (7 + 25)/2, not their mean.",
+  "solve": "var sizes=[7,25,40],ans=[35,75,80],m=0,g=0;for(var i=0;i<3;i++){m+=ans[i];g+=ans[i]/sizes[i];}return m/g;",
+  "distractor_solve": {
+   "28": "var sizes=[7,25,40],ans=[35,75,80],s=0,n=0;for(var i=0;i<3;i++){s+=ans[i]*sizes[i];n+=ans[i];}return s/n;",
+   "24": "return (7+25+40)/3;",
+   "25": "var L=[];var sizes=[7,25,40],ans=[35,75,80];for(var i=0;i<3;i++)for(var j=0;j<ans[i];j++)L.push(sizes[i]);L.sort(function(a,b){return a-b});return (L[94]+L[95])/2;",
+   "16": "var L=[];var sizes=[7,25,40],ans=[35,75,80];for(var i=0;i<3;i++)for(var j=0;j<ans[i]/sizes[i];j++)L.push(sizes[i]);L.sort(function(a,b){return a-b});var n=L.length;return n%2?L[(n-1)/2]:(L[n/2-1]+L[n/2])/2;"
+  },
+  "interval": "The mean group size lies strictly between the smallest and largest group sizes, 7 and 40, because the sizes differ: all five options are inside. Obvious share 1, the mean of the campers' answers, 28: the per-group mean is below it (big groups are over-counted by their members); 16, 24 and 25 are strictly below 28 (3 of 4), and 28 itself is the trap (it is the share, and seeing that the answer is below it is the item's idea). Obvious share 2, the plain average of the three sizes, 24: it is NOT a bound on the answer (the per-group mean can sit on either side of it, depending on how many groups of each size there are), so no option dies by comparing with it. Obvious share 3, the halfway value between 7 and 40, 23.5: not a bound either. Integrality: a mean number per group need not be a whole number (190 campers over 10 groups happens to divide); the stem forces only that each answer count is a multiple of its size, which the method uses.",
+  "bounds_checked": "between the smallest and largest group (strict), member-weighted mean 28 as an upper bound (the idea), unweighted average of the sizes (not a bound), midrange, integrality and parity of a mean, divisibility of each answer count by its size, adjacency (24/25 are a distractor pair, the key is 3 from its nearest neighbor)",
+  "forced_form_notes": {
+   "odd": "not forced: the answer is 190 campers / 10 groups; nothing in the stem makes a mean of group sizes odd, or even a whole number - a different split of the same answers (e.g. 75 campers in groups of 15) gives a non-integer mean. 25 is odd; 16, 24 and 28 are even because they come from different named errors."
+  }
+ },
+ {
+  "id": "S17C-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sequence in which each term is the mean of all earlier terms",
+  "difficulty": "hard",
+  "template": "each term after the second is the mean of all earlier terms; first term and ninth term given / the second term / adding a list's own mean leaves the mean unchanged, so every later term equals the third",
+  "mechanism": [
+   "appending the mean of a list leaves its mean unchanged",
+   "every term from the third on equals the mean of the first two",
+   "undo one average"
+  ],
+  "method": "Notice that the third term is the mean of the first two, and that putting a list's own mean onto the list does not change its mean, so every later term (including the ninth) equals that same mean of the first two terms; then undo that one average.",
+  "prompt": "In a sequence of numbers, the first term is 9, and each term after the second term is the average (arithmetic mean) of all the terms that come before it. The 9th term of the sequence is 26. What is the second term?",
+  "choices": [
+   "52",
+   "61",
+   "199",
+   "43",
+   "69"
+  ],
+  "correct_answer": "43",
+  "explanation": "Let the second term be x. The third term is the mean of 9 and x, call it m = (9 + x)/2. The first three terms are 9, x and m, whose sum is 9 + x + m = 2m + m = 3m, so their mean is m again, and the fourth term is m. Each time the mean is added to the list the mean stays m, so every term from the third on equals m. The 9th term is 26, so (9 + x)/2 = 26 and x = 52 - 9 = 43. Check: 9, 43, 26, 26, 26, ... The option \"52\" doubles 26 and forgets to subtract the first term. The option \"61\" adds the first term instead of subtracting it, 2 x 26 + 9. The option \"199\" sees that the eight terms before the 9th add to 8 x 26 = 208 but treats the first two terms as the only ones, 208 - 9. The option \"69\" uses the right idea (the terms after the second all equal 26) but counts five such terms among the first eight instead of six, 208 - 9 - 5 x 26.",
+  "solve": "for(var x=-500;x<=500;x++){var s=[9,x];while(s.length<9){var t=0;for(var i=0;i<s.length;i++)t+=s[i];s.push(t/s.length);}if(Math.abs(s[8]-26)<1e-9)return x;}return null;",
+  "distractor_solve": {
+   "52": "return 2*26;",
+   "61": "return 2*26+9;",
+   "199": "return 8*26-9;",
+   "69": "return 8*26-9-5*26;"
+  },
+  "interval": "Free bound: every term after the second is an average of earlier terms, so it lies between the smallest and largest of the first two terms; 26 is above the first term 9, so the second term is above 26. All five options (43, 52, 61, 69, 199) are above 26, none on it. Cheap upper bound: the 9th term is the mean of the first eight terms, so those eight add to 208, and each of the six terms from the third to the eighth is at least 9, so the second term is at most 208 - 9 - 6 x 9 = 145; this kills 199 (the one free kill). 52, 61 and 69 lie strictly between 26 and 145 and survive (3 of 4); separating them from 43 needs the idea that terms three to eight all equal 26. Parity / divisibility: the stem forces no form on the second term (it need not even be a whole number before the method shows x = 2 x 26 - 9); key 43 is odd and prime, and 61, 199, 69 are odd (3 of 4). Order: the key is the smallest option; no free bound below 43 exists, since the only free bound is 26.",
+  "bounds_checked": "average between the first two terms (second term above 26), upper bound from the stem (none), parity and divisibility of the key, closure under the operations named in the stem (2 x 26 +/- 9), arithmetic run (43, 52, 61 is a run with the key at an end, not the middle)",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S17C-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "one number moved between two groups raises both means; total count from the unchanged grand total",
+  "difficulty": "hard",
+  "template": "two groups with known means; one number moves from the higher-mean group to the lower and both means rise by the same amount / the total number of numbers / the grand total is unchanged by the move, and the two size unknowns appear only as their sum",
+  "mechanism": [
+   "moving a number keeps the grand total and the total count",
+   "both means rise by the same amount",
+   "the unknown sizes combine into one sum"
+  ],
+  "method": "See that the move changes neither the grand total nor the number of numbers, so write the grand total before and after in terms of the two group sizes; because both means rise by the same amount, the sizes enter only as their sum, which is fixed even though neither size and the moved number are known.",
+  "prompt": "Group A is a collection of numbers whose mean is 12, and group B is a collection of numbers whose mean is 51. One number is moved from group B to group A. After the move, the mean of the numbers in group A is 15 and the mean of the numbers in group B is 54. How many numbers are there in groups A and B altogether?",
+  "choices": [
+   "21",
+   "39",
+   "18",
+   "23",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Let group A start with a numbers and group B with b numbers. Moving a number does not change the grand total, so 12a + 51b = 15(a + 1) + 54(b - 1). This gives 12a + 51b = 15a + 54b - 39, so 3a + 3b = 39 and a + b = 13. The individual sizes and the moved number are not determined (for example a = 4, b = 9 with the number 27 moved, or a = 6, b = 7 with 33 moved), but every possibility has 13 numbers in all. The option \"39\" stops at 3(a + b) = 39 and does not divide by the 3-point rise. The option \"18\" forgets that group A gains a member, writing A's new mean as (12a + x)/a = 15, so x = 3a, together with x = 54 - 3b from group B. The option \"23\" has group A lose a member as group B does, writing (12a + x)/(a - 1) = 15. The option \"21\" adds the two means where the equation subtracts them, (12 + 51)/3.",
+  "solve": "var tot=null;for(var a=1;a<200;a++)for(var b=2;b<200;b++){var x=15*(a+1)-12*a;if(Math.abs((51*b-x)/(b-1)-54)<1e-9&&x>0){if(tot===null)tot=a+b;else if(tot!==a+b)return 'not unique';}}return tot;",
+  "distractor_solve": {
+   "39": "return 51-12;",
+   "18": "for(var a=1;a<200;a++)for(var b=2;b<200;b++){var x=15*a-12*a;if(Math.abs((51*b-x)/(b-1)-54)<1e-9)return a+b;}return null;",
+   "23": "for(var a=2;a<200;a++)for(var b=2;b<200;b++){var x=15*(a-1)-12*a;if(x>0&&Math.abs((51*b-x)/(b-1)-54)<1e-9)return a+b;}return null;",
+   "21": "return (12+51)/3;"
+  },
+  "interval": "A count, so a whole number of at least 3 (group A starts with at least one number, group B with at least two). No free upper bound: the stem fixes neither group's size nor the moved number, and bounds such as 'the moved number is between 15 and 51' turn into size limits only after the size equations are written, which is the method itself (and those equations give 13 directly). Before / after shares: the means 12 and 51 and 15 and 54 are not counts and bound nothing about the total. All five options are whole numbers of at least 3, none on that floor. Parity: the stem forces none; key 13 is odd and prime, and 21, 39 and 23 are odd (3 of 4). 39 is 3 x 13 (the undivided step), the one multiplicative link to the key.",
+  "bounds_checked": "count floor (at least 3), integrality of a count, upper limits from the moved number lying between the means (method-level, not free), before/after means as shares (not counts), parity, divisibility of the key, key-times-rise relation",
+  "forced_form_notes": {}
+ },
+ {
+  "id": "S17C-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "street-grid routes with an exact number of turns",
+  "difficulty": "hard",
+  "template": "east/north routes across a street grid / number of routes that change direction exactly four times / a route is alternating runs; the starting direction decides which direction is cut into more runs",
+  "mechanism": [
+   "a route with k turns is k + 1 alternating runs",
+   "case split on the starting direction",
+   "cutting a row of blocks into nonempty runs"
+  ],
+  "method": "See that a route that turns exactly four times is five alternating runs of blocks, so the starting direction decides which direction is cut into three runs and which into two; count the ways to cut each direction's blocks into nonempty runs in each case and add the two unequal cases.",
+  "prompt": "Lena walks along the streets of a grid from corner P to corner Q, which is 5 blocks east and 4 blocks north of P. On every block she walks either east or north, so every route is 9 blocks long. A turn is any place where she switches from walking east to walking north, or from walking north to walking east. How many different routes from P to Q have exactly 4 turns?",
+  "choices": [
+   "30",
+   "63",
+   "12",
+   "70",
+   "24"
+  ],
+  "correct_answer": "30",
+  "explanation": "A route with exactly 4 turns is made of 5 runs that alternate in direction. If the route starts east, the runs are east, north, east, north, east: the 5 east blocks are cut into 3 nonempty runs (choose 2 of the 4 gaps between east blocks, C(4,2) = 6 ways) and the 4 north blocks into 2 runs (choose 1 of 3 gaps, 3 ways), giving 6 x 3 = 18 routes. If it starts north, the runs are north, east, north, east, north: the 4 north blocks are cut into 3 runs (C(3,2) = 3 ways) and the 5 east blocks into 2 runs (4 ways), giving 12 routes. Total 18 + 12 = 30. The option \"12\" counts only the routes that start by walking north. The option \"24\" treats 4 turns as 4 runs (one run too few), which counts the routes with exactly 3 turns: 2 x (4 x 3) = 24. The option \"63\" counts the routes with at most 4 turns (2 + 7 + 24 + 30). The option \"70\" chooses the 4 turning places freely from the 8 places between consecutive blocks, C(8,4) = 70, ignoring that the route must contain exactly 5 east and 4 north blocks (the same number comes from cutting 5 blocks with 5 cut places and 4 blocks with 4: C(5,2) x C(4,1) + C(4,2) x C(5,1) = 40 + 30).",
+  "solve": "function cnt(a,b,f){var c=0;for(var m=0;m<(1<<(a+b));m++){var e=0,t=0;for(var i=0;i<a+b;i++){if((m>>i)&1)e++;if(i>0&&(((m>>i)&1)!==((m>>(i-1))&1)))t++;}if(e===a&&f(t))c++;}return c;} return cnt(5,4,function(t){return t===4;});",
+  "distractor_solve": {
+   "12": "function C(n,k){var r=1;for(var i=1;i<=k;i++)r=r*(n-k+i)/i;return r;} return C(3,2)*C(4,1);",
+   "24": "function cnt(a,b,f){var c=0;for(var m=0;m<(1<<(a+b));m++){var e=0,t=0;for(var i=0;i<a+b;i++){if((m>>i)&1)e++;if(i>0&&(((m>>i)&1)!==((m>>(i-1))&1)))t++;}if(e===a&&f(t))c++;}return c;} return cnt(5,4,function(t){return t===3;});",
+   "63": "function cnt(a,b,f){var c=0;for(var m=0;m<(1<<(a+b));m++){var e=0,t=0;for(var i=0;i<a+b;i++){if((m>>i)&1)e++;if(i>0&&(((m>>i)&1)!==((m>>(i-1))&1)))t++;}if(e===a&&f(t))c++;}return c;} return cnt(5,4,function(t){return t<=4;});",
+   "70": "function C(n,k){var r=1;for(var i=1;i<=k;i++)r=r*(n-k+i)/i;return r;} return C(8,4);"
+  },
+  "interval": "The count is a whole number from 0 to 126, the number of all east/north routes, C(9,4) = 126; all five options lie strictly inside (none is 0 or 126). No obvious share applies (no ratio). Free structural reads: the stem treats east and north asymmetrically (5 vs 4 blocks), so there is no forced factor of 2 from symmetry; with an even number of turns the route starts and ends in the same direction, which is the method, not a bound. Parity: the key 30 is even and 12, 24 and 70 are even (3 of 4). No monotonicity or limiting case is available: 'at most 4 turns' (63) is a different count, not a bound the stem forces on 'exactly 4'.",
+  "bounds_checked": "part not exceeding whole (all routes), integrality, parity, divisibility by small numbers, symmetry between the two directions, limiting case (all routes / zero), run and sum shapes among the options (12 + 24 is not 30; no run through the key), doubling around the key (none: 15 and 60 absent)",
+  "forced_form_notes": {
+   "odd multiple of 2": "not forced: the stem gives two unequal directions (5 east, 4 north) and asks for exactly 4 turns; the count is 18 + 12 from two unequal cases, and nothing in the stem pairs routes up or groups them, so the parity of the count or of its half is not readable from the stem (with 6 east blocks the same question gives 45, odd; with 5 and 3 it gives 16).",
+   "multiple of 5": "not forced: no part of the stem splits the routes into five equal groups; the count is C(4,2) x 3 + 3 x 4 = 18 + 12, and the same question with 5 east and 3 north blocks gives 16, with 6 east and 4 north 45, with 4 and 4 gives 18.",
+   "multiple of 6": "not forced: the stem has no 6-fold symmetry (east and north are unequal); 30 = 18 + 12 only after the case split, and the 5-by-3 version of the same question gives 16.",
+   "odd multiple of 6": "not forced: as for 'multiple of 6' - divisibility by 6 is not forced at all (the 5-by-3 version gives 16, the 6-by-4 version 45), so the parity of the quotient by 6 cannot be read from the stem either.",
+   "multiple of 10": "not forced: nothing in the stem makes the count a multiple of 2 or of 5 (the 6-by-4 version gives 45, the 5-by-3 version 16).",
+   "odd multiple of 10": "not forced: divisibility by 10 is itself not forced (see 'multiple of 10'), so neither is the parity of the quotient."
+  }
+ },
+ {
+  "id": "S17C-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three-term arithmetic sequences chosen from 1 to 22",
+  "difficulty": "hard",
+  "template": "sets of three different integers from 1..22 / how many can be listed as an arithmetic sequence / the two outer terms must have the same parity, and each such pair fixes the set",
+  "mechanism": [
+   "the middle term is the average of the outer two",
+   "outer terms of equal parity",
+   "one set per same-parity pair"
+  ],
+  "method": "See that a three-term arithmetic sequence is fixed by its smallest and largest terms, whose average must be the whole-number middle term, so the outer two must have the same parity; count the same-parity pairs (or, equivalently, add up the possible starting terms for each common difference).",
+  "prompt": "How many different sets of three different integers, each from 1 through 22 inclusive, can be listed in some order as an arithmetic sequence? (For example, the set {4, 9, 14} is one such set, since 4, 9, 14 is an arithmetic sequence. The order in which the three numbers are listed does not matter.)",
+  "choices": [
+   "120",
+   "110",
+   "210",
+   "132",
+   "165"
+  ],
+  "correct_answer": "110",
+  "explanation": "Write the set as a < b < c. It is an arithmetic sequence exactly when b is the average of a and c, so a and c must add to an even number, i.e. have the same parity, and then b = (a + c)/2 is automatically a different whole number between them. So each pair of outer terms of the same parity gives exactly one set. There are 11 odd and 11 even numbers from 1 to 22, so the count is C(11,2) + C(11,2) = 55 + 55 = 110. (Check by common difference d: the first term can be 1 through 22 - 2d, so the count is 20 + 18 + ... + 2 = 110.) The option \"120\" counts 23 - 2d first terms for each d from 1 to 10 instead of 22 - 2d (off by one each time). The option \"132\" also counts the 22 'sequences' with common difference 0 (one number used three times), 22 + 20 + ... + 2, though the three integers must be different. The option \"165\" counts 22 - d first terms for each d from 1 to 10, forgetting that the third term is 2d (not d) above the first. The option \"210\" fixes the middle term m and counts every difference that keeps the smallest term at least 1 (m - 1 choices), forgetting that the largest term must not exceed 22: 1 + 2 + ... + 20.",
+  "solve": "var c=0;for(var a=1;a<=22;a++)for(var b=a+1;b<=22;b++)for(var x=b+1;x<=22;x++){if(b-a===x-b)c++;}return c;",
+  "distractor_solve": {
+   "120": "var s=0;for(var d=1;d<=10;d++)s+=23-2*d;return s;",
+   "132": "var s=0;for(var d=0;d<=10;d++)s+=22-2*d;return s;",
+   "165": "var s=0;for(var d=1;d<=10;d++)s+=22-d;return s;",
+   "210": "var s=0;for(var m=2;m<=21;m++)s+=m-1;return s;"
+  },
+  "interval": "Free upper bound: a set is fixed by its smallest and largest members, so there are at most C(22,2) = 231 sets; all five options are strictly below 231 (none on it). Free lower bound: difference 1 alone gives 20 sets, and 'at least 20' kills nothing; no cheap bound reaches the key's neighbourhood. The key is the smallest option; the only free bounds are 20 below and 231 above. No obvious share applies (not a ratio item). Parity/divisibility: the key 110 is even and 120, 132 and 210 are even (3 of 4); it is a multiple of 5 and so are 120, 165 and 210 (3 of 4). Arithmetic runs: 110, 120 and 132 are not equally spaced, and no option is the sum of two others.",
+  "bounds_checked": "pairs-determine-the-set upper bound (231), simple lower bound by difference 1, part not exceeding whole (C(22,3)), integrality, parity, divisibility by 5, 10, 11, limiting case (all pairs = 231 is not an option), doubling/halving around the key (55 and 220 absent), run and sum shapes",
+  "forced_form_notes": {
+   "odd multiple of 2": "not forced: the count is C(11,2) + C(11,2) only after seeing the same-parity idea; the stem's range 1-22 gives 110 but 1-20 gives 90 and 1-24 gives 132, so the parity of half the count is not fixed by the stem.",
+   "multiple of 10": "not forced: no part of the stem groups the sets in tens; 1-21 would give 100, 1-23 gives 121 and 1-24 gives 132, so a factor of 10 for 1-22 is not readable without counting.",
+   "odd multiple of 10": "not forced: divisibility by 10 is itself not forced (1-23 gives 121, 1-24 gives 132), so neither is the parity of the quotient.",
+   "multiple of 11": "not forced from the stem: the factor 11 appears only after the method (11 odd and 11 even numbers, C(11,2) each); a reader of the stem alone sees no 11-fold grouping, and the counting-by-difference route gives 20 + 18 + ... + 2 with no visible 11.",
+   "even multiple of 11": "not forced: see 'multiple of 11' - the factor 11 is visible only after the same-parity count, so the parity of the quotient by 11 is not a free read either."
+  }
+ },
+ {
+  "id": "S17C-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three-digit numbers whose middle digit is smaller than both outer digits",
+  "difficulty": "hard",
+  "template": "three-digit 'valley' numbers / how many / case split on the middle digit, outer digits chosen independently above it",
+  "mechanism": [
+   "case split on the middle digit",
+   "outer digits chosen independently above it",
+   "a leading zero is impossible automatically"
+  ],
+  "method": "Split by the middle digit: once it is fixed, each outer digit is chosen independently from the digits above it (which also rules out a leading zero automatically), so each case is a square and the cases add to a sum of squares.",
+  "prompt": "A three-digit positive integer is called a valley number if its middle digit is less than each of its other two digits. For example, 503, 717 and 948 are valley numbers, but 455 and 132 are not. How many three-digit positive integers are valley numbers?",
+  "choices": [
+   "330",
+   "385",
+   "285",
+   "204",
+   "165"
+  ],
+  "correct_answer": "285",
+  "explanation": "Let the middle digit be m. The first and last digits must each be greater than m, so each is one of m + 1, ..., 9, which gives 9 - m choices for each, chosen independently (the two may be equal, as in 717). The first digit is greater than m >= 0, so it is never 0 and no case has to be removed. The middle digit can be 0 through 8, so the count is 9^2 + 8^2 + ... + 1^2 = 81 + 64 + 49 + 36 + 25 + 16 + 9 + 4 + 1 = 285. The option \"204\" assumes the middle digit cannot be 0 and drops the 81 numbers such as 503 (8^2 + ... + 1^2). The option \"165\" treats the two outer digits as an unordered pair, so 503 and 305 are counted once (the sum of C(10 - m, 2) for m = 0 to 8). The option \"330\" lets the last digit equal the middle digit (m through 9, 10 - m choices) while keeping the first digit greater, so it counts numbers such as 400 and 711: the sum of (9 - m)(10 - m). The option \"385\" lets each outer digit equal the middle digit (\"at least\" instead of \"greater than\"), 10^2 + 9^2 + ... + 1^2.",
+  "solve": "var c=0;for(var n=100;n<=999;n++){var a=Math.floor(n/100),b=Math.floor(n/10)%10,d=n%10;if(b<a&&b<d)c++;}return c;",
+  "distractor_solve": {
+   "204": "var s=0;for(var m=1;m<=8;m++)s+=(9-m)*(9-m);return s;",
+   "165": "var s=0;for(var m=0;m<=8;m++){var k=9-m;s+=k*(k+1)/2;}return s;",
+   "385": "var s=0;for(var m=0;m<=9;m++)s+=(10-m)*(10-m);return s;",
+   "330": "var s=0;for(var m=0;m<=8;m++)s+=(9-m)*(10-m);return s;"
+  },
+  "interval": "The count is a whole number between 0 and 900 (all three-digit integers); all five options are far inside. No cheap bound reaches the options: every sub-count a solver might compare against (for example the valley numbers with three different digits, 2 x C(10,3) = 240, which is not an option) needs the counting the item tests, and 240 would remove only 204 and 165 after that work. No obvious share applies (not a ratio item). Symmetry: the stem treats the first and last digits alike and the leading-zero restriction never bites, so no factor is forced. Parity: not fixed by the stem (key 285 odd; 385 and 165 odd, 330 and 204 even). Divisibility: multiple of 3 - 330, 204, 165 share it (3 of 4); multiple of 5 - 330, 385, 165 share it (3 of 4); multiple of 15 - 330 and 165 only. Runs: sorted 165, 204, 285, 330, 385 have gaps 39, 81, 45, 55, so no equal spacing through the key, and no option is the sum of two others.",
+  "bounds_checked": "part not exceeding whole (900), integrality, parity, divisibility by 3, 5 and 15, symmetry of first and last digit, leading-zero restriction, limiting case (all middle digits allowed, ties allowed = 385 is a different count, not a bound), run and sum shapes, doubling around the key",
+  "forced_form_notes": {
+   "odd": "not forced: the stem defines valley numbers digit by digit with no pairing or symmetry that would fix parity (first and last digits may be equal, as in 717, so the swap of first and last digits does not pair the numbers off); the count is 1^2 + 2^2 + ... + 9^2 only after the case split.",
+   "odd multiple of 3": "not forced: divisibility by 3 is not readable from the stem (the count is a sum of nine squares only after the case split; asking instead for a middle digit at most 7 less than both gives 9^2 + ... + 2^2 = 284, not a multiple of 3), so neither is the parity of the quotient.",
+   "odd multiple of 5": "not forced: no five-fold grouping appears in the stem; the factor 5 of 285 comes from the sum-of-squares value, and the variant with outer digits allowed to equal the middle gives 385 while the variant without middle digit 0 gives 204, not a multiple of 5."
+  }
+ },
+ {
+  "id": "S17C-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "squares, tilted or not, with vertices in a 5-by-5 array of points",
+  "difficulty": "hard",
+  "template": "25 lattice points in a 5-by-5 array / number of squares with all vertices among them / every square sits in an upright bounding square of side k that holds exactly k squares",
+  "mechanism": [
+   "tilted squares on a lattice",
+   "upright bounding square of each square",
+   "a bounding square of side k holds k squares"
+  ],
+  "method": "See that every square, tilted or not, fits exactly inside an upright square of the array (its bounding square), and that an upright bounding square of side k contains exactly k squares touching all four of its sides (itself and k - 1 tilted ones, one for each place a corner can sit on the bottom side); so count the upright squares of each size and weight each by its side.",
+  "prompt": "The 25 points (x, y), where x and y are each one of the integers 0, 1, 2, 3 and 4, form a square array. How many squares have all four of their vertices among these 25 points? (A square's sides do not have to be horizontal or vertical.)",
+  "choices": [
+   "40",
+   "55",
+   "64",
+   "50",
+   "48"
+  ],
+  "correct_answer": "50",
+  "explanation": "Every such square fits inside a smallest upright square of the array with its four vertices on the four sides of that upright square (its bounding square). An upright square of side k holds exactly k such squares: itself, and one tilted square for each of the k - 1 interior points of its bottom side where a vertex can sit. The array has (5 - k)^2 upright squares of side k, so the count is 16 x 1 + 9 x 2 + 4 x 3 + 1 x 4 = 16 + 18 + 12 + 4 = 50. (By side length: 16 of side 1, 9 of side 2, 4 of side 3, 1 of side 4, 9 of side sqrt(2), 8 of side sqrt(5), 1 of side sqrt(8), 2 of side sqrt(10).) The option \"40\" adds only the squares tilted at 45 degrees (sides sqrt(2) and sqrt(8)) to the 30 upright ones. The option \"48\" misses the two squares of side sqrt(10), whose bounding square is the whole array. The option \"55\" counts the squares on a 5-by-5 board of unit cells, 1 + 4 + 9 + 16 + 25, as if the 25 points were 25 cells. The option \"64\" adds k tilted squares (instead of k - 1) for each upright square of side k at least 2 to the 30 upright squares, so it counts each upright square of side 2 or more twice: 30 + 9 x 2 + 4 x 3 + 1 x 4.",
+  "solve": "var P={};for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)P[x+','+y]=1;var c=0;for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)for(var a=1;a<=4;a++)for(var b=0;b<=4;b++){if(!(true))continue;var ok=P[(x+a)+','+(y+b)]&&P[(x+a-b)+','+(y+b+a)]&&P[(x-b)+','+(y+a)];if(ok)c++;}return c;",
+  "distractor_solve": {
+   "40": "var P={};for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)P[x+','+y]=1;var c=0;for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)for(var a=1;a<=4;a++)for(var b=0;b<=4;b++){if(!(b===0||a===b))continue;var ok=P[(x+a)+','+(y+b)]&&P[(x+a-b)+','+(y+b+a)]&&P[(x-b)+','+(y+a)];if(ok)c++;}return c;",
+   "48": "var P={};for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)P[x+','+y]=1;var c=0;for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)for(var a=1;a<=4;a++)for(var b=0;b<=4;b++){if(!(!((a===3&&b===1)||(a===1&&b===3))))continue;var ok=P[(x+a)+','+(y+b)]&&P[(x+a-b)+','+(y+b+a)]&&P[(x-b)+','+(y+a)];if(ok)c++;}return c;",
+   "55": "var s=0;for(var k=1;k<=5;k++)s+=k*k;return s;",
+   "64": "var s=0;for(var k=1;k<=4;k++)s+=(5-k)*(5-k);for(var k=2;k<=4;k++)s+=(5-k)*(5-k)*k;return s;"
+  },
+  "interval": "The count is a whole number. Free lower bound: the upright squares alone number 16 + 9 + 4 + 1 = 30 and the stem says tilted squares count too, so the answer is above 30; all five options are above 30 (none on it). There is no cheap upper bound near the options (the number of four-point sets is C(25,4) = 12650). No obvious share applies (not a ratio item). Symmetry: squares come in orbits under the eight symmetries of the array, but centred squares are fixed by some symmetries, so no factor is forced. Parity: key 50 even, and 40, 64, 48 even (3 of 4). Runs: sorted 40, 48, 50, 55, 64 has gaps 8, 2, 5, 9, so no equal spacing through the key, and no option is the sum of two others.",
+  "bounds_checked": "upright-square lower bound (30), cheap upper bound (four-point sets), integrality, parity, divisibility by 4, 5, 10, 25, symmetry of the array, limiting case (upright squares only = 30 is not an option), run and sum shapes, doubling around the key (25 and 100 absent)",
+  "forced_form_notes": {
+   "odd multiple of 2": "not forced: the eight symmetries of the array do not split the squares into equal groups, because squares centred at the centre point (2, 2) - the upright ones of sides 2 and 4 and tilted ones such as the square with vertices (2,0), (4,2), (2,4), (0,2) - are fixed by some of the symmetries; the 3-by-3 array gives 6 and the 4-by-4 array gives 20, so the count mod 4 is not readable from the stem.",
+   "multiple of 5": "not forced: nothing in the stem splits the squares into five equal groups; the 4-by-4 array gives 20 and the 3-by-3 array gives 6, and 50 = 16 + 18 + 12 + 4 only after the bounding-square idea.",
+   "multiple of 10": "not forced: neither a factor 2 nor a factor 5 is forced by the stem (the 3-by-3 array gives 6, the 6-by-6 array gives 105).",
+   "odd multiple of 10": "not forced: divisibility by 10 is itself not forced (see 'multiple of 10'), so the parity of the quotient is not either."
+  }
+ },
+ {
+  "id": "S17C-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "coloring a 2-by-2 grid so that squares sharing a side differ",
+  "difficulty": "hard",
+  "template": "2-by-2 grid, 5 colors, side-neighbors different / number of colorings / case split on whether the two diagonal squares match",
+  "mechanism": [
+   "case split on the two squares that do not touch",
+   "the last square's choices depend on an earlier choice",
+   "multiplication within each case"
+  ],
+  "method": "Notice that the number of choices for the last square depends on whether the two squares on one diagonal (which do not share a side) got the same color, so split into those two cases and multiply within each before adding.",
+  "prompt": "A square is divided into four equal smaller squares, two on the top and two on the bottom. Each small square is to be painted one of 5 different colors, and not every color has to be used. Two small squares that share a side must be painted different colors, but two small squares that touch only at a corner may be the same color. In how many different ways can the four small squares be painted? (Paintings that differ only by a rotation of the large square count as different.)",
+  "choices": [
+   "240",
+   "200",
+   "180",
+   "140",
+   "260"
+  ],
+  "correct_answer": "260",
+  "explanation": "Call the squares top-left, top-right, bottom-right and bottom-left. Top-left and bottom-right touch only at a corner, and each of the other two squares shares a side with both of them. Case 1, top-left and bottom-right are the same color: 5 choices for that color, and top-right and bottom-left each have 4 choices (they do not touch each other), giving 5 x 4 x 4 = 80. Case 2, they are different colors: 5 x 4 ways, and then top-right and bottom-left each have 3 choices, giving 5 x 4 x 3 x 3 = 180. Total 80 + 180 = 260. The option \"240\" colors the squares in order around the grid and gives the last square 3 choices every time (5 x 4 x 4 x 3), not noticing that it has 4 choices when its two neighbors match. The option \"200\" also makes top-right and bottom-left different from each other in case 2 although they touch only at a corner: 80 + 5 x 4 x 3 x 2. The option \"180\" counts only case 2. The option \"140\" sets up the two cases correctly but in case 2 forgets to choose a color for the last square: 80 + 5 x 4 x 3.",
+  "solve": "var c=0;for(var a=0;a<5;a++)for(var b=0;b<5;b++)for(var x=0;x<5;x++)for(var d=0;d<5;d++){if(a!==b&&b!==x&&x!==d&&d!==a)c++;}return c;",
+  "distractor_solve": {
+   "240": "return 5*4*4*3;",
+   "200": "return 5*4*4+5*4*3*2;",
+   "180": "return 5*4*3*3;",
+   "140": "return 5*4*4+5*4*3;"
+  },
+  "interval": "Free structure: the five colors play identical roles, so the count is a multiple of 5 x 4 = 20 (any painting uses at least two colors); all five options are multiples of 20. Free upper bound: painting around the grid and ignoring the last square's second neighbor gives 5 x 4 x 4 x 4 = 320, so the answer is below 320; all options are below it (320 is not an option). Free lower bound: paintings with four different colors obey the rules, so the answer is at least 5 x 4 x 3 x 2 = 120; all options are above 120 (120 is not an option). The key is the largest option; no cheap bound reaches it (the only upper bound is 320). The case-2 count 180 is a lower bound only after the case split the item tests. No obvious share applies (not a ratio item). Parity and divisibility: every option is an even multiple of 10 and a multiple of 20 and 4. Runs: sorted 140, 180, 200, 240, 260 have gaps 40, 20, 40, 20, so the key is never the middle of three equally spaced options, and no option is the sum of two others (80 is not an option).",
+  "bounds_checked": "color symmetry (multiple of 20), path-coloring upper bound (320), all-different lower bound (120), parity, divisibility by 4, 10, 13, 20, limiting cases (320, 120 and 0 not options), run and sum shapes, doubling around the key (130 and 520 absent)",
+  "forced_form_notes": {
+   "odd multiple of 4": "not forced: color symmetry forces only a multiple of 5 x 4 = 20 (every option is one); the quotient 13 is not readable from the stem - the same question with 4 colors gives 84 = 4 x 21 and with 6 colors gives 630, which is not a multiple of 4 at all."
+  }
+ },
+ {
+  "id": "S17C-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three-digit numbers containing both of two given digits",
+  "difficulty": "medium",
+  "template": "three-digit integers / how many contain at least one 3 and at least one 7 / complement and inclusion-exclusion, or cases on the third digit",
+  "mechanism": [
+   "inclusion-exclusion on two missing digits",
+   "leading digit cannot be 0",
+   "case split on the remaining digit"
+  ],
+  "method": "Count the three-digit numbers missing a 3, missing a 7, and missing both, and combine them by inclusion-exclusion (or split by whether the third digit is new, zero, or a repeat of 3 or 7), remembering the leading digit cannot be 0.",
+  "prompt": "How many three-digit positive integers contain at least one digit 3 and at least one digit 7? (For example, 307, 773 and 437 are counted, but 335 is not.)",
+  "choices": [
+   "52",
+   "54",
+   "46",
+   "49",
+   "48"
+  ],
+  "correct_answer": "52",
+  "explanation": "There are 900 three-digit integers. Those with no 3: 8 x 9 x 9 = 648 (first digit not 0 or 3). Likewise 648 have no 7. Those with neither 3 nor 7: 7 x 8 x 8 = 448. By inclusion-exclusion the number missing a 3 or missing a 7 is 648 + 648 - 448 = 848, so 900 - 848 = 52 contain both. (Check by cases: digits 3, 7 and a different digit x: x one of 1, 2, 4, 5, 6, 8, 9 gives 7 x 6 = 42, x = 0 gives 4 orders with 0 not first; digits 3, 3, 7 or 3, 7, 7 give 3 + 3 = 6; total 52.) The option \"54\" counts the strings 000 through 999, letting 0 lead (it includes 037 and 073): 1000 - 729 - 729 + 512. The option \"46\" leaves out the numbers with a repeated digit, such as 337 and 377. The option \"48\" places the 3 and the 7 in 6 ordered ways and the third digit as any of the 8 other digits, which both lets 0 lead and leaves out the repeats. The option \"49\" counts the numbers with two 3s (337, 373, 733) but forgets those with two 7s: 42 + 4 + 3.",
+  "solve": "function ok(n){var s=String(n);return s.indexOf('3')>=0&&s.indexOf('7')>=0;} var c=0;for(var n=100;n<=999;n++)if(ok(n))c++;return c;",
+  "distractor_solve": {
+   "54": "function ok(n){var s=String(n);return s.indexOf('3')>=0&&s.indexOf('7')>=0;} var c=0;for(var n=0;n<=999;n++)if(ok(n))c++;return c;",
+   "46": "function ok(n){var s=String(n);return s.indexOf('3')>=0&&s.indexOf('7')>=0;} var c=0;for(var n=100;n<=999;n++){var s=String(n);if(ok(n)&&s[0]!==s[1]&&s[1]!==s[2]&&s[0]!==s[2])c++;}return c;",
+   "48": "return 6*8;",
+   "49": "return 7*6+4+3;"
+  },
+  "interval": "The count is a whole number from 0 to 900; all options are far inside. No cheap bound reaches the options: the natural rough over-count (6 placements of the 3 and the 7 times 10 third digits = 60) is not an option and lies above all five. No obvious share applies (not a ratio item). Parity: key 52 even, and 54, 46, 48 even (3 of 4); 49 odd. Divisibility by 4 is not forced (52 = 42 + 4 + 6 from the cases). Runs: sorted 46, 48, 49, 52, 54; no three options are equally spaced with 52 in the middle (49/55, 48/56, 46/58, 50/54 are never both present), and no option is the sum of two others.",
+  "bounds_checked": "part not exceeding whole (900), rough placement over-count (60, not an option), integrality, parity, divisibility by 4, leading-zero restriction, limiting case (strings 000-999 = 54 is a different count and is not a bound readable from the stem), run and sum shapes, doubling around the key",
+  "forced_form_notes": {
+   "multiple of 4": "not forced: the count is 42 + 4 + 6 from three unequal cases; nothing in the stem groups the numbers in fours, and the same question for the digits 0 and 7 gives 35 (odd).",
+   "odd multiple of 4": "not forced: divisibility by 4 is itself not forced (digits 0 and 7 give 35), so the parity of the quotient is not either."
+  }
+ },
+ {
+  "id": "S17C-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "round-robin tournament, most teams that can reach a win total",
+  "difficulty": "hard",
+  "template": "round-robin of n teams, no ties / greatest number of teams with at least w wins / the strong teams must also play each other",
+  "mechanism": [
+   "round-robin tournament",
+   "games among the leading group",
+   "extremal count with a construction"
+  ],
+  "method": "See that the teams with many wins must also play one another, so each game among them hands a loss to one of them; at best each of them wins every game against the other teams and half of the games inside the group, which caps the group size, and a balanced schedule inside the group shows the cap is reached.",
+  "prompt": "Twenty-five teams play a tournament in which every team plays every other team exactly once, and every game has a winner (there are no ties). What is the greatest possible number of teams that could each win at least 18 games?",
+  "choices": [
+   "16",
+   "13",
+   "7",
+   "17",
+   "15"
+  ],
+  "correct_answer": "13",
+  "explanation": "Each team plays 24 games. Suppose k teams each win at least 18 games. Among themselves these k teams play k(k - 1)/2 games, and each of those games gives one of them a loss; the k teams can lose at most 24 - 18 = 6 games each, so k(k - 1)/2 <= 6k, that is, k - 1 <= 12 and k <= 13. Thirteen is possible: let 13 teams each beat all 12 other teams, and arrange the games among the 13 so that each of them wins exactly 6 (seat them in a circle and let each beat the 6 teams that follow it clockwise). Each then has 12 + 6 = 18 wins. So the answer is 13. The option 16 uses only the total number of wins, 25 x 24 / 2 = 300, and 300 / 18 = 16.7, so it rounds down to 16 without noticing that the leading teams take wins from one another. The option 17 makes the same total-wins estimate and rounds 16.7 up. The option 15 thinks each team plays 25 games, so it allows 7 losses each: k(k - 1)/2 <= 7k gives k <= 15. The option 7 assumes the leading teams' wins must all come against the other teams, so 25 - k >= 18 and k <= 7, forgetting that half of the games among the leaders are wins for them.",
+  "solve": "var n=25,w=18,best=0;for(var k=1;k<=n;k++){if(k*(k-1)/2<=k*((n-1)-w))best=k;}return best;",
+  "distractor_solve": {
+   "16": "return Math.floor(25*24/2/18);",
+   "17": "return Math.ceil(25*24/2/18);",
+   "15": "var best=0;for(var k=1;k<=25;k++){if(k*(k-1)/2<=k*(25-18))best=k;}return best;",
+   "7": "var best=0;for(var k=1;k<=25;k++){if(25-k>=18)best=k;}return best;"
+  },
+  "interval": "The answer is a whole number from 1 to 25. Free bound 1, total wins: 300 games so 18k <= 300 and k <= 16; this kills 17 (one kill) and leaves 16, 15, 7 and the key. Free bound 2, each team plays 24 games: no option is above 24. No cheap lower bound: showing 13 is reachable needs the construction. 'Greatest' ask: the key 13 is not the largest option; 15, 16 and 17 lie above it and 7 below. Parity: nothing in the stem forces an odd or even answer (7, 15, 17 odd, 16 even). No option is ON the k <= 16 bound except 16 itself, which is the bound's own value, not a limiting case of the stem: a solver must still decide whether 16 is reachable, which is the work of the item.",
+  "bounds_checked": "total-wins (part not exceeding whole), games per team, monotonicity in the win threshold, greatest-ask extremity, parity, adjacency to the key, closure of the option set",
+  "forced_form_notes": {
+   "prime": "not forced: nothing in the stem makes the number of teams prime; with a threshold of 17 wins the same method gives 15, with 19 it gives 11"
+  }
+ },
+ {
+  "id": "S17C-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pigeonhole guarantee for a pair summing to a multiple of 8",
+  "difficulty": "hard",
+  "template": "integers 1 to N / least count that forces two with sum divisible by m / remainder classes that pair up, and classes that pair with themselves",
+  "mechanism": [
+   "pigeonhole guarantee",
+   "remainder classes that pair up",
+   "self-paired remainders allow only one"
+  ],
+  "method": "Sort the numbers by remainder on division by 8 and see that two numbers clash exactly when their remainders add to 8 or 0, so a clash-free choice takes one whole class from each matched pair of classes, but only a single number from each class that is matched with itself (remainder 0 and remainder 4); one more than that largest clash-free choice forces a clash.",
+  "prompt": "Integers are to be chosen from 1 through 40, inclusive, with no integer chosen more than once. What is the least number of integers that must be chosen to be certain that two of the chosen integers have a sum that is a multiple of 8?",
+  "choices": [
+   "21",
+   "26",
+   "18",
+   "16",
+   "22"
+  ],
+  "correct_answer": "18",
+  "explanation": "Two integers have a sum that is a multiple of 8 exactly when their remainders on division by 8 add to 8 or are both 0. Each remainder 0, 1, ..., 7 occurs exactly 5 times in 1 through 40. Remainders 1 and 7 clash with each other, as do 2 and 6, and 3 and 5, so a choice with no clash can take all five numbers of one class from each of these three pairs: 15 numbers. Two numbers with remainder 0 clash (their sum is a multiple of 8), and so do two numbers with remainder 4 (4 + 4 = 8), so at most one number from each of those classes can be added: 15 + 1 + 1 = 17 numbers with no clash, for example 1, 2, 3, 9, 10, 11, 17, 18, 19, 25, 26, 27, 33, 34, 35, 4, 8. Any 18 integers must contain a clash, so the answer is 18. The option 16 builds the 15 from the three matched pairs but forgets that one number with remainder 0 and one with remainder 4 can also be added. The option 22 remembers that only one multiple of 8 can be used but takes all five numbers with remainder 4, missing that 4 + 4 = 8 makes two of them clash (21 + 1). The option 26 takes all five numbers from both the remainder-0 and remainder-4 classes as well (25 + 1). The option 21 treats the 40 integers as 20 clashing pairs and takes one from each pair plus one more.",
+  "solve": "var r=[0,0,0,0,0,0,0,0];for(var x=1;x<=40;x++)r[x%8]++;var m=Math.min(r[0],1)+Math.min(r[4],1);for(var a=1;a<=3;a++)m+=Math.max(r[a],r[8-a]);return m+1;",
+  "distractor_solve": {
+   "16": "var r=[0,0,0,0,0,0,0,0];for(var x=1;x<=40;x++)r[x%8]++;var m=0;for(var a=1;a<=3;a++)m+=Math.max(r[a],r[8-a]);return m+1;",
+   "22": "var r=[0,0,0,0,0,0,0,0];for(var x=1;x<=40;x++)r[x%8]++;var m=Math.min(r[0],1)+r[4];for(var a=1;a<=3;a++)m+=Math.max(r[a],r[8-a]);return m+1;",
+   "26": "var r=[0,0,0,0,0,0,0,0];for(var x=1;x<=40;x++)r[x%8]++;var m=r[0]+r[4];for(var a=1;a<=3;a++)m+=Math.max(r[a],r[8-a]);return m+1;",
+   "21": "return 40/2+1;"
+  },
+  "interval": "The answer is a whole number from 2 to 41. Free lower bounds: 2 (kills nothing). A solver who already sees the remainder classes can exhibit 15 clash-free numbers, so the answer is at least 16: kills nothing (16 is allowed by that bound). Upper bounds: pairing each k with 40 - k (19 pairs plus 20 and 40 alone) shows 22 always suffice, so the answer is at most 22: kills 26 only (one kill), and that pairing is itself a version of the item's idea. 'Least' ask: the key 18 is not the smallest option (16 lies below it). Parity: nothing forces the answer even (21 odd, 16, 22, 26 even). Options are not adjacent to the key (17 and 19 absent).",
+  "bounds_checked": "part not exceeding whole (1 to 40), a clash-free set as a lower bound, a pairing as an upper bound, least-ask extremity, parity, adjacency, doubling or halving around the key",
+  "forced_form_notes": {
+   "multiple of 3": "not forced: the answer is one more than a largest clash-free set, and nothing in the stem makes either a multiple of 3; with 1 through 48 the same method gives 21, with 1 through 32 it gives 15",
+   "odd multiple of 2": "not forced: the answer is one more than the largest clash-free set, 3 x (numbers per remainder class) + 2; nothing in the stem fixes its residue: with 1 through 48 the same method gives 21, with 1 through 32 it gives 15, with 1 through 56 it gives 24",
+   "multiple of 6": "not forced: the answer is one more than the largest clash-free set, 3 x (numbers per remainder class) + 2; nothing in the stem fixes its residue: with 1 through 48 the same method gives 21, with 1 through 32 it gives 15, with 1 through 56 it gives 24",
+   "odd multiple of 6": "not forced: the answer is one more than the largest clash-free set, 3 x (numbers per remainder class) + 2; nothing in the stem fixes its residue: with 1 through 48 the same method gives 21, with 1 through 32 it gives 15, with 1 through 56 it gives 24",
+   "multiple of 9": "not forced: the answer is one more than the largest clash-free set, 3 x (numbers per remainder class) + 2; nothing in the stem fixes its residue: with 1 through 48 the same method gives 21, with 1 through 32 it gives 15, with 1 through 56 it gives 24",
+   "even multiple of 9": "not forced: the answer is one more than the largest clash-free set, 3 x (numbers per remainder class) + 2; nothing in the stem fixes its residue: with 1 through 48 the same method gives 21, with 1 through 32 it gives 15, with 1 through 56 it gives 24"
+  }
+ },
+ {
+  "id": "S17C-27",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "random round-robin, no unbeaten and no winless team",
+  "difficulty": "hard",
+  "template": "random round-robin of five teams / probability no team is unbeaten and none is winless / disjoint events and the shared game in the overlap",
+  "mechanism": [
+   "round-robin tournament",
+   "probability by counting outcomes",
+   "complement with inclusion-exclusion",
+   "two teams cannot both be unbeaten"
+  ],
+  "method": "Work with the complement and notice two structural facts: two different teams cannot both win all their games (they play each other), so the chances for the five teams simply add; and an unbeaten team and a winless team share one game, so the chance of both happening fixes only seven games, not eight.",
+  "prompt": "Five teams play a tournament in which every team plays every other team exactly once. Every game has a winner, each of the two teams in a game is equally likely to win it, and the results of different games are independent. What is the probability that no team wins all of its games and no team loses all of its games?",
+  "choices": [
+   "29/64",
+   "121/256",
+   "7/32",
+   "17/32",
+   "53/128"
+  ],
+  "correct_answer": "17/32",
+  "explanation": "Each team plays 4 games, so a given team wins all of them with probability (1/2)^4 = 1/16. Two teams cannot both win all their games, because one of them loses the game between them, so P(some team wins all) = 5 x 1/16 = 5/16; likewise P(some team loses all) = 5/16. Both happen when some team X wins all and a different team Y loses all: there are 5 x 4 = 20 choices of (X, Y), and the two conditions fix 4 + 4 - 1 = 7 games (the game between X and Y is counted once), so P(both) = 20 x (1/2)^7 = 5/32. Then P(at least one of the two) = 5/16 + 5/16 - 5/32 = 15/32, and the answer is 1 - 15/32 = 17/32. The option 29/64 takes P(both) as 20 x (1/2)^8 = 5/64, fixing 8 games and missing that X and Y share one. The option 53/128 fixes 7 games but chooses only the unbeaten team, 5 x (1/2)^7 = 5/128, forgetting to choose which other team is winless. The option 121/256 treats 'no team wins all' and 'no team loses all' as independent: (11/16) x (11/16). The option 7/32 subtracts the overlap instead of adding it back: 1 - 5/16 - 5/16 - 5/32.",
+  "solve": "var games=[];for(var a=0;a<5;a++)for(var b=a+1;b<5;b++)games.push([a,b]);var good=0;for(var m=0;m<1024;m++){var w=[0,0,0,0,0];for(var g=0;g<10;g++){if((m>>g)&1)w[games[g][0]]++;else w[games[g][1]]++;}if(w.indexOf(4)<0&&w.indexOf(0)<0)good++;}return good/1024;",
+  "distractor_solve": {
+   "29/64": "var p=5/16;return 1-2*p+20*Math.pow(0.5,8);",
+   "53/128": "var p=5/16;return 1-2*p+5*Math.pow(0.5,7);",
+   "121/256": "var q=1-5/16;return q*q;",
+   "7/32": "var p=5/16;return 1-2*p-20*Math.pow(0.5,7);"
+  },
+  "interval": "Ten games, each with two equally likely results, so every probability is a whole number over 1024; all five options are (64 x 29/64 = 464, 484, 224, 544 and 424 over 1024), so the forced denominator kills nothing. Bounds: the answer is at most P(no team wins all) = 11/16 (kills nothing, every option is below 11/16 and none is on it); the answer is at least 1 - 5/16 - 5/16 = 3/8 (kills 7/32 only, and computing 5/16 is part of the work). Obvious share 1/2: no reason in the stem places the answer above or below 1/2. Complement: 15/32 (1 - key) is not an option. No key/-key, no doubling or halving of the key (17/64 and 17/16 absent).",
+  "bounds_checked": "forced denominator 2^10, the single-condition probability as an upper bound, the union bound as a lower bound, equal split 1/2, complement of the key, doubling or halving",
+  "forced_form_notes": {
+   "denominator 32": "not forced: ten independent games force only a denominator dividing 1024 = 2^10, and all four distractors have such denominators (64, 256, 32, 128); 32 is just the key's reduced form"
+  }
+ },
+ {
+  "id": "S17C-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "arrangements of 1-5 with the front pair outweighing the back pair",
+  "difficulty": "hard",
+  "template": "permutations of five digits / count with first-two sum greater than last-two sum / swap symmetry plus counting the ties",
+  "mechanism": [
+   "counting with symmetry",
+   "swap front and back pairs",
+   "count the ties separately"
+  ],
+  "method": "See that swapping the first two digits with the last two turns every 'front greater' number into a 'back greater' one and back again, so the two counts are equal, and the whole problem reduces to counting the numbers whose front and back sums tie, which happens only for some choices of middle digit.",
+  "prompt": "A five-digit number is formed by using each of the digits 1, 2, 3, 4 and 5 exactly once. For how many of these numbers is the sum of the first two digits greater than the sum of the last two digits? (For example, 53412 is counted, since 5 + 3 is greater than 1 + 2.)",
+  "choices": [
+   "56",
+   "36",
+   "72",
+   "40",
+   "48"
+  ],
+  "correct_answer": "48",
+  "explanation": "There are 5! = 120 such numbers. Swapping the first two digits with the last two (abcde becomes decab) keeps the middle digit and exchanges the two sums, so it matches each number whose front sum is greater with one whose back sum is greater: the two counts are equal, and each is (120 - T)/2, where T is the number of ties. A tie needs the four outer digits, whose total is 15 minus the middle digit, to split into two pairs with equal sums, so that total must be even: the middle digit is 1, 3 or 5. Middle 1: {2, 5} and {3, 4} (both 7). Middle 3: {1, 5} and {2, 4} (both 6). Middle 5: {1, 4} and {2, 3} (both 5). In each case either pair can go in front (2 ways) and each pair can be written in 2 orders (2 x 2), so each middle digit gives 8 ties and T = 24. The answer is (120 - 24)/2 = 48. The option 56 finds the ties only for middle digit 3 (T = 8). The option 40 assumes every middle digit allows a tie (T = 5 x 8 = 40). The option 36 counts each tie twice (T = 48). The option 72 counts the numbers whose front sum is greater than or equal to the back sum (48 + 24).",
+  "solve": "function perms(a){if(a.length<2)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));perms(rest).forEach(function(p){r.push([a[i]].concat(p));});}return r;}var c=0;perms([1,2,3,4,5]).forEach(function(p){if(p[0]+p[1]>p[3]+p[4])c++;});return c;",
+  "distractor_solve": {
+   "56": "return (120-8)/2;",
+   "40": "return (120-5*8)/2;",
+   "36": "function perms(a){if(a.length<2)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));perms(rest).forEach(function(p){r.push([a[i]].concat(p));});}return r;}var t=0;perms([1,2,3,4,5]).forEach(function(p){if(p[0]+p[1]===p[3]+p[4])t++;});return (120-2*t)/2;",
+   "72": "function perms(a){if(a.length<2)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));perms(rest).forEach(function(p){r.push([a[i]].concat(p));});}return r;}var c=0;perms([1,2,3,4,5]).forEach(function(p){if(p[0]+p[1]>=p[3]+p[4])c++;});return c;"
+  },
+  "interval": "The count is a whole number from 0 to 120. Swapping the order of the first two digits, or of the last two, keeps both sums, so the count is a multiple of 4: all five options are (56, 36, 72, 40, 48). Symmetry bound: front-greater and back-greater are equally many, so the answer is at most 120/2 = 60, strictly below it because ties exist; this kills 72 only (one kill) and is the item's own first idea. 60 itself is not an option. Equal split 60: the key is below it, and 56, 36 and 40 are strictly below it too (3 of 4 on the key's side). No lower bound short of counting the ties. 96 (double the key) and 24 (half) are absent.",
+  "bounds_checked": "total arrangements, the swap-symmetry half, the factor 4 from reordering within each pair, equal split, doubling or halving around the key, parity",
+  "forced_form_notes": {
+   "multiple of 16": "not forced: only the two within-pair swaps preserve the condition, which forces a factor of 4; the count of pair splits per middle digit (2 or 3) gives no further factor of 2",
+   "multiple of 3": "not forced: the ties come in groups of 8 per middle digit, and nothing in the stem makes the number of non-tied splits a multiple of 3",
+   "multiple of 12": "not forced: see 'multiple of 3'; only a factor of 4 is forced",
+   "multiple of 24": "not forced: see 'multiple of 3' and 'multiple of 16'; only a factor of 4 is forced",
+   "multiple of 48": "not forced: only a factor of 4 is forced",
+   "multiple of 6": "not forced: only a factor of 4 is forced (the two within-pair swaps); a factor of 3 would need a symmetry of order 3 and the stem has none - the count is 4 x (number of non-tied pair splits), here 12",
+   "even multiple of 8": "not forced: only a factor of 4 is forced (the two within-pair swaps); 48 = 4 x 12 and the 12 comes from counting splits (2 per middle digit 1, 3, 5 and 3 per middle digit 2, 4), not from any symmetry",
+   "even multiple of 12": "not forced: only a factor of 4 is forced; see 'multiple of 6' and 'even multiple of 8'"
+  }
+ },
+ {
+  "id": "S17C-29",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three players take turns until the first success",
+  "difficulty": "hard",
+  "template": "Ann, Ben, Cal throw in turn, each throw hits with probability 1/3, first hit wins / P(Ben wins) / after a full round of misses the game starts over",
+  "mechanism": [
+   "a round of three misses returns the game to its start",
+   "Ben's share equals his share of the first round's outcomes",
+   "condition on someone hitting in the round"
+  ],
+  "method": "See that a full round in which all three miss puts the game back exactly where it began, so those rounds can be ignored and Ben's chance is his share of the first round's winning chances; the round is unequal because Ben can win only after Ann misses.",
+  "prompt": "Ann, Ben and Cal take turns throwing a ball at a target, always in the order Ann, Ben, Cal, Ann, Ben, Cal, and so on. Each throw hits the target with probability 1/3, independently of all other throws. The first person to hit the target wins, and the throwing then stops. What is the probability that Ben wins?",
+  "choices": [
+   "6/19",
+   "2/5",
+   "70/243",
+   "2/7",
+   "3/13"
+  ],
+  "correct_answer": "6/19",
+  "explanation": "In the first round Ann wins with probability 1/3, Ben with (2/3)(1/3) = 2/9, and Cal with (2/3)(2/3)(1/3) = 4/27; with probability (2/3)^3 = 8/27 all three miss and the game starts over exactly as before. So Ben's chance is his share of the first-round wins: (2/9)/(1/3 + 2/9 + 4/27) = (6/27)/(19/27) = 6/19. (Equivalently, B = 2/9 + (8/27)B, so (19/27)B = 2/9.) The option \"2/5\" lets the game start over after only two misses, as in a two-player game: (2/9)/(1 - 4/9); it is also what results from treating the game after Ann's first miss as a two-player game between Ben and Cal, (2/3)(3/5). The option \"70/243\" stops after two rounds: 2/9 + (8/27)(2/9). The option \"2/7\" uses an even 1/2 chance for each throw, giving the weights 1 : 1/2 : 1/4. The option \"3/13\" puts the hit chance 1/3 where the miss chance belongs in those weights, 1 : 1/3 : 1/9.",
+  "solve": "var p=1/3,q=1-p;var r=p*q;return r/(1-q*q*q);",
+  "distractor_solve": {
+   "2/5": "var p=1/3,q=1-p;return (q*p)/(1-q*q);",
+   "70/243": "var p=1/3,q=1-p;var r=q*p;return r+q*q*q*r;",
+   "2/7": "var p=1/2,q=1/2;return q/(1+q+q*q);",
+   "3/13": "var p=1/3,q=1-p;return p/(1+p+p*p);"
+  },
+  "interval": "A probability. Lower bound: Ben wins at least on his first throw, (2/3)(1/3) = 2/9, and strictly more because he can win in a later round; every option is strictly above 2/9 (the smallest, 3/13, is about 0.231). Upper bound: Ben can win only after Ann misses, so below 2/3; all options are. Obvious share 1/3 (equal split among three): the key 6/19 is below 1/3, and 70/243, 2/7 and 3/13 are strictly below it (3 of 4); 2/5 is above. Order of play makes Ann's chance the largest and Cal's the smallest, which places Ben neither above nor below 1/3 without computing, so 1/3 does not decide the item. Denominators: the stem's 1/3 gives no forced denominator for an answer that comes from a repeating game; the key's 19 arises only from 27 - 8.",
+  "bounds_checked": "first-throw lower bound 2/9, Ann-must-miss upper bound 2/3, the equal-split 1/3 share, order-of-play ranking, forced denominators, key-is-sum, doubling and halving around the key",
+  "forced_form_notes": {
+   "denominator 19": "not forced: the stem's only number is the hit chance 1/3, which forces no denominator for a game that can last any number of rounds; 19 appears only as 27 - 8 after the restart idea (the method), and each distractor's denominator (5, 243, 7, 13) comes from a named wrong path."
+  }
+ }
+]
