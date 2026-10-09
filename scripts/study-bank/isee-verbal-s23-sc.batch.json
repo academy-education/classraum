@@ -1,0 +1,1502 @@
+[
+ {
+  "id": "IS23A-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession reversal: 'Although ... predicted it would be torn up within a decade' must be reversed, and the second sentence's 'quarreled over nearly every clause, yet never proposed replacing it' rules out airtight while pointing to durability",
+  "prompt": "[Sentence Completion] Although the treaty was drafted in a single anxious week and its signers on both sides privately predicted it would be torn up within a decade, it proved remarkably -------: the diplomats of the next three generations quarreled over how to read nearly every clause, yet not one of them ever proposed replacing it.",
+  "choices": [
+   "academic",
+   "balanced",
+   "abiding",
+   "airtight"
+  ],
+  "correct_answer": "abiding",
+  "explanation": "abiding (lasting, enduring): the contrast with the prediction that it would be torn up within a decade, plus three generations who never proposed replacing it, forces a word for durability.",
+  "distractor_rationales": [
+   "airtight - having no gaps or loopholes ('an airtight alibi'); the endless quarrels over how to read its clauses show it was not airtight",
+   "balanced - fair to both sides ('a balanced diet'); nothing in the sentence concerns fairness, and fairness is not what the 'Although ... torn up' contrast sets up",
+   "academic - of theoretical interest only, or scholarly ('a purely academic question'); the quarrels over its clauses may sound scholarly, but the 'Although ... torn up within a decade' contrast asks how long it lasted, and a treaty no one would replace mattered in practice"
+  ]
+ },
+ {
+  "id": "IS23A-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step cause: doctors chose which patients to enroll and picked those they expected to do well (fact) -> the samples were skewed from the start (inference) -> bias; 'honest statistics' rules out a deliberate agenda",
+  "prompt": "[Sentence Completion] The early studies of the drug looked flawless on paper: large samples, careful dosing, honest statistics. Only years later did anyone notice that each hospital had chosen which patients to enroll, and that its doctors had quite naturally picked the ones they expected to recover, the one ------- no amount of careful arithmetic could correct.",
+  "choices": [
+   "agenda",
+   "antipathy",
+   "ailment",
+   "bias"
+  ],
+  "correct_answer": "bias",
+  "explanation": "bias (a built-in leaning that skews a result): doctors who picked the patients they expected to recover tilted every sample before any number was computed, so careful arithmetic afterward could not undo it.",
+  "distractor_rationales": [
+   "agenda - a plan or hidden purpose ('a political agenda'); the doctors chose 'quite naturally' and the statistics were honest, so there was no scheme",
+   "antipathy - a strong dislike ('an antipathy to crowds'); the doctors picked patients out of hope for their recovery, not dislike of anyone, and nothing describes hostility",
+   "ailment - an illness ('a minor ailment'); the defect described is in how patients were chosen, not in any disease"
+  ]
+ },
+ {
+  "id": "IS23A-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "two-step inference with the decisive clue sentences away: officials had nothing new to report and were told to drop the grim case count first, so the purpose was emotional, not informational; the final clause (reading the count in full did harm) excludes brace, and 'more shaken' fixes the direction",
+  "prompt": "[Sentence Completion] Viewers who switched off the ministry's evening briefings more shaken than when they had switched them on might have been surprised by the scripts. On most nights the officials had nothing to say that the morning papers had not already printed, and the one passage they were told to drop whenever time ran short was the slow reading of the day's new case count. The briefings existed less to apprise the public than to ------- it, which is why the nights the count was read out in full did them so much harm.",
+  "choices": [
+   "brace",
+   "assure",
+   "amuse",
+   "awe"
+  ],
+  "correct_answer": "assure",
+  "explanation": "assure (to make confident, remove doubt or fear): the briefings carried no new facts and were scripted to drop the frightening count first, so their real job was to calm viewers; that is why a full reading of the count, which left viewers more shaken, damaged them.",
+  "distractor_rationales": [
+   "amuse - to entertain ('amuse the children'); nothing about the scripts aims at entertainment, and the viewers' state that matters is fear ('more shaken'), not boredom",
+   "awe - to fill with wonder or respect ('awe the crowd'); nothing in the scripts is designed to impress, and dropping the count has nothing to do with wonder",
+   "brace - to prepare for something bad ('brace the town for the storm'); reading the count in full would have served bracing, but the sentence says it harmed the briefings, and the count was the first thing cut"
+  ]
+ },
+ {
+  "id": "IS23A-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "rejected nearer clue: 'frauds' and 'not deceit' tempt toward a word for faked confidence, but the merchants drank their own tonics; the decisive clue is the trailing 'resting on novelty, not on any study', which makes the confidence taken for granted; boundless is a near-miss that describes degree, not source",
+  "prompt": "[Sentence Completion] It would be easy to call the radium merchants of the 1920s frauds, but their own papers argue otherwise: several of them drank the same glowing tonics they sold, every day, for years. Their failing was not deceit but confidence that was ------- rather than earned, resting on the novelty of the substance and not on any study of what it did inside the body.",
+  "choices": [
+   "assumed",
+   "awarded",
+   "breezy",
+   "boundless"
+  ],
+  "correct_answer": "assumed",
+  "explanation": "assumed (taken for granted without proof): the merchants' belief rested on novelty, not on study, so it was simply presumed rather than earned.",
+  "distractor_rationales": [
+   "boundless - without limit ('boundless energy'); confidence can be limitless and still earned, so 'rather than earned' sets up no contrast with it, and nothing says the confidence was boundless",
+   "awarded - given by someone else ('awarded a prize'); the confidence was the merchants' own belief, not something granted them by others",
+   "breezy - casual and light ('a breezy manner'); a casual manner is not the opposite of earning something, and men who drank the tonics daily for years were not offhand about them"
+  ]
+ },
+ {
+  "id": "IS23A-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession reversal with the evidence a clause away: the blank states the popular claim ('For all the talk of'), which the account books (commissions forty years later, copyists paid by printers) deny; awakened is a near-miss the same evidence would confirm, so the reader must track which way the concession runs",
+  "prompt": "[Sentence Completion] For all the talk of the printing press as the machine that ------- the old scribal workshops, their own account books tell another story: they were still taking commissions forty years after the first printed Bible, and several early printers even paid monastery copyists to paint the initials into their printed books.",
+  "choices": [
+   "anointed",
+   "abolished",
+   "awakened",
+   "amazed"
+  ],
+  "correct_answer": "abolished",
+  "explanation": "abolished (put an end to): 'For all the talk' sets the popular claim against the account books, and the books show the workshops still working decades later, so the claim must be that the press put them out of existence.",
+  "distractor_rationales": [
+   "amazed - filled with wonder ('the trick amazed the crowd'); the account books record work and payments, which say nothing for or against the workshops' wonder, so 'another story' would contradict nothing",
+   "awakened - stirred into new activity ('awakened an interest'); commissions decades later and printers hiring copyists would confirm such a claim, but 'For all the talk ... another story' needs a claim the books deny",
+   "anointed - chose or blessed as a successor ('anointed his heir'); nothing suggests the press honored the workshops, and the books' evidence of ongoing work does not contradict it"
+  ]
+ },
+ {
+  "id": "IS23A-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences: the calm reports are set against officers' diaries of starvation and desertion, and 'less to record ... than to' reverses the obvious reading, so the reports must give a false picture of the army's state",
+  "prompt": "[Sentence Completion] The general's dispatches from the siege were models of calm: short, orderly, full of supply counts and remarks on the weather. Read beside the diaries of his own officers, who describe men boiling their boots for soup and deserting by the dozen each night, those tidy reports seem less to record the army's condition than to ------- it.",
+  "choices": [
+   "broach",
+   "belie",
+   "belabor",
+   "bemoan"
+  ],
+  "correct_answer": "belie",
+  "explanation": "belie (give a false impression of): calm, orderly reports about an army that was starving and deserting do not merely fail to record its condition; they misrepresent it.",
+  "distractor_rationales": [
+   "bemoan - lament ('bemoan the losses'); the dispatches are calm, not complaining",
+   "belabor - dwell on at needless length ('belabor the point'); the reports are short and say nothing about the starvation, so they dwell on nothing",
+   "broach - raise as a topic ('broach the subject'); the reports never raise the starvation at all"
+  ]
+ },
+ {
+  "id": "IS23A-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "near-miss: the physical sweating points to allergies, but the second clause (a virus, not the food, was the cause) and 'the reasoning behind them' rule out a bodily reaction to the food itself; the reader must infer a learned dislike",
+  "prompt": "[Sentence Completion] Patients who had once been violently sick after a particular meal often broke into a sweat at the mere smell of that dish for years afterward and refused to touch it, even after a doctor had shown them that a passing virus, not the food, had made them ill. The body, it seems, keeps its ------- long after the mind has dismissed the reasoning behind them.",
+  "choices": [
+   "aversions",
+   "aches",
+   "allegiances",
+   "allergies"
+  ],
+  "correct_answer": "aversions",
+  "explanation": "aversions (strong learned dislikes): the patients still recoil from the dish though they know it did no harm, so the body holds on to a dislike whose original reason the mind has rejected.",
+  "distractor_rationales": [
+   "allergies - bodily reactions to a substance ('allergies to peanuts'); the sweat fits, but the food was shown not to be the cause, and an allergy has no 'reasoning' for the mind to dismiss",
+   "aches - dull pains ('aches after a long hike'); nothing says the patients are in pain, only that they shun the dish",
+   "allegiances - loyalties ('allegiances to a team'); the patients refuse the dish, which is the reverse of loyalty to anything, and nothing names a cause they stand by"
+  ]
+ },
+ {
+  "id": "IS23A-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step contrast: critics' 'merely failed' is called generous, and a failure is defined as leaving things as they were, so the project must have made things worse than before; a near-miss (buckle) fits 'failed under load' but not 'worse than before'",
+  "prompt": "[Sentence Completion] The city widened its ring road to six lanes to end the rush-hour jams, and for about a year traffic moved freely. Then drivers who had always avoided the road began choosing it, new suburbs sprang up beside its exits, and within five years the morning commute was slower than it had been before the first new lane was poured. Critics who said the project had merely failed were being generous: a failure leaves things as they were, and this one had managed to -------.",
+  "choices": [
+   "bristle",
+   "atone",
+   "buckle",
+   "backfire"
+  ],
+  "correct_answer": "backfire",
+  "explanation": "backfire (produce the opposite of the intended result): a project meant to speed traffic left the commute slower than before, which is worse than a plain failure that changes nothing.",
+  "distractor_rationales": [
+   "buckle - give way under strain ('the shelf buckled under the books'); the road was overwhelmed, but buckling is just a failure, and the sentence says this outcome was worse than a failure",
+   "atone - make amends for a wrong ('atone for a mistake'); the project made nothing right, and making amends would leave things better, not worse than before",
+   "bristle - react with irritation ('she bristled at the remark'); a road project cannot take offense, and irritation is not a result worse than failure"
+  ]
+ },
+ {
+  "id": "IS23A-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "decisive clue a sentence away (selling at the first offer vs waiting out three offers) with a nearer plausible clue (biographers' 'daring') that the sentence explicitly rejects; alacrity is a near-miss the reader must assign to the right man (the inventor was the quick one)",
+  "prompt": "[Sentence Completion] The inventor held more than two hundred patents and died nearly penniless, having sold each one for whatever the first buyer offered; his partner, who never designed a single machine, waited out three offers on every patent he controlled and died owning the factory that built them. Biographers keep crediting the partner with greater daring, but the record shows no risk he took that the inventor did not. What the partner had and the inventor lacked was -------.",
+  "choices": [
+   "acumen",
+   "bravery",
+   "alacrity",
+   "artistry"
+  ],
+  "correct_answer": "acumen",
+  "explanation": "acumen (sharp practical judgment, especially in business): the partner knew a patent's worth and held out for it, while the inventor sold cheaply; that judgment, not courage or skill at design, made the difference.",
+  "distractor_rationales": [
+   "artistry - creative skill ('the artistry of the carving'); the inventor had the creative gift and the partner never designed a machine, so it is the reverse of what the partner had and the inventor lacked",
+   "alacrity - eager readiness, quickness ('accepted with alacrity'); it was the inventor who took the first offer at once, while the partner waited, so this is the inventor's trait, not the partner's",
+   "bravery - courage ('bravery under fire'); this is the 'daring' the biographers credit, which the record refutes: the partner took no risk the inventor did not"
+  ]
+ },
+ {
+  "id": "IS23A-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession tracked through 'not quite ... yet': the first half excuses her (she could not believe she carried a disease), the second half faults her (she kept cooking after being warned), so she was partly to blame; a near-miss (aware) fits the first half but is ruled out by the doctors' explanation",
+  "prompt": "[Sentence Completion] By the standards of her own era, the cook Mary Mallon was not quite -------: she had never been ill a day in her life and could not see how she might spread a fever she did not have, yet she also went on, again and again, cooking for strangers after doctors had explained the danger to her plainly.",
+  "choices": [
+   "blameless",
+   "aware",
+   "assertive",
+   "brutal"
+  ],
+  "correct_answer": "blameless",
+  "explanation": "blameless (free of fault): her disbelief partly excuses her, but continuing to cook after a plain warning was a fault, so she was not entirely without blame.",
+  "distractor_rationales": [
+   "aware - knowing ('aware of the risk'); her disbelief fits 'not quite aware', but the doctors had explained the danger plainly, so she had been made aware",
+   "brutal - cruel and violent ('a brutal attack'); nothing suggests cruelty, and the first half of the sentence argues in her defense",
+   "assertive - forceful and confident ('an assertive speaker'); refusing again and again to stop shows that she was assertive, not that she fell short of it"
+  ]
+ },
+ {
+  "id": "IS23A-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: the physicians accepted the evidence, then 'Yet' reverses it; the decisive clue is a clause after the blank (the first trial had to be run on prisoners), which implies the physicians would not perform it; the weeks of argument lure agonized and blustered",
+  "prompt": "[Sentence Completion] The London physicians of the 1720s did not doubt the reports of smallpox inoculation sent home from Constantinople; several of them read the letters closely, argued over them for weeks, and granted that the survival figures were striking. Yet when patients asked them to perform the procedure, most of them -------, and the first English trial had to be run on six condemned prisoners who were promised their freedom if they lived.",
+  "choices": [
+   "beamed",
+   "balked",
+   "blustered",
+   "agonized"
+  ],
+  "correct_answer": "balked",
+  "explanation": "balked (refused to go ahead): 'Yet' turns their acceptance of the figures into its opposite in action, and the fact that the first trial had to be run on prisoners shows that the physicians would not do the procedure themselves.",
+  "distractor_rationales": [
+   "agonized - struggled painfully over a decision ('agonized over the choice'); they had already weighed the reports for weeks, and inner struggle alone does not explain why the trial was left to prisoners",
+   "beamed - smiled broadly ('she beamed at the news'); open pleasure at the request would not leave the first trial to condemned prisoners",
+   "blustered - talked loudly and boastfully ('he blustered about his record'); loud talk is not a refusal and does not account for the trial being run on prisoners"
+  ]
+ },
+ {
+  "id": "IS23A-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step cause: the faster loom used up the yarn of several hand spinners and weavers sat idle waiting for thread, so the slow step held back the whole trade; the reader must infer the role of the spinning wheel from the idleness, a sentence before the blank",
+  "prompt": "[Sentence Completion] When English weavers took up the flying shuttle in the decades after 1733, each could suddenly weave far more cloth in a day, and merchants expected the trade to boom. At first it did not: one loom now used up the yarn of several hand spinners, and weavers spent long stretches idle, waiting for thread. Until spinning itself was done by machine, the spinning wheel was the trade's -------.",
+  "choices": [
+   "blueprint",
+   "bottleneck",
+   "byword",
+   "blemish"
+  ],
+  "correct_answer": "bottleneck",
+  "explanation": "bottleneck (the slow point that limits everything after it): the looms could work faster than the spinners could supply them, so weavers waited for thread and the whole trade moved only as fast as the spinning wheel.",
+  "distractor_rationales": [
+   "blueprint - a detailed plan or design ('the blueprint for the new bridge'); the wheel was not a plan the trade followed",
+   "byword - a name that stands for a quality ('a byword for quality'); the passage is about the wheel slowing output, not about what it symbolized",
+   "blemish - a mark that spoils an appearance ('a blemish on his record'); the wheel did not spoil the trade's look or reputation, it limited its output"
+  ]
+ },
+ {
+  "id": "IS23A-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "two-step inference: nurses recovering the drug from the patient's urine to reuse it, and even that falling short, implies there was too little of it; 'power was never in question' rules out acknowledged; the blank's own sentence only says the drug worked",
+  "prompt": "[Sentence Completion] Penicillin's power was never in question: in 1941 it pulled a dying Oxford policeman back from the edge within days, his fever breaking and his infected wounds beginning to heal. Yet he died a month later all the same; by then the nurses had been recovering the drug from his urine to inject it again, and even that had not been enough. For more than a decade after its discovery, penicillin was a medicine that worked but was not -------.",
+  "choices": [
+   "authorized",
+   "bearable",
+   "available",
+   "acknowledged"
+  ],
+  "correct_answer": "available",
+  "explanation": "available (able to be obtained when needed): reusing the drug from the patient's urine, and still running short, shows the problem was the supply, not the cure.",
+  "distractor_rationales": [
+   "acknowledged - recognized as real or valuable ('an acknowledged expert'); the passage opens by saying its power 'was never in question', so recognition was not lacking",
+   "bearable - able to be endured ('the pain was bearable'); no harsh side effects are mentioned, and the patient improved on it",
+   "authorized - officially permitted ('an authorized use'); the doctors were already giving it to him, so permission was not what ran out"
+  ]
+ },
+ {
+  "id": "IS23A-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step cause, clue a sentence away: the only thing that changed was that each person signed his or her own name beside every step, which makes a skipped step traceable to that person; 'nothing new taught' excludes apprised and 'shrugged at a general warning' excludes admonished",
+  "prompt": "[Sentence Completion] Hospitals that hung posters warning against operating on the wrong limb saw almost no change; surgeons working long, crowded shifts read the posters, agreed with them, and carried on as before. Errors fell only when every member of the team had to sign his or her own name beside each item on a checklist before the first cut. The steps were the same ones the posters had listed, and no one was taught anything new; surgeons who had shrugged at a general warning grew careful once they were -------.",
+  "choices": [
+   "alert",
+   "accountable",
+   "admonished",
+   "apprised"
+  ],
+  "correct_answer": "accountable",
+  "explanation": "accountable (answerable for one's own actions): signing one's own name beside each step means a skipped step can be traced to a particular person, and that personal answerability, not new knowledge, is what made the surgeons careful.",
+  "distractor_rationales": [
+   "alert - watchful and wide awake ('an alert guard'); nothing about the signatures made the surgeons more awake, and being careful once alert says nothing about the checklist",
+   "apprised - informed ('apprised of the risks'); the steps were the ones the posters had listed and no one was taught anything new, so being informed changed nothing",
+   "admonished - warned or reproved ('admonished for lateness'); the posters had already warned them and they shrugged, so a warning is exactly what did not work"
+  ]
+ },
+ {
+  "id": "IS23A-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast 'not to refute it but to', resolved only by the following sentence: wide distribution, a dozen citations in thirty-four years, none for its main idea, then rediscovery; the reader must infer neglect from the record, since nothing near the blank says it was ignored",
+  "prompt": "[Sentence Completion] What the scientific world did to Gregor Mendel's paper on pea plants was not to refute it but to ------- it. The journal that printed it in 1866 went to more than a hundred libraries, yet in the next thirty-four years it was cited only about a dozen times, never for its laws of inheritance, until three botanists working separately came upon it in 1900 and saw at once what it meant.",
+  "choices": [
+   "betray",
+   "adopt",
+   "assault",
+   "bury"
+  ],
+  "correct_answer": "bury",
+  "explanation": "bury (to hide away so that it is forgotten): the paper reached many libraries but was barely cited and never for its main idea for thirty-four years, until it had to be found again, so it was not disproved but left forgotten.",
+  "distractor_rationales": [
+   "adopt - to take up and use as one's own ('adopt a new method'); no one used its laws until 1900",
+   "assault - to attack violently ('critics assaulted the plan'); an attack would mean people engaged with it, but it was barely cited at all",
+   "betray - to be disloyal to, or give away to an enemy ('betray a friend'); nothing suggests anyone owed Mendel loyalty or turned his work against him"
+  ]
+ },
+ {
+  "id": "IS23B-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step inference with a nearer lure: the repeated-drills complaint beside the blank invites drudgery or continuity, but the decisive clue is a sentence away - the bus seating stopped splitting starters from substitutes, which implies the two groups had become friends, which is what the rule was for",
+  "prompt": "[Sentence Completion] Several starters called the coach's new rule pointless: why should they run the same cone drills as the substitutes, hour after hour, when they had mastered those drills years ago? The coach never claimed the drills would sharpen anyone's footwork. She pointed instead to the bus rides home, where for years the back rows had belonged to the starters and the front rows to everyone else; by October no one could predict who would be sitting beside whom. The rule, she said, had been about ------- all along.",
+  "choices": [
+   "camaraderie",
+   "continuity",
+   "drudgery",
+   "chivalry"
+  ],
+  "correct_answer": "camaraderie",
+  "explanation": "camaraderie (friendship and trust within a group): the coach does not defend the drills as training; she points to the end of the starters-in-back, substitutes-in-front seating, i.e. the two groups now mix freely, so the rule's purpose was to bond the team.",
+  "distractor_rationales": [
+   "chivalry - meaning ('courteous, protective conduct toward others'); nothing shows the starters protecting or deferring to the substitutes, only the groups mixing as equals",
+   "drudgery - meaning ('dull, tiring work'); it describes how the starters saw the drills, not what the coach says the rule was for",
+   "continuity - meaning ('unbroken sameness over time'); the outcome she cites is the BREAK in a long-standing seating pattern, the opposite of keeping things the same"
+  ]
+ },
+ {
+  "id": "IS23B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "a misreading to be reconstructed: the blank is what readers who saw ONLY the list of complaints concluded, which the second sentence then overturns; the near-miss describes the whole review, which those readers never reached",
+  "prompt": "[Sentence Completion] Readers who stopped after the opening paragraphs, with their long list of complaints about the lighting, the pacing, and even the typeface on the program, took the review to be -------. Those who reached the last line, which urged them to buy tickets before the run sold out, understood that the critic had admired the production all along and had simply been thorough.",
+  "choices": [
+   "deadpan",
+   "damning",
+   "chipper",
+   "conflicted"
+  ],
+  "correct_answer": "damning",
+  "explanation": "damning (strongly condemning): readers who saw nothing but complaints would conclude the critic condemned the show, which is exactly the judgment the closing recommendation reverses ('admired the production all along').",
+  "distractor_rationales": [
+   "conflicted - torn between two views ('a conflicted verdict'); describes praise mixed with complaint, but these readers saw only the complaints, never the praise",
+   "deadpan - dryly humorous with a straight face ('a deadpan joke'); nothing in a list of complaints suggests concealed humor",
+   "chipper - cheerful and lively ('a chipper greeting'); a long list of complaints is the opposite of what would make a reader find the review cheerful"
+  ]
+ },
+ {
+  "id": "IS23B-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step degree inference: more openings elsewhere than the plant had workers implies the jobs could be absorbed, which implies the mayor's word minimizes the loss; the union's objection a sentence later confirms the word downplays it",
+  "prompt": "[Sentence Completion] No one at the hearing disputed that the plant's closing would cost the county jobs; the argument was over its size. The mayor called the loss -------, noting that the county's other employers had posted more openings in the past month than the plant had workers. The union, which knew that most of those workers had held no other job in thirty years, refused to let the word stand.",
+  "choices": [
+   "contained",
+   "deplorable",
+   "detrimental",
+   "cyclical"
+  ],
+  "correct_answer": "contained",
+  "explanation": "contained (kept within limits, not spreading): the argument was over the loss's SIZE, and the mayor backs her word with other employers having more openings than the plant had workers, so she is calling the damage limited; the union objects because its workers cannot easily move into those openings.",
+  "distractor_rationales": [
+   "cyclical - meaning ('recurring in a regular cycle'); the mayor's evidence is about how many openings exist now, not about the loss coming and going with a cycle",
+   "detrimental - meaning ('causing harm'); no one disputed the closing would cost jobs, so calling it harmful would settle nothing - and her evidence argues the harm is small, not that it is harmful",
+   "deplorable - meaning ('deserving strong condemnation'); her evidence minimizes the loss, and the union would hardly refuse to let a condemning word stand"
+  ]
+ },
+ {
+  "id": "IS23B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step inference across sentences with a nearer lure: the glass-and-daylight praise beside the blank supports cinematic and contemporary, but the 'different verdict' must contradict the critics' word, and the evidence (a floor plan everyone needs) implies visitors get lost, which contradicts only a claim that the layout hangs together",
+  "prompt": "[Sentence Completion] Critics who toured the new wing with its architect praised its sweeping glass and its flood of daylight and called the whole design -------. The gift shop reached a different verdict within a month: the laminated floor plan it had stocked as an afterthought was outselling every poster and postcard in the store, and the guards had taken to carrying spare copies in their pockets.",
+  "choices": [
+   "coherent",
+   "contemporary",
+   "cinematic",
+   "democratic"
+  ],
+  "correct_answer": "coherent",
+  "explanation": "coherent (logically ordered, easy to follow as a whole): the gift shop's 'different verdict' is that visitors cannot find their way without a map; a building that needs a floor plan in every guard's pocket does not hang together, so the critics' word must have been coherent. The critics had the architect as a guide, which is why they missed it.",
+  "distractor_rationales": [
+   "democratic - meaning ('open and equal to all'); a best-selling floor plan says nothing against the wing being open to everyone, so it is not the verdict the gift shop contradicts",
+   "cinematic - meaning ('dramatic and visually sweeping, like a film'); the glass and daylight support it, and visitors needing a map does not contradict it",
+   "contemporary - meaning ('modern in style'); a confusing layout can still be modern, so the floor-plan evidence does not overturn it"
+  ]
+ },
+ {
+  "id": "IS23B-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "'not so much selective as' contrast: the one-in-fifty boast tempts toward a harsh-competition word and 'the odds' toward a chance word, but the examples (same three universities, every hire referred by staff) show a closed circle of insiders, neither fierce selection nor luck",
+  "prompt": "[Sentence Completion] The firm boasted that only one applicant in fifty was hired, but the profiles in its own brochure suggested the odds were not the same for everyone: every engineer pictured had graduated from one of three universities, and each had been recommended by someone already on staff. The hiring, it seemed, was not so much selective as -------.",
+  "choices": [
+   "dicey",
+   "cutthroat",
+   "cliquish",
+   "demoralizing"
+  ],
+  "correct_answer": "cliquish",
+  "explanation": "cliquish (favoring a small, closed group of insiders): the same three schools and referrals from current staff show that hires came from one circle, which is a different thing from merely being hard to get into.",
+  "distractor_rationales": [
+   "demoralizing - discouraging, sapping spirit ('a demoralizing loss'); nothing in the brochure's examples concerns anyone's morale",
+   "cutthroat - ruthlessly competitive ('a cutthroat market'); this is what the one-in-fifty boast suggests, but 'not so much selective as' asks for something other than fierce selection",
+   "dicey - risky, a matter of chance ('a dicey bet'); the brochure says the odds were unequal, but the examples show a pattern favoring insiders, not luck"
+  ]
+ },
+ {
+  "id": "IS23B-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose; the decisive details (phones still allowed at lunch, pouches open at the bell, learning to go a few hours) are a sentence after the blank and rule out total removal, so the reader must infer reduction rather than elimination",
+  "prompt": "[Sentence Completion] Parents who read the letter assumed the new phone pouches were a punishment, and some wrote back to say that taking phones away entirely would only make students want them more. The principal replied that the pouches were meant to ------- the habit: phones would still come out at lunch, every pouch would unlock at the final bell, and the hope was simply that students would find they could get through a morning without checking.",
+  "choices": [
+   "dissect",
+   "denounce",
+   "demolish",
+   "dampen"
+  ],
+  "correct_answer": "dampen",
+  "explanation": "dampen (lessen, weaken): the pouches reduce how often students check while still allowing phones at lunch and after school, so the aim is to weaken the habit, not destroy or merely observe it.",
+  "distractor_rationales": [
+   "demolish - meaning ('destroy completely'); phones still come out at lunch and every pouch unlocks at the bell, so the aim is plainly not to wipe the habit out",
+   "denounce - meaning ('condemn publicly'); this is the punishment reading the parents assumed and the principal's reply rejects - the pouches are about reducing checking, not condemning it",
+   "dissect - meaning ('analyze in close detail'); nothing in the plan studies the habit; it simply limits it for the morning"
+  ]
+ },
+ {
+  "id": "IS23B-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "reversal through 'anything but' plus a two-step inference: the accountant's low-earnings argument sits nearest the blank, but the month without the loaf shows its value lay in bringing customers in, so the reader must negate the accountant's view",
+  "prompt": "[Sentence Completion] The accountant showed the owner that each plain loaf earned the bakery less than a nickel and urged her to stop baking it. She tried it for a month and learned that the loaf was anything but -------: sales of cakes and coffee fell by a third, because many of the regulars who used to come in for bread, and pick up a pastry while they were there, had simply started shopping somewhere else.",
+  "choices": [
+   "convenient",
+   "dowdy",
+   "disposable",
+   "dependable"
+  ],
+  "correct_answer": "disposable",
+  "explanation": "disposable (able to be thrown out or done without): dropping the loaf cost the bakery a third of its other sales, so it proved to be something the shop could not do without.",
+  "distractor_rationales": [
+   "dependable - meaning ('reliable'); nothing shows the loaf's sales were unreliable, so 'anything but dependable' contradicts the story",
+   "convenient - meaning ('easy, suited to one's needs'); the month shows the loaf's value to the shop, not whether baking it was easy",
+   "dowdy - meaning ('plain and unfashionable in appearance'); the loaf is called plain, and the month tells us about its value to the shop, not its looks, so 'anything but dowdy' has no support"
+  ]
+ },
+ {
+  "id": "IS23B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "logic of examples; the reader must generalize from what others do in response to her (coach changes the drill, the table follows) rather than from what she does herself, which points toward the near-miss candor",
+  "prompt": "[Sentence Completion] She held no title on the team, not even assistant captain, and she rarely spoke in the huddle. Yet her ------- was plain to anyone who watched a single practice: the one time she questioned a passing drill, the coach dropped it the next day, and whichever table she sat at during the team lunch was the table the rookies chose too.",
+  "choices": [
+   "competence",
+   "clout",
+   "composure",
+   "coldness"
+  ],
+  "correct_answer": "clout",
+  "explanation": "clout (influence, weight with others): the examples show other people changing what they do because of her, the coach dropping a drill and the rookies following her, which is influence without a title.",
+  "distractor_rationales": [
+   "competence - meaning ('ability to do something well'); none of the examples concerns how well she plays; they show others changing what they do because of her",
+   "coldness - meaning ('lack of warmth toward others'); her silence in the huddle hints at it, but the rookies choosing her lunch table every day shows people are drawn to her, not kept at a distance",
+   "composure - meaning ('calmness'); nothing tests her calm; the examples are about others following her lead"
+  ]
+ },
+ {
+  "id": "IS23B-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession ('never raised her voice ... yet') plus a two-step inference: the details of close, warm attention rule out the cold and inattentive readings, and only the fact that every proposal quietly vanishes implies how her staff come to feel around her",
+  "prompt": "[Sentence Completion] The new supervisor never raised her voice and never turned down a request outright, yet within a month her staff had come to find her -------. She would hear out a proposal without once glancing at her phone, repeat it back almost word for word, warmly thank whoever had made it, and then never mention it again.",
+  "choices": [
+   "clinical",
+   "disengaged",
+   "capable",
+   "deflating"
+  ],
+  "correct_answer": "deflating",
+  "explanation": "deflating (draining confidence or enthusiasm): she listens closely and thanks people warmly, yet every proposal disappears, so working for her steadily drains her staff's eagerness to offer ideas.",
+  "distractor_rationales": [
+   "clinical - meaning ('cool and unemotional'); she warmly thanks each speaker, so coldness is not the complaint",
+   "disengaged - meaning ('not involved or paying attention'); she never glances at her phone and repeats each proposal back almost word for word, so she is plainly paying attention",
+   "capable - meaning ('able, competent'); 'yet' signals a complaint, and nothing in the sentence concerns her skill"
+  ]
+ },
+ {
+  "id": "IS23B-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast with the gallery's 'long plan' plus logic of examples: the reader must generalize from three outside accidents (a sold building, an affordable room, frozen paint) to events beyond her control, while the money details and the run of losses tempt commerce and despair",
+  "prompt": "[Sentence Completion] The gallery's notes present each change in the painter's style as one more step in a long plan. Her letters tell a story of -------: she gave up portraits when the building that held her studio was sold, took up seascapes because the only room she could afford looked out on the harbor, and dropped those one winter when her paints froze in an unheated shed.",
+  "choices": [
+   "conviction",
+   "discord",
+   "despair",
+   "circumstance"
+  ],
+  "correct_answer": "circumstance",
+  "explanation": "circumstance (outside conditions and events one does not control): every change in style follows an accident of where she lived or worked, the opposite of the long plan the gallery describes.",
+  "distractor_rationales": [
+   "conviction - meaning ('firm, settled belief'); it fits the gallery's story of a long plan, but the letters show each change forced by an outside event rather than chosen out of belief",
+   "despair - meaning ('loss of all hope'); the letters record setbacks, but she keeps painting and takes up new subjects, which is not hopelessness",
+   "discord - meaning ('conflict, disagreement'); no quarrel with anyone appears; each change follows an outside event"
+  ]
+ },
+ {
+  "id": "IS23B-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: printing the figures plainly rules out hiding or attacking them; the key must be inferred from three behaviours a sentence later (minimizing comparison, steering to the far future, omitting the cash figure)",
+  "prompt": "[Sentence Completion] Investors had braced for excuses, so they were surprised when the founder put the third straight quarter of falling sales on her very first slide, in bold, and agreed that the figures were accurate. It took them longer to notice what she did with those figures next. She would ------- them for the rest of the hour, comparing the shortfall to the cost of a single delivery van, spending most of the meeting on a product that would not launch for two years, and never once mentioning how much cash the company had left.",
+  "choices": [
+   "confront",
+   "discredit",
+   "disclose",
+   "downplay"
+  ],
+  "correct_answer": "downplay",
+  "explanation": "downplay (make something seem less important than it is): she had already shown the numbers and accepted them, but then shrank them with a trivial comparison, buried them under distant plans, and left out the most alarming figure.",
+  "distractor_rationales": [
+   "disclose - to reveal ('disclose the results'); she had already revealed them on the first slide, and what follows is concealment of their weight, not revelation",
+   "confront - to face squarely ('confront a problem'); her bold first slide looks like this, which is the investors' first impression, but for the rest of the hour she shrinks the figures, changes the subject and omits the cash, which is the opposite of facing them",
+   "discredit - to show to be unreliable ('discredit a witness'); she explicitly agreed the figures were accurate, so she never casts doubt on them"
+  ]
+ },
+ {
+  "id": "IS23B-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast 'not so much imitations as' removes the copy reading; the examples (comic exaggerations of each tune) must be read to choose mocking exaggeration over honoring or unfinished sketches",
+  "prompt": "[Sentence Completion] Reviewers who recognized the famous tunes in the young composer's first symphony accused her of borrowing because she had no ideas of her own. Her teacher heard the piece differently. A gentle lullaby came back blared by six trumpets; a stately royal march was hurried into a frantic gallop; a solemn hymn was handed to a kazoo. Her borrowed tunes, he argued, were not so much imitations of the old masters as -------.",
+  "choices": [
+   "dedications",
+   "duplicates",
+   "caricatures",
+   "drafts"
+  ],
+  "correct_answer": "caricatures",
+  "explanation": "caricatures (exaggerated, comic versions of something): each borrowed tune is blown up into something absurd, which mocks its original rather than copying or honoring it.",
+  "distractor_rationales": [
+   "duplicates - exact copies ('duplicates of a key'); that is the imitation reading the teacher is rejecting",
+   "dedications - works offered in honor of someone ('a dedication to her mentor'); a lullaby on six trumpets and a hymn on a kazoo poke fun rather than pay respect",
+   "drafts - rough early versions ('the first drafts of a novel'); the tunes are not unfinished sketches of the masters' work but finished, deliberately absurd versions of it"
+  ]
+ },
+ {
+  "id": "IS23B-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "a plausible near clue (broadcasters' 'fearless', 'never flinched') is explicitly set aside; the decisive evidence is the self-made scouting binder, which implies shrewd preparation rather than calm nerves, swagger, or obedience",
+  "prompt": "[Sentence Completion] The broadcasters kept calling the young goalkeeper fearless, and it was true that she never flinched at a hard shot. But her coach said that was not why she had won the starting job. Nobody had asked her to keep the binder she carried to every match, with a page on each striker in the league noting which foot each one favored, which corner each aimed for when tired, and who glanced at the net before kicking. What set her apart, he said, was that she was -------.",
+  "choices": [
+   "cultured",
+   "canny",
+   "collected",
+   "cocky"
+  ],
+  "correct_answer": "canny",
+  "explanation": "canny (shrewd and clever, especially in reading situations): she studies every opponent's habits so that each save is worked out in advance, which is what the coach contrasts with mere fearlessness.",
+  "distractor_rationales": [
+   "collected - calm and in control ('cool and collected'); never flinching shows this, but the coach says that is not why she won the job",
+   "cocky - overly sure of oneself ('a cocky rookie'); nothing in the binder shows arrogance; it shows preparation",
+   "cultured - refined, well-read in the arts ('a cultured traveler'); the binder records strikers' kicking habits, which shows shrewd study of opponents, not refinement or learning in the arts"
+  ]
+ },
+ {
+  "id": "IS23B-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose inferred from the coach's habit (always asking what the opponent would say) plus 'before anyone else could', which points to attacking one's own argument",
+  "prompt": "[Sentence Completion] The debate coach almost never told her students whether an argument was good. She would listen, ask only \"What would your opponent say to that?\", and then wait in silence. Students found the habit maddening in the fall, but by spring they had learned to ------- their own cases before anyone else could, and the team lost only twice all season.",
+  "choices": [
+   "distribute",
+   "challenge",
+   "deliver",
+   "display"
+  ],
+  "correct_answer": "challenge",
+  "explanation": "challenge (question or test): the coach's one question trained them to attack their own arguments the way an opponent would, so they found the weak points first.",
+  "distractor_rationales": [
+   "deliver - to present a speech ('deliver a closing argument'); the coach's question is about answering objections, not presenting, and 'before anyone else could' makes no sense of presenting one's own case",
+   "display - to show openly ('display a trophy'); showing their cases is not what the opponent question trains",
+   "distribute - to hand out ('distribute the ballots'); handing out cases has nothing to do with anticipating an opponent's reply"
+  ]
+ },
+ {
+  "id": "IS23B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: forms tied to a badge number and read by one's own supervisor imply staff hid dissatisfaction; exit interviews (nothing to lose) confirm it; the key is the quantity the survey undercounted, never named near the blank",
+  "prompt": "[Sentence Completion] Management celebrated when 92 percent of the staff marked themselves \"satisfied\" on the annual survey. A newly hired analyst was less impressed. Every form, she pointed out, had been printed with the employee's badge number and returned straight to that employee's own supervisor, while the year's exit interviews, given by workers who had nothing left to lose, told a very different story about pay and scheduling. The true level of ------- among the staff, she concluded, was almost certainly far higher than the survey suggested.",
+  "choices": [
+   "disinterest",
+   "creativity",
+   "discontent",
+   "civility"
+  ],
+  "correct_answer": "discontent",
+  "explanation": "discontent (dissatisfaction): workers who could be identified by their supervisors had reason to mark 'satisfied' anyway, and those with nothing to lose described problems with pay and scheduling, so the survey undercounted dissatisfaction.",
+  "distractor_rationales": [
+   "civility - politeness ('civility between rivals'); a satisfaction survey does not measure manners, and the exit interviews concern pay and scheduling, not courtesy",
+   "disinterest - lack of interest ('disinterest in politics'); the leaving workers had specific grievances about pay and schedules, which is dissatisfaction, not indifference",
+   "creativity - inventiveness ('creativity in design'); a satisfaction survey does not measure it, and nothing in the evidence concerns new ideas"
+  ]
+ },
+ {
+  "id": "IS23C-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: the opinion catalogues errors yet keeps the conviction, so the justices must deny the errors changed the outcome; reader must track 'did not dispute X, only Y'",
+  "prompt": "[Sentence Completion] Although the appeals court devoted eleven pages of its opinion to cataloguing the trial judge's mistakes, it left the conviction in place. The justices did not dispute that the errors were real, only that any of them had been -------.",
+  "choices": [
+   "excusable",
+   "fatal",
+   "evident",
+   "hurtful"
+  ],
+  "correct_answer": "fatal",
+  "explanation": "fatal (decisive, ruinous to the case): the court admits the errors and still upholds the conviction, so what it denies is that any error was serious enough to overturn the verdict.",
+  "distractor_rationales": [
+   "evident - meaning ('plain to see'); the court spent eleven pages listing the errors, so it plainly found them evident",
+   "excusable - meaning ('forgivable'); denying that any error was excusable would argue for reversing the conviction, the opposite of what the court did",
+   "hurtful - meaning ('wounding to someone's feelings'); concerns emotional injury, not whether an error damaged the case"
+  ]
+ },
+ {
+  "id": "IS23C-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step sequence: suppressing fires let cedars crowd out the grasses, so the fires must have been helping the grasses; the ranchers' belief that fire ruins land is the nearer, wrong clue",
+  "prompt": "[Sentence Completion] For decades, ranchers put out every prairie fire they could reach, convinced that the flames would ruin their grazing land. The result surprised them: within twenty years, cedars had crowded out the very grasses that the fires had been quietly working to -------.",
+  "choices": [
+   "enclose",
+   "engulf",
+   "harbor",
+   "foster"
+  ],
+  "correct_answer": "foster",
+  "explanation": "foster (encourage the growth of): once the fires stopped, cedars took over the grasses, which shows the fires had been protecting and promoting those grasses all along.",
+  "distractor_rationales": [
+   "engulf - meaning ('swallow up, overwhelm'); matches the ranchers' mistaken belief that fire destroys the land, which the surprising result refutes",
+   "enclose - meaning ('surround, fence in'); fires do not fence grasses in, and the point is that the fires kept competitors down so the grasses could grow",
+   "harbor - meaning ('give shelter to, hide'); fires do not shelter grasses, and the point is growth against competitors, not concealment"
+  ]
+ },
+ {
+  "id": "IS23C-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison 'not so much dangerous as X': X must exclude sudden threat and name slow, cumulative exhaustion, which is described only in the following clause",
+  "prompt": "[Sentence Completion] The guidebook warned that the mountain pass was hazardous, but the travelers who crossed it that summer found it not so much dangerous as -------: no single stretch ever threatened them, yet the endless switchbacks, thin air, and rationed water left even the strongest hikers spent by the third day.",
+  "choices": [
+   "forlorn",
+   "gruesome",
+   "hallowed",
+   "grinding"
+  ],
+  "correct_answer": "grinding",
+  "explanation": "grinding (wearing someone down through steady, relentless effort): no moment was threatening, but the accumulated switchbacks, thin air, and short water exhausted everyone.",
+  "distractor_rationales": [
+   "forlorn - meaning ('lonely and abandoned, pitiful'); a bleak pass might seem forlorn, but the sentence's detail is about exhaustion, not loneliness",
+   "gruesome - meaning ('horrible, causing disgust'); suggests horror, which is nearer to the danger the travelers did not find than to steady fatigue",
+   "hallowed - meaning ('regarded as holy'); nothing in the sentence concerns reverence"
+  ]
+ },
+ {
+  "id": "IS23C-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "near clue reversed: the friends' reading (racing a deadline, lamp past midnight) invites feverish, but the diary removes the rush (deadline moved back, hours no trouble); the decisive clue a sentence away (ever more corrections, decisions made without her) must be turned into the feeling it produces",
+  "prompt": "[Sentence Completion] Her friends, seeing a lamp in her window past midnight all that spring, assumed the young translator was racing to meet her deadline. Her diary tells a different story. The late hours never troubled her, and the deadline was in fact moved back twice; what she returned to, page after page, was that each draft came back with more of the editor's corrections than the last, and that both new dates had been settled without anyone asking her. By May she was less exhausted than -------.",
+  "choices": [
+   "eminent",
+   "efficient",
+   "feverish",
+   "frustrated"
+  ],
+  "correct_answer": "frustrated",
+  "explanation": "frustrated (annoyed at being blocked or overruled): the diary dwells not on the hours but on corrections piling up and dates decided without her, which breeds exasperation rather than tiredness.",
+  "distractor_rationales": [
+   "eminent - meaning ('famous and respected'); she is a young translator being overruled, and nothing in the diary concerns fame",
+   "efficient - meaning ('working well without waste'); repeated drafts might make someone faster, but the diary records grievances, not skill",
+   "feverish - meaning ('frantically excited or hurried'); it fits the friends' guess, but the diary says the hours did not trouble her and the deadline kept moving back, so there was no rush"
+  ]
+ },
+ {
+  "id": "IS23C-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences: the cause is forgotten and no one can name a wrong, yet the separation persists, so what was handed down is the hostility without its reason; 'handed down' invites the near-misses heritage and ethos, which fit the inheritance but not the coldness",
+  "prompt": "[Sentence Completion] No one at the reunion could say what the two branches of the family had first argued about: a fence line, some guessed, or an unpaid debt. The cousins born since had never even heard the story. Yet each summer they took their seats at separate tables, and aunts who could not have named a single wrong done to them still turned away when the other side's children waved. The cause had been forgotten long ago; the ------- had been handed down intact.",
+  "choices": [
+   "enmity",
+   "heritage",
+   "ethos",
+   "gaffe"
+  ],
+  "correct_answer": "enmity",
+  "explanation": "enmity (lasting mutual hostility): the separate tables and cold nods show the hostility survived even though nobody remembers its cause.",
+  "distractor_rationales": [
+   "ethos - meaning ('the guiding values of a group'); shared ideals are not what sends cousins to separate tables and makes aunts turn away from children",
+   "gaffe - meaning ('a social blunder'); a single blunder is a one-time act and cannot be what persists through generations of cold behavior",
+   "heritage - meaning ('traditions passed down from earlier generations'); fits 'handed down' but not the coldness the semicolon contrasts with the forgotten cause"
+  ]
+ },
+ {
+  "id": "IS23C-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession reversed: the veterans' praise of the polish must be turned into the jurors' suspicion of it; two-step inference (too smooth for an innocent man -> slick and insincere); 'uneasy' nearby invites flustered, and flighty is killed by the timed, anticipated precision of the argument",
+  "prompt": "[Sentence Completion] Courthouse veterans called it the finest closing argument they had heard in years: every objection anticipated, every pause timed, not a single fact out of place. The jurors, though, came away uneasy, and several later said that this very polish had sunk the defendant; an innocent man, they reasoned, should not have needed an advocate so -------.",
+  "choices": [
+   "flighty",
+   "genial",
+   "flustered",
+   "glib"
+  ],
+  "correct_answer": "glib",
+  "explanation": "glib (smooth and ready-tongued in a way that seems insincere): the jurors distrusted the very polish the veterans admired, reading it as the slickness of someone covering for a guilty client.",
+  "distractor_rationales": [
+   "flighty - meaning ('fickle, unable to stay focused'); every objection was anticipated and every pause timed, the opposite of scattered",
+   "flustered - meaning ('confused and agitated'); 'uneasy' is the jurors' state, and the advocate was the opposite of rattled, with every pause timed",
+   "genial - meaning ('friendly and cheerful'); nothing in the argument's polish concerns friendliness, and warmth would not make jurors suspect guilt"
+  ]
+ },
+ {
+  "id": "IS23C-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence with a dismissed near clue: the spread across all twelve ridges invites expand, but the head count is set aside; two-step inference from the decisive clue: lab-hatched young still grow long legs, so the change is inherited, not a habit of climbing, which implies the word",
+  "prompt": "[Sentence Completion] When a few dozen lizards were released on a bare island fifty years ago, biologists hoped only that they would survive. They did far more: their descendants now cover all twelve of its rocky ridges. But the head count is not what made the study famous. The island lizards turned out to have longer legs than their mainland cousins, and when their eggs were hatched in a laboratory with no rocks to climb, the young still grew the long legs, evidence that a species can ------- in decades rather than over the ages textbooks once assumed.",
+  "choices": [
+   "evolve",
+   "expand",
+   "emigrate",
+   "flounder"
+  ],
+  "correct_answer": "evolve",
+  "explanation": "evolve (change in form over generations): longer legs than the ancestral mainland population, suited to the new rocky habitat, is a change in the species' body, and the study is famous for that, not for the head count.",
+  "distractor_rationales": [
+   "emigrate - meaning ('leave one country to settle in another'); the lizards were carried to the island and stayed; the finding is about their legs, not a move",
+   "expand - meaning ('grow larger or spread out'); fits the twelve ridges, but the sentence explicitly sets the numbers aside before giving the real evidence",
+   "flounder - meaning ('struggle helplessly'); the lizards did better than hoped, so struggling contradicts every detail"
+  ]
+ },
+ {
+  "id": "IS23C-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence reversed by time: the nearest clues (fondly, the story they most liked to tell) are positive, but the blank names what everyone agreed 'at the time', so the reader must go back to the breakdowns two sentences earlier; the broken brochure promise invites gimmick",
+  "prompt": "[Sentence Completion] The brochure promised a restful week on the canals. Instead the boat broke down twice, the guide quit on the fourth morning, and the group spent one night tied to a fence post in the rain. Oddly, the passengers remember that week more fondly than any holiday they have taken since, and at their reunion a year later, what everyone had agreed at the time was an unmistakable ------- had become the story they most liked to tell.",
+  "choices": [
+   "fluke",
+   "fiasco",
+   "gimmick",
+   "haven"
+  ],
+  "correct_answer": "fiasco",
+  "explanation": "fiasco (a complete, embarrassing failure): breakdowns, a departed guide and a night in the rain made the trip a plain disaster while it was happening, which is what 'at the time' points back to.",
+  "distractor_rationales": [
+   "fluke - meaning ('a stroke of luck or chance'); the run of breakdowns was a series of failures, not one lucky accident",
+   "gimmick - meaning ('a trick or device meant to attract attention'); the brochure may have oversold the trip, but the breakdowns and the rain were not a ploy, they were things going wrong",
+   "haven - meaning ('a safe, peaceful place'); matches the brochure's promise and the fond memory, not what everyone agreed at the time"
+  ]
+ },
+ {
+  "id": "IS23C-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison with a trap: the early heroes' lecturing sits nearest the topic and invites espouses/heralds, and 'more convincingly' tempts espouses, but the heroine never argues for or names the virtue; two-step inference (she acts honestly without speaking of it -> she represents it in her conduct)",
+  "prompt": "[Sentence Completion] The heroes of the author's early novels lectured every minor character on the value of honesty, and reviewers found them insufferable. The heroine of her last book never argues for honesty or even uses the word; she returns a stranger's wallet, admits a mistake that costs her a promotion, and moves on without comment. Even readers who disliked the earlier books agree that she ------- the virtue far more convincingly than any of them.",
+  "choices": [
+   "heralds",
+   "flaunts",
+   "espouses",
+   "embodies"
+  ],
+  "correct_answer": "embodies",
+  "explanation": "embodies (gives concrete form to, represents in her own conduct): she never speaks of honesty but lives it in what she does, which is what makes her more convincing than the lecturers.",
+  "distractor_rationales": [
+   "espouses - meaning ('adopts and argues for a cause'); arguing for honesty is exactly what the lecturing early heroes did, and she never argues for it or names it",
+   "flaunts - meaning ('shows off'); she never mentions the virtue and acts 'without comment', the opposite of showing off",
+   "heralds - meaning ('announces'); announcing is what the lecturing early heroes did, and she never uses the word"
+  ]
+ },
+ {
+  "id": "IS23C-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession then two-step inference: the quilt is conceded to be cheap, and the decisive clue (a square added each year a first child was born) implies a record of births across generations, which implies the word; 'without anyone planning it' invites folklore",
+  "prompt": "[Sentence Completion] An appraiser once priced the quilt at less than the frame it hangs in, and the family has never disputed the figure: the fabric is cheap and the stitching uneven. What the appraiser could not price was that each generation had added a square in the year its first child was born, so that the quilt had become, without anyone planning it, the family's -------.",
+  "choices": [
+   "hallmark",
+   "folklore",
+   "genealogy",
+   "heyday"
+  ],
+  "correct_answer": "genealogy",
+  "explanation": "genealogy (a record of a family's line of descent): one square per first birth in each generation turns the quilt into a stitched record of who descended from whom.",
+  "distractor_rationales": [
+   "folklore - meaning ('traditional stories and beliefs of a people'); the quilt records births, not stories or beliefs",
+   "hallmark - meaning ('a distinguishing feature'); nothing says the quilt is what sets this family apart; the point is what the squares record",
+   "heyday - meaning ('a period of greatest success'); the squares mark births across many years, not a single peak in the family's fortunes"
+  ]
+ },
+ {
+  "id": "IS23C-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison of two judges; the near clue (compassion) points at the first judge, and the 'brave stand' sentence kills heroics; must infer from 'exact wording despite disliking the result' a faithfulness to the text",
+  "prompt": "[Sentence Completion] For thirty years Judge Hale set aside the plain words of a statute whenever they produced an outcome she thought unjust, and lawyers loved her for her compassion. Her successor did the opposite, applying a law's exact wording even in cases where she had said from the bench that she disliked the result. Nor was this a brave stand: the legislature usually agreed with her, and the newspapers seldom noticed. What the bar came, grudgingly, to admire in the second judge was her -------.",
+  "choices": [
+   "heroics",
+   "fidelity",
+   "flair",
+   "empathy"
+  ],
+  "correct_answer": "fidelity",
+  "explanation": "fidelity (faithfulness, loyalty): she kept to the law's exact words even against her own wishes, i.e. stayed faithful to the text; the admiration contrasts with the first judge's compassion.",
+  "distractor_rationales": [
+   "empathy - fellow feeling ('her empathy for the accused'); that is the first judge's compassion, and the second ruled against her own sympathies",
+   "flair - stylish natural talent ('a flair for drama'); applying a statute's exact words is the opposite of showmanship, and nothing describes her style",
+   "heroics - acts of great courage ('his heroics in the rescue'); the passage says it was not a brave stand, since the legislature agreed and the papers did not notice, so there was nothing heroic to admire"
+  ]
+ },
+ {
+  "id": "IS23C-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "elimination plus two-step inference: the storm is feared less (kills hail), fans to keep air moving and 'still hours' (kill gust), damp spells bother them least (kills fungus); a calm clear night plus fires among the rows must be turned into freezing",
+  "prompt": "[Sentence Completion] After a warm March coaxed the orchard into blossom two weeks early, the growers spent April watching the evening forecast. Visitors were puzzled that a thunderstorm worried them less than a calm, starry night, and that on such nights they lit fires among the rows and ran big fans to keep the air stirring. The damp, grey spells that drove the visitors indoors bothered the growers least of all. What they feared could do its damage in a few still hours before dawn: the -------.",
+  "choices": [
+   "fungus",
+   "frost",
+   "hail",
+   "gust"
+  ],
+  "correct_answer": "frost",
+  "explanation": "frost (ice formed when the temperature drops below freezing): calm, clear nights lose the day's heat fastest, which is why growers light fires and stir the air; a few hours of it before dawn kills early blossom.",
+  "distractor_rationales": [
+   "fungus - a mold or mildew ('fungus on the leaves'); it thrives in damp spells, which the growers mind least, and does not strike in a few hours",
+   "gust - a sudden blast of wind ('a gust blew off his hat'); the growers run fans to make the air move, and the danger comes in still hours",
+   "hail - balls of ice falling from storm clouds ('hail dented the car'); it comes with thunderstorms, which worry the growers less than a calm, starry night"
+  ]
+ },
+ {
+  "id": "IS23C-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence plus concession: the warm cards suggest closeness, the empty contents reverse it, and the missing quarrel, the warm words to friends and 'far from hiding a grudge' kill the near-miss embittered; two-step inference to drifting apart without a cause",
+  "prompt": "[Sentence Completion] Every December the two sisters still exchanged cards signed 'with all my love,' and their children grew up assuming the pair were close. Only after both had died did the children lay the cards side by side and notice that, across twenty-six years, they held no news, no questions, and no plans to visit. The children went looking for the quarrel that would explain it and never found one; each sister, it turned out, had spoken warmly of the other to friends until the end. Far from hiding a grudge, the cheerful cards had hidden only how ------- the sisters had become.",
+  "choices": [
+   "fretful",
+   "estranged",
+   "embittered",
+   "enchanted"
+  ],
+  "correct_answer": "estranged",
+  "explanation": "estranged (no longer close; grown apart): cards empty of news, questions or visits for decades show a relationship that faded to formality, with no grudge behind it.",
+  "distractor_rationales": [
+   "embittered - resentful after being wronged ('embittered by the defeat'); it fits the distance, but there was no quarrel, neither was wronged, each spoke warmly of the other, and the cards hid no grudge",
+   "enchanted - charmed and delighted ('enchanted by the music'); cards with no news or plans show no delight in each other, only formality",
+   "fretful - anxious and worried ('a fretful night before the exam'); nothing in the cards or the story shows either sister worrying"
+  ]
+ },
+ {
+  "id": "IS23C-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "reversal by sequence: the ending shows the neighbor was right, so the quality readers had pinned on the neighbor belongs to the narrator; 'foreboding' is the near-miss (the boat-builder's dread of a flood) killed because the narrator never expected one, and 'mockery' tempts toward hatred",
+  "prompt": "[Sentence Completion] For two hundred pages the narrator ridicules his neighbor for building a boat in a valley that has not flooded in living memory, and most readers laugh along with him. Then, in the final chapter, the dam upstream gives way, and it is the neighbor's boat that carries both families to the ridge. Rereading the book, one sees that the mockery was aimed at the wrong man all along: the novel had been a study in -------, but the narrator's rather than the neighbor's.",
+  "choices": [
+   "folly",
+   "foreboding",
+   "hatred",
+   "grief"
+  ],
+  "correct_answer": "folly",
+  "explanation": "folly (foolishness): readers took the boat-builder for the fool; the flood shows the narrator's scorn was the foolish thing, so the folly is his.",
+  "distractor_rationales": [
+   "foreboding - a dread that something bad will happen ('a sense of foreboding before the storm'); that was the neighbor's feeling about the flood, and the narrator never expected one, so it cannot be his",
+   "grief - deep sorrow ('grief at a death'); no one in the story mourns, and the narrator's failing is one of judgment, not sorrow",
+   "hatred - intense dislike ('hatred of the enemy'); the narrator's ridicule might suggest it, but readers never attributed hatred to the neighbor, so it cannot be the narrator's 'rather than the neighbor's'"
+  ]
+ },
+ {
+  "id": "IS23C-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step inference: a jammed outbound road with empty inbound lanes, plus the cafés closing the next day, means the summer crowd leaves at once; 'the Long Goodbye' confirms a departure; hiatus is the near-miss (the quiet winter) killed because the Monday itself is the busiest road day, and worry kills the celebration reading",
+  "prompt": "[Sentence Completion] From June through August the little resort hums: every room is booked, and the year-round residents are outnumbered six to one. The townspeople can tell you the exact day it ends, because on the first Monday of September the coast road is jammed from dawn to dusk while the inbound lanes stand empty, and by Tuesday the cafés have pulled in their awnings. Locals call that Monday's annual ------- 'the Long Goodbye,' and they say the name with as much worry about the empty winter ahead as relief.",
+  "choices": [
+   "hiatus",
+   "fanfare",
+   "exodus",
+   "excursion"
+  ],
+  "correct_answer": "exodus",
+  "explanation": "exodus (mass departure): the road out is jammed while nothing comes in, and the town empties overnight, so the Monday is the summer crowd leaving all at once.",
+  "distractor_rationales": [
+   "excursion - a short pleasure trip ('a school excursion to the museum'); the visitors are leaving for the season, not going on an outing and returning",
+   "fanfare - showy celebration ('opened with great fanfare'); nothing is celebrated, and the townspeople feel worry as much as relief",
+   "hiatus - a pause or break ('the show returns after a hiatus'); the quiet winter is the pause, but that Monday is a jammed road, a departure rather than a break"
+  ]
+ },
+ {
+  "id": "IS23D-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: the reader must notice that opinions split for/against by party (not uniformly hostile) and that coverage was slight, then name the effect",
+  "prompt": "[Sentence Completion] Its sponsors had hoped the measure, a small change to how school districts were drawn, would pass unnoticed, and the newspapers gave it barely a paragraph. Yet within a week pollsters could find almost no voter without a firm opinion of it, and nearly every member of the Farmers' League who had one was for it while nearly every Union Party member was against it. Commentators called it the session's most ------- bill.",
+  "choices": [
+   "reviled",
+   "pressing",
+   "polarizing",
+   "revolutionary"
+  ],
+  "correct_answer": "polarizing",
+  "explanation": "polarizing (splitting people into opposed camps): everyone holds a firm view, and the views divide cleanly along party lines, one side for and one against.",
+  "distractor_rationales": [
+   "pressing - urgent ('a pressing need'); nothing suggests urgency, and the measure was meant to slip through quietly",
+   "reviled - hated by nearly everyone ('a reviled dictator'); tempting from the outcry, but half the voters, the Farmers' League, were for it",
+   "revolutionary - radically new ('a revolutionary idea'); the measure was only a small change"
+  ]
+ },
+ {
+  "id": "IS23D-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: wealth and swing-vote reasons are ruled out; 'counted by heads rather than by acres' plus a small land area implies many people",
+  "prompt": "[Sentence Completion] Though it covers barely a twentieth of the country's land and lies at its far edge, the coastal province sees more of the candidates in every campaign than the whole vast interior does. Its people are mostly farmers of modest means, and they have backed the same party for forty years, so no candidate goes there hoping to change many minds. Strategists still find the schedule sensible: votes are counted by heads rather than by acres, and the province is the nation's most ------- region.",
+  "choices": [
+   "populous",
+   "religious",
+   "rocky",
+   "patriotic"
+  ],
+  "correct_answer": "populous",
+  "explanation": "populous (having many inhabitants): candidates court the province for its votes, and since votes go by heads and not land, a small region can only matter this much by holding many people.",
+  "distractor_rationales": [
+   "patriotic - devoted to one's country ('a patriotic song'); nothing in the passage ties the candidates' visits to patriotism",
+   "religious - devout ('a religious community'); nothing about faith explains why heads-not-acres matters",
+   "rocky - full of rocks ('rocky soil'); a land feature, irrelevant to counting votes"
+  ]
+ },
+ {
+  "id": "IS23D-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "elimination across a paragraph: players and conducting style have changed, so the unchanged thing must be what the board approves on the programs",
+  "prompt": "[Sentence Completion] The orchestra has replaced nearly two-thirds of its players in five years and hired a young conductor famous for her daring tempos, yet subscribers complain that a season there feels exactly as it did a decade ago. The printed programs explain it: a board wary of empty seats still approves only the dozen symphonies the founding conductor loved, so whatever else has changed, the orchestra's ------- has not.",
+  "choices": [
+   "pedigree",
+   "roster",
+   "phrasing",
+   "repertoire"
+  ],
+  "correct_answer": "repertoire",
+  "explanation": "repertoire (the body of works a company performs): the board keeps approving the same dozen symphonies, so the works played are what has stayed the same.",
+  "distractor_rationales": [
+   "roster - list of members ('the team roster'); two-thirds of the players are new, so it has changed",
+   "phrasing - the way musical lines are shaped in performance ('careful phrasing'); the new conductor's daring tempos mean the playing style has changed",
+   "pedigree - distinguished history or lineage ('a pedigree of champions'); it cannot be what the printed programs explain, and nothing in the complaint concerns it"
+  ]
+ },
+ {
+  "id": "IS23D-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "'not so much X as' contrast with the motive given a clause later: bareness not from thrift (generous budget) but from a belief that ornament is dishonest -> conviction; near-miss 'reasonable' fits the sensible-design reading but not a moral stance",
+  "prompt": "[Sentence Completion] The new library is not so much modest as ------- : its walls and ceilings were left bare not to save money, since the budget was generous, but because its architect held that decoration in a public building was a kind of dishonesty.",
+  "choices": [
+   "principled",
+   "roomy",
+   "ragged",
+   "reasonable"
+  ],
+  "correct_answer": "principled",
+  "explanation": "principled (acting from firm moral beliefs): the plainness comes from the architect's conviction that ornament is dishonest, not from economy, so the building expresses a principle.",
+  "distractor_rationales": [
+   "reasonable - sensible, fair ('a reasonable price'); suits a cost-saving or practical choice, but the motive given is moral, and the money-saving reason is explicitly denied",
+   "roomy - spacious ('a roomy closet'); says nothing about why the surfaces were left bare",
+   "ragged - worn and torn ('ragged clothes'); the library is new and its bareness deliberate"
+  ]
+ },
+ {
+  "id": "IS23D-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "concession reversed: the soup lacks cream and butter (the obvious signs of richness), yet the gelatin and 'three spoonfuls made a meal' show it is heavy",
+  "prompt": "[Sentence Completion] There was no cream in the soup and only a spoonful of butter in the whole pot, yet diners rarely finished a bowl: the chef simmered her stock for two days, until it was so dense with gelatin that it clung to the spoon. Even the critic who praised it warned that it was too ------- for a summer menu, since three spoonfuls made a meal.",
+  "choices": [
+   "refreshing",
+   "runny",
+   "posh",
+   "rich"
+  ],
+  "correct_answer": "rich",
+  "explanation": "rich (heavy and filling): despite the missing cream and butter, the dense stock fills a diner after three spoonfuls, too heavy for summer.",
+  "distractor_rationales": [
+   "refreshing - light and reviving ('a refreshing drink'); 'too refreshing for summer' makes no sense, and this soup is heavy",
+   "posh - fancy and expensive ('a posh hotel'); nothing about price or elegance explains three spoonfuls making a meal",
+   "runny - watery ('runny eggs'); the stock clung to the spoon"
+  ]
+ },
+ {
+  "id": "IS23D-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: outpolled each of three rivals + barely two-fifths implies most votes but no majority -> plurality; pluck, rank and reign all fit a new mayor but not the arithmetic the opponents seize on",
+  "prompt": "[Sentence Completion] Although she had outpolled each of her three rivals, the new mayor took office with barely two-fifths of the ballots, and her opponents seized on the arithmetic: three of every five voters, they pointed out, had chosen someone else, so her ------- was no warrant for the sweeping changes she had promised.",
+  "choices": [
+   "pluck",
+   "rank",
+   "plurality",
+   "reign"
+  ],
+  "correct_answer": "plurality",
+  "explanation": "plurality (the largest share of votes when it is less than a majority): she beat each rival yet won only two-fifths, so her win was the most votes without most voters, which is exactly what the opponents argue gives her no mandate.",
+  "distractor_rationales": [
+   "pluck - courage ('she showed real pluck'); the opponents' point is arithmetic about votes, not her character",
+   "rank - position in a hierarchy ('officers of high rank'); she holds the office, and the complaint is about her share of the ballots",
+   "reign - a monarch's rule ('the queen's reign'); the opponents attack the vote count, not her rule, and mayors do not reign"
+  ]
+ },
+ {
+  "id": "IS23D-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: water boiling before it is hot implies high altitude; flat land with no mountains rules out ridge, and altitude rules out prairie",
+  "prompt": "[Sentence Completion] Travelers who come up from the coast spend a full day on switchbacks, and the air in the town is thin enough that water boils before it is properly hot for tea; yet on arrival they are surprised to see no mountains at all, only wheat fields as flat as a floor running fifty kilometers in every direction. The town sits near the middle of a vast -------.",
+  "choices": [
+   "plateau",
+   "peninsula",
+   "ridge",
+   "prairie"
+  ],
+  "correct_answer": "plateau",
+  "explanation": "plateau (a large, flat area of high ground): the climb and the thin air show the town is high up, and the tabletop-flat fields with no peaks show the high ground is level.",
+  "distractor_rationales": [
+   "prairie - flat grassland ('the American prairie'); fits the flat wheat fields, but the thin air and day of switchbacks put the town high up",
+   "ridge - a long narrow high crest ('a mountain ridge'); the land runs flat fifty kilometers every way, with no mountains",
+   "peninsula - land surrounded by water on three sides ('the Korean peninsula'); the travelers have come inland, up from the coast"
+  ]
+ },
+ {
+  "id": "IS23D-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: the reader infers a long echo from why each camp feels as it does, and must see that only the shared acoustic fact, not a judgment, is agreed",
+  "prompt": "[Sentence Completion] Choral directors, whose slow, sustained music swells to fill the new hall, adore it; soloists dread it, since in a quick passage there each note seems to blur into the one after it. The two camps agree on nothing about the hall except that it is the most ------- in the city.",
+  "choices": [
+   "resonant",
+   "prized",
+   "photographed",
+   "palatial"
+  ],
+  "correct_answer": "resonant",
+  "explanation": "resonant (prolonging and deepening sound): the swelling choral music and the blurring quick notes are both effects of sound lingering, the one fact both camps accept.",
+  "distractor_rationales": [
+   "prized - highly valued ('a prized possession'); the soloists dread the hall, so they do not agree it is prized",
+   "palatial - grand like a palace ('a palatial mansion'); nothing is said about the hall's size or splendor",
+   "photographed - pictured often ('the most photographed bridge'); nothing concerns its appearance"
+  ]
+ },
+ {
+  "id": "IS23D-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession reversal: 'for all its crooked chimney and patched walls' sets up the word the looks suggest, and 'anything but' plus surviving the earthquakes denies it -> ramshackle; near-miss 'primitive' fits the looks but the hand tools make it true, not denied",
+  "prompt": "[Sentence Completion] For all its crooked chimney and patched walls, the farmhouse, raised by hand with tools its builder's grandfather had owned, is anything but -------: it has come through three earthquakes that toppled the newer concrete houses around it.",
+  "choices": [
+   "pretty",
+   "primitive",
+   "remarkable",
+   "ramshackle"
+  ],
+  "correct_answer": "ramshackle",
+  "explanation": "ramshackle (badly made and likely to fall apart): the crooked chimney and patches make the house look shaky, but surviving quakes that toppled sturdier-looking houses proves it is not.",
+  "distractor_rationales": [
+   "primitive - simple and crude ('primitive tools'); it was built by hand with old tools, so it is primitive, and the earthquake record does not deny that",
+   "remarkable - worthy of notice ('a remarkable feat'); surviving three earthquakes makes it remarkable, so 'anything but remarkable' contradicts the colon",
+   "pretty - attractive ('a pretty garden'); the earthquake record says nothing about looks"
+  ]
+ },
+ {
+  "id": "IS23D-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step with a trap: picked early, the peaches will soften (a false sign) but never gain sugar from the branch; each visible quality (plump, rosy, presentable) is granted",
+  "prompt": "[Sentence Completion] The market's peaches look flawless: fat and round, unbruised, evenly blushed, and firm enough to stack ten high. Yet the town's chefs pass them by. Picked weeks early so they could survive the voyage from the far side of the world, they will soften on a kitchen windowsill, but they will never gather the sugar a peach gathers only in its last days on the branch. They may look the part; they are seldom truly -------.",
+  "choices": [
+   "plump",
+   "rosy",
+   "ripe",
+   "presentable"
+  ],
+  "correct_answer": "ripe",
+  "explanation": "ripe (fully developed and ready to eat): picked early, the peaches never finish developing on the branch, so softening later does not make them truly ripe.",
+  "distractor_rationales": [
+   "plump - full and rounded ('plump cheeks'); they are fat and round",
+   "rosy - pink-red ('rosy cheeks'); they are evenly blushed",
+   "presentable - fit to be seen ('a presentable outfit'); they look flawless, which is exactly what 'look the part' grants"
+  ]
+ },
+ {
+  "id": "IS23D-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "elimination over separate details: no ice (not refrigerated), crunchy (not rubbery), raw and dripping from crocks with a sharp bite (not roasted) leaves the preserving method",
+  "prompt": "[Sentence Completion] In the mountain village there was no ice and no cellar cold enough to keep the summer's cucumbers past September, yet families ate them all winter, lifted dripping from the stone crocks beside every stove, still crunchy enough to snap and with a bite that made visiting children wince. By midwinter the cucumbers, though months from the vine, were not spoiled but -------.",
+  "choices": [
+   "roasted",
+   "refrigerated",
+   "pickled",
+   "rubbery"
+  ],
+  "correct_answer": "pickled",
+  "explanation": "pickled (preserved in brine or vinegar): kept in liquid in crocks without cold, still crunchy and sharp-tasting months later.",
+  "distractor_rationales": [
+   "refrigerated - kept cold ('refrigerated milk'); the village had no ice and no cold cellar",
+   "rubbery - tough and bendy ('rubbery chicken'); they were still crunchy enough to snap",
+   "roasted - cooked by dry heat ('roasted peppers'); they came dripping from crocks of liquid, still crunchy"
+  ]
+ },
+ {
+  "id": "IS23D-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: supporters outnumber opponents and the presiding officer is present, yet no vote; 14 of 25 absent leaves too few members to act",
+  "prompt": "[Sentence Completion] Supporters of the water bill outnumbered its opponents in the chamber that night by nearly two to one, and the council's president was in her chair, yet she would not call the vote. A spring flood had closed the river road, stranding fourteen of the council's twenty-five members on the far bank, and the charter is plain on the point: without its -------, the council can pass nothing.",
+  "choices": [
+   "quorum",
+   "petition",
+   "referendum",
+   "president"
+  ],
+  "correct_answer": "quorum",
+  "explanation": "quorum (the minimum number of members who must be present to do business): with fourteen of twenty-five absent, only eleven are in the room, fewer than half, so however lopsided the support among them, the council cannot act.",
+  "distractor_rationales": [
+   "petition - a formal written request ('a petition signed by residents'); nothing says one was required or missing",
+   "president - presiding officer ('the club president'); she was in her chair",
+   "referendum - a public vote on a measure ('a referendum on taxes'); nothing calls for voters, and the problem is the members on the far bank"
+  ]
+ },
+ {
+  "id": "IS23D-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: villages close enough to hear bells, yet the bridge needs piers taller than any tower and the walk needs rope handholds, implying a deep steep gap; reservoir fails because it cannot be crossed on foot",
+  "prompt": "[Sentence Completion] On a still evening the people of Ost can hear the church bells of Varn, and the engineers' plan to join the two villages calls for a bridge barely three hundred meters long. What has stopped them for a century is the height of its two piers, each of which would stand taller than any tower in the country. Until it is built, a visit still means half a day on foot, with rope handholds on the steepest stretches of the path, to get across the -------.",
+  "choices": [
+   "reservoir",
+   "pasture",
+   "ravine",
+   "rainforest"
+  ],
+  "correct_answer": "ravine",
+  "explanation": "ravine (a deep, narrow valley with steep sides): a short bridge that needs enormously tall piers spans a deep gap, and the walk across needs handholds on its steep sides.",
+  "distractor_rationales": [
+   "reservoir - a large lake made to store water ('the town reservoir'); a deep one could need tall piers, but no one crosses it on foot by scrambling down and up its sides",
+   "pasture - grassland for grazing animals ('cows in the pasture'); flat grazing land needs neither tall piers nor a half-day climb",
+   "rainforest - a dense tropical forest with heavy rainfall ('the Amazon rainforest'); a half-day walk through one is plausible, but tall trees need no tower-high bridge piers and no climb down one side and up the other"
+  ]
+ },
+ {
+  "id": "IS23D-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "track order and performer: the praised music carries the aria's melody but is orchestral and comes before, sliding into the first scene -> prelude; the aria's later return tempts a reader to place it later; quartet fails because the music is orchestral",
+  "prompt": "[Sentence Completion] Most of the audience had come for the famous tenor, and few of them were even in their seats for the four minutes of orchestral music that slid, without a pause, into the first scene. The critics heard it differently: the melody of his great aria, which brought the house to its feet an hour later, had been laid out in those minutes in full, and played more beautifully than he would ever sing it. In their view the evening's finest music came in its -------.",
+  "choices": [
+   "procession",
+   "quartet",
+   "prelude",
+   "requiem"
+  ],
+  "correct_answer": "prelude",
+  "explanation": "prelude (an introductory piece before the main action): the four minutes of orchestral music before the first scene, which the critics judged the finest music of the night.",
+  "distractor_rationales": [
+   "requiem - music for the dead ('Mozart's Requiem'); nothing concerns mourning",
+   "procession - a ceremonial march ('a wedding procession'); the praised music is played by the orchestra while the audience is still arriving, before any scene or march",
+   "quartet - music for four performers ('a string quartet'); the passage is by a full orchestra"
+  ]
+ },
+ {
+  "id": "IS23D-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: a hollow sound and, at a gouged corner, a thin white crust over strips of wood with no stone at all -> the stone look is a painted surface coat -> plaster; near-miss pine is the wooden backing, not the surface that looks like masonry; 'no stone at all' rules out rubble",
+  "prompt": "[Sentence Completion] From the road the old mill seems to be built of heavy gray stone, and only visitors who rap a knuckle on its wall hear the hollow answer. Where a passing cart once gouged the corner, the trick is plain: beneath the painted joints and blocks there is no stone at all, only a thin white crust held up by narrow strips of wood behind it. What looks like masonry is in fact -------.",
+  "choices": [
+   "porcelain",
+   "pine",
+   "plaster",
+   "rubble"
+  ],
+  "correct_answer": "plaster",
+  "explanation": "plaster (a paste spread on walls that dries hard and white): the visible 'stone' is a thin white crust over wooden strips, painted to look like blocks, which is a plastered wall.",
+  "distractor_rationales": [
+   "pine - a soft wood from an evergreen tree ('pine boards'); the wooden strips are only the backing, while the part that looks like masonry is the white crust",
+   "rubble - broken fragments of stone or brick ('rubble from the old wall'); the sentence says there is no stone at all",
+   "porcelain - fine, hard white ceramic ('porcelain cups'); it is white, but it is fired into objects, not spread as a thin crust over wooden strips"
+  ]
+ }
+]

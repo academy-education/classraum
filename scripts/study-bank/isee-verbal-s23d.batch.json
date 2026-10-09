@@ -1,0 +1,677 @@
+[
+ {
+  "id": "IS23D-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: the reader must notice that opinions split for/against by party (not uniformly hostile) and that coverage was slight, then name the effect",
+  "prompt": "[Sentence Completion] Its sponsors had hoped the measure, a small change to how school districts were drawn, would pass unnoticed, and the newspapers gave it barely a paragraph. Yet within a week pollsters could find almost no voter without a firm opinion of it, and nearly every member of the Farmers' League who had one was for it while nearly every Union Party member was against it. Commentators called it the session's most ------- bill.",
+  "choices": [
+   "pressing",
+   "polarizing",
+   "reviled",
+   "revolutionary"
+  ],
+  "correct_answer": "polarizing",
+  "explanation": "polarizing (splitting people into opposed camps): everyone holds a firm view, and the views divide cleanly along party lines, one side for and one against.",
+  "distractor_rationales": [
+   "pressing - urgent ('a pressing need'); nothing suggests urgency, and the measure was meant to slip through quietly",
+   "reviled - hated by nearly everyone ('a reviled dictator'); tempting from the outcry, but half the voters, the Farmers' League, were for it",
+   "revolutionary - radically new ('a revolutionary idea'); the measure was only a small change"
+  ],
+  "rarity_order": [
+   "reviled",
+   "polarizing",
+   "revolutionary",
+   "pressing"
+  ],
+  "polarity": {
+   "pressing": "0",
+   "polarizing": "-",
+   "reviled": "-",
+   "revolutionary": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "revolutionary",
+   "odd_one_out": "pressing",
+   "most_specific": "reviled",
+   "test_word": "revolutionary",
+   "blind_guess": "revolutionary"
+  }
+ },
+ {
+  "id": "IS23D-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: wealth and swing-vote reasons are ruled out; 'counted by heads rather than by acres' plus a small land area implies many people",
+  "prompt": "[Sentence Completion] Though it covers barely a twentieth of the country's land and lies at its far edge, the coastal province sees more of the candidates in every campaign than the whole vast interior does. Its people are mostly farmers of modest means, and they have backed the same party for forty years, so no candidate goes there hoping to change many minds. Strategists still find the schedule sensible: votes are counted by heads rather than by acres, and the province is the nation's most ------- region.",
+  "choices": [
+   "patriotic",
+   "populous",
+   "religious",
+   "rocky"
+  ],
+  "correct_answer": "populous",
+  "explanation": "populous (having many inhabitants): candidates court the province for its votes, and since votes go by heads and not land, a small region can only matter this much by holding many people.",
+  "distractor_rationales": [
+   "patriotic - devoted to one's country ('a patriotic song'); nothing in the passage ties the candidates' visits to patriotism",
+   "religious - devout ('a religious community'); nothing about faith explains why heads-not-acres matters",
+   "rocky - full of rocks ('rocky soil'); a land feature, irrelevant to counting votes"
+  ],
+  "rarity_order": [
+   "populous",
+   "patriotic",
+   "religious",
+   "rocky"
+  ],
+  "polarity": {
+   "patriotic": "+",
+   "populous": "0",
+   "religious": "0",
+   "rocky": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "religious",
+   "odd_one_out": "rocky",
+   "most_specific": "rocky",
+   "test_word": "patriotic",
+   "blind_guess": "patriotic"
+  }
+ },
+ {
+  "id": "IS23D-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "elimination across a paragraph: players and conducting style have changed, so the unchanged thing must be what the board approves on the programs",
+  "prompt": "[Sentence Completion] The orchestra has replaced nearly two-thirds of its players in five years and hired a young conductor famous for her daring tempos, yet subscribers complain that a season there feels exactly as it did a decade ago. The printed programs explain it: a board wary of empty seats still approves only the dozen symphonies the founding conductor loved, so whatever else has changed, the orchestra's ------- has not.",
+  "choices": [
+   "roster",
+   "phrasing",
+   "repertoire",
+   "pedigree"
+  ],
+  "correct_answer": "repertoire",
+  "explanation": "repertoire (the body of works a company performs): the board keeps approving the same dozen symphonies, so the works played are what has stayed the same.",
+  "distractor_rationales": [
+   "roster - list of members ('the team roster'); two-thirds of the players are new, so it has changed",
+   "phrasing - the way musical lines are shaped in performance ('careful phrasing'); the new conductor's daring tempos mean the playing style has changed",
+   "pedigree - distinguished history or lineage ('a pedigree of champions'); it cannot be what the printed programs explain, and nothing in the complaint concerns it"
+  ],
+  "rarity_order": [
+   "repertoire",
+   "pedigree",
+   "phrasing",
+   "roster"
+  ],
+  "polarity": {
+   "roster": "0",
+   "phrasing": "0",
+   "repertoire": "0",
+   "pedigree": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "pedigree",
+   "odd_one_out": "pedigree",
+   "most_specific": "phrasing",
+   "test_word": "pedigree",
+   "blind_guess": "roster"
+  }
+ },
+ {
+  "id": "IS23D-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "'not so much X as' contrast with the motive given a clause later: bareness not from thrift (generous budget) but from a belief that ornament is dishonest -> conviction; near-miss 'reasonable' fits the sensible-design reading but not a moral stance",
+  "prompt": "[Sentence Completion] The new library is not so much modest as ------- : its walls and ceilings were left bare not to save money, since the budget was generous, but because its architect held that decoration in a public building was a kind of dishonesty.",
+  "choices": [
+   "reasonable",
+   "roomy",
+   "principled",
+   "ragged"
+  ],
+  "correct_answer": "principled",
+  "explanation": "principled (acting from firm moral beliefs): the plainness comes from the architect's conviction that ornament is dishonest, not from economy, so the building expresses a principle.",
+  "distractor_rationales": [
+   "reasonable - sensible, fair ('a reasonable price'); suits a cost-saving or practical choice, but the motive given is moral, and the money-saving reason is explicitly denied",
+   "roomy - spacious ('a roomy closet'); says nothing about why the surfaces were left bare",
+   "ragged - worn and torn ('ragged clothes'); the library is new and its bareness deliberate"
+  ],
+  "rarity_order": [
+   "ragged",
+   "principled",
+   "roomy",
+   "reasonable"
+  ],
+  "polarity": {
+   "reasonable": "+",
+   "roomy": "+",
+   "principled": "+",
+   "ragged": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "ragged",
+   "odd_one_out": "ragged",
+   "most_specific": "roomy",
+   "test_word": "reasonable",
+   "blind_guess": "reasonable"
+  }
+ },
+ {
+  "id": "IS23D-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "concession reversed: the soup lacks cream and butter (the obvious signs of richness), yet the gelatin and 'three spoonfuls made a meal' show it is heavy",
+  "prompt": "[Sentence Completion] There was no cream in the soup and only a spoonful of butter in the whole pot, yet diners rarely finished a bowl: the chef simmered her stock for two days, until it was so dense with gelatin that it clung to the spoon. Even the critic who praised it warned that it was too ------- for a summer menu, since three spoonfuls made a meal.",
+  "choices": [
+   "refreshing",
+   "rich",
+   "posh",
+   "runny"
+  ],
+  "correct_answer": "rich",
+  "explanation": "rich (heavy and filling): despite the missing cream and butter, the dense stock fills a diner after three spoonfuls, too heavy for summer.",
+  "distractor_rationales": [
+   "refreshing - light and reviving ('a refreshing drink'); 'too refreshing for summer' makes no sense, and this soup is heavy",
+   "posh - fancy and expensive ('a posh hotel'); nothing about price or elegance explains three spoonfuls making a meal",
+   "runny - watery ('runny eggs'); the stock clung to the spoon"
+  ],
+  "rarity_order": [
+   "runny",
+   "posh",
+   "refreshing",
+   "rich"
+  ],
+  "polarity": {
+   "refreshing": "+",
+   "rich": "0",
+   "posh": "+",
+   "runny": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "refreshing",
+   "odd_one_out": "posh",
+   "most_specific": "runny",
+   "test_word": "posh",
+   "blind_guess": "refreshing"
+  }
+ },
+ {
+  "id": "IS23D-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: outpolled each of three rivals + barely two-fifths implies most votes but no majority -> plurality; pluck, rank and reign all fit a new mayor but not the arithmetic the opponents seize on",
+  "prompt": "[Sentence Completion] Although she had outpolled each of her three rivals, the new mayor took office with barely two-fifths of the ballots, and her opponents seized on the arithmetic: three of every five voters, they pointed out, had chosen someone else, so her ------- was no warrant for the sweeping changes she had promised.",
+  "choices": [
+   "plurality",
+   "pluck",
+   "rank",
+   "reign"
+  ],
+  "correct_answer": "plurality",
+  "explanation": "plurality (the largest share of votes when it is less than a majority): she beat each rival yet won only two-fifths, so her win was the most votes without most voters, which is exactly what the opponents argue gives her no mandate.",
+  "distractor_rationales": [
+   "pluck - courage ('she showed real pluck'); the opponents' point is arithmetic about votes, not her character",
+   "rank - position in a hierarchy ('officers of high rank'); she holds the office, and the complaint is about her share of the ballots",
+   "reign - a monarch's rule ('the queen's reign'); the opponents attack the vote count, not her rule, and mayors do not reign"
+  ],
+  "rarity_order": [
+   "plurality",
+   "pluck",
+   "reign",
+   "rank"
+  ],
+  "polarity": {
+   "plurality": "0",
+   "pluck": "+",
+   "rank": "0",
+   "reign": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "reign",
+   "odd_one_out": "pluck",
+   "most_specific": "plurality",
+   "test_word": "pluck",
+   "blind_guess": "pluck"
+  }
+ },
+ {
+  "id": "IS23D-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: water boiling before it is hot implies high altitude; flat land with no mountains rules out ridge, and altitude rules out prairie",
+  "prompt": "[Sentence Completion] Travelers who come up from the coast spend a full day on switchbacks, and the air in the town is thin enough that water boils before it is properly hot for tea; yet on arrival they are surprised to see no mountains at all, only wheat fields as flat as a floor running fifty kilometers in every direction. The town sits near the middle of a vast -------.",
+  "choices": [
+   "prairie",
+   "ridge",
+   "peninsula",
+   "plateau"
+  ],
+  "correct_answer": "plateau",
+  "explanation": "plateau (a large, flat area of high ground): the climb and the thin air show the town is high up, and the tabletop-flat fields with no peaks show the high ground is level.",
+  "distractor_rationales": [
+   "prairie - flat grassland ('the American prairie'); fits the flat wheat fields, but the thin air and day of switchbacks put the town high up",
+   "ridge - a long narrow high crest ('a mountain ridge'); the land runs flat fifty kilometers every way, with no mountains",
+   "peninsula - land surrounded by water on three sides ('the Korean peninsula'); the travelers have come inland, up from the coast"
+  ],
+  "rarity_order": [
+   "plateau",
+   "peninsula",
+   "prairie",
+   "ridge"
+  ],
+  "polarity": {
+   "prairie": "0",
+   "ridge": "0",
+   "peninsula": "0",
+   "plateau": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "ridge",
+   "odd_one_out": "peninsula",
+   "most_specific": "peninsula",
+   "test_word": "peninsula",
+   "blind_guess": "prairie"
+  }
+ },
+ {
+  "id": "IS23D-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: the reader infers a long echo from why each camp feels as it does, and must see that only the shared acoustic fact, not a judgment, is agreed",
+  "prompt": "[Sentence Completion] Choral directors, whose slow, sustained music swells to fill the new hall, adore it; soloists dread it, since in a quick passage there each note seems to blur into the one after it. The two camps agree on nothing about the hall except that it is the most ------- in the city.",
+  "choices": [
+   "resonant",
+   "prized",
+   "palatial",
+   "photographed"
+  ],
+  "correct_answer": "resonant",
+  "explanation": "resonant (prolonging and deepening sound): the swelling choral music and the blurring quick notes are both effects of sound lingering, the one fact both camps accept.",
+  "distractor_rationales": [
+   "prized - highly valued ('a prized possession'); the soloists dread the hall, so they do not agree it is prized",
+   "palatial - grand like a palace ('a palatial mansion'); nothing is said about the hall's size or splendor",
+   "photographed - pictured often ('the most photographed bridge'); nothing concerns its appearance"
+  ],
+  "rarity_order": [
+   "palatial",
+   "resonant",
+   "prized",
+   "photographed"
+  ],
+  "polarity": {
+   "resonant": "0",
+   "prized": "+",
+   "palatial": "+",
+   "photographed": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "photographed",
+   "odd_one_out": "photographed",
+   "most_specific": "photographed",
+   "test_word": "palatial",
+   "blind_guess": "palatial"
+  }
+ },
+ {
+  "id": "IS23D-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession reversal: 'for all its crooked chimney and patched walls' sets up the word the looks suggest, and 'anything but' plus surviving the earthquakes denies it -> ramshackle; near-miss 'primitive' fits the looks but the hand tools make it true, not denied",
+  "prompt": "[Sentence Completion] For all its crooked chimney and patched walls, the farmhouse, raised by hand with tools its builder's grandfather had owned, is anything but -------: it has come through three earthquakes that toppled the newer concrete houses around it.",
+  "choices": [
+   "primitive",
+   "remarkable",
+   "ramshackle",
+   "pretty"
+  ],
+  "correct_answer": "ramshackle",
+  "explanation": "ramshackle (badly made and likely to fall apart): the crooked chimney and patches make the house look shaky, but surviving quakes that toppled sturdier-looking houses proves it is not.",
+  "distractor_rationales": [
+   "primitive - simple and crude ('primitive tools'); it was built by hand with old tools, so it is primitive, and the earthquake record does not deny that",
+   "remarkable - worthy of notice ('a remarkable feat'); surviving three earthquakes makes it remarkable, so 'anything but remarkable' contradicts the colon",
+   "pretty - attractive ('a pretty garden'); the earthquake record says nothing about looks"
+  ],
+  "rarity_order": [
+   "ramshackle",
+   "primitive",
+   "remarkable",
+   "pretty"
+  ],
+  "polarity": {
+   "primitive": "-",
+   "remarkable": "+",
+   "ramshackle": "-",
+   "pretty": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "pretty",
+   "odd_one_out": "remarkable",
+   "most_specific": "ramshackle",
+   "test_word": "remarkable",
+   "blind_guess": "primitive"
+  }
+ },
+ {
+  "id": "IS23D-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step with a trap: picked early, the peaches will soften (a false sign) but never gain sugar from the branch; each visible quality (plump, rosy, presentable) is granted",
+  "prompt": "[Sentence Completion] The market's peaches look flawless: fat and round, unbruised, evenly blushed, and firm enough to stack ten high. Yet the town's chefs pass them by. Picked weeks early so they could survive the voyage from the far side of the world, they will soften on a kitchen windowsill, but they will never gather the sugar a peach gathers only in its last days on the branch. They may look the part; they are seldom truly -------.",
+  "choices": [
+   "plump",
+   "rosy",
+   "ripe",
+   "presentable"
+  ],
+  "correct_answer": "ripe",
+  "explanation": "ripe (fully developed and ready to eat): picked early, the peaches never finish developing on the branch, so softening later does not make them truly ripe.",
+  "distractor_rationales": [
+   "plump - full and rounded ('plump cheeks'); they are fat and round",
+   "rosy - pink-red ('rosy cheeks'); they are evenly blushed",
+   "presentable - fit to be seen ('a presentable outfit'); they look flawless, which is exactly what 'look the part' grants"
+  ],
+  "rarity_order": [
+   "presentable",
+   "plump",
+   "rosy",
+   "ripe"
+  ],
+  "polarity": {
+   "plump": "0",
+   "rosy": "+",
+   "ripe": "+",
+   "presentable": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "presentable",
+   "odd_one_out": "presentable",
+   "most_specific": "rosy",
+   "test_word": "presentable",
+   "blind_guess": "plump"
+  }
+ },
+ {
+  "id": "IS23D-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "elimination over separate details: no ice (not refrigerated), crunchy (not rubbery), raw and dripping from crocks with a sharp bite (not roasted) leaves the preserving method",
+  "prompt": "[Sentence Completion] In the mountain village there was no ice and no cellar cold enough to keep the summer's cucumbers past September, yet families ate them all winter, lifted dripping from the stone crocks beside every stove, still crunchy enough to snap and with a bite that made visiting children wince. By midwinter the cucumbers, though months from the vine, were not spoiled but -------.",
+  "choices": [
+   "refrigerated",
+   "pickled",
+   "rubbery",
+   "roasted"
+  ],
+  "correct_answer": "pickled",
+  "explanation": "pickled (preserved in brine or vinegar): kept in liquid in crocks without cold, still crunchy and sharp-tasting months later.",
+  "distractor_rationales": [
+   "refrigerated - kept cold ('refrigerated milk'); the village had no ice and no cold cellar",
+   "rubbery - tough and bendy ('rubbery chicken'); they were still crunchy enough to snap",
+   "roasted - cooked by dry heat ('roasted peppers'); they came dripping from crocks of liquid, still crunchy"
+  ],
+  "rarity_order": [
+   "refrigerated",
+   "pickled",
+   "rubbery",
+   "roasted"
+  ],
+  "polarity": {
+   "refrigerated": "0",
+   "pickled": "0",
+   "rubbery": "-",
+   "roasted": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "rubbery",
+   "odd_one_out": "refrigerated",
+   "most_specific": "pickled",
+   "test_word": "refrigerated",
+   "blind_guess": "pickled"
+  }
+ },
+ {
+  "id": "IS23D-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: supporters outnumber opponents and the presiding officer is present, yet no vote; 14 of 25 absent leaves too few members to act",
+  "prompt": "[Sentence Completion] Supporters of the water bill outnumbered its opponents in the chamber that night by nearly two to one, and the council's president was in her chair, yet she would not call the vote. A spring flood had closed the river road, stranding fourteen of the council's twenty-five members on the far bank, and the charter is plain on the point: without its -------, the council can pass nothing.",
+  "choices": [
+   "petition",
+   "president",
+   "quorum",
+   "referendum"
+  ],
+  "correct_answer": "quorum",
+  "explanation": "quorum (the minimum number of members who must be present to do business): with fourteen of twenty-five absent, only eleven are in the room, fewer than half, so however lopsided the support among them, the council cannot act.",
+  "distractor_rationales": [
+   "petition - a formal written request ('a petition signed by residents'); nothing says one was required or missing",
+   "president - presiding officer ('the club president'); she was in her chair",
+   "referendum - a public vote on a measure ('a referendum on taxes'); nothing calls for voters, and the problem is the members on the far bank"
+  ],
+  "rarity_order": [
+   "quorum",
+   "referendum",
+   "petition",
+   "president"
+  ],
+  "polarity": {
+   "petition": "0",
+   "president": "0",
+   "quorum": "0",
+   "referendum": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "petition",
+   "odd_one_out": "president",
+   "most_specific": "quorum",
+   "test_word": "referendum",
+   "blind_guess": "president"
+  }
+ },
+ {
+  "id": "IS23D-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: villages close enough to hear bells, yet the bridge needs piers taller than any tower and the walk needs rope handholds, implying a deep steep gap; reservoir fails because it cannot be crossed on foot",
+  "prompt": "[Sentence Completion] On a still evening the people of Ost can hear the church bells of Varn, and the engineers' plan to join the two villages calls for a bridge barely three hundred meters long. What has stopped them for a century is the height of its two piers, each of which would stand taller than any tower in the country. Until it is built, a visit still means half a day on foot, with rope handholds on the steepest stretches of the path, to get across the -------.",
+  "choices": [
+   "reservoir",
+   "ravine",
+   "pasture",
+   "rainforest"
+  ],
+  "correct_answer": "ravine",
+  "explanation": "ravine (a deep, narrow valley with steep sides): a short bridge that needs enormously tall piers spans a deep gap, and the walk across needs handholds on its steep sides.",
+  "distractor_rationales": [
+   "reservoir - a large lake made to store water ('the town reservoir'); a deep one could need tall piers, but no one crosses it on foot by scrambling down and up its sides",
+   "pasture - grassland for grazing animals ('cows in the pasture'); flat grazing land needs neither tall piers nor a half-day climb",
+   "rainforest - a dense tropical forest with heavy rainfall ('the Amazon rainforest'); a half-day walk through one is plausible, but tall trees need no tower-high bridge piers and no climb down one side and up the other"
+  ],
+  "rarity_order": [
+   "ravine",
+   "reservoir",
+   "rainforest",
+   "pasture"
+  ],
+  "polarity": {
+   "reservoir": "0",
+   "ravine": "0",
+   "pasture": "0",
+   "rainforest": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "pasture",
+   "odd_one_out": "reservoir",
+   "most_specific": "reservoir",
+   "test_word": "ravine",
+   "blind_guess": "ravine"
+  }
+ },
+ {
+  "id": "IS23D-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "track order and performer: the praised music carries the aria's melody but is orchestral and comes before, sliding into the first scene -> prelude; the aria's later return tempts a reader to place it later; quartet fails because the music is orchestral",
+  "prompt": "[Sentence Completion] Most of the audience had come for the famous tenor, and few of them were even in their seats for the four minutes of orchestral music that slid, without a pause, into the first scene. The critics heard it differently: the melody of his great aria, which brought the house to its feet an hour later, had been laid out in those minutes in full, and played more beautifully than he would ever sing it. In their view the evening's finest music came in its -------.",
+  "choices": [
+   "requiem",
+   "procession",
+   "prelude",
+   "quartet"
+  ],
+  "correct_answer": "prelude",
+  "explanation": "prelude (an introductory piece before the main action): the four minutes of orchestral music before the first scene, which the critics judged the finest music of the night.",
+  "distractor_rationales": [
+   "requiem - music for the dead ('Mozart's Requiem'); nothing concerns mourning",
+   "procession - a ceremonial march ('a wedding procession'); the praised music is played by the orchestra while the audience is still arriving, before any scene or march",
+   "quartet - music for four performers ('a string quartet'); the passage is by a full orchestra"
+  ],
+  "rarity_order": [
+   "requiem",
+   "prelude",
+   "procession",
+   "quartet"
+  ],
+  "polarity": {
+   "requiem": "0",
+   "procession": "0",
+   "prelude": "0",
+   "quartet": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "requiem",
+   "odd_one_out": "quartet",
+   "most_specific": "requiem",
+   "test_word": "procession",
+   "blind_guess": "procession"
+  }
+ },
+ {
+  "id": "IS23D-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: a hollow sound and, at a gouged corner, a thin white crust over strips of wood with no stone at all -> the stone look is a painted surface coat -> plaster; near-miss pine is the wooden backing, not the surface that looks like masonry; 'no stone at all' rules out rubble",
+  "prompt": "[Sentence Completion] From the road the old mill seems to be built of heavy gray stone, and only visitors who rap a knuckle on its wall hear the hollow answer. Where a passing cart once gouged the corner, the trick is plain: beneath the painted joints and blocks there is no stone at all, only a thin white crust held up by narrow strips of wood behind it. What looks like masonry is in fact -------.",
+  "choices": [
+   "pine",
+   "rubble",
+   "porcelain",
+   "plaster"
+  ],
+  "correct_answer": "plaster",
+  "explanation": "plaster (a paste spread on walls that dries hard and white): the visible 'stone' is a thin white crust over wooden strips, painted to look like blocks, which is a plastered wall.",
+  "distractor_rationales": [
+   "pine - a soft wood from an evergreen tree ('pine boards'); the wooden strips are only the backing, while the part that looks like masonry is the white crust",
+   "rubble - broken fragments of stone or brick ('rubble from the old wall'); the sentence says there is no stone at all",
+   "porcelain - fine, hard white ceramic ('porcelain cups'); it is white, but it is fired into objects, not spread as a thin crust over wooden strips"
+  ],
+  "rarity_order": [
+   "porcelain",
+   "rubble",
+   "plaster",
+   "pine"
+  ],
+  "polarity": {
+   "pine": "0",
+   "rubble": "0",
+   "porcelain": "0",
+   "plaster": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "rubble",
+   "odd_one_out": "pine",
+   "most_specific": "porcelain",
+   "test_word": "rubble",
+   "blind_guess": "porcelain"
+  }
+ }
+]

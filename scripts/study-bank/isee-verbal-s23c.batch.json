@@ -1,0 +1,677 @@
+[
+ {
+  "id": "IS23C-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: the opinion catalogues errors yet keeps the conviction, so the justices must deny the errors changed the outcome; reader must track 'did not dispute X, only Y'",
+  "prompt": "[Sentence Completion] Although the appeals court devoted eleven pages of its opinion to cataloguing the trial judge's mistakes, it left the conviction in place. The justices did not dispute that the errors were real, only that any of them had been -------.",
+  "choices": [
+   "evident",
+   "excusable",
+   "fatal",
+   "hurtful"
+  ],
+  "correct_answer": "fatal",
+  "explanation": "fatal (decisive, ruinous to the case): the court admits the errors and still upholds the conviction, so what it denies is that any error was serious enough to overturn the verdict.",
+  "distractor_rationales": [
+   "evident - meaning ('plain to see'); the court spent eleven pages listing the errors, so it plainly found them evident",
+   "excusable - meaning ('forgivable'); denying that any error was excusable would argue for reversing the conviction, the opposite of what the court did",
+   "hurtful - meaning ('wounding to someone's feelings'); concerns emotional injury, not whether an error damaged the case"
+  ],
+  "rarity_order": [
+   "excusable",
+   "evident",
+   "fatal",
+   "hurtful"
+  ],
+  "polarity": {
+   "evident": "0",
+   "excusable": "+",
+   "fatal": "-",
+   "hurtful": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "excusable",
+   "odd_one_out": "evident",
+   "most_specific": "hurtful",
+   "test_word": "evident",
+   "blind_guess": "excusable"
+  }
+ },
+ {
+  "id": "IS23C-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step sequence: suppressing fires let cedars crowd out the grasses, so the fires must have been helping the grasses; the ranchers' belief that fire ruins land is the nearer, wrong clue",
+  "prompt": "[Sentence Completion] For decades, ranchers put out every prairie fire they could reach, convinced that the flames would ruin their grazing land. The result surprised them: within twenty years, cedars had crowded out the very grasses that the fires had been quietly working to -------.",
+  "choices": [
+   "engulf",
+   "enclose",
+   "foster",
+   "harbor"
+  ],
+  "correct_answer": "foster",
+  "explanation": "foster (encourage the growth of): once the fires stopped, cedars took over the grasses, which shows the fires had been protecting and promoting those grasses all along.",
+  "distractor_rationales": [
+   "engulf - meaning ('swallow up, overwhelm'); matches the ranchers' mistaken belief that fire destroys the land, which the surprising result refutes",
+   "enclose - meaning ('surround, fence in'); fires do not fence grasses in, and the point is that the fires kept competitors down so the grasses could grow",
+   "harbor - meaning ('give shelter to, hide'); fires do not shelter grasses, and the point is growth against competitors, not concealment"
+  ],
+  "rarity_order": [
+   "engulf",
+   "harbor",
+   "foster",
+   "enclose"
+  ],
+  "polarity": {
+   "engulf": "-",
+   "enclose": "0",
+   "foster": "+",
+   "harbor": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "engulf",
+   "odd_one_out": "harbor",
+   "most_specific": "engulf",
+   "test_word": "harbor",
+   "blind_guess": "foster"
+  }
+ },
+ {
+  "id": "IS23C-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison 'not so much dangerous as X': X must exclude sudden threat and name slow, cumulative exhaustion, which is described only in the following clause",
+  "prompt": "[Sentence Completion] The guidebook warned that the mountain pass was hazardous, but the travelers who crossed it that summer found it not so much dangerous as -------: no single stretch ever threatened them, yet the endless switchbacks, thin air, and rationed water left even the strongest hikers spent by the third day.",
+  "choices": [
+   "forlorn",
+   "grinding",
+   "gruesome",
+   "hallowed"
+  ],
+  "correct_answer": "grinding",
+  "explanation": "grinding (wearing someone down through steady, relentless effort): no moment was threatening, but the accumulated switchbacks, thin air, and short water exhausted everyone.",
+  "distractor_rationales": [
+   "forlorn - meaning ('lonely and abandoned, pitiful'); a bleak pass might seem forlorn, but the sentence's detail is about exhaustion, not loneliness",
+   "gruesome - meaning ('horrible, causing disgust'); suggests horror, which is nearer to the danger the travelers did not find than to steady fatigue",
+   "hallowed - meaning ('regarded as holy'); nothing in the sentence concerns reverence"
+  ],
+  "rarity_order": [
+   "hallowed",
+   "forlorn",
+   "gruesome",
+   "grinding"
+  ],
+  "polarity": {
+   "forlorn": "-",
+   "grinding": "-",
+   "gruesome": "-",
+   "hallowed": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "hallowed",
+   "odd_one_out": "hallowed",
+   "most_specific": "gruesome",
+   "test_word": "forlorn",
+   "blind_guess": "forlorn"
+  }
+ },
+ {
+  "id": "IS23C-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "near clue reversed: the friends' reading (racing a deadline, lamp past midnight) invites feverish, but the diary removes the rush (deadline moved back, hours no trouble); the decisive clue a sentence away (ever more corrections, decisions made without her) must be turned into the feeling it produces",
+  "prompt": "[Sentence Completion] Her friends, seeing a lamp in her window past midnight all that spring, assumed the young translator was racing to meet her deadline. Her diary tells a different story. The late hours never troubled her, and the deadline was in fact moved back twice; what she returned to, page after page, was that each draft came back with more of the editor's corrections than the last, and that both new dates had been settled without anyone asking her. By May she was less exhausted than -------.",
+  "choices": [
+   "eminent",
+   "efficient",
+   "feverish",
+   "frustrated"
+  ],
+  "correct_answer": "frustrated",
+  "explanation": "frustrated (annoyed at being blocked or overruled): the diary dwells not on the hours but on corrections piling up and dates decided without her, which breeds exasperation rather than tiredness.",
+  "distractor_rationales": [
+   "eminent - meaning ('famous and respected'); she is a young translator being overruled, and nothing in the diary concerns fame",
+   "efficient - meaning ('working well without waste'); repeated drafts might make someone faster, but the diary records grievances, not skill",
+   "feverish - meaning ('frantically excited or hurried'); it fits the friends' guess, but the diary says the hours did not trouble her and the deadline kept moving back, so there was no rush"
+  ],
+  "rarity_order": [
+   "feverish",
+   "eminent",
+   "efficient",
+   "frustrated"
+  ],
+  "polarity": {
+   "eminent": "+",
+   "efficient": "+",
+   "feverish": "-",
+   "frustrated": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "eminent",
+   "odd_one_out": "eminent",
+   "most_specific": "feverish",
+   "test_word": "efficient",
+   "blind_guess": "efficient"
+  }
+ },
+ {
+  "id": "IS23C-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences: the cause is forgotten and no one can name a wrong, yet the separation persists, so what was handed down is the hostility without its reason; 'handed down' invites the near-misses heritage and ethos, which fit the inheritance but not the coldness",
+  "prompt": "[Sentence Completion] No one at the reunion could say what the two branches of the family had first argued about: a fence line, some guessed, or an unpaid debt. The cousins born since had never even heard the story. Yet each summer they took their seats at separate tables, and aunts who could not have named a single wrong done to them still turned away when the other side's children waved. The cause had been forgotten long ago; the ------- had been handed down intact.",
+  "choices": [
+   "enmity",
+   "ethos",
+   "gaffe",
+   "heritage"
+  ],
+  "correct_answer": "enmity",
+  "explanation": "enmity (lasting mutual hostility): the separate tables and cold nods show the hostility survived even though nobody remembers its cause.",
+  "distractor_rationales": [
+   "ethos - meaning ('the guiding values of a group'); shared ideals are not what sends cousins to separate tables and makes aunts turn away from children",
+   "gaffe - meaning ('a social blunder'); a single blunder is a one-time act and cannot be what persists through generations of cold behavior",
+   "heritage - meaning ('traditions passed down from earlier generations'); fits 'handed down' but not the coldness the semicolon contrasts with the forgotten cause"
+  ],
+  "rarity_order": [
+   "enmity",
+   "ethos",
+   "gaffe",
+   "heritage"
+  ],
+  "polarity": {
+   "enmity": "-",
+   "ethos": "0",
+   "gaffe": "-",
+   "heritage": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "heritage",
+   "odd_one_out": "gaffe",
+   "most_specific": "gaffe",
+   "test_word": "ethos",
+   "blind_guess": "heritage"
+  }
+ },
+ {
+  "id": "IS23C-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession reversed: the veterans' praise of the polish must be turned into the jurors' suspicion of it; two-step inference (too smooth for an innocent man -> slick and insincere); 'uneasy' nearby invites flustered, and flighty is killed by the timed, anticipated precision of the argument",
+  "prompt": "[Sentence Completion] Courthouse veterans called it the finest closing argument they had heard in years: every objection anticipated, every pause timed, not a single fact out of place. The jurors, though, came away uneasy, and several later said that this very polish had sunk the defendant; an innocent man, they reasoned, should not have needed an advocate so -------.",
+  "choices": [
+   "flighty",
+   "flustered",
+   "genial",
+   "glib"
+  ],
+  "correct_answer": "glib",
+  "explanation": "glib (smooth and ready-tongued in a way that seems insincere): the jurors distrusted the very polish the veterans admired, reading it as the slickness of someone covering for a guilty client.",
+  "distractor_rationales": [
+   "flighty - meaning ('fickle, unable to stay focused'); every objection was anticipated and every pause timed, the opposite of scattered",
+   "flustered - meaning ('confused and agitated'); 'uneasy' is the jurors' state, and the advocate was the opposite of rattled, with every pause timed",
+   "genial - meaning ('friendly and cheerful'); nothing in the argument's polish concerns friendliness, and warmth would not make jurors suspect guilt"
+  ],
+  "rarity_order": [
+   "glib",
+   "genial",
+   "flighty",
+   "flustered"
+  ],
+  "polarity": {
+   "flighty": "-",
+   "flustered": "-",
+   "genial": "+",
+   "glib": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "genial",
+   "odd_one_out": "genial",
+   "most_specific": "flustered",
+   "test_word": "flighty",
+   "blind_guess": "glib"
+  }
+ },
+ {
+  "id": "IS23C-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence with a dismissed near clue: the spread across all twelve ridges invites expand, but the head count is set aside; two-step inference from the decisive clue: lab-hatched young still grow long legs, so the change is inherited, not a habit of climbing, which implies the word",
+  "prompt": "[Sentence Completion] When a few dozen lizards were released on a bare island fifty years ago, biologists hoped only that they would survive. They did far more: their descendants now cover all twelve of its rocky ridges. But the head count is not what made the study famous. The island lizards turned out to have longer legs than their mainland cousins, and when their eggs were hatched in a laboratory with no rocks to climb, the young still grew the long legs, evidence that a species can ------- in decades rather than over the ages textbooks once assumed.",
+  "choices": [
+   "emigrate",
+   "evolve",
+   "expand",
+   "flounder"
+  ],
+  "correct_answer": "evolve",
+  "explanation": "evolve (change in form over generations): longer legs than the ancestral mainland population, suited to the new rocky habitat, is a change in the species' body, and the study is famous for that, not for the head count.",
+  "distractor_rationales": [
+   "emigrate - meaning ('leave one country to settle in another'); the lizards were carried to the island and stayed; the finding is about their legs, not a move",
+   "expand - meaning ('grow larger or spread out'); fits the twelve ridges, but the sentence explicitly sets the numbers aside before giving the real evidence",
+   "flounder - meaning ('struggle helplessly'); the lizards did better than hoped, so struggling contradicts every detail"
+  ],
+  "rarity_order": [
+   "flounder",
+   "emigrate",
+   "evolve",
+   "expand"
+  ],
+  "polarity": {
+   "emigrate": "0",
+   "evolve": "0",
+   "expand": "+",
+   "flounder": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "flounder",
+   "odd_one_out": "emigrate",
+   "most_specific": "emigrate",
+   "test_word": "flounder",
+   "blind_guess": "flounder"
+  }
+ },
+ {
+  "id": "IS23C-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence reversed by time: the nearest clues (fondly, the story they most liked to tell) are positive, but the blank names what everyone agreed 'at the time', so the reader must go back to the breakdowns two sentences earlier; the broken brochure promise invites gimmick",
+  "prompt": "[Sentence Completion] The brochure promised a restful week on the canals. Instead the boat broke down twice, the guide quit on the fourth morning, and the group spent one night tied to a fence post in the rain. Oddly, the passengers remember that week more fondly than any holiday they have taken since, and at their reunion a year later, what everyone had agreed at the time was an unmistakable ------- had become the story they most liked to tell.",
+  "choices": [
+   "fiasco",
+   "fluke",
+   "gimmick",
+   "haven"
+  ],
+  "correct_answer": "fiasco",
+  "explanation": "fiasco (a complete, embarrassing failure): breakdowns, a departed guide and a night in the rain made the trip a plain disaster while it was happening, which is what 'at the time' points back to.",
+  "distractor_rationales": [
+   "fluke - meaning ('a stroke of luck or chance'); the run of breakdowns was a series of failures, not one lucky accident",
+   "gimmick - meaning ('a trick or device meant to attract attention'); the brochure may have oversold the trip, but the breakdowns and the rain were not a ploy, they were things going wrong",
+   "haven - meaning ('a safe, peaceful place'); matches the brochure's promise and the fond memory, not what everyone agreed at the time"
+  ],
+  "rarity_order": [
+   "fiasco",
+   "fluke",
+   "gimmick",
+   "haven"
+  ],
+  "polarity": {
+   "fiasco": "-",
+   "fluke": "0",
+   "gimmick": "-",
+   "haven": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "haven",
+   "odd_one_out": "haven",
+   "most_specific": "gimmick",
+   "test_word": "gimmick",
+   "blind_guess": "gimmick"
+  }
+ },
+ {
+  "id": "IS23C-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison with a trap: the early heroes' lecturing sits nearest the topic and invites espouses/heralds, and 'more convincingly' tempts espouses, but the heroine never argues for or names the virtue; two-step inference (she acts honestly without speaking of it -> she represents it in her conduct)",
+  "prompt": "[Sentence Completion] The heroes of the author's early novels lectured every minor character on the value of honesty, and reviewers found them insufferable. The heroine of her last book never argues for honesty or even uses the word; she returns a stranger's wallet, admits a mistake that costs her a promotion, and moves on without comment. Even readers who disliked the earlier books agree that she ------- the virtue far more convincingly than any of them.",
+  "choices": [
+   "embodies",
+   "espouses",
+   "flaunts",
+   "heralds"
+  ],
+  "correct_answer": "embodies",
+  "explanation": "embodies (gives concrete form to, represents in her own conduct): she never speaks of honesty but lives it in what she does, which is what makes her more convincing than the lecturers.",
+  "distractor_rationales": [
+   "espouses - meaning ('adopts and argues for a cause'); arguing for honesty is exactly what the lecturing early heroes did, and she never argues for it or names it",
+   "flaunts - meaning ('shows off'); she never mentions the virtue and acts 'without comment', the opposite of showing off",
+   "heralds - meaning ('announces'); announcing is what the lecturing early heroes did, and she never uses the word"
+  ],
+  "rarity_order": [
+   "espouses",
+   "heralds",
+   "embodies",
+   "flaunts"
+  ],
+  "polarity": {
+   "embodies": "+",
+   "espouses": "+",
+   "flaunts": "-",
+   "heralds": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "flaunts",
+   "odd_one_out": "flaunts",
+   "most_specific": "flaunts",
+   "test_word": "espouses",
+   "blind_guess": "espouses"
+  }
+ },
+ {
+  "id": "IS23C-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession then two-step inference: the quilt is conceded to be cheap, and the decisive clue (a square added each year a first child was born) implies a record of births across generations, which implies the word; 'without anyone planning it' invites folklore",
+  "prompt": "[Sentence Completion] An appraiser once priced the quilt at less than the frame it hangs in, and the family has never disputed the figure: the fabric is cheap and the stitching uneven. What the appraiser could not price was that each generation had added a square in the year its first child was born, so that the quilt had become, without anyone planning it, the family's -------.",
+  "choices": [
+   "folklore",
+   "genealogy",
+   "hallmark",
+   "heyday"
+  ],
+  "correct_answer": "genealogy",
+  "explanation": "genealogy (a record of a family's line of descent): one square per first birth in each generation turns the quilt into a stitched record of who descended from whom.",
+  "distractor_rationales": [
+   "folklore - meaning ('traditional stories and beliefs of a people'); the quilt records births, not stories or beliefs",
+   "hallmark - meaning ('a distinguishing feature'); nothing says the quilt is what sets this family apart; the point is what the squares record",
+   "heyday - meaning ('a period of greatest success'); the squares mark births across many years, not a single peak in the family's fortunes"
+  ],
+  "rarity_order": [
+   "genealogy",
+   "heyday",
+   "hallmark",
+   "folklore"
+  ],
+  "polarity": {
+   "folklore": "0",
+   "genealogy": "0",
+   "hallmark": "0",
+   "heyday": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "heyday",
+   "odd_one_out": "heyday",
+   "most_specific": "genealogy",
+   "test_word": "hallmark",
+   "blind_guess": "folklore"
+  }
+ },
+ {
+  "id": "IS23C-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "comparison of two judges; the near clue (compassion) points at the first judge, and the 'brave stand' sentence kills heroics; must infer from 'exact wording despite disliking the result' a faithfulness to the text",
+  "prompt": "[Sentence Completion] For thirty years Judge Hale set aside the plain words of a statute whenever they produced an outcome she thought unjust, and lawyers loved her for her compassion. Her successor did the opposite, applying a law's exact wording even in cases where she had said from the bench that she disliked the result. Nor was this a brave stand: the legislature usually agreed with her, and the newspapers seldom noticed. What the bar came, grudgingly, to admire in the second judge was her -------.",
+  "choices": [
+   "empathy",
+   "fidelity",
+   "flair",
+   "heroics"
+  ],
+  "correct_answer": "fidelity",
+  "explanation": "fidelity (faithfulness, loyalty): she kept to the law's exact words even against her own wishes, i.e. stayed faithful to the text; the admiration contrasts with the first judge's compassion.",
+  "distractor_rationales": [
+   "empathy - fellow feeling ('her empathy for the accused'); that is the first judge's compassion, and the second ruled against her own sympathies",
+   "flair - stylish natural talent ('a flair for drama'); applying a statute's exact words is the opposite of showmanship, and nothing describes her style",
+   "heroics - acts of great courage ('his heroics in the rescue'); the passage says it was not a brave stand, since the legislature agreed and the papers did not notice, so there was nothing heroic to admire"
+  ],
+  "rarity_order": [
+   "fidelity",
+   "heroics",
+   "flair",
+   "empathy"
+  ],
+  "polarity": {
+   "empathy": "+",
+   "fidelity": "+",
+   "flair": "+",
+   "heroics": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "flair",
+   "odd_one_out": "flair",
+   "most_specific": "fidelity",
+   "test_word": "heroics",
+   "blind_guess": "empathy"
+  }
+ },
+ {
+  "id": "IS23C-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "elimination plus two-step inference: the storm is feared less (kills hail), fans to keep air moving and 'still hours' (kill gust), damp spells bother them least (kills fungus); a calm clear night plus fires among the rows must be turned into freezing",
+  "prompt": "[Sentence Completion] After a warm March coaxed the orchard into blossom two weeks early, the growers spent April watching the evening forecast. Visitors were puzzled that a thunderstorm worried them less than a calm, starry night, and that on such nights they lit fires among the rows and ran big fans to keep the air stirring. The damp, grey spells that drove the visitors indoors bothered the growers least of all. What they feared could do its damage in a few still hours before dawn: the -------.",
+  "choices": [
+   "frost",
+   "fungus",
+   "gust",
+   "hail"
+  ],
+  "correct_answer": "frost",
+  "explanation": "frost (ice formed when the temperature drops below freezing): calm, clear nights lose the day's heat fastest, which is why growers light fires and stir the air; a few hours of it before dawn kills early blossom.",
+  "distractor_rationales": [
+   "fungus - a mold or mildew ('fungus on the leaves'); it thrives in damp spells, which the growers mind least, and does not strike in a few hours",
+   "gust - a sudden blast of wind ('a gust blew off his hat'); the growers run fans to make the air move, and the danger comes in still hours",
+   "hail - balls of ice falling from storm clouds ('hail dented the car'); it comes with thunderstorms, which worry the growers less than a calm, starry night"
+  ],
+  "rarity_order": [
+   "fungus",
+   "gust",
+   "hail",
+   "frost"
+  ],
+  "polarity": {
+   "frost": "-",
+   "fungus": "-",
+   "gust": "-",
+   "hail": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "gust",
+   "odd_one_out": "fungus",
+   "most_specific": "hail",
+   "test_word": "gust",
+   "blind_guess": "fungus"
+  }
+ },
+ {
+  "id": "IS23C-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "sequence plus concession: the warm cards suggest closeness, the empty contents reverse it, and the missing quarrel, the warm words to friends and 'far from hiding a grudge' kill the near-miss embittered; two-step inference to drifting apart without a cause",
+  "prompt": "[Sentence Completion] Every December the two sisters still exchanged cards signed 'with all my love,' and their children grew up assuming the pair were close. Only after both had died did the children lay the cards side by side and notice that, across twenty-six years, they held no news, no questions, and no plans to visit. The children went looking for the quarrel that would explain it and never found one; each sister, it turned out, had spoken warmly of the other to friends until the end. Far from hiding a grudge, the cheerful cards had hidden only how ------- the sisters had become.",
+  "choices": [
+   "embittered",
+   "enchanted",
+   "estranged",
+   "fretful"
+  ],
+  "correct_answer": "estranged",
+  "explanation": "estranged (no longer close; grown apart): cards empty of news, questions or visits for decades show a relationship that faded to formality, with no grudge behind it.",
+  "distractor_rationales": [
+   "embittered - resentful after being wronged ('embittered by the defeat'); it fits the distance, but there was no quarrel, neither was wronged, each spoke warmly of the other, and the cards hid no grudge",
+   "enchanted - charmed and delighted ('enchanted by the music'); cards with no news or plans show no delight in each other, only formality",
+   "fretful - anxious and worried ('a fretful night before the exam'); nothing in the cards or the story shows either sister worrying"
+  ],
+  "rarity_order": [
+   "fretful",
+   "estranged",
+   "embittered",
+   "enchanted"
+  ],
+  "polarity": {
+   "embittered": "-",
+   "enchanted": "+",
+   "estranged": "-",
+   "fretful": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "enchanted",
+   "odd_one_out": "enchanted",
+   "most_specific": "fretful",
+   "test_word": "embittered",
+   "blind_guess": "embittered"
+  }
+ },
+ {
+  "id": "IS23C-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "reversal by sequence: the ending shows the neighbor was right, so the quality readers had pinned on the neighbor belongs to the narrator; 'foreboding' is the near-miss (the boat-builder's dread of a flood) killed because the narrator never expected one, and 'mockery' tempts toward hatred",
+  "prompt": "[Sentence Completion] For two hundred pages the narrator ridicules his neighbor for building a boat in a valley that has not flooded in living memory, and most readers laugh along with him. Then, in the final chapter, the dam upstream gives way, and it is the neighbor's boat that carries both families to the ridge. Rereading the book, one sees that the mockery was aimed at the wrong man all along: the novel had been a study in -------, but the narrator's rather than the neighbor's.",
+  "choices": [
+   "folly",
+   "foreboding",
+   "grief",
+   "hatred"
+  ],
+  "correct_answer": "folly",
+  "explanation": "folly (foolishness): readers took the boat-builder for the fool; the flood shows the narrator's scorn was the foolish thing, so the folly is his.",
+  "distractor_rationales": [
+   "foreboding - a dread that something bad will happen ('a sense of foreboding before the storm'); that was the neighbor's feeling about the flood, and the narrator never expected one, so it cannot be his",
+   "grief - deep sorrow ('grief at a death'); no one in the story mourns, and the narrator's failing is one of judgment, not sorrow",
+   "hatred - intense dislike ('hatred of the enemy'); the narrator's ridicule might suggest it, but readers never attributed hatred to the neighbor, so it cannot be the narrator's 'rather than the neighbor's'"
+  ],
+  "rarity_order": [
+   "foreboding",
+   "folly",
+   "grief",
+   "hatred"
+  ],
+  "polarity": {
+   "folly": "-",
+   "foreboding": "-",
+   "grief": "-",
+   "hatred": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "foreboding",
+   "odd_one_out": "folly",
+   "most_specific": "foreboding",
+   "test_word": "folly",
+   "blind_guess": "folly"
+  }
+ },
+ {
+  "id": "IS23C-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step inference: a jammed outbound road with empty inbound lanes, plus the cafés closing the next day, means the summer crowd leaves at once; 'the Long Goodbye' confirms a departure; hiatus is the near-miss (the quiet winter) killed because the Monday itself is the busiest road day, and worry kills the celebration reading",
+  "prompt": "[Sentence Completion] From June through August the little resort hums: every room is booked, and the year-round residents are outnumbered six to one. The townspeople can tell you the exact day it ends, because on the first Monday of September the coast road is jammed from dawn to dusk while the inbound lanes stand empty, and by Tuesday the cafés have pulled in their awnings. Locals call that Monday's annual ------- 'the Long Goodbye,' and they say the name with as much worry about the empty winter ahead as relief.",
+  "choices": [
+   "excursion",
+   "exodus",
+   "fanfare",
+   "hiatus"
+  ],
+  "correct_answer": "exodus",
+  "explanation": "exodus (mass departure): the road out is jammed while nothing comes in, and the town empties overnight, so the Monday is the summer crowd leaving all at once.",
+  "distractor_rationales": [
+   "excursion - a short pleasure trip ('a school excursion to the museum'); the visitors are leaving for the season, not going on an outing and returning",
+   "fanfare - showy celebration ('opened with great fanfare'); nothing is celebrated, and the townspeople feel worry as much as relief",
+   "hiatus - a pause or break ('the show returns after a hiatus'); the quiet winter is the pause, but that Monday is a jammed road, a departure rather than a break"
+  ],
+  "rarity_order": [
+   "hiatus",
+   "exodus",
+   "fanfare",
+   "excursion"
+  ],
+  "polarity": {
+   "excursion": "+",
+   "exodus": "0",
+   "fanfare": "+",
+   "hiatus": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "fanfare",
+   "odd_one_out": "hiatus",
+   "most_specific": "excursion",
+   "test_word": "hiatus",
+   "blind_guess": "exodus"
+  }
+ }
+]

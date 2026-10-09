@@ -1,0 +1,677 @@
+[
+ {
+  "id": "IS23A-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession reversal: 'Although ... predicted it would be torn up within a decade' must be reversed, and the second sentence's 'quarreled over nearly every clause, yet never proposed replacing it' rules out airtight while pointing to durability",
+  "prompt": "[Sentence Completion] Although the treaty was drafted in a single anxious week and its signers on both sides privately predicted it would be torn up within a decade, it proved remarkably -------: the diplomats of the next three generations quarreled over how to read nearly every clause, yet not one of them ever proposed replacing it.",
+  "choices": [
+   "airtight",
+   "abiding",
+   "balanced",
+   "academic"
+  ],
+  "correct_answer": "abiding",
+  "explanation": "abiding (lasting, enduring): the contrast with the prediction that it would be torn up within a decade, plus three generations who never proposed replacing it, forces a word for durability.",
+  "distractor_rationales": [
+   "airtight - having no gaps or loopholes ('an airtight alibi'); the endless quarrels over how to read its clauses show it was not airtight",
+   "balanced - fair to both sides ('a balanced diet'); nothing in the sentence concerns fairness, and fairness is not what the 'Although ... torn up' contrast sets up",
+   "academic - of theoretical interest only, or scholarly ('a purely academic question'); the quarrels over its clauses may sound scholarly, but the 'Although ... torn up within a decade' contrast asks how long it lasted, and a treaty no one would replace mattered in practice"
+  ],
+  "rarity_order": [
+   "abiding",
+   "airtight",
+   "academic",
+   "balanced"
+  ],
+  "polarity": {
+   "airtight": "+",
+   "abiding": "+",
+   "balanced": "+",
+   "academic": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "academic",
+   "odd_one_out": "academic",
+   "most_specific": "airtight",
+   "test_word": "academic",
+   "blind_guess": "balanced"
+  }
+ },
+ {
+  "id": "IS23A-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step cause: doctors chose which patients to enroll and picked those they expected to do well (fact) -> the samples were skewed from the start (inference) -> bias; 'honest statistics' rules out a deliberate agenda",
+  "prompt": "[Sentence Completion] The early studies of the drug looked flawless on paper: large samples, careful dosing, honest statistics. Only years later did anyone notice that each hospital had chosen which patients to enroll, and that its doctors had quite naturally picked the ones they expected to recover, the one ------- no amount of careful arithmetic could correct.",
+  "choices": [
+   "agenda",
+   "antipathy",
+   "bias",
+   "ailment"
+  ],
+  "correct_answer": "bias",
+  "explanation": "bias (a built-in leaning that skews a result): doctors who picked the patients they expected to recover tilted every sample before any number was computed, so careful arithmetic afterward could not undo it.",
+  "distractor_rationales": [
+   "agenda - a plan or hidden purpose ('a political agenda'); the doctors chose 'quite naturally' and the statistics were honest, so there was no scheme",
+   "antipathy - a strong dislike ('an antipathy to crowds'); the doctors picked patients out of hope for their recovery, not dislike of anyone, and nothing describes hostility",
+   "ailment - an illness ('a minor ailment'); the defect described is in how patients were chosen, not in any disease"
+  ],
+  "rarity_order": [
+   "antipathy",
+   "ailment",
+   "agenda",
+   "bias"
+  ],
+  "polarity": {
+   "agenda": "0",
+   "antipathy": "-",
+   "bias": "-",
+   "ailment": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "agenda",
+   "odd_one_out": "ailment",
+   "most_specific": "ailment",
+   "test_word": "antipathy",
+   "blind_guess": "antipathy"
+  }
+ },
+ {
+  "id": "IS23A-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "two-step inference with the decisive clue sentences away: officials had nothing new to report and were told to drop the grim case count first, so the purpose was emotional, not informational; the final clause (reading the count in full did harm) excludes brace, and 'more shaken' fixes the direction",
+  "prompt": "[Sentence Completion] Viewers who switched off the ministry's evening briefings more shaken than when they had switched them on might have been surprised by the scripts. On most nights the officials had nothing to say that the morning papers had not already printed, and the one passage they were told to drop whenever time ran short was the slow reading of the day's new case count. The briefings existed less to apprise the public than to ------- it, which is why the nights the count was read out in full did them so much harm.",
+  "choices": [
+   "amuse",
+   "assure",
+   "awe",
+   "brace"
+  ],
+  "correct_answer": "assure",
+  "explanation": "assure (to make confident, remove doubt or fear): the briefings carried no new facts and were scripted to drop the frightening count first, so their real job was to calm viewers; that is why a full reading of the count, which left viewers more shaken, damaged them.",
+  "distractor_rationales": [
+   "amuse - to entertain ('amuse the children'); nothing about the scripts aims at entertainment, and the viewers' state that matters is fear ('more shaken'), not boredom",
+   "awe - to fill with wonder or respect ('awe the crowd'); nothing in the scripts is designed to impress, and dropping the count has nothing to do with wonder",
+   "brace - to prepare for something bad ('brace the town for the storm'); reading the count in full would have served bracing, but the sentence says it harmed the briefings, and the count was the first thing cut"
+  ],
+  "rarity_order": [
+   "awe",
+   "brace",
+   "assure",
+   "amuse"
+  ],
+  "polarity": {
+   "amuse": "+",
+   "assure": "+",
+   "awe": "0",
+   "brace": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "brace",
+   "odd_one_out": "brace",
+   "most_specific": "brace",
+   "test_word": "awe",
+   "blind_guess": "amuse"
+  }
+ },
+ {
+  "id": "IS23A-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "rejected nearer clue: 'frauds' and 'not deceit' tempt toward a word for faked confidence, but the merchants drank their own tonics; the decisive clue is the trailing 'resting on novelty, not on any study', which makes the confidence taken for granted; boundless is a near-miss that describes degree, not source",
+  "prompt": "[Sentence Completion] It would be easy to call the radium merchants of the 1920s frauds, but their own papers argue otherwise: several of them drank the same glowing tonics they sold, every day, for years. Their failing was not deceit but confidence that was ------- rather than earned, resting on the novelty of the substance and not on any study of what it did inside the body.",
+  "choices": [
+   "boundless",
+   "awarded",
+   "breezy",
+   "assumed"
+  ],
+  "correct_answer": "assumed",
+  "explanation": "assumed (taken for granted without proof): the merchants' belief rested on novelty, not on study, so it was simply presumed rather than earned.",
+  "distractor_rationales": [
+   "boundless - without limit ('boundless energy'); confidence can be limitless and still earned, so 'rather than earned' sets up no contrast with it, and nothing says the confidence was boundless",
+   "awarded - given by someone else ('awarded a prize'); the confidence was the merchants' own belief, not something granted them by others",
+   "breezy - casual and light ('a breezy manner'); a casual manner is not the opposite of earning something, and men who drank the tonics daily for years were not offhand about them"
+  ],
+  "rarity_order": [
+   "assumed",
+   "breezy",
+   "boundless",
+   "awarded"
+  ],
+  "polarity": {
+   "boundless": "0",
+   "awarded": "+",
+   "breezy": "+",
+   "assumed": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "awarded",
+   "odd_one_out": "breezy",
+   "most_specific": "breezy",
+   "test_word": "boundless",
+   "blind_guess": "boundless"
+  }
+ },
+ {
+  "id": "IS23A-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession reversal with the evidence a clause away: the blank states the popular claim ('For all the talk of'), which the account books (commissions forty years later, copyists paid by printers) deny; awakened is a near-miss the same evidence would confirm, so the reader must track which way the concession runs",
+  "prompt": "[Sentence Completion] For all the talk of the printing press as the machine that ------- the old scribal workshops, their own account books tell another story: they were still taking commissions forty years after the first printed Bible, and several early printers even paid monastery copyists to paint the initials into their printed books.",
+  "choices": [
+   "amazed",
+   "awakened",
+   "anointed",
+   "abolished"
+  ],
+  "correct_answer": "abolished",
+  "explanation": "abolished (put an end to): 'For all the talk' sets the popular claim against the account books, and the books show the workshops still working decades later, so the claim must be that the press put them out of existence.",
+  "distractor_rationales": [
+   "amazed - filled with wonder ('the trick amazed the crowd'); the account books record work and payments, which say nothing for or against the workshops' wonder, so 'another story' would contradict nothing",
+   "awakened - stirred into new activity ('awakened an interest'); commissions decades later and printers hiring copyists would confirm such a claim, but 'For all the talk ... another story' needs a claim the books deny",
+   "anointed - chose or blessed as a successor ('anointed his heir'); nothing suggests the press honored the workshops, and the books' evidence of ongoing work does not contradict it"
+  ],
+  "rarity_order": [
+   "anointed",
+   "abolished",
+   "awakened",
+   "amazed"
+  ],
+  "polarity": {
+   "amazed": "0",
+   "awakened": "+",
+   "anointed": "+",
+   "abolished": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "abolished",
+   "odd_one_out": "anointed",
+   "most_specific": "anointed",
+   "test_word": "abolished",
+   "blind_guess": "awakened"
+  }
+ },
+ {
+  "id": "IS23A-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast across sentences: the calm reports are set against officers' diaries of starvation and desertion, and 'less to record ... than to' reverses the obvious reading, so the reports must give a false picture of the army's state",
+  "prompt": "[Sentence Completion] The general's dispatches from the siege were models of calm: short, orderly, full of supply counts and remarks on the weather. Read beside the diaries of his own officers, who describe men boiling their boots for soup and deserting by the dozen each night, those tidy reports seem less to record the army's condition than to ------- it.",
+  "choices": [
+   "bemoan",
+   "belie",
+   "belabor",
+   "broach"
+  ],
+  "correct_answer": "belie",
+  "explanation": "belie (give a false impression of): calm, orderly reports about an army that was starving and deserting do not merely fail to record its condition; they misrepresent it.",
+  "distractor_rationales": [
+   "bemoan - lament ('bemoan the losses'); the dispatches are calm, not complaining",
+   "belabor - dwell on at needless length ('belabor the point'); the reports are short and say nothing about the starvation, so they dwell on nothing",
+   "broach - raise as a topic ('broach the subject'); the reports never raise the starvation at all"
+  ],
+  "rarity_order": [
+   "belie",
+   "belabor",
+   "broach",
+   "bemoan"
+  ],
+  "polarity": {
+   "bemoan": "-",
+   "belie": "0",
+   "belabor": "-",
+   "broach": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "broach",
+   "odd_one_out": "broach",
+   "most_specific": "bemoan",
+   "test_word": "belabor",
+   "blind_guess": "belie"
+  }
+ },
+ {
+  "id": "IS23A-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "near-miss: the physical sweating points to allergies, but the second clause (a virus, not the food, was the cause) and 'the reasoning behind them' rule out a bodily reaction to the food itself; the reader must infer a learned dislike",
+  "prompt": "[Sentence Completion] Patients who had once been violently sick after a particular meal often broke into a sweat at the mere smell of that dish for years afterward and refused to touch it, even after a doctor had shown them that a passing virus, not the food, had made them ill. The body, it seems, keeps its ------- long after the mind has dismissed the reasoning behind them.",
+  "choices": [
+   "allergies",
+   "aches",
+   "allegiances",
+   "aversions"
+  ],
+  "correct_answer": "aversions",
+  "explanation": "aversions (strong learned dislikes): the patients still recoil from the dish though they know it did no harm, so the body holds on to a dislike whose original reason the mind has rejected.",
+  "distractor_rationales": [
+   "allergies - bodily reactions to a substance ('allergies to peanuts'); the sweat fits, but the food was shown not to be the cause, and an allergy has no 'reasoning' for the mind to dismiss",
+   "aches - dull pains ('aches after a long hike'); nothing says the patients are in pain, only that they shun the dish",
+   "allegiances - loyalties ('allegiances to a team'); the patients refuse the dish, which is the reverse of loyalty to anything, and nothing names a cause they stand by"
+  ],
+  "rarity_order": [
+   "aversions",
+   "allegiances",
+   "allergies",
+   "aches"
+  ],
+  "polarity": {
+   "allergies": "-",
+   "aches": "-",
+   "allegiances": "0",
+   "aversions": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "allegiances",
+   "odd_one_out": "allegiances",
+   "most_specific": "allergies",
+   "test_word": "allegiances",
+   "blind_guess": "aversions"
+  }
+ },
+ {
+  "id": "IS23A-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step contrast: critics' 'merely failed' is called generous, and a failure is defined as leaving things as they were, so the project must have made things worse than before; a near-miss (buckle) fits 'failed under load' but not 'worse than before'",
+  "prompt": "[Sentence Completion] The city widened its ring road to six lanes to end the rush-hour jams, and for about a year traffic moved freely. Then drivers who had always avoided the road began choosing it, new suburbs sprang up beside its exits, and within five years the morning commute was slower than it had been before the first new lane was poured. Critics who said the project had merely failed were being generous: a failure leaves things as they were, and this one had managed to -------.",
+  "choices": [
+   "buckle",
+   "atone",
+   "backfire",
+   "bristle"
+  ],
+  "correct_answer": "backfire",
+  "explanation": "backfire (produce the opposite of the intended result): a project meant to speed traffic left the commute slower than before, which is worse than a plain failure that changes nothing.",
+  "distractor_rationales": [
+   "buckle - give way under strain ('the shelf buckled under the books'); the road was overwhelmed, but buckling is just a failure, and the sentence says this outcome was worse than a failure",
+   "atone - make amends for a wrong ('atone for a mistake'); the project made nothing right, and making amends would leave things better, not worse than before",
+   "bristle - react with irritation ('she bristled at the remark'); a road project cannot take offense, and irritation is not a result worse than failure"
+  ],
+  "rarity_order": [
+   "atone",
+   "bristle",
+   "buckle",
+   "backfire"
+  ],
+  "polarity": {
+   "buckle": "-",
+   "atone": "+",
+   "backfire": "-",
+   "bristle": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "atone",
+   "odd_one_out": "atone",
+   "most_specific": "bristle",
+   "test_word": "atone",
+   "blind_guess": "buckle"
+  }
+ },
+ {
+  "id": "IS23A-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "decisive clue a sentence away (selling at the first offer vs waiting out three offers) with a nearer plausible clue (biographers' 'daring') that the sentence explicitly rejects; alacrity is a near-miss the reader must assign to the right man (the inventor was the quick one)",
+  "prompt": "[Sentence Completion] The inventor held more than two hundred patents and died nearly penniless, having sold each one for whatever the first buyer offered; his partner, who never designed a single machine, waited out three offers on every patent he controlled and died owning the factory that built them. Biographers keep crediting the partner with greater daring, but the record shows no risk he took that the inventor did not. What the partner had and the inventor lacked was -------.",
+  "choices": [
+   "artistry",
+   "alacrity",
+   "acumen",
+   "bravery"
+  ],
+  "correct_answer": "acumen",
+  "explanation": "acumen (sharp practical judgment, especially in business): the partner knew a patent's worth and held out for it, while the inventor sold cheaply; that judgment, not courage or skill at design, made the difference.",
+  "distractor_rationales": [
+   "artistry - creative skill ('the artistry of the carving'); the inventor had the creative gift and the partner never designed a machine, so it is the reverse of what the partner had and the inventor lacked",
+   "alacrity - eager readiness, quickness ('accepted with alacrity'); it was the inventor who took the first offer at once, while the partner waited, so this is the inventor's trait, not the partner's",
+   "bravery - courage ('bravery under fire'); this is the 'daring' the biographers credit, which the record refutes: the partner took no risk the inventor did not"
+  ],
+  "rarity_order": [
+   "alacrity",
+   "acumen",
+   "artistry",
+   "bravery"
+  ],
+  "polarity": {
+   "artistry": "+",
+   "alacrity": "+",
+   "acumen": "+",
+   "bravery": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "bravery",
+   "odd_one_out": "bravery",
+   "most_specific": "artistry",
+   "test_word": "alacrity",
+   "blind_guess": "acumen"
+  }
+ },
+ {
+  "id": "IS23A-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession tracked through 'not quite ... yet': the first half excuses her (she could not believe she carried a disease), the second half faults her (she kept cooking after being warned), so she was partly to blame; a near-miss (aware) fits the first half but is ruled out by the doctors' explanation",
+  "prompt": "[Sentence Completion] By the standards of her own era, the cook Mary Mallon was not quite -------: she had never been ill a day in her life and could not see how she might spread a fever she did not have, yet she also went on, again and again, cooking for strangers after doctors had explained the danger to her plainly.",
+  "choices": [
+   "aware",
+   "brutal",
+   "blameless",
+   "assertive"
+  ],
+  "correct_answer": "blameless",
+  "explanation": "blameless (free of fault): her disbelief partly excuses her, but continuing to cook after a plain warning was a fault, so she was not entirely without blame.",
+  "distractor_rationales": [
+   "aware - knowing ('aware of the risk'); her disbelief fits 'not quite aware', but the doctors had explained the danger plainly, so she had been made aware",
+   "brutal - cruel and violent ('a brutal attack'); nothing suggests cruelty, and the first half of the sentence argues in her defense",
+   "assertive - forceful and confident ('an assertive speaker'); refusing again and again to stop shows that she was assertive, not that she fell short of it"
+  ],
+  "rarity_order": [
+   "blameless",
+   "assertive",
+   "brutal",
+   "aware"
+  ],
+  "polarity": {
+   "aware": "0",
+   "brutal": "-",
+   "blameless": "+",
+   "assertive": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "blameless",
+   "odd_one_out": "blameless",
+   "most_specific": "brutal",
+   "test_word": "assertive",
+   "blind_guess": "aware"
+  }
+ },
+ {
+  "id": "IS23A-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: the physicians accepted the evidence, then 'Yet' reverses it; the decisive clue is a clause after the blank (the first trial had to be run on prisoners), which implies the physicians would not perform it; the weeks of argument lure agonized and blustered",
+  "prompt": "[Sentence Completion] The London physicians of the 1720s did not doubt the reports of smallpox inoculation sent home from Constantinople; several of them read the letters closely, argued over them for weeks, and granted that the survival figures were striking. Yet when patients asked them to perform the procedure, most of them -------, and the first English trial had to be run on six condemned prisoners who were promised their freedom if they lived.",
+  "choices": [
+   "agonized",
+   "balked",
+   "beamed",
+   "blustered"
+  ],
+  "correct_answer": "balked",
+  "explanation": "balked (refused to go ahead): 'Yet' turns their acceptance of the figures into its opposite in action, and the fact that the first trial had to be run on prisoners shows that the physicians would not do the procedure themselves.",
+  "distractor_rationales": [
+   "agonized - struggled painfully over a decision ('agonized over the choice'); they had already weighed the reports for weeks, and inner struggle alone does not explain why the trial was left to prisoners",
+   "beamed - smiled broadly ('she beamed at the news'); open pleasure at the request would not leave the first trial to condemned prisoners",
+   "blustered - talked loudly and boastfully ('he blustered about his record'); loud talk is not a refusal and does not account for the trial being run on prisoners"
+  ],
+  "rarity_order": [
+   "blustered",
+   "balked",
+   "agonized",
+   "beamed"
+  ],
+  "polarity": {
+   "agonized": "-",
+   "balked": "-",
+   "beamed": "+",
+   "blustered": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "beamed",
+   "odd_one_out": "beamed",
+   "most_specific": "blustered",
+   "test_word": "agonized",
+   "blind_guess": "balked"
+  }
+ },
+ {
+  "id": "IS23A-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step cause: the faster loom used up the yarn of several hand spinners and weavers sat idle waiting for thread, so the slow step held back the whole trade; the reader must infer the role of the spinning wheel from the idleness, a sentence before the blank",
+  "prompt": "[Sentence Completion] When English weavers took up the flying shuttle in the decades after 1733, each could suddenly weave far more cloth in a day, and merchants expected the trade to boom. At first it did not: one loom now used up the yarn of several hand spinners, and weavers spent long stretches idle, waiting for thread. Until spinning itself was done by machine, the spinning wheel was the trade's -------.",
+  "choices": [
+   "blueprint",
+   "byword",
+   "bottleneck",
+   "blemish"
+  ],
+  "correct_answer": "bottleneck",
+  "explanation": "bottleneck (the slow point that limits everything after it): the looms could work faster than the spinners could supply them, so weavers waited for thread and the whole trade moved only as fast as the spinning wheel.",
+  "distractor_rationales": [
+   "blueprint - a detailed plan or design ('the blueprint for the new bridge'); the wheel was not a plan the trade followed",
+   "byword - a name that stands for a quality ('a byword for quality'); the passage is about the wheel slowing output, not about what it symbolized",
+   "blemish - a mark that spoils an appearance ('a blemish on his record'); the wheel did not spoil the trade's look or reputation, it limited its output"
+  ],
+  "rarity_order": [
+   "byword",
+   "blemish",
+   "bottleneck",
+   "blueprint"
+  ],
+  "polarity": {
+   "blueprint": "0",
+   "byword": "0",
+   "bottleneck": "-",
+   "blemish": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "blemish",
+   "odd_one_out": "byword",
+   "most_specific": "blueprint",
+   "test_word": "byword",
+   "blind_guess": "byword"
+  }
+ },
+ {
+  "id": "IS23A-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "two-step inference: nurses recovering the drug from the patient's urine to reuse it, and even that falling short, implies there was too little of it; 'power was never in question' rules out acknowledged; the blank's own sentence only says the drug worked",
+  "prompt": "[Sentence Completion] Penicillin's power was never in question: in 1941 it pulled a dying Oxford policeman back from the edge within days, his fever breaking and his infected wounds beginning to heal. Yet he died a month later all the same; by then the nurses had been recovering the drug from his urine to inject it again, and even that had not been enough. For more than a decade after its discovery, penicillin was a medicine that worked but was not -------.",
+  "choices": [
+   "acknowledged",
+   "available",
+   "bearable",
+   "authorized"
+  ],
+  "correct_answer": "available",
+  "explanation": "available (able to be obtained when needed): reusing the drug from the patient's urine, and still running short, shows the problem was the supply, not the cure.",
+  "distractor_rationales": [
+   "acknowledged - recognized as real or valuable ('an acknowledged expert'); the passage opens by saying its power 'was never in question', so recognition was not lacking",
+   "bearable - able to be endured ('the pain was bearable'); no harsh side effects are mentioned, and the patient improved on it",
+   "authorized - officially permitted ('an authorized use'); the doctors were already giving it to him, so permission was not what ran out"
+  ],
+  "rarity_order": [
+   "bearable",
+   "authorized",
+   "acknowledged",
+   "available"
+  ],
+  "polarity": {
+   "acknowledged": "0",
+   "available": "0",
+   "bearable": "0",
+   "authorized": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "bearable",
+   "odd_one_out": "bearable",
+   "most_specific": "authorized",
+   "test_word": "acknowledged",
+   "blind_guess": "bearable"
+  }
+ },
+ {
+  "id": "IS23A-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step cause, clue a sentence away: the only thing that changed was that each person signed his or her own name beside every step, which makes a skipped step traceable to that person; 'nothing new taught' excludes apprised and 'shrugged at a general warning' excludes admonished",
+  "prompt": "[Sentence Completion] Hospitals that hung posters warning against operating on the wrong limb saw almost no change; surgeons working long, crowded shifts read the posters, agreed with them, and carried on as before. Errors fell only when every member of the team had to sign his or her own name beside each item on a checklist before the first cut. The steps were the same ones the posters had listed, and no one was taught anything new; surgeons who had shrugged at a general warning grew careful once they were -------.",
+  "choices": [
+   "alert",
+   "apprised",
+   "accountable",
+   "admonished"
+  ],
+  "correct_answer": "accountable",
+  "explanation": "accountable (answerable for one's own actions): signing one's own name beside each step means a skipped step can be traced to a particular person, and that personal answerability, not new knowledge, is what made the surgeons careful.",
+  "distractor_rationales": [
+   "alert - watchful and wide awake ('an alert guard'); nothing about the signatures made the surgeons more awake, and being careful once alert says nothing about the checklist",
+   "apprised - informed ('apprised of the risks'); the steps were the ones the posters had listed and no one was taught anything new, so being informed changed nothing",
+   "admonished - warned or reproved ('admonished for lateness'); the posters had already warned them and they shrugged, so a warning is exactly what did not work"
+  ],
+  "rarity_order": [
+   "apprised",
+   "admonished",
+   "accountable",
+   "alert"
+  ],
+  "polarity": {
+   "alert": "+",
+   "apprised": "0",
+   "accountable": "0",
+   "admonished": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "admonished",
+   "odd_one_out": "alert",
+   "most_specific": "apprised",
+   "test_word": "admonished",
+   "blind_guess": "alert"
+  }
+ },
+ {
+  "id": "IS23A-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast 'not to refute it but to', resolved only by the following sentence: wide distribution, a dozen citations in thirty-four years, none for its main idea, then rediscovery; the reader must infer neglect from the record, since nothing near the blank says it was ignored",
+  "prompt": "[Sentence Completion] What the scientific world did to Gregor Mendel's paper on pea plants was not to refute it but to ------- it. The journal that printed it in 1866 went to more than a hundred libraries, yet in the next thirty-four years it was cited only about a dozen times, never for its laws of inheritance, until three botanists working separately came upon it in 1900 and saw at once what it meant.",
+  "choices": [
+   "adopt",
+   "bury",
+   "assault",
+   "betray"
+  ],
+  "correct_answer": "bury",
+  "explanation": "bury (to hide away so that it is forgotten): the paper reached many libraries but was barely cited and never for its main idea for thirty-four years, until it had to be found again, so it was not disproved but left forgotten.",
+  "distractor_rationales": [
+   "adopt - to take up and use as one's own ('adopt a new method'); no one used its laws until 1900",
+   "assault - to attack violently ('critics assaulted the plan'); an attack would mean people engaged with it, but it was barely cited at all",
+   "betray - to be disloyal to, or give away to an enemy ('betray a friend'); nothing suggests anyone owed Mendel loyalty or turned his work against him"
+  ],
+  "rarity_order": [
+   "assault",
+   "betray",
+   "adopt",
+   "bury"
+  ],
+  "polarity": {
+   "adopt": "+",
+   "bury": "-",
+   "assault": "-",
+   "betray": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "adopt",
+   "odd_one_out": "adopt",
+   "most_specific": "bury",
+   "test_word": "betray",
+   "blind_guess": "betray"
+  }
+ }
+]

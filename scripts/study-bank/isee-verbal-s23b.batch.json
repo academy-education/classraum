@@ -1,0 +1,677 @@
+[
+ {
+  "id": "IS23B-01",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step inference with a nearer lure: the repeated-drills complaint beside the blank invites drudgery or continuity, but the decisive clue is a sentence away - the bus seating stopped splitting starters from substitutes, which implies the two groups had become friends, which is what the rule was for",
+  "prompt": "[Sentence Completion] Several starters called the coach's new rule pointless: why should they run the same cone drills as the substitutes, hour after hour, when they had mastered those drills years ago? The coach never claimed the drills would sharpen anyone's footwork. She pointed instead to the bus rides home, where for years the back rows had belonged to the starters and the front rows to everyone else; by October no one could predict who would be sitting beside whom. The rule, she said, had been about ------- all along.",
+  "choices": [
+   "chivalry",
+   "camaraderie",
+   "drudgery",
+   "continuity"
+  ],
+  "correct_answer": "camaraderie",
+  "explanation": "camaraderie (friendship and trust within a group): the coach does not defend the drills as training; she points to the end of the starters-in-back, substitutes-in-front seating, i.e. the two groups now mix freely, so the rule's purpose was to bond the team.",
+  "distractor_rationales": [
+   "chivalry - meaning ('courteous, protective conduct toward others'); nothing shows the starters protecting or deferring to the substitutes, only the groups mixing as equals",
+   "drudgery - meaning ('dull, tiring work'); it describes how the starters saw the drills, not what the coach says the rule was for",
+   "continuity - meaning ('unbroken sameness over time'); the outcome she cites is the BREAK in a long-standing seating pattern, the opposite of keeping things the same"
+  ],
+  "rarity_order": [
+   "drudgery",
+   "camaraderie",
+   "chivalry",
+   "continuity"
+  ],
+  "polarity": {
+   "chivalry": "+",
+   "camaraderie": "+",
+   "drudgery": "-",
+   "continuity": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "drudgery",
+   "odd_one_out": "continuity",
+   "most_specific": "chivalry",
+   "test_word": "drudgery",
+   "blind_guess": "camaraderie"
+  }
+ },
+ {
+  "id": "IS23B-02",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "a misreading to be reconstructed: the blank is what readers who saw ONLY the list of complaints concluded, which the second sentence then overturns; the near-miss describes the whole review, which those readers never reached",
+  "prompt": "[Sentence Completion] Readers who stopped after the opening paragraphs, with their long list of complaints about the lighting, the pacing, and even the typeface on the program, took the review to be -------. Those who reached the last line, which urged them to buy tickets before the run sold out, understood that the critic had admired the production all along and had simply been thorough.",
+  "choices": [
+   "conflicted",
+   "deadpan",
+   "damning",
+   "chipper"
+  ],
+  "correct_answer": "damning",
+  "explanation": "damning (strongly condemning): readers who saw nothing but complaints would conclude the critic condemned the show, which is exactly the judgment the closing recommendation reverses ('admired the production all along').",
+  "distractor_rationales": [
+   "conflicted - torn between two views ('a conflicted verdict'); describes praise mixed with complaint, but these readers saw only the complaints, never the praise",
+   "deadpan - dryly humorous with a straight face ('a deadpan joke'); nothing in a list of complaints suggests concealed humor",
+   "chipper - cheerful and lively ('a chipper greeting'); a long list of complaints is the opposite of what would make a reader find the review cheerful"
+  ],
+  "rarity_order": [
+   "deadpan",
+   "chipper",
+   "damning",
+   "conflicted"
+  ],
+  "polarity": {
+   "conflicted": "0",
+   "deadpan": "0",
+   "damning": "-",
+   "chipper": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "chipper",
+   "odd_one_out": "damning",
+   "most_specific": "deadpan",
+   "test_word": "conflicted",
+   "blind_guess": "conflicted"
+  }
+ },
+ {
+  "id": "IS23B-03",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step degree inference: more openings elsewhere than the plant had workers implies the jobs could be absorbed, which implies the mayor's word minimizes the loss; the union's objection a sentence later confirms the word downplays it",
+  "prompt": "[Sentence Completion] No one at the hearing disputed that the plant's closing would cost the county jobs; the argument was over its size. The mayor called the loss -------, noting that the county's other employers had posted more openings in the past month than the plant had workers. The union, which knew that most of those workers had held no other job in thirty years, refused to let the word stand.",
+  "choices": [
+   "cyclical",
+   "detrimental",
+   "contained",
+   "deplorable"
+  ],
+  "correct_answer": "contained",
+  "explanation": "contained (kept within limits, not spreading): the argument was over the loss's SIZE, and the mayor backs her word with other employers having more openings than the plant had workers, so she is calling the damage limited; the union objects because its workers cannot easily move into those openings.",
+  "distractor_rationales": [
+   "cyclical - meaning ('recurring in a regular cycle'); the mayor's evidence is about how many openings exist now, not about the loss coming and going with a cycle",
+   "detrimental - meaning ('causing harm'); no one disputed the closing would cost jobs, so calling it harmful would settle nothing - and her evidence argues the harm is small, not that it is harmful",
+   "deplorable - meaning ('deserving strong condemnation'); her evidence minimizes the loss, and the union would hardly refuse to let a condemning word stand"
+  ],
+  "rarity_order": [
+   "cyclical",
+   "deplorable",
+   "detrimental",
+   "contained"
+  ],
+  "polarity": {
+   "cyclical": "0",
+   "detrimental": "-",
+   "contained": "0",
+   "deplorable": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "deplorable",
+   "odd_one_out": "cyclical",
+   "most_specific": "cyclical",
+   "test_word": "detrimental",
+   "blind_guess": "detrimental"
+  }
+ },
+ {
+  "id": "IS23B-04",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step inference across sentences with a nearer lure: the glass-and-daylight praise beside the blank supports cinematic and contemporary, but the 'different verdict' must contradict the critics' word, and the evidence (a floor plan everyone needs) implies visitors get lost, which contradicts only a claim that the layout hangs together",
+  "prompt": "[Sentence Completion] Critics who toured the new wing with its architect praised its sweeping glass and its flood of daylight and called the whole design -------. The gift shop reached a different verdict within a month: the laminated floor plan it had stocked as an afterthought was outselling every poster and postcard in the store, and the guards had taken to carrying spare copies in their pockets.",
+  "choices": [
+   "democratic",
+   "cinematic",
+   "contemporary",
+   "coherent"
+  ],
+  "correct_answer": "coherent",
+  "explanation": "coherent (logically ordered, easy to follow as a whole): the gift shop's 'different verdict' is that visitors cannot find their way without a map; a building that needs a floor plan in every guard's pocket does not hang together, so the critics' word must have been coherent. The critics had the architect as a guide, which is why they missed it.",
+  "distractor_rationales": [
+   "democratic - meaning ('open and equal to all'); a best-selling floor plan says nothing against the wing being open to everyone, so it is not the verdict the gift shop contradicts",
+   "cinematic - meaning ('dramatic and visually sweeping, like a film'); the glass and daylight support it, and visitors needing a map does not contradict it",
+   "contemporary - meaning ('modern in style'); a confusing layout can still be modern, so the floor-plan evidence does not overturn it"
+  ],
+  "rarity_order": [
+   "cinematic",
+   "coherent",
+   "democratic",
+   "contemporary"
+  ],
+  "polarity": {
+   "democratic": "+",
+   "cinematic": "0",
+   "contemporary": "0",
+   "coherent": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "contemporary",
+   "odd_one_out": "cinematic",
+   "most_specific": "cinematic",
+   "test_word": "democratic",
+   "blind_guess": "democratic"
+  }
+ },
+ {
+  "id": "IS23B-05",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "'not so much selective as' contrast: the one-in-fifty boast tempts toward a harsh-competition word and 'the odds' toward a chance word, but the examples (same three universities, every hire referred by staff) show a closed circle of insiders, neither fierce selection nor luck",
+  "prompt": "[Sentence Completion] The firm boasted that only one applicant in fifty was hired, but the profiles in its own brochure suggested the odds were not the same for everyone: every engineer pictured had graduated from one of three universities, and each had been recommended by someone already on staff. The hiring, it seemed, was not so much selective as -------.",
+  "choices": [
+   "demoralizing",
+   "cliquish",
+   "cutthroat",
+   "dicey"
+  ],
+  "correct_answer": "cliquish",
+  "explanation": "cliquish (favoring a small, closed group of insiders): the same three schools and referrals from current staff show that hires came from one circle, which is a different thing from merely being hard to get into.",
+  "distractor_rationales": [
+   "demoralizing - discouraging, sapping spirit ('a demoralizing loss'); nothing in the brochure's examples concerns anyone's morale",
+   "cutthroat - ruthlessly competitive ('a cutthroat market'); this is what the one-in-fifty boast suggests, but 'not so much selective as' asks for something other than fierce selection",
+   "dicey - risky, a matter of chance ('a dicey bet'); the brochure says the odds were unequal, but the examples show a pattern favoring insiders, not luck"
+  ],
+  "rarity_order": [
+   "cliquish",
+   "dicey",
+   "cutthroat",
+   "demoralizing"
+  ],
+  "polarity": {
+   "demoralizing": "-",
+   "cliquish": "-",
+   "cutthroat": "-",
+   "dicey": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "dicey",
+   "odd_one_out": "dicey",
+   "most_specific": "cliquish",
+   "test_word": "cutthroat",
+   "blind_guess": "demoralizing"
+  }
+ },
+ {
+  "id": "IS23B-06",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "purpose; the decisive details (phones still allowed at lunch, pouches open at the bell, learning to go a few hours) are a sentence after the blank and rule out total removal, so the reader must infer reduction rather than elimination",
+  "prompt": "[Sentence Completion] Parents who read the letter assumed the new phone pouches were a punishment, and some wrote back to say that taking phones away entirely would only make students want them more. The principal replied that the pouches were meant to ------- the habit: phones would still come out at lunch, every pouch would unlock at the final bell, and the hope was simply that students would find they could get through a morning without checking.",
+  "choices": [
+   "dampen",
+   "demolish",
+   "denounce",
+   "dissect"
+  ],
+  "correct_answer": "dampen",
+  "explanation": "dampen (lessen, weaken): the pouches reduce how often students check while still allowing phones at lunch and after school, so the aim is to weaken the habit, not destroy or merely observe it.",
+  "distractor_rationales": [
+   "demolish - meaning ('destroy completely'); phones still come out at lunch and every pouch unlocks at the bell, so the aim is plainly not to wipe the habit out",
+   "denounce - meaning ('condemn publicly'); this is the punishment reading the parents assumed and the principal's reply rejects - the pouches are about reducing checking, not condemning it",
+   "dissect - meaning ('analyze in close detail'); nothing in the plan studies the habit; it simply limits it for the morning"
+  ],
+  "rarity_order": [
+   "dissect",
+   "denounce",
+   "dampen",
+   "demolish"
+  ],
+  "polarity": {
+   "dampen": "-",
+   "demolish": "-",
+   "denounce": "-",
+   "dissect": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "dissect",
+   "odd_one_out": "dissect",
+   "most_specific": "dissect",
+   "test_word": "denounce",
+   "blind_guess": "denounce"
+  }
+ },
+ {
+  "id": "IS23B-07",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "reversal through 'anything but' plus a two-step inference: the accountant's low-earnings argument sits nearest the blank, but the month without the loaf shows its value lay in bringing customers in, so the reader must negate the accountant's view",
+  "prompt": "[Sentence Completion] The accountant showed the owner that each plain loaf earned the bakery less than a nickel and urged her to stop baking it. She tried it for a month and learned that the loaf was anything but -------: sales of cakes and coffee fell by a third, because many of the regulars who used to come in for bread, and pick up a pastry while they were there, had simply started shopping somewhere else.",
+  "choices": [
+   "dependable",
+   "convenient",
+   "disposable",
+   "dowdy"
+  ],
+  "correct_answer": "disposable",
+  "explanation": "disposable (able to be thrown out or done without): dropping the loaf cost the bakery a third of its other sales, so it proved to be something the shop could not do without.",
+  "distractor_rationales": [
+   "dependable - meaning ('reliable'); nothing shows the loaf's sales were unreliable, so 'anything but dependable' contradicts the story",
+   "convenient - meaning ('easy, suited to one's needs'); the month shows the loaf's value to the shop, not whether baking it was easy",
+   "dowdy - meaning ('plain and unfashionable in appearance'); the loaf is called plain, and the month tells us about its value to the shop, not its looks, so 'anything but dowdy' has no support"
+  ],
+  "rarity_order": [
+   "dowdy",
+   "disposable",
+   "dependable",
+   "convenient"
+  ],
+  "polarity": {
+   "dependable": "+",
+   "convenient": "+",
+   "disposable": "-",
+   "dowdy": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "dependable",
+   "odd_one_out": "dowdy",
+   "most_specific": "dowdy",
+   "test_word": "dependable",
+   "blind_guess": "dependable"
+  }
+ },
+ {
+  "id": "IS23B-08",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "logic of examples; the reader must generalize from what others do in response to her (coach changes the drill, the table follows) rather than from what she does herself, which points toward the near-miss candor",
+  "prompt": "[Sentence Completion] She held no title on the team, not even assistant captain, and she rarely spoke in the huddle. Yet her ------- was plain to anyone who watched a single practice: the one time she questioned a passing drill, the coach dropped it the next day, and whichever table she sat at during the team lunch was the table the rookies chose too.",
+  "choices": [
+   "competence",
+   "clout",
+   "coldness",
+   "composure"
+  ],
+  "correct_answer": "clout",
+  "explanation": "clout (influence, weight with others): the examples show other people changing what they do because of her, the coach dropping a drill and the rookies following her, which is influence without a title.",
+  "distractor_rationales": [
+   "competence - meaning ('ability to do something well'); none of the examples concerns how well she plays; they show others changing what they do because of her",
+   "coldness - meaning ('lack of warmth toward others'); her silence in the huddle hints at it, but the rookies choosing her lunch table every day shows people are drawn to her, not kept at a distance",
+   "composure - meaning ('calmness'); nothing tests her calm; the examples are about others following her lead"
+  ],
+  "rarity_order": [
+   "clout",
+   "composure",
+   "competence",
+   "coldness"
+  ],
+  "polarity": {
+   "competence": "+",
+   "clout": "0",
+   "coldness": "-",
+   "composure": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "coldness",
+   "odd_one_out": "coldness",
+   "most_specific": "composure",
+   "test_word": "competence",
+   "blind_guess": "competence"
+  }
+ },
+ {
+  "id": "IS23B-09",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession ('never raised her voice ... yet') plus a two-step inference: the details of close, warm attention rule out the cold and inattentive readings, and only the fact that every proposal quietly vanishes implies how her staff come to feel around her",
+  "prompt": "[Sentence Completion] The new supervisor never raised her voice and never turned down a request outright, yet within a month her staff had come to find her -------. She would hear out a proposal without once glancing at her phone, repeat it back almost word for word, warmly thank whoever had made it, and then never mention it again.",
+  "choices": [
+   "clinical",
+   "disengaged",
+   "capable",
+   "deflating"
+  ],
+  "correct_answer": "deflating",
+  "explanation": "deflating (draining confidence or enthusiasm): she listens closely and thanks people warmly, yet every proposal disappears, so working for her steadily drains her staff's eagerness to offer ideas.",
+  "distractor_rationales": [
+   "clinical - meaning ('cool and unemotional'); she warmly thanks each speaker, so coldness is not the complaint",
+   "disengaged - meaning ('not involved or paying attention'); she never glances at her phone and repeats each proposal back almost word for word, so she is plainly paying attention",
+   "capable - meaning ('able, competent'); 'yet' signals a complaint, and nothing in the sentence concerns her skill"
+  ],
+  "rarity_order": [
+   "clinical",
+   "disengaged",
+   "deflating",
+   "capable"
+  ],
+  "polarity": {
+   "clinical": "0",
+   "disengaged": "-",
+   "capable": "+",
+   "deflating": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "capable",
+   "odd_one_out": "capable",
+   "most_specific": "clinical",
+   "test_word": "disengaged",
+   "blind_guess": "disengaged"
+  }
+ },
+ {
+  "id": "IS23B-10",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast with the gallery's 'long plan' plus logic of examples: the reader must generalize from three outside accidents (a sold building, an affordable room, frozen paint) to events beyond her control, while the money details and the run of losses tempt commerce and despair",
+  "prompt": "[Sentence Completion] The gallery's notes present each change in the painter's style as one more step in a long plan. Her letters tell a story of -------: she gave up portraits when the building that held her studio was sold, took up seascapes because the only room she could afford looked out on the harbor, and dropped those one winter when her paints froze in an unheated shed.",
+  "choices": [
+   "conviction",
+   "despair",
+   "discord",
+   "circumstance"
+  ],
+  "correct_answer": "circumstance",
+  "explanation": "circumstance (outside conditions and events one does not control): every change in style follows an accident of where she lived or worked, the opposite of the long plan the gallery describes.",
+  "distractor_rationales": [
+   "conviction - meaning ('firm, settled belief'); it fits the gallery's story of a long plan, but the letters show each change forced by an outside event rather than chosen out of belief",
+   "despair - meaning ('loss of all hope'); the letters record setbacks, but she keeps painting and takes up new subjects, which is not hopelessness",
+   "discord - meaning ('conflict, disagreement'); no quarrel with anyone appears; each change follows an outside event"
+  ],
+  "rarity_order": [
+   "discord",
+   "conviction",
+   "circumstance",
+   "despair"
+  ],
+  "polarity": {
+   "conviction": "+",
+   "despair": "-",
+   "discord": "-",
+   "circumstance": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "conviction",
+   "odd_one_out": "discord",
+   "most_specific": "discord",
+   "test_word": "conviction",
+   "blind_guess": "conviction"
+  }
+ },
+ {
+  "id": "IS23B-11",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "concession: printing the figures plainly rules out hiding or attacking them; the key must be inferred from three behaviours a sentence later (minimizing comparison, steering to the far future, omitting the cash figure)",
+  "prompt": "[Sentence Completion] Investors had braced for excuses, so they were surprised when the founder put the third straight quarter of falling sales on her very first slide, in bold, and agreed that the figures were accurate. It took them longer to notice what she did with those figures next. She would ------- them for the rest of the hour, comparing the shortfall to the cost of a single delivery van, spending most of the meeting on a product that would not launch for two years, and never once mentioning how much cash the company had left.",
+  "choices": [
+   "disclose",
+   "downplay",
+   "confront",
+   "discredit"
+  ],
+  "correct_answer": "downplay",
+  "explanation": "downplay (make something seem less important than it is): she had already shown the numbers and accepted them, but then shrank them with a trivial comparison, buried them under distant plans, and left out the most alarming figure.",
+  "distractor_rationales": [
+   "disclose - to reveal ('disclose the results'); she had already revealed them on the first slide, and what follows is concealment of their weight, not revelation",
+   "confront - to face squarely ('confront a problem'); her bold first slide looks like this, which is the investors' first impression, but for the rest of the hour she shrinks the figures, changes the subject and omits the cash, which is the opposite of facing them",
+   "discredit - to show to be unreliable ('discredit a witness'); she explicitly agreed the figures were accurate, so she never casts doubt on them"
+  ],
+  "rarity_order": [
+   "discredit",
+   "downplay",
+   "disclose",
+   "confront"
+  ],
+  "polarity": {
+   "disclose": "0",
+   "downplay": "-",
+   "confront": "0",
+   "discredit": "-"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "confront",
+   "odd_one_out": "disclose",
+   "most_specific": "discredit",
+   "test_word": "confront",
+   "blind_guess": "confront"
+  }
+ },
+ {
+  "id": "IS23B-12",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "contrast 'not so much imitations as' removes the copy reading; the examples (comic exaggerations of each tune) must be read to choose mocking exaggeration over honoring or unfinished sketches",
+  "prompt": "[Sentence Completion] Reviewers who recognized the famous tunes in the young composer's first symphony accused her of borrowing because she had no ideas of her own. Her teacher heard the piece differently. A gentle lullaby came back blared by six trumpets; a stately royal march was hurried into a frantic gallop; a solemn hymn was handed to a kazoo. Her borrowed tunes, he argued, were not so much imitations of the old masters as -------.",
+  "choices": [
+   "duplicates",
+   "dedications",
+   "caricatures",
+   "drafts"
+  ],
+  "correct_answer": "caricatures",
+  "explanation": "caricatures (exaggerated, comic versions of something): each borrowed tune is blown up into something absurd, which mocks its original rather than copying or honoring it.",
+  "distractor_rationales": [
+   "duplicates - exact copies ('duplicates of a key'); that is the imitation reading the teacher is rejecting",
+   "dedications - works offered in honor of someone ('a dedication to her mentor'); a lullaby on six trumpets and a hymn on a kazoo poke fun rather than pay respect",
+   "drafts - rough early versions ('the first drafts of a novel'); the tunes are not unfinished sketches of the masters' work but finished, deliberately absurd versions of it"
+  ],
+  "rarity_order": [
+   "caricatures",
+   "dedications",
+   "duplicates",
+   "drafts"
+  ],
+  "polarity": {
+   "duplicates": "0",
+   "dedications": "+",
+   "caricatures": "-",
+   "drafts": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "dedications",
+   "odd_one_out": "drafts",
+   "most_specific": "caricatures",
+   "test_word": "duplicates",
+   "blind_guess": "dedications"
+  }
+ },
+ {
+  "id": "IS23B-13",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "a plausible near clue (broadcasters' 'fearless', 'never flinched') is explicitly set aside; the decisive evidence is the self-made scouting binder, which implies shrewd preparation rather than calm nerves, swagger, or obedience",
+  "prompt": "[Sentence Completion] The broadcasters kept calling the young goalkeeper fearless, and it was true that she never flinched at a hard shot. But her coach said that was not why she had won the starting job. Nobody had asked her to keep the binder she carried to every match, with a page on each striker in the league noting which foot each one favored, which corner each aimed for when tired, and who glanced at the net before kicking. What set her apart, he said, was that she was -------.",
+  "choices": [
+   "collected",
+   "cocky",
+   "cultured",
+   "canny"
+  ],
+  "correct_answer": "canny",
+  "explanation": "canny (shrewd and clever, especially in reading situations): she studies every opponent's habits so that each save is worked out in advance, which is what the coach contrasts with mere fearlessness.",
+  "distractor_rationales": [
+   "collected - calm and in control ('cool and collected'); never flinching shows this, but the coach says that is not why she won the job",
+   "cocky - overly sure of oneself ('a cocky rookie'); nothing in the binder shows arrogance; it shows preparation",
+   "cultured - refined, well-read in the arts ('a cultured traveler'); the binder records strikers' kicking habits, which shows shrewd study of opponents, not refinement or learning in the arts"
+  ],
+  "rarity_order": [
+   "canny",
+   "cultured",
+   "cocky",
+   "collected"
+  ],
+  "polarity": {
+   "collected": "+",
+   "cocky": "-",
+   "cultured": "+",
+   "canny": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "cocky",
+   "odd_one_out": "cultured",
+   "most_specific": "cocky",
+   "test_word": "cultured",
+   "blind_guess": "collected"
+  }
+ },
+ {
+  "id": "IS23B-14",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "medium",
+  "blanks": 1,
+  "clue_type": "purpose inferred from the coach's habit (always asking what the opponent would say) plus 'before anyone else could', which points to attacking one's own argument",
+  "prompt": "[Sentence Completion] The debate coach almost never told her students whether an argument was good. She would listen, ask only \"What would your opponent say to that?\", and then wait in silence. Students found the habit maddening in the fall, but by spring they had learned to ------- their own cases before anyone else could, and the team lost only twice all season.",
+  "choices": [
+   "deliver",
+   "challenge",
+   "display",
+   "distribute"
+  ],
+  "correct_answer": "challenge",
+  "explanation": "challenge (question or test): the coach's one question trained them to attack their own arguments the way an opponent would, so they found the weak points first.",
+  "distractor_rationales": [
+   "deliver - to present a speech ('deliver a closing argument'); the coach's question is about answering objections, not presenting, and 'before anyone else could' makes no sense of presenting one's own case",
+   "display - to show openly ('display a trophy'); showing their cases is not what the opponent question trains",
+   "distribute - to hand out ('distribute the ballots'); handing out cases has nothing to do with anticipating an opponent's reply"
+  ],
+  "rarity_order": [
+   "distribute",
+   "challenge",
+   "display",
+   "deliver"
+  ],
+  "polarity": {
+   "deliver": "0",
+   "challenge": "0",
+   "display": "0",
+   "distribute": "0"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "deliver",
+   "odd_one_out": "challenge",
+   "most_specific": "distribute",
+   "test_word": "challenge",
+   "blind_guess": "deliver"
+  }
+ },
+ {
+  "id": "IS23B-15",
+  "family": "isee",
+  "section": "verbal",
+  "domain": "Verbal",
+  "kind": "sentence completion",
+  "subskill": "sentence_completion",
+  "difficulty": "hard",
+  "blanks": 1,
+  "clue_type": "two-step: forms tied to a badge number and read by one's own supervisor imply staff hid dissatisfaction; exit interviews (nothing to lose) confirm it; the key is the quantity the survey undercounted, never named near the blank",
+  "prompt": "[Sentence Completion] Management celebrated when 92 percent of the staff marked themselves \"satisfied\" on the annual survey. A newly hired analyst was less impressed. Every form, she pointed out, had been printed with the employee's badge number and returned straight to that employee's own supervisor, while the year's exit interviews, given by workers who had nothing left to lose, told a very different story about pay and scheduling. The true level of ------- among the staff, she concluded, was almost certainly far higher than the survey suggested.",
+  "choices": [
+   "civility",
+   "disinterest",
+   "discontent",
+   "creativity"
+  ],
+  "correct_answer": "discontent",
+  "explanation": "discontent (dissatisfaction): workers who could be identified by their supervisors had reason to mark 'satisfied' anyway, and those with nothing to lose described problems with pay and scheduling, so the survey undercounted dissatisfaction.",
+  "distractor_rationales": [
+   "civility - politeness ('civility between rivals'); a satisfaction survey does not measure manners, and the exit interviews concern pay and scheduling, not courtesy",
+   "disinterest - lack of interest ('disinterest in politics'); the leaving workers had specific grievances about pay and schedules, which is dissatisfaction, not indifference",
+   "creativity - inventiveness ('creativity in design'); a satisfaction survey does not measure it, and nothing in the evidence concerns new ideas"
+  ],
+  "rarity_order": [
+   "disinterest",
+   "civility",
+   "discontent",
+   "creativity"
+  ],
+  "polarity": {
+   "civility": "+",
+   "disinterest": "-",
+   "discontent": "-",
+   "creativity": "+"
+  },
+  "antonym_pairs": [],
+  "selfcheck": {
+   "antonym_pole": "civility",
+   "odd_one_out": "creativity",
+   "most_specific": "civility",
+   "test_word": "civility",
+   "blind_guess": "disinterest"
+  }
+ }
+]
