@@ -1,0 +1,896 @@
+[
+ {
+  "id": "AM28S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "conditional probability from a two-way table",
+  "subskill": "conditional probability, 'at least' over ordinal rows",
+  "prompt": "Each of the 282 students at a school reported how many siblings he or she has and whether his or her household has a pet. The results are below. 0 siblings: pet 40, no pet 42. 1 sibling: pet 40, no pet 30. 2 siblings: pet 28, no pet 12. 3 siblings: pet 33, no pet 27. 4 or more siblings: pet 18, no pet 12. One of the students who has at least 2 siblings is chosen at random. To the nearest thousandth, what is the probability that this student's household has no pet?",
+  "choices": [
+   "0.415",
+   "0.392",
+   "0.433",
+   "0.405"
+  ],
+  "correct_answer": "0.392",
+  "explanation": "Students with at least 2 siblings are those in the rows 2, 3, and 4 or more: 40 + 60 + 30 = 130 students. Of them, 12 + 27 + 12 = 51 have no pet. The probability is 51/130 ≈ 0.392. The option 0.433 reads 'at least 2' as 'more than 2' and uses only the rows 3 and 4 or more (39/90). The option 0.405 also includes the 1-sibling row (81/200). The option 0.415 reverses the condition, finding the probability that a student with no pet has at least 2 siblings (51/123).",
+  "solve": "return (51/130).toFixed(3);",
+  "distractor_solve": {
+   "0.433": "return ((27+12)/(60+30)).toFixed(3);",
+   "0.405": "return ((30+12+27+12)/(70+40+60+30)).toFixed(3);",
+   "0.415": "return (51/(42+30+12+27+12)).toFixed(3);"
+  },
+  "quantity_asked": "P(no pet | at least 2 siblings) for one student chosen from those with at least 2 siblings, to the nearest thousandth.",
+  "distractor_kind": {
+   "0.433": "error path: 'at least 2' read as 'more than 2', dropping the 2-sibling row (39/90). (a) no stem bound sits on it: it is inside the row-rate range 0.300 to 0.450. (b) it is the pooled rate of a neighbouring set of rows, strictly inside that range. (c) the cheapest estimate (a weighted average of 0.300, 0.450, 0.400, about 0.38 to 0.41) does not reach it as an edge; it lies inside the containment range 0.300 to 0.450. (d) real inequality-boundary error.",
+   "0.405": "error path: 'at least 2' read as 'at least 1', so the 1-sibling row (30 of 70) is added (81/200). (a) no bound on it. (b) neighbouring set of rows, rate strictly inside 0.300 to 0.450. (c) inside every cheap estimate; 0.013 from the key. (d) real off-by-one error in the other direction from 0.433's.",
+   "0.415": "error path: reversed condition, P(at least 2 siblings | no pet) = 51/123. (a) no bound. (b) uses the full no-pet column total 123, not an intermediate of the key. (c) inside 0.300 to 0.450. (d) real wrong-base error."
+  },
+  "distractor_meta": {
+   "0.433": {
+    "direction": "over",
+    "error_kind": "boundary row excluded (more than 2)"
+   },
+   "0.405": {
+    "direction": "over",
+    "error_kind": "extra row included (at least 1)"
+   },
+   "0.415": {
+    "direction": "over",
+    "error_kind": "reversed conditional (wrong base)"
+   }
+  },
+  "bounds": [
+   "the answer is a pooled rate of rows with no-pet rates 0.300, 0.450, 0.400, so 0.300 < v < 0.450: kills nothing",
+   "0 < v < 1: kills nothing"
+  ],
+  "mechanism": [
+   "two-way table with an ordinal count variable",
+   "condition 'at least 2' over several rows",
+   "pool rows then divide",
+   "reversed conditional"
+  ],
+  "arith_class_check": "No. Three-decimal values from 51/130, 39/90, 81/200, 51/123: different denominators, no integer, no shared structure picking the key.",
+  "one_sided_check": "Key smallest. The two boundary errors move the 'at least 2' cut in OPPOSITE directions (drop row 2 / add row 1), and whether each raises or lowers the share depends on comparing the dropped or added row's rate with the pooled rate, which is the computation itself. The reversed conditional's direction depends on 123 vs 130. Natural errors that go DOWN exist and are not options: averaging the three row rates (0.383), the joint probability 51/282 (0.181).",
+  "interior_parity_check": "Interior by value: 0.405 and 0.415; both three-decimal, both end in 5, neither a round value.",
+  "cheap_bound_check": "Key smallest. The cheapest bound is containment: the pooled rate lies between the smallest and largest row rates, 0.300 and 0.450, which kills nothing (all four inside). The cheapest one-step estimate, 'about 0.4' from the three row rates, cannot separate 0.392 from 0.405 (0.013 apart); 0.405 and 0.415 lie on the key's side of any estimate near 0.40-0.42. The unweighted mean of the row rates, 0.383, lies BELOW the key, so 'pooling vs averaging' gives no one-sided cut either.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; boundary errors go both ways in the stem; nearest distractor 0.013; two down-moving natural errors exist off the option list."
+  }
+ },
+ {
+  "id": "AM28S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value of a game",
+  "subskill": "expected net gain, two draws without replacement, base prize plus bonus",
+  "prompt": "A bag contains 4 red, 5 blue, and 6 white marbles. A player pays $1.50 to play a game in which 2 marbles are drawn from the bag at random, one after the other, without replacement. The player receives $4 if the 2 marbles are the same color, and if both marbles are red, the player receives an additional $18. Otherwise the player receives nothing. To the nearest cent, what is the player's expected net gain, in dollars, for one play of the game?",
+  "choices": [
+   "0.48",
+   "1.15",
+   "0.71",
+   "0.56"
+  ],
+  "correct_answer": "0.71",
+  "explanation": "There are C(15,2) = 105 equally likely pairs. Same color: C(4,2) + C(5,2) + C(6,2) = 6 + 10 + 15 = 31 pairs; both red: 6 pairs. A both-red draw pays $4 + $18 = $22. Expected amount received = (4·31 + 18·6)/105 = 232/105 ≈ 2.2095, so the expected net gain is 2.2095 − 1.50 ≈ $0.71. The option 0.48 pays only $18 (not $22) for two reds. The option 0.56 lowers the numerator for the second draw but not the denominator, using 4·3/15² and so on. The option 1.15 draws with replacement.",
+  "solve": "return ((4*31+18*6)/105-1.5).toFixed(2);",
+  "distractor_solve": {
+   "0.48": "return ((4*25+18*6)/105-1.5).toFixed(2);",
+   "0.56": "return ((4*(12+20+30)+18*12)/225-1.5).toFixed(2);",
+   "1.15": "return ((4*(16+25+36)+18*16)/225-1.5).toFixed(2);"
+  },
+  "quantity_asked": "Expected net gain (expected amount received minus the $1.50 cost) for one play, in dollars, to the nearest cent.",
+  "distractor_kind": {
+   "0.48": "error path: treats the $18 as the whole prize for two reds instead of an addition to the $4, so red pairs pay 18 rather than 22. (a) no bound sits on it. (b) the neighbouring 'bonus replaces' setup, strictly inside 0 to the cap below. (c) the cheapest estimate (cap: every play receives at most 22, P(same) ≈ 0.3) gives no edge near it. (d) real misreading of 'additional'.",
+   "0.56": "error path: reduces the numerator for the second draw but keeps 15 in both denominators, P(two red) = (4·3)/15², etc. (a) no bound. (b) not an intermediate. (c) inside every cheap estimate. (d) real without-replacement slip.",
+   "1.15": "error path: draws with replacement, P(two red) = (4/15)², etc. (a) no bound. (b) the with-replacement neighbour. (c) below the cap 22·P(same)−1.5 under any reading. (d) real independence error."
+  },
+  "distractor_meta": {
+   "0.48": {
+    "direction": "under",
+    "error_kind": "bonus read as replacing the base prize"
+   },
+   "0.56": {
+    "direction": "under",
+    "error_kind": "denominator not reduced for second draw"
+   },
+   "1.15": {
+    "direction": "over",
+    "error_kind": "with replacement"
+   }
+  },
+  "bounds": [
+   "net gain > −1.50 (cost) : kills nothing",
+   "net gain < 22·P(same color) − 1.50 ≈ 5: kills nothing"
+  ],
+  "mechanism": [
+   "two draws without replacement",
+   "same color prize plus red bonus",
+   "expected net gain minus cost",
+   "marbles of three colors"
+  ],
+  "arith_class_check": "No. Two-decimal values 232/105−1.5, 208/105−1.5, 464/225−1.5, 596/225−1.5; no integer, no shared denominator singling out the key.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 0.56 and 0.71; both two-decimal, neither ends in 0, neither a repdigit or round value.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors on both sides (two under, one over); no pair sums to 1 or to a stem quantity."
+  }
+ },
+ {
+  "id": "AM28S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "margin of error for a subgroup proportion",
+  "subskill": "subgroup margin of error, upper endpoint",
+  "prompt": "A random sample of 2,000 adults in a state was asked whether they support a proposed transit tax. Of the 2,000 adults, 450 were ages 18 to 24, and 26% of those 450 said they support the tax. Of all 2,000 adults, 17% said they support the tax. For a sample proportion p from a sample of size n, a pollster uses a margin of error of 2√(p(1 - p)/n), converted to percentage points. To the nearest hundredth of a percentage point, what is the upper endpoint (the sample percent plus the margin of error) of the interval estimate for the percent of the state's adults ages 18 to 24 who support the tax?",
+  "choices": [
+   "28.23",
+   "30.14",
+   "28.07",
+   "29.54"
+  ],
+  "correct_answer": "30.14",
+  "explanation": "The estimate for adults ages 18 to 24 uses that group's own sample: p = 0.26 and n = 450. The margin of error is 2√(0.26 × 0.74/450) = 2√0.00042756 ≈ 0.04135, or about 4.14 percentage points, so the upper endpoint is 26 + 4.135 ≈ 30.14. The option 29.54 uses the overall proportion 0.17 in place of 0.26. The option 28.23 uses n = 1,550, the number of adults not ages 18 to 24. The option 28.07 leaves out the factor 2.",
+  "solve": "const p=0.26,n=450;return (100*p+200*Math.sqrt(p*(1-p)/n)).toFixed(2);",
+  "distractor_solve": {
+   "29.54": "const p=0.17,n=450;return (26+200*Math.sqrt(p*(1-p)/n)).toFixed(2);",
+   "28.23": "const p=0.26,n=1550;return (26+200*Math.sqrt(p*(1-p)/n)).toFixed(2);",
+   "28.07": "const p=0.26,n=450;return (26+100*Math.sqrt(p*(1-p)/n)).toFixed(2);"
+  },
+  "quantity_asked": "The upper endpoint, in percent, of the interval estimate (26 plus the margin of error) for adults ages 18 to 24, to the nearest hundredth.",
+  "distractor_kind": {
+   "29.54": "error path: uses the overall sample proportion 0.17 in p(1 - p). (a) no limiting case; (b) neighbouring setup (pooled proportion), strictly inside; (c) the cheapest bound p(1 - p) <= 1/4 gives endpoint <= 30.71, all options below it; (d) real wrong-base error.",
+   "28.23": "error path: uses n = 2000 - 450 = 1550 for the subgroup size. (a) none; (b) neighbouring setup, strictly above the whole-sample value 27.96; (c) inside; (d) real wrong-group error.",
+   "28.07": "error path: omits the factor 2 (uses one standard error as the margin). (a) none; (b) neighbouring setup, strictly above 27.96; (c) inside; (d) real omission."
+  },
+  "distractor_meta": {
+   "29.54": {
+    "direction": "under",
+    "error_kind": "pooled proportion"
+   },
+   "28.23": {
+    "direction": "under",
+    "error_kind": "wrong group size"
+   },
+   "28.07": {
+    "direction": "under",
+    "error_kind": "omits factor 2"
+   }
+  },
+  "bounds": [
+   "endpoint <= 26 + 200√(0.25/450) = 30.71 (p(1 - p) <= 1/4)",
+   "endpoint > 26 + 200√(0.1924/2000) = 27.96 (subgroup less precise than the full sample)"
+  ],
+  "mechanism": [
+   "margin of error formula 2 sqrt(p(1-p)/n)",
+   "subgroup sample size",
+   "upper endpoint of interval estimate",
+   "subgroup proportion versus overall proportion"
+  ],
+  "arith_class_check": "No. Four two-decimal percents between 28.0 and 30.2; no integer, no round value, no factor structure.",
+  "one_sided_check": "Key largest. Distractors from three kinds (pooled p, wrong n, omitted factor). Natural errors pushing OVER exist and are not options: conservative p = 0.5 gives 30.71; dropping (1 - p) gives 30.81; adding the full width (two margins) gives 34.27.",
+  "interior_parity_check": "Sorted 28.07, 28.23, 29.54, 30.14: interior 28.23 and 29.54, both two-decimal with non-zero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: endpoint <= 30.71 from p(1 - p) <= 1/4 (all four below; key 0.57 below it, not on it) and endpoint > 27.96 from 'the subgroup is less precise than the full sample' (all four above). Neither separates the key; nearest distractor 29.54 is 0.60 away, inside the resolution of the conservative estimate.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; under-errors from three different clauses, natural over-errors (p = 0.5, drop 1 - p, full width) off-list. p kept far from 0.5 so the conservative estimate does not land on the key."
+  }
+ },
+ {
+  "id": "AM28S-X1",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "mean and standard deviation recovered from two standardized scores",
+  "subskill": "solve for mean and SD from two z-scores",
+  "prompt": "On a history exam, a score of 89 was exactly 1.5 standard deviations above the mean score, and a score of 56 was exactly 1.3 standard deviations below the mean score. To the nearest hundredth, what score on this exam was exactly 0.4 standard deviation below the mean score?",
+  "choices": [
+   "68.96",
+   "76.04",
+   "66.61",
+   "67.42"
+  ],
+  "correct_answer": "66.61",
+  "explanation": "Let m be the mean and s the standard deviation. Then 89 = m + 1.5s and 56 = m - 1.3s. Subtracting, 33 = 2.8s, so s ≈ 11.786, and m = 89 - 1.5(11.786) ≈ 71.321. The score 0.4 standard deviation below the mean is 71.321 - 0.4(11.786) ≈ 66.61. The option 67.42 takes the mean to be the midpoint 72.5 of 89 and 56 and then gets s from 72.5 - 56 = 1.3s. The option 68.96 pairs the multipliers with the wrong scores, so m = 89 - 1.3s ≈ 73.68. The option 76.04 goes 0.4 standard deviation above the mean instead of below.",
+  "solve": "const s=33/2.8,m=89-1.5*s;return (m-0.4*s).toFixed(2);",
+  "distractor_solve": {
+   "67.42": "const m=(89+56)/2,s=(m-56)/1.3;return (m-0.4*s).toFixed(2);",
+   "68.96": "const s=33/2.8,m=89-1.3*s;return (m-0.4*s).toFixed(2);",
+   "76.04": "const s=33/2.8,m=89-1.5*s;return (m+0.4*s).toFixed(2);"
+  },
+  "quantity_asked": "The exam score that is 0.4 standard deviation below the mean, to the nearest hundredth.",
+  "distractor_kind": {
+   "67.42": "error path: assumes the mean is halfway between 89 and 56 (72.5), then s from the lower score. (a) no limiting case; (b) neighbouring setup (symmetric z-scores), strictly inside (56, 89); (c) cheapest estimate (just below the middle of 56..89) does not put it on an edge; (d) real error: ignoring the unequal multipliers.",
+   "68.96": "error path: attaches 1.3 to 89 and 1.5 to 56 (m = 89 - 1.3s). (a) none; (b) neighbouring setup with swapped multipliers, inside; (c) inside; (d) real pairing error.",
+   "76.04": "error path: goes 0.4 standard deviation above the mean. (a) none; (b) the mirror score, inside (56, 89); (c) inside; (d) real sign slip on 'below'."
+  },
+  "distractor_meta": {
+   "67.42": {
+    "direction": "over",
+    "error_kind": "midpoint as mean"
+   },
+   "68.96": {
+    "direction": "over",
+    "error_kind": "multipliers swapped"
+   },
+   "76.04": {
+    "direction": "over",
+    "error_kind": "above for below"
+   }
+  },
+  "bounds": [
+   "56 < score < mean < 89"
+  ],
+  "mechanism": [
+   "two scores with known standard deviations from the mean",
+   "solve for mean and standard deviation",
+   "score a given number of standard deviations below the mean",
+   "two-equation system"
+  ],
+  "arith_class_check": "No. Four two-decimal scores; the key 66.61 is a decimal from s = 33/2.8, not an integer or round value.",
+  "one_sided_check": "Key smallest. Three different error kinds (midpoint mean, swapped multipliers, direction). Natural errors pushing UNDER exist and are off-list: taking the standard deviation as the 33-point gap between the scores gives 58.12; reading 56 as 1.3 SD ABOVE the mean (s = 33/0.2) collapses the solution far below.",
+  "interior_parity_check": "Sorted 66.61, 67.42, 68.96, 76.04: interior 67.42 and 68.96, both two-decimal with non-zero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: score > 56 (only 0.4 SD below the mean, while 56 is 1.3 SD below) and score < midpoint 72.5 is not forced (the mean itself is 71.32). Linear interpolation is the method itself. No one-sided bound separates the key; the nearest distractor 67.42 is 0.81 away.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Smallest key; the under-direction counter errors (gap as SD, sign slip on 'below') are less natural than the over errors. Final step resembles live cf0d160d (score k SD below) but the system is new."
+  }
+ },
+ {
+  "id": "AM28F-02",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential decay model",
+  "subskill": "share of the original amount lost within a later time window",
+  "prompt": "Chlorine is added to a pool at 6:00 a.m. on June 1, and no more is added afterward. Each day, sunlight breaks down 7% of the chlorine that is in the pool at the start of that day, so the amount of chlorine d days after 6:00 a.m. on June 1 is C₀(0.93)^d for each whole number d, where C₀ is the amount added. To the nearest tenth of a percent, what percent of C₀ is broken down from 6:00 a.m. on June 3 to 6:00 a.m. on June 10?",
+  "choices": [
+   "38.1",
+   "26.3",
+   "39.8",
+   "34.4"
+  ],
+  "correct_answer": "34.4",
+  "explanation": "6:00 a.m. on June 3 is d = 2 and 6:00 a.m. on June 10 is d = 9. The amount broken down in between is C₀(0.93² − 0.93⁹) = C₀(0.8649 − 0.5204) ≈ 0.3445C₀, so about 34.4% of C₀. The option 39.8 finds the percent of the June 3 amount that is broken down, 1 − 0.93⁷, instead of the percent of C₀. The option 38.1 counts June 3 through June 10 as 8 days and ends at d = 10. The option 26.3 subtracts 0.93⁷ (the 7 days of the window, measured from June 1) from 0.93².",
+  "solve": "return (100*(Math.pow(0.93,2)-Math.pow(0.93,9))).toFixed(1);",
+  "distractor_solve": {
+   "39.8": "return (100*(1-Math.pow(0.93,7))).toFixed(1);",
+   "38.1": "return (100*(Math.pow(0.93,2)-Math.pow(0.93,10))).toFixed(1);",
+   "26.3": "return (100*(Math.pow(0.93,2)-Math.pow(0.93,7))).toFixed(1);"
+  },
+  "quantity_asked": "100(0.93^2 − 0.93^9): the chlorine broken down between d = 2 and d = 9, as a percent of the amount originally added, to the nearest tenth.",
+  "distractor_kind": {
+   "39.8": "error path: takes 1 − 0.93⁷, the share of the June 3 amount broken down in 7 days, not the share of C₀. (a) no stem bound sits on it: below the cheap cap 7 × 7% × 0.93² = 42.4 (every day removes at most 7% of the June 3 amount). (b) the neighbouring 'percent of the amount present on June 3' question; strictly inside. (c) inside the cap 42.4. (d) real wrong-base error.",
+   "38.1": "error path: counts June 3 through June 10 inclusively as 8 days and ends the window at d = 10. (a) no bound sits on it. (b) the neighbouring 8-day window; strictly inside 0 to 42.4. (c) inside the cap. (d) real inclusive-count error.",
+   "26.3": "error path: uses the window length 7 as the exponent for the end amount, 0.93² − 0.93⁷, mixing a time measured from June 3 with one measured from June 1. (a) no stem bound: the floor 7 × 7% × 0.93⁸ = 27.4 lies above it, but that floor needs 0.93⁸, the main computation, so it is not a cheap bound. (b) not an intermediate. (c) inside 0 to 42.4. (d) real reference-time error."
+  },
+  "distractor_meta": {
+   "39.8": {
+    "direction": "over",
+    "error_kind": "percent of the June 3 amount (wrong base)"
+   },
+   "38.1": {
+    "direction": "over",
+    "error_kind": "inclusive day count"
+   },
+   "26.3": {
+    "direction": "under",
+    "error_kind": "end exponent measured from the window start"
+   }
+  },
+  "bounds": [
+   "0 < v < 100·0.93² = 86.5 (nothing more than the June 3 amount can be lost): kills nothing",
+   "v < 7 × 7% × 0.93² ≈ 42.4 (each day removes at most 7% of the June 3 amount): kills nothing"
+  ],
+  "mechanism": [
+   "exponential decay by a fixed percent per day",
+   "amount lost between two later times",
+   "difference of two exponential values",
+   "percent of the original amount"
+  ],
+  "arith_class_check": "No. One-decimal values 34.4, 39.8, 38.1, 26.3; no integer, no stem-readable class.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 34.4 and 38.1; both one-decimal two-digit values, neither ends in 0.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two over and one under errors of three kinds; all options under the cheap 42.4 cap."
+  }
+ },
+ {
+  "id": "AM28S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "standard deviation of combined groups",
+  "subskill": "pool two groups' spreads",
+  "prompt": "A running club timed two groups on the same 5-kilometer course. The 14 runners in Group A had a mean time of 26.0 minutes and a standard deviation of 3.0 minutes. The 21 runners in Group B had a mean time of 31.0 minutes and a standard deviation of 4.0 minutes. For each group, and for any data set, the standard deviation is the square root of the mean of the squared deviations from the mean. To the nearest hundredth of a minute, what is the standard deviation of the times of all 35 runners together?",
+  "choices": [
+   "4.41",
+   "6.18",
+   "4.33",
+   "4.38"
+  ],
+  "correct_answer": "4.38",
+  "explanation": "The combined mean is (14·26 + 21·31)/35 = 1,015/35 = 29.0 minutes. For a group, the sum of the squared deviations from 29.0 is n(σ² + (group mean − 29)²). Group A: 14(9 + 9) = 252. Group B: 21(16 + 4) = 420. The combined variance is (252 + 420)/35 = 19.2, so the standard deviation is √19.2 ≈ 4.38. The option \"4.33\" treats the two groups as equal in size: (9 + 16)/2 + 2.5² = 18.75. The option \"4.41\" measures both groups from 28.5, the average of the two means, instead of the combined mean: 13.2 + 6.25 = 19.45. The option \"6.18\" adds the whole squared difference of the means, 5² = 25, to the pooled within-group variance 13.2.",
+  "solve": "const N=35,M=(14*26+21*31)/N;const v=(14*(9+(26-M)**2)+21*(16+(31-M)**2))/N;return Math.sqrt(v).toFixed(2);",
+  "distractor_solve": {
+   "4.33": "return Math.sqrt((9+16)/2+2.5*2.5).toFixed(2);",
+   "4.41": "const m=28.5;return Math.sqrt((14*(9+(26-m)**2)+21*(16+(31-m)**2))/35).toFixed(2);",
+   "6.18": "return Math.sqrt((14*9+21*16)/35+25).toFixed(2);"
+  },
+  "quantity_asked": "the standard deviation (population definition) of all 35 times combined, in minutes.",
+  "distractor_kind": {
+   "4.33": "error path: weights the two groups equally (unweighted mean of variances, between term from the unweighted means). (a) not a bound. (b) the equal-size neighbouring problem; strictly inside. (c) above the within-group floor √13.2 = 3.63; inside. (d) real weighting error, moves the answer down here.",
+   "4.41": "error path: deviations measured from 28.5 (average of the two means) instead of the weighted combined mean 29.0; any centre other than the mean inflates the mean square. (a) none. (b) no edge. (c) inside. (d) real wrong-centre error, moves up.",
+   "6.18": "error path: adds (31 − 26)² = 25 as the between-group variance. (a) none. (b) no edge; no stem-forced upper bound near it. (c) inside. (d) real misconception about between-group spread."
+  },
+  "distractor_meta": {
+   "4.33": {
+    "direction": "under",
+    "error_kind": "groups weighted equally"
+   },
+   "4.41": {
+    "direction": "over",
+    "error_kind": "wrong centre (unweighted mean of means)"
+   },
+   "6.18": {
+    "direction": "over",
+    "error_kind": "whole squared mean difference added"
+   }
+  },
+  "bounds": [
+   "SD > √(pooled within variance) = √13.2 ≈ 3.63, since the means differ"
+  ],
+  "mechanism": [
+   "standard deviation of two groups combined",
+   "pooled variance plus between-group term",
+   "sum of squares n(sigma^2 + d^2)",
+   "combined mean of two groups"
+  ],
+  "arith_class_check": "No. All four are two-decimal values; none integral or a simple root shown as such.",
+  "one_sided_check": "key interior (one under, two over).",
+  "interior_parity_check": "Interior by value: 4.38 and 4.41, both two-decimal non-round values; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; equal-weight error under, wrong-centre and whole-difference errors over; within-group floor 3.63 kills no option."
+  }
+ },
+ {
+  "id": "AM28S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "binomial probability, two stages",
+  "subskill": "binomial inside a binomial",
+  "prompt": "Each light bulb made at a factory is defective with probability 0.05, independently of every other bulb. The bulbs are packed in boxes of 12, and an inspector rejects a box if it contains 2 or more defective bulbs. Three boxes are inspected. To the nearest thousandth, what is the probability that exactly one of the three boxes is rejected?",
+  "choices": [
+   "0.304",
+   "0.403",
+   "0.276",
+   "0.315"
+  ],
+  "correct_answer": "0.276",
+  "explanation": "A box is accepted if it has 0 or 1 defective bulbs: P(0) = 0.95^12 ≈ 0.54036 and P(1) = 12(0.05)(0.95^11) ≈ 0.34128, so a box is rejected with probability r = 1 − 0.54036 − 0.34128 ≈ 0.11836. The number of rejected boxes among 3 is binomial, so P(exactly one) = 3r(1 − r)^2 ≈ 3(0.11836)(0.88164)^2 ≈ 0.276. The option \"0.315\" is 1 − (1 − r)^3, the probability that at least one box is rejected. The option \"0.403\" rejects a box whenever it has any defective bulb, r = 1 − 0.95^12. The option \"0.304\" uses 0.95^12 instead of 0.95^11 in P(1).",
+  "solve": "const P0=Math.pow(0.95,12),P1=12*0.05*Math.pow(0.95,11);const r=1-P0-P1;return (3*r*(1-r)*(1-r)).toFixed(3);",
+  "distractor_solve": {
+   "0.315": "const r=1-Math.pow(0.95,12)-12*0.05*Math.pow(0.95,11);return (1-Math.pow(1-r,3)).toFixed(3);",
+   "0.403": "const r=1-Math.pow(0.95,12);return (3*r*(1-r)*(1-r)).toFixed(3);",
+   "0.304": "const r=1-Math.pow(0.95,12)-12*0.05*Math.pow(0.95,12);return (3*r*(1-r)*(1-r)).toFixed(3);"
+  },
+  "quantity_asked": "the probability that exactly one of three boxes of 12 bulbs contains 2 or more defective bulbs.",
+  "distractor_kind": {
+   "0.315": "error path: at least one box rejected, 1 − (1 − r)^3, instead of exactly one. (a) not a bound value. (b) neighbouring problem 'at least one'; 0.315 is not an edge of anything the stem forces. (c) containment: P(exactly one) < P(at least one), so 0.315 sits on the far side from the key, strictly above. (d) real wording error at the outer stage.",
+   "0.403": "error path: rejects a box with ANY defective bulb (drops the P(1) term), r = 0.4596. (a) none. (b) neighbouring rejection rule; strictly inside (0, 0.444], the maximum of 3r(1−r)^2. (c) inside. (d) real inner-stage complement slip.",
+   "0.304": "error path: P(1) computed with 0.95^12 instead of 0.95^11 (exponent counts all 12 bulbs as good), r = 0.1354. (a) none. (b) no edge. (c) inside every cheap estimate; within 0.03 of the key. (d) real exponent slip."
+  },
+  "distractor_meta": {
+   "0.315": {
+    "direction": "over",
+    "error_kind": "at least one instead of exactly one"
+   },
+   "0.403": {
+    "direction": "over",
+    "error_kind": "inner rule misread: reject if any defective"
+   },
+   "0.304": {
+    "direction": "over",
+    "error_kind": "exponent slip in P(1)"
+   }
+  },
+  "bounds": [
+   "0 < answer <= max over r of 3r(1−r)^2 = 4/9 ≈ 0.444",
+   "answer < P(at least one rejected)"
+  ],
+  "mechanism": [
+   "binomial within binomial",
+   "box rejected if 2 or more defective",
+   "exactly one of three boxes",
+   "defective bulbs probability 0.05"
+  ],
+  "arith_class_check": "No. All four are three-decimal probabilities between 0.27 and 0.41; no integer, no simple fraction.",
+  "one_sided_check": "Key smallest. Three distractors from three error kinds (outer wording, inner rule, exponent). Natural errors against: omitting the outer coefficient 3 gives 0.092, reading '2 or more' as exactly 2 gives 0.241, omitting the coefficient 12 in P(1) moves r up to 0.431 then 3r(1−r)^2 = 0.419 (up); the stem does not reveal a one-way family.",
+  "interior_parity_check": "Interior by value: 0.304 and 0.315, both three-decimal; neither is nicer.",
+  "cheap_bound_check": "Cheapest bounds: P(exactly one) < P(at least one) = 0.315 (0.304 lies on the key's side, below it); r <= C(12,2)(0.05)^2 = 0.165 gives answer <= 3(0.165) ≈ 0.495, separating nothing; r ≈ 0.12 rounded gives 3(0.12)(0.88)^2 ≈ 0.279, between key and 0.304 only to one-step estimation finer than any stem-readable bound. 0.304 is within 0.03 of the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; nearest distractor 0.028 above; most natural counter errors (dropped coefficient 3, exactly-2 misread) land below the key and are not options."
+  }
+ },
+ {
+  "id": "AM28F-03",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "inverse functions",
+  "subskill": "average rate of change of an inverse",
+  "prompt": "The function f is defined by f(x) = 0.4x^2 + 3 for x ≥ 0, and f^(−1) is the inverse of f. To the nearest thousandth, what is the average rate of change of f^(−1) from x = 5 to x = 13?",
+  "choices": [
+   "0.546",
+   "0.139",
+   "0.345",
+   "0.232"
+  ],
+  "correct_answer": "0.345",
+  "explanation": "Solving y = 0.4x^2 + 3 for x ≥ 0 gives f^(−1)(x) = √((x − 3)/0.4). Then f^(−1)(5) = √5 ≈ 2.2361 and f^(−1)(13) = √25 = 5, so the average rate of change is (5 − 2.2361)/(13 − 5) ≈ 0.345. The option \"0.139\" is the reciprocal of the average rate of change of f itself from x = 5 to x = 13, 1/7.2. The option \"0.232\" undoes the + 3 in the wrong direction, f^(−1)(x) = √((x + 3)/0.4). The option \"0.546\" divides by 0.4 after taking the square root, f^(−1)(x) = √(x − 3)/0.4.",
+  "solve": "const g=x=>Math.sqrt((x-3)/0.4);return ((g(13)-g(5))/8).toFixed(3);",
+  "distractor_solve": {
+   "0.139": "const f=x=>0.4*x*x+3;return (8/(f(13)-f(5))).toFixed(3);",
+   "0.232": "const g=x=>Math.sqrt((x+3)/0.4);return ((g(13)-g(5))/8).toFixed(3);",
+   "0.546": "const g=x=>Math.sqrt(x-3)/0.4;return ((g(13)-g(5))/8).toFixed(3);"
+  },
+  "quantity_asked": "(f^(−1)(13) − f^(−1)(5))/(13 − 5).",
+  "distractor_kind": {
+   "0.139": "error path: takes the reciprocal of f's average rate of change over [5, 13] (treats 'inverse' as reciprocal of the rate on the same x-interval). (a) none. (b) the neighbouring 'f on the same interval' problem; strictly inside. (c) inside. (d) real inverse-concept error, moves down.",
+   "0.232": "error path: inverse built with x + 3 instead of x − 3. (a) none. (b) no edge. (c) inside. (d) real sign slip undoing a shift, moves down.",
+   "0.546": "error path: inverse built as √(x − 3)/0.4, dividing after the root. (a) none. (b) no edge. (c) inside. (d) real order-of-operations slip, moves up."
+  },
+  "distractor_meta": {
+   "0.139": {
+    "direction": "under",
+    "error_kind": "reciprocal of f's rate"
+   },
+   "0.232": {
+    "direction": "under",
+    "error_kind": "shift undone with wrong sign"
+   },
+   "0.546": {
+    "direction": "over",
+    "error_kind": "division after the root"
+   }
+  },
+  "bounds": [
+   "rate > 0 since f^(−1) is increasing",
+   "f^(−1) is concave, so its rate over [5,13] is below its rate over [3,5] = √5/2 ≈ 1.118"
+  ],
+  "mechanism": [
+   "average rate of change of an inverse function",
+   "inverse of a quadratic with restricted domain",
+   "f inverse from x = 5 to x = 13"
+  ],
+  "arith_class_check": "No. All four are three-decimal values; none integral or a simple fraction.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 0.232 and 0.345, both three-decimal non-round; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two unders from different errors and one over; inverse-rate mechanism not in the live bank by search."
+  }
+ },
+ {
+  "id": "AM28F-04",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "piecewise-defined functions in context",
+  "subskill": "pick the piece for each input",
+  "prompt": "A delivery truck's fuel consumption r, in liters per 100 kilometers, depends on its constant speed v, in kilometers per hour, according to the function r(v) = 30 − 0.2v for 40 ≤ v < 75 and r(v) = 15 + 0.02(v − 75)^2 for 75 ≤ v ≤ 110. On one trip, the truck traveled 170 kilometers at a constant 70 kilometers per hour and then 210 kilometers at a constant 93 kilometers per hour. To the nearest hundredth of a liter, how much fuel did the truck use on the trip?",
+  "choices": [
+   "70.12",
+   "72.31",
+   "59.46",
+   "71.46"
+  ],
+  "correct_answer": "72.31",
+  "explanation": "At 70 km/h the first rule applies: r(70) = 30 − 14 = 16 liters per 100 km, so the first leg uses 1.7(16) = 27.2 liters. At 93 km/h the second rule applies: r(93) = 15 + 0.02(18)^2 = 21.48 liters per 100 km, so the second leg uses 2.1(21.48) = 45.108 liters. The total is 72.308 ≈ 72.31 liters. The option \"71.46\" uses the second rule at 70 km/h as well, r = 15.5, for 26.35 liters on the first leg. The option \"70.12\" applies 70 km/h to the 210-kilometer leg and 93 km/h to the 170-kilometer leg. The option \"59.46\" leaves out the square, r(93) = 15 + 0.02(18) = 15.36.",
+  "solve": "const r=v=>v<75?30-0.2*v:15+0.02*(v-75)*(v-75);return (1.7*r(70)+2.1*r(93)).toFixed(2);",
+  "distractor_solve": {
+   "71.46": "const r2=v=>15+0.02*(v-75)*(v-75);return (1.7*r2(70)+2.1*r2(93)).toFixed(2);",
+   "70.12": "const r=v=>v<75?30-0.2*v:15+0.02*(v-75)*(v-75);return (2.1*r(70)+1.7*r(93)).toFixed(2);",
+   "59.46": "return (1.7*(30-0.2*70)+2.1*(15+0.02*(93-75))).toFixed(2);"
+  },
+  "quantity_asked": "total liters of fuel for 170 km at 70 km/h plus 210 km at 93 km/h.",
+  "distractor_kind": {
+   "71.46": "error path: second rule used at 70 km/h too (one formula for both legs). (a) none. (b) no edge. (c) cheapest bounds: r >= 15 everywhere gives total >= 57, and leg 1 exact gives >= 27.2 + 31.5 = 58.7; max rate 21.48 gives <= 77.33; 71.46 strictly inside. (d) real wrong-piece error, moves down here.",
+   "70.12": "error path: speeds assigned to the wrong distances. (a) none. (b) no edge. (c) inside [58.7, 81.62]. (d) real mis-pairing error.",
+   "59.46": "error path: drops the square in the second rule. (a) none. (b) no edge. (c) inside [58.7, 81.62]. (d) real evaluation slip."
+  },
+  "distractor_meta": {
+   "71.46": {
+    "direction": "under",
+    "error_kind": "wrong piece at 70"
+   },
+   "70.12": {
+    "direction": "under",
+    "error_kind": "speeds and distances mis-paired"
+   },
+   "59.46": {
+    "direction": "under",
+    "error_kind": "square dropped"
+   }
+  },
+  "bounds": [
+   "r(v) >= 15 on the whole domain, so fuel >= 57 L; with leg 1 = 27.2 L, fuel >= 58.7 L",
+   "fuel <= 3.8 x r(93) = 81.62 L"
+  ],
+  "mechanism": [
+   "fuel consumption as a piecewise function of speed",
+   "liters per 100 kilometers",
+   "two legs at two speeds",
+   "evaluate the correct piece"
+  ],
+  "arith_class_check": "No. All four are two-decimal values with non-zero hundredths; none integral.",
+  "one_sided_check": "Key largest. Three error kinds (wrong piece, mis-pairing, dropped square). Natural errors against: r(70) with a sign slip, 30 + 14 = 44 (total 119.91); the whole 380 km at r(93) (81.62); 0.02(93^2 − 75^2) (far over). None is an option.",
+  "interior_parity_check": "Interior by value: 70.12 and 71.46, both two-decimal non-round values; neither is nicer.",
+  "cheap_bound_check": "Cheapest bounds: r >= 15 (fuel >= 57), leg 1 exact plus r >= 15 on leg 2 (fuel >= 58.7), r <= r(93) on both legs (fuel <= 81.62). None separates the key from the three: all three distractors lie on the key's side of every one (inside [58.7, 81.62]). Nearest distractor 71.46 is 0.85 below the key, separated only by choosing the right piece at 70.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; three different error kinds; over-direction errors (sign slip in r(70), all at r(93)) exist and are not options; cheap bounds kill nothing."
+  }
+ },
+ {
+  "id": "AM28F-05",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "function transformations",
+  "subskill": "horizontal stretch, then shift, evaluated",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = log₂ x is stretched horizontally by a factor of 3 away from the y-axis. The resulting graph is then translated 3 units to the left, and that graph is then translated 1.5 units down. The final graph is the graph of y = g(x). To the nearest hundredth, what is the value of g(23)?",
+  "choices": [
+   "1.92",
+   "1.24",
+   "4.79",
+   "1.62"
+  ],
+  "correct_answer": "1.62",
+  "explanation": "Stretching horizontally by a factor of 3 gives y = log₂(x/3). Translating 3 units left replaces x with x + 3: y = log₂((x + 3)/3). Translating 1.5 units down gives g(x) = log₂((x + 3)/3) − 1.5. Then g(23) = log₂(26/3) − 1.5 ≈ 3.115 − 1.5 ≈ 1.62. The option \"1.92\" applies the shift inside before the stretch, g(x) = log₂(x/3 + 3) − 1.5. The option \"4.79\" multiplies the input by 3 (a compression), g(x) = log₂(3(x + 3)) − 1.5. The option \"1.24\" translates to the right instead of the left, g(x) = log₂((x − 3)/3) − 1.5.",
+  "solve": "return (Math.log2((23+3)/3)-1.5).toFixed(2);",
+  "distractor_solve": {
+   "1.92": "return (Math.log2(23/3+3)-1.5).toFixed(2);",
+   "4.79": "return (Math.log2(3*(23+3))-1.5).toFixed(2);",
+   "1.24": "return (Math.log2((23-3)/3)-1.5).toFixed(2);"
+  },
+  "quantity_asked": "g(23), where g is log₂ x stretched horizontally by 3, then shifted 3 left, then 1.5 down.",
+  "distractor_kind": {
+   "1.92": "error path: shift and stretch composed in the wrong order, log₂(x/3 + 3). (a) none. (b) the 'translate then stretch' neighbouring problem; strictly inside. (c) cheapest estimate: 26/3 is between 8 and 16, so g(23) is between 1.5 and 2.5; 1.92 inside that interval. (d) real composition-order error, moves up.",
+   "4.79": "error path: a horizontal stretch by 3 written as multiplying x by 3. (a) none. (b) no edge. (c) outside the 1.5-2.5 interval, a cheap check kills it only after the correct form is known. (d) real stretch/compression confusion, moves up.",
+   "1.24": "error path: 'translated left' read as x − 3. (a) none. (b) no edge. (c) below 1.5; killed only by the correct form. (d) real direction error, moves down."
+  },
+  "distractor_meta": {
+   "1.92": {
+    "direction": "over",
+    "error_kind": "order of shift and stretch"
+   },
+   "4.79": {
+    "direction": "over",
+    "error_kind": "stretch read as compression"
+   },
+   "1.24": {
+    "direction": "under",
+    "error_kind": "shift direction reversed"
+   }
+  },
+  "bounds": [
+   "none forced by the stem; the stem fixes g exactly"
+  ],
+  "mechanism": [
+   "horizontal stretch then horizontal translation",
+   "order of transformations",
+   "logarithm base 2 graph transformed",
+   "evaluate transformed function"
+  ],
+  "arith_class_check": "No. All four are two-decimal non-round values.",
+  "one_sided_check": "key interior (one under, two over).",
+  "interior_parity_check": "Interior by value: 1.62 and 1.92, both two-decimal non-round; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; order-of-composition error over and direction error under; no horizontal-stretch or log-transformation item found in the live bank."
+  }
+ },
+ {
+  "id": "AM28S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "linear rescaling of a data set fixed by its minimum and maximum",
+  "subskill": "rescale min and max, then the mean",
+  "prompt": "On a quiz taken by 30 students, the lowest score was 38, the highest score was 92, and the mean score was 71.46. The teacher rescales every score with the same linear function, y = ax + b, chosen so that the lowest score becomes 50 and the highest score becomes 100. To the nearest hundredth, what is the mean of the 30 rescaled scores?",
+  "choices": [
+   "77.67",
+   "86.14",
+   "80.98",
+   "83.46"
+  ],
+  "correct_answer": "80.98",
+  "explanation": "The function must send 38 to 50 and 92 to 100, so a = (100 - 50)/(92 - 38) = 50/54 and y = 50 + (50/54)(x - 38). A linear function applied to every value applies to the mean, so the new mean is 50 + (50/54)(71.46 - 38) = 50 + 30.98 = 80.98. The option 77.67 multiplies every score by 100/92 so that only the top score becomes 100. The option 83.46 adds 12 to every score so that only the bottom score becomes 50. The option 86.14 inverts the scale factor, using 54/50.",
+  "solve": "const L=38,H=92,m=71.46,Lp=50,Hp=100;const a=(Hp-Lp)/(H-L);return (Lp+(m-L)*a).toFixed(2);",
+  "distractor_solve": {
+   "77.67": "const H=92,m=71.46,Hp=100;return (m*Hp/H).toFixed(2);",
+   "83.46": "const L=38,m=71.46,Lp=50;return (m+(Lp-L)).toFixed(2);",
+   "86.14": "const L=38,H=92,m=71.46,Lp=50,Hp=100;return (Lp+(m-L)*(H-L)/(Hp-Lp)).toFixed(2);"
+  },
+  "quantity_asked": "The mean of the 30 rescaled scores, to the nearest hundredth.",
+  "distractor_kind": {
+   "77.67": "error path: scales proportionally so that only the top score maps to 100 (y = 100x/92). (a) no limiting case; (b) neighbouring setup 'scale so the top is 100', strictly inside (50,100); (c) cheapest estimate (the mean keeps its relative place in the range, about 62% of the way up, about 81) does not put it on an edge; (d) real error: the usual 'curve to 100' habit.",
+   "83.46": "error path: adds 12 to every score so that only the lowest score becomes 50 (pure shift). (a) none; (b) neighbouring setup 'shift the floor', strictly inside; (c) inside the estimate band; (d) real error: treating the rescale as a shift.",
+   "86.14": "error path: inverts the scale factor, a = 54/50 = 1.08 instead of 50/54. (a) none; (b) inside (50,100); (c) inside; (d) real error: range ratio taken old over new."
+  },
+  "distractor_meta": {
+   "77.67": {
+    "direction": "under",
+    "error_kind": "proportional scale to top"
+   },
+   "83.46": {
+    "direction": "over",
+    "error_kind": "shift only"
+   },
+   "86.14": {
+    "direction": "over",
+    "error_kind": "inverted scale factor"
+   }
+  },
+  "bounds": [
+   "50 < new mean < 100 (strictly between the new minimum and maximum)"
+  ],
+  "mechanism": [
+   "linear function fixed by two data values",
+   "rescale lowest and highest score",
+   "mean under a linear transformation",
+   "scale factor from range ratio"
+  ],
+  "arith_class_check": "No. All four are two-decimal values between 77 and 87; the key 80.98 is not an integer, not a round value, and shares no factor structure with the stem numbers.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Sorted 77.67, 80.98, 83.46, 86.14: interior 80.98 and 83.46, both two-decimal with non-zero final digits; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three distinct transformation errors, one under and two over. Mechanism is a two-point-determined linear map, not a given ax+b (live d261434c)."
+  }
+ },
+ {
+  "id": "AM28S-07",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "first event among independent trials with two different probabilities",
+  "subskill": "first knockdown falls in the second block",
+  "prompt": "In a race, a runner clears 12 hurdles in order. The first 6 hurdles are low hurdles, and she knocks over each low hurdle with probability 0.04. The last 6 hurdles are high hurdles, and she knocks over each high hurdle with probability 0.05. Whether she knocks over a hurdle is independent of what happens at every other hurdle. To the nearest thousandth, what is the probability that she knocks over at least one of the 12 hurdles and the first hurdle she knocks over is a high hurdle?",
+  "choices": [
+   "0.182",
+   "0.207",
+   "0.170",
+   "0.201"
+  ],
+  "correct_answer": "0.207",
+  "explanation": "The first hurdle knocked over is a high hurdle exactly when she knocks over none of the 6 low hurdles and at least one of the 6 high hurdles. So the probability is (0.96)^6 [1 - (0.95)^6] = 0.78276(0.26491) ≈ 0.207. The option 0.201 estimates the chance of clearing all 6 low hurdles as 1 - 6(0.04) = 0.76 instead of (0.96)^6. The option 0.182 counts only the case of knocking over exactly one high hurdle, (0.96)^6 · 6(0.05)(0.95)^5. The option 0.170 uses the low-hurdle probability 0.04 for the high hurdles too.",
+  "solve": "const qA=0.96,qB=0.95;return (qA**6*(1-qB**6)).toFixed(3);",
+  "distractor_solve": {
+   "0.201": "const qB=0.95;return ((1-6*0.04)*(1-qB**6)).toFixed(3);",
+   "0.182": "const qA=0.96,qB=0.95;return (qA**6*6*0.05*qB**5).toFixed(3);",
+   "0.170": "const qA=0.96;return (qA**6*(1-qA**6)).toFixed(3);"
+  },
+  "quantity_asked": "The probability that at least one hurdle is knocked over and the first one knocked over is one of the 6 high hurdles, to the nearest thousandth.",
+  "distractor_kind": {
+   "0.201": "error path: P(clearing all 6 low hurdles) linearised as 1 - 6(0.04) = 0.76. (a) no limiting case; (b) neighbouring setup (union-bound estimate), strictly inside; (c) the cheapest estimate of the whole quantity, 0.78 x 0.26 ~ 0.20-0.21, does not separate it from the key at that resolution; (d) real error: adding probabilities for 'at least one'.",
+   "0.182": "error path: reads 'at least one high hurdle knocked over' as 'exactly one'. (a) none; (b) neighbouring event (exactly one), inside; (c) inside; (d) real error: binomial exactly-one in place of at-least-one.",
+   "0.170": "error path: applies the low-hurdle probability 0.04 to the high hurdles. (a) none; (b) neighbouring setup with one common rate, inside; (c) inside; (d) real error: missing that the rate changes between the hurdle types."
+  },
+  "distractor_meta": {
+   "0.201": {
+    "direction": "under",
+    "error_kind": "linearised none-defective"
+   },
+   "0.182": {
+    "direction": "under",
+    "error_kind": "exactly one for at least one"
+   },
+   "0.170": {
+    "direction": "under",
+    "error_kind": "wrong block probability"
+   }
+  },
+  "bounds": [
+   "0 < p < 1 - (0.95)^6 = 0.265 (the B condition alone)",
+   "p < (0.96)^6 = 0.783"
+  ],
+  "mechanism": [
+   "first event falls in the second block of trials",
+   "none in the first block then at least one in the second",
+   "two blocks with different probabilities",
+   "complement of none"
+  ],
+  "arith_class_check": "No. Four three-decimal probabilities 0.170 to 0.207, none a simple fraction; the key is a product of a power and a complement of a power.",
+  "one_sided_check": "Key largest. Distractors come from three different error kinds (linearisation, exactly-one, wrong block probability). Natural errors that push OVER exist and are not options: ignoring the low-hurdle condition gives 1 - 0.95^6 = 0.265; linearising the high-hurdle part as 6(0.05) gives 0.235; using (0.96)^5 gives 0.216.",
+  "interior_parity_check": "Sorted 0.170, 0.182, 0.201, 0.207: interior 0.182 and 0.201, both three-decimal with non-zero last digit; neither is nicer than the other.",
+  "cheap_bound_check": "Cheapest one-sided bounds: p < 1 - 0.95^6 = 0.265 and p < 6(0.05)(0.96)^6 = 0.235; all three distractors lie on the key's side (below). The nearest distractor 0.201 is within 0.006 of the key, inside the resolution of any estimate short of computing (0.96)^6.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Key largest with three under-errors; counter errors (ignore the low-hurdle block, 0.265; linearise, 0.235) are natural but off-list. Context changed from parts to hurdles to stay clear of kept S-05."
+  }
+ },
+ {
+  "id": "AM28S-08",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "least-squares regression from summary statistics, residual",
+  "subskill": "slope r(sy/sx), then a residual",
+  "prompt": "For 48 used cars of one model, x is a car's age, in years, and y is its selling price, in thousands of dollars. The ages have mean 6.2 and variance 6.25, and the prices have mean 14.8 and variance 16.81. The correlation coefficient between age and price is r = -0.84. The least-squares regression line of y on x passes through the point (mean of x, mean of y) and has slope r(s_y/s_x), where s_x and s_y are the standard deviations of x and y. One of the 48 cars is 9 years old and sold for 11.6 thousand dollars. To the nearest hundredth, what is the residual (actual price minus predicted price), in thousands of dollars, for this car?",
+  "choices": [
+   "-0.85",
+   "3.13",
+   "0.66",
+   "-1.77"
+  ],
+  "correct_answer": "0.66",
+  "explanation": "The standard deviations are s_x = √6.25 = 2.5 and s_y = √16.81 = 4.1, so the slope is -0.84(4.1/2.5) = -1.3776. The predicted price at x = 9 is 14.8 + (-1.3776)(9 - 6.2) = 14.8 - 3.857 = 10.943, and the residual is 11.6 - 10.943 ≈ 0.66. The option 3.13 uses the variances in place of the standard deviations, slope -0.84(16.81/6.25). The option -1.77 inverts the ratio, slope -0.84(2.5/4.1). The option -0.85 uses r = -0.84 itself as the slope.",
+  "solve": "const xb=6.2,vx=6.25,yb=14.8,vy=16.81,r=-0.84;return (11.6-(yb+r*Math.sqrt(vy/vx)*(9-xb))).toFixed(2);",
+  "distractor_solve": {
+   "-1.77": "const xb=6.2,vx=6.25,yb=14.8,vy=16.81,r=-0.84;return (11.6-(yb+r*Math.sqrt(vx/vy)*(9-xb))).toFixed(2);",
+   "-0.85": "const xb=6.2,vx=6.25,yb=14.8,vy=16.81,r=-0.84;return (11.6-(yb+r*(9-xb))).toFixed(2);",
+   "3.13": "const xb=6.2,vx=6.25,yb=14.8,vy=16.81,r=-0.84;return (11.6-(yb+r*(vy/vx)*(9-xb))).toFixed(2);"
+  },
+  "quantity_asked": "The residual, actual minus predicted price, in thousands of dollars, for the 9-year-old car that sold for 11.6, to the nearest hundredth.",
+  "distractor_kind": {
+   "-1.77": "error path: inverts the ratio, slope r(s_x/s_y) = -0.512, so the prediction is too high (13.37). (a) no bound. (b) neighbouring setup (the x-on-y ratio), strictly inside. (c) inside every cheap estimate. (d) real ratio-inversion error.",
+   "-0.85": "error path: takes the slope to be r = -0.84 (skips the ratio of standard deviations), prediction 12.45. (a) no bound. (b) neighbouring setup (standardised slope), strictly inside. (c) inside every cheap estimate. (d) real error: correlation read as the slope.",
+   "3.13": "error path: uses the variances 16.81 and 6.25 directly in the ratio (forgets the square roots), slope -2.259, so the prediction is too low (8.47). (a) no bound: the residual's sign is not stem-forced. (b) neighbouring setup (variance ratio), strictly inside any range a student could state without computing. (c) the cheapest estimate (predicted price a few thousand below the mean price, residual somewhere around 0 to +1) does not put it on an edge. (d) real variance/standard-deviation confusion; the stem gives variances, so the square root is a step."
+  },
+  "distractor_meta": {
+   "-1.77": {
+    "direction": "under",
+    "error_kind": "inverted sd ratio"
+   },
+   "-0.85": {
+    "direction": "under",
+    "error_kind": "r used as slope"
+   },
+   "3.13": {
+    "direction": "over",
+    "error_kind": "variances for standard deviations"
+   }
+  },
+  "bounds": [
+   "none on the residual's sign or size is forced by the stem without computing the slope"
+  ],
+  "mechanism": [
+   "regression slope from r and two standard deviations",
+   "standard deviations from given variances",
+   "predict at x then residual actual minus predicted",
+   "inverted ratio",
+   "variance used for standard deviation"
+  ],
+  "arith_class_check": "No. All four are two-decimal residuals from slopes -1.3776, -0.512, -0.84, -2.259; two negative, two positive; no integer, no shared structure.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: -0.85 and 0.66; both two-decimal, neither ends in 0, one negative and one positive; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three distinct slope errors on both sides (variance, inversion, r as slope). Means are only the anchor point; the asked quantity is a residual."
+  }
+ },
+ {
+  "id": "AM28F-06",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "rational functions",
+  "subskill": "solve a rational model for its input",
+  "prompt": "The greatest possible efficiency e of a heat engine that runs between a hot reservoir at temperature H and a cold reservoir at temperature C is given by e = 1 − C/H, where both temperatures are measured in kelvins. A temperature of t degrees Celsius is t + 273 kelvins. An engine runs between a hot reservoir at 260°C and a cold reservoir at 22°C. Engineers plan to raise the engine's greatest possible efficiency by exactly 5 percentage points by raising the temperature of the hot reservoir only. To the nearest hundredth of a degree, by how many degrees Celsius must the hot reservoir's temperature be raised?",
+  "choices": [
+   "59.68",
+   "375.56",
+   "52.93",
+   "61.12"
+  ],
+  "correct_answer": "52.93",
+  "explanation": "In kelvins, C = 295 and H = 533, so e = 1 − 295/533 ≈ 0.44653. The new efficiency is about 0.49653, so the new hot temperature H′ satisfies 295/H′ = 1 − 0.49653, giving H′ = 295/0.50347 ≈ 585.93 K. The rise is 585.93 − 533 ≈ 52.93 degrees (a rise of 1 kelvin is a rise of 1 degree Celsius). The option 59.68 assumes the efficiency is proportional to H, scaling 533 by 0.49653/0.44653. The option 61.12 rearranges e = 1 − C/H as H = C/e instead of H = C/(1 − e). The option 375.56 uses the Celsius temperatures 260 and 22 in the formula instead of kelvins.",
+  "solve": "const C=295,H=533;const e1=1-C/H+0.05;return (C/(1-e1)-H).toFixed(2);",
+  "distractor_solve": {
+   "59.68": "const C=295,H=533;const e0=1-C/H,e1=e0+0.05;return (H*e1/e0-H).toFixed(2);",
+   "61.12": "const C=295,H=533;const e1=1-C/H+0.05;return (C/e1-H).toFixed(2);",
+   "375.56": "const c=22,h=260;const e1=1-c/h+0.05;return (c/(1-e1)-h).toFixed(2);"
+  },
+  "quantity_asked": "The rise in the hot reservoir's temperature, in degrees Celsius, that raises 1 − C/H (kelvins) by 0.05 with C fixed: 295/(1 − (1 − 295/533 + 0.05)) − 533.",
+  "distractor_kind": {
+   "59.68": "error path: treats the efficiency as proportional to H and scales H by e1/e0. (a) none. (b) proportional-model neighbour; strictly inside. (c) cheapest estimate (derivative dH ≈ H²·0.05/C ≈ 48.2) gives a value near the key, no option on it; inside. (d) real wrong-model error, moves up.",
+   "61.12": "error path: rearranges e = 1 − C/H as H = C/e. (a) none. (b) none. (c) inside. (d) real algebra slip, moves up (here e1 < 1/2).",
+   "375.56": "error path: neglects the stated kelvin conversion and works in Celsius throughout. (a) none. (b) the 'no conversion' neighbour; inside (rise > 0, no stem cap). (c) inside. (d) the classic temperature-scale error, moves up."
+  },
+  "distractor_meta": {
+   "59.68": {
+    "direction": "over",
+    "error_kind": "efficiency proportional to H"
+   },
+   "61.12": {
+    "direction": "over",
+    "error_kind": "rearranged as H = C/e"
+   },
+   "375.56": {
+    "direction": "over",
+    "error_kind": "Celsius used in the ratio"
+   }
+  },
+  "bounds": [
+   "rise > 0 (efficiency increases only if H increases)"
+  ],
+  "mechanism": [
+   "heat engine efficiency 1 - C/H",
+   "kelvin conversion",
+   "solve a rational model for the input",
+   "raise by percentage points"
+  ],
+  "arith_class_check": "No. All four are two-decimal non-round values; none integral, none a multiple of a stem quantity.",
+  "one_sided_check": "Key smallest with three overs from three different error kinds (wrong model, rearrangement slip, unit omission). Natural UNDER errors exist and are not options: reading '5 percentage points' as 5% of the efficiency gives 22.40; scaling the Celsius temperature 260 by e1/e0 gives 29.11; raising H by 5% gives 26.65. The stem does not tell a student which way a slip moves the answer.",
+  "interior_parity_check": "Interior by value: 59.68 and 61.12, both two-decimal non-round values; neither is nicer.",
+  "cheap_bound_check": "Cheapest bounds: rise > 0, and a one-step derivative estimate dH ≈ H²(0.05)/C ≈ 48.2 (the curve is convex, so the true rise is a little larger). That estimate lies BELOW all four options and does not separate the key; 59.68 and 61.12 are within 7-9 degrees of the key. 375.56 is on the key's side of no bound a student can read off the stem.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Key smallest; overs from three error kinds, two natural unders (5% relative, proportional in Celsius) off-list. 375.56 is far but is the classic Celsius error."
+  }
+ },
+ {
+  "id": "AM28F-07",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "arithmetic and geometric sequences read from a table with uneven gaps",
+  "subskill": "product of an arithmetic and a geometric sequence",
+  "prompt": "A chain of stores grows so that each month the number of stores increases by the same number, and the average sales per store increase by the same percent. Some of the chain's monthly data are below.\nMonth 1: 37 stores, average sales $2,400 per store\nMonth 3: 43 stores, average sales $2,646 per store\nMonth 6: 52 stores, average sales $3,063.08 per store\nIf this pattern continues, what will the chain's total sales (number of stores times average sales per store) be in month 9, to the nearest dollar?",
+  "choices": [
+   "301401",
+   "216299",
+   "189911",
+   "238284"
+  ],
+  "correct_answer": "216299",
+  "explanation": "From month 1 to month 3 is 2 monthly steps: the stores increase by 6, so by 3 per month, and the average sales are multiplied by 2,646/2,400 = 1.1025 = 1.05^2, so they grow 5% per month (month 6 checks: 37 + 15 = 52 and 2,400(1.05)^5 = 3,063.08). In month 9 there are 37 + 3(8) = 61 stores, with average sales 2,400(1.05)^8 ≈ 3,545.89, so total sales ≈ 61(3,545.89) ≈ $216,299. The option 189911 counts months 1 to 3 as 3 steps for the percent (monthly factor 1.1025^(1/3)). The option 301401 treats the 6 more stores from month 1 to month 3 as a monthly increase. The option 238284 is the value for month 10 (it uses 9 steps from month 1).",
+  "solve": "const S=(k,d)=>37+d*(k-1),P=(k,g)=>2400*Math.pow(g,k-1);return String(Math.round(S(9,3)*P(9,1.05)));",
+  "distractor_solve": {
+   "189911": "const S=(k,d)=>37+d*(k-1),P=(k,g)=>2400*Math.pow(g,k-1);return String(Math.round(S(9,3)*P(9,Math.cbrt(1.1025))));",
+   "238284": "const S=(k,d)=>37+d*(k-1),P=(k,g)=>2400*Math.pow(g,k-1);return String(Math.round(S(10,3)*P(10,1.05)));",
+   "301401": "const S=(k,d)=>37+d*(k-1),P=(k,g)=>2400*Math.pow(g,k-1);return String(Math.round(S(9,6)*P(9,1.05)));"
+  },
+  "quantity_asked": "Total sales (stores x average sales per store) in month 9, in dollars, to the nearest dollar.",
+  "distractor_kind": {
+   "189911": "error path: counts the step from month 1 to month 3 as 3 steps when finding the monthly factor, so the factor is 1.1025^(1/3) = 1.0331 (stores correct at 61). (a) no bound sits on it: a wrong step count is not a containment bound. (b) neighbouring setup (inclusive month count), strictly inside the cheap interval below. (c) the cheapest estimate - month 9 is three months past month 6, as month 6 is three months past month 3 - multiplies month 6's total 159,280 by month 6/month 3 total ratio 1.399 to get about 223,000, and month 6's average x 61 stores = 186,848 is a lower bound; 189,911 is strictly above that bound and below the estimate. (d) real step-count error.",
+   "238284": "error path: off by one month - uses 9 steps from month 1 (month 10's value: 64 stores, 2,400(1.05)^9). (a) no bound. (b) neighbouring setup (n instead of n - 1), strictly inside. (c) inside every cheap estimate. (d) real indexing error.",
+   "301401": "error path: takes the 6 extra stores between months 1 and 3 as the monthly increase (85 stores in month 9), percent correct. (a) no bound. (b) neighbouring setup (difference over a 2-month gap read as monthly), strictly inside. (c) inside every cheap estimate; far above, but the same gap-reading slip the percent part invites. (d) real step-count error on the arithmetic part."
+  },
+  "distractor_meta": {
+   "189911": {
+    "direction": "under",
+    "error_kind": "step count (geometric part)"
+   },
+   "238284": {
+    "direction": "over",
+    "error_kind": "index off by one"
+   },
+   "301401": {
+    "direction": "over",
+    "error_kind": "gap read as monthly (arithmetic part)"
+   }
+  },
+  "bounds": [
+   "total sales increase month to month, so v > month 6 total 52 x 3,063.08 = 159,280: kills nothing",
+   "stores in month 9 at least 52 and average at least 3,063.08 (both increasing): v > 61 x 3,063.08 = 186,848 only once 61 stores is known: kills nothing"
+  ],
+  "mechanism": [
+   "table with uneven gaps between months",
+   "common difference over a 2-month gap",
+   "monthly growth factor as a square root",
+   "product of arithmetic and geometric sequences"
+  ],
+  "arith_class_check": "No. All four are six-digit non-round integers from 61 x 3,545.89, 61 x 3,113.3, 85 x 3,545.89 and 64 x 3,723.18; no option is a multiple of 10.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 216299 and 238284; both six-digit integers, neither ends in 0, neither round; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; three error kinds on both sides (step count on each part, off-by-one month). 301401 is far above the key; it is a real gap-reading error."
+  }
+ }
+]

@@ -1,0 +1,1078 @@
+[
+ {
+  "id": "AM28I-12",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "consignment shop commission with a different rate for items under $50",
+  "subskill": "commission as a percent of total sales",
+  "prompt": "A consignment shop sells items for their owners. For each item it sells, the shop keeps 40% of the selling price if the item sells for less than $50 and 25% of the selling price if the item sells for $50 or more; the owner receives the rest. In one week, the shop sold four of Mira's items, for $34.50, $53.50, $72.50, and $121.50. To the nearest hundredth of a percent, the amount the shop kept from these four sales is what percent of their total selling price?",
+  "choices": [
+   "34.81",
+   "26.84",
+   "36.68",
+   "27.66"
+  ],
+  "correct_answer": "26.84",
+  "explanation": "The four items sold for 34.50 + 53.50 + 72.50 + 121.50 = $282.00. The shop kept 0.40(34.50) = $13.80 from the first item and 0.25(53.50 + 72.50 + 121.50) = 0.25(247.50) = $61.875 from the other three, $75.675 in all. That is 75.675/282 ≈ 0.2684, or 26.84%, of the total. The option \"36.68\" divides the shop's amount by the amount Mira received, $206.325, instead of by the total. The option \"27.66\" applies 40% to the first $50 of the week's total and 25% to the rest of the total. The option \"34.81\" applies 40% to the first $50 of each item's price and 25% to the part above $50.",
+  "solve": "const S=34.5+53.5+72.5+121.5,k=0.4*34.5+0.25*(53.5+72.5+121.5);return (k/S*100).toFixed(2);",
+  "distractor_solve": {
+   "36.68": "const S=34.5+53.5+72.5+121.5,k=0.4*34.5+0.25*(53.5+72.5+121.5);return (k/(S-k)*100).toFixed(2);",
+   "27.66": "const S=34.5+53.5+72.5+121.5;return ((0.4*50+0.25*(S-50))/S*100).toFixed(2);",
+   "34.81": "const S=34.5+53.5+72.5+121.5,k=0.4*34.5+[53.5,72.5,121.5].reduce((s,p)=>s+0.4*50+0.25*(p-50),0);return (k/S*100).toFixed(2);"
+  },
+  "quantity_asked": "the shop's total commission on the four items as a percent of the four items' total selling price.",
+  "distractor_kind": {
+   "36.68": "error path: the shop's amount divided by the owner's amount. (a) none. (b) adjacent ratio, inside (25, 40). (c) inside the stem caps 25% and 40%. (d) wrong base.",
+   "27.66": "error path: the two rates read as brackets on the week's total (40% of the first $50 of the total, 25% above). (a) none. (b) strictly inside (25, 40). (c) 0.82 above the key; no cheap estimate separates them. (d) tier applied to the total instead of to each item.",
+   "34.81": "error path: the two rates read as brackets within each item's price (40% of each item's first $50). (a) none. (b) strictly inside (25, 40). (c) inside every cap. (d) bracket reading of a flat per-item rate."
+  },
+  "distractor_meta": {
+   "36.68": {
+    "direction": "over",
+    "error_kind": "wrong base"
+   },
+   "27.66": {
+    "direction": "over",
+    "error_kind": "brackets on the total"
+   },
+   "34.81": {
+    "direction": "over",
+    "error_kind": "brackets within each item"
+   }
+  },
+  "bounds": [
+   "25 < percent < 40 (every item is charged 25% or 40%)"
+  ],
+  "mechanism": [
+   "consignment shop commission",
+   "different commission rate for items under $50",
+   "commission as a percent of total sales",
+   "flat per-item rate versus bracket"
+  ],
+  "arith_class_check": "No. All four are two-digit percents with two non-zero decimals; none integer or round.",
+  "one_sided_check": "Key smallest; three different errors (wrong base, brackets on the total, brackets within each item). The equally natural reading 'the week's sales are over $50, so the shop keeps 25% of everything' gives 25.00, BELOW the key, so the slips do not all push one way.",
+  "interior_parity_check": "Interior by value: 27.66 and 34.81, both two digits with two non-zero decimals; neither is nicer.",
+  "cheap_bound_check": "Cheapest bound: the stem caps the rate between 25% and 40%; all four options are inside, so it kills nothing. One step finer, 'only $34.50 of $282 is charged 40%' gives about 25 + 15(34.5/282) = 26.8, which is the solve; it kills 34.81 and 36.68 but 27.66 lies within 0.82 of the key and is not separated by any cheaper estimate.",
+  "trap_check": "Clauses: 'for each item it sells' with 'less than $50' and '$50 or more' (reading the rule on the week's total gives 25.00, UNDER, not an option, or the bracket 27.66, over; reading brackets inside each price gives 34.81, over); 'what percent of their total selling price' (the owner's amount as base gives 36.68, over). At most one option per reading.",
+  "direction_declaration": {
+   "36.68": {
+    "step": "forming the percent",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "27.66": {
+    "step": "applying the rates",
+    "error_type": "other: rates as brackets on the total",
+    "direction": "over"
+   },
+   "34.81": {
+    "step": "applying the rates",
+    "error_type": "other: rates as brackets within each price",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "choosing the rate",
+    "error_type": "other: rate chosen from the week's total (over $50), 25% on everything",
+    "solve": "return 25;",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "40% of the price for an item under $50",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "25% of the price for an item of $50 or more",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "percent of the total selling price",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Key smallest; nearest distractor 0.82 above; counter-error (25% on everything, 25.00) is natural; all options inside the 25-40 caps."
+  }
+ },
+ {
+  "id": "AM28I-13",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "loose soil needed for an open wooden planter with board thickness and settling",
+  "subskill": "inside volume and percent decrease",
+  "prompt": "A rectangular planter box with no top is built from boards that are 3/4 inch thick. The boards form the four sides and the bottom of the box, and the box's outside dimensions are 48 inches long, 20 inches wide, and 16 inches tall. A gardener will fill the box with loose potting soil. When this soil settles, its volume decreases by 12%. The gardener wants the surface of the settled soil to be 1 inch below the top edge of the box. To the nearest hundredth of a cubic foot, how many cubic feet of loose soil should the gardener put in the box? (1 cubic foot = 1,728 cubic inches)",
+  "choices": [
+   "7.64",
+   "6.24",
+   "8.06",
+   "7.95"
+  ],
+  "correct_answer": "8.06",
+  "explanation": "Inside, the box is 48 − 2(0.75) = 46.5 inches long and 20 − 2(0.75) = 18.5 inches wide. The bottom board takes 0.75 inch of the height and the soil stops 1 inch below the top, so the settled soil is 16 − 0.75 − 1 = 14.25 inches deep. The settled soil fills 46.5 × 18.5 × 14.25 = 12,258.5625 cubic inches, or about 7.0941 cubic feet. The settled volume is 88% of the loose volume, so the loose volume is 7.0941/0.88 ≈ 8.06 cubic feet. The option \"7.95\" adds 12% to the settled volume, a percent of the wrong base. The option \"6.24\" multiplies the settled volume by 0.88. The option \"7.64\" also subtracts a board thickness at the top, as if the box had a lid.",
+  "solve": "const s=46.5*18.5*14.25/1728;return (s/0.88).toFixed(2);",
+  "distractor_solve": {
+   "7.95": "const s=46.5*18.5*14.25/1728;return (s*1.12).toFixed(2);",
+   "6.24": "const s=46.5*18.5*14.25/1728;return (s*0.88).toFixed(2);",
+   "7.64": "const s=46.5*18.5*13.5/1728;return (s/0.88).toFixed(2);"
+  },
+  "quantity_asked": "the volume of loose soil, in cubic feet, that settles to fill the inside of the box to 1 inch below the top.",
+  "distractor_kind": {
+   "7.95": "error path: settled volume increased by 12% instead of divided by 0.88. (a) none. (b) the wrong-base adjacent value, strictly inside (6.24, 8.06). (c) the cheap bound 'loose > settled 7.09' puts all four above it; 'divide by 0.88 exceeds adding 12%' is the solve. (d) the classic reverse-percent error.",
+   "6.24": "error path: settled volume multiplied by 0.88 (direction of the change inverted). (a) none. (b) the smallest option, not a bound value: it lies below the settled volume, which a student who checks containment can kill, but 7.95 and 7.64 survive that check. (d) inverted rate.",
+   "7.64": "error path: a board thickness also subtracted at the open top. (a) none. (b) the closed-box adjacent setup, strictly inside. (c) no estimate separates it. (d) misreading 'no top'."
+  },
+  "distractor_meta": {
+   "7.95": {
+    "direction": "under",
+    "error_kind": "percent of wrong base"
+   },
+   "6.24": {
+    "direction": "under",
+    "error_kind": "multiplied by 0.88"
+   },
+   "7.64": {
+    "direction": "under",
+    "error_kind": "thickness at an open top"
+   }
+  },
+  "bounds": [
+   "loose volume > settled volume 7.09",
+   "loose volume < outside volume / 0.88 = 9.47 (approximately)"
+  ],
+  "mechanism": [
+   "inside dimensions from board thickness",
+   "open-top planter box volume",
+   "soil settles by a percent",
+   "loose volume from settled volume",
+   "cubic inches to cubic feet"
+  ],
+  "arith_class_check": "No. All four are one-digit with two non-zero decimals; none integer or round.",
+  "one_sided_check": "Key largest; three different error kinds (wrong base, inverted rate, closed-top misreading). Natural errors in the dimension step push UP: one board thickness per dimension gives 8.52, ignoring the 1-inch gap 8.63, ignoring the bottom board 8.49; none is an option. A student cannot tell from the stem that slips lower it.",
+  "interior_parity_check": "Interior by value: 7.64 and 7.95, both one digit with two non-zero decimals; neither is nicer.",
+  "cheap_bound_check": "Cheapest bound: loose soil exceeds the settled volume (7.09 ft^3, itself the whole solve's first half); it kills 6.24 only, and 7.64 and 7.95 lie on the key's side (above it). One step finer, 'dividing by 0.88 gives more than adding 12%' kills 7.95 only after the settled volume is computed exactly. Nearest distractor 0.11 below the key.",
+  "trap_check": "Clauses: '3/4 inch thick' boards on four sides (one thickness per dimension gives 8.52, OVER, not an option); 'no top' (subtracting a top board gives 7.64, under); 'and the bottom' (ignoring the bottom board gives 8.49, OVER, not an option); '1 inch below the top edge' (ignoring gives 8.63, OVER, not an option); 'volume decreases by 12%' (adding 12% gives 7.95, under; ignoring gives 7.09, under, not an option). One option per clause.",
+  "direction_declaration": {
+   "7.95": {
+    "step": "loose volume from settled volume",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "6.24": {
+    "step": "loose volume from settled volume",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "7.64": {
+    "step": "inside height",
+    "error_type": "other: open top treated as closed",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "inside length and width",
+    "error_type": "other: one board thickness subtracted per dimension",
+    "solve": "return 47.25*19.25*14.25/1728/0.88;",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "boards 3/4 inch thick on four sides and bottom",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "settled soil 1 inch below the top edge",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "soil volume decreases by 12% when it settles",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 cubic foot = 1,728 cubic inches",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Key largest; 6.24 (multiplied by 0.88) lies below the settled volume 7.09, so a grader may call it implausible; 7.95 and 7.64 survive every cheap bound."
+  }
+ },
+ {
+  "id": "AM28I-14",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "membership count change from a fee change and a revenue change",
+  "subskill": "percent change of a product",
+  "prompt": "A climbing gym raised its monthly membership fee from $64 to $76. Every member pays the same monthly fee. The gym's total monthly membership revenue after the increase was 7.7% greater than its total monthly membership revenue before the increase. To the nearest hundredth of a percent, by what percent did the number of members decrease?",
+  "choices": [
+   "8.76",
+   "10.26",
+   "9.31",
+   "6.99"
+  ],
+  "correct_answer": "9.31",
+  "explanation": "Revenue = (fee)(number of members). The fee was multiplied by 76/64 = 1.1875 and the revenue by 1.077, so the number of members was multiplied by 1.077/1.1875 ≈ 0.90695. The number of members decreased by about 1 − 0.90695 = 0.09305, or 9.31%. The option \"10.26\" finds how much greater the old membership was than the new one, 1.1875/1.077 − 1, which uses the new membership as the base. The option \"6.99\" computes the fee increase as a percent of the new fee, 12/76 ≈ 15.79%. The option \"8.76\" treats the old revenue as 7.7% less than the new revenue.",
+  "solve": "return ((1-1.077/(76/64))*100).toFixed(2);",
+  "distractor_solve": {
+   "10.26": "return (((76/64)/1.077-1)*100).toFixed(2);",
+   "6.99": "return ((1-1.077/(1+12/76))*100).toFixed(2);",
+   "8.76": "return ((1-1/(0.923*(76/64)))*100).toFixed(2);"
+  },
+  "quantity_asked": "the percent decrease in the number of members, relative to the number before the increase.",
+  "distractor_kind": {
+   "10.26": "error path: old membership as a percent above the new membership (ratio inverted). (a) none. (b) adjacent value, largest option, below the additive estimate 11.05 and the revenue-neutral cap 15.79. (c) inside every cheap bound. (d) inverted ratio / wrong base.",
+   "6.99": "error path: the fee increase taken as a percent of the new fee (15.79%). (a) none. (b) smallest option, not on a bound. (c) inside (0, 15.79). (d) wrong base.",
+   "8.76": "error path: old revenue taken as 7.7% less than the new revenue. (a) none. (b) strictly inside. (c) no estimate separates it. (d) wrong base."
+  },
+  "distractor_meta": {
+   "10.26": {
+    "direction": "over",
+    "error_kind": "inverted membership ratio"
+   },
+   "6.99": {
+    "direction": "under",
+    "error_kind": "fee percent on new fee"
+   },
+   "8.76": {
+    "direction": "under",
+    "error_kind": "revenue percent on new revenue"
+   }
+  },
+  "bounds": [
+   "0 < decrease < 1 - 64/76 = 15.79 (revenue rose, so members fell less than the revenue-neutral amount)",
+   "decrease < 18.75 - 7.7 = 11.05 (compounding)"
+  ],
+  "mechanism": [
+   "fee change and revenue change give membership change",
+   "revenue equals price times quantity",
+   "percent change of a product",
+   "percent decrease of members"
+  ],
+  "arith_class_check": "No. All four are one-digit or two-digit percents with two non-zero decimals; none integer or round.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 8.76 and 9.31, both one digit with two non-zero decimals; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: 'from $64 to $76' (percent of the new fee gives 6.99, under); 'revenue 7.7% greater after' (taken as the old being 7.7% less gives 8.76, under; ignored gives 15.79, OVER, not an option; read as smaller gives 21.49, OVER, not an option); 'decrease' relative to before (the new membership as base gives 10.26, over); subtracting the percents gives 11.05, OVER, not an option. One option per clause.",
+  "direction_declaration": {
+   "10.26": {
+    "step": "forming the percent decrease of members",
+    "error_type": "inverted rate",
+    "direction": "over"
+   },
+   "6.99": {
+    "step": "computing the fee's percent increase",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "8.76": {
+    "step": "reading the revenue change",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "fee rose from $64 to $76 (percent of the old fee)",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "revenue 7.7% greater after the increase",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "decrease measured against the membership before the increase",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; two wrong-base errors under, the inverted ratio over; the additive 11.05 and revenue-neutral 15.79 bounds sit above every option."
+  }
+ },
+ {
+  "id": "AM28I-15",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "average cost per share over monthly purchases of a fixed dollar amount",
+  "subskill": "weighted mean of prices",
+  "prompt": "On the first day of each month from January through April, Lena made one payment to buy shares of a stock fund. Each payment included a $4 fee, and the rest of the payment bought as many shares (including fractions of a share) as it could at that day's price. She paid $250 in January, $250 in February, $250 in March, and $450 in April, and the price per share was $34 in January, $28 in February, $38 in March, and $24 in April. Lena's average cost per share is the total amount she paid, fees included, divided by the total number of shares she bought. To the nearest cent, what is Lena's average cost per share?",
+  "choices": [
+   "30.25",
+   "29.21",
+   "30.54",
+   "29.83"
+  ],
+  "correct_answer": "29.21",
+  "explanation": "Each payment minus the $4 fee buys shares: 246/34 ≈ 7.2353, 246/28 ≈ 8.7857, 246/38 ≈ 6.4737, and 446/24 ≈ 18.5833, about 41.0780 shares in all. She paid 250 + 250 + 250 + 450 = $1,200, so her average cost per share is 1200/41.0780 ≈ $29.21. The option \"29.83\" averages the four prices weighted by the dollars paid each month instead of by the shares bought. The option \"30.25\" finds each month's cost per share (payment divided by shares) and averages those weighted by the dollars paid. The option \"30.54\" treats April's payment as $250 like the other months.",
+  "solve": "const S=246/34+246/28+246/38+446/24;return (1200/S).toFixed(2);",
+  "distractor_solve": {
+   "29.83": "return ((250*34+250*28+250*38+450*24)/1200).toFixed(2);",
+   "30.25": "const c=[34*250/246,28*250/246,38*250/246,24*450/446];return ((250*(c[0]+c[1]+c[2])+450*c[3])/1200).toFixed(2);",
+   "30.54": "const S=246/34+246/28+246/38+246/24;return (1000/S).toFixed(2);"
+  },
+  "quantity_asked": "total amount paid (fees included) divided by total shares bought, in dollars per share.",
+  "distractor_kind": {
+   "29.83": "error path: prices weighted by dollars paid, not by shares bought. (a) none. (b) the dollar-weighted mean, strictly inside (29.21, 30.54). (c) the mean price 31.00 caps everything; no one-step estimate falls between 29.21 and 29.83. (d) wrong base for the weights.",
+   "30.25": "error path: monthly cost per share (fee included) averaged with dollar weights. (a) none. (b) strictly inside. (c) below the mean price. (d) wrong weights after a correct per-month step.",
+   "30.54": "error path: April's $450 taken as $250 (equal payments). (a) none. (b) largest option, below the mean price 31.00 and the max price 38. (c) inside every cheap bound. (d) a misread stated amount."
+  },
+  "distractor_meta": {
+   "29.83": {
+    "direction": "over",
+    "error_kind": "dollar weights on prices"
+   },
+   "30.25": {
+    "direction": "over",
+    "error_kind": "dollar weights on monthly costs"
+   },
+   "30.54": {
+    "direction": "over",
+    "error_kind": "equal payments assumed"
+   }
+  },
+  "bounds": [
+   "24 < average cost < 38 (fees add about 1.6%)",
+   "average cost < mean price 31.00 (more shares are bought when the price is low), known to few students"
+  ],
+  "mechanism": [
+   "dollar cost averaging",
+   "average cost per share",
+   "fixed dollar amount each month",
+   "harmonic mean of prices",
+   "fee deducted from each purchase"
+  ],
+  "arith_class_check": "No. All four are two-decimal dollar amounts with non-zero final digits; none integer or round.",
+  "one_sided_check": "Key smallest; three different errors (dollar weights on prices, dollar weights on monthly costs, a misread April payment). The natural fee slip, buying shares with the whole payment, gives 28.84, BELOW the key, so not every slip raises it.",
+  "interior_parity_check": "Interior by value: 29.83 and 30.25, both two-digit dollars with two non-zero final decimals; neither is nicer.",
+  "cheap_bound_check": "Cheapest bound: average cost is below the mean of the four prices, 31.00; it kills nothing (every option is below it). The fee-free value 28.84 is a lower bound, below every option. No one-step estimate separates the key from 29.83, which is 0.62 above it.",
+  "trap_check": "Clauses: '$4 fee' (ignoring it gives 28.84, UNDER, not an option); '$450 in April' (taking $250 gives 30.54, over); 'average cost = total paid / total shares' (dollar-weighted prices give 29.83, dollar-weighted monthly costs 30.25, the plain mean of prices 31.00, all over). At most one option per clause, except the definition clause, whose two options are different weighting errors.",
+  "direction_declaration": {
+   "29.83": {
+    "step": "weighting the prices",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "30.25": {
+    "step": "averaging the monthly costs per share",
+    "error_type": "other: dollar weights on monthly costs",
+    "direction": "over"
+   },
+   "30.54": {
+    "step": "reading April's payment",
+    "error_type": "omission",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "buying shares with each payment",
+    "error_type": "other: fee not deducted before buying",
+    "solve": "const S=250/34+250/28+250/38+450/24;return 1200/S;",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "$4 fee deducted from each payment",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "April payment $450",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "average cost = total paid (fees included) / total shares",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Key smallest; two options share the dollar-weight error at different steps; the HM-below-AM fact caps nothing; fee omission 28.84 is the under-error."
+  }
+ },
+ {
+  "id": "AM28I-16",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "guitar string frequency at a fret from inverse variation with vibrating length",
+  "subskill": "inverse variation in context",
+  "prompt": "On a guitar, a string is stretched from the nut to the bridge, a distance of 64.8 centimeters. When the string is pressed against a fret, only the part of the string between that fret and the bridge vibrates. At a fixed tension, the frequency of the note the string plays varies inversely as the length of the vibrating part. When the string is pressed against a fret 14.3 centimeters from the nut, it plays a note of 141.6 hertz. To the nearest tenth of a hertz, what frequency does the string play when it is pressed against a fret 21.6 centimeters from the nut?",
+  "choices": [
+   "159.6",
+   "165.5",
+   "157.6",
+   "162.1"
+  ],
+  "correct_answer": "165.5",
+  "explanation": "The vibrating lengths are 64.8 − 14.3 = 50.5 cm and 64.8 − 21.6 = 43.2 cm. Because frequency × length is constant, the new frequency is 141.6 × 50.5/43.2 ≈ 165.5 hertz. The option \"162.1\" raises 141.6 by the percent decrease in length measured against the old vibrating length, 7.3/50.5 ≈ 14.5%; under inverse variation the frequency rises by 7.3/43.2. The option \"157.6\" raises 141.6 by 7.3/64.8, measuring the change against the whole string. The option \"159.6\" treats the first vibrating length as the whole 64.8 cm, so the second is 64.8 − 7.3 = 57.5 cm.",
+  "solve": "return (141.6*(64.8-14.3)/(64.8-21.6)).toFixed(1);",
+  "distractor_solve": {
+   "162.1": "return (141.6*(1+7.3/50.5)).toFixed(1);",
+   "157.6": "return (141.6*(1+7.3/64.8)).toFixed(1);",
+   "159.6": "return (141.6*64.8/(64.8-7.3)).toFixed(1);"
+  },
+  "quantity_asked": "the frequency, in hertz, when the vibrating length is 64.8 - 21.6 = 43.2 cm.",
+  "distractor_kind": {
+   "162.1": "error path: frequency raised by the percent decrease of the length, relative to the old vibrating length. (a) none. (b) adjacent value, strictly inside (141.6, 165.5). (c) above the direction bound 141.6, on the key side. (d) wrong base under inverse variation.",
+   "157.6": "error path: frequency raised by 7.3/64.8, the change measured against the whole string. (a) none. (b) strictly inside (141.6, 165.5). (c) on the key side of the direction bound. (d) wrong base.",
+   "159.6": "error path: the first vibrating length taken as the whole 64.8 cm, so the fret move shortens it to 57.5 cm. (a) none. (b) strictly inside. (c) on the key side of the direction bound. (d) misreading where the string vibrates."
+  },
+  "distractor_meta": {
+   "162.1": {
+    "direction": "under",
+    "error_kind": "percent of old length"
+   },
+   "157.6": {
+    "direction": "under",
+    "error_kind": "percent of whole string"
+   },
+   "159.6": {
+    "direction": "under",
+    "error_kind": "whole string as first length"
+   }
+  },
+  "bounds": [
+   "frequency > 141.6 (the vibrating part gets shorter)"
+  ],
+  "mechanism": [
+   "guitar string fret frequency",
+   "frequency varies inversely as vibrating length",
+   "distance from nut to fret",
+   "nut to bridge scale length"
+  ],
+  "arith_class_check": "No. All four are one-decimal values with non-zero tenths; none integer or round.",
+  "one_sided_check": "Key largest; three different errors (percent of the old length, percent of the whole string, the whole string taken as the first vibrating length). Equally natural errors go the other way: using 64.8 cm as the first length but the correct 43.2 cm second length gives 212.4, and taking frequency proportional to the nut distance gives 213.9, both ABOVE the key.",
+  "interior_parity_check": "Interior by value: 159.6 and 162.1, both three digits with one non-zero decimal; neither is nicer.",
+  "cheap_bound_check": "Cheapest bound: the vibrating part gets shorter, so the frequency exceeds 141.6; all three distractors lie on the key side of it. One step finer, the rise is 7.3/43.2 (about 17%), which is the solve; the nearest distractor (162.1) is 3.4 below the key and every one-step percent estimate (7.3/50.5, 7.3/64.8) lands ON a distractor value, not between.",
+  "trap_check": "Clauses: \"only the part between that fret and the bridge vibrates\" (using 64.8 cm as the first length gives 159.6, under, if the 7.3 cm move is also taken from 64.8; with the correct second length 43.2 it gives 212.4, OVER, not an option); \"varies inversely\" (the percent route on the wrong base gives 162.1 or 157.6, under; direct variation gives 121.1, below 141.6, not an option). At most one option per clause except the percent base, whose two bases are different errors.",
+  "direction_declaration": {
+   "162.1": {
+    "step": "applying the change in length",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "157.6": {
+    "step": "applying the change in length",
+    "error_type": "other: change measured against the whole string",
+    "direction": "under"
+   },
+   "159.6": {
+    "step": "finding the vibrating lengths",
+    "error_type": "other: whole string taken as the first vibrating length",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "finding the first vibrating length",
+    "error_type": "wrong base",
+    "solve": "return 141.6*64.8/43.2;",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "only the part between the fret and the bridge vibrates",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "frequency varies inversely as the vibrating length",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "nut to bridge is 64.8 cm",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Key largest; all distractors above the 141.6 direction bound; counter-errors 212.4 and 213.9 are natural; nearest 3.4 below."
+  }
+ },
+ {
+  "id": "AM28I-17",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "percent change of one share when a budget is cut and re-split in a new ratio",
+  "subskill": "ratio split and percent change",
+  "prompt": "Last year, a school's activities budget of $63,000 was split between athletics and the arts in the ratio 9:5, respectively. This year, the total activities budget was cut by 8%, and the new total was split between athletics and the arts in the ratio 5:4, respectively. To the nearest hundredth of a percent, by what percent did the athletics budget decrease from last year to this year?",
+  "choices": [
+   "25.78",
+   "13.17",
+   "20.49",
+   "16.73"
+  ],
+  "correct_answer": "20.49",
+  "explanation": "Last year athletics received (9/14)(63,000) = $40,500. This year the total was 0.92(63,000) = $57,960, and athletics received (5/9)(57,960) = $32,200. The decrease is 40,500 − 32,200 = $8,300, and 8,300/40,500 ≈ 0.2049, or 20.49%. The option \"25.78\" divides the decrease by this year's athletics amount instead of last year's. The option \"13.17\" divides the $8,300 decrease by last year's whole budget, $63,000, instead of by last year's athletics budget. The option \"16.73\" adds the 8% cut to the drop in athletics' share of the budget, 9/14 − 5/9 ≈ 8.73 percentage points.",
+  "solve": "const a=63000*9/14,b=63000*0.92*5/9;return ((a-b)/a*100).toFixed(2);",
+  "distractor_solve": {
+   "25.78": "const a=63000*9/14,b=63000*0.92*5/9;return ((a-b)/b*100).toFixed(2);",
+   "16.73": "return ((9/14-5/9)*100+8).toFixed(2);",
+   "13.17": "const a=63000*9/14,b=63000*0.92*5/9;return ((a-b)/63000*100).toFixed(2);"
+  },
+  "quantity_asked": "the decrease in the athletics budget as a percent of last year's athletics budget.",
+  "distractor_kind": {
+   "25.78": "error path: decrease divided by this year's athletics amount. (a) none. (b) the wrong-base adjacent value, largest option, not a bound. (c) strictly inside every estimate. (d) wrong base.",
+   "16.73": "error path: percentage-point drop in share plus the 8% cut. (a) none. (b) strictly inside. (c) no one-step estimate separates it. (d) additive combination of changes.",
+   "13.17": "error path: the decrease divided by last year's whole budget. (a) none. (b) smallest option; not an adjacent problem's answer and not on a stem-forced bound (decrease > 8%). (c) inside every cheap bound. (d) wrong base."
+  },
+  "distractor_meta": {
+   "25.78": {
+    "direction": "over",
+    "error_kind": "wrong base"
+   },
+   "16.73": {
+    "direction": "under",
+    "error_kind": "percentage points added"
+   },
+   "13.17": {
+    "direction": "under",
+    "error_kind": "whole budget as base"
+   }
+  },
+  "bounds": [
+   "decrease > 8% (athletics' share also fell)",
+   "decrease > 13.58 (the ratio change alone), which requires the ratio-only computation"
+  ],
+  "mechanism": [
+   "budget split in a ratio",
+   "total cut by a percent and re-split",
+   "percent decrease of one share",
+   "new ratio after budget cut"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents with non-zero final digits; none integer or round.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 16.73 and 20.49, both two digits with two non-zero final decimals; neither is nicer.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"cut by 8%\" (ignoring gives 13.58, UNDER, not an option; read as an increase gives 6.67, UNDER, not an option); \"ratio 5:4, respectively\" (reversed to 4:5 gives 36.40, OVER, not an option); \"decrease from last year\" in athletics (this year's athletics amount as base gives 25.78, over; the whole budget as base gives 13.17, under); adding the 8% cut to the 8.73-point drop in share gives 16.73, under. At most one option per clause.",
+  "direction_declaration": {
+   "25.78": {
+    "step": "forming the percent decrease",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "16.73": {
+    "step": "combining the share change and the cut",
+    "error_type": "other: percentage points added",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "splitting this year's total",
+    "error_type": "other: ratio reversed",
+    "solve": "const a=63000*9/14,b=63000*0.92*4/9;return (a-b)/a*100;",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "total cut by 8%",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "new split 5:4 athletics to arts",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "percent decrease relative to last year",
+     "neglect_direction": "over"
+    }
+   ],
+   "13.17": {
+    "step": "forming the percent decrease",
+    "error_type": "wrong base",
+    "direction": "under"
+   }
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; under errors (whole-budget base, additive) and over (new-amount base); the cut-ignored value 13.58 is a bound and is not an option."
+  }
+ },
+ {
+  "id": "AM28I-18",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "percent less energy from a wind turbine whose power varies as the cube of wind speed",
+  "subskill": "direct variation (cube) and weighted percent",
+  "prompt": "A wind turbine's power output varies directly as the cube of the wind speed when the wind speed is between 3.5 and 13 meters per second (m/s). At a wind speed of 9.0 m/s, the turbine's power output is 1,150 kilowatts. On one day, the wind blew at a steady 9.0 m/s for 10 hours and at a steady 7.5 m/s for the other 14 hours. To the nearest hundredth of a percent, the energy the turbine produced that day was what percent less than the energy it would have produced if the wind had blown at 9.0 m/s for all 24 hours? (Energy = power × time)",
+  "choices": [
+   "28.47",
+   "24.58",
+   "32.58",
+   "26.42"
+  ],
+  "correct_answer": "24.58",
+  "explanation": "At 7.5 m/s the power is (7.5/9)^3 = 125/216 ≈ 0.5787 of the power at 9.0 m/s. In units of one hour at 9.0 m/s, the day's energy was 10 + 14(0.5787) ≈ 18.102, against 24 for a full day at 9.0 m/s. The energy was 1 − 18.102/24 ≈ 0.2458, or 24.58%, less. The option \"26.42\" cubes the day's average wind speed, (10·9 + 14·7.5)/24 = 8.125 m/s, instead of averaging the cubes. The option \"28.47\" treats 7.5 m/s as 20% below 9.0 m/s (1.5 is 20% of 7.5) and uses a power factor of 0.8^3. The option \"32.58\" divides the energy shortfall by the day's actual energy instead of by the full-wind energy.",
+  "solve": "const f=(7.5/9)**3;return ((1-(10+14*f)/24)*100).toFixed(2);",
+  "distractor_solve": {
+   "26.42": "const v=(9*10+7.5*14)/24;return ((1-(v/9)**3)*100).toFixed(2);",
+   "28.47": "return ((1-(10+14*0.8**3)/24)*100).toFixed(2);",
+   "32.58": "const f=(7.5/9)**3,e=10+14*f;return ((24-e)/e*100).toFixed(2);"
+  },
+  "quantity_asked": "the day's energy shortfall as a percent of the energy for 24 hours at 9.0 m/s.",
+  "distractor_kind": {
+   "26.42": "error path: cube of the time-weighted average speed. (a) no parameter extreme. (b) the average-speed answer is a different problem; strictly inside. (c) one-step bound 'loss < (14/24)(1 - 1/2) = 29.17' keeps it inside. (d) real error: averaging before a nonlinear power.",
+   "28.47": "error path: 7.5 m/s read as 20% below 9.0 (1.5/7.5), factor 0.8^3. (a) none. (b) strictly inside. (c) inside the 29.17 bound. (d) wrong base on the speed drop.",
+   "32.58": "error path: shortfall divided by actual energy. (a) none. (b) not an adjacent answer on a bound. (c) above 29.17 but a real error, largest option. (d) wrong base on the final percent."
+  },
+  "distractor_meta": {
+   "26.42": {
+    "direction": "over",
+    "error_kind": "averaged speed before cubing"
+   },
+   "28.47": {
+    "direction": "over",
+    "error_kind": "wrong base on the speed drop"
+   },
+   "32.58": {
+    "direction": "over",
+    "error_kind": "wrong base on the final percent"
+   }
+  },
+  "bounds": [
+   "0 < v < 58.33 (only 14 of the 24 hours lost power)",
+   "v < 42.13 (no hour lost more than 1 - 125/216 of its energy)"
+  ],
+  "mechanism": [
+   "power varies as cube of wind speed",
+   "wind turbine energy over a day",
+   "percent less than full-wind energy",
+   "time-weighted cube"
+  ],
+  "arith_class_check": "All four are two-decimal percents with non-zero final digits; none integer, none a multiple of a stem number.",
+  "one_sided_check": "Key smallest. Distractors: averaged-speed (other), speed-drop base (wrong base), final base (wrong base): two error kinds. Natural errors the other way: using the square (17.82) or a linear law (9.72), both UNDER; ignoring the 10 full-wind hours gives 42.13 OVER. The stem does not signal one direction.",
+  "interior_parity_check": "Interior by value: 26.42 and 28.47, both two-digit two-decimal values with non-zero final digits; neither nicer.",
+  "cheap_bound_check": "Cheapest one-step bound: (5/6)^3 > 1/2, so each low-wind hour keeps over half its power and the loss < (14/24)(1/2) = 29.17%. It removes 32.58 only; 26.42 and 28.47 lie on the key's side. A convexity argument (cubing the average speed overstates the loss) needs the 26.42 computation plus Jensen's inequality and is not a one-step estimate.",
+  "trap_check": "Clauses: 'cube of the wind speed' (ignoring it, linear: 9.72 UNDER, not an option; using the square: 17.82 UNDER, not an option); '10 hours at 9.0 m/s' (ignoring the split, all day at 7.5: 42.13 OVER, not an option); 'percent less than the 24-hour energy' (base slip gives 32.58 OVER). At most one option per clause; the cube clause has none.",
+  "direction_declaration": {
+   "26.42": {
+    "step": "combining the two wind speeds",
+    "error_type": "other: averaged the speed before cubing",
+    "direction": "over"
+   },
+   "28.47": {
+    "step": "ratio of the low speed to 9.0 m/s",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "32.58": {
+    "step": "forming the percent less",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "applying the variation law",
+    "error_type": "other: squared instead of cubed",
+    "solve": "const f=(7.5/9)**2;return (1-(10+14*f)/24)*100;",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "power varies directly as the cube of wind speed",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "10 of the 24 hours were at 9.0 m/s",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "percent less than the energy for 24 hours at 9.0 m/s (base)",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Both-way laws (exponent slips under, base slips and split neglect over); nearest distractor 1.84 above; 1,150 kW is unused context, cancels."
+  }
+ },
+ {
+  "id": "AM28I-X6",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "net cost after a price-match refund of 110% of the pre-tax difference plus the tax on the refund",
+  "subskill": "percent refund and sales tax",
+  "prompt": "Kenji bought a vacuum cleaner for $214.95 plus 8.25% sales tax. A week later, a competitor advertised the same vacuum cleaner for $179.49 before tax. Under the store's price-match policy, the store refunds 110% of the difference between its price and the competitor's price, both before tax, plus the sales tax on the amount refunded. To the nearest cent, what was Kenji's net cost for the vacuum cleaner after the refund?",
+  "choices": [
+   "171.03",
+   "190.46",
+   "169.34",
+   "186.98"
+  ],
+  "correct_answer": "190.46",
+  "explanation": "Kenji paid 214.95(1.0825) ≈ $232.68. The pre-tax difference is 214.95 − 179.49 = $35.46, so the store refunds 1.1(35.46) = $39.006 plus tax, 39.006(1.0825) ≈ $42.22. His net cost is 232.68 − 42.22 ≈ $190.46, which equals (214.95 − 39.006)(1.0825). The option \"186.98\" adds the tax to the refund twice. The option \"171.03\" reads 110% of the difference as the difference plus 10% of the store's price. The option \"169.34\" takes the difference between the tax-included price Kenji paid and the competitor's pre-tax price.",
+  "solve": "const P=214.95,Q=179.49,t=0.0825;const r=1.1*(P-Q)*(1+t);return (P*(1+t)-r).toFixed(2);",
+  "distractor_solve": {
+   "186.98": "const P=214.95,Q=179.49,t=0.0825;const r=1.1*(P-Q)*(1+t)*(1+t);return (P*(1+t)-r).toFixed(2);",
+   "171.03": "const P=214.95,Q=179.49,t=0.0825;const r=((P-Q)+0.1*P)*(1+t);return (P*(1+t)-r).toFixed(2);",
+   "169.34": "const P=214.95,Q=179.49,t=0.0825;const r=1.1*(P*(1+t)-Q)*(1+t);return (P*(1+t)-r).toFixed(2);"
+  },
+  "quantity_asked": "Kenji's net cost (tax-included price paid minus the taxed refund).",
+  "distractor_kind": {
+   "186.98": "error path: refund taxed twice (1.1 x 35.46 x 1.0825^2). (a) none. (b) inside. (c) 3.48 below the key; below the cap Q(1.0825) = 194.30 like the key. (d) tax applied twice.",
+   "171.03": "error path: 110% of the difference read as the difference plus 10% of the store's price. (a) none. (b) inside. (c) inside. (d) wrong base for the extra 10%.",
+   "169.34": "error path: difference taken between the tax-included price paid and the competitor's pre-tax price. (a) none. (b) inside. (c) inside. (d) mixes tax-included and pre-tax prices."
+  },
+  "distractor_meta": {
+   "186.98": {
+    "direction": "under",
+    "error_kind": "tax on the refund applied twice"
+   },
+   "171.03": {
+    "direction": "under",
+    "error_kind": "wrong base for the extra 10%"
+   },
+   "169.34": {
+    "direction": "under",
+    "error_kind": "tax-included price compared with pre-tax price"
+   }
+  },
+  "bounds": [
+   "net cost < competitor's price with tax, 179.49(1.0825) = 194.30, because the refund exceeds the difference",
+   "net cost > 0"
+  ],
+  "mechanism": [
+   "price-match refund",
+   "110% of the price difference",
+   "sales tax on a refund",
+   "net cost after refund"
+  ],
+  "arith_class_check": "All four are three-digit dollar amounts to the cent with non-zero final digits; none round.",
+  "one_sided_check": "Key largest. Distractors from three different clauses and three error kinds. Natural errors the other way: refunding the pre-tax 110% without its tax gives 193.68 (OVER, 3.22 above); refunding only the difference (100%) gives 194.30 (the competitor taxed price), over; refunding only 10% of the difference gives 228.84, over.",
+  "interior_parity_check": "Interior by value: 171.03 and 186.98, both three-digit dollar amounts with two non-zero decimals; neither nicer.",
+  "cheap_bound_check": "Cheapest bound: the refund is more than the difference, so the net cost is below the competitor's taxed price 194.30; all options are below it. No cheap lower bound separates the three distractors from the key; the nearest is 3.48 below.",
+  "trap_check": "Clauses: '110% of the difference' (difference plus 10% of the price gives 171.03, UNDER; 100% gives 194.30, OVER); 'both before tax' (tax-included minus pre-tax gives 169.34, UNDER); 'plus the sales tax on the amount refunded' (taxed twice gives 186.98, UNDER; untaxed gives 193.68, OVER). One option per clause.",
+  "direction_declaration": {
+   "186.98": {
+    "step": "tax on the refund",
+    "error_type": "other: tax applied twice",
+    "direction": "under"
+   },
+   "171.03": {
+    "step": "110% of the difference",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "169.34": {
+    "step": "the price difference",
+    "error_type": "other: tax-included price minus pre-tax price",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "tax on the refund",
+    "error_type": "omission",
+    "solve": "const P=214.95,Q=179.49,t=0.0825;return P*(1+t)-1.1*(P-Q);",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "refund is 110% of the difference",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "difference taken between pre-tax prices",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "refund includes the sales tax on the refunded amount",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "8.25% sales tax on the purchase",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Key largest; nearest 3.48 below; counter (untaxed refund, 193.68) natural; 'tax twice' and the 10%-of-price reading may be judged less natural than the counter."
+  }
+ },
+ {
+  "id": "AM28I-20",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "water for a batch from baker's percentages after a baking weight loss",
+  "subskill": "splitting by a ratio, percent of a changed base",
+  "prompt": "A bakery's bread formula gives the weight of each ingredient as a percent of the weight of the flour: flour 100%, water 69%, salt 2%, and yeast 1.4%. The dough is made of only these four ingredients. When a loaf is baked, its weight decreases by 13% of the weight of its dough. The baker wants to bake 9 loaves that each weigh 620 grams after baking. To the nearest gram, how many grams of water should the baker use?",
+  "choices": [
+   "2524",
+   "2619",
+   "2233",
+   "2567"
+  ],
+  "correct_answer": "2567",
+  "explanation": "Each baked loaf is 87% of its dough, so the 9 loaves need 9(620)/0.87 ≈ 6,413.8 grams of dough. For every 100 grams of flour the dough weighs 100 + 69 + 2 + 1.4 = 172.4 grams, so water is 69/172.4 of the dough: 6,413.8(69/172.4) ≈ 2,567 grams. The option \"2524\" finds the dough by adding 13% to the baked weight. The option \"2619\" leaves the salt and yeast out of the dough, using 69/169. The option \"2233\" ignores the weight lost in baking.",
+  "solve": "const d=9*620/0.87;return Math.round(d*69/172.4).toString();",
+  "distractor_solve": {
+   "2233": "return Math.round(9*620*69/172.4).toString();",
+   "2524": "const d=9*620*1.13;return Math.round(d*69/172.4).toString();",
+   "2619": "const d=9*620/0.87;return Math.round(d*69/169).toString();"
+  },
+  "quantity_asked": "the grams of water in the dough for nine 620-gram baked loaves.",
+  "distractor_kind": {
+   "2233": "error path: baking loss ignored. (a) the no-loss value is the 0% limit of the loss, but the stem forces 13%, so it is not ON a bound of v. (b) smallest option. (c) inside. (d) omission of the loss.",
+   "2524": "error path: dough = baked weight x 1.13. (a) none. (b) strictly inside. (c) 43 below key, inside any one-step estimate. (d) wrong base.",
+   "2619": "error path: salt and yeast omitted from the dough total. (a) none. (b) largest option, not on a bound. (c) inside. (d) omission."
+  },
+  "distractor_meta": {
+   "2233": {
+    "direction": "under",
+    "error_kind": "baking loss ignored"
+   },
+   "2524": {
+    "direction": "under",
+    "error_kind": "wrong base on the 13% loss"
+   },
+   "2619": {
+    "direction": "over",
+    "error_kind": "salt and yeast omitted"
+   }
+  },
+  "bounds": [
+   "v > 9(620)(69/172.4) = 2,233 (the dough outweighs the bread)",
+   "v < 0.69 x total dough / 1 (water < 69% of dough)"
+  ],
+  "mechanism": [
+   "baker's percentages",
+   "percent of flour weight",
+   "bread loses weight in baking",
+   "water for a batch of loaves"
+  ],
+  "arith_class_check": "All four are four-digit gram counts; none round, none a multiple of a stem number in a way the stem predicts.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 2524 and 2567, both four-digit integers with non-zero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: 'decreases by 13% of the weight of its dough' (ignoring it gives 2233 UNDER, an option; x1.13 for /0.87 gives 2524 UNDER, an option — two different errors on one clause: one ignores it, one misapplies its base); 'percent of the weight of the flour' (water as 69% of the dough gives 4425 OVER, not an option); 'only these four ingredients' (leaving out salt and yeast gives 2619 OVER, an option). At most one option from IGNORING any clause.",
+  "direction_declaration": {
+   "2233": {
+    "step": "undoing the 13% baking loss",
+    "error_type": "other: loss ignored",
+    "direction": "under"
+   },
+   "2524": {
+    "step": "undoing the 13% baking loss",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "2619": {
+    "step": "total parts in the dough",
+    "error_type": "omission",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "water share of the dough",
+    "error_type": "wrong base",
+    "solve": "const d=9*620/0.87;return d*0.69;",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "baked loaf weighs 13% less than its dough",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "salt 2% and yeast 1.4% of the flour are in the dough",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "percents are of the flour weight",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors on both sides from different steps; the no-loss / x1.13 / x0.87 triple was broken so no evenly spaced run appears."
+  }
+ },
+ {
+  "id": "AM28I-21",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "reservoir level after an inflow measured on the unfilled capacity and May removals measured on the water present",
+  "subskill": "percent of a changed base",
+  "prompt": "A reservoir was at 56% of its capacity on April 1. During April, snowmelt added an amount of water equal to 45% of the reservoir's unfilled capacity on April 1, and no water left the reservoir. During May, no water entered the reservoir; the water district released 24% of the water that was in the reservoir on May 1, and evaporation removed an additional amount equal to 3% of the water that was in the reservoir on May 1. To the nearest hundredth of a percent, the reservoir was at what percent of its capacity on June 1?",
+  "choices": [
+   "58.86",
+   "55.33",
+   "59.28",
+   "55.88"
+  ],
+  "correct_answer": "55.33",
+  "explanation": "On April 1 the unfilled capacity was 100% − 56% = 44% of capacity, so snowmelt added 0.45(44) = 19.8 percent of capacity, and on May 1 the reservoir was at 75.8% of capacity. In May, 24% + 3% = 27% of that water was removed, leaving 0.73(75.8) = 55.334, or about 55.33% of capacity. The option \"55.88\" takes the 3% from the water left after the release (75.8 × 0.76 × 0.97). The option \"58.86\" undoes the 24% release by dividing by 1.24. The option \"59.28\" takes the snowmelt as 45% of the water in the reservoir (56 × 1.45 = 81.2) instead of 45% of the unfilled capacity.",
+  "solve": "const W=56+0.45*44;return (W*(1-0.24-0.03)).toFixed(2);",
+  "distractor_solve": {
+   "59.28": "const W=56*1.45;return (W*(1-0.24-0.03)).toFixed(2);",
+   "58.86": "const W=56+0.45*44;return (W/1.24-0.03*W).toFixed(2);",
+   "55.88": "const W=56+0.45*44;return (W*0.76*0.97).toFixed(2);"
+  },
+  "quantity_asked": "the reservoir's June 1 level as a percent of its capacity.",
+  "distractor_kind": {
+   "55.88": "error path: evaporation taken as 3% of the water left after the release. (a) none. (b) inside. (c) 0.55 above the key; no cheap estimate separates it. (d) removal applied to the reduced amount.",
+   "58.86": "error path: the 24% release undone by dividing by 1.24 instead of multiplying by 0.76. (a) none. (b) inside. (c) below the bound W - 0.27(56) = 60.68. (d) wrong base.",
+   "59.28": "error path: snowmelt taken as 45% of the water present (56%) instead of 45% of the unfilled 44%. (a) none. (b) inside. (c) below the bound 60.68. (d) wrong base."
+  },
+  "distractor_meta": {
+   "55.88": {
+    "direction": "over",
+    "error_kind": "evaporation on the post-release amount"
+   },
+   "58.86": {
+    "direction": "over",
+    "error_kind": "wrong base (divide by 1.24)"
+   },
+   "59.28": {
+    "direction": "over",
+    "error_kind": "wrong base (percent of water, not of unfilled capacity)"
+   }
+  },
+  "bounds": [
+   "0 < level < 100",
+   "June level <= May 1 level - 0.27(56) = 60.68 (May 1 water is at least 56%)",
+   "June level >= May 1 level - 27 = 48.8"
+  ],
+  "mechanism": [
+   "reservoir percent of capacity",
+   "percent of unfilled capacity",
+   "percent of the water present",
+   "successive percent changes on different bases"
+  ],
+  "arith_class_check": "All four are percents with two non-zero decimals; none integer or round; the key is 0.73 x 75.8, not a stem-readable class.",
+  "one_sided_check": "Key smallest. Distractors from three different clauses and two error kinds. Natural errors the other way: the release read as 24 percentage points of capacity gives 49.53 and the evaporation as 3 points of capacity gives 54.61, both UNDER; neglecting the snowmelt gives 40.88, under.",
+  "interior_parity_check": "Interior by value: 55.88 and 58.86, both two-digit percents with two non-zero decimals; neither nicer.",
+  "cheap_bound_check": "Cheapest bounds: the level stays between 48.8 (removals at most 27% of capacity) and 60.68 (removals at least 27% of the April 1 water, 56%); every option lies strictly inside. One step finer is the solve (0.73 x 75.8). The nearest distractor is 0.55 above the key.",
+  "trap_check": "Clauses: '45% of the unfilled capacity' (45% of the water gives 59.28, OVER; 45 points of capacity gives over 100, impossible); '24% of the water on May 1' (dividing by 1.24 gives 58.86, OVER; 24 points of capacity gives 49.53, UNDER); 'additional 3% of the water on May 1' (3% of the remaining water gives 55.88, OVER; ignored gives over). One option per clause.",
+  "direction_declaration": {
+   "55.88": {
+    "step": "the 3% evaporation",
+    "error_type": "other: removal taken from the post-release amount",
+    "direction": "over"
+   },
+   "58.86": {
+    "step": "the 24% release",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "59.28": {
+    "step": "the April snowmelt",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "the 24% release",
+    "error_type": "other: 24% read as 24 percentage points of capacity",
+    "solve": "const W=56+0.45*44;return W-24-0.03*W;",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "snowmelt equal to 45% of the unfilled capacity on April 1",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "release of 24% of the water on May 1",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "evaporation of 3% of the water on May 1",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Key smallest; nearest 0.55 above; release as 24 capacity points (49.53) under is natural; rule neglect directions mixed; all options inside 48.8-60.68."
+  }
+ },
+ {
+  "id": "AM28I-22",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "percent by which an old opposite-sides surveying rule overstates a trapezoidal field's area",
+  "subskill": "percent error of an area estimate",
+  "prompt": "An old surveying rule estimates the area of a four-sided field by multiplying the average of the lengths of one pair of opposite sides by the average of the lengths of the other pair of opposite sides. A certain field is a trapezoid. Its parallel sides are 173 meters and 98 meters long and are 56 meters apart, and its other two sides are 65 meters and 70 meters long. The rule's estimate is greater than the field's actual area by what percent of the actual area, to the nearest hundredth of a percent?",
+  "choices": [
+   "5.59",
+   "20.54",
+   "3.85",
+   "17.04"
+  ],
+  "correct_answer": "20.54",
+  "explanation": "The actual area of the trapezoid is ((173 + 98)/2)(56) = 135.5 × 56 = 7,588 square meters. The rule averages the parallel sides, (173 + 98)/2 = 135.5, and the other two sides, (65 + 70)/2 = 67.5, giving 135.5 × 67.5 = 9,146.25 square meters. The estimate exceeds the actual area by 1,558.25, and 1,558.25/7,588 ≈ 0.2054, or 20.54%. The option \"17.04\" divides the excess by the estimate instead of by the actual area. The option \"5.59\" takes the actual area as the rectangle 173 × 56 = 9,688 and compares the estimate with it. The option \"3.85\" uses the 65-meter side as the height, so the 'actual' area is 135.5 × 65.",
+  "solve": "const m=(173+98)/2,ex=m*56,est=m*(65+70)/2;return ((est/ex-1)*100).toFixed(2);",
+  "distractor_solve": {
+   "17.04": "const m=(173+98)/2,ex=m*56,est=m*(65+70)/2;return ((1-ex/est)*100).toFixed(2);",
+   "5.59": "const m=(173+98)/2,est=m*(65+70)/2,r=173*56;return (Math.abs(est-r)/r*100).toFixed(2);",
+   "3.85": "const m=(173+98)/2,est=m*(65+70)/2,t=m*65;return (Math.abs(est-t)/t*100).toFixed(2);"
+  },
+  "quantity_asked": "the excess of the opposite-sides estimate over the trapezoid's actual area, as a percent of the actual area.",
+  "distractor_kind": {
+   "17.04": "error path: excess divided by the estimate. (a) none. (b) inside. (c) the cheap estimate (slant average 67.5 vs height 56, about 20%) is the solve itself; 17.04 is 3.5 below and is the same computation on the other base. (d) wrong base.",
+   "5.59": "error path: actual area taken as the rectangle longer base x height (9,688). (a) none. (b) inside, not a bound. (c) inside. (d) rectangle for trapezoid.",
+   "3.85": "error path: the 65 m slanted side used as the trapezoid's height. (a) none. (b) inside. (c) inside. (d) slanted side as height."
+  },
+  "distractor_meta": {
+   "17.04": {
+    "direction": "under",
+    "error_kind": "wrong base (divides by the estimate)"
+   },
+   "5.59": {
+    "direction": "under",
+    "error_kind": "rectangle area for the trapezoid"
+   },
+   "3.85": {
+    "direction": "under",
+    "error_kind": "slanted side as height"
+   }
+  },
+  "bounds": [
+   "percent > 0 (each slanted side is longer than the 56 m distance between the parallel sides)"
+  ],
+  "mechanism": [
+   "opposite-sides area rule",
+   "trapezoid area",
+   "percent error of an estimate",
+   "egyptian surveying formula"
+  ],
+  "arith_class_check": "All four are percents with two non-zero decimals; none integer or round. The key reduces to 67.5/56 - 1, not a stem-readable class.",
+  "one_sided_check": "Key largest. Distractors from three different steps (final base, the exact area as a rectangle, the height). Natural errors the other way: pairing ADJACENT sides in the rule ((173+70)/2 x (98+65)/2) gives 30.50, and averaging all four sides and squaring gives 35.77, both OVER; using the shorter base x height as the actual area gives 66.66, over.",
+  "interior_parity_check": "Interior by value: 5.59 and 17.04, both percents with two non-zero decimals; neither nicer.",
+  "cheap_bound_check": "Cheapest bound: the estimate replaces the 56 m height by the 67.5 m slant average, so the excess is 67.5/56 - 1; any rougher bound (percent > 0) kills nothing. All three distractors lie below the key and above 0; none sits on a stem-forced bound.",
+  "trap_check": "Clauses: 'average of one pair of opposite sides times the average of the other pair' (pairing adjacent sides gives 30.50 OVER, not an option); 'parallel sides 56 meters apart' (slanted side as height gives 3.85 UNDER, an option; rectangle 173 x 56 gives 5.59 UNDER, an option, a different misuse of the shape); 'percent of the actual area' (dividing by the estimate gives 17.04 UNDER, an option). One option per misreading.",
+  "direction_declaration": {
+   "17.04": {
+    "step": "forming the percent",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "5.59": {
+    "step": "actual area of the trapezoid",
+    "error_type": "other: rectangle for trapezoid",
+    "direction": "under"
+   },
+   "3.85": {
+    "step": "height of the trapezoid",
+    "error_type": "other: slanted side as height",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "applying the opposite-sides rule",
+    "error_type": "other: adjacent sides paired",
+    "solve": "const ex=(173+98)/2*56;return ((173+70)/2*(98+65)/2/ex-1)*100;",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "estimate = average of one pair of opposite sides times average of the other pair",
+     "neglect_direction": "none"
+    },
+    {
+     "rule": "percent of the actual area",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Key largest; nearest 17.04 (wrong base) 3.5 below; natural over errors (adjacent pairing 30.50, all-four average squared 35.77) exist; no option on a bound."
+  }
+ }
+]

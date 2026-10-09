@@ -1,0 +1,448 @@
+[
+ {
+  "id": "AM28I-X2",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "playback speed that finishes an audiobook in the listening time left",
+  "subskill": "playback speed, recording versus listening time",
+  "prompt": "An audiobook has a running time of 12 hours 17 minutes at normal speed, and its last 14 minutes are an afterword. Noor has listened to the beginning of the book for 2 hours 55 minutes of listening time, all at 1.2 times normal speed. She will skip the afterword, and after the rest of the book she will also play an 11-minute author interview (11 minutes at normal speed). She wants to hear the rest of the book and the interview in exactly 5 hours 25 minutes of listening time, at one constant playback speed. What playback speed, as a multiple of normal speed, should she use, to the nearest hundredth?",
+  "choices": [
+   "1.66",
+   "1.38",
+   "1.59",
+   "1.61"
+  ],
+  "correct_answer": "1.61",
+  "explanation": "At 1.2 times normal speed, 175 minutes of listening covered 175(1.2) = 210 minutes of the recording. Of the 737-minute recording, 737 - 210 - 14 = 513 minutes remain once the afterword is skipped, and the interview adds 11, so she must hear 524 minutes of recording in 325 minutes of listening: 524/325 = 1.612, or 1.61. \"1.66\" forgets to skip the afterword (538/325). \"1.59\" treats 1.2 times speed as 20% less listening time, so 175 minutes of listening covered 175/0.8 = 218.75 minutes of recording. \"1.38\" reasons that the listening time must drop from 524 to 325 minutes, a 38.0% cut, and speeds up by 38.0%.",
+  "solve": "const tot=12*60+17,aft=14,bon=11,lis=2*60+55,s0=1.2,av=5*60+25;return ((tot-lis*s0-aft+bon)/av).toFixed(2);",
+  "distractor_solve": {
+   "1.66": "const tot=12*60+17,aft=14,bon=11,lis=2*60+55,s0=1.2,av=5*60+25;return ((tot-lis*s0+bon)/av).toFixed(2);",
+   "1.59": "const tot=12*60+17,aft=14,bon=11,lis=2*60+55,s0=1.2,av=5*60+25;return ((tot-lis/(2-s0)-aft+bon)/av).toFixed(2);",
+   "1.38": "const tot=12*60+17,aft=14,bon=11,lis=2*60+55,s0=1.2,av=5*60+25;const r=tot-lis*s0-aft+bon;return (1+(r-av)/r).toFixed(2);"
+  },
+  "quantity_asked": "playback speed = minutes of recording still to hear (737 - 1.2 x 175 - 14 + 11 = 524) / minutes of listening time available (325).",
+  "distractor_kind": {
+   "1.66": "error path: the 14-minute afterword not removed. (a) not a parameter extreme. (b) neighbouring setup (no skip), strictly inside. (c) cap: ignoring the 1.2 speed gives (737 - 175 - 14 + 11)/325 = 1.72, and the speed must exceed 1; strictly inside (1, 1.72). (d) real omitted-condition error, the item's one omission.",
+   "1.59": "error path: 1.2 times speed read as 20% less listening time, so the recording heard is 175/0.8. (a) no extreme. (b) not an intermediate. (c) inside (1, 1.72). (d) real wrong-base reading of a speed multiple.",
+   "1.38": "error path: the needed cut in time, 199/524 = 38.0%, used as the speed increase. (a) no extreme. (b) not an intermediate. (c) inside (1, 1.72). (d) real percent-of-the-wrong-base error."
+  },
+  "distractor_meta": {
+   "1.66": {
+    "direction": "over",
+    "error_kind": "afterword not removed"
+   },
+   "1.59": {
+    "direction": "under",
+    "error_kind": "speed multiple read as percent less time"
+   },
+   "1.38": {
+    "direction": "under",
+    "error_kind": "percent decrease in time used as speed increase"
+   }
+  },
+  "bounds": [
+   "speed > 1 (more recording than listening time remains)",
+   "speed < (737 - 175 - 14 + 11)/325 = 1.72 (the 1.2 speed only shrinks what remains)"
+  ],
+  "mechanism": [
+   "audiobook playback speed",
+   "listened at 1.2 times normal speed",
+   "skip the afterword add an interview",
+   "remaining recording over available listening time",
+   "constant playback speed to finish on time"
+  ],
+  "arith_class_check": "No. Options 1.38, 1.59, 1.61, 1.66 are two-decimal values; none is a stem multiple of another and no three form an even run.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 1.59 and 1.61, both two-decimal values with nonzero hundredths; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"last 14 minutes are an afterword ... skip\" - ignoring pushes UP (1.66); \"11-minute author interview\" - ignoring pushes DOWN (1.58, not an option); \"1.2 times normal speed\" - ignoring pushes UP (1.72, not an option), dividing 175 by 1.2 pushes UP (1.81, not an option), reading as 20% less time pushes DOWN (1.59). \"exactly 5 hours 25 minutes\" - the percent-cut reasoning pushes DOWN (1.38). Exactly one distractor (1.66) comes from ignoring a clause.",
+  "direction_declaration": {
+   "1.66": {
+    "step": "minutes of recording still to hear (afterword)",
+    "error_type": "omission",
+    "direction": "over"
+   },
+   "1.59": {
+    "step": "minutes of recording already heard at 1.2 times speed",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "1.38": {
+    "step": "speed from remaining recording and available time",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "skip the 14-minute afterword",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "add the 11-minute interview",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "first 2 h 55 min listened at 1.2 times speed",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "5 hours 25 minutes of listening time",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors on both sides, all inside (1, 1.72); stated rules neglect both ways; one omission only."
+  }
+ },
+ {
+  "id": "AM28I-X3",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "cost per pound of roasted coffee after a weight loss in roasting",
+  "subskill": "unit cost with a discount on part of the price, per-sack shipping, and a weight loss",
+  "prompt": "A cafe buys green (unroasted) coffee beans in 50-pound sacks at $6.20 per pound, plus a shipping charge of $24 per sack. Because the cafe orders at least 10 sacks, the supplier takes 6% off the price of the beans; the discount does not apply to the shipping charge. Roasting reduces the weight of the beans by 18%. To the nearest cent, what is the cafe's cost per pound of roasted coffee?",
+  "choices": [
+   "7.59",
+   "7.69",
+   "7.44",
+   "7.66"
+  ],
+  "correct_answer": "7.69",
+  "explanation": "Per pound of green beans the cafe pays 6.20(0.94) = $5.828 for the beans and 24/50 = $0.48 for shipping, or $6.308. Each pound of green beans becomes 1 - 0.18 = 0.82 pound of roasted coffee, so the cost per pound of roasted coffee is 6.308/0.82 = $7.6927, or $7.69. The option \"7.44\" multiplies by 1.18 instead of dividing by 0.82. The option \"7.59\" divides only the bean cost by 0.82 and adds the $0.48 shipping per green pound afterward. The option \"7.66\" takes the 6% off the shipping charge too.",
+  "solve": "const b=6.2,sh=24,sk=50,l=0.18,d=0.06;const sp=sh/sk;return ((b*(1-d)+sp)/(1-l)).toFixed(2);",
+  "distractor_solve": {
+   "7.44": "const b=6.2,sh=24,sk=50,l=0.18,d=0.06;const sp=sh/sk;return ((b*(1-d)+sp)*(1+l)).toFixed(2);",
+   "7.59": "const b=6.2,sh=24,sk=50,l=0.18,d=0.06;const sp=sh/sk;return (b*(1-d)/(1-l)+sp).toFixed(2);",
+   "7.66": "const b=6.2,sh=24,sk=50,l=0.18,d=0.06;const sp=sh/sk;return ((b+sp)*(1-d)/(1-l)).toFixed(2);"
+  },
+  "quantity_asked": "cost per pound of roasted coffee: (6.20 x 0.94 + 24/50) dollars per green pound divided by 0.82.",
+  "distractor_kind": {
+   "7.44": "error path: the 18% weight loss handled as x1.18 on the cost instead of /0.82 (percent on the wrong base). (a) no parameter extreme. (b) not the green-bean cost 6.31. (c) inside the green-bean cost 6.31 and the no-discount cost 8.15. (d) real wrong-base error.",
+   "7.59": "error path: shipping per green pound (0.48) added after the roasting adjustment, so it is not spread over the lighter roasted coffee. (a) no extreme. (b) not an intermediate. (c) inside 6.31 to 8.15. (d) real order-of-operations error.",
+   "7.66": "error path: the 6% discount applied to the shipping as well as the beans, against the stated exclusion. (a) no extreme. (b) not an intermediate. (c) inside 6.31 to 8.15. (d) real scope error."
+  },
+  "distractor_meta": {
+   "7.44": {
+    "direction": "under",
+    "error_kind": "weight loss on the wrong base"
+   },
+   "7.59": {
+    "direction": "under",
+    "error_kind": "shipping not scaled by the loss"
+   },
+   "7.66": {
+    "direction": "under",
+    "error_kind": "discount applied to shipping"
+   }
+  },
+  "bounds": [
+   "cost per roasted pound > cost per green pound, 6.31 (roasting loses weight)",
+   "cost per roasted pound < the no-discount cost 6.68/0.82 = 8.15"
+  ],
+  "mechanism": [
+   "cost per pound of roasted coffee",
+   "roasting loses a percent of the weight",
+   "discount on beans but not on shipping",
+   "shipping charge per sack spread per pound"
+  ],
+  "arith_class_check": "No. All four are hundredths with non-zero last digits (7.44, 7.59, 7.66, 7.69); no option is a stem multiple of another (7.69/7.44 = 1.034).",
+  "one_sided_check": "key largest; distractors from a wrong-base weight loss, shipping added after the loss, and a discount applied to shipping (three kinds). Natural error on the other side: ignoring the 6% discount gives 8.15, above the key; the discount clause pushes up when neglected while the loss and shipping clauses push down, so the direction is not readable from the stem.",
+  "interior_parity_check": "Interior by value: 7.59 and 7.66, both hundredths with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: roasting loses weight, so the cost per roasted pound exceeds the cost per green pound, 6.31; all three distractors lie above it, on the key's side. The discount pulls the other way (8.15 if ignored). The nearest distractor 7.66 is 3 cents (0.4%) below the key.",
+  "trap_check": "Clauses: \"6% off the price of the beans\" - ignoring it pushes UP (8.15, not an option), applying it to shipping too pushes DOWN (7.66); \"$24 per sack\" - adding it after the loss pushes DOWN (7.59), ignoring it pushes DOWN (7.11, not an option); \"reduces the weight ... by 18%\" - x1.18 pushes DOWN (7.44), ignoring it pushes DOWN (6.31, not an option). One distractor per clause.",
+  "direction_declaration": {
+   "7.44": {
+    "step": "cost per roasted pound from the weight loss",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "7.59": {
+    "step": "shipping per pound of roasted coffee",
+    "error_type": "other: shipping not scaled by the loss",
+    "direction": "under"
+   },
+   "7.66": {
+    "step": "discounted cost per green pound",
+    "error_type": "other: discount applied to shipping",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "discounted bean price",
+    "error_type": "omission",
+    "solve": "const b=6.2,sh=24,sk=50,l=0.18,d=0.06;const sp=sh/sk;return Number(((b+sp)/(1-l)).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "6% off the price of the beans, not the shipping",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "shipping $24 per 50-pound sack",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "roasting reduces the weight by 18%",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; under errors are a wrong-base loss, unscaled shipping and a discount on shipping; counter is ignoring the discount (8.15, over)."
+  }
+ },
+ {
+  "id": "AM28I-X4",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "effective percent saved under a least-expensive-item-off offer with sales tax",
+  "subskill": "percent discount on a total",
+  "prompt": "A store runs the following offer: when a customer buys exactly three items, the least expensive of the three is 40% off. A sales tax of 7% is then charged on the total after the discount. Ana buys three items with regular prices $53.80, $45.20, and $18.25. To the nearest hundredth of a percent, the total Ana pays, including tax, is what percent less than the total she would have paid, including tax, without the offer?",
+  "choices": [
+   "9.34",
+   "6.64",
+   "12.36",
+   "6.23"
+  ],
+  "correct_answer": "6.23",
+  "explanation": "The regular prices total 53.80 + 45.20 + 18.25 = $117.25. The offer takes 0.40(18.25) = $7.30 off, leaving $109.95. Tax multiplies both totals by 1.07, so it does not change the percent: Ana pays 7.30/117.25 ≈ 0.0623, or 6.23%, less. The option \"6.64\" divides the savings by the discounted total instead of the regular total. The option \"9.34\" has Ana pay 40% of the least expensive item's price, which is 60% off. The option \"12.36\" compares the taxed regular total, 1.07(117.25), with the untaxed discounted total, 109.95.",
+  "solve": "return (0.4*18.25/117.25*100).toFixed(2);",
+  "distractor_solve": {
+   "6.64": "return (0.4*18.25/(117.25-0.4*18.25)*100).toFixed(2);",
+   "9.34": "return (0.6*18.25/117.25*100).toFixed(2);",
+   "12.36": "const A=1.07*117.25,B=117.25-0.4*18.25;return ((A-B)/A*100).toFixed(2);"
+  },
+  "quantity_asked": "(taxed total without the offer - taxed total with the offer) / (taxed total without the offer), as a percent.",
+  "distractor_kind": {
+   "6.64": "error path: savings divided by the discounted total. (a) none. (b) wrong-base adjacent value, strictly inside (6.23, 12.36). (c) the one-step estimate 'least price < 1/6 of the total, so under 6.67%' leaves it on the key's side. (d) wrong base.",
+   "9.34": "error path: '40% off' read as paying 40% (60% off). (a) none. (b) strictly inside. (c) killed by the 1/6 estimate, not by the 1/3 cap. (d) complement slip.",
+   "12.36": "error path: tax applied to the regular total but not to the discounted total. (a) none. (b) largest option, inside the 40/3 = 13.33 cap. (c) killed by the 1/6 estimate. (d) inconsistent tax."
+  },
+  "distractor_meta": {
+   "6.64": {
+    "direction": "over",
+    "error_kind": "wrong base"
+   },
+   "9.34": {
+    "direction": "over",
+    "error_kind": "complement of the discount"
+   },
+   "12.36": {
+    "direction": "over",
+    "error_kind": "tax on one total only"
+   }
+  },
+  "bounds": [
+   "0 < percent < 40 x (least price)/(total) <= 40/3 = 13.33 (the least of three prices is at most a third of the total)"
+  ],
+  "mechanism": [
+   "least expensive of three items discounted",
+   "percent saved on the whole purchase",
+   "sales tax on the discounted total",
+   "effective percent discount"
+  ],
+  "arith_class_check": "No. All four are two-decimal percents with non-zero final digits; none integer or round.",
+  "one_sided_check": "Key smallest; three different error kinds (wrong base, complement, inconsistent tax). The natural mixed-base slip the other way, savings $7.30 divided by the TAXED regular total 125.46, gives 5.82, BELOW the key, so slips do not all push one way.",
+  "interior_parity_check": "Interior by value: 6.64 and 9.34, both one digit with two non-zero decimals; neither is nicer.",
+  "cheap_bound_check": "Cheapest bound: the least price is at most a third of the total, so the saving is under 13.33%; it kills nothing. One step finer: 18.25 is under one sixth of 117.25, so the saving is under 6.67%; it kills 9.34 and 12.36, but 6.64 lies on the key's side. Finer than that is the solve. Nearest distractor 0.41 above the key.",
+  "trap_check": "Clauses: 'least expensive of the three' (the most expensive gives 18.35, OVER, not an option); '40% off' (paying 40% gives 9.34, over); 'tax of 7% charged on the total after the discount' (tax cancels; taxing only the regular total in the comparison gives 12.36, over; dividing the untaxed saving by the taxed total gives 5.82, UNDER, not an option); 'percent less than the total without the offer' (discounted total as base gives 6.64, over). One option per clause.",
+  "direction_declaration": {
+   "6.64": {
+    "step": "forming the percent",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "9.34": {
+    "step": "applying 40% off",
+    "error_type": "other: complement (pays 40%)",
+    "direction": "over"
+   },
+   "12.36": {
+    "step": "handling the tax",
+    "error_type": "other: tax on the regular total only",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "handling the tax",
+    "error_type": "wrong base",
+    "solve": "return 0.4*18.25/(117.25*1.07)*100;",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "least expensive item is 40% off",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "7% tax on the total after the discount (tax on both totals)",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "percent less than the total without the offer",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Key smallest; 1/6 estimate kills two but 6.64 survives 0.41 above; counter-error (taxed denominator, 5.82) is natural."
+  }
+ },
+ {
+  "id": "AM28I-X5",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "percent increase in mean salary when two groups get different percent raises",
+  "subskill": "weighted mean of percent changes",
+  "prompt": "A company has 40 employees, and their mean annual salary is $51,200. Eleven of the employees are managers, and the mean annual salary of the managers is $73,800. Each manager received a 6% raise, and each of the other employees received a 2.5% raise. To the nearest hundredth of a percent, by what percent did the mean annual salary of all 40 employees increase?",
+  "choices": [
+   "3.74",
+   "4.19",
+   "3.89",
+   "3.46"
+  ],
+  "correct_answer": "3.89",
+  "explanation": "The total payroll was 40(51,200) = $2,048,000, of which the managers earned 11(73,800) = $811,800 and the others $1,236,200. The raises total 0.06(811,800) + 0.025(1,236,200) = 48,708 + 30,905 = $79,613. With 40 employees before and after, the mean rose by 79,613/2,048,000 ≈ 3.89%. The option \"3.46\" weights the two raises by the number of employees, (11(6) + 29(2.5))/40. The option \"3.74\" divides the increase by the new payroll instead of the old one. The option \"4.19\" gives each of the 29 other employees the overall mean salary, $51,200.",
+  "solve": "const P=40*51200,M=11*73800,d=M*0.06+(P-M)*0.025;return (d/P*100).toFixed(2);",
+  "distractor_solve": {
+   "3.46": "return ((11*6+29*2.5)/40).toFixed(2);",
+   "3.74": "const P=40*51200,M=11*73800,d=M*0.06+(P-M)*0.025;return (d/(P+d)*100).toFixed(2);",
+   "4.19": "const P=40*51200,d=11*73800*0.06+29*51200*0.025;return (d/P*100).toFixed(2);"
+  },
+  "quantity_asked": "the percent increase in the mean salary of all 40 employees.",
+  "distractor_kind": {
+   "3.46": "error path: raises weighted by headcount. (a) none. (b) smallest option, not on a stem-forced bound (v > 2.5). (c) inside. (d) real error: headcount weights for payroll weights.",
+   "3.74": "error path: increase over the new payroll. (a) none. (b) strictly inside. (c) inside. (d) wrong base.",
+   "4.19": "error path: non-managers given the overall mean salary. (a) none. (b) largest option; below the unweighted 4.25. (c) inside. (d) wrong base (wrong reference group for the 2.5% raise)."
+  },
+  "distractor_meta": {
+   "3.46": {
+    "direction": "under",
+    "error_kind": "headcount weights"
+   },
+   "3.74": {
+    "direction": "under",
+    "error_kind": "wrong base (new payroll)"
+   },
+   "4.19": {
+    "direction": "over",
+    "error_kind": "wrong reference group"
+   }
+  },
+  "bounds": [
+   "2.5 < v < 6",
+   "v < 4.25 (managers earn less than half the payroll)"
+  ],
+  "mechanism": [
+   "mean salary after raises",
+   "different percent raises for two groups",
+   "payroll-weighted percent",
+   "managers and other employees"
+  ],
+  "arith_class_check": "All four are two-decimal percents with non-zero final digits.",
+  "one_sided_check": "key interior (two under, one over).",
+  "interior_parity_check": "Interior by value: 3.74 and 3.89, both one-digit two-decimal percents with non-zero final digits; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: 'mean salary of the managers is $73,800' (ignored, everyone at $51,200: 3.46 UNDER, an option); 'each of the other employees' (the 2.5% applied to everyone in addition: 7.00 OVER, not an option; others at the overall mean: 4.19 OVER, an option — a misapplied base, not an omission); 'increase' measured from the old mean (3.74 UNDER, an option, a base slip). At most one option from ignoring any clause.",
+  "direction_declaration": {
+   "3.46": {
+    "step": "weighting the two raises",
+    "error_type": "other: headcount weights",
+    "direction": "under"
+   },
+   "3.74": {
+    "step": "forming the percent increase",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "4.19": {
+    "step": "the other employees' payroll",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "combining the raises",
+    "error_type": "other: unweighted mean of the two rates",
+    "solve": "return (6+2.5)/2;",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "managers' mean salary $73,800",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "the 2.5% applies only to the 29 non-managers",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key between two under slips and one over slip; the unweighted 4.25 is not an option."
+  }
+ },
+ {
+  "id": "AM28S-X3",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "random variables",
+  "subskill": "standard deviation of a discrete random variable",
+  "prompt": "A bakery models the number X of wedding-cake orders it receives on a weekday with the probability distribution below.\nP(X = 0) = 0.55, P(X = 1) = 0.20, P(X = 2) = 0.05, P(X = 3) = 0.20\nTo the nearest hundredth, what is the standard deviation of X ?",
+  "choices": [
+   "0.99",
+   "1.18",
+   "0.58",
+   "1.14"
+  ],
+  "correct_answer": "1.18",
+  "explanation": "The mean is μ = 0(0.55) + 1(0.20) + 2(0.05) + 3(0.20) = 0.9. The variance is the probability-weighted mean of (x − μ)²: 0.55(0.81) + 0.20(0.01) + 0.05(1.21) + 0.20(4.41) = 1.39 (equivalently E[X²] − μ² = 2.2 − 0.81). The standard deviation is √1.39 ≈ 1.18. The option \"1.14\" subtracts μ instead of μ² in the shortcut, √(2.2 − 0.9). The option \"0.99\" is the mean absolute deviation, the weighted mean of |x − μ|. The option \"0.58\" takes the square root term by term, √2.2 − 0.9.",
+  "solve": "const p=[0.55,0.20,0.05,0.20];const m=p.reduce((s,q,i)=>s+q*i,0);const v=p.reduce((s,q,i)=>s+q*(i-m)**2,0);return Math.sqrt(v).toFixed(2);",
+  "distractor_solve": {
+   "1.14": "const p=[0.55,0.20,0.05,0.20];const m=p.reduce((s,q,i)=>s+q*i,0);const e2=p.reduce((s,q,i)=>s+q*i*i,0);return Math.sqrt(e2-m).toFixed(2);",
+   "0.99": "const p=[0.55,0.20,0.05,0.20];const m=p.reduce((s,q,i)=>s+q*i,0);return p.reduce((s,q,i)=>s+q*Math.abs(i-m),0).toFixed(2);",
+   "0.58": "const p=[0.55,0.20,0.05,0.20];const m=p.reduce((s,q,i)=>s+q*i,0);const e2=p.reduce((s,q,i)=>s+q*i*i,0);return (Math.sqrt(e2)-m).toFixed(2);"
+  },
+  "quantity_asked": "The standard deviation of the random variable X, √(Σ p(x − μ)²).",
+  "distractor_kind": {
+   "1.14": "error path: shortcut variance written E[X²] − μ instead of E[X²] − μ². (a) none. (b) adjacent 'variance shortcut' slip; strictly inside. (c) inside SD ≤ range/2 = 1.5 and > 0. (d) real squaring omission; with μ < 1 it moves the answer down a little.",
+   "0.99": "error path: computes the mean absolute deviation instead of the standard deviation. (a) none. (b) neighbouring spread measure; inside. (c) inside. (d) real concept confusion, moves down.",
+   "0.58": "error path: distributes the square root, √(E[X²]) − μ. (a) none. (b) none. (c) inside (0, 1.5). (d) real algebra slip (√(a − b²) read as √a − b), moves down."
+  },
+  "distractor_meta": {
+   "1.14": {
+    "direction": "under",
+    "error_kind": "mu not squared in shortcut"
+   },
+   "0.99": {
+    "direction": "under",
+    "error_kind": "mean absolute deviation"
+   },
+   "0.58": {
+    "direction": "under",
+    "error_kind": "root distributed over difference"
+   }
+  },
+  "bounds": [
+   "SD > 0",
+   "SD ≤ (3 − 0)/2 = 1.5 (half the range)",
+   "SD ≤ max |x − μ| = 2.1"
+  ],
+  "mechanism": [
+   "standard deviation of a discrete probability distribution",
+   "expected value then weighted squared deviations",
+   "square root of variance of a random variable"
+  ],
+  "arith_class_check": "No. All four are two-decimal non-round values; none integral.",
+  "one_sided_check": "Key largest. Three unders from three different error kinds (shortcut squaring slip, wrong spread measure, root distributed). Natural OVER errors exist and are not options: forgetting the square root gives 1.39 (variance > 1 here), forgetting to subtract μ² gives √2.2 ≈ 1.48, and centring at a rounded mean of 1 gives √1.43 ≈ 1.20 — so the stem does not tell a student that slips push down.",
+  "interior_parity_check": "Interior by value: 0.99 and 1.14, both two-decimal non-round; neither is nicer.",
+  "cheap_bound_check": "Cheapest bounds: SD > 0 and SD ≤ half the range = 1.5 (Popoviciu), and SD ≤ 2.1 (largest deviation). All three distractors and the key lie inside (0, 1.5); no bound separates the key. Nearest distractor 1.14 is 0.04 below the key, well within any estimate's resolution. A student guessing 'SD is about 1' cannot separate 0.99, 1.14 and 1.18.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Key largest with three unders; counter errors (no square root 1.39, no μ² 1.48) are natural. Residual: grader may call √E[X²] − μ (0.58) a weaker distractor."
+  }
+ }
+]

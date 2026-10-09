@@ -1,0 +1,778 @@
+[
+ {
+  "id": "AM28G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "rectangle completed in the coordinate plane",
+  "subskill": "perpendicular slope to locate a rectangle vertex",
+  "prompt": "In the standard (x,y) coordinate plane, rectangle ABCD has vertices A(−6, 6) and B(5, 3), and vertex C lies on the x-axis. To the nearest hundredth of a coordinate unit, what is the length of diagonal AC ?",
+  "choices": [
+   "12.53",
+   "11.82",
+   "13.25",
+   "12.99"
+  ],
+  "correct_answer": "11.82",
+  "explanation": "Side BC is perpendicular to side AB at B. The slope of AB is (3 − 6)/(5 − (−6)) = −3/11, so BC has slope 11/3. On y − 3 = (11/3)(x − 5), y = 0 gives x = 5 − 9/11 = 46/11, so C = (46/11, 0). Then AC = √((46/11 + 6)² + 6²) = √((112/11)² + 36) = 130/11 ≈ 11.82. The option \"13.25\" uses the reciprocal slope without changing its sign (−11/3), which puts C at (64/11, 0). The option \"12.53\" assumes side BC is vertical and takes C = (5, 0). The option \"12.99\" puts the right angle in the wrong place: it drops the perpendicular through A to the x-axis (as if D were the vertex on the axis) and completes the rectangle from there.",
+  "solve": "const ax=-6,ay=6,bx=5,by=3,m=(by-ay)/(bx-ax),cx=bx-by/(-1/m);return Math.hypot(cx-ax,ay).toFixed(2);",
+  "distractor_solve": {
+   "13.25": "const ax=-6,ay=6,bx=5,by=3,m=(by-ay)/(bx-ax),cx=bx-by/(1/m);return Math.hypot(cx-ax,ay).toFixed(2);",
+   "12.53": "const ax=-6,ay=6,bx=5,by=3;return Math.hypot(bx-ax,ay).toFixed(2);",
+   "12.99": "const ax=-6,ay=6,bx=5,by=3,m=(by-ay)/(bx-ax),dx=ax-ay/(-1/m),cx=bx+dx-ax,cy=by-ay;return Math.hypot(cx-ax,cy-ay).toFixed(2);"
+  },
+  "quantity_asked": "the length of diagonal AC of the rectangle, 130/11 ≈ 11.82, after locating C on the x-axis from the perpendicular slope at B.",
+  "distractor_kind": {
+   "13.25": "perpendicular slope sign slip: −11/3 instead of 11/3. (a) no parameter extreme. (b) neighbouring setup: not an intermediate. (c) cheapest bounds: AC > AB = √130 ≈ 11.40 and AC ≥ √(130 + 3²) ≈ 11.79 (BC is at least B's height 3); 13.25 strictly above both. (d) real: reciprocal taken, sign not changed.",
+   "12.53": "BC assumed vertical, C = (5, 0). (a) no. (b) neighbouring: the point of the x-axis nearest B; not a bound on AC. (c) strictly above 11.79. (d) real: treats the rectangle as axis-aligned on that side.",
+   "12.99": "right angle at the wrong vertex: perpendicular through A meets the x-axis, rectangle completed from there. (a) no. (b) none. (c) strictly above 11.79. (d) real: vertex-label slip (the vertex on the axis taken as D)."
+  },
+  "distractor_meta": {
+   "13.25": {
+    "direction": "over",
+    "error_kind": "perpendicular slope sign slip"
+   },
+   "12.53": {
+    "direction": "over",
+    "error_kind": "side assumed vertical"
+   },
+   "12.99": {
+    "direction": "over",
+    "error_kind": "right angle at wrong vertex"
+   }
+  },
+  "bounds": [
+   "v > AB = √130 ≈ 11.40 (diagonal longer than a side)",
+   "v ≥ √(130 + 9) ≈ 11.79 (BC at least the height of B above the axis)"
+  ],
+  "mechanism": [
+   "rectangle vertex on the x-axis",
+   "perpendicular slope through a vertex",
+   "diagonal length by the distance formula",
+   "coordinate rectangle completion"
+  ],
+  "arith_class_check": "Key 130/11 shows as a two-decimal value like every option; no integrality is implied (C's x-coordinate is 46/11).",
+  "one_sided_check": "Key smallest. Three different errors (slope sign, vertical-side assumption, wrong vertex). The natural negate-only slip (slope 3/11) puts C at (−6, 0) and gives AC = 6, far BELOW the key; a student cannot read from the stem that slope slips raise AC.",
+  "interior_parity_check": "Interior options by value: 12.53 and 12.99, both two-decimal with a nonzero final digit; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bounds: AC > AB ≈ 11.40 and, one step finer, AC ≥ √(AB² + 3²) ≈ 11.79 since BC is at least B's height above the axis. Both sit BELOW the key; all three distractors lie above them, on the key's side. No cheap upper bound separates 11.82 from 12.53 (6% apart).",
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; slope slips go both ways (negate-only gives 6); the only cheap bounds sit below the key. Perpendicular-bisector-to-x-axis items are live but differ (midpoint, intercept asked)."
+  }
+ },
+ {
+  "id": "AM28G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "similar triangles cut by a parallel segment",
+  "subskill": "parallel cut with equal perimeters",
+  "prompt": "In triangle ABC, AB = 10 centimeters, AC = 13 centimeters, and BC = 5 centimeters. Point D lies on side AB and point E lies on side AC so that segment DE is parallel to side BC. The perimeter of triangle ADE is equal to the perimeter of quadrilateral DBCE. To the nearest hundredth of a centimeter, what is the length of AE ?",
+  "choices": [
+   "8.88",
+   "7.14",
+   "9.19",
+   "7.91"
+  ],
+  "correct_answer": "7.91",
+  "explanation": "Because DE ∥ BC, triangle ADE is similar to triangle ABC; let k = AE/AC = AD/AB = DE/BC. The perimeter of ADE is 10k + 13k + 5k = 28k. The perimeter of DBCE is DB + BC + CE + ED = 10(1 − k) + 5 + 13(1 − k) + 5k = 28 − 18k. Setting 28k = 28 − 18k gives k = 28/46 = 14/23, so AE = 13(14/23) = 182/23 ≈ 7.91. The option \"7.14\" leaves side DE out of the quadrilateral's perimeter (28k = 28 − 23k, k = 28/51). The option \"8.88\" leaves DE out of the triangle's perimeter instead (23k = 28 − 18k, k = 28/41). The option \"9.19\" splits the AREA in half rather than the perimeter (k = 1/√2).",
+  "solve": "const ab=10,ac=13,bc=5,k=(ab+ac+bc)/(2*(ab+ac));return (ac*k).toFixed(2);",
+  "distractor_solve": {
+   "7.14": "const ab=10,ac=13,bc=5,s=ab+ac,k=(s+bc)/(2*s+bc);return (ac*k).toFixed(2);",
+   "8.88": "const ab=10,ac=13,bc=5,s=ab+ac,k=(s+bc)/(2*s-bc);return (ac*k).toFixed(2);",
+   "9.19": "const ac=13,k=1/Math.sqrt(2);return (ac*k).toFixed(2);"
+  },
+  "quantity_asked": "the length AE when the parallel segment DE makes the two pieces' perimeters equal: 13·(14/23) ≈ 7.91.",
+  "distractor_kind": {
+   "7.14": "shared side DE omitted from the quadrilateral's perimeter. (a) no parameter extreme. (b) neighbouring setup: not an intermediate. (c) cheapest bounds: AE > AC/2 = 6.5 (at the midpoints the quadrilateral's perimeter is larger by BC/2, so k > 1/2) and AE < AC = 13; 7.14 strictly inside. (d) real: forgets the shared side belongs to both pieces.",
+   "8.88": "shared side DE omitted from the triangle's perimeter. (a) no. (b) none. (c) inside (6.5, 13). (d) real: the mirror-image omission.",
+   "9.19": "area condition used instead of perimeter (k = 1/√2). (a) no. (b) neighbouring setup: the equal-area cut; strictly inside (6.5, 13). (c) inside. (d) real: the familiar 'halve the triangle' scale factor."
+  },
+  "distractor_meta": {
+   "7.14": {
+    "direction": "under",
+    "error_kind": "shared side dropped from quadrilateral"
+   },
+   "8.88": {
+    "direction": "over",
+    "error_kind": "shared side dropped from triangle"
+   },
+   "9.19": {
+    "direction": "over",
+    "error_kind": "area halved instead of perimeter"
+   }
+  },
+  "bounds": [
+   "v > AC/2 = 6.5 (k > 1/2: at the midpoints the quadrilateral's perimeter is larger)",
+   "v < AC = 13"
+  ],
+  "mechanism": [
+   "segment parallel to a side of a triangle",
+   "equal perimeters of the two pieces",
+   "scale factor of similar triangles",
+   "trapezoid cut from a triangle"
+  ],
+  "arith_class_check": "Key 182/23 ≈ 7.91 is a two-decimal non-terminating value like every option; no integrality is implied.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 7.91 and 8.88, both two-decimal with one integer digit and nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways (drop DE from one piece or the other). Equal-area cuts are live (v26 vertical line), equal-perimeter parallel cut not found."
+  }
+ },
+ {
+  "id": "AM28G-03",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "square pyramid surface area",
+  "subskill": "base edge from lateral area and face angle",
+  "prompt": "The roof of a gazebo has the shape of the four triangular faces of a right pyramid with a square base: the top point of the roof is directly above the center of the square. Each of the four triangular faces of the roof makes an angle of 32° with the horizontal, and the total area of the four faces is 76 square meters. To the nearest hundredth of a meter, what is the length of each side of the square base of the roof?",
+  "choices": [
+   "6.35",
+   "8.03",
+   "5.91",
+   "7.55"
+  ],
+  "correct_answer": "8.03",
+  "explanation": "Let s be the side of the square. In the right triangle formed by the top point, the center of the base, and the midpoint of a base edge, the horizontal leg is s/2 and the angle at the midpoint is 32°, so the slant height of a face is (s/2)/cos 32°. The four faces have total area 4 · (1/2) · s · (s/2)/cos 32° = s²/cos 32°. So s² = 76 cos 32° ≈ 64.45 and s ≈ 8.03. The option \"6.35\" uses sin 32° in place of cos 32° for the slant height. The option \"7.55\" treats 32° as the angle a lateral edge (corner ridge) makes with the horizontal, so the horizontal leg is half the diagonal of the square. The option \"5.91\" also counts the square base, setting s²/cos 32° + s² equal to 72.",
+  "solve": "const c=Math.cos(32*Math.PI/180);return Math.sqrt(76*c).toFixed(2);",
+  "distractor_solve": {
+   "6.35": "const sn=Math.sin(32*Math.PI/180);return Math.sqrt(76*sn).toFixed(2);",
+   "7.55": "const c=Math.cos(32*Math.PI/180);return Math.sqrt(76/Math.sqrt(2/(c*c)-1)).toFixed(2);",
+   "5.91": "const c=Math.cos(32*Math.PI/180);return Math.sqrt(76/(1/c+1)).toFixed(2);"
+  },
+  "quantity_asked": "the base edge s of the square pyramid with s²/cos 32° = 76, s = √(76 cos 32°) ≈ 8.03 m.",
+  "distractor_kind": {
+   "6.35": "trig slip in the slant height: (s/2)/sin 32°, so s = √(76 sin 32°). (a) no parameter extreme. (b) neighbouring setup: the face at 58°; strictly inside. (c) cheapest bounds: lateral area exceeds base area so s < √76 ≈ 8.72; with 32° < 45°, slant < (s/2)√2 so s > √(76/√2) ≈ 7.33; 6.35 is below 7.33 but the √2 step needs the slant relation itself. (d) real: sine/cosine confusion for the adjacent leg.",
+   "7.55": "angle placed on the corner ridge instead of the face: horizontal leg s/√2, lateral edge (s/√2)/cos 32°, slant from the edge by Pythagoras. (a) no. (b) neighbouring setup: the pyramid whose edges rise at 32°; strictly inside. (c) inside (7.33, 8.72). (d) real: reads the face angle as the edge angle.",
+   "5.91": "counts the base too: s²/cos 32° + s² = 72. (a) no. (b) neighbouring setup: total surface area 76; strictly inside. (c) below 7.33 but above 0. (d) real: total surface for the four roof faces."
+  },
+  "distractor_meta": {
+   "6.35": {
+    "direction": "under",
+    "error_kind": "sine for cosine in slant height"
+   },
+   "7.55": {
+    "direction": "under",
+    "error_kind": "face angle read as edge angle"
+   },
+   "5.91": {
+    "direction": "under",
+    "error_kind": "base area included"
+   }
+  },
+  "bounds": [
+   "v < √76 ≈ 8.72 (the faces are steeper than flat, so their area exceeds the base area s²)",
+   "v > 0"
+  ],
+  "mechanism": [
+   "square pyramid lateral area from face angle",
+   "slant height = (s/2)/cos θ",
+   "lateral area = base area / cos θ",
+   "solve for base edge"
+  ],
+  "arith_class_check": "All four options are two-decimal square roots of non-square products (64.45, 40.27, 56.95, 34.88); none integer, none singled out.",
+  "one_sided_check": "Key largest. Distractors come from three different steps (trig ratio, which element the angle is on, which faces are counted). Natural errors on the OTHER side: using tan 32° (height taken as slant) gives s = √(76/tan 32°) ≈ 11.03, and multiplying by cos 32° instead of dividing (s²·cos 32° = 76) gives ≈ 9.47; both over, neither an option.",
+  "interior_parity_check": "Interior options by value: 6.35 and 7.55; both two-decimal, nonzero last digit; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: lateral area > base area, so s < √76 ≈ 8.72 (above the key; kills nothing). One step finer: since 32° < 45°, s > √(76/√2) ≈ 7.33; distractor 7.55 lies on the key's side of it. The counter errors 9.47 and 11.03 lie above the key.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Extreme key with all three listed errors under; counter errors (tan, multiply by cos) are natural but a grader may see the cos45 bound; 7.55 survives it."
+  }
+ },
+ {
+  "id": "AM28N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "vectors in a parallelogram",
+  "subskill": "vector to a point dividing a side",
+  "prompt": "In the standard (x,y) coordinate plane, ABCD is a parallelogram with vertices in that order. The vector from A to B is u = ⟨4, −5⟩, and the vector from A to D is v = ⟨2, 4⟩. Point P lies on side CD so that DP is twice as long as PC. To the nearest hundredth, what is the magnitude of the vector from A to P ?",
+  "choices": [
+   "5.82",
+   "4.07",
+   "7.36",
+   "4.71"
+  ],
+  "correct_answer": "4.71",
+  "explanation": "Going from A to D and then along DC, which is parallel and equal to AB: AP = v + (2/3)u, because DP is 2/3 of DC. So AP = ⟨2 + 8/3, 4 − 10/3⟩ = ⟨14/3, 2/3⟩, and |AP| = √(196 + 4)/3 = √200/3 ≈ 4.71. The option \"4.07\" reverses the ratio, v + (1/3)u. The option \"5.82\" travels along the wrong pair of sides, u + (2/3)v. The option \"7.36\" subtracts, v − (2/3)u, treating DC as pointing opposite to AB.",
+  "solve": "const u=[4,-5],v=[2,4],t=2/3;return Math.hypot(v[0]+t*u[0],v[1]+t*u[1]).toFixed(2);",
+  "distractor_solve": {
+   "4.07": "const u=[4,-5],v=[2,4],t=1/3;return Math.hypot(v[0]+t*u[0],v[1]+t*u[1]).toFixed(2);",
+   "5.82": "const u=[4,-5],v=[2,4],t=2/3;return Math.hypot(u[0]+t*v[0],u[1]+t*v[1]).toFixed(2);",
+   "7.36": "const u=[4,-5],v=[2,4],t=2/3;return Math.hypot(v[0]-t*u[0],v[1]-t*u[1]).toFixed(2);"
+  },
+  "quantity_asked": "the magnitude of AP = v + (2/3)u = ⟨14/3, 2/3⟩, √200/3 ≈ 4.71.",
+  "distractor_kind": {
+   "4.07": "division ratio reversed: v + (1/3)u. (a) no parameter extreme. (b) neighbouring setup: the point with PC twice DP; strictly inside. (c) cheapest bounds: ||v| − (2/3)|u|| ≈ 0.20 ≤ |AP| ≤ |v| + (2/3)|u| ≈ 8.74, also |AP| ≤ |v| + |u| ≈ 10.88; 4.07 strictly inside. (d) real: reads DP:PC backwards.",
+   "5.82": "wrong pair of sides: u + (2/3)v (P taken on BC). (a) no. (b) neighbouring: the point two-thirds along BC; strictly inside. (c) inside (0.20, 8.74). (d) real: confuses which side P is on.",
+   "7.36": "direction slip: v − (2/3)u (DC taken as −u). (a) no. (b) none. (c) inside (0.20, 8.74). (d) real: sign of a parallel side's vector."
+  },
+  "distractor_meta": {
+   "4.07": {
+    "direction": "under",
+    "error_kind": "ratio reversed"
+   },
+   "5.82": {
+    "direction": "over",
+    "error_kind": "wrong side of the parallelogram"
+   },
+   "7.36": {
+    "direction": "over",
+    "error_kind": "opposite direction for DC"
+   }
+  },
+  "bounds": [
+   "v ≥ ||v| − (2/3)|u|| ≈ 0.20",
+   "v ≤ |v| + (2/3)|u| ≈ 8.74"
+  ],
+  "mechanism": [
+   "vector sum around a parallelogram",
+   "point dividing a side in a ratio",
+   "magnitude of a vector in component form",
+   "AP = AD + (2/3)DC"
+  ],
+  "arith_class_check": "All options are two-decimal values of √n/3 (√149, √200, √305, √488 over 3); none is an integer and none is singled out.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 4.71 and 5.82, both two-decimal with nonzero final digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one under, two over errors of different kinds. Replaced a rotation-about-a-point complex item that duplicated live ssat 394776b4."
+  }
+ },
+ {
+  "id": "AM28G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "sector area from a chord and an inscribed angle",
+  "subskill": "inscribed angle to central angle, then radius",
+  "prompt": "Points A, B, and C lie on a circle with center O. Chord AC is 11 centimeters long. Point B lies on the major arc AC, and the measure of ∠ABC is 54°. To the nearest tenth of a square centimeter, what is the area of sector AOC, the region bounded by radii OA and OC and the minor arc AC ?",
+  "choices": [
+   "69.2",
+   "31.5",
+   "82.5",
+   "43.6"
+  ],
+  "correct_answer": "43.6",
+  "explanation": "The inscribed angle ABC intercepts minor arc AC, so central angle AOC = 2(54°) = 108°. In isosceles triangle AOC, half the chord is opposite half the central angle: 5.5 = r sin 54°, so r = 5.5/sin 54° ≈ 6.798. The sector's area is (108/360)πr² ≈ 0.3(π)(46.22) ≈ 43.6 square centimeters. The option \"69.2\" treats 54° as the central angle (r = 5.5/sin 27°, sector of 54°). The option \"31.5\" uses the whole central angle in the half-chord relation, r = 5.5/sin 108°. The option \"82.5\" finds r from the law of cosines but drops the sign of cos 108°: 121 = 2r²(1 − 0.309) instead of 2r²(1 + 0.309).",
+  "solve": "const D=Math.PI/180,c=11,a=54,t=2*a,r=c/2/Math.sin(a*D);return (r*r*t*D/2).toFixed(1);",
+  "distractor_solve": {
+   "69.2": "const D=Math.PI/180,c=11,a=54,r=c/2/Math.sin(a/2*D);return (r*r*a*D/2).toFixed(1);",
+   "31.5": "const D=Math.PI/180,c=11,a=54,t=2*a,r=c/2/Math.sin(t*D);return (r*r*t*D/2).toFixed(1);",
+   "82.5": "const D=Math.PI/180,c=11,a=54,t=2*a,r2=c*c/(2*(1-Math.abs(Math.cos(t*D))));return (r2*t*D/2).toFixed(1);"
+  },
+  "quantity_asked": "the area of sector AOC with central angle 108° and radius 5.5/sin 54°, ≈ 43.6 cm².",
+  "distractor_kind": {
+   "69.2": "inscribed angle taken as the central angle (both for the radius and the sector). (a) no parameter extreme. (b) neighbouring setup: the sector a 54° central angle would give; strictly inside. (c) cheapest bound: r ≥ 5.5 (a chord is at most a diameter) gives area ≥ 0.3π(5.5²) ≈ 28.5; no cheap upper bound without r; 69.2 strictly above 28.5. (d) real: the most common inscribed-angle slip.",
+   "31.5": "half-chord relation with the whole central angle, r = 5.5/sin 108° ≈ 5.78. (a) no. (b) none. (c) strictly above 28.5. (d) real: forgets to halve the central angle.",
+   "82.5": "law-of-cosines sign slip: cos 108° taken as +0.309, r² ≈ 87.6. (a) no. (b) none. (c) above 28.5. (d) real: sign of the cosine of an obtuse angle."
+  },
+  "distractor_meta": {
+   "69.2": {
+    "direction": "over",
+    "error_kind": "inscribed angle as central"
+   },
+   "31.5": {
+    "direction": "under",
+    "error_kind": "central angle not halved"
+   },
+   "82.5": {
+    "direction": "over",
+    "error_kind": "cosine sign slip"
+   }
+  },
+  "bounds": [
+   "v ≥ (108/360)π(5.5²) ≈ 28.5 (r is at least half the chord)"
+  ],
+  "mechanism": [
+   "inscribed angle is half the central angle",
+   "radius from a chord and its central angle",
+   "sector area",
+   "chord and inscribed angle to sector"
+  ],
+  "arith_class_check": "All options are one-decimal non-integers; no integrality implied.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 43.6 and 69.2, both one-decimal with nonzero final digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one under, two over errors of different kinds. Sector items are live only as radius+angle given; none recovers r from a chord and an inscribed angle."
+  }
+ },
+ {
+  "id": "AM28G-05",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "law of sines in a sloped-ground sighting",
+  "subskill": "law of sines with angles read off a slope",
+  "prompt": "A vertical radio mast stands on a hillside that rises at a constant angle of 14° above the horizontal. Point P is on the hillside, downhill from the base of the mast, and the distance from P up the slope to the base of the mast is 44 meters; P, the base, and the mast all lie in one vertical plane. From P, the angle of elevation of the top of the mast, measured from the horizontal, is 33°. To the nearest hundredth of a meter, what is the height of the mast?",
+  "choices": [
+   "16.75",
+   "17.08",
+   "12.61",
+   "14.76"
+  ],
+  "correct_answer": "17.08",
+  "explanation": "Let B be the base and T the top of the mast. In triangle PBT, the angle at P is between the slope (14° above horizontal) and the line of sight (33° above horizontal), so ∠TPB = 33° − 14° = 19°. At B, the vertical mast and the downhill slope make ∠PBT = 90° + 14° = 104°. So ∠PTB = 180° − 19° − 104° = 57°. By the law of sines, BT/sin 19° = PB/sin 57°, so BT = 44 sin 19°/sin 57° ≈ 17.08 meters. (Check with right triangles: P is 44 cos 14° ≈ 42.69 m horizontally from the mast and 44 sin 14° ≈ 10.64 m below its base; the top is 42.69 tan 33° ≈ 27.73 m above P, and 27.73 − 10.64 ≈ 17.08.) The option \"16.75\" finds the base's rise as 44 tan 14° instead of 44 sin 14°. The option \"14.76\" pairs the 44-meter side with the 104° angle at the base instead of the 57° angle opposite it. The option \"12.61\" uses sin 33° instead of tan 33° for the sight line's rise.",
+  "solve": "const D=Math.PI/180,d=44,s=14,e=33;return (d*Math.sin((e-s)*D)/Math.sin((90-e)*D)).toFixed(2);",
+  "distractor_solve": {
+   "16.75": "const D=Math.PI/180,d=44,s=14,e=33;return (d*Math.cos(s*D)*Math.tan(e*D)-d*Math.tan(s*D)).toFixed(2);",
+   "14.76": "const D=Math.PI/180,d=44,s=14,e=33;return (d*Math.sin((e-s)*D)/Math.sin((90+s)*D)).toFixed(2);",
+   "12.61": "const D=Math.PI/180,d=44,s=14,e=33;return (d*Math.cos(s*D)*Math.sin(e*D)-d*Math.sin(s*D)).toFixed(2);"
+  },
+  "quantity_asked": "the height BT of the mast, 44 sin 19°/sin 57° ≈ 17.08 m",
+  "distractor_kind": {
+   "16.75": "rise of the base above P taken as 44·tan 14° (tangent for sine on the slope step). (a) no parameter extreme. (b) not an intermediate of the solution. (c) cheap bounds: BT < 44 tan 33° − 44 sin 14° ≈ 17.93 (P's horizontal distance is less than 44) and BT > 44 sin 19° ≈ 14.32 (sin 57° < 1): strictly inside. (d) real: the slope's rise computed as run·tan with the slope distance as the run.",
+   "14.76": "law of sines with the 44-m side paired with the 104° base angle (sin 104° = cos 14°) instead of the 57° angle opposite it. (a) no. (b) no. (c) inside (14.32, 17.93). (d) real: side-angle pairing slip.",
+   "12.61": "right-triangle route with sin 33° in place of tan 33° for the sight line's rise over the horizontal distance. (a) no. (b) no. (c) below the 14.32 bound, which needs the law of sines set up (not cheap); above every cheap bound (BT > 0; top above P: BT > 10.64). (d) real: trig-ratio slip."
+  },
+  "distractor_meta": {
+   "16.75": {
+    "direction": "under",
+    "error_kind": "tangent for sine on slope rise"
+   },
+   "14.76": {
+    "direction": "under",
+    "error_kind": "side-angle pairing"
+   },
+   "12.61": {
+    "direction": "under",
+    "error_kind": "sine for tangent on sight line"
+   }
+  },
+  "bounds": [
+   "v > 0",
+   "v < 44 tan 33° − 44 sin 14° ≈ 17.93 (P is less than 44 m from the mast horizontally)",
+   "v > 44 sin 19° ≈ 14.32 (from the law of sines, since sin 57° < 1; not cheap)"
+  ],
+  "mechanism": [
+   "law of sines",
+   "angle of elevation from sloped ground",
+   "angle between slope and vertical mast is 90° + slope",
+   "height of a mast on a hillside"
+  ],
+  "arith_class_check": "All options are two-decimal non-integers; nothing implies integrality.",
+  "one_sided_check": "key largest; the three distractors are three different kinds (slope-rise trig slip, side-angle pairing, sight-line trig slip). Natural OVER errors exist and are not options: 44 m read as the horizontal distance (≈ 17.93), the base rise not subtracted (≈ 27.73), the 33° used as the angle at P inside the triangle (≈ 35.14). The stem does not say which way a slip moves the height.",
+  "interior_parity_check": "Interior options by value: 14.76 and 16.75, both two-decimal non-round; neither nicer.",
+  "cheap_bound_check": "Upper: v < 44 tan 33° − 44 sin 14° ≈ 17.93 (P is less than 44 m from the mast horizontally) — all four below it, does not separate. Lower: v > 0, v > 44 sin 19° ≈ 14.32 (needs the law of sines set up): 16.75 and 14.76 lie above it, on the key's side. Nearest distractor 16.75 is within 2% of the key.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Extreme key; over errors (44 m as horizontal, 76° base angle, omitted rise) are natural and not options; nearest distractor 2% below; no stem-readable one-way family."
+  }
+ },
+ {
+  "id": "AM28G-06",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "kite diagonals",
+  "subskill": "kite diagonal via law of cosines and area",
+  "prompt": "The frame of a toy kite is quadrilateral ABCD, in which AB = AD = 50 centimeters, CB = CD = 80 centimeters, and the measure of ∠ABC is 110°. A straight wooden spar runs from vertex B to vertex D. To the nearest hundredth of a centimeter, what is the length of the spar BD ?",
+  "choices": [
+   "81.92",
+   "95.75",
+   "69.69",
+   "74.16"
+  ],
+  "correct_answer": "69.69",
+  "explanation": "Diagonal AC splits the kite into congruent triangles ABC and ADC, and the other diagonal BD is perpendicular to AC and bisected by it. In triangle ABC, AC² = 50² + 80² − 2(50)(80) cos 110° ≈ 8,900 + 2,736.2 = 11,636.2, so AC ≈ 107.87. The area of triangle ABC is (1/2)(50)(80) sin 110° ≈ 1,879.4, and it also equals (1/2)(AC)(h), where h is the distance from B to AC, so h ≈ 2(1,879.4)/107.87 ≈ 34.85. Since BD = 2h, BD ≈ 69.69 cm. Placing the 110° angle at A, between the two 50-cm sides, gives 2(50) sin 55° ≈ 81.92; taking the area of triangle ABC as (1/2)(50)(80) without sin 110° gives 74.16; using + instead of − in the law of cosines (AC ≈ 78.51) gives 95.75.",
+  "solve": "const r=Math.PI/180,p=50,q=80,B=110;const AC=Math.sqrt(p*p+q*q-2*p*q*Math.cos(B*r));const h=p*q*Math.sin(B*r)/AC;return (2*h).toFixed(2);",
+  "distractor_solve": {
+   "81.92": "const r=Math.PI/180,p=50,q=80,B=110;return (2*p*Math.sin(B/2*r)).toFixed(2);",
+   "95.75": "const r=Math.PI/180,p=50,q=80,B=110;const AC=Math.sqrt(p*p+q*q+2*p*q*Math.cos(B*r));const h=p*q*Math.sin(B*r)/AC;return (2*h).toFixed(2);",
+   "74.16": "const r=Math.PI/180,p=50,q=80,B=110;const AC=Math.sqrt(p*p+q*q-2*p*q*Math.cos(B*r));return (2*p*q/AC).toFixed(2);"
+  },
+  "quantity_asked": "the diagonal BD of the kite = 2 × (distance from B to AC) = 2·(50·80·sin 110°)/AC with AC² = 50² + 80² − 8,000 cos 110°; ≈ 69.69 cm.",
+  "distractor_kind": {
+   "81.92": "puts the 110° angle at the top vertex A, between the two equal 50-cm sides, so BD = 2·50·sin 55°. (a) no parameter extreme. (b) neighbouring setup: kite with ∠BAD = 110°; strictly inside (0, 100). (c) cheapest bound: BD < AB + AD = 100; inside. (d) real: angle placed at the wrong vertex.",
+   "95.75": "sign slip in the law of cosines (+2ab cos C), so AC ≈ 78.51 and BD = 2·1,879.4/78.51. (a) no. (b) neighbouring setup: the kite with ∠ABC = 70°; strictly inside. (c) inside (0, 100). (d) real: cosine of an obtuse angle taken as positive.",
+   "74.16": "drops sin 110° from the area: takes the area of triangle ABC as (1/2)(50)(80) = 2,000, so h = 4,000/107.87 and BD ≈ 74.16. (a) no. (b) neighbouring setup: area of a right triangle with legs 50 and 80; strictly inside. (c) inside (0, 100). (d) real: (1/2)ab used without sin C."
+  },
+  "distractor_meta": {
+   "81.92": {
+    "direction": "over",
+    "error_kind": "angle at the wrong vertex"
+   },
+   "95.75": {
+    "direction": "over",
+    "error_kind": "law of cosines sign slip"
+   },
+   "74.16": {
+    "direction": "over",
+    "error_kind": "sine dropped from area"
+   }
+  },
+  "bounds": [
+   "0 < v < 100 (BD < AB + AD)",
+   "v < 160 (BD < CB + CD)"
+  ],
+  "mechanism": [
+   "kite diagonals perpendicular",
+   "law of cosines for the long diagonal",
+   "triangle area two ways for the altitude",
+   "toy kite spar"
+  ],
+  "arith_class_check": "All four options are two-decimal irrational lengths; none integer, none singled out.",
+  "one_sided_check": "Key smallest. Three error kinds at three steps (where the 110° angle sits, the sine in the area, the cosine sign). Natural error on the OTHER side, not an option: reporting the distance from B to AC (h ≈ 34.85) instead of BD = 2h, below the key.",
+  "interior_parity_check": "Interior options by value: 74.16 and 81.92; both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bounds: BD < AB + AD = 100 (kills nothing), BD < AC; a one-step-finer estimate h < 50 sin(angle at A/2) needs the angle at A. The half-diagonal 34.85 (natural under error) is below the key. No cheap bound separates the key from all three.",
+  "self_audit": {
+   "risk": "low",
+   "note": "Kite spar; three over errors from different steps, natural under error (half-diagonal) off the list."
+  }
+ },
+ {
+  "id": "AM28G-X1",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "right-triangle trigonometry: solar panel row spacing",
+  "subskill": "two right triangles: panel footprint plus shadow",
+  "prompt": "Rows of flat solar panels stand on a flat, horizontal roof. Each panel's sloped face is 1.65 meters long from its front edge to its back edge, and the panel is tilted 32° up from the roof, with its front edge on the roof and its back edge raised. At the planned time of day, the sun is in front of the rows, its rays make an angle of 25° with the horizontal roof, and the shadow of each raised back edge falls straight behind the panel, perpendicular to the rows. The front edge of the next row is placed exactly where that shadow ends. To the nearest hundredth of a meter, what is the horizontal distance from the front edge of one row to the front edge of the next row?",
+  "choices": [
+   "3.61",
+   "3.47",
+   "3.88",
+   "3.27"
+  ],
+  "correct_answer": "3.27",
+  "explanation": "The back edge is 1.65 sin 32° ≈ 0.874 m above the roof and 1.65 cos 32° ≈ 1.399 m behind the front edge, horizontally. Its shadow reaches 0.874/tan 25° ≈ 1.875 m farther back. The distance is 1.399 + 1.875 ≈ 3.27 m. The option \"3.47\" divides the height by sin 25° instead of tan 25° (the length of the sun ray, not its horizontal run). The option \"3.61\" treats 1.65 m as the panel's horizontal depth and finds the height as 1.65 tan 32°. The option \"3.88\" measures the 32° tilt from the vertical, swapping sine and cosine in both legs.",
+  "solve": "const D=Math.PI/180,L=1.65,t=32,a=25;return (L*Math.cos(t*D)+L*Math.sin(t*D)/Math.tan(a*D)).toFixed(2);",
+  "distractor_solve": {
+   "3.47": "const D=Math.PI/180,L=1.65,t=32,a=25;return (L*Math.cos(t*D)+L*Math.sin(t*D)/Math.sin(a*D)).toFixed(2);",
+   "3.61": "const D=Math.PI/180,L=1.65,t=32,a=25;return (L*Math.cos(t*D)+L*Math.tan(t*D)/Math.tan(a*D)).toFixed(2);",
+   "3.88": "const D=Math.PI/180,L=1.65,t=32,a=25;return (L*Math.sin(t*D)+L*Math.cos(t*D)/Math.tan(a*D)).toFixed(2);"
+  },
+  "quantity_asked": "the horizontal front-edge-to-front-edge distance, 1.65 cos 32° + 1.65 sin 32°/tan 25° ≈ 3.27 m.",
+  "distractor_kind": {
+   "3.47": "shadow taken as height/sin 25° (the slanted ray) instead of height/tan 25°. (a) no parameter extreme. (b) neighbouring setup: the ray length is not the asked run; strictly inside. (c) cheapest bounds: distance < 1.65 + 1.65/tan 25° ≈ 5.19 (footprint ≤ 1.65, height ≤ 1.65) and > 1.65 cos 32° ≈ 1.40; 3.47 strictly inside. (d) real: sine for tangent.",
+   "3.61": "panel length treated as horizontal depth, height = 1.65 tan 32°. (a) no. (b) none. (c) inside (1.40, 5.19). (d) real: hypotenuse read as adjacent side.",
+   "3.88": "tilt measured from the vertical (sine and cosine swapped). (a) no. (b) none. (c) inside (1.40, 5.19). (d) real: reference-direction slip."
+  },
+  "distractor_meta": {
+   "3.47": {
+    "direction": "over",
+    "error_kind": "sine for tangent in the shadow"
+   },
+   "3.61": {
+    "direction": "over",
+    "error_kind": "hypotenuse read as adjacent"
+   },
+   "3.88": {
+    "direction": "over",
+    "error_kind": "tilt from vertical"
+   }
+  },
+  "bounds": [
+   "v > 1.65 cos 32° ≈ 1.40 (the panel's own footprint)",
+   "v < 1.65 + 1.65/tan 25° ≈ 5.19"
+  ],
+  "mechanism": [
+   "solar panel row spacing",
+   "shadow length from sun angle",
+   "tilted panel footprint and height",
+   "two right triangles in sequence"
+  ],
+  "arith_class_check": "All options two-decimal non-integers with nonzero last digit; nothing implies integrality.",
+  "one_sided_check": "Key smallest. Three different error kinds (sine for tangent, hypotenuse as adjacent, angle reference swapped). Natural errors also land BELOW the key: multiplying by tan 25° instead of dividing (≈ 1.81), using sin 32° for the footprint (≈ 2.75), or leaving out the footprint (≈ 1.88); a student cannot read from the stem that trig slips lengthen the spacing.",
+  "interior_parity_check": "Interior options by value: 3.47 and 3.61, both two-decimal with nonzero final digit; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bounds: v > 1.40 (footprint) and v < 5.19 (footprint ≤ 1.65, shadow ≤ 1.65/tan 25°). Both bounds hold the three distractors on the key's side; the nearest distractor, 3.47, is 6% above the key and separating them needs tan 25° versus sin 25°, i.e. the work.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Smallest key; 3.47 is the slanted sun ray, which a grader could call a hypotenuse bound above the shadow run (it needs the same height, so not cheap)."
+  }
+ },
+ {
+  "id": "AM28G-07",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "area of a uniform border around a regular hexagon",
+  "subskill": "apothem grows by the border width, not the side",
+  "prompt": "A patio is shaped like a regular hexagon with sides 3.4 meters long. A walkway 1.7 meters wide surrounds the patio. The outer edge of the walkway is also a regular hexagon, and each of its six sides is parallel to a side of the patio and 1.7 meters from it. To the nearest hundredth of a square meter, what is the area of the walkway?",
+  "choices": [
+   "37.54",
+   "43.76",
+   "44.69",
+   "52.02"
+  ],
+  "correct_answer": "44.69",
+  "explanation": "A regular hexagon with side s has apothem (s√3)/2 and area (3√3/2)s². The patio's apothem is 3.4(√3/2) ≈ 2.944 m. Moving every side out 1.7 m raises the apothem to ≈ 4.644 m, so the outer side is 4.644·(2/√3) ≈ 5.363 m (the side grows by 2(1.7)/√3, not by 1.7). Walkway area = (3√3/2)(5.363² − 3.4²) ≈ 44.69 square meters. Equivalently: six 3.4-by-1.7 rectangles (34.68) plus six corner pieces, each two right triangles with legs 1.7 and 1.7/√3 (total 6(1.7²)/√3 ≈ 10.01). The option \"37.54\" adds 1.7 to the side length. The option \"52.02\" fills each corner with a 1.7-by-1.7 square, as around a rectangle. The option \"43.76\" fills each corner with a 60° sector of radius 1.7.",
+  "solve": "const r3=Math.sqrt(3),s=3.4,w=1.7,H=x=>1.5*r3*x*x;const so=s+2*w/r3;return (H(so)-H(s)).toFixed(2);",
+  "distractor_solve": {
+   "37.54": "const r3=Math.sqrt(3),s=3.4,w=1.7,H=x=>1.5*r3*x*x;return (H(s+w)-H(s)).toFixed(2);",
+   "52.02": "const r3=Math.sqrt(3),s=3.4,w=1.7,H=x=>1.5*r3*x*x;return (6*s*w+6*w*w).toFixed(2);",
+   "43.76": "const r3=Math.sqrt(3),s=3.4,w=1.7,H=x=>1.5*r3*x*x;return (6*s*w+Math.PI*w*w).toFixed(2);"
+  },
+  "quantity_asked": "the area between the two hexagons, (3√3/2)(s_out² − 3.4²) with s_out = 3.4 + 3.4/√3, ≈ 44.69 m²",
+  "distractor_kind": {
+   "37.54": "outer side taken as 3.4 + 1.7 (the width added to the side / circumradius instead of the apothem). (a) no parameter extreme. (b) neighbouring setup: the border of a hexagon whose vertices move out 1.7; strictly inside the containment interval. (c) containment: the walkway lies between the inner-perimeter strip and the outer-perimeter strip, 6(3.4)(1.7) = 34.68 < v < 6(s_out)(1.7) ≈ 54.70; strictly inside. (d) real: confusing distance between parallel sides with side growth.",
+   "52.02": "rectangle-border habit: six side strips plus six 1.7-by-1.7 corner squares. (a) no. (b) no. (c) inside (34.68, 54.70). (d) real: corner pieces of a rectangular path carried to a 120° corner.",
+   "43.76": "six side strips plus six 60° sectors of radius 1.7 (rounded corners). (a) no. (b) the area within 1.7 m of the patio, a different region; strictly inside (34.68, 54.70). (d) real: corners treated as arcs."
+  },
+  "distractor_meta": {
+   "37.54": {
+    "direction": "under",
+    "error_kind": "width added to side"
+   },
+   "52.02": {
+    "direction": "over",
+    "error_kind": "square corners"
+   },
+   "43.76": {
+    "direction": "under",
+    "error_kind": "sector corners"
+   }
+  },
+  "bounds": [
+   "34.68 = 6(3.4)(1.7) < v < 6(s_out)(1.7) ≈ 54.70"
+  ],
+  "mechanism": [
+   "uniform-width border around a regular hexagon",
+   "apothem increases by the width",
+   "outer area minus inner area",
+   "corner pieces at 120° vertices"
+  ],
+  "arith_class_check": "All options are two-decimal non-integers; no integrality implied.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 43.76 and 44.69, both two-decimal non-round; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors both ways; all options inside the strip containment bounds. Rectangular walkways are live, but none uses a hexagon or the apothem step."
+  }
+ },
+ {
+  "id": "AM28G-X2",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "regular pentagon diagonals",
+  "subskill": "diagonal of a regular pentagon",
+  "prompt": "A five-pointed star is drawn by connecting each vertex of a regular pentagon to the two vertices not next to it. Each side of the pentagon is 9 centimeters long. To the nearest hundredth of a centimeter, what is the total length of the 5 segments that form the star?",
+  "choices": [
+   "77.94",
+   "52.90",
+   "72.81",
+   "68.38"
+  ],
+  "correct_answer": "72.81",
+  "explanation": "Each segment of the star is a diagonal of the pentagon. Each interior angle of a regular pentagon measures (5 − 2)(180°)/5 = 108°. A diagonal and two adjacent sides form a triangle with sides 9 and 9 and included angle 108°, so by the law of cosines the diagonal d satisfies d² = 81 + 81 − 2(81) cos 108° ≈ 162 + 50.06 = 212.06, and d ≈ 14.562. The 5 diagonals total 5d ≈ 72.81 centimeters. Using 72° (an exterior angle) gives 52.90; leaving out the 2 in the law of cosines gives 68.38; using 120° (a hexagon's interior angle) gives 77.94.",
+  "solve": "const r=Math.PI/180,s=9;return (5*Math.sqrt(2*s*s-2*s*s*Math.cos(108*r))).toFixed(2);",
+  "distractor_solve": {
+   "52.90": "const r=Math.PI/180,s=9;return (5*Math.sqrt(2*s*s-2*s*s*Math.cos(72*r))).toFixed(2);",
+   "68.38": "const r=Math.PI/180,s=9;return (5*Math.sqrt(2*s*s-s*s*Math.cos(108*r))).toFixed(2);",
+   "77.94": "const r=Math.PI/180,s=9;return (5*Math.sqrt(2*s*s-2*s*s*Math.cos(120*r))).toFixed(2);"
+  },
+  "quantity_asked": "five times the diagonal of a regular pentagon of side 9: 5·√(162 − 162 cos 108°) ≈ 72.81 cm.",
+  "distractor_kind": {
+   "52.90": "uses the exterior angle 72° as the included angle (equivalently, takes cos 108° as positive). (a) no parameter extreme. (b) neighbouring setup: five chords subtending 72°; strictly inside (45, 90). (c) cheapest whole-quantity bounds: each diagonal is between 9 and 18 (triangle inequality), so 45 < total < 90; inside. (d) real: exterior for interior angle.",
+   "68.38": "drops the factor 2 in the law of cosines: d² = 81 + 81 − 81 cos 108°. (a) no. (b) neighbouring setup: none natural; strictly inside. (c) inside (45, 90). (d) real: formula slip.",
+   "77.94": "uses 120°, a regular hexagon's interior angle, so d = 9√3. (a) no. (b) neighbouring setup: hexagon short diagonal; strictly inside. (c) inside (45, 90). (d) real: wrong polygon angle."
+  },
+  "distractor_meta": {
+   "52.90": {
+    "direction": "under",
+    "error_kind": "exterior angle used"
+   },
+   "68.38": {
+    "direction": "under",
+    "error_kind": "law of cosines factor dropped"
+   },
+   "77.94": {
+    "direction": "over",
+    "error_kind": "hexagon angle used"
+   }
+  },
+  "bounds": [
+   "45 < v < 90 (each diagonal is longer than a side and shorter than two sides)"
+  ],
+  "mechanism": [
+   "regular pentagon interior angle 108",
+   "law of cosines for a diagonal",
+   "pentagram total length"
+  ],
+  "arith_class_check": "All four options are two-decimal irrational totals (5 times a square root); none integer or special.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 68.38 and 72.81 (key); both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Core step is one SAS law of cosines (live act f72a3106 is bare SAS third side); only the 108-degree pentagon angle and pentagram framing are added. Spare."
+  }
+ },
+ {
+  "id": "AM28G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "3D distance inside a cone",
+  "subskill": "point on a slant edge, then a 3D distance",
+  "prompt": "A solid right circular cone has a base diameter of 12 centimeters and a height of 8 centimeters. Point V is the apex of the cone, and point O is the center of its base. Points A and C lie on the circular edge of the base so that radii OA and OC are perpendicular. Point B lies on segment VC, 3 centimeters from V. To the nearest hundredth of a centimeter, what is the straight-line distance from A to B ?",
+  "choices": [
+   "7.71",
+   "8.40",
+   "8.21",
+   "8.13"
+  ],
+  "correct_answer": "8.40",
+  "explanation": "The radius is 6, so the slant height VC is √(6² + 8²) = 10, and B is 3/10 of the way from V to C. Measured from the axis, B is (3/10)(6) = 1.8 cm out toward C and (7/10)(8) = 5.6 cm above the base. Put O at the origin with C on the x-axis and A on the y-axis: A = (0, 6, 0) and B = (1.8, 0, 5.6). Then AB = √(1.8² + 6² + 5.6²) = √(3.24 + 36 + 31.36) = √70.6 ≈ 8.40. The option \"8.13\" treats 3 cm as the vertical drop from V (B at height 5, 2.25 cm from the axis). The option \"7.71\" measures the 3 cm from C instead of V (B at 7/10 of the way from V). The option \"8.21\" drops B's 1.8-cm offset from the axis, AB = √(6² + 5.6²).",
+  "solve": "const r=6,h=8,s=Math.hypot(r,h),t=3/s;return Math.hypot(r*t,r,h*(1-t)).toFixed(2);",
+  "distractor_solve": {
+   "8.13": "const r=6,h=8,dz=3;return Math.hypot(r*dz/h,r,h-dz).toFixed(2);",
+   "7.71": "const r=6,h=8,s=Math.hypot(r,h),t=1-3/s;return Math.hypot(r*t,r,h*(1-t)).toFixed(2);",
+   "8.21": "const r=6,h=8,s=Math.hypot(r,h),t=3/s;return Math.hypot(r,h*(1-t)).toFixed(2);"
+  },
+  "quantity_asked": "the straight-line distance from A = (0, 6, 0) to B = (1.8, 0, 5.6), √70.6 ≈ 8.40 cm.",
+  "distractor_kind": {
+   "8.13": "3 cm read as the vertical drop below V instead of the distance along the slant (B at height 5, 2.25 cm from the axis). (a) no parameter extreme. (b) neighbouring setup: B 3.75 cm down the slant; strictly inside (6, 10). (c) cheapest bound AB < AV = 10 holds for all; the midpoint comparison (AB > 7.81) leaves 8.13 on the key's side. (d) real: slant/vertical confusion.",
+   "7.71": "the 3 cm measured from C instead of V (B 7 cm down the slant). (a) no. (b) neighbouring setup: B at t = 0.7; strictly inside. (c) strictly inside (6, 10). (d) real: wrong end of the segment.",
+   "8.21": "B placed directly above O at the right height 5.6 (its 1.8-cm offset from the axis dropped), AB = √(36 + 31.36). (a) no. (b) neighbouring setup: the distance from A to the point of the axis at B's height; strictly inside (6, 10). (c) strictly inside; on the key's side of the midpoint comparison 7.81. (d) real: a 3D distance with one coordinate difference omitted."
+  },
+  "distractor_meta": {
+   "8.13": {
+    "direction": "under",
+    "error_kind": "slant read as vertical drop"
+   },
+   "7.71": {
+    "direction": "under",
+    "error_kind": "measured from the wrong end"
+   },
+   "8.21": {
+    "direction": "under",
+    "error_kind": "axis offset of B omitted"
+   }
+  },
+  "bounds": [
+   "v < AV = 10 (B lies on segment VC, and AB ≤ max(AV, AC) = 10)",
+   "v > 0"
+  ],
+  "mechanism": [
+   "point on a slant edge of a cone",
+   "3D coordinates in a cone",
+   "straight-line distance in three dimensions",
+   "similar triangles along the slant"
+  ],
+  "arith_class_check": "All options are two-decimal non-integer square roots (√70.6, √67.36, √66.06, √59.4); nothing implies an integer.",
+  "one_sided_check": "Key largest. Distractors from three error kinds (slant read as vertical drop, wrong end of the segment, one 3D coordinate difference omitted). Natural errors that push the answer UP are as available: the diameter 12 used as the radius (≈ 13.70), the horizontal offset added on a straight line (6 + 1.8, ≈ 9.60), A taken opposite C. Slips in locating B do not have a stem-readable direction: AB is not monotone along VC (AV = 10, AC ≈ 8.49, minimum ≈ 7.68 near 6.4 cm from V).",
+  "interior_parity_check": "Interior options by value: 8.13 and 8.21, both two-decimal with nonzero final digit, both square roots of non-squares; neither nicer.",
+  "cheap_bound_check": "Key largest (8.40). Cheapest one-sided bounds: AB < AV = 10 and AB < max(AV, AC) = 10, true of all four; AB > 6 fails nothing useful. A comparison with the midpoint of VC (AB = √61 ≈ 7.81) needs the non-obvious fact that AB grows toward V on this part of VC; even granting it, 8.13 and 8.21 lie on the key's side. The nearest distractor 8.21 is 2.3% below the key, inside any one-step estimate.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Extreme key; option errors are three kinds, two place B lower on VC and one omits a coordinate. Up errors (diameter as radius, offsets added) exist. Midpoint comparison leaves two distractors on the key side."
+  }
+ },
+ {
+  "id": "AM28N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "unit conversion with shrinkage",
+  "subskill": "meters to yards with a percent shrink",
+  "prompt": "A quilter needs 5 strips of fabric. After the fabric is washed, each strip must be 0.82 meter long plus a seam allowance of 4 centimeters at each end. Washing shrinks the fabric's length by 8%, and the strips will be cut end to end, along the length, from unwashed fabric. She already has 1.2 yards of the unwashed fabric, and she will buy the rest by length, where 1 yard = 0.9144 meter. To the nearest hundredth of a yard, how many yards of unwashed fabric must she buy?",
+  "choices": [
+   "4.04",
+   "4.15",
+   "3.91",
+   "4.11"
+  ],
+  "correct_answer": "4.15",
+  "explanation": "After washing, each strip is 0.82 + 2(0.04) = 0.90 meter, so the 5 strips need 4.5 meters of washed fabric. Washed length is 92% of unwashed length, so she needs 4.5 ÷ 0.92 ≈ 4.8913 meters of unwashed fabric. She has 1.2 yards = 1.2(0.9144) ≈ 1.0973 meters, so she must buy about 3.7940 meters, which is 3.7940 ÷ 0.9144 ≈ 4.15 yards. Adding 8% to 4.5 meters instead of dividing by 0.92 gives 4.11; subtracting 1.2 directly from the meters gives 4.04; one seam allowance per strip gives 3.91.",
+  "solve": "const Y=0.9144,n=5,a=0.82,s=0.04,p=0.08,R=1.2;const T=n*(a+2*s);return ((T/(1-p)-Y*R)/Y).toFixed(2);",
+  "distractor_solve": {
+   "4.11": "const Y=0.9144,n=5,a=0.82,s=0.04,p=0.08,R=1.2;const T=n*(a+2*s);return ((T*(1+p)-Y*R)/Y).toFixed(2);",
+   "4.04": "const Y=0.9144,n=5,a=0.82,s=0.04,p=0.08,R=1.2;const T=n*(a+2*s);return ((T/(1-p)-R)/Y).toFixed(2);",
+   "3.91": "const Y=0.9144,n=5,a=0.82,s=0.04,p=0.08,R=1.2;const T=n*(a+s);return ((T/(1-p)-Y*R)/Y).toFixed(2);"
+  },
+  "quantity_asked": "the unwashed length to buy, in yards: (5(0.90)/0.92 − 1.2(0.9144)) ÷ 0.9144 ≈ 4.15 yd.",
+  "distractor_kind": {
+   "4.11": "wrong base for the shrink: 4.5 × 1.08 instead of 4.5 ÷ 0.92. (a) no parameter extreme. (b) neighbouring setup: fabric that grows 8% from washed to unwashed; strictly inside. (c) cheapest whole-quantity bounds: answer > meters-to-buy (a yard is shorter than a meter) ≈ 3.79 and < everything-converted-without-remnant ≈ 5.35; inside. (d) real: percent of the wrong base.",
+   "4.04": "subtracts the 1.2-yard remnant as if it were 1.2 meters. (a) no. (b) neighbouring setup: a 1.2-meter remnant; strictly inside. (c) inside (3.79, 5.35). (d) real: mixed units.",
+   "3.91": "one seam allowance per strip (0.86 m) instead of one at each end (0.90 m). (a) no. (b) neighbouring setup: seam on one end; strictly inside. (c) inside (3.79, 5.35). (d) real: misreads 'at each end'."
+  },
+  "distractor_meta": {
+   "4.11": {
+    "direction": "under",
+    "error_kind": "percent of wrong base"
+   },
+   "4.04": {
+    "direction": "under",
+    "error_kind": "mixed units in subtraction"
+   },
+   "3.91": {
+    "direction": "under",
+    "error_kind": "one seam per strip"
+   }
+  },
+  "bounds": [
+   "v > 3.79 (the meters to buy; a yard is shorter than a meter)",
+   "v < 5.35 (all needed fabric in yards, ignoring the remnant)"
+  ],
+  "mechanism": [
+   "reverse percent for shrinkage",
+   "meters to yards conversion",
+   "subtract a remnant in other units",
+   "seam allowance on each end"
+  ],
+  "arith_class_check": "All four options are two-decimal quotients by 0.9144; none integer or terminating-nice.",
+  "one_sided_check": "Key largest. Distractors come from three different clauses (shrink base, remnant units, seams). Stated rules do not all push one way: neglecting the shrink, a seam or the yard conversion pushes under, but neglecting the remnant pushes OVER. Natural over error, not an option: forgetting to subtract the 1.2-yard remnant gives 5.35.",
+  "interior_parity_check": "Interior options by value: 4.04 and 4.11; both two-decimal with nonzero last digit; neither nicer.",
+  "cheap_bound_check": "Cheapest one-sided bound: answer in yards > the same length in meters ≈ 3.79 (kills nothing; 3.91 lies above it). One step finer, 4.5 × 1.08 is a lower estimate for 4.5/0.92, giving > 4.11 — but that is exactly the wrong-base computation, which a student who makes the error takes as the answer; 4.11 is 0.04 from the key, inside every cheap estimate's resolution. Upper: < 5.35 without remnant.",
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key, three under distractors from three clauses; counter (remnant forgotten) natural. Risk: graders may read it as an IES-style chain in an N&Q slot."
+  }
+ },
+ {
+  "id": "AM28N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "powers of a complex number as points",
+  "subskill": "complex powers plotted, then distances",
+  "prompt": "For i = √(−1), the complex number a + bi, where a and b are real numbers, is represented in the complex plane by the point (a, b). Let z = 2 + i. The numbers z, z², and z³ are represented by three points that form a triangle. To the nearest hundredth, what is the perimeter of that triangle?",
+  "choices": [
+   "24.22",
+   "12.84",
+   "33.94",
+   "20.23"
+  ],
+  "correct_answer": "20.23",
+  "explanation": "z² = (2 + i)² = 4 + 4i + i² = 3 + 4i, and z³ = (3 + 4i)(2 + i) = 6 + 3i + 8i + 4i² = 2 + 11i. The vertices are (2, 1), (3, 4), and (2, 11). The sides are √(1 + 9) = √10, √(1 + 49) = √50, and 10, so the perimeter is √10 + √50 + 10 ≈ 3.162 + 7.071 + 10 ≈ 20.23. The option \"24.22\" expands z³ = 8 + 12i + 6i² + i³ but takes i³ as i, giving 2 + 13i. The option \"12.84\" distributes the powers over the sum, z² = 4 + i² = 3 and z³ = 8 + i³ = 8 − i. The option \"33.94\" takes i² as 1, giving z² = 5 + 4i and z³ = 14 + 13i.",
+  "solve": "const m=(p,q)=>[p[0]*q[0]-p[1]*q[1],p[0]*q[1]+p[1]*q[0]],D=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);const z=[2,1],z2=m(z,z),z3=m(z2,z);return (D(z,z2)+D(z2,z3)+D(z,z3)).toFixed(2);",
+  "distractor_solve": {
+   "24.22": "const D=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);const a=2,b=1,z=[a,b],z2=[a*a-b*b,2*a*b],z3=[a**3-3*a*b*b,3*a*a*b+b**3];return (D(z,z2)+D(z2,z3)+D(z,z3)).toFixed(2);",
+   "12.84": "const D=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);const a=2,b=1,z=[a,b],z2=[a*a-b*b,0],z3=[a**3,-(b**3)];return (D(z,z2)+D(z2,z3)+D(z,z3)).toFixed(2);",
+   "33.94": "const m=(p,q)=>[p[0]*q[0]+p[1]*q[1],p[0]*q[1]+p[1]*q[0]],D=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);const z=[2,1],z2=m(z,z),z3=m(z2,z);return (D(z,z2)+D(z2,z3)+D(z,z3)).toFixed(2);"
+  },
+  "quantity_asked": "the perimeter of the triangle with vertices z = 2 + i, z² = 3 + 4i, z³ = 2 + 11i in the complex plane, √10 + √50 + 10 ≈ 20.23.",
+  "distractor_kind": {
+   "24.22": "binomial expansion of (2 + i)³ with i³ taken as +i (z³ = 2 + 13i). (a) no parameter. (b) neighbouring setup: none. (c) cheapest bound: perimeter > 2 × (longest side) needs the vertices, nothing coarser; strictly inside. (d) real: the power-of-i cycle slip.",
+   "12.84": "powers distributed over the sum, (2 + i)² = 4 + i² and (2 + i)³ = 8 + i³. (a) no. (b) none. (c) strictly inside. (d) real: the 'freshman's dream' on a complex binomial.",
+   "33.94": "i² taken as +1 throughout (z² = 5 + 4i, z³ = 14 + 13i). (a) no. (b) none. (c) strictly inside. (d) real: the sign of i²."
+  },
+  "distractor_meta": {
+   "24.22": {
+    "direction": "over",
+    "error_kind": "i cubed taken as i"
+   },
+   "12.84": {
+    "direction": "under",
+    "error_kind": "power distributed over a sum"
+   },
+   "33.94": {
+    "direction": "over",
+    "error_kind": "i squared taken as 1"
+   }
+  },
+  "bounds": [
+   "v > 0; no stem-forced bound tighter than the computed vertices"
+  ],
+  "mechanism": [
+   "powers of a complex number",
+   "complex numbers as points in the plane",
+   "perimeter from distances",
+   "i squared and i cubed"
+  ],
+  "arith_class_check": "All options are two-decimal non-integers (sums of square roots); nothing implies an integer.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior options by value: 20.23 and 24.22, both two-decimal with nonzero final digit; neither nicer.",
+  "cheap_bound_check": "key interior",
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; one under, two over errors of three kinds. No live row plots complex powers; live complex rows ask a + b, i^n, modulus of a quotient, or a locus."
+  }
+ }
+]

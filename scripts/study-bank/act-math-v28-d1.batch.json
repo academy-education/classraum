@@ -1,0 +1,1110 @@
+[
+ {
+  "id": "AM28I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "dosing an aquarium medicine to a target concentration",
+  "subskill": "concentration, percent less, density, gallons to liters",
+  "prompt": "A fish medicine must be added to an aquarium so that the water contains 3.0 milligrams of the active ingredient per liter of water. The aquarium is labeled 55 gallons, but because of gravel and decorations, the volume of water in it is 15% less than the labeled volume. The medicine is a liquid that is 2.0% active ingredient by mass, and each milliliter of the liquid has a mass of 1.08 grams. Given that 1 gallon = 3.785 liters, how many milliliters of the medicine should be added, to the nearest tenth of a milliliter?",
+  "choices": [
+   "28.7",
+   "24.6",
+   "33.3",
+   "25.1"
+  ],
+  "correct_answer": "24.6",
+  "explanation": "The water volume is 55(0.85) = 46.75 gallons, or 46.75(3.785) = 176.95 liters, so the water needs 3.0(176.95) = 530.85 milligrams of the active ingredient. Each milliliter of the medicine has a mass of 1.08 grams = 1,080 milligrams, of which 2.0% is active ingredient: 1,080(0.020) = 21.6 milligrams per milliliter. The volume needed is 530.85 / 21.6 = 24.6 milliliters. The option \"25.1\" finds the water volume by dividing 55 by 1.15, as if the labeled volume were 15% more than the water volume. The option \"28.7\" divides by the density instead of multiplying, using 1/1.08 gram per milliliter. The option \"33.3\" adds 15% to the labeled volume instead of subtracting it.",
+  "solve": "const V=55,p=0.15,c=3.0,w=0.02,d=1.08,L=3.785;return (V*(1-p)*L*c/(1000*d*w)).toFixed(1);",
+  "distractor_solve": {
+   "25.1": "const V=55,p=0.15,c=3.0,w=0.02,d=1.08,L=3.785;return ((V/(1+p))*L*c/(1000*d*w)).toFixed(1);",
+   "28.7": "const V=55,p=0.15,c=3.0,w=0.02,d=1.08,L=3.785;return (V*(1-p)*L*c*d/(1000*w)).toFixed(1);",
+   "33.3": "const V=55,p=0.15,c=3.0,w=0.02,d=1.08,L=3.785;return (V*(1+p)*L*c/(1000*d*w)).toFixed(1);"
+  },
+  "quantity_asked": "milliliters of medicine: 55(0.85)(3.785) liters x 3.0 mg/L, divided by 1,080(0.020) mg of active ingredient per mL.",
+  "distractor_kind": {
+   "25.1": "error path: 15% less read on the wrong base, water = 55/1.15 gallons. (a) not a parameter extreme. (b) not the labeled-volume dose (28.9) or the dose before density (26.5). (c) no one-step estimate reaches a 2% resolution; strictly inside. (d) real percent-of-the-wrong-base error.",
+   "28.7": "error path: mass per milliliter taken as 1/1.08 gram (density inverted). (a) no extreme. (b) not an intermediate. (c) inside. (d) real inverted-rate error.",
+   "33.3": "error path: the 15% is added to the labeled volume (55 x 1.15) instead of subtracted. (a) no extreme. (b) not an intermediate. (c) inside. (d) real sign slip."
+  },
+  "distractor_meta": {
+   "25.1": {
+    "direction": "over",
+    "error_kind": "percent less on the wrong base"
+   },
+   "28.7": {
+    "direction": "over",
+    "error_kind": "density inverted"
+   },
+   "33.3": {
+    "direction": "over",
+    "error_kind": "less read as more (sign slip)"
+   }
+  },
+  "bounds": [
+   "volume > 0",
+   "no cheap one-step bound: every stated rule must be applied to place the answer"
+  ],
+  "mechanism": [
+   "aquarium medicine dose",
+   "milligrams per liter target concentration",
+   "percent active ingredient by mass",
+   "density grams per milliliter",
+   "gallons to liters"
+  ],
+  "arith_class_check": "No. All four are tenths with non-zero last digits (24.6, 25.1, 28.7, 33.3); none is a multiple of another by a stem number.",
+  "one_sided_check": "key smallest; distractors from a wrong-base percent, an inverted density and a sign slip (three kinds). Natural errors on the other side: inverting the gallon conversion (dividing by 3.785) gives 1.7 mL, and reading 2.0% as 20% gives 2.5 mL; the density and gallon steps push opposite ways when inverted, so the direction is not readable from the stem.",
+  "interior_parity_check": "Interior by value: 25.1 and 28.7, both tenths with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "No bound cheaper than the computation: the 15% reduction lowers the dose, the density lowers it, and the 2.0% share and the liter conversion raise it, so no single step brackets the answer. The nearest distractor 25.1 is 0.5 mL (2%) above the key, finer than any estimate that skips a step.",
+  "trap_check": "Clauses: \"15% less than the labeled volume\" - adding the 15% pushes UP (33.3), dividing by 1.15 pushes UP slightly (25.1), ignoring it pushes UP (28.9, not an option); \"each milliliter has a mass of 1.08 grams\" - inverting pushes UP (28.7), ignoring pushes UP (26.5, not an option); \"2.0% active ingredient\" - reading it as 20% pushes DOWN (2.5, not an option), ignoring pushes DOWN (0.5, not an option); \"1 gallon = 3.785 liters\" - dividing pushes DOWN (1.7, not an option), ignoring pushes DOWN (6.5, not an option). No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "25.1": {
+    "step": "water volume from the labeled volume",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "28.7": {
+    "step": "milligrams of active ingredient per milliliter",
+    "error_type": "inverted rate",
+    "direction": "over"
+   },
+   "33.3": {
+    "step": "water volume from the labeled volume",
+    "error_type": "sign slip",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "gallons to liters",
+    "error_type": "inverted rate",
+    "solve": "const V=55,p=0.15,c=3.0,w=0.02,d=1.08,L=3.785;return Number((V*(1-p)/L*c/(1000*d*w)).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "water volume is 15% less than the labeled 55 gallons",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "each milliliter has a mass of 1.08 grams",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "the liquid is 2.0% active ingredient by mass",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 gallon = 3.785 liters",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "target 3.0 milligrams per liter",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; over errors are wrong base, inverted density, sign slip; counter is the inverted gallon conversion (under). Rules neglected push both ways."
+  }
+ },
+ {
+  "id": "AM28I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "time to fill a pool from a hose timed with a bucket, with a leak",
+  "subskill": "flow rate from a timed measurement, net rate with a percent leak",
+  "prompt": "A rectangular swimming pool is 24 feet long and 12 feet wide and has a flat bottom. It now holds water to a depth of 6 inches, and it will be filled with a garden hose until the water is 4.5 feet deep. To measure the hose's flow, the owner timed it filling an empty 5-gallon bucket in 40 seconds. While the pool fills, a small crack lets water leak out at a rate equal to 12% of the rate at which the hose adds water. Given that 1 cubic foot of water is 7.48 gallons, how many hours will it take to fill the pool to a depth of 4.5 feet, to the nearest tenth of an hour?",
+  "choices": [
+   "21.4",
+   "21.2",
+   "21.8",
+   "20.4"
+  ],
+  "correct_answer": "21.8",
+  "explanation": "The water must rise from 0.5 foot to 4.5 feet, or 4 feet, so the volume to add is 24(12)(4) = 1,152 cubic feet = 1,152(7.48) = 8,616.96 gallons. The hose adds 5 gallons every 40 seconds, or 5/40 = 0.125 gallon per second = 450 gallons per hour. The leak removes 12% of that, so the pool gains 450(0.88) = 396 gallons per hour. The time is 8,616.96 / 396 = 21.76, or 21.8 hours. The option \"21.4\" divides the hose rate by 1.12 instead of multiplying by 0.88. The option \"20.4\" takes 40/5 = 8 as the hose's gallons per minute (it is seconds per gallon). The option \"21.2\" reads 6 inches as 0.6 foot, so the water rises 3.9 feet instead of 4.",
+  "solve": "const L=24,W=12,H=4.5,e=6/12,g=7.48,b=5,s=40,q=0.12;return (L*W*(H-e)*g/((b/s)*3600*(1-q))).toFixed(1);",
+  "distractor_solve": {
+   "21.4": "const L=24,W=12,H=4.5,e=6/12,g=7.48,b=5,s=40,q=0.12;return (L*W*(H-e)*g/((b/s)*3600/(1+q))).toFixed(1);",
+   "20.4": "const L=24,W=12,H=4.5,e=6/12,g=7.48,b=5,s=40,q=0.12;return (L*W*(H-e)*g/((s/b)*60*(1-q))).toFixed(1);",
+   "21.2": "const L=24,W=12,H=4.5,e=6/12,g=7.48,b=5,s=40,q=0.12;return (L*W*(H-0.6)*g/((b/s)*3600*(1-q))).toFixed(1);"
+  },
+  "quantity_asked": "hours to raise the water from 0.5 ft to 4.5 ft: 24 x 12 x 4 x 7.48 gallons divided by (5/40 x 3,600)(0.88) gallons per hour.",
+  "distractor_kind": {
+   "21.4": "error path: the 12% leak taken off on the wrong base (450/1.12 instead of 450 x 0.88). (a) not a parameter extreme. (b) not the no-leak time 19.1 or the volume. (c) no one-step estimate reaches a 2% resolution; strictly inside. (d) real percent-of-the-wrong-base error.",
+   "20.4": "error path: 40 seconds / 5 gallons = 8 read as 8 gallons per minute (the reciprocal rate). (a) no extreme. (b) not an intermediate of the correct chain. (c) inside. (d) real inverted-rate error.",
+   "21.2": "error path: 6 inches converted as 0.6 foot (inches read as tenths of a foot), so the rise is 3.9 ft. (a) no extreme. (b) not an intermediate. (c) inside. (d) real feet-and-inches conversion error."
+  },
+  "distractor_meta": {
+   "21.4": {
+    "direction": "under",
+    "error_kind": "percent on the wrong base"
+   },
+   "20.4": {
+    "direction": "under",
+    "error_kind": "bucket rate inverted"
+   },
+   "21.2": {
+    "direction": "under",
+    "error_kind": "6 inches read as 0.6 foot"
+   }
+  },
+  "bounds": [
+   "time > 0",
+   "no cheap one-step bound: the existing water lowers the time and the leak raises it"
+  ],
+  "mechanism": [
+   "fill a pool with a garden hose",
+   "flow rate timed with a bucket",
+   "leak a percent of the inflow",
+   "existing water depth",
+   "cubic feet to gallons 7.48"
+  ],
+  "arith_class_check": "No. All four are tenths with non-zero last digits (20.4, 21.2, 21.4, 21.8); none is a fixed multiple of another by a stem number.",
+  "one_sided_check": "key largest; distractors from a wrong-base percent, an inverted rate and an inches-as-tenths conversion (three kinds). Natural error on the other side: forgetting the 6 inches already in the pool (filling all 4.5 feet) gives 24.5 hours, above the key; the existing-water and leak clauses push opposite ways, so the direction is not readable from the stem.",
+  "interior_parity_check": "Interior by value: 21.2 and 21.4, both tenths with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: more than the no-leak time 8,616.96/450 = 19.1 h (a leak slows filling); all three distractors (20.4, 21.2, 21.4) are on the key's side of it, and the existing water pulls the other way (24.5 if ignored). The nearest distractor 21.4 is 0.4 h (2%) below the key, finer than any estimate that skips the 0.88.",
+  "trap_check": "Clauses: \"holds water to a depth of 6 inches\" - ignoring it pushes UP (24.5, not an option), reading it as 0.6 foot pushes DOWN (21.2); \"12% of the rate at which the hose adds water\" - adding it pushes DOWN (17.1, not an option), dividing by 1.12 pushes DOWN (21.4), ignoring it pushes DOWN (19.1, not an option); \"5-gallon bucket in 40 seconds\" - inverting pushes DOWN (20.4); \"1 cubic foot = 7.48 gallons\" - dividing pushes DOWN (0.05, not an option), ignoring pushes DOWN (2.9, not an option). No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "21.4": {
+    "step": "net filling rate after the leak",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "20.4": {
+    "step": "hose rate from the bucket timing",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "21.2": {
+    "step": "depth of water to add (6 inches in feet)",
+    "error_type": "other: inches read as tenths of a foot",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "depth of water to add",
+    "error_type": "omission",
+    "solve": "const L=24,W=12,H=4.5,e=6/12,g=7.48,b=5,s=40,q=0.12;return Number((L*W*H*g/((b/s)*3600*(1-q))).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "the pool already holds water 6 inches deep",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "the leak is 12% of the hose's rate",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 cubic foot = 7.48 gallons",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "5 gallons in 40 seconds",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; under errors are wrong base, inverted bucket rate, 6 in as 0.6 ft; counter is ignoring the 6 inches already in the pool (over), as natural as the rest."
+  }
+ },
+ {
+  "id": "AM28I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "ocean depth in fathoms from a sonar echo time",
+  "subskill": "distance from speed and echo time, offsets, meters to fathoms",
+  "prompt": "A ship measures the depth of the ocean with sonar. A sound pulse is sent straight down from a transducer mounted on the hull 5.4 meters below the water's surface, and the echo from the flat seafloor returns to the transducer. The sonar's display shows 0.852 second between sending the pulse and receiving the echo, but the display includes a fixed electronic delay of 0.012 second that is not travel time. Sound travels through the seawater at a constant 1,530 meters per second. The depth of the ocean is measured from the water's surface to the seafloor. Given that 1 fathom = 6 feet and 1 foot = 0.3048 meter, what is the depth of the ocean, in fathoms, to the nearest tenth of a fathom?",
+  "choices": [
+   "349.3",
+   "356.8",
+   "348.4",
+   "354.3"
+  ],
+  "correct_answer": "354.3",
+  "explanation": "The sound's actual travel time is 0.852 - 0.012 = 0.840 second, down to the seafloor and back, so it travels 1,530(0.840) = 1,285.2 meters and the seafloor is 1,285.2/2 = 642.6 meters below the transducer. The transducer is 5.4 meters below the surface, so the depth is 642.6 + 5.4 = 648.0 meters. One fathom is 6(0.3048) = 1.8288 meters, so the depth is 648.0 / 1.8288 = 354.3 fathoms. The option \"348.4\" subtracts the 5.4 meters instead of adding them. The option \"349.3\" halves 0.852 first and then subtracts the whole 0.012-second delay from the one-way time. The option \"356.8\" converts 642.6 meters to fathoms and then adds 5.4 as if it were fathoms.",
+  "solve": "const T=0.852,e=0.012,v=1530,h=5.4,ft=0.3048,n=6;return ((v*(T-e)/2+h)/(n*ft)).toFixed(1);",
+  "distractor_solve": {
+   "348.4": "const T=0.852,e=0.012,v=1530,h=5.4,ft=0.3048,n=6;return ((v*(T-e)/2-h)/(n*ft)).toFixed(1);",
+   "349.3": "const T=0.852,e=0.012,v=1530,h=5.4,ft=0.3048,n=6;return ((v*(T/2-e)+h)/(n*ft)).toFixed(1);",
+   "356.8": "const T=0.852,e=0.012,v=1530,h=5.4,ft=0.3048,n=6;return ((v*(T-e)/2)/(n*ft)+h).toFixed(1);"
+  },
+  "quantity_asked": "depth in fathoms: (1,530 x (0.852 - 0.012) / 2 + 5.4) meters divided by 6(0.3048) meters per fathom.",
+  "distractor_kind": {
+   "348.4": "error path: the transducer depth subtracted instead of added (642.6 - 5.4). (a) not a parameter extreme. (b) not the transducer-to-floor depth 351.4 or the no-delay depth 359.4. (c) 1.7% from the key, finer than any estimate that rounds 1.8288; strictly inside. (d) real sign slip.",
+   "349.3": "error path: the delay subtracted after halving, from the one-way time (0.426 - 0.012). (a) no extreme. (b) not an intermediate. (c) inside. (d) real order-of-operations error on the delay.",
+   "356.8": "error path: the 5.4 meters added to the depth after it is in fathoms (351.4 + 5.4). (a) no extreme. (b) not an intermediate. (c) inside. (d) real mixed-units error."
+  },
+  "distractor_meta": {
+   "348.4": {
+    "direction": "under",
+    "error_kind": "offset subtracted (sign slip)"
+   },
+   "349.3": {
+    "direction": "under",
+    "error_kind": "delay taken off the one-way time"
+   },
+   "356.8": {
+    "direction": "over",
+    "error_kind": "meters added to fathoms"
+   }
+  },
+  "bounds": [
+   "depth > 0",
+   "depth in fathoms < depth in meters 648.0, and > 648.0/2 (a fathom is between 1 and 2 meters)"
+  ],
+  "mechanism": [
+   "sonar echo round trip",
+   "depth from speed of sound in seawater",
+   "transducer below the surface",
+   "electronic delay subtracted from echo time",
+   "meters to fathoms"
+  ],
+  "arith_class_check": "No. All four are tenths with non-zero last digits (348.4, 349.3, 354.3, 356.8); none is a fixed multiple of another by a stem number.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 349.3 and 354.3, both tenths with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"0.852 second ... includes a fixed electronic delay of 0.012 second\" - ignoring the delay pushes UP (359.4, not an option), adding it pushes UP (364.4, not an option), taking it off the one-way time pushes DOWN (349.3); \"echo ... returns\" (round trip) - not halving pushes UP (705.7, not an option); \"mounted ... 5.4 meters below the water's surface\" - subtracting pushes DOWN (348.4), ignoring pushes DOWN (351.4, not an option), adding it as fathoms pushes UP (356.8); \"1 fathom = 6 feet\" - ignoring pushes UP (2,126.0, not an option); \"1 foot = 0.3048 meter\" - ignoring pushes DOWN (108.0, not an option). No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "348.4": {
+    "step": "adding the transducer depth",
+    "error_type": "sign slip",
+    "direction": "under"
+   },
+   "349.3": {
+    "step": "removing the electronic delay",
+    "error_type": "other: delay taken off the one-way time",
+    "direction": "under"
+   },
+   "356.8": {
+    "step": "adding the transducer depth",
+    "error_type": "other: meters added to fathoms",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "display includes a 0.012-second electronic delay",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "the echo time covers the trip down and back",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "transducer 5.4 meters below the surface",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1 fathom = 6 feet",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "1 foot = 0.3048 meter",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; offset sign slip and one-way delay below, meters-added-to-fathoms above, all within 2%. Far conversion errors and the unhalved depth deliberately not options."
+  }
+ },
+ {
+  "id": "AM28I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "mass of a salad dressing from component volumes and densities",
+  "subskill": "volume ratio to volumes, mass from density, unit conversion",
+  "prompt": "To make a salad dressing, Ines mixes olive oil and vinegar in the ratio 4:1 by volume to make 1.75 cups of the oil-and-vinegar mixture, and then she stirs in 3 tablespoons of mustard. Olive oil has a density of 0.92 gram per milliliter, vinegar has a density of 1.01 grams per milliliter, and the mustard has a density of 1.10 grams per milliliter. Use 1 cup = 236.6 milliliters and 1 tablespoon = 14.8 milliliters. To the nearest gram, what is the mass of the dressing?",
+  "choices": [
+   "439",
+   "482",
+   "437",
+   "448"
+  ],
+  "correct_answer": "437",
+  "explanation": "The mixture is 1.75(236.6) = 414.05 mL, of which 4/5 is oil (331.24 mL) and 1/5 is vinegar (82.81 mL). The mustard is 3(14.8) = 44.4 mL. The mass is 331.24(0.92) + 82.81(1.01) + 44.4(1.10) = 304.74 + 83.64 + 48.84 = 437.22 grams, or 437. The option \"439\" reads the ratio 4:1 as vinegar being 1/4 of the mixture. The option \"448\" uses the plain average of the oil and vinegar densities, 0.965, for the whole oil-and-vinegar mixture. The option \"482\" divides each volume by its density instead of multiplying.",
+  "solve": "const V=1.75*236.6,M=3*14.8,o=4,q=1,ro=0.92,rv=1.01,rm=1.1;const fo=o/(o+q);return (V*fo*ro+V*(1-fo)*rv+M*rm).toFixed(0);",
+  "distractor_solve": {
+   "439": "const V=1.75*236.6,M=3*14.8,o=4,q=1,ro=0.92,rv=1.01,rm=1.1;const fo=o/(o+q);return (V*(1-q/o)*ro+V*(q/o)*rv+M*rm).toFixed(0);",
+   "448": "const V=1.75*236.6,M=3*14.8,o=4,q=1,ro=0.92,rv=1.01,rm=1.1;const fo=o/(o+q);return (V*(ro+rv)/2+M*rm).toFixed(0);",
+   "482": "const V=1.75*236.6,M=3*14.8,o=4,q=1,ro=0.92,rv=1.01,rm=1.1;const fo=o/(o+q);return (V*fo/ro+V*(1-fo)/rv+M/rm).toFixed(0);"
+  },
+  "quantity_asked": "mass in grams of 331.24 mL of oil, 82.81 mL of vinegar and 44.4 mL of mustard at their densities.",
+  "distractor_kind": {
+   "439": "error path: 4:1 read as vinegar = 1/4 of the mixture (part-to-part ratio used as part-to-whole). (a) no parameter extreme. (b) not the oil-and-vinegar mass 388. (c) inside the all-oil bound 422 and the all-mustard bound 504. (d) real wrong-base ratio error.",
+   "448": "error path: unweighted mean of the oil and vinegar densities (0.965) used for the 4:1 mixture. (a) no extreme. (b) not an intermediate. (c) inside 422 to 504. (d) real averaging error.",
+   "482": "error path: mass = volume / density for every ingredient (inverted rate). (a) no extreme. (b) not an intermediate. (c) inside 422 to 504. (d) real inverted-density error."
+  },
+  "distractor_meta": {
+   "439": {
+    "direction": "over",
+    "error_kind": "ratio read part-to-whole"
+   },
+   "448": {
+    "direction": "over",
+    "error_kind": "unweighted mean density"
+   },
+   "482": {
+    "direction": "over",
+    "error_kind": "density inverted"
+   }
+  },
+  "bounds": [
+   "mass > total volume x lowest density = 458.45 x 0.92 = 422",
+   "mass < total volume x highest density = 458.45 x 1.10 = 504"
+  ],
+  "mechanism": [
+   "salad dressing oil and vinegar ratio by volume",
+   "mass from density of each ingredient",
+   "cups and tablespoons to milliliters",
+   "oil vinegar mustard"
+  ],
+  "arith_class_check": "No. All four are integers with non-zero last digits (437, 439, 448, 482); none is a stem multiple of another.",
+  "one_sided_check": "key smallest; distractors from a part-to-whole ratio slip, an unweighted mean density and an inverted density (three kinds). Natural errors on the other side: leaving out the mustard gives 388, and using the oil's density for the whole dressing gives 422, both below the key.",
+  "interior_parity_check": "Interior by value: 439 and 448, both three-digit integers with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: oil is the lightest ingredient, so the mass exceeds 458.45 x 0.92 = 422 (lower) and is below 458.45 x 1.10 = 504; the key and all three distractors lie between. Every ingredient is at least as dense as oil, so no cheap bound falls between the key and the options; the nearest distractor 439 is 2 g (0.4%) above the key.",
+  "trap_check": "Clauses: \"ratio 4:1 by volume\" - part-to-whole slip pushes UP (439); \"stirs in 3 tablespoons of mustard\" - ignoring it pushes DOWN (388, not an option); densities - inverting pushes UP (482), averaging oil and vinegar unweighted pushes UP (448, a method error), using oil's density for all pushes DOWN (422, not an option). One distractor per clause.",
+  "direction_declaration": {
+   "439": {
+    "step": "oil and vinegar volumes from the 4:1 ratio",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "448": {
+    "step": "mass of the oil-and-vinegar mixture",
+    "error_type": "other: unweighted mean of densities",
+    "direction": "over"
+   },
+   "482": {
+    "step": "mass from volume and density",
+    "error_type": "inverted rate",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "adding the mustard",
+    "error_type": "omission",
+    "solve": "const V=1.75*236.6,M=3*14.8,o=4,q=1,ro=0.92,rv=1.01,rm=1.1;const fo=o/(o+q);return Number((V*fo*ro+V*(1-fo)*rv).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "3 tablespoons of mustard stirred in",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "oil and vinegar in the ratio 4:1 by volume",
+     "neglect_direction": "none"
+    },
+    {
+     "rule": "1 cup = 236.6 mL, 1 tablespoon = 14.8 mL",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; over errors are a part-to-whole ratio slip, unweighted mean density and inverted density; counter is leaving out the mustard (388, under)."
+  }
+ },
+ {
+  "id": "AM28I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "weight of wet snow on a partly cleared flat roof",
+  "subskill": "weight from depth and relative density, area from a percent of the remainder, absorbed rain",
+  "prompt": "A flat roof is a rectangle 30 feet by 40 feet. A storm left a uniform layer of snow 15 inches deep on the whole roof, and this snow weighed 12% as much as the same volume of water. Over the next two days the snow settled until its depth was 20% less, but none of it melted or blew away. The owner then shoveled all the snow off part of the roof, so that the area she cleared was 15% of the area still covered with snow. Next, 1.5 inches of rain fell on the roof. The rain that fell on the snow was all absorbed by the snow, and the rain that fell on the cleared part drained away. Water weighs 62.4 pounds per cubic foot. To the nearest hundredth of a ton (1 ton = 2,000 pounds), what was the total weight of the snow and absorbed rain on the roof after the rain?",
+  "choices": [
+   "8.75",
+   "5.37",
+   "8.95",
+   "7.98"
+  ],
+  "correct_answer": "8.95",
+  "explanation": "Settling does not change the weight of the snow, so each square foot still carries the snow that fell: (15/12)(0.12)(62.4) = 9.36 pounds, plus the absorbed rain (1.5/12)(62.4) = 7.8 pounds, for 17.16 pounds per square foot of covered roof. If the covered area is C, then C + 0.15C = 1,200, so C = 1,200/1.15 = 1,043.48 square feet. The weight is 1,043.48(17.16) = 17,906 pounds = 8.95 tons. The option \"8.75\" takes the covered area as 85% of the roof (15% of the whole roof cleared). The option \"7.98\" computes the snow's weight from the settled depth of 12 inches with the original 12% density. The option \"5.37\" weighs the absorbed rain as if it were snow at 12% of the weight of water.",
+  "solve": "const A=30*40,S=15,r=0.12,st=0.2,c=0.15,rn=1.5,w=62.4;return (A/(1+c)*(S/12*r*w+rn/12*w)/2000).toFixed(2);",
+  "distractor_solve": {
+   "8.75": "const A=30*40,S=15,r=0.12,st=0.2,c=0.15,rn=1.5,w=62.4;return (A*(1-c)*(S/12*r*w+rn/12*w)/2000).toFixed(2);",
+   "7.98": "const A=30*40,S=15,r=0.12,st=0.2,c=0.15,rn=1.5,w=62.4;return (A/(1+c)*(S*(1-st)/12*r*w+rn/12*w)/2000).toFixed(2);",
+   "5.37": "const A=30*40,S=15,r=0.12,st=0.2,c=0.15,rn=1.5,w=62.4;return (A/(1+c)*(S/12*r*w+rn/12*w*r)/2000).toFixed(2);"
+  },
+  "quantity_asked": "total weight in tons: (1,200/1.15) square feet x [(15/12)(0.12)(62.4) + (1.5/12)(62.4)] pounds per square foot, divided by 2,000.",
+  "distractor_kind": {
+   "8.75": "error path: cleared area taken as 15% of the whole roof (covered = 0.85 x 1,200) instead of 15% of the covered area (percent on the wrong base). (a) no parameter extreme. (b) not the uncleared-roof weight 10.30. (c) inside the snow-only lower bound 4.88 and the uncleared bound 10.30. (d) real wrong-base error.",
+   "7.98": "error path: weight computed from the settled depth (12 in) with the original 12% density, though settling does not change the weight. (a) no extreme. (b) not an intermediate. (c) inside 4.88 to 10.30. (d) real error: treating a depth change as a weight change.",
+   "5.37": "error path: the absorbed rain weighed at the snow's 12% of water's weight. (a) no extreme. (b) not the snow-only weight 4.88. (c) inside 4.88 to 10.30. (d) real error: wrong density for the rain."
+  },
+  "distractor_meta": {
+   "8.75": {
+    "direction": "under",
+    "error_kind": "cleared percent on the wrong base"
+   },
+   "7.98": {
+    "direction": "under",
+    "error_kind": "settled depth used for weight"
+   },
+   "5.37": {
+    "direction": "under",
+    "error_kind": "rain weighed at snow density"
+   }
+  },
+  "bounds": [
+   "weight > snow alone on the covered area, 4.88 tons",
+   "weight < snow plus rain on the whole roof, 10.30 tons"
+  ],
+  "mechanism": [
+   "weight of snow on a flat roof",
+   "snow weighs a percent of water",
+   "settled snow keeps its weight",
+   "cleared area a percent of the covered area",
+   "rain absorbed by snow"
+  ],
+  "arith_class_check": "No. All four are hundredths with non-zero last digits (5.37, 7.98, 8.75, 8.95); no option is a stem multiple of another (8.95/8.75 = 1.023, not 1.15 or 0.85).",
+  "one_sided_check": "key largest; distractors from a wrong-base cleared area, the settled depth, and rain weighed as snow (three kinds). Natural error on the other side: ignoring the cleared part (whole roof covered) gives 10.30, above the key; the clearing clause pushes up when neglected while the rain clause pushes down, so the direction is not readable from the stem.",
+  "interior_parity_check": "Interior by value: 7.98 and 8.75, both hundredths with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: the rain only adds weight, so the weight exceeds the snow alone on the covered area, 4.88 tons; all three distractors (5.37, 7.98, 8.75) lie above it, on the key's side. The clearing pulls the other way (10.30 if ignored). The nearest distractor 8.75 is 0.20 ton (2.2%) below the key, finer than any estimate that skips 1/1.15 vs 0.85.",
+  "trap_check": "Clauses: \"settled until its depth was 20% less\" - using the settled depth pushes DOWN (7.98); \"area cleared was 15% of the area still covered\" - 15% of the whole roof pushes DOWN (8.75), ignoring it pushes UP (10.30, not an option); \"1.5 inches of rain ... absorbed\" - weighing it at 12% pushes DOWN (5.37), ignoring it pushes DOWN (4.88, not an option); \"12% as much as water\" - ignoring it pushes UP (far, not an option). One distractor per clause.",
+  "direction_declaration": {
+   "8.75": {
+    "step": "area still covered with snow",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "7.98": {
+    "step": "weight of the settled snow",
+    "error_type": "other: settled depth used with the original density",
+    "direction": "under"
+   },
+   "5.37": {
+    "step": "weight of the absorbed rain",
+    "error_type": "other: rain weighed at snow density",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "area still covered with snow",
+    "error_type": "omission",
+    "solve": "const A=30*40,S=15,r=0.12,st=0.2,c=0.15,rn=1.5,w=62.4;return Number((A*(S/12*r*w+rn/12*w)/2000).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "snow settled to a depth 20% less, none lost",
+     "neglect_direction": "none"
+    },
+    {
+     "rule": "cleared area is 15% of the area still covered",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "1.5 inches of rain absorbed by the snow",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "snow weighs 12% as much as water",
+     "neglect_direction": "over"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "at-risk",
+   "note": "Largest key; under errors wrong-base area, settled depth, rain at snow density; counter ignoring the cleared part (over). Settling clause is a deliberate red herring a grader may call an announced trap."
+  }
+ },
+ {
+  "id": "AM28I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "matching the scale speed of model trains in two scales",
+  "subskill": "scale factors, speed as distance over time, two ratios",
+  "prompt": "A model train's scale speed is the speed a full-size train would have if it covered the full-size equivalent of the model's distance in the same time; for a model built at a scale of 1:n, the scale speed is n times the model's actual speed. An HO-scale (1:87) model train completes each lap of a 24-foot loop of track in 23 seconds. An S-scale (1:64) model train runs on a 31-foot loop. How many seconds should each lap of the S-scale train take so that its scale speed equals the HO-scale train's scale speed, to the nearest tenth of a second?",
+  "choices": [
+   "13.1",
+   "21.9",
+   "24.2",
+   "29.7"
+  ],
+  "correct_answer": "21.9",
+  "explanation": "The HO train's actual speed is 24/23 feet per second, so its scale speed is 87(24/23) = 90.78 feet per second. For the S train to have the same scale speed, its actual speed must be 90.78/64 = 1.4185 feet per second. A 31-foot lap then takes 31 / 1.4185 = 21.9 seconds. The option \"29.7\" ignores the two scales and gives the S train the HO train's actual speed. The option \"13.1\" uses the loop lengths upside down (23 x 24/31 x 64/87). The option \"24.2\" inverts both ratios (23 x 24/31 x 87/64).",
+  "solve": "const L1=24,t1=23,L2=31,a=87,b=64;return (L2/((L1/t1)*a/b)).toFixed(1);",
+  "distractor_solve": {
+   "29.7": "const L1=24,t1=23,L2=31,a=87,b=64;return (L2/(L1/t1)).toFixed(1);",
+   "13.1": "const L1=24,t1=23,L2=31,a=87,b=64;return (t1*(L1/L2)*(b/a)).toFixed(1);",
+   "24.2": "const L1=24,t1=23,L2=31,a=87,b=64;return (t1*(L1/L2)*(a/b)).toFixed(1);"
+  },
+  "quantity_asked": "seconds per lap for the S-scale train: 31 feet divided by (24/23)(87/64) feet per second.",
+  "distractor_kind": {
+   "29.7": "error path: the scales ignored, so the S train runs at the HO train's actual 24/23 ft/s. (a) the scale-free time is not a stem-forced bound a student can read (the S train must run faster, but by how much needs the work). (b) it is the time for a train with the HO train's actual speed - an adjacent setup, but not an edge of the interval. (c) inside. (d) real omission.",
+   "13.1": "error path: the loop-length ratio inverted (24/31 instead of 31/24). (a) no extreme. (b) not an intermediate. (c) inside. (d) real inverted ratio.",
+   "24.2": "error path: both ratios inverted (24/31 and 87/64). (a) no extreme. (b) not an intermediate. (c) inside. (d) real double inversion."
+  },
+  "distractor_meta": {
+   "29.7": {
+    "direction": "over",
+    "error_kind": "scales ignored"
+   },
+   "13.1": {
+    "direction": "under",
+    "error_kind": "length ratio inverted"
+   },
+   "24.2": {
+    "direction": "over",
+    "error_kind": "both ratios inverted"
+   }
+  },
+  "bounds": [
+   "time > 0"
+  ],
+  "mechanism": [
+   "model train scale speed",
+   "HO scale 1:87 and S scale 1:64",
+   "same scale speed in two scales",
+   "lap time on a loop of track",
+   "ratio of scale denominators"
+  ],
+  "arith_class_check": "No. All four are tenths with non-zero last digits (13.1, 21.9, 24.2, 29.7); none is a fixed multiple of another by a stem number.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 21.9 and 24.2, both tenths with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"scale of 1:n ... n times the model's actual speed\" - ignoring the scales pushes UP (29.7), inverting the scale ratio pushes UP (40.4, not an option); \"24-foot loop ... 31-foot loop\" - inverting the length ratio pushes DOWN (13.1); inverting both pushes UP (24.2), using the 24-foot loop for the S train pushes DOWN (16.9, not an option). One distractor comes from ignoring a clause (the scales).",
+  "direction_declaration": {
+   "29.7": {
+    "step": "converting between the two scales",
+    "error_type": "omission",
+    "direction": "over"
+   },
+   "13.1": {
+    "step": "ratio of the loop lengths",
+    "error_type": "inverted rate",
+    "direction": "under"
+   },
+   "24.2": {
+    "step": "both ratios",
+    "error_type": "inverted rate",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "scale speed is n times the model's actual speed (1:87 and 1:64)",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "the S train runs on a 31-foot loop (not the 24-foot loop)",
+     "neglect_direction": "under"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; ignored scales and double inversion above, inverted length ratio below. Two error kinds, no run (ignored and inverted scale are not both options)."
+  }
+ },
+ {
+  "id": "AM28I-X1",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "cost per load of a concentrated detergent on sale",
+  "subskill": "loads per bottle from two percent comparisons, sale price per load",
+  "prompt": "A store sells two brands of liquid laundry detergent. A bottle of Brand A holds enough detergent for exactly 48 loads of laundry. A bottle of Brand B holds 20% less detergent than a bottle of Brand A, but Brand B is more concentrated, so each load of laundry needs 40% less Brand B detergent than it would need of Brand A. A bottle of Brand B regularly costs $16.49, and this week it is on sale for 20% off the regular price. At the sale price, what is the cost, in cents, of the Brand B detergent used for one load of laundry, to the nearest tenth of a cent?",
+  "choices": [
+   "21.5",
+   "20.6",
+   "24.5",
+   "22.9"
+  ],
+  "correct_answer": "20.6",
+  "explanation": "Let one load of Brand A use 1 unit, so a Brand A bottle holds 48 units. A Brand B bottle holds 48(0.80) = 38.4 units, and a Brand B load uses 1(0.60) = 0.6 unit, so a Brand B bottle washes 38.4/0.6 = 64 loads. The sale price is 16.49(0.80) = $13.192 = 1,319.2 cents, so one load costs 1,319.2/64 = 20.61 cents, or 20.6. The option \"21.5\" takes 20% off by dividing by 1.20. The option \"22.9\" combines the percents as 40% - 20% = 20% more loads, or 57.6 loads. The option \"24.5\" treats \"40% less per load\" as 40% more loads per unit (multiplying by 1.40 instead of dividing by 0.60), or 53.76 loads.",
+  "solve": "const L=48,a=0.2,b=0.4,p=16.49,s=0.2;return (100*p*(1-s)/(L*(1-a)/(1-b))).toFixed(1);",
+  "distractor_solve": {
+   "21.5": "const L=48,a=0.2,b=0.4,p=16.49,s=0.2;return (100*p/(1+s)/(L*(1-a)/(1-b))).toFixed(1);",
+   "22.9": "const L=48,a=0.2,b=0.4,p=16.49,s=0.2;return (100*p*(1-s)/(L*(1-a+b))).toFixed(1);",
+   "24.5": "const L=48,a=0.2,b=0.4,p=16.49,s=0.2;return (100*p*(1-s)/(L*(1-a)*(1+b))).toFixed(1);"
+  },
+  "quantity_asked": "sale price of a Brand B bottle (16.49 x 0.80 dollars, in cents) divided by the loads a Brand B bottle washes (48 x 0.80 / 0.60 = 64).",
+  "distractor_kind": {
+   "21.5": "error path: 20% off computed as 16.49/1.20 (sale on the wrong base). (a) not a parameter extreme. (b) not the regular-price cost 25.8 or the 64 loads. (c) inside every one-step estimate (the regular-price cost 25.8 and the price-per-48-loads cap 27.5). (d) real wrong-base percent error.",
+   "22.9": "error path: the two percents combined additively (40% less per load and 20% less detergent read as 20% more loads, 57.6). (a) no extreme. (b) not an intermediate. (c) inside the regular-price cost 25.8. (d) real additive-percent error.",
+   "24.5": "error path: 40% less detergent per load read as 40% more loads per unit of detergent (x1.40 instead of /0.60), 53.76 loads. (a) no extreme. (b) not an intermediate. (c) inside the regular-price cost 25.8. (d) real wrong-base percent error."
+  },
+  "distractor_meta": {
+   "21.5": {
+    "direction": "over",
+    "error_kind": "sale percent on the wrong base"
+   },
+   "22.9": {
+    "direction": "over",
+    "error_kind": "percents combined additively"
+   },
+   "24.5": {
+    "direction": "over",
+    "error_kind": "per-load percent on the wrong base"
+   }
+  },
+  "bounds": [
+   "cost per load > 0",
+   "Brand B washes more than 48 loads (0.80/0.60 > 1), so the cost per load is below the sale price over 48 loads, 27.5 cents; the sale only lowers it, so it is below the regular-price cost 25.8"
+  ],
+  "mechanism": [
+   "cost per load of laundry detergent",
+   "concentrated detergent uses less per load",
+   "bottle holds a percent less",
+   "sale percent off",
+   "loads per bottle from two percents"
+  ],
+  "arith_class_check": "No. All four are tenths with non-zero last digits (20.6, 21.5, 22.9, 24.5); none is a stem multiple of another.",
+  "one_sided_check": "key smallest; distractors from a wrong-base sale, additive percents and a wrong-base per-load percent (three kinds). Natural errors on the other side: ignoring that a B bottle holds 20% less (80 loads) gives 16.5, and reading 20% less as 20% more gives 13.7, both below the key; the bottle-size clause pushes down when neglected while the sale and concentration clauses push up.",
+  "interior_parity_check": "Interior by value: 21.5 and 22.9, both tenths with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: cost per load < 16.49/64 = 25.8 cents (the sale only lowers it) and < 1,319.2/48 = 27.5 cents (B washes more loads than A); all three distractors lie below both, on the key's side. The nearest distractor 21.5 is 0.9 cent (4.2%) above the key, finer than any estimate that skips the 0.80 vs 1/1.20 distinction; the bottle-size clause pulls the other way (16.5 if ignored).",
+  "trap_check": "Clauses: \"20% less detergent\" - ignoring it pushes DOWN (16.5, not an option), reversing it pushes DOWN (13.7, not an option); \"40% less ... per load\" - ignoring it pushes UP (34.4, not an option), x1.40 instead of /0.60 pushes UP (24.5); \"20% off\" - ignoring it pushes UP (25.8, not an option), /1.20 pushes UP (21.5); the two percents combined additively pushes UP (22.9, a combination error, not an omission). One distractor per clause.",
+  "direction_declaration": {
+   "21.5": {
+    "step": "sale price",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "22.9": {
+    "step": "loads per Brand B bottle",
+    "error_type": "other: percents combined additively",
+    "direction": "over"
+   },
+   "24.5": {
+    "step": "loads per Brand B bottle (per-load percent)",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "loads per Brand B bottle (bottle size)",
+    "error_type": "omission",
+    "solve": "const L=48,a=0.2,b=0.4,p=16.49,s=0.2;return Number((100*p*(1-s)/(L/(1-b))).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "Brand B bottle holds 20% less detergent",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "Brand B needs 40% less detergent per load",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "20% off the regular price",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "Brand A bottle washes 48 loads",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; over errors are two wrong-base percents and additive percents; counter is ignoring the smaller bottle (16.5, under), as natural as the rest."
+  }
+ },
+ {
+  "id": "AM28I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "length of a slow-motion time-lapse video after blurry photos are deleted",
+  "subskill": "interval count, percent of kept, fps, slow motion",
+  "prompt": "A camera set up for a time-lapse video takes a photo every 8 seconds, taking its first photo at 6:12:30 a.m. and its last photo at 7:42:22 a.m. Afterward, Lena deletes the blurry photos; the number of photos she deletes is 8% of the number of photos she keeps. She makes a video from the photos she keeps, showing each photo as one frame at 24 frames per second, and then plays the video in slow motion at a speed 15% slower than normal speed. How many seconds does the video last when played in slow motion, to the nearest hundredth of a second?",
+  "choices": [
+   "30.59",
+   "29.95",
+   "30.64",
+   "30.44"
+  ],
+  "correct_answer": "30.64",
+  "explanation": "From 6:12:30 to 7:42:22 is 1 h 29 min 52 s = 5,392 seconds, which is 5,392/8 = 674 intervals, so the camera took 674 + 1 = 675 photos. If she keeps K photos, she deletes 0.08K, so 1.08K = 675 and K = 625. At 24 frames per second the video lasts 625/24 = 26.042 seconds at normal speed; at a speed 15% slower (85% of normal speed) it lasts 26.042/0.85 = 30.64 seconds. \"30.59\" counts 674 photos (intervals, not photos), keeping 674/1.08, about 624. \"30.44\" takes 8% of the 675 photos taken as the number deleted, keeping 621. \"29.95\" lengthens the video by 15% (26.042 x 1.15) instead of dividing by 0.85.",
+  "solve": "const span=(7*3600+42*60+22)-(6*3600+12*60+30),d=8,q=0.08,f=24,s=0.15;const N=span/d+1;const K=N/(1+q);return (K/f/(1-s)).toFixed(2);",
+  "distractor_solve": {
+   "30.59": "const span=(7*3600+42*60+22)-(6*3600+12*60+30),d=8,q=0.08,f=24,s=0.15;const N=span/d+1;const K=Math.round((N-1)/(1+q));return (K/f/(1-s)).toFixed(2);",
+   "30.44": "const span=(7*3600+42*60+22)-(6*3600+12*60+30),d=8,q=0.08,f=24,s=0.15;const N=span/d+1;const K=N*(1-q);return (K/f/(1-s)).toFixed(2);",
+   "29.95": "const span=(7*3600+42*60+22)-(6*3600+12*60+30),d=8,q=0.08,f=24,s=0.15;const N=span/d+1;const K=N/(1+q);return (K/f*(1+s)).toFixed(2);"
+  },
+  "quantity_asked": "slow-motion running time in seconds: kept photos (675/1.08 = 625) / 24 frames per second / 0.85.",
+  "distractor_kind": {
+   "30.59": "error path: 674 photos (intervals counted instead of photos), 674/1.08 rounded to 624 kept. (a) not a parameter extreme. (b) not an intermediate of the key path. (c) the feasible interval is (26.04, 33.09): above the normal-speed length of the kept photos, below the slow length of all 675 photos; strictly inside. (d) real fencepost error.",
+   "30.44": "error path: deleted photos taken as 8% of the 675 photos taken, keeping 621. (a) no extreme. (b) not an intermediate. (c) inside (26.04, 33.09). (d) real wrong-base percent error.",
+   "29.95": "error path: \"15% slower\" turned into a running time 15% longer (x 1.15) instead of / 0.85. (a) no extreme. (b) not an intermediate. (c) inside (26.04, 33.09). (d) real wrong-base percent error on the playback speed."
+  },
+  "distractor_meta": {
+   "30.59": {
+    "direction": "under",
+    "error_kind": "fencepost: intervals counted as photos"
+   },
+   "30.44": {
+    "direction": "under",
+    "error_kind": "deleted percent taken of the wrong group"
+   },
+   "29.95": {
+    "direction": "under",
+    "error_kind": "percent slower speed read as percent longer time"
+   }
+  },
+  "bounds": [
+   "length > 625/24 = 26.04 s (slow motion lengthens the kept-photo video)",
+   "length < 675/24/0.85 = 33.09 s (deleting photos shortens it)"
+  ],
+  "mechanism": [
+   "time-lapse photo every 8 seconds",
+   "count photos from first to last time",
+   "deleted photos as percent of kept photos",
+   "frames per second video length",
+   "slow motion percent slower playback"
+  ],
+  "arith_class_check": "No. Options 29.95, 30.44, 30.59, 30.64 are two-decimal values with different endings; none is a stem multiple of another.",
+  "one_sided_check": "Key largest; distractors from three error kinds (fencepost, percent of the wrong group, slower-speed read as longer time). Natural errors on the other side: ignoring the deletion (33.09) and subtracting the clock times without borrowing seconds (1:30:08, 677 photos, 30.74) both land above the key.",
+  "interior_parity_check": "Interior by value: 30.44 and 30.59, both two-decimal values with nonzero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bounds: deleting photos can only shorten the video, so length < 675/24/0.85 = 33.09 (upper, above the key); slow motion can only lengthen it, so length > 625/24 = 26.04 (lower, needs the kept count). All three distractors lie between 26.04 and the key, on the key's side of the lower bound; the nearest, 30.59, is 0.05 s below the key, finer than any estimate of the photo count.",
+  "trap_check": "Clauses: \"first photo ... last photo\" (inclusive count) - counting intervals pushes DOWN (30.59). \"deletes is 8% of the number she keeps\" - ignoring pushes UP (33.09, not an option), taking 8% of all photos pushes DOWN (30.44). \"15% slower than normal speed\" - x1.15 pushes DOWN (29.95), ignoring pushes DOWN (26.04, not an option), x0.85 pushes DOWN (22.14, not an option). Clock subtraction 7:42:22 - 6:12:30 without borrowing pushes UP (30.74, not an option). No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "30.59": {
+    "step": "number of photos taken (inclusive count)",
+    "error_type": "other: fencepost, intervals counted as photos",
+    "direction": "under"
+   },
+   "30.44": {
+    "step": "number of photos kept from the 8% clause",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "29.95": {
+    "step": "slow-motion running time from the 15% clause",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "number of photos kept",
+    "error_type": "omission",
+    "solve": "const span=(7*3600+42*60+22)-(6*3600+12*60+30),d=8,q=0.08,f=24,s=0.15;const N=span/d+1;return Number((N/f/(1-s)).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "photos at both the first and last times (inclusive count)",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "deleted photos are 8% of the kept photos",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "played at a speed 15% slower than normal",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "24 frames per second",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; three partial under-errors, all inside (26.04, 33.09); deletion pushes down, slow motion and the inclusive count push up; natural over-counters (ignoring the deletion, unborrowed clock)."
+  }
+ },
+ {
+  "id": "AM28I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "resetting an IV drip rate after an infusion falls behind schedule",
+  "subskill": "drip rate, percent less than scheduled, drop factor",
+  "prompt": "A patient is to receive 1,200 milliliters of saline through an IV at a constant rate over 10 hours, starting at 7:00 a.m. and finishing at 5:00 p.m. The IV tubing delivers 15 drops per milliliter. At 9:40 a.m. a nurse finds that the volume infused so far is 32% less than the volume the original schedule called for by 9:40 a.m. She resets the drip rate so that the rest of the 1,200 milliliters will be infused at a constant rate by 5:00 p.m. To the nearest tenth, what is the new drip rate, in drops per minute?",
+  "choices": [
+   "32.6",
+   "37.4",
+   "30.7",
+   "33.5"
+  ],
+  "correct_answer": "33.5",
+  "explanation": "The schedule called for 1,200 mL in 600 minutes, so by 9:40 a.m. (160 minutes) it called for 1,200(160/600) = 320 mL. The volume infused was 32% less: 320(0.68) = 217.6 mL, leaving 1,200 - 217.6 = 982.4 mL. From 9:40 a.m. to 5:00 p.m. is 7 h 20 min = 440 minutes, so the new rate is 982.4(15)/440 = 33.49, or 33.5 drops per minute. \"32.6\" takes the infused volume as 320/1.32 (32% of the infused volume rather than of the scheduled volume). \"37.4\" takes the infused volume as 32% of 320. \"30.7\" finds the remaining time as 17:00 - 9:40 = 1700 - 940 = 760, read as 7 h 60 min = 8 hours.",
+  "solve": "const V=1200,H=10,df=15,el=160,p=0.32,rem=440;const S=V*el/(H*60);return ((V-S*(1-p))*df/rem).toFixed(1);",
+  "distractor_solve": {
+   "32.6": "const V=1200,H=10,df=15,el=160,p=0.32,rem=440;const S=V*el/(H*60);return ((V-S/(1+p))*df/rem).toFixed(1);",
+   "37.4": "const V=1200,H=10,df=15,el=160,p=0.32,rem=440;const S=V*el/(H*60);return ((V-S*p)*df/rem).toFixed(1);",
+   "30.7": "const V=1200,H=10,df=15,el=160,p=0.32,rem=440;const S=V*el/(H*60);return ((V-S*(1-p))*df/480).toFixed(1);"
+  },
+  "quantity_asked": "new drip rate in drops per minute: (1,200 - 0.68 x 320) mL x 15 drops/mL over the 440 minutes from 9:40 a.m. to 5:00 p.m.",
+  "distractor_kind": {
+   "32.6": "error path: infused volume = 320/1.32, the 32% taken of the infused volume instead of the scheduled volume. (a) not a parameter extreme. (b) not an intermediate. (c) feasible interval (30.0, 40.9): behind schedule means faster than the original 30.0, and less than all 1,200 mL means below 40.9; strictly inside. (d) real wrong-base percent error.",
+   "37.4": "error path: infused volume = 32% of 320 = 102.4 mL (\"32% less\" read as \"32% of\"). (a) no extreme. (b) not an intermediate. (c) inside (30.0, 40.9). (d) real percent-of versus percent-less error.",
+   "30.7": "error path: remaining time from 1700 - 940 = 760 read as 7 h 60 min = 480 min. (a) no extreme. (b) not an intermediate; the original rate 30.0 is not an option. (c) inside (30.0, 40.9). (d) real clock-subtraction error."
+  },
+  "distractor_meta": {
+   "32.6": {
+    "direction": "under",
+    "error_kind": "percent on the wrong base"
+   },
+   "37.4": {
+    "direction": "over",
+    "error_kind": "percent less read as percent of"
+   },
+   "30.7": {
+    "direction": "under",
+    "error_kind": "clock times subtracted as base-ten numbers"
+   }
+  },
+  "bounds": [
+   "rate > 30.0 drops/min (the original rate; the infusion is behind schedule)",
+   "rate < 1,200 x 15/440 = 40.9 (less than the whole bag remains)"
+  ],
+  "mechanism": [
+   "IV drip rate drops per minute",
+   "drop factor drops per milliliter",
+   "infusion behind schedule",
+   "percent less than scheduled volume",
+   "remaining volume over remaining time"
+  ],
+  "arith_class_check": "No. Options 30.7, 32.6, 33.5, 37.4 are one-decimal values with different last digits; no option is a stem multiple of another.",
+  "one_sided_check": "key interior",
+  "interior_parity_check": "Interior by value: 32.6 and 33.5, both one-decimal values with nonzero tenths; neither is rounder.",
+  "cheap_bound_check": "key interior",
+  "trap_check": "Clauses: \"32% less than the volume the original schedule called for\" - ignoring it pushes DOWN (30.0, the original rate, not an option), wrong base pushes DOWN (32.6), reading as 32% of pushes UP (37.4), 32% more pushes DOWN (26.5, not an option). \"rest of the 1,200 milliliters\" - ignoring the infused volume pushes UP (40.9, not an option). \"by 5:00 p.m.\" - using 10 hours pushes DOWN (24.6, not an option); the base-ten clock subtraction pushes DOWN (30.7). \"15 drops per milliliter\" - ignoring pushes DOWN. No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "32.6": {
+    "step": "volume infused by 9:40 a.m.",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "37.4": {
+    "step": "volume infused by 9:40 a.m.",
+    "error_type": "sign slip",
+    "direction": "over"
+   },
+   "30.7": {
+    "step": "time from 9:40 a.m. to 5:00 p.m.",
+    "error_type": "other: clock times subtracted as base-ten numbers",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "infused volume is 32% less than scheduled by 9:40",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "1,200 mL minus what was infused",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "15 drops per milliliter",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "finish by 5:00 p.m.",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key; errors on both sides from three kinds, all inside the behind-schedule bound 30.0 and the whole-bag bound 40.9."
+  }
+ },
+ {
+  "id": "AM28I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "plant-food concentrate for a season of seedling waterings, U.S. label and imperial watering can",
+  "subskill": "dose per gallon, percent less, imperial gallons, count",
+  "prompt": "A plant-food label says to mix 16 milliliters of concentrate into each U.S. gallon of water for mature plants; for seedlings, it says to use a rate that is 25% less than that. Hana, who lives in Britain, waters her seedlings with a can that she fills with 2.25 imperial gallons of water each time. She waters the seedlings every 4 days: the first watering is 4 days after she transplants them on May 3, and the last watering is on June 24. Given that 1 imperial gallon = 1.20095 U.S. gallons, how many milliliters of concentrate will she use for all of these waterings, to the nearest hundredth of a milliliter?",
+  "choices": [
+   "449.64",
+   "702.56",
+   "421.53",
+   "453.96"
+  ],
+  "correct_answer": "421.53",
+  "explanation": "The seedling rate is 25% less than 16 mL per U.S. gallon: 16(0.75) = 12 mL per U.S. gallon. Each can holds 2.25(1.20095) = 2.70214 U.S. gallons, so each watering uses 12(2.70214) = 32.4256 mL. From May 3 to June 24 is 28 + 24 = 52 days; the waterings are on days 4, 8, ..., 52 after transplanting, so there are 52/4 = 13 of them. Total: 13(32.4256) = 421.53 mL. \"453.96\" counts 14 waterings (adding one for the transplant day). \"449.64\" finds the seedling rate as 16/1.25 (taking the 25% of the seedling rate instead of the label rate). \"702.56\" uses a rate 25% greater, 16(1.25).",
+  "solve": "const R=16,p=0.25,C=2.25,k=1.20095,days=(31-3)+24,n=days/4;return (n*R*(1-p)*C*k).toFixed(2);",
+  "distractor_solve": {
+   "453.96": "const R=16,p=0.25,C=2.25,k=1.20095,days=(31-3)+24,n=days/4;return ((n+1)*R*(1-p)*C*k).toFixed(2);",
+   "449.64": "const R=16,p=0.25,C=2.25,k=1.20095,days=(31-3)+24,n=days/4;return (n*R/(1+p)*C*k).toFixed(2);",
+   "702.56": "const R=16,p=0.25,C=2.25,k=1.20095,days=(31-3)+24,n=days/4;return (n*R*(1+p)*C*k).toFixed(2);"
+  },
+  "quantity_asked": "total concentrate in mL: 13 waterings x (16 x 0.75 mL per U.S. gallon) x (2.25 x 1.20095 U.S. gallons).",
+  "distractor_kind": {
+   "453.96": "error path: 14 waterings, 52/4 + 1 (the transplant day counted as a watering). (a) not a parameter extreme. (b) not an intermediate. (c) no cheap upper bound reaches it: the cheapest estimate, about 13 x 12 x 2.7 = 421, is the key itself; it lies inside (key, 562.04), where 562.04 is the label rate for all 13 waterings. (d) real fencepost error.",
+   "449.64": "error path: seedling rate 16/1.25 = 12.8 (25% taken of the seedling rate, the wrong base). (a) no extreme. (b) not an intermediate. (c) inside (key, 562.04). (d) real wrong-base percent error.",
+   "702.56": "error path: seedling rate 25% greater, 16 x 1.25 = 20. (a) no extreme. (b) not an intermediate. (c) above 562.04, the label-rate total; reaching that bound needs the count and the conversion, so it is not a one-step estimate. (d) real sign slip (less read as more)."
+  },
+  "distractor_meta": {
+   "453.96": {
+    "direction": "over",
+    "error_kind": "fencepost: one watering too many"
+   },
+   "449.64": {
+    "direction": "over",
+    "error_kind": "percent on the wrong base"
+   },
+   "702.56": {
+    "direction": "over",
+    "error_kind": "sign slip on the 25%"
+   }
+  },
+  "bounds": [
+   "total > 0",
+   "one watering uses 12 x 2.70 = 32.4 mL"
+  ],
+  "mechanism": [
+   "plant food concentrate per gallon",
+   "seedling rate percent less than label",
+   "imperial gallon to US gallon",
+   "water every 4 days count of waterings",
+   "total concentrate over a season"
+  ],
+  "arith_class_check": "No. Options 421.53, 449.64, 453.96, 702.56 are two-decimal values; 453.96 is 14/13 of the key, not a stem multiple, and no three form an even run.",
+  "one_sided_check": "Key smallest; distractors from three error kinds (fencepost, wrong-base percent, sign slip). Natural errors on the other side: dividing by 1.20095 instead of multiplying (imperial treated as smaller, 292.27) and ignoring the gallon conversion (351.00) both land below the key.",
+  "interior_parity_check": "Interior by value: 449.64 and 453.96, both two-decimal values with nonzero last digits; neither is rounder.",
+  "cheap_bound_check": "No cheap one-sided bound separates the key: the imperial conversion raises the total and the seedling cut lowers it, and the count needs the date arithmetic. The cheapest estimate, 13 x 12 x 2.7 = 421, is the key; the nearest distractor 449.64 is 6.7% above it, and the inverted conversion (292.27) and the unconverted gallons (351.00) sit below, so an estimate does not show which side the key is on.",
+  "trap_check": "Clauses: \"25% less than that for seedlings\" - ignoring pushes UP (562.04, not an option), dividing by 1.25 pushes UP (449.64), multiplying by 1.25 pushes UP (702.56). \"first watering is 4 days after ... May 3, last ... June 24\" - adding one pushes UP (453.96), dropping one pushes DOWN (389.11, not an option). \"1 imperial gallon = 1.20095 U.S. gallons\" - inverting pushes DOWN (292.27, not an option), ignoring pushes DOWN (351.00, not an option). No distractor comes from ignoring a clause.",
+  "direction_declaration": {
+   "453.96": {
+    "step": "number of waterings from May 7 to June 24",
+    "error_type": "other: fencepost, one too many",
+    "direction": "over"
+   },
+   "449.64": {
+    "step": "seedling rate from the 25% clause",
+    "error_type": "wrong base",
+    "direction": "over"
+   },
+   "702.56": {
+    "step": "seedling rate from the 25% clause",
+    "error_type": "sign slip",
+    "direction": "over"
+   },
+   "counter_error": {
+    "step": "imperial gallons to U.S. gallons",
+    "error_type": "inverted rate",
+    "solve": "const R=16,p=0.25,C=2.25,k=1.20095,days=(31-3)+24,n=days/4;return Number((n*R*(1-p)*C/k).toFixed(2));",
+    "direction": "under"
+   },
+   "stated_rules": [
+    {
+     "rule": "seedling rate 25% less than the label rate",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "1 imperial gallon = 1.20095 U.S. gallons",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "first watering 4 days after transplanting",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "every 4 days through June 24",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Smallest key; the seedling cut lowers and the imperial conversion raises, so no one-way reading; counter (inverting 1.20095) is natural. The 702.56 sign slip is the far one."
+  }
+ },
+ {
+  "id": "AM28I-11",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "trail race time with uphill, downhill and mud speed changes",
+  "subskill": "time over three sections from percent-related speeds",
+  "prompt": "A 12-kilometer trail race course has 3.6 kilometers of uphill sections, 3.5 kilometers of downhill sections, and flat sections for the rest of the course. On a dry trail, Kai runs the flat sections at 9.6 kilometers per hour, his uphill speed is 25% slower than his flat speed, and his downhill speed is 12% faster than his flat speed. On race day the trail was muddy, and on every section Kai's speed was 8% slower than his dry-trail speed for that kind of section. To the nearest tenth of a minute, how many minutes did Kai take to run the race?",
+  "choices": [
+   "86.8",
+   "85.2",
+   "87.1",
+   "86.6"
+  ],
+  "correct_answer": "87.1",
+  "explanation": "Dry speeds: flat 9.6 km/h, uphill 9.6(0.75) = 7.2 km/h, downhill 9.6(1.12) = 10.752 km/h. The flat sections total 12 - 3.6 - 3.5 = 4.9 km. Each muddy speed is 0.92 times the dry speed, so each time is the dry time divided by 0.92: (3.6/7.2 + 3.5/10.752 + 4.9/9.6)/0.92 = (0.5 + 0.32552 + 0.51042)/0.92 = 1.45211 hours = 87.13 minutes, or 87.1. The option \"86.8\" takes the downhill speed as 9.6/0.88 instead of 9.6(1.12). The option \"86.6\" lengthens the dry time by 8% (multiplying by 1.08) instead of dividing by 0.92. The option \"85.2\" divides 12 km by the plain average of the three muddy speeds, 8.449 km/h, instead of adding the section times.",
+  "solve": "const D=12,u=3.6,d=3.5,v=9.6,a=0.25,b=0.12,m=0.08;const fl=D-u-d;return ((u/(v*(1-a))+d/(v*(1+b))+fl/v)*60/(1-m)).toFixed(1);",
+  "distractor_solve": {
+   "86.8": "const D=12,u=3.6,d=3.5,v=9.6,a=0.25,b=0.12,m=0.08;const fl=D-u-d;return ((u/(v*(1-a))+d/(v/(1-b))+fl/v)*60/(1-m)).toFixed(1);",
+   "86.6": "const D=12,u=3.6,d=3.5,v=9.6,a=0.25,b=0.12,m=0.08;const fl=D-u-d;return ((u/(v*(1-a))+d/(v*(1+b))+fl/v)*60*(1+m)).toFixed(1);",
+   "85.2": "const D=12,u=3.6,d=3.5,v=9.6,a=0.25,b=0.12,m=0.08;const fl=D-u-d;return (D/(((v*(1-a)+v*(1+b)+v)/3)*(1-m))*60).toFixed(1);"
+  },
+  "quantity_asked": "race time in minutes: (3.6/7.2 + 3.5/10.752 + 4.9/9.6) hours divided by 0.92, times 60.",
+  "distractor_kind": {
+   "86.8": "error path: 12% faster downhill computed as 9.6/0.88 (percent on the wrong base), so the downhill is run slightly faster. (a) no parameter extreme. (b) not the dry time 79.4 or a section time. (c) inside 80.2 (dry time) to 108.7 (all at the slowest muddy speed). (d) real wrong-base error.",
+   "86.6": "error path: the 8% mud slowdown applied to the time as x1.08 instead of /0.92. (a) no extreme. (b) not an intermediate. (c) inside 80.2 to 108.7. (d) real wrong-base error.",
+   "85.2": "error path: total distance over the unweighted mean of the three muddy speeds (8.449 km/h) instead of summing section times. (a) no extreme. (b) not an intermediate; above the dry time 80.2. (c) inside 80.2 to 108.7. (d) real averaging-speeds error."
+  },
+  "distractor_meta": {
+   "86.8": {
+    "direction": "under",
+    "error_kind": "downhill percent on the wrong base"
+   },
+   "86.6": {
+    "direction": "under",
+    "error_kind": "mud percent applied to time on the wrong base"
+   },
+   "85.2": {
+    "direction": "under",
+    "error_kind": "unweighted mean of section speeds"
+   }
+  },
+  "bounds": [
+   "time > dry-trail time 80.2 min (mud only slows)",
+   "time < 12 km at the slowest muddy speed (7.2 x 0.92 km/h) = 108.7 min"
+  ],
+  "mechanism": [
+   "trail race uphill downhill flat sections",
+   "speed a percent slower or faster than flat speed",
+   "muddy trail slows every speed by a percent",
+   "sum of section times"
+  ],
+  "arith_class_check": "No. All four are tenths with non-zero last digits; no option is a stem multiple of another (87.1/86.6 = 1.006, not 1.08 or 0.92).",
+  "one_sided_check": "key largest; distractors from a wrong-base downhill percent, a wrong-base mud percent applied to the time, and an unweighted mean of the section speeds (three kinds). Natural errors on the other side: ignoring the downhill speed-up gives 89.7, and making the downhill 12% SLOWER gives 92.9, both above the key; the downhill clause pushes up when neglected while the uphill and mud clauses push down.",
+  "interior_parity_check": "Interior by value: 86.6 and 86.8, both tenths with non-zero last digits; neither is rounder.",
+  "cheap_bound_check": "Cheapest one-sided bound: mud only slows Kai, so the time exceeds the dry time 80.2 min (lower); all three distractors (85.2, 86.6, 86.8) lie above it, on the key's side. The downhill clause pulls the other way, so no cheap upper bound sits below the key; the all-slowest bound is 108.7. The nearest distractor 86.8 is 0.3 min below the key.",
+  "trap_check": "Clauses: \"uphill speed is 25% slower\" - reversing it pushes DOWN (74.1, not an option), ignoring it pushes DOWN (79.0, not an option); \"downhill speed is 12% faster\" - /0.88 pushes DOWN (86.8), ignoring it pushes UP (89.7, not an option), reversing it pushes UP (92.9, not an option); \"8% slower\" on race day - x1.08 on the time pushes DOWN (86.6), ignoring it pushes DOWN (80.2, not an option); averaging the three speeds (85.2) is a method error, not a clause. One distractor per clause.",
+  "direction_declaration": {
+   "86.8": {
+    "step": "downhill speed",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "86.6": {
+    "step": "muddy-trail adjustment",
+    "error_type": "wrong base",
+    "direction": "under"
+   },
+   "85.2": {
+    "step": "combining the sections",
+    "error_type": "other: unweighted mean of speeds",
+    "direction": "under"
+   },
+   "counter_error": {
+    "step": "downhill speed",
+    "error_type": "omission",
+    "solve": "const D=12,u=3.6,d=3.5,v=9.6,a=0.25,b=0.12,m=0.08;const fl=D-u-d;return Number(((u/(v*(1-a))+d/v+fl/v)*60/(1-m)).toFixed(2));",
+    "direction": "over"
+   },
+   "stated_rules": [
+    {
+     "rule": "uphill speed 25% slower than flat",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "downhill speed 12% faster than flat",
+     "neglect_direction": "over"
+    },
+    {
+     "rule": "race-day speeds 8% slower than dry",
+     "neglect_direction": "under"
+    },
+    {
+     "rule": "flat sections are the rest of the 12 km",
+     "neglect_direction": "none"
+    }
+   ]
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Largest key; under errors are two wrong-base percents and an unweighted mean speed; counter is ignoring the downhill speed-up (89.7, over)."
+  }
+ }
+]
