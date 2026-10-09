@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "set": "AN5-05",
+    "atypical_fact": "The class that is moving goes to a SMALLER room: Room 409 fits eighteen mats while intermediate yoga regularly draws twenty-five, so a move that a listener would assume is an upgrade leaves regulars without a place.",
+    "revised_fact": "Intermediate yoga: Mondays after beginner yoga in Room 341 -> Wednesdays at 7:30 p.m. in Room 409; a planned move of beginner yoga to the same Wednesday slot was dropped, so beginners stay on Mondays at 6 p.m.",
+    "q1_kind": "D",
+    "q2_kind": "I",
+    "self_check": [
+      "Passage word count: 138 words after 'Transcript: ' (90-170). One speaker (Keiko Ferrante), spoken register.",
+      "Atypical + revised facts present: intermediate Monday/Room 341 -> Wednesday 7:30/Room 409; beginner move announced as planned then dropped; Room 409 holds 18 vs a regular 25.",
+      "Kind D 2x2 grid: day {Mondays, Wednesdays} x time {6 p.m., 7:30 p.m.}; options Mondays-6, Mondays-7:30, Wednesdays-6, Wednesdays-7:30; each element appears in exactly two options.",
+      "gridKey 'earlier' honoured: the key (Mondays at 6 p.m.) is the first-mentioned pair; the LAST-mentioned day and time are 'that Wednesday evening slot' / 7:30, which belong to intermediate yoga and the dropped plan. The speaker never restates Monday or 6 p.m. after the detour ('the beginners aren't affected'), so 'most recently mentioned' gives a wrong answer.",
+      "Q1 key-length rank 1 hit: key 17 / 20 / 20 / 23 -> key uniquely shortest; ratio 23/17 = 1.35 <= 1.4.",
+      "Q2 key-length rank 3 hit: 49 / 39 / 43 / key 48 -> sorted 39, 43, 48, 49, key third; ratio 49/39 = 1.26 <= 1.4.",
+      "Default value as distractor: Q2 'It will still meet right after the beginner class' is the usual arrangement; Q1 'Wednesdays at 7:30 p.m.' is the other group's new slot and the abandoned plan for beginners.",
+      "Flat prior: Q1 four day/time pairs, all ordinary evening class slots; Q2 four ordinary changes a class might undergo (timing, fee, instructor, capacity). The stem-alone guess - a move means a bigger or better room - is not offered as a key, and the capacity drop runs against it.",
+      "Form symmetry: Q1 options identical template '<Day>s at <time>'; Q2 options all 'It will <verb phrase>' with the same certainty, no hedges, no absolutes.",
+      "Stems name a referent only: Q1 'When will beginner yoga meet next term?'; Q2 'What can be inferred about intermediate yoga next term?'",
+      "No lexical echo: Q1 key (Mondays, 6, p.m.) shares no content word with its stem; Q2 key (fewer, places, usual, turnout) shares none with its stem.",
+      "No sibling leak: Q2 options mention timing relative to the beginner class, fee, instructor and capacity, but none states or rules out the beginners' day or time; Q1 options are bare times and say nothing about capacity. Neither stem restates the other's content.",
+      "Not world knowledge: room capacity versus turnout is a fact only this announcement supplies.",
+      "One defensible answer: Q1 'Beginner yoga has met on Mondays at 6 p.m. ... the beginners aren't affected'; Q2 'Room 409 fits eighteen mats, and last term we regularly had twenty-five people'. Fee ('It isn't'), instructor ('I'll still be the one teaching it') and timing (moves to Wednesdays) distractors are each contradicted."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-05-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, this is Keiko Ferrante at the recreation centre with next term's yoga schedule. Beginner yoga has met on Mondays at 6 p.m. in Room 341 for years, and intermediate yoga has followed it in the same room. Next term, intermediate yoga moves to Wednesdays at 7:30 p.m., in Room 409. We had planned to move the beginner class to that Wednesday evening slot as well, but we've dropped that idea, so the beginners aren't affected. A few of you asked whether the intermediate fee is going up. It isn't, and I'll still be the one teaching it. Just so you know, Room 409 fits eighteen mats, and last term we regularly had twenty-five people at intermediate sessions. Registration opens Friday at 9 a.m. at the front desk, or call extension 5216 if you can't come in.",
+      "passageGroupId": "AN5-05",
+      "prompt": "[Announcement — Recreation centre] When will beginner yoga meet next term?",
+      "choices": [
+        "Mondays at 6 p.m.",
+        "Mondays at 7:30 p.m.",
+        "Wednesdays at 6 p.m.",
+        "Wednesdays at 7:30 p.m."
+      ],
+      "correct_answer": "Mondays at 6 p.m.",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, \"Beginner yoga has met on Mondays at 6 p.m.,\" and although there was a plan to move it to \"that Wednesday evening slot,\" \"we've dropped that idea, so the beginners aren't affected.\" \"Wednesdays at 7:30 p.m.\" is the new slot for intermediate yoga and the abandoned plan for beginners. \"Mondays at 7:30 p.m.\" and \"Wednesdays at 6 p.m.\" each pair the beginners' real day or time with the wrong other half."
+    },
+    {
+      "id": "AN5-05-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, this is Keiko Ferrante at the recreation centre with next term's yoga schedule. Beginner yoga has met on Mondays at 6 p.m. in Room 341 for years, and intermediate yoga has followed it in the same room. Next term, intermediate yoga moves to Wednesdays at 7:30 p.m., in Room 409. We had planned to move the beginner class to that Wednesday evening slot as well, but we've dropped that idea, so the beginners aren't affected. A few of you asked whether the intermediate fee is going up. It isn't, and I'll still be the one teaching it. Just so you know, Room 409 fits eighteen mats, and last term we regularly had twenty-five people at intermediate sessions. Registration opens Friday at 9 a.m. at the front desk, or call extension 5216 if you can't come in.",
+      "passageGroupId": "AN5-05",
+      "prompt": "[Announcement — Recreation centre] What can be inferred about intermediate yoga next term?",
+      "choices": [
+        "It will still meet right after the beginner class",
+        "It will charge a higher fee than before",
+        "It will be taught by a different instructor",
+        "It will have fewer places than its usual turnout"
+      ],
+      "correct_answer": "It will have fewer places than its usual turnout",
+      "difficulty": "hard",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, \"Room 409 fits eighteen mats, and last term we regularly had twenty-five people at intermediate sessions,\" so the new room cannot hold the usual group. \"It will still meet right after the beginner class\" describes the old arrangement; intermediate yoga \"moves to Wednesdays at 7:30 p.m.\" \"It will charge a higher fee than before\" is contradicted by \"It isn't.\" \"It will be taught by a different instructor\" is contradicted by \"I'll still be the one teaching it.\""
+    }
+  ]
+}

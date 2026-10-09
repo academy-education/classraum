@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "set": "AN5-02",
+    "atypical_fact": "A resident who cannot make the 4-8 p.m. window calls ext. 4423 before noon and the package is left with the floor's resident adviser; and fifth-floor residents, though grouped with floors three to five, pick up in ground-floor Room 112.",
+    "revised_fact": "Usually packages are picked up at the lobby front desk -> for two weeks Room 112 (floors 1-2, and now floor 5) and Room 405 (floors 3-4).",
+    "q1_kind": "I",
+    "q2_kind": "R",
+    "self_check": [
+      "Passage: 169 words after the Transcript: prefix (limit 90-170), one speaker, plain register; byte-identical in both items, passageGroupId AN5-02.",
+      "Atypical fact: missed-window packages go to the floor's resident adviser after a before-noon call; fifth floor uses Room 112. Revised fact: lobby front desk -> Room 112 / Room 405.",
+      "Default value as distractor: Q2 option 'At the front desk in the main lobby' is the usual arrangement.",
+      "Q1 kind I: the stem-alone prudent answers (ask the office to bring it up; call to have it held overnight) are distractors, each contradicted ('we can't bring packages up to rooms'; the call must be before noon and the package goes to the adviser). The roommate option is contradicted by 'Please don't send a roommate'. The key needs the specific before-noon/adviser detail.",
+      "Q1 key length rank 3: chars [70 key, 71, 69, 64]; sorted 64,69,70,71; ratio 71/64 = 1.11.",
+      "Q2 kind R: options are the default (lobby front desk), the arrangement for another group (Room 405, floors three to four), a real detail attached to the wrong thing (side-door mailroom is for letters), and the key (Room 112, which the transcript assigns to fifth floor in a correction).",
+      "Q2 key length rank 2: chars [36 key, 45, 35, 37]; sorted 35,36,37,45; ratio 45/35 = 1.29.",
+      "Form symmetry: Q1 all '<verb> ... to have it <past participle> ...' or equivalent action-plus-purpose, same specificity, no absolutes or hedges; Q2 all 'In/At <place>, <locator>' prepositional phrases of the same shape.",
+      "Stems name a referent only: 'a resident who is out every evening' and 'fifth-floor residents'; neither narrates the change or the correction.",
+      "No lexical echo: Q1 key shares no content word with its stem ('resident' appears only in distractors); Q2 key shares 'floor' with the stem, but the distractor 'fourth-floor elevator' shares it too.",
+      "No sibling leak: Q1 options name no room or pickup place, so they neither state nor rule out Room 112/405/front desk/mailroom; Q2 options say nothing about calls, the adviser, roommates or the time window; neither stem restates the other.",
+      "Not world knowledge: what an absent resident should do is a local procedure (before-noon call, adviser hand-off) that common sense does not reach; which room fifth floor uses depends on the correction.",
+      "One defensible answer each: every distractor is contradicted by a quoted line or misattaches a real detail.",
+      "Pool use: Tobias Harrow, Halden Hall, Room 112, Room 405, ext. 4423 (none used in AN5-01 or AN5-03)."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-02-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hello, Halden Hall, this is Tobias Harrow from the housing office. Packages are normally picked up at the front desk in the lobby. Starting Monday, the lobby floor is being refinished and the desk won't be staffed, so for the next two weeks packages for floors one and two will be in Room 112, the study lounge on the ground floor, and packages for floors three to five will be in Room 405, beside the fourth-floor elevator. Fifth floor, one change for you: Room 405 turned out to be too small for three floors, so you'll pick up in Room 112 with floors one and two. Letters still go to the mailroom by the side door. Pickup runs from 4 to 8 p.m. only, and we can't bring packages up to rooms. If you can't make that window, call extension 4423 before noon, and we'll leave your package with your floor's resident adviser. Please don't send a roommate; we release a package only to the person named on it.",
+      "passageGroupId": "AN5-02",
+      "listeningTask": "announcement",
+      "prompt": "[Announcement — Residence hall] What should a resident who is out every evening do to get a package?",
+      "choices": [
+        "Call extension 4423 before noon to have it left with the floor adviser",
+        "Call extension 4423 after 8 p.m. to have it held until the next morning",
+        "Email the housing office to have it carried up to the resident's room",
+        "Send a roommate to collect it with a note signed by the resident"
+      ],
+      "correct_answer": "Call extension 4423 before noon to have it left with the floor adviser",
+      "difficulty": "medium",
+      "explanation": "Pickup runs \"from 4 to 8 p.m. only,\" which an evening-absent resident misses; the speaker says, \"If you can't make that window, call extension 4423 before noon, and we'll leave your package with your floor's resident adviser.\" \"Call extension 4423 after 8 p.m. to have it held until the next morning\" gets the call time wrong and invents an overnight hold. \"Email the housing office to have it carried up to the resident's room\" is contradicted by \"we can't bring packages up to rooms.\" \"Send a roommate to collect it with a note signed by the resident\" is contradicted by \"Please don't send a roommate; we release a package only to the person named on it.\""
+    },
+    {
+      "id": "AN5-02-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hello, Halden Hall, this is Tobias Harrow from the housing office. Packages are normally picked up at the front desk in the lobby. Starting Monday, the lobby floor is being refinished and the desk won't be staffed, so for the next two weeks packages for floors one and two will be in Room 112, the study lounge on the ground floor, and packages for floors three to five will be in Room 405, beside the fourth-floor elevator. Fifth floor, one change for you: Room 405 turned out to be too small for three floors, so you'll pick up in Room 112 with floors one and two. Letters still go to the mailroom by the side door. Pickup runs from 4 to 8 p.m. only, and we can't bring packages up to rooms. If you can't make that window, call extension 4423 before noon, and we'll leave your package with your floor's resident adviser. Please don't send a roommate; we release a package only to the person named on it.",
+      "passageGroupId": "AN5-02",
+      "listeningTask": "announcement",
+      "prompt": "[Announcement — Residence hall] Where will fifth-floor residents pick up packages during the next two weeks?",
+      "choices": [
+        "In Room 112, the ground-floor lounge",
+        "In Room 405, beside the fourth-floor elevator",
+        "At the front desk in the main lobby",
+        "In the mailroom next to the side door"
+      ],
+      "correct_answer": "In Room 112, the ground-floor lounge",
+      "difficulty": "hard",
+      "explanation": "Floors three to five are first assigned to Room 405, but then: \"Fifth floor, one change for you: Room 405 turned out to be too small for three floors, so you'll pick up in Room 112 with floors one and two.\" \"In Room 405, beside the fourth-floor elevator\" is the arrangement that remains for floors three and four. \"At the front desk in the main lobby\" is the usual arrangement, suspended because the lobby floor is being refinished. \"In the mailroom next to the side door\" is where \"Letters\" go, not packages."
+    }
+  ]
+}

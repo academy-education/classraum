@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "set": "AN5-14",
+    "atypical_fact": "Students without steel-toed boots still come on the trip and spend the morning on the upper viewing platform; the department lends hard hats but not boots, and nobody does the written alternative assignment.",
+    "revised_fact": "Buses usually leave from the front steps of Orrin Pavilion at 7:00 a.m. -> first-years leave from the loading dock behind the pavilion at 6:30 a.m. (third-years from the west car park at 8:15 a.m.).",
+    "q1_kind": "I",
+    "q2_kind": "R",
+    "self_check": [
+      "Passage word count: 149 (90-170), one speaker, plain spoken register, starts with 'Transcript: '.",
+      "Atypical fact: boot-less students attend and stay on the upper viewing platform (not borrow, buy, or do an alternative assignment). Revised fact: front steps 7:00 -> loading dock 6:30 for first-years.",
+      "Default value present as distractor: 'From the front steps at 7:00 a.m.' is a Q2 option; the official-channel/prudent answers (borrow from the department, buy a pair, do the alternative assignment) are all Q1 distractors.",
+      "Q1 kind I: the answer a reader assumes from the stem alone (borrow from the department / do an alternative assignment) is a distractor; the key follows only from 'you'll spend the morning on the upper viewing platform'.",
+      "Q1 key-length rank 3: lengths 49 / 46 / 43 / 47 (key); sorted 43, 46, 47, 49 -> key 3rd, unique; ratio 49/43 = 1.14.",
+      "Q2 kind R: options are the usual arrangement (front steps 7:00), the other group's arrangement (west car park 8:15), the key assigned to first-years (loading dock 6:30), and a cross of the other group's place with the first-year time (west car park 6:30).",
+      "Q2 key-length rank 2: lengths 33 / 34 (key) / 35 / 35; key uniquely 2nd; ratio 35/33 = 1.06.",
+      "Flat prior: Q1 four ordinary courses of action, all bare imperative verb phrases of similar length; Q2 four place+time pairs in identical frame.",
+      "Form symmetry: no absolutes, no hedges, no option vaguer than the others; every Q1 option is a single concrete action.",
+      "Stems name a referent only: Q1 'a student who does not own steel-toed boots'; Q2 'first-year students'. Neither narrates the change.",
+      "No lexical echo: Q1 key ('Spend the morning on the upper viewing platform') shares no content word with its stem; Q2 key shares no content word with its stem ('bus' appears in no option).",
+      "No sibling leak: Q1 options say nothing about departure place or time ('Saturday's trip' names only the trip day, which the Q2 stem does not ask); Q2 options say nothing about boots or hard hats.",
+      "Not world knowledge: what a student without boots should do is set by this transcript, against the common-sense answers.",
+      "Every distractor contradicted: borrow -> 'We don't have boots to lend'; buy -> 'please don't go out and buy a pair'; alternative assignment -> 'Nobody needs to do the written alternative assignment'; Q2 front steps 7:00 is the usual, west car park 8:15 is the third-years', west car park 6:30 is a cross.",
+      "Names used from pool E: Henrik Castellanos, Orrin Pavilion, Room 364. Invented distinctive place (pool has no field site): Ashcombe Quarry."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-14-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good afternoon, this is Henrik Castellanos with details for Saturday's geology trip to Ashcombe Quarry. Usually our field-trip buses leave from the front steps of Orrin Pavilion at 7:00 a.m. This time the quarry has given first-year students an early slot, so first-years will leave from the loading dock behind the pavilion at 6:30. The third-year mapping group leaves from the west car park at 8:15. The quarry also requires hard hats and steel-toed boots on the lower benches. We'll lend hard hats, so collect one from Room 364 on Friday afternoon. We don't have boots to lend, and please don't go out and buy a pair for one day. If you don't own any, come anyway: you'll spend the morning on the upper viewing platform, where boots aren't needed, and join everyone at the riverbank site after lunch. Nobody needs to do the written alternative assignment this year.",
+      "passageGroupId": "AN5-14",
+      "prompt": "[Announcement — Geology field trip] What should a student who does not own steel-toed boots do?",
+      "choices": [
+        "Borrow a pair along with a hard hat from Room 364",
+        "Buy an inexpensive pair before Saturday's trip",
+        "Complete the written alternative assignment",
+        "Spend the morning on the upper viewing platform"
+      ],
+      "correct_answer": "Spend the morning on the upper viewing platform",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, \"If you don't own any, come anyway: you'll spend the morning on the upper viewing platform, where boots aren't needed.\" \"Borrow a pair along with a hard hat from Room 364\" is wrong: only hard hats are lent there, and \"We don't have boots to lend.\" \"Buy an inexpensive pair before Saturday's trip\" is wrong: \"please don't go out and buy a pair for one day.\" \"Complete the written alternative assignment\" is wrong: \"Nobody needs to do the written alternative assignment this year.\""
+    },
+    {
+      "id": "AN5-14-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good afternoon, this is Henrik Castellanos with details for Saturday's geology trip to Ashcombe Quarry. Usually our field-trip buses leave from the front steps of Orrin Pavilion at 7:00 a.m. This time the quarry has given first-year students an early slot, so first-years will leave from the loading dock behind the pavilion at 6:30. The third-year mapping group leaves from the west car park at 8:15. The quarry also requires hard hats and steel-toed boots on the lower benches. We'll lend hard hats, so collect one from Room 364 on Friday afternoon. We don't have boots to lend, and please don't go out and buy a pair for one day. If you don't own any, come anyway: you'll spend the morning on the upper viewing platform, where boots aren't needed, and join everyone at the riverbank site after lunch. Nobody needs to do the written alternative assignment this year.",
+      "passageGroupId": "AN5-14",
+      "prompt": "[Announcement — Geology field trip] Where and when do first-year students catch the bus?",
+      "choices": [
+        "From the front steps at 7:00 a.m.",
+        "From the loading dock at 6:30 a.m.",
+        "From the west car park at 8:15 a.m.",
+        "From the west car park at 6:30 a.m."
+      ],
+      "correct_answer": "From the loading dock at 6:30 a.m.",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says \"first-years will leave from the loading dock behind the pavilion at 6:30.\" \"From the front steps at 7:00 a.m.\" is the usual arrangement (\"Usually our field-trip buses leave from the front steps of Orrin Pavilion at 7:00 a.m.\"), which changes this time. \"From the west car park at 8:15 a.m.\" is the third-year mapping group's arrangement. \"From the west car park at 6:30 a.m.\" attaches the first-years' time to the third-years' place."
+    }
+  ]
+}

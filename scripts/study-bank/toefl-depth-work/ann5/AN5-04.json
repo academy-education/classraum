@@ -1,0 +1,59 @@
+{
+  "meta": {
+    "set": "AN5-04",
+    "atypical_fact": "Graduating seniors pick up printed transcripts in Room 233 on the upper floor, not at the service counter and not where other continuing students go; and a name-change request must start with a phone call to ext. 5208, not with an online or paper request or an in-person question at a pickup window.",
+    "revised_fact": "Printed-transcript pickup: service counter in Room 127 of Marston Hall -> cashier's window on the ground floor (continuing students) / Room 233 upper floor (graduating seniors); processing time: three business days -> five.",
+    "q1_kind": "R",
+    "q2_kind": "I",
+    "self_check": [
+      "Passage word count: 149 words after 'Transcript: ' (90-170). One speaker (Mateus Albrecht), plain spoken register, no headings/URLs.",
+      "Atypical + revised facts present: usual pickup at Room 127 counter -> cashier's window for continuing students, Room 233 for graduating seniors; 3 -> 5 business days.",
+      "Default value as distractor: Q1 'At the counter in Room 127 of Marston Hall' is the usual arrangement; Q1 'At the cashier's window on the ground floor' is the arrangement for another group (continuing students); 'In the graduate office in Pellow Annex' is a third group's (graduate students).",
+      "Q1 (R) key-length rank 4 hit: lengths 42 / 43 / 38 / key 46 -> key is uniquely longest; ratio 46/38 = 1.21 <= 1.4.",
+      "Q2 (I) key-length rank 1 hit: key 33 / 42 / 37 / 42 -> key uniquely shortest; ratio 42/33 = 1.27 <= 1.4.",
+      "Flat prior: Q1 = four pickup locations, each one the speaker actually named; Q2 = four ways of starting a request (online form, paper, in person, phone), none the uniquely sensible real-world move.",
+      "Form symmetry: Q1 options are all 'At/In the <place> <locator>' (two 'At', two 'In'), each with a room/building/floor qualifier; Q2 options are all bare imperative verb phrases of one clause, no hedges, no absolutes.",
+      "Stems name a referent only: Q1 'Where will graduating seniors pick up printed transcripts during the next three weeks?'; Q2 'What does the speaker tell students who have changed their name to do?' Neither narrates the change.",
+      "No lexical echo: Q1 key content words (Room, 233, upper, floor, Marston, Hall) share none with its stem; Q2 key content words (call, office, extension, 5208) share none with its stem.",
+      "No sibling leak: Q2 options mention the cashier's window, online form, paper request and a phone extension - none says or rules out where seniors collect; Q1 options are places and say nothing about name changes or phoning. Stems do not restate each other.",
+      "Not world knowledge: which room seniors use and which channel a name change goes through are arbitrary office arrangements; 'in person at the window' (the cautious official move) is a distractor.",
+      "One defensible answer: Q1 transcript 'your transcripts will be held in Room 233, on the upper floor'; Q2 'call extension 5208 before you send anything, online or on paper. Please don't bring it up at the pickup windows' contradicts each distractor."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-04-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good morning, this is Mateus Albrecht from the Registrar's Office, with some changes for the next three weeks. Normally you pick up printed transcripts at our service counter in Room 127 of Marston Hall. While that counter is being rebuilt, continuing students will collect them at the cashier's window on the ground floor. Graduating seniors are handled separately this time: your transcripts will be held in Room 233, on the upper floor, because we're packaging them with your degree audit. Graduate students aren't affected and still pick theirs up at the graduate office in Pellow Annex. Processing usually takes three business days, but please allow five for now, since we're short two staff members. One more thing. If your request involves a name change, call extension 5208 before you send anything, online or on paper. Please don't bring it up at the pickup windows; they can't see your records.",
+      "passageGroupId": "AN5-04",
+      "prompt": "[Announcement — Registrar office] Where will graduating seniors pick up printed transcripts during the next three weeks?",
+      "choices": [
+        "At the counter in Room 127 of Marston Hall",
+        "At the cashier's window on the ground floor",
+        "In the graduate office in Pellow Annex",
+        "In Room 233 on the upper floor of Marston Hall"
+      ],
+      "correct_answer": "In Room 233 on the upper floor of Marston Hall",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, \"Graduating seniors are handled separately this time: your transcripts will be held in Room 233, on the upper floor.\" \"At the counter in Room 127 of Marston Hall\" is the usual pickup point, which is closed while it is rebuilt. \"At the cashier's window on the ground floor\" is where continuing students, not seniors, collect transcripts. \"In the graduate office in Pellow Annex\" is where graduate students pick theirs up."
+    },
+    {
+      "id": "AN5-04-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good morning, this is Mateus Albrecht from the Registrar's Office, with some changes for the next three weeks. Normally you pick up printed transcripts at our service counter in Room 127 of Marston Hall. While that counter is being rebuilt, continuing students will collect them at the cashier's window on the ground floor. Graduating seniors are handled separately this time: your transcripts will be held in Room 233, on the upper floor, because we're packaging them with your degree audit. Graduate students aren't affected and still pick theirs up at the graduate office in Pellow Annex. Processing usually takes three business days, but please allow five for now, since we're short two staff members. One more thing. If your request involves a name change, call extension 5208 before you send anything, online or on paper. Please don't bring it up at the pickup windows; they can't see your records.",
+      "passageGroupId": "AN5-04",
+      "prompt": "[Announcement — Registrar office] What does the speaker tell students who have changed their name to do?",
+      "choices": [
+        "Call the office at extension 5208",
+        "Submit the request through the online form",
+        "Send a paper request to the registrar",
+        "Raise it in person at the cashier's window"
+      ],
+      "correct_answer": "Call the office at extension 5208",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, \"If your request involves a name change, call extension 5208 before you send anything, online or on paper.\" \"Submit the request through the online form\" and \"Send a paper request to the registrar\" are exactly what such students are told not to do before calling. \"Raise it in person at the cashier's window\" is ruled out by \"Please don't bring it up at the pickup windows; they can't see your records.\""
+    }
+  ]
+}

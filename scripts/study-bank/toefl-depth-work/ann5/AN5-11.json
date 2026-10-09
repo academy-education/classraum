@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "set": "AN5-11",
+    "atypical_fact": "Flu-vaccine appointments must be booked by phoning extension 7114, not through the patient portal that every other health-centre appointment uses (and the front desk cannot book them).",
+    "revised_fact": "Flu clinic: walk-in queue in the health centre lobby last year -> Room 248 in the Bramwell Centre, appointments Tuesday/Wednesday, walk-in Thursday only.",
+    "q1_kind": "I",
+    "q2_kind": "P",
+    "self_check": [
+      "Word count: transcript body 133 words (90-170).",
+      "Atypical fact: booking by phone on ext. 7114, not the patient portal / front desk. Revised fact: lobby walk-in queue last year -> Room 248 Bramwell Centre with Tue/Wed appointments and Thursday walk-in.",
+      "Default value as distractor: Q1 \"Book a time slot through the patient portal\" (the usual channel, \"how every other appointment works\").",
+      "Q1 kind I: the prudent/official-channel answer (portal) and the other in-house channel (front desk) are distractors; the key follows only from \"Phone extension 7114 instead\"; ext. 7129 is a real transcript detail attached to the wrong purpose (insurance).",
+      "Q1 key length rank 3: 38/40/41*/43, no ties; ratio 1.13.",
+      "Q2 kind P: line \"Our lobby has never been busier\" alone most naturally suggests long waits or booking early (two distractors); the key (relocation) is revealed only by the following \"So instead of lining up there ... you will come to Room 248 in the Bramwell Centre\".",
+      "Q2 key length rank 4: 67 vs 59/57/54; ratio 67/54 = 1.24.",
+      "Flat prior: Q1 four booking channels, all \"<contact X> ... book a time slot\"; Q2 four plausible reasons a speaker mentions a busy lobby.",
+      "Form symmetry: no absolutes (\"only\" deliberately avoided: \"limited to a single day\"); same verb frame across options; no option vaguer or more hedged.",
+      "Stems name a referent only; no lexical echo (Q1 key words phone/extension/book/slot absent from stem; Q2 stem words lobby/busier absent from key).",
+      "No sibling leak: Q1 options name booking channels only and never mention location or the move; Q2 options name reasons and never mention phone, portal, desk or extensions. Q2 key (\"another building\") does not discriminate among Q1 options.",
+      "Not world knowledge: common sense says use the portal or the desk; both are wrong here.",
+      "One defensible answer each: portal and front desk explicitly excluded; 7129 is the insurance line; waits/early booking not said; walk-in day explained by nurses.",
+      "Pool: Sven Ito, Room 248, Bramwell Centre, ext. 7114, ext. 7129 used (each once across my sets)."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-11-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, Sven Ito from the student health centre. Our flu vaccine clinic starts next week, and a few things work differently this year. Our lobby has never been busier. So instead of lining up there like last year, you'll come to Room 248 in the Bramwell Centre. Tuesday and Wednesday are by appointment. Thursday is walk-in, because that's when we have extra nurses from the city hospital. To book a Tuesday or Wednesday slot, please don't use the patient portal. I know that's how every other appointment works, but the portal can't see the clinic's calendar, and neither can our front desk. Phone extension 7114 instead. If you have a question about insurance, that's a different line, extension 7129. The vaccine itself is free, so there's nothing to pay on the day.",
+      "passageGroupId": "AN5-11",
+      "prompt": "[Announcement — Student health centre] What should a student who wants a flu vaccine on Wednesday do first?",
+      "choices": [
+        "Phone extension 7114 and book a time slot",
+        "Call extension 7129 and book a time slot",
+        "Book a time slot through the patient portal",
+        "Ask the front desk to book a time slot"
+      ],
+      "correct_answer": "Phone extension 7114 and book a time slot",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "Wednesday is \"by appointment,\" and to book a Tuesday or Wednesday slot the speaker says \"Phone extension 7114 instead.\" \"Book a time slot through the patient portal\" is the usual method, but \"the portal can't see the clinic's calendar.\" \"Ask the front desk to book a time slot\" is wrong: \"neither can our front desk.\" \"Call extension 7129 and book a time slot\" uses the insurance line: \"If you have a question about insurance, that's a different line, extension 7129.\""
+    },
+    {
+      "id": "AN5-11-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, Sven Ito from the student health centre. Our flu vaccine clinic starts next week, and a few things work differently this year. Our lobby has never been busier. So instead of lining up there like last year, you'll come to Room 248 in the Bramwell Centre. Tuesday and Wednesday are by appointment. Thursday is walk-in, because that's when we have extra nurses from the city hospital. To book a Tuesday or Wednesday slot, please don't use the patient portal. I know that's how every other appointment works, but the portal can't see the clinic's calendar, and neither can our front desk. Phone extension 7114 instead. If you have a question about insurance, that's a different line, extension 7129. The vaccine itself is free, so there's nothing to pay on the day.",
+      "passageGroupId": "AN5-11",
+      "prompt": "[Announcement — Student health centre] Why does the speaker say, \"Our lobby has never been busier\"?",
+      "choices": [
+        "To explain why this year's clinic is being held in another building",
+        "To warn students to expect long waits at the vaccine clinic",
+        "To encourage students to book their appointments early",
+        "To explain why walk-in visits are limited to a single day"
+      ],
+      "correct_answer": "To explain why this year's clinic is being held in another building",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The next sentence is \"So instead of lining up there like last year, you'll come to Room 248 in the Bramwell Centre\": the busy lobby is the reason the clinic moves to another building. \"To warn students to expect long waits at the vaccine clinic\" is wrong: no wait at the clinic is mentioned; the lobby is being avoided. \"To encourage students to book their appointments early\" is wrong: the speaker never asks for early booking; the next sentence is about location. \"To explain why walk-in visits are limited to a single day\" is wrong: Thursday is walk-in \"because that's when we have extra nurses from the city hospital.\""
+    }
+  ]
+}

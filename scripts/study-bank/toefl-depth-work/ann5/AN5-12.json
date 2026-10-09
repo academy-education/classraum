@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "set": "AN5-12",
+    "atypical_fact": "Undergraduate travel signatures take six working days this month (graduate letters go through the graduate school and take four), not the usual three.",
+    "revised_fact": "Travel signature turnaround: usually three working days at the office front desk -> six for undergraduates (four for graduates via the graduate school); winter travel briefing: Wednesday at eleven, Room 329 -> Thursday at noon, Room 433.",
+    "q1_kind": "R",
+    "q2_kind": "D",
+    "gridKey": "latest",
+    "self_check": [
+      "Word count: transcript body 137 words (90-170).",
+      "Atypical fact: undergraduate signatures take six working days this month; graduates are routed through the graduate school (four). Revised facts: usual three working days -> six (undergraduates); briefing Wednesday at eleven, Room 329 -> Thursday at noon, Room 433.",
+      "Default value as distractor: Q1 \"Three working days\" (usual turnaround); Q2 \"On Wednesday at eleven\" (original plan).",
+      "Q1 kind R: options are the asked-about group (six, key), the usual arrangement (three), another group (graduates, four) and a real duration attached to another document (registrar, one).",
+      "Q1 key length rank 2: 15/16*/17/18, no ties; ratio 1.20. All durations within a plausible processing band.",
+      "Q2 kind D, gridKey latest: 2x2 grid Wednesday/Thursday x eleven/noon, each element in exactly two options; key = last-mentioned values (Thursday, noon). The two mixed cells are never stated.",
+      "Q2 key length rank 1: 19*/20/21/22, no ties; ratio 1.16.",
+      "Flat prior / form symmetry: Q1 identical \"N working day(s)\" frame (singular forced by grammar for one); Q2 identical \"On <day> at <time>\" frame; no absolutes or hedges.",
+      "Stems name a referent only; no lexical echo (Q1 stem words travel/signature/undergraduate/month absent from all options; Q2 stem words winter/travel/briefing absent from all options).",
+      "No sibling leak: Q1 options are durations only; Q2 options are day/time only; neither stem mentions the other topic.",
+      "Not world knowledge: turnaround and briefing time are arbitrary institutional facts.",
+      "One defensible answer each: three = usual, four = graduates, one = registrar enrolment letter; Wednesday/eleven are the cancelled values.",
+      "Pool: Lucian Moreau-Park, Rooms 329 and 433 used (each once across my sets); no invented names needed."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-12-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hello, this is Lucian Moreau-Park at the International Student Office, with two things for anyone travelling over the winter break. First, travel signatures. Normally you leave your enrolment letter at our front desk and pick it up three working days later. This month two of our advisers are away, so undergraduate letters will take six working days. Graduate letters go through the graduate school this term instead, and those are taking four. Enrolment letters themselves still come from the registrar in one working day, so request yours early. Second, the winter travel briefing. We'd planned it for Wednesday at eleven in Room 329, but that clashes with a chemistry exam, so it's moving. It'll now be on Thursday at noon, upstairs in Room 433. The slides will be posted afterwards, but the question time won't be recorded.",
+      "passageGroupId": "AN5-12",
+      "prompt": "[Announcement — International student office] How long will a travel signature take for an undergraduate this month?",
+      "choices": [
+        "One working day",
+        "Six working days",
+        "Four working days",
+        "Three working days"
+      ],
+      "correct_answer": "Six working days",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says \"undergraduate letters will take six working days.\" \"Three working days\" is the usual turnaround (\"pick it up three working days later\"), which does not apply this month. \"Four working days\" is the time for graduate letters, which \"go through the graduate school ... and those are taking four.\" \"One working day\" is how long the registrar takes to issue an enrolment letter, not the signature."
+    },
+    {
+      "id": "AN5-12-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hello, this is Lucian Moreau-Park at the International Student Office, with two things for anyone travelling over the winter break. First, travel signatures. Normally you leave your enrolment letter at our front desk and pick it up three working days later. This month two of our advisers are away, so undergraduate letters will take six working days. Graduate letters go through the graduate school this term instead, and those are taking four. Enrolment letters themselves still come from the registrar in one working day, so request yours early. Second, the winter travel briefing. We'd planned it for Wednesday at eleven in Room 329, but that clashes with a chemistry exam, so it's moving. It'll now be on Thursday at noon, upstairs in Room 433. The slides will be posted afterwards, but the question time won't be recorded.",
+      "passageGroupId": "AN5-12",
+      "prompt": "[Announcement — International student office] When is the winter travel briefing?",
+      "choices": [
+        "On Wednesday at eleven",
+        "On Thursday at noon",
+        "On Thursday at eleven",
+        "On Wednesday at noon"
+      ],
+      "correct_answer": "On Thursday at noon",
+      "difficulty": "easy",
+      "listeningTask": "announcement",
+      "explanation": "The briefing was planned \"for Wednesday at eleven\" but \"It'll now be on Thursday at noon.\" \"On Wednesday at eleven\" is the original plan, which was cancelled because of the exam clash. \"On Thursday at eleven\" keeps the old time with the new day, and \"On Wednesday at noon\" keeps the old day with the new time; neither combination is ever given."
+    }
+  ]
+}

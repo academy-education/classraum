@@ -1,0 +1,60 @@
+{
+ "meta": {
+  "set": "AN5-08",
+  "atypical_fact": "Seniors cannot walk in for a résumé review during the two weeks before the fair; they must phone extension 6045 to reserve a slot.",
+  "revised_fact": "Résumé reviews: walk-in Monday afternoons for everyone -> seniors book by phone; juniors/sophomores walk in Wednesday mornings; alumni unchanged (online upload).",
+  "q1_kind": "R",
+  "q2_kind": "P",
+  "self_check": [
+   "Passage word count (excluding 'Transcript:'): 146 (90-170).",
+   "One speaker (Dario Whitcombe), spoken register, no lists/URLs; author-C pool only: Dario Whitcombe, Room 352, Tessly Hall, ext. 6045.",
+   "Atypical fact: seniors must call ext. 6045 to reserve. Revised fact: walk-in Monday afternoons -> seniors reserve / others walk in Wednesday mornings.",
+   "Default value as distractor: Q1 'By walking in on a Monday afternoon' (the usual arrangement). Other group's arrangement as distractors: 'By walking in on a Wednesday morning' (juniors/sophomores), 'By uploading it online for written notes' (alumni).",
+   "Q1 (R) key-length rank 3: lengths 38/35/36/40 (key 38, 3rd shortest, all distinct); ratio 1.14 <= 1.4.",
+   "Q2 (P) key-length rank 1: lengths 37/44/43/43 (key 37 = shortest); ratio 1.19 <= 1.4.",
+   "Q1 flat prior: four ways to get a review, every one of them real in the announcement; none is the unique sensible behaviour. Form: all 'By + -ing ...' phrases, same specificity, no hedges or absolutes.",
+   "Q2 P rule: the line 'Room 352 is about the size of a closet' read alone most naturally suggests 'To apologize for the office's cramped space' (named distractor); 'To urge students to arrive early for a seat' and 'To warn that group sessions cannot fit there' are also readings the line alone supports. Only the next sentences (wait on the hallway benches; two chairs, adviser needs both) give the key.",
+   "Stems name a referent only: Q1 asks how seniors get a review in the pre-fair period, without narrating the change; Q2 quotes the line only.",
+   "No lexical echo: Q1 key content words (calling, reserve, set, time) absent from Q1 stem; Q2 key words (tell, waiting, sit) absent from Q2 stem; 'students' in key is shared with distractor 'To urge students...'.",
+   "No sibling leak: Q2 options say nothing about booking, walk-ins, days or groups, so they neither state nor rule out Q1's key; Q1 options say nothing about the room or seating; Q2 stem quotes only the room-size line.",
+   "Not world knowledge: no option is the generic 'what universities do'; which of four real channels applies to seniors is fixed only by the transcript.",
+   "One defensible answer each: seniors = call and reserve; the line's function = directing people to wait in the hallway."
+  ]
+ },
+ "items": [
+  {
+   "id": "AN5-08-1",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi, this is Dario Whitcombe at Career Services. Normally, résumé reviews are walk-in, on Monday afternoons, in Room 352 of Tessly Hall. For the two weeks before the career fair, that changes. Seniors will need to call extension 6045 ahead of time and reserve a twenty-minute slot, because that's when seniors' demand is heaviest. Juniors and sophomores can still walk in, but on Wednesday mornings instead of Mondays. Alumni can keep uploading a résumé online and get written notes back within three days, same as always. One more thing. Room 352 is about the size of a closet. If someone's already with an adviser when you arrive, please wait on the benches out in the hallway rather than coming in. There are only two chairs, and the adviser needs both of them. And do bring a printed copy, since advisers mark up the page by hand.",
+   "passageGroupId": "AN5-08",
+   "prompt": "[Announcement — Career services] How can seniors get a résumé review during the two weeks before the career fair?",
+   "choices": [
+    "By calling ahead to reserve a set time",
+    "By walking in on a Monday afternoon",
+    "By walking in on a Wednesday morning",
+    "By uploading it online for written notes"
+   ],
+   "correct_answer": "By calling ahead to reserve a set time",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says, \"Seniors will need to call extension 6045 ahead of time and reserve a twenty-minute slot,\" so the answer is \"By calling ahead to reserve a set time.\" \"By walking in on a Monday afternoon\" is the normal arrangement, which \"changes\" for these two weeks. \"By walking in on a Wednesday morning\" applies to \"Juniors and sophomores,\" not seniors. \"By uploading it online for written notes\" is the arrangement for \"Alumni.\""
+  },
+  {
+   "id": "AN5-08-2",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi, this is Dario Whitcombe at Career Services. Normally, résumé reviews are walk-in, on Monday afternoons, in Room 352 of Tessly Hall. For the two weeks before the career fair, that changes. Seniors will need to call extension 6045 ahead of time and reserve a twenty-minute slot, because that's when seniors' demand is heaviest. Juniors and sophomores can still walk in, but on Wednesday mornings instead of Mondays. Alumni can keep uploading a résumé online and get written notes back within three days, same as always. One more thing. Room 352 is about the size of a closet. If someone's already with an adviser when you arrive, please wait on the benches out in the hallway rather than coming in. There are only two chairs, and the adviser needs both of them. And do bring a printed copy, since advisers mark up the page by hand.",
+   "passageGroupId": "AN5-08",
+   "prompt": "[Announcement — Career services] Why does the speaker say, \"Room 352 is about the size of a closet\"?",
+   "choices": [
+    "To tell waiting students where to sit",
+    "To warn that group sessions cannot fit there",
+    "To apologize for the office's cramped space",
+    "To urge students to arrive early for a seat"
+   ],
+   "correct_answer": "To tell waiting students where to sit",
+   "difficulty": "hard",
+   "listeningTask": "announcement",
+   "explanation": "Right after the line, the speaker says, \"please wait on the benches out in the hallway rather than coming in. There are only two chairs,\" so the line explains where people who are waiting should be: \"To tell waiting students where to sit.\" \"To apologize for the office's cramped space\" is wrong: the speaker offers no apology and uses the size only to give an instruction. \"To warn that group sessions cannot fit there\" is wrong: no group sessions are mentioned. \"To urge students to arrive early for a seat\" is wrong: the speaker asks people not to come in and wait, not to come early."
+  }
+ ]
+}

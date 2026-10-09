@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "set": "AN5-15",
+    "atypical_fact": "Returning DJs who already trained last year must attend a training session this term, because the new microphones run through a different mixing board.",
+    "revised_fact": "Volunteer training is usually Thursdays at 12:30 p.m. -> this term Monday at 4:00 p.m. (sports reporters only keep Thursday at 12:30).",
+    "q1_kind": "P",
+    "q2_kind": "D",
+    "self_check": [
+      "Passage word count: 132 (90-170), one speaker, plain spoken register, starts with 'Transcript: '.",
+      "Atypical fact: returning DJs must retrain. Revised fact: Thursday 12:30 p.m. -> Monday 4:00 p.m., with the old slot kept only by the sports desk.",
+      "Default value present as distractor: 'Thursday at 12:30 p.m.' is a Q2 option.",
+      "Q1 kind P: quoted line 'The microphones in Room 421 are brand new.' read alone most naturally suggests the clearer-broadcast, handle-gently and new-room readings (at least two the line alone supports); only the next sentence (different mixing board, returning DJs need a session) reveals the key.",
+      "Q1 key-length rank 4: lengths 63 / 68 / 65 / 77 (key); key uniquely longest; ratio 77/63 = 1.22.",
+      "Q2 kind D 2x2 grid: {Monday, Thursday} x {4:00 p.m., 12:30 p.m.}; each element in exactly two options; all values spoken.",
+      "Q2 gridKey earlier: key 'Monday at 4:00 p.m.' is mentioned BEFORE the last-mentioned time 'Thursday ... at 12:30', which applies only to the sports desk; picking the latest-mentioned values gives a distractor.",
+      "Q2 key-length rank 1: lengths 19 (key) / 20 / 21 / 22; key uniquely shortest; ratio 22/19 = 1.16.",
+      "Flat prior: Q1 four plausible reasons, all 'To explain why ...' + one clause; Q2 four day/time slots equally plausible.",
+      "Stems name a referent only: Q1 quotes the line; Q2 'When will new DJ volunteers have their training?' does not mention a change or exception.",
+      "No lexical echo: Q1 key shares no content word with the quoted line (microphones/Room 421/brand new absent); Q2 key shares no content word with its stem.",
+      "No sibling leak: Q1 options name no day or time (the 'different room' distractor concerns place, which Q2 does not ask); Q2 options say nothing about returning DJs or equipment. Q2 stem says 'new DJ volunteers', which neither states nor rules out Q1's key about returning DJs.",
+      "Not world knowledge: training time and the reason for mentioning the microphones are fixed only by this transcript.",
+      "Every distractor contradicted: 'training has moved to a different room' vs 'still in Room 421'; 'broadcasts will sound clearer' vs 'Listeners won't hear a difference'; 'handle the studio equipment gently' is never asked and the next sentence gives a different reason; Q2 'Thursday at 12:30 p.m.' is the old slot kept only by sports reporters; the two crossed options pair a spoken day with the wrong spoken time.",
+      "Names used from pool E: Mira Lindqvist, Room 421, ext. 8362 (each once across my sets)."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-15-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, this is Mira Lindqvist, volunteer coordinator at the campus radio station. Training for volunteers has always been on Thursdays at 12:30 p.m., during the lunch hour. This term it moves to Monday at 4:00 p.m., still in Room 421. The microphones in Room 421 are brand new. Listeners won't hear a difference, but they run through a different mixing board, so even returning DJs who trained last year need to come to one session before going back on air. There is one exception to the new schedule. Because the sports desk broadcasts the Monday afternoon matches, sports reporters keep the old Thursday slot at 12:30. That arrangement is only for the sports desk. If you can't make your session, call me at extension 8362 and I'll find you a make-up time.",
+      "passageGroupId": "AN5-15",
+      "prompt": "[Announcement — Campus radio station] Why does the speaker say, \"The microphones in Room 421 are brand new\"?",
+      "choices": [
+        "To explain why training has moved to a different room this term",
+        "To explain why the station's broadcasts will sound clearer this term",
+        "To explain why volunteers must handle the studio equipment gently",
+        "To explain why returning DJs also need to attend a training session this term"
+      ],
+      "correct_answer": "To explain why returning DJs also need to attend a training session this term",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "Right after the line, the speaker says the microphones \"run through a different mixing board, so even returning DJs who trained last year need to come to one session.\" \"To explain why training has moved to a different room this term\" is wrong: training is \"still in Room 421.\" \"To explain why the station's broadcasts will sound clearer this term\" is wrong: \"Listeners won't hear a difference.\" \"To explain why volunteers must handle the studio equipment gently\" is wrong: the speaker never asks for care with the equipment; the new microphones are mentioned to justify the extra training session."
+    },
+    {
+      "id": "AN5-15-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, this is Mira Lindqvist, volunteer coordinator at the campus radio station. Training for volunteers has always been on Thursdays at 12:30 p.m., during the lunch hour. This term it moves to Monday at 4:00 p.m., still in Room 421. The microphones in Room 421 are brand new. Listeners won't hear a difference, but they run through a different mixing board, so even returning DJs who trained last year need to come to one session before going back on air. There is one exception to the new schedule. Because the sports desk broadcasts the Monday afternoon matches, sports reporters keep the old Thursday slot at 12:30. That arrangement is only for the sports desk. If you can't make your session, call me at extension 8362 and I'll find you a make-up time.",
+      "passageGroupId": "AN5-15",
+      "prompt": "[Announcement — Campus radio station] When will new DJ volunteers have their training?",
+      "choices": [
+        "Monday at 4:00 p.m.",
+        "Monday at 12:30 p.m.",
+        "Thursday at 4:00 p.m.",
+        "Thursday at 12:30 p.m."
+      ],
+      "correct_answer": "Monday at 4:00 p.m.",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says training \"moves to Monday at 4:00 p.m.\" this term. \"Thursday at 12:30 p.m.\" is the old slot, which \"is only for the sports desk\" now. \"Monday at 12:30 p.m.\" pairs the new day with the old time, and \"Thursday at 4:00 p.m.\" pairs the old day with the new time; neither is given for anyone."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+ "meta": {
+  "set": "AN5-07",
+  "atypical_fact": "The data sheet must be collected in advance from the stockroom window in the lobby, because the make-up room will have no spare copies (students normally get the sheet at the bench).",
+  "revised_fact": "Make-up session: syllabus Wednesday 9:30 a.m. in Room 131 -> Tuesday (room 226 booked Wednesdays) -> first message Tuesday 9:30 -> final Tuesday 10:30 a.m. in Room 226.",
+  "q1_kind": "I",
+  "q2_kind": "D",
+  "self_check": [
+   "Passage word count (excluding 'Transcript:'): 166 (90-170).",
+   "One speaker (Ingrid Solano), spoken register, no lists/URLs; uses only author-C pool: Ingrid Solano, Rooms 131 and 226, Arden Building.",
+   "Atypical fact: collect data sheet beforehand at stockroom window. Revised fact: Wednesday 9:30 in Room 131 -> Tuesday 10:30 in Room 226.",
+   "Default value as distractor: Q2 'On Wednesday at 9:30 a.m.' (syllabus default); Q1 'Send the lab coordinator an email to reserve a bench' (the official-channel default, explicitly not needed).",
+   "Q1 (I) key-length rank 4: lengths 58/52/44/49 (key 58 = longest); ratio 1.32 <= 1.4.",
+   "Q2 (D) key-length rank 2: lengths 24/23/25/26 (key 24 is 2nd shortest); ratio 1.13.",
+   "Q2 2x2 grid: day {Tuesday, Wednesday} x time {9:30, 10:30}; each value in exactly two options; gridKey latest: key = Tuesday + 10:30, the last-mentioned day and time; all four values are spoken in the transcript.",
+   "Q1 flat prior / not world knowledge: the stem-alone prudent answer (email the coordinator to reserve a place) is a distractor and is contradicted ('You don't need to email me'); quiz retake contradicted ('still counts'); notebook signing is attached to the wrong time ('at the end'); key only from the 'no spare copies in 226' detail.",
+   "Q1 form symmetry: four imperative verb phrases, same register, no hedges or absolutes, no option vaguer than others.",
+   "Stems name a referent only: Q1 'students attending the make-up ... in advance', Q2 'When will the make-up ... take place?'; neither narrates a change.",
+   "No lexical echo: Q1 key words (collect, copy, data sheet, stockroom, window) absent from Q1 stem; Q2 key words (Tuesday, 10:30) absent from Q2 stem.",
+   "No sibling leak: Q1 options contain no day, time or room; Q2 options contain no material or task; stems do not restate each other's content (Q1 stem does not mention when, Q2 stem does not mention preparation).",
+   "One defensible answer each: Q1 only the data sheet is required beforehand; Q2 only Tuesday 10:30 is the final arrangement."
+  ]
+ },
+ "items": [
+  {
+   "id": "AN5-07-1",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi everyone, this is Ingrid Solano from the chemistry teaching lab, with an update on the make-up for anyone who missed the titration experiment. The syllabus lists it for Wednesday at nine thirty in the morning, in Room 131, where the regular sections meet. That room is getting new fume hoods that week, so the make-up is moving to Room 226 in the Arden Building, and since 226 is booked on Wednesdays, it will run on Tuesday. My first message said Tuesday at nine thirty, but the teaching assistants have a seminar then, so we'll start at ten thirty. You don't need to email me to hold a bench; there's plenty of space. The data sheet is different. There won't be spare copies in 226, so collect one from the stockroom window in the lobby before you come. Teaching assistants will sign notebooks at the end, as usual. And the online safety quiz you took in September still counts, so there's no need to retake it.",
+   "passageGroupId": "AN5-07",
+   "prompt": "[Announcement — Chemistry teaching lab] What does the speaker tell students attending the make-up to do in advance?",
+   "choices": [
+    "Collect a copy of the data sheet from the stockroom window",
+    "Send the lab coordinator an email to reserve a bench",
+    "Retake the online safety quiz from September",
+    "Have a teaching assistant sign their lab notebook"
+   ],
+   "correct_answer": "Collect a copy of the data sheet from the stockroom window",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says, \"There won't be spare copies in 226, so collect one from the stockroom window in the lobby before you come,\" so the answer is \"Collect a copy of the data sheet from the stockroom window.\" \"Send the lab coordinator an email to reserve a bench\" is wrong: \"You don't need to email me to hold a bench; there's plenty of space.\" \"Retake the online safety quiz from September\" is wrong: the September quiz \"still counts, so there's no need to retake it.\" \"Have a teaching assistant sign their lab notebook\" is wrong: notebooks are signed \"at the end, as usual,\" not in advance."
+  },
+  {
+   "id": "AN5-07-2",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi everyone, this is Ingrid Solano from the chemistry teaching lab, with an update on the make-up for anyone who missed the titration experiment. The syllabus lists it for Wednesday at nine thirty in the morning, in Room 131, where the regular sections meet. That room is getting new fume hoods that week, so the make-up is moving to Room 226 in the Arden Building, and since 226 is booked on Wednesdays, it will run on Tuesday. My first message said Tuesday at nine thirty, but the teaching assistants have a seminar then, so we'll start at ten thirty. You don't need to email me to hold a bench; there's plenty of space. The data sheet is different. There won't be spare copies in 226, so collect one from the stockroom window in the lobby before you come. Teaching assistants will sign notebooks at the end, as usual. And the online safety quiz you took in September still counts, so there's no need to retake it.",
+   "passageGroupId": "AN5-07",
+   "prompt": "[Announcement — Chemistry teaching lab] When will the make-up for the titration experiment take place?",
+   "choices": [
+    "On Tuesday at 10:30 a.m.",
+    "On Tuesday at 9:30 a.m.",
+    "On Wednesday at 9:30 a.m.",
+    "On Wednesday at 10:30 a.m."
+   ],
+   "correct_answer": "On Tuesday at 10:30 a.m.",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The make-up moves off Wednesday because Room 226 \"is booked on Wednesdays, it will run on Tuesday,\" and although \"my first message said Tuesday at nine thirty,\" the speaker corrects it: \"we'll start at ten thirty.\" So the answer is \"On Tuesday at 10:30 a.m.\" \"On Wednesday at 9:30 a.m.\" is the syllabus time that no longer applies. \"On Tuesday at 9:30 a.m.\" is the time from the first message, replaced because of the assistants' seminar. \"On Wednesday at 10:30 a.m.\" pairs the new start time with the old day."
+  }
+ ]
+}

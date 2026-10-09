@@ -1,0 +1,60 @@
+{
+  "meta": {
+    "set": "AN5-06",
+    "atypical_fact": "The route change starts Wednesday, not Monday as an earlier email said, and the evening loop picks up at the stadium lot facing the tennis courts rather than at the main gate where every route normally stops.",
+    "revised_fact": "Pickup: main gate on College Avenue (all routes) -> stadium lot facing the tennis courts (evening loop) / circle in front of the library (morning express); start date: Monday (email) -> Wednesday.",
+    "q1_kind": "P",
+    "q2_kind": "R",
+    "self_check": [
+      "Passage word count: 136 words after 'Transcript: ' (90-170). One speaker (Oluwaseun Brandt), spoken register, no URLs.",
+      "Atypical + revised facts present: all routes normally at the main gate -> evening loop at the stadium lot, morning express at the library circle; email said Monday -> actually Wednesday.",
+      "Default value as distractor: Q2 'At the main gate on College Avenue' is the usual stop; 'At the circle in front of the library' (morning express) and 'Outside the health centre entrance' (safe-ride van) are other groups' arrangements.",
+      "Q1 (P) key-length rank 2 hit: key 52 / 56 / 51 / 53 -> sorted 51, 52, 53, 56, key second; ratio 56/51 = 1.10 <= 1.4.",
+      "Q2 (R) key-length rank 4 hit: 34 / 37 / 34 / key 43 -> key uniquely longest; ratio 43/34 = 1.26 <= 1.4.",
+      "Kind P: the quoted line alone ('That email went out a little too early') most naturally suggests the email was premature or wrong as a whole; two options are readings the line alone supports - 'To warn riders that the email had listed the wrong stops' and 'To tell riders to disregard everything in the email' - and a third ('called off') is also a natural reading of a premature notice. Only the following sentences ('pushed back their start, so nothing changes until Wednesday. The stops listed in that message are still correct') reveal the key: the date is wrong.",
+      "Flat prior: Q1 four reasons a speaker might flag an early email; Q2 four ordinary shuttle stops, each named by the speaker.",
+      "Form symmetry: Q1 all 'To <verb> ...' purpose clauses of one shape, no hedges or absolutes beyond the content-checked 'everything'; Q2 all single-locator place phrases.",
+      "Stems name a referent only: Q1 quotes the line only; Q2 'Where will the evening loop pick up riders during the repaving?' does not say the stop changed.",
+      "No lexical echo: Q1 key content words (explain, riders, wrong, start, date) - none in the stem quote; 'wrong' and 'riders' also appear in distractors. Q2 key (stadium, lot, facing, tennis, courts) shares none with its stem.",
+      "No sibling leak: Q1 options concern the email's date/stops/cancellation and name no location; Q2 options are locations and name no date. 'wrong stops' in a Q1 distractor does not indicate which stop is right; Q2's stem does not mention the email or a start date.",
+      "Not world knowledge: stop locations and the reason for the email remark are arbitrary to this announcement.",
+      "One defensible answer: Q1 the email said Monday, 'nothing changes until Wednesday'; stops 'still correct' kills wrong-stops and disregard-everything; changes still happen (Wednesday) kills called-off. Q2 'the evening loop will pick up at the stadium parking lot instead, on the side facing the tennis courts'."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-06-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, this is Oluwaseun Brandt from campus transportation. While Garner Road is being repaved, two shuttle routes change. Normally every route picks up at the main gate on College Avenue. During the repaving, the evening loop will pick up at the stadium parking lot instead, on the side facing the tennis courts. The morning express is moving too, but not to the stadium; for these two weeks it'll use the circle in front of the library. The night safe-ride van isn't affected and still stops outside the health centre. Now, some of you got an email saying all of this starts Monday. That email went out a little too early. We'd planned on Monday, but the paving crew pushed back their start, so nothing changes until Wednesday. The stops listed in that message are still correct.",
+      "passageGroupId": "AN5-06",
+      "prompt": "[Announcement — Campus shuttle service] Why does the speaker say, \"That email went out a little too early\"?",
+      "choices": [
+        "To explain why some riders have the wrong start date",
+        "To warn riders that the email had listed the wrong stops",
+        "To tell riders to disregard everything in the email",
+        "To explain why the route changes have been called off"
+      ],
+      "correct_answer": "To explain why some riders have the wrong start date",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The email said the changes start Monday; the speaker then explains, \"the paving crew pushed back their start, so nothing changes until Wednesday.\" The remark accounts for the wrong date. \"To warn riders that the email had listed the wrong stops\" and \"To tell riders to disregard everything in the email\" are contradicted by \"The stops listed in that message are still correct.\" \"To explain why the route changes have been called off\" is wrong because the changes still happen, starting Wednesday."
+    },
+    {
+      "id": "AN5-06-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi, this is Oluwaseun Brandt from campus transportation. While Garner Road is being repaved, two shuttle routes change. Normally every route picks up at the main gate on College Avenue. During the repaving, the evening loop will pick up at the stadium parking lot instead, on the side facing the tennis courts. The morning express is moving too, but not to the stadium; for these two weeks it'll use the circle in front of the library. The night safe-ride van isn't affected and still stops outside the health centre. Now, some of you got an email saying all of this starts Monday. That email went out a little too early. We'd planned on Monday, but the paving crew pushed back their start, so nothing changes until Wednesday. The stops listed in that message are still correct.",
+      "passageGroupId": "AN5-06",
+      "prompt": "[Announcement — Campus shuttle service] Where will the evening loop pick up riders during the repaving?",
+      "choices": [
+        "At the main gate on College Avenue",
+        "At the circle in front of the library",
+        "Outside the health centre entrance",
+        "At the stadium lot facing the tennis courts"
+      ],
+      "correct_answer": "At the stadium lot facing the tennis courts",
+      "difficulty": "easy",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says, \"the evening loop will pick up at the stadium parking lot instead, on the side facing the tennis courts.\" \"At the main gate on College Avenue\" is where every route normally stops. \"At the circle in front of the library\" is the temporary stop for the morning express. \"Outside the health centre entrance\" is where the night safe-ride van, which is not affected, still stops."
+    }
+  ]
+}

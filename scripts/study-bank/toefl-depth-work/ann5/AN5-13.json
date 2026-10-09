@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "set": "AN5-13",
+    "atypical_fact": "Glazed pieces are collected at the side door of the kiln room (Room 257), not from the studio shelves in Room 118.",
+    "revised_fact": "Pick-up is usually Tuesday after 10:30 a.m. -> this week Friday after 2:00 p.m.",
+    "q1_kind": "D",
+    "q2_kind": "P",
+    "self_check": [
+      "Passage word count: 151 (90-170), one speaker, plain spoken register, starts with 'Transcript: '.",
+      "Atypical fact: side door of Room 257 instead of shelves in Room 118. Revised fact: Tuesday after 10:30 a.m. -> Friday after 2:00 p.m.",
+      "Default value present as distractor: 'Tuesday after 10:30 a.m.' is a Q1 option.",
+      "Q1 kind D 2x2 grid: {Friday, Tuesday} x {after 2:00 p.m., after 10:30 a.m.}; each element in exactly two options; all four values spoken in the transcript.",
+      "Q1 gridKey latest: key 'Friday after 2:00 p.m.' uses the last-mentioned day and time; Tuesday/10:30 were mentioned earlier as the usual arrangement.",
+      "Q1 key-length rank 1: lengths 22 (key) / 23 / 23 / 24; key uniquely shortest; ratio 24/22 = 1.09.",
+      "Q2 kind P: quoted line 'The kiln in Room 257 is about twenty years old.' read alone most naturally suggests the new-kiln fundraising or uneven-glaze distractors (two readings the line alone supports); only the following sentences (new element, technician to look over every piece) reveal the key.",
+      "Q2 key-length rank 4: lengths 60 / 66 / 69 / 75 (key); key uniquely longest; ratio 75/60 = 1.25.",
+      "Flat prior: Q1 four day/time windows equally plausible; Q2 four plausible reasons, all 'To explain why ...' with one clause, no hedges or absolutes.",
+      "Stems name a referent only: Q1 'When can students collect their glazed pieces?' does not mention a change; Q2 quotes the line only.",
+      "No lexical echo: Q1 key shares no content word with stem; Q2 key shares no content word with the quoted line ('kiln' appears only in a distractor).",
+      "No sibling leak: Q1 options are day/time windows and say nothing about inspection; Q2 options say nothing about day or time of pick-up; Q2 stem names Room 257 but Q1 does not ask about place.",
+      "Not world knowledge: when pick-up happens and why the speaker mentions the kiln's age are fixed only by this transcript.",
+      "Every distractor contradicted: 'raising money to buy a new kiln' vs 'Rather than replace it'; 'glaze colours may look uneven' vs 'your glaze colours won't be affected'; 'glazing sessions will start later' vs 'keep their usual times'; Q1 crossed options mix a spoken day with the wrong spoken time.",
+      "Names used from pool E: Rosalind Achebe, Fenwick Hall, Room 118, Room 257 (each once across my sets)."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-13-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, this is Rosalind Achebe from the ceramics studio in Fenwick Hall, with a note about this week's glaze firing. Normally your finished pieces go back on the shelves in Room 118 on Tuesday after 10:30 a.m., and you collect them yourselves. This week works differently. The kiln in Room 257 is about twenty years old. Rather than replace it, the department approved a new heating element, which went in on Monday. The test tiles came out perfectly even, so your glaze colours won't be affected, but our technician wants to look over every piece from this first firing before it leaves the kiln room. So nothing goes back to the shelves this time. Instead, pick up your work at the side door of Room 257 on Friday, and not before 2:00 p.m., because the kiln needs the whole morning to cool. Wheel and glazing sessions keep their usual times.",
+      "passageGroupId": "AN5-13",
+      "prompt": "[Announcement — Ceramics studio] When can students collect their glazed pieces?",
+      "choices": [
+        "Friday after 2:00 p.m.",
+        "Friday after 10:30 a.m.",
+        "Tuesday after 2:00 p.m.",
+        "Tuesday after 10:30 a.m."
+      ],
+      "correct_answer": "Friday after 2:00 p.m.",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says to \"pick up your work at the side door of Room 257 on Friday, and not before 2:00 p.m.\" \"Tuesday after 10:30 a.m.\" is the usual arrangement (\"Normally your finished pieces go back on the shelves ... on Tuesday after 10:30 a.m.\"), which does not apply this week. \"Friday after 10:30 a.m.\" pairs the right day with the usual time, and \"Tuesday after 2:00 p.m.\" pairs the usual day with this week's time; neither combination is given."
+    },
+    {
+      "id": "AN5-13-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, this is Rosalind Achebe from the ceramics studio in Fenwick Hall, with a note about this week's glaze firing. Normally your finished pieces go back on the shelves in Room 118 on Tuesday after 10:30 a.m., and you collect them yourselves. This week works differently. The kiln in Room 257 is about twenty years old. Rather than replace it, the department approved a new heating element, which went in on Monday. The test tiles came out perfectly even, so your glaze colours won't be affected, but our technician wants to look over every piece from this first firing before it leaves the kiln room. So nothing goes back to the shelves this time. Instead, pick up your work at the side door of Room 257 on Friday, and not before 2:00 p.m., because the kiln needs the whole morning to cool. Wheel and glazing sessions keep their usual times.",
+      "passageGroupId": "AN5-13",
+      "prompt": "[Announcement — Ceramics studio] Why does the speaker say, \"The kiln in Room 257 is about twenty years old\"?",
+      "choices": [
+        "To explain why the studio is raising money to buy a new kiln",
+        "To explain why glaze colours may look uneven on this week's pieces",
+        "To explain why glazing sessions will start later than usual this week",
+        "To explain why the technician will inspect each piece before it is returned"
+      ],
+      "correct_answer": "To explain why the technician will inspect each piece before it is returned",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The kiln's age leads into the new heating element and then to \"our technician wants to look over every piece from this first firing before it leaves the kiln room.\" \"To explain why the studio is raising money to buy a new kiln\" is wrong: \"Rather than replace it, the department approved a new heating element.\" \"To explain why glaze colours may look uneven on this week's pieces\" is wrong: \"your glaze colours won't be affected.\" \"To explain why glazing sessions will start later than usual this week\" is wrong: \"Wheel and glazing sessions keep their usual times.\""
+    }
+  ]
+}

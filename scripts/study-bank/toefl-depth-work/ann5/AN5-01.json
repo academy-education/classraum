@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "set": "AN5-01",
+    "atypical_fact": "This week's citation workshop meets on Tuesday at 9 a.m. in Room 318, a room with no computers, so the hands-on database practice is moved into next week's session.",
+    "revised_fact": "Usually Wednesday at 11 a.m. in Room 214 -> this week Tuesday at 9 a.m. in Room 318 (Wednesday at 9 was considered, Tuesday at 11 is blocked by a faculty meeting).",
+    "q1_kind": "D",
+    "q2_kind": "P",
+    "self_check": [
+      "Passage: 157 words (counted after the Transcript: prefix), one speaker, no headings/URLs; both items carry the byte-identical passage and passageGroupId AN5-01.",
+      "Atypical fact: Tuesday 9 a.m. in Room 318, a room with no computers, so practice is deferred. Revised fact: usual Wednesday 11 a.m. in Room 214 -> Tuesday 9 a.m. in Room 318.",
+      "Default value as distractor: Q1 option \"Wednesday at 11 a.m.\" is the usual slot.",
+      "Q1 kind D 2x2 grid: day {Tuesday, Wednesday} x time {9 a.m., 11 a.m.}; each value in exactly two options; all four combinations are said or considered in the transcript (W11 usual, W9 first idea, T11 blocked by faculty meeting, T9 final).",
+      "Q1 gridKey latest: Tuesday and 9 a.m. are the last-mentioned values; W9 is ruled out by room availability and T11 by the meeting, so each distractor has a content reason beyond recency.",
+      "Q1 key length rank 1: chars [17 key, 18, 19, 20]; strictly shortest; ratio 20/17 = 1.18.",
+      "Q2 kind P: the line alone most naturally suggests 'bring their own laptops' (distractor, contradicted by 'There's no need to bring a laptop'); the computer-lab and call-4417 readings are also supportable from the line alone; only the following sentence reveals the practice moving to next week.",
+      "Q2 key length rank 4: chars [74 key, 71, 70, 70]; strictly longest; ratio 74/70 = 1.06.",
+      "Form symmetry: Q1 all '<Day> at <n> a.m.'; Q2 all 'To <verb> ...' purposes, same register, no absolutes, none hedged or vaguer.",
+      "Stems name a referent only (this week's citation workshop; the quoted line) and narrate no change.",
+      "No lexical echo: Q1 key shares no content word with its stem; Q2 key shares none ('computer' appears only in two distractors).",
+      "No sibling leak: Q2 options mention next week's session, a laptop, a lab and ext. 4417 - none states or rules out a day or time; Q1 options say nothing about computers or practice; neither stem restates the other.",
+      "Not world knowledge: the common-sense reading (bring a laptop) is the contradicted distractor.",
+      "One defensible answer: each distractor is contradicted or misattaches a real detail (ext. 4417 is for students who can't make the new time).",
+      "Pool use: Imogen Valdez, Room 214, Room 318, ext. 4417 (not reused in AN5-02/03)."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-01-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, this is Imogen Valdez at the library's research help desk. Our citation workshop usually meets on Wednesdays at 11 a.m. in Room 214. This week, though, Room 214 is booked for make-up exams, so the workshop has to move. We first thought we'd simply shift it to Wednesday at 9, but the only free room is Room 318, up on the third floor, and it isn't available on Wednesday at all. It's open on Tuesday, but at 11 there's a faculty meeting in there, so the session will be Tuesday at 9 a.m. Room 318 doesn't have any computers. Normally the second half of the workshop is hands-on database practice, so this week we'll do just the talk, and the practice part will be added on to next week's session. There's no need to bring a laptop. If you can't make the new time, call extension 4417 and we'll put you down for next week.",
+      "passageGroupId": "AN5-01",
+      "prompt": "[Announcement — University library] When will this week's citation workshop take place?",
+      "choices": [
+        "Tuesday at 9 a.m.",
+        "Tuesday at 11 a.m.",
+        "Wednesday at 9 a.m.",
+        "Wednesday at 11 a.m."
+      ],
+      "correct_answer": "Tuesday at 9 a.m.",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker concludes, \"so the session will be Tuesday at 9 a.m.\" \"Wednesday at 11 a.m.\" is the usual time (\"usually meets on Wednesdays at 11 a.m.\"), which changes this week. \"Wednesday at 9 a.m.\" was only the first idea, rejected because Room 318 \"isn't available on Wednesday at all.\" \"Tuesday at 11 a.m.\" is ruled out because \"at 11 there's a faculty meeting in there.\""
+    },
+    {
+      "id": "AN5-01-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, this is Imogen Valdez at the library's research help desk. Our citation workshop usually meets on Wednesdays at 11 a.m. in Room 214. This week, though, Room 214 is booked for make-up exams, so the workshop has to move. We first thought we'd simply shift it to Wednesday at 9, but the only free room is Room 318, up on the third floor, and it isn't available on Wednesday at all. It's open on Tuesday, but at 11 there's a faculty meeting in there, so the session will be Tuesday at 9 a.m. Room 318 doesn't have any computers. Normally the second half of the workshop is hands-on database practice, so this week we'll do just the talk, and the practice part will be added on to next week's session. There's no need to bring a laptop. If you can't make the new time, call extension 4417 and we'll put you down for next week.",
+      "passageGroupId": "AN5-01",
+      "prompt": "[Announcement — University library] Why does the speaker say, \"Room 318 doesn't have any computers\"?",
+      "choices": [
+        "To explain why the database practice is being added to next week's session",
+        "To remind students that they will need to bring their own laptops along",
+        "To suggest that students do the practice in the computer lab afterward",
+        "To explain why students who need a computer should call extension 4417"
+      ],
+      "correct_answer": "To explain why the database practice is being added to next week's session",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "Right after the line the speaker says the second half is \"hands-on database practice, so this week we'll do just the talk, and the practice part will be added on to next week's session.\" \"To remind students that they will need to bring their own laptops along\" is the reading the line suggests alone, but the speaker says \"There's no need to bring a laptop.\" \"To suggest that students do the practice in the computer lab afterward\" is wrong because the practice moves to next week's session, not to a lab. \"To explain why students who need a computer should call extension 4417\" misattaches the extension, which is for students who \"can't make the new time.\""
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "set": "AN5-10",
+    "atypical_fact": "Pre-ordered course books are handed out from Room 106 in Quillon House, only from ten to four, and must be claimed with the confirmation-email order number rather than a student card.",
+    "revised_fact": "Pre-order pick-up: bookstore front counter during shop hours (eight to six), looked up by student card -> Room 106 Quillon House, ten to four, order number required; returns stay in the bookstore (side window).",
+    "q1_kind": "P",
+    "q2_kind": "I",
+    "self_check": [
+      "Word count: transcript body 151 words (90-170).",
+      "Atypical fact: pick-up in Room 106 Quillon House, ten to four, by order number - not the front counter / student card. Revised fact: usual counter + student-card look-up -> Room 106 + order number.",
+      "Default values as distractors: Q2 \"a student card\" (usual look-up) and \"between eight and six\" (usual shop hours) each appear in two options.",
+      "Q1 kind P: line \"Returns are a different story\" alone supports pausing, a different deadline, and a complaint about queues (three distractors); only the next sentence (returns stay at the side window, pre-orders go to Quillon House) gives the key.",
+      "Q1 key length rank 4: 72 vs 61/60/55 chars; ratio 72/55 = 1.31 <= 1.4.",
+      "Q2 kind I: crossed time x document grid (ten-four/eight-six x order number/student card); the prudent default (student card, normal shop hours) is a distractor; key follows only from the two specific transcript details.",
+      "Q2 key length rank 3: lengths 50/51/52*/53, no ties; ratio 1.06.",
+      "Flat prior: Q1 four readings of a contrast line, each about returns; Q2 four symmetric combinations, each element in exactly two options.",
+      "Form symmetry: Q1 all \"To <verb> that returns ...\"; Q2 identical frame \"Come between X and bring Y\"; no absolutes, no hedging differences.",
+      "Stems name a referent only (the quoted line; a student collecting a pre-order). Lexical echo: Q2 stem \"pre-ordered\" ~ \"order number\" is shared by the key and one distractor; Q1 key words (point, moving, place, pre-orders) are not in the stem.",
+      "No sibling leak: Q1 options concern returns (location/deadline/pause/queues) and say nothing about pick-up hours or what to bring; Q2 options concern pick-up hours and document only and say nothing about returns or where pick-up is.",
+      "Not world knowledge: which hours/document apply is arbitrary without the transcript; the common-sense answer (student card) is wrong.",
+      "One defensible answer each: every distractor contradicted (returns continue; deadline unchanged; queues never mentioned; shop hours are not pick-up hours; student card cannot be used).",
+      "Pool: Farah Delacroix, Room 106, Quillon House used (each once across my sets)."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-10-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good morning, this is Farah Delacroix, manager of the campus bookstore, with a note for anyone who pre-ordered course books online. Normally you'd collect those at our front counter, and that's also where returns go. This week, though, the counter is being rebuilt, so pre-orders are being handed out from Room 106 in Quillon House, just across the courtyard. Returns are a different story. Those stay right here in the bookstore, at the side window next to the café, and the usual return deadline hasn't changed. I've had a few people ask whether the shop itself is closed. It isn't. Pick-up in Room 106 runs from ten to four, even though the shop keeps its usual hours of eight to six. And normally we'd find your order from your student card, but this week we can't look orders up that way, so please bring the order number from your confirmation email.",
+      "passageGroupId": "AN5-10",
+      "prompt": "[Announcement — Campus bookstore] Why does the speaker say, \"Returns are a different story\"?",
+      "choices": [
+        "To point out that returns are not moving to the same place as pre-orders",
+        "To warn that returns will be paused for the rest of this week",
+        "To signal that returns have an earlier deadline than pick-ups",
+        "To admit that returns have caused long queues this term"
+      ],
+      "correct_answer": "To point out that returns are not moving to the same place as pre-orders",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "Just before the line the speaker says pre-orders \"are being handed out from Room 106 in Quillon House\"; right after it she says returns \"stay right here in the bookstore, at the side window next to the café.\" So the line marks that returns are not following pre-orders to Quillon House. \"To warn that returns will be paused for the rest of this week\" is wrong: returns continue at the side window. \"To signal that returns have an earlier deadline than pick-ups\" is wrong: \"the usual return deadline hasn't changed,\" and no pick-up deadline is given. \"To admit that returns have caused long queues this term\" is wrong: queues are never mentioned; the line introduces where returns go."
+    },
+    {
+      "id": "AN5-10-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Good morning, this is Farah Delacroix, manager of the campus bookstore, with a note for anyone who pre-ordered course books online. Normally you'd collect those at our front counter, and that's also where returns go. This week, though, the counter is being rebuilt, so pre-orders are being handed out from Room 106 in Quillon House, just across the courtyard. Returns are a different story. Those stay right here in the bookstore, at the side window next to the café, and the usual return deadline hasn't changed. I've had a few people ask whether the shop itself is closed. It isn't. Pick-up in Room 106 runs from ten to four, even though the shop keeps its usual hours of eight to six. And normally we'd find your order from your student card, but this week we can't look orders up that way, so please bring the order number from your confirmation email.",
+      "passageGroupId": "AN5-10",
+      "prompt": "[Announcement — Campus bookstore] What should a student who pre-ordered a course book do to collect it this week?",
+      "choices": [
+        "Come between ten and four and bring the order number",
+        "Come between ten and four and bring a student card",
+        "Come between eight and six and bring the order number",
+        "Come between eight and six and bring a student card"
+      ],
+      "correct_answer": "Come between ten and four and bring the order number",
+      "difficulty": "medium",
+      "listeningTask": "announcement",
+      "explanation": "The speaker says \"Pick-up in Room 106 runs from ten to four\" and \"please bring the order number from your confirmation email,\" because \"this week we can't look orders up\" from a student card. \"Come between ten and four and bring a student card\" uses the usual look-up method, which does not work this week. \"Come between eight and six and bring the order number\" uses the shop's own hours, not the pick-up hours. \"Come between eight and six and bring a student card\" combines the shop's hours with the usual look-up method; both are wrong for pick-up this week."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+ "meta": {
+  "set": "AN5-09",
+  "atypical_fact": "Lead-role auditions are split off to Saturday at 7:30 p.m. while the chorus keeps Friday at 4; leads get their material by email rather than as a printed packet.",
+  "revised_fact": "Audition material: printed packet from the club office -> chorus learns a song from the website recording, leads are emailed two scenes; audition time: everyone Friday 4 p.m. -> leads Saturday 7:30 p.m.",
+  "q1_kind": "D",
+  "q2_kind": "R",
+  "self_check": [
+   "Passage word count (excluding 'Transcript:'): 154 (90-170).",
+   "One speaker (Hana Okonkwo), spoken register, no lists/URLs; author-C pool only: Hana Okonkwo, Room 417.",
+   "Atypical fact: leads audition Saturday 7:30 and are emailed scenes. Revised fact: printed packet from the club office -> recording (chorus) / emailed scenes (leads); everyone Friday 4 -> leads Saturday 7:30.",
+   "Default value as distractor: Q2 'Through a packet from the club office' (the past-years arrangement); Q2 also carries the other group's arrangement 'Through a recording on the club website' (chorus).",
+   "Q1 (D) key-length rank 1: lengths 19/22/21/24 (key 19 = shortest); ratio 1.26 <= 1.4.",
+   "Q2 (R) key-length rank 2: lengths 38/37/39/40 (key 38, 2nd shortest, all distinct); ratio 1.08 <= 1.4.",
+   "Q1 2x2 grid: day {Friday, Saturday} x time {4 p.m., 7:30 p.m.}; each value in exactly two options; all four spoken. gridKey earlier: the asked-about chorus keeps the EARLIER-mentioned Friday at four; the later-mentioned Saturday 7:30 applies only to leads, so 'most recently mentioned' gives a wrong answer.",
+   "Q2 flat prior: four ways to receive audition material, all mentioned in the announcement; 'they pick themselves' monologue is a real detail ('You won't need to prepare a monologue') attached wrongly. All four 'Through a + noun ...' with the same shape, no hedges or absolutes.",
+   "Stems name a referent only: Q1 'When are the chorus auditions for the spring musical?'; Q2 'How will students trying out for lead roles get their audition material?' Neither narrates the change.",
+   "No lexical echo: Q1 key words (Friday, 4) absent from Q1 stem; Q2 key words (pair, scenes, sent, email) absent from Q2 stem.",
+   "No sibling leak: Q1 options carry only days/times, Q2 options only delivery channels; Q2 stem names leads but gives no time, Q1 stem names chorus but gives no material; neither option set states or rules out the other's key.",
+   "Not world knowledge: no 'sensible' unique channel or time; both keys follow only from the group-specific assignments in the transcript.",
+   "One defensible answer each: chorus = Friday 4 p.m.; leads = scenes by email."
+  ]
+ },
+ "items": [
+  {
+   "id": "AN5-09-1",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi, theatre club, it's Hana Okonkwo, this year's director. Auditions for the spring musical will all be in Room 417, and chorus auditions are on Friday at four. I'd originally planned to see everyone that afternoon, but anyone trying out for a lead role will now audition on Saturday at seven thirty instead, so I can give each of you a longer slot. Now, about audition material. In past years you'd pick up a printed packet from the club office. This time it's different. If you're going for the chorus, learn the song from the recording on the club's website. If you're going for a lead, you'll be emailed two short scenes on Wednesday, and you'll read one of them with a partner at your audition. You won't need to prepare a monologue this year. And if you'd also like to work backstage, just tell us when you come in; there's no separate sign-up.",
+   "passageGroupId": "AN5-09",
+   "prompt": "[Announcement — Student theatre club] When are the chorus auditions for the spring musical?",
+   "choices": [
+    "On Friday at 4 p.m.",
+    "On Friday at 7:30 p.m.",
+    "On Saturday at 4 p.m.",
+    "On Saturday at 7:30 p.m."
+   ],
+   "correct_answer": "On Friday at 4 p.m.",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says, \"chorus auditions are on Friday at four,\" so the answer is \"On Friday at 4 p.m.\" The move to \"Saturday at seven thirty\" applies only to \"anyone trying out for a lead role,\" so \"On Saturday at 7:30 p.m.\" is the leads' time. \"On Friday at 7:30 p.m.\" and \"On Saturday at 4 p.m.\" each mix the chorus's day or time with the leads'."
+  },
+  {
+   "id": "AN5-09-2",
+   "type": "multiple_choice",
+   "passage": "Transcript: Hi, theatre club, it's Hana Okonkwo, this year's director. Auditions for the spring musical will all be in Room 417, and chorus auditions are on Friday at four. I'd originally planned to see everyone that afternoon, but anyone trying out for a lead role will now audition on Saturday at seven thirty instead, so I can give each of you a longer slot. Now, about audition material. In past years you'd pick up a printed packet from the club office. This time it's different. If you're going for the chorus, learn the song from the recording on the club's website. If you're going for a lead, you'll be emailed two short scenes on Wednesday, and you'll read one of them with a partner at your audition. You won't need to prepare a monologue this year. And if you'd also like to work backstage, just tell us when you come in; there's no separate sign-up.",
+   "passageGroupId": "AN5-09",
+   "prompt": "[Announcement — Student theatre club] How will students trying out for lead roles get their audition material?",
+   "choices": [
+    "Through a pair of scenes sent by email",
+    "Through a packet from the club office",
+    "Through a recording on the club website",
+    "Through a monologue they pick themselves"
+   ],
+   "correct_answer": "Through a pair of scenes sent by email",
+   "difficulty": "medium",
+   "listeningTask": "announcement",
+   "explanation": "The speaker says, \"If you're going for a lead, you'll be emailed two short scenes on Wednesday,\" so the answer is \"Through a pair of scenes sent by email.\" \"Through a packet from the club office\" is how it worked \"In past years\"; \"This time it's different.\" \"Through a recording on the club website\" is for those \"going for the chorus.\" \"Through a monologue they pick themselves\" is wrong: \"You won't need to prepare a monologue this year.\""
+  }
+ ]
+}

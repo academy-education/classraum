@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "set": "AN5-03",
+    "atypical_fact": "The student card is needed not to get in or to pay (the event is free and open to everyone) but because it is scanned when you vote, limiting each person to one vote; and the event moves to Friday rather than to a different venue.",
+    "revised_fact": "Usually Thursday in the Corrick dining hall -> this term Friday in the same Corrick dining hall (the riverside café was the first plan, dropped for seating).",
+    "q1_kind": "P",
+    "q2_kind": "D",
+    "self_check": [
+      "Passage: 157 words after the Transcript: prefix (limit 90-170), one speaker, plain register; byte-identical in both items, passageGroupId AN5-03.",
+      "Atypical fact: student card is scanned for one-vote-per-person, not for entry or payment; event moves day, not venue. Revised fact: Thursday -> Friday, Corrick dining hall kept, café plan dropped.",
+      "Default value as distractor: Q2 option 'On Thursday, in the Corrick dining hall' is the usual arrangement.",
+      "Q1 kind P: the line 'Bring your student card, though.' alone most naturally suggests payment or entry; the meal-plan, card-at-the-door and sign-up readings are all supportable from the line alone and are contradicted by 'the food is free', 'open to everyone, guests included' and 'no need to sign up in advance'. Only the following sentence ('We scan it when you vote') gives the key.",
+      "Q1 key length rank 2: chars [69 key, 71, 70, 65] (an earlier only-students distractor was replaced because it carried an absolute); sorted 65,69,70,71; ratio 71/65 = 1.09.",
+      "Q2 kind D 2x2 grid: day {Friday, Thursday} x place {Corrick dining hall, riverside café}; each value in exactly two options. Thursday/Corrick is the usual, Friday/café and Thursday/café combine the dropped café plan with each day.",
+      "Q2 gridKey latest: Friday and the Corrick dining hall are the last-mentioned values ('So the tasting stays in the Corrick dining hall, and it moves to Friday'); the café is rejected on content (forty seats vs two hundred), not just by recency.",
+      "Q2 key length rank 3: chars [37 key, 39, 32, 34]; sorted 32,34,37,39; ratio 39/32 = 1.22.",
+      "Form symmetry: Q1 all 'To explain/indicate that/how ...' purposes of equal specificity, no absolutes (always/never/only/all) in any option; Q2 all 'On <Day>, in/at the <place>'.",
+      "Stems name a referent only: the quoted line; 'this term's tasting night'. Neither narrates the move.",
+      "No lexical echo: Q1 key shares no content word with its stem ('student'/'students' appear only in distractors); Q2 key shares none with 'When and where will this term's tasting night be held?'.",
+      "No sibling leak: Q1 options mention meal plans, entry, sign-up and voting - none names or rules out a day or a venue; Q2 options say nothing about cards, cost, entry or voting; neither stem restates the other.",
+      "Not world knowledge: why a card is needed at a free campus event is not answerable by common sense; the common-sense readings (pay, prove student status) are the distractors.",
+      "One defensible answer each: every distractor is contradicted by a quoted line.",
+      "Pool use: Priya Nandakumar, Corrick Building (as the Corrick dining hall); no rooms or extensions left in pool, none used. 'Riverside café' is a generic description, not a named building."
+    ]
+  },
+  "items": [
+    {
+      "id": "AN5-03-1",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, this is Priya Nandakumar from campus dining. Each term we hold a tasting night where students try new dishes and vote on which ones go on the menu. It's normally on a Thursday in the Corrick dining hall. This term the Corrick kitchen is being re-tiled, so our first plan was to move the event to the riverside café. But the café seats about forty people, and we usually get two hundred. Then we heard the tiling will be finished by Wednesday; the sealant just needs a full day to set before the kitchen can be used. So the tasting stays in the Corrick dining hall, and it moves to Friday, from 6 to 8. The doors are open to everyone, guests included, the food is free, and there's no need to sign up in advance. Bring your student card, though. We scan it when you vote, so each person's vote is counted only once.",
+      "passageGroupId": "AN5-03",
+      "listeningTask": "announcement",
+      "prompt": "[Announcement — Campus dining services] Why does the speaker say, \"Bring your student card, though\"?",
+      "choices": [
+        "To explain how the votes on new dishes will be kept to one per person",
+        "To indicate that the dishes will be charged to the students' meal plans",
+        "To indicate that guests without a card will be turned away at the door",
+        "To explain how students should sign up in advance for the tasting"
+      ],
+      "correct_answer": "To explain how the votes on new dishes will be kept to one per person",
+      "difficulty": "medium",
+      "explanation": "The next sentence gives the reason: \"We scan it when you vote, so each person's vote is counted only once.\" \"To indicate that the dishes will be charged to the students' meal plans\" is contradicted by \"the food is free.\" \"To indicate that guests without a card will be turned away at the door\" is contradicted by \"The doors are open to everyone, guests included.\" \"To explain how students should sign up in advance for the tasting\" is contradicted by \"there's no need to sign up in advance.\""
+    },
+    {
+      "id": "AN5-03-2",
+      "type": "multiple_choice",
+      "passage": "Transcript: Hi everyone, this is Priya Nandakumar from campus dining. Each term we hold a tasting night where students try new dishes and vote on which ones go on the menu. It's normally on a Thursday in the Corrick dining hall. This term the Corrick kitchen is being re-tiled, so our first plan was to move the event to the riverside café. But the café seats about forty people, and we usually get two hundred. Then we heard the tiling will be finished by Wednesday; the sealant just needs a full day to set before the kitchen can be used. So the tasting stays in the Corrick dining hall, and it moves to Friday, from 6 to 8. The doors are open to everyone, guests included, the food is free, and there's no need to sign up in advance. Bring your student card, though. We scan it when you vote, so each person's vote is counted only once.",
+      "passageGroupId": "AN5-03",
+      "listeningTask": "announcement",
+      "prompt": "[Announcement — Campus dining services] When and where will this term's tasting night be held?",
+      "choices": [
+        "On Friday, in the Corrick dining hall",
+        "On Thursday, in the Corrick dining hall",
+        "On Friday, at the riverside café",
+        "On Thursday, at the riverside café"
+      ],
+      "correct_answer": "On Friday, in the Corrick dining hall",
+      "difficulty": "medium",
+      "explanation": "The speaker says, \"So the tasting stays in the Corrick dining hall, and it moves to Friday.\" \"On Thursday, in the Corrick dining hall\" is the usual arrangement (\"normally on a Thursday in the Corrick dining hall\"), which changes because the sealant \"needs a full day to set.\" \"On Friday, at the riverside café\" and \"On Thursday, at the riverside café\" use the café, which was only the first plan and was dropped because it \"seats about forty people, and we usually get two hundred.\""
+    }
+  ]
+}
