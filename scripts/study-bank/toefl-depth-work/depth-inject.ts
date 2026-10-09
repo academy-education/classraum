@@ -525,6 +525,21 @@ async function main() {
     }
   }
   console.log('  injected announcement items:', inj, process.env.INJECT ?? '')
+  // STAGED_COHORT: load a staged (verified=false) listening cohort into the
+  // replay as if released — the projected depth of a staged batch.
+  if (process.env.STAGED_COHORT) {
+    const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, { auth: { persistSession: false } })
+    const { data, error } = await db.from('study_item_bank')
+      .select('id,item_type,item,difficulty,created_at,cohort')
+      .eq('family', 'toefl').eq('section', 'listening').eq('verified', false).eq('archived', false)
+      .eq('cohort', process.env.STAGED_COHORT).order('id', { ascending: true })
+    if (error) throw new Error(error.message)
+    const { count } = await db.from('study_item_bank').select('id', { count: 'exact', head: true })
+      .eq('family', 'toefl').eq('section', 'listening').eq('verified', false).eq('archived', false).eq('cohort', process.env.STAGED_COHORT)
+    if (!data?.length || count !== data.length) { console.error(`REFUSING: staged cohort ${process.env.STAGED_COHORT} loaded ${data?.length ?? 0}, count ${count}`); process.exit(2) }
+    for (const r of data) BANK.get('listening')!.push({ id: r.id as string, item_type: r.item_type as string, difficulty: r.difficulty as string | null, created_at: r.created_at as string, cohort: r.cohort as string | null, item: r.item as BankRow['item'] })
+    console.log(`  staged cohort ${process.env.STAGED_COHORT}: ${data.length} listening rows loaded as if released`)
+  }
   installFakeFetch()
   quietConsole()
   const { A, D } = await loadModules()
