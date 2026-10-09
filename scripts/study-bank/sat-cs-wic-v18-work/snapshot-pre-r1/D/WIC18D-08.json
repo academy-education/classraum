@@ -1,0 +1,20 @@
+{
+  "id": "WIC18D-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "slow-changing core vocabulary in language comparison",
+  "passage": "Words for body parts, small numbers, and close relatives are replaced far more slowly than most of a language's vocabulary. The word for \"two\" has kept a recognizably similar form for thousands of years across many related languages, changing only a sound or two, while words for tools and customs are often swapped out within a few centuries. Historical linguists put this difference to use when they compare languages that split long ago: they base their comparisons on the ______ core, since a resemblance there is unlikely to reflect a recent borrowing.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["typical", "stable", "vital", "rigid"],
+  "correct_answer": "stable",
+  "explanation": "The core vocabulary changes only slowly over thousands of years, and that slowness is why a match there points to shared ancestry, so linguists rely on the \"stable\" core. \"Rigid\" fails because the core does change, by a sound or two, only slowly; \"vital\" fails because, although body parts and kin matter greatly to speakers, the linguists choose these words for how slowly they change, not for their importance; \"typical\" fails because these words are unlike most vocabulary.",
+  "antonym_pairs": [],
+  "polarity": {"typical": "0", "stable": "+", "vital": "+", "rigid": "-"},
+  "rarity_order": ["typical", "stable", "vital", "rigid"],
+  "killed_by": {"typical": "explicit", "vital": "logic", "rigid": "logic"},
+  "after_blank": "core",
+  "pos": "adjective",
+  "shape": "principle and its application",
+  "key_from_one_sentence": false
+}

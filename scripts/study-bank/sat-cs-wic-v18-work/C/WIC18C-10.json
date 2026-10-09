@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "borrowed melodies in a composer's works",
+  "passage": "The composer often ______ other composers' melodies in his own works. A phrase from a popular march surfaces, note for note, in the finale of his first symphony, and a hymn tune arrives in the hushed close of a string quartet, harmonized much as a congregation would sing it. Listeners who know the originals recognize them at once; those who do not hear nothing out of place, since each borrowing is woven into the music around it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "promoted",
+    "parodied",
+    "quoted",
+    "modernized"
+  ],
+  "correct_answer": "quoted",
+  "explanation": "Both examples show an existing melody reproduced faithfully inside the composer's own piece, recognizable to anyone who knows it, so he \"quoted\" other composers' melodies. \"Modernized\" fails because the march phrase keeps its notes and the hymn keeps the harmony a congregation would use; neither is updated. \"Parodied\" fails because the borrowings are treated with respect, the hymn set quietly and harmonized as worshipers would sing it, with nothing mocking about either. \"Promoted\" fails because the borrowings are woven in so smoothly that listeners who do not know the originals hear nothing unusual; they are not advertised.",
+  "antonym_pairs": [],
+  "polarity": {
+    "promoted": "0",
+    "parodied": "0",
+    "quoted": "0",
+    "modernized": "0"
+  },
+  "rarity_order": [
+    "promoted",
+    "quoted",
+    "modernized",
+    "parodied"
+  ],
+  "killed_by": {
+    "promoted": "logic",
+    "parodied": "logic",
+    "modernized": "logic"
+  },
+  "after_blank": "other",
+  "pos": "verb",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

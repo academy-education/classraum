@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "bargaining in a street market",
+  "passage": "Economists studying a street market in one port city noticed that its vendors almost never posted prices. Rather than assume that bargaining there was a free-for-all, the researchers recorded several hundred sales. Buyers' opening offers for the same item ranged widely, yet the final price paid varied by less than five percent from one buyer to the next. Haggling there, the researchers argued, was a ritual rather than a contest: the market's prices were unwritten but ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["equitable", "firm", "identical", "familiar"],
+  "correct_answer": "firm",
+  "explanation": "However bargaining began, the final price for an item landed in nearly the same place, so the unwritten prices were \"firm.\" \"Identical\" overstates the finding, since final prices still varied by up to five percent. \"Familiar\" fails because buyers' widely ranging opening offers suggest they did not already know the price; the consistency lay in where bargaining ended. \"Equitable\" judges whether prices were just, but the researchers measured only how consistent the prices were, not whether buyers were treated well.",
+  "antonym_pairs": [],
+  "polarity": {"equitable": "+", "firm": "0", "identical": "0", "familiar": "0"},
+  "rarity_order": ["firm", "familiar", "identical", "equitable"],
+  "killed_by": {"equitable": "logic", "identical": "explicit", "familiar": "logic"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "finding from measurement",
+  "key_from_one_sentence": false
+}

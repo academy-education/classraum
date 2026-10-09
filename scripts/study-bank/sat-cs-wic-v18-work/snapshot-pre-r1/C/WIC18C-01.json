@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "ornament on early pianos",
+  "passage": "Early pianos had thin strings under low tension, and a struck note faded almost completely within a second or two. Composers writing for these instruments often filled their slow movements with trills and quickly repeated notes, figures that can sound fussy when played on a modern piano. On the older instruments, though, such figures did real work: by striking a note again before its sound died away, a player could ______ a melodic line that the instrument itself was unable to sustain.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "phrase",
+    "maintain",
+    "quicken",
+    "punctuate"
+  ],
+  "correct_answer": "maintain",
+  "explanation": "Because a note on an early piano faded within a second or two, re-striking it before it died let the player \"maintain\" a line the instrument could not sustain on its own. To \"phrase\" a line is to shape and group its notes, but the problem described is that sound disappears over time, not that the line lacks shape. To \"quicken\" it would change its tempo, yet the repeated notes fill out the length of each note rather than hurrying the line. To \"punctuate\" it would be to break it with accents, the opposite of what the re-striking is said to accomplish: keeping the line going where the instrument would let it lapse.",
+  "antonym_pairs": [],
+  "polarity": {
+    "phrase": "0",
+    "maintain": "0",
+    "quicken": "0",
+    "punctuate": "0"
+  },
+  "rarity_order": [
+    "maintain",
+    "phrase",
+    "quicken",
+    "punctuate"
+  ],
+  "killed_by": {
+    "phrase": "logic",
+    "quicken": "logic",
+    "punctuate": "logic"
+  },
+  "after_blank": "a",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

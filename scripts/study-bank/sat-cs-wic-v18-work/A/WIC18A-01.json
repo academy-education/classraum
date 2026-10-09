@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "volcanic ash and lake sediment dating",
+  "passage": "In one lake, sediment settles in yearly bands that can be counted like tree rings, and counting shows that a distinctive volcanic ash fell there 7,400 years ago. A second lake lacks such bands, so its mud has been dated by radiocarbon, a method that can be thrown off when the water carries carbon dissolved from ancient limestone, as this lake's water does. The same ash turns up in the second lake, in mud with a radiocarbon age of 8,100 years. Geologists can therefore ______ the radiocarbon dates throughout the second lake's record.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["bracket", "adjust", "compile", "cancel"],
+  "correct_answer": "adjust",
+  "explanation": "The ash fell 7,400 years ago according to the counted bands, yet radiocarbon places it at 8,100 years in the second lake, so the limestone carbon has made that lake's dates about 700 years too old, and geologists can \"adjust\" them by that amount. They cannot \"cancel\" the dates, since the ash shows exactly how far off they are, which makes them usable rather than worthless. To \"bracket\" the dates would require a second dated layer to set a limit on the other side, and to \"compile\" them would only gather dates that already exist, which the ash does nothing to change.",
+  "antonym_pairs": [],
+  "polarity": {"bracket": "0", "adjust": "0", "compile": "0", "cancel": "0"},
+  "rarity_order": ["cancel", "adjust", "compile", "bracket"],
+  "killed_by": {"bracket": "logic", "compile": "logic", "cancel": "logic"},
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

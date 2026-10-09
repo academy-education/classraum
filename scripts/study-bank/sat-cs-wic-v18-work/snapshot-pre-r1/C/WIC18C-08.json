@@ -1,0 +1,20 @@
+{
+  "id": "WIC18C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a misattributed portrait",
+  "passage": "For more than a century, a small portrait of a young woman hung in a provincial museum labeled as the work of a celebrated seventeenth-century painter, and its frame bears an inscription naming the merchant who commissioned it. A recent analysis of the paint, however, found a synthetic blue that was not manufactured until some eighty years after that painter's death. No one disputes that the portrait is skillfully made, but what curators now question is the identity of its ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["model", "owner", "maker", "patron"],
+  "correct_answer": "maker",
+  "explanation": "The museum's label credits a seventeenth-century painter, yet the paint contains a blue invented eighty years after his death, so the evidence calls into doubt who painted the picture: its \"maker.\" The pigment says nothing about the young woman who posed, so the \"model\" is not what the analysis challenges. Nor does it bear on the \"owner,\" since the question concerns how the work came to be made, not who holds it. The \"patron\" is the one party the text records directly, through the frame's inscription.",
+  "antonym_pairs": [],
+  "polarity": {"model": "0", "owner": "0", "maker": "0", "patron": "0"},
+  "rarity_order": ["model", "owner", "maker", "patron"],
+  "killed_by": {"model": "logic", "owner": "logic", "patron": "explicit"},
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "received view overturned",
+  "key_from_one_sentence": false
+}

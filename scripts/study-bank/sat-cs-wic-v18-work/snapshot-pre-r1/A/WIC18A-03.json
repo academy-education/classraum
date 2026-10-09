@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "gazelle leaping display",
+  "passage": "When a gazelle spots a cheetah, it sometimes leaps straight up on stiff legs instead of running away at once. The display burns energy and gives up a head start, so only a gazelle fit enough to escape anyway can afford to perform it. Cheetahs, for their part, often abandon a chase after seeing the leap. The display persuades the predator precisely because it is ______: a weak or injured gazelle could not fake it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["clear", "abrupt", "costly", "brief"],
+  "correct_answer": "costly",
+  "explanation": "The text says the leap burns energy and gives up a head start, so only a fit gazelle can afford it; that expense is why a weak animal cannot fake it, making the display \"costly.\" A \"clear\" display is merely easy to see, an \"abrupt\" one merely sudden, and a \"brief\" one merely short, and a weak gazelle could produce a signal with any of those qualities, so none explains why the cheetah is persuaded.",
+  "antonym_pairs": [],
+  "polarity": {"clear": "+", "abrupt": "0", "costly": "-", "brief": "0"},
+  "rarity_order": ["clear", "brief", "costly", "abrupt"],
+  "killed_by": {"clear": "logic", "abrupt": "logic", "brief": "logic"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

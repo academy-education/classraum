@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "medieval building wages",
+  "passage": "Account books from one medieval monastery record exactly what it paid the masons and carpenters who built its church: a fixed sum for each day worked. Economic historians have used such day rates to compare builders' living standards across centuries. The books never say, however, how many days a year a builder found work, and building was seasonal and often halted by weather. Taken alone, the recorded day rates are therefore ______ evidence of what a builder earned in a year.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["erroneous", "insufficient", "dated", "inflated"],
+  "correct_answer": "insufficient",
+  "explanation": "A builder's yearly pay depends on both the day rate and the number of days worked, and the books record only the first, so the day rates alone are \"insufficient\" evidence. \"Erroneous\" fails because nothing suggests the rates were recorded wrongly; the books state them exactly. \"Dated\" fails because historians use these records precisely to compare living standards across centuries, so their age is the point rather than a flaw. \"Inflated\" fails because the problem is a missing number of days, not day rates set higher than builders were really paid.",
+  "antonym_pairs": [],
+  "polarity": {"erroneous": "-", "insufficient": "-", "dated": "-", "inflated": "-"},
+  "rarity_order": ["insufficient", "dated", "inflated", "erroneous"],
+  "killed_by": {"erroneous": "explicit", "dated": "logic", "inflated": "logic"},
+  "after_blank": "evidence",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

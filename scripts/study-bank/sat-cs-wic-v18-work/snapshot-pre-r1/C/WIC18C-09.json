@@ -1,0 +1,20 @@
+{
+  "id": "WIC18C-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "night scenes in daylight theater",
+  "passage": "Tragedies in ancient Athens were performed in an open-air theater by day, under the same sunlight that fell on the audience. Several of these plays nonetheless open in the middle of the night. Since the stage could not be darkened, the playwrights placed the night in the words themselves: a watchman complains of the long dark hours, and a servant gropes for a door and calls for a torch. Spectators sitting in full sun were thus asked to ______ the darkness the characters described.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["notice", "mimic", "picture", "ponder"],
+  "correct_answer": "picture",
+  "explanation": "The plays were staged in daylight that could not be dimmed, so the night existed only in the characters' words, and the audience had to \"picture\" it. They could not \"notice\" the darkness, since there was none to see in a sunlit theater. To \"mimic\" it would make the spectators performers, whereas the groping and calling for torches belong to the characters on stage. To \"ponder\" the darkness would be to reflect on it as an idea, but the playwrights' details are meant to make the night present to the senses, not to raise it as a subject for thought.",
+  "antonym_pairs": [],
+  "polarity": {"notice": "0", "mimic": "0", "picture": "0", "ponder": "0"},
+  "rarity_order": ["notice", "picture", "mimic", "ponder"],
+  "killed_by": {"notice": "logic", "mimic": "logic", "ponder": "logic"},
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "constraint and consequence",
+  "key_from_one_sentence": false
+}

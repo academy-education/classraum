@@ -1,0 +1,39 @@
+{
+  "id": "WIC18A-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "keystone species",
+  "passage": "A species can matter to its community far out of proportion to its numbers. When ecologists removed one predatory sea star from a stretch of rocky shore, the mussels it had been eating spread across the rocks and crowded out more than a dozen other species. Beavers, too, are few in any valley, yet their dams turn streams into ponds that fish, frogs, and nesting birds come to depend on. Each species, in its own way, acts as the ______ of its community.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "beacon",
+    "anchor",
+    "competitor",
+    "architect"
+  ],
+  "correct_answer": "anchor",
+  "explanation": "Without the sea star the shore's community unraveled, and the fish, frogs, and birds of a valley depend on the beavers' ponds, so each scarce species holds its community in place: it is the community's \"anchor.\" \"Architect\" and \"beacon\" suit only the beaver, which builds ponds that draw other animals in; the sea star builds nothing and attracts nothing, and matters by eating mussels. \"Competitor\" fits neither case, since the sea star preys on the mussels rather than competing with them, and the other species rely on the beavers rather than vying with them.",
+  "antonym_pairs": [],
+  "polarity": {
+    "beacon": "0",
+    "anchor": "0",
+    "competitor": "0",
+    "architect": "0"
+  },
+  "rarity_order": [
+    "anchor",
+    "competitor",
+    "beacon",
+    "architect"
+  ],
+  "killed_by": {
+    "beacon": "logic",
+    "competitor": "logic",
+    "architect": "logic"
+  },
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

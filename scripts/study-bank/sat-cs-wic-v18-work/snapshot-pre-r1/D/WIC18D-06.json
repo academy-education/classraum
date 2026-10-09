@@ -1,0 +1,20 @@
+{
+  "id": "WIC18D-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "ultrasound probe frequency",
+  "passage": "Every ultrasound probe works within a limit set by the sound it emits. With high-frequency waves, echoes from two structures lying less than a millimeter apart return as two distinct signals rather than merging into one, but tissue absorbs such waves quickly, and they fade before reaching deep organs. Low-frequency waves travel much deeper, at the price of blurring fine detail. To examine a tendon just beneath the skin, a technician therefore picks a high-frequency probe: at that shallow depth, the probe's ability to ______ closely spaced fibers matters more than how far its signal can travel.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["warm", "resolve", "survey", "target"],
+  "correct_answer": "resolve",
+  "explanation": "High frequencies return separate echoes from structures less than a millimeter apart, which is the advantage weighed against depth, so the probe's value at a shallow depth is its ability to \"resolve\" closely spaced fibers, that is, to show them as distinct. \"Survey\" fails because the advantage concerns separating fine detail, not covering a wide area; \"warm\" fails because, although tissue absorbs these waves, the technician is examining the tendon, and the trade-off is detail against depth, not heating; \"target\" fails because any probe can be aimed at the tendon, so aiming is not what high frequency adds.",
+  "antonym_pairs": [],
+  "polarity": {"warm": "0", "resolve": "0", "survey": "0", "target": "0"},
+  "rarity_order": ["target", "warm", "resolve", "survey"],
+  "killed_by": {"warm": "logic", "survey": "logic", "target": "logic"},
+  "after_blank": "closely",
+  "pos": "verb",
+  "shape": "trade-off between two properties",
+  "key_from_one_sentence": false
+}

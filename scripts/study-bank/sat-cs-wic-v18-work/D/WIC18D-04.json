@@ -1,0 +1,39 @@
+{
+  "id": "WIC18D-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "early list-based spell-checkers",
+  "passage": "Early spell-checkers compared each typed word against a stored word list and flagged anything missing from it. Critics mocked the method's blindness to errors such as \"their\" typed for \"there,\" since both are real words. Yet a word absent from a large list is almost never spelled correctly, and a slip of the fingers that produces a non-word almost never matches a listed word by chance. For the narrower task of catching misspellings that produce non-words, then, the method was entirely ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "simple",
+    "swift",
+    "sound",
+    "subtle"
+  ],
+  "correct_answer": "sound",
+  "explanation": "The third sentence shows that, for non-word misspellings, the list method's flags were almost never wrong in either direction, and the final sentence draws its conclusion from that, so the method was \"sound\" for that task. \"Simple\" is true of a bare list lookup in general, so limiting the claim to one narrower task and drawing it from an argument about accuracy would make no sense; \"swift\" fails because the argument concerns whether the flags are correct, not how fast they appear; \"subtle\" fails because the method does nothing more than check whether a word appears on a list.",
+  "antonym_pairs": [],
+  "polarity": {
+    "simple": "0",
+    "swift": "+",
+    "sound": "+",
+    "subtle": "+"
+  },
+  "rarity_order": [
+    "simple",
+    "sound",
+    "subtle",
+    "swift"
+  ],
+  "killed_by": {
+    "simple": "logic",
+    "swift": "logic",
+    "subtle": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "nineteenth-century sales law",
+  "passage": "In one 1890s lawsuit, a buyer sued a hardware dealer over a stove that cracked the first time it was lit. The dealer replied that he had said nothing about the stove's quality and that the bill of sale listed only its model and price. The court sided with the buyer anyway. Any merchant who sells an object as a stove, the judge reasoned, thereby represents that it can be used to cook, and no buyer should have to bargain for that assurance. The dealer lost, then, because the court regarded the promise he denied making as ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["exceptional", "implicit", "dubious", "imprecise"],
+  "correct_answer": "implicit",
+  "explanation": "The dealer stated nothing and wrote nothing about quality, yet the judge held that the act of selling something as a stove carries the promise that it works, so the court regarded that promise as \"implicit\" in the sale. \"Exceptional\" fails because the judge's reasoning covers any merchant who sells a stove, which makes the promise routine rather than unusual. \"Dubious\" fails because the court enforced the promise against the dealer. \"Imprecise\" fails because the judge stated exactly what the promise covers: that the object can be used to cook.",
+  "antonym_pairs": [],
+  "polarity": {"exceptional": "0", "implicit": "0", "dubious": "-", "imprecise": "-"},
+  "rarity_order": ["exceptional", "dubious", "imprecise", "implicit"],
+  "killed_by": {"exceptional": "logic", "dubious": "logic", "imprecise": "logic"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "principle drawn from a case",
+  "key_from_one_sentence": false
+}

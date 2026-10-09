@@ -1,0 +1,39 @@
+{
+  "id": "WIC18B-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "transmission of an interest-rate change",
+  "passage": "When one country's central bank raises its benchmark interest rate, the first to feel it are commercial banks, which pay more to borrow from one another overnight. Within weeks those banks charge more for new business loans. Households take longer to notice: only over the following year, as their fixed-rate mortgages come up for renewal, do homeowners face the full increase. Economists describe such a change as one that ______ through the economy.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "drifts",
+    "filters",
+    "flickers",
+    "dissolves"
+  ],
+  "correct_answer": "filters",
+  "explanation": "The increase passes from banks to businesses to homeowners in a fixed order, reaching each layer later than the one before but at full strength, so it \"filters\" through the economy. \"Drifts\" suggests aimless movement, but the change follows a definite path from lenders to borrowers. \"Flickers\" suggests an effect that comes and goes, whereas each group, once its borrowing costs are reset, keeps paying the higher rate. \"Dissolves\" suggests the change weakens as it spreads, yet homeowners, the last group reached, face the full increase.",
+  "antonym_pairs": [],
+  "polarity": {
+    "drifts": "0",
+    "filters": "0",
+    "flickers": "0",
+    "dissolves": "0"
+  },
+  "rarity_order": [
+    "drifts",
+    "filters",
+    "dissolves",
+    "flickers"
+  ],
+  "killed_by": {
+    "drifts": "logic",
+    "flickers": "logic",
+    "dissolves": "explicit"
+  },
+  "after_blank": "through",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,39 @@
+{
+  "id": "WIC18D-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "handwashing signs above hospital sinks",
+  "passage": "Signs above the sinks in a hospital ward rarely tell the staff anything new; every nurse there learned years ago that clean hands keep infections from passing between patients. Studies of such signs suggest their value lies elsewhere. Placed where staff pass just before touching the next patient, a sign catches a busy worker at the one moment when the familiar fact matters most. Its job, in other words, is less to teach than to ______ that knowledge when attention has drifted to the next task.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "store",
+    "verify",
+    "refresh",
+    "simplify"
+  ],
+  "correct_answer": "refresh",
+  "explanation": "The staff already know the fact, and the sign's value is to bring it back to mind at the moment it is needed, so its job is to \"refresh\" that knowledge. \"Store\" fails because the knowledge has been held in the staff's memory for years, and the sign's value lies in when it is seen, not in keeping the fact on record; \"verify\" fails because the sign checks nothing, it only catches a worker at the right moment; \"simplify\" fails because the fact is already a short, familiar one, and the sign's value is its timing, not a plainer wording.",
+  "antonym_pairs": [],
+  "polarity": {
+    "store": "0",
+    "verify": "0",
+    "refresh": "+",
+    "simplify": "0"
+  },
+  "rarity_order": [
+    "store",
+    "verify",
+    "refresh",
+    "simplify"
+  ],
+  "killed_by": {
+    "store": "logic",
+    "verify": "logic",
+    "simplify": "logic"
+  },
+  "after_blank": "that",
+  "pos": "verb",
+  "shape": "distinction between two functions",
+  "key_from_one_sentence": false
+}

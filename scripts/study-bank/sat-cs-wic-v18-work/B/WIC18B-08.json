@@ -1,0 +1,39 @@
+{
+  "id": "WIC18B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "online opinion panels",
+  "passage": "One polling firm's online panel includes more college graduates than the population does, so its raw estimate of support for any given policy is off by several points. Because the same people answer the survey every month, however, that tilt stays roughly constant from one round to the next. For judging whether support for a policy is rising or falling, then, the panel's monthly figures are ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "detailed",
+    "informative",
+    "impartial",
+    "flawless"
+  ],
+  "correct_answer": "informative",
+  "explanation": "A tilt that stays about the same each month largely cancels out when one month is compared with the next, so the figures are \"informative\" about the direction of opinion even though their levels are biased. \"Flawless\" fails because the tilt is only roughly constant and the raw levels are off by several points. \"Impartial\" fails because the panel overrepresents college graduates; the figures are useful despite that tilt, not because it is absent. \"Detailed\" fails because the passage's case for the figures rests on the tilt staying constant, which says nothing about how finely they break down opinion.",
+  "antonym_pairs": [],
+  "polarity": {
+    "detailed": "0",
+    "informative": "+",
+    "impartial": "+",
+    "flawless": "+"
+  },
+  "rarity_order": [
+    "detailed",
+    "informative",
+    "flawless",
+    "impartial"
+  ],
+  "killed_by": {
+    "detailed": "logic",
+    "impartial": "logic",
+    "flawless": "logic"
+  },
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "magnetite in cooling lava",
+  "passage": "As lava cools, tiny grains of the mineral magnetite line up with Earth's magnetic field, much as compass needles do; once the rock cools below about 580 degrees Celsius, the grains are locked in place. Each lava flow therefore ______ the direction of the field at the moment it solidified. Because Earth's field has reversed many times, flows stacked from successive eruptions preserve a sequence of those reversals that geologists can read layer by layer.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["alters", "creates", "attracts", "captures"],
+  "correct_answer": "captures",
+  "explanation": "The grains align with the existing field and are then locked in place, so each flow holds onto, or \"captures,\" the field's direction at the moment it hardened, which is why stacked flows preserve a record of reversals. The lava neither \"alters\" nor \"creates\" the field's direction; the grains simply follow a field that Earth already produces. Nor does the flow attract the field (\"attracts\"): the grains respond to the field the way compass needles do, rather than drawing it toward themselves.",
+  "antonym_pairs": [],
+  "polarity": {"alters": "0", "creates": "0", "attracts": "0", "captures": "0"},
+  "rarity_order": ["creates", "captures", "alters", "attracts"],
+  "killed_by": {"alters": "logic", "creates": "logic", "attracts": "logic"},
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

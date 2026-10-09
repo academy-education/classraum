@@ -1,0 +1,20 @@
+{
+  "id": "WIC18C-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "two branch libraries",
+  "passage": "Two branch libraries built in the same decade stand on opposite sides of a single avenue and share nearly identical floor plans, furnishings, and opening hours. Yet patrons of the eastern branch tend to stay for hours, while those of the western branch usually collect their books and leave. One architectural historian traces the difference to the buildings' ______: the eastern branch's reading-room windows, the same size as those across the street, look out over a wooded park, whereas the western branch's windows face a loading dock.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["location", "outlook", "lighting", "layout"],
+  "correct_answer": "outlook",
+  "explanation": "The historian's evidence is what each reading room's windows look out on, a park in one case and a loading dock in the other, so the difference lies in the buildings' \"outlook,\" in the sense of their view. \"Location\" cannot be the cause, because the two libraries stand across a single avenue from each other. \"Layout\" is ruled out by the nearly identical floor plans. \"Lighting\" fails because the windows are the same size; what differs is not how much light enters but what the windows frame.",
+  "antonym_pairs": [],
+  "polarity": {"location": "0", "outlook": "0", "lighting": "0", "layout": "0"},
+  "rarity_order": ["location", "lighting", "outlook", "layout"],
+  "killed_by": {"location": "logic", "lighting": "logic", "layout": "explicit"},
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

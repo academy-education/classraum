@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "volcanic ash layers in lake sediments",
+  "passage": "When a large volcano erupts, its ash can settle over thousands of square kilometers within a few days, leaving a thin layer whose chemical makeup is unique to that eruption. Sediments at two lake beds hundreds of kilometers apart may otherwise share nothing, but if the same ash layer runs through both, geologists can ______ the two sequences: mud lying just beneath the ash at one lake was deposited at nearly the same moment as mud lying just beneath it at the other.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["classify", "correlate", "catalog", "characterize"],
+  "correct_answer": "correlate",
+  "explanation": "Because the ash fell within days and is chemically unique, it marks one moment in both lakes, so geologists can \"correlate\" the sequences, matching layers at one site to layers of the same age at the other. To \"classify\" or \"catalog\" the sequences would be to sort or list them, which the shared layer does not help with, and to \"characterize\" them would be to describe their makeup, whereas the ash tells nothing about what the mud is like, only when it was laid down relative to the other lake.",
+  "antonym_pairs": [],
+  "polarity": {"classify": "0", "correlate": "0", "catalog": "0", "characterize": "0"},
+  "rarity_order": ["classify", "correlate", "catalog", "characterize"],
+  "killed_by": {"classify": "logic", "catalog": "logic", "characterize": "logic"},
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

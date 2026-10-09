@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "a misattributed portrait",
+  "passage": "For more than a century, a small portrait of an unidentified young woman hung in a provincial museum in the frame made for it, which is inscribed with the name of the merchant who commissioned it. The museum credited the work to a celebrated seventeenth-century painter on the strength of the signature in its lower corner. A recent analysis, however, found that the signature sits on top of a layer of varnish applied long after the paint beneath had dried. No one disputes that the portrait is skillfully made, but what curators now question is the identity of its ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "model",
+    "owner",
+    "maker",
+    "patron"
+  ],
+  "correct_answer": "maker",
+  "explanation": "The attribution to a celebrated painter rested on the signature, and a signature lying on top of later varnish was added after the picture was finished, so what curators now doubt is who painted it: its \"maker.\" The \"model\" was never identified, so there is no accepted identity for the new evidence to call into question. The \"patron\" is recorded on the frame, and the analysis concerns the signature, not the inscription. The \"owner\" is not at issue either, since the museum has held the portrait for more than a century; the evidence bears on how the work came to be credited, not on who holds it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "model": "0",
+    "owner": "0",
+    "maker": "0",
+    "patron": "0"
+  },
+  "rarity_order": [
+    "model",
+    "owner",
+    "maker",
+    "patron"
+  ],
+  "killed_by": {
+    "model": "explicit",
+    "owner": "logic",
+    "patron": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "received view overturned",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "WIC18C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "improvisation in a film scene",
+  "passage": "Reviewers praised the film's long dinner-party scene as entirely improvised, and the cast did invent every line of its dialogue on the spot. But the director had settled in advance who would arrive when, which guest would knock over the wine, and the moment the lights would fail, and the actors were required to reach each of these events in order. The scene's improvisation, in other words, was ______: it governed what the characters said, but not what happened to them.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["mutual", "limited", "polished", "orderly"],
+  "correct_answer": "limited",
+  "explanation": "The actors chose every word, yet the events of the scene were fixed beforehand, so the improvisation was \"limited\": complete within its sphere, dialogue, and absent outside it, the plot. \"Mutual\" fits a cast inventing together, but the closing clause is about where improvisation stopped, not who shared it. \"Polished\" echoes the reviewers' praise, but the text's point is the boundary of the improvising, not its quality. \"Orderly\" picks up the events reached \"in order,\" but that order belonged to the director's plan, not to the actors' invented speech.",
+  "antonym_pairs": [],
+  "polarity": {"mutual": "0", "limited": "0", "polished": "+", "orderly": "+"},
+  "rarity_order": ["limited", "mutual", "polished", "orderly"],
+  "killed_by": {"mutual": "logic", "polished": "logic", "orderly": "logic"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

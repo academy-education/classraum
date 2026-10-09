@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "mangroves and coastal silt",
+  "passage": "Mangroves have long been described as trees that settle on mudflats the sea has already laid down. Cores drilled through mangrove coasts tell a different story. The trees' arching roots slow incoming tides enough that silt drops out of the water and collects among them; over decades the trapped silt rises above the high-tide line, seedlings take root on it, and the forest advances over what had been open water. A mangrove forest, in other words, ______ the very ground it stands on.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["conserves", "builds", "abandons", "cultivates"],
+  "correct_answer": "builds",
+  "explanation": "The cores show that the roots trap silt until it rises above the tide line and the forest spreads onto it, so the ground did not exist before the trees; the forest \"builds\" it. \"Conserves\" fits the familiar idea that mangroves protect coasts, but conserving means keeping ground that is already there. \"Cultivates\" likewise means working existing soil, and \"abandons\" misreads the forest's advance: it extends onto new ground rather than leaving the ground it stands on.",
+  "antonym_pairs": [],
+  "polarity": {"conserves": "+", "builds": "0", "abandons": "-", "cultivates": "+"},
+  "rarity_order": ["builds", "abandons", "conserves", "cultivates"],
+  "killed_by": {"conserves": "logic", "abandons": "logic", "cultivates": "logic"},
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "received view overturned",
+  "key_from_one_sentence": false
+}

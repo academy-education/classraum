@@ -1,0 +1,486 @@
+{
+ "WIC18A-01": {
+  "reasons": [
+   "options probe: test_word hits key",
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 0,
+   "second": null,
+   "note": "Matching layers deposited at the same moment across two sites is correlating them."
+  }
+ },
+ "WIC18A-02": {
+  "reasons": [
+   "options probe: test_word hits key",
+   "options probe: most_specific hits key"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": false,
+   "explicit": 1,
+   "second": null,
+   "note": "The lake moderates temperatures both ways, so buffer; blanket and battery fit only the autumn warming."
+  }
+ },
+ "WIC18A-04": {
+  "reasons": [
+   "options probe: test_word hits key",
+   "options probe: most_specific hits key"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": false,
+   "explicit": 1,
+   "second": null,
+   "note": "Hatchlings raised alike were equally wary, so the tameness is acquired rather than inborn; 'the difference vanished' kills constant."
+  }
+ },
+ "WIC18A-05": {
+  "reasons": [
+   "options probe: test_word hits key",
+   "options probe: most_specific hits key"
+  ],
+  "difficulty_probe": {
+   "probe": "easy",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "The grains are locked in alignment with the field, so the flow captures (records) the field's direction; preserve in the next sentence confirms it."
+  }
+ },
+ "WIC18A-06": {
+  "reasons": [
+   "options probe: opposite pair cultivates/abandons, conserves/abandons, builds/abandons",
+   "options probe: polarity breach",
+   "difficulty probe: authored hard, probe easy",
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "easy",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "Trapped silt rises and the forest advances, so it builds its ground; 'other words' summary makes it obvious."
+  }
+ },
+ "WIC18A-07": {
+  "reasons": [
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "A figure from pooled colonies that individuals 'stray well away from in both directions' is an average; boundary is the near miss."
+  }
+ },
+ "WIC18A-08": {
+  "reasons": [
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "'leaving its seeds exposed' gives bares; aerates is the garden-side near miss."
+  }
+ },
+ "WIC18A-09": {
+  "reasons": [
+   "options probe: most_specific hits key",
+   "options probe: opposite pair architect/beneficiary",
+   "difficulty probe: key from one sentence",
+   "author: bulk falls to a single phrase"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "'take it away, and much of the rest falls apart' fixes cornerstone; architect fits beavers but not the sea star; 'few' kills bulk."
+  }
+ },
+ "WIC18A-10": {
+  "reasons": [
+   "author: boost/blur near-pair on signal axis"
+  ],
+  "difficulty_probe": {
+   "probe": "easy",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "She replies with the other species' delay, so she copies its signal; anticipate is the near miss."
+  }
+ },
+ "WIC18B-01": {
+  "reasons": [
+   "difficulty probe: key from one sentence",
+   "difficulty probe: 2 explicit kills"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 2,
+   "second": null,
+   "note": "'only roughly' kills establish and document, which leaves estimate; forecast is the wrong tense for past trade."
+  }
+ },
+ "WIC18B-02": {
+  "reasons": [
+   "options probe: above ceiling incumbency",
+   "difficulty probe: 2 explicit kills"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": false,
+   "explicit": 2,
+   "second": null,
+   "note": "The returning former legislators control for experience, and the name-recognition match controls for familiarity, which leaves incumbency."
+  }
+ },
+ "WIC18B-03": {
+  "reasons": [
+   "options probe: opposite pair documented/hypothetical",
+   "difficulty probe: authored hard, probe easy",
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "easy",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "A promise in force 'even though the dealer had never voiced it' is implicit; the silent bill of sale kills documented."
+  }
+ },
+ "WIC18B-04": {
+  "reasons": [
+   "difficulty probe: 2 explicit kills"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": false,
+   "explicit": 2,
+   "second": null,
+   "note": "The same offices and clerks predate him, so he inherited the system; 'same offices' kills dismantle and imitate."
+  }
+ },
+ "WIC18B-05": {
+  "reasons": [
+   "options probe: polarity breach"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "'nearly the same place every time' gives firm; 'less than five percent' rules out identical, and fair/honest have no support."
+  }
+ },
+ "WIC18B-06": {
+  "reasons": [
+   "difficulty probe: key from one sentence",
+   "author: all three distractors fail for the same reason"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": "A",
+   "note": "The withdrawals create the very shortage reported, so generate; hasten is the near miss but the loans were sound."
+  }
+ },
+ "WIC18B-07": {
+  "reasons": [
+   "options probe: opposite pair expenditure/earnings, expenditure/dividend",
+   "difficulty probe: authored hard, probe easy",
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "easy",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "A day rate multiplied by working days gives a builder's yearly earnings."
+  }
+ },
+ "WIC18B-08": {
+  "reasons": [
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "Because the tilt is constant, the trend is informative; 'cannot be taken at face value' kills flawless, and frequent is true but not the point."
+  }
+ },
+ "WIC18B-09": {
+  "reasons": [
+   "options probe: opposite pair dissipates/erupts",
+   "difficulty probe: key from one sentence",
+   "difficulty probe: 2 explicit kills",
+   "author: erupts vs key filters close to opposite"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 2,
+   "second": null,
+   "note": "'reaching each group in turn' gives filters; 'full increase' kills dissipates and 'rather than everywhere at once' kills erupts."
+  }
+ },
+ "WIC18B-10": {
+  "reasons": [
+   "author: formal vs direct mild contrast"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "Abandoning stock phrases gives the most direct evidence of feeling; formal is the opposite and eloquent is a near miss."
+  }
+ },
+ "WIC18C-01": {
+  "reasons": [
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "Restriking before the sound dies keeps a line the instrument cannot 'sustain', so maintain; 'slow movements' kills quicken."
+  }
+ },
+ "WIC18C-02": {
+  "reasons": [
+   "difficulty probe: key from one sentence",
+   "difficulty probe: 2 explicit kills"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 2,
+   "second": "C",
+   "note": "The windows look out on a park versus a dock, so outlook; floor plans kill layout and same-size windows kill lighting; location is a near miss."
+  }
+ },
+ "WIC18C-03": {
+  "reasons": [
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 0,
+   "second": null,
+   "note": "'governed what the characters said, but not what happened' gives limited; orderly is the near miss from 'in order'."
+  }
+ },
+ "WIC18C-04": {
+  "reasons": [
+   "options probe: antonym_pole hits key",
+   "difficulty probe: key from one sentence",
+   "author: lead/judge weak near-misses; final clause points at monitor (easiness)"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "His cue could come at any line, so he had to monitor every scene; 'knowing only the closing words' kills memorize."
+  }
+ },
+ "WIC18C-05": {
+  "reasons": [
+   "options probe: antonym_pole hits key",
+   "difficulty probe: 2 explicit kills"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 2,
+   "second": null,
+   "note": "Verse forms 'appear for the first time' in a letter, so original; 'never meant for publication' kills popular and 'hasty notes' kills lyrical."
+  }
+ },
+ "WIC18C-06": {
+  "reasons": [
+   "options probe: antonym_pole hits key",
+   "difficulty probe: 2 explicit kills",
+   "author: perform may be second-defensible (performed in concert)"
+  ],
+  "difficulty_probe": {
+   "probe": "hard",
+   "kfos": false,
+   "explicit": 2,
+   "second": null,
+   "note": "The company did perform it in concert but lacked sets and machinery, so mount; perform and premiere are both killed."
+  }
+ },
+ "WIC18C-08": {
+  "reasons": [
+   "author: model may be second-defensible"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": false,
+   "explicit": 1,
+   "second": null,
+   "note": "A pigment that postdates the painter's death questions who made the portrait; the inscription naming the merchant kills patron."
+  }
+ },
+ "WIC18C-09": {
+  "reasons": [
+   "options probe: antonym_pole hits key",
+   "difficulty probe: authored hard, probe easy",
+   "difficulty probe: key from one sentence",
+   "author: ponder may be second-defensible"
+  ],
+  "difficulty_probe": {
+   "probe": "easy",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "Spectators in full sun had to imagine the darkness, so picture; the sunlit stage kills notice."
+  }
+ },
+ "WIC18C-10": {
+  "reasons": [
+   "options probe: antonym_pole hits key",
+   "options probe: opposite pair paraphrased/quoted",
+   "difficulty probe: 2 explicit kills"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 2,
+   "second": null,
+   "note": "'note for note' kills paraphrased and 'nothing out of place' kills parodied, which leaves quoted."
+  }
+ },
+ "WIC18D-01": {
+  "reasons": [
+   "options probe: test_word hits key",
+   "difficulty probe: authored hard, probe easy",
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "easy",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "'not merely copy ... to its own sound system' points directly to tailors."
+  }
+ },
+ "WIC18D-02": {
+  "reasons": [
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "'vaccinated far more people overall' versus 'rate of success' gives reach; thoroughness is the contrasted term."
+  }
+ },
+ "WIC18D-03": {
+  "reasons": [
+   "options probe: opposite pair tolerate/remedy",
+   "difficulty probe: key from one sentence",
+   "author: only two options are two-word phrases (rule out, track down) - option-shape tell",
+   "self-check: options mix one-word and two-word shapes"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "The 'but not to promise' contrast shows the test can only exclude fast-surfacing flaws: rule out."
+  }
+ },
+ "WIC18D-04": {
+  "reasons": [
+   "difficulty probe: key from one sentence"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "The colon clause explains why the method is reliable for its narrow task, so 'sound'; 'crude' and 'blindness' kill subtle."
+  }
+ },
+ "WIC18D-05": {
+  "reasons": [
+   "options probe: opposite pair upgrade/sideline"
+  ],
+  "difficulty_probe": {
+   "probe": "easy",
+   "kfos": true,
+   "explicit": 1,
+   "second": null,
+   "note": "Running the systems in parallel to expose mismatches is testing; 'before relying on it alone' kills sideline."
+  }
+ },
+ "WIC18D-06": {
+  "reasons": [
+   "options probe: test_word hits key"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": false,
+   "explicit": 0,
+   "second": null,
+   "note": "Distinct echoes from structures under a millimeter apart define resolving power; survey and target are near misses."
+  }
+ },
+ "WIC18D-07": {
+  "reasons": [
+   "options probe: test_word hits key",
+   "options probe: opposite pair yield/spending",
+   "difficulty probe: authored hard, probe easy",
+   "difficulty probe: key from one sentence",
+   "difficulty probe: 2 explicit kills"
+  ],
+  "difficulty_probe": {
+   "probe": "easy",
+   "kfos": true,
+   "explicit": 2,
+   "second": null,
+   "note": "'cases found for the effort spent' is yield; 'same price for each test' kills spending and 'narrower' kills scope."
+  }
+ },
+ "WIC18D-08": {
+  "reasons": [
+   "author: rigid is a deliberate near-synonym of key stable (check second_defensible)"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": false,
+   "explicit": 0,
+   "second": null,
+   "note": "Slowly replaced vocabulary is the stable core; rigid overstates it, since the words do change 'a sound or two'."
+  }
+ },
+ "WIC18D-09": {
+  "reasons": [
+   "options probe: test_word hits key"
+  ],
+  "difficulty_probe": {
+   "probe": "medium",
+   "kfos": false,
+   "explicit": 1,
+   "second": null,
+   "note": "The reaction 'goes on for weeks' and halts without water, so the added water sustains it; 'begins within minutes' kills starts."
+  }
+ }
+}

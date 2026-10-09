@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "actors' parts in early playhouses",
+  "passage": "In English playhouses around 1600, an actor was usually handed not the whole play but his \"part\": his own speeches, each preceded by the last two or three words of the speech before it. Copying full scripts by hand was slow and costly, and issuing parts also kept the complete text away from rival companies. The practice shaped performance as well. A three-word cue could fall anywhere in a long speech, could even recur within it, and could come from any character on stage. An actor waiting to speak therefore had to ______ the speeches of every other player.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "memorize",
+    "monitor",
+    "judge",
+    "prompt"
+  ],
+  "correct_answer": "monitor",
+  "explanation": "An actor held only his own speeches and a few cue words, and those words could turn up anywhere, even twice, in anyone's speech, so he had to \"monitor\" the other players' speeches, following them closely as they were delivered. He could not \"memorize\" them, because the part system never gave him their text. To \"prompt\" them would mean supplying their forgotten words, which likewise requires a text he did not hold. To \"judge\" them would be to evaluate them, but what the cues demanded of him was attention to timing, not assessment.",
+  "antonym_pairs": [],
+  "polarity": {
+    "memorize": "0",
+    "monitor": "0",
+    "judge": "0",
+    "prompt": "0"
+  },
+  "rarity_order": [
+    "judge",
+    "prompt",
+    "monitor",
+    "memorize"
+  ],
+  "killed_by": {
+    "memorize": "logic",
+    "judge": "logic",
+    "prompt": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "method and purpose",
+  "key_from_one_sentence": false
+}

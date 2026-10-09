@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "lake effect on shoreline orchards",
+  "passage": "Large lakes shape the climate of their shores. Because water warms and cools far more slowly than land, a lake gives off heat stored over the summer well into autumn, sparing nearby orchards from early frosts. In spring the same slowness works the other way: the still-cold water chills the shoreline air, holding back blossoms until the danger of a late frost has passed. For shoreline growers, the lake thus serves in both seasons as their ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["battery", "alarm", "buffer", "blanket"],
+  "correct_answer": "buffer",
+  "explanation": "The lake warms the shore in autumn and cools it in spring, so in both seasons it softens temperature swings in whichever direction they run; it is the growers' \"buffer.\" A \"battery\" or a \"blanket\" fits only the autumn half, since each supplies or keeps in warmth and neither would chill the air in spring. An \"alarm\" would warn growers of frost, but the lake does not signal danger; it changes the temperature itself.",
+  "antonym_pairs": [],
+  "polarity": {"battery": "0", "alarm": "0", "buffer": "0", "blanket": "0"},
+  "rarity_order": ["alarm", "blanket", "battery", "buffer"],
+  "killed_by": {"battery": "logic", "alarm": "logic", "blanket": "logic"},
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

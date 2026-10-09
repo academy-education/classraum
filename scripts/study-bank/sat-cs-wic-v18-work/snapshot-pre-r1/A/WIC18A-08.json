@@ -1,0 +1,39 @@
+{
+  "id": "WIC18A-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "invasive earthworms in northern forests",
+  "passage": "Gardeners prize earthworms, whose burrows let air and water into the soil. Many northern hardwood forests, however, had no earthworms at all until discarded fishing bait and imported plants brought them in. There, a deep layer of fallen leaves had long sheltered the seeds of wildflowers and young trees. Invading worms eat through that layer within a few years, and far fewer seedlings now appear. The same appetite that serves a garden ______ the forest floor, leaving its seeds exposed.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "aerates",
+    "binds",
+    "bares",
+    "colonizes"
+  ],
+  "correct_answer": "bares",
+  "explanation": "The worms eat away the leaf layer that sheltered the forest's seeds, so their appetite \"bares\" the forest floor and leaves the seeds exposed. \"Aerates\" echoes the garden benefit in the first sentence, but letting air into the soil is not what removes the seeds' shelter. \"Binds\" suggests the worms hold the soil together, which the text never says and which would expose nothing, and \"colonizes\" describes the worms' arrival in the forest, whereas the sentence asks what their appetite does to the floor that leaves seeds exposed.",
+  "antonym_pairs": [],
+  "polarity": {
+    "aerates": "+",
+    "binds": "0",
+    "bares": "0",
+    "colonizes": "0"
+  },
+  "rarity_order": [
+    "binds",
+    "bares",
+    "colonizes",
+    "aerates"
+  ],
+  "killed_by": {
+    "aerates": "logic",
+    "binds": "logic",
+    "colonizes": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

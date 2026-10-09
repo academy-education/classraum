@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "Bronze Age port trade weights",
+  "passage": "Archaeologists studying one Bronze Age port cannot read its merchants' accounts, which were kept on wax tablets that have long since perished. What survives in the harbor warehouses are stone balance weights cut to two distinct units: one local, the other matching a standard used across the sea. From the proportion of weights cut to the foreign standard, researchers can ______ how much of the port's trade was conducted with overseas partners. A local merchant, of course, might have kept a foreign set simply for convenience, and a visiting trader might have borrowed a local one.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["determine", "gauge", "document", "forecast"],
+  "correct_answer": "gauge",
+  "explanation": "Because weights could pass between local and foreign hands in either direction, the share of foreign-standard weights only approximates the share of foreign trade, so researchers can \"gauge\" it. \"Determine\" claims a precision that sets kept for convenience or borrowed by visitors rule out. \"Document\" implies a record of the trade itself, but the written accounts perished and the weights are only indirect evidence. \"Forecast\" refers to predicting what is to come, whereas the trade in question was conducted in the Bronze Age.",
+  "antonym_pairs": [],
+  "polarity": {"determine": "0", "gauge": "0", "document": "0", "forecast": "0"},
+  "rarity_order": ["determine", "document", "forecast", "gauge"],
+  "killed_by": {"determine": "logic", "document": "logic", "forecast": "explicit"},
+  "after_blank": "how",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

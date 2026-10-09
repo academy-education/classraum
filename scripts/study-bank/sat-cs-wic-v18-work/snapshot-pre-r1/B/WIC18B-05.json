@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "bargaining in a street market",
+  "passage": "Economists studying a street market in one port city noticed that its vendors almost never posted prices. Rather than assume that bargaining there was a free-for-all, the researchers recorded several hundred sales and found that the final price paid for a given item varied by less than five percent from one buyer to the next, whatever the opening offer had been. Haggling, they argued, was a ritual that ended in nearly the same place every time; the market's prices were unwritten but ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["fair", "firm", "honest", "identical"],
+  "correct_answer": "firm",
+  "explanation": "Because final prices landed in nearly the same place regardless of how bargaining began, the unwritten prices were \"firm.\" \"Identical\" overstates the finding, since prices still varied by up to five percent. \"Fair\" and \"honest\" judge whether the prices were just or truthful, but the researchers measured only how consistent the prices were, not whether buyers were treated well.",
+  "antonym_pairs": [],
+  "polarity": {"fair": "+", "firm": "0", "honest": "+", "identical": "0"},
+  "rarity_order": ["fair", "firm", "honest", "identical"],
+  "killed_by": {"fair": "logic", "honest": "logic", "identical": "explicit"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "finding from measurement",
+  "key_from_one_sentence": false
+}

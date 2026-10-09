@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "improvisation in a film scene",
+  "passage": "Reviewers praised the film's long dinner-party scene as entirely improvised, and the cast did invent every line of its dialogue on the spot. But the director had settled in advance who would arrive when, which guest would knock over the wine, and the moment the lights would fail, and a take was stopped whenever the actors drifted past one of these events without reaching it. The scene's improvisation, in other words, was more ______ than the reviewers suggested.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "mutual",
+    "limited",
+    "natural",
+    "masterful"
+  ],
+  "correct_answer": "limited",
+  "explanation": "The reviewers called the scene \"entirely\" improvised, but only the dialogue was invented; the events were fixed by the director and enforced take by take, so the improvisation was more \"limited\" than they suggested. \"Natural\" cannot be right, because an entirely improvised scene is already as natural as the reviewers could claim, and the director's plan moves the scene away from spontaneity, not toward it. \"Masterful\" picks up the praise, but the passage corrects the reviewers about how far the improvising extended, not about its quality. \"Mutual\" fits a cast inventing together, yet the text never contrasts shared with solo invention; its correction concerns what the actors were free to change.",
+  "antonym_pairs": [],
+  "polarity": {
+    "mutual": "0",
+    "limited": "0",
+    "natural": "+",
+    "masterful": "+"
+  },
+  "rarity_order": [
+    "limited",
+    "natural",
+    "mutual",
+    "masterful"
+  ],
+  "killed_by": {
+    "mutual": "logic",
+    "natural": "logic",
+    "masterful": "logic"
+  },
+  "after_blank": "than",
+  "pos": "adjective",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

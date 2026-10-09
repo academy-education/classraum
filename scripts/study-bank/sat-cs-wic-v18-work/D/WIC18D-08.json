@@ -1,0 +1,39 @@
+{
+  "id": "WIC18D-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "slow-changing core vocabulary in language comparison",
+  "passage": "Words for body parts, small numbers, and close relatives are replaced far more slowly than most of a language's vocabulary. The word for \"two\" has kept a recognizably similar form for thousands of years across many related languages, changing only a sound or two, while words for tools and customs are often swapped out within a few centuries. Historical linguists put this difference to use when they compare languages that split long ago: they base their comparisons on the ______ core, since a resemblance there is unlikely to reflect a recent borrowing.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "typical",
+    "stable",
+    "vital",
+    "social"
+  ],
+  "correct_answer": "stable",
+  "explanation": "The core vocabulary changes only slowly over thousands of years, and that slowness is why a match there is unlikely to be a recent borrowing, so linguists rely on the \"stable\" core. \"Social\" fails because only the words for relatives concern social life, while words for body parts and small numbers do not, and the linguists choose the whole set for how slowly it changes; \"vital\" fails because, although these words matter greatly to speakers, the reason given for using them is their slow replacement, not their importance; \"typical\" fails because these words change far more slowly than most vocabulary.",
+  "antonym_pairs": [],
+  "polarity": {
+    "typical": "0",
+    "stable": "+",
+    "vital": "+",
+    "social": "0"
+  },
+  "rarity_order": [
+    "social",
+    "typical",
+    "stable",
+    "vital"
+  ],
+  "killed_by": {
+    "typical": "explicit",
+    "vital": "logic",
+    "social": "logic"
+  },
+  "after_blank": "core",
+  "pos": "adjective",
+  "shape": "principle and its application",
+  "key_from_one_sentence": false
+}

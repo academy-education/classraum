@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "transmission of an interest-rate change",
+  "passage": "When one country's central bank raises its benchmark interest rate, the first to feel it are commercial banks, which pay more to borrow from one another overnight. Within weeks those banks charge more for new business loans, and over the following year, as households' fixed-rate mortgages come up for renewal, homeowners face the full increase. Economists describe such a change as one that ______ through the economy, reaching each group in turn rather than arriving everywhere at once.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["filters", "drifts", "erupts", "dissipates"],
+  "correct_answer": "filters",
+  "explanation": "The rate increase passes from one layer of the economy to the next in a fixed order, from banks to businesses to homeowners, so it \"filters\" through the economy. \"Drifts\" suggests aimless movement, but the change follows a definite path from lenders to borrowers. \"Dissipates\" suggests the change weakens as it spreads, yet the last group, homeowners, faces the full increase. \"Erupts\" suggests a sudden burst, which conflicts with the change arriving in stages rather than everywhere at once.",
+  "antonym_pairs": [],
+  "polarity": {"filters": "0", "drifts": "0", "erupts": "0", "dissipates": "0"},
+  "rarity_order": ["drifts", "erupts", "filters", "dissipates"],
+  "killed_by": {"drifts": "logic", "erupts": "explicit", "dissipates": "logic"},
+  "after_blank": "through",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

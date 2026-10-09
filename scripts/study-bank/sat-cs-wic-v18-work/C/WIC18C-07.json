@@ -1,0 +1,20 @@
+{
+  "id": "WIC18C-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "unaccompanied choirs and the organ",
+  "passage": "Choirs that sing without instruments tend to sink over the course of a long piece: by the final chord, the whole ensemble may sit markedly lower than where it began, even though the singers have stayed in tune with one another throughout. Because every voice moves together, listeners rarely notice. The problem surfaces only when an organ, whose tuning cannot shift during a performance, joins the choir for a closing hymn. At that moment the choir's harmony is still sound, but its ______ no longer matches the instrument's.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["pace", "loudness", "pitch", "quality"],
+  "correct_answer": "pitch",
+  "explanation": "The choir has sunk lower while staying in tune with itself, and the mismatch appears only beside an organ whose tuning is fixed, so it is the choir's \"pitch\" that no longer matches. \"Loudness\" reads \"lower\" as softer, but a drop in volume would not be exposed by an instrument's unchanging tuning. \"Pace\" fails because the sinking described concerns where the voices sit, not how fast they move. \"Quality\" fails because the text stresses that the harmony is still sound; nothing about the singing has worsened except its relation to the organ.",
+  "antonym_pairs": [],
+  "polarity": {"pace": "0", "loudness": "0", "pitch": "0", "quality": "0"},
+  "rarity_order": ["quality", "pace", "pitch", "loudness"],
+  "killed_by": {"pace": "logic", "loudness": "logic", "quality": "explicit"},
+  "after_blank": "no",
+  "pos": "noun",
+  "shape": "fixed reference exposes hidden change",
+  "key_from_one_sentence": false
+}

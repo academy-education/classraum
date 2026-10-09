@@ -1,0 +1,20 @@
+{
+  "id": "WIC18D-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "comparing two flu vaccine clinics",
+  "passage": "Two clinics offered the same free flu vaccine during the same month. The first opened only on weekday mornings and vaccinated nearly every patient who came through its doors. The second stayed open into the evening and on weekends; a larger share of its visitors left without the shot, often because the wait grew long, yet it vaccinated far more people overall. Health planners reviewing both preferred the second clinic, concluding that for a seasonal campaign, ______ matters more than the rate of success among those who show up.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["thoroughness", "reach", "thrift", "staffing"],
+  "correct_answer": "reach",
+  "explanation": "The second clinic did worse with the visitors it had but, by staying open evenings and weekends, vaccinated far more people, so the planners value \"reach\": how many people a program gets to. \"Thoroughness\" fails because the first clinic was the more thorough with its own patients, and it lost the comparison; \"thrift\" fails because longer opening hours cost more, and cost is never weighed; \"staffing\" fails because the clinics are compared on whom they vaccinated, not on how they were staffed.",
+  "antonym_pairs": [],
+  "polarity": {"thoroughness": "+", "reach": "0", "thrift": "+", "staffing": "0"},
+  "rarity_order": ["reach", "staffing", "thoroughness", "thrift"],
+  "killed_by": {"thoroughness": "logic", "thrift": "logic", "staffing": "logic"},
+  "after_blank": "matters",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

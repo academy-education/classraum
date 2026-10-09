@@ -1,0 +1,39 @@
+{
+  "id": "WIC18B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "persistence of voter turnout",
+  "passage": "Citizens who vote in one election are more likely than others to vote in the next, and political scientists disagree about why. One study revisited an old experiment in which a randomly chosen half of a city's registered voters had been mailed a postcard listing only the date and polling hours of a local election. The postcard group turned out at a higher rate, as expected. Two years later, when no one was sent anything, that group still voted more often than the other half. Part of what keeps people voting, the study concluded, is ______ itself.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "interest",
+    "experience",
+    "invitation",
+    "duty"
+  ],
+  "correct_answer": "experience",
+  "explanation": "The only lasting difference between the randomly assigned halves was that one had been nudged into voting once, and that group kept voting more, so what keeps them voting is the \"experience\" of voting itself. \"Interest\" fails because random assignment leaves the two halves equally interested in politics. \"Invitation\" fails because the second election came with no mailing to anyone, yet the gap remained. \"Duty\" fails because the postcard made no appeal to civic obligation, and random assignment leaves both halves with the same sense of it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "interest": "0",
+    "experience": "0",
+    "invitation": "0",
+    "duty": "0"
+  },
+  "rarity_order": [
+    "experience",
+    "interest",
+    "duty",
+    "invitation"
+  ],
+  "killed_by": {
+    "interest": "logic",
+    "invitation": "logic",
+    "duty": "logic"
+  },
+  "after_blank": "itself",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

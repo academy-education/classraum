@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "island lizard tameness",
+  "passage": "Lizards on one predator-free island let researchers walk within a meter before fleeing, while lizards of the same species on the nearby mainland bolt at ten meters. To learn why, researchers hatched eggs from both populations and raised the young in identical enclosures exposed to the same simulated predators. The difference vanished: island hatchlings grew up just as wary as mainland ones. The adult islanders' tameness, it seems, is ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["constant", "careless", "acquired", "artificial"],
+  "correct_answer": "acquired",
+  "explanation": "Island hatchlings raised with predator cues became as wary as mainland ones, so the adults' tameness must develop from growing up without predators; it is \"acquired.\" It is not \"constant,\" since it disappeared when rearing conditions changed. Calling it \"careless\" ignores that the adults live where nothing hunts them, so letting people approach costs them nothing, and calling it \"artificial\" fails because the tameness arose on the island itself, not in the researchers' enclosures.",
+  "antonym_pairs": [],
+  "polarity": {"constant": "0", "careless": "-", "acquired": "0", "artificial": "0"},
+  "rarity_order": ["constant", "acquired", "careless", "artificial"],
+  "killed_by": {"constant": "explicit", "careless": "logic", "artificial": "logic"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

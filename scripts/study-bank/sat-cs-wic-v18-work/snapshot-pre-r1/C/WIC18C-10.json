@@ -1,0 +1,20 @@
+{
+  "id": "WIC18C-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "borrowed melodies in a composer's works",
+  "passage": "The composer often ______ other composers' melodies in his own works. A phrase from a popular march surfaces, note for note, in the finale of his first symphony, and a hymn tune arrives in the hushed close of a string quartet, harmonized much as a congregation would sing it. Listeners who know the originals recognize them at once; those who do not hear nothing out of place, since each borrowing is woven into the music around it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["promoted", "parodied", "quoted", "paraphrased"],
+  "correct_answer": "quoted",
+  "explanation": "The examples show existing melodies reproduced exactly inside the composer's own pieces, so he \"quoted\" them. He cannot have \"paraphrased\" them, because the march phrase appears note for note. \"Parodied\" fails because the borrowings are treated with respect, the hymn set quietly and harmonized as worshipers would sing it, with nothing mocking about either. \"Promoted\" fails because the borrowings are woven in so smoothly that listeners who do not know the originals hear nothing unusual; they are not advertised.",
+  "antonym_pairs": [],
+  "polarity": {"promoted": "0", "parodied": "0", "quoted": "0", "paraphrased": "0"},
+  "rarity_order": ["promoted", "quoted", "parodied", "paraphrased"],
+  "killed_by": {"promoted": "logic", "parodied": "logic", "paraphrased": "explicit"},
+  "after_blank": "other",
+  "pos": "verb",
+  "shape": "definition by example",
+  "key_from_one_sentence": true
+}

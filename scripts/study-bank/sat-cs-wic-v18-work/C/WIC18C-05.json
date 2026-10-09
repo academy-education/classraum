@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "a poet's letters",
+  "passage": "The poet's letters were never meant for publication, and many of them are hasty notes about the weather, household debts, and the health of neighbors. Even so, some scholars regard the letters as her most ______ writing. Phrases first tried out in them turn up, reworked, in poems composed months later, and two of the verse forms for which she is best known appear for the first time not in any poem but in a letter to her sister.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "moving",
+    "original",
+    "lyrical",
+    "learned"
+  ],
+  "correct_answer": "original",
+  "explanation": "The scholars' evidence is that phrases and even whole verse forms appear first in the letters and only later in the poems, so the letters are her most \"original\" writing, where her inventions began. \"Moving\" fails because nothing in the scholars' case concerns the letters' emotional power; their evidence is about where her phrases and forms first appeared. \"Lyrical\" fails for a similar reason: the claim concerns origins, not how musical the letters sound. \"Learned\" fails because the letters are hasty notes on everyday matters, and the scholars' case rests on invention, not erudition.",
+  "antonym_pairs": [],
+  "polarity": {
+    "moving": "+",
+    "original": "+",
+    "lyrical": "+",
+    "learned": "+"
+  },
+  "rarity_order": [
+    "original",
+    "moving",
+    "learned",
+    "lyrical"
+  ],
+  "killed_by": {
+    "moving": "logic",
+    "lyrical": "logic",
+    "learned": "logic"
+  },
+  "after_blank": "writing",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

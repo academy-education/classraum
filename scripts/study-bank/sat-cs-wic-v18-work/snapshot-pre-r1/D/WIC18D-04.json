@@ -1,0 +1,20 @@
+{
+  "id": "WIC18D-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "early list-based spell-checkers",
+  "passage": "Early spell-checkers compared each typed word against a stored word list and flagged anything missing from it. The method was crude, and critics mocked its blindness to errors such as \"their\" typed for \"there,\" since both are real words. For the narrower task it was built for, however, catching misspellings that produce non-words, the method was entirely ______: a word absent from a large list is almost never spelled correctly, and a misspelling of that kind almost never matches a word on the list.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["simple", "swift", "sound", "subtle"],
+  "correct_answer": "sound",
+  "explanation": "The text grants that the method was crude and missed real-word errors, then argues that for non-word misspellings its verdicts were almost never wrong, so it was \"sound\" for that task. \"Simple\" is true of a crude method but does not mark the contrast that \"however\" sets up, and the colon explains accuracy, not simplicity; \"swift\" fails because the reasoning concerns whether the flags are correct, not how fast they appear; \"subtle\" fails because the text calls the method crude.",
+  "antonym_pairs": [],
+  "polarity": {"simple": "0", "swift": "+", "sound": "+", "subtle": "+"},
+  "rarity_order": ["simple", "sound", "subtle", "swift"],
+  "killed_by": {"simple": "logic", "swift": "logic", "subtle": "explicit"},
+  "after_blank": "",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

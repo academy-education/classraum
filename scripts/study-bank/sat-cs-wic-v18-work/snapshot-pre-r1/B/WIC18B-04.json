@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "early republic tax collection",
+  "passage": "Historians long credited one new republic's first finance minister with creating its efficient system of tax collection. Provincial records recovered in the last decade complicate that picture. They show that the same district offices, staffed largely by the same clerks, had been collecting the same duties for decades under the old monarchy; what changed under the minister was that their receipts now flowed to a national treasury rather than to the crown. The minister, it seems, did not build the system so much as ______ it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["expand", "inherit", "imitate", "dismantle"],
+  "correct_answer": "inherit",
+  "explanation": "The offices, clerks, and duties were already in place before the minister took charge, and he took them over while redirecting where the money went, so he did not build the system so much as \"inherit\" it. \"Imitate\" fails because he did not copy an older model; he kept the very same offices and staff. \"Expand\" fails because the records show the same offices collecting the same duties, with no growth. \"Dismantle\" fails because the system kept operating under him.",
+  "antonym_pairs": [],
+  "polarity": {"expand": "0", "inherit": "0", "imitate": "0", "dismantle": "0"},
+  "rarity_order": ["expand", "inherit", "imitate", "dismantle"],
+  "killed_by": {"expand": "logic", "imitate": "logic", "dismantle": "logic"},
+  "after_blank": "it",
+  "pos": "verb",
+  "shape": "received view overturned",
+  "key_from_one_sentence": false
+}

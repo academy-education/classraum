@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "ornament on early pianos",
+  "passage": "Early pianos had thin strings under low tension, and a struck note faded almost completely within a second or two; on a modern piano, the same note can ring for many seconds. Composers writing for the older instruments often filled their melodies with trills and quickly repeated notes, figures that can sound fussy, even merely decorative, when played today. On the instruments they were written for, though, such figures did real work: they allowed a player to ______ a melodic line.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "phrase",
+    "maintain",
+    "quicken",
+    "polish"
+  ],
+  "correct_answer": "maintain",
+  "explanation": "A note on an early piano died within a second or two, so trills and repeated notes, which keep re-striking the sound, did \"real work\" by letting a player \"maintain\" a melodic line the instrument could not hold on its own; on a modern piano, where notes ring for seconds, the same figures are unnecessary and so sound fussy. To \"polish\" a line is to decorate or refine it, which is exactly the merely decorative role the text sets aside. To \"phrase\" a line is to shape and group its notes, but the problem the passage describes is sound disappearing over time, not a lack of shape. To \"quicken\" a line would hurry its tempo, yet the figures answer the speed at which a note decays, not the speed of the melody.",
+  "antonym_pairs": [],
+  "polarity": {
+    "phrase": "0",
+    "maintain": "0",
+    "quicken": "0",
+    "polish": "0"
+  },
+  "rarity_order": [
+    "maintain",
+    "phrase",
+    "polish",
+    "quicken"
+  ],
+  "killed_by": {
+    "phrase": "logic",
+    "quicken": "logic",
+    "polish": "logic"
+  },
+  "after_blank": "a",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "keystone species",
+  "passage": "A species can matter to its community far out of proportion to its numbers. When ecologists removed one predatory sea star from a stretch of rocky shore, the mussels it had been eating spread across the rocks and crowded out more than a dozen other species. Beavers, too, are few in any valley, yet their dams turn streams into ponds that fish, frogs, and nesting birds come to depend on. Each acts as the ______ of its community: take it away, and much of the rest falls apart.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["architect", "bulk", "cornerstone", "beneficiary"],
+  "correct_answer": "cornerstone",
+  "explanation": "Both examples show a scarce species whose removal, or absence, would make much of the community collapse, so each is the community's \"cornerstone.\" \"Architect\" suits the beaver, which builds ponds, but not the sea star, which builds nothing and matters by eating mussels. \"Beneficiary\" reverses the relationship, since the other species depend on these two rather than the other way around, and \"bulk\" contradicts the point that these species are few.",
+  "antonym_pairs": [],
+  "polarity": {"architect": "0", "bulk": "0", "cornerstone": "0", "beneficiary": "0"},
+  "rarity_order": ["bulk", "architect", "cornerstone", "beneficiary"],
+  "killed_by": {"architect": "logic", "bulk": "explicit", "beneficiary": "logic"},
+  "after_blank": "of",
+  "pos": "noun",
+  "shape": "definition by example",
+  "key_from_one_sentence": false
+}

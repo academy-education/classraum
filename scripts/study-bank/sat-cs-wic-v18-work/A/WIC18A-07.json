@@ -1,0 +1,39 @@
+{
+  "id": "WIC18A-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "coral bleaching thresholds",
+  "passage": "One reef-building coral is often said to bleach once the water passes 30 degrees, a figure obtained by pooling measurements from colonies on many reefs. Colonies in one shallow lagoon, where the water heats to 33 degrees most afternoons, survive temperatures that kill colonies of the same species from the cooler outer reef. Colonies on a shaded deep slope, by contrast, bleach at 28. The 30-degree figure thus describes the species' ______ rather than any particular colony's tolerance.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "capacity",
+    "average",
+    "boundary",
+    "climate"
+  ],
+  "correct_answer": "average",
+  "explanation": "The figure comes from pooling many colonies, and real colonies bleach above it (the lagoon colonies withstand 33 degrees) and below it (the deep-slope colonies bleach at 28), so the figure is the species' \"average.\" It is not the species' \"capacity,\" since lagoon colonies of the same species withstand more than 30 degrees, and it is not a \"boundary,\" since colonies fall on both sides of it once the deep-slope case is added. \"Climate\" fails because the figure is a temperature at which the coral bleaches, not a description of the water the species lives in.",
+  "antonym_pairs": [],
+  "polarity": {
+    "capacity": "0",
+    "average": "0",
+    "boundary": "0",
+    "climate": "0"
+  },
+  "rarity_order": [
+    "average",
+    "climate",
+    "capacity",
+    "boundary"
+  ],
+  "killed_by": {
+    "capacity": "logic",
+    "boundary": "logic",
+    "climate": "logic"
+  },
+  "after_blank": "rather",
+  "pos": "noun",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

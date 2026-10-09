@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "nineteenth-century sales law",
+  "passage": "In one 1890s lawsuit, a buyer sued a hardware dealer over a stove that cracked the first time it was lit. The dealer pointed out that neither he nor the bill of sale had promised anything about the stove's quality. The court sided with the buyer anyway: a merchant who sells an object as a stove, the judge reasoned, thereby represents that it can be used to cook, and no buyer should have to bargain for that assurance. For the court, then, the promise that a stove will work was ______ even though the dealer had never voiced it.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["documented", "implicit", "hypothetical", "equitable"],
+  "correct_answer": "implicit",
+  "explanation": "The judge held that the act of selling something as a stove carries a promise that it works, though the dealer never stated one, so the promise was \"implicit\" in the sale. \"Documented\" fails because the bill of sale said nothing about quality. \"Hypothetical\" fails because the court treated the promise as real enough to rule against the dealer. \"Equitable\" describes fairness, but the judge's point concerns where the promise comes from, not whether it is fair.",
+  "antonym_pairs": [],
+  "polarity": {"documented": "0", "implicit": "0", "hypothetical": "0", "equitable": "+"},
+  "rarity_order": ["documented", "implicit", "hypothetical", "equitable"],
+  "killed_by": {"documented": "explicit", "hypothetical": "logic", "equitable": "logic"},
+  "after_blank": "even",
+  "pos": "adjective",
+  "shape": "principle drawn from a case",
+  "key_from_one_sentence": false
+}

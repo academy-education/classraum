@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "two branch libraries",
+  "passage": "Two branch libraries built in the same decade share nearly identical floor plans, furnishings, and opening hours, yet patrons of the eastern branch tend to stay for hours while those of the western branch collect their books and leave. One architectural historian traces the difference to the buildings' ______. Enlarging the western branch's reading-room windows, which face a loading dock, did nothing to lengthen visits. Moving that reading room to the opposite wall of the same building, where its windows give onto a courtyard garden, did; the eastern branch's windows have always faced a wooded park.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "location",
+    "outlook",
+    "lighting",
+    "proportions"
+  ],
+  "correct_answer": "outlook",
+  "explanation": "Visits at the western branch grew longer only when its reading room was moved inside the same building to windows facing a garden, matching the eastern branch's windows on a park, so the difference lies in the buildings' \"outlook,\" in the sense of what their windows face. \"Lighting\" fails because enlarging the windows, which let in more light, changed nothing. \"Location\" fails because the reading room stayed in the same building on the same site, yet visits changed once its view did. \"Proportions\" fails because the two branches share nearly identical floor plans, and the move within one building changed visits without changing its proportions.",
+  "antonym_pairs": [],
+  "polarity": {
+    "location": "0",
+    "outlook": "0",
+    "lighting": "0",
+    "proportions": "0"
+  },
+  "rarity_order": [
+    "location",
+    "lighting",
+    "proportions",
+    "outlook"
+  ],
+  "killed_by": {
+    "location": "logic",
+    "lighting": "logic",
+    "proportions": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

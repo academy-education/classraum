@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "Bronze Age port trade weights",
+  "passage": "Archaeologists studying a Bronze Age port cannot read its merchants' accounts, which were kept on wax tablets that have long since perished. Instead, they weigh the stone balance weights left in the harbor warehouses. Because those weights cluster around multiples of two distinct units, one local and one matching a standard used across the sea, researchers can ______ what share of the port's trade was conducted with foreign partners, though only roughly, since a local merchant might have kept a foreign set simply for convenience.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["establish", "estimate", "document", "forecast"],
+  "correct_answer": "estimate",
+  "explanation": "The weights let researchers judge the foreign share of trade approximately, since a local merchant could own a foreign set, so they can \"estimate\" it. \"Establish\" claims a firmness the text denies when it says the result is only rough. \"Document\" implies a written record, but the accounts that would have recorded trade are lost and the evidence is indirect. \"Forecast\" refers to predicting the future, whereas the trade being measured happened in the Bronze Age.",
+  "antonym_pairs": [],
+  "polarity": {"establish": "0", "estimate": "0", "document": "0", "forecast": "0"},
+  "rarity_order": ["establish", "estimate", "document", "forecast"],
+  "killed_by": {"establish": "explicit", "document": "logic", "forecast": "logic"},
+  "after_blank": "what",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

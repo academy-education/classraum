@@ -1,0 +1,39 @@
+{
+  "id": "WIC18D-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "targeted screening for a rare condition",
+  "passage": "Testing every adult for a rare liver condition would cost a great deal and find few cases. One health department instead tested only adults with two known risk factors, a group that makes up a tenth of the population but accounts for most of the cases. The narrower program ran fewer than one sixth as many tests as universal screening would have, each at the same price, yet it identified nearly as many people with the condition. In the department's assessment, the program's ______ was far greater than that of universal screening.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "share",
+    "return",
+    "rigor",
+    "scope"
+  ],
+  "correct_answer": "return",
+  "explanation": "The program spent a small fraction of what universal screening would have, since it ran under a sixth as many tests at the same price each, yet found nearly as many cases, so what it got back for its cost, its \"return,\" was far greater. \"Share\" fails because finding nearly as many cases means its share of all cases was slightly smaller, not greater; \"rigor\" fails because the program tested fewer people by the same method, and nothing suggests it was more exacting; \"scope\" fails because the program was the narrower one.",
+  "antonym_pairs": [],
+  "polarity": {
+    "share": "0",
+    "return": "+",
+    "rigor": "+",
+    "scope": "0"
+  },
+  "rarity_order": [
+    "share",
+    "return",
+    "scope",
+    "rigor"
+  ],
+  "killed_by": {
+    "share": "logic",
+    "rigor": "logic",
+    "scope": "explicit"
+  },
+  "after_blank": "was",
+  "pos": "noun",
+  "shape": "comparison of cost and outcome",
+  "key_from_one_sentence": false
+}

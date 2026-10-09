@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-08",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "online opinion panels",
+  "passage": "Admittedly, one polling firm's online panel includes more college graduates than the population does, so its raw estimate of support for any given policy is off by several points. But because the same people answer the survey every month, that tilt stays roughly constant from one round to the next. For judging whether support for a policy is rising or falling, then, the panel's monthly figures are ______ even though their absolute levels cannot be taken at face value.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["informative", "frequent", "granular", "flawless"],
+  "correct_answer": "informative",
+  "explanation": "Because the panel's tilt is about the same every month, it largely cancels out when one month is compared with the next, so the figures are \"informative\" about the direction of opinion despite their biased levels. \"Frequent\" is true of monthly figures, but how often they arrive does not follow from the tilt staying constant, which is what the sentence's \"then\" depends on. \"Granular\" describes fine detail, which the passage never mentions. \"Flawless\" fails because the tilt is only roughly constant and the levels are admittedly off.",
+  "antonym_pairs": [],
+  "polarity": {"informative": "+", "frequent": "0", "granular": "0", "flawless": "+"},
+  "rarity_order": ["frequent", "informative", "flawless", "granular"],
+  "killed_by": {"frequent": "logic", "granular": "logic", "flawless": "explicit"},
+  "after_blank": "even",
+  "pos": "adjective",
+  "shape": "concession then claim",
+  "key_from_one_sentence": false
+}

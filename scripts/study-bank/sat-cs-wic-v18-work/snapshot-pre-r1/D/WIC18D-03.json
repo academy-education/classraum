@@ -1,0 +1,20 @@
+{
+  "id": "WIC18D-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "load testing a bridge cable",
+  "passage": "A new steel cable for a suspension bridge was held under heavy load for six months, and not one of its wires snapped. The engineers were pleased but careful in their report. Six months of steady strain, they noted, says little about decades of temperature swings and slow corrosion, processes that act far more gradually than any test of that length can capture. The result therefore allows them to ______ flaws that would surface quickly under load, but not to promise that the cable will last its intended fifty years.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["remedy", "rule out", "track down", "tolerate"],
+  "correct_answer": "rule out",
+  "explanation": "Because no wire failed in six months, the engineers can \"rule out\" flaws that would show up quickly, while the slow processes the test could not capture keep them from promising a long life. They cannot \"track down\" such flaws, since none appeared to be found; a test that only observes the cable does not \"remedy\" anything; and \"tolerate\" fails because the sentence is about what the result lets the engineers know, not about which flaws they are willing to accept.",
+  "antonym_pairs": [],
+  "polarity": {"remedy": "+", "rule out": "0", "track down": "0", "tolerate": "0"},
+  "rarity_order": ["rule out", "tolerate", "remedy", "track down"],
+  "killed_by": {"remedy": "logic", "track down": "logic", "tolerate": "logic"},
+  "after_blank": "flaws",
+  "pos": "verb",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

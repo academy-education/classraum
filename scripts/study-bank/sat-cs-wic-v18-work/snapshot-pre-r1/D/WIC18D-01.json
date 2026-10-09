@@ -1,0 +1,39 @@
+{
+  "id": "WIC18D-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "sound adaptation of loanwords",
+  "passage": "When speakers of one language adopt a word from another, they rarely keep its original pronunciation. A sound sequence that their own language does not permit, such as three consonants in a row, is typically broken up by an inserted vowel, so the borrowed word ends up obeying the new language's rules even though its meaning arrives intact. In this sense, a language that borrows does not merely copy foreign words; it ______ them to its own sound system.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "updates",
+    "tailors",
+    "shortens",
+    "restricts"
+  ],
+  "correct_answer": "tailors",
+  "explanation": "The borrowing language keeps a foreign word's meaning but alters its sounds, for instance by inserting a vowel, until the word fits its own rules, so it \"tailors\" the word to its sound system. \"Shortens\" fails because an inserted vowel makes the word longer, not shorter; \"restricts\" fails because the words are adopted and used, not limited; and \"updates\" fails because nothing suggests the foreign words were out of date, only that their sounds did not fit.",
+  "antonym_pairs": [],
+  "polarity": {
+    "updates": "+",
+    "tailors": "0",
+    "shortens": "0",
+    "restricts": "-"
+  },
+  "rarity_order": [
+    "updates",
+    "shortens",
+    "restricts",
+    "tailors"
+  ],
+  "killed_by": {
+    "updates": "logic",
+    "shortens": "logic",
+    "restricts": "logic"
+  },
+  "after_blank": "them",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

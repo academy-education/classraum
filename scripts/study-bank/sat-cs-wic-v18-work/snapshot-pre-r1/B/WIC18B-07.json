@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "medieval building wages",
+  "passage": "Account books from one medieval monastery record what it paid the masons and carpenters who built its church: a fixed sum for each day worked. Economic historians have used such day rates to compare living standards across centuries. The books never say, however, how many days a year a builder found work, and building was seasonal and often halted by weather. Historians who multiply the day rate by an assumed 250 working days therefore arrive at a builder's yearly ______ only by guesswork.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["earnings", "expenditure", "dividend", "idleness"],
+  "correct_answer": "earnings",
+  "explanation": "Multiplying what a builder was paid per day by the number of days worked yields what he was paid in a year, so the calculation estimates yearly \"earnings,\" and the guesswork lies in the assumed number of days. \"Expenditure\" fails because a wage calculation says what a builder received, not what his household spent. \"Dividend\" fails because the builders were paid for days of labor, not a share of profits. \"Idleness\" fails because the days a builder went without work are exactly what the assumed 250 days leaves out rather than what the multiplication produces.",
+  "antonym_pairs": [],
+  "polarity": {"earnings": "0", "expenditure": "0", "dividend": "0", "idleness": "-"},
+  "rarity_order": ["earnings", "expenditure", "dividend", "idleness"],
+  "killed_by": {"expenditure": "logic", "dividend": "logic", "idleness": "logic"},
+  "after_blank": "only",
+  "pos": "noun",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

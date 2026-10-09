@@ -1,0 +1,20 @@
+{
+  "id": "WIC18D-07",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "targeted screening for a rare condition",
+  "passage": "Testing every adult for a rare liver condition would cost a great deal and find few cases. One health department instead tested only adults with two known risk factors, a group that makes up a tenth of the population but accounts for most of the cases. The narrower program ran fewer than one sixth as many tests as universal screening would have, at the same price for each test, yet it identified nearly as many people with the condition. Judged by cases found for the effort spent, the program's ______ per test was far higher.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["spending", "speed", "yield", "scope"],
+  "correct_answer": "yield",
+  "explanation": "The program found nearly as many cases with a small fraction of the tests, so each test turned up far more cases; its \"yield\" per test was higher. \"Spending\" fails because each test cost the same, so the cost of a test did not rise even though the program as a whole cost less; \"speed\" fails because the comparison is between cases found and tests run, and nothing is said about how quickly results came; \"scope\" fails because the program was the narrower one.",
+  "antonym_pairs": [],
+  "polarity": {"spending": "0", "speed": "0", "yield": "0", "scope": "0"},
+  "rarity_order": ["spending", "speed", "yield", "scope"],
+  "killed_by": {"spending": "logic", "speed": "logic", "scope": "explicit"},
+  "after_blank": "per",
+  "pos": "noun",
+  "shape": "ratio of outcome to effort",
+  "key_from_one_sentence": false
+}

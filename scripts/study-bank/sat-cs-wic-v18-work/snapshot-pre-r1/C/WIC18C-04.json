@@ -1,0 +1,20 @@
+{
+  "id": "WIC18C-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "actors' parts in early playhouses",
+  "passage": "In English playhouses around 1600, an actor was usually handed not the whole play but his \"part\": his own speeches, each preceded by the last two or three words of the speech before it. Copying full scripts by hand was slow and costly, and issuing parts also kept a complete text out of the hands of anyone who might sell it to a rival company. The practice shaped performance as well. Knowing only the closing words of each cue, an actor had to ______ every scene as it unfolded, since his turn could come at any line spoken by anyone.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["judge", "memorize", "monitor", "lead"],
+  "correct_answer": "monitor",
+  "explanation": "An actor who held only his own lines and the last few words of each cue could not know when his turn would come, so he had to \"monitor\" each scene, following it closely as it unfolded. He could not \"memorize\" the scenes, because the part system withheld everyone else's speeches from him. To \"judge\" the scenes would be to evaluate them, but the attention required was for timing, not assessment. To \"lead\" them would put him in charge of their course, whereas he had to wait on cues delivered by others.",
+  "antonym_pairs": [],
+  "polarity": {"judge": "0", "memorize": "0", "monitor": "0", "lead": "0"},
+  "rarity_order": ["lead", "judge", "monitor", "memorize"],
+  "killed_by": {"judge": "logic", "memorize": "logic", "lead": "logic"},
+  "after_blank": "every",
+  "pos": "verb",
+  "shape": "method and purpose",
+  "key_from_one_sentence": false
+}

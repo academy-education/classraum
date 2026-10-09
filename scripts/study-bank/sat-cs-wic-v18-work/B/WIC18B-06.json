@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "bank runs before deposit insurance",
+  "passage": "Before deposit insurance existed, a bank could fail within days even though its loans were sound. Banks lent out most of what customers deposited and kept only a fraction as cash, an amount ample for ordinary withdrawals but not for every depositor at once. A rumor that a bank was short of cash could therefore ______ the very shortage it reported. Depositors who believed the rumor hurried to withdraw before others did, and their withdrawals used up the cash the bank had kept on hand.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["generate", "fabricate", "disclose", "hasten"],
+  "correct_answer": "generate",
+  "explanation": "The bank's cash was ample until believers of the rumor withdrew it, so the rumor would \"generate\" the shortage: it brought a real shortage into being. \"Fabricate\" fails because it means making something up, but the withdrawals turned the reported shortage into a real one. \"Disclose\" fails because there was no hidden shortage to reveal, since the cash was ample for ordinary withdrawals. \"Hasten\" implies the shortage was coming anyway, but the bank's loans were sound and it would not otherwise have run short.",
+  "antonym_pairs": [],
+  "polarity": {"generate": "0", "fabricate": "-", "disclose": "0", "hasten": "0"},
+  "rarity_order": ["generate", "disclose", "fabricate", "hasten"],
+  "killed_by": {"fabricate": "logic", "disclose": "logic", "hasten": "logic"},
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "cause and mechanism",
+  "key_from_one_sentence": false
+}

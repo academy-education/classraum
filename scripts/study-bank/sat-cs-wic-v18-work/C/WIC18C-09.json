@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "night scenes in daylight theater",
+  "passage": "Tragedies in ancient Athens were performed in an open-air theater by day, under the same sunlight that fell on the audience. Several of these plays nonetheless open in the middle of the night. The playwrights could not dim the stage, so they built the night into the dialogue: a watchman complains of the long dark hours, and a servant gropes for a door and calls for a torch. The spectators, in effect, were asked to ______ the night for themselves.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "picture",
+    "mimic",
+    "predict",
+    "lament"
+  ],
+  "correct_answer": "picture",
+  "explanation": "The theater stood in full daylight that could not be dimmed, so the night existed only in the characters' words, and each spectator had to \"picture\" it. To \"mimic\" the night would mean acting it out, but the groping and the call for a torch are done by the characters on stage, not by the audience. To \"predict\" it would mean expecting it to come, yet these plays open in the middle of the night, so it is already there when the action starts. To \"lament\" it echoes the watchman's complaint, but grieving over the dark is his part in the play; what the daylight staging required of the spectators was to supply the darkness they could not see.",
+  "antonym_pairs": [],
+  "polarity": {
+    "picture": "0",
+    "mimic": "0",
+    "predict": "0",
+    "lament": "0"
+  },
+  "rarity_order": [
+    "picture",
+    "predict",
+    "lament",
+    "mimic"
+  ],
+  "killed_by": {
+    "mimic": "logic",
+    "predict": "logic",
+    "lament": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "constraint and consequence",
+  "key_from_one_sentence": false
+}

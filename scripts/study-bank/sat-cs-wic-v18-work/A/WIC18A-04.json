@@ -1,0 +1,39 @@
+{
+  "id": "WIC18A-04",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "island lizard tameness",
+  "passage": "Lizards on one predator-free island let researchers walk within a meter before fleeing, while lizards of the same species on the nearby mainland bolt at ten meters. To learn why, researchers collected eggs on the island and raised the hatchlings in two groups in identical enclosures, exposing only one group to simulated predators. That group grew up as wary as mainland lizards; the other grew up as tame as the island's adults. The adult islanders' tameness, it seems, is a response to their ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "anatomy",
+    "company",
+    "circumstances",
+    "appetite"
+  ],
+  "correct_answer": "circumstances",
+  "explanation": "Hatchlings from the same island eggs, kept in identical enclosures, grew up wary or tame depending only on whether they met predators, so the adults' tameness answers to the predator-free conditions they live in: their \"circumstances.\" Their \"anatomy\" cannot explain it, since both groups came from the same island eggs yet behaved differently, and neither can their \"company,\" since each group was raised alongside lizards just like itself. \"Appetite\" fails for a similar reason: the enclosures were identical, so hunger cannot account for one group fleeing and the other staying put.",
+  "antonym_pairs": [],
+  "polarity": {
+    "anatomy": "0",
+    "company": "0",
+    "circumstances": "0",
+    "appetite": "0"
+  },
+  "rarity_order": [
+    "company",
+    "circumstances",
+    "appetite",
+    "anatomy"
+  ],
+  "killed_by": {
+    "anatomy": "logic",
+    "company": "logic",
+    "appetite": "logic"
+  },
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

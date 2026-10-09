@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "legislative reelection advantage",
+  "passage": "One political scientist asked why sitting legislators win reelection more often than the candidates who challenge them. She compared two groups of candidates matched on campaign spending and name recognition: sitting legislators, and former legislators returning to politics after a break of at least one term. The sitting legislators still won markedly more often. Part of their advantage, she concluded, must come from ______ itself, including the power to announce new local projects while a campaign is under way.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["experience", "familiarity", "esteem", "incumbency"],
+  "correct_answer": "incumbency",
+  "explanation": "The only difference between the two matched groups is that one currently holds office, and the example given is a power that comes with holding office, so the advantage comes from \"incumbency\" itself. \"Experience\" cannot explain the gap because the former legislators had served too. \"Familiarity\" was controlled when the groups were matched on name recognition. \"Esteem\" is not shown to differ between the groups, and announcing projects is a power of office, not a matter of how highly a candidate is regarded.",
+  "antonym_pairs": [],
+  "polarity": {"experience": "+", "familiarity": "0", "esteem": "+", "incumbency": "0"},
+  "rarity_order": ["experience", "familiarity", "esteem", "incumbency"],
+  "killed_by": {"experience": "logic", "familiarity": "explicit", "esteem": "logic"},
+  "after_blank": "itself",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

@@ -1,0 +1,20 @@
+{
+  "id": "WIC18D-03",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "load testing a bridge cable",
+  "passage": "A new steel cable for a suspension bridge was held under heavy load for six months, and not one of its wires snapped. The engineers were pleased but careful in their report. Six months of steady strain, they noted, says little about decades of temperature swings and slow corrosion, processes that act far more gradually than any test of that length can capture, so a fifty-year service life remains a projection. What the result does allow them to do is ______ flaws that would surface quickly under load.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["track down", "rule out", "smooth over", "sort out"],
+  "correct_answer": "rule out",
+  "explanation": "No wire failed in six months, so any flaw that would show up quickly under load would already have appeared; the engineers can therefore \"rule out\" such flaws, even though the slow processes keep the long life a projection. \"Track down\" fails because no flaw appeared, so there was nothing to locate; \"sort out\" fails because holding a cable under load only observes it and repairs nothing; \"smooth over\" fails because the engineers' careful report hides nothing and in fact states the test's limits openly.",
+  "antonym_pairs": [],
+  "polarity": {"track down": "0", "rule out": "0", "smooth over": "-", "sort out": "+"},
+  "rarity_order": ["rule out", "sort out", "track down", "smooth over"],
+  "killed_by": {"track down": "logic", "smooth over": "logic", "sort out": "logic"},
+  "after_blank": "flaws",
+  "pos": "verb",
+  "shape": "scope limit",
+  "key_from_one_sentence": false
+}

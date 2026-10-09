@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-02",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "lake effect on shoreline orchards",
+  "passage": "Large lakes shape the climate of their shores. Because water warms and cools far more slowly than land, a lake gives off heat stored over the summer well into autumn, sparing nearby orchards from early frosts. In spring the same slowness works the other way: the still-cold water chills the shoreline air, holding back blossoms until the danger of a late frost has passed. For shoreline growers, the lake thus serves as their ______.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["clock", "cushion", "bellwether", "blanket"],
+  "correct_answer": "cushion",
+  "explanation": "The lake warms the shore in autumn and chills it in spring, softening the swing toward frost damage in each season, so it serves as the growers' \"cushion.\" A \"blanket\" fits only the autumn half, since a blanket keeps warmth in and would not chill the air in spring, while a \"clock\" fits only the spring half, where the cold water sets the timing of the blossoms; in autumn the lake times nothing, it simply releases heat. A \"bellwether\" would signal coming changes, but the lake does not warn growers of frost; it changes the temperature itself.",
+  "antonym_pairs": [],
+  "polarity": {"clock": "0", "cushion": "0", "bellwether": "0", "blanket": "0"},
+  "rarity_order": ["clock", "blanket", "cushion", "bellwether"],
+  "killed_by": {"clock": "logic", "bellwether": "logic", "blanket": "logic"},
+  "after_blank": "",
+  "pos": "noun",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}

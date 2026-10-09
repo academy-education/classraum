@@ -1,0 +1,20 @@
+{
+  "id": "WIC18A-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "predatory firefly signals",
+  "passage": "Among fireflies, each species flashes its own code: a male signals in a set rhythm, and a female of his species replies after a set delay. Females of one predatory group exploit this system. When a male of another species flashes, the predator replies after that species' delay rather than her own, and the male, approaching what seems to be a mate, is eaten. The predator succeeds because she can ______ a signal that is not hers.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["boost", "copy", "anticipate", "blur"],
+  "correct_answer": "copy",
+  "explanation": "The predator answers with the other species' delay instead of her own, producing a reply that belongs to another species, so she can \"copy\" a signal that is not hers. She does not \"boost\" or \"blur\" anything, since the trick depends on the timing of her reply rather than on making a flash stronger or less distinct. Nor does she \"anticipate\" the male's flash: she waits for it and then answers.",
+  "antonym_pairs": [],
+  "polarity": {"boost": "+", "copy": "0", "anticipate": "0", "blur": "-"},
+  "rarity_order": ["copy", "anticipate", "boost", "blur"],
+  "killed_by": {"boost": "logic", "anticipate": "logic", "blur": "logic"},
+  "after_blank": "a",
+  "pos": "verb",
+  "shape": "strategy and why it works",
+  "key_from_one_sentence": false
+}

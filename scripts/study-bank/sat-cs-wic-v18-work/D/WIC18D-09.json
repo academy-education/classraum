@@ -1,0 +1,39 @@
+{
+  "id": "WIC18D-09",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "keeping fresh concrete wet",
+  "passage": "Concrete gains its strength through a chemical reaction between cement and water, one that begins within minutes of mixing and goes on for weeks afterward. If the surface of a fresh slab dries during that period, the reaction near the surface halts for lack of water, and the slab is left with a weak, dusty top layer. Builders therefore cover new slabs with wet cloth or spray them several times a day, and in doing so the added water ______ the very reaction that makes the slab hard.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "triggers",
+    "sustains",
+    "shields",
+    "tempers"
+  ],
+  "correct_answer": "sustains",
+  "explanation": "The reaction runs for weeks and stops wherever the surface dries, so water added during that period keeps it going: the water \"sustains\" the reaction. \"Triggers\" fails because the reaction is already under way within minutes of mixing, long before the covering and spraying begin; \"shields\" fails because the water is what the reaction consumes, not a cover that protects it from outside harm; \"tempers\" fails because the danger described is the reaction stopping too soon, not running too strongly, so nothing needs to be held in check.",
+  "antonym_pairs": [],
+  "polarity": {
+    "triggers": "0",
+    "sustains": "+",
+    "shields": "+",
+    "tempers": "0"
+  },
+  "rarity_order": [
+    "triggers",
+    "sustains",
+    "shields",
+    "tempers"
+  ],
+  "killed_by": {
+    "triggers": "logic",
+    "shields": "logic",
+    "tempers": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "process sequence",
+  "key_from_one_sentence": false
+}

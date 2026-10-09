@@ -1,0 +1,20 @@
+{
+  "id": "WIC18B-10",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "eighteenth-century letters as evidence of feeling",
+  "passage": "Letters from the 1700s are a tricky source for historians of emotion. Writers of the period followed letter-writing manuals that supplied set phrases for offering sympathy or congratulations, so the warm language in a given letter may reflect the manual more than the writer's own feelings. Historians therefore look for passages in which a writer abandons those stock phrases, treating such passages as the most ______ evidence of what the writer actually felt.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["direct", "formal", "extensive", "eloquent"],
+  "correct_answer": "direct",
+  "explanation": "Stock phrases stand between a reader and the writer's feelings, so passages written without them come closest to those feelings and are the most \"direct\" evidence. \"Formal\" fails because the formal language is the borrowed phrasing that historians distrust. \"Extensive\" fails because nothing suggests such passages are long or numerous; their value lies in what they reveal, not how much of them there is. \"Eloquent\" fails because the historians care whether a passage reflects real feeling, not how well it is written.",
+  "antonym_pairs": [],
+  "polarity": {"direct": "0", "formal": "0", "extensive": "0", "eloquent": "+"},
+  "rarity_order": ["direct", "formal", "extensive", "eloquent"],
+  "killed_by": {"formal": "explicit", "extensive": "logic", "eloquent": "logic"},
+  "after_blank": "evidence",
+  "pos": "adjective",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

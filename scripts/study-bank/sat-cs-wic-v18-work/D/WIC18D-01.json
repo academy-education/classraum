@@ -1,0 +1,20 @@
+{
+  "id": "WIC18D-01",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "loanwords as evidence of sound rules",
+  "passage": "A language may have no native words that begin with the sounds \"sr,\" but a gap like that is hard to interpret: it could reflect a rule against the sequence, or the language may simply never have happened to form such a word. Borrowing offers a way to decide. If speakers who adopt foreign words beginning with \"sr\" consistently insert a vowel to break the pair apart, the gap is no accident, since the speakers are altering the words to obey a constraint. Loanwords can thereby ______ a question about a language that its native vocabulary cannot.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": ["sharpen", "resolve", "widen", "revive"],
+  "correct_answer": "resolve",
+  "explanation": "Native words alone leave it open whether the missing \"sr\" is a rule or an accident, while consistent vowel insertion in loans shows that it is a rule, so loanwords \"resolve\" the question. \"Sharpen\" fails because the question stays exactly as it was (rule or accident) and the loans answer it rather than make it more precise; \"widen\" fails because the loans bear on that one sequence and enlarge nothing; \"revive\" fails because the question is not described as forgotten and brought back, only as hard to decide.",
+  "antonym_pairs": [],
+  "polarity": {"sharpen": "+", "resolve": "+", "widen": "0", "revive": "+"},
+  "rarity_order": ["widen", "resolve", "sharpen", "revive"],
+  "killed_by": {"sharpen": "logic", "widen": "logic", "revive": "logic"},
+  "after_blank": "a",
+  "pos": "verb",
+  "shape": "test of a hypothesis",
+  "key_from_one_sentence": false
+}

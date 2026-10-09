@@ -1,0 +1,39 @@
+{
+  "id": "WIC18C-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "an opera revived in concert",
+  "passage": "In 1952 a small touring company revived a nineteenth-century opera that had gone unheard since its first season. The score calls for a storm at sea and a shipwreck, and the company had no money for the painted backdrops, costumes, and stage machinery such scenes require. It gave the work in concert instead, the singers standing in evening dress before music stands while the orchestra played behind them. Critics agreed that the music had been well served, but several regretted that no company could yet afford to ______ the opera.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "license",
+    "mount",
+    "premiere",
+    "orchestrate"
+  ],
+  "correct_answer": "mount",
+  "explanation": "What the company lacked was money for backdrops, costumes, and machinery, so what no company could yet afford was to \"mount\" the opera, that is, to stage it in full. \"License\" fails because the touring company did present the work, so the right to perform it was not what was missing; the critics' regret follows from the absent scenery. \"Premiere\" fails because the opera had already had its first season decades earlier. \"Orchestrate\" fails because the orchestra played the existing score and the music was well served; the missing element was visual, not instrumental.",
+  "antonym_pairs": [],
+  "polarity": {
+    "license": "0",
+    "mount": "0",
+    "premiere": "0",
+    "orchestrate": "0"
+  },
+  "rarity_order": [
+    "license",
+    "mount",
+    "premiere",
+    "orchestrate"
+  ],
+  "killed_by": {
+    "license": "logic",
+    "premiere": "explicit",
+    "orchestrate": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "problem and workaround",
+  "key_from_one_sentence": false
+}

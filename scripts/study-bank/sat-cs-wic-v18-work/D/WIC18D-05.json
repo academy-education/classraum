@@ -1,0 +1,39 @@
+{
+  "id": "WIC18D-05",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "medium",
+  "topic_tag": "parallel paper charts during a records changeover",
+  "passage": "Before a hospital switches to a new electronic records system, it often runs the system alongside its old paper charts for several weeks. During that period nurses record every observation twice, once in each format, and any mismatch between the two is investigated by a supervisor. The doubled work is tiresome, but it lets the hospital ______ the new software before relying on it alone: if the program silently drops or alters an entry, the paper chart will expose the mismatch before a patient is harmed.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "secure",
+    "tune",
+    "test",
+    "streamline"
+  ],
+  "correct_answer": "test",
+  "explanation": "Keeping both records and investigating every mismatch is a way to find out whether the software loses or changes entries, so the period lets the hospital \"test\" it before trusting it alone. \"Tune\" fails because the double entry adjusts nothing in the program, it only reveals errors the program makes; \"streamline\" fails because the period doubles the nurses' work rather than making the software quicker to use; \"secure\" fails because the danger described is the software mishandling entries, not outsiders attacking it.",
+  "antonym_pairs": [],
+  "polarity": {
+    "secure": "+",
+    "tune": "0",
+    "test": "0",
+    "streamline": "+"
+  },
+  "rarity_order": [
+    "test",
+    "secure",
+    "tune",
+    "streamline"
+  ],
+  "killed_by": {
+    "secure": "logic",
+    "tune": "logic",
+    "streamline": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "method and its purpose",
+  "key_from_one_sentence": false
+}

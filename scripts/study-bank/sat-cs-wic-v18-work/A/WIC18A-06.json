@@ -1,0 +1,39 @@
+{
+  "id": "WIC18A-06",
+  "domain": "Craft and Structure",
+  "subskill": "Words in Context",
+  "difficulty": "hard",
+  "topic_tag": "mangroves and coastal silt",
+  "passage": "Two neighboring tropical estuaries are fed by rivers carrying the same load of silt. In one, the mangrove forest was cleared decades ago; there each incoming tide spreads silt across the flats, and each outgoing tide carries most of it back to sea, so the flats are no higher now than they were then. In the other, where the forest still stands, the flats have risen a few millimeters every year. The forested shore sits higher, it appears, because the trees' arching roots ______ the silt.",
+  "prompt": "Which choice completes the text with the most logical and precise word or phrase?",
+  "choices": [
+    "absorb",
+    "collect",
+    "attract",
+    "compact"
+  ],
+  "correct_answer": "collect",
+  "explanation": "Both estuaries receive the same silt, and the difference is that the cleared flats lose it to the outgoing tide while the forested flats keep rising, so the roots must hold the silt in place as it settles; they \"collect\" it. They cannot \"attract\" it, since the rivers deliver the same load to both shores, so the forest is not drawing in more silt. To \"compact\" the silt would press it down, which would lower the ground rather than raise it, and to \"absorb\" it would take it into the roots instead of leaving it on the flats to build them up.",
+  "antonym_pairs": [],
+  "polarity": {
+    "absorb": "0",
+    "collect": "0",
+    "attract": "0",
+    "compact": "0"
+  },
+  "rarity_order": [
+    "collect",
+    "attract",
+    "absorb",
+    "compact"
+  ],
+  "killed_by": {
+    "absorb": "logic",
+    "attract": "logic",
+    "compact": "logic"
+  },
+  "after_blank": "the",
+  "pos": "verb",
+  "shape": "comparison of two cases",
+  "key_from_one_sentence": false
+}
