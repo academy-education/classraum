@@ -1,0 +1,525 @@
+[
+  {
+    "id": "IM16A-01",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "nested defined operation solved by working backwards, then re-applied",
+    "difficulty": "hard",
+    "prompt": "For all numbers a and b, the operation ★ is defined by a ★ b = ab - a - b. If (3 ★ n) ★ 2 = 13, what is the value of n ★ n?",
+    "choices": [
+      "35",
+      "63",
+      "80",
+      "48"
+    ],
+    "correct_answer": "63",
+    "explanation": "Hard: three dependent steps worked backwards through a defined operation, then a fresh application of it. Let m = 3 ★ n. Then m ★ 2 = 2m - m - 2 = m - 2 = 13, so m = 15. Also 3 ★ n = 3n - 3 - n = 2n - 3 = 15, so n = 9, and n ★ n = 81 - 9 - 9 = 63. \"80\" comes from grouping the wrong way, 3 ★ (n ★ 2) = 2n - 7 = 13, so n = 10 and 10 ★ 10 = 80. \"48\" treats m ★ 2 as just m, so 2n - 3 = 13, n = 8 and 8 ★ 8 = 48. \"35\" undoes m - 2 = 13 by subtracting, m = 11, so n = 7 and 7 ★ 7 = 35.",
+    "solve": "const op=(a,b)=>a*b-a-b; for(let n=-50;n<=50;n+=0.5){ if(op(op(3,n),2)===13) return op(n,n) } return null",
+    "distractor_solve": {
+      "35": "const op=(a,b)=>a*b-a-b; const m=13-2; const n=(m+3)/2; return op(n,n)",
+      "48": "const op=(a,b)=>a*b-a-b; for(let n=-50;n<=50;n+=0.5){ if(op(3,n)===13) return op(n,n) } return null",
+      "80": "const op=(a,b)=>a*b-a-b; for(let n=-50;n<=50;n+=0.5){ if(op(3,op(n,2))===13) return op(n,n) } return null"
+    },
+    "forced": [
+      "n ★ n = (n - 1)^2 - 1, so for whole n the value is one less than a perfect square: 35, 48, 63, 80 all are (36, 49, 64, 81)",
+      "positive for n > 2: all options positive",
+      "no parity forced (n unknown); options mix odd and even"
+    ]
+  },
+  {
+    "id": "IM16A-02",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "telescoping product after factoring each factor as a difference of squares",
+    "difficulty": "hard",
+    "prompt": "What is the value of the product (1 - 1/2^2)(1 - 1/3^2)(1 - 1/4^2) x ... x (1 - 1/10^2), which has one factor for each whole number from 2 through 10?",
+    "choices": [
+      "5/9",
+      "1/2",
+      "6/11",
+      "11/20"
+    ],
+    "correct_answer": "11/20",
+    "explanation": "Hard: one non-routine idea (factor every term as a difference of squares and let two products telescope separately). Each factor is 1 - 1/k^2 = ((k - 1)/k)((k + 1)/k). The product of (k - 1)/k for k = 2 to 10 is 1/10, and the product of (k + 1)/k is 11/2, so the whole product is (1/10)(11/2) = 11/20. \"5/9\" stops at k = 9, giving (1/9)(10/2). \"1/2\" drops the last numerator of the second product and uses 10/2 instead of 11/2. \"6/11\" runs one factor too far, through 1 - 1/11^2, giving (1/11)(12/2).",
+    "solve": "let num=1,den=1; for(let k=2;k<=10;k++){ num*=k*k-1; den*=k*k } const g=(a,b)=>b?g(b,a%b):a; const d=g(num,den); return (num/d)+\"/\"+(den/d)",
+    "distractor_solve": {
+      "5/9": "let num=1,den=1; for(let k=2;k<=9;k++){ num*=k*k-1; den*=k*k } const g=(a,b)=>b?g(b,a%b):a; const d=g(num,den); return (num/d)+\"/\"+(den/d)",
+      "1/2": "return String((1/10)*(10/2))",
+      "6/11": "let num=1,den=1; for(let k=2;k<=11;k++){ num*=k*k-1; den*=k*k } const g=(a,b)=>b?g(b,a%b):a; const d=g(num,den); return (num/d)+\"/\"+(den/d)"
+    },
+    "forced": [
+      "positive and less than the first factor 3/4: all options between 1/2 and 3/4",
+      "the partial products fall steadily (3/4, 2/3, 5/8, 3/5, ...), so the key is below 3/5: all options are below 3/5, none sits on it",
+      "greater than 1 - (1/4 + 1/9 + ... + 1/100), about 0.45: all options are at least 1/2",
+      "no denominator forced by the stem"
+    ]
+  },
+  {
+    "id": "IM16A-03",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "missing digits under two divisibility tests at once (4 and 9), with a digit-range check",
+    "difficulty": "hard",
+    "prompt": "In the four-digit number 7A4B, A and B stand for digits (they may be equal). How many different choices of the digits A and B make 7A4B divisible by 36?",
+    "choices": [
+      "3",
+      "10",
+      "6",
+      "5"
+    ],
+    "correct_answer": "3",
+    "explanation": "Hard: two divisibility tests must be combined, and the digit sum can reach two different multiples of 9. Divisible by 36 means divisible by 4 and by 9. For 4, the last two digits 4B must be a multiple of 4, so B is 0, 4 or 8. For 9, 7 + A + 4 + B = 11 + A + B must be 18 or 27, so A + B is 7 or 16. B = 0 gives A = 7; B = 4 gives A = 3; B = 8 gives A = 8 (sum 16). That is 3 choices. \"10\" splits 36 as 3 x 12 instead of 4 x 9 and tests divisibility by 3 and by 4, which lets the digit sum be any multiple of 3. \"6\" pairs each B with both targets without checking that A is a single digit (A = -1 and A = 12 are not digits). \"5\" tests divisibility by 2 instead of 4, letting B be any even digit.",
+    "solve": "let c=0; for(let A=0;A<=9;A++) for(let B=0;B<=9;B++){ const n=7000+100*A+40+B; if(n%36===0) c++ } return c",
+    "distractor_solve": {
+      "5": "let c=0; for(let A=0;A<=9;A++) for(let B=0;B<=9;B++){ if(B%2===0 && (11+A+B)%9===0) c++ } return c",
+      "6": "let c=0; for(const B of [0,4,8]) for(const s of [18,27]){ const A=s-11-B; if(Number.isInteger(A)) c++ } return c",
+      "10": "let c=0; for(let A=0;A<=9;A++) for(let B=0;B<=9;B++){ const n=7000+100*A+40+B; if(n%4===0 && (11+A+B)%3===0) c++ } return c"
+    },
+    "forced": [
+      "a whole-number count, at most 3 x 10 = 30 (B has at most 3 values for divisibility by 4): all options small whole numbers",
+      "no parity forced"
+    ]
+  },
+  {
+    "id": "IM16A-04",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "least sum of two numbers with a given GCF and product (coprime split of the cofactor)",
+    "difficulty": "hard",
+    "prompt": "Two positive integers have a greatest common factor of 12, and their product is 15,552. What is the least possible value of the sum of the two integers?",
+    "choices": [
+      "252",
+      "1164",
+      "372",
+      "1308"
+    ],
+    "correct_answer": "372",
+    "explanation": "Hard: one non-routine idea (write the numbers as 12m and 12n with m and n sharing no factor, then split the cofactor). 12m x 12n = 15,552 gives mn = 108 = 2^2 x 3^3. The splits of 108 into two factors with no common factor are 1 x 108 and 4 x 27, giving sums 12(109) = 1308 and 12(31) = 372, so the least is 372. \"252\" uses 9 x 12 = 108, but 108 and 144 have greatest common factor 36, not 12. \"1164\" divides the product by 12 only once, 1296 = 16 x 81, and gets 12(16 + 81). \"1308\" takes the two numbers to be 12 and 1296, the largest sum, not the least.",
+    "solve": "const g=(a,b)=>b?g(b,a%b):a; let best=Infinity; for(let a=1;a*a<=15552;a++){ if(15552%a) continue; const b=15552/a; if(g(a,b)===12) best=Math.min(best,a+b) } return best",
+    "distractor_solve": {
+      "252": "const m=9,n=12; return 12*(m+n)",
+      "1164": "const c=15552/12; const g=(a,b)=>b?g(b,a%b):a; let best=Infinity; for(let m=1;m*m<=c;m++){ if(c%m) continue; const n=c/m; if(g(m,n)===1) best=Math.min(best,m+n) } return 12*best",
+      "1308": "return 12 + 15552/12"
+    },
+    "forced": [
+      "both numbers are multiples of 12, so the sum is a multiple of 12: 252, 372, 1164, 1308 all are",
+      "even",
+      "at least 2 x sqrt(15,552), about 249.4: all options exceed it, none sits on it",
+      "least question: 252 lies below the key"
+    ]
+  },
+  {
+    "id": "IM16A-05",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "power and quotient of numbers in scientific notation with negative exponents",
+    "difficulty": "medium",
+    "prompt": "What is the value of (8 x 10^-3)^2 / (4 x 10^-8)?",
+    "choices": [
+      "200",
+      "400",
+      "1600",
+      "16000"
+    ],
+    "correct_answer": "1600",
+    "explanation": "Medium: a short chain of routine exponent rules. (8 x 10^-3)^2 = 64 x 10^-6, and 64 x 10^-6 / (4 x 10^-8) = 16 x 10^2 = 1600. \"200\" squares the power of ten but not the 8: 8 x 10^-6 / (4 x 10^-8). \"400\" doubles the 8 instead of squaring it: 16 x 10^-6 / (4 x 10^-8). \"16000\" adds 2 to the exponent instead of doubling it: 64 x 10^-5 / (4 x 10^-8).",
+    "solve": "return Math.round(Math.pow(8*Math.pow(10,-3),2)/(4*Math.pow(10,-8)))",
+    "distractor_solve": {
+      "200": "return Math.round((8*Math.pow(10,-6))/(4*Math.pow(10,-8)))",
+      "400": "return Math.round((16*Math.pow(10,-6))/(4*Math.pow(10,-8)))",
+      "16000": "return Math.round((64*Math.pow(10,-5))/(4*Math.pow(10,-8)))"
+    },
+    "forced": [
+      "positive",
+      "of the form 2^a x 10^b (only factors 2 and 10 appear): 200, 400, 1600, 16000 all are",
+      "whole number"
+    ]
+  },
+  {
+    "id": "IM16A-06",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "nested divisor-count function",
+    "difficulty": "hard",
+    "prompt": "For a positive integer n, let D(n) be the number of positive divisors of n. For example, D(6) = 4 because 6 has divisors 1, 2, 3 and 6. What is the value of D(D(48) x D(20))?",
+    "choices": [
+      "6",
+      "28",
+      "4",
+      "12"
+    ],
+    "correct_answer": "12",
+    "explanation": "Hard: three dependent steps, each a divisor count from a prime factorization. 48 = 2^4 x 3, so D(48) = 5 x 2 = 10; 20 = 2^2 x 5, so D(20) = 3 x 2 = 6. Then D(10 x 6) = D(60), and 60 = 2^2 x 3 x 5 gives 3 x 2 x 2 = 12. \"28\" applies D once to 48 x 20 = 960 = 2^6 x 3 x 5, giving 7 x 2 x 2. \"6\" misses one divisor of 20 (D(20) = 5), so it finds D(50) = 6. \"4\" adds the (exponent + 1) values instead of multiplying them, getting D(48) = 7 and D(20) = 5, then D(35) = 4.",
+    "solve": "const D=n=>{let c=0; for(let d=1;d<=n;d++) if(n%d===0) c++; return c}; return D(D(48)*D(20))",
+    "distractor_solve": {
+      "4": "const D=n=>{let c=0; for(let d=1;d<=n;d++) if(n%d===0) c++; return c}; const a=(4+1)+(1+1), b=(2+1)+(1+1); return D(a*b)",
+      "6": "const D=n=>{let c=0; for(let d=1;d<=n;d++) if(n%d===0) c++; return c}; return D(D(48)*(D(20)-1))",
+      "28": "const D=n=>{let c=0; for(let d=1;d<=n;d++) if(n%d===0) c++; return c}; return D(48*20)"
+    },
+    "forced": [
+      "a divisor count, so a positive whole number: all options are",
+      "no parity forced (D(m) is odd only for squares, and the inner product is not printed)"
+    ]
+  },
+  {
+    "id": "IM16A-07",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "undoing a chain of operations to recover an intermediate value",
+    "difficulty": "medium",
+    "prompt": "Rosa thinks of a number. She multiplies it by 3, subtracts 8 from the result, divides that result by 2, and finally adds 5. Her final answer is 19. What number did Rosa have just after she subtracted 8?",
+    "choices": [
+      "48",
+      "28",
+      "33",
+      "36"
+    ],
+    "correct_answer": "28",
+    "explanation": "Medium: routine inverse operations taken in reverse order, stopping at an intermediate step. Before adding 5 she had 19 - 5 = 14; before dividing by 2 she had 14 x 2 = 28, which is the number just after subtracting 8. \"33\" undoes the steps in the forward order, doubling 19 first and then subtracting 5. \"48\" undoes \"add 5\" by adding 5, so (19 + 5) x 2. \"36\" goes one step too far back and reports the number just after multiplying by 3 (28 + 8).",
+    "solve": "let x=19; x=x-5; x=x*2; return x",
+    "distractor_solve": {
+      "33": "let x=19; x=x*2; x=x-5; return x",
+      "36": "let x=19; x=x-5; x=x*2; x=x+8; return x",
+      "48": "let x=19; x=x+5; x=x*2; return x"
+    },
+    "forced": [
+      "no sign, parity or range is forced by the stem before undoing the steps (the starting number is not said to be whole)",
+      "every option is a positive whole number, as the key is"
+    ]
+  },
+  {
+    "id": "IM16A-08",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "sum of all two-digit numbers with a given digit sum",
+    "difficulty": "medium",
+    "prompt": "What is the sum of all the two-digit whole numbers whose two digits add up to 9?",
+    "choices": [
+      "396",
+      "450",
+      "486",
+      "405"
+    ],
+    "correct_answer": "486",
+    "explanation": "Medium: list-and-add with one place-value care point. The numbers are 18, 27, 36, 45, 54, 63, 72, 81 and 90; they are 9 x 2 through 9 x 10, so the sum is 9 x (2 + 3 + ... + 10) = 9 x 54 = 486. \"405\" takes the numbers to be 9 x 1 through 9 x 9, so it counts 9 (as if it were 09) and misses 90. \"396\" leaves out 90 because its second digit is 0. \"450\" multiplies the count, 9 numbers, by 50 as a guessed average of two-digit numbers.",
+    "solve": "let s=0; for(let n=10;n<=99;n++){ if(Math.floor(n/10)+n%10===9) s+=n } return s",
+    "distractor_solve": {
+      "396": "let s=0; for(let n=10;n<=99;n++){ if(n%10!==0 && Math.floor(n/10)+n%10===9) s+=n } return s",
+      "405": "let s=0; for(let k=1;k<=9;k++) s+=9*k; return s",
+      "450": "return 9*50"
+    },
+    "forced": [
+      "every number with digit sum 9 is a multiple of 9, so the sum is a multiple of 9: 396, 405, 450, 486 all are",
+      "between 9 x 18 = 162 and 9 x 90 = 810: all are"
+    ]
+  },
+  {
+    "id": "IM16A-09",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "remainder of a sum of large powers using negative remainders and a power cycle",
+    "difficulty": "hard",
+    "prompt": "What is the remainder when 5^100 + 9^100 is divided by 7?",
+    "choices": [
+      "0",
+      "6",
+      "4",
+      "1"
+    ],
+    "correct_answer": "4",
+    "explanation": "Hard: combines two ideas, replacing 5 by -2 and 9 by 2 (their remainders relative to 7), then using the cycle of powers of 2. Since 5 = 7 - 2 and the exponent is even, 5^100 leaves the same remainder as 2^100, and so does 9^100. So the sum leaves the same remainder as 2 x 2^100 = 2^101. Powers of 2 repeat remainders 2, 4, 1 with period 3, and 101 = 3 x 33 + 2, so 2^101 leaves 4. \"0\" reasons that 5 + 9 = 14 is a multiple of 7, so the sum of the powers must be too. \"6\" uses units digits instead of remainders: 5^100 ends in 5 and 9^100 ends in 1, total 6. \"1\" reduces the exponent with the divisor 7 instead of the cycle length 3, taking 2^100 as 2^2 = 4 and 2 x 4 = 8, which leaves 1.",
+    "solve": "let a=1,b=1; for(let i=0;i<100;i++){ a=a*5%7; b=b*9%7 } return (a+b)%7",
+    "distractor_solve": {
+      "0": "return (5+9)%7",
+      "1": "return (2*Math.pow(2,100%7))%7",
+      "6": "return (5+1)%10"
+    },
+    "forced": [
+      "a remainder on division by 7: a whole number from 0 to 6, all options are",
+      "no parity forced"
+    ]
+  },
+  {
+    "id": "IM16A-10",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "values of n that make a quotient of linear expressions an integer (divide out, then divisors)",
+    "difficulty": "hard",
+    "prompt": "What is the sum of all positive integers n for which (3n + 20)/(n + 2) is an integer?",
+    "choices": [
+      "17",
+      "21",
+      "31",
+      "35"
+    ],
+    "correct_answer": "17",
+    "explanation": "Hard: one non-routine idea (rewrite the quotient as a whole part plus a remainder fraction, then use divisors). 3n + 20 = 3(n + 2) + 14, so (3n + 20)/(n + 2) = 3 + 14/(n + 2). This is an integer exactly when n + 2 divides 14. For positive n, n + 2 is at least 3, so n + 2 is 7 or 14, giving n = 5 or n = 12 (check: 35/7 = 5 and 56/14 = 4). The sum is 17. \"21\" adds the divisors 7 and 14 and forgets to subtract 2. \"31\" uses 20 as the remainder instead of 14: n + 2 is 4, 5, 10 or 20, so n is 2, 3, 8 or 18. \"35\" writes 3n + 20 = 3(n + 2) + 26 with a sign slip, so n + 2 is 13 or 26 and n is 11 or 24.",
+    "solve": "let s=0; for(let n=1;n<=1000;n++){ if((3*n+20)%(n+2)===0) s+=n } return s",
+    "distractor_solve": {
+      "21": "let s=0; for(const d of [1,2,7,14]){ if(d>=3) s+=d } return s",
+      "31": "let s=0; for(const d of [1,2,4,5,10,20]){ if(d>=3) s+=d-2 } return s",
+      "35": "let s=0; for(const d of [1,2,13,26]){ if(d>=3) s+=d-2 } return s"
+    },
+    "forced": [
+      "a sum of positive whole numbers, so a positive whole number: all options are",
+      "no parity forced (the number of qualifying n is not given)"
+    ]
+  },
+  {
+    "id": "IM16A-11",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "counting three-digit numbers under a digit-product condition and a divisibility condition",
+    "difficulty": "hard",
+    "prompt": "How many three-digit whole numbers have digits whose product is 24 and are also divisible by 9?",
+    "choices": [
+      "12",
+      "6",
+      "21",
+      "18"
+    ],
+    "correct_answer": "6",
+    "explanation": "Hard: two conditions must be combined by cases. The digit sets with product 24 are {1, 3, 8}, {1, 4, 6}, {2, 2, 6} and {2, 3, 4}. A number is divisible by 9 when its digit sum is a multiple of 9; the sums are 12, 11, 10 and 9, so only {2, 3, 4} works, and its digits can be arranged in 3 x 2 x 1 = 6 ways. \"21\" ignores the divisibility condition and counts every arrangement: 6 + 6 + 3 + 6. \"12\" tests divisibility by 3 instead of 9, keeping {1, 3, 8} as well. \"18\" skips the divisibility test and also misses {2, 2, 6}, counting only numbers whose three digits are all different: 6 + 6 + 6.",
+    "solve": "let c=0; for(let n=100;n<=999;n++){ const d=String(n).split(\"\").map(Number); if(d[0]*d[1]*d[2]===24 && n%9===0) c++ } return c",
+    "distractor_solve": {
+      "12": "let c=0; for(let n=100;n<=999;n++){ const d=String(n).split(\"\").map(Number); if(d[0]*d[1]*d[2]===24 && n%3===0) c++ } return c",
+      "18": "let c=0; for(let n=100;n<=999;n++){ const d=String(n).split(\"\").map(Number); if(d[0]*d[1]*d[2]===24 && new Set(d).size===3) c++ } return c",
+      "21": "let c=0; for(let n=100;n<=999;n++){ const d=String(n).split(\"\").map(Number); if(d[0]*d[1]*d[2]===24) c++ } return c"
+    },
+    "forced": [
+      "a whole-number count, at most 900: all options are",
+      "arrangements come in blocks of 6 (three different digits) or 3 (a repeated digit), so the count is a multiple of 3: 6, 12, 18, 21 all are",
+      "no parity forced"
+    ]
+  },
+  {
+    "id": "IM16A-12",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "greatest common factor of two numbers of the form 2^m - 1 (Euclidean subtraction on the exponents)",
+    "difficulty": "hard",
+    "prompt": "What is the greatest common factor of 2^20 - 1 and 2^12 - 1?",
+    "choices": [
+      "3",
+      "255",
+      "45",
+      "15"
+    ],
+    "correct_answer": "15",
+    "explanation": "Hard: one non-routine idea (run the Euclidean algorithm on the two numbers, which reduces their exponents the way it reduces 20 and 12). 2^20 - 1 = 2^8(2^12 - 1) + (2^8 - 1), so the greatest common factor equals that of 2^12 - 1 and 2^8 - 1; then 2^12 - 1 = 2^4(2^8 - 1) + (2^4 - 1), and 2^4 - 1 = 15 divides 2^8 - 1 = 255. So the answer is 2^4 - 1 = 15 (the exponent 4 is the greatest common factor of 20 and 12). Check by factoring: 2^12 - 1 = 4095 = 3^2 x 5 x 7 x 13 and 2^20 - 1 = 1,048,575 = 3 x 5^2 x 11 x 31 x 41, sharing 3 x 5. \"255\" stops after the first step and reports the remainder 2^8 - 1, which does not divide 4095. \"3\" finds a common factor (both are 2^even - 1, so both are multiples of 3) but not the greatest. \"45\" factors both numbers but takes the larger power of 3, 3^2, instead of the smaller.",
+    "solve": "const g=(a,b)=>b?g(b,a%b):a; return g(Math.pow(2,20)-1, Math.pow(2,12)-1)",
+    "distractor_solve": {
+      "3": "return Math.pow(2,2)-1",
+      "45": "return Math.pow(3,2)*Math.pow(5,1)",
+      "255": "return Math.pow(2,20-12)-1"
+    },
+    "forced": [
+      "both numbers are odd, so the factor is odd: 3, 15, 45, 255 all are",
+      "at most the smaller number 4095, and none sits on it",
+      "both are multiples of 3 (2^even - 1), so the answer is a multiple of 3: all options are",
+      "a factor of 4095 - checkable only by factoring, which is the work itself"
+    ]
+  },
+  {
+    "id": "IM16A-13",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "counting primes in an interval by complete trial division",
+    "difficulty": "medium",
+    "prompt": "How many prime numbers are between 30 and 60?",
+    "choices": [
+      "8",
+      "7",
+      "12",
+      "11"
+    ],
+    "correct_answer": "7",
+    "explanation": "Medium: a routine check of each candidate, where the trap is stopping the trial division too early. Only odd numbers not ending in 5 can be prime: 31, 33, 37, 39, 41, 43, 47, 49, 51, 53, 57, 59. Removing multiples of 3 (33, 39, 51, 57) and of 7 (49) leaves 31, 37, 41, 43, 47, 53, 59, which is 7. \"8\" tests 2, 3 and 5 but not 7, so it keeps 49. \"11\" tests 2, 5 and 7 but not 3, so it keeps 33, 39, 51 and 57. \"12\" tests only 2 and 5, counting every odd number not ending in 5.",
+    "solve": "const isP=n=>{ if(n<2) return false; for(let k=2;k*k<=n;k++) if(n%k===0) return false; return true }; let c=0; for(let n=31;n<60;n++) if(isP(n)) c++; return c",
+    "distractor_solve": {
+      "8": "let c=0; for(let n=31;n<60;n++) if(n%2&&n%3&&n%5) c++; return c",
+      "11": "let c=0; for(let n=31;n<60;n++) if(n%2&&n%5&&n%7) c++; return c",
+      "12": "let c=0; for(let n=31;n<60;n++) if(n%2&&n%5) c++; return c"
+    },
+    "forced": [
+      "at most the 12 odd numbers from 31 to 59 that do not end in 5: all options are at most 12, none above",
+      "a whole-number count"
+    ]
+  },
+  {
+    "id": "IM16A-14",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "numbers with exactly three divisors are squares of primes",
+    "difficulty": "hard",
+    "prompt": "How many positive integers less than 100 have exactly three positive divisors?",
+    "choices": [
+      "4",
+      "6",
+      "8",
+      "30"
+    ],
+    "correct_answer": "4",
+    "explanation": "Hard: one non-routine idea (a number has exactly three divisors only when it is the square of a prime, with divisors 1, p and p^2). The prime squares below 100 are 4, 9, 25 and 49, so there are 4. \"8\" counts every perfect square from 4 to 81, but a square such as 16 or 36 has more than three divisors. \"6\" also counts prime cubes 8 and 27, as if p^3 had only the divisors 1, p and p^3. \"30\" counts products of two different primes below 100, as if pq had only the divisors 1, p and q.",
+    "solve": "let c=0; for(let n=1;n<100;n++){ let d=0; for(let k=1;k<=n;k++) if(n%k===0) d++; if(d===3) c++ } return c",
+    "distractor_solve": {
+      "6": "const isP=n=>{ if(n<2) return false; for(let k=2;k*k<=n;k++) if(n%k===0) return false; return true }; let c=0; for(let p=2;p<100;p++){ if(isP(p)&&p*p<100) c++; if(isP(p)&&p*p*p<100) c++ } return c",
+      "8": "let c=0; for(let k=2;k*k<100;k++) c++; return c",
+      "30": "const isP=n=>{ if(n<2) return false; for(let k=2;k*k<=n;k++) if(n%k===0) return false; return true }; let c=0; for(let p=2;p<100;p++) for(let q=p+1;q<100;q++){ if(isP(p)&&isP(q)&&p*q<100) c++ } return c"
+    },
+    "forced": [
+      "a whole-number count below 99: all options are",
+      "no parity forced"
+    ]
+  },
+  {
+    "id": "IM16A-15",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "three-digit number minus its reversal: the middle digit cancels",
+    "difficulty": "hard",
+    "prompt": "A three-digit number is chosen so that the number formed by writing its digits in reverse order is also a three-digit number. When the reversed number is subtracted from the original number, the result is 396. How many three-digit numbers have this property?",
+    "choices": [
+      "50",
+      "60",
+      "100",
+      "45"
+    ],
+    "correct_answer": "50",
+    "explanation": "Hard: one non-routine idea (in the subtraction the tens digit cancels, leaving 99 times the difference of the outer digits). Writing the number as 100a + 10b + c, the difference is (100a + 10b + c) - (100c + 10b + a) = 99(a - c) = 396, so a - c = 4. The reversed number is three-digit, so c is at least 1; then (a, c) is (5, 1), (6, 2), (7, 3), (8, 4) or (9, 5), and the tens digit b can be any of 10 digits: 5 x 10 = 50. \"60\" lets the units digit be 0, adding a = 4, c = 0. \"100\" also counts the numbers whose reversal is the larger one, where the difference is -396, not 396. \"45\" lets the tens digit run only from 1 to 9.",
+    "solve": "let c=0; for(let n=100;n<=999;n++){ if(n%10===0) continue; const r=Number(String(n).split(\"\").reverse().join(\"\")); if(n-r===396) c++ } return c",
+    "distractor_solve": {
+      "45": "let c=0; for(let a=1;a<=9;a++) for(let b=1;b<=9;b++) for(let cc=1;cc<=9;cc++) if(99*(a-cc)===396) c++; return c",
+      "60": "let c=0; for(let n=100;n<=999;n++){ const r=Number(String(n).split(\"\").reverse().join(\"\")); if(n-r===396) c++ } return c",
+      "100": "let c=0; for(let n=100;n<=999;n++){ if(n%10===0) continue; const r=Number(String(n).split(\"\").reverse().join(\"\")); if(Math.abs(n-r)===396) c++ } return c"
+    },
+    "forced": [
+      "a whole-number count, at most 900: all options are",
+      "no parity forced"
+    ]
+  },
+  {
+    "id": "IM16A-16",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "one fractional part of a number from another",
+    "difficulty": "medium",
+    "prompt": "Three eighths of a number is 27. What is five sixths of the same number?",
+    "choices": [
+      "72",
+      "45",
+      "86.4",
+      "60"
+    ],
+    "correct_answer": "60",
+    "explanation": "Medium: two routine fraction steps. If 3/8 of the number is 27, then 1/8 of it is 9 and the number is 72; five sixths of 72 is 60. \"72\" stops at the number itself. \"45\" finds 1/8 of the number, 9, and then takes 5 of those eighths instead of five sixths. \"86.4\" divides 72 by 5/6 instead of multiplying.",
+    "solve": "const n=27/(3/8); return n*5/6",
+    "distractor_solve": {
+      "45": "return 5*(27/3)",
+      "72": "return 27/(3/8)",
+      "86.4": "const n=27/(3/8); return Math.round(n/(5/6)*10)/10"
+    },
+    "forced": [
+      "5/6 is more than 3/8, so the answer exceeds 27: all options do",
+      "positive"
+    ]
+  },
+  {
+    "id": "IM16A-17",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "trailing zeros of a product of powers from prime factorizations",
+    "difficulty": "medium",
+    "prompt": "How many zeros are at the end of the number 25^6 x 12^5 when it is written out in full?",
+    "choices": [
+      "10",
+      "12",
+      "7",
+      "5"
+    ],
+    "correct_answer": "10",
+    "explanation": "Medium: a short chain of routine factorization steps. 25^6 = 5^12 and 12^5 = (2^2 x 3)^5 = 2^10 x 3^5. Each zero at the end needs one 2 and one 5, so the number of zeros is the smaller exponent, 10. \"12\" uses the exponent of 5 instead of the smaller one. \"7\" writes 12^5 as 2^(2 + 5) x 3^5, adding exponents instead of multiplying. \"5\" counts only one factor of 2 in each 12.",
+    "solve": "let p2=0,p5=0; for(let i=0;i<6;i++){ let x=25; while(x%5===0){p5++; x/=5} while(x%2===0){p2++; x/=2} } for(let i=0;i<5;i++){ let x=12; while(x%5===0){p5++; x/=5} while(x%2===0){p2++; x/=2} } return Math.min(p2,p5)",
+    "distractor_solve": {
+      "5": "return Math.min(1*5, 2*6)",
+      "7": "return Math.min(2+5, 2*6)",
+      "12": "return Math.max(2*5, 2*6)"
+    },
+    "forced": [
+      "a whole-number count of zeros: all options are",
+      "no parity forced"
+    ]
+  },
+  {
+    "id": "IM16A-18",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "order of operations with decimal multiplication and division",
+    "difficulty": "medium",
+    "prompt": "What is the value of 0.2 x 0.3 + 0.4 / 0.05?",
+    "choices": [
+      "9.2",
+      "8.6",
+      "80.06",
+      "8.06"
+    ],
+    "correct_answer": "8.06",
+    "explanation": "Medium: routine decimal operations with order of operations. Multiply and divide first: 0.2 x 0.3 = 0.06 and 0.4 / 0.05 = 8, so the value is 0.06 + 8 = 8.06. \"8.6\" places the decimal point wrongly in the product, 0.2 x 0.3 = 0.6. \"80.06\" places it wrongly in the quotient, 0.4 / 0.05 = 80. \"9.2\" works left to right, adding before dividing: (0.06 + 0.4) / 0.05.",
+    "solve": "return Math.round((0.2*0.3+0.4/0.05)*100)/100",
+    "distractor_solve": {
+      "8.6": "return Math.round((0.6+0.4/0.05)*100)/100",
+      "80.06": "return Math.round((0.2*0.3+80)*100)/100",
+      "9.2": "return Math.round(((0.2*0.3+0.4)/0.05)*100)/100"
+    },
+    "forced": [
+      "positive",
+      "at most two decimal places (a product of tenths is hundredths): all options are",
+      "no range is readable before the division is done"
+    ]
+  },
+  {
+    "id": "IM16A-19",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "which integers are a difference of two squares (parity of a - b and a + b)",
+    "difficulty": "hard",
+    "prompt": "How many of the integers 1, 2, 3, ..., 50 can be written in the form a^2 - b^2, where a and b are whole numbers (0 is allowed)?",
+    "choices": [
+      "25",
+      "13",
+      "37",
+      "35"
+    ],
+    "correct_answer": "37",
+    "explanation": "Hard: one non-routine idea (a^2 - b^2 = (a - b)(a + b), and the two factors a - b and a + b always have the same parity). So the product is either odd or a multiple of 4; a number that leaves remainder 2 when divided by 4 can never be written this way. Every odd n works, n = ((n + 1)/2)^2 - ((n - 1)/2)^2, and every multiple of 4 works, 4k = (k + 1)^2 - (k - 1)^2. From 1 to 50 the numbers 2, 6, 10, ..., 50 are excluded, which is 13 numbers, leaving 37. \"25\" counts only the odd numbers and misses the multiples of 4. \"13\" counts the numbers that cannot be written this way. \"35\" refuses b = 0, which drops 1 and 4.",
+    "solve": "const ok=new Set(); for(let a=0;a<=60;a++) for(let b=0;b<=a;b++){ const d=a*a-b*b; if(d>=1&&d<=50) ok.add(d) } return ok.size",
+    "distractor_solve": {
+      "13": "let c=0; for(let n=1;n<=50;n++) if(n%4===2) c++; return c",
+      "25": "let c=0; for(let n=1;n<=50;n++) if(n%2===1) c++; return c",
+      "35": "const ok=new Set(); for(let a=1;a<=60;a++) for(let b=1;b<a;b++){ const d=a*a-b*b; if(d>=1&&d<=50) ok.add(d) } return ok.size"
+    },
+    "forced": [
+      "a count of at most 50: all options are",
+      "no parity forced"
+    ]
+  }
+]

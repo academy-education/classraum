@@ -1,0 +1,537 @@
+[
+ {
+  "id": "IM16E-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "composing two reflections across non-axis lines, then a distance",
+  "difficulty": "medium",
+  "prompt": "In the coordinate plane, point P(-2, 4) is reflected across the vertical line x = 3 to give point Q. Then Q is reflected across the horizontal line y = 1 to give point R. What is the distance from P to R?",
+  "choices": [
+   "2 sqrt(26)",
+   "2 sqrt(34)",
+   "2 sqrt(41)",
+   "10 sqrt(2)"
+  ],
+  "correct_answer": "2 sqrt(34)",
+  "explanation": "Medium: two routine reflections followed by the distance formula, each step a standard rule. Reflecting across x = 3 sends x to 6 - x, so Q = (8, 4). Reflecting across y = 1 sends y to 2 - y, so R = (8, -2). PR = sqrt(10^2 + 6^2) = sqrt(136) = 2 sqrt(34). The option \"2 sqrt(41)\" reflects Q across the x-axis instead of y = 1, giving R = (8, -4). The option \"10 sqrt(2)\" reflects across y = -1 (a sign slip), giving R = (8, -6). The option \"2 sqrt(26)\" moves Q down by 2 instead of reflecting it, giving R = (8, 2).",
+  "solve": "const P=[-2,4]; const Q=[6-P[0],P[1]]; const R=[Q[0],2-Q[1]]; const d2=(R[0]-P[0])**2+(R[1]-P[1])**2; let c=1,k=d2; for(let f=10;f>1;f--){while(k%(f*f)===0){k/=f*f;c*=f;}} return c+' sqrt('+k+')';",
+  "distractor_solve": {
+   "2 sqrt(41)": "const d2=(8+2)**2+(-4-4)**2; let c=1,k=d2; for(let f=10;f>1;f--){while(k%(f*f)===0){k/=f*f;c*=f;}} return c+' sqrt('+k+')';",
+   "10 sqrt(2)": "const y=-2-4; const d2=(8+2)**2+(y-4)**2; let c=1,k=d2; for(let f=10;f>1;f--){while(k%(f*f)===0){k/=f*f;c*=f;}} return c+' sqrt('+k+')';",
+   "2 sqrt(26)": "const y=4-2; const d2=(8+2)**2+(y-4)**2; let c=1,k=d2; for(let f=10;f>1;f--){while(k%(f*f)===0){k/=f*f;c*=f;}} return c+' sqrt('+k+')';"
+  },
+  "forced": [
+   "horizontal leg is readable after one step: P is 5 units left of x = 3, so P and R differ by 10 in x; PR is strictly between 10 and 10 + (vertical leg). All four options lie between 10 and 16 (10.2, 11.7, 12.8, 14.1)",
+   "both legs are doubles of a distance to a line, so PR^2 is a multiple of 4 and PR has an even coefficient: all four are 2 sqrt(k) or 10 sqrt(2)",
+   "not an integer (10^2 + 6^2 is not a perfect square): none of the four is an integer",
+   "positive: all four positive"
+  ]
+ },
+ {
+  "id": "IM16E-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "mirror image of an analog clock: reflecting hand positions across the 12-6 line",
+  "difficulty": "hard",
+  "prompt": "A clock with hour and minute hands and no numbers on its face is seen in a mirror hanging on the opposite wall. In the mirror, the clock appears to show 4:35. What is the actual time?",
+  "choices": [
+   "8:25",
+   "7:35",
+   "7:25",
+   "8:35"
+  ],
+  "correct_answer": "7:25",
+  "explanation": "Hard: one non-routine idea - a mirror reflects every hand across the vertical line through 12 and 6, so a hand at angle A (clockwise from 12) is really at 360 - A, and the hour hand must be reflected together with its position between the hour marks. The minute hand appears at 35 minutes (210 degrees), so it is really at 150 degrees, 25 minutes. The hour hand appears at 4 + 35/60 hours, 137.5 degrees, so it is really at 222.5 degrees, which is 7 hours 25 minutes. The actual time is 7:25. (Equivalently 11:60 - 4:35.) The option \"8:25\" subtracts the hours from 12 and the minutes from 60 separately, 12 - 4 and 60 - 35. The option \"8:35\" reflects only the hour, 12 - 4, and keeps the minutes. The option \"7:35\" reflects the hour hand correctly but keeps the minute hand where it appears.",
+  "solve": "const shown=4*60+35; const real=(720-shown)%720; return Math.floor(real/60)+':'+String(real%60).padStart(2,'0');",
+  "distractor_solve": {
+   "8:25": "return (12-4)+':'+String(60-35).padStart(2,'0');",
+   "8:35": "return (12-4)+':'+35;",
+   "7:35": "const real=720-(4*60+35); return Math.floor(real/60)+':'+35;"
+  },
+  "forced": [
+   "a time on a 12-hour dial (all four)",
+   "the minutes are a multiple of 5 like the shown 35 (all four end in 5)",
+   "the real hour hand mirrors 4-to-5, so it lies between two hour marks; every option has a nonzero minute part"
+  ]
+ },
+ {
+  "id": "IM16E-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting lattice points in a diamond region by layers",
+  "difficulty": "hard",
+  "prompt": "How many points (x, y) in the coordinate plane, where x and y are both integers, satisfy |x| + |y| <= 4?",
+  "choices": [
+   "41",
+   "33",
+   "57",
+   "61"
+  ],
+  "correct_answer": "41",
+  "explanation": "Hard: the non-routine idea is to count by layers |x| + |y| = k. Layer 0 is the origin alone; for k >= 1 the layer |x| + |y| = k has 4k points (k on each of four sides of a diamond, corners counted once). Total = 1 + 4 + 8 + 12 + 16 = 41. The option \"33\" takes the diamond's area, 2 x 4^2 = 32, and adds the origin. The option \"57\" counts 4(k + 1) points on each layer k from 1 to 4, counting each corner twice. The option \"61\" counts the 15 first-quadrant points including the axes, multiplies by 4 and adds the origin, so every axis point is counted twice.",
+  "solve": "let c=0; for(let x=-4;x<=4;x++)for(let y=-4;y<=4;y++) if(Math.abs(x)+Math.abs(y)<=4) c++; return c;",
+  "distractor_solve": {
+   "33": "return 2*4*4+1;",
+   "57": "let s=1; for(let k=1;k<=4;k++) s+=4*(k+1); return s;",
+   "61": "let q=0; for(let x=0;x<=4;x++)for(let y=0;y<=4;y++) if(x+y<=4) q++; return 4*q+1;"
+  },
+  "forced": [
+   "odd: the region is symmetric under (x, y) -> (-x, -y) and only the origin is fixed (all four odd)",
+   "1 more than a multiple of 4: quarter-turn symmetry fixes only the origin (41, 33, 57, 61 all are 1 mod 4)",
+   "strictly less than 81, the 9 x 9 square |x| <= 4, |y| <= 4, since (4, 4) is excluded (all four below 81)",
+   "greater than the 17 points on the axes (all four exceed 17)"
+  ]
+ },
+ {
+  "id": "IM16E-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "units-digit cycle of powers of 2 applied to a long sum",
+  "difficulty": "hard",
+  "prompt": "What is the units digit of the sum 2^1 + 2^2 + 2^3 + ... + 2^50?",
+  "choices": [
+   "0",
+   "2",
+   "8",
+   "6"
+  ],
+  "correct_answer": "6",
+  "explanation": "Hard: two non-recall steps combined - spot the 4-term cycle of units digits (2, 4, 8, 6), then split 50 terms into 12 full cycles plus 2 leftover terms. Each full cycle contributes 2 + 4 + 8 + 6 = 20, units digit 0; the leftovers 2^49 and 2^50 end in 2 and 4, so the sum ends in 6. (Equivalently the sum is 2^51 - 2, and 2^51 ends in 8.) The option \"0\" treats the 50 terms as whole cycles only, each ending in 0. The option \"8\" uses the identity but forgets the - 2, giving the units digit of 2^51. The option \"2\" writes the sum as 2^50 - 2, ending in 4 - 2.",
+  "solve": "let s=0; let p=1; for(let i=1;i<=50;i++){p=(p*2)%10; s=(s+p)%10;} return s;",
+  "distractor_solve": {
+   "0": "return (12*20)%10;",
+   "2": "let p=1; for(let i=1;i<=50;i++) p=(p*2)%10; return (p-2+10)%10;",
+   "8": "let p=1; for(let i=1;i<=51;i++) p=(p*2)%10; return p;"
+  },
+  "forced": [
+   "even: every term is even (all four even)",
+   "a single digit 0-9 (all four)",
+   "no further divisibility is readable without the cycle (the sum is 2 mod 4, which every even units digit allows)"
+  ]
+ },
+ {
+  "id": "IM16E-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "parity pattern of a sum-of-previous-two sequence",
+  "difficulty": "medium",
+  "prompt": "A sequence begins 3, 4, and each term after the second is the sum of the two terms just before it: 3, 4, 7, 11, 18, 29, .... How many of the first 20 terms are even?",
+  "choices": [
+   "13",
+   "7",
+   "6",
+   "10"
+  ],
+  "correct_answer": "7",
+  "explanation": "Medium: one routine idea - track only odd/even. Odd + even = odd, even + odd = odd, odd + odd = even, so the parities run odd, even, odd, odd, even, odd, odd, even, ... repeating every 3 terms with the even terms in positions 2, 5, 8, ..., 20. That is (20 - 2)/3 + 1 = 7 even terms. The option \"10\" assumes odd and even terms alternate. The option \"6\" puts the even terms at positions 3, 6, ..., 18, every third term counted from the third. The option \"13\" counts the odd terms instead of the even ones.",
+  "solve": "let a=[3,4]; while(a.length<20) a.push(a[a.length-1]+a[a.length-2]); return a.filter(v=>v%2===0).length;",
+  "distractor_solve": {
+   "6": "let c=0; for(let p=3;p<=20;p+=3) c++; return c;",
+   "10": "return 20/2;",
+   "13": "let a=[3,4]; while(a.length<20) a.push(a[a.length-1]+a[a.length-2]); return a.filter(v=>v%2===1).length;"
+  },
+  "forced": [
+   "a whole number from 0 to 20 (all four)",
+   "at least 1, since the second term 4 is even (all four)",
+   "no tighter count is readable without the parity cycle"
+  ]
+ },
+ {
+  "id": "IM16E-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rate conversion: belt speed and spacing to items per hour",
+  "difficulty": "medium",
+  "prompt": "A conveyor belt moves at a constant 0.6 meter per second. Boxes are placed on the belt so that the front of each box is 1.5 meters behind the front of the box ahead of it. How many boxes pass the end of the belt in 1 hour?",
+  "choices": [
+   "24",
+   "2400",
+   "1440",
+   "2160"
+  ],
+  "correct_answer": "1440",
+  "explanation": "Medium: two routine conversions in sequence. The belt carries 0.6 x 3600 = 2160 meters of belt past the end each hour, and each box takes up 1.5 meters, so 2160 / 1.5 = 1440 boxes. The option \"24\" finds the boxes per MINUTE (0.6 x 60 / 1.5) and stops. The option \"2160\" stops at the meters of belt per hour and never divides by the spacing. The option \"2400\" divides 3600 by 1.5 and never uses the belt speed.",
+  "solve": "return 0.6*3600/1.5;",
+  "distractor_solve": {
+   "24": "return 0.6*60/1.5;",
+   "2160": "return 0.6*3600;",
+   "2400": "return 3600/1.5;"
+  },
+  "forced": [
+   "a positive whole number of boxes (all four)",
+   "fewer than one box per second (the belt moves under 1 m/s and boxes are over 1 m apart), so fewer than 3600 per hour: all four are below 3600",
+   "no option is negative or fractional"
+  ]
+ },
+ {
+  "id": "IM16E-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "timetable: waiting time for the next departure from a non-hourly schedule",
+  "difficulty": "medium",
+  "prompt": "Ferries leave a dock every 18 minutes all day, and the first ferry of the day leaves at 6:05 a.m. Rosa arrives at the dock at 10:14 a.m. How many minutes must she wait for the next ferry to leave?",
+  "choices": [
+   "5",
+   "9",
+   "13",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "Medium: a routine chain - elapsed time, a division with remainder, then the gap to the next multiple. From 6:05 a.m. to 10:14 a.m. is 4 hours 9 minutes = 249 minutes = 13 x 18 + 15, so the last ferry left 15 minutes before she arrived and the next leaves 18 - 15 = 3 minutes after. The option \"5\" subtracts the clock times as plain numbers, 1014 - 605 = 409 = 22 x 18 + 13, and waits 18 - 13. The option \"13\" takes that same wrong remainder, 13, as the wait. The option \"9\" assumes the pattern repeats every hour at :05, :23, :41, :59, so the next ferry is at 10:23.",
+  "solve": "const d=(10*60+14)-(6*60+5); const r=d%18; return (18-r)%18;",
+  "distractor_solve": {
+   "5": "const d=1014-605; return 18-d%18;",
+   "9": "return [5,23,41,59].find(t=>t>=14)-14;",
+   "13": "const d=1014-605; return d%18;"
+  },
+  "forced": [
+   "between 0 and 17 minutes: a ferry leaves every 18 minutes (all four)",
+   "odd: departures are 365 + 18k minutes after midnight (always odd) and 10:14 a.m. is 614 (even), so the wait is odd (all four odd)",
+   "a whole number of minutes (all four)"
+  ]
+ },
+ {
+  "id": "IM16E-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "working backwards through a reflection and a translation",
+  "difficulty": "hard",
+  "prompt": "A point (a, b) is reflected across the line y = x, and the image is then translated 3 units to the left and 2 units down. The final point is (4, -1). What is the value of a?",
+  "choices": [
+   "7",
+   "1",
+   "-3",
+   "2"
+  ],
+  "correct_answer": "1",
+  "explanation": "Hard: working backwards through two transformations, undoing them in reverse order with each one inverted. Undo the translation first: move 3 right and 2 up, from (4, -1) to (7, 1). Then undo the reflection across y = x by swapping the coordinates: (1, 7). So a = 1. The option \"7\" undoes the translation but forgets to swap. The option \"-3\" repeats the translation (3 left, 2 down) instead of undoing it, reaching (1, -3), then swaps. The option \"2\" undoes the steps in the wrong order: swapping first gives (-1, 4), then moving 3 right and 2 up gives (2, 6).",
+  "solve": "const F=[4,-1]; const T=[F[0]+3,F[1]+2]; const P=[T[1],T[0]]; return P[0];",
+  "distractor_solve": {
+   "2": "const S=[-1,4]; return S[0]+3;",
+   "7": "const T=[4+3,-1+2]; return T[0];",
+   "-3": "const T=[4-3,-1-2]; return T[1];"
+  },
+  "forced": [
+   "an integer (all four)",
+   "no sign is readable from the stem: the final point's coordinates mix signs and the transformations move both ways (options include negative and positive)",
+   "none equals a printed coordinate of the final point (4 or -1)"
+  ]
+ },
+ {
+  "id": "IM16E-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "chained unit conversion: cm per second to hours for a distance in km",
+  "difficulty": "medium",
+  "prompt": "A snail crawls at a steady 1.2 centimeters per second. At this rate, how many hours does it take the snail to crawl 0.54 kilometer?",
+  "choices": [
+   "7.5",
+   "1.25",
+   "12.5",
+   "750"
+  ],
+  "correct_answer": "12.5",
+  "explanation": "Medium: three routine conversions in a row. 0.54 km = 540 m = 54,000 cm. Time = 54,000 / 1.2 = 45,000 seconds = 45,000 / 3600 = 12.5 hours. The option \"1.25\" uses 1 km = 10,000 cm. The option \"750\" divides the seconds by 60 only once, giving minutes. The option \"7.5\" divides the seconds by 6000, treating an hour as 60 x 100 seconds.",
+  "solve": "const cm=0.54*1000*100; const s=cm/1.2; return s/3600;",
+  "distractor_solve": {
+   "750": "const cm=0.54*100000; return cm/1.2/60;",
+   "1.25": "const cm=0.54*10000; return cm/1.2/3600;",
+   "7.5": "const cm=0.54*100000; return cm/1.2/6000;"
+  },
+  "forced": [
+   "positive (all four)",
+   "the asked unit is hours, and all four are written as hours; no option is in a different unit's notation",
+   "no stem-readable bracket separates the options without carrying out the conversion"
+  ]
+ },
+ {
+  "id": "IM16E-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "shortest path touching an axis, by reflecting one endpoint",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, A is the point (1, 3) and B is the point (9, 5). A path runs in a straight line from A to a point P on the x-axis, and then in a straight line from P to B. What is the least possible length of this path?",
+  "choices": [
+   "2 sqrt(26)",
+   "8 sqrt(2)",
+   "5 + sqrt(41)",
+   "3 + sqrt(89)"
+  ],
+  "correct_answer": "8 sqrt(2)",
+  "explanation": "Hard: one non-routine idea - reflect A across the x-axis. For any P on the x-axis, AP equals the distance from A'(1, -3) to P, so the path length is A'P + PB, which is least when P lies on segment A'B. The least length is A'B = sqrt(8^2 + 8^2) = 8 sqrt(2). The option \"2 sqrt(26)\" reflects A across the y-axis instead, to (-1, 3), and measures to B. The option \"5 + sqrt(41)\" puts P halfway across, at (5, 0): AP = 5 and PB = sqrt(41). The option \"3 + sqrt(89)\" puts P directly below A, at (1, 0): AP = 3 and PB = sqrt(89).",
+  "solve": "const d2=(9-1)**2+(5+3)**2; let c=1,k=d2; for(let f=12;f>1;f--){while(k%(f*f)===0){k/=f*f;c*=f;}} return c+' sqrt('+k+')';",
+  "distractor_solve": {
+   "2 sqrt(26)": "const d2=(9+1)**2+(5-3)**2; let c=1,k=d2; for(let f=12;f>1;f--){while(k%(f*f)===0){k/=f*f;c*=f;}} return c+' sqrt('+k+')';",
+   "5 + sqrt(41)": "const ap=Math.sqrt(16+9); const pb2=16+25; return ap+' + sqrt('+pb2+')';",
+   "3 + sqrt(89)": "const ap=3; const pb2=64+25; return ap+' + sqrt('+pb2+')';"
+  },
+  "forced": [
+   "at least the straight-line distance AB = sqrt(68), about 8.2 (all four: 10.2, 11.3, 11.4, 12.4)",
+   "at least the total vertical travel, 3 down plus 5 up = 8 (all four exceed 8)",
+   "no option equals sqrt(68) (the limiting straight path) or 8",
+   "irrational: every option carries a surd, none is an integer"
+  ]
+ },
+ {
+  "id": "IM16E-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume unit conversion (cubic meters to liters) then a drain rate to hours",
+  "difficulty": "medium",
+  "prompt": "A cube-shaped tank measures 1.2 meters along each inside edge and is completely full of water. A drain removes water at a steady 4 liters per minute. How many hours does it take to empty the tank? (1 cubic meter = 1000 liters)",
+  "choices": [
+   "6",
+   "4.32",
+   "0.72",
+   "7.2"
+  ],
+  "correct_answer": "7.2",
+  "explanation": "Medium: a routine chain of conversions. Volume = 1.2 x 1.2 x 1.2 = 1.728 cubic meters = 1728 liters. At 4 liters per minute that is 432 minutes, and 432 / 60 = 7.2 hours. The option \"6\" uses only two dimensions, 1.2 x 1.2 = 1.44, so 1440 liters. The option \"4.32\" divides the 432 minutes by 100 instead of 60. The option \"0.72\" uses 1 cubic meter = 100 liters.",
+  "solve": "const L=1.2**3*1000; return Math.round(L/4/60*1000)/1000;",
+  "distractor_solve": {
+   "6": "const L=1.2*1.2*1000; return Math.round(L/4/60*1000)/1000;",
+   "4.32": "const L=1.2**3*1000; return Math.round(L/4/100*1000)/1000;",
+   "0.72": "const L=1.2**3*100; return Math.round(L/4/60*1000)/1000;"
+  },
+  "forced": [
+   "positive (all four)",
+   "in hours, with all four written as decimal hours",
+   "no stem-readable bound separates the four without doing the conversion; 0.72 hours (43 minutes) is small but the tank's size in liters is not printed"
+  ]
+ },
+ {
+  "id": "IM16E-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two inaccurate clocks: when a 12-hour dial shows the same time again",
+  "difficulty": "hard",
+  "prompt": "At noon, two clocks with ordinary 12-hour dials are both set to the correct time. One clock gains 2 minutes every hour and the other loses 3 minutes every hour. After how many days will the two clocks next show exactly the same time?",
+  "choices": [
+   "10",
+   "12",
+   "6",
+   "30"
+  ],
+  "correct_answer": "6",
+  "explanation": "Hard: one non-routine idea - a 12-hour dial shows the same reading again when the two clocks are 12 hours (720 minutes) apart, not when one is back to the correct time. They drift apart at 2 + 3 = 5 minutes per hour, so it takes 720 / 5 = 144 hours = 6 days. The option \"12\" waits for a 24-hour (1440-minute) gap. The option \"30\" uses the difference 3 - 2 = 1 minute per hour. The option \"10\" uses only the losing clock's 3 minutes per hour.",
+  "solve": "return 720/(2+3)/24;",
+  "distractor_solve": {
+   "10": "return 720/3/24;",
+   "12": "return 1440/(2+3)/24;",
+   "30": "return 720/(3-2)/24;"
+  },
+  "forced": [
+   "positive and more than a day: a 12-hour gap at a few minutes per hour takes over 100 hours (all four are at least 6 days)",
+   "a whole number of days is not forced by the stem (all four happen to be whole)",
+   "no option is below the 720/5 = 144-hour value by a stem-readable bound without the 5-minutes-per-hour step"
+  ]
+ },
+ {
+  "id": "IM16E-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a line through the origin that halves a rectangle's area must pass through its center",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, a rectangle has sides parallel to the axes, and two of its opposite corners are (1, 1) and (7, 9). A line through the origin divides the rectangle into two regions of equal area. What is the slope of the line?",
+  "choices": [
+   "5/4",
+   "4/3",
+   "9/7",
+   "9/4"
+  ],
+  "correct_answer": "5/4",
+  "explanation": "Hard: one non-routine idea - a straight line cuts a rectangle into two equal areas exactly when it passes through the rectangle's center, so the line is fixed by the origin and the center. The center is the midpoint of the diagonal, ((1 + 7)/2, (1 + 9)/2) = (4, 5), so the slope is 5/4. The option \"4/3\" takes the center as half the side lengths, ((7 - 1)/2, (9 - 1)/2) = (3, 4). The option \"9/7\" aims the line at the far corner (7, 9), as if along the diagonal. The option \"9/4\" aims the line at the midpoint of the top side, (4, 9).",
+  "solve": "const cx=(1+7)/2, cy=(1+9)/2; const g=(a,b)=>b?g(b,a%b):a; const k=g(cy,cx); return (cy/k)+'/'+(cx/k);",
+  "distractor_solve": {
+   "4/3": "const cx=(7-1)/2, cy=(9-1)/2; const g=(a,b)=>b?g(b,a%b):a; const k=g(cy,cx); return (cy/k)+'/'+(cx/k);",
+   "9/7": "return 9+'/'+7;",
+   "9/4": "const cx=(1+7)/2; return 9+'/'+cx;"
+  },
+  "forced": [
+   "positive: the rectangle lies in the first quadrant (all four positive)",
+   "the line must meet the rectangle, so the slope lies between 1/7 (toward (7, 1)) and 9 (toward (1, 9)): all four do",
+   "no integer is forced and none is offered"
+  ]
+ },
+ {
+  "id": "IM16E-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "spiral walk on the grid: group moves in fours to find a net drift",
+  "difficulty": "hard",
+  "prompt": "A robot starts at the origin and makes moves of length 1, 2, 3, 4, ... in that order. Its directions repeat in the cycle right, up, left, down: it moves 1 unit right, 2 units up, 3 units left, 4 units down, 5 units right, 6 units up, and so on. What is the robot's x-coordinate after its 23rd move?",
+  "choices": [
+   "-10",
+   "8",
+   "-2",
+   "-12"
+  ],
+  "correct_answer": "-12",
+  "explanation": "Hard: one non-routine idea - group the moves in fours. Moves 4j + 1 (right) and 4j + 3 (left) change x by (4j + 1) - (4j + 3) = -2, so every complete group of four moves shifts the robot by -2 in x. After 5 groups (20 moves) x = -10. Move 21 is 21 right and move 23 is 23 left (move 22 is up), so x = -10 + 21 - 23 = -12. The option \"-10\" stops at the 20 moves of the five complete groups and drops the leftover moves. The option \"8\" takes each group's net shift as +2 instead of -2: 10 + 21 - 23. The option \"-2\" assumes each group of four cancels, keeping only 21 - 23.",
+  "solve": "let x=0; const dx=[1,0,-1,0]; for(let k=1;k<=23;k++) x+=dx[(k-1)%4]*k; return x;",
+  "distractor_solve": {
+   "8": "return 5*2+21-23;",
+   "-10": "let x=0; const dx=[1,0,-1,0]; for(let k=1;k<=20;k++) x+=dx[(k-1)%4]*k; return x;",
+   "-2": "return 0+21-23;"
+  },
+  "forced": [
+   "an integer (all four)",
+   "no sign is forced by the stem: the robot moves both right and left by growing amounts (options include negative and positive values)",
+   "its absolute value is at most 1 + 2 + ... + 23 = 276 (all four far inside)"
+  ]
+ },
+ {
+  "id": "IM16E-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "border and interior counts of a square tile pattern",
+  "difficulty": "medium",
+  "prompt": "Figure n of a pattern is an n-by-n square made of n^2 small square tiles. Every tile that touches the outer edge of the figure is gray, and every other tile is white. In Figure 20, how many more white tiles are there than gray tiles?",
+  "choices": [
+   "244",
+   "248",
+   "322",
+   "324"
+  ],
+  "correct_answer": "248",
+  "explanation": "Medium: a routine two-part count. The white tiles form an 18-by-18 square, 324 tiles. The gray border has 400 - 324 = 76 tiles (or 4 x 20 - 4, the corners counted once). The difference is 324 - 76 = 248. The option \"244\" counts the border as 4 x 20 = 80, counting each corner twice. The option \"322\" takes the white square as 19 by 19, 361 tiles, leaving a border of 400 - 361 = 39. The option \"324\" stops at the number of white tiles.",
+  "solve": "const n=20; const w=(n-2)**2; const g=n*n-w; return w-g;",
+  "distractor_solve": {
+   "244": "const w=18*18; return w-4*20;",
+   "322": "const w=19*19; const g=400-w; return w-g;",
+   "324": "return 18*18;"
+  },
+  "forced": [
+   "even: white - gray = 400 - 2 x gray, and 400 is even (all four even)",
+   "positive and less than 400 (all four)",
+   "a whole number (all four)"
+  ]
+ },
+ {
+  "id": "IM16E-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two burning candles: remaining heights as linear functions of time",
+  "difficulty": "hard",
+  "prompt": "Two candles are the same height. Burning at a steady rate, the first candle burns down completely in 4 hours and the second in 6 hours. Both candles are lit at the same moment. At the moment when the second candle is exactly twice as tall as the first, what fraction of its original height does the second candle have left?",
+  "choices": [
+   "1/2",
+   "3/5",
+   "2/3",
+   "3/4"
+  ],
+  "correct_answer": "1/2",
+  "explanation": "Hard: the comparison is of REMAINING heights, each a fraction of the start that falls at its own rate, and the moment has to be found before the asked fraction. After t hours the first candle has 1 - t/4 of its height left and the second has 1 - t/6. Setting 1 - t/6 = 2(1 - t/4) gives t/3 = 1, so t = 3 hours, and the second candle has 1 - 3/6 = 1/2 left. The option \"3/5\" finds the moment by combining the burn times as rates working together, t = 4 x 6 / (4 + 6) = 2.4. The option \"2/3\" treats the hours as heights, 6 - t = 2(4 - t), so t = 2. The option \"3/4\" sets the second candle's remaining height equal to twice the height the first has BURNED, 1 - t/6 = 2(t/4), so t = 1.5.",
+  "solve": "const t=1/(1/2-1/6); const f=1-t/6; const g=(a,b)=>b?g(b,a%b):a; const n=Math.round(f*12), d=12, k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "3/5": "const t=4*6/(4+6); const f=1-t/6; const g=(a,b)=>b?g(b,a%b):a; const n=Math.round(f*60), d=60, k=g(n,d); return (n/k)+'/'+(d/k);",
+   "2/3": "const t=(2*4-6)/(2-1); const f=1-t/6; const g=(a,b)=>b?g(b,a%b):a; const n=Math.round(f*60), d=60, k=g(n,d); return (n/k)+'/'+(d/k);",
+   "3/4": "const t=1/(1/6+2/4); const f=1-t/6; const g=(a,b)=>b?g(b,a%b):a; const n=Math.round(f*60), d=60, k=g(n,d); return (n/k)+'/'+(d/k);"
+  },
+  "forced": [
+   "between 1/3 and 1: the moment comes before the first candle is gone at 4 hours, when the second still has 1 - 4/6 = 1/3 left (all four lie between 1/3 and 1)",
+   "the second candle is always the taller, so more of it than of the first remains; no option is ruled out by that",
+   "a fraction of the original height, written in lowest terms (all four)"
+  ]
+ },
+ {
+  "id": "IM16E-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "striking clock over a window longer than a day: full 12-hour cycles plus a remainder",
+  "difficulty": "hard",
+  "prompt": "A clock strikes once at 1 o'clock, twice at 2 o'clock, and so on, up to 12 times at 12 o'clock, both day and night. It also strikes once at every half hour (1:30, 2:30, and so on). How many times does it strike from 9:45 a.m. on Monday to 1:45 a.m. on Wednesday?",
+  "choices": [
+   "308",
+   "300",
+   "268",
+   "274"
+  ],
+  "correct_answer": "308",
+  "explanation": "Hard: the key idea is that any 12 consecutive hours contain each of the hours 1 through 12 exactly once, so the window is cut into whole 12-hour cycles plus a remainder. The window is 40 hours. The first 36 hours (to 9:45 p.m. Tuesday) are three cycles of 1 + 2 + ... + 12 = 78, so 234 hour strikes; the last 4 hours add the strikes at 10, 11, 12 and 1: 34. Hour strikes = 268. Every one of the 40 hours also has one half-hour strike: 268 + 40 = 308. The option \"268\" forgets the half-hour strikes. The option \"300\" uses the average 78/12 = 6.5 strikes per hour for all 40 hours, which ignores which hours fall in the leftover 4. The option \"274\" stops the hour count at the three full cycles (234) but adds all 40 half-hour strikes.",
+  "solve": "let s=0; for(let k=1;k<=40;k++){ let h=(9+k)%12; if(h===0) h=12; s+=h+1; } return s;",
+  "distractor_solve": {
+   "268": "let s=0; for(let k=1;k<=40;k++){ let h=(9+k)%12; if(h===0) h=12; s+=h; } return s;",
+   "274": "return 3*78+40;",
+   "300": "return 40*78/12+40;"
+  },
+  "forced": [
+   "at least 40 half-hour strikes plus 40 hour strikes, so above 80; at most 40 x 12 + 40 = 520 (all four inside)",
+   "near 40 x (6.5 + 1) = 300 by averaging; all four lie between 260 and 310",
+   "a whole number (all four)"
+  ]
+ },
+ {
+  "id": "IM16E-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "arithmetic sequence recovered from two partial sums",
+  "difficulty": "hard",
+  "prompt": "In an arithmetic sequence, the sum of the first 10 terms is 155 and the sum of the first 20 terms is 610. What is the 30th term of the sequence?",
+  "choices": [
+   "89",
+   "91",
+   "59",
+   "92"
+  ],
+  "correct_answer": "89",
+  "explanation": "Hard: three dependent steps, none a recall fact - turn each sum into an equation in the first term a and difference d, eliminate to find d, back-substitute for a, then build the 30th term. S10 = 5(2a + 9d) = 155 gives 2a + 9d = 31; S20 = 10(2a + 19d) = 610 gives 2a + 19d = 61. Subtracting, 10d = 30, so d = 3 and a = 2. The 30th term is a + 29d = 2 + 87 = 89. The option \"92\" uses a + 30d. The option \"91\" solves 2a + 9d = 31 as if it read a + 9d = 31, taking a = 4. The option \"59\" stops at the 20th term, a + 19d.",
+  "solve": "const d=(61-31)/10; const a=(31-9*d)/2; return a+29*d;",
+  "distractor_solve": {
+   "59": "const d=3, a=2; return a+19*d;",
+   "91": "const d=3; const a=31-9*d; return a+29*d;",
+   "92": "const d=3, a=2; return a+30*d;"
+  },
+  "forced": [
+   "the sums grow faster than linearly (610 is more than twice 155), so the terms increase: the 30th term exceeds the average of the first 20, 30.5 (all four do)",
+   "a whole number is not forced by the stem (all four whole)",
+   "no residue is readable without finding d"
+  ]
+ },
+ {
+  "id": "IM16E-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "alternating reflections compose to rotations; reduce 100 steps by a cycle",
+  "difficulty": "hard",
+  "prompt": "The point P(2, 5) is reflected across the line y = x. The image is then reflected across the x-axis, that image is reflected across the line y = x, that image across the x-axis, and so on, alternating between the two lines, for 100 reflections in all. What are the coordinates of the final point?",
+  "choices": [
+   "(2, 5)",
+   "(5, -2)",
+   "(-5, 2)",
+   "(-2, -5)"
+  ],
+  "correct_answer": "(-2, -5)",
+  "explanation": "Hard: combines transformations with a cycle - each PAIR of reflections (across y = x, then across the x-axis) sends (a, b) to (b, a) and then to (b, -a), a quarter turn clockwise about the origin. 100 reflections are 50 quarter turns; 50 = 4 x 12 + 2, so the net effect is a half turn, (2, 5) -> (-2, -5). The option \"(2, 5)\" counts every single reflection as a quarter turn, so 100 quarter turns return to the start. The option \"(5, -2)\" counts each group of four reflections as one quarter turn clockwise: 25 quarter turns, 25 = 4 x 6 + 1. The option \"(-5, 2)\" makes the same grouping error but turns counterclockwise.",
+  "solve": "let p=[2,5]; for(let i=0;i<100;i++){ p = i%2===0 ? [p[1],p[0]] : [p[0],-p[1]]; } return '('+p[0]+', '+p[1]+')';",
+  "distractor_solve": {
+   "(2, 5)": "let p=[2,5]; for(let i=0;i<100%4;i++) p=[p[1],-p[0]]; return '('+p[0]+', '+p[1]+')';",
+   "(5, -2)": "let p=[2,5]; for(let i=0;i<25%4;i++) p=[p[1],-p[0]]; return '('+p[0]+', '+p[1]+')';",
+   "(-5, 2)": "let p=[2,5]; for(let i=0;i<25%4;i++) p=[-p[1],p[0]]; return '('+p[0]+', '+p[1]+')';"
+  },
+  "forced": [
+   "every reflection is across a line through the origin, so the final point is sqrt(29) from the origin: all four are",
+   "the coordinates are 2 and 5 up to order and sign: all four are",
+   "the last reflection is across the x-axis, which no option's form rules out"
+  ]
+ }
+]

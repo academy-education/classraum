@@ -1,0 +1,515 @@
+[
+ {
+  "id": "IM16D-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "complement and supplement related by a multiple",
+  "difficulty": "medium",
+  "prompt": "The supplement of an angle is 4 times as large as the complement of the same angle. What is the measure of the angle, in degrees?",
+  "choices": [
+   "60",
+   "18",
+   "36",
+   "72"
+  ],
+  "correct_answer": "60",
+  "explanation": "Medium: one equation from two definitions, two routine steps. The supplement is 180 - x and the complement is 90 - x, so 180 - x = 4(90 - x) = 360 - 4x, giving 3x = 180 and x = 60. \"36\" reads the relation as the supplement being 4 times the angle itself: 180 - x = 4x. \"18\" reads it as the complement being 4 times the angle: 90 - x = 4x. \"72\" reads it as the angle being 4 times its complement: x = 4(90 - x).",
+  "solve": "for(let x=0.5;x<90;x+=0.5){ if(Math.abs((180-x)-4*(90-x))<1e-9) return x } return null",
+  "distractor_solve": {
+   "18": "return 90/5",
+   "36": "return 180/5",
+   "72": "return 360/5"
+  },
+  "forced": [
+   "the angle has a complement, so 0 < x < 90: 18, 36, 60, 72 all inside",
+   "no parity or factor forced; options are not all multiples of a common step beyond 6"
+  ]
+ },
+ {
+  "id": "IM16D-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "altitude to the hypotenuse of a right triangle via two area expressions",
+  "difficulty": "medium",
+  "prompt": "A right triangle has legs of length 15 centimeters and 20 centimeters. What is the length, in centimeters, of the altitude drawn from the right angle to the hypotenuse?",
+  "choices": [
+   "9",
+   "12",
+   "6",
+   "10"
+  ],
+  "correct_answer": "12",
+  "explanation": "Medium: Pythagorean theorem, then the area written two ways; routine steps. The hypotenuse is sqrt(15^2 + 20^2) = 25. The area is (1/2)(15)(20) = 150, and also (1/2)(25)h, so h = 300/25 = 12. \"6\" divides the area 150 by the hypotenuse without doubling. \"9\" is the shorter piece of the hypotenuse, 15^2/25, mistaken for the altitude. \"10\" takes the altitude as the hypotenuse minus the shorter leg, 25 - 15.",
+  "solve": "const c=Math.hypot(15,20); return 2*(15*20/2)/c",
+  "distractor_solve": {
+   "6": "const c=Math.hypot(15,20); return (15*20/2)/c",
+   "9": "const c=Math.hypot(15,20); return 15*15/c",
+   "10": "const c=Math.hypot(15,20); return c-15"
+  },
+  "forced": [
+   "the altitude is shorter than the shorter leg, so 0 < h < 15: 6, 9, 10, 12 all inside",
+   "positive length; no parity forced"
+  ]
+ },
+ {
+  "id": "IM16D-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "similar solids: surface-area ratio to linear ratio to volume ratio",
+  "difficulty": "hard",
+  "prompt": "Two solid statues have exactly the same shape, one an enlarged copy of the other. The smaller statue has a total surface area of 48 square inches and the larger has a total surface area of 108 square inches. The smaller statue has a volume of 64 cubic inches. What is the volume of the larger statue, in cubic inches?",
+  "choices": [
+   "144",
+   "96",
+   "216",
+   "729"
+  ],
+  "correct_answer": "216",
+  "explanation": "Hard: a non-routine chain across two scale laws - the surface-area ratio must be turned back into a length ratio before it can be cubed. Areas are in the ratio 108 : 48 = 9 : 4, so lengths are in the ratio 3 : 2 and volumes in the ratio 27 : 8, giving 64 x 27/8 = 216. \"144\" applies the area ratio directly to volume, 64 x 9/4. \"96\" applies the length ratio, 64 x 3/2, without cubing. \"729\" cubes the area ratio instead of the length ratio, 64 x (9/4)^3.",
+  "solve": "const k=Math.sqrt(108/48); return 64*k**3",
+  "distractor_solve": {
+   "96": "return 64*Math.sqrt(108/48)",
+   "144": "return 64*108/48",
+   "729": "return 64*(108/48)**3"
+  },
+  "forced": [
+   "the larger statue has the larger volume, so V > 64: 96, 144, 216, 729 all above",
+   "no integer or parity property forced beyond being a positive volume"
+  ]
+ },
+ {
+  "id": "IM16D-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "cylinder dimensions from volume and lateral area (ratio V/L = r/2)",
+  "difficulty": "hard",
+  "prompt": "A closed cylindrical can has a volume of 196(pi) cubic centimeters, and the area of its curved side (not counting the top and bottom) is 56(pi) square centimeters. What is the height of the can, in centimeters?",
+  "choices": [
+   "7",
+   "28",
+   "16",
+   "4"
+  ],
+  "correct_answer": "4",
+  "explanation": "Hard: neither formula alone gives a dimension; the non-routine step is dividing one formula by the other to eliminate the height. V/L = (pi r^2 h)/(2 pi r h) = r/2 = 196/56 = 3.5, so r = 7, and then 2 pi (7) h = 56 pi gives h = 4. \"28\" finds r = 7 but then divides the volume by r instead of r^2, 196/7. \"7\" is the radius, an intermediate value, reported as the height. \"16\" uses pi r h for the curved area (dropping the 2), so V/L = r = 3.5 and h = 56/3.5 = 16.",
+  "solve": "const r=2*196/56; return 56/(2*r)",
+  "distractor_solve": {
+   "7": "return 2*196/56",
+   "16": "const r=196/56; return 56/r",
+   "28": "const r=2*196/56; return 196/r"
+  },
+  "forced": [
+   "positive length; nothing in the stem bounds h by itself (r h = 28 and r^2 h = 196 are needed together)",
+   "no parity or integer requirement forced: one option is a non-integer, as could be a height"
+  ]
+ },
+ {
+  "id": "IM16D-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "regular hexagon versus equilateral triangle of equal perimeter (counting congruent small triangles)",
+  "difficulty": "hard",
+  "prompt": "A regular hexagon and an equilateral triangle have the same perimeter. The area of the triangle is 36 square inches. What is the area of the hexagon, in square inches?",
+  "choices": [
+   "54",
+   "72",
+   "81",
+   "108"
+  ],
+  "correct_answer": "54",
+  "explanation": "Hard: the non-routine idea is to measure both shapes in one unit - a small equilateral triangle whose side is the hexagon side. With equal perimeters, the triangle side is twice the hexagon side, so the triangle is made of 4 small triangles (each 36/4 = 9) and the hexagon of 6, giving 6 x 9 = 54. \"72\" scales the area by the ratio of the numbers of sides, 36 x 6/3. \"108\" halves the triangle area for the halved side, 36/2 = 18, and takes 6 of those. \"81\" squares the correct area ratio 3/2 as though it were a length ratio, 36 x (3/2)^2.",
+  "solve": "const small=36/4; return 6*small",
+  "distractor_solve": {
+   "72": "return 36*6/3",
+   "81": "return 36*(3/2)**2",
+   "108": "return 6*(36/2)"
+  },
+  "forced": [
+   "for a fixed perimeter the hexagon encloses more area than the triangle, so A > 36: 54, 72, 81, 108 all above",
+   "positive; no parity forced (odd and even options both present)"
+  ]
+ },
+ {
+  "id": "IM16D-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "circle radius worked backward from an area increase, then circumference",
+  "difficulty": "hard",
+  "prompt": "When the radius of a circle is increased by 2 centimeters, the area of the circle increases by 40(pi) square centimeters. What is the circumference of the ORIGINAL circle, in centimeters?",
+  "choices": [
+   "20(pi)",
+   "18(pi)",
+   "36(pi)",
+   "22(pi)"
+  ],
+  "correct_answer": "18(pi)",
+  "explanation": "Hard: working backwards through a squared binomial, then a second formula on the recovered radius. pi(r + 2)^2 - pi r^2 = pi(4r + 4) = 40 pi, so 4r + 4 = 40 and r = 9; the circumference is 2 pi (9) = 18(pi). \"20(pi)\" drops the constant 4 from the expansion, 4r = 40, so r = 10. \"36(pi)\" expands with a single cross term, 2r + 4 = 40, so r = 18. \"22(pi)\" is the circumference of the enlarged circle, radius 11.",
+  "solve": "const r=(40-4)/4; return (2*r)+\"(pi)\"",
+  "distractor_solve": {
+   "20(pi)": "const r=40/4; return (2*r)+\"(pi)\"",
+   "36(pi)": "const r=(40-4)/2; return (2*r)+\"(pi)\"",
+   "22(pi)": "const r=(40-4)/4+2; return (2*r)+\"(pi)\""
+  },
+  "forced": [
+   "circumference carries pi: every option is a multiple of pi",
+   "positive; the radius is not bounded by the stem except r > 0, so no option is strikeable by size"
+  ]
+ },
+ {
+  "id": "IM16D-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "rectangle with the same area as a square: perimeter of the rectangle",
+  "difficulty": "medium",
+  "prompt": "A square has a perimeter of 48 meters. A rectangular garden has the same area as the square, and the garden is 18 meters long. What is the perimeter of the garden, in meters?",
+  "choices": [
+   "60",
+   "72",
+   "52",
+   "100"
+  ],
+  "correct_answer": "52",
+  "explanation": "Medium: three routine steps through area. The square has side 48/4 = 12 and area 144, so the garden is 144/18 = 8 meters wide and its perimeter is 2(18 + 8) = 52. \"60\" uses the square side 12 as the garden width, 2(18 + 12). \"72\" treats the garden as a square of side 18, 4 x 18. \"100\" takes the square side as half the perimeter, 24, so the area is 576, the width 32 and the perimeter 2(18 + 32).",
+  "solve": "const s=48/4; const w=s*s/18; return 2*(18+w)",
+  "distractor_solve": {
+   "60": "return 2*(18+48/4)",
+   "72": "return 4*18",
+   "100": "const s=48/2; const w=s*s/18; return 2*(18+w)"
+  },
+  "forced": [
+   "a rectangle that is not a square has a larger perimeter than the square of equal area, so P > 48: 52, 60, 72, 100 all above",
+   "P = 2(18 + w) is even and exceeds 36: all options even and above 36"
+  ]
+ },
+ {
+  "id": "IM16D-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume of an open box folded from a sheet with corner squares removed",
+  "difficulty": "medium",
+  "prompt": "An open box is made from a rectangular sheet of cardboard 20 inches long and 12 inches wide by cutting a 2-inch by 2-inch square from each corner and folding up the four flaps. What is the volume of the box, in cubic inches?",
+  "choices": [
+   "128",
+   "360",
+   "448",
+   "256"
+  ],
+  "correct_answer": "256",
+  "explanation": "Medium: a short chain of routine steps once the folded dimensions are seen. Each dimension loses two corner cuts, so the base is (20 - 4) by (12 - 4) = 16 by 8 and the height is 2: volume 16 x 8 x 2 = 256. \"128\" is the base area 16 x 8 without the height. \"360\" removes only one 2-inch cut from each dimension, 18 x 10 x 2. \"448\" multiplies the cardboard left after the cuts, 240 - 4 x 4 = 224 square inches, by the height 2.",
+  "solve": "return (20-4)*(12-4)*2",
+  "distractor_solve": {
+   "128": "return (20-4)*(12-4)",
+   "360": "return (20-2)*(12-2)*2",
+   "448": "return (20*12-4*2*2)*2"
+  },
+  "forced": [
+   "volume is below the sheet area times the height, 20 x 12 x 2 = 480: all options under 480",
+   "with whole-inch cuts both folded base dimensions are even, so the volume is a multiple of 8: 128, 256, 360, 448 all are"
+  ]
+ },
+ {
+  "id": "IM16D-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "angle formed by an angle bisector meeting the opposite side",
+  "difficulty": "medium",
+  "prompt": "In triangle ABC, angle A measures 50 degrees and angle B measures 70 degrees. The bisector of angle C meets side AB at point D. What is the measure of angle ADC, in degrees?",
+  "choices": [
+   "100",
+   "95",
+   "125",
+   "110"
+  ],
+  "correct_answer": "100",
+  "explanation": "Medium: three routine angle-sum steps. Angle C = 180 - 50 - 70 = 60, so angle ACD = 30, and in triangle ADC angle ADC = 180 - 50 - 30 = 100. \"110\" takes angle ADC as the supplement of angle B, 180 - 70. \"125\" halves angle A as well as angle C, 180 - 25 - 30. \"95\" bisects angle B instead of angle C, 180 - 50 - 35.",
+  "solve": "const C=180-50-70; return 180-50-C/2",
+  "distractor_solve": {
+   "95": "return 180-50-70/2",
+   "110": "return 180-70",
+   "125": "const C=180-50-70; return 180-50/2-C/2"
+  },
+  "forced": [
+   "angle ADC is an exterior angle of triangle BDC, so it exceeds angle B = 70, and it is an angle of triangle ADC with A = 50, so it is below 130: 95, 100, 110, 125 all in (70, 130)",
+   "whole number of degrees; no parity forced"
+  ]
+ },
+ {
+  "id": "IM16D-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "interior angles of a triangle from the ratio of its exterior angles",
+  "difficulty": "hard",
+  "prompt": "At each vertex of a triangle, one exterior angle is drawn. The three exterior angles are in the ratio 3 : 4 : 5. What is the measure of the largest INTERIOR angle of the triangle, in degrees?",
+  "choices": [
+   "135",
+   "75",
+   "90",
+   "150"
+  ],
+  "correct_answer": "90",
+  "explanation": "Hard: two non-routine moves - the exterior angles of any polygon total 360 degrees, and the largest interior angle sits at the SMALLEST exterior angle. The exterior angles are 360 x 3/12 = 90, 120 and 150, so the interior angles are 90, 60 and 30, and the largest is 90. \"75\" applies the ratio to the interior angles, 180 x 5/12. \"150\" reports the largest exterior angle. \"135\" totals the exterior angles to 180 instead of 360 (giving 45, 60, 75) and takes 180 - 45.",
+  "solve": "const e=[3,4,5].map(r=>360*r/12); return Math.max(...e.map(x=>180-x))",
+  "distractor_solve": {
+   "75": "return 180*5/12",
+   "135": "const e=[3,4,5].map(r=>180*r/12); return Math.max(...e.map(x=>180-x))",
+   "150": "return 360*5/12"
+  },
+  "forced": [
+   "the largest angle of a triangle is at least 60 and below 180: 75, 90, 135, 150 all in [60, 180)",
+   "greatest-type question: two options (135, 150) lie beyond the key"
+  ]
+ },
+ {
+  "id": "IM16D-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "right-triangle area from the two pieces of the hypotenuse cut by the altitude (similar triangles)",
+  "difficulty": "medium",
+  "prompt": "In a right triangle, the altitude drawn from the right angle to the hypotenuse divides the hypotenuse into two pieces of length 4 centimeters and 9 centimeters. What is the area of the triangle, in square centimeters?",
+  "choices": [
+   "36",
+   "39",
+   "26",
+   "27"
+  ],
+  "correct_answer": "39",
+  "explanation": "Medium: one similar-triangle relation and then a routine area. The two smaller triangles are similar, so 4/h = h/9 and h^2 = 36, h = 6; the hypotenuse is 4 + 9 = 13, so the area is (1/2)(13)(6) = 39. \"36\" stops at h^2 = 4 x 9 and reports it as the area. \"26\" uses the shorter piece 4 as the height, (1/2)(13)(4). \"27\" finds only the larger of the two small triangles, (1/2)(9)(6).",
+  "solve": "const h=Math.sqrt(4*9); return (4+9)*h/2",
+  "distractor_solve": {
+   "26": "return (4+9)*4/2",
+   "27": "const h=Math.sqrt(4*9); return 9*h/2",
+   "36": "return 4*9"
+  },
+  "forced": [
+   "for a hypotenuse of 13 the area is at most 13^2/4 = 42.25: 26, 27, 36, 39 all below",
+   "positive; no parity forced (odd and even options both present)"
+  ]
+ },
+ {
+  "id": "IM16D-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three regular polygons fitting around a point: angle gap, then number of sides",
+  "difficulty": "hard",
+  "prompt": "A square, a regular hexagon, and a third regular polygon are placed so that each has one vertex at the same point and together they fill the space around that point exactly, with no gaps or overlaps. How many sides does the third polygon have?",
+  "choices": [
+   "12",
+   "8",
+   "6",
+   "20"
+  ],
+  "correct_answer": "12",
+  "explanation": "Hard: three dependent steps combining two facts - the angles around a point total 360 degrees, and a regular polygon is identified from its interior angle through its exterior angle. The square gives 90 and the hexagon 720/6 = 120, leaving 360 - 90 - 120 = 150; an interior angle of 150 means an exterior angle of 30, so the polygon has 360/30 = 12 sides. \"8\" uses 135 for the hexagon's angle (the octagon's), leaving 135, an octagon. \"20\" uses 108 for the hexagon's angle (the pentagon's), leaving 162, exterior 18. \"6\" divides 180 rather than 360 by the exterior angle, 180/30.",
+  "solve": "const left=360-90-720/6; return 360/(180-left)",
+  "distractor_solve": {
+   "6": "const left=360-90-720/6; return 180/(180-left)",
+   "8": "const left=360-90-135; return 360/(180-left)",
+   "20": "const left=360-90-108; return 360/(180-left)"
+  },
+  "forced": [
+   "a whole number of sides, at least 3: 6, 8, 12, 20 all whole and at least 3",
+   "nothing in the stem bounds n further (the gap angle has to be computed)"
+  ]
+ },
+ {
+  "id": "IM16D-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "square inscribed in a semicircle: Pythagorean theorem with the half-side",
+  "difficulty": "hard",
+  "prompt": "A square is drawn inside a semicircle of radius 5 inches so that one side of the square lies along the diameter of the semicircle and the other two vertices of the square lie on the curved arc. What is the area of the square, in square inches?",
+  "choices": [
+   "12.5",
+   "4",
+   "5",
+   "20"
+  ],
+  "correct_answer": "20",
+  "explanation": "Hard: the non-routine step is seeing that the square sits centred on the diameter, so the radius to an upper vertex is the hypotenuse of a right triangle with legs s and s/2. Then s^2 + (s/2)^2 = 5^2, so (5/4)s^2 = 25 and the area s^2 = 20. \"12.5\" uses s and s as the legs (the whole side in place of the half-side), 2s^2 = 25. \"5\" uses s and 2s as the legs (doubling instead of halving), 5s^2 = 25. \"4\" forgets to square the radius, (5/4)s^2 = 5.",
+  "solve": "return 25/(1+1/4)",
+  "distractor_solve": {
+   "4": "return 5/(1+1/4)",
+   "5": "return 25/5",
+   "12.5": "return 25/2"
+  },
+  "forced": [
+   "the height of the square is at most the radius, so s < 5 and the area is below 25: 4, 5, 12.5, 20 all below",
+   "positive; no integer requirement forced (one option is a decimal)"
+  ]
+ },
+ {
+  "id": "IM16D-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two circles from an area ratio and a total circumference",
+  "difficulty": "medium",
+  "prompt": "The area of a larger circle is 4 times the area of a smaller circle. The sum of the circumferences of the two circles is 30(pi) centimeters. What is the area of the SMALLER circle, in square centimeters?",
+  "choices": [
+   "10(pi)",
+   "9(pi)",
+   "6(pi)",
+   "25(pi)"
+  ],
+  "correct_answer": "25(pi)",
+  "explanation": "Medium: a ratio step and a linear equation, both routine. An area ratio of 4 means a radius ratio of 2, so R = 2r; 2(pi)r + 2(pi)(2r) = 30(pi) gives 3r = 15, r = 5, and the smaller area is 25(pi). \"9(pi)\" uses the area ratio 4 as the radius ratio: r + 4r = 15, r = 3. \"6(pi)\" reads 30(pi) as the sum of the two AREAS: (pi)r^2 + 4(pi)r^2 = 30(pi), so r^2 = 6. \"10(pi)\" finds r = 5 and then uses 2(pi)r, the circumference formula, as the area.",
+  "solve": "const r=15/3; return (r*r)+\"(pi)\"",
+  "distractor_solve": {
+   "9(pi)": "const r=15/5; return (r*r)+\"(pi)\"",
+   "6(pi)": "const r2=30/5; return r2+\"(pi)\"",
+   "10(pi)": "const r=15/3; return (2*r)+\"(pi)\""
+  },
+  "forced": [
+   "an area of a circle carries pi: all options are multiples of pi",
+   "r < R and r + R = 15, so r < 7.5 and the smaller area is below 56.25(pi): 6, 9, 10, 25 all below"
+  ]
+ },
+ {
+  "id": "IM16D-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "triangle with a diameter as one side is right-angled (Thales), then Pythagorean leg and area",
+  "difficulty": "hard",
+  "prompt": "Triangle PQR is drawn with all three vertices on a circle, and side PQ is a diameter of the circle. PQ is 26 centimeters long and PR is 10 centimeters long. What is the area of triangle PQR, in square centimeters?",
+  "choices": [
+   "80",
+   "20",
+   "65",
+   "120"
+  ],
+  "correct_answer": "120",
+  "explanation": "Hard: the non-routine step is recognizing that the angle at R, standing on a diameter, is a right angle; then a Pythagorean leg and an area follow. QR = sqrt(26^2 - 10^2) = 24, so the area is (1/2)(10)(24) = 120. \"65\" uses the radius 13 as the second leg, (1/2)(10)(13). \"80\" takes the second leg as the difference 26 - 10 = 16, (1/2)(10)(16). \"20\" applies the Pythagorean theorem without squaring, QR = sqrt(26 - 10) = 4, then (1/2)(10)(4).",
+  "solve": "const qr=Math.sqrt(26*26-10*10); return 10*qr/2",
+  "distractor_solve": {
+   "20": "const qr=Math.sqrt(26-10); return 10*qr/2",
+   "65": "return 10*(26/2)/2",
+   "80": "return 10*(26-10)/2"
+  },
+  "forced": [
+   "with PQ = 26 as base, the height from R is at most PR = 10, so the area is at most 130 (and at most 169 from the radius): 20, 65, 80, 120 all below 130",
+   "positive; no parity forced"
+  ]
+ },
+ {
+  "id": "IM16D-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "shadow cast by a lamp post: similar triangles sharing the shadow tip",
+  "difficulty": "hard",
+  "prompt": "A street lamp is at the top of a 6-meter vertical post. A person 1.5 meters tall stands on level ground 6 meters from the base of the post. The light from the lamp casts the person's shadow straight away from the post. How long, in meters, is the person's shadow?",
+  "choices": [
+   "1.5",
+   "4.5",
+   "2",
+   "1.2"
+  ],
+  "correct_answer": "2",
+  "explanation": "Hard: the similar triangles share the shadow's tip, so the larger triangle's base is the shadow PLUS the 6 meters, and the unknown appears on both sides. 1.5/6 = s/(s + 6) gives 6s = 1.5s + 9, so 4.5s = 9 and s = 2. \"1.5\" sets up 1.5/6 = s/6, using the distance to the post as the larger base. \"4.5\" takes the shadow as the difference of the heights, 6 - 1.5. \"1.2\" sets up the right proportion but adds instead of subtracting 1.5s: 7.5s = 9.",
+  "solve": "return 1.5*6/(6-1.5)",
+  "distractor_solve": {
+   "1.5": "return 1.5*6/6",
+   "4.5": "return 6-1.5",
+   "1.2": "return 1.5*6/(6+1.5)"
+  },
+  "forced": [
+   "positive length; no bound on the shadow is readable from the stem without the proportion",
+   "no integer requirement: decimal and whole options both present"
+  ]
+ },
+ {
+  "id": "IM16D-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "square with an equilateral triangle on one side: isosceles triangle from equal sides",
+  "difficulty": "hard",
+  "prompt": "ABCD is a square. Equilateral triangle ABE is drawn outside the square, sharing side AB with it. Segment DE is drawn. What is the measure of angle AED, in degrees?",
+  "choices": [
+   "30",
+   "15",
+   "45",
+   "22.5"
+  ],
+  "correct_answer": "15",
+  "explanation": "Hard: the non-routine step is seeing that AD = AB = AE, so triangle ADE is isosceles with apex angle DAE = 90 + 60 = 150; its base angles are (180 - 150)/2 = 15. \"30\" stops at 180 - 150 without halving. \"22.5\" uses 45 in place of the triangle's 60 for the angle at A, (180 - 135)/2. \"45\" is angle DEB, 60 - 15, the other part of angle AEB, reported in place of angle AED.",
+  "solve": "return (180-(90+60))/2",
+  "distractor_solve": {
+   "30": "return 180-(90+60)",
+   "45": "return 60-(180-(90+60))/2",
+   "22.5": "return (180-(90+45))/2"
+  },
+  "forced": [
+   "ray ED lies inside angle AEB = 60, so angle AED is below 60: 15, 22.5, 30, 45 all below",
+   "positive; no integer requirement (one option is 22.5)"
+  ]
+ },
+ {
+  "id": "IM16D-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "cone rolled from a circular sector: base radius from the arc, height, then volume",
+  "difficulty": "hard",
+  "prompt": "A sector with a central angle of 216 degrees is cut from a circular sheet of paper with radius 5 inches. The two straight edges of the sector are joined, with no overlap, to form the curved surface of a cone. What is the volume of the cone, in cubic inches? (The volume of a cone is (1/3) x pi x r^2 x h.)",
+  "choices": [
+   "12(pi)",
+   "15(pi)",
+   "36(pi)",
+   "16(pi)"
+  ],
+  "correct_answer": "12(pi)",
+  "explanation": "Hard: three dependent steps, none a recall fact - the arc becomes the base circumference, the sheet radius becomes the slant height, and only then does the formula apply. The arc is (216/360)(2 pi x 5) = 6 pi, so the base radius is 3; the slant height is 5, so the height is sqrt(5^2 - 3^2) = 4; the volume is (1/3)(pi)(9)(4) = 12(pi). \"36(pi)\" drops the 1/3. \"15(pi)\" uses the slant height 5 as the height, (1/3)(pi)(9)(5). \"16(pi)\" swaps the radius and the height, (1/3)(pi)(16)(3).",
+  "solve": "const r=(216/360)*2*5/2; const h=Math.sqrt(25-r*r); return (r*r*h/3)+\"(pi)\"",
+  "distractor_solve": {
+   "36(pi)": "const r=(216/360)*5; const h=Math.sqrt(25-r*r); return (r*r*h)+\"(pi)\"",
+   "15(pi)": "const r=(216/360)*5; return (r*r*5/3)+\"(pi)\"",
+   "16(pi)": "const r=(216/360)*5; const h=Math.sqrt(25-r*r); return (h*h*r/3)+\"(pi)\""
+  },
+  "forced": [
+   "a cone volume in this form carries pi: all options are multiples of pi",
+   "positive; the stem bounds nothing further without computing the base radius"
+  ]
+ },
+ {
+  "id": "IM16D-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "trapezoid cut by its diagonals into four triangles: similar-triangle area ratio and the equal side triangles",
+  "difficulty": "hard",
+  "prompt": "In trapezoid ABCD, side AB is parallel to side CD, AB = 6 centimeters, and CD = 12 centimeters. The diagonals AC and BD cross at point P. Triangle APB has an area of 8 square centimeters. What is the area of the whole trapezoid, in square centimeters?",
+  "choices": [
+   "56",
+   "104",
+   "72",
+   "48"
+  ],
+  "correct_answer": "72",
+  "explanation": "Hard: two non-routine ideas combined. Triangles APB and CPD are similar with ratio 6 : 12 = 1 : 2, so CPD has area 4 x 8 = 32 and P divides each diagonal in the ratio 1 : 2; triangles BPC and APB share apex B with bases PC : AP = 2 : 1, so BPC = 16, and triangles APD and CPD share apex D with bases AP : PC = 1 : 2, so APD = 16. Total 8 + 32 + 16 + 16 = 72. \"56\" scales the areas by the length ratio 2 instead of 4, making CPD and both side triangles 16: 8 + 16 + 16 + 16. \"104\" makes each side triangle as large as CPD: 8 + 32 + 32 + 32. \"48\" finds the height of APB, 2(8)/6 = 8/3, and takes the trapezoid height as twice it, 16/3, so (6 + 12)/2 x 16/3 = 48.",
+  "solve": "const top=8, k=12/6; const bottom=top*k*k; const side=top*k; return top+bottom+2*side",
+  "distractor_solve": {
+   "48": "const h1=2*8/6; return (6+12)/2*(2*h1)",
+   "56": "const top=8, k=12/6; return top+3*top*k",
+   "104": "const top=8, k=12/6; return top+3*top*k*k"
+  },
+  "forced": [
+   "the trapezoid contains triangles APB (8) and CPD (32) plus two more triangles of positive area, so its area exceeds 40: 48, 56, 72, 104 all above",
+   "positive; all options even, no parity tell"
+  ]
+ }
+]

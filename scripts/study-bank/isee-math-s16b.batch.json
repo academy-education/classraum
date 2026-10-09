@@ -1,0 +1,542 @@
+[
+  {
+    "id": "IM16B-01",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "count of one coin from a three-part count ratio and the total value (value of one ratio group)",
+    "difficulty": "medium",
+    "prompt": "A jar holds only nickels (5 cents each), dimes (10 cents each), and quarters (25 cents each). The numbers of nickels, dimes, and quarters are in the ratio 4 : 1 : 1, and the coins in the jar are worth $52.80 in all. How many dimes are in the jar?",
+    "choices": [
+      "88",
+      "96",
+      "132",
+      "66"
+    ],
+    "correct_answer": "96",
+    "explanation": "Medium: a routine chain of three steps (the value of one 4 : 1 : 1 group of coins, the number of groups, the dimes in them). One group is 4 nickels, 1 dime, and 1 quarter, worth 4 x 5 + 10 + 25 = 55 cents. The jar holds 5280 / 55 = 96 groups, and each group has one dime, so there are 96 dimes. The option \"88\" applies the ratio to the money instead of the coins: 1/6 of $52.80 is 880 cents, or 88 dimes. The option \"132\" values a group as one coin of each kind, 5 + 10 + 25 = 40 cents, so 5280 / 40 = 132 groups. The option \"66\" uses the plain average of the three coin values, 40/3 cents, to get 5280 / (40/3) = 396 coins, and takes 1/6 of them.",
+    "solve": "const group=4*5+1*10+1*25; return 5280/group*1;",
+    "distractor_solve": {
+      "66": "const coins=5280/((5+10+25)/3); return coins*(1/6);",
+      "88": "return 5280*(1/6)/10;",
+      "132": "return 5280/(5+10+25)*1;"
+    },
+    "forced": [
+      "a positive whole number of coins",
+      "at most 5280 / 35 = 150, since there are as many quarters as dimes and dimes plus quarters alone are worth 35 cents per dime",
+      "at most 5280 / 30 = 176, since there are 4 nickels per dime and nickels plus dimes alone are worth 30 cents per dime",
+      "no factor property: the ratio term for dimes is 1, so any whole number is possible",
+      "all four options are whole numbers below 150"
+    ]
+  },
+  {
+    "id": "IM16B-02",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "two unknown work rates from two different schedules that each finish the job",
+    "difficulty": "hard",
+    "prompt": "Working together, Ana and Ben can paint a fence in 6 hours. On another day they paint an identical fence a different way: Ana works alone for 4 hours, and then Ben works alone for 9 hours, which finishes the fence. Each of them works at the same steady rate on both days. How many hours would Ben take to paint the fence working alone?",
+    "choices": [
+      "13",
+      "15",
+      "18",
+      "27"
+    ],
+    "correct_answer": "15",
+    "explanation": "Hard: neither rate is given, so two schedules must be compared (an invariant: both describe one whole job). Together for 6 hours means 6 Ana-hours + 6 Ben-hours = 1 fence; the second day is 4 Ana-hours + 9 Ben-hours = 1 fence. So the 2 Ana-hours missing on day two were replaced by 3 extra Ben-hours, and 6 Ana-hours = 9 Ben-hours. Day one is then 9 + 6 = 15 Ben-hours, so Ben alone takes 15 hours. The option \"13\" simply adds the hours worked, 4 + 9. The option \"18\" assumes each person painted half the fence on day two, so Ben's 9 hours are half his job. The option \"27\" treats the 6 hours as Ana's solo time, so her 4 hours finish 4/6 of the fence and Ben's 9 hours finish the other 1/3.",
+    "solve": "// a,b rates: 6a+6b=1, 4a+9b=1\nconst b=(1-4/6)/(9-4); return 1/b;",
+    "distractor_solve": {
+      "13": "return 4+9;",
+      "18": "return 9*2;",
+      "27": "return 9/(1-4/6);"
+    },
+    "forced": [
+      "more than 6, since either worker alone is slower than both together",
+      "more than 12, since 2 Ana-hours = 3 Ben-hours makes Ben the slower worker (Ben alone > twice the joint time)",
+      "a number of hours; positive",
+      "every option exceeds 12; none sits on 12"
+    ]
+  },
+  {
+    "id": "IM16B-03",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "percent change in a purchase when two prices in a known ratio change by different percents",
+    "difficulty": "hard",
+    "prompt": "At a market, one pound of tea costs 4 times as much as one pound of coffee. After a poor harvest, the price of tea rises 40 percent while the price of coffee falls 30 percent. Mr. Okafor always buys 3 pounds of tea and 2 pounds of coffee. By what percent does the cost of his usual purchase increase?",
+    "choices": [
+      "12",
+      "26",
+      "10",
+      "30"
+    ],
+    "correct_answer": "30",
+    "explanation": "Hard: combines a price ratio with two percent changes, and the changes must be weighted by spending, not by pounds or by price alone. Let coffee cost c per pound, so tea costs 4c. Before: 3(4c) + 2c = 14c. After: 3(5.6c) + 2(0.7c) = 16.8c + 1.4c = 18.2c. The increase is 4.2c/14c = 30 percent. The option \"10\" just combines the two changes, 40 - 30. The option \"26\" weights by the price ratio 4 : 1 and ignores the pounds bought: (4 x 40 - 30)/5. The option \"12\" weights by the pounds bought, 3 : 2, and ignores the price ratio: (3 x 40 - 2 x 30)/5.",
+    "solve": "const c=1; const before=3*4*c+2*c, after=3*4*c*1.4+2*c*0.7; return (after-before)/before*100;",
+    "distractor_solve": {
+      "10": "return 40-30;",
+      "12": "return (3*40-2*30)/5;",
+      "26": "return (4*40-30)/5;"
+    },
+    "forced": [
+      "between -30 and +40 (a weighted average of the two changes)",
+      "above the simple average 5, since tea is most of the spending",
+      "below 40 x (12/14) = 34.3, tea's full weighted contribution, since coffee fell",
+      "all four options lie in (5, 34.3)"
+    ]
+  },
+  {
+    "id": "IM16B-04",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "trip length from moving speed, average speed including a stop, and the stop's length",
+    "difficulty": "hard",
+    "prompt": "A bus makes one trip between two towns, including a single 10-minute stop. Whenever it is moving, it travels at 45 kilometers per hour. Its average speed for the whole trip, counting the stop, is 36 kilometers per hour. How many kilometers apart are the towns?",
+    "choices": [
+      "7.5",
+      "24",
+      "30",
+      "50"
+    ],
+    "correct_answer": "30",
+    "explanation": "Hard: the moving time is unknown and has to be recovered from the two speeds before any distance can be found (three dependent steps). The same distance is covered at 45 km/h in the moving time and at 36 km/h in the whole time, so moving time : whole time = 36 : 45 = 4 : 5, and the 10-minute stop is the missing 1/5 of the whole time. The whole trip is 50 minutes, so the distance is 36 x 50/60 = 30 kilometers (check: 45 km/h for 40 minutes is also 30). The option \"24\" multiplies the average speed by the 40-minute moving time instead of the whole trip time. The option \"7.5\" multiplies the moving speed by the 10-minute stop, the distance the bus would have covered while stopped. The option \"50\" leaves the 10 minutes unconverted: 45t = 36t + 10 gives t = 10/9 hour and 45 x 10/9 = 50.",
+    "solve": "const t=36*(10/60)/(45-36); return 45*t;",
+    "distractor_solve": {
+      "24": "const t=36*(10/60)/(45-36); return 36*t;",
+      "50": "const t=10/(45-36); return 45*t;",
+      "7.5": "return 45*10/60;"
+    },
+    "forced": [
+      "positive distance",
+      "greater than 36 x 10/60 = 6 km (the stop alone costs 10 minutes of average-speed travel)",
+      "no upper bound readable from the stem",
+      "all four options exceed 6"
+    ]
+  },
+  {
+    "id": "IM16B-05",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "turns of the last gear in a train with two gears sharing an axle",
+    "difficulty": "hard",
+    "prompt": "Gear A, which has 24 teeth, meshes with gear B, which has 15 teeth. Gear B is fixed to the same axle as gear C, so B and C always turn together. Gear C, which has 42 teeth, meshes with gear D, which has 12 teeth. When gear A makes 10 complete turns, how many turns does gear D make?",
+    "choices": [
+      "16",
+      "20",
+      "51",
+      "56"
+    ],
+    "correct_answer": "56",
+    "explanation": "Hard: three dependent steps, and the middle one (a shared axle passes turns, not teeth) is the idea the item tests. Meshing gears pass equal numbers of teeth: A's 10 turns move 240 teeth, so B makes 240/15 = 16 turns. C is on B's axle, so C also makes 16 turns, moving 16 x 42 = 672 teeth, and D makes 672/12 = 56 turns. The option \"16\" stops at gear B. The option \"20\" treats B and C as if they meshed, which cancels them and gives A's teeth over D's: 10 x 24/12. The option \"51\" adds the two speed-up factors instead of multiplying them: 10 x (24/15 + 42/12) = 10 x 5.1.",
+    "solve": "const b=10*24/15; return b*42/12;",
+    "distractor_solve": {
+      "16": "return 10*24/15;",
+      "20": "return 10*24/12;",
+      "51": "return 10*(24/15+42/12);"
+    },
+    "forced": [
+      "more than 10, since each mesh drives a smaller gear",
+      "a whole or fractional number of turns, positive",
+      "all four options exceed 10"
+    ]
+  },
+  {
+    "id": "IM16B-06",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "shares from equal fractional parts of each share (reciprocal ratio)",
+    "difficulty": "hard",
+    "prompt": "Ana, Ben, and Cal share $560. Two-thirds of Ana's share, three-fifths of Ben's share, and three-eighths of Cal's share are all the same amount. How many dollars does Ben receive?",
+    "choices": [
+      "175",
+      "96",
+      "160",
+      "210"
+    ],
+    "correct_answer": "160",
+    "explanation": "Hard: the shares are in the ratio of the RECIPROCALS of the fractions, a non-routine reversal. Call the common amount k. Then Ana's share is 3k/2, Ben's is 5k/3 and Cal's is 8k/3, so the total is (9k + 10k + 16k)/6 = 35k/6 = 560, giving k = 96. Ben receives 5 x 96/3 = 160 (check: Ana 144, Cal 256, and 144 + 160 + 256 = 560). The option \"96\" reports the common amount k instead of Ben's share. The option \"175\" splits the money in the ratio of the denominators, 3 : 5 : 8, giving Ben 5/16 of 560. The option \"210\" splits it in the ratio of the numerators, 2 : 3 : 3, giving Ben 3/8 of 560.",
+    "solve": "const k=560/(3/2+5/3+8/3); return 5*k/3;",
+    "distractor_solve": {
+      "96": "return 560/(3/2+5/3+8/3);",
+      "175": "return 560*5/(3+5+8);",
+      "210": "return 560*3/(2+3+3);"
+    },
+    "forced": [
+      "less than 560",
+      "Ben's share lies between Ana's and Cal's (3/5 is between 2/3 and 3/8)",
+      "less than half of 560, since Ben's share is the middle of three",
+      "a whole number of dollars is not forced; all options are whole",
+      "all four options lie in (0, 280)"
+    ]
+  },
+  {
+    "id": "IM16B-07",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "population from a density stated as a percent above another region's density",
+    "difficulty": "medium",
+    "prompt": "Region A has 12,000 residents living on 40 square kilometers. Region B has an area of 30 square kilometers, and its population density (residents per square kilometer) is 25 percent greater than Region A's. How many residents does Region B have?",
+    "choices": [
+      "9750",
+      "11250",
+      "15000",
+      "20000"
+    ],
+    "correct_answer": "11250",
+    "explanation": "Medium: a routine chain of three steps (A's density, raise it 25 percent, multiply by B's area). Region A's density is 12,000/40 = 300 per square kilometer, so Region B's is 1.25 x 300 = 375, and Region B has 375 x 30 = 11,250 residents. The option \"9750\" adds 25 residents per square kilometer instead of 25 percent: 325 x 30. The option \"15000\" applies the 25 percent to A's population and ignores the difference in area: 1.25 x 12,000. The option \"20000\" scales A's population by 40/30 instead of 30/40 before raising it 25 percent.",
+    "solve": "return 12000/40*1.25*30;",
+    "distractor_solve": {
+      "9750": "return (12000/40+25)*30;",
+      "15000": "return 12000*1.25;",
+      "20000": "return 12000*(40/30)*1.25;"
+    },
+    "forced": [
+      "more than 300 x 30 = 9,000, since B's density exceeds A's 300",
+      "a whole number of residents",
+      "no upper bound from the stem, since B is smaller in area but denser",
+      "all four options exceed 9,000"
+    ]
+  },
+  {
+    "id": "IM16B-08",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "comparing unit prices when different deals (percent off, free item) apply",
+    "difficulty": "medium",
+    "prompt": "A store sells the same shampoo in four offers.\nOffer A: a 250-milliliter bottle for $3.90\nOffer B: a 750-milliliter bottle for $10.50\nOffer C: a 500-milliliter bottle priced at $8.00, with 20 percent off\nOffer D: 300-milliliter bottles at $4.80 each, buy two and get a third bottle free\nWith each offer's deal applied, which offer gives the lowest price per 100 milliliters?",
+    "choices": [
+      "Offer A",
+      "Offer B",
+      "Offer C",
+      "Offer D"
+    ],
+    "correct_answer": "Offer D",
+    "explanation": "Medium: four routine unit-price computations, two of which need the deal applied first. Per 100 milliliters: A is 3.90/2.5 = $1.56; B is 10.50/7.5 = $1.40; C is 0.8 x 8.00 = $6.40 for 500 mL, or $1.28; D is $9.60 for three bottles (900 mL), or about $1.07. Offer D is cheapest. A solver who ignores both deals finds B cheapest (C and D would each be $1.60). A solver who applies C's 20 percent but forgets D's free bottle finds C cheapest. A solver who compares only the price printed on one bottle picks A, the lowest sticker price.",
+    "solve": "const u={'Offer A':3.90/250,'Offer B':10.50/750,'Offer C':8*0.8/500,'Offer D':9.60/900}; return Object.entries(u).sort((a,b)=>a[1]-b[1])[0][0];",
+    "distractor_solve": {
+      "Offer B": "const u={'Offer A':3.90/250,'Offer B':10.50/750,'Offer C':8/500,'Offer D':4.80/300}; return Object.entries(u).sort((a,b)=>a[1]-b[1])[0][0];",
+      "Offer C": "const u={'Offer A':3.90/250,'Offer B':10.50/750,'Offer C':8*0.8/500,'Offer D':4.80/300}; return Object.entries(u).sort((a,b)=>a[1]-b[1])[0][0];",
+      "Offer A": "const p={'Offer A':3.90,'Offer B':10.50,'Offer C':8.00,'Offer D':4.80}; return Object.entries(p).sort((a,b)=>a[1]-b[1])[0][0];"
+    },
+    "forced": [
+      "categorical: one of the four offers; no numeric option to bound",
+      "the two offers with deals are not automatically cheapest: C's 20 percent and D's free bottle each need computing"
+    ]
+  },
+  {
+    "id": "IM16B-09",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "leftover of one ingredient after the most whole batches the scarcest ingredient allows",
+    "difficulty": "medium",
+    "prompt": "One batch of a cookie recipe uses 5 cups of flour, 3 eggs, and 2/3 cup of butter. A baker has 52 cups of flour, 38 eggs, and 4 1/2 cups of butter, and she makes as many whole batches as her supplies allow. How many eggs does she have left over?",
+    "choices": [
+      "8",
+      "20",
+      "2",
+      "29"
+    ],
+    "correct_answer": "20",
+    "explanation": "Medium: a routine chain (a batch count for each ingredient, the smallest of them, then the eggs used). Flour allows 52 / 5 = 10.4, so 10 batches; eggs allow 38 / 3 = 12.67, so 12; butter allows (9/2) / (2/3) = 27/4 = 6.75, so 6. Butter runs out first, so she makes 6 batches, uses 6 x 3 = 18 eggs, and has 38 - 18 = 20 left. The option \"8\" ignores the fractional amount of butter and lets flour decide: 10 batches use 30 eggs. The option \"2\" lets the eggs alone decide: 12 batches use 36 eggs. The option \"29\" multiplies the butter by 2/3 instead of dividing, 4 1/2 x 2/3 = 3 batches, which use 9 eggs.",
+    "solve": "const k=Math.min(Math.floor(52/5),Math.floor(38/3),Math.floor(4.5/(2/3))); return 38-3*k;",
+    "distractor_solve": {
+      "2": "const k=Math.floor(38/3); return 38-3*k;",
+      "8": "const k=Math.min(Math.floor(52/5),Math.floor(38/3)); return 38-3*k;",
+      "29": "const k=Math.min(Math.floor(52/5),Math.floor(38/3),Math.floor(4.5*(2/3))); return 38-3*k;"
+    },
+    "forced": [
+      "a whole number of eggs, at least 0 and below 38",
+      "leaves remainder 2 on division by 3, since 38 minus a multiple of 3 eggs",
+      "at least 38 - 3 x 12 = 2, since the eggs alone allow at most 12 batches",
+      "all four options are below 38, at least 2, and leave remainder 2 on division by 3"
+    ]
+  },
+  {
+    "id": "IM16B-10",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "original deposit recovered from one year's compound interest, working backward",
+    "difficulty": "hard",
+    "prompt": "Money is deposited in an account that pays 20 percent interest per year, compounded annually. Nothing else is added or withdrawn. The interest credited at the end of the third year is $720. How many dollars were deposited?",
+    "choices": [
+      "1200",
+      "2160",
+      "2280",
+      "2500"
+    ],
+    "correct_answer": "2500",
+    "explanation": "Hard: working backward through compounding in three dependent steps. The third year's interest is 20 percent of the balance at the start of that year, so that balance was 720/0.20 = 3,600. That balance is the deposit after two years of growth, so the deposit was 3,600/1.2/1.2 = 2,500 (check: 2,500 -> 3,000 -> 3,600, and 20 percent of 3,600 is 720). The option \"2280\" undoes one year of growth (3,600/1.2 = 3,000) and then subtracts one more year's $720 instead of dividing again. The option \"2160\" subtracts $720 for each of the two earlier years, as if every year's interest had been $720. The option \"1200\" treats the $720 as three years of simple interest: 720/(3 x 0.20).",
+    "solve": "const b=720/0.20; return b/1.2/1.2;",
+    "distractor_solve": {
+      "1200": "return 720/(3*0.20);",
+      "2160": "return 720/0.20-2*720;",
+      "2280": "return 720/0.20/1.2-720;"
+    },
+    "forced": [
+      "less than 720/0.20 = 3,600, the balance at the start of year 3",
+      "positive",
+      "all four options lie strictly below 3,600"
+    ]
+  },
+  {
+    "id": "IM16B-11",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "paint cost from wall area, coverage rate, coats, and whole cans",
+    "difficulty": "hard",
+    "prompt": "A rectangular room is 10 meters long and 5 meters wide, and its walls are 2.5 meters high. All four walls (but not the ceiling) get two coats of paint; ignore doors and windows. One liter of paint covers 8 square meters for one coat, and paint is sold only in 1-liter cans that cost $15 each. What is the least amount the paint can cost?",
+    "choices": [
+      "150",
+      "285",
+      "375",
+      "480"
+    ],
+    "correct_answer": "285",
+    "explanation": "Hard: combines a geometry step (the area of four walls) with a rate step and a whole-can rounding decision. The walls have area 2 x (10 + 5) x 2.5 = 75 square meters; two coats cover 150 square meters, which needs 150/8 = 18.75 liters, so 19 cans must be bought, costing 19 x 15 = $285. The option \"150\" paints only one coat: 75/8 = 9.375, so 10 cans. The option \"375\" treats all four walls as 10 meters long: 4 x 10 x 2.5 = 100 square meters, two coats need 25 cans. The option \"480\" also paints the 50-square-meter ceiling: (75 + 50) x 2/8 = 31.25, so 32 cans.",
+    "solve": "const area=2*(10+5)*2.5; return Math.ceil(2*area/8)*15;",
+    "distractor_solve": {
+      "150": "const area=2*(10+5)*2.5; return Math.ceil(area/8)*15;",
+      "375": "return Math.ceil(2*4*10*2.5/8)*15;",
+      "480": "const area=2*(10+5)*2.5+10*5; return Math.ceil(2*area/8)*15;"
+    },
+    "forced": [
+      "a multiple of 15 (whole cans)",
+      "positive",
+      "every option is a multiple of 15, and no two options differ by a single can"
+    ]
+  },
+  {
+    "id": "IM16B-12",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "speed of a current from a still-water speed and a ratio of upstream to downstream times",
+    "difficulty": "medium",
+    "prompt": "A rower can row at 20 kilometers per hour in still water. On a river, rowing a certain distance upstream takes her 4 times as long as rowing the same distance downstream. What is the speed of the current, in kilometers per hour?",
+    "choices": [
+      "2",
+      "4",
+      "12",
+      "15"
+    ],
+    "correct_answer": "12",
+    "explanation": "Medium: one ratio equation, solved in two steps. Over the same distance, time is inversely proportional to speed, so the downstream speed is 4 times the upstream speed: 20 + c = 4(20 - c), which gives 5c = 60 and c = 12 (downstream 32, upstream 8). The option \"2\" reads \"4 times as long\" as \"4 kilometers per hour faster\": (20 + c) - (20 - c) = 4. The option \"4\" divides the still-water speed by 4 + 1. The option \"15\" sets the upstream speed to one-fourth of the still-water speed, 20 - c = 20/4, forgetting that the current also speeds up the downstream leg.",
+    "solve": "return (4*20-20)/5;",
+    "distractor_solve": {
+      "2": "return 4/2;",
+      "4": "return 20/(4+1);",
+      "15": "return 20-20/4;"
+    },
+    "forced": [
+      "positive",
+      "less than 20, since she makes progress upstream",
+      "all four options lie in (0, 20)"
+    ]
+  },
+  {
+    "id": "IM16B-13",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "shares stated as fractions of what the others receive together",
+    "difficulty": "hard",
+    "prompt": "Ana, Ben, and Cal share $600. Ana receives one-third as much as Ben and Cal receive together, and Ben receives one-fourth as much as Ana and Cal receive together. How many dollars does Cal receive?",
+    "choices": [
+      "250",
+      "280",
+      "300",
+      "330"
+    ],
+    "correct_answer": "330",
+    "explanation": "Hard: each condition must be translated into a fraction of the WHOLE before the shares can be combined (a non-routine re-expression). If Ana gets one-third of what the other two get, she gets 1 part to their 3, so Ana gets 1/4 of $600 = $150. Likewise Ben gets 1 part to the others' 4, so 1/5 of $600 = $120. Cal gets 600 - 150 - 120 = $330. The option \"250\" reads both conditions as fractions of the whole $600 (Ana 200, Ben 150). The option \"280\" converts Ben's condition correctly but takes Ana as one-third of the whole (Ana 200, Ben 120). The option \"300\" converts Ana's condition correctly but takes Ben as one-fourth of the whole (Ana 150, Ben 150).",
+    "solve": "const a=600/4, b=600/5; return 600-a-b;",
+    "distractor_solve": {
+      "250": "return 600-600/3-600/4;",
+      "280": "return 600-600/3-600/5;",
+      "300": "return 600-600/4-600/4;"
+    },
+    "forced": [
+      "less than 600",
+      "more than 200, since Cal's share is the largest (Ana and Ben each get well under a third)",
+      "all four options lie in (200, 600)"
+    ]
+  },
+  {
+    "id": "IM16B-14",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "percent change in profit when price, unit cost, and quantity sold all change",
+    "difficulty": "hard",
+    "prompt": "A shop sells a toy for $10. Each toy costs the shop $6, and the shop sells 100 of the toys each week. After an advertising campaign, the shop raises the price by 10 percent, its cost per toy rises by 25 percent, and its weekly sales rise by 40 percent. By what percent does the shop's weekly profit increase?",
+    "choices": [
+      "22.5",
+      "25",
+      "54",
+      "75"
+    ],
+    "correct_answer": "22.5",
+    "explanation": "Hard: three changes act on two different quantities (profit per toy and number sold), and the percent changes cannot simply be combined. Profit was (10 - 6) x 100 = $400 a week. Now the price is $11, the cost is $7.50, so the profit per toy is $3.50, and 140 toys are sold: 3.50 x 140 = $490. The increase is 90/400 = 22.5 percent. The option \"25\" adds the three percent changes: 10 - 25 + 40. The option \"54\" applies the price's 10 percent increase to the profit per toy, 4.40 x 140 = 616. The option \"75\" ignores the rise in cost: 5 x 140 = 700.",
+    "solve": "const before=(10-6)*100, after=(10*1.1-6*1.25)*140; return (after-before)/before*100;",
+    "distractor_solve": {
+      "25": "return 10-25+40;",
+      "54": "return ((10-6)*1.1*140-400)/400*100;",
+      "75": "return ((10*1.1-6)*140-400)/400*100;"
+    },
+    "forced": [
+      "a percent change; positive is not forced without computing (cost rises faster than price)",
+      "no bound from the stem places it below or above 25",
+      "all four options positive"
+    ]
+  },
+  {
+    "id": "IM16B-15",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "time for one train to overtake another: relative speed, combined length, and a unit change",
+    "difficulty": "hard",
+    "prompt": "A 150-meter train traveling at 90 kilometers per hour overtakes a 210-meter train traveling at 54 kilometers per hour on a parallel track in the same direction. How many seconds pass from the moment the front of the faster train reaches the back of the slower train until the back of the faster train passes the front of the slower train?",
+    "choices": [
+      "9",
+      "10",
+      "21",
+      "36"
+    ],
+    "correct_answer": "36",
+    "explanation": "Hard: three dependent steps, none of them a recall fact: the closing speed, the distance that has to be closed, and a change of units. The faster train gains 90 - 54 = 36 km/h on the slower one, which is 36 x 1000/3600 = 10 meters per second. To pass completely it must gain the length of both trains, 150 + 210 = 360 meters, which takes 360/10 = 36 seconds. The option \"9\" adds the speeds (144 km/h = 40 m/s), as if the trains were moving toward each other. The option \"10\" never converts units and divides 360 by 36 km/h. The option \"21\" counts only the slower train's 210 meters.",
+    "solve": "const rel=(90-54)*1000/3600; return (150+210)/rel;",
+    "distractor_solve": {
+      "9": "const rel=(90+54)*1000/3600; return (150+210)/rel;",
+      "10": "return (150+210)/(90-54);",
+      "21": "const rel=(90-54)*1000/3600; return 210/rel;"
+    },
+    "forced": [
+      "positive time",
+      "no bound from the stem; the closing speed and units must be found first",
+      "all four options positive"
+    ]
+  },
+  {
+    "id": "IM16B-16",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "walking speed recovered from times on and off a moving walkway (rates subtract, times do not)",
+    "difficulty": "medium",
+    "prompt": "An airport has a moving walkway. When Leo walks along the moving walkway at his usual pace, he gets from one end to the other in 30 seconds. When he stands still on it, the trip takes 50 seconds. How many seconds would Leo take to walk the same distance on the floor beside the walkway at his usual pace?",
+    "choices": [
+      "60",
+      "75",
+      "80",
+      "125"
+    ],
+    "correct_answer": "75",
+    "explanation": "Medium: one idea (rates add, so walking rate = combined rate - walkway rate) and two short steps. Per second, walking on the walkway covers 1/30 of the length and the walkway alone covers 1/50, so Leo alone covers 1/30 - 1/50 = 2/150 = 1/75 of it: 75 seconds. Equivalently, in 30 seconds the walkway carries him 30/50 = 3/5 of the way, so his own walking covers 2/5 in 30 seconds, and the whole length in 75. The option \"60\" assumes Leo and the walkway contribute equally, so he alone takes twice 30 seconds. The option \"80\" adds the two times. The option \"125\" divides the standing time, 50, instead of the walking time by 2/5.",
+    "solve": "return 1/(1/30-1/50);",
+    "distractor_solve": {
+      "60": "return 2*30;",
+      "80": "return 30+50;",
+      "125": "return 50/(1-30/50);"
+    },
+    "forced": [
+      "more than 30 seconds, since walking without the walkway is slower than walking on it",
+      "positive",
+      "all four options exceed 30"
+    ]
+  },
+  {
+    "id": "IM16B-17",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "combining two mixtures given by part ratios, then adjusting to a target ratio",
+    "difficulty": "hard",
+    "prompt": "Mix P is sand and cement in the ratio 3 : 1 by mass, and Mix Q is sand and cement in the ratio 5 : 3 by mass. A builder combines 20 kilograms of Mix P with 16 kilograms of Mix Q. How many kilograms of pure cement must she add so that the ratio of sand to cement in the whole batch becomes 2 : 1?",
+    "choices": [
+      "1.5",
+      "7",
+      "12.5",
+      "39"
+    ],
+    "correct_answer": "1.5",
+    "explanation": "Hard: ratios of different mixtures cannot be added as parts, so each mixture is split into masses first and the result is then adjusted (three dependent steps). Mix P's 20 kg is 15 kg sand and 5 kg cement; Mix Q's 16 kg is 10 kg sand and 6 kg cement. Together: 25 kg sand and 11 kg cement. A 2 : 1 ratio needs 25/2 = 12.5 kg of cement, so 12.5 - 11 = 1.5 kg must be added. The option \"12.5\" reports the total cement needed instead of the amount to add. The option \"7\" makes the cement half of the current 36 kg, (25 + 11)/2 - 11. The option \"39\" reverses the target ratio, needing 2 x 25 = 50 kg of cement.",
+    "solve": "const sand=20*3/4+16*5/8, cem=20/4+16*3/8; return sand/2-cem;",
+    "distractor_solve": {
+      "7": "const sand=20*3/4+16*5/8, cem=20/4+16*3/8; return (sand+cem)/2-cem;",
+      "39": "const sand=20*3/4+16*5/8, cem=20/4+16*3/8; return 2*sand-cem;",
+      "12.5": "const sand=20*3/4+16*5/8; return sand/2;"
+    },
+    "forced": [
+      "positive",
+      "no bound from the stem without splitting the mixtures: the combined parts 3+5 : 1+3 already read 2 : 1, so a solver who adds parts expects 0, and 0 is not an option",
+      "all four options positive"
+    ]
+  },
+  {
+    "id": "IM16B-18",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "simple-interest rate needed for a smaller deposit to catch up with a larger one",
+    "difficulty": "medium",
+    "prompt": "Ana deposits $2,500 in an account that pays 6 percent simple annual interest. Ben deposits $2,000 in a different account that pays simple annual interest. At what annual interest rate, in percent, must Ben's account pay so that the two balances are equal after 5 years?",
+    "choices": [
+      "7.5",
+      "10",
+      "11",
+      "12.5"
+    ],
+    "correct_answer": "12.5",
+    "explanation": "Medium: a routine chain of three steps (Ana's balance, Ben's needed interest, the rate). After 5 years Ana has 2,500 x (1 + 5 x 0.06) = $3,250. Ben must earn 3,250 - 2,000 = $1,250 in 5 years, which is $250 a year, and 250/2,000 = 12.5 percent. The option \"7.5\" matches Ana's INTEREST ($750) instead of her balance: 750/(5 x 2,000). The option \"10\" divides Ben's needed $250 a year by Ana's $2,500 instead of his own $2,000. The option \"11\" adds Ana's 6 percent to Ben's $500 head start spread over 5 years: 6 + (500/2,000)/5 x 100.",
+    "solve": "const ana=2500*(1+5*0.06); return (ana-2000)/5/2000*100;",
+    "distractor_solve": {
+      "10": "const ana=2500*(1+5*0.06); return (ana-2000)/5/2500*100;",
+      "11": "return 6+(500/2000)/5*100;",
+      "7.5": "return 2500*0.06*5/(5*2000)*100;"
+    },
+    "forced": [
+      "more than 6, since Ben starts with less and must catch up",
+      "positive",
+      "all four options exceed 6"
+    ]
+  },
+  {
+    "id": "IM16B-19",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "distance between towns from the times two travelers need AFTER they meet",
+    "difficulty": "hard",
+    "prompt": "A cyclist leaves town A and a second cyclist leaves town B at the same moment, and they ride toward each other along the same road at steady speeds. After they pass each other, the cyclist from A needs 9 more hours to reach town B, and the cyclist from B needs 1 more hour to reach town A. The cyclist from A rides at 10 kilometers per hour. How many kilometers apart are the towns?",
+    "choices": [
+      "108",
+      "120",
+      "140",
+      "180"
+    ],
+    "correct_answer": "120",
+    "explanation": "Hard: the meeting time is not given and has to be recovered from the two after-meeting times, a non-routine idea. Let t be the time to the meeting. The stretch A's cyclist rides before the meeting (10t km) is ridden by B's cyclist in 1 hour, so B rides at 10t km/h. The stretch B's cyclist rides before the meeting (10t x t km) is ridden by A's cyclist in 9 hours (90 km). So 10t^2 = 90, t = 3 hours, and the towns are 10 x (3 + 9) = 120 km apart (B rides at 30 km/h: 30 x 4 = 120). The option \"140\" takes the meeting time as the average of 9 and 1, 5 hours. The option \"108\" takes it as 2 x 9 x 1/(9 + 1) = 1.8 hours. The option \"180\" takes the speed ratio as 9 : 1, the ratio of the times, so B rides at 90 km/h and the meeting comes after 9 hours.",
+    "solve": "const t=Math.sqrt(9*1); return 10*(t+9);",
+    "distractor_solve": {
+      "108": "return 10*(2*9*1/(9+1)+9);",
+      "140": "return 10*((9+1)/2+9);",
+      "180": "const vb=10*9; const t=vb*1/10; return 10*(t+9);"
+    },
+    "forced": [
+      "more than 90 km, since A's cyclist alone rides 9 hours at 10 km/h after the meeting",
+      "a whole or decimal number of kilometers",
+      "all four options exceed 90"
+    ]
+  }
+]

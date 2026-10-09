@@ -1,0 +1,1953 @@
+{
+ "round1": {
+  "note": "K ids are opaque; map gives K -> item id; IM16P-0x are planted s15 items (break-test)",
+  "map": {
+   "K001": "IM16C-18",
+   "K002": "IM16D-08",
+   "K003": "IM16A-16",
+   "K004": "IM16D-03",
+   "K005": "IM16B-01",
+   "K006": "IM16P-03",
+   "K007": "IM16F-06",
+   "K008": "IM16B-14",
+   "K009": "IM16D-04",
+   "K010": "IM16C-10",
+   "K011": "IM16E-07",
+   "K012": "IM16F-11",
+   "K013": "IM16A-05",
+   "K014": "IM16B-08",
+   "K015": "IM16C-11",
+   "K016": "IM16B-03",
+   "K017": "IM16F-15",
+   "K018": "IM16A-09",
+   "K019": "IM16F-18",
+   "K020": "IM16E-06",
+   "K021": "IM16A-02",
+   "K022": "IM16C-14",
+   "K023": "IM16B-18",
+   "K024": "IM16B-07",
+   "K025": "IM16B-15",
+   "K026": "IM16B-04",
+   "K027": "IM16F-12",
+   "K028": "IM16A-13",
+   "K029": "IM16P-05",
+   "K030": "IM16B-09",
+   "K031": "IM16D-11",
+   "K032": "IM16A-11",
+   "K033": "IM16A-03",
+   "K034": "IM16F-16",
+   "K035": "IM16F-07",
+   "K036": "IM16D-05",
+   "K037": "IM16E-02",
+   "K038": "IM16F-19",
+   "K039": "IM16F-05",
+   "K040": "IM16C-16",
+   "K041": "IM16D-12",
+   "K042": "IM16B-16",
+   "K043": "IM16D-13",
+   "K044": "IM16E-01",
+   "K045": "IM16D-14",
+   "K046": "IM16C-07",
+   "K047": "IM16E-16",
+   "K048": "IM16D-09",
+   "K049": "IM16C-09",
+   "K050": "IM16C-03",
+   "K051": "IM16B-19",
+   "K052": "IM16D-18",
+   "K053": "IM16D-19",
+   "K054": "IM16P-02",
+   "K055": "IM16D-17",
+   "K056": "IM16F-14",
+   "K057": "IM16D-16",
+   "K058": "IM16A-10",
+   "K059": "IM16C-17",
+   "K060": "IM16B-06",
+   "K061": "IM16F-09",
+   "K062": "IM16B-11",
+   "K063": "IM16F-03",
+   "K064": "IM16E-17",
+   "K065": "IM16E-09",
+   "K066": "IM16F-01",
+   "K067": "IM16E-11",
+   "K068": "IM16E-14",
+   "K069": "IM16C-19",
+   "K070": "IM16F-10",
+   "K071": "IM16P-01",
+   "K072": "IM16F-17",
+   "K073": "IM16D-10",
+   "K074": "IM16E-03",
+   "K075": "IM16D-02",
+   "K076": "IM16E-10",
+   "K077": "IM16C-06",
+   "K078": "IM16C-01",
+   "K079": "IM16C-15",
+   "K080": "IM16B-12",
+   "K081": "IM16B-02",
+   "K082": "IM16F-02",
+   "K083": "IM16C-04",
+   "K084": "IM16C-02",
+   "K085": "IM16E-15",
+   "K086": "IM16B-13",
+   "K087": "IM16F-13",
+   "K088": "IM16E-05",
+   "K089": "IM16E-18",
+   "K090": "IM16E-12",
+   "K091": "IM16B-05",
+   "K092": "IM16F-04",
+   "K093": "IM16D-07",
+   "K094": "IM16A-14",
+   "K095": "IM16C-12",
+   "K096": "IM16F-08",
+   "K097": "IM16A-04",
+   "K098": "IM16C-08",
+   "K099": "IM16A-01",
+   "K100": "IM16E-04",
+   "K101": "IM16A-18",
+   "K102": "IM16P-04",
+   "K103": "IM16D-06",
+   "K104": "IM16D-15",
+   "K105": "IM16D-01",
+   "K106": "IM16A-19",
+   "K107": "IM16A-17",
+   "K108": "IM16C-05",
+   "K109": "IM16B-17",
+   "K110": "IM16B-10",
+   "K111": "IM16E-08",
+   "K112": "IM16A-07",
+   "K113": "IM16A-06",
+   "K114": "IM16E-13",
+   "K115": "IM16A-08",
+   "K116": "IM16C-13",
+   "K117": "IM16A-15",
+   "K118": "IM16A-12",
+   "K119": "IM16E-19"
+  },
+  "plants": {
+   "IM16P-01": "IM15B-13",
+   "IM16P-02": "IM15C-32",
+   "IM16P-03": "IM15D-15",
+   "IM16P-04": "IM15D-22",
+   "IM16P-05": "IM15E-02"
+  },
+  "results": [
+   {
+    "id": "K001",
+    "method": "bound x from x^2<50 (upper/lower via squares) and from x^3>-30 (lower via cubes), intersect the two integer ranges, count inclusive",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Live integer-count items (1e166a92 linear compound, 7b7201a1 single absolute value) bound x by one linear relation; this one mixes a square and a cube bound. Not a duplicate."
+   },
+   {
+    "id": "K002",
+    "method": "cut equal squares from the corners of a sheet, fold up: box dimensions are (L-2c)(W-2c)(c), multiply for volume",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "01bc129f is surface area of a given open box, not a net-to-volume construction."
+   },
+   {
+    "id": "K003",
+    "method": "whole from a given fraction of it (27 / (3/8) = 72), then take a different fraction of the whole",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "2dbf6d8c",
+      "why": "finding the whole from a given percent of it; K003 adds one step taking a second fraction of the whole"
+     }
+    ],
+    "note": "Very easy two-step item; the first step is the standard whole-from-part."
+   },
+   {
+    "id": "K004",
+    "method": "similar solids: surface-area ratio -> square root gives the linear ratio 3/2 -> cube it for the volume ratio 27/8, apply to 64",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "83c5df96",
+      "why": "area ratio square-rooted to a linear scale, then applied to perimeter; K004 then cubes for volume"
+     },
+     {
+      "ref": "e4e89f2b",
+      "why": "volume scale = cube of linear scale; K004 must first recover the linear scale from an area ratio"
+     }
+    ],
+    "note": "No live item chains area -> linear -> volume."
+   },
+   {
+    "id": "K005",
+    "method": "weighted mixture: total acid 50 x 22% = known part (30 x 10%) + unknown part 20 x p; solve for the unknown concentration p",
+    "live_dups": [
+     {
+      "row": "35e51866",
+      "why": "same equation: whole-group total (40 x 82) = known group total (24 x 78) + unknown group size x unknown mean; solve for the unknown group's mean. Acid percent here is just the 'mean' of the subgroup"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "af9d615b",
+      "why": "same weighted-average equation but the unknown is a group size rather than a group mean"
+     }
+    ],
+    "note": "Not the live 'add pure acid' rows (0aa90f53, 171ab814, 3d537319, d6269545): those solve for an amount, not a component concentration."
+   },
+   {
+    "id": "K006",
+    "method": "isosceles triangle 25-25-48: drop the altitude to the base, half-base 24 with leg 25 gives height 7, area = 48 x 7 / 2",
+    "live_dups": [
+     {
+      "row": "6f768d46",
+      "why": "IDENTICAL item: same prompt, sides 25, 25, 48, same choices, answer 168"
+     }
+    ],
+    "batch_dups": [
+     {
+      "id": "K102",
+      "why": "same isosceles triangle method (half-base + leg -> height via Pythagoras -> area) on a 14-25-25 triangle, then x 5 for a prism; the extra multiply is trivial"
+     }
+    ],
+    "borderline": [
+     {
+      "ref": "1239ea47",
+      "why": "isosceles trapezoid height from half the base difference and the leg, Pythagorean; same height-dropping move on a trapezoid"
+     }
+    ],
+    "note": "Exact copy of a live row - must be discarded."
+   },
+   {
+    "id": "K007",
+    "method": "distribute 12 identical items into 4 distinct boxes with at least 2 each: give 2 to each, then stars and bars on 4 left -> C(7,3)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "e8a322d6",
+      "why": "count three-digit numbers with digit sum 8 = distribute 8 among 3 places with the first >= 1; same shift-then-stars-and-bars method if solved that way (also listable by cases)"
+     },
+     {
+      "ref": "221800f3",
+      "why": "unordered selections with repetition (C(7,2)) is the same stars-and-bars count in its simplest form"
+     }
+    ],
+    "note": "No live item states identical objects into distinct containers with a minimum."
+   },
+   {
+    "id": "K008",
+    "method": "profit = (price - cost) x quantity before and after: apply +10% to price, +25% to cost, +40% to sales, compare 490 to 400",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K016",
+      "why": "both recompute a composite after separate percent changes to its components and report the percent change; K016 is a weighted sum, K008 a margin times quantity"
+     }
+    ],
+    "note": "Live 80ed0131 / dacb3eb1 change one or two components of a sum or quotient; none rebuilds a profit = margin x volume. Not a duplicate."
+   },
+   {
+    "id": "K009",
+    "method": "cylinder volume pi r^2 h and lateral area 2 pi r h: divide to get r/2 = 196/56, r = 7, then h from either",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Live cylinder rows (6a959e2e, 47638532, e45ecfa0) compute forward from r and h; none recovers dimensions from two measures. 45a4d18a (box from face areas) is a different solid and operation."
+   },
+   {
+    "id": "K010",
+    "method": "infinitely many solutions: the two equations are proportional, 4/6 = a/9 = 18/b, giving a = 6 and b = 27",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live item on dependent/inconsistent systems; 406c6299 and 6b005d86 solve a unique-solution system."
+   },
+   {
+    "id": "K011",
+    "method": "periodic schedule: elapsed minutes from first departure (249) mod period 18 = 15, so the wait is 18 - 15 = 3",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "758985af",
+      "why": "remainder from a division in context; K011 needs the remainder then its complement to the period, plus a clock-time elapsed step"
+     }
+    ],
+    "note": "Not the LCM rows (61f70c11, 6dbd094b): one schedule only."
+   },
+   {
+    "id": "K012",
+    "method": "count rectangles in a 3 x 4 grid by choosing 2 of 4 horizontal and 2 of 5 vertical lines: C(4,2) x C(5,2)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "61b47bb8 (lattice routes, C(7,3)) is a different choose-model. No live grid-rectangle count."
+   },
+   {
+    "id": "K013",
+    "method": "scientific notation: square (8 x 10^-3), divide by 4 x 10^-8, combining coefficients and negative exponents",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "eb9b9d6c",
+      "why": "product of two numbers in scientific notation; K013 adds a power and a quotient with negative exponents"
+     }
+    ],
+    "note": "Same skill family, more steps; not a rehearsal of the same chain in my reading."
+   },
+   {
+    "id": "K014",
+    "method": "apply each deal (20% off; buy 2 get 1 free) to get an effective price and volume, then compare price per 100 mL across four offers",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "89394804",
+      "why": "comparing unit prices of two package sizes - core method identical, K014 adds deal arithmetic and four options"
+     },
+     {
+      "ref": "51ae307e",
+      "why": "unit price per liter for two brands with a mL/L conversion"
+     }
+    ],
+    "note": "If the gate treats 'compute unit price, compare' as the method, these are duplicates; the deals add arithmetic, not a new idea."
+   },
+   {
+    "id": "K015",
+    "method": "maximize (x + y)/x = 1 + y/x over box constraints: take y at its max and x at its min",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live extremum-of-a-quotient over ranges item."
+   },
+   {
+    "id": "K016",
+    "method": "express both prices via the 4:1 ratio (tea 4c, coffee c), recompute the fixed basket 3 tea + 2 coffee after +40% / -30%, percent change 14c -> 18.2c",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "80ed0131",
+      "why": "percent change in a total when one of its parts changes; K016 changes both parts and the prices come via a ratio"
+     },
+     {
+      "ref": "K008",
+      "why": "recompute a composite after separate percent changes to its components"
+     }
+    ],
+    "note": "Not a duplicate of any live item in my reading."
+   },
+   {
+    "id": "K017",
+    "method": "two dice: count the 36 ordered outcomes with |a - b| <= 1 (6 + 10 = 16) and take the complement, 20/36",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Shares the 6 x 6 outcome grid with 3c9c0ea0 (sum >= 9), 4eda81fc (product a square) and batch K063 (max = 4), but each condition is counted differently; topic match only."
+   },
+   {
+    "id": "K018",
+    "method": "remainders of powers mod 7 by cycle length (2^3 = 1, 5^6 = 1 mod 7): 9^100 = 2, 5^100 = 5^4 = 2, sum 4",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "1caad2e0",
+      "why": "units digit of a large power = power cycle mod 10; K018 uses cycles mod 7 for two bases and adds"
+     },
+     {
+      "ref": "K100",
+      "why": "units digit of a sum of powers of 2 via the mod-10 cycle"
+     }
+    ],
+    "note": "Same power-cycle idea; the modulus 7 and reduction of base 9 make the chain somewhat different."
+   },
+   {
+    "id": "K019",
+    "method": "count step sequences of 1s and 2s summing to 6: Fibonacci recursion (or cases by number of 2-steps with C(n,k))",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "e4679894 is a Fibonacci-like sequence run backward, not a counting problem. No duplicate."
+   },
+   {
+    "id": "K020",
+    "method": "one box passes every spacing/speed = 1.5/0.6 = 2.5 s; divide 3600 s by 2.5",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "8909b764",
+      "why": "items per time interval scaled across a unit change (3 per 8 s over 4 min); K020 must first derive the interval from a speed and a spacing"
+     },
+     {
+      "ref": "37c2e5c3",
+      "why": "same rate-across-time-conversion shape"
+     }
+    ],
+    "note": "The speed/spacing step is what makes it different from the live rate rows."
+   },
+   {
+    "id": "K021",
+    "method": "telescoping product: write each factor as (n-1)(n+1)/n^2, cancel across factors, leaving (1/2)(11/10)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "02c18127",
+      "why": "telescoping series of unit-fraction differences; same cancellation idea but a sum of partial fractions, not a product of factored terms"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K022",
+    "method": "transfer 3 members between two groups: total 45 is unchanged, new ratio 2:1 splits it 30/15, undo the transfer: chess = 15 + 3",
+    "live_dups": [
+     {
+      "row": "b0685d95",
+      "why": "ratio change when an amount is moved from one quantity to the other (subtract 20 from one, add 20 to the other, new ratio 3:2); same fixed-total transfer method, K022 just states the total"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Also near the 'ratio change' family (090423a6, 1877b08b, 37d8208f) but those add/remove, not transfer."
+   },
+   {
+    "id": "K023",
+    "method": "simple interest A = P(1 + rt): Ana's balance 2500 x 1.30 = 3250, then solve 2000(1 + 5r) = 3250 for r",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "78abb34d",
+      "why": "same formula A = P(1 + rt) solved for an unknown (principal there, rate here); K023 adds computing the target from a second account"
+     }
+    ],
+    "note": "Symmetric unknown on the same formula; flagging as borderline because of the extra comparison step."
+   },
+   {
+    "id": "K024",
+    "method": "population density of A (12000/40 = 300), increase by 25% (375), times B's area 30",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live density item."
+   },
+   {
+    "id": "K025",
+    "method": "overtaking trains: relative speed 90 - 54 = 36 km/h = 10 m/s; distance to clear = sum of lengths 360 m; time 36 s",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "c50116f5",
+      "why": "train passing a post / bridge: distance = train length (+ bridge) over speed; K025 adds relative speed of two trains"
+     },
+     {
+      "ref": "584c1c2d",
+      "why": "catch-up time from relative speed in the same direction"
+     }
+    ],
+    "note": "Combines two live ideas; neither alone is the same chain."
+   },
+   {
+    "id": "K026",
+    "method": "time stopped = distance/avg speed - distance/moving speed: d/36 - d/45 = 1/6 h, solve d = 30",
+    "live_dups": [
+     {
+      "row": "e97d0787",
+      "why": "identical equation shape: same route at two speeds, the times differ by 10 minutes, d/12 - d/15 = 1/6, solve for distance; K026's two 'speeds' are average and moving, and the 10-minute stop is the time difference"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "92d89989",
+      "why": "average speed as total distance over total time (forward computation; K026 inverts it)"
+     }
+    ],
+    "note": "Reworded match: once the stop is seen as the time difference, the chain is e97d0787's."
+   },
+   {
+    "id": "K027",
+    "method": "a number has an odd number of divisors iff it is a perfect square; count squares 1..100 (10)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K094",
+      "why": "also uses divisor-count structure (exactly 3 divisors = square of a prime); different characterization"
+     }
+    ],
+    "note": "b583a0eb counts squares in a range but has no divisor-parity step."
+   },
+   {
+    "id": "K028",
+    "method": "list/test the integers 31..59 for primality and count (31,37,41,43,47,53,59)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "57a9b052 tests one prime among near-primes; counting primes in an interval is not on the live bank."
+   },
+   {
+    "id": "K029",
+    "method": "slope from two given points, then the x at which the line reaches a given y (20)",
+    "live_dups": [
+     {
+      "row": "f48c7e7f",
+      "why": "slope from two points, then x where the line reaches y = 0 - the brief's own example of same method"
+     },
+     {
+      "row": "4af0747d",
+      "why": "linear rule from table points (slope from two points), then evaluate at a new input - symmetric asked quantity on the same chain"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "c118bf85",
+      "why": "constant rate from two (time, amount) points extended back to t = 0; same line-from-two-points chain in a rate context"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K030",
+    "method": "currency round trip: dollars x 0.92 -> euros, subtract spending, x 1.05 back to dollars",
+    "live_dups": [
+     {
+      "row": "6326c927",
+      "why": "converting currency at an exchange rate: start with foreign units, spend some, convert the rest back to dollars; K030 only adds the initial conversion"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [],
+    "note": ""
+   },
+   {
+    "id": "K031",
+    "method": "altitude to the hypotenuse is the geometric mean of the two pieces (sqrt(4 x 9) = 6), area = hypotenuse 13 x 6 / 2",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K075",
+      "why": "altitude to the hypotenuse of a right triangle, but found from the legs via area two ways - different relation"
+     }
+    ],
+    "note": "No live geometric-mean (altitude on hypotenuse) item."
+   },
+   {
+    "id": "K032",
+    "method": "digit product 24 with divisibility by 9 (digit sum 9 or 18): enumerate digit triples, count their permutations",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "e8a322d6 counts by digit sum alone; this combines product and sum conditions. No duplicate."
+   },
+   {
+    "id": "K033",
+    "method": "divisibility by 36 = by 4 (last two digits 4B -> B in {0,4,8}) and by 9 (digit sum 11 + A + B multiple of 9); count (A,B) pairs",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live digit-divisibility item; K032 uses only the 9-rule."
+   },
+   {
+    "id": "K034",
+    "method": "P(product even) = 1 - P(both odd) = 1 - C(5,2)/C(10,2) = 7/9",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "89e17b66",
+      "why": "'at least one' via the complement in two draws (with replacement); K034 is without replacement with combinations"
+     },
+     {
+      "ref": "6147df29",
+      "why": "'at least one' by subtracting the 'none' selections C(5,3) from C(9,3); same complement-of-none counting, here as a probability"
+     }
+    ],
+    "note": "Complement 'at least one' is common; the even-product = not-both-odd recognition is the extra step."
+   },
+   {
+    "id": "K035",
+    "method": "committees of 3 from 8 minus those containing both Rina and Theo: C(8,3) - C(6,1) = 50",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "6147df29",
+      "why": "total selections minus a forbidden class (teams with no junior)"
+     },
+     {
+      "ref": "da349ba4",
+      "why": "all pairs minus the excluded pairs inside a subgroup"
+     }
+    ],
+    "note": "Forbidden class differs from both live rows (a fixed pair forced in)."
+   },
+   {
+    "id": "K036",
+    "method": "equal perimeters: triangle side = 2 x hexagon side; triangle = 4 small equilateral triangles of side s (each 9), hexagon = 6 of them",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live hexagon/triangle area comparison."
+   },
+   {
+    "id": "K037",
+    "method": "clock hands: angle = 5.5m - 60 at 2:m; set equal to 90 and solve m = 27 3/11",
+    "live_dups": [
+     {
+      "row": "b3086974",
+      "why": "angle between hands at a given time uses the same relation (hour hand 0.5 deg/min, minute 6 deg/min); K037 asks the symmetric quantity, the time for a given angle"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "If the gate only counts forward-direction reuse, downgrade to borderline; solving the same linear relation backward is a modest extra step."
+   },
+   {
+    "id": "K038",
+    "method": "three sets, everyone in at least one: sum of singles (148) = n + (exactly two) + 2(all three); 148 = 100 + 18 + 2x, x = 15",
+    "live_dups": [
+     {
+      "row": "45dc48a2",
+      "why": "same three-set setup (all in at least one, totals given, one of exactly-two / all-three given), asks exactly-two given all-three; K038 asks all-three given exactly-two - symmetric unknown on the same equation"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "a8b7895d",
+      "why": "three-set inclusion-exclusion with pairwise overlaps (none count); different data form"
+     }
+    ],
+    "note": "K092 (least possible triple overlap) is a different method."
+   },
+   {
+    "id": "K039",
+    "method": "new total = old total + net change (-5 x 6 + 7 x 3 = -9); new mean = 360 - 9 over 12",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "c3c79f55",
+      "why": "effect of a transformation on a mean; there it is uniform, here a net change in the total"
+     }
+    ],
+    "note": "Not the live mean-recovery rows (missing value, replaced value)."
+   },
+   {
+    "id": "K040",
+    "method": "complete the square: 2(x^2 + 4x) + 3 = 2(x + 2)^2 - 5, so h = 2, k = -5",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live completing-the-square item. K069 (batch) uses the minimum of a quadratic, different ask."
+   },
+   {
+    "id": "K041",
+    "method": "angles around a point sum to 360: 90 + 120 + x = 360 gives 150, then interior angle 150 -> n = 12",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "28442c62",
+      "why": "interior angle of a regular polygon -> number of sides; K041's last step, after a 360-around-a-point step"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K042",
+    "method": "walkway as combined rates: rate(walk + belt) = 1/30, rate(belt) = 1/50, rate(walk) = 1/30 - 1/50 = 1/75",
+    "live_dups": [
+     {
+      "row": "0155bb93",
+      "why": "finds one pipe's rate by subtracting a known rate from the combined rate (1/4 - 1/6); same subtraction of reciprocal rates, K042 in a walkway context and stops there"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "b7049659",
+      "why": "combined reciprocal rates 1/a + 1/b = 1/c, forward direction; K042 asks the symmetric unknown"
+     },
+     {
+      "ref": "048a1828",
+      "why": "same as b7049659"
+     },
+     {
+      "ref": "6abb5d65",
+      "why": "opposing rates subtracted (fill minus drain)"
+     }
+    ],
+    "note": "Reworded work-rate item; the moving-walkway dressing does not change the reciprocal-rate chain."
+   },
+   {
+    "id": "K043",
+    "method": "square in a semicircle, side on the diameter: corner at (s/2, s) on the circle, s^2 + (s/2)^2 = 25, area s^2 = 20",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "073b6359 (square inscribed in a full circle, diagonal = diameter) uses a different relation."
+   },
+   {
+    "id": "K044",
+    "method": "reflect across x = 3 then across y = 1 (P(-2,4) -> (8,4) -> (8,-2)), then distance formula P to R",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "9c2ad5c9",
+      "why": "reflection across a vertical line that is not an axis - one step of K044's chain"
+     },
+     {
+      "ref": "1f4b0427",
+      "why": "reflect then transform, report a coordinate quantity"
+     }
+    ],
+    "note": "Two reflections plus a distance; no live row chains these."
+   },
+   {
+    "id": "K045",
+    "method": "area ratio 4 -> radius ratio 2; circumferences 2 pi r + 4 pi r = 30 pi, r = 5, smaller area 25 pi",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live circle-pair item from area ratio and sum of circumferences."
+   },
+   {
+    "id": "K046",
+    "method": "|x - 2| + |x + 4| is a sum of distances to 2 and -4 (constant 6 between them); solve endpoints -6 and 4, count integers",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "7b7201a1",
+      "why": "counting integer solutions of a single absolute-value inequality; K046's sum-of-two-distances needs case work"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K047",
+    "method": "linear heights 1 - t/4 and 1 - t/6; set the second equal to twice the first, t = 3, height 1/2",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "12fc266b",
+      "why": "two linear functions of time set into a relation (equal there, double here) and solved"
+     }
+    ],
+    "note": "Not a duplicate; burn-rate fractions and the 2x relation make the chain different."
+   },
+   {
+    "id": "K048",
+    "method": "angle C = 60 from the sum, bisector gives 30, triangle ADC angles 50 + 30 + ADC = 180",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "87766e6a (angle between two bisectors) and 6f580b9e are different chains."
+   },
+   {
+    "id": "K049",
+    "method": "a^2 - 4ab + 4b^2 = (a - 2b)^2 = 0 gives a = 2b, substitute into (a + 3b)/(a + b)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "2eac63e5",
+      "why": "substitute a given ratio into a quotient of linear combinations; K049 first gets the ratio by factoring a perfect square"
+     },
+     {
+      "ref": "K054",
+      "why": "same substitution; K054 gets the ratio from a linear relation"
+     },
+     {
+      "ref": "K071",
+      "why": "same substitution with the ratio given"
+     }
+    ],
+    "note": "The perfect-square recognition is a real extra step; borderline rather than duplicate."
+   },
+   {
+    "id": "K050",
+    "method": "two function values give two linear equations in b and c (1 + b + c = 5, 9 + 3b + c = 15); solve, evaluate f(5)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live 'determine coefficients from two values' item."
+   },
+   {
+    "id": "K051",
+    "method": "after meeting, times to finish are 9 h and 1 h, so speed ratio = sqrt(1/9); B = 30 km/h, meeting time 3 h, distance 40 x 3",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Live meeting rows (40e24f54, bfde7b74) only add speeds; the post-meeting time ratio relation is different."
+   },
+   {
+    "id": "K052",
+    "method": "sector to cone: arc = (216/360) x 10 pi = 6 pi gives base radius 3; slant 5 gives height 4; V = (1/3) pi 9 x 4",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "0368de0f",
+      "why": "cone volume from radius and slant height (Pythagorean height); K052 adds deriving the radius from the sector arc"
+     },
+     {
+      "ref": "7cfc4bb9",
+      "why": "rolling a flat sheet into a solid (rectangle -> cylinder)"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K053",
+    "method": "trapezoid diagonals cut in ratio AB:CD = 1:2; areas APB = 8, CPD = 32, APD = BPC = 16; total 72",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "9e05fd36 (triangles sharing a height) is one ingredient; the diagonal-ratio partition is not on the live bank."
+   },
+   {
+    "id": "K054",
+    "method": "3a = 5b gives a/b = 5/3; substitute into (2a + b)/(a - b)",
+    "live_dups": [
+     {
+      "row": "2eac63e5",
+      "why": "substitute a ratio a/b into a quotient of linear combinations - exactly the brief's example; deriving a/b from 3a - 5b = 0 is trivial"
+     }
+    ],
+    "batch_dups": [
+     {
+      "id": "K071",
+      "why": "same substitute-a-ratio-into-a-quotient method (and K071 is itself identical to live 2eac63e5)"
+     }
+    ],
+    "borderline": [
+     {
+      "ref": "K049",
+      "why": "same substitution after a factoring step"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K055",
+    "method": "AD = AB = AE, angle DAE = 90 + 60 = 150, isosceles base angle (180 - 150)/2 = 15",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Live isosceles chains (6f580b9e, 4064aca9) do not use a square-plus-equilateral composite."
+   },
+   {
+    "id": "K056",
+    "method": "two-stage probability (law of total probability): 1/3 x 2/4 + 2/3 x 1/5 = 3/10",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live two-stage (choose a bag, then draw) item."
+   },
+   {
+    "id": "K057",
+    "method": "shadow: nested similar triangles from the shadow tip, 6/(6 + s) = 1.5/s, s = 2",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "4929c153",
+      "why": "nested similar triangles with a parallel cross-segment (DE || BC) solved by proportion; K057 is the same nested setup with the unknown on the base segment"
+     }
+    ],
+    "note": "Modelling the lamp/person as nested triangles is the main step; flag for the gate's call."
+   },
+   {
+    "id": "K058",
+    "method": "(3n + 20)/(n + 2) = 3 + 14/(n + 2); n + 2 must be a divisor of 14 that is >= 3: 7 or 14, n = 5 or 12",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live integer-valued-quotient item."
+   },
+   {
+    "id": "K059",
+    "method": "solve -16t^2 + 80t + 6 > 70: t^2 - 5t + 4 < 0, roots 1 and 4, interval length 3",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live quadratic-inequality duration item."
+   },
+   {
+    "id": "K060",
+    "method": "set 2/3 A = 3/5 B = 3/8 C = k, express each share in k, sum to 560, k = 96, B = 5k/3",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K086",
+      "why": "both split a total among three people from relations between shares; K086's relations are share vs. sum of others, a different system"
+     }
+    ],
+    "note": "0c74b360 / e98ede23 link ratios via a shared term, not an equal-fractions condition."
+   },
+   {
+    "id": "K061",
+    "method": "two missing frequencies in a frequency table from the head count (a+b=14) and the mean (sum of value x frequency = mean x count), solved as a 2x2 linear system",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "d43d95ea",
+      "why": "missing frequency recovered from a stated mean of a frequency table (sum of value x count = mean x total); K061 adds a second unknown and the head-count equation, so it becomes a 2x2 system"
+     }
+    ],
+    "note": "24c247f9 (missing frequency from a MEDIAN) is a different relation."
+   },
+   {
+    "id": "K062",
+    "method": "lateral wall area of a room (perimeter x height), times 2 coats, divided by coverage per liter, rounded UP to whole cans, times can price",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "5d4315da",
+      "why": "area divided by coverage per bag, rounded up to whole bags; K062 adds the four-wall lateral area, the two coats and a cost step"
+     },
+     {
+      "ref": "d6eb19c8",
+      "why": "area of walls to be painted (composite wall area); no coverage/rounding step"
+     }
+    ],
+    "note": "The ceil-to-whole-units step is the shared core with 5d4315da; the lateral-area computation is extra."
+   },
+   {
+    "id": "K063",
+    "method": "P(max of two dice = 4) as (#outcomes both <= 4) - (#both <= 3) = 16 - 9 over 36",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Other two-dice items (3c9c0ea0 sum >= 9, 4eda81fc product square, K017 differ by >= 2, K034 product even) are only same-topic; none uses the max-via-nested-squares count."
+   },
+   {
+    "id": "K064",
+    "method": "clock strikes over a 40-hour window: split into whole 12-hour cycles (each 1+...+12 = 78) plus the leftover hours' strikes, then add one half-hour strike per hour",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "9679fb76",
+      "why": "sum of the first n terms of a repeating block = full cycles x cycle sum + leftover terms; K064 is the same cycle-plus-remainder sum but on a clock with an offset start and an added half-hour count"
+     },
+     {
+      "ref": "K100",
+      "why": "units digit of a sum handled as full 4-term cycles plus leftover terms (same cycle-plus-remainder summation idea, different object)"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K065",
+    "method": "constant speed in cm/s, distance given in km: convert km -> cm, time = distance/speed in seconds, convert seconds -> hours",
+    "live_dups": [
+     {
+      "row": "4c5f8ba1",
+      "why": "constant-rate problem requiring conversion of BOTH a distance unit (km/m) and a time unit (min/s) before/after dividing distance by rate to get a time"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "37c2e5c3",
+      "why": "constant rate with a time-unit conversion only (pages per seconds over 1 h 20 min)"
+     },
+     {
+      "ref": "8909b764",
+      "why": "rate per seconds applied over minutes, time conversion only"
+     },
+     {
+      "ref": "K067",
+      "why": "chain of unit conversions then quantity/rate and minutes -> hours (volume version)"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K066",
+    "method": "number of triangles from 8 points with 4 collinear = C(8,3) - C(4,3): total selections minus the selections lying entirely inside one subgroup",
+    "live_dups": [
+     {
+      "row": "da349ba4",
+      "why": "handshakes = C(9,2) - C(3,2): all selections minus those inside an excluded subgroup - the identical total-minus-within-subgroup count"
+     },
+     {
+      "row": "6147df29",
+      "why": "teams with at least one junior = C(9,3) - C(5,3): total minus selections lying entirely within one subgroup - same computation C(n,k) - C(m,k) with k = 3"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K035",
+      "why": "committees of 3 from 8 minus the bad ones (those containing a forbidden pair, C(6,1)); complement counting, but the subtracted set is 'contains both' rather than 'lies within a subgroup'"
+     }
+    ],
+    "note": "The case-split route in the explanation (0/1/2 on the line) is an alternative, but the complement C(8,3)-C(4,3) is the natural solve and matches the live rows."
+   },
+   {
+    "id": "K067",
+    "method": "cube volume in m^3 -> liters (x1000) -> minutes at a drain rate -> hours",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "2e02718e",
+      "why": "volume of a box converted to liters and divided by a container size"
+     },
+     {
+      "ref": "f1f454d6",
+      "why": "tank volume converted to liters (then mass)"
+     },
+     {
+      "ref": "K065",
+      "why": "chain of unit conversions around a rate, answer in hours"
+     }
+    ],
+    "note": "No live row does volume -> liters -> rate -> hours as one chain."
+   },
+   {
+    "id": "K068",
+    "method": "minutes in a day whose 4-digit display shows at least one 5: complement - count displays with no 5 per position (22 hours x 45 minutes) and subtract from 1440 (or hours-with-5 + per-hour minutes-with-5)",
+    "live_dups": [
+     {
+      "row": "ad752aae",
+      "why": "'at least one digit equal to 5' counted as total minus the numbers that avoid 5, by multiplying the allowed choices per digit position - same complement method; K068 only changes the per-position ranges to a clock display"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "5e2da94e",
+      "why": "per-position count of numbers whose digits avoid a set (only odd digits)"
+     },
+     {
+      "ref": "K082",
+      "why": "'at least one repeat' = total - all-distinct; complement count, different property"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K069",
+    "method": "complete the square x^2+4x+c = (x+2)^2 + c-4; set the minimum c-4 = 7 to get c, then evaluate f(1)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K079",
+      "why": "same completing-the-square-for-the-minimum chain on a monic quadratic followed by evaluating f; K079 adds the non-trivial step 'exactly one solution means k is the minimum value' and runs the direction the other way (find the min rather than use it)"
+     },
+     {
+      "ref": "K040",
+      "why": "completing the square to vertex form 2(x+h)^2 + k; stops at reading h and k"
+     }
+    ],
+    "note": "No live row uses the minimum value of a quadratic."
+   },
+   {
+    "id": "K070",
+    "method": "P(Ana's card > Ben's card) for independent picks from two different sets: enumerate the 5 x 4 equally likely pairs by Ben's value and count wins",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Only topic-level overlap with live two-draw probability items (3c9c0ea0, f770e0cd) and K063; none compares two draws from different sets."
+   },
+   {
+    "id": "K071",
+    "method": "substitute a given ratio a/b = 3/4 (take a = 3, b = 4) into a quotient of linear combinations (2a + b)/(a + 3b)",
+    "live_dups": [
+     {
+      "row": "2eac63e5",
+      "why": "IDENTICAL item: 'If a/b = 3/4, what is the value of (2a + b)/(a + 3b)?' answer 2/3 - same numbers, same expression, same key"
+     }
+    ],
+    "batch_dups": [
+     {
+      "id": "K054",
+      "why": "3a - 5b = 0 gives a/b = 5/3, substituted into (2a + b)/(a - b): same ratio-into-quotient-of-linear-combinations method"
+     }
+    ],
+    "borderline": [
+     {
+      "ref": "K049",
+      "why": "a^2 - 4ab + 4b^2 = 0 first factored to a = 2b, then substituted into (a + 3b)/(a + b); same final substitution with an extra factoring step"
+     }
+    ],
+    "note": "Exact copy of a live row - must be dropped or replaced."
+   },
+   {
+    "id": "K072",
+    "method": "pigeonhole worst case to guarantee at least one of each colour: draw all of the two largest colours (12 + 9) then one more = 22",
+    "live_dups": [
+     {
+      "row": "f2ad4e35",
+      "why": "worst case to guarantee a quota of ONE specific colour: take every sock of the other colours first, then the quota - K072 is the same exhaust-the-others-then-force argument (guaranteeing red = 12 + 9 + 1)"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "68b3a358",
+      "why": "worst-case pigeonhole, but the target is k of the SAME colour (spread across colours), a different worst case"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K073",
+    "method": "exterior angles of a triangle in ratio 3:4:5 sum to 360 -> 90,120,150; interior = 180 - exterior; largest interior at smallest exterior",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Live 28442c62 (regular polygon exterior), 990c8858 / 4064aca9 (exterior angle theorem) and 85fe5d7c (ratio split of 180) use different relations; no same-chain match."
+   },
+   {
+    "id": "K074",
+    "method": "count lattice points with |x| + |y| <= 4 by layers |x| + |y| = k having 4k points: 1 + 4 + 8 + 12 + 16",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "81442c54 (lattice points on a segment, gcd) and K046 (1-D sum of absolute values) are different methods."
+   },
+   {
+    "id": "K075",
+    "method": "right triangle legs 15, 20: hypotenuse 25 by Pythagoras, then altitude to hypotenuse from area written two ways (leg x leg = hyp x h)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K031",
+      "why": "altitude to the hypotenuse, but found from the hypotenuse pieces by the geometric mean (h^2 = 4 x 9) - different relation on the same figure"
+     }
+    ],
+    "note": "No live row computes the altitude to the hypotenuse."
+   },
+   {
+    "id": "K076",
+    "method": "shortest path A -> P on x-axis -> B: reflect A across the x-axis and take the straight-line distance A'B",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "90f79c2e (point on x-axis equidistant from two points) and K044 (successive reflections then distance) are different chains."
+   },
+   {
+    "id": "K077",
+    "method": "square a sum of two radicals, (sqrt6 + sqrt2)^2 = 8 + 2 sqrt12, simplify sqrt12 = 2 sqrt3, read a and b",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live radical-binomial item."
+   },
+   {
+    "id": "K078",
+    "method": "f linear, f(f(x)) = a^2 x + ab + b matched to 16x + 15 to get a = 4, b = 3, then evaluate f(2)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "f7f067f8",
+      "why": "composition of two functions evaluated at a number - forward evaluation only, no coefficient matching"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K079",
+    "method": "complete the square f(x) = (x-3)^2 - 4; f(x) = k has exactly one solution only at the minimum, so k = -4; evaluate f(-4)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K069",
+      "why": "same completing-the-square-for-minimum then evaluate f chain; K079 adds the 'one solution means k = minimum' step"
+     },
+     {
+      "ref": "K040",
+      "why": "completing the square to vertex form only"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K080",
+    "method": "still-water speed 20 and current c: same distance, time ratio 4 means downstream speed = 4 x upstream speed, 20 + c = 4(20 - c)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K042",
+      "why": "moving walkway: walker's and walkway's speeds add; solve for the walking-only time from the two given times (rate-addition, but via 1/30 = 1/x + 1/50, not a speed-ratio equation)"
+     }
+    ],
+    "note": "No live upstream/downstream item; e97d0787 (time saved at a faster speed) uses a different relation."
+   },
+   {
+    "id": "K081",
+    "method": "two work schedules for one job give 6A + 6B = 1 and 4A + 9B = 1; eliminate to get 6A = 9B, so Ben alone = 15 hours",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "f44b3ec7",
+      "why": "worker-equivalence between two crews (4 adults = 6 children in rate) used to time a mixed crew; K081 must first derive the equivalence by eliminating between two schedules"
+     }
+    ],
+    "note": "Live combined-rate rows (048a1828, 1f00fc89, b7049659, 0155bb93, 3b83fe0e, e2013dd4) all GIVE the individual rates; K081 has to recover them."
+   },
+   {
+    "id": "K082",
+    "method": "codes with at least one repeated digit = all 10^4 codes minus codes with four different digits (10 x 9 x 8 x 7)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "ad752aae",
+      "why": "'at least one' counted as total minus the complement by per-position products; K082's complement is all-distinct (a permutation count) rather than 'avoids a digit'"
+     },
+     {
+      "ref": "K068",
+      "why": "complement count of 'at least one 5' on clock displays"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K083",
+    "method": "g given only through g(f(x)) = 6x + 5: solve f(x) = 7 for x = 4, then g(7) = 6(4) + 5",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "f7f067f8 (forward composition) and K078 (f(f(x)) coefficient matching) are different chains."
+   },
+   {
+    "id": "K084",
+    "method": "work backwards through two 'spent half plus $k' steps: undo the subtraction (add k) then double, in reverse order",
+    "live_dups": [],
+    "batch_dups": [
+     {
+      "id": "K112",
+      "why": "same work-backwards method: undo a chain of add/subtract and halve/double operations in reverse order with each operation inverted (19 -> 14 -> 28); a student who has done one has rehearsed the other"
+     }
+    ],
+    "borderline": [
+     {
+      "ref": "aeaeba9d",
+      "why": "work backwards from what remains after successive fractional spending (1/3, then 1/4 of the rest); K084 adds the '+ $k' constant to each step"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K085",
+    "method": "n x n tile square: interior is (n-2)^2 = 324, border = n^2 - (n-2)^2 = 76, difference 248",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "2f8d8c82",
+      "why": "interior unit cubes of a painted n-cube = (n-2)^3 - the 3-D version of the same 'strip one layer from each side' count"
+     },
+     {
+      "ref": "0d24463d",
+      "why": "painted cube cut into small cubes, counting cubes by number of painted faces (edge pieces)"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K086",
+    "method": "shares: A = (1/3)(B + C) means A is 1/4 of the total; B = (1/4)(A + C) means B is 1/5 of the total; C = remainder",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "K060 (shares set equal through different fractions) and live ratio-sharing items use different relations."
+   },
+   {
+    "id": "K087",
+    "method": "number of ways to split 8 people into 4 unordered pairs: 7 x 5 x 3 x 1",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live perfect-matching count."
+   },
+   {
+    "id": "K088",
+    "method": "sum of the multiples of 6 strictly between 50 and 260: first and last multiple, count, (count) x (first + last)/2",
+    "live_dups": [
+     {
+      "row": "2acefdb2",
+      "why": "'What is the sum of all the multiples of 4 that lie between 50 and 150?' - identical method and structure, only the divisor and bounds changed"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K115",
+      "why": "sum of a run of multiples of 9 (after recognising the digit-sum-9 numbers are 18..90)"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K089",
+    "method": "arithmetic sequence: S10 and S20 give two linear equations in a and d; eliminate for d, back-substitute for a, then a + 29d",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "cfaedc0b",
+      "why": "two conditions on an arithmetic sequence (a3 + a8 = 50, a5 = 22) turned into equations in a and d, then a later term - same system-then-term chain, but K089's conditions are partial sums needing the sum formula"
+     },
+     {
+      "ref": "ccd66a9a",
+      "why": "first term from two given terms (a4, a9) via d - same a/d recovery without the sum formula"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K090",
+    "method": "two clocks drift apart at 2 + 3 = 5 min/hour; they show the same reading again when 720 minutes apart (one full dial), so 144 hours = 6 days",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "9367225b",
+      "why": "time for one runner to lap another: relative rate accumulates exactly one full cycle - same 'relative rate until the gap equals one full cycle' idea in a track context"
+     },
+     {
+      "ref": "d82a7f01",
+      "why": "a clock that gains a fixed amount per interval, but asks for the displayed time, not a coincidence"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K091",
+    "method": "gear train: meshing gears pass equal teeth (turns x teeth constant), shared-axle gears share turns; 10 x 24/15 = 16, then 16 x 42/12 = 56",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live gear item."
+   },
+   {
+    "id": "K092",
+    "method": "least possible number in all three of three sets: at most (50-42)+(50-40)+(50-37) = 31 lack something, so at least 19 have all",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K038",
+      "why": "three overlapping sets with an exact count (inclusion-exclusion), not a minimum bound"
+     }
+    ],
+    "note": "Live 45dc48a2 / a8b7895d / 45f70868 are exact inclusion-exclusion counts; K092 is an extremal bound by complements - different method."
+   },
+   {
+    "id": "K093",
+    "method": "square side from perimeter -> square area -> equal-area rectangle width from its length -> rectangle perimeter",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "Routine chain of perimeter/area formulas; live 219c9757, 49ab2017, 08715fae each do one or two of these links, none the equal-area transfer chain."
+   },
+   {
+    "id": "K094",
+    "method": "numbers below 100 with exactly three divisors are squares of primes: 4, 9, 25, 49",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K027",
+      "why": "odd number of divisors <=> perfect square, used to count 1..100 (same divisor-count-from-structure idea, different count)"
+     }
+    ],
+    "note": "06412610 (count divisors of 36) is only the forward divisor count."
+   },
+   {
+    "id": "K095",
+    "method": "biquadratic x^4 - 13x^2 + 36: substitute u = x^2, factor (u - 4)(u - 9), take positive roots 2 and 3, sum 5",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "2d2f2ebf is a plain factorable quadratic; the u = x^2 substitution is the method here."
+   },
+   {
+    "id": "K096",
+    "method": "divisors of 180 = 2^2 3^2 5: 18 in all; square divisors need even exponents (2 x 2 x 1 = 4); probability 4/18",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "a512a3c8",
+      "why": "counting divisors with a property by restricting exponent choices in the prime factorization (multiples of 10); K096 restricts to even exponents and divides by the total"
+     }
+    ],
+    "note": "K113 uses divisor counts but asks a nested D(D(48) x D(20)) - different."
+   },
+   {
+    "id": "K097",
+    "method": "GCF 12: write the numbers as 12m, 12n with m, n coprime; mn = 15552/144 = 108; coprime splits 1 x 108 and 4 x 27; least sum 12 x 31",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "f5c459b7",
+      "why": "recover a number from GCF and LCM (via GCF x LCM = product) - related GCF/product reasoning but no coprime-cofactor split"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K098",
+    "method": "x + y and x^2 + y^2 given: xy from (x + y)^2, then x^3 + y^3 = (x + y)(x^2 - xy + y^2)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "99f67f7c (x + 1/x squared) and 0e50f3f4 (factor x^2y - xy^2 using xy and x - y) use different identities; no live sum-of-cubes item."
+   },
+   {
+    "id": "K099",
+    "method": "nested custom operation with an unknown: (3 * n) * 2 = 13 solved backwards (m - 2 = 13, 2n - 3 = 15), then evaluate n * n",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "8c890a04",
+      "why": "nested custom operation (3 # 4) # 2 evaluated forwards; K099 adds solving for the unknown through the nesting"
+     },
+     {
+      "ref": "K118",
+      "why": "nested custom operation 2 (x) (1 (x) 3) evaluated forwards"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K100",
+    "method": "units digit of 2^1 + ... + 2^50: units digits cycle 2,4,8,6 (cycle sum ends in 0); 12 full cycles plus leftover terms 2 and 4",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "1caad2e0",
+      "why": "units digit of a single large power via the 4-cycle; K100 adds summing over full cycles plus a remainder"
+     },
+     {
+      "ref": "9679fb76",
+      "why": "sum of a repeating block = full cycles x block sum + leftovers (same cycle-plus-remainder summation)"
+     },
+     {
+      "ref": "K064",
+      "why": "cycle-plus-remainder summation over 12-hour clock cycles"
+     }
+    ],
+    "note": "4edfa291 (units digit of a sum of factorials) uses a different property (terms ending in 0)."
+   },
+   {
+    "id": "K101",
+    "method": "decimal order of operations: 0.2 x 0.3 = 0.06 and 0.4 / 0.05 = 8 before adding",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "4981e916",
+      "why": "order of operations evaluation (integers); K101's load is decimal-point placement in a product and a quotient"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K102",
+    "method": "isosceles triangle 25, 25, 14: height sqrt(25^2 - 7^2) = 24 from half the base, area 168, times prism length 5",
+    "live_dups": [
+     {
+      "row": "6f768d46",
+      "why": "area of an isosceles triangle from its three sides via the height from half the base (25, 25, 48 -> height 7, area 168) - same Pythagorean-height-then-area method on the same 7-24-25 triangle family, even the same area 168; K102's only addition is a trivial x5 for the prism"
+     }
+    ],
+    "batch_dups": [
+     {
+      "id": "K006",
+      "why": "K006 is the live 6f768d46 triangle verbatim (25, 25, 48 -> 168); K102 uses the same height-from-half-base method on 25, 25, 14 -> 168"
+     }
+    ],
+    "borderline": [
+     {
+      "ref": "1239ea47",
+      "why": "isosceles trapezoid area needing its height from the slant side via Pythagoras"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K103",
+    "method": "radius r -> r + 2 raises area by 40pi: pi(r+2)^2 - pi r^2 = pi(4r + 4) = 40pi gives r = 9; circumference 18pi",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "8b6beefb (difference of two circumferences) and 72c9687f (area from circumference) are different chains."
+   },
+   {
+    "id": "K104",
+    "method": "triangle inscribed with a side as diameter is right-angled at R (Thales); other leg sqrt(26^2 - 10^2) = 24; area (1/2)(10)(24)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "294efd09",
+      "why": "leg of a right triangle from hypotenuse and other leg - K104's Pythagorean step, without the Thales recognition or the area"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K105",
+    "method": "supplement = 4 x complement: 180 - x = 4(90 - x), so x = 60",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "a494995b (supplementary pair with a stated difference) and 7c916239 (supplement of a given angle) are different equations."
+   },
+   {
+    "id": "K106",
+    "method": "n = a^2 - b^2 = (a-b)(a+b) with factors of equal parity, so n is odd or a multiple of 4; exclude n = 2 mod 4 (13 numbers) from 1..50",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "8941c2e0 uses the difference-of-squares identity algebraically, not for representability."
+   },
+   {
+    "id": "K107",
+    "method": "trailing zeros of 25^6 x 12^5: prime factorize to 5^12 x 2^10 x 3^5; zeros = min(exponent of 2, exponent of 5) = 10",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "4745593b",
+      "why": "trailing zeros counted from factors of 5 (and 2) - same 'zeros = pairs of 2 and 5' principle, but on 75! via counting multiples of 5 and 25, not by exponent rules on given powers"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K108",
+    "method": "given 3^a = 2, rewrite 27^a = (3^a)^3 and 9^(a+1) = 9 (3^a)^2, substitute and add",
+    "live_dups": [
+     {
+      "row": "28251958",
+      "why": "'If 2^a = 5, what is 2^(a + 3)?' - same method: rewrite the target power in terms of the known power b^a using exponent rules and substitute; K108 adds the power-of-a-power rewrite (27 = 3^3, 9 = 3^2) but the chain is the same"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [],
+    "note": ""
+   },
+   {
+    "id": "K109",
+    "method": "split each mixture by its ratio into sand and cement masses (15 + 10 sand, 5 + 6 cement), then pure cement to add so sand:cement = 2:1",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "3d537319",
+      "why": "pure component added to a mixture to reach a target concentration (also 0aa90f53, 171ab814, d6269545); K109's last step is this, after first combining two ratio mixtures into component masses"
+     },
+     {
+      "ref": "K005",
+      "why": "combining two mixtures with known concentrations (solving for one concentration)"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K110",
+    "method": "20% compounded annually: third-year interest $720 is 20% of the start-of-year-3 balance (3600); divide by 1.2 twice to get the deposit",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "4bfc473f",
+      "why": "compound interest over two years computed forwards; K110 runs it backwards from one year's interest"
+     },
+     {
+      "ref": "65e11a69",
+      "why": "reversing a single percent increase to recover the original amount (one undo step)"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K111",
+    "method": "undo a reflection across y = x and a translation in reverse order: translate back (4,-1) -> (7,1), then swap coordinates -> (1,7)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "1f4b0427",
+      "why": "reflection followed by a translation, computed forwards (and across the x-axis rather than y = x)"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K112",
+    "method": "work backwards through 'x3, -8, /2, +5 = 19' undoing in reverse order, stopping after the '-8' step (28)",
+    "live_dups": [],
+    "batch_dups": [
+     {
+      "id": "K084",
+      "why": "same work-backwards inverse-operations-in-reverse-order method (undo the add/subtract, undo the halving), only a money-spending context"
+     }
+    ],
+    "borderline": [
+     {
+      "ref": "aeaeba9d",
+      "why": "working backwards from a remainder through successive fractional spending"
+     }
+    ],
+    "note": "a38f97a9 / ba57bc8b translate a forward statement into an equation - different."
+   },
+   {
+    "id": "K113",
+    "method": "divisor counts from prime factorizations, nested: D(48) = 10, D(20) = 6, then D(60) = 12",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "06412610",
+      "why": "number of divisors of one number (36); K113 repeats the count three times with a nesting"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K114",
+    "method": "a line bisects a rectangle's area iff it passes through the center; center = midpoint of a diagonal (4, 5); slope from origin 5/4",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "7f018ffc / c9837620 are midpoint items without the bisection idea."
+   },
+   {
+    "id": "K115",
+    "method": "two-digit numbers with digit sum 9 are the multiples of 9 from 18 to 90; sum = 9(2 + ... + 10) = 486",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "2acefdb2",
+      "why": "sum of a run of multiples between bounds; K115 adds recognising the digit-sum-9 set as multiples of 9"
+     },
+     {
+      "ref": "K088",
+      "why": "sum of multiples of 6 between bounds"
+     },
+     {
+      "ref": "e8a322d6",
+      "why": "numbers with a fixed digit sum, but COUNTED rather than summed"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K116",
+    "method": "three prices in one variable (s, 2s, s - 6) summing to 66; solve s = 18, then evaluate a different combination 2(36) + 3(12)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "85fe5d7c",
+      "why": "three quantities written in one variable (x, 2x, x + 20) summing to a known total, solve and report one of them - same one-variable translation; K116 adds evaluating a new combination"
+     }
+    ],
+    "note": "Generic linear translation; flagged borderline only."
+   },
+   {
+    "id": "K117",
+    "method": "(100a + 10b + c) - (100c + 10b + a) = 99(a - c) = 396 gives a - c = 4; count (a, c) pairs with c >= 1 times 10 choices of b",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "No live digit-reversal item."
+   },
+   {
+    "id": "K118",
+    "method": "nested custom operation a (x) b = a^b - b^a evaluated inside out: 1 (x) 3 = -2, then 2 (x) (-2) = 1/4 - 4",
+    "live_dups": [
+     {
+      "row": "8c890a04",
+      "why": "nested custom operation defined by a formula, evaluated inner then outer ((3 # 4) # 2) - same method; K118's only addition is a negative exponent and a negative square in the outer evaluation"
+     }
+    ],
+    "batch_dups": [],
+    "borderline": [
+     {
+      "ref": "K099",
+      "why": "nested custom operation but solved backwards for an unknown"
+     }
+    ],
+    "note": ""
+   },
+   {
+    "id": "K119",
+    "method": "100 alternating reflections across y = x and the x-axis: each pair is a 90-degree clockwise rotation, so 50 quarter turns = 2 (mod 4) = half turn: (2,5) -> (-2,-5)",
+    "live_dups": [],
+    "batch_dups": [],
+    "borderline": [],
+    "note": "8a5d2f67 (one rotation about a point) and K111/K044 (two transformations) do not use the composition-into-a-rotation cycle."
+   }
+  ]
+ },
+ "round1_confirmed": {
+  "break_test": "3/3 planted pairs named: IM15B-13~IM15C-32 (both halves), IM15D-15~IM15D-22 (both halves), IM15E-02~live f48c7e7f (+4af0747d). M1 also recognised IM15D-15 and IM15B-13 as verbatim live rows (they were inserted in s15).",
+  "returned": {
+   "IM16A-12": "live 8c890a04: nested custom binary operation evaluated inside-out",
+   "IM16B-01": "live 35e51866: whole-group total = known group total + unknown group's size x unknown mean (weighted average, solve for the unknown group's value)",
+   "IM16B-09": "live 6326c927: currency converted, some spent, the remainder converted back",
+   "IM16C-02": "within batch, later id vs IM16A-07: work backwards undoing halving/adding steps in reverse",
+   "IM16C-05": "live 28251958: given b^a = k, rewrite target powers of b in terms of b^a",
+   "IM16C-13": "live 85fe5d7c: three quantities written in one variable (x, 2x, x +- c) summing to a total",
+   "IM16C-14": "live b0685d95: fixed total, an amount moved from one part to the other gives a new ratio",
+   "IM16E-02": "live b3086974: clock-hand angle relation (0.5 vs 6 deg/min), asked in the symmetric direction (prereg: symmetric asked quantity = same)",
+   "IM16E-05": "live 2acefdb2: sum of all multiples of k between two bounds",
+   "IM16E-14": "live ad752aae: 'at least one digit 5' = total minus numbers avoiding 5, digit by digit",
+   "IM16F-01": "live 6147df29 (and da349ba4): C(n,3) minus selections lying entirely inside one subgroup",
+   "IM16F-17": "live f2ad4e35: worst-case pigeonhole, exhaust the other colours then the forced draw",
+   "IM16F-19": "live 45dc48a2: three sets all-in-at-least-one, totals given, exactly-two <-> all-three (symmetric)"
+  },
+  "not_confirmed": {
+   "IM16B-04": "reduces to live e97d0787's d/v1 - d/v2 = 1/6, but the structure (one trip with a stop vs two trips) is different and the reduction is the item",
+   "IM16B-16": "live 0155bb93 is a multi-phase pipe problem; the shared rate subtraction is one sub-step (M1 itself called it weak)",
+   "IM16E-09": "generic constant-rate unit conversion (topic match, not structure)",
+   "borderline list": "read in full; none confirmed (each adds a step that changes the method, or shares only a topic)"
+  }
+ },
+ "round2": [
+  {
+   "id": "IM16A-12",
+   "method": "GCF of 2^a - 1 and 2^b - 1 via the Euclidean algorithm on the numbers, reducing exponents to gcd(a,b)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "15757ffa",
+     "why": "same 2^12 - 1 object, but asks greatest prime factor via difference-of-squares factoring, not a GCF/Euclid chain"
+    }
+   ],
+   "note": "No live or batch item runs Euclid on Mersenne-type numbers; c414faa0/f5c459b7 are plain GCF."
+  },
+  {
+   "id": "IM16B-01",
+   "method": "coin counts in a given ratio and a total value: value of one ratio group, number of groups = total / group value, then scale to one coin type",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "4a0bd6bd",
+     "why": "nickel/dime jar with count and value, but solved as a two-variable system, not ratio groups"
+    },
+    {
+     "ref": "e4b664a9",
+     "why": "quarters/dimes count+value two-variable system; same context, different chain"
+    }
+   ],
+   "note": "Batch ratio-sharing items (B-06, B-13) share money totals, not group-value division."
+  },
+  {
+   "id": "IM16B-09",
+   "method": "limiting ingredient: whole-batch count per ingredient (floor of supply / per-batch), take the minimum, then leftover of a different ingredient",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "9251cc42",
+     "why": "recipe scaled against a limiting supply, but only one ingredient constrains and servings may be fractional; no min across ingredients, no floor, no leftover"
+    },
+    {
+     "ref": "9c175220",
+     "why": "yield from one limited ingredient by proportion only"
+    }
+   ],
+   "note": "The min-over-ingredients + floor + leftover chain does not appear in live."
+  },
+  {
+   "id": "IM16C-02",
+   "method": "system linear in 1/x and 1/y: add/subtract to solve for reciprocals, invert, sum",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "406c6299",
+     "why": "adds two equations of a linear system, but in x,y directly with no reciprocal substitution"
+    }
+   ],
+   "note": "The reciprocal-as-unknown idea is absent from live (99f67f7c is x + 1/x squaring, different)."
+  },
+  {
+   "id": "IM16C-05",
+   "method": "evaluate rational (fractional, one negative) exponents by root-then-power, then multiply",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "1b31caad",
+     "why": "negative integer exponent evaluation (3^-2) inside order of operations; no fractional exponents"
+    }
+   ],
+   "note": "Live bank has no fractional-exponent item."
+  },
+  {
+   "id": "IM16C-13",
+   "method": "find a constant from one given function value (k|x-4|+3), then evaluate at a new input",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "04088c8c",
+     "why": "find a constant from one data point then evaluate at new inputs (joint variation); same skeleton, different relation and no absolute value"
+    }
+   ],
+   "note": "Absolute-value live items (0ced4a24, 16b9481b, 7b7201a1, ba7f14e1) solve equations/inequalities, not parameter-then-evaluate. C-03 fits two coefficients from two values: different."
+  },
+  {
+   "id": "IM16C-14",
+   "method": "scientific notation product and quotient: multiply/divide coefficients, add/subtract exponents (with negative exponents)",
+   "live_dups": [
+    {
+     "row": "eb9b9d6c",
+     "why": "(2.5 x 10^3)(4 x 10^2): same coefficient-times-coefficient, add-exponents rule; C-14 only adds a division and negative exponents, same rule applied once more"
+    }
+   ],
+   "batch_dups": [
+    {
+     "id": "IM16A-05",
+     "why": "(8 x 10^-3)^2 / (4 x 10^-8): same coefficient/exponent bookkeeping with negative exponents and a division"
+    }
+   ],
+   "borderline": [],
+   "note": "Both the live row and A-05 rehearse the same chain; A-05 and C-14 should not both ship."
+  },
+  {
+   "id": "IM16E-02",
+   "method": "mirror-image clock: reflect each hand angle A to 360 - A (minute and hour), convert back to a time",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "b3086974",
+     "why": "hour-hand angle at h:mm (4:40) computed the same way, but no reflection step"
+    },
+    {
+     "ref": "44277b63",
+     "why": "minute-hand degrees per minute only"
+    }
+   ],
+   "note": "No mirror/reflected-clock item in live or batch."
+  },
+  {
+   "id": "IM16E-05",
+   "method": "parity pattern of a Fibonacci-type recurrence (period 3), then count evens among the first n terms",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "9679fb76",
+     "why": "counts/sums over a period-3 repeating pattern up to term n, but the period is given, not derived from parity"
+    },
+    {
+     "ref": "e4679894",
+     "why": "same sum-of-two-previous recurrence, but works backward to a term; no parity"
+    }
+   ],
+   "note": "E-04 (units digit cycle of powers of 2) is a cycle-then-count item but on a different object; not a dup."
+  },
+  {
+   "id": "IM16E-14",
+   "method": "x-coordinate after n moves = alternating sum +1 -3 +5 -7 ... of the odd-numbered move lengths; pair terms (each pair -2), then add the leftover",
+   "live_dups": [
+    {
+     "row": "b5a7e6e8",
+     "why": "sum of -3 + 5 - 7 + 9 ... (25 terms): the same pairing of an alternating odd-number sequence into constant pairs plus a leftover term; E-14 wraps it in a spiral-walk context"
+    }
+   ],
+   "borderline": [],
+   "batch_dups": [],
+   "note": "Context (robot spiral, dropping the y-moves) adds one setup step but the computing chain is the rehearsed alternating-pair sum. E-19 (alternating reflections) is periodic, not a sum: not a dup."
+  },
+  {
+   "id": "IM16F-01",
+   "method": "choose k non-adjacent seats from n in a row: place n-k unchosen seats, choose k of the n-k+1 gaps, C(n-k+1,k)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "0314f3eb",
+     "why": "probability two chosen numbers from 1-8 are consecutive (adjacency for k=2 by direct count); no gap method"
+    },
+    {
+     "ref": "2cb9f80f",
+     "why": "no-two-adjacent arrangement, but alternating permutations of labelled people"
+    }
+   ],
+   "note": "Gap (stars-and-bars style) method absent from live; F-06 is distribution with minimums, different."
+  },
+  {
+   "id": "IM16F-17",
+   "method": "conditional probability by restricting the sample space: remove outcomes excluded by 'at least one head' (8 -> 7), count favourable",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "1a22c426",
+     "why": "conditional probability with a restricted denominator, read from a two-way table rather than by excluding outcomes of coin tosses"
+    },
+    {
+     "ref": "89e17b66",
+     "why": "'at least one' via complement, but unconditional"
+    },
+    {
+     "ref": "e85ebf63",
+     "why": "P(three heads) = 1/8 unconditional; F-17 is its conditional twist"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "IM16F-19",
+   "method": "relative order symmetry: the 3! orders of three named items among a random permutation are equally likely, so a specified order has probability 1/6",
+   "live_dups": [
+    {
+     "row": "fd06e0ab",
+     "why": "probability a random 3-digit code from distinct digits 1-5 is in increasing order = 1/3! = 1/6: the same one-of-3!-equally-likely-orders argument, answer 1/6 too"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "Different context (runners vs digit code) but identical reasoning and identical answer."
+  }
+ ],
+ "prefreeze_drops": {
+  "IM16C-14": "second confirmed duplicate on a returned slot (live eb9b9d6c, batch IM16A-05)",
+  "IM16E-14": "second confirmed duplicate on a returned slot (live b5a7e6e8 alternating odd sum by pairing)",
+  "IM16F-19": "second confirmed duplicate on a returned slot (live fd06e0ab one-of-3! orders = 1/6)"
+ }
+}

@@ -1,0 +1,524 @@
+[
+  {
+    "id": "IM16C-01",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "recovering a linear function from its composition with itself, then evaluating it",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = ax + b, where a and b are constants and a > 0. For every number x, f(f(x)) = 16x + 15. What is the value of f(2)?",
+    "choices": [
+      "13",
+      "10",
+      "11",
+      "23"
+    ],
+    "correct_answer": "11",
+    "explanation": "Hard: three dependent steps, none a recall fact - compose f with itself, match coefficients to get a, then use a to get b, then evaluate. f(f(x)) = a(ax + b) + b = a^2 x + ab + b. Matching, a^2 = 16 with a > 0 gives a = 4, and ab + b = 5b = 15 gives b = 3, so f(x) = 4x + 3 and f(2) = 11. The option \"13\" writes the constant as b(a - 1) instead of b(a + 1), so 3b = 15 and b = 5. The option \"23\" composes as ax + b with only the outer b, taking b = 15. The option \"10\" finds a = 4 and b = 3 but swaps their roles, evaluating 3(2) + 4.",
+    "solve": "const a=Math.sqrt(16); const b=15/(a+1); return a*2+b;",
+    "distractor_solve": {
+      "10": "const a=4,b=3; return b*2+a;",
+      "13": "const a=4; const b=15/(a-1); return a*2+b;",
+      "23": "const a=4; const b=15; return a*2+b;"
+    },
+    "forced": [
+      "positive: a > 0 and b = 15/(a + 1) > 0, so f(2) = 2a + b > 0 (all four positive)",
+      "greater than 2: for x above the fixed point -1 the increasing f moves x upward (all four exceed 2)",
+      "less than f(f(2)) = 47, since f is increasing and f(2) > 2 (all four below 47)",
+      "no integrality is forced by the stem (all four are integers anyway)"
+    ]
+  },
+  {
+    "id": "IM16C-02",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "a pair of equations in reciprocals, solved by treating 1/x and 1/y as the unknowns",
+    "difficulty": "hard",
+    "prompt": "The nonzero numbers x and y satisfy 1/x + 1/y = 5/6 and 1/x - 1/y = 1/6. What is the value of x + y?",
+    "choices": [
+      "1.2",
+      "2.5",
+      "3.5",
+      "5"
+    ],
+    "correct_answer": "5",
+    "explanation": "Hard: one non-routine idea - treat 1/x and 1/y, not x and y, as the unknowns - then eliminate and invert each before adding. Adding the equations gives 2/x = 1, so 1/x = 1/2 and x = 2; subtracting gives 2/y = 4/6, so 1/y = 1/3 and y = 3. So x + y = 5. The option \"2.5\" adds and subtracts the equations but forgets to halve, taking 1/x = 1 and 1/y = 2/3, so x = 1 and y = 1.5. The option \"3.5\" inverts 1/y = 1/3 to get y = 3 but leaves 1/x = 1/2 as x = 1/2. The option \"1.2\" treats 1/x + 1/y as 1/(x + y) and inverts 5/6.",
+    "solve": "const u=(5/6+1/6)/2, v=(5/6-1/6)/2; return 1/u+1/v;",
+    "distractor_solve": {
+      "2.5": "const u=5/6+1/6, v=5/6-1/6; return 1/u+1/v;",
+      "3.5": "const u=(5/6+1/6)/2, v=(5/6-1/6)/2; return u+1/v;",
+      "1.2": "return 1/(5/6);"
+    },
+    "forced": [
+      "no sign is forced on x or y without solving (all four positive)",
+      "no integrality forced (1.2, 2.5 and 3.5 are not integers)",
+      "no bound on x + y is printed: the right sides 5/6 and 1/6 cap 1/x and 1/y, not x + y, until the system is solved"
+    ]
+  },
+  {
+    "id": "IM16C-03",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "finding b and c of x^2 + bx + c from two values, then evaluating at a third input",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x^2 + bx + c, where b and c are constants. If f(1) = 5 and f(3) = 15, what is the value of f(5)?",
+    "choices": [
+      "34",
+      "65",
+      "33",
+      "37"
+    ],
+    "correct_answer": "33",
+    "explanation": "Hard: three dependent steps - subtract the two conditions to isolate b, back-substitute for c, then evaluate. f(3) - f(1) = (9 - 1) + 2b = 10, so 2b = 2 and b = 1. Then 1 + 1 + c = 5 gives c = 3, so f(5) = 25 + 5 + 3 = 33. The option \"34\" finds b = 1 but takes c = 5 - 1, dropping the b term from f(1). The option \"37\" writes the difference as 8 + b, dropping the factor 2, so b = 2, c = 2 and f(5) = 25 + 10 + 2. The option \"65\" moves the 8 to the wrong side, 2b = 10 + 8, so b = 9, c = -5 and f(5) = 25 + 45 - 5.",
+    "solve": "const b=(15-5-(9-1))/2; const c=5-1-b; return 25+5*b+c;",
+    "distractor_solve": {
+      "34": "const b=1; const c=5-1; return 25+5*b+c;",
+      "37": "const b=(15-5-8); const c=5-1-b; return 25+5*b+c;",
+      "65": "const b=(10+8)/2; const c=5-1-b; return 25+5*b+c;"
+    },
+    "forced": [
+      "f is a parabola opening upward, so f(5) exceeds the straight-line extension through f(1) and f(3), which is 25 (all four exceed 25)",
+      "f(5) > f(3) = 15 because the vertex is left of 3 once the upward-opening values rise from 5 to 15 (all four)",
+      "no integrality forced by the stem beyond what b and c give (all four integers)"
+    ]
+  },
+  {
+    "id": "IM16C-04",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "evaluating an outer function known only through a composition, by working back to the inner input",
+    "difficulty": "hard",
+    "prompt": "The functions f and g satisfy f(x) = 2x - 1 and g(f(x)) = 6x + 5 for every number x. What is the value of g(7)?",
+    "choices": [
+      "29",
+      "47",
+      "53",
+      "83"
+    ],
+    "correct_answer": "29",
+    "explanation": "Hard: one non-routine idea - g is never given directly, so you must work back to the input x that makes f(x) = 7 before using the composition. 2x - 1 = 7 gives x = 4, and then g(7) = g(f(4)) = 6(4) + 5 = 29. The option \"47\" substitutes 7 straight into 6x + 5, treating g(f(x)) as if it were g(x). The option \"53\" clears 2x - 1 = 7 to 2x = 8 but stops there, using x = 8: 6(8) + 5. The option \"83\" applies f to 7 instead of undoing it, f(7) = 13, and then uses 13 as x: 6(13) + 5.",
+    "solve": "const x=(7+1)/2; return 6*x+5;",
+    "distractor_solve": {
+      "47": "return 6*7+5;",
+      "53": "const x=7+1; return 6*x+5;",
+      "83": "const x=2*7-1; return 6*x+5;"
+    },
+    "forced": [
+      "g(7) equals 6x + 5 for some number x, so if x is a whole number it leaves remainder 5 on division by 6 (all four do: 29, 47, 53, 83)",
+      "odd if x is a whole number (all four odd)",
+      "no sign or range is forced for g by the stem (g's formula is not given)"
+    ]
+  },
+  {
+    "id": "IM16C-05",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "evaluating a product of numbers raised to fractional and negative exponents",
+    "difficulty": "medium",
+    "prompt": "What is the value of 8^(-2/3) x 4^(3/2) ?",
+    "choices": [
+      "1.5",
+      "4",
+      "32",
+      "2"
+    ],
+    "correct_answer": "2",
+    "explanation": "Medium: two routine rational-exponent evaluations and a product; each uses the root-then-power rule. 8^(-2/3) = 1/(cube root of 8)^2 = 1/4 and 4^(3/2) = (sqrt(4))^3 = 8, so the product is 8/4 = 2. The option \"1.5\" multiplies by the exponent instead of raising to it, 4^(3/2) = 4 x 3/2 = 6, so 6/4. The option \"4\" takes the cube root of 8 but forgets to square it, 8^(-2/3) = 1/2, so 8/2. The option \"32\" drops the negative sign, 8^(2/3) = 4, so 4 x 8.",
+    "solve": "return Math.round(Math.pow(8,-2/3)*Math.pow(4,1.5)*1e9)/1e9;",
+    "distractor_solve": {
+      "4": "return (1/Math.cbrt(8))*Math.pow(4,1.5);",
+      "32": "return Math.round(Math.pow(8,2/3)*Math.pow(4,1.5)*1e9)/1e9;",
+      "1.5": "return Math.round(Math.pow(8,-2/3)*(4*3/2)*1e9)/1e9;"
+    },
+    "forced": [
+      "positive: powers of positive bases are positive (all four positive)",
+      "no integrality forced (1.5 is not an integer)"
+    ]
+  },
+  {
+    "id": "IM16C-06",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "squaring a sum of two radicals and matching the form a + b sqrt(3)",
+    "difficulty": "medium",
+    "prompt": "For integers a and b, (sqrt(6) + sqrt(2))^2 = a + b sqrt(3). What is the value of a + b?",
+    "choices": [
+      "10",
+      "12",
+      "16",
+      "32"
+    ],
+    "correct_answer": "12",
+    "explanation": "Medium: a routine binomial square followed by one radical simplification. (sqrt(6) + sqrt(2))^2 = 6 + 2 + 2 sqrt(12) = 8 + 4 sqrt(3), so a = 8, b = 4 and a + b = 12. The option \"10\" drops the 2 in the middle term, writing 8 + sqrt(12) = 8 + 2 sqrt(3). The option \"16\" multiplies the squared terms instead of adding them, a = 6 x 2 = 12, with b = 4. The option \"32\" multiplies the radicands in the cross term without taking the root, 2 x 6 x 2 = 24, and adds it to 8.",
+    "solve": "const a=6+2; const b=2*Math.sqrt(12)/Math.sqrt(3); return Math.round(a+b);",
+    "distractor_solve": {
+      "10": "const a=8; const b=Math.sqrt(12)/Math.sqrt(3); return a+b;",
+      "16": "const a=6*2; const b=4; return a+b;",
+      "32": "return 8+2*6*2;"
+    },
+    "forced": [
+      "a + b is an integer (given)",
+      "the value exceeds 8, since b sqrt(3) is a positive cross term added to 6 + 2 (all four exceed 8)",
+      "no other bound: b is not printed"
+    ]
+  },
+  {
+    "id": "IM16C-07",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "counting integer solutions of an inequality with a sum of two absolute values",
+    "difficulty": "hard",
+    "prompt": "How many integers x satisfy |x - 2| + |x + 4| <= 10?",
+    "choices": [
+      "9",
+      "15",
+      "10",
+      "11"
+    ],
+    "correct_answer": "11",
+    "explanation": "Hard: a case split into three regions, each solved separately, then a union and a count. Between -4 and 2 the sum is the distance 6, so every integer from -4 to 2 works. For x > 2 the sum is 2x + 2 <= 10, so x <= 4. For x < -4 the sum is -2x - 2 <= 10, so x >= -6. The solutions are the integers from -6 to 4, which is 11 integers. The option \"9\" solves only the middle region and the right-hand case, counting -4 through 4. The option \"10\" finds -6 and 4 but subtracts them, 4 - (-6), instead of counting both ends. The option \"15\" requires each absolute value to be at most 10 on its own, giving -8 through 6.",
+    "solve": "let n=0; for(let x=-50;x<=50;x++){ if(Math.abs(x-2)+Math.abs(x+4)<=10) n++; } return n;",
+    "distractor_solve": {
+      "9": "let n=0; for(let x=-4;x<=50;x++){ if(Math.abs(x-2)+Math.abs(x+4)<=10) n++; } return n;",
+      "10": "return 4-(-6);",
+      "15": "let n=0; for(let x=-50;x<=50;x++){ if(Math.abs(x-2)<=10 && Math.abs(x+4)<=10) n++; } return n;"
+    },
+    "forced": [
+      "at least 7: every integer from -4 to 2 gives a sum of exactly 6 (all four are at least 9)",
+      "at most 21: |x - 2| <= 10 alone allows only -8 through 12 (all four below 21)",
+      "a whole-number count (all four)"
+    ]
+  },
+  {
+    "id": "IM16C-08",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "sum of cubes from a sum and a sum of squares, through the product",
+    "difficulty": "hard",
+    "prompt": "The numbers x and y satisfy x + y = 6 and x^2 + y^2 = 30. What is the value of x^3 + y^3?",
+    "choices": [
+      "162",
+      "108",
+      "177",
+      "144"
+    ],
+    "correct_answer": "162",
+    "explanation": "Hard: three dependent steps, none a recall fact - get the product from the square of the sum, factor the sum of cubes, then substitute. (x + y)^2 = 36 = 30 + 2xy, so xy = 3. Then x^3 + y^3 = (x + y)(x^2 - xy + y^2) = 6(30 - 3) = 162. The option \"108\" takes xy = 36 - 30 = 6 without halving and then uses the expanded form (x + y)^3 - 3xy(x + y) = 216 - 108. The option \"144\" uses x^2 - 2xy + y^2 in place of x^2 - xy + y^2: 6(30 - 6). The option \"177\" multiplies 6 by 30 and subtracts only xy = 3, never multiplying xy by x + y.",
+    "solve": "const s=6,q=30; const p=(s*s-q)/2; return s*(q-p);",
+    "distractor_solve": {
+      "108": "const s=6,q=30; const p=s*s-q; return s**3-3*p*s;",
+      "144": "const s=6,q=30; const p=(s*s-q)/2; return s*(q-2*p);",
+      "177": "const s=6,q=30; const p=(s*s-q)/2; return s*q-p;"
+    },
+    "forced": [
+      "x and y are both positive (sum 6, product 3), so x^3 + y^3 lies strictly between (x + y)^3/4 = 54 and (x + y)^3 = 216 (all four do)",
+      "x^3 + y^3 = (x + y)(x^2 + y^2) - xy(x + y) is strictly below 6 x 30 = 180 (all four are below 180)",
+      "no integrality forced without the product (all four integers)"
+    ]
+  },
+  {
+    "id": "IM16C-09",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "recognizing a perfect-square trinomial to get a ratio, then evaluating a ratio expression",
+    "difficulty": "hard",
+    "prompt": "The numbers a and b are positive, and a^2 - 4ab + 4b^2 = 0. What is the value of (a + 3b)/(a + b)?",
+    "choices": [
+      "7/5",
+      "5/3",
+      "7/3",
+      "5/2"
+    ],
+    "correct_answer": "5/3",
+    "explanation": "Hard: one non-routine idea - the left side is the perfect square (a - 2b)^2, which forces a = 2b - followed by substitution into the ratio. With a = 2b, (a + 3b)/(a + b) = 5b/3b = 5/3. The option \"7/5\" reads the middle coefficient as the ratio, a = 4b, giving 7b/5b. The option \"7/3\" inverts the ratio, a = b/2, giving 3.5b/1.5b. The option \"5/2\" uses a = 2b but drops the b in the denominator, dividing 5b by 2b.",
+    "solve": "const b=1, a=2*b; const g=(x,y)=>{while(y){[x,y]=[y,x%y]}return x}; const n=a+3*b, d=a+b; const k=g(n,d); return (n/k)+'/'+(d/k);",
+    "distractor_solve": {
+      "7/5": "const b=1,a=4*b; return (a+3*b)+'/'+(a+b);",
+      "7/3": "const b=2,a=b/2; return (a+3*b)+'/'+(a+b);",
+      "5/2": "const b=1,a=2*b; return (a+3*b)+'/'+a;"
+    },
+    "forced": [
+      "for positive a and b, (a + 3b)/(a + b) lies strictly between 1 and 3 (all four do)",
+      "a positive fraction, not an integer (all four are non-integer fractions)"
+    ]
+  },
+  {
+    "id": "IM16C-10",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "constants that make a two-equation linear system dependent (infinitely many solutions)",
+    "difficulty": "medium",
+    "prompt": "The system of equations 4x + ay = 18 and 6x + 9y = b, where a and b are constants, has infinitely many solutions (x, y). What is the value of a + b?",
+    "choices": [
+      "24",
+      "33",
+      "18",
+      "27"
+    ],
+    "correct_answer": "33",
+    "explanation": "Medium: one standard idea applied in two routine steps - for infinitely many solutions the second equation must be a multiple of the first. The x-coefficients give the multiple 6/4 = 3/2, so 9 = (3/2)a gives a = 6 and b = (3/2)(18) = 27, and a + b = 33. The option \"24\" finds a = 6 but takes b = 18, thinking the two constants must be equal. The option \"18\" finds a = 6 but scales the constant the wrong way, b = (2/3)(18) = 12. The option \"27\" treats the equations as related by adding, not multiplying: 6 - 4 = 2, so a = 9 - 2 = 7 and b = 18 + 2 = 20.",
+    "solve": "const k=6/4; const a=9/k; const b=18*k; return a+b;",
+    "distractor_solve": {
+      "18": "const a=9/(6/4); const b=18*(4/6); return a+b;",
+      "24": "const a=9/(6/4); return a+18;",
+      "27": "const d=6-4; return (9-d)+(18+d);"
+    },
+    "forced": [
+      "no sign or range is forced on a or b by the stem (all four positive)",
+      "no integrality forced without the scale factor (all four integers)"
+    ]
+  },
+  {
+    "id": "IM16C-11",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "greatest value of a quotient when each variable ranges over an interval",
+    "difficulty": "medium",
+    "prompt": "The numbers x and y satisfy 2 <= x <= 5 and 3 <= y <= 8. What is the greatest possible value of (x + y)/x ?",
+    "choices": [
+      "13/5",
+      "5",
+      "8",
+      "8/5"
+    ],
+    "correct_answer": "5",
+    "explanation": "Medium: one decision - rewrite (x + y)/x as 1 + y/x and see that it is largest when y is largest and x is smallest. That gives 1 + 8/2 = 5. The option \"13/5\" takes both variables at their largest, (5 + 8)/5. The option \"8/5\" makes y as small and x as large as possible, which gives the least value, (5 + 3)/5, not the greatest. The option \"8\" cancels the x's as if (x + y)/x were y, and then takes y = 8.",
+    "solve": "let best=-1e9; for(let x=2;x<=5;x+=0.5) for(let y=3;y<=8;y+=0.5){ best=Math.max(best,(x+y)/x);} return best;",
+    "distractor_solve": {
+      "8": "return 8;",
+      "13/5": "return (5+8)/5;",
+      "8/5": "return (5+3)/5;"
+    },
+    "forced": [
+      "greater than 1, since y/x > 0 (all four exceed 1)",
+      "no upper bound is printed for the quotient itself; the cap of 5 comes only from doing the method"
+    ]
+  },
+  {
+    "id": "IM16C-12",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "a fourth-degree equation solved as a quadratic in x^2",
+    "difficulty": "hard",
+    "prompt": "What is the sum of all the positive numbers x that satisfy x^4 - 13x^2 + 36 = 0 ?",
+    "choices": [
+      "10",
+      "13",
+      "7",
+      "5"
+    ],
+    "correct_answer": "5",
+    "explanation": "Hard: one non-routine idea - treat x^2 as a single unknown - followed by factoring and taking square roots. x^4 - 13x^2 + 36 = (x^2 - 4)(x^2 - 9) = 0, so x^2 = 4 or 9 and the positive solutions are 2 and 3, with sum 5. The option \"13\" stops at the values of x^2 and adds 4 + 9. The option \"7\" factors with the wrong pair of factors of 36, (x^2 - 1)(x^2 - 36), so the positive solutions would be 1 and 6. The option \"10\" counts each of 2 and 3 twice, adding the negative solutions as if they were positive.",
+    "solve": "const r=[]; for(let x=0.5;x<=10;x+=0.5){ if(Math.abs(x**4-13*x*x+36)<1e-9) r.push(x);} return r.reduce((a,b)=>a+b,0);",
+    "distractor_solve": {
+      "7": "return Math.sqrt(1)+Math.sqrt(36);",
+      "10": "return 2*(2+3);",
+      "13": "return 4+9;"
+    },
+    "forced": [
+      "positive (a sum of positive numbers; all four positive)",
+      "no bound on the sum is printed: the constant 36 and coefficient 13 do not cap it without solving"
+    ]
+  },
+  {
+    "id": "IM16C-13",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "finding the coefficient of an absolute-value function from one value, then evaluating it elsewhere",
+    "difficulty": "medium",
+    "prompt": "The function g is defined by g(x) = k|x - 4| + 3, where k is a constant. If g(1) = 15, what is the value of g(10)?",
+    "choices": [
+      "27",
+      "30",
+      "39",
+      "59"
+    ],
+    "correct_answer": "27",
+    "explanation": "Medium: two routine steps - use the given value to find k, then evaluate at a new input, taking care with the absolute value. g(1) = k|1 - 4| + 3 = 3k + 3 = 15, so k = 4, and g(10) = 4|10 - 4| + 3 = 4(6) + 3 = 27. The option \"30\" reasons proportionally: |10 - 4| = 6 is twice |1 - 4| = 3, so it doubles all of g(1) = 15, including the +3. The option \"39\" finds k = 4 but drops the absolute value bars and the parentheses, writing 4 x 10 - 4 + 3. The option \"59\" finds k = 4 but evaluates |10 - 4| as |10 + 4| = 14.",
+    "solve": "const k=(15-3)/Math.abs(1-4); return k*Math.abs(10-4)+3;",
+    "distractor_solve": {
+      "30": "return 15*(Math.abs(10-4)/Math.abs(1-4));",
+      "39": "const k=4; return k*10-4+3;",
+      "59": "const k=4; return k*Math.abs(10+4)+3;"
+    },
+    "forced": [
+      "k > 0 because g(1) = 15 exceeds the +3, and |10 - 4| = 6 exceeds |1 - 4| = 3, so g(10) > g(1) = 15 (all four exceed 15)",
+      "an integer if k is (all four integers)"
+    ]
+  },
+  {
+    "id": "IM16C-14",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "multiplying and dividing numbers in scientific notation, combining the powers of ten",
+    "difficulty": "medium",
+    "prompt": "What is the value of (6 x 10^5)(4 x 10^-8) / (8 x 10^-6) ?",
+    "choices": [
+      "30",
+      "30000000",
+      "3000",
+      "0.000000003"
+    ],
+    "correct_answer": "3000",
+    "explanation": "Medium: routine exponent rules applied in sequence - multiply the coefficients and add the exponents, then divide and subtract. The coefficients give 6 x 4 / 8 = 3 and the exponents give 5 + (-8) - (-6) = 3, so the value is 3 x 10^3 = 3000. The option \"0.000000003\" subtracts -6 as if it were +6: 5 - 8 - 6, giving 3 x 10^-9. The option \"30000000\" drops the sign of the -8: 5 + 8 - 6, giving 3 x 10^7. The option \"30\" rewrites 24 x 10^-3 as 2.4 x 10^-4, moving the decimal point the wrong way, and then divides by 8 x 10^-6 to get 0.3 x 10^2 = 30.",
+    "solve": "return Math.round(6e5*4e-8/8e-6*1e6)/1e6;",
+    "distractor_solve": {
+      "30": "return Math.round((2.4e-4)/(8e-6)*1e6)/1e6;",
+      "30000000": "return 3*Math.pow(10,5+8-6);",
+      "0.000000003": "return (3*Math.pow(10,5-8-6)).toFixed(9);"
+    },
+    "forced": [
+      "positive (all four)",
+      "the coefficient is 6 x 4 / 8 = 3 in every reading, so only the power of ten is decided by the method (every option is 3 times a power of ten)"
+    ]
+  },
+  {
+    "id": "IM16C-15",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "the value that gives a quadratic equation exactly one solution, fed back into the function",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x^2 - 6x + 5. The equation f(x) = k, where k is a constant, has exactly one solution. What is the value of f(k)?",
+    "choices": [
+      "45",
+      "-3",
+      "13",
+      "140"
+    ],
+    "correct_answer": "45",
+    "explanation": "Hard: three dependent steps - see that exactly one solution means k is the minimum value of f, find that minimum, then evaluate f at it. x^2 - 6x + 5 = (x - 3)^2 - 4, so f(x) = k has one solution only when k = -4, and f(-4) = 16 + 24 + 5 = 45. The option \"-3\" completes the square with the wrong sign, 5 + k = 9, so k = 4 and f(4) = -3. The option \"140\" takes k as minus the constant the perfect square needs, k = -9, and f(-9) = 81 + 54 + 5 = 140. The option \"13\" finds k = -4 but squares -4 as -16: -16 + 24 + 5.",
+    "solve": "const k=5-9; return k*k-6*k+5;",
+    "distractor_solve": {
+      "13": "const k=-4; return -(k*k)-6*k+5;",
+      "140": "const k=-9; return k*k-6*k+5;",
+      "-3": "const k=9-5; return k*k-6*k+5;"
+    },
+    "forced": [
+      "f(k) is a value of f, so it is at least the minimum of f, -4 (all four are at least -4)",
+      "an integer if k is (all four integers)"
+    ]
+  },
+  {
+    "id": "IM16C-16",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "completing the square when the leading coefficient is not 1",
+    "difficulty": "medium",
+    "prompt": "The expression 2x^2 + 8x + 3 can be written in the form 2(x + h)^2 + k, where h and k are constants. What is the value of h + k?",
+    "choices": [
+      "-25",
+      "-11",
+      "-3",
+      "-7"
+    ],
+    "correct_answer": "-3",
+    "explanation": "Medium: a standard completing-the-square procedure with one extra care point, the factor 2. 2x^2 + 8x + 3 = 2(x^2 + 4x) + 3 = 2(x + 2)^2 - 8 + 3, so h = 2, k = -5 and h + k = -3. The option \"-7\" takes h = -2, reading the sign inside (x + h)^2 backwards, with k = -5. The option \"-11\" finds h = 2 but subtracts 4^2 = 16 instead of 2 x 2^2 = 8, so k = -13. The option \"-25\" halves 8 instead of 4 inside the bracket, h = 4, and then subtracts 2 x 16 = 32, so k = -29.",
+    "solve": "const a=2,b=8,c=3; const h=b/(2*a); const k=c-a*h*h; return h+k;",
+    "distractor_solve": {
+      "-7": "const h=-2,k=3-2*4; return h+k;",
+      "-11": "const h=2,k=3-16; return h+k;",
+      "-25": "const h=8/2; const k=3-2*h*h; return h+k;"
+    },
+    "forced": [
+      "no sign is forced on h + k without the method (all four negative)",
+      "an integer, since 8 is divisible by 2 x 2 (all four integers)"
+    ]
+  },
+  {
+    "id": "IM16C-17",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "length of the time interval on which a quadratic height exceeds a level",
+    "difficulty": "hard",
+    "prompt": "A ball is thrown upward. Its height, in feet, t seconds after it is thrown is h(t) = -16t^2 + 80t + 6. For how many seconds is the ball more than 70 feet above the ground?",
+    "choices": [
+      "3",
+      "2.5",
+      "1",
+      "1.5"
+    ],
+    "correct_answer": "3",
+    "explanation": "Hard: three dependent steps - set up the inequality, factor the resulting quadratic to find both crossing times, then take the length of the interval between them. -16t^2 + 80t + 6 > 70 gives 16t^2 - 80t + 64 < 0, or t^2 - 5t + 4 < 0, so (t - 1)(t - 4) < 0 and 1 < t < 4: the ball is above 70 feet for 4 - 1 = 3 seconds. The option \"1\" reports the time the ball first rises past 70 feet, not how long it stays above. The option \"2.5\" is the time the ball reaches its highest point, -80/(2 x -16). The option \"1.5\" measures only from the first crossing to the top, 2.5 - 1.",
+    "solve": "const r1=(5-Math.sqrt(25-16))/2, r2=(5+Math.sqrt(25-16))/2; return r2-r1;",
+    "distractor_solve": {
+      "1": "return (5-Math.sqrt(25-16))/2;",
+      "2.5": "return -80/(2*-16);",
+      "1.5": "return -80/(2*-16)-(5-Math.sqrt(25-16))/2;"
+    },
+    "forced": [
+      "positive and shorter than the whole flight, which lasts a little over 5 seconds (h(5) = 6 > 0); all four are between 0 and 5",
+      "no integrality forced (2.5 and 1.5 are halves)"
+    ]
+  },
+  {
+    "id": "IM16C-18",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "counting integers that satisfy a square condition and a cube condition at once",
+    "difficulty": "hard",
+    "prompt": "How many integers x satisfy both x^2 < 50 and x^3 > -30 ?",
+    "choices": [
+      "10",
+      "15",
+      "11",
+      "8"
+    ],
+    "correct_answer": "11",
+    "explanation": "Hard: two conditions of different kinds that bind on different sides - the square condition sets the upper end and the cube condition, because a cube keeps its sign, sets the lower end - followed by an intersection and a count. x^2 < 50 allows -7 through 7. x^3 > -30 allows x >= -3, since (-3)^3 = -27 but (-4)^3 = -64. Together, -3 through 7: 11 integers. The option \"15\" ignores the cube condition and counts -7 through 7. The option \"8\" treats both conditions as ruling out negatives and counts 0 through 7. The option \"10\" finds -3 and 7 but subtracts them, 7 - (-3), instead of counting both ends.",
+    "solve": "let n=0; for(let x=-100;x<=100;x++){ if(x*x<50 && x**3>-30) n++; } return n;",
+    "distractor_solve": {
+      "8": "let n=0; for(let x=0;x<=100;x++){ if(x*x<50) n++; } return n;",
+      "10": "return 7-(-3);",
+      "15": "let n=0; for(let x=-100;x<=100;x++){ if(x*x<50) n++; } return n;"
+    },
+    "forced": [
+      "at most 15, the count allowed by x^2 < 50 alone (all four are at most 15)",
+      "at least 8, since 0 through 7 satisfy both (all four are at least 8)",
+      "a whole-number count"
+    ]
+  },
+  {
+    "id": "IM16C-19",
+    "family": "isee",
+    "section": "math",
+    "domain": "Math",
+    "subskill": "constant term of a quadratic from its stated minimum value, then evaluation",
+    "difficulty": "hard",
+    "prompt": "The function f is defined by f(x) = x^2 + 4x + c, where c is a constant. The least value of f(x) is 7. What is the value of f(1)?",
+    "choices": [
+      "12",
+      "8",
+      "13",
+      "16"
+    ],
+    "correct_answer": "16",
+    "explanation": "Hard: three dependent steps - locate where the minimum occurs, use the stated minimum to find c, then evaluate. f(x) = (x + 2)^2 + c - 4, so the least value is c - 4 = 7 and c = 11; then f(1) = 1 + 4 + 11 = 16. The option \"12\" takes the least value to be the constant term, c = 7. The option \"8\" completes the square with the wrong sign, c = 7 - 4 = 3. The option \"13\" writes f(x) = (x + 2)^2 + 7 correctly but evaluates (1 + 2)^2 as 2 x 3 = 6.",
+    "solve": "const c=7+4; return 1+4+c;",
+    "distractor_solve": {
+      "8": "const c=7-4; return 1+4+c;",
+      "12": "const c=7; return 1+4+c;",
+      "13": "return 2*(1+2)+7;"
+    },
+    "forced": [
+      "greater than 7, since 7 is the least value and it occurs at x = -2, not at x = 1 (all four exceed 7)",
+      "an integer (all four)"
+    ]
+  }
+]
