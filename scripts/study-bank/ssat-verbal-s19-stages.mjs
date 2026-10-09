@@ -142,11 +142,21 @@ if (cmd === 'grade-render') {
   writeFileSync(`scripts/study-bank/${tag}.gradekey.json`, JSON.stringify(gkey, null, 1) + '\n')
   console.log(`${tag}: ${render.length} items rendered with source (seed ${seed})`)
 } else if (cmd === 'oo-extra' || cmd === 'qc') {
-  const gi = a.indexOf('--graders')
-  const pos = gi >= 0 ? a.slice(0, gi) : a
+  // --exclude-blind L64[,L65]: a sensitivity run with those blind ids (and their batch items)
+  // removed (deviation 1, the L64 blindness breach). Never used for the primary result.
+  const xi = a.indexOf('--exclude-blind')
+  const excl = new Set(xi >= 0 ? String(a[xi + 1] ?? '').split(',').filter(Boolean) : [])
+  if (xi >= 0 && !excl.size) { console.error('REFUSING: --exclude-blind names no id'); process.exit(2) }
+  const a2 = xi >= 0 ? [...a.slice(0, xi), ...a.slice(xi + 2)] : a
+  const gi = a2.indexOf('--graders')
+  const pos = gi >= 0 ? a2.slice(0, gi) : a2
   const [bp, kp, ...sp] = pos
-  const batch = rd(bp); const byId = Object.fromEntries(batch.map(it => [it.id, it]))
-  const { key, ids, sol } = loadSolvers(kp, sp)
+  const loaded = loadSolvers(kp, sp)
+  for (const id of excl) if (!loaded.key[id]) { console.error(`REFUSING: --exclude-blind ${id} is not in the key`); process.exit(2) }
+  const exLocal = new Set([...excl].map(id => loaded.key[id].localId))
+  const batch = rd(bp).filter(it => !exLocal.has(it.id)); const byId = Object.fromEntries(batch.map(it => [it.id, it]))
+  const key = loaded.key, sol = loaded.sol, ids = loaded.ids.filter(id => !excl.has(id))
+  if (excl.size) console.log(`SENSITIVITY RUN: excluded ${[...excl].join(',')} (${[...exLocal].join(',')}); not the primary result`)
   const blind = rd(kp.replace('.key.json', '.blind.json'))
   const arms = { candidate: [], 'live-control': [] }
   for (const id of ids) arms[key[id].kind ?? 'candidate'].push(id)
@@ -184,7 +194,7 @@ if (cmd === 'grade-render') {
     const picks = Object.fromEntries(Object.keys(fam).map(id => [id, sol.map(s => String(s[id].pick).toUpperCase())]))
     printGate(precisionGate(fam, keyLetter, picks), '')
   }
-  if (cmd === 'qc') qc({ a, gi, bp, kp, batch, key, sol, blind, cand })
+  if (cmd === 'qc') { if (excl.size) { console.error('REFUSING: qc never runs on a sensitivity subset'); process.exit(2) } qc({ a: a2, gi, bp, kp, batch, key, sol, blind, cand }) }
 } else if (cmd === 'gate-breaktest') breaktest()
 else { console.error('usage: grade-render | oo-extra | qc | gate-breaktest (see header)'); process.exit(2) }
 }
