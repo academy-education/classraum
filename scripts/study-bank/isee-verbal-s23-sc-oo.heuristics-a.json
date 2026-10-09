@@ -1,0 +1,34 @@
+{
+ "heuristics": [
+  {
+   "name": "test-register",
+   "description": "the option most typical of a school-level sentence context",
+   "picks_decided": 181
+  },
+  {
+   "name": "collocation",
+   "description": "key forms a familiar fixed phrase or typical sentence role on its own",
+   "picks_decided": 24
+  },
+  {
+   "name": "contrast-pair",
+   "description": "two options are antonyms; one of the pair is likely the designed key",
+   "picks_decided": 8
+  },
+  {
+   "name": "consistent-pair",
+   "description": "two-blank option whose halves cohere or form the classic contrast",
+   "picks_decided": 19
+  },
+  {
+   "name": "repeated-word",
+   "description": "a word repeated across options marks the designed blank",
+   "picks_decided": 3
+  },
+  {
+   "name": "none",
+   "description": "no signal; weak hunch",
+   "picks_decided": 8
+  }
+ ]
+}

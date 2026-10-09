@@ -1,0 +1,2170 @@
+{
+ "L01": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no option stands out; conceal common synonym target",
+  "heuristic": "none"
+ },
+ "L02": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "lordly is the least common word, likely haughty synonym",
+  "heuristic": "rare-word-key"
+ },
+ "L03": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tattle slightly rarer; weak hunch",
+  "heuristic": "none"
+ },
+ "L04": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "showy plausible gaudy synonym; no real signal",
+  "heuristic": "none"
+ },
+ "L05": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "temporary common synonym target; no signal",
+  "heuristic": "none"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal; arbitrary",
+  "heuristic": "none"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "mention plausible cite synonym; weak",
+  "heuristic": "none"
+ },
+ "L08": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L09": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "sway/wiggle near-pair; arbitrary between",
+  "heuristic": "none"
+ },
+ "L10": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "slow to anger reads as classic dictionary gloss",
+  "heuristic": "definition-phrase"
+ },
+ "L11": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tentative slightly more test-like; weak",
+  "heuristic": "none"
+ },
+ "L12": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "vouch rarest; weak",
+  "heuristic": "none"
+ },
+ "L13": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L14": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L15": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L16": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L17": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "easily felt reads as gloss of palpable",
+  "heuristic": "definition-phrase"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L19": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "summit plausible apex synonym; weak",
+  "heuristic": "none"
+ },
+ "L20": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "terse more test-like word; weak",
+  "heuristic": "none"
+ },
+ "L21": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L22": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "sporadic most test-like; weak",
+  "heuristic": "none"
+ },
+ "L23": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "graceful/agile pair so maybe neither; weak",
+  "heuristic": "none"
+ },
+ "L24": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L25": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L26": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L27": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L28": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L29": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L30": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L31": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L32": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L33": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L36": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L37": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L38": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L39": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L41": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L42": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L43": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L44": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L45": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L46": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pavement/gutter evoke curb noun; curb means restrain",
+  "heuristic": "double-meaning-distractors"
+ },
+ "L47": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "mighty/massive near-pair; weak",
+  "heuristic": "none"
+ },
+ "L48": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L49": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L50": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L51": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L52": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L53": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L54": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L55": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L56": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L57": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L58": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L59": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "relentless/perpetual near-pair; weak",
+  "heuristic": "none"
+ },
+ "L60": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L62": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L63": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L64": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L65": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L66": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L67": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L68": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L69": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L70": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "enrage/provoke near-synonyms so neither is unique key",
+  "heuristic": "synonym-pair-excluded"
+ },
+ "L71": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L72": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L73": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L74": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L75": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L76": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L77": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L78": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L79": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L80": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L81": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L82": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L83": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L84": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L85": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "unwilling to spend reads as gloss of stingy",
+  "heuristic": "definition-phrase"
+ },
+ "L86": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L87": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L88": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L89": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L90": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L91": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L92": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "impede/assist opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L93": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L94": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L95": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L96": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L97": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L98": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L99": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L100": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L101": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L102": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L103": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L104": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L105": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L106": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L107": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L108": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L109": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "reckless/cautious opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L110": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L111": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L112": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L113": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "worsen/lessen opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L114": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L115": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L116": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L117": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "crowded/scattered opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L118": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L119": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L120": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L121": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "rebel/submit opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L122": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L123": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L124": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L125": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L126": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L127": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L128": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "boring/dreary near-pair; weak",
+  "heuristic": "none"
+ },
+ "L129": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L130": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L131": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L132": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L133": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L134": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L136": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L137": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "hasten/postpone opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L138": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L139": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L140": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L141": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L142": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "conquer/win near-pair; weak",
+  "heuristic": "none"
+ },
+ "L143": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L144": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L145": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L146": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L147": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L148": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L149": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L150": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L151": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L152": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L153": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L154": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L155": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L156": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L157": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L158": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L159": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L160": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L161": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L162": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "opponent/ally opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L163": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L164": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L165": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L166": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L167": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L168": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L169": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L170": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L171": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L172": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L173": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L174": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L175": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L176": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L177": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L178": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L179": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L180": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L181": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L182": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L183": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L184": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L185": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L186": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L187": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L188": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L189": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L190": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L191": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L192": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L193": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L194": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L195": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L196": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L197": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L198": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L199": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L200": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "tempt/resist opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L201": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L202": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L203": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L204": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L205": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L206": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L207": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L208": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L209": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L210": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L211": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "praise/scorn opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L212": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L213": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L214": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L215": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L216": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L217": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L218": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L219": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L220": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L221": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L222": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L223": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L224": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L225": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L226": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L227": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L228": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L229": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L230": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L231": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L232": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L233": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L234": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "scarce/plentiful opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L235": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L236": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L237": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L238": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L239": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L240": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L241": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L242": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L243": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L244": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L245": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L246": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L247": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L248": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L249": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L250": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L251": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L252": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "yielding/stubborn opposites; arbitrary",
+  "heuristic": "none"
+ },
+ "L253": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L254": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L255": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L256": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L257": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L258": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L259": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L260": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L261": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L262": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L263": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L264": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L265": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L266": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L267": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L268": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L269": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L270": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ },
+ "L271": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "no signal",
+  "heuristic": "none"
+ }
+}

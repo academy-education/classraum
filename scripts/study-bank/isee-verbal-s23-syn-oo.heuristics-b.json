@@ -1,0 +1,19 @@
+{
+ "heuristics": [
+  {
+   "name": "imagined-headword",
+   "description": "Picked the option that most readily glosses a typical ISEE-level headword; weak hunch",
+   "picks_decided": 266
+  },
+  {
+   "name": "homograph-cue",
+   "description": "Mixed parts of speech suggest a multi-sense headword (curb)",
+   "picks_decided": 1
+  },
+  {
+   "name": "overlap-elimination",
+   "description": "Two options overlap in meaning or form an antonym pair, steering the pick",
+   "picks_decided": 4
+  }
+ ]
+}

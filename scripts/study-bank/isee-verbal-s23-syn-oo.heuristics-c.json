@@ -1,0 +1,24 @@
+{
+ "heuristics": [
+  {
+   "name": "semantic-pair",
+   "description": "two options pair as opposites; picked the member of the pair that seems more likely",
+   "picks_decided": 5
+  },
+  {
+   "name": "plausible-headword",
+   "description": "picked the meaning most easily expressed by a harder single headword",
+   "picks_decided": 225
+  },
+  {
+   "name": "odd-one-out",
+   "description": "picked the option that differs in kind or register from the other three",
+   "picks_decided": 11
+  },
+  {
+   "name": "test-register",
+   "description": "picked the more advanced, test-like word as likely headword partner",
+   "picks_decided": 30
+  }
+ ]
+}

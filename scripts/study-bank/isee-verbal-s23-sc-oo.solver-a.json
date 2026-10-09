@@ -1,0 +1,1946 @@
+{
+ "L01": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "unearthed fits a discovery sentence; catalogued feels bland",
+  "heuristic": "test-register"
+ },
+ "L02": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "intrepid suits an explorer sentence; litigious seems niche",
+  "heuristic": "test-register"
+ },
+ "L03": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "adopt is the broadly usable verb for a policy or pet",
+  "heuristic": "test-register"
+ },
+ "L04": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "repertoire pairs naturally with a performer's range",
+  "heuristic": "collocation"
+ },
+ "L05": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tremulous voice is a common completion; quizzical less likely",
+  "heuristic": "test-register"
+ },
+ "L06": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "negligible vs dramatic pair; negligible effect is a classic stem",
+  "heuristic": "contrast-pair"
+ },
+ "L07": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "stability...unchanged is internally coherent; flexibility...static clashes",
+  "heuristic": "consistent-pair"
+ },
+ "L08": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "under the tutelage of is a common construction",
+  "heuristic": "collocation"
+ },
+ "L09": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "unprecedented is the widely applicable intensifier",
+  "heuristic": "test-register"
+ },
+ "L10": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "impersonal...intimate is the cleanest antonym contrast",
+  "heuristic": "consistent-pair"
+ },
+ "L11": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "balked at fits a refusal sentence",
+  "heuristic": "collocation"
+ },
+ "L12": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "irksome is the only general-purpose adjective among technical ones",
+  "heuristic": "test-register"
+ },
+ "L13": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "shirk responsibilities is a stock phrase",
+  "heuristic": "collocation"
+ },
+ "L14": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "insular community is a typical completion",
+  "heuristic": "test-register"
+ },
+ "L15": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "austere vs extravagant pair; austere is likelier designed key",
+  "heuristic": "contrast-pair"
+ },
+ "L16": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "polarizing issue is a typical modern sentence",
+  "heuristic": "test-register"
+ },
+ "L17": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "typify fits an example-of sentence",
+  "heuristic": "test-register"
+ },
+ "L18": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "elusive fits animal or answer sentences",
+  "heuristic": "test-register"
+ },
+ "L19": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tensions dissipate is a common sentence completion",
+  "heuristic": "test-register"
+ },
+ "L20": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "culprit fits a cause-finding sentence",
+  "heuristic": "test-register"
+ },
+ "L21": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "prophetic warnings is a natural phrase",
+  "heuristic": "test-register"
+ },
+ "L22": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "incisive analysis is a typical praise completion",
+  "heuristic": "test-register"
+ },
+ "L23": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "difficult...plan coheres as cause-effect",
+  "heuristic": "consistent-pair"
+ },
+ "L24": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "bottleneck fits a traffic or production sentence",
+  "heuristic": "test-register"
+ },
+ "L25": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "regimented schedule is a likely completion",
+  "heuristic": "test-register"
+ },
+ "L26": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "undaunted by setbacks is a classic stem",
+  "heuristic": "test-register"
+ },
+ "L27": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "efficacious treatment fits a science sentence",
+  "heuristic": "test-register"
+ },
+ "L28": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "stagnant...postpone coheres; dwindling...undertake clashes",
+  "heuristic": "consistent-pair"
+ },
+ "L29": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "ironic fits a twist sentence",
+  "heuristic": "test-register"
+ },
+ "L30": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "sprightly elderly person is a familiar completion",
+  "heuristic": "test-register"
+ },
+ "L31": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "laudable goal is the most general fit",
+  "heuristic": "test-register"
+ },
+ "L32": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "levy a tax is a stock phrase",
+  "heuristic": "collocation"
+ },
+ "L33": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "ravenous after hiking is a typical sentence",
+  "heuristic": "test-register"
+ },
+ "L34": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "idealistic young person is a common completion",
+  "heuristic": "test-register"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "intricate repeated; intricate...polished coheres",
+  "heuristic": "repeated-word"
+ },
+ "L36": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "rampant spread fits disease or corruption",
+  "heuristic": "collocation"
+ },
+ "L37": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "strident tone is a frequent completion",
+  "heuristic": "test-register"
+ },
+ "L38": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "brief but thorough is the classic contrast",
+  "heuristic": "consistent-pair"
+ },
+ "L39": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unflappable under pressure is a common stem",
+  "heuristic": "test-register"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "upkeep fits a maintenance-cost sentence",
+  "heuristic": "test-register"
+ },
+ "L41": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "austere...whimsy is a natural contrast for art description",
+  "heuristic": "consistent-pair"
+ },
+ "L42": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "reasonable request is the broadest fit",
+  "heuristic": "test-register"
+ },
+ "L43": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "supercilious attitude is the likeliest vocab target",
+  "heuristic": "test-register"
+ },
+ "L44": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "alienated fits a social sentence",
+  "heuristic": "test-register"
+ },
+ "L45": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "abstruse theory fits a difficulty sentence",
+  "heuristic": "test-register"
+ },
+ "L46": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "camaraderie among teammates is a typical completion",
+  "heuristic": "test-register"
+ },
+ "L47": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "misquoted fits a correction sentence",
+  "heuristic": "test-register"
+ },
+ "L48": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "provisional agreement is a common phrase",
+  "heuristic": "test-register"
+ },
+ "L49": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "superseded by a newer version fits",
+  "heuristic": "test-register"
+ },
+ "L50": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "auspicious beginning is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L51": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "acknowledged fits a recognition sentence",
+  "heuristic": "test-register"
+ },
+ "L52": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "esoteric topic is a common target",
+  "heuristic": "test-register"
+ },
+ "L53": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "ostensible purpose is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L54": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "hybrid fits a crossbreeding sentence",
+  "heuristic": "test-register"
+ },
+ "L55": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "fraught with danger is a stock phrase",
+  "heuristic": "collocation"
+ },
+ "L56": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "surmount obstacles is a stock phrase",
+  "heuristic": "collocation"
+ },
+ "L57": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "deadpan humor fits a comedian sentence",
+  "heuristic": "test-register"
+ },
+ "L58": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "recall fits a memory sentence",
+  "heuristic": "test-register"
+ },
+ "L59": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "tangential vs succinct contrast; tangential remarks typical",
+  "heuristic": "contrast-pair"
+ },
+ "L60": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "plants need light is the classic sentence",
+  "heuristic": "test-register"
+ },
+ "L61": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "harbinger of spring is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L62": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "cultivated an interest fits",
+  "heuristic": "test-register"
+ },
+ "L63": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "had qualms about is a stock phrase",
+  "heuristic": "collocation"
+ },
+ "L64": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "rigorous training is a broad fit",
+  "heuristic": "test-register"
+ },
+ "L65": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "rapport with students is a common phrase",
+  "heuristic": "collocation"
+ },
+ "L66": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "conclusive evidence is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L67": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dichotomy between is a common stem target",
+  "heuristic": "test-register"
+ },
+ "L68": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "anecdotal evidence is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L69": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "aptitude for is common in school sentences",
+  "heuristic": "test-register"
+ },
+ "L70": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "belie appearances is a favored vocab target",
+  "heuristic": "test-register"
+ },
+ "L71": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "weak hunch for ravine in a terrain sentence",
+  "heuristic": "none"
+ },
+ "L72": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "means fits a lacking-the-means sentence; weak",
+  "heuristic": "none"
+ },
+ "L73": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "impartiality fits a judge sentence",
+  "heuristic": "test-register"
+ },
+ "L74": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "dampen enthusiasm is a stock phrase",
+  "heuristic": "collocation"
+ },
+ "L75": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "catalyst for change is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L76": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "hallowed halls is a familiar phrase",
+  "heuristic": "test-register"
+ },
+ "L77": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "rubble after collapse is a natural completion",
+  "heuristic": "test-register"
+ },
+ "L78": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "salutary effect is a common target",
+  "heuristic": "test-register"
+ },
+ "L79": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "flair for is a common construction",
+  "heuristic": "collocation"
+ },
+ "L80": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "buttress an argument is common",
+  "heuristic": "test-register"
+ },
+ "L81": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "selective fits an admissions sentence",
+  "heuristic": "test-register"
+ },
+ "L82": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "flustered under pressure is typical",
+  "heuristic": "test-register"
+ },
+ "L83": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "scoffed at the idea is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L84": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "cool and collected fits a calm sentence",
+  "heuristic": "test-register"
+ },
+ "L85": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "caveat fits a qualification sentence",
+  "heuristic": "test-register"
+ },
+ "L86": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "curtail spending is common",
+  "heuristic": "test-register"
+ },
+ "L87": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "vicarious thrill is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L88": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "sincere vs calculated pair; sincere likely key",
+  "heuristic": "contrast-pair"
+ },
+ "L89": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "misleading fits a data or advertising sentence",
+  "heuristic": "test-register"
+ },
+ "L90": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "unheeded warnings is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L91": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "immortalize in verse fits",
+  "heuristic": "test-register"
+ },
+ "L92": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "veneer and semblance near-synonyms; veneer of civility common",
+  "heuristic": "contrast-pair"
+ },
+ "L93": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "stipulate in a contract fits",
+  "heuristic": "test-register"
+ },
+ "L94": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "vivacious personality is a typical completion",
+  "heuristic": "test-register"
+ },
+ "L95": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "intricate...haste plausible contrast",
+  "heuristic": "consistent-pair"
+ },
+ "L96": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "bankrolled a project fits",
+  "heuristic": "test-register"
+ },
+ "L97": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "sense of foreboding is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L98": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "bias fits a fairness sentence",
+  "heuristic": "test-register"
+ },
+ "L99": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "anomalous result fits a science sentence",
+  "heuristic": "test-register"
+ },
+ "L100": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "complacency after success is a common sentence",
+  "heuristic": "test-register"
+ },
+ "L101": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "condescension in tone fits a manners sentence",
+  "heuristic": "test-register"
+ },
+ "L102": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "the exception rather than the rule is stock",
+  "heuristic": "collocation"
+ },
+ "L103": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "embellished story fits an exaggeration sentence",
+  "heuristic": "test-register"
+ },
+ "L104": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "inexorable march is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L105": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "rigorous...inventive is a coherent praise pairing",
+  "heuristic": "consistent-pair"
+ },
+ "L106": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "aversions fits a dislike sentence",
+  "heuristic": "test-register"
+ },
+ "L107": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "populous city is a common completion",
+  "heuristic": "test-register"
+ },
+ "L108": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "flattering portrait fits",
+  "heuristic": "test-register"
+ },
+ "L109": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "eminent scholar is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L110": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "as a precaution is a stock phrase",
+  "heuristic": "collocation"
+ },
+ "L111": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "functional rather than decorative fits",
+  "heuristic": "test-register"
+ },
+ "L112": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "abolished a law fits a history sentence",
+  "heuristic": "test-register"
+ },
+ "L113": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "airtight alibi or argument is stock",
+  "heuristic": "collocation"
+ },
+ "L114": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "homage...transforms coheres; others clash",
+  "heuristic": "consistent-pair"
+ },
+ "L115": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "bipartisan support is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L116": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "downplay the risk is common",
+  "heuristic": "test-register"
+ },
+ "L117": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "weak hunch urgency...young pairing",
+  "heuristic": "none"
+ },
+ "L118": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "meandered fits a river or speech sentence",
+  "heuristic": "test-register"
+ },
+ "L119": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "challenge the claim is broadly usable",
+  "heuristic": "test-register"
+ },
+ "L120": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "stringent rules is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L121": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "alacrity is a favored vocab target",
+  "heuristic": "test-register"
+ },
+ "L122": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "arresting image fits",
+  "heuristic": "test-register"
+ },
+ "L123": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cramped quarters is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L124": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "understated elegance is stock",
+  "heuristic": "test-register"
+ },
+ "L125": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "popular but unworkable is a classic contrast",
+  "heuristic": "consistent-pair"
+ },
+ "L126": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "fatal flaw is a stock phrase",
+  "heuristic": "collocation"
+ },
+ "L127": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "plan backfired fits",
+  "heuristic": "test-register"
+ },
+ "L128": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "acclimate to climate is common",
+  "heuristic": "test-register"
+ },
+ "L129": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "avid reader is a stock phrase",
+  "heuristic": "test-register"
+ },
+ "L130": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "spare vs colorful pair; spare prose common",
+  "heuristic": "contrast-pair"
+ },
+ "L131": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "burgeoning industry is stock",
+  "heuristic": "test-register"
+ },
+ "L132": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "kept composure is stock",
+  "heuristic": "test-register"
+ },
+ "L133": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "convoluted plot or rules fits",
+  "heuristic": "test-register"
+ },
+ "L134": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "monastic simplicity fits",
+  "heuristic": "test-register"
+ },
+ "L135": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "coherent argument is broad fit",
+  "heuristic": "test-register"
+ },
+ "L136": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "clinical detachment fits",
+  "heuristic": "test-register"
+ },
+ "L137": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "quotidian routine is a favored target",
+  "heuristic": "test-register"
+ },
+ "L138": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "piquant sauce fits a food sentence",
+  "heuristic": "test-register"
+ },
+ "L139": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "symbolic gesture is stock",
+  "heuristic": "test-register"
+ },
+ "L140": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "ethos of a company fits",
+  "heuristic": "test-register"
+ },
+ "L141": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "diagnostic...register coheres",
+  "heuristic": "consistent-pair"
+ },
+ "L142": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "daunted repeated; daunted but galvanized contrast",
+  "heuristic": "repeated-word"
+ },
+ "L143": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "ascertain the facts fits",
+  "heuristic": "test-register"
+ },
+ "L144": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "recover pristine colors fits restoration",
+  "heuristic": "consistent-pair"
+ },
+ "L145": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "inflated claims hard to verify coheres",
+  "heuristic": "consistent-pair"
+ },
+ "L146": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tantalizing clue fits",
+  "heuristic": "test-register"
+ },
+ "L147": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "weak hunch peninsula in geography sentence",
+  "heuristic": "none"
+ },
+ "L148": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "weak hunch frost damaging crops",
+  "heuristic": "none"
+ },
+ "L149": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "opaque...postponed coheres causally",
+  "heuristic": "consistent-pair"
+ },
+ "L150": {
+  "pick": "C",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "champion...disparaged is the designed contrast",
+  "heuristic": "consistent-pair"
+ },
+ "L151": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "arid desert climate is typical",
+  "heuristic": "test-register"
+ },
+ "L152": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "rehearsed speech fits",
+  "heuristic": "test-register"
+ },
+ "L153": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "spoke with conviction is stock",
+  "heuristic": "test-register"
+ },
+ "L154": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "staid and conservative fits",
+  "heuristic": "test-register"
+ },
+ "L155": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "sprawling city is stock",
+  "heuristic": "test-register"
+ },
+ "L156": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "cyclical pattern fits science",
+  "heuristic": "test-register"
+ },
+ "L157": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "provincial attitudes fits",
+  "heuristic": "test-register"
+ },
+ "L158": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "growing discontent is stock",
+  "heuristic": "test-register"
+ },
+ "L159": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "recant testimony fits",
+  "heuristic": "test-register"
+ },
+ "L160": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "brief respite is stock",
+  "heuristic": "collocation"
+ },
+ "L161": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "accessible vs insular contrast; accessible prose typical",
+  "heuristic": "contrast-pair"
+ },
+ "L162": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "rubbery texture of overcooked food; weak",
+  "heuristic": "none"
+ },
+ "L163": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cumulative effect is stock",
+  "heuristic": "test-register"
+ },
+ "L164": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "heretical views fits history sentence",
+  "heuristic": "test-register"
+ },
+ "L165": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "assertive fits a personality sentence",
+  "heuristic": "test-register"
+ },
+ "L166": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "redolent of is a favored target",
+  "heuristic": "test-register"
+ },
+ "L167": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "self-sufficient vs dependent pair",
+  "heuristic": "contrast-pair"
+ },
+ "L168": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "repaired...damage coheres",
+  "heuristic": "consistent-pair"
+ },
+ "L169": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "droll humor fits",
+  "heuristic": "test-register"
+ },
+ "L170": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "flounder without guidance fits",
+  "heuristic": "test-register"
+ },
+ "L171": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "rich dessert is broad fit",
+  "heuristic": "test-register"
+ },
+ "L172": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "acrid smoke is stock",
+  "heuristic": "collocation"
+ },
+ "L173": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "assure fits a reassurance sentence",
+  "heuristic": "test-register"
+ },
+ "L174": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "boundless energy is stock",
+  "heuristic": "test-register"
+ },
+ "L175": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "weak hunch guardian...release coheres",
+  "heuristic": "none"
+ },
+ "L176": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "seasoned veteran is stock",
+  "heuristic": "test-register"
+ },
+ "L177": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "reversal...concession coheres",
+  "heuristic": "consistent-pair"
+ },
+ "L178": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "fragile ecosystem is stock",
+  "heuristic": "test-register"
+ },
+ "L179": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "augment income fits",
+  "heuristic": "test-register"
+ },
+ "L180": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "harried parent is stock",
+  "heuristic": "test-register"
+ },
+ "L181": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "ramshackle cabin is stock",
+  "heuristic": "test-register"
+ },
+ "L182": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "hesitant fits a reluctance sentence",
+  "heuristic": "test-register"
+ },
+ "L183": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "fragmentary record fits history",
+  "heuristic": "test-register"
+ },
+ "L184": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "cosmetic changes is stock",
+  "heuristic": "test-register"
+ },
+ "L185": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "cursory glance is stock",
+  "heuristic": "test-register"
+ },
+ "L186": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "self-serving...attributes coheres",
+  "heuristic": "consistent-pair"
+ },
+ "L187": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "migratory birds is stock",
+  "heuristic": "test-register"
+ },
+ "L188": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "fluke fits a luck sentence",
+  "heuristic": "test-register"
+ },
+ "L189": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "bequeath estate fits",
+  "heuristic": "test-register"
+ },
+ "L190": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "muscles atrophy is stock",
+  "heuristic": "test-register"
+ },
+ "L191": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "lacked a quorum is stock",
+  "heuristic": "collocation"
+ },
+ "L192": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "murky repeated; murky...loath coheres",
+  "heuristic": "repeated-word"
+ },
+ "L193": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "decipher handwriting fits",
+  "heuristic": "test-register"
+ },
+ "L194": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "early drafts fits a writer sentence",
+  "heuristic": "test-register"
+ },
+ "L195": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "obviate the need is stock",
+  "heuristic": "test-register"
+ },
+ "L196": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "hallmark of is stock",
+  "heuristic": "collocation"
+ },
+ "L197": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "thoroughness fits a careful-worker sentence",
+  "heuristic": "test-register"
+ },
+ "L198": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "unrelenting pressure is stock",
+  "heuristic": "test-register"
+ },
+ "L199": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "brevity fits a short-speech sentence",
+  "heuristic": "test-register"
+ },
+ "L200": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "anachronistic detail fits a film sentence",
+  "heuristic": "test-register"
+ },
+ "L201": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "showed pluck fits a courage sentence",
+  "heuristic": "test-register"
+ },
+ "L202": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "source of the quote fits",
+  "heuristic": "test-register"
+ },
+ "L203": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "harbor resentment is stock",
+  "heuristic": "collocation"
+ },
+ "L204": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "kept apprised of is stock",
+  "heuristic": "collocation"
+ },
+ "L205": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "defer to experts fits",
+  "heuristic": "test-register"
+ },
+ "L206": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "apocryphal story is stock",
+  "heuristic": "test-register"
+ },
+ "L207": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "clearing in the forest fits",
+  "heuristic": "test-register"
+ },
+ "L208": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "audacious plan is stock",
+  "heuristic": "test-register"
+ },
+ "L209": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "public backlash is stock",
+  "heuristic": "test-register"
+ },
+ "L210": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dependable car is broad fit",
+  "heuristic": "test-register"
+ },
+ "L211": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "despite her age fits",
+  "heuristic": "test-register"
+ },
+ "L212": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "jettison cargo fits",
+  "heuristic": "test-register"
+ },
+ "L213": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "arbitrary rules is stock",
+  "heuristic": "test-register"
+ },
+ "L214": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "extraneous details is stock",
+  "heuristic": "test-register"
+ },
+ "L215": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "germane to is a favored target",
+  "heuristic": "test-register"
+ },
+ "L216": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "rapt attention is stock",
+  "heuristic": "collocation"
+ },
+ "L217": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "took a hiatus fits",
+  "heuristic": "test-register"
+ },
+ "L218": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "ripe fruit fits",
+  "heuristic": "test-register"
+ },
+ "L219": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "found solace in is stock",
+  "heuristic": "test-register"
+ },
+ "L220": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "concerted effort is stock",
+  "heuristic": "collocation"
+ },
+ "L221": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "inaccessible region fits",
+  "heuristic": "test-register"
+ },
+ "L222": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "spurious...corroborated suggests a twist contrast",
+  "heuristic": "consistent-pair"
+ },
+ "L223": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "cavalier attitude is stock",
+  "heuristic": "test-register"
+ },
+ "L224": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "in a quandary is stock",
+  "heuristic": "test-register"
+ },
+ "L225": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "cutthroat competition is stock",
+  "heuristic": "test-register"
+ },
+ "L226": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "pedestrian prose is a favored target",
+  "heuristic": "test-register"
+ },
+ "L227": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "embodies the spirit is stock",
+  "heuristic": "test-register"
+ },
+ "L228": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "estranged family fits",
+  "heuristic": "test-register"
+ },
+ "L229": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "unflagging energy is stock",
+  "heuristic": "test-register"
+ },
+ "L230": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "prized possession is stock",
+  "heuristic": "test-register"
+ },
+ "L231": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "empirical evidence is stock",
+  "heuristic": "test-register"
+ },
+ "L232": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "abrupt ending is stock",
+  "heuristic": "test-register"
+ },
+ "L233": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "humane treatment is stock",
+  "heuristic": "test-register"
+ },
+ "L234": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "prelude to is stock",
+  "heuristic": "test-register"
+ },
+ "L235": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "humans are fallible fits",
+  "heuristic": "test-register"
+ },
+ "L236": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "remiss in duties is stock",
+  "heuristic": "test-register"
+ },
+ "L237": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "debunk the myth is stock",
+  "heuristic": "test-register"
+ },
+ "L238": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "modest income fits",
+  "heuristic": "test-register"
+ },
+ "L239": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "vitriolic attack is stock",
+  "heuristic": "test-register"
+ },
+ "L240": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "weak hunch warmer climate sentence",
+  "heuristic": "none"
+ },
+ "L241": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "vignette fits a short-scene sentence",
+  "heuristic": "test-register"
+ },
+ "L242": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "dispassionate observer is stock",
+  "heuristic": "test-register"
+ },
+ "L243": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "conjectural vs authoritative; conjectural fits speculation",
+  "heuristic": "test-register"
+ }
+}

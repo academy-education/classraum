@@ -1,0 +1,29 @@
+{
+ "heuristics": [
+  {
+   "name": "none",
+   "description": "No option-only signal; arbitrary or weak hunch",
+   "picks_decided": 265
+  },
+  {
+   "name": "rare-word-key",
+   "description": "Least common word assumed to be the key",
+   "picks_decided": 1
+  },
+  {
+   "name": "definition-phrase",
+   "description": "Phrase option reads like a dictionary gloss",
+   "picks_decided": 3
+  },
+  {
+   "name": "double-meaning-distractors",
+   "description": "Distractors evoke another sense of a likely headword",
+   "picks_decided": 1
+  },
+  {
+   "name": "synonym-pair-excluded",
+   "description": "Two near-synonymous options excluded, pick from rest",
+   "picks_decided": 1
+  }
+ ]
+}

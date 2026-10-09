@@ -1,0 +1,24 @@
+{
+ "heuristics": [
+  {
+   "name": "collocation-hunch",
+   "description": "Picked the option that most readily forms a familiar collocation or stock sentence frame",
+   "picks_decided": 207
+  },
+  {
+   "name": "pair-coherence",
+   "description": "Two-blank items: picked the pair whose two words relate most coherently (cause/effect or clean concession)",
+   "picks_decided": 24
+  },
+  {
+   "name": "odd-one-out",
+   "description": "Picked the only general-purpose word among more specialized options",
+   "picks_decided": 3
+  },
+  {
+   "name": "category-fit",
+   "description": "Concrete-noun/adjective sets: picked the member most typical of a likely sentence topic",
+   "picks_decided": 9
+  }
+ ]
+}

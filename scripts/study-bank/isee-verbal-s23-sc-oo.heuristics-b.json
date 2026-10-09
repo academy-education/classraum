@@ -1,0 +1,29 @@
+{
+ "heuristics": [
+  {
+   "name": "collocation",
+   "description": "Picked the option forming the most common stock phrase or natural sentence frame",
+   "picks_decided": 162
+  },
+  {
+   "name": "odd-one-out",
+   "description": "Picked the option semantically distinct from the other three",
+   "picks_decided": 4
+  },
+  {
+   "name": "none",
+   "description": "No real signal; weak hunch on the most broadly usable word",
+   "picks_decided": 51
+  },
+  {
+   "name": "pair-coherence",
+   "description": "Two-blank items: picked the pair whose halves form the most natural sentence logic",
+   "picks_decided": 24
+  },
+  {
+   "name": "theme-cluster",
+   "description": "Options share a theme; picked the most typical member for a sentence",
+   "picks_decided": 2
+  }
+ ]
+}

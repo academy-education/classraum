@@ -1,0 +1,2170 @@
+{
+ "L01": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "reinforce fits a classic headword like bolster",
+  "heuristic": "imagined-headword"
+ },
+ "L02": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "lordly is an odd word, likely glossing haughty",
+  "heuristic": "imagined-headword"
+ },
+ "L03": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tattle is a distinctive gloss, perhaps for blab",
+  "heuristic": "imagined-headword"
+ },
+ "L04": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "showy pairs with a common headword like gaudy",
+  "heuristic": "imagined-headword"
+ },
+ "L05": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "puzzled matches common headword perplexed",
+  "heuristic": "imagined-headword"
+ },
+ "L06": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "illogical likely glosses absurd or irrational",
+  "heuristic": "imagined-headword"
+ },
+ "L07": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "mention matches a likely headword like cite",
+  "heuristic": "imagined-headword"
+ },
+ "L08": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "nickname fits a test headword such as alias",
+  "heuristic": "imagined-headword"
+ },
+ "L09": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "sway suggests headword waver or teeter",
+  "heuristic": "imagined-headword"
+ },
+ "L10": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "quick to recover reads as a gloss of resilient",
+  "heuristic": "imagined-headword"
+ },
+ "L11": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tentative a common target for hesitant-type headwords",
+  "heuristic": "imagined-headword"
+ },
+ "L12": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "sprout plausibly glosses germinate",
+  "heuristic": "imagined-headword"
+ },
+ "L13": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "necessary plausibly glosses essential",
+  "heuristic": "imagined-headword"
+ },
+ "L14": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "peaceful plausibly glosses tranquil or serene",
+  "heuristic": "imagined-headword"
+ },
+ "L15": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "believable glosses plausible or credible",
+  "heuristic": "imagined-headword"
+ },
+ "L16": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "sneaky plausibly glosses furtive or sly",
+  "heuristic": "imagined-headword"
+ },
+ "L17": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "easily felt reads as a gloss of palpable",
+  "heuristic": "imagined-headword"
+ },
+ "L18": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "rough plausibly glosses coarse",
+  "heuristic": "imagined-headword"
+ },
+ "L19": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "zest plausibly glosses gusto or relish",
+  "heuristic": "imagined-headword"
+ },
+ "L20": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "terse plausibly glosses curt",
+  "heuristic": "imagined-headword"
+ },
+ "L21": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "guarded plausibly glosses wary",
+  "heuristic": "imagined-headword"
+ },
+ "L22": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "talkative plausibly glosses garrulous or loquacious",
+  "heuristic": "imagined-headword"
+ },
+ "L23": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "agile plausibly glosses nimble",
+  "heuristic": "imagined-headword"
+ },
+ "L24": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "merry plausibly glosses jovial",
+  "heuristic": "imagined-headword"
+ },
+ "L25": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "postpone plausibly glosses defer",
+  "heuristic": "imagined-headword"
+ },
+ "L26": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "determined plausibly glosses resolute",
+  "heuristic": "imagined-headword"
+ },
+ "L27": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "stubborn plausibly glosses obstinate",
+  "heuristic": "imagined-headword"
+ },
+ "L28": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "crooked plausibly glosses askew",
+  "heuristic": "imagined-headword"
+ },
+ "L29": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "pale plausibly glosses wan or pallid",
+  "heuristic": "imagined-headword"
+ },
+ "L30": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "refrain plausibly glosses abstain",
+  "heuristic": "imagined-headword"
+ },
+ "L31": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "tribute plausibly glosses homage",
+  "heuristic": "imagined-headword"
+ },
+ "L32": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "enemy plausibly glosses foe or adversary",
+  "heuristic": "imagined-headword"
+ },
+ "L33": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "monarch plausibly glosses sovereign",
+  "heuristic": "imagined-headword"
+ },
+ "L34": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "unwavering plausibly glosses steadfast",
+  "heuristic": "imagined-headword"
+ },
+ "L35": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pledge plausibly glosses vow",
+  "heuristic": "imagined-headword"
+ },
+ "L36": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "grumpy plausibly glosses surly or cranky",
+  "heuristic": "imagined-headword"
+ },
+ "L37": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "unrest plausibly glosses turmoil",
+  "heuristic": "imagined-headword"
+ },
+ "L38": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "unspoiled plausibly glosses pristine",
+  "heuristic": "imagined-headword"
+ },
+ "L39": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "wager glosses gamble or bet",
+  "heuristic": "imagined-headword"
+ },
+ "L40": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "trudge plausibly glosses plod",
+  "heuristic": "imagined-headword"
+ },
+ "L41": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "hire plausibly glosses employ",
+  "heuristic": "imagined-headword"
+ },
+ "L42": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "outfit plausibly glosses attire",
+  "heuristic": "imagined-headword"
+ },
+ "L43": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "empty plausibly glosses vacant",
+  "heuristic": "imagined-headword"
+ },
+ "L44": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unveil plausibly glosses reveal",
+  "heuristic": "imagined-headword"
+ },
+ "L45": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "stun plausibly glosses daze",
+  "heuristic": "imagined-headword"
+ },
+ "L46": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "mixed verbs/nouns suggest homograph curb; restrain is its verb sense",
+  "heuristic": "homograph-cue"
+ },
+ "L47": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "touching plausibly glosses poignant",
+  "heuristic": "imagined-headword"
+ },
+ "L48": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "watchful plausibly glosses vigilant",
+  "heuristic": "imagined-headword"
+ },
+ "L49": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "friendly plausibly glosses amiable",
+  "heuristic": "imagined-headword"
+ },
+ "L50": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "pamper plausibly glosses coddle",
+  "heuristic": "imagined-headword"
+ },
+ "L51": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "trickery plausibly glosses deceit or guile",
+  "heuristic": "imagined-headword"
+ },
+ "L52": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "omen plausibly glosses portent",
+  "heuristic": "imagined-headword"
+ },
+ "L53": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "nightly plausibly glosses nocturnal",
+  "heuristic": "imagined-headword"
+ },
+ "L54": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "contemplate plausibly glosses ponder",
+  "heuristic": "imagined-headword"
+ },
+ "L55": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "discourage plausibly glosses deter",
+  "heuristic": "imagined-headword"
+ },
+ "L56": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "boastful plausibly glosses vain or bragging",
+  "heuristic": "imagined-headword"
+ },
+ "L57": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "crave plausibly glosses covet or yearn",
+  "heuristic": "imagined-headword"
+ },
+ "L58": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "shake plausibly glosses tremble",
+  "heuristic": "imagined-headword"
+ },
+ "L59": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "relentless plausibly glosses persistent",
+  "heuristic": "imagined-headword"
+ },
+ "L60": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "painstaking plausibly glosses meticulous",
+  "heuristic": "imagined-headword"
+ },
+ "L61": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "outlaw plausibly glosses prohibit",
+  "heuristic": "imagined-headword"
+ },
+ "L62": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "intimidate plausibly glosses daunt",
+  "heuristic": "imagined-headword"
+ },
+ "L63": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "nook plausibly glosses alcove",
+  "heuristic": "imagined-headword"
+ },
+ "L64": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "provoke plausibly glosses goad",
+  "heuristic": "imagined-headword"
+ },
+ "L65": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "intruder plausibly glosses trespasser",
+  "heuristic": "imagined-headword"
+ },
+ "L66": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "calm plausibly glosses serene",
+  "heuristic": "imagined-headword"
+ },
+ "L67": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tendency plausibly glosses inclination",
+  "heuristic": "imagined-headword"
+ },
+ "L68": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "theme plausibly glosses motif",
+  "heuristic": "imagined-headword"
+ },
+ "L69": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "beginner plausibly glosses novice",
+  "heuristic": "imagined-headword"
+ },
+ "L70": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "moderate plausibly glosses temper",
+  "heuristic": "imagined-headword"
+ },
+ "L71": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "endanger plausibly glosses jeopardize",
+  "heuristic": "imagined-headword"
+ },
+ "L72": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "trivial plausibly glosses petty",
+  "heuristic": "imagined-headword"
+ },
+ "L73": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "diligent plausibly glosses industrious",
+  "heuristic": "imagined-headword"
+ },
+ "L74": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "oppose plausibly glosses resist",
+  "heuristic": "imagined-headword"
+ },
+ "L75": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "brag plausibly glosses boast",
+  "heuristic": "imagined-headword"
+ },
+ "L76": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "damp plausibly glosses moist",
+  "heuristic": "imagined-headword"
+ },
+ "L77": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "idolize plausibly glosses revere",
+  "heuristic": "imagined-headword"
+ },
+ "L78": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "keen plausibly glosses eager",
+  "heuristic": "imagined-headword"
+ },
+ "L79": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "diminish plausibly glosses dwindle",
+  "heuristic": "imagined-headword"
+ },
+ "L80": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "lineage plausibly glosses ancestry",
+  "heuristic": "imagined-headword"
+ },
+ "L81": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "sponsor plausibly glosses backer",
+  "heuristic": "imagined-headword"
+ },
+ "L82": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "hamper plausibly glosses hinder",
+  "heuristic": "imagined-headword"
+ },
+ "L83": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "distant plausibly glosses remote",
+  "heuristic": "imagined-headword"
+ },
+ "L84": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "uproar plausibly glosses commotion",
+  "heuristic": "imagined-headword"
+ },
+ "L85": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "unwilling to spend reads as a gloss of stingy",
+  "heuristic": "imagined-headword"
+ },
+ "L86": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "sensible plausibly glosses prudent",
+  "heuristic": "imagined-headword"
+ },
+ "L87": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tie plausibly glosses bind",
+  "heuristic": "imagined-headword"
+ },
+ "L88": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "bland plausibly glosses insipid",
+  "heuristic": "imagined-headword"
+ },
+ "L89": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "stammer plausibly glosses stutter",
+  "heuristic": "imagined-headword"
+ },
+ "L90": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "unharmed plausibly glosses unscathed",
+  "heuristic": "imagined-headword"
+ },
+ "L91": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "overdue plausibly glosses late or belated",
+  "heuristic": "imagined-headword"
+ },
+ "L92": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "impede plausibly glosses hinder",
+  "heuristic": "imagined-headword"
+ },
+ "L93": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "serious plausibly glosses solemn",
+  "heuristic": "imagined-headword"
+ },
+ "L94": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "plight plausibly glosses predicament",
+  "heuristic": "imagined-headword"
+ },
+ "L95": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unyielding plausibly glosses adamant",
+  "heuristic": "imagined-headword"
+ },
+ "L96": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "disaster plausibly glosses calamity",
+  "heuristic": "imagined-headword"
+ },
+ "L97": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "spotless plausibly glosses immaculate",
+  "heuristic": "imagined-headword"
+ },
+ "L98": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "persistent plausibly glosses tenacious",
+  "heuristic": "imagined-headword"
+ },
+ "L99": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "insincere plausibly glosses hypocritical",
+  "heuristic": "imagined-headword"
+ },
+ "L100": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "unemotional plausibly glosses stoic",
+  "heuristic": "imagined-headword"
+ },
+ "L101": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "untrue plausibly glosses false",
+  "heuristic": "imagined-headword"
+ },
+ "L102": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "bicker plausibly glosses squabble",
+  "heuristic": "imagined-headword"
+ },
+ "L103": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "discerning plausibly glosses perceptive",
+  "heuristic": "imagined-headword"
+ },
+ "L104": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "loner plausibly glosses hermit",
+  "heuristic": "imagined-headword"
+ },
+ "L105": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "infamous plausibly glosses notorious",
+  "heuristic": "imagined-headword"
+ },
+ "L106": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "lure plausibly glosses entice",
+  "heuristic": "imagined-headword"
+ },
+ "L107": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "spiteful plausibly glosses malicious",
+  "heuristic": "imagined-headword"
+ },
+ "L108": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "fault plausibly glosses flaw",
+  "heuristic": "imagined-headword"
+ },
+ "L109": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "cautious plausibly glosses wary",
+  "heuristic": "imagined-headword"
+ },
+ "L110": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "subside plausibly glosses abate",
+  "heuristic": "imagined-headword"
+ },
+ "L111": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "peculiar plausibly glosses odd",
+  "heuristic": "imagined-headword"
+ },
+ "L112": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "drag plausibly glosses haul",
+  "heuristic": "imagined-headword"
+ },
+ "L113": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "lessen plausibly glosses alleviate",
+  "heuristic": "imagined-headword"
+ },
+ "L114": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "block plausibly glosses obstruct",
+  "heuristic": "imagined-headword"
+ },
+ "L115": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "detest plausibly glosses loathe",
+  "heuristic": "imagined-headword"
+ },
+ "L116": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "impolite plausibly glosses rude",
+  "heuristic": "imagined-headword"
+ },
+ "L117": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "thinly scattered reads as a gloss of sparse",
+  "heuristic": "imagined-headword"
+ },
+ "L118": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "edge plausibly glosses brink",
+  "heuristic": "imagined-headword"
+ },
+ "L119": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "disappear plausibly glosses vanish",
+  "heuristic": "imagined-headword"
+ },
+ "L120": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "obstacle plausibly glosses hindrance",
+  "heuristic": "imagined-headword"
+ },
+ "L121": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "submit plausibly glosses yield",
+  "heuristic": "imagined-headword"
+ },
+ "L122": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "neutral plausibly glosses impartial",
+  "heuristic": "imagined-headword"
+ },
+ "L123": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "forgive plausibly glosses pardon",
+  "heuristic": "imagined-headword"
+ },
+ "L124": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "lair plausibly glosses den",
+  "heuristic": "imagined-headword"
+ },
+ "L125": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "sorrowful plausibly glosses mournful",
+  "heuristic": "imagined-headword"
+ },
+ "L126": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "astonished plausibly glosses amazed",
+  "heuristic": "imagined-headword"
+ },
+ "L127": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "toil plausibly glosses labor",
+  "heuristic": "imagined-headword"
+ },
+ "L128": {
+  "pick": "B",
+  "basis": "signal",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "boring and dreary overlap, so the lone comical stands out",
+  "heuristic": "overlap-elimination"
+ },
+ "L129": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "restore plausibly glosses renovate",
+  "heuristic": "imagined-headword"
+ },
+ "L130": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "obedient plausibly glosses docile",
+  "heuristic": "imagined-headword"
+ },
+ "L131": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "ornate plausibly glosses elaborate",
+  "heuristic": "imagined-headword"
+ },
+ "L132": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "beg plausibly glosses plead",
+  "heuristic": "imagined-headword"
+ },
+ "L133": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "weary plausibly glosses fatigued",
+  "heuristic": "imagined-headword"
+ },
+ "L134": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "widespread plausibly glosses prevalent",
+  "heuristic": "imagined-headword"
+ },
+ "L135": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "sanctuary plausibly glosses haven",
+  "heuristic": "imagined-headword"
+ },
+ "L136": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "skillful plausibly glosses adept",
+  "heuristic": "imagined-headword"
+ },
+ "L137": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "hasten plausibly glosses expedite",
+  "heuristic": "imagined-headword"
+ },
+ "L138": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "flourish plausibly glosses thrive",
+  "heuristic": "imagined-headword"
+ },
+ "L139": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "inactive plausibly glosses dormant",
+  "heuristic": "imagined-headword"
+ },
+ "L140": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "unselfish plausibly glosses altruistic",
+  "heuristic": "imagined-headword"
+ },
+ "L141": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "scanty plausibly glosses meager",
+  "heuristic": "imagined-headword"
+ },
+ "L142": {
+  "pick": "A",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "conquer the stronger of conquer/win, glossing vanquish",
+  "heuristic": "overlap-elimination"
+ },
+ "L143": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "pacify plausibly glosses appease",
+  "heuristic": "imagined-headword"
+ },
+ "L144": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "join plausibly glosses unite",
+  "heuristic": "imagined-headword"
+ },
+ "L145": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "eerie plausibly glosses uncanny",
+  "heuristic": "imagined-headword"
+ },
+ "L146": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "fluctuate plausibly glosses waver",
+  "heuristic": "imagined-headword"
+ },
+ "L147": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "escort plausibly glosses accompany",
+  "heuristic": "imagined-headword"
+ },
+ "L148": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "yearn plausibly glosses long",
+  "heuristic": "imagined-headword"
+ },
+ "L149": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "mock plausibly glosses ridicule",
+  "heuristic": "imagined-headword"
+ },
+ "L150": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "impending plausibly glosses imminent",
+  "heuristic": "imagined-headword"
+ },
+ "L151": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "yearly plausibly glosses annual",
+  "heuristic": "imagined-headword"
+ },
+ "L152": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "relish plausibly glosses savor",
+  "heuristic": "imagined-headword"
+ },
+ "L153": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "moody plausibly glosses temperamental",
+  "heuristic": "imagined-headword"
+ },
+ "L154": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "uncommon plausibly glosses rare",
+  "heuristic": "imagined-headword"
+ },
+ "L155": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "desert plausibly glosses abandon",
+  "heuristic": "imagined-headword"
+ },
+ "L156": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "foil plausibly glosses thwart",
+  "heuristic": "imagined-headword"
+ },
+ "L157": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "modify plausibly glosses alter",
+  "heuristic": "imagined-headword"
+ },
+ "L158": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "pretend plausibly glosses feign",
+  "heuristic": "imagined-headword"
+ },
+ "L159": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "dictator plausibly glosses tyrant",
+  "heuristic": "imagined-headword"
+ },
+ "L160": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "conceit plausibly glosses vanity",
+  "heuristic": "imagined-headword"
+ },
+ "L161": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "weak plausibly glosses frail",
+  "heuristic": "imagined-headword"
+ },
+ "L162": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "opponent plausibly glosses adversary",
+  "heuristic": "imagined-headword"
+ },
+ "L163": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "stray plausibly glosses deviate",
+  "heuristic": "imagined-headword"
+ },
+ "L164": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "loom plausibly glosses tower",
+  "heuristic": "imagined-headword"
+ },
+ "L165": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "unaware plausibly glosses oblivious",
+  "heuristic": "imagined-headword"
+ },
+ "L166": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "disrespectful plausibly glosses insolent",
+  "heuristic": "imagined-headword"
+ },
+ "L167": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "overused plausibly glosses trite",
+  "heuristic": "imagined-headword"
+ },
+ "L168": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "flawless plausibly glosses impeccable",
+  "heuristic": "imagined-headword"
+ },
+ "L169": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "rash plausibly glosses impetuous",
+  "heuristic": "imagined-headword"
+ },
+ "L170": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "dainty plausibly glosses delicate",
+  "heuristic": "imagined-headword"
+ },
+ "L171": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "lucky plausibly glosses fortunate",
+  "heuristic": "imagined-headword"
+ },
+ "L172": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "mutter plausibly glosses mumble",
+  "heuristic": "imagined-headword"
+ },
+ "L173": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "conceal plausibly glosses hide",
+  "heuristic": "imagined-headword"
+ },
+ "L174": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "secluded plausibly glosses isolated",
+  "heuristic": "imagined-headword"
+ },
+ "L175": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "meddle plausibly glosses interfere",
+  "heuristic": "imagined-headword"
+ },
+ "L176": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "traitor plausibly glosses turncoat",
+  "heuristic": "imagined-headword"
+ },
+ "L177": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "keepsake plausibly glosses memento",
+  "heuristic": "imagined-headword"
+ },
+ "L178": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "devout plausibly glosses pious",
+  "heuristic": "imagined-headword"
+ },
+ "L179": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tireless plausibly glosses indefatigable",
+  "heuristic": "imagined-headword"
+ },
+ "L180": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "saturated plausibly glosses soaked",
+  "heuristic": "imagined-headword"
+ },
+ "L181": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "strict plausibly glosses stern",
+  "heuristic": "imagined-headword"
+ },
+ "L182": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "outspoken plausibly glosses candid",
+  "heuristic": "imagined-headword"
+ },
+ "L183": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "outcast plausibly glosses pariah",
+  "heuristic": "imagined-headword"
+ },
+ "L184": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "mirth plausibly glosses glee",
+  "heuristic": "imagined-headword"
+ },
+ "L185": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "composed plausibly glosses serene",
+  "heuristic": "imagined-headword"
+ },
+ "L186": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "tilt plausibly glosses slant",
+  "heuristic": "imagined-headword"
+ },
+ "L187": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "practical plausibly glosses pragmatic",
+  "heuristic": "imagined-headword"
+ },
+ "L188": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "fetch plausibly glosses retrieve",
+  "heuristic": "imagined-headword"
+ },
+ "L189": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tardy plausibly glosses late",
+  "heuristic": "imagined-headword"
+ },
+ "L190": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "outgoing plausibly glosses extroverted",
+  "heuristic": "imagined-headword"
+ },
+ "L191": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "hoard plausibly glosses stockpile",
+  "heuristic": "imagined-headword"
+ },
+ "L192": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "tight plausibly glosses taut",
+  "heuristic": "imagined-headword"
+ },
+ "L193": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "trap plausibly glosses snare",
+  "heuristic": "imagined-headword"
+ },
+ "L194": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "clever plausibly glosses shrewd",
+  "heuristic": "imagined-headword"
+ },
+ "L195": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "overrun plausibly glosses infest",
+  "heuristic": "imagined-headword"
+ },
+ "L196": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "forfeit plausibly glosses relinquish",
+  "heuristic": "imagined-headword"
+ },
+ "L197": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "mistreat plausibly glosses abuse",
+  "heuristic": "imagined-headword"
+ },
+ "L198": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "solemn plausibly glosses grave",
+  "heuristic": "imagined-headword"
+ },
+ "L199": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "anger plausibly glosses ire",
+  "heuristic": "imagined-headword"
+ },
+ "L200": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "nurture plausibly glosses foster",
+  "heuristic": "imagined-headword"
+ },
+ "L201": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "suppress plausibly glosses quell",
+  "heuristic": "imagined-headword"
+ },
+ "L202": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "implore plausibly glosses beseech",
+  "heuristic": "imagined-headword"
+ },
+ "L203": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "lack plausibly glosses dearth",
+  "heuristic": "imagined-headword"
+ },
+ "L204": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "lawful plausibly glosses legitimate",
+  "heuristic": "imagined-headword"
+ },
+ "L205": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "scold plausibly glosses reprimand",
+  "heuristic": "imagined-headword"
+ },
+ "L206": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "gruff plausibly glosses brusque",
+  "heuristic": "imagined-headword"
+ },
+ "L207": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "detached plausibly glosses aloof",
+  "heuristic": "imagined-headword"
+ },
+ "L208": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "clarify plausibly glosses elucidate",
+  "heuristic": "imagined-headword"
+ },
+ "L209": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "steal plausibly glosses pilfer",
+  "heuristic": "imagined-headword"
+ },
+ "L210": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "picky plausibly glosses finicky",
+  "heuristic": "imagined-headword"
+ },
+ "L211": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "scorn plausibly glosses contempt",
+  "heuristic": "imagined-headword"
+ },
+ "L212": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "occupation plausibly glosses vocation",
+  "heuristic": "imagined-headword"
+ },
+ "L213": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "nearness plausibly glosses proximity",
+  "heuristic": "imagined-headword"
+ },
+ "L214": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "fleeting plausibly glosses transient",
+  "heuristic": "imagined-headword"
+ },
+ "L215": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "artful plausibly glosses crafty",
+  "heuristic": "imagined-headword"
+ },
+ "L216": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "fanatic plausibly glosses zealot",
+  "heuristic": "imagined-headword"
+ },
+ "L217": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "immobile plausibly glosses stationary",
+  "heuristic": "imagined-headword"
+ },
+ "L218": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "straightforward plausibly glosses candid",
+  "heuristic": "imagined-headword"
+ },
+ "L219": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "bargain plausibly glosses haggle",
+  "heuristic": "imagined-headword"
+ },
+ "L220": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "surly plausibly glosses sullen",
+  "heuristic": "imagined-headword"
+ },
+ "L221": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "acquire plausibly glosses obtain",
+  "heuristic": "imagined-headword"
+ },
+ "L222": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "dodge plausibly glosses evade",
+  "heuristic": "imagined-headword"
+ },
+ "L223": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "ramble plausibly glosses meander",
+  "heuristic": "imagined-headword"
+ },
+ "L224": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "wordy plausibly glosses verbose",
+  "heuristic": "imagined-headword"
+ },
+ "L225": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "merciful plausibly glosses lenient",
+  "heuristic": "imagined-headword"
+ },
+ "L226": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "mislead plausibly glosses deceive",
+  "heuristic": "imagined-headword"
+ },
+ "L227": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "courageous plausibly glosses valiant",
+  "heuristic": "imagined-headword"
+ },
+ "L228": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "profitable plausibly glosses lucrative",
+  "heuristic": "imagined-headword"
+ },
+ "L229": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "laughable plausibly glosses ludicrous",
+  "heuristic": "imagined-headword"
+ },
+ "L230": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "investigate plausibly glosses probe",
+  "heuristic": "imagined-headword"
+ },
+ "L231": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "punish plausibly glosses chastise",
+  "heuristic": "imagined-headword"
+ },
+ "L232": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "ignite plausibly glosses kindle",
+  "heuristic": "imagined-headword"
+ },
+ "L233": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "quench plausibly glosses slake",
+  "heuristic": "imagined-headword"
+ },
+ "L234": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "plentiful plausibly glosses abundant; scarce is its antonym pair",
+  "heuristic": "overlap-elimination"
+ },
+ "L235": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "threatening plausibly glosses ominous",
+  "heuristic": "imagined-headword"
+ },
+ "L236": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "boldness plausibly glosses audacity",
+  "heuristic": "imagined-headword"
+ },
+ "L237": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "force plausibly glosses compel",
+  "heuristic": "imagined-headword"
+ },
+ "L238": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "innumerable plausibly glosses countless",
+  "heuristic": "imagined-headword"
+ },
+ "L239": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "amend plausibly glosses revise",
+  "heuristic": "imagined-headword"
+ },
+ "L240": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "frank plausibly glosses candid",
+  "heuristic": "imagined-headword"
+ },
+ "L241": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "prudent plausibly glosses wise",
+  "heuristic": "imagined-headword"
+ },
+ "L242": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "cry plausibly glosses weep",
+  "heuristic": "imagined-headword"
+ },
+ "L243": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "sluggish plausibly glosses lethargic",
+  "heuristic": "imagined-headword"
+ },
+ "L244": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "liable plausibly glosses responsible",
+  "heuristic": "imagined-headword"
+ },
+ "L245": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "nameless plausibly glosses anonymous",
+  "heuristic": "imagined-headword"
+ },
+ "L246": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "enthusiastic plausibly glosses zealous",
+  "heuristic": "imagined-headword"
+ },
+ "L247": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "seize plausibly glosses grab",
+  "heuristic": "imagined-headword"
+ },
+ "L248": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "solitude plausibly glosses isolation",
+  "heuristic": "imagined-headword"
+ },
+ "L249": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "feast plausibly glosses banquet",
+  "heuristic": "imagined-headword"
+ },
+ "L250": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "thoughtful plausibly glosses pensive",
+  "heuristic": "imagined-headword"
+ },
+ "L251": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "basic plausibly glosses fundamental",
+  "heuristic": "imagined-headword"
+ },
+ "L252": {
+  "pick": "D",
+  "basis": "signal",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "stubborn stands apart from overlapping yielding/obedient",
+  "heuristic": "overlap-elimination"
+ },
+ "L253": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "ointment plausibly glosses salve",
+  "heuristic": "imagined-headword"
+ },
+ "L254": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "clumsy plausibly glosses awkward",
+  "heuristic": "imagined-headword"
+ },
+ "L255": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "danger plausibly glosses peril",
+  "heuristic": "imagined-headword"
+ },
+ "L256": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "peak plausibly glosses pinnacle",
+  "heuristic": "imagined-headword"
+ },
+ "L257": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "waver plausibly glosses vacillate",
+  "heuristic": "imagined-headword"
+ },
+ "L258": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "trend plausibly glosses fad",
+  "heuristic": "imagined-headword"
+ },
+ "L259": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "motherly plausibly glosses maternal",
+  "heuristic": "imagined-headword"
+ },
+ "L260": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "lead plausibly glosses guide",
+  "heuristic": "imagined-headword"
+ },
+ "L261": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "exacting plausibly glosses demanding",
+  "heuristic": "imagined-headword"
+ },
+ "L262": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "repair plausibly glosses mend",
+  "heuristic": "imagined-headword"
+ },
+ "L263": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "icy plausibly glosses frigid",
+  "heuristic": "imagined-headword"
+ },
+ "L264": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "shrivel plausibly glosses wither",
+  "heuristic": "imagined-headword"
+ },
+ "L265": {
+  "pick": "A",
+  "basis": "guess",
+  "reject": "B",
+  "reject_certain": false,
+  "why": "bewilder plausibly glosses baffle",
+  "heuristic": "imagined-headword"
+ },
+ "L266": {
+  "pick": "D",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "throw plausibly glosses hurl",
+  "heuristic": "imagined-headword"
+ },
+ "L267": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "unclear plausibly glosses vague",
+  "heuristic": "imagined-headword"
+ },
+ "L268": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "annoy plausibly glosses pester",
+  "heuristic": "imagined-headword"
+ },
+ "L269": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "A",
+  "reject_certain": false,
+  "why": "regret plausibly glosses remorse",
+  "heuristic": "imagined-headword"
+ },
+ "L270": {
+  "pick": "B",
+  "basis": "guess",
+  "reject": "C",
+  "reject_certain": false,
+  "why": "thrifty plausibly glosses frugal",
+  "heuristic": "imagined-headword"
+ },
+ "L271": {
+  "pick": "C",
+  "basis": "guess",
+  "reject": "D",
+  "reject_certain": false,
+  "why": "soak plausibly glosses drench",
+  "heuristic": "imagined-headword"
+ }
+}
