@@ -1,0 +1,536 @@
+[
+ {
+  "id": "SM28F-D01",
+  "domain": "Algebra",
+  "subskill": "Inequality between two outputs of a linear function",
+  "difficulty": "medium",
+  "prompt": "f(x) = 3x - 11\n\nFor the function f defined above, the output at input 3n + 3 must stay below 60 more than twice the output at input n, that is, f(3n + 3) < 2f(n) + 60. If n is an integer, what is the greatest possible value of n ?",
+  "choices": [
+   "19",
+   "8",
+   "22",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "First write each side in terms of n. Since f(x) = 3x - 11, f(3n + 3) = 3(3n + 3) - 11 = 9n + 9 - 11 = 9n - 2. Also f(n) = 3n - 11, so 2f(n) + 60 = 6n - 22 + 60 = 6n + 38. The inequality becomes 9n - 2 < 6n + 38. Subtracting 6n from both sides and adding 2 to both sides gives 3n < 40, so n < 40/3, which is about 13.33. The greatest integer less than 40/3 is 13. (Check: for n = 13, f(42) = 115 and 2f(13) + 60 = 116, and 115 < 116; for n = 14, f(45) = 124 and 2f(14) + 60 = 122, and 124 is not less than 122.)",
+  "solve": "const f = x => 3 * x - 11; let n = 100; while (!(f(3 * n + 3) < 2 * f(n) + 60)) n--; return n;",
+  "distractor_solve": {
+   "8": "const f = x => 3 * x - 11; let n = 100; while (!(f(3 * n + 3) < f(n) + 60)) n--; return n;",
+   "19": "let n = 100; while (!(9 * n - 9 - 11 < 2 * (3 * n - 11) + 60)) n--; return n;",
+   "22": "const f = x => 3 * x - 11; let n = 100; while (!(3 * f(n) + 3 < 2 * f(n) + 60)) n--; return n;"
+  },
+  "mechanism": [
+   "evaluate a linear function at a linear expression in n",
+   "set up and solve the resulting linear inequality",
+   "take the greatest integer below a non-integer bound"
+  ],
+  "quantity_asked": "the greatest integer n satisfying f(3n + 3) < 2f(n) + 60",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const f = x => 3 * x - 11; const ok = m => f(3 * m + 3) < 2 * f(m) + 60; return Number.isInteger(v) && ok(v) && !ok(v + 1);",
+   "why": "A student can test an option n by computing f(3n + 3) and 2f(n) + 60, and must also check that n + 1 fails. For a 'greatest' ask the natural order is descending: 22 and 19 fail the inequality, and the key 13 is reached on try 3."
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Drops the factor 2 on f(n), solving 9n - 2 < 3n + 49 and getting n < 8.5. Whether losing a coefficient raises or lowers the bound depends on the coefficients on both sides."
+   },
+   "19": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Distributes 3(3n + 3) as 9n - 9, getting 9n - 20 < 6n + 38 and n < 19.33. The stem gives no sign of which way a sign slip on a constant moves the bound."
+   },
+   "22": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treats f(3n + 3) as 3f(n) + 3, which gives 9n - 30 instead of 9n - 2. Whether this composition slip raises or lowers the bound depends on the constants, which the stem does not order."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Handed over: n is an integer, so the answer is an integer; no sign or cap is stated. All four options are positive integers and all survive together.",
+  "interior_parity_check": "Middle values 13 and 19: both two-digit odd integers of the same form; neither is cleaner than the other.",
+  "arith_class_check": "Parity: 13 and 19 odd, 8 and 22 even, two and two. No multiple-of-k class the stem implies (the bound 40/3 is not an integer) isolates 13.",
+  "dup_search": {
+   "queries": [
+    "[fgh]\\([^)]*\\) ?(>|≥|<|≤|>=|<=|is greater|is less|exceeds) ?[^.]*[fgh]\\(",
+    "greatest integer&f\\(",
+    "what is the greatest integer (value of )?[a-z]",
+    "f\\([0-9][a-z] [-+] [0-9]+\\)"
+   ],
+   "hits_read": 30,
+   "nearest": "SADV7B-05 (f(n) = 4 * 2^n vs g(n) = 45n + 70, least integer n with f(n) > g(n)) compares two different functions, one exponential, and is Advanced Math. SM15/SM16 'greatest integer value of x for which 53 - 6x > 2x - 11' solve a printed linear inequality. Here the inequality has to be built by evaluating one linear function at two different inputs (3n + 3 and n), and the errors are in that evaluation."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student trying options from the top reaches the key on try 3 (22 and 19 fail). Read lines: 19 - 13 = 6, which equals 2 x the printed 3, and 13 - 8 = 5, which equals printed 3 + printed 2. Both are coincidences of these numbers, since 19 and 8 come from a sign slip and a dropped factor, not from adding 6 or 5 to the key, and the stem gives no reason to add 6 or 5 to anything. No gating PAIR or DPAIR."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-D02",
+  "domain": "Algebra",
+  "subskill": "Linear inequality comparing two linear models",
+  "difficulty": "medium",
+  "prompt": "Two newsletters launched on the same day. Newsletter P had 1,440 subscribers 4 months after launch and 1,680 subscribers 8 months after launch, and its number of subscribers has increased at a constant rate since launch. Newsletter Q had 2,750 subscribers at launch and has lost 40 subscribers per month since launch. Assume both trends continue. Let t be the least whole number of months after launch for which newsletter P has more subscribers than newsletter Q. How many subscribers does newsletter P have t months after launch?",
+  "choices": [
+   "1950",
+   "2110",
+   "2160",
+   "2280"
+  ],
+  "correct_answer": "2160",
+  "explanation": "Newsletter P gains (1,680 - 1,440)/(8 - 4) = 240/4 = 60 subscribers per month. Going back 4 months from 1,440 gives 1,440 - 4(60) = 1,200 subscribers at launch, so P has 1,200 + 60m subscribers m months after launch. Newsletter Q has 2,750 - 40m subscribers m months after launch. P has more subscribers than Q when 1,200 + 60m > 2,750 - 40m, that is, 100m > 1,550, or m > 15.5. The least whole number of months is t = 16. At that time newsletter P has 1,200 + 60(16) = 1,200 + 960 = 2,160 subscribers. (Check: Q then has 2,750 - 640 = 2,110, which is fewer; at 15 months P has 2,100 and Q has 2,150.)",
+  "solve": "const r = (1680 - 1440) / (8 - 4); const P0 = 1440 - 4 * r; let t = 0; while (!(P0 + r * t > 2750 - 40 * t)) t++; return P0 + r * t;",
+  "distractor_solve": {
+   "1950": "const r = (1680 - 1440) / 8; const P0 = 1440 - 4 * r; let t = 0; while (!(P0 + r * t > 2750 - 40 * t)) t++; return P0 + r * t;",
+   "2110": "const r = (1680 - 1440) / (8 - 4); const P0 = 1440 - 4 * r; let t = 0; while (!(P0 + r * t > 2750 - 40 * t)) t++; return 2750 - 40 * t;",
+   "2280": "const r = (1680 - 1440) / (8 - 4); const P0 = 1440; let t = 0; while (!(P0 + r * t > 2750 - 40 * t)) t++; return P0 + r * t;"
+  },
+  "mechanism": [
+   "rate and starting value of a linear model from two data points",
+   "linear inequality between two linear models",
+   "least whole-number solution, then evaluate the model there"
+  ],
+  "quantity_asked": "newsletter P's subscriber count at the first whole month it exceeds Q",
+  "ask_type": "derived-value",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const t = (v - 1200) / 60; if (!Number.isInteger(t)) return false; const P = x => 1200 + 60 * x; const Q = x => 2750 - 40 * x; return P(t) > Q(t) && P(t - 1) <= Q(t - 1);",
+   "why": "To test an option a student must first build P's model (rate 60, launch value 1,200), convert the option back to a month count, and then compare P with Q at that month and the month before. In ascending order 1950 and 2110 are not values of P at a whole month, and 2160 is reached on try 3."
+  },
+  "distractor_meta": {
+   "1950": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Divides the 240-subscriber change by 8 instead of by the 4 months between the readings, so P grows at 30 per month and passes Q later, at a lower count. Nothing in the stem shows whether a rate slip pushes the answer up or down until the crossing is solved."
+   },
+   "2110": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Solves correctly for t = 16 and then reports newsletter Q's count, 2,750 - 640. The stem names both newsletters and does not signal which count is the larger at that month."
+   },
+   "2280": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Treats 1,440 as the launch count, ignoring the 4 months before the first reading; P then overtakes Q at month 14 with 1,440 + 840 = 2,280. Whether this lands high or low depends on how the shifted crossing falls, not on the stem's wording."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Handed over: the count is a whole number, P increases (so the answer exceeds 1,680), and P has just overtaken Q, which never exceeds 2,750 (so the answer is below about 2,750 + 60). All four options (1950, 2110, 2160, 2280) are whole numbers between 1,680 and 2,810, so all four survive together.",
+  "interior_parity_check": "Middle values 2110 and 2160: both four-digit multiples of 10 of the same form; neither is rounder than the other.",
+  "arith_class_check": "All four are multiples of 10 and even; 1950 is the only one ending in 50, and it is a distractor. The key 2160 is in no singleton class.",
+  "dup_search": {
+   "queries": [
+    "subscriber",
+    "more .* than .* for the first time|first time",
+    "(loses|decreas).*per (month|week|year)&(increas|gain|grow).*per (month|week|year)&more",
+    "first (whole )?(week|month|day|year|hour|minute)",
+    "candle|taller than|shorter than",
+    "whole number of (weeks|months|days|years)",
+    "least whole number",
+    "Tank A contains 380"
+   ],
+   "hits_read": 52,
+   "nearest": "f9b28c46-6a5 (Tank A filling vs Tank B draining, least whole minutes until A is at least half of B) and bcd4961e-8fb (two phone plans, least whole minutes): both give both models directly and ask for the time. Here one model must first be built from two readings and traced back to its launch value, and the ask is the model value at the first whole month, not the month. 551df7e0-df2 (candles, one from two data points) is an equation for an exact difference."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student cannot check an option without building P's model; once it is built, testing ascending reaches the key on try 3. The 2280 option is K + 2 x 60 (P's own rate, which is derived, not printed), and 2160 - 2110 = 50, 2280 - 2160 = 120, 2160 - 1950 = 210 are not printed numbers or one step from them; mf28-checks prints no read lines. No option exceeds the 2,810 bound or falls below 1,680."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-D03",
+  "domain": "Algebra",
+  "subskill": "Complement of one solution set as another",
+  "difficulty": "medium",
+  "prompt": "7x + 30 ≥ 3(x + 2)\n87 - 5x > c\n\nIn the second inequality above, c is a constant. The values of x that do not satisfy the first inequality are exactly the values of x that satisfy the second inequality. What is the value of c?",
+  "choices": [
+   "93",
+   "99",
+   "117",
+   "42"
+  ],
+  "correct_answer": "117",
+  "explanation": "Solve the first inequality. Distributing gives 7x + 30 ≥ 3x + 6. Subtracting 3x and 30 from both sides gives 4x ≥ -24, so x ≥ -6. The values of x that do not satisfy the first inequality are therefore the values with x < -6. Now solve the second inequality for x. Subtracting 87 from both sides gives -5x > c - 87. Dividing both sides by -5 reverses the inequality sign: x < (87 - c)/5. For this to describe exactly the values x < -6, the boundary must be -6: (87 - c)/5 = -6, so 87 - c = -30 and c = 117.",
+  "solve": "const m = (3 * 2 - 30) / (7 - 3); return 87 - 5 * m;",
+  "distractor_solve": {
+   "42": "const m = (3 * 2 + 30) / (7 - 3); return 87 - 5 * m;",
+   "93": "const m = (3 * 2 - 30) / (7 - 3); return 87 - m;",
+   "99": "const m = (3 * 2 - 30) / (7 + 3); return 87 - 5 * m;"
+  },
+  "mechanism": [
+   "solve a linear inequality with distribution",
+   "take the complement of its solution set",
+   "solve a second inequality with a sign reversal and match its boundary"
+  ],
+  "quantity_asked": "the constant c in the second inequality",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const m = (3 * 2 - 30) / (7 - 3); return Math.abs((87 - v) / 5 - m) < 1e-9;",
+   "why": "A student can test an option c by solving 87 - 5x > c for x and comparing the boundary (87 - c)/5 with the boundary of the first inequality's complement, which needs the first inequality solved first. In the natural ascending order 42, 93 and 99 fail and the key 117 is reached on try 4."
+  },
+  "distractor_meta": {
+   "42": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Moves 30 to the right side as +30, getting 4x ≥ 36 and a boundary of 9. The stem gives no way to tell that this slip lowers c rather than raises it without solving."
+   },
+   "93": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Sets 87 - c equal to -6, forgetting to divide by -5. The size of the slip depends on the boundary's sign, which the stem does not show until the first inequality is solved."
+   },
+   "99": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Moves 3x to the left side as +3x, getting 10x ≥ -24 and a boundary of -2.4; whether that raises or lowers c depends on the sign of the boundary, which nothing in the stem gives away."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const m = (2 - 30) / (7 - 3); return 87 - 5 * m;",
+   "direction": "above",
+   "why": "Distributes 3(x + 2) as 3x + 2, so 4x ≥ -28 and x ≥ -7; then (87 - c)/5 = -7 gives c = 122, above the key."
+  },
+  "cheap_bound_check": "The cheapest bound: if the boundary is negative then c > 87 (since (87 - c)/5 < 0). Knowing the boundary is negative already needs the first inequality solved. Above 87 the distractors 93 and 99 sit on the key's side, so the bound does not single out the key; the distribution slip (122) would also land above the key.",
+  "shape_check": "The stem hands over no sign, integer or cap property for c (c could be any real number). All four options are positive integers; 93, 99 and 117 are all above 87, the value at which the boundary would be 0. At least three options survive together.",
+  "interior_parity_check": "Middle values 93 and 99: both two-digit odd integers of the same form; neither is cleaner.",
+  "arith_class_check": "Parity: 93, 99, 117 odd, 42 even; the key is in the majority class. Multiples of 3: 93, 99, 117 and 42 are all multiples of 3, so no class isolates the key. Sign: all positive.",
+  "dup_search": {
+   "queries": [
+    "exactly the values",
+    "\\bnot\\b&inequalit&constant",
+    "(do|does) not satisfy|not a solution|are not solutions|fail to satisfy",
+    "solution (set )?(to|of) the inequality&value of (the constant )?k",
+    "> c&- [0-9]x|[0-9] - [0-9]x > c"
+   ],
+   "hits_read": 16,
+   "nearest": "SM27F-D03 (compound inequality rewritten as a ≤ 6x + 1 < b, value of b) transforms one solution set into an expression range; here a second inequality with a constant must describe the COMPLEMENT of the first solution set, with a sign reversal. 504d7830-791 and 04ac9e89-1 (constant k from a given solution set) give the solution set directly; here it must first be derived from another inequality and complemented. SM26F-D03 counts integers in one set and not another."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, a student cannot tell which way the natural errors go: the two sign slips and the omission move c down only because the boundary is negative, which is not visible from the stem, and the distribution slip moves it up (122, not an option). A test-wise student plugging options must first solve the first inequality, and in ascending order reaches the key on try 4. No PAIR or DPAIR read lines: differences 18, 24, 75 and ratios are not printed numbers or one step from them."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-D04",
+  "domain": "Algebra",
+  "subskill": "Sign of an unknown coefficient from a solution interval",
+  "difficulty": "hard",
+  "prompt": "kx + 3 ≤ 21\n(k - 8)x + d ≥ 0\n\nIn the system of inequalities above, k and d are constants. The solution set of the system is all real numbers x such that -3 ≤ x ≤ 6. What is the value of d?",
+  "choices": [
+   "30",
+   "-15",
+   "84",
+   "36"
+  ],
+  "correct_answer": "84",
+  "explanation": "The first inequality simplifies to kx ≤ 18. Its solution set is one ray, and the second inequality must supply the other end of the interval -3 ≤ x ≤ 6. If k were positive, the first inequality would give x ≤ 18/k, so 18/k = 6 and k = 3. Then the second inequality would be -5x + d ≥ 0, that is, x ≤ d/5, which is another upper bound, so the system could never have the lower end -3. Therefore k is negative. Dividing kx ≤ 18 by the negative number k reverses the sign: x ≥ 18/k, so 18/k = -3 and k = -6. The second inequality becomes -14x + d ≥ 0, that is, 14x ≤ d, or x ≤ d/14. This upper bound must be 6, so d = 14(6) = 84. Check: with k = -6 and d = 84 the system is -6x + 3 ≤ 21 and -14x + 84 ≥ 0, which give x ≥ -3 and x ≤ 6.",
+  "solve": "const A = 21 - 3; const k = A / -3; if (!(k < 0 && k - 8 < 0)) throw new Error('case'); return -6 * (k - 8);",
+  "distractor_solve": {
+   "30": "const A = 21 - 3; const k = A / 6; return -6 * (k - 8);",
+   "36": "const A = 21 - 3; const k = A / -3; return -6 * k;",
+   "-15": "const A = 21 - 3; const k = A / 6; return 3 * (k - 8);"
+  },
+  "mechanism": [
+   "decide the sign of an unknown coefficient from which end of the interval each inequality can supply",
+   "divide by a negative coefficient and reverse the sign",
+   "match the other inequality's boundary to the remaining endpoint"
+  ],
+  "quantity_asked": "the constant d in the second inequality",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option for d cannot be tested without k, and k is decided only by the sign argument; once k = -6 is known, d follows directly. In ascending order the key 84 is the last option tried."
+  },
+  "distractor_meta": {
+   "30": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Assumes k is positive, gets k = 3 from the upper end 6, and then matches the second inequality's boundary d/5 to 6 as well, ignoring that it gives no lower end. The stem does not reveal whether the positive-k assumption raises or lowers d."
+   },
+   "36": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds k = -6 correctly but drops the -8, using -6x + d ≥ 0. Whether this lowers or raises d depends on the sign of the dropped term, which the stem does not settle until k is found."
+   },
+   "-15": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Assumes k = 3 and then divides -5x ≥ -d by -5 without reversing the sign, getting x ≥ d/5 and setting it equal to -3. Nothing in the stem shows which side of the key a dropped reversal lands on."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const A = 21 + 3; const k = A / -3; return -6 * (k - 8);",
+   "direction": "above",
+   "why": "Moves 3 to the right side as +3, getting kx ≤ 24 and k = -8; then -16x + d ≥ 0 with upper end 6 gives d = 96, above the key."
+  },
+  "cheap_bound_check": "The cheapest one-sided reading: the second inequality must supply the upper end 6, so d/(8 - k) = 6 and d > 0 when k < 8. That needs the sign argument first, and it kills only -15; 30 and 36 lie on the key's side of it.",
+  "shape_check": "The stem hands over no integer, sign or cap property for d directly. Once d > 0 is derived (above), 30, 36 and 84 survive together; no qualitative property separates the key from 30 and 36.",
+  "interior_parity_check": "Middle values 30 and 36: both two-digit even multiples of 6 of the same form; neither is cleaner than the other.",
+  "arith_class_check": "Even: 30, 36, 84 even, -15 odd; multiples of 6: 30, 36, 84. The key is in the majority class each time; the only singleton is the distractor -15.",
+  "dup_search": {
+   "queries": [
+    "system of inequalities&value of [a-z]\\b",
+    "(kx|ax|\\(k [-+] [0-9]\\)x)&(≤|≥)&-?[0-9]+ ≤ x ≤",
+    "solution set of the system|solutions of the system&≤ x ≤|<= x <=|< x <",
+    "k and [a-z] are constants&inequalit",
+    "kx [-+] [0-9]+ (≤|≥|<|>)&constants"
+   ],
+   "hits_read": 27,
+   "nearest": "SM27F-D04 (16 - 3x ≤ 2x - 29 and 6(k - x) ≥ -x - 21, exactly one solution, value of k) and SM27F-D02 / D05 / D10 (two-variable systems with a constant): all have known coefficients on x, so no sign decision. The f(x) = kx + b bounded-on-an-interval family (SM24L-A1, d2f9831f) bounds a function's values, not a system's solution set. Here the unknown coefficient's SIGN must be decided from which end of the interval each inequality can supply."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three? No: the positive-k assumption, the dropped reversal and the dropped -8 land below only because of these particular numbers, and the +3 slip lands above (96, not an option). Could a student check an option in one routine step? No: d cannot be tested without k, and k needs the sign decision. The decision point (positive k gives two upper bounds) is what Desmos does not settle, since k and d are both unknown. No PAIR or DPAIR lines."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-D05",
+  "domain": "Algebra",
+  "subskill": "Constant from one solution set, then solve another",
+  "difficulty": "medium",
+  "prompt": "2(x - 7) + k ≥ 8x + 1\n-18 - 3x > k\n\nFor a certain number k, the first inequality above is true exactly when x ≤ 7. For that same number k, the second inequality is true exactly when x < c. What is c?",
+  "choices": [
+   "3",
+   "-25",
+   "57",
+   "-13"
+  ],
+  "correct_answer": "-25",
+  "explanation": "Solve the first inequality in terms of k. Distributing gives 2x - 14 + k ≥ 8x + 1. Subtracting 8x from both sides and subtracting k - 14 from both sides gives -6x ≥ 15 - k. Dividing both sides by -6 reverses the inequality sign: x ≤ (k - 15)/6. This solution set is x ≤ 7, so (k - 15)/6 = 7, which gives k - 15 = 42 and k = 57. The second inequality is then -18 - 3x > 57. Adding 18 to both sides gives -3x > 75, and dividing both sides by -3 reverses the sign: x < -25. Therefore c = -25.",
+  "solve": "const k = 15 + 6 * 7; return (-18 - k) / 3;",
+  "distractor_solve": {
+   "3": "const k = 15 - 6 * 7; return (-18 - k) / 3;",
+   "57": "const k = 15 + 6 * 7; return k;",
+   "-13": "const k = 15 + 6 * 7; return -(k - 18) / 3;"
+  },
+  "mechanism": [
+   "find a constant from a given solution set, with a sign reversal",
+   "substitute it into a second inequality",
+   "solve the second inequality with a sign reversal"
+  ],
+  "quantity_asked": "the boundary c of the second inequality's solution set",
+  "ask_type": "derived-value",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option for c cannot be checked against anything printed until k is known, and k comes only from solving the first inequality and matching its boundary to 7. Once k = 57 is found, c follows in one more step, so testing options saves nothing; the ask is one step past the constant."
+  },
+  "distractor_meta": {
+   "3": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Divides -6x ≥ 15 - k by -6 but keeps 15 - k on top, getting x ≤ (15 - k)/6 = 7 and k = -27; the second inequality then gives x < 3. The stem does not show that a wrong k moves c up rather than down."
+   },
+   "57": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Stops after finding the constant k = 57 and reports it. The stem names both k and c, and nothing in it orders their sizes."
+   },
+   "-13": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Has k = 57 but moves -18 to the right side as -18, getting -3x > 39 and x < -13. Whether this slip raises or lowers c depends on the signs of -18 and k together, which the stem does not settle."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const k = 15 + 6 * 7; return -18 - k;",
+   "direction": "below",
+   "why": "Has k = 57 and isolates -3x correctly as -3x > 75 but then writes x < -75, dropping the division by 3; this lands below the key."
+  },
+  "cheap_bound_check": "No one-sided bound on c is readable from the stem without k. Once k is known to be positive, -18 - 3x > k forces -3x > 18 and c < -6; that already needs the first inequality solved, and the distractor -13 sits on the key's side of it.",
+  "shape_check": "The stem hands over no integer, sign or cap property for c (k is not given, so even the sign of c is unknown). All four options are integers; -25 and -13 are both negative, and all four survive together on the stem alone.",
+  "interior_parity_check": "Middle values -13 and 3: both small integers, odd, with no fraction or decimal; neither is cleaner than the key -25, which is of the same form.",
+  "arith_class_check": "All four options are odd integers. Signs split two and two (-25, -13 negative; 3, 57 positive). Multiples of 3: 3 and 57; not the key. No class isolates -25.",
+  "dup_search": {
+   "queries": [
+    "solution (set )?(to|of) the inequality&value of (the constant )?k",
+    "for this value of k|using this value|for that value of",
+    "solution set (is|of)&inequalit&solution (set )?(to|of) the inequality",
+    "> k&-[0-9]+ - [0-9]x|[0-9] - [0-9]x > k"
+   ],
+   "hits_read": 20,
+   "nearest": "504d7830-791 (5 - 2(x - 3k) ≥ 3x + 4 has solution set x ≤ 3; value of k) and 04ac9e89-1 / 8e2d (7x - 4 ≥ 3(x + 2) + k, solution set x ≥ 9; value of k) stop at the constant. Here the constant is only an intermediate: it is substituted into a second inequality whose boundary, after a second sign reversal, is the answer. 383c8b40-94b ('for that value of k') is a pricing comparison of two linear expressions with no inequality solving."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Could a student check an option against the stem in one routine step? No: c depends on k, which is not printed; the first inequality must be solved and matched to x ≤ 7 before any option can be tested, and at that point c is one step away. The PLUG read line (key at try 1, a 'value of c' ask) is answered by this. Covering the work, could a student tell which way the errors go? No: the two sign slips land above only because of these signs, the reported k (57) is above, and dropping the division by 3 lands below (-75, not an option). No PAIR or DPAIR read lines."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-D06",
+  "domain": "Algebra",
+  "subskill": "Length of time two linear conditions hold together",
+  "difficulty": "medium",
+  "prompt": "In a greenhouse, t minutes after a heater is switched on, the air temperature is 6 + 0.4t degrees Celsius and the relative humidity is 72 - 0.75t percent. Seedlings can be moved into the greenhouse only while the temperature is 16 degrees Celsius or higher and the humidity is 33 percent or higher. For how many minutes are both of these requirements met?",
+  "choices": [
+   "48",
+   "27",
+   "77",
+   "71"
+  ],
+  "correct_answer": "27",
+  "explanation": "The temperature requirement is 6 + 0.4t ≥ 16. Subtracting 6 gives 0.4t ≥ 10, so t ≥ 25. The humidity requirement is 72 - 0.75t ≥ 33. Subtracting 72 gives -0.75t ≥ -39, and dividing by -0.75 reverses the sign: t ≤ 52. Both requirements are met exactly when 25 ≤ t ≤ 52, which is a period of 52 - 25 = 27 minutes.",
+  "solve": "const t1 = (16 - 6) / 0.4; const t2 = (72 - 33) / 0.75; return Math.round((t2 - t1) * 1e9) / 1e9;",
+  "distractor_solve": {
+   "48": "const t1 = (16 - 6) * 0.4; const t2 = (72 - 33) / 0.75; return Math.round((t2 - t1) * 1e9) / 1e9;",
+   "71": "const t1 = (16 - 6) / 0.4; const t2 = 72 / 0.75; return Math.round((t2 - t1) * 1e9) / 1e9;",
+   "77": "const t1 = (16 - 6) / 0.4; const t2 = (72 - 33) / 0.75; return Math.round((t2 + t1) * 1e9) / 1e9;"
+  },
+  "mechanism": [
+   "write and solve a linear inequality for each requirement",
+   "reverse the sign when dividing by a negative rate",
+   "intersect the two solution sets and take the length of the interval"
+  ],
+  "quantity_asked": "the number of minutes during which both requirements hold",
+  "ask_type": "derived-value",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "A length of time cannot be substituted into either expression; checking an option needs both boundary times, which is the whole solution. No printed condition is true or false for a single option value."
+  },
+  "distractor_meta": {
+   "48": {
+    "error_kind": "inverted_rate",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Multiplies the 10-degree rise by 0.4 instead of dividing, so the temperature requirement seems to start at t = 4 and the window looks longer. The stem does not reveal which way an inverted rate moves the answer without computing both times."
+   },
+   "71": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Drops the 33-percent threshold and solves 72 - 0.75t ≥ 0, getting t ≤ 96. Whether a dropped threshold lengthens or shortens the window depends on which requirement it belongs to, which the stem does not signal."
+   },
+   "77": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finds both boundary times, 25 and 52, and adds them instead of subtracting. The stem gives no ordering of the two times that would expose this without solving."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const t1 = 16 / 0.4; const t2 = (72 - 33) / 0.75; return t2 - t1;",
+   "direction": "below",
+   "why": "Drops the starting temperature of 6 degrees and solves 0.4t ≥ 16, so the temperature requirement starts at t = 40 and the window is only 12 minutes, below the key."
+  },
+  "cheap_bound_check": "Cheapest bound: the window cannot be longer than the time until the humidity drops to 33 percent (52 minutes), which already needs one inequality solved. It kills 77 and 71 but not 48, which sits on the key's side of it.",
+  "shape_check": "Handed over: the answer is a positive length of time; humidity falls and temperature rises, so the window has a start and an end. No integer requirement is stated. All four options are positive, and 27 and 48 survive the 52-minute cap together.",
+  "interior_parity_check": "Middle values 48 and 71: both two-digit integers of the same form; neither is rounder than the other, and the key is not between them.",
+  "arith_class_check": "Parity: 27, 71, 77 odd and 48 even; the key is in the majority class. No multiple-of-k or roundness class isolates 27 (none of the options is a multiple of 10).",
+  "dup_search": {
+   "queries": [
+    "both conditions|both of these conditions|both requirements",
+    "for how many (minutes|hours|seconds|days)&(at least|at most|no more|no less)",
+    "humidity|greenhouse",
+    "for how many minutes"
+   ],
+   "hits_read": 14,
+   "nearest": "ALG-H2-14 (|84 - 12t| + 6 at most 30; for how many hours) uses one absolute-value model; the drone item in sat-adv-0918 uses one quadratic. Here two separate linear models each give one end of the window, one through a sign reversal, and the answer is the length of their intersection. 95b414af-087 ('both requirements') is a system of equations with no solution."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Could a student check an option against the stem in one routine step? No: a duration is not an input to either model; testing it needs both boundary times. Covering the work, could a student tell which way the errors go? No: the inverted rate, the added times and the dropped threshold all lengthen the window here, while dropping the starting temperature shortens it (12, not an option). The PLUG read line (key at try 1) is answered by the first point. Option 71 is one less than the printed 72 by coincidence of the omission path (72/0.75 - 25), not by a step from 72."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-D07",
+  "domain": "Algebra",
+  "subskill": "Two age inequalities shifted forward and back",
+  "difficulty": "medium",
+  "prompt": "Rosa is 57 years old, and her grandson is g years old, where g is a whole number. In 10 years, Rosa's age will be at least twice her grandson's age at that time. Four years ago, Rosa's age was more than 4 times her grandson's age at that time. What is the greatest possible value of g ?",
+  "choices": [
+   "23",
+   "33",
+   "9",
+   "17"
+  ],
+  "correct_answer": "17",
+  "explanation": "In 10 years Rosa will be 67 and her grandson will be g + 10, so 67 ≥ 2(g + 10), which gives 67 ≥ 2g + 20, 47 ≥ 2g, and g ≤ 23.5. Four years ago Rosa was 53 and her grandson was g - 4, so 53 > 4(g - 4), which gives 53 > 4g - 16, 69 > 4g, and g < 17.25. Both conditions must hold, so g < 17.25, and the second condition is the one that limits g. The greatest whole number less than 17.25 is 17. (Check: four years ago Rosa was 53 and her grandson 13, and 53 > 52; in 10 years she will be 67 and he 27, and 67 ≥ 54.)",
+  "solve": "const ok = g => 67 >= 2 * (g + 10) && 53 > 4 * (g - 4); let g = 200; while (!ok(g)) g--; return g;",
+  "distractor_solve": {
+   "9": "const ok = g => 67 >= 2 * (g + 10) && 53 > 4 * (g + 4); let g = 200; while (!ok(g)) g--; return g;",
+   "23": "const ok = g => 67 >= 2 * (g + 10); let g = 200; while (!ok(g)) g--; return g;",
+   "33": "const ok = g => 67 >= 2 * g; let g = 200; while (!ok(g)) g--; return g;"
+  },
+  "mechanism": [
+   "translate two age comparisons at different times into linear inequalities",
+   "shift both ages forward in one and back in the other",
+   "intersect the solution sets and take the greatest whole number allowed by the binding one"
+  ],
+  "quantity_asked": "the greatest possible whole-number age g of the grandson now",
+  "ask_type": "parameter",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const ok = m => 67 >= 2 * (m + 10) && 53 > 4 * (m - 4); return Number.isInteger(v) && ok(v) && !ok(v + 1);",
+   "why": "A student can test an age by checking both conditions, and must also check that the next age fails. For a 'greatest' ask the natural order is descending: 33 fails the first condition, 23 fails the second, and the key 17 is reached on try 3."
+  },
+  "distractor_meta": {
+   "9": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writes the grandson's age four years ago as g + 4, getting 53 > 4(g + 4) and g < 9.25. The direction of a time-shift slip depends on whether it is forward or back, which the student has to sort out."
+   },
+   "23": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Uses only the first condition (in 10 years) and ignores the condition about four years ago. The stem does not say which condition limits g, so it does not reveal that leaving one out raises the answer."
+   },
+   "33": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "In the first condition, compares Rosa's age in 10 years with the grandson's current age g instead of g + 10, and ignores the second condition. Nothing in the stem orders the two possible readings."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Handed over: g is a whole number, and four years ago he had been born, so g ≥ 4. All four options are whole numbers of at least 4, so all four survive together.",
+  "interior_parity_check": "Middle values 17 and 23: both two-digit odd integers of the same form; neither is cleaner than the other.",
+  "arith_class_check": "All four options are odd; signs are all positive; no option is a multiple of 10 or a square. No class isolates the key.",
+  "dup_search": {
+   "queries": [
+    "years old",
+    "\\bage",
+    "times (her|his|their) .*age|grandson|granddaughter|age will be",
+    "years from now|years ago&(at least|at most|more than|less than|no more|no less)"
+   ],
+   "hits_read": 18,
+   "nearest": "117cc8ec-45e (ISEE easy: in 8 years Marta will be exactly twice as old as her brother; brother's age now) and 65edd1f7-528 / ALG6-22 are age EQUATIONS with one condition. Here there are two age INEQUALITIES, one shifted forward and one back in time, and the student must intersect them, notice which one limits g, and take the greatest whole number. No live or prior item uses age inequalities."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student trying options from the top reaches the key on try 3 (33 fails the first condition, 23 fails the second). The binding condition is the second one, so using only the first one gives a natural above-key error, while a time-shift slip gives a below-key error. Read line: 17 - 9 = 8, which equals 2 x the printed 4. This follows from the g + 4 versus g - 4 slip (the bound moves by 2 x 4), and the stem gives no reason to subtract 8 from anything. No gating PAIR or DPAIR."
+  },
+  "bounds": []
+ }
+]

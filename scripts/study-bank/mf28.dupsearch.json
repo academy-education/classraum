@@ -1,0 +1,505 @@
+{
+ "_note": "Hand keyword search per item (mf28-kw.mjs over the live maths dump of 2026-10-09 00:16, 3,290 rows, and 1,236 prior SAT Algebra/Advanced Math batch items); queries run, hit count, nearest, decision.",
+ "SM28F-P01": {
+  "queries": [
+   "quadratic&table",
+   "table&quadratic|parabola"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "DUPLICATE of live df72b6a2 (new at the pre-freeze re-dump): DROPPED before freeze"
+ },
+ "SM28F-P02": {
+  "queries": [
+   "vertex&\\(x \\+ k\\)\\(x",
+   "f\\(0\\)&vertex"
+  ],
+  "hits": 5,
+  "nearest": "v2 038b0287/3b254007/b1ec0b3b/c30927a2/d0006b59: vertex AND intercepts given numerically on a graph -> f(0); P02 has an unknown k fixed by the vertex y",
+  "decision": "different"
+ },
+ "SM28F-P03": {
+  "queries": [
+   "rocket&same height|both rockets",
+   "rocket|projectile"
+  ],
+  "hits": 2,
+  "nearest": "act d82ac617 (time above 400 ft), SM18A-B1 (landing time on a ledge): one rocket, different ask",
+  "decision": "different"
+ },
+ "SM28F-P04": {
+  "queries": [
+   "intersect at exactly one point&y-coordinate"
+  ],
+  "hits": 1,
+  "nearest": "SM23L-A2 (linear system, prior Algebra): different structure",
+  "decision": "different"
+ },
+ "SM28F-P05": {
+  "queries": [
+   "f\\(-?[0-9]+\\) = f\\(-?[0-9]+\\)&f\\([0-9]+\\) - f"
+  ],
+  "hits": 0,
+  "nearest": "near-dup script: v2 8ec7e3d3 (linear f(2), f(6) -> f(10)) j=0.778, lexical only",
+  "decision": "different mechanism; wording returned for j >= 0.60"
+ },
+ "SM28F-P06": {
+  "queries": [
+   "profit&maximiz&increase",
+   "profit&-[0-9]+x\\^?2|x\u00b2"
+  ],
+  "hits": 1,
+  "nearest": "AM-H-14 (prior, h + k of vertex form): different ask",
+  "decision": "different"
+ },
+ "SM28F-Q01": {
+  "queries": [
+   "0\\.95|1\\.9\\)&equal|same"
+  ],
+  "hits": 0,
+  "nearest": "none (author: two-lakes percent item)",
+  "decision": "different"
+ },
+ "SM28F-Q02": {
+  "queries": [
+   "cool|oven&\\(1/2\\)|half"
+  ],
+  "hits": 0,
+  "nearest": "author: m(t)=800(1/2)^(t/h) half-life item",
+  "decision": "different"
+ },
+ "SM28F-Q03": {
+  "queries": [
+   "author: 4 queries incl. \\^\\(3/2\\)",
+   "h\\^\\(3/2\\)|\\^\\(3/2\\)"
+  ],
+  "hits": 38,
+  "nearest": "orbit d^(3/2) scaling; f(x) = a x^(3/2) + b; (ax + b)^(3/2) = 125 (none fit c from data then ask a change in input)",
+  "decision": "different (return rewrite of the duplicate)"
+ },
+ "SM28F-Q04": {
+  "queries": [
+   "5\\^\\(x \\+ y\\)|\\^\\(x \\+ y\\)&\\^\\(x - y\\)"
+  ],
+  "hits": 1,
+  "nearest": "v2 98b853b5 (3^(x+y)=729, 3^(x-y)=9 -> x, by exponents); Q04 multiplies/divides to 5^(2x), 5^(2y) and asks 5^x + 5^y",
+  "decision": "different"
+ },
+ "SM28F-Q05": {
+  "queries": [
+   "9\\^x|9\\^\\(x\\)&3\\^x|3\\^\\(x\\)"
+  ],
+  "hits": 0,
+  "nearest": "author: SM24V-B12",
+  "decision": "different"
+ },
+ "SM28F-Q06": {
+  "queries": [
+   "f\\(0\\) \\+ f\\(2\\)|f\\(1\\) = 36|ab\\^x|a\\(b\\)\\^x&f\\(3\\)"
+  ],
+  "hits": 2,
+  "nearest": "9295d3dc / SM24V-B13 (two sums of outputs -> b^2 by ratio -> f(5)); Q06 gives a sum and a product-fixing value -> quadratic in b, a < 40 picks one",
+  "decision": "different"
+ },
+ "SM28F-C01": {
+  "queries": [
+   "toward each other&same direction"
+  ],
+  "hits": 0,
+  "nearest": "math-mechanism-dup FLAG 7c27e30c / fea98112 / 584c1c2d / b6c79c87 / bfde7b74: single meet or catch-up steps; C01 builds sum and difference of speeds from both scenarios and asks a time difference",
+  "decision": "different"
+ },
+ "SM28F-C02": {
+  "queries": [
+   "jar&full&weigh|grams",
+   "full&jar|tank|container&weigh"
+  ],
+  "hits": 1,
+  "nearest": "ssat b205095c (full and 60% weights -> empty jar); C02 asks the FULL weight from 3/4 and 1/3; adjacent family, different asked quantity",
+  "decision": "different (recorded near)"
+ },
+ "SM28F-C03": {
+  "queries": [
+   "junior|senior&went|trip"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-C04": {
+  "queries": [
+   "substitut&ax \\+ by"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-C05": {
+  "queries": [
+   "table&no seat|without a seat|empty",
+   "seat"
+  ],
+  "hits": 10,
+  "nearest": "none on the two-seating system",
+  "decision": "different"
+ },
+ "SM28F-C06": {
+  "queries": [
+   "gave|give&twice as many|3 times as many&cards|stickers|marbles"
+  ],
+  "hits": 1,
+  "nearest": "ssat 92a6f0e0 (one transfer, total at start); C06 two hypothetical transfers -> a third transfer",
+  "decision": "different"
+ },
+ "SM28F-C07": {
+  "queries": [
+   "token&worth|points&gold",
+   "silver"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-C08": {
+  "queries": [
+   "copied|miscop"
+  ],
+  "hits": 4,
+  "nearest": "SM27F-A11 / 54386927 (one equation, a miscopied coefficient), act ad262fa1 (quadratic, Vieta); C08 is a 2x2 linear system with each constant miscopied once",
+  "decision": "different"
+ },
+ "SM28F-C09": {
+  "queries": [
+   "batch&liters&blue|white",
+   "paint&batch|mix"
+  ],
+  "hits": 1,
+  "nearest": "act 2475cea3 (pigment ratios)",
+  "decision": "different"
+ },
+ "SM28F-C10": {
+  "queries": [
+   "supply&demand|willing",
+   "demand|supplied|supplies"
+  ],
+  "hits": 3,
+  "nearest": "none at equilibrium quantity",
+  "decision": "different"
+ },
+ "SM28F-D01": {
+  "queries": [
+   "3a - 4b|greatest possible value of [0-9]?[a-z] [-+]"
+  ],
+  "hits": 7,
+  "nearest": "109c9105 / SALG2-11 (|x-5| <= 3, |y+2| <= 1 -> greatest 3x - 2y): the same chain - an interval for each variable separately, then the endpoint choice maximising a linear combination; compound inequalities replace absolute values",
+  "decision": "DUPLICATE: returned",
+  "return": "rewritten: f(3n + 3) < 2f(n) + 60 greatest n; kw 0 hits"
+ },
+ "SM28F-D02": {
+  "queries": [
+   "subscriber"
+  ],
+  "hits": 2,
+  "nearest": "8f8c414d (Advanced Math growth), SADVB-04",
+  "decision": "different"
+ },
+ "SM28F-D03": {
+  "queries": [
+   "do not satisfy|not satisfy the first"
+  ],
+  "hits": 1,
+  "nearest": "SM26F-D03 (prior held; integer count in one but not the other)",
+  "decision": "different"
+ },
+ "SM28F-D04": {
+  "queries": [
+   "solution set&-3 \u2264 x \u2264 6|is all real numbers x such that"
+  ],
+  "hits": 0,
+  "nearest": "author: SM27F-D04 (exactly one x; coefficients given)",
+  "decision": "different"
+ },
+ "SM28F-D05": {
+  "queries": [
+   "exactly when x"
+  ],
+  "hits": 0,
+  "nearest": "author: 504d7830 / 04ac9e89 share the first step (k from a solution set); D05 carries k into a second inequality",
+  "decision": "different"
+ },
+ "SM28F-D06": {
+  "queries": [
+   "greenhouse|humidity"
+  ],
+  "hits": 5,
+  "nearest": "greenhouse items are mixtures / tolerance bands; none a two-condition time window",
+  "decision": "different"
+ },
+ "SM28F-D07": {
+  "queries": [
+   "integer&added together|sum of all integer|listed"
+  ],
+  "hits": 16,
+  "nearest": "1cb5b7c5 (sum of all integer x with -7 < 3 - 2x <= 5): same chain (solve a compound inequality, list the integers, add) to the same asked quantity; D07 only puts x in all three parts",
+  "decision": "DUPLICATE: returned",
+  "return": "rewritten: two age inequalities; nearest 65edd1f7 / SALG-19 age equation (different)"
+ },
+ "SM28F-A01": {
+  "queries": [
+   "rectangl&perimeter&area&twice its width|more than twice"
+  ],
+  "hits": 3,
+  "nearest": "isee 7cd4867d / ssat bfa27a05 / AM3-23 (one measure given -> the other); A01 compares two perimeters to fix w (linear), then asks the area",
+  "decision": "different"
+ },
+ "SM28F-A02": {
+  "queries": [
+   "pick any number|any number&same no matter|regardless"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-A03": {
+  "queries": [
+   "hose|pipe&gallons&minutes (less|fewer|faster)"
+  ],
+  "hits": 0,
+  "nearest": "author: isee e97d0787 (route at two speeds, 10 minutes shorter -> distance)",
+  "decision": "different",
+  "return": "return rewrite: same hose chain, ask = whole barrels (many-to-one)"
+ },
+ "SM28F-A04": {
+  "queries": [
+   "coffee&tea"
+  ],
+  "hits": 0,
+  "nearest": "author: SM27F-A09 links counts, A04 links prices",
+  "decision": "different"
+ },
+ "SM28F-A05": {
+  "queries": [
+   "table&no seat|without a seat|empty",
+   "seat"
+  ],
+  "hits": 10,
+  "nearest": "SM28F-C05 IN THIS BATCH (two seatings -> tables and people via p = a t + b = c (t - k), then a 7-per-table quantity): the same chain",
+  "decision": "DUPLICATE of C05, written in A's return (return spent): DROPPED before freeze"
+ },
+ "SM28F-A06": {
+  "queries": [
+   "paint&square meters&hours longer|longer than"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different",
+  "return": "return rewrite: same painters chain, ask = cans opened (ceiling)"
+ },
+ "SM28F-A07": {
+  "queries": [
+   "true when x = 2|solution of the equation is x = 2|x = 2 is a solution"
+  ],
+  "hits": 3,
+  "nearest": "SALG5C-10 (prior: x = 2 is a solution of 5(kx - 7) = 3kx + 9 -> k): the same chain (substitute the stated solution, solve the linear equation in k); fractions are surface",
+  "decision": "DUPLICATE: returned",
+  "return": "return rewrite: pan balance; kw \"balance&bag|pan\" read"
+ },
+ "SM28F-A08": {
+  "queries": [
+   "spent 1/4|1/4 of her|of the (money|remaining|rest)"
+  ],
+  "hits": 14,
+  "nearest": "act b2c5cafc (1/3 of savings, then 1/4 of what was left, $90 remaining -> savings): the same backward chain through fractional spends; A08 adds a fixed $36 and asks the first spend",
+  "decision": "DUPLICATE (same chain plus one step): returned",
+  "return": "return rewrite: two equations sharing k with a relation between solutions; nearest e226cf9e (author)"
+ },
+ "SM28F-A09": {
+  "queries": [
+   "no (real )?solution&same k|this same k|same value of k"
+  ],
+  "hits": 0,
+  "nearest": "author: no-solution k then reuse",
+  "decision": "different"
+ },
+ "SM28F-A10": {
+  "queries": [
+   "photos?|pictures?&wall&space"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-R01": {
+  "queries": [
+   "x\\^4&coefficient|cx\\^2"
+  ],
+  "hits": 2,
+  "nearest": "65e96d6c / SM24V-C12 (quartic is a perfect square)",
+  "decision": "different"
+ },
+ "SM28F-R02": {
+  "queries": [
+   "p\\(2\\) = p\\(-2\\)|p\\(-?[0-9]\\) = p\\(-?[0-9]\\)"
+  ],
+  "hits": 1,
+  "nearest": "SADV7D-08 (prior; three equal values of a cubic)",
+  "decision": "different"
+ },
+ "SM28F-R03": {
+  "queries": [
+   "= \\(x - 2\\)q\\(x\\)|q\\(x\\)&divid|factor"
+  ],
+  "hits": 3,
+  "nearest": "act fad105b3 (divide by x + 2, then q(1)); R03 first fixes a by the factor theorem - an added real step",
+  "decision": "different (recorded near)"
+ },
+ "SM28F-R04": {
+  "queries": [
+   "remainder&constant",
+   "remainder&divided by x\\^2|divided by \\(x"
+  ],
+  "hits": 0,
+  "nearest": "d5b3c3a5 / 32652029 / 0a2fd8fa (remainder theorem, no constant-remainder condition)",
+  "decision": "different (return rewrite of the duplicate)"
+ },
+ "SM28F-R05": {
+  "queries": [
+   "remainder&x\\^2 - 4x \\+ 3|remainder&quadratic"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-R06": {
+  "queries": [
+   "defined for (every|all) real|integer values? of b"
+  ],
+  "hits": 4,
+  "nearest": "20376e86, bfce3145 (excluded values of a given rational expression)",
+  "decision": "different"
+ },
+ "SM28F-B01": {
+  "queries": [
+   "closest|nearest&line&point"
+  ],
+  "hits": 13,
+  "nearest": "act 3809d001 (distance from a point to a line, a length); B01 asks the x-coordinate of the foot via the perpendicular slope",
+  "decision": "different"
+ },
+ "SM28F-B02": {
+  "queries": [
+   "f\\(4x\\)|f\\(4 - x\\)|for all (real numbers )?x&linear&f\\("
+  ],
+  "hits": 4,
+  "nearest": "SM26F-B11 (g(x) = f(2x) - 2f(x) fixes b) shares one step; the sum identity is new",
+  "decision": "different (near-dup script j=0.636 with f8abd387, lexical: returned for wording)"
+ },
+ "SM28F-B03": {
+  "queries": [
+   "x-intercept is [0-9]+ greater|intercept&greater than"
+  ],
+  "hits": 2,
+  "nearest": "6a371cd8 / SM23L-A3 (intercept inequalities, sum of possible m)",
+  "decision": "different"
+ },
+ "SM28F-B04": {
+  "queries": [
+   "3f\\(x\\)|table&f\\(x\\) \\+ x"
+  ],
+  "hits": 0,
+  "nearest": "author: SM24L-A9/A10",
+  "decision": "different (near-dup script j=0.643 with 3e9d2b2a, lexical: returned for wording)"
+ },
+ "SM28F-B05": {
+  "queries": [
+   "horizontal line&intersects|horizontal&segment"
+  ],
+  "hits": 1,
+  "nearest": "author: SM27F-B10 (dropped; point moved horizontally to a line)",
+  "decision": "different"
+ },
+ "SM28F-B06": {
+  "queries": [
+   "y-intercept&times (its|the) slope",
+   "y-intercept&slope&f\\(1\\)"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-B07": {
+  "queries": [
+   "thermometer|same number|same reading",
+   "thermometer|Celsius&Fahrenheit&same"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-B08": {
+  "queries": [
+   "intercept&sum of|plus the y-intercept|x-intercept \\+",
+   "x-intercept&y-intercept&sum"
+  ],
+  "hits": 3,
+  "nearest": "SM26F-B01 (prior held; intercepts equal -> sum of possible k)",
+  "decision": "different"
+ },
+ "SM28F-B09": {
+  "queries": [
+   "spring&length&grams|mass",
+   "spring"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-S01": {
+  "queries": [
+   "f\\(g\\(x\\)\\)&ax \\+ b|g\\(x\\) = ax"
+  ],
+  "hits": 0,
+  "nearest": "v2 1cb20b84 (f linear, f(g(x)) = 6x + 1 -> g(3)); S01 has a quadratic f and matches coefficients with a > 0 deciding the sign",
+  "decision": "different"
+ },
+ "SM28F-S02": {
+  "queries": [
+   "inversely proportional|P = k/r|k/r"
+  ],
+  "hits": 4,
+  "nearest": "SM15A-07 (one pair given -> value); S02 gives a CHANGE between two inputs",
+  "decision": "different"
+ },
+ "SM28F-S03": {
+  "queries": [
+   "restrict|one-to-one&inverse|undoes"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-S04": {
+  "queries": [
+   "f\\(g\\(-?[0-9]\\)\\) = g\\(f"
+  ],
+  "hits": 0,
+  "nearest": "none",
+  "decision": "different"
+ },
+ "SM28F-S05": {
+  "queries": [
+   "average cost&per"
+  ],
+  "hits": 5,
+  "nearest": "act d5b91bbe (least n for an average cost), SM21A-A4 (quadratic total cost)",
+  "decision": "different"
+ },
+ "SM28F-S06": {
+  "queries": [
+   "f\\(x\\) = f\\([0-9]+ - x\\)|symmetric about"
+  ],
+  "hits": 1,
+  "nearest": "math-mechanism-dup FLAG 4a3c0cda (zeros of f(2x - 6) from f's zeros, sum) and act 8ddeb008 (point transform); S06 adds the second zero from the symmetry f(x) = f(6 - x) and asks the product",
+  "decision": "different (recorded near)"
+ }
+}

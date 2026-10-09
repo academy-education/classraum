@@ -1,0 +1,454 @@
+[
+ {
+  "id": "SM28F-S01",
+  "domain": "Advanced Math",
+  "subskill": "Composition: recovering a linear inner function from f(g(x))",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = x^2 + 8x - 9. A function g of the form g(x) = ax + b, where a is positive, satisfies f(g(x)) = 9x^2 - 18x - 16 for every real x. What is g(10)?",
+  "choices": [
+   "23",
+   "27",
+   "29",
+   "85"
+  ],
+  "correct_answer": "23",
+  "explanation": "Substitute g(x) = ax + b into f: f(g(x)) = (ax + b)^2 + 8(ax + b) - 9 = a^2x^2 + (2ab + 8a)x + (b^2 + 8b - 9). Match coefficients with 9x^2 - 18x - 16. From the x^2 terms, a^2 = 9, and since a is positive, a = 3. From the x terms, 2(3)b + 8(3) = -18, so 6b + 24 = -18 and b = -7. Check the constant term: (-7)^2 + 8(-7) - 9 = 49 - 56 - 9 = -16, which matches. So g(x) = 3x - 7, and g(10) = 30 - 7 = 23.\n\nChoice 27 comes from dropping the 8a part of the x-coefficient, so that 6b = -18 and b = -3. Choice 29 comes from finding b from the constant term alone: b^2 + 8b - 9 = -16 gives b = -1 or b = -7, and b = -1 is the wrong one (it does not match the x-coefficient). Choice 85 comes from taking a = 9, the leading coefficient itself, instead of its square root, which gives 18b + 72 = -18, b = -5, and g(10) = 90 - 5.",
+  "solve": "const p=8, B=-18, A=9, c=10; const a=Math.sqrt(A); const b=(B-p*a)/(2*a); return a*c+b;",
+  "distractor_solve": {
+   "27": "const B=-18, A=9, c=10; const a=Math.sqrt(A); const b=B/(2*a); return a*c+b;",
+   "29": "const p=8, q=-9, C=-16, B=-18, A=9, c=10; const a=Math.sqrt(A); const bTrue=(B-p*a)/(2*a); const disc=Math.sqrt(p*p-4*(q-C)); const roots=[(-p+disc)/2,(-p-disc)/2]; const b=roots.find(r=>Math.abs(r-bTrue)>1e-9); return a*c+b;",
+   "85": "const p=8, B=-18, A=9, c=10; const a=A; const b=(B-p*a)/(2*a); return a*c+b;"
+  },
+  "mechanism": [
+   "expand f at the linear inner function",
+   "match the x^2 and x coefficients, using a > 0 to choose the root",
+   "evaluate the recovered g"
+  ],
+  "quantity_asked": "g(10), after recovering g from f(g(x))",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "g is unknown, so an option for g(10) cannot be checked against the stem without first recovering both a and b; once a and b are known the answer is already in hand. There is no printed condition that a single value of g(10) can be substituted into."
+  },
+  "distractor_meta": {
+   "27": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "dropping 8a from the x-coefficient raises b only because 8a is positive here; the stem gives no reason to expect the omitted term's sign to push g(8) up rather than down"
+   },
+   "29": {
+    "error_kind": "other",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "the constant-term equation has two roots, b = -1 and b = -7; which one is wrong, and whether it lies above or below, is only visible after solving"
+   },
+   "85": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "taking a = 9 changes both a and b; the net effect on g(10) depends on the input 10 and on b, not on anything readable without working"
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const p=8, B=-18, A=9, c=10; const a=-Math.sqrt(A); const b=(B-p*a)/(2*a); return a*c+b;",
+   "direction": "below",
+   "why": "ignoring that a is positive and taking a = -3 gives b = -1, so g(x) = -3x - 1 and g(10) = -31, below the key"
+  },
+  "cheap_bound_check": "the stem says a is positive but bounds nothing else, so g(10) = 10a + b has no one-sided bound readable without solving; the positivity of a only removes the a = -3 branch, whose value (-31) lies below the key and is not an option, while all three distractors (27, 29, 85) sit on the other side",
+  "shape_check": "stem hands over: a positive (does not fix the sign of g(10)), integer coefficients (does not force g(10) to be an integer, since b could be a fraction). All four options are positive odd integers; all four survive both properties together",
+  "interior_parity_check": "middle values 27 and 29 are both two-digit odd integers; the key 23 is an extreme and is not the cleaner number",
+  "arith_class_check": "all four options are odd and positive; 23 and 29 are prime, 27 and 85 are not; 27 is the only perfect power; no class isolates the key; no two options sum to 1, 90, 100, 180 or 360",
+  "dup_search": {
+   "queries": [
+    "f\\(g\\(x\\)\\) ?=",
+    "f\\(g\\(x\\)\\) ?= ?\\d*x\\^2",
+    "f\\(f\\(",
+    "g\\(f\\("
+   ],
+   "hits_read": 48,
+   "nearest": "0add413a / 1cb20b84 / SAM11-22: recover g from f(g(x)) with f LINEAR (one division, no branch); here f is quadratic, so recovery needs a square root of the leading coefficient, the a > 0 condition to choose the branch, and a second coefficient match"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Direction: covering the work, a student cannot tell which way the errors move, since the omitted 8a term, the wrong constant-term root and a = 9 each move g(10) by an amount whose sign depends on the solved b; the natural sign error (a = -3) goes below to -31. Plug-back: an option cannot be checked in one routine step because g is unknown until a and b are both found; g(10) is one step past the recovered parameters. (read) PAIR 27 - 23 = 4 = 2 x printed 2: the 2 is the exponent in x^2; the difference is the omitted 8a/(2a) = 4 term, and a student cannot use twice the exponent to prefer 23 over 27 without solving."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-S02",
+  "domain": "Advanced Math",
+  "subskill": "Inverse variation: constant from a change in y, then a new value",
+  "difficulty": "medium",
+  "prompt": "A quantity P is inversely proportional to a quantity r, so P = k/r for some constant k. Raising r from 7 to 10 lowers P by 18. According to this relationship, what is P when r = 15?",
+  "choices": [
+   "3.6",
+   "12",
+   "28",
+   "84"
+  ],
+  "correct_answer": "28",
+  "explanation": "Since P = k/r, the drop from r = 7 to r = 10 is k/7 - k/10 = 18. The left side is k(10 - 7)/70 = 3k/70, so 3k/70 = 18 and k = 420. When r = 15, P = 420/15 = 28.\n\nChoice 84 comes from writing k/7 - k/10 as k/70 (forgetting the factor 10 - 7 = 3), which gives k = 1,260 and P = 84. Choice 12 comes from treating the relationship as linear: P falls 18 over 3 units of r, or 6 per unit, so from P = 420/10 = 42 at r = 10 it would fall 30 more by r = 15. Choice 3.6 comes from replacing 1/7 - 1/10 with 1/(10 - 7) = 1/3, so that k/3 = 18, k = 54 and P = 54/15.",
+  "solve": "const x1=7, x2=10, d=18, x3=15; const k=d*x1*x2/(x2-x1); return k/x3;",
+  "distractor_solve": {
+   "12": "const x1=7, x2=10, d=18, x3=15; const k=d*x1*x2/(x2-x1); const y2=k/x2; return y2-d*(x3-x2)/(x2-x1);",
+   "84": "const x1=7, x2=10, d=18, x3=15; const k=d*x1*x2; return k/x3;",
+   "3.6": "const x1=7, x2=10, d=18, x3=15; const k=d*(x2-x1); return k/x3;"
+  },
+  "mechanism": [
+   "write the drop as k/7 - k/10",
+   "combine the fractions and solve for k",
+   "evaluate k/r at the new r"
+  ],
+  "quantity_asked": "P at r = 15",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const k=15*v; return Math.abs(k/7-k/10-18)<1e-9;",
+   "why": "an option v gives k = 15v, and a student can then check whether k/7 - k/10 = 18; in ascending order (3.6, 12, 28, 84) the key is reached on the third try"
+  },
+  "distractor_meta": {
+   "12": {
+    "error_kind": "wrong_base",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "a linear model and an inverse model agree at r = 7 and r = 10; which is lower beyond r = 10 depends on the curvature, which a student who uses the linear model is not considering"
+   },
+   "84": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "dropping the factor 3 when combining k/7 - k/10 changes k; the stem gives no hint whether the dropped factor is above or below 1"
+   },
+   "3.6": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "replacing 1/7 - 1/10 with 1/3 changes k by a factor whose size is not visible without computing both"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "stem hands over: P drops as r rises, so k > 0 and P at r = 15 is positive and below P at r = 10 (42, which the student does not have without solving). All four options are positive; 84 exceeds 42, but that bound needs k first. 3.6, 12 and 28 survive every stem-readable property together",
+  "interior_parity_check": "middle values 12 and 28 are both two-digit even integers of the same form; the key 28 is not the cleaner of the two",
+  "arith_class_check": "3.6 is the only non-integer and it is a distractor; 12, 28, 84 are even multiples of 4; 28 is not alone in any class; no two options sum to 1, 90, 100, 180 or 360",
+  "dup_search": {
+   "queries": [
+    "inversely&(decreases|increases) by",
+    "inversely&(from|changes)",
+    "varies inversely|inversely proportional"
+   ],
+   "hits_read": 17,
+   "nearest": "3977d8f9 / SM15A-07 / 5606e146 (y varies inversely, one (x, y) pair printed, find y at a new x: one step); here no (x, y) pair is printed, only the CHANGE in y over a change in x, so k must be found from a difference of two fractions before evaluating"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Plug-back: substitutable (k = 15v, then check k/7 - k/10 = 18), declared with verify; the key is reached on the third ascending try. A test-wise student might notice 84 = 3 x 28, but 3 is not printed (it is 10 - 7) and 12 x 7 = 84 as well, so the multiple does not single out 28. (read) DPAIR 28 - 12 = 16 = 15 + 1: coincidence of the linear-model distractor; a student cannot read 16 from the stem as the gap to the key without solving."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-S03",
+  "domain": "Advanced Math",
+  "subskill": "Inverse of a restricted quadratic applied outside the domain",
+  "difficulty": "medium",
+  "prompt": "Let h(x) = (x - 3)^2 + 2. Restricting h to inputs x <= 3 gives a one-to-one function f, and g undoes f: g(f(x)) = x whenever x <= 3. Compute g(h(10)).",
+  "choices": [
+   "-46",
+   "-10",
+   "-4",
+   "10"
+  ],
+  "correct_answer": "-4",
+  "explanation": "First, h(10) = (10 - 3)^2 + 2 = 49 + 2 = 51. Next, g(51) is the number x with x <= 3 and f(x) = 51, that is, (x - 3)^2 + 2 = 51. Then (x - 3)^2 = 49, so x - 3 = 7 or x - 3 = -7, giving x = 10 or x = -4. Only x = -4 satisfies x <= 3, so g(h(10)) = -4. (Because 10 is not in the domain of f, g does not undo h at 10.)\n\nChoice 10 comes from assuming g(h(10)) = 10, as if g undid h for every input. Choice -10 comes from knowing the answer must be at most 3 and simply changing the sign of 10, instead of reflecting across x = 3. Choice -46 comes from skipping the square root: (x - 3)^2 = 49 treated as x - 3 = -49.",
+  "solve": "const a=3, b=2, t=10; const H=(t-a)**2+b; return a-Math.sqrt(H-b);",
+  "distractor_solve": {
+   "10": "const t=10; return t;",
+   "-10": "const t=10; return -t;",
+   "-46": "const a=3, b=2, t=10; const H=(t-a)**2+b; return a-(H-b);"
+  },
+  "mechanism": [
+   "evaluate h at an input outside the restricted domain",
+   "solve h(x) = that value and keep the root with x <= 3",
+   "recognize g(h(x)) = x only on the domain"
+  ],
+  "quantity_asked": "g(h(10))",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return v<=3 && Math.abs((v-3)**2+2-51)<1e-9;",
+   "why": "after computing h(10) = 51, a student can test an option v by checking v <= 3 and (v - 3)^2 + 2 = 51; in ascending order (-46, -10, -4, 10) the key is reached on the third try"
+  },
+  "distractor_meta": {
+   "10": {
+    "error_kind": "other",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "the cancellation g(h(x)) = x is the natural shortcut; the stem's domain restriction is what breaks it, and nothing about the size of the result is visible until the equation is solved"
+   },
+   "-10": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "flipping the sign of 10 lands below the key only because the axis is at x = 3 > 0, which the student who flips the sign is not using"
+   },
+   "-46": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "omitting the square root makes the step 49 instead of 7; the stem does not show the size of h(10) before it is computed"
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "stem hands over: g's outputs lie in the domain of f, so g(h(10)) <= 3; this strikes 10 only. -46, -10 and -4 all satisfy x <= 3 and are integers, so three options survive every stem-readable property together",
+  "interior_parity_check": "middle values -10 and -4 are both negative even integers of one or two digits; the key -4 is not the rounder number (-10 is)",
+  "arith_class_check": "all four options are even; three negative and one positive (10, a distractor); no squares among the negatives; -4 is not alone in any class; no two options sum to 1, 90, 100, 180 or 360",
+  "dup_search": {
+   "queries": [
+    "inverse&\\(x ?- ?\\d\\)\\^2",
+    "g\\(h\\(|g\\(f\\(\\d+\\)\\)&inverse",
+    "x ?(>=|≥) ?\\d&inverse",
+    "restricted|domain&inverse"
+   ],
+   "hits_read": 3,
+   "nearest": "SM24V-D13 (f = quadratic on x >= 8 meets its inverse at one point, find c) and d3f6bd00 (piecewise f with an inverse, compute f^-1(-12)); here the inverse of a restricted quadratic is applied to h at an input OUTSIDE the restriction, so the inverse does not cancel and the other root must be chosen"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Plug-back: substitutable (compute h(10) = 51, then test v <= 3 and (v - 3)^2 + 2 = 51), declared with verify; the key is reached on the third ascending try. (read) PAIR -4 - (-10) = 6 and -4 + 10 = 6, each 2 x printed 3: both come from the reflection across x = 3, and using that relation to pick -4 is the same as knowing the reflection, which is the solution, not a shortcut around it. The domain restriction strikes 10 for a student who reads it, but -46, -10 and -4 remain."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-S04",
+  "domain": "Advanced Math",
+  "subskill": "Composition: a constant fixed by f(g(-2)) = g(f(-2)), then f(f(0))",
+  "difficulty": "medium",
+  "prompt": "Let f(x) = x^2 + k, where k is a constant, and let g(x) = 3x + 1. The two compositions of f and g give the same output at x = -2, that is, f(g(-2)) = g(f(-2)). What is f(f(0))?",
+  "choices": [
+   "42",
+   "56",
+   "156",
+   "342"
+  ],
+  "correct_answer": "42",
+  "explanation": "First find k. Since g(-2) = 3(-2) + 1 = -5, f(g(-2)) = f(-5) = 25 + k. Since f(-2) = 4 + k, g(f(-2)) = 3(4 + k) + 1 = 13 + 3k. Setting these equal gives 25 + k = 13 + 3k, so 2k = 12 and k = 6. Then f(0) = 0 + 6 = 6, and f(f(0)) = f(6) = 36 + 6 = 42.\n\nChoice 156 comes from stopping at 2k = 12 and using k = 12, so that f(f(0)) = f(12) = 144 + 12. Choice 56 comes from a sign slip in g(f(-2)), writing 3(4 + k) - 1 = 11 + 3k, which gives k = 7 and f(7) = 49 + 7. Choice 342 comes from using x = 2 instead of x = -2: g(2) = 7, so 49 + k = 13 + 3k, k = 18 and f(18) = 324 + 18.",
+  "solve": "const m=3, n=1, p=-2; const k=((m*p+n)**2-(m*p*p+n))/(m-1); const f=x=>x*x+k; return f(f(0));",
+  "distractor_solve": {
+   "56": "const m=3, n=1, p=-2; const k=((m*p+n)**2-(m*p*p-n))/(m-1); const f=x=>x*x+k; return f(f(0));",
+   "156": "const m=3, n=1, p=-2; const k=((m*p+n)**2-(m*p*p+n)); const f=x=>x*x+k; return f(f(0));",
+   "342": "const m=3, n=1, p=2; const k=((m*p+n)**2-(m*p*p+n))/(m-1); const f=x=>x*x+k; return f(f(0));"
+  },
+  "mechanism": [
+   "write f(g(-2)) and g(f(-2)) in terms of k",
+   "solve the equation they give for k",
+   "evaluate f twice, which squares k: f(f(0)) = k^2 + k"
+  ],
+  "quantity_asked": "f(f(0)) = k^2 + k, after k is fixed by f(g(-2)) = g(f(-2))",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "f(f(0)) = k^2 + k is many-to-one in k (k = 6 and k = -7 both give 42), so an option does not run back to a single k: a student would have to solve k^2 + k = v as a quadratic, then test both roots by building f(g(-2)) and g(f(-2)) for each. That is more work than solving the stem forward, not one routine step."
+  },
+  "distractor_meta": {
+   "56": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "the sign slip in g(f(-2)) moves the constant by 2 and k by 1; the direction of the change in k^2 + k depends on the sign of k, which the stem does not give"
+   },
+   "156": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "skipping the division by 2 doubles k; whether that raises or lowers k^2 + k depends on the sign and size of k, which is unknown before solving"
+   },
+   "342": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "using x = 2 instead of -2 changes g(p)^2 from 25 to 49; whether the resulting k is larger is only visible after both equations are solved"
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const m=3, n=1, p=-2; const k=-((m*p+n)**2-(m*p*p+n))/(m-1); const f=x=>x*x+k; return f(f(0));",
+   "direction": "below",
+   "why": "a sign slip in collecting terms, 25 + k = 13 + 3k becoming 2k = -12, gives k = -6 and f(f(0)) = f(-6) = 36 - 6 = 30, below the key"
+  },
+  "cheap_bound_check": "k is any constant, so the only bound readable from the stem is f(f(0)) = k^2 + k >= -1/4, which every option satisfies; the natural sign slip in solving for k gives 30, below the key and not an option, while the three distractors sit above",
+  "shape_check": "stem hands over: k a constant (f(f(0)) = k^2 + k >= -0.25); integer coefficients (k need not be an integer). All four options are positive even integers of the form k^2 + k; all four survive together",
+  "interior_parity_check": "middle values 56 and 156 are both even integers of the form k^2 + k (7 x 8 and 12 x 13); the key 42 is an extreme",
+  "arith_class_check": "all four options are even and each is a product of two consecutive integers (6x7, 7x8, 12x13, 18x19), so that class does not isolate the key; none is a square; no two options sum to 1, 90, 100, 180 or 360",
+  "dup_search": {
+   "queries": [
+    "f\\(g\\(-?\\d+\\)\\) ?= ?g\\(f\\(-?\\d+\\)\\)|g\\(f\\(-?\\d+\\)\\) ?= ?f\\(g\\(-?\\d+\\)\\)",
+    "f\\(g\\(-?\\d\\)\\)&g\\(f\\(-?\\d\\)\\)",
+    "f\\(g\\(-?\\d+\\)\\) ?=&constant",
+    "f\\(f\\(0\\)\\)",
+    "f\\(g\\(-?\\d\\)\\) ?= ?g\\(f"
+   ],
+   "hits_read": 12,
+   "nearest": "82c8acf1 (f(g(2)) = 16 fixes a, ask a) and SADV2-15 (f(g(1)) = 14 fixes k, ask k); here the condition equates the two orders of composition, so k appears on both sides, and the ask f(f(0)) = k^2 + k is a second-order value, not k. 45378b14 / 6f6f2f0e compute g(f(2)) - f(g(2)) with no unknown; no live or prior item asks f(f(0))"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Direction: covering the work, a student cannot tell which way the errors go: the undivided k, the sign slip in g(f(-2)) and the wrong input x = 2 each change k by an amount known only after solving, and k^2 + k is not monotonic in k; the natural sign slip in collecting terms lands below (30). Plug-back: f(f(0)) = k^2 + k is many-to-one (42 comes from k = 6 or k = -7), so testing an option means solving a quadratic for k and checking both roots against the composition condition, which is more than one routine step and more than the forward solution. No PAIR or DPAIR read lines."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-S05",
+  "domain": "Advanced Math",
+  "subskill": "Rational model in context: average cost at two levels",
+  "difficulty": "medium",
+  "prompt": "A ceramics studio models its average cost per mug, in dollars, when it makes n mugs in a month by A(n) = (2,520 + 2n)/n. In March the studio's average cost per mug was $10, and in April it was $7. According to the model, how many more mugs did the studio make in April than in March?",
+  "choices": [
+   "70",
+   "108",
+   "135",
+   "189"
+  ],
+  "correct_answer": "189",
+  "explanation": "In March, (2,520 + 2n)/n = 10, so 2,520 + 2n = 10n, 8n = 2,520 and n = 315. In April, (2,520 + 2n)/n = 7, so 2,520 + 2n = 7n, 5n = 2,520 and n = 504. The studio made 504 - 315 = 189 more mugs in April.\n\nChoice 135 comes from treating the average cost as inversely proportional to n (ignoring the 2 dollars per mug), so that April's count is 315 x 10/7 = 450, which is 135 more. Choice 108 comes from dropping the 2n term, so that n = 2,520/10 = 252 and n = 2,520/7 = 360. Choice 70 comes from moving the 2n term to the wrong side, 2,520 = (A + 2)n, so that n = 2,520/12 = 210 and n = 2,520/9 = 280.",
+  "solve": "const F=2520, v=2, A1=10, A2=7; const n1=F/(A1-v), n2=F/(A2-v); return n2-n1;",
+  "distractor_solve": {
+   "70": "const F=2520, v=2, A1=10, A2=7; return F/(A2+v)-F/(A1+v);",
+   "108": "const F=2520, A1=10, A2=7; return F/A2-F/A1;",
+   "135": "const F=2520, v=2, A1=10, A2=7; const n1=F/(A1-v); return n1*A1/A2-n1;"
+  },
+  "mechanism": [
+   "set the rational model equal to each average cost",
+   "clear the denominator and solve each linear equation in n",
+   "subtract the two production levels"
+  ],
+  "quantity_asked": "the increase in the number of mugs from March to April",
+  "ask_type": "difference of two solutions",
+  "plugback": {
+   "substitutable": false,
+   "why": "the ask is a difference of two production levels, and neither level is printed, so an option cannot be put into A(n) or any printed condition; a student must solve both equations first."
+  },
+  "distractor_meta": {
+   "70": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "a sign slip on the 2n term changes both denominators; nothing in the stem shows which way the difference moves"
+   },
+   "108": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "dropping 2n changes both counts and their difference; the sign of the change in the difference is not visible without computing both"
+   },
+   "135": {
+    "error_kind": "wrong_base",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "the inverse-proportion shortcut scales March's count by 10/7; whether that over- or under-shoots depends on the per-mug cost that it ignores, which a student would have to work through"
+   }
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "const F=2520, v=2, A2=7; return F/(A2-v);",
+   "direction": "above",
+   "why": "reporting April's total of 504 mugs instead of the increase lands above the key"
+  },
+  "cheap_bound_check": "the cheapest bound is that the answer is positive (average cost fell, so production rose); all four options are positive. The natural partial-answer error (504, April's total) and dividing the fixed cost by the change in average cost (2,520/3 = 840) both sit above the key and are not options",
+  "shape_check": "stem hands over: a count of mugs (positive integer), and A decreasing in n (so April's count is larger). All four options are positive integers; all four survive together",
+  "interior_parity_check": "middle values 108 and 135 are both three-digit integers of similar complexity; the key 189 is an extreme",
+  "arith_class_check": "70, 108 even; 135, 189 odd; all positive integers; 108, 135 and 189 are multiples of 27 and 70 is not, so the multiple-of-27 class contains the key and two distractors; 189 is not a square; no two options sum to 1, 90, 100, 180 or 360",
+  "dup_search": {
+   "queries": [
+    "average&cost&(per|each)",
+    "C\\(n\\) ?/ ?n|\\(n\\)/n",
+    "fixed cost|fixed costs",
+    "how many more&(cost|average)"
+   ],
+   "hits_read": 15,
+   "nearest": "d5b91bbe (ACT print shop: least number of posters for average cost at most $3, one inequality) and SM21A-A4 (quadratic total cost, average $70, then profit); here a rational average-cost model is solved at TWO levels and the asked quantity is the change in production"
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Direction: covering the work, the stem does not show which way the errors go: the inverse-proportion shortcut, dropping 2n and the sign slip each change both counts, and whether the difference rises or falls is only visible after computing; the natural partial answer (504) lands above. Plug-back: the difference of two unprinted counts cannot be substituted into the model. No PAIR or DPAIR read lines."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-S06",
+  "domain": "Advanced Math",
+  "subskill": "Symmetry of an abstract function, then zeros of a transformed input",
+  "difficulty": "hard",
+  "prompt": "For every real number x, the function f satisfies f(x) = f(6 - x). The equation f(x) = 0 has exactly two real solutions, and one of them is x = -4. The function g is defined by g(x) = f(2x + 2). What is the product of the solutions to the equation g(x) = 0?",
+  "choices": [
+   "-132",
+   "-40",
+   "-21",
+   "-12"
+  ],
+  "correct_answer": "-12",
+  "explanation": "Since f(x) = f(6 - x) for every x, whenever f(r) = 0 we also have f(6 - r) = 0. With r = -4, f(6 - (-4)) = f(10) = 0. Because -4 and 10 are different and f(x) = 0 has exactly two solutions, they are -4 and 10. Now g(x) = 0 exactly when f(2x + 2) = 0, that is, when 2x + 2 = -4 or 2x + 2 = 10. These give x = -3 and x = 4, so the product of the solutions is (-3)(4) = -12.\n\nChoice -40 is the product of the solutions of f(x) = 0, not g(x) = 0. Choice -21 comes from reading f(x) = f(6 - x) as a reflection across x = 6, which makes the second solution 16 and gives 2x + 2 = 16, x = 7. Choice -132 comes from substituting each solution of f into 2x + 2 instead of solving 2x + 2 = r, which gives 2(-4) + 2 = -6 and 2(10) + 2 = 22.",
+  "solve": "const r=-4, s=6, m=2, c=2; const r2=s-r; const x1=(r-c)/m, x2=(r2-c)/m; return x1*x2;",
+  "distractor_solve": {
+   "-40": "const r=-4, s=6; const r2=s-r; return r*r2;",
+   "-21": "const r=-4, s=6, m=2, c=2; const axis=s; const r2=2*axis-r; return ((r-c)/m)*((r2-c)/m);",
+   "-132": "const r=-4, s=6, m=2, c=2; const r2=s-r; return (m*r+c)*(m*r2+c);"
+  },
+  "mechanism": [
+   "use f(x) = f(6 - x) to find the second zero of f",
+   "solve 2x + 2 = each zero (invert the inner transformation)",
+   "multiply the two solutions"
+  ],
+  "quantity_asked": "product of the solutions of g(x) = 0",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "why": "the ask is a product of two solutions, and f is never given by a formula, so no option can be substituted into anything printed; a student must find both zeros of g."
+  },
+  "distractor_meta": {
+   "-40": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "using the zeros of f instead of g changes both factors; whether the product grows or shrinks depends on the inner transformation, which the student has not yet inverted"
+   },
+   "-21": {
+    "error_kind": "other",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "taking x = 6 as the axis moves the second zero from 10 to 16; its effect on the final product depends on the sign of the other factor, which is only known after solving"
+   },
+   "-132": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "applying 2x + 2 to the zeros instead of solving for x scales both factors outward; the sign of the product's change is not visible from the stem"
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const r=-4, s=6, m=2, c=2; const r2=s-r; return ((r+c)/m)*((r2+c)/m);",
+   "direction": "above",
+   "why": "solving 2x + 2 = r as x = (r + 2)/2 gives x = -1 and x = 6, so the product is -6, above the key"
+  },
+  "cheap_bound_check": "the only property readable without solving is that g(x) = 0 has two solutions; the stem gives no sign or size bound on their product. The natural sign slip in inverting 2x + 2 (product -6) sits above the key and is not an option, so the errors do not all fall on one side",
+  "shape_check": "stem hands over: f has exactly two zeros (so g has exactly two, and the product is one real number), f symmetric about x = 3 (no bound on the product). All four options are negative integers, consistent with one zero on each side of 0 or not; all four survive together",
+  "interior_parity_check": "middle values -40 and -21 are both two-digit negative integers; the key -12 is an extreme",
+  "arith_class_check": "all four options negative; -132, -40, -12 even and -21 odd, so the odd singleton is a distractor; -12 and -132 are multiples of 12 and -40, -21 are not, so the multiple-of-12 class holds the key and a distractor; no squares; no two options sum to 1, 90, 100, 180 or 360 in absolute value",
+  "dup_search": {
+   "queries": [
+    "f\\(x\\) ?= ?f\\(-?\\d+ ?- ?x\\)|f\\(\\d+ ?- ?x\\) ?= ?f\\(x\\)",
+    "zeros?&g\\(x\\) ?= ?f\\(\\d*x",
+    "f\\(-x\\) ?= ?f\\(x\\)|f\\(x\\) ?= ?f\\(-x\\)",
+    "solutions?&g\\(x\\) ?= ?f\\("
+   ],
+   "hits_read": 4,
+   "nearest": "4a3c0cda / SADV-16 (both zeros of f printed, g(x) = f(2x - 6), sum of zeros of g); here only ONE zero is printed and the second must be found from the symmetry f(x) = f(6 - x), which is the decision point, and the ask is a product, which the reflection-free sum shortcut does not give"
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Direction: covering the work, the stem does not show which way the errors go: using f's zeros, the wrong axis and applying 2x + 2 forward all land below here only because of the solved values, and the natural sign slip in inverting 2x + 2 lands above (-6). Hard: f has no formula, so graphing does not bypass finding the second zero from the symmetry and inverting the inner function. Risk medium only because the second half (zeros of f(2x + c)) shares a step with 4a3c0cda; the symmetry step is new. No PAIR or DPAIR read lines."
+  },
+  "bounds": []
+ }
+]

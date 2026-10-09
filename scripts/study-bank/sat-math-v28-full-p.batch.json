@@ -1,0 +1,465 @@
+[
+ {
+  "id": "SM28F-P01",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic functions: extending a table of a quadratic",
+  "difficulty": "medium",
+  "prompt": "The table gives three values of the quadratic function f.\nx | f(x)\n1 | 5\n2 | 8\n3 | 7\nWhat is f(7)?",
+  "choices": [
+   "-37",
+   "-20",
+   "-13",
+   "-9"
+  ],
+  "correct_answer": "-37",
+  "explanation": "For a quadratic function, the differences between outputs at equally spaced inputs change by the same amount each step. From the table, f(2) - f(1) = 3 and f(3) - f(2) = -1, so the differences change by -1 - 3 = -4 each step. The next differences are -5, -9, -13 and -17, so f(4) = 7 - 5 = 2, f(5) = 2 - 9 = -7, f(6) = -7 - 13 = -20 and f(7) = -20 - 17 = -37.\n\nAlternatively, writing f(x) = ax^2 + bx + c, the three table values give a + b + c = 5, 4a + 2b + c = 8 and 9a + 3b + c = 7, so a = -2, b = 9 and c = -2. Then f(7) = -2(49) + 9(7) - 2 = -98 + 63 - 2 = -37.\n\nChoice -13 updates the difference only once, to -5, and then keeps -5 for all four steps. Choice -9 uses the change in the differences, -4, as the amount f changes each step. Choice -20 is f(6), one step short of x = 7.",
+  "solve": "const ys=[5,8,7]; const d2=(ys[2]-ys[1])-(ys[1]-ys[0]); let d=ys[2]-ys[1], y=ys[2]; for(let x=4;x<=7;x++){ d+=d2; y+=d; } return y;",
+  "distractor_solve": {
+   "-13": "const ys=[5,8,7]; const d2=(ys[2]-ys[1])-(ys[1]-ys[0]); const d=(ys[2]-ys[1])+d2; return ys[2]+4*d;",
+   "-9": "const ys=[5,8,7]; const d2=(ys[2]-ys[1])-(ys[1]-ys[0]); return ys[2]+4*d2;",
+   "-20": "const ys=[5,8,7]; const d2=(ys[2]-ys[1])-(ys[1]-ys[0]); let d=ys[2]-ys[1], y=ys[2]; for(let x=4;x<=6;x++){ d+=d2; y+=d; } return y;"
+  },
+  "mechanism": [
+   "constant second difference of a quadratic",
+   "extend the differences four steps",
+   "read the value at x = 7"
+  ],
+  "quantity_asked": "the value f(7) of a quadratic known only from three table values",
+  "ask_type": "value-of-function",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "The stem prints no equation or condition that an option could be substituted into; f is known only through three table values, so an option for f(7) can be tested only by first reconstructing f (or its differences), which is the whole problem."
+  },
+  "distractor_meta": {
+   "-13": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Updating the difference once and then holding it fixed omits the later updates; the stem gives no size for f(7), so its side relative to the key is only visible after extending the differences."
+   },
+   "-9": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adding the second difference to the outputs instead of to the differences; its side depends on the sizes of the first and second differences, which the stem does not state."
+   },
+   "-20": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Evaluating at x = 6 instead of x = 7; whether f(6) is above or below f(7) depends on where the vertex is, which the table does not show directly."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const f=x=>-2*x*x+9*x-2; return f(2-(7-2));",
+   "direction": "below",
+   "why": "A student who takes the largest table value, at x = 2, as the vertex and uses symmetry finds f(7) as f(-3) = -47, below the key (the true axis is x = 2.25)."
+  },
+  "cheap_bound_check": "The differences 3, -1 show f is concave down, so f(7) is below the linear continuation f(3) + 4(-1) = 3. All four options are below 3, so this bound strikes nothing; on the key's side of it sit all three distractors.",
+  "shape_check": "Properties handed over: f is quadratic and, from the table, concave down with its vertex between x = 2 and x = 3, so f is decreasing for x >= 3 and f(7) < f(3) = 7 and f(7) < 3 (linear continuation); f(7) is an integer (integer table values, integer second difference). All four options are negative integers below 3, so all four survive every property together.",
+  "interior_parity_check": "Interior values -20 and -13 are both two-digit negative integers; the key is an extreme value (S slot), not one of them.",
+  "arith_class_check": "All negative integers. Parity: -37, -13, -9 odd, -20 even (singleton is a distractor). No option is a multiple of a stem number that the others are not; no perfect squares. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "table&quadratic",
+    "table&f\\(x\\)&what is the value of f\\(",
+    "second difference|differences"
+   ],
+   "hits_read": 3,
+   "nearest": "SM18A-A7 / live c8eb0870 (table of g composed with a linear f) - a table read into a composition, not a quadratic reconstructed from three values; no live item extends a quadratic table."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Direction: covering the work, could a student tell which way the errors go and strike all three? No. Concavity (read from 5, 8, 7) bounds f(7) below 3 and below 7, and all four options satisfy both; the three distractors are each a partial or misapplied extension of the differences, and nothing in the stem says the true value is the most negative one. Plug-back: could a student check an option against the stem in one routine step? No; there is no printed equation or condition, so an option for f(7) cannot be checked without reconstructing f. The checker prints one (read) PLUG line (S key at try 1), answered here: not substitutable. No PAIR/DPAIR read lines."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-P02",
+  "domain": "Advanced Math",
+  "subskill": "Quadratics: factored form with a parameter, depth of the vertex",
+  "difficulty": "medium",
+  "prompt": "For a positive constant k, the parabola y = (x + k)(x - 9k) has its lowest point 400 units below the x-axis. At what value of y does this parabola cross the y-axis?",
+  "choices": [
+   "-2304",
+   "-225",
+   "-144",
+   "-36"
+  ],
+  "correct_answer": "-144",
+  "explanation": "The parabola crosses the x-axis at x = -k and x = 9k, so its axis of symmetry is halfway between them, at x = (-k + 9k)/2 = 4k. The lowest point is the vertex, with y-value (4k + k)(4k - 9k) = (5k)(-5k) = -25k^2. Since this point is 400 units below the x-axis, -25k^2 = -400, so k^2 = 16. The parabola crosses the y-axis where x = 0: y = (0 + k)(0 - 9k) = -9k^2 = -9(16) = -144.\n\nChoice -225 comes from taking the x-intercepts as k and 9k, which puts the vertex at x = 5k and gives -16k^2 = -400, so k^2 = 25. Choice -36 comes from using the full distance between the x-intercepts, 10k, instead of half of it, giving -100k^2 = -400. Choice -2304 comes from reading k^2 = 16 as k = 16, so that y = -9(256).",
+  "solve": "const p=9, D=400; const mid=(-1+p)/2; const depth=(mid+1)*(p-mid); const k2=D/depth; return -p*k2;",
+  "distractor_solve": {
+   "-225": "const p=9, D=400; const mid=(1+p)/2; const depth=(mid-1)*(p-mid); const k2=D/depth; return -p*k2;",
+   "-36": "const p=9, D=400; const gap=p+1; const k2=D/(gap*gap); return -p*k2;",
+   "-2304": "const p=9, D=400; const mid=(-1+p)/2; const depth=(mid+1)*(p-mid); const k=D/depth; return -p*k*k;"
+  },
+  "mechanism": [
+   "x-intercepts -k and 9k from factored form",
+   "axis at the midpoint 4k gives vertex y = -25k^2",
+   "solve for k^2, then the y-intercept is -9k^2"
+  ],
+  "quantity_asked": "the y-intercept of the parabola, y at x = 0",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a y-intercept, not k and not a solution of any printed equation. To test it a student must convert it to k^2 (= -v/9) and then compute the vertex depth in terms of k, which is the derivation run backwards; no printed condition accepts it. The key is reached at try 3 ascending in any case."
+  },
+  "distractor_meta": {
+   "-225": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the sign of the intercept -k shrinks the gap between intercepts, which makes k^2 larger and the y-intercept more negative; the stem does not show this without the vertex computation."
+   },
+   "-36": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Omitting the halving of the gap overstates the depth per k^2 and so understates k^2; the side follows from the algebra, not from anything the stem says about the answer's size."
+   },
+   "-2304": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating k^2 = 16 as k = 16 squares an already squared quantity; the stem gives no bound on the y-intercept that exposes it."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "return 144;",
+   "direction": "above",
+   "why": "Not required on an interior key; recorded for completeness: computing (0 + k)(0 - 9k) as +9k^2 gives 144."
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: the y-intercept (k)(-9k) is negative for every k > 0 (the intercepts lie on opposite sides of 0), and its size is 9 times a positive number. All four options are negative integers and all four are multiples of 9, so all four survive every property together.",
+  "interior_parity_check": "Interior values -225 and -144 are both three-digit negative integers (complexity 3 and 3, a tie); neither is cleaner.",
+  "arith_class_check": "All negative integers; all multiples of 9; all perfect squares in absolute value (2304 = 48^2, 225 = 15^2, 144 = 12^2, 36 = 6^2), so the key is alone in no class. Parity: -225 odd, the other three even (singleton is a distractor).",
+  "dup_search": {
+   "queries": [
+    "\\(x - [0-9]?k\\)\\(x|\\(x \\+ [0-9]?k\\)\\(x|x - [0-9]k\\)",
+    "vertex&y-intercept|vertex&crosses the y-axis|vertex&f\\(0\\)",
+    "apart|difference between the (two )?(solutions|zeros|roots)|distance between the (two )?(x-intercepts|zeros)",
+    "lowest point&below the x-axis"
+   ],
+   "hits_read": 41,
+   "nearest": "live 7fa7c851 / SM18A-B7 (g(x) = 3x^2 - 18x + c with intercepts 5 units apart -> vertex y-coordinate): a numeric gap gives the vertex; here the intercepts are unknown multiples of k, the vertex depth is given, and the ask is the y-intercept after solving for k^2. The v2 items 038b0287 etc. give vertex and both intercepts numerically and ask f(0)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student can see the y-intercept is negative and a multiple of 9; all four options are both, and all four are perfect squares in absolute value, so no class isolates the key. Option pairs: ratios 2304/144 = 16, 225/144 = 25/16, 144/36 = 4; 4 is not printed or one step from 9 or 400 (the part checker confirms no PAIR/DPAIR line). Interior pair -225 / -144 ties in display complexity. Interior key at try 3 ascending; not substitutable. Reworded at the stage-0 return to clear the near-duplicate overlap with 7fa7c851 (no 'function defined by', 'graph of y =', or 'y-coordinate of the vertex')."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-P03",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic models in context: two models at equal height",
+  "difficulty": "medium",
+  "prompt": "Two model rockets are launched straight upward at the same moment from platforms of different heights. The height, in feet, of rocket A t seconds after launch is given by -16t^2 + 120t + 38, and the height, in feet, of rocket B t seconds after launch is given by -16t^2 + 104t + 62. While both rockets are in flight, there is exactly one time at which they are at the same height. What is that height, in feet?",
+  "choices": [
+   "163",
+   "170",
+   "182",
+   "218"
+  ],
+  "correct_answer": "182",
+  "explanation": "The rockets are at the same height when -16t^2 + 120t + 38 = -16t^2 + 104t + 62. The -16t^2 terms cancel, leaving 120t + 38 = 104t + 62, so 16t = 24 and t = 1.5. At t = 1.5, rocket A's height is -16(1.5)^2 + 120(1.5) + 38 = -36 + 180 + 38 = 182 feet. (Rocket B's height is -36 + 156 + 62 = 182 feet as well.)\n\nChoice 218 drops the -16t^2 term when evaluating the height, as it was dropped when solving for t. Choice 170 squares 1.5 as 3 instead of 2.25. Choice 163 moves 38 to the other side without changing its sign, getting 16t = 100 and t = 6.25, and then evaluates rocket A's height there.",
+  "solve": "const bA=120,cA=38,bB=104,cB=62; const t=(cB-cA)/(bA-bB); return -16*t*t+bA*t+cA;",
+  "distractor_solve": {
+   "163": "const bA=120,cA=38,bB=104,cB=62; const t=(cB+cA)/(bA-bB); return -16*t*t+bA*t+cA;",
+   "170": "const bA=120,cA=38,bB=104,cB=62; const t=(cB-cA)/(bA-bB); return -16*(2*t)+bA*t+cA;",
+   "218": "const bA=120,cA=38,bB=104,cB=62; const t=(cB-cA)/(bA-bB); return bA*t+cA;"
+  },
+  "mechanism": [
+   "equate two quadratic models with equal leading coefficients",
+   "the squared terms cancel; solve the remaining equation for t",
+   "evaluate the quadratic model at that t"
+  ],
+  "quantity_asked": "the common height of the two rockets when they are level",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a height, not a time. To test one a student would have to solve a quadratic in t for each rocket and compare the times, which is longer than the intended solution; there is no printed condition an option can be substituted into. The key is at try 3 ascending in any case."
+  },
+  "distractor_meta": {
+   "163": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A sign slip in the linear equation gives a later time (6.25 s), and the height there is below the key only because rocket A is past its peak; the stem does not show where the peak is."
+   },
+   "170": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Computing 1.5 squared as 3; the side depends on whether t is above or below 2, which the stem does not reveal."
+   },
+   "218": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Omitting the squared term when evaluating; the stem gives no bound on the common height that a student could compare 218 against without computing the rockets' maximum heights (263 and 231 feet, both above 218)."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "return 1.5;",
+   "direction": "below",
+   "why": "Not required on an interior key; recorded for completeness: answering with the time t = 1.5 instead of the height."
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: heights are positive; the common height cannot exceed either rocket's maximum height (rocket A 263 ft, rocket B 231 ft, both requiring a vertex computation); the height at an integer or half-integer time is an integer here but the stem does not promise that. All four options are positive integers below 231, so all four survive every property together.",
+  "interior_parity_check": "Interior values 170 and 182 are both three-digit positive integers; neither is rounder (170 ends in 0, so if anything the distractor is the cleaner one).",
+  "arith_class_check": "Parity: 170, 182, 218 even, 163 odd (singleton is a distractor). Multiples of 2 and 7: 182 = 2 x 7 x 13, 170 = 2 x 5 x 17, no shared-factor class isolates the key; no squares; the key is not equal to any printed number.",
+  "dup_search": {
+   "queries": [
+    "two balls|both balls|second ball|same height",
+    "two (rockets|projectiles|drones|stones)|another ball",
+    "projectile|thrown|launched&seconds"
+   ],
+   "hits_read": 24,
+   "nearest": "live sat/v2 1dad68ac and isee 12fc266b (two candles / two vines at the same height) are LINEAR models; the projectile hits (d7395f6c, 4c36ec80, ADV6-17, SADV5A-08) involve one quadratic model and a fixed height. No live item equates two quadratic models whose squared terms cancel."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student cannot bound the answer without computing the maximum heights, and all options sit below both. Option pairs: no option is the key +, -, x or / a printed number (120, 38, 104, 62, 16, 2) or a number one step from them; checked by the part checker. Interior key at try 3 ascending; a height option cannot be substituted into any printed condition. The key is not equal to a launch height (38, 62) and the meeting time 1.5 is not either rocket's vertex time (3.75 s, 3.25 s), so computing a maximum height does not land on the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-P04",
+  "domain": "Advanced Math",
+  "subskill": "Quadratics: two parabolas meeting at exactly one point",
+  "difficulty": "hard",
+  "prompt": "In the xy-plane, the graphs of y = x^2 - 4x + 3 and y = -x^2 + 16x + k, where k is a constant, intersect at exactly one point. What is the y-coordinate of that point?",
+  "choices": [
+   "8",
+   "35",
+   "63",
+   "108"
+  ],
+  "correct_answer": "8",
+  "explanation": "At an intersection point, x^2 - 4x + 3 = -x^2 + 16x + k, which is equivalent to 2x^2 - 20x + (3 - k) = 0. The graphs meet at exactly one point when this quadratic equation has exactly one solution, and that solution is then x = 20/(2(2)) = 5, the x-coordinate of the vertex of y = 2x^2 - 20x + (3 - k). (Checking: the discriminant is 400 - 8(3 - k), which is 0 when k = -47, and then 2x^2 - 20x + 50 = 2(x - 5)^2.) The y-coordinate of the point is 5^2 - 4(5) + 3 = 8. On the other graph, -25 + 80 - 47 = 8 as well.\n\nChoice 63 comes from writing the combined equation as x^2 - 20x + (3 - k) = 0, which gives x = 10. Choice 35 assumes the graphs meet at the vertex of y = -x^2 + 16x + k, x = 8. Choice 108 comes from a sign error in the discriminant condition that gives k = 53 and then evaluating -x^2 + 16x + 53 at x = 5.",
+  "solve": "const b1=-4,c1=3,b2=16; const A=2, x0=(b2-b1)/(2*A); return x0*x0+b1*x0+c1;",
+  "distractor_solve": {
+   "35": "const b1=-4,c1=3,b2=16; const x=b2/2; return x*x+b1*x+c1;",
+   "63": "const b1=-4,c1=3,b2=16; const x=(b2-b1)/2; return x*x+b1*x+c1;",
+   "108": "const b1=-4,c1=3,b2=16; const A=2, x0=(b2-b1)/(2*A); const T=(b1-b2)*(b1-b2)/(4*A); const k=c1+T; return -x0*x0+b2*x0+k;"
+  },
+  "mechanism": [
+   "set the two quadratics equal: 2x^2 - 20x + (3 - k) = 0",
+   "exactly one intersection means a double root at the vertex x = 5 (k need not be found)",
+   "evaluate either function at x = 5"
+  ],
+  "quantity_asked": "the y-coordinate of the single intersection point of two parabolas",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a y-coordinate, not k and not x. To test it a student would have to solve x^2 - 4x + 3 = v for x (two candidates per option) and then check whether some k makes the other parabola touch there, which is more work than the solution; no printed condition accepts the option directly."
+  },
+  "distractor_meta": {
+   "35": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Taking the touching point to be the vertex of the downward parabola; the stem gives no ordering of the two vertices against the touching point."
+   },
+   "63": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Combining x^2 and -x^2 as a single x^2 moves the touching point from x = 5 to x = 10; whether that raises or lowers y depends on where x = 10 sits relative to the first parabola's vertex, which the stem does not state."
+   },
+   "108": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on k shifts the downward parabola by 100; the stem does not reveal which way, since k's sign is unknown until the condition is solved."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const b1=-4,c1=3; const x=-b1/2; return x*x+b1*x+c1;",
+   "direction": "below",
+   "why": "Assuming the graphs touch at the vertex of the upward parabola, x = 2, gives y = -1, below the key."
+  },
+  "cheap_bound_check": "The only one-sided bound readable from the stem is that the point lies on y = x^2 - 4x + 3, so its y-coordinate is at least -1 (that parabola's vertex value). All four options exceed -1, so it strikes nothing; all three distractors sit on the key's side of it.",
+  "shape_check": "Properties handed over: the point is on the upward parabola, so y >= -1; y is a value of x^2 - 4x + 3 at some real x (every y >= -1 qualifies). No integrality or sign property separates the options; all four are integers >= -1 and survive every property together.",
+  "interior_parity_check": "Interior values 35 and 63 are both two-digit odd integers, both multiples of 7; the key is an extreme value (S slot), not one of them.",
+  "arith_class_check": "Parity: 8 and 108 even, 35 and 63 odd (two and two). No singleton sign, roundness, or square class: 8 is not a square, none of the options is a multiple of 10. The key is not equal to any printed number (4, 3, 16) or to k.",
+  "dup_search": {
+   "queries": [
+    "exactly one (point|solution)&-x\\^2|exactly one (point|solution)&−x²|exactly one&-2x\\^2",
+    "parabolas|two parabolas|graphs of y = x\\^2.*and y = -x\\^2",
+    "tangent&parabola"
+   ],
+   "hits_read": 23,
+   "nearest": "SM25V-A09 (two parabolas crossing at two points; the common chord's y-intercept) and the live line-tangent-to-parabola items (ed1e0bbe drone, 'y = 2x + c is tangent... value of c', SADV2-20 drone height): those find a parameter for a LINE touching one parabola, or a chord of two crossing parabolas. Here two parabolas touch, the asked quantity is the touching point's y-coordinate, and the decision is that the double root sits at the combined quadratic's vertex, so k is never needed."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Direction: covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No; the only stem-readable bound is y >= -1, which every option meets, and the three errors (combined coefficient, wrong vertex, sign of k) move the point to different places on the parabolas. The natural counter-error (touching at the upward parabola's vertex) lands at -1, below the key. Plug-back: could a student check an option against the stem in one routine step? No; an option is a y-coordinate, and testing it needs solving for x and then for k. Hard: the decision is to use the double-root/vertex location instead of first solving for k (the k route works but is longer); Desmos needs a slider on k to approximate it. The checker prints one (read) PLUG line (S key at try 1), answered here: not substitutable."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-P05",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic functions: axis of symmetry and vertex form from values",
+  "difficulty": "medium",
+  "prompt": "For a quadratic function f, the outputs at x = -3 and at x = 13 are equal, and the output at x = 8 is 48 more than the output at x = 4. How much greater is the output at x = 12 than the output at x = 7?",
+  "choices": [
+   "95",
+   "150",
+   "216",
+   "270"
+  ],
+  "correct_answer": "270",
+  "explanation": "Because f(-3) = f(13), the axis of symmetry of the graph of f is halfway between -3 and 13, at x = 5. So f can be written as f(x) = a(x - 5)^2 + k for some constants a and k. Then f(8) - f(4) = a(3)^2 - a(-1)^2 = 9a - a = 8a. Since f(8) - f(4) = 48, a = 6. Therefore f(12) - f(7) = a(7)^2 - a(2)^2 = 6(49 - 4) = 6(45) = 270. The constant k cancels and is never needed.\n\nChoice 216 comes from treating (-1)^2 as -1, which gives 10a = 48 and a = 4.8. Choice 95 ignores the axis of symmetry and writes f(x) = ax^2 + k, which gives a(64 - 16) = 48, a = 1, and f(12) - f(7) = 144 - 49. Choice 150 finds a = 6 correctly but then computes f(12) - f(7) as a(12 - 7)^2.",
+  "solve": "const p=-3,q=13,u=8,v=4,D=48,s=12,t=7; const h=(p+q)/2; const a=D/((u-h)**2-(v-h)**2); return a*((s-h)**2-(t-h)**2);",
+  "distractor_solve": {
+   "95": "const u=8,v=4,D=48,s=12,t=7; const a=D/(u*u-v*v); return a*(s*s-t*t);",
+   "150": "const p=-3,q=13,u=8,v=4,D=48,s=12,t=7; const h=(p+q)/2; const a=D/((u-h)**2-(v-h)**2); return a*(s-t)**2;",
+   "216": "const p=-3,q=13,u=8,v=4,D=48,s=12,t=7; const h=(p+q)/2; const a=D/((u-h)**2+(v-h)**2); return a*((s-h)**2-(t-h)**2);"
+  },
+  "mechanism": [
+   "equal outputs give the axis x = 5",
+   "vertex form: a difference of outputs gives a (k cancels)",
+   "apply a to the asked difference"
+  ],
+  "quantity_asked": "how much greater f(12) is than f(7)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a difference of two unknown outputs; there is no printed equation it can be substituted into. To test it a student must already have the axis and the leading coefficient, which is the whole solution. The key is the largest option, reached last ascending."
+  },
+  "distractor_meta": {
+   "95": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Putting the vertex at x = 0 instead of x = 5 changes both differences; whether the result is larger or smaller depends on the specific inputs, not on anything the stem states."
+   },
+   "150": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Squaring the difference of the inputs instead of differencing the squared distances from the axis; its side depends on where 7 and 12 sit relative to the axis."
+   },
+   "216": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treating (-1)^2 as -1 enlarges the denominator 8 to 10 and so shrinks a; the stem gives no size for f(12) - f(7) that exposes this."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const p=-3,q=13,u=8,v=4,D=48,s=12; const h=(p+q)/2; const a=D/((u-h)**2-(v-h)**2); return a*(s-h)**2;",
+   "direction": "above",
+   "why": "Treating f(7) as if it were the vertex value, i.e., computing f(12) - f(5) = 6(49) = 294, omits the a(2)^2 term and lands above the key."
+  },
+  "cheap_bound_check": "f opens upward (f(8) - f(4) > 0 with 8 farther from the axis), so by convexity the average rate of change over [7, 12] exceeds that over [4, 8], which is 48/4 = 12; hence f(12) - f(7) > 60. All four options exceed 60, so the bound strikes nothing; there is no stem-readable upper bound, and the natural counter error (294) lands above the key.",
+  "shape_check": "Properties handed over: symmetry about x = 5, f opens upward, f(12) - f(7) > 60 by convexity, and the value is a multiple of nothing in particular (a need not be an integer a priori). All four options are positive integers above 60 and survive every property together.",
+  "interior_parity_check": "Interior values 150 and 216 are both three-digit positive integers; the distractor 150 is the rounder one, not the key.",
+  "arith_class_check": "Parity: 150, 216, 270 even, 95 odd (singleton is a distractor). Multiples of 10: 150 and 270 (two). Multiples of 6: 150, 216, 270 (three). No squares, no sign class. The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "f\\(-?[0-9]+\\) = f\\(-?[0-9]+\\)",
+    "f\\(-?[0-9]+\\) - f\\(-?[0-9]+\\)",
+    "axis of symmetry"
+   ],
+   "hits_read": 10,
+   "nearest": "ce0df3d6 / SAM11-19 (f(2) = f(6) = 5, f(1) = 0, find f(7) - pure symmetry, f(7) = f(1)) and 9e728f1f / SADV2-01 (f(1) = f(7) = 5 with leading coefficient 1, find the minimum). Here the leading coefficient is unknown and is found from a given DIFFERENCE of outputs with the vertex value cancelling, and the ask is another difference."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Direction: covering the work, could a student tell which way the errors go and strike all three? No: the stem shows f opens upward and gives the lower bound 60, which all options clear; it gives no upper bound, and the natural 'vertex value' error (294) lands above the key, so the errors genuinely split. Option pairs: no option is the key +, -, x or / a printed number (3, 13, 8, 4, 48, 12, 7) or one step from them (checked by the part checker). The ratio 270/150 = 9/5 and 270/216 = 5/4 are not ratios of printed numbers. Plug-back: the key is the largest option, reached last in ascending order, and is not substitutable anyway. Reworded at the stage-0 return (same numbers, same mechanism) to clear the lexical near-duplicate overlap with live v2 8ec7e3d3, a LINEAR two-point item."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-P06",
+  "domain": "Advanced Math",
+  "subskill": "Quadratic models in context: change in value up to the vertex",
+  "difficulty": "medium",
+  "prompt": "A company estimates that its weekly profit P, in dollars, from selling a lamp at a price of x dollars is given by P(x) = -6x^2 + 300x - 2250. The company currently sells the lamp for 21 dollars. If the company changes the price to the value of x that maximizes P(x), by how many dollars will its weekly profit increase?",
+  "choices": [
+   "24",
+   "25",
+   "42",
+   "96"
+  ],
+  "correct_answer": "96",
+  "explanation": "The graph of P is a parabola that opens downward, so P is greatest at the vertex, where x = -300/(2(-6)) = 25. The profit at that price is P(25) = -6(625) + 300(25) - 2250 = -3750 + 7500 - 2250 = 1500. The current profit is P(21) = -6(441) + 300(21) - 2250 = -2646 + 6300 - 2250 = 1404. The increase is 1500 - 1404 = 96 dollars. (Equivalently, P(x) = -6(x - 25)^2 + 1500, so the increase is 6(25 - 21)^2 = 6(16) = 96.)\n\nChoice 24 multiplies 6 by the change in price, 4, instead of by its square. Choice 25 is the profit-maximizing price, not the increase in profit. Choice 42 is the increase from raising the price by only 1 dollar, P(22) - P(21).",
+  "solve": "const a=-6,b=300,c=-2250,p=21; const P=x=>a*x*x+b*x+c; const h=-b/(2*a); return P(h)-P(p);",
+  "distractor_solve": {
+   "24": "const a=-6,b=300,p=21; const h=-b/(2*a); return Math.abs(a)*(h-p);",
+   "25": "const a=-6,b=300; return -b/(2*a);",
+   "42": "const a=-6,b=300,c=-2250,p=21; const P=x=>a*x*x+b*x+c; return P(p+1)-P(p);"
+  },
+  "mechanism": [
+   "vertex of the profit model at x = 25",
+   "evaluate the model at the vertex and at the current price",
+   "subtract (equivalently 6 times the squared distance to the vertex)"
+  ],
+  "quantity_asked": "the increase in weekly profit from the current price to the profit-maximizing price",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a change in profit, not a price; nothing printed can be checked by substituting it. The key is the largest option, reached last in ascending order."
+  },
+  "distractor_meta": {
+   "24": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Omitting the square on the price change; whether a times d is above or below a times d^2 depends on d, which the stem does not give directly (it needs the vertex)."
+   },
+   "25": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting the profit-maximizing price instead of the profit change; the stem gives no scale for the profit change to compare a price against."
+   },
+   "42": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Using a one-dollar price change instead of the full change to the vertex; the full change is unknown until the vertex is found."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const a=-6,b=300,p=21; const h=-b/(2*a); const rate=b+2*a*p; return rate*(h-p);",
+   "direction": "above",
+   "why": "Treating the profit as rising at its initial rate (P(22) - P(21) is close to 48 per dollar near x = 21) for all 4 dollars gives 192, above the key; the true rate falls to 0 at the vertex."
+  },
+  "cheap_bound_check": "The increase is positive and at most the maximum profit (1500, which needs the vertex). No stem-readable one-sided bound separates the options: all four are positive and well under any such cap; the natural linear-rate error (192) lands above the key, so the errors split.",
+  "shape_check": "Properties handed over: P opens downward, the increase in profit is positive (the new price is the maximizer), and it is a whole number of dollars here though the stem does not promise that. All four options are positive integers; all four survive every property together.",
+  "interior_parity_check": "Interior values 25 and 42 are both two-digit positive integers; the key is an extreme value (L slot), not one of them.",
+  "arith_class_check": "Parity: 24, 42, 96 even, 25 odd (singleton is a distractor). Multiples of 6: 24, 42, 96 (three); squares: 25 only (a distractor). No roundness tell (none is a multiple of 10). The key is not alone in any class.",
+  "dup_search": {
+   "queries": [
+    "revenue&p\\(|R\\(p\\)|price p",
+    "profit&maximiz",
+    "profit&P\\(x\\) ="
+   ],
+   "hits_read": 4,
+   "nearest": "0cb05fbc / SAM11-17 and AM-H-15 (revenue R(p) = p(80 - 2p): the maximum revenue) and the live profit-in-vertex-form item (P(x) = -2x^2 + 96x - 700, value of h + k). Those ask for the extreme value or the vertex form; here the ask is the CHANGE from a given current price to the optimum, which needs two evaluations (or a times the squared distance)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Direction: covering the work, could a student tell which way the errors go and strike all three? The key is the largest option and noticeably above the other three; a student who guesses 'the biggest' wins, but the stem gives no bound that removes 24, 25 or 42 (all are positive and plausible dollar amounts), and the natural linear-rate error (192) and the max-profit misread (1500) land above the key, so the error family genuinely goes both ways. Option pairs: 96/24 = 4 is the price change, which is not printed (21 and the vertex 25 are), and 4 is not one step from 6, 300, 2250, 21 or 2 (checked by the part checker). Plug-back: the key is reached last ascending and is not substitutable."
+  },
+  "bounds": []
+ }
+]

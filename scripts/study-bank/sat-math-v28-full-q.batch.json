@@ -1,0 +1,449 @@
+[
+ {
+  "id": "SM28F-Q01",
+  "domain": "Advanced Math",
+  "subskill": "Exponential models: when a decaying and a growing model meet",
+  "difficulty": "medium",
+  "prompt": "In a laboratory, the mass of sample X, in milligrams, t hours after an experiment begins is modeled by X(t) = 6,000(0.95)^t. The mass of sample Y, in milligrams, t hours after the experiment begins is modeled by Y(t) = 375(1.9)^t. According to the models, at the time when the two samples have equal mass, what is that mass, to the nearest milligram?",
+  "choices": [
+   "2850",
+   "3981",
+   "4887",
+   "5415"
+  ],
+  "correct_answer": "4887",
+  "explanation": "The masses are equal when 6,000(0.95)^t = 375(1.9)^t. Dividing both sides by 375(0.95)^t gives 6,000/375 = (1.9/0.95)^t, which is 16 = 2^t, so t = 4.\n\nThe common mass is X(4) = 6,000(0.95)^4 = 6,000(0.81450625) = 4,887.0375, or about 4,887 milligrams. As a check, Y(4) = 375(1.9)^4 = 375(13.0321) = 4,887.0375.\n\nChoice 3981 solves 2^t = 16 as 2t = 16, so t = 8, and gives X(8). Choice 5415 solves 2^t = 16 as if it were 4^t = 16, so t = 2, and gives X(2). Choice 2850 finds t = 4 but computes Y(4) as 375(1.9)(4), multiplying by the exponent instead of using it as a power.",
+  "solve": "const t=Math.log(6000/375)/Math.log(1.9/0.95); return String(Math.round(6000*Math.pow(0.95,t)));",
+  "distractor_solve": {
+   "2850": "const t=Math.log(6000/375)/Math.log(1.9/0.95); return String(Math.round(375*1.9*t));",
+   "3981": "const t=(6000/375)/(1.9/0.95); return String(Math.round(6000*Math.pow(0.95,t)));",
+   "5415": "const t=Math.log(6000/375)/Math.log(2*(1.9/0.95)); return String(Math.round(6000*Math.pow(0.95,t)));"
+  },
+  "mechanism": [
+   "set a decaying and a growing exponential equal",
+   "divide to a single power of the base ratio",
+   "evaluate either model at the meeting time"
+  ],
+  "quantity_asked": "the common mass of two exponentially modeled samples at the moment they are equal",
+  "ask_type": "value-of-function",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a mass, not a time. To test it a student must find a t with 6,000(0.95)^t equal to that option, which means solving an exponential equation with no clean answer for three of the options; that is harder than solving the item. The key also sits at try 3 in ascending order."
+  },
+  "distractor_meta": {
+   "2850": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finding t = 4 but evaluating Y(4) as 375 x 1.9 x 4, multiplying by the exponent instead of raising to it; the stem gives no hint whether that product is larger or smaller than the power before both are computed."
+   },
+   "3981": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Solving 2^t = 16 as 2t = 16 gives a later time; the stem gives no hint whether the solver's time is too large or too small, so the side is not readable before solving."
+   },
+   "5415": {
+    "error_kind": "wrong_base",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Solving 2^t = 16 as if the base were 4 gives an earlier time and therefore a larger X; nothing in the stem shows which way a base confusion moves the time."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: X decreases from 6,000 and Y increases from 375 for t >= 0, so the common mass lies strictly between 375 and 6,000; the answer is a whole number of milligrams (rounded). All four options are whole numbers between 375 and 6,000, so all four survive every property together.",
+  "interior_parity_check": "The two middle values are 3981 and 4887: both four-digit whole numbers with four significant digits; neither is rounder.",
+  "arith_class_check": "Parities: 2850 even, 3981 odd, 4887 odd, 5415 odd; multiples of 5: 2850 and 5415; no option is a multiple of 375 or a power of 2. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "Lake A",
+    "same (value|population|number)&\\^",
+    "equal&\\(1\\.|\\(0\\.",
+    "\\)\\^t|\\)\\^\\(t|\\^\\(t/|\\^\\(x/|\\)\\^x|\\)\\^n|\\)\\^\\(n"
+   ],
+   "hits_read": 57,
+   "nearest": "live two-lakes item 5,000(0.9)^t vs 5,000(0.7)^t asks a percent difference at a GIVEN time (no solving for t); the A(t) = 4,000(1.69)^(t/10) item converts periods. No item sets a decaying and a growing model equal and reports the common value."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student would bound the answer by 375 and 6,000; all four options survive. Plugging an option in requires solving 0.95^t = option/6,000, which is not routine and is not cheaper than solving 2^t = 16. The middle pair 3981 / 4887 has equal display complexity, so roundness does not single out the key. The key 4887 is upper interior (try 3 ascending)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-Q02",
+  "domain": "Advanced Math",
+  "subskill": "Exponential models: cooling toward room temperature",
+  "difficulty": "medium",
+  "prompt": "A metal part is removed from an oven and left to cool in a room. The temperature of the part, in degrees Fahrenheit, t minutes after it is removed is modeled by T(t) = 72 + k(1/2)^(t/8), where k is a constant. According to the model, the temperature of the part is 92 degrees Fahrenheit 24 minutes after it is removed. What was the temperature of the part, in degrees Fahrenheit, at the moment it was removed from the oven?",
+  "choices": [
+   "97",
+   "132",
+   "152",
+   "232"
+  ],
+  "correct_answer": "232",
+  "explanation": "Substitute t = 24 and T = 92: 92 = 72 + k(1/2)^(24/8). So 20 = k(1/2)^3 = k/8, which gives k = 160.\n\nThe temperature at the moment of removal is T(0) = 72 + 160(1/2)^0 = 72 + 160 = 232 degrees Fahrenheit.\n\nIn words: the amount by which the part is warmer than the room halves every 8 minutes. After 24 minutes (three halvings) that amount is 20 degrees, so at the start it was 20 x 8 = 160 degrees, and the part was 72 + 160 = 232 degrees.\n\nChoice 152 counts only two halvings in 24 minutes, so k = 80. Choice 132 multiplies the 20-degree difference by the number of 8-minute periods, 3, instead of by 2^3. Choice 97 uses the exponent 8/24 instead of 24/8.",
+  "solve": "const k=(92-72)/Math.pow(0.5,24/8); return 72+k;",
+  "distractor_solve": {
+   "97": "const k=(92-72)/Math.pow(0.5,8/24); return Math.round(72+k);",
+   "132": "const k=(92-72)*(24/8); return 72+k;",
+   "152": "const k=(92-72)/Math.pow(0.5,24/8-1); return 72+k;"
+  },
+  "mechanism": [
+   "subtract the room temperature from the reading",
+   "undo three halvings of the excess",
+   "add the room temperature back for T(0)"
+  ],
+  "quantity_asked": "the initial temperature T(0) of a part cooling exponentially toward room temperature, given one later reading",
+  "ask_type": "value-of-function",
+  "plugback": {
+   "substitutable": true,
+   "verify": "return Math.abs(72 + (v - 72) * Math.pow(0.5, 24/8) - 92) < 1e-9;",
+   "why": "A student can test an option as T(0): its excess over 72 must shrink to 20 after three halvings. In ascending order the student tests 97, 132 and 152 first (each fails) and reaches the key 232 only on try 4, which costs more than solving 20 x 8 + 72 directly."
+  },
+  "distractor_meta": {
+   "97": {
+    "error_kind": "inverted_rate",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Inverting t/8 to 8/t gives a fractional number of halvings; the stem does not show the student whether that over- or under-shoots the true count before it is computed."
+   },
+   "132": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Scaling the excess by 3 instead of by 2^3; the stem prints neither factor, and the student who makes this error believes it is the scaling."
+   },
+   "152": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Counting two halvings in 24 minutes instead of three (dividing 24 by 8 and then subtracting one, a fencepost slip); the direction depends on the miscount, which could equally be four, and nothing in the stem fixes it."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "return 92*Math.pow(2,24/8);",
+   "direction": "above",
+   "why": "Ignoring the room temperature and treating the whole reading 92 as the halving quantity gives 92 x 8 = 736, far above the key; this is the most common error with shifted exponential models."
+  },
+  "cheap_bound_check": "The part cools, so T(0) > T(24) = 92; all four options exceed 92, so the bound strikes nothing. There is no cheap upper bound on the starting temperature: the omission error lands above the key at 736, so a student cannot read from the stem that every error undershoots.",
+  "shape_check": "Properties handed over: T decreases toward 72, so T(0) > 92; T(0) is a temperature with no stated cap; the reading 92 is a whole number. All four options are whole numbers above 92, so all four survive every property together.",
+  "interior_parity_check": "The two middle values are 132 and 152: both three-digit whole numbers of the same form. The key 232 is an extreme, not interior.",
+  "arith_class_check": "97 odd, 132 even, 152 even, 232 even; multiples of 8: 152 and 232 (not alone); multiples of 4: 132, 152, 232. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "temperature&\\^|degrees&\\^",
+    "\\+ .*\\(0\\.5\\)\\^|\\+ .*\\(1/2\\)\\^|\\+ .*2\\^\\(-",
+    "\\)\\^t|\\)\\^\\(t|\\^\\(t/|\\^\\(x/|\\)\\^x|\\)\\^n|\\)\\^\\(n",
+    "half&\\^|half-life"
+   ],
+   "hits_read": 52,
+   "nearest": "m(t) = 800(1/2)^(t/h) with 100 grams at 21 days asks the halving period h of an UNSHIFTED decay; c(h) = 80(0.5)^(h/6) asks a time. No live or prior item has an exponential with an added constant (cooling toward room temperature), and none recovers the starting value through the shift."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: the natural omission (ignoring the room temperature) gives 736, above the key, while fencepost and scaling slips fall below; the stem shows only that T(0) > 92, which all options satisfy. Plug-back: possible, but the key is the last option in ascending order (try 4). (read) DPAIR lines expected: 232 - 152 = 80 = 72 + 8 and 232 - 132 = 100 = 92 + 8. Neither difference is readable from the stem as a step of any method: 80 and 100 are not quantities in the problem (the halving amount is 20 and the factor is 8), so no option is 'one extra step' from another."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-Q03",
+  "domain": "Advanced Math",
+  "subskill": "Rational exponents: calibrating and inverting a power model",
+  "difficulty": "medium",
+  "prompt": "The rate Q, in liters per second, at which water flows over the crest of a small dam is modeled by Q = c(h)^(3/2), where h is the depth, in centimeters, of the water above the crest and c is a constant. When the depth is 9 centimeters, the flow rate is 54 liters per second. According to the model, by how many centimeters must the depth increase from 9 centimeters for the flow rate to reach 100 liters per second? Round your answer to the nearest hundredth.",
+  "choices": [
+   "2.05",
+   "3.25",
+   "4.57",
+   "12.54"
+  ],
+  "correct_answer": "4.57",
+  "explanation": "First find c. Since 9^(3/2) = (sqrt(9))^3 = 27, the condition 54 = c(27) gives c = 2.\n\nFor a flow rate of 100: 100 = 2h^(3/2), so h^(3/2) = 50 and h = 50^(2/3), which is about 13.572 centimeters.\n\nThe depth must increase by about 13.572 - 9 = 4.572, or 4.57 centimeters.\n\nChoice 12.54 skips finding c and solves h^(3/2) = 100. Choice 3.25 scales the depth by the square root of 100/54 instead of by (100/54)^(2/3). Choice 2.05 scales the depth by the cube root of 100/54, undoing only the cube in h^(3/2).",
+  "solve": "const c=54/Math.pow(9,1.5); const h=Math.pow(100/c,2/3); return Math.round((h-9)*100)/100;",
+  "distractor_solve": {
+   "2.05": "return Math.round((9*Math.pow(100/54,1/3)-9)*100)/100;",
+   "3.25": "return Math.round((9*Math.sqrt(100/54)-9)*100)/100;",
+   "12.54": "return Math.round((Math.pow(100,2/3)-9)*100)/100;"
+  },
+  "mechanism": [
+   "calibrate the constant from 9^(3/2) = 27",
+   "invert h^(3/2) = 50 with the 2/3 power",
+   "subtract the starting depth"
+  ],
+  "quantity_asked": "the increase in depth needed for a 3/2-power flow model to reach a target rate",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const h=9+v; return Math.abs(2*Math.pow(h,1.5)-100)<0.5;",
+   "why": "A student can test an option by adding 9 and computing 2h^(3/2) with a calculator (after first finding c = 2). In ascending order 2.05 and 3.25 fail before the key is reached on try 3."
+  },
+  "distractor_meta": {
+   "2.05": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking only a cube root undoes part of the 3/2 power; the stem does not tell the student whether that partial inversion under- or over-shoots before the correct power is known."
+   },
+   "3.25": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Square-root scaling, as if Q were proportional to h^2; the stem prints the exponent 3/2, and a student who misreads it cannot see which way the error moves."
+   },
+   "12.54": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Skipping the constant c (c = 2 here); whether dropping c raises or lowers the depth depends on whether c is above or below 1, which is not visible before c is computed."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: Q increases with h and 100 > 54, so the increase is positive; the exponent 3/2 exceeds 1, so the depth grows by a smaller factor than the flow, giving an increase below 9(100/54) - 9 = 7.67 - a student who reasons this way strikes 12.54. The other three options are positive and below 7.67, so 2.05, 3.25 and 4.57 survive every property together.",
+  "interior_parity_check": "The two middle values are 3.25 and 4.57: both two-decimal numbers with three significant digits; neither is cleaner.",
+  "arith_class_check": "All four options are rounded to hundredths and none is an integer; no parity, sign or multiple-of-k class applies. The key is alone in no class.",
+  "dup_search": {
+   "queries": [
+    "\\^\\(3/2\\)|\\^1\\.5|\\^\\(1\\.5\\)|\\^ ?1\\.5",
+    "weir|spillway|flow rate|liters per second",
+    "h\\^|height&\\^\\(",
+    "\\^\\(3/2\\)|\\^\\(2/3\\)|\\^\\(3/4\\)|\\^\\(4/3\\)|\\^\\(5/2\\)"
+   ],
+   "hits_read": 38,
+   "nearest": "The orbit item (T proportional to d^(3/2), distance 36 times, orbit time how many times) scales FORWARD with no constant to find; f(x) = a x^(3/2) + b with f(0), f(4) asks f(9) forward; the (ax + b)^(3/2) = 125 items invert a bare power with no model constant. None calibrates a constant from data, inverts to a non-integer input and asks the change in the input."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student may argue that because the exponent exceeds 1 the depth grows by less than the flow factor, striking 12.54 (one strike); 2.05, 3.25 and 4.57 survive together. Plug-back costs a calculator evaluation per option after finding c, and the key is reached on try 3 in ascending order. No pair readings expected: the printed numbers 3/2, 9, 54 and 100 relate no option to 4.57 by one operation."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-Q04",
+  "domain": "Advanced Math",
+  "subskill": "Exponent rules: combining two exponential equations",
+  "difficulty": "hard",
+  "prompt": "Real numbers x and y satisfy both of the following equations.\n5^(x + y) = 72\n5^(x - y) = 8\nBased on these two equations, what is the sum of the two numbers 5^x and 5^y ?",
+  "choices": [
+   "27",
+   "33",
+   "40",
+   "72"
+  ],
+  "correct_answer": "27",
+  "explanation": "Neither exponent is a whole number, so combine the equations instead of solving for x and y.\n\nMultiplying the equations: 5^(x + y) x 5^(x - y) = 5^(2x) = 72 x 8 = 576. Since 5^(2x) = (5^x)^2 and 5^x is positive, 5^x = 24.\n\nDividing the equations: 5^(x + y) / 5^(x - y) = 5^(2y) = 72/8 = 9. Since 5^y is positive, 5^y = 3.\n\n(As a check, 5^x x 5^y = 24 x 3 = 72 and 5^x / 5^y = 24/3 = 8.) Therefore 5^x + 5^y = 24 + 3 = 27.\n\nChoice 33 finds 5^(2y) = 9 but uses 9 as 5^y. Choice 40 treats 5^(x - y) as 5^x - 5^y, so 5^y = 24 - 8 = 16. Choice 72 treats 5^(x + y) as 5^x + 5^y.",
+  "solve": "const ux=Math.sqrt(72*8), uy=Math.sqrt(72/8); return Math.round((ux+uy)*1e9)/1e9;",
+  "distractor_solve": {
+   "33": "const ux=Math.sqrt(72*8), uy2=72/8; return Math.round((ux+uy2)*1e9)/1e9;",
+   "40": "const ux=Math.sqrt(72*8); return Math.round((ux+(ux-8))*1e9)/1e9;",
+   "72": "return 72;"
+  },
+  "mechanism": [
+   "multiply the equations to get 5^(2x)",
+   "divide the equations to get 5^(2y)",
+   "take positive square roots and add"
+  ],
+  "quantity_asked": "the value of 5^x + 5^y when only 5^(x + y) and 5^(x - y) are given",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a value of 5^x + 5^y. Neither printed equation contains that sum, so an option cannot be substituted anywhere: to test it a student must first find 5^x and 5^y separately, which is the whole problem (or solve a quadratic in 5^y built from the option), not a routine check."
+  },
+  "distractor_meta": {
+   "33": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Stopping at 5^(2y) = 9 for one term; whether a missed square root raises or lowers the sum depends on whether 5^y is above or below 1, which the stem does not show."
+   },
+   "40": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading 5^(x - y) as 5^x - 5^y; the stem gives no way to tell whether the resulting 5^y is too big or too small before 5^x is known."
+   },
+   "72": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reading 5^(x + y) as 5^x + 5^y gives the printed 72 directly; the product 5^x x 5^y = 72 does not bound the sum on either side without knowing the factors."
+   }
+  },
+  "counter_error": {
+   "error_kind": "inverted_rate",
+   "solve": "const ux=Math.sqrt(72*8), uy=Math.sqrt(8/72); return ux+uy;",
+   "direction": "below",
+   "why": "Dividing the equations the other way, 8/72 = 1/9, gives 5^y = 1/3 and a sum of 24 1/3, below the key."
+  },
+  "cheap_bound_check": "The cheapest one-sided bound is the AM-GM style lower bound: 5^x x 5^y = 72, so 5^x + 5^y >= 2sqrt(72), about 17; all four options exceed it. There is no cheap upper bound below 72 (a sum of two positive numbers with product 72 can exceed 72), so on the key's side of any readable bound sit all three distractors.",
+  "shape_check": "Properties handed over: 5^x and 5^y are positive; their product is 72 and their quotient is 8, so 5^x > 5^y and the sum is at least about 17. All four options are positive and above 17, so all four survive every property together.",
+  "interior_parity_check": "The key 27 is the smallest option, not interior; the two middle values 33 and 40 are both two-digit integers.",
+  "arith_class_check": "27 odd, 33 odd, 40 even, 72 even; multiples of 3: 27, 33, 72; none is a power of 5. The key is alone in no class the stem implies (being a perfect cube is not implied by anything printed).",
+  "dup_search": {
+   "queries": [
+    "\\^\\(x \\+ y\\)|\\^\\(a \\+ b\\)|\\^\\(x - y\\)|\\^\\(a - b\\)|\\^\\(m \\+ n\\)",
+    "\\^x \\+ .\\^y|\\^a \\+ .\\^b",
+    "\\^\\(a|\\^a&\\^\\(b|\\^b&a \\+ b|a - b"
+   ],
+   "hits_read": 3,
+   "nearest": "'3^(x + y) = 729 and 3^(x - y) = 9, value of x' (live): both right sides are exact powers, so it reduces to the LINEAR system x + y = 6, x - y = 2. Here 72 and 8 are not powers of 5, x and y are irrational, and the item can only be done by multiplying and dividing the equations; the asked sum is never a step of that other item."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three distractors? No: the readable bound (sum >= 2sqrt(72), about 17) strikes none, and the natural inverted division (8/72) lands BELOW the key at 24 1/3, so the stem does not say every error overshoots. Could a student check an option against the stem in one routine step? No: the sum 5^x + 5^y appears in neither equation; checking a candidate sum s means solving t^2 - st + 72 = 0 for 5^x and 5^y and then testing the quotient, which is longer than solving. (read) DPAIR lines expected: 33 - 27 = 6 = 5 + 1 and 40 - 27 = 13 = 5 + 8; 6 is 9 - 3 (the missed square root on 5^y) and 13 is 16 - 3, neither a quantity a student can read off the stem to step from an option to the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-Q05",
+  "domain": "Advanced Math",
+  "subskill": "Equations quadratic in 3^x: a non-monic quadratic",
+  "difficulty": "medium",
+  "prompt": "Two different real numbers, a and b, each satisfy the equation 3(9^x) - 10(3^x) + 3 = 0. Combining both solutions, what is the value of the sum 9^a + 9^b ?",
+  "choices": [
+   "1",
+   "10/3",
+   "82/9",
+   "18"
+  ],
+  "correct_answer": "82/9",
+  "explanation": "Since 9^x = (3^x)^2, let u = 3^x. The equation becomes 3u^2 - 10u + 3 = 0, which factors as (3u - 1)(u - 3) = 0, so u = 1/3 or u = 3.\n\n3^x = 3 gives x = 1, and 3^x = 1/3 gives x = -1. So the solutions are 1 and -1.\n\nThen 9^1 + 9^(-1) = 9 + 1/9 = 82/9.\n\n(Equivalently, 9^a + 9^b is the sum of the squares of the two values of u: 3^2 + (1/3)^2 = 82/9.)\n\nChoice 10/3 adds the values of 3^x instead of 9^x. Choice 1 treats 9^a + 9^b as 9^(a + b) = 9^0. Choice 18 drops the negative sign of the solution x = -1 and adds 9 + 9.",
+  "solve": "const D=Math.sqrt(100-36); const u1=(10+D)/6, u2=(10-D)/6; return u1*u1+u2*u2;",
+  "distractor_solve": {
+   "1": "const D=Math.sqrt(100-36); const u1=(10+D)/6, u2=(10-D)/6; const a=Math.log(u1)/Math.log(3), b=Math.log(u2)/Math.log(3); return Math.round(Math.pow(9,a+b)*1e9)/1e9;",
+   "18": "const D=Math.sqrt(100-36); const u1=(10+D)/6, u2=(10-D)/6; const a=Math.log(u1)/Math.log(3), b=Math.log(u2)/Math.log(3); return Math.round((Math.pow(9,Math.abs(a))+Math.pow(9,Math.abs(b)))*1e9)/1e9;",
+   "10/3": "const D=Math.sqrt(100-36); const u1=(10+D)/6, u2=(10-D)/6; return u1+u2;"
+  },
+  "mechanism": [
+   "substitute u = 3^x into a non-monic quadratic",
+   "factor to u = 1/3 and u = 3",
+   "square each value of u (9^x) and add"
+  ],
+  "quantity_asked": "the sum 9^a + 9^b over the two solutions of an equation quadratic in 3^x",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a sum over both solutions; no option can be put into the equation. Testing one would require knowing both solutions first. The key is also the third value in ascending order."
+  },
+  "distractor_meta": {
+   "1": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Combining 9^a + 9^b into 9^(a + b); whether that is smaller or larger depends on a + b, which the stem does not show."
+   },
+   "18": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the sign of the negative solution; the stem does not reveal that one solution is negative until the quadratic is solved."
+   },
+   "10/3": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the values of 3^x instead of 9^x; squaring raises numbers above 1 and lowers numbers below 1, and the stem does not show which kind the roots are."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties handed over: 9^a and 9^b are positive, so the sum is positive; the stem says there are two solutions but nothing about their signs or whether the answer is an integer. All four options are positive, so all four survive every property together.",
+  "interior_parity_check": "The two middle values are 10/3 and 82/9: both fractions in lowest terms; the key 82/9 has the larger numerator and denominator, so it is not the cleaner one.",
+  "arith_class_check": "Integers: 1 and 18; non-integers: 10/3 and 82/9. Denominators 3 and 9 each appear once. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "4\\^x|9\\^x|2\\^\\(2x\\)|3\\^\\(2x\\)|4\\^\\{x\\}|9\\^\\{x\\}",
+    "3\\(9\\^x\\)|3·9\\^x|3 · 9\\^x|3\\*9\\^x|3\\(9\\)\\^x|9\\^a \\+|9\\^\\(a\\)|\\^a \\+ .*\\^b",
+    "9\\^x|9\\^\\(x"
+   ],
+   "hits_read": 32,
+   "nearest": "SM24V-B12 '9^x - 4(3^(x + 1)) + 20 = 0, compute 3^(x2 - x1)' asks the RATIO of the two u-values of a monic quadratic; the 2^(2x) items ask the sum of the solutions or one solution. Here the quadratic is non-monic (3u^2 - 10u + 3, reciprocal roots), one solution is negative, and the ask is the sum of the SQUARES of the u-values."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might guess that a clean answer is likely and pick 1 or 18; the key is a fraction, as is 10/3, so cleanliness does not single it out. Plug-back is impossible (the ask is a sum over both solutions). No PAIR/DPAIR lines expected: printed numbers 3, 9, 10 relate no option with 82/9 by one operation."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-Q06",
+  "domain": "Advanced Math",
+  "subskill": "Exponential functions: a quadratic in the base from two conditions",
+  "difficulty": "hard",
+  "prompt": "A function f has the form f(x) = a(b)^x, where a and b are positive constants, and the constant a is less than 40. The outputs of f satisfy two conditions: f(0) + f(2) = 75, and f(1) = 36. Using these conditions, what is the value of f(3)?",
+  "choices": [
+   "42.25",
+   "48",
+   "60",
+   "64"
+  ],
+  "correct_answer": "64",
+  "explanation": "The conditions say a + ab^2 = 75 and ab = 36. Dividing the first equation by the second gives (1 + b^2)/b = 75/36 = 25/12, so 12 + 12b^2 = 25b, or 12b^2 - 25b + 12 = 0. This factors as (3b - 4)(4b - 3) = 0, so b = 4/3 or b = 3/4.\n\nBoth bases fit the two conditions, so the condition a < 40 decides. If b = 3/4, then a = 36/(3/4) = 48, which is not less than 40. If b = 4/3, then a = 36/(4/3) = 27, which is. So a = 27 and b = 4/3 (check: 27 + 27(16/9) = 27 + 48 = 75).\n\nThen f(3) = 27(4/3)^3 = 27(64/27) = 64.\n\nChoice 48 is f(2), one step short. Choice 60 continues the change from f(1) = 36 to f(2) = 48 as if it were constant. Choice 42.25 cancels (1 + b^2)/b to 1 + b, so b = 25/12 - 1 = 13/12 and f(3) = f(1)b^2 = 36(169/144) = 42.25.",
+  "solve": "const r=(25+Math.sqrt(625-576))/24; const bs=[r,(25-Math.sqrt(625-576))/24]; const b=bs.find(x=>36/x<40); const a=36/b; return Math.round(a*b**3*1e9)/1e9;",
+  "distractor_solve": {
+   "48": "const b=(25+Math.sqrt(625-576))/24; const a=36/b; return Math.round(a*b*b*1e9)/1e9;",
+   "60": "const b=(25+Math.sqrt(625-576))/24; const a=36/b; const f2=a*b*b; return Math.round((f2+(f2-36))*1e9)/1e9;",
+   "42.25": "const b=75/36-1; return Math.round(36*b*b*1e9)/1e9;"
+  },
+  "mechanism": [
+   "divide the two conditions to eliminate a",
+   "solve the quadratic 12b^2 - 25b + 12 = 0 (reciprocal roots)",
+   "use a < 40 to choose the base, then evaluate f(3)"
+  ],
+  "quantity_asked": "f(3) for an exponential function fixed by f(0) + f(2), f(1) and a condition on a",
+  "ask_type": "value-of-function",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const b=Math.sqrt(v/36); const a=36/b; return a<40 && Math.abs(a+a*b*b-75)<1e-9;",
+   "why": "A student can test an option as f(3): b^2 = option/36, then a = 36/b, then check a + ab^2 = 75 and a < 40. That is three computations with square roots per option, and in ascending order the key 64 is reached only on try 4."
+  },
+  "distractor_meta": {
+   "48": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting f(2); whether f(2) is below or above f(3) depends on whether b > 1, which is exactly the decision the condition a < 40 settles only after solving."
+   },
+   "60": {
+    "error_kind": "other",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Linear continuation from f(1) to f(2); the stem does not say whether f grows or decays, so the student cannot tell whether a linear step under- or over-shoots."
+   },
+   "42.25": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Cancelling (1 + b^2)/b to 1 + b gives b = 13/12; whether a wrong cancellation inflates or shrinks b cannot be told before the correct base is known."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const b=4/3; return 36*b**3;",
+   "direction": "above",
+   "why": "Treating f(1) = 36 as the starting value a and applying three factors of b gives 36(4/3)^3 = 85 1/3, above the key."
+  },
+  "cheap_bound_check": "The cheapest readable bound: a < 40 with ab = 36 gives b > 0.9, so f(3) = 36b^2 > 29.16. All four options exceed it, so on the key's side of the bound sit all three distractors. Nothing in the stem says whether f increases, so no upper or lower bound from monotonicity is available before solving.",
+  "shape_check": "Properties handed over: a and b positive, a < 40, f(1) = 36, f(0) + f(2) = 75. These give b > 0.9 and f(3) > 29.16 and f(3) positive; the stem does not state monotonicity or integrality. All four options are positive and above 29.16, so all four survive every property together.",
+  "interior_parity_check": "The key 64 is the largest option; the two middle values 48 and 60 are both two-digit integers of the same form.",
+  "arith_class_check": "42.25 is not an integer; 48, 60 and 64 are. Multiples of 3: 48 and 60 (not 42.25 or 64); even: 48, 60, 64; perfect squares: 42.25 (6.5^2) and 64. The key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "f\\(0\\) \\+ f\\(2\\)|f\\(0\\) \\+ f\\(|f\\(1\\) \\+ f\\(3\\)|positive constants&f\\(1\\) =",
+    "f\\(.\\) . f\\(.\\)&\\^",
+    "passes through|contains the points&\\^x|\\(b\\)\\^x|b\\^x"
+   ],
+   "hits_read": 9,
+   "nearest": "'f(1) + f(2) = 30 and f(3) + f(4) = 120, f(5)' divides two sums to get b^2 = 4 directly (one admissible base). 'f(1) = 10, f(3) = 250, f(4)' and 'f(1) = 54, f(4) = 1458, b' use two single values. Here the ratio (1 + b^2)/b leads to a quadratic with reciprocal roots, both fitting the data, and a side condition must choose one."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? No: the stem never says whether f grows or decays (that is what a < 40 hides), so f(2) and a linear step cannot be placed relative to f(3) without solving; the readable bound f(3) > 29.16 strikes nothing, and the natural slip of starting from f(1) lands ABOVE the key at 85 1/3. Plug-back is possible but costs three root computations per option and reaches the key at try 4. (read) lines: 64 - 60 = 4 = 3 + 1 and 4 = 2 x printed 2. The gap 4 is the difference of successive changes (16 - 12), not a number printed or produced by a step, so a student cannot move from the linear-step option 60 to the key by adding a stem number."
+  },
+  "bounds": []
+ }
+]

@@ -1,0 +1,760 @@
+[
+ {
+  "id": "SM28F-C01",
+  "domain": "Algebra",
+  "subskill": "System from relative speeds (toward / same direction)",
+  "difficulty": "medium",
+  "prompt": "Two cars start at the same time from towns that are 240 kilometers apart and drive toward each other, each at its own constant speed. They meet 2.5 hours later. On another day, the same two cars, driving at the same speeds as before, start at the same time from the same place and drive in the same direction. After 3 hours, the faster car is 48 kilometers ahead of the slower car. How many more minutes does the slower car take than the faster car to drive 84 kilometers?",
+  "choices": [
+   "36",
+   "126",
+   "140",
+   "315"
+  ],
+  "correct_answer": "36",
+  "explanation": "Let f and s be the speeds, in kilometers per hour, of the faster and slower car.\nDriving toward each other, the cars close the 240-kilometer gap in 2.5 hours, so f + s = 240/2.5 = 96.\nDriving in the same direction, the faster car gains 48 kilometers in 3 hours, so f - s = 48/3 = 16.\nAdding the equations gives 2f = 112, so f = 56 and s = 40.\nThe slower car takes 84/40 = 2.1 hours = 126 minutes to drive 84 kilometers, and the faster car takes 84/56 = 1.5 hours = 90 minutes. The difference is 126 - 90 = 36 minutes.\n\nChoice 126 is the slower car's time alone, without subtracting the faster car's time.\nChoice 140 comes from using 48 itself as the difference of the speeds: f + s = 96 and f - s = 48 give f = 72 and s = 24, and 84/24 - 84/72 hours is 210 - 70 = 140 minutes.\nChoice 315 comes from dividing 84 by the difference of the speeds, 84/16 = 5.25 hours = 315 minutes, as if the difference of the times were the time to cover 84 kilometers at the difference of the speeds.",
+  "solve": "const D=240,t1=2.5,G=48,t2=3,X=84; const S=D/t1, d=G/t2; const f=(S+d)/2, s=(S-d)/2; return Math.round((X/s-X/f)*60*1e6)/1e6;",
+  "distractor_solve": {
+   "126": "const D=240,t1=2.5,G=48,t2=3,X=84; const S=D/t1, d=G/t2; const s=(S-d)/2; return Math.round(X/s*60*1e6)/1e6;",
+   "140": "const D=240,t1=2.5,G=48,t2=3,X=84; const S=D/t1, d=G; const f=(S+d)/2, s=(S-d)/2; return Math.round((X/s-X/f)*60*1e6)/1e6;",
+   "315": "const D=240,t1=2.5,G=48,t2=3,X=84; const S=D/t1, d=G/t2; const f=(S+d)/2, s=(S-d)/2; return Math.round(X/(f-s)*60*1e6)/1e6;"
+  },
+  "mechanism": [
+   "closing speed gives the sum of the speeds",
+   "gaining speed gives the difference of the speeds",
+   "solve by elimination, then compare two travel times"
+  ],
+  "quantity_asked": "the difference, in minutes, between the two cars' times to drive 84 kilometers",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a time difference. To test one, a student would need speeds f and s with f + s = 96 and 84/s - 84/f equal to that many minutes, which is a quadratic in one speed, not a substitution; nothing in the stem accepts a time difference directly. The only route is to solve the linear system for both speeds first, which is the full solution."
+  },
+  "distractor_meta": {
+   "126": {
+    "error_kind": "partial_answer",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Stopping at the slower car's time skips the subtraction; the stem does not reveal how that time compares with the difference."
+   },
+   "140": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Using the 48-kilometer gap as the speed difference (a distance where a rate belongs) spreads the speeds apart; the opposite slip on the other equation (using 240 as the speed sum) shrinks the difference to about 5.6 minutes, so the same family of slips goes both ways."
+   },
+   "315": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dividing the distance by the speed difference treats a difference of times as a single time at the relative speed; whether that is larger or smaller than the true difference depends on the speeds, which the stem does not give directly."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const D=240,t1=2.5,G=48,t2=3,X=84; const S=D, d=G/t2; const f=(S+d)/2, s=(S-d)/2; return Math.round((X/s-X/f)*60*1e6)/1e6;",
+   "direction": "below",
+   "why": "Using the 240-kilometer distance itself as the sum of the speeds (not dividing by 2.5 hours) makes both cars very fast: f = 128 and s = 112, and the time difference is 5.625 minutes, below the key."
+  },
+  "cheap_bound_check": "The only cheap bound is that the difference is positive (all four pass). A student cannot bound the slower car's time without the speeds: the stem gives the sum 96 and difference 16 only after division, and the same distance-for-rate slip goes below the key on one equation (5.625) and above it on the other (140). No single one-sided bound strikes 126, 140 and 315 without solving.",
+  "shape_check": "The stem hands over: the answer is a positive number of minutes (all four); the slower car takes longer, so the difference is positive (all four); no cap is stated and no integer requirement (all four are integers anyway). All four survive together.",
+  "interior_parity_check": "The middle values are 126 and 140: both three-digit positive integers (display complexity 3 and 2), neither a round landmark; the key is the smallest, not an interior value.",
+  "arith_class_check": "All four are positive integers. Parity: 36, 126, 140 even, 315 odd. Multiples of 9: 36, 126, 315; multiples of 7 (84 = 12 x 7): 126, 140, 315. Perfect squares: 36 only, but nothing in the stem makes the answer a square. Multiples of 6 (minutes from tenths of an hour): 36 and 126. No class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "toward each other|same direction|opposite directions",
+    "upstream|downstream|current",
+    "headwind|tailwind|against the wind",
+    "meet&hours later|ahead of&slower"
+   ],
+   "hits_read": 34,
+   "nearest": "The boat items (204411b1, e077084e, 4dfb9cfe, dd8525be, ALG-H4-10) get a speed sum and difference from downstream / upstream trips and ask one speed. This item builds the sum from a closing gap and the difference from a same-direction gain (the two-car meeting and overtaking pictures), and asks neither speed: it asks the difference of two travel times for a third distance, which needs both speeds. The meeting / catch-up hits (bfde7b74, 584c1c2d, SALG2-16, SM19L-B1) give both speeds and solve one linear equation for a time; none reverses that to recover two unknown speeds."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? The distance-for-rate slip goes above the key on one equation (140) and below it on the other (5.625), the partial answer and the distance-over-speed-difference slip go above, and nothing in the stem says the answer is small, so no. 315 is the widest option (about 9 times the key); it is the natural relative-speed confusion, and striking it as an outlier still leaves three. Could a student check an option against the stem in one routine step? No: an option is a time difference and turning it back into speeds needs a quadratic; the key is reached at try 1 ascending only by solving the system."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-C02",
+  "domain": "Algebra",
+  "subskill": "System from two fill levels of a container (fixed + proportional)",
+  "difficulty": "medium",
+  "prompt": "A glass jar is partly filled with water. When the jar is 3/4 full of water, the jar and the water together weigh 1,140 grams. When the jar is 1/3 full of water, the jar and the water together weigh 640 grams. What is the total weight, in grams, of the jar and the water when the jar is completely full of water?",
+  "choices": [
+   "1200",
+   "1390",
+   "1425",
+   "1440"
+  ],
+  "correct_answer": "1440",
+  "explanation": "Let j be the weight of the empty jar and w the weight of the water in a full jar, both in grams. Then j + (3/4)w = 1,140 and j + (1/3)w = 640.\nSubtracting the second equation from the first gives (3/4 - 1/3)w = 500, that is, (5/12)w = 500, so w = 1,200.\nThen j = 640 - (1/3)(1,200) = 640 - 400 = 240.\nThe full jar and its water weigh j + w = 240 + 1,200 = 1,440 grams.\n\nChoice 1200 is the weight of the water alone in a full jar; it leaves out the jar.\nChoice 1390 comes from subtracting the fractions as (3 - 1)/4 = 1/2: then w = 1,000, j = 1,140 - 750 = 390, and j + w = 1,390.\nChoice 1425 comes from adding one quarter of the 3/4-full weight, 1,140/4 = 285, to 1,140, instead of one quarter of the water capacity.",
+  "solve": "const A=1140,B=640,p=3/4,q=1/3; const w=(A-B)/(p-q); const j=A-p*w; return j+w;",
+  "distractor_solve": {
+   "1200": "const A=1140,B=640,p=3/4,q=1/3; const w=(A-B)/(p-q); return w;",
+   "1390": "const A=1140,B=640,p=3/4,q=1/3; const w=(A-B)/((3-1)/4); const j=A-p*w; return j+w;",
+   "1425": "const A=1140,B=640,p=3/4,q=1/3; return A+A/4;"
+  },
+  "mechanism": [
+   "two readings of a fixed weight plus a proportional weight",
+   "subtract to isolate the proportional part over the difference of the fractions",
+   "rebuild the fixed part and add the full proportional part"
+  ],
+  "quantity_asked": "the total weight of the jar and the water when the jar is full",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const A=1140,B=640; const w=4*(v-A); const j=v-w; return w>0 && Math.abs(j+w/3-B)<1e-9;",
+   "why": "An option T can be checked: T - 1,140 is the water in a quarter of the jar, so w = 4(T - 1,140), j = T - w, and j + w/3 should equal 640. That is a three-line check, and the key is the largest option, so ascending substitution reaches it only on try 4 after three failed checks."
+  },
+  "distractor_meta": {
+   "1200": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting the water alone drops the jar; the stem asks for the total, and nothing in it says whether the water alone is more or less than the remaining answers."
+   },
+   "1390": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting 3/4 - 1/3 as (3 - 1)/4 overstates the fraction gap, which understates the water and overstates the jar; the net effect on the total is not readable from the stem."
+   },
+   "1425": {
+    "error_kind": "wrong_base",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking a quarter of the 3/4-full weight instead of a quarter of the water mixes the jar into the increment; whether that lands above or below depends on how heavy the jar is relative to the water, which the stem does not state."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_base",
+   "solve": "const A=1140; return A*4/3;",
+   "direction": "above",
+   "why": "Scaling the 3/4-full weight by 4/3 as if the whole weight were proportional to the fill level (ignoring that the jar weighs the same in both readings) gives 1,520, above the key."
+  },
+  "cheap_bound_check": "The cheapest bound is T > 1,140 (a full jar outweighs a 3/4-full one); all four options pass it. The proportional upper bound T < (4/3)(1,140) = 1,520 also keeps all four. The natural errors go both ways: proportional scaling (1,520) and adding a third of the water to the 3/4-full weight (1,540) land above the key, while the omission and the quarter-of-the-weight error land below, so no single one-sided bound strikes the three distractors.",
+  "shape_check": "The stem hands over: the total is positive, greater than 1,140 (all four), less than (4/3)(1,140) = 1,520 because the jar weight does not scale (all four), and a whole number of grams is not implied but all four are integers. All four survive every property together.",
+  "interior_parity_check": "The middle values are 1390 and 1425: both four-digit integers ending in 0 or 5, neither rounder in any meaningful way (1390 is a multiple of 10, 1425 of 25). The key is the largest, not an interior value.",
+  "arith_class_check": "All four are positive integers. Multiples of 10: 1200, 1390, 1440 (not 1425). Multiples of 5: all four. Multiples of 12 (the common denominator): 1200 and 1440. Multiples of 40: 1200 and 1440. No class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "full&empty&weigh",
+    "half full|one-third full|filled",
+    "jar&water&weigh",
+    "3/4 full|1/3 full"
+   ],
+   "hits_read": 38,
+   "nearest": "SALG3-09 (prior): a tank goes from 2/5 to 3/4 full when 42 L are added, asks the capacity - one equation over a fraction gap, no container weight and no second unknown. b205095c (SSAT, honey jar): full jar 900 g, after pouring out 40 percent it weighs 660 g, asks the EMPTY jar. That is one full reading and a percent removed, with the empty jar asked. This item gives two partial fill levels as fractions (neither reading is the full jar), so the solver must subtract to get the water over a fraction gap, rebuild the jar weight, and then extrapolate to the full jar. No hit gives two partial fill levels."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? The cheap bounds (above 1,140, below 1,520) keep all four; the most tempting error (proportional scaling, 1,520) and adding a third of the water instead of a quarter (1,540) go above the key while the omission and the quarter-of-the-weight error go below, so the error family is two-sided and the key being largest is not readable. A student who substitutes ascending checks 1200, 1390 and 1425 before reaching the key. PAIR read: no difference or ratio of key and an option equals a printed number (differences 240, 50, 15). 1200 is 5/6 of the key, not a printed ratio."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-C03",
+  "domain": "Algebra",
+  "subskill": "System from fractions of two groups and a combined total",
+  "difficulty": "medium",
+  "prompt": "A club has 112 members, and each member is either a junior or a senior. For a field trip, 1/4 of the juniors and 3/8 of the seniors went, a total of 37 members. How many of the seniors did not go on the field trip?",
+  "choices": [
+   "25",
+   "27",
+   "40",
+   "45"
+  ],
+  "correct_answer": "45",
+  "explanation": "Let j be the number of juniors and s the number of seniors. Then j + s = 112 and (1/4)j + (3/8)s = 37.\nMultiplying the second equation by 8 gives 2j + 3s = 296. Subtracting 2 times the first equation, 2j + 2s = 224, gives s = 72, so j = 40.\nOf the 72 seniors, 3/8 went, which is 27, so 72 - 27 = 45 seniors did not go.\n\nChoice 25 comes from attaching 3/8 to the juniors and 1/4 to the seniors when writing the equation: (3/8)j + (1/4)s = 37 with j + s = 112 gives s = 40, and then 5/8 of 40 is 25.\nChoice 27 is the number of seniors who went, not the number who did not go.\nChoice 40 is the number of juniors: it solves the system for the wrong group and stops there.",
+  "solve": "const N=112,M=37,p=1/4,q=3/8; const s=(M-p*N)/(q-p); return (1-q)*s;",
+  "distractor_solve": {
+   "25": "const N=112,M=37,p=1/4,q=3/8; const s=(M-q*N)/(p-q); return (1-q)*s;",
+   "27": "const N=112,M=37,p=1/4,q=3/8; const s=(M-p*N)/(q-p); return q*s;",
+   "40": "const N=112,M=37,p=1/4,q=3/8; const s=(M-p*N)/(q-p); return N-s;"
+  },
+  "mechanism": [
+   "group sizes sum to a total",
+   "a different fraction of each group gives a second total",
+   "solve the system, then take the complementary fraction of one group"
+  ],
+  "quantity_asked": "the number of seniors who did not go on the trip",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const N=112,M=37; const js=75-v; const j=js*4/3; const s=N-j; return Number.isInteger(j) && Math.abs((5/8)*s-v)<1e-9;",
+   "why": "An option v can be checked: 112 - 37 = 75 members stayed, so 75 - v juniors stayed, which is 3/4 of the juniors; that gives the juniors, then the seniors, and 5/8 of the seniors should equal v. The key is the largest option, so ascending substitution reaches it only on try 4 after three failed checks."
+  },
+  "distractor_meta": {
+   "25": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Attaching each fraction to the other group changes both group sizes; whether the senior count rises or falls depends on the numbers, and the stem does not reveal it."
+   },
+   "27": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Stopping at the seniors who went skips the complement; 3/8 versus 5/8 of the seniors is not compared anywhere in the stem."
+   },
+   "40": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting the number of juniors answers for the wrong group (and skips the fraction); the stem does not say which group is larger or how a group total compares with a part of the other group."
+   }
+  },
+  "counter_error": {
+   "error_kind": "partial_answer",
+   "solve": "const N=112,M=37,p=1/4,q=3/8; const s=(M-p*N)/(q-p); return s;",
+   "direction": "above",
+   "why": "Solving the system and reporting the total number of seniors, 72, without taking the fraction that stayed lands above the key."
+  },
+  "cheap_bound_check": "The cheapest bounds are 0 < answer < 112 - 37 = 75 (only 75 members stayed in all); all four options pass. The natural errors go both ways: the total-seniors slip (72) lands above the key while the went-instead-of-stayed, wrong-group and swapped-fraction slips land below, so no one-sided bound strikes the three distractors.",
+  "shape_check": "The stem hands over: the answer is a whole number of people (all four integers), positive, and at most 75, the number who stayed (all four). A test-wise student may expect a multiple of 5 because 5/8 of the seniors stayed: 25, 40 and 45 survive, so at least two remain. All four survive the stated properties together.",
+  "interior_parity_check": "The middle values are 27 and 40: both two-digit integers (display complexity 2 and 1, within one). The key is the largest, not an interior value.",
+  "arith_class_check": "All four are positive integers. Odd: 25, 27, 45; even: 40. Multiples of 5: 25, 40, 45 (the stem implies the answer is a multiple of 5, which strikes only 27); multiples of 9: 27, 45; multiples of 8: 40 only. No class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "of the boys|of the girls",
+    "attended|went on the trip&of the",
+    "did not go|did not attend|stayed",
+    "juniors|seniors",
+    "of the members&total of"
+   ],
+   "hits_read": 23,
+   "nearest": "075fd889 (ISEE): a 32-student class with a GIVEN 5:3 ratio; 1/4 of the boys and 1/3 of the girls play an instrument; asks how many play - pure arithmetic, no unknown group sizes. SM14L-10 and 5f38f9b0 are ratio-change items in one unknown. No hit gives a different fraction of each of two unknown groups plus the combined count and asks for the complement in one group."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell which way the errors go and strike all three? The cheap bounds (positive, at most 75) keep all four; the total-seniors slip goes above the key while the other slips go below, and nothing in the stem says the answer is the largest. A test-wise student who expects a multiple of 5 (since 5/8 of the seniors stayed) strikes only 27, one free strike; the deeper divisibility route (75 - v must be 3/4 of a multiple of 4) is the plug-back itself and takes the same three steps. No two options sum to 75 (the number who stayed) or 37. Plug-back is possible but takes three steps per option and reaches the key last in ascending order. DPAIR read: 45 - 40 = 5 = 4 + 1 (the denominator of 1/4 plus one); no step of the problem adds 5 to the junior count, so the gap is not stem-readable and does not tell which of the two is the key. PAIR: none printed; 45 + 27 = 72 is the number of seniors, which a student only knows after solving."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-C04",
+  "domain": "Algebra",
+  "subskill": "Unknown coefficients from two evaluations (2x2 system), then evaluate",
+  "difficulty": "medium",
+  "prompt": "Two numbers a and b are fixed. Substituting x = 1 and y = 3 into ax + by gives 21, and substituting x = 3 and y = -1 into ax + by gives 23. What number results from substituting x = 5 and y = 2 into ax + by?",
+  "choices": [
+   "38",
+   "44",
+   "53",
+   "69"
+  ],
+  "correct_answer": "53",
+  "explanation": "Substituting the two given pairs gives a system in a and b:\na + 3b = 21\n3a - b = 23\nMultiplying the second equation by 3 gives 9a - 3b = 69. Adding this to the first equation gives 10a = 90, so a = 9. Then 9 + 3b = 21, so 3b = 12 and b = 4.\nThe expression is 9x + 4y, and when x = 5 and y = 2 its value is 9(5) + 4(2) = 45 + 8 = 53.\n\nChoice 38 comes from exchanging a and b: 4(5) + 9(2) = 38.\nChoice 44 comes from treating (5, 2) as the sum of the two given points and adding the two given values, 21 + 23 = 44; but (1, 3) + (3, -1) = (4, 2), not (5, 2).\nChoice 69 comes from stopping at 3b = 12 and using b = 12: 9(5) + 12(2) = 69.",
+  "solve": "const x1=1,y1=3,v1=21,x2=3,y2=-1,v2=23,x0=5,y0=2; const sol=(p,q,r,s,t,u)=>{const d=p*s-r*q; return [(t*s-u*q)/d,(p*u-r*t)/d]}; const [a,b]=sol(x1,y1,x2,y2,v1,v2); return a*x0+b*y0;",
+  "distractor_solve": {
+   "38": "const x1=1,y1=3,v1=21,x2=3,y2=-1,v2=23,x0=5,y0=2; const sol=(p,q,r,s,t,u)=>{const d=p*s-r*q; return [(t*s-u*q)/d,(p*u-r*t)/d]}; const [a,b]=sol(x1,y1,x2,y2,v1,v2); return b*x0+a*y0;",
+   "44": "const x1=1,y1=3,v1=21,x2=3,y2=-1,v2=23,x0=5,y0=2; return v1+v2;",
+   "69": "const x1=1,y1=3,v1=21,x2=3,y2=-1,v2=23,x0=5,y0=2; const sol=(p,q,r,s,t,u)=>{const d=p*s-r*q; return [(t*s-u*q)/d,(p*u-r*t)/d]}; const [a]=sol(x1,y1,x2,y2,v1,v2); const b=v1-a*x1; return a*x0+b*y0;"
+  },
+  "mechanism": [
+   "two evaluations of ax + by give a linear system in the coefficients",
+   "solve the 2x2 system by elimination",
+   "evaluate the expression at a third point"
+  ],
+  "quantity_asked": "the value of ax + by at x = 5, y = 2",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a value of the expression at a third point. It gives one more equation in a and b (5a + 2b = option), so checking it means solving two of the three equations and testing the third - the same work as solving. The point (5, 2) is not a whole-number combination of (1, 3) and (3, -1) (it is 1.1 and 1.3 times them), so no shortcut combination checks it. The key is at try 3 in ascending order in any case."
+  },
+  "distractor_meta": {
+   "38": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Exchanging the coefficients moves the value by 3(a - b) = 15 in a direction set by which coefficient is larger, which the stem does not show."
+   },
+   "44": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the two given values assumes (5, 2) is the sum of the two given points; it is (4, 2) plus (1, 0), and whether the missing a lifts or lowers the value depends on the sign of a, which the stem does not show."
+   },
+   "69": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Forgetting to divide 3b = 12 by 3 inflates b; the stem gives no hint about the size of b."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over nothing qualitative about the value at (5, 2): no sign, cap, integrality or monotonic property. All four options are positive integers and all four survive together.",
+  "interior_parity_check": "The middle values are 44 and 53: both two-digit positive integers. The key 53 is not the cleaner one.",
+  "arith_class_check": "All four are positive integers. Odd: 53 and 69; even: 38 and 44. Primes: 53 only, but nothing in the stem makes the value prime. Multiples of 3: 69 only. No class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "ax \\+ by|ax\\+by",
+    "expression&when x = .*and y =",
+    "constants a and b&when x =",
+    "value of the expression|the expression&equal to"
+   ],
+   "hits_read": 6,
+   "nearest": "SM26F-C02 (prior): ax + by = -26 and bx - ay = 52 share the solution (6, -4); it solves for a and b and asks a + b. 321731c6 / 346df59f: infinitely-many-solutions systems asking a + b. SM27F-C10: two linear functions with one unknown constant each, linked by p(5) = q(3) and p(-1) = q(-5), asking p(-3) - q(-3). This item has ONE expression with two unknown coefficients, known at two points, and asks its value at a third point that is not a whole-number combination of the first two; no hit evaluates at a third point."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Return fix (stage 0): the earlier distractor 40 repeated an option of C03; it is replaced by 44, the add-the-two-givens shortcut. Interior key at try 3 ascending; an option cannot be checked without recovering a and b. A test-wise student looking for a shortcut may add the two givens (44) on the false belief that (5, 2) = (1, 3) + (3, -1): that is the 44 distractor, and (5, 2) is not a whole-number combination of the two points (it is 1.1 and 1.3 times them). 38 (coefficients exchanged) and 44 sit below the key from different slips, 69 (stopping at 3b = 12) above. Closure: 44 - 38 = 6, 53 - 44 = 9, 69 - 53 = 16, 69 - 44 = 25, 53 - 38 = 15, 69 - 38 = 31 and the averages are not options; no two options sum to 90, 100, 180 or 360. PAIR / DPAIR: 53 - 44 = 9 (the value of a, not printed); no key-option difference, sum or ratio equals a printed or one-step number. 44 is itself the sum of two printed numbers, which is the slip it encodes, not a link to the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-C05",
+  "domain": "Algebra",
+  "subskill": "System from two seating arrangements, then a third arrangement",
+  "difficulty": "medium",
+  "prompt": "A group of people is being seated at a banquet, where all the tables are the same size. If 5 people sit at each table, 18 people have no seat. If instead 8 people sit at each table, 3 of the tables are left empty and every other table is full. How many more people would have to join the group so that exactly 7 people could sit at every table?",
+  "choices": [
+   "10",
+   "11",
+   "14",
+   "16"
+  ],
+  "correct_answer": "10",
+  "explanation": "Let n be the number of tables and p the number of people.\nWith 5 people at each table, 18 people are left over, so p = 5n + 18.\nWith 8 people at each table, only n - 3 tables are used and they are full, so p = 8(n - 3) = 8n - 24.\nSetting the two expressions equal gives 5n + 18 = 8n - 24, so 3n = 42 and n = 14. Then p = 5(14) + 18 = 88.\nSeating exactly 7 people at each of the 14 tables takes 7(14) = 98 people, so 98 - 88 = 10 more people must join.\n\nChoice 11 comes from keeping the 3 tables empty: seating 7 people at each of the other 11 tables takes 77 people, and 88 - 77 = 11.\nChoice 14 is the number of tables, not the number of people needed.\nChoice 16 comes from leaving out the 18 people who have no seat: 5n = 8(n - 3) gives n = 8 and p = 40, and 7(8) - 40 = 16.",
+  "solve": "const a=5,s=18,b=8,e=3,c=7; const n=(s+b*e)/(b-a); const p=a*n+s; return c*n-p;",
+  "distractor_solve": {
+   "11": "const a=5,s=18,b=8,e=3,c=7; const n=(s+b*e)/(b-a); const p=a*n+s; return p-c*(n-e);",
+   "14": "const a=5,s=18,b=8,e=3,c=7; const n=(s+b*e)/(b-a); return n;",
+   "16": "const a=5,s=18,b=8,e=3,c=7; const n=(b*e)/(b-a); const p=a*n; return c*n-p;"
+  },
+  "mechanism": [
+   "two seating arrangements give two expressions for the number of people",
+   "equate them to find the number of tables and people",
+   "compare the people with the seats needed at a third table size"
+  ],
+  "quantity_asked": "the number of additional people needed so that 7 people sit at every table",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a number of extra people. To test one, a student would need the number of tables (p + m must equal 7 times it), and the number of tables comes only from solving the two arrangements; nothing in the stem accepts the extra-people count directly. Checking an option is the full solution."
+  },
+  "distractor_meta": {
+   "11": {
+    "error_kind": "wrong_base",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Carrying the 3 empty tables over from the 8-per-table arrangement uses 11 tables as the base; the stem does not say whether the people then fall short or run over, or by how much."
+   },
+   "14": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reporting the number of tables answers a different unknown; the stem gives no way to compare the table count with the shortfall without solving."
+   },
+   "16": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the 18 unseated people shrinks both the table count and the group; the net effect on the shortfall at 7 per table is not readable from the stem."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const a=5,s=18,b=8,e=3,c=7; const n=(s+e)/(b-a); const p=a*n+s; return c*n-p;",
+   "direction": "below",
+   "why": "Writing the second arrangement as 8n - 3 (subtracting 3 people instead of 3 tables of 8) gives n = 7 and p = 53, and 7(7) - 53 = -4: the group would already be too large, below the key."
+  },
+  "cheap_bound_check": "The only cheap bound is that the answer is a positive whole number of people (all four pass); 7 is between 5 and 8, so the group is short at 7 per table only if one solves or interpolates the shortfall (18 over at 5 per table, 24 seats spare at 8 per table), which is the solution itself. The 8n - 3 slip lands below the key (-4) while the omission, the wrong base and the table count land above, so no one-sided bound strikes the three distractors.",
+  "shape_check": "The stem hands over: the answer is a positive whole number of people (all four integers, all positive). No cap or parity is implied. All four survive together.",
+  "interior_parity_check": "The middle values are 11 and 14: both two-digit integers of the same complexity. The key 10 is the smallest, not an interior value.",
+  "arith_class_check": "All four are positive integers. Even: 10, 14, 16; odd: 11 (a distractor). Multiples of 7 (the new table size): 14 only, a distractor; multiples of 5: 10 only, but nothing in the stem makes the answer a multiple of 5. No class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "tables?&seat|sit",
+    "no seat|without a seat|left empty|empty",
+    "people&each&more people",
+    "per row|each row|per bus|each bus|per table|each table&left over|remain|without a seat|empty"
+   ],
+   "hits_read": 44,
+   "nearest": "5fdcbc71 (live, hard): rents 40 tables of two sizes under cost and seating inequalities - a linear-inequality optimisation, not two arrangements of one group. SM26F-A06 (prior): chairs in rows with 4 more rows adding 76 chairs - a product of rows and chairs, one unknown. SAM11-21: shares of a gift when 4 more people join - rational, one unknown. No hit seats one group two ways to get the table count and the group size and then asks the shortfall at a third table size."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the 8n - 3 slip goes below the key (-4), the other three go above, and the stem says nothing about the size of the shortfall; striking 14 as 'the table count' requires knowing there are 14 tables. Could a student check an option against the stem in one routine step? No: an extra-people count needs the number of tables before it can be tested, so checking is solving. A test-wise student may interpolate the shortfall linearly in the table size (18 over at 5, 24 short at 8, so 10 short at 7): that is a correct solution, not a free strike. PAIR read: differences 1, 4, 6 and ratios 1.1, 1.4, 1.6 between the key and the options; none is a printed number (5, 18, 8, 3, 7). Checker (read) lines: 10/14 = 5/7 and 10/16 = 5/8 are coincidences of the solved numbers (no step multiplies the table count or the omission answer by 5/7 or 5/8, and a student cannot know which option is the table count without solving). 16 - 10 = 6 = 2 x 3 = 7 - 1 and 14 - 10 = 4 = 3 + 1: no step of the problem adds 4 or 6 to anything, and the two gaps point to different options, so neither singles out 10. 10 + 11 = 21 = 18 + 3 and 10 + 16 = 26 = 18 + 8: no step adds the key to an option; a sum of two options is not a quantity in this problem."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-C06",
+  "domain": "Algebra",
+  "subskill": "System from two transfers between two people, then a third transfer",
+  "difficulty": "medium",
+  "prompt": "Ana and Ben each have a collection of trading cards. If Ana gave Ben 8 of her cards, the two of them would have the same number of cards. If instead Ben gave Ana 14 of his cards, Ana would have twice as many cards as Ben. How many of her cards would Ana have to give Ben so that Ben would have 3 times as many cards as Ana?",
+  "choices": [
+   "31",
+   "34",
+   "41",
+   "74"
+  ],
+  "correct_answer": "41",
+  "explanation": "Let a and b be the numbers of cards Ana and Ben have now.\nIf Ana gives Ben 8 cards, a - 8 = b + 8, so a = b + 16.\nIf Ben gives Ana 14 cards, a + 14 = 2(b - 14) = 2b - 28.\nSubstituting a = b + 16 gives b + 30 = 2b - 28, so b = 58 and a = 74.\nIf Ana gives Ben t cards, Ben has 58 + t and Ana has 74 - t, so 58 + t = 3(74 - t) = 222 - 3t. Then 4t = 164 and t = 41. (Check: Ana would have 33 cards and Ben 99.)\n\nChoice 31 comes from writing the first condition as a - 8 = b, forgetting that Ben gains the 8 cards Ana loses: then a = b + 8, a + 14 = 2b - 28 gives b = 50 and a = 58, and 50 + t = 3(58 - t) gives t = 31.\nChoice 34 comes from writing the second condition as a + 14 = 2b - 14, multiplying only b by 2: then b = 44 and a = 60, and 44 + t = 3(60 - t) gives t = 34.\nChoice 74 is the number of cards Ana has now, not the number she gives away.",
+  "solve": "const g=8,h=14,r=2,k=3; const D=2*g; const b=(D+h+r*h)/(r-1); const a=b+D; return (k*a-b)/(k+1);",
+  "distractor_solve": {
+   "31": "const g=8,h=14,r=2,k=3; const D=g; const b=(D+h+r*h)/(r-1); const a=b+D; return (k*a-b)/(k+1);",
+   "34": "const g=8,h=14,r=2,k=3; const D=2*g; const b=(D+2*h)/(r-1); const a=b+D; return (k*a-b)/(k+1);",
+   "74": "const g=8,h=14,r=2,k=3; const D=2*g; const b=(D+h+r*h)/(r-1); const a=b+D; return a;"
+  },
+  "mechanism": [
+   "a transfer that equalises gives the difference of the two counts",
+   "a transfer that makes one count a multiple of the other gives a second equation",
+   "solve, then set up a third transfer equation in the number given"
+  ],
+  "quantity_asked": "the number of cards Ana must give Ben so that Ben has 3 times as many as Ana",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a number of cards handed over in a third, hypothetical transfer. Checking it needs both current counts (58 + t = 3(74 - t)), and those come only from solving the two printed transfers; the option cannot be put into either printed condition. Checking is solving, and the key is at try 3 in ascending order in any case."
+  },
+  "distractor_meta": {
+   "31": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Forgetting that the receiver gains the 8 cards halves the gap between the counts; how that moves the final transfer depends on both counts, which the stem does not give."
+   },
+   "34": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Distributing the 2 over b only changes both counts at once; the net effect on the third transfer is not readable from the stem."
+   },
+   "74": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reporting Ana's current count answers a different unknown; the stem does not say how many cards anyone has."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the answer is a positive whole number of cards (all four), and Ana cannot give away more cards than she has, which a student cannot apply without her count (74 would leave her with none, but 74 is only recognisable as her count after solving). No parity or cap is implied. All four survive together; at least 31, 34 and 41 survive every reading.",
+  "interior_parity_check": "The middle values are 34 and 41: both two-digit integers of the same complexity, neither round. The key 41 is not the cleaner one.",
+  "arith_class_check": "All four are positive integers. Odd: 31, 41; even: 34, 74. Primes: 31 and 41. No multiple of 3 or 5 among them. Nothing in the stem implies a class, and the key is not alone in any.",
+  "dup_search": {
+   "queries": [
+    "gives|give&marbles|cards|stickers|coins&as many",
+    "gives?&same number|equal number|as many as",
+    "cards&twice|times as many",
+    "gives|give&as many|equal number"
+   ],
+   "hits_read": 3,
+   "nearest": "92a6f0e0 (live SSAT): Mia has twice as many stickers as Leo; after she gives 12, Leo has 3 more; asks the starting total - one unknown, one transfer, total asked. SM27F-A13 matched only on 'gives'. No hit has two hypothetical transfers giving a 2x2 system and then asks the size of a third transfer."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "Interior key at try 3 ascending. A test-wise student cannot check an option without both counts. Striking 74 needs Ana's count; 31 and 34 sit close to each other and both below the key, from different slips (the receiver's gain forgotten, the distribution slip). No two options sum to a printed number or a round total; key minus option: 10, 7, -33; none printed (8, 14, 3). Checker (read) DPAIR: 41 - 34 = 7 = 8 - 1 (also half of 14). The distribution slip moves the counts by 14 and 12 cards, and the 7-card gap in the final transfer is a by-product of dividing by 4; no step of the problem adds 7 to anything, and a student cannot tell which of 34 and 41 is the key from the gap."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-C07",
+  "domain": "Algebra",
+  "subskill": "System from two token totals, then an exchange ratio",
+  "difficulty": "medium",
+  "prompt": "In a board game, every gold token is worth the same number of points, and every silver token is worth the same number of points. A player holding 4 gold tokens and 12 silver tokens has 52 points in all, and a player holding 5 gold tokens and 10 silver tokens has 55 points in all. How many silver tokens are worth the same number of points as 6 gold tokens?",
+  "choices": [
+   "4.5",
+   "8",
+   "21",
+   "42"
+  ],
+  "correct_answer": "21",
+  "explanation": "Let g and s be the numbers of points a gold token and a silver token are worth. Then 4g + 12s = 52 and 5g + 10s = 55.\nDividing the equations by 4 and 5 gives g + 3s = 13 and g + 2s = 11. Subtracting gives s = 2, and then g = 7.\nSix gold tokens are worth 6(7) = 42 points, and 42 points is the value of 42/2 = 21 silver tokens.\n\nChoice 42 is the number of points 6 gold tokens are worth, not the number of silver tokens.\nChoice 4.5 comes from writing the first equation as 12g + 4s = 52, attaching 12 to the gold tokens: with 5g + 10s = 55 this gives g = 3 and s = 4, and 6(3)/4 = 4.5.\nChoice 8 comes from writing the second equation as 10g + 5s = 55, attaching 10 to the gold tokens: with 4g + 12s = 52 this gives g = 4 and s = 3, and 6(4)/3 = 8.",
+  "solve": "const a=4,b=12,P=52,c=5,d=10,Q=55,k=6; const D=a*d-b*c; const g=(P*d-b*Q)/D, s=(a*Q-P*c)/D; return k*g/s;",
+  "distractor_solve": {
+   "8": "const a=4,b=12,P=52,c=5,d=10,Q=55,k=6; const C2=d,D2=c; const D=a*D2-b*C2; const g=(P*D2-b*Q)/D, s=(a*Q-P*C2)/D; return k*g/s;",
+   "42": "const a=4,b=12,P=52,c=5,d=10,Q=55,k=6; const D=a*d-b*c; const g=(P*d-b*Q)/D; return k*g;",
+   "4.5": "const a=4,b=12,P=52,c=5,d=10,Q=55,k=6; const A=b,B=a; const D=A*d-B*c; const g=(P*d-B*Q)/D, s=(A*Q-P*c)/D; return k*g/s;"
+  },
+  "mechanism": [
+   "two token totals give a linear system in the two token values",
+   "solve the system",
+   "convert the value of several gold tokens into a count of silver tokens"
+  ],
+  "quantity_asked": "the number of silver tokens worth as many points as 6 gold tokens",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a number of silver tokens equal in value to 6 gold tokens, that is 6g/s. It cannot be put into either printed total: testing it needs the ratio of the token values, which comes only from solving the system. The key is at try 3 in ascending order in any case."
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "The same attachment slip in the other equation moves the ratio by a different amount; nothing in the stem orders the two slips relative to the key."
+   },
+   "42": {
+    "error_kind": "partial_answer",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Stopping at the points of 6 gold tokens skips the conversion to silver tokens; whether that number is larger or smaller than the token count depends on how many points a silver token is worth, which the stem does not give."
+   },
+   "4.5": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Attaching each count to the other kind of token in one equation changes both token values; the stem does not show which way the ratio moves."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the answer is positive (all four); it need not be a whole number, since a value of 6 gold tokens need not be a whole number of silver tokens (4.5 is legal). A student who expects a whole number strikes only 4.5; 8, 21 and 42 survive every property together. Gold being worth more than silver is not stated, so an answer below 6 is legal.",
+  "interior_parity_check": "The middle values are 8 and 21: both integers, one and two digits (display complexity within one). The key 21 is not the cleaner one.",
+  "arith_class_check": "Integers: 8, 21, 42 (4.5 is a distractor). Multiples of 7: 21, 42; multiples of 3: 21, 42; even: 8, 42. No class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "tokens?|chips?|tickets?&worth",
+    "worth (the same|as many)|same value as|as much as",
+    "how many&are worth",
+    "coins?&nickels|dimes|quarters|pennies"
+   ],
+   "hits_read": 15,
+   "nearest": "1cb93877 (live ACT): a notebook costs 4 times a pencil, one total given, asks the pencil price - the ratio is given, one unknown. The coin items (1e45c38a, 4a0bd6bd, dc6726cd and others) give known coin values and ask a count. C04 of this batch evaluates ax + by at a third point. This item has two unknown token values from two totals and asks the exchange ratio between them scaled to 6 tokens, a quotient no hit asks."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key at try 3 ascending; an option is 6g/s and cannot be checked without both token values. A test-wise student may strike 4.5 as a non-integer, leaving three; may notice 42 = 2 x 21, but the factor 2 is the silver value, which is not printed, so the pair does not say which of the two is the key (42 is the natural 'points' slip, and a student who stopped there would not know to halve it). 8 and 4.5 come from the coefficient slip in different equations. Closure: 8 + 21 = 29, 42 - 8 = 34, 21 - 8 = 13, 42 - 4.5, 21 - 4.5 are not options. Checker (read) lines: 21/42 = 1/2 = 5/10 = 6/12. The halving is the division by the silver value s = 2, which is not printed; no step multiplies by 5/10 or 6/12, and the 6 in the ask and the 12 in the first total play no ratio role in the solution (the key is 6g/s = 6(7)/2). A student who stops at 42 points has no printed reason to halve it rather than, say, divide by 4.5. 21 - 8 = 13 = 12 + 1 (also g + 3s = 13 after dividing the first total by 4): the 8 comes from a slip in the other equation and is not the key moved by 13 in any step."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-C08",
+  "domain": "Algebra",
+  "subskill": "Recover two constants from two miscopied systems, then solve",
+  "difficulty": "hard",
+  "prompt": "3x + 2y = c\n2x - y = d\n\nIn the system of equations above, c and d are constants. Mina copied the system with the correct value of d but an incorrect value of c, and the solution of the system she wrote was (13, 12). Jun copied the system with the correct value of c but an incorrect value of d, and the solution of the system he wrote was (5, 17). If (x, y) is the solution of the original system, what is the value of x + y?",
+  "choices": [
+   "19",
+   "20",
+   "28",
+   "35"
+  ],
+  "correct_answer": "19",
+  "explanation": "Mina's only error was in c, so her second equation, 2x - y = d, is the original one, and her solution satisfies it: d = 2(13) - 12 = 14.\nJun's only error was in d, so his first equation, 3x + 2y = c, is the original one, and his solution satisfies it: c = 3(5) + 2(17) = 49.\nThe original system is 3x + 2y = 49 and 2x - y = 14. Multiplying the second equation by 2 gives 4x - 2y = 28; adding it to the first gives 7x = 77, so x = 11, and then y = 2(11) - 14 = 8. Therefore x + y = 19.\n\nChoice 28 comes from using each student's solution in the equation that student copied incorrectly: c = 3(13) + 2(12) = 63 and d = 2(5) - 17 = -7, which give x = 7, y = 21 and x + y = 28.\nChoice 20 comes from multiplying 2x - y = 14 by 2 on the left side only: 4x - 2y = 14 added to 3x + 2y = 49 gives 7x = 63, so x = 9, y = 11 and x + y = 20.\nChoice 35 comes from rewriting 2x - y = 14 as y = 14 - 2x: then 3x + 2(14 - 2x) = 49 gives x = -21, y = 56 and x + y = 35.",
+  "solve": "const p=3,q=2,r=2,s=-1,M=[13,12],J=[5,17]; const d=r*M[0]+s*M[1], c=p*J[0]+q*J[1]; const D=p*s-q*r; const x=(c*s-q*d)/D, y=(p*d-c*r)/D; return x+y;",
+  "distractor_solve": {
+   "20": "const p=3,q=2,r=2,s=-1,M=[13,12],J=[5,17]; const d=r*M[0]+s*M[1], c=p*J[0]+q*J[1]; const x=(c+d)/(p+2*r); const y=(c-p*x)/q; return x+y;",
+   "28": "const p=3,q=2,r=2,s=-1,M=[13,12],J=[5,17]; const c=p*M[0]+q*M[1], d=r*J[0]+s*J[1]; const D=p*s-q*r; const x=(c*s-q*d)/D, y=(p*d-c*r)/D; return x+y;",
+   "35": "const p=3,q=2,r=2,s=-1,M=[13,12],J=[5,17]; const d=r*M[0]+s*M[1], c=p*J[0]+q*J[1]; const x=(c-q*d)/(p-q*r); const y=d-r*x; return x+y;"
+  },
+  "mechanism": [
+   "decide which equation each miscopied solution still satisfies",
+   "recover the two constants by substitution",
+   "solve the original system and add the coordinates"
+  ],
+  "quantity_asked": "x + y for the solution of the original system",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a value of x + y for a system whose constants are not printed. Nothing in the stem accepts it: to test it a student must first recover c and d, which needs the decision about which equation each student copied correctly, and then solve the system. No intermediate equals an option: c = 49, d = 14, x = 11, y = 8, the swapped constants are 63 and -7, and the coordinate sums of the printed points are 25 and 22."
+  },
+  "distractor_meta": {
+   "20": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Scaling only the left side of an equation during elimination changes x by an amount set by the constants, which the stem does not print; its side relative to the key is not readable."
+   },
+   "28": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Pairing each student's solution with the wrong equation produces different constants; whether the resulting x + y is larger or smaller depends on both miscopied points, and the stem gives no direction."
+   },
+   "35": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Isolating y with the wrong sign before x is found lands above here, while the same slip made after x is found lands below (3); the stem fixes neither side."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const p=3,q=2,r=2,s=-1,M=[13,12],J=[5,17]; const d=r*M[0]+s*M[1], c=p*J[0]+q*J[1]; const D=p*s-q*r; const x=(c*s-q*d)/D; const y=d-r*x; return x+y;",
+   "direction": "below",
+   "why": "Finding x = 11 correctly and then taking y = 14 - 2(11) = -8 from 2x - y = 14 (the sign slip after x is known) gives x + y = 3, below the key."
+  },
+  "cheap_bound_check": "No one-sided bound is readable: the constants are not printed, and the coordinate sums of the two printed points (25 and 22) bracket nothing about the true solution. The sign slip in isolating y lands above (35) when made before x is found and below (3) when made after, and the pairing error moves the answer by an amount set by both points, so no single bound strikes 20, 28 and 35.",
+  "shape_check": "The stem hands over no qualitative property of x + y: no sign, no integrality (the constants are unknown), no cap. All four options are legal values and survive together.",
+  "interior_parity_check": "The middle values are 20 and 28: both two-digit integers of the same complexity. The key 19 is the smallest, not an interior value.",
+  "arith_class_check": "All four are integers. Odd: 19, 35; even: 20, 28. Multiples of 5: 20, 35; multiples of 7: 28, 35. No class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "copied",
+    "wrote&solution",
+    "correct value|incorrect value",
+    "copied|misread|incorrectly|mistake&system|solution",
+    "misread|miscopied|copied incorrectly"
+   ],
+   "hits_read": 11,
+   "nearest": "ad262fa1 (live ACT): two students each miscopy one coefficient of a QUADRATIC and report its roots; recovering b and c uses the sum and product of roots. This item is a linear 2x2 system: each student's solution satisfies the one equation that student copied correctly, which recovers one constant per student by substitution, and the original system is then solved. 54386927 / SM27F-A11 (Mei) and SM26F-A09 (Rafael) are one-variable miscopy / misstep items asking a solution or a difference. No hit has two miscopied linear systems."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Return fix (stage 0): the earlier version's key equalled the intermediate d; here no intermediate equals the key or any option (c = 49, d = 14, x = 11, y = 8, swapped constants 63 and -7, printed-point sums 25 and 22), so stopping after recovering a constant or one coordinate lands on no option. Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the pairing error depends on both printed points; the elimination slip and the sign slip land above here, but the same sign slip made after x is found lands below (3), and nothing in the stem bounds x + y. Could a student check an option against the stem in one routine step? No: the constants are not printed, so an option for x + y cannot be tested until c and d are recovered, which is the decision point of the item; Desmos cannot graph the system without c and d. Test-wise moves: no option is a printed number or a printed-point sum. 19 and 20 are adjacent; 20 comes from the left-side-only scaling slip and nothing printed links it to the key. Closure: 19 + 20, 28 - 20 = 8, 35 - 28 = 7, 35 - 20 = 15, 28 - 19 = 9, 35 - 19 = 16 and the averages are not options; no two options sum to 90, 100, 180 or 360. Checker (read) lines: 35 - 19 = 16 = 17 - 1 (Jun's printed y minus one); the sign slip gives x = -21, y = 56, and no step subtracts 16 from anything. PLUG [PARAMETER ASK]: the ask is x + y of the solution, not c or d; an option cannot be put into either printed equation because c and d are not printed, so it is not a parameter substitution."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-C09",
+  "domain": "Algebra",
+  "subskill": "System from two shared resources (two recipes, two totals)",
+  "difficulty": "medium",
+  "prompt": "A paint store mixes two shades of paint from blue paint and white paint. Each batch of the shade Sky uses 1 liter of blue paint and 3 liters of white paint. Each batch of the shade Mist uses 5 liters of blue paint and 1 liter of white paint. One day the store made only whole batches of these two shades and used exactly 77 liters of blue paint and exactly 49 liters of white paint. How many batches of Mist did the store make that day?",
+  "choices": [
+   "2",
+   "5",
+   "12",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Let s be the number of Sky batches and m the number of Mist batches.\nBlue paint: s + 5m = 77. White paint: 3s + m = 49.\nFrom the first equation, s = 77 - 5m. Substituting into the second gives 3(77 - 5m) + m = 49, so 231 - 14m = 49, 14m = 182 and m = 13. (Then s = 12; check: 12 + 65 = 77 and 36 + 13 = 49.)\n\nChoice 12 is the number of Sky batches, not Mist batches.\nChoice 5 comes from matching the totals to the wrong colors, s + 5m = 49 and 3s + m = 77, which gives m = 5.\nChoice 2 comes from eliminating s by multiplying the blue equation by 3 on the left side only: 3s + 15m = 77 minus 3s + m = 49 gives 14m = 28 and m = 2.",
+  "solve": "const p1=1,p2=3,q1=5,q2=1,BL=77,WH=49; const D=p1*q2-q1*p2; return (p1*WH-p2*BL)/D;",
+  "distractor_solve": {
+   "2": "const p1=1,p2=3,q1=5,q2=1,BL=77,WH=49; return (BL-p1*WH)/(p2*q1-p1*q2);",
+   "5": "const p1=1,p2=3,q1=5,q2=1,BL=77,WH=49; const D=p1*q2-q1*p2; return (p1*BL-p2*WH)/D;",
+   "12": "const p1=1,p2=3,q1=5,q2=1,BL=77,WH=49; const D=p1*q2-q1*p2; const m=(p1*WH-p2*BL)/D; return (BL-q1*m)/p1;"
+  },
+  "mechanism": [
+   "one equation per resource (blue, white), each counting both shades",
+   "solve the 2x2 system by substitution",
+   "report the count of the named shade"
+  ],
+  "quantity_asked": "the number of Mist batches",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const s=77-5*v; return Number.isInteger(s) && s>=0 && 3*s+v===49;",
+   "why": "An option m can be checked: the blue total gives s = 77 - 5m, and then 3s + m should equal 49. That is a short check, so the key is placed last in the natural (ascending) order: a student substituting reaches it only on try 4, after 2, 5 and 12 fail."
+  },
+  "distractor_meta": {
+   "2": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Scaling only the left side during elimination leaves the constant too small or too large depending on which equation is scaled; the stem fixes neither."
+   },
+   "5": {
+    "error_kind": "wrong_base",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Matching the 77 liters to the white equation and the 49 liters to the blue one changes both counts; which way the Mist count moves depends on the recipes, which the stem gives only as separate numbers."
+   },
+   "12": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting the Sky count answers for the other shade; the stem does not say which shade was made more often."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const p1=1,p2=3,q1=5,q2=1,BL=77,WH=49; const D=p1*q2-p2*q1; return (p1*WH-q1*BL)/D;",
+   "direction": "above",
+   "why": "Writing one equation per shade instead of per color (s + 3m = 77 for the blue paint, 5s + m = 49 for the white) gives m = 24, above the key."
+  },
+  "cheap_bound_check": "The cheapest bounds are from each resource alone: m <= 77/5 = 15.4 from the blue paint and m <= 49 from the white paint; all four options pass. The recipe-per-shade slip lands above the key (24) while the elimination, color-swap and wrong-shade slips land below, so no one-sided bound strikes the three distractors.",
+  "shape_check": "The stem hands over: the answer is a whole number of batches (all four), at most 15 (all four), and the Sky count 77 - 5m must be a nonnegative whole number (all four give whole numbers: 67, 52, 17, 12). All four survive together.",
+  "interior_parity_check": "The middle values are 5 and 12: both small integers (one and two digits). The key 13 is the largest, not an interior value.",
+  "arith_class_check": "All four are positive integers. Odd: 5, 13; even: 2, 12. Primes: 2, 5, 13 (12 is not), and nothing in the stem makes the count prime. No multiple-of-k class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "batch(es)?&uses|requires",
+    "liters? of&paint|dye|blue|white",
+    "recipe&cups&each",
+    "per hour&hours in all|total of .* hours|hours total|worked"
+   ],
+   "hits_read": 12,
+   "nearest": "b99a4152 / bb8d13d8 (live): two machines with known rates, a total of hours and a total processed, asks one machine's hours - one equation is a plain count. 2cd72a07 (SSAT): the greatest number of batches of one recipe under three ingredient limits - one recipe, a minimum of quotients. In this item both equations are resource totals, each counting both shades with different amounts per batch, so no equation is a plain count and the solver must build one equation per color, not per shade (the counter error)."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the per-shade slip lands above the key (24) and the other three below, and the stem says nothing about which shade was made more often. Substitution is possible (s = 77 - 5m, test 3s + m = 49) but reaches the key only on the fourth try ascending. A test-wise student might note 12 and 13 are adjacent; they come from different unknowns (Sky vs Mist) and nothing printed links them. Closure: 2 + 5, 2 + 12, 5 + 12, 12 - 5, 13 - 5, 13 - 2 and the averages are not options. Checker (read) lines: 13 - 12 = 1 is the printed 1 (liter); the Sky and Mist counts happen to differ by one, no step adds 1. 13 - 5 = 8 = 3 + 5: the color-swap slip moves m by 8 through 14m = 70 vs 14m = 182; no step adds 8."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-C10",
+  "domain": "Algebra",
+  "subskill": "Equilibrium of two linear models (demand = supply)",
+  "difficulty": "medium",
+  "prompt": "A vendor at a farmers' market estimates that when the price of a jar of jam is p dollars, shoppers will buy 100 - 5p jars per week, and she is willing to supply 15p - 40 jars per week. At the price for which the number of jars shoppers will buy equals the number of jars she is willing to supply, how many jars is that per week?",
+  "choices": [
+   "7",
+   "30",
+   "65",
+   "85"
+  ],
+  "correct_answer": "65",
+  "explanation": "Let q be the number of jars per week. The two models give the system q = 100 - 5p and q = 15p - 40.\nSetting them equal: 100 - 5p = 15p - 40, so 140 = 20p and p = 7.\nThen q = 100 - 5(7) = 65 (and 15(7) - 40 = 65 as well), so the number is 65 jars per week.\n\nChoice 7 is the price, in dollars, not the number of jars.\nChoice 30 comes from collecting the p-terms as 15p - 5p = 10p instead of 15p + 5p = 20p: then 140 = 10p, p = 14, and 100 - 5(14) = 30.\nChoice 85 comes from moving the 40 with the wrong sign, 100 - 40 = 20p: then p = 3 and 100 - 5(3) = 85.",
+  "solve": "const A=100,B=5,C=15,E=40; const p=(A+E)/(B+C); return A-B*p;",
+  "distractor_solve": {
+   "7": "const A=100,B=5,C=15,E=40; return (A+E)/(B+C);",
+   "30": "const A=100,B=5,C=15,E=40; const p=(A+E)/(C-B); return A-B*p;",
+   "85": "const A=100,B=5,C=15,E=40; const p=(A-E)/(B+C); return A-B*p;"
+  },
+  "mechanism": [
+   "two linear models of the same quantity in the price give a system",
+   "set them equal and solve for the price",
+   "substitute back for the common quantity"
+  ],
+  "quantity_asked": "the number of jars per week at the price where demand equals supply",
+  "ask_type": "coordinate",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const p=(100-v)/5; return p>=0 && Math.abs(15*p-40-v)<1e-9;",
+   "why": "An option q can be checked: the demand model gives p = (100 - q)/5, and then 15p - 40 should equal q. That is a short check, so the key is the upper interior value: ascending substitution tests 7 and 30 first and reaches the key on try 3."
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Stopping at the price answers the other coordinate of the intersection; the stem does not compare a price in dollars with a number of jars."
+   },
+   "30": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracting the slopes instead of adding them doubles the price here; whether that raises or lowers the quantity depends on which model it is substituted into (the supply model would give 170), which the stem does not fix."
+   },
+   "85": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Moving the constant with the wrong sign lowers the price; the effect on the quantity reverses between the two models, so the stem does not predict the side."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the number of jars is positive (all four), at most 100 because the demand model never exceeds 100 at a nonnegative price (all four), and a whole number is natural but all four are whole. The price must make the supply nonnegative, p >= 8/3, which every option's implied demand price satisfies (p = 18.6, 14, 7, 3). All four survive together.",
+  "interior_parity_check": "The middle values are 30 and 65: both two-digit integers. 30 is the rounder; the key 65 is not the cleaner one.",
+  "arith_class_check": "All four are positive integers. Multiples of 5: 30, 65, 85 (7 is not, a distractor); odd: 7, 65, 85; even: 30. No class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "supply&demand",
+    "willing to (sell|supply)|will buy|shoppers|consumers&price",
+    "jars?&price",
+    "equals the number|equal to the number&price"
+   ],
+   "hits_read": 1,
+   "nearest": "7c477907 (live PSDA) matched only on 'will buy' and compares unit prices of feed suppliers. No hit models demand and supply as two linear functions of the price and asks the common quantity; the nearest Algebra items are the two-candle / two-plan intersections (1dad68ac, the plan hits), which ask the input (time, number of units) where two linear models agree, while this item asks the output at the intersection, with the input as a distractor."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key (upper) at try 3 ascending; substitution is possible (p from the demand model, then test the supply model) but reaches the key only after 7 and 30 fail. A test-wise student may strike 7 as 'too small to be a weekly count' - nothing in the stem rules out a small count, and striking it leaves three. 85 comes from the sign slip, 30 from the slope slip. Cap check: all four are under 100. Closure: 85 - 65 = 20, 65 - 30 = 35, 85 - 30 = 55, 30 + 7 = 37 and the averages are not options; no two options sum to 90, 100, 180 or 360. Checker (read) DPAIR: 85 - 65 = 20 = 5 + 15. The sign slip lowers the price by 4, which moves the demand by 4 x 5 = 20; a student who does not solve cannot tell which of 65 and 85 is the slipped one, and no step adds 20 to the key."
+  },
+  "bounds": []
+ }
+]

@@ -1,0 +1,164 @@
+{
+ "_note": "Stage-0 record per author file: preflight result, hand reads (a) extreme-key direction, (b) every (read) PLUG line, (c) every (read) PAIR/DPAIR line; the one return.",
+ "P": {
+  "file_sha_before_return": "7f13e7d0c529ab96",
+  "preflight": "GATING FAIL: check-math-near-dup FLAG P02 j=0.600 (7fa7c851), P05 j=0.778 (v2 8ec7e3d3); interior-niceness KEY-CLEANER P02 (-63 vs -112). Verify 6/6, 18/18; slots 6/6; mf28-checks 0 gating.",
+  "hand_reads": {
+   "P01": "(a) S key: concavity from the table bounds f(7) below the linear extension, all four survive; errors are partial / misapplied difference extensions on both sides (counter_error below). No. (b) PLUG try 1: f(7) is not checkable against anything printed without rebuilding f. Not substitutable.",
+   "P04": "(a) S key: only bound y >= -1, all survive; no. (b) PLUG try 1: checking a y value needs solving x^2-4x+3=v then the tangency condition. Not routine.",
+   "P05": "(a) L key: opens upward, lower bound 60 from f(8)-f(4)=48 over symmetric axis 5; no upper bound; vertex-value error lands above. No.",
+   "P06": "(a) L key: key 96 sits well above 24, 25, 42; natural errors (192, 1500) land above but are not options. No stem-readable direction; recorded as the item most exposed to a magnitude guess.",
+   "P02": "interior; -15.75 the only non-integer option while f(0) = -7k^2 with k^2 an integer by the stem: lone integrality class (free strike)."
+  },
+  "return": [
+   "P02: KEY-CLEANER interior (-63 vs -112), -15.75 a lone non-integer free strike, near-dup j=0.600 with 7fa7c851",
+   "P05: near-dup j=0.778 with v2 8ec7e3d3 (lexical; reword below 0.60)"
+  ],
+  "after_return": {
+   "file_sha": "d8dbfbbcd893cfc7",
+   "preflight": "GATING PASS (P02 j 0.364, no KEY-CLEANER, options all integers; P05 j 0.350). math-mechanism-dup FLAG P04 ~ act f55d3793 (vertex of one parabola on another -> c): read, different (single intersection of two parabolas -> its y)."
+  }
+ },
+ "Q": {
+  "file_sha_before_return": "d4f57dbb624ec601",
+  "preflight": "GATING FAIL: check-math-near-dup FLAG Q03 Q04 Q05 Q06 j=1.000 (short stems; lexical after number normalisation); interior-niceness parity Q01 (4800 vs 4887). Verify 6/6, 18/18; slots 6/6; mf28-checks 0 gating.",
+  "hand_reads": {
+   "Q02": "(a) L key: errors split (wrong halvings count below; k as answer below; no stem bound). (c) DPAIR reads 232-152 = 72+8, 232-132 = 8+92: not stem-readable. No.",
+   "Q04": "(a) S key 27: 72 printed is an option (natural slip); no stem bound kills 33/40. (b) PLUG try 1: 5^x + 5^y not substitutable. (c) DPAIR reads 6 = 5+1, 13 = 5+8: not readable.",
+   "Q06": "(a) L key 64: (c) 64-60 = 4 read: not readable. No.",
+   "Q03": "substitutable, key at try 3, BUT the stem-readable bound x > 10 strikes 3, so ascending plug-back reaches 23 at try 2; and a mechanism duplicate of 56d60593."
+  },
+  "return": [
+   "Q01: interior parity (4800 round vs key 4887)",
+   "Q03: mechanism duplicate of live 56d60593 / SAM11-23 (solution of a two-radical equation by squaring twice); also x > 10 strikes 3 so plug-back reaches the key at try 2; replace",
+   "Q04, Q05, Q06: near-dup j=1.000 (lexical; mechanisms read as different) - reword below 0.60"
+  ],
+  "after_return": {
+   "file_sha": "4689835c4c5fa60f",
+   "preflight": "GATING PASS (Q04 j 0.467, Q05 0.529, Q06 0.455; Q01 middle pair 3981 / 4887). Q03 new: Q = c h^(3/2), depth increase from 54 to 100 L/s (substitutable, try 3; exponent > 1 strikes 12.54 - one strike, recorded). math-mechanism-dup FLAG Q06 ~ 9295d3dc: read at stage 0, different."
+  }
+ },
+ "C": {
+  "file_sha_before_return": "50eba0aee8f95ce2",
+  "preflight": "GATING PASS. Verify 10/10, 30/30; slots 10/10; mf28-checks 0 gating; merge-halves: option 40 in C03 and C04 (brief rule 11). math-mechanism-dup FLAG C01 x5, read: different.",
+  "hand_reads": {
+   "C01": "(a) S key 36 min: no stem bound on the time difference; errors split (hours read as minutes above, counter below). (b) PLUG try 1: not substitutable (needs both speeds). No.",
+   "C05": "(a) S key: no bound; (b) PLUG try 1: checking 10 needs the number of tables, which is the whole solution. (c) PAIR/DPAIR reads (5/7, 6, 21, 4, 26): none stem-readable. No.",
+   "C08": "(a) S key 18 - BUT 18 is also d (Mina: 3(10) - 12 = 18), the first intermediate: a student who stops at d is credited. (b) PLUG try 1 [parameter ask flag]: the ask is x + y, not c or d; not substitutable.",
+   "C09": "(a) L key 13, substitutable, try 4. (c) 13 - 12 = 1, 13 - 5 = 8 = 3 + 5: not readable.",
+   "C02": "(a) L key, substitutable at try 4; all options above 1140.",
+   "C03": "(a) L key, substitutable at try 4. (c) 45 - 40 = 5 = 4 + 1: not readable.",
+   "C07": "interior; 4.5 the lone non-integer (one strike, a count of tokens); 42 = 2 x key is the points value (partial answer)."
+  },
+  "return": [
+   "C08: the key 18 equals the intermediate d = 18 (a partial answer is credited)",
+   "C03/C04: option value 40 in both (brief rule 11: no option value repeated in your file)"
+  ],
+  "after_return": {
+   "file_sha": "4468114b5116aca6",
+   "preflight": "GATING PASS. C08 renumbered: intermediates c 49, d 14, x 11, y 8 are not options; C04 distractor 40 -> 44."
+  }
+ },
+ "D": {
+  "file_sha_before_return": "7eae6ff4d2c47625",
+  "preflight": "GATING PASS. Verify 7/7, 21/21; slots 7/7; mf28-checks 0 gating; math-mechanism-dup 0 FLAG.",
+  "hand_reads": {
+   "D05": "(a) S key -25: 57 (= k) is an option (wrong_variable), 3, -13; no stem bound. (b) PLUG try 1 [parameter ask]: c cannot be checked until k is found. No.",
+   "D06": "(a) S key 27: the humidity window ends at t = 52 (computed, not free), so 71 / 77 are not free strikes. (b) PLUG try 1: a length of time is not substitutable. No.",
+   "D03": "(a) L key, substitutable at try 4.",
+   "D04": "(a) L key 84, not substitutable without k; x = 0 lies in the solution set, so d >= 0 strikes -15 (one strike)."
+  },
+  "return": [
+   "D01: mechanism duplicate of 109c9105 / SALG2-11 (bounds on each variable -> greatest linear combination)",
+   "D07: mechanism duplicate of 1cb5b7c5 (sum of the integer solutions of a compound inequality)"
+  ],
+  "after_return": {
+   "file_sha": "72d804553d57ce01",
+   "preflight": "GATING PASS. D01 new: f(3n + 3) < 2f(n) + 60, greatest integer n (descending try 3); D07 new: two age inequalities, greatest whole g (descending try 3). kw \"f\\(3n|greatest integer n\" 0 hits; \"grandson|years ago\" -> 65edd1f7 / SALG-19 (an age EQUATION): different. Reads (13 - 19 = 2 x 3, 17 - 9 = 2 x 4): not stem-readable."
+  }
+ },
+ "A": {
+  "file_sha_before_return": "2b291122d14ef3f9",
+  "preflight": "GATING PASS. Verify 10/10, 30/30; slots 10/10; mf28-checks 0 gating; math-mechanism-dup 0 FLAG (5 items unscorable by it: no mechanism term).",
+  "hand_reads": {
+   "A03": "(b) PLUG try 1, declared not substitutable: checking 750 = add back 15 x 30, divide by 12 and by 15, compare with 20 - three routine operations forward from the option; YES, substitutable in effect (A90 A05 class).",
+   "A05": "(b) PLUG try 1: 9 posts -> 120 m -> 13 and 21 posts -> differ by 8; routine forward check. YES.",
+   "A06": "(b) PLUG try 1: 45 / 9 = 5 h, Ana 11 h -> 121 + 45 = 166; routine forward check. YES.",
+   "A02": "(a) L key 27: no stem bound; 8 (= a) an option below. (c) 27 - 11 = 2 x 8: not readable. No.",
+   "A07": "(a) L key, substitutable at try 4 - but a mechanism duplicate.",
+   "A10": "(a) L key, substitutable at try 4.",
+   "A04": "(c) 102 - 93 = 5 + 4: coincidence, not readable."
+  },
+  "return": [
+   "A03, A05, A06: S keys whose option can be checked forward against the stem in a few routine operations (plug-back at try 1); re-ask a quantity the options cannot be run back from, or move the key",
+   "A07: mechanism duplicate of prior SALG5C-10 (stated solution x = 2 -> k)",
+   "A08: mechanism duplicate of act b2c5cafc (backward through fractional spends to $90)"
+  ],
+  "after_return": {
+   "file_sha": "95efa960b8730ca8",
+   "preflight": "GATING PASS; A03 A05 A06 now many-to-one counts (PLUG reads accepted: an option fixes only a range of totals). A05 is the same chain as C05 (banquet two seatings) - return spent, A05 DROPPED before freeze."
+  }
+ },
+ "R": {
+  "file_sha_before_return": "9e728229a2d58b32",
+  "preflight": "GATING FAIL: merge-halves CLOSURE in R02 (-69 = avg(-147, 9)). Verify 6/6, 18/18; slots 6/6; mf28-checks 0 gating; math-mechanism-dup 0 FLAG.",
+  "hand_reads": {
+   "R03": "(a) S key 12: no stem bound. (b) PLUG try 1: q(-3) needs a (factor theorem) then the quotient; not substitutable. No.",
+   "R04": "(b) PLUG try 1: p(4) not substitutable - but a mechanism duplicate.",
+   "R05": "(a) L key 33: r is linear 5x - 2; errors (sign, using x^2 + x + 1 itself) split. No.",
+   "R01": "(c) 24 - 7 = 17 = 8 + 9: 7 is the drop-the-constants error; not readable."
+  },
+  "return": [
+   "R02: closure among distractors (-69 = average of -147 and 9)",
+   "R04: mechanism duplicate of 00ae8b15 / SM24V-A14 (difference identity of a quadratic -> coefficients -> a value)"
+  ],
+  "after_return": {
+   "file_sha": "414fb3a373dc6460",
+   "preflight": "GATING PASS. R02 distractor -147 -> -93 (closure gone). R04 new: constant remainder of x^3 - 4x^2 + kx - 1 by x^2 + 2x - 3 forces p(1) = p(-3). (b) PLUG try 1: an option can be tested only after the insight (k = v + 4, then p(-3)); accepted as not routine. (c) -19 - (-11) = 2 x 4: not readable."
+  }
+ },
+ "B": {
+  "file_sha_before_return": "6ee9e2c157c682d4",
+  "preflight": "GATING FAIL: check-math-near-dup FLAG B02 j=0.636 (f8abd387), B04 j=0.643 (3e9d2b2a), both lexical. Verify 9/9, 27/27; slots 9/9; mf28-checks 0 gating; math-mechanism-dup 0 FLAG.",
+  "hand_reads": {
+   "B02": "(a) S key -14.5: no bound; errors split. (b) PLUG try 1: one point of the line; not substitutable. No.",
+   "B06": "(b) PLUG try 1, declared not substitutable: 28 -> slope (28 - 16)/3 = 4, intercept 12 = 3 x 4: a routine forward check in three operations. YES.",
+   "B08": "(a) S key -25.5; (b) PLUG try 1: a sum of intercepts is not checkable against the stem. No.",
+   "B03": "(a) L key 110, substitutable at try 4.",
+   "B07": "(a) L key 49, substitutable at try 4; -73.5 the counter side below.",
+   "B09": "(a) L key 165, substitutable at try 4. 165 - 115 = 50 = 110 - 60 (a DIFFERENCE of two printed numbers, outside the registered DPAIR set): recorded for the graders, not returned.",
+   "B01": "(c) -7 - (-10) = 3 = 2 + 1: not readable."
+  },
+  "return": [
+   "B02, B04: near-dup j >= 0.60 (lexical) - reword",
+   "B06: S key forward-checkable from the option in three routine operations (plug-back at try 1); keep the S slot, change the ask"
+  ],
+  "after_return": {
+   "file_sha": "39e0c20dac1acfea",
+   "preflight": "GATING PASS (B02 j 0.278, B04 j 0.350). B06 rewritten: f(5) - g(5) for two lines through (2, 27) - an option is one equation in two lines; PLUG read accepted."
+  }
+ },
+ "S": {
+  "file_sha_before_return": "9bd6ee95185f5cd0",
+  "preflight": "GATING PASS. Verify 6/6, 18/18; slots 6/6; mf28-checks 0 gating; math-mechanism-dup FLAG S06 x2 read (different, near).",
+  "hand_reads": {
+   "S01": "(a) S key 23: no stem bound; (b) PLUG try 1: g(10) needs a and b; not substitutable. (c) 27 - 23 = 2 x 2: not readable. No.",
+   "S04": "(b) PLUG try 1, declared not substitutable: 35 -> k = 35 - 16 = 19 -> f(g(-2)) = 49 + 19 = 68, g(f(-2)) = 3(23) - 1 = 68: a routine forward check. YES.",
+   "S05": "(a) L key 189: n = 2520/(A - 2) gives 315 and 504; errors split. No.",
+   "S06": "(a) L key -12 (all options negative): no stem bound. No.",
+   "S03": "(c) PAIR reads around 6 = 2 x 3 come from the reflection about x = 3; key at try 3 substitutable."
+  },
+  "return": [
+   "S04: S key forward-checkable from the option (k = v - 16, then both compositions at -2); keep the S slot, change the ask"
+  ]
+ },
+ "_batch": {
+  "merged": "59 after the A05 drop. Per domain key-extremity-gate PASS: Algebra 21/35 = 60.0% (S10/I14/L11; band S 8-14 / I 11-17 / L 8-14 PASS), Advanced Math 14/24 = 58.3% (S7/I10/L7; band S 4-10 / I 7-13 / L 4-10 PASS). merge-halves on the merged 59: 0 closure. math-mechanism-dup over 3,508 live rows: 9 FLAG (C01 x5, P04, Q06, S06 x2) and 15 near, every one read: none a duplicate (P04 ~ tangent-line items 259dfd80 / 2c0a61eb and S03 ~ 788e7bd0 restricted-quadratic inverse recorded as near). Shared key values across authors 13 (A08 D01 C09), 27 (D06 R06 A02 Q04) and 45 shared option values: recorded, not returned (A90 practice).",
+  "redump": "2026-10-09 pre-freeze re-dump: 3,508 live maths rows (3,290 at authoring); 218 new rows (ssat-math-s16 115, isee-math-s16 103), every prompt read against all 59 items. One duplicate: isee/ssat df72b6a2 \"f(x) = x^2 + bx + c, f(1) = 5 and f(3) = 15; f(5)?\" is the chain of SM28F-P01 (quadratic fixed from tabled values, then evaluated at a new input; P01 uses three values and differences) -> P01 DROPPED before freeze (returns spent). Read and judged different: 897b451f (least value 7 -> c -> f(1)) vs P02 (factored form, the vertex x is the midpoint of the roots: an added step; recorded near); 42395b7d (caterer two points) vs B07 / B09; 321d2597 (f(a) = f(a + 4)) vs P05; e3d9dac7 (cars after passing) vs C01; ba34b204 / f72a2d0d (linear compositions) vs S01 / S04; 0c85a38f (combined work time) vs A06; 34622486 (two inlet pipes) vs A03.",
+  "stage0_drops": [
+   "SM28F-A05 (same chain as C05, written in A's return)",
+   "SM28F-P01 (live duplicate df72b6a2, inserted by isee-math-s16 during authoring; found at the pre-freeze re-dump)"
+  ],
+  "freeze": "frozen 58 (excluded A05, P01), sha 74a7eba308b1392d, seeded order 20261041. Sandbox 58/58, 174/174; mutation (B04 key, Q02 one distractor body) both refused (exit 1); slots 58/58; mf28-checks 0 gating (DPAIR read 17, key at try 1-2 on 16, all hand-read). Per domain at freeze: Algebra 35, extreme 21/35 = 60.0% S10/I14/L11; Advanced Math 23, extreme 13/23 = 56.5% S6/I10/L7 (band S 4-10 PASS). mf28-part-check.sh gained check-math-near-dup and check-interior-niceness after the P / Q returns (deviation: two pre-flight gates authors could not see per item)."
+ }
+}

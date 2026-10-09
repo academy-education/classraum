@@ -1,0 +1,451 @@
+[
+ {
+  "id": "SM28F-R01",
+  "domain": "Advanced Math",
+  "subskill": "Polynomial identity: match two coefficients, then a third",
+  "difficulty": "medium",
+  "prompt": "The product (x^2 + ax + 8)(x^2 + bx + 9), in which a and b are constants, equals x^4 + 8x^3 + cx^2 + 65x + 72 for every real number x. What is c?",
+  "choices": [
+   "7",
+   "10",
+   "24",
+   "25"
+  ],
+  "correct_answer": "24",
+  "explanation": "Expand the product. The x^3 terms come from x^2(bx) + (ax)(x^2), so a + b = 8. The x terms come from (ax)(9) + 8(bx), so 9a + 8b = 65. Substituting b = 8 - a gives 9a + 64 - 8a = 65, so a = 1 and b = 7. The x^2 terms come from x^2(9) + (ax)(bx) + 8(x^2), so c = 9 + ab + 8 = 17 + (1)(7) = 24.",
+  "solve": "for (let a = -20; a <= 20; a++) { const b = 8 - a; if (9*a + 8*b === 65) return String(9 + 8 + a*b) } return \"none\"",
+  "distractor_solve": {
+   "7": "const a = 1, b = 7; return String(a*b)",
+   "10": "const a = 1, b = 7; return String(9 + 8 - a*b)",
+   "25": "return String(9 + 8 + 8)"
+  },
+  "mechanism": [
+   "match x^3 and x coefficients",
+   "solve the 2x2 linear system for a and b",
+   "assemble the x^2 coefficient p + q + ab"
+  ],
+  "quantity_asked": "the x^2 coefficient c of the product",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false",
+   "why": "c does not appear in any condition a student can test on its own: checking an option for c requires first finding a and b from the x^3 and x coefficients, which is the whole solution. Substituting an option gives nothing to compare it with."
+  },
+  "distractor_meta": {
+   "7": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Takes only the cross term ab and drops the x^2(9) and 8(x^2) contributions; whether ab alone is above or below the full coefficient is not visible until a and b are known."
+   },
+   "10": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Subtracts ab instead of adding it; whether that raises or lowers c depends on the sign of ab, which the stem does not show."
+   },
+   "25": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adds a + b (the printed 8) instead of multiplying a and b; whether a + b exceeds ab is not visible from the stem."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over only that c is a constant: all four options are integers and nothing printed fixes the sign or size of ab, so 7, 10, 24 and 25 all survive. All four survive together.",
+  "interior_parity_check": "Middle values 10 and 24: both two-digit positive integers, same display form; the key 24 is not the cleaner one (10 is the round value).",
+  "arith_class_check": "Key 24 is even, as is 10; 7 and 25 are odd. All four are positive integers; none is singled out by sign, integrality or parity, and the stem implies no multiple-of-k class for c.",
+  "dup_search": {
+   "queries": [
+    "equivalent&\\(x ?\\+ ?a\\)|\\(x ?- ?a\\)&x\\^3|x³",
+    "equivalent to&x\\^3|x³&constants",
+    "\\)\\((a|b|c|k|m|\\d)?x(\\^2|²) ?[+-] ?(a|b|c|k|m|n)x",
+    "x\\^4|x⁴&(a|b|k|m)x(\\^2|²)? ?[+-]",
+    "coefficient"
+   ],
+   "hits_read": 45,
+   "nearest": "46f2da31 / SM15A-05: a cubic written as (linear)(3x^2 + ax + 4), one unknown read from a single coefficient match. Here two quadratic factors carry two unknowns, a and b come from a 2x2 linear system built from the x^3 and x coefficients, and the ask is a third coefficient assembled from them. a6936e18 (x-4)(x+6)(x+a) is a cubic with one unknown. 63e0a083 (prompt-template overlap only) is a rational-expression combination, a different chain."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might expand only the x^2 coefficient as 17 + ab and guess ab from the options, but ab is not determinable without the system (a + b = 8 allows many products). Upper-interior key (try 3 ascending); c enters no printed condition, so no option can be checked by substitution. (read) DPAIR difference of key 24 and 7 = 17 = 8 + 9: 7 is the omission distractor (ab alone), which differs from the full coefficient by exactly the dropped constants. Honest answer: a student who already knows c = 17 + ab and notices the 17 gap could favour 24 over 7, but the same frame also produces 10 (17 - ab) and 25 (17 + (a + b)), so the 17 relation alone leaves 24, 10 and 25 standing; choosing among them still needs ab = 7, i.e. the system. Risk recorded as medium for this reason."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-R02",
+  "domain": "Advanced Math",
+  "subskill": "Equal values at x and -x fix the odd-power coefficient",
+  "difficulty": "medium",
+  "prompt": "For constants a and b, the cubic p(x) = x^3 + ax^2 + bx - 9 takes equal values at x = 2 and at x = -2, and p(-1) = -11. What is p(3)?",
+  "choices": [
+   "-93",
+   "-69",
+   "-39",
+   "9"
+  ],
+  "correct_answer": "-39",
+  "explanation": "Compute p(2) - p(-2). The even-power terms ax^2 and -9 are the same at 2 and -2, so they cancel: p(2) - p(-2) = (8 + 2b) - (-8 - 2b) = 16 + 4b. Since p(2) = p(-2), 16 + 4b = 0 and b = -4. Then p(-1) = -1 + a - b - 9 = -1 + a + 4 - 9 = a - 6. Setting a - 6 = -11 gives a = -5. So p(x) = x^3 - 5x^2 - 4x - 9, and p(3) = 27 - 45 - 12 - 9 = -39.",
+  "solve": "const C = -9; const b = -(2**3)/2; const a = -11 - (-1 - b + C); const p = x => x**3 + a*x*x + b*x + C; return String(p(3))",
+  "distractor_solve": {
+   "9": "const C = -9; const b = 0; const a = -11 - (-1 - b + C); return String(27 + 9*a + 3*b + C)",
+   "-69": "const C = -9, b = -4, a = -5; const x = -3; return String(x**3 + a*x*x + b*x + C)",
+   "-93": "const C = -9, b = -4, a = -5; return String(-(3**3) + 9*a + 3*b + C)"
+  },
+  "mechanism": [
+   "p(m) - p(-m) keeps only odd-power terms",
+   "solve for b, then a from the second value",
+   "evaluate at a new input"
+  ],
+  "quantity_asked": "the value p(3) of the determined cubic",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false",
+   "why": "The ask is p(3), a value of p at an input that appears in no condition. An option cannot be compared with anything printed; checking it requires finding a and b first, which is the whole solution."
+  },
+  "distractor_meta": {
+   "9": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Drops the x^3 term when using p(2) = p(-2) and concludes b = 0 (only the bx term seemed to change sign); a then comes out -1. Whether this raises or lowers p(3) depends on how a and b trade off, which the stem does not show."
+   },
+   "-69": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds a and b correctly but evaluates p(-3), reading the printed symmetry p(2) = p(-2) as if p took equal values at every pair of opposite inputs. p(-3) versus p(3) differs by 2(27 - 12), and nothing in the stem says which is larger before b is known."
+   },
+   "-93": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds a = -5 and b = -4 correctly but writes the cube term of p(3) as -27 instead of 27 (a sign slip carried over from the p(-1) and p(-2) work); nothing in the stem tells a student which side of the key this lands on."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over integer constants and integer inputs, so p(3) is an integer: all four survive. No sign, monotonicity or size cap on p(3) is printed, so -93, -69, -39 and 9 all survive together.",
+  "interior_parity_check": "Middle values -69 and -39: both negative two-digit integers ending in 9, same display form; the key -39 is not the cleaner one.",
+  "arith_class_check": "All four options are odd integers; three are negative, one positive (a distractor). No class the stem implies singles out the key.",
+  "dup_search": {
+   "queries": [
+    "p\\(\\d\\) ?= ?p\\(-\\d\\)",
+    "p\\(-?\\d\\) ?= ?p\\(",
+    "symmetric|even function|odd function",
+    "coefficient",
+    "polynomial p is defined&p\\(\\d\\) ?=&what is the value of p\\("
+   ],
+   "hits_read": 12,
+   "nearest": "b2936b3e (math-v6-adv-hard): p(x) = x^3 + cx + d with p(1) and p(-2) given, find p(-3) - two direct evaluations give a 2x2 linear system. Here the first condition is an equality of values at opposite inputs, which cancels the even-power terms and fixes the odd-power coefficient b alone (b = -4) before a is read from the second value; the decision is to subtract rather than evaluate. SADV7D-08 (p(1) = p(2) = p(3) = 5) builds p - 5 from zeros. 5c91796f / SM25V-A12 are symmetry about a vertical line via zeros."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might assume p is even and evaluate p(-3), which is the -69 distractor, or ignore the cubic in the symmetry step (9). Neither is checkable against the stem. Upper-interior key (try 3 ascending); p(3) appears in no printed condition, so no option can be substituted and verified. No option is the sum, difference, average or product of two others (the earlier -147 made -69 the average of -147 and 9; replaced). No (read) lines."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-R03",
+  "domain": "Advanced Math",
+  "subskill": "Factor theorem fixes a coefficient; evaluate the quotient",
+  "difficulty": "medium",
+  "prompt": "For a constant a, the cubic x^3 + ax^2 - 2x + 24 can be written as the product (x - 2)q(x), where q is a quadratic. What is q(-3)?",
+  "choices": [
+   "12",
+   "28",
+   "42",
+   "52"
+  ],
+  "correct_answer": "12",
+  "explanation": "Because (x - 2)q(x) equals the cubic for all x, the cubic must be 0 at x = 2: 8 + 4a - 4 + 24 = 0, so 4a = -28 and a = -7. The cubic is x^3 - 7x^2 - 2x + 24. At x = -3 it equals -27 - 63 + 6 + 24 = -60, and x - 2 equals -5 there, so q(-3) = -60/(-5) = 12. (Dividing out gives the same result: x^3 - 7x^2 - 2x + 24 = (x - 2)(x^2 - 5x - 12), and 9 + 15 - 12 = 12.)",
+  "solve": "const a = -(8 - 4 + 24)/4; const p = x => x**3 + a*x*x - 2*x + 24; return String(p(-3)/(-3 - 2))",
+  "distractor_solve": {
+   "28": "const a = -7; const x = -3; return String(x*x + a*x - 2)",
+   "42": "const a = -(-8 + 4 + 24)/4; const c1 = a - 2, c0 = -2 - 2*c1; const x = -3; return String(x*x + c1*x + c0)",
+   "52": "const a = -7; const c1 = a - 2, c0 = -2 - 2*c1; const x = -3; return String(x*x + c1*x + c0)"
+  },
+  "mechanism": [
+   "factor theorem at x = 2 fixes a",
+   "divide out (x - 2) or divide the value by (x - 2)",
+   "evaluate the quotient at -3"
+  ],
+  "quantity_asked": "the value of the quotient q at x = -3",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false",
+   "why": "The ask is a value of q at an input that is not in any printed condition. To test an option v a student would need p(-3) = -5v, and p(-3) depends on a, which must first be found from the factor theorem; that is the solution itself, not a check of an option."
+  },
+  "distractor_meta": {
+   "28": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finds a = -7 but \"divides\" by lowering every exponent by one, taking q(x) = x^2 - 7x - 2; whether that overshoots or undershoots the true quotient at -3 is not visible from the stem."
+   },
+   "42": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Applies the factor theorem at x = -2 instead of 2 (getting a = -5) and divides by x + 2; the size and side of the effect depend on how a shifts, which the stem does not reveal."
+   },
+   "52": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Finds a = -7 correctly but runs synthetic division with -2 instead of 2, giving x^2 - 9x + 16 and ignoring the nonzero remainder; nothing in the stem shows which side of the key that lands on."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const a = -7; const x = -3; return String(x**3 + a*x*x - 2*x + 24)",
+   "direction": "below",
+   "why": "Evaluates the cubic (x - 2)q(x) at -3 and forgets to divide by x - 2 = -5, giving -60, below the key."
+  },
+  "cheap_bound_check": "No one-sided bound on q(-3) is readable from the stem: its sign is the sign of p(-3)/(-5), and p(-3) depends on the unknown a. The forgot-to-divide error lands at -60, below the key, so the natural errors do not all sit on one side.",
+  "shape_check": "The stem hands over integer coefficients and a monic divisor, so q has integer coefficients and q(-3) is an integer: all four survive. No sign or size constraint on q(-3) is printed, so 12, 28, 42 and 52 survive together.",
+  "interior_parity_check": "Middle values 28 and 42: both two-digit positive even integers; the key (12) is not interior.",
+  "arith_class_check": "All four options are positive even integers; none is singled out by parity, sign or integrality, and the stem implies no multiple-of-k class (12, 28, 42 and 52 share only the factor 2).",
+  "dup_search": {
+   "queries": [
+    "\\(x ?[-+] ?\\d\\) ?p\\(x\\)|\\(x ?[-+] ?\\d\\)·p|\\(x ?[-+] ?\\d\\)q\\(x\\) ?=",
+    "quotient&x",
+    "remainder&divided by"
+   ],
+   "hits_read": 64,
+   "nearest": "fad105b3 (ACT): 2x^3 + 3x^2 - 5x + 4 divided by x + 2, find q(1) - a fully printed dividend, no unknown. b8660a98 / SM16A-05: x - 2 a factor fixes a coefficient, then the REMAINDER at another divisor (a value of p). Here the factor theorem fixes a, and the ask is a value of the QUOTIENT q at -3, reached either by dividing out (x - 2) or by p(-3)/(-5). 43e180c5 (prompt-template overlap only): p(x^2) given, find p(-2) - substitution of a square, a different chain."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Extreme (S) key: covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No - the stem gives no sign or size for q(-3), and the most common slip (forgetting to divide by x - 2 = -5) lands at -60, below the key, while the division slips land above; a student cannot tell from the stem that every option above 12 is an error. Lowest key (try 1 ascending): could a student check an option against the stem in one routine step? No - q(-3) appears in no printed condition; checking v needs p(-3), which needs a from the factor theorem, which is the solution."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-R04",
+  "domain": "Advanced Math",
+  "subskill": "Parameter that makes the remainder by a quadratic constant",
+  "difficulty": "hard",
+  "prompt": "For one particular constant k, dividing x^3 - 4x^2 + kx - 1 by x^2 + 2x - 3 leaves a remainder that is a single number, with no x-term. What is that number?",
+  "choices": [
+   "-19",
+   "-11",
+   "-7",
+   "-1"
+  ],
+  "correct_answer": "-19",
+  "explanation": "Let p(x) = x^3 - 4x^2 + kx - 1. Since x^2 + 2x - 3 = (x - 1)(x + 3), write p(x) = (x - 1)(x + 3)q(x) + r(x), where the remainder r(x) has degree less than 2. At x = 1 and x = -3 the first term is 0, so p(1) = r(1) and p(-3) = r(-3). The remainder is a constant, so r(1) = r(-3), which means p(1) = p(-3). Now p(1) = 1 - 4 + k - 1 = k - 4 and p(-3) = -27 - 36 - 3k - 1 = -64 - 3k. Setting them equal gives 4k = -60, so k = -15, and the remainder is p(1) = -15 - 4 = -19. (Long division gives the same result: the remainder is (k + 15)x - 19, which is constant only when k = -15, leaving -19.)",
+  "solve": "for (let k = -100; k <= 100; k++) { const p = x => x**3 - 4*x*x + k*x - 1; if (p(1) === p(-3)) return String(p(1)) } return \"none\"",
+  "distractor_solve": {
+   "-7": "for (let k = -100; k <= 100; k++) { const p = x => x**3 - 4*x*x + k*x - 1; if (p(-1) === p(3)) return String(p(-1)) } return \"none\"",
+   "-1": "return String(-1)",
+   "-11": "const kk = (-28 - 0) / 4; const p = x => x**3 - 4*x*x + kk*x - 1; return String(p(1))"
+  },
+  "mechanism": [
+   "a remainder by (x - 1)(x + 3) equals p at both zeros of the divisor",
+   "constant remainder means p(1) = p(-3), which fixes k",
+   "the common value is the remainder"
+  ],
+  "quantity_asked": "the constant remainder when p(x) is divided by x^2 + 2x - 3",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false",
+   "why": "The remainder is not printed in any condition; it is the common value of p at the divisor zeros after k is fixed. To test an option v a student would have to derive k from p(1) = v and then check p(-3) = v, which requires already knowing that a constant remainder equals p at both zeros - the decision the item tests - and two evaluations with an unknown; it is not a one-step substitution into a printed equation."
+  },
+  "distractor_meta": {
+   "-7": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Factors x^2 + 2x - 3 as (x + 1)(x - 3) and equates p(-1) and p(3), getting k = 1 and a common value of -7; the stem does not reveal which side of the key that lands on."
+   },
+   "-1": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Takes the constant term of p, -1, as \"the constant remainder\"; whether p constant term is above or below the true remainder is not visible without solving."
+   },
+   "-11": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Sets p(1) = p(-3) but drops the -4x^2 terms on both sides (1 + k - 1 = -27 - 3k - 1, so k = -7), then evaluates the full p(1) = -11; the effect depends on the dropped terms, which the stem does not sign."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const p = x => x**3 - 4*x*x - 1; return String(p(-3))",
+   "direction": "below",
+   "why": "Applies the remainder theorem at the zero -3 alone and ignores the kx term (treating k as 0), getting p(-3) = -64, below the key."
+  },
+  "cheap_bound_check": "No one-sided bound on the remainder is readable from the stem: the remainder is p(1) = k - 4 with k unknown. The natural slip of evaluating at -3 without the kx term lands at -64, below the key, while the factor-sign and constant-term errors land above, so the errors split.",
+  "shape_check": "The stem hands over integer coefficients, so the constant remainder is an integer: all four survive. No sign or size constraint on the remainder is printed (k is free), so -19, -11, -7 and -1 all survive together.",
+  "interior_parity_check": "Middle values -11 and -7: both negative odd integers; the key (-19) is not interior.",
+  "arith_class_check": "All four options are negative odd integers; none is singled out by parity, sign or integrality, and no multiple-of-k class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "remainder&constant",
+    "remainder&divided by x\\^2|divided by x²|divided by \\(x",
+    "remainder&divided by",
+    "pressure sensor"
+   ],
+   "hits_read": 90,
+   "nearest": "d5b3c3a5 / SADV5C-08: a fully printed cubic divided by x^2 - 3x - 4, ask the linear coefficient of the remainder (pure long division, no parameter). 32652029: two linear-divisor remainders give two coefficients. 0a2fd8fa: two linear remainders give the remainder mod a quadratic. Here the dividend carries a parameter and the condition is that the remainder by a quadratic is CONSTANT, which forces p(1) = p(-3) (equivalently the x-coefficient (k + 15) of the long-division remainder vanishes); no live or prior item uses a constant-remainder condition to fix a parameter."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Extreme (S) key: covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No - the stem gives no sign or size for the remainder, and the natural slip of evaluating p at -3 with the kx term dropped lands at -64, below the key, while the other errors land above. Lowest key (try 1 ascending): could a student check an option against the stem in one routine step? No - an option v enters no printed equation; using it needs the insight that the constant remainder equals both p(1) and p(-3), then solving for k from one and checking the other, which is the solution itself. Decision point: a student who long-divides without the parameter, or reads the constant term, gets a wrong value; Desmos does not divide with a free k. (read) PAIR difference of key -19 and -11 = 8 = 2 x printed 4: -11 comes from dropping the -4x^2 terms when equating p(1) and p(-3); the 8 gap is not readable from the stem without doing that computation, and -7 and -1 do not sit on the same gap, so the relation does not point to the key. Within the batch, R05 also involves division by a quadratic, but R05 reduces a leftover of too high a degree with no parameter, while here a parameter is fixed by the constant-remainder condition."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-R05",
+  "domain": "Advanced Math",
+  "subskill": "Remainder when the given leftover is not of lower degree",
+  "difficulty": "medium",
+  "prompt": "Some polynomial q makes p(x) = (x^2 - 4x + 3)q(x) + x^2 + x + 1 true for all x. Let r(x) be the remainder left over after p(x) is divided by x^2 - 4x + 3. Find r(7).",
+  "choices": [
+   "-17",
+   "-9",
+   "13",
+   "33"
+  ],
+  "correct_answer": "33",
+  "explanation": "A remainder on division by the quadratic x^2 - 4x + 3 must have degree less than 2, so x^2 + x + 1 is not yet the remainder. Rewrite it: x^2 + x + 1 = (x^2 - 4x + 3) + (5x - 2). Then p(x) = (x^2 - 4x + 3)(q(x) + 1) + 5x - 2, and since 5x - 2 has degree 1, the remainder is r(x) = 5x - 2. Therefore r(7) = 35 - 2 = 33.",
+  "solve": "const a = 1 - (-4), b = 1 - 3; return String(a*7 + b)",
+  "distractor_solve": {
+   "13": "const x = 3; return String(x*x + x + 1)",
+   "-17": "const a = 1 + (-4), b = 1 + 3; return String(a*7 + b)",
+   "-9": "const a = 1 - (-4), b = 1 - 3; return String(b*7 + a)"
+  },
+  "mechanism": [
+   "recognize the printed leftover has the divisor degree",
+   "subtract the divisor once to get the true linear remainder",
+   "evaluate the remainder at 7"
+  ],
+  "quantity_asked": "the value r(7) of the remainder polynomial",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false",
+   "why": "r(5) is not in any printed condition; to test an option a student must first know r(x), which requires the reduction that is the solution. Plugging 5 into anything printed gives p-related values only if q were known, and q is not given."
+  },
+  "distractor_meta": {
+   "13": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Treats the remainder as a constant equal to the leftover at a zero of the divisor, x = 3 (as with a linear divisor), getting 9 + 3 + 1 = 13; the stem does not reveal whether that is larger or smaller than r(7)."
+   },
+   "-17": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reduces with x^2 replaced by -4x + 3 instead of 4x - 3 (equivalently, distributes the minus sign wrongly when subtracting the divisor), giving -3x + 4; nothing in the stem shows which side of the key that lands on."
+   },
+   "-9": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Finds 5x - 2 but reads it with slope and intercept swapped, evaluating -2x + 5 at 7; the direction depends on the signs of the two coefficients, which are not printed."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const x = 7; return String(x*x + x + 1)",
+   "direction": "above",
+   "why": "Takes x^2 + x + 1 itself as the remainder without reducing it and evaluates at 7, getting 57, above the key."
+  },
+  "cheap_bound_check": "No one-sided bound on r(7) is readable from the stem. The most natural error (not reducing the leftover) lands at 57, above the key, while the other slips land below, so the errors split.",
+  "shape_check": "The stem hands over integer coefficients, so r has integer coefficients and r(7) is an integer: all four survive. Nothing printed fixes the sign or size of r(7), so -17, -9, 13 and 33 all survive together.",
+  "interior_parity_check": "Middle values -9 and 13: one negative one-digit, one positive two-digit; the key (33) is not interior.",
+  "arith_class_check": "All four options are odd integers; two negative, two positive. No parity, sign or multiple-of-k class the stem implies isolates the key.",
+  "dup_search": {
+   "queries": [
+    "q\\(x\\) ?\\+ ?\\d?x\\^2|q\\(x\\) ?\\+ ?\\d?x²",
+    "remainder&x\\^2|x²&divided by x\\^2|divided by x²",
+    "remainder&divided by"
+   ],
+   "hits_read": 68,
+   "nearest": "1ebdd0c5 / AM4-08: p divided by x^2 - 4 has remainder 3x + 1, find p(2) - the remainder is given correctly and evaluated at a zero of the divisor. 0a2fd8fa (ACT): two linear remainders give the remainder mod a quadratic. d5b3c3a5: divide a printed cubic by a quadratic. Here p is written as divisor times q plus a leftover of the SAME degree as the divisor, and the decision is that the leftover is not the remainder until the divisor is subtracted once."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Extreme (L) key: covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No - the stem gives no size for r(7); the most tempting error (using x^2 + x + 1 as is) gives 57, above the key, so a student cannot assume errors fall low. Nothing in the option set signals that the largest is correct. No (read) lines."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-R06",
+  "domain": "Advanced Math",
+  "subskill": "Rational function with no excluded values: count parameters",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = (x + 1)/(x^2 + bx + 49), where b is an integer. If f(x) is defined for every real number x, how many different values of b are possible?",
+  "choices": [
+   "15",
+   "19",
+   "27",
+   "195"
+  ],
+  "correct_answer": "27",
+  "explanation": "f(x) is undefined exactly where the denominator x^2 + bx + 49 equals 0. For f to be defined for every real x, the denominator can have no real zeros, so its discriminant must be negative: b^2 - 4(1)(49) < 0, that is, b^2 < 196, so -14 < b < 14. (At b = 14 or b = -14 the denominator is (x + 7)^2 or (x - 7)^2, which is 0 at one value of x, so those are excluded.) The integers strictly between -14 and 14 are -13, -12, ..., 13, which is 27 values.",
+  "solve": "let n = 0; for (let b = -500; b <= 500; b++) if (b*b - 4*49 < 0) n++; return String(n)",
+  "distractor_solve": {
+   "15": "let n = 0; for (let b = -500; b <= 500; b++) if (b*b < 4 + 49) n++; return String(n)",
+   "19": "let n = 0; for (let b = -500; b <= 500; b++) if (b*b < 2*49) n++; return String(n)",
+   "195": "let n = 0; for (let b = -500; b <= 500; b++) if (Math.abs(b) < 196/2) n++; return String(n)"
+  },
+  "mechanism": [
+   "excluded values are zeros of the denominator",
+   "no real zeros means negative discriminant",
+   "count integers in the open interval"
+  ],
+  "quantity_asked": "the number of integer values of b for which f has no excluded values",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "verify": "return false",
+   "why": "The ask is a count of parameter values. An option such as 27 cannot be substituted into f or the denominator; checking it requires finding the whole interval of b, which is the solution."
+  },
+  "distractor_meta": {
+   "15": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Writes the discriminant condition with 4 + 49 in place of 4(49), so b^2 < 53 and |b| <= 7; whether this enlarges or shrinks the interval is not signalled by the stem."
+   },
+   "19": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Drops a factor of 2 from 4ac, using b^2 < 2(49) = 98, so |b| <= 9; the stem gives no hint of which side of the key this lands on."
+   },
+   "195": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reaches b^2 < 196 and then halves instead of taking the square root, |b| < 98; nothing printed caps the count."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "Properties the stem hands over: the answer is a count (positive integer: all four survive); the condition depends on b^2, so valid b come in +/- pairs plus b = 0, which makes the count odd (15, 19, 27 and 195 are all odd, all survive); no cap on b is printed (195 survives). All four survive together.",
+  "interior_parity_check": "Middle values 19 and 27: both two-digit odd integers, same display form; the key 27 is not the cleaner one.",
+  "arith_class_check": "All four options are odd positive integers. 15, 27 and 195 are multiples of 3, 19 is not (a distractor). No class the stem implies singles out the key.",
+  "dup_search": {
+   "queries": [
+    "defined for (all|every) real|undefined for|is undefined|not defined",
+    "how many integer&p\\(x\\)|f\\(x\\)&negative|< ?0|> ?0",
+    "/ ?\\(x ?[-+] ?\\d+\\)"
+   ],
+   "hits_read": 70,
+   "nearest": "bfce3145 / SADVB-05: sum of the excluded values of a printed rational expression (factor the denominators). 20376e86: removable discontinuity value. Here the denominator has a parameter and the ask counts the integer parameters that leave NO excluded value, via the discriminant; no live or prior item counts parameters for an empty excluded set."
+  },
+  "self_audit": {
+   "risk": "low",
+   "note": "A test-wise student might use the +/- symmetry of b to require an odd count; all four options are odd, so that strikes nothing. Upper-interior key (try 3 ascending). The boundary case b = +/-14 is the natural slip but would give 29, which is not offered; the offered errors come from mis-forming the discriminant (4 + 49, 2ac) and from halving instead of square-rooting. No (read) lines."
+  },
+  "bounds": []
+ }
+]

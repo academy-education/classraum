@@ -13,5 +13,9 @@ bad=0
 node $S/math-bank-helper.mjs verify $T/one.json 2>&1 | tail -4; [[ ${pipestatus[1]} -eq 0 ]] || bad=1
 node $S/mf28-slots.mjs $T/one.json 2>&1 | tail -3; [[ ${pipestatus[1]} -eq 0 ]] || bad=1
 node $S/mf28-checks.mjs $T/one.json 2>&1 | grep -v '^selftest'; [[ ${pipestatus[1]} -eq 0 ]] || bad=1
+# added 2026-10-09 after the first returns (P, Q): two pre-flight gates authors could not see per item
+set -a; source .env.local; set +a
+node $S/check-math-near-dup.mjs $T/one.json --family sat 2>&1 | grep -E 'FLAG|best'; [[ ${pipestatus[1]} -eq 0 ]] || bad=1
+node $S/check-interior-niceness.mjs $T/one.json 2>&1 | grep -E 'KEY-CLEANER|parity [a-z]|complement|denominator' | grep -vE 'violations|pairs|singling' && bad=1
 rm -rf $T
 echo "PART $([[ $bad -eq 0 ]] && echo OK || echo FAIL) $P"; exit $bad

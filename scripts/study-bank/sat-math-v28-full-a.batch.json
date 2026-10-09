@@ -1,0 +1,772 @@
+[
+ {
+  "id": "SM28F-A01",
+  "domain": "Algebra",
+  "subskill": "Linear equation from a change in a rectangle's perimeter",
+  "difficulty": "medium",
+  "prompt": "The length of a rectangular garden bed is 1 foot more than twice its width. The bed is redesigned: its length is decreased by 4 feet and its width is tripled. The perimeter of the redesigned bed is 28 feet greater than the perimeter of the original bed. What is the area, in square feet, of the original bed?",
+  "choices": [
+   "55",
+   "136",
+   "171",
+   "528"
+  ],
+  "correct_answer": "171",
+  "explanation": "Let w be the original width in feet. The original length is 2w + 1, so the original perimeter is 2(w + 2w + 1) = 6w + 2.\nThe redesigned bed has length 2w + 1 - 4 = 2w - 3 and width 3w, so its perimeter is 2(2w - 3 + 3w) = 10w - 6.\nThe redesigned perimeter is 28 feet greater: 10w - 6 = 6w + 2 + 28, so 4w = 36 and w = 9.\nThe original bed is 9 feet wide and 2(9) + 1 = 19 feet long, so its area is 9 x 19 = 171 square feet.\n\nChoice 55 comes from increasing the length by 4 instead of decreasing it: 10w + 10 = 6w + 30 gives w = 5 and an area of 5 x 11.\nChoice 136 comes from subtracting the 4 feet from the redesigned perimeter instead of from the length: 2(5w + 1) - 4 = 6w + 30 gives w = 8 and an area of 8 x 17.\nChoice 528 comes from using length + width in place of the perimeter: (5w - 3) - (3w + 1) = 28 gives w = 16 and an area of 16 x 33.",
+  "solve": "const q=1,a=4,m=3,inc=28; const w=(inc+2*a)/(2*(m-1)); return w*(2*w+q);",
+  "distractor_solve": {
+   "55": "const q=1,a=4,m=3,inc=28; const w=(inc-2*a)/(2*(m-1)); return w*(2*w+q);",
+   "136": "const q=1,a=4,m=3,inc=28; const w=(inc+a)/(2*(m-1)); return w*(2*w+q);",
+   "528": "const q=1,a=4,m=3,inc=28; const w=(inc+a)/(m-1); return w*(2*w+q);"
+  },
+  "mechanism": [
+   "express both perimeters in the original width",
+   "set the difference of the perimeters equal to a stated amount and solve the linear equation",
+   "use the width to compute the original area"
+  ],
+  "quantity_asked": "the area of the original rectangle",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is an area. To test it a student must first factor it as w(2w + 1) to recover a width (a quadratic, not a substitution) and then build and compare two perimeters. Every option factors this way with a whole-number width (5, 8, 9, 16), so the factoring does not single out the key; and the key sits at try 3 in ascending order in any case."
+  },
+  "distractor_meta": {
+   "55": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Adding the 4 feet to the length instead of subtracting it makes the redesigned perimeter larger for every width, so the stated 28-foot gap is reached at a smaller width; the stem gives no hint that a slip in that term shrinks rather than grows the answer."
+   },
+   "136": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Taking 4 off the perimeter rather than off the length removes only 4 feet instead of 8, giving a width one less than the key; whether that lands above or below is not readable without doing the algebra."
+   },
+   "528": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the factor 2 from both perimeters halves the coefficient of w, so the same 28-foot gap needs twice the width; nothing in the stem signals the direction."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the area is positive; it is width x (2 x width + 1) for some positive width (all four options are, with widths 5, 8, 9 and 16); a test-wise belief that dimensions are whole numbers keeps all four. No monotonic, sign or cap property removes any option, so all four survive together.",
+  "interior_parity_check": "The middle values are 136 and 171: both three-digit integers with no rounder status (neither is a multiple of 5 or 10). The key 171 is not the cleaner of the two.",
+  "arith_class_check": "No class the stem implies isolates the key. Parity: 55 and 171 odd, 136 and 528 even. Sign and integrality: all positive integers. All four are of the form w(2w + 1) with whole w. Multiples of 8: 136 and 528; of 11: 55 and 528. The key 171 is the only multiple of 9, but nothing in the stem makes the area a multiple of 9.",
+  "dup_search": {
+   "queries": [
+    "length&more than (twice|three times)&width",
+    "rectangle&tripled|doubled",
+    "perimeter&increases? by|decreases? by",
+    "perimeter&increased|doubled|tripled|longer"
+   ],
+   "hits_read": 11,
+   "nearest": "bfa27a05 (SSAT) and 604b3eff / ca207778 / ALG-H4-22 give ONE perimeter of a rectangle whose length is a stated multiple of its width plus a constant and ask for a side or the area: a single perimeter equation. This item never gives a perimeter: it changes both dimensions and states only the DIFFERENCE between the new and old perimeters, so the equation is new perimeter = old perimeter + 28 in one unknown. No hit compares two perimeters; the queries for a redesign (tripled / doubled / increases by) returned 0."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student might try to factor each option as w(2w + 1) and keep only those with whole-number widths; all four pass (5, 8, 9, 16), so this strikes nothing. Checking an option against the stem means recovering w from a quadratic and then computing two perimeters, which is not a one-step substitution, and the key is the third value in ascending order. The largest option (528) is a visible outlier at about 3 times the key; it is the natural length-plus-width error and is wrong for a reason, but a student who distrusts outliers still has three options left. The two middle values differ by one in width (8 vs 9), so neither looks cleaner."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-A02",
+  "domain": "Algebra",
+  "subskill": "Number trick: parameter making a linear expression constant",
+  "difficulty": "medium",
+  "prompt": "Lina gives her friends these instructions.\n\nPick any number. Add 8 to it. Multiply the sum by a. Subtract 10 from the product. Divide the result by 2. Finally, subtract 4 times the number you picked.\n\nIn the instructions, a is a constant. Lina chose a so that the final result is the same number no matter which number is picked. What is that final result?",
+  "choices": [
+   "-1",
+   "8",
+   "11",
+   "27"
+  ],
+  "correct_answer": "27",
+  "explanation": "Let n be the number picked. The steps give n + 8, then a(n + 8) = an + 8a, then an + 8a - 10, then (an + 8a - 10)/2 = (a/2)n + 4a - 5, and finally (a/2)n + 4a - 5 - 4n = (a/2 - 4)n + 4a - 5.\nThe result is the same for every n only if the coefficient of n is 0: a/2 - 4 = 0, so a = 8.\nThen the final result is 4(8) - 5 = 27.\n\nChoice -1 comes from multiplying only n by a, not the whole sum: (an + 8 - 10)/2 - 4n = (a/2 - 4)n - 1, so the result would be -1.\nChoice 8 is the value of the constant a, not the final result.\nChoice 11 comes from dividing only the constant terms by 2: an + 4a - 5 - 4n is constant when a = 4, which gives 4(4) - 5 = 11.",
+  "solve": "const p=8,r=10,d=2,s=4; const a=s*d; return (a*p-r)/d;",
+  "distractor_solve": {
+   "8": "const p=8,r=10,d=2,s=4; return s*d;",
+   "11": "const p=8,r=10,d=2,s=4; const a=s; return (a*p-r)/d;",
+   "-1": "const p=8,r=10,d=2,s=4; return (p-r)/d;"
+  },
+  "mechanism": [
+   "translate a chain of operations into one linear expression in n",
+   "set the coefficient of n to zero (true for every n) to find the parameter",
+   "evaluate the remaining constant term"
+  ],
+  "quantity_asked": "the constant final result of the number trick",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is the final result, which depends on the unknown constant a; a student cannot test an option against the instructions without first finding a from the condition that n drops out, which is the whole problem. Picking n = 0 alone gives (8a - 10)/2, still in terms of a. The key is the largest option, reached at try 4 in ascending order."
+  },
+  "distractor_meta": {
+   "8": {
+    "error_kind": "partial_answer",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Stopping at the parameter a; the stem gives no relation between the size of a and the size of the final result."
+   },
+   "11": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dividing only the constants by 2 halves the needed value of a, and the result 4a - 5 falls with it; the opposite slip, dividing the n-term but not the constant (counter_error), lands above the key at 54, so the stem does not fix a side."
+   },
+   "-1": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Failing to distribute a over the sum loses the 8a term entirely; whether that lowers or raises the result depends on the sign of a, which the stem does not give."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const p=8,r=10,d=2,s=4; const a=s*d; return a*p-r;",
+   "direction": "above",
+   "why": "Finding a = 8 correctly but forgetting to divide the constant part by 2 gives 8(8) - 10 = 54, above the key. A sign slip on the subtracted 10 (adding it) gives 4(8) + 5 = 37, also above."
+  },
+  "cheap_bound_check": "The cheapest one-sided reading: with n = 0 the result is (8a - 10)/2 = 4a - 5, which is above any option only if a is large; the stem does not bound a, so no option is struck by a bound without solving. The no-division error (54) and the sign error on the 10 (37) are natural errors that land above the key, so the errors do not all fall on one side.",
+  "shape_check": "The stem hands over no sign, integrality or monotonic property of the final result: it could be any real number. The options are -1 (negative) and 8, 11, 27 (positive integers); nothing makes a negative result illegal and nothing requires an integer, so all four survive together.",
+  "interior_parity_check": "The key is the largest value, not interior. The middle values 8 and 11 are both small positive integers.",
+  "arith_class_check": "No. Parity: -1, 11, 27 odd and 8 even, so the key shares its parity. Sign: -1 negative, three positive. The key is not alone as a multiple of anything the stem implies (27 = 3^3; nothing in the stem implies a multiple of 3 or 9).",
+  "dup_search": {
+   "queries": [
+    "think of|any number|every (starting|number|value)|always (gives|equals|the same)|regardless",
+    "pick|picks|chooses? (any|a) number",
+    "no matter|regardless|whatever number",
+    "same (result|number|value) for every|for every (number|choice)",
+    "infinitely many&value of a \\+ b|value of a - b|value of ab|a \\+ b\\?"
+   ],
+   "hits_read": 76,
+   "nearest": "9c7a8433 / SADV5C-09 (an expression equal to the same number c for every x, find c) is the closest idea, but it is a QUADRATIC product expansion in Advanced Math with the constant k already inside the expression. The linear 'infinitely many solutions' items (6f03b20d, SALG6C-04, SALG5C-08, SM12L-12) match coefficients of a printed equation and ask for a + b, b or c. Here nothing is printed as an equation: the student must build the expression from six verbal operations (where the distribution of a over the sum and the division of every term are the traps), then use the vanishing coefficient. No hit is a number trick."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the result 4a - 5 grows with a, and the natural slips move a both ways (dividing only the constants halves a and lowers the result; forgetting to halve the constant, or adding the 10, raises it to 54 or 37). A student might guess that 8 is the parameter and strike it, leaving three. The checker's one (read) line, key 27 minus option 11 = 16 = 2 x the printed 8, is structural: both values are 4a - 5, with a = 8 and with the halved a = 4, so they differ by 4 x 4 = 16; a student cannot see that without solving for a, 16 is not printed, and no option equals the key combined with a printed number by one operation."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-A03",
+  "domain": "Algebra",
+  "subskill": "Same volume at two rates with a time gap, then whole containers",
+  "difficulty": "medium",
+  "prompt": "Hose A fills an empty cistern at a constant rate of 12 gallons per minute. Hose B fills the same empty cistern at a constant rate of 15 gallons per minute and takes 20 minutes less than hose A to fill it. All the water in the full cistern is then poured into barrels that each hold 35 gallons. How many barrels can be filled completely?",
+  "choices": [
+   "34",
+   "41",
+   "42",
+   "51"
+  ],
+  "correct_answer": "34",
+  "explanation": "Let t be the number of minutes hose A takes to fill the cistern. Hose B takes t - 20 minutes, and both fill the same volume, so 12t = 15(t - 20).\nThen 12t = 15t - 300, so 3t = 300 and t = 100. The cistern holds 12(100) = 1,200 gallons.\n1,200 / 35 = 34 2/7, so 34 barrels can be filled completely (34 x 35 = 1,190 gallons, with 10 gallons left over).\n\nChoice 41 comes from taking 100 minutes as hose B's time, so hose A's time is 120 minutes and the volume is 12(120) = 1,440 gallons; 1,440 / 35 = 41.1.\nChoice 42 comes from pairing hose B's rate with hose A's time: 15(100) = 1,500 gallons; 1,500 / 35 = 42.9.\nChoice 51 comes from adding the 20 minutes to hose B's time instead of subtracting it: 15(100 + 20) = 1,800 gallons; 1,800 / 35 = 51.4.",
+  "solve": "const ra=12,rb=15,s=20,b=35; const t=rb*s/(rb-ra); return Math.floor(ra*t/b);",
+  "distractor_solve": {
+   "41": "const ra=12,rb=15,s=20,b=35; const t=rb*s/(rb-ra); return Math.floor(ra*(t+s)/b);",
+   "42": "const ra=12,rb=15,s=20,b=35; const t=rb*s/(rb-ra); return Math.floor(rb*t/b);",
+   "51": "const ra=12,rb=15,s=20,b=35; const t=rb*s/(rb-ra); return Math.floor(rb*(t+s)/b);"
+  },
+  "mechanism": [
+   "express one volume two ways: rate A times its time, rate B times (that time minus a gap)",
+   "solve the linear equation for the time and get the volume",
+   "divide the volume by a container size and keep only whole containers"
+  ],
+  "quantity_asked": "the number of 35-gallon barrels the full cistern fills completely",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a whole-barrel count, which does not determine the volume: 34 barrels fits any cistern from 1,190 up to 1,224 gallons. Going back from an option gives a range, not a value, so it cannot be compared with the 12-versus-15 rates and the 20-minute gap without solving 12t = 15(t - 20) first."
+  },
+  "distractor_meta": {
+   "41": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Attaching the solved 100 minutes to the wrong hose moves the volume; attaching 80 to hose A instead (12 x 80 = 960) lowers it, and the stem does not say which mix-up a student makes."
+   },
+   "42": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Pairing a rate with the other hose's time can go either way (15 x 100 above, 12 x 80 below); nothing in the stem favours one side."
+   },
+   "51": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Adding the gap instead of subtracting it is a direction slip whose effect depends on which time it is applied to (subtracting it from A's time gives 12 x 80, below); the stem does not reveal the side."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_variable",
+   "solve": "const ra=12,rb=15,s=20,b=35; const t=rb*s/(rb-ra); return Math.floor(ra*(t-s)/b);",
+   "direction": "below",
+   "why": "Pairing hose A's rate with hose B's 80 minutes gives 960 gallons and 27 barrels, below the key."
+  },
+  "cheap_bound_check": "No bound on the barrel count is readable from the stem: the volume is not printed, and the rates and gap give no one-sided limit without solving. Slips split: a rate-time mix-up gives 960 gallons (27 barrels, below); the others shown give 1,440 to 1,800 gallons (above).",
+  "shape_check": "The stem hands over: the count is a positive whole number. All four options are positive integers; all four survive together.",
+  "interior_parity_check": "Key is the smallest value, not interior. The middle values 41 and 42 are both two-digit integers.",
+  "arith_class_check": "Even: 34 and 42; odd: 41 and 51. Multiples of 17: 34 and 51. The stem implies no class, and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "(minutes|hours|days) (less|fewer|sooner|earlier|shorter)",
+    "hose|pool|pump",
+    "how many (full|whole)",
+    "barrels|containers&(hold|each)"
+   ],
+   "hits_read": 77,
+   "nearest": "e97d0787 (ISEE medium): a route at 12 and 15 km/h with a 10-minute gap, asks the route length - the same first equation, but it stops at the total, which an option can be checked against. This item turns the volume into a whole-container count (a many-to-one step). The 'how many full / whole' hits (machine shifts, wire pieces, cases of bottles) divide a given or directly computed total; none gets the total from a same-volume, two-rate equation."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the rate-time mix-ups go both ways (960 gallons gives 27, below; 1,500 gives 42, above), and no bound from the stem limits the count. Could a student check an option against the stem in one routine step? No: a count of whole barrels fixes only a 35-gallon range of volumes, so an option cannot be run back to the time equation; the student has to solve it. (read) DPAIR none."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-A04",
+  "domain": "Algebra",
+  "subskill": "One unknown price from a linked-price purchase, then a new order",
+  "difficulty": "medium",
+  "prompt": "At a market stall, a bag of coffee beans costs 3 dollars more than twice the price of a box of tea. A customer pays 123 dollars for 5 bags of coffee beans and 2 boxes of tea. At these prices, what is the total cost, in dollars, of 4 bags of coffee beans and 1 box of tea?",
+  "choices": [
+   "57",
+   "81",
+   "93",
+   "102"
+  ],
+  "correct_answer": "93",
+  "explanation": "Let t be the price of a box of tea, in dollars. A bag of coffee beans costs 2t + 3.\nThe purchase gives 5(2t + 3) + 2t = 123, so 10t + 15 + 2t = 123, 12t = 108, and t = 9. A bag of coffee beans costs 2(9) + 3 = 21 dollars.\nThen 4 bags of coffee beans and 1 box of tea cost 4(21) + 9 = 84 + 9 = 93 dollars.\n\nChoice 57 comes from swapping the quantities in the new order: 1 bag of coffee beans and 4 boxes of tea cost 21 + 4(9) = 57.\nChoice 81 comes from reversing the price relationship, so that a box of tea costs 3 more than twice a bag of coffee beans: 5c + 2(2c + 3) = 123 gives c = 13 and tea at 29, and the new order costs 4(13) + 29 = 81.\nChoice 102 comes from multiplying only the 2t by 5 and not the 3: 10t + 3 + 2t = 123 gives t = 10 and coffee at 23, and the new order costs 4(23) + 10 = 102.",
+  "solve": "const m=2,c=3,a=5,b=2,T=123,u=4,v=1; const t=(T-a*c)/(a*m+b); const L=m*t+c; return u*L+v*t;",
+  "distractor_solve": {
+   "57": "const m=2,c=3,a=5,b=2,T=123,u=4,v=1; const t=(T-a*c)/(a*m+b); const L=m*t+c; return v*L+u*t;",
+   "81": "const m=2,c=3,a=5,b=2,T=123,u=4,v=1; const L=(T-b*c)/(a+b*m); const t=m*L+c; return u*L+v*t;",
+   "102": "const m=2,c=3,a=5,b=2,T=123,u=4,v=1; const t=(T-c)/(a*m+b); const L=m*t+c; return u*L+v*t;"
+  },
+  "mechanism": [
+   "write one price in terms of the other from a 'more than twice' relation",
+   "substitute into the purchase total and solve the one-variable equation",
+   "price a different order with both prices"
+  ],
+  "quantity_asked": "the cost of a different order (4 coffee, 1 tea)",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const t=(v-12)/9; const L=2*t+3; return Math.abs(5*L+2*t-123)<1e-9;",
+   "why": "A student can work backward from an option: the new order costs 4(2t + 3) + t = 9t + 12, so t = (v - 12)/9, and then check whether 5 coffee and 2 tea cost 123. That is a real check of two steps; in ascending order (57, 81, 93, 102) the key is reached at try 3."
+  },
+  "distractor_meta": {
+   "57": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Attaching the 4 to tea and the 1 to coffee lowers the total only because tea is the cheaper item, which the student does not know until both prices are found."
+   },
+   "81": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reversing which item is 'twice plus 3' changes both prices; the reversed tea price (29) is higher and the coffee price (13) lower, and the stem does not reveal which effect wins in the new order."
+   },
+   "102": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Not distributing the 5 over the +3 leaves more of the 123 for the variable terms, which raises both prices; nothing in the stem tells the student that this slip inflates rather than deflates the answer."
+   }
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: both prices positive; coffee costs more than twice tea, so 4 coffee + 1 tea costs more than 9 boxes of tea; the new order has 5 items versus 7 in the 123-dollar purchase. Each option gives a positive tea price under t = (v - 12)/9 (5, 7.67, 9, 10), and none exceeds 123, so all four survive the positivity and the 'cheaper than the 123-dollar purchase' readings together; whole-dollar prices would strike 81 only.",
+  "interior_parity_check": "The middle values are 81 and 93: both two-digit odd integers, neither rounder. The key 93 is not the cleaner one.",
+  "arith_class_check": "No. Parity: 57, 81, 93 odd and 102 even, so the key shares its parity. Multiples of 3: 57, 81, 93 and 102 are all multiples of 3. The key is in no singleton class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "more than twice the (price|cost)",
+    "costs? .* (more|less) than (twice|three times|half)",
+    "ticket&adult|child|student",
+    "coffee|tea"
+   ],
+   "hits_read": 85,
+   "nearest": "SM27F-A09 (notebooks at 2 dollars, binders at 5, '7 more notebooks than binders', total 126, spend on notebooks) links the COUNTS and knows both prices; here the counts are given and the PRICES are linked, so the unknown is a price and the asked quantity is a new order priced at both. 2b522a1b (SSAT) solves two prices from two purchase totals, a two-equation system. The 26 ticket hits are count-mixture problems with known prices. No hit links two prices by 'more than twice'."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "A test-wise student can back-solve: 9t + 12 = option gives t, then check 5(2t + 3) + 2t = 123. In ascending order the key is the third option tried; 81 gives a non-whole tea price, which a student who expects whole dollars could strike, leaving 57, 93, 102. The checker's one (read) line, 102 - 93 = 9 = 5 + 4, is a coincidence of the omission error raising t by exactly 1 (the new order then rises by 4 x 2 + 1 = 9); the student sees no reason to add 5 and 4, and 9 is not printed. No option equals the key combined with a printed number by one operation."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-A05",
+  "domain": "Algebra",
+  "subskill": "Seating two ways gives the table count, then a third seating",
+  "difficulty": "medium",
+  "prompt": "At a banquet, all the guests are to be seated at identical tables. If 6 guests sit at each table, 12 guests have no seat. If 8 guests sit at each table, every guest has a seat, 4 tables are left completely empty, and every other table is full. The guests are later moved to a larger hall, where they sit 7 to a table, filling each table before starting the next. How many tables in the larger hall are completely filled?",
+  "choices": [
+   "20",
+   "22",
+   "25",
+   "29"
+  ],
+  "correct_answer": "20",
+  "explanation": "Let t be the number of tables at the banquet. Seating 6 per table leaves 12 guests over, so there are 6t + 12 guests. Seating 8 per table fills t - 4 tables exactly, so there are 8(t - 4) guests.\nThen 6t + 12 = 8(t - 4), so 6t + 12 = 8t - 32, 2t = 44 and t = 22. There are 6(22) + 12 = 144 guests.\nIn the larger hall, 144 / 7 = 20 4/7, so 20 tables are completely filled (140 guests) and 4 guests sit at a 21st table.\n\nChoice 22 is the number of tables at the banquet, not the number filled in the larger hall.\nChoice 25 comes from counting 8 guests at every banquet table, ignoring the 4 empty tables: 8(22) = 176 guests and 176 / 7 = 25.1.\nChoice 29 comes from adding the 4 empty tables instead of subtracting them when counting the guests: 8(22 + 4) = 208 guests and 208 / 7 = 29.7.",
+  "solve": "const a=6,r=12,b=8,e=4,c=7; const t=(r+b*e)/(b-a); return Math.floor((a*t+r)/c);",
+  "distractor_solve": {
+   "22": "const a=6,r=12,b=8,e=4,c=7; return (r+b*e)/(b-a);",
+   "25": "const a=6,r=12,b=8,e=4,c=7; const t=(r+b*e)/(b-a); return Math.floor(b*t/c);",
+   "29": "const a=6,r=12,b=8,e=4,c=7; const t=(r+b*e)/(b-a); return Math.floor(b*(t+e)/c);"
+  },
+  "mechanism": [
+   "write the number of guests two ways from two seating arrangements (leftover guests, empty tables)",
+   "set the two expressions equal and solve the linear equation for the number of tables",
+   "compute the guests and count the tables a third seating fills completely"
+  ],
+  "quantity_asked": "the number of completely filled 7-seat tables",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a count of full tables, which does not determine the number of guests: 20 full tables of 7 fits any total from 140 to 146. From an option a student gets a range of guest counts, not the number of banquet tables, so nothing can be compared with the two seating conditions without solving 6t + 12 = 8(t - 4)."
+  },
+  "distractor_meta": {
+   "22": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Reporting the solved table count instead of the final count; whether that is more or fewer than the full 7-seat tables depends on the seat sizes, which the stem does not settle before solving."
+   },
+   "25": {
+    "error_kind": "omission",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Ignoring the empty tables overcounts the guests here; ignoring the 12 unseated guests in the other arrangement would undercount them, and the stem favours neither slip."
+   },
+   "29": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "The direction of the empty-table adjustment is a sign choice; subtracting the 12 leftover guests instead of adding them (the counter-error) lands below, so the stem does not reveal the side."
+   }
+  },
+  "counter_error": {
+   "error_kind": "sign_slip",
+   "solve": "const a=6,r=12,b=8,e=4,c=7; const t=(b*e-r)/(b-a); return Math.floor((a*t-r)/c);",
+   "direction": "below",
+   "why": "Treating the 12 unseated guests as 12 empty seats (6t - 12 = 8(t - 4)) gives t = 10, 48 guests and 6 full tables, below the key."
+  },
+  "cheap_bound_check": "No bound on the count is readable from the stem: the guest total is not printed, and the larger hall has no stated table limit. Slips split: subtracting the 12 leftover guests gives 6 tables (below); the slips shown give 22 to 29 (above).",
+  "shape_check": "The stem hands over: the count is a positive whole number. All four options are positive integers; all four survive together.",
+  "interior_parity_check": "Key is the smallest value, not interior. The middle values 22 and 25 are both two-digit integers.",
+  "arith_class_check": "Even: 20 and 22; odd: 25 and 29. Multiples of 5: 20 and 25. The stem implies no class, and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "tables?&(guests|seat)",
+    "(without|no) (a )?seat|empty (table|seat|bus|row)",
+    "short&(each|per person)|left over&each",
+    "how many (full|whole)"
+   ],
+   "hits_read": 15,
+   "nearest": "The two table hits are a linear-inequality table rental (two table types, cost cap) and a circular-seating count; neither writes one total two ways from leftover guests and empty tables. The 'how many full / whole' hits divide a printed or directly computed total. No live or prior item uses the two-seating equation."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the sign of each adjustment (12 guests over, 4 tables empty) can be slipped either way, and the slip on the leftover guests gives 6 full tables, below the key, while those shown land above; no bound from the stem limits the count. Could a student check an option against the stem in one routine step? No: a count of full tables fixes only a range of 7 guest totals and says nothing about the banquet's table count, so the equation has to be solved. (read) DPAIR differences 25 - 20 = 5 = 4 + 1 and 29 - 20 = 9 = 8 + 1: neither 5 nor 9 is a relation the stem suggests between a distractor and the key; they are differences of floors of guest totals divided by 7."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-A06",
+  "domain": "Algebra",
+  "subskill": "Two workers at different rates and unequal hours, then cans used",
+  "difficulty": "medium",
+  "prompt": "Ana and Ben painted a fence. Ana painted at a constant rate of 11 square meters per hour, and Ben painted at a constant rate of 9 square meters per hour. Ana worked 6 hours longer than Ben, and together they painted 206 square meters. Ben used paint from cans that each cover 4 square meters, opening a new can only after the previous one was empty. How many cans did Ben open?",
+  "choices": [
+   "16",
+   "18",
+   "21",
+   "23"
+  ],
+  "correct_answer": "16",
+  "explanation": "Let b be the number of hours Ben worked. Ana worked b + 6 hours, so 11(b + 6) + 9b = 206.\nThen 20b + 66 = 206, so 20b = 140 and b = 7. Ben painted 9(7) = 63 square meters.\n63 / 4 = 15.75, so 15 cans were not enough: Ben opened 16 cans (the 16th only partly used).\n\nChoice 18 comes from attaching the 6 extra hours to Ben's term: 11b + 9(b + 6) = 206 gives b = 7.6, and Ben's area is taken as 9(7.6) = 68.4, which needs 18 cans.\nChoice 21 comes from switching the two rates: 9(b + 6) + 11b = 206 gives b = 7.6, and Ben's area is then 11(7.6) = 83.6, which needs 21 cans.\nChoice 23 comes from writing 11(b + 6) as 11b + 6: 20b + 6 = 206 gives b = 10, an area of 90 and 23 cans.",
+  "solve": "const p=11,q=9,h=6,T=206,c=4; const b=(T-p*h)/(p+q); return Math.ceil(q*b/c);",
+  "distractor_solve": {
+   "18": "const p=11,q=9,h=6,T=206,c=4; const b=(T-q*h)/(p+q); return Math.ceil(q*b/c);",
+   "21": "const p=11,q=9,h=6,T=206,c=4; const b=(T-q*h)/(p+q); return Math.ceil(p*b/c);",
+   "23": "const p=11,q=9,h=6,T=206,c=4; const b=(T-h)/(p+q); return Math.ceil(q*b/c);"
+  },
+  "mechanism": [
+   "let one worker's hours be the variable and write the other's as hours plus a gap",
+   "set the sum of rate x time for both workers equal to the total and solve the linear equation",
+   "turn one worker's area into a whole number of containers, rounding up"
+  ],
+  "quantity_asked": "the number of 4-square-meter cans of paint Ben opened",
+  "ask_type": "count",
+  "plugback": {
+   "substitutable": false,
+   "verify": "",
+   "why": "An option is a count of cans opened, which does not determine Ben's area: 16 cans fits any area above 60 and up to 64 square meters, and so a range of hours. From an option a student gets an interval, not Ben's hours, so it cannot be run back to the 206-square-meter total without solving 11(b + 6) + 9b = 206."
+  },
+  "distractor_meta": {
+   "18": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Attaching the gap to the wrong worker changes the solved hours; whether Ben's area then rises or falls depends on which hours the student multiplies by 9, which the stem does not fix."
+   },
+   "21": {
+    "error_kind": "wrong_variable",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Swapping the rates moves the solved hours and the multiplier in opposite directions; which effect wins is not readable from the stem."
+   },
+   "23": {
+    "error_kind": "wrong_operation",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "Dropping the factor 11 on the 6 shrinks the subtracted constant; dropping the 9 from 9b instead would push the answer the other way, and the stem favours neither slip."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "const p=11,q=9,h=6,T=206,c=4; const b=(T-p*h)/(p+q); return Math.floor(q*b/c);",
+   "direction": "below",
+   "why": "Rounding 15.75 cans down to 15 (counting only the cans Ben emptied) gives a value below the key."
+  },
+  "cheap_bound_check": "The cheapest bound is that Ben, the slower worker who also worked fewer hours, painted less than half of 206 square meters, so at most 26 cans; a sharper one (equal hours would give him 9/20 of 206 = 92.7) caps him at 24 cans. Neither strikes any option. Slips split: rounding down gives 15 (below); the set-up slips shown land above.",
+  "shape_check": "The stem hands over: the count is a positive whole number, at most 26 (half the total) or 24 (equal-hours share). All four options are positive integers under both caps; all four survive together.",
+  "interior_parity_check": "Key is the smallest value, not interior. The middle values 18 and 21 are both two-digit integers.",
+  "arith_class_check": "Even: 16 and 18; odd: 21 and 23. Multiples of 3: 18 and 21. The stem implies no class, and the key is alone in none.",
+  "dup_search": {
+   "queries": [
+    "(hours|minutes) (longer|more) than&(together|in all|combined|total)",
+    "worked&longer",
+    "(cans?|gallons?) of paint&(covers?|square)",
+    "rate&together&(square|total)"
+   ],
+   "hits_read": 7,
+   "nearest": "No live or prior item uses two workers at different rates with a stated gap in hours and a combined total. The one paint-coverage hit (a cylindrical tank's painted area in gallons) gets the area from geometry, not a linear equation. A03 (this author) also ends in whole containers, but its volume comes from one volume at two rates with a time gap and the count rounds down; here the area comes from two contributions summing to a total and the count rounds up."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: rounding down gives 15, below the key, while the set-up slips shown land above; neither the half-of-the-total nor the equal-hours cap strikes any option. Could a student check an option against the stem in one routine step? No: a can count fixes only a 4-square-meter range of Ben's area, so the equation has to be solved. 18 and 21 both come from the same wrong hours (7.6) multiplied by 9 and by 11; that pair relates two distractors to each other, not either to the key. (read) DPAIR differences 21 - 16 = 5 = 4 + 1 and 23 - 16 = 7 = 6 + 1: differences of rounded-up can counts; no stem relation suggests adding 5 or 7 cans to the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-A07",
+  "domain": "Algebra",
+  "subskill": "Pan balance with two related unknown weights",
+  "difficulty": "medium",
+  "prompt": "On a pan balance, the left pan holds 2 identical bags of rice and a 500-gram weight, and the right pan holds 6 identical bags of beans and a 100-gram weight. Each bag of beans weighs 60 grams less than each bag of rice, and the balance is level. What is the total weight, in grams, on the left pan?",
+  "choices": [
+   "520",
+   "620",
+   "730",
+   "880"
+  ],
+  "correct_answer": "880",
+  "explanation": "Let r be the weight, in grams, of one bag of rice. A bag of beans weighs r - 60 grams. The pans are level, so their total weights are equal: 2r + 500 = 6(r - 60) + 100.\nThen 2r + 500 = 6r - 360 + 100 = 6r - 260, so 4r = 760 and r = 190.\nThe left pan holds 2(190) + 500 = 880 grams. (Check: the right pan holds 6(130) + 100 = 880 grams.)\n\nChoice 520 comes from making each bag of beans 60 grams heavier instead of lighter: 2r + 500 = 6(r + 60) + 100 gives 4r = 40, r = 10 and a left pan of 520 grams.\nChoice 620 comes from moving 500 to the right side with the wrong sign: 4r = 500 - 260 = 240 gives r = 60 and a left pan of 620 grams.\nChoice 730 comes from writing 6(r - 60) as 6r - 60: 2r + 500 = 6r + 40 gives r = 115 and a left pan of 730 grams.",
+  "solve": "const m=2,w1=500,n=6,w2=100,dd=60; const r=(w1+n*dd-w2)/(n-m); return m*r+w1;",
+  "distractor_solve": {
+   "520": "const m=2,w1=500,n=6,w2=100,dd=60; const r=(w1-n*dd-w2)/(n-m); return m*r+w1;",
+   "620": "const m=2,w1=500,n=6,w2=100,dd=60; const c=n*dd-w2; const r=(w1-c)/(n-m); return m*r+w1;",
+   "730": "const m=2,w1=500,n=6,w2=100,dd=60; const r=(w1+dd-w2)/(n-m); return m*r+w1;"
+  },
+  "mechanism": [
+   "write one unknown weight in terms of the other from a 'less than' relation",
+   "set the totals of the two pans equal and solve the linear equation",
+   "evaluate one pan's total from the solved weight"
+  ],
+  "quantity_asked": "the total weight on the left pan, in grams",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const r=(v-500)/2; return Math.abs(6*(r-60)+100-v) < 1e-9;",
+   "why": "From an option a student can recover the rice bag (subtract 500, halve), price the right pan and compare. That is a forward check of a few steps; in ascending order the key, 880, is the fourth and last option tried."
+  },
+  "distractor_meta": {
+   "520": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reversing 'less than' changes the bean weight by 120 grams per bag; whether that raises or lowers the solved rice weight depends on which pan holds more bags, which a student has to work out."
+   },
+   "620": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Moving 500 across with the wrong sign shrinks the solved weight here; moving the 260 with the wrong sign instead would enlarge it, and the stem does not say which term a student mishandles."
+   },
+   "730": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A partial distribution changes the constant on the right pan; the direction of its effect on r depends on the sign of the final r-coefficient, known only after collecting terms."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const m=2,w1=500,n=6,w2=100,dd=60; const r=(w1+n*dd-w2)/(n-m); return 2*(m*r+w1);",
+   "direction": "above",
+   "why": "Answering with the total weight on the whole balance (both pans, 1,760 grams) instead of the left pan lands above the key."
+  },
+  "cheap_bound_check": "The cheapest bound is that the left pan holds at least its 500-gram weight, so the total exceeds 500; every option exceeds 500, so it strikes nothing. Slips split: reporting both pans (1,760) lands above; the slips shown land below.",
+  "shape_check": "The stem hands over: the total is positive and more than 500 grams (the printed weight on the left pan). All four options exceed 500; all four survive together.",
+  "interior_parity_check": "Key is the largest value, not interior. The middle values 620 and 730 are both three-digit multiples of 10.",
+  "arith_class_check": "All four are multiples of 10; 520, 620 and 880 are multiples of 20 and 730 is not. The key shares every class with at least one distractor; the stem implies none.",
+  "dup_search": {
+   "queries": [
+    "balances|balanced|pan|scale&(grams?|weights?)",
+    "identical (boxes|bags|weights|marbles|blocks)",
+    "lever|pivot|balance",
+    "(times as many|times as much|twice as many)"
+   ],
+   "hits_read": 33,
+   "nearest": "SM27F-C12 / 93023ba0 (the plank on a pivot) balances mass x distance with two crates at two positions - a system, with distances. No live or prior item puts identical unknown objects and fixed weights on two pans with one weight given relative to the other. A04 (this author) prices two items from a 'more than twice' relation and a purchase TOTAL, then prices a new order; here the equation sets two sides equal (no total is printed), and the ask is one side's weight."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: reporting both pans (1,760) lands above the key, while the 'less than' sign slip, a transposition sign slip and a partial distribution land below; the only free bound (more than 500 g) strikes nothing. Could a student check an option against the stem? Yes, in a few steps; the item declares it substitutable, and the key is the last option in ascending order."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-A08",
+  "domain": "Algebra",
+  "subskill": "Two equations sharing a constant, solutions linked by a relation",
+  "difficulty": "hard",
+  "prompt": "6x - 2k = 4x + 6\n4x + k = 38\n\nIn the two equations above, k is the same constant. The solution to the first equation is 1 less than 2 times the solution to the second equation. What is the solution to the first equation?",
+  "choices": [
+   "5",
+   "10",
+   "13",
+   "33"
+  ],
+  "correct_answer": "13",
+  "explanation": "Solve each equation for x in terms of k.\nFirst equation: 6x - 4x = 6 + 2k, so 2x = 6 + 2k and x = 3 + k.\nSecond equation: 4x = 38 - k, so x = (38 - k)/4.\nThe first solution is 1 less than 2 times the second: 3 + k = 2(38 - k)/4 - 1 = (38 - k)/2 - 1.\nMultiply by 2: 6 + 2k = 38 - k - 2, so 3k = 30 and k = 10.\nThe solution to the first equation is 3 + 10 = 13. (Check: the second equation gives x = 28/4 = 7, and 2(7) - 1 = 13.)\n\nChoice 5 comes from applying the relation the other way round, making the second solution 1 less than 2 times the first: (38 - k)/4 = 2(3 + k) - 1 gives k = 2 and a first solution of 5.\nChoice 10 is the value of k, not the solution to the first equation.\nChoice 33 comes from moving -2k to the right side without changing its sign, so x = 3 - k: then 3 - k = (38 - k)/2 - 1 gives k = -30 and x = 33.",
+  "solve": "const c1=6,D=2,r=4,c2=38,m=2,g=1; const k=(m*c2/r-g-c1/D)/(2/D+m/r); return c1/D+2*k/D;",
+  "distractor_solve": {
+   "5": "const c1=6,D=2,r=4,c2=38,m=2,g=1; const k=(c2/r-m*c1/D+g)/(m*2/D+1/r); return Math.round((c1/D+2*k/D)*1e9)/1e9;",
+   "10": "const c1=6,D=2,r=4,c2=38,m=2,g=1; return Math.round((m*c2/r-g-c1/D)/(2/D+m/r)*1e9)/1e9;",
+   "33": "const c1=6,D=2,r=4,c2=38,m=2,g=1; const k=(m*c2/r-g-c1/D)/(-2/D+m/r); return Math.round((c1/D-2*k/D)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "solve each of two linear equations for x in terms of a shared constant",
+   "translate a stated relation between the two solutions into one linear equation in the constant",
+   "solve for the constant and evaluate the requested solution"
+  ],
+  "quantity_asked": "the solution to the first equation",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const k=v-3; const x2=(38-k)/4; return Math.abs(2*x2-1-v) < 1e-9;",
+   "why": "From an option a student can recover k from the first equation, solve the second equation and test the relation: three steps. The item declares it substitutable; in ascending order the key, 13, is the third option tried."
+  },
+  "distractor_meta": {
+   "5": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Attaching the relation to the wrong solution changes k in a direction that depends on both equations' coefficients; the stem does not reveal it."
+   },
+   "10": {
+    "error_kind": "wrong_variable",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Reporting k instead of x; the stem gives no hint whether the constant is larger or smaller than the solution."
+   },
+   "33": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A sign slip on the k-term reverses how the first solution moves with k; whether the result lands above or below depends on the second equation."
+   }
+  },
+  "counter_error": {
+   "error_kind": "omission",
+   "solve": "const k=(2*38-1-3)/3; return 3+k;",
+   "direction": "above",
+   "why": "Dropping the 4 when solving the second equation (x = 38 - k, then 3 + k = 2(38 - k) - 1) gives k = 24 and x = 27; recorded for the error spread, not an option."
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: a single real solution; nothing makes it positive, an integer or bounded. All four options are positive integers; all four survive together.",
+  "interior_parity_check": "The middle values 10 and 13 are both two-digit integers; the key is not the cleaner one (10 is rounder).",
+  "arith_class_check": "Odd: 5, 13, 33; even: 10. The odd one out is a distractor (10), and the stem implies no parity. Multiples of 5: 5 and 10. The key is alone in no class.",
+  "dup_search": {
+   "queries": [
+    "(solutions?|solution) (of|to) (both|each|the two) equations?",
+    "solution (of|to) the (first|second|other) equation|times the solution|greater than the solution",
+    "solution&(increase|decrease)",
+    "same solution",
+    "e226cf9e (near-dup gate best match)"
+   ],
+   "hits_read": 6,
+   "nearest": "e226cf9e (live, sat-math-v27-algfull): two equations satisfied by the same x - the first has no constant, so it is solved outright and its x substituted into the second to find k (the stated-solution chain). Here k sits in BOTH equations, so neither can be solved to a number: both solutions must be written in terms of k and joined by a relation (2x - 1), giving an equation in k. The 'solution&increase' hits relate two solutions of ONE equation under a change of k. No live or prior item links two k-dependent solutions through a stated relation."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key. Could a student check an option against the stem in one routine step? Not in one: an option gives k from the first equation, then the second equation must be solved and the relation tested; the item declares it substitutable and the key is third in ascending order. The two lower options come from reading the relation backwards and from stopping at k, the upper from a sign slip, so position does not mark the key. The decision point is writing BOTH solutions in terms of k before the relation can be used; Desmos does not set this up. (read) PAIR 13 - 5 = 8 = 2 x 4, DPAIR 13 - 5 = 8 = 6 + 2 and 13 - 10 = 3 = 4 - 1: differences between the key and two distractors; none is a relation the stem suggests (the stem's relation is 2x - 1 between the two SOLUTIONS, and no option is the second solution, 7)."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-A09",
+  "domain": "Algebra",
+  "subskill": "Parameter from a no-solution condition, then a second equation",
+  "difficulty": "medium",
+  "prompt": "2(kx - 3) - 3x = 13x + 4\n2(kx - 3) - 3x = kx + 45\n\nThe constant k is chosen so that no real number x makes the first equation true. Using this same k, what real number x makes the second equation true?",
+  "choices": [
+   "7.8",
+   "9.6",
+   "10.2",
+   "25.5"
+  ],
+  "correct_answer": "10.2",
+  "explanation": "The left side is 2kx - 6 - 3x = (2k - 3)x - 6. No x satisfies a linear equation when the x-coefficients on the two sides are equal and the constants differ, so 2k - 3 = 13 and k = 8 (the constants -6 and 4 differ).\nWith k = 8 the second equation is 16x - 6 - 3x = 8x + 45, so 13x - 6 = 8x + 45, 5x = 51 and x = 10.2.\n\nChoice 7.8 comes from moving -6 to the right side as -6 instead of +6: 5x = 45 - 6 = 39 gives x = 7.8.\nChoice 9.6 comes from distributing the 2 only to kx, writing 2kx - 3: 13x - 3 = 8x + 45 gives x = 9.6.\nChoice 25.5 comes from moving -3x to the right side without changing its sign when finding k: 2k = 13 - 3 gives k = 5, and then 7x - 6 = 5x + 45 gives x = 25.5.",
+  "solve": "const a=2,b=3,c=3,d=13,f=45; const k=(d+c)/a; return Math.round((f+a*b)/(a*k-c-k)*1e9)/1e9;",
+  "distractor_solve": {
+   "7.8": "const a=2,b=3,c=3,d=13,f=45; const k=(d+c)/a; return Math.round((f-a*b)/(a*k-c-k)*1e9)/1e9;",
+   "9.6": "const a=2,b=3,c=3,d=13,f=45; const k=(d+c)/a; return Math.round((f+b)/(a*k-c-k)*1e9)/1e9;",
+   "25.5": "const a=2,b=3,c=3,d=13,f=45; const k=(d-c)/a; return Math.round((f+a*b)/(a*k-c-k)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "collect the x-terms of a distributed linear equation with a parameter",
+   "set the x-coefficients equal (constants unequal) for no solution to find the parameter",
+   "use the parameter in a second linear equation, with the parameter on both sides, and solve for x"
+  ],
+  "quantity_asked": "the solution x of the second equation",
+  "ask_type": "value-of-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const k=8; return Math.abs(2*(k*v-3)-3*v-(k*v+45)) < 1e-9;",
+   "why": "Once k = 8 is found from the no-solution condition, a student can substitute an option into the second equation. The first step cannot be skipped by substitution (no option is k), and in ascending order the key, 10.2, is the third option tried."
+  },
+  "distractor_meta": {
+   "7.8": {
+    "error_kind": "sign_slip",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Moving the -6 with the wrong sign changes the constant by 12; whether that raises or lowers x depends on the side the student moves it to, which the stem does not fix."
+   },
+   "9.6": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "A partial distribution changes the constant from -6 to -3; the direction of its effect on x depends on the sign of the final x-coefficient, known only after k is found."
+   },
+   "25.5": {
+    "error_kind": "sign_slip",
+    "direction": "above",
+    "stem_predicts_direction": false,
+    "why": "A wrong k changes the coefficient of x in the second equation (k appears on both sides), so the solution can move either way; here the smaller k shrinks the coefficient and enlarges x."
+   }
+  },
+  "counter_error": {
+   "error_kind": "other",
+   "solve": "const a=2,b=3,c=3,d=13,f=45; const k=d+c; return Math.round((f+a*b)/(a*k-c-k)*1e9)/1e9;",
+   "direction": "below",
+   "why": "Forgetting the 2 in front of k when matching coefficients (k - 3 = 13, k = 16) gives 13x = 51 and x of about 3.92; recorded for the error spread."
+  },
+  "cheap_bound_check": "interior key",
+  "shape_check": "The stem hands over: the solution is a single real number; nothing makes it an integer, positive or capped. All four options are positive one-place decimals; all four survive together.",
+  "interior_parity_check": "The middle values 9.6 and 10.2 are both one-place decimals of near equal size; neither is cleaner.",
+  "arith_class_check": "All four are one-place decimals; tenths digits 8, 6, 2, 5. Only 25.5 has a tenths digit of 5 (a half), and it is a distractor; the key is alone in no class the stem implies.",
+  "dup_search": {
+   "queries": [
+    "no solution",
+    "(no solution|infinitely many)&(what is the solution|value of [a-z]x|product|sum)",
+    "no solution&same value",
+    "has no solution&solution"
+   ],
+   "hits_read": 60,
+   "nearest": "4aae9236, 5222b188, 6e7adc6d, 866a7560 (live, one-variable): a distributed linear equation with no solution, ask the parameter. This item never asks the parameter: it carries it into a second equation in which k sits on both sides, and asks that equation's solution. No live or prior item continues from a no-solution condition to a second equation."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Interior key. Could a student check an option against the stem in one routine step? Only after finding k from the no-solution condition; the item declares it substitutable, and the key is the third option ascending. The two lower options come from constant-handling slips in the second equation and the upper one from a sign slip in the first, so position does not mark the key."
+  },
+  "bounds": []
+ },
+ {
+  "id": "SM28F-A10",
+  "domain": "Algebra",
+  "subskill": "Equal widths and spaces along a wall, solved then reused",
+  "difficulty": "medium",
+  "prompt": "Five photos of equal width are hung in a row on a wall that is 300 centimeters wide. There is a 15-centimeter space between each pair of neighboring photos and a 60-centimeter space between each end of the wall and the nearest photo. The photos are taken down, and 4 of them are rehung in a row on the same wall so that the 5 spaces (the 3 spaces between neighboring photos and the 2 spaces at the ends of the wall) are all equal. What is the width, in centimeters, of each of these spaces?",
+  "choices": [
+   "21.6",
+   "28",
+   "36",
+   "40.8"
+  ],
+  "correct_answer": "40.8",
+  "explanation": "Let w be the width of each photo in centimeters. The first arrangement has 5 photos, 4 spaces of 15 cm and 2 end spaces of 60 cm: 5w + 4(15) + 2(60) = 300, so 5w + 180 = 300 and w = 24.\nIn the second arrangement, 4 photos and 5 equal spaces of width s fill the wall: 4(24) + 5s = 300, so 5s = 204 and s = 40.8.\n\nChoice 21.6 comes from leaving out the two 60-cm end spaces: 5w + 60 = 300 gives w = 48, and then 4(48) + 5s = 300 gives s = 21.6.\nChoice 28 comes from keeping the two 60-cm end spaces in the second arrangement and making only the 3 spaces between photos equal: 3s = 300 - 96 - 120 = 84 gives s = 28.\nChoice 36 comes from dividing the wall into 5 equal parts and subtracting one photo width: 300/5 - 24 = 36.",
+  "solve": "const n1=5,n2=4,W=300,g=15,e=60; const w=(W-(n1-1)*g-2*e)/n1; return Math.round((W-n2*w)/(n2+1)*1e9)/1e9;",
+  "distractor_solve": {
+   "28": "const n1=5,n2=4,W=300,g=15,e=60; const w=(W-(n1-1)*g-2*e)/n1; return Math.round((W-n2*w-2*e)/(n2-1)*1e9)/1e9;",
+   "36": "const n1=5,n2=4,W=300,g=15,e=60; const w=(W-(n1-1)*g-2*e)/n1; return Math.round((W/(n2+1)-w)*1e9)/1e9;",
+   "21.6": "const n1=5,n2=4,W=300,g=15,e=60; const w=(W-(n1-1)*g)/n1; return Math.round((W-n2*w)/(n2+1)*1e9)/1e9;"
+  },
+  "mechanism": [
+   "write the wall width as photo widths plus inner spaces plus end spaces",
+   "solve the linear equation for the common photo width",
+   "reuse the width in a second arrangement with a different count and solve for the equal space"
+  ],
+  "quantity_asked": "the width of each equal space in the second arrangement",
+  "ask_type": "derived-expression",
+  "plugback": {
+   "substitutable": true,
+   "verify": "const w=24; return Math.abs(4*w+5*v-300) < 1e-9;",
+   "why": "After finding the photo width (24 cm) from the first arrangement, a student can test an option by checking 4(24) + 5s = 300. The first arrangement must be solved first (no option is the photo width), and in ascending order the key, 40.8, is the fourth option tried."
+  },
+  "distractor_meta": {
+   "28": {
+    "error_kind": "other",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Keeping the old 60-cm ends reserves 120 cm but spreads the rest over only 3 spaces; the two effects pull in opposite directions, so the result is not predictable from the stem."
+   },
+   "36": {
+    "error_kind": "wrong_operation",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Splitting the wall into five equal parts and subtracting one photo uses the wrong count of photos (5 instead of 4 shared over 5 spaces); with other counts this slip lands above the key."
+   },
+   "21.6": {
+    "error_kind": "omission",
+    "direction": "below",
+    "stem_predicts_direction": false,
+    "why": "Dropping the end spaces in the first arrangement overstates the photo width, which shrinks the spaces later; dropping them in the second arrangement instead would overstate the spaces, and the stem does not say which arrangement a student will slip in."
+   }
+  },
+  "counter_error": {
+   "error_kind": "wrong_operation",
+   "solve": "const n1=5,n2=4,W=300,g=15,e=60; const w=(W-(n1-1)*g-2*e)/n1; return Math.round((W-n2*w)/(n2-1)*1e9)/1e9;",
+   "direction": "above",
+   "why": "Spreading the leftover 204 cm over only the 3 spaces between photos (forgetting the 2 end spaces) gives 68 cm, above the key; counting 5 inner spaces among 5 photos in the first arrangement (w = 21) gives 43.2, also above."
+  },
+  "cheap_bound_check": "The cheapest bound is that each new space is less than 300/5 = 60 cm (five spaces fit on the wall with room for photos); it strikes nothing. A sharper bound needs the photo width, which needs the first equation. Slips land on both sides: three shown below, the 3-space slip (68) and the 5-inner-space slip (43.2) above.",
+  "shape_check": "The stem hands over: the space is positive and less than 60 cm; it need not be an integer. All four options are positive and under 60; all four survive together.",
+  "interior_parity_check": "Key is the largest value, not interior. The middle values 28 and 36 are both two-digit integers.",
+  "arith_class_check": "Two integers (28, 36) and two one-place decimals (21.6, 40.8); all four are multiples of 0.4 and even in tenths. The key is not alone in any class the stem implies (none is implied).",
+  "dup_search": {
+   "queries": [
+    "(pictures|paintings|posters|frames|tiles|shelves)&(wall|gap|space)",
+    "equal (gaps|spaces|spacing)",
+    "evenly spaced",
+    "photos?&(row|wall)"
+   ],
+   "hits_read": 1,
+   "nearest": "0fdc560e (ACT tiles, gcd) is unrelated. A05 (this author) counts fence posts from a length and two spacings; this item solves for an unknown WIDTH from a fixed length with known gaps, then re-spaces a different number of items: different unknown, different equation and a reuse step."
+  },
+  "self_audit": {
+   "risk": "medium",
+   "note": "Covering the work, could a student tell from the stem which way the errors go and strike all three distractors? No: the only free bound (under 60 cm) strikes nothing, and the natural slips split - leaving out the end spaces in the first arrangement lands below, leaving them out in the second (spreading 204 over 3 spaces, 68) or counting 5 inner spaces in the first (43.2) lands above. Could a student check an option in one routine step? Only after solving the first arrangement for the photo width; the item declares it substitutable, and the key is the last option in ascending order."
+  },
+  "bounds": []
+ }
+]
