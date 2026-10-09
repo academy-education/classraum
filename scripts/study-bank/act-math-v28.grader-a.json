@@ -1,0 +1,2600 @@
+{
+ "_render_sha": "deeec39c2cc72e88",
+ "AM28I-01": {
+  "pick": "24.6",
+  "work": "V=55(3.785)(0.85)=176.95 L; 3 mg/L -> 530.9 mg = 0.5309 g active; /0.02 = 26.54 g liquid; /1.08 g/mL = 24.58 mL.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": "25.1 sits 0.5 above the key (the /1.15 vs x0.85 pair); the closest pair of options is key + its percent-trap twin, which points at the smaller of the two for a student who knows /1.15 understates a 15% cut",
+  "error_directions": {
+   "33.3": {
+    "error": "adds 15% to the volume instead of removing it (x1.15)",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "25.1": {
+    "error": "divides by 1.15 instead of multiplying by 0.85 for '15% less'",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "28.7": {
+    "error": "multiplies by the density 1.08 instead of dividing (26.54 x 1.08)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "Key is the smallest; both '15% less' errors (x1.15, /1.15) are knowable from the stem to give a LARGER volume, and the density inversion also lands above. A student who suspects the percent trap can lean low, but the density error direction is not readable from the stem.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": "'15% less than the labeled volume' - mishandling it produces 33.3 (x1.15) and 25.1 (/1.15), both above the key",
+  "ies_counter": {
+   "error": "omits the gallon-to-liter conversion or applies the 15% reduction twice (x0.85^2)",
+   "value": 20.89,
+   "direction": "below",
+   "as_natural": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-02": {
+  "pick": "21.8",
+  "work": "Volume to add = 24x12x4 ft^3 x7.48 = 8616.96 gal. Hose 5/40 gal/s = 450 gal/h; net 0.88x450 = 396 gal/h; 8616.96/396 = 21.76 h.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "21.2": {
+    "error": "none found (close to net rate with a 10%-ish leak, 21.28)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "20.4": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "21.4": {
+    "error": "treats the leak as 12% extra time (19.15 x 1.12 = 21.45) instead of dividing by 0.88",
+    "direction": "below",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "Key is the largest. The natural leak error (x1.12 instead of /0.88) is predictably smaller, and ignoring the leak is smaller still; a student who knows 1/0.88 > 1.12 can pick the largest. The opposite-direction error (filling the full 4.5 ft, 24.5 h) is not offered.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "time > 19.15 x 1.12 = 21.45 because 1/0.88 > 1.12",
+   "cheaper_than_the_work": false,
+   "kills": [
+    "21.4",
+    "21.2",
+    "20.4"
+   ]
+  },
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "fills the full 4.5 ft, ignoring the existing 6 in of water",
+   "value": 24.48,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "20.4",
+   "21.2"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-03": {
+  "pick": "354.3",
+  "work": "Travel time (0.852-0.012)/2 = 0.420 s; 1530x0.420 = 642.6 m below transducer; +5.4 = 648.0 m; /0.3048/6 = 354.33 fathoms.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "356.8": {
+    "error": "subtracts only half the delay (0.852-0.006)/2 before adding the 5.4 m",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "349.3": {
+    "error": "subtracts the delay twice",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "348.4": {
+    "error": "subtracts the 5.4 m transducer depth instead of adding it",
+    "direction": "below",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "interior: wrong options on both sides; less-represented side is above - forgetting the 0.012 s delay entirely (with the 5.4 m added) gives 359.4",
+   "value": 359.35,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-04": {
+  "pick": "437",
+  "work": "Mixture 1.75x236.6 = 414.05 mL: oil 331.24 mL x0.92 = 304.74 g, vinegar 82.81 mL x1.01 = 83.64 g; mustard 44.4 mL x1.10 = 48.84 g; total 437.22 g.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "oil dominates the 4:1 mix, so the mixture density is below the equal-weight average 0.965 -> mass < 414.05x0.965 + 48.84 = 448.4",
+    "kills": [
+     "482"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "448": {
+    "error": "averages the two densities equally (0.965) instead of weighting 4:1",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "482": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "439": {
+    "error": "reads 4:1 as 3:4 / 3:1 split (oil 75%, vinegar 25%)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "density-weighting bound (mass < 448.4) separates 437 from 482 only; 439 and 448 sit below it - no single cheap bound separates 437 from 439",
+   "cheaper_than_the_work": false,
+   "kills": [
+    "482"
+   ]
+  },
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "omits the mustard (stops after the oil-and-vinegar mass)",
+   "value": 388.38,
+   "direction": "below",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "482"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-05": {
+  "pick": "8.95",
+  "work": "Snow weight is fixed when it fell: 1.25 ft x0.12x62.4 = 9.36 lb/ft^2; settling changes depth, not weight. Covered area 1200/1.15 = 1043.48 ft^2; rain 0.125x62.4 = 7.8 lb/ft^2. 1043.48x17.16 = 17906 lb = 8.95 tons.",
+  "second_defensible": "7.98 if a student reads the 12% density as applying to the settled layer; the stem's past tense ('this snow weighed') pins it to the 15-in layer, so not truly defensible",
+  "stem_issue": "Note: the settling clause is a pure distractor (weight is unchanged); defensible, but the stem's 'snow weighed 12% as much as the same volume of water' refers to the original 15-in layer - a student could read density as applying to the settled snow, giving 7.98. Unlikely but worth noting.",
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "5.37": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "8.75": {
+    "error": "takes the cleared area as 15% of the whole roof (covered = 1020 ft^2)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "7.98": {
+    "error": "applies the 20% settling to the weight (uses 1.0 ft depth with the 12% density)",
+    "direction": "below",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "Key is the largest. The two announced clauses (settling, 15%-of-covered) each push below when mishandled, and a student who reads 'none of it melted' can see that every way of using the settling clause can only lower the weight.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": "'settled until its depth was 20% less, but none of it melted' (weight unchanged) and 'cleared area was 15% of the area still covered' - neglect gives 7.98 and 8.75, both below",
+  "ies_counter": {
+   "error": "lets all the rain be absorbed over the whole 1200 ft^2 roof",
+   "value": 9.42,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "5.37"
+  ],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-06": {
+  "pick": "21.9",
+  "work": "HO scale speed = 87x24/23 ft/s. S needs 64x31/t = 87x24/23 -> t = 23x31x64/(24x87) = 21.85 s.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "24.2": {
+    "error": "inverts both ratios (23x24/31x87/64)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "13.1": {
+    "error": "inverts the track-length ratio (23x24/31x64/87)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "29.7": {
+    "error": "ignores the scales, matching actual speed (23x31/24)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "interior: wrong options on both sides; less-represented side is below - 13.1 already covers it (length ratio inverted)",
+   "value": 13.1,
+   "direction": "below",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-X1": {
+  "pick": "20.6",
+  "work": "B bottle = 0.8 A; each load needs 0.6 of A's dose -> 0.8/0.6x48 = 64 loads. Sale price 1649x0.8 = 1319.2 cents; /64 = 20.61 cents.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "24.5": {
+    "error": "treats '40% less per load' as 40% more loads: 48x0.8x1.4 = 53.76 loads",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "21.5": {
+    "error": "none found (about 61.4 loads)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "22.9": {
+    "error": "treats '20% less detergent' as 20% more and keeps 48 loads, or 48x1.2 = 57.6 loads",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "Key is the smallest. The canonical percent error (x1.4 instead of /0.6) can only reduce the loads, so any student who knows that additive percents understate a '40% less per load' effect knows errors raise the cost; picking the smallest wins.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": "'40% less ... per load' and '20% less detergent' - additive handling gives 24.5 and 22.9, both above",
+  "ies_counter": {
+   "error": "ignores that a B bottle holds 20% less (uses 48/0.6 = 80 loads)",
+   "value": 16.49,
+   "direction": "below",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-08": {
+  "pick": "30.64",
+  "work": "6:12:30 to 7:42:22 = 5392 s = 674 intervals -> 675 photos. Kept k with 1.08k = 675 -> 625. 625/24 = 26.04 s; 15% slower playback -> /0.85 = 30.64 s.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": "three options cluster within 0.2 below the key; the key is the top of a tight run",
+  "error_directions": {
+   "30.44": {
+    "error": "deletes 8% of all photos (keeps 0.92x675)",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "30.59": {
+    "error": "fencepost: 674 photos",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "29.95": {
+    "error": "multiplies duration by 1.15 instead of dividing by 0.85",
+    "direction": "below",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "Key is the largest; all three natural errors (fencepost undercount, 8%-of-total deletion, x1.15) are readable from the stem as making the video shorter, so 'pick the largest' wins.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": "'the number of photos she deletes is 8% of the number she keeps' - with '15% slower' and the fencepost, every trap pushes below (30.44, 30.59, 29.95)",
+  "ies_counter": {
+   "error": "forgets to delete the blurry photos (675 frames)",
+   "value": 33.09,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-09": {
+  "pick": "33.5",
+  "work": "Scheduled 2 mL/min; by 9:40 (160 min) 320 mL due, 0.68x320 = 217.6 given; remaining 982.4 mL over 440 min = 2.2327 mL/min x15 = 33.49 drops/min.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "30.7": {
+    "error": "uses 480 minutes remaining (from 9:00 or 7.5 h -> 8 h)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "32.6": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "37.4": {
+    "error": "uses 32% of the scheduled volume as infused (102.4 mL)",
+    "direction": "above",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "interior: wrong options on both sides; above side less represented - only 37.4 (32%-as-infused) is above",
+   "value": 37.4,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "32.6"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-10": {
+  "pick": "421.53",
+  "work": "Waterings May 7 ... June 24: 52 days / 4 = 13. Each: 2.25x1.20095 = 2.7021 US gal x 12 mL (25% less than 16) = 32.43 mL; x13 = 421.53.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "702.56": {
+    "error": "uses 25% MORE (20 mL/gal)",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "449.64": {
+    "error": "uses 16/1.25 = 12.8 mL/gal for '25% less'",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "453.96": {
+    "error": "fencepost: counts 14 waterings",
+    "direction": "above",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "Key is the smallest; all three wrong options come from errors (+1 watering, percent handling of '25% less') that a student can see from the stem only increase the total.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": "'a rate that is 25% less' - mishandled as +25% or /1.25 gives 702.56 and 449.64, both above",
+  "ies_counter": {
+   "error": "divides by 1.20095 instead of multiplying (imperial -> US)",
+   "value": 292.27,
+   "direction": "below",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-11": {
+  "pick": "87.1",
+  "work": "Dry speeds: flat 9.6, up 7.2, down 10.752 km/h. Dry time 3.6/7.2+3.5/10.752+4.9/9.6 = 1.3339 h; mud /0.92 = 1.4499 h = 87.13 min.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "86.6": {
+    "error": "multiplies dry time by 1.08 instead of dividing by 0.92",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "86.8": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "85.2": {
+    "error": "none found (near /1.25 for uphill, 84.8)",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "Key is the largest. Every percent-slower slip (x1.08 for mud, /1.25 for uphill, x0.88 time for downhill) understates time, which a student can know from the stem; picking the largest wins.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": "'8% slower than his dry-trail speed' and '25% slower' - additive handling yields 86.6 and (approximately) 85.2, both below",
+  "ies_counter": {
+   "error": "none found - every natural percent slip shortens the time; a downhill speed read as 12% slower would lengthen it but is not natural",
+   "value": null,
+   "direction": "above",
+   "as_natural": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-12": {
+  "pick": "26.84",
+  "work": "Shop keeps 0.40x34.50 = 13.80 plus 0.25x(53.50+72.50+121.50) = 61.875; total 75.675 of 282.00 = 26.84%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "only $34.50 of $282 earns the 40% rate, so the blend is 25% + 15% x (under 1/8) < 26.9%; even crudely, most money at 25% -> under 32.5%",
+    "kills": [
+     "34.81",
+     "36.68",
+     "27.66"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "25 + 15x(34.5/282 ~ 0.12) ~ 26.8",
+   "interval": "(25, 26.9)",
+   "kills": [
+    "27.66",
+    "34.81",
+    "36.68"
+   ]
+  },
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "34.81": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "27.66": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "36.68": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "Key is the smallest and every option is above it; a student who sees that only one small sale is at 40% knows the blend is barely above 25%.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "blend < 25 + 15x(1/8) = 26.875 because 34.50 < 282/8",
+   "cheaper_than_the_work": false,
+   "kills": [
+    "27.66",
+    "34.81",
+    "36.68"
+   ]
+  },
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "applies 25% to everything (or treats $53.50 as 'about $50' at 40% gives above); 25% everywhere gives 25.00",
+   "value": 25.0,
+   "direction": "below",
+   "as_natural": true
+  },
+  "free_elimination": "34.81 and 36.68 would need well over a third of the dollars at 40%; they die to a glance at the prices",
+  "distractor_quality": "weak",
+  "weak_distractors": [
+   "34.81",
+   "36.68"
+  ],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-13": {
+  "pick": "8.06",
+  "work": "Inside 46.5 x 18.5 in; inside depth 16-0.75 = 15.25, settled soil 14.25 in deep: 12258.56 in^3 = 7.094 ft^3 settled; loose = /0.88 = 8.06 ft^3.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "7.64": {
+    "error": "subtracts board thickness twice from the height (13.5 in of soil)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "6.24": {
+    "error": "none found (about 7.09 x 0.88)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "7.95": {
+    "error": "multiplies by 1.12 instead of dividing by 0.88",
+    "direction": "below",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "ignores board thickness (48x20x15 outside volume)",
+   "value": 9.47,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "same /(1-p) vs x(1+p) shrink mechanism as AM28N-03 (fabric shrink) and AM28I-20 (bake loss)",
+  "domain_fit": "fits"
+ },
+ "AM28I-14": {
+  "pick": "9.31",
+  "work": "Revenue ratio 1.077 = (76/64) x member ratio -> members ratio = 1.077x64/76 = 0.90695 -> 9.31% decrease.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "8.76": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "6.99": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "10.26": {
+    "error": "none found (relative to new count: 1/0.907-1 = 10.26%)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "interior: wrong options on both sides; above side less represented - subtracting percents (18.75-7.7 = 11.05) is the natural above error, not offered",
+   "value": 11.05,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-15": {
+  "pick": "29.21",
+  "work": "Shares: 246/34 + 246/28 + 246/38 + 446/24 = 7.2353+8.7857+6.4737+18.5833 = 41.078. Paid 1200; 1200/41.078 = 29.21.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "30.54": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "30.25": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "29.83": {
+    "error": "dollar-weighted arithmetic mean of prices (250x100+450x24)/1200, ignoring that cost per share is harmonic",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "excludes the $4 fees from the amount paid",
+   "value": 28.82,
+   "direction": "below",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-16": {
+  "pick": "165.5",
+  "work": "Vibrating lengths 64.8-14.3 = 50.5 and 64.8-21.6 = 43.2; f = 141.6x50.5/43.2 = 165.53 Hz.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "157.6": {
+    "error": "uses 64.8+21.6-14.3 = 72.1 over 64.8 (adds the fret shift to the full length)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "162.1": {
+    "error": "scales by 1 + 7.3/50.5 (percent change on the old length)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "159.6": {
+    "error": "uses 64.8/(64.8-21.6+14.3)",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "Key is the largest; the distractors are all under-scalings (additive or wrong-base) of the same ratio. The natural direct-variation error on distances from the nut gives 213.9, above, and is not offered - so the stem alone does not tell a student errors push down.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "direct variation with distance from the nut (141.6x21.6/14.3)",
+   "value": 213.89,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-17": {
+  "pick": "20.49",
+  "work": "Last year athletics 63000x9/14 = 40500. This year 57960x5/9 = 32200. Decrease 8300/40500 = 20.49%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "25.78": {
+    "error": "divides the change by this year's amount",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "16.73": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "13.17": {
+    "error": "none found (ignoring the 8% cut gives 13.58)",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "interior: wrong options on both sides; above side less represented - only the wrong-base 25.78 is above",
+   "value": 25.78,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-18": {
+  "pick": "24.58",
+  "work": "(7.5/9)^3 = 0.5787. Energy = 1150(10+14x0.5787) vs 1150x24: shortfall 14x0.4213/24 = 24.58%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "(5/6)^3 > 1/2, so loss < (14/24)x(1/2) = 29.2%",
+    "kills": [
+     "32.58"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "28.47": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "26.42": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "32.58": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "none cheap: separating 24.58 from 26.42 needs (5/6)^3 to two places",
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "uses the square (or linear) speed ratio instead of the cube",
+   "value": 17.82,
+   "direction": "below",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "32.58"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-X6": {
+  "pick": "190.46",
+  "work": "Paid 214.95x1.0825 = 232.68. Refund 1.1x35.46 = 39.006 plus tax 3.218 = 42.224. Net 190.46.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "tax only adds, so net cost > pre-tax net 214.95 - 1.1x35.46 ~ 175.9",
+    "kills": [
+     "169.34",
+     "171.03"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "(215 - 39) x 1.08 ~ 190",
+   "interval": "(176, 194.3)",
+   "kills": [
+    "169.34",
+    "171.03"
+   ]
+  },
+  "survivors": 2,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "171.03": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "186.98": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "169.34": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "Key is the largest; the one natural error (forgetting the tax on the refund, 193.68) goes ABOVE and is absent, so the stem does not signal 'pick largest' - but every offered distractor is below.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": [],
+   "note": "the tax floor (net > ~176) kills 169.34 and 171.03, but 186.98 needs the refund computed"
+  },
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "forgets the sales tax on the refunded amount",
+   "value": 193.68,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "169.34",
+   "171.03"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-20": {
+  "pick": "2567",
+  "work": "Dough per batch 9x620/0.87 = 6413.8 g; flour = dough/1.724 = 3720.3 g; water 0.69x = 2567 g.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "2524": {
+    "error": "adds 13% (x1.13) instead of dividing by 0.87",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "2233": {
+    "error": "ignores the baking loss",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "2619": {
+    "error": "divides dough by 1.69 (water+flour only)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "interior: wrong options on both sides; above side less represented - 2619 (omitting salt/yeast from the total) covers it",
+   "value": 2619,
+   "direction": "above",
+   "as_natural": true
+  },
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "same /(1-p) vs x(1+p) mechanism as AM28I-13 and AM28N-03",
+  "domain_fit": "fits"
+ },
+ "AM28I-21": {
+  "pick": "55.33",
+  "work": "April 1: 56%; unfilled 44%, add 0.45x44 = 19.8 -> 75.8%. May: 24%+3% = 27% of 75.8 removed -> 75.8x0.73 = 55.33%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "58.86": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "55.88": {
+    "error": "applies the evaporation 3% to the water left after release (x0.76x0.97)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "59.28": {
+    "error": "takes 45% of the filled 56% instead of the unfilled capacity",
+    "direction": "above",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": "'an additional amount equal to 3% of the water that was in the reservoir on May 1' - sequential handling gives 55.88; with the unfilled-capacity clause (59.28) both push above",
+  "ies_counter": {
+   "error": "subtracts 3 percentage points of capacity for evaporation (75.8x0.76-3)",
+   "value": 54.61,
+   "direction": "below",
+   "as_natural": false
+  },
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28I-22": {
+  "pick": "20.54",
+  "work": "Actual = 135.5x56. Rule = 135.5x67.5. The 135.5 cancels: 67.5/56 - 1 = 20.54%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "slanted sides average 67.5 vs height 56 -> about 20%",
+   "interval": "(17, 25)",
+   "kills": [
+    "3.85",
+    "5.59"
+   ]
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "5.59": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "17.04": {
+    "error": "divides the overstatement by the estimate instead of the actual area",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "3.85": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "Key is the largest; the one natural error (wrong base) lands below, and 3.85/5.59 are far below the obvious ~20%.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "67.5/56 > 1.2 (56x1.2 = 67.2) -> overstatement > 20%",
+   "cheaper_than_the_work": false,
+   "kills": [
+    "17.04",
+    "5.59",
+    "3.85"
+   ]
+  },
+  "announced_trap": null,
+  "ies_counter": {
+   "error": "none found - every natural slip (wrong base, using one slanted side) lowers the percent",
+   "value": null,
+   "direction": "above",
+   "as_natural": false
+  },
+  "free_elimination": "once the common factor cancels the item is one division; 3.85 and 5.59 are implausible for sides 20% longer than the height",
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "3.85",
+   "5.59"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28S-01": {
+  "pick": "0.392",
+  "work": "At least 2 siblings: 40+60+30 = 130 students; no pet 12+27+12 = 51; 51/130 = 0.3923.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.433": {
+    "error": "uses 3 or more siblings (39/90)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.415": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.405": {
+    "error": "uses at least 1 sibling (81/200)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "easy",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28S-02": {
+  "pick": "0.71",
+  "work": "P(same) = (12+20+30)/210 = 62/210; P(RR) = 12/210. E[receipts] = 4(62/210)+18(12/210) = 2.2095; minus 1.50 = 0.71.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "1.15": {
+    "error": "draws with replacement (16+25+36)/225",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.48": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "0.56": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28S-03": {
+  "pick": "30.14",
+  "work": "MOE = 2 sqrt(0.26x0.74/450) = 0.04135 = 4.14 points; 26 + 4.14 = 30.14.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "28.07": {
+    "error": "drops the factor 2",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "28.23": {
+    "error": "none found (n = 2000 gives 27.96)",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "29.54": {
+    "error": "uses the overall p = 0.17 inside the root",
+    "direction": "below",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": "Key is the largest. The stem's design (small subgroup n = 450, p = 0.26 nearer 0.5 than the overall 0.17) means every substitution error (n = 2000, p = 0.17, drop the 2) shrinks the margin; a student who sees that can pick the largest endpoint.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": "'of the state's adults ages 18 to 24' (subgroup n and p) - substituting the overall sample gives 29.54 and (near) 28.23, both below",
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28S-X1": {
+  "pick": "66.61",
+  "work": "89-56 = 33 spans 2.8 SD -> SD = 11.786; mean = 89-17.68 = 71.32; 71.32-0.4x11.786 = 66.61.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "interpolation: target sits (1.3-0.4)/2.8 = 0.32 < 1/3 of the way from 56 to 89 -> < 56+11 = 67",
+    "kills": [
+     "67.42",
+     "68.96",
+     "76.04"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "56 + 33/3 = 67 (fraction 0.9/2.8 is just under 1/3)",
+   "interval": "(56, 67)",
+   "kills": [
+    "67.42",
+    "68.96",
+    "76.04"
+   ]
+  },
+  "survivors": 1,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "76.04": {
+    "error": "adds 0.4 SD instead of subtracting",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "67.42": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "68.96": {
+    "error": "subtracts 0.2 SD (halves 0.4)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "Key is the smallest; the sign error and the halving error both push above.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "0.9/2.8 < 1/3 -> score < 67",
+   "cheaper_than_the_work": true,
+   "kills": [
+    "67.42",
+    "68.96",
+    "76.04"
+   ]
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": "linear interpolation between the two given z-scores skips solving for mean and SD and lands under 67, killing all three",
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28F-02": {
+  "pick": "34.4",
+  "work": "June 3 = d 2, June 10 = d 9: 0.93^2 - 0.93^9 = 0.8649 - 0.5204 = 0.3445 -> 34.4%.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "39.8": {
+    "error": "takes the fraction of the June 3 amount (1-0.93^7)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "26.3": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "38.1": {
+    "error": "off by one: d = 2 to d = 10",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28S-04": {
+  "pick": "4.38",
+  "work": "Grand mean 29. Pooled mean square: [14(9+9)+21(16+4)]/35 = (252+420)/35 = 19.2; sqrt = 4.38.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "4.41": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "4.33": {
+    "error": "none found (sqrt of mean of variances + 6.25)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "6.18": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "6.18"
+  ],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28S-05": {
+  "pick": "0.276",
+  "work": "P(reject) = 1 - 0.95^12 - 12(0.05)(0.95^11) = 0.11836. Exactly one of three: 3(0.11836)(0.88164^2) = 0.2760.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.304": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.315": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "0.403": {
+    "error": "uses reject at 1 or more defective (p = 0.4596)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28F-03": {
+  "pick": "0.345",
+  "work": "f^-1(x) = sqrt((x-3)/0.4): f^-1(13) = 5, f^-1(5) = 2.236; (5-2.236)/8 = 0.3455.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.232": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "0.139": {
+    "error": "reciprocal of f's average rate over [5,13]",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "0.546": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28F-04": {
+  "pick": "72.31",
+  "work": "r(70) = 16 L/100 km -> 27.2 L; r(93) = 15+0.02(18^2) = 21.48 -> 45.108 L; total 72.31 L.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "70.12": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "59.46": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "71.46": {
+    "error": "uses the second piece at 70 km/h too (r = 15.5)",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28F-05": {
+  "pick": "1.62",
+  "work": "Stretch: log2(x/3); left 3: log2((x+3)/3); down 1.5: g(23) = log2(26/3) - 1.5 = 3.115 - 1.5 = 1.615.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "4.79": {
+    "error": "stretches by multiplying x by 3 (log2(3(x+3)))",
+    "direction": "above",
+    "predictable_from_stem": true
+   },
+   "1.92": {
+    "error": "shifts after stretching as x/3 + 3",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "1.24": {
+    "error": "translates right instead of left (x-3)",
+    "direction": "below",
+    "predictable_from_stem": true
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28S-06": {
+  "pick": "80.98",
+  "work": "a = 50/54; mean' = 50 + (50/54)(71.46-38) = 80.98.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": "options roughly evenly spaced (77.67, 80.98, 83.46, 86.14), key second",
+  "error_directions": {
+   "77.67": {
+    "error": "scales proportionally (71.46x100/92)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "83.46": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "86.14": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28S-07": {
+  "pick": "0.207",
+  "work": "No low knocked: 0.96^6 = 0.7828; at least one high: 1-0.95^6 = 0.2649; product 0.2074.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "0.182": {
+    "error": "exactly one high hurdle knocked (6x0.05x0.95^5)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "0.201": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "0.170": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28S-08": {
+  "pick": "0.66",
+  "work": "s_x = 2.5, s_y = 4.1, slope = -0.84x1.64 = -1.3776; predicted = 14.8 - 1.3776x2.8 = 10.943; residual 11.6 - 10.943 = 0.66.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "3.13": {
+    "error": "uses variances instead of SDs in the slope",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "-1.77": {
+    "error": "inverts the SD ratio (s_x/s_y)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "-0.85": {
+    "error": "uses r as the slope",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28F-06": {
+  "pick": "52.93",
+  "work": "H = 533 K, C = 295 K, e = 0.4465; new e = 0.4965 -> H = 295/0.5035 = 585.93 K; raise 52.93.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "59.68": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "61.12": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "375.56": {
+    "error": "works in Celsius (22/260)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": "375.56 (raising the reservoir past 600 C for 5 points) is implausible by magnitude",
+  "distractor_quality": "mixed",
+  "weak_distractors": [
+   "375.56"
+  ],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28F-07": {
+  "pick": "216299",
+  "work": "Stores +3/month -> month 9: 61. Sales ratio 2646/2400 = 1.1025 over 2 months -> 1.05/month; month 9: 2400x1.05^8 = 3545.89; total 216299.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "238284": {
+    "error": "off by one in both sequences (64 stores, 1.05^9)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "189911": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "301401": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-01": {
+  "pick": "11.82",
+  "work": "AB = <11,-3>; BC is perpendicular: C = B + t<3,11>, y = 0 -> t = -3/11, C = (4.182, 0). AC = sqrt(10.182^2 + 6^2) = 11.82.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "AC > AB = sqrt(130) = 11.40 (diagonal exceeds side)",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "12.99": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "13.25": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "12.53": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-02": {
+  "pick": "7.91",
+  "work": "Similarity ratio k: perimeter ADE = 28k; DBCE = (10-10k)+5+(13-13k)+5k = 28-18k. 28k = 28-18k -> k = 14/23; AE = 13k = 7.91.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "8.88": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "9.19": {
+    "error": "equal AREAS instead of perimeters (k = 1/sqrt2)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "7.14": {
+    "error": "omits DE from the quadrilateral's perimeter (k = 28/51)",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "plausible",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-03": {
+  "pick": "8.03",
+  "work": "Projected area of the faces onto the base = lateral area x cos 32 = s^2 -> s^2 = 76x0.8480 = 64.45; s = 8.03.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "s^2 <= 76 (base area <= lateral area) -> s <= 8.72",
+    "kills": []
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "5.91": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "6.35": {
+    "error": "uses sin 32 instead of cos",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "7.55": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": "none cheaper than recognising the projection (s^2 = 76 cos 32), which IS the work",
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28N-01": {
+  "pick": "4.71",
+  "work": "P = D + (2/3)u = (2,4) + (8/3, -10/3) = (14/3, 2/3); |AP| = sqrt(196/9 + 4/9) = 4.714.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "7.36": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "4.07": {
+    "error": "puts P at DP = PC/2 (P = D + u/3)",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "5.82": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-04": {
+  "pick": "43.6",
+  "work": "Central angle AOC = 2x54 = 108. r = 5.5/sin 54 = 6.798. Sector = (108/360) pi r^2 = 43.56.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "31.5": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "69.2": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "82.5": {
+    "error": "uses cos 54 for the half-chord (r = 5.5/cos 54)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-05": {
+  "pick": "17.08",
+  "work": "Triangle P-base-top: angle at P = 33-14 = 19, angle at top = 90-33 = 57. h = 44 sin 19 / sin 57 = 17.08 m.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "14.76": {
+    "error": "uses sin 76 (angle at the base taken as 90-14) as the opposite angle",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "12.61": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "16.75": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-06": {
+  "pick": "69.69",
+  "work": "AC^2 = 2500+6400-8000 cos 110 -> AC = 107.87. sin(BAC) = 80 sin110/107.87 -> BAC = 44.18. BD = 2x50 sin 44.18 = 69.69.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [
+   {
+    "bound": "angle A > angle C (A faces the longer sides) and A+C = 140 -> 70 < A < 140 -> BD < 100 sin 70 = 94.0",
+    "kills": [
+     "95.75"
+    ]
+   }
+  ],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 3,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "74.16": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "95.75": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "81.92": {
+    "error": "treats 110 as the angle between AB and AD (isosceles ABD)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": [
+    "95.75"
+   ]
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-X1": {
+  "pick": "3.27",
+  "work": "Run 1.65 cos 32 = 1.399; back-edge height 1.65 sin 32 = 0.874; shadow 0.874/tan 25 = 1.875; total 3.27 m.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "3.61": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "3.88": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "3.47": {
+    "error": "none found (1.65 + shadow = 3.53 is the nearest)",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-07": {
+  "pick": "44.69",
+  "work": "Apothem 3.4(sqrt3/2) = 2.944; outer apothem 4.644 -> outer side 5.363. Area = (3sqrt3/2)(5.363^2 - 3.4^2) = 44.69.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "37.54": {
+    "error": "takes the outer side as 3.4+1.7 = 5.1",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "43.76": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "52.02": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-X2": {
+  "pick": "72.81",
+  "work": "Each star segment is a diagonal = 2x9 sin 54 = 14.562; 5x = 72.81.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "77.94": {
+    "error": "uses 9 sqrt3 (60-degree geometry)",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "68.38": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "52.90": {
+    "error": "uses 2x9 sin 36 for the diagonal",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28G-09": {
+  "pick": "8.40",
+  "work": "Coordinates: A(6,0,0), C(0,6,0), V(0,0,8). B = V + 0.3(C-V) = (0,1.8,5.6). AB = sqrt(36+3.24+31.36) = 8.40.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "8.21": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "7.71": {
+    "error": "puts B 3 cm from C",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "8.13": {
+    "error": "puts B 3 cm below V vertically (z = 5)",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "hard",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "AM28N-03": {
+  "pick": "4.15",
+  "work": "Each washed strip 0.82+0.08 = 0.90 m; unwashed 0.90/0.92 = 0.97826 m; x5 = 4.8913 m = 5.349 yd; minus 1.2 = 4.15 yd.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "3.91": {
+    "error": "adds only one 4-cm seam allowance per strip",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "4.11": {
+    "error": "multiplies by 1.08 instead of dividing by 0.92",
+    "direction": "below",
+    "predictable_from_stem": true
+   },
+   "4.04": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": "Key is the largest; both natural errors (one allowance, x1.08) understate, which a student who knows 1/0.92 > 1.08 can foresee.",
+  "interior_parity": null,
+  "extreme_single_bound": {
+   "bound": null,
+   "cheaper_than_the_work": false,
+   "kills": []
+  },
+  "announced_trap": "'a seam allowance of 4 centimeters at each end' and 'shrinks ... by 8%' - neglect gives 3.91 and 4.11, both below",
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": "same /(1-p) vs x(1+p) mechanism as AM28I-13 and AM28I-20",
+  "domain_fit": "fits"
+ },
+ "AM28N-04": {
+  "pick": "20.23",
+  "work": "z = 2+i, z^2 = 3+4i, z^3 = 2+11i. Sides |1+3i| = 3.162, |-1+7i| = 7.071, |10i| = 10. Perimeter 20.23.",
+  "second_defensible": null,
+  "stem_issue": null,
+  "bounds": [],
+  "estimation_bound": {
+   "estimate": "no one-step estimate narrower than the option spread",
+   "interval": null,
+   "kills": []
+  },
+  "survivors": 4,
+  "limiting_case": null,
+  "neighbouring_setup": null,
+  "arith_class": null,
+  "option_structure": null,
+  "error_directions": {
+   "12.84": {
+    "error": "none found",
+    "direction": "below",
+    "predictable_from_stem": false
+   },
+   "24.22": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   },
+   "33.94": {
+    "error": "none found",
+    "direction": "above",
+    "predictable_from_stem": false
+   }
+  },
+  "one_sided": null,
+  "interior_parity": null,
+  "extreme_single_bound": null,
+  "announced_trap": null,
+  "ies_counter": null,
+  "free_elimination": null,
+  "distractor_quality": "mixed",
+  "weak_distractors": [],
+  "difficulty": "medium",
+  "duplicate_note": null,
+  "domain_fit": "fits"
+ },
+ "_render_sha_end": "deeec39c2cc72e88"
+}

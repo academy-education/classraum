@@ -1,0 +1,42 @@
+{
+ "AM28I-01": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 12 + rule 8: key smallest; both graders find no counter-direction error as natural (A: omitted conversion / double reduction, as_natural false; B: none), confirmed against the author counter (gal->L inverted), which is far less natural than mishandling the stated 15%-less volume; and two options (25.1 /1.15, 33.3 x1.15) come from that one clause, both above (A one_sided + announced_trap; confirmed)"
+ },
+ "AM28I-10": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 11: one stated condition (\"a rate that is 25% less\") generates two same-direction distractors (449.64 wrong base, 702.56 sign slip), both above the smallest key (grader A announced_trap; confirmed from the author declaration: both distractors at the \"seedling rate from the 25% clause\" step)"
+ },
+ "AM28I-11": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 12: key largest; both graders find NO natural counter-direction error (\"every natural percent slip shortens the time\"); the author counter (ignoring the downhill speed-up) is an omission of a speed-UP, less natural than the percent slips; both graders one_sided (confirmed)"
+ },
+ "AM28I-12": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 3 + rule 10: key smallest; survivors A 2 / B 1; B: only $34.50 of $282 (< 1/8) earns the extra 15 points, so the rate < 25 + 15/8 = 26.875, killing all three, cheaper than the work (confirmed); A: 34.81 and 36.68 die to a glance; weak 34.81 by both"
+ },
+ "AM28I-21": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 12: key smallest; both graders find no counter-direction error as natural (3 points of capacity, as_natural false x2), confirmed against the author counter (24% read as 24 points of capacity), which the stem's explicit \"24% of the water that was in the reservoir on May 1\" makes less natural than the option misreadings; B one_sided + announced_trap"
+ },
+ "AM28I-22": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 4 + rule 12: 3.85 and 5.59 weak by BOTH graders (implausible for sides about 20% longer than the height); key largest with no natural counter-direction error named by either grader (as_natural false x2); both one_sided"
+ },
+ "AM28I-X6": {
+  "domain": "Integrating Essential Skills",
+  "reason": "rule 4: 169.34 and 171.03 weak by BOTH graders; survivors 2 by both (any value below ~180 is impossible because the refund is only 10% beyond the price gap)"
+ },
+ "AM28S-03": {
+  "domain": "Statistics and Probability",
+  "reason": "rule 8: key largest; both graders one_sided, confirmed: the stem itself shows the subgroup is the smallest sample with p nearest 0.5, so every substitution of the overall n or p (29.54, 28.23) and the dropped factor 2 (28.07) shrinks the margin - \"the largest endpoint\" is readable; the off-list over errors (p = 0.5) were rated not as natural by B"
+ },
+ "AM28F-06": {
+  "domain": "Functions",
+  "reason": "rule 10 + rule 3: key smallest; B: e = 1 - 295/533 = 0.447, so e + 0.05 < 0.5 and H' < 2C = 590 K: the raise is < 57, killing 59.68, 61.12 and 375.56 with one comparison, cheaper than solving H' = 295/0.5035 (confirmed); 375.56 weak by both"
+ },
+ "AM28G-01": {
+  "domain": "Geometry",
+  "reason": "rule 10 + rule 3: key smallest; B: AB^2 = 130 and BC is steep (perpendicular to the shallow AB, from 3 units above the axis), so BC is just over 3 and AC = sqrt(130 + BC^2) < 12, killing 12.53, 12.99 and 13.25 (confirmed: BC = 3.11 needs only the perpendicular-slope direction, not the coordinates of C); B rates all three weak"
+ }
+}

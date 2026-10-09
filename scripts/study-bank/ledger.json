@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-09T16:10:26.261Z",
+  "generatedAt": "2026-10-09T16:32:46.995Z",
   "note": "Generated from the real result files. Numbers are computed, not transcribed.",
   "baselines": [
     {
@@ -7809,6 +7809,40 @@
           "passed": true,
           "contentSha": "372e2f04962981d84cea0e50172fac7f22ac872f639a444c8b505d01ef121ca5",
           "verdict": "Survival at the gate by key position: Algebra extreme 13/21 = 61.9%, interior 12/14 = 85.7% (algf27: 56.7 / 75.0); Advanced Math extreme 11/13 = 84.6%, interior 9/10 = 90.0% (adv25: 66.7 / 80.8). Recorded, not dropped: S02 28/84 joined by 3 = 10 - 7 (a difference, outside DPAIR); Q06 a < 40 never tested by an option; R05 the natural 57 not an option; shared key values across authors 13 and 27."
+        }
+      }
+    },
+    {
+      "id": "act-math-v28-kept-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "act",
+      "section": "math",
+      "task": "math_mc",
+      "family": "mc_stem_source",
+      "cohort": "act-math-v28",
+      "contentSha": "1e9b8f1d6dedc8b4e29101d7800fc5eccef6d96653f2de9b0b262ef4cc0ddd32",
+      "status": "shipped",
+      "note": "40 of 50 frozen survive (IES 15, Geometry 9, S&P 8, Functions 5, N&Q 3), commissioned for ACT Math forms 19+20 (form 19 = IES +1; forms 19+20 deficits IES 10, Geometry 7, S&P 6, Functions 5, N&Q 2). Bars pre-registered in ACT-MATH-V28-PREREGISTERED.md (commit e39c56d4) before authoring: v27 checks kept (IES direction declarations, error-direction read on every extreme key, option-shape and merge checks before the return, hand keyword search); new: one planning rate per band with >= 2.5 points of headroom (the seven v27 rates cannot all have it: best 1.53, derived) - split 48.1% (3.15), IES 50.0% (5.00), key-extremity-projection v24 50.9% (4.1) - leave-one-out survival proven, 3 spares per arm promoted by a pre-registered rule, one file per item 5-7 per run, re-dump before freeze. IES widened 20 -> 22 (no IES-20 composition has 2.5 points). Frozen 86df9854 (merged sha 205861f8). Kept key at an extreme 20/40 = 50.0%; IES alone 9/15 = 60.0%.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "1e9b8f1d6dedc8b4e29101d7800fc5eccef6d96653f2de9b0b262ef4cc0ddd32",
+          "verdict": "62 slots authored by Claude authors in 10 runs (one file per item, 5-7 per run; runs relaunched from disk after three API-limit kills). Stage 0 round 1 on all 61 delivered (N-X3 spare never delivered): every mechanical check clean; the error-direction read and the hand keyword search returned 24 items (D1 6, D2 4, B 8, C 6): one-way extreme keys (I-04, I-05, I-07, I-11, X1, I-19, I-21, I-22, S-07, N-02, N-03, G-03), live/held duplicates no script flagged (I-04 ~ act ff761ac8; I-19 ~ act b28ffe33; F-01 ~ sat b905500f; F-06 ~ sat 86141156; S-03 ~ ssat 8ee46e8e and two more committee items; S-06 ~ sat e5d1e751; S-07 ~ act 46522920; S-X3 ~ act c9f4b0d5; G-06 ~ sat eb3a2c76; G-08 ~ act 2013538d / ssat 394776b4; F-X2 ~ act 4e5d89e6; S-X1/G-X2 ~ ssat eddf2e50), cheap bounds (I-21, N-03), in-batch overlaps (X3 ~ I-08, X6 ~ I-16). Re-dump 1 (+218 isee/ssat-s16 rows) mid-authoring. After the return 5 core items failed and were dropped (F-01 ~ sat f6fd8893; G-08 ~ held AM23G-02 / AM24A-13; I-07 one-way + held AM27I-12; I-19 ~ live share-by-relations ssat 17725ee2 etc.; N-02 ~ act 231efc68); the pre-registered rule promoted S-X1, G-X2, I-X1, I-X6, G-X1 (all exact-position); F-X2 unavailable (held AM27F-02). Re-dump 2 (+45 sat-math-v28-full) before freeze: 3,553 live maths. Merged 50: sandbox 50/50, distractors 150/150, key-extremity 30/50 = 60.0%, 15/20/15 (IES 8/6/8); magnitude on the AUTHORED set REPORTED (interior z -2.00); act-math-v28-projection PASS (split 48.1%, IES 50.0%, LOO hold); key-extremity-projection PASS 50.9%; v26/v27 projections reported (v27 v26-rate 55.8% reported, not gated, as pre-registered); ies-directions D1-D4 0; option shapes RUN 0 (GAP 1 read); merges: no closure, no shared values. Jaccard 0 flag / mechanism 0 FLAG over 3,553 rows, every near read. Kept 40 (sha 1e9b8f1d6dedc8b4): PREFLIGHT PASS with magnitude gating z 0.80 / -0.17 / -0.52, key-extremity 20/40 = 50.0% (9/20/11); IES kept alone 15: key-extremity 9/15 = 60.0% PASS, magnitude z 1.03 / 0.28 / -1.09."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "1e9b8f1d6dedc8b4e29101d7800fc5eccef6d96653f2de9b0b262ef4cc0ddd32",
+          "verdict": "Options-only (act-math-v28-attack-draw.mjs, seed 20261038, blind sha 534db9f0ffa2016b): 50 candidates + 50 live act/math controls 1:1 by domain (v16..v28 excluded), keys flat (26.0%), three Claude samples (pairwise agreement 80.7% vs 26.1% if independent - one solver sampled three times). Candidate 33/150 = 22.0% (-4.0) vs control 60/150 = 40.0% (+14.0): candidate minus control -18.0 (HOLD bar +10). Unanimous-correct 8/50 = 16.0% vs 15/50 = 30.0%, -14.0 (bar +15). Control +14.0 < +25 (instrument valid). Descriptive: the pass rides on position - extreme picked on 1/150 candidate picks (control 21/150); interior-key hits 33/60 = 55.0% vs 52/99 = 52.5%; IES arm 5/66. Measures the option sets only."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "1e9b8f1d6dedc8b4e29101d7800fc5eccef6d96653f2de9b0b262ef4cc0ddd32",
+          "verdict": "Two independent Claude graders on make-grade-render (grade batch cc3fd62b873e15c7) plus an ies flag, render deeec39c2cc72e88 quoted at start and end by both; 100/100 picks on key; required fields on all items; difficulty agree 47/50. act-math-v27-ies-verify: IES distractor directions reproduced by both 66/66; extreme-key IES items with a natural counter by >= 1 grader 12/16. Dropped 10 (not replaced: spares promote only before freeze): rule 12 I-01, I-11, I-21 (+ I-22); rule 11 I-10 (25%-less clause -> two distractors, both above); rule 3/10 I-12 (weighted-average bound < 26.875), F-06 (e + 0.05 < 0.5 -> raise < 57), G-01 (AC < 12 from a steep BC); rule 4 I-22, I-X6 (two weak by both); rule 8 S-03 (subgroup n and p make every substitution shrink the margin). Survival: extreme 20/30 = 66.7%, interior 20/20; IES extreme 9/16, interior 6/6; non-IES extreme 11/14, interior 14/14. Banked: easy 2 / medium 29 / hard 9."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "1e9b8f1d6dedc8b4e29101d7800fc5eccef6d96653f2de9b0b262ef4cc0ddd32",
+          "verdict": "Residuals recorded in act-math-v28.verdicts.json, not acted on: one_sided named and not confirmed on I-02, I-05, I-08, I-13, I-15, I-16, I-18, I-X1, S-01, S-05, S-07, F-04, G-03, G-05, G-06, G-X1, G-09, N-03 (a natural opposite error exists on each); cross-item: an x and x/(1-x) base-swap pair contains the key on I-12, I-14, I-17, I-18, I-22 with the key the smaller member in 4 of 5; converging runs with the key at the end (I-08, N-03); the /(1-p) vs x(1+p) distractor recurs (I-13, I-20, N-03, I-08, I-11, X1); three trig-law items in Geometry (G-05, G-06, G-X2). S-04 survivors 2 by B via the item's own variance decomposition (not cheaper). S-X1 survivors 1 by A via linear interpolation, which is the exact solution."
         }
       }
     }

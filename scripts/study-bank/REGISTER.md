@@ -2352,6 +2352,90 @@ recorded only in a commit message is a finding nobody reads.
   - **Finding 3 — a commit message broke blindness.** The freeze commit named one repaired key (SVA19-70), and every subagent launched afterwards carries recent commit messages in its context. Sample b reported it. None of the three samples picked that key; the sensitivity run without the item gave E −39.1 and the same verdicts (deviation fixed before sample c's file was read; `--exclude-blind`). **No key text in commit messages while a batch is in a blind stage.**
   - **After.** No insert. `verify-admission-forms.mjs`: every section fillable (verbal margin +456). `ssat-verbal-replay.ts`: **9 clean forms (unchanged)**, forms 10–11 syn 30/30 with ana 0/30. → `ssat-verbal-s19.prereg.md`, `ssat-verbal-s19-{tools,stages}.mjs`, `ssat-verbal-s19.{design,live-words}.json`, `ssat-verbal-s19-ana.batch.json`, `-oo.*`, `-g{1,2}.*`, `ssat-verbal-s19-ana.{qc,kept.batch}.json`; ledger `ssat-verbal-s19-ana-held-2026-10-10` (killed)
 
+- **2026-10-10** — **`act-math-v28` INSERTED 40 OF 50 FROZEN (62 slots authored). ACT MATH 18 -> 20 FORMS (893 items; form-capacity by domain and next-form). Every form-20 deficit was met: IES 15/10, Geometry 9/7, S&P 8/6, Functions 5/5, N&Q 3/2. Form 21 needs Functions +8, Geometry +6, Algebra +5, N&Q +4, S&P +4, IES +4 (31 items; binding N&Q 101 / 5).** Bars pre-registered before authoring: `ACT-MATH-V28-PREREGISTERED.md` (committed alone, e39c56d4).
+
+  **What changed from v27, and why.**
+  - **Headroom at one planning rate per band.** v27 was held because a single post-return drop pushed its v26-rate line to 55.4% on a commission 0.9 points inside the band. v28's selftest shows the seven rates v27 gated cannot all have 2.5 points of headroom at once: over IES 20–24 × non-IES 24–32, the best minimum is **1.53 points**. So each band is gated at one planning rate:
+    - Merged band: the domain-split rate, 48.1% (3.15 points of headroom).
+    - IES band: IES's own rate, 50.0% (5.00 points).
+    - `key-extremity-projection` (v25 bars, unedited): its v24 rate, 50.9% (4.1 points).
+    - The domain-blind v26 and v27 projection lines are reported, not gated. The line that held v27 projects IES extreme keys at 77.8% survival, but IES has measured 6 of 17.
+  - **IES widened from 20 to 22 (11 per arm).** No IES-20 composition has 2.5 points of headroom (14 extreme gives 46.7%, 15 gives 52.9%). Commissioned 15/20/15, with IES 8/6/8.
+  - **Survives losing any one item.** The leave-one-out table was proven before authoring and printed on every run (`act-math-v28-projection.mjs --commission`, selftest 10/10). It reproduces v27's 47 exactly and shows v27's own commission failing both C1 and C2.
+  - **Spares.** Three per arm, one at each key position. A drop before freeze promotes the same-arm, same-position spare (`act-math-v28-assemble.mjs`, selftest 7/7). Both scripts were mutation-tested.
+
+  **Authoring.** Ten runs of 5–7 items, one file per item, at most two subagents at a time.
+  - Three API-limit kills (overnight, then twice more on the return). Every relaunch resumed from the item files on disk.
+  - The C arm's number-property spare N-X3 was never delivered in either attempt; every design was live, held, or broke a rule.
+
+  **Stage 0, round 1 (61 delivered).** Every mechanical check was clean on every arm: verify, positions, ies-directions D1–D4 0 of 22, option-shapes RUN 0, merges, niceness, (c), Jaccard 0 flags, mechanism-dup 0 FLAG.
+  - **The return was 24 items (D1 6, D2 4, B 8, C 6), all found by my reads and none by a script:**
+    - The error-direction read on every extreme key: 9 one-way (I-05, I-07, I-11, X1, I-22, G-03, N-02 for that alone; I-04 and I-19 were also duplicates).
+    - The hand keyword search: 13 live or held duplicates (I-04 ~ act ff761ac8, I-19 ~ act b28ffe33, F-01 ~ sat b905500f, S-06 ~ sat e5d1e751, S-X3 ~ act c9f4b0d5, and others), including F-06 ~ sat 86141156, S-03 ~ ssat 8ee46e8e and two more committee items, S-07 ~ act 46522920, G-06 ~ sat eb3a2c76, G-08 ~ act 2013538d / ssat 394776b4, F-X2 ~ act 4e5d89e6, and S-X1 / G-X2 ~ ssat eddf2e50.
+    - Cheap bounds: I-21, N-03.
+    - In-batch overlaps: X3 ~ I-08, X6 ~ I-16.
+  - The live bank grew twice mid-run: +218 isee/ssat-s16 rows (re-dump 1; Ca caught its own N-01 ~ ssat 394776b4), then +45 sat-math-v28-full (re-dump 2, immediately before freeze). Every new row was read against every item.
+  - **After the return, 5 replacements failed and were dropped:**
+    - F-01: its whole mechanism is sat f6fd8893 (inverse square).
+    - G-08: common chord, matching held AM23G-02 / AM24A-13.
+    - I-07: one-way, and the speedometer step is held AM27I-12.
+    - I-19: share-by-relations, live ssat 17725ee2 / cc16a1b2.
+    - N-02: displacement resultant, live act 231efc68.
+  - The pre-registered rule promoted S-X1, G-X2, I-X1, I-X6 and G-X1, every one at the dropped item's exact position, so the composition was restored to 15/20/15 (IES 8/6/8). F-X2 was unavailable (it overlaps held AM27F-02).
+  - **Frozen** 86df9854: merged sha 205861f8, 5 unpromoted spares d8f1230d. At freeze:
+    - Preflight 50/50 with 150/150 distractors recomputed.
+    - `act-math-v28-projection` PASS: split 48.1%, IES 50.0% at kept n 11.29, equal-rate z −1.72, leave-one-out holds.
+    - `key-extremity-projection` PASS: 50.9%.
+    - Reported only: authored magnitude interior z −2.00; v27 projection's v26-rate line 55.8%, outside its band as expected.
+
+  **Stage 1 PASS.**
+
+      CANDIDATE     33/150 = 22.0%   line 26.0%   margin -4.0
+      LIVE CONTROL  60/150 = 40.0%   line 26.0%   margin +14.0   (50 matched 1:1 by domain, v16-v28 excluded)
+      candidate minus control  -18.0   (HOLD bar +10)
+      unanimous-correct        candidate 8/50 = 16.0%  vs  control 15/50 = 30.0%   -14.0  (HOLD bar +15)
+      pairwise agreement 80.7% vs 26.1% if independent: one solver sampled three times
+  Blind sha 534db9f0ffa2016b, seed 20261038. **The pass rides on position again.** Solvers picked an extreme option on 1 of 150 candidate picks (control 21 of 150). Matched by position, interior-key hits are level: 33/60 = 55.0% vs 52/99 = 52.5%.
+
+  **Stage 2.** Render deeec39c2cc72e88 (the grade batch cc3fd62b873e15c7 plus an `ies` flag), quoted by both graders at start and end. **100/100 picks on key.** Difficulty agreement 47/50. `act-math-v27-ies-verify` (its first use): both graders reproduced all 66 of 66 IES distractor directions; 12 of 16 extreme-key IES items had a counter-direction error rated natural by at least one grader, and the 4 without one are exactly the four rule-12 drops below. **Kept 40, dropped 10:**
+  - **Rule 12:** I-01, I-11, I-21, I-22. Neither grader found a natural counter-direction error.
+  - **Rule 11:** I-10. The 25%-less clause produced two distractors, both above the key.
+  - **Rule 3 / 10:**
+    - I-12: rate < 25 + 15/8.
+    - F-06: e + 0.05 < 0.5, so the raise is < 57.
+    - G-01: a steep BC gives AC < 12.
+  - **Rule 4:** I-X6, and I-22 again (two distractors rated weak by both graders).
+  - **Rule 8:** S-03. Subgroup n and p make every substitution shrink the margin.
+  - Not confirmed, and kept (in `act-math-v28.verdicts.json`): one_sided named on 18 items, each with a natural opposite error; S-04 (survivors 2 via the item's own variance decomposition); S-X1 (interpolation is the exact solution).
+  - Banked difficulty: easy 2 / medium 29 / hard 9. Post-freeze drops are not replaced.
+
+  **Stage 4 PASS.**
+  - Kept 40 (sha 1e9b8f1d6dedc8b4): preflight PASS with magnitude gating, z 0.80 / −0.17 / −0.52. Key at an extreme 20/40 = 50.0%, position 9/20/11.
+  - **IES kept alone, 15:** key-extremity 9/15 = 60.0% PASS; magnitude reported, z 1.03 / 0.28 / −1.09. This is the first IES set large enough to measure on its own.
+  - **Survival:** extreme keys 20/30 = 66.7%, interior 20/20.
+    - IES: extreme 9/16 = 56.3%, interior 6/6. The planning rate was 6/17 = 35.3%, so the both-way brief raised IES extreme survival by about 21 points.
+    - Non-IES: extreme 11/14, interior 14/14.
+    - The kept share, 50.0%, landed between the split projection (48.1%) and equal survival (60%).
+  - Inserted with `BANK_FAMILY=act BANK_COHORT=act-math-v28 BANK_BAND=mixed`, 40 of 40. `verify-act-draw`: act/math draws 45 of 45.
+
+  **For the next author (v29: form 21 needs 31 items across all six domains).**
+  1. **Re-derive the planning rates with v28 in them.** IES extreme survival moved from 35.3% to 56.3% under the both-way brief. Projecting the next batch at 35.3% would commission too many extreme IES keys.
+  2. **The return is where the batch was won.** 24 of 61 items were returned, every one found by my reads, none by a script. Mechanism-dup flagged 0 of the 18 duplicates (13 in the return, 5 after it). The standard that held: an item whose working contains a live or held item's whole mechanism is a duplicate, even when it adds a step.
+  3. **Cross-item tells to brief against:**
+     - An x and x/(1−x) base-swap pair containing the key (5 IES items, with the key the smaller member in 4).
+     - The /(1−p) vs ×(1+p) distractor on 6 items.
+     - Converging runs with the key at the end.
+  4. **N&Q number properties are exhausted** in the live bank (two authors could not write one). Commission N&Q from vectors, complex numbers and units instead.
+  5. API-limit kills cost three relaunches. One file per item made every resume lossless.
+
+  Evidence:
+  - Pre-registration and tools: `ACT-MATH-V28-PREREGISTERED.md`, `act-math-v28-projection.mjs`, `act-math-v28-assemble.mjs`, `act-math-v28-stage0.sh`, `act-math-v28-attack-draw.mjs`.
+  - Batches: `act-math-v28{-d1,-d2,-b,-c,}.batch.json` (frozen), `act-math-v28.spares.json` (5 unpromoted; never attacked, graded or inserted), `act-math-v28.kept.batch.json`, `act-math-v28.drops.json`, `act-math-v28.verdicts.json`, `act-math-v28.qc.json`.
+  - Attack: `act-math-v28-attack.{blind,key,controls,solver-a,solver-b,solver-c}.json`.
+  - Grade: `act-math-v28-grade.{batch,grade,gradekey}.json`, `act-math-v28.grader-{a,b}.json`.
+  - Ledger `act-math-v28-kept-2026-10-10`. `form-capacity`: ACT Math 20 forms by domain (893; binding N&Q 101 / 5). `next-form`: form 21 = 31 items.
+
+
 ## 6. The rule that keeps this honest
 
 A cohort is **not** clean because the cheap checks passed. Five

@@ -1,0 +1,552 @@
+[
+ {
+  "id": "AM28I-01",
+  "topic_tag": "dosing an aquarium medicine to a target concentration",
+  "prompt": "A fish medicine must be added to an aquarium so that the water contains 3.0 milligrams of the active ingredient per liter of water. The aquarium is labeled 55 gallons, but because of gravel and decorations, the volume of water in it is 15% less than the labeled volume. The medicine is a liquid that is 2.0% active ingredient by mass, and each milliliter of the liquid has a mass of 1.08 grams. Given that 1 gallon = 3.785 liters, how many milliliters of the medicine should be added, to the nearest tenth of a milliliter?",
+  "choices": [
+   "24.6",
+   "33.3",
+   "25.1",
+   "28.7"
+  ]
+ },
+ {
+  "id": "AM28I-02",
+  "topic_tag": "time to fill a pool from a hose timed with a bucket, with a leak",
+  "prompt": "A rectangular swimming pool is 24 feet long and 12 feet wide and has a flat bottom. It now holds water to a depth of 6 inches, and it will be filled with a garden hose until the water is 4.5 feet deep. To measure the hose's flow, the owner timed it filling an empty 5-gallon bucket in 40 seconds. While the pool fills, a small crack lets water leak out at a rate equal to 12% of the rate at which the hose adds water. Given that 1 cubic foot of water is 7.48 gallons, how many hours will it take to fill the pool to a depth of 4.5 feet, to the nearest tenth of an hour?",
+  "choices": [
+   "21.2",
+   "20.4",
+   "21.4",
+   "21.8"
+  ]
+ },
+ {
+  "id": "AM28I-03",
+  "topic_tag": "ocean depth in fathoms from a sonar echo time",
+  "prompt": "A ship measures the depth of the ocean with sonar. A sound pulse is sent straight down from a transducer mounted on the hull 5.4 meters below the water's surface, and the echo from the flat seafloor returns to the transducer. The sonar's display shows 0.852 second between sending the pulse and receiving the echo, but the display includes a fixed electronic delay of 0.012 second that is not travel time. Sound travels through the seawater at a constant 1,530 meters per second. The depth of the ocean is measured from the water's surface to the seafloor. Given that 1 fathom = 6 feet and 1 foot = 0.3048 meter, what is the depth of the ocean, in fathoms, to the nearest tenth of a fathom?",
+  "choices": [
+   "356.8",
+   "354.3",
+   "349.3",
+   "348.4"
+  ]
+ },
+ {
+  "id": "AM28I-04",
+  "topic_tag": "mass of a salad dressing from component volumes and densities",
+  "prompt": "To make a salad dressing, Ines mixes olive oil and vinegar in the ratio 4:1 by volume to make 1.75 cups of the oil-and-vinegar mixture, and then she stirs in 3 tablespoons of mustard. Olive oil has a density of 0.92 gram per milliliter, vinegar has a density of 1.01 grams per milliliter, and the mustard has a density of 1.10 grams per milliliter. Use 1 cup = 236.6 milliliters and 1 tablespoon = 14.8 milliliters. To the nearest gram, what is the mass of the dressing?",
+  "choices": [
+   "448",
+   "437",
+   "482",
+   "439"
+  ]
+ },
+ {
+  "id": "AM28I-05",
+  "topic_tag": "weight of wet snow on a partly cleared flat roof",
+  "prompt": "A flat roof is a rectangle 30 feet by 40 feet. A storm left a uniform layer of snow 15 inches deep on the whole roof, and this snow weighed 12% as much as the same volume of water. Over the next two days the snow settled until its depth was 20% less, but none of it melted or blew away. The owner then shoveled all the snow off part of the roof, so that the area she cleared was 15% of the area still covered with snow. Next, 1.5 inches of rain fell on the roof. The rain that fell on the snow was all absorbed by the snow, and the rain that fell on the cleared part drained away. Water weighs 62.4 pounds per cubic foot. To the nearest hundredth of a ton (1 ton = 2,000 pounds), what was the total weight of the snow and absorbed rain on the roof after the rain?",
+  "choices": [
+   "5.37",
+   "8.75",
+   "7.98",
+   "8.95"
+  ]
+ },
+ {
+  "id": "AM28I-06",
+  "topic_tag": "matching the scale speed of model trains in two scales",
+  "prompt": "A model train's scale speed is the speed a full-size train would have if it covered the full-size equivalent of the model's distance in the same time; for a model built at a scale of 1:n, the scale speed is n times the model's actual speed. An HO-scale (1:87) model train completes each lap of a 24-foot loop of track in 23 seconds. An S-scale (1:64) model train runs on a 31-foot loop. How many seconds should each lap of the S-scale train take so that its scale speed equals the HO-scale train's scale speed, to the nearest tenth of a second?",
+  "choices": [
+   "24.2",
+   "13.1",
+   "21.9",
+   "29.7"
+  ]
+ },
+ {
+  "id": "AM28I-X1",
+  "topic_tag": "cost per load of a concentrated detergent on sale",
+  "prompt": "A store sells two brands of liquid laundry detergent. A bottle of Brand A holds enough detergent for exactly 48 loads of laundry. A bottle of Brand B holds 20% less detergent than a bottle of Brand A, but Brand B is more concentrated, so each load of laundry needs 40% less Brand B detergent than it would need of Brand A. A bottle of Brand B regularly costs $16.49, and this week it is on sale for 20% off the regular price. At the sale price, what is the cost, in cents, of the Brand B detergent used for one load of laundry, to the nearest tenth of a cent?",
+  "choices": [
+   "24.5",
+   "21.5",
+   "22.9",
+   "20.6"
+  ]
+ },
+ {
+  "id": "AM28I-08",
+  "topic_tag": "length of a slow-motion time-lapse video after blurry photos are deleted",
+  "prompt": "A camera set up for a time-lapse video takes a photo every 8 seconds, taking its first photo at 6:12:30 a.m. and its last photo at 7:42:22 a.m. Afterward, Lena deletes the blurry photos; the number of photos she deletes is 8% of the number of photos she keeps. She makes a video from the photos she keeps, showing each photo as one frame at 24 frames per second, and then plays the video in slow motion at a speed 15% slower than normal speed. How many seconds does the video last when played in slow motion, to the nearest hundredth of a second?",
+  "choices": [
+   "30.64",
+   "30.44",
+   "30.59",
+   "29.95"
+  ]
+ },
+ {
+  "id": "AM28I-09",
+  "topic_tag": "resetting an IV drip rate after an infusion falls behind schedule",
+  "prompt": "A patient is to receive 1,200 milliliters of saline through an IV at a constant rate over 10 hours, starting at 7:00 a.m. and finishing at 5:00 p.m. The IV tubing delivers 15 drops per milliliter. At 9:40 a.m. a nurse finds that the volume infused so far is 32% less than the volume the original schedule called for by 9:40 a.m. She resets the drip rate so that the rest of the 1,200 milliliters will be infused at a constant rate by 5:00 p.m. To the nearest tenth, what is the new drip rate, in drops per minute?",
+  "choices": [
+   "30.7",
+   "32.6",
+   "37.4",
+   "33.5"
+  ]
+ },
+ {
+  "id": "AM28I-10",
+  "topic_tag": "plant-food concentrate for a season of seedling waterings, U.S. label and imperial watering can",
+  "prompt": "A plant-food label says to mix 16 milliliters of concentrate into each U.S. gallon of water for mature plants; for seedlings, it says to use a rate that is 25% less than that. Hana, who lives in Britain, waters her seedlings with a can that she fills with 2.25 imperial gallons of water each time. She waters the seedlings every 4 days: the first watering is 4 days after she transplants them on May 3, and the last watering is on June 24. Given that 1 imperial gallon = 1.20095 U.S. gallons, how many milliliters of concentrate will she use for all of these waterings, to the nearest hundredth of a milliliter?",
+  "choices": [
+   "421.53",
+   "702.56",
+   "449.64",
+   "453.96"
+  ]
+ },
+ {
+  "id": "AM28I-11",
+  "topic_tag": "trail race time with uphill, downhill and mud speed changes",
+  "prompt": "A 12-kilometer trail race course has 3.6 kilometers of uphill sections, 3.5 kilometers of downhill sections, and flat sections for the rest of the course. On a dry trail, Kai runs the flat sections at 9.6 kilometers per hour, his uphill speed is 25% slower than his flat speed, and his downhill speed is 12% faster than his flat speed. On race day the trail was muddy, and on every section Kai's speed was 8% slower than his dry-trail speed for that kind of section. To the nearest tenth of a minute, how many minutes did Kai take to run the race?",
+  "choices": [
+   "86.6",
+   "86.8",
+   "87.1",
+   "85.2"
+  ]
+ },
+ {
+  "id": "AM28I-12",
+  "topic_tag": "consignment shop commission with a different rate for items under $50",
+  "prompt": "A consignment shop sells items for their owners. For each item it sells, the shop keeps 40% of the selling price if the item sells for less than $50 and 25% of the selling price if the item sells for $50 or more; the owner receives the rest. In one week, the shop sold four of Mira's items, for $34.50, $53.50, $72.50, and $121.50. To the nearest hundredth of a percent, the amount the shop kept from these four sales is what percent of their total selling price?",
+  "choices": [
+   "34.81",
+   "27.66",
+   "26.84",
+   "36.68"
+  ]
+ },
+ {
+  "id": "AM28I-13",
+  "topic_tag": "loose soil needed for an open wooden planter with board thickness and settling",
+  "prompt": "A rectangular planter box with no top is built from boards that are 3/4 inch thick. The boards form the four sides and the bottom of the box, and the box's outside dimensions are 48 inches long, 20 inches wide, and 16 inches tall. A gardener will fill the box with loose potting soil. When this soil settles, its volume decreases by 12%. The gardener wants the surface of the settled soil to be 1 inch below the top edge of the box. To the nearest hundredth of a cubic foot, how many cubic feet of loose soil should the gardener put in the box? (1 cubic foot = 1,728 cubic inches)",
+  "choices": [
+   "8.06",
+   "7.64",
+   "6.24",
+   "7.95"
+  ]
+ },
+ {
+  "id": "AM28I-14",
+  "topic_tag": "membership count change from a fee change and a revenue change",
+  "prompt": "A climbing gym raised its monthly membership fee from $64 to $76. Every member pays the same monthly fee. The gym's total monthly membership revenue after the increase was 7.7% greater than its total monthly membership revenue before the increase. To the nearest hundredth of a percent, by what percent did the number of members decrease?",
+  "choices": [
+   "8.76",
+   "6.99",
+   "9.31",
+   "10.26"
+  ]
+ },
+ {
+  "id": "AM28I-15",
+  "topic_tag": "average cost per share over monthly purchases of a fixed dollar amount",
+  "prompt": "On the first day of each month from January through April, Lena made one payment to buy shares of a stock fund. Each payment included a $4 fee, and the rest of the payment bought as many shares (including fractions of a share) as it could at that day's price. She paid $250 in January, $250 in February, $250 in March, and $450 in April, and the price per share was $34 in January, $28 in February, $38 in March, and $24 in April. Lena's average cost per share is the total amount she paid, fees included, divided by the total number of shares she bought. To the nearest cent, what is Lena's average cost per share?",
+  "choices": [
+   "30.54",
+   "30.25",
+   "29.83",
+   "29.21"
+  ]
+ },
+ {
+  "id": "AM28I-16",
+  "topic_tag": "guitar string frequency at a fret from inverse variation with vibrating length",
+  "prompt": "On a guitar, a string is stretched from the nut to the bridge, a distance of 64.8 centimeters. When the string is pressed against a fret, only the part of the string between that fret and the bridge vibrates. At a fixed tension, the frequency of the note the string plays varies inversely as the length of the vibrating part. When the string is pressed against a fret 14.3 centimeters from the nut, it plays a note of 141.6 hertz. To the nearest tenth of a hertz, what frequency does the string play when it is pressed against a fret 21.6 centimeters from the nut?",
+  "choices": [
+   "157.6",
+   "162.1",
+   "165.5",
+   "159.6"
+  ]
+ },
+ {
+  "id": "AM28I-17",
+  "topic_tag": "percent change of one share when a budget is cut and re-split in a new ratio",
+  "prompt": "Last year, a school's activities budget of $63,000 was split between athletics and the arts in the ratio 9:5, respectively. This year, the total activities budget was cut by 8%, and the new total was split between athletics and the arts in the ratio 5:4, respectively. To the nearest hundredth of a percent, by what percent did the athletics budget decrease from last year to this year?",
+  "choices": [
+   "20.49",
+   "25.78",
+   "16.73",
+   "13.17"
+  ]
+ },
+ {
+  "id": "AM28I-18",
+  "topic_tag": "percent less energy from a wind turbine whose power varies as the cube of wind speed",
+  "prompt": "A wind turbine's power output varies directly as the cube of the wind speed when the wind speed is between 3.5 and 13 meters per second (m/s). At a wind speed of 9.0 m/s, the turbine's power output is 1,150 kilowatts. On one day, the wind blew at a steady 9.0 m/s for 10 hours and at a steady 7.5 m/s for the other 14 hours. To the nearest hundredth of a percent, the energy the turbine produced that day was what percent less than the energy it would have produced if the wind had blown at 9.0 m/s for all 24 hours? (Energy = power × time)",
+  "choices": [
+   "28.47",
+   "24.58",
+   "26.42",
+   "32.58"
+  ]
+ },
+ {
+  "id": "AM28I-X6",
+  "topic_tag": "net cost after a price-match refund of 110% of the pre-tax difference plus the tax on the refund",
+  "prompt": "Kenji bought a vacuum cleaner for $214.95 plus 8.25% sales tax. A week later, a competitor advertised the same vacuum cleaner for $179.49 before tax. Under the store's price-match policy, the store refunds 110% of the difference between its price and the competitor's price, both before tax, plus the sales tax on the amount refunded. To the nearest cent, what was Kenji's net cost for the vacuum cleaner after the refund?",
+  "choices": [
+   "171.03",
+   "190.46",
+   "186.98",
+   "169.34"
+  ]
+ },
+ {
+  "id": "AM28I-20",
+  "topic_tag": "water for a batch from baker's percentages after a baking weight loss",
+  "prompt": "A bakery's bread formula gives the weight of each ingredient as a percent of the weight of the flour: flour 100%, water 69%, salt 2%, and yeast 1.4%. The dough is made of only these four ingredients. When a loaf is baked, its weight decreases by 13% of the weight of its dough. The baker wants to bake 9 loaves that each weigh 620 grams after baking. To the nearest gram, how many grams of water should the baker use?",
+  "choices": [
+   "2524",
+   "2233",
+   "2567",
+   "2619"
+  ]
+ },
+ {
+  "id": "AM28I-21",
+  "topic_tag": "reservoir level after an inflow measured on the unfilled capacity and May removals measured on the water present",
+  "prompt": "A reservoir was at 56% of its capacity on April 1. During April, snowmelt added an amount of water equal to 45% of the reservoir's unfilled capacity on April 1, and no water left the reservoir. During May, no water entered the reservoir; the water district released 24% of the water that was in the reservoir on May 1, and evaporation removed an additional amount equal to 3% of the water that was in the reservoir on May 1. To the nearest hundredth of a percent, the reservoir was at what percent of its capacity on June 1?",
+  "choices": [
+   "58.86",
+   "55.88",
+   "59.28",
+   "55.33"
+  ]
+ },
+ {
+  "id": "AM28I-22",
+  "topic_tag": "percent by which an old opposite-sides surveying rule overstates a trapezoidal field's area",
+  "prompt": "An old surveying rule estimates the area of a four-sided field by multiplying the average of the lengths of one pair of opposite sides by the average of the lengths of the other pair of opposite sides. A certain field is a trapezoid. Its parallel sides are 173 meters and 98 meters long and are 56 meters apart, and its other two sides are 65 meters and 70 meters long. The rule's estimate is greater than the field's actual area by what percent of the actual area, to the nearest hundredth of a percent?",
+  "choices": [
+   "5.59",
+   "20.54",
+   "17.04",
+   "3.85"
+  ]
+ },
+ {
+  "id": "AM28S-01",
+  "topic_tag": "conditional probability from a two-way table",
+  "prompt": "Each of the 282 students at a school reported how many siblings he or she has and whether his or her household has a pet. The results are below. 0 siblings: pet 40, no pet 42. 1 sibling: pet 40, no pet 30. 2 siblings: pet 28, no pet 12. 3 siblings: pet 33, no pet 27. 4 or more siblings: pet 18, no pet 12. One of the students who has at least 2 siblings is chosen at random. To the nearest thousandth, what is the probability that this student's household has no pet?",
+  "choices": [
+   "0.392",
+   "0.433",
+   "0.415",
+   "0.405"
+  ]
+ },
+ {
+  "id": "AM28S-02",
+  "topic_tag": "expected value of a game",
+  "prompt": "A bag contains 4 red, 5 blue, and 6 white marbles. A player pays $1.50 to play a game in which 2 marbles are drawn from the bag at random, one after the other, without replacement. The player receives $4 if the 2 marbles are the same color, and if both marbles are red, the player receives an additional $18. Otherwise the player receives nothing. To the nearest cent, what is the player's expected net gain, in dollars, for one play of the game?",
+  "choices": [
+   "1.15",
+   "0.48",
+   "0.71",
+   "0.56"
+  ]
+ },
+ {
+  "id": "AM28S-03",
+  "topic_tag": "margin of error for a subgroup proportion",
+  "prompt": "A random sample of 2,000 adults in a state was asked whether they support a proposed transit tax. Of the 2,000 adults, 450 were ages 18 to 24, and 26% of those 450 said they support the tax. Of all 2,000 adults, 17% said they support the tax. For a sample proportion p from a sample of size n, a pollster uses a margin of error of 2√(p(1 - p)/n), converted to percentage points. To the nearest hundredth of a percentage point, what is the upper endpoint (the sample percent plus the margin of error) of the interval estimate for the percent of the state's adults ages 18 to 24 who support the tax?",
+  "choices": [
+   "30.14",
+   "28.07",
+   "28.23",
+   "29.54"
+  ]
+ },
+ {
+  "id": "AM28S-X1",
+  "topic_tag": "mean and standard deviation recovered from two standardized scores",
+  "prompt": "On a history exam, a score of 89 was exactly 1.5 standard deviations above the mean score, and a score of 56 was exactly 1.3 standard deviations below the mean score. To the nearest hundredth, what score on this exam was exactly 0.4 standard deviation below the mean score?",
+  "choices": [
+   "76.04",
+   "66.61",
+   "67.42",
+   "68.96"
+  ]
+ },
+ {
+  "id": "AM28F-02",
+  "topic_tag": "exponential decay model",
+  "prompt": "Chlorine is added to a pool at 6:00 a.m. on June 1, and no more is added afterward. Each day, sunlight breaks down 7% of the chlorine that is in the pool at the start of that day, so the amount of chlorine d days after 6:00 a.m. on June 1 is C₀(0.93)^d for each whole number d, where C₀ is the amount added. To the nearest tenth of a percent, what percent of C₀ is broken down from 6:00 a.m. on June 3 to 6:00 a.m. on June 10?",
+  "choices": [
+   "34.4",
+   "39.8",
+   "26.3",
+   "38.1"
+  ]
+ },
+ {
+  "id": "AM28S-04",
+  "topic_tag": "standard deviation of combined groups",
+  "prompt": "A running club timed two groups on the same 5-kilometer course. The 14 runners in Group A had a mean time of 26.0 minutes and a standard deviation of 3.0 minutes. The 21 runners in Group B had a mean time of 31.0 minutes and a standard deviation of 4.0 minutes. For each group, and for any data set, the standard deviation is the square root of the mean of the squared deviations from the mean. To the nearest hundredth of a minute, what is the standard deviation of the times of all 35 runners together?",
+  "choices": [
+   "4.41",
+   "4.38",
+   "4.33",
+   "6.18"
+  ]
+ },
+ {
+  "id": "AM28S-05",
+  "topic_tag": "binomial probability, two stages",
+  "prompt": "Each light bulb made at a factory is defective with probability 0.05, independently of every other bulb. The bulbs are packed in boxes of 12, and an inspector rejects a box if it contains 2 or more defective bulbs. Three boxes are inspected. To the nearest thousandth, what is the probability that exactly one of the three boxes is rejected?",
+  "choices": [
+   "0.304",
+   "0.315",
+   "0.403",
+   "0.276"
+  ]
+ },
+ {
+  "id": "AM28F-03",
+  "topic_tag": "inverse functions",
+  "prompt": "The function f is defined by f(x) = 0.4x^2 + 3 for x ≥ 0, and f^(−1) is the inverse of f. To the nearest thousandth, what is the average rate of change of f^(−1) from x = 5 to x = 13?",
+  "choices": [
+   "0.232",
+   "0.345",
+   "0.139",
+   "0.546"
+  ]
+ },
+ {
+  "id": "AM28F-04",
+  "topic_tag": "piecewise-defined functions in context",
+  "prompt": "A delivery truck's fuel consumption r, in liters per 100 kilometers, depends on its constant speed v, in kilometers per hour, according to the function r(v) = 30 − 0.2v for 40 ≤ v < 75 and r(v) = 15 + 0.02(v − 75)^2 for 75 ≤ v ≤ 110. On one trip, the truck traveled 170 kilometers at a constant 70 kilometers per hour and then 210 kilometers at a constant 93 kilometers per hour. To the nearest hundredth of a liter, how much fuel did the truck use on the trip?",
+  "choices": [
+   "70.12",
+   "59.46",
+   "72.31",
+   "71.46"
+  ]
+ },
+ {
+  "id": "AM28F-05",
+  "topic_tag": "function transformations",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = log₂ x is stretched horizontally by a factor of 3 away from the y-axis. The resulting graph is then translated 3 units to the left, and that graph is then translated 1.5 units down. The final graph is the graph of y = g(x). To the nearest hundredth, what is the value of g(23)?",
+  "choices": [
+   "4.79",
+   "1.62",
+   "1.92",
+   "1.24"
+  ]
+ },
+ {
+  "id": "AM28S-06",
+  "topic_tag": "linear rescaling of a data set fixed by its minimum and maximum",
+  "prompt": "On a quiz taken by 30 students, the lowest score was 38, the highest score was 92, and the mean score was 71.46. The teacher rescales every score with the same linear function, y = ax + b, chosen so that the lowest score becomes 50 and the highest score becomes 100. To the nearest hundredth, what is the mean of the 30 rescaled scores?",
+  "choices": [
+   "77.67",
+   "80.98",
+   "83.46",
+   "86.14"
+  ]
+ },
+ {
+  "id": "AM28S-07",
+  "topic_tag": "first event among independent trials with two different probabilities",
+  "prompt": "In a race, a runner clears 12 hurdles in order. The first 6 hurdles are low hurdles, and she knocks over each low hurdle with probability 0.04. The last 6 hurdles are high hurdles, and she knocks over each high hurdle with probability 0.05. Whether she knocks over a hurdle is independent of what happens at every other hurdle. To the nearest thousandth, what is the probability that she knocks over at least one of the 12 hurdles and the first hurdle she knocks over is a high hurdle?",
+  "choices": [
+   "0.182",
+   "0.207",
+   "0.201",
+   "0.170"
+  ]
+ },
+ {
+  "id": "AM28S-08",
+  "topic_tag": "least-squares regression from summary statistics, residual",
+  "prompt": "For 48 used cars of one model, x is a car's age, in years, and y is its selling price, in thousands of dollars. The ages have mean 6.2 and variance 6.25, and the prices have mean 14.8 and variance 16.81. The correlation coefficient between age and price is r = -0.84. The least-squares regression line of y on x passes through the point (mean of x, mean of y) and has slope r(s_y/s_x), where s_x and s_y are the standard deviations of x and y. One of the 48 cars is 9 years old and sold for 11.6 thousand dollars. To the nearest hundredth, what is the residual (actual price minus predicted price), in thousands of dollars, for this car?",
+  "choices": [
+   "3.13",
+   "-1.77",
+   "0.66",
+   "-0.85"
+  ]
+ },
+ {
+  "id": "AM28F-06",
+  "topic_tag": "rational functions",
+  "prompt": "The greatest possible efficiency e of a heat engine that runs between a hot reservoir at temperature H and a cold reservoir at temperature C is given by e = 1 − C/H, where both temperatures are measured in kelvins. A temperature of t degrees Celsius is t + 273 kelvins. An engine runs between a hot reservoir at 260°C and a cold reservoir at 22°C. Engineers plan to raise the engine's greatest possible efficiency by exactly 5 percentage points by raising the temperature of the hot reservoir only. To the nearest hundredth of a degree, by how many degrees Celsius must the hot reservoir's temperature be raised?",
+  "choices": [
+   "59.68",
+   "61.12",
+   "375.56",
+   "52.93"
+  ]
+ },
+ {
+  "id": "AM28F-07",
+  "topic_tag": "arithmetic and geometric sequences read from a table with uneven gaps",
+  "prompt": "A chain of stores grows so that each month the number of stores increases by the same number, and the average sales per store increase by the same percent. Some of the chain's monthly data are below.\nMonth 1: 37 stores, average sales $2,400 per store\nMonth 3: 43 stores, average sales $2,646 per store\nMonth 6: 52 stores, average sales $3,063.08 per store\nIf this pattern continues, what will the chain's total sales (number of stores times average sales per store) be in month 9, to the nearest dollar?",
+  "choices": [
+   "238284",
+   "189911",
+   "301401",
+   "216299"
+  ]
+ },
+ {
+  "id": "AM28G-01",
+  "topic_tag": "rectangle completed in the coordinate plane",
+  "prompt": "In the standard (x,y) coordinate plane, rectangle ABCD has vertices A(−6, 6) and B(5, 3), and vertex C lies on the x-axis. To the nearest hundredth of a coordinate unit, what is the length of diagonal AC ?",
+  "choices": [
+   "11.82",
+   "12.99",
+   "13.25",
+   "12.53"
+  ]
+ },
+ {
+  "id": "AM28G-02",
+  "topic_tag": "similar triangles cut by a parallel segment",
+  "prompt": "In triangle ABC, AB = 10 centimeters, AC = 13 centimeters, and BC = 5 centimeters. Point D lies on side AB and point E lies on side AC so that segment DE is parallel to side BC. The perimeter of triangle ADE is equal to the perimeter of quadrilateral DBCE. To the nearest hundredth of a centimeter, what is the length of AE ?",
+  "choices": [
+   "8.88",
+   "9.19",
+   "7.14",
+   "7.91"
+  ]
+ },
+ {
+  "id": "AM28G-03",
+  "topic_tag": "square pyramid surface area",
+  "prompt": "The roof of a gazebo has the shape of the four triangular faces of a right pyramid with a square base: the top point of the roof is directly above the center of the square. Each of the four triangular faces of the roof makes an angle of 32° with the horizontal, and the total area of the four faces is 76 square meters. To the nearest hundredth of a meter, what is the length of each side of the square base of the roof?",
+  "choices": [
+   "8.03",
+   "5.91",
+   "6.35",
+   "7.55"
+  ]
+ },
+ {
+  "id": "AM28N-01",
+  "topic_tag": "vectors in a parallelogram",
+  "prompt": "In the standard (x,y) coordinate plane, ABCD is a parallelogram with vertices in that order. The vector from A to B is u = ⟨4, −5⟩, and the vector from A to D is v = ⟨2, 4⟩. Point P lies on side CD so that DP is twice as long as PC. To the nearest hundredth, what is the magnitude of the vector from A to P ?",
+  "choices": [
+   "7.36",
+   "4.71",
+   "4.07",
+   "5.82"
+  ]
+ },
+ {
+  "id": "AM28G-04",
+  "topic_tag": "sector area from a chord and an inscribed angle",
+  "prompt": "Points A, B, and C lie on a circle with center O. Chord AC is 11 centimeters long. Point B lies on the major arc AC, and the measure of ∠ABC is 54°. To the nearest tenth of a square centimeter, what is the area of sector AOC, the region bounded by radii OA and OC and the minor arc AC ?",
+  "choices": [
+   "31.5",
+   "69.2",
+   "82.5",
+   "43.6"
+  ]
+ },
+ {
+  "id": "AM28G-05",
+  "topic_tag": "law of sines in a sloped-ground sighting",
+  "prompt": "A vertical radio mast stands on a hillside that rises at a constant angle of 14° above the horizontal. Point P is on the hillside, downhill from the base of the mast, and the distance from P up the slope to the base of the mast is 44 meters; P, the base, and the mast all lie in one vertical plane. From P, the angle of elevation of the top of the mast, measured from the horizontal, is 33°. To the nearest hundredth of a meter, what is the height of the mast?",
+  "choices": [
+   "14.76",
+   "12.61",
+   "17.08",
+   "16.75"
+  ]
+ },
+ {
+  "id": "AM28G-06",
+  "topic_tag": "kite diagonals",
+  "prompt": "The frame of a toy kite is quadrilateral ABCD, in which AB = AD = 50 centimeters, CB = CD = 80 centimeters, and the measure of ∠ABC is 110°. A straight wooden spar runs from vertex B to vertex D. To the nearest hundredth of a centimeter, what is the length of the spar BD ?",
+  "choices": [
+   "69.69",
+   "74.16",
+   "95.75",
+   "81.92"
+  ]
+ },
+ {
+  "id": "AM28G-X1",
+  "topic_tag": "right-triangle trigonometry: solar panel row spacing",
+  "prompt": "Rows of flat solar panels stand on a flat, horizontal roof. Each panel's sloped face is 1.65 meters long from its front edge to its back edge, and the panel is tilted 32° up from the roof, with its front edge on the roof and its back edge raised. At the planned time of day, the sun is in front of the rows, its rays make an angle of 25° with the horizontal roof, and the shadow of each raised back edge falls straight behind the panel, perpendicular to the rows. The front edge of the next row is placed exactly where that shadow ends. To the nearest hundredth of a meter, what is the horizontal distance from the front edge of one row to the front edge of the next row?",
+  "choices": [
+   "3.61",
+   "3.88",
+   "3.27",
+   "3.47"
+  ]
+ },
+ {
+  "id": "AM28G-07",
+  "topic_tag": "area of a uniform border around a regular hexagon",
+  "prompt": "A patio is shaped like a regular hexagon with sides 3.4 meters long. A walkway 1.7 meters wide surrounds the patio. The outer edge of the walkway is also a regular hexagon, and each of its six sides is parallel to a side of the patio and 1.7 meters from it. To the nearest hundredth of a square meter, what is the area of the walkway?",
+  "choices": [
+   "44.69",
+   "37.54",
+   "43.76",
+   "52.02"
+  ]
+ },
+ {
+  "id": "AM28G-X2",
+  "topic_tag": "regular pentagon diagonals",
+  "prompt": "A five-pointed star is drawn by connecting each vertex of a regular pentagon to the two vertices not next to it. Each side of the pentagon is 9 centimeters long. To the nearest hundredth of a centimeter, what is the total length of the 5 segments that form the star?",
+  "choices": [
+   "77.94",
+   "72.81",
+   "68.38",
+   "52.90"
+  ]
+ },
+ {
+  "id": "AM28G-09",
+  "topic_tag": "3D distance inside a cone",
+  "prompt": "A solid right circular cone has a base diameter of 12 centimeters and a height of 8 centimeters. Point V is the apex of the cone, and point O is the center of its base. Points A and C lie on the circular edge of the base so that radii OA and OC are perpendicular. Point B lies on segment VC, 3 centimeters from V. To the nearest hundredth of a centimeter, what is the straight-line distance from A to B ?",
+  "choices": [
+   "8.21",
+   "7.71",
+   "8.13",
+   "8.40"
+  ]
+ },
+ {
+  "id": "AM28N-03",
+  "topic_tag": "unit conversion with shrinkage",
+  "prompt": "A quilter needs 5 strips of fabric. After the fabric is washed, each strip must be 0.82 meter long plus a seam allowance of 4 centimeters at each end. Washing shrinks the fabric's length by 8%, and the strips will be cut end to end, along the length, from unwashed fabric. She already has 1.2 yards of the unwashed fabric, and she will buy the rest by length, where 1 yard = 0.9144 meter. To the nearest hundredth of a yard, how many yards of unwashed fabric must she buy?",
+  "choices": [
+   "3.91",
+   "4.11",
+   "4.15",
+   "4.04"
+  ]
+ },
+ {
+  "id": "AM28N-04",
+  "topic_tag": "powers of a complex number as points",
+  "prompt": "For i = √(−1), the complex number a + bi, where a and b are real numbers, is represented in the complex plane by the point (a, b). Let z = 2 + i. The numbers z, z², and z³ are represented by three points that form a triangle. To the nearest hundredth, what is the perimeter of that triangle?",
+  "choices": [
+   "20.23",
+   "12.84",
+   "24.22",
+   "33.94"
+  ]
+ }
+]

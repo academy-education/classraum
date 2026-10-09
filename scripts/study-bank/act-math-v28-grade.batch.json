@@ -1,0 +1,1102 @@
+[
+ {
+  "id": "AM28I-01",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "dosing an aquarium medicine to a target concentration",
+  "subskill": "concentration, percent less, density, gallons to liters",
+  "prompt": "A fish medicine must be added to an aquarium so that the water contains 3.0 milligrams of the active ingredient per liter of water. The aquarium is labeled 55 gallons, but because of gravel and decorations, the volume of water in it is 15% less than the labeled volume. The medicine is a liquid that is 2.0% active ingredient by mass, and each milliliter of the liquid has a mass of 1.08 grams. Given that 1 gallon = 3.785 liters, how many milliliters of the medicine should be added, to the nearest tenth of a milliliter?",
+  "choices": [
+   "28.7",
+   "24.6",
+   "33.3",
+   "25.1"
+  ],
+  "correct_answer": "24.6",
+  "explanation": "The water volume is 55(0.85) = 46.75 gallons, or 46.75(3.785) = 176.95 liters, so the water needs 3.0(176.95) = 530.85 milligrams of the active ingredient. Each milliliter of the medicine has a mass of 1.08 grams = 1,080 milligrams, of which 2.0% is active ingredient: 1,080(0.020) = 21.6 milligrams per milliliter. The volume needed is 530.85 / 21.6 = 24.6 milliliters. The option \"25.1\" finds the water volume by dividing 55 by 1.15, as if the labeled volume were 15% more than the water volume. The option \"28.7\" divides by the density instead of multiplying, using 1/1.08 gram per milliliter. The option \"33.3\" adds 15% to the labeled volume instead of subtracting it.",
+  "solve": "const V=55,p=0.15,c=3.0,w=0.02,d=1.08,L=3.785;return (V*(1-p)*L*c/(1000*d*w)).toFixed(1);",
+  "distractor_solve": {
+   "25.1": "const V=55,p=0.15,c=3.0,w=0.02,d=1.08,L=3.785;return ((V/(1+p))*L*c/(1000*d*w)).toFixed(1);",
+   "28.7": "const V=55,p=0.15,c=3.0,w=0.02,d=1.08,L=3.785;return (V*(1-p)*L*c*d/(1000*w)).toFixed(1);",
+   "33.3": "const V=55,p=0.15,c=3.0,w=0.02,d=1.08,L=3.785;return (V*(1+p)*L*c/(1000*d*w)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28I-02",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "time to fill a pool from a hose timed with a bucket, with a leak",
+  "subskill": "flow rate from a timed measurement, net rate with a percent leak",
+  "prompt": "A rectangular swimming pool is 24 feet long and 12 feet wide and has a flat bottom. It now holds water to a depth of 6 inches, and it will be filled with a garden hose until the water is 4.5 feet deep. To measure the hose's flow, the owner timed it filling an empty 5-gallon bucket in 40 seconds. While the pool fills, a small crack lets water leak out at a rate equal to 12% of the rate at which the hose adds water. Given that 1 cubic foot of water is 7.48 gallons, how many hours will it take to fill the pool to a depth of 4.5 feet, to the nearest tenth of an hour?",
+  "choices": [
+   "21.4",
+   "21.2",
+   "21.8",
+   "20.4"
+  ],
+  "correct_answer": "21.8",
+  "explanation": "The water must rise from 0.5 foot to 4.5 feet, or 4 feet, so the volume to add is 24(12)(4) = 1,152 cubic feet = 1,152(7.48) = 8,616.96 gallons. The hose adds 5 gallons every 40 seconds, or 5/40 = 0.125 gallon per second = 450 gallons per hour. The leak removes 12% of that, so the pool gains 450(0.88) = 396 gallons per hour. The time is 8,616.96 / 396 = 21.76, or 21.8 hours. The option \"21.4\" divides the hose rate by 1.12 instead of multiplying by 0.88. The option \"20.4\" takes 40/5 = 8 as the hose's gallons per minute (it is seconds per gallon). The option \"21.2\" reads 6 inches as 0.6 foot, so the water rises 3.9 feet instead of 4.",
+  "solve": "const L=24,W=12,H=4.5,e=6/12,g=7.48,b=5,s=40,q=0.12;return (L*W*(H-e)*g/((b/s)*3600*(1-q))).toFixed(1);",
+  "distractor_solve": {
+   "21.4": "const L=24,W=12,H=4.5,e=6/12,g=7.48,b=5,s=40,q=0.12;return (L*W*(H-e)*g/((b/s)*3600/(1+q))).toFixed(1);",
+   "20.4": "const L=24,W=12,H=4.5,e=6/12,g=7.48,b=5,s=40,q=0.12;return (L*W*(H-e)*g/((s/b)*60*(1-q))).toFixed(1);",
+   "21.2": "const L=24,W=12,H=4.5,e=6/12,g=7.48,b=5,s=40,q=0.12;return (L*W*(H-0.6)*g/((b/s)*3600*(1-q))).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28I-03",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "ocean depth in fathoms from a sonar echo time",
+  "subskill": "distance from speed and echo time, offsets, meters to fathoms",
+  "prompt": "A ship measures the depth of the ocean with sonar. A sound pulse is sent straight down from a transducer mounted on the hull 5.4 meters below the water's surface, and the echo from the flat seafloor returns to the transducer. The sonar's display shows 0.852 second between sending the pulse and receiving the echo, but the display includes a fixed electronic delay of 0.012 second that is not travel time. Sound travels through the seawater at a constant 1,530 meters per second. The depth of the ocean is measured from the water's surface to the seafloor. Given that 1 fathom = 6 feet and 1 foot = 0.3048 meter, what is the depth of the ocean, in fathoms, to the nearest tenth of a fathom?",
+  "choices": [
+   "349.3",
+   "356.8",
+   "348.4",
+   "354.3"
+  ],
+  "correct_answer": "354.3",
+  "explanation": "The sound's actual travel time is 0.852 - 0.012 = 0.840 second, down to the seafloor and back, so it travels 1,530(0.840) = 1,285.2 meters and the seafloor is 1,285.2/2 = 642.6 meters below the transducer. The transducer is 5.4 meters below the surface, so the depth is 642.6 + 5.4 = 648.0 meters. One fathom is 6(0.3048) = 1.8288 meters, so the depth is 648.0 / 1.8288 = 354.3 fathoms. The option \"348.4\" subtracts the 5.4 meters instead of adding them. The option \"349.3\" halves 0.852 first and then subtracts the whole 0.012-second delay from the one-way time. The option \"356.8\" converts 642.6 meters to fathoms and then adds 5.4 as if it were fathoms.",
+  "solve": "const T=0.852,e=0.012,v=1530,h=5.4,ft=0.3048,n=6;return ((v*(T-e)/2+h)/(n*ft)).toFixed(1);",
+  "distractor_solve": {
+   "348.4": "const T=0.852,e=0.012,v=1530,h=5.4,ft=0.3048,n=6;return ((v*(T-e)/2-h)/(n*ft)).toFixed(1);",
+   "349.3": "const T=0.852,e=0.012,v=1530,h=5.4,ft=0.3048,n=6;return ((v*(T/2-e)+h)/(n*ft)).toFixed(1);",
+   "356.8": "const T=0.852,e=0.012,v=1530,h=5.4,ft=0.3048,n=6;return ((v*(T-e)/2)/(n*ft)+h).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28I-04",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "mass of a salad dressing from component volumes and densities",
+  "subskill": "volume ratio to volumes, mass from density, unit conversion",
+  "prompt": "To make a salad dressing, Ines mixes olive oil and vinegar in the ratio 4:1 by volume to make 1.75 cups of the oil-and-vinegar mixture, and then she stirs in 3 tablespoons of mustard. Olive oil has a density of 0.92 gram per milliliter, vinegar has a density of 1.01 grams per milliliter, and the mustard has a density of 1.10 grams per milliliter. Use 1 cup = 236.6 milliliters and 1 tablespoon = 14.8 milliliters. To the nearest gram, what is the mass of the dressing?",
+  "choices": [
+   "439",
+   "482",
+   "437",
+   "448"
+  ],
+  "correct_answer": "437",
+  "explanation": "The mixture is 1.75(236.6) = 414.05 mL, of which 4/5 is oil (331.24 mL) and 1/5 is vinegar (82.81 mL). The mustard is 3(14.8) = 44.4 mL. The mass is 331.24(0.92) + 82.81(1.01) + 44.4(1.10) = 304.74 + 83.64 + 48.84 = 437.22 grams, or 437. The option \"439\" reads the ratio 4:1 as vinegar being 1/4 of the mixture. The option \"448\" uses the plain average of the oil and vinegar densities, 0.965, for the whole oil-and-vinegar mixture. The option \"482\" divides each volume by its density instead of multiplying.",
+  "solve": "const V=1.75*236.6,M=3*14.8,o=4,q=1,ro=0.92,rv=1.01,rm=1.1;const fo=o/(o+q);return (V*fo*ro+V*(1-fo)*rv+M*rm).toFixed(0);",
+  "distractor_solve": {
+   "439": "const V=1.75*236.6,M=3*14.8,o=4,q=1,ro=0.92,rv=1.01,rm=1.1;const fo=o/(o+q);return (V*(1-q/o)*ro+V*(q/o)*rv+M*rm).toFixed(0);",
+   "448": "const V=1.75*236.6,M=3*14.8,o=4,q=1,ro=0.92,rv=1.01,rm=1.1;const fo=o/(o+q);return (V*(ro+rv)/2+M*rm).toFixed(0);",
+   "482": "const V=1.75*236.6,M=3*14.8,o=4,q=1,ro=0.92,rv=1.01,rm=1.1;const fo=o/(o+q);return (V*fo/ro+V*(1-fo)/rv+M/rm).toFixed(0);"
+  }
+ },
+ {
+  "id": "AM28I-05",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "weight of wet snow on a partly cleared flat roof",
+  "subskill": "weight from depth and relative density, area from a percent of the remainder, absorbed rain",
+  "prompt": "A flat roof is a rectangle 30 feet by 40 feet. A storm left a uniform layer of snow 15 inches deep on the whole roof, and this snow weighed 12% as much as the same volume of water. Over the next two days the snow settled until its depth was 20% less, but none of it melted or blew away. The owner then shoveled all the snow off part of the roof, so that the area she cleared was 15% of the area still covered with snow. Next, 1.5 inches of rain fell on the roof. The rain that fell on the snow was all absorbed by the snow, and the rain that fell on the cleared part drained away. Water weighs 62.4 pounds per cubic foot. To the nearest hundredth of a ton (1 ton = 2,000 pounds), what was the total weight of the snow and absorbed rain on the roof after the rain?",
+  "choices": [
+   "8.75",
+   "5.37",
+   "8.95",
+   "7.98"
+  ],
+  "correct_answer": "8.95",
+  "explanation": "Settling does not change the weight of the snow, so each square foot still carries the snow that fell: (15/12)(0.12)(62.4) = 9.36 pounds, plus the absorbed rain (1.5/12)(62.4) = 7.8 pounds, for 17.16 pounds per square foot of covered roof. If the covered area is C, then C + 0.15C = 1,200, so C = 1,200/1.15 = 1,043.48 square feet. The weight is 1,043.48(17.16) = 17,906 pounds = 8.95 tons. The option \"8.75\" takes the covered area as 85% of the roof (15% of the whole roof cleared). The option \"7.98\" computes the snow's weight from the settled depth of 12 inches with the original 12% density. The option \"5.37\" weighs the absorbed rain as if it were snow at 12% of the weight of water.",
+  "solve": "const A=30*40,S=15,r=0.12,st=0.2,c=0.15,rn=1.5,w=62.4;return (A/(1+c)*(S/12*r*w+rn/12*w)/2000).toFixed(2);",
+  "distractor_solve": {
+   "8.75": "const A=30*40,S=15,r=0.12,st=0.2,c=0.15,rn=1.5,w=62.4;return (A*(1-c)*(S/12*r*w+rn/12*w)/2000).toFixed(2);",
+   "7.98": "const A=30*40,S=15,r=0.12,st=0.2,c=0.15,rn=1.5,w=62.4;return (A/(1+c)*(S*(1-st)/12*r*w+rn/12*w)/2000).toFixed(2);",
+   "5.37": "const A=30*40,S=15,r=0.12,st=0.2,c=0.15,rn=1.5,w=62.4;return (A/(1+c)*(S/12*r*w+rn/12*w*r)/2000).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-06",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "matching the scale speed of model trains in two scales",
+  "subskill": "scale factors, speed as distance over time, two ratios",
+  "prompt": "A model train's scale speed is the speed a full-size train would have if it covered the full-size equivalent of the model's distance in the same time; for a model built at a scale of 1:n, the scale speed is n times the model's actual speed. An HO-scale (1:87) model train completes each lap of a 24-foot loop of track in 23 seconds. An S-scale (1:64) model train runs on a 31-foot loop. How many seconds should each lap of the S-scale train take so that its scale speed equals the HO-scale train's scale speed, to the nearest tenth of a second?",
+  "choices": [
+   "13.1",
+   "21.9",
+   "24.2",
+   "29.7"
+  ],
+  "correct_answer": "21.9",
+  "explanation": "The HO train's actual speed is 24/23 feet per second, so its scale speed is 87(24/23) = 90.78 feet per second. For the S train to have the same scale speed, its actual speed must be 90.78/64 = 1.4185 feet per second. A 31-foot lap then takes 31 / 1.4185 = 21.9 seconds. The option \"29.7\" ignores the two scales and gives the S train the HO train's actual speed. The option \"13.1\" uses the loop lengths upside down (23 x 24/31 x 64/87). The option \"24.2\" inverts both ratios (23 x 24/31 x 87/64).",
+  "solve": "const L1=24,t1=23,L2=31,a=87,b=64;return (L2/((L1/t1)*a/b)).toFixed(1);",
+  "distractor_solve": {
+   "29.7": "const L1=24,t1=23,L2=31,a=87,b=64;return (L2/(L1/t1)).toFixed(1);",
+   "13.1": "const L1=24,t1=23,L2=31,a=87,b=64;return (t1*(L1/L2)*(b/a)).toFixed(1);",
+   "24.2": "const L1=24,t1=23,L2=31,a=87,b=64;return (t1*(L1/L2)*(a/b)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28I-X1",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "cost per load of a concentrated detergent on sale",
+  "subskill": "loads per bottle from two percent comparisons, sale price per load",
+  "prompt": "A store sells two brands of liquid laundry detergent. A bottle of Brand A holds enough detergent for exactly 48 loads of laundry. A bottle of Brand B holds 20% less detergent than a bottle of Brand A, but Brand B is more concentrated, so each load of laundry needs 40% less Brand B detergent than it would need of Brand A. A bottle of Brand B regularly costs $16.49, and this week it is on sale for 20% off the regular price. At the sale price, what is the cost, in cents, of the Brand B detergent used for one load of laundry, to the nearest tenth of a cent?",
+  "choices": [
+   "21.5",
+   "20.6",
+   "24.5",
+   "22.9"
+  ],
+  "correct_answer": "20.6",
+  "explanation": "Let one load of Brand A use 1 unit, so a Brand A bottle holds 48 units. A Brand B bottle holds 48(0.80) = 38.4 units, and a Brand B load uses 1(0.60) = 0.6 unit, so a Brand B bottle washes 38.4/0.6 = 64 loads. The sale price is 16.49(0.80) = $13.192 = 1,319.2 cents, so one load costs 1,319.2/64 = 20.61 cents, or 20.6. The option \"21.5\" takes 20% off by dividing by 1.20. The option \"22.9\" combines the percents as 40% - 20% = 20% more loads, or 57.6 loads. The option \"24.5\" treats \"40% less per load\" as 40% more loads per unit (multiplying by 1.40 instead of dividing by 0.60), or 53.76 loads.",
+  "solve": "const L=48,a=0.2,b=0.4,p=16.49,s=0.2;return (100*p*(1-s)/(L*(1-a)/(1-b))).toFixed(1);",
+  "distractor_solve": {
+   "21.5": "const L=48,a=0.2,b=0.4,p=16.49,s=0.2;return (100*p/(1+s)/(L*(1-a)/(1-b))).toFixed(1);",
+   "22.9": "const L=48,a=0.2,b=0.4,p=16.49,s=0.2;return (100*p*(1-s)/(L*(1-a+b))).toFixed(1);",
+   "24.5": "const L=48,a=0.2,b=0.4,p=16.49,s=0.2;return (100*p*(1-s)/(L*(1-a)*(1+b))).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28I-08",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "length of a slow-motion time-lapse video after blurry photos are deleted",
+  "subskill": "interval count, percent of kept, fps, slow motion",
+  "prompt": "A camera set up for a time-lapse video takes a photo every 8 seconds, taking its first photo at 6:12:30 a.m. and its last photo at 7:42:22 a.m. Afterward, Lena deletes the blurry photos; the number of photos she deletes is 8% of the number of photos she keeps. She makes a video from the photos she keeps, showing each photo as one frame at 24 frames per second, and then plays the video in slow motion at a speed 15% slower than normal speed. How many seconds does the video last when played in slow motion, to the nearest hundredth of a second?",
+  "choices": [
+   "30.59",
+   "29.95",
+   "30.64",
+   "30.44"
+  ],
+  "correct_answer": "30.64",
+  "explanation": "From 6:12:30 to 7:42:22 is 1 h 29 min 52 s = 5,392 seconds, which is 5,392/8 = 674 intervals, so the camera took 674 + 1 = 675 photos. If she keeps K photos, she deletes 0.08K, so 1.08K = 675 and K = 625. At 24 frames per second the video lasts 625/24 = 26.042 seconds at normal speed; at a speed 15% slower (85% of normal speed) it lasts 26.042/0.85 = 30.64 seconds. \"30.59\" counts 674 photos (intervals, not photos), keeping 674/1.08, about 624. \"30.44\" takes 8% of the 675 photos taken as the number deleted, keeping 621. \"29.95\" lengthens the video by 15% (26.042 x 1.15) instead of dividing by 0.85.",
+  "solve": "const span=(7*3600+42*60+22)-(6*3600+12*60+30),d=8,q=0.08,f=24,s=0.15;const N=span/d+1;const K=N/(1+q);return (K/f/(1-s)).toFixed(2);",
+  "distractor_solve": {
+   "30.59": "const span=(7*3600+42*60+22)-(6*3600+12*60+30),d=8,q=0.08,f=24,s=0.15;const N=span/d+1;const K=Math.round((N-1)/(1+q));return (K/f/(1-s)).toFixed(2);",
+   "30.44": "const span=(7*3600+42*60+22)-(6*3600+12*60+30),d=8,q=0.08,f=24,s=0.15;const N=span/d+1;const K=N*(1-q);return (K/f/(1-s)).toFixed(2);",
+   "29.95": "const span=(7*3600+42*60+22)-(6*3600+12*60+30),d=8,q=0.08,f=24,s=0.15;const N=span/d+1;const K=N/(1+q);return (K/f*(1+s)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-09",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "resetting an IV drip rate after an infusion falls behind schedule",
+  "subskill": "drip rate, percent less than scheduled, drop factor",
+  "prompt": "A patient is to receive 1,200 milliliters of saline through an IV at a constant rate over 10 hours, starting at 7:00 a.m. and finishing at 5:00 p.m. The IV tubing delivers 15 drops per milliliter. At 9:40 a.m. a nurse finds that the volume infused so far is 32% less than the volume the original schedule called for by 9:40 a.m. She resets the drip rate so that the rest of the 1,200 milliliters will be infused at a constant rate by 5:00 p.m. To the nearest tenth, what is the new drip rate, in drops per minute?",
+  "choices": [
+   "32.6",
+   "37.4",
+   "30.7",
+   "33.5"
+  ],
+  "correct_answer": "33.5",
+  "explanation": "The schedule called for 1,200 mL in 600 minutes, so by 9:40 a.m. (160 minutes) it called for 1,200(160/600) = 320 mL. The volume infused was 32% less: 320(0.68) = 217.6 mL, leaving 1,200 - 217.6 = 982.4 mL. From 9:40 a.m. to 5:00 p.m. is 7 h 20 min = 440 minutes, so the new rate is 982.4(15)/440 = 33.49, or 33.5 drops per minute. \"32.6\" takes the infused volume as 320/1.32 (32% of the infused volume rather than of the scheduled volume). \"37.4\" takes the infused volume as 32% of 320. \"30.7\" finds the remaining time as 17:00 - 9:40 = 1700 - 940 = 760, read as 7 h 60 min = 8 hours.",
+  "solve": "const V=1200,H=10,df=15,el=160,p=0.32,rem=440;const S=V*el/(H*60);return ((V-S*(1-p))*df/rem).toFixed(1);",
+  "distractor_solve": {
+   "32.6": "const V=1200,H=10,df=15,el=160,p=0.32,rem=440;const S=V*el/(H*60);return ((V-S/(1+p))*df/rem).toFixed(1);",
+   "37.4": "const V=1200,H=10,df=15,el=160,p=0.32,rem=440;const S=V*el/(H*60);return ((V-S*p)*df/rem).toFixed(1);",
+   "30.7": "const V=1200,H=10,df=15,el=160,p=0.32,rem=440;const S=V*el/(H*60);return ((V-S*(1-p))*df/480).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28I-10",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "plant-food concentrate for a season of seedling waterings, U.S. label and imperial watering can",
+  "subskill": "dose per gallon, percent less, imperial gallons, count",
+  "prompt": "A plant-food label says to mix 16 milliliters of concentrate into each U.S. gallon of water for mature plants; for seedlings, it says to use a rate that is 25% less than that. Hana, who lives in Britain, waters her seedlings with a can that she fills with 2.25 imperial gallons of water each time. She waters the seedlings every 4 days: the first watering is 4 days after she transplants them on May 3, and the last watering is on June 24. Given that 1 imperial gallon = 1.20095 U.S. gallons, how many milliliters of concentrate will she use for all of these waterings, to the nearest hundredth of a milliliter?",
+  "choices": [
+   "449.64",
+   "702.56",
+   "421.53",
+   "453.96"
+  ],
+  "correct_answer": "421.53",
+  "explanation": "The seedling rate is 25% less than 16 mL per U.S. gallon: 16(0.75) = 12 mL per U.S. gallon. Each can holds 2.25(1.20095) = 2.70214 U.S. gallons, so each watering uses 12(2.70214) = 32.4256 mL. From May 3 to June 24 is 28 + 24 = 52 days; the waterings are on days 4, 8, ..., 52 after transplanting, so there are 52/4 = 13 of them. Total: 13(32.4256) = 421.53 mL. \"453.96\" counts 14 waterings (adding one for the transplant day). \"449.64\" finds the seedling rate as 16/1.25 (taking the 25% of the seedling rate instead of the label rate). \"702.56\" uses a rate 25% greater, 16(1.25).",
+  "solve": "const R=16,p=0.25,C=2.25,k=1.20095,days=(31-3)+24,n=days/4;return (n*R*(1-p)*C*k).toFixed(2);",
+  "distractor_solve": {
+   "453.96": "const R=16,p=0.25,C=2.25,k=1.20095,days=(31-3)+24,n=days/4;return ((n+1)*R*(1-p)*C*k).toFixed(2);",
+   "449.64": "const R=16,p=0.25,C=2.25,k=1.20095,days=(31-3)+24,n=days/4;return (n*R/(1+p)*C*k).toFixed(2);",
+   "702.56": "const R=16,p=0.25,C=2.25,k=1.20095,days=(31-3)+24,n=days/4;return (n*R*(1+p)*C*k).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-11",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "trail race time with uphill, downhill and mud speed changes",
+  "subskill": "time over three sections from percent-related speeds",
+  "prompt": "A 12-kilometer trail race course has 3.6 kilometers of uphill sections, 3.5 kilometers of downhill sections, and flat sections for the rest of the course. On a dry trail, Kai runs the flat sections at 9.6 kilometers per hour, his uphill speed is 25% slower than his flat speed, and his downhill speed is 12% faster than his flat speed. On race day the trail was muddy, and on every section Kai's speed was 8% slower than his dry-trail speed for that kind of section. To the nearest tenth of a minute, how many minutes did Kai take to run the race?",
+  "choices": [
+   "86.8",
+   "85.2",
+   "87.1",
+   "86.6"
+  ],
+  "correct_answer": "87.1",
+  "explanation": "Dry speeds: flat 9.6 km/h, uphill 9.6(0.75) = 7.2 km/h, downhill 9.6(1.12) = 10.752 km/h. The flat sections total 12 - 3.6 - 3.5 = 4.9 km. Each muddy speed is 0.92 times the dry speed, so each time is the dry time divided by 0.92: (3.6/7.2 + 3.5/10.752 + 4.9/9.6)/0.92 = (0.5 + 0.32552 + 0.51042)/0.92 = 1.45211 hours = 87.13 minutes, or 87.1. The option \"86.8\" takes the downhill speed as 9.6/0.88 instead of 9.6(1.12). The option \"86.6\" lengthens the dry time by 8% (multiplying by 1.08) instead of dividing by 0.92. The option \"85.2\" divides 12 km by the plain average of the three muddy speeds, 8.449 km/h, instead of adding the section times.",
+  "solve": "const D=12,u=3.6,d=3.5,v=9.6,a=0.25,b=0.12,m=0.08;const fl=D-u-d;return ((u/(v*(1-a))+d/(v*(1+b))+fl/v)*60/(1-m)).toFixed(1);",
+  "distractor_solve": {
+   "86.8": "const D=12,u=3.6,d=3.5,v=9.6,a=0.25,b=0.12,m=0.08;const fl=D-u-d;return ((u/(v*(1-a))+d/(v/(1-b))+fl/v)*60/(1-m)).toFixed(1);",
+   "86.6": "const D=12,u=3.6,d=3.5,v=9.6,a=0.25,b=0.12,m=0.08;const fl=D-u-d;return ((u/(v*(1-a))+d/(v*(1+b))+fl/v)*60*(1+m)).toFixed(1);",
+   "85.2": "const D=12,u=3.6,d=3.5,v=9.6,a=0.25,b=0.12,m=0.08;const fl=D-u-d;return (D/(((v*(1-a)+v*(1+b)+v)/3)*(1-m))*60).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28I-12",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "consignment shop commission with a different rate for items under $50",
+  "subskill": "commission as a percent of total sales",
+  "prompt": "A consignment shop sells items for their owners. For each item it sells, the shop keeps 40% of the selling price if the item sells for less than $50 and 25% of the selling price if the item sells for $50 or more; the owner receives the rest. In one week, the shop sold four of Mira's items, for $34.50, $53.50, $72.50, and $121.50. To the nearest hundredth of a percent, the amount the shop kept from these four sales is what percent of their total selling price?",
+  "choices": [
+   "34.81",
+   "26.84",
+   "36.68",
+   "27.66"
+  ],
+  "correct_answer": "26.84",
+  "explanation": "The four items sold for 34.50 + 53.50 + 72.50 + 121.50 = $282.00. The shop kept 0.40(34.50) = $13.80 from the first item and 0.25(53.50 + 72.50 + 121.50) = 0.25(247.50) = $61.875 from the other three, $75.675 in all. That is 75.675/282 ≈ 0.2684, or 26.84%, of the total. The option \"36.68\" divides the shop's amount by the amount Mira received, $206.325, instead of by the total. The option \"27.66\" applies 40% to the first $50 of the week's total and 25% to the rest of the total. The option \"34.81\" applies 40% to the first $50 of each item's price and 25% to the part above $50.",
+  "solve": "const S=34.5+53.5+72.5+121.5,k=0.4*34.5+0.25*(53.5+72.5+121.5);return (k/S*100).toFixed(2);",
+  "distractor_solve": {
+   "36.68": "const S=34.5+53.5+72.5+121.5,k=0.4*34.5+0.25*(53.5+72.5+121.5);return (k/(S-k)*100).toFixed(2);",
+   "27.66": "const S=34.5+53.5+72.5+121.5;return ((0.4*50+0.25*(S-50))/S*100).toFixed(2);",
+   "34.81": "const S=34.5+53.5+72.5+121.5,k=0.4*34.5+[53.5,72.5,121.5].reduce((s,p)=>s+0.4*50+0.25*(p-50),0);return (k/S*100).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-13",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "loose soil needed for an open wooden planter with board thickness and settling",
+  "subskill": "inside volume and percent decrease",
+  "prompt": "A rectangular planter box with no top is built from boards that are 3/4 inch thick. The boards form the four sides and the bottom of the box, and the box's outside dimensions are 48 inches long, 20 inches wide, and 16 inches tall. A gardener will fill the box with loose potting soil. When this soil settles, its volume decreases by 12%. The gardener wants the surface of the settled soil to be 1 inch below the top edge of the box. To the nearest hundredth of a cubic foot, how many cubic feet of loose soil should the gardener put in the box? (1 cubic foot = 1,728 cubic inches)",
+  "choices": [
+   "7.64",
+   "6.24",
+   "8.06",
+   "7.95"
+  ],
+  "correct_answer": "8.06",
+  "explanation": "Inside, the box is 48 − 2(0.75) = 46.5 inches long and 20 − 2(0.75) = 18.5 inches wide. The bottom board takes 0.75 inch of the height and the soil stops 1 inch below the top, so the settled soil is 16 − 0.75 − 1 = 14.25 inches deep. The settled soil fills 46.5 × 18.5 × 14.25 = 12,258.5625 cubic inches, or about 7.0941 cubic feet. The settled volume is 88% of the loose volume, so the loose volume is 7.0941/0.88 ≈ 8.06 cubic feet. The option \"7.95\" adds 12% to the settled volume, a percent of the wrong base. The option \"6.24\" multiplies the settled volume by 0.88. The option \"7.64\" also subtracts a board thickness at the top, as if the box had a lid.",
+  "solve": "const s=46.5*18.5*14.25/1728;return (s/0.88).toFixed(2);",
+  "distractor_solve": {
+   "7.95": "const s=46.5*18.5*14.25/1728;return (s*1.12).toFixed(2);",
+   "6.24": "const s=46.5*18.5*14.25/1728;return (s*0.88).toFixed(2);",
+   "7.64": "const s=46.5*18.5*13.5/1728;return (s/0.88).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-14",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "membership count change from a fee change and a revenue change",
+  "subskill": "percent change of a product",
+  "prompt": "A climbing gym raised its monthly membership fee from $64 to $76. Every member pays the same monthly fee. The gym's total monthly membership revenue after the increase was 7.7% greater than its total monthly membership revenue before the increase. To the nearest hundredth of a percent, by what percent did the number of members decrease?",
+  "choices": [
+   "8.76",
+   "10.26",
+   "9.31",
+   "6.99"
+  ],
+  "correct_answer": "9.31",
+  "explanation": "Revenue = (fee)(number of members). The fee was multiplied by 76/64 = 1.1875 and the revenue by 1.077, so the number of members was multiplied by 1.077/1.1875 ≈ 0.90695. The number of members decreased by about 1 − 0.90695 = 0.09305, or 9.31%. The option \"10.26\" finds how much greater the old membership was than the new one, 1.1875/1.077 − 1, which uses the new membership as the base. The option \"6.99\" computes the fee increase as a percent of the new fee, 12/76 ≈ 15.79%. The option \"8.76\" treats the old revenue as 7.7% less than the new revenue.",
+  "solve": "return ((1-1.077/(76/64))*100).toFixed(2);",
+  "distractor_solve": {
+   "10.26": "return (((76/64)/1.077-1)*100).toFixed(2);",
+   "6.99": "return ((1-1.077/(1+12/76))*100).toFixed(2);",
+   "8.76": "return ((1-1/(0.923*(76/64)))*100).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-15",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "average cost per share over monthly purchases of a fixed dollar amount",
+  "subskill": "weighted mean of prices",
+  "prompt": "On the first day of each month from January through April, Lena made one payment to buy shares of a stock fund. Each payment included a $4 fee, and the rest of the payment bought as many shares (including fractions of a share) as it could at that day's price. She paid $250 in January, $250 in February, $250 in March, and $450 in April, and the price per share was $34 in January, $28 in February, $38 in March, and $24 in April. Lena's average cost per share is the total amount she paid, fees included, divided by the total number of shares she bought. To the nearest cent, what is Lena's average cost per share?",
+  "choices": [
+   "30.25",
+   "29.21",
+   "30.54",
+   "29.83"
+  ],
+  "correct_answer": "29.21",
+  "explanation": "Each payment minus the $4 fee buys shares: 246/34 ≈ 7.2353, 246/28 ≈ 8.7857, 246/38 ≈ 6.4737, and 446/24 ≈ 18.5833, about 41.0780 shares in all. She paid 250 + 250 + 250 + 450 = $1,200, so her average cost per share is 1200/41.0780 ≈ $29.21. The option \"29.83\" averages the four prices weighted by the dollars paid each month instead of by the shares bought. The option \"30.25\" finds each month's cost per share (payment divided by shares) and averages those weighted by the dollars paid. The option \"30.54\" treats April's payment as $250 like the other months.",
+  "solve": "const S=246/34+246/28+246/38+446/24;return (1200/S).toFixed(2);",
+  "distractor_solve": {
+   "29.83": "return ((250*34+250*28+250*38+450*24)/1200).toFixed(2);",
+   "30.25": "const c=[34*250/246,28*250/246,38*250/246,24*450/446];return ((250*(c[0]+c[1]+c[2])+450*c[3])/1200).toFixed(2);",
+   "30.54": "const S=246/34+246/28+246/38+246/24;return (1000/S).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-16",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "guitar string frequency at a fret from inverse variation with vibrating length",
+  "subskill": "inverse variation in context",
+  "prompt": "On a guitar, a string is stretched from the nut to the bridge, a distance of 64.8 centimeters. When the string is pressed against a fret, only the part of the string between that fret and the bridge vibrates. At a fixed tension, the frequency of the note the string plays varies inversely as the length of the vibrating part. When the string is pressed against a fret 14.3 centimeters from the nut, it plays a note of 141.6 hertz. To the nearest tenth of a hertz, what frequency does the string play when it is pressed against a fret 21.6 centimeters from the nut?",
+  "choices": [
+   "159.6",
+   "165.5",
+   "157.6",
+   "162.1"
+  ],
+  "correct_answer": "165.5",
+  "explanation": "The vibrating lengths are 64.8 − 14.3 = 50.5 cm and 64.8 − 21.6 = 43.2 cm. Because frequency × length is constant, the new frequency is 141.6 × 50.5/43.2 ≈ 165.5 hertz. The option \"162.1\" raises 141.6 by the percent decrease in length measured against the old vibrating length, 7.3/50.5 ≈ 14.5%; under inverse variation the frequency rises by 7.3/43.2. The option \"157.6\" raises 141.6 by 7.3/64.8, measuring the change against the whole string. The option \"159.6\" treats the first vibrating length as the whole 64.8 cm, so the second is 64.8 − 7.3 = 57.5 cm.",
+  "solve": "return (141.6*(64.8-14.3)/(64.8-21.6)).toFixed(1);",
+  "distractor_solve": {
+   "162.1": "return (141.6*(1+7.3/50.5)).toFixed(1);",
+   "157.6": "return (141.6*(1+7.3/64.8)).toFixed(1);",
+   "159.6": "return (141.6*64.8/(64.8-7.3)).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28I-17",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "medium",
+  "topic_tag": "percent change of one share when a budget is cut and re-split in a new ratio",
+  "subskill": "ratio split and percent change",
+  "prompt": "Last year, a school's activities budget of $63,000 was split between athletics and the arts in the ratio 9:5, respectively. This year, the total activities budget was cut by 8%, and the new total was split between athletics and the arts in the ratio 5:4, respectively. To the nearest hundredth of a percent, by what percent did the athletics budget decrease from last year to this year?",
+  "choices": [
+   "25.78",
+   "13.17",
+   "20.49",
+   "16.73"
+  ],
+  "correct_answer": "20.49",
+  "explanation": "Last year athletics received (9/14)(63,000) = $40,500. This year the total was 0.92(63,000) = $57,960, and athletics received (5/9)(57,960) = $32,200. The decrease is 40,500 − 32,200 = $8,300, and 8,300/40,500 ≈ 0.2049, or 20.49%. The option \"25.78\" divides the decrease by this year's athletics amount instead of last year's. The option \"13.17\" divides the $8,300 decrease by last year's whole budget, $63,000, instead of by last year's athletics budget. The option \"16.73\" adds the 8% cut to the drop in athletics' share of the budget, 9/14 − 5/9 ≈ 8.73 percentage points.",
+  "solve": "const a=63000*9/14,b=63000*0.92*5/9;return ((a-b)/a*100).toFixed(2);",
+  "distractor_solve": {
+   "25.78": "const a=63000*9/14,b=63000*0.92*5/9;return ((a-b)/b*100).toFixed(2);",
+   "16.73": "return ((9/14-5/9)*100+8).toFixed(2);",
+   "13.17": "const a=63000*9/14,b=63000*0.92*5/9;return ((a-b)/63000*100).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-18",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "percent less energy from a wind turbine whose power varies as the cube of wind speed",
+  "subskill": "direct variation (cube) and weighted percent",
+  "prompt": "A wind turbine's power output varies directly as the cube of the wind speed when the wind speed is between 3.5 and 13 meters per second (m/s). At a wind speed of 9.0 m/s, the turbine's power output is 1,150 kilowatts. On one day, the wind blew at a steady 9.0 m/s for 10 hours and at a steady 7.5 m/s for the other 14 hours. To the nearest hundredth of a percent, the energy the turbine produced that day was what percent less than the energy it would have produced if the wind had blown at 9.0 m/s for all 24 hours? (Energy = power × time)",
+  "choices": [
+   "28.47",
+   "24.58",
+   "32.58",
+   "26.42"
+  ],
+  "correct_answer": "24.58",
+  "explanation": "At 7.5 m/s the power is (7.5/9)^3 = 125/216 ≈ 0.5787 of the power at 9.0 m/s. In units of one hour at 9.0 m/s, the day's energy was 10 + 14(0.5787) ≈ 18.102, against 24 for a full day at 9.0 m/s. The energy was 1 − 18.102/24 ≈ 0.2458, or 24.58%, less. The option \"26.42\" cubes the day's average wind speed, (10·9 + 14·7.5)/24 = 8.125 m/s, instead of averaging the cubes. The option \"28.47\" treats 7.5 m/s as 20% below 9.0 m/s (1.5 is 20% of 7.5) and uses a power factor of 0.8^3. The option \"32.58\" divides the energy shortfall by the day's actual energy instead of by the full-wind energy.",
+  "solve": "const f=(7.5/9)**3;return ((1-(10+14*f)/24)*100).toFixed(2);",
+  "distractor_solve": {
+   "26.42": "const v=(9*10+7.5*14)/24;return ((1-(v/9)**3)*100).toFixed(2);",
+   "28.47": "return ((1-(10+14*0.8**3)/24)*100).toFixed(2);",
+   "32.58": "const f=(7.5/9)**3,e=10+14*f;return ((24-e)/e*100).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-X6",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "net cost after a price-match refund of 110% of the pre-tax difference plus the tax on the refund",
+  "subskill": "percent refund and sales tax",
+  "prompt": "Kenji bought a vacuum cleaner for $214.95 plus 8.25% sales tax. A week later, a competitor advertised the same vacuum cleaner for $179.49 before tax. Under the store's price-match policy, the store refunds 110% of the difference between its price and the competitor's price, both before tax, plus the sales tax on the amount refunded. To the nearest cent, what was Kenji's net cost for the vacuum cleaner after the refund?",
+  "choices": [
+   "171.03",
+   "190.46",
+   "169.34",
+   "186.98"
+  ],
+  "correct_answer": "190.46",
+  "explanation": "Kenji paid 214.95(1.0825) ≈ $232.68. The pre-tax difference is 214.95 − 179.49 = $35.46, so the store refunds 1.1(35.46) = $39.006 plus tax, 39.006(1.0825) ≈ $42.22. His net cost is 232.68 − 42.22 ≈ $190.46, which equals (214.95 − 39.006)(1.0825). The option \"186.98\" adds the tax to the refund twice. The option \"171.03\" reads 110% of the difference as the difference plus 10% of the store's price. The option \"169.34\" takes the difference between the tax-included price Kenji paid and the competitor's pre-tax price.",
+  "solve": "const P=214.95,Q=179.49,t=0.0825;const r=1.1*(P-Q)*(1+t);return (P*(1+t)-r).toFixed(2);",
+  "distractor_solve": {
+   "186.98": "const P=214.95,Q=179.49,t=0.0825;const r=1.1*(P-Q)*(1+t)*(1+t);return (P*(1+t)-r).toFixed(2);",
+   "171.03": "const P=214.95,Q=179.49,t=0.0825;const r=((P-Q)+0.1*P)*(1+t);return (P*(1+t)-r).toFixed(2);",
+   "169.34": "const P=214.95,Q=179.49,t=0.0825;const r=1.1*(P*(1+t)-Q)*(1+t);return (P*(1+t)-r).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-20",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "water for a batch from baker's percentages after a baking weight loss",
+  "subskill": "splitting by a ratio, percent of a changed base",
+  "prompt": "A bakery's bread formula gives the weight of each ingredient as a percent of the weight of the flour: flour 100%, water 69%, salt 2%, and yeast 1.4%. The dough is made of only these four ingredients. When a loaf is baked, its weight decreases by 13% of the weight of its dough. The baker wants to bake 9 loaves that each weigh 620 grams after baking. To the nearest gram, how many grams of water should the baker use?",
+  "choices": [
+   "2524",
+   "2619",
+   "2233",
+   "2567"
+  ],
+  "correct_answer": "2567",
+  "explanation": "Each baked loaf is 87% of its dough, so the 9 loaves need 9(620)/0.87 ≈ 6,413.8 grams of dough. For every 100 grams of flour the dough weighs 100 + 69 + 2 + 1.4 = 172.4 grams, so water is 69/172.4 of the dough: 6,413.8(69/172.4) ≈ 2,567 grams. The option \"2524\" finds the dough by adding 13% to the baked weight. The option \"2619\" leaves the salt and yeast out of the dough, using 69/169. The option \"2233\" ignores the weight lost in baking.",
+  "solve": "const d=9*620/0.87;return Math.round(d*69/172.4).toString();",
+  "distractor_solve": {
+   "2233": "return Math.round(9*620*69/172.4).toString();",
+   "2524": "const d=9*620*1.13;return Math.round(d*69/172.4).toString();",
+   "2619": "const d=9*620/0.87;return Math.round(d*69/169).toString();"
+  }
+ },
+ {
+  "id": "AM28I-21",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "reservoir level after an inflow measured on the unfilled capacity and May removals measured on the water present",
+  "subskill": "percent of a changed base",
+  "prompt": "A reservoir was at 56% of its capacity on April 1. During April, snowmelt added an amount of water equal to 45% of the reservoir's unfilled capacity on April 1, and no water left the reservoir. During May, no water entered the reservoir; the water district released 24% of the water that was in the reservoir on May 1, and evaporation removed an additional amount equal to 3% of the water that was in the reservoir on May 1. To the nearest hundredth of a percent, the reservoir was at what percent of its capacity on June 1?",
+  "choices": [
+   "58.86",
+   "55.33",
+   "59.28",
+   "55.88"
+  ],
+  "correct_answer": "55.33",
+  "explanation": "On April 1 the unfilled capacity was 100% − 56% = 44% of capacity, so snowmelt added 0.45(44) = 19.8 percent of capacity, and on May 1 the reservoir was at 75.8% of capacity. In May, 24% + 3% = 27% of that water was removed, leaving 0.73(75.8) = 55.334, or about 55.33% of capacity. The option \"55.88\" takes the 3% from the water left after the release (75.8 × 0.76 × 0.97). The option \"58.86\" undoes the 24% release by dividing by 1.24. The option \"59.28\" takes the snowmelt as 45% of the water in the reservoir (56 × 1.45 = 81.2) instead of 45% of the unfilled capacity.",
+  "solve": "const W=56+0.45*44;return (W*(1-0.24-0.03)).toFixed(2);",
+  "distractor_solve": {
+   "59.28": "const W=56*1.45;return (W*(1-0.24-0.03)).toFixed(2);",
+   "58.86": "const W=56+0.45*44;return (W/1.24-0.03*W).toFixed(2);",
+   "55.88": "const W=56+0.45*44;return (W*0.76*0.97).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28I-22",
+  "domain": "Integrating Essential Skills",
+  "difficulty": "hard",
+  "topic_tag": "percent by which an old opposite-sides surveying rule overstates a trapezoidal field's area",
+  "subskill": "percent error of an area estimate",
+  "prompt": "An old surveying rule estimates the area of a four-sided field by multiplying the average of the lengths of one pair of opposite sides by the average of the lengths of the other pair of opposite sides. A certain field is a trapezoid. Its parallel sides are 173 meters and 98 meters long and are 56 meters apart, and its other two sides are 65 meters and 70 meters long. The rule's estimate is greater than the field's actual area by what percent of the actual area, to the nearest hundredth of a percent?",
+  "choices": [
+   "5.59",
+   "20.54",
+   "3.85",
+   "17.04"
+  ],
+  "correct_answer": "20.54",
+  "explanation": "The actual area of the trapezoid is ((173 + 98)/2)(56) = 135.5 × 56 = 7,588 square meters. The rule averages the parallel sides, (173 + 98)/2 = 135.5, and the other two sides, (65 + 70)/2 = 67.5, giving 135.5 × 67.5 = 9,146.25 square meters. The estimate exceeds the actual area by 1,558.25, and 1,558.25/7,588 ≈ 0.2054, or 20.54%. The option \"17.04\" divides the excess by the estimate instead of by the actual area. The option \"5.59\" takes the actual area as the rectangle 173 × 56 = 9,688 and compares the estimate with it. The option \"3.85\" uses the 65-meter side as the height, so the 'actual' area is 135.5 × 65.",
+  "solve": "const m=(173+98)/2,ex=m*56,est=m*(65+70)/2;return ((est/ex-1)*100).toFixed(2);",
+  "distractor_solve": {
+   "17.04": "const m=(173+98)/2,ex=m*56,est=m*(65+70)/2;return ((1-ex/est)*100).toFixed(2);",
+   "5.59": "const m=(173+98)/2,est=m*(65+70)/2,r=173*56;return (Math.abs(est-r)/r*100).toFixed(2);",
+   "3.85": "const m=(173+98)/2,est=m*(65+70)/2,t=m*65;return (Math.abs(est-t)/t*100).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28S-01",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "conditional probability from a two-way table",
+  "subskill": "conditional probability, 'at least' over ordinal rows",
+  "prompt": "Each of the 282 students at a school reported how many siblings he or she has and whether his or her household has a pet. The results are below. 0 siblings: pet 40, no pet 42. 1 sibling: pet 40, no pet 30. 2 siblings: pet 28, no pet 12. 3 siblings: pet 33, no pet 27. 4 or more siblings: pet 18, no pet 12. One of the students who has at least 2 siblings is chosen at random. To the nearest thousandth, what is the probability that this student's household has no pet?",
+  "choices": [
+   "0.415",
+   "0.392",
+   "0.433",
+   "0.405"
+  ],
+  "correct_answer": "0.392",
+  "explanation": "Students with at least 2 siblings are those in the rows 2, 3, and 4 or more: 40 + 60 + 30 = 130 students. Of them, 12 + 27 + 12 = 51 have no pet. The probability is 51/130 ≈ 0.392. The option 0.433 reads 'at least 2' as 'more than 2' and uses only the rows 3 and 4 or more (39/90). The option 0.405 also includes the 1-sibling row (81/200). The option 0.415 reverses the condition, finding the probability that a student with no pet has at least 2 siblings (51/123).",
+  "solve": "return (51/130).toFixed(3);",
+  "distractor_solve": {
+   "0.433": "return ((27+12)/(60+30)).toFixed(3);",
+   "0.405": "return ((30+12+27+12)/(70+40+60+30)).toFixed(3);",
+   "0.415": "return (51/(42+30+12+27+12)).toFixed(3);"
+  }
+ },
+ {
+  "id": "AM28S-02",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "expected value of a game",
+  "subskill": "expected net gain, two draws without replacement, base prize plus bonus",
+  "prompt": "A bag contains 4 red, 5 blue, and 6 white marbles. A player pays $1.50 to play a game in which 2 marbles are drawn from the bag at random, one after the other, without replacement. The player receives $4 if the 2 marbles are the same color, and if both marbles are red, the player receives an additional $18. Otherwise the player receives nothing. To the nearest cent, what is the player's expected net gain, in dollars, for one play of the game?",
+  "choices": [
+   "0.48",
+   "1.15",
+   "0.71",
+   "0.56"
+  ],
+  "correct_answer": "0.71",
+  "explanation": "There are C(15,2) = 105 equally likely pairs. Same color: C(4,2) + C(5,2) + C(6,2) = 6 + 10 + 15 = 31 pairs; both red: 6 pairs. A both-red draw pays $4 + $18 = $22. Expected amount received = (4·31 + 18·6)/105 = 232/105 ≈ 2.2095, so the expected net gain is 2.2095 − 1.50 ≈ $0.71. The option 0.48 pays only $18 (not $22) for two reds. The option 0.56 lowers the numerator for the second draw but not the denominator, using 4·3/15² and so on. The option 1.15 draws with replacement.",
+  "solve": "return ((4*31+18*6)/105-1.5).toFixed(2);",
+  "distractor_solve": {
+   "0.48": "return ((4*25+18*6)/105-1.5).toFixed(2);",
+   "0.56": "return ((4*(12+20+30)+18*12)/225-1.5).toFixed(2);",
+   "1.15": "return ((4*(16+25+36)+18*16)/225-1.5).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28S-03",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "margin of error for a subgroup proportion",
+  "subskill": "subgroup margin of error, upper endpoint",
+  "prompt": "A random sample of 2,000 adults in a state was asked whether they support a proposed transit tax. Of the 2,000 adults, 450 were ages 18 to 24, and 26% of those 450 said they support the tax. Of all 2,000 adults, 17% said they support the tax. For a sample proportion p from a sample of size n, a pollster uses a margin of error of 2√(p(1 - p)/n), converted to percentage points. To the nearest hundredth of a percentage point, what is the upper endpoint (the sample percent plus the margin of error) of the interval estimate for the percent of the state's adults ages 18 to 24 who support the tax?",
+  "choices": [
+   "28.23",
+   "30.14",
+   "28.07",
+   "29.54"
+  ],
+  "correct_answer": "30.14",
+  "explanation": "The estimate for adults ages 18 to 24 uses that group's own sample: p = 0.26 and n = 450. The margin of error is 2√(0.26 × 0.74/450) = 2√0.00042756 ≈ 0.04135, or about 4.14 percentage points, so the upper endpoint is 26 + 4.135 ≈ 30.14. The option 29.54 uses the overall proportion 0.17 in place of 0.26. The option 28.23 uses n = 1,550, the number of adults not ages 18 to 24. The option 28.07 leaves out the factor 2.",
+  "solve": "const p=0.26,n=450;return (100*p+200*Math.sqrt(p*(1-p)/n)).toFixed(2);",
+  "distractor_solve": {
+   "29.54": "const p=0.17,n=450;return (26+200*Math.sqrt(p*(1-p)/n)).toFixed(2);",
+   "28.23": "const p=0.26,n=1550;return (26+200*Math.sqrt(p*(1-p)/n)).toFixed(2);",
+   "28.07": "const p=0.26,n=450;return (26+100*Math.sqrt(p*(1-p)/n)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28S-X1",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "mean and standard deviation recovered from two standardized scores",
+  "subskill": "solve for mean and SD from two z-scores",
+  "prompt": "On a history exam, a score of 89 was exactly 1.5 standard deviations above the mean score, and a score of 56 was exactly 1.3 standard deviations below the mean score. To the nearest hundredth, what score on this exam was exactly 0.4 standard deviation below the mean score?",
+  "choices": [
+   "68.96",
+   "76.04",
+   "66.61",
+   "67.42"
+  ],
+  "correct_answer": "66.61",
+  "explanation": "Let m be the mean and s the standard deviation. Then 89 = m + 1.5s and 56 = m - 1.3s. Subtracting, 33 = 2.8s, so s ≈ 11.786, and m = 89 - 1.5(11.786) ≈ 71.321. The score 0.4 standard deviation below the mean is 71.321 - 0.4(11.786) ≈ 66.61. The option 67.42 takes the mean to be the midpoint 72.5 of 89 and 56 and then gets s from 72.5 - 56 = 1.3s. The option 68.96 pairs the multipliers with the wrong scores, so m = 89 - 1.3s ≈ 73.68. The option 76.04 goes 0.4 standard deviation above the mean instead of below.",
+  "solve": "const s=33/2.8,m=89-1.5*s;return (m-0.4*s).toFixed(2);",
+  "distractor_solve": {
+   "67.42": "const m=(89+56)/2,s=(m-56)/1.3;return (m-0.4*s).toFixed(2);",
+   "68.96": "const s=33/2.8,m=89-1.3*s;return (m-0.4*s).toFixed(2);",
+   "76.04": "const s=33/2.8,m=89-1.5*s;return (m+0.4*s).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28F-02",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "exponential decay model",
+  "subskill": "share of the original amount lost within a later time window",
+  "prompt": "Chlorine is added to a pool at 6:00 a.m. on June 1, and no more is added afterward. Each day, sunlight breaks down 7% of the chlorine that is in the pool at the start of that day, so the amount of chlorine d days after 6:00 a.m. on June 1 is C₀(0.93)^d for each whole number d, where C₀ is the amount added. To the nearest tenth of a percent, what percent of C₀ is broken down from 6:00 a.m. on June 3 to 6:00 a.m. on June 10?",
+  "choices": [
+   "38.1",
+   "26.3",
+   "39.8",
+   "34.4"
+  ],
+  "correct_answer": "34.4",
+  "explanation": "6:00 a.m. on June 3 is d = 2 and 6:00 a.m. on June 10 is d = 9. The amount broken down in between is C₀(0.93² − 0.93⁹) = C₀(0.8649 − 0.5204) ≈ 0.3445C₀, so about 34.4% of C₀. The option 39.8 finds the percent of the June 3 amount that is broken down, 1 − 0.93⁷, instead of the percent of C₀. The option 38.1 counts June 3 through June 10 as 8 days and ends at d = 10. The option 26.3 subtracts 0.93⁷ (the 7 days of the window, measured from June 1) from 0.93².",
+  "solve": "return (100*(Math.pow(0.93,2)-Math.pow(0.93,9))).toFixed(1);",
+  "distractor_solve": {
+   "39.8": "return (100*(1-Math.pow(0.93,7))).toFixed(1);",
+   "38.1": "return (100*(Math.pow(0.93,2)-Math.pow(0.93,10))).toFixed(1);",
+   "26.3": "return (100*(Math.pow(0.93,2)-Math.pow(0.93,7))).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28S-04",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "standard deviation of combined groups",
+  "subskill": "pool two groups' spreads",
+  "prompt": "A running club timed two groups on the same 5-kilometer course. The 14 runners in Group A had a mean time of 26.0 minutes and a standard deviation of 3.0 minutes. The 21 runners in Group B had a mean time of 31.0 minutes and a standard deviation of 4.0 minutes. For each group, and for any data set, the standard deviation is the square root of the mean of the squared deviations from the mean. To the nearest hundredth of a minute, what is the standard deviation of the times of all 35 runners together?",
+  "choices": [
+   "4.41",
+   "6.18",
+   "4.33",
+   "4.38"
+  ],
+  "correct_answer": "4.38",
+  "explanation": "The combined mean is (14·26 + 21·31)/35 = 1,015/35 = 29.0 minutes. For a group, the sum of the squared deviations from 29.0 is n(σ² + (group mean − 29)²). Group A: 14(9 + 9) = 252. Group B: 21(16 + 4) = 420. The combined variance is (252 + 420)/35 = 19.2, so the standard deviation is √19.2 ≈ 4.38. The option \"4.33\" treats the two groups as equal in size: (9 + 16)/2 + 2.5² = 18.75. The option \"4.41\" measures both groups from 28.5, the average of the two means, instead of the combined mean: 13.2 + 6.25 = 19.45. The option \"6.18\" adds the whole squared difference of the means, 5² = 25, to the pooled within-group variance 13.2.",
+  "solve": "const N=35,M=(14*26+21*31)/N;const v=(14*(9+(26-M)**2)+21*(16+(31-M)**2))/N;return Math.sqrt(v).toFixed(2);",
+  "distractor_solve": {
+   "4.33": "return Math.sqrt((9+16)/2+2.5*2.5).toFixed(2);",
+   "4.41": "const m=28.5;return Math.sqrt((14*(9+(26-m)**2)+21*(16+(31-m)**2))/35).toFixed(2);",
+   "6.18": "return Math.sqrt((14*9+21*16)/35+25).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28S-05",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "binomial probability, two stages",
+  "subskill": "binomial inside a binomial",
+  "prompt": "Each light bulb made at a factory is defective with probability 0.05, independently of every other bulb. The bulbs are packed in boxes of 12, and an inspector rejects a box if it contains 2 or more defective bulbs. Three boxes are inspected. To the nearest thousandth, what is the probability that exactly one of the three boxes is rejected?",
+  "choices": [
+   "0.304",
+   "0.403",
+   "0.276",
+   "0.315"
+  ],
+  "correct_answer": "0.276",
+  "explanation": "A box is accepted if it has 0 or 1 defective bulbs: P(0) = 0.95^12 ≈ 0.54036 and P(1) = 12(0.05)(0.95^11) ≈ 0.34128, so a box is rejected with probability r = 1 − 0.54036 − 0.34128 ≈ 0.11836. The number of rejected boxes among 3 is binomial, so P(exactly one) = 3r(1 − r)^2 ≈ 3(0.11836)(0.88164)^2 ≈ 0.276. The option \"0.315\" is 1 − (1 − r)^3, the probability that at least one box is rejected. The option \"0.403\" rejects a box whenever it has any defective bulb, r = 1 − 0.95^12. The option \"0.304\" uses 0.95^12 instead of 0.95^11 in P(1).",
+  "solve": "const P0=Math.pow(0.95,12),P1=12*0.05*Math.pow(0.95,11);const r=1-P0-P1;return (3*r*(1-r)*(1-r)).toFixed(3);",
+  "distractor_solve": {
+   "0.315": "const r=1-Math.pow(0.95,12)-12*0.05*Math.pow(0.95,11);return (1-Math.pow(1-r,3)).toFixed(3);",
+   "0.403": "const r=1-Math.pow(0.95,12);return (3*r*(1-r)*(1-r)).toFixed(3);",
+   "0.304": "const r=1-Math.pow(0.95,12)-12*0.05*Math.pow(0.95,12);return (3*r*(1-r)*(1-r)).toFixed(3);"
+  }
+ },
+ {
+  "id": "AM28F-03",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "inverse functions",
+  "subskill": "average rate of change of an inverse",
+  "prompt": "The function f is defined by f(x) = 0.4x^2 + 3 for x ≥ 0, and f^(−1) is the inverse of f. To the nearest thousandth, what is the average rate of change of f^(−1) from x = 5 to x = 13?",
+  "choices": [
+   "0.546",
+   "0.139",
+   "0.345",
+   "0.232"
+  ],
+  "correct_answer": "0.345",
+  "explanation": "Solving y = 0.4x^2 + 3 for x ≥ 0 gives f^(−1)(x) = √((x − 3)/0.4). Then f^(−1)(5) = √5 ≈ 2.2361 and f^(−1)(13) = √25 = 5, so the average rate of change is (5 − 2.2361)/(13 − 5) ≈ 0.345. The option \"0.139\" is the reciprocal of the average rate of change of f itself from x = 5 to x = 13, 1/7.2. The option \"0.232\" undoes the + 3 in the wrong direction, f^(−1)(x) = √((x + 3)/0.4). The option \"0.546\" divides by 0.4 after taking the square root, f^(−1)(x) = √(x − 3)/0.4.",
+  "solve": "const g=x=>Math.sqrt((x-3)/0.4);return ((g(13)-g(5))/8).toFixed(3);",
+  "distractor_solve": {
+   "0.139": "const f=x=>0.4*x*x+3;return (8/(f(13)-f(5))).toFixed(3);",
+   "0.232": "const g=x=>Math.sqrt((x+3)/0.4);return ((g(13)-g(5))/8).toFixed(3);",
+   "0.546": "const g=x=>Math.sqrt(x-3)/0.4;return ((g(13)-g(5))/8).toFixed(3);"
+  }
+ },
+ {
+  "id": "AM28F-04",
+  "domain": "Functions",
+  "difficulty": "medium",
+  "topic_tag": "piecewise-defined functions in context",
+  "subskill": "pick the piece for each input",
+  "prompt": "A delivery truck's fuel consumption r, in liters per 100 kilometers, depends on its constant speed v, in kilometers per hour, according to the function r(v) = 30 − 0.2v for 40 ≤ v < 75 and r(v) = 15 + 0.02(v − 75)^2 for 75 ≤ v ≤ 110. On one trip, the truck traveled 170 kilometers at a constant 70 kilometers per hour and then 210 kilometers at a constant 93 kilometers per hour. To the nearest hundredth of a liter, how much fuel did the truck use on the trip?",
+  "choices": [
+   "70.12",
+   "72.31",
+   "59.46",
+   "71.46"
+  ],
+  "correct_answer": "72.31",
+  "explanation": "At 70 km/h the first rule applies: r(70) = 30 − 14 = 16 liters per 100 km, so the first leg uses 1.7(16) = 27.2 liters. At 93 km/h the second rule applies: r(93) = 15 + 0.02(18)^2 = 21.48 liters per 100 km, so the second leg uses 2.1(21.48) = 45.108 liters. The total is 72.308 ≈ 72.31 liters. The option \"71.46\" uses the second rule at 70 km/h as well, r = 15.5, for 26.35 liters on the first leg. The option \"70.12\" applies 70 km/h to the 210-kilometer leg and 93 km/h to the 170-kilometer leg. The option \"59.46\" leaves out the square, r(93) = 15 + 0.02(18) = 15.36.",
+  "solve": "const r=v=>v<75?30-0.2*v:15+0.02*(v-75)*(v-75);return (1.7*r(70)+2.1*r(93)).toFixed(2);",
+  "distractor_solve": {
+   "71.46": "const r2=v=>15+0.02*(v-75)*(v-75);return (1.7*r2(70)+2.1*r2(93)).toFixed(2);",
+   "70.12": "const r=v=>v<75?30-0.2*v:15+0.02*(v-75)*(v-75);return (2.1*r(70)+1.7*r(93)).toFixed(2);",
+   "59.46": "return (1.7*(30-0.2*70)+2.1*(15+0.02*(93-75))).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28F-05",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "function transformations",
+  "subskill": "horizontal stretch, then shift, evaluated",
+  "prompt": "In the standard (x,y) coordinate plane, the graph of y = log₂ x is stretched horizontally by a factor of 3 away from the y-axis. The resulting graph is then translated 3 units to the left, and that graph is then translated 1.5 units down. The final graph is the graph of y = g(x). To the nearest hundredth, what is the value of g(23)?",
+  "choices": [
+   "1.92",
+   "1.24",
+   "4.79",
+   "1.62"
+  ],
+  "correct_answer": "1.62",
+  "explanation": "Stretching horizontally by a factor of 3 gives y = log₂(x/3). Translating 3 units left replaces x with x + 3: y = log₂((x + 3)/3). Translating 1.5 units down gives g(x) = log₂((x + 3)/3) − 1.5. Then g(23) = log₂(26/3) − 1.5 ≈ 3.115 − 1.5 ≈ 1.62. The option \"1.92\" applies the shift inside before the stretch, g(x) = log₂(x/3 + 3) − 1.5. The option \"4.79\" multiplies the input by 3 (a compression), g(x) = log₂(3(x + 3)) − 1.5. The option \"1.24\" translates to the right instead of the left, g(x) = log₂((x − 3)/3) − 1.5.",
+  "solve": "return (Math.log2((23+3)/3)-1.5).toFixed(2);",
+  "distractor_solve": {
+   "1.92": "return (Math.log2(23/3+3)-1.5).toFixed(2);",
+   "4.79": "return (Math.log2(3*(23+3))-1.5).toFixed(2);",
+   "1.24": "return (Math.log2((23-3)/3)-1.5).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28S-06",
+  "domain": "Statistics and Probability",
+  "difficulty": "medium",
+  "topic_tag": "linear rescaling of a data set fixed by its minimum and maximum",
+  "subskill": "rescale min and max, then the mean",
+  "prompt": "On a quiz taken by 30 students, the lowest score was 38, the highest score was 92, and the mean score was 71.46. The teacher rescales every score with the same linear function, y = ax + b, chosen so that the lowest score becomes 50 and the highest score becomes 100. To the nearest hundredth, what is the mean of the 30 rescaled scores?",
+  "choices": [
+   "77.67",
+   "86.14",
+   "80.98",
+   "83.46"
+  ],
+  "correct_answer": "80.98",
+  "explanation": "The function must send 38 to 50 and 92 to 100, so a = (100 - 50)/(92 - 38) = 50/54 and y = 50 + (50/54)(x - 38). A linear function applied to every value applies to the mean, so the new mean is 50 + (50/54)(71.46 - 38) = 50 + 30.98 = 80.98. The option 77.67 multiplies every score by 100/92 so that only the top score becomes 100. The option 83.46 adds 12 to every score so that only the bottom score becomes 50. The option 86.14 inverts the scale factor, using 54/50.",
+  "solve": "const L=38,H=92,m=71.46,Lp=50,Hp=100;const a=(Hp-Lp)/(H-L);return (Lp+(m-L)*a).toFixed(2);",
+  "distractor_solve": {
+   "77.67": "const H=92,m=71.46,Hp=100;return (m*Hp/H).toFixed(2);",
+   "83.46": "const L=38,m=71.46,Lp=50;return (m+(Lp-L)).toFixed(2);",
+   "86.14": "const L=38,H=92,m=71.46,Lp=50,Hp=100;return (Lp+(m-L)*(H-L)/(Hp-Lp)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28S-07",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "first event among independent trials with two different probabilities",
+  "subskill": "first knockdown falls in the second block",
+  "prompt": "In a race, a runner clears 12 hurdles in order. The first 6 hurdles are low hurdles, and she knocks over each low hurdle with probability 0.04. The last 6 hurdles are high hurdles, and she knocks over each high hurdle with probability 0.05. Whether she knocks over a hurdle is independent of what happens at every other hurdle. To the nearest thousandth, what is the probability that she knocks over at least one of the 12 hurdles and the first hurdle she knocks over is a high hurdle?",
+  "choices": [
+   "0.182",
+   "0.207",
+   "0.170",
+   "0.201"
+  ],
+  "correct_answer": "0.207",
+  "explanation": "The first hurdle knocked over is a high hurdle exactly when she knocks over none of the 6 low hurdles and at least one of the 6 high hurdles. So the probability is (0.96)^6 [1 - (0.95)^6] = 0.78276(0.26491) ≈ 0.207. The option 0.201 estimates the chance of clearing all 6 low hurdles as 1 - 6(0.04) = 0.76 instead of (0.96)^6. The option 0.182 counts only the case of knocking over exactly one high hurdle, (0.96)^6 · 6(0.05)(0.95)^5. The option 0.170 uses the low-hurdle probability 0.04 for the high hurdles too.",
+  "solve": "const qA=0.96,qB=0.95;return (qA**6*(1-qB**6)).toFixed(3);",
+  "distractor_solve": {
+   "0.201": "const qB=0.95;return ((1-6*0.04)*(1-qB**6)).toFixed(3);",
+   "0.182": "const qA=0.96,qB=0.95;return (qA**6*6*0.05*qB**5).toFixed(3);",
+   "0.170": "const qA=0.96;return (qA**6*(1-qA**6)).toFixed(3);"
+  }
+ },
+ {
+  "id": "AM28S-08",
+  "domain": "Statistics and Probability",
+  "difficulty": "hard",
+  "topic_tag": "least-squares regression from summary statistics, residual",
+  "subskill": "slope r(sy/sx), then a residual",
+  "prompt": "For 48 used cars of one model, x is a car's age, in years, and y is its selling price, in thousands of dollars. The ages have mean 6.2 and variance 6.25, and the prices have mean 14.8 and variance 16.81. The correlation coefficient between age and price is r = -0.84. The least-squares regression line of y on x passes through the point (mean of x, mean of y) and has slope r(s_y/s_x), where s_x and s_y are the standard deviations of x and y. One of the 48 cars is 9 years old and sold for 11.6 thousand dollars. To the nearest hundredth, what is the residual (actual price minus predicted price), in thousands of dollars, for this car?",
+  "choices": [
+   "-0.85",
+   "3.13",
+   "0.66",
+   "-1.77"
+  ],
+  "correct_answer": "0.66",
+  "explanation": "The standard deviations are s_x = √6.25 = 2.5 and s_y = √16.81 = 4.1, so the slope is -0.84(4.1/2.5) = -1.3776. The predicted price at x = 9 is 14.8 + (-1.3776)(9 - 6.2) = 14.8 - 3.857 = 10.943, and the residual is 11.6 - 10.943 ≈ 0.66. The option 3.13 uses the variances in place of the standard deviations, slope -0.84(16.81/6.25). The option -1.77 inverts the ratio, slope -0.84(2.5/4.1). The option -0.85 uses r = -0.84 itself as the slope.",
+  "solve": "const xb=6.2,vx=6.25,yb=14.8,vy=16.81,r=-0.84;return (11.6-(yb+r*Math.sqrt(vy/vx)*(9-xb))).toFixed(2);",
+  "distractor_solve": {
+   "-1.77": "const xb=6.2,vx=6.25,yb=14.8,vy=16.81,r=-0.84;return (11.6-(yb+r*Math.sqrt(vx/vy)*(9-xb))).toFixed(2);",
+   "-0.85": "const xb=6.2,vx=6.25,yb=14.8,vy=16.81,r=-0.84;return (11.6-(yb+r*(9-xb))).toFixed(2);",
+   "3.13": "const xb=6.2,vx=6.25,yb=14.8,vy=16.81,r=-0.84;return (11.6-(yb+r*(vy/vx)*(9-xb))).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28F-06",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "rational functions",
+  "subskill": "solve a rational model for its input",
+  "prompt": "The greatest possible efficiency e of a heat engine that runs between a hot reservoir at temperature H and a cold reservoir at temperature C is given by e = 1 − C/H, where both temperatures are measured in kelvins. A temperature of t degrees Celsius is t + 273 kelvins. An engine runs between a hot reservoir at 260°C and a cold reservoir at 22°C. Engineers plan to raise the engine's greatest possible efficiency by exactly 5 percentage points by raising the temperature of the hot reservoir only. To the nearest hundredth of a degree, by how many degrees Celsius must the hot reservoir's temperature be raised?",
+  "choices": [
+   "59.68",
+   "375.56",
+   "52.93",
+   "61.12"
+  ],
+  "correct_answer": "52.93",
+  "explanation": "In kelvins, C = 295 and H = 533, so e = 1 − 295/533 ≈ 0.44653. The new efficiency is about 0.49653, so the new hot temperature H′ satisfies 295/H′ = 1 − 0.49653, giving H′ = 295/0.50347 ≈ 585.93 K. The rise is 585.93 − 533 ≈ 52.93 degrees (a rise of 1 kelvin is a rise of 1 degree Celsius). The option 59.68 assumes the efficiency is proportional to H, scaling 533 by 0.49653/0.44653. The option 61.12 rearranges e = 1 − C/H as H = C/e instead of H = C/(1 − e). The option 375.56 uses the Celsius temperatures 260 and 22 in the formula instead of kelvins.",
+  "solve": "const C=295,H=533;const e1=1-C/H+0.05;return (C/(1-e1)-H).toFixed(2);",
+  "distractor_solve": {
+   "59.68": "const C=295,H=533;const e0=1-C/H,e1=e0+0.05;return (H*e1/e0-H).toFixed(2);",
+   "61.12": "const C=295,H=533;const e1=1-C/H+0.05;return (C/e1-H).toFixed(2);",
+   "375.56": "const c=22,h=260;const e1=1-c/h+0.05;return (c/(1-e1)-h).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28F-07",
+  "domain": "Functions",
+  "difficulty": "hard",
+  "topic_tag": "arithmetic and geometric sequences read from a table with uneven gaps",
+  "subskill": "product of an arithmetic and a geometric sequence",
+  "prompt": "A chain of stores grows so that each month the number of stores increases by the same number, and the average sales per store increase by the same percent. Some of the chain's monthly data are below.\nMonth 1: 37 stores, average sales $2,400 per store\nMonth 3: 43 stores, average sales $2,646 per store\nMonth 6: 52 stores, average sales $3,063.08 per store\nIf this pattern continues, what will the chain's total sales (number of stores times average sales per store) be in month 9, to the nearest dollar?",
+  "choices": [
+   "301401",
+   "216299",
+   "189911",
+   "238284"
+  ],
+  "correct_answer": "216299",
+  "explanation": "From month 1 to month 3 is 2 monthly steps: the stores increase by 6, so by 3 per month, and the average sales are multiplied by 2,646/2,400 = 1.1025 = 1.05^2, so they grow 5% per month (month 6 checks: 37 + 15 = 52 and 2,400(1.05)^5 = 3,063.08). In month 9 there are 37 + 3(8) = 61 stores, with average sales 2,400(1.05)^8 ≈ 3,545.89, so total sales ≈ 61(3,545.89) ≈ $216,299. The option 189911 counts months 1 to 3 as 3 steps for the percent (monthly factor 1.1025^(1/3)). The option 301401 treats the 6 more stores from month 1 to month 3 as a monthly increase. The option 238284 is the value for month 10 (it uses 9 steps from month 1).",
+  "solve": "const S=(k,d)=>37+d*(k-1),P=(k,g)=>2400*Math.pow(g,k-1);return String(Math.round(S(9,3)*P(9,1.05)));",
+  "distractor_solve": {
+   "189911": "const S=(k,d)=>37+d*(k-1),P=(k,g)=>2400*Math.pow(g,k-1);return String(Math.round(S(9,3)*P(9,Math.cbrt(1.1025))));",
+   "238284": "const S=(k,d)=>37+d*(k-1),P=(k,g)=>2400*Math.pow(g,k-1);return String(Math.round(S(10,3)*P(10,1.05)));",
+   "301401": "const S=(k,d)=>37+d*(k-1),P=(k,g)=>2400*Math.pow(g,k-1);return String(Math.round(S(9,6)*P(9,1.05)));"
+  }
+ },
+ {
+  "id": "AM28G-01",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "rectangle completed in the coordinate plane",
+  "subskill": "perpendicular slope to locate a rectangle vertex",
+  "prompt": "In the standard (x,y) coordinate plane, rectangle ABCD has vertices A(−6, 6) and B(5, 3), and vertex C lies on the x-axis. To the nearest hundredth of a coordinate unit, what is the length of diagonal AC ?",
+  "choices": [
+   "12.53",
+   "11.82",
+   "13.25",
+   "12.99"
+  ],
+  "correct_answer": "11.82",
+  "explanation": "Side BC is perpendicular to side AB at B. The slope of AB is (3 − 6)/(5 − (−6)) = −3/11, so BC has slope 11/3. On y − 3 = (11/3)(x − 5), y = 0 gives x = 5 − 9/11 = 46/11, so C = (46/11, 0). Then AC = √((46/11 + 6)² + 6²) = √((112/11)² + 36) = 130/11 ≈ 11.82. The option \"13.25\" uses the reciprocal slope without changing its sign (−11/3), which puts C at (64/11, 0). The option \"12.53\" assumes side BC is vertical and takes C = (5, 0). The option \"12.99\" puts the right angle in the wrong place: it drops the perpendicular through A to the x-axis (as if D were the vertex on the axis) and completes the rectangle from there.",
+  "solve": "const ax=-6,ay=6,bx=5,by=3,m=(by-ay)/(bx-ax),cx=bx-by/(-1/m);return Math.hypot(cx-ax,ay).toFixed(2);",
+  "distractor_solve": {
+   "13.25": "const ax=-6,ay=6,bx=5,by=3,m=(by-ay)/(bx-ax),cx=bx-by/(1/m);return Math.hypot(cx-ax,ay).toFixed(2);",
+   "12.53": "const ax=-6,ay=6,bx=5,by=3;return Math.hypot(bx-ax,ay).toFixed(2);",
+   "12.99": "const ax=-6,ay=6,bx=5,by=3,m=(by-ay)/(bx-ax),dx=ax-ay/(-1/m),cx=bx+dx-ax,cy=by-ay;return Math.hypot(cx-ax,cy-ay).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28G-02",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "similar triangles cut by a parallel segment",
+  "subskill": "parallel cut with equal perimeters",
+  "prompt": "In triangle ABC, AB = 10 centimeters, AC = 13 centimeters, and BC = 5 centimeters. Point D lies on side AB and point E lies on side AC so that segment DE is parallel to side BC. The perimeter of triangle ADE is equal to the perimeter of quadrilateral DBCE. To the nearest hundredth of a centimeter, what is the length of AE ?",
+  "choices": [
+   "8.88",
+   "7.14",
+   "9.19",
+   "7.91"
+  ],
+  "correct_answer": "7.91",
+  "explanation": "Because DE ∥ BC, triangle ADE is similar to triangle ABC; let k = AE/AC = AD/AB = DE/BC. The perimeter of ADE is 10k + 13k + 5k = 28k. The perimeter of DBCE is DB + BC + CE + ED = 10(1 − k) + 5 + 13(1 − k) + 5k = 28 − 18k. Setting 28k = 28 − 18k gives k = 28/46 = 14/23, so AE = 13(14/23) = 182/23 ≈ 7.91. The option \"7.14\" leaves side DE out of the quadrilateral's perimeter (28k = 28 − 23k, k = 28/51). The option \"8.88\" leaves DE out of the triangle's perimeter instead (23k = 28 − 18k, k = 28/41). The option \"9.19\" splits the AREA in half rather than the perimeter (k = 1/√2).",
+  "solve": "const ab=10,ac=13,bc=5,k=(ab+ac+bc)/(2*(ab+ac));return (ac*k).toFixed(2);",
+  "distractor_solve": {
+   "7.14": "const ab=10,ac=13,bc=5,s=ab+ac,k=(s+bc)/(2*s+bc);return (ac*k).toFixed(2);",
+   "8.88": "const ab=10,ac=13,bc=5,s=ab+ac,k=(s+bc)/(2*s-bc);return (ac*k).toFixed(2);",
+   "9.19": "const ac=13,k=1/Math.sqrt(2);return (ac*k).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28G-03",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "square pyramid surface area",
+  "subskill": "base edge from lateral area and face angle",
+  "prompt": "The roof of a gazebo has the shape of the four triangular faces of a right pyramid with a square base: the top point of the roof is directly above the center of the square. Each of the four triangular faces of the roof makes an angle of 32° with the horizontal, and the total area of the four faces is 76 square meters. To the nearest hundredth of a meter, what is the length of each side of the square base of the roof?",
+  "choices": [
+   "6.35",
+   "8.03",
+   "5.91",
+   "7.55"
+  ],
+  "correct_answer": "8.03",
+  "explanation": "Let s be the side of the square. In the right triangle formed by the top point, the center of the base, and the midpoint of a base edge, the horizontal leg is s/2 and the angle at the midpoint is 32°, so the slant height of a face is (s/2)/cos 32°. The four faces have total area 4 · (1/2) · s · (s/2)/cos 32° = s²/cos 32°. So s² = 76 cos 32° ≈ 64.45 and s ≈ 8.03. The option \"6.35\" uses sin 32° in place of cos 32° for the slant height. The option \"7.55\" treats 32° as the angle a lateral edge (corner ridge) makes with the horizontal, so the horizontal leg is half the diagonal of the square. The option \"5.91\" also counts the square base, setting s²/cos 32° + s² equal to 72.",
+  "solve": "const c=Math.cos(32*Math.PI/180);return Math.sqrt(76*c).toFixed(2);",
+  "distractor_solve": {
+   "6.35": "const sn=Math.sin(32*Math.PI/180);return Math.sqrt(76*sn).toFixed(2);",
+   "7.55": "const c=Math.cos(32*Math.PI/180);return Math.sqrt(76/Math.sqrt(2/(c*c)-1)).toFixed(2);",
+   "5.91": "const c=Math.cos(32*Math.PI/180);return Math.sqrt(76/(1/c+1)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28N-01",
+  "domain": "Number and Quantity",
+  "difficulty": "medium",
+  "topic_tag": "vectors in a parallelogram",
+  "subskill": "vector to a point dividing a side",
+  "prompt": "In the standard (x,y) coordinate plane, ABCD is a parallelogram with vertices in that order. The vector from A to B is u = ⟨4, −5⟩, and the vector from A to D is v = ⟨2, 4⟩. Point P lies on side CD so that DP is twice as long as PC. To the nearest hundredth, what is the magnitude of the vector from A to P ?",
+  "choices": [
+   "5.82",
+   "4.07",
+   "7.36",
+   "4.71"
+  ],
+  "correct_answer": "4.71",
+  "explanation": "Going from A to D and then along DC, which is parallel and equal to AB: AP = v + (2/3)u, because DP is 2/3 of DC. So AP = ⟨2 + 8/3, 4 − 10/3⟩ = ⟨14/3, 2/3⟩, and |AP| = √(196 + 4)/3 = √200/3 ≈ 4.71. The option \"4.07\" reverses the ratio, v + (1/3)u. The option \"5.82\" travels along the wrong pair of sides, u + (2/3)v. The option \"7.36\" subtracts, v − (2/3)u, treating DC as pointing opposite to AB.",
+  "solve": "const u=[4,-5],v=[2,4],t=2/3;return Math.hypot(v[0]+t*u[0],v[1]+t*u[1]).toFixed(2);",
+  "distractor_solve": {
+   "4.07": "const u=[4,-5],v=[2,4],t=1/3;return Math.hypot(v[0]+t*u[0],v[1]+t*u[1]).toFixed(2);",
+   "5.82": "const u=[4,-5],v=[2,4],t=2/3;return Math.hypot(u[0]+t*v[0],u[1]+t*v[1]).toFixed(2);",
+   "7.36": "const u=[4,-5],v=[2,4],t=2/3;return Math.hypot(v[0]-t*u[0],v[1]-t*u[1]).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28G-04",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "sector area from a chord and an inscribed angle",
+  "subskill": "inscribed angle to central angle, then radius",
+  "prompt": "Points A, B, and C lie on a circle with center O. Chord AC is 11 centimeters long. Point B lies on the major arc AC, and the measure of ∠ABC is 54°. To the nearest tenth of a square centimeter, what is the area of sector AOC, the region bounded by radii OA and OC and the minor arc AC ?",
+  "choices": [
+   "69.2",
+   "31.5",
+   "82.5",
+   "43.6"
+  ],
+  "correct_answer": "43.6",
+  "explanation": "The inscribed angle ABC intercepts minor arc AC, so central angle AOC = 2(54°) = 108°. In isosceles triangle AOC, half the chord is opposite half the central angle: 5.5 = r sin 54°, so r = 5.5/sin 54° ≈ 6.798. The sector's area is (108/360)πr² ≈ 0.3(π)(46.22) ≈ 43.6 square centimeters. The option \"69.2\" treats 54° as the central angle (r = 5.5/sin 27°, sector of 54°). The option \"31.5\" uses the whole central angle in the half-chord relation, r = 5.5/sin 108°. The option \"82.5\" finds r from the law of cosines but drops the sign of cos 108°: 121 = 2r²(1 − 0.309) instead of 2r²(1 + 0.309).",
+  "solve": "const D=Math.PI/180,c=11,a=54,t=2*a,r=c/2/Math.sin(a*D);return (r*r*t*D/2).toFixed(1);",
+  "distractor_solve": {
+   "69.2": "const D=Math.PI/180,c=11,a=54,r=c/2/Math.sin(a/2*D);return (r*r*a*D/2).toFixed(1);",
+   "31.5": "const D=Math.PI/180,c=11,a=54,t=2*a,r=c/2/Math.sin(t*D);return (r*r*t*D/2).toFixed(1);",
+   "82.5": "const D=Math.PI/180,c=11,a=54,t=2*a,r2=c*c/(2*(1-Math.abs(Math.cos(t*D))));return (r2*t*D/2).toFixed(1);"
+  }
+ },
+ {
+  "id": "AM28G-05",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "law of sines in a sloped-ground sighting",
+  "subskill": "law of sines with angles read off a slope",
+  "prompt": "A vertical radio mast stands on a hillside that rises at a constant angle of 14° above the horizontal. Point P is on the hillside, downhill from the base of the mast, and the distance from P up the slope to the base of the mast is 44 meters; P, the base, and the mast all lie in one vertical plane. From P, the angle of elevation of the top of the mast, measured from the horizontal, is 33°. To the nearest hundredth of a meter, what is the height of the mast?",
+  "choices": [
+   "16.75",
+   "17.08",
+   "12.61",
+   "14.76"
+  ],
+  "correct_answer": "17.08",
+  "explanation": "Let B be the base and T the top of the mast. In triangle PBT, the angle at P is between the slope (14° above horizontal) and the line of sight (33° above horizontal), so ∠TPB = 33° − 14° = 19°. At B, the vertical mast and the downhill slope make ∠PBT = 90° + 14° = 104°. So ∠PTB = 180° − 19° − 104° = 57°. By the law of sines, BT/sin 19° = PB/sin 57°, so BT = 44 sin 19°/sin 57° ≈ 17.08 meters. (Check with right triangles: P is 44 cos 14° ≈ 42.69 m horizontally from the mast and 44 sin 14° ≈ 10.64 m below its base; the top is 42.69 tan 33° ≈ 27.73 m above P, and 27.73 − 10.64 ≈ 17.08.) The option \"16.75\" finds the base's rise as 44 tan 14° instead of 44 sin 14°. The option \"14.76\" pairs the 44-meter side with the 104° angle at the base instead of the 57° angle opposite it. The option \"12.61\" uses sin 33° instead of tan 33° for the sight line's rise.",
+  "solve": "const D=Math.PI/180,d=44,s=14,e=33;return (d*Math.sin((e-s)*D)/Math.sin((90-e)*D)).toFixed(2);",
+  "distractor_solve": {
+   "16.75": "const D=Math.PI/180,d=44,s=14,e=33;return (d*Math.cos(s*D)*Math.tan(e*D)-d*Math.tan(s*D)).toFixed(2);",
+   "14.76": "const D=Math.PI/180,d=44,s=14,e=33;return (d*Math.sin((e-s)*D)/Math.sin((90+s)*D)).toFixed(2);",
+   "12.61": "const D=Math.PI/180,d=44,s=14,e=33;return (d*Math.cos(s*D)*Math.sin(e*D)-d*Math.sin(s*D)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28G-06",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "kite diagonals",
+  "subskill": "kite diagonal via law of cosines and area",
+  "prompt": "The frame of a toy kite is quadrilateral ABCD, in which AB = AD = 50 centimeters, CB = CD = 80 centimeters, and the measure of ∠ABC is 110°. A straight wooden spar runs from vertex B to vertex D. To the nearest hundredth of a centimeter, what is the length of the spar BD ?",
+  "choices": [
+   "81.92",
+   "95.75",
+   "69.69",
+   "74.16"
+  ],
+  "correct_answer": "69.69",
+  "explanation": "Diagonal AC splits the kite into congruent triangles ABC and ADC, and the other diagonal BD is perpendicular to AC and bisected by it. In triangle ABC, AC² = 50² + 80² − 2(50)(80) cos 110° ≈ 8,900 + 2,736.2 = 11,636.2, so AC ≈ 107.87. The area of triangle ABC is (1/2)(50)(80) sin 110° ≈ 1,879.4, and it also equals (1/2)(AC)(h), where h is the distance from B to AC, so h ≈ 2(1,879.4)/107.87 ≈ 34.85. Since BD = 2h, BD ≈ 69.69 cm. Placing the 110° angle at A, between the two 50-cm sides, gives 2(50) sin 55° ≈ 81.92; taking the area of triangle ABC as (1/2)(50)(80) without sin 110° gives 74.16; using + instead of − in the law of cosines (AC ≈ 78.51) gives 95.75.",
+  "solve": "const r=Math.PI/180,p=50,q=80,B=110;const AC=Math.sqrt(p*p+q*q-2*p*q*Math.cos(B*r));const h=p*q*Math.sin(B*r)/AC;return (2*h).toFixed(2);",
+  "distractor_solve": {
+   "81.92": "const r=Math.PI/180,p=50,q=80,B=110;return (2*p*Math.sin(B/2*r)).toFixed(2);",
+   "95.75": "const r=Math.PI/180,p=50,q=80,B=110;const AC=Math.sqrt(p*p+q*q+2*p*q*Math.cos(B*r));const h=p*q*Math.sin(B*r)/AC;return (2*h).toFixed(2);",
+   "74.16": "const r=Math.PI/180,p=50,q=80,B=110;const AC=Math.sqrt(p*p+q*q-2*p*q*Math.cos(B*r));return (2*p*q/AC).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28G-X1",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "right-triangle trigonometry: solar panel row spacing",
+  "subskill": "two right triangles: panel footprint plus shadow",
+  "prompt": "Rows of flat solar panels stand on a flat, horizontal roof. Each panel's sloped face is 1.65 meters long from its front edge to its back edge, and the panel is tilted 32° up from the roof, with its front edge on the roof and its back edge raised. At the planned time of day, the sun is in front of the rows, its rays make an angle of 25° with the horizontal roof, and the shadow of each raised back edge falls straight behind the panel, perpendicular to the rows. The front edge of the next row is placed exactly where that shadow ends. To the nearest hundredth of a meter, what is the horizontal distance from the front edge of one row to the front edge of the next row?",
+  "choices": [
+   "3.61",
+   "3.47",
+   "3.88",
+   "3.27"
+  ],
+  "correct_answer": "3.27",
+  "explanation": "The back edge is 1.65 sin 32° ≈ 0.874 m above the roof and 1.65 cos 32° ≈ 1.399 m behind the front edge, horizontally. Its shadow reaches 0.874/tan 25° ≈ 1.875 m farther back. The distance is 1.399 + 1.875 ≈ 3.27 m. The option \"3.47\" divides the height by sin 25° instead of tan 25° (the length of the sun ray, not its horizontal run). The option \"3.61\" treats 1.65 m as the panel's horizontal depth and finds the height as 1.65 tan 32°. The option \"3.88\" measures the 32° tilt from the vertical, swapping sine and cosine in both legs.",
+  "solve": "const D=Math.PI/180,L=1.65,t=32,a=25;return (L*Math.cos(t*D)+L*Math.sin(t*D)/Math.tan(a*D)).toFixed(2);",
+  "distractor_solve": {
+   "3.47": "const D=Math.PI/180,L=1.65,t=32,a=25;return (L*Math.cos(t*D)+L*Math.sin(t*D)/Math.sin(a*D)).toFixed(2);",
+   "3.61": "const D=Math.PI/180,L=1.65,t=32,a=25;return (L*Math.cos(t*D)+L*Math.tan(t*D)/Math.tan(a*D)).toFixed(2);",
+   "3.88": "const D=Math.PI/180,L=1.65,t=32,a=25;return (L*Math.sin(t*D)+L*Math.cos(t*D)/Math.tan(a*D)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28G-07",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "area of a uniform border around a regular hexagon",
+  "subskill": "apothem grows by the border width, not the side",
+  "prompt": "A patio is shaped like a regular hexagon with sides 3.4 meters long. A walkway 1.7 meters wide surrounds the patio. The outer edge of the walkway is also a regular hexagon, and each of its six sides is parallel to a side of the patio and 1.7 meters from it. To the nearest hundredth of a square meter, what is the area of the walkway?",
+  "choices": [
+   "37.54",
+   "43.76",
+   "44.69",
+   "52.02"
+  ],
+  "correct_answer": "44.69",
+  "explanation": "A regular hexagon with side s has apothem (s√3)/2 and area (3√3/2)s². The patio's apothem is 3.4(√3/2) ≈ 2.944 m. Moving every side out 1.7 m raises the apothem to ≈ 4.644 m, so the outer side is 4.644·(2/√3) ≈ 5.363 m (the side grows by 2(1.7)/√3, not by 1.7). Walkway area = (3√3/2)(5.363² − 3.4²) ≈ 44.69 square meters. Equivalently: six 3.4-by-1.7 rectangles (34.68) plus six corner pieces, each two right triangles with legs 1.7 and 1.7/√3 (total 6(1.7²)/√3 ≈ 10.01). The option \"37.54\" adds 1.7 to the side length. The option \"52.02\" fills each corner with a 1.7-by-1.7 square, as around a rectangle. The option \"43.76\" fills each corner with a 60° sector of radius 1.7.",
+  "solve": "const r3=Math.sqrt(3),s=3.4,w=1.7,H=x=>1.5*r3*x*x;const so=s+2*w/r3;return (H(so)-H(s)).toFixed(2);",
+  "distractor_solve": {
+   "37.54": "const r3=Math.sqrt(3),s=3.4,w=1.7,H=x=>1.5*r3*x*x;return (H(s+w)-H(s)).toFixed(2);",
+   "52.02": "const r3=Math.sqrt(3),s=3.4,w=1.7,H=x=>1.5*r3*x*x;return (6*s*w+6*w*w).toFixed(2);",
+   "43.76": "const r3=Math.sqrt(3),s=3.4,w=1.7,H=x=>1.5*r3*x*x;return (6*s*w+Math.PI*w*w).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28G-X2",
+  "domain": "Geometry",
+  "difficulty": "medium",
+  "topic_tag": "regular pentagon diagonals",
+  "subskill": "diagonal of a regular pentagon",
+  "prompt": "A five-pointed star is drawn by connecting each vertex of a regular pentagon to the two vertices not next to it. Each side of the pentagon is 9 centimeters long. To the nearest hundredth of a centimeter, what is the total length of the 5 segments that form the star?",
+  "choices": [
+   "77.94",
+   "52.90",
+   "72.81",
+   "68.38"
+  ],
+  "correct_answer": "72.81",
+  "explanation": "Each segment of the star is a diagonal of the pentagon. Each interior angle of a regular pentagon measures (5 − 2)(180°)/5 = 108°. A diagonal and two adjacent sides form a triangle with sides 9 and 9 and included angle 108°, so by the law of cosines the diagonal d satisfies d² = 81 + 81 − 2(81) cos 108° ≈ 162 + 50.06 = 212.06, and d ≈ 14.562. The 5 diagonals total 5d ≈ 72.81 centimeters. Using 72° (an exterior angle) gives 52.90; leaving out the 2 in the law of cosines gives 68.38; using 120° (a hexagon's interior angle) gives 77.94.",
+  "solve": "const r=Math.PI/180,s=9;return (5*Math.sqrt(2*s*s-2*s*s*Math.cos(108*r))).toFixed(2);",
+  "distractor_solve": {
+   "52.90": "const r=Math.PI/180,s=9;return (5*Math.sqrt(2*s*s-2*s*s*Math.cos(72*r))).toFixed(2);",
+   "68.38": "const r=Math.PI/180,s=9;return (5*Math.sqrt(2*s*s-s*s*Math.cos(108*r))).toFixed(2);",
+   "77.94": "const r=Math.PI/180,s=9;return (5*Math.sqrt(2*s*s-2*s*s*Math.cos(120*r))).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28G-09",
+  "domain": "Geometry",
+  "difficulty": "hard",
+  "topic_tag": "3D distance inside a cone",
+  "subskill": "point on a slant edge, then a 3D distance",
+  "prompt": "A solid right circular cone has a base diameter of 12 centimeters and a height of 8 centimeters. Point V is the apex of the cone, and point O is the center of its base. Points A and C lie on the circular edge of the base so that radii OA and OC are perpendicular. Point B lies on segment VC, 3 centimeters from V. To the nearest hundredth of a centimeter, what is the straight-line distance from A to B ?",
+  "choices": [
+   "7.71",
+   "8.40",
+   "8.21",
+   "8.13"
+  ],
+  "correct_answer": "8.40",
+  "explanation": "The radius is 6, so the slant height VC is √(6² + 8²) = 10, and B is 3/10 of the way from V to C. Measured from the axis, B is (3/10)(6) = 1.8 cm out toward C and (7/10)(8) = 5.6 cm above the base. Put O at the origin with C on the x-axis and A on the y-axis: A = (0, 6, 0) and B = (1.8, 0, 5.6). Then AB = √(1.8² + 6² + 5.6²) = √(3.24 + 36 + 31.36) = √70.6 ≈ 8.40. The option \"8.13\" treats 3 cm as the vertical drop from V (B at height 5, 2.25 cm from the axis). The option \"7.71\" measures the 3 cm from C instead of V (B at 7/10 of the way from V). The option \"8.21\" drops B's 1.8-cm offset from the axis, AB = √(6² + 5.6²).",
+  "solve": "const r=6,h=8,s=Math.hypot(r,h),t=3/s;return Math.hypot(r*t,r,h*(1-t)).toFixed(2);",
+  "distractor_solve": {
+   "8.13": "const r=6,h=8,dz=3;return Math.hypot(r*dz/h,r,h-dz).toFixed(2);",
+   "7.71": "const r=6,h=8,s=Math.hypot(r,h),t=1-3/s;return Math.hypot(r*t,r,h*(1-t)).toFixed(2);",
+   "8.21": "const r=6,h=8,s=Math.hypot(r,h),t=3/s;return Math.hypot(r,h*(1-t)).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28N-03",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "unit conversion with shrinkage",
+  "subskill": "meters to yards with a percent shrink",
+  "prompt": "A quilter needs 5 strips of fabric. After the fabric is washed, each strip must be 0.82 meter long plus a seam allowance of 4 centimeters at each end. Washing shrinks the fabric's length by 8%, and the strips will be cut end to end, along the length, from unwashed fabric. She already has 1.2 yards of the unwashed fabric, and she will buy the rest by length, where 1 yard = 0.9144 meter. To the nearest hundredth of a yard, how many yards of unwashed fabric must she buy?",
+  "choices": [
+   "4.04",
+   "4.15",
+   "3.91",
+   "4.11"
+  ],
+  "correct_answer": "4.15",
+  "explanation": "After washing, each strip is 0.82 + 2(0.04) = 0.90 meter, so the 5 strips need 4.5 meters of washed fabric. Washed length is 92% of unwashed length, so she needs 4.5 ÷ 0.92 ≈ 4.8913 meters of unwashed fabric. She has 1.2 yards = 1.2(0.9144) ≈ 1.0973 meters, so she must buy about 3.7940 meters, which is 3.7940 ÷ 0.9144 ≈ 4.15 yards. Adding 8% to 4.5 meters instead of dividing by 0.92 gives 4.11; subtracting 1.2 directly from the meters gives 4.04; one seam allowance per strip gives 3.91.",
+  "solve": "const Y=0.9144,n=5,a=0.82,s=0.04,p=0.08,R=1.2;const T=n*(a+2*s);return ((T/(1-p)-Y*R)/Y).toFixed(2);",
+  "distractor_solve": {
+   "4.11": "const Y=0.9144,n=5,a=0.82,s=0.04,p=0.08,R=1.2;const T=n*(a+2*s);return ((T*(1+p)-Y*R)/Y).toFixed(2);",
+   "4.04": "const Y=0.9144,n=5,a=0.82,s=0.04,p=0.08,R=1.2;const T=n*(a+2*s);return ((T/(1-p)-R)/Y).toFixed(2);",
+   "3.91": "const Y=0.9144,n=5,a=0.82,s=0.04,p=0.08,R=1.2;const T=n*(a+s);return ((T/(1-p)-Y*R)/Y).toFixed(2);"
+  }
+ },
+ {
+  "id": "AM28N-04",
+  "domain": "Number and Quantity",
+  "difficulty": "hard",
+  "topic_tag": "powers of a complex number as points",
+  "subskill": "complex powers plotted, then distances",
+  "prompt": "For i = √(−1), the complex number a + bi, where a and b are real numbers, is represented in the complex plane by the point (a, b). Let z = 2 + i. The numbers z, z², and z³ are represented by three points that form a triangle. To the nearest hundredth, what is the perimeter of that triangle?",
+  "choices": [
+   "24.22",
+   "12.84",
+   "33.94",
+   "20.23"
+  ],
+  "correct_answer": "20.23",
+  "explanation": "z² = (2 + i)² = 4 + 4i + i² = 3 + 4i, and z³ = (3 + 4i)(2 + i) = 6 + 3i + 8i + 4i² = 2 + 11i. The vertices are (2, 1), (3, 4), and (2, 11). The sides are √(1 + 9) = √10, √(1 + 49) = √50, and 10, so the perimeter is √10 + √50 + 10 ≈ 3.162 + 7.071 + 10 ≈ 20.23. The option \"24.22\" expands z³ = 8 + 12i + 6i² + i³ but takes i³ as i, giving 2 + 13i. The option \"12.84\" distributes the powers over the sum, z² = 4 + i² = 3 and z³ = 8 + i³ = 8 − i. The option \"33.94\" takes i² as 1, giving z² = 5 + 4i and z³ = 14 + 13i.",
+  "solve": "const m=(p,q)=>[p[0]*q[0]-p[1]*q[1],p[0]*q[1]+p[1]*q[0]],D=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);const z=[2,1],z2=m(z,z),z3=m(z2,z);return (D(z,z2)+D(z2,z3)+D(z,z3)).toFixed(2);",
+  "distractor_solve": {
+   "24.22": "const D=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);const a=2,b=1,z=[a,b],z2=[a*a-b*b,2*a*b],z3=[a**3-3*a*b*b,3*a*a*b+b**3];return (D(z,z2)+D(z2,z3)+D(z,z3)).toFixed(2);",
+   "12.84": "const D=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);const a=2,b=1,z=[a,b],z2=[a*a-b*b,0],z3=[a**3,-(b**3)];return (D(z,z2)+D(z2,z3)+D(z,z3)).toFixed(2);",
+   "33.94": "const m=(p,q)=>[p[0]*q[0]+p[1]*q[1],p[0]*q[1]+p[1]*q[0]],D=(p,q)=>Math.hypot(p[0]-q[0],p[1]-q[1]);const z=[2,1],z2=m(z,z),z3=m(z2,z);return (D(z,z2)+D(z2,z3)+D(z,z3)).toFixed(2);"
+  }
+ }
+]
