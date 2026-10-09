@@ -1,0 +1,4544 @@
+{
+ "confirmations": {
+  "break_test": {
+   "half1": "4/4 plants named as duplicates (IM16C-14 -> b0685d95, IM16F-17 -> f2ad4e35, IM16E-02 -> b3086974, IM16C-02 -> aeaeba9d live and IM16A-07-rewrite -> 61b2273d live, pair also named as borderline)",
+   "half2_first": "2/4: C-14 plant named via cc431dc1 and the work-backwards pair; F-17 and E-02 plants only as borderline -> FAIL, re-run with a sharper addendum",
+   "half2_rerun": "4/4, but NOT a clean break-test: the addendum examples were the plant mechanisms. Its real-candidate hits were hand-confirmed like any other."
+  },
+  "returned": {
+   "IM17F-20": {
+    "kind": "live",
+    "ref": "a49353ab",
+    "why": "strictly increasing digits <-> choose a digit set (C(9,k)); fixing one digit is a trivial extra step"
+   },
+   "IM17E-16": {
+    "kind": "live",
+    "ref": "84f59e76",
+    "why": "area of a triangle from three coordinate vertices"
+   },
+   "IM17F-13": {
+    "kind": "live",
+    "ref": "a7a5db44",
+    "why": "enumerate digit multisets with a given product, count arrangements"
+   },
+   "IM17B-09": {
+    "kind": "live",
+    "ref": "0c99ac2d",
+    "why": "total time minus first leg, remaining distance / remaining time"
+   },
+   "IM17A-19": {
+    "kind": "live",
+    "ref": "565f34ad",
+    "why": "greatest equal division of three amounts = GCD"
+   },
+   "IM17A-16": {
+    "kind": "live",
+    "ref": "28251958",
+    "why": "given b^a = k, rewrite target powers in terms of b^a"
+   },
+   "IM17A-20": {
+    "kind": "live",
+    "ref": "30cfe11d",
+    "why": "compare large powers by a common exponent (greatest vs least is the mirrored ask)"
+   },
+   "IM17B-16": {
+    "kind": "live",
+    "ref": "e9064bca",
+    "why": "person-days remaining divided by the new group size"
+   },
+   "IM17B-17": {
+    "kind": "live",
+    "ref": "e97d0787",
+    "why": "same distance at two speeds with a known time difference -> distance"
+   },
+   "IM17E-03": {
+    "kind": "live",
+    "ref": "e7750c76",
+    "why": "day of the week by counting days in months mod 7"
+   },
+   "IM17C-07": {
+    "kind": "live",
+    "ref": "897b451f",
+    "why": "minimum of a quadratic by completing the square"
+   },
+   "IM17D-01": {
+    "kind": "live",
+    "ref": "6f580b9e",
+    "why": "chain of isosceles triangles propagated by the exterior-angle theorem"
+   },
+   "IM17C-16": {
+    "kind": "live",
+    "ref": "df72b6a2",
+    "why": "quadratic coefficients from given values, then evaluate f(5)"
+   },
+   "IM17B-20": {
+    "kind": "live",
+    "ref": "72aabff2",
+    "why": "area scales by the square of the linear ratio (also d08c51ec)"
+   },
+   "IM17A-18": {
+    "kind": "live",
+    "ref": "a512a3c8",
+    "why": "divisors of N that are multiples of k <-> divisors of N/k (count vs sum)"
+   },
+   "IM17E-15": {
+    "kind": "live",
+    "ref": "48d506cf",
+    "why": "position in 123456789101112...: subtract 9 and 180, divide by 3 (also 6d86c46f)"
+   },
+   "IM17B-19": {
+    "kind": "live",
+    "ref": "4b4c2a46",
+    "why": "compound gear train, near-verbatim"
+   },
+   "IM17C-12": {
+    "kind": "live",
+    "ref": "3b77ffd1",
+    "why": "divide out; the denominator must divide the leftover constant; sum the values"
+   },
+   "IM17C-05": {
+    "kind": "live",
+    "ref": "8941c2e0",
+    "why": "difference of squares with a known sum gives the difference; solve sum/difference"
+   },
+   "IM17D-04": {
+    "kind": "live",
+    "ref": "fb76ceb0",
+    "why": "ab/(a+b) harmonic relation with the same numbers 6 and 12 giving 4"
+   },
+   "IM17D-15": {
+    "kind": "live",
+    "ref": "e4e89f2b",
+    "why": "volume scales by the cube of the linear factor"
+   },
+   "IM17C-10": {
+    "kind": "live",
+    "ref": "406c6299",
+    "why": "combine the given equations into the asked expression without solving"
+   },
+   "IM17C-06": {
+    "kind": "live",
+    "ref": "4af0747d",
+    "why": "linear function from two points, then evaluate (also f48c7e7f, c118bf85)"
+   },
+   "IM17A-13": {
+    "kind": "live",
+    "ref": "eb9b9d6c",
+    "why": "scientific-notation coefficient and exponent arithmetic"
+   },
+   "IM17C-19": {
+    "kind": "live",
+    "ref": "5a703493",
+    "why": "power of a monomial (multiply exponents) then combine like bases"
+   },
+   "IM17A-11": {
+    "kind": "live",
+    "ref": "3327b7b9",
+    "why": "inclusion-exclusion count over a range of integers"
+   },
+   "IM17C-01": {
+    "kind": "batch",
+    "ref": "IM17A-17",
+    "why": "add a constant so the expression factors (Simon), then list divisor pairs"
+   },
+   "IM17B-05": {
+    "kind": "batch",
+    "ref": "IM17B-02",
+    "why": "fixed gap closed at the sum of speeds (opposite) vs the difference (same direction)"
+   }
+  },
+  "not_confirmed": {
+   "IM17D-09": "aa36bad4 splits 360 in 3:4:5 but applies a different relation (inscribed angle vs exterior angle)",
+   "IM17F-04": "92f40ce7 same cards; multiple of 6 needs casework where even needs only the complement",
+   "IM17B-06": "97427952 cost per mile, no break-even",
+   "IM17B-15": "similar quotient-difference, different setup (price cut)",
+   "IM17B-08": "27717075 one-shot replace; repeated geometric dilution is a different idea",
+   "IM17E-06": "bac41949 fencepost count from length; here two-stage duration from gaps",
+   "IM17C-17": "9679fb76 periodic sum, but the cycle must first be generated by iterating f",
+   "IM17D-16": "95bdcebf/0368de0f cone volume with different given data (math-mechanism-dup near only)"
+  },
+  "round2": {
+   "agent_hits": {
+    "IM17F-13": "45f70868 two-set inclusion-exclusion solved for an unknown (ratio substitution is one line)",
+    "IM17B-16": "65e11a69, 78f0d6ca reverse percent by dividing by 1.2 and 0.8"
+   },
+   "dropped_prefreeze": [
+    "IM17F-13",
+    "IM17B-16"
+   ],
+   "not_confirmed": {
+    "IM17E-16": "centroid = average of vertices is a different relation from midpoint reversal (c9837620)",
+    "IM17D-04": "two Pythagorean equations sharing the altitude vs halving an isosceles base (6f768d46)",
+    "IM17B-05/IM17C-16/IM17B-20/IM17D-01": "borderline only; extra non-trivial step"
+   },
+   "hand_note": "IM17E-03 replacement (100th integer skipping squares and cubes) considered against 3327b7b9 by hand: the inverse find-N step is a different method; not confirmed. IM17B-20 replacement had its key in slot A instead of the dealt D; choices reordered by me before freeze (no content change)."
+  }
+ },
+ "split_round1": {
+  "map": {
+   "K001": "IM17A-15",
+   "K002": "IM17C-08",
+   "K003": "IM17F-20",
+   "K004": "IM17E-02",
+   "K005": "IM17D-14",
+   "K006": "IM17E-16",
+   "K007": "IM17C-13",
+   "K008": "IM17F-13",
+   "K009": "IM16F-17",
+   "K010": "IM17A-03",
+   "K011": "IM17D-04",
+   "K012": "IM17C-04",
+   "K013": "IM17B-06",
+   "K014": "IM17E-11",
+   "K015": "IM17C-15",
+   "K016": "IM17A-04",
+   "K017": "IM17D-16",
+   "K018": "IM17E-17",
+   "K019": "IM17A-07",
+   "K020": "IM17F-14",
+   "K021": "IM17B-09",
+   "K022": "IM16C-02",
+   "K023": "IM17D-03",
+   "K024": "IM17E-04",
+   "K025": "IM17D-20",
+   "K026": "IM17B-11",
+   "K027": "IM17A-17",
+   "K028": "IM17D-02",
+   "K029": "IM17D-09",
+   "K030": "IM17D-19",
+   "K031": "IM17F-08",
+   "K032": "IM17D-11",
+   "K033": "IM17A-19",
+   "K034": "IM17A-05",
+   "K035": "IM17A-16",
+   "K036": "IM17F-11",
+   "K037": "IM17A-20",
+   "K038": "IM17C-09",
+   "K039": "IM17E-12",
+   "K040": "IM16E-02",
+   "K041": "IM17E-13",
+   "K042": "IM17B-16",
+   "K043": "IM17E-20",
+   "K044": "IM17B-17",
+   "K045": "IM17C-20",
+   "K046": "IM17F-04",
+   "K047": "IM17E-03",
+   "K048": "IM17A-10",
+   "K049": "IM17D-08",
+   "K050": "IM17D-17",
+   "K051": "IM17B-14",
+   "K052": "IM17C-18",
+   "K053": "IM17F-05",
+   "K054": "IM17A-02",
+   "K055": "IM17E-09",
+   "K056": "IM17F-12",
+   "K057": "IM17D-05",
+   "K058": "IM17C-07",
+   "K059": "IM17E-08",
+   "K060": "IM17D-01",
+   "K061": "IM17B-12",
+   "K062": "IM17F-06",
+   "K063": "IM17B-01",
+   "K064": "IM17A-13",
+   "K065": "IM17C-16",
+   "K066": "IM17F-16",
+   "K067": "IM17B-07",
+   "K068": "IM17D-07",
+   "K069": "IM17D-15",
+   "K070": "IM17B-20",
+   "K071": "IM17F-17",
+   "K072": "IM17A-09",
+   "K073": "IM17B-08",
+   "K074": "IM17B-04",
+   "K075": "IM17C-14",
+   "K076": "IM17E-19",
+   "K077": "IM16C-14",
+   "K078": "IM17D-10",
+   "K079": "IM17D-12",
+   "K080": "IM17E-06",
+   "K081": "IM17A-18",
+   "K082": "IM17C-10",
+   "K083": "IM17F-19",
+   "K084": "IM17E-10",
+   "K085": "IM17E-15",
+   "K086": "IM17F-09",
+   "K087": "IM17C-01",
+   "K088": "IM17B-15",
+   "K089": "IM17A-11",
+   "K090": "IM17A-08",
+   "K091": "IM17E-07",
+   "K092": "IM17A-12",
+   "K093": "IM17A-14",
+   "K094": "IM17B-19",
+   "K095": "IM17F-02",
+   "K096": "IM16A-07-rewrite",
+   "K097": "IM17B-05",
+   "K098": "IM17F-10",
+   "K099": "IM17D-18",
+   "K100": "IM17C-17",
+   "K101": "IM17F-15",
+   "K102": "IM17B-18",
+   "K103": "IM17D-06",
+   "K104": "IM17D-13",
+   "K105": "IM17F-01",
+   "K106": "IM17A-01",
+   "K107": "IM17C-19",
+   "K108": "IM17E-18",
+   "K109": "IM17C-11",
+   "K110": "IM17B-02",
+   "K111": "IM17B-03",
+   "K112": "IM17E-01",
+   "K113": "IM17F-18",
+   "K114": "IM17C-06",
+   "K115": "IM17C-02",
+   "K116": "IM17C-12",
+   "K117": "IM17C-03",
+   "K118": "IM17B-13",
+   "K119": "IM17F-07",
+   "K120": "IM17E-14",
+   "K121": "IM17A-06",
+   "K122": "IM17F-03",
+   "K123": "IM17E-05",
+   "K124": "IM17B-10",
+   "K125": "IM17C-05"
+  },
+  "half1": [
+   "K001",
+   "K002",
+   "K003",
+   "K004",
+   "K005",
+   "K006",
+   "K007",
+   "K008",
+   "K009",
+   "K010",
+   "K011",
+   "K012",
+   "K013",
+   "K014",
+   "K015",
+   "K016",
+   "K017",
+   "K018",
+   "K019",
+   "K020",
+   "K021",
+   "K022",
+   "K023",
+   "K024",
+   "K025",
+   "K026",
+   "K027",
+   "K028",
+   "K029",
+   "K030",
+   "K031",
+   "K032",
+   "K033",
+   "K034",
+   "K035",
+   "K036",
+   "K037",
+   "K038",
+   "K039",
+   "K040",
+   "K041",
+   "K042",
+   "K043",
+   "K044",
+   "K045",
+   "K046",
+   "K047",
+   "K048",
+   "K049",
+   "K050",
+   "K051",
+   "K052",
+   "K053",
+   "K054",
+   "K055",
+   "K056",
+   "K057",
+   "K058",
+   "K059",
+   "K060",
+   "K061",
+   "K062",
+   "K063",
+   "K077",
+   "K096"
+  ],
+  "half2": [
+   "K009",
+   "K022",
+   "K040",
+   "K064",
+   "K065",
+   "K066",
+   "K067",
+   "K068",
+   "K069",
+   "K070",
+   "K071",
+   "K072",
+   "K073",
+   "K074",
+   "K075",
+   "K076",
+   "K077",
+   "K078",
+   "K079",
+   "K080",
+   "K081",
+   "K082",
+   "K083",
+   "K084",
+   "K085",
+   "K086",
+   "K087",
+   "K088",
+   "K089",
+   "K090",
+   "K091",
+   "K092",
+   "K093",
+   "K094",
+   "K095",
+   "K096",
+   "K097",
+   "K098",
+   "K099",
+   "K100",
+   "K101",
+   "K102",
+   "K103",
+   "K104",
+   "K105",
+   "K106",
+   "K107",
+   "K108",
+   "K109",
+   "K110",
+   "K111",
+   "K112",
+   "K113",
+   "K114",
+   "K115",
+   "K116",
+   "K117",
+   "K118",
+   "K119",
+   "K120",
+   "K121",
+   "K122",
+   "K123",
+   "K124",
+   "K125"
+  ],
+  "plants": [
+   "K009",
+   "K022",
+   "K040",
+   "K077",
+   "K096"
+  ]
+ },
+ "plants": [
+  {
+   "id": "IM16C-14",
+   "prompt": "The chess club and the art club have 45 members in all, and no student belongs to both clubs. If 3 members moved from the chess club to the art club, the art club would have twice as many members as the chess club. How many members does the chess club have now?",
+   "choices": [
+    "16",
+    "33",
+    "18",
+    "12"
+   ],
+   "correct_answer": "18",
+   "explanation": "Medium: a routine translation of a 'before and after' statement into one linear equation. With c chess members now, art has 45 - c; after the move, (45 - c) + 3 = 2(c - 3), so 48 - c = 2c - 6, 3c = 54 and c = 18 (equivalently, the total stays 45, so after the move chess has 15). The option \"12\" moves the 3 members the other way, (45 - c) - 3 = 2(c + 3). The option \"16\" adds 3 to the art club but forgets to take 3 from the chess club, 48 - c = 2c. The option \"33\" reverses which club is twice the other, c - 3 = 2(48 - c).",
+   "solve": "for(let c=0;c<=45;c++){ if((45-c)+3===2*(c-3)) return c; }"
+  },
+  {
+   "id": "IM16F-17",
+   "prompt": "A drawer holds 5 red socks, 9 blue socks and 12 black socks. Socks are taken out one at a time without looking. What is the least number of socks that must be taken out to be certain of having at least one sock of each color?",
+   "choices": [
+    "14",
+    "22",
+    "21",
+    "15"
+   ],
+   "correct_answer": "22",
+   "explanation": "Hard: the non-routine idea is to reason about the unluckiest possible draw. In the worst case all 12 black and all 9 blue socks come out first, so 21 socks could still contain no red; the 22nd must be red. So 22 socks guarantee all three colors. \"21\" finds the unlucky 12 + 9 but forgets the one more sock that forces red. \"14\" assumes that after all 12 black socks, 2 more socks must give the other two colors (12 + 2); they could both be blue. \"15\" takes the worst case as the two SMALLEST colors (5 + 9 + 1).",
+   "solve": "const c=[5,9,12].sort((a,b)=>b-a);return c[0]+c[1]+1"
+  },
+  {
+   "id": "IM16E-02",
+   "prompt": "Between 2:00 and 3:00, at what time do the hour hand and the minute hand of a clock FIRST form a right angle (90 degrees)?",
+   "choices": [
+    "2:16 4/11",
+    "2:43 7/11",
+    "2:27 3/11",
+    "2:10 10/11"
+   ],
+   "correct_answer": "2:27 3/11",
+   "explanation": "Hard: one non-routine idea, the relative speed of the hands, plus the head start of the hour hand. At 2:00 the hour hand is 60 degrees ahead. After m minutes the minute hand is at 6m degrees and the hour hand at 60 + 0.5m degrees. The hands close the 60-degree gap at 2:10 10/11 and are next 90 degrees apart when 6m - (60 + 0.5m) = 90, so 5.5m = 150 and m = 27 3/11. The option \"2:10 10/11\" solves 5.5m = 60, the moment the hands overlap. The option \"2:16 4/11\" solves 5.5m = 90, ignoring the hour hand's 60-degree head start. The option \"2:43 7/11\" solves 5.5m = 60 + 180, the time the hands point in opposite directions.",
+   "solve": "const m=(60+90)/5.5; const w=Math.floor(m); const n=Math.round((m-w)*11); return '2:'+w+' '+n+'/11';"
+  },
+  {
+   "id": "IM16C-02",
+   "prompt": "Rina went shopping with some money. At the first store she spent half of her money plus $4 more. At the second store she spent half of what was left plus $3 more. She then had $9 left. How many dollars did Rina have when she started?",
+   "choices": [
+    "40",
+    "46",
+    "58",
+    "56"
+   ],
+   "correct_answer": "56",
+   "explanation": "Hard: one non-routine idea, working backwards, applied through two dependent undo steps in the right order. Before the second store: 9 + 3 = 12 is half of what she had, so she had 24. Before the first store: 24 + 4 = 28 is half of her starting money, so she started with 56. Check: 56 - (28 + 4) = 24, 24 - (12 + 3) = 9. The option \"40\" undoes the first store's '+ $4' by subtracting: (24 - 4) x 2. The option \"46\" doubles before adding back at each step: 9 x 2 + 3 = 21, then 21 x 2 + 4 = 46. The option \"58\" undoes the stores in the wrong order, reversing the first store's step first: (9 + 4) x 2 = 26, then (26 + 3) x 2 = 58.",
+   "solve": "let m=9; m=(m+3)*2; m=(m+4)*2; return m;"
+  },
+  {
+   "id": "IM16A-07-rewrite",
+   "prompt": "A machine takes an input number, doubles it, adds 6 to the result, divides that result by 4, and finally subtracts 3. The output is 7. What was the value inside the machine right after 6 was added?",
+   "choices": [
+    "17",
+    "40",
+    "28",
+    "34"
+   ],
+   "correct_answer": "40",
+   "explanation": "Work backwards: 7 + 3 = 10, 10 x 4 = 40, which is the value right after adding 6.",
+   "solve": "let v=7; v=v+3; v=v*4; return v;"
+  }
+ ],
+ "half1": [
+  {
+   "id": "K001",
+   "method": "bound exponents: largest n with 2^n below 10^6 and smallest n with 3^n above 10^6, then sum the integer range 13..19",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "30cfe11d",
+     "why": "also estimates sizes of powers, but compares fixed powers rather than bounding an exponent range"
+    }
+   ],
+   "note": "no same-method row"
+  },
+  {
+   "id": "K002",
+   "method": "rewrite both exponential equations over a common base (3, 5) to get a 2x2 linear system in x,y, solve, multiply",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "6869e76a",
+     "why": "common-base rewrite to equate exponents, but a single equation, not a system"
+    },
+    {
+     "ref": "cf75bfb2",
+     "why": "common-base rewrite of one equation"
+    }
+   ],
+   "note": "system step distinguishes it"
+  },
+  {
+   "id": "K003",
+   "method": "strictly increasing digits <-> choosing a digit set from 1-9 (0 excluded); fix 5 in the set and choose the other 3 from 8: C(8,3)",
+   "live_dups": [
+    {
+     "row": "a49353ab",
+     "why": "three-digit numbers with strictly increasing digits = C(9,3); identical set<->number insight, K003 only fixes one member of the set (trivial extra step)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "fd06e0ab",
+     "why": "increasing-order digits counted as 1 of 3! orderings of a chosen set"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K004",
+   "method": "count unit segments in a triangular grid: 3 directions x (1+2+...+10)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K123",
+     "why": "also counts figures in a grid, but squares of all sizes in a rectangle (sum of products), different count"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K005",
+   "method": "area ratio by shared height: BD:DC splits ABC, then midpoint E of AD halves ABD and ADC; BEC = half of ABC",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "9e05fd36",
+     "why": "area of triangles with a common vertex proportional to base segments on BC (one step of K005's two-step chain)"
+    }
+   ],
+   "note": "median-halving step makes it more than 9e05fd36"
+  },
+  {
+   "id": "K006",
+   "method": "area of a triangle from three coordinate vertices (box-and-subtract or shoelace)",
+   "live_dups": [
+    {
+     "row": "84f59e76",
+     "why": "triangle with vertices A(-2,-1), B(6,3), C(1,7): area from coordinates, same method and same scalene general-position setup with new numbers"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "cd174806",
+     "why": "coordinate polygon area, but a trapezoid with horizontal bases (direct formula)"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K007",
+   "method": "factor a non-monic quadratic, identify larger/smaller root, evaluate an asymmetric combination r - 2s",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "2d2f2ebf",
+     "why": "solve a quadratic by factoring and choose a root; K007 non-monic plus an asymmetric root expression"
+    }
+   ],
+   "note": "asymmetric expression blocks a Vieta shortcut, so roots must be found"
+  },
+  {
+   "id": "K008",
+   "method": "list digit multisets whose product is 12 (with 1s padding, for 1-, 2-, 3-digit numbers) and count their distinct arrangements",
+   "live_dups": [
+    {
+     "row": "a7a5db44",
+     "why": "three-digit numbers whose digit product is 24 (and divisible by 9): same enumerate-digit-multisets-with-given-product then count permutations chain"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "e8a322d6",
+     "why": "digit-sum (not product) counting of three-digit numbers"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K009",
+   "method": "worst-case pigeonhole: draw all of the two most numerous colours first, then one more",
+   "live_dups": [
+    {
+     "row": "f2ad4e35",
+     "why": "least number to be certain of 2 red: exhaust every other colour first then add the needed reds; same worst-case-exhaustion chain"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "68b3a358",
+     "why": "socks worst case, but 'k of the same colour' (cap each colour at k-1), different pigeonhole structure"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K010",
+   "method": "convert bounds 1/3<k/24<3/4 to 8<k<18, then count k coprime to 24",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "3b775d60 (terminating k/60) is a different property"
+  },
+  {
+   "id": "K011",
+   "method": "square in right-triangle corner: similar triangles give s/a + s/b = 1, so s = ab/(a+b) = 4, area 16",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "fb76ceb0",
+     "why": "crossed wires between poles of 6 and 12 give height ab/(a+b) = 4 by the same similar-triangle harmonic relation and the SAME numbers 6,12 -> 4; different figure"
+    }
+   ],
+   "note": "flag for review because the numbers coincide with fb76ceb0"
+  },
+  {
+   "id": "K012",
+   "method": "functional equation: substitute x=2 and x=-1 to get two linear equations in f(2), f(-1), solve",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "1ab452aa (f(x+2)=3f(x)) is iteration, different"
+  },
+  {
+   "id": "K013",
+   "method": "break-even: fuel cost per mile for each car (price/mpg), take the difference, divide the price gap by it",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "97427952",
+     "why": "cost per mile from mpg, but asks percent decrease, no break-even"
+    },
+    {
+     "ref": "K088",
+     "why": "fixed quantity divided by two rates with a known difference; similar quotient-difference structure"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K014",
+   "method": "internal division point: P = A + (2/3)(B - A) for a 2:1 split, then sum coordinates",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "7f018ffc",
+     "why": "midpoint (1:1 division) of a segment; section formula is a generalisation"
+    },
+    {
+     "ref": "c9837620",
+     "why": "midpoint endpoint problem"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K015",
+   "method": "Vieta: new roots r+3, s+3 have sum (r+s)+6 and product rs+3(r+s)+9; read b, c",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "f2eb7e16",
+     "why": "uses relations between roots and coefficients but finds a missing root from a given one"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K016",
+   "method": "multiplication principle with divisibility-by-4 rule on the last two digits (all even digits: units must be 0,4,8)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "5e2da94e",
+     "why": "counting numbers with restricted digit sets (odd digits), no divisibility rule"
+    },
+    {
+     "ref": "754d8fec",
+     "why": "digit choices under a divisibility rule (36)"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K017",
+   "method": "rotating a right triangle about a leg: that leg is the height, the other the radius; V=(1/3)pi r^2 h",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "785ab991",
+     "why": "cone volume from r and h directly"
+    },
+    {
+     "ref": "0368de0f",
+     "why": "cone volume from r and slant (Pythagoras for h)"
+    }
+   ],
+   "note": "only the identification step is new"
+  },
+  {
+   "id": "K018",
+   "method": "three possible fourth vertices A+C-B, A+B-C, B+C-A (vector addition), then the largest pairwise distance (= twice the longest side of ABC)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "d14524ff",
+     "why": "parallelogram fourth vertex by vector addition for one given order; K018 needs all three and a distance comparison"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K019",
+   "method": "recognise a*b = (a+1)(b+1) - 1, so the chain telescopes to 7! - 1",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "8c890a04",
+     "why": "evaluate a left-to-right custom operation (ab - a + b) directly; K019's factoring trick is new"
+    },
+    {
+     "ref": "3e79ad80",
+     "why": "custom operation ab - a - b"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K020",
+   "method": "circular arrangements: glue Ann-Bo block (6!*2), subtract arrangements with Cy on Ann's other side (block of three, 5!*2)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "5e418a6a",
+     "why": "adjacency handled by gluing a block, but linear and with no complement step"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K021",
+   "method": "total time minus time for the first leg (distance/speed), remaining distance / remaining time",
+   "live_dups": [
+    {
+     "row": "0c99ac2d",
+     "why": "bus must cover 300 mi in 6 h, first 2 h at 45 mph, speed for the rest: same total-minus-first-leg then remaining distance/remaining time chain (first leg given by time instead of distance is the symmetric variant)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K022",
+   "method": "work backwards through 'spent half of what she had plus k' twice: (9+3)*2, then (+4)*2",
+   "live_dups": [
+    {
+     "row": "aeaeba9d",
+     "why": "spent 1/3, then 1/4 of what was left, $27 remaining: same work-backwards through successive fractions of the remainder; the +k constant is a trivial addition"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "61b2273d",
+     "why": "undo a chain of operations backwards"
+    },
+    {
+     "ref": "K096",
+     "why": "undo a chain of operations backwards"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K023",
+   "method": "regular nonagon: exterior angle 40 at B and C, triangle BPC angle = 180 - 2*40",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "28442c62 and feed383a use polygon angles but not the extended-sides triangle"
+  },
+  {
+   "id": "K024",
+   "method": "incenter: equal distance to sides = inradius of the 6-8-10 right triangle, r = (a+b-c)/2 or Area/s",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K025",
+   "method": "interior angle 180 - 360/n integer iff n divides 360; count divisors of 360 (24) minus n=1,2",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "28442c62",
+     "why": "interior angle of a regular polygon via 360/n, but solves for one n"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K026",
+   "method": "profit shared in ratio capital x months (48000:36000 = 4:3), then take Ana's part",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K027",
+   "method": "clear denominators and factor (Simon's trick): (a-12)(b-12)=144, list divisor pairs with a<b, sum a",
+   "live_dups": [],
+   "batch_dups": [
+    {
+     "id": "K087",
+     "why": "xy+3x+2y=54 -> (x+2)(y+3)=60, then enumerate positive divisor pairs: same factor-by-completing-the-rectangle then count divisor pairs"
+    }
+   ],
+   "borderline": [
+    {
+     "ref": "3b77ffd1",
+     "why": "integer condition reduced to divisors of a constant, but via polynomial division"
+    },
+    {
+     "ref": "K116",
+     "why": "divisors of a constant after polynomial division"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K028",
+   "method": "enumerate integer triples a<=b<=c with a+b+c=15 and a+b>c (c from 5 to 7)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "8333cfce",
+     "why": "triangle inequality counting, but one side free with two fixed"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K029",
+   "method": "split 360 in ratio 3:4:5 (arcs 90,120,150), inscribed angle = half the opposite arc, largest = 75",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "aa36bad4",
+     "why": "exterior angles in ratio 3:4:5 split 360 into 90,120,150, then one transform to the largest interior angle; same split-360-then-transform chain and same ratio, but a different geometric relation (supplement vs half-arc)"
+    }
+   ],
+   "note": "close sibling of aa36bad4; reviewer may judge as dup"
+  },
+  {
+   "id": "K030",
+   "method": "intersecting chords theorem AP*PB = CP*PD, then CD = CP + PD",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K031",
+   "method": "count length-6 H/T strings with no two adjacent H by the Fibonacci recursion (or sum C(7-k,k)) = 21, over 64",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "12632cc5",
+     "why": "climbing 6 stairs by 1s and 2s = 13 via the same Fibonacci recurrence, different surface"
+    },
+    {
+     "ref": "07019eea",
+     "why": "choosing non-adjacent seats C(n-k+1,k), the per-k term of K031's sum"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K032",
+   "method": "alternate interior angles give base angle 50 in isosceles ABC, apex = 180 - 2*50",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "952ab23e",
+     "why": "isosceles apex from base angle, without the parallel-lines step"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K033",
+   "method": "GCD of 36, 60, 84 gives the number of boxes (12); cookies per box = 3+5+7",
+   "live_dups": [
+    {
+     "row": "565f34ad",
+     "why": "greatest equal piece length for ribbons 24, 36, 60 = GCD of three quantities; same 'greatest equal division of three amounts = GCD' method, K033 only adds per-box contents"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K034",
+   "method": "factor the smallest power of 2 from numerator and denominator: 2^29*5 / (2^28*3)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "a3ca1d16",
+     "why": "simplify a sum of powers over a power by factoring a common power"
+    },
+    {
+     "ref": "e11c710e",
+     "why": "combine like powers of 2"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K035",
+   "method": "express target powers in terms of the given 3^x=7: 9^x = 7^2, 3^(x+1) = 3*7",
+   "live_dups": [
+    {
+     "row": "28251958",
+     "why": "2^a = 5, find 2^(a+3) = 8*5: same rewrite-in-terms-of-the-given-power method; K035 adds the squared term"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K036",
+   "method": "count games: intra-division pairs C(6,2) x 2 rounds x 2 divisions plus inter-division 6x6",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "da349ba4",
+     "why": "handshake pair counting with a subgroup rule"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K037",
+   "method": "compare large powers by reducing to a common exponent (10th or 5th powers) and comparing bases",
+   "live_dups": [
+    {
+     "row": "30cfe11d",
+     "why": "which of 3^60, 2^100, 5^40, 10^30 is least: same common-exponent comparison of powers, mirrored question"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K038",
+   "method": "split |x-3| = 2|x+1| into x-3 = +/-2(x+1), solve both linear equations, multiply roots",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "16b9481b",
+     "why": "absolute-value equation solved by sign cases"
+    },
+    {
+     "ref": "0ced4a24",
+     "why": "|2x-5|=11 by cases"
+    }
+   ],
+   "note": "two absolute values make it a step beyond the live rows"
+  },
+  {
+   "id": "K039",
+   "method": "count palindromic h:mm displays: 3-digit (h=1..9, m tens 0-5) and 4-digit (h=10,11,12) cases",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K040",
+   "method": "clock-hand angle |30h - 5.5m| set equal to 90 for h=2, solve for m",
+   "live_dups": [
+    {
+     "row": "b3086974",
+     "why": "angle between hands at 4:40 from the same 30h - 5.5m relation; K040 asks the symmetric inverse (time given angle) on the same setup"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "brief's rule: symmetric asked quantity on the same relation counts as same method"
+  },
+  {
+   "id": "K041",
+   "method": "20th pass = 19 intervals x 96 min = 30 h 24 min after Monday 10:48 p.m.; add across days",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "ef09eb2f",
+     "why": "periodic departures from a start time, clock arithmetic"
+    },
+    {
+     "ref": "K076",
+     "why": "elapsed minutes added to a clock time, but elapsed is an arithmetic series"
+    }
+   ],
+   "note": "fencepost (n-1 intervals) plus day rollover"
+  },
+  {
+   "id": "K042",
+   "method": "food in hiker-days: 36x20 total, minus 36x4 used, divide by 48",
+   "live_dups": [
+    {
+     "row": "e9064bca",
+     "why": "16 workers x 15 days, after 6 days 4 leave, remaining worker-days / 12: identical person-days-remaining over new group size chain"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K043",
+   "method": "distance between parallel lines |c1 - c2| / sqrt(a^2+b^2) (or 3-4-5 on intercepts)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K044",
+   "method": "d/4 - d/5 = 15 min gives d = 5 km; time at 4 km/h minus 10 min",
+   "live_dups": [
+    {
+     "row": "e97d0787",
+     "why": "route ridden at 12 and 15 km/h, faster takes 10 min less: same difference-of-times-at-two-speeds equation for d; K044 adds one subtraction"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K088",
+     "why": "300/(0.8p) - 300/p = 5: same fixed-amount-over-two-rates difference equation in a price context"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K045",
+   "method": "revenue pq unchanged under two price/quantity shifts: two linear equations in p, q after expanding (p+2)(q-40)=pq and (p-1)(q+30)=pq",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K046",
+   "method": "count unordered pairs from 1-10 whose product has factors 2 and 3: casework on pairs containing 6 plus pairs (3 or 9) with an even number",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "92f40ce7",
+     "why": "same 10 cards, two drawn, product even (complement count); K046's multiple-of-6 condition needs casework, not the complement"
+    }
+   ],
+   "note": "same setup as 92f40ce7, different counting chain"
+  },
+  {
+   "id": "K047",
+   "method": "count days from March 1 to December 25 mod 7",
+   "live_dups": [
+    {
+     "row": "e7750c76",
+     "why": "March 3 is a Wednesday, find day of June 20: same days-in-months count mod 7"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "cf2c6cd4",
+     "why": "day of week after n days mod 7"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K048",
+   "method": "10^6 = 2^6 x 5^6; any factor pair mixing 2s and 5s ends in 0, so the pair is 64 and 15625",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K049",
+   "method": "tangential quadrilateral (Pitot): legs = (8+18)/2 = 13; height from 5-12-13; area = midline x height",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "1239ea47",
+     "why": "isosceles trapezoid area via height from the leg and half the base difference; K049 adds the Pitot step to get the leg"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K050",
+   "method": "a+b = 60-c, ab = 240, (a+b)^2 - 2ab = c^2 gives c=26; altitude = ab/c",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "bcacdc1d",
+     "why": "rectangle perimeter+diagonal to area via (a+b)^2 - c^2 = 2ab"
+    },
+    {
+     "ref": "b876033e",
+     "why": "altitude to hypotenuse = product of legs / hypotenuse"
+    }
+   ],
+   "note": "combines two live chains"
+  },
+  {
+   "id": "K051",
+   "method": "dog runs for the whole meeting time: time = 12/(5+3) = 1.5 h, distance = 12 x 1.5",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "bfde7b74",
+     "why": "meeting time of two riders approaching = distance / sum of speeds; K051 adds the ignore-the-zigzag insight"
+    },
+    {
+     "ref": "40e24f54",
+     "why": "approaching cars, sum of speeds"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K052",
+   "method": "a^b = 1 cases: base 1, exponent 0 with nonzero base, base -1 with even exponent; sum the valid x",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K053",
+   "method": "place new values relative to the known middle three (147,150,158) and read 12th and 13th of 24",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K086",
+     "why": "locate median positions after adding values to a list"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K054",
+   "method": "1/n terminates with exactly 4 decimal digits iff n = 2^a 5^b with max(a,b) = 4: 5^2 - 4^2 = 9",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "3b775d60",
+     "why": "terminating decimals tied to 2s and 5s in the denominator, but counts numerators of k/60"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K055",
+   "method": "midsegment MN is parallel to BC, so slope MN = slope BC (or compute both midpoints then slope)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "0f313815",
+     "why": "slope from two points only"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K056",
+   "method": "right triangle inscribed in circle iff it has a diameter as side: 6 diameters x 10 third vertices over C(12,3)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K057",
+   "method": "British flag theorem PA^2 + PC^2 = PB^2 + PD^2 (or coordinates)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K058",
+   "method": "complete the square in x and y separately: (x-3)^2 + (y+2)^2 - 7, minimum -7",
+   "live_dups": [
+    {
+     "row": "897b451f",
+     "why": "least value of x^2 + 4x + c found by completing the square (vertex value); K058 is the same completion applied to two independent variables"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "69ba9e4c",
+     "why": "completing the square into vertex form"
+    }
+   ],
+   "note": "call could go either way; second variable is a repeat of the same operation"
+  },
+  {
+   "id": "K059",
+   "method": "net displacement: x = 1-3+5-7+9-11+13 = 7, y = 2-4+...+14 = 8, distance sqrt(113)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K060",
+   "method": "chain of isosceles triangles along two rays with exterior-angle theorem: 18 -> 36 -> 54 -> apex 72",
+   "live_dups": [
+    {
+     "row": "6f580b9e",
+     "why": "AB = AD = DC chain: isosceles base angles propagated by the exterior-angle theorem; K060 runs the same propagation one link longer"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K061",
+   "method": "visible steps N = own steps + escalator rate x time on two trips (20 + 20e = 32 + 16e), solve for e then N",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "9562e686",
+     "why": "moving walkway, speeds add, but solves for a walking time from two given trip times rather than a two-trip linear system"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K062",
+   "method": "arrangements of LEVEL 5!/(2!2!) = 30; palindromes force V in the middle and choose the order of L,E in the first two places (2); 2/30",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "714b365e",
+     "why": "arrangements of a word with repeated letters (multinomial), no palindrome step"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K063",
+   "method": "at the second meeting combined distance is 3 x 700, so Ana has run 3 x 250 = 750: 700 out and 50 back",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "40e24f54",
+     "why": "first meeting point of two approaching movers; K063 needs the 3x combined-distance step"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K077",
+   "method": "total 45 is unchanged by the transfer; after it the split is 1:2 (15 and 30); undo the transfer (chess = 15 + 3)",
+   "live_dups": [
+    {
+     "row": "b0685d95",
+     "why": "ratio 7:3, move 20 from first to second giving 3:2: same conserved-total-under-transfer, split by new ratio, undo chain"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "cc431dc1",
+     "why": "sum given, new ratio after a change, solve"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K096",
+   "method": "work backwards from the output through inverse operations (add 3, multiply by 4) to the value right after +6",
+   "live_dups": [
+    {
+     "row": "61b2273d",
+     "why": "multiply by 3, subtract 8, divide by 2, add 5 = 19; asks the value right after subtracting 8: identical undo-the-chain to an intermediate stage, new numbers"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K022",
+     "why": "work backwards through successive operations"
+    }
+   ],
+   "note": "near-verbatim structure of 61b2273d"
+  }
+ ],
+ "half2_first": [
+  {
+   "id": "K009",
+   "method": "pigeonhole worst case: exhaust the two largest colours, then one more sock forces the third colour",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "f2ad4e35",
+     "why": "same worst-case 'draw everything that is not wanted first, then the needed count' chain (all non-red + 2); K009 adds choosing which two colours to exhaust"
+    },
+    {
+     "ref": "68b3a358",
+     "why": "socks worst-case, but 'k of one colour' uses (k-1) per colour capped by supply - different counting"
+    }
+   ],
+   "note": "closest is f2ad4e35; a student who has rehearsed it has most of K009"
+  },
+  {
+   "id": "K022",
+   "method": "work backward through successive 'spend a fraction of what remains plus a constant' steps from the final amount",
+   "live_dups": [
+    {
+     "row": "aeaeba9d",
+     "why": "successive spending of fractions of the remainder, final remainder given, unwind backward to the start; K022 only adds a '+$k' to each step"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "61b2273d",
+     "why": "backward unwinding of an operation chain from the final value"
+    },
+    {
+     "ref": "K096",
+     "why": "inverse-operation chain unwound from the output"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K040",
+   "method": "clock-hand angle relation |30h - 5.5m| = 90 solved for m (relative speed 5.5 deg/min) at the first occurrence",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "b3086974",
+     "why": "same 30h - 5.5m hand-angle relation, but used forward (angle at a given time) rather than solved for the time"
+    }
+   ],
+   "note": "inverse direction and the relative-speed setup make it a different chain from b3086974"
+  },
+  {
+   "id": "K064",
+   "method": "scientific notation: square a power of ten product, divide, combine coefficients and exponents (negative exponents), renormalise",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "eb9b9d6c",
+     "why": "multiply coefficients / add exponents in scientific notation; K064 adds squaring, division and negative exponents"
+    },
+    {
+     "ref": "K107",
+     "why": "same skeleton (a*b^m)^k / (c*b^n) with negative exponents, algebraic instead of numeric"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K065",
+   "method": "recover quadratic coefficients from three function values (c from f(0), then a 2x2 linear system), then evaluate at a new x",
+   "live_dups": [
+    {
+     "row": "df72b6a2",
+     "why": "f(x)=x^2+bx+c with f(1), f(3) given, find f(5): same 'values -> linear system for coefficients -> evaluate f(5)' chain; K065 just has a third unknown pinned by f(0)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "even the asked point f(5) and given f(1), f(3) match df72b6a2"
+  },
+  {
+   "id": "K066",
+   "method": "geometric probability as area ratio of an annulus to the whole disc: (b^2 - a^2)/R^2",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "2be81593",
+     "why": "geometric probability as a measure ratio, but 1-D length, not area of rings"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K067",
+   "method": "split a linear fare by stretches, dividing each stretch's cost among the riders present, sum Cal's shares",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "no live row or candidate shares this cost-sharing-by-segment structure"
+  },
+  {
+   "id": "K068",
+   "method": "tangent chord of the outer circle: half-chord^2 = R^2 - r^2, so annulus area = pi*(c/2)^2 without finding either radius",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "5fcb3171",
+     "why": "right triangle of radius, half-chord and centre distance; K068's key move (area depends only on R^2 - r^2) is absent there"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K069",
+   "method": "similar cones: volume scales as the cube of the linear ratio (2/3)^3, then subtract remaining from full",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "e4e89f2b",
+     "why": "volume scales as cube of the length ratio (model truck 1/20); K069 adds recognising the water as a similar cone and subtracting"
+    },
+    {
+     "ref": "K070",
+     "why": "scale-factor power rule (k^2 for area there, k^3 here)"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K070",
+   "method": "map scale: actual area = map area x (linear scale factor)^2",
+   "live_dups": [
+    {
+     "row": "72aabff2",
+     "why": "similar figures: area multiplied by the square of the side ratio (2:3, 20 -> 45); same single-step k^2 scaling"
+    },
+    {
+     "row": "d08c51ec",
+     "why": "area scales by square of linear (perimeter) ratio; same k^2 step"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "83c5df96",
+     "why": "area-ratio <-> linear-ratio, used in reverse (area 9x -> sides 3x)"
+    },
+    {
+     "ref": "7a65749b",
+     "why": "map scale, but linear distance only (no squaring)"
+    },
+    {
+     "ref": "ccedcc8a",
+     "why": "map scale, linear only"
+    }
+   ],
+   "note": "the map context is new but the k^2 area-scaling step is exactly the live similar-figure items"
+  },
+  {
+   "id": "K071",
+   "method": "conditional (Bayes) probability: weight each grade's share by its band rate, take grade 8's weighted share of the total",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "1a22c426",
+     "why": "conditional probability within a subgroup, but counts are given directly in a table - no weighting step"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K072",
+   "method": "convert a mixed repeating decimal 0.2(45) to a fraction via (245 - 2)/990, reduce",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "7209630d is repeating decimals but asks a digit position - different"
+  },
+  {
+   "id": "K073",
+   "method": "repeated drain-and-replace: juice multiplied by 3/4 each cycle; amount removed in cycle 3 = 1/4 of juice before it",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "27717075",
+     "why": "drain-and-replace mixture, but a single cycle replaced with pure antifreeze; no repeated geometric factor"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K074",
+   "method": "alternating single-day work with rates 1/6 and 1/9: sum two-day blocks, then finish with a partial day",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "3b83fe0e",
+     "why": "combined then single-worker phases on a shared job; not alternating blocks"
+    },
+    {
+     "ref": "e2013dd4",
+     "why": "same as 3b83fe0e"
+    }
+   ],
+   "note": "alternating-turns structure not present in the live bank"
+  },
+  {
+   "id": "K075",
+   "method": "nested absolute value inequality: |x-4| between 4 and 10, giving two integer intervals, count integers",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "7b7201a1",
+     "why": "solve |linear| < c and count integers; K075 nests a second absolute value giving a union of two intervals"
+    },
+    {
+     "ref": "16b8e24e",
+     "why": "count integers satisfying an absolute-value inequality, but sum of two abs terms (distance) - different"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K076",
+   "method": "arithmetic series: total wait 1+2+...+29 = 435 minutes added to the start clock time",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "588e3313",
+     "why": "sum of an arithmetic progression, no clock conversion"
+    },
+    {
+     "ref": "K041",
+     "why": "start time plus elapsed minutes with rollover, but constant interval (n-1)*d not a triangular sum"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K077",
+   "method": "total of two groups given; after transferring 3, one is twice the other -> one linear equation",
+   "live_dups": [
+    {
+     "row": "cc431dc1",
+     "why": "sum of two quantities given, both changed, resulting ratio given -> one linear equation for the original; same chain"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "b0685d95",
+     "why": "transfer between two quantities then a new ratio; there the starting relation is a ratio rather than a total"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K078",
+   "method": "circumradius of an isosceles triangle from its altitude: (h - R)^2 + (b/2)^2 = R^2, then circle area",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K099",
+     "why": "circumcircle of an isosceles/equilateral triangle related through the altitude (R = 2h/3 there); different direction and no equation to solve"
+    }
+   ],
+   "note": "no live circumcircle-of-a-triangle item (073b6359 is a square)"
+  },
+  {
+   "id": "K079",
+   "method": "common external tangent of two externally tangent circles: PQ^2 = (R + r)^2 - (R - r)^2 = 4Rr",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K080",
+   "method": "fencepost: n strikes have n - 1 gaps; gap length from one clock, adjust by 1 s, multiply by 11 gaps",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "bac41949",
+     "why": "same fencepost (items = gaps + 1) relation, applied to bulbs on a row"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K081",
+   "method": "divisors of 360 that are multiples of 6 = 6 x (divisors of 60); sum = 6 x sigma(60)",
+   "live_dups": [
+    {
+     "row": "a512a3c8",
+     "why": "divisors of N that are multiples of k <-> divisors of N/k; same setup, asks the count instead of the sum (symmetric asked quantity)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "ddef9e0b",
+     "why": "sum of all divisors of a number (the sigma step only)"
+    }
+   ],
+   "note": "a512a3c8 + ddef9e0b together cover the whole chain"
+  },
+  {
+   "id": "K082",
+   "method": "underdetermined linear system: write the target 2x+3y+4z as a weighted combination of the two given equations (weights 5/4, 1/4) instead of solving",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "406c6299",
+     "why": "combine the given equations to reach the target expression without solving for each variable; there the weights are simply 1 and 1 (add and divide by 8)"
+    }
+   ],
+   "note": "leaning duplicate of 406c6299 at the method level; non-trivial weights are the difference"
+  },
+  {
+   "id": "K083",
+   "method": "hypergeometric probability: sum C(5,3)C(4,1) + C(5,4) over C(9,4)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "6147df29",
+     "why": "committee counting by category with an 'at least' condition, but a count via complement, not a casework probability"
+    },
+    {
+     "ref": "76bfcd52",
+     "why": "product of category combinations, a single case"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K084",
+   "method": "reflect a triangle across x = 2 and find the area of the overlap (intersection polygon of two triangles)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "9c2ad5c9 only reflects one point"
+  },
+  {
+   "id": "K085",
+   "method": "digit-position count in 123456789101112...: subtract 9 and 180 digits, divide the rest by 3 to locate the 3-digit number",
+   "live_dups": [
+    {
+     "row": "48d506cf",
+     "why": "same concatenated string and same block counting to locate position 300; asks the digit rather than the number"
+    },
+    {
+     "row": "6d86c46f",
+     "why": "page-numbering digit count: 1107 - 9 - 180 then divide by 3 - the identical 9/180/3k chain run on a total"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K086",
+   "method": "median of a list with duplicates added: count how many values fall at or below each value to find the 30th and 31st",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "01bdc8c8",
+     "why": "median from frequency counts, but frequencies given directly"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K087",
+   "method": "Simon's factoring: xy + 3x + 2y = 54 -> (x + 2)(y + 3) = 60, count factor pairs meeting the lower bounds",
+   "live_dups": [],
+   "batch_dups": [
+    {
+     "id": "K027",
+     "why": "1/a + 1/b = 1/12 -> (a - 12)(b - 12) = 144: the same add-a-constant-to-factor move, then enumerate divisor pairs under constraints"
+    }
+   ],
+   "borderline": [
+    {
+     "ref": "3b77ffd1",
+     "why": "integer condition reduced to divisors of a constant, but via division not factoring"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K088",
+   "method": "price cut 20% means $300 buys 25% more; 25% of old quantity = 5 kg -> old quantity 20 kg, price 15",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "no live 'fixed budget buys more after cut' item"
+  },
+  {
+   "id": "K089",
+   "method": "inclusion-exclusion: squares (22) + cubes (7) - sixth powers (2) up to 500",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "3327b7b9",
+     "why": "inclusion-exclusion on two sets of integers in a range, overlap via lcm instead of sixth powers"
+    },
+    {
+     "ref": "2e9004f1",
+     "why": "inclusion-exclusion on multiples"
+    }
+   ],
+   "note": "shared counting principle; the sets (powers) and the overlap (sixth powers) are new"
+  },
+  {
+   "id": "K090",
+   "method": "lcm(n, 18) = 180: prime exponents of n forced (2^2 and 5 needed, 3 exponent 0..2), sum the possible n",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "f5c459b7",
+     "why": "gcd/lcm via prime exponents but determines a single number from both gcd and lcm"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K091",
+   "method": "minimise total taxicab distance: x and y separate, each minimised at the median of the coordinates",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K092",
+   "method": "prime exponent conditions: exponent of 2 odd & =0 mod 3, exponent of 3 even & =1 mod 3 -> N = 2^3 3^4, count divisors",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "8878b914",
+     "why": "least multiplier to make a perfect square via prime exponent parity; one condition, not simultaneous square/cube congruences"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K093",
+   "method": "try placements of one pair of parentheses under order of operations and maximise",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "a4a3dc34 (left-to-right calculator) is order-of-operations but a different task"
+  },
+  {
+   "id": "K094",
+   "method": "compound gear train: teeth x rpm conserved at each mesh; B and C share rpm; chain A->B, C->D",
+   "live_dups": [
+    {
+     "row": "4b4c2a46",
+     "why": "identical structure: A meshes B, B fixed to C on one axle, C meshes D; teeth ratios multiplied through the train"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "near-clone of 4b4c2a46 (turns vs rpm only)"
+  },
+  {
+   "id": "K095",
+   "method": "choose 4 of 5 colours then one sock from each pair: C(5,4) x 2^4 over C(10,4)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "9059e282",
+     "why": "pairs (couples) and random selection, but asks for a matched pair from 2 chosen"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K096",
+   "method": "undo an operation chain from the output (add 3, multiply by 4) and stop at the requested intermediate value",
+   "live_dups": [
+    {
+     "row": "61b2273d",
+     "why": "same multi-step 'multiply, add/subtract, divide, add/subtract = output' machine, unwound backward, asking for the value right after an intermediate step - an exact structural clone"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K022",
+     "why": "backward unwinding of a chain of operations"
+    }
+   ],
+   "note": "even the 'value just after step k' twist is in 61b2273d"
+  },
+  {
+   "id": "K097",
+   "method": "headway with relative speed: gap = 12b; same direction gap/(b - w) = 15 gives w = b/5; opposite gap/(b + w)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K110",
+     "why": "fixed gap closed at the sum vs difference of two speeds (same-direction vs opposite-direction passing times); K110 solves for the gap length instead"
+    },
+    {
+     "ref": "9367225b",
+     "why": "same-direction lapping by relative speed only"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K098",
+   "method": "lattice paths C(8,3) minus paths through the blocked point C(3,1) x C(5,2)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "61b47bb8",
+     "why": "lattice path count C(7,3); K098 adds the through-point product and subtraction"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K099",
+   "method": "equilateral triangle inscribed in circle: height = 3r/2, then area from height (or side = r*sqrt3)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "3270da53",
+     "why": "equilateral triangle area from its height - the second half of K099"
+    },
+    {
+     "ref": "K078",
+     "why": "circumradius-altitude relation of an isosceles triangle"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K100",
+   "method": "iterate f(x) = (x+1)/(1-x) from 3 to find a period-4 cycle (3, -2, -1/3, 1/2), then sum 12 full cycles plus 2 terms",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "9679fb76",
+     "why": "sum of the first n terms of a periodic sequence (full cycles plus remainder); K100 must first discover the cycle by iteration"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K101",
+   "method": "onto distributions by inclusion-exclusion: 3^6 - 3*2^6 + 3*1^6",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "c7f891e3 (k^n) is only the first term; ba15349b is identical objects"
+  },
+  {
+   "id": "K102",
+   "method": "chain of percent multipliers jacket = 1.2 x 0.75 coat = 0.9 coat; coat - jacket = 0.1 coat = 18",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "61a7f7c9",
+     "why": "a percentage gap equal to a given dollar/vote difference, solved for the base; no multiplier chain"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K103",
+   "method": "broken tree: x^2 + 16^2 = (32 - x)^2, solve linear after expanding",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K104",
+   "method": "set volume s^2 h equal to surface 2s^2 + 4sh and solve the linear equation in h",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "7ea7ae73",
+     "why": "square-base prism volume and surface area, but computed forward, no equation equating them"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K105",
+   "method": "triangles from points on two parallel lines: C(10,3) minus collinear triples C(6,3) + C(4,3)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K106",
+   "method": "1000 mod d = 13 -> d divides 987 and d > 13; count such divisors",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "70a644d6",
+     "why": "division-algorithm remainder reasoning, but forward computation of a remainder"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K107",
+   "method": "exponent rules: power of a product then quotient with negative exponents, read off a and b",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "5a703493",
+     "why": "power of a monomial times a power - same rules, no quotient or negative exponents"
+    },
+    {
+     "ref": "K064",
+     "why": "same (a*b^m)^k / (c*b^n) skeleton in scientific notation"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K108",
+   "method": "reachable lattice points after 4 unit steps: |x| + |y| <= 4 with even parity, count",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "K059 is a path simulation, not a reachability set"
+  },
+  {
+   "id": "K109",
+   "method": "impose x = y + 3 on the known line to get the intersection point, then substitute into y = 2x + k for k",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "6b005d86",
+     "why": "intersection of two lines by substitution; K109 replaces one line by a coordinate condition and solves for the constant"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K110",
+   "method": "circular track: opposite directions L = (v + u)*30, same direction L = (v - u)*150, eliminate u with v = 12",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K097",
+     "why": "gap closed at sum vs difference of speeds"
+    },
+    {
+     "ref": "9367225b",
+     "why": "same-direction lapping time via relative speed (one half of K110)"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K111",
+   "method": "total saving 40% of one shirt spread over 4 shirts = 10% each",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "e6a43765",
+     "why": "blended discount over a mix of full-price and discounted units, asked as profit not equivalent discount"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K112",
+   "method": "interior lattice points of a right triangle: count (x, y) with 2x + 3y < 24, or Pick's theorem with gcd boundary count",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "81442c54",
+     "why": "lattice points on a segment via gcd - only the boundary part of a Pick's route"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K113",
+   "method": "mean = median with unknown x: case on x's position (low, middle, high), solve each, keep consistent ones, sum",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K114",
+   "method": "linear function from two points (slope, intercept), then evaluate the composition f(f(3))",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "4af0747d",
+     "why": "linear rule from given points then evaluate at a new x; K114 adds self-composition"
+    },
+    {
+     "ref": "f7f067f8",
+     "why": "composition evaluation with given formulas"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K115",
+   "method": "absolute-value system: case on the signs of x and y, keep the consistent case, solve the linear system",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "16b9481b",
+     "why": "absolute-value casework with consistency check, single equation"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K116",
+   "method": "polynomial division: (x^2 + 26)/(x - 3) = x + 3 + 35/(x - 3), so x - 3 divides 35; list all and sum x",
+   "live_dups": [
+    {
+     "row": "3b77ffd1",
+     "why": "sum of all n making (3n + 20)/(n + 2) an integer: divide out, denominator must divide the remainder constant, sum the n - same chain"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K087",
+     "why": "integer solutions via divisors of a constant, but by factoring"
+    }
+   ],
+   "note": "K116 uses a quadratic numerator and includes negative divisors; still the same rehearsed move"
+  },
+  {
+   "id": "K117",
+   "method": "solve f(t) = 10 for t = g(1), pick the root giving positive k, then evaluate g(4)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "d02c3e0f",
+     "why": "composition with an unknown function piece, but solved by matching inputs, not a quadratic"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K118",
+   "method": "percent of a total after the part and total grow by different percents: 30 x 1.6 / 1.2",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "0dd1fa6b",
+     "why": "group share after the total changes, but solved for a count added"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K119",
+   "method": "size-biased sampling: probability = children in 3-child families / all children (18 / 42)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K120",
+   "method": "intercept form x/a + y/b = 1 through (3,4) with ab = 50 -> quadratic in a, take the smaller b",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "4bba4ba1",
+     "why": "area of triangle cut by a line and the axes, but computed forward from a given line"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K121",
+   "method": "factors of 120 that are not factors of 84 = d(120) - d(gcd(120, 84)) = 16 - 6",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "06412610",
+     "why": "divisor count only; the common-divisors-are-divisors-of-gcd step is new"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K122",
+   "method": "circle graph: degrees per student 360/240 = 1.5; subtract 24 students worth (36 degrees) from 105",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K123",
+   "method": "count all squares in a 4 x 6 grid: sum over k of (5 - k)(7 - k)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K124",
+   "method": "three pairwise combined rates: sum them, halve for the total rate of A+B+C, subtract the A+B rate to get C",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "c7081064",
+     "why": "same 'sum of all pairwise sums counts each member a fixed number of times' trick, on box weights"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K125",
+   "method": "difference of squares: (sqrt x)^2 - (sqrt(x-9))^2 = 9 with sum 9 gives difference 1, solve sum/difference for sqrt x",
+   "live_dups": [
+    {
+     "row": "8941c2e0",
+     "why": "x^2 - y^2 = 39 with x + y = 13: divide to get x - y, then solve the sum/difference pair - same chain, here dressed in square roots"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "9762947b",
+     "why": "radical equation, but solved by squaring"
+    }
+   ],
+   "note": "the radicals hide it, but the intended route is exactly 8941c2e0"
+  }
+ ],
+ "half2_rerun": [
+  {
+   "id": "K009",
+   "method": "worst-case draw: exhaust the two largest colours completely, then one more sock guarantees all colours",
+   "live_dups": [
+    {
+     "row": "f2ad4e35",
+     "why": "same exhaust-the-other-colours-then-draw worst case (exhaust blue+black, then 2 red); only target colour/count differs"
+    },
+    {
+     "row": "68b3a358",
+     "why": "same worst-case pigeonhole sock draw (take the maximum possible without meeting the condition, then +1)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "Addendum names this draw explicitly as a duplicate class."
+  },
+  {
+   "id": "K022",
+   "method": "work backwards through 'spent half plus $c' twice: (left + c) x 2 per stage, in reverse order",
+   "live_dups": [
+    {
+     "row": "aeaeba9d",
+     "why": "money spent in fractional stages, remainder given, start recovered by undoing each stage in reverse"
+    },
+    {
+     "row": "61b2273d",
+     "why": "think-of-a-number chain undone operation by operation in reverse"
+    }
+   ],
+   "batch_dups": [
+    {
+     "id": "K096",
+     "why": "same reverse-operation chain (undo -3, x4 ...) on a number machine instead of money"
+    }
+   ],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K040",
+   "method": "clock hands: minute 6 deg/min vs hour 0.5 deg/min; solve 5.5m - 60 = 90 for the first right angle after 2:00",
+   "live_dups": [
+    {
+     "row": "b3086974",
+     "why": "same 0.5 vs 6 degrees-per-minute relation; asks the angle at a time instead of the time for an angle (mirrored)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "44277b63",
+     "why": "minute-hand degrees in 25 minutes is only the 6 deg/min half of the relation"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K064",
+   "method": "scientific notation: power of a product (square coefficient, double exponent), then divide coefficients and subtract exponents, renormalise",
+   "live_dups": [
+    {
+     "row": "eb9b9d6c",
+     "why": "same coefficient-times-coefficient and power-of-ten exponent arithmetic in scientific notation"
+    },
+    {
+     "row": "5a703493",
+     "why": "same power-of-a-product rule (raise coefficient, multiply exponent) then combine like bases"
+    }
+   ],
+   "batch_dups": [
+    {
+     "id": "K107",
+     "why": "same chain: raise a monomial with negative exponents to a power, then divide by another monomial subtracting exponents"
+    }
+   ],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K065",
+   "method": "quadratic through given points: c from f(0), solve 2x2 system for a,b from two more values, evaluate at a new x",
+   "live_dups": [
+    {
+     "row": "df72b6a2",
+     "why": "same 'determine quadratic coefficients from given values, then evaluate f(5)' (f(1), f(3) given, f(5) asked)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K114",
+     "why": "linear version (coefficients from two values, then evaluate) plus composition - lower degree"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K066",
+   "method": "geometric probability on concentric circles: (b^2 - a^2)/R^2",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "2be81593",
+     "why": "geometric probability as a measure ratio, but on a number line (length), not an annulus area"
+    }
+   ],
+   "note": "No live annulus/area-ratio probability item."
+  },
+  {
+   "id": "K067",
+   "method": "split a metered fare by stretches: each stretch's cost divided by riders aboard, sum Cal's shares",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live or batch item with this per-stretch cost-sharing structure."
+  },
+  {
+   "id": "K068",
+   "method": "annulus area from an outer chord tangent to the inner circle: R^2 - r^2 = (half chord)^2, area = pi(c/2)^2",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "5fcb3171",
+     "why": "same right triangle (radius, half-chord, center distance) but solves for the distance; the R^2-r^2 shortcut is new"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K069",
+   "method": "similar cones: volume scales by cube of linear ratio; poured out = V(1 - k^3)",
+   "live_dups": [
+    {
+     "row": "e4e89f2b",
+     "why": "same 'volume scales by the cube of the linear scale factor' formula, new numbers/context"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K070",
+     "why": "same scale-factor-power idea but area (square), not volume (cube)"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K070",
+   "method": "map scale applied to AREA: linear scale k = 5/4 km per cm, area scales by k^2",
+   "live_dups": [
+    {
+     "row": "72aabff2",
+     "why": "same 'area scales by the square of the linear ratio' (similar triangles 2:3, area 20 -> 45)"
+    },
+    {
+     "row": "d08c51ec",
+     "why": "same square-of-linear-ratio area scaling (perimeter ratio 3:5, area 45 -> 125)"
+    },
+    {
+     "row": "83c5df96",
+     "why": "same area-scales-by-square relation run in the mirrored direction (area x9 -> linear x3)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "c9f0c598",
+     "why": "enlargement area change, but can be done by computing the new rectangle directly"
+    },
+    {
+     "ref": "K069",
+     "why": "scale factor applied to volume (cube) instead of area"
+    }
+   ],
+   "note": "Linear map-scale rows 7a65749b/ccedcc8a are NOT dups: the square step is the item."
+  },
+  {
+   "id": "K071",
+   "method": "conditional probability from weighted percentages: joint weight = share x rate per group, answer = one group's joint / sum of joints",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "1a22c426",
+     "why": "conditional probability within a subgroup from a two-way table; K071 first has to build the joint weights from percentages"
+    },
+    {
+     "ref": "K119",
+     "why": "also weights groups (by size) before taking one group's share of the total, but the weighting rule differs"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K072",
+   "method": "mixed repeating decimal to fraction: (245 - 2)/990, reduce",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "Live 7209630d and 3b775d60 involve decimals but not conversion of a repeating decimal to a fraction."
+  },
+  {
+   "id": "K073",
+   "method": "repeated drain-and-replace: each draining removes the fraction 16/64 of the current juice; juice x 3/4 per cycle, report third removal",
+   "live_dups": [
+    {
+     "row": "27717075",
+     "why": "same drain-a-portion-of-the-mixture-then-replace move (removed solute proportional to its concentration); K073 just repeats it three times"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K074",
+   "method": "alternating work days: two-day cycle completes 1/6 + 1/9 = 5/18; whole cycles then the finishing partial day",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "0c85a38f",
+     "why": "rates for each worker summed over sequential solo stints; no alternating cycle"
+    },
+    {
+     "ref": "3b83fe0e",
+     "why": "together-then-alone stints; different structure"
+    }
+   ],
+   "note": "No live alternating-turn work item."
+  },
+  {
+   "id": "K075",
+   "method": "nested absolute value: ||x-4|-7| <= 3 -> 4 <= |x-4| <= 10 -> union of two integer intervals, count",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "7b7201a1",
+     "why": "count integers satisfying a single absolute-value inequality; K075 needs a second unwrap that produces a band/two intervals"
+    },
+    {
+     "ref": "16b8e24e",
+     "why": "count integers under an absolute-value inequality, but sum of two distances"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K076",
+   "method": "waits 1,2,...,29 minutes: total = triangular number 29*30/2 = 435 minutes added to 8:07",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "588e3313",
+     "why": "sum of an arithmetic series; K076 adds the clock-time conversion"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K077",
+   "method": "fixed total 45 split chess/art; a transfer of 3 gives a new 2:1 ratio; solve (45 - c) + 3 = 2(c - 3)",
+   "live_dups": [
+    {
+     "row": "b0685d95",
+     "why": "same fixed-total-with-a-transfer-gives-a-new-ratio setup (20 moved from first to second, new ratio 3:2)"
+    },
+    {
+     "row": "cc431dc1",
+     "why": "known sum, a change applied to the parts gives a new ratio (addendum: added-to-both counts as the same setup)"
+    },
+    {
+     "row": "c8345a77",
+     "why": "fixed total with an amount switched from one part to the other giving a new proportion (30% -> 36%)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K078",
+   "method": "circumradius of isosceles triangle: altitude 8 to base 12, center on altitude, R^2 = (8 - R)^2 + 6^2, area pi R^2",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K103",
+     "why": "identical algebra (x^2 = (L - x)^2 + a^2) in a broken-tree context; K078 adds locating the circumcenter on the altitude"
+    },
+    {
+     "ref": "K099",
+     "why": "circle through a triangle's vertices, but equilateral (R = 2/3 height), opposite direction"
+    },
+    {
+     "ref": "5fcb3171",
+     "why": "right triangle of radius, half-chord, center distance; solves for the distance not the radius"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K079",
+   "method": "common external tangent of two externally tangent circles: PQ^2 = (R + r)^2 - (R - r)^2 = 4Rr",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live tangent-length item; no batch match."
+  },
+  {
+   "id": "K080",
+   "method": "fencepost: n strikes have n - 1 equal gaps; gap = 15/5 = 3 s, new gap 2 s, 12 strikes -> 11 gaps",
+   "live_dups": [
+    {
+     "row": "bac41949",
+     "why": "same fencepost relation (n items <-> n - 1 equal gaps), bulbs every 1.5 m with one at each end"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K081",
+   "method": "sum of divisors of N that are multiples of 6 = 6 x (sum of divisors of N/6 = 60)",
+   "live_dups": [
+    {
+     "row": "a512a3c8",
+     "why": "same reduction: divisors of N that are multiples of m <-> divisors of N/m (counts them instead of summing)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "ddef9e0b",
+     "why": "sum of all divisors of a number; K081 adds the multiples-of-m reduction"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K082",
+   "method": "two equations, three unknowns: find weights p,q with p*eq1 + q*eq2 = target expression (p = 5/4, q = 1/4), never solving for x,y,z",
+   "live_dups": [
+    {
+     "row": "406c6299",
+     "why": "same 'combine the given equations into the asked expression without solving' (add 3x+5y and 5x+3y to get x+y)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "fc957e28",
+     "why": "target expression is a multiple of a single given equation; one equation, simpler weight"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K083",
+   "method": "probability a 4-person committee has more women: (C(5,3)C(4,1) + C(5,4)) / C(9,4)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "76bfcd52",
+     "why": "product of combinations for a fixed composition (count only, one case)"
+    },
+    {
+     "ref": "6147df29",
+     "why": "committee counting with a composition condition (at least one junior), count not probability"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K084",
+   "method": "area of overlap of a right triangle and its reflection across x = 2: intersect the two regions, compute polygon area",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live or batch reflection-overlap item."
+  },
+  {
+   "id": "K085",
+   "method": "digit position in 123456789101112...: subtract 9 one-digit and 180 two-digit digits, divide the rest by 3 to locate the three-digit number",
+   "live_dups": [
+    {
+     "row": "48d506cf",
+     "why": "same string and same chain (9, then 180, then groups of 3) for the 300th digit"
+    },
+    {
+     "row": "6d86c46f",
+     "why": "same digit-counting chain for page numbers, mirrored ask (total digits -> number of three-digit pages)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K086",
+   "method": "median of 60-item list 1..50 plus duplicated multiples of 3: count cumulative positions to find the 30th and 31st values",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "0654b768",
+     "why": "median located by cumulative counts in a frequency table"
+    },
+    {
+     "ref": "K053",
+     "why": "median shift after adding values relative to the old median"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K087",
+   "method": "Simon's factoring: xy + 3x + 2y = 54 -> (x + 2)(y + 3) = 60, count factor pairs meeting the lower bounds",
+   "live_dups": [],
+   "batch_dups": [
+    {
+     "id": "K027",
+     "why": "same factor-into-shifted-product-equals-constant trick ((a - 12)(b - 12) = 144) then enumerate divisor pairs"
+    }
+   ],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K088",
+   "method": "price cut 20% -> quantity per $300 rises by 1/0.8 = 25%; 25% of old quantity = 5 kg, old price = 300/20",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live inverse price-quantity item with a fixed budget."
+  },
+  {
+   "id": "K089",
+   "method": "inclusion-exclusion count: squares (22) + cubes (7) - both = sixth powers (2) up to 500",
+   "live_dups": [
+    {
+     "row": "3327b7b9",
+     "why": "same |A| + |B| - |A and B| count over a range (multiples of 3 or 4); the overlap is again the 'both' set (lcm there, sixth powers here)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "2e9004f1",
+     "why": "inclusion-exclusion but 'or, not both' (subtract the overlap twice)"
+    },
+    {
+     "ref": "b583a0eb",
+     "why": "counts perfect squares in a range, only one of the three counts"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K090",
+   "method": "lcm(n, 18) = 180: prime exponents of n forced (2^2, 5^1) or free (3^0..2); sum the allowed n",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "f5c459b7",
+     "why": "gcd/lcm with a given number, but unique answer via gcd x lcm = product"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K091",
+   "method": "Manhattan-distance meeting point: minimize separately in x and y at the coordinate medians, sum distances",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live or batch median-minimizer item."
+  },
+  {
+   "id": "K092",
+   "method": "N = 2^a 3^b with N/2 square and N/3 cube: exponent congruences mod 2 and mod 3 give a = 3, b = 4; divisor count (4)(5)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "8878b914",
+     "why": "perfect-square condition via even prime exponents (one condition, one modulus)"
+    },
+    {
+     "ref": "06412610",
+     "why": "divisor count only (final step)"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K093",
+   "method": "insert one pair of parentheses to maximize an expression: try groupings, apply order of operations",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "a4a3dc34 is order-of-operations but a different task (left-to-right evaluation)."
+  },
+  {
+   "id": "K094",
+   "method": "gear train: meshing gears share teeth per minute (rpm x teeth equal), same-axle gears share rpm; chain A->B=C->D",
+   "live_dups": [
+    {
+     "row": "4b4c2a46",
+     "why": "identical gear train (A meshes B, B and C on one axle, C meshes D), teeth ratios chained, only numbers and asked unit differ"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K095",
+   "method": "probability 4 socks from 5 pairs are all different colours: C(5,4) x 2^4 / C(10,4)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live 'choose distinct pairs then one of two from each' item; 9059e282 (married couples) asks a different event."
+  },
+  {
+   "id": "K096",
+   "method": "work backwards through a number machine: undo -3, x4 to recover the value just after +6",
+   "live_dups": [
+    {
+     "row": "61b2273d",
+     "why": "same think-of-a-number chain undone in reverse, also asking an intermediate value (after subtracting 8)"
+    },
+    {
+     "row": "aeaeba9d",
+     "why": "work-backwards chain (addendum: money-spent and think-of-a-number chains are the same)"
+    }
+   ],
+   "batch_dups": [
+    {
+     "id": "K022",
+     "why": "same reverse-operation chain in a money context"
+    }
+   ],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K097",
+   "method": "buses at fixed spacing: same-direction interval gives walker speed (12v = 15(v - w)), opposite-direction interval = 12v/(v + w)",
+   "live_dups": [],
+   "batch_dups": [
+    {
+     "id": "K110",
+     "why": "same fixed-gap relative-speed pair: gap closed at the difference of speeds (same direction) vs the sum (opposite)"
+    }
+   ],
+   "borderline": [
+    {
+     "ref": "9367225b",
+     "why": "same-direction lapping on a track (gap / speed difference) - one half of the pair"
+    },
+    {
+     "ref": "9562e686",
+     "why": "speeds added along a moving walkway, expressed through times"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K098",
+   "method": "lattice paths avoiding a blocked point: C(8,3) minus (paths to blocked) x (paths from blocked)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "61b47bb8",
+     "why": "lattice routes C(7,3) only; the subtract-through-the-blocked-point step is new"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K099",
+   "method": "equilateral triangle inscribed in a circle: R = 2/3 of height -> height 9 -> side -> area",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "3270da53",
+     "why": "equilateral area from its height (second half of K099's chain)"
+    },
+    {
+     "ref": "073b6359",
+     "why": "regular polygon (square) inscribed in a circle, area from the radius via a different relation"
+    },
+    {
+     "ref": "K078",
+     "why": "area of the circle through a triangle's vertices, isosceles, opposite direction"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K100",
+   "method": "iterate f(x) = (x+1)/(1-x) from 3: period 4 (3, -2, -1/3, 1/2), sum = 12 cycles x 7/6 + first two terms",
+   "live_dups": [
+    {
+     "row": "9679fb76",
+     "why": "same sum of a periodic sequence: full cycles x cycle sum + leftover terms; K100 only has to generate the 4-term cycle first"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "2683f170",
+     "why": "periodic iteration (reflections) but asks the final position, not a sum"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K101",
+   "method": "onto distributions: 3^6 - 3 x 2^6 + 3 x 1^6 (inclusion-exclusion over empty children)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "c7f891e3",
+     "why": "k^n distributions of distinct prizes (first term only); excluding empty recipients is new"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K102",
+   "method": "chain of percent multipliers: jacket = 1.2 x 0.75 coat = 0.9 coat; coat - jacket = 18 -> coat 180, jacket 162",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "78f0d6ca",
+     "why": "successive percent multipliers composed, but undone from a final price, no gap equation"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K103",
+   "method": "snapped tree: fallen part y is hypotenuse, standing part 32 - y, y^2 = (32 - y)^2 + 16^2",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K078",
+     "why": "identical equation shape x^2 = (L - x)^2 + a^2 used for the circumradius"
+    }
+   ],
+   "note": "No live Pythagorean item with the sum-of-leg-and-hypotenuse constraint."
+  },
+  {
+   "id": "K104",
+   "method": "box with square base 8: set volume 64h equal to surface area 128 + 32h, solve for h",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "7ea7ae73",
+     "why": "same V = s^2 h and SA = 2s^2 + 4sh formulas for a square-base prism, but direct computation not an equation V = SA"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K105",
+   "method": "triangles from points on two parallel lines: C(10,3) - C(6,3) - C(4,3) (remove collinear triples)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live collinear-subtraction count."
+  },
+  {
+   "id": "K106",
+   "method": "1000 = dq + 13 -> d divides 987 = 3 x 7 x 47 and d > 13; count such divisors",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live 'remainder fixed, find possible divisors' item."
+  },
+  {
+   "id": "K107",
+   "method": "exponent laws: (x^2 y^-3)^4 / (x^5 y^-7) -> multiply exponents, subtract exponents, add a + b",
+   "live_dups": [
+    {
+     "row": "5a703493",
+     "why": "same power-of-a-product (multiply exponents) then combine like bases"
+    }
+   ],
+   "batch_dups": [
+    {
+     "id": "K064",
+     "why": "same raise-then-divide exponent chain with powers of ten"
+    }
+   ],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K108",
+   "method": "reachable lattice points after 4 unit moves: |x| + |y| <= 4 with even parity -> 1 + 8 + 16",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live or batch reachability item."
+  },
+  {
+   "id": "K109",
+   "method": "impose x = y + 3 on y = -x + 11 to get the intersection point, substitute into y = 2x + k for k",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "6b005d86",
+     "why": "intersection of two lines solved and used; K109 reverses it with an added coordinate condition and an unknown k"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K110",
+   "method": "circular track: v1 + v2 = L/30 (opposite), v1 - v2 = L/150 (same); with v1 = 12, L = 2v1/(1/30 + 1/150)",
+   "live_dups": [],
+   "batch_dups": [
+    {
+     "id": "K097",
+     "why": "same fixed-gap relative-speed pair (sum of speeds opposite, difference same direction)"
+    }
+   ],
+   "borderline": [
+    {
+     "ref": "9367225b",
+     "why": "same-direction passing on a circular track only (one of the two equations)"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K111",
+   "method": "buy 3 at full price plus 1 at 40% off = 0.4 of one price saved over 4 items -> 10% each",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "e6a43765",
+     "why": "overall percent from a mix of full-price and discounted portions, with a markup layer"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K112",
+   "method": "interior lattice points of a right triangle with legs 12 and 8: count (x,y) >= 1 with 2x + 3y < 24 (or Pick)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "81442c54",
+     "why": "lattice points on a segment (boundary piece of the count) only"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K113",
+   "method": "mean equals median with unknown x: three cases by where x falls in order, solve each, keep consistent ones, sum",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "Live mean/median rows (92455433, c55fb714) optimize under constraints; none does case-by-position."
+  },
+  {
+   "id": "K114",
+   "method": "linear function from two values (slope, intercept), then evaluate f twice",
+   "live_dups": [
+    {
+     "row": "4af0747d",
+     "why": "same linear function determined from given points, then evaluated at a new input"
+    },
+    {
+     "row": "f48c7e7f",
+     "why": "same line through two points, mirrored ask (input at a given output, the x-intercept)"
+    },
+    {
+     "row": "c118bf85",
+     "why": "same two-point linear model, asked at a different input (t = 0)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K065",
+     "why": "quadratic version of coefficient-from-values then evaluate"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K115",
+   "method": "absolute-value system: sign cases for x and y, solve the consistent linear pair (x > 0, y < 0)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K038",
+     "why": "absolute-value case split, but one equation in one variable"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K116",
+   "method": "(x^2 + 26)/(x - 3) integer -> x - 3 divides remainder 35; enumerate +/- divisors, sum x",
+   "live_dups": [
+    {
+     "row": "3b77ffd1",
+     "why": "same divide-out to a remainder, divisor of the remainder, enumerate and sum ((3n+20)/(n+2), n+2 | 14)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  },
+  {
+   "id": "K117",
+   "method": "f(g(1)) = 10: solve t^2 - 3t = 10 for t = g(1), keep k > 0, evaluate g(4)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "f7f067f8",
+     "why": "composition f(g(3)) evaluated forward only; K117 inverts the outer function"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K118",
+   "method": "new share = old share x (part multiplier / total multiplier) = 30 x 1.6/1.2",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "4c6d326c",
+     "why": "ratio of multipliers on a rate (density x 1.25 over a different area)"
+    },
+    {
+     "ref": "0dd1fa6b",
+     "why": "share of a group before/after the total grows, but solved for a count"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K119",
+   "method": "size-biased choice: pick a child, not a family; children in 3-child families / all children = 18/42",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "K071",
+     "why": "also weights groups before taking one group's share (by percent rates there, by family size here)"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K120",
+   "method": "line through (3,4) with intercepts a, b: 3/a + 4/b = 1 and ab = 50 -> quadratic, take the lesser b",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "4bba4ba1",
+     "why": "triangle area from a line's intercepts, forward only"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K121",
+   "method": "divisors of 120 not dividing 84 = d(120) - d(gcd(120,84)) = 16 - 6",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "06412610",
+     "why": "divisor counting only"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K122",
+   "method": "circle graph: 360/240 = 1.5 degrees per student, soccer 70 students, basketball 46 -> 69 degrees",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live circle-graph conversion item."
+  },
+  {
+   "id": "K123",
+   "method": "count all squares in a 4 x 6 grid: sum over k of (5 - k)(7 - k)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live squares-in-grid count; K004 counts unit segments in a triangular grid (different)."
+  },
+  {
+   "id": "K124",
+   "method": "three pairwise combined rates: all three = (sum of pair rates)/2, then C = all - (A + B)",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "0155bb93",
+     "why": "one rate recovered by subtracting from a combined rate; K124 needs the halved sum of three pairs first"
+    }
+   ],
+   "note": ""
+  },
+  {
+   "id": "K125",
+   "method": "sqrt(x) + sqrt(x - 9) = 9 with difference of squares = 9 -> difference of roots = 1 -> sqrt(x) = 5",
+   "live_dups": [
+    {
+     "row": "8941c2e0",
+     "why": "same difference-of-squares move: given a^2 - b^2 and a + b, get a - b, then solve for a (x + y = 13, x^2 - y^2 = 39)"
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [],
+   "note": ""
+  }
+ ],
+ "split_round2": {
+  "map": {
+   "R001": "IM17D-10",
+   "R002": "IM17D-15",
+   "R003": "IM17B-02",
+   "R004": "IM17D-11",
+   "R005": "IM17D-12",
+   "R006": "IM17F-04",
+   "R007": "IM17A-10",
+   "R008": "IM17F-20",
+   "R009": "IM17C-12",
+   "R010": "IM17C-15",
+   "R011": "IM17F-15",
+   "R012": "IM17D-20",
+   "R013": "IM17E-08",
+   "R014": "IM17E-16",
+   "R015": "IM17D-14",
+   "R016": "IM17D-16",
+   "R017": "IM17A-13",
+   "R018": "IM17E-17",
+   "R019": "IM17B-12",
+   "R020": "IM17D-09",
+   "R021": "IM17C-03",
+   "R022": "IM17A-11",
+   "R023": "IM17E-13",
+   "R024": "IM17C-10",
+   "R025": "IM17E-10",
+   "R026": "IM17E-04",
+   "R027": "IM17F-07",
+   "R028": "IM17F-12",
+   "R029": "IM17C-13",
+   "R030": "IM17F-14",
+   "R031": "IM17E-02",
+   "R032": "IM17E-07",
+   "R033": "IM17F-08",
+   "R034": "IM17B-14",
+   "R035": "IM17C-09",
+   "R036": "IM17E-12",
+   "R037": "IM17F-01",
+   "R038": "IM17E-15",
+   "R039": "IM17F-03",
+   "R040": "IM17F-11",
+   "R041": "IM17D-05",
+   "R042": "IM17C-11",
+   "R043": "IM17F-10",
+   "R044": "IM17B-07",
+   "R045": "IM17B-04",
+   "R046": "IM17C-17",
+   "R047": "IM17C-02",
+   "R048": "IM17F-02",
+   "R049": "IM17D-17",
+   "R050": "IM17F-16",
+   "R051": "IM17E-20",
+   "R052": "IM17A-19",
+   "R053": "IM17E-14",
+   "R054": "IM17B-03",
+   "R055": "IM17A-12",
+   "R056": "IM17C-16",
+   "R057": "IM17E-03",
+   "R058": "IM17F-18",
+   "R059": "IM17F-06",
+   "R060": "IM17B-20",
+   "R061": "IM17F-09",
+   "R062": "IM17A-15",
+   "R063": "IM17B-15",
+   "R064": "IM17A-16",
+   "R065": "IM17A-07",
+   "R066": "IM17D-07",
+   "R067": "IM17E-01",
+   "R068": "IM17C-20",
+   "R069": "IM17C-01",
+   "R070": "IM17B-17",
+   "R071": "IM17C-07",
+   "R072": "IM17D-13",
+   "R073": "IM17F-17",
+   "R074": "IM17E-19",
+   "R075": "IM17A-09",
+   "R076": "IM17C-18",
+   "R077": "IM17B-01",
+   "R078": "IM17A-14",
+   "R079": "IM17D-06",
+   "R080": "IM17F-13",
+   "R081": "IM17B-09",
+   "R082": "IM17B-19",
+   "R083": "IM17B-06",
+   "R084": "IM17F-05",
+   "R085": "IM17C-14",
+   "R086": "IM17B-13",
+   "R087": "IM17A-18",
+   "R088": "IM17A-03",
+   "R089": "IM17B-18",
+   "R090": "IM17D-19",
+   "R091": "IM17C-19",
+   "R092": "IM17C-08",
+   "R093": "IM17B-05",
+   "R094": "IM17A-20",
+   "R095": "IM17B-11",
+   "R096": "IM17B-10",
+   "R097": "IM17A-01",
+   "R098": "IM17A-04",
+   "R099": "IM17D-01",
+   "R100": "IM17A-17",
+   "R101": "IM17D-08",
+   "R102": "IM17D-18",
+   "R103": "IM17E-05",
+   "R104": "IM17B-08",
+   "R105": "IM17F-19",
+   "R106": "IM17E-06",
+   "R107": "IM17E-18",
+   "R108": "IM17E-11",
+   "R109": "IM17A-02",
+   "R110": "IM17E-09",
+   "R111": "IM17A-05",
+   "R112": "IM17D-02",
+   "R113": "IM17C-06",
+   "R114": "IM17A-06",
+   "R115": "IM17A-08",
+   "R116": "IM17B-16",
+   "R117": "IM17C-04",
+   "R118": "IM17D-04",
+   "R119": "IM17C-05",
+   "R120": "IM17D-03"
+  },
+  "share": [
+   "R002",
+   "R008",
+   "R009",
+   "R014",
+   "R017",
+   "R022",
+   "R024",
+   "R038",
+   "R052",
+   "R056",
+   "R057",
+   "R060",
+   "R064",
+   "R069",
+   "R070",
+   "R071",
+   "R080",
+   "R081",
+   "R082",
+   "R087",
+   "R091",
+   "R093",
+   "R094",
+   "R099",
+   "R113",
+   "R116",
+   "R118",
+   "R119"
+  ]
+ },
+ "round2": [
+  {
+   "id": "R002",
+   "method": "Surface area of a cube with a square tunnel: outer faces minus the two hole openings plus the four inner wall rectangles.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "Live surface-area rows (01bc129f open box, 7bdce753 prism, 9367995e glued cubes, 7ea7ae73) are plain face sums with no removed tunnel; painted-cube rows (0d24463d, 2f8d8c82) count small cubes. No same-method match."
+  },
+  {
+   "id": "R008",
+   "method": "Alternating-turn first-success game: P(first player wins) = p / (1 - (1-p)(1-q)), a geometric series over rounds.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live row sums a geometric series of rounds; def2553a, 89e17b66 and 64bae15c are single-stage probabilities. No candidate uses it."
+  },
+  {
+   "id": "R009",
+   "method": "Factor the quadratic (2n+5)(n-8); a product is prime only when one factor is +-1, so test those n and keep the prime results.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "3b77ffd1 (integer quotient via division) and 9f3fe9c1 (factor 391) are different relations. No match."
+  },
+  {
+   "id": "R014",
+   "method": "Centroid = average of the three vertices; solve for the missing vertex C = 3G - A - B, then add its coordinates.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "c9837620",
+     "why": "Midpoint reversed to find an endpoint and asked for the sum of its coordinates (B = 2M - A). Same 'undo an average of points' move. The difference is that the student must know the centroid is the average of the THREE vertices. That fact is the step being tested, so I kept it out of dups."
+    },
+    {
+     "ref": "7f018ffc",
+     "why": "Midpoint reversed to find endpoint B. Same undo-the-average structure with 2 points instead of 3; see c9837620."
+    }
+   ],
+   "note": "If reviewers treat the centroid-as-average fact as recall rather than a new step, both midpoint rows become duplicates. Candidate R108 (section point 2:1) and R018 (parallelogram 4th vertex) are different chains."
+  },
+  {
+   "id": "R017",
+   "method": "Perfect square n^2 divisible by 12 iff n divisible by 6 (prime-exponent parity), then count multiples of 6 with n^2 <= 2000.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "b583a0eb counts squares in a range with no divisibility condition. 8878b914 (least n with 180n square) uses prime-exponent parity in the opposite direction. Neither follows the same chain; R055 is different."
+  },
+  {
+   "id": "R022",
+   "method": "Evaluate a finite continued fraction from the innermost level outward.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live or candidate continued fraction."
+  },
+  {
+   "id": "R024",
+   "method": "Solve the 2x2 system in terms of k (x=(k+26)/4, y=(3k-26)/4), impose positivity and integrality (k = 2 mod 4, k >= 9), count k in 1..50.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "37d17db4 is infinitely-many-solutions coefficient matching, which is different. No candidate counts a parameter range this way."
+  },
+  {
+   "id": "R038",
+   "method": "Faulty odometer that skips digit 4 = base-9 numeral: map digits 5-9 down by one, then convert 2042 base 9 to decimal.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "5576eb0c removes cards containing digit 4 by direct listing up to 60, not base conversion. R057 skips squares and cubes by inclusion-exclusion. No same-method match."
+  },
+  {
+   "id": "R052",
+   "method": "Digit algebra: 10a+b = a+b+ab simplifies to 9a = ab, so b = 9 for every tens digit a; count the 9 numbers.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "39f67f4e (reversal difference 396) and 8b861044 (digit sum 9) use other relations. No match."
+  },
+  {
+   "id": "R056",
+   "method": "Piecewise f(x)=3: solve each piece, reject roots outside that piece's domain (x=1 fails x>=2), sum the survivors.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "48e09318",
+     "why": "Piecewise linear shipping cost inverted from an output, picking the piece by domain. Same piece-by-domain idea, but there is one linear piece and no quadratic root to reject or sum over both pieces."
+    }
+   ],
+   "note": "16b9481b and candidate R035 are absolute-value casework, a different structure."
+  },
+  {
+   "id": "R057",
+   "method": "Inverse inclusion-exclusion: count of non-squares and non-cubes <= N is N - floor(sqrt N) - floor(cbrt N) + floor(N^(1/6)); find the N where the count first hits 100.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "5576eb0c, e87ba6b2 and 2e9004f1 count forward over a fixed range with multiples or digits, not squares and cubes. None needs the sixth-power overlap or the inverse search. R038 is base-9. No same-method match."
+  },
+  {
+   "id": "R060",
+   "method": "Compound minus simple interest over 3 years: P(1.1^3 - 1.3) = 0.031P = 93, so P = 3000.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "ef67ca3d",
+     "why": "Recovers a deposit from a compound-interest quantity (third-year interest = P*1.2^2*0.2 = 720). Also sets a P-expression equal to a dollar figure, but compares against compound growth only, not against simple interest."
+    }
+   ],
+   "note": "4bfc473f (forward compound) and 78abb34d (reverse simple) each use only one interest type."
+  },
+  {
+   "id": "R064",
+   "method": "Enumerate two-digit primes and keep those whose digit reversal is also prime (including 11).",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "bc53a3b5 lists primes in an interval with no reversal test. No candidate match."
+  },
+  {
+   "id": "R069",
+   "method": "Sum of even-power coefficients = (P(1) + P(-1))/2.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "1a3f5073 finds one coefficient by expanding. No live or candidate row uses P(1)/P(-1) substitution."
+  },
+  {
+   "id": "R070",
+   "method": "Early-arrival chauffeur puzzle: 24 minutes saved = driver's skipped round trip, so they met 12 minutes before 6:00 (5:48); walking time is 4:30 to 5:48 = 78 minutes.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live train/driver or saved-time row. Candidates R034 and R077 are different motion setups."
+  },
+  {
+   "id": "R071",
+   "method": "Score equation 4c - w = 33 with c + w <= 25 (blanks allowed): substitute w = 4c - 33 into the inequality and maximize c.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "Two-type ticket and coin systems (10a1e41c, 5289a3a6, 8324c80b, 96428028, 4a0bd6bd, e4b664a9) have a fixed total and solve exactly. Here blanks make the total an inequality to maximize, which is a different chain."
+  },
+  {
+   "id": "R080",
+   "method": "Two-set inclusion-exclusion with an unknown: D + C - 4 = 48 and D = 3C, so C = 13, D = 39, dog-only = 35.",
+   "live_dups": [
+    {
+     "row": "45f70868",
+     "why": "Solves the two-set inclusion-exclusion equation (A + B - both + neither = total) for an unknown. The candidate uses the same equation; its only extra is substituting D = 3C, a one-line step."
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "39cd3726",
+     "why": "Same two-set formula, but run forward to get 'neither'. Nothing is solved for an unknown."
+    }
+   ],
+   "note": "45dc48a2, a8b7895d and f6f020a1 are three-set problems, which is different."
+  },
+  {
+   "id": "R081",
+   "method": "Equal-time distance ratio: Ana's 300 m corresponds to Ben's 240 m; Ben needed 250, so he is 10 m short.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "0091ca80 (stride and step-rate ratio) builds the speed ratio from two factors, then scales. Candidate R077 uses meeting points on a path. Neither is the head-start race chain."
+  },
+  {
+   "id": "R082",
+   "method": "Climb-and-slide well: the last day's climb needs no slide, so find the first day n with 3(n-1) + 12 >= 50, giving 14.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live climb/slide row and no candidate match."
+  },
+  {
+   "id": "R087",
+   "method": "Euclidean elimination: 5(7n+1) - 7(5n+6) = -37, so the GCD divides 37; check it is attained.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "3b77ffd1 (integer quotient by division) and f5c459b7 / 73260b2c (GCD-LCM products) are different. No match."
+  },
+  {
+   "id": "R091",
+   "method": "Solve a rational-power equation by taking the root that isolates x^(1/4) = 3, then raise to the asked power, x^(1/2) = 9.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "71cd02cc evaluates given rational exponents forward. 28251958 and 6869e76a / cf75bfb2 are exponent-base rewriting. None inverts x^(p/q). Candidates R092 and R111 are different."
+  },
+  {
+   "id": "R093",
+   "method": "Hill-and-flat round trip: time = 2f/4 + h/3 + h/6 = (f+h)/2 = 5, because the up/down harmonic mean of 3 and 6 equals the flat speed 4. Total distance = 20.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "85b6e966",
+     "why": "Equal-distance round-trip average speed (harmonic mean of 40 and 60). The candidate rests on the same harmonic-mean fact for its hill leg, but also needs a two-unknown time equation that collapses because the flat distance cancels."
+    },
+    {
+     "ref": "f0d7a49a",
+     "why": "Same harmonic-mean round trip (15 and 10), same caveat as 85b6e966."
+    },
+    {
+     "ref": "c37b9e6b",
+     "why": "Equal-distance legs at 30 and 60, same harmonic-mean core, same caveat."
+    },
+    {
+     "ref": "92d89989",
+     "why": "Same as c37b9e6b."
+    }
+   ],
+   "note": "No candidate match (R003 is a circular-track lapping problem)."
+  },
+  {
+   "id": "R094",
+   "method": "Largest subset of 1..20 with no x and 2x: split into doubling chains odd*2^k and take ceil(length/2) from each (3+2+2+1+1+5 = 14).",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "No live or candidate row uses doubling-chain partition."
+  },
+  {
+   "id": "R099",
+   "method": "Mirror reflections in a 50 degree wedge: corresponding angle 50 at P, triangle OPQ gives 80 at Q, reflect to 100 inside triangle OQR, so 30 at R.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "61b887c1 and the other parallel-line angle rows have no reflection triangles. R004 and R120 are different angle chases."
+  },
+  {
+   "id": "R113",
+   "method": "Difference of a shifted quadratic: f(a+1) - f(a) = 2a - 1 = 15, so a = 8 and f(8) = 48.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "71de9399 (forward f(-3) - f(3)) and 6d6a81b8 (f(k) = f(6) symmetry) are different. Candidates R021 and R117 are composition and functional equation."
+  },
+  {
+   "id": "R116",
+   "method": "Reverse percent twice: cost = 240/1.2 and 240/0.8 (200 and 300), then add (500).",
+   "live_dups": [
+    {
+     "row": "65e11a69",
+     "why": "Undoes a 20% increase from the final price by dividing by 1.2. That is exactly half of the candidate, done once instead of twice."
+    },
+    {
+     "row": "78f0d6ca",
+     "why": "Undoes +20% and then -20% from a final price by dividing by the multipliers, the same reverse-percent move with the same 1.2 and 0.8 factors."
+    }
+   ],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "af8109e3",
+     "why": "Reverse percent chain through a 25% discount and 8% tax. Same divide-by-multiplier move, but different factors and a single item."
+    }
+   ],
+   "note": "The candidate's only twist is applying the profit/loss percents to two separate costs and summing. Candidate R089 (percent relations among three prices) and R063 are different chains."
+  },
+  {
+   "id": "R118",
+   "method": "Altitude to one side of a scalene triangle: area by Heron (or split-base Pythagoras with two unknown segments) = 210, then h = 2*210/28 = 15.",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [
+    {
+     "ref": "6f768d46",
+     "why": "Area of an isosceles 25-25-48 triangle by halving the base and using Pythagoras. The candidate is scalene, so the symmetric halving is unavailable and it needs Heron or a two-segment Pythagorean system."
+    }
+   ],
+   "note": "b876033e (right-triangle altitude = product of legs / hypotenuse) and candidate R049 are different."
+  },
+  {
+   "id": "R119",
+   "method": "Factor the cubic inequality to x(x-5)(x-9) < 0, sign chart gives x < 0 or 5 < x < 9, then sum the integers in [-4, 12].",
+   "live_dups": [],
+   "batch_dups": [],
+   "borderline": [],
+   "note": "cf576a50 (x^2 < 50 and x^3 > -30), 2b559778 (quadratic time window) and candidate R085 (nested absolute value) are different."
+  }
+ ],
+ "returned_originals": {
+  "IM17A-18": {
+   "id": "IM17A-18",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "sum of the divisors of a number that are multiples of a given factor (each such divisor is the factor times a divisor of the quotient)",
+   "difficulty": "hard",
+   "prompt": "What is the sum of all the positive divisors of 360 that are multiples of 6?",
+   "choices": [
+    "1080",
+    "1008",
+    "1164",
+    "1296"
+   ],
+   "correct_answer": "1008",
+   "explanation": "Hard: one non-routine idea - a divisor of 360 that is a multiple of 6 is exactly 6 times a divisor of 360/6 = 60, so the sum is 6 times the sum of the divisors of 60, and none of the 12 divisors needs to be listed from 360 directly. The divisors of 60 are 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30 and 60, whose sum is 168. So the required sum is 6 x 168 = 1008 (the divisors are 6, 12, 18, 24, 30, 36, 60, 72, 90, 120, 180 and 360).",
+   "solve": "let s=0;for(let d=1;d<=360;d++){if(360%d===0&&d%6===0)s+=d}return String(s);",
+   "distractor_solve": {
+    "1080": "// keeps only the factor-3 condition: sums the divisors of 360 that are multiples of 3\nlet s=0;for(let d=1;d<=360;d++){if(360%d===0&&d%3===0)s+=d}return String(s);",
+    "1164": "// reads 'multiple of 6' as 'multiple of 2 or of 3': all divisors except 1 and 5\nlet s=0;for(let d=1;d<=360;d++){if(360%d===0&&(d%2===0||d%3===0))s+=d}return String(s);",
+    "1296": "// right reduction to 6 x (divisor sum of 60), but splits 60 as 6 x 10 and multiplies the divisor sums of 6 and 10, though 6 and 10 share the factor 2\nconst sig=n=>{let s=0;for(let d=1;d<=n;d++)if(n%d===0)s+=d;return s};return String(6*sig(6)*sig(10));"
+   },
+   "forced": [
+    "a multiple of 6 (a sum of multiples of 6)",
+    "even",
+    "greater than 360 + 180 + 120 = 660 (360, 180 and 120 are among the divisors counted)",
+    "four-digit and between 1000 and 1300 (all four options share this; only listing or the divisor-sum method separates them)"
+   ]
+  },
+  "IM17D-01": {
+   "id": "IM17D-01",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "angle chase along a zigzag of equal segments between two rays (repeated isosceles triangles and exterior angles)",
+   "difficulty": "hard",
+   "prompt": "Rays OA and OB form an angle of 18 degrees at point O. Points P1 and P3 lie on ray OA, and points P2 and P4 lie on ray OB, with P1 closer to O than P3 and P2 closer to O than P4. The four segments OP1, P1P2, P2P3, and P3P4 all have the same length. What is the measure, in degrees, of angle P2P3P4?",
+   "choices": [
+    "54",
+    "144",
+    "126",
+    "72"
+   ],
+   "correct_answer": "72",
+   "explanation": "Hard: it is a chain of three isosceles triangles, and each step needs an exterior angle carried from the triangle before it, so no single step is a recall fact. Triangle OP1P2 has OP1 = P1P2, so angle OP2P1 = 18 degrees and angle OP1P2 = 144 degrees. Then angle P2P1P3 = 180 - 144 = 36 degrees, and triangle P1P2P3 has P2P1 = P2P3, so angle P1P3P2 = 36 degrees and angle P1P2P3 = 180 - 72 = 108 degrees. Along ray OB, angle P3P2P4 = 180 - 18 - 108 = 54 degrees. Triangle P2P3P4 has P3P2 = P3P4, so angle P3P4P2 = 54 degrees too, and angle P2P3P4 = 180 - 54 - 54 = 72 degrees. The option 54 is the base angle of triangle P2P3P4, not its top angle. The option 144 is the top angle of the first triangle OP1P2. The option 126 subtracts the 54-degree base angle from 180 only once.",
+   "solve": "const x=18; const b1=x; const a1=180-2*b1; const b2=180-a1; const a2=180-2*b2; const b3=180-x-a2; return 180-2*b3;",
+   "distractor_solve": {
+    "54": "const x=18; const a1=180-2*x; const b2=180-a1; const a2=180-2*b2; return 180-x-a2;",
+    "126": "const x=18; const a1=180-2*x; const b2=180-a1; const a2=180-2*b2; const b3=180-x-a2; return 180-b3;",
+    "144": "const x=18; return 180-2*x;"
+   },
+   "forced": [
+    "an angle of a triangle: strictly between 0 and 180",
+    "a whole number of degrees that is a multiple of 18 (every angle in the chain is built from 18 by doubling, adding and subtracting from 180)",
+    "no side of 90 forced without the chain: the top angles alternate obtuse (144, 108) before this one",
+    "all four options are multiples of 18 strictly between 0 and 180, two acute and two obtuse"
+   ]
+  },
+  "IM17C-05": {
+   "id": "IM17C-05",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "a sum of two square roots whose radicands differ by a constant: the conjugate product gives their difference",
+   "difficulty": "hard",
+   "prompt": "The number x satisfies sqrt(x) + sqrt(x - 9) = 9. What is the value of x - sqrt(x) ?",
+   "choices": [
+    "16",
+    "20",
+    "30",
+    "21"
+   ],
+   "correct_answer": "20",
+   "explanation": "Hard: one non-routine idea - multiply the two roots' sum by their difference, which removes the radicals, then recover each root and evaluate a different expression. (sqrt(x) + sqrt(x - 9))(sqrt(x) - sqrt(x - 9)) = x - (x - 9) = 9, so sqrt(x) - sqrt(x - 9) = 9/9 = 1. Adding this to sqrt(x) + sqrt(x - 9) = 9 gives 2sqrt(x) = 10, so sqrt(x) = 5 and x = 25 (check: 5 + 4 = 9). Then x - sqrt(x) = 25 - 5 = 20.",
+   "solve": "// sum s = 9, product of sum and difference = 9 -> difference 1\nconst s=9,d=9/s;const r=(s+d)/2;const x=r*r;return String(x-r);",
+   "distractor_solve": {
+    "16": "// solves correctly but reports x - 9 (the radicand of the second root) instead of x - sqrt(x)\nconst s=9,d=9/s;const r=(s+d)/2;const x=r*r;return String(x-9);",
+    "30": "// takes the difference of the roots as sqrt(9) = 3 (root of the difference), so sqrt(x) = 6 and x = 36\nconst s=9,d=Math.sqrt(9);const r=(s+d)/2;const x=r*r;return String(x-r);",
+    "21": "// finds x = 25 but subtracts the other root, sqrt(x - 9) = 4\nconst s=9,d=9/s;const r=(s+d)/2;const x=r*r;return String(x-Math.sqrt(x-9));"
+   },
+   "forced": [
+    "sqrt(x) > 4.5 because it is the larger of two roots summing to 9, so x > 20.25 and x - sqrt(x) > 15.75 (every option exceeds 15.75)",
+    "x - sqrt(x) = sqrt(x)(sqrt(x) - 1); no integer value is forced before solving",
+    "no parity or units digit fixed by the stem"
+   ]
+  },
+  "IM17E-16": {
+   "id": "IM17E-16",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "area of a triangle with no side along a grid line, from its vertex coordinates (enclosing rectangle minus the three corner right triangles)",
+   "difficulty": "medium",
+   "prompt": "In the coordinate plane, a triangle has vertices at A(-3, -1), B(6, 2), and C(2, 7). What is the area of the triangle, in square units?",
+   "choices": [
+    "28.5",
+    "24.5",
+    "18.5",
+    "8.5"
+   ],
+   "correct_answer": "28.5",
+   "explanation": "Medium: a short chain of routine steps - enclose the triangle in a rectangle with sides along the grid and subtract three right triangles, each found from coordinate differences. The rectangle runs from x = -3 to x = 6 (width 9) and from y = -1 to y = 7 (height 8), so its area is 72. The three corner right triangles are: below side AB, legs 9 and 3, area 13.5; beside side BC, legs 4 and 5, area 10; beside side CA, legs 5 and 8, area 20. Their total is 43.5, so the triangle's area is 72 - 43.5 = 28.5.",
+   "solve": "const A=[-3,-1],B=[6,2],C=[2,7];const d=(B[0]-A[0])*(C[1]-A[1])-(C[0]-A[0])*(B[1]-A[1]);return String(Math.abs(d)/2);",
+   "distractor_solve": {
+    "24.5": "// misreads vertex A as (-3, 1), dropping the minus sign on its y-coordinate, and then works correctly\nconst A=[-3,1],B=[6,2],C=[2,7];const d=(B[0]-A[0])*(C[1]-A[1])-(C[0]-A[0])*(B[1]-A[1]);return String(Math.abs(d)/2);",
+    "18.5": "// subtracts the corner region beside BC as a full 4 by 5 rectangle (forgets to halve it)\nconst box=9*8;return String(box-9*3/2-4*5-5*8/2);",
+    "8.5": "// subtracts the corner region beside CA as a full 5 by 8 rectangle (forgets to halve it)\nconst box=9*8;return String(box-9*3/2-4*5/2-5*8);"
+   },
+   "forced": [
+    "positive and at most half of the 9 by 8 enclosing rectangle, so at most 36; every option is at most 36",
+    "a lattice triangle's area is a whole number or a half; every option ends in .5, so none is a kind singleton",
+    "no further size is readable without subtracting the corner regions"
+   ]
+  },
+  "IM17B-05": {
+   "id": "IM17B-05",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "interval between oncoming buses for a walker, from the bus interval and the overtaking interval (relative speeds with a fixed spacing)",
+   "difficulty": "hard",
+   "prompt": "Buses run in both directions along a long straight road. All buses travel at the same steady speed, and in each direction they are evenly spaced so that a bus passes any fixed point every 12 minutes. A man walks along the road at a steady speed. The buses going in his direction overtake him every 15 minutes. Every how many minutes does he meet a bus coming toward him?",
+   "choices": [
+    "6 2/3",
+    "9",
+    "9.6",
+    "10"
+   ],
+   "correct_answer": "10",
+   "explanation": "Hard: it needs the non-routine idea that the gap between buses is fixed, so each interval is that gap divided by a relative speed, and the walker's speed must be found first. Let the bus speed be v. The gap between buses is 12v. A bus closes that gap on the walker at v - w, so 12v = 15(v - w), which gives w = v/5. An oncoming bus closes the gap at v + w = 6v/5, so the interval is 12v / (6v/5) = 10 minutes. The option \"9.6\" reads the walker's speed as 3/12 = 1/4 of the bus speed, 12 / (5/4) = 9.6. The option \"9\" mirrors the overtaking interval: 15 is 3 more than 12, so the oncoming interval is taken as 3 less. The option \"6 2/3\" combines the two intervals like two work rates, 12 x 15 / (12 + 15).",
+   "solve": "const T=12,S=15; const w=1-T/S; return T/(1+w);",
+   "distractor_solve": {
+    "9.6": "const T=12,S=15; const w=(S-T)/T; return T/(1+w);",
+    "9": "const T=12,S=15; return T-(S-T);",
+    "6 2/3": "const T=12,S=15; const x=T*S/(T+S); const n=Math.floor(x); const f=Math.round((x-n)*3); return n+' '+f+'/3';"
+   },
+   "forced": [
+    "less than 12: walking toward oncoming buses makes them arrive more often than at a fixed point",
+    "more than 6: the walker is slower than the buses (they overtake him), so his closing speed with an oncoming bus is less than twice a bus's speed",
+    "all four options lie strictly between 6 and 12"
+   ]
+  },
+  "IM17C-12": {
+   "id": "IM17C-12",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "when a quadratic divided by a linear expression is an integer: divide out to a whole part plus a remainder fraction, then the linear expression must divide the remainder (negative divisors included)",
+   "difficulty": "hard",
+   "prompt": "What is the sum of all the integers x for which (x^2 + 26)/(x - 3) is an integer?",
+   "choices": [
+    "62",
+    "24",
+    "12",
+    "60"
+   ],
+   "correct_answer": "24",
+   "explanation": "Hard: one non-routine idea - rewrite the fraction as a whole-number part plus a remainder over x - 3, so the condition becomes 'x - 3 divides the remainder', and then count negative divisors too. Since x^2 + 26 = (x - 3)(x + 3) + 35, the fraction equals x + 3 + 35/(x - 3), which is an integer exactly when x - 3 divides 35. So x - 3 is one of 1, 5, 7, 35, -1, -5, -7, -35, giving x = 4, 8, 10, 38, 2, -2, -4, -32. Each pair of opposite divisors adds 3 + 3 = 6 to the sum, so the sum is 4 x 6 = 24.",
+   "solve": "let s=0;for(let x=-500;x<=500;x++){if(x===3)continue;if((x*x+26)%(x-3)===0)s+=x}return String(s);",
+   "distractor_solve": {
+    "60": "// uses only the positive divisors 1, 5, 7, 35 of the remainder: x = 4, 8, 10, 38\nlet s=0;for(const d of [1,5,7,35])s+=3+d;return String(s);",
+    "12": "// subtracts instead of adding when dividing: remainder 26 - 9 = 17, so x - 3 is 1, 17, -1 or -17\nlet s=0;for(let d=-17;d<=17;d++){if(d!==0&&17%d===0)s+=3+d}return String(s);",
+    "62": "// finds all eight values but keeps only the positive integers x (4, 8, 10, 38, 2)\nlet s=0;for(let x=1;x<=500;x++){if(x!==3&&(x*x+26)%(x-3)===0)s+=x}return String(s);"
+   },
+   "forced": [
+    "the sign of the sum is not readable from the stem: x can be negative",
+    "no parity or divisibility property of the sum is readable before the divisor condition is found",
+    "no size bound: x - 3 can be as large as the remainder, which is not printed"
+   ]
+  },
+  "IM17A-19": {
+   "id": "IM17A-19",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "greatest common factor in a packing context, then using it to find the size of each identical group rather than the number of groups",
+   "difficulty": "medium",
+   "prompt": "A baker has 36 lemon cookies, 60 oatmeal cookies, and 84 ginger cookies. She packs all of the cookies into boxes so that every box holds exactly the same mix of cookies (the same number of lemon, the same number of oatmeal, and the same number of ginger cookies as every other box), with no cookies left over. She uses the greatest possible number of boxes. How many cookies are in each box?",
+   "choices": [
+    "12",
+    "45",
+    "10",
+    "15"
+   ],
+   "correct_answer": "15",
+   "explanation": "Medium: two routine steps and no non-routine idea - the greatest number of boxes is the greatest common factor of the three counts, and then each count is shared among that many boxes. The GCF of 36, 60 and 84 is 12, so she uses 12 boxes. Each box holds 36/12 = 3 lemon, 60/12 = 5 oatmeal and 84/12 = 7 ginger cookies, for 3 + 5 + 7 = 15 cookies per box (check: 12 x 15 = 180 = 36 + 60 + 84).",
+   "solve": "const c=[36,60,84];const g=(a,b)=>b?g(b,a%b):a;const G=c.reduce(g);return String(c.reduce((s,x)=>s+x/G,0));",
+   "distractor_solve": {
+    "10": "// finds the GCF correctly but leaves the oatmeal cookies out of the box count: 36/12 + 84/12\nconst c=[36,60,84];const g=(a,b)=>b?g(b,a%b):a;const G=c.reduce(g);return String(36/G+84/G);",
+    "12": "// answers the number of boxes (the GCF itself) instead of the number of cookies in each box\nconst c=[36,60,84];const g=(a,b)=>b?g(b,a%b):a;return String(c.reduce(g));",
+    "45": "// divides every count by 4 and stops at 9, 15, 21 without noticing they still share the factor 3, so uses 4 boxes\nconst c=[36,60,84];return String(c.reduce((s,x)=>s+x/4,0));"
+   },
+   "forced": [
+    "a positive integer that divides the total 36 + 60 + 84 = 180 (every box holds the same number of cookies); 12, 45, 10 and 15 all divide 180",
+    "at least 3 (each box holds at least one of each kind); every option is at least 3 and none equals the limiting case of exactly one of each",
+    "the asked quantity is the LEAST possible box size, and two options (12 and 10) lie below the key in that direction",
+    "no parity or units-digit constraint (options mix odd and even)"
+   ]
+  },
+  "IM17B-09": {
+   "id": "IM17B-09",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "speed on the second part of a trip from the total distance and total time: subtract the first part's time, not its speed",
+   "difficulty": "medium",
+   "prompt": "Mia runs 8 kilometers in a total of 50 minutes. She runs the first 2 kilometers at a steady 12 kilometers per hour and the rest of the way at a different steady speed. What is her speed, in kilometers per hour, for the rest of the run?",
+   "choices": [
+    "8",
+    "8.8",
+    "9",
+    "7.2"
+   ],
+   "correct_answer": "9",
+   "explanation": "Medium: a short routine chain (time for the first part, time left, distance left, speed) with no single non-routine idea. The first 2 km at 12 km/h take 2/12 hour = 10 minutes. That leaves 50 - 10 = 40 minutes for the other 8 - 2 = 6 km, so her speed is 6 / (40/60) = 9 km/h. The option \"7.2\" treats her overall speed, 8 km in 5/6 hour = 9.6 km/h, as the plain average of the two speeds, (12 + x)/2 = 9.6. The option \"8.8\" weights the two speeds by distance instead of time, (2 x 12 + 6x)/8 = 9.6. The option \"8\" uses the equal-distance average-speed formula 2 x 12 x x / (12 + x) = 9.6, which only applies when the two parts are the same length.",
+   "solve": "const D=8, T=50/60, d1=2, v1=12; const t1=d1/v1; return Math.round((D-d1)/(T-t1)*1000)/1000;",
+   "distractor_solve": {
+    "7.2": "const D=8, T=50/60, v1=12; const avg=D/T; return Math.round((2*avg-v1)*1000)/1000;",
+    "8.8": "const D=8, T=50/60, d1=2, v1=12; const avg=D/T; return Math.round(((avg*D-d1*v1)/(D-d1))*1000)/1000;",
+    "8": "const D=8, T=50/60, v1=12; const avg=D/T; return Math.round((avg*v1/(2*v1-avg))*1000)/1000;"
+   },
+   "forced": [
+    "positive",
+    "less than 12, because the overall pace (8 km in 50 min = 9.6 km/h) is below the first part's 12 km/h, so the rest must be slower",
+    "less than the overall average 9.6 km/h, because the faster first part pulls the average above the second part's speed",
+    "all four options lie strictly between 0 and 9.6"
+   ]
+  },
+  "IM17C-19": {
+   "id": "IM17C-19",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "simplifying a power of a monomial with negative exponents divided by another monomial (power of a power, then quotient rule with a negative exponent in the denominator), then reading off the exponents",
+   "difficulty": "medium",
+   "prompt": "For all nonzero numbers x and y, (x^2 y^(-3))^4 / (x^5 y^(-7)) = x^a y^b, where a and b are constants. What is the value of a + b ?",
+   "choices": [
+    "7",
+    "-16",
+    "-2",
+    "9"
+   ],
+   "correct_answer": "-2",
+   "explanation": "Medium: a routine chain of exponent rules with no non-routine idea, though the negative exponents make sign slips easy. Raising to the 4th power multiplies each exponent by 4: (x^2 y^(-3))^4 = x^8 y^(-12). Dividing subtracts exponents: x^(8 - 5) y^(-12 - (-7)) = x^3 y^(-5). So a = 3 and b = -5, and a + b = -2.",
+   "solve": "const p=2,q=-3,r=4,s=5,t=-7;const a=p*r-s,b=q*r-t;return String(a+b);",
+   "distractor_solve": {
+    "7": "// raises only the x-part to the 4th power, leaving y^(-3): a = 8 - 5 = 3, b = -3 - (-7) = 4\nconst p=2,q=-3,r=4,s=5,t=-7;return String((p*r-s)+(q-t));",
+    "9": "// adds the outer exponent instead of multiplying: x^(2 + 4) y^(-3 + 4) = x^6 y^1, then a = 6 - 5 = 1, b = 1 - (-7) = 8\nconst p=2,q=-3,r=4,s=5,t=-7;return String((p+r-s)+(q+r-t));",
+    "-16": "// subtracts the negative exponent with a sign slip: y^(-12 - 7) instead of y^(-12 + 7), so b = -19\nconst p=2,q=-3,r=4,s=5,t=-7;return String((p*r-s)+(q*r+t));"
+   },
+   "forced": [
+    "no sign is readable without simplifying: the x-exponent is positive and the y-exponent negative, so a + b could have either sign; options include both",
+    "no parity is forced; options include odd and even",
+    "every option is a small integer of the size exponent arithmetic on these numbers produces"
+   ]
+  },
+  "IM17F-20": {
+   "id": "IM17F-20",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "counting numbers whose digits strictly increase and include a given digit (a set of digits fixes its own order, so count digit sets)",
+   "difficulty": "hard",
+   "prompt": "In the number 1,358, each digit is greater than the digit to its left. How many four-digit positive integers have this property and also have 5 as one of their digits?",
+   "choices": [
+    "84",
+    "56",
+    "48",
+    "30"
+   ],
+   "correct_answer": "56",
+   "explanation": "Hard: it needs one non-routine idea, that a set of four different digits can be written in increasing order in exactly one way, so counting the numbers means counting digit sets, plus the step of seeing that 0 can never be used. A 0 would have to be the first digit, which a four-digit number cannot have, so the digits come from 1 through 9. The number must contain 5, so the other 3 digits are any 3 of the 8 digits 1, 2, 3, 4, 6, 7, 8, 9: C(8, 3) = 56 sets, each giving exactly one number. The option 84 chooses the other 3 digits from all 9 digits other than 5, including 0, C(9, 3) = 84, forgetting that 0 cannot lead. The option 48 places the 5 only in the second or third position: one smaller digit and two larger ones, 4 x C(4, 2) = 24, or two smaller and one larger, 24, forgetting that 5 can also be the first digit (5678 and others) or the last (1235 and others). The option 30 splits by the number k of digits below 5 but adds C(4, k) + C(4, 3 - k) instead of multiplying, 5 + 10 + 10 + 5.",
+   "solve": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; let t=0; for(let k=0;k<=3;k++) t+=C(4,k)*C(4,3-k); return String(t);",
+   "distractor_solve": {
+    "84": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; return String(C(9,3));",
+    "48": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; let t=0; for(let k=1;k<=2;k++) t+=C(4,k)*C(4,3-k); return String(t);",
+    "30": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; let t=0; for(let k=0;k<=3;k++) t+=C(4,k)+C(4,3-k); return String(t);"
+   },
+   "forced": [
+    "a positive whole number",
+    "at most C(9, 4) = 126, the number of four-digit integers with strictly increasing digits, which itself needs the method (84, 56, 48, 30 all below 126)",
+    "even is not forced, and no factor is readable from the stem; options are all even, so parity strikes nothing",
+    "no option is a printed number (1,358 or its digits) or the 126 total, and no option is the count WITHOUT a 5 (70), so no complement pair with the key appears",
+    "no two pairs of options differ by the same amount (differences 28, 36, 54, 8, 26, 18), and the key is not the sum of two options"
+   ]
+  },
+  "IM17B-19": {
+   "id": "IM17B-19",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "speed through a two-stage gear train (teeth ratios multiply across a shared axle)",
+   "difficulty": "medium",
+   "prompt": "In a machine, gear A has 40 teeth and meshes with gear B, which has 32 teeth. Gear C, which has 36 teeth, is fixed to the same axle as gear B, so B and C always turn together at the same speed. Gear C meshes with gear D, which has 24 teeth. When two gears mesh, the same number of teeth pass the meeting point each minute. If gear A turns at 48 revolutions per minute, at how many revolutions per minute does gear D turn?",
+   "choices": [
+    "72",
+    "90",
+    "80",
+    "84"
+   ],
+   "correct_answer": "90",
+   "explanation": "Medium: two dependent proportion steps joined by one link (the shared axle), each routine once the meshing rule is applied. Gear A sends 40 x 48 = 1,920 teeth per minute past B, so B turns 1,920 / 32 = 60 revolutions per minute. Gear C turns with B at 60 revolutions per minute and sends 36 x 60 = 2,160 teeth per minute past D, so D turns 2,160 / 24 = 90 revolutions per minute. The option \"80\" skips the shared axle and meshes A straight with D: 48 x 40 / 24. The option \"72\" starts the second stage from A's speed instead of B's: 48 x 36 / 24. The option \"84\" adds the two speed-ups as percents (25% + 50% = 75% faster) instead of multiplying them: 48 x 1.75.",
+   "solve": "const a=40,b=32,c=36,d=24,r=48; const rb=r*a/b; return rb*c/d;",
+   "distractor_solve": {
+    "80": "const a=40,b=32,c=36,d=24,r=48; return r*a/d;",
+    "72": "const a=40,b=32,c=36,d=24,r=48; return r*c/d;",
+    "84": "const a=40,b=32,c=36,d=24,r=48; return r*(1+(a/b-1)+(c/d-1));"
+   },
+   "forced": [
+    "greater than 48: in each mesh the larger gear drives the smaller, so every stage speeds up",
+    "greater than 60 once the first stage is done (B, and so C, turns at 60), and all four options exceed 60",
+    "a whole number for these teeth counts; all four options are whole numbers",
+    "less than 48 x 2 x 2 = 192, since each gear drives one fewer than twice its partner's teeth; all four options are far below that"
+   ]
+  },
+  "IM17A-13": {
+   "id": "IM17A-13",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "squaring and dividing numbers in scientific notation with negative exponents (power of a product, then quotient of powers of ten)",
+   "difficulty": "medium",
+   "prompt": "What is the value of (4 x 10^(-3))^2 / (8 x 10^(-9)) ?",
+   "choices": [
+    "2 x 10^6",
+    "2 x 10^8",
+    "2 x 10^1",
+    "2 x 10^3"
+   ],
+   "correct_answer": "2 x 10^3",
+   "explanation": "Medium: a routine chain of exponent rules, each step standard. Squaring gives (4 x 10^(-3))^2 = 16 x 10^(-6), since both factors are squared and (10^(-3))^2 = 10^(-6). Dividing, 16/8 = 2 and 10^(-6) / 10^(-9) = 10^(-6 - (-9)) = 10^3. So the value is 2 x 10^3.",
+   "solve": "const sn=(m,e)=>{while(m>=10){m/=10;e++}while(m<1){m*=10;e--}return (Math.round(m*1000)/1000)+' x 10^'+e};const m=4*4/8,e=(-3*2)-(-9);return sn(m,e);",
+   "distractor_solve": {
+    "2 x 10^6": "// squares the 4 but not the power of ten: 16 x 10^(-3) divided by 8 x 10^(-9)\nconst sn=(m,e)=>{while(m>=10){m/=10;e++}while(m<1){m*=10;e--}return (Math.round(m*1000)/1000)+' x 10^'+e};return sn(16/8,-3-(-9));",
+    "2 x 10^8": "// adds 2 to the exponent instead of doubling it: (10^(-3))^2 taken as 10^(-1)\nconst sn=(m,e)=>{while(m>=10){m/=10;e++}while(m<1){m*=10;e--}return (Math.round(m*1000)/1000)+' x 10^'+e};return sn(16/8,(-3+2)-(-9));",
+    "2 x 10^1": "// rewrites 16 x 10^(-6) as 1.6 x 10^(-7), moving the exponent the wrong way, then 1.6/8 = 0.2 and 10^(-7)/10^(-9) = 10^2\nconst sn=(m,e)=>{while(m>=10){m/=10;e++}while(m<1){m*=10;e--}return (Math.round(m*1000)/1000)+' x 10^'+e};return sn(1.6/8,-7-(-9));"
+   },
+   "forced": [
+    "written as 2 x 10^k (16/8 = 2 fixes the leading digit, and every option shares it)",
+    "positive"
+   ]
+  },
+  "IM17B-16": {
+   "id": "IM17B-16",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "supply that lasts a fixed number of person-days when the group grows partway through",
+   "difficulty": "medium",
+   "prompt": "A camp has packed exactly enough food to feed 36 hikers for 20 days, with every hiker eating the same amount each day. After the 36 hikers have eaten for 4 days, 12 more hikers join the group, and everyone keeps eating the same daily amount as before. For how many more days will the remaining food last the larger group?",
+   "choices": [
+    "10 2/3",
+    "11",
+    "12",
+    "15"
+   ],
+   "correct_answer": "12",
+   "explanation": "Medium: two routine proportion steps, counting the food in hiker-days and then sharing what is left. The full supply is 36 x 20 = 720 hiker-days. After 4 days, 36 x 4 = 144 hiker-days are gone, leaving 576. The group now has 36 + 12 = 48 hikers, so the food lasts 576 / 48 = 12 more days. The option \"15\" shares the whole supply among 48 hikers, forgetting the 4 days already eaten: 720 / 48. The option \"11\" takes that 15 as the length of the whole trip and subtracts the 4 days already gone: 15 - 4. The option \"10 2/3\" says one third more hikers means one third fewer days, cutting the remaining 16 days by a third: 16 x 2/3.",
+   "solve": "const n=36,d=20,used=4,add=12; return n*(d-used)/(n+add);",
+   "distractor_solve": {
+    "15": "const n=36,d=20,used=4,add=12; return n*d/(n+add);",
+    "11": "const n=36,d=20,used=4,add=12; return n*d/(n+add)-used;",
+    "10 2/3": "const n=36,d=20,used=4,add=12; const v=(d-used)*(1-add/n); const w=Math.floor(v+1e-9); const r=Math.round((v-w)*3); return w+' '+r+'/3';"
+   },
+   "forced": [
+    "fewer than 16 days: 16 days of food remain for 36 hikers, and the group is now larger",
+    "more than 16 x 36/72 = 8 days: the group has not doubled",
+    "not forced to be a whole number; one option is a fraction",
+    "all four options lie strictly between 8 and 16"
+   ]
+  },
+  "IM17C-01": {
+   "id": "IM17C-01",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "counting positive integer solutions of xy + ax + by = c by completing the product (x + b)(y + a)",
+   "difficulty": "hard",
+   "prompt": "How many ordered pairs (x, y) of positive integers satisfy the equation xy + 3x + 2y = 54 ?",
+   "choices": [
+    "6",
+    "9",
+    "10",
+    "7"
+   ],
+   "correct_answer": "7",
+   "explanation": "Hard: one non-routine idea (adding a constant so the left side factors) followed by filtering factor pairs against two separate positivity conditions. Add 6 to both sides: xy + 3x + 2y + 6 = 60, which factors as (x + 2)(y + 3) = 60. Since x and y are positive integers, x + 2 is at least 3 and y + 3 is at least 4. The factor pairs of 60 with first factor at least 3 and second at least 4 are 3 x 20, 4 x 15, 5 x 12, 6 x 10, 10 x 6, 12 x 5 and 15 x 4, giving (x, y) = (1, 17), (2, 12), (3, 9), (4, 7), (8, 3), (10, 2), (13, 1). That is 7 ordered pairs.",
+   "solve": "let c=0;for(let x=1;x<=60;x++)for(let y=1;y<=60;y++){if(x*y+3*x+2*y===54)c++}return String(c);",
+   "distractor_solve": {
+    "6": "// counts the unordered factor pairs of 60 and stops, ignoring the shifts by 2 and 3\nlet c=0;for(let a=1;a*a<=60;a++){if(60%a===0)c++}return String(c);",
+    "9": "// treats 'positive' as 'nonnegative': allows x + 2 >= 2 and y + 3 >= 3 (x = 0 or y = 0)\nlet c=0;for(let a=2;a<=60;a++){if(60%a===0&&60/a>=3)c++}return String(c);",
+    "10": "// checks that x is positive but never checks y: every factor pair with x + 2 >= 3, even when y comes out negative\nlet c=0;for(let a=3;a<=60;a++){if(60%a===0)c++}return String(c);"
+   },
+   "forced": [
+    "a positive whole-number count",
+    "no parity, size or divisibility bound on the count is readable from the stem without factoring; x <= 18 and y <= 27 bound the search but not the count",
+    "every option is a plausible small count between 6 and 10"
+   ]
+  },
+  "IM17B-20": {
+   "id": "IM17B-20",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "actual area from a map area when the map gives a length scale (area scales by the square of the length scale)",
+   "difficulty": "hard",
+   "prompt": "On a map, 4 centimeters represents 5 kilometers of actual distance. A lake is drawn on the map with an area of 32 square centimeters. What is the actual area of the lake, in square kilometers?",
+   "choices": [
+    "62.5",
+    "48",
+    "80",
+    "50"
+   ],
+   "correct_answer": "50",
+   "explanation": "Hard: it needs one non-routine idea, that a length scale must be squared before it is applied to an area, followed by dependent steps (unit scale, square, apply). Each centimeter on the map is 5/4 = 1.25 kilometers, so each square centimeter is 1.25 x 1.25 = 25/16 square kilometers, and the lake is 32 x 25/16 = 50 square kilometers. The option \"48\" treats the 25 percent length increase as adding to 25 + 25 = 50 percent for area instead of compounding it: 32 x 1.5. The option \"80\" squares 1.25 by doubling it: 32 x 2.5. The option \"62.5\" applies the length scale three times, as for a volume: 32 x 1.25^3.",
+   "solve": "const cm=4,km=5,a=32; const k=km/cm; return a*k*k;",
+   "distractor_solve": {
+    "48": "const cm=4,km=5,a=32; const k=km/cm; return a*(1+2*(k-1));",
+    "80": "const cm=4,km=5,a=32; const k=km/cm; return a*(2*k);",
+    "62.5": "const cm=4,km=5,a=32; const k=km/cm; return a*k*k*k;"
+   },
+   "forced": [
+    "positive and greater than 32 x 1.25 = 40, since the area factor exceeds the length factor 1.25 when that factor is above 1; all four options exceed 40",
+    "not forced to be a whole number; one option is 62.5",
+    "no option is the linear answer 40 (the limiting case on the bound)",
+    "no units digit or factor is forced without squaring 5/4"
+   ]
+  },
+  "IM17D-04": {
+   "id": "IM17D-04",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "area of the square inscribed at the right angle of a right triangle (similar triangle cut off by the square)",
+   "difficulty": "hard",
+   "prompt": "A right triangle has legs of length 6 inches and 12 inches. A square is drawn inside the triangle so that one corner of the square is at the right angle, two sides of the square lie along the two legs, and the corner of the square opposite the right angle touches the hypotenuse. What is the area of the square, in square inches?",
+   "choices": [
+    "12",
+    "288/25",
+    "72/5",
+    "16"
+   ],
+   "correct_answer": "16",
+   "explanation": "Hard: it needs one non-routine idea, that the square cuts off a small right triangle similar to the whole one, and then an equation in the unknown side before squaring. Let the side be s. Above the square, along the 6-inch leg, is a small right triangle with legs 6 - s and s, similar to the whole triangle (legs 6 and 12), so (6 - s)/s = 6/12. Then 2(6 - s) = s, so s = 4 and the area is 4^2 = 16 square inches. The option 12 assumes the square and the two small triangles beside it split the triangle's 36 square inches into three equal parts. The option 72/5 takes the altitude from the right angle to the hypotenuse, 6 x 12 / sqrt(180) = 12/sqrt(5), as the square's diagonal, so the area is (12/sqrt(5))^2 / 2. The option 288/25 puts the square's far corner at the foot of that altitude, the point of the hypotenuse closest to the right angle, (24/5, 12/5), and reports the area of the 24/5 by 12/5 rectangle it makes.",
+   "solve": "const a=6,b=12; const s=a*b/(a+b); return s*s;",
+   "distractor_solve": {
+    "12": "const a=6,b=12; return a*b/2/3;",
+    "72/5": "const a=6,b=12; const h2=(a*b)*(a*b)/(a*a+b*b); return h2/2;",
+    "288/25": "const a=6,b=12; const c2=a*a+b*b; const x=a*a*b/c2, y=a*b*b/c2; return x*y;"
+   },
+   "forced": [
+    "positive and less than the triangle's area, 36",
+    "the corner (3, 3) from the right angle is inside the triangle, so the side is more than 3 and the area more than 9",
+    "an inscribed square at the right angle covers at most half the triangle, so the area is at most 36/2 = 18",
+    "no integer or denominator forced without the similarity equation",
+    "all four options lie strictly between 9 and 18 (11.52, 12, 14.4, 16)"
+   ]
+  },
+  "IM17C-16": {
+   "id": "IM17C-16",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "recovering the coefficients of a quadratic function from three of its values (the constant from f(0), then a two-equation linear system), then evaluating it at a new input",
+   "difficulty": "medium",
+   "prompt": "The function f is defined by f(x) = ax^2 + bx + c, where a, b, and c are constants. If f(0) = 3, f(1) = 2, and f(3) = 18, what is the value of f(5) ?",
+   "choices": [
+    "34",
+    "53",
+    "38",
+    "58"
+   ],
+   "correct_answer": "58",
+   "explanation": "Medium: a routine chain of substitution and elimination with no single non-routine idea. f(0) = c, so c = 3. Then f(1) = a + b + 3 = 2 gives a + b = -1, and f(3) = 9a + 3b + 3 = 18 gives 9a + 3b = 15, or 3a + b = 5. Subtracting, 2a = 6, so a = 3 and b = -4. Then f(5) = 3(25) - 4(5) + 3 = 75 - 20 + 3 = 58.",
+   "solve": "const c=3;const s1=2-c;const s3=(18-c)/3;const a=(s3-s1)/2;const b=s1-a;return String(a*25+b*5+c);",
+   "distractor_solve": {
+    "34": "// treats f as linear through (1, 2) and (3, 18): slope 8, so f(5) = 18 + 2(8)\nconst m=(18-2)/(3-1);return String(18+m*(5-3));",
+    "53": "// never removes the constant: uses a + b = 2 and 9a + 3b = 18, giving a = 2, b = 0, then adds c = 3 at the end\nconst s1=2;const s3=18/3;const a=(s3-s1)/2;const b=s1-a;return String(a*25+b*5+3);",
+    "38": "// eliminates with a sign slip: (9a + 3b) - 3(a + b) = 15 - 3 instead of 15 + 3, so 6a = 12, a = 2, b = -3\nconst a=(15-3)/6;const b=-1-a;return String(a*25+b*5+3);"
+   },
+   "forced": [
+    "no sign, parity or size bound on f(5) is readable before a and b are found (a could be negative and the parabola could turn down)",
+    "an integer is not forced by the stem alone, but every option is an integer",
+    "every option exceeds f(3) = 18, so 'bigger than the last given value' strikes nothing"
+   ]
+  },
+  "IM17B-17": {
+   "id": "IM17B-17",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "on-time travel time from a late arrival at one speed and an early arrival at another",
+   "difficulty": "hard",
+   "prompt": "Mia walks from her home to school along the same route every day and always leaves at the same time. If she walks the whole way at a steady 4 kilometers per hour, she arrives 10 minutes late. If she walks the whole way at a steady 5 kilometers per hour, she arrives 5 minutes early. How many minutes would her walk have to take for her to arrive exactly on time?",
+   "choices": [
+    "35",
+    "65",
+    "70",
+    "66 2/3"
+   ],
+   "correct_answer": "65",
+   "explanation": "Hard: it needs one non-routine idea, that the two walking times differ by 10 + 5 = 15 minutes, and then two dependent steps to recover the distance and the on-time time. At 4 km/h the walk takes d/4 hours and at 5 km/h it takes d/5 hours, so d/4 - d/5 = 15/60, which gives d/20 = 1/4 and d = 5 km. At 4 km/h the walk takes 5/4 hours = 75 minutes, which is 10 minutes late, so the on-time walk takes 75 - 10 = 65 minutes (check: 60 minutes at 5 km/h is 5 minutes early). The option \"70\" applies the late and early amounts to the wrong walks, 75 - 5. The option \"66 2/3\" walks at the average of the two speeds, 4.5 km/h, taking 5/4.5 hours. The option \"35\" writes 15 minutes as 0.15 hour, so d = 20 x 0.15 = 3 km and the on-time walk is 45 - 10 minutes.",
+   "solve": "const v1=4,v2=5,late=10,early=5; const d=(late+early)/60*v1*v2/(v2-v1); return d/v1*60-late;",
+   "distractor_solve": {
+    "70": "const v1=4,v2=5,late=10,early=5; const d=(late+early)/60*v1*v2/(v2-v1); return d/v1*60-early;",
+    "66 2/3": "const v1=4,v2=5,late=10,early=5; const d=(late+early)/60*v1*v2/(v2-v1); const v=d/((v1+v2)/2)*60; const w=Math.floor(v+1e-9); const r=Math.round((v-w)*3); return w+' '+r+'/3';",
+    "35": "const v1=4,v2=5,late=10,early=5; const d=(late+early)/100*v1*v2/(v2-v1); return d/v1*60-late;"
+   },
+   "forced": [
+    "positive and more than 15 minutes, since the two arrival times are 15 minutes apart and the walk takes longer than that gap at the slower speed",
+    "a whole number of minutes is not forced; one option is a fraction",
+    "no side of a midpoint is visible without first finding the distance",
+    "all four options exceed 15"
+   ]
+  },
+  "IM17A-11": {
+   "id": "IM17A-11",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "counting the integers in a range that are perfect squares or perfect cubes (the numbers that are both are sixth powers and are counted once)",
+   "difficulty": "medium",
+   "prompt": "How many of the integers from 1 through 500, inclusive, are perfect squares or perfect cubes (or both)?",
+   "choices": [
+    "27",
+    "22",
+    "25",
+    "26"
+   ],
+   "correct_answer": "27",
+   "explanation": "Medium: two routine counts and one overlap correction. The squares are 1^2 through 22^2 = 484 (23^2 = 529 is too big): 22 numbers. The cubes are 1^3 through 7^3 = 343 (8^3 = 512 is too big): 7 numbers. A number that is both is a sixth power: 1 and 64 (3^6 = 729 is too big), so 2 numbers were counted twice. The total is 22 + 7 - 2 = 27.",
+   "solve": "const sq=n=>{const r=Math.round(Math.sqrt(n));return r*r===n};const cu=n=>{const r=Math.round(Math.cbrt(n));return r*r*r===n};let c=0;for(let n=1;n<=500;n++){if(sq(n)||cu(n))c++}return String(c);",
+   "distractor_solve": {
+    "22": "// counts only the perfect squares and forgets the cubes that are not squares\nconst sq=n=>{const r=Math.round(Math.sqrt(n));return r*r===n};const cu=n=>{const r=Math.round(Math.cbrt(n));return r*r*r===n};let c=0;for(let n=1;n<=500;n++){if(sq(n))c++}return String(c);",
+    "25": "// subtracts the numbers that are both (1 and 64) twice instead of once\nconst sq=n=>{const r=Math.round(Math.sqrt(n));return r*r===n};const cu=n=>{const r=Math.round(Math.cbrt(n));return r*r*r===n};let s=0,k=0,b=0;for(let n=1;n<=500;n++){if(sq(n))s++;if(cu(n))k++;if(sq(n)&&cu(n))b++}return String(s+k-2*b);",
+    "26": "// leaves out 1, starting the squares at 4 and the cubes at 8\nconst sq=n=>{const r=Math.round(Math.sqrt(n));return r*r===n};const cu=n=>{const r=Math.round(Math.cbrt(n));return r*r*r===n};let c=0;for(let n=2;n<=500;n++){if(sq(n)||cu(n))c++}return String(c);"
+   },
+   "forced": [
+    "a positive whole number",
+    "more than the 7 cubes alone and well under 500",
+    "at most 22 + 7 = 29 (the squares and cubes counted separately)"
+   ]
+  },
+  "IM17A-20": {
+   "id": "IM17A-20",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "comparing large powers with different bases and exponents by rewriting pairs of them with a common exponent (and dividing out a shared factor)",
+   "difficulty": "hard",
+   "prompt": "Which of the following numbers is the greatest?",
+   "choices": [
+    "2^90",
+    "3^60",
+    "5^40",
+    "6^35"
+   ],
+   "correct_answer": "3^60",
+   "explanation": "Hard: one non-routine idea, applied three times - neither the base nor the exponent decides, so each pair must be rewritten with a common exponent before the bases can be compared, and the last pair needs a shared factor divided out first. 2^90 = (2^3)^30 = 8^30 and 3^60 = (3^2)^30 = 9^30, so 3^60 > 2^90. 5^40 = (5^2)^20 = 25^20 and 3^60 = (3^3)^20 = 27^20, so 3^60 > 5^40. 6^35 = 2^35 x 3^35 and 3^60 = 3^25 x 3^35; dividing both by 3^35 leaves 2^35 = (2^7)^5 = 128^5 against 3^25 = (3^5)^5 = 243^5, so 3^60 > 6^35. The greatest is 3^60.",
+   "solve": "const o=[[2,90],[3,60],[5,40],[6,35]];let best=o[0];for(const p of o){if(p[1]*Math.log(p[0])>best[1]*Math.log(best[0]))best=p}return best[0]+'^'+best[1];",
+   "distractor_solve": {
+    "2^90": "// assumes the largest exponent gives the largest number\nconst o=[[2,90],[3,60],[5,40],[6,35]];let best=o[0];for(const p of o){if(p[1]>best[1])best=p}return best[0]+'^'+best[1];",
+    "5^40": "// rewrites 2^90 = 8^30, 3^60 = 9^30, 5^40 = 25^20 (6^35 left alone) and then compares only the new bases, ignoring that the exponents are no longer equal\nconst o=[[8,'2^90'],[9,'3^60'],[25,'5^40'],[6,'6^35']];let best=o[0];for(const p of o){if(p[0]>best[0])best=p}return best[1];",
+    "6^35": "// assumes the largest base gives the largest number\nconst o=[[2,90],[3,60],[5,40],[6,35]];let best=o[0];for(const p of o){if(p[0]>best[0])best=p}return best[0]+'^'+best[1];"
+   },
+   "forced": [
+    "one of the four printed powers; the key has neither the largest base nor the largest exponent, and neither the smallest base nor the smallest exponent is the key either (base x exponent gives 180, 180, 200, 210 and points at 6^35)",
+    "every option lies between 10^27 and 10^29 (2^90 about 1.2 x 10^27, 3^60 about 4.2 x 10^28, 5^40 about 9.1 x 10^27, 6^35 about 1.7 x 10^27); the shortcuts 2^10 ~ 10^3 and 3^2 ~ 10 carry 2-11% errors compounded 9 to 30 times, so ranking by them is an unreliable estimation METHOD, not a strike of any single option",
+    "no option is struck by a size bound read off the stem: each option beats at least one other option"
+   ]
+  },
+  "IM17A-16": {
+   "id": "IM17A-16",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "evaluating an expression in a different base and a shifted exponent from a single given power (power of a power, then product of powers)",
+   "difficulty": "medium",
+   "prompt": "If 3^x = 7, what is the value of 9^x + 3^(x + 1) ?",
+   "choices": [
+    "70",
+    "35",
+    "57",
+    "84"
+   ],
+   "correct_answer": "70",
+   "explanation": "Medium: two routine exponent rules applied one after the other, with no non-routine idea. First, 9^x = (3^2)^x = (3^x)^2 = 7^2 = 49. Second, 3^(x + 1) = 3^x x 3^1 = 7 x 3 = 21. So 9^x + 3^(x + 1) = 49 + 21 = 70.",
+   "solve": "const t=7;return String(t*t+3*t);",
+   "distractor_solve": {
+    "35": "// treats 9^x = (3^x)^2 as 3^x + 3^x (doubles instead of squaring): 14 + 21\nconst t=7;return String(2*t+3*t);",
+    "57": "// treats 3^(x + 1) as 3^x + 1 = 8 (adds the 1 instead of multiplying by 3): 49 + 8\nconst t=7;return String(t*t+(t+1));",
+    "84": "// rewrites 9^x as 3^(x + 2) = 9 x 7 = 63 (adds the exponents instead of multiplying them): 63 + 21\nconst t=7;return String(9*t+3*t);"
+   },
+   "forced": [
+    "a positive integer",
+    "greater than 3^x + 3^x = 14 since 9^x > 3^x and 3^(x+1) > 3^x; all options exceed 14",
+    "no units-digit or parity property is readable from the stem without evaluating the powers (options mix odd and even)",
+    "no leading-digit estimate: x is not an integer, so no option can be checked by substituting a whole-number x"
+   ]
+  },
+  "IM17D-15": {
+   "id": "IM17D-15",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "volume of the water left in a cone filled to a fraction of its height (the water is a similar cone, so volume scales by the cube of the height ratio), then the amount removed",
+   "difficulty": "hard",
+   "prompt": "A paper cup is shaped like a cone with its point at the bottom. When the cup is filled to the brim, it holds 270 milliliters of water. Some water is poured out of the full cup, and afterward the depth of the water, measured from the point, is 2/3 of the cup's height. How many milliliters of water were poured out?",
+   "choices": [
+    "150",
+    "190",
+    "240",
+    "260"
+   ],
+   "correct_answer": "190",
+   "explanation": "Hard: it needs one non-routine idea, that the water left is a cone similar to the whole cup, so its volume is the full volume times the CUBE of the height ratio, and then a second step to turn the amount left into the amount removed. The water left forms a cone with 2/3 the height and 2/3 the radius of the cup, so its volume is (2/3)^3 = 8/27 of 270, which is 80 milliliters. The amount poured out is 270 - 80 = 190 milliliters. The option 150 scales the volume by the square of the height ratio (4/9 of 270 = 120 left), as if only the area of the surface changed. The option 260 uses the depth of the EMPTY top part, 1/3, as the scale factor and cubes it, leaving 270/27 = 10. The option 240 uses that same 1/3 for the empty top part and squares it, leaving 270/9 = 30.",
+   "solve": "const V=270; const k=2/3; const left=V*k*k*k; return String(Math.round(V-left));",
+   "distractor_solve": {
+    "150": "const V=270; const k=2/3; const left=V*k*k; return String(Math.round(V-left));",
+    "240": "const V=270; const k=1/3; const left=V*k*k; return String(Math.round(V-left));",
+    "260": "const V=270; const k=1/3; const left=V*k*k*k; return String(Math.round(V-left));"
+   },
+   "forced": [
+    "a whole number of milliliters strictly between 0 and 270 (some water stays, some is removed)",
+    "more than 90: the top third of the cup's height is its widest part, so it holds more than a third of 270",
+    "no tighter side from a rough sketch without using the cube of the height ratio",
+    "all four options are whole numbers between 90 and 270, each of the form 270 minus a whole number"
+   ]
+  },
+  "IM17C-07": {
+   "id": "IM17C-07",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "least value of a two-variable quadratic by completing the square in each variable separately",
+   "difficulty": "hard",
+   "prompt": "The numbers x and y can be any real numbers. What is the least possible value of x^2 - 6x + y^2 + 4y + 6 ?",
+   "choices": [
+    "-7",
+    "-46",
+    "-20",
+    "-19"
+   ],
+   "correct_answer": "-7",
+   "explanation": "Hard: one non-routine idea - complete the square in x and in y separately so the expression becomes a sum of two squares plus a constant. x^2 - 6x = (x - 3)^2 - 9 and y^2 + 4y = (y + 2)^2 - 4, so the expression equals (x - 3)^2 + (y + 2)^2 + 6 - 9 - 4 = (x - 3)^2 + (y + 2)^2 - 7. Both squares are at least 0 and both equal 0 when x = 3 and y = -2, so the least value is -7.",
+   "solve": "const bx=-6,by=4,c=6;return String(c-(bx/2)**2-(by/2)**2);",
+   "distractor_solve": {
+    "-46": "// completes the square by subtracting the squares of the whole coefficients, 36 and 16, instead of (6/2)^2 and (4/2)^2\nconst bx=-6,by=4,c=6;return String(c-bx*bx-by*by);",
+    "-20": "// subtracts twice the needed amounts, 2 x 9 and 2 x 4, as if the cross term 2ab were removed as well\nconst bx=-6,by=4,c=6;return String(c-2*(bx/2)**2-2*(by/2)**2);",
+    "-19": "// gets -9 and -4 for the two parts but carries the constant +6 over as -6\nconst bx=-6,by=4,c=6;return String(-c-(bx/2)**2-(by/2)**2);"
+   },
+   "forced": [
+    "at most 6 (the value at x = y = 0); every option is",
+    "a negative integer is not forced before completing the square, but every option is negative",
+    "no bound below is readable without completing the square"
+   ]
+  },
+  "IM17C-06": {
+   "id": "IM17C-06",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "building a linear function from two of its values, then evaluating it composed with itself",
+   "difficulty": "medium",
+   "prompt": "A linear function f satisfies f(2) = 1 and f(6) = 13. What is the value of f(f(3)) ?",
+   "choices": [
+    "16",
+    "22",
+    "12",
+    "7"
+   ],
+   "correct_answer": "7",
+   "explanation": "Medium: a routine chain - slope from two values, the rule, then two evaluations in the right order. The slope is (13 - 1)/(6 - 2) = 3, so f(x) = 3x + b with 1 = 3(2) + b, b = -5, and f(x) = 3x - 5. Then f(3) = 4 and f(f(3)) = f(4) = 3(4) - 5 = 7.",
+   "solve": "const m=(13-1)/(6-2);const b=1-m*2;const f=x=>m*x+b;return String(f(f(3)));",
+   "distractor_solve": {
+    "16": "// reads f(f(3)) as f(3) times f(3)\nconst m=(13-1)/(6-2);const b=1-m*2;const f=x=>m*x+b;return String(f(3)*f(3));",
+    "22": "// composes the inputs instead of the function: evaluates f(3 x 3) = f(9)\nconst m=(13-1)/(6-2);const b=1-m*2;const f=x=>m*x+b;return String(f(3*3));",
+    "12": "// applies only the slope the second time: f(f(3)) = 3 x f(3)\nconst m=(13-1)/(6-2);const b=1-m*2;const f=x=>m*x+b;return String(m*f(3));"
+   },
+   "forced": [
+    "f is increasing (f(2) < f(6)), so 1 < f(3) < 13 and f(f(3)) lies between f(1) = -2 and f(13) = 34; every option does",
+    "an integer (slope and intercept are integers), as every option is",
+    "no parity forced without the rule"
+   ]
+  },
+  "IM17C-10": {
+   "id": "IM17C-10",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "two equations in three unknowns: the unknowns cannot be found, but a requested combination can be built from the sum and the difference of the equations",
+   "difficulty": "hard",
+   "prompt": "The numbers x, y, and z satisfy both of the equations below.\nx + 2y + 3z = 26\n3x + 2y + z = 14\nWhat is the value of 2x + 3y + 4z ?",
+   "choices": [
+    "30",
+    "66",
+    "36",
+    "40"
+   ],
+   "correct_answer": "36",
+   "explanation": "Hard: one non-routine idea - two equations cannot pin down three unknowns, so instead of solving, the asked expression must be built out of combinations of the equations. Adding the equations gives 4x + 4y + 4z = 40, so x + y + z = 10. Subtracting the second from the first gives -2x + 2z = 12, so z - x = 6. Since 2x + 3y + 4z = 3(x + y + z) + (z - x), its value is 3(10) + 6 = 36. (For example, x = 0, y = 4, z = 6 satisfies both equations and gives 0 + 12 + 24 = 36.)",
+   "solve": "// any solution: z = t, x = t - 6, y = 16 - 2t; check both equations, then evaluate\nconst t=6;const x=t-6,y=16-2*t,z=t;if(x+2*y+3*z!==26||3*x+2*y+z!==14)return 'bad';return String(2*x+3*y+4*z);",
+   "distractor_solve": {
+    "30": "// finds x + y + z = 10 and multiplies by 3, never accounting for the extra z - x\nconst s=(26+14)/4;return String(3*s);",
+    "66": "// halves instead of quartering after adding: x + y + z = 40/2 = 20, then 3(20) + 6\nconst s=(26+14)/2;const d=(26-14)/2;return String(3*s+d);",
+    "40": "// adds the two equations and reports the total 4x + 4y + 4z as the asked expression\nreturn String(26+14);"
+   },
+   "forced": [
+    "no sign, size, parity or integer property is readable from the stem: x, y and z are unrestricted real numbers",
+    "the expression is not a multiple of x + y + z, so no divisibility by 3 or 4 is forced",
+    "the printed constants 26 and 14 give no bound on 2x + 3y + 4z without combining the equations"
+   ]
+  },
+  "IM17E-15": {
+   "id": "IM17E-15",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "position in a digit string built from the counting numbers (subtract the one-digit and two-digit blocks, then divide the rest by 3 with care at the remainder)",
+   "difficulty": "hard",
+   "prompt": "The counting numbers are written one after another with no spaces, beginning 123456789101112131415... . The 700th digit written is one of the digits of a certain counting number. What is that number?",
+   "choices": [
+    "264",
+    "270",
+    "273",
+    "330"
+   ],
+   "correct_answer": "270",
+   "explanation": "Hard: three dependent steps, none a recall fact - count the digits used by the one-digit numbers, then by the two-digit numbers, then locate the remaining position among the three-digit numbers, rounding up correctly. The numbers 1 to 9 use 9 digits and 10 to 99 use 90 x 2 = 180 digits, 189 in all. That leaves 700 - 189 = 511 digits written by three-digit numbers. Since 511 = 3 x 170 + 1, the first 170 three-digit numbers (100 through 269) are written in full, and the 700th digit is the 1st digit of the next one, 270.",
+   "solve": "let s='';for(let n=1;n<2000;n++){s+=String(n);if(s.length>=700)return String(n);}",
+   "distractor_solve": {
+    "264": "// counts 1 to 9 twice: 9 one-digit digits, then treats all 99 numbers from 1 to 99 as two-digit (198 digits)\nconst r=700-9-198;return String(100+Math.ceil(r/3)-1);",
+    "273": "// forgets the one-digit block and subtracts only the 180 digits of 10 to 99\nconst r=700-180;return String(100+Math.ceil(r/3)-1);",
+    "330": "// forgets the two-digit block and subtracts only the 9 digits of 1 to 9\nconst r=700-9;return String(100+Math.ceil(r/3)-1);"
+   },
+   "forced": [
+    "a three-digit number: 1 to 99 use fewer than 200 digits; every option is three-digit",
+    "at least 700/3, so at least 234, since no number below 1,000 uses more than 3 digits; every option is at least 264",
+    "at most 354, since every number from 10 on uses at least 2 digits (9 + 2(n - 9) <= 700); every option is at most 330",
+    "no parity or digit pattern is forced; options are three even and one odd, and the key is even"
+   ]
+  },
+  "IM17E-03": {
+   "id": "IM17E-03",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "day of the week of a later date in the same year: count the days month by month, then reduce by whole weeks",
+   "difficulty": "medium",
+   "prompt": "In a certain year, March 1 falls on a Sunday. On what day of the week does December 25 of that same year fall?",
+   "choices": [
+    "Tuesday",
+    "Friday",
+    "Saturday",
+    "Sunday"
+   ],
+   "correct_answer": "Friday",
+   "explanation": "Medium: a routine chain - add the month lengths, then remove whole weeks; the only care needed is the month lengths and not counting the starting day. From March 1 to December 1 is 31 + 30 + 31 + 30 + 31 + 31 + 30 + 31 + 30 = 275 days (March through November), and December 25 is 24 days later, 299 days after March 1. Since 299 = 42 x 7 + 5, December 25 is 5 days of the week after Sunday: Friday. (February is not crossed, so leap years do not matter.)",
+   "solve": "const lens=[31,30,31,30,31,31,30,31,30];const n=lens.reduce((a,b)=>a+b,0)+24;const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[n%7];",
+   "distractor_solve": {
+    "Saturday": "// counts both end days (300 days instead of 299)\nconst lens=[31,30,31,30,31,31,30,31,30];const n=lens.reduce((a,b)=>a+b,0)+25;const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[n%7];",
+    "Sunday": "// treats every month as 30 days: 9 x 30 + 24 = 294, a whole number of weeks\nconst n=9*30+24;const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[n%7];",
+    "Tuesday": "// treats every month as 31 days: 9 x 31 + 24 = 303\nconst n=9*31+24;const d=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];return d[n%7];"
+   },
+   "forced": [
+    "a day of the week; every option is one",
+    "no weekday is excluded by the stem (the stem names only Sunday, and Sunday is kept as an option produced by a named error path, not as a limiting case)",
+    "no numeric extremity applies (non-numeric options)"
+   ]
+  },
+  "IM17F-13": {
+   "id": "IM17F-13",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "counting the numbers below 1000 whose digits have a given product (list the digit sets by size, then count the orders of each set, with fewer orders when a digit repeats)",
+   "difficulty": "medium",
+   "prompt": "How many positive integers less than 1,000 have digits whose product is 12? (The product of the digits of a number is found by multiplying all of its digits together.)",
+   "choices": [
+    "15",
+    "22",
+    "19",
+    "13"
+   ],
+   "correct_answer": "19",
+   "explanation": "Medium: it is an organized case count with routine steps, listing the digit sets with product 12 and counting the orders of each. No single digit is 12. Two-digit numbers use the digits 2 and 6 or 3 and 4, each in 2 orders: 26, 62, 34, 43, so 4 numbers. Three-digit numbers use the digit sets {1, 2, 6} and {1, 3, 4}, each in 3 x 2 x 1 = 6 orders, and {2, 2, 3}, which has only 3 orders (223, 232, 322) because two digits are the same. That gives 6 + 6 + 3 = 15 three-digit numbers, and 4 + 15 = 19 in all. The option 15 counts only the three-digit numbers. The option 22 gives the set {2, 2, 3} 6 orders, as though its digits were all different: 4 + 6 + 6 + 6. The option 13 misses the set {1, 3, 4} among the three-digit numbers: 4 + 6 + 3.",
+   "solve": "let c=0; for(let n=1;n<1000;n++){ const p=String(n).split('').reduce((a,d)=>a*Number(d),1); if(p===12)c++; } return String(c);",
+   "distractor_solve": {
+    "15": "let c=0; for(let n=100;n<1000;n++){ const p=String(n).split('').reduce((a,d)=>a*Number(d),1); if(p===12)c++; } return String(c);",
+    "22": "const two=4; const sets=[[1,2,6],[1,3,4],[2,2,3]]; return String(two+sets.length*6);",
+    "13": "const two=4; return String(two+6+3);"
+   },
+   "forced": [
+    "a positive whole number",
+    "at least the 4 two-digit numbers 26, 62, 34, 43 and at most 6 orders for each three-digit digit set plus those 4; all options lie between 4 and 30",
+    "no parity, multiple or units-digit property is forced (15, 22, 19, 13 mix odd and even)",
+    "no option is another option plus or minus a printed number (the only printed numbers are 1,000 and 12)"
+   ]
+  }
+ },
+ "dropped_prefreeze": {
+  "IM17B-16": {
+   "id": "IM17B-16",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "total cost from two equal selling prices, one at a percent profit on cost and one at a percent loss on cost (reverse percent on each)",
+   "difficulty": "medium",
+   "prompt": "A dealer sold two used bicycles for $240 each. On the first bicycle, she made a profit equal to 20 percent of what she had paid for it. On the second bicycle, she took a loss equal to 20 percent of what she had paid for it. How many dollars had she paid for the two bicycles altogether?",
+   "choices": [
+    "488",
+    "492",
+    "500",
+    "588"
+   ],
+   "correct_answer": "500",
+   "explanation": "Medium: two routine reverse-percent steps and a sum, with the only trap being which price the 20 percent is taken of. The first bicycle sold for 120 percent of its cost, so it cost 240 / 1.2 = 200 dollars. The second sold for 80 percent of its cost, so it cost 240 / 0.8 = 300 dollars. Together she paid 200 + 300 = 500 dollars. The option \"488\" finds the second cost by adding 20 percent of the selling price, 240 + 48 = 288. The option \"492\" finds the first cost by subtracting 20 percent of the selling price, 240 - 48 = 192. The option \"588\" multiplies 240 by 1.2 for the first bicycle, giving it a cost of 288 that is higher than its selling price.",
+   "solve": "const s=240, p=0.2; return String(Math.round(s/(1+p) + s/(1-p)));",
+   "distractor_solve": {
+    "488": "const s=240, p=0.2; return String(Math.round(s/(1+p) + s*(1+p)));",
+    "492": "const s=240, p=0.2; return String(Math.round(s*(1-p) + s/(1-p)));",
+    "588": "const s=240, p=0.2; return String(Math.round(s*(1+p) + s/(1-p)));"
+   },
+   "forced": [
+    "between 400 and 600: each cost is the selling price divided by a number between 0.8 and 1.2",
+    "a whole number of dollars",
+    "all four options lie strictly between 480 and 600"
+   ]
+  },
+  "IM17F-13": {
+   "id": "IM17F-13",
+   "family": "isee",
+   "section": "math",
+   "domain": "Math",
+   "subskill": "overlapping sets where the two set sizes are given only by a ratio (write the union with the overlap counted once, solve, then remove the overlap)",
+   "difficulty": "medium",
+   "prompt": "Each of the 48 students in a class has a dog, a cat, or both. Exactly 4 of the students have both a dog and a cat. The number of students who have a dog is three times the number of students who have a cat. How many students have a dog but not a cat?",
+   "choices": [
+    "32",
+    "27",
+    "35",
+    "33"
+   ],
+   "correct_answer": "35",
+   "explanation": "Medium: it takes two routine steps, one equation for the overlapping groups and one subtraction, with no unusual idea. Let c be the number of students who have a cat, so 3c have a dog. Adding the two groups counts the 4 students with both pets twice, so c + 3c - 4 = 48, which gives 4c = 52 and c = 13. Then 3 x 13 = 39 students have a dog, and 39 - 4 = 35 have a dog but not a cat. (Check: 9 cat only + 4 both + 35 dog only = 48.) The option 32 forgets that the 4 students with both pets are counted twice: c + 3c = 48 gives c = 12, 36 dog owners, and 36 - 4 = 32. The option 33 applies the 3-to-1 ratio to the 'only' groups instead of the whole groups: x + 3x + 4 = 48 gives x = 11 and 3 x 11 = 33. The option 27 finds c = 13 correctly but then triples the cat-only count, 3 x (13 - 4) = 27, instead of taking the dog owners minus the 4 with both.",
+   "solve": "const T=48,B=4,r=3; const c=(T+B)/(1+r); return String(r*c-B);",
+   "distractor_solve": {
+    "32": "const T=48,B=4,r=3; const c=T/(1+r); return String(r*c-B);",
+    "33": "const T=48,B=4,r=3; const x=(T-B)/(1+r); return String(r*x);",
+    "27": "const T=48,B=4,r=3; const c=(T+B)/(1+r); return String(r*(c-B));"
+   },
+   "forced": [
+    "a positive whole number",
+    "at most 48 - 4 = 44, since the 4 students with both are not counted (all options are at most 35)",
+    "more than 20: dog owners outnumber cat owners three to one among 48 students, so well over half of them have a dog (all options are 27 or more)",
+    "no parity, multiple or units-digit property is forced (32, 27, 35, 33 mix odd and even)",
+    "no option is another option plus or minus a printed number (48, 4, 3): differences are 5, 3, 1, 8, 6, 2; the total dog owners 39 (= key + 4) is not offered"
+   ]
+  }
+ }
+}

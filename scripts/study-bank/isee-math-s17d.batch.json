@@ -1,0 +1,582 @@
+[
+ {
+  "id": "IM17D-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "angle chase with the law of reflection between two mirrors (corresponding angles, equal reflection angles, triangle sums)",
+  "difficulty": "hard",
+  "prompt": "Two flat mirrors lie along rays OA and OB, which meet at point O to form an angle of 50 degrees, and both mirrors face into that 50-degree opening. A beam of light inside the opening travels parallel to OB, in the direction from B toward O. It strikes mirror OA at point P, bounces to strike mirror OB at point Q, and bounces again to strike mirror OA at point R. Each time the beam bounces, it makes equal angles with the mirror before and after the bounce. What is the measure, in degrees, of the acute angle between the beam and mirror OA at point R?",
+  "choices": [
+   "80",
+   "20",
+   "40",
+   "30"
+  ],
+  "correct_answer": "30",
+  "explanation": "Hard: the answer needs four dependent steps that mix two different rules (parallel-line angles and the law of reflection) with two triangle sums, and the reflected beam must be placed on the correct side at each mirror. Because the incoming beam is parallel to OB, it meets OA at a 50-degree angle (corresponding angles), so after bouncing it leaves P making angle OPQ = 50 degrees. In triangle OPQ, angle OQP = 180 - 50 - 50 = 80 degrees, so the beam leaves Q making 80 degrees with the mirror on the other side, and the angle inside triangle OQR at Q is 180 - 80 = 100 degrees. In triangle OQR, the angle at R is 180 - 50 - 100 = 30 degrees. The option 80 is the angle at the first bounce off OB, not at R. The option 20 is angle PQR, the angle between the two beam segments at Q (180 - 80 - 80). The option 40 measures the bounce at P from the perpendicular instead of from the mirror (90 - 50 = 40), which makes angle OQP 90 degrees and the angle at R 180 - 50 - 90 = 40.",
+  "solve": "const t=50; const p=t; const q=180-t-p; const qIn=180-q; return 180-t-qIn;",
+  "distractor_solve": {
+   "20": "const t=50; const p=t; const q=180-t-p; return 180-2*q;",
+   "40": "const t=50; const p=90-t; const q=180-t-p; const qIn=180-q; return 180-t-qIn;",
+   "80": "const t=50; const p=t; return 180-t-p;"
+  },
+  "forced": [
+   "acute: strictly between 0 and 90 (the question asks for the acute angle)",
+   "a whole number of degrees that is a multiple of 10 (every angle is built from 50, 90 and 180)",
+   "no monotone direction is forced: the beam's angle with a mirror first rises (50 at P, 80 at Q) before this one, so 'smaller than 50' cannot be read off without the chase",
+   "all four options are acute multiples of 10, two below and two at or above 30"
+  ]
+ },
+ {
+  "id": "IM17D-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "count the non-congruent whole-number triangles with a given perimeter (organize by the longest side, triangle inequality)",
+  "difficulty": "hard",
+  "prompt": "A triangle has a perimeter of 15 centimeters, and each of its three sides is a whole number of centimeters. How many such triangles are possible, if triangles that are congruent to each other are counted only once?",
+  "choices": [
+   "12",
+   "3",
+   "7",
+   "10"
+  ],
+  "correct_answer": "7",
+  "explanation": "Hard: there is no formula to recall; the count needs one organizing idea, listing by the longest side, which the triangle inequality pins between 5 and 7. Write the sides as a <= b <= c with a + b + c = 15. The longest side c is at least 5 (it is at least the average) and less than 15/2, so at most 7, because c must be less than a + b = 15 - c. If c = 7, then a + b = 8 with b <= 7: (1, 7), (2, 6), (3, 5), (4, 4), so 4 triangles. If c = 6, then a + b = 9 with b <= 6: (3, 6), (4, 5), so 2 triangles. If c = 5, then a = b = 5, so 1 triangle. The total is 4 + 2 + 1 = 7. The option 12 counts (a, b) and (b, a) as different for each longest side (7 + 4 + 1). The option 3 counts only triangles with three different side lengths: (2, 6, 7), (3, 5, 7), (4, 5, 6). The option 10 also lets the longest side be 8 (rounding 15/2 up), adding (1, 6, 8), (2, 5, 8), (3, 4, 8), which cannot close up into triangles.",
+  "solve": "const P=15; let n=0; for(let c=1;c<P;c++)for(let b=1;b<=c;b++){const a=P-b-c; if(a>=1&&a<=b&&a+b>c)n++;} return n;",
+  "distractor_solve": {
+   "3": "const P=15; let n=0; for(let c=1;c<P;c++)for(let b=1;b<c;b++){const a=P-b-c; if(a>=1&&a<b&&a+b>c)n++;} return n;",
+   "10": "const P=15; let n=0; for(let c=Math.ceil(P/3);c<=Math.ceil(P/2);c++)for(let b=1;b<=c;b++){const a=P-b-c; if(a>=1&&a<=b)n++;} return n;",
+   "12": "const P=15; let n=0; for(let c=5;c<=7;c++)for(let a=1;a<=c;a++){const b=P-c-a; if(b>=1&&b<=c&&a+b>c)n++;} return n;"
+  },
+  "forced": [
+   "a positive whole number",
+   "fewer than the number of ways to split 15 into three positive whole parts with no triangle condition (19), and at least 1 since 5, 5, 5 works",
+   "no parity or factor forced: the count is a sum over the possible longest sides",
+   "all four options are whole numbers between 1 and 19"
+  ]
+ },
+ {
+  "id": "IM17D-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "angle where two extended sides of a regular polygon meet (exterior angles as base angles of an outside triangle)",
+  "difficulty": "medium",
+  "prompt": "ABCDEFGHI is a regular polygon with nine sides. Side AB is extended beyond B, and side DC is extended beyond C, until the two extensions meet at point P outside the polygon. What is the measure of angle BPC, in degrees?",
+  "choices": [
+   "40",
+   "140",
+   "100",
+   "20"
+  ],
+  "correct_answer": "100",
+  "explanation": "Medium: it is a short chain of routine steps (interior angle, its supplement, then the angle sum of a triangle) with no single non-routine idea. Each interior angle of a regular nine-sided polygon is (9 - 2) x 180 / 9 = 140 degrees. At B, angle PBC is the supplement of the interior angle ABC, so it is 180 - 140 = 40 degrees; likewise angle PCB = 40 degrees. In triangle PBC, angle BPC = 180 - 40 - 40 = 100 degrees. The option 140 assumes the angle at P equals an interior angle of the polygon. The option 40 reports the exterior angle at B instead of the angle at P. The option 20 subtracts a 40-degree turn at each of the four vertices A, B, C and D named by the two sides, 180 - 4 x 40, instead of only the two turns at B and C.",
+  "solve": "const n=9; const interior=(n-2)*180/n; const ext=180-interior; return 180-2*ext;",
+  "distractor_solve": {
+   "20": "const n=9; const ext=180-(n-2)*180/n; return 180-4*ext;",
+   "40": "const n=9; return 180-(n-2)*180/n;",
+   "140": "const n=9; return (n-2)*180/n;"
+  },
+  "forced": [
+   "an angle of triangle PBC: strictly between 0 and 180",
+   "a multiple of 20 (every angle in play is built from 180 and 140)",
+   "no acute/obtuse side forced without the computation",
+   "all four options are multiples of 20 strictly between 0 and 180, two acute and two obtuse"
+  ]
+ },
+ {
+  "id": "IM17D-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "altitude of a scalene triangle from its three sides by subtracting two Pythagorean equations that share the altitude",
+  "difficulty": "hard",
+  "prompt": "A triangle has sides of length 17 centimeters, 25 centimeters, and 28 centimeters. What is the length, in centimeters, of the altitude drawn to the 28-centimeter side?",
+  "choices": [
+   "8",
+   "12",
+   "6",
+   "15"
+  ],
+  "correct_answer": "15",
+  "explanation": "Hard: the triangle is neither right nor isosceles, so the foot of the altitude is not at a known point; the solver must set up two Pythagorean equations that share the unknown altitude and subtract them to eliminate it, a non-routine idea, and only then find the altitude. Let the altitude h meet the 28-centimeter side, splitting it into x (next to the 17 side) and 28 - x. Then x^2 + h^2 = 289 and (28 - x)^2 + h^2 = 625. Subtracting the first from the second gives 784 - 56x = 336, so x = 8. Then h^2 = 289 - 64 = 225, so h = 15. The option 8 is the piece x of the base, not the altitude. The option 12 is the difference between the two pieces of the base, 20 - 8. The option 6 drops the 784 when expanding (28 - x)^2, giving 56x = 625 - 289 = 336 and x = 6, and reports that value.",
+  "solve": "const a=17,b=25,c=28; const x=(c*c+a*a-b*b)/(2*c); return Math.sqrt(a*a-x*x);",
+  "distractor_solve": {
+   "6": "const a=17,b=25,c=28; return (b*b-a*a)/(2*c);",
+   "8": "const a=17,b=25,c=28; return (c*c+a*a-b*b)/(2*c);",
+   "12": "const a=17,b=25,c=28; const x=(c*c+a*a-b*b)/(2*c); return (c-x)-x;"
+  },
+  "forced": [
+   "positive",
+   "less than 17: an altitude from a vertex is shorter than either side from that vertex; all four options are below 17",
+   "not forced to be a whole number (the foot of the altitude is at an unknown point); all four options are whole numbers",
+   "no rough estimate fixes its size: the triangle's shape is not readable from the side lengths without the method; options span 6 to 15"
+  ]
+ },
+ {
+  "id": "IM17D-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance from an interior point to the fourth corner of a rectangle (Pythagorean theorem on four right triangles; opposite corners pair up)",
+  "difficulty": "hard",
+  "prompt": "ABCD is a rectangle, with its corners labeled in order around it. Point P is inside the rectangle. The distance from P to A is 3 centimeters, the distance from P to B is 4 centimeters, and the distance from P to C is 5 centimeters. What is the distance from P to D, in centimeters?",
+  "choices": [
+   "5",
+   "3sqrt(2)",
+   "sqrt(41)",
+   "sqrt(34)"
+  ],
+  "correct_answer": "3sqrt(2)",
+  "explanation": "Hard: the rectangle's size is not given, so it needs one non-routine idea: drop perpendiculars from P to the sides and notice that the squared distances to OPPOSITE corners have the same total. Let P be x from side AD, y from side AB, and let the rectangle be w by h. Then PA^2 = x^2 + y^2, PB^2 = (w - x)^2 + y^2, PC^2 = (w - x)^2 + (h - y)^2 and PD^2 = x^2 + (h - y)^2, so PA^2 + PC^2 = PB^2 + PD^2. Hence 9 + 25 = 16 + PD^2, PD^2 = 18 and PD = sqrt(18) = 3sqrt(2). The option sqrt(41) treats PB and PC as the legs of a right triangle with PD as its hypotenuse, sqrt(16 + 25). The option 5 treats PA and PB as the legs of a right triangle with PD as its hypotenuse, sqrt(9 + 16). The option sqrt(34) adds PA^2 and PC^2 and forgets to subtract PB^2.",
+  "solve": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const a=3,b=4,c=5; return rad(a*a+c*c-b*b);",
+  "distractor_solve": {
+   "5": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const a=3,b=4; return rad(a*a+b*b);",
+   "sqrt(34)": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const a=3,c=5; return rad(a*a+c*c);",
+   "sqrt(41)": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const b=4,c=5; return rad(b*b+c*c);"
+  },
+  "forced": [
+   "positive",
+   "the square root of a whole number: every given length squares to a whole number and the method only adds and subtracts squares",
+   "no range forced from the stem: the rectangle's sides are not given, so P can sit anywhere consistent with the three distances",
+   "all four options are square roots of whole numbers (25, 18, 41, 34) between 4 and 7"
+  ]
+ },
+ {
+  "id": "IM17D-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "broken tree: Pythagorean theorem with the two unknown pieces summing to a known length",
+  "difficulty": "medium",
+  "prompt": "A tree 32 feet tall snaps at a point partway up its trunk. The bottom part stays standing straight up, and the top part, still attached at the break, falls so that its tip touches the level ground 16 feet from the base of the trunk. How long, in feet, is the top part that fell?",
+  "choices": [
+   "16sqrt(2)",
+   "24",
+   "16sqrt(3)",
+   "20"
+  ],
+  "correct_answer": "20",
+  "explanation": "Medium: it is one Pythagorean equation in a single unknown, set up from a routine picture; the only care needed is that the two pieces add to 32. Let the fallen top part be f feet, so the standing part is 32 - f. The standing part, the 16 feet of ground, and the fallen part form a right triangle with the fallen part as the hypotenuse: (32 - f)^2 + 16^2 = f^2. Expanding, 1024 - 64f + f^2 + 256 = f^2, so 64f = 1280 and f = 20. (The break is 12 feet up; 12, 16, 20 is a right triangle.) The option 24 treats the lengths as if they added along a line, f - (32 - f) = 16. The option 16sqrt(3) uses the whole 32-foot tree as the hypotenuse with 16 as a leg and reports the other leg, sqrt(32^2 - 16^2). The option 16sqrt(2) assumes the tree broke halfway up, at 16 feet, and finds the hypotenuse sqrt(16^2 + 16^2).",
+  "solve": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const T=32,g=16; return rad(Math.round(((T*T+g*g)/(2*T))**2));",
+  "distractor_solve": {
+   "24": "const T=32,g=16; return (T+g)/2;",
+   "16sqrt(3)": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const T=32,g=16; return rad(T*T-g*g);",
+   "16sqrt(2)": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const T=32,g=16; const h=T/2; return rad(h*h+g*g);"
+  },
+  "forced": [
+   "longer than 16, the ground distance, because the fallen part is the hypotenuse",
+   "shorter than 32, the whole tree",
+   "longer than the standing part, so more than half of 32, i.e. more than 16",
+   "all four options lie strictly between 16 and 32 (about 20, 22.6, 24, 27.7)"
+  ]
+ },
+ {
+  "id": "IM17D-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of the ring between two concentric circles from a chord of the larger circle tangent to the smaller (R^2 - r^2 from one right triangle, radii never found)",
+  "difficulty": "hard",
+  "prompt": "Two circles have the same center. A chord of the larger circle is 16 centimeters long and touches the smaller circle at exactly one point. What is the area, in square centimeters, of the ring-shaped region that is inside the larger circle but outside the smaller circle?",
+  "choices": [
+   "100π",
+   "64π",
+   "192π",
+   "256π"
+  ],
+  "correct_answer": "64π",
+  "explanation": "Hard: neither radius can be found, so it needs one non-routine idea: the ring's area depends only on R^2 - r^2, and one right triangle gives that difference directly. The radius to the point of tangency (length r) is perpendicular to the chord and meets it at its midpoint, so the center, that point, and an end of the chord form a right triangle with legs r and 8 and hypotenuse R. Then R^2 - r^2 = 8^2 = 64, and the ring's area is pi R^2 - pi r^2 = 64π. The option 256π uses the whole chord, 16, in place of half of it. The option 192π uses the whole chord as the larger radius and half of it as the smaller, pi(16^2 - 8^2). The option 100π assumes the radii are 6 and 10 (a 6-8-10 triangle) and gives the area of the whole larger circle without removing the smaller one.",
+  "solve": "const c=16; const h=c/2; return (h*h)+'π';",
+  "distractor_solve": {
+   "256π": "const c=16; return (c*c)+'π';",
+   "192π": "const c=16; const h=c/2; return (c*c-h*h)+'π';",
+   "100π": "const c=16; const h=c/2; const r=6; const R=Math.sqrt(r*r+h*h); return (R*R)+'π';"
+  },
+  "forced": [
+   "positive and a whole-number multiple of pi (pi R^2 - pi r^2 with R^2 - r^2 a whole number)",
+   "no bound from the stem: the radii are not given, and the chord only says the larger radius exceeds 8",
+   "all four options are whole-number multiples of pi with multipliers 64, 100, 192, 256"
+  ]
+ },
+ {
+  "id": "IM17D-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of an isosceles trapezoid that has an inscribed circle (equal tangent segments give the legs, then the Pythagorean theorem gives the height)",
+  "difficulty": "hard",
+  "prompt": "An isosceles trapezoid has parallel sides of length 8 centimeters and 18 centimeters. A circle can be drawn inside the trapezoid so that it touches all four sides. What is the area of the trapezoid, in square centimeters?",
+  "choices": [
+   "156",
+   "65",
+   "104",
+   "78"
+  ],
+  "correct_answer": "156",
+  "explanation": "Hard: the height is not given, and finding it needs one non-routine idea: the two tangent segments from any corner to the circle are equal, so each leg equals half the sum of the parallel sides; then the Pythagorean theorem and the area formula follow. From each corner, the two tangent segments are equal, so the two legs together equal the two parallel sides together: 2 x leg = 8 + 18, and each leg is 13. Dropping perpendiculars from the ends of the short side leaves a piece (18 - 8)/2 = 5 on each end of the long side, so each leg is the hypotenuse of a right triangle with legs 5 and the height: height = sqrt(13^2 - 5^2) = 12. The area is (8 + 18)/2 x 12 = 13 x 12 = 156 square centimeters. The option 65 takes the other leg of the 5-12-13 triangle, 5, as the height. The option 78 uses the circle's radius, 6, as the height instead of its diameter, 12. The option 104 assumes the circle's diameter equals the shorter parallel side, 8, and uses that as the height.",
+  "solve": "const a=8,b=18; const L=(a+b)/2; const h=Math.sqrt(L*L-((b-a)/2)**2); return (a+b)/2*h;",
+  "distractor_solve": {
+   "65": "const a=8,b=18; return (a+b)/2*((b-a)/2);",
+   "78": "const a=8,b=18; const L=(a+b)/2; const h=Math.sqrt(L*L-((b-a)/2)**2); return (a+b)/2*(h/2);",
+   "104": "const a=8,b=18; return (a+b)/2*a;"
+  },
+  "forced": [
+   "positive",
+   "equal to (8 + 18)/2 = 13 times the height, so a multiple of 13 whenever the height is a whole number",
+   "the height is unknown from the stem; the only estimate (the circle fits inside the middle width 13) caps the area below 13 x 13 = 169",
+   "all four options are 13 times a whole number below 13 (5, 6, 8, 12), so all are below 169"
+  ]
+ },
+ {
+  "id": "IM17D-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "largest angle of an inscribed triangle from the ratio of the three arcs (inscribed angle is half its arc)",
+  "difficulty": "medium",
+  "prompt": "The three vertices of a triangle lie on a circle and divide the circle into three arcs, none of which contains a vertex in its interior. The lengths of the three arcs are in the ratio 3 : 4 : 5. What is the measure, in degrees, of the largest angle of the triangle?",
+  "choices": [
+   "120",
+   "75",
+   "150",
+   "90"
+  ],
+  "correct_answer": "75",
+  "explanation": "Medium: two routine steps, splitting 360 degrees in a ratio and then halving one arc by the inscribed angle theorem. The arcs measure 360 x 3/12 = 90, 360 x 4/12 = 120 and 360 x 5/12 = 150 degrees. Each angle of the triangle is inscribed in the circle and cuts off the arc opposite it, so it is half of that arc. The largest angle is opposite the 150-degree arc, so it measures 150/2 = 75 degrees. (The three angles are 45, 60 and 75, which add to 180.) The option 150 reports the largest arc itself without halving it. The option 120 matches the largest angle to the middle arc, 360 x 4/12, and does not halve it. The option 90 reads 3 : 4 : 5 as the sides of a right triangle and gives the right angle.",
+  "solve": "const r=[3,4,5]; const t=r[0]+r[1]+r[2]; return 360*Math.max(...r)/t/2;",
+  "distractor_solve": {
+   "90": "const r=[3,4,5]; return (r[0]*r[0]+r[1]*r[1]===r[2]*r[2])?90:0;",
+   "120": "const r=[3,4,5]; const t=r[0]+r[1]+r[2]; return 360*r[1]/t;",
+   "150": "const r=[3,4,5]; const t=r[0]+r[1]+r[2]; return 360*Math.max(...r)/t;"
+  },
+  "forced": [
+   "the largest angle of a triangle: at least 60 and less than 180",
+   "a whole number of degrees that is a multiple of 15 (360/12 = 30 per ratio unit, possibly halved)",
+   "no acute/obtuse side forced without the inscribed angle theorem",
+   "all four options are multiples of 15 between 60 and 180"
+  ]
+ },
+ {
+  "id": "IM17D-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of the circle through the three vertices of an isosceles triangle (center on the altitude, one Pythagorean equation in the radius)",
+  "difficulty": "hard",
+  "prompt": "A triangle has sides of length 10, 10, and 12 centimeters. A circle passes through all three vertices of the triangle. What is the area of the circle, in square centimeters?",
+  "choices": [
+   "388π/9",
+   "625π/16",
+   "1156π/25",
+   "50π"
+  ],
+  "correct_answer": "625π/16",
+  "explanation": "Hard: three dependent steps, none a recall fact: find the altitude, see that the circle's center must lie on it (it is equally far from the two base corners), and then solve an equation in the radius before squaring. The altitude from the top vertex to the 12-centimeter side meets it at its midpoint, so the altitude is sqrt(10^2 - 6^2) = 8. The center lies on this altitude, R from the top vertex, so it is 8 - R above the base. Its distance to a base corner is also R: (8 - R)^2 + 6^2 = R^2, so 64 - 16R + 36 = 0 and R = 100/16 = 25/4. The area is π(25/4)^2 = 625π/16 square centimeters. The option 388π/9 puts the center at the point where the medians meet, 8/3 above the base, and squares its distance to a base corner, 6^2 + (8/3)^2. The option 1156π/25 uses the side 10 in place of the altitude 8 in the equation, (10 - R)^2 + 6^2 = R^2, so R = 34/5. The option 50π expands (8 - R)^2 as 64 - R^2, giving 100 = 2R^2.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);return d/k===1?(n/k)+'π':(n/k)+'π/'+(d/k);}; const s=10,b=12; const h=Math.sqrt(s*s-(b/2)**2); /* R=(h^2+(b/2)^2)/(2h) */ const num=h*h+(b/2)**2, den=2*h; return f(num*num,den*den);",
+  "distractor_solve": {
+   "388π/9": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);return d/k===1?(n/k)+'π':(n/k)+'π/'+(d/k);}; const s=10,b=12; const h=Math.sqrt(s*s-(b/2)**2); /* center at centroid, h/3 above base */ return f((b/2)**2*9+h*h,9);",
+   "1156π/25": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);return d/k===1?(n/k)+'π':(n/k)+'π/'+(d/k);}; const s=10,b=12; const H=s; const num=H*H+(b/2)**2, den=2*H; return f(num*num,den*den);",
+   "50π": "const s=10,b=12; const h=Math.sqrt(s*s-(b/2)**2); /* h^2 - R^2 + (b/2)^2 = R^2 */ return ((h*h+(b/2)**2)/2)+'π';"
+  },
+  "forced": [
+   "a positive multiple of pi",
+   "the 12-centimeter side is a chord, so the diameter is at least 12, R at least 6 and the area at least 36π",
+   "the triangle is acute (10^2 + 10^2 > 12^2), so the center is inside it and R is less than the altitude 8: the area is below 64π",
+   "all four options lie strictly between 36π and 64π (about 39.1π, 43.1π, 46.2π, 50π)"
+  ]
+ },
+ {
+  "id": "IM17D-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "apex angle of an isosceles triangle between two parallel lines (alternate interior angles give a base angle)",
+  "difficulty": "medium",
+  "prompt": "Lines l and m are parallel. Point A lies on line l, and points B and C lie on line m. In triangle ABC, AB = AC. The acute angle between line l and segment AB is 50 degrees. What is the measure of angle BAC, in degrees?",
+  "choices": [
+   "65",
+   "40",
+   "130",
+   "80"
+  ],
+  "correct_answer": "80",
+  "explanation": "Medium: two routine steps, alternate interior angles and then the base angles of an isosceles triangle, with no non-routine idea. Segment AB is a transversal of the parallel lines, so angle ABC, between AB and line m, equals the 50-degree angle between AB and line l (alternate interior angles). Because AB = AC, angle ACB is also 50 degrees, and angle BAC = 180 - 50 - 50 = 80 degrees. The option 65 treats the 50-degree angle as the apex angle and finds a base angle, (180 - 50)/2. The option 130 uses the same-side interior angle, 180 - 50, as if it were the angle at A. The option 40 takes the angle at A to be the complement of the given angle, 90 - 50, as if AB met line l at a right angle with the other side.",
+  "solve": "const t=50; return 180-2*t;",
+  "distractor_solve": {
+   "40": "const t=50; return 90-t;",
+   "65": "const t=50; return (180-t)/2;",
+   "130": "const t=50; return 180-t;"
+  },
+  "forced": [
+   "an angle of a triangle: strictly between 0 and 180",
+   "a whole number of degrees that is a multiple of 5 (built from 50, 90 and 180 by halving, doubling and subtracting)",
+   "no acute/obtuse side forced without the alternate-angle step",
+   "all four options are multiples of 5 strictly between 0 and 180, three acute and one obtuse"
+  ]
+ },
+ {
+  "id": "IM17D-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "length of a common external tangent of two touching circles (right triangle from the difference of the radii)",
+  "difficulty": "hard",
+  "prompt": "Two circles, with radii 9 centimeters and 1 centimeter, touch each other at exactly one point, and neither circle is inside the other. A straight line touches each circle at exactly one point, at P on the larger circle and at Q on the smaller circle, and does not pass between the circles. What is the length of segment PQ, in centimeters?",
+  "choices": [
+   "8",
+   "3sqrt(11)",
+   "sqrt(19)",
+   "6"
+  ],
+  "correct_answer": "6",
+  "explanation": "Hard: no single step is a recall fact; it needs one non-routine idea, drawing a segment parallel to PQ through the small circle's center to make a right triangle whose legs are PQ and the DIFFERENCE of the radii. The radii to P and Q are both perpendicular to the line, so they are parallel. The centers are 9 + 1 = 10 centimeters apart, because the circles touch. Through the small circle's center draw a segment parallel to PQ; it meets the radius to P at a point 9 - 1 = 8 from the large center. That gives a right triangle with hypotenuse 10 and one leg 8, so the other leg, which equals PQ, is sqrt(10^2 - 8^2) = 6. The option 8 reports the difference of the radii, the other leg of that triangle. The option 3sqrt(11) subtracts the smaller radius instead of the difference, sqrt(10^2 - 1^2). The option sqrt(19) subtracts the larger radius, sqrt(10^2 - 9^2).",
+  "solve": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const R=9,r=1; return rad((R+r)**2-(R-r)**2);",
+  "distractor_solve": {
+   "8": "const R=9,r=1; return R-r;",
+   "3sqrt(11)": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const R=9,r=1; return rad((R+r)**2-r*r);",
+   "sqrt(19)": "const rad=n=>{let k=1;for(let i=2;i*i<=n;i++)while(n%(i*i)===0){n/=i*i;k*=i;}return n===1?String(k):(k===1?\"\":k)+\"sqrt(\"+n+\")\";}; const R=9,r=1; return rad((R+r)**2-R*R);"
+  },
+  "forced": [
+   "positive",
+   "less than the distance between the centers, 10, since it is a leg of a right triangle with that hypotenuse",
+   "the square root of a whole number: the method only adds, subtracts and squares the radii",
+   "no further range from a sketch: the line's tilt is not given",
+   "all four options are square roots of whole numbers (36, 64, 99, 19) below 10"
+  ]
+ },
+ {
+  "id": "IM17D-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "height of a square-based box whose volume and surface area are numerically equal (one linear equation from two formulas)",
+  "difficulty": "medium",
+  "prompt": "A closed rectangular box has a square base with sides 8 inches long. The number of cubic inches in its volume is equal to the number of square inches in its total surface area. What is the height of the box, in inches?",
+  "choices": [
+   "4",
+   "5/2",
+   "16/3",
+   "2"
+  ],
+  "correct_answer": "4",
+  "explanation": "Medium: two routine formulas set equal give one linear equation; nothing non-routine is needed. Let the height be h. The volume is 8 x 8 x h = 64h. The surface area is two square ends, 2 x 64 = 128, plus four side faces, 4 x 8h = 32h. Setting 64h = 128 + 32h gives 32h = 128, so h = 4. (Check: the volume is 256 and the surface area is 128 + 128 = 256.) The option 2 treats the box as open, counting only one square end: 64h = 64 + 32h. The option 16/3 swaps the faces, counting four 8-by-8 faces and two 8-by-h faces: 64h = 256 + 16h. The option 5/2 drops the h from the side faces, writing 64h = 128 + 32.",
+  "solve": "const s=8; /* s*s*h = 2*s*s + 4*s*h */ return 2*s*s/(s*s-4*s);",
+  "distractor_solve": {
+   "2": "const s=8; return s*s/(s*s-4*s);",
+   "16/3": "const s=8; return 4*s*s/(s*s-2*s);",
+   "5/2": "const s=8; return (2*s*s+4*s)/(s*s);"
+  },
+  "forced": [
+   "positive",
+   "no bound from the stem: the equation fixes h, and nothing about the box limits it before solving",
+   "no integer forced: h = 2s^2/(s^2 - 4s) need not be whole",
+   "all four options are positive numbers below 8 (2, 5/2, 4, 16/3)"
+  ]
+ },
+ {
+  "id": "IM17D-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of a triangle whose apex is the midpoint of a cevian (the height halves, so the given split of the base does not matter)",
+  "difficulty": "hard",
+  "prompt": "Triangle ABC has an area of 60 square centimeters. Point D lies on side BC so that BD : DC = 2 : 3. Point E is the midpoint of segment AD. What is the area of triangle BEC, in square centimeters?",
+  "choices": [
+   "20",
+   "36",
+   "30",
+   "15"
+  ],
+  "correct_answer": "30",
+  "explanation": "Hard: it needs one non-routine idea, comparing heights over the SAME base BC instead of working with the 2 : 3 split, which turns out not to matter. Triangles BEC and BAC share the base BC. Because E is the midpoint of AD and D lies on BC, the distance from E to line BC is half the distance from A to line BC. So the area of triangle BEC is half the area of triangle ABC: 60/2 = 30 square centimeters. (Splitting it instead: BED is half of ABD, which is 2/5 of 60 = 24, so 12; CED is half of ACD, which is 36, so 18; and 12 + 18 = 30.) The option 36 reports the area of triangle ADC, 3/5 of 60, instead of BEC. The option 20 treats E as if it were the point where the medians meet, a third of the way up, giving 60/3. The option 15 takes triangle BEC as a quarter of ABC, as for the triangle cut off by a midline.",
+  "solve": "const T=60,p=2,q=3; const abd=T*p/(p+q), adc=T*q/(p+q); return abd/2+adc/2;",
+  "distractor_solve": {
+   "15": "const T=60; return T/4;",
+   "20": "const T=60; return T/3;",
+   "36": "const T=60,p=2,q=3; return T*q/(p+q);"
+  },
+  "forced": [
+   "positive and less than 60, since E is inside the triangle",
+   "no split of 60 by the 2 : 3 ratio is forced: E is not on BC, so BEC is not one of the pieces ABD (24) or ADC (36)",
+   "no integer or factor forced beyond what any simple fraction of 60 gives",
+   "all four options are whole numbers strictly between 0 and 60 (15, 20, 30, 36)"
+  ]
+ },
+ {
+  "id": "IM17D-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "surface area of a solid with a tunnel: remove the two openings, add the inside walls",
+  "difficulty": "hard",
+  "prompt": "A solid wooden cube has edges 6 centimeters long. A square hole, 2 centimeters by 2 centimeters, is cut straight through the center of the cube from the middle of one face to the middle of the opposite face, with the sides of the hole parallel to the edges of the cube. What is the total surface area of the solid that remains, including the walls inside the hole, in square centimeters?",
+  "choices": [
+   "208",
+   "256",
+   "232",
+   "224"
+  ],
+  "correct_answer": "256",
+  "explanation": "Hard: the solver must track two opposite changes to the surface (area lost at the two openings and new area gained inside the tunnel), and the tunnel walls are a new surface that has to be found from the hole's perimeter and the cube's length rather than from any formula. The original cube has surface area 6 x 36 = 216. The two openings remove 2 x (2 x 2) = 8, leaving 208 on the outside. The tunnel has four walls, each 2 by 6, adding 4 x 12 = 48. The total is 216 - 8 + 48 = 256. The option 208 removes the openings but forgets the inside walls. The option 224 makes each inside wall a 2-by-2 square, using the hole's width in place of the cube's length: 216 - 8 + 4 x 4. The option 232 adds the volume of the tunnel, 2 x 2 x 6 = 24, in place of its wall area.",
+  "solve": "const e=6,s=2; return 6*e*e-2*s*s+4*s*e;",
+  "distractor_solve": {
+   "208": "const e=6,s=2; return 6*e*e-2*s*s;",
+   "224": "const e=6,s=2; return 6*e*e-2*s*s+4*s*s;",
+   "232": "const e=6,s=2; return 6*e*e-2*s*s+s*s*e;"
+  },
+  "forced": [
+   "positive and a whole number",
+   "even, indeed a multiple of 8 (every piece, 216, 8 and 48, is a multiple of 8); all four options are multiples of 8",
+   "no direction is forced: cutting a hole both removes and adds surface, so whether the answer is above or below 216 is not readable without computing; one option lies below 216 and three above",
+   "not a cube or square of the given lengths, so no option is struck by kind"
+  ]
+ },
+ {
+  "id": "IM17D-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "volume of the cone swept out when a right triangle spins about one of its legs (which leg becomes the height and which the radius)",
+  "difficulty": "medium",
+  "prompt": "A right triangle has legs of length 3 centimeters and 4 centimeters and a hypotenuse of length 5 centimeters. The triangle is spun all the way around the line containing its 4-centimeter leg, and it sweeps out a solid cone. What is the volume of the cone, in cubic centimeters?",
+  "choices": [
+   "15π",
+   "18π",
+   "16π",
+   "12π"
+  ],
+  "correct_answer": "12π",
+  "explanation": "Medium: it is one formula once the solid is read correctly, the only real step being which leg is the height and which is the radius. The leg the triangle spins around stays fixed and becomes the cone's height, 4; the other leg sweeps out the circular base, so the radius is 3. The volume is (1/3) x π x 3^2 x 4 = 12π. The option 16π spins the triangle the other way, using 4 as the radius and 3 as the height. The option 15π uses the 5-centimeter hypotenuse as the height; it is the slant height, not the height. The option 18π uses 1/2 in place of 1/3 in the cone formula.",
+  "solve": "const r=3,h=4; return (r*r*h/3)+'π';",
+  "distractor_solve": {
+   "16π": "const r=4,h=3; return (r*r*h/3)+'π';",
+   "15π": "const r=3,h=5; return (r*r*h/3)+'π';",
+   "18π": "const r=3,h=4; return (r*r*h/2)+'π';"
+  },
+  "forced": [
+   "a positive whole-number multiple of π (every length is a whole number and r^2 x h is a multiple of 3 for either leg)",
+   "less than 36π, the cylinder of radius 3 and height 4 that holds the cone (and less than 48π for the other orientation)",
+   "no side of any obvious share without choosing the radius and height",
+   "all four options are whole-number multiples of π between 12π and 18π"
+  ]
+ },
+ {
+  "id": "IM17D-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "hypotenuse of a right triangle from its perimeter and area alone ((a + b)^2 = c^2 + 2ab, with a + b = perimeter - c and ab = twice the area), then the altitude to the hypotenuse",
+  "difficulty": "hard",
+  "prompt": "A right triangle has a perimeter of 60 centimeters and an area of 120 square centimeters. What is the length, in centimeters, of the altitude drawn from the right angle to the hypotenuse?",
+  "choices": [
+   "48/5",
+   "60/7",
+   "120/13",
+   "120/11"
+  ],
+  "correct_answer": "120/13",
+  "explanation": "Hard: neither leg is given, so it needs a non-routine idea that combines algebra with the Pythagorean theorem, and then a second use of the area. Call the legs a and b and the hypotenuse c. Then a + b = 60 - c and ab = 2 x 120 = 240. Squaring, (a + b)^2 = a^2 + b^2 + 2ab = c^2 + 480, so (60 - c)^2 = c^2 + 480, which gives 3600 - 120c = 480 and c = 26. The area is also (1/2) x c x (altitude), so the altitude is 240/26 = 120/13. The option 60/7 drops the 2 in (a + b)^2 = a^2 + b^2 + 2ab, giving c = 28 and 240/28. The option 120/11 takes ab to be 4 times the area instead of 2 times, giving c = 22 and 240/22. The option 48/5 takes the hypotenuse 25 from the familiar right triangle 15, 20, 25, which has perimeter 60 but area 150, and divides 240 by 25.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);}; const P=60,A=120; const ab=2*A; const c=(P*P-2*ab)/(2*P); return f(2*A,c);",
+  "distractor_solve": {
+   "60/7": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);}; const P=60,A=120; const ab=2*A; const c=(P*P-ab)/(2*P); return f(2*A,c);",
+   "120/11": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);}; const P=60,A=120; const ab=4*A; const c=(P*P-2*ab)/(2*P); return f(2*A,c);",
+   "48/5": "const g=(a,b)=>b?g(b,a%b):a; const f=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);}; const P=60,A=120; const c=5*(P/12); return f(2*A,c);"
+  },
+  "forced": [
+   "positive, and equal to 240 divided by the hypotenuse (twice the area over the base)",
+   "the hypotenuse lies between 60/(2 + sqrt(2)), about 17.6, and 30 (half the perimeter), so the altitude lies between 8 and about 13.7",
+   "the altitude is at most half the hypotenuse, so the hypotenuse is at least sqrt(480), about 21.9, and the altitude is below about 10.95",
+   "all four options are 240 divided by a whole number between 22 and 28, so all lie between 8.5 and 10.95"
+  ]
+ },
+ {
+  "id": "IM17D-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of the equilateral triangle whose vertices lie on a circle of given radius (the center sits 2/3 of the way down each altitude, so the altitude is 3/2 of the radius)",
+  "difficulty": "hard",
+  "prompt": "An equilateral triangle is drawn so that all three of its vertices lie on a circle of radius 6 centimeters. What is the area of the triangle, in square centimeters?",
+  "choices": [
+   "27sqrt(3)",
+   "18sqrt(3)",
+   "81sqrt(3)/4",
+   "12sqrt(3)"
+  ],
+  "correct_answer": "27sqrt(3)",
+  "explanation": "Hard: three dependent steps, none of them a single recall fact: locate the circle's center on an altitude, get the altitude from the radius, then get the side from the altitude before the area. In an equilateral triangle the center of the circle is also where the altitudes meet, 2/3 of the way from each vertex to the opposite side, so the radius 6 is 2/3 of the altitude and the altitude is 9. The altitude is (sqrt(3)/2) x side, so the side is 18/sqrt(3) = 6sqrt(3). The area is (1/2) x 6sqrt(3) x 9 = 27sqrt(3). The option 12sqrt(3) takes the altitude to be the radius, 6, giving a side of 4sqrt(3). The option 81sqrt(3)/4 finds the altitude 9 but then uses it as the side length. The option 18sqrt(3) uses the side of the square drawn in the same circle, 6sqrt(2), as the triangle's side.",
+  "solve": "const r=6; const h=3*r/2; const s2=h*h*4/3; const k=s2/4; return (Number.isInteger(k)?String(k):k*4+'/4').replace(/^(\\d+)$/,'$1sqrt(3)');",
+  "distractor_solve": {
+   "12sqrt(3)": "const r=6; const h=r; const s2=h*h*4/3; return (s2/4)+'sqrt(3)';",
+   "81sqrt(3)/4": "const r=6; const s=3*r/2; return (s*s)+'sqrt(3)/4';",
+   "18sqrt(3)": "const r=6; const s2=2*r*r; return (s2/4)+'sqrt(3)';"
+  },
+  "forced": [
+   "positive, a whole-number or quarter multiple of sqrt(3) (an equilateral triangle's area is (sqrt(3)/4) x side^2 and side^2 is rational here)",
+   "less than 72, the half of the 12-by-12 square that holds the circle (base and height each below the diameter 12); 27sqrt(3) is about 46.8",
+   "less than the circle's area 36π (about 113)",
+   "all four options are multiples of sqrt(3) between about 20 and 47, all below 72"
+  ]
+ },
+ {
+  "id": "IM17D-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "length of a chord from the pieces of two chords that cross inside a circle (the products of the two pieces of each chord are equal)",
+  "difficulty": "medium",
+  "prompt": "In a circle, chords AB and CD cross at point P inside the circle. AP = 6 centimeters, PB = 8 centimeters, and CP = 4 centimeters. What is the length of chord CD, in centimeters?",
+  "choices": [
+   "10",
+   "14",
+   "7",
+   "16"
+  ],
+  "correct_answer": "16",
+  "explanation": "Medium: it is one standard relation followed by one addition. When two chords cross inside a circle, the two pieces of one chord have the same product as the two pieces of the other (this comes from similar triangles APC and DPB). So AP x PB = CP x PD: 6 x 8 = 4 x PD, giving PD = 12, and CD = CP + PD = 4 + 12 = 16. The option 7 pairs the pieces the wrong way, setting AP x CP = PB x PD, so 24 = 8 x PD and PD = 3. The option 14 assumes the two chords are equally long, so CD = AB = 6 + 8. The option 10 assumes P cuts CD the same way it cuts AB, taking PD = AP = 6.",
+  "solve": "const ap=6,pb=8,cp=4; const pd=ap*pb/cp; return String(cp+pd);",
+  "distractor_solve": {
+   "7": "const ap=6,pb=8,cp=4; const pd=ap*cp/pb; return String(cp+pd);",
+   "10": "const ap=6,pb=8,cp=4; const pd=ap; return String(cp+pd);",
+   "14": "const ap=6,pb=8,cp=4; return String(ap+pb);"
+  },
+  "forced": [
+   "greater than CP = 4, since CD contains CP and a positive piece PD",
+   "a whole number is not forced, and no upper bound is printed (the circle's size is not given)",
+   "no side of AB = 14 is forced without the product relation",
+   "all four options are 4 plus a positive number"
+  ]
+ },
+ {
+  "id": "IM17D-20",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the regular polygons whose interior angle is a whole number of degrees (the exterior angle 360/n must be whole, so n is a divisor of 360 that is at least 3)",
+  "difficulty": "hard",
+  "prompt": "For how many whole numbers n is the measure of each interior angle of a regular polygon with n sides a whole number of degrees?",
+  "choices": [
+   "24",
+   "22",
+   "10",
+   "16"
+  ],
+  "correct_answer": "22",
+  "explanation": "Hard: it combines two strands with one non-routine idea, turning a condition on the interior angle into a divisibility condition through the exterior angle, then counting divisors. Each interior angle is 180 - 360/n degrees, so it is a whole number exactly when 360/n is a whole number, that is, when n divides 360. Since 360 = 2^3 x 3^2 x 5, it has (3 + 1)(2 + 1)(1 + 1) = 24 divisors. A polygon needs at least 3 sides, so the divisors 1 and 2 are removed, leaving 22. The option 24 forgets that n must be at least 3. The option 16 requires n to divide 180 instead of 360 (180 has 18 divisors, less 1 and 2). The option 10 leaves the prime 5 out of the divisor count, (3 + 1)(2 + 1) = 12, less 1 and 2.",
+  "solve": "let c=0; for(let n=3;n<=360;n++){ if(360%n===0) c++; } return String(c);",
+  "distractor_solve": {
+   "10": "let c=0; for(let n=3;n<=72;n++){ if(72%n===0) c++; } return String(c);",
+   "16": "let c=0; for(let n=3;n<=180;n++){ if(180%n===0) c++; } return String(c);",
+   "24": "let c=0; for(let n=1;n<=360;n++){ if(360%n===0) c++; } return String(c);"
+  },
+  "forced": [
+   "a positive whole number",
+   "no upper bound from the stem alone: it does not say n is limited, so a solver must see that n is a divisor of some number",
+   "no parity is forced without finding which number n must divide",
+   "all four options are even whole numbers between 10 and 24"
+  ]
+ }
+]

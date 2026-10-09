@@ -1,0 +1,573 @@
+[
+ {
+  "id": "IM17E-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the lattice points strictly inside a right triangle on the grid (half the interior points of the rectangle, less the points the diagonal passes through)",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, a triangle has vertices at (0, 0), (12, 0), and (0, 8). How many points with integer coordinates lie strictly inside the triangle (not on any of its sides)?",
+  "choices": [
+   "39",
+   "36",
+   "37",
+   "40"
+  ],
+  "correct_answer": "37",
+  "explanation": "Hard: one non-routine idea - the triangle is half of the 12 by 8 rectangle, so its inside points are half of the rectangle's inside points that are NOT on the diagonal, which needs a count of the lattice points on the hypotenuse. The rectangle has 11 x 7 = 77 lattice points strictly inside. The hypotenuse from (12, 0) to (0, 8) moves 3 right and 2 down between lattice points (12 and 8 share the factor 4), so it passes through (3, 6), (6, 4) and (9, 2): 3 of those 77 points. The other 74 split evenly between the two halves, so the triangle has 74/2 = 37 points strictly inside. (Row by row: y = 1 to 7 gives 10 + 8 + 7 + 5 + 4 + 2 + 1 = 37.)",
+  "solve": "let c=0;for(let x=1;x<12;x++)for(let y=1;y<8;y++){if(2*x+3*y<24)c++;}return String(c);",
+  "distractor_solve": {
+   "36": "// Pick-style count with the right boundary total (24) but forgets the +1: A - B/2\nconst A=12*8/2;const B=12+8+4;return String(A-B/2);",
+   "39": "// Pick-style count A - B/2 + 1 but with only the 20 boundary points on the two legs (misses the 4 lattice points on the hypotenuse)\nconst A=12*8/2;const B=12+8;return String(A-B/2+1);",
+   "40": "// counts the 3 hypotenuse points as inside: (77 + 3)/2\nconst inner=11*7;return String((inner+3)/2);"
+  },
+  "forced": [
+   "between 0 and 77 (the rectangle's interior count) and near half of it, 38.5; every option is within 2.5 of 38.5",
+   "a whole number, as every option is",
+   "no parity is readable without the diagonal count; options are two odd, two even",
+   "no option is the half-rectangle 38 or 38.5 itself (no limiting case)"
+  ]
+ },
+ {
+  "id": "IM17E-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the unit segments in a triangular grid of side n (each segment belongs to exactly one upward-pointing small triangle, or count by direction)",
+  "difficulty": "hard",
+  "prompt": "An equilateral triangle with sides 10 units long is divided into small equilateral triangles with sides 1 unit long by drawing lines parallel to its three sides. Every side of every small triangle is a 1-unit segment. How many different 1-unit segments are there in the whole figure?",
+  "choices": [
+   "180",
+   "165",
+   "210",
+   "198"
+  ],
+  "correct_answer": "165",
+  "explanation": "Hard: one non-routine idea - segments are shared, so instead of counting triangles x 3, notice that every 1-unit segment is a side of exactly one small triangle that points UP (or count the segments in each of the three directions). Rows of upward triangles hold 1, 2, ..., 10 of them, so there are 1 + 2 + ... + 10 = 55 upward triangles, and they use 3 x 55 = 165 different segments. (By direction: the horizontal segments lie in rows of 1, 2, ..., 10, which is 55, and the same holds for each of the other two directions, so 3 x 55 = 165.)",
+  "solve": "const n=10;let up=0;for(let r=1;r<=n;r++)up+=r;return String(3*up);",
+  "distractor_solve": {
+   "180": "// 100 small triangles x 3 sides = 300, halves everything as shared, then adds the 30 edge segments back in full (counting them twice)\nconst n=10;return String(3*n*n/2+3*n);",
+   "198": "// counts 11 rows in each direction (the 11 lines, not the 10 rows), 1 + 2 + ... + 11 = 66, then 3 x 66\nconst n=11;let s=0;for(let r=1;r<=n;r++)s+=r;return String(3*s);",
+   "210": "// counts row by row: row k (from the top) has 2k slanted segments plus k segments along its bottom AND k - 1 along its top, so every inside horizontal segment is counted twice: sum of (4k - 1)\nconst n=10;let s=0;for(let k=1;k<=n;k++)s+=2*k+k+(k-1);return String(s);"
+  },
+  "forced": [
+   "a multiple of 3 (the figure looks the same in all three directions); every option is",
+   "between 150 and 300: there are 100 small triangles with 300 sides in all, and each segment is a side of one or two of them; every option is strictly inside, none on either bound, and all four sit in the lower part of that range (most segments are inside and shared)",
+   "a whole number, as every option is"
+  ]
+ },
+ {
+  "id": "IM17E-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "position in a list of the counting numbers with two overlapping kinds removed (count the removed numbers with the overlap counted once, then add them back)",
+  "difficulty": "medium",
+  "prompt": "Starting from 1, the counting numbers are listed in order, but every number that is a perfect square or a perfect cube is left out. The list begins 2, 3, 5, 6, 7, 10, 11, .... What is the 100th number in the list?",
+  "choices": [
+   "111",
+   "112",
+   "114",
+   "116"
+  ],
+  "correct_answer": "112",
+  "explanation": "Medium: a short routine chain - count the numbers left out below a trial value, counting the numbers that are both a square and a cube only once, and add them back to 100. Up to about 110 the squares are 1, 4, 9, ..., 100 (10 of them) and the cubes are 1, 8, 27, 64 (4 of them); 1 and 64 are both, so 10 + 4 - 2 = 12 numbers are left out. So the 100th number in the list is 100 + 12 = 112. Check: 112 is neither a square nor a cube, and from 1 to 112 exactly 12 numbers are left out, leaving 100.",
+  "solve": "const sq=n=>Number.isInteger(Math.sqrt(n));const cu=n=>{const r=Math.round(Math.cbrt(n));return r*r*r===n;};let c=0,n=0;while(c<100){n++;if(!sq(n)&&!cu(n))c++;}return String(n);",
+  "distractor_solve": {
+   "111": "// forgets that 1 is a square and a cube: squares 4..100 (9), cubes 8, 27, 64 (3), both 64 (1), so 11 left out\nreturn String(100+9+3-1);",
+   "114": "// counts 1 and 64 twice (as squares and again as cubes): 10 + 4 = 14 left out\nreturn String(100+10+4);",
+   "116": "// adds the overlap instead of subtracting it: 10 + 4 + 2 = 16 left out\nreturn String(100+10+4+2);"
+  },
+  "forced": [
+   "more than 100, since numbers are left out; every option exceeds 100",
+   "not itself a perfect square or cube; no option is (111, 112, 114, 116)",
+   "about 100 + 10 + 4 by a rough count of squares and cubes, so within roughly 110 to 116; every option is in 111 to 116",
+   "no parity is forced; options are one odd and three even"
+  ]
+ },
+ {
+  "id": "IM17E-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance from the inside point equidistant from all three sides of a right triangle on the axes (area split into three triangles of equal height)",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, a triangle has vertices at (0, 0), (8, 0), and (0, 6). Point P lies inside the triangle and is the same distance from each of the three sides of the triangle. What is that distance?",
+  "choices": [
+   "1",
+   "12/5",
+   "8/3",
+   "2"
+  ],
+  "correct_answer": "2",
+  "explanation": "Hard: one non-routine idea - joining P to the three vertices splits the triangle into three triangles whose heights are all the unknown distance r, so the area equation gives r without locating P by coordinates. The sides are 8, 6 and sqrt(8^2 + 6^2) = 10, and the area is (1/2)(8)(6) = 24. The three small triangles have areas (1/2)(8)r, (1/2)(6)r and (1/2)(10)r, which add to 12r. So 12r = 24 and r = 2. (Check: P = (2, 2) is 2 from both axes, and its distance to the line 3x + 4y = 24 is (24 - 14)/5 = 2.)",
+  "solve": "const a=8,b=6;const c=Math.sqrt(a*a+b*b);const area=a*b/2;return String(area/((a+b+c)/2));",
+  "distractor_solve": {
+   "1": "// writes each small triangle area as side x r, forgetting the 1/2: 8r + 6r + 10r = 24\nconst a=8,b=6;const c=Math.sqrt(a*a+b*b);return String((a*b/2)/(a+b+c));",
+   "12/5": "// divides the area by the longest side, 24/10, forgetting that area = (1/2) x base x height\nconst a=8,b=6;const c=Math.sqrt(a*a+b*b);const n=a*b/2,d=c;const g=(x,y)=>y?g(y,x%y):x;const k=g(n,d);return (n/k)+\"/\"+(d/k);",
+   "8/3": "// takes P to be the centroid (8/3, 2), the average of the vertices, and gives its distance to the y-axis\nconst xs=[0,8,0];const s=xs.reduce((p,q)=>p+q,0);return s+\"/3\";"
+  },
+  "forced": [
+   "positive",
+   "less than 24/7 (about 3.4), since P = (r, r) must lie inside the triangle (r/8 + r/6 < 1); every option is",
+   "less than half the shorter leg is NOT forced in a way a student can read without the method; all options are below 3 anyway",
+   "not forced to be a whole number; options are two whole numbers and two fractions"
+  ]
+ },
+ {
+  "id": "IM17E-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the squares of every size on a rectangular grid (positions of a k-by-k square in each direction, size by size)",
+  "difficulty": "hard",
+  "prompt": "A rectangle 4 units wide and 6 units long is divided into 24 unit squares by grid lines drawn parallel to its sides. How many squares of all sizes can be found in the figure, if each square's sides must lie along the grid lines?",
+  "choices": [
+   "32",
+   "33",
+   "47",
+   "50"
+  ],
+  "correct_answer": "50",
+  "explanation": "Hard: the count needs a systematic idea rather than a formula - for each size k, a k-by-k square can start in (5 - k) positions across the 4-unit side and (7 - k) positions along the 6-unit side, and the squares overlap, so they cannot be counted by tiling. Size 1: 4 x 6 = 24. Size 2: 3 x 5 = 15. Size 3: 2 x 4 = 8. Size 4: 1 x 3 = 3. No square larger than 4 fits. Total: 24 + 15 + 8 + 3 = 50.",
+  "solve": "let t=0;for(let k=1;k<=4;k++){t+=Math.max(0,4-k+1)*Math.max(0,6-k+1);}return String(t);",
+  "distractor_solve": {
+   "32": "// counts the starting positions across the 4-unit side as 4 - k instead of 4 - k + 1: 3x6 + 2x5 + 1x4\nlet t=0;for(let k=1;k<=4;k++)t+=(4-k)*(7-k);return String(t);",
+   "33": "// counts only squares that do not overlap, tiling the board with each size: 24 + (2 x 3) + (1 x 2) + (1 x 1)\nlet t=0;for(let k=1;k<=4;k++)t+=Math.floor(4/k)*Math.floor(6/k);return String(t);",
+   "47": "// counts sizes 1, 2 and 3 correctly but stops before size 4 (thinks a 4-by-4 square does not fit in a 4-unit-wide board)\nlet t=0;for(let k=1;k<=3;k++)t+=(5-k)*(7-k);return String(t);"
+  },
+  "forced": [
+   "more than 30: the board contains a 4-by-4 board, which alone has 1 + 4 + 9 + 16 = 30 squares, and the extra length adds more; every option is above 30, none on it",
+   "a whole number, as every option is",
+   "no parity or divisibility is forced without the size-by-size count; options are two even and two odd"
+  ]
+ },
+ {
+  "id": "IM17E-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "timing a striking clock: the time runs over the gaps between strikes, one fewer than the strikes",
+  "difficulty": "medium",
+  "prompt": "A clock strikes once for each hour, so at 6 o'clock it strikes 6 times, with equal gaps between strikes. At 6 o'clock it takes 15 seconds from the first strike to the last. A second clock strikes the same way, except that each of its gaps is 1 second shorter than the first clock's gaps. How many seconds does the second clock take from its first strike to its last strike at 12 o'clock?",
+  "choices": [
+   "24",
+   "22",
+   "27.5",
+   "33"
+  ],
+  "correct_answer": "22",
+  "explanation": "Medium: two short steps with one trap - the time is spread over the gaps, and n strikes have n - 1 gaps. Six strikes have 5 gaps, so each gap of the first clock is 15/5 = 3 seconds; the second clock's gaps are 2 seconds. Twelve strikes have 11 gaps, so the second clock takes 11 x 2 = 22 seconds.",
+  "solve": "const g1=15/(6-1);const g2=g1-1;return String((12-1)*g2);",
+  "distractor_solve": {
+   "24": "// gets the 2-second gap right, then multiplies by the 12 strikes instead of the 11 gaps\nconst g2=15/5-1;return String(12*g2);",
+   "33": "// uses the first clock's 3-second gap, ignoring that the second clock's gaps are shorter\nconst g1=15/5;return String(11*g1);",
+   "27.5": "// divides by the 6 strikes instead of the 5 gaps (2.5 s) and forgets that the second clock's gaps are shorter, then uses 11 gaps\nconst g=15/6;return String(11*g);"
+  },
+  "forced": [
+   "positive",
+   "no bound from the stem: the second clock has shorter gaps but more of them at 12 o'clock than the first clock has at 6, so the answer could be above or below 15; every option is above 15",
+   "no parity or digit is forced (the gap length is unknown without the method); options mix whole numbers and one half"
+  ]
+ },
+ {
+  "id": "IM17E-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least total walking distance along grid streets to several points: the east-west and north-south parts separate, and each is least at the median",
+  "difficulty": "hard",
+  "prompt": "A town's streets form a square grid, and each intersection is named by coordinates (x, y), with blocks 1 unit long. Five friends live at the intersections (1, 2), (2, 9), (4, 1), (11, 8), and (12, 5). They want to meet at one intersection so that the total distance the five of them walk along the streets is as small as possible. Each friend walks along the streets by a shortest route. What is the least possible total walking distance, in blocks?",
+  "choices": [
+   "20",
+   "34",
+   "36",
+   "40"
+  ],
+  "correct_answer": "34",
+  "explanation": "Hard: one non-routine idea - along a grid, each walk is (east-west distance) + (north-south distance), so the two directions can be minimized separately, and a sum of distances |x - a| is least when x is the median of the a's. The x-coordinates 1, 2, 4, 11, 12 have median 4, giving 3 + 2 + 0 + 7 + 8 = 20 blocks east-west. The y-coordinates in order are 1, 2, 5, 8, 9, with median 5, giving 4 + 3 + 0 + 3 + 4 = 14 blocks north-south. The least total is 20 + 14 = 34 blocks, at the intersection (4, 5).",
+  "solve": "const P=[[1,2],[2,9],[4,1],[11,8],[12,5]];let best=1e9;for(let x=0;x<=15;x++)for(let y=0;y<=15;y++){let s=0;for(const[a,b] of P)s+=Math.abs(x-a)+Math.abs(y-b);if(s<best)best=s;}return String(best);",
+  "distractor_solve": {
+   "20": "// finds the median meeting point but adds only the east-west distances\nconst xs=[1,2,4,11,12];const m=4;return String(xs.reduce((s,a)=>s+Math.abs(a-m),0));",
+   "36": "// meets at the MEAN point (6, 5) instead of the medians\nconst P=[[1,2],[2,9],[4,1],[11,8],[12,5]];const mx=P.reduce((s,p)=>s+p[0],0)/5;const my=P.reduce((s,p)=>s+p[1],0)/5;return String(P.reduce((s,[a,b])=>s+Math.abs(a-mx)+Math.abs(b-my),0));",
+   "40": "// takes the middle y-value as LISTED (2, 9, 1, 8, 5 -> 1) without sorting, so meets at (4, 1)\nconst P=[[1,2],[2,9],[4,1],[11,8],[12,5]];const ys=P.map(p=>p[1]);const my=ys[2];return String(P.reduce((s,[a,b])=>s+Math.abs(a-4)+Math.abs(b-my),0));"
+  },
+  "forced": [
+   "positive whole number of blocks, as every option is",
+   "above the east-west spread 12 - 1 = 11 plus the north-south spread 9 - 1 = 8, i.e. above 19; every option is",
+   "no parity is forced by the stem (it depends on the meeting point); all four options are even, so parity strikes nothing",
+   "least-type question: one distractor (20) lies below the key"
+  ]
+ },
+ {
+  "id": "IM17E-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "position after a spiral walk on the grid (moves of growing length turning left each time: pair opposite moves, add the leftover moves, then the distance formula)",
+  "difficulty": "hard",
+  "prompt": "A robot starts at the origin of the coordinate plane. On its kth move it travels k units, and after each move it turns 90 degrees to the left. Its first moves are 1 unit east, 2 units north, 3 units west, 4 units south, 5 units east, and so on. After its 14th move, what is the straight-line distance, in units, from the robot to the origin?",
+  "choices": [
+   "sqrt(41)",
+   "sqrt(85)",
+   "sqrt(365)",
+   "sqrt(113)"
+  ],
+  "correct_answer": "sqrt(113)",
+  "explanation": "Hard: one non-routine idea combining two strands - the walk is a pattern whose position comes from pairing opposite moves, and only then does the distance formula apply. East-west moves are 1, 3, 5, ..., 13 with alternating directions: x = 1 - 3 + 5 - 7 + 9 - 11 + 13 = 7. North-south moves are 2, 4, ..., 14: y = 2 - 4 + 6 - 8 + 10 - 12 + 14 = 8. (Each full cycle of four moves nets (-2, -2), so 12 moves end at (-6, -6), and moves 13 east and 14 north bring the robot to (7, 8).) The distance is sqrt(7^2 + 8^2) = sqrt(113).",
+  "solve": "let x=0,y=0;const d=[[1,0],[0,1],[-1,0],[0,-1]];for(let k=1;k<=14;k++){x+=d[(k-1)%4][0]*k;y+=d[(k-1)%4][1]*k;}return 'sqrt('+(x*x+y*y)+')';",
+  "distractor_solve": {
+   "sqrt(85)": "// pairs the moves into nets of -2 but drops the unpaired last move (14 north): x = 7, y = -6\nconst x=1-3+5-7+9-11+13;const y=2-4+6-8+10-12;return 'sqrt('+(x*x+y*y)+')';",
+   "sqrt(41)": "// three full cycles net (-6, -6), then reuses the first cycle's lengths 1 and 2 for the two leftover moves: (-5, -4)\nconst x=-6+1;const y=-6+2;return 'sqrt('+(x*x+y*y)+')';",
+   "sqrt(365)": "// uses only the two leftover moves (13 east, 14 north), as if each full cycle of four moves returned the robot to the origin\nconst x=13,y=14;return 'sqrt('+(x*x+y*y)+')';"
+  },
+  "forced": [
+   "the square of the distance is a whole number (lattice point), as every option is",
+   "lattice parity: the move lengths total 1 + 2 + ... + 14 = 105, which is odd, so x + y is odd and x^2 + y^2 is odd (indeed 1 more than a multiple of 4); every option's radicand (41, 85, 113, 365) is odd and 1 more than a multiple of 4",
+   "not the taxicab total |x| + |y| or any whole number (no limiting case): the robot is not on an axis",
+   "no rough bound kills an option without locating the robot: the walk spirals outward, so distances from about 6 to about 19 are all plausible before the pairing is done"
+  ]
+ },
+ {
+  "id": "IM17E-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "slope of the segment joining the midpoints of two sides of a triangle (find both midpoints, or use that the segment is parallel to the third side)",
+  "difficulty": "medium",
+  "prompt": "In the coordinate plane, triangle ABC has vertices A(-6, -4), B(6, 5), and C(2, -2). Point M is the midpoint of side AB, and point N is the midpoint of side AC. What is the slope of line MN?",
+  "choices": [
+   "3/4",
+   "11/20",
+   "7/4",
+   "1/4"
+  ],
+  "correct_answer": "7/4",
+  "explanation": "Medium: two routine steps - find two midpoints, then the slope between them (or notice that MN is parallel to BC). M = ((-6 + 6)/2, (-4 + 5)/2) = (0, 1/2) and N = ((-6 + 2)/2, (-4 - 2)/2) = (-2, -3). The slope of MN is (1/2 - (-3))/(0 - (-2)) = (7/2)/2 = 7/4, the same as the slope of BC, (5 - (-2))/(6 - 2) = 7/4.",
+  "solve": "const A=[-6,-4],B=[6,5],C=[2,-2];const M=[(A[0]+B[0])/2,(A[1]+B[1])/2],N=[(A[0]+C[0])/2,(A[1]+C[1])/2];const num=(M[1]-N[1])*2,den=(M[0]-N[0])*2;const g=(a,b)=>b?g(b,a%b):Math.abs(a);const k=g(num,den);return (num/k)+'/'+(den/k);",
+  "distractor_solve": {
+   "3/4": "// gives the slope of side AB, the side M lies on, instead of the segment between the midpoints\nconst A=[-6,-4],B=[6,5];const num=B[1]-A[1],den=B[0]-A[0];const g=(a,b)=>b?g(b,a%b):Math.abs(a);const k=g(num,den);return (num/k)+'/'+(den/k);",
+   "11/20": "// joins A to the midpoint of BC (the median from A) instead of joining the two midpoints\nconst A=[-6,-4],B=[6,5],C=[2,-2];const P=[(B[0]+C[0])/2,(B[1]+C[1])/2];const num=(P[1]-A[1])*2,den=(P[0]-A[0])*2;const g=(a,b)=>b?g(b,a%b):Math.abs(a);const k=g(num,den);return (num/k)+'/'+(den/k);",
+   "1/4": "// joins the wrong pair of midpoints, those of AB and BC (that segment is parallel to AC)\nconst A=[-6,-4],B=[6,5],C=[2,-2];const M=[(A[0]+B[0])/2,(A[1]+B[1])/2],P=[(B[0]+C[0])/2,(B[1]+C[1])/2];const num=(P[1]-M[1])*2,den=(P[0]-M[0])*2;const g=(a,b)=>b?g(b,a%b):Math.abs(a);const k=g(num,den);return (num/k)+'/'+(den/k);"
+  },
+  "forced": [
+   "a fraction in lowest terms with denominator dividing 2 x (difference of x-coordinates); every option is a proper or improper fraction, none a whole number",
+   "no sign is readable from the stem without locating the points; all four options are positive (every side and median involved rises from left to right)",
+   "not equal to the slope of any segment printed in the stem other than BC, which the stem does not name"
+  ]
+ },
+ {
+  "id": "IM17E-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "area of the overlap of a triangle and its reflection across a vertical line (reflect the vertices, find where the two slanted sides cross, split the overlap into a rectangle and a triangle)",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, triangle T has vertices at (0, 0), (8, 0), and (0, 8). Triangle T is reflected across the vertical line x = 2 to give triangle T'. What is the area of the region that lies inside both T and T'?",
+  "choices": [
+   "16",
+   "22",
+   "12",
+   "20"
+  ],
+  "correct_answer": "20",
+  "explanation": "Hard: three dependent steps, none a recall fact - reflect the vertices, locate the overlap's corners from the crossing of the two slanted sides, then find the area of a five-sided region. Reflecting across x = 2 sends (0, 0) to (4, 0), (8, 0) to (-4, 0), and (0, 8) to (4, 8), so T' lies on x <= 4 and below the line y = x + 4, while T lies on x >= 0 and below y = 8 - x. The slanted sides cross where x + 4 = 8 - x, at (2, 6). The overlap has corners (0, 0), (4, 0), (4, 4), (2, 6), (0, 4): a 4 by 4 square (area 16) with a triangle of base 4 and height 2 on top (area 4). Area = 16 + 4 = 20.",
+  "solve": "let c=0;const n=400;for(let i=0;i<n;i++)for(let j=0;j<n;j++){const x=-4+(i+0.5)*12/n,y=(j+0.5)*8/n;const inT=x>=0&&y>=0&&x+y<=8;const inR=x<=4&&y>=0&&y<=x+4;if(inT&&inR)c++;}return String(Math.round(c*(12/n)*(8/n)));",
+  "distractor_solve": {
+   "12": "// T minus the pieces outside T', but takes the right-hand sliver (4 by 4 right triangle) as a full 4 by 4 square: 32 - 16 - 4\nconst T=8*8/2;const sliver=4*4;const topLeft=4*2/2;return String(T-sliver-topLeft);",
+   "16": "// assumes the line x = 2 cuts the overlap as half of T, as if the reflection were symmetric about T's middle\nreturn String(8*8/2/2);",
+   "22": "// takes the bounding rectangle 4 wide and 6 tall and cuts off only one of its two corner triangles (each 2 by 2, area 2)\nreturn String(4*6-2*2/2);"
+  },
+  "forced": [
+   "less than the area of T, 32, and at most its 4 by 6 bounding box, 24 (the overlap lies between x = 0 and x = 4 and below the crossing at height 6) - finding the height 6 is part of the method; every option is below 24",
+   "a whole number, as every option is",
+   "not equal to the bounding box 24 or to T's area 32 (no limiting case)"
+  ]
+ },
+ {
+  "id": "IM17E-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "the point that divides a segment in a given ratio (go the stated fraction of the way from one endpoint, coordinate by coordinate)",
+  "difficulty": "medium",
+  "prompt": "In the coordinate plane, point P lies on the segment from A(-4, 1) to B(11, 7), and P is twice as far from A as it is from B. What is the sum of the coordinates of P?",
+  "choices": [
+   "11",
+   "12",
+   "12.75",
+   "16.5"
+  ],
+  "correct_answer": "11",
+  "explanation": "Medium: two routine steps - turn the distance condition into a fraction of the segment, then move that fraction of the way from A in each coordinate. AP = 2 x PB means AP is 2 of the 3 equal parts of AB, so P is 2/3 of the way from A to B. From A to B, x increases by 15 and y by 6, so P = (-4 + 2/3 x 15, 1 + 2/3 x 6) = (6, 5). The sum of the coordinates is 6 + 5 = 11.",
+  "solve": "const A=[-4,1],B=[11,7];const P=[A[0]+2/3*(B[0]-A[0]),A[1]+2/3*(B[1]-A[1])];return String(P[0]+P[1]);",
+  "distractor_solve": {
+   "12": "// takes 2/3 of B's coordinates, forgetting to start the move from A\nconst B=[11,7];return String(2/3*B[0]+2/3*B[1]);",
+   "12.75": "// halves twice: takes the midpoint of AB, then the midpoint of that point and B (3/4 of the way, not 2/3)\nconst A=[-4,1],B=[11,7];const M=[(A[0]+B[0])/2,(A[1]+B[1])/2];return String((M[0]+B[0])/2+(M[1]+B[1])/2);",
+   "16.5": "// weights the endpoints 1 and 2 but divides by 2 instead of 1 + 2 = 3: (A + 2B)/2\nconst A=[-4,1],B=[11,7];return String((A[0]+2*B[0])/2+(A[1]+2*B[1])/2);"
+  },
+  "forced": [
+   "P is closer to B than to A, so its coordinate sum lies strictly between the midpoint's sum (3.5 + 4 = 7.5) and B's sum (18); every option lies in that interval",
+   "not equal to the midpoint's sum 7.5 or to B's sum 18 (no limiting case)",
+   "no integer requirement is readable from the stem without the ratio; two options are whole numbers and two are decimals"
+  ]
+ },
+ {
+  "id": "IM17E-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the clock times whose digital display reads the same forward and backward (split by one-digit and two-digit hours; the minutes' tens digit is limited to 0-5)",
+  "difficulty": "hard",
+  "prompt": "A digital clock shows times from 1:00 through 12:59 and writes the hour with no leading zero, so it shows 9:05, not 09:05. When the colon is ignored, the display for 4:14 reads the same forward and backward. How many different times from 1:00 through 12:59 have a display that reads the same forward and backward when the colon is ignored?",
+  "choices": [
+   "54",
+   "48",
+   "57",
+   "55"
+  ],
+  "correct_answer": "57",
+  "explanation": "Hard: one non-routine idea - the times must be split into cases by the number of digits in the hour, and in each case the palindrome condition fixes some digits while the clock limits the others. One-digit hour h: the display h m1 m2 needs m2 = h, and m1 is the tens digit of the minutes, which can be 0, 1, 2, 3, 4 or 5, so each of the 9 hours gives 6 times: 9 x 6 = 54. Two-digit hours: the display h1 h2 m1 m2 needs m1 = h2 and m2 = h1, which gives 10:01, 11:11 and 12:21, all real times: 3 more. Total 54 + 3 = 57.",
+  "solve": "let c=0;for(let h=1;h<=12;h++)for(let m=0;m<60;m++){const s=String(h)+String(m).padStart(2,'0');if(s===s.split('').reverse().join(''))c++;}return String(c);",
+  "distractor_solve": {
+   "48": "// leaves out the times whose minutes begin with 0 (1:01, 2:02, ..., 9:09), letting the minutes' tens digit run only from 1 to 5\nreturn String(9*5+3);",
+   "54": "// counts only the one-digit hours (h m1 h with m1 from 0 to 5) and forgets 10:01, 11:11 and 12:21\nlet c=0;for(let h=1;h<=9;h++)for(let t=0;t<=5;t++)c++;return String(c);",
+   "55": "// treats a two-digit hour as needing both of its digits equal, so of 10, 11 and 12 only 11:11 is counted\nlet c=9*6;for(let h=10;h<=12;h++){const s=String(h);if(s[0]===s[1])c++;}return String(c);"
+  },
+  "forced": [
+   "a whole number",
+   "at most 72: in any hour the palindrome fixes the last minute digit, and only the tens digit of the minutes (six values) is free, so at most 6 times per hour over 12 hours; every option is below 72",
+   "no parity, factor or last-digit property is readable from the stem; options are two even and two odd",
+   "54 is the one-digit-hour partial tally; seeing that 57 exceeds it needs the case split, which is the method"
+  ]
+ },
+ {
+  "id": "IM17E-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "time and day of the nth event in a repeating schedule (n - 1 intervals, total minutes to days, hours and minutes, carried across midnight)",
+  "difficulty": "medium",
+  "prompt": "A satellite passes over a tracking station once every 1 hour 36 minutes. Its first pass of the week is at 10:48 p.m. on Monday. On what day and at what time is its 20th pass?",
+  "choices": [
+   "Wednesday, 5:12 a.m.",
+   "Tuesday, 5:12 p.m.",
+   "Tuesday, 6:24 p.m.",
+   "Wednesday, 6:48 a.m."
+  ],
+  "correct_answer": "Wednesday, 5:12 a.m.",
+  "explanation": "Medium: a chain of routine steps - count the intervals, convert minutes to hours, and carry across midnight. The 20th pass comes 19 intervals after the first. 19 x 96 minutes = 1,824 minutes = 30 hours 24 minutes. From 10:48 p.m. Monday, 24 hours later is 10:48 p.m. Tuesday, and 6 hours 24 minutes after that is 5:12 a.m. Wednesday.",
+  "solve": "const days=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];const fmt=t=>{const d=Math.floor(t/1440),m=t%1440;let h=Math.floor(m/60),mm=m%60;const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return days[d]+', '+h+':'+String(mm).padStart(2,'0')+' '+ap;};const start=22*60+48;return fmt(start+19*96);",
+  "distractor_solve": {
+   "Tuesday, 5:12 p.m.": "// reads 1,824 minutes as 18 hours 24 minutes (splits the digits as if there were 100 minutes in an hour)\nconst days=['Monday','Tuesday','Wednesday'];const fmt=t=>{const d=Math.floor(t/1440),m=t%1440;let h=Math.floor(m/60),mm=m%60;const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return days[d]+', '+h+':'+String(mm).padStart(2,'0')+' '+ap;};return fmt(22*60+48+18*60+24);",
+   "Tuesday, 6:24 p.m.": "// multiplies only the hours by 19 and keeps a single 36 minutes: 19 hours 36 minutes after the first pass\nconst days=['Monday','Tuesday','Wednesday'];const fmt=t=>{const d=Math.floor(t/1440),m=t%1440;let h=Math.floor(m/60),mm=m%60;const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return days[d]+', '+h+':'+String(mm).padStart(2,'0')+' '+ap;};return fmt(22*60+48+19*60+36);",
+   "Wednesday, 6:48 a.m.": "// counts 20 intervals instead of 19 (the first pass is not one interval after anything)\nconst days=['Monday','Tuesday','Wednesday'];const fmt=t=>{const d=Math.floor(t/1440),m=t%1440;let h=Math.floor(m/60),mm=m%60;const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return days[d]+', '+h+':'+String(mm).padStart(2,'0')+' '+ap;};return fmt(22*60+48+20*96);"
+  },
+  "forced": [
+   "the minutes reading is 48 plus a multiple of 36, taken past whole hours, so it ends in :12, :24, :48, :00 or :36; every option's minutes are among these",
+   "later than Monday 10:48 p.m. and within a few days; every option is on Tuesday or Wednesday",
+   "no a.m./p.m. or day is readable without the total: two options are a.m. Wednesday and two are p.m. Tuesday, and the key shares its clock time with one distractor and its day and half-day with another"
+  ]
+ },
+ {
+  "id": "IM17E-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a line through a fixed point that cuts off a triangle of given area with the axes (intercept form plus the area gives a quadratic with two lines; choose the one asked for)",
+  "difficulty": "hard",
+  "prompt": "A line with negative slope passes through the point (3, 4). The line and the positive x- and y-axes form a triangle with an area of 25 square units. There are two such lines. What is the least possible y-intercept of such a line?",
+  "choices": [
+   "10",
+   "15/2",
+   "20/3",
+   "5"
+  ],
+  "correct_answer": "20/3",
+  "explanation": "Hard: three dependent steps, none a recall fact - write the line by its intercepts a and b, turn the point and the area into two equations, and solve the resulting quadratic, which has two answers. The line x/a + y/b = 1 passes through (3, 4), so 3/a + 4/b = 1, and the area gives ab/2 = 25, so ab = 50. Multiplying the first equation by ab: 3b + 4a = 50. With b = 50/a: 3(50/a) + 4a = 50, so 4a^2 - 50a + 150 = 0, or 2a^2 - 25a + 75 = 0, giving (2a - 15)(a - 5) = 0: a = 5 or a = 15/2. Then b = 50/a = 10 or 20/3. The least y-intercept is 20/3.",
+  "solve": "const P=[3,4],ab=50;const A=4,B=-50,C=150;const D=Math.sqrt(B*B-4*A*C);const as=[(-B-D)/(2*A),(-B+D)/(2*A)];const bs=as.map(a=>ab/a);const m=Math.min(...bs);for(let q=1;q<=12;q++){const p=Math.round(m*q);if(Math.abs(p/q-m)<1e-9)return q===1?String(p):p+'/'+q;}return String(m);",
+  "distractor_solve": {
+   "5": "// swaps the coordinates of the point, using (4, 3): 4b + 3a = 50 and ab = 50 give (a, b) = (10, 5) or (20/3, 15/2); least b = 5\nconst A=3,B=-50,C=200;const D=Math.sqrt(B*B-4*A*C);const as=[(-B-D)/(2*A),(-B+D)/(2*A)];return String(Math.min(...as.map(a=>50/a)));",
+   "10": "// finds only the line with x-intercept 5 (the first factor) and reports its y-intercept, missing that the other line's is smaller\nconst a=5;return String(50/a);",
+   "15/2": "// solves correctly but reports the x-intercept of the line with the least y-intercept instead of its y-intercept\nconst A=4,B=-50,C=150;const D=Math.sqrt(B*B-4*A*C);const a=(-B+D)/(2*A);return (a*2)+'/2';"
+  },
+  "forced": [
+   "greater than 4: a line with negative slope through (3, 4) meets the y-axis above y = 4; every option exceeds 4",
+   "less than 50/3: the x-intercept exceeds 3 and ab = 50; every option is below 50/3",
+   "on this 'least' item, one option (5) lies below the key, in the asked direction",
+   "options are two whole numbers and two fractions, so the key is not a kind singleton"
+  ]
+ },
+ {
+  "id": "IM17E-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a counter that skips every reading containing a given digit: true count from the displayed reading (a base-nine pattern, or counting the readings with no 4)",
+  "difficulty": "hard",
+  "prompt": "A car's odometer is faulty: it never shows the digit 4. Whenever the next reading would contain a 4, it skips ahead to the next reading that has no 4, so after 3 it shows 5, after 39 it shows 50, and after 399 it shows 500. Each reading it shows stands for one more mile driven. The odometer read 0 when the car was new, and it now reads 2052. How many miles has the car actually been driven?",
+  "choices": [
+   "1505",
+   "1496",
+   "1637",
+   "1437"
+  ],
+  "correct_answer": "1496",
+  "explanation": "Hard: one non-routine idea - the true distance is the number of readings from 1 to 2052 that contain no 4, and the readings use only nine digits per place, so the odometer is really counting in base nine (digits 0, 1, 2, 3, 5, 6, 7, 8, 9 standing for 0 through 8). Reading 2052 as base nine with each digit above 4 lowered by 1 gives the digits 2, 0, 4, 2, which is 2(729) + 0(81) + 4(9) + 2 = 1458 + 36 + 2 = 1496. (Counting directly: of 1 to 2052, 1496 have no digit 4.)",
+  "solve": "let c=0;for(let n=1;n<=2052;n++){if(!String(n).includes('4'))c++;}return String(c);",
+  "distractor_solve": {
+   "1437": "// subtracts the readings with a 4 in the units, tens, and hundreds places separately, never removing readings counted twice\nlet u=0,t=0,h=0;for(let n=1;n<=2052;n++){const s=String(n).padStart(4,'0');if(s[3]==='4')u++;if(s[2]==='4')t++;if(s[1]==='4')h++;}return String(2052-u-t-h);",
+   "1505": "// reads 2052 as a base-nine numeral without lowering the 5 to 4: 2(729) + 5(9) + 2\nreturn String(2*729+0*81+5*9+2);",
+   "1637": "// subtracts only the readings with a 4 in the units or tens place, forgetting the hundreds place (and the overlap)\nlet u=0,t=0;for(let n=1;n<=2052;n++){const s=String(n).padStart(4,'0');if(s[3]==='4')u++;if(s[2]==='4')t++;}return String(2052-u-t);"
+  },
+  "forced": [
+   "less than 2052, since readings are skipped; every option is below 2052",
+   "more than half of 2052, since at most about 3 readings in 10 are skipped below 2052; every option is above 1,400",
+   "a whole number; every option is a whole number",
+   "no parity, units digit, or leading digit is forced without the count; options are two even and two odd, all beginning 14, 15 or 16"
+  ]
+ },
+ {
+  "id": "IM17E-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "missing vertex of a triangle from its centroid (the centroid's coordinates are the averages of the vertices' coordinates)",
+  "difficulty": "medium",
+  "prompt": "In the coordinate plane, triangle ABC has vertices A(-2, 7) and B(8, 1). The three medians of the triangle meet at the point G(3, 6). What is the sum of the x-coordinate and the y-coordinate of vertex C?",
+  "choices": [
+   "13",
+   "4",
+   "20",
+   "10"
+  ],
+  "correct_answer": "13",
+  "explanation": "Medium: two routine steps once the key fact is known - the point where the medians meet has coordinates equal to the averages of the three vertices' coordinates, so each coordinate of C is 3 times G's minus A's and B's. x: 3(3) - (-2) - 8 = 3. y: 3(6) - 7 - 1 = 10. So C = (3, 10), and the sum of its coordinates is 13. (Check with the 2 : 1 rule: the midpoint of AB is M(3, 4); G is one third of the way from M to C, and 4 + (10 - 4)/3 = 6.)",
+  "solve": "const A=[-2,7],B=[8,1],G=[3,6];const C=[3*G[0]-A[0]-B[0],3*G[1]-A[1]-B[1]];return String(C[0]+C[1]);",
+  "distractor_solve": {
+   "4": "// averages over two points instead of three: C = 2G - A - B = (0, 4)\nconst A=[-2,7],B=[8,1],G=[3,6];const C=[2*G[0]-A[0]-B[0],2*G[1]-A[1]-B[1]];return String(C[0]+C[1]);",
+   "10": "// reverses the 2 : 1 split, taking CG : GM = 1 : 2, so G = C + (M - C)/3 and C = (3G - M)/2 = (3, 7)\nconst A=[-2,7],B=[8,1],G=[3,6];const M=[(A[0]+B[0])/2,(A[1]+B[1])/2];const C=[(3*G[0]-M[0])/2,(3*G[1]-M[1])/2];return String(C[0]+C[1]);",
+   "20": "// triples G but subtracts only the midpoint M of AB: C = 3G - M = (6, 14)\nconst A=[-2,7],B=[8,1],G=[3,6];const M=[(A[0]+B[0])/2,(A[1]+B[1])/2];const C=[3*G[0]-M[0],3*G[1]-M[1]];return String(C[0]+C[1]);"
+  },
+  "forced": [
+   "a whole number: G and A, B have whole-number coordinates and C = 3G - A - B; every option is a whole number",
+   "no sign is forced (C could lie anywhere); every option is positive",
+   "no bound on C is readable without the method: G lies inside the triangle but that does not bound C's coordinates from the printed numbers alone; options spread 4 to 20 with the key interior",
+   "no parity is forced without computing; options are two even and two odd"
+  ]
+ },
+ {
+  "id": "IM17E-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "all three possible fourth vertices of a parallelogram from three given vertices (each is the sum of two given vertices minus the third), then the greatest distance among them",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, three of the four vertices of a parallelogram are A(1, 2), B(4, 6), and C(9, 2). The fourth vertex could be at any one of three different points. What is the greatest distance between two of these three possible points?",
+  "choices": [
+   "2sqrt(17)",
+   "2sqrt(41)",
+   "16",
+   "18"
+  ],
+  "correct_answer": "16",
+  "explanation": "Hard: one non-routine idea - the fourth vertex is not fixed, because any one of the three given points can be the vertex opposite the missing one, so all three locations must be found before comparing distances. The fourth vertex is opposite one of A, B, C, and equals the sum of the other two minus it: B + C - A = (12, 6), A + C - B = (6, -2), and A + B - C = (-4, 6). The distances between these points are: (12, 6) to (6, -2): sqrt(36 + 64) = 10; (6, -2) to (-4, 6): sqrt(100 + 64) = 2sqrt(41); (12, 6) to (-4, 6): 16. The greatest is 16 (twice AC = 8, as the three points form a triangle with sides twice those of ABC).",
+  "solve": "const A=[1,2],B=[4,6],C=[9,2];const P=[[B[0]+C[0]-A[0],B[1]+C[1]-A[1]],[A[0]+C[0]-B[0],A[1]+C[1]-B[1]],[A[0]+B[0]-C[0],A[1]+B[1]-C[1]]];let best=0;for(let i=0;i<3;i++)for(let j=i+1;j<3;j++){const d=(P[i][0]-P[j][0])**2+(P[i][1]-P[j][1])**2;if(d>best)best=d;}const r=Math.sqrt(best);return Number.isInteger(r)?String(r):'?';",
+  "distractor_solve": {
+   "18": "// finds all three locations but measures distance along the grid, |dx| + |dy|, instead of in a straight line; the greatest is (6, -2) to (-4, 6): 10 + 8\nconst P=[[12,6],[6,-2],[-4,6]];let best=0;for(let i=0;i<3;i++)for(let j=i+1;j<3;j++){best=Math.max(best,Math.abs(P[i][0]-P[j][0])+Math.abs(P[i][1]-P[j][1]));}return String(best);",
+   "2sqrt(17)": "// finds only the fourth vertex for the order ABCD, D = A + C - B = (6, -2), and reports its greatest distance to a given vertex: D to B is sqrt(4 + 64) = 2sqrt(17)\nconst D=[6,-2];const ds=[[1,2],[4,6],[9,2]].map(p=>(p[0]-D[0])**2+(p[1]-D[1])**2);const m=Math.max(...ds);return m===68?'2sqrt(17)':'?';",
+   "2sqrt(41)": "// finds only two of the locations, A + C - B = (6, -2) and A + B - C = (-4, 6), missing B + C - A, and reports the distance between them\nconst d=(6-(-4))**2+(-2-6)**2;return d===164?'2sqrt(41)':'?';"
+  },
+  "forced": [
+   "greater than 8, the longest side AC of the given triangle (the three locations form a triangle with sides twice those of ABC); every option exceeds 8",
+   "options are two whole numbers and two square-root forms, so the key is not a kind singleton",
+   "on this 'greatest' item one option (18) lies beyond the key in the asked direction",
+   "no parity or grid bound is readable without locating the three points"
+  ]
+ },
+ {
+  "id": "IM17E-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "points reachable on the grid in exactly n unit moves (parity of x + y plus the grid-walking distance bound, counted ring by ring)",
+  "difficulty": "hard",
+  "prompt": "A frog sits at the origin of the coordinate plane. Each jump moves it exactly 1 unit up, down, left, or right. How many different points could the frog be at after exactly 4 jumps?",
+  "choices": [
+   "21",
+   "37",
+   "41",
+   "25"
+  ],
+  "correct_answer": "25",
+  "explanation": "Hard: one non-routine idea - each jump changes x + y by 1, so after 4 jumps x + y is even, and the frog can be at exactly those points whose grid distance |x| + |y| is 0, 2, or 4, not at every point within 4 jumps. Points with |x| + |y| = r form a diamond-shaped ring of 4r points for r >= 1. So the count is 1 (the origin, by going out and back twice) + 8 (ring 2) + 16 (ring 4) = 25. Every such point is reachable: walk straight to it and use any spare jumps as one step out and one step back.",
+  "solve": "let S=new Set(['0,0']);for(let k=0;k<4;k++){const T=new Set();for(const p of S){const [x,y]=p.split(',').map(Number);for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]])T.add((x+dx)+','+(y+dy));}S=T;}return String(S.size);",
+  "distractor_solve": {
+   "21": "// keeps the even rings 0, 2, 4 but in ring 2 lists only the four straight-line points (2, 0), (-2, 0), (0, 2), (0, -2), missing (1, 1), (1, -1), (-1, 1), (-1, -1)\nreturn String(1+4+16);",
+   "37": "// removes only ring 1 (one leftover jump cannot be undone) but keeps ring 3, so counts rings 0, 2, 3, 4\nreturn String(1+4*2+4*3+4*4);",
+   "41": "// ignores parity and counts every point with |x| + |y| <= 4: rings 0 through 4\nlet c=0;for(let x=-4;x<=4;x++)for(let y=-4;y<=4;y++)if(Math.abs(x)+Math.abs(y)<=4)c++;return String(c);"
+  },
+  "forced": [
+   "one more than a multiple of 4, since the reachable set is unchanged by quarter turns about the origin and contains the origin; every option is 1 more than a multiple of 4",
+   "at most 41, the points with |x| + |y| <= 4 (4 jumps cannot go farther), and well inside the 9 by 9 square; every option is at most 41",
+   "odd; every option is odd",
+   "one option (21) lies below the key and two (37, 41) lie above it, so the key is neither the largest nor the smallest"
+  ]
+ },
+ {
+  "id": "IM17E-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "clock time after a run of waits that grow by 1 minute each (n - 1 waits, sum of 1 through n - 1, minutes to hours and minutes, past noon)",
+  "difficulty": "medium",
+  "prompt": "A machine beeps for the first time at 8:07 a.m. It beeps for the second time 1 minute after the first beep, for the third time 2 minutes after the second beep, for the fourth time 3 minutes after the third beep, and so on, with each wait 1 minute longer than the wait before it. At what time does the machine beep for the 30th time?",
+  "choices": [
+   "2:53 p.m.",
+   "3:32 p.m.",
+   "3:37 p.m.",
+   "3:22 p.m."
+  ],
+  "correct_answer": "3:22 p.m.",
+  "explanation": "Medium: a chain of routine steps - count the waits, add them, and convert minutes to a clock time. The 30th beep comes after 29 waits of 1, 2, 3, ..., 29 minutes, which total 29 x 30 / 2 = 435 minutes = 7 hours 15 minutes. From 8:07 a.m., 7 hours 15 minutes later is 3:22 p.m.",
+  "solve": "const fmt=t=>{let h=Math.floor(t/60)%24,m=t%60;const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};const n=29;return fmt(8*60+7+n*(n+1)/2);",
+  "distractor_solve": {
+   "2:53 p.m.": "// uses n(n - 1)/2 with n = 29, adding the waits 1 through 28 only: 406 minutes = 6 hours 46 minutes\nconst fmt=t=>{let h=Math.floor(t/60)%24,m=t%60;const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(8*60+7+29*28/2);",
+   "3:32 p.m.": "// finds 435 minutes = 7.25 hours but reads 7.25 hours as 7 hours 25 minutes\nconst fmt=t=>{let h=Math.floor(t/60)%24,m=t%60;const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(8*60+7+7*60+25);",
+   "3:37 p.m.": "// takes the average wait as 15 minutes and multiplies by 30 (one wait per beep): 450 minutes = 7 hours 30 minutes\nconst fmt=t=>{let h=Math.floor(t/60)%24,m=t%60;const ap=h>=12?'p.m.':'a.m.';h=h%12;if(h===0)h=12;return h+':'+String(m).padStart(2,'0')+' '+ap;};return fmt(8*60+7+30*15);"
+  },
+  "forced": [
+   "later than noon: the last 15 waits alone (15 through 29 minutes) exceed 5 hours; every option is p.m.",
+   "earlier than 8:07 p.m., since 29 waits each under 30 minutes total less than 14.5 hours; every option is before 4:00 p.m.",
+   "no minute pattern is forced (waits are whole minutes of every size); the minute readings :53, :32, :37, :22 share no common step"
+  ]
+ },
+ {
+  "id": "IM17E-20",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distance between two parallel lines (draw the perpendicular through a point of one line, find where it meets the other, measure that segment)",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, the lines 3x + 4y = 12 and 3x + 4y = 47 are parallel. What is the shortest distance between the two lines?",
+  "choices": [
+   "5",
+   "7",
+   "12/5",
+   "35/12"
+  ],
+  "correct_answer": "7",
+  "explanation": "Hard: three dependent steps, none a recall fact - pick a point on one line, draw the line through it perpendicular to both, find where it meets the other line, and measure. The point (0, 3) is on 3x + 4y = 12. Both lines have slope -3/4, so the perpendicular has slope 4/3: y = 3 + (4/3)x. Substituting into 3x + 4y = 47: 3x + 12 + (16/3)x = 47, so (25/3)x = 35 and x = 21/5, y = 3 + 28/5 = 43/5. The segment from (0, 3) to (21/5, 43/5) has legs 21/5 and 28/5, so its length is sqrt(441 + 784)/5 = 35/5 = 7.",
+  "solve": "const a=3,b=4,c1=12,c2=47;const p=[0,c1/b];const t=(c2-(a*p[0]+b*p[1]))/(a*a+b*b);const dx=a*t,dy=b*t;const d=Math.sqrt(dx*dx+dy*dy);return String(Math.round(d*1e9)/1e9);",
+  "distractor_solve": {
+   "5": "// divides the difference of the constants, 47 - 12 = 35, by 3 + 4 = 7 instead of by sqrt(3^2 + 4^2)\nreturn String((47-12)/(3+4));",
+   "12/5": "// measures from the origin to the first line (the height of the 3-4-5 intercept triangle on 3x + 4y = 12) instead of between the two lines\nconst h=(4*3)/5;return h===12/5?'12/5':'?';",
+   "35/12": "// divides the difference of the constants, 35, by 3 x 4 = 12\nconst g=47-12;return g===35?'35/12':'?';"
+  },
+  "forced": [
+   "positive and less than the vertical gap between the lines, (47 - 12)/4 = 35/4, and the horizontal gap 35/3; every option is below 35/4",
+   "options are two whole numbers and two fractions, so the key is not a kind singleton",
+   "no parity or factor is forced; the key is not the vertical or horizontal gap itself (no limiting case)"
+  ]
+ }
+]

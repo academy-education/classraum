@@ -1,0 +1,563 @@
+[
+ {
+  "id": "IM17A-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the divisors that can produce a stated remainder (divisor of the difference, larger than the remainder)",
+  "difficulty": "hard",
+  "prompt": "When 1,000 is divided by the positive integer d, the remainder is 13. How many different values of d are possible?",
+  "choices": [
+   "5",
+   "8",
+   "4",
+   "10"
+  ],
+  "correct_answer": "5",
+  "explanation": "Hard: one non-routine idea plus a condition that is easy to forget - turn the remainder statement into a divisibility statement, factor, and then apply the rule that a divisor must exceed its remainder. If 1,000 = qd + 13, then d divides 1,000 - 13 = 987 = 3 x 7 x 47, and d must be greater than 13. The divisors of 987 are 1, 3, 7, 21, 47, 141, 329 and 987; those greater than 13 are 21, 47, 141, 329 and 987 (987 works with quotient 1). That is 5 values.",
+  "solve": "const n=987;let c=0;for(let d=1;d<=1000;d++){if(1000%d===13)c++}return String(c);",
+  "distractor_solve": {
+   "4": "// drops d = 987 believing the quotient must be at least 2\nlet c=0;for(let d=14;d<987;d++){if(987%d===0)c++}return String(c);",
+   "8": "// forgets that d must exceed the remainder: counts every divisor of 987\nlet c=0;for(let d=1;d<=987;d++){if(987%d===0)c++}return String(c);",
+   "10": "// counts the divisors of 1000 (not 987) that are greater than 13\nlet c=0;for(let d=14;d<=1000;d++){if(1000%d===0)c++}return String(c);"
+  },
+  "forced": [
+   "a positive whole-number count",
+   "at least 1 (d = 987 visibly works)",
+   "no parity, units-digit or size bound readable from the stem without factoring 987; every option is a plausible small count"
+  ]
+ },
+ {
+  "id": "IM17A-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "which unit fractions terminate after exactly a given number of decimal places (the larger exponent of 2 or 5 decides)",
+  "difficulty": "hard",
+  "prompt": "For how many positive integers n does the decimal form of 1/n terminate with exactly 4 digits after the decimal point? (For example, 1/8 = 0.125 terminates with exactly 3 digits after the decimal point.)",
+  "choices": [
+   "9",
+   "10",
+   "24",
+   "16"
+  ],
+  "correct_answer": "9",
+  "explanation": "Hard: two non-routine ideas chained - 1/n terminates only when n = 2^a x 5^b, and the number of decimal places is the LARGER of a and b (not their sum), which then needs a complement count. The places equal 4 exactly when max(a, b) = 4 with a and b from 0 to 4: 5 x 5 = 25 pairs have both exponents at most 4, and 4 x 4 = 16 of them have both at most 3, so 25 - 16 = 9. They are n = 16, 80, 400, 2000, 10000, 625, 1250, 2500 and 5000.",
+  "solve": "let c=0;for(let a=0;a<=4;a++)for(let b=0;b<=4;b++){if(Math.max(a,b)===4)c++}return String(c);",
+  "distractor_solve": {
+   "10": "// counts the a = 4 cases and the b = 4 cases separately, so n = 10000 (a = b = 4) is counted twice\nreturn String(5+5);",
+   "16": "// reports the complement it subtracted: the n with at most 3 decimal places\nlet c=0;for(let a=0;a<=3;a++)for(let b=0;b<=3;b++)c++;return String(c);",
+   "24": "// counts every n with AT MOST 4 decimal places, leaving out only n = 1\nlet c=0;for(let a=0;a<=4;a++)for(let b=0;b<=4;b++){if(Math.max(a,b)<=4)c++}return String(c-1);"
+  },
+  "forced": [
+   "a positive whole-number count",
+   "at least 2 (n = 16 and n = 625 visibly qualify)",
+   "no parity, factor or size bound readable from the stem; every option is a plausible count below 25"
+  ]
+ },
+ {
+  "id": "IM17A-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting fractions with a fixed denominator between two fractions that are already in lowest terms",
+  "difficulty": "medium",
+  "prompt": "Consider all fractions of the form k/24, where k is a positive integer, that are greater than 1/3 and less than 3/4. How many of these fractions are already in lowest terms?",
+  "choices": [
+   "3",
+   "5",
+   "8",
+   "6"
+  ],
+  "correct_answer": "3",
+  "explanation": "Medium: a short chain of routine steps - rewrite the bounds over 24, list the numerators, then remove those sharing a factor with 24. 1/3 = 8/24 and 3/4 = 18/24, so k = 9, 10, ..., 17. The fraction is in lowest terms only when k shares no factor with 24 = 2^3 x 3, so k must be odd and not a multiple of 3: k = 11, 13, 17. That is 3 fractions.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;let c=0;for(let k=1;k<24;k++){if(k*3>24&&k*4<72&&g(k,24)===1)c++}return String(c);",
+  "distractor_solve": {
+   "5": "// removes only the even numerators (forgets the factor 3 of 24): 9, 11, 13, 15, 17\nlet c=0;for(let k=9;k<=17;k++){if(k%2!==0)c++}return String(c);",
+   "6": "// removes only the multiples of 3 (forgets the factor 2 of 24): 10, 11, 13, 14, 16, 17\nlet c=0;for(let k=9;k<=17;k++){if(k%3!==0)c++}return String(c);",
+   "8": "// ignores the interval: counts every k from 1 to 23 that shares no factor with 24\nconst g=(a,b)=>b?g(b,a%b):a;let c=0;for(let k=1;k<24;k++){if(g(k,24)===1)c++}return String(c);"
+  },
+  "forced": [
+   "a positive whole-number count",
+   "at most 9 (only 9 numerators lie strictly between 8 and 18)",
+   "at least 1"
+  ]
+ },
+ {
+  "id": "IM17A-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting numbers with restricted digits that pass a divisibility test (last-two-digit test for 4 combined with the multiplication principle)",
+  "difficulty": "hard",
+  "prompt": "How many four-digit positive integers have only even digits (0, 2, 4, 6, 8) and are divisible by 4?",
+  "choices": [
+   "200",
+   "180",
+   "300",
+   "160"
+  ],
+  "correct_answer": "300",
+  "explanation": "Hard: it combines two strands - a divisibility test and a counting principle - and needs the non-routine observation that with an even tens digit, the last two digits form a multiple of 4 exactly when the units digit is 0, 4 or 8. A number is divisible by 4 when its last two digits are. With an even tens digit t, 10t is a multiple of 20 and so of 4, so only the units digit matters: it must be 0, 4 or 8 (3 choices). The thousands digit can be 2, 4, 6 or 8 (4 choices, not 0), and the hundreds and tens digits each have 5 choices. Total: 4 x 5 x 5 x 3 = 300.",
+  "solve": "let c=0;for(let n=1000;n<=9999;n++){if(/^[02468]+$/.test(String(n))&&n%4===0)c++}return String(c);",
+  "distractor_solve": {
+   "160": "// applies the divisibility test for 8 (last three digits) instead of the test for 4\nlet c=0;for(let n=1000;n<=9999;n++){if(/^[02468]+$/.test(String(n))&&n%8===0)c++}return String(c);",
+   "180": "// requires BOTH of the last two digits to be 0, 4 or 8\nreturn String(4*5*3*3);",
+   "200": "// allows only 4 or 8 as the units digit, forgetting that 0 also works\nreturn String(4*5*5*2);"
+  },
+  "forced": [
+   "a positive whole-number count",
+   "a multiple of 20 (4 choices of first digit times 5 choices of a middle digit times the rest)",
+   "less than 500, the number of four-digit integers with all even digits",
+   "no option equals 500 or half of it (250)"
+  ]
+ },
+ {
+  "id": "IM17A-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "simplifying a quotient of sums and differences of powers by factoring out the smallest common power",
+  "difficulty": "hard",
+  "prompt": "What is the value of (2^31 + 2^29) / (2^30 - 2^28) ?",
+  "choices": [
+   "10/3",
+   "4",
+   "16/3",
+   "5/2"
+  ],
+  "correct_answer": "10/3",
+  "explanation": "Hard: one non-routine idea that overrides the instinctive move - the powers cannot be cancelled term by term across a sum; the smallest common power must be factored out of the numerator and the denominator first. Numerator: 2^31 + 2^29 = 2^28(2^3 + 2^1) = 2^28 x 10. Denominator: 2^30 - 2^28 = 2^28(2^2 - 1) = 2^28 x 3. The 2^28 cancels, leaving 10/3.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const p=2n**31n+2n**29n,q=2n**30n-2n**28n;const d=g(p,q);return String(p/d)+'/'+String(q/d);",
+  "distractor_solve": {
+   "4": "// cancels term by term across the sum: 2^31/2^30 + 2^29/2^28 = 2 + 2\nreturn String(2**31/2**30+2**29/2**28);",
+   "16/3": "// factors correctly but adds the exponents inside: 2^3 + 2^1 written as 2^4 = 16, over 2^2 - 1 = 3\nreturn String(2**(3+1))+'/'+String(2**2-1);",
+   "5/2": "// factors correctly but treats 2^0 as 0 in the denominator: (8 + 2)/(4 - 0) = 10/4\nconst g=(a,b)=>b?g(b,a%b):a;const p=2**3+2**1,q=2**2-0;const d=g(p,q);return String(p/d)+'/'+String(q/d);"
+  },
+  "forced": [
+   "positive",
+   "greater than 2 (the numerator exceeds 2^31 and the denominator is less than 2^30, so the quotient exceeds 2^31/2^30 = 2)",
+   "less than 8 (numerator below 2^32, denominator above 2^29)"
+  ]
+ },
+ {
+  "id": "IM17A-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the factors of one number that are not factors of another (the shared factors are the factors of the GCF)",
+  "difficulty": "medium",
+  "prompt": "How many positive factors of 120 are NOT factors of 84?",
+  "choices": [
+   "4",
+   "10",
+   "8",
+   "1"
+  ],
+  "correct_answer": "10",
+  "explanation": "Medium: a short chain of routine number-theory steps - count the factors of 120, recognize that the factors the two numbers share are exactly the factors of their GCF, and subtract. 120 = 2^3 x 3 x 5 has 4 x 2 x 2 = 16 factors. The GCF of 120 and 84 is 12, which has 6 factors (1, 2, 3, 4, 6, 12). So 16 - 6 = 10 factors of 120 are not factors of 84: 5, 8, 10, 15, 20, 24, 30, 40, 60 and 120.",
+  "solve": "let c=0;for(let d=1;d<=120;d++){if(120%d===0&&84%d!==0)c++}return String(c);",
+  "distractor_solve": {
+   "1": "// reads 'factors' as prime factors: of 2, 3 and 5, only 5 does not divide 84\nlet c=0;for(const p of [2,3,5]){if(84%p!==0)c++}return String(c);",
+   "4": "// subtracts the two factor counts: 120 has 16 factors and 84 has 12\nlet a=0,b=0;for(let d=1;d<=120;d++){if(120%d===0)a++;if(84%d===0)b++}return String(a-b);",
+   "8": "// counts only the factors of 120 that contain the prime 5 (5 does not divide 84), missing 8 and 24\nlet c=0;for(let d=1;d<=120;d++){if(120%d===0&&d%5===0)c++}return String(c);"
+  },
+  "forced": [
+   "a positive whole-number count",
+   "at most 15 (120 has 16 factors and 1 is shared)",
+   "at least 1 (120 itself is not a factor of 84)"
+  ]
+ },
+ {
+  "id": "IM17A-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a defined operation applied in a long chain (a + b + ab = (a + 1)(b + 1) - 1)",
+  "difficulty": "hard",
+  "prompt": "For all numbers a and b, the operation * is defined by a * b = a + b + ab. The operation is carried out from left to right in the expression 1 * 2 * 3 * 4 * 5 * 6, so that 1 * 2 is found first, that result * 3 is found next, and so on. What is the value of the expression?",
+  "choices": [
+   "1800",
+   "5039",
+   "6139",
+   "741"
+  ],
+  "correct_answer": "5039",
+  "explanation": "Hard: five dependent applications of an unfamiliar rule with no recall step, or one non-routine idea that shortens it - a * b + 1 = (a + 1)(b + 1). Step by step: 1 * 2 = 5, 5 * 3 = 23, 23 * 4 = 119, 119 * 5 = 719, 719 * 6 = 719 + 6 + 4314 = 5039. With the identity, each result plus 1 is the running product of the (n + 1)'s, so the answer is 2 x 3 x 4 x 5 x 6 x 7 - 1 = 5040 - 1 = 5039.",
+  "solve": "const op=(a,b)=>a+b+a*b;let x=1;for(let k=2;k<=6;k++)x=op(x,k);return String(x);",
+  "distractor_solve": {
+   "741": "// applies a + b + ab to the whole list at once: the sum of the numbers plus their product\nreturn String((1+2+3+4+5+6)+(1*2*3*4*5*6));",
+   "1800": "// applies the operation once (1 * 2 = 5) and then treats every later * as ordinary multiplication\nlet x=1+2+1*2;for(let k=3;k<=6;k++)x=x*k;return String(x);",
+   "6139": "// multiplies (x + 1)(y + 1) at every step but never subtracts the 1\nlet x=1;for(let k=2;k<=6;k++)x=(x+1)*(k+1);return String(x);"
+  },
+  "forced": [
+   "a positive integer",
+   "greater than 1 x 2 x 3 x 4 x 5 x 6 = 720, since a * b exceeds ab for positive a and b (every option exceeds 720)",
+   "no parity or units-digit property is readable from the stem without carrying out the chain"
+  ]
+ },
+ {
+  "id": "IM17A-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding every number whose least common multiple with a given number is a stated value (prime by prime: a prime the given number lacks, or has at a lower power, must appear in full; the others are free up to the given power)",
+  "difficulty": "hard",
+  "prompt": "The least common multiple of a positive integer n and 18 is 180. What is the sum of all the possible values of n?",
+  "choices": [
+   "780",
+   "240",
+   "260",
+   "200"
+  ],
+  "correct_answer": "260",
+  "explanation": "Hard: one non-routine idea - reading a least common multiple prime by prime - followed by a careful listing. 180 = 2^2 x 3^2 x 5 and 18 = 2 x 3^2. The LCM takes the larger power of each prime. 18 supplies only one factor 2 and no factor 5, so n must contain 2^2 and 5 in full. 18 already supplies 3^2, so n may contain 3^0, 3^1 or 3^2. So n = 20, 60 or 180, and the sum is 20 + 60 + 180 = 260.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const l=(a,b)=>a/g(a,b)*b;let s=0;for(let n=1;n<=180;n++){if(l(n,18)===180)s+=n}return String(s);",
+  "distractor_solve": {
+   "200": "// takes only the two extreme cases 3^0 and 3^2, missing the middle power 3^1 (n = 60)\nreturn String(4*5*1+4*5*9);",
+   "240": "// assumes n must contain a factor 3 because 180 does, so drops n = 20\nlet s=0;for(const a of [1,2])s+=4*5*Math.pow(3,a);return String(s);",
+   "780": "// takes n as 20 (the part 18 lacks) times ANY divisor of 18, not noticing that 40 and 360 give a different LCM\nlet s=0;for(let d=1;d<=18;d++){if(18%d===0)s+=20*d}return String(s);"
+  },
+  "forced": [
+   "a positive whole number",
+   "at least 180 (n = 180 itself works)",
+   "a multiple of 20 (every n must supply the 2^2 and the 5 that 18 lacks)",
+   "three-digit"
+  ]
+ },
+ {
+  "id": "IM17A-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "writing a repeating decimal that has a non-repeating digit before its repeating block as a fraction in lowest terms",
+  "difficulty": "medium",
+  "prompt": "The decimal 0.2454545... has a 2 in the tenths place, followed by the block 45 repeating forever. When this decimal is written as a fraction in lowest terms, what is the numerator?",
+  "choices": [
+   "49",
+   "245",
+   "27",
+   "136"
+  ],
+  "correct_answer": "27",
+  "explanation": "Medium: a routine conversion with two standard steps - remove the non-repeating digit, then reduce. Let x = 0.2454545... . Then 1000x = 245.4545... and 10x = 2.4545..., so 990x = 245 - 2 = 243 and x = 243/990. Dividing the numerator and denominator by 9 gives 27/110, which is in lowest terms. The numerator is 27.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;let n=245-2,d=990;const k=g(n,d);return String(n/k);",
+  "distractor_solve": {
+   "49": "// forgets to subtract the non-repeating digit: 245/990 = 49/198\nconst g=(a,b)=>b?g(b,a%b):a;let n=245,d=990;const k=g(n,d);return String(n/k);",
+   "136": "// splits it as 2/10 plus a repeating 045 block, 45/999: 2/10 + 45/999 = 272/1110 = 136/555\nconst g=(a,b)=>b?g(b,a%b):a;let n=2*999+45*10,d=10*999;const k=g(n,d);return String(n/k);",
+   "245": "// treats all three digits 245 as the repeating block: 245/999, already in lowest terms\nconst g=(a,b)=>b?g(b,a%b):a;let n=245,d=999;const k=g(n,d);return String(n/k);"
+  },
+  "forced": [
+   "a positive whole number",
+   "the fraction it heads has value about 0.245, so the denominator is about four times the numerator (true of every option's source fraction)",
+   "no relation to the digits that the stem prints is forced (the key 27 shares none of them)"
+  ]
+ },
+ {
+  "id": "IM17A-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "splitting a power of 10 into two factors with no zero digit (a factor holding both a 2 and a 5 ends in 0, so all the 2s go to one factor and all the 5s to the other)",
+  "difficulty": "hard",
+  "prompt": "The number 1,000,000 is written as the product of two positive whole numbers, and neither of the two numbers has a 0 anywhere among its digits. What is the sum of the two numbers?",
+  "choices": [
+   "15,689",
+   "3,157",
+   "78,253",
+   "62,516"
+  ],
+  "correct_answer": "15,689",
+  "explanation": "Hard: one non-routine idea carries the item - any factor containing both a 2 and a 5 is a multiple of 10 and ends in 0. 1,000,000 = 10^6 = 2^6 x 5^6. If either factor had both a factor 2 and a factor 5, it would end in 0, so one factor must be 2^6 = 64 and the other 5^6 = 15,625 (neither has a 0). Their sum is 64 + 15,625 = 15,689.",
+  "solve": "const f=x=>x.toLocaleString('en-US');let a=1,b=1;for(let i=0;i<6;i++){a*=2;b*=5}if(a*b!==1000000||/0/.test(String(a))||/0/.test(String(b)))return 'bad';return f(a+b);",
+  "distractor_solve": {
+   "3,157": "// miscounts the zeros of 1,000,000 as five, so splits 10^5 = 2^5 x 5^5 = 32 x 3,125\nconst f=x=>x.toLocaleString('en-US');return f(Math.pow(2,5)+Math.pow(5,5));",
+   "78,253": "// miscounts the zeros as seven, so splits 10^7 = 2^7 x 5^7 = 128 x 78,125\nconst f=x=>x.toLocaleString('en-US');return f(Math.pow(2,7)+Math.pow(5,7));",
+   "62,516": "// checks only the smaller factor for zeros: takes 16 (no zero) and 1,000,000 / 16 = 62,500\nconst f=x=>x.toLocaleString('en-US');return f(16+1000000/16);"
+  },
+  "forced": [
+   "a positive whole number",
+   "more than 1,000 (one factor is at most 1,000, so the other is at least 1,000)"
+  ]
+ },
+ {
+  "id": "IM17A-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "evaluating a nested (continued) fraction from the innermost level outward",
+  "difficulty": "medium",
+  "prompt": "What is the value of the expression below, written as a fraction?\n2 + 1/(3 + 1/(4 + 1/5))",
+  "choices": [
+   "157/68",
+   "30/13",
+   "77/36",
+   "38/17"
+  ],
+  "correct_answer": "157/68",
+  "explanation": "Medium: three routine fraction steps, worked from the inside out, with no single non-routine idea. Innermost: 4 + 1/5 = 21/5, so 1/(21/5) = 5/21. Next: 3 + 5/21 = 68/21, so 1/(68/21) = 21/68. Last: 2 + 21/68 = 136/68 + 21/68 = 157/68.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return [n/k,d/k]};const inv=([n,d])=>[d,n];const addInt=(k,[n,d])=>fr(k*d+n,d);let x=fr(1,5);x=addInt(4,x);x=inv(x);x=addInt(3,x);x=inv(x);x=addInt(2,x);return x[0]+'/'+x[1];",
+  "distractor_solve": {
+   "30/13": "// drops the innermost 1/5 and evaluates 2 + 1/(3 + 1/4)\nconst g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return [n/k,d/k]};const inv=([n,d])=>[d,n];const addInt=(k,[n,d])=>fr(k*d+n,d);let x=fr(1,4);x=addInt(3,x);x=inv(x);x=addInt(2,x);return x[0]+'/'+x[1];",
+   "77/36": "// forgets to flip at the innermost level: uses 21/5 itself instead of 1/(21/5)\nconst g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return [n/k,d/k]};const inv=([n,d])=>[d,n];const addInt=(k,[n,d])=>fr(k*d+n,d);let x=fr(1,5);x=addInt(4,x);x=addInt(3,x);x=inv(x);x=addInt(2,x);return x[0]+'/'+x[1];",
+   "38/17": "// reads 4 + 1/5 as 4 x 1/5 = 4/5, then continues correctly\nconst g=(a,b)=>b?g(b,a%b):a;const fr=(n,d)=>{const k=g(n,d);return [n/k,d/k]};const inv=([n,d])=>[d,n];const addInt=(k,[n,d])=>fr(k*d+n,d);let x=fr(4,5);x=inv(x);x=addInt(3,x);x=inv(x);x=addInt(2,x);return x[0]+'/'+x[1];"
+  },
+  "forced": [
+   "a fraction greater than 2 (2 plus a positive amount)",
+   "less than 2 + 1/3 (the added piece is 1 over something larger than 3)",
+   "written in lowest terms, not a whole number"
+  ]
+ },
+ {
+  "id": "IM17A-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "building the least number meeting a square condition and a cube condition at once (each prime's exponent must satisfy both conditions), then counting its factors",
+  "difficulty": "hard",
+  "prompt": "N is the least positive integer such that N/2 is a perfect square and N/3 is a perfect cube. How many positive factors does N have?",
+  "choices": [
+   "20",
+   "15",
+   "16",
+   "8"
+  ],
+  "correct_answer": "20",
+  "explanation": "Hard: one non-routine idea - each prime's exponent in N must meet both conditions at once - then a factor count. N can use only the primes 2 and 3, so N = 2^a x 3^b. N/2 = 2^(a-1) x 3^b is a square, so a - 1 and b are even; N/3 = 2^a x 3^(b-1) is a cube, so a and b - 1 are multiples of 3. The least a that is odd and a multiple of 3 is 3; the least b that is even and one more than a multiple of 3 is 4. So N = 2^3 x 3^4 = 648 (648/2 = 324 = 18^2 and 648/3 = 216 = 6^3), and N has (3 + 1)(4 + 1) = 20 positive factors.",
+  "solve": "const nd=n=>{let c=0;for(let d=1;d<=n;d++)if(n%d===0)c++;return c};const sq=n=>Number.isInteger(n)&&Math.round(Math.sqrt(n))**2===n;const cu=n=>Number.isInteger(n)&&Math.round(Math.cbrt(n))**3===n;let N=1;while(!(N%6===0&&sq(N/2)&&cu(N/3)))N++;return String(nd(N));",
+  "distractor_solve": {
+   "8": "// forgets that the power of 3 in N/2 must be even, so takes b = 1: N = 2^3 x 3 = 24, with 4 x 2 = 8 factors\nconst nd=n=>{let c=0;for(let d=1;d<=n;d++)if(n%d===0)c++;return c};return String(nd(24));",
+   "15": "// finds N = 648 but counts the factors of N/2 = 324 = 2^2 x 3^4 instead of N\nconst nd=n=>{let c=0;for(let d=1;d<=n;d++)if(n%d===0)c++;return c};const sq=n=>Number.isInteger(n)&&Math.round(Math.sqrt(n))**2===n;const cu=n=>Number.isInteger(n)&&Math.round(Math.cbrt(n))**3===n;let N=1;while(!(N%6===0&&sq(N/2)&&cu(N/3)))N++;return String(nd(N/2));",
+   "16": "// finds N = 648 but counts the factors of N/3 = 216 = 2^3 x 3^3 instead of N\nconst nd=n=>{let c=0;for(let d=1;d<=n;d++)if(n%d===0)c++;return c};const sq=n=>Number.isInteger(n)&&Math.round(Math.sqrt(n))**2===n;const cu=n=>Number.isInteger(n)&&Math.round(Math.cbrt(n))**3===n;let N=1;while(!(N%6===0&&sq(N/2)&&cu(N/3)))N++;return String(nd(N/3));"
+  },
+  "forced": [
+   "a positive whole number",
+   "N is a multiple of 6, so at least 4 factors (1, 2, 3, 6)",
+   "no option is ruled out by the size of N without finding N"
+  ]
+ },
+ {
+  "id": "IM17A-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "divisibility of a perfect square: n^2 is a multiple of 12 exactly when n is a multiple of 6",
+  "difficulty": "medium",
+  "prompt": "How many of the perfect squares from 1 through 2,000, inclusive, are multiples of 12?",
+  "choices": [
+   "22",
+   "14",
+   "29",
+   "7"
+  ],
+  "correct_answer": "7",
+  "explanation": "Medium: one divisibility fact about squares followed by a routine count. 12 = 2^2 x 3. A square n^2 contains each prime of n twice, so n^2 has a factor 3 only if n does, and then n^2 also has a factor 2^2 only if n is even. So n^2 is a multiple of 12 exactly when n is a multiple of 6. The squares up to 2,000 are 1^2 through 44^2 (45^2 = 2,025), and the multiples of 6 from 1 to 44 are 6, 12, 18, 24, 30, 36, 42: 7 of them.",
+  "solve": "let c=0;for(let n=1;n*n<=2000;n++){if((n*n)%12===0)c++}return String(c);",
+  "distractor_solve": {
+   "14": "// notices 4 is already a square and decides only a factor 3 in the root matters, forgetting the root must also be even\nlet c=0;for(let n=1;n*n<=2000;n++){if(n%3===0)c++}return String(c);",
+   "22": "// notices that 12 has the factor 4 = 2^2 and requires only that the root be even, forgetting the factor 3\nlet c=0;for(let n=1;n*n<=2000;n++){if(n%2===0)c++}return String(c);",
+   "29": "// requires the root to be a multiple of 2 OR of 3 instead of both\nlet c=0;for(let n=1;n*n<=2000;n++){if(n%2===0||n%3===0)c++}return String(c);"
+  },
+  "forced": [
+   "a positive whole number",
+   "at most 44, the number of perfect squares from 1 through 2,000",
+   "far below 2,000/12, since only squares are counted"
+  ]
+ },
+ {
+  "id": "IM17A-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "choosing where one pair of parentheses goes to make an expression as large as possible (order of operations: a grouped sum should feed a multiplication, and nothing subtracted should grow)",
+  "difficulty": "hard",
+  "prompt": "One pair of parentheses is to be inserted into the expression below so that the parentheses enclose two or more of the numbers. The operations are then carried out in the usual order (work inside the parentheses first, then multiplication before addition and subtraction).\n8 - 2 x 3 + 4 x 5 - 1\nWhat is the greatest value that can result?",
+  "choices": [
+   "29",
+   "57",
+   "109",
+   "37"
+  ],
+  "correct_answer": "37",
+  "explanation": "Hard: no rule gives the answer directly; the student must reason about which groupings can raise the value and compare them, keeping the order of operations straight throughout. Without parentheses the value is 8 - 6 + 20 - 1 = 21. Parentheses help only when they make a multiplication act on a larger number that is added, and they hurt when they enlarge something that is subtracted (for example 8 - 2 x (3 + 4) x 5 - 1 = -63). The groupings that increase the value are (8 - 2) x 3 + 4 x 5 - 1 = 18 + 20 - 1 = 37 and (8 - 2 x 3 + 4) x 5 - 1 = 6 x 5 - 1 = 29. Every other placement gives 21 or less. The greatest value is 37.",
+  "solve": "const t=[8,'-',2,'*',3,'+',4,'*',5,'-',1];const ev=s=>Function('return ('+s+')')();let best=-1e9;const n=6;for(let i=0;i<n;i++)for(let j=i+1;j<n;j++){const a=t.slice(0,2*i),b=t.slice(2*i,2*j+1),c=t.slice(2*j+1);const v=ev([...a,'(',...b,')',...c].join(' '));if(v>best)best=v}return String(best);",
+  "distractor_solve": {
+   "29": "// groups the longest stretch in front of a multiplication, (8 - 2 x 3 + 4) x 5 - 1, and stops without comparing other placements\nconst t=[8,'-',2,'*',3,'+',4,'*',5,'-',1];const ev=s=>Function('return ('+s+')')();return String(ev('(8 - 2*3 + 4)*5 - 1'));",
+   "57": "// groups (2 x 3 + 4) x 5 = 50 but then adds it instead of subtracting it: 8 + 50 - 1\nconst t=[8,'-',2,'*',3,'+',4,'*',5,'-',1];const ev=s=>Function('return ('+s+')')();return String(8 + (2*3+4)*5 - 1);",
+   "109": "// ignores the usual order and works strictly left to right: ((8 - 2) x 3 + 4) x 5 - 1\nlet v=8;v-=2;v*=3;v+=4;v*=5;v-=1;return String(v);"
+  },
+  "forced": [
+   "a whole number",
+   "at least 21, the value with no effective grouping (placements such as (2 x 3) change nothing)",
+   "the greatest value, so a distractor beyond it (57, 109) must come from a misapplied order of operations, not from a legal placement"
+  ]
+ },
+ {
+  "id": "IM17A-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "locating a power of 2 and a power of 3 on either side of a million (building each power up to the crossing point), then summing the integers in the window",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all positive integers n for which 2^n < 1,000,000 < 3^n ?",
+  "choices": [
+   "96",
+   "132",
+   "112",
+   "124"
+  ],
+  "correct_answer": "112",
+  "explanation": "Hard: three dependent steps, none a recall fact - find the last power of 2 below a million, find the first power of 3 above it, then add the integers in between. Since 2^10 = 1,024, 2^20 = 1,024^2 = 1,048,576, which is MORE than 1,000,000, while 2^19 = 524,288 is less; so 2^n < 1,000,000 means n <= 19. Since 3^6 = 729, 3^12 = 729^2 = 531,441 < 1,000,000 and 3^13 = 1,594,323 > 1,000,000; so 1,000,000 < 3^n means n >= 13. The values are n = 13, 14, ..., 19, seven integers with mean 16, so the sum is 7 x 16 = 112.",
+  "solve": "let s=0;for(let n=1;n<=40;n++){if(Math.pow(2,n)<1e6&&1e6<Math.pow(3,n))s+=n}return String(s);",
+  "distractor_solve": {
+   "96": "// right window 13 to 19, but counts the terms as 19 - 13 = 6 instead of 7 when summing: 6 x (13 + 19)/2\nreturn String(6*(13+19)/2);",
+   "124": "// takes 3^12 as already above a million (3^6 = 729 is rounded up to 1,000, so 3^12 is taken as about 1,000,000 and allowed): n from 12 to 19\nlet s=0;for(let n=12;n<=19;n++)s+=n;return String(s);",
+   "132": "// treats 2^20 as below a million (2^10 is about 1,000, so 2^20 is taken as about 1,000,000 and allowed): n from 13 to 20\nlet s=0;for(let n=13;n<=20;n++)s+=n;return String(s);"
+  },
+  "forced": [
+   "a positive integer",
+   "each n lies between 12 and 20 (3^12 and 2^20 are both near a million, by 3^6 ~ 1,000 and 2^10 ~ 1,000), so the sum is roughly 16 times the number of terms; every option is between 6 x 16 and 8 x 16",
+   "no parity or divisibility is visible without knowing the number of terms (options mix multiples of 4 and 8 and of 7)",
+   "the rough estimate 2^10 ~ 10^3 and 3^6 ~ 10^3 cannot decide either endpoint, because both crossings sit within a factor of 2 of a million"
+  ]
+ },
+ {
+  "id": "IM17A-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "testing two-digit numbers and their digit reversals for primality",
+  "difficulty": "medium",
+  "prompt": "How many two-digit prime numbers are still prime when their two digits are written in reverse order? (For example, 13 counts, because 31 is also prime.)",
+  "choices": [
+   "9",
+   "8",
+   "5",
+   "12"
+  ],
+  "correct_answer": "9",
+  "explanation": "Medium: a routine but careful listing with one check per prime. The reversed number must end in the original tens digit, so that digit must be 1, 3, 7, or 9; the two-digit primes with such a tens digit are 11, 13, 17, 19, 31, 37, 71, 73, 79, 97. Reversing: 11, 31, 71, 91, 13, 73, 17, 37, 97, 79. Only 91 = 7 x 13 is not prime, so 19 is out, leaving 11, 13, 17, 31, 37, 71, 73, 79, 97: 9 primes.",
+  "solve": "const p=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true};let c=0;for(let n=10;n<=99;n++){const r=(n%10)*10+Math.floor(n/10);if(p(n)&&p(r))c++}return String(c);",
+  "distractor_solve": {
+   "5": "// counts the reversal PAIRS (13/31, 17/71, 37/73, 79/97, and 11 by itself) instead of the primes\nconst p=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true};let c=0;for(let n=10;n<=99;n++){const r=(n%10)*10+Math.floor(n/10);if(p(n)&&p(r)&&n<=r)c++}return String(c);",
+   "8": "// leaves out 11 because reversing it gives the same number, not a new prime\nconst p=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true};let c=0;for(let n=10;n<=99;n++){const r=(n%10)*10+Math.floor(n/10);if(p(n)&&p(r)&&r!==n)c++}return String(c);",
+   "12": "// checks only that the reversed number is odd (tens digit odd), never that it is prime, so 19, 53 and 59 slip in\nconst p=n=>{if(n<2)return false;for(let d=2;d*d<=n;d++)if(n%d===0)return false;return true};let c=0;for(let n=10;n<=99;n++){if(p(n)&&Math.floor(n/10)%2===1)c++}return String(c);"
+  },
+  "forced": [
+   "a positive whole number",
+   "at most 21, the number of two-digit primes",
+   "at least 2 (13 and 31 from the example)"
+  ]
+ },
+ {
+  "id": "IM17A-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving a reciprocal-sum equation in positive integers by rearranging it into a product of two shifted factors equal to a constant",
+  "difficulty": "hard",
+  "prompt": "The positive integers a and b satisfy a < b and 1/a + 1/b = 1/12. What is the sum of all the possible values of a?",
+  "choices": [
+   "141",
+   "42",
+   "33",
+   "117"
+  ],
+  "correct_answer": "117",
+  "explanation": "Hard: one non-routine idea - clearing denominators gives 12b + 12a = ab, and adding 144 to both sides of ab - 12a - 12b = 0 factors it as (a - 12)(b - 12) = 144, so the problem becomes listing factor pairs of 144. Both factors must be positive (a and b are larger than 12 because each reciprocal is less than 1/12), and a < b means a - 12 is the smaller factor of the pair, with the pair 12 x 12 excluded because it gives a = b = 24. The smaller factors are 1, 2, 3, 4, 6, 8 and 9, so a = 13, 14, 15, 16, 18, 20 and 21, whose sum is 117.",
+  "solve": "let s=0;for(let a=1;a<1000;a++){const den=a-12;if(den<=0)continue;if((12*a)%den===0){const b=12*a/den;if(b>a)s+=a}}return String(s);",
+  "distractor_solve": {
+   "33": "// right factoring, but sums the smaller factors a - 12 and forgets to add 12 back to each\nlet s=0;for(let d=1;d*d<144;d++){if(144%d===0)s+=d}return String(s);",
+   "42": "// factors wrongly by adding 12 instead of 12 x 12: (a - 12)(b - 12) = 12, smaller factors 1, 2, 3\nlet s=0;for(let d=1;d*d<12;d++){if(12%d===0)s+=12+d}return String(s);",
+   "141": "// allows a = b: includes the pair 12 x 12, so a = 24 is added (a <= b instead of a < b)\nlet s=0;for(let a=1;a<1000;a++){const den=a-12;if(den<=0)continue;if((12*a)%den===0){const b=12*a/den;if(b>=a)s+=a}}return String(s);"
+  },
+  "forced": [
+   "a positive integer",
+   "each possible a lies strictly between 12 and 24 (1/a < 1/12, and a < b forces 1/a > 1/24), so the sum is at most 13 + 14 + ... + 23 = 198; all four options are below 198",
+   "no parity is forced (the number of values of a is unknown without the method); options include odd and even",
+   "33 and 42 are each attainable as sums of two or three integers from 13 to 23, so no option is excluded by the range alone"
+  ]
+ },
+ {
+  "id": "IM17A-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a common factor of two expressions divides any combination of them: eliminating n to bound the greatest common factor",
+  "difficulty": "hard",
+  "prompt": "As n runs through all the positive integers, what is the greatest possible value of the greatest common factor of 7n + 1 and 5n + 6 ?",
+  "choices": [
+   "41",
+   "37",
+   "23",
+   "47"
+  ],
+  "correct_answer": "37",
+  "explanation": "Hard: one non-routine idea (any common factor of two numbers also divides every combination of them) that trial and error does not reach, since small values of n all give 1. If d divides both 7n + 1 and 5n + 6, then d divides 7(5n + 6) - 5(7n + 1) = 42 - 5 = 37. So the greatest common factor is 1 or 37. It is 37 when 37 divides 5n + 6, for example n = 21: 7(21) + 1 = 148 = 4 x 37 and 5(21) + 6 = 111 = 3 x 37. The greatest possible value is 37.",
+  "solve": "const g=(x,y)=>y?g(y,x%y):x;let m=0;for(let n=1;n<=2000;n++){m=Math.max(m,g(7*n+1,5*n+6))}return String(m);",
+  "distractor_solve": {
+   "23": "// pairs each coefficient with the wrong constant: 5 x 6 - 7 x 1\nreturn String(5*6-7*1);",
+   "41": "// forms 7(5n + 6) - 5(7n + 1) but forgets to multiply the constant 1 by 5: 42 - 1\nreturn String(7*6-1);",
+   "47": "// eliminates n but adds the two products instead of subtracting: 7 x 6 + 5 x 1\nreturn String(7*6+5*1);"
+  },
+  "forced": [
+   "a positive whole number",
+   "odd (for every n one of 7n + 1 and 5n + 6 is odd); every option is odd",
+   "not a multiple of 7 (7n + 1 leaves remainder 1) and not a multiple of 5 (5n + 6 leaves remainder 1); every option is a prime other than 5 and 7"
+  ]
+ },
+ {
+  "id": "IM17A-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "place value: writing a two-digit number as 10a + b and solving a digit equation",
+  "difficulty": "medium",
+  "prompt": "How many two-digit whole numbers are equal to the sum of their two digits plus the product of their two digits?",
+  "choices": [
+   "1",
+   "18",
+   "10",
+   "9"
+  ],
+  "correct_answer": "9",
+  "explanation": "Medium: one place-value equation that simplifies in two routine steps. Write the number as 10a + b, with tens digit a from 1 to 9 and units digit b from 0 to 9. Then 10a + b = a + b + ab gives 9a = ab, and since a is not 0, b = 9. Every tens digit works: 19, 29, 39, ..., 99, so there are 9 such numbers.",
+  "solve": "let c=0;for(let n=10;n<=99;n++){const a=Math.floor(n/10),b=n%10;if(n===a+b+a*b)c++}return String(c);",
+  "distractor_solve": {
+   "1": "// tries only numbers whose two digits are equal, and finds just 99\nlet c=0;for(let n=10;n<=99;n++){const a=Math.floor(n/10),b=n%10;if(a===b&&n===a+b+a*b)c++}return String(c);",
+   "10": "// lets the tens digit be 0, so 09 is also counted\nlet c=0;for(let n=0;n<=99;n++){const a=Math.floor(n/10),b=n%10;if(b===9&&n===a+b+a*b)c++}return String(c);",
+   "18": "// reads 9a = ab as 'a = 9 or b = 9' and counts every two-digit number with a digit 9\nlet c=0;for(let n=10;n<=99;n++){const a=Math.floor(n/10),b=n%10;if(a===9||b===9)c++}return String(c);"
+  },
+  "forced": [
+   "a positive whole number",
+   "at most 90, the number of two-digit whole numbers"
+  ]
+ },
+ {
+  "id": "IM17A-20",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sorting the integers 1-20 into doubling chains by their odd part and choosing alternate members of each chain",
+  "difficulty": "hard",
+  "prompt": "Some of the whole numbers from 1 through 20 are to be chosen so that no chosen number is exactly twice another chosen number. What is the greatest number of whole numbers that can be chosen?",
+  "choices": [
+   "17",
+   "14",
+   "16",
+   "15"
+  ],
+  "correct_answer": "14",
+  "explanation": "Hard: it needs one non-routine idea, grouping the numbers into doubling chains, plus an argument that no larger choice exists. Group each number with its doubles: 1-2-4-8-16, 3-6-12, 5-10-20, 7-14, 9-18, and the single numbers 11, 13, 15, 17, 19. Only neighbors in a chain conflict, so from a chain of length 5 at most 3 can be chosen (1, 4, 16), from a chain of length 3 at most 2, from a chain of length 2 at most 1, and each single number can be chosen. The greatest total is 3 + 2 + 2 + 1 + 1 + 5 = 14.",
+  "solve": "let best=0;for(let m=0;m<(1<<20);m++){let ok=true,c=0;for(let i=1;i<=20&&ok;i++){if(m>>(i-1)&1){c++;if(2*i<=20&&(m>>(2*i-1)&1))ok=false}}if(ok&&c>best)best=c}return String(best);",
+  "distractor_solve": {
+   "15": "// removes just one number from each chain that has a conflict, 20 - 5\nconst chains=[];for(let o=1;o<=20;o+=2){const ch=[];for(let x=o;x<=20;x*=2)ch.push(x);chains.push(ch)}let c=20;for(const ch of chains){if(ch.length>1)c-=1}return String(c);",
+   "16": "// keeps both ends of every chain and alternates in between, so 7 and 14, and 9 and 18, are both kept\nconst chains=[];for(let o=1;o<=20;o+=2){const ch=[];for(let x=o;x<=20;x*=2)ch.push(x);chains.push(ch)}let c=0;for(const ch of chains){c+=Math.ceil((ch.length+1)/2)}return String(c);",
+   "17": "// removes one number from each of the three long chains (1-2-4-8-16, 3-6-12, 5-10-20) and overlooks that 14 = 2 x 7 and 18 = 2 x 9 also conflict\nconst chains=[];for(let o=1;o<=20;o+=2){const ch=[];for(let x=o;x<=20;x*=2)ch.push(x);chains.push(ch)}let c=20;for(const ch of chains){if(ch.length>=3)c-=1}return String(c);"
+  },
+  "forced": [
+   "a whole number from 10 to 20 (11 through 20 can all be chosen together)",
+   "a count, not a sum or a specific chosen number"
+  ]
+ }
+]

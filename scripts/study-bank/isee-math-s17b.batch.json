@@ -1,0 +1,544 @@
+[
+ {
+  "id": "IM17B-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "second meeting of two joggers going back and forth on a straight path (combined distance three lengths)",
+  "difficulty": "hard",
+  "prompt": "Ana and Ben start at the same moment from opposite ends of a straight 700-meter path and jog toward each other, each at a steady speed. Ana starts at the west end and Ben at the east end. They first pass each other 250 meters from the west end. Each jogger turns around immediately on reaching the far end of the path and keeps jogging at the same speed. How many meters from the west end are they when they pass each other for the second time?",
+  "choices": [
+   "450",
+   "500",
+   "650",
+   "525"
+  ],
+  "correct_answer": "650",
+  "explanation": "Hard: it needs one non-routine idea, that by the second meeting the two together have covered three lengths of the path, not two, and then a reflection at the far end. By the first meeting they have covered 700 m together, and Ana has covered 250 m of it. By the second meeting each has reached the far end and come back, so together they have covered 3 x 700 = 2100 m; at steady speeds Ana covers 3 x 250 = 750 m. That takes her the full 700 m to the east end and 50 m back, so they meet 700 - 50 = 650 m from the west end. (Check with Ben: 3 x 450 = 1350 m, which is 700 m to the west end and 650 m back.) The option \"500\" assumes they have covered only two lengths together, so Ana has gone 2 x 250 = 500 m. The option \"450\" assumes the second meeting mirrors the first, 250 m from the east end. The option \"525\" treats it like a circular track, waiting until Ben has gained a full 700 m on Ana: Ben gains 200 m for every 250 m Ana covers, so Ana covers 875 m, which is 700 m out and 175 m back.",
+  "solve": "const L=700,a=250; const ana=3*a; return ana<=L?ana:2*L-ana;",
+  "distractor_solve": {
+   "450": "const L=700,a=250; return L-a;",
+   "500": "const L=700,a=250; return 2*a;",
+   "525": "const L=700,a=250,b=L-a; const ana=L/(b-a)*a; return 2*L-ana;"
+  },
+  "forced": [
+   "strictly between 0 and 700, since the meeting is on the path",
+   "a multiple of 25: every printed length is a multiple of 50 and the speeds are in the ratio 250 : 450",
+   "no side forced without the method: Ana is the slower jogger, but she has turned at the east end before the second meeting, so the meeting can be on either half",
+   "all four options are multiples of 25 strictly between 0 and 700 (all happen to lie in the east half)"
+  ]
+ },
+ {
+  "id": "IM17B-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "track length from the meeting interval in opposite directions and the passing interval in the same direction (add the two rate equations)",
+  "difficulty": "hard",
+  "prompt": "Two cyclists ride around a circular track, each at a steady speed. The faster cyclist rides at 12 meters per second. When the two ride in opposite directions, they pass each other every 30 seconds. When they ride in the same direction, the faster cyclist passes the slower one every 2 1/2 minutes. What is the length of the track, in meters?",
+  "choices": [
+   "720",
+   "1440",
+   "600",
+   "900"
+  ],
+  "correct_answer": "600",
+  "explanation": "Hard: it needs two rate equations, one for each direction, and the non-routine step of adding them to remove the unknown speed. Let the track be L meters and the slower speed s. In opposite directions they close one lap every 30 s, so 12 + s = L/30. In the same direction the faster gains one lap every 150 s, so 12 - s = L/150. Adding: 24 = L/30 + L/150 = 6L/150 = L/25, so L = 600. (Then s = 8: 20 x 30 = 600 and 4 x 150 = 600.) The option \"720\" assumes both cyclists ride at 12 m/s, so they close 24 x 30 = 720 m every 30 s. The option \"900\" gives the 12 m/s to the slower cyclist: 30(f + 12) = 150(f - 12) gives f = 18 and L = 900. The option \"1440\" multiplies the faster speed by the difference of the two times, 12 x (150 - 30).",
+  "solve": "const v=12,a=30,b=150; return 2*v/(1/a+1/b);",
+  "distractor_solve": {
+   "720": "const v=12,a=30; return 2*v*a;",
+   "900": "const s=12,a=30,b=150; const f=(a*s+b*s)/(b-a); return a*(f+s);",
+   "1440": "const v=12,a=30,b=150; return v*(b-a);"
+  },
+  "forced": [
+   "greater than 12 x 30 = 360: in 30 s the two together cover one lap and the faster alone covers 360 m of it",
+   "less than 12 x 150 = 1800: in 150 s the faster gains one lap, which is less than all the distance it rides",
+   "a positive whole number of meters",
+   "all four options are multiples of 12 strictly between 360 and 1800"
+  ]
+ },
+ {
+  "id": "IM17B-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "single equivalent percent discount of a buy-three-get-one-at-a-percent-off deal",
+  "difficulty": "medium",
+  "prompt": "All T-shirts at a store have the same regular price. During a sale, a customer who buys three T-shirts at the regular price can buy a fourth T-shirt for 40 percent off its regular price. For a customer who buys exactly four T-shirts this way, the sale is the same as taking what percent off the regular price of each of the four T-shirts?",
+  "choices": [
+   "10%",
+   "11 1/9%",
+   "13 1/3%",
+   "15%"
+  ],
+  "correct_answer": "10%",
+  "explanation": "Medium: two routine steps (the saving in shirt prices, then that saving as a share of four regular prices), with the base of the percent as the only trap. Call the regular price 1. The customer saves 40% of one shirt, 0.4, on a regular total of 4, so the saving is 0.4/4 = 10% of each shirt's price. The option \"11 1/9%\" divides the saving by the amount actually paid, 0.4/3.6. The option \"13 1/3%\" spreads the saving over only the three full-price shirts, 0.4/3. The option \"15%\" reads \"40 percent off\" as \"costs 40 percent\", so the fourth shirt saves 60% of a price and 0.6/4 = 15%.",
+  "solve": "const save=0.4,n=4; return String(Math.round(save/n*100))+'%';",
+  "distractor_solve": {
+   "11 1/9%": "const save=0.4,paid=4-0.4; const p=save/paid*100; const w=Math.floor(p); const f=Math.round((p-w)*9); return w+' '+f+'/9%';",
+   "13 1/3%": "const save=0.4; const p=save/3*100; const w=Math.floor(p); const f=Math.round((p-w)*3); return w+' '+f+'/3%';",
+   "15%": "const save=1-0.4; return String(Math.round(save/4*100))+'%';"
+  },
+  "forced": [
+   "positive and less than 25%: even a free fourth shirt would only be one of four prices",
+   "less than 40%, the only percent printed",
+   "all four options are between 10% and 15%, inside both bounds"
+  ]
+ },
+ {
+  "id": "IM17B-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two workers taking turns on alternate days: whole two-day cycles, then the remainder by whoever's turn it is",
+  "difficulty": "hard",
+  "prompt": "Working alone, Kim can build a fence in 6 days, and Lee can build the same fence in 9 days. They build one such fence by taking turns: Kim works alone on the first day, Lee works alone on the second day, Kim on the third day, and so on, each working at the usual rate for a full day on his or her turn until the fence is finished. How many days does it take to build the fence?",
+  "choices": [
+   "6.6",
+   "7",
+   "7.2",
+   "8"
+  ],
+  "correct_answer": "7",
+  "explanation": "Hard: it needs the non-routine idea of working in two-day cycles and then checking whose turn the leftover falls on, rather than using a combined rate. In one two-day cycle they finish 1/6 + 1/9 = 5/18 of the fence. Three cycles (6 days) finish 15/18, leaving 3/18 = 1/6. Day 7 is Kim's turn, and Kim does exactly 1/6 in a day, so the fence is finished at the end of day 7. The option \"7.2\" treats each worker as working half the time, 2 / (1/6 + 1/9) = 7.2. The option \"6.6\" finishes the last 1/6 with both working together, 6 + (1/6)/(5/18) = 6.6. The option \"8\" counts whole two-day cycles, rounding 18/5 = 3.6 cycles up to 4.",
+  "solve": "const a=1/6,b=1/9; let done=0,day=0; while(done<1-1e-12){day++; const r=(day%2===1)?a:b; if(done+r>=1-1e-12){return day-1+(1-done)/r;} done+=r;} return day;",
+  "distractor_solve": {
+   "8": "const a=1/6,b=1/9; return 2*Math.ceil(1/(a+b));",
+   "7.2": "const a=1/6,b=1/9; return 2/(a+b);",
+   "6.6": "const a=1/6,b=1/9; const left=1-3*(a+b); return Math.round((6+left/(a+b))*1000)/1000;"
+  },
+  "forced": [
+   "more than 6: Kim alone takes 6 days, and replacing some of Kim's days with the slower Lee can only slow the job",
+   "less than 9: Lee alone takes 9 days, and replacing some of Lee's days with the faster Kim can only speed it up",
+   "all four options lie strictly between 6 and 9"
+  ]
+ },
+ {
+  "id": "IM17B-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "round-trip distance over flat and hilly ground without knowing the split (each kilometer costs the same round-trip time on either kind of ground)",
+  "difficulty": "hard",
+  "prompt": "A trail runs from a parking lot across flat ground and then straight up a hill to a lookout at the top. Nadia hikes from the parking lot to the lookout and back along the same trail without stopping. She walks 4 kilometers per hour on flat ground, 3 kilometers per hour uphill, and 6 kilometers per hour downhill. The whole round trip takes her 5 hours. How many kilometers does she walk in all?",
+  "choices": [
+   "21 2/3",
+   "21 1/4",
+   "17 1/2",
+   "20"
+  ],
+  "correct_answer": "20",
+  "explanation": "Hard: the lengths of the flat part and the hill are not given, so it needs the non-routine idea that each kilometer of trail costs the same round-trip time whichever kind of ground it is. A kilometer of hill is walked once up and once down, taking 1/3 + 1/6 = 1/2 hour; a kilometer of flat ground is walked twice at 4 kilometers per hour, taking 1/4 + 1/4 = 1/2 hour. So the one-way trail is 5 / (1/2) = 10 kilometers, and the round trip is 20 kilometers. The option \"21 2/3\" averages the three speeds, (4 + 3 + 6)/3 = 13/3, and multiplies by 5 hours. The option \"21 1/4\" averages the hill's two speeds to 4.5 and then averages that with the flat speed, 4.25 x 5. The option \"17 1/2\" averages only the flat and uphill speeds, 3.5 x 5, leaving out the faster downhill walking.",
+  "solve": "const up=3, down=6, flat=4, T=5; const perKmUp=1/up+1/down; const perKmFlat=2/flat; if (Math.abs(perKmUp-perKmFlat)>1e-9) return 'split needed'; const oneWay=T/perKmUp; return String(Math.round(2*oneWay*1000)/1000);",
+  "distractor_solve": {
+   "21 2/3": "const up=3, down=6, flat=4, T=5; const x=(up+down+flat)/3*T; const n=Math.floor(x); const f=Math.round((x-n)*3); return n+' '+f+'/3';",
+   "21 1/4": "const up=3, down=6, flat=4, T=5; const x=((up+down)/2+flat)/2*T; const n=Math.floor(x); const f=Math.round((x-n)*4); return n+' '+f+'/4';",
+   "17 1/2": "const up=3, down=6, flat=4, T=5; const x=(up+flat)/2*T; const n=Math.floor(x); const f=Math.round((x-n)*2); return n+' '+f+'/2';"
+  },
+  "forced": [
+   "between 15 and 30: every speed is between 3 and 6 kilometers per hour for 5 hours",
+   "less than 22 1/2: on the hill she spends longer going up than coming down, so her hill average is below 4.5 kilometers per hour, and the flat speed 4 is also below 4.5",
+   "all four options lie strictly between 15 and 22 1/2"
+  ]
+ },
+ {
+  "id": "IM17B-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "break-even distance: fuel cost per mile for two fuel economies, then an extra purchase price divided by the saving per mile",
+  "difficulty": "medium",
+  "prompt": "Car A travels 40 miles on each gallon of gasoline, and Car B travels 25 miles on each gallon. Car A costs $3,000 more to buy than Car B. Gasoline costs $4 per gallon. How many miles must Car A be driven before the money it saves on gasoline, compared with Car B driven the same distance, equals the extra $3,000?",
+  "choices": [
+   "30,000",
+   "45,000",
+   "200,000",
+   "50,000"
+  ],
+  "correct_answer": "50,000",
+  "explanation": "Medium: a routine chain of three steps (each car's fuel cost per mile, the saving per mile, the extra price divided by it). Car A's gasoline costs 4/40 = $0.10 per mile and Car B's costs 4/25 = $0.16 per mile, so Car A saves $0.06 per mile. It takes 3000 / 0.06 = 50,000 miles to save $3,000. The option \"30,000\" divides by Car A's whole cost per mile, 3000 / 0.10. The option \"45,000\" treats the 15-mile-per-gallon difference as 15 extra miles per dollar, 3000 x 15. The option \"200,000\" leaves out the price of gasoline and divides by the gallons saved per mile, 3000 / (1/25 - 1/40) = 3000 / 0.015.",
+  "solve": "const p=4,a=40,b=25,x=3000; return Math.round(x/(p/b-p/a)).toLocaleString('en-US');",
+  "distractor_solve": {
+   "30,000": "const p=4,a=40,x=3000; return Math.round(x/(p/a)).toLocaleString('en-US');",
+   "45,000": "const a=40,b=25,x=3000; return (x*(a-b)).toLocaleString('en-US');",
+   "200,000": "const a=40,b=25,x=3000; return Math.round(x/(1/b-1/a)).toLocaleString('en-US');"
+  },
+  "forced": [
+   "more than 3000 / 0.16 = 18,750: the saving per mile is less than Car B's whole fuel cost per mile",
+   "a whole number of miles that is a multiple of 50 here, since 3000 and the per-mile costs are round",
+   "all four options are multiples of 5,000 above 18,750"
+  ]
+ },
+ {
+  "id": "IM17B-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "shared taxi fare: each stretch of a ride split equally among the riders on board for that stretch",
+  "difficulty": "hard",
+  "prompt": "A taxi charges $3 for each kilometer driven. Three friends start a ride together. Ana gets out after 2 kilometers, Ben gets out after 10 kilometers, and Cal rides to the end of the trip, 18 kilometers from the start. They agree that the cost of each stretch of the ride is split equally among the friends who are in the taxi during that stretch. How many dollars does Cal pay?",
+  "choices": [
+   "32.4",
+   "34",
+   "38",
+   "39"
+  ],
+  "correct_answer": "38",
+  "explanation": "Hard: it needs the non-routine step of cutting the ride into stretches with different numbers of riders, then three dependent shares. The stretches are 0-2 km (three riders), 2-10 km (two riders) and 10-18 km (Cal alone), costing 6, 24 and 24 dollars. Cal pays 6/3 + 24/2 + 24 = 2 + 12 + 24 = 38 dollars. The option \"32.4\" splits the whole $54 fare in proportion to the distances ridden, 54 x 18/30. The option \"34\" treats the first 10 km as shared by all three, 30/3 + 24. The option \"39\" leaves Ana out of the first stretch and splits it between two, 6/2 + 12 + 24.",
+  "solve": "const r=3,a=2,b=10,c=18; return r*a/3 + r*(b-a)/2 + r*(c-b);",
+  "distractor_solve": {
+   "34": "const r=3,b=10,c=18; return r*b/3 + r*(c-b);",
+   "39": "const r=3,a=2,b=10,c=18; return r*a/2 + r*(b-a)/2 + r*(c-b);",
+   "32.4": "const r=3,a=2,b=10,c=18; return Math.round(r*c*c/(a+b+c)*100)/100;"
+  },
+  "forced": [
+   "at least 24, the cost of the last 8 km that Cal rides alone",
+   "more than 18, one third of the $54 fare, since Cal rides every stretch",
+   "less than 54, the whole fare",
+   "all four options lie between 24 and 54"
+  ]
+ },
+ {
+  "id": "IM17B-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "repeated drain-and-replace: each draining removes the same fraction of what is left, so the amounts removed shrink by a constant factor",
+  "difficulty": "hard",
+  "prompt": "A tank holds 64 liters of pure orange juice. Sam drains 16 liters of the liquid from the tank and refills the tank with 16 liters of water, then stirs it well. He does this a second time, and then a third time, each time draining 16 liters of the well-stirred mixture and adding 16 liters of water. How many liters of orange juice are drained from the tank during the third draining?",
+  "choices": [
+   "6.75",
+   "8",
+   "9",
+   "12 1/3"
+  ],
+  "correct_answer": "9",
+  "explanation": "Hard: it needs the non-routine idea that every draining takes away the same fraction (16/64 = 1/4) of the juice then in the tank, so the juice left shrinks by a factor of 3/4 each round. Before the first draining there are 64 liters of juice; the first draining removes 16, leaving 48. The second removes 1/4 of 48 = 12, leaving 36. The third removes 1/4 of 36 = 9 liters. The option \"12 1/3\" finds the total juice drained in the three drainings, 64 - 27 = 37 liters, and splits it equally among them. The option \"8\" assumes the amount removed drops by the same 4 liters each time (16, 12, 8). The option \"6.75\" applies the factor 3/4 one time too many, 16 x (3/4)^3.",
+  "solve": "let juice=64; const v=64, d=16; let removed=0; for(let i=0;i<3;i++){ removed=juice*d/v; juice-=removed; } return removed;",
+  "distractor_solve": {
+   "8": "const first=16, drop=16-16*3/4; return first-2*drop;",
+   "6.75": "return 16*Math.pow(3/4,3);",
+   "12 1/3": "let juice=64; const v=64, d=16; for(let i=0;i<3;i++){ juice-=juice*d/v; } const x=(64-juice)/3; const n=Math.floor(x); const f=Math.round((x-n)*3); return n+' '+f+'/3';"
+  },
+  "forced": [
+   "positive and less than 16: the first draining removes 16 liters of pure juice and every later draining removes some water too",
+   "every option lies strictly between 0 and 16",
+   "no parity or integer constraint visible from the stem: the amount is a quarter of the juice present, which need not be whole"
+  ]
+ },
+ {
+  "id": "IM17B-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "race with a head start: distance covered in the same time scales with the ratio of speeds",
+  "difficulty": "medium",
+  "prompt": "Ana and Ben each run at a steady speed. In the time it takes Ana to run 100 meters, Ben runs 80 meters. They run a 300-meter race on a straight track, and Ben is given a head start: he starts 50 meters along the track, so he runs only 250 meters. Both start running at the same moment. When Ana reaches the finish line, how many meters is Ben from the finish line?",
+  "choices": [
+   "20",
+   "12.5",
+   "10",
+   "25"
+  ],
+  "correct_answer": "10",
+  "explanation": "Medium: two routine proportion steps with the head start added in. Ben runs 80/100 = 0.8 of Ana's distance in the same time. While Ana runs 300 meters, Ben runs 0.8 x 300 = 240 meters, so he is at 50 + 240 = 290 meters, which is 10 meters from the finish line. The option \"12.5\" finds how far Ana runs while Ben covers his 250 meters, 250 / 0.8 = 312.5, and reports the 12.5 meters beyond 300. The option \"25\" takes Ben as 25 percent slower than Ana (from 100/80), so he falls 0.25 x 300 = 75 meters behind, minus his 50-meter start. The option \"20\" also shrinks Ben's head start by 20 percent, 60 - 0.8 x 50.",
+  "solve": "const r=80/100, L=300, h=50; return String(Math.round((L-(h+r*L))*100)/100);",
+  "distractor_solve": {
+   "20": "const r=80/100, L=300, h=50; return String(Math.round((L*(1-r) - r*h)*100)/100);",
+   "25": "const r=80/100, L=300, h=50; return String(Math.round((L*(1/r-1) - h)*100)/100);",
+   "12.5": "const r=80/100, L=300, h=50; return String(Math.round(((L-h)/r - L)*100)/100);"
+  },
+  "forced": [
+   "positive and less than 60: without the head start Ben would be 0.2 x 300 = 60 meters short, and the head start only brings him closer",
+   "all four options lie strictly between 0 and 60"
+  ]
+ },
+ {
+  "id": "IM17B-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "one worker's time from the three pairwise times: add the three pair rates, halve to get all three together, subtract the other pair",
+  "difficulty": "hard",
+  "prompt": "Three hoses, A, B, and C, each fill a pool at a steady rate. Hoses A and B running together fill the empty pool in 18 minutes. Hoses A and C running together fill it in 20 minutes. Hoses B and C running together fill it in 45 minutes. How many minutes would hose C alone take to fill the empty pool?",
+  "choices": [
+   "120",
+   "72",
+   "60",
+   "47"
+  ],
+  "correct_answer": "120",
+  "explanation": "Hard: no pair gives C directly; the non-routine idea is that adding the three pair rates counts each hose twice. The pair rates are 1/18 = 10/180, 1/20 = 9/180, and 1/45 = 4/180 of the pool per minute, which sum to 23/180; half of that, 23/360, is the rate of all three hoses together. Subtracting the A-and-B rate, 23/360 - 20/360 = 3/360 = 1/120, so hose C alone takes 120 minutes. The option \"60\" forgets to halve: (1/20 + 1/45) - 1/18 = 1/60. The option \"72\" subtracts the wrong pair (A and C) from the three-hose rate and so finds hose B's time, 23/360 - 18/360 = 1/72. The option \"47\" adds and subtracts the times as if they were rates, 20 + 45 - 18.",
+  "solve": "const ab=1/18, ac=1/20, bc=1/45; const all=(ab+ac+bc)/2; return Math.round(1/(all-ab)*1000)/1000;",
+  "distractor_solve": {
+   "47": "return 20+45-18;",
+   "60": "const ab=1/18, ac=1/20, bc=1/45; return Math.round(1/(ac+bc-ab)*1000)/1000;",
+   "72": "const ab=1/18, ac=1/20, bc=1/45; const all=(ab+ac+bc)/2; return Math.round(1/(all-ac)*1000)/1000;"
+  },
+  "forced": [
+   "more than 45: B and C together take 45 minutes, so C alone must take longer",
+   "more than 20: A and C together take 20 minutes",
+   "no upper bound can be read off the stem (C may be very slow)",
+   "a whole number of minutes is not forced",
+   "all four options exceed 45"
+  ]
+ },
+ {
+  "id": "IM17B-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sharing a profit in proportion to amount invested times months invested (each partner's dollar-months, then a ratio split)",
+  "difficulty": "medium",
+  "prompt": "Ana starts a small business by investing $4,000. Six months later, Ben joins the business by investing $6,000. Neither adds or withdraws money after that. At the end of the business's first full year, the profit of $4,200 is shared in proportion to (amount invested) x (number of months the money was invested). How many dollars of the profit does Ana receive?",
+  "choices": [
+   "1,050",
+   "1,680",
+   "2,800",
+   "2,400"
+  ],
+  "correct_answer": "2,400",
+  "explanation": "Medium: a routine two-step chain (weight each partner by dollars times months, then split in that ratio) with no single non-routine idea. Ana's money is in for 12 months: 4,000 x 12 = 48,000. Ben's is in for 6 months: 6,000 x 6 = 36,000. The ratio is 48,000 : 36,000 = 4 : 3, so Ana receives 4/7 of $4,200 = $2,400. The option \"1,680\" splits by the amounts invested only, 4,000 : 6,000 = 2 : 3, giving 2/5 of 4,200. The option \"2,800\" splits by the months only, 12 : 6 = 2 : 1, giving 2/3 of 4,200. The option \"1,050\" swaps the months, giving Ana 6 months and Ben 12: 24,000 : 72,000 = 1 : 3, so 1/4 of 4,200.",
+  "solve": "const a=4000*12, b=6000*6; return Math.round(4200*a/(a+b)).toLocaleString('en-US');",
+  "distractor_solve": {
+   "1,680": "const a=4000, b=6000; return Math.round(4200*a/(a+b)).toLocaleString('en-US');",
+   "2,800": "const a=12, b=6; return Math.round(4200*a/(a+b)).toLocaleString('en-US');",
+   "1,050": "const a=4000*6, b=6000*12; return Math.round(4200*a/(a+b)).toLocaleString('en-US');"
+  },
+  "forced": [
+   "positive and less than the whole profit 4,200",
+   "a whole number of dollars is not forced by the stem, but every option is one",
+   "not on a limiting value: no option is 0, 4,200 or the equal split 2,100",
+   "no side of the equal split is visible without the method (Ana has less money in but for longer); options sit on both sides of 2,100"
+  ]
+ },
+ {
+  "id": "IM17B-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "walking on a moving escalator at two stepping rates: the escalator's unknown speed is eliminated by comparing the two trips' times",
+  "difficulty": "hard",
+  "prompt": "An escalator moves upward at a steady speed. Kai walks up the moving escalator from the bottom to the top. When he steps up at a rate of 1 step per second, he takes 20 steps to reach the top. On another trip, when he steps up at a rate of 2 steps per second, he takes 32 steps to reach the top. If the escalator were not moving, how many steps would Kai take to walk from the bottom to the top?",
+  "choices": [
+   "80",
+   "44",
+   "64",
+   "92"
+  ],
+  "correct_answer": "80",
+  "explanation": "Hard: it needs the non-routine idea of letting the escalator's speed be unknown and comparing the two trips by their TIMES, not their step counts. Let the escalator carry him e steps per second. The first trip takes 20 seconds, so the length is 20 + 20e steps; the second takes 32/2 = 16 seconds, so the length is 32 + 16e. Setting these equal gives 4e = 12, e = 3, and the length is 20 + 60 = 80 steps. The option \"44\" assumes doubling his stepping rate halves the time to 10 seconds: 20 + 20e = 32 + 10e gives e = 1.2 and 44. The option \"64\" uses the second trip's time (16) where its step count (32) belongs: 16 + 16e with e = 3. The option \"92\" adds the escalator's contribution on the first trip (20 x 3 = 60) to the steps counted on the second trip (32).",
+  "solve": "const n1=20,r1=1,n2=32,r2=2; const t1=n1/r1, t2=n2/r2; const e=(n2-n1)/(t1-t2); return n1+t1*e;",
+  "distractor_solve": {
+   "44": "const n1=20,r1=1,n2=32; const t1=n1/r1, t2=t1/2; const e=(n2-n1)/(t1-t2); return Math.round((n1+t1*e)*1000)/1000;",
+   "64": "const n1=20,r1=1,n2=32,r2=2; const t1=n1/r1, t2=n2/r2; const e=(n2-n1)/(t1-t2); return t2+t2*e;",
+   "92": "const n1=20,r1=1,n2=32,r2=2; const t1=n1/r1, t2=n2/r2; const e=(n2-n1)/(t1-t2); return n2+t1*e;"
+  },
+  "forced": [
+   "more than 32: on the second trip the escalator carried him some way in addition to the 32 steps he took",
+   "more than 20, for the same reason on the first trip",
+   "no upper bound is readable from the stem without finding the escalator's speed",
+   "all four options exceed 32"
+  ]
+ },
+ {
+  "id": "IM17B-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "new percent share after a part and the whole grow by different percents: multiply the share by the part's growth factor, divide by the whole's",
+  "difficulty": "medium",
+  "prompt": "Last year, 30 percent of the members of a hiking club were under 18 years old. This year, the number of members under 18 is 60 percent greater than it was last year, and the total number of members is 20 percent greater than it was last year. What percent of this year's members are under 18?",
+  "choices": [
+   "38.4%",
+   "40%",
+   "36%",
+   "42%"
+  ],
+  "correct_answer": "40%",
+  "explanation": "Medium: two routine percent steps on a convenient base, with no non-routine idea. Suppose there were 100 members last year, 30 of them under 18. This year there are 30 x 1.6 = 48 under 18 out of 100 x 1.2 = 120 members, and 48/120 = 40%. The option \"38.4%\" undoes the 20 percent growth by taking 20 percent off (48 x 0.8) instead of dividing by 1.2. The option \"42%\" grows the share by the difference of the two rates, 30 x (1 + 0.60 - 0.20). The option \"36%\" grows the share by the club's 20 percent instead of the under-18 group's 60 percent, 30 x 1.2.",
+  "solve": "return Math.round(30*1.6/1.2*1000)/1000;",
+  "distractor_solve": {
+   "38.4%": "return Math.round(30*1.6*0.8*1000)/1000;",
+   "42%": "return Math.round(30*(1+0.6-0.2)*1000)/1000;",
+   "36%": "return Math.round(30*1.2*1000)/1000;"
+  },
+  "forced": [
+   "more than 30%: the under-18 group grew faster than the club",
+   "less than 48%: if the club had not grown at all the share would be 30 x 1.6 = 48%, and the club did grow",
+   "all four options lie strictly between 30% and 48%"
+  ]
+ },
+ {
+  "id": "IM17B-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "total distance of a dog running back and forth between two approaching walkers: its running time is just the walkers' meeting time",
+  "difficulty": "hard",
+  "prompt": "Rosa and Tom stand 12 kilometers apart on a straight trail and start walking toward each other at the same moment, Rosa at a steady 5 kilometers per hour and Tom at a steady 3 kilometers per hour. At that same moment, Rosa's dog starts running from Rosa toward Tom at a steady 12 kilometers per hour. Each time the dog reaches one walker, it immediately turns around and runs back toward the other, at the same speed, until Rosa and Tom meet. What is the total distance, in kilometers, that the dog runs?",
+  "choices": [
+   "18",
+   "19.2",
+   "28.8",
+   "36"
+  ],
+  "correct_answer": "18",
+  "explanation": "Hard: adding up the dog's trips one by one never ends; the non-routine idea is that the dog runs for exactly as long as the walkers take to meet. Rosa and Tom close the 12 km gap at 5 + 3 = 8 km/h, so they meet after 12/8 = 1.5 hours, and the dog runs 12 x 1.5 = 18 km. The option \"19.2\" finds the dog's first run, from Rosa to Tom (the dog and Tom close 12 km at 12 + 3 = 15 km/h, 0.8 hour, 9.6 km), and assumes the run back to Rosa is just as long and ends the chase. The option \"28.8\" lets the dog run for as long as Rosa alone would take to walk the whole 12 km, 12/5 = 2.4 hours. The option \"36\" divides the gap by the walkers' average speed, 12/4 = 3 hours, instead of their combined closing speed.",
+  "solve": "const gap=12, r=5, t=3, dog=12; return dog*gap/(r+t);",
+  "distractor_solve": {
+   "36": "const gap=12, r=5, t=3, dog=12; return dog*gap/((r+t)/2);",
+   "19.2": "const gap=12, t=3, dog=12; return Math.round(2*dog*gap/(dog+t)*1000)/1000;",
+   "28.8": "const gap=12, r=5, dog=12; return Math.round(dog*gap/r*1000)/1000;"
+  },
+  "forced": [
+   "positive",
+   "more than the dog's first run, 9.6 km (it keeps running after reaching Tom), and all four options exceed 9.6",
+   "no upper bound is visible from the stem without the meeting-time idea, which is the method itself",
+   "a whole number is not forced (the walkers' meeting time need not be whole)"
+  ]
+ },
+ {
+  "id": "IM17B-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "original unit price from the extra quantity a fixed budget buys after a percent price cut",
+  "difficulty": "hard",
+  "prompt": "A store lowers the price of rice by 20 percent. After the price cut, $300 buys 5 kilograms more rice than $300 bought before the cut. What was the price of the rice, in dollars per kilogram, before the cut?",
+  "choices": [
+   "12",
+   "14.4",
+   "10",
+   "15"
+  ],
+  "correct_answer": "15",
+  "explanation": "Hard: it needs one non-routine idea, that a 20 percent price cut makes a fixed budget buy 1/0.8 = 1.25 times as much, so the extra 5 kg is 25 percent of the ORIGINAL amount, followed by two dependent steps. Before the cut $300 bought 5 / 0.25 = 20 kg, so the original price was 300 / 20 = $15 per kilogram (after the cut it is $12, and $300 buys 25 kg, 5 kg more). The option \"12\" takes the extra 5 kg as 20 percent of the original amount (or divides the $60 saved by 5 kg), which gives the price after the cut. The option \"14.4\" takes the extra 5 kg as 20 percent of the NEW amount, so $300 now buys 25 kg at $12, and then undoes the 20 percent cut by adding 20 percent: 12 x 1.2. The option \"10\" writes the old price as 20 percent above the new price x, solves 300/x - 300/(1.2x) = 5, and reports x.",
+  "solve": "const B=300,cut=0.2,extra=5; const growth=1/(1-cut)-1; const qOld=extra/growth; return B/qOld;",
+  "distractor_solve": {
+   "10": "const B=300,cut=0.2,extra=5; return B*(1-1/(1+cut))/extra;",
+   "12": "const B=300,cut=0.2,extra=5; const qOld=extra/cut; return B/qOld;",
+   "14.4": "const B=300,cut=0.2,extra=5; const qNew=extra/cut; const pNew=B/qNew; return pNew*(1+cut);"
+  },
+  "forced": [
+   "positive and less than 300 / 5 = 60, since the old budget bought more than 5 kg",
+   "no whole-number property: the budget and amounts allow terminating decimals, and one option is 14.4",
+   "no side of an obvious share: the price before the cut is above the price after it, but that price is not given",
+   "all four options lie between 0 and 60"
+  ]
+ },
+ {
+  "id": "IM17B-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "time saved by a round trip that is cut short: the saving splits equally between the two legs (distance-rate-time by symmetry)",
+  "difficulty": "hard",
+  "prompt": "Every evening Mr. Diaz's train reaches the station at 6:00 p.m. His driver leaves home at the same time every evening, drives at the same steady speed, reaches the station at exactly 6:00 p.m., picks him up at once, and drives him straight home along the same road. One evening Mr. Diaz's train reaches the station at 4:30 p.m., and he immediately starts walking home along that road. The driver leaves home at the usual time and drives at the usual speed, meets Mr. Diaz on the road, picks him up at once, turns around, and drives him home. They arrive home 24 minutes earlier than usual. For how many minutes did Mr. Diaz walk?",
+  "choices": [
+   "45",
+   "78",
+   "66",
+   "24"
+  ],
+  "correct_answer": "78",
+  "explanation": "Hard: it needs one non-routine idea rather than any formula: the driver's whole trip is the usual trip with the stretch between the meeting point and the station cut out in both directions. The 24 minutes saved are the time to drive that stretch out and back, so 12 minutes each way. The driver therefore met Mr. Diaz 12 minutes before 6:00 p.m., at 5:48 p.m. He started walking at 4:30 p.m., so he walked from 4:30 to 5:48, which is 78 minutes. The option \"66\" subtracts the whole 24 minutes from the 90 minutes between 4:30 and 6:00, as if the driver met him 24 minutes early. The option \"45\" assumes the meeting falls halfway between 4:30 and 6:00. The option \"24\" takes his walking time to be the same as the time saved.",
+  "solve": "const early=90, saved=24; return String(early - saved/2);",
+  "distractor_solve": {
+   "24": "const early=90, saved=24; return String(saved);",
+   "45": "const early=90, saved=24; return String(early/2);",
+   "66": "const early=90, saved=24; return String(early - saved);"
+  },
+  "forced": [
+   "less than 90: the driver meets him before 6:00 p.m., which is 90 minutes after he starts walking",
+   "positive whole number of minutes",
+   "all four options lie strictly between 0 and 90"
+  ]
+ },
+ {
+  "id": "IM17B-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "price from a loop of two percent comparisons closed by a dollar difference",
+  "difficulty": "hard",
+  "prompt": "At a store, the price of a jacket is 20 percent more than the price of a sweater, and the price of the sweater is 25 percent less than the price of a coat. The coat costs $18 more than the jacket. What is the price of the jacket, in dollars?",
+  "choices": [
+   "54",
+   "342",
+   "162",
+   "432"
+  ],
+  "correct_answer": "162",
+  "explanation": "Hard: it needs one non-routine idea, composing the two percent comparisons into a single multiplier linking the jacket to the coat, and then two dependent steps. The sweater is 0.75 of the coat and the jacket is 1.2 of the sweater, so the jacket is 1.2 x 0.75 = 0.9 of the coat. The $18 gap is therefore 10 percent of the coat, so the coat costs $180 and the jacket costs 0.9 x 180 = $162 (the sweater costs $135). The option \"342\" nets the percents by adding them, 20 - 25 = -5, so the jacket is 0.95 of the coat, the coat is 18 / 0.05 = $360 and the jacket is $342. The option \"432\" turns 'the sweater is 25 percent less than the coat' into 'the coat is 25 percent more than the sweater', so the gap is 0.05 of the sweater, the sweater is $360 and the jacket is 1.2 x 360. The option \"54\" drops the jacket's 20 percent, so the jacket is priced like the sweater at 0.75 of the coat, the coat is 18 / 0.25 = $72 and the jacket is $54.",
+  "solve": "const up=0.2,down=0.25,gap=18; const m=(1+up)*(1-down); const coat=gap/(1-m); return m*coat;",
+  "distractor_solve": {
+   "54": "const up=0.2,down=0.25,gap=18; const m=1-down; const coat=gap/(1-m); return m*coat;",
+   "342": "const up=0.2,down=0.25,gap=18; const m=1+up-down; const coat=gap/(1-m); return m*coat;",
+   "432": "const up=0.2,down=0.25,gap=18; const sw=gap/((1+down)-(1+up)); return (1+up)*sw;"
+  },
+  "forced": [
+   "positive, and the coat is $18 dearer, so the jacket is not the most expensive item; no size of the jacket follows from that alone",
+   "a multiple of 9 is not visible without the method; all four options are multiples of 18",
+   "no side of any printed number is forced: each option exceeds 18",
+   "the jacket's price is 1.2 times the sweater's, so it need not be a whole multiple of 6 without the method; all options are multiples of 6"
+  ]
+ },
+ {
+  "id": "IM17B-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "climb-and-slip rate: the net daily rate applies only until the last climb, which finishes without slipping",
+  "difficulty": "medium",
+  "prompt": "A beetle is at the bottom of a well that is 50 feet deep. Each day it climbs up 12 feet, and each night it slides back down 9 feet. It starts climbing on the morning of day 1. On which day does the beetle first reach the top of the well?",
+  "choices": [
+   "13",
+   "14",
+   "16",
+   "17"
+  ],
+  "correct_answer": "14",
+  "explanation": "Medium: a short chain of routine steps with one well-known trap, that the beetle does not slide back once it reaches the top. The beetle gains a net 12 - 9 = 3 feet each full day and night. It reaches the top during a day's climb once it starts that day at 50 - 12 = 38 feet or higher. After n nights it is at 3n feet, and 3n >= 38 first holds at n = 13 (39 feet). So it reaches the top during the next day's climb, on day 14. The option \"17\" divides 50 by the net 3 feet per day and rounds up, ignoring that the last climb has no slide. The option \"16\" divides 50 by 3 and rounds down. The option \"13\" finds 38 / 3 = 12.67, rounds it down to 12, and adds the final day, which leaves the beetle at 36 + 12 = 48 feet on day 13, short of the top.",
+  "solve": "const D=50, up=12, down=9; let h=0; for (let day=1; day<1000; day++){ h+=up; if (h>=D) return String(day); h-=down; } return 'none';",
+  "distractor_solve": {
+   "13": "const D=50, up=12, down=9; return String(Math.floor((D-up)/(up-down))+1);",
+   "16": "const D=50, up=12, down=9; return String(Math.floor(D/(up-down)));",
+   "17": "const D=50, up=12, down=9; return String(Math.ceil(D/(up-down)));"
+  },
+  "forced": [
+   "a whole number of days",
+   "at least 5: even with no sliding, 12 feet a day needs more than 4 days for 50 feet",
+   "at most 17: at the net 3 feet a day, 17 full days already give 51 feet",
+   "all four options lie between 5 and 17"
+  ]
+ },
+ {
+  "id": "IM17B-20",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "principal from the three-year gap between compound and simple interest at the same rate (interest earned on interest, and on that interest)",
+  "difficulty": "hard",
+  "prompt": "The same amount of money is deposited in two accounts. Account P pays 10 percent simple annual interest. Account Q pays 10 percent annual interest, compounded once a year. Nothing else is added to or withdrawn from either account. At the end of 3 years, Account Q holds $93 more than Account P. How many dollars were deposited in each account?",
+  "choices": [
+   "3,100",
+   "9,300",
+   "4,650",
+   "3,000"
+  ],
+  "correct_answer": "3,000",
+  "explanation": "Hard: it needs the non-routine idea that the gap between the accounts is interest earned on earlier interest, which builds over three dependent years. If d dollars were deposited, Account P holds d + 3(0.1d) = 1.3d after 3 years, and Account Q holds 1.1 x 1.1 x 1.1 x d = 1.331d. The gap is 0.031d = 93, so d = 3,000. The option \"9,300\" uses the two-year gap, 0.1 x 0.1 x d = 0.01d. The option \"3,100\" counts interest on interest as 0.01d in each of the three years, 0.03d, and leaves out the interest earned on that interest. The option \"4,650\" counts interest on interest as 0.01d in each of the last two years only, 0.02d.",
+  "solve": "const r=0.1, n=3, gap=93; const c=Math.pow(1+r,n)-(1+n*r); return Math.round(gap/c).toLocaleString('en-US');",
+  "distractor_solve": {
+   "9,300": "const r=0.1, gap=93; return Math.round(gap/(r*r)).toLocaleString('en-US');",
+   "3,100": "const r=0.1, n=3, gap=93; return Math.round(gap/(n*r*r)).toLocaleString('en-US');",
+   "4,650": "const r=0.1, n=3, gap=93; return Math.round(gap/((n-1)*r*r)).toLocaleString('en-US');"
+  },
+  "forced": [
+   "more than 310: the $93 gap is smaller than the three years of simple interest, 0.3 x deposit",
+   "positive whole number of dollars",
+   "all four options exceed 310"
+  ]
+ }
+]

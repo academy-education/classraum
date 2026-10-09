@@ -1,0 +1,564 @@
+[
+ {
+  "id": "IM17C-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sum of the even-power coefficients of an expanded power of a polynomial without expanding it (evaluate at x = 1 and x = -1, add, and halve)",
+  "difficulty": "hard",
+  "prompt": "When (x^2 + x - 3)^3 is multiplied out and like terms are combined, the result can be written as a6x^6 + a5x^5 + a4x^4 + a3x^3 + a2x^2 + a1x + a0, where a0, a1, ..., a6 are constants. What is the value of a0 + a2 + a4 + a6 ?",
+  "choices": [
+   "-26",
+   "-28",
+   "-1",
+   "-14"
+  ],
+  "correct_answer": "-14",
+  "explanation": "Hard: one non-routine idea - substituting x = 1 and x = -1 into the polynomial picks out sums of its coefficients, and combining the two isolates the even-power coefficients (expanding 27 products by hand is the slow alternative). At x = 1 the polynomial equals a0 + a1 + a2 + ... + a6, and also (1 + 1 - 3)^3 = -1. At x = -1 it equals a0 - a1 + a2 - a3 + a4 - a5 + a6, and also (1 - 1 - 3)^3 = -27. Adding the two equations cancels the odd-power coefficients: 2(a0 + a2 + a4 + a6) = -1 + (-27) = -28, so a0 + a2 + a4 + a6 = -14.",
+  "solve": "let p=[1];const m=(a,b)=>{const r=Array(a.length+b.length-1).fill(0);a.forEach((x,i)=>b.forEach((y,j)=>{r[i+j]+=x*y}));return r};for(let i=0;i<3;i++)p=m(p,[-3,1,1]);let s=0;for(let i=0;i<p.length;i+=2)s+=p[i];return String(s);",
+  "distractor_solve": {
+   "-1": "// substitutes x = 1 only, which gives the sum of ALL seven coefficients, and stops\nconst P=x=>(x*x+x-3)**3;return String(P(1));",
+   "-28": "// adds P(1) and P(-1) correctly but forgets that each even-power coefficient is then counted twice\nconst P=x=>(x*x+x-3)**3;return String(P(1)+P(-1));",
+   "-26": "// adds only the even-power coefficients it can read without expanding - the leading coefficient 1 and the constant (-3)^3 = -27 - assuming the x^2 and x^4 terms cancel out\nreturn String(1**3+(-3)**3);"
+  },
+  "forced": [
+   "an integer (all coefficients are integers); every option is",
+   "a0 = -27 and a6 = 1 can be read off, but a2 and a4 cannot, so no sign or size is forced; every option is a negative integer between -28 and -1",
+   "no parity is forced: the options include both even and odd values"
+  ]
+ },
+ {
+  "id": "IM17C-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a system with absolute values solved by sign cases, rejecting the cases that contradict their own assumption",
+  "difficulty": "hard",
+  "prompt": "The numbers x and y satisfy both of the equations below.\n|x| + x + y = 10\nx + |y| - y = 15\nWhat is the value of x + y ?",
+  "choices": [
+   "3",
+   "-5",
+   "25",
+   "9"
+  ],
+  "correct_answer": "3",
+  "explanation": "Hard: one non-routine idea - split each absolute value by sign, and keep only the case whose answer agrees with the sign it assumed. If x <= 0, the first equation gives y = 10, and then the second gives x = 15, which contradicts x <= 0. So x > 0 and the first equation is 2x + y = 10. If y >= 0, the second equation gives x = 15, so y = 10 - 30 = -20, which contradicts y >= 0. So y < 0 and the second equation is x - 2y = 15. Solving 2x + y = 10 and x - 2y = 15 gives x = 7 and y = -4 (check: 7 + 7 - 4 = 10 and 7 + 4 + 4 = 15). So x + y = 3.",
+  "solve": "for(let x=-50;x<=50;x++)for(let y=-50;y<=50;y++){if(Math.abs(x)+x+y===10&&x+Math.abs(y)-y===15)return String(x+y)}return 'none';",
+  "distractor_solve": {
+   "9": "// right cases, but writes the second equation as x - 2y = -15 (sign slip on the constant): 2x + y = 10, x - 2y = -15 -> x = 1, y = 8\nconst x=(2*10-15)/5;const y=(10+2*15)/5;return String(x+y);",
+   "25": "// assumes x <= 0 without checking: first equation gives y = 10, second gives x = 15\nconst y=10;const x=15+y-Math.abs(y);return String(x+y);",
+   "-5": "// assumes y >= 0 without checking: second equation gives x = 15, first gives y = 10 - 30 = -20\nconst x=15;const y=10-2*x;return String(x+y);"
+  },
+  "forced": [
+   "an integer is not forced by the stem (the system could have fractional solutions)",
+   "no sign of x + y is readable without the case analysis",
+   "no size bound: each option is a sum produced by some consistent-looking pair (x, y)"
+  ]
+ },
+ {
+  "id": "IM17C-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "finding a constant from a composite function's value (a quadratic in the inner value, one root rejected), then evaluating",
+  "difficulty": "medium",
+  "prompt": "The functions f and g are defined by f(x) = x^2 - 3x and g(x) = 2x + k, where k is a positive constant. If f(g(1)) = 10, what is the value of g(4) ?",
+  "choices": [
+   "13",
+   "20",
+   "11",
+   "22"
+  ],
+  "correct_answer": "11",
+  "explanation": "Medium: a routine chain - write the inner value, solve one factorable quadratic, keep the root allowed by k > 0, and evaluate. Let t = g(1) = 2 + k. Then t^2 - 3t = 10, so t^2 - 3t - 10 = 0 and (t - 5)(t + 2) = 0, giving t = 5 or t = -2. Since k > 0, t = 2 + k > 2, so t = 5 and k = 3. Then g(4) = 2(4) + 3 = 11.",
+  "solve": "for(const t of [5,-2]){const k=t-2;if(k>0&&(t*t-3*t)===10)return String(2*4+k)}return 'none';",
+  "distractor_solve": {
+   "13": "// takes the root t = 5 as k itself, forgetting that g(1) = 2 + k\nconst k=5;return String(2*4+k);",
+   "20": "// finds g(1) = 5 and then treats g as proportional: g(4) = 4 x g(1)\nconst g1=5;return String(4*g1);",
+   "22": "// reverses the composition: g(f(1)) = 10, so 2(-2) + k = 10 and k = 14\nconst f1=1-3;const k=10-2*f1;return String(2*4+k);"
+  },
+  "forced": [
+   "g(4) = 8 + k with k > 0, so the answer exceeds 8 (every option does)",
+   "g(4) = g(1) + 6",
+   "no parity forced (k need not be odd or even before solving)"
+  ]
+ },
+ {
+  "id": "IM17C-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a functional equation pairing x with 1 - x, solved by substituting both members of the pair",
+  "difficulty": "hard",
+  "prompt": "A function f satisfies f(x) + 2f(1 - x) = 3x for every number x. What is the value of f(2) ?",
+  "choices": [
+   "2",
+   "16",
+   "-4",
+   "0"
+  ],
+  "correct_answer": "-4",
+  "explanation": "Hard: one non-routine idea - a single substitution leaves two unknowns, so substitute the partner input 1 - x as well and solve the resulting pair of equations. With x = 2: f(2) + 2f(-1) = 6. With x = -1: f(-1) + 2f(2) = -3. From the first, f(-1) = (6 - f(2))/2. Substituting: (6 - f(2))/2 + 2f(2) = -3, so 6 - f(2) + 4f(2) = -6, 3f(2) = -12, and f(2) = -4. (Indeed f(x) = 2 - 3x satisfies the equation.)",
+  "solve": "// solve a + 2b = 6, b + 2a = -3 for a = f(2)\nconst a=(2*(-3)-6)/3;return String(a);",
+  "distractor_solve": {
+   "0": "// sign slip on the second equation: f(-1) + 2f(2) = 3, so (6 - a)/2 + 2a = 3 and 3a = 0\nconst a=(2*3-6)/3;return String(a);",
+   "2": "// substitutes x = 2 only and assumes f(-1) = f(2): 3f(2) = 6\nreturn String(6/3);",
+   "16": "// eliminates correctly to get f(-1) = 5, then back-substitutes with a sign slip: f(2) = 6 + 2(5)\nconst b=(2*6-(-3))/3;return String(6+2*b);"
+  },
+  "forced": [
+   "no sign of f(2) readable from the stem (3x is positive at x = 2, but the 2f(1 - x) term can be either sign)",
+   "an integer is not forced before solving",
+   "no bound: every option is a value reached by some step of solving the pair of equations"
+  ]
+ },
+ {
+  "id": "IM17C-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a cubic inequality solved by moving every term to one side, factoring out x and then the quadratic, and reading a sign chart across the three zeros (never dividing by x, whose sign is unknown)",
+  "difficulty": "hard",
+  "prompt": "Consider the integers x with -4 <= x <= 12. What is the sum of all such integers that satisfy x^3 + 45x < 14x^2 ?",
+  "choices": [
+   "21",
+   "11",
+   "43",
+   "62"
+  ],
+  "correct_answer": "11",
+  "explanation": "Hard: three dependent steps, none a recall fact - rearrange and factor fully, build a sign chart over four intervals, then add the qualifying integers - with a trap in the middle (dividing by x silently assumes x is positive). Moving every term to the left gives x^3 - 14x^2 + 45x < 0, that is x(x^2 - 14x + 45) < 0, that is x(x - 5)(x - 9) < 0. The zeros 0, 5 and 9 split the number line; the product is negative for x < 0 (three negative factors) and for 5 < x < 9 (one negative factor), and positive for 0 < x < 5 and x > 9. In the allowed range the integers are -4, -3, -2, -1 and 6, 7, 8, whose sum is -10 + 21 = 11.",
+  "solve": "let s=0;for(let x=-4;x<=12;x++){if(x**3+45*x<14*x*x)s+=x}return String(s);",
+  "distractor_solve": {
+   "21": "// divides both sides by x without checking its sign, getting x^2 - 14x + 45 < 0, so only 5 < x < 9 survives and the negative integers are lost\nlet s=0;for(let x=-4;x<=12;x++){if(x!==0&&x*x-14*x+45<0)s+=x}return String(s);",
+   "43": "// flips the inequality while moving the terms (x^3 - 14x^2 + 45x > 0), so it keeps the intervals where the product is positive: 1-4 and 10-12\nlet s=0;for(let x=-4;x<=12;x++){if(x**3-14*x*x+45*x>0)s+=x}return String(s);",
+   "62": "// factors x^2 - 14x + 45 as (x - 3)(x - 15) (right product 45, wrong sum), so the product is negative for x < 0 and 3 < x < 15: -10 + (4 + 5 + ... + 12) = 62\nlet s=0;for(let x=-4;x<=12;x++){if(x*(x-3)*(x-15)<0)s+=x}return String(s);"
+  },
+  "forced": [
+   "an integer between -10 (all the negative candidates) and 72 (every integer in the range); every option is",
+   "no sign or parity is readable without solving: the qualifying set could include negatives or not, and could hold an odd or even number of odd integers",
+   "no size bound is readable before the zeros 0, 5 and 9 are found"
+  ]
+ },
+ {
+  "id": "IM17C-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "function notation with an expression as the input: expanding f(a + 1) - f(a) until the squares cancel, solving the linear equation that remains, then evaluating f at the solution",
+  "difficulty": "medium",
+  "prompt": "The function f is defined by f(x) = x^2 - 2x. The number a satisfies f(a + 1) - f(a) = 15. What is the value of f(a) ?",
+  "choices": [
+   "63",
+   "224",
+   "24",
+   "48"
+  ],
+  "correct_answer": "48",
+  "explanation": "Medium: a short routine chain - substitute an expression into the rule, expand, cancel, solve a linear equation, evaluate. f(a + 1) = (a + 1)^2 - 2(a + 1) = a^2 + 2a + 1 - 2a - 2 = a^2 - 1, and f(a) = a^2 - 2a. Their difference is (a^2 - 1) - (a^2 - 2a) = 2a - 1, so 2a - 1 = 15 and a = 8. Then f(a) = f(8) = 64 - 16 = 48.",
+  "solve": "const f=x=>x*x-2*x;let a=null;for(let t=-100;t<=100;t++){if(f(t+1)-f(t)===15)a=t}return String(f(a));",
+  "distractor_solve": {
+   "24": "// distributes -2(a + 1) as -2a + 2, so the difference is 2a + 3 = 15, a = 6, f(6) = 24\nconst f=x=>x*x-2*x;let a=null;for(let t=-100;t<=100;t++){const fa1=(t*t+2*t+1)-2*t+2;if(fa1-f(t)===15)a=t}return String(f(a));",
+   "63": "// subtracts in the wrong order, f(a) - f(a + 1) = 1 - 2a = 15, so a = -7 and f(-7) = 63\nconst f=x=>x*x-2*x;let a=null;for(let t=-100;t<=100;t++){if(f(t)-f(t+1)===15)a=t}return String(f(a));",
+   "224": "// expands (a + 1)^2 as a^2 + a + 1 (middle term not doubled), so the difference is a - 1 = 15, a = 16, f(16) = 224\nconst f=x=>x*x-2*x;let a=null;for(let t=-100;t<=100;t++){const fa1=(t*t+t+1)-2*(t+1);if(fa1-f(t)===15)a=t}return String(f(a));"
+  },
+  "forced": [
+   "f(a) = (a - 1)^2 - 1 is at least -1 and is one less than a perfect square; every option is (64, 225, 25, 49 minus 1)",
+   "an integer, since the linear equation in a has integer coefficients and an odd constant that works out evenly; every option is",
+   "no parity is forced: a(a - 2) is odd when a is odd, and the options include both parities",
+   "no size bound on f(a) is readable without solving for a"
+  ]
+ },
+ {
+  "id": "IM17C-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "translating a scoring rule into an equation plus an inequality (the questions answered cannot exceed the total), then taking the greatest whole number that satisfies both",
+  "difficulty": "hard",
+  "prompt": "A quiz has 25 questions. Each correct answer earns 4 points, each wrong answer loses 1 point, and a question left blank earns 0 points. Rosa's score on the quiz was 33 points. What is the greatest number of questions Rosa could have answered correctly?",
+  "choices": [
+   "11",
+   "9",
+   "12",
+   "14"
+  ],
+  "correct_answer": "11",
+  "explanation": "Hard: it combines two strands - an equation and an inequality written from the same word problem - and ends with a whole-number judgment, so three dependent steps none of which is a recall fact. With c correct and w wrong answers, 4c - w = 33, so w = 4c - 33. The answered questions cannot exceed 25: c + w <= 25, so c + 4c - 33 <= 25, 5c <= 58 and c <= 11.6. The number of correct answers is a whole number, so c is at most 11. Check: 11 correct and 11 wrong with 3 blank gives 44 - 11 = 33 points, so 11 is possible.",
+  "solve": "let best=-1;for(let c=0;c<=25;c++)for(let w=0;c+w<=25;w++){if(4*c-w===33&&c>best)best=c}return String(best);",
+  "distractor_solve": {
+   "9": "// finds the LEAST possible number correct (4c >= 33 forces c >= 9; 9 correct and 3 wrong with 13 blank) and reports it instead of the greatest\nlet least=99;for(let c=0;c<=25;c++)for(let w=0;c+w<=25;w++){if(4*c-w===33&&c<least)least=c}return String(least);",
+   "12": "// solves 5c <= 58 correctly but rounds 11.6 UP to 12, which would need 15 wrong answers and 27 questions\nreturn String(Math.ceil((33+25)/5));",
+   "14": "// checks only that the number correct and the number wrong are each at most 25, never that together they fit in 25 questions: 14 correct and 23 wrong gives 33\nlet best=-1;for(let c=0;c<=25;c++){const w=4*c-33;if(w>=0&&w<=25&&c>best)best=c}return String(best);"
+  },
+  "forced": [
+   "a whole number of questions",
+   "at least 9, since 4c must reach 33 with nothing negative added; every option is",
+   "at most 25; every option is",
+   "no tighter upper bound is readable without combining the equation with the 25-question limit"
+  ]
+ },
+ {
+  "id": "IM17C-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two exponential equations with different bases rewritten over a common base each, giving a linear system in the exponents",
+  "difficulty": "hard",
+  "prompt": "The numbers x and y satisfy both of the equations below.\n9^x * 27^y = 3^26\n25^x / 5^y = 5^10\nWhat is the value of xy ?",
+  "choices": [
+   "28",
+   "8",
+   "90",
+   "72"
+  ],
+  "correct_answer": "28",
+  "explanation": "Hard: it combines two strands - each exponential equation must first be rewritten over a common base, and only then do the matched exponents form a linear system to be solved. Since 9 = 3^2 and 27 = 3^3, the first equation is 3^(2x + 3y) = 3^26, so 2x + 3y = 26. Since 25 = 5^2, the second is 5^(2x - y) = 5^10, so 2x - y = 10. Subtracting, 4y = 16, so y = 4 and 2x = 14, x = 7. Then xy = 28.",
+  "solve": "// 2x + 3y = 26 and 2x - y = 10\nconst y=(26-10)/4;const x=(10+y)/2;return String(x*y);",
+  "distractor_solve": {
+   "8": "// adds the exponents when dividing: 25^x / 5^y = 5^(2x + y), so 2x + y = 10 with 2x + 3y = 26\nconst y=(26-10)/2;const x=(10-y)/2;return String(x*y);",
+   "72": "// subtracts the second equation from the first with a sign slip, 3y - (-y) = 2y: so 2y = 26 - 10, y = 8, and 2x = 10 + 8\nconst y=(26-10)/2;const x=(10+y)/2;return String(x*y);",
+   "90": "// adds instead of multiplying in a power of a power: 9^x = 3^(x + 2), 27^y = 3^(y + 3), 25^x = 5^(x + 2), 5^y = 5^(y + 1); so x + y + 5 = 26 and (x + 2) - (y + 1) = 10\nconst s=26-5,d=10-1;const x=(s+d)/2,y=(s-d)/2;return String(x*y);"
+  },
+  "forced": [
+   "no sign is stated for x or y, so neither the sign nor the size of xy is readable from the stem",
+   "an integer value is not forced before solving the system",
+   "no parity or divisibility property of xy is readable without finding x and y"
+  ]
+ },
+ {
+  "id": "IM17C-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an equation with an absolute value on each side, split into the 'equal' and 'opposite' cases, then combining the two solutions",
+  "difficulty": "medium",
+  "prompt": "The equation |x - 3| = 2|x + 1| has exactly two solutions. What is the product of the two solutions?",
+  "choices": [
+   "-14/3",
+   "-5/3",
+   "-7",
+   "-25/3"
+  ],
+  "correct_answer": "-5/3",
+  "explanation": "Medium: a routine chain - two absolute values that are equal in size mean the insides are equal or opposite, giving two linear equations, then one multiplication. Case 1: x - 3 = 2(x + 1) = 2x + 2, so x = -5. Case 2: x - 3 = -2(x + 1) = -2x - 2, so 3x = 1 and x = 1/3. (Check: |-8| = 8 = 2|-4| and |-8/3| = 8/3 = 2|4/3|.) The product is (-5)(1/3) = -5/3.",
+  "solve": "// case 1: x - 3 = 2(x + 1); case 2: x - 3 = -2(x + 1)\nconst x1=(2+3)/(1-2);const x2=(3-2)/(1+2);return String(x1*x2);",
+  "distractor_solve": {
+   "-25/3": "// in the opposite case distributes the -2 to x only: x - 3 = -2x + 2, so x = 5/3; the other case gives -5\nconst x1=(2+3)/(1-2);const x2=(3+2)/(1+2);return String(x1*x2);",
+   "-7": "// squares both sides but leaves the 2 unsquared: (x - 3)^2 = 2(x + 1)^2, i.e. -x^2 - 10x + 7 = 0; product of roots c/a\nconst a=1-2,c=9-2;return String(c/a);",
+   "-14/3": "// finds both solutions correctly but adds them instead of multiplying\nconst x1=(2+3)/(1-2);const x2=(3-2)/(1+2);return String(x1+x2);"
+  },
+  "forced": [
+   "the sign of the product is not readable from the stem (one solution could be on each side of 0 or both on one side)",
+   "a fraction is not forced: the coefficients could make the solutions integers",
+   "no size bound: |x - 3| = 2|x + 1| allows solutions anywhere on the number line before solving"
+  ]
+ },
+ {
+  "id": "IM17C-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving a linear system in terms of a parameter, then counting the parameter values that make both unknowns positive integers (a divisibility condition plus an inequality)",
+  "difficulty": "hard",
+  "prompt": "In the system of equations below, k is a constant.\nx + y = k\n3x - y = 26\nFor how many integers k from 1 through 50 does the system have a solution in which x and y are both positive integers?",
+  "choices": [
+   "6",
+   "10",
+   "11",
+   "13"
+  ],
+  "correct_answer": "11",
+  "explanation": "Hard: three dependent steps, none of them a recall fact - solve the system in terms of k, turn 'x is an integer' into a divisibility condition, and turn 'y is positive' into a bound - before a count. Adding the equations gives 4x = k + 26, so x = (k + 26)/4, and then y = k - x = (3k - 26)/4. For x to be an integer, k + 26 must be a multiple of 4, so k is 2 more than a multiple of 4 (then y is an integer too). For y to be positive, 3k > 26, so k >= 9 (x is then automatically positive). The values are k = 10, 14, 18, ..., 50, which is (50 - 10)/4 + 1 = 11 values. (For example, k = 10 gives x = 9, y = 1.)",
+  "solve": "let c=0;for(let k=1;k<=50;k++){if((k+26)%4!==0)continue;const x=(k+26)/4,y=k-x;if(x>0&&y>0&&3*x-y===26)c++;}return String(c);",
+  "distractor_solve": {
+   "6": "// sign slip when adding the equations: x = (k - 26)/4, so x > 0 needs k > 26; counts k = 30, 34, ..., 50\nlet c=0;for(let k=1;k<=50;k++){if((k-26)%4!==0)continue;const x=(k-26)/4,y=k-x;if(x>0&&y>0)c++;}return String(c);",
+   "10": "// tests whether k itself is a multiple of 4, dropping the 26 from (k + 26)/4, then applies k >= 9: counts 12, 16, ..., 48\nlet c=0;for(let k=1;k<=50;k++){if(k%4===0&&3*k>26)c++;}return String(c);",
+   "13": "// makes x a positive integer but never checks that y is positive, so k = 2 and k = 6 are wrongly counted\nlet c=0;for(let k=1;k<=50;k++){if((k+26)%4===0&&(k+26)/4>0)c++;}return String(c);"
+  },
+  "forced": [
+   "a whole number from 0 through 50 (a count of values of k from 1 through 50)",
+   "no smaller bound is readable from the stem without solving the system for x and y"
+  ]
+ },
+ {
+  "id": "IM17C-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "translating a condition on a point's coordinates into an equation, locating the point on one line, then finding the constant of a second line through it",
+  "difficulty": "medium",
+  "prompt": "The lines y = 2x + k and y = -x + 11, where k is a constant, cross at a point whose x-coordinate is 3 more than its y-coordinate. What is the value of k ?",
+  "choices": [
+   "2",
+   "-1",
+   "-10",
+   "18"
+  ],
+  "correct_answer": "-10",
+  "explanation": "Medium: a routine chain - translate the condition, solve for the point on the fully known line, then substitute into the other line. The condition says x = y + 3. On y = -x + 11 this gives y = -(y + 3) + 11, so 2y = 8, y = 4 and x = 7. The point (7, 4) is also on y = 2x + k, so 4 = 14 + k and k = -10.",
+  "solve": "// x = y + 3 on y = -x + 11\nconst y=(11-3)/2;const x=y+3;return String(y-2*x);",
+  "distractor_solve": {
+   "2": "// reads 'the x-coordinate is 3' and uses x = 3 on y = -x + 11, so y = 8\nconst x=3;const y=-x+11;return String(y-2*x);",
+   "18": "// finds the point (7, 4) but solves 4 = 2(7) + k as k = 4 + 14\nconst y=(11-3)/2;const x=y+3;return String(y+2*x);",
+   "-1": "// reverses the condition: y = x + 3, so x + 3 = -x + 11, x = 4, y = 7\nconst x=(11-3)/2;const y=x+3;return String(y-2*x);"
+  },
+  "forced": [
+   "no sign of k is readable from the stem: the crossing point's height decides it",
+   "an integer is not forced before solving (the point could have fractional coordinates)",
+   "no size bound on k: every option gives a line y = 2x + k that crosses y = -x + 11 somewhere"
+  ]
+ },
+ {
+  "id": "IM17C-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "factoring a quadratic to decide when its value is prime: a product of two integers is prime only when one factor is 1 or -1 and the product is positive",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all the integers n for which 2n^2 - 11n - 40 is a prime number?",
+  "choices": [
+   "2",
+   "6",
+   "7",
+   "9"
+  ],
+  "correct_answer": "6",
+  "explanation": "Hard: one non-routine idea - factor first, then use the fact that a product of two integers can be prime only if one factor is 1 or -1 - followed by sign checks on every case. 2n^2 - 11n - 40 = (2n + 5)(n - 8). If 2n + 5 = 1, n = -2 and the value is 1 x (-10) = -10, not prime. If 2n + 5 = -1, n = -3 and the value is (-1)(-11) = 11, prime. If n - 8 = 1, n = 9 and the value is 23 x 1 = 23, prime. If n - 8 = -1, n = 7 and the value is 19 x (-1) = -19, not prime (primes are positive). For any other integer n, both factors are at least 2 in size, so the value is not prime. The integers are -3 and 9, and their sum is 6.",
+  "solve": "// brute force over a wide range: value prime only near the roots\nconst isP=v=>{if(v<2)return false;for(let d=2;d*d<=v;d++)if(v%d===0)return false;return true;};let s=0,c=0;for(let n=-1000;n<=1000;n++){if(isP(2*n*n-11*n-40)){s+=n;c++;}}if(c!==2)return 'bad';return String(s);",
+  "distractor_solve": {
+   "2": "// finds the right integers (-3 and 9) but reports how many there are instead of their sum\nconst isP=v=>{if(v<2)return false;for(let d=2;d*d<=v;d++)if(v%d===0)return false;return true;};let c=0;for(let n=-1000;n<=1000;n++)if(isP(2*n*n-11*n-40))c++;return String(c);",
+   "7": "// sets each factor equal to +1 only (2n + 5 = 1 gives n = -2; n - 8 = 1 gives n = 9) and never checks the other factor\nreturn String(((1-5)/2)+(1+8));",
+   "9": "// overlooks that the factor 2n + 5 can be 1 or -1: tries only n - 8 = 1 or -1 (n = 9 or 7), and keeps n = 9 after checking\nconst isP=v=>{if(v<2)return false;for(let d=2;d*d<=v;d++)if(v%d===0)return false;return true;};let s=0;for(const n of [9,7])if(isP(2*n*n-11*n-40))s+=n;return String(s);"
+  },
+  "forced": [
+   "an integer (a sum of integers)",
+   "no sign is forced by the stem",
+   "no bound is forced: without factoring, the stem does not show which n make the value prime or how many there are"
+  ]
+ },
+ {
+  "id": "IM17C-13",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "factoring a quadratic whose leading coefficient is not 1, then combining the two solutions in an asked expression",
+  "difficulty": "medium",
+  "prompt": "The two solutions of the equation 2x^2 - 7x - 15 = 0 are r and s, where r > s. What is the value of r - 2s ?",
+  "choices": [
+   "11",
+   "8",
+   "23/2",
+   "16"
+  ],
+  "correct_answer": "8",
+  "explanation": "Medium: a routine chain - factor a quadratic with leading coefficient 2, read off both solutions with their signs, and substitute. 2x^2 - 7x - 15 = (2x + 3)(x - 5), so the solutions are x = 5 and x = -3/2. Since r > s, r = 5 and s = -3/2. Then r - 2s = 5 - 2(-3/2) = 5 + 3 = 8.",
+  "solve": "const a=2,b=-7,c=-15;const D=Math.sqrt(b*b-4*a*c);const r=(-b+D)/(2*a),s=(-b-D)/(2*a);return String(r-2*s);",
+  "distractor_solve": {
+   "11": "// factors correctly but reads the solution of 2x + 3 = 0 as x = -3, forgetting to divide by 2\nconst r=5,s=-3;return String(r-2*s);",
+   "16": "// uses the quadratic formula with 2 in the denominator instead of 2a = 4: x = (7 +/- 13)/2, giving 10 and -3\nconst a=2,b=-7,c=-15;const D=Math.sqrt(b*b-4*a*c);const r=(-b+D)/2,s=(-b-D)/2;return String(r-2*s);",
+   "23/2": "// factors with the signs swapped, (2x - 3)(x + 5), so the solutions are 3/2 and -5\nconst r=3/2,s=-5;return String(r-2*s);"
+  },
+  "forced": [
+   "the product of the solutions is negative, so r > 0 > s; with r + s = 7/2 this gives r - 2s = 7/2 - 3s > 7/2, and every option exceeds 7/2",
+   "no integer is forced: s could be a fraction",
+   "no upper bound is readable without solving"
+  ]
+ },
+ {
+  "id": "IM17C-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "an inequality with one absolute value nested inside another: peel the outer layer to a range for the inner absolute value, which gives two separate intervals, then count integers",
+  "difficulty": "hard",
+  "prompt": "How many integers x satisfy the inequality ||x - 4| - 7| <= 3 ?",
+  "choices": [
+   "14",
+   "4",
+   "20",
+   "12"
+  ],
+  "correct_answer": "14",
+  "explanation": "Hard: three dependent steps, none a recall fact - remove the outer absolute value, turn the resulting range for |x - 4| into two separate intervals, and count the integers in both. The outer layer gives -3 <= |x - 4| - 7 <= 3, so 4 <= |x - 4| <= 10. Then x - 4 is between 4 and 10 or between -10 and -4, so x is from 8 through 14 (7 integers) or from -6 through 0 (7 integers). That is 14 integers in all.",
+  "solve": "let c=0;for(let x=-100;x<=100;x++){if(Math.abs(Math.abs(x-4)-7)<=3)c++}return String(c);",
+  "distractor_solve": {
+   "4": "// solves the equation ||x - 4| - 7| = 3 instead of the inequality: |x - 4| = 10 or 4, so x = 14, -6, 8, 0\nlet c=0;for(let x=-100;x<=100;x++){if(Math.abs(Math.abs(x-4)-7)===3)c++}return String(c);",
+   "12": "// counts the 21 integers with |x - 4| <= 10, then removes those with |x - 4| <= 4 (9 of them) instead of |x - 4| < 4 (7 of them)\nlet all=0,inner=0;for(let x=-100;x<=100;x++){const t=Math.abs(x-4);if(t<=10)all++;if(t<=4)inner++}return String(all-inner);",
+   "20": "// finds the outermost solutions -6 and 14 and takes the distance between them, 14 - (-6), as the count\nreturn String(14-(-6));"
+  },
+  "forced": [
+   "the solution set is symmetric about x = 4 and 4 itself is not a solution (||0| - 7| = 7), so the count is even; every option is even",
+   "every solution satisfies |x - 4| <= 10, so the count is at most 21; every option is",
+   "no lower bound beyond 0 is readable without peeling both layers"
+  ]
+ },
+ {
+  "id": "IM17C-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "building a quadratic whose solutions are those of a given quadratic shifted by a constant (substitute x - 3, or shift the sum and product of the solutions), when the given solutions are not whole numbers",
+  "difficulty": "hard",
+  "prompt": "The equation x^2 - 7x + 5 = 0 has two solutions. The equation x^2 + bx + c = 0, where b and c are constants, has as its two solutions the solutions of the first equation, each increased by 3. What is the value of b + c ?",
+  "choices": [
+   "22",
+   "-8",
+   "1",
+   "48"
+  ],
+  "correct_answer": "22",
+  "explanation": "Hard: one non-routine idea - the first equation's solutions are not whole numbers, so they cannot simply be found and shifted; instead the new equation is built from the old one. If t is a solution of the new equation, then t - 3 is a solution of the old one, so the new equation is (x - 3)^2 - 7(x - 3) + 5 = 0, which expands to x^2 - 6x + 9 - 7x + 21 + 5 = x^2 - 13x + 35. (Equivalently, the old solutions r and s have r + s = 7 and rs = 5; the new ones have sum (r + 3) + (s + 3) = 13 and product rs + 3(r + s) + 9 = 5 + 21 + 9 = 35.) So b = -13 and c = 35, and b + c = 22.",
+  "solve": "const d=Math.sqrt(49-20);const r=(7+d)/2,s=(7-d)/2;const b=-((r+3)+(s+3));const c=(r+3)*(s+3);return String(Math.round(b+c));",
+  "distractor_solve": {
+   "1": "// new sum 7 + 6 = 13 is right, but takes the new product as rs + 9, dropping the cross term 3(r + s)\nconst b=-(7+6),c=5+9;return String(b+c);",
+   "48": "// finds the new sum 13 and product 35 but forgets that b is the NEGATIVE of the sum, taking b = 13\nconst b=7+6,c=5+3*7+9;return String(b+c);",
+   "-8": "// shifts the wrong way: substitutes x + 3 instead of x - 3, getting (x + 3)^2 - 7(x + 3) + 5 = x^2 - x - 7\nconst b=6-7,c=9-21+5;return String(b+c);"
+  },
+  "forced": [
+   "no sign is readable: c is positive and b negative, so b + c could have either sign; options include both",
+   "no parity bound on b + c without computing c",
+   "every option is an integer, as b and c must be once the sum 7 and product 5 are integers"
+  ]
+ },
+ {
+  "id": "IM17C-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "piecewise-defined function: solving f(x) = k on each piece and keeping only the solutions that lie in that piece's own interval",
+  "difficulty": "medium",
+  "prompt": "The function f is defined as follows.\nf(x) = x^2 - 8x + 10 when x >= 2\nf(x) = -3x - 9 when x < 2\nWhat is the sum of all the numbers x for which f(x) = 3 ?",
+  "choices": [
+   "1",
+   "4",
+   "8",
+   "3"
+  ],
+  "correct_answer": "3",
+  "explanation": "Medium: two routine equations plus one domain check on each - no non-routine idea, but each solution must be tested against its piece's interval. On the piece for x >= 2: x^2 - 8x + 10 = 3 gives x^2 - 8x + 7 = 0, so (x - 1)(x - 7) = 0 and x = 1 or x = 7; only 7 satisfies x >= 2, so 1 is rejected. On the piece for x < 2: -3x - 9 = 3 gives x = -4, which does satisfy x < 2. The solutions are 7 and -4, and their sum is 3.",
+  "solve": "// solve each piece, keep roots inside that piece's interval\nconst sols=[];for(let x=-50;x<=50;x++){const f=x>=2?x*x-8*x+10:-3*x-9;if(f===3)sols.push(x);}if(sols.length!==2)return 'bad';return String(sols.reduce((a,b)=>a+b,0));",
+  "distractor_solve": {
+   "1": "// attaches the pieces to the wrong intervals (quadratic for x < 2, linear for x >= 2): quadratic root 1 is kept, linear root -4 is rejected\nconst q=[1,7].filter(x=>x<2);const l=[-4].filter(x=>x>=2);return String([...q,...l].reduce((a,b)=>a+b,0));",
+   "4": "// solves both pieces but never checks the intervals: 1 + 7 + (-4)\nreturn String(1+7+(-4));",
+   "8": "// solves only the quadratic piece and keeps both of its roots, 1 + 7, forgetting the linear piece\nreturn String(1+7);"
+  },
+  "forced": [
+   "an integer is not forced by the stem; the solutions turn out to be integers",
+   "no sign is forced: one piece's solution could be negative and the other positive",
+   "no bound is readable from the stem without solving each piece"
+  ]
+ },
+ {
+  "id": "IM17C-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a list generated by repeatedly applying a function: find that the values repeat in a cycle of four, then sum whole cycles plus the leftover terms",
+  "difficulty": "hard",
+  "prompt": "The function f is defined by f(x) = (x + 1)/(1 - x). A list of numbers begins with 3, and each number after the first is f of the number before it. What is the sum of the first 50 numbers in the list?",
+  "choices": [
+   "15",
+   "14",
+   "85/6",
+   "44/3"
+  ],
+  "correct_answer": "15",
+  "explanation": "Hard: one non-routine idea (noticing that applying f returns to the starting value, so the list repeats) on top of fraction evaluation and a whole-cycles-plus-leftover count. f(3) = 4/(-2) = -2, f(-2) = -1/(3) = -1/3, f(-1/3) = (2/3)/(4/3) = 1/2, and f(1/2) = (3/2)/(1/2) = 3, so the list is 3, -2, -1/3, 1/2, 3, -2, ... repeating every 4 numbers. One cycle sums to 3 - 2 - 1/3 + 1/2 = 7/6. The first 50 numbers are 12 full cycles (48 numbers) and then the first 2 numbers of a cycle, 3 and -2. The sum is 12(7/6) + 3 + (-2) = 14 + 1 = 15.",
+  "solve": "const f=x=>(x+1)/(1-x);let x=3,s=0;for(let i=0;i<50;i++){s+=x;x=f(x)}return String(Math.round(s*6)/6);",
+  "distractor_solve": {
+   "14": "// sums the 12 full cycles (48 numbers) and forgets the 2 leftover numbers\nreturn String(12*(3-2-1/3+1/2));",
+   "85/6": "// finds 2 leftover numbers but takes them from the END of the cycle (-1/3 and 1/2) instead of the start\nreturn String(12*(3-2-1/3+1/2)+(-1/3+1/2));",
+   "44/3": "// fencepost slip: counts the leftover as 50 - 48 + 1 = 3 numbers (3, -2, -1/3)\nreturn String(12*(3-2-1/3+1/2)+(3-2-1/3));"
+  },
+  "forced": [
+   "every term has denominator 1, 2 or 3, so the sum's denominator divides 6; every option's does",
+   "terms change sign, so no sign or size bound is readable without finding the cycle; all options lie between 14 and 15",
+   "not an integer by necessity: the leftover could have left a sixth"
+  ]
+ },
+ {
+  "id": "IM17C-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a power equal to 1 split into its three cases (base 1; exponent 0 with a nonzero base; base -1 with an even exponent), each case a quadratic or linear equation, then checking each candidate",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all the real numbers x that satisfy (x^2 - 5x + 5)^(x + 1) = 1 ?",
+  "choices": [
+   "5",
+   "8",
+   "7",
+   "4"
+  ],
+  "correct_answer": "7",
+  "explanation": "Hard: one non-routine idea (a power equals 1 in three different ways, not just when the base is 1) and a parity check that removes one candidate. Case 1, base 1: x^2 - 5x + 5 = 1 gives x^2 - 5x + 4 = 0, so x = 1 or x = 4. Case 2, exponent 0 with a nonzero base: x + 1 = 0 gives x = -1, and the base is 1 + 5 + 5 = 11, so x = -1 works. Case 3, base -1 with an even exponent: x^2 - 5x + 5 = -1 gives x^2 - 5x + 6 = 0, so x = 2 or x = 3. At x = 2 the exponent is 3 and (-1)^3 = -1, so 2 fails; at x = 3 the exponent is 4 and (-1)^4 = 1, so 3 works. The solutions are -1, 1, 3 and 4, with sum 7.",
+  "solve": "let s=0;for(let x=-50;x<=50;x++){const b=x*x-5*x+5,e=x+1;if(Math.pow(b,e)===1)s+=x}return String(s);",
+  "distractor_solve": {
+   "4": "// base = 1 and exponent = 0, but never considers a base of -1\nreturn String(1+4+(-1));",
+   "5": "// only the case base = 1: x^2 - 5x + 4 = 0 gives 1 and 4\nreturn String(1+4);",
+   "8": "// base = 1 and base = -1 (with the even-exponent check), but misses the exponent-0 case x = -1\nlet s=1+4;for(const x of [2,3]){if((x+1)%2===0)s+=x}return String(s);"
+  },
+  "forced": [
+   "the sum of the solutions is not bounded or signed by the stem: x can be negative (x = -1 makes the exponent 0)",
+   "no parity is forced: whether 2 or 3 survives depends on the exponent, so the sum could be odd or even; options include both",
+   "every option is a small integer near the sum of a quadratic's roots (5), so none is out of range"
+  ]
+ },
+ {
+  "id": "IM17C-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "solving an equation with a fractional exponent and converting it to a different fractional power (x^(3/4) known, x^(1/2) asked) through the fourth root",
+  "difficulty": "medium",
+  "prompt": "The positive number x satisfies x^(3/4) = 27. What is the value of x^(1/2) ?",
+  "choices": [
+   "6",
+   "18",
+   "9",
+   "24"
+  ],
+  "correct_answer": "9",
+  "explanation": "Medium: two routine exponent steps, with no non-routine idea - undo the cube to reach the fourth root, then square it. Since x^(3/4) = (x^(1/4))^3 = 27, the fourth root is x^(1/4) = 3. Then x^(1/2) = (x^(1/4))^2 = 3^2 = 9. (Check: x = 3^4 = 81, and 81^(3/4) = 3^3 = 27, while 81^(1/2) = 9.)",
+  "solve": "// x^(1/4) is the cube root of 27; x^(1/2) is its square\nconst q=Math.round(Math.cbrt(27));if(q**3!==27)return 'bad';const x=q**4;if(Math.round(x**0.75)!==27)return 'bad';return String(q*q);",
+  "distractor_solve": {
+   "6": "// treats the exponent 3/4 as a multiplier: x = 27 / (3/4) = 36, then takes the square root\nconst x=27/(3/4);return String(Math.sqrt(x));",
+   "18": "// scales 27 by the ratio of the exponents, (1/2)/(3/4) = 2/3, instead of raising 27 to that power\nreturn String(27*(1/2)/(3/4));",
+   "24": "// finds x^(1/4) = 3, then subtracts values because the exponents subtract: x^(3/4) - x^(1/4) = 27 - 3\nconst q=Math.round(Math.cbrt(27));return String(27-q);"
+  },
+  "forced": [
+   "positive (x is positive)",
+   "less than 27, because x > 1 (x^(3/4) = 27 > 1) and a smaller power of a number above 1 is smaller",
+   "greater than 27^(1/2), about 5.2, since x^(1/2) = 27^(2/3) and 2/3 > 1/2",
+   "a whole number is not forced by the stem alone"
+  ]
+ },
+ {
+  "id": "IM17C-20",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two 'the product stays the same' conditions (price times tickets) expanded so the product term cancels, leaving a linear system in price and attendance",
+  "difficulty": "hard",
+  "prompt": "A theater charges the same price for every ticket to a show. If the price were $2 higher, 40 fewer tickets would be sold and the total ticket revenue would be unchanged. If the price were $1 lower, 30 more tickets would be sold and the total ticket revenue would again be unchanged. What is the total ticket revenue, in dollars?",
+  "choices": [
+   "1260",
+   "180",
+   "480",
+   "980"
+  ],
+  "correct_answer": "1260",
+  "explanation": "Hard: one non-routine idea (each 'revenue unchanged' condition is a product equation, and expanding it cancels the product pt, leaving a linear equation) followed by solving a system and multiplying back. Let the price be p dollars and the number of tickets t. First condition: (p + 2)(t - 40) = pt, so pt - 40p + 2t - 80 = pt and t = 20p + 40. Second condition: (p - 1)(t + 30) = pt, so pt + 30p - t - 30 = pt and t = 30p - 30. Then 20p + 40 = 30p - 30, so p = 7 and t = 180. The revenue is 7 x 180 = 1260 dollars. (Check: 9 x 140 = 1260 and 6 x 210 = 1260.)",
+  "solve": "for(let p=1;p<=200;p++)for(let t=1;t<=2000;t++){if((p+2)*(t-40)===p*t&&(p-1)*(t+30)===p*t)return String(p*t)}return 'none';",
+  "distractor_solve": {
+   "180": "// expands the first product but drops the -80 (the product of the two constants), so t = 20p; with t = 30p - 30 that gives p = 3, t = 60\nconst p=30/(30-20);const t=20*p;return String(p*t);",
+   "480": "// expands the second product but drops the -30 (the product of the two constants), so t = 30p; with t = 20p + 40 that gives p = 4, t = 120\nconst p=40/(30-20);const t=30*p;return String(p*t);",
+   "980": "// finds p = 7 correctly, then gets the ticket count from t = 20p, leaving off the +40, so t = 140\nconst p=(40+30)/(30-20);const t=20*p;return String(p*t);"
+  },
+  "forced": [
+   "a positive dollar amount; every option is",
+   "no divisibility is readable from the stem: neither the price nor the ticket count is stated to be a whole number",
+   "no size bound: the revenue is not limited by any printed number (40 and 30 tickets and $1-$2 changes say nothing about the scale until solved)"
+  ]
+ }
+]

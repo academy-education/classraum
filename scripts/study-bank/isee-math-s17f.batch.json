@@ -1,0 +1,552 @@
+[
+ {
+  "id": "IM17F-01",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting triangles whose corners come from points on two parallel lines (all triples minus the collinear triples on each line)",
+  "difficulty": "hard",
+  "prompt": "Six different points are marked on line l, and four different points are marked on line m, which is parallel to line l. How many different triangles have all three of their corners among these ten points?",
+  "choices": [
+   "110",
+   "64",
+   "96",
+   "99"
+  ],
+  "correct_answer": "96",
+  "explanation": "Hard: a plain count of the ways to choose 3 points is wrong, so it needs one non-routine idea, removing the choices that cannot make a triangle because all three points lie on one line. There are C(10, 3) = 120 ways to choose 3 of the 10 points. Three points on line l, C(6, 3) = 20 ways, or three points on line m, C(4, 3) = 4 ways, lie in a straight line and form no triangle. So 120 - 20 - 4 = 96 triangles. (Check: two corners on l and one on m gives C(6, 2) x 4 = 60, and two on m and one on l gives C(4, 2) x 6 = 36; 60 + 36 = 96.) The option 64 picks one point on each line (6 x 4 = 24 ways) and then any third point (8 ways), and divides 24 x 8 = 192 by 3, but each triangle is counted only twice this way (once for each of its two corners that pair across the lines), so the correct division is by 2. The option 99 subtracts the pairs of points on each line, C(6, 2) + C(4, 2) = 21, instead of the triples. The option 110 subtracts the number of points on each line, 6 + 4 = 10, instead of the collinear triples.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; const a=6,b=4; return String(C(a+b,3)-C(a,3)-C(b,3));",
+  "distractor_solve": {
+   "64": "const a=6,b=4; return String(a*b*(a+b-2)/3);",
+   "99": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; const a=6,b=4; return String(C(a+b,3)-C(a,2)-C(b,2));",
+   "110": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; const a=6,b=4; return String(C(a+b,3)-a-b);"
+  },
+  "forced": [
+   "a positive whole number",
+   "strictly less than C(10, 3) = 120, because some triples are collinear (all four options are below 120 and none is 120)",
+   "no lower bound readable from the stem without doing the method; no option sits on 0 or 120",
+   "no parity, units-digit or divisibility property is forced by the stem"
+  ]
+ },
+ {
+  "id": "IM17F-02",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that a hand drawn from matched pairs contains no matching pair (choose the colors, then one item of each color)",
+  "difficulty": "hard",
+  "prompt": "A drawer holds 5 pairs of socks, and the two socks of each pair are the same color, a different color for every pair. Without looking, Mia takes 4 of the 10 socks at the same time. What is the probability that no two of the 4 socks she takes are the same color?",
+  "choices": [
+   "4/15",
+   "4/7",
+   "8/21",
+   "1/3"
+  ],
+  "correct_answer": "8/21",
+  "explanation": "Hard: the favorable hands cannot be listed, so it needs one non-routine idea: build each favorable hand by first choosing its colors and then choosing one sock of each color. There are C(10, 4) = 210 equally likely hands. A hand with 4 different colors uses 4 of the 5 colors, C(5, 4) = 5 ways, and takes one of the 2 socks of each, 2 x 2 x 2 x 2 = 16 ways, so 5 x 16 = 80 hands. The probability is 80/210 = 8/21. (Drawing one at a time gives the same: 8/9 x 6/8 x 4/7 = 8/21.) The option 4/15 draws one at a time but uses 10, 9 and 8 as the denominators for the second, third and fourth socks: 8/10 x 6/9 x 4/8. The option 1/3 subtracts, for each of the 5 colors, the C(8, 2) = 28 hands that contain that pair, 210 - 140 = 70, without adding back the 10 hands that contain two pairs and were subtracted twice. The option 4/7 is the probability of exactly one matching pair, 5 x C(4, 2) x 4 = 120 hands out of 210.",
+  "solve": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; const g=(a,b)=>b?g(b,a%b):a; const num=C(5,4)*16, den=C(10,4); const d=g(num,den); return (num/d)+'/'+(den/d);",
+  "distractor_solve": {
+   "4/15": "const g=(a,b)=>b?g(b,a%b):a; const num=8*6*4, den=10*9*8; const d=g(num,den); return (num/d)+'/'+(den/d);",
+   "1/3": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; const g=(a,b)=>b?g(b,a%b):a; const den=C(10,4); const num=den-5*C(8,2); const d=g(num,den); return (num/d)+'/'+(den/d);",
+   "4/7": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; const g=(a,b)=>b?g(b,a%b):a; const num=5*C(4,2)*4, den=C(10,4); const d=g(num,den); return (num/d)+'/'+(den/d);"
+  },
+  "forced": [
+   "a probability strictly between 0 and 1",
+   "denominator in lowest terms divides C(10, 4) = 210 (all four options: 15, 7, 21, 3 divide 210)",
+   "at most 8/9, the chance the first two socks differ (all four options are below it)",
+   "no option is the complement of another or of the key (sums 56+80, 120+80, 70+80 out of 210 are not 210)"
+  ]
+ },
+ {
+  "id": "IM17F-03",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "circle graph: convert a sector angle to a count, change the count, convert back to an angle",
+  "difficulty": "medium",
+  "prompt": "A circle graph shows the favorite sports of 240 students, and each student chose exactly one sport. The sector for soccer has a central angle of 105 degrees. Twenty-four fewer students chose basketball than chose soccer. What is the central angle, in degrees, of the sector for basketball?",
+  "choices": [
+   "69",
+   "81",
+   "36",
+   "94.5"
+  ],
+  "correct_answer": "69",
+  "explanation": "Medium: two routine conversions between degrees and students around one subtraction, with no non-routine idea. The whole circle, 360 degrees, stands for 240 students, so each student is 360/240 = 1.5 degrees. Soccer has 105/1.5 = 70 students, so basketball has 70 - 24 = 46 students, and its sector is 46 x 1.5 = 69 degrees. (Equivalently, 24 students are 24 x 1.5 = 36 degrees, and 105 - 36 = 69.) The option 81 subtracts the 24 students directly from the 105 degrees, mixing students with degrees. The option 36 is the angle that stands for the 24-student difference, an intermediate value. The option 94.5 notices that 24 students are 10 percent of the class but takes 10 percent off the soccer angle, 105 x 0.9, instead of 10 percent of the whole circle.",
+  "solve": "const n=240, s=105, d=24; const per=360/n; return String((s/per - d)*per);",
+  "distractor_solve": {
+   "36": "const n=240, d=24; return String(d*360/n);",
+   "81": "const s=105, d=24; return String(s-d);",
+   "94.5": "const n=240, s=105, d=24; return String(s*(1-d/n));"
+  },
+  "forced": [
+   "positive and less than 105, because fewer students chose basketball than soccer (all four options are between 0 and 105, none on 105)",
+   "a multiple of 1.5, because each of the 240 students is 360/240 = 1.5 degrees (69 = 46 x 1.5, 81 = 54 x 1.5, 36 = 24 x 1.5, 94.5 = 63 x 1.5)",
+   "at most 360 - 105 = 255 together with soccer (all options satisfy it)"
+  ]
+ },
+ {
+  "id": "IM17F-04",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that the product of two numbers drawn together is a multiple of 6 (the product needs a factor 2 AND a factor 3; complement with inclusion-exclusion, or cases on whether 6 is drawn)",
+  "difficulty": "hard",
+  "prompt": "Ten cards are numbered 1 through 10. Two of the cards are drawn at random at the same time. What is the probability that the product of the two numbers drawn is a multiple of 6?",
+  "choices": [
+   "17/45",
+   "1/3",
+   "14/45",
+   "2/9"
+  ],
+  "correct_answer": "17/45",
+  "explanation": "Hard: the product must have a factor 2 and a factor 3, which can come from the same card or from different cards, so it combines two conditions and needs inclusion-exclusion (or a case split) rather than one count. There are C(10, 2) = 45 equally likely pairs. A product fails if it has no factor 2 or no factor 3. Pairs with no factor 2 use only the 5 odd cards: C(5, 2) = 10. Pairs with no factor 3 use only the 7 cards that are not multiples of 3: C(7, 2) = 21. Pairs with neither use only 1, 5 and 7: C(3, 2) = 3, and they were subtracted twice. Failing pairs: 10 + 21 - 3 = 28, so 45 - 28 = 17 pairs succeed, and the probability is 17/45. (Cases: the 9 pairs that include the 6, plus one of 2, 4, 8, 10 with one of 3, 9, 4 x 2 = 8; 9 + 8 = 17.) The option 14/45 subtracts the 10 and the 21 but does not add back the 3 pairs subtracted twice. The option 1/3 multiplies the 5 even cards by the 3 multiples of 3, 15 pairs, which pairs the 6 with itself and misses the 6 with 1, 5 and 7. The option 2/9 keeps the 8 pairs without the 6 but pairs the 6 only with the other multiples of 3, (6, 3) and (6, 9), missing that the 6 already supplies both factors: 8 + 2 = 10 pairs.",
+  "solve": "let c=0,t=0; for(let a=1;a<=10;a++)for(let b=a+1;b<=10;b++){t++; if((a*b)%6===0)c++;} const g=(x,y)=>y?g(y,x%y):x; const d=g(c,t); return (c/d)+'/'+(t/d);",
+  "distractor_solve": {
+   "14/45": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; const g=(x,y)=>y?g(y,x%y):x; const t=C(10,2); const c=t-C(5,2)-C(7,2); const d=g(c,t); return (c/d)+'/'+(t/d);",
+   "1/3": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; const g=(x,y)=>y?g(y,x%y):x; const t=C(10,2); const c=5*3; const d=g(c,t); return (c/d)+'/'+(t/d);",
+   "2/9": "const g=(x,y)=>y?g(y,x%y):x; const t=45; const c=4*2+2; const d=g(c,t); return (c/d)+'/'+(t/d);"
+  },
+  "forced": [
+   "a probability strictly between 0 and 1",
+   "denominator in lowest terms divides C(10, 2) = 45 (45, 3, 45, 9 all divide 45)",
+   "below the probability of a product divisible by 3, 24/45, and above the probability that the 6 is drawn, 9/45 (every pair with the 6 works, and so does 2 with 3); all four options (17, 15, 14, 10 out of 45) lie strictly between 9/45 and 24/45",
+   "no option is the complement of another or of the key (no two of 17, 15, 14, 10 out of 45 sum to 45)"
+  ]
+ },
+ {
+  "id": "IM17F-05",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "new median after values are inserted into a list known only near its middle (track how many values fall below the old median, then find the two new middle positions)",
+  "difficulty": "hard",
+  "prompt": "In a class of 21 students, no two students have the same height. The median height is 150 centimeters. The next shorter student is 147 centimeters tall, and the next taller student is 158 centimeters tall. Three new students join the class, with heights of 139 centimeters, 153 centimeters, and 171 centimeters. What is the median height, in centimeters, of the 24 students?",
+  "choices": [
+   "154",
+   "151.5",
+   "153",
+   "155.5"
+  ],
+  "correct_answer": "151.5",
+  "explanation": "Hard: the full list is never given, so it takes three dependent steps, none a recall fact: count how many heights now lie below 150, decide which heights are 12th and 13th in the new order, then average them. In the old list, 10 heights are below 150 and 10 above, with 147 just below and 158 just above. Of the new heights, 139 is below 150, while 153 and 171 are above. Now 11 heights are below 150, so 150 is 12th. The next height up is the new 153 (it lies between 150 and 158), so it is 13th. With 24 heights the median is the average of the 12th and 13th: (150 + 153)/2 = 151.5. The option 153 takes the 13th height alone instead of averaging the 12th and 13th. The option 154 averages 150 with the old next-taller height, (150 + 158)/2, missing that the new 153 now lies between them. The option 155.5 moves the middle pair one place too far up, averaging 153 and 158.",
+  "solve": "const below=10, m=150, hi=158; const add=[139,153,171]; const nb=below+add.filter(x=>x<m).length; const up=[hi,...add.filter(x=>x>m)].sort((a,b)=>a-b); const N=21+add.length; const p12=N/2, p13=N/2+1; const v=k=> (k===nb+1? m : up[k-nb-2]); return String((v(p12)+v(p13))/2);",
+  "distractor_solve": {
+   "153": "const add=[139,153,171]; return String(add[1]);",
+   "154": "const m=150, hi=158; return String((m+hi)/2);",
+   "155.5": "const hi=158; return String((153+hi)/2);"
+  },
+  "forced": [
+   "greater than 150: one new height is below 150 and two are above, so the middle moves up from 150 (all four options exceed 150; none is 150)",
+   "at most 158: only two new heights are above 150, so the 13th height is at most the old next-taller height (all four options are below 158)",
+   "with 24 heights the median is an average of two heights, so it may be a half-integer (two options are whole numbers, two are half-integers)"
+  ]
+ },
+ {
+  "id": "IM17F-06",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that a random ordering of letter cards (with repeated letters) reads the same forward and backward",
+  "difficulty": "medium",
+  "prompt": "The five letters of the word LEVEL are written on five cards, one letter on each card. The cards are shuffled and laid face up in a row. What is the probability that the letters, read from left to right, form an arrangement that reads the same forward and backward, as LEVEL does?",
+  "choices": [
+   "1/60",
+   "1/15",
+   "1/6",
+   "1/10"
+  ],
+  "correct_answer": "1/15",
+  "explanation": "Medium: two routine counts, the different letter arrangements and the ones that read the same both ways, with no non-routine idea. The letters L, L, E, E, V can be arranged in 5!/(2! x 2!) = 30 different ways, all equally likely. An arrangement that reads the same both ways must have V in the middle, the same letter in the 1st and 5th places, and the same letter in the 2nd and 4th places, so only LEVEL and ELVLE work: 2 of 30, or 1/15. (One card at a time: V lands in the middle with probability 1/5, and then the card in the 5th place must be the twin of the card in the 1st place, 1 of the 3 remaining cards: 1/5 x 1/3 = 1/15.) The option 1/60 puts the 2 good arrangements over all 5! = 120 orders of the cards, mixing a count of letter words with a count of card orders. The option 1/6 assumes V is always in the middle and counts only LEVEL itself as good: 1 of the 6 ways to arrange L, L, E, E around V. The option 1/10 takes V in the middle, 1/5, and then only chooses whether L or E goes on the outside, 1/2, as if the rest were then forced.",
+  "solve": "const cards=['L','E','V','E','L']; const perms=a=>a.length<2?[a]:a.flatMap((x,i)=>perms([...a.slice(0,i),...a.slice(i+1)]).map(p=>[x,...p])); const P=perms(cards); const good=P.filter(p=>p.join('')===[...p].reverse().join('')).length; const g=(x,y)=>y?g(y,x%y):x; const d=g(good,P.length); return (good/d)+'/'+(P.length/d);",
+  "distractor_solve": {
+   "1/60": "const words=2, orders=120; const g=(x,y)=>y?g(y,x%y):x; const d=g(words,orders); return (words/d)+'/'+(orders/d);",
+   "1/10": "const num=1, den=5*2; return num+'/'+den;",
+   "1/6": "const good=1, around=4*3*2*1/(2*2); return good+'/'+around;"
+  },
+  "forced": [
+   "a probability strictly between 0 and 1",
+   "at most 1/5, the chance that V lands in the middle place, which is required (all four options are below 1/5 and none equals it)",
+   "denominator in lowest terms divides 5! = 120, the number of equally likely card orders (60, 15, 6, 10 all divide 120)",
+   "no option is the complement of another"
+  ]
+ },
+ {
+  "id": "IM17F-07",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability when a CHILD (not a family) is chosen from family-size data: weight each family size by its number of children",
+  "difficulty": "hard",
+  "prompt": "A survey of the 18 families on one street found that 6 families have exactly 1 child, 3 families have exactly 2 children, 6 families have exactly 3 children, and 3 families have exactly 4 children. One child is chosen at random from all of the children in these 18 families. What is the probability that the chosen child has exactly 2 siblings (brothers or sisters)?",
+  "choices": [
+   "1/3",
+   "3/7",
+   "1/7",
+   "1/6"
+  ],
+  "correct_answer": "3/7",
+  "explanation": "Hard: it needs one non-routine idea, that a child, not a family, is chosen, so each family counts once for every child in it; and a child with exactly 2 siblings belongs to a family of 3. Total children: 6 x 1 + 3 x 2 + 6 x 3 + 3 x 4 = 6 + 6 + 18 + 12 = 42. Children with exactly 2 siblings are the children in the 3-child families: 6 x 3 = 18. The probability is 18/42 = 3/7. The option 1/3 chooses a family instead of a child: 6 of the 18 families have 3 children. The option 1/7 counts the children in 2-child families, 3 x 2 = 6 of 42, reading \"2 siblings\" as \"2 children in the family\". The option 1/6 makes both slips, 3 of the 18 families have 2 children.",
+  "solve": "const n={1:6,2:3,3:6,4:3}; const k=2; const g=(a,b)=>b?g(b,a%b):a; let C=0; for(const s in n) C+=s*n[s]; const num=(k+1)*n[k+1]; const d=g(num,C); return (num/d)+'/'+(C/d);",
+  "distractor_solve": {
+   "1/3": "const n={1:6,2:3,3:6,4:3}; const k=2; const g=(a,b)=>b?g(b,a%b):a; let F=0; for(const s in n) F+=n[s]; const num=n[k+1]; const d=g(num,F); return (num/d)+'/'+(F/d);",
+   "1/7": "const n={1:6,2:3,3:6,4:3}; const k=2; const g=(a,b)=>b?g(b,a%b):a; let C=0; for(const s in n) C+=s*n[s]; const num=k*n[k]; const d=g(num,C); return (num/d)+'/'+(C/d);",
+   "1/6": "const n={1:6,2:3,3:6,4:3}; const k=2; const g=(a,b)=>b?g(b,a%b):a; let F=0; for(const s in n) F+=n[s]; const num=n[k]; const d=g(num,F); return (num/d)+'/'+(F/d);"
+  },
+  "forced": [
+   "a probability strictly between 0 and 1",
+   "denominator in lowest terms divides 42, the number of children, the equally likely outcomes (3, 7, 7, 6 all divide 42)",
+   "no option is the complement of another or of the key (no two of 1/3, 3/7, 1/7, 1/6 sum to 1)",
+   "no option is double or half the key, and the key is not the sum of two other options"
+  ]
+ },
+ {
+  "id": "IM17F-08",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that a run of coin flips never shows two heads in a row (count the sequences by the number of heads, placing the heads in the gaps between tails, or build the counts flip by flip)",
+  "difficulty": "hard",
+  "prompt": "A fair coin is flipped 6 times, and the result of each flip, heads or tails, is recorded in order. What is the probability that the recorded results never show heads on two flips in a row?",
+  "choices": [
+   "13/64",
+   "5/16",
+   "17/64",
+   "21/64"
+  ],
+  "correct_answer": "21/64",
+  "explanation": "Hard: the favorable outcomes cannot be counted with one formula; it needs the non-routine idea of splitting by the number of heads and placing the heads in separate gaps, with a check that the cases are complete. There are 2^6 = 64 equally likely sequences. With k heads and 6 - k tails, the heads must go into different gaps among the 7 - k gaps around and between the tails, so there are C(7 - k, k) sequences: k = 0 gives 1, k = 1 gives 6, k = 2 gives C(5, 2) = 10, k = 3 gives C(4, 3) = 4, and 4 or more heads is impossible. That is 1 + 6 + 10 + 4 = 21 sequences, so the probability is 21/64. (Flip by flip, the counts for 1, 2, 3, ... flips are 2, 3, 5, 8, 13, 21, each the sum of the two before.) The option 17/64 stops at two heads and misses the 4 sequences with three heads, such as HTHTHT. The option 5/16 = 20/64 counts the two-heads case as C(6, 2) - 6 = 9, taking 6 adjacent pairs of flips when 6 flips have only 5. The option 13/64 builds the flip-by-flip counts but stops one flip early, using the count 13 for 5 flips over the 64 outcomes of 6 flips.",
+  "solve": "const n=6; let c=0; for(let m=0;m<(1<<n);m++){ if((m&(m>>1))===0) c++; } const t=1<<n; const g=(x,y)=>y?g(y,x%y):x; const d=g(c,t); return (c/d)+'/'+(t/d);",
+  "distractor_solve": {
+   "17/64": "const n=6; const C=(a,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(a-i)/(i+1);return r;}; let c=0; for(let k=0;k<=2;k++) c+=C(n+1-k,k); const t=1<<n; const g=(x,y)=>y?g(y,x%y):x; const d=g(c,t); return (c/d)+'/'+(t/d);",
+   "5/16": "const n=6; const C=(a,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(a-i)/(i+1);return r;}; const c=1+n+(C(n,2)-n)+C(n-2,3); const t=1<<n; const g=(x,y)=>y?g(y,x%y):x; const d=g(c,t); return (c/d)+'/'+(t/d);",
+   "13/64": "const n=6; let a=2,b=3; for(let i=3;i<=n-1;i++){ const x=a+b; a=b; b=x; } const c=b; const t=1<<n; const g=(x,y)=>y?g(y,x%y):x; const d=g(c,t); return (c/d)+'/'+(t/d);"
+  },
+  "forced": [
+   "a probability strictly between 0 and 1",
+   "denominator in lowest terms divides 2^6 = 64 (64, 16, 64, 64 all divide 64)",
+   "at least the probability of at most one head, 7/64, and at most the probability that flips 1-2, 3-4 and 5-6 are each not both heads, (3/4)^3 = 27/64; all four options (13, 20, 17, 21 out of 64) lie inside that range",
+   "no option is the complement of another or of the key (out of 64: 13, 20, 17, 21; no two sum to 64)"
+  ]
+ },
+ {
+  "id": "IM17F-09",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "median of a long list built from a described set of numbers with some values repeated (find the middle positions by counting how many listed numbers are at or below a value)",
+  "difficulty": "medium",
+  "prompt": "A list contains each of the whole numbers from 1 through 50 once. Then each multiple of 3 from 3 through 30 is written into the list a second time, so that the list has 60 numbers. What is the median of the 60 numbers in the list?",
+  "choices": [
+   "23.5",
+   "23",
+   "21",
+   "20.5"
+  ],
+  "correct_answer": "23.5",
+  "explanation": "Medium: it takes a few routine steps, locating the two middle positions and then counting how many listed numbers are at or below a value, with no single trick. With 60 numbers, the median is the mean of the 30th and 31st numbers in order. The numbers 1 through 23 appear once each, and the 7 multiples of 3 among them (3, 6, ..., 21) appear a second time, so 23 + 7 = 30 numbers are 23 or less. The 30th number is therefore 23, and the next numbers in order are 24 and 24, so the 31st is 24. The median is (23 + 24)/2 = 23.5. The option 23 takes the 30th number alone as the median, which is right only for an odd count. The option 20.5 moves the median of 1 through 50, 25.5, down 5 places as if all 10 added numbers were below it, missing that 27 and 30 are above it. The option 21 averages the median of 1 through 50, 25.5, with the median of the ten added numbers, 16.5.",
+  "solve": "const L=[]; for(let i=1;i<=50;i++)L.push(i); for(let i=3;i<=30;i+=3)L.push(i); L.sort((a,b)=>a-b); const n=L.length; return String((L[n/2-1]+L[n/2])/2);",
+  "distractor_solve": {
+   "21": "const m1=(1+50)/2; const m2=(3+30)/2; return String((m1+m2)/2);",
+   "23": "const L=[]; for(let i=1;i<=50;i++)L.push(i); for(let i=3;i<=30;i+=3)L.push(i); L.sort((a,b)=>a-b); return String(L[L.length/2-1]);",
+   "20.5": "const m1=(1+50)/2; const added=10; return String(m1-added/2);"
+  },
+  "forced": [
+   "positive, and a whole number or a whole number plus one half (the median of an even count of whole numbers); 23.5, 23, 21 and 20.5 all are",
+   "below the median 25.5 of 1 through 50, because 8 of the 10 added numbers are below 25.5 and only 2 above; all four options are below 25.5",
+   "no option is 25.5 (the unchanged median) or a value above it"
+  ]
+ },
+ {
+  "id": "IM17F-10",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "shortest routes on a street grid that avoid one closed intersection (all routes minus the routes through it, where routes through it = routes to it x routes from it)",
+  "difficulty": "hard",
+  "prompt": "The streets of a town form a grid of square blocks. Lena walks from her home to the library, which is 5 blocks east and 3 blocks north of her home, always walking either east or north along the streets, one block at a time. The intersection that is 2 blocks east and 1 block north of her home is closed, so she cannot walk through it. How many different routes can Lena take?",
+  "choices": [
+   "46",
+   "43",
+   "38",
+   "26"
+  ],
+  "correct_answer": "26",
+  "explanation": "Hard: it needs one non-routine idea, counting the routes that DO pass the closed intersection and subtracting, with three dependent counts. A route is an ordering of 5 east blocks and 3 north blocks, so there are C(8, 3) = 56 routes in all. To reach the closed intersection she walks 2 east and 1 north in some order: 3 ways (EEN, ENE, NEE). From there to the library she walks 3 east and 2 north: C(5, 2) = 10 ways. So 3 x 10 = 30 routes pass through it, and 56 - 30 = 26 routes avoid it. The option 46 subtracts only the 10 ways to finish from the closed intersection, forgetting that each can be reached 3 ways. The option 43 adds the two counts, 3 + 10 = 13, instead of multiplying them. The option 38 counts the finish as 3 x 2 = 6 ways by multiplying the numbers of east and north blocks instead of counting their orders, so it subtracts 3 x 6 = 18.",
+  "solve": "const E=5,N=3,a=2,b=1; const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return String(C(E+N,N)-C(a+b,b)*C(E-a+N-b,N-b));",
+  "distractor_solve": {
+   "38": "const E=5,N=3,a=2,b=1; const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return String(C(E+N,N)-C(a+b,b)*((E-a)*(N-b)));",
+   "43": "const E=5,N=3,a=2,b=1; const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return String(C(E+N,N)-(C(a+b,b)+C(E-a+N-b,N-b)));",
+   "46": "const E=5,N=3,a=2,b=1; const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;}; return String(C(E+N,N)-C(E-a+N-b,N-b));"
+  },
+  "forced": [
+   "a positive whole number",
+   "less than the number of unrestricted routes, C(8, 3) = 56, which is not printed and needs the method (all options are below 56)",
+   "no parity or divisibility property is forced (options 46, 43, 38, 26 mix odd and even)",
+   "no option is the number of routes through the closed intersection (30), so no complement pair to 56 appears"
+  ]
+ },
+ {
+  "id": "IM17F-11",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "counting the games in a season with two divisions (pairs within each division times games per pair, plus one game for each cross-division pair)",
+  "difficulty": "medium",
+  "prompt": "A soccer league has 12 teams, split into two divisions of 6 teams each. During the season, each team plays every other team in its own division exactly twice and plays every team in the other division exactly once. How many games are played in the season?",
+  "choices": [
+   "132",
+   "126",
+   "156",
+   "96"
+  ],
+  "correct_answer": "96",
+  "explanation": "Medium: it is a short chain of routine counts (pairs in a division, then games across divisions) with one care point, not counting a game once for each of its two teams. Each division has C(6, 2) = 15 pairs of teams, and each pair plays twice, so each division has 30 games and the two divisions have 60. Every one of the 6 teams in one division plays every one of the 6 in the other once: 6 x 6 = 36 games. In all, 60 + 36 = 96 games. The option 132 counts the cross-division games from both sides, 12 teams x 6 opponents = 72, so each such game is counted twice. The option 156 counts each division's games as 6 teams x 5 opponents x 2 = 60 without halving, so 120 + 36. The option 126 adds C(12, 2) = 66 for the games once, treating every pair in the league, including pairs in the same division, as a cross-division game: 60 + 66.",
+  "solve": "const t=6; const C2=n=>n*(n-1)/2; return String(2*(2*C2(t))+t*t);",
+  "distractor_solve": {
+   "126": "const t=6; const C2=n=>n*(n-1)/2; return String(2*(2*C2(t))+C2(2*t));",
+   "132": "const t=6; const C2=n=>n*(n-1)/2; return String(2*(2*C2(t))+2*t*t);",
+   "156": "const t=6; return String(2*(t*(t-1)*2)+t*t);"
+  },
+  "forced": [
+   "a positive whole number",
+   "even and a multiple of 6 (the division games, 2 x 2 x 15, and the cross games, 6 x 6, are both multiples of 6); 132, 126, 156 and 96 all are",
+   "at least the 6 x 6 = 36 cross-division games plus some division games; all options exceed 36",
+   "no upper bound readable from the stem without counting; no option is a printed number combined with another option"
+  ]
+ },
+ {
+  "id": "IM17F-12",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that three random vertices of a regular polygon form a right triangle (a right triangle inscribed in a circle has a diameter as a side; count diameters times third vertices)",
+  "difficulty": "hard",
+  "prompt": "A regular polygon has 12 sides. Three of its 12 vertices are chosen at random, and every set of three vertices is equally likely to be chosen. What is the probability that the three chosen vertices are the corners of a right triangle?",
+  "choices": [
+   "3/11",
+   "18/55",
+   "1/11",
+   "6/11"
+  ],
+  "correct_answer": "3/11",
+  "explanation": "Hard: it combines two strands with one non-routine idea, that all 12 vertices lie on one circle, so a triangle with its corners there has a right angle exactly when one of its sides is a diameter of that circle. There are C(12, 3) = 220 equally likely sets of three vertices. The 12 vertices form 6 opposite pairs, so there are 6 diameters joining vertices. Each diameter, together with any one of the other 10 vertices, makes a right triangle, and a triangle cannot have two diameters as sides, so there are 6 x 10 = 60 right triangles. The probability is 60/220 = 3/11. The option 6/11 counts a diameter once from each of its two ends, 12 x 10 = 120 triangles, so every right triangle is counted twice. The option 18/55 counts, for each vertex as the right-angle corner, all 6 diameters, 12 x 6 = 72, forgetting that the diameter through that vertex itself cannot be the side opposite it (the correct count is 12 x 5 = 60). The option 1/11 counts the 60 right triangles correctly but counts the outcomes as a pair of vertices and then a third, 66 x 10 = 660, so each set of three is counted 3 times in the total but only once in the favorable count.",
+  "solve": "const n=12; const C=(a,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(a-i)/(i+1);return r;}; const g=(x,y)=>y?g(y,x%y):x; const t=C(n,3); const c=(n/2)*(n-2); const d=g(c,t); return (c/d)+'/'+(t/d);",
+  "distractor_solve": {
+   "6/11": "const n=12; const g=(x,y)=>y?g(y,x%y):x; const t=220; const c=n*(n-2); const d=g(c,t); return (c/d)+'/'+(t/d);",
+   "18/55": "const n=12; const g=(x,y)=>y?g(y,x%y):x; const t=220; const c=n*(n/2); const d=g(c,t); return (c/d)+'/'+(t/d);",
+   "1/11": "const n=12; const g=(x,y)=>y?g(y,x%y):x; const t=(n*(n-1)/2)*(n-2); const c=(n/2)*(n-2); const d=g(c,t); return (c/d)+'/'+(t/d);"
+  },
+  "forced": [
+   "a probability strictly between 0 and 1",
+   "denominator in lowest terms divides C(12, 3) = 220 (11, 55, 11, 11 all divide 220)",
+   "no option is the complement of another or of the key (out of 220: 60, 72, 20, 120; no two sum to 220)",
+   "no bound on the share of right triangles is readable from the stem without counting; options span 20 to 120 out of 220 on both sides of the key"
+  ]
+ },
+ {
+  "id": "IM17F-14",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "seatings around a round table with one pair required to be together and one pair forbidden to be together (fix one person to remove rotations, then fill seats in order)",
+  "difficulty": "hard",
+  "prompt": "Eight people, including Ann, Bo, and Cy, are to be seated around a round table with 8 identical chairs. Two seatings count as the same if every person has the same person on the left and the same person on the right in both. Ann and Bo must sit next to each other, and Cy must not sit next to Ann. How many different seatings are possible?",
+  "choices": [
+   "960",
+   "1320",
+   "1200",
+   "600"
+  ],
+  "correct_answer": "1200",
+  "explanation": "Hard: it needs one non-routine idea, fixing Ann's seat so that turning the table does not create new seatings, followed by three dependent choices. With Ann's seat fixed, Bo sits on her left or her right: 2 ways. Ann's other neighbor can be any of the 5 people other than Ann, Bo, and Cy: 5 ways. The remaining 5 people, Cy among them, fill the remaining 5 chairs in 5! = 120 ways. So there are 2 x 5 x 120 = 1200 seatings. The option 1320 subtracts from the 2 x 6! = 1440 seatings with Ann and Bo together the 5! = 120 seatings with Cy-Ann-Bo in that order, forgetting the order Bo-Ann-Cy, which also puts Cy next to Ann. The option 960 keeps Cy away from Bo as well as from Ann: 2 x 5 x 4 x 4! = 960. The option 600 lets Bo sit only on one side of Ann, 5 x 120 = 600, forgetting that Bo can be on her left or on her right.",
+  "solve": "const n=8; const f=k=>k<=1?1:k*f(k-1); return String(2*(n-3)*f(n-3));",
+  "distractor_solve": {
+   "600": "const n=8; const f=k=>k<=1?1:k*f(k-1); return String((n-3)*f(n-3));",
+   "960": "const n=8; const f=k=>k<=1?1:k*f(k-1); return String(2*(n-3)*(n-4)*f(n-4));",
+   "1320": "const n=8; const f=k=>k<=1?1:k*f(k-1); return String(2*f(n-2)-f(n-3));"
+  },
+  "forced": [
+   "a positive whole number",
+   "a multiple of 5! = 120, because once Ann, Bo, and Ann's other neighbor are placed, the other five people can be arranged in any order (960, 1320, 1200, 600 are all multiples of 120)",
+   "less than the 2 x 6! = 1440 seatings with Ann and Bo together, which needs the method (all options are below 1440)",
+   "no option is the 1440 seatings that ignore the condition on Cy, and no option is 7! = 5040 or 8! (no unrestricted count appears)"
+  ]
+ },
+ {
+  "id": "IM17F-15",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "distributing distinct objects to distinct people so that no one is left out (count all assignments, remove those that leave a person out, add back the over-removed ones)",
+  "difficulty": "hard",
+  "prompt": "Six different books are to be given out to three children, Ana, Ben, and Cy. Every book goes to exactly one of the children, and each child must receive at least one book. In how many different ways can the books be given out?",
+  "choices": [
+   "726",
+   "540",
+   "420",
+   "450"
+  ],
+  "correct_answer": "540",
+  "explanation": "Hard: it needs one non-routine idea, counting the unwanted assignments and removing them (complementary counting with an overlap correction), rather than listing cases. Without the condition, each of the 6 books can go to any of 3 children: 3^6 = 729 ways. The assignments that leave out one particular child send every book to the other two children: 2^6 = 64 ways, and there are 3 children who could be left out, 3 x 64 = 192. But an assignment that gives all 6 books to one child leaves out two children, so it was removed twice; there are 3 such assignments, and they must be added back once. So 729 - 192 + 3 = 540. (Check by splits: 4-1-1 gives 3 x 15 x 2 = 90, 3-2-1 gives 6 x 20 x 3 = 360, and 2-2-2 gives 15 x 6 = 90; 90 + 360 + 90 = 540.) The option 726 removes only the 3 assignments that give every book to one child, 729 - 3, forgetting the assignments in which exactly one child gets nothing. The option 450 counts the splits but leaves out the 2-2-2 split (or the 4-1-1 split; each contributes 90). The option 420 counts the splits but divides the 4-1-1 count by 2 and the 2-2-2 count by 3! as if groups of equal size could not be told apart, 45 + 360 + 15, although the children are different people.",
+  "solve": "const b=6,k=3; return String(Math.pow(k,b)-k*Math.pow(k-1,b)+k);",
+  "distractor_solve": {
+   "420": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; const s411=3*C(6,4)*2/2; const s321=6*C(6,3)*C(3,2); const s222=C(6,2)*C(4,2)/6; return String(s411+s321+s222);",
+   "450": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; const s411=3*C(6,4)*2; const s321=6*C(6,3)*C(3,2); return String(s411+s321);",
+   "726": "const b=6,k=3; return String(Math.pow(k,b)-k);"
+  },
+  "forced": [
+   "a positive whole number",
+   "less than 3^6 = 729, the count with no condition (726, 540, 420, 450 all below 729; none equals 729)",
+   "a multiple of 6: the three children's sets are always different (non-empty and disjoint), so swapping the children's names gives 6 different assignments (726, 540, 420, 450 are all multiples of 6)",
+   "a multiple of 3 and even (all options)",
+   "at least the 360 assignments of the 3-2-1 split alone, which needs the method (all options exceed 360)",
+   "no two options differ by the same amount as another pair (differences 186, 276, 306, 120, 90, 30), and the key is not the sum of two options"
+  ]
+ },
+ {
+  "id": "IM17F-16",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "geometric probability: chance a random point of a circular target lands in a ring, as a ratio of areas",
+  "difficulty": "medium",
+  "prompt": "A circular target has a radius of 6 inches. It is painted in three parts that share the same center: a bull's-eye of radius 2 inches, a middle ring covering all points from 2 inches to 5 inches from the center, and an outer ring covering all points from 5 inches to 6 inches from the center. A dart hits the target at a random point, and every point on the target is equally likely to be hit. What is the probability that the dart lands in the middle ring?",
+  "choices": [
+   "1/2",
+   "1/3",
+   "11/36",
+   "7/12"
+  ],
+  "correct_answer": "7/12",
+  "explanation": "Medium: two routine steps, finding an area by subtracting two circles and dividing by the whole, with the one idea that probability follows area rather than distance from the center. The whole target has area 36(pi) square inches. The middle ring is the circle of radius 5 minus the bull's-eye: 25(pi) - 4(pi) = 21(pi). The probability is 21(pi)/36(pi) = 21/36 = 7/12. The option 1/2 compares distances instead of areas: the ring is 5 - 2 = 3 inches wide out of a 6-inch radius. The option 1/3 treats the three painted parts as equally likely. The option 11/36 finds the outer ring instead, 36(pi) - 25(pi) = 11(pi).",
+  "solve": "const R=6,a=2,b=5; const g=(x,y)=>y?g(y,x%y):x; const n=b*b-a*a, t=R*R, d=g(n,t); return (n/d)+'/'+(t/d);",
+  "distractor_solve": {
+   "1/2": "const R=6,a=2,b=5; const g=(x,y)=>y?g(y,x%y):x; const n=b-a, t=R, d=g(n,t); return (n/d)+'/'+(t/d);",
+   "1/3": "const parts=3; return '1/'+parts;",
+   "11/36": "const R=6,b=5; const g=(x,y)=>y?g(y,x%y):x; const n=R*R-b*b, t=R*R, d=g(n,t); return (n/d)+'/'+(t/d);"
+  },
+  "forced": [
+   "a probability strictly between 0 and 1",
+   "less than 25/36, the chance of landing within 5 inches of the center (1/2, 1/3, 11/36, 7/12 all below 25/36; none equals it)",
+   "every region's area is a whole-number multiple of pi over a total of 36(pi), so the denominator in lowest terms divides 36 (2, 3, 36, 12 all divide 36)",
+   "no option is the complement of another (out of 36: 18, 12, 11, 21; no two sum to 36), and no option equals the bull's-eye share 4/36"
+  ]
+ },
+ {
+  "id": "IM17F-17",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "reversed conditional probability from percents of groups (find each group's share of a subset, then the chance a member of the subset came from one group)",
+  "difficulty": "hard",
+  "prompt": "At a middle school, 25 percent of the students are in grade 6, 35 percent are in grade 7, and 40 percent are in grade 8. In the school band, there are 12 percent of the grade 6 students, 20 percent of the grade 7 students, and 30 percent of the grade 8 students. One member of the band is chosen at random. What is the probability that this band member is in grade 8?",
+  "choices": [
+   "15/31",
+   "12/19",
+   "5/6",
+   "6/11"
+  ],
+  "correct_answer": "6/11",
+  "explanation": "Hard: it needs one non-routine idea, reversing the given conditional percents (the stem gives the share of each grade that is in the band, but asks for the share of the band that is in one grade), which takes three dependent steps. Think of 100 students. Band members from grade 6: 12 percent of 25 = 3; from grade 7: 20 percent of 35 = 7; from grade 8: 30 percent of 40 = 12. The band has 3 + 7 + 12 = 22 of every 100 students, and 12 of those 22 are in grade 8, so the probability is 12/22 = 6/11. The option 15/31 ignores the sizes of the grades and divides the grade 8 band percent by the sum of the three band percents, 30/(12 + 20 + 30). The option 12/19 leaves grade 6 out of the band total, 12/(7 + 12). The option 5/6 finds the chance that a student NOT in grade 8 is in the band, (3 + 7)/60 = 1/6, and subtracts it from 1, confusing the two directions of the condition.",
+  "solve": "const sh=[25,35,40], rt=[12,20,30]; const j=sh.map((s,i)=>s*rt[i]); const g=(x,y)=>y?g(y,x%y):x; const n=j[2], t=j[0]+j[1]+j[2], d=g(n,t); return (n/d)+'/'+(t/d);",
+  "distractor_solve": {
+   "15/31": "const rt=[12,20,30]; const g=(x,y)=>y?g(y,x%y):x; const n=rt[2], t=rt[0]+rt[1]+rt[2], d=g(n,t); return (n/d)+'/'+(t/d);",
+   "12/19": "const sh=[25,35,40], rt=[12,20,30]; const j=sh.map((s,i)=>s*rt[i]); const g=(x,y)=>y?g(y,x%y):x; const n=j[2], t=j[1]+j[2], d=g(n,t); return (n/d)+'/'+(t/d);",
+   "5/6": "const sh=[25,35,40], rt=[12,20,30]; const j=sh.map((s,i)=>s*rt[i]); const g=(x,y)=>y?g(y,x%y):x; const t=(sh[0]+sh[1])*100, n=t-(j[0]+j[1]), d=g(n,t); return (n/d)+'/'+(t/d);"
+  },
+  "forced": [
+   "a probability strictly between 0 and 1",
+   "greater than 2/5, the grade 8 share of the whole school, because grade 8 students join the band at the highest rate (15/31, 12/19, 5/6, 6/11 all exceed 2/5)",
+   "no denominator is forced: the stem gives percents, not counts",
+   "no option is the complement of another (no two sum to 1), and no option equals a printed rate (3/10, 2/5)"
+  ]
+ },
+ {
+  "id": "IM17F-18",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "unknown value in a list whose mean equals its median (split into cases by where the unknown falls in order)",
+  "difficulty": "hard",
+  "prompt": "A list contains the five numbers 1, 4, 13, 18, and x, where x can be any number. The mean of the five numbers is equal to their median. What is the sum of all the possible values of x?",
+  "choices": [
+   "29",
+   "22",
+   "54",
+   "9"
+  ],
+  "correct_answer": "22",
+  "explanation": "Hard: it needs one non-routine idea, that the median depends on where x falls in the order, so the problem must be split into three cases, each checked against its own condition. The mean is (36 + x)/5. If x <= 4, the median is 4: (36 + x)/5 = 4 gives x = -16, which is at most 4, so it works. If 4 <= x <= 13, the median is x: 36 + x = 5x gives x = 9, which is between 4 and 13, so it works. If x >= 13, the median is 13: 36 + x = 65 gives x = 29, which is at least 13, so it works. The sum is -16 + 9 + 29 = 22. The option 29 finds only the case where x is the largest number. The option 9 finds only the case where x itself is the median. The option 54 solves all three cases but makes a sign error in the first, writing 36 - 20 = 16 instead of 20 - 36 = -16, and adds 16 + 9 + 29.",
+  "solve": "const L=[1,4,13,18]; const S=L.reduce((a,b)=>a+b,0); const lo=5*L[1]-S, mid=S/4, hi=5*L[2]-S; let t=0; if(lo<=L[1]) t+=lo; if(mid>=L[1]&&mid<=L[2]) t+=mid; if(hi>=L[2]) t+=hi; return String(t);",
+  "distractor_solve": {
+   "9": "const L=[1,4,13,18]; const S=L.reduce((a,b)=>a+b,0); return String(S/4);",
+   "29": "const L=[1,4,13,18]; const S=L.reduce((a,b)=>a+b,0); return String(5*L[2]-S);",
+   "54": "const L=[1,4,13,18]; const S=L.reduce((a,b)=>a+b,0); const lo=S-5*L[1], mid=S/4, hi=5*L[2]-S; return String(lo+mid+hi);"
+  },
+  "forced": [
+   "a single number; no sign is forced, because a case could give a negative value of x",
+   "no bound is readable from the stem without solving the cases (options 9, 22, 29, 54 lie on both sides of the key)",
+   "no option equals a number printed in the list (1, 4, 13, 18) or the total 36 of the printed numbers",
+   "the key is not the sum or difference of two options (9 + 22 = 31, 9 + 29 = 38, 22 + 29 = 51); no two pairs of options differ by the same amount (differences 13, 20, 45, 7, 32, 25)"
+  ]
+ },
+ {
+  "id": "IM17F-19",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that a randomly chosen committee has a majority from one group (count each qualifying make-up with combinations, divide by all committees)",
+  "difficulty": "medium",
+  "prompt": "A club has 5 women and 4 men. A committee of 4 members is chosen at random from the 9, and every group of 4 is equally likely to be chosen. What is the probability that the committee has more women than men?",
+  "choices": [
+   "5/14",
+   "1/6",
+   "20/63",
+   "5/42"
+  ],
+  "correct_answer": "5/14",
+  "explanation": "Medium: a routine chain of combination counts, with the one step of listing which make-ups qualify. There are C(9, 4) = 126 equally likely committees. More women than men means 3 women and 1 man, C(5, 3) x C(4, 1) = 10 x 4 = 40 committees, or 4 women, C(5, 4) = 5 committees. So the probability is 45/126 = 5/14. The option 20/63 (40/126) forgets the committees made up of 4 women. The option 1/6 (21/126) swaps the two groups and finds the chance of more men than women, C(4, 3) x C(5, 1) + C(4, 4) = 20 + 1. The option 5/42 (15/126) chooses the 3 women but forgets to choose the man, 10 + 5.",
+  "solve": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; const g=(x,y)=>y?g(y,x%y):x; const W=5,M=4,k=4; const n=C(W,3)*C(M,1)+C(W,4), t=C(W+M,k), d=g(n,t); return (n/d)+'/'+(t/d);",
+  "distractor_solve": {
+   "20/63": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; const g=(x,y)=>y?g(y,x%y):x; const W=5,M=4,k=4; const n=C(W,3)*C(M,1), t=C(W+M,k), d=g(n,t); return (n/d)+'/'+(t/d);",
+   "1/6": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; const g=(x,y)=>y?g(y,x%y):x; const W=5,M=4,k=4; const n=C(M,3)*C(W,1)+C(M,4), t=C(W+M,k), d=g(n,t); return (n/d)+'/'+(t/d);",
+   "5/42": "const C=(a,r)=>{let x=1;for(let i=0;i<r;i++)x=x*(a-i)/(i+1);return x;}; const g=(x,y)=>y?g(y,x%y):x; const W=5,M=4,k=4; const n=C(W,3)+C(W,4), t=C(W+M,k), d=g(n,t); return (n/d)+'/'+(t/d);"
+  },
+  "forced": [
+   "a probability strictly between 0 and 1",
+   "denominator in lowest terms divides C(9, 4) = 126 (42, 6, 63, 14 all divide 126)",
+   "less than 1/2 is not forced by the stem, and no option is above 1/2, so no option dies on that side",
+   "no option is the complement of another (out of 126: 15, 21, 40, 45; no two sum to 126), and the key is not the sum of two options (15 + 21 = 36, 15 + 40 = 55, 21 + 40 = 61)"
+  ]
+ },
+ {
+  "id": "IM17F-20",
+  "family": "isee",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "probability that the first player wins a take-turns game that can go on any number of rounds (compare the two players' chances of winning within one round)",
+  "difficulty": "hard",
+  "prompt": "Ana and Ben play a game in which they take turns, with Ana going first. On each of her turns, Ana rolls a fair six-sided number cube, numbered 1 through 6, and she wins the game if it shows a 6. On each of his turns, Ben flips a fair coin, and he wins the game if it lands heads. They keep taking turns until one of them wins. What is the probability that Ana wins the game?",
+  "choices": [
+   "1/4",
+   "2/7",
+   "1/3",
+   "2/5"
+  ],
+  "correct_answer": "2/7",
+  "explanation": "Hard: the game has no fixed length, so the non-routine idea is that every round (Ana's turn, then Ben's turn) either ends the game or starts the same situation over, so only the two players' chances of winning within one round matter. In one round Ana wins with probability 1/6. Ben wins in that round only if Ana first misses and he then flips heads: (5/6)(1/2) = 5/12. Every round that ends the game ends it in these two ways in the ratio 1/6 : 5/12 = 2 : 5, so Ana wins with probability 2/(2 + 5) = 2/7. (Equivalently, the game repeats with probability (5/6)(1/2) = 5/12, so P = 1/6 + (5/12)P, and P = (1/6)/(7/12) = 2/7.) The option 1/4 compares Ana's 1/6 with Ben's 1/2, forgetting that Ben only gets to flip after Ana misses: 1/6 : 1/2 = 1 : 3. The option 1/3 has the game start over whenever Ben misses but forgets that Ana must also have missed: (1/6)/(1 - 1/2). The option 2/5 writes the ratio 2 : 5 as the fraction 2/5 instead of Ana's share of 2 + 5.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a; const aN=1,aD=6,bN=1,bD=2; const L=aD*bD; const ana=aN*bD; const ben=(aD-aN)*bN; const n=ana, d=ana+ben, k=g(n,d); return (n/k)+'/'+(d/k);",
+  "distractor_solve": {
+   "1/4": "const g=(a,b)=>b?g(b,a%b):a; const aN=1,aD=6,bN=1,bD=2; const ana=aN*bD, ben=bN*aD; const n=ana,d=ana+ben,k=g(n,d); return (n/k)+'/'+(d/k);",
+   "1/3": "const g=(a,b)=>b?g(b,a%b):a; const aN=1,aD=6,bN=1,bD=2; const n=aN*bD, d=aD*(bD-bN), k=g(n,d); return (n/k)+'/'+(d/k);",
+   "2/5": "const g=(a,b)=>b?g(b,a%b):a; const aN=1,aD=6,bN=1,bD=2; const ana=aN*bD, ben=(aD-aN)*bN; const k=g(ana,ben); return (ana/k)+'/'+(ben/k);"
+  },
+  "forced": [
+   "a probability strictly greater than 1/6, because Ana can win on her very first roll and can also win later (1/4, 2/7, 1/3, 2/5 all exceed 1/6)",
+   "less than 1/2: Ben's coin wins far more often than Ana's die, and her going first does not make up for that (all four options are below 1/2)",
+   "no denominator is forced by a finite sample space, since the game has no fixed length; the denominators 4, 7, 3, 5 are all small",
+   "no option is 1 minus another option (Ben's chance 5/7 is not offered), and no option is a printed probability (1/6 or 1/2)"
+  ]
+ }
+]
