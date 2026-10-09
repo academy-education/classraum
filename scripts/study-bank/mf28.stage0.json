@@ -160,5 +160,10 @@
    "SM28F-P01 (live duplicate df72b6a2, inserted by isee-math-s16 during authoring; found at the pre-freeze re-dump)"
   ],
   "freeze": "frozen 58 (excluded A05, P01), sha 74a7eba308b1392d, seeded order 20261041. Sandbox 58/58, 174/174; mutation (B04 key, Q02 one distractor body) both refused (exit 1); slots 58/58; mf28-checks 0 gating (DPAIR read 17, key at try 1-2 on 16, all hand-read). Per domain at freeze: Algebra 35, extreme 21/35 = 60.0% S10/I14/L11; Advanced Math 23, extreme 13/23 = 56.5% S6/I10/L7 (band S 4-10 PASS). mf28-part-check.sh gained check-math-near-dup and check-interior-niceness after the P / Q returns (deviation: two pre-flight gates authors could not see per item)."
+ },
+ "_stage1": {
+  "alg": "blind sha d9df1512; 35 candidates + 35 live Algebra controls (30 medium / 5 hard); best-letter line 25.7%. Candidate 29/105 = 27.6% vs control 42/105 = 40.0%: -12.4 (bar +10) PASS. Unanimous-correct 9/35 = 25.7% vs 9/35 = 25.7%: +0.0 (bar +15) PASS. Control 40.0% < 90% ceiling. Agreement 81.0% vs 25.8% (one solver, three samples). Extreme 0/63 cand vs 0/24 ctrl; interior 29/42 vs 42/81.",
+  "adv": "blind sha c0abc976; 23 candidates + 23 live Advanced Math controls (18 medium / 5 hard); line 26.1%. Candidate 23/69 = 33.3% vs control 25/69 = 36.2%: -2.9 (bar +10) PASS. Unanimous-correct 6/23 = 26.1% vs 7/23 = 30.4%: -4.3 (bar +15) PASS. Control 36.2% < 90%. Agreement 84.1% vs 26.8%. Extreme 4/39 vs 3/33; interior 19/30 vs 22/36.",
+  "note": "solver a (both renders) first launched before the weekly API limit and died without writing; relaunched on the same frozen renders (shas unchanged) after the reset."
  }
 }
