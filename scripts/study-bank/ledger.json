@@ -7845,6 +7845,49 @@
           "verdict": "Residuals recorded in act-math-v28.verdicts.json, not acted on: one_sided named and not confirmed on I-02, I-05, I-08, I-13, I-15, I-16, I-18, I-X1, S-01, S-05, S-07, F-04, G-03, G-05, G-06, G-X1, G-09, N-03 (a natural opposite error exists on each); cross-item: an x and x/(1-x) base-swap pair contains the key on I-12, I-14, I-17, I-18, I-22 with the key the smaller member in 4 of 5; converging runs with the key at the end (I-08, N-03); the /(1-p) vs x(1+p) distractor recurs (I-13, I-20, N-03, I-08, I-11, X1); three trig-law items in Geometry (G-05, G-06, G-X2). S-04 survivors 2 by B via the item's own variance decomposition (not cheaper). S-X1 survivors 1 by A via linear interpolation, which is the exact solution."
         }
       }
+    },
+    {
+      "id": "ssat-verbal-s20-ana-kept-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "ssat",
+      "section": "verbal",
+      "task": "multiple_choice",
+      "family": "mc_hidden_source",
+      "cohort": "ssat-verbal-s20-ana",
+      "contentSha": "b2f0fb785fe99b83996512f22239bc143b26b77b3e8102edfa75b42f4e3b2a4c",
+      "status": "shipped",
+      "note": "23 of 75 SSAT Upper Level analogies (owner: one last AI try). Pre-registered ssat-verbal-s20.prereg.md (043a7b94) on the s19 design (15 families, five per item, each present 25 / keyed 5, 2+2+1 clusters, siblings in 60), commissioned 0 easy / 25 medium / 50 hard with a declared tempting distractor per item, a two-rater pre-freeze probe (31/75 flagged, revised once) and the difficulty gate restated under the easier-of-two rule (banked easy <= 48% of kept). Held s18/s19 single words reusable in new pairs, no held pair. Frozen 3c79d2bc (sha 2c82e06c). All gates passed; 52 per-item drops, 42 of them solely because grader 2 marked a stem/key word above band.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "b2f0fb785fe99b83996512f22239bc143b26b77b3e8102edfa75b42f4e3b2a4c",
+          "verdict": "Frozen 75 (sha 2c82e06c): check-all PASS (75/75 slots, key slots 15 each, key strictly longest 0/75 / shortest 0/75, every family keyed 5/25, 375 distinct option strings, tempting 75/75, 0 live words of 3,766, 0 of 930 held s18/s19 pairs); stem-duplicates 0 vs 1,280 live SSAT rows; recycled-distractor NO MEASUREMENT; verbalKind analogy 75/75. Kept 23: recycled NO MEASUREMENT, key strictly longest 0/23, shortest 0/23."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "b2f0fb785fe99b83996512f22239bc143b26b77b3e8102edfa75b42f4e3b2a4c",
+          "verdict": "Options-only on the frozen 75, interleaved with 40 live analogies from 233 eligible (s6 excluded), three samples of one Claude solver (pairwise agreement 49.3%). Candidate 43/225 = 19.1% vs letter 20.0% (-0.9); live 64/120 = 53.3% vs 20.0% (+33.3); E -34.2 PASS (bar +10), live under the 85% ceiling. Unanimous-correct 4.0% vs 32.5%. Precision family gate PASS (closest tool/function 6/19 = 31.6% vs base 20.0%, p 0.17 vs 0.05/15 = 0.0033).",
+          "n": 75,
+          "mean": 19.1,
+          "control": 20,
+          "margin": -0.9
+        },
+        "elimination": {
+          "passed": true,
+          "contentSha": "b2f0fb785fe99b83996512f22239bc143b26b77b3e8102edfa75b42f4e3b2a4c",
+          "verdict": "Items where >=2 samples certainly rejected the same option: 0/75 vs 0/40 (no rejection marked certain: passes, discriminates nothing). Key rejected 50/225 candidate vs 5/120 live."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "b2f0fb785fe99b83996512f22239bc143b26b77b3e8102edfa75b42f4e3b2a4c",
+          "verdict": "Two Claude graders on independently shuffled renders (seeds 20261113/14): 75/75 and 75/75 on key. Both graders no tempting distractor 0/75 (s19 24/75). Per-item drops 52: a stem/key word marked above band on 48 (grader 2 on 47 items, grader 1 on 4, both on 3; 42 dropped on grader 2's flag alone), second defensible / invalid option on 6 (4 of them with no above-band flag). Kept 23. DIFFICULTY GATE PASS: banked (easier label) 4 easy / 18 medium / 1 hard, easy 4/23 = 17.4% <= 48% (graders alone 2/23 and 4/23)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "b2f0fb785fe99b83996512f22239bc143b26b77b3e8102edfa75b42f4e3b2a4c",
+          "verdict": "Gate 4 on the kept 23: 115 distinct option strings over 115 slots (check-recycled-distractor NO MEASUREMENT), key strictly longest 0/23 and shortest 0/23 (bar 30%); keys dealt flat at render. Reported, not gated: stored key slots A4/B8/C3/D3/E5 (B 34.8%; the draw shuffles choices at serve time); family key rate on the kept set is no longer balanced (symbol/symbolized keyed 5 of 8 kept appearances, antonyms 0/8, worker/workplace 0/9) because survival depended on word level, not family."
+        }
+      }
     }
   ],
   "auditedCohorts": [
