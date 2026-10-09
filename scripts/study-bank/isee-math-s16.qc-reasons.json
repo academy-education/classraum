@@ -1,0 +1,446 @@
+{
+ "IM16A-01": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-02": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-03": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-04": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-05": {
+  "verdict": "drop",
+  "why": "free elimination, both graders, confirmed: 8^2/4 = 16 fixes the leading digits 16, so 200 and 400 die before any exponent work"
+ },
+ "IM16A-06": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-07": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-08": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-09": {
+  "verdict": "drop",
+  "why": "out of band, both graders, confirmed: remainders of two bases to the 100th power mod 7 need residue cycles beyond ISEE Upper Level (live ISEE remainder items are single-step)"
+ },
+ "IM16A-10": {
+  "verdict": "keep",
+  "why": "B band: dividing (3n+20)/(n+2) is ISEE algebra"
+ },
+ "IM16A-11": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-12": {
+  "verdict": "drop",
+  "why": "free elimination, grader B, confirmed: 15 visibly divides both (each ends in 5, digit sums divisible by 3) so 3 is not the greatest; 2^20 - 1 has digit sum 30 so 9 does not divide it, killing 45 (also flagged out of band by B)"
+ },
+ "IM16A-13": {
+  "verdict": "keep",
+  "why": "B: at most 10 primes among odd non-multiples of 3 in 31-59 - that sieve IS the method"
+ },
+ "IM16A-14": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-15": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-16": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-17": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16A-18": {
+  "verdict": "keep",
+  "why": "B: magnitude 0.4/0.05 ~ 8 is the computation itself"
+ },
+ "IM16A-19": {
+  "verdict": "keep",
+  "why": "B band: difference-of-squares factoring is ISEE algebra"
+ },
+ "IM16B-01": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-02": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-03": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-04": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-05": {
+  "verdict": "keep",
+  "why": "B: D > 35 needs the 42/12 ratio, half the method"
+ },
+ "IM16B-06": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-07": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-08": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-09": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-10": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-11": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-12": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-13": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-14": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-15": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-16": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-17": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-18": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16B-19": {
+  "verdict": "keep",
+  "why": "B band: solvable by setting up two rate equations"
+ },
+ "IM16C-01": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-02": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-03": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-04": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-05": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-06": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-07": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-08": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-09": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-10": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-11": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-12": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-13": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-15": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-16": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-17": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-18": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16C-19": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-01": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-02": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-03": {
+  "verdict": "drop",
+  "why": "free elimination, grader B, confirmed: volume scales faster than surface area, so the larger volume exceeds 64 x 108/48 = 144 - kills 96 and 144 (ON the bound)"
+ },
+ "IM16D-04": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-05": {
+  "verdict": "keep",
+  "why": "B: isoperimetric bound, not ISEE knowledge (grader says so)"
+ },
+ "IM16D-06": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-07": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-08": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-09": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-10": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-11": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-12": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-13": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-14": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-15": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-16": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-17": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16D-18": {
+  "verdict": "keep",
+  "why": "B: max-cone bound needs calculus (grader says so)"
+ },
+ "IM16D-19": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-01": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-02": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-03": {
+  "verdict": "drop",
+  "why": "free elimination, grader B, confirmed: the diamond |x|+|y| <= 4 has area 32 inside a 9 x 9 lattice box, so the count is near 40 - 57 and 61 die by magnitude"
+ },
+ "IM16E-04": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-05": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-06": {
+  "verdict": "drop",
+  "why": "free elimination, grader B, confirmed: the belt moves 2160 m per hour and boxes are 1.5 m apart (> 1 m), so fewer than 2160 pass - kills 2160 (ON) and 2400; 24 by magnitude"
+ },
+ "IM16E-07": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-08": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-09": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-10": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-11": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-12": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-13": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-15": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-16": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-17": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-18": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16E-19": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-01": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-02": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-03": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-04": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-05": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-06": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-07": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-08": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-09": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-10": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-11": {
+  "verdict": "drop",
+  "why": "free elimination, both graders, confirmed: 12 unit squares plus the 1 x 2 rectangles already exceed 20 - kills 20 and 18"
+ },
+ "IM16F-12": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-13": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-14": {
+  "verdict": "drop",
+  "why": "free elimination, both graders, confirmed: a weighted average of 1/2 and 1/5 weighted toward 1/5 lies below the midpoint 7/20 - kills 7/20 (ON) and 2/5"
+ },
+ "IM16F-15": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-16": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-17": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ },
+ "IM16F-18": {
+  "verdict": "keep",
+  "why": "no confirmed defect"
+ }
+}

@@ -7448,6 +7448,51 @@
           "verdict": "16 candidate items unanimous blind. Dropped where with-source independently named an elimination: S16A-08, S16A-09, S16E-10 (corroboration clause). The other 13 unanimous items carry no with-source elimination and are kept (pre-registered: unanimity alone never drops)."
         }
       }
+    },
+    {
+      "id": "isee-math-s16-2026-10-09",
+      "createdAt": "2026-10-09",
+      "targetTest": "isee",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "isee-math-s16",
+      "contentSha": "901bcdbde2f3e85aaeb94f7539240f24e7e070c62acaf53b6f4ddb17f38e3a75",
+      "status": "shipped",
+      "spec": {
+        "n": 111,
+        "authors": 6,
+        "batchFile": "scripts/study-bank/isee-math-s16.batch.json",
+        "prereg": "scripts/study-bank/isee-math-s16.prereg.md",
+        "method": "six Claude authors x 19 on the s15 strands, commissioned 0E/7M/12H, per-item `forced` property list; pre-freeze solution-method duplicate search by Claude agents (break-tested on 3 planted s15 pairs) with one return per author; 3 second-round duplicates dropped before freeze (114 -> 111); options-only attack with a 100-item interleaved live ISEE control; two with-source graders per item (each as two agents over halves) anchored on 18 seeded live labelled rows"
+      },
+      "note": "Commissioned for ISEE math form 7 (513 live = 6 clean; form 7 needs 588, form 8 672). 103 of 111 frozen inserted; 8 dropped at B4 (7 hand-confirmed free eliminations killing >= 2 distractors, 1 out of band); 0 post-freeze duplicates. Banked 9 easy / 63 medium / 31 hard (consensus, or the easier label on 20 splits). Reasons in isee-math-s16.qc-reasons.json.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "901bcdbde2f3e85aaeb94f7539240f24e7e070c62acaf53b6f4ddb17f38e3a75",
+          "verdict": "math-bank-helper verify on the frozen 111: sandbox 111/111, distractors 333/333, symbolic hub 5 structured +1.7, numeric hub 8 structured -25.0, key extremity PASS 51/106 = 48.1% (bar 40.0%). run-middle / option-pair-constant / key-is-sum: key in 0; sign-pair: no +- pair; plurality fires on 1 of 19 scorable, not the key. stem-duplicates 0 vs 1134 live ISEE rows; word-3-shingle vs 513 live ISEE math max 0.55 (IM16A-01 vs a different defined-operation row), within 0.42 (F-03/F-15, different events), read by hand; break-test planted live stem flagged at 1.00. Pre-freeze M1 method search: 3/3 planted pairs named; 13 confirmed duplicates returned once (12 live, 1 within batch), 3 second-round duplicates dropped (C-14, E-14, F-19)."
+        },
+        "nosource": {
+          "passed": true,
+          "contentSha": "901bcdbde2f3e85aaeb94f7539240f24e7e070c62acaf53b6f4ddb17f38e3a75",
+          "n": 333,
+          "mean": 30.9,
+          "control": 33.7,
+          "margin": -2.7,
+          "verdict": "make-oo-render --control 100 (blind sha 710f9120dac4045c), keys dealt 28/28/28/27 candidate and 25x4 control, three Claude samples x 211 interleaved. Candidate 103/333 = 30.9% (line 25.2%), live control 101/300 = 33.7% (line 25.0%): CANDIDATE minus LIVE CONTROL -2.7 (pass <= +5.0; control far below the 80% void ceiling). Unanimous-correct 18/111 = 16.2% vs control 25/100 = 25.0%. Pairwise agreement 71.7% vs 26.3% independent - one solver sampled three times."
+        },
+        "withsource": {
+          "passed": true,
+          "contentSha": "901bcdbde2f3e85aaeb94f7539240f24e7e070c62acaf53b6f4ddb17f38e3a75",
+          "verdict": "Two Claude graders per item on isee-math-s16.grade.json (render sha b585ad0dcd03907d; halves 45d3a1e3 / 4d9bc3ec quoted by each grader), anchored on 18 seeded live rows (6 per bank label). 222 picks: 222 equal the key; 0 non-exclusive, 0 second-defensible, 0 live duplicates named. 8 dropped (hold bar > 32): free eliminations killing >= 2 confirmed on A-05, A-12, D-03, E-03, E-06, F-11, F-14; out of band A-09 (both graders: residue cycles mod 7). Not confirmed: A-13, A-18, B-05 (the kill is the method), D-05, D-18 (isoperimetric / calculus, graders' own caveat); band flags by one grader on A-10, A-19, B-19 not confirmed (ISEE algebra suffices)."
+        },
+        "tells": {
+          "passed": true,
+          "contentSha": "901bcdbde2f3e85aaeb94f7539240f24e7e070c62acaf53b6f4ddb17f38e3a75",
+          "verdict": "18 candidate items unanimous blind; 4 dropped on a confirmed with-source defect (A-09, A-12, D-03, E-06). 14 kept: no confirmed >= 2 free elimination; single named kills recorded, not acted on: A-15 (45), E-05 (13), E-15 (324), D-12 (6). Unanimity rate 16.2% vs live 25.0%."
+        }
+      }
     }
   ],
   "auditedCohorts": [

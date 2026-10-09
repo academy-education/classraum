@@ -4,7 +4,7 @@
  *
  * READ ONLY. Never writes to the bank or to study_item_exposures.
  *
- *   npx tsx scripts/study-bank/admission-form-depth.ts [--selftest]
+ *   npx tsx scripts/study-bank/admission-form-depth.ts [--selftest] [--forms N]
  *
  * ── Why form-capacity.mjs is not the answer ──────────────────────────
  * That script reports SSAT as 4 / 3 / 3 forms and labels each line
@@ -207,7 +207,13 @@ const env = Object.fromEntries(readFileSync('.env.local', 'utf8').split('\n')
   .map(l => [l.slice(0, l.indexOf('=')), l.slice(l.indexOf('=') + 1).trim()]))
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL!, env.SUPABASE_SERVICE_ROLE_KEY!, { auth: { persistSession: false } })
 
-const FORMS = 6
+/* --forms N (default 6). Added 2026-10-08 for isee-math-s16: SSAT and ISEE
+ * math are past six clean forms, and every report since ssat-math-s15 had to
+ * rebuild a 10-form replay on a scratch copy. Break-test: --forms 6 must print
+ * the same table as no flag. */
+const formsArg = process.argv.indexOf('--forms')
+const FORMS = formsArg >= 0 ? Number(process.argv[formsArg + 1]) : 6
+if (!Number.isInteger(FORMS) || FORMS < 1) { console.error('REFUSING: --forms needs a positive integer'); process.exit(2) }
 async function main() {
 for (const family of ['ssat', 'isee'] as AdmissionFamily[]) {
   console.log(`\n${family.toUpperCase()} — a student's first ${FORMS} tests, section by section`)
