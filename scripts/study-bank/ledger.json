@@ -7933,6 +7933,48 @@
           "verdict": "23 candidate items unanimous blind; 8 dropped on a confirmed with-source defect (A-07, A-11, A-17, A-18, C-04, E-14, F-15, F-20). 15 kept with no confirmed with-source defect. Unanimity rate 19.5% vs live 27.0%."
         }
       }
+    },
+    {
+      "id": "ssat-math-s17-2026-10-10",
+      "createdAt": "2026-10-10",
+      "targetTest": "ssat",
+      "section": "math",
+      "task": "multiple_choice",
+      "family": "mc_stem_source",
+      "cohort": "ssat-math-s17",
+      "contentSha": "3268f6503a0c693a415ab61d186fb95b96ac4154fcfc0ba3d74fef606c514928",
+      "status": "shipped",
+      "spec": {
+        "n": 103,
+        "authors": 5,
+        "batchFile": "scripts/study-bank/ssat-math-s17.batch.json",
+        "prereg": "scripts/study-bank/ssat-math-s17.prereg.md",
+        "method": "five Claude authors on disjoint topics weighted to where s16 banked hard (A ratio/rate 10, B geometry 31, C counting/probability/statistics 29, D algebra 9, E number theory 25), authored 92 hard / 11 medium / 0 easy, one file per item, 18 runs of 5-7 items, at most two subagents at once; keys dealt in advance; hand review of every item (keys recomputed, hand method-duplicate search against 520 live SSAT rows, obvious-share lines read on every ratio item), one fix round per letter (13 returns, 12 re-authored and accepted, S17E-08 cut as a repeat live duplicate); extended check-forced-form (quotient parity) with all 331 declared notes read; frozen before attack (commit 2342b746); options-only attack with a 40-item interleaved live SSAT control; four with-source graders (two per alternating half of 52/51) on key-withheld renders"
+      },
+      "note": "Commissioned for SSAT math forms 11 and 12: 520 live = 10 clean, form 12 needs 600 (+80). 95 of 103 inserted under the pre-registered bars; 8 drops: 3 hand-confirmed with-source free eliminations killing >= 2 (S17A-04, A-08, E-16), 4 corroborated drops (S17B-09, C-28, E-02, E-13: unanimous blind plus a grader-named elimination), 1 B5 live duplicate (S17E-03 ~ 522cfb82, missed by the pre-freeze hand search); reasons in ssat-math-s17.qc-reasons.json. Inserted at BANK_BAND=mixed; difficulty = graders' consensus, or the easier label on a split (24 of 95 splits). Banked 6 easy / 58 medium / 31 hard against authored 0 / 10 / 85 among the kept.",
+      "stages": {
+        "shape": {
+          "passed": true,
+          "contentSha": "3268f6503a0c693a415ab61d186fb95b96ac4154fcfc0ba3d74fef606c514928",
+          "verdict": "math-bank-helper verify on the frozen 103: sandbox 103/103, distractors 412/412, symbolic hub 7 structured +5.0, numeric hub 18 structured -18.1, key extremity PASS 35/102 = 34.3% (bar 32.0%). run-middle, option-pair-constant, key-is-sum, plurality land on the key 0 times; key/-key 0. stem-duplicates 0 of 103 against 1,303 live SSAT rows; word-3-shingle vs 520 live SSAT math max 0.40, 2 pairs >= 0.35 read (S17E-03 ~ 522cfb82 same method: dropped at B5; S17C-08 ~ 72310cad different event: kept); planted live stem flagged at 1.00. check-forced-form (extended with odd/even multiple of d; self-test on S16D-08) 0 OPEN, 331 DECLARED notes all read against the stems. math-mechanism-dup 2 FLAGs (D-03, E-04 vs ACT rows; outside the SSAT rule), 3 unscorable items hand-searched; cross-author template/method pairs >= 0.35: 0."
+        },
+        "nosource": {
+          "passed": true,
+          "n": 309,
+          "mean": 24.6,
+          "control": 33.3,
+          "margin": -8.7,
+          "verdict": "make-oo-render --control 40 (blind sha df0e252ba3aa8928), stems withheld, keys dealt 21/21/21/20/20 (candidate) and 8 per slot (control), three Claude samples x 143 interleaved items. Candidate 76/309 = 24.6% (own best-fixed-letter line 20.4%), live control 40/120 = 33.3% (line 20.0%): CANDIDATE minus LIVE CONTROL -8.7 (pre-registered pass <= +5.0; control far below the 80% void ceiling). Unanimous-correct rate 14/103 = 13.6% vs control 6/40 = 15.0%. Pairwise agreement 63.6% vs 20.5% independent - one solver sampled three times. Per-author subsets vs control (hold bar +20.0): A -23.3 (n=30 picks), B -9.7, C +2.3, D -11.1 (n=27), E -13.9."
+        },
+        "withsource": {
+          "passed": true,
+          "verdict": "Four Claude graders on ssat-math-s17-h1.grade.json (sha e683ff94adbe5a89, 52 items) and -h2.grade.json (sha 57dd07322ef7bf9c, 51 items), each sha quoted at start and end. 205/206 picks equal the key; the one miss (S17C-08, h1-b 3/14) is the no-cap error, the key 6/25 recomputed by brute force (25 ordered rolls, 6 with a 6). 0 second defensible, 0 out of band, 0 live duplicates named. Items flagged with >= 2 free kills: 6; 3 confirmed by hand and dropped (S17A-04, A-08, E-16), 3 not confirmed: S17B-08 (the even count needs the mirror pairing and the 40 shortest chord, no cheaper than the method), S17B-23 (the grader's own bound < 760 leaves 684), and A-04's third kill (1980) not counted. Batch-hold bar > 29 (pre-registered for 104 authored; 103 frozen): 7 dropped at B4. Per-author B4 drops A 2/10, B 1/31, C 1/29, D 0/9, E 3/25 (hold bar > half). Grader difficulty labels: h1-a 4/31/17, h1-b 2/26/24, h2-a 2/33/16, h2-b 0/21/30 easy/medium/hard."
+        },
+        "tells": {
+          "passed": true,
+          "verdict": "14 candidate items unanimous blind. Dropped where with-source independently named an elimination: S17B-09, S17C-28, S17E-02, S17E-13 (corroboration clause). The other 10 unanimous items carry no with-source elimination and are kept (pre-registered: unanimity alone never drops)."
+        }
+      }
     }
   ],
   "auditedCohorts": [

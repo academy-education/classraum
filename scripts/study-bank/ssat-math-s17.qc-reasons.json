@@ -1,0 +1,10 @@
+{
+ "S17A-04": "free elimination, 2 kills (h2-a 3, h2-b 2; confirmed 2): the one-way distance is under the whole sound path, so d < 340 x 6 = 2040 (kills 2040, ON the bound); the ship closes in, so the return leg is shorter and d > 1020 (kills 990).",
+ "S17A-08": "free elimination, 3 kills (h2-a, confirmed): printing alone is 520/20 = 26 min and every pause is a whole 3 min, so the total is 26 + 3k (kills 45.5 and 46; '2 mod 3' is not in check-forced-form's battery); at most 520/80 < 7 pauses kills 68.",
+ "S17E-16": "free elimination, 2 kills (h2-b, confirmed): N + R = 1252 for every solution and the set is closed under reversal, so the sum is 626 x (count) without finding any N (kills 9386 and 4732) - the s16 D-08 class (pairing forces a form), with 626 outside the battery.",
+ "S17B-09": "unanimous blind (3/3 options-only) AND both h1 graders named an elimination (every region is bounded by circles of whole radius about the centre of a radius-6 target, so the probability is k/36: kills 16/25): corroborated drop.",
+ "S17E-02": "unanimous blind (3/3 options-only) AND grader h1-b named an elimination (N is symmetric in 2, 3, 5 and (a+1)^3 = 18 has no solution, so the count is a multiple of 3: kills 4): corroborated drop.",
+ "S17E-13": "unanimous blind (3/3 options-only) AND grader h1-b named an elimination (100 and 101 both give 99, so fewer than 900 results: kills 900): corroborated drop.",
+ "S17C-28": "unanimous blind (3/3 options-only) AND grader h1-a named an elimination (swapping the first two digits with the last two pairs 'front greater' with 'back greater', so at most 120/2 = 60: kills 72): corroborated drop.",
+ "S17E-03": "B5 duplicate scan (word-3 shingle 0.35, confirmed by hand): same method as live 522cfb82 ((n + 40)/(n + 4) an integer -> n + 4 divides 36, count divisors); missed by the pre-freeze hand search."
+}

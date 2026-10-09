@@ -190,6 +190,63 @@ Nothing is blocked — every open item can start today.
 
 ## 5. Found while fixing
 
+- **2026-10-10** — **SSAT MATH 10 → 12 CLEAN FORMS: `ssat-math-s17` INSERTED 95 OF 103 FROZEN (104 AUTHORED). ssat/math 520 → 615 (form 12 needed 600; form 13 = 15/50 fresh, needs 650, +35). THE HARD SHARE ROSE 19.0% → 21.1% BUT IS NOT BACK TO 22.5%.** Pre-registered alone in `cd5dd761` (`ssat-math-s17.prereg.md`), frozen in `2342b746` (sha `3268f650`) before any solver or grader. Ledger `ssat-math-s17-2026-10-10`.
+
+        before    SSAT math 520 = 10 clean; form 11 = 20/50, form 12 = 0/50
+        after     SSAT math 615 = 12 clean; form 13 = 15/50 fresh (form 13 needs 650, +35)
+        whole SSAT test unchanged at 3 clean (Reading binds at 3)
+
+  The 12 is from a 13-column replay of `admission-form-depth.ts` (scratch copy, FORMS = 13) with the real `drawByPassage`. `verify-admission-forms.mjs` exits 0 (SSAT math drawable 615, need 50).
+
+  **The mix was weighted to where s16 banked hard: geometry 31, counting/probability 29, number theory 25, ratio 10, algebra 9; authored 92 hard / 12 medium / 0 easy.** The kept 95 banked **6 easy / 58 medium / 31 hard** (graders' consensus, easier label on a split; 24 splits). Authored-hard items banked hard, by author: **B 11/26, C 8/25, D 4/8, E 7/19, A 1/7, 31/85 = 36.5% overall** (s16 27/91 = 29.7%, s15 4/60). The pool moves 24.4 / 56.5 / 19.0 → **21.6 / 57.2 / 21.1 %** (133 / 352 / 130 of 615). This is the pre-registered outcome: the share rose but was not restored (h = 31, inside the predicted 20-37; 22.5% needed about 39 at k = 90). **Algebra banked 4 of 8 hard this time (s16 1/17).** The D brief asked for an idea to SEE, such as an invariant, a hidden substitution or an unannounced case split, and for no plug-back at 0 or 1 to decide the key. **Ratio stays the weak topic: 1 of 7.**
+
+  **check-forced-form, extended.** It now checks "odd multiple of d" (d = 2..12) and "even multiple of d" (d ≥ 7), on the value or on a pi/sqrt coefficient. The self-test flags S16D-08 "odd multiple of 10" (shared 1/4) where plain "multiple of 10" was shared 4/4; with the line reverted the self-test fails 3 times. It costs reading: on s16 the flags rise from 255 to 421. Here there were 0 OPEN, and I read all **331 DECLARED** notes against the stems. **It still missed two forced forms, both killed at B4:**
+  - S17A-08: the total is 26 + 3k minutes, i.e. 2 mod 3. A residue other than 0 is not in the battery.
+  - S17E-16: the sum is 626 × the count, because the reversal pairing gives N + R = 1252. That is the same class as s16's D-08, with a factor above 12.
+
+  The general form is "the stem forces key ≡ r (mod m)" for any m. Checking every residue for every m would flag almost everything, so the reader's question is still "what does the structure force?", not a longer battery.
+
+  **Hand method-duplicate search (new, required).** I read every one of the 104 items against its top-8 ranked live SSAT rows, plus targeted keyword greps over the 520 live rows. It returned 9 items as same-method duplicates: A-03 (a81e85ba + 8e908d43), A-04 (924b0eca), A-09 (1d4b395e), B-05 (6566b7f0), C-02 (277c09dd), C-15 (5160698a), E-08 (67c237a3), E-25 (444f0b51 + 9640e4b2), and C-29 (same method as C-20). `math-mechanism-dup` FLAGged none of these; its 2 FLAGs were ACT rows. In one fix round the fixers' replacement E-08 was again a duplicate (live 2cd12876, ticket Diophantine), so it was **cut before the freeze**. **The hand search still missed one: S17E-03 ~ live 522cfb82**, where "(n + 40)/(n + 4) is an integer" is the same method as E-03. The B5 shingle scan caught it at 0.35, and it was dropped there. My grep for "is an integer" did not match "is (n + 40)/(n + 4) an integer". **Grep the structure (a fraction, then "an integer"), not a fixed phrase.** A quiet hand search is not a clearance either.
+
+  **Ratio "obvious share" self-check (new).** Both A runs and the fix round wrote one interval line per share (equal split, each member alone, the whole, before/after). I read all 10. Author A lost **2 of 10** at B4, against s16's 6 of 30.
+  - S17A-04: it obeyed the rule (each share kills at most one), but the two cheapest shares, "under the whole sound path" and "over 1020 because the ship closes in", together kill 2040 and 990. **The rule has to cover the intersection of all shares, not each share alone.**
+  - S17A-08: died to the residue form above.
+
+  **Returns (one fix round per letter, 13 items).**
+  - The 9 duplicates above.
+  - B-04 and B-06: free eliminations killing 3. In B-04, P sits on A's side of the perpendicular bisector, so PD < PC. In B-06, each leg is between a third and a half of its sub-triangle's perimeter.
+  - B-31: the key was the smallest option, sitting ON a cheap floor.
+  - C-09: the "five equally likely counts" error landed exactly on the key.
+  - 12 were re-authored and accepted, and E-08 was cut. D had no returns.
+
+  **Gates.**
+  - **Sandbox:** 103/103; distractors 412/412.
+  - **Key extremity:** 35/102 = 34.3% (bar 32.0%). Authors pushed keys to the extremes to pass the per-letter check, which held at 33-40% per letter.
+  - **Hubs:** symbolic +5.0, numeric −18.1.
+  - **Shape checks:** run-middle, pair-constant, key-is-sum and plurality land on the key 0 times; key/−key 0.
+  - **Stem duplicates:** 0 against 1,303 live SSAT rows.
+  - **Cross-author template/method pairs ≥ 0.35:** 0.
+  - **Options-only attack, 40-item interleaved live control, three Claude samples × 143:** candidate 76/309 = 24.6% against control 40/120 = 33.3% (both lines about 20%), **margin −8.7** (pass ≤ +5.0). Unanimous-correct was 13.6% against 15.0%; pairwise agreement 63.6% against 20.5% if independent. Per-author subsets: A −23.3, B −9.7, C +2.3, D −11.1, E −13.9 (hold +20.0).
+
+  **With-source, four Claude graders (two per alternating half of 52/51): 205/206 picks equal the key, 0 second defensible, 0 out of band.** The one miss was S17C-08 (h1-b, 3/14): the grader made the no-cap error that distractor was built on, and brute force gives 6/25. 7 dropped at B4, against a hold bar of 29:
+  - **3 confirmed free eliminations:** A-04, A-08 and E-16, as above.
+  - **4 corroborated drops** (unanimous blind plus a grader-named elimination):
+    - B-09: probability over k/36.
+    - C-28: count ≤ 60 by symmetry.
+    - E-02: a multiple of 3 by symmetry.
+    - E-13: two N collide, so fewer than 900.
+  - **Not confirmed, kept:**
+    - B-08: the even count needs the mirror pairing and the 40 shortest chord, which is no cheaper than the method.
+    - B-23: the grader's own bound (< 760) leaves 684 standing.
+
+  Per author at B4: A 2/10, B 1/31, C 1/29, D 0/9, E 3/25.
+
+  **Process.**
+  - **Lost runs:** two author runs (A2, E3) died twice to the API weekly limit before saving anything. They were relaunched from disk, and the third launch, told to write its first item within a few tool calls, saved item by item.
+  - **Idle detection:** authors routinely went 7-12 minutes without a transcript write while composing a hard item and then resumed. A 6-minute idle rule would have put two writers on the same ids, so a run was treated as stalled only after 15 minutes plus a second check. None needed a relaunch.
+  - **Safety:** every subagent prompt carried the coordinator's process-kill ban.
+  - **Shared files:** `ledger.json` was being edited by another session, so this commit stages HEAD plus this entry only.
+
 - **2026-10-10** — **ISEE MATH 7 → 8 CLEAN FORMS: `isee-math-s17` INSERTED 93 OF 118 FROZEN (120 AUTHORED). isee/math 616 → 709 (form 8 needed 672; form 9 needs 756, +47). THE ANCHOR AND THE AUTHOR SIDE BOTH MOVED DIFFICULTY: ON THE SAME 93 ITEMS THE ANCHORED PAIR BANKS 39.8% HARD AND THE UNANCHORED PAIR 19.4% (D = +20.4, sign test 19 vs 0, p = 3.8e-6); THE UNANCHORED 19.4% IS STILL 3.5x s15's 5.5% (p = 2.6e-6).** Pre-registered alone in `1df77145` (`isee-math-s17.prereg.md`), frozen in `44e4bd7e` (sha `0ae37152`) before any solver or grader. Ledger `isee-math-s17-2026-10-10`.
 
         before    ISEE math 616 / 84 per test = 7 clean (quant form 8 28/37, mathach 0/47)

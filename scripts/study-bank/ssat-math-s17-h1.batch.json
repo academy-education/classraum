@@ -1,0 +1,1302 @@
+[
+ {
+  "id": "S17A-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "mixture fixed by two hypothetical additions of the same volume",
+  "difficulty": "hard",
+  "prompt": "A tank holds a mixture of acid and water. If 5 liters of water were added to the mixture, the result would be 18 percent acid. If instead 5 liters of pure acid were added to the original mixture, the result would be 38 percent acid. What percent of the original mixture is acid?",
+  "choices": [
+   "22.5",
+   "25.6",
+   "21.6",
+   "30.4",
+   "24"
+  ],
+  "correct_answer": "22.5",
+  "explanation": "Either way the new mixture has the original volume plus 5 liters, call it T. The two results differ only in that 5 liters of acid replace 5 liters of water, so the acid amounts differ by 5 liters and 38% - 18% = 20% of T is 5 liters: T = 25 liters. The original volume is 25 - 5 = 20 liters, and its acid is 18% of 25 = 4.5 liters (adding water does not change the acid). Check: (4.5 + 5)/25 = 38%. So the original is 4.5/20 = 22.5% acid. The option \"21.6\" takes the 20-point gap as 5 liters' share of the ORIGINAL volume (25 liters), so it adds water to make 30 liters with 18% of 30 = 5.4 liters of acid and reports 5.4/25. The option \"25.6\" makes the same 25-liter misreading but works from the acid case: 38% of 30 = 11.4, minus the 5 added, is 6.4 liters, and 6.4/25 = 25.6%. The option \"24\" finds the 20-liter volume correctly but treats adding 5 liters to 20 (a 25% increase in volume) as a 25% DECREASE in concentration, solving 0.75c = 18 instead of c x 20/25 = 18. The option \"30.4\" scales the acid case's 38% back by 20/25 as if the extra 5 liters had been water, forgetting that they were acid.",
+  "solve": "var add=5,lo=18,hi=38; var T=100*add/(hi-lo); var V=T-add; var acid=lo*T/100; return acid*100/V;",
+  "distractor_solve": {
+   "21.6": "var add=5,lo=18,hi=38; var V=100*add/(hi-lo); var acid=lo*(V+add)/100; return acid*100/V;",
+   "25.6": "var add=5,lo=18,hi=38; var V=100*add/(hi-lo); var acid=hi*(V+add)/100-add; return acid*100/V;",
+   "24": "var add=5,lo=18,hi=38; var V=100*add/(hi-lo)-add; return lo/(1-add/V);",
+   "30.4": "var add=5,lo=18,hi=38; var V=100*add/(hi-lo)-add; return hi*V/(V+add);"
+  }
+ },
+ {
+  "id": "S17A-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal fuel savings from two efficiency gains",
+  "difficulty": "medium",
+  "prompt": "Car P's fuel efficiency was improved from 10 kilometers per liter to 12 kilometers per liter. Car Q's fuel efficiency was also improved, to 30 kilometers per liter. On a 720-kilometer trip, the improvement saves car Q exactly as many liters of fuel as the improvement saves car P. What was car Q's fuel efficiency, in kilometers per liter, before it was improved?",
+  "choices": [
+   "24",
+   "28",
+   "20",
+   "60",
+   "25"
+  ],
+  "correct_answer": "20",
+  "explanation": "On 720 km, car P used 720/10 = 72 liters before and 720/12 = 60 liters after, a saving of 12 liters. Car Q now uses 720/30 = 24 liters, so before the improvement it used 24 + 12 = 36 liters, and its efficiency was 720/36 = 20 kilometers per liter. The option 28 gives car Q the same gain of 2 kilometers per liter as car P (30 - 2). The option 25 gives car Q the same 20 percent gain as car P (30 / 1.2). The option 24 takes 20 percent off the new 30 instead of dividing by 1.2 (30 x 0.8). The option 60 takes car Q's old fuel use to be just the 12 liters saved, forgetting the 24 liters it still uses (720 / 12).",
+  "solve": "var D=720,a=10,b=12,c=30; var saved=D/a-D/b; return D/(D/c+saved);",
+  "distractor_solve": {
+   "28": "var a=10,b=12,c=30; return c-(b-a);",
+   "25": "var a=10,b=12,c=30; return c/(b/a);",
+   "24": "var a=10,b=12,c=30; return c*(1-(b-a)/a);",
+   "60": "var D=720,a=10,b=12; return D/(D/a-D/b);"
+  }
+ },
+ {
+  "id": "S17A-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "profit stated on selling price, sale cut on price, profit asked on cost",
+  "difficulty": "hard",
+  "prompt": "A store sets the selling price of every item so that its profit on the item is 25 percent of the selling price. During a sale, the store lowers every selling price by 10 percent. During the sale, the store's profit on an item is what fraction of what the store paid for the item?",
+  "choices": [
+   "7/30",
+   "1/6",
+   "3/10",
+   "2/9",
+   "1/5"
+  ],
+  "correct_answer": "1/5",
+  "explanation": "Take an old selling price of 100. The profit is 25, so the store paid 75. The sale price is 90, so the profit is 90 - 75 = 15, and 15/75 = 1/5. The option \"1/6\" divides the sale profit by the sale price (15/90) instead of by the cost. The option \"2/9\" also lowers the cost by 10% along with the price, dividing 15 by 67.5. The option \"7/30\" converts the old profit to a fraction of cost correctly (25/75 = 1/3) and then subtracts the 10% as if it were a cut of 10% of the cost (1/3 - 1/10). The option \"3/10\" also starts from 1/3 but reduces the profit itself by 10% (9/10 of 1/3), as if the sale cut the profit rather than the price.",
+  "solve": "var p=0.25,c=0.1; var S=100, cost=S*(1-p); var profit=S*(1-c)-cost; return profit/cost;",
+  "distractor_solve": {
+   "1/6": "var p=0.25,c=0.1; var S=100, cost=S*(1-p); var sale=S*(1-c); return (sale-cost)/sale;",
+   "2/9": "var p=0.25,c=0.1; var S=100, cost=S*(1-p); var sale=S*(1-c); return (sale-cost)/(cost*(1-c));",
+   "7/30": "var p=0.25,c=0.1; return p/(1-p)-c;",
+   "3/10": "var p=0.25,c=0.1; return p/(1-p)*(1-c);"
+  }
+ },
+ {
+  "id": "S17A-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "walker in a tunnel, train arriving at either end at the same moment as him",
+  "difficulty": "hard",
+  "prompt": "Mo is walking through a straight railway tunnel. When he is 3/8 of the way through it, he hears a train approaching the entrance he came in by. He works out that if he immediately runs back toward that entrance at his top speed, he and the train will reach the entrance at the same moment, and that if he immediately runs forward at the same top speed, he and the train will reach the far exit at the same moment. The train moves at a constant speed. The train's speed is how many times Mo's top running speed?",
+  "choices": [
+   "8/3",
+   "4",
+   "8/5",
+   "3",
+   "5/3"
+  ],
+  "correct_answer": "4",
+  "explanation": "Running back, Mo covers 3/8 of the tunnel in exactly the time the train takes to reach the entrance. Running forward instead, in that same time he covers 3/8 forward, reaching 3/8 + 3/8 = 3/4 of the way, just as the train enters. From then on the train runs the whole tunnel while Mo runs the last 1/4, and they finish together, so the train is 1 / (1/4) = 4 times as fast. The option 8/3 has the train cover the whole tunnel while Mo runs only his 3/8 back to the entrance (as if the train were already at the entrance). The option 8/5 has the train cover the whole tunnel while Mo runs his whole 5/8 forward, forgetting the train must first reach the entrance. The option 3 treats the last stretch as if Mo and the train were closing on each other, adding their speeds, so (speed + 1) x 1/4 = 1. The option 5/3 compares Mo's two runs, 5/8 to 3/8.",
+  "solve": "var p=3/8; var ahead=p+p; var left=1-ahead; return 1/left;",
+  "distractor_solve": {
+   "8/3": "var p=3/8; return 1/p;",
+   "8/5": "var p=3/8; return 1/(1-p);",
+   "5/3": "var p=3/8; return (1-p)/p;",
+   "3": "var p=3/8; var left=1-2*p; return 1/left-1;"
+  }
+ },
+ {
+  "id": "S17A-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "total distance of a dog running between two approaching walkers",
+  "difficulty": "hard",
+  "prompt": "Ana and Ben are 18 kilometers apart on a straight trail. At the same moment they start toward each other, Ana jogging at 5 kilometers per hour and Ben walking at 4 kilometers per hour. Also at that moment, Ana's dog starts running from Ana toward Ben at 20 kilometers per hour. Each time the dog reaches one of them, it turns around at once and runs back toward the other, always at 20 kilometers per hour, until Ana and Ben meet. How many kilometers does the dog run in all?",
+  "choices": [
+   "48",
+   "24",
+   "72",
+   "40",
+   "30"
+  ],
+  "correct_answer": "40",
+  "explanation": "Ana and Ben close the 18 kilometers at 5 + 4 = 9 kilometers per hour, so they meet after 18 / 9 = 2 hours. The dog runs at 20 kilometers per hour for all of those 2 hours, so it runs 40 kilometers. (Leg by leg the dog runs 15, then 9, then 6, ... kilometers, which add up to 40 only in the limit.) The option 24 stops after the dog's first trip to Ben and back to Ana, 15 + 9. The option 30 stops after three legs, 15 + 9 + 6 (it is also what the dog's speed relative to Ana, 20 - 5, gives over the 2 hours). The option 48 adds Ben's speed to the dog's, (20 + 4) x 2. The option 72 uses the time Ana alone would need to cover the 18 kilometers, 18 / 5 = 3.6 hours, times 20.",
+  "solve": "var G=18,a=5,b=4,d=20; return d*G/(a+b);",
+  "distractor_solve": {
+   "24": "var G=18,a=5,b=4,d=20; var t1=G/(d+b); var g1=G-(a+b)*t1; var t2=g1/(d+a); return d*(t1+t2);",
+   "30": "var G=18,a=5,b=4,d=20; var t1=G/(d+b); var g1=G-(a+b)*t1; var t2=g1/(d+a); var g2=g1-(a+b)*t2; var t3=g2/(d+b); return d*(t1+t2+t3);",
+   "48": "var G=18,a=5,b=4,d=20; return (d+b)*G/(a+b);",
+   "72": "var G=18,a=5,b=4,d=20; return d*G/a;"
+  }
+ },
+ {
+  "id": "S17B-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "zigzag of equal segments inside an angle, isosceles base angles growing by the vertex angle",
+  "difficulty": "hard",
+  "prompt": "Angle XAY measures 11 degrees. A chain of segments, all of the same length, is drawn as follows. The first segment goes from A to a point P1 on ray AX. The second goes from P1 to a point P2 on ray AY, the third from P2 to a point P3 on ray AX, and so on, with the points alternating between the two rays. Each new point must be farther from A than the previous point on the same ray (A itself counts as the starting point on ray AY). The chain stops when no new point can be placed. How many segments does the chain contain?",
+  "choices": [
+   "17",
+   "9",
+   "10",
+   "5",
+   "6"
+  ],
+  "correct_answer": "9",
+  "explanation": "Triangle A P1 P2 is isosceles with P1A = P1P2, so its base angles at A and P2 are 11 degrees. The angle between P1P2 and ray AX beyond P1 is an exterior angle of that triangle, 11 + 11 = 22, and it is a base angle of the next isosceles triangle P1 P2 P3 (P2P1 = P2P3). Continuing, the k-th triangle has base angle 11k degrees. A new point farther out than the last one on its ray exists only while that base angle is less than 90 degrees: 11k < 90 gives k = 1, 2, ..., 8, so points P2 through P9 can be placed after P1. The segments are AP1, P1P2, ..., P8P9, which is 9 segments. The option \"10\" counts the points A, P1, ..., P9 instead of the segments. The option \"17\" stops the chain when the base angle reaches 180 degrees instead of 90 (11k < 180 gives k up to 16). The option \"5\" assumes each base angle doubles (11, 22, 44, 88) instead of growing by 11. The option \"6\" stops when the base angle passes 60 degrees, as if the isosceles triangles could not have base angles larger than an equilateral triangle's.",
+  "solve": "const x=11; let k=0; while((k+1)*x<90) k++; return k+1;",
+  "distractor_solve": {
+   "10": "const x=11; let k=0; while((k+1)*x<90) k++; return k+2;",
+   "17": "const x=11; let k=0; while((k+1)*x<180) k++; return k+1;",
+   "5": "const x=11; let a=x, k=0; while(a<90){k++; a*=2;} return k+1;",
+   "6": "const x=11; let k=0; while((k+1)*x<=60) k++; return k+1;"
+  }
+ },
+ {
+  "id": "S17B-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equilateral triangle on a side of a regular pentagon, angle at the inner vertex",
+  "difficulty": "hard",
+  "prompt": "ABCDE is a regular pentagon. Point F lies inside the pentagon so that triangle ABF is equilateral. What is the measure, in degrees, of angle EFD?",
+  "choices": [
+   "72",
+   "114",
+   "48",
+   "84",
+   "69"
+  ],
+  "correct_answer": "84",
+  "explanation": "Each interior angle of a regular pentagon is 108 degrees. AF = AB = AE, so triangle AEF is isosceles with apex angle EAF = 108 - 60 = 48, and its base angles are AFE = AEF = (180 - 48)/2 = 66. By the same reasoning angle BFC = 66. The pentagon is symmetric about the line through D and the midpoint of AB, and F lies on that line, so angle EFD = angle DFC. The angles around F total 360: 60 + 66 + 66 + 2(angle EFD) = 360, so angle EFD = 84. The option \"114\" uses the whole pentagon angle 108 as the apex of triangle AEF, giving base angles of 36. The option \"69\" assumes EF = ED, making triangle EFD isosceles with apex FED = 108 - 66 = 42. The option \"72\" treats F as the centre of the pentagon (360/5). The option \"48\" is angle EAF, not the angle asked.",
+  "solve": "const P=108, eq=60; const afe=(180-(P-eq))/2; return (360-eq-2*afe)/2;",
+  "distractor_solve": {
+   "114": "const P=108, eq=60; const afe=(180-P)/2; return (360-eq-2*afe)/2;",
+   "69": "const P=108, eq=60; const afe=(180-(P-eq))/2; const fed=P-afe; return (180-fed)/2;",
+   "72": "return 360/5;",
+   "48": "const P=108, eq=60; return P-eq;"
+  }
+ },
+ {
+  "id": "S17B-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equilateral triangle inscribed in a circle: the center cuts each height 2 : 1",
+  "difficulty": "medium",
+  "prompt": "An equilateral triangle is drawn inside a circle of radius 6 so that all three of its vertices lie on the circle. What is the area of the triangle?",
+  "choices": [
+   "27√3",
+   "24√3",
+   "36√3",
+   "54",
+   "16√3"
+  ],
+  "correct_answer": "27√3",
+  "explanation": "The center of the circle is the center of the equilateral triangle, where its heights meet, and it lies two thirds of the way down each height (the inside circle's radius is the remaining third). So the radius 6 is two thirds of the height, the height is 9, and the side is 9 x 2/√3 = 6√3. The area is (1/2)(6√3)(9) = 27√3. The option 36√3 takes the side to be a diameter, 12, giving (√3/4)(144). The option 24√3 keeps the side 6√3 but takes the inside circle's radius as one third of R instead of one half, so the height is 6 + 2 = 8 and the area (1/2)(6√3)(8). The option 54 takes the base as the diameter 12 with the height 9, (1/2)(12)(9). The option 16√3 applies the height-to-side relation to the radius, R = (√3/2) x height, so the height is 4√3 and the area is (4√3)^2/√3.",
+  "solve": "const R=6; const h=3*R/2; const s2=4*h*h/3; const coef=s2/4; return coef+'√3';",
+  "distractor_solve": {
+   "36√3": "const R=6; const s=2*R; return (s*s/4)+'√3';",
+   "24√3": "const R=6; const s2=3*R*R; const h=R+R/3; const c=Math.sqrt(s2/3)*h/2; return c+'√3';",
+   "54": "const R=6; const h=3*R/2; return (2*R)*h/2;",
+   "16√3": "const R=6; const h2=4*R*R/3; return (h2/3)+'√3';"
+  }
+ },
+ {
+  "id": "S17B-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "acute triangles from equally spaced points on a circle, by the right angle in a semicircle",
+  "difficulty": "hard",
+  "prompt": "Twelve points are equally spaced around a circle. A triangle is formed by choosing three of the twelve points as its vertices. How many of these triangles have three acute angles?",
+  "choices": [
+   "100",
+   "88",
+   "40",
+   "60",
+   "52"
+  ],
+  "correct_answer": "40",
+  "explanation": "Measure arcs in steps of 30 degrees (one step between neighbouring points), so the three arcs between the chosen vertices add to 12 steps. Each angle of the triangle is half the arc opposite it, so an angle is acute exactly when its opposite arc is less than 6 steps (a semicircle); an arc of exactly 6 steps gives a right angle. So the triangle is acute when all three arcs are at most 5 steps. The splits of 12 into three parts of at most 5 are {4,4,4}, {2,5,5} and {3,4,5}. The equilateral shape {4,4,4} gives 4 triangles; {2,5,5} gives 12 (one for each position of the short arc); {3,4,5} gives 24, because going around the circle the arcs can come in the order 3,4,5 or 3,5,4, and each order gives 12 triangles. Total 4 + 12 + 24 = 40. (Check: there are C(12,3) = 220 triangles, 60 right ones from the 6 diameters and 10 third points, and 120 obtuse ones.) The option \"100\" subtracts only the 120 obtuse triangles from 220 and so counts the 60 right triangles as acute. The option \"60\" lists the 12 x 10 = 120 ordered arc splits (12 starting points, 10 orders of the arcs) and divides by 2, as if each triangle were counted once in each direction around the circle, instead of by 3, once from each vertex. The option \"88\" counts the obtuse triangles as 12 x C(4,2) = 72, placing the other two vertices within the next four points instead of the next five, and subtracts: 220 - 60 - 72. The option \"52\" gives the isosceles shape {2,5,5} a mirror image as well, counting it 24 times instead of 12.",
+  "solve": "const n=12;let ac=0,rt=0,ob=0,orient=0;for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)for(let c=b+1;c<n;c++){const m=Math.max(b-a,c-b,n-(c-a));if(2*m<n)ac++;else if(2*m===n)rt++;else ob++;}return ac;",
+  "distractor_solve": {
+   "100": "const n=12;let ac=0,rt=0,ob=0,orient=0;for(let a=0;a<n;a++)for(let b=a+1;b<n;b++)for(let c=b+1;c<n;c++){const m=Math.max(b-a,c-b,n-(c-a));if(2*m<n)ac++;else if(2*m===n)rt++;else ob++;}return 220-ob;",
+   "88": "const C=(n,k)=>{let r=1;for(let i=0;i<k;i++)r=r*(n-i)/(i+1);return r;};return C(12,3)-6*10-12*C(4,2);",
+   "52": "return 24+24+4;",
+   "60": "let ord=0;for(let a=1;a<=5;a++)for(let b=1;b<=5;b++){const c=12-a-b;if(c>=1&&c<=5)ord++;}return 12*ord/2;"
+  }
+ },
+ {
+  "id": "S17B-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "geometric probability: where the center of a coin may land, a ring between two shifted circles",
+  "difficulty": "hard",
+  "prompt": "A circular target has a radius of 6 inches, and a circular bull's-eye with a radius of 2 inches is painted at the center of the target. A coin with a radius of 1 inch is tossed onto the target, and the center of the coin is equally likely to land at any point of the target. What is the probability that the coin lies entirely within the target and does not overlap the bull's-eye at all?",
+  "choices": [
+   "1/3",
+   "7/36",
+   "1/2",
+   "16/25",
+   "4/9"
+  ],
+  "correct_answer": "4/9",
+  "explanation": "Follow the center of the coin. The coin lies inside the target exactly when its center is at most 6 - 1 = 5 inches from the center of the target, and it misses the bull's-eye exactly when its center is at least 2 + 1 = 3 inches from it. So the center must land in the ring between radii 3 and 5, whose area is 25pi - 9pi = 16pi, out of the target's area 36pi. The probability is 16/36 = 4/9. The option \"7/36\" shrinks the target by the coin's diameter (to radius 4) while growing the bull's-eye by the radius: (16 - 9)/36. The option \"16/25\" finds the right ring but divides by the area of the shrunken target, 25pi, instead of the whole target, 36pi, over which the center lands. The option \"1/3\" compares lengths instead of areas: the good stretch of a radius, 5 - 3 = 2, out of 6. The option \"1/2\" divides the ring's area by the part of the target outside the bull's-eye, 16pi/(36pi - 4pi), instead of by the whole target where the center can land.",
+  "solve": "const g=(a,b)=>b?g(b,a%b):a;const f=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const T=6,B=2,c=1;return f((T-c)**2-(B+c)**2,T*T);",
+  "distractor_solve": {
+   "7/36": "const g=(a,b)=>b?g(b,a%b):a;const f=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const T=6,B=2,c=1;return f((T-2*c)**2-(B+c)**2,T*T);",
+   "16/25": "const g=(a,b)=>b?g(b,a%b):a;const f=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const T=6,B=2,c=1;return f((T-c)**2-(B+c)**2,(T-c)**2);",
+   "1/3": "const g=(a,b)=>b?g(b,a%b):a;const f=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const T=6,B=2,c=1;return f((T-c)-(B+c),T);",
+   "1/2": "const g=(a,b)=>b?g(b,a%b):a;const f=(n,d)=>{const k=g(n,d);return (n/k)+'/'+(d/k);};const T=6,B=2,c=1;return f((T-c)**2-(B+c)**2,T*T-B*B);"
+  }
+ },
+ {
+  "id": "S17B-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "angle between two secants meeting outside a circle, from the four arcs",
+  "difficulty": "hard",
+  "prompt": "Points A, B, C and D lie on a circle in that order as you go around it. The four arcs between neighboring points measure as follows: arc AB is 50 degrees, arc BC is 60 degrees, arc CD is 90 degrees and arc DA is 160 degrees (each arc is the one that contains none of the other points). Line AB and line DC are extended past B and past C, and they meet at point P outside the circle. What is the measure, in degrees, of angle APD?",
+  "choices": [
+   "75",
+   "50",
+   "20",
+   "70",
+   "35"
+  ],
+  "correct_answer": "50",
+  "explanation": "Angle ABD is inscribed in the circle and stands on arc AD (160 degrees), so it is 80 degrees. Angle BDC stands on arc BC (60 degrees), so it is 30 degrees. In triangle BPD, the angle ABD at B is an exterior angle (A, B, P lie on one line), so it equals the sum of the two angles of the triangle at P and at D: 80 = angle APD + 30, and angle APD = 50. (Check with triangle PAD: angle PAD = angle DAB = half of arc BCD = (60 + 90)/2 = 75, angle PDA = angle ADC = half of arc ABC = (50 + 60)/2 = 55, and 180 - 75 - 55 = 50.) The option \"75\" is angle DAB, another angle of triangle PAD. The option \"70\" uses the rule for chords that cross INSIDE a circle, half the sum of the arcs AB and CD. The option \"20\" takes half the difference of the arcs AB and CD, the two arcs cut off by the chords on the lines themselves. The option \"35\" takes arc CD instead of arc BC as the near arc: (160 - 90)/2.",
+  "solve": "const AB=50,BC=60,CD=90,DA=160;return (DA-BC)/2;",
+  "distractor_solve": {
+   "75": "const AB=50,BC=60,CD=90,DA=160;return (BC+CD)/2;",
+   "70": "const AB=50,BC=60,CD=90,DA=160;return (AB+CD)/2;",
+   "20": "const AB=50,BC=60,CD=90,DA=160;return (CD-AB)/2;",
+   "35": "const AB=50,BC=60,CD=90,DA=160;return (DA-CD)/2;"
+  }
+ },
+ {
+  "id": "S17B-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "point inside a parallelogram: opposite triangles total half, then the side of a diagonal",
+  "difficulty": "hard",
+  "prompt": "ABCD is a parallelogram, and point P lies inside it. The area of triangle PAB is 14, the area of triangle PBC is 9, and the area of triangle PCD is 22. What is the area of triangle PAC?",
+  "choices": [
+   "27",
+   "49",
+   "22",
+   "13",
+   "23"
+  ],
+  "correct_answer": "13",
+  "explanation": "Triangles PAB and PCD have bases AB and CD, which are equal, and their heights from P add up to the distance between AB and CD. So their areas add up to half the parallelogram: the parallelogram has area 2 x (14 + 22) = 72. Diagonal AC cuts it into two triangles of area 36. Triangles PAB and PBC together cover only 23 < 36, so P lies inside triangle ABC (if P were on the other side of AC, PAB and PBC together would cover all of triangle ABC and more). Triangle ABC is made of PAB, PBC and PAC, so PAC = 36 - 14 - 9 = 13. Check from the other half: PDA = 36 - 9 = 27, P is outside triangle ACD, and PCD + PDA = 22 + 27 = 49 = 36 + PAC, giving 13 again. The option \"27\" is the area of the fourth side triangle, PDA, not PAC. The option \"49\" forgets that the diagonal takes only half: 72 - 14 - 9. The option \"22\" subtracts only PAB from triangle ABC: 36 - 14. The option \"23\" adds PAB and PBC instead of subtracting them from triangle ABC.",
+  "solve": "const pab=14,pbc=9,pcd=22; const total=2*(pab+pcd); const abc=total/2; return abc-pab-pbc;",
+  "distractor_solve": {
+   "27": "const pab=14,pbc=9,pcd=22; const total=2*(pab+pcd); return total/2-pbc;",
+   "49": "const pab=14,pbc=9,pcd=22; const total=2*(pab+pcd); return total-pab-pbc;",
+   "22": "const pab=14,pbc=9,pcd=22; const total=2*(pab+pcd); return total/2-pab;",
+   "23": "const pab=14,pbc=9,pcd=22; return pab+pbc;"
+  }
+ },
+ {
+  "id": "S17B-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equiangular hexagon completed to an equilateral triangle",
+  "difficulty": "hard",
+  "prompt": "In hexagon ABCDEF, all six interior angles are equal. AB = 8, BC = 7, CD = 3 and FA = 6. What is the length of side DE?",
+  "choices": [
+   "11",
+   "8",
+   "15",
+   "4",
+   "5"
+  ],
+  "correct_answer": "11",
+  "explanation": "A hexagon's angles total 720 degrees, so each is 120 degrees and each exterior angle is 60 degrees. Extend sides AB, CD and EF until they meet. They form an equilateral triangle, and the three pieces cut off at its corners - on sides BC, DE and FA - are equilateral triangles with sides BC = 7, DE and FA = 6. The big triangle's side along AB is FA + AB + BC = 6 + 8 + 7 = 21. Its side along CD is BC + CD + DE = 7 + 3 + DE, so DE = 21 - 10 = 11. (Then EF = 21 - DE - FA = 4, and the side along EF is DE + EF + FA = 11 + 4 + 6 = 21.) The option \"8\" assumes opposite sides are equal, as in a regular hexagon (DE = AB). The option \"5\" uses the true relation 'AB - DE = CD - FA' with the sign of the right side reversed: DE = AB + CD - FA. The option \"15\" uses AB + BC = DE + EF but drops EF. The option \"4\" is the length of EF, the other unknown side, not DE.",
+  "solve": "const ab=8,bc=7,cd=3,fa=6; const T=fa+ab+bc; return T-bc-cd;",
+  "distractor_solve": {
+   "8": "const ab=8,bc=7,cd=3,fa=6; return ab;",
+   "5": "const ab=8,bc=7,cd=3,fa=6; return ab+cd-fa;",
+   "15": "const ab=8,bc=7,cd=3,fa=6; return ab+bc;",
+   "4": "const ab=8,bc=7,cd=3,fa=6; const T=fa+ab+bc; const de=T-bc-cd; return T-de-fa;"
+  }
+ },
+ {
+  "id": "S17B-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "six-pointed star in a regular hexagon: union of two triangles via the trisected diagonals",
+  "difficulty": "hard",
+  "prompt": "ABCDEF is a regular hexagon with an area of 72 square units. Triangles ACE and BDF are drawn inside it, and together they form a six-pointed star. What is the area of the star, that is, of the region that lies inside at least one of the two triangles?",
+  "choices": [
+   "54",
+   "64",
+   "48",
+   "40",
+   "63"
+  ],
+  "correct_answer": "48",
+  "explanation": "Triangle ACE is half the hexagon (each of the three outer pieces ABC, CDE, EFA is one sixth), so its area is 36, and so is BDF's. The sides of BDF cut each side of ACE into three equal parts, so ACE is made of 9 small equilateral triangles of area 36/9 = 4: three at its points and six forming the central hexagon that lies inside both triangles. So the overlap is 6 x 4 = 24 and the star is 36 + 36 - 24 = 48 (equivalently, 12 small triangles: the central hexagon plus six points). The option \"54\" takes the central hexagon's side to be half the big hexagon's side, so the overlap is 72/4 = 18. The option \"64\" takes it to be one third of the big hexagon's side (confusing the trisected diagonal with the side), so the overlap is 72/9 = 8. The option \"40\" takes it to be two thirds of the side, so the overlap is 72 x 4/9 = 32. The option \"63\" cuts ACE into four triangles at the midpoints of its sides, so each point has area 9 and the overlap is 36 - 27 = 9.",
+  "solve": "const H=72; const tri=H/2; const small=tri/9; const overlap=6*small; return 2*tri-overlap;",
+  "distractor_solve": {
+   "54": "const H=72; const tri=H/2; return 2*tri-H/4;",
+   "64": "const H=72; const tri=H/2; return 2*tri-H/9;",
+   "40": "const H=72; const tri=H/2; return 2*tri-H*4/9;",
+   "63": "const H=72; const tri=H/2; const point=tri/4; return 2*tri-(tri-3*point);"
+  }
+ },
+ {
+  "id": "S17B-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "surface area added by flat cuts through a block",
+  "difficulty": "medium",
+  "prompt": "A solid block of wood measures 10 inches by 6 inches by 4 inches. Four flat cuts, each parallel to the 6-inch-by-4-inch faces, divide the block into 5 slabs, each 2 inches thick. With the slabs kept together in their original position, one more flat cut, parallel to the 10-inch-by-4-inch faces, passes through the middle of the whole block and splits every slab into two equal pieces. What is the total surface area, in square inches, of the 10 pieces?",
+  "choices": [
+   "384",
+   "568",
+   "440",
+   "488",
+   "520"
+  ],
+  "correct_answer": "520",
+  "explanation": "The block's surface area is 2(10 x 6 + 10 x 4 + 6 x 4) = 2(60 + 40 + 24) = 248. Each of the four slab cuts exposes two new 6-by-4 faces: 4 x 2 x 24 = 192. The last cut crosses the whole block in one 10-by-4 cross-section and exposes two of them: 2 x 40 = 80. Total 248 + 192 + 80 = 520. Check: each piece is 2 by 3 by 4, with surface area 2(6 + 8 + 12) = 52, and 10 x 52 = 520. The option \"384\" adds only ONE new face per cut (248 + 4 x 24 + 40). The option \"440\" forgets the last cut (248 + 192). The option \"488\" counts five cuts for five slabs and forgets the last cut (248 + 5 x 2 x 24). The option \"568\" counts five slab cuts for five slabs (248 + 5 x 2 x 24 + 80).",
+  "solve": "const L=10,W=6,H=4,slabs=5;const S=2*(L*W+L*H+W*H);return S+(slabs-1)*2*W*H+2*L*H;",
+  "distractor_solve": {
+   "384": "const L=10,W=6,H=4,slabs=5;const S=2*(L*W+L*H+W*H);return S+(slabs-1)*W*H+L*H;",
+   "440": "const L=10,W=6,H=4,slabs=5;const S=2*(L*W+L*H+W*H);return S+(slabs-1)*2*W*H;",
+   "488": "const L=10,W=6,H=4,slabs=5;const S=2*(L*W+L*H+W*H);return S+slabs*2*W*H;",
+   "568": "const L=10,W=6,H=4,slabs=5;const S=2*(L*W+L*H+W*H);return S+slabs*2*W*H+2*L*H;"
+  }
+ },
+ {
+  "id": "S17B-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "sphere nestled among eight corner spheres in a cube: tangency along a space diagonal",
+  "difficulty": "hard",
+  "prompt": "A closed box is a cube with inside edges 4 inches long. Eight solid balls, each with a radius of 1 inch, are placed in the box, one in each corner, so that each ball touches the three walls that meet at its corner. A ninth ball is placed with its center at the exact center of the box, and it is just large enough to touch all eight of the other balls. What is the radius, in inches, of the ninth ball?",
+  "choices": [
+   "√2 - 1",
+   "√3 - 1",
+   "√3",
+   "2√3 - 3",
+   "√3/2"
+  ],
+  "correct_answer": "√3 - 1",
+  "explanation": "Put a corner of the box at (0, 0, 0) and the opposite corner at (4, 4, 4). The corner ball there touches the three walls, so its center is 1 inch from each: (1, 1, 1). The box's center is (2, 2, 2). The two centers are opposite corners of a 1-by-1-by-1 cube, so they are sqrt(1 + 1 + 1) = √3 apart. The ninth ball touches the corner ball at a point on the line joining their centers, so its radius plus 1 equals √3: the radius is √3 - 1, about 0.73. The option \"√2 - 1\" is the flat (square-and-circles) version, using a face diagonal of the small cube instead of its space diagonal. The option \"√3/2\" splits the distance between the centers equally, as if the two balls had the same radius. The option \"2√3 - 3\" works along the box's full diagonal, 4√3 = (gap at each end) + (two corner-ball diameters) + (the ninth ball's diameter), but takes each corner gap as 1 inch (the ball's radius) instead of √3 - 1, giving 4√3 = 2 + 4 + 2r. The option \"√3\" takes the distance between the centers as the ninth ball's radius, forgetting to subtract the corner ball's radius.",
+  "solve": "const E=4,R=1;const c=E/2-R;return (c===1?'':String(c))+'√3 - '+R;",
+  "distractor_solve": {
+   "√2 - 1": "const E=4,R=1;const c=E/2-R;return (c===1?'':String(c))+'√2 - '+R;",
+   "√3/2": "const E=4,R=1;const c=E/2-R;return (c===1?'':String(c))+'√3/2';",
+   "2√3 - 3": "const E=4,R=1;const gap=R;const twoR=E*1-2*gap-2*(2*R);return String(E/2)+'√3 - '+String(gap+2*R);",
+   "√3": "const E=4,R=1;const c=E/2-R;return (c===1?'':String(c))+'√3';"
+  }
+ },
+ {
+  "id": "S17B-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "water in a cone standing on its point: volume scales as the cube of the depth, known only through a difference",
+  "difficulty": "hard",
+  "prompt": "A container is shaped like a cone standing on its point: the point is at the bottom, the circular opening is at the top, and its axis is vertical. The container holds some water, which is 4 inches deep at the center. After 380 cubic inches of water are poured in, the water is 6 inches deep at the center, and none has spilled. How many cubic inches of water were in the container before the 380 cubic inches were added?",
+  "choices": [
+   "304",
+   "684",
+   "760",
+   "160",
+   "540"
+  ],
+  "correct_answer": "160",
+  "explanation": "The water always fills a smaller cone with the same shape as the container, with its point at the bottom, so the volume of water is proportional to the cube of its depth. Before: 4^3 = 64 parts. After: 6^3 = 216 parts. The 380 cubic inches poured in are the band between them, 216 - 64 = 152 parts, so one part is 380/152 = 2.5 cubic inches, and the water before was 64 x 2.5 = 160 cubic inches. The option \"760\" treats volume as proportional to depth: 2 inches of depth hold 380, so 4 inches hold 760. The option \"304\" treats volume as proportional to the square of the depth: 36 - 16 = 20 parts hold 380, so 16 parts hold 304. The option \"540\" uses the cube law correctly but reports the water AFTER pouring, 216 x 2.5. The option \"684\" uses the square law and reports the water after pouring, 36 x 19.",
+  "solve": "const d1=4,d2=6,add=380;const part=add/(d2**3-d1**3);return part*d1**3;",
+  "distractor_solve": {
+   "760": "const d1=4,d2=6,add=380;const part=add/(d2-d1);return part*d1;",
+   "304": "const d1=4,d2=6,add=380;const part=add/(d2**2-d1**2);return part*d1**2;",
+   "540": "const d1=4,d2=6,add=380;const part=add/(d2**3-d1**3);return part*d2**3;",
+   "684": "const d1=4,d2=6,add=380;const part=add/(d2**2-d1**2);return part*d2**2;"
+  }
+ },
+ {
+  "id": "S17B-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "shortest broken path to a line: reflect one endpoint across the line",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, A is the point (2, 3) and B is the point (10, 7). Point P can be any point on the x-axis. What is the least possible value of AP + PB?",
+  "choices": [
+   "2√41",
+   "√122",
+   "4√10",
+   "5 + √65",
+   "3√2 + √74"
+  ],
+  "correct_answer": "2√41",
+  "explanation": "Reflect A across the x-axis to A'(2, -3). For every P on the x-axis, AP = A'P, so AP + PB = A'P + PB, which is at least A'B, with equality when P is where segment A'B crosses the axis. A'B = sqrt(8^2 + (7 - (-3))^2) = sqrt(64 + 100) = sqrt(164) = 2√41 (about 12.81). The option √122 squares the two heights separately, sqrt(8^2 + 3^2 + 7^2), instead of squaring their sum. The option 4√10 reflects A across the y-axis instead, to (-2, 3), and measures to B: sqrt(12^2 + 4^2) = sqrt(160). The option 5 + √65 takes P at the midpoint of the two feet, (6, 0): AP = 5 and PB = √65 (about 13.06). The option 3√2 + √74 sends the path down from A at 45 degrees, to P = (5, 0): AP = 3√2 and PB = √74 (about 12.85).",
+  "solve": "const ax=2,ay=3,bx=10,by=7;const simp=n=>{let c=1,r=n;for(let k=2;k*k<=r;k++)while(r%(k*k)===0){r/=k*k;c*=k;}return r===1?String(c):(c===1?'':String(c))+'√'+r;};return simp((bx-ax)**2+(by+ay)**2);",
+  "distractor_solve": {
+   "√122": "const ax=2,ay=3,bx=10,by=7;return '√'+((bx-ax)**2+ay**2+by**2);",
+   "4√10": "const ax=2,ay=3,bx=10,by=7;const simp=n=>{let c=1,r=n;for(let k=2;k*k<=r;k++)while(r%(k*k)===0){r/=k*k;c*=k;}return r===1?String(c):(c===1?'':String(c))+'√'+r;};return simp((bx+ax)**2+(by-ay)**2);",
+   "5 + √65": "const ax=2,ay=3,bx=10,by=7;const px=(ax+bx)/2;const d1=Math.sqrt((px-ax)**2+ay**2);return String(d1)+' + √'+((bx-px)**2+by**2);",
+   "3√2 + √74": "const ax=2,ay=3,bx=10,by=7;const px=ax+ay;return ay+'√2 + √'+((bx-px)**2+by**2);"
+  }
+ },
+ {
+  "id": "S17B-27",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "lattice points strictly inside a right triangle: half of the rectangle's interior points by symmetry",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, a triangle has vertices at (0, 0), (27, 0) and (0, 12). A point is called a lattice point if both of its coordinates are integers. How many lattice points lie strictly inside the triangle (not on any of its sides)?",
+  "choices": [
+   "141",
+   "139",
+   "142",
+   "138",
+   "120"
+  ],
+  "correct_answer": "142",
+  "explanation": "The rectangle with corners (0, 0) and (27, 12) has 26 x 11 = 286 lattice points strictly inside it. The diagonal from (27, 0) to (0, 12) passes through lattice points every (27/3, 12/3) = (9, 4) step, since the greatest common factor of 27 and 12 is 3; that gives 2 lattice points strictly between its ends. A half turn about the rectangle's center (13.5, 6) swaps the two triangles and sends lattice points to lattice points, so the other 286 - 2 = 284 interior points split evenly: 142 in each triangle. The option 141 removes all 4 lattice points of the hypotenuse, including its two ends, which are not among the 286: (286 - 4)/2 (the same number comes from the area 162 minus half of the 42 boundary points). The option 138 starts from all 28 x 13 = 364 lattice points of the closed rectangle, subtracts the 4 hypotenuse points before halving instead of adding them back, (364 - 4)/2 = 180, and then removes the 42 boundary points of the triangle. The option 139 halves correctly, (364 + 4)/2 = 184 points on or inside the triangle, but counts the boundary as 28 + 13 + 4 = 45, counting each corner twice. The option 120 subtracts every boundary point from the area, 162 - 42.",
+  "solve": "const a=27,b=12;const g=(x,y)=>y?g(y,x%y):x;const inner=(a-1)*(b-1);const diag=g(a,b)-1;return (inner-diag)/2;",
+  "distractor_solve": {
+   "141": "const a=27,b=12;const g=(x,y)=>y?g(y,x%y):x;return ((a-1)*(b-1)-(g(a,b)+1))/2;",
+   "138": "const a=27,b=12;const g=(x,y)=>y?g(y,x%y):x;const all=(a+1)*(b+1);const hyp=g(a,b)+1;const boundary=a+b+g(a,b);return (all-hyp)/2-boundary;",
+   "139": "const a=27,b=12;const g=(x,y)=>y?g(y,x%y):x;const all=(a+1)*(b+1);const hyp=g(a,b)+1;return (all+hyp)/2-((a+1)+(b+1)+hyp);",
+   "120": "const a=27,b=12;const g=(x,y)=>y?g(y,x%y):x;return a*b/2-(a+b+g(a,b));"
+  }
+ },
+ {
+  "id": "S17B-29",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "acute triangle with a vertex on a horizontal line: right angle at C exactly on the circle with diameter AB",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, A is the point (0, 0), B is the point (26, 0), and C is the point (k, 12), where k is an integer. For how many values of k is triangle ABC acute, that is, are all three of its angles less than 90 degrees?",
+  "choices": [
+   "16",
+   "22",
+   "18",
+   "23",
+   "14"
+  ],
+  "correct_answer": "14",
+  "explanation": "The angle at A is acute only if C is to the right of the vertical line x = 0, and the angle at B only if C is to the left of x = 26, so 0 < k < 26 (k = 0 and k = 26 give right angles). The angle at C is right exactly when C is on the circle with diameter AB (center (13, 0), radius 13), obtuse inside it and acute outside it. On the line y = 12 the circle is crossed where (k - 13)^2 + 12^2 = 13^2, that is k - 13 = 5 or -5, so k = 8 or 18. The angle at C is acute when |k - 13| > 5. Together: k = 1, ..., 7 and k = 19, ..., 25, which is 14 values. The option 16 counts k = 8 and k = 18, where the angle at C is exactly 90 degrees, as acute. The option 18 counts all four right-triangle positions (k = 0, 8, 18, 26) as acute. The option 22 takes the horizontal limit as 13 - 12 = 1 instead of sqrt(13^2 - 12^2) = 5, so it keeps every k from 1 to 25 except 12, 13 and 14. The option 23 removes only the two right-angle positions at C from k = 1, ..., 25, missing that every C inside the circle makes an obtuse angle.",
+  "solve": "const L=26,h=12;const ok=k=>{const dA=(L-0)*(k-0);const dB=(0-L)*(k-L);const dC=(0-k)*(L-k)+(0-h)*(0-h);return dA>0&&dB>0&&dC>0;};let n=0;for(let k=-100;k<=200;k++)if(ok(k))n++;return n;",
+  "distractor_solve": {
+   "16": "const L=26,h=12;const r=L/2;let n=0;for(let k=1;k<L;k++)if((k-r)**2+h*h>=r*r)n++;return n;",
+   "18": "const L=26,h=12;const r=L/2;let n=0;for(let k=0;k<=L;k++)if((k-r)**2+h*h>=r*r)n++;return n;",
+   "22": "const L=26,h=12;const r=L/2;let n=0;for(let k=1;k<L;k++)if(Math.abs(k-r)>r-h)n++;return n;",
+   "23": "const L=26,h=12;const r=L/2;let n=0;for(let k=1;k<L;k++)if((k-r)**2+h*h!==r*r)n++;return n;"
+  }
+ },
+ {
+  "id": "S17B-31",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "right triangle on the axes: circumcenter at the hypotenuse midpoint, incenter at (r, r)",
+  "difficulty": "hard",
+  "prompt": "In the coordinate plane, triangle ABC has vertices A(0, 0), B(8, 0) and C(0, 6). Point O is the center of the circle that passes through A, B and C. Point I is the center of the circle that lies inside the triangle and touches all three of its sides. What is the distance between O and I?",
+  "choices": [
+   "3",
+   "√5",
+   "2",
+   "√13",
+   "2√2"
+  ],
+  "correct_answer": "√5",
+  "explanation": "Angle A is a right angle, so BC is a diameter of the circle through A, B and C; BC = 10 and O is its midpoint, (4, 3). The inside circle touches both axes, so I = (r, r). The tangent segments from A, B and C have lengths r, 8 - r and 6 - r, and the two from B and C together make BC: (8 - r) + (6 - r) = 10, so r = 2 and I = (2, 2). Then OI = the square root of (4 - 2)^2 + (3 - 2)^2 = √5. The option 2 uses only the horizontal gap, 4 - 2, and drops the vertical one. The option 3 subtracts the radii, 5 - 2, as if the centers were lined up with a point where the circles touch. The option √13 finds r as area divided by perimeter, 24/24 = 1 (the formula needs half the perimeter), so I = (1, 1). The option 2√2 takes the midpoint of the longer leg, (4, 0), as the center of the circle through the vertices.",
+  "solve": "const a=8,b=6; const c=Math.sqrt(a*a+b*b); const r=(a+b-c)/2; const d2=(a/2-r)**2+(b/2-r)**2; return '√'+d2;",
+  "distractor_solve": {
+   "2": "const a=8,b=6; const c=Math.sqrt(a*a+b*b); const r=(a+b-c)/2; return a/2-r;",
+   "3": "const a=8,b=6; const c=Math.sqrt(a*a+b*b); const r=(a+b-c)/2; return c/2-r;",
+   "√13": "const a=8,b=6; const c=Math.sqrt(a*a+b*b); const r=(a*b/2)/(a+b+c); const d2=(a/2-r)**2+(b/2-r)**2; return '√'+d2;",
+   "2√2": "const a=8,b=6; const c=Math.sqrt(a*a+b*b); const r=(a+b-c)/2; const d2=(a/2-r)**2+(0-r)**2; const k=Math.sqrt(d2/2); return k+'√2';"
+  }
+ },
+ {
+  "id": "S17C-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pairs of groups where one group lies inside the other",
+  "difficulty": "hard",
+  "prompt": "A club has 5 members. On Monday some of the members attend a meeting, and on Tuesday some of the members attend a meeting; on either day the group that attends may be any of the members, including none of them or all of them. Every member who attends on Monday also attends on Tuesday. An attendance record lists which members attended on Monday and which members attended on Tuesday. How many different attendance records are possible?",
+  "choices": [
+   "512",
+   "125",
+   "112",
+   "243",
+   "211"
+  ],
+  "correct_answer": "243",
+  "explanation": "Look at one member at a time. The rule forbids only one history, attending Monday but not Tuesday, so each member has exactly 3 possible histories: neither day, Tuesday only, or both days. The 5 members choose independently, so there are 3^5 = 243 records. (Check by cases: a Tuesday group of k members can be chosen in C(5,k) ways and then holds 2^k possible Monday groups; 1 + 10 + 40 + 80 + 80 + 32 = 243.) The option \"512\" takes half of all 32 x 32 = 1024 pairs of groups, assuming that in half of all pairs Monday's group sits inside Tuesday's. The option \"125\" computes 5^3 instead of 3^5. The option \"112\" counts, for each Tuesday group of k members, only k + 1 Monday groups (one for each possible size) instead of 2^k groups, giving 32 + 80. The option \"211\" leaves out the 32 records in which the same members attend on both days, reading the rule as if Tuesday's group had to be larger.",
+  "solve": "var c=0;for(var m=0;m<32;m++)for(var t=0;t<32;t++){if((m&~t)===0)c++;}return c;",
+  "distractor_solve": {
+   "512": "return (32*32)/2;",
+   "125": "return Math.pow(5,3);",
+   "112": "var s=0;var C=[1,5,10,10,5,1];for(var k=0;k<=5;k++)s+=C[k]*(k+1);return s;",
+   "211": "var c=0;for(var m=0;m<32;m++)for(var t=0;t<32;t++){if((m&~t)===0)c++;}return c-32;"
+  }
+ },
+ {
+  "id": "S17C-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "line-up avoiding two separate adjacencies",
+  "difficulty": "hard",
+  "prompt": "Six friends, including Amy, Ben, Cara and Dan, line up in a row for a photograph. Amy refuses to stand next to Ben, and Cara refuses to stand next to Dan. In how many different orders can the six friends line up?",
+  "choices": [
+   "336",
+   "288",
+   "432",
+   "264",
+   "320"
+  ],
+  "correct_answer": "336",
+  "explanation": "There are 6! = 720 orders. Orders with Amy next to Ben: glue them into one block, 5! x 2 = 240; likewise 240 with Cara next to Dan. Orders with both pairs together: two blocks and two other people, 4! x 2 x 2 = 96. Orders breaking at least one rule: 240 + 240 - 96 = 384, so 720 - 384 = 336 keep both rules. The option \"288\" counts the both-together orders as 4! x 2 = 48, giving only one of the two blocks its two orders. The option \"264\" counts them as 4! = 24, giving neither block its two orders. The option \"432\" adds the 96 back twice (720 - 480 + 192). The option \"320\" multiplies 720 by 2/3 and 2/3, treating the two rules as independent.",
+  "solve": "var perm=function(a){if(a.length<=1)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));var ps=perm(rest);for(var j=0;j<ps.length;j++)r.push([a[i]].concat(ps[j]));}return r;}; var P=perm([0,1,2,3,4,5]),c=0; for(var k=0;k<P.length;k++){var p=P[k]; if(Math.abs(p.indexOf(0)-p.indexOf(1))>1&&Math.abs(p.indexOf(2)-p.indexOf(3))>1)c++;} return c;",
+  "distractor_solve": {
+   "288": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; return f(6)-2*2*f(5)+2*f(4);",
+   "264": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; return f(6)-2*2*f(5)+f(4);",
+   "432": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; return f(6)-2*2*f(5)+2*(4*f(4));",
+   "320": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; return f(6)*(2/3)*(2/3);"
+  }
+ },
+ {
+  "id": "S17C-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "four-digit numbers whose digits alternate odd and even",
+  "difficulty": "medium",
+  "prompt": "In some four-digit positive integers, the digits alternate between odd and even from left to right, such as 3816 and 2105. How many four-digit positive integers have this property?",
+  "choices": [
+   "1250",
+   "625",
+   "1125",
+   "800",
+   "1025"
+  ],
+  "correct_answer": "1125",
+  "explanation": "The first digit can be any of 1 to 9: 9 ways. Each later digit must have the opposite parity from the digit before it; there are always exactly 5 such digits (1, 3, 5, 7, 9 or 0, 2, 4, 6, 8). Total 9 x 5 x 5 x 5 = 1125. (By cases: odd first 5 x 5 x 5 x 5 = 625, even first 4 x 5 x 5 x 5 = 500.) The option \"1250\" lets the first digit be 0 (10 x 125). The option \"625\" counts only the numbers that start with an odd digit. The option \"800\" never uses the digit 0 anywhere, so odd and even places have 5 and 4 choices: 5 x 4 x 5 x 4 + 4 x 5 x 4 x 5. The option \"1025\" forgets 0 only in the even-first case (625 + 4 x 5 x 4 x 5).",
+  "solve": "var c=0; for(var n=1000;n<10000;n++){var s=String(n),ok=true; for(var i=1;i<4;i++){if((+s[i])%2===(+s[i-1])%2)ok=false;} if(ok)c++;} return c;",
+  "distractor_solve": {
+   "1250": "return 10*5*5*5;",
+   "625": "return 5*5*5*5;",
+   "800": "return 5*4*5*4+4*5*4*5;",
+   "1025": "return 5*5*5*5+4*5*4*5;"
+  }
+ },
+ {
+  "id": "S17C-08",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three dice, condition on the total",
+  "difficulty": "hard",
+  "prompt": "Three fair six-sided dice, each numbered 1 through 6, are rolled. The sum of the three numbers showing is 9. Given this, what is the probability that at least one of the three dice shows a 6?",
+  "choices": [
+   "1/6",
+   "3/14",
+   "2/25",
+   "2/9",
+   "6/25"
+  ],
+  "correct_answer": "6/25",
+  "explanation": "The rolls of three dice are ordered and equally likely. Rolls with total 9: sharing 9 among three dice that each show at least 1 gives C(8,2) = 28 ordered rolls, but 3 of these have a die showing 7 (7, 1, 1 in some order), which a die cannot show, so 25 rolls remain. A roll with a 6 has the other two dice adding to 3, which is 1 and 2 in either order: 2 rolls for each of the 3 positions of the 6, so 6 rolls (two 6s are impossible). The probability is 6/25. The option \"1/6\" counts sets of numbers instead of ordered rolls: of the 6 sets {6,2,1}, {5,3,1}, {5,2,2}, {4,4,1}, {4,3,2}, {3,3,3}, one contains a 6. The option \"3/14\" forgets the 6-cap and divides by all 28 ways of sharing 9. The option \"2/9\" removes only one of the three rolls with a 7 (27 rolls). The option \"2/25\" answers for one named die only (the first die shows 6 in 2 of the 25 rolls), forgetting the 6 can be on any of the three dice.",
+  "solve": "var all=0,g=0;for(var a=1;a<=6;a++)for(var b=1;b<=6;b++)for(var c=1;c<=6;c++){if(a+b+c===9){all++;if(a===6||b===6||c===6)g++;}}return g/all;",
+  "distractor_solve": {
+   "1/6": "var sets=0,six=0;for(var a=1;a<=6;a++)for(var b=a;b<=6;b++)for(var c=b;c<=6;c++){if(a+b+c===9){sets++;if(c===6)six++;}}return six/sets;",
+   "3/14": "var all=0,g=0;for(var a=1;a<=7;a++)for(var b=1;b<=7;b++)for(var c=1;c<=7;c++){if(a+b+c===9){all++;if(a===6||b===6||c===6)g++;}}return g/all;",
+   "2/9": "var all=0,g=0;for(var a=1;a<=7;a++)for(var b=1;b<=7;b++)for(var c=1;c<=7;c++){if(a+b+c===9){all++;if(a===6||b===6||c===6)g++;}}return g/(all-1);",
+   "2/25": "var all=0,g=0;for(var a=1;a<=6;a++)for(var b=1;b<=6;b++)for(var c=1;c<=6;c++){if(a+b+c===9){all++;if(a===6)g++;}}return g/all;"
+  }
+ },
+ {
+  "id": "S17C-10",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "random hand-back, nobody gets their own",
+  "difficulty": "hard",
+  "prompt": "Four friends each bring a different gift to a party. The four gifts are mixed up and handed back at random, one gift to each friend, with every way of handing them back equally likely. What is the probability that no friend gets back the gift he or she brought?",
+  "choices": [
+   "1/3",
+   "3/8",
+   "7/24",
+   "1/4",
+   "81/256"
+  ],
+  "correct_answer": "3/8",
+  "explanation": "There are 4! = 24 equally likely ways. Say friend A's gift goes to one of the other three, B. If B's gift goes back to A, the remaining two must swap: 1 way. If B's gift goes to one of the other two, every remaining gift is then forced: 2 ways. So 3 x (1 + 2) = 9 ways, and the probability is 9/24 = 3/8. (Inclusion-exclusion agrees: 1 - 1 + 1/2 - 1/6 + 1/24 = 3/8.) The option \"81/256\" multiplies (3/4)^4, treating the four friends as independent. The option \"1/4\" multiplies 3/4 x 2/3 x 1/2, as if each friend in turn avoided their own gift from those left. The option \"1/3\" stops inclusion-exclusion before the last term (1 - 1 + 1/2 - 1/6). The option \"7/24\" subtracts the last (all-four) term instead of adding it (1 - 1 + 1/2 - 1/6 - 1/24).",
+  "solve": "var perm=function(a){if(a.length<=1)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));var ps=perm(rest);for(var j=0;j<ps.length;j++)r.push([a[i]].concat(ps[j]));}return r;};var P=perm([0,1,2,3]),g=0;for(var k=0;k<P.length;k++){var ok=true;for(var i=0;i<4;i++)if(P[k][i]===i)ok=false;if(ok)g++;}return g/P.length;",
+  "distractor_solve": {
+   "81/256": "return Math.pow(3/4,4);",
+   "1/4": "return (3/4)*(2/3)*(1/2);",
+   "1/3": "return 1-1+1/2-1/6;",
+   "7/24": "return 1-1+1/2-1/6-1/24;"
+  }
+ },
+ {
+  "id": "S17C-12",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "draw without replacement until a colour repeats",
+  "difficulty": "hard",
+  "prompt": "A bag holds 9 marbles: 3 red, 3 blue and 3 green. Lena draws marbles from the bag one at a time, at random and without putting any back, and she stops as soon as two of the marbles she has drawn are the same color. What is the probability that Lena makes exactly 4 draws?",
+  "choices": [
+   "3/7",
+   "2/9",
+   "5/28",
+   "9/28",
+   "3/56"
+  ],
+  "correct_answer": "9/28",
+  "explanation": "With three colors, the fourth marble always matches one of three different colors already drawn, so Lena never needs a fifth draw, and she makes exactly 4 draws exactly when her first 3 marbles are all different colors. The first marble is anything; the second must be one of the 6 marbles of the other two colors out of 8; the third must be one of the 3 marbles of the remaining color out of 7. So (6/8)(3/7) = 18/56 = 9/28. The option \"3/7\" is the chance she stops on the third draw, (6/8)(4/7). The option \"2/9\" treats the draws as if the marbles were put back, (2/3)(1/3). The option \"5/28\" works 1 - 1/4 - 4/7, using 4/7 as the chance of stopping on the third draw without requiring the first two to differ. The option \"3/56\" divides the 27 ways to pick one marble of each color by the 504 ordered draws of three marbles, mixing an unordered count with an ordered one.",
+  "solve": "var col=[0,0,0,1,1,1,2,2,2],c4=0,tot=0;var rec=function(left,drawn){var seen={};for(var i=0;i<drawn.length;i++){if(seen[drawn[i]]){return drawn.length;}seen[drawn[i]]=1;}return -1;};for(var a=0;a<9;a++)for(var b=0;b<9;b++)for(var c=0;c<9;c++)for(var d=0;d<9;d++){if(a===b||a===c||a===d||b===c||b===d||c===d)continue;tot++;var seq=[col[a],col[b],col[c],col[d]],n=-1;for(var k=2;k<=4;k++){var r=rec(null,seq.slice(0,k));if(r>0){n=k;break;}}if(n===4)c4++;}return c4/tot;",
+  "distractor_solve": {
+   "3/7": "return (6/8)*(4/7);",
+   "2/9": "return (2/3)*(1/3);",
+   "5/28": "return 1-2/8-4/7;",
+   "3/56": "return (3*3*3)/(9*8*7);"
+  }
+ },
+ {
+  "id": "S17C-14",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "two combined means fix the size ratios; the third combination follows",
+  "difficulty": "hard",
+  "prompt": "Three boxes hold apples. The mean mass of the apples in box P is 155 grams, in box Q is 188 grams, and in box R is 160 grams. When the apples in boxes P and Q are put together, their mean mass is 166 grams. When the apples in boxes P and R are put together, their mean mass is 158 grams. What is the mean mass, in grams, of the apples in boxes Q and R put together?",
+  "choices": [
+   "167",
+   "181",
+   "163",
+   "172",
+   "169"
+  ],
+  "correct_answer": "167",
+  "explanation": "Let the boxes hold p, q and r apples. From P and Q: 155p + 188q = 166(p + q), so 22q = 11p and p = 2q. From P and R: 155p + 160r = 158(p + r), so 2r = 3p and r = 3p/2 = 3q. So q : r = 1 : 3, and the mean for Q and R is (188 x 1 + 160 x 3)/4 = 668/4 = 167 grams. The option \"181\" uses q : r = 3 : 1, putting each box's weight on the wrong side (the lever rule reversed). The option \"172\" reverses only the P-and-R ratio (r = 2p/3), giving q : r = 3 : 4. The option \"163\" is the mean of all three boxes together, (310 + 188 + 480)/6. The option \"169\" adds the two changes from P's mean, 166 + 158 - 155, as if they combined directly.",
+  "solve": "var P=155,Q=188,R=160,PQ=166,PR=158;var qp=(PQ-P)/(Q-PQ);var rp=(PR-P)/(R-PR);return (qp*Q+rp*R)/(qp+rp);",
+  "distractor_solve": {
+   "181": "var P=155,Q=188,R=160,PQ=166,PR=158;var qp=(PQ-P)/(Q-PQ);var rp=(PR-P)/(R-PR);return (rp*Q+qp*R)/(qp+rp);",
+   "172": "var P=155,Q=188,R=160,PQ=166,PR=158;var qp=(PQ-P)/(Q-PQ);var rp=(R-PR)/(PR-P);return (qp*Q+rp*R)/(qp+rp);",
+   "163": "return (2*155+1*188+3*160)/6;",
+   "169": "return 166+158-155;"
+  }
+ },
+ {
+  "id": "S17C-16",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "mean group size recovered from members' reports of their own group's size",
+  "difficulty": "hard",
+  "prompt": "At a summer camp, every camper belongs to exactly one activity group. Each camper was asked how many campers, counting himself or herself, are in his or her own group, and every answer was correct. 35 campers answered 7, 75 campers answered 25, and 80 campers answered 40. What is the average (arithmetic mean) number of campers per group?",
+  "choices": [
+   "25",
+   "16",
+   "19",
+   "28",
+   "24"
+  ],
+  "correct_answer": "19",
+  "explanation": "The 35 campers who answered 7 are in groups of 7, so there are 35/7 = 5 such groups. Likewise there are 75/25 = 3 groups of 25 and 80/40 = 2 groups of 40. That is 35 + 75 + 80 = 190 campers in 5 + 3 + 2 = 10 groups, so the mean is 190/10 = 19 campers per group. The option \"28\" is the mean of the 190 campers' answers, (35 x 7 + 75 x 25 + 80 x 40)/190 = 5320/190; it counts a group of 40 forty times and a group of 7 only seven times. The option \"24\" is the average of the three sizes 7, 25 and 40, as if there were one group of each size. The option \"25\" is the middle answer of the 190 campers (the 95th and 96th answers in order are both 25). The option \"16\" is the median of the ten group sizes 7, 7, 7, 7, 7, 25, 25, 25, 40, 40, which is (7 + 25)/2, not their mean.",
+  "solve": "var sizes=[7,25,40],ans=[35,75,80],m=0,g=0;for(var i=0;i<3;i++){m+=ans[i];g+=ans[i]/sizes[i];}return m/g;",
+  "distractor_solve": {
+   "28": "var sizes=[7,25,40],ans=[35,75,80],s=0,n=0;for(var i=0;i<3;i++){s+=ans[i]*sizes[i];n+=ans[i];}return s/n;",
+   "24": "return (7+25+40)/3;",
+   "25": "var L=[];var sizes=[7,25,40],ans=[35,75,80];for(var i=0;i<3;i++)for(var j=0;j<ans[i];j++)L.push(sizes[i]);L.sort(function(a,b){return a-b});return (L[94]+L[95])/2;",
+   "16": "var L=[];var sizes=[7,25,40],ans=[35,75,80];for(var i=0;i<3;i++)for(var j=0;j<ans[i]/sizes[i];j++)L.push(sizes[i]);L.sort(function(a,b){return a-b});var n=L.length;return n%2?L[(n-1)/2]:(L[n/2-1]+L[n/2])/2;"
+  }
+ },
+ {
+  "id": "S17C-18",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "one number moved between two groups raises both means; total count from the unchanged grand total",
+  "difficulty": "hard",
+  "prompt": "Group A is a collection of numbers whose mean is 12, and group B is a collection of numbers whose mean is 51. One number is moved from group B to group A. After the move, the mean of the numbers in group A is 15 and the mean of the numbers in group B is 54. How many numbers are there in groups A and B altogether?",
+  "choices": [
+   "21",
+   "39",
+   "18",
+   "23",
+   "13"
+  ],
+  "correct_answer": "13",
+  "explanation": "Let group A start with a numbers and group B with b numbers. Moving a number does not change the grand total, so 12a + 51b = 15(a + 1) + 54(b - 1). This gives 12a + 51b = 15a + 54b - 39, so 3a + 3b = 39 and a + b = 13. The individual sizes and the moved number are not determined (for example a = 4, b = 9 with the number 27 moved, or a = 6, b = 7 with 33 moved), but every possibility has 13 numbers in all. The option \"39\" stops at 3(a + b) = 39 and does not divide by the 3-point rise. The option \"18\" forgets that group A gains a member, writing A's new mean as (12a + x)/a = 15, so x = 3a, together with x = 54 - 3b from group B. The option \"23\" has group A lose a member as group B does, writing (12a + x)/(a - 1) = 15. The option \"21\" adds the two means where the equation subtracts them, (12 + 51)/3.",
+  "solve": "var tot=null;for(var a=1;a<200;a++)for(var b=2;b<200;b++){var x=15*(a+1)-12*a;if(Math.abs((51*b-x)/(b-1)-54)<1e-9&&x>0){if(tot===null)tot=a+b;else if(tot!==a+b)return 'not unique';}}return tot;",
+  "distractor_solve": {
+   "39": "return 51-12;",
+   "18": "for(var a=1;a<200;a++)for(var b=2;b<200;b++){var x=15*a-12*a;if(Math.abs((51*b-x)/(b-1)-54)<1e-9)return a+b;}return null;",
+   "23": "for(var a=2;a<200;a++)for(var b=2;b<200;b++){var x=15*(a-1)-12*a;if(x>0&&Math.abs((51*b-x)/(b-1)-54)<1e-9)return a+b;}return null;",
+   "21": "return (12+51)/3;"
+  }
+ },
+ {
+  "id": "S17C-20",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three-term arithmetic sequences chosen from 1 to 22",
+  "difficulty": "hard",
+  "prompt": "How many different sets of three different integers, each from 1 through 22 inclusive, can be listed in some order as an arithmetic sequence? (For example, the set {4, 9, 14} is one such set, since 4, 9, 14 is an arithmetic sequence. The order in which the three numbers are listed does not matter.)",
+  "choices": [
+   "120",
+   "110",
+   "210",
+   "132",
+   "165"
+  ],
+  "correct_answer": "110",
+  "explanation": "Write the set as a < b < c. It is an arithmetic sequence exactly when b is the average of a and c, so a and c must add to an even number, i.e. have the same parity, and then b = (a + c)/2 is automatically a different whole number between them. So each pair of outer terms of the same parity gives exactly one set. There are 11 odd and 11 even numbers from 1 to 22, so the count is C(11,2) + C(11,2) = 55 + 55 = 110. (Check by common difference d: the first term can be 1 through 22 - 2d, so the count is 20 + 18 + ... + 2 = 110.) The option \"120\" counts 23 - 2d first terms for each d from 1 to 10 instead of 22 - 2d (off by one each time). The option \"132\" also counts the 22 'sequences' with common difference 0 (one number used three times), 22 + 20 + ... + 2, though the three integers must be different. The option \"165\" counts 22 - d first terms for each d from 1 to 10, forgetting that the third term is 2d (not d) above the first. The option \"210\" fixes the middle term m and counts every difference that keeps the smallest term at least 1 (m - 1 choices), forgetting that the largest term must not exceed 22: 1 + 2 + ... + 20.",
+  "solve": "var c=0;for(var a=1;a<=22;a++)for(var b=a+1;b<=22;b++)for(var x=b+1;x<=22;x++){if(b-a===x-b)c++;}return c;",
+  "distractor_solve": {
+   "120": "var s=0;for(var d=1;d<=10;d++)s+=23-2*d;return s;",
+   "132": "var s=0;for(var d=0;d<=10;d++)s+=22-2*d;return s;",
+   "165": "var s=0;for(var d=1;d<=10;d++)s+=22-d;return s;",
+   "210": "var s=0;for(var m=2;m<=21;m++)s+=m-1;return s;"
+  }
+ },
+ {
+  "id": "S17C-22",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "squares, tilted or not, with vertices in a 5-by-5 array of points",
+  "difficulty": "hard",
+  "prompt": "The 25 points (x, y), where x and y are each one of the integers 0, 1, 2, 3 and 4, form a square array. How many squares have all four of their vertices among these 25 points? (A square's sides do not have to be horizontal or vertical.)",
+  "choices": [
+   "40",
+   "55",
+   "64",
+   "50",
+   "48"
+  ],
+  "correct_answer": "50",
+  "explanation": "Every such square fits inside a smallest upright square of the array with its four vertices on the four sides of that upright square (its bounding square). An upright square of side k holds exactly k such squares: itself, and one tilted square for each of the k - 1 interior points of its bottom side where a vertex can sit. The array has (5 - k)^2 upright squares of side k, so the count is 16 x 1 + 9 x 2 + 4 x 3 + 1 x 4 = 16 + 18 + 12 + 4 = 50. (By side length: 16 of side 1, 9 of side 2, 4 of side 3, 1 of side 4, 9 of side sqrt(2), 8 of side sqrt(5), 1 of side sqrt(8), 2 of side sqrt(10).) The option \"40\" adds only the squares tilted at 45 degrees (sides sqrt(2) and sqrt(8)) to the 30 upright ones. The option \"48\" misses the two squares of side sqrt(10), whose bounding square is the whole array. The option \"55\" counts the squares on a 5-by-5 board of unit cells, 1 + 4 + 9 + 16 + 25, as if the 25 points were 25 cells. The option \"64\" adds k tilted squares (instead of k - 1) for each upright square of side k at least 2 to the 30 upright squares, so it counts each upright square of side 2 or more twice: 30 + 9 x 2 + 4 x 3 + 1 x 4.",
+  "solve": "var P={};for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)P[x+','+y]=1;var c=0;for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)for(var a=1;a<=4;a++)for(var b=0;b<=4;b++){if(!(true))continue;var ok=P[(x+a)+','+(y+b)]&&P[(x+a-b)+','+(y+b+a)]&&P[(x-b)+','+(y+a)];if(ok)c++;}return c;",
+  "distractor_solve": {
+   "40": "var P={};for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)P[x+','+y]=1;var c=0;for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)for(var a=1;a<=4;a++)for(var b=0;b<=4;b++){if(!(b===0||a===b))continue;var ok=P[(x+a)+','+(y+b)]&&P[(x+a-b)+','+(y+b+a)]&&P[(x-b)+','+(y+a)];if(ok)c++;}return c;",
+   "48": "var P={};for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)P[x+','+y]=1;var c=0;for(var x=0;x<=4;x++)for(var y=0;y<=4;y++)for(var a=1;a<=4;a++)for(var b=0;b<=4;b++){if(!(!((a===3&&b===1)||(a===1&&b===3))))continue;var ok=P[(x+a)+','+(y+b)]&&P[(x+a-b)+','+(y+b+a)]&&P[(x-b)+','+(y+a)];if(ok)c++;}return c;",
+   "55": "var s=0;for(var k=1;k<=5;k++)s+=k*k;return s;",
+   "64": "var s=0;for(var k=1;k<=4;k++)s+=(5-k)*(5-k);for(var k=2;k<=4;k++)s+=(5-k)*(5-k)*k;return s;"
+  }
+ },
+ {
+  "id": "S17C-24",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "three-digit numbers containing both of two given digits",
+  "difficulty": "medium",
+  "prompt": "How many three-digit positive integers contain at least one digit 3 and at least one digit 7? (For example, 307, 773 and 437 are counted, but 335 is not.)",
+  "choices": [
+   "52",
+   "54",
+   "46",
+   "49",
+   "48"
+  ],
+  "correct_answer": "52",
+  "explanation": "There are 900 three-digit integers. Those with no 3: 8 x 9 x 9 = 648 (first digit not 0 or 3). Likewise 648 have no 7. Those with neither 3 nor 7: 7 x 8 x 8 = 448. By inclusion-exclusion the number missing a 3 or missing a 7 is 648 + 648 - 448 = 848, so 900 - 848 = 52 contain both. (Check by cases: digits 3, 7 and a different digit x: x one of 1, 2, 4, 5, 6, 8, 9 gives 7 x 6 = 42, x = 0 gives 4 orders with 0 not first; digits 3, 3, 7 or 3, 7, 7 give 3 + 3 = 6; total 52.) The option \"54\" counts the strings 000 through 999, letting 0 lead (it includes 037 and 073): 1000 - 729 - 729 + 512. The option \"46\" leaves out the numbers with a repeated digit, such as 337 and 377. The option \"48\" places the 3 and the 7 in 6 ordered ways and the third digit as any of the 8 other digits, which both lets 0 lead and leaves out the repeats. The option \"49\" counts the numbers with two 3s (337, 373, 733) but forgets those with two 7s: 42 + 4 + 3.",
+  "solve": "function ok(n){var s=String(n);return s.indexOf('3')>=0&&s.indexOf('7')>=0;} var c=0;for(var n=100;n<=999;n++)if(ok(n))c++;return c;",
+  "distractor_solve": {
+   "54": "function ok(n){var s=String(n);return s.indexOf('3')>=0&&s.indexOf('7')>=0;} var c=0;for(var n=0;n<=999;n++)if(ok(n))c++;return c;",
+   "46": "function ok(n){var s=String(n);return s.indexOf('3')>=0&&s.indexOf('7')>=0;} var c=0;for(var n=100;n<=999;n++){var s=String(n);if(ok(n)&&s[0]!==s[1]&&s[1]!==s[2]&&s[0]!==s[2])c++;}return c;",
+   "48": "return 6*8;",
+   "49": "return 7*6+4+3;"
+  }
+ },
+ {
+  "id": "S17C-26",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pigeonhole guarantee for a pair summing to a multiple of 8",
+  "difficulty": "hard",
+  "prompt": "Integers are to be chosen from 1 through 40, inclusive, with no integer chosen more than once. What is the least number of integers that must be chosen to be certain that two of the chosen integers have a sum that is a multiple of 8?",
+  "choices": [
+   "21",
+   "26",
+   "18",
+   "16",
+   "22"
+  ],
+  "correct_answer": "18",
+  "explanation": "Two integers have a sum that is a multiple of 8 exactly when their remainders on division by 8 add to 8 or are both 0. Each remainder 0, 1, ..., 7 occurs exactly 5 times in 1 through 40. Remainders 1 and 7 clash with each other, as do 2 and 6, and 3 and 5, so a choice with no clash can take all five numbers of one class from each of these three pairs: 15 numbers. Two numbers with remainder 0 clash (their sum is a multiple of 8), and so do two numbers with remainder 4 (4 + 4 = 8), so at most one number from each of those classes can be added: 15 + 1 + 1 = 17 numbers with no clash, for example 1, 2, 3, 9, 10, 11, 17, 18, 19, 25, 26, 27, 33, 34, 35, 4, 8. Any 18 integers must contain a clash, so the answer is 18. The option 16 builds the 15 from the three matched pairs but forgets that one number with remainder 0 and one with remainder 4 can also be added. The option 22 remembers that only one multiple of 8 can be used but takes all five numbers with remainder 4, missing that 4 + 4 = 8 makes two of them clash (21 + 1). The option 26 takes all five numbers from both the remainder-0 and remainder-4 classes as well (25 + 1). The option 21 treats the 40 integers as 20 clashing pairs and takes one from each pair plus one more.",
+  "solve": "var r=[0,0,0,0,0,0,0,0];for(var x=1;x<=40;x++)r[x%8]++;var m=Math.min(r[0],1)+Math.min(r[4],1);for(var a=1;a<=3;a++)m+=Math.max(r[a],r[8-a]);return m+1;",
+  "distractor_solve": {
+   "16": "var r=[0,0,0,0,0,0,0,0];for(var x=1;x<=40;x++)r[x%8]++;var m=0;for(var a=1;a<=3;a++)m+=Math.max(r[a],r[8-a]);return m+1;",
+   "22": "var r=[0,0,0,0,0,0,0,0];for(var x=1;x<=40;x++)r[x%8]++;var m=Math.min(r[0],1)+r[4];for(var a=1;a<=3;a++)m+=Math.max(r[a],r[8-a]);return m+1;",
+   "26": "var r=[0,0,0,0,0,0,0,0];for(var x=1;x<=40;x++)r[x%8]++;var m=r[0]+r[4];for(var a=1;a<=3;a++)m+=Math.max(r[a],r[8-a]);return m+1;",
+   "21": "return 40/2+1;"
+  }
+ },
+ {
+  "id": "S17C-28",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "arrangements of 1-5 with the front pair outweighing the back pair",
+  "difficulty": "hard",
+  "prompt": "A five-digit number is formed by using each of the digits 1, 2, 3, 4 and 5 exactly once. For how many of these numbers is the sum of the first two digits greater than the sum of the last two digits? (For example, 53412 is counted, since 5 + 3 is greater than 1 + 2.)",
+  "choices": [
+   "56",
+   "36",
+   "72",
+   "40",
+   "48"
+  ],
+  "correct_answer": "48",
+  "explanation": "There are 5! = 120 such numbers. Swapping the first two digits with the last two (abcde becomes decab) keeps the middle digit and exchanges the two sums, so it matches each number whose front sum is greater with one whose back sum is greater: the two counts are equal, and each is (120 - T)/2, where T is the number of ties. A tie needs the four outer digits, whose total is 15 minus the middle digit, to split into two pairs with equal sums, so that total must be even: the middle digit is 1, 3 or 5. Middle 1: {2, 5} and {3, 4} (both 7). Middle 3: {1, 5} and {2, 4} (both 6). Middle 5: {1, 4} and {2, 3} (both 5). In each case either pair can go in front (2 ways) and each pair can be written in 2 orders (2 x 2), so each middle digit gives 8 ties and T = 24. The answer is (120 - 24)/2 = 48. The option 56 finds the ties only for middle digit 3 (T = 8). The option 40 assumes every middle digit allows a tie (T = 5 x 8 = 40). The option 36 counts each tie twice (T = 48). The option 72 counts the numbers whose front sum is greater than or equal to the back sum (48 + 24).",
+  "solve": "function perms(a){if(a.length<2)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));perms(rest).forEach(function(p){r.push([a[i]].concat(p));});}return r;}var c=0;perms([1,2,3,4,5]).forEach(function(p){if(p[0]+p[1]>p[3]+p[4])c++;});return c;",
+  "distractor_solve": {
+   "56": "return (120-8)/2;",
+   "40": "return (120-5*8)/2;",
+   "36": "function perms(a){if(a.length<2)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));perms(rest).forEach(function(p){r.push([a[i]].concat(p));});}return r;}var t=0;perms([1,2,3,4,5]).forEach(function(p){if(p[0]+p[1]===p[3]+p[4])t++;});return (120-2*t)/2;",
+   "72": "function perms(a){if(a.length<2)return [a];var r=[];for(var i=0;i<a.length;i++){var rest=a.slice(0,i).concat(a.slice(i+1));perms(rest).forEach(function(p){r.push([a[i]].concat(p));});}return r;}var c=0;perms([1,2,3,4,5]).forEach(function(p){if(p[0]+p[1]>=p[3]+p[4])c++;});return c;"
+  }
+ },
+ {
+  "id": "S17D-01",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "defined operation factored into a product, with a negative factor pair that still gives positive inputs",
+  "difficulty": "hard",
+  "prompt": "For all numbers a and b, the operation # is defined by a # b = ab - 8a - 8b. How many ordered pairs (a, b) of positive integers satisfy a # b = -48 ?",
+  "choices": [
+   "10",
+   "5",
+   "20",
+   "6",
+   "8"
+  ],
+  "correct_answer": "6",
+  "explanation": "Adding 64 to both sides gives ab - 8a - 8b + 64 = 16, that is, (a - 8)(b - 8) = 16. Since a and b are positive integers, a - 8 and b - 8 are integers that are at least -7. Positive factor pairs: (1, 16), (2, 8), (4, 4), (8, 2), (16, 1), giving (9, 24), (10, 16), (12, 12), (16, 10), (24, 9): 5 pairs. Negative factor pairs: (-1, -16), (-16, -1), (-2, -8) and (-8, -2) each need a factor below -7 (the last two would make a or b equal to 0), so they fail; (-4, -4) gives (4, 4), and 4 # 4 = 16 - 32 - 32 = -48 works. Total 5 + 1 = 6. The option \"5\" counts only the positive factor pairs. The option \"10\" counts every signed factor pair of 16 without checking that a and b stay positive. The option \"8\" allows a or b to be 0, keeping (6, 0) and (0, 6) from the pairs (-2, -8) and (-8, -2); the same 8 comes from moving 64 to the wrong side and solving (a - 8)(b - 8) = -48 - 64 = -112. The option \"20\" makes that sign slip and then also counts every signed factor pair of 112 without checking positivity.",
+  "solve": "let c=0; for(let a=1;a<400;a++){ for(let b=1;b<400;b++){ if(a*b-8*a-8*b===-48) c++; } } return c;",
+  "distractor_solve": {
+   "5": "const N=-48+64; let c=0; for(let x=1;x<=N;x++){ if(N%x===0) c++; } return c;",
+   "10": "const N=-48+64; let c=0; for(let x=1;x<=N;x++){ if(N%x===0) c+=2; } return c;",
+   "8": "let c=0; for(let a=0;a<400;a++){ for(let b=0;b<400;b++){ if(a*b-8*a-8*b===-48) c++; } } return c;",
+   "20": "const N=Math.abs(-48-64); let c=0; for(let x=1;x<=N;x++){ if(N%x===0) c+=2; } return c;"
+  }
+ },
+ {
+  "id": "S17D-03",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "function that turns products into sums: f(1) = 0 and the value at a reciprocal",
+  "difficulty": "hard",
+  "prompt": "A function f is defined for all positive numbers, and f(xy) = f(x) + f(y) for all positive numbers x and y. If f(8) = 9 and f(12) = 10, what is the value of f(1/6) ?",
+  "choices": [
+   "-7",
+   "-12",
+   "-5",
+   "-17/2",
+   "-6"
+  ],
+  "correct_answer": "-7",
+  "explanation": "Since 8 = 2 x 2 x 2, f(8) = 3f(2), so f(2) = 3. Since 12 = 2 x 6, f(12) = f(2) + f(6), so f(6) = 10 - 3 = 7. Putting x = y = 1 gives f(1) = 2f(1), so f(1) = 0. Then f(6) + f(1/6) = f(6 x 1/6) = f(1) = 0, so f(1/6) = -7. The option \"-12\" multiplies instead of adding, taking f(6) = f(2) x f(3) = 3 x 4. The option \"-5\" treats f like a multiple of its input, taking f(6) = f(12)/2. The option \"-17/2\" takes f(4) = f(8)/2 = 9/2 (because 4 = 8/2), so f(3) = 10 - 9/2 = 11/2 and f(6) = 3 + 11/2. The option \"-6\" takes f(6) = f(8) - f(2) = 6, as if subtracting outputs matched subtracting inputs (8 - 2 = 6).",
+  "solve": "const f8=9, f12=10; const f2=f8/3; const f6=f12-f2; const f1=0; return f1-f6;",
+  "distractor_solve": {
+   "-12": "const f8=9, f12=10; const f2=f8/3; const f3=f12-2*f2; return -(f2*f3);",
+   "-5": "const f12=10; return -(f12/2);",
+   "-17/2": "const f8=9, f12=10; const f2=f8/3; const f4=f8/2; const f3=f12-f4; return -(f2+f3);",
+   "-6": "const f8=9; const f2=f8/3; return -(f8-f2);"
+  }
+ },
+ {
+  "id": "S17D-05",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "a term of a sequence from a formula for its partial sums",
+  "difficulty": "medium",
+  "prompt": "For every positive integer n, the sum of the first n terms of a certain sequence is n^2 + 3n. What is the 20th term of the sequence?",
+  "choices": [
+   "44",
+   "118",
+   "42",
+   "82",
+   "61"
+  ],
+  "correct_answer": "42",
+  "explanation": "The 20th term is the sum of the first 20 terms minus the sum of the first 19: (400 + 60) - (361 + 57) = 460 - 418 = 42. (In general the nth term is 2n + 2.) The option \"44\" subtracts the wrong pair of sums, the first 20 from the first 21: (441 + 63) - 460 = 44. The option \"82\" subtracts the sum of the first 18 terms (324 + 54 = 378), which gives the 19th and 20th terms together. The option \"118\" takes the first term 4 correctly but reads the second term as the sum of the first two, 10, so it uses a common difference of 6: 4 + 19 x 6. The option \"61\" takes the common difference from the 3n part, using 4 + 19 x 3.",
+  "solve": "const S=n=>n*n+3*n; return S(20)-S(19);",
+  "distractor_solve": {
+   "44": "const S=n=>n*n+3*n; return S(21)-S(20);",
+   "82": "const S=n=>n*n+3*n; return S(20)-S(18);",
+   "118": "const S=n=>n*n+3*n; const a1=S(1); const d=S(2)-a1; return a1+19*d;",
+   "61": "const S=n=>n*n+3*n; const a1=S(1); return a1+19*3;"
+  }
+ },
+ {
+  "id": "S17D-07",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "power equal to 1: three unannounced cases (base 1, exponent 0, base -1 with even exponent)",
+  "difficulty": "hard",
+  "prompt": "What is the sum of all real numbers x for which (x^2 - 7x + 9)^(x^2 - 10x + 24) = 1 ?",
+  "choices": [
+   "12",
+   "24",
+   "9",
+   "17",
+   "19"
+  ],
+  "correct_answer": "19",
+  "explanation": "Write B = x^2 - 7x + 9 and E = x^2 - 10x + 24 = (x - 4)(x - 6). Case 1, B = 1: x^2 - 7x + 8 = 0, two real roots (7 +/- sqrt(17))/2 whose sum is 7; 1 to any power is 1. Case 2, E = 0 with B not 0: x = 4 (B = -3) and x = 6 (B = 3) both work, since any nonzero number to the power 0 is 1. Case 3, B = -1: x^2 - 7x + 10 = 0, so x = 2 or x = 5. At x = 2, E = 8 is even and (-1)^8 = 1, so x = 2 works; at x = 5, E = -1 is odd and (-1)^(-1) = -1, so x = 5 fails. For any other x the base is neither 1 nor -1 and the exponent is not 0, so the power is not 1. The solutions are (7 + sqrt(17))/2, (7 - sqrt(17))/2, 4, 6 and 2, with sum 7 + 4 + 6 + 2 = 19. The option \"24\" keeps x = 5 without checking that the exponent is even. The option \"12\" is the sum of the whole-number solutions 2, 4 and 6 found by trying integers, missing the base-equals-1 case whose roots are irrational. The option \"17\" misses the base -1 case (7 + 4 + 6). The option \"9\" misses the exponent-0 case (7 + 2).",
+  "solve": "const B=x=>x*x-7*x+9, E=x=>x*x-10*x+24; const qr=(a,b,c)=>{const d=b*b-4*a*c; if(d<0) return []; return [(-b+Math.sqrt(d))/(2*a),(-b-Math.sqrt(d))/(2*a)];}; const sols=[]; const add=x=>{ if(!sols.some(s=>Math.abs(s-x)<1e-9)) sols.push(x); }; qr(1,-7,8).forEach(add); qr(1,-10,24).forEach(x=>{ if(Math.abs(B(x))>1e-9) add(x); }); qr(1,-7,10).forEach(x=>{ const e=Math.round(E(x)); if(Math.abs(E(x)-e)<1e-9 && e%2===0) add(x); }); sols.forEach(x=>{ const b=B(x),e=E(x); const v=Math.abs(b-1)<1e-9?1:(Math.abs(e)<1e-9?1:Math.pow(b,Math.round(e))); if(Math.abs(v-1)>1e-9) throw new Error('bad'); }); return Math.round(sols.reduce((p,q)=>p+q,0));",
+  "distractor_solve": {
+   "24": "const qr=(a,b,c)=>{const d=Math.sqrt(b*b-4*a*c); return [(-b+d)/(2*a),(-b-d)/(2*a)];}; const s=[...qr(1,-7,8),...qr(1,-10,24),...qr(1,-7,10)]; return Math.round(s.reduce((p,q)=>p+q,0));",
+   "12": "let s=0; for(let x=-20;x<=20;x++){ const b=x*x-7*x+9, e=x*x-10*x+24; if(b===1 || (e===0&&b!==0) || (b===-1&&e%2===0)) s+=x; } return s;",
+   "17": "const qr=(a,b,c)=>{const d=Math.sqrt(b*b-4*a*c); return [(-b+d)/(2*a),(-b-d)/(2*a)];}; const s=[...qr(1,-7,8),...qr(1,-10,24)]; return Math.round(s.reduce((p,q)=>p+q,0));",
+   "9": "const qr=(a,b,c)=>{const d=Math.sqrt(b*b-4*a*c); return [(-b+d)/(2*a),(-b-d)/(2*a)];}; const E=x=>x*x-10*x+24; const s=[...qr(1,-7,8),...qr(1,-7,10).filter(x=>Math.round(E(x))%2===0)]; return Math.round(s.reduce((p,q)=>p+q,0));"
+  }
+ },
+ {
+  "id": "S17D-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "hidden reciprocal system: xy/(x + y) is the reciprocal of 1/x + 1/y",
+  "difficulty": "hard",
+  "prompt": "The nonzero numbers x, y and z satisfy xy/(x + y) = 2, xz/(x + z) = -6 and yz/(y + z) = -3. What is the value of x + y + z ?",
+  "choices": [
+   "11",
+   "7",
+   "-7/2",
+   "1",
+   "0"
+  ],
+  "correct_answer": "7",
+  "explanation": "Flip each equation: (x + y)/(xy) = 1/x + 1/y, so 1/x + 1/y = 1/2, 1/x + 1/z = -1/6 and 1/y + 1/z = -1/3. Adding, 2(1/x + 1/y + 1/z) = 1/2 - 1/6 - 1/3 = 0, so 1/x + 1/y + 1/z = 0. Then 1/z = 0 - 1/2 = -1/2, 1/y = 0 - (-1/6) = 1/6 and 1/x = 0 - (-1/3) = 1/3, so x = 3, y = 6, z = -2 (check: 18/9 = 2, -6/1 = -6, -12/4 = -3) and x + y + z = 7. The option \"11\" subtracts in the wrong order for z, taking 1/z = 1/2 - 0, so z = 2. The option \"1\" makes the same slip for x, taking 1/x = -1/3 - 0, so x = -3. The option \"0\" finds that 1/x + 1/y + 1/z = 0 and assumes that x + y + z is then 0 as well. The option \"-7/2\" treats the left sides as if they were x + y, x + z and y + z, adding the three given values and halving.",
+  "solve": "const p=[2,-6,-3]; /* xy/(x+y), xz/(x+z), yz/(y+z) */ const ab=1/p[0], ac=1/p[1], bc=1/p[2]; const S=(ab+ac+bc)/2; const a=S-bc, b=S-ac, c=S-ab; const x=1/a,y=1/b,z=1/c; const ok=[x*y/(x+y)-p[0], x*z/(x+z)-p[1], y*z/(y+z)-p[2]].every(v=>Math.abs(v)<1e-9); if(!ok) return 'BAD'; return Math.round((x+y+z)*1e9)/1e9;",
+  "distractor_solve": {
+   "11": "const p=[2,-6,-3]; const ab=1/p[0], ac=1/p[1], bc=1/p[2]; const S=(ab+ac+bc)/2; const a=S-bc, b=S-ac, c=ab-S; return Math.round((1/a+1/b+1/c)*1e9)/1e9;",
+   "1": "const p=[2,-6,-3]; const ab=1/p[0], ac=1/p[1], bc=1/p[2]; const S=(ab+ac+bc)/2; const a=bc-S, b=S-ac, c=S-ab; return Math.round((1/a+1/b+1/c)*1e9)/1e9;",
+   "0": "const p=[2,-6,-3]; const S=(1/p[0]+1/p[1]+1/p[2])/2; return Math.round(S*1e9)/1e9;",
+   "-7/2": "const p=[2,-6,-3]; const v=(p[0]+p[1]+p[2])/2; if(Math.abs(v+3.5)>1e-9) return 'BAD'; return '-7/2';"
+  }
+ },
+ {
+  "id": "S17E-02",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "divisors of a number that have a given number of divisors, exponent cap",
+  "difficulty": "hard",
+  "prompt": "Let N = 2^10 x 3^10 x 5^10. How many of the positive divisors of N have exactly 18 positive divisors?",
+  "choices": [
+   "15",
+   "18",
+   "9",
+   "21",
+   "4"
+  ],
+  "correct_answer": "15",
+  "explanation": "A divisor of N is 2^a x 3^b x 5^c with 0 <= a, b, c <= 10, and it has (a+1)(b+1)(c+1) divisors. Write 18 as an ordered product of three factors, each at least 1: the factor sets are {18, 1, 1}, {9, 2, 1}, {6, 3, 1} and {3, 3, 2}. {18, 1, 1} needs an exponent of 17, which is more than 10, so it is impossible. {9, 2, 1} (exponents 8, 1, 0) can be placed on the three primes in 6 orders, {6, 3, 1} (exponents 5, 2, 0) in 6 orders, and {3, 3, 2} (exponents 2, 2, 1) in 3 orders. Total 6 + 6 + 3 = 15. The option \"18\" forgets the cap and also counts the 3 divisors 2^17, 3^17, 5^17. The option \"9\" chooses which primes appear but not which exponent goes to which prime, counting each pattern 3 times. The option \"21\" forgets the cap and also counts the pattern 2, 2, 1 in 6 orders, as if its two equal exponents were different. The option \"4\" counts the four factor patterns of 18 instead of the divisors.",
+  "solve": "var c=0; for(var a=0;a<=10;a++){for(var b=0;b<=10;b++){for(var e=0;e<=10;e++){if((a+1)*(b+1)*(e+1)===18)c++;}}} return c;",
+  "distractor_solve": {
+   "18": "var c=0; for(var a=0;a<=17;a++){for(var b=0;b<=17;b++){for(var e=0;e<=17;e++){if((a+1)*(b+1)*(e+1)===18)c++;}}} return c;",
+   "9": "var pats=[[8,1,0],[5,2,0],[2,2,1]]; return pats.length*3;",
+   "21": "var pats=[[17,0,0],[8,1,0],[5,2,0],[2,2,1]]; var ways=[3,6,6,6]; var s=0; for(var i=0;i<pats.length;i++)s+=ways[i]; return s;",
+   "4": "var pats=[[17,0,0],[8,1,0],[5,2,0],[2,2,1]]; return pats.length;"
+  }
+ },
+ {
+  "id": "S17E-04",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "least common multiple of 1..n grows exactly at prime powers",
+  "difficulty": "hard",
+  "prompt": "For each whole number n, let L(n) be the least common multiple of all the whole numbers from 1 through n. For example, L(1) = 1, L(2) = 2 and L(3) = 6. For how many whole numbers n from 2 to 50, inclusive, is L(n) greater than L(n - 1)?",
+  "choices": [
+   "21",
+   "34",
+   "23",
+   "19",
+   "24"
+  ],
+  "correct_answer": "23",
+  "explanation": "L(n) is the product of the highest power of each prime that is at most n. Going from n - 1 to n changes L only if n brings a prime power that was not there before, and that happens exactly when n itself is a power of one prime: if n has two different prime factors, n = ab with a and b smaller and sharing no factor, both already divide L(n - 1), so n does too. So count the prime powers from 2 to 50: the 15 primes 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, and the higher powers 4, 8, 16, 32, 9, 27, 25, 49 (8 of them). Total 15 + 8 = 23. The option \"19\" counts the primes and only the squares of primes (4, 9, 25, 49), missing 8, 16, 27 and 32. The option \"21\" counts the primes and every perfect square above 1 (4, 9, 16, 25, 36, 49), wrongly including 36 and missing 8, 27, 32. The option \"24\" counts the primes and every perfect power (4, 8, 9, 16, 25, 27, 32, 36, 49), wrongly including 36 = 6^2. The option \"34\" counts the composite numbers from 2 to 50 instead of the prime powers.",
+  "solve": "var vp=function(m,p){var e=0;while(m%p===0){m=m/p;e++;}return e;}; var best={}; var c=0; for(var n=2;n<=50;n++){ var m=n, grew=false; for(var p=2;p<=m;p++){ if(m%p===0){ var e=vp(m,p); while(m%p===0) m=m/p; if(!(best[p]>=e)){ grew=true; best[p]=e; } } } if(grew) c++; } return c;",
+  "distractor_solve": {
+   "19": "var isP=function(m){if(m<2)return false;for(var d=2;d*d<=m;d++)if(m%d===0)return false;return true;}; var c=0; for(var n=2;n<=50;n++){ var r=Math.round(Math.sqrt(n)); if(isP(n) || (r*r===n && isP(r))) c++; } return c;",
+   "21": "var isP=function(m){if(m<2)return false;for(var d=2;d*d<=m;d++)if(m%d===0)return false;return true;}; var c=0; for(var n=2;n<=50;n++){ var r=Math.round(Math.sqrt(n)); if(isP(n) || r*r===n) c++; } return c;",
+   "24": "var isP=function(m){if(m<2)return false;for(var d=2;d*d<=m;d++)if(m%d===0)return false;return true;}; var pw={}; for(var b=2;b<=7;b++){ for(var v=b*b; v<=50; v*=b) pw[v]=1; } var c=0; for(var n=2;n<=50;n++){ if(isP(n) || pw[n]) c++; } return c;",
+   "34": "var isP=function(m){if(m<2)return false;for(var d=2;d*d<=m;d++)if(m%d===0)return false;return true;}; var c=0; for(var n=2;n<=50;n++){ if(!isP(n)) c++; } return c;"
+  }
+ },
+ {
+  "id": "S17E-06",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "pairs with a given least common multiple, prime by prime",
+  "difficulty": "hard",
+  "prompt": "How many pairs of positive integers (a, b) with a < b have a least common multiple of 144?",
+  "choices": [
+   "45",
+   "16",
+   "30",
+   "40",
+   "22"
+  ],
+  "correct_answer": "22",
+  "explanation": "144 = 2^4 x 3^2, and a and b must both be divisors of 144. Write a = 2^x 3^y and b = 2^u 3^v. The lcm is 144 exactly when the larger of x and u is 4 and the larger of y and v is 2. For the prime 2 the pairs (x, u) with larger member 4 number 5 x 5 - 4 x 4 = 9; for the prime 3, 3 x 3 - 2 x 2 = 5. So there are 9 x 5 = 45 ordered pairs (a, b). Exactly one of them has a = b, namely (144, 144); the other 44 split into 22 pairs with a < b. The option \"45\" counts ordered pairs and ignores the condition a < b. The option \"16\" demands that exactly one of the two numbers carry the full power of each prime (2 x 4 = 8 choices for 2, 2 x 2 = 4 for 3, then halves 32). The option \"30\" counts 'a has the full power or b has the full power' as 2 x 5 = 10 and 2 x 3 = 6 choices, counting the case where both have it twice, and halves 60. The option \"40\" starts from all 15 x 15 = 225 ordered pairs of divisors and removes only the 12 x 12 = 144 pairs whose lcm divides 72, forgetting the pairs whose lcm divides 48, then removes the equal pair and halves.",
+  "solve": "var g=function(x,y){while(y){var t=x%y;x=y;y=t;}return x;}; var c=0; for(var a=1;a<=144;a++){ for(var b=a+1;b<=144;b++){ if(a*b/g(a,b)===144) c++; } } return c;",
+  "distractor_solve": {
+   "45": "var g=function(x,y){while(y){var t=x%y;x=y;y=t;}return x;}; var c=0; for(var a=1;a<=144;a++){ for(var b=1;b<=144;b++){ if(a*b/g(a,b)===144) c++; } } return c;",
+   "16": "var e2=4, e3=2; return (2*e2)*(2*e3)/2;",
+   "30": "var e2=4, e3=2; return (2*(e2+1))*(2*(e3+1))/2;",
+   "40": "var all=(4+1)*(2+1), sub=(3+1)*(2+1); return (all*all - sub*sub - 1)/2;"
+  }
+ },
+ {
+  "id": "S17E-09",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "add-the-digit-sum sequence: each step doubles the remainder mod 9",
+  "difficulty": "hard",
+  "prompt": "A sequence starts with 1, and each term after the first is found by adding the sum of the digits of the previous term to the previous term. The sequence begins 1, 2, 4, 8, 16, 23, 28, 38, 49, 62, ... What is the remainder when the 61st term of the sequence is divided by 9?",
+  "choices": [
+   "2",
+   "5",
+   "1",
+   "7",
+   "6"
+  ],
+  "correct_answer": "1",
+  "explanation": "A whole number and the sum of its digits leave the same remainder when divided by 9. So if a term leaves remainder r, the next term (term + digit sum) leaves the remainder of r + r = 2r. Starting from 1, the nth term leaves the same remainder as 2^(n-1). Powers of 2 leave remainders 1, 2, 4, 8, 7, 5 on division by 9 and then repeat (2^6 = 64 = 63 + 1). The 61st term matches 2^60, and 60 = 6 x 10, so it is in the same place as 2^0 = 1: remainder 1. (Check: the 61st term is 658 = 9 x 73 + 1.) The option \"2\" matches the nth term with 2^n instead of 2^(n-1), and 2^61 leaves remainder 2. The option \"5\" slips the other way and uses 2^59. The option \"7\" uses the units-digit habit of a cycle of length 4: 60 is a multiple of 4, so it treats 2^60 like 2^4 = 16, remainder 7. The option \"6\" reports the units digit of 2^60 (the cycle 2, 4, 8, 6) as though it were the remainder on division by 9.",
+  "solve": "var a=1; for(var i=2;i<=61;i++){ var s=0, t=a; while(t>0){ s+=t%10; t=Math.floor(t/10); } a+=s; } return a%9;",
+  "distractor_solve": {
+   "2": "var p=1; for(var i=0;i<61;i++){ p=(p*2)%9; } return p;",
+   "5": "var p=1; for(var i=0;i<59;i++){ p=(p*2)%9; } return p;",
+   "7": "var e=60%4; if(e===0) e=4; var p=1; for(var i=0;i<e;i++){ p*=2; } return p%9;",
+   "6": "var p=1; for(var i=0;i<60;i++){ p=(p*2)%10; } return p;"
+  }
+ },
+ {
+  "id": "S17E-11",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "which numbers are a difference of two squares: remainder on division by 4, plus the positive-integer edge cases",
+  "difficulty": "hard",
+  "prompt": "How many of the integers 1, 2, 3, ..., 100 can be written in the form a^2 - b^2, where a and b are positive integers?",
+  "choices": [
+   "75",
+   "50",
+   "61",
+   "65",
+   "73"
+  ],
+  "correct_answer": "73",
+  "explanation": "a^2 - b^2 = (a - b)(a + b), and a - b and a + b differ by 2b, an even number, so they are both odd or both even. Both odd: n is odd. Both even: n is a multiple of 4. So no n that leaves remainder 2 on division by 4 works (25 such numbers from 1 to 100), leaving 75. Conversely, an odd n = 1 x n gives a = (n + 1)/2, b = (n - 1)/2, which is positive when n >= 3; n = 1 would need b = 0, and it has no other factor pair. A multiple of 4, n = 2 x (n/2), gives a = n/4 + 1, b = n/4 - 1, positive when n >= 8; n = 4 = 2 x 2 would need b = 0, and it has no other same-parity pair. So 1 and 4 also fail: 75 - 2 = 73. The option \"75\" ignores that b must be positive. The option \"50\" counts only the odd numbers, forgetting the multiples of 4 (and keeping 1). The option \"65\" believes a perfect square can only be written as itself minus 0^2, so it removes all ten perfect squares from the 75 (but 9 = 5^2 - 4^2, 16 = 5^2 - 3^2, and so on). The option \"61\" tries only pairs of odd numbers for even differences, whose squares differ by a multiple of 8, so it adds the 12 multiples of 8 from 8 to 96 to the 49 odd numbers from 3 to 99.",
+  "solve": "var c=0; for(var n=1;n<=100;n++){ var ok=false; for(var b=1;b<=100 && !ok;b++){ for(var a=b+1;a<=101;a++){ var d=a*a-b*b; if(d===n){ ok=true; break; } if(d>n) break; } } if(ok) c++; } return c;",
+  "distractor_solve": {
+   "75": "var c=0; for(var n=1;n<=100;n++){ if(n%4!==2) c++; } return c;",
+   "50": "var c=0; for(var n=1;n<=100;n++){ if(n%2===1) c++; } return c;",
+   "65": "var c=0; for(var n=1;n<=100;n++){ var r=Math.round(Math.sqrt(n)); if(n%4!==2 && r*r!==n) c++; } return c;",
+   "61": "var c=0; for(var n=3;n<=100;n++){ if(n%2===1 || n%8===0) c++; } return c;"
+  }
+ },
+ {
+  "id": "S17E-13",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number minus its digit sum: the units digit cancels, so values depend on the first two digits only",
+  "difficulty": "hard",
+  "prompt": "For each three-digit positive integer N, subtract the sum of the digits of N from N itself. For example, for N = 247 the result is 247 - (2 + 4 + 7) = 234. As N runs through all the three-digit positive integers from 100 to 999, how many different results are obtained?",
+  "choices": [
+   "98",
+   "90",
+   "900",
+   "81",
+   "108"
+  ],
+  "correct_answer": "90",
+  "explanation": "Write N = 100a + 10b + c with a from 1 to 9 and b, c from 0 to 9. Then N - (a + b + c) = 99a + 9b = 9(11a + b). The units digit c has cancelled, so the result depends only on a and b. Since b is at most 9, which is less than 11, different pairs (a, b) give different values of 11a + b. So the number of different results equals the number of pairs: 9 x 10 = 90. The option \"98\" notices that every result is a multiple of 9, finds the least result 99 (N = 100 to 109) and the greatest 972 (N = 990 to 999), and counts all multiples of 9 from 99 to 972: 108 - 11 + 1 = 98, without checking that values such as 9 x 21 = 189 are never reached. The option \"900\" assumes each three-digit number gives its own result. The option \"81\" counts only tens digits 1 to 9, forgetting that the tens digit may be 0. The option \"108\" also notices the multiple of 9 but counts every multiple of 9 up to the greatest result 972, from 9 x 1 to 9 x 108, forgetting that the least result is 99.",
+  "solve": "var seen={}; var n=0; for(var N=100;N<=999;N++){ var s=Math.floor(N/100)+Math.floor(N/10)%10+N%10; var v=N-s; if(!seen[v]){ seen[v]=1; n++; } } return n;",
+  "distractor_solve": {
+   "98": "var lo=99, hi=99*9+9*9; return hi/9 - lo/9 + 1;",
+   "900": "return 999-100+1;",
+   "81": "var seen={}; var n=0; for(var a=1;a<=9;a++){ for(var b=1;b<=9;b++){ var v=99*a+9*b; if(!seen[v]){ seen[v]=1; n++; } } } return n;",
+   "108": "var hi=99*9+9*9; return hi/9;"
+  }
+ },
+ {
+  "id": "S17E-15",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "number equal to a multiple of its digit sum: place-value equation, then a digit-bounded case split",
+  "difficulty": "hard",
+  "prompt": "How many three-digit positive integers are exactly 19 times the sum of their own digits? (For example, 190 is one of them, because 1 + 9 + 0 = 10 and 19 x 10 = 190.)",
+  "choices": [
+   "5",
+   "12",
+   "15",
+   "11",
+   "9"
+  ],
+  "correct_answer": "11",
+  "explanation": "Write the number as 100a + 10b + c (a = hundreds, b = tens, c = units). Then 100a + 10b + c = 19a + 19b + 19c, so 81a = 9b + 18c, that is b + 2c = 9a. Since b + 2c is at most 9 + 18 = 27, a is 1, 2 or 3. a = 1: b + 2c = 9 gives c = 0, 1, 2, 3, 4 (b = 9, 7, 5, 3, 1): 5 numbers. a = 2: b + 2c = 18 needs b = 18 - 2c at most 9, so c = 5, 6, 7, 8, 9 (b = 8, 6, 4, 2, 0): 5 numbers. a = 3: b + 2c = 27 forces c = 9, b = 9: the number 399. Total 5 + 5 + 1 = 11. The option \"5\" stops after the hundreds digit 1. The option \"12\" lets the tens digit be 10 in the case a = 2 (c = 4, b = 10). The option \"15\" assumes each of the three hundreds digits gives 5 numbers, as the first case did. The option \"9\" leaves out every number with a 0 digit (190 and 209), as if digits had to be nonzero.",
+  "solve": "var n=0; for(var N=100;N<=999;N++){ var s=Math.floor(N/100)+Math.floor(N/10)%10+N%10; if(N===19*s) n++; } return n;",
+  "distractor_solve": {
+   "5": "var n=0; var a=1; for(var c=0;c<=9;c++){ var b=9*a-2*c; if(b>=0&&b<=9) n++; } return n;",
+   "12": "var n=0; for(var a=1;a<=9;a++){ for(var c=0;c<=9;c++){ var b=9*a-2*c; if(b>=0&&(b<=9||(a===2&&b===10))) n++; } } return n;",
+   "15": "var first=0; for(var c=0;c<=9;c++){ var b=9-2*c; if(b>=0&&b<=9) first++; } var cases=0; for(var a=1;a<=9;a++){ if(9*a<=27) cases++; } return cases*first;",
+   "9": "var n=0; for(var N=100;N<=999;N++){ var a=Math.floor(N/100), b=Math.floor(N/10)%10, c=N%10; if(b===0||c===0) continue; if(N===19*(a+b+c)) n++; } return n;"
+  }
+ },
+ {
+  "id": "S17E-17",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "digit sum of a doubled number: every digit 5 or more makes a carry that costs 9",
+  "difficulty": "hard",
+  "prompt": "A positive integer N has exactly 15 digits: four 9s, three 7s, two 5s and six 2s, arranged in some order. What is the sum of the digits of 2N?",
+  "choices": [
+   "77",
+   "95",
+   "149",
+   "86",
+   "122"
+  ],
+  "correct_answer": "77",
+  "explanation": "Double N place by place. A digit d from 0 to 4 becomes 2d with no carry. A digit d from 5 to 9 becomes 2d - 10 in its place and sends a carry of 1 to the next place; since 2d + 1 is at most 19, a carry never causes a second carry. So each digit that is 5 or more changes the digit sum by -10 + 1 = -9 compared with plain doubling, and the order of the digits does not matter. Here the digit sum of N is 4 x 9 + 3 x 7 + 2 x 5 + 6 x 2 = 79, and 4 + 3 + 2 = 9 digits are 5 or more, so the digit sum of 2N is 2 x 79 - 9 x 9 = 158 - 81 = 77. The option \"95\" treats only the digits greater than 5 as carrying, missing the two 5s (5 x 2 = 10 carries too): 158 - 9 x 7. The option \"149\" subtracts 9 only once, as if the carries together cost 9. The option \"86\" finds the digit sum of each doubled digit (18 -> 9, 14 -> 5, 10 -> 1, 4 -> 4), which already includes each carried 1, and then adds the nine carries again: 77 + 9. The option \"122\" counts only the 9s as producing a carry: 158 - 9 x 4.",
+  "solve": "var ds={9:4,7:3,5:2,2:6}; var s=0, k=0; for(var d in ds){ s+=Number(d)*ds[d]; if(Number(d)>=5) k+=ds[d]; } var digs=[]; for(var d in ds){ for(var i=0;i<ds[d];i++) digs.push(Number(d)); } var carry=0, t=0; for(var j=0;j<digs.length;j++){ var v=2*digs[j]+carry; t+=v%10; carry=Math.floor(v/10); } t+=carry; return t;",
+  "distractor_solve": {
+   "95": "var ds={9:4,7:3,5:2,2:6}; var s=0, k=0; for(var d in ds){ s+=Number(d)*ds[d]; if(Number(d)>5) k+=ds[d]; } return 2*s-9*k;",
+   "149": "var ds={9:4,7:3,5:2,2:6}; var s=0; for(var d in ds){ s+=Number(d)*ds[d]; } return 2*s-9;",
+   "86": "var ds={9:4,7:3,5:2,2:6}; var t=0, k=0; for(var d in ds){ var v=2*Number(d); var dsum=Math.floor(v/10)+v%10; t+=dsum*ds[d]; if(v>=10) k+=ds[d]; } return t+k;",
+   "122": "var ds={9:4,7:3,5:2,2:6}; var s=0; for(var d in ds){ s+=Number(d)*ds[d]; } return 2*s-9*ds[9];"
+  }
+ },
+ {
+  "id": "S17E-19",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "greatest prime factor of a sum of factorials: factor out the smaller factorial",
+  "difficulty": "medium",
+  "prompt": "What is the greatest prime factor of 10! + 12! ? (Here n! means the product of all the whole numbers from 1 to n; for example, 4! = 1 x 2 x 3 x 4 = 24.)",
+  "choices": [
+   "13",
+   "131",
+   "19",
+   "7",
+   "23"
+  ],
+  "correct_answer": "19",
+  "explanation": "12! = 10! x 11 x 12 = 10! x 132, so 10! + 12! = 10! x (1 + 132) = 10! x 133 = 10! x 7 x 19. The primes in 10! are 2, 3, 5 and 7, so the prime factors of the sum are 2, 3, 5, 7 and 19, and the greatest is 19. The option \"7\" takes the greatest prime of 10! and forgets the bracket. The option \"13\" factors the sum as 10! x (1 + 12), dropping the factor 11 of 12!/10!. The option \"23\" adds 11 and 12 instead of multiplying them inside the bracket. The option \"131\" makes the bracket 132 - 1 (a sign slip, as if the sum were 12! - 10!) and then reads 131, which is prime, as the answer.",
+  "solve": "var f=function(n){var r=1;for(var i=2;i<=n;i++)r*=i;return r;}; var x=f(10)+f(12), best=1; for(var p=2;p*p<=x;p++){while(x%p===0){best=p;x/=p;}} if(x>1)best=Math.max(best,x); return String(best);",
+  "distractor_solve": {
+   "7": "var best=1; for(var p=2;p<=10;p++){var isP=true;for(var q=2;q*q<=p;q++)if(p%q===0)isP=false; if(isP)best=p;} return String(best);",
+   "13": "return String(1 + 12);",
+   "23": "return String(11 + 12);",
+   "131": "return String(11*12 - 1);"
+  }
+ },
+ {
+  "id": "S17E-21",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "n! divisible by n^2 exactly when n divides (n-1)!: primes fail, and so does the single composite 4",
+  "difficulty": "hard",
+  "prompt": "For how many integers n from 2 to 100, inclusive, is n! divisible by n^2 ? (Here n! means 1 x 2 x 3 x ... x n; for example, 6! = 720, and 720 is divisible by 6^2 = 36.)",
+  "choices": [
+   "74",
+   "64",
+   "70",
+   "59",
+   "73"
+  ],
+  "correct_answer": "73",
+  "explanation": "n! = n x (n - 1)!, so n^2 divides n! exactly when n divides (n - 1)!. If n is prime, none of 1, 2, ..., n - 1 has the factor n, so it fails (25 primes from 2 to 97). If n is composite, write n = ab with 1 < a < b < n: both a and b appear among 1, ..., n - 1, so n divides (n - 1)!. If n = p^2 for an odd prime p, the numbers p and 2p are both less than p^2, so p^2 divides (n - 1)! again. The only failure among composites is 4 = 2 x 2: 3! = 6 is not divisible by 4 (and 4! = 24 is not divisible by 16). There are 99 - 25 = 74 composites from 2 to 100, so the count is 74 - 1 = 73. The option \"74\" counts every composite and misses the exception 4. The option \"70\" also rejects 9, 25 and 49, believing the square of a prime always needs the prime twice below it. The option \"64\" rejects every composite power of a prime (4, 8, 9, 16, 25, 27, 32, 49, 64, 81). The option \"59\" rejects 4 and every number that is twice an odd prime (6, 10, 14, ..., 94), believing 2p needs p twice.",
+  "solve": "var c=0; for(var n=2;n<=100;n++){ var need=n*n, m=need; for(var i=2;i<=n && m>1;i++){ var a=i, b=m; while(b){var t=a%b;a=b;b=t;} m=m/a; } if(m===1) c++; } return String(c);",
+  "distractor_solve": {
+   "74": "var c=0; for(var n=2;n<=100;n++){var p=true;for(var q=2;q*q<=n;q++)if(n%q===0)p=false; if(!p)c++;} return String(c);",
+   "70": "var isP=function(x){if(x<2)return false;for(var q=2;q*q<=x;q++)if(x%q===0)return false;return true;}; var c=0; for(var n=2;n<=100;n++){ if(isP(n)) continue; var r=Math.round(Math.sqrt(n)); if(r*r===n && isP(r)) continue; c++; } return String(c);",
+   "64": "var isP=function(x){if(x<2)return false;for(var q=2;q*q<=x;q++)if(x%q===0)return false;return true;}; var c=0; for(var n=2;n<=100;n++){ if(isP(n)) continue; var q=2; while(n%q!==0)q++; var m=n; while(m%q===0)m/=q; if(m===1) continue; c++; } return String(c);",
+   "59": "var isP=function(x){if(x<2)return false;for(var q=2;q*q<=x;q++)if(x%q===0)return false;return true;}; var c=0; for(var n=2;n<=100;n++){ if(isP(n) || n===4) continue; if(n%2===0 && isP(n/2) && n/2>2) continue; c++; } return String(c);"
+  }
+ },
+ {
+  "id": "S17E-23",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "largest pairwise coprime set from 1 to 30: each number above 1 uses up its own prime, and 1 is free",
+  "difficulty": "hard",
+  "prompt": "Some of the integers 1, 2, 3, ..., 30 are to be chosen so that no two of the chosen integers have a common factor greater than 1. What is the greatest number of integers that can be chosen?",
+  "choices": [
+   "15",
+   "11",
+   "9",
+   "8",
+   "10"
+  ],
+  "correct_answer": "11",
+  "explanation": "Each chosen integer greater than 1 has at least one prime factor, and since no two chosen integers share a factor greater than 1, no prime can divide two of them. Pick one prime factor of each chosen integer above 1: these primes are all different and all at most 30, and there are only 10 primes up to 30 (2, 3, 5, 7, 11, 13, 17, 19, 23, 29). So at most 10 chosen integers exceed 1, and 1 itself (which has no prime factor) may also be chosen: at most 11. The set {1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29} reaches 11. The option \"10\" chooses the primes and forgets that 1 can be added. The option \"9\" chooses greedily from the top (30, 29, 23, 19, 17, 13, 11, 7, 1), where 30 uses up 2, 3 and 5 at once. The option \"8\" counts the integers from 1 to 30 that share no factor with 30. The option \"15\" chooses all the odd integers, overlooking that 3 and 9 (for example) share the factor 3.",
+  "solve": "var primes=0; for(var n=2;n<=30;n++){var p=true;for(var q=2;q*q<=n;q++)if(n%q===0)p=false; if(p)primes++;} return String(primes + 1);",
+  "distractor_solve": {
+   "10": "var primes=0; for(var n=2;n<=30;n++){var p=true;for(var q=2;q*q<=n;q++)if(n%q===0)p=false; if(p)primes++;} return String(primes);",
+   "9": "var g=function(a,b){return b?g(b,a%b):a;}; var S=[]; for(var n=30;n>=1;n--){ var ok=true; for(var i=0;i<S.length;i++) if(g(S[i],n)>1) ok=false; if(ok) S.push(n); } return String(S.length);",
+   "8": "var g=function(a,b){return b?g(b,a%b):a;}; var c=0; for(var n=1;n<=30;n++) if(g(n,30)===1) c++; return String(c);",
+   "15": "var c=0; for(var n=1;n<=30;n++) if(n%2===1) c++; return String(c);"
+  }
+ },
+ {
+  "id": "S17E-25",
+  "family": "ssat",
+  "section": "math",
+  "domain": "Math",
+  "subskill": "equal remainders with the remainder unknown: the divisor must divide every difference",
+  "difficulty": "hard",
+  "prompt": "When each of the numbers 251, 323 and 443 is divided by the positive integer n, the three remainders are equal. What is the greatest possible value of n?",
+  "choices": [
+   "72",
+   "11",
+   "192",
+   "24",
+   "120"
+  ],
+  "correct_answer": "24",
+  "explanation": "If 251 and 323 leave the same remainder r on division by n, then 251 = an + r and 323 = bn + r, so 323 - 251 = 72 = (b - a)n: n divides 72. In the same way n divides 443 - 323 = 120 (and 443 - 251 = 192). So n divides the greatest common factor of 72 and 120, which is 24; and n = 24 works: 251 = 10 x 24 + 11, 323 = 13 x 24 + 11, 443 = 18 x 24 + 11. The greatest n is 24. The option \"72\" uses only the first difference, 323 - 251; 443 leaves remainder 11 on division by 72 but 323 leaves 35. The option \"120\" uses only the difference 443 - 323. The option \"192\" uses only the largest difference, 443 - 251. The option \"11\" reports the common remainder instead of the divisor.",
+  "solve": "var a=251,b=323,c=443; function g(x,y){ while(y){ var t=x%y; x=y; y=t; } return x; } return String(g(b-a,c-b));",
+  "distractor_solve": {
+   "72": "var a=251,b=323; return String(b-a);",
+   "120": "var b=323,c=443; return String(c-b);",
+   "192": "var a=251,c=443; return String(c-a);",
+   "11": "var a=251,b=323,c=443; function g(x,y){ while(y){ var t=x%y; x=y; y=t; } return x; } return String(a % g(b-a,c-b));"
+  }
+ }
+]
